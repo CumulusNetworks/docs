@@ -665,6 +665,9 @@ Introduced in Cumulus Linux 5.10.0
 
 ```
 cumulus@switch:~$ nv show system telemetry export otlp gRPC destination 10.1.1.100
+      applied  pending
+----  -------  -------
+port           4317
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -976,7 +979,7 @@ cumulus@switch:~$ nv show system telemetry histogram latency
 
 ## <h>nv show system telemetry interface-stats</h>
 
-Shows interface statistics configuration for open telemetry export.
+Shows telemetry interface statistics configuration.
 
 ### Version History
 
@@ -997,7 +1000,7 @@ export
 
 ## <h>nv show system telemetry interface-stats egress-buffer</h>
 
-Shows the interface statistics egress buffer configuration for open telemetry export.
+Shows the telemetry interface statistics egress buffer configuration.
 
 ### Version History
 
@@ -1013,7 +1016,7 @@ cumulus@switch:~$ nv show system telemetry interface-stats egress-buffer
 
 ## <h>nv show system telemetry interface-stats export</h>
 
-Shows all telemetry export configuration.
+Shows if interface statistics export is enabled or disabled.
 
 ### Version History
 
@@ -1022,23 +1025,17 @@ Introduced in Cumulus Linux 5.10.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system telemetry export
-                    applied   pending 
-------------------  --------  --------
-vrf                 default   default 
-otlp                                  
-  state             disabled  disabled
-  grpc                                
-    insecure  disabled  disabled
-    port            8443      8443    
-    [destination]
+cumulus@switch:~$ nv show system telemetry interface-stats export
+      applied   pending 
+-----  --------  --------
+state  enabled  enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show system telemetry interface-stats ingress-buffer</h>
 
-Shows the interface statistics ingress buffer configuration for open telemetry export.
+Shows telemetry interface statistics ingress buffer configuration.
 
 ### Version History
 

@@ -2788,6 +2788,52 @@ cumulus@switch:~$ nv action upgrade system packages to latest use-vrf default dr
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action upload tech-support files \<file-id\> \<remote-url\></h>
+
+Uploads a technical support file (`cl-support`) off the switch to an external location.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<file-id>` |  The technical support file you want to upload.  |
+| `<remote-url>` |  The URL to where you want to upload the technical support file.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action upload tech-support files cl_support_leaf01_20240725_225811.txz scp://root@host1:/home/tech-support/
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action upload system telemetry hft job <hft-job-id> \<remote-url\></h>
+
+Uploads high frequency telemetry data for a specific session (job) off the switch to an external location.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<hft-job-id>` |  The job ID. You can see the list of jobs with the `nv show system telemetry hft job` command.  |
+| `<remote-url>` |  The URL to where you want to upload the data.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action upload system telemetry hft job 1 scp://root@host1:/home/telemetry/
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show action</h>
 
 Shows actions, such as cleared interface counters and routes, removed protodown MLAG bond conflicts, and disconnected system users.

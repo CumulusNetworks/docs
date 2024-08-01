@@ -2688,7 +2688,7 @@ Action succeeded
 
 ## <h>nv action rotate system log</h>
 
-Rotates the system log files.
+Rotates the system log files. Cumulus Linux automatically manages log file size, preventing the logs from filling the storage space and slowing down the system.
 
 ### Version History
 

@@ -974,6 +974,84 @@ cumulus@switch:~$ nv show system telemetry histogram latency
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system telemetry interface-stats</h>
+
+Shows interface statistics configuration for open telemetry export.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry interface-stats
+                 applied   pending 
+---------------  --------  --------
+sample-interval  1         1       
+export                             
+  state          enabled  enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry interface-stats egress-buffer</h>
+
+Shows the interface statistics egress buffer configuration for open telemetry export.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry interface-stats egress-buffer
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry interface-stats export</h>
+
+Shows all telemetry export configuration.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry export
+                    applied   pending 
+------------------  --------  --------
+vrf                 default   default 
+otlp                                  
+  state             disabled  disabled
+  grpc                                
+    insecure  disabled  disabled
+    port            8443      8443    
+    [destination]
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry interface-stats ingress-buffer</h>
+
+Shows the interface statistics ingress buffer configuration for open telemetry export.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry interface-stats ingress-buffer
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system telemetry snapshot-file</h>
 
 Shows histogram snapshot file configuration and operational data.

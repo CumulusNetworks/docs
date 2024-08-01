@@ -20,7 +20,10 @@ The following configuration and log files contain information that can help with
 
 ## Check NetQ System Installation Status
 
-The `netq show status verbose` command shows the status of NetQ components after installation. Use this command to validate NetQ system readiness:
+The `netq show status verbose` command shows the status of NetQ components after installation. Use this command to validate NetQ system readiness.
+
+{{< expand "netq show status verbose" >}}
+
 
 ```
 cumulus@netq:~$ netq show status verbose
@@ -68,6 +71,7 @@ Created Keys                                                        FINISHED
 Verified installer version                                          FINISHED
 ...
 ```
+{{< /expand >}}
 
 ## Installation and Upgrade Hook Scripts
 

@@ -27,7 +27,7 @@ The Cumulus Linux installation file name includes the version number, in the for
     - Security updates.
 
 {{%notice note%}}
-NVIDIA occasionally provides private four digit releases, such as 3.7.16.1. These releases are not official. You can only upgrade to a private release with a binary image.
+NVIDIA occasionally provides private four digit releases, such as 3.7.16.1. These releases are not official. You can only upgrade to and from a private release with a binary image.
 {{%/notice%}}
 
 ## Release, Support Lifecycle and Support Policy

@@ -65,7 +65,7 @@ The relationship between lane speed and encoding methods is described in this ta
 | 10G | Uses 64B/66B framing then encoded in NRZ &mdash; actually 10.3125 Gbps on the wire. |
 | 25G | Uses 64B/66B framing then encoded in NRZ &mdash; actually 25.78125 Gbps on the wire. Can also use RS-FEC (528,514) or Base-R FEC. |
 | 50G | Uses PAM4 encoding and RS-FEC (544,514). |
-| 100G | Uses PAM4 encoding and NRZ encoding. |
+| 100G | Uses PAM4 encoding. |
 
 The SerDes (Serial/Deserializer) is the component in the port that converts byte data to and from a set of bit streams (lanes), where:
 

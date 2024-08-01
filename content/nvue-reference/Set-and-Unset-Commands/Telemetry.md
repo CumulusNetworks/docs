@@ -661,9 +661,35 @@ cumulus@switch:~$ nv set system telemetry hft profile profile1 sample-interval 1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system telemetry hft profile \<profile-id\> traffic-class</h>
+
+Sets the high frequency telemetry egress queue priorities (traffic class 0-15) for the profile if the data types you want to collect include current traffic class buffer occupancy. The standard profile setting is 3.
+
+{{%notice note%}}
+Use commas (no spaces) to separate the list of traffic classes. For example, to set traffic class 1, 3, and 6, specify 1,3,6.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |  The name of the profile. High frequency telemetry uses profiles for data collection. A profile is a set of configurations. Cumulus Linux provides a default profile called `standard`. You can create a maximum of four new profiles (four profiles in addition to the default profile).|
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry hft profile profile1 traffic-class 0,3,7
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system telemetry hft target local</h>
 
-Configures the switch to save the collected data locally to a json file in the `/var/run/cumulus/hft` directory. You can then export the json file to an external location with NVUE commands (or the API). The json format file includes the data for each sampling interval and a timestamp showing when the data was collected.
+Configures the switch to save the collected data locally in the `/var/run/cumulus/hft` directory. You can then export the `json` file to an external location with NVUE commands (or the API). The `json` file includes the data for each sampling interval and a timestamp showing when the data was collected.
 
 {{%notice note%}}
 - Cumulus Linux supports high frequency telemetry on Spectrum-4 switches only.
@@ -833,7 +859,7 @@ cumulus@switch:~$ nv set system telemetry histogram egress-buffer sample-interva
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system telemetry export otlp grpc allow-insecure</h>
+## <h>nv set system telemetry export otlp grpc insecure</h>
 
 Enables and disables `insecure` mode for <span class="a-tooltip">[gRPC ](## "Remote Procedure Call")</span> connections for telemetry. By default, OTLP export is in **secure mode** that requires a certificate. For connections without a configured certificate, you must enable `insecure` mode. You can specify `enabled` or `disabled`.
 
@@ -973,6 +999,38 @@ cumulus@switch:~$ nv set system telemetry histogram ingress-buffer sample-interv
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system telemetry interface-stats egress-buffer traffic-class</h>
+
+Configures the egress buffer traffic class for open telemetry export for interface statistics.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry interface-stats egress-buffer traffic-class 0
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry interface-stats ingress-buffer priority-group</h>
+
+Configures the ingress buffer priority group for open telemetry export for interface statistics. You can set a value between 0 and 7.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry interface-stats ingress-buffer priority-group 3
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system telemetry interface-stats export state</h>
 
 Enables and disables open telemetry export for interface statistics. You can specify `enabled` or `disabled`.
@@ -989,6 +1047,26 @@ Introduced in Cumulus Linux 5.10.0
 
 ```
 cumulus@switch:~$ nv set system telemetry interface-stats export state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry interface-stats sample-interval</h>
+
+Configures the interface statistics sample interval for open telemetry export. You can specify a value between 1 and 86400. The default value is 1.
+
+{{%notice note%}}
+When you enable open telemetry export for interface statistics, the switch exports counters on all interfaces.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry interface-stats sample-interval 100
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

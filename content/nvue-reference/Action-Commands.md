@@ -813,7 +813,7 @@ Action succeeded
 
 Clears an NVUE user session.
 
-NVUE uses sessions to authenticate and authorize requests. After authenticating the user with the first request, NVUE stores the session in the nvued cache. NVUE authenticates subsequent interactions within the session locally, eliminating the need to repeatedly check with external authentication servers. This process enhances system performance and efficiency, making it ideal for high-traffic environments.
+NVUE uses sessions to authenticate and authorize requests. After authenticating the user with the first request, NVUE stores the session in the `nvued` cache. NVUE authenticates subsequent interactions within the session locally, eliminating the need to repeatedly check with external authentication servers. This process enhances system performance and efficiency, making it ideal for high-traffic environments.
 - If you make changes to a user group, password, RADIUS, TACACS, or LDAP server setting locally on the switch, NVUE clears the current session automatically.
 - If you make changes directly on the RADIUS, TACACS, or LDAP server, you must clear the user session with the `nv action clear system api session user <user>` command or clear all sessions with the `nv action clear system api session` command.
 
@@ -2272,6 +2272,28 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action clear vrf \<vrf-id\> router ospf database</h>
+
+Clear the OSPF database, reestablishes neighborships, and reoriginates LSAs.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<vrf-id>` |  The VRF name.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear vrf default router ospf database
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action clear vrf \<vrf-id\> router ospf interface</h>
 
 Clears all counters for the OSPF interfaces.
@@ -2545,9 +2567,34 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action delete system tech-support files \<file-id\></h>
+
+Deletes the specified technical support file (a compressed archive file of useful information for troubleshooting). 
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<file-id>`  |  The technical support file name and location. |
+
+## Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action delete system tech-support files /var/support/cl_support_leaf01_20240725_221237.txz
+Action executing ...
+File Delete Succeeded
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action generate system tech-support</h>
 
-Generates a compressed archive file of useful information for troubleshooting. 
+Generates a technical support file (compressed archive file of useful information for troubleshooting). 
 
 ## Version History
 
@@ -2639,6 +2686,25 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action rotate system log</h>
+
+Rotates the system log files. Cumulus Linux automatically manages log file size, preventing the logs from filling the storage space and slowing down the system.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action rotate system log
+Action executing ...
+Log rotation successful
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action schedule system telemetry hft job \<date-time\> duration \<duration\> profile \<profile\> ports \<port-id\> description \<text\></h>
 
 Configures the schedule for a high frequency telemetry data collection.
@@ -2718,6 +2784,52 @@ Introduced in Cumulus Linux 5.9.0
 
 ```
 cumulus@switch:~$ nv action upgrade system packages to latest use-vrf default dry-run
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action upload tech-support files \<file-id\> \<remote-url\></h>
+
+Uploads a technical support file (`cl-support`) off the switch to an external location.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<file-id>` |  The technical support file you want to upload.  |
+| `<remote-url>` |  The URL to where you want to upload the technical support file.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action upload tech-support files cl_support_leaf01_20240725_225811.txz scp://root@host1:/home/tech-support/
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action upload system telemetry hft job <hft-job-id> \<remote-url\></h>
+
+Uploads high frequency telemetry data for a specific session (job) off the switch to an external location.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<hft-job-id>` |  The job ID. You can see the list of jobs with the `nv show system telemetry hft job` command.  |
+| `<remote-url>` |  The URL to where you want to upload the data.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action upload system telemetry hft job 1 scp://root@host1:/home/telemetry/
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

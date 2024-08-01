@@ -12,6 +12,22 @@ h { color: RGB(118,185,0)}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
+## <h>nv set system security encryption db state</h>
+
+Enables and disables password encryption in the NVUE `startup.yaml` file. By default, NVUE encrypts passwords, such as the RADIUS secret, TACACS secret, BGP peer password, OSPF MD5 key, and SNMP strings in the startup.yaml file.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system security encryption db state disabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system security password-hardening digits-class</h>
 
 Configures the password policy so that passwords must include at least one digit. You can specify `enabled` or `disabled`. The default setting is `enabled` when password security is enabled.

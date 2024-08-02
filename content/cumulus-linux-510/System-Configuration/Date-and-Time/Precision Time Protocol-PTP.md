@@ -35,6 +35,7 @@ Cumulus Linux supports:
 - 1G interfaces on Spectrum-2 and later do not support PTP.
 - You cannot run *both* PTP and NTP on the switch.
 - PTP supports the default VRF only.
+- PTP on the NVIDIA SN5400 switch is in BETA
 {{%/notice%}}
 
 ## Basic Configuration

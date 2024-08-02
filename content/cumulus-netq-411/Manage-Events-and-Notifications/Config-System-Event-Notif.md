@@ -6,7 +6,7 @@ toc: 3
 ---
 You can {{<link title="Monitor Events" text="view system events via the NetQ UI or CLI">}}. You can also receive event notifications via a third-party application. This page explains how to integrate NetQ with syslog, PagerDuty, Slack, or email to receive notifications about events on your network. Alternately, you can send notifications to other third-party applications via a generic webhook channel.
 
-In an on-premises deployment, NetQ receives the raw data stream from the NetQ Agents, processes the data, then delivers events to notification channels. In a cloud deployment, NetQ passes the raw data stream to the NetQ Cloud service for processing and delivery.
+In an on-premises deployment, NetQ receives the raw data stream from the NetQ Agents, processes the data, then delivers events to notification channels. In a cloud deployment, NetQ passes the raw data stream to the NetQ cloud service for processing and delivery.
 
 <!--
 

@@ -3325,7 +3325,7 @@ internet          no       -                 16      ntpq
 
 ## netq show opta-health
 
-Displays the status of the various applications and services running on the NetQ On-premises Appliance or the virtual machine. For the NetQ Cloud Appliance or VM, this command displays a simple statement indicating overall health.
+Displays the status of the various applications and services running on the NetQ On-premises Appliance or the virtual machine. For the NetQ cloud Appliance or VM, this command displays a simple statement indicating overall health.
 
 Note that when running this command as part of an installation, it takes between 5 and 10 minutes for the applications and services to become fully operational.
 

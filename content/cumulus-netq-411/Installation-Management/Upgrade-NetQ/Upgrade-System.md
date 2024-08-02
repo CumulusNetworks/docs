@@ -205,7 +205,7 @@ If this step fails for any reason, run the <code>netq bootstrap reset keep-db</c
     BOOTSTRAP_VERSION=4.11.0
     APPLIANCE_MANIFEST_HASH=370ffbe3195aa1c4cc969668441b124e7714f7eaa980962ff4cc438fcec31b87
     APPLIANCE_VERSION=4.11.0
-    APPLIANCE_NAME=NetQ Cloud Appliance
+    APPLIANCE_NAME=NetQ cloud Appliance
     ```
 {{</tab>}}
 

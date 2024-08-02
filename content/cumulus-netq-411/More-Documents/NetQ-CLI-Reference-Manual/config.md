@@ -806,7 +806,7 @@ netq config add opta config-key <text-opta-key>
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| vrf | \<text-vrf-names\> | Specifies VRF used to communicate with the NetQ Cloud |
+| vrf | \<text-vrf-names\> | Specifies VRF used to communicate with the NetQ cloud |
 | proxy-host | \<text-proxy-host\> | Specifies proxy host |
 | proxy-port | \<text-proxy-port\> | Specifies proxy port |
 

@@ -38,7 +38,5 @@ The NetQ 4.11 server is compatible with NetQ Agent 4.9 or later. You can install
 You must upgrade to the latest agent version to enable 4.11 features.
 
 {{%notice info%}}
-Switches running Cumulus Linux 5.9 require the NetQ 4.10 or later agent package. See {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq/Installation-Management/Install-NetQ/Install-NetQ-Agents/" text="Install NetQ Agents">}}.
+Switches running Cumulus Linux 5.9 or later require the NetQ 4.10 or later agent package. See {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq/Installation-Management/Install-NetQ/Install-NetQ-Agents/" text="Install NetQ Agents">}}.
 {{%/notice%}}
-
-<!--add or later after 5.10 release-->

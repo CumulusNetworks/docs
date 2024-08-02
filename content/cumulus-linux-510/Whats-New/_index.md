@@ -15,9 +15,12 @@ This document supports the Cumulus Linux 5.10 release, and lists new platforms, 
 
 NVIDIA SN5400 (400G Spectrum-4)
 
+{{%notice note%}}
+{{<link url="Precision-Time-Protocol-PTP" text="PTP">}} and {{<link url="Pulse-Per-Second-PPS" text="PPS">}} on the NVIDIA SN5400 switch is in BETA
+{{%/notice%}}
+
 ### New Features and Enhancements
 
-- PTP and PPS are supported on the NVIDIA SN5400 switch (BETA)
 - {{<link url="ASIC-Monitoring/#high-frequency-telemetry" text="High frequency telemetry">}}
 - {{<link url="Open-Telemetry-Export" text="Telemetry export with OTLP">}} on Spectrum-4 switches (BETA)
 - {{<link url="SSH-for-Remote-Access/#ssh-login-notifications" text="SSH login notifications">}}

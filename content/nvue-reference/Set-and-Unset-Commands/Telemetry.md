@@ -578,9 +578,12 @@ cumulus@switch:~$ nv set interface swp9-16 telemetry histogram latency traffic-c
 
 ## <h>nv set system telemetry export otlp state</h>
 
-Enables and disables open telemetry export. You can specify `enabled` or `disabled`.
+Enables and disables open telemetry export so that you can export interface counters and histogram collection data to an external collector. You can specify `enabled` or `disabled`.
 
-Cumulus Linux supports open telemetry (OTEL) export on the SN5600 switch. You can use OTLP to export interface counters and histogram collection data to an external collector.
+{{%notice note%}}
+- Cumulus Linux supports open telemetry export on switches with the Spectrum-4 ASIC only in Cumulus Linux 5.10.0 and later.
+- Open telemetry export is a beta feature in Cumulus Linux 5.10.0.
+{{%/notice%}}
 
 ### Version History
 
@@ -863,6 +866,11 @@ cumulus@switch:~$ nv set system telemetry histogram egress-buffer sample-interva
 
 Enables and disables `insecure` mode for <span class="a-tooltip">[gRPC ](## "Remote Procedure Call")</span> connections for telemetry. By default, OTLP export is in **secure mode** that requires a certificate. For connections without a configured certificate, you must enable `insecure` mode. You can specify `enabled` or `disabled`.
 
+{{%notice note%}}
+- Cumulus Linux supports open telemetry export on switches with the Spectrum-4 ASIC only in Cumulus Linux 5.10.0 and later.
+- Open telemetry export is a beta feature in Cumulus Linux 5.10.0.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.10.0
@@ -878,6 +886,11 @@ cumulus@switch:~$ nv set system telemetry export otlp grpc insecure enabled
 ## <h>nv set system telemetry export otlp grpc cert-id \<certificate\></h>
 
 Configures an X.509 certificate to secure the <span class="a-tooltip">[gRPC ](## "Remote Procedure Call")</span> connection for telemetry export.
+
+{{%notice note%}}
+- Cumulus Linux supports open telemetry export on switches with the Spectrum-4 ASIC only in Cumulus Linux 5.10.0 and later.
+- Open telemetry export is a beta feature in Cumulus Linux 5.10.0.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -900,6 +913,12 @@ cumulus@switch:~$ nv set system telemetry export otlp grpc cert-id <certificate>
 ## <h>nv set system telemetry export otlp grpc destination \<destination\> port \<port-id\></h>
 
 Configures open telemetry export to use <span class="a-tooltip">[gRPC ](## "Remote Procedure Call")</span> to communicate with the collector. You must provide the collector destination IP address or hostname. Specify the port to use for communication if it is different from the default port 8443.
+
+{{%notice note%}}
+- Cumulus Linux supports open telemetry export on switches with the Spectrum-4 ASIC only in Cumulus Linux 5.10.0 and later.
+- Open telemetry export is a beta feature in Cumulus Linux 5.10.0.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -924,7 +943,9 @@ cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.10
 Enables or disables open telemetry export for histogram collection. You can specify `enabled` or `disabled`.
 
 {{%notice note%}}
-When you enable open telemetry export for histogram data, your histogram collection configuration defines the data that the switch exports.
+- Cumulus Linux supports open telemetry export on switches with the Spectrum-4 ASIC only in Cumulus Linux 5.10.0 and later.
+- Open telemetry export is a beta feature in Cumulus Linux 5.10.0.
+- When you enable open telemetry export for histogram data, your histogram collection configuration defines the data that the switch exports.
 {{%/notice%}}
 
 ### Version History
@@ -1003,6 +1024,11 @@ cumulus@switch:~$ nv set system telemetry histogram ingress-buffer sample-interv
 
 Configures the egress buffer traffic class for open telemetry export for interface statistics.
 
+{{%notice note%}}
+- Cumulus Linux supports open telemetry export on switches with the Spectrum-4 ASIC only in Cumulus Linux 5.10.0 and later.
+- Open telemetry export is a beta feature in Cumulus Linux 5.10.0.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.10.0
@@ -1018,6 +1044,11 @@ cumulus@switch:~$ nv set system telemetry interface-stats egress-buffer traffic-
 ## <h>nv set system telemetry interface-stats ingress-buffer priority-group</h>
 
 Configures the ingress buffer priority group for open telemetry export for interface statistics. You can set a value between 0 and 7.
+
+{{%notice note%}}
+- Cumulus Linux supports open telemetry export on switches with the Spectrum-4 ASIC only in Cumulus Linux 5.10.0 and later.
+- Open telemetry export is a beta feature in Cumulus Linux 5.10.0.
+{{%/notice%}}
 
 ### Version History
 
@@ -1036,8 +1067,12 @@ cumulus@switch:~$ nv set system telemetry interface-stats ingress-buffer priorit
 Enables and disables open telemetry export for interface statistics. You can specify `enabled` or `disabled`.
 
 {{%notice note%}}
-When you enable open telemetry export for interface statistics, the switch exports counters on all interfaces.
+- Cumulus Linux supports open telemetry export on switches with the Spectrum-4 ASIC only in Cumulus Linux 5.10.0 and later.
+- Open telemetry export is a beta feature in Cumulus Linux 5.10.0.
+- When you enable open telemetry export for interface statistics, the switch exports counters on all interfaces.
 {{%/notice%}}
+
+
 
 ### Version History
 
@@ -1056,7 +1091,9 @@ cumulus@switch:~$ nv set system telemetry interface-stats export state enabled
 Configures the interface statistics sample interval for open telemetry export. You can specify a value between 1 and 86400. The default value is 1.
 
 {{%notice note%}}
-When you enable open telemetry export for interface statistics, the switch exports counters on all interfaces.
+- Cumulus Linux supports open telemetry export on switches with the Spectrum-4 ASIC only in Cumulus Linux 5.10.0 and later.
+- Open telemetry export is a beta feature in Cumulus Linux 5.10.0.
+- When you enable open telemetry export for interface statistics, the switch exports counters on all interfaces.
 {{%/notice%}}
 
 ### Version History

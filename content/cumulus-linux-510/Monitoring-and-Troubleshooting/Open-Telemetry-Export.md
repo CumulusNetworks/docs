@@ -38,19 +38,18 @@ cumulus@switch:~$ nv config apply
 - When you enable open telemetry for histogram data, your {{<link url="ASIC-Monitoring#histogram-collection" text="histogram collection configuration">}} defines the data that the switch exports.
 {{%/notice%}}
 
-
-You can enable additional interface statistic collection per interface for specific ingress buffer traffic classes (TC) and/or egress buffer priority groups (PG). When you enable these settings, the `interface_pg` and `interface_tc` [counters](#interface-statistics) are exported for the defined priority groups and traffic classes:
+You can enable additional interface statistic collection per interface for specific ingress buffer traffic classes (0 through 7) and egress buffer priority groups (0 through 15). When you enable these settings, the switch exports `interface_pg` and `interface_tc` [counters](#interface-statistics) for the defined priority groups and traffic classes:
 
 ```
-cumulus@switch:~$ nv set system telemetry interface-stats ingress-buffer priority-group <pg-id>
-cumulus@switch:~$ nv set system telemetry interface-stats egress-buffer traffic-class <tc-id>
+cumulus@switch:~$ nv set system telemetry interface-stats ingress-buffer priority-group 4
+cumulus@switch:~$ nv set system telemetry interface-stats egress-buffer traffic-class 12
 cumulus@switch:~$ nv config apply
 ```
 
-You can adjust the interface statistics sample interval. The default is one second:
+You can adjust the interface statistics sample interval (in seconds). You can specify a value between 1 and 86400. The default value 1.
 
 ```
-cumulus@switch:~$ nv set system telemetry interface-stats sample-interval <seconds>
+cumulus@switch:~$ nv set system telemetry interface-stats sample-interval 100
 cumulus@switch:~$ nv config apply
 ```
 
@@ -102,37 +101,37 @@ The interface statistic data samples exported to the OTEL collector are {{<exlin
 Reference the following table for interface statistic names and descriptions:
 
 |  Name 	|   Description | 
-|--------	        |      ---	 |       
-| nvswitch_interface_oper_state | Interface operational state as a bitmap: (None[0], Up[1], Down[2], Invalid[4], Error[8]) |
-| nvswitch_interface_dot3_control_in_unknown_opcodes | Input 802.3 unknown opcode counter |
-| nvswitch_interface_dot3_in_pause_frames | Input 802.3 pause frame counter |
-| nvswitch_interface_dot3_out_pause_frames | Output 802.3 pause frame counter |
-| nvswitch_interface_dot3_stats_alignment_errors | 802.3 alignment error counter |
-| nvswitch_interface_dot3_stats_carrier_sense_errors | 802.3 interface carrier sense error counter |
-| nvswitch_interface_dot3_stats_deferred_transmissions | 802.3 deferred transmission counter |
-| nvswitch_interface_dot3_stats_excessive_collisions | 802.3 excessive collisions counter |
-| nvswitch_interface_dot3_stats_fcs_errors | 802.3 FCS error counter |
-| nvswitch_interface_dot3_stats_frame_too_longs | 802.3 excessive frame size counter |
-| nvswitch_interface_dot3_stats_internal_mac_receive_errors | 802.3 internal MAC receive error counter |
-| nvswitch_interface_dot3_stats_internal_mac_transmit_errors | 802.3 internal MAC transmit error counter |
-| nvswitch_interface_dot3_stats_late_collisions | 802.3 late collisions counter |
-| nvswitch_interface_dot3_stats_multiple_collision_frames | 802.3 multiple collision frames counter |
-| nvswitch_interface_dot3_stats_single_collision_frames | 802.3 single collision frames counter |
-| nvswitch_interface_dot3_stats_sqe_test_errors | 802.3 SQE test error counter |
-| nvswitch_interface_dot3_stats_symbol_errors | 802.3 symbol error counter |
-| nvswitch_interface_pg_rx_buffer_discard | Interace ingress priority group receive buffer discard counter |
-| nvswitch_interface_pg_rx_frames | Interface ingress priority group receive frames counter |
-| nvswitch_interface_pg_rx_octet | Interface ingress priority group receive bytes counter |
-| nvswitch_interface_pg_rx_shared_buffer_discard | Interface ingress priority group receive shared buffer discard counter |
-| nvswitch_interface_tc_tx_bc_frames | Interface egress traffic class transmit broadcast frames counter |
-| nvswitch_interface_tc_tx_ecn_marked_tc | Interface egress traffic class transmit ECN marked counter |
-| nvswitch_interface_tc_tx_frames | Interface egress traffic class trasmit frames counter |
-| nvswitch_interface_tc_tx_mc_frames | Interface egress traffic class trasmit multicast frames counter |
-| nvswitch_interface_tc_tx_no_buffer_discard_uc | Interface egress traffic class transmit unicast no buffer discard counter |
-| nvswitch_interface_tc_tx_octet | Interface egress traffic class transmit bytes counter |
-| nvswitch_interface_tc_tx_queue | Interface egress traffic class transmit queue counter |
-| nvswitch_interface_tc_tx_uc_frames | Interface egress traffic class transmit unicast frames counter |
-| nvswitch_interface_tc_tx_wred_discard | Interface egress traffic class transmit WRED discard counter |
+|--------	        |      ---	 |
+| `nvswitch_interface_oper_state` | Interface operational state as a bitmap: (None[0], Up[1], Down[2], Invalid[4], Error[8]) |
+| `nvswitch_interface_dot3_control_in_unknown_opcodes` | Input 802.3 unknown opcode counter. |
+| `nvswitch_interface_dot3_in_pause_frames` | Input 802.3 pause frame counter. |
+| `nvswitch_interface_dot3_out_pause_frames` | Output 802.3 pause frame counter. |
+| `nvswitch_interface_dot3_stats_alignment_errors` | 802.3 alignment error counter. |
+| `nvswitch_interface_dot3_stats_carrier_sense_errors` | 802.3 interface carrier sense error counter. |
+| `nvswitch_interface_dot3_stats_deferred_transmissions` | 802.3 deferred transmission counter. |
+| `nvswitch_interface_dot3_stats_excessive_collisions` | 802.3 excessive collisions counter. |
+| `nvswitch_interface_dot3_stats_fcs_errors` | 802.3 FCS error counter. |
+| `nvswitch_interface_dot3_stats_frame_too_longs` | 802.3 excessive frame size counter. |
+| `nvswitch_interface_dot3_stats_internal_mac_receive_errors` | 802.3 internal MAC receive error counter. |
+| `nvswitch_interface_dot3_stats_internal_mac_transmit_errors` | 802.3 internal MAC transmit error counter. |
+| `nvswitch_interface_dot3_stats_late_collisions` | 802.3 late collisions counter. |
+| `nvswitch_interface_dot3_stats_multiple_collision_frames` | 802.3 multiple collision frames counter. |
+| `nvswitch_interface_dot3_stats_single_collision_frames` | 802.3 single collision frames counter. |
+| `nvswitch_interface_dot3_stats_sqe_test_errors` | 802.3 SQE test error counter. |
+| `nvswitch_interface_dot3_stats_symbol_errors` | 802.3 symbol error counter. |
+| `nvswitch_interface_pg_rx_buffer_discard` | Interace ingress priority group receive buffer discard counter. |
+| `nvswitch_interface_pg_rx_frames` | Interface ingress priority group receive frames counter.|
+| `nvswitch_interface_pg_rx_octet` | Interface ingress priority group receive bytes counter. |
+| `nvswitch_interface_pg_rx_shared_buffer_discard` | Interface ingress priority group receive shared buffer discard counter. |
+| `nvswitch_interface_tc_tx_bc_frames` | Interface egress traffic class transmit broadcast frames counter. |
+| `nvswitch_interface_tc_tx_ecn_marked_tc` | Interface egress traffic class transmit ECN marked counter. |
+| `nvswitch_interface_tc_tx_frames` | Interface egress traffic class trasmit frames counter. |
+| `nvswitch_interface_tc_tx_mc_frames` | Interface egress traffic class trasmit multicast frames counter. |
+| `nvswitch_interface_tc_tx_no_buffer_discard_uc` | Interface egress traffic class transmit unicast no buffer discard counter. |
+| `nvswitch_interface_tc_tx_octet` | Interface egress traffic class transmit bytes counter.|
+| `nvswitch_interface_tc_tx_queue` | Interface egress traffic class transmit queue counter. |
+| `nvswitch_interface_tc_tx_uc_frames` | Interface egress traffic class transmit unicast frames counter. |
+| `nvswitch_interface_tc_tx_wred_discard` | Interface egress traffic class transmit WRED discard counter. |
 
 {{< expand "Example JSON data for interface_oper_state:" >}}
 ```
@@ -202,8 +201,8 @@ A sample with the following names is sent for each interface enabled for ingress
 
 |  Name 	|   Description | 
 |--------	        |      ---	 |
-| nvswitch_histogram_interface_egress_buffer | Histogram interface egress buffer queue depth |
-| nvswitch_histogram_interface_ingress_buffer | Histogram interface ingress buffer queue depth |
+| `nvswitch_histogram_interface_egress_buffer` | Histogram interface egress buffer queue depth. |
+| `nvswitch_histogram_interface_ingress_buffer` | Histogram interface ingress buffer queue depth. |
 
 {{< expand "Example JSON data for interface_ingress_buffer:" >}}
 ```

@@ -12,14 +12,12 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 NetQ 4.11.0 includes the following new features and improvements:
 
-- Enter a switch's hostname in the global search field and right-click the device to open a dashboard in a new tab that displays an {{<link title="Switches" text="overview of the switch's attributes">}}, events, resource utilization, and interface details.
 - Keep track of your network's devices at a glance and access actions in fewer clicks using the {{<link title="Application Layout" text="redesigned dashboard navigation">}}. 
+- {{<link title="Application Layout/#search" text="Search for a switch">}} and right-click the device to open a dashboard in a new tab that displays an {{<link title="Switches" text="overview of the switch's attributes">}}, events, resource utilization, and interface details.
 - {{<link title="Validate Network Protocol and Service Operations/#topology-validations" text="Validate your network's topology">}}. NetQ compares the actual network topology derived from LLDP telemetry data against a topology blueprint that you upload to the UI (beta).
 - Monitor a device's link bit error rates (BER) with the {{<link title="show/#netq show dom" text="netq show dom ber">}} command. Or view BER in the UI by searching for the device in the global search field and filtering for diagnostic info from the digital optics tab.
 - Create threshold crossing rules that alert you when a {{<link title="Threshold-Crossing Events Reference#sensors" text="sensor's state changes">}}.
 - {{<link title="Focus Your Monitoring Using Workbenches#manage-auto-refresh" text="Adjust the frequency">}} that NetQ reloads dashboard data to every minute, 2 minutes, or 5 minutes.
-- Bug fixes, performance improvements, and security enhancements.
-
 
 ## Upgrade Paths
 

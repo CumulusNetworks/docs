@@ -19,7 +19,7 @@ NVIDIA SN5400 (400G Spectrum-4)
 
 <!-- - PPS supported on the NVIDIA SN5400 switch-->
 - {{<link url="ASIC-Monitoring/#high-frequency-telemetry" text="High frequency telemetry">}}
-- {{<link url="Open-Telemetry-Export" text="Telemetry export with OTLP">}} (SN5600 switch only)
+- {{<link url="Open-Telemetry-Export" text="Telemetry export with OTLP">}} (SN5600 switch only) - this is a BETA feature
 - {{<link url="SSH-for-Remote-Access/#ssh-login-notifications" text="SSH login notifications">}}
 - {{<link url="Quality-of-Service/#lossy-headroom" text="QoS lossy headroom configuration">}} and {{<link url="Quality-of-Service/#ingress-and-egress-management-buffers" text=" QoS Ingress and Egress Management Buffer Configuration">}}
 - {{<link url="VXLAN-Devices/#reserved-field-in-vxlan-header" text="Ignore reserved field in VXLAN header">}}

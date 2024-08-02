@@ -9,7 +9,8 @@ Telemetry enables you to collect, send, and analyze large amounts of data, such 
 Cumulus Linux supports {{<exlink url="https://github.com/open-telemetry/" text="open telemetry (OTEL)">}} export. You can use <span class="a-tooltip">[OTLP](## "open telemetry protocol")</span> to export metrics, such as interface counters and histogram collection data to an external collector for analysis and visualization.
 
 {{%notice note%}}
-Cumulus Linux supports {{<exlink url="https://github.com/open-telemetry/" text="open telemetry (OTEL)">}} export for the SN5600 switch only.
+- Cumulus Linux supports {{<exlink url="https://github.com/open-telemetry/" text="open telemetry (OTEL)">}} export for the SN5600 switch only.
+- Open Telemetry Export is a Beta feature.
 {{%/notice%}}
 
 ## Configure Open Telemetry

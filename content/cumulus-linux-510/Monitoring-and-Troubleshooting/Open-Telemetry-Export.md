@@ -39,7 +39,7 @@ cumulus@switch:~$ nv config apply
 - When you enable open telemetry for histogram data, your {{<link url="ASIC-Monitoring#histogram-collection" text="histogram collection configuration">}} defines the data that the switch exports.
 {{%/notice%}}
 
-You can enable additional interface statistic collection per interface for specific ingress buffer traffic classes (0 through 7) and egress buffer priority groups (0 through 15). When you enable these settings, the switch exports `interface_pg` and `interface_tc` [counters](#interface-statistics) for the defined priority groups and traffic classes:
+You can enable additional interface statistic collection per interface for specific ingress buffer traffic classes (0 through 15) and egress buffer priority groups (0 through 7). When you enable these settings, the switch exports `interface_pg` and `interface_tc` [counters](#interface-statistics) for the defined priority groups and traffic classes:
 
 ```
 cumulus@switch:~$ nv set system telemetry interface-stats ingress-buffer priority-group 4

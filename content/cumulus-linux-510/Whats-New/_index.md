@@ -17,7 +17,7 @@ NVIDIA SN5400 (400G Spectrum-4)
 
 ### New Features and Enhancements
 
-<!-- - PPS supported on the NVIDIA SN5400 switch-->
+- PTP and PPS are supported on the NVIDIA SN5400 switch (BETA)
 - {{<link url="ASIC-Monitoring/#high-frequency-telemetry" text="High frequency telemetry">}}
 - {{<link url="Open-Telemetry-Export" text="Telemetry export with OTLP">}} on Spectrum-4 switches (BETA)
 - {{<link url="SSH-for-Remote-Access/#ssh-login-notifications" text="SSH login notifications">}}

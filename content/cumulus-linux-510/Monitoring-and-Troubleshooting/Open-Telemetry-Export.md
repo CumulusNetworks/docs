@@ -94,14 +94,16 @@ To show the OTLP gRPC destination configuration, run the `nv show system telemet
 
 ## Telemetry Data Format
 
+Cumulus Linux exports interface statistic and histogram data in the following format.
+
 ### Interface Statistics
 
-The interface statistic data samples exported to the OTEL collector are {{<exlink url="https://opentelemetry.io/docs/specs/otel/metrics/data-model/#gauge" text="gauge streams">}} including the interface name as an attribute and the statistics value reported in the asDouble {{<exlink url="https://opentelemetry.io/docs/specs/otel/metrics/data-model/#exemplars" text="exemplar">}}.
+The interface statistic data samples that the switch exports to the OTEL collector are {{<exlink url="https://opentelemetry.io/docs/specs/otel/metrics/data-model/#gauge" text="gauge streams">}} that include the interface name as an attribute and the statistics value reported in the asDouble {{<exlink url="https://opentelemetry.io/docs/specs/otel/metrics/data-model/#exemplars" text="exemplar">}}.
 
-Reference the following table for interface statistic names and descriptions:
+The following table describes the interface statistics:
 
-|  Name 	|   Description | 
-|--------	        |      ---	 |
+|  Name | Description |
+|------ | ----------- |
 | `nvswitch_interface_oper_state` | Interface operational state as a bitmap: (None[0], Up[1], Down[2], Invalid[4], Error[8]) |
 | `nvswitch_interface_dot3_control_in_unknown_opcodes` | Input 802.3 unknown opcode counter. |
 | `nvswitch_interface_dot3_in_pause_frames` | Input 802.3 pause frame counter. |
@@ -195,12 +197,12 @@ Reference the following table for interface statistic names and descriptions:
 
 ### Histogram Data
 
-The histogram data samples exported to the OTEL collector are {{<exlink url="https://opentelemetry.io/docs/specs/otel/metrics/data-model/#histogram" text="histogram data points">}} including the {{<link url="ASIC-Monitoring#histogram-collection-example" text="histogram bucket (bin)">}} counts and the respective queue length size boundaries for each bucket. 
+The histogram data samples that the switch exports to the OTEL collector are {{<exlink url="https://opentelemetry.io/docs/specs/otel/metrics/data-model/#histogram" text="histogram data points">}} that include the {{<link url="ASIC-Monitoring#histogram-collection-example" text="histogram bucket (bin)">}} counts and the respective queue length size boundaries for each bucket.
 
-A sample with the following names is sent for each interface enabled for ingress and/or egress buffer histogram collection: 
+The switch sends a sample with the following names for each interface enabled for ingress and egress buffer histogram collection:
 
-|  Name 	|   Description | 
-|--------	        |      ---	 |
+| Name | Description |
+|----- | ----------- |
 | `nvswitch_histogram_interface_egress_buffer` | Histogram interface egress buffer queue depth. |
 | `nvswitch_histogram_interface_ingress_buffer` | Histogram interface ingress buffer queue depth. |
 

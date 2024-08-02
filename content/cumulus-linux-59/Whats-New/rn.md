@@ -115,6 +115,8 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4007614"></a> [4007614](#4007614) <a name="4007614"></a> <br />None | Static ARP configured with NVUE commands is deleted when the relevant layer 3 interface flaps. | 5.8.0-5.9.1 | |
+| <a name="4007329"></a> [4007329](#4007329) <a name="4007329"></a> <br />None | Cumulus Linux incorrectly handles unnumbered neighbor types, which causes discrepancies in the running configuration and session flaps during FRR reload. | 5.9.0-5.9.1 | |
 | <a name="3982256"></a> [3982256](#3982256) <a name="3982256"></a> <br /> | After <code>switchd</code> restarts,  the sFlow sampling rate set in the hardware might not match with the configured values for about 3 minutes. This issue occurs because interfaces are not yet up during  the initial sampling rate setting. | 5.9.1 | |
 | <a name="3982251"></a> [3982251](#3982251) <a name="3982251"></a> <br />None | When there are multiple interface flaps with sFlow on 100G interfaces, sFlow might use a different value than the one configured. | 5.9.1 | |
 | <a name="3982250"></a> [3982250](#3982250) <a name="3982250"></a> <br />None | When you start Cumulus VX in Vagrant with libvirt, VM provisioning might fail with errors that indicate a missing <code>ifup&#64;eth0.service</code> systemd service. | 5.9.0-5.9.1 | |
@@ -225,6 +227,8 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4007614"></a> [4007614](#4007614) <a name="4007614"></a> <br />None | Static ARP configured with NVUE commands is deleted when the relevant layer 3 interface flaps. | 5.8.0-5.9.1 | |
+| <a name="4007329"></a> [4007329](#4007329) <a name="4007329"></a> <br />None | Cumulus Linux incorrectly handles unnumbered neighbor types, which causes discrepancies in the running configuration and session flaps during FRR reload. | 5.9.0-5.9.1 | |
 | <a name="3982250"></a> [3982250](#3982250) <a name="3982250"></a> <br />None | When you start Cumulus VX in Vagrant with libvirt, VM provisioning might fail with errors that indicate a missing <code>ifup&#64;eth0.service</code> systemd service. | 5.9.0-5.9.1 | |
 | <a name="3982249"></a> [3982249](#3982249) <a name="3982249"></a> <br />None | If a packet containing an all zero source MAC address (00:00:00:00:00:00) is learned on the ASIC, <code>switchd</code> sends the learn notification to the kernel but the kernel rejects the MAC address as invalid. The ASIC continuously sends the mac-learn notifications, which wastes CPU resources. To work around this issue, configure ACLs to match on the all-zero source MAC address and drop the invalid packets. | 5.5.0-5.9.1 | |
 | <a name="3982243"></a> [3982243](#3982243) <a name="3982243"></a> <br />None | With Optimized Multicast Flooding (OMF), when you unset multiple multicast router ports in a single commit, multicast traffic still floods one of the ports. To work around this issue, unset multicast router ports one by one instead of in a single commit. | 5.9.0-5.9.1 | |

@@ -202,7 +202,7 @@ leaf01# exit</td>
 </tr>
 <tr>
 <td>3671288</td>
-<td>On rare occasions, when the BGP service receives multiple update messages due to multiple route churns in the network, the next hop might become unreachable during the time that the switch processes BGP updates and withdraws with EVPN prefixes. As a result, the EVPN neighbor might be missed in the kernel.</td>
+<td>Routes and/or next-hops will no-longer be installed in kernel, and traffic related to these routes and/or next-hops will not be forwarded correctly. Flapping of EVPN prefixes from BGP updates and withdraws sometimes causes a race condition where the routes are never re-installed. An example of a trigger that can lead to this problem is a flapping peerlink. A reboot of each switch with missing routes will recover from this issue. </td>
 <td>5.6.0-5.7.0</td>
 <td>5.8.0-5.9.1</td>
 </tr>

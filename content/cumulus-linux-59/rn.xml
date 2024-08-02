@@ -606,6 +606,18 @@ You can safely ignore this warning.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4007614</td>
+<td>Static ARP configured with NVUE commands is deleted when the relevant layer 3 interface flaps.</td>
+<td>5.8.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4007329</td>
+<td>Cumulus Linux incorrectly handles unnumbered neighbor types, which causes discrepancies in the running configuration and session flaps during FRR reload.</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3982256</td>
 <td>After {{switchd}} restarts,  the sFlow sampling rate set in the hardware might not match with the configured values for about 3 minutes. This issue occurs because interfaces are not yet up during  the initial sampling rate setting.</td>
 <td>5.9.1</td>
@@ -1258,6 +1270,18 @@ You can safely ignore this warning.</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>4007614</td>
+<td>Static ARP configured with NVUE commands is deleted when the relevant layer 3 interface flaps.</td>
+<td>5.8.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4007329</td>
+<td>Cumulus Linux incorrectly handles unnumbered neighbor types, which causes discrepancies in the running configuration and session flaps during FRR reload.</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
 </tr>
 <tr>
 <td>3982250</td>

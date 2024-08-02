@@ -16,7 +16,7 @@ This document supports the Cumulus Linux 5.10 release, and lists new platforms, 
 NVIDIA SN5400 (400G Spectrum-4)
 
 {{%notice note%}}
-{{<link url="Precision-Time-Protocol-PTP" text="PTP">}} and {{<link url="Pulse-Per-Second-PPS" text="PPS">}} on the NVIDIA SN5400 switch is in BETA
+{{<link url="Precision-Time-Protocol-PTP" text="PTP">}} and {{<link url="Pulse-Per-Second-PPS" text="PPS">}} on the NVIDIA SN5400 switch are in BETA.
 {{%/notice%}}
 
 ### New Features and Enhancements

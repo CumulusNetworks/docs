@@ -140,9 +140,13 @@ utilization  100.0%
 
 Shows the current date and time on the switch software clock.
 
+{{%notice note%}}
+In Cumulus Linux 5.7, 5.8, and 5.9, this command is `nv show system time`.
+{{%/notice%}}
+
 ### Version History
 
-Introduced in Cumulus Linux 5.7.0
+Introduced in Cumulus Linux 5.10.0
 
 ### Example
 

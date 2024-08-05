@@ -49,12 +49,6 @@
 <td></td>
 </tr>
 <tr>
-<td>3798677</td>
-<td>In a NetQ cluster environment, if your master node goes offline and is restored, subsequent NetQ validations for MLAG and EVPN might unexpectedly indicate failures. To work around this issue, either restart NetQ agents on devices in the inventory or wait up to 24 hours for the issue to clear.</td>
-<td>4.9.0-4.10.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3772274</td>
 <td>After you upgrade NetQ, data from snapshots taken prior to the NetQ upgrade will contain unreliable data and should not be compared to any snapshots taken after the upgrade. In cluster deployments, snapshots from prior NetQ versions will not be visible in the UI.</td>
 <td>4.9.0-4.10.1</td>
@@ -143,12 +137,6 @@
 <tr>
 <td>3800434</td>
 <td>When you upgrade NetQ from a version prior to 4.9.0, What Just Happened data that was collected before the upgrade is no longer present.</td>
-<td>4.9.0-4.10.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3798677</td>
-<td>In a NetQ cluster environment, if your master node goes offline and is restored, subsequent NetQ validations for MLAG and EVPN might unexpectedly indicate failures. To work around this issue, either restart NetQ agents on devices in the inventory or wait up to 24 hours for the issue to clear.</td>
 <td>4.9.0-4.10.1</td>
 <td></td>
 </tr>

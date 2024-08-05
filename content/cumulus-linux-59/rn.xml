@@ -7,6 +7,25 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4012011</td>
+<td>A memory corruption kernel crash might occur due to a {{netfilter}} error. The log message from {{netfilter}} might contain a warning similar to the following:kernel: WARNING: CPU: 1 PID: 0 at net/netfilter/nf_conntrack_core.c:1210 __nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]
+kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
+<td>5.9.1-5.9.2</td>
+<td></td>
+</tr>
+<tr>
+<td>3990258</td>
+<td>Cumulus Linux incorrectly handles unnumbered neighbor types, which causes discrepancies in the running configuration and session flaps during FRR reload.</td>
+<td>5.9.0-5.9.2</td>
+<td></td>
+</tr>
+<tr>
+<td>3985600</td>
+<td>NTP initialization issues prevent the NTP service from starting on a non-default VRF.</td>
+<td>5.9.0-5.9.2</td>
+<td></td>
+</tr>
+<tr>
 <td>3982250</td>
 <td>When you start Cumulus VX in Vagrant with libvirt, VM provisioning might fail with errors that indicate a missing {{ifup@eth0.service}} systemd service.</td>
 <td>5.9.0-5.9.2</td>
@@ -31,6 +50,12 @@
 <td></td>
 </tr>
 <tr>
+<td>3974890</td>
+<td>The {{ntpsec@mgmt}} service does not come up by default when you install an image with ONIE because the trigger to bring up the service is missing.</td>
+<td>5.9.1-5.9.2</td>
+<td></td>
+</tr>
+<tr>
 <td>3972715</td>
 <td>The fans on the NVIDIA SN2410 switch (Part Number SSG7A80800) might spin at high speed. </td>
 <td>5.9.1-5.9.2</td>
@@ -52,6 +77,12 @@
 <td>3965021</td>
 <td>The {{ethtool -m}} command shows incorrect optical DOM information for SFP modules. To work around this issue, run the {{l1-show}} command to show optical power values for SFP optical transceivers..</td>
 <td>5.9.1-5.9.2</td>
+<td></td>
+</tr>
+<tr>
+<td>3957620</td>
+<td>On the Spectrum-4 switch, when you use PTP on a 800G link, jumbo frames traversing the same link might cause a degradation in PTP performance.</td>
+<td>5.9.0-5.9.2</td>
 <td></td>
 </tr>
 <tr>
@@ -118,6 +149,12 @@
 <td>3929440</td>
 <td>When you enable or disable MLAG configuration on an interface, Cumulus Linux logs LACP partner MAC address and BPDU guard mismatches incorrectly. This issue does not impact functionality.</td>
 <td>5.9.0-5.9.2</td>
+<td></td>
+</tr>
+<tr>
+<td>3927016</td>
+<td>Following an EVPN extended mobility event, where a host with IP address A and MAC address A moves within the fabric and now resides at IP address A and MAC address B, you might see traffic destined to this host experience drops as the flow is software forwarded on the egress VTEP.</td>
+<td>5.9.1-5.9.2</td>
 <td></td>
 </tr>
 <tr>
@@ -588,6 +625,11 @@ You can safely ignore this warning.</td>
 <th> Affects </th>
 </tr>
 <tr>
+<td>3982222</td>
+<td>When SPAN is enabled on a bridge member, an ARP or Gratuitous ARP received during a failover event between locally attached redundant devices such as load balancers might fail to update the bridge MAC table to point to the interface with the newly active load balancer.</td>
+<td>5.4.0-5.9.1</td>
+</tr>
+<tr>
 <td>3956091</td>
 <td>When you modify the default QoS configuration on top of the base RoCE configuration, NVUE reports an {{Invalid}} exception in the {{nv show qos roce}} command output even when the configuration is valid.</td>
 <td>5.8.0-5.9.1</td>
@@ -606,6 +648,13 @@ You can safely ignore this warning.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4012011</td>
+<td>A memory corruption kernel crash might occur due to a {{netfilter}} error. The log message from {{netfilter}} might contain a warning similar to the following:kernel: WARNING: CPU: 1 PID: 0 at net/netfilter/nf_conntrack_core.c:1210 __nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]
+kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
+<td>5.9.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4007614</td>
 <td>Static ARP configured with NVUE commands is deleted when the relevant layer 3 interface flaps.</td>
 <td>5.8.0-5.9.1</td>
@@ -614,6 +663,18 @@ You can safely ignore this warning.</td>
 <tr>
 <td>4007329</td>
 <td>Cumulus Linux incorrectly handles unnumbered neighbor types, which causes discrepancies in the running configuration and session flaps during FRR reload.</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3990258</td>
+<td>Cumulus Linux incorrectly handles unnumbered neighbor types, which causes discrepancies in the running configuration and session flaps during FRR reload.</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3985600</td>
+<td>NTP initialization issues prevent the NTP service from starting on a non-default VRF.</td>
 <td>5.9.0-5.9.1</td>
 <td></td>
 </tr>
@@ -660,6 +721,12 @@ You can safely ignore this warning.</td>
 <td></td>
 </tr>
 <tr>
+<td>3982222</td>
+<td>When SPAN is enabled on a bridge member, an ARP or Gratuitous ARP received during a failover event between locally attached redundant devices such as load balancers might fail to update the bridge MAC table to point to the interface with the newly active load balancer.</td>
+<td>5.4.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3980957</td>
 <td>The password on NVIDIA Cumulus VX is not getting reset to the default value of {{cumulus}}.</td>
 <td>5.9.0-5.9.1</td>
@@ -690,6 +757,12 @@ You can safely ignore this warning.</td>
 <td></td>
 </tr>
 <tr>
+<td>3974890</td>
+<td>The {{ntpsec@mgmt}} service does not come up by default when you install an image with ONIE because the trigger to bring up the service is missing.</td>
+<td>5.9.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3972715</td>
 <td>The fans on the NVIDIA SN2410 switch (Part Number SSG7A80800) might spin at high speed. </td>
 <td>5.9.1</td>
@@ -711,6 +784,12 @@ You can safely ignore this warning.</td>
 <td>3965021</td>
 <td>The {{ethtool -m}} command shows incorrect optical DOM information for SFP modules. To work around this issue, run the {{l1-show}} command to show optical power values for SFP optical transceivers..</td>
 <td>5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3957620</td>
+<td>On the Spectrum-4 switch, when you use PTP on a 800G link, jumbo frames traversing the same link might cause a degradation in PTP performance.</td>
+<td>5.9.0-5.9.1</td>
 <td></td>
 </tr>
 <tr>
@@ -783,6 +862,12 @@ You can safely ignore this warning.</td>
 <td>3929440</td>
 <td>When you enable or disable MLAG configuration on an interface, Cumulus Linux logs LACP partner MAC address and BPDU guard mismatches incorrectly. This issue does not impact functionality.</td>
 <td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3927016</td>
+<td>Following an EVPN extended mobility event, where a host with IP address A and MAC address A moves within the fabric and now resides at IP address A and MAC address B, you might see traffic destined to this host experience drops as the flow is software forwarded on the egress VTEP.</td>
+<td>5.9.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1284,6 +1369,18 @@ You can safely ignore this warning.</td>
 <td></td>
 </tr>
 <tr>
+<td>3990258</td>
+<td>Cumulus Linux incorrectly handles unnumbered neighbor types, which causes discrepancies in the running configuration and session flaps during FRR reload.</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3985600</td>
+<td>NTP initialization issues prevent the NTP service from starting on a non-default VRF.</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3982250</td>
 <td>When you start Cumulus VX in Vagrant with libvirt, VM provisioning might fail with errors that indicate a missing {{ifup@eth0.service}} systemd service.</td>
 <td>5.9.0-5.9.1</td>
@@ -1314,6 +1411,12 @@ You can safely ignore this warning.</td>
 <td></td>
 </tr>
 <tr>
+<td>3982222</td>
+<td>When SPAN is enabled on a bridge member, an ARP or Gratuitous ARP received during a failover event between locally attached redundant devices such as load balancers might fail to update the bridge MAC table to point to the interface with the newly active load balancer.</td>
+<td>5.4.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3980957</td>
 <td>The password on NVIDIA Cumulus VX is not getting reset to the default value of {{cumulus}}.</td>
 <td>5.9.0-5.9.1</td>
@@ -1341,6 +1444,12 @@ You can safely ignore this warning.</td>
 <td>3970626</td>
 <td>When you configure the {{bridge.kernel_mac_refresh_interval}} parameter in the {{switchd.conf}} file, a {{switchd}} restart fails with core dump.</td>
 <td>5.8.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3957620</td>
+<td>On the Spectrum-4 switch, when you use PTP on a 800G link, jumbo frames traversing the same link might cause a degradation in PTP performance.</td>
+<td>5.9.0-5.9.1</td>
 <td></td>
 </tr>
 <tr>

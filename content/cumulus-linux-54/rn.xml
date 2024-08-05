@@ -462,6 +462,12 @@ Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.servic
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3982222</td>
+<td>When SPAN is enabled on a bridge member, an ARP or Gratuitous ARP received during a failover event between locally attached redundant devices such as load balancers might fail to update the bridge MAC table to point to the interface with the newly active load balancer.</td>
+<td>5.4.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3949367</td>
 <td>If you use NVUE to create an SNMP user with a password, then delete and recreate the user with additional encryption passwords (such as DES or AES), SNMP authorization fails for that user.</td>
 <td>5.3.1-5.9.1</td>

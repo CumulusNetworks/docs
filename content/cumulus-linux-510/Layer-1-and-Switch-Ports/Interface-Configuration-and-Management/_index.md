@@ -4,7 +4,10 @@ author: NVIDIA
 weight: 290
 toc: 3
 ---
-Cumulus Linux uses `ifupdown2` to manage network interfaces, which is a new implementation of the Debian network interface manager `ifupdown`.
+
+This section discusses how to configure the interfaces on the switch.
+
+Cumulus Linux (and NVUE) uses ifupdown2 to manage network interfaces, which is a new implementation of the Debian network interface manager ifupdown.
 
 ## Bring an Interface Up or Down
 

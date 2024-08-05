@@ -52,7 +52,7 @@ A single server is easier to set up, configure, and manage, but can limit your a
 
 Select the server-cluster arrangement to obtain scalability and high availability for your network. The clustering implementation comprises three servers: one master and two workers. In a clustered environment, NVIDIA recommends installing the virtual machines on different physical servers to increase redundancy in the event of a hardware failure.
 
-NetQ cloud deployments support 250 switches and up to 3000 interfaces. NetQ on-premises cluster deployments support 150 switches and up to 1500 interfaces.
+NetQ cluster deployments support 150 switches and up to 1500 interfaces.
 
 <!-- However, NetQ supports up to 10 worker nodes in a cluster. and up to 5000 total devices (switches, servers, and hosts).-->
 

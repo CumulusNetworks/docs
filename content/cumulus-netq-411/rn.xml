@@ -7,12 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4011713</td>
-<td>When you run a duplicate address validation, NetQ might report a validation failure indicating 127.0.1.1 is duplicated on Cumulus Linux 5.10.0 switches. To suppress this validation failure, run the {{netq add check-filter  check_filter_id addr_1 check_name addr test_name IPV4_Duplicate_Address scope '[{"Prefix": "127.0.1.1"}]'}} CLI command, or use the NetQ UI to add duplicate address filter for address 127.0.1.1. </td>
-<td>4.11.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4004830</td>
 <td>When you attempt to reset your password from the login page, NetQ might display an error that your token is either invalid or expired. To work around this issue, either clear your cache or open the reset link contained in the email you received in an incognito window and reset your password from there.</td>
 <td>4.11.0</td>
@@ -73,12 +67,6 @@
 <td></td>
 </tr>
 <tr>
-<td>3798677</td>
-<td>In a NetQ cluster environment, if your master node goes offline and is restored, subsequent NetQ validations for MLAG and EVPN might unexpectedly indicate failures. To work around this issue, either restart NetQ agents on devices in the inventory or wait up to 24 hours for the issue to clear.</td>
-<td>4.9.0-4.11.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3772274</td>
 <td>After you upgrade NetQ, data from snapshots taken prior to the NetQ upgrade will contain unreliable data and should not be compared to any snapshots taken after the upgrade. In cluster deployments, snapshots from prior NetQ versions will not be visible in the UI.</td>
 <td>4.9.0-4.11.0</td>
@@ -114,6 +102,11 @@
 <th> Issue ID </th>
 <th> Description </th>
 <th> Affects </th>
+</tr>
+<tr>
+<td>4011713</td>
+<td>When you run a duplicate address validation, NetQ might report a validation failure indicating 127.0.1.1 is duplicated on Cumulus Linux 5.10.0 switches. To suppress this validation failure, run the {{netq add check-filter  check_filter_id addr_1 check_name addr test_name IPV4_Duplicate_Address scope '[{"Prefix": "127.0.1.1"}]'}} CLI command, or use the NetQ UI to add duplicate address filter for address 127.0.1.1. </td>
+<td></td>
 </tr>
 <tr>
 <td>3948198</td>

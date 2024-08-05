@@ -334,9 +334,45 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Affects </th>
 </tr>
 <tr>
+<td>4015327</td>
+<td>If you change the hostname in the {{/etc/hostname}} file after the {{asic_monitor@vrf}} service starts, the hostname  is not reflected in the Open Telemetry  exported resource attribute. To work around this issue, restart the {{asic_monitor@vrf}} service.</td>
+<td></td>
+</tr>
+<tr>
+<td>4012011</td>
+<td>A memory corruption kernel crash might occur due to a {{netfilter}} error. The log message from {{netfilter}} might contain a warning similar to the following:kernel: WARNING: CPU: 1 PID: 0 at net/netfilter/nf_conntrack_core.c:1210 __nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]
+kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
+<td>5.9.1</td>
+</tr>
+<tr>
+<td>3990258</td>
+<td>Cumulus Linux incorrectly handles unnumbered neighbor types, which causes discrepancies in the running configuration and session flaps during FRR reload.</td>
+<td>5.9.0-5.9.1</td>
+</tr>
+<tr>
+<td>3985600</td>
+<td>NTP initialization issues prevent the NTP service from starting on a non-default VRF.</td>
+<td>5.9.0-5.9.1</td>
+</tr>
+<tr>
+<td>3982222</td>
+<td>When SPAN is enabled on a bridge member, an ARP or Gratuitous ARP received during a failover event between locally attached redundant devices such as load balancers might fail to update the bridge MAC table to point to the interface with the newly active load balancer.</td>
+<td>5.4.0-5.9.1</td>
+</tr>
+<tr>
+<td>3974890</td>
+<td>The {{ntpsec@mgmt}} service does not come up by default when you install an image with ONIE because the trigger to bring up the service is missing.</td>
+<td>5.9.1</td>
+</tr>
+<tr>
 <td>3972715</td>
 <td>The fans on the NVIDIA SN2410 switch (Part Number SSG7A80800) might spin at high speed. </td>
 <td>5.9.1</td>
+</tr>
+<tr>
+<td>3972048</td>
+<td>When configuring high values for QoS reserved buffers or lossy headroom buffers with NVUE, you might see failures when running {{nv config apply}} and NVUE does not apply the configuration. To work around this issue, reduce the QoS reserved and lossy headroom buffer settings.</td>
+<td></td>
 </tr>
 <tr>
 <td>3970626</td>
@@ -357,6 +393,11 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>3957691</td>
 <td>After a networking restart, ERSPAN mirror sessions might not come up. To work around this issue, run the {{systemctl reload switchd}} command to bring up the ERSPAN mirror sessions.</td>
 <td></td>
+</tr>
+<tr>
+<td>3957620</td>
+<td>On the Spectrum-4 switch, when you use PTP on a 800G link, jumbo frames traversing the same link might cause a degradation in PTP performance.</td>
+<td>5.9.0-5.9.1</td>
 </tr>
 <tr>
 <td>3956091</td>
@@ -417,6 +458,11 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>3929440</td>
 <td>When you enable or disable MLAG configuration on an interface, Cumulus Linux logs LACP partner MAC address and BPDU guard mismatches incorrectly. This issue does not impact functionality.</td>
 <td>5.9.0-5.9.1</td>
+</tr>
+<tr>
+<td>3927016</td>
+<td>Following an EVPN extended mobility event, where a host with IP address A and MAC address A moves within the fabric and now resides at IP address A and MAC address B, you might see traffic destined to this host experience drops as the flow is software forwarded on the egress VTEP.</td>
+<td>5.9.1</td>
 </tr>
 <tr>
 <td>3926523</td>

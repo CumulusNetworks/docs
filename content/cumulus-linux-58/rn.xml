@@ -25,6 +25,12 @@
 <td></td>
 </tr>
 <tr>
+<td>3982222</td>
+<td>When SPAN is enabled on a bridge member, an ARP or Gratuitous ARP received during a failover event between locally attached redundant devices such as load balancers might fail to update the bridge MAC table to point to the interface with the newly active load balancer.</td>
+<td>5.4.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3980938</td>
 <td>When ARP suppression is off, remote EVPN VTEPs duplicate ARP packets from local hosts and each remote host receives two copies of the ARP packets. The issue also applies to IPv6 ND packets.</td>
 <td>5.8.0-5.9.1</td>

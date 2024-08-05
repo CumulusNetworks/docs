@@ -63,12 +63,6 @@ To work around this issue, run the {{netq install}} command again.</td>
 <td></td>
 </tr>
 <tr>
-<td>3798677</td>
-<td>In a NetQ cluster environment, if your master node goes offline and is restored, subsequent NetQ validations for MLAG and EVPN might unexpectedly indicate failures. To work around this issue, either restart NetQ agents on devices in the inventory or wait up to 24 hours for the issue to clear.</td>
-<td>4.9.0-4.10.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3773879</td>
 <td>When you upgrade a switch running Cumulus Linux using NetQ LCM, any configuration files in {{/etc/cumulus/switchd.d}} for adaptive routing or other features are not restored after the upgrade. To work around this issue, manually back up these files and 
 restore them after the upgrade.</td>

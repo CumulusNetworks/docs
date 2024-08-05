@@ -7,7 +7,7 @@ toc: 3
 
 This section discusses how to configure the interfaces on the switch.
 
-Cumulus Linux (and NVUE) uses ifupdown2 to manage network interfaces, which is a new implementation of the Debian network interface manager ifupdown.
+Cumulus Linux (including NVUE) uses ifupdown2 to manage network interfaces, which is a new implementation of the Debian network interface manager ifupdown.
 
 ## Bring an Interface Up or Down
 
@@ -551,34 +551,6 @@ iface bridge.100
 {{< /tab >}}
 {{< /tabs >}}
 
-## Source Interface File Snippets
-
-Sourcing interface files helps organize and manage the `/etc/network/interfaces` file. For example:
-
-```
-cumulus@switch:~$ sudo cat /etc/network/interfaces
-# The loopback network interface
-auto lo
-iface lo inet loopback
-
-# The primary network interface
-auto eth0
-iface eth0 inet dhcp
-
-source /etc/network/interfaces.d/bond0
-```
-
-The contents of the sourced file used above are:
-
-```
-cumulus@switch:~$ sudo cat /etc/network/interfaces.d/bond0
-auto bond0
-iface bond0
-    address 14.0.0.9/30
-    address 2001:ded:beef:2::1/64
-    bond-slaves swp25 swp26
-```
-
 ## Port Ranges
 
 To specify port ranges in commands:
@@ -832,6 +804,34 @@ cumulus@switch:~$ nv show interface swp1 link flap-protection
         applied
 ------  -------
 enable  off
+```
+
+## Source Interface File Snippets
+
+Sourcing interface files helps organize and manage the `/etc/network/interfaces` file. For example:
+
+```
+cumulus@switch:~$ sudo cat /etc/network/interfaces
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+auto eth0
+iface eth0 inet dhcp
+
+source /etc/network/interfaces.d/bond0
+```
+
+The contents of the sourced file used above are:
+
+```
+cumulus@switch:~$ sudo cat /etc/network/interfaces.d/bond0
+auto bond0
+iface bond0
+    address 14.0.0.9/30
+    address 2001:ded:beef:2::1/64
+    bond-slaves swp25 swp26
 ```
 
 ## Mako Templates

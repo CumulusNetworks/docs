@@ -7,12 +7,16 @@ product: NVIDIA Air
 <!-- vale off -->
 Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
 
-## July 2024
+## August 2024
 <!-- Air:WhatsNew -->
+### 82.2024.0801-011
+- Changed simulation title requirements
+<!-- Air:WhatsNew -->
+
+## July 2024
 ### 82.2024.0722-014
 - Added `generic/ubuntu2404` image with support for `cloud-init`
 - Updated `generic/ubuntu2204` and `generic/ubuntu2004` images with support for `cloud-init`
-<!-- Air:WhatsNew -->
 
 ## June 2024
 ### 82.2024.0627-013

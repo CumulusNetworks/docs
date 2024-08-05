@@ -15,11 +15,14 @@ This document supports the Cumulus Linux 5.10 release, and lists new platforms, 
 
 NVIDIA SN5400 (400G Spectrum-4)
 
+{{%notice note%}}
+{{<link url="Precision-Time-Protocol-PTP" text="PTP">}} and {{<link url="Pulse-Per-Second-PPS" text="PPS">}} on the NVIDIA SN5400 switch are in BETA.
+{{%/notice%}}
+
 ### New Features and Enhancements
 
-<!-- - PPS supported on the NVIDIA SN5400 switch-->
 - {{<link url="ASIC-Monitoring/#high-frequency-telemetry" text="High frequency telemetry">}}
-- {{<link url="Open-Telemetry-Export" text="Telemetry export with OTLP">}} (SN5600 switch only)
+- {{<link url="Open-Telemetry-Export" text="Telemetry export with OTLP">}} on Spectrum-4 switches (BETA)
 - {{<link url="SSH-for-Remote-Access/#ssh-login-notifications" text="SSH login notifications">}}
 - {{<link url="Quality-of-Service/#lossy-headroom" text="QoS lossy headroom configuration">}} and {{<link url="Quality-of-Service/#ingress-and-egress-management-buffers" text=" QoS Ingress and Egress Management Buffer Configuration">}}
 - {{<link url="VXLAN-Devices/#reserved-field-in-vxlan-header" text="Ignore reserved field in VXLAN header">}}
@@ -49,6 +52,7 @@ NVIDIA SN5400 (400G Spectrum-4)
 | `nv set system config auto-save state enabled`<br>`nv set system config auto-save state disabled` | `nv set system config auto-save enable on`<br>`nv set system config auto-save enable off`|
 | `nv set system telemetry` commands | `nv set service telemetry` commands|
 | `nv show system telemetry` commands | `nv show service telemetry` commands |
+| `nv show system time` | `nv show system date- time` |
 | `nv action change system time`| `nv action change system date-time`|
 
 These commands include additional information in the output.

@@ -9,7 +9,7 @@ toc: 3
 - In PPS Out mode, the switch can output the PPS signal. The switch can use this signal to check the accuracy of its PHC frequency and other devices can use this signal to synchronize their PHC.
 
 {{%notice note%}}
-Cumulus Linux supports PPS for the NVIDIA SN3750-SX switch only.
+Cumulus Linux supports PPS for the NVIDIA SN3750-SX and SN5400 switches only. PPS on the NVIDIA SN5400 switch is in BETA.
 {{%/notice%}}
 
 ## Enable PPS Synchronization

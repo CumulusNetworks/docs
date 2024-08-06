@@ -248,7 +248,7 @@ Undersize Errors  0        n/a
 
 ## AmBER PHY Health Management
 
-To show physical layer information, such the error counters for each lane on a port, run the `nv show interface <interface> link phy-detail` command:
+To show physical layer information, such the error counters for each lane on a port, run the `nv show interface <interface> link phy-detail` command.
 
 ```
 cumulus@switch$ nv show interface swp1 link phy-detail 
@@ -372,6 +372,10 @@ rx-cdr-lol                        0x0
 rx-output-valid-change            0x0
 flag-in-use                       0x0
 ```
+
+{{%notice note%}}
+Switches with the Spectrum 1 ASIC do not support the `nv show interface <interface> link phy-detail` command or the `nv show interface <interface> link phy-diag` command.
+{{%/notice%}}
 
 ## Clear Interface Counters
 

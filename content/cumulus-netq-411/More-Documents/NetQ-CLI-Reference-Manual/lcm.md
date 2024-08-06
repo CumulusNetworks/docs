@@ -126,7 +126,7 @@ None
 ```
 cumulus@switch:~$ netq lcm add default-version cl-images 5.9.1
 
-cumulus@switch:~$ netq lcm add default-version netq-images 4.10.1
+cumulus@switch:~$ netq lcm add default-version netq-images 4.11.0
 ```
 
 ### Related Commands

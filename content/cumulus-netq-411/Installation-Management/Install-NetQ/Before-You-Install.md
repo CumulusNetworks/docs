@@ -20,10 +20,10 @@ Consider the following before you install the NetQ system:
 You can deploy NetQ in one of two ways:
 
 - **Hosted on-premises**: Choose this deployment if you want to host at your location and have the in-house skill set to install, configure, back up, and maintain NetQ. This model is also a good choice if you want very limited or no access to the internet from switches and hosts in your network, or if you have data-residency requirements like GDPR.
-- **Hosted remotely**: Choose this deployment to host a multi-site, on-premises deployment or use NetQ Cloud. In the multi-site deployment, you host multiple small servers at each site and an on-premises appliance at a central location. In the cloud deployment, you host only a small, local server on your premises that connects to the NetQ Cloud service over selected ports or through a proxy server. NetQ Cloud supports local data aggregation and forwarding---the majority of the NetQ applications use a hosted deployment strategy, storing data in the cloud. NVIDIA handles the backups and maintenance of the application and storage. This remote cloud service model is a good choice when you have limited in-house support or if you need the flexibility to scale quickly, while also reducing capital expenses.
+- **Hosted remotely**: Choose this deployment to host a multi-site, on-premises deployment or use NetQ cloud. In the multi-site deployment, you host multiple small servers at each site and an on-premises appliance at a central location. In the cloud deployment, you host only a small, local server on your premises that connects to the NetQ cloud service over selected ports or through a proxy server. NetQ cloud supports local data aggregation and forwarding---the majority of the NetQ applications use a hosted deployment strategy, storing data in the cloud. NVIDIA handles the backups and maintenance of the application and storage. This remote cloud service model is a good choice when you have limited in-house support or if you need the flexibility to scale quickly, while also reducing capital expenses.
 
 In all deployment models, the NetQ Agents reside on the switches and hosts they monitor in your network. Refer to {{<link title="Install the NetQ System">}} for a comprehensive list of deployment types and their respective requirements.
-
+<!--
 ### Data Flow
 
 The flow of data differs based on your deployment model.
@@ -42,13 +42,19 @@ For the remote, cloud-service implementation, the NetQ Agents collect and transm
 
 To access the NetQ UI from the cloud-service implementation, visit *https://netq.nvidia.com*.
 
+-->
+
 ## Server Arrangement: Single or Cluster
 
 Both single-server and server-cluster deployments provide identical services and features. The biggest difference is the number of servers deployed and the continued availability of services running on those servers should hardware failures occur.
 
 A single server is easier to set up, configure, and manage, but can limit your ability to scale your network monitoring quickly. Deploying multiple servers is more complicated, but you limit potential downtime and increase availability by having more than one server that can run the software and store the data. Select the standalone, single-server arrangements for smaller, simpler deployments. Be sure to consider the capabilities and resources needed on this server to support the size of your final deployment.
 
-Select the server-cluster arrangement to obtain scalability and high availability for your network. The clustering implementation comprises three servers: one master and two workers. In a clustered environment, NVIDIA recommends installing the virtual machines on different physical servers to increase redundancy in the event of a hardware failure.<!-- However, NetQ supports up to 10 worker nodes in a cluster.--> <!-- and up to 5000 total devices (switches, servers, and hosts).-->
+Select the server-cluster arrangement to obtain scalability and high availability for your network. The clustering implementation comprises three servers: one master and two workers. In a clustered environment, NVIDIA recommends installing the virtual machines on different physical servers to increase redundancy in the event of a hardware failure.
+
+NetQ cluster deployments support 150 switches and up to 1500 interfaces.
+
+<!-- However, NetQ supports up to 10 worker nodes in a cluster. and up to 5000 total devices (switches, servers, and hosts).-->
 
 ### Cluster Deployments and Kubernetes 
 

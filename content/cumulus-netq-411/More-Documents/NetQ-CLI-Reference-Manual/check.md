@@ -1215,6 +1215,7 @@ Topology Blueprint Test   : passed
 
 ### Related Commands
 
+- `netq add validation type`
 - `netq show unit-tests topology`
 
 - - -

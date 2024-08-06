@@ -105,14 +105,6 @@ NVIDIA recommends proceeding with the installation only if the `Use%` is less th
 
 4. Ensure that the necessary ports are open {{<link title="Install the NetQ System" text="according to your deployment model">}}.
 
-{{%notice note%}}
-
-If you are upgrading a cluster deployment from NetQ v4.8.0 or earlier, you must open TCP port 36443 for Kubernetes control plane operations.
-
-{{%/notice%}}
-
-5. {{<link url="Switch-Management/#decommission-a-switch-with-lcm" text="Decommission devices">}} that display a 'rotten' or unreachable state.
-
 ### Upgrade Using the NetQ CLI
 
 1. Run the appropriate commands for your deployment type:
@@ -213,7 +205,7 @@ If this step fails for any reason, run the <code>netq bootstrap reset keep-db</c
     BOOTSTRAP_VERSION=4.11.0
     APPLIANCE_MANIFEST_HASH=370ffbe3195aa1c4cc969668441b124e7714f7eaa980962ff4cc438fcec31b87
     APPLIANCE_VERSION=4.11.0
-    APPLIANCE_NAME=NetQ Cloud Appliance
+    APPLIANCE_NAME=NetQ cloud Appliance
     ```
 {{</tab>}}
 

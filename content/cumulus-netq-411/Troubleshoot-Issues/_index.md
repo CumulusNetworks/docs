@@ -20,14 +20,17 @@ The following configuration and log files contain information that can help with
 
 ## Check NetQ System Installation Status
 
-The `netq show status verbose` command shows the status of NetQ components after installation. Use this command to validate NetQ system readiness:
+The `netq show status verbose` command shows the status of NetQ components after installation. Use this command to validate NetQ system readiness.
+
+{{< expand "netq show status verbose" >}}
+
 
 ```
 cumulus@netq:~$ netq show status verbose
 NetQ Live State: Active
 Installation Status: FINISHED
-Version: 4.10.1
-Installer Version: 4.10.1
+Version: 4.11.0
+Installer Version: 4.11.0
 Installation Type: Standalone
 Activation Key: EhVuZXRxLWasdW50LWdhdGV3YXkYsagDIixkWUNmVmhVV2dWelVUOVF3bXozSk8vb2lSNGFCaE1FR2FVU2dHK1k3RzJVPQ==
 Master SSH Public Key: c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCfdsaHpjKzcwNmJiNVROOExRRXdLL3l5RVNLSHRhUE5sZS9FRjN0cTNzaHh1NmRtMkZpYmg3WWxKUE9lZTd5bnVlV2huaTZxZ0xxV3ZMYkpLMGdkc3RQcGdzNUlqanNMR3RzRTFpaEdNa3RZNlJYenQxLzh4Z3pVRXp3WTBWZDB4aWJrdDF3RGQwSjhnbExlbVk1RDM4VUdBVFVkMWQwcndLQ3gxZEhRdEM5L1UzZUs5cHFlOVdBYmE0ZHdiUFlaazZXLzM0ZmFsdFJxaG8rNUJia0pkTkFnWHdkZGZ5RXA1Vjc3Z2I1TUU3Q1BxOXp2Q1lXZW84cGtXVS9Wc0gxWklNWnhsa2crYlZ4MDRWUnN4ZnNIVVJHVmZvckNLMHRJL0FrQnd1N2FtUGxObW9ERHg2cHNHaU1EQkM0WHdud1lmSlNleUpmdTUvaDFKQ2NuRXpOVnVWRjUgcm9vdEBhbmlscmVzdG9yZQ==
@@ -68,20 +71,77 @@ Created Keys                                                        FINISHED
 Verified installer version                                          FINISHED
 ...
 ```
+{{< /expand >}}
+<!--
+## Troubleshoot Installation and Upgrade
 
+Before you attempt a NetQ installation or upgrade, verify that your system meets the {{<link title="Install the NetQ System" text="minimum VM requirements">}} for your deployment type. 
+
+{{%notice note%}}
+If an upgrade or installation process stalls or fails, run the `netq bootstrap reset` command to stop the process, followed by the `netq install` command to re-attempt the installation or upgrade. 
+{{%/notice%}}
+## Known Installation and Upgrade Issues
+
+{{<tabs "TabID113" >}}
+
+{{<tab "Upgrade Issues">}}
+
+| Error | Setup | Solution |
+| ---- | ---- | ---- |
+| Cannot upgrade a non-bootstrapped NetQ server. Please reset the cluster and re-install.| | Only a server that has been bootstrapped and has a valid `/etc/app-release` file can be upgraded.<br> 1. Run the `netq bootstrap reset` command. <br> 2. Run the `netq install` command. |
+| Unable to get response from admin app. | | Re-run the `netq upgrade bundle <tarball>` command. If the retry fails with same error, reset the server and run the `install` command:<br> 1. Run the `netq bootstrap reset` command <br> 2. Run the `netq install` command. |
+| Unable to get response from kubernetes api server. |  | Re-run the `netq upgrade bundle <tarball>` command. If the retry fails with same error, reset the server and run the `install` command:<br> 1. Run the `netq bootstrap reset` command <br> 2. Run the `netq install` command. |
+| Cluster vip is an invalid parameter for standalone upgrade. | Single server | Remove the `cluster-vip` option from the `netq upgrade bundle` command. |
+| Please provide cluster-vip option and run command. | HA server cluster | Include the `cluster-vip` option in the `netq upgrade bundle` command. | 
+| Could not find admin app pod, please re-run the command. | | Re-run the `netq upgrade bundle <tarball>` command. |
+| Could not upgrade server, unable to restore got exception: {} | On-premises |  The backup/restore option is only applicable for on-premises deployments which use {{<link title="Install a Custom Signed Certificate" text="self-signed certificates">}}.| 
+{{</tab>}}
+
+{{<tab "Installation Issues" >}}
+
+| Error | Setup | Solution |
+| ---- | ---- | ---- |
+| NetQ is operational with version: {}. Run the bootstrap reset before re-installing NetQ. | | 1. Run the `netq bootstrap reset` command. <br> 2. Run the `netq install` command. |
+| The Default interface was not found | | You must have a default route configured in your routing table, and the associated network interface must correspond to this default route.
+| No default route found. Please set the default route via interface {} and re-run the installation. | | See above. | 
+| Default route set via a different interface {}. Please set the default route via interface {} and re-run the installation.| | See above. |
+| Minimum of {} GB RAM required but {} GB RAM detected.| | Increase VM resources according to your {{<link title="Install the NetQ System" text="deployment model requirements">}}.|
+| Minimum of {} CPU cores required but {} detected.| | Increase VM resources according to your {{<link title="Install the NetQ System" text="deployment model requirements">}}.|
+| Please free up disk as {} is {}% utilised. Recommended to keep under 70%. | | Delete previous software tarballs in the `/mnt/installables/` directory to regain space. If you cannot decrease disk usage to under 70%, contact the NVIDIA support team. |
+| Did not find the vmw_pvscsi driver enabled on this NetQ VM. Please re-install the NetQ VM on ESXi server. | VMware | The NetQ VM must have the `vmw_pvscsi` driver enabled. |
+| Error: Bootstrapped IP does not belong to any local IPs | | The IP address used for bootstrapping should be from the local network. |
+| ERROR: IP address mismatch. Bootstrapped with: {} kube_Config: {} Admin_kube_config: {}| | The bootstrap IP address must match the kube config and admin kube config IP addresses. |
+| ERROR: Clock not synchronised. Please check timedatectl. | | The system clock must be synchronized. Verify synchronization using the `timedatectl` command. |
+| {} does not have sse4.2 capabilities. Check lscpu. | | The CPU model used for the installation must support SSE4.2. |
+| NTP is installed. Please uninstall NTP as it will conflict with chrony installation.| | Uninstall NTP and any other NTP services, such as `ntpd` or SNTP.|
+| Netqd service is not running | | Verify that the `netqd` service is up and running prior to installation. |
+| Found identical ip for {} and {}/ Please provide different ip for cluster vip/workers. | Cluster | The cluster virtual IP address (VIP) and worker node IP addresses must be unique. |
+| Please provide worker nodes IPV6 addresses in order to have IPV6 support. | Cluster | IPv6 addresses must be provided for worker nodes if IPv6 support is required. |
+| Master node is not initialised. Run “net install cluster master-init” on master node before NetQ Install/upgrade command. | Cluster | Initialize the master node with the `netq install cluster master-init` command.|
+| Worker node Ip {} is not reachable| Cluster | Make sure worker nodes are reachable in your network. |
+| Worker node {} is not initialised. Please initialise worker node and re-run the command.| Cluster | After initializing the cluster on the master node, initialize each worker nodes with the `netq install cluster worker-init` command. |
+| Cluster VIP is not valid IP address | Cluster | Provide a valid cluster IP address. |
+| All cluster addresses must belong to the same subnet. Master node net mask = {} | Cluster |  Make sure all cluster IP addresses---the master, worker and virtual IP---belong to the same subnet.|
+| Virtual IP {} is already used | Cluster | Provide a unique virtual IP address. |
+| Package {} with version {} must be installed. | | Make sure `netq-apps` version is the same as the tarball version. |
+| Master node is already bootstrapped | | Run the `netq bootstrap reset` command, followed by the `netq install` command to re-attempt the installation. |
+{{</tab>}}
+
+{{</tabs>}}
+-->
 ## Installation and Upgrade Hook Scripts
 
-NVIDIA might provide hook scripts to patch issues encountered during a NetQ installation or upgrade. When you run the `netq install` or `netq upgrade` command, NetQ checks for specific hook script filenames in the `/usr/bin` directory. The expected filenames for NetQ 4.10.1 are:
+NVIDIA might provide hook scripts to patch issues encountered during a NetQ installation or upgrade. When you run the `netq install` or `netq upgrade` command, NetQ checks for specific hook script filenames in the `/usr/bin` directory. The expected filenames for NetQ 4.11.0 are:
 
-- Pre-install script: `/usr/bin/pre_install_4.10.1.sh`
-- Post-install script: `/usr/bin/post_install_4.10.1.sh`
-- Pre-upgrade script: `/usr/bin/pre_upgrade_4.10.1.sh`
-- Post-upgrade script: `/usr/bin/post_upgrade_4.10.1.sh`
+- Pre-install script: `/usr/bin/pre_install_4.11.0.sh`
+- Post-install script: `/usr/bin/post_install_4.11.0.sh`
+- Pre-upgrade script: `/usr/bin/pre_upgrade_4.11.0.sh`
+- Post-upgrade script: `/usr/bin/post_upgrade_4.11.0.sh`
 
 After placing the script in the `/usr/bin` directory, set executable permissions with the `chmod +x /usr/bin/<filename>` command:
 
 ```
-cumulus@netq-server:~$ chmod +x /usr/bin/pre_install_4.10.1.sh
+cumulus@netq-server:~$ chmod +x /usr/bin/pre_install_4.11.0.sh
 ```
 
 After copying the script to the expected path and setting it to executable, the script will run during the next installation or upgrade attempt.

@@ -60,7 +60,7 @@ kubectl exec $(kubectl get pod -oname -l app=cassandra) -- cqlsh -e "INSERT INTO
 
 {{</tab>}}
 
-{{<tab "NetQ Cloud">}}
+{{<tab "NetQ cloud">}}
 
 To reset a password for cloud deployments:
 

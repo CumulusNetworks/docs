@@ -443,6 +443,42 @@ dnsmasq
 - `netq config del agent services`
 
 - - -
+## netq config add agent spice
+
+Configures the NetQ Agent to collect and send Spice statistics. This command can only be run on Spectrum switches running Cumulus Linux.
+
+### Syntax
+
+```
+netq config add agent spice
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| spice | NA | Collect and send Spice data |
+
+### Options
+
+None
+
+### Sample Usage
+
+```
+cumulus@switch:~$ netq config add agent spice
+Successfully added spice for netq-agent. Please restart netq-agent (netq config restart agent)
+
+cumulus@switch:~$ netq config restart agent
+Restarting netq-agent... Success!
+```
+
+
+### Related Commands
+
+- `netq config del agent spice`
+- `netq conifg show agent spice`
+- - -
 
 ## netq config add agent stats
 
@@ -770,7 +806,7 @@ netq config add opta config-key <text-opta-key>
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| vrf | \<text-vrf-names\> | Specifies VRF used to communicate with the NetQ Cloud |
+| vrf | \<text-vrf-names\> | Specifies VRF used to communicate with the NetQ cloud |
 | proxy-host | \<text-proxy-host\> | Specifies proxy host |
 | proxy-port | \<text-proxy-port\> | Specifies proxy port |
 
@@ -954,7 +990,7 @@ Disables or removes NetQ Agent configurations on a switch.
 
 ```
 netq config del agent 
-    [asic-monitor| cluster-serveres| cpu-limit|frr-monitor|loglevel|server|ssl|stats|wjh] 
+    [asic-monitor|cluster-servers|cpu-limit|frr-monitor|loglevel|server|spice|ssl|stats|wjh] 
     [json]
 ```
 ### Required Arguments
@@ -971,6 +1007,7 @@ None
 | frr-monitor | NA | Stop the NetQ Agent from monitoring FRR when running in a container |
 | loglevel | NA | Stop the NetQ Agent from logging events about the agent |
 | server | NA | Delete the current destination of NetQ Agent data and API requests |
+| spice | NA | Stop the NetQ Agent from collecting Spice data |
 | ssl | NA | Delete SSL configuration |
 | stats | NA | Stop the NetQ Agent from collecting interface statistics |
 | wjh | NA | Stop the NetQ Agent from collecting WJH information |
@@ -1323,6 +1360,49 @@ None
 
 - - -
 
+## netq config reset premise
+
+Resets the UUID for a given premises. In cloud deployments, this command can be used to reset a premises so that it can be reconfigured and attached to a different VM.
+
+### Syntax
+
+```
+netq config reset premise <test-premises-name>
+```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| premise | \<text-premises-name\> | Resets the premises with this name |
+
+### Options
+
+None
+
+### Sample Usage
+
+Use the `netq config show cli premises` command to check whether the premises is active or inactive. The status must be inactive before it can be attached to a new server.
+
+```
+cumulus@switch:~$ netq config show cli premises
+Name                     OPID  Timezone    Namespace    Tag    CLI Status    Status
+-----------------  ----------  ----------  -----------  -----  ------------  --------
+prem-1             1719853531  PST         default      US     not selected  Active
+prem-2             1719855240  PST         default      US     selected      Inactive
+
+cumulus@switch:~$ netq config reset premise prem-1
+Premise has been reset successfully. Please verify using 'netq config show cli premises'
+
+cumulus@switch:~$ netq config show cli premises
+Name                     OPID  Timezone    Namespace    Tag    CLI Status    Status
+-----------------  ----------  ----------  -----------  -----  ------------  --------
+prem-1             1719853531  PST         default      US     not selected  Inactive
+prem-2             1719855240  PST         default      US     selected      Inactive
+```
+### Related Commands
+
+ - `netq config show cli premises`
+- - -
 ## netq config restart
 
 Restarts the NetQ Agent or CLI daemons on a switch. Use this command after making changes to the NetQ Agent or CLI configurations.
@@ -1393,7 +1473,7 @@ Switched to premise Boston
 
 ### Related Commands
 
-None
+- `netq config show cli premises`
 
 - - -
 
@@ -1635,17 +1715,18 @@ None
 
 ```
 cumulus@switch:~$ netq config show cli premises
-Name                   OPID  Timezone      Namespace  Tag    CLI Status
----------------  ----------  ----------  -----------  -----  ------------
-OPID0                     0  IST                 nan  TAG0   selected
-premise1              20001  PST                 nan  US     not selected
-premise2              20002  PST                 nan  US     not selected
+Name                   OPID  Timezone      Namespace  Tag    CLI Status     Status
+---------------  ----------  ----------  -----------  -----  ------------   -----------
+OPID0                     0  IST                 nan  TAG0   selected       Active
+premise1              20001  PST                 nan  US     not selected   Inactive
+premise2              20002  PST                 nan  US     not selected   Inactive
 ()
 ```
 
 ### Related Commands
 
 - `netq config select cli premise`
+- `netq config reset premise`
 
 - - -
 

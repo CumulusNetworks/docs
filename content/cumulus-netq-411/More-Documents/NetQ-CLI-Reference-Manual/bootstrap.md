@@ -47,7 +47,7 @@ cumulus@switch:~$ netq bootstrap reset keep-db
 
 ### Related Commands
 
-None
+- `netq config reset premise`
 
 <!--not exposed to customers
 ## netq bootstrap worker

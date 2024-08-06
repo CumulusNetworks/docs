@@ -7,7 +7,7 @@ toc: 4
 
 After installing the NetQ software, you should install the NetQ Agents on each switch you want to monitor. You can install NetQ Agents on switches and servers running:
 
-- Cumulus Linux 5.0.0 and later (Spectrum switches)
+- Cumulus Linux 5.0.0 or later (Spectrum switches)
 - Cumulus Linux 4.3.1 and 4.3.2 (Broadcom switches)
 - SONiC 202012
 - Ubuntu 20.04
@@ -75,7 +75,7 @@ deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest
 ```
 
 {{<notice tip>}}
-You can specify a NetQ Agent version in the repository configuration. The following example shows the repository configuration to retrieve NetQ Agent 4.3: <pre>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-4.3</pre>
+You can specify a NetQ Agent version in the repository configuration. The following example shows the repository configuration to retrieve NetQ Agent 4.9: <pre>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-4.9</pre>
 {{</notice>}}
 
 2. Add the `apps3.cumulusnetworks.com` authentication key to Cumulus Linux:

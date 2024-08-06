@@ -429,7 +429,7 @@ cumulus@switch:~$ nv set interface vlan10 link mac-address 00:00:5E:00:01:00
 cumulus@switch:~$ nv config apply
 ```
 
-To unset the MAC address for an interface, run the `nv unset interface <interface> link mac-address` command:
+To unset the MAC address for an interface, run the `nv unset interface <interface> link mac-address` command. This command resets the MAC address to the system assigned address.
 
 ```
 cumulus@switch:~$ nv unset interface swp1 link mac-address

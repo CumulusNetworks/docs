@@ -113,7 +113,7 @@ If an upgrade or installation process stalls or fails, run the `netq bootstrap r
 | ERROR: IP address mismatch. Bootstrapped with: {} kube_Config: {} Admin_kube_config: {}| | The bootstrap IP address must match the kube config and admin kube config IP addresses. |
 | ERROR: Clock not synchronised. Please check timedatectl. | | The system clock must be synchronized. Verify synchronization using the `timedatectl` command. |
 | {} does not have sse4.2 capabilities. Check lscpu. | | The CPU model used for the installation must support SSE4.2. |
-| NTP is installed. Please uninstall NTP as it will conflict with chrony installation.| | Uninstall NTP and any other NTP services, such as ntpd or SNTP.|
+| NTP is installed. Please uninstall NTP as it will conflict with chrony installation.| | Uninstall NTP and any other NTP services, such as `ntpd` or SNTP.|
 | Netqd service is not running | | Verify that the `netqd` service is up and running prior to installation. |
 | Found identical ip for {} and {}/ Please provide different ip for cluster vip/workers. | Cluster | The cluster virtual IP address (VIP) and worker node IP addresses must be unique. |
 | Please provide worker nodes IPV6 addresses in order to have IPV6 support. | Cluster | IPv6 addresses must be provided for worker nodes if IPv6 support is required. |

@@ -369,7 +369,7 @@ Cumulus Linux 4.4 and later includes the `netq-agent` package by default. To ins
     cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/agent-version version="4.10.1" opsys="cl">}}
+    {{<netq-install/agent-version version="4.11.0" opsys="cl">}}
 
 3. Restart `rsyslog` so it sends log files to the correct destination.
 
@@ -425,7 +425,7 @@ To install the NetQ Agent:
     root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/agent-version version="4.10.1" opsys="ub">}}
+    {{<netq-install/agent-version version="4.11.0" opsys="ub">}}
 
 3. Restart `rsyslog` so it sends log files to the correct destination.
 

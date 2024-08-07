@@ -7,7 +7,7 @@ toc: 4
 
 NetQ and network operating system images are managed with LCM. This section explains how to check for missing images, upgrade images, and specify default images.
 
-The network OS and NetQ images are available in several variants based on the software version, the CPU architecture, platform, and SHA checksum. Download both the `netq-apps` and `netq-agents` packages according to the version of Cumulus Linux you are running. {{<netq-install/agent-version version="4.10.1" opsys="cl">}}
+The network OS and NetQ images are available in several variants based on the software version, the CPU architecture, platform, and SHA checksum. Download both the `netq-apps` and `netq-agents` packages according to the version of Cumulus Linux you are running. {{<netq-install/agent-version version="4.11.0" opsys="cl">}}
 
 ## View and Upload Missing Images
 

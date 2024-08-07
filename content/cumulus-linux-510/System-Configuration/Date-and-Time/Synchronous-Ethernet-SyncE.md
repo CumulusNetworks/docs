@@ -141,6 +141,38 @@ cumulus@switch:~$ sudo systemctl restart synced.service
 {{< /tab >}}
 {{< /tabs >}}
 
+### Minimum Acceptable Quality Level
+
+You can prevent SyncE from tracking a source with a quality level lower than a specific value. The quality level can be: `eec1`, `eeec`, `ssu-b`, `ssu-a`, `prc`, `eprc`, `prtc`, or `eprtc`, where `eec1` is the lowest quality level and `eprtc` is the highest quality level.
+
+{{< tabs "TabID188 ">}}
+{{< tab "NVUE Commands ">}}
+
+Run the `nv set system synce min-acceptable-ql <quality-level>` command. The following example prevents SyncE from tracking a source with a quality level lower than `ssu-b`:
+
+```
+cumulus@switch:~$ nv set system synce min-acceptable-ql ssu-b
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/synced/synced.conf` file to add the `min_ql` parameter, then restart the SyncE service. The following example prevents SyncE from tracking a source with a quality level lower than `ssu-b`:
+
+```
+cumulus@switch:~$ sudo nano /etc/synced/synced.conf
+...
+min_ql=ssu-b
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart synced.service
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Logging
 
 You can set the logging level that the SyncE service uses:

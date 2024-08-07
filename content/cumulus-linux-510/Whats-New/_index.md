@@ -28,6 +28,7 @@ NVIDIA SN5400 (400G Spectrum-4)
 - {{<link url="VXLAN-Devices/#reserved-field-in-vxlan-header" text="Ignore reserved field in VXLAN header">}}
 - {{<link url="Quick-Start-Guide/#get-started" text="DHCP Option 61">}} (pre-provision a switch with its serial number) is enabled by default when Cumulus Linux boots
 - {{<link url="Optional-BGP-Configuration/#graceful-bgp-shutdown-on-a-peer" text="Graceful shutdown on a peer">}}
+- {{<link url="Synchronous-Ethernet-SyncE/#minimum-acceptable-quality-level" text="SyncE minimum acceptable quality level option">}}
 - {{< expand "Additional OID support for SNMP MIBs" >}}
 | <div style="width:250px">MIB | OID | Description |
 | --- | ----| ----------- |
@@ -110,6 +111,8 @@ nv show system version
 ```
 nv set interface <interface> link mac-address
 nv set system security encryption db state
+nv set system ssh-server login-record-period
+nv set system synce min-acceptable-ql
 nv set system telemetry export otlp grpc cert-id <certificate>
 nv set system telemetry export otlp grpc destination <destination> port <port>
 nv set system telemetry export otlp grpc insecure
@@ -123,7 +126,6 @@ nv set system telemetry interface-stats egress-buffer traffic-class
 nv set system telemetry interface-stats export state
 nv set system telemetry interface-stats ingress-buffer priority-group
 nv set system telemetry interface-stats sample-interval
-nv set system ssh-server login-record-period
 nv set qos advance-buffer-config <profile-id> egress-mgmt-buffer
 nv set qos advance-buffer-config <profile-id> egress-mgmt-buffer reserved
 nv set qos advance-buffer-config <profile-id> egress-mgmt-buffer service-pool

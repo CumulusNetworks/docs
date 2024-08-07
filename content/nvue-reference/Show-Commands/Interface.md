@@ -872,7 +872,7 @@ Introduced in Cumulus Linux 5.10.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp20 link phy-diag 
+cumulus@switch$ nv show interface swp20 link phy-diag 
                                   operational
 --------------------------------  -----------
 pd-fsm-state                      0x7

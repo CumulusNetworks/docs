@@ -49,6 +49,12 @@
 <td></td>
 </tr>
 <tr>
+<td>3858210</td>
+<td>When you upgrade your NetQ VM, DPUs in the inventory are not shown. To work around this issue, restart the DTS container on the DPUs in your network.</td>
+<td>4.10.0-4.11.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3854467</td>
 <td>When a single NetQ cluster VM is offline, the NetQ kafka-connect pods are brought down on other cluster nodes, preventing NetQ data from collecting data. To work around this issue, bring all cluster nodes back into service.</td>
 <td>4.10.0-4.11.0</td>

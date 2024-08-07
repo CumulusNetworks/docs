@@ -11,6 +11,10 @@ This document supports the Cumulus Linux 5.9 release, and lists new platforms, f
 
 Cumulus Linux 5.9 is an Extended-Support Release (ESR). For more information, refer to {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/knowledge-base/Support/Support-Offerings/Cumulus-Linux-Release-Versioning-and-Support-Policy" text="this Knowledge base article">}}.
 
+<!--## What's New in Cumulus Linux 5.9.2
+
+Cumulus Linux 5.9.2 provides bug fixes and includes a {{<link url="Forwarding-Table-Size-and-Profiles/#spectrum-1" text="new forwarding profile called ecmp-nh-heavy">}} for Spectrum 1 switches.-->
+
 ## What's New in Cumulus Linux 5.9.1
 
 Cumulus Linux 5.9.1 replaces Cumulus Linux 5.9.0, which is no longer available.

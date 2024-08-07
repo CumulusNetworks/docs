@@ -790,6 +790,10 @@ cumulus@switch:~$ nv show interface swp1 link flag
 
 Shows physical layer information, such the error counters for each lane on a port.
 
+{{%notice note%}}
+Switches with the Spectrum 1 ASIC do not support the `nv show interface <interface> link phy-detail` command.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -850,6 +854,10 @@ rs-num-corr-err-bin15      0
 ## <h>nv set interface \<interface-id\> link phy-diag</h>
 
 Shows physical layer diagnostic information for a port.
+
+{{%notice note%}}
+Switches with the Spectrum 1 ASIC do not support the `nv show interface <interface> link phy-diag` command.
+{{%/notice%}}
 
 ### Command Syntax
 

@@ -122,11 +122,11 @@ netq lcm show netq-images
 
 2. Download the NetQ Debian packages needed for upgrade from the {{<exlink url="https://download.nvidia.com/cumulus/apps3.cumulusnetworks.com/repos/deb/pool/netq-4.10/p/python-netq/" text="NetQ repository">}}, selecting the appropriate version and hypervisor/platform. Place them in an accessible part of your local network.
 
-3. Upload the images to the LCM repository. This example uploads the two packages (`netq-agent` and `netq-apps`) required for NetQ version 4.10.1 for a NetQ appliance or VM running Ubuntu 20.04 with an AMD 64 architecture.
+3. Upload the images to the LCM repository. This example uploads the two packages (`netq-agent` and `netq-apps`) required for NetQ version 4.11.0 for a NetQ appliance or VM running Ubuntu 20.04 with an AMD 64 architecture.
 
     ```
-    cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-agent_4.10.1-ub20.04u47~1717138752.f08a4a95b_amd64.deb
-    cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_4.10.1-ub20.04u47~1717138752.f08a4a95b_amd64.deb
+    cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-agent_4.11.0-ub20.04u48~1722675045.0390e155f_amd64.deb
+    cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_4.11.0-ub20.04u48~1722675045.0390e155f_amd64.deb
     ```
 
 {{</tab>}}
@@ -172,8 +172,8 @@ cumulus@switch:~$ netq lcm add image /path/to/download/cumulus-linux-5.9.1-mlx-a
 NetQ images:
 
 ```
-cumulus@switch:~$ netq lcm add image /path/to/download/netq-agent_4.10.1-ub20.04u47~1717138752.f08a4a95b_amd64.deb
-cumulus@switch:~$ netq lcm add image /path/to/download/netq-apps_4.10.1-ub20.04u47~1717138752.f08a4a95b_amd64.deb
+cumulus@switch:~$ netq lcm add image /path/to/download/netq-agent_4.11.0-ub20.04u48~1722675045.0390e155f_amd64.deb
+cumulus@switch:~$ netq lcm add image /path/to/download/netq-apps_4.11.0-ub20.04u48~1722675045.0390e155f_amd64.deb
 ```
 
 {{</tab>}}

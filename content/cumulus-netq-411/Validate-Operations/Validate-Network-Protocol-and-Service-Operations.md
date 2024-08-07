@@ -288,7 +288,8 @@ If your host is configured to send the MAC address in the LLDP port ID field, de
 You can use the `lldpctl` command to validate the current port ID received from a connected device.
 
 {{%notice note%}}
-If you change the LLDP port ID subtype while the NetQ agent is running, restart the NetQ agent with the `netq config restart agent` command
+- If you change the LLDP port ID subtype while the NetQ agent is running, restart the NetQ agent with the `netq config restart agent` command
+- If you do not configure all of your network devices in the topology blueprint, the total number of devices accounted for in the validation results card might include additional devices that NetQ has received LLDP data from. 
 {{%/notice%}}
 
 ### Create a Topology Validation

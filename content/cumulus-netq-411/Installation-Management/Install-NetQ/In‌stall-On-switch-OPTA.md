@@ -6,9 +6,9 @@ toc: 4
 ---
 ## Configure the On-switch OPTA
 
-Instead of installing a dedicated OPTA VM, you can enable the OPTA service on one or more switches in your environment to send data to the NetQ Cloud. 
+Instead of installing a dedicated OPTA VM, you can enable the OPTA service on one or more switches in your environment to send data to the NetQ cloud. 
 
-On-switch OPTA (on-premises telemetry aggregator) is intended for use in small NetQ Cloud deployments where a dedicated OPTA VM might not be necessary. If you need help assessing the correct OPTA configuration for your deployment, {{<exlink url="https://www.nvidia.com/en-us/contact/sales/" text="contact your NVIDIA">}} sales team.
+On-switch OPTA (on-premises telemetry aggregator) is intended for use in small NetQ cloud deployments where a dedicated OPTA VM might not be necessary. If you need help assessing the correct OPTA configuration for your deployment, {{<exlink url="https://www.nvidia.com/en-us/contact/sales/" text="contact your NVIDIA">}} sales team.
 
 To configure a switch for OPTA functionality, install the `netq-opta` package. To obtain the package, add or uncomment the NetQ repository in `/etc/apt/sources.list` as needed:
 
@@ -36,7 +36,7 @@ After the `netq-opta` package is installed, add your OPTA configuration key. Run
 sudo netq config add opta config-key <config_key> [vrf <vrf_name>] [proxy-host <text-proxy-host> proxy-port <text-proxy-port>] 
 ```
 
-The VRF name should be the VRF used to communicate with the NetQ Cloud. Specifying a proxy host and port is optional. For example:
+The VRF name should be the VRF used to communicate with the NetQ cloud. Specifying a proxy host and port is optional. For example:
 
 ```
 sudo netq config add opta config-key tHkSI2d3LmRldjMubmV0cWRldi5jdW11bHVasdf29ya3MuY29tGLsDIiwzeUpNc3BwK1IyUjVXY2p2dDdPL3JHS3ZrZ1dDUkpFY2JkMVlQOGJZUW84PTIEZGV2MzoHbmV0cWRldr vrf mgmt

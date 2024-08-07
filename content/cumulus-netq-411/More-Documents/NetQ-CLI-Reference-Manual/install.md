@@ -105,6 +105,7 @@ netq install cluster full
     workers <text-worker-01> <text-worker-02>
     [workers-ipv6 <text-worker-ipv6-01> <text-worker-ipv6-02>] 
     cluster-vip <text-cluster-vip> 
+    [ipv6]
     [s3-access-key <text-s3-access-key> s3-secret-key <text-s3-secret-key>]
 ```
 

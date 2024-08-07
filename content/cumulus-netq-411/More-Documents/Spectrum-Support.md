@@ -10,7 +10,7 @@ Several NetQ features function exclusively on NVIDIA Spectrum switches. The foll
 | | Spectrum-1 | Spectrum-2 | Spectrum-3 | Spectrum-4  | 
 | ------------- | :---: | :---: | :---: | :---: |
 |Adaptive routing monitoring | No | No | No | Yes |
-|Bit error rate monitoring | Yes | Yes | Yes | Yes |
+|Bit error rate monitoring | No | No | Yes | Yes |
 |ECMP monitoring| Yes | Yes | Yes | Yes |
 |Flow analysis| No | Yes | Yes | Yes |
 |LCM with on-switch OPTA | No | Yes | Yes | Yes |

@@ -9,7 +9,7 @@ Installing the NetQ CLI on your NetQ VMs, switches, or hosts gives you access to
 
 After installing the NetQ software and agent on each switch you want to monitor, you can also install the NetQ CLI on switches running:
 
-- Cumulus Linux 5.0.0 and later (Spectrum switches)
+- Cumulus Linux 5.0.0 or later (Spectrum switches)
 - Cumulus Linux 4.3.1 and 4.3.2 (Broadcom switches)
 - SONiC 202012
 - Ubuntu 20.04
@@ -291,7 +291,7 @@ You can specify a NetQ CLI version in the repository configuration. The followin
     cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
 <!-- vale off -->
-{{<netq-install/cli-version version="4.10" opsys="cl">}}
+{{<netq-install/cli-version version="4.11" opsys="cl">}}
 <!-- vale on -->
 4. Continue with NetQ CLI configuration in the next section.
 
@@ -325,9 +325,7 @@ To obtain the NetQ CLI package:
     admin@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
 
-    You should see version 4.10.1 and update 47 in the results. For example:
-
-    netq-apps_<strong>4.10.1</strong>-deb10u<strong>47</strong>~1716565486.f08a4a95b_amd64.deb
+    You should see version 4.11.0 and update 48 in the results: netq-apps_<strong>4.11.0</strong>-deb10u<strong>48</strong>~1722675559.0390e155f_amd64.deb
 
 4. Continue with NetQ CLI configuration in the next section.
 
@@ -348,7 +346,7 @@ To obtain the NetQ CLI package:
     root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
 <!-- vale off -->
-{{<netq-install/cli-version version="4.10" opsys="ub">}}
+{{<netq-install/cli-version version="4.11" opsys="ub">}}
 <!-- vale on -->
 3. Continue with NetQ CLI configuration in the next section.
 
@@ -442,7 +440,7 @@ If you have multiple premises and want to query data from a different premises t
 {{<tab "Cloud Deployments">}}
 
 <!-- vale off -->
-To access and configure the CLI for your NetQ cloud deployment, you must generate AuthKeys. You'll need your username and password to generate them. These keys provide authorized access (access key) and user authentication (secret key). Your credentials and NetQ Cloud addresses were obtained during your {{<link title="Access the NetQ UI#log-in-to-netq" text="initial login to the NetQ Cloud">}} and premises activation.
+To access and configure the CLI for your NetQ cloud deployment, you must generate AuthKeys. You'll need your username and password to generate them. These keys provide authorized access (access key) and user authentication (secret key). Your credentials and NetQ cloud addresses were obtained during your {{<link title="Access the NetQ UI#log-in-to-netq" text="initial login to the NetQ cloud">}} and premises activation.
 <!-- vale on -->
 
 To generate AuthKeys:

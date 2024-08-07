@@ -648,7 +648,7 @@ Creates an on-demand validation for various protocols and services, with results
 
 ```
 netq add validation
-    type (addr | agents | bgp | evpn | interfaces | mlag | mtu | ntp | ospf | roce | sensors | vlan | vxlan)
+    type (addr | agents | bgp | evpn | interfaces | mlag | mtu | ntp | ospf | roce | sensors | topology | vlan | vxlan)
     [alert-on-failure]
 ```
 
@@ -656,7 +656,7 @@ netq add validation
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| type | addr, agents, bgp, evpn, interfaces, mlag, mtu, ntp, ospf, roce, sensors, vlan, or vxlan | Protocol or service to validate |
+| type | addr, agents, bgp, evpn, interfaces, mlag, mtu, ntp, ospf, roce, sensors, topology, vlan, or vxlan | Protocol or service to validate |
 
 ### Options
 

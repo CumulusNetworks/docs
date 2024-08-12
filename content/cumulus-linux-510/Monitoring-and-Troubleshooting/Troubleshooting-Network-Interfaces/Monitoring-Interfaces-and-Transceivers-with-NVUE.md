@@ -248,7 +248,7 @@ Undersize Errors  0        n/a
 
 ## AmBER PHY Health Management
 
-To show physical layer information, such the error counters for each lane on a port, run the `nv show interface <interface> link phy-detail` command.
+To show physical layer information, such as the error counters for each lane on a port, run the `nv show interface <interface> link phy-detail` command.
 
 ```
 cumulus@switch$ nv show interface swp1 link phy-detail 

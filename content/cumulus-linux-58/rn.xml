@@ -31,12 +31,6 @@
 <td></td>
 </tr>
 <tr>
-<td>3980938</td>
-<td>When ARP suppression is off, remote EVPN VTEPs duplicate ARP packets from local hosts and each remote host receives two copies of the ARP packets. The issue also applies to IPv6 ND packets.</td>
-<td>5.8.0-5.9.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3970626</td>
 <td>When you configure the {{bridge.kernel_mac_refresh_interval}} parameter in the {{switchd.conf}} file, a {{switchd}} restart fails with core dump.</td>
 <td>5.8.0-5.9.1</td>

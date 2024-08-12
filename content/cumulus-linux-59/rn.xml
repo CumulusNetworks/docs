@@ -110,12 +110,6 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <td></td>
 </tr>
 <tr>
-<td>3980938</td>
-<td>When ARP suppression is off, remote EVPN VTEPs duplicate ARP packets from local hosts and each remote host receives two copies of the ARP packets. The issue also applies to IPv6 ND packets.</td>
-<td>5.8.0-5.9.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3974890</td>
 <td>The {{ntpsec@mgmt}} service does not come up by default when you install an image with ONIE because the trigger to bring up the service is missing.</td>
 <td>5.9.1</td>
@@ -791,12 +785,6 @@ You can safely ignore this warning.</td>
 <td>3980943</td>
 <td>The default NIC for the VMWare OVA file is set to vmxnet3 instead of e1000.</td>
 <td>5.9.0-5.9.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3980938</td>
-<td>When ARP suppression is off, remote EVPN VTEPs duplicate ARP packets from local hosts and each remote host receives two copies of the ARP packets. The issue also applies to IPv6 ND packets.</td>
-<td>5.8.0-5.9.1</td>
 <td></td>
 </tr>
 <tr>

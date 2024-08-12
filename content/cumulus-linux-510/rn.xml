@@ -58,6 +58,12 @@ cumulus@switch:~$ sudo apt upgrade
 <td></td>
 </tr>
 <tr>
+<td>3685007</td>
+<td>Cumulus Linux does not support 802.1X dynamic VLANs on PEAP with MS Windows-based supplicants.</td>
+<td>5.7.0-5.10.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3677533</td>
 <td>Due to resource constraints on the Spectrum 1 switch, {{staticd}} performance drops and  takes longer to read static routes compared to the time BGP takes to complete a graceful restart, and advertise routes and EOR to its helpers. As a result, static routes are advertised after the EOR is sent to graceful restart helpers, which delete the stale static routes and relearn them after receiving the EOR from the restarting node. Temporary traffic loss might occur.</td>
 <td>5.7.0-5.10.0</td>
@@ -98,6 +104,12 @@ To work around this issue when using fiber cables:
 <tr>
 <td>3452681</td>
 <td>When you run the NVUE {{nv show system aaa tacacs authorization}} commands to show per command authorization for a specific TACACS+ user privilege level, you see an error message similar to {{Error: GET /nvue_v1/system/aaa/tacacs/authorization/1?rev=operational responded with 404 NOT FOUND}}.</td>
+<td>5.5.0-5.10.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3442569</td>
+<td>When trying to access the NVUE API, user accounts authenticated with a newly-configured external service, such as TACACS, RADIUS, or LDAP, receive a 401 forbidden error. To work around this issue, after enabling a new authentication service, make sure to restart both {{nginx.service}} and {{nvued.service}} to begin authenticating users against the new authentication service.</td>
 <td>5.5.0-5.10.0</td>
 <td></td>
 </tr>

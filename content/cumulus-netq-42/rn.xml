@@ -10,67 +10,67 @@
 <td>3739222</td>
 <td>The {{opta-check}} command does not properly validate if the required 16 CPU cores are present on the system for NetQ. The command only presents an error if there are fewer than 8 CPU cores detected.</td>
 <td>4.2.0-4.8.0</td>
-<td>4.9.0-4.10.1</td>
+<td>4.9.0-4.13.0</td>
 </tr>
 <tr>
 <td>3442456</td>
 <td>When an event notification is resolved or acknowledged, the NetQ UI might display a duplicate event with the original notification content and timestamp.</td>
 <td>4.2.0-4.6.0</td>
-<td>4.7.0-4.10.1</td>
+<td>4.7.0-4.13.0</td>
 </tr>
 <tr>
 <td>3157803</td>
 <td>The {{netq show}} commands to view MACs, IP addresses, neighbors, and routes might show a higher value compared to the corresponding entries in the NetQ UI. The {{netq show}} commands display additional values from the NetQ server or OPTA in addition to monitored devices in the NetQ inventory.</td>
 <td>4.2.0-4.3.0</td>
-<td>4.4.0-4.10.1</td>
+<td>4.4.0-4.13.0</td>
 </tr>
 <tr>
 <td>3136898</td>
 <td>On switches running Cumulus Linux 5.2.0 and NetQ agent 4.2.0 or earlier, NetQ commands might fail and errors are logged to {{/var/log/netq-agent.log}}. To work around this issue, use NetQ agent version 4.3.0.</td>
 <td>4.2.0</td>
-<td>4.3.0-4.10.1</td>
+<td>4.3.0-4.13.0</td>
 </tr>
 <tr>
 <td>3131311</td>
 <td>Sensor validation checks might still reflect a failure in NetQ after the sensor failure has recovered.</td>
 <td>4.2.0-4.3.0</td>
-<td>4.4.0-4.10.1</td>
+<td>4.4.0-4.13.0</td>
 </tr>
 <tr>
 <td>3085064</td>
 <td>When you attempt to install NetQ on a device using LCM and configure the incorrect VRF, the installation will be reflected as successful but the switch will not be present in the inventory in the LCM UI.</td>
 <td>4.1.0-4.3.0</td>
-<td>4.4.0-4.10.1</td>
+<td>4.4.0-4.13.0</td>
 </tr>
 <tr>
 <td>3085017</td>
 <td>When you hover over a device with WJH events in the flow analysis graph, the number of WJH packet drops in the event summary might display 0 drops. This is because the device did not detect any WJH events on the selected path. To view the WJH events, select different paths to display any WJH events for that device.</td>
 <td>4.2.0</td>
-<td>4.3.0-4.10.1</td>
+<td>4.3.0-4.13.0</td>
 </tr>
 <tr>
 <td>3053143</td>
 <td>The MLAG Session card might not show all MLAG events.</td>
 <td>4.2.0-4.3.0</td>
-<td>4.4.0-4.10.1</td>
+<td>4.4.0-4.13.0</td>
 </tr>
 <tr>
 <td>3047149</td>
 <td>When you reboot the OPTA, the NetQ validation summary might show an incorrect number of validations. This condition will resolve itself within an hour of the reboot.</td>
 <td>4.2.0</td>
-<td>4.3.0-4.10.1</td>
+<td>4.3.0-4.13.0</td>
 </tr>
 <tr>
 <td>3015875</td>
 <td>NetQ trace might report incomplete route information when there are multiple default routes in a VRF in the path between the source and destination.</td>
 <td>4.1.0-4.4.1</td>
-<td>4.5.0-4.10.1</td>
+<td>4.5.0-4.13.0</td>
 </tr>
 <tr>
 <td>2817749</td>
 <td>If you configure an event suppression rule with {{is_active false}}, the event will no longer be displayed with the {{netq show events-config}} command.</td>
 <td>4.0.1-4.2.0</td>
-<td>4.3.0-4.10.1</td>
+<td>4.3.0-4.13.0</td>
 </tr>
 </table>
 <table name="Fixed Issues in 4.2.0">

@@ -9,73 +9,79 @@
 <tr>
 <td>3993243</td>
 <td>When you upgrade your NetQ VM, RoCE validation data might not contain all RoCE-enabled switches in your network. This condition will clear within 24 hours of the NetQ upgrade. </td>
-<td>4.10.0-4.10.1</td>
+<td>4.10.0-4.13.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3948198</td>
 <td>When you upgrade a Cumulus Linux switch configured with NVUE using NetQ LCM, the upgrade might fail due to NVUE configuration validation if the NVUE object model was changed between the current and new Cumulus Linux version. When this failure occurs, NetQ is unable to rollback to the prior configuration and the switch remains running the default Cumulus Linux configuration. </td>
 <td>4.10.1</td>
-<td></td>
+<td>4.11.0-4.13.0</td>
 </tr>
 <tr>
 <td>3863195</td>
 <td>When you perform an LCM switch discovery on a Cumulus Linux 5.9.0 switch in your network that was already added in the NetQ inventory on a prior Cumulus Linux version, the switch will appear as Rotten in the NetQ UI. To work around this issue, decommission the switch first,and run LCM discovery again after the switch is upgraded.</td>
 <td>4.10.0-4.10.1</td>
+<td>4.11.0-4.13.0</td>
+</tr>
+<tr>
+<td>3858210</td>
+<td>When you upgrade your NetQ VM, DPUs in the inventory are not shown. To work around this issue, restart the DTS container on the DPUs in your network.</td>
+<td>4.10.0-4.13.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3854467</td>
 <td>When a single NetQ cluster VM is offline, the NetQ kafka-connect pods are brought down on other cluster nodes, preventing NetQ data from collecting data. To work around this issue, bring all cluster nodes back into service.</td>
-<td>4.10.0-4.10.1</td>
+<td>4.10.0-4.13.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3851922</td>
 <td>After you run an LCM switch discovery in a NetQ cluster environment, NetQ CLI commands on switches might fail with the message {{Failed to process command}}.</td>
 <td>4.10.0-4.10.1</td>
-<td></td>
+<td>4.11.0-4.13.0</td>
 </tr>
 <tr>
 <td>3847280</td>
 <td>The {{netq-opta}} package fails to install on Cumulus Linux 5.9.0. On-switch OPTA is not supported on Cumulus Linux 5.9.0.</td>
-<td>4.10.0-4.10.1</td>
+<td>4.10.0-4.13.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3800434</td>
 <td>When you upgrade NetQ from a version prior to 4.9.0, What Just Happened data that was collected before the upgrade is no longer present.</td>
-<td>4.9.0-4.10.1</td>
+<td>4.9.0-4.13.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3772274</td>
 <td>After you upgrade NetQ, data from snapshots taken prior to the NetQ upgrade will contain unreliable data and should not be compared to any snapshots taken after the upgrade. In cluster deployments, snapshots from prior NetQ versions will not be visible in the UI.</td>
-<td>4.9.0-4.10.1</td>
+<td>4.9.0-4.13.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3769936</td>
 <td>When there is a NetQ interface validation failure for admin state mismatch, the validation failure might clear unexpectedly while one side of the link is still administratively down.</td>
-<td>4.9.0-4.10.1</td>
+<td>4.9.0-4.13.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3752422</td>
 <td>When you run a NetQ trace and specify MAC addresses for the source and destination, NetQ displays the message “No valid path to destination” and does not display trace data.</td>
-<td>4.9.0-4.10.1</td>
+<td>4.9.0-4.13.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3721754</td>
 <td>After you decommission a switch, the switch's interfaces are still displayed in the NetQ UI in the Interfaces view.</td>
 <td>4.9.0-4.10.1</td>
-<td></td>
+<td>4.11.0-4.13.0</td>
 </tr>
 <tr>
 <td>3613811</td>
 <td>LCM operations using in-band management are unsupported on switches that use eth0 connected to an out-of-band network. To work around this issue, configure NetQ to use out-of-band management in the {{mgmt}} VRF on Cumulus Linux switches when interface eth0 is in use.</td>
-<td>4.8.0-4.10.1</td>
+<td>4.8.0-4.13.0</td>
 <td></td>
 </tr>
 </table>
@@ -101,73 +107,79 @@
 <tr>
 <td>3993243</td>
 <td>When you upgrade your NetQ VM, RoCE validation data might not contain all RoCE-enabled switches in your network. This condition will clear within 24 hours of the NetQ upgrade. </td>
-<td>4.10.0-4.10.1</td>
+<td>4.10.0-4.13.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3876238</td>
 <td>You cannot upgrade a switch to Cumulus Linux 5.9.0 with NetQ LCM.</td>
 <td>4.10.0</td>
-<td>4.10.1</td>
+<td>4.10.1-4.13.0</td>
 </tr>
 <tr>
 <td>3863195</td>
 <td>When you perform an LCM switch discovery on a Cumulus Linux 5.9.0 switch in your network that was already added in the NetQ inventory on a prior Cumulus Linux version, the switch will appear as Rotten in the NetQ UI. To work around this issue, decommission the switch first,and run LCM discovery again after the switch is upgraded.</td>
 <td>4.10.0-4.10.1</td>
+<td>4.11.0-4.13.0</td>
+</tr>
+<tr>
+<td>3858210</td>
+<td>When you upgrade your NetQ VM, DPUs in the inventory are not shown. To work around this issue, restart the DTS container on the DPUs in your network.</td>
+<td>4.10.0-4.13.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3854467</td>
 <td>When a single NetQ cluster VM is offline, the NetQ kafka-connect pods are brought down on other cluster nodes, preventing NetQ data from collecting data. To work around this issue, bring all cluster nodes back into service.</td>
-<td>4.10.0-4.10.1</td>
+<td>4.10.0-4.13.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3851922</td>
 <td>After you run an LCM switch discovery in a NetQ cluster environment, NetQ CLI commands on switches might fail with the message {{Failed to process command}}.</td>
 <td>4.10.0-4.10.1</td>
-<td></td>
+<td>4.11.0-4.13.0</td>
 </tr>
 <tr>
 <td>3847280</td>
 <td>The {{netq-opta}} package fails to install on Cumulus Linux 5.9.0. On-switch OPTA is not supported on Cumulus Linux 5.9.0.</td>
-<td>4.10.0-4.10.1</td>
+<td>4.10.0-4.13.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3800434</td>
 <td>When you upgrade NetQ from a version prior to 4.9.0, What Just Happened data that was collected before the upgrade is no longer present.</td>
-<td>4.9.0-4.10.1</td>
+<td>4.9.0-4.13.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3772274</td>
 <td>After you upgrade NetQ, data from snapshots taken prior to the NetQ upgrade will contain unreliable data and should not be compared to any snapshots taken after the upgrade. In cluster deployments, snapshots from prior NetQ versions will not be visible in the UI.</td>
-<td>4.9.0-4.10.1</td>
+<td>4.9.0-4.13.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3769936</td>
 <td>When there is a NetQ interface validation failure for admin state mismatch, the validation failure might clear unexpectedly while one side of the link is still administratively down.</td>
-<td>4.9.0-4.10.1</td>
+<td>4.9.0-4.13.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3752422</td>
 <td>When you run a NetQ trace and specify MAC addresses for the source and destination, NetQ displays the message “No valid path to destination” and does not display trace data.</td>
-<td>4.9.0-4.10.1</td>
+<td>4.9.0-4.13.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3721754</td>
 <td>After you decommission a switch, the switch's interfaces are still displayed in the NetQ UI in the Interfaces view.</td>
 <td>4.9.0-4.10.1</td>
-<td></td>
+<td>4.11.0-4.13.0</td>
 </tr>
 <tr>
 <td>3613811</td>
 <td>LCM operations using in-band management are unsupported on switches that use eth0 connected to an out-of-band network. To work around this issue, configure NetQ to use out-of-band management in the {{mgmt}} VRF on Cumulus Linux switches when interface eth0 is in use.</td>
-<td>4.8.0-4.10.1</td>
+<td>4.8.0-4.13.0</td>
 <td></td>
 </tr>
 </table>

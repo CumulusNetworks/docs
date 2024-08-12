@@ -58,6 +58,12 @@ cumulus@switch:~$ sudo apt upgrade
 <td></td>
 </tr>
 <tr>
+<td>3739159</td>
+<td>Disabling adaptive routing globally or on interfaces and performing ISSU, has a significant traffic outage. The issue recovers after ISSU completes.</td>
+<td>5.7.0-5.10.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3685007</td>
 <td>Cumulus Linux does not support 802.1X dynamic VLANs on PEAP with MS Windows-based supplicants.</td>
 <td>5.7.0-5.10.0</td>

@@ -723,7 +723,7 @@ Cumulus Linux collects high frequency telemetry data in a `json` format file. Yo
 - The collected data is available on the switch until you trigger the next data collection job or until you reboot the switch.
 {{%/notice%}}
 
-Cumulus Linux provides two options to configure high frequency telemetry; you can run NVUE commands or use the Cumulus Linux job management tool (`cl-hft-tool`). You can see all the `cl-hft-tool` command options with `cl-hft-tool -h`.
+Cumulus Linux provides two options to configure high frequency telemetry; you can run NVUE commands or use the Cumulus Linux job management tool (`cl-hft-tool`). You can see all the `cl-hft-tool` command options with `cl-hft-tool -h`. Cumulus Linux recommends that you use NVUE commands.
 
 To configure high frequency telemetry:
 1. Enable telemetry with the `nv set system telemetry enable on` command.
@@ -760,7 +760,7 @@ cumulus@switch:~$ nv set system telemetry hft profile profile1 traffic-class 0,3
 cumulus@switch:~$ nv config apply
 ```
 
-The following example configures `profile2` and sets the sampling interval to 1000, the traffic class to 0 through 5, and the type of data to collect to received bytes (`rx-byte`) and transmitted bytes (`tx-byte`).
+The following example configures `profile2` and sets the sampling interval to 1000, and the type of data to collect to received bytes (`rx-byte`) and transmitted bytes (`tx-byte`).
 
 {{%notice note%}}
 You must specify the `nv set system telemetry hft profile <profile-id> counter` command for each data type you want to collect.
@@ -867,7 +867,7 @@ The following example configures `profile1` to start on 2024-07-17 at 10:00:00, 
 Specify the date and time in `YYYY-MM-DD HH:MM:SS` format.
 
 ``` 
-cumulus@switch:~$ nv action schedule system telemetry hft job 2024–07-17-10:00:00 duration 30 profile profile1 ports swp1s0-swp9s0
+cumulus@switch:~$ nv action schedule system telemetry hft job 2024–07-17 10:00:00 duration 30 profile profile1 ports swp1s0-swp9s0
 Action executing ...
 Job schedule successfull.
 HFT job schedule successful: job-id 1

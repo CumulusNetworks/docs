@@ -1579,7 +1579,7 @@ You can adjust settings for the following supported buffer regions and propertie
 
 |Buffers | Supported Property Values |
 |------------- |----------- |
-|`ingress-lossy-buffer` | <ul>Cumulus Linux supports the following properties for the `bulk`, `control`, and `service[1-6]` priority groups: <br> `name` - The priority group alias name.<br>`reserved` -  The reserved buffer allocation in bytes. <br>`service-pool` - Service pool mapping. <br>`shared-alpha` - The dynamic shared buffer alpha allocation.<br>`shared-bytes` - The static shared buffer allocation in bytes.<br>`switch-priority` - Switch priority values. |
+|`ingress-lossy-buffer` | <ul>Cumulus Linux supports the following properties for the `bulk` and `service[1-7]` priority groups: <br> `name` - The priority group alias name.<br>`reserved` -  The reserved buffer allocation in bytes. <br>`service-pool` - Service pool mapping. <br>`shared-alpha` - The dynamic shared buffer alpha allocation.<br>`shared-bytes` - The static shared buffer allocation in bytes.<br>`switch-priority` - Switch priority values. |
 |`egress-lossless-buffer` | <ul>`reserved` -  The reserved buffer allocation in bytes.<br>`service-pool` - Service pool mapping. <br>`shared-alpha` - The dynamic shared buffer alpha allocation.<br>`shared-bytes` - The static shared buffer allocation in bytes.</ul> | 
 |`ingress-lossless-buffer` | <ul>`service-pool` - Service pool mapping. <br>`shared-alpha` - The dynamic shared buffer alpha allocation.<br>`shared-bytes` - The static shared buffer allocation in bytes.</ul> |
 |`egress-lossy-buffer` | <ul> `multicast-port` - Multicast port `reserved` or `shared-bytes` allocation in bytes. <br> `multicast-switch-priority [0-7]` - Set the `reserved`, `service-pool`,`shared-alpha`, or `shared-bytes` properties for each multicast switch priority.<br>`traffic-class [0-15]` - Set the `reserved`, `service-pool`,`shared-alpha`, or `shared-bytes` properties for each traffic class.</ul> |
@@ -2239,6 +2239,13 @@ default_egress_sched.egr_queue_7.bw_percent = 13
 #egress_sched.sched_port_group1.egr_queue_6.bw_percent = 10
 #egress_sched.sched_port_group1.egr_queue_7.bw_percent = 0
 
+# PFC Watchdog Configuration
+# Add the port to the port_group_list where you want to enable PFC Watchdog
+# It will enable PFC Watchdog on all the traffic-class corresponding to
+# the lossless switch-priority configured on the port.
+#pfc_watchdog.port_group_list = [pfc_wd_port_group]
+#pfc_watchdog.pfc_wd_port_group.port_set = swp3
+
 # Cut-through is disabled by default on all chips with the exception of
 # Spectrum.  On Spectrum cut-through cannot be disabled.
 #cut_through_enable = false
@@ -2412,22 +2419,22 @@ egress_buffer.cos_7.mc.service_pool = 0
 #egress_buffer.cos_7.mc.reserved = 10240
 #egress_buffer.cos_0.mc.shared_size = 40
 #egress_buffer.cos_1.mc.shared_size = 40
-#egress_buffer.cos_2.mc.shared_size =  5
+#egress_buffer.cos_2.mc.shared_size = 40
 #egress_buffer.cos_3.mc.shared_size = 40
 #egress_buffer.cos_4.mc.shared_size = 40
 #egress_buffer.cos_5.mc.shared_size = 40
 #egress_buffer.cos_6.mc.shared_size = 40
-#egress_buffer.cos_7.mc.shared_size = 30
+#egress_buffer.cos_7.mc.shared_size = 40
 
 # Shared buffer allocation for ePort.TC region : size in bytes.
 #egress_buffer.egr_queue_0.uc.shared_size   = 40
 #egress_buffer.egr_queue_1.uc.shared_size   = 40
-#egress_buffer.egr_queue_2.uc.shared_size   =  5
+#egress_buffer.egr_queue_2.uc.shared_size   = 40
 #egress_buffer.egr_queue_3.uc.shared_size   = 40
 #egress_buffer.egr_queue_4.uc.shared_size   = 40
 #egress_buffer.egr_queue_5.uc.shared_size   = 40
 #egress_buffer.egr_queue_6.uc.shared_size   = 40
-#egress_buffer.egr_queue_7.uc.shared_size   = 30
+#egress_buffer.egr_queue_7.uc.shared_size   = 40
 
 # Minimum buffer allocation for ePort.TC region: size in bytes
 #egress_buffer.egr_queue_0.uc.reserved = 1024
@@ -2474,14 +2481,14 @@ egress_service_pool.0.mode = 1
 #egress_buffer.egr_queue_7.uc.dynamic_quota = ALPHA_8
 
 # Egress buffer per-egress-queue dynamic buffering quota (alpha) for multicast (Default: ALPHA_INFINITY)
-#egress_buffer.egr_queue_0.mc.dynamic_quota    = ALPHA_2
-#egress_buffer.egr_queue_1.mc.dynamic_quota = ALPHA_4
-#egress_buffer.egr_queue_2.mc.dynamic_quota = ALPHA_1
-#egress_buffer.egr_queue_3.mc.dynamic_quota = ALPHA_1_2
-#egress_buffer.egr_queue_4.mc.dynamic_quota = ALPHA_1_4
-#egress_buffer.egr_queue_5.mc.dynamic_quota = ALPHA_1_8
-#egress_buffer.egr_queue_6.mc.dynamic_quota = ALPHA_1_16
-#egress_buffer.egr_queue_7.mc.dynamic_quota = ALPHA_INFINITY
+#egress_buffer.egr_queue_0.mc.dynamic_quota = ALPHA_8
+#egress_buffer.egr_queue_1.mc.dynamic_quota = ALPHA_8
+#egress_buffer.egr_queue_2.mc.dynamic_quota = ALPHA_8
+#egress_buffer.egr_queue_3.mc.dynamic_quota = ALPHA_8
+#egress_buffer.egr_queue_4.mc.dynamic_quota = ALPHA_8
+#egress_buffer.egr_queue_5.mc.dynamic_quota = ALPHA_8
+#egress_buffer.egr_queue_6.mc.dynamic_quota = ALPHA_8
+#egress_buffer.egr_queue_7.mc.dynamic_quota = ALPHA_8
 
 # These parameters can be assigned to the virtual Multicast port as well (Default: ALPHA_1_4)
 #egress_buffer.cos_0.mc.dynamic_quota = ALPHA_1_4

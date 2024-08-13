@@ -568,7 +568,7 @@ Refer to the {{<link title="#rule-keys-and-values-reference" text="Rule Keys and
 To remove notification rules, run:
 
 ```
-netq config del notification rule <text-rule-name-anchor>
+netq del notification rule <text-rule-name-anchor>
 ```
 
 {{<expand "Example rules">}}
@@ -780,7 +780,7 @@ To remove notification channels:
 To remove notification channels, run:
 
 ```
-netq config del notification channel <text-channel-name-anchor>
+netq del notification channel <text-channel-name-anchor>
 ```
 
 This example removes a Slack integration and verifies it is no longer in

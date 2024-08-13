@@ -2270,7 +2270,7 @@ To remove notification channels:
 To remove notification channels, run:
 
 ```
-netq config del notification channel <text-channel-name-anchor>
+netq del notification channel <text-channel-name-anchor>
 ```
 
 This example removes a Slack integration and verifies it is no longer in
@@ -2298,7 +2298,7 @@ You might find after some experience with a given rule that you want to edit or 
 To remove notification rules, run:
 
 ```
-netq config del notification rule <text-rule-name-anchor>
+netq del notification rule <text-rule-name-anchor>
 ```
 
 This example removes a rule named *swp52* and verifies it is no longer in

@@ -55,6 +55,7 @@ NVIDIA SN5400 (400G Spectrum-4)
 | `nv show system telemetry` commands | `nv show service telemetry` commands |
 | `nv show system time` | `nv show system date-time` |
 | `nv action change system time`| `nv action change system date-time`|
+| `nv set qos advance-buffer-config default-global ingress-lossy-buffer priority-group service7` | `nv set qos advance-buffer-config default-global ingress-lossy-buffer priority-group control` |
 
 These commands include additional information in the output.
 

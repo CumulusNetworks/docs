@@ -1,5 +1,3 @@
-From http://www.ieee802.org/1/files/public/MIBs/LLDP-MIB-200505060000Z.txt
-
 LLDP-MIB DEFINITIONS ::= BEGIN
 
 IMPORTS

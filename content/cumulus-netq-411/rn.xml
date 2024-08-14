@@ -1,5 +1,5 @@
 <tables>
-<table name="Open Issues in 4.10.1">
+<table name="Open Issues in 4.11.0">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>
@@ -7,274 +7,132 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3908592</td>
-<td>When you upgrade a switch to Cumulus Linux 5.9.0 with NetQ LCM and the switch hostname is not explicitly configured with NVUE, the hostname reverts to {{cumulus}} and the status of the switch changes to rotten in the NetQ UI. To work around this issue, configure the switch hostname with NVUE and save the configuration.</td>
+<td>4004830</td>
+<td>When you attempt to reset your password from the login page, NetQ might display an error that your token is either invalid or expired. To work around this issue, either clear your cache or open the reset link contained in the email you received in an incognito window and reset your password from there.</td>
+<td>4.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4001098</td>
+<td>When you use NetQ LCM to upgrade a Cumulus Linux switch from version 5.9 to 5.10, and if the upgrade fails, NetQ rolls back to version 5.9 and reverts the {{cumulus}} user password to the default password. After rollback, reconfigure the password with the {{nv set system aaa user cumulus password &lt;password&gt;}} command.  </td>
+<td>4.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3995266</td>
+<td>When you use NetQ LCM to upgrade a Cumulus Linux switch with NTP configured using NVUE in a VRF that is not {{mgmt}}, the upgrade fails to complete. To work around this issue, first unset the NTP configuration with the {{nv unset service ntp}} and {{nv config apply}} commands, and reconfigure NTP after the upgrade completes.</td>
+<td>4.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3993243</td>
+<td>When you upgrade your NetQ VM, RoCE validation data might not contain all RoCE-enabled switches in your network. This condition will clear within 24 hours of the NetQ upgrade. </td>
+<td>4.10.0-4.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3985598</td>
+<td>When you configure multiple threshold-crossing events for the same TCA event ID on the same device, NetQ will only display one TCA event for each hostname per TCA event ID, even if both thresholds are crossed or status events are triggered.  </td>
+<td>4.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3983871</td>
+<td>When you run the {{netq install}} command on a VM with an IP address configured that overlaps the NetQ pod or service IP subnets 10.244.0.0/16 or 10.96.0.0/16, the install prechecks will fail but subsequent attempts to run {{netq install}} will fail even after changing the VM IP address to not conflict with these subnets. To work around this issue, run the {{netq bootstrap reset purge-db}} command and rerun the {{netq install}} command.</td>
+<td>4.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3981655</td>
+<td>When you upgrade your NetQ VM, some devices in the NetQ inventory might appear as rotten. To work around this issue, restart NetQ agents on devices or upgrade them to the latest agent version after the NetQ VM upgrade is completed.</td>
+<td>4.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3858210</td>
+<td>When you upgrade your NetQ VM, DPUs in the inventory are not shown. To work around this issue, restart the DTS container on the DPUs in your network.</td>
+<td>4.10.0-4.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3854467</td>
+<td>When a single NetQ cluster VM is offline, the NetQ kafka-connect pods are brought down on other cluster nodes, preventing NetQ data from collecting data. To work around this issue, bring all cluster nodes back into service.</td>
+<td>4.10.0-4.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3847280</td>
+<td>The {{netq-opta}} package fails to install on Cumulus Linux 5.9.0. On-switch OPTA is not supported on Cumulus Linux 5.9.0.</td>
+<td>4.10.0-4.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3800434</td>
+<td>When you upgrade NetQ from a version prior to 4.9.0, What Just Happened data that was collected before the upgrade is no longer present.</td>
+<td>4.9.0-4.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3772274</td>
+<td>After you upgrade NetQ, data from snapshots taken prior to the NetQ upgrade will contain unreliable data and should not be compared to any snapshots taken after the upgrade. In cluster deployments, snapshots from prior NetQ versions will not be visible in the UI.</td>
+<td>4.9.0-4.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3771279</td>
+<td>When an interface speed is changed in the network, NetQ might not reflect the new speed until up to an hour after the change.</td>
+<td>4.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3769936</td>
+<td>When there is a NetQ interface validation failure for admin state mismatch, the validation failure might clear unexpectedly while one side of the link is still administratively down.</td>
+<td>4.9.0-4.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3752422</td>
+<td>When you run a NetQ trace and specify MAC addresses for the source and destination, NetQ displays the message “No valid path to destination” and does not display trace data.</td>
+<td>4.9.0-4.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3613811</td>
+<td>LCM operations using in-band management are unsupported on switches that use eth0 connected to an out-of-band network. To work around this issue, configure NetQ to use out-of-band management in the {{mgmt}} VRF on Cumulus Linux switches when interface eth0 is in use.</td>
+<td>4.8.0-4.11.0</td>
+<td></td>
+</tr>
+</table>
+<table name="Fixed Issues in 4.11.0">
+<tr>
+<th> Issue ID </th>
+<th> Description </th>
+<th> Affects </th>
+</tr>
+<tr>
+<td>4011713</td>
+<td>When you run a duplicate address validation, NetQ might report a validation failure indicating 127.0.1.1 is duplicated on Cumulus Linux 5.10.0 switches. To suppress this validation failure, run the {{netq add check-filter  check_filter_id addr_1 check_name addr test_name IPV4_Duplicate_Address scope '[{"Prefix": "127.0.1.1"}]'}} CLI command, or use the NetQ UI to add duplicate address filter for address 127.0.1.1. </td>
+<td></td>
+</tr>
+<tr>
+<td>3948198</td>
+<td>When you upgrade a Cumulus Linux switch configured with NVUE using NetQ LCM, the upgrade might fail due to NVUE configuration validation if the NVUE object model was changed between the current and new Cumulus Linux version. When this failure occurs, NetQ is unable to rollback to the prior configuration and the switch remains running the default Cumulus Linux configuration. </td>
 <td>4.10.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3866340</td>
-<td>When NetQ validates BGP neighbors in your network, numbered BGP neighbors pass validation with mismatched values configured.</td>
-<td>4.10.0-4.10.1</td>
-<td></td>
 </tr>
 <tr>
 <td>3863195</td>
 <td>When you perform an LCM switch discovery on a Cumulus Linux 5.9.0 switch in your network that was already added in the NetQ inventory on a prior Cumulus Linux version, the switch will appear as Rotten in the NetQ UI. To work around this issue, decommission the switch first,and run LCM discovery again after the switch is upgraded.</td>
 <td>4.10.0-4.10.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3854467</td>
-<td>When the NetQ master node in a cluster is down, the NetQ kafka-connect pods might crash on other cluster nodes, preventing data collection. To work around this issue, bring the master node back into service.</td>
-<td>4.10.0-4.10.1</td>
-<td></td>
 </tr>
 <tr>
 <td>3851922</td>
 <td>After you run an LCM switch discovery in a NetQ cluster environment, NetQ CLI commands on switches might fail with the message {{Failed to process command}}.</td>
 <td>4.10.0-4.10.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3847280</td>
-<td>The {{netq-opta}} package fails to install on Cumulus Linux 5.9.0. On-switch OPTA is not supported on Cumulus Linux 5.9.0.</td>
-<td>4.10.0-4.10.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3814701</td>
-<td>After you upgrade NetQ, devices that were in a rotten state before the upgrade might not appear in the UI or CLI after the upgrade. To work around this issue, decommission rotten devices before performing the upgrade.</td>
-<td>4.9.0-4.10.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3800434</td>
-<td>When you upgrade NetQ from a version prior to 4.9.0, What Just Happened data that was collected before the upgrade is no longer present.</td>
-<td>4.9.0-4.10.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3798677</td>
-<td>In a NetQ cluster environment, if your master node goes offline and is restored, subsequent NetQ validations for MLAG and EVPN might unexpectedly indicate failures. To work around this issue, either restart NetQ agents on devices in the inventory or wait up to 24 hours for the issue to clear.</td>
-<td>4.9.0-4.10.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3787946</td>
-<td>When you install a NetQ cluster deployment on a subnet with other NetQ clusters or other devices using VRRP, there might be connectivity loss to the cluster virtual IP (VIP). The VIP is established using the VRRP protocol, and during cluster installation a virtual router ID (VRID) is selected. If another device on the subnet running VRRP selects the same VRID, connectivity issues may occur. To work around this issue, avoid multiple VRRP speakers on the subnet, or ensure the VRID used on all VRRP devices is unique. To validate the VRID used by NetQ, check the assigned {{virtual_router_id}} value in {{/mnt/keepalived/keepalived.conf}}.</td>
-<td>4.9.0-4.10.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3772274</td>
-<td>After you upgrade NetQ, data from snapshots taken prior to the NetQ upgrade will contain unreliable data and should not be compared to any snapshots taken after the upgrade. In cluster deployments, snapshots from prior NetQ versions will not be visible in the UI.</td>
-<td>4.9.0-4.10.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3769936</td>
-<td>When there is a NetQ interface validation failure for admin state mismatch, the validation failure might clear unexpectedly while one side of the link is still administratively down.</td>
-<td>4.9.0-4.10.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3752422</td>
-<td>When you run a NetQ trace and specify MAC addresses for the source and destination, NetQ displays the message “No valid path to destination” and does not display trace data.</td>
-<td>4.9.0-4.10.1</td>
-<td></td>
 </tr>
 <tr>
 <td>3721754</td>
 <td>After you decommission a switch, the switch's interfaces are still displayed in the NetQ UI in the Interfaces view.</td>
 <td>4.9.0-4.10.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3613811</td>
-<td>LCM operations using in-band management are unsupported on switches that use eth0 connected to an out-of-band network. To work around this issue, configure NetQ to use out-of-band management in the {{mgmt}} VRF on Cumulus Linux switches when interface eth0 is in use.</td>
-<td>4.8.0-4.10.1</td>
-<td></td>
-</tr>
-</table>
-<table name="Fixed Issues in 4.10.1">
-<tr>
-<th> Issue ID </th>
-<th> Description </th>
-<th> Affects </th>
-</tr>
-<tr>
-<td>3876238</td>
-<td>You cannot upgrade a switch to Cumulus Linux 5.9.0 with NetQ LCM.</td>
-<td>4.10.0</td>
-</tr>
-</table>
-<table name="Open Issues in 4.10.0">
-<tr>
-<th> Issue ID </th>
-<th> Description </th>
-<th> Affects </th>
-<th> Fixed </th>
-</tr>
-<tr>
-<td>3866340</td>
-<td>When NetQ validates BGP neighbors in your network, numbered BGP neighbors pass validation with mismatched values configured.</td>
-<td>4.10.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3863195</td>
-<td>When you perform an LCM switch discovery on a Cumulus Linux 5.9.0 switch in your network that was already added in the NetQ inventory on a prior Cumulus Linux version, the switch will appear as Rotten in the NetQ UI. To work around this issue, decommission the switch first,and run LCM discovery again after the switch is upgraded.</td>
-<td>4.10.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3854467</td>
-<td>When the NetQ master node in a cluster is down, the NetQ kafka-connect pods might crash on other cluster nodes, preventing data collection. To work around this issue, bring the master node back into service.</td>
-<td>4.10.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3851922</td>
-<td>After you run an LCM switch discovery in a NetQ cluster environment, NetQ CLI commands on switches might fail with the message {{Failed to process command}}.</td>
-<td>4.10.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3847280</td>
-<td>The {{netq-opta}} package fails to install on Cumulus Linux 5.9.0. On-switch OPTA is not supported on Cumulus Linux 5.9.0.</td>
-<td>4.10.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3814701</td>
-<td>After you upgrade NetQ, devices that were in a rotten state before the upgrade might not appear in the UI or CLI after the upgrade. To work around this issue, decommission rotten devices before performing the upgrade.</td>
-<td>4.9.0-4.10.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3800434</td>
-<td>When you upgrade NetQ from a version prior to 4.9.0, What Just Happened data that was collected before the upgrade is no longer present.</td>
-<td>4.9.0-4.10.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3798677</td>
-<td>In a NetQ cluster environment, if your master node goes offline and is restored, subsequent NetQ validations for MLAG and EVPN might unexpectedly indicate failures. To work around this issue, either restart NetQ agents on devices in the inventory or wait up to 24 hours for the issue to clear.</td>
-<td>4.9.0-4.10.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3787946</td>
-<td>When you install a NetQ cluster deployment on a subnet with other NetQ clusters or other devices using VRRP, there might be connectivity loss to the cluster virtual IP (VIP). The VIP is established using the VRRP protocol, and during cluster installation a virtual router ID (VRID) is selected. If another device on the subnet running VRRP selects the same VRID, connectivity issues may occur. To work around this issue, avoid multiple VRRP speakers on the subnet, or ensure the VRID used on all VRRP devices is unique. To validate the VRID used by NetQ, check the assigned {{virtual_router_id}} value in {{/mnt/keepalived/keepalived.conf}}.</td>
-<td>4.9.0-4.10.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3772274</td>
-<td>After you upgrade NetQ, data from snapshots taken prior to the NetQ upgrade will contain unreliable data and should not be compared to any snapshots taken after the upgrade. In cluster deployments, snapshots from prior NetQ versions will not be visible in the UI.</td>
-<td>4.9.0-4.10.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3769936</td>
-<td>When there is a NetQ interface validation failure for admin state mismatch, the validation failure might clear unexpectedly while one side of the link is still administratively down.</td>
-<td>4.9.0-4.10.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3752422</td>
-<td>When you run a NetQ trace and specify MAC addresses for the source and destination, NetQ displays the message “No valid path to destination” and does not display trace data.</td>
-<td>4.9.0-4.10.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3721754</td>
-<td>After you decommission a switch, the switch's interfaces are still displayed in the NetQ UI in the Interfaces view.</td>
-<td>4.9.0-4.10.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3613811</td>
-<td>LCM operations using in-band management are unsupported on switches that use eth0 connected to an out-of-band network. To work around this issue, configure NetQ to use out-of-band management in the {{mgmt}} VRF on Cumulus Linux switches when interface eth0 is in use.</td>
-<td>4.8.0-4.10.0</td>
-<td></td>
-</tr>
-</table>
-<table name="Fixed Issues in 4.10.0">
-<tr>
-<th> Issue ID </th>
-<th> Description </th>
-<th> Affects </th>
-</tr>
-<tr>
-<td>3824873</td>
-<td>When you upgrade an on-premises NetQ deployment, the upgrade might fail with the following message:
-master-node-installer: Upgrading NetQ Appliance with tarball : /mnt/installables/NetQ-4.9.0.tgz
-master-node-installer: Migrating H2 db list index out of range.
-
-To work around this issue, re-run the {{netq upgrade}} command. </td>
-<td>4.9.0</td>
-</tr>
-<tr>
-<td>3820671</td>
-<td>When you upgrade NetQ cluster deployments with DPUs in the device inventory, the DPUs might not be visible in the NetQ UI after the upgrade. To work around this issue, restart the DTS container on the DPUs in your network.</td>
-<td>4.9.0</td>
-</tr>
-<tr>
-<td>3819688</td>
-<td>When you upgrade NetQ cluster deployments, the configured LCM credential profile assigned to switches in the inventory is reset to the default access profile. To work around this issue, reconfigure the correct access profile on switches before managing them with LCM after the upgrade. </td>
-<td>4.9.0</td>
-</tr>
-<tr>
-<td>3819364</td>
-<td>When you attempt to delete a scheduled trace using the NetQ UI, the trace record is not deleted.</td>
-<td>4.7.0-4.9.0</td>
-</tr>
-<tr>
-<td>3813819</td>
-<td>When you perform a switch discovery by specifying an IP range, an error message is displayed if switches included in the range have different credentials. To work around this issue, batch switches based on their credentials and run a switch discovery for each batch.</td>
-<td>4.9.0</td>
-</tr>
-<tr>
-<td>3813078</td>
-<td>When you perform a NetQ upgrade, the upgrade might fail with the following error message:
-Command '['kubectl', 'version --client']' returned non-zero exit status 1.
-To work around this issue, run the {{netq bootstrap reset keep-db}} command and then reinstall NetQ using the {{netq install}} &lt;a href="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq/More-Documents/NetQ-CLI-Reference-Manual/install/"&gt;command for your deployment.&lt;/a&gt;</td>
-<td>4.9.0</td>
-</tr>
-<tr>
-<td>3808200</td>
-<td>When you perform a {{netq bootstrap reset}} on a NetQ cluster VM and perform a fresh install with the {{netq install}} command, the install might fail with the following error:
- master-node-installer: Running sanity check on cluster_vip: 10.10.10.10 Virtual IP 10.10.10.10 is already used
-To work around this issue, run the {{netq install}} command again.</td>
-<td>4.9.0</td>
-</tr>
-<tr>
-<td>3773879</td>
-<td>When you upgrade a switch running Cumulus Linux using NetQ LCM, any configuration files in {{/etc/cumulus/switchd.d}} for adaptive routing or other features are not restored after the upgrade. To work around this issue, manually back up these files and 
-restore them after the upgrade.</td>
-<td>4.9.0</td>
-</tr>
-<tr>
-<td>3771124</td>
-<td>When you reconfigure a VNI to map to a different VRF or remove and recreate a VNI in the same VRF, NetQ EVPN validations might incorrectly indicate a failure for the VRF consistency test.</td>
-<td>4.9.0</td>
-</tr>
-<tr>
-<td>3760442</td>
-<td>When you export events from NetQ to a CSV file, the timestamp of the exported events does not match the timestamp reported in the NetQ UI based on the user profile's time zone setting.</td>
-<td>4.9.0</td>
-</tr>
-<tr>
-<td>3755207</td>
-<td>When you export digital optics table data from NetQ, some fields might be visible in the UI that are not exported to CSV or JSON files.</td>
-<td>4.9.0</td>
-</tr>
-<tr>
-<td>3738840</td>
-<td>When you upgrade a Cumulus Linux switch configured for TACACS authentication using NetQ LCM, the switch's TACACS configuration is not restored after upgrade.</td>
-<td>4.8.0-4.9.0</td>
 </tr>
 </table>
 </tables>

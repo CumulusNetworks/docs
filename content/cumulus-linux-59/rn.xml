@@ -62,12 +62,6 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <td></td>
 </tr>
 <tr>
-<td>3982231</td>
-<td>The switch forwards multicast traffic to the CPU when PIM is enabled globally, regardless of the interface configuration.</td>
-<td>5.6.0-5.9.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3982222</td>
 <td>When SPAN is enabled on a bridge member, an ARP or Gratuitous ARP received during a failover event between locally attached redundant devices such as load balancers might fail to update the bridge MAC table to point to the interface with the newly active load balancer.</td>
 <td>5.4.0-5.9.1</td>
@@ -731,12 +725,6 @@ You can safely ignore this warning.</td>
 <td>3982239</td>
 <td>MLAG bonds might report an incorrect DOWN reason of {{lacp partner mac mismatch}} when the bond is out of service for another reason.</td>
 <td>5.9.0-5.9.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3982231</td>
-<td>The switch forwards multicast traffic to the CPU when PIM is enabled globally, regardless of the interface configuration.</td>
-<td>5.6.0-5.9.1</td>
 <td></td>
 </tr>
 <tr>

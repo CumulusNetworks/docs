@@ -211,7 +211,7 @@ When you use package upgrade to upgrade your switch, configuration data stays in
 
 #### Disk Space Requirements
 
-Make sure you have enough disk space to perform a package upgrade. To upgrade from Cumulus Linux 5.9.1 to Cumulus Linux 5.10, you need 0.5GB of free disk space.
+Make sure you have enough disk space to perform a package upgrade. To upgrade from Cumulus Linux 5.9.1 to Cumulus Linux 5.10, you need 0.8GB of free disk space.
 
 Before you upgrade, run the `sudo df -h` command to show how much disk space you are currently using on the switch.
 

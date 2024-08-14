@@ -637,6 +637,86 @@ cumulus@switch:~$ nv show service ptp 1 servo
 servo               noise-transfer
 ```
 
+### Ignore Source Port ID
+
+If Announce is disabled on the Master side, you can disable the source port ID check in SYNC, Follow Up, and Delay Response PTP messages. This is also useful in rare implementations of PTP, where the Master changes the source Port ID in the above messages from the one sent on Announce.
+
+{{< tabs "TabID644 ">}}
+{{< tab "NVUE Commands ">}}
+
+To disable source port ID check, run the `nv set service ptp 1 ignore-source-id on` command:
+
+cumulus@switch:~$ nv set service ptp 1 ignore-source-id on
+cumulus@switch:~$ nv config apply
+
+To reenable source port ID check, run the `nv set service ptp 1 ignore-source-id off` command.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+To disable source port ID check, edit the `/etc/ptp4l.conf` file to add the `ignore_source_id 1` parameter:
+
+```
+cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+[global]
+#
+# Default Data Set
+#
+slaveOnly                      0
+priority1                      128
+priority2                      128
+domainNumber                   0
+ignore_source_id               1
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Multicast MAC
+
+PTP over Ethernet uses the following types of multicast MAC addresses:
+- Forwarding, which is a standard address expected to be flooded by switches and bridges. The nodes that process these multicast messages might be intermediate nodes that do not support PTP. This is the default multicast MAC address type that uses the 01-1B-19-00-00-00 MAC address. 
+- Non-forwarding, which is the reserved 802.1 Q address 01-80-C2-00-00-0E. This address is not forwarded on the bridge.
+
+{{%notice note%}}
+For Telecom Profile ITU 8275-1, set the multicast MAC address to non-forwarding.
+{{%/notice%}}
+
+{{< tabs "TabID682 ">}}
+{{< tab "NVUE Commands ">}}
+
+To set the multicast MAC address to non-forwarding:
+
+```
+cumulus@switch:~$ nv set service ptp 1 multicast-mac non-forwarding
+cumulus@switch:~$ nv config apply
+```
+
+To set the multicast MAC address to forwarding, run the `nv unset service ptp 1 multicast-mac non-forwarding` command.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+To set the multicast MAC address to non-forwarding, edit the `/etc/ptp4l.conf` file to add the `ptp_dst_mac` parameter:
+
+```
+cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+...
+#
+# Run time options
+#
+logging_level                  6
+path_trace_enabled             0
+use_syslog                     1
+verbose                        0
+summary_interval               0
+ptp_dst_mac                    01:80:C2:00:00:0E
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Optional Global Configuration
 
 Optional global PTP configuration includes configuring the DiffServ code point (DSCP). You can configure the DSCP value for all PTP IPv4 packets originated locally. You can set a value between 0 and 63.
@@ -1225,6 +1305,11 @@ Cumulus Linux supports the following predefined profiles:
 | **Encapsulation** | 802.3, UDPv4, or UDPv6 | 802.3 | UDPv4 or UDPv6 |
 | **Transmission** | Unicast and Multicast  | Multicast | Unicast |
 | **Supported Clock Types** | Boundary Clock  | Boundary Clock | Boundary Clock |
+
+ITU 8275-1 and ITU 8275-2  are Telecom profiles. You can use the PTP Telecom profiles for phase distribution in networks that have full timing support and time distribution in networks that have partial timing support. While ITU 8275-1 uses 802.3 encapsulation, ITU 8275-2 uses unicast. When you use a Telecom profile, PTP uses the Alternate Best Master Clock Algorithm(BMCA), which provides the following functionality over the regular BMCA:
+- Supports Master Only capability.
+- Allows multiple Grand Masters to be active simultaneously.
+- Supports local-priority capability to manually engineer synchronization network.
 
 {{%notice note%}}
 - You cannot modify the predefined profiles. If you want to set a parameter to a different value in a predefined profile, you need to create a custom profile. You can modify a custom profile within the range applicable to the profile type.

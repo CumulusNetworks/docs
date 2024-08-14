@@ -445,53 +445,6 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 {{< /tab >}}
 {{< /tabs >}}
 
-### Local Priority
-
-Use the local priority when you create a custom profile based on a Telecom profile (ITU 8275-1 or ITU 8275-2). Modify the local priority in a custom profile to set the local priority of the local clock. You can set a value between 0 and 255. The default priority is 128.
-
-The following example command configures the local priority to 10 for the custom profile called CUSTOM1, based on ITU 8275-2:
-
-{{< tabs "TabID387 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set service ptp 1 profile CUSTOM1 local-priority 10
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `G.8275.defaultDS.localPriority` option in the `/etc/ptp4l.conf` file. After you save the `/etc/ptp4l.conf` file, restart the `ptp4l` service.
-
-```
-cumulus@switch:~$ sudo nano /etc/ptp4l.conf
-[global]
-#
-# Default Data Set
-#
-slaveOnly                      0
-priority1                      128
-priority2                      128
-domainNumber                   28
-
-twoStepFlag                    1
-dscp_event                     46
-dscp_general                   46
-network_transport              L2
-dataset_comparison             G.8275.x
-G.8275.defaultDS.localPriority 10
-ptp_dst_mac                    01:80:C2:00:00:0E
-...
-```
-
-```
-cumulus@switch:~$ sudo systemctl restart ptp4l.service
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
 ### Noise Transfer Servo
 
 ITU-T specifies the following key elements to measure, test, and classify the accuracy of a clock:
@@ -639,15 +592,17 @@ servo               noise-transfer
 
 ### Ignore Source Port ID
 
-If Announce is disabled on the Master side, you can disable the source port ID check in SYNC, Follow Up, and Delay Response PTP messages. This is also useful in rare implementations of PTP, where the Master changes the source Port ID in the above messages from the one sent on Announce.
+If the Master has Announce disabled, you can disable the source port ID check in SYNC, Follow Up, and Delay Response PTP messages. This is also useful in rare implementations of PTP, where the Master changes the source Port ID in the above messages from the one sent on Announce.
 
 {{< tabs "TabID644 ">}}
 {{< tab "NVUE Commands ">}}
 
 To disable source port ID check, run the `nv set service ptp 1 ignore-source-id on` command:
 
+```
 cumulus@switch:~$ nv set service ptp 1 ignore-source-id on
 cumulus@switch:~$ nv config apply
+```
 
 To reenable source port ID check, run the `nv set service ptp 1 ignore-source-id off` command.
 
@@ -673,7 +628,7 @@ ignore_source_id               1
 {{< /tab >}}
 {{< /tabs >}}
 
-### Multicast MAC
+### Multicast MAC Address
 
 PTP over Ethernet uses the following types of multicast MAC addresses:
 - Forwarding, which is a standard address expected to be flooded by switches and bridges. The nodes that process these multicast messages might be intermediate nodes that do not support PTP. This is the default multicast MAC address type that uses the 01-1B-19-00-00-00 MAC address. 
@@ -935,45 +890,6 @@ logSyncInterval         -5
 udp_ttl                 20
 masterOnly              1
 delay_mechanism         E2E
-...
-```
-
-```
-cumulus@switch:~$ sudo systemctl restart ptp4l.service
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-### Local Priority
-
-Set the local priority on an interface for a profile that uses ITU 8275-1 or ITU 8275-2. You can set a value between 0 and 255. The default priority is 128.
-
-The following example sets the local priority on swp1 to 10.
-
-{{< tabs "TabID658 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set interface swp1 ptp local-priority 10
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Add the `G.8275.portDS.localPriority` option to the `interface` section of the `/etc/ptp4l.conf` file, then restart the `ptp4l` service.
-
-```
-cumulus@switch:~$ sudo nano /etc/ptp4l.conf
-...
-[swp1]
-udp_ttl                      1
-hybrid_e2e                   1
-masterOnly                   0
-delay_mechanism              E2E
-network_transport            UDPv6
-G.8275.portDS.localPriority  10
 ...
 ```
 
@@ -1296,7 +1212,7 @@ cumulus@switch:~$ nv config apply
 
 PTP profiles are a standardized set of configurations and rules intended to meet the requirements of a specific application. Profiles define required, allowed, and restricted PTP options, network restrictions, and performance requirements.
 
-Cumulus Linux supports the following predefined profiles:
+Cumulus Linux supports three predefined profiles: IEEE 1588, and two Telecom profiles -  ITU 8275-1 and ITU 8275-2.
 
 |  | IEEE 1588 | ITU 8275-1 | ITU 8275-2 |
 | --------- | --------- | ---------- | ---------- |
@@ -1305,11 +1221,6 @@ Cumulus Linux supports the following predefined profiles:
 | **Encapsulation** | 802.3, UDPv4, or UDPv6 | 802.3 | UDPv4 or UDPv6 |
 | **Transmission** | Unicast and Multicast  | Multicast | Unicast |
 | **Supported Clock Types** | Boundary Clock  | Boundary Clock | Boundary Clock |
-
-ITU 8275-1 and ITU 8275-2  are Telecom profiles. You can use the PTP Telecom profiles for phase distribution in networks that have full timing support and time distribution in networks that have partial timing support. While ITU 8275-1 uses 802.3 encapsulation, ITU 8275-2 uses unicast. When you use a Telecom profile, PTP uses the Alternate Best Master Clock Algorithm(BMCA), which provides the following functionality over the regular BMCA:
-- Supports Master Only capability.
-- Allows multiple Grand Masters to be active simultaneously.
-- Supports local-priority capability to manually engineer synchronization network.
 
 {{%notice note%}}
 - You cannot modify the predefined profiles. If you want to set a parameter to a different value in a predefined profile, you need to create a custom profile. You can modify a custom profile within the range applicable to the profile type.
@@ -1425,6 +1336,110 @@ dscp_event                     46
 dscp_general                   46
 network_transport              UDPv4
 dataset_comparison             ieee1588
+...
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart ptp4l.service
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Telecom Profiles
+
+ITU 8275-1 and ITU 8275-2 are Telecom profiles. You can use the PTP Telecom profiles for phase distribution in networks that have full timing support and time distribution in networks that have partial timing support. While ITU 8275-1 uses 802.3 encapsulation, ITU 8275-2 uses unicast. When you use a Telecom profile, PTP uses the Alternate Best Master Clock Algorithm(BMCA), which provides the following functionality over the regular BMCA:
+- Supports Master Only capability.
+- Allows multiple Grand Masters to be active simultaneously.
+- Supports local-priority capability to manually engineer synchronization network.
+
+#### Local Priority
+
+The local-priority attributes of the Telecom Profiles ITU 8275-1 and ITU 8275-2 provide a powerful tool in building the synchronization topology. The profiles have two local priority configuration parameters:
+- `clock-local-priority` is assigned to the local clock. PTP uses the `clock-local-priority` as a tie breaker when deciding on a better Grand Master.
+- `local-priority` is a per port local priority assigned to the port as a tie breaker when running Alternate BMCA. This attribute, when set at profile level, applies to all PTP enabled ports. There is also an interface level configuration to override the profile value.
+
+Both `clock-local-priority` and `local-priority` have default values of 128. When you use the default values, the Alternate BMCA determines the synchronization topology automatically. If you use non-default local-priority values, you build the synchronization topology manually.
+
+{{%notice note%}}
+Exercise caution when using `local-priority` attributes to build the synchronization topology manually.
+{{%/notice%}}
+
+To set the local priority globally, run the following commands.
+
+{{< tabs "TabID387 ">}}
+{{< tab "NVUE Commands ">}}
+
+The following example commands configure:
+- The local priority to 10 for the custom profile called CUSTOM1, based on ITU 8275-2.
+- The clock local priority to 100 for the custom profile called CUSTOM1, based on ITU 8275-2.
+
+```
+cumulus@switch:~$ nv set service ptp 1 profile CUSTOM1 local-priority 10
+cumulus@switch:~$ nv set service ptp 1 profile CUSTOM1 clock-local-priority 100
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `G.8275.defaultDS.localPriority` (local priority) option in the `/etc/ptp4l.conf` file. After you save the `/etc/ptp4l.conf` file, restart the `ptp4l` service.
+
+```
+cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+[global]
+#
+# Default Data Set
+#
+slaveOnly                      0
+priority1                      128
+priority2                      128
+domainNumber                   28
+
+twoStepFlag                    1
+dscp_event                     46
+dscp_general                   46
+network_transport              L2
+dataset_comparison             G.8275.x
+G.8275.defaultDS.localPriority 10
+ptp_dst_mac                    01:80:C2:00:00:0E
+...
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart ptp4l.service
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To set the local priority on an interface for a profile that uses ITU 8275-1 or ITU 8275-2, run the following commands.
+
+{{< tabs "TabID658 ">}}
+{{< tab "NVUE Commands ">}}
+
+The following example sets the local priority on swp1 to 10.
+
+```
+cumulus@switch:~$ nv set interface swp1 ptp 1 local-priority 10
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+To set the local priority on swp1 to 10, add the `G.8275.portDS.localPriority` option to the `interface` section of the `/etc/ptp4l.conf` file, then restart the `ptp4l` service.
+
+```
+cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+...
+[swp1]
+udp_ttl                      1
+hybrid_e2e                   1
+masterOnly                   0
+delay_mechanism              E2E
+network_transport            UDPv6
+G.8275.portDS.localPriority  10
 ...
 ```
 

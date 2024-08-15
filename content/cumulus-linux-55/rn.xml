@@ -7,6 +7,33 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3982222</td>
+<td>When SPAN is enabled on a bridge member, an ARP or Gratuitous ARP received during a failover event between locally attached redundant devices such as load balancers might fail to update the bridge MAC table to point to the interface with the newly active load balancer.</td>
+<td>5.4.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3949367</td>
+<td>If you use NVUE to create an SNMP user with a password, then delete and recreate the user with additional encryption passwords (such as DES or AES), SNMP authorization fails for that user.</td>
+<td>5.3.1-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3917601</td>
+<td>If a packet containing an all zero source MAC address (00:00:00:00:00:00) is learned on the ASIC, {{switchd}} sends the learn notification to the kernel but the kernel rejects the MAC address as invalid. The ASIC continuously sends the mac-learn notifications, which wastes CPU resources. To work around this issue, configure ACLs to match on the all-zero source MAC address and drop the invalid packets.</td>
+<td>5.5.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3895042</td>
+<td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
+  snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
+This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
+  #snmp ALL = NOPASSWD: /usr/cumulus/bin/poectl -j -a </td>
+<td>4.4.0-4.4.5, 5.0.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3773177</td>
 <td>When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 or later with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
 
@@ -481,6 +508,12 @@ These messages do not affect the functionality of the switch.</td>
 <td>5.7.0-5.9.1</td>
 </tr>
 <tr>
+<td>3442569</td>
+<td>When trying to access the NVUE API, user accounts authenticated with a newly-configured external service, such as TACACS, RADIUS, or LDAP, receive a 401 forbidden error. To work around this issue, after enabling a new authentication service, make sure to restart both {{nginx.service}} and {{nvued.service}} to begin authenticating users against the new authentication service.</td>
+<td>5.5.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3436595</td>
 <td>When using WJH, if you export dropped packets to a file in PCAP format, the file contains custom WJH header data. As a result, certain tools, such as Wireshark, cannot decode the data. To work around this issue, use the {{--no_metadata}} option with the export command:
 
@@ -556,7 +589,7 @@ This error message is benign and has no functional impact.</td>
 </tr>
 <tr>
 <td>3393966</td>
-<td>Configuring the network statement with the NVUE {{nv set vrf &lt;vrf&gt; router ospf area &lt;area-id&gt; network &lt;network-id&gt;}} command might bring down all the OSPF neighbors. To work around this issue, create an NVUE snippet to configure the network statement.</td>
+<td>When you configure OSPF network statements using NVUE with the {{nv set vrf &lt;vrf&gt; router ospf area &lt;area&gt; network &lt;subnet&gt;}} command, subsequent configuration changes with NVUE might bring down all OSPF neighbors. To work around this issue, create an NVUE snippet to configure the network statement, or use the {{nv set interface &lt;interface&gt; router ospf area &lt;area&gt;}} command to enable OSPF on interfaces instead of using a network statement.</td>
 <td>5.5.0-5.9.1</td>
 <td></td>
 </tr>
@@ -575,13 +608,6 @@ This error message is benign and has no functional impact.</td>
 <tr>
 <td>3362113</td>
 <td>If you restore an NVUE {{startup.yaml}} file or run the {{nv config patch}} command after an upgrade that includes breakout ports with QoS configuration, the NVUE configuration fails to apply. Subsequent attempts to run {{nv config apply}} fail with a message similar to {{Invalid config [rev_id: 11] qos config is not supported on the following invalid interface: swp1s0. Supported on swp and bond interface types}}. To work around this issue, run {{nv unset}} on the configured QoS settings, then apply the breakout port configuration before you configure QoS. Alternatively, you can remove the QoS configuration from the {{yaml}} file and patch it separately after applying the breakout configuration.</td>
-<td>5.4.0-5.9.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3350027</td>
-<td>If you uninstall dynamic NAT rules and {{switchd}} restarts before all the dynamic NAT flows age out and are deleted, you might see dynamic flow deletion errors in {{switchd.log}}. 
-These errors do not affect new dynamic NAT flows from new NAT rules.</td>
 <td>5.4.0-5.9.1</td>
 <td></td>
 </tr>
@@ -918,6 +944,33 @@ You can safely ignore this warning.</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3982222</td>
+<td>When SPAN is enabled on a bridge member, an ARP or Gratuitous ARP received during a failover event between locally attached redundant devices such as load balancers might fail to update the bridge MAC table to point to the interface with the newly active load balancer.</td>
+<td>5.4.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3949367</td>
+<td>If you use NVUE to create an SNMP user with a password, then delete and recreate the user with additional encryption passwords (such as DES or AES), SNMP authorization fails for that user.</td>
+<td>5.3.1-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3917601</td>
+<td>If a packet containing an all zero source MAC address (00:00:00:00:00:00) is learned on the ASIC, {{switchd}} sends the learn notification to the kernel but the kernel rejects the MAC address as invalid. The ASIC continuously sends the mac-learn notifications, which wastes CPU resources. To work around this issue, configure ACLs to match on the all-zero source MAC address and drop the invalid packets.</td>
+<td>5.5.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3895042</td>
+<td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
+  snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
+This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
+  #snmp ALL = NOPASSWD: /usr/cumulus/bin/poectl -j -a </td>
+<td>4.4.0-4.4.5, 5.0.0-5.9.1</td>
+<td></td>
 </tr>
 <tr>
 <td>3773177</td>
@@ -1316,6 +1369,12 @@ These messages do not affect the functionality of the switch.</td>
 <td>5.7.0-5.9.1</td>
 </tr>
 <tr>
+<td>3442569</td>
+<td>When trying to access the NVUE API, user accounts authenticated with a newly-configured external service, such as TACACS, RADIUS, or LDAP, receive a 401 forbidden error. To work around this issue, after enabling a new authentication service, make sure to restart both {{nginx.service}} and {{nvued.service}} to begin authenticating users against the new authentication service.</td>
+<td>5.5.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3436595</td>
 <td>When using WJH, if you export dropped packets to a file in PCAP format, the file contains custom WJH header data. As a result, certain tools, such as Wireshark, cannot decode the data. To work around this issue, use the {{--no_metadata}} option with the export command:
 
@@ -1391,7 +1450,7 @@ This error message is benign and has no functional impact.</td>
 </tr>
 <tr>
 <td>3393966</td>
-<td>Configuring the network statement with the NVUE {{nv set vrf &lt;vrf&gt; router ospf area &lt;area-id&gt; network &lt;network-id&gt;}} command might bring down all the OSPF neighbors. To work around this issue, create an NVUE snippet to configure the network statement.</td>
+<td>When you configure OSPF network statements using NVUE with the {{nv set vrf &lt;vrf&gt; router ospf area &lt;area&gt; network &lt;subnet&gt;}} command, subsequent configuration changes with NVUE might bring down all OSPF neighbors. To work around this issue, create an NVUE snippet to configure the network statement, or use the {{nv set interface &lt;interface&gt; router ospf area &lt;area&gt;}} command to enable OSPF on interfaces instead of using a network statement.</td>
 <td>5.5.0-5.9.1</td>
 <td></td>
 </tr>
@@ -1410,13 +1469,6 @@ This error message is benign and has no functional impact.</td>
 <tr>
 <td>3362113</td>
 <td>If you restore an NVUE {{startup.yaml}} file or run the {{nv config patch}} command after an upgrade that includes breakout ports with QoS configuration, the NVUE configuration fails to apply. Subsequent attempts to run {{nv config apply}} fail with a message similar to {{Invalid config [rev_id: 11] qos config is not supported on the following invalid interface: swp1s0. Supported on swp and bond interface types}}. To work around this issue, run {{nv unset}} on the configured QoS settings, then apply the breakout port configuration before you configure QoS. Alternatively, you can remove the QoS configuration from the {{yaml}} file and patch it separately after applying the breakout configuration.</td>
-<td>5.4.0-5.9.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3350027</td>
-<td>If you uninstall dynamic NAT rules and {{switchd}} restarts before all the dynamic NAT flows age out and are deleted, you might see dynamic flow deletion errors in {{switchd.log}}. 
-These errors do not affect new dynamic NAT flows from new NAT rules.</td>
 <td>5.4.0-5.9.1</td>
 <td></td>
 </tr>

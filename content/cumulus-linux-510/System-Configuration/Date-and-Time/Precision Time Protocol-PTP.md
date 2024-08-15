@@ -6,10 +6,10 @@ toc: 3
 ---
 Cumulus Linux supports IEEE 1588-2008 Precision Timing Protocol (PTPv2), which defines the algorithm and method for synchronizing clocks of various devices across packet-based networks, including Ethernet switches and IP routers.
 
-PTP is capable of sub-microsecond accuracy. The clocks are in a master-slave hierarchy, where the slaves synchronize to their masters, which can be slaves to their own masters. The best master clock (BMC) algorithm, which runs on every clock, creates and updates the hierarchy automatically. The grandmaster clock is the top-level master. To provide a high-degree of accuracy, a Global Positioning System (GPS) time source typically synchronizes the grandmaster clock.
+PTP is capable of sub-microsecond accuracy. The clocks are in a master-slave hierarchy, where the slaves synchronize to their masters, which can be slaves to their own masters. The Best Master Clock (BMC) algorithm, which runs on every clock, creates and updates the hierarchy automatically. The Grand Master clock is the top-level master. To provide a high-degree of accuracy, a Global Positioning System (GPS) time source typically synchronizes the Grand Master clock.
 
 In the following example:
-- Boundary clock 2 receives time from Master 1 (the grandmaster) on a PTP slave port, sets its clock and passes the time down from the PTP master port to Boundary clock 1. 
+- Boundary clock 2 receives time from Master 1 (the Grand Master) on a PTP slave port, sets its clock and passes the time down from the PTP master port to Boundary clock 1. 
 - Boundary clock 1 receives the time on a PTP slave port, sets its clock and passes the time down the hierarchy through the PTP master ports to the hosts that receive the time.
 
 {{< img src = "/images/cumulus-linux/date-time-ptp-example.png" >}}
@@ -403,9 +403,9 @@ The <span class="a-tooltip">[BMC](## "Best Master Clock")</span> selects the PTP
 5. Priority 2
 6. Port ID
 
-Use the PTP priority to select the best master clock. You can set priority 1 and 2:
-- Priority 1 overrides the clock class and quality selection criteria to select the best master clock.
-- Priority 2 identifies primary and backup clocks among identical redundant Grandmasters.
+Use the PTP priority to select the Best Master Clock. You can set priority 1 and 2:
+- Priority 1 overrides the clock class and quality selection criteria to select the Best Master Clock.
+- Priority 2 identifies primary and backup clocks among identical redundant Grand Masters.
 
 The range for both priority 1 and priority 2 is between 0 and 255. The default priority is 128. For the boundary clock, use a number above 128. The lower priority applies first.
 
@@ -435,53 +435,6 @@ slaveOnly               0
 priority1               200
 priority2               200
 domainNumber            3
-...
-```
-
-```
-cumulus@switch:~$ sudo systemctl restart ptp4l.service
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-### Local Priority
-
-Use the local priority when you create a custom profile based on a Telecom profile (ITU 8275-1 or ITU 8275-2). Modify the local priority in a custom profile to set the local priority of the local clock. You can set a value between 0 and 255. The default priority is 128.
-
-The following example command configures the local priority to 10 for the custom profile called CUSTOM1, based on ITU 8275-2:
-
-{{< tabs "TabID387 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set service ptp 1 profile CUSTOM1 local-priority 10
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `G.8275.defaultDS.localPriority` option in the `/etc/ptp4l.conf` file. After you save the `/etc/ptp4l.conf` file, restart the `ptp4l` service.
-
-```
-cumulus@switch:~$ sudo nano /etc/ptp4l.conf
-[global]
-#
-# Default Data Set
-#
-slaveOnly                      0
-priority1                      128
-priority2                      128
-domainNumber                   28
-
-twoStepFlag                    1
-dscp_event                     46
-dscp_general                   46
-network_transport              L2
-dataset_comparison             G.8275.x
-G.8275.defaultDS.localPriority 10
-ptp_dst_mac                    01:80:C2:00:00:0E
 ...
 ```
 
@@ -636,6 +589,96 @@ cumulus@switch:~$ nv show service ptp 1 servo
 -----  -----------  --------------
 servo               noise-transfer
 ```
+
+### Ignore Source Port ID
+
+If the master clock has Announce disabled, you can disable the source port ID check in SYNC, Follow Up, and Delay Response PTP messages. This is also useful in rare implementations of PTP, where the master changes the source Port ID in the above messages from the one sent on Announce.
+
+{{< tabs "TabID644 ">}}
+{{< tab "NVUE Commands ">}}
+
+To disable the source port ID check, run the `nv set service ptp 1 ignore-source-id on` command:
+
+```
+cumulus@switch:~$ nv set service ptp 1 ignore-source-id on
+cumulus@switch:~$ nv config apply
+```
+
+To reenable the source port ID check, run the `nv set service ptp 1 ignore-source-id off` command.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+To disable the source port ID check, edit the `/etc/ptp4l.conf` file to add the `ignore_source_id 1` parameter, then restart the `ptp4l` service.
+
+```
+cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+[global]
+#
+# Default Data Set
+#
+slaveOnly                      0
+priority1                      128
+priority2                      128
+domainNumber                   0
+ignore_source_id               1
+...
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart ptp4l.service
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Multicast MAC Address
+
+PTP over Ethernet uses the following types of multicast MAC addresses:
+- **Forwarding**, which is a standard MAC address expected to be flooded by switches and bridges. The nodes that process these multicast messages might be intermediate nodes that do not support PTP. This is the default multicast MAC address type that uses 01-1B-19-00-00-00 MAC. 
+- **Non-forwarding**, which is the reserved 802.1 Q address 01-80-C2-00-00-0E. Cumulus Linux does not forward this address on the bridge.
+
+{{%notice note%}}
+For Telecom Profile ITU 8275-1, set the multicast MAC address to non-forwarding.
+{{%/notice%}}
+
+{{< tabs "TabID682 ">}}
+{{< tab "NVUE Commands ">}}
+
+To set the multicast MAC address to non-forwarding:
+
+```
+cumulus@switch:~$ nv set service ptp 1 multicast-mac non-forwarding
+cumulus@switch:~$ nv config apply
+```
+
+To set the multicast MAC address to forwarding, run the `nv unset service ptp 1 multicast-mac non-forwarding` command.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+To set the multicast MAC address to non-forwarding, edit the `/etc/ptp4l.conf` file to add the `ptp_dst_mac` parameter, then restart the `ptp4l` service.
+
+```
+cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+...
+#
+# Run time options
+#
+logging_level                  6
+path_trace_enabled             0
+use_syslog                     1
+verbose                        0
+summary_interval               0
+ptp_dst_mac                    01:80:C2:00:00:0E
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart ptp4l.service
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Optional Global Configuration
 
@@ -855,45 +898,6 @@ logSyncInterval         -5
 udp_ttl                 20
 masterOnly              1
 delay_mechanism         E2E
-...
-```
-
-```
-cumulus@switch:~$ sudo systemctl restart ptp4l.service
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-### Local Priority
-
-Set the local priority on an interface for a profile that uses ITU 8275-1 or ITU 8275-2. You can set a value between 0 and 255. The default priority is 128.
-
-The following example sets the local priority on swp1 to 10.
-
-{{< tabs "TabID658 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set interface swp1 ptp local-priority 10
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Add the `G.8275.portDS.localPriority` option to the `interface` section of the `/etc/ptp4l.conf` file, then restart the `ptp4l` service.
-
-```
-cumulus@switch:~$ sudo nano /etc/ptp4l.conf
-...
-[swp1]
-udp_ttl                      1
-hybrid_e2e                   1
-masterOnly                   0
-delay_mechanism              E2E
-network_transport            UDPv6
-G.8275.portDS.localPriority  10
 ...
 ```
 
@@ -1216,7 +1220,7 @@ cumulus@switch:~$ nv config apply
 
 PTP profiles are a standardized set of configurations and rules intended to meet the requirements of a specific application. Profiles define required, allowed, and restricted PTP options, network restrictions, and performance requirements.
 
-Cumulus Linux supports the following predefined profiles:
+Cumulus Linux supports three predefined profiles: IEEE 1588, and two Telecom profiles - ITU 8275-1 and ITU 8275-2.
 
 |  | IEEE 1588 | ITU 8275-1 | ITU 8275-2 |
 | --------- | --------- | ---------- | ---------- |
@@ -1468,6 +1472,112 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 {{< /tab >}}
 {{< /tabs >}}
 
+### Telecom Profiles
+
+ITU 8275-1 and ITU 8275-2 are Telecom profiles. You can use the PTP Telecom profiles for phase distribution in networks that have full timing support and time distribution in networks that have partial timing support. While ITU 8275-1 uses 802.3 encapsulation, ITU 8275-2 uses unicast. When you use a Telecom profile, PTP uses the Alternate Best Master Clock Algorithm (BMCA), which provides the following functionality over the regular BMCA:
+- Supports Master Only capability.
+- Allows multiple Grand Masters to be active simultaneously.
+- Supports local-priority capability to manually engineer synchronization network.
+
+#### Local Priority
+
+The local priority attributes of the Telecom Profiles ITU 8275-1 and ITU 8275-2 provide a powerful tool in building the synchronization topology. The profiles have two local priority configuration parameters:
+- `clock-local-priority` - You assign the clock local priority to the local clock. PTP uses the clock local priority as a tie breaker when deciding on a better Grand Master.
+- `local-priority` - You assign the local priority to a port as a tie breaker when running Alternate BMCA. When you set this attribute at the profile level, it applies to all PTP enabled ports. There is also an interface-level configuration to override the profile value.
+
+Both `clock-local-priority` and `local-priority` have default values of 128. When you use the default values, the alternate BMCA determines the synchronization topology automatically. If you use non-default local priority values, you build the synchronization topology manually.
+
+{{%notice note%}}
+Exercise caution when using local priority attributes to build the synchronization topology manually.
+{{%/notice%}}
+
+{{< tabs "TabID387 ">}}
+{{< tab "NVUE Commands ">}}
+
+The following example commands set:
+- The local priority to 10 for the custom profile called CUSTOM1, based on ITU 8275-2.
+- The clock local priority to 100 for the custom profile called CUSTOM1, based on ITU 8275-2.
+
+```
+cumulus@switch:~$ nv set service ptp 1 profile CUSTOM1 local-priority 10
+cumulus@switch:~$ nv set service ptp 1 profile CUSTOM1 clock-local-priority 100
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Add the `G.8275.portDS.localPriority` (local priority) option and the `G.8275.defaultDS.localPriority` (clock local priority) option to the `Global` section of the `/etc/ptp4l.conf` file, then restart the `ptp4l` service.
+
+The following example configures:
+- The local priority to 10.
+- The clock local priority to 100.
+
+```
+cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+[global]
+#
+# Default Data Set
+#
+slaveOnly                      0
+priority1                      128
+priority2                      128
+domainNumber                   28
+
+twoStepFlag                    1
+dscp_event                     46
+dscp_general                   46
+network_transport              L2
+dataset_comparison             G.8275.x
+G.8275.defaultDS.localPriority 100
+G.8275.portDS.localPriority    10
+...
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart ptp4l.service
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+The following example sets the local priority on swp1 to 120.
+
+{{< tabs "TabID658 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface swp1 ptp 1 local-priority 120
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Add the `G.8275.portDS.localPriority` option to the `interface` section of the `/etc/ptp4l.conf` file, then restart the `ptp4l` service.
+
+```
+cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+...
+[swp1]
+udp_ttl                      1
+hybrid_e2e                   1
+masterOnly                   0
+delay_mechanism              E2E
+network_transport            UDPv6
+G.8275.portDS.localPriority  120
+...
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart ptp4l.service
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Show Profile Settings
+
 To show the current PTP profile setting, run the `nv show service ptp <ptp-instance>` command:
 
 ```
@@ -1509,9 +1619,9 @@ monitor
 
 ## Optional Acceptable Master Table
 
-The acceptable master table option is a security feature that prevents a rogue player from pretending to be the grandmaster clock to take over the PTP network. To use this feature, you configure the clock IDs of known grandmaster clocks in the acceptable master table and set the acceptable master table option on a PTP port. The BMC algorithm checks if the grandmaster clock received in the Announce message is in this table before proceeding with the master selection. Cumulus Linux disables this option by default on PTP ports.
+The acceptable master table option is a security feature that prevents a rogue player from pretending to be the Grand Master clock to take over the PTP network. To use this feature, you configure the clock IDs of known Grand Master clocks in the acceptable master table and set the acceptable master table option on a PTP port. The BMC algorithm checks if the Grand Master clock received in the Announce message is in this table before proceeding with the master selection. Cumulus Linux disables this option by default on PTP ports.
 <!-- vale off -->
-The following example command adds the grandmaster clock ID 24:8a:07:ff:fe:f4:16:06 to the acceptable master table and enables the PTP acceptable master table option for swp1:
+The following example command adds the Grand Master clock ID 24:8a:07:ff:fe:f4:16:06 to the acceptable master table and enables the PTP acceptable master table option for swp1:
 <!-- vale on -->
 {{< tabs "TabID614 ">}}
 {{< tab "NVUE Commands ">}}
@@ -1521,7 +1631,7 @@ cumulus@switch:~$ nv set service ptp 1 acceptable-master 24:8a:07:ff:fe:f4:16:06
 cumulus@switch:~$ nv config apply
 ```
 
-You can also configure an alternate priority 1 value for the Grandmaster:
+You can also configure an alternate priority 1 value for the Grand Master:
 
 ```
 cumulus@switch:~$ nv set service ptp 1 acceptable-master 24:8a:07:ff:fe:f4:16:06 alt-priority 2
@@ -1554,7 +1664,7 @@ acceptable_master_clockIdentity 248a07.fffe.f41606
 ...
 ```
 
-You can also configure an alternate priority 1 value for the Grandmaster.
+You can also configure an alternate priority 1 value for the Grand Master.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -1982,7 +2092,7 @@ nv show interface <interface-id> ptp shaper
 
 ## Example Configuration
 
-In the following example, the boundary clock on the switch receives time from Master 1 (the grandmaster) on PTP slave port swp1, sets its clock and passes the time down through PTP master ports swp2, swp3, and swp4 to the hosts that receive the time.
+In the following example, the boundary clock on the switch receives time from Master 1 (the Grand Master) on PTP slave port swp1, sets its clock and passes the time down through PTP master ports swp2, swp3, and swp4 to the hosts that receive the time.
 
 {{< img src = "/images/cumulus-linux/date-time-ptp-config.png" >}}
 

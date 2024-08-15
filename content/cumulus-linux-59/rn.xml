@@ -7,8 +7,271 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4012011</td>
+<td>A memory corruption kernel crash might occur due to a {{netfilter}} error. The log message from {{netfilter}} might contain a warning similar to the following:kernel: WARNING: CPU: 1 PID: 0 at net/netfilter/nf_conntrack_core.c:1210 __nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]
+kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
+<td>5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4007614</td>
+<td>Static ARP configured with NVUE commands is deleted when the relevant layer 3 interface flaps.</td>
+<td>5.8.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4007329</td>
+<td>Cumulus Linux incorrectly handles unnumbered neighbor types, which causes discrepancies in the running configuration and session flaps during FRR reload.</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3990258</td>
+<td>Cumulus Linux incorrectly handles unnumbered neighbor types, which causes discrepancies in the running configuration and session flaps during FRR reload.</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3985600</td>
+<td>NTP initialization issues prevent the NTP service from starting on a non-default VRF.</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3982256</td>
+<td>After {{switchd}} restarts,  the sFlow sampling rate set in the hardware might not match with the configured values for about 3 minutes. This issue occurs because interfaces are not yet up during  the initial sampling rate setting.</td>
+<td>5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3982251</td>
+<td>When there are multiple interface flaps with sFlow on 100G interfaces, sFlow might use a different value than the one configured.</td>
+<td>5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3982250</td>
+<td>When you start Cumulus VX in Vagrant with libvirt, VM provisioning might fail with errors that indicate a missing {{ifup@eth0.service}} systemd service.</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3982239</td>
+<td>MLAG bonds might report an incorrect DOWN reason of {{lacp partner mac mismatch}} when the bond is out of service for another reason.</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3982222</td>
+<td>When SPAN is enabled on a bridge member, an ARP or Gratuitous ARP received during a failover event between locally attached redundant devices such as load balancers might fail to update the bridge MAC table to point to the interface with the newly active load balancer.</td>
+<td>5.4.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3980957</td>
+<td>The password on NVIDIA Cumulus VX is not getting reset to the default value of {{cumulus}}.</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3980956</td>
+<td>The default memory configuration for NVIDIA Cumulus VX OVA is too low and needs to be increased.</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3980943</td>
+<td>The default NIC for the VMWare OVA file is set to vmxnet3 instead of e1000.</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3980942</td>
+<td>SNMP IF-MIB reports all interfaces (including layer 3 and VNIs) as {{ifType=6}} (ethernetCsmacd) instead of IANA MIB-II types. </td>
+<td>5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3974890</td>
+<td>The {{ntpsec@mgmt}} service does not come up by default when you install an image with ONIE because the trigger to bring up the service is missing.</td>
+<td>5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3972715</td>
+<td>The fans on the NVIDIA SN2410 switch (Part Number SSG7A80800) might spin at high speed. </td>
+<td>5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3970626</td>
+<td>When you configure the {{bridge.kernel_mac_refresh_interval}} parameter in the {{switchd.conf}} file, a {{switchd}} restart fails with core dump.</td>
+<td>5.8.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3966673</td>
+<td>In an EVPN multihoming configuration, if you enable multihoming without any local ESI configuration, {{arp-nd-redirect}} remains disabled unless you restart FRR with the {{sudo systemctl restart frr.service}} command.</td>
+<td>5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3965021</td>
+<td>The {{ethtool -m}} command shows incorrect optical DOM information for SFP modules. To work around this issue, run the {{l1-show}} command to show optical power values for SFP optical transceivers..</td>
+<td>5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3957620</td>
+<td>On the Spectrum-4 switch, when you use PTP on a 800G link, jumbo frames traversing the same link might cause a degradation in PTP performance.</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3956091</td>
+<td>When you modify the default QoS configuration on top of the base RoCE configuration, NVUE reports an {{Invalid}} exception in the {{nv show qos roce}} command output even when the configuration is valid.</td>
+<td>5.8.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3955615</td>
+<td>Cumulus Linux does not recognize QSFP_CMIS optical modules correctly.</td>
+<td>5.6.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3954026</td>
+<td>Static ARP configured with NVUE commands is deleted when the relevant layer 3 interface flaps.</td>
+<td>5.8.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3951643</td>
+<td>The NVUE unset and set command for the same object in a patch file {{nv config patch &lt;file&gt;.yaml}} causes a python exception.</td>
+<td>5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3950322</td>
+<td>After {{switchd}} restarts,  the sFlow sampling rate set in the hardware might not match with the configured values for about 3 minutes. This issue occurs because interfaces are not yet up during  the initial sampling rate setting.</td>
+<td>5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3949367</td>
+<td>If you use NVUE to create an SNMP user with a password, then delete and recreate the user with additional encryption passwords (such as DES or AES), SNMP authorization fails for that user.</td>
+<td>5.3.1-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3947432</td>
+<td>In an EVPN multihoming configuration, if a host bond enters the protodown state due to a link flap, when you try to clear the protodown state, FRR reprograms it.</td>
+<td>5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3943834</td>
+<td>The default memory configuration for NVIDIA Cumulus VX OVA is too low and needs to be increased.</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3941608</td>
+<td>The default NIC for the VMWare OVA file is set to vmxnet3 instead of e1000.</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3939667</td>
+<td>The password on NVIDIA Cumulus VX is not getting reset to the default value of {{cumulus}}.</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3935658</td>
+<td>SNMP IF-MIB reports all interfaces (including layer 3 and VNIs) as {{ifType=6}} (ethernetCsmacd) instead of IANA MIB-II types. </td>
+<td>5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3929440</td>
+<td>When you enable or disable MLAG configuration on an interface, Cumulus Linux logs LACP partner MAC address and BPDU guard mismatches incorrectly. This issue does not impact functionality.</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3927016</td>
+<td>Following an EVPN extended mobility event, where a host with IP address A and MAC address A moves within the fabric and now resides at IP address A and MAC address B, you might see traffic destined to this host experience drops as the flow is software forwarded on the egress VTEP.</td>
+<td>5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3926523</td>
+<td>When there are multiple interface flaps with sFlow on 100G interfaces, sFlow might use a different value than the one configured.</td>
+<td>5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3925259</td>
+<td>When you start Cumulus VX in Vagrant with libvirt, VM provisioning might fail with errors that indicate a missing {{ifup@eth0.service}} systemd service.</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3917601</td>
+<td>If a packet containing an all zero source MAC address (00:00:00:00:00:00) is learned on the ASIC, {{switchd}} sends the learn notification to the kernel but the kernel rejects the MAC address as invalid. The ASIC continuously sends the mac-learn notifications, which wastes CPU resources. To work around this issue, configure ACLs to match on the all-zero source MAC address and drop the invalid packets.</td>
+<td>5.5.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3917528</td>
+<td>With LACP bypass enabled, Cumulus Linux does not program the MAC address in the bridge FDB for VLAN unaware tagged ports.  With EVPN, the address is not advertised and the remote side might flood the packet instead of unicast.</td>
+<td>5.8.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3915842</td>
+<td>A kernel crash due to memory corruption might occur due to a {{netfilter}} error. The log message from {{netfilter}} might contain a warning similar to the following:kernel: WARNING: CPU: 1 PID: 0 at net/netfilter/nf_conntrack_core.c:1210 __nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]
+kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3904516</td>
+<td>With Optimized Multicast Flooding (OMF), when you unset multiple multicast router ports in a single commit, multicast traffic still floods one of the ports. To work around this issue, unset multicast router ports one by one instead of in a single commit.</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3896967</td>
+<td>PTP doesn't come up with IPv6 over a trunk port due to the IPv6 VLAN tag not being sent.  PTP over an IPv4 trunk works fine.</td>
+<td>5.8.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3895042</td>
+<td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
+  snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
+This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
+  #snmp ALL = NOPASSWD: /usr/cumulus/bin/poectl -j -a </td>
+<td>4.4.0-4.4.5, 5.0.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3895017</td>
+<td>When ARP suppression is off, remote EVPN VTEPs duplicate ARP packets from local hosts and each remote host receives two copies of the ARP packets. The issue also applies to IPv6 ND packets.</td>
+<td>5.8.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3881789</td>
 <td>If you configure the anycast IP address with the {{nv set nve vxlan mlag shared-address &lt;anycast-address&gt;}} command after you configure MLAG, the anycast IP address configuration is not applied and the VXLAN interface is in a protodown state.  To work around this issue, run {{sudo ifreload -a}}. To avoid this issue, either apply the anycast configuration before you apply the MLAG configuration or configure the anycast IP address and MLAG together with a single  {{nv config apply}} command.</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3879635</td>
+<td>ERSPAN port-mirror sessions might not come up after a {{switchd}} service restart. To work around this issue and bring up the ERSPAN session, either run {{switchd reload}} after a {{switchd restart}} or use an ACL-based ERSPAN session.</td>
 <td>5.9.0-5.9.1</td>
 <td></td>
 </tr>
@@ -28,15 +291,8 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 <td></td>
 </tr>
 <tr>
-<td>3875243</td>
-<td>When you run the {{nv config replace}} command and try to apply the configuration, you receive the following log message:
-
-
-Invalid config [rev_id: 2]
-  cumulus is logged in and cannot be deleted.
-
-
-This occurs when you try to replace the default NVUE configuration for the {{cumulus}} user account credentials. To work around this behavior, merge your configuration into the current applied configuration with the {{nv config patch}} command instead.</td>
+<td>3875589</td>
+<td>MLAG bonds might report an LACP partner MAC mismatch unexpectedly during LACP negotation and MLAG convergence until the bond reaches a dual connected state. There is no impact to bonds when this mismatch is reported.</td>
 <td>5.9.0-5.9.1</td>
 <td></td>
 </tr>
@@ -44,6 +300,12 @@ This occurs when you try to replace the default NVUE configuration for the {{cum
 <td>3873219</td>
 <td>When you remove a port from a bond and add it to the bridge in a single set of NVUE commands, then apply the configuration, the port forwarding state is blocked on all the bridge VLANs. To work around this issue, apply the configuration in two steps. First remove the port from the bond and apply the configuration, then add the port to the bridge and apply the configuration. </td>
 <td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3854807</td>
+<td>When you enable Optimized Multicast Flooding (OMF) and change VLAN configuration, a few ports might carry multicast traffic even when they are not in the MDB or they are not router ports.</td>
+<td>5.6.0-5.9.1</td>
 <td></td>
 </tr>
 <tr>
@@ -66,7 +328,7 @@ This occurs when you try to replace the default NVUE configuration for the {{cum
 </tr>
 <tr>
 <td>3775686</td>
-<td>Suppress route advertisement for BGP under scale (more than 30000 routes) advertises partial updates to downstream neighbors. Because FRR reads kernel route updates slowly, the netlink socket receive buffer gets full and further update notifications are dropped.</td>
+<td>The BGP Suppress Route Advertisement feature under scale (more than 30000 routes) advertises partial updates to downstream neighbors. Because FRR does not read kernel route updates fast enough, the netlink socket receive buffer gets full and further update notifications are dropped.</td>
 <td>5.8.0-5.9.1</td>
 <td></td>
 </tr>
@@ -119,6 +381,12 @@ cumulus@switch:~$ sudo apt upgrade
 <td></td>
 </tr>
 <tr>
+<td>3610591</td>
+<td>After configuring the system level pre-login and post-login banner messages, the messages do not return to their default settings when you run the {{nv unset system}} command or the {{nv config apply empty}} command.</td>
+<td>5.7.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3587393</td>
 <td>If you use the NVIDIA SN5600 (Spectrum-4) switch with Ixia test equipment, you might experience delayed link up due to intermittent link flaps. 
 To work around this issue when using copper cables:
@@ -151,6 +419,12 @@ To work around this issue when using fiber cables:
 <td></td>
 </tr>
 <tr>
+<td>3442569</td>
+<td>When trying to access the NVUE API, user accounts authenticated with a newly-configured external service, such as TACACS, RADIUS, or LDAP, receive a 401 forbidden error. To work around this issue, after enabling a new authentication service, make sure to restart both {{nginx.service}} and {{nvued.service}} to begin authenticating users against the new authentication service.</td>
+<td>5.5.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3424967</td>
 <td>{{sudo}} for TACACS+ users with privilege level 15 does not work when reaching the TACACS+ server through the {{default}} VRF. To work around this issue, specify the interface name that the {{default}} VRF uses in the {{vrf=}} setting of the {{/etc/tacplus_servers}} file or run the NVUE {{nv set system aaa tacacs vrf}} command. If you don't run either command, a TACACS+ user with privilege level 15 can run {{vrf task exec default sudo ...}} to execute the {{sudo}} command.</td>
 <td>5.0.0-5.9.1</td>
@@ -165,7 +439,7 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 </tr>
 <tr>
 <td>3393966</td>
-<td>Configuring the network statement with the NVUE {{nv set vrf &lt;vrf&gt; router ospf area &lt;area-id&gt; network &lt;network-id&gt;}} command might bring down all the OSPF neighbors. To work around this issue, create an NVUE snippet to configure the network statement.</td>
+<td>When you configure OSPF network statements using NVUE with the {{nv set vrf &lt;vrf&gt; router ospf area &lt;area&gt; network &lt;subnet&gt;}} command, subsequent configuration changes with NVUE might bring down all OSPF neighbors. To work around this issue, create an NVUE snippet to configure the network statement, or use the {{nv set interface &lt;interface&gt; router ospf area &lt;area&gt;}} command to enable OSPF on interfaces instead of using a network statement.</td>
 <td>5.5.0-5.9.1</td>
 <td></td>
 </tr>
@@ -178,13 +452,6 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <tr>
 <td>3362113</td>
 <td>If you restore an NVUE {{startup.yaml}} file or run the {{nv config patch}} command after an upgrade that includes breakout ports with QoS configuration, the NVUE configuration fails to apply. Subsequent attempts to run {{nv config apply}} fail with a message similar to {{Invalid config [rev_id: 11] qos config is not supported on the following invalid interface: swp1s0. Supported on swp and bond interface types}}. To work around this issue, run {{nv unset}} on the configured QoS settings, then apply the breakout port configuration before you configure QoS. Alternatively, you can remove the QoS configuration from the {{yaml}} file and patch it separately after applying the breakout configuration.</td>
-<td>5.4.0-5.9.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3350027</td>
-<td>If you uninstall dynamic NAT rules and {{switchd}} restarts before all the dynamic NAT flows age out and are deleted, you might see dynamic flow deletion errors in {{switchd.log}}. 
-These errors do not affect new dynamic NAT flows from new NAT rules.</td>
 <td>5.4.0-5.9.1</td>
 <td></td>
 </tr>
@@ -425,14 +692,192 @@ You can safely ignore this warning.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4007614</td>
+<td>Static ARP configured with NVUE commands is deleted when the relevant layer 3 interface flaps.</td>
+<td>5.8.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4007329</td>
+<td>Cumulus Linux incorrectly handles unnumbered neighbor types, which causes discrepancies in the running configuration and session flaps during FRR reload.</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3990258</td>
+<td>Cumulus Linux incorrectly handles unnumbered neighbor types, which causes discrepancies in the running configuration and session flaps during FRR reload.</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3985600</td>
+<td>NTP initialization issues prevent the NTP service from starting on a non-default VRF.</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3982250</td>
+<td>When you start Cumulus VX in Vagrant with libvirt, VM provisioning might fail with errors that indicate a missing {{ifup@eth0.service}} systemd service.</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3982239</td>
+<td>MLAG bonds might report an incorrect DOWN reason of {{lacp partner mac mismatch}} when the bond is out of service for another reason.</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3982222</td>
+<td>When SPAN is enabled on a bridge member, an ARP or Gratuitous ARP received during a failover event between locally attached redundant devices such as load balancers might fail to update the bridge MAC table to point to the interface with the newly active load balancer.</td>
+<td>5.4.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3980957</td>
+<td>The password on NVIDIA Cumulus VX is not getting reset to the default value of {{cumulus}}.</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3980956</td>
+<td>The default memory configuration for NVIDIA Cumulus VX OVA is too low and needs to be increased.</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3980943</td>
+<td>The default NIC for the VMWare OVA file is set to vmxnet3 instead of e1000.</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3970626</td>
+<td>When you configure the {{bridge.kernel_mac_refresh_interval}} parameter in the {{switchd.conf}} file, a {{switchd}} restart fails with core dump.</td>
+<td>5.8.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3957620</td>
+<td>On the Spectrum-4 switch, when you use PTP on a 800G link, jumbo frames traversing the same link might cause a degradation in PTP performance.</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3956091</td>
+<td>When you modify the default QoS configuration on top of the base RoCE configuration, NVUE reports an {{Invalid}} exception in the {{nv show qos roce}} command output even when the configuration is valid.</td>
+<td>5.8.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3955615</td>
+<td>Cumulus Linux does not recognize QSFP_CMIS optical modules correctly.</td>
+<td>5.6.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3954026</td>
+<td>Static ARP configured with NVUE commands is deleted when the relevant layer 3 interface flaps.</td>
+<td>5.8.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3949367</td>
+<td>If you use NVUE to create an SNMP user with a password, then delete and recreate the user with additional encryption passwords (such as DES or AES), SNMP authorization fails for that user.</td>
+<td>5.3.1-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3943834</td>
+<td>The default memory configuration for NVIDIA Cumulus VX OVA is too low and needs to be increased.</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3941608</td>
+<td>The default NIC for the VMWare OVA file is set to vmxnet3 instead of e1000.</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3939667</td>
+<td>The password on NVIDIA Cumulus VX is not getting reset to the default value of {{cumulus}}.</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3929440</td>
+<td>When you enable or disable MLAG configuration on an interface, Cumulus Linux logs LACP partner MAC address and BPDU guard mismatches incorrectly. This issue does not impact functionality.</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3925259</td>
+<td>When you start Cumulus VX in Vagrant with libvirt, VM provisioning might fail with errors that indicate a missing {{ifup@eth0.service}} systemd service.</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3917601</td>
+<td>If a packet containing an all zero source MAC address (00:00:00:00:00:00) is learned on the ASIC, {{switchd}} sends the learn notification to the kernel but the kernel rejects the MAC address as invalid. The ASIC continuously sends the mac-learn notifications, which wastes CPU resources. To work around this issue, configure ACLs to match on the all-zero source MAC address and drop the invalid packets.</td>
+<td>5.5.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3917528</td>
+<td>With LACP bypass enabled, Cumulus Linux does not program the MAC address in the bridge FDB for VLAN unaware tagged ports.  With EVPN, the address is not advertised and the remote side might flood the packet instead of unicast.</td>
+<td>5.8.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3915842</td>
+<td>A kernel crash due to memory corruption might occur due to a {{netfilter}} error. The log message from {{netfilter}} might contain a warning similar to the following:kernel: WARNING: CPU: 1 PID: 0 at net/netfilter/nf_conntrack_core.c:1210 __nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]
+kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3915829</td>
 <td>General improvements to overall software stability.</td>
 <td>5.9.0</td>
 <td>5.9.1</td>
 </tr>
 <tr>
+<td>3904516</td>
+<td>With Optimized Multicast Flooding (OMF), when you unset multiple multicast router ports in a single commit, multicast traffic still floods one of the ports. To work around this issue, unset multicast router ports one by one instead of in a single commit.</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3896967</td>
+<td>PTP doesn't come up with IPv6 over a trunk port due to the IPv6 VLAN tag not being sent.  PTP over an IPv4 trunk works fine.</td>
+<td>5.8.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3895042</td>
+<td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
+  snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
+This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
+  #snmp ALL = NOPASSWD: /usr/cumulus/bin/poectl -j -a </td>
+<td>4.4.0-4.4.5, 5.0.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3895017</td>
+<td>When ARP suppression is off, remote EVPN VTEPs duplicate ARP packets from local hosts and each remote host receives two copies of the ARP packets. The issue also applies to IPv6 ND packets.</td>
+<td>5.8.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3881789</td>
 <td>If you configure the anycast IP address with the {{nv set nve vxlan mlag shared-address &lt;anycast-address&gt;}} command after you configure MLAG, the anycast IP address configuration is not applied and the VXLAN interface is in a protodown state.  To work around this issue, run {{sudo ifreload -a}}. To avoid this issue, either apply the anycast configuration before you apply the MLAG configuration or configure the anycast IP address and MLAG together with a single  {{nv config apply}} command.</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3879635</td>
+<td>ERSPAN port-mirror sessions might not come up after a {{switchd}} service restart. To work around this issue and bring up the ERSPAN session, either run {{switchd reload}} after a {{switchd restart}} or use an ACL-based ERSPAN session.</td>
 <td>5.9.0-5.9.1</td>
 <td></td>
 </tr>
@@ -452,15 +897,8 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 <td></td>
 </tr>
 <tr>
-<td>3875243</td>
-<td>When you run the {{nv config replace}} command and try to apply the configuration, you receive the following log message:
-
-
-Invalid config [rev_id: 2]
-  cumulus is logged in and cannot be deleted.
-
-
-This occurs when you try to replace the default NVUE configuration for the {{cumulus}} user account credentials. To work around this behavior, merge your configuration into the current applied configuration with the {{nv config patch}} command instead.</td>
+<td>3875589</td>
+<td>MLAG bonds might report an LACP partner MAC mismatch unexpectedly during LACP negotation and MLAG convergence until the bond reaches a dual connected state. There is no impact to bonds when this mismatch is reported.</td>
 <td>5.9.0-5.9.1</td>
 <td></td>
 </tr>
@@ -468,6 +906,12 @@ This occurs when you try to replace the default NVUE configuration for the {{cum
 <td>3873219</td>
 <td>When you remove a port from a bond and add it to the bridge in a single set of NVUE commands, then apply the configuration, the port forwarding state is blocked on all the bridge VLANs. To work around this issue, apply the configuration in two steps. First remove the port from the bond and apply the configuration, then add the port to the bridge and apply the configuration. </td>
 <td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3854807</td>
+<td>When you enable Optimized Multicast Flooding (OMF) and change VLAN configuration, a few ports might carry multicast traffic even when they are not in the MDB or they are not router ports.</td>
+<td>5.6.0-5.9.1</td>
 <td></td>
 </tr>
 <tr>
@@ -490,7 +934,7 @@ This occurs when you try to replace the default NVUE configuration for the {{cum
 </tr>
 <tr>
 <td>3775686</td>
-<td>Suppress route advertisement for BGP under scale (more than 30000 routes) advertises partial updates to downstream neighbors. Because FRR reads kernel route updates slowly, the netlink socket receive buffer gets full and further update notifications are dropped.</td>
+<td>The BGP Suppress Route Advertisement feature under scale (more than 30000 routes) advertises partial updates to downstream neighbors. Because FRR does not read kernel route updates fast enough, the netlink socket receive buffer gets full and further update notifications are dropped.</td>
 <td>5.8.0-5.9.1</td>
 <td></td>
 </tr>
@@ -543,6 +987,12 @@ cumulus@switch:~$ sudo apt upgrade
 <td></td>
 </tr>
 <tr>
+<td>3610591</td>
+<td>After configuring the system level pre-login and post-login banner messages, the messages do not return to their default settings when you run the {{nv unset system}} command or the {{nv config apply empty}} command.</td>
+<td>5.7.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3587393</td>
 <td>If you use the NVIDIA SN5600 (Spectrum-4) switch with Ixia test equipment, you might experience delayed link up due to intermittent link flaps. 
 To work around this issue when using copper cables:
@@ -575,6 +1025,12 @@ To work around this issue when using fiber cables:
 <td></td>
 </tr>
 <tr>
+<td>3442569</td>
+<td>When trying to access the NVUE API, user accounts authenticated with a newly-configured external service, such as TACACS, RADIUS, or LDAP, receive a 401 forbidden error. To work around this issue, after enabling a new authentication service, make sure to restart both {{nginx.service}} and {{nvued.service}} to begin authenticating users against the new authentication service.</td>
+<td>5.5.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3424967</td>
 <td>{{sudo}} for TACACS+ users with privilege level 15 does not work when reaching the TACACS+ server through the {{default}} VRF. To work around this issue, specify the interface name that the {{default}} VRF uses in the {{vrf=}} setting of the {{/etc/tacplus_servers}} file or run the NVUE {{nv set system aaa tacacs vrf}} command. If you don't run either command, a TACACS+ user with privilege level 15 can run {{vrf task exec default sudo ...}} to execute the {{sudo}} command.</td>
 <td>5.0.0-5.9.1</td>
@@ -589,7 +1045,7 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 </tr>
 <tr>
 <td>3393966</td>
-<td>Configuring the network statement with the NVUE {{nv set vrf &lt;vrf&gt; router ospf area &lt;area-id&gt; network &lt;network-id&gt;}} command might bring down all the OSPF neighbors. To work around this issue, create an NVUE snippet to configure the network statement.</td>
+<td>When you configure OSPF network statements using NVUE with the {{nv set vrf &lt;vrf&gt; router ospf area &lt;area&gt; network &lt;subnet&gt;}} command, subsequent configuration changes with NVUE might bring down all OSPF neighbors. To work around this issue, create an NVUE snippet to configure the network statement, or use the {{nv set interface &lt;interface&gt; router ospf area &lt;area&gt;}} command to enable OSPF on interfaces instead of using a network statement.</td>
 <td>5.5.0-5.9.1</td>
 <td></td>
 </tr>
@@ -602,13 +1058,6 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <tr>
 <td>3362113</td>
 <td>If you restore an NVUE {{startup.yaml}} file or run the {{nv config patch}} command after an upgrade that includes breakout ports with QoS configuration, the NVUE configuration fails to apply. Subsequent attempts to run {{nv config apply}} fail with a message similar to {{Invalid config [rev_id: 11] qos config is not supported on the following invalid interface: swp1s0. Supported on swp and bond interface types}}. To work around this issue, run {{nv unset}} on the configured QoS settings, then apply the breakout port configuration before you configure QoS. Alternatively, you can remove the QoS configuration from the {{yaml}} file and patch it separately after applying the breakout configuration.</td>
-<td>5.4.0-5.9.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3350027</td>
-<td>If you uninstall dynamic NAT rules and {{switchd}} restarts before all the dynamic NAT flows age out and are deleted, you might see dynamic flow deletion errors in {{switchd.log}}. 
-These errors do not affect new dynamic NAT flows from new NAT rules.</td>
 <td>5.4.0-5.9.1</td>
 <td></td>
 </tr>
@@ -864,6 +1313,11 @@ You can safely ignore this warning.</td>
 <td>3828243</td>
 <td>After you change the remote AS for a peer group, the switch no longer has any peers associated with the peer group. To work around this issue, reconfigure all the associated peers after you change the remote AS for the peer group.</td>
 <td>5.8.0</td>
+</tr>
+<tr>
+<td>3824750</td>
+<td>With the {{nvidia.nvue}} Ansible module, NVUE honors input from the Ansible module only; if you do not provide the full configuration, NVUE generates an exception. To work around this issue, always provide the full configuration.</td>
+<td>5.6.0-5.8.0</td>
 </tr>
 <tr>
 <td>3813710</td>

@@ -22,7 +22,7 @@ NVIDIA SN5400 (400G Spectrum-4)
 ### New Features and Enhancements
 
 - {{<link url="ASIC-Monitoring/#high-frequency-telemetry" text="High frequency telemetry">}}
-- {{<link url="Open-Telemetry-Export" text="Telemetry export with OTLP">}} on Spectrum-4 switches (BETA)
+- {{<link url="Open-Telemetry-Export" text="Telemetry export with the OpenTelemetry protocol (OTLP)">}} on Spectrum-4 switches (BETA)
 - {{<link url="SSH-for-Remote-Access/#ssh-login-notifications" text="SSH login notifications">}}
 - {{<link url="Quality-of-Service/#lossy-headroom" text="QoS lossy headroom configuration">}} and {{<link url="Quality-of-Service/#ingress-and-egress-management-buffers" text=" QoS Ingress and Egress Management Buffer Configuration">}}
 - {{<link url="VXLAN-Devices/#reserved-field-in-vxlan-header" text="Ignore reserved field in VXLAN header">}}

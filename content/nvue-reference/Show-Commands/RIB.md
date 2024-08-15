@@ -107,9 +107,13 @@ route
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf-id\> router rib \<afi\> protocol</h>
+## <h>nv show vrf \<vrf-id\> router rib \<afi\> route</h>
 
-Shows the IPv4 or IPv6 routing table for all protocols for the specified VRF.
+Shows the routing table for IPv4 routes.
+
+{{%notice note%}}
+Cumulus Linux 5.10.0 and later includes redesigned flags in the command ouput.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -120,36 +124,30 @@ Shows the IPv4 or IPv6 routing table for all protocols for the specified VRF.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.1.0
+Introduced in Cumulus Linux 5.0.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router rib ipv4 protocol
-```
+cumulus@switch:~$ nv show vrf default router rib ipv4 route
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show vrf \<vrf-id\> router rib \<afi\> protocol \<protocol\></h>
-
-Shows the IPv4 or IPv6 routing table for the specified protocol for the specified VRF.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<vrf-id>` |  The VRF name.|
-| `<afi>` |  The route address family (IPv4 or IPv6). |
-| `<protocol>` |  The protocol name: `bgp`, `isis`, `ospf`, `rip`, `sharp`, `table`, `connected`, `kernel`, `ospf6`, `ripng`, or `static`. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.1.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default router rib ipv4 protocol bgp
+Flags - * - selected, q - queued, o - offloaded, i - installed, S - fib-        
+selected, x - failed                                                            
+                                                                                
+Route            Protocol   Distance  Uptime                NHGId  Metric  Flags
+---------------  ---------  --------  --------------------  -----  ------  -----
+10.1.10.0/24     connected  0         2024-07-18T21:57:29Z  46     0       *Sio 
+10.1.20.0/24     connected  0         2024-07-18T21:57:29Z  47     0       *Sio 
+10.1.30.0/24     connected  0         2024-07-18T21:57:29Z  48     0       *Sio 
+10.1.40.0/24     bgp        20        2024-07-18T22:02:22Z  57     0       *Si  
+10.1.50.0/24     bgp        20        2024-07-18T22:02:22Z  57     0       *Si  
+10.1.60.0/24     bgp        20        2024-07-18T22:02:22Z  57     0       *Si  
+10.10.10.1/32    connected  0         2024-07-18T21:55:54Z  7      0       *Sio 
+10.10.10.2/32    bgp        20        2024-07-18T21:57:29Z  34     0       *Si  
+10.10.10.3/32    bgp        20        2024-07-18T22:02:22Z  57     0       *Si  
+10.10.10.4/32    bgp        20        2024-07-18T22:02:27Z  57     0       *Si  
+10.10.10.101/32  bgp        20        2024-07-18T22:01:14Z  50     0       *Si  
+10.10.10.102/32  bgp        20        2024-07-18T22:02:22Z  58     0       *Si
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -173,7 +171,17 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router rib ipv4 route default
+cumulus@switch:~$ nv show vrf default router rib ipv4 route 10.1.40.0/24 
+protocol
+===========                                                                           
+    EntryIdx - Entry index, TblId - Table Id, NHGId - Nexthop group Id,             
+    ResolvedViaIntf - Resolved via interface, Flags - u - unreachable, r -          
+    recursive, o - onlink, i - installed, d - duplicate, c - connected, A - active  
+                                                                                
+    Protocol  EntryIdx  TblId  NHGId  Distance  Metric  ResolvedViaIntf  Weight  Flags
+    --------  --------  -----  -----  --------  ------  ---------------  ------  -----
+    bgp       1         254    57     20        0       swp51            1       iA                                               swp52            1       iA
+    ...
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -198,7 +206,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router rib ipv4 route default protocol bgp
+cumulus@switch:~$ nv show vrf default router rib ipv4 route 10.1.40.0/24 protocol bgp
+entry-index
+==============
+    Entry
+    -----
+    1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -223,7 +236,10 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index
+cumulus@switch:~$ nv show vrf default router rib ipv4 route 10.1.40.0/24 protocol bgp entry-index
+Entry
+-----
+1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -249,7 +265,17 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index 10
+cumulus@switch:~$ nv show vrf default router rib ipv4 route 10.1.40.0/24 protocol bgp entry-index 1
+                  operational              
+----------------  -------------------------
+distance          20                       
+metric            0                        
+uptime            2024-07-18T22:02:22Z     
+nexthop-group-id  57                       
+table-id          254                      
+flags-string      *Si                      
+[via]             fe80::4ab0:2dff:fe50:8cbb
+[via]             fe80::4ab0:2dff:feba:6208
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -275,7 +301,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index 10 flags
+cumulus@switch:~$ nv show vrf default router rib ipv4 route 10.1.40.0/24 protocol bgp entry-index 1 flags
+operational 
+------------
+selected    
+fib-selected
+installed 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -301,7 +332,11 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index 10 via
+cumulus@switch:~$ nv show vrf default router rib ipv4 route 10.1.40.0/24 protocol bgp entry-index 1 via
+Nexthop                    flags-string  type        vrf  weight  Summary         
+-------------------------  ------------  ----------  ---  ------  ----------------
+fe80::4ab0:2dff:fe50:8cbb  iA            ip-address       1       Interface: swp51
+fe80::4ab0:2dff:feba:6208  iA            ip-address       1       Interface: swp52
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -328,7 +363,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index 10 via 10.0.1.0
+cumulus@switch:~$ nv show vrf default router rib ipv4 route 10.1.40.0/24 protocol bgp entry-index 1 via fe80::4ab0:2dff:fe50:8cbb
+              operational
+------------  -----------
+type          ip-address 
+weight        1          
+flags-string  iA 
+resolved-via
+===============
+No Data
+interface
+============
+    Interface
+    ---------
+    swp51
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -355,7 +403,11 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index 10 via 10.0.1.0 flags
+cumulus@switch:~$ nv show vrf default router rib ipv4 route 10.1.40.0/24 protocol bgp entry-index 1 via fe80::4ab0:2dff:fe50:8cbb flags
+operational
+-----------
+installed  
+active
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -382,7 +434,8 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index 10 via 10.0.1.0 label
+cumulus@switch:~$ nv show vrf default router rib ipv4 route 10.1.40.0/24 protocol bgp entry-index 1 via fe80::4ab0:2dff:fe50:8cbb label
+
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -409,7 +462,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index 10 via 10.0.1.0 resolved-via
+cumulus@switch:~$ nv show vrf default router rib ipv4 route 10.1.40.0/24 protocol bgp entry-index 1 via 10.0.1.0 resolved-via
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -437,5 +490,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index 10 via 10.0.1.0 resolved-via 10.0.10.0
+cumulus@switch:~$ nv show vrf default router rib ipv4 route 10.1.40.0/24 protocol bgp entry-index 1 via 10.0.1.0 resolved-via 10.0.10.0
 ```

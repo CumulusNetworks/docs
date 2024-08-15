@@ -13,7 +13,7 @@ Cumulus Linux 5.9 is an Extended-Support Release (ESR). For more information, re
 
 <!--## What's New in Cumulus Linux 5.9.2
 
-Cumulus Linux 5.9.2 provides bug fixes and includes a {{<link url="Forwarding-Table-Size-and-Profiles/#spectrum-1" text="new forwarding profile called ecmp-nh-heavy">}} for Spectrum 1 switches.-->
+Cumulus Linux 5.9.2 provides bug fixes and includes a new {{<link url="Forwarding-Table-Size-and-Profiles/#spectrum-1" text="forwarding profile called ecmp-nh-heavy">}} for Spectrum 1 switches.-->
 
 ## What's New in Cumulus Linux 5.9.1
 

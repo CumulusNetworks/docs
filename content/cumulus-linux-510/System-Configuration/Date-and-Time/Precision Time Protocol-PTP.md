@@ -592,7 +592,7 @@ servo               noise-transfer
 
 ### Ignore Source Port ID
 
-If the master clock has Announce disabled, you can disable the source port ID check in SYNC, Follow Up, and Delay Response PTP messages. This is also useful in rare implementations of PTP, where the master changes the source Port ID in the above messages from the one sent on Announce.
+If the master clock has Announce disabled, you can disable the source port ID check in SYNC, Follow Up, and Delay Response PTP messages. Disabling the source port ID check is also useful in rare implementations of PTP, where the master changes the source Port ID in the above messages from the one sent on Announce.
 
 {{< tabs "TabID644 ">}}
 {{< tab "NVUE Commands ">}}
@@ -1474,18 +1474,18 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 
 ### Telecom Profiles
 
-ITU 8275-1 and ITU 8275-2 are Telecom profiles. You can use the PTP Telecom profiles for phase distribution in networks that have full timing support and time distribution in networks that have partial timing support. While ITU 8275-1 uses 802.3 encapsulation, ITU 8275-2 uses unicast. When you use a Telecom profile, PTP uses the Alternate Best Master Clock Algorithm (BMCA), which provides the following functionality over the regular BMCA:
+ITU 8275-1 and ITU 8275-2 are Telecom profiles. You can use the PTP Telecom profiles for phase distribution in networks that have full timing support and for time distribution in networks that have partial timing support. While ITU 8275-1 uses 802.3 encapsulation, ITU 8275-2 uses unicast. When you use a Telecom profile, PTP uses the Alternate Best Master Clock Algorithm (BMCA), which provides the following functionality over the regular BMCA:
 - Supports Master Only capability.
 - Allows multiple Grand Masters to be active simultaneously.
 - Supports local-priority capability to manually engineer synchronization network.
 
 #### Local Priority
 
-The local priority attributes of the Telecom Profiles ITU 8275-1 and ITU 8275-2 provide a powerful tool in building the synchronization topology. The profiles have two local priority configuration parameters:
+The local priority attributes of the Telecom profiles provide a powerful tool in building the synchronization topology. The profiles have two local priority configuration parameters:
 - `clock-local-priority` - You assign the clock local priority to the local clock. PTP uses the clock local priority as a tie breaker when deciding on a better Grand Master.
 - `local-priority` - You assign the local priority to a port as a tie breaker when running Alternate BMCA. When you set this attribute at the profile level, it applies to all PTP enabled ports. There is also an interface-level configuration to override the profile value.
 
-Both `clock-local-priority` and `local-priority` have default values of 128. When you use the default values, the alternate BMCA determines the synchronization topology automatically. If you use non-default local priority values, you build the synchronization topology manually.
+Both `clock-local-priority` and `local-priority` have default values of 128. When you use the default values, the Alternate BMCA determines the synchronization topology automatically. If you use non-default local priority values, you build the synchronization topology manually.
 
 {{%notice note%}}
 Exercise caution when using local priority attributes to build the synchronization topology manually.
@@ -1509,7 +1509,7 @@ cumulus@switch:~$ nv config apply
 
 Add the `G.8275.portDS.localPriority` (local priority) option and the `G.8275.defaultDS.localPriority` (clock local priority) option to the `Global` section of the `/etc/ptp4l.conf` file, then restart the `ptp4l` service.
 
-The following example configures:
+The following example sets:
 - The local priority to 10.
 - The clock local priority to 100.
 

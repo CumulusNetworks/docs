@@ -40,7 +40,7 @@ Forwarding resource profiles control unicast forwarding table entry allocations.
 | v4-lpm-heavy-1 | 6k            | 6k (IPv4) and 2k (IPv6)   | 176k (IPv4) and 2k (IPv6-long) |
 | v6-lpm-heavy   | 27k           | 8k (IPv4) and 36k (IPv6)  | 8k (IPv4), 32k (IPv6-long) and 32k (IPv6/64) |
 | lpm-balanced   | 6k            | 4k (IPv4) and 3k (IPv6)   | 60k (IPv4), 60k (IPv6-long) and 120k (IPv6/64) |
-<!--| ecmp-nh-heavy |  20K      |      32k (IPv4) (IPv6) 4k   |    52k (IPv4) 4k (IPv6-long) -->
+<!--| ecmp-nh-heavy |  20K    |  32k (IPv4) (IPv6) 4k   |    50k (IPv4) 4k (IPv6-long) -->
 
 ### Spectrum-2 and Later
 

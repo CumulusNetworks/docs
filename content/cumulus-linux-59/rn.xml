@@ -122,6 +122,12 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <td>5.10.0</td>
 </tr>
 <tr>
+<td>3957691</td>
+<td>After a networking restart, ERSPAN mirror sessions might not come up. To work around this issue, run the {{systemctl reload switchd}} command to bring up the ERSPAN mirror sessions.</td>
+<td>5.9.0-5.9.1</td>
+<td>5.10.0</td>
+</tr>
+<tr>
 <td>3957620</td>
 <td>On the Spectrum-4 switch, when you use PTP on a 800G link, jumbo frames traversing the same link might cause a degradation in PTP performance.</td>
 <td>5.9.0-5.9.1</td>
@@ -264,6 +270,12 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <td></td>
 </tr>
 <tr>
+<td>3890993</td>
+<td>On the NVIDIA spectrum-4 switch, {{l1-show}} command output does not show Eye opening information for an interface port.</td>
+<td>5.9.0-5.9.1</td>
+<td>5.10.0</td>
+</tr>
+<tr>
 <td>3881789</td>
 <td>If you configure the anycast IP address with the {{nv set nve vxlan mlag shared-address &lt;anycast-address&gt;}} command after you configure MLAG, the anycast IP address configuration is not applied and the VXLAN interface is in a protodown state.  To work around this issue, run {{sudo ifreload -a}}. To avoid this issue, either apply the anycast configuration before you apply the MLAG configuration or configure the anycast IP address and MLAG together with a single  {{nv config apply}} command.</td>
 <td>5.9.0-5.9.1</td>
@@ -349,6 +361,12 @@ cumulus@switch:~$ sudo apt upgrade
 <td>When you perform an ISSU upgrade on a Spectrum 1 switch, the {{switchd}} service might crash.</td>
 <td>5.8.0-5.10.0</td>
 <td></td>
+</tr>
+<tr>
+<td>3763543</td>
+<td>The NVIDIA SN4600C switch fails to boot fully after  you upgrade from Cumulus Linux 4.2.1 to 5.7 with ONIE install. To work around this issue, perform an intermediate step image upgrade; for example, upgrade the switch from Cumulus Linux 4.2.1 to 5.2.1 to 5.7.0.</td>
+<td>5.7.0-5.9.1</td>
+<td>5.10.0</td>
 </tr>
 <tr>
 <td>3739159</td>
@@ -758,6 +776,12 @@ You can safely ignore this warning.</td>
 <td>5.10.0</td>
 </tr>
 <tr>
+<td>3957691</td>
+<td>After a networking restart, ERSPAN mirror sessions might not come up. To work around this issue, run the {{systemctl reload switchd}} command to bring up the ERSPAN mirror sessions.</td>
+<td>5.9.0-5.9.1</td>
+<td>5.10.0</td>
+</tr>
+<tr>
 <td>3957620</td>
 <td>On the Spectrum-4 switch, when you use PTP on a 800G link, jumbo frames traversing the same link might cause a degradation in PTP performance.</td>
 <td>5.9.0-5.9.1</td>
@@ -870,6 +894,12 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <td></td>
 </tr>
 <tr>
+<td>3890993</td>
+<td>On the NVIDIA spectrum-4 switch, {{l1-show}} command output does not show Eye opening information for an interface port.</td>
+<td>5.9.0-5.9.1</td>
+<td>5.10.0</td>
+</tr>
+<tr>
 <td>3881789</td>
 <td>If you configure the anycast IP address with the {{nv set nve vxlan mlag shared-address &lt;anycast-address&gt;}} command after you configure MLAG, the anycast IP address configuration is not applied and the VXLAN interface is in a protodown state.  To work around this issue, run {{sudo ifreload -a}}. To avoid this issue, either apply the anycast configuration before you apply the MLAG configuration or configure the anycast IP address and MLAG together with a single  {{nv config apply}} command.</td>
 <td>5.9.0-5.9.1</td>
@@ -955,6 +985,12 @@ cumulus@switch:~$ sudo apt upgrade
 <td>When you perform an ISSU upgrade on a Spectrum 1 switch, the {{switchd}} service might crash.</td>
 <td>5.8.0-5.10.0</td>
 <td></td>
+</tr>
+<tr>
+<td>3763543</td>
+<td>The NVIDIA SN4600C switch fails to boot fully after  you upgrade from Cumulus Linux 4.2.1 to 5.7 with ONIE install. To work around this issue, perform an intermediate step image upgrade; for example, upgrade the switch from Cumulus Linux 4.2.1 to 5.2.1 to 5.7.0.</td>
+<td>5.7.0-5.9.1</td>
+<td>5.10.0</td>
 </tr>
 <tr>
 <td>3739159</td>

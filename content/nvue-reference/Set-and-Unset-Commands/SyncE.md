@@ -81,7 +81,7 @@ cumulus@switch:~$ nv set interface swp1 synce provider-priority 10
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service synce</h>
+## <h>nv set system synce</h>
 
 Configures the SyncE service (`synced.service`) that manages:
 - Transmitting and receiving <span class="a-tooltip">[SSMs](## "Synchronization Status Messages")</span> on all SyncE enabled ports using the <span class="a-tooltip">[ESMC](## "Ethernet Synchronization Messaging Channel")</span>.
@@ -91,7 +91,7 @@ Configures the SyncE service (`synced.service`) that manages:
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service synce enable</h>
+## <h>nv set system synce enable</h>
 
 Turns the SyncE service on or off. The default setting is `off`.
 
@@ -102,12 +102,12 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set service synce enable on
+cumulus@switch:~$ nv set system synce enable on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service synce log-level</h>
+## <h>nv set system synce log-level</h>
 
 Configures the logging level that the SyncE service uses. You can set the following values:
 - `critical` level logs critical errors and notices.
@@ -123,12 +123,28 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set service synce log-level debug
+cumulus@switch:~$ nv set system synce log-level debug
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service synce provider-default-priority</h>
+## <h>nv set system synce min-acceptable-ql</h>
+
+Configures SyncE to not track a source with a quality level lower than a specific value. The quality level can be: `eec1`, `eeec`, `ssu-b`, `ssu-a`, `prc`, `eprc`, `prtc`, or `eprtc`, where `eec1` is the lowest quality level and `eprtc` is the highest quality level.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system synce min-acceptable-ql ssu-b
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system synce provider-default-priority</h>
 
 Configures the priority for the clock source. You can set a value between 1 and 256. The lowest priority is 1 and the highest priority is 256. If two clock sources has the same priority, the switch uses the lowest clock source.
 
@@ -139,12 +155,12 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set service synce provider-default-priority 256
+cumulus@switch:~$ nv set system synce provider-default-priority 256
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service synce wait-to-restore-time</h>
+## <h>nv set system synce wait-to-restore-time</h>
 
 Configures the number of seconds SyncE waits for each port to be up before opening the <span class="a-tooltip">[ESMC](## "Ethernet Synchronization Message Channel")</span> for messages. You can set a value between 0 and 720 seconds (12 minutes). The default value is 300 seconds (5 minutes).
 
@@ -155,5 +171,5 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set service synce wait-to-restore-time 180
+cumulus@switch:~$ nv set system synce wait-to-restore-time 180
 ```

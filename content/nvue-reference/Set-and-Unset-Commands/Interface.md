@@ -516,6 +516,29 @@ cumulus@switch:~$ nv set interface swp1 link lanes 1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set interface \<interface-id\> link mac-address \<mac-address\></h>
+
+Configures a MAC address for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+|`<mac-address>` |  The MAC address you want to configure for the interface. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1 link mac-address 00:02:00:00:00:05
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set interface \<interface-id\> link mtu</h>
 
 Configures the maximum transmission unit (MTU) for the interface. You can set a value between 552 and 9216. The default setting is 9216.

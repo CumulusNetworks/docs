@@ -256,7 +256,7 @@ cumulus@switch:~$ nv set nve vxlan mtu 1500
 
 ## <h>nv set nve vxlan port</h>
 
-Configures the UDP port for VXLAN frames.
+Configures the UDP port that Cumulus Linux uses for VXLAN encapsulation. The default port is 4789.
 
 ### Version History
 

@@ -275,9 +275,13 @@ cumulus@switch:~$ nv set system forwarding hash-seed 50
 
 ## <h>nv set system forwarding ecmp-weight-normalisation max-hw-weight</h>
 
-Configures the maximum number of hardware entries for weighted ECMP. You can specify a value between 10 and 255. The default value is 32.
+Configures the maximum number of hardware entries for weighted ECMP. You can specify a value between 8 and 4096. The default value is 32.
 
 The NVIDIA Spectrum switch supports weight programming for ECMP by repeating each individual path, which consumes resources. To reduce hardware utilization of ECMP resources, you can enable weight normalization.
+
+{{%notice note%}}
+In Cumulus Linux 5.9 and earlier, the minimum number of hardware entries for weighted ECMP that you can specify is 10 and the maximum number is 255.
+{{%/notice%}}
 
 ### Version History
 

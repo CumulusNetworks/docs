@@ -29,6 +29,7 @@ NVIDIA SN5400 (400G Spectrum-4)
 - {{<link url="Quick-Start-Guide/#get-started" text="DHCP Option 61">}} (pre-provision a switch with its serial number) is enabled by default when Cumulus Linux boots
 - {{<link url="Optional-BGP-Configuration/#graceful-bgp-shutdown-on-a-peer" text="Graceful shutdown on a peer">}}
 - {{<link url="Synchronous-Ethernet-SyncE/#minimum-acceptable-quality-level" text="SyncE minimum acceptable quality level option">}}
+- {{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" text="Adaptive routing resource optimization in large scale deployments">}}
 - {{< expand "Additional OID support for SNMP MIBs" >}}
 | <div style="width:250px">MIB | OID | Description |
 | --- | ----| ----------- |

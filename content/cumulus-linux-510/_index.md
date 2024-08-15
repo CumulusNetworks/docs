@@ -6,7 +6,6 @@ subsection: true
 cascade:
     product: Cumulus Linux
     version: "5.10"
-    draft: true
 toc: 1
 ---
 NVIDIA® Cumulus Linux is the first full-featured {{<exlink url="https://www.debian.org/releases/bookworm/" text="Debian bookworm" >}}-based, Linux operating system for the networking industry.

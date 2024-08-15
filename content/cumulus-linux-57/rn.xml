@@ -123,6 +123,12 @@ leaf01# exit</td>
 <td>5.9.0-5.10.0</td>
 </tr>
 <tr>
+<td>3763543</td>
+<td>The NVIDIA SN4600C switch fails to boot fully after  you upgrade from Cumulus Linux 4.2.1 to 5.7 with ONIE install. To work around this issue, perform an intermediate step image upgrade; for example, upgrade the switch from Cumulus Linux 4.2.1 to 5.2.1 to 5.7.0.</td>
+<td>5.7.0-5.9.1</td>
+<td>5.10.0</td>
+</tr>
+<tr>
 <td>3752266</td>
 <td>If you configure DHCP Server HA, the switch failover might cause the DHCP service to report a {{time mismatch too great}} error.</td>
 <td>5.7.0-5.8.0</td>

@@ -9,9 +9,12 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 
 ## August 2024
 <!-- Air:WhatsNew -->
+### 82.2024.0815-011
+- New UI now available for all users
+<!-- Air:WhatsNew -->
+
 ### 82.2024.0801-011
 - Changed simulation title requirements
-<!-- Air:WhatsNew -->
 
 ## July 2024
 ### 82.2024.0722-014

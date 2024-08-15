@@ -383,7 +383,7 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <tr>
 <td>4004453</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
-<td></td>
+<td>5.9.0-5.9.1</td>
 </tr>
 <tr>
 <td>3990258</td>

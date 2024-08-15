@@ -26,6 +26,12 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <td></td>
 </tr>
 <tr>
+<td>4004453</td>
+<td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
+<td>5.9.0-5.9.1</td>
+<td>5.10.0</td>
+</tr>
+<tr>
 <td>3990258</td>
 <td>Cumulus Linux incorrectly handles unnumbered neighbor types, which causes discrepancies in the running configuration and session flaps during FRR reload.</td>
 <td>5.9.0-5.9.1</td>
@@ -720,6 +726,12 @@ You can safely ignore this warning.</td>
 <td>Cumulus Linux incorrectly handles unnumbered neighbor types, which causes discrepancies in the running configuration and session flaps during FRR reload.</td>
 <td>5.9.0-5.10.0</td>
 <td></td>
+</tr>
+<tr>
+<td>4004453</td>
+<td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
+<td>5.9.0-5.9.1</td>
+<td>5.10.0</td>
 </tr>
 <tr>
 <td>3990258</td>

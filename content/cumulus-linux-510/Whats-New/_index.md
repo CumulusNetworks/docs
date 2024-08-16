@@ -204,9 +204,17 @@ nv action upload system telemetry hft job <hft-job-id> <remote-url-upload>
 
 ## Release Considerations
 
+Review the following considerations before you upgrade to Cumulus Linux 5.10.
+
+### NVUE Commands After Upgrade
+
 Cumulus Linux 5.10 includes the NVUE object model. After you upgrade to Cumulus Linux 5.10, running NVUE configuration commands might override configuration for features that are now configurable with NVUE and removes configuration you added manually to files or with automation tools like Ansible, Chef, or Puppet. To keep your configuration, you can do one of the following:
 - Update your automation tools to use NVUE.
 - {{<link url="NVUE-CLI/#configure-nvue-to-ignore-linux-files" text="Configure NVUE to ignore certain underlying Linux files">}} when applying configuration changes.
 - Use Linux and FRR (vtysh) commands instead of NVUE for **all** switch configuration.
 
 Cumulus Linux 3.7, 4.3, and 4.4 continue to support NCLU. For more information, contact your NVIDIA Spectrum platform sales representative.
+
+### ASIC Monitoring Histogram Collection
+
+In Cumulus Linux 5.10.0, there is an issue with ASIC monitoring histogram collection. Before using this feature, review open issue ID 4037224 in the {{<link title="Cumulus Linux 5.10 Release Notes" text="Cumulus Linux 5.10 Release Notes">}}.

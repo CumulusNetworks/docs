@@ -20,52 +20,22 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <td></td>
 </tr>
 <tr>
-<td>4007329</td>
-<td>Cumulus Linux incorrectly handles unnumbered neighbor types, which causes discrepancies in the running configuration and session flaps during FRR reload.</td>
-<td>5.9.0-5.10.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4004453</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
-<td>5.9.0-5.9.1</td>
-<td>5.10.0</td>
+<td>4.3.0-4.4.5, 5.0.0-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3990258</td>
 <td>Cumulus Linux incorrectly handles unnumbered neighbor types, which causes discrepancies in the running configuration and session flaps during FRR reload.</td>
-<td>5.9.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.0-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3985600</td>
 <td>NTP initialization issues prevent the NTP service from starting on a non-default VRF.</td>
 <td>5.9.0-5.9.1</td>
 <td>5.10.0</td>
-</tr>
-<tr>
-<td>3982256</td>
-<td>After {{switchd}} restarts,  the sFlow sampling rate set in the hardware might not match with the configured values for about 3 minutes. This issue occurs because interfaces are not yet up during  the initial sampling rate setting.</td>
-<td>5.9.1-5.10.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3982251</td>
-<td>When there are multiple interface flaps with sFlow on 100G interfaces, sFlow might use a different value than the one configured.</td>
-<td>5.9.1-5.10.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3982250</td>
-<td>When you start Cumulus VX in Vagrant with libvirt, VM provisioning might fail with errors that indicate a missing {{ifup@eth0.service}} systemd service.</td>
-<td>5.9.0-5.10.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3982239</td>
-<td>MLAG bonds might report an incorrect DOWN reason of {{lacp partner mac mismatch}} when the bond is out of service for another reason.</td>
-<td>5.9.0-5.10.0</td>
-<td></td>
 </tr>
 <tr>
 <td>3982222</td>
@@ -89,12 +59,6 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <td>3980943</td>
 <td>The default NIC for the VMWare OVA file is set to vmxnet3 instead of e1000.</td>
 <td>5.9.0-5.10.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3980942</td>
-<td>SNMP IF-MIB reports all interfaces (including layer 3 and VNIs) as {{ifType=6}} (ethernetCsmacd) instead of IANA MIB-II types. </td>
-<td>5.9.1-5.10.0</td>
 <td></td>
 </tr>
 <tr>
@@ -166,8 +130,8 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <tr>
 <td>3950322</td>
 <td>After {{switchd}} restarts,  the sFlow sampling rate set in the hardware might not match with the configured values for about 3 minutes. This issue occurs because interfaces are not yet up during  the initial sampling rate setting.</td>
-<td>5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.1-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3949367</td>
@@ -202,8 +166,8 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <tr>
 <td>3935658</td>
 <td>SNMP IF-MIB reports all interfaces (including layer 3 and VNIs) as {{ifType=6}} (ethernetCsmacd) instead of IANA MIB-II types. </td>
-<td>5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.1-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3929440</td>
@@ -220,14 +184,14 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <tr>
 <td>3926523</td>
 <td>When there are multiple interface flaps with sFlow on 100G interfaces, sFlow might use a different value than the one configured.</td>
-<td>5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.1-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3925259</td>
 <td>When you start Cumulus VX in Vagrant with libvirt, VM provisioning might fail with errors that indicate a missing {{ifup@eth0.service}} systemd service.</td>
-<td>5.9.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.0-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3917601</td>
@@ -310,9 +274,9 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 </tr>
 <tr>
 <td>3875589</td>
-<td>MLAG bonds might report an LACP partner MAC mismatch unexpectedly during LACP negotation and MLAG convergence until the bond reaches a dual connected state. There is no impact to bonds when this mismatch is reported.</td>
-<td>5.9.0-5.9.1</td>
-<td>5.10.0</td>
+<td>MLAG bonds might report an incorrect DOWN reason of {{lacp partner mac mismatch}} when the bond is out of service for another reason.</td>
+<td>5.9.0-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3873219</td>
@@ -343,6 +307,12 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 <td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
 <td>5.9.0-5.10.0</td>
 <td></td>
+</tr>
+<tr>
+<td>3821643</td>
+<td>When using SSM and the upstream interface goes away (the source stops sending or the link goes down) the PIMREG interface is added to the outgoing interface list of the S,G and is never removed. As a result, multicast traffic that hits the impacted S,G is forwarded to the CPU and dropped by the switch.</td>
+<td>5.9.0-5.9.1</td>
+<td>5.10.0</td>
 </tr>
 <tr>
 <td>3775686</td>
@@ -722,40 +692,22 @@ You can safely ignore this warning.</td>
 <td></td>
 </tr>
 <tr>
-<td>4007329</td>
-<td>Cumulus Linux incorrectly handles unnumbered neighbor types, which causes discrepancies in the running configuration and session flaps during FRR reload.</td>
-<td>5.9.0-5.10.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4004453</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
-<td>5.9.0-5.9.1</td>
-<td>5.10.0</td>
+<td>4.3.0-4.4.5, 5.0.0-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3990258</td>
 <td>Cumulus Linux incorrectly handles unnumbered neighbor types, which causes discrepancies in the running configuration and session flaps during FRR reload.</td>
-<td>5.9.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.0-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3985600</td>
 <td>NTP initialization issues prevent the NTP service from starting on a non-default VRF.</td>
 <td>5.9.0-5.9.1</td>
 <td>5.10.0</td>
-</tr>
-<tr>
-<td>3982250</td>
-<td>When you start Cumulus VX in Vagrant with libvirt, VM provisioning might fail with errors that indicate a missing {{ifup@eth0.service}} systemd service.</td>
-<td>5.9.0-5.10.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3982239</td>
-<td>MLAG bonds might report an incorrect DOWN reason of {{lacp partner mac mismatch}} when the bond is out of service for another reason.</td>
-<td>5.9.0-5.10.0</td>
-<td></td>
 </tr>
 <tr>
 <td>3982222</td>
@@ -850,8 +802,8 @@ You can safely ignore this warning.</td>
 <tr>
 <td>3925259</td>
 <td>When you start Cumulus VX in Vagrant with libvirt, VM provisioning might fail with errors that indicate a missing {{ifup@eth0.service}} systemd service.</td>
-<td>5.9.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.0-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3917601</td>
@@ -940,9 +892,9 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 </tr>
 <tr>
 <td>3875589</td>
-<td>MLAG bonds might report an LACP partner MAC mismatch unexpectedly during LACP negotation and MLAG convergence until the bond reaches a dual connected state. There is no impact to bonds when this mismatch is reported.</td>
-<td>5.9.0-5.9.1</td>
-<td>5.10.0</td>
+<td>MLAG bonds might report an incorrect DOWN reason of {{lacp partner mac mismatch}} when the bond is out of service for another reason.</td>
+<td>5.9.0-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3873219</td>
@@ -973,6 +925,12 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 <td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
 <td>5.9.0-5.10.0</td>
 <td></td>
+</tr>
+<tr>
+<td>3821643</td>
+<td>When using SSM and the upstream interface goes away (the source stops sending or the link goes down) the PIMREG interface is added to the outgoing interface list of the S,G and is never removed. As a result, multicast traffic that hits the impacted S,G is forwarded to the CPU and dropped by the switch.</td>
+<td>5.9.0-5.9.1</td>
+<td>5.10.0</td>
 </tr>
 <tr>
 <td>3775686</td>

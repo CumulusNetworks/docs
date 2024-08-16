@@ -15,6 +15,7 @@ pdfhidden: True
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="4007614"></a> [4007614](#4007614) <a name="4007614"></a> <br />None | Static ARP configured with NVUE commands is deleted when the relevant layer 3 interface flaps. | 5.8.0-5.10.0 | |
+| <a name="4004453"></a> [4004453](#4004453) <a name="4004453"></a> <br />None | The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful. | 4.3.0-4.4.5, 5.0.0-5.10.0 | |
 | <a name="3982222"></a> [3982222](#3982222) <a name="3982222"></a> <br /> | When SPAN is enabled on a bridge member, an ARP or Gratuitous ARP received during a failover event between locally attached redundant devices such as load balancers might fail to update the bridge MAC table to point to the interface with the newly active load balancer. | 5.4.0-5.10.0 | |
 | <a name="3970626"></a> [3970626](#3970626) <a name="3970626"></a> <br /> | When you configure the <code>bridge.kernel_mac_refresh_interval</code> parameter in the <code>switchd.conf</code> file, a <code>switchd</code> restart fails with core dump. | 5.8.0-5.9.1 | 5.10.0|
 | <a name="3956091"></a> [3956091](#3956091) <a name="3956091"></a> <br />None | When you modify the default QoS configuration on top of the base RoCE configuration, NVUE reports an <code>Invalid</code> exception in the <code>nv show qos roce</code> command output even when the configuration is valid. | 5.8.0-5.10.0 | |

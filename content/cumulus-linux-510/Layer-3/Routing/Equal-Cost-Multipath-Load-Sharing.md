@@ -509,6 +509,8 @@ The benefits of using adaptive routing include:
 
 With adaptive routing, the switch forwards packets to the less loaded path on a per packet basis to best utilize the fabric resources and avoid congestion. The change decision for port selection is set to one microsecond; you cannot change it.
 
+Cumulus Linux supports ECMP resource optimization for adaptive routing, which addresses the requirement of large numbers of ECMP groups during routing protocol convergence in transient scenarios.
+
 Cumulus Linux supports adaptive routing with:
 - Switches with the Spectrum-4 ASIC at 400G and 200G speeds.
 - {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RoCE2" >}} unicast traffic.

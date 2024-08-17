@@ -201,6 +201,19 @@ leaf01# exit</td>
 <td>5.8.0-5.10.0</td>
 </tr>
 <tr>
+<td>3711913</td>
+<td>When you set an IPv4 ACL with a log action, logs do not appear under syslog after a match. This issue affects bridged packets when the rule is installed in iptables. To work around this issue, set the ACL with a MAC rule type so that it is installed in ebtables and the packets are logged correctly in {{syslog}}.The following shows an example configuration:
+cumulus@switch:~$ nv set acl one rule 1 action log log-prefix NVIDIA
+cumulus@switch:~$ nv set acl one rule 1 match ip protocol udp
+cumulus@switch:~$ nv set acl one rule 1 match ip source-ip 10.0.14.2
+cumulus@switch:~$ nv set acl one rule 1 match ip udp source-port 34
+cumulus@switch:~$ nv set acl one rule 1 match mac protocol ipv4
+cumulus@switch:~$ nv set acl one type mac
+</td>
+<td>5.7.0-5.9.1</td>
+<td>5.10.0</td>
+</tr>
+<tr>
 <td>3710396</td>
 <td>In an eBGP multihop configuration with dynamic neighbors, Cumulus Linux does not update the configured TTL but uses the MAXTTL instead. This issue is only observed with dynamic peers.</td>
 <td>5.6.0-5.7.0</td>

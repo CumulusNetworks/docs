@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4037224"></a> [4037224](#4037224) <a name="4037224"></a> <br /> | ASIC monitoring histogram collection might not work because of a crash in the {{asic-monitor}} service. To work around this issue, see <a href="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-510/Whats-New/#release-considerations">What's New</a> | 5.10.0 | |
 | <a name="4007614"></a> [4007614](#4007614) <a name="4007614"></a> <br />None | Static ARP configured with NVUE commands is deleted when the relevant layer 3 interface flaps. | 5.8.0-5.10.0 | |
 | <a name="4004453"></a> [4004453](#4004453) <a name="4004453"></a> <br />None | The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful. | 4.3.0-4.4.5, 5.0.0-5.10.0 | |
 | <a name="3982222"></a> [3982222](#3982222) <a name="3982222"></a> <br /> | When SPAN is enabled on a bridge member, an ARP or Gratuitous ARP received during a failover event between locally attached redundant devices such as load balancers might fail to update the bridge MAC table to point to the interface with the newly active load balancer. | 5.4.0-5.10.0 | |

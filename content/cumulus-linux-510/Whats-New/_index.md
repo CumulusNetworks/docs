@@ -204,9 +204,54 @@ nv action upload system telemetry hft job <hft-job-id> <remote-url-upload>
 
 ## Release Considerations
 
+Review the following considerations before you upgrade to Cumulus Linux 5.10.
+
+### NVUE Commands After Upgrade
+
 Cumulus Linux 5.10 includes the NVUE object model. After you upgrade to Cumulus Linux 5.10, running NVUE configuration commands might override configuration for features that are now configurable with NVUE and removes configuration you added manually to files or with automation tools like Ansible, Chef, or Puppet. To keep your configuration, you can do one of the following:
 - Update your automation tools to use NVUE.
 - {{<link url="NVUE-CLI/#configure-nvue-to-ignore-linux-files" text="Configure NVUE to ignore certain underlying Linux files">}} when applying configuration changes.
 - Use Linux and FRR (vtysh) commands instead of NVUE for **all** switch configuration.
 
 Cumulus Linux 3.7, 4.3, and 4.4 continue to support NCLU. For more information, contact your NVIDIA Spectrum platform sales representative.
+
+### ASIC Monitoring Histogram Collection
+
+In Cumulus Linux 5.10.0, there is an issue with {{<link url="ASIC-Monitoring/#histogram-collection" text="ASIC monitoring histogram collection">}} (issue ID 4037224 in the {{<link title="Cumulus Linux 5.10 Release Notes" text="Cumulus Linux 5.10 Release Notes">}}).
+
+{{< expand "Issue Workaround" >}}
+If you configured histogram collection with NVUE, check that the `asic-monitor@default.service` systemd service is in the failed state with the `systemctl status asic-monitor@default.service` command, then create and apply the following patch to your NVUE configuration:
+
+```
+cumulus@switch:~$ nv config patch patch.yaml
+Loading config file: patch.yaml from current directory.
+cumulus@switch:~$ nv config diff
+- set:
+    system:
+      config:
+        snippet:
+          export_off:
+            content: |
+              monitor.export.state = disabled
+            file: /etc/cumulus/datapath/monitor.conf
+      telemetry:
+        histogram:
+          export:
+            state: enabled
+cumulus@switch:~$ nv config apply
+```
+
+If you configured histogram collection by editing the files directly, check that the `asic-monitor.service` systemd service is in the failed state, then update the content of the `/etc/nv-telemetry/prometheus/config.yaml` file as shown below. You must reset failed `systemd` services with the `sudo systemctl reset-failed` command, then restart the `asic-monitor.service` with the `sudo systemctl restart asic-monitor.service` command.
+
+```
+cumulus@switch:~$ sudo nano /etc/nv-telemetry/prometheus/config.yaml
+receivers:
+  otlp/1:
+    protocols:
+      grpc:
+        endpoint: 127.0.0.1:4317
+processors: {}
+exporters: {}
+service: {}
+```
+{{< /expand >}}

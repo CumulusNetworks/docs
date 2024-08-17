@@ -61,6 +61,7 @@ To set a static IP address and gateway address for eth0:
 {{< tab "NVUE Commands ">}}
 
 ```
+cumulus@switch:~$ nv unset interface eth0 ip address dhcp
 cumulus@switch:~$ nv set interface eth0 ip address 192.0.2.42/24
 cumulus@switch:~$ nv set interface eth0 ip gateway 192.0.2.1
 cumulus@switch:~$ nv config apply

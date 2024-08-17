@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4037224"></a> [4037224](#4037224) <a name="4037224"></a> <br /> | ASIC monitoring histogram collection might not work because of a crash in the {{asic-monitor}} service. To work around this issue, see <a href="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-510/Whats-New/#release-considerations">What's New</a> | 5.10.0 | |
 | <a name="4007614"></a> [4007614](#4007614) <a name="4007614"></a> <br />None | Static ARP configured with NVUE commands is deleted when the relevant layer 3 interface flaps. | 5.8.0-5.10.0 | |
 | <a name="3982222"></a> [3982222](#3982222) <a name="3982222"></a> <br /> | When SPAN is enabled on a bridge member, an ARP or Gratuitous ARP received during a failover event between locally attached redundant devices such as load balancers might fail to update the bridge MAC table to point to the interface with the newly active load balancer. | 5.4.0-5.10.0 | |
 | <a name="3970626"></a> [3970626](#3970626) <a name="3970626"></a> <br /> | When you configure the <code>bridge.kernel_mac_refresh_interval</code> parameter in the <code>switchd.conf</code> file, a <code>switchd</code> restart fails with core dump. | 5.8.0-5.9.1 | 5.10.0|

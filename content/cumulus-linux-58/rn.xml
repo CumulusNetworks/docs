@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4035681</td>
+<td>The {{nv show interface &lt;interface&gt;}} commands show RX and TX Power values from the wrong lanes on breakout ports.</td>
+<td>5.8.0-5.10.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4007614</td>
 <td>Static ARP configured with NVUE commands is deleted when the relevant layer 3 interface flaps.</td>
 <td>5.8.0-5.10.0</td>
@@ -16,6 +22,12 @@
 <td>4004453</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
 <td>4.3.0-4.4.5, 5.0.0-5.10.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3982242</td>
+<td>PTP does not come up with IPv6 over a trunk port because the IPv6 VLAN tag is not sent. PTP over an IPv4 trunk works fine.</td>
+<td>5.8.0-5.10.0</td>
 <td></td>
 </tr>
 <tr>
@@ -305,6 +317,19 @@ leaf01# exit</td>
 <td>When sending untagged frames to the CPU with an MTU higher than the SVD (single VXLAN device) MTU, the kernel might crash.</td>
 <td>5.4.0-5.8.0</td>
 <td>5.9.0-5.10.0</td>
+</tr>
+<tr>
+<td>3711913</td>
+<td>When you set an IPv4 ACL with a log action, logs do not appear under syslog after a match. This issue affects bridged packets when the rule is installed in iptables. To work around this issue, set the ACL with a MAC rule type so that it is installed in ebtables and the packets are logged correctly in {{syslog}}.The following shows an example configuration:
+cumulus@switch:~$ nv set acl one rule 1 action log log-prefix NVIDIA
+cumulus@switch:~$ nv set acl one rule 1 match ip protocol udp
+cumulus@switch:~$ nv set acl one rule 1 match ip source-ip 10.0.14.2
+cumulus@switch:~$ nv set acl one rule 1 match ip udp source-port 34
+cumulus@switch:~$ nv set acl one rule 1 match mac protocol ipv4
+cumulus@switch:~$ nv set acl one type mac
+</td>
+<td>5.7.0-5.9.1</td>
+<td>5.10.0</td>
 </tr>
 <tr>
 <td>3702431</td>

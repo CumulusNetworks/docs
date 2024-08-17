@@ -217,7 +217,7 @@ Cumulus Linux 3.7, 4.3, and 4.4 continue to support NCLU. For more information, 
 
 ### ASIC Monitoring Histogram Collection
 
-In Cumulus Linux 5.10.0, there is an issue with {{<link url="ASIC-Monitoring/#histogram-collection" text="ASIC monitoring histogram collection">}} (issue ID 4037224 in the {{<link title="Cumulus Linux 5.10 Release Notes" text="Cumulus Linux 5.10 Release Notes">}}).
+In Cumulus Linux 5.10.0, there is an issue with {{<link url="ASIC-Monitoring/#histogram-collection" text="ASIC monitoring histogram collection">}}.
 
 {{< expand "Issue Workaround" >}}
 If you configured histogram collection with NVUE, check that the `asic-monitor@default.service` systemd service is in the failed state with the `systemctl status asic-monitor@default.service` command, then create and apply the following patch to your NVUE configuration:

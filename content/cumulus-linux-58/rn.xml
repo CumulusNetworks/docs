@@ -277,12 +277,6 @@ leaf01# exit</td>
 <td>5.9.0-5.10.0</td>
 </tr>
 <tr>
-<td>3763543</td>
-<td>The NVIDIA SN4600C switch fails to boot fully after  you upgrade from Cumulus Linux 4.2.1 to 5.7 with ONIE install. To work around this issue, perform an intermediate step image upgrade; for example, upgrade the switch from Cumulus Linux 4.2.1 to 5.2.1 to 5.7.0.</td>
-<td>5.7.0-5.9.1</td>
-<td>5.10.0</td>
-</tr>
-<tr>
 <td>3759515</td>
 <td>After upgrading to Cumulus Linux 5.8, MLAG reports bonds as {{bpdu guard mismatch}}. To work around this issue, restart the MLAG service with the {{systemctl restart clagd}} on the device that reports the conflict.</td>
 <td>5.8.0</td>

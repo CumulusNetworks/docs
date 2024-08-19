@@ -31,12 +31,6 @@
 <td></td>
 </tr>
 <tr>
-<td>3983871</td>
-<td>When you run the {{netq install}} command on a VM with an IP address configured that overlaps the NetQ pod or service IP subnets 10.244.0.0/16 or 10.96.0.0/16, the install prechecks will fail but subsequent attempts to run {{netq install}} will fail even after changing the VM IP address to not conflict with these subnets. To work around this issue, run the {{netq bootstrap reset purge-db}} command and rerun the {{netq install}} command.</td>
-<td>4.11.0-4.13.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3981655</td>
 <td>When you upgrade your NetQ VM, some devices in the NetQ inventory might appear as rotten. To work around this issue, restart NetQ agents on devices or upgrade them to the latest agent version after the NetQ VM upgrade is completed.</td>
 <td>4.11.0-4.13.0</td>

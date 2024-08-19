@@ -3206,25 +3206,25 @@ Please contact &lt;licensing@cumulusnetworks.com&gt; at your convenience so we c
 <td><p>ERROR</p></td>
 <td><p>Rule with LOG must be followed by same rule with DROP</p></td>
 <td><p>An ACL rule with a LOG action must be followed by same rule with a DROP action.</p></td>
-<td><p>See ACL user documentaion for more info.</p></td>
+<td><p>See ACL user documentation for more info.</p></td>
 </tr>
 <tr class="odd">
 <td><p>ERROR</p></td>
 <td><p>Rule with LOG must be followed by same rule with DROP</p></td>
 <td><p>An ACL rule with a LOG action must be followed by same rule with a DROP action.</p></td>
-<td><p>See ACL user documentaion for more info.</p></td>
+<td><p>See ACL user documentation for more info.</p></td>
 </tr>
 <tr class="even">
 <td><p>ERROR</p></td>
 <td><p>Rule with log watcher must be have DROP action</p></td>
 <td><p>An ACL rule with a watcher action must be followed by same rule with a DROP action.</p></td>
-<td><p>See ACL user documentaion for more info.</p></td>
+<td><p>See ACL user documentation for more info.</p></td>
 </tr>
 <tr class="odd">
 <td><p>ERROR</p></td>
 <td><p>Rule with LOG must be followed by same rule with DROP</p></td>
 <td><p>An ACL rule with a LOG action must be followed by same rule with a DROP action.</p></td>
-<td><p>See ACL user documentaion for more info.</p></td>
+<td><p>See ACL user documentation for more info.</p></td>
 </tr>
 <tr class="even">
 <td><p>ERROR</p></td>
@@ -3236,7 +3236,7 @@ Please contact &lt;licensing@cumulusnetworks.com&gt; at your convenience so we c
 <td><p>ERROR</p></td>
 <td><p>Inverse flags for SRC/DST IP, IN/OUT interface, TOS, Protocol not supported</p></td>
 <td><p>ACL inverse match flags are not supported.</p></td>
-<td><p>See ACL user documentaion.</p></td>
+<td><p>See ACL user documentation.</p></td>
 </tr>
 <tr class="even">
 <td><p>ERROR</p></td>
@@ -3302,7 +3302,7 @@ Please contact &lt;licensing@cumulusnetworks.com&gt; at your convenience so we c
 <td><p>ERROR</p></td>
 <td><p>Inverse flags for SRC/DST IP, IN/OUT interface, TOS, Protocol not supported</p></td>
 <td><p>ACL inverse match flags are not supported.</p></td>
-<td><p>See ACL user documentaion.</p></td>
+<td><p>See ACL user documentation.</p></td>
 </tr>
 <tr class="odd">
 <td><p>ERROR</p></td>

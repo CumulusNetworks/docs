@@ -469,7 +469,7 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 </tr>
 <tr>
 <td>3965021</td>
-<td>The {{ethtool -m}} command shows incorrect optical DOM information for SFP modules. To work around this issue, run the {{l1-show}} command to show optical power values for SFP optical transceivers..</td>
+<td>The optical DOM information in {{ethtool -m}} command output is incorrect for SFP modules.</td>
 <td>5.9.1</td>
 </tr>
 <tr>

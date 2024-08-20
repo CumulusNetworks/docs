@@ -7,15 +7,51 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4007329</td>
-<td>Cumulus Linux incorrectly handles unnumbered neighbor types, which causes discrepancies in the running configuration and session flaps during FRR reload.</td>
-<td>5.9.0-5.10.0</td>
+<td>4037224</td>
+<td>ASIC monitoring histogram collection might not work because of a crash in the {{asic-monitor}} service. To work around this issue, see the &lt;a href="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-510/Whats-New/#release-considerations"&gt;Release Considerations section of the What’s New&lt;/a&gt;.</td>
+<td>5.10.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4035681</td>
+<td>The {{nv show interface &lt;interface&gt;}} commands show RX and TX Power values from the wrong lanes on breakout ports.</td>
+<td>5.8.0-5.10.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4023318</td>
+<td>If you run {{nv set}} commands after you perform an upgrade but before a reboot, NVUE creates a revision based off the pre-upgrade version. After reboot, the revision contains pre-upgrade data that might cause it to fail during {{config apply}}.  To work around this issue, detach the stale revision after upgrade with the {{nv config detach}} command.</td>
+<td>5.10.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4016216</td>
+<td>If a ZTP script includes a directive to reboot, the reboot might stop the running ZTP process before it is able to disable itself from running again. As a result, the ZTP process starts again when the system comes back up. To work around this issue, run {{shutdown -r +1}} to schedule a reboot after one minute so that the ZTP process can successfully complete disabling the {{ztp.service}} systemd service.</td>
+<td>5.10.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4007613</td>
+<td>If there are multiple relay switches in the path reaching the DHCP server, DHCP packets are duplicated at each transit relay switch and the server receives duplicate packets.</td>
+<td>5.9.1-5.10.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4007590</td>
+<td>When you upgrade Cumulus Linux 5.9.1 to Cumulus Linux 5.10 with package upgrade, the NTP service stops. To restart the NTP service, enable, then restart the service in the VRF in which it was running with the {{systemctl enable ntpsec@&lt;vrf&gt;}} and {{systemctl restart ntpsec@&lt;vrf&gt;}} commands.</td>
+<td>5.10.0</td>
 <td></td>
 </tr>
 <tr>
 <td>4005422</td>
 <td>When you upgrade Cumulus Linux 5.9.1 to Cumulus Linux 5.10 with package upgrade, the NTP service stops. To restart the NTP service, enable, then restart the service in the VRF in which it was running with the {{systemctl enable ntpsec@&lt;vrf&gt;}} and {{systemctl restart ntpsec@&lt;vrf&gt;}} commands.</td>
 <td>5.10.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4005261</td>
+<td> On a Spectrum-4 switch, if you use PTP on a 800G link, jumbo frames traversing the same link might cause a degradation in PTP performance.</td>
+<td>5.9.0-5.10.0</td>
 <td></td>
 </tr>
 <tr>
@@ -43,6 +79,12 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 <td>3875696</td>
 <td>The default TX State for 1G Base-X optical modules that are unconfigured or admin down in Cumulus Linux 5.7.0 and later is OFF.  However, on the first boot after upgrade from an earlier release, a module TX power might be ON or OFF depending on the TX State it was before the upgrade. The TX_Disable line is not properly set on first boot. To work around this issue, reboot the switch again, or {{ifup}} or {{ifdown}} the 1G Base-X interface to disable TX Power.</td>
 <td>5.7.0-5.10.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3861745</td>
+<td>On UEFI hardware (where the {{/sys/firmware/efi}} directory exists), using the update-grub program might generate a {{/boot/grub/grub.cfg}} that is incorrect for booting ONIE if the ONIE option is selected on the console while booting. To work around this issue, run {{mount LABEL="EFI System" /boot/efi}} before using update-grub.</td>
+<td>5.9.0-5.10.0</td>
 <td></td>
 </tr>
 <tr>
@@ -370,6 +412,11 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Affects </th>
 </tr>
 <tr>
+<td>4023637</td>
+<td>When you disable dynamic NAT manually in the {{/etc/cumulus/switchd.conf}} file instead of using NVUE commands but the dynamic NAT rules still exist in the {{/etc/cumulus/acl/policy,d/.rules}} file, the switch encounters a memory leak. To work around this issue, remove dynamic NAT rules in rules files in {{/etc/cumulus/acl/policy.d}} before you disable dynamic NAT in the {{/etc/cumulus/switchd.conf}} file.</td>
+<td>5.9.0-5.9.1</td>
+</tr>
+<tr>
 <td>4015327</td>
 <td>If you change the hostname in the {{/etc/hostname}} file after the {{asic_monitor@vrf}} service starts, the hostname  is not reflected in the Open Telemetry  exported resource attribute. To work around this issue, restart the {{asic_monitor@vrf}} service.</td>
 <td></td>
@@ -383,7 +430,7 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <tr>
 <td>4004453</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
-<td>5.9.0-5.9.1</td>
+<td>4.3.0-5.9.1</td>
 </tr>
 <tr>
 <td>3990258</td>
@@ -417,12 +464,12 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 </tr>
 <tr>
 <td>3966673</td>
-<td>In an EVPN multihoming configuration, if you enable multihoming without any local ESI configuration, {{arp-nd-redirect}} remains disabled unless you restart FRR with the {{sudo systemctl restart frr.service}} command.</td>
+<td>In an EVPN multihoming deployment, if you enable multihoming without any local ESI configuration, {{arp-nd-redirect}} remains disabled unless you restart FRR.</td>
 <td>5.9.1</td>
 </tr>
 <tr>
 <td>3965021</td>
-<td>The {{ethtool -m}} command shows incorrect optical DOM information for SFP modules. To work around this issue, run the {{l1-show}} command to show optical power values for SFP optical transceivers..</td>
+<td>The optical DOM information in {{ethtool -m}} command output is incorrect for SFP modules.</td>
 <td>5.9.1</td>
 </tr>
 <tr>
@@ -497,7 +544,7 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 </tr>
 <tr>
 <td>3927016</td>
-<td>Following an EVPN extended mobility event, where a host with IP address A and MAC address A moves within the fabric and now resides at IP address A and MAC address B, you might see traffic destined to this host experience drops as the flow is software forwarded on the egress VTEP.</td>
+<td>Following an EVPN extended mobility event, where a host with IPA and MACA moves within the fabric and now resides at IPA MACB, you might see traffic destined to this host experience drops as the flow is being software forwarded on the egress VTEP.</td>
 <td>5.9.1</td>
 </tr>
 <tr>
@@ -565,8 +612,13 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <td>5.9.0-5.9.1</td>
 </tr>
 <tr>
+<td>3878166</td>
+<td>The NVUE {{nv show interface eth0}} and {{nv show vrf}} commands take more than two minutes to run if you have configured hundreds of interfaces because NVUE makes repetitive system calls to get {{vlan/link/tunnel}} bridge information.</td>
+<td>5.9.0-5.9.1</td>
+</tr>
+<tr>
 <td>3875589</td>
-<td>MLAG bonds might report an LACP partner MAC mismatch unexpectedly during LACP negotation and MLAG convergence until the bond reaches a dual connected state. There is no impact to bonds when this mismatch is reported.</td>
+<td>MLAG bonds might report an incorrect DOWN reason of {{lacp partner mac mismatch}} when the bond is out of service for another reason.</td>
 <td>5.9.0-5.9.1</td>
 </tr>
 <tr>
@@ -590,6 +642,11 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <td>5.8.0-5.9.1</td>
 </tr>
 <tr>
+<td>3821643</td>
+<td>When using SSM and the upstream interface goes away (the source stops sending or the link goes down) the PIMREG interface is added to the outgoing interface list of the S,G and is never removed. As a result, multicast traffic that hits the impacted S,G is forwarded to the CPU and dropped by the switch.</td>
+<td>5.9.0-5.9.1</td>
+</tr>
+<tr>
 <td>3775686</td>
 <td>The BGP Suppress Route Advertisement feature under scale (more than 30000 routes) advertises partial updates to downstream neighbors. Because FRR does not read kernel route updates fast enough, the netlink socket receive buffer gets full and further update notifications are dropped.</td>
 <td>5.8.0-5.9.1</td>
@@ -597,6 +654,18 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <tr>
 <td>3763543</td>
 <td>The NVIDIA SN4600C switch fails to boot fully after  you upgrade from Cumulus Linux 4.2.1 to 5.7 with ONIE install. To work around this issue, perform an intermediate step image upgrade; for example, upgrade the switch from Cumulus Linux 4.2.1 to 5.2.1 to 5.7.0.</td>
+<td></td>
+</tr>
+<tr>
+<td>3711913</td>
+<td>When you set an IPv4 ACL with a log action, logs do not appear under syslog after a match. This issue affects bridged packets when the rule is installed in iptables. To work around this issue, set the ACL with a MAC rule type so that it is installed in ebtables and the packets are logged correctly in {{syslog}}.The following shows an example configuration:
+cumulus@switch:~$ nv set acl one rule 1 action log log-prefix NVIDIA
+cumulus@switch:~$ nv set acl one rule 1 match ip protocol udp
+cumulus@switch:~$ nv set acl one rule 1 match ip source-ip 10.0.14.2
+cumulus@switch:~$ nv set acl one rule 1 match ip udp source-port 34
+cumulus@switch:~$ nv set acl one rule 1 match mac protocol ipv4
+cumulus@switch:~$ nv set acl one type mac
+</td>
 <td>5.7.0-5.9.1</td>
 </tr>
 <tr>

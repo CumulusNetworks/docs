@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4004453</td>
+<td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
+<td>4.3.0-4.4.5, 5.0.0-5.10.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3982222</td>
 <td>When SPAN is enabled on a bridge member, an ARP or Gratuitous ARP received during a failover event between locally attached redundant devices such as load balancers might fail to update the bridge MAC table to point to the interface with the newly active load balancer.</td>
 <td>5.4.0-5.10.0</td>
@@ -123,12 +129,6 @@ leaf01# exit</td>
 <td>5.9.0-5.10.0</td>
 </tr>
 <tr>
-<td>3763543</td>
-<td>The NVIDIA SN4600C switch fails to boot fully after  you upgrade from Cumulus Linux 4.2.1 to 5.7 with ONIE install. To work around this issue, perform an intermediate step image upgrade; for example, upgrade the switch from Cumulus Linux 4.2.1 to 5.2.1 to 5.7.0.</td>
-<td>5.7.0-5.9.1</td>
-<td>5.10.0</td>
-</tr>
-<tr>
 <td>3752266</td>
 <td>If you configure DHCP Server HA, the switch failover might cause the DHCP service to report a {{time mismatch too great}} error.</td>
 <td>5.7.0-5.8.0</td>
@@ -193,6 +193,19 @@ leaf01# exit</td>
 <td>In RSTP mode when there is a bridge port flap, Cumulus Linux flushes, then re-adds dynamic MAC addresses on the peer link, which might cause short traffic disruption.</td>
 <td>5.6.0-5.7.0</td>
 <td>5.8.0-5.10.0</td>
+</tr>
+<tr>
+<td>3711913</td>
+<td>When you set an IPv4 ACL with a log action, logs do not appear under syslog after a match. This issue affects bridged packets when the rule is installed in iptables. To work around this issue, set the ACL with a MAC rule type so that it is installed in ebtables and the packets are logged correctly in {{syslog}}.The following shows an example configuration:
+cumulus@switch:~$ nv set acl one rule 1 action log log-prefix NVIDIA
+cumulus@switch:~$ nv set acl one rule 1 match ip protocol udp
+cumulus@switch:~$ nv set acl one rule 1 match ip source-ip 10.0.14.2
+cumulus@switch:~$ nv set acl one rule 1 match ip udp source-port 34
+cumulus@switch:~$ nv set acl one rule 1 match mac protocol ipv4
+cumulus@switch:~$ nv set acl one type mac
+</td>
+<td>5.7.0-5.9.1</td>
+<td>5.10.0</td>
 </tr>
 <tr>
 <td>3710396</td>

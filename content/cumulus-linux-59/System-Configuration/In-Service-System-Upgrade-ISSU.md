@@ -151,6 +151,10 @@ Upgrade mode includes the following options:
 - You can upgrade all the system components to the **latest** release without affecting traffic flow. You must restart the system after the upgrade completes with one of the {{<link url="#restart-mode" text="restart modes">}}.
 - You can perform an upgrade dry run, which provides information on the components you want to upgrade so that you can review potential upgrade issues (in some cases, upgrading new packages might also upgrade additional existing packages due to dependencies).
 
+{{%notice note%}}
+Cumulus Linux does not support warm upgrade in 5.9 on Spectrum-4 switches; for example, if you perform a warm upgrade from Cumulus Linux 5.9.0 to Cumulus Linux 5.9.1, the kernel crashes and the switch is unresponsive until you power cycle the switch. The first time you boot the switch from cold mode to warm mode, traffic flow is affected.
+{{%/notice%}}
+
 The following command upgrades all the system components to the latest release:
 
 {{< tabs "88 ">}}

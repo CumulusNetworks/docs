@@ -13,21 +13,9 @@
 <td></td>
 </tr>
 <tr>
-<td>4007614</td>
-<td>Static ARP configured with NVUE commands is deleted when the relevant layer 3 interface flaps.</td>
-<td>5.8.0-5.10.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4004453</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
 <td>4.3.0-4.4.5, 5.0.0-5.10.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3982242</td>
-<td>PTP does not come up with IPv6 over a trunk port because the IPv6 VLAN tag is not sent. PTP over an IPv4 trunk works fine.</td>
-<td>5.8.0-5.10.0</td>
 <td></td>
 </tr>
 <tr>
@@ -80,9 +68,9 @@
 </tr>
 <tr>
 <td>3896967</td>
-<td>PTP doesn't come up with IPv6 over a trunk port due to the IPv6 VLAN tag not being sent.  PTP over an IPv4 trunk works fine.</td>
-<td>5.8.0-5.9.1</td>
-<td>5.10.0</td>
+<td>PTP does not come up with IPv6 over a trunk port because the IPv6 VLAN tag is not sent. PTP over an IPv4 trunk works fine.</td>
+<td>5.8.0-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3895042</td>

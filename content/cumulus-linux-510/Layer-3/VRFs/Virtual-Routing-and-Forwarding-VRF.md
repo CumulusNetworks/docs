@@ -215,6 +215,7 @@ Cumulus Linux supports dynamic VRF route leaking (not static route leaking).
 - You cannot route leak overlapping addresses.
 - You can use VRF route leaking with EVPN in a symmetric routing configuration only.
 - You cannot use VRF route leaking between the tenant VRF and the default VRF with onlink next hops (BGP unnumbered).
+- On Spectrum-2 and Spectrum-3 switches with VRF leaking, you might see traffic loss of approximately five seconds during warm boot.
 {{%/notice%}}
 
 ### Configure Route Leaking

@@ -169,26 +169,26 @@ Verify that the date and time on the switch are correct. If the date and time ar
 {{< tabs "TabID166 ">}}
 {{< tab "NVUE Commands ">}}
 
-To show the current date and time, run the `nv show system date-time` command:
+To show the current date and time, run the `nv show system time` command:
 
 ```
-cumulus@switch:~$ nv show system date-time
+cumulus@switch:~$ nv show system time
                            operational                  
 -------------------------  -----------------------------
-local-time                 Wed 2023-11-22 11:22:54 EST  
-universal-time             Wed 2023-11-22 16:22:54 UTC  
-rtc-time                   Wed 2023-11-22 16:22:54      
-time-zone                  America/New_York (EST, -0500)
-system-clock-synchronized  no                           
-ntp-service                inactive                     
-rtc-in-local-tz            no                           
-unix-time                  1700670174.4371066
+local-time                 Wed 2024-08-21 17:39:44 EDT
+universal-time             Wed 2024-08-21 21:39:44 UTC
+rtc-time                   Fri 2024-08-16 16:50:06    
+time-zone                  US/Eastern (EDT, -0400)    
+system-clock-synchronized  no                         
+ntp-service                n/a                        
+rtc-in-local-tz            no                         
+unix-time                  1724276384.1403222
 ```
 
-To set the software clock according to the configured time zone, run the `nv action change system date-time <YYYY-MM-DD> <HH:MM:SS>` command; for example:
+To set the software clock according to the configured time zone, run the `nv action change system time <YYYY-MM-DD> <HH:MM:SS>` command; for example:
 
 ```
-cumulus@switch:~$ nv action change system date-time 2023-12-04 2:33:30
+cumulus@switch:~$ nv action change system time 2023-12-04 2:33:30
 System Date-time changed successfully
 Local Time is now Mon 2023-12-04 02:33:30 UTC
 Action succeeded

@@ -17,17 +17,17 @@ To show the current time zone, date, and time on the switch:
 {{< tab "NVUE Command ">}}
 
 ```
-cumulus@switch:~$ nv show system date-time
+cumulus@switch:~$ nv show system time
                            operational                  
 -------------------------  -----------------------------
-local-time                 Wed 2023-11-22 11:22:54 EST  
-universal-time             Wed 2023-11-22 16:22:54 UTC  
-rtc-time                   Wed 2023-11-22 16:22:54      
-time-zone                  America/New_York (EST, -0500)
-system-clock-synchronized  no                           
-ntp-service                inactive                     
-rtc-in-local-tz            no                           
-unix-time                  1700670174.4371066
+llocal-time                 Wed 2024-08-21 17:39:44 EDT
+universal-time             Wed 2024-08-21 21:39:44 UTC
+rtc-time                   Fri 2024-08-16 16:50:06    
+time-zone                  US/Eastern (EDT, -0400)    
+system-clock-synchronized  no                         
+ntp-service                n/a                        
+rtc-in-local-tz            no                         
+unix-time                  1724276384.1403222 
 ```
 
 {{< /tab >}}
@@ -120,10 +120,10 @@ To set the software clock according to the configured time zone:
 {{< tabs "TabID120 ">}}
 {{< tab "NVUE Command ">}}
 
-Run the `nv action change system date-time <clock-date> <clock-time>` command. Specify `<clock-date>` in YYYY-MM-DD format and `<clock-time>` in HH:MM:SS format.
+Run the `nv action change system time <clock-date> <clock-time>` command. Specify `<clock-date>` in YYYY-MM-DD format and `<clock-time>` in HH:MM:SS format.
 
 ```
-cumulus@switch:~$ nv action change system date-time 2023-12-04 2:33:30
+cumulus@switch:~$ nv action change system time 2023-12-04 2:33:30
 System Date-time changed successfully
 Local Time is now Mon 2023-12-04 02:33:30 UTC
 Action succeeded

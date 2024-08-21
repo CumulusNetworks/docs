@@ -302,13 +302,13 @@ iface br_default
 ...
 ```
 
-To put a range of ports into a bridge, use the `glob` keyword. For example, to add swp1 through swp10, swp12, and swp14 through swp20 to the bridge called `br_default`:
+The following example adds swp1 through swp3, swp10, and swp14 through swp20 to the bridge:
 
 ```
 ...
 auto br_default
 iface br_default
-    bridge-ports glob swp1-10 swp12 glob swp14-20
+    bridge-ports swp1 swp2 swp3 swp6 swp14 swp15 swp16 swp17 swp18 swp19 swp20
 ...
 ```
 
@@ -367,11 +367,21 @@ iface swp1
 To add an IP address to a bridge interface, include the address under the `iface` stanza in the `/etc/network/interfaces` file. If you want to use a VLAN other than the native one, set the bridge PVID:
 
 ```
+auto vlan10
+iface vlan10
+    address 10.1.10.2/24
+    vlan-raw-device br_default
+    vlan-id 10
 auto br_default
 iface br_default
-    address 10.1.10.2/24
     bridge-ports swp1 swp2
+    hwaddress 44:38:39:22:01:78
+    bridge-vlan-aware yes
+    bridge-vids 10
     bridge-pvid 1
+    bridge-stp yes
+    bridge-mcsnoop no
+    mstpctl-forcevers rstp
 ```
 
 To apply the configuration, check for typos:
@@ -415,7 +425,7 @@ Add the IP address directly under the `iface lo inet loopback` definition in the
 ```
 auto lo
 iface lo inet loopback
-    address 10.10.10.1
+    address 10.10.10.1/32
 ```
 
 {{< /tab >}}

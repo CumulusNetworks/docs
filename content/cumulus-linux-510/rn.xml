@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4037462</td>
+<td>The Open telemetry interface statistic description for {{nvswitch_histogram_interface_egress_buffer}} has a typographical error; engress should be egress.</td>
+<td>5.10.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4037224</td>
 <td>ASIC monitoring histogram collection might not work because of a crash in the {{asic-monitor}} service. To work around this issue, see the &lt;a href="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-510/Whats-New/#release-considerations"&gt;Release Considerations section of the What’s New&lt;/a&gt;.</td>
 <td>5.10.0</td>

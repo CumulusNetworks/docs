@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4037462"></a> [4037462](#4037462) <a name="4037462"></a> <br /> | The Open telemetry interface statistic description for <code>nvswitch_histogram_interface_egress_buffer</code> has a typographical error; engress should be egress. | 5.10.0 | |
 | <a name="4037224"></a> [4037224](#4037224) <a name="4037224"></a> <br /> | ASIC monitoring histogram collection might not work because of a crash in the <code>asic-monitor</code> service. To work around this issue, see the <a href="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-510/Whats-New/#release-considerations">Release Considerations section of the What’s New</a>. | 5.10.0 | |
 | <a name="4035681"></a> [4035681](#4035681) <a name="4035681"></a> <br /> | The <code>nv show interface <interface></code> commands show RX and TX Power values from the wrong lanes on breakout ports. | 5.8.0-5.10.0 | |
 | <a name="4023318"></a> [4023318](#4023318) <a name="4023318"></a> <br /> | If you run <code>nv set</code> commands after you perform an upgrade but before a reboot, NVUE creates a revision based off the pre-upgrade version. After reboot, the revision contains pre-upgrade data that might cause it to fail during <code>config apply</code>.  To work around this issue, detach the stale revision after upgrade with the <code>nv config detach</code> command. | 5.10.0 | |

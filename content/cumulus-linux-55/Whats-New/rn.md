@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4004453"></a> [4004453](#4004453) <a name="4004453"></a> <br />None | The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful. | 4.3.0-4.4.5, 5.0.0-5.10.0 | |
 | <a name="3982222"></a> [3982222](#3982222) <a name="3982222"></a> <br /> | When SPAN is enabled on a bridge member, an ARP or Gratuitous ARP received during a failover event between locally attached redundant devices such as load balancers might fail to update the bridge MAC table to point to the interface with the newly active load balancer. | 5.4.0-5.10.0 | |
 | <a name="3949367"></a> [3949367](#3949367) <a name="3949367"></a> <br /> | If you use NVUE to create an SNMP user with a password, then delete and recreate the user with additional encryption passwords (such as DES or AES), SNMP authorization fails for that user. | 5.3.1-5.9.1 | 5.10.0|
 | <a name="3917601"></a> [3917601](#3917601) <a name="3917601"></a> <br />None | If a packet containing an all zero source MAC address (00:00:00:00:00:00) is learned on the ASIC, <code>switchd</code> sends the learn notification to the kernel but the kernel rejects the MAC address as invalid. The ASIC continuously sends the mac-learn notifications, which wastes CPU resources. To work around this issue, configure ACLs to match on the all-zero source MAC address and drop the invalid packets. | 5.5.0-5.10.0 | |
@@ -163,6 +164,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4004453"></a> [4004453](#4004453) <a name="4004453"></a> <br />None | The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful. | 4.3.0-4.4.5, 5.0.0-5.10.0 | |
 | <a name="3982222"></a> [3982222](#3982222) <a name="3982222"></a> <br /> | When SPAN is enabled on a bridge member, an ARP or Gratuitous ARP received during a failover event between locally attached redundant devices such as load balancers might fail to update the bridge MAC table to point to the interface with the newly active load balancer. | 5.4.0-5.10.0 | |
 | <a name="3949367"></a> [3949367](#3949367) <a name="3949367"></a> <br /> | If you use NVUE to create an SNMP user with a password, then delete and recreate the user with additional encryption passwords (such as DES or AES), SNMP authorization fails for that user. | 5.3.1-5.9.1 | 5.10.0|
 | <a name="3917601"></a> [3917601](#3917601) <a name="3917601"></a> <br />None | If a packet containing an all zero source MAC address (00:00:00:00:00:00) is learned on the ASIC, <code>switchd</code> sends the learn notification to the kernel but the kernel rejects the MAC address as invalid. The ASIC continuously sends the mac-learn notifications, which wastes CPU resources. To work around this issue, configure ACLs to match on the all-zero source MAC address and drop the invalid packets. | 5.5.0-5.10.0 | |

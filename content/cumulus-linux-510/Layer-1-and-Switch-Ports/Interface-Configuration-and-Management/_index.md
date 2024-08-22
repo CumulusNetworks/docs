@@ -945,8 +945,6 @@ To show the assigned IP address on an interface:
 
 ```
 cumulus@switch:~$ nv show interface lo ip address
-nv show interface lo ip address
-             
 -------------
 10.10.10.1/24
 127.0.0.1/8  
@@ -977,36 +975,34 @@ To show the description (alias) for an interface:
 ```
 cumulus@switch$ nv show interface swp1
                          operational        applied
-------------------------  -----------------  -------
-type                      swp                swp    
-router                                              
-  pbr                                               
-    [map]                                           
-  ospf                                              
-    enable                                   off    
-  pim                                               
-    enable                                   off    
-  adaptive-routing                                  
-    enable                                   off    
-  ospf6                                             
-    enable                                   off    
-lldp                                                
-  dcbx-pfc-tlv            off                       
-  dcbx-ets-config-tlv     off                       
-  dcbx-ets-recomm-tlv     off                       
-  [neighbor]                                        
-evpn                                                
-  multihoming                                       
-    uplink                                   off    
-ptp                                                 
-  enable                                     off    
-[acl]                                               
-synce                                               
-  enable                                     off    
-neighbor                                            
-  [ipv4]                                            
-  [ipv6]                                            
-description               server1            server1
+-----------------------  -----------------  -------
+                          operational                   applied          
+------------------------  ----------------------------  -----------------
+...                                                            
+description               hypervisor_port_1             hypervisor_port_1
+ip                                                                       
+  vrrp                                                                   
+    enable                                              off              
+  igmp                                                                   
+    enable                                              off              
+  neighbor-discovery                                                     
+    enable                                              on               
+    router-advertisement                                                 
+      enable                                            off              
+    home-agent                                                           
+      enable                                            off              
+    [rdnss]                                                              
+    [dnssl]                                                              
+    [prefix]                                                             
+  ipv4                                                                   
+    forward                                             on               
+  ipv6                                                                   
+    enable                                              on               
+    forward                                             on               
+  vrf                                                   default          
+  [address]               fe80::4ab0:2dff:feeb:db72/64                   
+  [gateway]                                                              
+...
 ```
 
 {{< /tab >}}

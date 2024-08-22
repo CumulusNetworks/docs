@@ -398,7 +398,7 @@ cumulus@switch:~$ sudo ip addr add 10.0.0.1/30 dev swp1
 cumulus@switch:~$ sudo ip addr add 2001:DB8::1/126 dev swp1
 ```
 
-To remove an addresses from an interface, use `ip addr del`:
+To remove an address from an interface, use `ip addr del`:
 
 ```
 cumulus@switch:~$ sudo ip addr del 10.0.0.1/30 dev swp1

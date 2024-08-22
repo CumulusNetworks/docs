@@ -250,17 +250,38 @@ To view link status, run the `nv show interface` command.
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-To enable a port administratively:
+To enable a port administratively, edit the `/etc/network/interfaces` file to add the port, then run the `ifreload -a` command.
 
 ```
-cumulus@switch:~$ sudo ip link set swp1 up
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+auto swp1
+iface swp1
+...
 ```
 
-To enable all physical ports administratively, run the following bash script:
+```
+cumulus@switch:~$ sudo ifreload -a
+```
+
+To enable all physical ports administratively, edit the `/etc/network/interfaces` file to add all the interfaces, then run the `ifreload -a` command.
 
 ```
-cumulus@switch:~$ sudo su -
-cumulus@switch:~$ for i in /sys/class/net/*; do iface=`basename $i`; if [[ $iface == swp* ]]; then ip link set $iface up fi done
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+auto swp1
+iface swp1
+
+auto swp2
+iface swp2
+
+auto swp3
+iface swp3
+...
+```
+
+```
+cumulus@switch:~$ sudo ifreload -a
 ```
 
 To view link status, run the `ip link show` command.
@@ -270,7 +291,7 @@ To view link status, run the `ip link show` command.
 
 ## Configure Layer 2 Ports
 
-Cumulus Linux does not put all ports into a bridge by default. To create a bridge and configure one or more front panel ports as members of the bridge:
+Cumulus Linux does not put all ports into a bridge by default. To create a bridge and configure one or more front panel ports as members of the bridge, run the following commands.
 
 {{< tabs "TabID367 ">}}
 {{< tab "NVUE Commands ">}}
@@ -292,7 +313,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-The following configuration example places the front panel port swp1 into the default bridge called `br_default`:
+The following example places the front panel port swp1 into the default bridge called `br_default`:
 
 ```
 ...
@@ -302,13 +323,13 @@ iface br_default
 ...
 ```
 
-To put a range of ports into a bridge, use the `glob` keyword. For example, to add swp1 through swp10, swp12, and swp14 through swp20 to the bridge called `br_default`:
+The following example adds swp1 through swp3, swp10, and swp14 through swp20 to the bridge:
 
 ```
 ...
 auto br_default
 iface br_default
-    bridge-ports glob swp1-10 swp12 glob swp14-20
+    bridge-ports swp1 swp2 swp3 swp6 swp14 swp15 swp16 swp17 swp18 swp19 swp20
 ...
 ```
 
@@ -336,7 +357,7 @@ You can configure a front panel port or bridge interface as a layer 3 port.
 {{< tabs "TabID437 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following configuration example configures the front panel port swp1 as a layer 3 access port:
+The following example configures the front panel port swp1 as a layer 3 access port:
 
 ```
 cumulus@switch:~$ nv set interface swp1 ip address 10.0.0.0/31
@@ -356,7 +377,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-The following configuration example configures the front panel port swp1 as a layer 3 access port:
+The following example configures the front panel port swp1 as a layer 3 access port:
 
 ```
 auto swp1
@@ -367,11 +388,21 @@ iface swp1
 To add an IP address to a bridge interface, include the address under the `iface` stanza in the `/etc/network/interfaces` file. If you want to use a VLAN other than the native one, set the bridge PVID:
 
 ```
+auto vlan10
+iface vlan10
+    address 10.1.10.2/24
+    vlan-raw-device br_default
+    vlan-id 10
 auto br_default
 iface br_default
-    address 10.1.10.2/24
     bridge-ports swp1 swp2
+    hwaddress 44:38:39:22:01:78
+    bridge-vlan-aware yes
+    bridge-vids 10
     bridge-pvid 1
+    bridge-stp yes
+    bridge-mcsnoop no
+    mstpctl-forcevers rstp
 ```
 
 To apply the configuration, check for typos:
@@ -415,7 +446,7 @@ Add the IP address directly under the `iface lo inet loopback` definition in the
 ```
 auto lo
 iface lo inet loopback
-    address 10.10.10.1
+    address 10.10.10.1/32
 ```
 
 {{< /tab >}}
@@ -429,8 +460,8 @@ You can add multiple loopback addresses. For more information, see {{<link url="
 
 ## Show Platform and System Settings
 
-- To show the hostname of the switch, the time zone, and the version of Cumulus Linux running on the switch, run the NVUE `nv show system` command.
-- To show the Cumulus Linux release on the switch, run the `nv show system version` command.
+- To show the hostname of the switch, the time zone, and the Cumulus Linux version, run the NVUE `nv show system` command.
+- To show the Cumulus Linux kernel and image version, and the build date and time, run the `nv show system version` command.
 - To show switch platform information, such as the system MAC address, manufacturer, ASIC model, CPU, hard disk drive size, RAM size, and port layout, run the NVUE `nv show platform` command.
 
 ## Next Steps

@@ -91,7 +91,7 @@ bridge
 ...
 ```
 
-To check the status of the link, run the Linux `ip link show` command on the bond and its slave interfaces:
+To check the status of the link, run the NVUE `nv show interface <interface>` command or the Linux `ip link show` command on the bond and its slave interfaces:
 
 ```
 cumulus@switch:~$ ip link show bond1

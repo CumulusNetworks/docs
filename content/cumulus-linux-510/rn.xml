@@ -43,6 +43,12 @@
 <td></td>
 </tr>
 <tr>
+<td>4007612</td>
+<td>If you have SVIs with the same VLANs across more than one bridge, Cumulus Linux installs the router MAC for the first bridge only in the SDK. This can cause reachability issues within that VRF towards this switch from remote VTEPs. To work around this issue, bounce the second bridge with the {{sudo ifdown &lt;bridge&gt;}} and {{sudo ifup &lt;bridge&gt;}} commands. If you reboot the switch, you need to bounce the second bridge again.</td>
+<td>5.9.1-5.10.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4007590</td>
 <td>When you upgrade Cumulus Linux 5.9.1 to Cumulus Linux 5.10 with package upgrade, the NTP service stops. To restart the NTP service, enable, then restart the service in the VRF in which it was running with the {{systemctl enable ntpsec@&lt;vrf&gt;}} and {{systemctl restart ntpsec@&lt;vrf&gt;}} commands.</td>
 <td>5.10.0</td>

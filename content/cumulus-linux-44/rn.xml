@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4037015</td>
+<td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
+<td>4.3.0-5.9.1</td>
+<td>5.10.0</td>
+</tr>
+<tr>
 <td>3980941</td>
 <td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
   snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
@@ -2148,6 +2154,12 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4037015</td>
+<td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
+<td>4.3.0-5.9.1</td>
+<td>5.10.0</td>
+</tr>
+<tr>
 <td>3980941</td>
 <td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
   snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
@@ -4287,6 +4299,12 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>4037015</td>
+<td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
+<td>4.3.0-5.9.1</td>
+<td>5.10.0</td>
 </tr>
 <tr>
 <td>3980941</td>
@@ -6559,6 +6577,12 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4037015</td>
+<td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
+<td>4.3.0-5.9.1</td>
+<td>5.10.0</td>
+</tr>
+<tr>
 <td>3980941</td>
 <td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
   snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
@@ -8791,6 +8815,12 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>4037015</td>
+<td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
+<td>4.3.0-5.9.1</td>
+<td>5.10.0</td>
 </tr>
 <tr>
 <td>3980941</td>
@@ -11209,6 +11239,12 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4037015</td>
+<td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
+<td>4.3.0-5.9.1</td>
+<td>5.10.0</td>
+</tr>
+<tr>
 <td>3980941</td>
 <td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
   snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
@@ -13494,6 +13530,12 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>4037015</td>
+<td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
+<td>4.3.0-5.9.1</td>
+<td>5.10.0</td>
 </tr>
 <tr>
 <td>3980941</td>

@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4004453</td>
+<td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
+<td>4.3.0-4.4.5, 5.0.0-5.10.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3895042</td>
 <td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
   snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
@@ -965,6 +971,12 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>4004453</td>
+<td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
+<td>4.3.0-4.4.5, 5.0.0-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3895042</td>

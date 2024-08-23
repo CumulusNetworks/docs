@@ -466,11 +466,11 @@ Module Info
     Vendor Name: FINISAR CORP.          PN: FTLX8574D3BCL
     Identifier: 0x03 (SFP)              Type: 10g-sr
 ```
-
+<!-- vale off -->
 - Does the module vendor name and vendor part number match the module that connects to the switch? Is this port the correct port with the link problem? Is the right module installed?
 - Does the module type match the technology for this link? For example, if there is a 100G DAC, is this value *Type: 100G-CR4*? See {{<link url="#compliance-codes-ethernet-type-ethmode-type-interface-type" text="Compliance Codes, Ethernet Type, Ethmode Type, Interface Type">}} for more information.
 - Does the device at the remote end recognize the module as the same Ethernet type that the local switch recognizes? Vendor outputs differ. If the remote device is not a Cumulus Linux device, consult the vendor documentation to determine how to display the Ethernet type for the installed module.
-
+<!-- vale on -->
 ### Examine Configured State
 
 ```

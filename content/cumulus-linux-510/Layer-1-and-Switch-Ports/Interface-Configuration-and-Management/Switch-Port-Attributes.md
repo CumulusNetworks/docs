@@ -2049,9 +2049,9 @@ When you remove two transceivers simultaneously from a switch, both interfaces s
 <!-- vale on -->
 
 The NVIDIA Spectrum-2 (25G) switch only supports RS FEC.
-
+<!-- vale off -->
 ### Connecting NVIDIA SN4410, SN4700, SN5600 to a Spectrum-3 and Earlier Peer Switch
-
+<!-- vale on -->
 When you connect an NVIDIA SN4410, SN4700, or SN5600 switch to any Spectrum 1, Spectrum-2, or Spectrum-3 peer switch (with four lanes) using a 4x breakout configuration and the default lanes per port setting, links do not come up. To work around this issue, provide the lanes per port configuration shown below:
 
 ```

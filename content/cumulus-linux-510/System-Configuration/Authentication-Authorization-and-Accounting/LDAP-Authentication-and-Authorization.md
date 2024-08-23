@@ -11,9 +11,9 @@ Cumulus Linux uses Pluggable Authentication Modules (PAM) and Name Service Switc
 {{%notice note%}}
 To configure LDAP authentication on Linux, you can use `libnss-ldap`, `libnss-ldapd`, or `libnss-sss`. This chapter describes `libnss-ldapd` only. From internal testing, this library works best with Cumulus Linux and is the easiest to configure, automate, and troubleshoot.
 {{%/notice%}}
-
+<!-- vale off -->
 ## Install libnss-ldapd
-
+<!-- vale on -->
 The `libldap-2.4-2` and `libldap-common` LDAP packages are already installed on the Cumulus Linux image; however you need to install these additional packages to use LDAP authentication:
 
 - `libnss-ldapd`

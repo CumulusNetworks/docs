@@ -98,10 +98,10 @@ Cumulus Linux supports the following OpenConfig models:
 | {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/system/openconfig-system.yang" text="openconfig-system">}} | Memory, CPU |
 | {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/platform/openconfig-platform.yang" text="openconfig-platform">}} | Platform data (Name, Description, Version) |
 | {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/lldp/openconfig-lldp.yang" text="openconfig-lldp">}} | LLDP data (PortIdType, PortDescription, LastUpdate, SystemName, SystemDescription, ChassisId, Ttl, Age, ManagementAddress, ManagementAddressType, Capability) |
-
+<!-- vale off -->
 | Model| Supported Data |
 | --------- | ------ |
-| nvidia-if-wjh-drop-aggregate | Aggregated WJH drops, including L1, L2, router, ACL, tunnel, and buffer drops |
+| nvidia-if-wjh-drop-aggregate | Aggregated WJH drops, including layer 1, layer 2, router, ACL, tunnel, and buffer drops |
 | nvidia-if-ethernet-ext | Extended Ethernet counters (AlignmentError, InAclDrops, InBufferDrops, InDot3FrameErrors, InDot3LengthErrors, InL3Drops, InPfc0Packets, InPfc1Packets, InPfc2Packets, InPfc3Packets, InPfc4Packets, InPfc5Packets, InPfc6Packets, InPfc7Packets, OutNonQDrops, OutPfc0Packets, OutPfc1Packets, OutPfc2Packets, OutPfc3Packets, OutPfc4Packets, OutPfc5Packets, OutPfc6Packets, OutPfc7Packets, OutQ0WredDrops, OutQ1WredDrops, OutQ2WredDrops, OutQ3WredDrops, OutQ4WredDrops, OutQ5WredDrops, OutQ6WredDrops, OutQ7WredDrops, OutQDrops, OutQLength, OutWredDrops, SymbolErrors, OutTxFifoFull)|
 
 The client can use the following YANG models as a reference:
@@ -616,7 +616,7 @@ The gNMI Agent supports `Capabilities` and `STREAM` subscribe requests for WJH e
 <!-- vale off -->
 The data that NetQ sends to the gNMI agent is in the form of WJH drop reasons. The SDK generates the drop reasons and Cumulus Linux stores them in the `/usr/etc/wjh_lib_conf.xml` file. Use this file as a guide to filter for specific reason types (L1, ACL, and so on), reason IDs, or event severeties.
 
-#### L1 Drop Reasons
+#### Layer 1 Drop Reasons
 
 <!-- L1 aggregate drops do not have severity column as it's missing from the SDK, and hence it's not exported -->
 
@@ -634,7 +634,7 @@ The data that NetQ sends to the gNMI agent is in the form of WJH drop reasons. T
 | 10030 | Cable or transceiver bad status | Check cable or transceiver |
 | 10031 | Other reason | Other L1 drop reason|
 
-#### L2 Drop Reasons
+#### Layer 2 Drop Reasons
 
 | Reason ID | Reason | Severity | Description |
 | --------- | ------ | -------- | ----------- |

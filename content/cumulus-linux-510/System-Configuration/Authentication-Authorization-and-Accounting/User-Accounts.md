@@ -334,18 +334,18 @@ You can change these password security policies; see {{<link url="User-Accounts/
 
 ### Disable Password Security
 
-The password security option is enabled by default. To disable password security, run the `nv set system security password-hardening state disabled` command:
+The password security option is on by default. To disable password security, run the `nv set system security password-hardening state disabled` command:
 
 ```
 cumulus@switch:~$ nv set system security password-hardening state disabled
 cumulus@switch:~$ nv config apply
 ```
 
-To re-enable password security, run the `nv set system security password-hardening state enabled` command.
+To reenable password security, run the `nv set system security password-hardening state enabled` command.
 
 ### Configure Password Policies
 
-The following table describes the password policies that Cumulus Linux provides and shows the default settings when password security is enabled. You can change these settings with NVUE commands.
+The following table describes the password policies that Cumulus Linux provides and shows the default settings when password security is on. You can change these settings with NVUE commands.
 
 | Policy |  Description  | Default Setting |
 |-----   |-------------- | ----------------|

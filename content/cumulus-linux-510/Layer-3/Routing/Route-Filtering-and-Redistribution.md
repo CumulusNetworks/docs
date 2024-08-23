@@ -322,7 +322,7 @@ You can use the following list of supported match and set statements with NVUE c
 | `tag` | Matches the specified tag value associated with the route. You can specify a value between 1 and 4294967295.
 
 {{%notice note%}}
-The `source-protocol` match statement is supported in {{<link url="FRRouting/#architecture" text="zebra">}} and BGP. Cumulus Linux does not support the `match source-protocol` statement in route maps configured for other routing protocols, such as OSPF.
+BGP and {{<link url="FRRouting/#architecture" text="zebra">}} support the `source-protocol` match statement. Route maps configured for other routing protocols, such as OSPF, do not support the `match source-protocol` statement.
 {{%/notice%}}
 
 {{< /tab >}}
@@ -361,22 +361,22 @@ The `source-protocol` match statement is supported in {{<link url="FRRouting/#ar
 ### Permit Action Exit Policies
 
 You can configure the permit action exit policy for a route map to:
-- Go to the next rule when the matching conditions are met.
-- Go to specific rule when the matching conditions are met.
+- Go to the next rule when you meet the matching conditions.
+- Go to specific rule when you meet the matching conditions.
 
 To configure the permit action exit policy:
 
 {{< tabs "TabID343 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following command configures the permit action exit policy to go to the next rule when the matching conditions are met:
+The following command configures the permit action exit policy to go to the next rule when you meet the matching conditions:
 
 ```
 cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 action permit exit-policy next-rule
 cumulus@switch:~$ nv config apply
 ```
 
-The following command configures the permit action exit policy to go to rule 20 when the matching conditions are met:
+The following command configures the permit action exit policy to go to rule 20 when you meet the matching conditions:
 
 ```
 cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 action permit exit-policy rule 20
@@ -403,7 +403,7 @@ switch# exit
 cumulus@switch:mgmt:~$ 
 ```
 
-The following command configures the permit action exit policy to go to the next rule when the matching conditions are met:
+The following command configures the permit action exit policy to go to the next rule when you meet the matching conditions:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -420,7 +420,7 @@ switch# exit
 cumulus@switch:mgmt:~$ 
 ```
 
-The following command configures the permit action exit policy to go to rule 20 when the matching conditions are met:
+The following command configures the permit action exit policy to go to rule 20 when you meet the matching conditions:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -941,9 +941,9 @@ cumulus@leaf01:~$
 {{< /tabs >}}
 
 ### Set IPv6 Prefer Global
-
-The following example configures a route map to prefer the global IPv6 address when a route contains both link-local and global next hop addresses. This is required when there are multiple BGP peerings to the same router with {{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" text="adaptive routing">}} enabled, or with multiple peerings to the same router on interfaces that share the same MAC address or physical interface.
-
+<!-- vale off -->
+With multiple BGP peerings to the same router when {{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" text="adaptive routing">}} is `on`, or with multiple peerings to the same router on interfaces that share the same MAC address or physical interface, you can configure a route map to prefer the global IPv6 address when a route contains both link-local and global next hop addresses.
+<!-- vale on -->
 {{< tabs "TabID947 ">}}
 {{< tab "NVUE Commands">}}
 

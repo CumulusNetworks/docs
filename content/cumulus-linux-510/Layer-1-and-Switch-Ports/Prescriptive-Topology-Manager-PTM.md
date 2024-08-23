@@ -259,7 +259,7 @@ The examples below contain the following keywords in the output of the `cbl stat
 For basic output, use `ptmctl` without any options:
 
 {{%notice note%}}
-PTM show command output displays BFD status when {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD">}} is configured through the integration with FRR. 
+PTM show command output displays BFD status when you configure {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD">}} through integration with FRR.
 {{%/notice%}}
 
 ```

@@ -41,7 +41,7 @@ The CLI pager enables you to view the contents of a large file or the output of 
 
 To configure the CLI pager, set the pager state and the pager options.
 
-- You can set the pager state to `enabled` or `disabled`. The default value is disabled.
+- You can set the pager state to `enabled` or `disabled`. The default value is `disabled`.
 - You can set the pager options to `more`, `less`, or `vim`. The default value is `less`.
 
 {{< tabs "48 ">}}ß

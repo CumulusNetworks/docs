@@ -803,7 +803,7 @@ To delete all profiles, run the `cl-hft-tool profile-delete --name all` command.
 
 ### Configure Data Export
 
-You can save the collected data locally to a `json` file in the `/var/run/cumulus/hft` directory, then export the `json` file to an external location with NVUE commands (or the API). The `json` format file includes the data for each sampling interval and a timestamp showing when the data was collected.
+You can save the collected data locally to a `json` file in the `/var/run/cumulus/hft` directory, then export the `json` file to an external location with NVUE commands (or the API). The `json` format file includes the data for each sampling interval and a timestamp for the collected data.
 
 {{%notice note%}}
 - The collected data is available on the switch until you trigger the next data collection or until you reboot the switch.
@@ -852,10 +852,10 @@ To configure the schedule for a data collection profile, set:
 - The ports on which you want to collect the data. You can specify a range of ports, multiple comma separated ports, or `all` for all the ports. The default value is `all`.
 
 {{%notice note%}}
-- You can schedule a maximum of 25 sessions (jobs). These 25 jobs are active jobs whose states are either `running` (collecting counters now) or `pending` (scheduled to collect data in a future date and time). The switch can retain data for 10 jobs (in a `completed`, `cancelled`, or `failed` state) in addition to the 25 maximum active jobs.
+- You can schedule a maximum of 25 sessions (jobs). These 25 jobs are active jobs whose states are either `running` (collecting counters now) or `pending` (scheduled to collect data in a future date and time). The switch can keep data for 10 jobs (in a `completed`, `cancelled`, or `failed` state) in addition to the 25 maximum active jobs.
 - You must configure data export (the target) before you can configure the schedule.
 - The switch ASIC can only run one high frequency telemetry job at a time; You cannot schedule two jobs to run at the same time.
-- There might be a delay of approximately two to three seconds between the scheduled time and the actual data sampling start time in the ASIC.
+- There might be a delay of two to three seconds between the scheduled time and the actual data sampling start time in the ASIC.
 
 {{%/notice%}}
 

@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4037434</td>
+<td>If you configure the anycast IP address with the {{nv set nve vxlan mlag shared-address &lt;anycast-address&gt;}} command after you configure MLAG, the anycast IP address configuration is not applied and the VXLAN interface is in a protodown state.  To work around this issue, run {{sudo ifreload -a}}. To avoid this issue, either apply the anycast configuration before you apply the MLAG configuration or configure the anycast IP address and MLAG together with a single  {{nv config apply}} command.</td>
+<td>5.9.0-5.10.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4035681</td>
 <td>The {{nv show interface &lt;interface&gt;}} commands show RX and TX Power values from the wrong lanes on breakout ports.</td>
 <td>5.8.0-5.10.0</td>
@@ -28,6 +34,12 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <tr>
 <td>4007613</td>
 <td>If there are multiple relay switches in the path reaching the DHCP server, DHCP packets are duplicated at each transit relay switch and the server receives duplicate packets.</td>
+<td>5.9.1-5.10.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4007612</td>
+<td>If you have SVIs with the same VLANs across more than one bridge, Cumulus Linux installs the router MAC for the first bridge only in the SDK. This can cause reachability issues within that VRF towards this switch from remote VTEPs. To work around this issue, bounce the second bridge with the {{sudo ifdown &lt;bridge&gt;}} and {{sudo ifup &lt;bridge&gt;}} commands. If you reboot the switch, you need to bounce the second bridge again.</td>
 <td>5.9.1-5.10.0</td>
 <td></td>
 </tr>
@@ -242,8 +254,8 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <tr>
 <td>3881789</td>
 <td>If you configure the anycast IP address with the {{nv set nve vxlan mlag shared-address &lt;anycast-address&gt;}} command after you configure MLAG, the anycast IP address configuration is not applied and the VXLAN interface is in a protodown state.  To work around this issue, run {{sudo ifreload -a}}. To avoid this issue, either apply the anycast configuration before you apply the MLAG configuration or configure the anycast IP address and MLAG together with a single  {{nv config apply}} command.</td>
-<td>5.9.0-5.10.0</td>
-<td></td>
+<td>5.9.0-5.9.1</td>
+<td>5.10.0</td>
 </tr>
 <tr>
 <td>3879635</td>
@@ -699,6 +711,12 @@ You can safely ignore this warning.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4037434</td>
+<td>If you configure the anycast IP address with the {{nv set nve vxlan mlag shared-address &lt;anycast-address&gt;}} command after you configure MLAG, the anycast IP address configuration is not applied and the VXLAN interface is in a protodown state.  To work around this issue, run {{sudo ifreload -a}}. To avoid this issue, either apply the anycast configuration before you apply the MLAG configuration or configure the anycast IP address and MLAG together with a single  {{nv config apply}} command.</td>
+<td>5.9.0-5.10.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4035681</td>
 <td>The {{nv show interface &lt;interface&gt;}} commands show RX and TX Power values from the wrong lanes on breakout ports.</td>
 <td>5.8.0-5.10.0</td>
@@ -867,8 +885,8 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <tr>
 <td>3881789</td>
 <td>If you configure the anycast IP address with the {{nv set nve vxlan mlag shared-address &lt;anycast-address&gt;}} command after you configure MLAG, the anycast IP address configuration is not applied and the VXLAN interface is in a protodown state.  To work around this issue, run {{sudo ifreload -a}}. To avoid this issue, either apply the anycast configuration before you apply the MLAG configuration or configure the anycast IP address and MLAG together with a single  {{nv config apply}} command.</td>
-<td>5.9.0-5.10.0</td>
-<td></td>
+<td>5.9.0-5.9.1</td>
+<td>5.10.0</td>
 </tr>
 <tr>
 <td>3879635</td>

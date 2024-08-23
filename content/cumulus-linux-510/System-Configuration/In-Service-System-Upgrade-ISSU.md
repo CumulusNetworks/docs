@@ -193,7 +193,7 @@ cumulus@switch:~$ sudo csmgrctl -d
 
 Maintenance mode globally manages the BGP and MLAG control plane.
 - When you enable maintenance mode, BGP and MLAG shut down gracefully.
-- When you disable maintenance mode, BGP and MLAG are enabled based on the individual parameter settings.
+- When you disable maintenance mode, BGP and MLAG are `enabled` based on the individual parameter settings.
 
 To enable maintenance mode:
 

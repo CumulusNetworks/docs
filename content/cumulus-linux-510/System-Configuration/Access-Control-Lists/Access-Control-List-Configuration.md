@@ -54,7 +54,6 @@ Rules have several different components:
 ### How Rules Parse and Apply
 
 The switch reads all the rules from each chain from `iptables`, `ip6tables`, and `ebtables` and enters them in order into either the filter table or the mangle table. The switch reads the rules from the kernel in the following order:
-
 - IPv6 (`ip6tables`)
 - IPv4 (`iptables`)
 - `ebtables`
@@ -122,14 +121,14 @@ Instead of reserving 50% of your TCAM space for atomic updates, nonatomic mode r
 {{< img src = "/images/cumulus-linux/acl-update-del.png" >}}
 
 {{< img src = "/images/cumulus-linux/acl-update-add.png" >}}
-
+<!-- vale off -->
 Nonatomic updates offer better scaling because all TCAM resources actively impact traffic. With atomic updates, half of the hardware resources are on standby and do not actively impact traffic.
-
+<!-- vale on -->
 *Incremental nonatomic updates* are table based, so they do not interrupt network traffic when you install new rules. The rules map to the following tables and update in this order:
 
-- mirror (ingress only)
-- ipv4-mac (can be both ingress and egress)
-- ipv6 (ingress only)
+- `mirror` (ingress only)
+- `ipv4-mac` (can be both ingress and egress)
+- `ipv6` (ingress only)
 
 The incremental nonatomic update operation follows this order:
 
@@ -413,7 +412,7 @@ By default:
 - The `policy.conf` file expects rule files to have a `.rules` suffix as part of the file name.
 {{%/notice%}}
 
-Here is an example ACL policy file:
+The following shows an example ACL policy file:
 
 ```
 [iptables]
@@ -544,7 +543,7 @@ NVIDIA Spectrum switches use a <span class="a-tooltip">[TCAM](## "Ternary Conten
 The NVIDIA Spectrum 1 ASIC (model numbers 2xx0) has one common TCAM space for both ingress and egress ACLs, which the switch also uses for multicast route entries.
 
 Cumulus Linux controls the ACL and multicast route entry scale on NVIDIA Spectrum 1 switches with different TCAM profiles in combination with the ACL {{<link url="#nonatomic-update-mode-and-atomic-update-mode" text="atomic and nonatomic update setting">}}.
-
+<!-- vale off -->
 |Profile |Atomic Mode IPv4 Rules |Atomic Mode IPv6 Rules |Nonatomic Mode IPv4 Rules |Nonatomic Mode IPv6 Rules | Multicast Route Entries |
 |------------|-------------------|-------------------|-------------------|-------------------------|-----------------|
 |default |500 |250 |1000 |500| 1000 |
@@ -552,7 +551,7 @@ Cumulus Linux controls the ACL and multicast route entry scale on NVIDIA Spectru
 |acl-heavy |1750 |1000 |3500 |2000| 450|
 |ipmc-max |1000 |500 |2000 |1000 | 13000|
 |ip-acl-heavy |6000 |0 |12000 |0| 0|
-
+<!-- vale on -->
 {{%notice note%}}
 - Even though the table above specifies the ip-acl-heavy profile supports no IPv6 rules, Cumulus Linux does not prevent you from configuring IPv6 rules. However, there is no guarantee that IPv6 rules work under the ip-acl-heavy profile.
 - The ip-acl-heavy profile shows an updated number of supported atomic mode and nonatomic mode IPv4 rules. The previously published numbers were 7500 for atomic mode and 15000 for nonatomic mode IPv4 rules.
@@ -578,16 +577,16 @@ Spectrum 1 TCAM resource profiles that control ACLs and multicast route scale ar
 
 Switches with Spectrum-2 and later use a newer <span class="a-tooltip">[KVD](## "Key Value Database")</span> scheme and an <span class="a-tooltip">[ATCAM](## "Algorithmic TCAM")</span> design that is more flexible and allows a higher ACL scale than Spectrum 1. There is no TCAM resource profile on Spectrum-2 and later.
 
-The following table shows the tested ACL rule limits. Because the KVD and ATCAM space is shared with forwarding table entries, multicast route entries, and VLAN flow counters, these ACL limits might vary based on your use of other tables.
+The following table shows the tested ACL rule limits. Because the KVD and ATCAM share space with forwarding table entries, multicast route entries, and VLAN flow counters, these ACL limits might vary based on your use of other tables.
 
-These limits are valid when using any Spectrum-2 and later forwarding profile, except for the l2-heavy-3 and v6-lpm-heavy1 profiles, which reduce the ACL scale significantly.
+These limits are valid when using any Spectrum-2 and later forwarding profile, except for the `l2-heavy-3` and `v6-lpm-heavy1` profiles, which reduce the ACL scale significantly.
 
 For Spectrum-2 and later, all profiles support the same number of rules.
-
+<!-- vale off -->
 |Atomic Mode IPv4 Rules |Atomic Mode IPv6 Rules |Nonatomic Mode IPv4 Rules |Nonatomic Mode IPv6 Rules |
 |-------------------|-------------------|-------------------|-------------------------|
 |12500 |6250 |25000 |12500|
-
+<!-- vale on -->
 For information about nonatomic and atomic mode, refer to {{<link url="#nonatomic-update-mode-and-atomic-update-mode" text="Nonatomic Update Mode and Atomic Update Mode">}}.
 
 ## ATCAM Resource Exhaustion
@@ -596,7 +595,7 @@ If you see error messages similar to `No More Resources .. Rolling back` when yo
 
 ## Supported Rule Types
 
-The `iptables`/`ip6tables`/`ebtables` construct tries to layer the Linux implementation on top of the underlying hardware but they are not always directly compatible. Here are the supported rules for chains in `iptables`, `ip6tables` and `ebtables`.
+The `iptables`/`ip6tables`/`ebtables` construct tries to layer the Linux implementation on top of the underlying hardware but they are not always directly compatible. The following shows the supported rules for chains in `iptables`, `ip6tables` and `ebtables`.
 
 To learn more about any of the options shown in the tables below, run `iptables -h [name of option]`. The same help syntax works for options for `ip6tables` and `ebtables`.
 
@@ -930,7 +929,7 @@ Rule  In Packet  In Byte  Out Packet  Out Byte  Summary
 
 ### Set DSCP on Transit Traffic
 
-The examples here use the *mangle* table to modify the packet as it transits the switch. DSCP is in {{<exlink url="https://en.wikipedia.org/wiki/Differentiated_services#Configuration_guidelines" text="decimal notation">}} in the examples below.
+The following examples use the *mangle* table to modify the packet as it transits the switch. DSCP is in {{<exlink url="https://en.wikipedia.org/wiki/Differentiated_services#Configuration_guidelines" text="decimal notation">}} in the examples below.
 
 {{< tabs "730 ">}}
 {{< tab "iptables rule ">}}
@@ -1478,7 +1477,7 @@ To work around this limitation, set the rate and burst for all these rules to th
 
 On Spectrum-2 and later, in addition to ACLs, items stored in KVD and ATCAM include internal counters for VLANs and interfaces in a bridge. If the network includes more than 1000 VLAN interfaces, the counters might occupy a significant amount of space and reduce the amount of available space for ACLs.
 
-If ACL space is exhausted, you might see error messages similar to the following when you try to apply ACLs:
+If you use all the ACL space, you might see error messages similar to the following when you try to apply ACLs:
 
 ```
 cumulus@switch:$ sudo cl-acltool -i -p 00control_plane.rules
@@ -1525,7 +1524,7 @@ For information on ACL resource limitations, refer to {{<link url="#hardware-lim
 On Spectrum-2 and later, you might see resource errors when you try to configure more than 1000 VLAN interfaces because certain VLAN counters share space with ACL memory in the ATCAM.
 
 To free up resources, you can:
-- Reduce the number of specified VLANs or VLAN interfaces to the number you really need in the network.
+- Reduce the number of specified VLANs or VLAN interfaces to the number you need in the network.
 - Free up VLAN flow counter space; edit the `/etc/mlx/datapath/stats.conf` file to uncomment and set the `hal.mlx.stats.vlan.enable` option to `FALSE`, then reload `switchd`:
 
   ```

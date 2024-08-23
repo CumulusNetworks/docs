@@ -157,7 +157,7 @@ Cumulus Linux also provides ISSU to upgrade an active switch with minimal disrup
 
 ### Install a Cumulus Linux Image or Upgrade Packages?
 
-The decision to upgrade Cumulus Linux by either installing a Cumulus Linux image or upgrading packages depends on your environment and your preferences. Here are some recommendations for each upgrade method.
+The decision to upgrade Cumulus Linux by either installing a Cumulus Linux image or upgrading packages depends on your environment and your preferences. The following section provides recommendations for each upgrade method.
 
 **Install a Cumulus Linux image** if you are performing a rolling upgrade in a production environment and if are using up-to-date and comprehensive automation scripts. This upgrade method enables you to choose the exact release to which you want to upgrade and is the *only* method available to upgrade your switch to a new release train (for example, from 4.4.3 to 5.10).
 
@@ -227,9 +227,9 @@ tmpfs           7.7G      0    7.7G     0%    /sys/fs/cgroup
 tmpfs           7.7G    16K    7.7G     1%    /tmp
 overlay          28G   7.9G     18G    31%   
 ```
-
+<!-- vale off -->
 #### Upgrade from Cumulus Linux 5.9.x to Cumulus Linux 5.10.0
-
+<!-- vale on -->
 If you are running Cumulus Linux 5.9.x (the current extended-support release), the default switch configuration allows you to upgrade to the latest Cumulus 5.9.x release only.
 
 To upgrade from Cumulus Linux 5.9.x to Cumulus Linux 5.10.0 or later, perform the following procedure before you start the package upgrade:
@@ -345,7 +345,7 @@ To upgrade the switch using package upgrade:
     If you see errors for expired GPG keys that prevent you from upgrading packages, follow the steps in [Upgrading Expired GPG Keys]({{<ref "/knowledge-base/Installing-and-Upgrading/Upgrading/Update-Expired-GPG-Keys" >}}).
 
 5. Reboot the switch if the upgrade messages indicate that you need to perform a system restart.
-
+<!-- vale off -->
     ```
     cumulus@switch:~$ sudo -E apt-get upgrade
     ... upgrade messages here ...
@@ -354,7 +354,7 @@ To upgrade the switch using package upgrade:
     *** System reboot required ***
     cumulus@switch:~$ sudo reboot
     ```
-
+<!-- vale on -->
 6. Verify correct operation with the old configurations on the new version.
 
 {{< /tab >}}

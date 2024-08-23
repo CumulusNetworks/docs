@@ -293,12 +293,12 @@ If you want LLDP to send the `portID` (`ifname`) value to a CDP neighbor instead
 - To send the `ifname` instead of the interface alias over CDP, configure the `configure lldp portidsubtype macaddress` option in the `/etc/lldpd.d/lldp_global.conf` file. The default configuration is `portidsubtype ifname`.
 
 The following table shows the TLVs sent for each configuration.
-
+<!-- vale off -->
 | LLDP Configuration | LLDP PortID Value Sent | LLDP Port Description Value Sent | CDP PortID Value Sent |
 | ------------------ | ---------------------- | -------------------------------- | --------------------- |
 | `configure lldp portidsubtype ifname` (default)| interface `ifname` | interface `alias` | interface `alias` |
 | `configure lldp portidsubtype macaddress` MAC address | interface `mac address` | interface `ifname` | interface `ifname` |
-
+<!-- vale on -->
 Use CDP only or LLDP only to get the desired behavior of `PortID`, `Description`, or `MacAddress` (LLDP only) across all neighbors. For more information, see {{<link url="#set-lldp-mode" text="LLDP Mode">}}.
 
 ## LLDP DCBX TLVs
@@ -317,9 +317,9 @@ Cumulus Linux supports the following LLDP DCBX TLVs:
 - Cumulus Linux does not support CEE DCBX TLVs.
 - Cumulus Linux limits DCBX support to enabling DCBX TLVs (either with ROCE global configuration or per interface) as documented in the {{<exlink url="https://ieeexplore.ieee.org/document/8403927" text="IEEE 802.1Q standard">}}.
 {{%/notice%}}
-
+<!-- vale off -->
 ### IEEE 802.1 TLVs
-
+<!-- vale on -->
 You can transmit the following IEEE 802.1 TLVs when exchanging LLDP messages. By default, IEEE 802.1 TLV transmission is `off` and the switch sends all LLDP frames without IEEE 802.1 TLVs.
 
 | Name             | Subtype | Description |
@@ -348,9 +348,9 @@ tx-hold-multiplier      4            4
 dot1-tlv                off          off   
 ...
 ```
-
+<!-- vale off -->
 ### IEEE 802.3 TLVs
-
+<!-- vale on -->
 Cumulus Linux transmits the following IEEE 802.3 TLVs by default. You do not need to enable them.
 
 | Name                | Subtype | Description |

@@ -26,7 +26,7 @@ Installing the Cumulus Linux image is destructive; configuration files on the sw
 In the following procedures:
 
 - You can name your Cumulus Linux image using any of the
-{{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html#default-file-name-search-order" text="ONIE naming schemes">}} mentioned here.
+{{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html#default-file-name-search-order" text="ONIE naming schemes">}}.
 - Run the `sudo onie-install -h` command to show the ONIE installer options.
 
 ## Install Using a DHCP/Web Server With DHCP Options
@@ -45,7 +45,7 @@ To install Cumulus Linux using a DHCP or web server *with* <span class="a-toolti
 The most common way is to send DHCP option 114 with the entire URL to the web server (this can be the same system). However, there are other ways you can use DHCP even if you do not have full control over DHCP. See the ONIE user guide for information on {{<exlink url="https://opencomputeproject.github.io/onie/design-spec/discovery.html#partial-installer-urls" text="partial installer URLs">}} and {{<exlink url="https://opencomputeproject.github.io/onie/user-guide/index.html#advanced-dhcp-2-vivso" text="advanced DHCP options">}}; both articles list more supported DHCP options.
 {{%/notice%}}
 
-Here is an example DHCP configuration with an {{<exlink url="http://www.isc.org/downloads/dhcp/" text="ISC DHCP server">}}:
+The following shows an example DHCP configuration with an {{<exlink url="http://www.isc.org/downloads/dhcp/" text="ISC DHCP server">}}:
 
 ```
 subnet 172.0.24.0 netmask 255.255.255.0 {
@@ -54,7 +54,7 @@ subnet 172.0.24.0 netmask 255.255.255.0 {
 }
 ```
 
-Here is an example DHCP configuration with {{<exlink url="http://www.thekelleys.org.uk/dnsmasq/doc.html" text="dnsmasq">}} (static address assignment):
+The following shows an example DHCP configuration with {{<exlink url="http://www.thekelleys.org.uk/dnsmasq/doc.html" text="dnsmasq">}} (static address assignment):
 
 ```
 dhcp-host=sw4,192.168.100.14,6c:64:1a:00:03:ba,set:sw4
@@ -240,19 +240,19 @@ Use these options to stage additional files with the Cumulus Linux image:
 - `-z` stages a <span class="a-tooltip">[ZTP](## "Zero Touch Provisioning")</span> script.
 - `-t` stages an NVUE `startup.yaml` file.
 
-The following example stages an image that is hosted on an HTTP server:
+The following example stages an image on an HTTP server:
 
 ```
 cumulus@cumulus:~$ sudo onie-install -i http://203.0.113.10/image-installer 
 ```
 
-The following example stages an image that is hosted on an HTTP server and a ZTP script hosted on an HTTP server:
+The following example stages an image and a ZTP script on an HTTP server:
 
 ```
 cumulus@cumulus:~$ sudo onie-install -i http://203.0.113.10/image-installer -z http://203.0.113.10/ztp-script
 ```
 
-The following example stages an image that is hosted on an HTTP server and a local NVUE `startup.yaml` file:
+The following example stages an image on an HTTP server and a local NVUE `startup.yaml` file:
   
 ```
 cumulus@cumulus:~$ sudo onie-install -i http://203.0.113.10/image-installer -t /etc/nvue.d/startup.yaml
@@ -269,7 +269,7 @@ Activating staged installer...done.
 Reboot required to take effect.
 ```
 
-You can combine the `-i`, `-z`, `-t` and `-a` options all at once. In addition, you can use the `-f` (force) option together with the `-a` option to suppress the yes and no prompts:
+You can combine the `-i`, `-z`, `-t` and `-a` options. In addition, you can use the `-f` (force) option together with the `-a` option to suppress the yes and no prompts:
 
 ```
 cumulus@cumulus:~$ sudo onie-install -fa -i http://203.0.113.10/image-installer -z http://203.0.113.10/ztp-script -t /etc/nvue.d/startup.yaml
@@ -286,7 +286,7 @@ Reboot required to take effect.
 Follow the steps below to install the Cumulus Linux image using a USB drive.
 
 {{%notice tip%}}
-Installing Cumulus Linux using a USB drive is fine for a single switch here and there but is not scalable. DHCP can scale to hundreds of switch installs with zero manual input unlike USB installs.
+Installing Cumulus Linux using a USB drive is not scalable. DHCP can scale to hundreds of switch installs with zero manual input unlike USB installs.
 {{%/notice%}}
 
 ### Prepare for USB Installation

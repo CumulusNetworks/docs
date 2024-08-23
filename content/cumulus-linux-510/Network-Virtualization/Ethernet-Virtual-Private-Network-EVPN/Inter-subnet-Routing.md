@@ -110,13 +110,12 @@ When you run the `nv set vrf RED evpn vni 4001` command, NVUE:
 
 - Creates a layer 3 bridge called `br_l3vni` if a layer 3 VNI was not previously configured
 - Creates a layer 3 VNI called `vni4001` in VRF RED
-- Assigns `vni4001` a VLAN automatically and creates a VLAN interface with `_l3` (layer 3) at the end of the interface name (for example, `vlan220_l3`) in VRF RED. The VLAN is added to bridge `br_l3vni`
+- Assigns `vni4001` a VLAN automatically and creates a VLAN interface with `_l3` (layer 3) at the end of the interface name (for example, `vlan220_l3`) in VRF RED. NVUE adds the VLAN to bridge `br_l3vni`
 - Adds `vni4001` to the VLAN-VNI map of a single VxLAN device in bridge `br_l3vni`
 
-This behavior is different in an MLAG environment. If MLAG is configured and you run the `nv set vrf RED evpn vni 4001` command, NVUE:
-
+This behavior is different in an MLAG environment. If you configure MLAG and you run the `nv set vrf RED evpn vni 4001` command, NVUE:
 - Creates a layer 3 VNI called `vni4001` in VRF RED
-- Assigns `vni4001` a VLAN automatically out of the global reserved layer 3 VNI VLAN range and creates a VLAN interface with `_l3` (layer 3) at the end of the interface name (for example, `vlan220_l3`) in VRF RED. The VLAN is added to bridge `br_default`
+- Assigns `vni4001` a VLAN automatically out of the global reserved layer 3 VNI VLAN range and creates a VLAN interface with `_l3` (layer 3) at the end of the interface name (for example, `vlan220_l3`) in VRF RED. NVUE adds the VLAN to bridge `br_default`
 - Adds `vni4001` to the VLAN-VNI map of the single VxLAN device in bridge `br_default`
 
 The global reserved layer 3 VNI VLAN range is different than the {{<link url="VLAN-aware-Bridge-Mode/#reserved-vlan-range" text="switch internal reserved VLAN range.">}} You can configure it with the {{<link url="VLAN-aware-Bridge-Mode/#reserved-vlan-range" text="`nv set system global reserved vlan l3-vni-vlan` command">}}.
@@ -125,7 +124,7 @@ The global reserved layer 3 VNI VLAN range is different than the {{<link url="VL
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-1. Configure a per-tenant VNI interface and associated VLAN for the VNI. Configure the VNI and VLAN in the map for the VxLAN device placed in a bridge for the layer 3 VNIs. The router MAC address of the VTEPs are installed over the VNI interface and remote host routes for symmetric routing are installed over the VLAN interface:
+1. Configure a per-tenant VNI interface and associated VLAN for the VNI. Configure the VNI and VLAN in the map for the VxLAN device placed in a bridge for the layer 3 VNIs. The router MAC address of the VTEPs install over the VNI interface and remote host routes for symmetric routing install over the VLAN interface:
 
    Edit the `/etc/network/interfaces` file. For example:
 

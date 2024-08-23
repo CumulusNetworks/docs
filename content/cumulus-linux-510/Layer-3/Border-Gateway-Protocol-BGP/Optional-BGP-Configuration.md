@@ -65,11 +65,11 @@ leaf01(config-router)# neighbor swp51 interface peer-group SPINE
 
 {{< /tab >}}
 {{< /tabs >}}
-
+<!-- vale off -->
 {{%notice note%}}
 If you unset a peer group, make sure that it is not applied to any neighbors. If the peer group is applied to neighbors, configure all parameters, such as the remote AS, directly on the neighbors before removing the peer group.
 {{%/notice%}}
-
+<!-- vale on -->
 ## BGP Dynamic Neighbors
 
 *BGP dynamic neighbors* provides BGP peering to remote neighbors within a specified range of IPv4 or IPv6 addresses for a BGP peer group. You can configure each range as a subnet IP address.
@@ -1867,7 +1867,7 @@ leaf01# exit
 {{< /tab >}}
 {{< /tabs >}}
 
-To show if graceful shutdown is enabled a peer, run the `nv show vrf <vrf> router bgp neighbor <neighbor>` command:
+To show if graceful shutdown is `on` a peer, run the `nv show vrf <vrf> router bgp neighbor <neighbor>` command:
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51
@@ -2050,7 +2050,7 @@ cumulus@leaf01:~$ nv config apply
 |<div style="width:250px">Timer | Description |
 | ---- | ----------- |
 | `notification` | Enables graceful BGP restart support for BGP NOTIFICATION messages.|
-| `preserve-fw-state` | Sets the F-bit indication that the FIB is preserved when doing a graceful BPG restart. |
+| `preserve-fw-state` | Sets the F-bit indication to preserve the FIB during a graceful BPG restart. |
 | `restart-time` | The number of seconds to wait for a graceful restart capable peer to re-establish BGP peering. You can set a value between 1 and 4095. The default is 120 seconds. |
 |  `rib-stale-time` |  The stale route removal time in the RIB (in seconds). You can set a value between 1 and 3600. |
 | `select-defer-time` | The number of seconds a restarting peer defers path-selection when waiting for the EOR marker from peers. You can set a value between 0 and 3600. The default is 360 seconds. |

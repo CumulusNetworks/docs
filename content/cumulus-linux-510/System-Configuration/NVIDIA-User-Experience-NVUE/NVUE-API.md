@@ -204,7 +204,7 @@ cumulus@switch:~$ nv set system control-plane acl API-PROTECT inbound
 
 ## Supported Objects
 
-The NVUE object model supports most features on the Cumulus Linux switch. The following list shows the supported objects. The NVUE API supports more objects within each of these objects. You can find a full listing of the supported API endpoints {{<mib_link url="cumulus-linux-510/api/index.html" text="here.">}}
+The NVUE object model supports most features on the Cumulus Linux switch. The following list shows the supported objects. The NVUE API supports more objects within each of these objects. To see a full listing of the supported API endpoints, refer to {{<mib_link url="cumulus-linux-510/api/index.html" text="NVUE OpenAPI Specification for Cumulus Linux.">}}
 
 | High-level Objects | Description |
 | ------------------ | ----------- |
@@ -2199,7 +2199,7 @@ cumulus@switch:~$ curl -u 'cumulus:cumulus' -k -X DELETE https://127.0.0.1:8765/
 
 {{< /tab >}}
 {{< tab "Python Code" >}}
-
+<!-- vale off -->
 <div class=scroll>
 
 ```
@@ -2369,7 +2369,7 @@ if __name__ == "__main__":
    ```
 
    </div>
-
+<!-- vale on -->
 {{< /tab >}}
 {{< tab "NVUE CLI" >}}
 

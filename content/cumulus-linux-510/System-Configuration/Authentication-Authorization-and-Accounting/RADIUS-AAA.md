@@ -130,7 +130,7 @@ cumulus@switch:~$ nv config apply
 | `debug` | The debug option for troubleshooting. The debugging messages write to `/var/log/syslog`. When the RADIUS client is working correctly, you can disable the debug option. If you configure multiple RADIUS servers, you can enable the debug option globally for all the servers.|
 
 Edit the `/etc/pam_radius_auth.conf` file.
-
+<!-- vale off -->
 ```
 ...
 # Set the minimum privilege level in VSA attribute shell:privilege-level=VALUE
@@ -149,7 +149,7 @@ mapped_priv_user radius_priv_user
 
 vrf-name mgmt
 ```
-
+<!-- vale on -->
 {{< /tab >}}
 {{< /tabs >}}
 

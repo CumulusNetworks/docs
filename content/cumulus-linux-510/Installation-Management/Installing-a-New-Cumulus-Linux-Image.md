@@ -45,7 +45,7 @@ To install Cumulus Linux using a DHCP or web server *with* <span class="a-toolti
 The most common way is to send DHCP option 114 with the entire URL to the web server (this can be the same system). However, there are other ways you can use DHCP even if you do not have full control over DHCP. See the ONIE user guide for information on {{<exlink url="https://opencomputeproject.github.io/onie/design-spec/discovery.html#partial-installer-urls" text="partial installer URLs">}} and {{<exlink url="https://opencomputeproject.github.io/onie/user-guide/index.html#advanced-dhcp-2-vivso" text="advanced DHCP options">}}; both articles list more supported DHCP options.
 {{%/notice%}}
 
-Here is an example DHCP configuration with an {{<exlink url="http://www.isc.org/downloads/dhcp/" text="ISC DHCP server">}}:
+The following shows an example DHCP configuration with an {{<exlink url="http://www.isc.org/downloads/dhcp/" text="ISC DHCP server">}}:
 
 ```
 subnet 172.0.24.0 netmask 255.255.255.0 {
@@ -54,7 +54,7 @@ subnet 172.0.24.0 netmask 255.255.255.0 {
 }
 ```
 
-Here is an example DHCP configuration with {{<exlink url="http://www.thekelleys.org.uk/dnsmasq/doc.html" text="dnsmasq">}} (static address assignment):
+The following shows an example DHCP configuration with {{<exlink url="http://www.thekelleys.org.uk/dnsmasq/doc.html" text="dnsmasq">}} (static address assignment):
 
 ```
 dhcp-host=sw4,192.168.100.14,6c:64:1a:00:03:ba,set:sw4
@@ -286,7 +286,7 @@ Reboot required to take effect.
 Follow the steps below to install the Cumulus Linux image using a USB drive.
 
 {{%notice tip%}}
-Installing Cumulus Linux using a USB drive is fine for a single switch here and there but is not scalable. DHCP can scale to hundreds of switch installs with zero manual input unlike USB installs.
+Installing Cumulus Linux using a USB drive is not scalable. DHCP can scale to hundreds of switch installs with zero manual input unlike USB installs.
 {{%/notice%}}
 
 ### Prepare for USB Installation

@@ -49,7 +49,7 @@ If the Cumulus Linux support team requests that you submit the output from `cl-s
 ```
 cumulus@switch:~$ sudo cl-support -s
 ```
-
+<!-- vale off -->
 ### cl-support Script Options
 
 | Option | Description |
@@ -72,7 +72,7 @@ cumulus@switch:~$ sudo cl-support -s
 | `-v`: | Runs in verbose mode to display status messages. |
 
 ### cl-support Examples
-
+<!-- vale on -->
 The following example does not run the `cl-support` script on the `ptp4l.ptp4l` and `what-just-happened.wjh` modules.
 
 ```
@@ -126,9 +126,9 @@ Please send /var/support/cl_support_leaf01_20240214_184806.txz to Cumulus suppor
 
 {{< /tab >}}
 {{< /tabs >}}
-
+<!-- vale off -->
 ## Delete cl-support Files
-
+<!-- vale on -->
 To delete a `cl-support` file from the switch, run the NVUE `nv action delete system tech-support files <file-name>` command. You can also use the Linux `sudo rm /var/support/<file-name>` command.
 
 ```
@@ -148,9 +148,9 @@ File name                              File path
 -------------------------------------  --------------------------------------------------
 cl_support_leaf01_20240725_225811.txz  /var/support/cl_support_leaf01_20240725_225811.txz
 ```
-
+<!-- vale off -->
 ## Upload cl-support Files
-
+<!-- vale on -->
 To upload a `cl-support` file off the switch to an external location, run the `nv action upload system tech-support files <file-name> <remote-url>` command.
 
 ## Related Information

@@ -454,7 +454,7 @@ ITU-T specifies the following key elements to measure, test, and classify the ac
 - Transient response&mdash;the response from the clock to a transient.
 - Hold over&mdash;the time interval during which the clock maintains its output after losing the input reference signal.
 
-Cumulus Linux PTP has an option to use a servo specifically designed to handle the ITU-T Noise Transfer specification. When you use this option, the <span class="a-tooltip">[PHC](## "Physical Hardware Clock")</span> is disciplined by Noise Transfer Servo, which smoothes the jitter and wander noise from the Master clock.
+Cumulus Linux PTP has an option to use a servo specifically designed to handle the ITU-T Noise Transfer specification. When you use this option, the <span class="a-tooltip">[PHC](## "Physical Hardware Clock")</span> the Noise Transfer Servo resolves the jitter and wander noise from the Master clock.
 
 {{%notice note%}}
 - To use Noise Transfer Servo, you need to enable SyncE on the switch and on PTP interfaces. 
@@ -635,7 +635,7 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 ### Multicast MAC Address
 
 PTP over Ethernet uses the following types of multicast MAC addresses:
-- **Forwarding**, which is a standard MAC address expected to be flooded by switches and bridges. The nodes that process these multicast messages might be intermediate nodes that do not support PTP. This is the default multicast MAC address type that uses 01-1B-19-00-00-00 MAC. 
+- **Forwarding**, which is a standard MAC address that switches and bridges flood. The nodes that process these multicast messages might be intermediate nodes that do not support PTP. This is the default multicast MAC address type that uses 01-1B-19-00-00-00 MAC. 
 - **Non-forwarding**, which is the reserved 802.1 Q address 01-80-C2-00-00-0E. Cumulus Linux does not forward this address on the bridge.
 
 {{%notice note%}}

@@ -165,7 +165,7 @@ vni-3000        200  PVID, Egress Untagged  3000
 ```
 
 -->
-To verify that the bridge is configured for QinQ, run the `ip -d link show bridge` commands and check for *vlan\_protocol 802.1ad* in the output:
+To verify the bridge QinQ configuration, run the `ip -d link show bridge` commands and check for *vlan\_protocol 802.1ad* in the output:
 
 ```
 cumulus@switch:~$ sudo ip -d link show bridge

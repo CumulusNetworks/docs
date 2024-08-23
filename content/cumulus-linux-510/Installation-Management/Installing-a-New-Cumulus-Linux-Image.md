@@ -26,7 +26,7 @@ Installing the Cumulus Linux image is destructive; configuration files on the sw
 In the following procedures:
 
 - You can name your Cumulus Linux image using any of the
-{{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html#default-file-name-search-order" text="ONIE naming schemes">}} mentioned here.
+{{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html#default-file-name-search-order" text="ONIE naming schemes">}}.
 - Run the `sudo onie-install -h` command to show the ONIE installer options.
 
 ## Install Using a DHCP/Web Server With DHCP Options
@@ -240,19 +240,19 @@ Use these options to stage additional files with the Cumulus Linux image:
 - `-z` stages a <span class="a-tooltip">[ZTP](## "Zero Touch Provisioning")</span> script.
 - `-t` stages an NVUE `startup.yaml` file.
 
-The following example stages an image that is hosted on an HTTP server:
+The following example stages an image on an HTTP server:
 
 ```
 cumulus@cumulus:~$ sudo onie-install -i http://203.0.113.10/image-installer 
 ```
 
-The following example stages an image that is hosted on an HTTP server and a ZTP script hosted on an HTTP server:
+The following example stages an image and a ZTP script on an HTTP server:
 
 ```
 cumulus@cumulus:~$ sudo onie-install -i http://203.0.113.10/image-installer -z http://203.0.113.10/ztp-script
 ```
 
-The following example stages an image that is hosted on an HTTP server and a local NVUE `startup.yaml` file:
+The following example stages an image on an HTTP server and a local NVUE `startup.yaml` file:
   
 ```
 cumulus@cumulus:~$ sudo onie-install -i http://203.0.113.10/image-installer -t /etc/nvue.d/startup.yaml
@@ -269,7 +269,7 @@ Activating staged installer...done.
 Reboot required to take effect.
 ```
 
-You can combine the `-i`, `-z`, `-t` and `-a` options all at once. In addition, you can use the `-f` (force) option together with the `-a` option to suppress the yes and no prompts:
+You can combine the `-i`, `-z`, `-t` and `-a` options. In addition, you can use the `-f` (force) option together with the `-a` option to suppress the yes and no prompts:
 
 ```
 cumulus@cumulus:~$ sudo onie-install -fa -i http://203.0.113.10/image-installer -z http://203.0.113.10/ztp-script -t /etc/nvue.d/startup.yaml

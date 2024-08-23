@@ -109,7 +109,7 @@ The NVUE CLI has a flat structure; however, the commands are in three functional
 The NVUE configuration commands modify switch configuration. You can set and unset configuration options.
 <!-- vale off -->
 The `nv set` and `nv unset` commands are in the following categories. Each command group includes subcommands. Use command completion (press the tab key) to list the subcommands.
-<!-- vale on -->
+
 | <div style="width:300px">Command Group | Description |
 | ------- | ----------- |
 | `nv set acl`<br>`nv unset acl` | Configures ACLs.|
@@ -124,7 +124,7 @@ The `nv set` and `nv unset` commands are in the following categories. Each comma
 | `nv set service`<br>`nv unset service` | Configures DHCP relays and servers, NTP, PTP, LLDP, SNMP servers, DNS, and syslog. |
 | `nv set system`<br>`nv unset system` | Configures system settings, such as the hostname of the switch, pre and post login messages, reboot options (warm, cold, fast), the time zone and global system settings, such as the anycast ID, the system MAC address, and the anycast MAC address. This is also where you configure SPAN and ERSPAN sessions and set how configuration apply operations work (which files to ignore and which files to overwrite; see {{<link title="#configure-nvue-to-ignore-linux-files" text="Configure NVUE to Ignore Linux Files">}}).|
 | `nv set vrf  <vrf-id>`<br>`nv unset vrf <vrf-id>` | Configures VRFs. This is where you configure VRF-level configuration for PTP, BGP, OSPF, and EVPN. |
-
+<!-- vale on -->
 ### Monitoring Commands
 <!-- vale off -->
 The NVUE monitoring commands show various parts of the network configuration. For example, you can show the complete network configuration or only interface configuration. The monitoring commands are in the following categories. Each command group includes subcommands. Use command completion (press the tab key) to list the subcommands.
@@ -258,7 +258,7 @@ The NVUE action commands clear counters, and provide system reboot and TACACS us
 | ------- | ----------- |
 | `nv action change system time`| Sets the software clock date and time. |
 | `nv action clear` | Provides commands to clear ACL statistics, {{<link url="EVPN-Enhancements/#clear-duplicate-addresses" text="duplicate addresses">}}, {{<link url="Precision-Time-Protocol-PTP/#clear-ptp-violation-logs" text="PTP violations">}}, {{<link url="Interface-Configuration-and-Management/#clear-the-interface-protodown-state-and-reason" text="interfaces from a protodown state">}}, {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#clear-interface-counters" text="interface counters">}}, {{<link url="Quality-of-Service/#clear-qos-buffers" text="Qos buffers">}}, {{<link url="Troubleshooting-BGP/#clear-bgp-routes" text="BGP routes">}}, {{<link url="Open-Shortest-Path-First-v2-OSPFv2/#clear-ospf-counters" text="OSPF interface counters">}}, {{<link url="Route-Filtering-and-Redistribution/#clear-matches-against-a-route-map" text="matches against a route map">}}, and remove {{<link url="Multi-Chassis-Link-Aggregation-MLAG/#lacp-partner-mac-address-duplicate-or-mismatch" text="conflicts from protodown MLAG bonds">}}. |
-| `nv action deauthenticate interface <interface>> dot1x authorized-sessions`| Deauthenticates the 802.1X supplicant on the specified interface. If you do not want to notify the supplicant that they are being deauthenticated, you can add the silent option; for example, `nv action deauthenticate interface swp1 dot1x authorized-sessions 00:55:00:00:00:09 silent`.|
+| `nv action deauthenticate interface <interface>> dot1x authorized-sessions`| Deauthenticates the 802.1X supplicant on the specified interface. If you do not want to notify the supplicant when deauthenticating, you can add the silent option; for example, `nv action deauthenticate interface swp1 dot1x authorized-sessions 00:55:00:00:00:09 silent`.|
 | `nv action delete system security` | Provides commands to delete CA and entity certificates. |
 | `nv action disable system maintenance mode`<br>`nv action disable system maintenance ports`| Disables system maintenance mode<br> Brings up the ports.|
 | `nv action disconnect system aaa user`|  Provides commands to disconnect users logged into the switch. |
@@ -325,7 +325,7 @@ NVUE provides a default `/etc/nvue.d/startup.yaml` file that includes configurat
 {{%notice info%}}
 - The default startup configuration file sets the default hostname as `cumulus`; therefore, Cumulus Linux does not accept the DHCP `host-name` option. To set a different hostname with NVUE, see {{<link url="Quick-Start-Guide/#configure-the-hostname" text="Configure the Hostname">}}. If you do not manage your switch with NVUE and want to change this behavior with Linux configuration files, see this [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Administration/Hostname-Option-Received-From-DHCP-Ignored" >}}).
 - The default NVUE `startup.yaml` file includes the `cumulus` user account, which is the default account for the system. Modifying the NVUE configuration to not include the `cumulus` user account, replacing the configuration or applying a startup configuration, deletes the `cumulus` account. To merge in configuration changes or to restore a backup `startup.yaml` file, use the `nv config patch` command.
-- You cannot delete a user account that is logged into the switch.
+- You cannot delete a logged in user account.
 {{%/notice%}}
 
 ### Encrypted Passwords
@@ -337,9 +337,9 @@ cumulus@switch:~$ nv set system security encryption db state disabled
 cumulus@switch:~$ nv config apply
 ```
 
-To re-enable password encryption, run the `nv set system security encryption db state enabled` command.
+To reenable password encryption, run the `nv set system security encryption db state enabled` command.
 
-To show if password encryption is enabled, run the `nv show system security encryption` command:
+To show if password encryption is `on`, run the `nv show system security encryption` command:
 
 ```
 cumulus@switch:~$ nv show system security encryption
@@ -503,7 +503,7 @@ A patch contains a single request to the NVUE service. Ordering of parameters wi
 
 ## Session-Based Authentication
 
-NVUE uses sessions to authenticate and authorize requests. After authenticating the user with the first request, NVUE stores the session in the `nvued` cache. NVUE authenticates subsequent interactions within the session locally, eliminating the need to repeatedly check with external authentication servers. This process enhances system performance and efficiency, making it ideal for high-traffic environments.
+NVUE uses sessions to authenticate and authorize requests. After authenticating the user with the first request, NVUE stores the session in the `nvued` cache. NVUE authenticates subsequent interactions within the session locally so that it does not have to keep checking with external authentication servers. This process enhances system performance and efficiency, making it ideal for high-traffic environments.
 
 - If you make changes to a user group, password, RADIUS, TACACS, or LDAP server setting locally on the switch, NVUE clears the current session automatically.
 - If you make changes directly on the RADIUS, TACACS, or LDAP server, you must clear the user session with the `nv action clear system api session user <user>` command or clear all sessions with the `nv action clear system api session` command.

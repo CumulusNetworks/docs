@@ -246,7 +246,7 @@ If you have an insecure management network, set the password with an encrypted h
 
 ### Set the System Hostname
 
-The system hostname is managed with NVUE by default.
+To set the system hostname.
 
 {{< tabs "TabID131 ">}}
 {{< tab "NVUE Commands ">}}

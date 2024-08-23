@@ -257,9 +257,9 @@ NVUE does not support configuring traditional bridges. The following example con
      bridge-ports swp1 swp2
      bridge-vlan-aware no
    ```
-
+<!-- vale off -->
 #### VLAN-aware RSTP Timers Example
-
+<!-- vale on -->
 NVUE does not support configuring RSTP timers on VLAN-aware bridges. The following example configures non-default RSTP timers for the NVUE default bridge `br_default`:
 
 1. Create a `.yaml` file and add the following traditional snippet:
@@ -619,7 +619,7 @@ You can also create a flexible snippet with the REST API. See {{<link url="NVUE-
 
 ## Remove a Snippet
 
-To remove a traditional or flexible snippet, edit the snippet's `.yaml` file to change `set` to `unset`, then patch and apply the configuration. Alternatively, you can use the REST API DELETE and PATCH methods.
+To remove a traditional or flexible snippet, edit the snippet `.yaml` file to change `set` to `unset`, then patch and apply the configuration. You can also use the REST API DELETE and PATCH methods.
 
 The following example removes the {{<link url="#etcnetworkinterfaces-snippets" text="MLAG timer traditional snippet">}} created above to configure the MLAG peer timeout:
 

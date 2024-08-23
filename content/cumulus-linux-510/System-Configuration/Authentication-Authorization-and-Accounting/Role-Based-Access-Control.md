@@ -78,7 +78,7 @@ To assign a custom role to a user account:
 You assign a custom role to an existing user account. For information about creating user accounts, see {{<link url="User-Accounts" text="User Accounts">}} commands.
 
 {{%notice info%}}
-When you create a class, then run `nv config apply`, NVUE removes LDAP configuration from the `/etc/nsswitch.conf` file. If you are using LDAP, run the `nv set system config apply ignore /etc/nsswitch.conf` command **before** you run `nv config apply` to retain the LDAP configuration.
+When you create a class, then run `nv config apply`, NVUE removes LDAP configuration from the `/etc/nsswitch.conf` file. If you are using LDAP, run the `nv set system config apply ignore /etc/nsswitch.conf` command **before** you run `nv config apply` to keep the LDAP configuration.
 {{%/notice%}}
 
 The following example creates the three classes described above for role `role1`.

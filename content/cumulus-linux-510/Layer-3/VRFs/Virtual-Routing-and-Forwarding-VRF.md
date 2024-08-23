@@ -215,7 +215,7 @@ Cumulus Linux supports dynamic VRF route leaking (not static route leaking).
 - You cannot route leak overlapping addresses.
 - You can use VRF route leaking with EVPN in a symmetric routing configuration only.
 - You cannot use VRF route leaking between the tenant VRF and the default VRF with onlink next hops (BGP unnumbered).
-- On Spectrum-2 and Spectrum-3 switches with VRF leaking, you might see traffic loss of approximately five seconds during warm boot.
+- On Spectrum-2 and Spectrum-3 switches with VRF leaking, you might see a five-second traffic loss during warm boot.
 {{%/notice%}}
 
 ### Configure Route Leaking
@@ -321,9 +321,9 @@ switch# exit
 {{< /tabs >}}
 
 ### Routes from eBGP Multihop Neighbors
-
+<!-- vale off -->
 If the routes you want to leak are connected routes sourced from an eBGP multihop neighbor, you must disable the next hop connection verification process for eBGP multihop peering sessions in the target VRF so that Cumulus Linux can add these routes to the routing table.
-
+<!-- vale on -->
 To disable the next hop connection verification process, you need to run vtysh commands; NVUE does not provide commands for this option.
 
 The following example disables the next hop connection verification process for eBGP multihop peering sessions in the target VRF BLUE:

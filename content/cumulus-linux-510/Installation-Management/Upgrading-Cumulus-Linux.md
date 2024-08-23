@@ -227,9 +227,9 @@ tmpfs           7.7G      0    7.7G     0%    /sys/fs/cgroup
 tmpfs           7.7G    16K    7.7G     1%    /tmp
 overlay          28G   7.9G     18G    31%   
 ```
-
+<!-- vale off -->
 #### Upgrade from Cumulus Linux 5.9.x to Cumulus Linux 5.10.0
-
+<!-- vale on -->
 If you are running Cumulus Linux 5.9.x (the current extended-support release), the default switch configuration allows you to upgrade to the latest Cumulus 5.9.x release only.
 
 To upgrade from Cumulus Linux 5.9.x to Cumulus Linux 5.10.0 or later, perform the following procedure before you start the package upgrade:

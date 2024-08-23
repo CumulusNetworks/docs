@@ -164,7 +164,7 @@ cumulus@switch:~$ sudo cat /etc/cumulus/acl/policy.d/50_nvue.rules
 ```
 
 You can also show the ACL settings with the `nv show acl <acl>` command:
-<!-- vale off -->
+
 ```
 cumulus@switch:~$ nv show acl EXAMPLE1
       applied
@@ -183,7 +183,7 @@ rule
             match.ip.protocol:                     tcp
             match.ip.source-ip:           10.0.14.2/32
 ```
-<!-- vale on -->
+
 Cumulus Linux provides the following commands to match on `recent list`.
 
 |Command | Description |
@@ -269,7 +269,7 @@ rule
             match.ip.hashlimit.source-mask:       32
             match.ip.protocol:                   tcp
 ```
-<!-- vale on -->
+
 Run the `nv show acl acl-default-dos --rev=applied -o json` command to show additional information, such as the connection state, hit count and update interval:
 
 ```
@@ -322,7 +322,7 @@ cumulus@switch:~$ nv show acl acl-default-dos --rev=applied -o json
 ```
 
 To show the whitelist rules, run the `nv show acl acl-default-whitelist` command:
-<!-- vale off -->
+
 ```
 cumulus@switch:~$ nv show acl acl-default-whitelist 
       applied  pending
@@ -400,7 +400,7 @@ rule
             action.log.log-prefix: IPTables-Dropped-<Domain>:
             Log Rate:                                       1
 ```
-<!-- vale on -->
+
 Run the `nv show acl acl-default-whitelist --rev=applied -o json` command to show additional information, such as the connection state:
 
 ```

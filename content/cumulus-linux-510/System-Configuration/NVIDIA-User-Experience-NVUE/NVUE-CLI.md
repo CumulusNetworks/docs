@@ -107,7 +107,7 @@ The NVUE CLI has a flat structure; however, the commands are in three functional
 ### Configuration Commands
 
 The NVUE configuration commands modify switch configuration. You can set and unset configuration options.
-<!-- vale off -->
+
 The `nv set` and `nv unset` commands are in the following categories. Each command group includes subcommands. Use command completion (press the tab key) to list the subcommands.
 
 | <div style="width:300px">Command Group | Description |
@@ -124,11 +124,11 @@ The `nv set` and `nv unset` commands are in the following categories. Each comma
 | `nv set service`<br>`nv unset service` | Configures DHCP relays and servers, NTP, PTP, LLDP, SNMP servers, DNS, and syslog. |
 | `nv set system`<br>`nv unset system` | Configures system settings, such as the hostname of the switch, pre and post login messages, reboot options (warm, cold, fast), the time zone and global system settings, such as the anycast ID, the system MAC address, and the anycast MAC address. This is also where you configure SPAN and ERSPAN sessions and set how configuration apply operations work (which files to ignore and which files to overwrite; see {{<link title="#configure-nvue-to-ignore-linux-files" text="Configure NVUE to Ignore Linux Files">}}).|
 | `nv set vrf  <vrf-id>`<br>`nv unset vrf <vrf-id>` | Configures VRFs. This is where you configure VRF-level configuration for PTP, BGP, OSPF, and EVPN. |
-<!-- vale on -->
+
 ### Monitoring Commands
-<!-- vale off -->
+
 The NVUE monitoring commands show various parts of the network configuration. For example, you can show the complete network configuration or only interface configuration. The monitoring commands are in the following categories. Each command group includes subcommands. Use command completion (press the tab key) to list the subcommands.
-<!-- vale on -->
+
 | <div style="width:300px">Command Group | Description |
 | ------- | ----------- |
 | `nv show acl` | Shows Access Control List configuration. |

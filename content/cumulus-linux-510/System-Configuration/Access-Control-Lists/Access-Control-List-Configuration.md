@@ -545,12 +545,12 @@ The NVIDIA Spectrum 1 ASIC (model numbers 2xx0) has one common TCAM space for bo
 Cumulus Linux controls the ACL and multicast route entry scale on NVIDIA Spectrum 1 switches with different TCAM profiles in combination with the ACL {{<link url="#nonatomic-update-mode-and-atomic-update-mode" text="atomic and nonatomic update setting">}}.
 <!-- vale off -->
 |Profile |Atomic Mode IPv4 Rules |Atomic Mode IPv6 Rules |Nonatomic Mode IPv4 Rules |Nonatomic Mode IPv6 Rules | Multicast Route Entries |
-|------------|-------------------|-------------------|-------------------|-------------------------|-----------------|
-|default |500 |250 |1000 |500| 1000 |
-|ipmc-heavy|750 |500 |1500 |1000| 8500 |
-|acl-heavy |1750 |1000 |3500 |2000| 450|
-|ipmc-max |1000 |500 |2000 |1000 | 13000|
-|ip-acl-heavy |6000 |0 |12000 |0| 0|
+| ------------| ------------------- | -------------------| ------------------- | ------------------------- | ----------------- |
+| default |500 |250 |1000 |500| 1000 |
+| ipmc-heavy|750 |500 |1500 |1000| 8500 |
+| acl-heavy |1750 |1000 |3500 |2000| 450|
+| ipmc-max |1000 |500 |2000 |1000 | 13000|
+| ip-acl-heavy |6000 |0 |12000 |0| 0|
 <!-- vale on -->
 {{%notice note%}}
 - Even though the table above specifies the ip-acl-heavy profile supports no IPv6 rules, Cumulus Linux does not prevent you from configuring IPv6 rules. However, there is no guarantee that IPv6 rules work under the ip-acl-heavy profile.

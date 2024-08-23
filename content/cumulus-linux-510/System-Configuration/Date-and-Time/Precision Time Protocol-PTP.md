@@ -105,7 +105,7 @@ cumulus@switch:~$ nv config apply
 
 {{%notice note%}}
 - You can configure only one address; either IPv4 or IPv6.
-- For IPv6, set the trunk port transport mode to ipv6.
+- For IPv6, set the trunk port transport mode to IPv6.
 {{%/notice%}}
 
 The configuration writes to the `/etc/ptp4l.conf` file.
@@ -129,7 +129,7 @@ cumulus@switch:~$ nv config apply
 
 {{%notice note%}}
 - You can configure only one address; either IPv4 or IPv6.
-- For IPv6, set the trunk port transport mode to ipv6.
+- For IPv6, set the trunk port transport mode to IPv6.
 {{%/notice%}}
 
 The configuration writes to the `/etc/ptp4l.conf` file.
@@ -734,7 +734,7 @@ When a profile is in use, avoid configuring the following interface configuratio
 
 ### Transport Mode
 
-By default, Cumulus Linux encapsulates PTP messages in UDP IPV4 frames. To encapsulate PTP messages on an interface in UDP IPV6 frames:
+By default, Cumulus Linux encapsulates PTP messages in UDP IPv4 frames. To encapsulate PTP messages on an interface in UDP IPv6 frames:
 
 {{< tabs "TabID557 ">}}
 {{< tab "NVUE Commands ">}}

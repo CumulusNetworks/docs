@@ -939,4 +939,4 @@ error: hw sync failed (sync_acl hardware installation failed) Rolling back .. fa
 error: hw sync failed (Bulk counter init failed with No More Resources). Rolling back ..
 ```
 
-To troubleshoot this issue and manage netfilter resources with high VLAN and ACL scale, refer to {{<link url="Access-Control-List-Configuration/#troubleshooting-acl-rule-installation-failures" text="Troubleshooting ACL Rule Installation Failures">}}.
+To troubleshoot this issue and manage Netfilter resources with high VLAN and ACL scale, refer to {{<link url="Access-Control-List-Configuration/#troubleshooting-acl-rule-installation-failures" text="Troubleshooting ACL Rule Installation Failures">}}.

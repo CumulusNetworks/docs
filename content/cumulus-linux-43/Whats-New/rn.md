@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4037015"></a> [4037015](#4037015) <a name="4037015"></a> <br />None | The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful. | 4.3.0-5.9.1 | 5.10.0|
 | <a name="3856614"></a> [3856614](#3856614) <a name="3856614"></a> <br /> | When daylight saving time changes, the MLAG <code>initDelay</code> timer resets and all MLAG bonds go down. | 4.3.2-4.4.5 | |
 | <a name="3773177"></a> [3773177](#3773177) <a name="3773177"></a> <br /> | When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 or later with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.<br><pre>cumulus&#64;switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb<br>cumulus&#64;switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb<br>cumulus&#64;switch:~$ sudo apt update<br>cumulus&#64;switch:~$ sudo apt upgrade</pre> | 4.0.0-4.4.5, 5.0.0-5.10.0 | |
 | <a name="3759932"></a> [3759932](#3759932) <a name="3759932"></a> <br /> | When you migrate virtual machines from one rack to another rack, there might be occasional problems reaching the server after Vmotion. | 4.3.1-4.4.5 | |
@@ -317,6 +318,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4037015"></a> [4037015](#4037015) <a name="4037015"></a> <br />None | The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful. | 4.3.0-5.9.1 | 5.10.0|
 | <a name="3773177"></a> [3773177](#3773177) <a name="3773177"></a> <br /> | When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 or later with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.<br><pre>cumulus&#64;switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb<br>cumulus&#64;switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb<br>cumulus&#64;switch:~$ sudo apt update<br>cumulus&#64;switch:~$ sudo apt upgrade</pre> | 4.0.0-4.4.5, 5.0.0-5.10.0 | |
 | <a name="3759932"></a> [3759932](#3759932) <a name="3759932"></a> <br /> | When you migrate virtual machines from one rack to another rack, there might be occasional problems reaching the server after Vmotion. | 4.3.1-4.4.5 | |
 | <a name="3684998"></a> [3684998](#3684998) <a name="3684998"></a> <br /> | DHCP lease information is not collected in the <code>cl-support</code> file. | 4.3.0-5.6.0 | 5.7.0-5.10.0|

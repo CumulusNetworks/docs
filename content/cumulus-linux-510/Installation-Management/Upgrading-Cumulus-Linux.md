@@ -228,6 +228,27 @@ tmpfs           7.7G    16K    7.7G     1%    /tmp
 overlay          28G   7.9G     18G    31%   
 ```
 
+#### Upgrade from Cumulus Linux 5.9.x to Cumulus Linux 5.10.0
+
+If you are running Cumulus Linux 5.9.x (the current extended-support release), the default switch configuration allows you to upgrade to the latest Cumulus 5.9.x release only.
+
+To upgrade from Cumulus Linux 5.9.x to Cumulus Linux 5.10.0 or later, perform the following procedure before you start the package upgrade:
+
+1. Edit the `/etc/apt/sources.list` file to include the following lines at the top of the file.
+
+   ```
+   cumulus@switch:~$ sudo nano /etc/apt/sources.list
+   deb      https://apt.cumulusnetworks.com/repo CumulusLinux-d12-latest cumulus upstream netq
+   deb-src  https://apt.cumulusnetworks.com/repo CumulusLinux-d12-latest cumulus upstream netq
+   ```
+
+2. Remove or comment out the following lines in the `/etc/apt/sources.list` file:
+
+   ```
+   deb      https://apt.cumulusnetworks.com/repo CumulusLinux-5.9-latest cumulus upstream netq
+   deb-src  https://apt.cumulusnetworks.com/repo CumulusLinux-5.9-latest cumulus upstream netq
+   ```
+
 #### Upgrade the Switch
 
 To upgrade the switch using package upgrade:
@@ -402,7 +423,7 @@ NVIDIA has not tested running different versions of Cumulus Linux on MLAG peer s
 
     ```
     cumulus@switch:~$ nv set interface swp1 link state up
-    cumulus@switch:~$ nv set interface peerlink link state down
+    cumulus@switch:~$ nv set interface peerlink link state up
     cumulus@switch:~$ nv config apply
     cumulus@switch:~$ nv config save
     ```

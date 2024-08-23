@@ -3150,6 +3150,6 @@ The full object model download is available {{<mib_link url="cumulus-linux-55/ap
 
 ## Related Information
 
-- {{<exlink url="https://docs.nginx.com/" text="NGINX documentaion">}}
+- {{<exlink url="https://docs.nginx.com/" text="NGINX documentation">}}
 - {{<exlink url="https://help.ubuntu.com/lts/serverguide/certificates-and-security.html" text="Ubuntu Certificates and Security documentation">}}
 - {{<exlink url="https://pypi.org/project/requests/" text="Python requests module">}}

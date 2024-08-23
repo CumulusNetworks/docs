@@ -375,7 +375,7 @@ cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 address-family i
 path-count       2          
 multipath-count  1
 path
-=======
+====================
                                                                                 
     Origin - Route origin, Local - Locally originated route, Sourced - Sourced      
     route, Weight - Route weight, Metric - Route metric, LocalPref - Route local    

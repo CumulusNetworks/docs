@@ -43,7 +43,7 @@ cumulus@switch:~$ nv set interface vlan10 ip vrr state up
 cumulus@switch:~$ nv config apply
 ```
 
-Use the same commands for IPV6 addresses; for example:
+Use the same commands for IPv6 addresses; for example:
 
 ```
 cumulus@switch:~$ nv set interface vlan10 ip vrr address 2001:db8::1/32

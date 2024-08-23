@@ -53,7 +53,7 @@ cumulus@switch:~$ sudo cl-support -s
 ### cl-support Script Options
 
 | Option | Description |
-|------- |------------ |
+| ------- | ------------ |
 | `-h`: | Displays the available `cl-support` script options with a description. |
 | `-c`: | Runs only modules matching core files (if no `-e` modules). |
 | `-D`: | Displays debugging information. |

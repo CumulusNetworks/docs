@@ -45,8 +45,8 @@ cumulus@switch:~$ sudo apt upgrade
 <tr>
 <td>3647424</td>
 <td>When you remove the {{update-source}} configuration for a BGP neighbor, the peering is reset if the neighbor is a member of a peer group with the same {{update-source}} configuration.</td>
-<td>4.3.0-5.5.1</td>
-<td>5.6.0-5.10.0</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3488136</td>
@@ -94,6 +94,12 @@ cumulus@switch:~$ sudo apt upgrade
 <td>3218207</td>
 <td>Certain routes on tenant VRFs have missing next hop entries because the router MAC address is missing in the bridge forwarding database table that corresponds to the remote VTEP. As a result, traffic forwarding is affected for these routes.</td>
 <td>4.3.0-5.2.1</td>
+<td>5.3.0-5.10.0</td>
+</tr>
+<tr>
+<td>3216922</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).</td>
+<td>3.7.0-5.2.1</td>
 <td>5.3.0-5.10.0</td>
 </tr>
 <tr>
@@ -314,6 +320,29 @@ To work around this issue, use the {{chrony}} implementation of NTP instead of {
 Instructions for using {{chrony}} are here : https://docs.nvidia.com/networking-ethernet-software/knowledge-base/Network-Solutions/Chrony-on-Cumulus-Linux/</td>
 <td>4.3.0-4.4.5</td>
 <td></td>
+</tr>
+<tr>
+<td>2821869</td>
+<td>The {{cl-route-check --layer3}} command fails with a memory error. For example:
+
+cumulus@switch:~$ sudo cl-route-check --layer3
+Traceback (most recent call last):
+ File "/usr/cumulus/bin/cl-route-check", line 1270, in &lt;module&gt;
+  routing.collect_data()
+ File "/usr/cumulus/bin/cl-route-check", line 528, in collect_data
+  self.collect_data_bgp_ipv4()
+ File "/usr/cumulus/bin/cl-route-check", line 711, in collect_data_bgp_ipv4
+  bgp_ipv4 = json.loads(output)
+ File "/usr/lib/python2.7/json/__init__.py", line 338, in loads
+  return _default_decoder.decode(s)
+ File "/usr/lib/python2.7/json/decoder.py", line 366, in decode
+  obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+ File "/usr/lib/python2.7/json/decoder.py", line 382, in raw_decode
+  obj, end = self.scan_once(s, idx)
+MemoryError
+</td>
+<td>3.7.15-4.4.5</td>
+<td>5.0.0-5.10.0</td>
 </tr>
 <tr>
 <td>2820565</td>

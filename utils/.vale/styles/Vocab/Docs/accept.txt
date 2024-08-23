@@ -184,6 +184,7 @@ interoperate
 ip6tables
 iptables
 ipv6
+IPv6
 jpg
 ledmgrd
 linklocal

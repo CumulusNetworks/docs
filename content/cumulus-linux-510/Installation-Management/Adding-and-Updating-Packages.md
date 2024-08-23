@@ -56,7 +56,7 @@ Use the `-E` option with `sudo` whenever you run any `apt-get` command. This opt
 
 After the cache populates, use the `apt-cache` command to search the cache and find the packages of interest or to get information about an available package.
 
-Here are examples of the `search` and `show` sub-commands:
+The following shows examples of the `search` and `show` sub-commands:
 
 ```
 cumulus@switch:~$ apt-cache search tcp

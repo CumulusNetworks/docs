@@ -5,4 +5,4 @@ ignorecase: true
 scope: raw
 level: error
 tokens:
-  - here
+  - no text

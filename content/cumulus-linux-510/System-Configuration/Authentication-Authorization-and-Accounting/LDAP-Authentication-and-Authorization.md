@@ -4,10 +4,11 @@ author: NVIDIA
 weight: 170
 toc: 4
 ---
+<!-- vale off -->
 Cumulus Linux uses Pluggable Authentication Modules (PAM) and Name Service Switch (NSS) for user authentication. NSS enables PAM to use LDAP to provide user authentication, group mapping, and information for other services on the system.
 - NSS specifies the order of the information sources that resolve names for each service. Using NSS with authentication and authorization provides the order and location for user lookup and group mapping on the system.
 - PAM handles the interaction between the user and the system, providing login handling, session setup, authentication of users, and authorization of user actions.
-
+<!-- vale on -->
 {{%notice note%}}
 To configure LDAP authentication on Linux, you can use `libnss-ldap`, `libnss-ldapd`, or `libnss-sss`. This chapter describes `libnss-ldapd` only. From internal testing, this library works best with Cumulus Linux and is the easiest to configure, automate, and troubleshoot.
 {{%/notice%}}
@@ -66,7 +67,7 @@ cumulus@switch:~$ sudo systemctl restart nvued.service
 Instead of running the installer and following the interactive prompts, as described above, you can pre-seed the installer parameters using `debconf-utils`.
 
 1. Run `apt-get install debconf-utils` and create the pre-seeded parameters using `debconf-set-selections`. Provide the appropriate answers.
-2. Run `debconf-show <pkg>` to check the settings. Here is an example of how to pre-seed answers to the installer questions using `debconf-set-selections`:
+2. Run `debconf-show <pkg>` to check the settings. The following example shows how to pre-seed answers to the installer questions using `debconf-set-selections`:
 
    ```
    root# debconf-set-selections <<'zzzEndOfFilezzz'
@@ -207,7 +208,7 @@ You can ignore this message. The `libdb` package and resulting log messages from
 
 ### Example Configuration
 
-Here is an example configuration using Cumulus Linux.
+The following is an example configuration using Cumulus Linux.
 
 ```
 # /etc/nslcd.conf
@@ -766,7 +767,7 @@ You can ignore this message. The `libdb` package and resulting log messages from
 
 ### Example /etc/nslcd.conf Configuration File
 
-Here is an example configuration using Cumulus Linux.
+Example configuration using Cumulus Linux.
 
 ```
 # /etc/nslcd.conf

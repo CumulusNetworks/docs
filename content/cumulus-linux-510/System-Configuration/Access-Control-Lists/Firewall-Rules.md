@@ -228,7 +228,7 @@ You can also show the ACL settings with the NVUE `nv show acl <acl>` command.
 ## Show Firewall Rules
 
 To show the DoS rules, run the `nv show acl acl-default-dos` command:
-
+<!-- vale off -->
 ```
 cumulus@switch:~$ nv show acl acl-default-dos
       applied  pending

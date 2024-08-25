@@ -126,9 +126,9 @@ Nonatomic updates offer better scaling because all TCAM resources actively impac
 <!-- vale on -->
 *Incremental nonatomic updates* are table based, so they do not interrupt network traffic when you install new rules. The rules map to the following tables and update in this order:
 
-- mirror (ingress only)
-- ipv4-mac (can be both ingress and egress)
-- ipv6 (ingress only)
+- `mirror` (ingress only)
+- `ipv4-mac` (can be both ingress and egress)
+- `ipv6` (ingress only)
 
 The incremental nonatomic update operation follows this order:
 
@@ -412,7 +412,7 @@ By default:
 - The `policy.conf` file expects rule files to have a `.rules` suffix as part of the file name.
 {{%/notice%}}
 
-Here is an example ACL policy file:
+The following shows an example ACL policy file:
 
 ```
 [iptables]
@@ -545,12 +545,12 @@ The NVIDIA Spectrum 1 ASIC (model numbers 2xx0) has one common TCAM space for bo
 Cumulus Linux controls the ACL and multicast route entry scale on NVIDIA Spectrum 1 switches with different TCAM profiles in combination with the ACL {{<link url="#nonatomic-update-mode-and-atomic-update-mode" text="atomic and nonatomic update setting">}}.
 <!-- vale off -->
 |Profile |Atomic Mode IPv4 Rules |Atomic Mode IPv6 Rules |Nonatomic Mode IPv4 Rules |Nonatomic Mode IPv6 Rules | Multicast Route Entries |
-|------------|-------------------|-------------------|-------------------|-------------------------|-----------------|
-|default |500 |250 |1000 |500| 1000 |
-|ipmc-heavy|750 |500 |1500 |1000| 8500 |
-|acl-heavy |1750 |1000 |3500 |2000| 450|
-|ipmc-max |1000 |500 |2000 |1000 | 13000|
-|ip-acl-heavy |6000 |0 |12000 |0| 0|
+| ------------| ------------------- | -------------------| ------------------- | ------------------------- | ----------------- |
+| default |500 |250 |1000 |500| 1000 |
+| ipmc-heavy|750 |500 |1500 |1000| 8500 |
+| acl-heavy |1750 |1000 |3500 |2000| 450|
+| ipmc-max |1000 |500 |2000 |1000 | 13000|
+| ip-acl-heavy |6000 |0 |12000 |0| 0|
 <!-- vale on -->
 {{%notice note%}}
 - Even though the table above specifies the ip-acl-heavy profile supports no IPv6 rules, Cumulus Linux does not prevent you from configuring IPv6 rules. However, there is no guarantee that IPv6 rules work under the ip-acl-heavy profile.
@@ -595,7 +595,7 @@ If you see error messages similar to `No More Resources .. Rolling back` when yo
 
 ## Supported Rule Types
 
-The `iptables`/`ip6tables`/`ebtables` construct tries to layer the Linux implementation on top of the underlying hardware but they are not always directly compatible. Here are the supported rules for chains in `iptables`, `ip6tables` and `ebtables`.
+The `iptables`/`ip6tables`/`ebtables` construct tries to layer the Linux implementation on top of the underlying hardware but they are not always directly compatible. The following shows the supported rules for chains in `iptables`, `ip6tables` and `ebtables`.
 
 To learn more about any of the options shown in the tables below, run `iptables -h [name of option]`. The same help syntax works for options for `ip6tables` and `ebtables`.
 
@@ -929,7 +929,7 @@ Rule  In Packet  In Byte  Out Packet  Out Byte  Summary
 
 ### Set DSCP on Transit Traffic
 
-The examples here use the *mangle* table to modify the packet as it transits the switch. DSCP is in {{<exlink url="https://en.wikipedia.org/wiki/Differentiated_services#Configuration_guidelines" text="decimal notation">}} in the examples below.
+The following examples use the *mangle* table to modify the packet as it transits the switch. DSCP is in {{<exlink url="https://en.wikipedia.org/wiki/Differentiated_services#Configuration_guidelines" text="decimal notation">}} in the examples below.
 
 {{< tabs "730 ">}}
 {{< tab "iptables rule ">}}

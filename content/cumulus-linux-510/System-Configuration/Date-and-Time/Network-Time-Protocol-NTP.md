@@ -179,7 +179,7 @@ For added security, you can configure NTP to use authorization keys.
 ### Configure the NTP Server
 
 1. Create a `.keys` file, such as `/etc/ntp.keys`. Specify a key identifier (a number between 1 and 65535), an encryption method (M for MD5), and the password. The following provides an example:
-
+<!-- vale off -->
     ```
     #
     # PLEASE DO NOT USE THE DEFAULT VALUES HERE.
@@ -189,7 +189,7 @@ For added security, you can configure NTP to use authorization keys.
 
     1  M  CumulusLinux!
     ```
-
+<!-- vale on -->
 2. In the `/etc/ntpsec/ntp.conf` file, add a pointer to the `/etc/ntp.keys` file you created above and specify the key identifier. For example:
 
     ```
@@ -206,7 +206,7 @@ For added security, you can configure NTP to use authorization keys.
 The NTP client is the Cumulus Linux switch.
 
 1. Create the same `.keys` file you created on the NTP server (`/etc/ntp.keys`). For example:
-
+<!-- vale off -->
     ```
     cumulus@switch:~$  sudo nano /etc/ntp.keys
     #
@@ -217,7 +217,7 @@ The NTP client is the Cumulus Linux switch.
 
     1  M  CumulusLinux!
     ```
-
+<!-- vale on -->
 2. Edit the `/etc/ntpsec/ntp.conf` file to specify the server you want to use, the key identifier, and a pointer to the `/etc/ntp.keys` file you created in step 1. For example:
 
     ```

@@ -191,3 +191,101 @@ After you create the simulation, you can restore the configuration files.
 This {{<exlink url="https://gitlab.com/cumulus-consulting/features/cl_support_file_extractor" text="python script">}} pulls out all the relevant files and collates them into folders so you can use them to restore configuration from inside the simulation.
 
 You can also use the {{<exlink url="https://gitlab.com/cumulus-consulting/features/simple-iac" text="infrastructure as code">}} Ansible playbook to restore configurations.
+
+
+## Working with Supported Topology Formats
+
+This section describes network topology formats supported by Air.
+
+<!-- vale off -->
+### Overview
+<!-- vale on -->
+
+Network topologies describe which nodes a data center is comprised of, how they are configured and which other nodes they are connected to. A format is way to structure and represent such topologies. Air is able to create simulations out of network topologies structured using a supported format.
+
+### Create a Simulation from a Topology Format
+
+In order to create a simulation out of a supported format, [the following API endpoint](https://air.nvidia.com/api/#/v2/v2_simulations_import_create) should be used.
+
+<!-- vale off -->
+### Supported Formats
+<!-- vale on -->
+
+This section lists topology formats supported by Air.
+
+<!-- vale off -->
+#### JSON
+<!-- vale on -->
+
+This format describes a network topology using a JSON document. A schema for such a document can be viewed by visiting the [API documentation](https://air.nvidia.com/api/#/v2/v2_simulations_import_create).
+
+##### Example 1
+
+```json
+{
+    "oob": true,
+    "nodes": {
+        "node-1": {
+            "os": "generic/ubuntu2204"
+        },
+        "node-2": {
+            "os": "generic/ubuntu2204"
+        }
+    },
+    "links": [
+        [{"node": "node-1", "interface": "eth1"}, {"node": "node-2", "interface": "eth1"}]
+    ]
+}
+```
+
+The following topology defines two nodes connected to the Out-of-Band management network (implicitly via `eth0`) and connected directly to each other using their respective `eth1` interfaces. Both nodes are able to communicate with each other either indirectly by using their management network interfaces or directly by using their `eth1` interfaces (assuming network configuration for these interfaces has been provided).
+
+##### Example 2
+
+```json
+{
+    "nodes": {
+        "node-1": {
+            "os": "generic/ubuntu2204",
+            "management_ip": "192.168.200.31",
+            "management_mac": "02:00:00:00:00:01"
+        },
+        "node-2": {
+            "os": "generic/ubuntu2204",
+            "management_ip": "192.168.200.32",
+            "management_mac": "02:00:00:00:00:02"
+        }
+    }
+}
+```
+
+The following topology defines two nodes connected to the Out-of-Band management network (top-level `oob` flag is implictly `true` and can be omitted). Both nodes have custom IP and MAC addresses assigned to them within the management network. Top-level `links` field has also been omitted, therefore no additional interfaces are defined. Nodes are only able to communicate with each other via the management network.
+
+##### Example 3
+
+```json
+{
+    "oob": false,
+    "nodes": {
+        "node-1": {
+            "os": "generic/ubuntu2204",
+            "cpu": 2,
+            "memory": 2048
+        },
+        "node-2": {
+            "os": "defb3ffc-e29b-4d3a-a5fb-41ed1974f938",
+            "memory": 2048,
+            "storage": 25
+        }
+    },
+    "links": [
+        [{"node": "node-1", "interface": "eth1"}, {"node": "node-2", "interface": "eth1"}],
+        [{"node": "node-1", "interface": "eth2", "mac": "02:00:00:00:00:07"}, "exit"]
+    ]
+}
+```
+
+In this example: 
+- Management network has been disabled by setting the top-level `oob` flag to `false`
+- Both nodes are connected directly, `node-1` has a public-facing `eth2` interface with a custom MAC address
+- Custom resource reservation has been defined for both nodes and the `os` value for `node-2` references the image using a specific UUID

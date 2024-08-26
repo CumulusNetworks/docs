@@ -782,8 +782,33 @@ route-map EXTERNAL-2-1K permit 10
 
 ## Considerations
 
+### Match Lists
+
 When you configure a route map to match a prefix list, community list, or aspath list, the permit or deny actions in the list determine the criteria to evaluate in each route map sequence; for example:
 - If you match a list in a route map permit sequence, Cumulus Linux matches the permitted routes in the list for that route map sequence and the policy permits them. Denied routes in the list do not match and Cumulus Linux evaluates them in later route map sequences.
 - If you match a list in a route map deny sequence, Cumulus Linux matches the permitted routes in the list for that route map sequence and the policy denies them. Denied routes in the list do not match and Cumulus Linux evaluates them in later route map sequences.
 
 NVIDIA recommends you always configure a community list as `permit`, and permit or deny routes using route map sequences.
+
+### Set BGP Community Additive
+
+To set more than one community in a route map, you can run the `nv set router policy route-map <route-map-id> rule <rule-id> set community additive` command. The following example sets both community 100:100 and community 555:111 in the route map called ROUTEMAP1:
+
+```
+cumulus@leaf01:~$ nv set router policy route-map ROUTEMAP1 rule 5 action permit
+cumulus@leaf01:~$ nv set router policy route-map ROUTEMAP1 rule 5 match ip-prefix-list LIST1
+cumulus@leaf01:~$ nv set router policy route-map ROUTEMAP1 rule 5 match type ipv4
+cumulus@leaf01:~$ nv set router policy route-map ROUTEMAP1 rule 5 set community 100:100
+cumulus@leaf01:~$ nv set router policy route-map ROUTEMAP1 rule 5 set community 555:111
+cumulus@leaf01:~$ nv set router policy route-map ROUTEMAP1 rule 5 set community additive
+cumulus@leaf01:~$ nv config apply
+```
+
+When you unset the additive community with the `nv unset router policy route-map <route-map-id> rule <rule-id> set community additive` command, NVUE does not remove the communities. You must unset each community and the community additive to remove the communities:
+
+```
+cumulus@leaf01:~$ nv unset router policy route-map ROUTEMAP1 rule 5 set community 100:100
+cumulus@leaf01:~$ nv unset router policy route-map ROUTEMAP1 rule 5 set community 555:111
+cumulus@leaf01:~$ nv unset router policy route-map ROUTEMAP1 rule 5 set community additive
+cumulus@leaf01:~$ nv config apply
+```

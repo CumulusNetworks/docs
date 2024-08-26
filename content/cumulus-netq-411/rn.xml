@@ -43,12 +43,6 @@
 <td></td>
 </tr>
 <tr>
-<td>3854467</td>
-<td>When a single NetQ cluster VM is offline, the NetQ kafka-connect pods are brought down on other cluster nodes, preventing NetQ data from collecting data. To work around this issue, bring all cluster nodes back into service.</td>
-<td>4.10.0-4.13.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3847280</td>
 <td>The {{netq-opta}} package fails to install on Cumulus Linux 5.9.0. On-switch OPTA is not supported on Cumulus Linux 5.9.0.</td>
 <td>4.10.0-4.13.0</td>

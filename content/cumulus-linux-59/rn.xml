@@ -75,7 +75,7 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 </tr>
 <tr>
 <td>3970626</td>
-<td>When you configure the {{bridge.kernel_mac_refresh_interval}} parameter in the {{switchd.conf}} file, a {{switchd}} restart fails with core dump.</td>
+<td>When you configure the {{bridge.kernel_mac_refresh_interval}} parameter in the {{switchd.conf}} file, a {{switchd}} restart fails with a core dump.</td>
 <td>5.8.0-5.9.1</td>
 <td>5.10.0</td>
 </tr>
@@ -93,7 +93,7 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 </tr>
 <tr>
 <td>3957691</td>
-<td>After a networking restart, ERSPAN mirror sessions might not come up. To work around this issue, run the {{systemctl reload switchd}} command to bring up the ERSPAN mirror sessions.</td>
+<td>After a networking restart, ERSPAN mirror sessions might not start. To work around this issue, run the {{systemctl reload switchd}} command to start the ERSPAN mirror sessions.</td>
 <td>5.9.0-5.9.1</td>
 <td>5.10.0</td>
 </tr>
@@ -736,13 +736,13 @@ You can safely ignore this warning.</td>
 </tr>
 <tr>
 <td>3970626</td>
-<td>When you configure the {{bridge.kernel_mac_refresh_interval}} parameter in the {{switchd.conf}} file, a {{switchd}} restart fails with core dump.</td>
+<td>When you configure the {{bridge.kernel_mac_refresh_interval}} parameter in the {{switchd.conf}} file, a {{switchd}} restart fails with a core dump.</td>
 <td>5.8.0-5.9.1</td>
 <td>5.10.0</td>
 </tr>
 <tr>
 <td>3957691</td>
-<td>After a networking restart, ERSPAN mirror sessions might not come up. To work around this issue, run the {{systemctl reload switchd}} command to bring up the ERSPAN mirror sessions.</td>
+<td>After a networking restart, ERSPAN mirror sessions might not start. To work around this issue, run the {{systemctl reload switchd}} command to start the ERSPAN mirror sessions.</td>
 <td>5.9.0-5.9.1</td>
 <td>5.10.0</td>
 </tr>

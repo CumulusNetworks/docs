@@ -904,12 +904,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>2705056</td>
-<td>When configured with NVUE, SVIs do not inherit the pinned MAC address of the bridge.</td>
-<td>4.3.0, 5.0.0-5.10.0</td>
-<td>4.3.1-4.4.5</td>
-</tr>
-<tr>
 <td>2684925</td>
 <td>The NVUE {{nv show vrf default router bgp peer}} command produces a 404 not found error.</td>
 <td>4.4.0-4.4.5, 5.0.0-5.10.0</td>
@@ -1769,12 +1763,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>When you change the VRRP advertisement interval on the master, the {{master advertisement interval}} field in the {{show vrrp}} command output does not show the updated value.</td>
 <td>4.4.0-4.4.5, 5.0.0-5.10.0</td>
 <td></td>
-</tr>
-<tr>
-<td>2705056</td>
-<td>When configured with NVUE, SVIs do not inherit the pinned MAC address of the bridge.</td>
-<td>4.3.0, 5.0.0-5.10.0</td>
-<td>4.3.1-4.4.5</td>
 </tr>
 <tr>
 <td>2684925</td>

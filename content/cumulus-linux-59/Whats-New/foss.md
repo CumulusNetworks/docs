@@ -7,7 +7,7 @@ version: "5.9"
 toc: 1
 pdfhidden: True
 ---
-<!--
+
 ## 5.9.2 Packages
 
 Cumulus Linux 5.9.2 contains the following core switch package versions:
@@ -21,7 +21,3 @@ Cumulus Linux 5.9.2 contains the following core switch package versions:
 | kernel (`linux-image`) | 6.1.90 | Linux kernel package. |
 
 To obtain a complete list of open source packages included in Cumulus Linux 5.9.2, see the downloads section on the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise support portal">}}.
--->
-## 5.9 Open Source Software Licenses
-
-For a list of Open Source packages included in Cumulus Linux 5.9 and their respective licenses, {{<mib_link url="cumulus-linux-59/pdf/Open_Source_Licenses_Cumulus_Linux_5.9.0.pdf" text="click here">}}.

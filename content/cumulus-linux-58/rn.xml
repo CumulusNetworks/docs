@@ -26,7 +26,7 @@
 </tr>
 <tr>
 <td>3970626</td>
-<td>When you configure the {{bridge.kernel_mac_refresh_interval}} parameter in the {{switchd.conf}} file, a {{switchd}} restart fails with core dump.</td>
+<td>When you configure the {{bridge.kernel_mac_refresh_interval}} parameter in the {{switchd.conf}} file, a {{switchd}} restart fails with a core dump.</td>
 <td>5.8.0-5.9.1</td>
 <td>5.10.0</td>
 </tr>

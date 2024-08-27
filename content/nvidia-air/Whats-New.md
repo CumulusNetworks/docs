@@ -9,10 +9,13 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 
 ## August 2024
 <!-- Air:WhatsNew -->
+### 82.2024.0826-011
+- Updated ZTP script template
+<!-- Air:WhatsNew -->
+
 ### 82.2024.0819-011
 - Fixed an issue where the `Enable SSH` option was not displayed after deleting the service
 - Fixed an issue with pop-out consoles in the Legacy UI
-<!-- Air:WhatsNew -->
 
 ### 82.2024.0815-011
 - New UI now available for all users

@@ -9078,11 +9078,6 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <td>In an EVPN multihoming configuration, the VTEP continues to advertise a stale route after an extended MAC mobility event.</td>
 <td>4.3.0-4.4.1</td>
 </tr>
-<tr>
-<td>2705056</td>
-<td>When configured with NVUE, SVIs do not inherit the pinned MAC address of the bridge.</td>
-<td>4.3.0, 5.0.0-5.10.0</td>
-</tr>
 </table>
 <table name="Open Issues in 4.4.0">
 <tr>

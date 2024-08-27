@@ -1278,7 +1278,6 @@ pdfhidden: True
 | <a name="2723603"></a> [2723603](#2723603) <a name="2723603"></a> <br /> | In a static VXLAN configuration, the <code>bridge-learning on</code> setting does not turn on <code>VXLAN-learning</code>.  | 4.4.0-4.4.1 | |
 | <a name="2719356"></a> [2719356](#2719356) <a name="2719356"></a> <br /> | If you reduce the reserved VLAN range in the <code>/etc/cumulus/switchd.conf</code> file to below 32 and you make multiple VLAN or bridge configuration changes, the VLANs might not be created in hardware and you might see the log message <code>hal_mlx_l2.c:3045 ERR vlan create failed</code><br />The minimum supported size of the reserved VLAN range in the <code>/etc/cumulus/switchd.conf</code> file is 32 VLANs for single VLAN-aware bridge configurations. | 4.4.0-4.4.1 | |
 | <a name="2706744"></a> [2706744](#2706744) <a name="2706744"></a> <br /> | In an EVPN multihoming configuration, the VTEP continues to advertise a stale route after an extended MAC mobility event. | 4.3.0-4.4.1 | |
-| <a name="2705056"></a> [2705056](#2705056) <a name="2705056"></a> <br /> | When configured with NVUE, SVIs do not inherit the pinned MAC address of the bridge. | 4.3.0, 5.0.0-5.10.0 | |
 
 ## 4.4.0 Release Notes
 ### Open Issues in 4.4.0

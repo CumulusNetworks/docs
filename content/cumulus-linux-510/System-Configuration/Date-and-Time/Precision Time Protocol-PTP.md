@@ -1488,7 +1488,8 @@ The local priority attributes of the Telecom profiles provide a powerful tool in
 Both `clock-local-priority` and `local-priority` have default values of 128. When you use the default values, the Alternate BMCA determines the synchronization topology automatically. If you use non-default local priority values, you build the synchronization topology manually.
 
 {{%notice note%}}
-Exercise caution when using local priority attributes to build the synchronization topology manually.
+- Exercise caution when using local priority attributes to build the synchronization topology manually.
+- With two connected switches, you must set the local priority on one switch higher than 128 and the local priority on the second switch lower than 128.
 {{%/notice%}}
 
 {{< tabs "TabID387 ">}}

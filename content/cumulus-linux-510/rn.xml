@@ -19,6 +19,18 @@
 <td></td>
 </tr>
 <tr>
+<td>4037359</td>
+<td>If you configure histograms and enable histogram export without configuring telemetry export, the {{asic-monitor}} attempts GRPC with the OTEL collector but the OTEL collector is down. As a result, Cumulus Linux does not generate snapshot files.</td>
+<td>5.10.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4037315</td>
+<td>NVUE fails to enforce the password length limitation of 512 characters or fewer.</td>
+<td>5.10.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4037224</td>
 <td>ASIC monitoring histogram collection might not work because of a crash in the {{asic-monitor}} service. To work around this issue, see the &lt;a href="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-510/Whats-New/#release-considerations"&gt;Release Considerations section of the What’s New&lt;/a&gt;.</td>
 <td>5.10.0</td>
@@ -499,7 +511,7 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 </tr>
 <tr>
 <td>3951643</td>
-<td>The NVUE unset and set command for the same object in a patch file {{nv config patch &lt;file&gt;.yaml}} causes a python exception.</td>
+<td>The NVUE unset and set command for the same object in a patch file ({{nv config patch &lt;file&gt;.yaml}}) causes a python exception.</td>
 <td>5.9.1</td>
 </tr>
 <tr>
@@ -529,7 +541,7 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 </tr>
 <tr>
 <td>3939667</td>
-<td>The password on NVIDIA Cumulus VX is not getting reset to the default value of {{cumulus}}.</td>
+<td>On NVIDIA Cumulus VX, the password does not reset to the default value of {{cumulus}}.</td>
 <td>5.9.0-5.9.1</td>
 </tr>
 <tr>
@@ -659,6 +671,7 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <tr>
 <td>3711913</td>
 <td>When you set an IPv4 ACL with a log action, logs do not appear under syslog after a match. This issue affects bridged packets when the rule is installed in iptables. To work around this issue, set the ACL with a MAC rule type so that it is installed in ebtables and the packets are logged correctly in {{syslog}}.The following shows an example configuration:
+
 cumulus@switch:~$ nv set acl one rule 1 action log log-prefix NVIDIA
 cumulus@switch:~$ nv set acl one rule 1 match ip protocol udp
 cumulus@switch:~$ nv set acl one rule 1 match ip source-ip 10.0.14.2

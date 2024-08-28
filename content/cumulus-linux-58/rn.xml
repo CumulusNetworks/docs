@@ -303,6 +303,7 @@ leaf01# exit</td>
 <tr>
 <td>3711913</td>
 <td>When you set an IPv4 ACL with a log action, logs do not appear under syslog after a match. This issue affects bridged packets when the rule is installed in iptables. To work around this issue, set the ACL with a MAC rule type so that it is installed in ebtables and the packets are logged correctly in {{syslog}}.The following shows an example configuration:
+
 cumulus@switch:~$ nv set acl one rule 1 action log log-prefix NVIDIA
 cumulus@switch:~$ nv set acl one rule 1 match ip protocol udp
 cumulus@switch:~$ nv set acl one rule 1 match ip source-ip 10.0.14.2

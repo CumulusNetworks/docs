@@ -193,7 +193,7 @@ To upgrade the switch:
     cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-linux-5.10.0-mlx-amd64.bin && sudo reboot
     ```
 
-4. Restore the configuration files to the new release (restoring files with automation is not recommended).
+4. Restore the configuration files to the new release (NVIDIA does not recommend restoring files with automation).
 5. Verify correct operation with the old configurations on the new release.
 6. Reinstall third party applications and associated configurations.
 

@@ -58,7 +58,7 @@ cumulus@switch:~$ nv config apply
    udp_ttl                      1
    masterOnly                   0
    delay_mechanism              E2E
-   network_transport            UDPv4
+   network_transport            RAWUDPv4
    ```
 
 2. Edit the `/etc/linuxptp/ts2phc.conf` file to set the following parameters to enable PPS In.

@@ -112,9 +112,13 @@ cumulus@switch:~$ nv set service dhcp-relay default gateway-interface lo
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service dhcp-relay \<vrf-id\> giaddress-interface \<interface-id\> address</h>
+## <h>nv set service dhcp-relay \<vrf-id\> gateway-interface \<interface-id\> address</h>
 
 Configures the IPv4 address on the gateway interface.
+
+{{%notice note%}}
+In Cumulus Linux 5.4 and earlier, this command is `nv set service dhcp-relay <vrf-id> giaddress-interface <interface-id> address <ipv4-address>`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -131,7 +135,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set service dhcp-relay default giaddress-interface address lo 10.10.10.1
+cumulus@switch:~$ nv set service dhcp-relay default gateway-address-interface address lo 10.10.10.1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -199,8 +203,9 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set service dhcp-relay default source-ip giaddress
+cumulus@switch:~$ nv set service dhcp-relay default source-ip gateway
 ```
+
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

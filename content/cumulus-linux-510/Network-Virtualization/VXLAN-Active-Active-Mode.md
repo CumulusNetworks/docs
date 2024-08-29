@@ -126,7 +126,7 @@ cumulus@leaf01:mgmt:~$ nv show mlag
 enable                                   on                 Turn the feature 'on' or 'off'.  The default is 'off'.
 debug                                    off                Enable MLAG debugging
 init-delay                               180                The delay, in seconds, before bonds are brought up.
-mac-address     44:38:39:be:ef:aa        44:38:39:BE:EF:AA  Override anycast-mac and anycast-id
+mac-address     44:38:39:FF:00:aa        44:38:39:FF:00:AA  Override anycast-mac and anycast-id
 peer-ip         fe80::4638:39ff:fe00:5a  linklocal          Peer Ip Address
 priority        32768                    32768              Mlag Priority
 [backup]        10.10.10.2               10.10.10.2         Set of MLAG backups
@@ -178,7 +178,7 @@ The peer is alive
           Peer Interface and IP: peerlink.4094 fe80::4638:39ff:fe00:5a (linklocal)
                VxLAN Anycast IP: 10.0.1.12
                       Backup IP: 10.10.10.2 (active)
-                     System MAC: 44:38:39:be:ef:aa
+                     System MAC: 44:38:39:FF:00:aa
 
 CLAG Interfaces
 Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Down Reason
@@ -197,7 +197,7 @@ The peer is alive
           Peer Interface and IP: peerlink.4094 fe80::4638:39ff:fe00:5d (linklocal)
                VxLAN Anycast IP: 10.0.1.34
                       Backup IP: 10.10.10.3 (active)
-                     System MAC: 44:38:39:be:ef:bb
+                     System MAC: 44:38:39:FF:00:bb
 
 CLAG Interfaces
 Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Down Reason
@@ -232,7 +232,7 @@ cumulus@leaf01:~$ nv set interface bond1 bond member swp1
 cumulus@leaf01:~$ nv set interface bond1 bond mlag id 1
 cumulus@leaf01:~$ nv set interface bond1 bridge domain br_default 
 cumulus@leaf01:~$ nv set interface peerlink bond member swp49-50
-cumulus@leaf01:~$ nv set system global anycast-mac 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ nv set system global anycast-mac 44:38:39:FF:00:AA
 cumulus@leaf01:~$ nv set mlag backup 10.10.10.2
 cumulus@leaf01:~$ nv set mlag peer-ip linklocal
 cumulus@leaf01:~$ nv set interface vlan10 
@@ -265,7 +265,7 @@ cumulus@leaf02:~$ nv set interface bond1 bond member swp1
 cumulus@leaf02:~$ nv set interface bond1 bond mlag id 1
 cumulus@leaf02:~$ nv set interface bond1 bridge domain br_default 
 cumulus@leaf02:~$ nv set interface peerlink bond member swp49-50
-cumulus@leaf02:~$ nv set system global anycast-mac 44:38:39:BE:EF:AA
+cumulus@leaf02:~$ nv set system global anycast-mac 44:38:39:FF:00:AA
 cumulus@leaf02:~$ nv set mlag backup 10.10.10.1
 cumulus@leaf02:~$ nv set mlag peer-ip linklocal
 cumulus@leaf02:~$ nv set interface vlan10 
@@ -298,7 +298,7 @@ cumulus@leaf03:~$ nv set interface bond1 bond member swp1
 cumulus@leaf03:~$ nv set interface bond1 bond mlag id 1
 cumulus@leaf03:~$ nv set interface bond1 bridge domain br_default 
 cumulus@leaf03:~$ nv set interface peerlink bond member swp49-50
-cumulus@leaf03:~$ nv set system global anycast-mac 44:38:39:BE:EF:BB
+cumulus@leaf03:~$ nv set system global anycast-mac 44:38:39:FF:00:BB
 cumulus@leaf03:~$ nv set mlag backup 10.10.10.4
 cumulus@leaf03:~$ nv set mlag peer-ip linklocal
 cumulus@leaf03:~$ nv set interface vlan10 
@@ -331,7 +331,7 @@ cumulus@leaf04:~$ nv set interface bond1 bond member swp1
 cumulus@leaf04:~$ nv set interface bond1 bond mlag id 1
 cumulus@leaf04:~$ nv set interface bond1 bridge domain br_default 
 cumulus@leaf04:~$ nv set interface peerlink bond member swp49-50
-cumulus@leaf04:~$ nv set system global anycast-mac 44:38:39:BE:EF:BB
+cumulus@leaf04:~$ nv set system global anycast-mac 44:38:39:FF:00:BB
 cumulus@leaf04:~$ nv set mlag backup 10.10.10.3
 cumulus@leaf04:~$ nv set mlag peer-ip linklocal
 cumulus@leaf04:~$ nv set interface vlan10 
@@ -538,7 +538,7 @@ cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
           acl-default-whitelist:
             inbound: {}
       global:
-        anycast-mac: 44:38:39:BE:EF:AA
+        anycast-mac: 44:38:39:FF:00:AA
         fabric-mac: 00:00:5E:00:01:01
         system-mac: 44:38:39:22:01:7a
       hostname: leaf01
@@ -726,7 +726,7 @@ cumulus@leaf02:~$ sudo cat /etc/nvue.d/startup.yaml
           acl-default-whitelist:
             inbound: {}
       global:
-        anycast-mac: 44:38:39:BE:EF:AA
+        anycast-mac: 44:38:39:FF:00:AA
         fabric-mac: 00:00:5E:00:01:01
         system-mac: 44:38:39:22:01:78
       hostname: leaf02
@@ -914,7 +914,7 @@ cumulus@leaf03:~$ sudo cat /etc/nvue.d/startup.yaml
           acl-default-whitelist:
             inbound: {}
       global:
-        anycast-mac: 44:38:39:BE:EF:BB
+        anycast-mac: 44:38:39:FF:00:BB
         fabric-mac: 00:00:5E:00:01:01
         system-mac: 44:38:39:22:01:84
       hostname: leaf03
@@ -1102,7 +1102,7 @@ cumulus@leaf04:~$ sudo cat /etc/nvue.d/startup.yaml
           acl-default-whitelist:
             inbound: {}
       global:
-        anycast-mac: 44:38:39:BE:EF:BB
+        anycast-mac: 44:38:39:FF:00:BB
         fabric-mac: 00:00:5E:00:01:01
         system-mac: 44:38:39:22:01:8a
       hostname: leaf04
@@ -1497,7 +1497,7 @@ auto peerlink.4094
 iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-backup-ip 10.10.10.2
-    clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-sys-mac 44:38:39:FF:00:AA
     clagd-args --initDelay 180
 auto vlan10
 iface vlan10
@@ -1568,7 +1568,7 @@ auto peerlink.4094
 iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-backup-ip 10.10.10.1
-    clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-sys-mac 44:38:39:FF:00:AA
     clagd-args --initDelay 180
 auto vlan10
 iface vlan10
@@ -1639,7 +1639,7 @@ auto peerlink.4094
 iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-backup-ip 10.10.10.4
-    clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-sys-mac 44:38:39:FF:00:AA
     clagd-args --initDelay 180
 auto vlan10
 iface vlan10
@@ -1710,7 +1710,7 @@ auto peerlink.4094
 iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-backup-ip 10.10.10.3
-    clagd-sys-mac 44:38:39:BE:EF:BB
+    clagd-sys-mac 44:38:39:FF:00:BB
     clagd-args --initDelay 180
 auto vlan10
 iface vlan10
@@ -2172,7 +2172,7 @@ neighbor swp3 advertisement-interval 0
 neighbor swp3 capability extended-nexthop
 neighbor swp4 interface remote-as external
 neighbor swp4 timers 3 9
-neighbor swp4 timers connect 10
+neighbor swp4 timers connect 10activate
 neighbor swp4 advertisement-interval 0
 neighbor swp4 capability extended-nexthop
 ! Address families
@@ -2201,9 +2201,7 @@ exit-address-family
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL59 - VXLAN Active-Active" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server04" >}}
-
-This simulation is running Cumulus Linux 5.9. The Cumulus Linux 5.10 simulation is coming soon.
+    {{< simulation name="Try It CL510 - VXLAN Active-Active" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server04" >}}
 
 The simulation is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 

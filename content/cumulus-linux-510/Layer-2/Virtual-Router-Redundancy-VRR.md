@@ -243,7 +243,7 @@ cumulus@leaf01:mgmt:~$ nv set interface bond2 bond mlag id 2
 cumulus@leaf01:mgmt:~$ nv set interface bond3 bond mlag id 3
 cumulus@leaf01:mgmt:~$ nv set interface bond1-3 bridge domain br_default
 cumulus@leaf01:mgmt:~$ nv set interface peerlink bond member swp49-50
-cumulus@leaf01:mgmt:~$ nv set system global anycast-mac 44:38:39:BE:EF:AA
+cumulus@leaf01:mgmt:~$ nv set system global anycast-mac 44:38:39:FF:00:AA
 cumulus@leaf01:mgmt:~$ nv set mlag backup 10.10.10.2
 cumulus@leaf01:mgmt:~$ nv set mlag peer-ip linklocal
 cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan 10,20,30
@@ -273,7 +273,7 @@ cumulus@leaf02:mgmt:~$ nv set interface bond2 bond mlag id 2
 cumulus@leaf02:mgmt:~$ nv set interface bond3 bond mlag id 3
 cumulus@leaf02:mgmt:~$ nv set interface bond1-3 bridge domain br_default
 cumulus@leaf02:mgmt:~$ nv set interface peerlink bond member swp49-50
-cumulus@leaf02:mgmt:~$ nv set system global anycast-mac 44:38:39:BE:EF:AA
+cumulus@leaf02:mgmt:~$ nv set system global anycast-mac 44:38:39:FF:00:AA
 cumulus@leaf02:mgmt:~$ nv set mlag backup 10.10.10.1
 cumulus@leaf02:mgmt:~$ nv set mlag peer-ip linklocal
 cumulus@leaf02:mgmt:~$ nv set bridge domain br_default vlan 10,20,30
@@ -472,7 +472,7 @@ cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
           acl-default-whitelist:
             inbound: {}
       global:
-        anycast-mac: 44:38:39:BE:EF:AA
+        anycast-mac: 44:38:39:FF:00:AA
         fabric-mac: 00:00:5E:00:01:01
         system-mac: 44:38:39:22:01:7a
       hostname: leaf01
@@ -667,7 +667,7 @@ cumulus@leaf02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
           acl-default-whitelist:
             inbound: {}
       global:
-        anycast-mac: 44:38:39:BE:EF:AA
+        anycast-mac: 44:38:39:FF:00:AA
         fabric-mac: 00:00:5E:00:01:01
         system-mac: 44:38:39:22:01:78
       hostname: leaf02
@@ -736,7 +736,7 @@ auto peerlink.4094
 iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-backup-ip 10.10.10.2
-    clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-sys-mac 44:38:39:FF:00:AA
     clagd-args --initDelay 100
 auto swp1
 iface swp1
@@ -826,7 +826,7 @@ auto peerlink.4094
 iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-backup-ip 10.10.10.1
-    clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-sys-mac 44:38:39:FF:00:AA
     clagd-args --initDelay 100
 auto swp1
 iface swp1
@@ -949,9 +949,7 @@ iface bond1.30
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL59 - VRR" showNodes="leaf01,leaf02,server01,server02" >}}
-
-This simulation is running Cumulus Linux 5.9. The Cumulus Linux 5.10 simulation is coming soon.
+    {{< simulation name="Try It CL510 - VRR" showNodes="leaf01,leaf02,server01,server02" >}}
 
 The simulation is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 

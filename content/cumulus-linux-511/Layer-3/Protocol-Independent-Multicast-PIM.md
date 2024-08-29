@@ -2440,6 +2440,8 @@ exit-address-family
 {{< tab "Try It " >}}
     {{< simulation name="Try It CL510 - PIM" showNodes="leaf01,leaf02,spine01,server01,server02" >}}
 
+This simulation is running Cumulus Linux 5.10. The Cumulus Linux 5.11 simulation is coming soon.
+
 The simulation starts with the example PIM configuration. To simplify the example, only one spine and two leafs are in the topology. The demo is pre-configured using NVUE commands.
 
 To validate the configuration, run the PIM show commands listed in the troubleshooting section above.

@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4043576</td>
+<td>If a ZTP script includes a directive to reboot, the reboot might stop the running ZTP process before it is able to disable itself from running again. As a result, the ZTP process starts again when the system comes back up. To work around this issue, run {{shutdown -r +1}} to schedule a reboot after one minute so that the ZTP process can successfully complete disabling the {{ztp.service}} systemd service.</td>
+<td>5.10.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4043575</td>
 <td>If a ZTP script includes a directive to reboot, the reboot might stop the running ZTP process before it is able to disable itself from running again. As a result, the ZTP process starts again when the system comes back up. To work around this issue, run {{shutdown -r +1}} to schedule a reboot after one minute so that the ZTP process can successfully complete disabling the {{ztp.service}} systemd service.</td>
 <td>5.10.0</td>
@@ -45,6 +51,12 @@
 <tr>
 <td>4023318</td>
 <td>If you run {{nv set}} commands after you perform an upgrade but before a reboot, NVUE creates a revision based off the pre-upgrade version. After reboot, the revision contains pre-upgrade data that might cause it to fail during {{config apply}}.  To work around this issue, detach the stale revision after upgrade with the {{nv config detach}} command.</td>
+<td>5.10.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4016216</td>
+<td>If a ZTP script includes a directive to reboot, the reboot might stop the running ZTP process before it is able to disable itself from running again. As a result, the ZTP process starts again when the system comes back up. To work around this issue, run {{shutdown -r +1}} to schedule a reboot after one minute so that the ZTP process can successfully complete disabling the {{ztp.service}} systemd service.</td>
 <td>5.10.0</td>
 <td></td>
 </tr>

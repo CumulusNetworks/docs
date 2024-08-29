@@ -112,7 +112,7 @@ The `nv set` and `nv unset` commands are in the following categories. Each comma
 
 | <div style="width:300px">Command Group | Description |
 | ------- | ----------- |
-| `nv set acl`<br>`nv unset acl` | Configures ACLs.|
+| `nv set acl`<br>`nv unset acl` | Configures Access Control Lists.|
 | `nv set bridge`<br>`nv unset bridge` | Configures a bridge domain. This is where you configure bridge attributes, such as the bridge type (VLAN-aware), the STP state and priority, and VLANs. |
 | `nv set evpn`<br>`nv unset evpn` | Configures EVPN. This is where you enable and disable the EVPN control plane, and set EVPN route advertise, multihoming, and duplicate address detection options. |
 | `nv set interface <interface-id>`<br>`nv unset interface <interface-id>` | Configures the switch interfaces. Use this command to configure bond and bridge interfaces, interface IP addresses and descriptions, VLAN IDs, and links (MTU, FEC, speed, duplex, and so on).|
@@ -122,7 +122,7 @@ The `nv set` and `nv unset` commands are in the following categories. Each comma
 | `nv set qos`<br>`nv unset qos` | Configures QoS RoCE. |
 | `nv set router`<br>`nv unset router` | Configures router policies (prefix list rules and route maps), sets global BGP options (enable and disable, ASN and router ID, BGP graceful restart and shutdown), global OSPF options (enable and disable, router ID, and OSPF timers) PIM, IGMP, PBR, VRR, and VRRP. |
 | `nv set service`<br>`nv unset service` | Configures DHCP relays and servers, NTP, PTP, LLDP, SNMP servers, DNS, and syslog. |
-| `nv set system`<br>`nv unset system` | Configures system settings, such as the hostname of the switch, pre and post login messages, reboot options (warm, cold, fast), the time zone and global system settings, such as the anycast ID, the system MAC address, and the anycast MAC address. This is also where you configure SPAN and ERSPAN sessions and set how configuration apply operations work (which files to ignore and which files to overwrite; see {{<link title="#configure-nvue-to-ignore-linux-files" text="Configure NVUE to Ignore Linux Files">}}).|
+| `nv set system`<br>`nv unset system` | Configures system settings, such as the hostname of the switch, pre and post login messages, reboot options (warm, cold, fast), the time zone and global system settings, such as the anycast ID, the system MAC address, and the anycast MAC address. This is also where you configure SPAN and ERSPAN sessions, telemetry, and set how configuration apply operations work (which files to ignore and which files to overwrite; see {{<link title="#configure-nvue-to-ignore-linux-files" text="Configure NVUE to Ignore Linux Files">}}).|
 | `nv set vrf  <vrf-id>`<br>`nv unset vrf <vrf-id>` | Configures VRFs. This is where you configure VRF-level configuration for PTP, BGP, OSPF, and EVPN. |
 
 ### Monitoring Commands
@@ -222,20 +222,13 @@ detail          mac             qos-profile
 dot1x-counters  mlag-cc         small
 ```
 
-**Monitoring Commands and FRR Daemons**
-
-If you run an NVUE show command but the corresponding FRR routing daemons are not running on the switch, you see an error message; for example:
-- If OSPF is not running when you run `nv show vrf <vrf-id> ospf` commands, NVUE returns `Error: The requested item does not exist` because the OSPF deamon is not running in FRR.
-- If PIM and IGMP are not running when you run the `nv show interface <interface> ip igmp -o json` command, NVUE returns `Error: The requested item does not exist` because the PIM daemon is not running in FRR.
-- If PIM is running but IGMP is not running when you the `nv show interface <interface> ip igmp group -o json` command, NVUE does not return an error message but shows an empty { } response.
-
 ### Configuration Management Commands
 
 The NVUE configuration management commands manage and apply configurations.
 
 | <div style="width:450px">Command | Description |
 | ------- | ----------- |
-| `nv config apply` | Saves the pending configuration (`nv config apply`) or a specific revision (`nv config apply 2`) to the startup configuration automatically (when auto save is `on`, which is the default setting). To see the list of revisions you can apply, run `nv config apply <<Tab>>`. <br>You can also use these prompt options:<ul><li>`--y` or `--assume-yes` to automatically reply `yes` to all prompts.</li><li>`--assume-no` to automatically reply `no` to all prompts.</li></ul> {{%notice note%}}Cumulus Linux applies but does not save the configuration; the configuration does not persist after a reboot.{{%/notice%}}You can also use these apply options:<br>`--confirm` applies the configuration change but you must confirm the applied configuration. If you do not confirm within ten minutes, the configuration rolls back automatically. You can change the default time with the apply `--confirm <time>` command. For example, `apply --confirm 60` requires you to confirm within one hour.<br>`--confirm-status` shows the amount of time left before the automatic rollback.</br>|
+| `nv config apply` | Saves the pending configuration (`nv config apply`) or a specific revision (`nv config apply 2`) to the startup configuration automatically (when auto save is `on`, which is the default setting). To see the list of revisions you can apply, run `nv config apply <<Tab>>`. <br>You can also use these prompt options:<ul><li>`--y` or `--assume-yes` to automatically reply `yes` to all prompts.</li><li>`--assume-no` to automatically reply `no` to all prompts.</li></ul>You can also use these apply options:<br>`--confirm` applies the configuration change but you must confirm the applied configuration. If you do not confirm within ten minutes, the configuration rolls back automatically. You can change the default time with the apply `--confirm <time>` command. For example, `apply --confirm 60` requires you to confirm within one hour.<br>`--confirm-status` shows the amount of time left before the automatic rollback.</br>|
 | `nv config detach` | Detaches the configuration from the current pending configuration and uses an integer to identify it; for example, `4`. To list all the current detached pending configurations, run `nv config diff <<press tab>`.|
 | `nv config diff <revision> <revision>` | Shows differences between configurations, such as the pending configuration and the applied configuration, or the detached configuration and the pending configuration.|
 | `nv config find <string>`| Finds a portion of the applied configuration according to the search string you provide. For example to find swp1 in the applied configuration, run `nv config find swp1`.|
@@ -243,7 +236,7 @@ The NVUE configuration management commands manage and apply configurations.
 | `nv config patch <nvue-file>` | Updates the pending configuration with the specified YAML configuration file. |
 | `nv config replace <nvue-file>` | Replaces the pending configuration with the specified YAML configuration file. |
 |`nv config revision` | Shows all the configuration revisions on the switch. |
-| `nv config save` | When you have the auto save option `off`, this command overwrites the startup configuration with the applied configuration by writing to the `/etc/nvu.d/startup.yaml` file. The configuration persists after a reboot. |
+| `nv config save` | This command overwrites the startup configuration with the applied configuration by writing to the `/etc/nvu.d/startup.yaml` file. The configuration persists after a reboot. Use this command when the auto save option is off.|
 | `nv config show` | Shows the currently applied configuration in `yaml` format. This command also shows NVUE version information. |
 | `nv config show -o commands` | Shows the currently applied configuration commands. |
 | `nv config diff -o commands` | Shows differences between two configuration revisions. |
@@ -282,7 +275,6 @@ nv show platform software installed
 nv show platform software installed <installed-id>
 nv show platform firmware
 nv show platform firmware <platform-component-id>
-nv show platform capabilities
 nv show platform environment
 ...
 ```

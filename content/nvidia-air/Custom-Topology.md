@@ -221,7 +221,7 @@ This format describes a network topology using a JSON document. A schema for suc
 
 ##### Example 1
 
-```json
+```
 {
     "oob": true,
     "nodes": {
@@ -242,7 +242,7 @@ The following topology defines two nodes connected to the Out-of-Band management
 
 ##### Example 2
 
-```json
+```
 {
     "nodes": {
         "node-1": {
@@ -263,7 +263,7 @@ The following topology defines two nodes connected to the Out-of-Band management
 
 ##### Example 3
 
-```json
+```
 {
     "oob": false,
     "nodes": {
@@ -288,4 +288,5 @@ The following topology defines two nodes connected to the Out-of-Band management
 In this example: 
 - Management network has been disabled by setting the top-level `oob` flag to `false`
 - Both nodes are connected directly, `node-1` has a public-facing `eth2` interface with a custom MAC address
-- Custom resource reservation has been defined for both nodes and the `os` value for `node-2` references the image using a specific UUID
+- Custom resource reservation has been defined for both nodes
+- The `os` value for `node-2` references an image using a specific UUID

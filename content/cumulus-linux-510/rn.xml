@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4043576</td>
+<td>If a ZTP script includes a directive to reboot, the reboot might stop the running ZTP process before it is able to disable itself from running again. As a result, the ZTP process starts again when the system comes back up. To work around this issue, run {{shutdown -r +1}} to schedule a reboot after one minute so that the ZTP process can successfully complete disabling the {{ztp.service}} systemd service.</td>
+<td>5.10.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4043575</td>
 <td>If a ZTP script includes a directive to reboot, the reboot might stop the running ZTP process before it is able to disable itself from running again. As a result, the ZTP process starts again when the system comes back up. To work around this issue, run {{shutdown -r +1}} to schedule a reboot after one minute so that the ZTP process can successfully complete disabling the {{ztp.service}} systemd service.</td>
 <td>5.10.0</td>
@@ -15,6 +21,18 @@
 <tr>
 <td>4037462</td>
 <td>The Open telemetry interface statistic description for {{nvswitch_histogram_interface_egress_buffer}} has a typographical error; engress should be egress.</td>
+<td>5.10.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4037359</td>
+<td>If you configure histograms and enable histogram export without configuring telemetry export, the {{asic-monitor}} attempts GRPC with the OTEL collector but the OTEL collector is down. As a result, Cumulus Linux does not generate snapshot files.</td>
+<td>5.10.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4037315</td>
+<td>NVUE fails to enforce the password length limitation of 512 characters or fewer.</td>
 <td>5.10.0</td>
 <td></td>
 </tr>
@@ -33,6 +51,12 @@
 <tr>
 <td>4023318</td>
 <td>If you run {{nv set}} commands after you perform an upgrade but before a reboot, NVUE creates a revision based off the pre-upgrade version. After reboot, the revision contains pre-upgrade data that might cause it to fail during {{config apply}}.  To work around this issue, detach the stale revision after upgrade with the {{nv config detach}} command.</td>
+<td>5.10.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4016216</td>
+<td>If a ZTP script includes a directive to reboot, the reboot might stop the running ZTP process before it is able to disable itself from running again. As a result, the ZTP process starts again when the system comes back up. To work around this issue, run {{shutdown -r +1}} to schedule a reboot after one minute so that the ZTP process can successfully complete disabling the {{ztp.service}} systemd service.</td>
 <td>5.10.0</td>
 <td></td>
 </tr>
@@ -79,12 +103,6 @@ ZTP: ZTP DHCP: Unexpected error: 'ascii' codec can't decode byte 0xe2 in positio
 ZTP: Script returned failure 
 To work around this issue, use the {{-q}} option with {{wget}}.</td>
 <td>5.9.0-5.10.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3875696</td>
-<td>The default TX State for 1G Base-X optical modules that are unconfigured or admin down in Cumulus Linux 5.7.0 and later is OFF.  However, on the first boot after upgrade from an earlier release, a module TX power might be ON or OFF depending on the TX State it was before the upgrade. The TX_Disable line is not properly set on first boot. To work around this issue, reboot the switch again, or {{ifup}} or {{ifdown}} the 1G Base-X interface to disable TX Power.</td>
-<td>5.7.0-5.10.0</td>
 <td></td>
 </tr>
 <tr>
@@ -459,7 +477,7 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 </tr>
 <tr>
 <td>3970626</td>
-<td>When you configure the {{bridge.kernel_mac_refresh_interval}} parameter in the {{switchd.conf}} file, a {{switchd}} restart fails with core dump.</td>
+<td>When you configure the {{bridge.kernel_mac_refresh_interval}} parameter in the {{switchd.conf}} file, a {{switchd}} restart fails with a core dump.</td>
 <td>5.8.0-5.9.1</td>
 </tr>
 <tr>
@@ -474,7 +492,7 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 </tr>
 <tr>
 <td>3957691</td>
-<td>After a networking restart, ERSPAN mirror sessions might not come up. To work around this issue, run the {{systemctl reload switchd}} command to bring up the ERSPAN mirror sessions.</td>
+<td>After a networking restart, ERSPAN mirror sessions might not start. To work around this issue, run the {{systemctl reload switchd}} command to start the ERSPAN mirror sessions.</td>
 <td>5.9.0-5.9.1</td>
 </tr>
 <tr>
@@ -499,7 +517,7 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 </tr>
 <tr>
 <td>3951643</td>
-<td>The NVUE unset and set command for the same object in a patch file {{nv config patch &lt;file&gt;.yaml}} causes a python exception.</td>
+<td>The NVUE unset and set command for the same object in a patch file ({{nv config patch &lt;file&gt;.yaml}}) causes a python exception.</td>
 <td>5.9.1</td>
 </tr>
 <tr>
@@ -529,7 +547,7 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 </tr>
 <tr>
 <td>3939667</td>
-<td>The password on NVIDIA Cumulus VX is not getting reset to the default value of {{cumulus}}.</td>
+<td>On NVIDIA Cumulus VX, the password does not reset to the default value of {{cumulus}}.</td>
 <td>5.9.0-5.9.1</td>
 </tr>
 <tr>
@@ -659,6 +677,7 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <tr>
 <td>3711913</td>
 <td>When you set an IPv4 ACL with a log action, logs do not appear under syslog after a match. This issue affects bridged packets when the rule is installed in iptables. To work around this issue, set the ACL with a MAC rule type so that it is installed in ebtables and the packets are logged correctly in {{syslog}}.The following shows an example configuration:
+
 cumulus@switch:~$ nv set acl one rule 1 action log log-prefix NVIDIA
 cumulus@switch:~$ nv set acl one rule 1 match ip protocol udp
 cumulus@switch:~$ nv set acl one rule 1 match ip source-ip 10.0.14.2

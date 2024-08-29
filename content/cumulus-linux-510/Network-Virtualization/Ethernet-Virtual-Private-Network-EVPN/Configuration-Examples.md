@@ -46,7 +46,7 @@ cumulus@leaf01:~$ nv set interface bond1 bridge domain br_default access 10
 cumulus@leaf01:~$ nv set interface bond2 bridge domain br_default access 20
 cumulus@leaf01:~$ nv set bridge domain br_default vlan 10,20
 cumulus@leaf01:~$ nv set interface peerlink bond member swp49-50
-cumulus@leaf01:~$ nv set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ nv set mlag mac-address 44:38:39:FF:00:AA
 cumulus@leaf01:~$ nv set mlag backup 10.10.10.2
 cumulus@leaf01:~$ nv set mlag peer-ip linklocal
 cumulus@leaf01:~$ nv set mlag priority 1000
@@ -91,7 +91,7 @@ cumulus@leaf02:~$ nv set interface bond1 bridge domain br_default access 10
 cumulus@leaf02:~$ nv set interface bond2 bridge domain br_default access 20
 cumulus@leaf02:~$ nv set bridge domain br_default vlan 10,20
 cumulus@leaf02:~$ nv set interface peerlink bond member swp49-50
-cumulus@leaf02:~$ nv set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf02:~$ nv set mlag mac-address 44:38:39:FF:00:AA
 cumulus@leaf02:~$ nv set mlag backup 10.10.10.1
 cumulus@leaf02:~$ nv set mlag peer-ip linklocal
 cumulus@leaf02:~$ nv set mlag priority 2000
@@ -136,7 +136,7 @@ cumulus@leaf03:~$ nv set interface bond1 bridge domain br_default access 10
 cumulus@leaf03:~$ nv set interface bond2 bridge domain br_default access 20
 cumulus@leaf03:~$ nv set bridge domain br_default vlan 10,20
 cumulus@leaf03:~$ nv set interface peerlink bond member swp49-50
-cumulus@leaf03:~$ nv set mlag mac-address 44:38:39:BE:EF:BB
+cumulus@leaf03:~$ nv set mlag mac-address 44:38:39:FF:00:BB
 cumulus@leaf03:~$ nv set mlag backup 10.10.10.4
 cumulus@leaf03:~$ nv set mlag peer-ip linklocal
 cumulus@leaf03:~$ nv set mlag priority 1000
@@ -181,7 +181,7 @@ cumulus@leaf04:~$ nv set interface bond1 bridge domain br_default access 10
 cumulus@leaf04:~$ nv set interface bond2 bridge domain br_default access 20
 cumulus@leaf04:~$ nv set bridge domain br_default vlan 10,20
 cumulus@leaf04:~$ nv set interface peerlink bond member swp49-50
-cumulus@leaf04:~$ nv set mlag mac-address 44:38:39:BE:EF:BB
+cumulus@leaf04:~$ nv set mlag mac-address 44:38:39:FF:00:BB
 cumulus@leaf04:~$ nv set mlag backup 10.10.10.3
 cumulus@leaf04:~$ nv set mlag peer-ip linklocal
 cumulus@leaf04:~$ nv set mlag priority 2000
@@ -307,7 +307,7 @@ cumulus@border01:~$ nv set interface bond3 bond lacp-bypass on
 cumulus@border01:~$ nv set interface bond3 link mtu 9000
 cumulus@border01:~$ nv set interface bond3 bridge domain br_default
 cumulus@border01:~$ nv set interface peerlink bond member swp49-50
-cumulus@border01:~$ nv set mlag mac-address 44:38:39:BE:EF:FF
+cumulus@border01:~$ nv set mlag mac-address 44:38:39:FF:00:FF
 cumulus@border01:~$ nv set mlag backup 10.10.10.64
 cumulus@border01:~$ nv set mlag peer-ip linklocal
 cumulus@border01:~$ nv set mlag priority 1000
@@ -346,7 +346,7 @@ cumulus@border02:~$ nv set interface bond3 bond lacp-bypass on
 cumulus@border02:~$ nv set interface bond3 link mtu 9000
 cumulus@border02:~$ nv set interface bond3 bridge domain br_default
 cumulus@border02:~$ nv set interface peerlink bond member swp49-50
-cumulus@border02:~$ nv set mlag mac-address 44:38:39:BE:EF:FF
+cumulus@border02:~$ nv set mlag mac-address 44:38:39:FF:00:FF
 cumulus@border02:~$ nv set mlag backup 10.10.10.63
 cumulus@border02:~$ nv set mlag peer-ip linklocal
 cumulus@border02:~$ nv set mlag priority 2000
@@ -462,7 +462,7 @@ cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
               vni:
                 '20': {}
     mlag:
-      mac-address: 44:38:39:BE:EF:AA
+      mac-address: 44:38:39:FF:00:AA
       backup:
         10.10.10.2: {}
       peer-ip: linklocal
@@ -601,7 +601,7 @@ cumulus@leaf02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
               vni:
                 '20': {}
     mlag:
-      mac-address: 44:38:39:BE:EF:AA
+      mac-address: 44:38:39:FF:00:AA
       backup:
         10.10.10.1: {}
       peer-ip: linklocal
@@ -740,7 +740,7 @@ cumulus@leaf03:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
               vni:
                 '20': {}
     mlag:
-      mac-address: 44:38:39:BE:EF:BB
+      mac-address: 44:38:39:FF:00:BB
       backup:
         10.10.10.4: {}
       peer-ip: linklocal
@@ -879,7 +879,7 @@ cumulus@leaf04:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
               vni:
                 '20': {}
     mlag:
-      mac-address: 44:38:39:BE:EF:BB
+      mac-address: 44:38:39:FF:00:BB
       backup:
         10.10.10.3: {}
       peer-ip: linklocal
@@ -1270,7 +1270,7 @@ cumulus@border01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
         type: svi
         vlan: 20
     mlag:
-      mac-address: 44:38:39:BE:EF:FF
+      mac-address: 44:38:39:FF:00:FF
       backup:
         10.10.10.64: {}
       peer-ip: linklocal
@@ -1395,7 +1395,7 @@ cumulus@border02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
         type: svi
         vlan: 20
     mlag:
-      mac-address: 44:38:39:BE:EF:FF
+      mac-address: 44:38:39:FF:00:FF
       backup:
         10.10.10.63: {}
       peer-ip: linklocal
@@ -1530,7 +1530,7 @@ iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-priority 1000
     clagd-backup-ip 10.10.10.2
-    clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-sys-mac 44:38:39:FF:00:AA
     clagd-args --initDelay 10
 auto vlan10
 iface vlan10
@@ -1620,7 +1620,7 @@ iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-priority 2000
     clagd-backup-ip 10.10.10.1
-    clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-sys-mac 44:38:39:FF:00:AA
     clagd-args --initDelay 10
 auto vlan10
 iface vlan10
@@ -1709,7 +1709,7 @@ iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-priority 1000
     clagd-backup-ip 10.10.10.4
-    clagd-sys-mac 44:38:39:BE:EF:BB
+    clagd-sys-mac 44:38:39:FF:00:BB
     clagd-args --initDelay 10
 auto vlan10
 iface vlan10
@@ -1798,7 +1798,7 @@ iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-priority 2000
     clagd-backup-ip 10.10.10.3
-    clagd-sys-mac 44:38:39:BE:EF:BB
+    clagd-sys-mac 44:38:39:FF:00:BB
     clagd-args --initDelay 10
 auto vlan10
 iface vlan10
@@ -2009,7 +2009,7 @@ iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-priority 1000
     clagd-backup-ip 10.10.10.64
-    clagd-sys-mac 44:38:39:BE:EF:FF
+    clagd-sys-mac 44:38:39:FF:00:FF
     clagd-args --initDelay 10
 auto vlan10
 iface vlan10
@@ -2088,7 +2088,7 @@ iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-priority 2000
     clagd-backup-ip 10.10.10.63
-    clagd-sys-mac 44:38:39:BE:EF:FF
+    clagd-sys-mac 44:38:39:FF:00:FF
     clagd-args --initDelay 10
 auto vlan10
 iface vlan10
@@ -2936,7 +2936,7 @@ cumulus@leaf01:~$ nv set interface bond1 bridge domain br_default access 10
 cumulus@leaf01:~$ nv set interface bond2 bridge domain br_default access 20
 cumulus@leaf01:~$ nv set bridge domain br_default vlan 10,20
 cumulus@leaf01:~$ nv set interface peerlink bond member swp49-50
-cumulus@leaf01:~$ nv set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ nv set mlag mac-address 44:38:39:FF:00:AA
 cumulus@leaf01:~$ nv set mlag backup 10.10.10.2
 cumulus@leaf01:~$ nv set mlag peer-ip linklocal
 cumulus@leaf01:~$ nv set mlag priority 1000
@@ -2980,7 +2980,7 @@ cumulus@leaf02:~$ nv set interface bond1-2 bridge domain br_default
 cumulus@leaf02:~$ nv set interface bond1 bridge domain br_default access 10
 cumulus@leaf02:~$ nv set interface bond2 bridge domain br_default access 20
 cumulus@leaf02:~$ nv set interface peerlink bond member swp49-50
-cumulus@leaf02:~$ nv set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf02:~$ nv set mlag mac-address 44:38:39:FF:00:AA
 cumulus@leaf02:~$ nv set mlag backup 10.10.10.1
 cumulus@leaf02:~$ nv set mlag peer-ip linklocal
 cumulus@leaf02:~$ nv set mlag priority 2000
@@ -3025,7 +3025,7 @@ cumulus@leaf03:~$ nv set interface bond1 bridge domain br_default access 10
 cumulus@leaf03:~$ nv set interface bond2 bridge domain br_default access 20
 cumulus@leaf03:~$ nv set bridge domain br_default vlan 10,20
 cumulus@leaf03:~$ nv set interface peerlink bond member swp49-50
-cumulus@leaf03:~$ nv set mlag mac-address 44:38:39:BE:EF:BB
+cumulus@leaf03:~$ nv set mlag mac-address 44:38:39:FF:00:BB
 cumulus@leaf03:~$ nv set mlag backup 10.10.10.4
 cumulus@leaf03:~$ nv set mlag peer-ip linklocal
 cumulus@leaf03:~$ nv set mlag priority 1000
@@ -3070,7 +3070,7 @@ cumulus@leaf04:~$ nv set interface bond1 bridge domain br_default access 10
 cumulus@leaf04:~$ nv set interface bond2 bridge domain br_default access 20
 cumulus@leaf04:~$ nv set bridge domain br_default vlan 10,20
 cumulus@leaf04:~$ nv set interface peerlink bond member swp49-50
-cumulus@leaf04:~$ nv set mlag mac-address 44:38:39:BE:EF:BB
+cumulus@leaf04:~$ nv set mlag mac-address 44:38:39:FF:00:BB
 cumulus@leaf04:~$ nv set mlag backup 10.10.10.3
 cumulus@leaf04:~$ nv set mlag peer-ip linklocal
 cumulus@leaf04:~$ nv set mlag priority 2000
@@ -3196,7 +3196,7 @@ cumulus@border01:~$ nv set interface bond3 bond lacp-bypass on
 cumulus@border01:~$ nv set interface bond3 link mtu 9000
 cumulus@border01:~$ nv set interface bond3 bridge domain br_default
 cumulus@border01:~$ nv set interface peerlink bond member swp49-50
-cumulus@border01:~$ nv set mlag mac-address 44:38:39:BE:EF:FF
+cumulus@border01:~$ nv set mlag mac-address 44:38:39:FF:00:FF
 cumulus@border01:~$ nv set mlag backup 10.10.10.64
 cumulus@border01:~$ nv set mlag peer-ip linklocal
 cumulus@border01:~$ nv set mlag priority 1000
@@ -3242,7 +3242,7 @@ cumulus@border02:~$ nv set interface bond3 bond lacp-bypass on
 cumulus@border02:~$ nv set interface bond3 link mtu 9000
 cumulus@border02:~$ nv set interface bond3 bridge domain br_default
 cumulus@border02:~$ nv set interface peerlink bond member swp49-50
-cumulus@border02:~$ nv set mlag mac-address 44:38:39:BE:EF:FF
+cumulus@border02:~$ nv set mlag mac-address 44:38:39:FF:00:FF
 cumulus@border02:~$ nv set mlag backup 10.10.10.63
 cumulus@border02:~$ nv set mlag peer-ip linklocal
 cumulus@border02:~$ nv set mlag priority 2000
@@ -3365,7 +3365,7 @@ cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
               vni:
                 '20': {}
     mlag:
-      mac-address: 44:38:39:BE:EF:AA
+      mac-address: 44:38:39:FF:00:AA
       backup:
         10.10.10.2: {}
       peer-ip: linklocal
@@ -3494,7 +3494,7 @@ cumulus@leaf02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
         type: svi
         vlan: 20
     mlag:
-      mac-address: 44:38:39:BE:EF:AA
+      mac-address: 44:38:39:FF:00:AA
       backup:
         10.10.10.1: {}
       peer-ip: linklocal
@@ -3643,7 +3643,7 @@ cumulus@leaf03:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
               vni:
                 '20': {}
     mlag:
-      mac-address: 44:38:39:BE:EF:BB
+      mac-address: 44:38:39:FF:00:BB
       backup:
         10.10.10.4: {}
       peer-ip: linklocal
@@ -3782,7 +3782,7 @@ cumulus@leaf04:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
               vni:
                 '20': {}
     mlag:
-      mac-address: 44:38:39:BE:EF:BB
+      mac-address: 44:38:39:FF:00:BB
       backup:
         10.10.10.3: {}
       peer-ip: linklocal
@@ -4195,7 +4195,7 @@ cumulus@border01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
         type: svi
         vlan: 20
     mlag:
-      mac-address: 44:38:39:BE:EF:FF
+      mac-address: 44:38:39:FF:00:FF
       backup:
         10.10.10.64: {}
       peer-ip: linklocal
@@ -4344,7 +4344,7 @@ cumulus@border02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
         type: svi
         vlan: 20
     mlag:
-      mac-address: 44:38:39:BE:EF:FF
+      mac-address: 44:38:39:FF:00:FF
       backup:
         10.10.10.63: {}
       peer-ip: linklocal
@@ -4480,7 +4480,7 @@ iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-priority 1000
     clagd-backup-ip 10.10.10.2
-    clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-sys-mac 44:38:39:FF:00:AA
     clagd-args --initDelay 10
 auto vlan10
 iface vlan10
@@ -4568,7 +4568,7 @@ iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-priority 2000
     clagd-backup-ip 10.10.10.1
-    clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-sys-mac 44:38:39:FF:00:AA
     clagd-args --initDelay 10
 auto vlan10
 iface vlan10
@@ -4656,7 +4656,7 @@ iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-priority 1000
     clagd-backup-ip 10.10.10.4
-    clagd-sys-mac 44:38:39:BE:EF:BB
+    clagd-sys-mac 44:38:39:FF:00:BB
     clagd-args --initDelay 10
 auto vlan10
 iface vlan10
@@ -4744,7 +4744,7 @@ iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-priority 2000
     clagd-backup-ip 10.10.10.3
-    clagd-sys-mac 44:38:39:BE:EF:BB
+    clagd-sys-mac 44:38:39:FF:00:BB
     clagd-args --initDelay 10
 auto vlan10
 iface vlan10
@@ -4955,7 +4955,7 @@ iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-priority 1000
     clagd-backup-ip 10.10.10.64
-    clagd-sys-mac 44:38:39:BE:EF:FF
+    clagd-sys-mac 44:38:39:FF:00:FF
     clagd-args --initDelay 10
 auto vlan10
 iface vlan10
@@ -5041,7 +5041,7 @@ iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-priority 2000
     clagd-backup-ip 10.10.10.63
-    clagd-sys-mac 44:38:39:BE:EF:FF
+    clagd-sys-mac 44:38:39:FF:00:FF
     clagd-args --initDelay 10
 auto vlan10
 iface vlan10
@@ -5917,7 +5917,7 @@ cumulus@leaf01:~$ nv set nve vxlan source address 10.10.10.1
 cumulus@leaf01:~$ nv set nve vxlan arp-nd-suppress on
 cumulus@leaf01:~$ nv set vrf RED evpn vni 4001
 cumulus@leaf01:~$ nv set vrf BLUE evpn vni 4002
-cumulus@leaf01:~$ nv set system global anycast-mac 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ nv set system global anycast-mac 44:38:39:FF:00:AA
 cumulus@leaf01:~$ nv set evpn enable on
 cumulus@leaf01:~$ nv set router bgp autonomous-system 65101
 cumulus@leaf01:~$ nv set router bgp router-id 10.10.10.1
@@ -5990,7 +5990,7 @@ cumulus@leaf02:~$ nv set nve vxlan source address 10.10.10.2
 cumulus@leaf02:~$ nv set nve vxlan arp-nd-suppress on
 cumulus@leaf02:~$ nv set vrf RED evpn vni 4001
 cumulus@leaf02:~$ nv set vrf BLUE evpn vni 4002
-cumulus@leaf02:~$ nv set system global anycast-mac 44:38:39:BE:EF:AA
+cumulus@leaf02:~$ nv set system global anycast-mac 44:38:39:FF:00:AA
 cumulus@leaf02:~$ nv set evpn enable on
 cumulus@leaf02:~$ nv set router bgp autonomous-system 65102
 cumulus@leaf02:~$ nv set router bgp router-id 10.10.10.2
@@ -6063,7 +6063,7 @@ cumulus@leaf03:~$ nv set nve vxlan source address 10.10.10.3
 cumulus@leaf03:~$ nv set nve vxlan arp-nd-suppress on
 cumulus@leaf03:~$ nv set vrf RED evpn vni 4001
 cumulus@leaf03:~$ nv set vrf BLUE evpn vni 4002
-cumulus@leaf03:~$ nv set system global anycast-mac 44:38:39:BE:EF:BB
+cumulus@leaf03:~$ nv set system global anycast-mac 44:38:39:FF:00:BB
 cumulus@leaf03:~$ nv set evpn enable on
 cumulus@leaf03:~$ nv set router bgp autonomous-system 65103
 cumulus@leaf03:~$ nv set router bgp router-id 10.10.10.3
@@ -6136,7 +6136,7 @@ cumulus@leaf04:~$ nv set nve vxlan source address 10.10.10.4
 cumulus@leaf04:~$ nv set nve vxlan arp-nd-suppress on
 cumulus@leaf04:~$ nv set vrf RED evpn vni 4001
 cumulus@leaf04:~$ nv set vrf BLUE evpn vni 4002
-cumulus@leaf04:~$ nv set system global anycast-mac 44:38:39:BE:EF:BB
+cumulus@leaf04:~$ nv set system global anycast-mac 44:38:39:FF:00:BB
 cumulus@leaf04:~$ nv set evpn enable on
 cumulus@leaf04:~$ nv set router bgp autonomous-system 65104
 cumulus@leaf04:~$ nv set router bgp router-id 10.10.10.4
@@ -6280,7 +6280,7 @@ cumulus@border01:~$ nv set nve vxlan source address 10.10.10.63
 cumulus@border01:~$ nv set nve vxlan arp-nd-suppress on
 cumulus@border01:~$ nv set vrf RED evpn vni 4001
 cumulus@border01:~$ nv set vrf BLUE evpn vni 4002
-cumulus@border01:~$ nv set system global anycast-mac 44:38:39:BE:EF:FF
+cumulus@border01:~$ nv set system global anycast-mac 44:38:39:FF:00:FF
 cumulus@border01:~$ nv set evpn enable on
 cumulus@border01:~$ nv set router bgp autonomous-system 65253
 cumulus@border01:~$ nv set router bgp router-id 10.10.10.63
@@ -6339,7 +6339,7 @@ cumulus@border02:~$ nv set nve vxlan source address 10.10.10.64
 cumulus@border02:~$ nv set nve vxlan arp-nd-suppress on
 cumulus@border02:~$ nv set vrf RED evpn vni 4001
 cumulus@border02:~$ nv set vrf BLUE evpn vni 4002
-cumulus@border02:~$ nv set system global anycast-mac 44:38:39:BE:EF:FF
+cumulus@border02:~$ nv set system global anycast-mac 44:38:39:FF:00:FF
 cumulus@border02:~$ nv set evpn enable on
 cumulus@border02:~$ nv set router bgp autonomous-system 65254
 cumulus@border02:~$ nv set router bgp router-id 10.10.10.64
@@ -6592,7 +6592,7 @@ cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
           acl-default-whitelist:
             inbound: {}
       global:
-        anycast-mac: 44:38:39:BE:EF:AA
+        anycast-mac: 44:38:39:FF:00:AA
         fabric-mac: 00:00:5E:00:01:01
         system-mac: 44:38:39:22:01:7a
       hostname: leaf01
@@ -6904,7 +6904,7 @@ cumulus@leaf02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
           acl-default-whitelist:
             inbound: {}
       global:
-        anycast-mac: 44:38:39:BE:EF:AA
+        anycast-mac: 44:38:39:FF:00:AA
         fabric-mac: 00:00:5E:00:01:01
         system-mac: 44:38:39:22:01:78
       hostname: leaf02
@@ -7216,7 +7216,7 @@ cumulus@leaf03:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
           acl-default-whitelist:
             inbound: {}
       global:
-        anycast-mac: 44:38:39:BE:EF:BB
+        anycast-mac: 44:38:39:FF:00:BB
         fabric-mac: 00:00:5E:00:01:01
         system-mac: 44:38:39:22:01:84
       hostname: leaf03
@@ -7528,7 +7528,7 @@ cumulus@leaf04:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
           acl-default-whitelist:
             inbound: {}
       global:
-        anycast-mac: 44:38:39:BE:EF:BB
+        anycast-mac: 44:38:39:FF:00:BB
         fabric-mac: 00:00:5E:00:01:01
         system-mac: 44:38:39:22:01:8a
       hostname: leaf04
@@ -8301,7 +8301,7 @@ cumulus@border01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
         10.10.10.64: {}
       enable: on
       init-delay: 10
-      mac-address: 44:38:39:BE:EF:FF
+      mac-address: 44:38:39:FF:00:FF
       peer-ip: linklocal
       priority: 1000
     nve:
@@ -8373,7 +8373,7 @@ cumulus@border01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
           acl-default-whitelist:
             inbound: {}
       global:
-        anycast-mac: 44:38:39:BE:EF:FF
+        anycast-mac: 44:38:39:FF:00:FF
         system-mac: 44:38:39:22:01:74
       hostname: border01
       reboot:
@@ -8578,7 +8578,7 @@ cumulus@border02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
         10.10.10.63: {}
       enable: on
       init-delay: 10
-      mac-address: 44:38:39:BE:EF:FF
+      mac-address: 44:38:39:FF:00:FF
       peer-ip: linklocal
       priority: 2000
     nve:
@@ -8650,7 +8650,7 @@ cumulus@border02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
           acl-default-whitelist:
             inbound: {}
       global:
-        anycast-mac: 44:38:39:BE:EF:FF
+        anycast-mac: 44:38:39:FF:00:FF
         system-mac: 44:38:39:22:01:7c
       hostname: border02
       reboot:
@@ -8842,7 +8842,7 @@ iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-priority 1000
     clagd-backup-ip 10.10.10.2
-    clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-sys-mac 44:38:39:FF:00:AA
     clagd-args --initDelay 10
 auto vlan10
 iface vlan10
@@ -8872,13 +8872,13 @@ auto vlan4024_l3
 iface vlan4024_l3
     vrf RED
     vlan-raw-device br_default
-    address-virtual 44:38:39:BE:EF:AA
+    address-virtual 44:38:39:FF:00:AA
     vlan-id 4024
 auto vlan4036_l3
 iface vlan4036_l3
     vrf BLUE
     vlan-raw-device br_default
-    address-virtual 44:38:39:BE:EF:AA
+    address-virtual 44:38:39:FF:00:AA
     vlan-id 4036
 auto vxlan48
 iface vxlan48
@@ -8973,7 +8973,7 @@ iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-priority 2000
     clagd-backup-ip 10.10.10.1
-    clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-sys-mac 44:38:39:FF:00:AA
     clagd-args --initDelay 10
 auto vlan10
 iface vlan10
@@ -9003,13 +9003,13 @@ auto vlan4024_l3
 iface vlan4024_l3
     vrf RED
     vlan-raw-device br_default
-    address-virtual 44:38:39:BE:EF:AA
+    address-virtual 44:38:39:FF:00:AA
     vlan-id 4024
 auto vlan4036_l3
 iface vlan4036_l3
     vrf BLUE
     vlan-raw-device br_default
-    address-virtual 44:38:39:BE:EF:AA
+    address-virtual 44:38:39:FF:00:AA
     vlan-id 4036
 auto vxlan48
 iface vxlan48
@@ -9104,7 +9104,7 @@ iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-priority 2000
     clagd-backup-ip 10.10.10.4
-    clagd-sys-mac 44:38:39:BE:EF:BB
+    clagd-sys-mac 44:38:39:FF:00:BB
     clagd-args --initDelay 10
 auto vlan10
 iface vlan10
@@ -9134,13 +9134,13 @@ auto vlan4024_l3
 iface vlan4024_l3
     vrf RED
     vlan-raw-device br_default
-    address-virtual 44:38:39:BE:EF:BB
+    address-virtual 44:38:39:FF:00:BB
     vlan-id 4024
 auto vlan4036_l3
 iface vlan4036_l3
     vrf BLUE
     vlan-raw-device br_default
-    address-virtual 44:38:39:BE:EF:BB
+    address-virtual 44:38:39:FF:00:BB
     vlan-id 4036
 auto vxlan48
 iface vxlan48
@@ -9235,7 +9235,7 @@ iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-priority 2000
     clagd-backup-ip 10.10.10.3
-    clagd-sys-mac 44:38:39:BE:EF:BB
+    clagd-sys-mac 44:38:39:FF:00:BB
     clagd-args --initDelay 10
 auto vlan10
 iface vlan10
@@ -9265,13 +9265,13 @@ auto vlan4024_l3
 iface vlan4024_l3
     vrf RED
     vlan-raw-device br_default
-    address-virtual 44:38:39:BE:EF:BB
+    address-virtual 44:38:39:FF:00:BB
     vlan-id 4024
 auto vlan4036_l3
 iface vlan4036_l3
     vrf BLUE
     vlan-raw-device br_default
-    address-virtual 44:38:39:BE:EF:BB
+    address-virtual 44:38:39:FF:00:BB
     vlan-id 4036
 auto vxlan48
 iface vxlan48
@@ -9478,7 +9478,7 @@ iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-priority 1000
     clagd-backup-ip 10.10.10.64
-    clagd-sys-mac 44:38:39:BE:EF:FF
+    clagd-sys-mac 44:38:39:FF:00:FF
     clagd-args --initDelay 10
 auto vlan101
 iface vlan101
@@ -9500,13 +9500,13 @@ auto vlan4024_l3
 iface vlan4024_l3
     vrf RED
     vlan-raw-device br_default
-    address-virtual 44:38:39:BE:EF:FF
+    address-virtual 44:38:39:FF:00:FF
     vlan-id 4024
 auto vlan4036_l3
 iface vlan4036_l3
     vrf BLUE
     vlan-raw-device br_default
-    address-virtual 44:38:39:BE:EF:FF
+    address-virtual 44:38:39:FF:00:FF
     vlan-id 4036
 auto vxlan48
 iface vxlan48
@@ -9581,7 +9581,7 @@ iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-priority 2000
     clagd-backup-ip 10.10.10.63
-    clagd-sys-mac 44:38:39:BE:EF:FF
+    clagd-sys-mac 44:38:39:FF:00:FF
     clagd-args --initDelay 10
 auto vlan101
 iface vlan101
@@ -9603,13 +9603,13 @@ auto vlan4024_l3
 iface vlan4024_l3
     vrf RED
     vlan-raw-device br_default
-    address-virtual 44:38:39:BE:EF:FF
+    address-virtual 44:38:39:FF:00:FF
     vlan-id 4024
 auto vlan4036_l3
 iface vlan4036_l3
     vrf BLUE
     vlan-raw-device br_default
-    address-virtual 44:38:39:BE:EF:FF
+    address-virtual 44:38:39:FF:00:FF
     vlan-id 4036
 auto vxlan48
 iface vxlan48
@@ -10620,9 +10620,7 @@ exit-address-family
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL59 - EVPN Symmetric" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,spine03,spine04,border01,border02,fw1,server01,server02,server03,server04,server05,server06" >}}
-
-This simulation is running Cumulus Linux 5.9. The Cumulus Linux 5.10 simulation is coming soon.
+    {{< simulation name="Try It CL510 - EVPN Symmetric" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,spine03,spine04,border01,border02,fw1,server01,server02,server03,server04,server05,server06" >}}
 
 The simulation starts with the example EVPN symmetric routing configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 

@@ -26,7 +26,7 @@
 </tr>
 <tr>
 <td>3970626</td>
-<td>When you configure the {{bridge.kernel_mac_refresh_interval}} parameter in the {{switchd.conf}} file, a {{switchd}} restart fails with core dump.</td>
+<td>When you configure the {{bridge.kernel_mac_refresh_interval}} parameter in the {{switchd.conf}} file, a {{switchd}} restart fails with a core dump.</td>
 <td>5.8.0-5.9.1</td>
 <td>5.10.0</td>
 </tr>
@@ -85,12 +85,6 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <td>3895017</td>
 <td>When ARP suppression is off, remote EVPN VTEPs duplicate ARP packets from local hosts and each remote host receives two copies of the ARP packets. The issue also applies to IPv6 ND packets.</td>
 <td>5.8.0-5.10.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3875696</td>
-<td>The default TX State for 1G Base-X optical modules that are unconfigured or admin down in Cumulus Linux 5.7.0 and later is OFF.  However, on the first boot after upgrade from an earlier release, a module TX power might be ON or OFF depending on the TX State it was before the upgrade. The TX_Disable line is not properly set on first boot. To work around this issue, reboot the switch again, or {{ifup}} or {{ifdown}} the 1G Base-X interface to disable TX Power.</td>
-<td>5.7.0-5.10.0</td>
 <td></td>
 </tr>
 <tr>
@@ -303,6 +297,7 @@ leaf01# exit</td>
 <tr>
 <td>3711913</td>
 <td>When you set an IPv4 ACL with a log action, logs do not appear under syslog after a match. This issue affects bridged packets when the rule is installed in iptables. To work around this issue, set the ACL with a MAC rule type so that it is installed in ebtables and the packets are logged correctly in {{syslog}}.The following shows an example configuration:
+
 cumulus@switch:~$ nv set acl one rule 1 action log log-prefix NVIDIA
 cumulus@switch:~$ nv set acl one rule 1 match ip protocol udp
 cumulus@switch:~$ nv set acl one rule 1 match ip source-ip 10.0.14.2

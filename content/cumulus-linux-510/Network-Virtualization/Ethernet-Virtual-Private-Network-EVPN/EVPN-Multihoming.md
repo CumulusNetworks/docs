@@ -163,7 +163,7 @@ cumulus@leaf01:~$ nv set interface bond3 bond member swp3
 cumulus@leaf01:~$ nv set interface bond1 evpn multihoming segment local-id 1
 cumulus@leaf01:~$ nv set interface bond2 evpn multihoming segment local-id 2
 cumulus@leaf01:~$ nv set interface bond3 evpn multihoming segment local-id 3
-cumulus@leaf01:~$ nv set interface bond1-3 evpn multihoming segment mac-address 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ nv set interface bond1-3 evpn multihoming segment mac-address 44:38:39:FF:00:AA
 cumulus@leaf01:~$ nv set interface bond1-3 evpn multihoming segment df-preference 50000
 cumulus@leaf01:~$ nv config apply
 ```
@@ -171,16 +171,17 @@ cumulus@leaf01:~$ nv config apply
 The following example commands configure each bond interface with the Ethernet segment ID manually. The ID must be a 10-byte (80-bit) integer and must be unique. When you configure the 10-byte Ethernet segment ID, ensure that the local ID is not present. You must also configure the segment MAC address. The example configures a global segment MAC address for use on all the Ethernet segment bonds.
 
 {{%notice note%}}
-In Cumulus Linux 5.6 and later, NVUE no longer supports a 10-byte ESI value starting with a non 00 hex value.
+- In Cumulus Linux 5.6 and later, NVUE no longer supports a 10-byte ESI value starting with a non 00 hex value.
+- When setting the segment MAC address manually, NVIDIA recommends using the reserved MAC address range 44:38:39:ff:00:00 through 44:38:39:ff:ff:ff
 {{%/notice%}}
 
 ```
 cumulus@leaf01:~$ nv set interface bond1 bond member swp1
 cumulus@leaf01:~$ nv set interface bond2 bond member swp2
 cumulus@leaf01:~$ nv set interface bond3 bond member swp3
-cumulus@leaf01:~$ nv set interface bond1 evpn multihoming segment identifier 00:44:38:39:BE:EF:AA:00:00:01
-cumulus@leaf01:~$ nv set interface bond2 evpn multihoming segment identifier 00:44:38:39:BE:EF:AA:00:00:02
-cumulus@leaf01:~$ nv set interface bond3 evpn multihoming segment identifier 00:44:38:39:BE:EF:AA:00:00:03
+cumulus@leaf01:~$ nv set interface bond1 evpn multihoming segment identifier 00:44:38:39:FF:00:AA:00:00:01
+cumulus@leaf01:~$ nv set interface bond2 evpn multihoming segment identifier 00:44:38:39:FF:00:AA:00:00:02
+cumulus@leaf01:~$ nv set interface bond3 evpn multihoming segment identifier 00:44:38:39:FF:00:AA:00:00:03
 cumulus@leaf01:~$ nv set interface bond1-3 evpn multihoming segment df-preference 50000
 cumulus@leaf01:~$ nv set evpn multihoming segment mac-address 44:38:39:ff:ff:01
 cumulus@leaf01:~$ nv config apply
@@ -199,17 +200,17 @@ The following example commands configure each bond interface with the local Ethe
    leaf01(config)# interface bond1
    leaf01(config-if)# evpn mh es-df-pref 50000
    leaf01(config-if)# evpn mh es-id 1
-   leaf01(config-if)# evpn mh es-sys-mac 44:38:39:BE:EF:AA
+   leaf01(config-if)# evpn mh es-sys-mac 44:38:39:FF:00:AA
    leaf01(config-if)# exit
    leaf01(config)# interface bond2
    leaf01(config-if)# evpn mh es-df-pref 50000
    leaf01(config-if)# evpn mh es-id 2
-   leaf01(config-if)# evpn mh es-sys-mac 44:38:39:BE:EF:AA
+   leaf01(config-if)# evpn mh es-sys-mac 44:38:39:FF:00:AA
    leaf01(config-if)# exit
    leaf01(config)# interface bond3
    leaf01(config-if)# evpn mh es-df-pref 50000
    leaf01(config-if)# evpn mh es-id 3
-   leaf01(config-if)# evpn mh es-sys-mac 44:38:39:BE:EF:AA
+   leaf01(config-if)# evpn mh es-sys-mac 44:38:39:FF:00:AA
    leaf01(config-if)# exit
    leaf01(config)# write memory
    leaf01(config)# exit
@@ -226,17 +227,17 @@ The following example commands configure each bond interface with the local Ethe
    interface bond1
     evpn mh es-df-pref 50000
     evpn mh es-id 1
-    evpn mh es-sys-mac 44:38:39:BE:EF:AA
+    evpn mh es-sys-mac 44:38:39:FF:00:AA
    !
    interface bond2
     evpn mh es-df-pref 50000
     evpn mh es-id 2
-    evpn mh es-sys-mac 44:38:39:BE:EF:AA
+    evpn mh es-sys-mac 44:38:39:FF:00:AA
    !
    interface bond3
     evpn mh es-df-pref 50000
     evpn mh es-id 3
-    evpn mh es-sys-mac 44:38:39:BE:EF:AA
+    evpn mh es-sys-mac 44:38:39:FF:00:AA
    !
    ```
 
@@ -247,15 +248,15 @@ The following example commands configure each bond interface with the local Ethe
    ...
    interface bond1
      bond-slaves swp1
-     es-sys-mac 44:38:39:BE:EF:AA
+     es-sys-mac 44:38:39:FF:00:AA
    
    interface bond2
      bond-slaves swp2
-     es-sys-mac 44:38:39:BE:EF:AA
+     es-sys-mac 44:38:39:FF:00:AA
    
    interface bond3
      bond-slaves swp3
-     es-sys-mac 44:38:39:BE:EF:AA
+     es-sys-mac 44:38:39:FF:00:AA
    ```
 
    ```
@@ -275,15 +276,15 @@ In Cumulus Linux 5.6 and later, NVUE no longer supports a 10-byte ESI value star
    leaf01# configure terminal
    leaf01(config)# interface bond1
    leaf01(config-if)# evpn mh es-df-pref 50000
-   leaf01(config-if)# evpn mh es-id 00:44:38:39:BE:EF:AA:00:00:01
+   leaf01(config-if)# evpn mh es-id 00:44:38:39:FF:00:AA:00:00:01
    leaf01(config-if)# exit
    leaf01(config)# interface bond2
    leaf01(config-if)# evpn mh es-df-pref 50000
-   leaf01(config-if)# evpn mh es-id 00:44:38:39:BE:EF:AA:00:00:02
+   leaf01(config-if)# evpn mh es-id 00:44:38:39:FF:00:AA:00:00:02
    leaf01(config-if)# exit
    leaf01(config)# interface bond3
    leaf01(config-if)# evpn mh es-df-pref 50000
-   leaf01(config-if)# evpn mh es-id 00:44:38:39:be:ef:aa:00:00:03
+   leaf01(config-if)# evpn mh es-id 00:44:38:39:FF:00:aa:00:00:03
    leaf01(config-if)# exit
    leaf01(config)# write memory
    leaf01(config)# exit
@@ -298,13 +299,13 @@ In Cumulus Linux 5.6 and later, NVUE no longer supports a 10-byte ESI value star
    ...
    interface bond1
    evpn mh es-df-pref 50000
-   evpn mh es-id 00:44:38:39:BE:EF:AA:00:00:01
+   evpn mh es-id 00:44:38:39:FF:00:AA:00:00:01
    interface bond2
    evpn mh es-df-pref 50000
-   evpn mh es-id 00:44:38:39:BE:EF:AA:00:00:02
+   evpn mh es-id 00:44:38:39:FF:00:AA:00:00:02
    interface bond3
    evpn mh es-df-pref 50000
-   evpn mh es-id 00:44:38:39:BE:EF:AA:00:00:03
+   evpn mh es-id 00:44:38:39:FF:00:AA:00:00:03
    ...
    ```
 
@@ -315,15 +316,15 @@ In Cumulus Linux 5.6 and later, NVUE no longer supports a 10-byte ESI value star
    ...
    interface bond1
      bond-slaves swp1
-     es-sys-mac 44:38:39:BE:EF:AA
+     es-sys-mac 44:38:39:FF:00:AA
    
    interface bond2
      bond-slaves swp2
-     es-sys-mac 44:38:39:BE:EF:AA
+     es-sys-mac 44:38:39:FF:00:AA
    
    interface bond3
      bond-slaves swp3
-     es-sys-mac 44:38:39:BE:EF:AA
+     es-sys-mac 44:38:39:FF:00:AA
    ```
   
 {{</tab>}}
@@ -725,10 +726,10 @@ this ES as destination, RemoteVTEPs - Remote tunnel Endpoint
 
 ESI                            ESInterface  NHG        DFPref  VNICnt  MacCnt  Flags   RemoteVTEPs
 -----------------------------  -----------  ---------  ------  ------  ------  ------  -----------
-03:44:38:39:be:ef:aa:00:00:01  bond1        536870913  50000   1       2       local   10.10.10.2
-03:44:38:39:be:ef:aa:00:00:02  bond2        536870914  50000   1       2       local   10.10.10.2
-03:44:38:39:be:ef:aa:00:00:03  bond3        536870915  50000   1       2       local   10.10.10.2
-03:44:38:39:be:ef:bb:00:00:01               536870916  0       0       2       remote  10.10.10.3
+03:44:38:39:FF:00:aa:00:00:01  bond1        536870913  50000   1       2       local   10.10.10.2
+03:44:38:39:FF:00:aa:00:00:02  bond2        536870914  50000   1       2       local   10.10.10.2
+03:44:38:39:FF:00:aa:00:00:03  bond3        536870915  50000   1       2       local   10.10.10.2
+03:44:38:39:FF:00:bb:00:00:01               536870916  0       0       2       remote  10.10.10.3
        10.10.10.4
 ```
 
@@ -738,10 +739,10 @@ cumulus@switch:~$ sudo vtysh
 switch# show evpn es
 Type: B bypass, L local, R remote, N non-DF
 ESI                            Type ES-IF                 VTEPs
-03:44:38:39:be:ef:aa:00:00:01  LR   bond1                 10.10.10.2
-03:44:38:39:be:ef:aa:00:00:02  LR   bond2                 10.10.10.2
-03:44:38:39:be:ef:aa:00:00:03  LR   bond3                 10.10.10.2
-03:44:38:39:be:ef:bb:00:00:01  R    -                     10.10.10.3,10.10.10.4
+03:44:38:39:FF:00:aa:00:00:01  LR   bond1                 10.10.10.2
+03:44:38:39:FF:00:aa:00:00:02  LR   bond2                 10.10.10.2
+03:44:38:39:FF:00:aa:00:00:03  LR   bond3                 10.10.10.2
+03:44:38:39:FF:00:bb:00:00:01  R    -                     10.10.10.3,10.10.10.4
 ```
 
 You can also show the Ethernet segments across all VNIs with NVUE in json format:
@@ -749,7 +750,7 @@ You can also show the Ethernet segments across all VNIs with NVUE in json format
 ```
 cumulus@switch:~$ nv show evpn multihoming esi -o json
 {
-  "03:44:38:39:be:ef:aa:00:00:01": {
+  "03:44:38:39:FF:00:aa:00:00:01": {
     "df-preference": 50000,
     "flags": {
       "bridge-port": "on",
@@ -772,7 +773,7 @@ cumulus@switch:~$ nv show evpn multihoming esi -o json
     },
     "vni-count": 1
   },
-  "03:44:38:39:be:ef:aa:00:00:02": {
+  "03:44:38:39:FF:00:aa:00:00:02": {
     "df-preference": 50000,
     "flags": {
       "bridge-port": "on",
@@ -795,7 +796,7 @@ cumulus@switch:~$ nv show evpn multihoming esi -o json
     },
     "vni-count": 1
   },
-  "03:44:38:39:be:ef:aa:00:00:03": {
+  "03:44:38:39:FF:00:aa:00:00:03": {
     "df-preference": 50000,
     "flags": {
       "bridge-port": "on",
@@ -818,7 +819,7 @@ cumulus@switch:~$ nv show evpn multihoming esi -o json
     },
     "vni-count": 1
   },
-  "03:44:38:39:be:ef:bb:00:00:01": {
+  "03:44:38:39:FF:00:bb:00:00:01": {
     "df-preference": 0,
     "flags": {
       "nexthop-group-active": "on",
@@ -842,7 +843,7 @@ cumulus@switch:~$ nv show evpn multihoming esi -o json
 To show information about a specific ESI:
 
 ```
-cumulus@switch:~$ nv show evpn multihoming esi 03:44:38:39:be:ef:aa:00:00:01
+cumulus@switch:~$ nv show evpn multihoming esi 03:44:38:39:FF:00:aa:00:00:01
                       operational
 --------------------  -----------
 df-preference         50000      
@@ -870,9 +871,9 @@ cumulus@switch:~$ sudo vtysh
 switch# show evpn es-evi
 Type: L local, R remote
 VNI      ESI                            Type
-20       03:44:38:39:be:ef:aa:00:00:02  L   
-30       03:44:38:39:be:ef:aa:00:00:03  L   
-10       03:44:38:39:be:ef:aa:00:00:01  L 
+20       03:44:38:39:FF:00:aa:00:00:02  L   
+30       03:44:38:39:FF:00:aa:00:00:03  L   
+10       03:44:38:39:FF:00:aa:00:00:01  L 
 ```
 
 To show the Ethernet segments for a specific VNI, run the NVUE `nv show evpn vni <vni> multihoming esi` command. For example:
@@ -881,7 +882,7 @@ To show the Ethernet segments for a specific VNI, run the NVUE `nv show evpn vni
 cumulus@switch:~$ nv show evpn vni 10 multihoming esi
 ESI                            Local  Remote
 -----------------------------  -----  ------
-03:44:38:39:be:ef:aa:00:00:01  yes    no
+03:44:38:39:FF:00:aa:00:00:01  yes    no
 ```
 
 ### Show BGP Ethernet Segment Information
@@ -895,13 +896,13 @@ path count, MacGlblCnt - Mac global count, VTEP - Remote VTEP ID, FragID -
 Fragments ID
 ESI                            RD            SrcIP       VNICnt  VRFCnt  MACIPCnt  MacGlblCnt  Local  Remote  VTEP        FragID
 -----------------------------  ------------  ----------  ------  ------  --------  ----------  -----  ------  ----------  ------------
-03:44:38:39:be:ef:aa:00:00:01  10.10.10.1:3  10.10.10.1  1       1       3   6           yes    yes     10.10.10.2  10.10.10.1:3
-03:44:38:39:be:ef:aa:00:00:02  10.10.10.1:4  10.10.10.1  1       1       2   4           yes    yes     10.10.10.2  10.10.10.1:4
-03:44:38:39:be:ef:aa:00:00:03  10.10.10.1:5  10.10.10.1  1       1       2   4           yes    yes     10.10.10.2  10.10.10.1:5
-03:44:38:39:be:ef:bb:00:00:01                0.0.0.0     1       1       0   12                 yes     10.10.10.3
+03:44:38:39:FF:00:aa:00:00:01  10.10.10.1:3  10.10.10.1  1       1       3   6           yes    yes     10.10.10.2  10.10.10.1:3
+03:44:38:39:FF:00:aa:00:00:02  10.10.10.1:4  10.10.10.1  1       1       2   4           yes    yes     10.10.10.2  10.10.10.1:4
+03:44:38:39:FF:00:aa:00:00:03  10.10.10.1:5  10.10.10.1  1       1       2   4           yes    yes     10.10.10.2  10.10.10.1:5
+03:44:38:39:FF:00:bb:00:00:01                0.0.0.0     1       1       0   12                 yes     10.10.10.3
                               10.10.10.4
-03:44:38:39:be:ef:bb:00:00:02                0.0.0.0     1       1       0   0                  yes
-03:44:38:39:be:ef:bb:00:00:03                0.0.0.0     1       1       0   0                  yes
+03:44:38:39:FF:00:bb:00:00:02                0.0.0.0     1       1       0   0                  yes
+03:44:38:39:FF:00:bb:00:00:03                0.0.0.0     1       1       0   0                  yes
 ```
 
 ```
@@ -909,12 +910,12 @@ cumulus@switch:~$ show bgp l2vpn evpn es
 ES Flags: B - bypass, L local, R remote, I inconsistent
 VTEP Flags: E ESR/Type-4, A active nexthop
 ESI                            Flags RD                    #VNIs    VTEPs
-03:44:38:39:be:ef:aa:00:00:01  LR    10.10.10.1:3          1        10.10.10.2(EA)
-03:44:38:39:be:ef:aa:00:00:02  LR    10.10.10.1:4          1        10.10.10.2(EA)
-03:44:38:39:be:ef:aa:00:00:03  LR    10.10.10.1:5          1        10.10.10.2(EA)
-03:44:38:39:be:ef:bb:00:00:01  R     (null)                1        10.10.10.3(A),10.10.10.4(A)
-03:44:38:39:be:ef:bb:00:00:02  R     (null)                1
-03:44:38:39:be:ef:bb:00:00:03  R     (null)                1
+03:44:38:39:FF:00:aa:00:00:01  LR    10.10.10.1:3          1        10.10.10.2(EA)
+03:44:38:39:FF:00:aa:00:00:02  LR    10.10.10.1:4          1        10.10.10.2(EA)
+03:44:38:39:FF:00:aa:00:00:03  LR    10.10.10.1:5          1        10.10.10.2(EA)
+03:44:38:39:FF:00:bb:00:00:01  R     (null)                1        10.10.10.3(A),10.10.10.4(A)
+03:44:38:39:FF:00:bb:00:00:02  R     (null)                1
+03:44:38:39:FF:00:bb:00:00:03  R     (null)                1
 ```
 
 You can also show the Ethernet segments across all VNIs learned through type-1 and type-4 routes with NVUE in json format:
@@ -922,7 +923,7 @@ You can also show the Ethernet segments across all VNIs learned through type-1 a
 ```
 cumulus@switch:~$ nv show evpn multihoming bgp-info esi -o json
 {
-  "03:44:38:39:be:ef:aa:00:00:01": {
+  "03:44:38:39:FF:00:aa:00:00:01": {
     "es-df-preference": 50000,
     "flags": {
       "advertise-evi": "on",
@@ -955,7 +956,7 @@ cumulus@switch:~$ nv show evpn multihoming bgp-info esi -o json
     "vni-count": 1,
     "vrf-count": 1
   },
-  "03:44:38:39:be:ef:aa:00:00:02": {
+  "03:44:38:39:FF:00:aa:00:00:02": {
     "es-df-preference": 50000,
     "flags": {
       "advertise-evi": "on",
@@ -988,7 +989,7 @@ cumulus@switch:~$ nv show evpn multihoming bgp-info esi -o json
     "vni-count": 1,
     "vrf-count": 1
   },
-  "03:44:38:39:be:ef:aa:00:00:03": {
+  "03:44:38:39:FF:00:aa:00:00:03": {
     "es-df-preference": 50000,
     "flags": {
       "advertise-evi": "on",
@@ -1021,7 +1022,7 @@ cumulus@switch:~$ nv show evpn multihoming bgp-info esi -o json
     "vni-count": 1,
     "vrf-count": 1
   },
-  "03:44:38:39:be:ef:bb:00:00:01": {
+  "03:44:38:39:FF:00:bb:00:00:01": {
     "inconsistent-vni-count": 0,
     "macip-global-path-count": 16,
     "macip-path-count": 0,
@@ -1044,7 +1045,7 @@ cumulus@switch:~$ nv show evpn multihoming bgp-info esi -o json
     "vni-count": 1,
     "vrf-count": 1
   },
-  "03:44:38:39:be:ef:bb:00:00:02": {
+  "03:44:38:39:FF:00:bb:00:00:02": {
     "inconsistent-vni-count": 0,
     "macip-global-path-count": 0,
     "macip-path-count": 0,
@@ -1055,7 +1056,7 @@ cumulus@switch:~$ nv show evpn multihoming bgp-info esi -o json
     "vni-count": 1,
     "vrf-count": 1
   },
-  "03:44:38:39:be:ef:bb:00:00:03": {
+  "03:44:38:39:FF:00:bb:00:00:03": {
     "inconsistent-vni-count": 0,
     "macip-global-path-count": 0,
     "macip-path-count": 0,
@@ -1080,12 +1081,12 @@ switch# show bgp l2vpn evpn es-evi
 Flags: L local, R remote, I inconsistent
 VTEP-Flags: E EAD-per-ES, V EAD-per-EVI
 VNI      ESI                            Flags VTEPs
-20       03:44:38:39:be:ef:aa:00:00:02  LR    10.10.10.2(V)
-20       03:44:38:39:be:ef:bb:00:00:02  R     10.10.10.3(V),10.10.10.4(V)
-30       03:44:38:39:be:ef:aa:00:00:03  LR    10.10.10.2(V)
-30       03:44:38:39:be:ef:bb:00:00:03  R     10.10.10.3(V),10.10.10.4(V)
-10       03:44:38:39:be:ef:aa:00:00:01  LR    10.10.10.2(V)
-10       03:44:38:39:be:ef:bb:00:00:01  R     10.10.10.3(V),10.10.10.4(V)
+20       03:44:38:39:FF:00:aa:00:00:02  LR    10.10.10.2(V)
+20       03:44:38:39:FF:00:bb:00:00:02  R     10.10.10.3(V),10.10.10.4(V)
+30       03:44:38:39:FF:00:aa:00:00:03  LR    10.10.10.2(V)
+30       03:44:38:39:FF:00:bb:00:00:03  R     10.10.10.3(V),10.10.10.4(V)
+10       03:44:38:39:FF:00:aa:00:00:01  LR    10.10.10.2(V)
+10       03:44:38:39:FF:00:bb:00:00:01  R     10.10.10.3(V),10.10.10.4(V)
 ...
 ```
 
@@ -1109,31 +1110,31 @@ EVPN type-5 prefix: [5]:[EthTag]:[IPlen]:[IP]
    Network          Next Hop            Metric LocPrf Weight Path
                     Extended Community
 Route Distinguisher: 10.10.10.1:2
-*> [1]:[0]:[03:44:38:39:be:ef:aa:00:00:02]:[128]:[0.0.0.0]
+*> [1]:[0]:[03:44:38:39:FF:00:aa:00:00:02]:[128]:[0.0.0.0]
                     10.10.10.1                         32768 i
                     ET:8 RT:65101:20
 Route Distinguisher: 10.10.10.1:6
-*> [1]:[0]:[03:44:38:39:be:ef:aa:00:00:03]:[128]:[0.0.0.0]
+*> [1]:[0]:[03:44:38:39:FF:00:aa:00:00:03]:[128]:[0.0.0.0]
                     10.10.10.1                         32768 i
                     ET:8 RT:65101:30
 Route Distinguisher: 10.10.10.1:7
-*> [1]:[0]:[03:44:38:39:be:ef:aa:00:00:01]:[128]:[0.0.0.0]
+*> [1]:[0]:[03:44:38:39:FF:00:aa:00:00:01]:[128]:[0.0.0.0]
                     10.10.10.1                         32768 i
                     ET:8 RT:65101:10
 Route Distinguisher: 10.10.10.2:2
-*> [1]:[0]:[03:44:38:39:be:ef:aa:00:00:02]:[32]:[0.0.0.0]
+*> [1]:[0]:[03:44:38:39:FF:00:aa:00:00:02]:[32]:[0.0.0.0]
                     10.10.10.2                             0 65199 65102 i
                     RT:65102:20 ET:8
 Route Distinguisher: 10.10.10.2:6
-*> [1]:[0]:[03:44:38:39:be:ef:aa:00:00:03]:[32]:[0.0.0.0]
+*> [1]:[0]:[03:44:38:39:FF:00:aa:00:00:03]:[32]:[0.0.0.0]
                     10.10.10.2                             0 65199 65102 i
                     RT:65102:30 ET:8
 Route Distinguisher: 10.10.10.2:7
-*> [1]:[0]:[03:44:38:39:be:ef:aa:00:00:01]:[32]:[0.0.0.0]
+*> [1]:[0]:[03:44:38:39:FF:00:aa:00:00:01]:[32]:[0.0.0.0]
                     10.10.10.2                             0 65199 65102 i
                     RT:65102:10 ET:8
 Route Distinguisher: 10.10.10.3:2
-*> [1]:[0]:[03:44:38:39:be:ef:bb:00:00:02]:[32]:[0.0.0.0]
+*> [1]:[0]:[03:44:38:39:FF:00:bb:00:00:02]:[32]:[0.0.0.0]
                     10.10.10.3                             0 65199 65103 i
                     RT:65103:20 ET:8
 ...
@@ -1213,7 +1214,7 @@ cumulus@leaf01:~$ nv set evpn multihoming enable on
 cumulus@leaf01:~$ nv set interface bond1 evpn multihoming segment local-id 1
 cumulus@leaf01:~$ nv set interface bond2 evpn multihoming segment local-id 2
 cumulus@leaf01:~$ nv set interface bond3 evpn multihoming segment local-id 3
-cumulus@leaf01:~$ nv set interface bond1-3 evpn multihoming segment mac-address 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ nv set interface bond1-3 evpn multihoming segment mac-address 44:38:39:FF:00:AA
 cumulus@leaf01:~$ nv set interface bond1-3 evpn multihoming segment df-preference 50000
 cumulus@leaf01:~$ nv set interface swp51-52 evpn multihoming uplink on
 cumulus@leaf01:~$ nv config apply
@@ -1280,7 +1281,7 @@ cumulus@leaf02:~$ nv set evpn multihoming enable on
 cumulus@leaf02:~$ nv set interface bond1 evpn multihoming segment local-id 1
 cumulus@leaf02:~$ nv set interface bond2 evpn multihoming segment local-id 2
 cumulus@leaf02:~$ nv set interface bond3 evpn multihoming segment local-id 3
-cumulus@leaf02:~$ nv set interface bond1-3 evpn multihoming segment mac-address 44:38:39:BE:EF:AA
+cumulus@leaf02:~$ nv set interface bond1-3 evpn multihoming segment mac-address 44:38:39:FF:00:AA
 cumulus@leaf02:~$ nv set interface bond1-3 evpn multihoming segment df-preference 50000
 cumulus@leaf02:~$ nv set interface swp51-52 evpn multihoming uplink on
 cumulus@leaf02:~$ nv config apply
@@ -1347,7 +1348,7 @@ cumulus@leaf03:~$ nv set evpn multihoming enable on
 cumulus@leaf03:~$ nv set interface bond1 evpn multihoming segment local-id 1
 cumulus@leaf03:~$ nv set interface bond2 evpn multihoming segment local-id 2
 cumulus@leaf03:~$ nv set interface bond3 evpn multihoming segment local-id 3
-cumulus@leaf03:~$ nv set interface bond1-3 evpn multihoming segment mac-address 44:38:39:BE:EF:BB
+cumulus@leaf03:~$ nv set interface bond1-3 evpn multihoming segment mac-address 44:38:39:FF:00:BB
 cumulus@leaf03:~$ nv set interface bond1-3 evpn multihoming segment df-preference 50000
 cumulus@leaf03:~$ nv set interface swp51-52 evpn multihoming uplink on
 cumulus@leaf03:~$ nv config apply
@@ -1414,7 +1415,7 @@ cumulus@leaf04:~$ nv set evpn multihoming enable on
 cumulus@leaf04:~$ nv set interface bond1 evpn multihoming segment local-id 1
 cumulus@leaf04:~$ nv set interface bond2 evpn multihoming segment local-id 2
 cumulus@leaf04:~$ nv set interface bond3 evpn multihoming segment local-id 3
-cumulus@leaf04:~$ nv set interface bond1-3 evpn multihoming segment mac-address 44:38:39:BE:EF:BB
+cumulus@leaf04:~$ nv set interface bond1-3 evpn multihoming segment mac-address 44:38:39:FF:00:BB
 cumulus@leaf04:~$ nv set interface bond1-3 evpn multihoming segment df-preference 50000
 cumulus@leaf04:~$ nv set interface swp51-52 evpn multihoming uplink on
 cumulus@leaf04:~$ nv config apply
@@ -1503,7 +1504,7 @@ cumulus@leaf01:~$ cat /etc/nvue.d/startup.yaml
               df-preference: 50000
               enable: on
               local-id: 1
-              mac-address: 44:38:39:BE:EF:AA
+              mac-address: 44:38:39:FF:00:AA
         link:
           mtu: 9000
         type: bond
@@ -1522,7 +1523,7 @@ cumulus@leaf01:~$ cat /etc/nvue.d/startup.yaml
               df-preference: 50000
               enable: on
               local-id: 2
-              mac-address: 44:38:39:BE:EF:AA
+              mac-address: 44:38:39:FF:00:AA
         link:
           mtu: 9000
         type: bond
@@ -1541,7 +1542,7 @@ cumulus@leaf01:~$ cat /etc/nvue.d/startup.yaml
               df-preference: 50000
               enable: on
               local-id: 3
-              mac-address: 44:38:39:BE:EF:AA
+              mac-address: 44:38:39:FF:00:AA
         link:
           mtu: 9000
         type: bond
@@ -1678,7 +1679,7 @@ cumulus@leaf01:~$ cat /etc/nvue.d/startup.yaml
           acl-default-whitelist:
             inbound: {}
       global:
-        anycast-mac: 44:38:39:BE:EF:AA
+        anycast-mac: 44:38:39:FF:00:AA
         fabric-mac: 00:00:5E:00:01:01
         system-mac: 44:38:39:22:01:7a
       hostname: leaf01
@@ -1799,7 +1800,7 @@ cumulus@leaf02:~$ cat /etc/nvue.d/startup.yaml
               df-preference: 50000
               enable: on
               local-id: 1
-              mac-address: 44:38:39:BE:EF:AA
+              mac-address: 44:38:39:FF:00:AA
         link:
           mtu: 9000
         type: bond
@@ -1818,7 +1819,7 @@ cumulus@leaf02:~$ cat /etc/nvue.d/startup.yaml
               df-preference: 50000
               enable: on
               local-id: 2
-              mac-address: 44:38:39:BE:EF:AA
+              mac-address: 44:38:39:FF:00:AA
         link:
           mtu: 9000
         type: bond
@@ -1837,7 +1838,7 @@ cumulus@leaf02:~$ cat /etc/nvue.d/startup.yaml
               df-preference: 50000
               enable: on
               local-id: 3
-              mac-address: 44:38:39:BE:EF:AA
+              mac-address: 44:38:39:FF:00:AA
         link:
           mtu: 9000
         type: bond
@@ -1974,7 +1975,7 @@ cumulus@leaf02:~$ cat /etc/nvue.d/startup.yaml
           acl-default-whitelist:
             inbound: {}
       global:
-        anycast-mac: 44:38:39:BE:EF:AA
+        anycast-mac: 44:38:39:FF:00:AA
         fabric-mac: 00:00:5E:00:01:01
         system-mac: 44:38:39:22:01:78
       hostname: leaf02
@@ -2095,7 +2096,7 @@ cumulus@leaf03:~$ cat /etc/nvue.d/startup.yaml
               df-preference: 50000
               enable: on
               local-id: 1
-              mac-address: 44:38:39:BE:EF:BB
+              mac-address: 44:38:39:FF:00:BB
         link:
           mtu: 9000
         type: bond
@@ -2114,7 +2115,7 @@ cumulus@leaf03:~$ cat /etc/nvue.d/startup.yaml
               df-preference: 50000
               enable: on
               local-id: 2
-              mac-address: 44:38:39:BE:EF:BB
+              mac-address: 44:38:39:FF:00:BB
         link:
           mtu: 9000
         type: bond
@@ -2133,7 +2134,7 @@ cumulus@leaf03:~$ cat /etc/nvue.d/startup.yaml
               df-preference: 50000
               enable: on
               local-id: 3
-              mac-address: 44:38:39:BE:EF:BB
+              mac-address: 44:38:39:FF:00:BB
         link:
           mtu: 9000
         type: bond
@@ -2270,7 +2271,7 @@ cumulus@leaf03:~$ cat /etc/nvue.d/startup.yaml
           acl-default-whitelist:
             inbound: {}
       global:
-        anycast-mac: 44:38:39:BE:EF:AA
+        anycast-mac: 44:38:39:FF:00:AA
         fabric-mac: 00:00:5E:00:01:01
         system-mac: 44:38:39:22:01:84
       hostname: leaf03
@@ -2391,7 +2392,7 @@ cumulus@leaf04:~$ cat /etc/nvue.d/startup.yaml
               df-preference: 50000
               enable: on
               local-id: 1
-              mac-address: 44:38:39:BE:EF:BB
+              mac-address: 44:38:39:FF:00:BB
         link:
           mtu: 9000
         type: bond
@@ -2410,7 +2411,7 @@ cumulus@leaf04:~$ cat /etc/nvue.d/startup.yaml
               df-preference: 50000
               enable: on
               local-id: 2
-              mac-address: 44:38:39:BE:EF:BB
+              mac-address: 44:38:39:FF:00:BB
         link:
           mtu: 9000
         type: bond
@@ -2429,7 +2430,7 @@ cumulus@leaf04:~$ cat /etc/nvue.d/startup.yaml
               df-preference: 50000
               enable: on
               local-id: 3
-              mac-address: 44:38:39:BE:EF:BB
+              mac-address: 44:38:39:FF:00:BB
         link:
           mtu: 9000
         type: bond
@@ -2566,7 +2567,7 @@ cumulus@leaf04:~$ cat /etc/nvue.d/startup.yaml
           acl-default-whitelist:
             inbound: {}
       global:
-        anycast-mac: 44:38:39:BE:EF:AA
+        anycast-mac: 44:38:39:FF:00:AA
         fabric-mac: 00:00:5E:00:01:01
         system-mac: 44:38:39:22:01:8a
       hostname: leaf04
@@ -2961,7 +2962,7 @@ iface swp52
 auto bond1
 iface bond1
     mtu 9000
-    es-sys-mac 44:38:39:BE:EF:AA
+    es-sys-mac 44:38:39:FF:00:AA
     bond-slaves swp1
     bond-mode 802.3ad
     bond-lacp-bypass-allow yes
@@ -2969,7 +2970,7 @@ iface bond1
 auto bond2
 iface bond2
     mtu 9000
-    es-sys-mac 44:38:39:BE:EF:AA
+    es-sys-mac 44:38:39:FF:00:AA
     bond-slaves swp2
     bond-mode 802.3ad
     bond-lacp-bypass-allow yes
@@ -2977,7 +2978,7 @@ iface bond2
 auto bond3
 iface bond3
     mtu 9000
-    es-sys-mac 44:38:39:BE:EF:AA
+    es-sys-mac 44:38:39:FF:00:AA
     bond-slaves swp3
     bond-mode 802.3ad
     bond-lacp-bypass-allow yes
@@ -3079,7 +3080,7 @@ iface swp52
 auto bond1
 iface bond1
     mtu 9000
-    es-sys-mac 44:38:39:BE:EF:AA
+    es-sys-mac 44:38:39:FF:00:AA
     bond-slaves swp1
     bond-mode 802.3ad
     bond-lacp-bypass-allow yes
@@ -3087,7 +3088,7 @@ iface bond1
 auto bond2
 iface bond2
     mtu 9000
-    es-sys-mac 44:38:39:BE:EF:AA
+    es-sys-mac 44:38:39:FF:00:AA
     bond-slaves swp2
     bond-mode 802.3ad
     bond-lacp-bypass-allow yes
@@ -3095,7 +3096,7 @@ iface bond2
 auto bond3
 iface bond3
     mtu 9000
-    es-sys-mac 44:38:39:BE:EF:AA
+    es-sys-mac 44:38:39:FF:00:AA
     bond-slaves swp3
     bond-mode 802.3ad
     bond-lacp-bypass-allow yes
@@ -3197,7 +3198,7 @@ iface swp52
 auto bond1
 iface bond1
     mtu 9000
-    es-sys-mac 44:38:39:BE:EF:BB
+    es-sys-mac 44:38:39:FF:00:BB
     bond-slaves swp1
     bond-mode 802.3ad
     bond-lacp-bypass-allow yes
@@ -3205,7 +3206,7 @@ iface bond1
 auto bond2
 iface bond2
     mtu 9000
-    es-sys-mac 44:38:39:BE:EF:BB
+    es-sys-mac 44:38:39:FF:00:BB
     bond-slaves swp2
     bond-mode 802.3ad
     bond-lacp-bypass-allow yes
@@ -3213,7 +3214,7 @@ iface bond2
 auto bond3
 iface bond3
     mtu 9000
-    es-sys-mac 44:38:39:BE:EF:BB
+    es-sys-mac 44:38:39:FF:00:BB
     bond-slaves swp3
     bond-mode 802.3ad
     bond-lacp-bypass-allow yes
@@ -3315,7 +3316,7 @@ iface swp52
 auto bond1
 iface bond1
     mtu 9000
-    es-sys-mac 44:38:39:BE:EF:BB
+    es-sys-mac 44:38:39:FF:00:BB
     bond-slaves swp1
     bond-mode 802.3ad
     bond-lacp-bypass-allow yes
@@ -3323,7 +3324,7 @@ iface bond1
 auto bond2
 iface bond2
     mtu 9000
-    es-sys-mac 44:38:39:BE:EF:BB
+    es-sys-mac 44:38:39:FF:00:BB
     bond-slaves swp2
     bond-mode 802.3ad
     bond-lacp-bypass-allow yes
@@ -3331,7 +3332,7 @@ iface bond2
 auto bond3
 iface bond3
     mtu 9000
-    es-sys-mac 44:38:39:BE:EF:BB
+    es-sys-mac 44:38:39:FF:00:BB
     bond-slaves swp3
     bond-mode 802.3ad
     bond-lacp-bypass-allow yes
@@ -3606,15 +3607,15 @@ evpn mh startup-delay 180
 interface bond1
 evpn mh es-df-pref 50000
 evpn mh es-id 1
-evpn mh es-sys-mac 44:38:39:BE:EF:AA
+evpn mh es-sys-mac 44:38:39:FF:00:AA
 interface bond2
 evpn mh es-df-pref 50000
 evpn mh es-id 2
-evpn mh es-sys-mac 44:38:39:BE:EF:AA
+evpn mh es-sys-mac 44:38:39:FF:00:AA
 interface bond3
 evpn mh es-df-pref 50000
 evpn mh es-id 3
-evpn mh es-sys-mac 44:38:39:BE:EF:AA
+evpn mh es-sys-mac 44:38:39:FF:00:AA
 interface swp51
 evpn mh uplink
 interface swp52
@@ -3714,15 +3715,15 @@ evpn mh startup-delay 180
 interface bond1
 evpn mh es-df-pref 50000
 evpn mh es-id 1
-evpn mh es-sys-mac 44:38:39:BE:EF:AA
+evpn mh es-sys-mac 44:38:39:FF:00:AA
 interface bond2
 evpn mh es-df-pref 50000
 evpn mh es-id 2
-evpn mh es-sys-mac 44:38:39:BE:EF:AA
+evpn mh es-sys-mac 44:38:39:FF:00:AA
 interface bond3
 evpn mh es-df-pref 50000
 evpn mh es-id 3
-evpn mh es-sys-mac 44:38:39:BE:EF:AA
+evpn mh es-sys-mac 44:38:39:FF:00:AA
 interface swp51
 evpn mh uplink
 interface swp52
@@ -3821,15 +3822,15 @@ evpn mh startup-delay 180
 interface bond1
 evpn mh es-df-pref 50000
 evpn mh es-id 1
-evpn mh es-sys-mac 44:38:39:BE:EF:BB
+evpn mh es-sys-mac 44:38:39:FF:00:BB
 interface bond2
 evpn mh es-df-pref 50000
 evpn mh es-id 2
-evpn mh es-sys-mac 44:38:39:BE:EF:BB
+evpn mh es-sys-mac 44:38:39:FF:00:BB
 interface bond3
 evpn mh es-df-pref 50000
 evpn mh es-id 3
-evpn mh es-sys-mac 44:38:39:BE:EF:BB
+evpn mh es-sys-mac 44:38:39:FF:00:BB
 interface swp51
 evpn mh uplink
 interface swp52
@@ -3928,15 +3929,15 @@ evpn mh startup-delay 180
 interface bond1
 evpn mh es-df-pref 50000
 evpn mh es-id 1
-evpn mh es-sys-mac 44:38:39:BE:EF:BB
+evpn mh es-sys-mac 44:38:39:FF:00:BB
 interface bond2
 evpn mh es-df-pref 50000
 evpn mh es-id 2
-evpn mh es-sys-mac 44:38:39:BE:EF:BB
+evpn mh es-sys-mac 44:38:39:FF:00:BB
 interface bond3
 evpn mh es-df-pref 50000
 evpn mh es-id 3
-evpn mh es-sys-mac 44:38:39:BE:EF:BB
+evpn mh es-sys-mac 44:38:39:FF:00:BB
 interface swp51
 evpn mh uplink
 interface swp52
@@ -4155,9 +4156,7 @@ exit-address-family
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL59 - EVPN Multihoming" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server02,server03,server04" >}}
-
-This simulation is running Cumulus Linux 5.9. The Cumulus Linux 5.10 simulation is coming soon.
+    {{< simulation name="Try It CL510 - EVPN Multihoming" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server02,server03,server04" >}}
 
 The simulation starts with the EVPN-MH with Head End Replication configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 

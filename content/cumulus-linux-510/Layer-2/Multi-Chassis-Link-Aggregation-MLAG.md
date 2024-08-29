@@ -198,7 +198,7 @@ When using BGP, to ensure IP connectivity between the loopbacks, the MLAG peer s
 
 ```
 cumulus@leaf01:~$ nv set interface peerlink bond member swp49-50
-cumulus@leaf01:~$ nv set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ nv set mlag mac-address 44:38:39:FF:00:AA
 cumulus@leaf01:~$ nv set mlag backup 10.10.10.2
 cumulus@leaf01:~$ nv set mlag peer-ip linklocal
 cumulus@leaf01:~$ nv config apply
@@ -216,7 +216,7 @@ cumulus@leaf01:~$ nv config apply
 
 ```
 cumulus@leaf02:~$ nv set interface peerlink bond member swp49-50
-cumulus@leaf02:~$ nv set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf02:~$ nv set mlag mac-address 44:38:39:FF:00:AA
 cumulus@leaf02:~$ nv set mlag backup 10.10.10.1
 cumulus@leaf02:~$ nv set mlag peer-ip linklocal
 cumulus@leaf02:~$ nv config apply
@@ -259,7 +259,7 @@ auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 10.10.10.2
     clagd-peer-ip linklocal
-    clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-sys-mac 44:38:39:FF:00:AA
 ...
 ```
 
@@ -272,7 +272,7 @@ auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 10.10.10.2 vrf RED
     clagd-peer-ip linklocal
-    clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-sys-mac 44:38:39:FF:00:AA
 ...
 ```
 
@@ -301,7 +301,7 @@ auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 10.10.10.1
     clagd-peer-ip linklocal
-    clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-sys-mac 44:38:39:FF:00:AA
 ...
 ```
 
@@ -314,7 +314,7 @@ auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 10.10.10.1 vrf RED
     clagd-peer-ip linklocal
-    clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-sys-mac 44:38:39:FF:00:AA
 ...
 ```
 
@@ -373,7 +373,7 @@ auto peerlink.4094
 iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-backup-ip 10.10.10.2
-    clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-sys-mac 44:38:39:FF:00:AA
     clagd-priority 2048
 ...
 ```
@@ -428,7 +428,7 @@ iface peerlink.4094
     clagd-args --initDelay 100
     clagd-peer-ip linklocal
     clagd-backup-ip 10.10.10.2
-    clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-sys-mac 44:38:39:FF:00:AA
     clagd-priority 2048
 ...
 ```
@@ -447,7 +447,7 @@ iface peerlink.4094
     clagd-args --peerTimeout 900
     clagd-peer-ip linklocal
     clagd-backup-ip 10.10.10.2
-    clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-sys-mac 44:38:39:FF:00:AA
     clagd-priority 2048
 ...
 ```
@@ -513,7 +513,7 @@ iface peerlink.4094
     clagd-args --backupPort 5400
     clagd-backup-ip 10.10.10.2
     clagd-peer-ip linklocal
-    clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-sys-mac 44:38:39:FF:00:AA
 ...
 ```
 
@@ -555,7 +555,7 @@ Edit the `/etc/network/interfaces` file.
   iface peerlink.4094
   clagd-backup-ip 10.10.10.2
   clagd-peer-ip linklocal
-  clagd-sys-mac 44:38:39:BE:EF:AA
+  clagd-sys-mac 44:38:39:FF:00:AA
   ...
   ```
 
@@ -777,7 +777,7 @@ cumulus@leaf01:mgmt:~$ nv show mlag
 enable                                   on                 Turn the feature 'on' or 'off'.  The default is 'off'.
 debug                                    off                Enable MLAG debugging
 init-delay                               100                The delay, in seconds, before bonds are brought up.
-mac-address     44:38:39:be:ef:aa        44:38:39:BE:EF:AA  Override anycast-mac and anycast-id
+mac-address     44:38:39:FF:00:aa        44:38:39:FF:00:AA  Override anycast-mac and anycast-id
 peer-ip         fe80::4638:39ff:fe00:5a  linklocal          Peer Ip Address
 priority        32768                    32768              Mlag Priority
 [backup]        10.10.10.2               10.10.10.2         Set of MLAG backups
@@ -801,7 +801,7 @@ The peer is alive
     Peer Priority, ID, and Role: 32768 48:b0:2d:cf:ba:45 secondary
           Peer Interface and IP: peerlink.4094 fe80::4ab0:2dff:fecf:ba45 (linklocal)
                       Backup IP: 10.10.10.2 (active)
-                     System MAC: 44:38:39:be:ef:aa
+                     System MAC: 44:38:39:FF:00:aa
 
 CLAG Interfaces
 Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Down Reason
@@ -823,7 +823,7 @@ cumulus@leaf01:~$ nv show mlag
                 operational                applied   
 --------------  -------------------------  ----------
 enable          on                         on        
-mac-address     44:38:39:be:ef:aa          auto      
+mac-address     44:38:39:FF:00:aa          auto      
 peer-ip         fe80::4ab0:2dff:fe52:1190  linklocal 
 priority        1000                       1000      
 init-delay      10                         10        
@@ -877,7 +877,7 @@ cumulus@leaf01:~$ systemctl status clagd.service
         Docs: man:clagd(8)
     Main PID: 27078 (clagd)
     CGroup: /system.slice/clagd.service
-            └─27078 /usr/bin/python3 /usr/sbin/clagd --daemon linklocal peerlink.4094 44:38:39:BE:EF:AA --priority 32768
+            └─27078 /usr/bin/python3 /usr/sbin/clagd --daemon linklocal peerlink.4094 44:38:39:FF:00:AA --priority 32768
 ```
 
 ### Peer Link Consistency Check
@@ -929,7 +929,7 @@ Global Consistency-checker
     peerlink-native-vlan    1                          1                          -                
     peerlink-vlans          1, 10, 20, 30              1, 10, 20, 30              -                
     redirect2-enable        yes                        yes                        -                
-    system-mac              44:38:39:be:ef:aa          44:38:39:be:ef:aa          system mac mismatch between clag peers
+    system-mac              44:38:39:FF:00:aa          44:38:39:FF:00:aa          system mac mismatch between clag peers
 ```
 
 The following example command shows MLAG settings for all interfaces on each peer with no conflicts:
@@ -940,7 +940,7 @@ Interface  Conflict  LocalValue         Parameter         PeerValue
 ---------  --------  -----------------  ----------------  -----------------
 bond1    -         yes                bridge-learning   yes
 bond1    -         1                  clag-id           1
-bond1    -         44:38:39:be:ef:aa  lacp-actor-mac    44:38:39:be:ef:aa
+bond1    -         44:38:39:FF:00:aa  lacp-actor-mac    44:38:39:FF:00:aa
 bond1    -         00:00:00:00:00:00  lacp-partner-mac  00:00:00:00:00:00
 bond1    -         br_default         master            NOT-SYNCED
 bond1    -         9216               mtu               9216
@@ -948,7 +948,7 @@ bond1    -         1                  native-vlan       1
 bond1    -         1, 10, 20, 30      vlan-id           1, 10, 20, 30
 bond2    -         yes                bridge-learning   yes
 bond2    -         2                  clag-id           2
-bond2    -         44:38:39:be:ef:aa  lacp-actor-mac    44:38:39:be:ef:aa
+bond2    -         44:38:39:FF:00:aa  lacp-actor-mac    44:38:39:FF:00:aa
 bond2    -         00:00:00:00:00:00  lacp-partner-mac  00:00:00:00:00:00
 bond2    -         br_default         master            NOT-SYNCED
 bond2    -         9216               mtu               9216
@@ -956,7 +956,7 @@ bond2    -         1                  native-vlan       1
 bond2    -         1, 10, 20, 30      vlan-id           1, 10, 20, 30
 bond3    -         yes                bridge-learning   yes
 bond3    -         3                  clag-id           3
-bond3    -         44:38:39:be:ef:aa  lacp-actor-mac    44:38:39:be:ef:aa
+bond3    -         44:38:39:FF:00:aa  lacp-actor-mac    44:38:39:FF:00:aa
 bond3    -         00:00:00:00:00:00  lacp-partner-mac  00:00:00:00:00:00
 bond3    -         br_default         master            NOT-SYNCED
 bond3    -         9216               mtu               9216
@@ -972,7 +972,7 @@ Parameter           LocalValue         PeerValue          Conflict  Summary
 ------------------  -----------------  -----------------  --------  -------
 bridge-learning   yes                yes                -
 clag-id           1                  1                  -
-lacp-actor-mac    44:38:39:be:ef:aa  44:38:39:be:ef:aa  -
+lacp-actor-mac    44:38:39:FF:00:aa  44:38:39:FF:00:aa  -
 lacp-partner-mac  00:00:00:00:00:00  00:00:00:00:00:00  -
 master            br_default         NOT-SYNCED         -
 mtu               4800               1500               mtu mismatch on clag interface between clag peers
@@ -989,7 +989,7 @@ The following example command shows global MLAG settings for each peer and indic
 cumulus@leaf02:mgmt:~$ clagctl consistency-check global
 Parameter              LocalValue               PeerValue                Conflict
 ---------------------  -----------------------  -----------------------  --------------------------------------
-system-mac             44:38:39:be:ef:ab        44:38:39:be:ef:aa        system mac mismatch between clag peers
+system-mac             44:38:39:FF:00:ab        44:38:39:FF:00:aa        system mac mismatch between clag peers
 clag-protocol-version  1.6.0                    1.6.0                    -
 clag-pkg-version       1.6.0-cl5.0.1+u15        1.6.0-cl5.0.1+u15        -
 bridge-priority        32768                    32768                    -
@@ -1014,7 +1014,7 @@ Parameter         LocalValue         PeerValue          Conflict
 ----------------  -----------------  -----------------  ----------
 clag-id           1                  1                  -
 lacp-partner-mac  00:00:00:00:00:00  00:00:00:00:00:00  -
-lacp-actor-mac    44:38:39:be:ef:aa  44:38:39:be:ef:aa  -
+lacp-actor-mac    44:38:39:FF:00:aa  44:38:39:FF:00:aa  -
 vlan-id           1, 10, 20, 30      1, 10, 20, 30      -
 native-vlan       1                  1                  -
 master            br_default         NOT-SYNCED         -
@@ -1027,7 +1027,7 @@ Parameter         LocalValue         PeerValue          Conflict
 ----------------  -----------------  -----------------  ----------
 clag-id           2                  2                  -
 lacp-partner-mac  00:00:00:00:00:00  00:00:00:00:00:00  -
-lacp-actor-mac    44:38:39:be:ef:aa  44:38:39:be:ef:aa  -
+lacp-actor-mac    44:38:39:FF:00:aa  44:38:39:FF:00:aa  -
 vlan-id           1, 10, 20, 30      1, 10, 20, 30      -
 native-vlan       1                  1                  -
 master            br_default         NOT-SYNCED         -
@@ -1040,7 +1040,7 @@ Parameter         LocalValue         PeerValue          Conflict
 ----------------  -----------------  -----------------  ----------
 clag-id           3                  3                  -
 lacp-partner-mac  00:00:00:00:00:00  00:00:00:00:00:00  -
-lacp-actor-mac    44:38:39:be:ef:aa  44:38:39:be:ef:aa  -
+lacp-actor-mac    44:38:39:FF:00:aa  44:38:39:FF:00:aa  -
 vlan-id           1, 10, 20, 30      1, 10, 20, 30      -
 native-vlan       1                  1                  -
 master            br_default         NOT-SYNCED         -
@@ -1056,7 +1056,7 @@ Parameter         LocalValue         PeerValue          Conflict
 ----------------  -----------------  -----------------  ----------
 clag-id           1                  1                  -
 lacp-partner-mac  00:00:00:00:00:00  00:00:00:00:00:00  -
-lacp-actor-mac    44:38:39:be:ef:aa  44:38:39:be:ef:aa  -
+lacp-actor-mac    44:38:39:FF:00:aa  44:38:39:FF:00:aa  -
 vlan-id           1, 10, 20, 30      1, 10, 20, 30      -
 native-vlan       1                  1                  -
 master            br_default         NOT-SYNCED         -
@@ -1077,7 +1077,7 @@ iface peerlink.4094
     clagd-args --gracefulConsistencyCheck FALSE
     clagd-backup-ip 10.10.10.2
     clagd-peer-ip linklocal
-    clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-sys-mac 44:38:39:FF:00:AA
 ...
 ```
 
@@ -1189,7 +1189,7 @@ cumulus@leaf01:~$ nv set interface vlan30 ip address 10.1.30.2/24
 cumulus@leaf01:~$ nv set bridge domain br_default vlan 10,20,30
 cumulus@leaf01:~$ nv set interface bond1-3 bridge domain br_default 
 cumulus@leaf01:~$ nv set interface peerlink bond member swp49-50
-cumulus@leaf01:~$ nv set system global anycast-mac 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ nv set system global anycast-mac 44:38:39:FF:00:AA
 cumulus@leaf01:~$ nv set mlag backup 10.10.10.2
 cumulus@leaf01:~$ nv set mlag peer-ip linklocal
 cumulus@leaf01:~$ nv set mlag init-delay 100
@@ -1214,7 +1214,7 @@ cumulus@leaf02:~$ nv set interface vlan30 ip address 10.1.30.3/24
 cumulus@leaf02:~$ nv set bridge domain br_default vlan 10,20,30
 cumulus@leaf02:~$ nv set interface bond1-3 bridge domain br_default
 cumulus@leaf02:~$ nv set interface peerlink bond member swp49-50
-cumulus@leaf02:~$ nv set system global anycast-mac 44:38:39:BE:EF:AA
+cumulus@leaf02:~$ nv set system global anycast-mac 44:38:39:FF:00:AA
 cumulus@leaf02:~$ nv set mlag backup 10.10.10.1
 cumulus@leaf02:~$ nv set mlag peer-ip linklocal
 cumulus@leaf02:~$ nv set mlag init-delay 100
@@ -1396,7 +1396,7 @@ cumulus@spine01:~$ nv config apply
           acl-default-whitelist:
             inbound: {}
       global:
-        anycast-mac: 44:38:39:BE:EF:AA
+        anycast-mac: 44:38:39:FF:00:AA
         fabric-mac: 00:00:5E:00:01:01
         system-mac: 44:38:39:22:01:7a
       hostname: leaf01
@@ -1589,7 +1589,7 @@ cumulus@spine01:~$ nv config apply
           acl-default-whitelist:
             inbound: {}
       global:
-        anycast-mac: 44:38:39:BE:EF:AA
+        anycast-mac: 44:38:39:FF:00:AA
         system-mac: 44:38:39:22:01:78
       hostname: leaf02
       reboot:
@@ -1815,7 +1815,7 @@ auto peerlink.4094
 iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-backup-ip 10.10.10.2
-    clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-sys-mac 44:38:39:FF:00:AA
     clagd-args --initDelay 100
 auto br_default
 iface br_default
@@ -1900,7 +1900,7 @@ auto peerlink.4094
 iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-backup-ip 10.10.10.1
-    clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-sys-mac 44:38:39:FF:00:AA
     clagd-args --initDelay 100
 auto br_default
 iface br_default
@@ -1940,9 +1940,7 @@ iface swp2
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL59 - MLAG" showNodes="leaf01,leaf02,spine01,server01,server02,server03" >}}
-
-This simulation is running Cumulus Linux 5.9. The Cumulus Linux 5.10 simulation is coming soon.
+    {{< simulation name="Try It CL510 - MLAG" showNodes="leaf01,leaf02,spine01,server01,server02,server03" >}}
 
 The simulation starts with the example MLAG configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 

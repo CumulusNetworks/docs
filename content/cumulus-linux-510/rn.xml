@@ -67,12 +67,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4007590</td>
-<td>When you upgrade Cumulus Linux 5.9.1 to Cumulus Linux 5.10 with package upgrade, the NTP service stops. To restart the NTP service, enable, then restart the service in the VRF in which it was running with the {{systemctl enable ntpsec@&lt;vrf&gt;}} and {{systemctl restart ntpsec@&lt;vrf&gt;}} commands.</td>
-<td>5.10.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4005422</td>
 <td>When you upgrade Cumulus Linux 5.9.1 to Cumulus Linux 5.10 with package upgrade, the NTP service stops. To restart the NTP service, enable, then restart the service in the VRF in which it was running with the {{systemctl enable ntpsec@&lt;vrf&gt;}} and {{systemctl restart ntpsec@&lt;vrf&gt;}} commands.</td>
 <td>5.10.0</td>

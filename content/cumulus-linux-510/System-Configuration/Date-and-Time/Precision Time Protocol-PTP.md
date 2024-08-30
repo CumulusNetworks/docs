@@ -224,76 +224,32 @@ Restarting the `switchd` service causes all network ports to reset in addition t
 
 5. Edit the `Default interface options` section of the `/etc/ptp4l.conf` file to configure the interfaces on the switch that you want to use for PTP.
 
+{{< tabs "TabID227 ">}}
+{{< tab "Layer 3 Routed Port ">}}
+
    ```
    cumulus@switch:~$ sudo nano /etc/ptp4l.conf
    ...
-   [global]
-   #
-   # Default Data Set
-   #
-   slaveOnly               0
-   priority1               128
-   priority2               128
-   domainNumber            0
-   
-   twoStepFlag             1
-   dscp_event              46
-   dscp_general            46
-   udp6_scope              0x0E
-
-   offset_from_master_min_threshold  -50
-   offset_from_master_max_threshold  50
-   mean_path_delay_threshold         200
-   tsmonitor_num_ts                  100
-   tsmonitor_num_log_sets            2
-   tsmonitor_num_log_entries         4
-   tsmonitor_log_wait_seconds        1
-
-   #
-   # Run time options
-   #
-   logging_level           6
-   path_trace_enabled      0
-   use_syslog              1
-   verbose                 0
-   summary_interval        0
-   
-   #
-   # servo parameters
-   #
-   pi_proportional_const          0.000000
-   pi_integral_const              0.000000
-   pi_proportional_scale          0.700000
-   pi_proportional_exponent       -0.300000
-   pi_proportional_norm_max       0.700000
-   pi_integral_scale              0.300000
-   pi_integral_exponent           0.400000
-   pi_integral_norm_max           0.300000
-   first_step_threshold           0.000020
-   step_threshold                 0.000002
-   max_frequency                  50000000
-   sanity_freq_limit              0
-   
    #
    # Default interface options
    #
    time_stamping                  hardware
-   
    # Interfaces in which ptp should be enabled
    # these interfaces should be routed ports
    # if an interface does not have an ip address
    # the ptp4l will not work as expected.
-   
    [swp1]
    udp_ttl                 1
    masterOnly              0
    delay_mechanism         E2E
-   
    [swp2]
    udp_ttl                 1
    masterOnly              0
    delay_mechanism         E2E
    ```
+
+   {{< /tab >}}
+{{< tab "Trunk Port VLAN ">}}
 
    For a trunk VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `trunk`, `vlan_intf` to the VLAN interface, and `src_ip` to the IP address of the VLAN interface:
 
@@ -308,6 +264,9 @@ Restarting the `switchd` service causes all network ports to reset in addition t
    network_transport       RAWUDPv4
    ```
 
+   {{< /tab >}}
+{{< tab "Switch Port (Access Port) VLAN ">}}
+
    For a switch port VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `access`, `vlan_intf` to the VLAN interface, and `src_ip` to the IP address of the VLAN interface:
 
    ```
@@ -320,6 +279,9 @@ Restarting the `switchd` service causes all network ports to reset in addition t
    delay_mechanism         E2E
    network_transport       RAWUDPv4
    ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 6. Edit the `/etc/linuxptp/phc2sys.conf` file to add the following parameters:
 

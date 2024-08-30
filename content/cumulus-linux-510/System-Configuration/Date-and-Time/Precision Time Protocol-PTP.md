@@ -40,7 +40,7 @@ Cumulus Linux supports:
 
 ## Basic Configuration
 
-Basic PTP configuration requires you:
+Basic PTP configuration requires you to:
 - Disable NTP and remove default NTP configuration.
 - Enable PTP on the switch.
 - Configure PTP on at least one interface; this can be a layer 3 routed port, switch port, or trunk port. You do not need to specify which is a master interface and which is a slave interface; the PTP Best Master Clock Algorithm (BMCA) determines the master and slave.
@@ -1093,7 +1093,7 @@ cumulus@switch:~$ nv config apply
    [unicast_master_table]
    table_id               1
    logQueryInterval       4
-   UDPv4                  10.10.10.1
+   RAWUDPv4                  10.10.10.1
    ...
    ```
 
@@ -1131,7 +1131,7 @@ cumulus@switch:~$ nv config apply
    [unicast_master_table]
    table_id               3
    logQueryInterval       0
-   UDPv4                  100.100.100.1
+   RAWUDPv4               100.100.100.1
 
    [swp1]
    table_id                1

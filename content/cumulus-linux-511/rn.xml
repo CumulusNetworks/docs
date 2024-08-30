@@ -25,12 +25,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4007590</td>
-<td>When you upgrade Cumulus Linux 5.9.1 to Cumulus Linux 5.10 with package upgrade, the NTP service stops. To restart the NTP service, enable, then restart the service in the VRF in which it was running with the {{systemctl enable ntpsec@&lt;vrf&gt;}} and {{systemctl restart ntpsec@&lt;vrf&gt;}} commands.</td>
-<td>5.10.0-5.11.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3879717</td>
 <td>Running {{snmpwalk}} on the switch with the management IP address does not work. To work around this issue, use the localhost option ({{snmpwalk -v 2c -c public28 localhost 1.3.6.1.2.1.14}}) or create a control plane ACL whitelist rule.</td>
 <td>5.10.0-5.11.0</td>
@@ -340,8 +334,18 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Affects </th>
 </tr>
 <tr>
+<td>4037315</td>
+<td>NVUE fails to enforce the password length limitation of 512 characters or fewer.</td>
+<td>5.10.0</td>
+</tr>
+<tr>
 <td>4037224</td>
 <td>ASIC monitoring histogram collection might not work because of a crash in the {{asic-monitor}} service. To work around this issue, see the &lt;a href="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-510/Whats-New/#release-considerations"&gt;Release Considerations section of the What’s New&lt;/a&gt;.</td>
+<td>5.10.0</td>
+</tr>
+<tr>
+<td>4016216</td>
+<td>If a ZTP script includes a directive to reboot, the reboot might stop the running ZTP process before it is able to disable itself from running again. As a result, the ZTP process starts again when the system comes back up. To work around this issue, run {{shutdown -r +1}} to schedule a reboot after one minute so that the ZTP process can successfully complete disabling the {{ztp.service}} systemd service.</td>
 <td>5.10.0</td>
 </tr>
 <tr>

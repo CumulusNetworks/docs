@@ -25,12 +25,6 @@ cumulus@switch:~$ sudo apt upgrade
 <td></td>
 </tr>
 <tr>
-<td>3759932</td>
-<td>When you migrate virtual machines from one rack to another rack, there might be occasional problems reaching the server after Vmotion.</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3684998</td>
 <td>DHCP lease information is not collected in the {{cl-support}} file.</td>
 <td>4.3.0-5.6.0</td>
@@ -2029,6 +2023,11 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <td>3856614</td>
 <td>When daylight saving time changes, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
 <td>4.3.2</td>
+</tr>
+<tr>
+<td>3759932</td>
+<td>When you migrate virtual machines from one rack to another rack, there might be occasional problems reaching the server after Vmotion.</td>
+<td>4.3.1-4.3.2</td>
 </tr>
 </table>
 <table name="Open Issues in 4.3.2">

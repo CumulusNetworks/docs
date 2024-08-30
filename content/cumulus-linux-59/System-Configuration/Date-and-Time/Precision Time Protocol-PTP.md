@@ -39,8 +39,8 @@ Cumulus Linux supports:
 
 ## Basic Configuration
 
-Basic PTP configuration requires you:
-
+Basic PTP configuration requires you to:
+- Disable NTP and remove default NTP configuration.
 - Enable PTP on the switch.
 - Configure PTP on at least one interface; this can be a layer 3 routed port, switch port, or trunk port. You do not need to specify which is a master interface and which is a slave interface; the PTP Best Master Clock Algorithm (BMCA) determines the master and slave.
 
@@ -60,6 +60,53 @@ The basic configuration shown below uses the *default* PTP settings:
 - The clock timestamp mode is two-step.
 
 To configure other settings, such as the PTP profile, domain, priority, and DSCP, the PTP interface transport mode and timers, and PTP monitoring, see the Optional Configuration sections below.
+
+### Disable NTP
+
+{{< tabs "TabID67 ">}}
+{{< tab "NVUE Commands ">}}
+
+Remove the default NTP configuration on the switch:
+
+```
+cumulus@switch:~$ nv unset service ntp mgmt server 0.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ nv unset service ntp mgmt server 1.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ nv unset service ntp mgmt server 2.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ nv unset service ntp mgmt server 3.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ nv config apply
+```
+
+Stop and disable the NTP service in the management VRF:
+
+```
+cumulus@switch:~$ sudo systemctl stop ntpsec@mgmt.service
+cumulus@switch:~$ sudo systemctl disable ntpsec@mgmt.service
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+1. Edit the `/etc/ntpsec/ntp.conf` file to comment out the default NTP configuration:
+
+   ```
+   cumulus@switch:~$ sudo nano /etc/ntpsec/ntp.conf
+   # server 0.cumulusnetworks.pool.ntp.org iburst
+   # server 1.cumulusnetworks.pool.ntp.org iburst
+   # server 2.cumulusnetworks.pool.ntp.org iburst
+   # server 3.cumulusnetworks.pool.ntp.org iburst
+   ```
+
+   2. Stop and disable the NTP service in the management VRF:
+
+   ```
+   cumulus@switch:~$ sudo systemctl stop ntpsec@mgmt.service
+   cumulus@switch:~$ sudo systemctl disable ntpsec@mgmt.service
+   ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Configure PTP
 
 {{< tabs "TabID65 ">}}
 {{< tab "NVUE Commands ">}}
@@ -139,7 +186,16 @@ The configuration writes to the `/etc/ptp4l.conf` file.
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-1. Edit the `/etc/cumulus/switchd.d/ptp.conf` file to set the `ptp.timestamping` parameter to `TRUE`:
+1. Configure NVUE to stop managing PTP configuration files:
+
+```
+cumulus@switch:~$ nv set system config apply ignore /etc/linuxptp/phc2sys.conf
+cumulus@switch:~$ nv set system config apply ignore /etc/ptp4l.conf
+cumulus@switch:~$ nv set system config apply ignore /etc/cumulus/switchd.d/ptp.conf
+cumulus@switch:~$ nv config apply
+```
+
+2. Edit the `/etc/cumulus/switchd.d/ptp.conf` file to set the `ptp.timestamping` parameter to `TRUE`:
 
    ```
    cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/ptp.conf
@@ -148,7 +204,7 @@ The configuration writes to the `/etc/ptp4l.conf` file.
    ...
    ```
 
-2. Restart the `switchd` service:
+3. Restart the `switchd` service:
 
    ```
    cumulus@switch:~$ sudo systemctl restart switchd.service
@@ -158,17 +214,18 @@ The configuration writes to the `/etc/ptp4l.conf` file.
 Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
 {{%/notice%}}
 
-3. Enable and start the ptp4l and phc2sys services:
+4. Enable and start the ptp4l and phc2sys services:
 
     ```
     cumulus@switch:~$ sudo systemctl enable ptp4l.service phc2sys.service
     cumulus@switch:~$ sudo systemctl start ptp4l.service phc2sys.service
     ```
 
-4. Edit the `Default interface options` section of the `/etc/ptp4l.conf` file to configure the interfaces on the switch that you want to use for PTP.
+5. Edit the `Default interface options` section of the `/etc/ptp4l.conf` file to configure the interfaces on the switch that you want to use for PTP.
 
    ```
    cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+   ...
    ...
    [global]
    #
@@ -182,27 +239,15 @@ Restarting the `switchd` service causes all network ports to reset in addition t
    twoStepFlag             1
    dscp_event              46
    dscp_general            46
-   network_transport              L2
-   dataset_comparison             G.8275.x
-   G.8275.defaultDS.localPriority 128
-   ptp_dst_mac                    01:80:C2:00:00:0E
+   udp6_scope              0x0E
 
-   #
-   # Port Data Set
-   #
-   logAnnounceInterval            -3
-   logSyncInterval                -4
-   logMinDelayReqInterval         -4
-   announceReceiptTimeout         3
-   delay_mechanism                E2E
-
-   offset_from_master_min_threshold   -50
-   offset_from_master_max_threshold   50
-   mean_path_delay_threshold          200
-   tsmonitor_num_ts                   100
-   tsmonitor_num_log_sets             3
-   tsmonitor_num_log_entries          4
-   tsmonitor_log_wait_seconds         1
+   offset_from_master_min_threshold  -50
+   offset_from_master_max_threshold  50
+   mean_path_delay_threshold         200
+   tsmonitor_num_ts                  100
+   tsmonitor_num_log_sets            2
+   tsmonitor_num_log_entries         4
+   tsmonitor_log_wait_seconds        1
 
    #
    # Run time options
@@ -224,15 +269,15 @@ Restarting the `switchd` service causes all network ports to reset in addition t
    pi_integral_scale              0.300000
    pi_integral_exponent           0.400000
    pi_integral_norm_max           0.300000
-   step_threshold                 0.000002
    first_step_threshold           0.000020
-   max_frequency                  900000000
+   step_threshold                 0.000002
+   max_frequency                  50000000
    sanity_freq_limit              0
    
    #
    # Default interface options
    #
-   time_stamping                  software
+   time_stamping                  hardware
    
    # Interfaces in which ptp should be enabled
    # these interfaces should be routed ports
@@ -260,11 +305,11 @@ Restarting the `switchd` service causes all network ports to reset in addition t
    udp_ttl                 1
    masterOnly              0
    delay_mechanism         E2E
-   network_transport       UDPv4
+   network_transport       RAWUDPv4
    ```
 
-   For a switch port VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `access`, `vlan_intf` to the VLAN interface, and  `src_ip` to the IP address of the VLAN interface:
-   
+   For a switch port VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `access`, `vlan_intf` to the VLAN interface, and `src_ip` to the IP address of the VLAN interface:
+
    ```
    [swp2]
    l2_mode                 access
@@ -273,13 +318,27 @@ Restarting the `switchd` service causes all network ports to reset in addition t
    udp_ttl                 1
    masterOnly              0
    delay_mechanism         E2E
-   network_transport       UDPv4
+   network_transport       RAWUDPv4
    ```
 
-5. Restart the `ptp4l` service:
+6. Edit the `/etc/linuxptp/phc2sys.conf` file to add the following parameters:
+
+   ```
+   cumulus@switch:~$ sudo nano /etc/linuxptp/phc2sys.conf
+   # phc2sys is enabled
+   [global]
+   logging_level         6
+   path_trace_enabled    0
+   use_syslog            1
+   verbose               0
+   domainNumber          0
+   ```
+
+7. Enable and start the `ptp4l` and `phc2sys` services:
 
     ```
-    cumulus@switch:~$ sudo systemctl restart ptp4l.service
+    cumulus@switch:~$ sudo systemctl enable ptp4l.service phc2sys.service
+    cumulus@switch:~$ sudo systemctl start ptp4l.service phc2sys.service
     ```
 
 {{< /tab >}}
@@ -721,13 +780,13 @@ time_stamping           hardware
 udp_ttl                 1
 masterOnly              0
 delay_mechanism         E2E
-network_transport       UDPv6
+network_transport       RAWUDPv6
 
 [swp2]
 udp_ttl                 1
 masterOnly              0
 delay_mechanism         E2E
-network_transport       UDPv6
+network_transport       RAWUDPv6
 ...
 ```
 
@@ -891,7 +950,7 @@ udp_ttl                      1
 hybrid_e2e                   1
 masterOnly                   0
 delay_mechanism              E2E
-network_transport            UDPv6
+network_transport            RAWUDPv6
 G.8275.portDS.localPriority  10
 ...
 ```
@@ -1028,7 +1087,7 @@ cumulus@switch:~$ nv config apply
    [unicast_master_table]
    table_id               1
    logQueryInterval       4
-   UDPv4                  10.10.10.1
+   RAWUDPv4                  10.10.10.1
    ...
    ```
 
@@ -1066,7 +1125,7 @@ cumulus@switch:~$ nv config apply
    [unicast_master_table]
    table_id               3
    logQueryInterval       0
-   UDPv4                  100.100.100.1
+   RAWUDPv4                  100.100.100.1
 
    [swp1]
    table_id                1
@@ -1307,7 +1366,7 @@ domainNumber                   24
 twoStepFlag                    1 
 dscp_event                     46
 dscp_general                   46
-network_transport              UDPv4
+network_transport              RAWUDPv4
 dataset_comparison             G.8275.x
 G.8275.defaultDS.localPriority 128
 hybrid_e2e                     1
@@ -1337,7 +1396,7 @@ domainNumber                   0
 twoStepFlag                    1
 dscp_event                     46
 dscp_general                   46
-network_transport              UDPv4
+network_transport              RAWUDPv4
 dataset_comparison             ieee1588
 ...
 ```
@@ -1441,7 +1500,7 @@ sanity_freq_limit              0
 #
 # Default interface options
 #
-time_stamping                  software
+time_stamping                  hardware
 
 
 # Interfaces in which ptp should be enabled
@@ -2094,7 +2153,7 @@ sanity_freq_limit              0
 #
 # Default interface options
 #
-time_stamping                  software
+time_stamping                  hardware
 
 
 # Interfaces in which ptp should be enabled
@@ -2106,25 +2165,25 @@ time_stamping                  software
 udp_ttl                      1
 masterOnly                   0
 delay_mechanism              E2E
-network_transport            UDPv4
+network_transport            RAWUDPv4
 
 [swp2]
 udp_ttl                      1
 masterOnly                   0
 delay_mechanism              E2E
-network_transport            UDPv4
+network_transport            RAWUDPv4
 
 [swp3]
 udp_ttl                      1
 masterOnly                   0
 delay_mechanism              E2E
-network_transport            UDPv4
+network_transport            RAWUDPv4
 
 [swp4]
 udp_ttl                      1
 masterOnly                   0
 delay_mechanism              E2E
-network_transport            UDPv4
+network_transport            RAWUDPv4
 ```
 
 {{< /tab >}}

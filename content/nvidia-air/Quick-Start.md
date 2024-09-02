@@ -53,6 +53,66 @@ After you log in, the NVIDIA Air landing page opens:
 
    {{<img src="/images/guides/nvidia-air/Catalog.png" alt="options to build a simulation from a pre-defined topology, a custom topology, or from the demo marketplace" width="800px">}}
 
+## Import a Topology
+
+Network topologies describe which nodes a data center is comprised of, how they are configured and which other nodes they are connected to. A format is a way to structure and represent such topologies. Air is able to create simulations out of network topologies structured using a supported format. In order to import a topology, [the following API endpoint](https://air.nvidia.com/api/#/v2/v2_simulations_import_create) should be used.
+
+{{< tabs "TabID111 ">}}
+{{< tab "Example 1">}}
+
+The following topology defines two nodes (`node-1` and `node-2`) connected to each other via their respective `eth1` interfaces, and the Out-of-Band management network enabled by default. 
+
+```
+{
+    "nodes": {
+        "node-1": {
+            "os": "generic/ubuntu2204"
+        },
+        "node-2": {
+            "os": "generic/ubuntu2204"
+        }
+    },
+    "links": [
+        [{"node": "node-1", "interface": "eth1"}, {"node": "node-2", "interface": "eth1"}]
+    ]
+}
+```
+
+{{< /tab >}}
+{{< tab "Example 2">}}
+
+The following topology defines two nodes (`node-1` and `node-2`) connected to each other via their respective `eth1` interfaces, and the Out-of-Band management network disabled (`"oob": false`). The example showcases:
+- Custom values for configurable node fields (`cpu`, `memory`, `storage`)
+- Public-facing interface (with a custom `mac` address) to the outside world (`eth2` of `node-1`)
+- Referencing `os` image by specific UUID (`node-2`)
+
+```
+{
+    "oob": false,
+    "nodes": {
+        "node-1": {
+            "os": "generic/ubuntu2204",
+            "cpu": 2,
+            "memory": 2048
+        },
+        "node-2": {
+            "os": "defb3ffc-e29b-4d3a-a5fb-41ed1974f938",
+            "memory": 2048,
+            "storage": 25
+        }
+    },
+    "links": [
+        [{"node": "node-1", "interface": "eth1"}, {"node": "node-2", "interface": "eth1"}],
+        [{"node": "node-1", "interface": "eth2", "mac": "02:00:00:00:00:07"}, "exit"]
+    ]
+}
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+A more detailed schema for this format can be viewed by visiting the [API documentation](https://air.nvidia.com/api/#/v2/v2_simulations_import_create).
+
 ## Simulation Views
 
 Every simulation has a basic view and an advanced view.

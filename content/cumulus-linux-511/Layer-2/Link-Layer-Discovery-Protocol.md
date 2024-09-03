@@ -8,161 +8,6 @@ toc: 3
 
 LLDP in Cumulus Linux supports CDP (Cisco Discovery Protocol v1 and v2) and logs by default into `/var/log/daemon.log` with an `lldpd` prefix.
 
-## Disable LLDP
-
-Cumulus Linux enables the `lldp` service by default.
-
-You can disable LLDP globally or on an interface.
-- When you disable LLDP globally, the `lldp` service, and all LLDP and CDP packet transmission stops.
-- When you disable LLDP on an interface, LLDP and CDP packet transmission stops on the interface.
-
-To disable LLDP globally:
-
-{{< tabs "TabID51 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@leaf01:~$ nv set service lldp state disabled 
-cumulus@leaf01:~$ nv config apply
-```
-
-To re-enable LLDP globally, run the `nv set service lldp state enabled` command.
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Stop the `lldpd` service:
-
-```
-cumulus@leaf01:~$ sudo systemctl stop lldpd
-cumulus@leaf01:~$ sudo systemctl disable lldpd
-```
-
-To re-enable LLDP globally, enable and restart the `lldp` service:
-
-```
-cumulus@leaf01:~$ sudo systemctl enable lldpd
-cumulus@leaf01:~$ sudo systemctl restart lldpd
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-To disable LLDP on an interface:
-
-{{< tabs "TabID54 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@leaf01:~$ nv set interface swp1 lldp state disabled
-cumulus@leaf01:~$ nv config apply
-```
-
-To re-enable LLDP on an interface, run the `nv set interface swp1 lldp state enabled` command.
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-{{< tabs "TabID59 ">}}
-{{< tab "Persistent Configuration ">}}
-
-Create the `/etc/lldp.d/lldp-interfaces.conf` file and add the `configure system interface pattern-blacklist` option. The following example disables LLDP on swp1 and swp2:
-
-```
-cumulus@leaf01:~$ sudo nano /etc/lldpd.d/lldp-interfaces.conf
-configure system interface pattern-blacklist swp1,swp2
-```
-
-An alternative method is to use the `system interface pattern` keyword to send LLDP on all interfaces except for swp1 and swp2:
-
-```
-cumulus@leaf01:~$ sudo nano /etc/lldpd.d/lldp-interfaces.conf
-configure system interface pattern eth*,swp*,!swp1,!swp2
-```
-
-Restart the `lldpd` service for the changes to take effect:
-
-```
-cumulus@leaf01:~$ sudo systemctl restart lldpd
-```
-
-{{< /tab >}}
-{{< tab "Runtime Configuration (Advanced)">}}
-
-{{%notice warning%}}
-A runtime configuration does not persist when you reboot the switch; you lose all changes.
-{{%/notice%}}
-
-To configure active interfaces:
-
-```
-cumulus@leaf01:~$ sudo lldpcli configure system interface pattern "swp*"
-```
-
-To configure inactive interfaces:
-
-```
-cumulus@leaf01:~$ sudo lldpcli configure system interface pattern *,!eth0,swp*
-```
-
-{{%notice note%}}
-The active interface list always overrides the inactive interface list.
-{{%/notice%}}
-
-To reset any interface list to none:
-
-```
-cumulus@leaf01:~$ sudo lldpcli configure system interface pattern ""
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-{{< /tab >}}
-{{< /tabs >}}
-
-The following example show that swp1 through swp4 are up and advertising LLDP between leaf01 and leaf02:
-
-```
-cumulus@leaf01:~$ sudo lldpctl | egrep 'Inter|Port|SysName'
-Interface:    eth0, via: LLDP, RID: 1, Time: 1 day, 03:07:48
-    SysName:      oob-mgmt-switch
-  Port:
-    PortID:       ifname swp2
-    PortDescr:    swp2
-Interface:    swp3, via: LLDP, RID: 2, Time: 0 day, 06:52:48
-    SysName:      leaf02
-  Port:
-    PortID:       ifname swp3
-    PortDescr:    swp3
-Interface:    swp4, via: LLDP, RID: 2, Time: 0 day, 00:07:38
-    SysName:      leaf02
-  Port:
-    PortID:       ifname swp4
-    PortDescr:    swp4
-```
-
-The following example shows that after disabling LLDP on swp1 and swp2, only swp3 and swp4 are generating and receiving LLDP on leaf01. leaf02 is only receiving LLDP on swp3 and swp4 from leaf01:
-
-```
-cumulus@leaf02:~$ sudo lldpctl | egrep 'Inter|Port|SysName'
-Interface:    eth0, via: LLDP, RID: 2, Time: 0 day, 00:09:16
-    SysName:      oob-mgmt-switch
-  Port:
-    PortID:       ifname swp3
-    PortDescr:    swp3
-Interface:    swp3, via: LLDP, RID: 1, Time: 0 day, 00:08:47
-    SysName:      leaf01
-  Port:
-    PortID:       ifname swp3
-    PortDescr:    swp3
-Interface:    swp4, via: LLDP, RID: 1, Time: 0 day, 00:09:16
-    SysName:      leaf01
-  Port:
-    PortID:       ifname swp4
-    PortDescr:    swp4
-```
-
 ## Configure LLDP Timers
 
 You can configure the frequency of LLDP updates (between 5 and 32768 seconds) and the amount of time (between 1 and 8192 seconds) to hold the information before discarding it. The hold time interval is a multiple of the `tx-interval`.
@@ -723,6 +568,163 @@ AppName
 NVME_4420
 NVME_8009
 iSCSI
+```
+
+## Disable LLDP
+
+Cumulus Linux enables the `lldp` service by default.
+
+You can disable LLDP globally or on an interface.
+- When you disable LLDP globally, the `lldp` service, and all LLDP and CDP packet transmission stops.
+- When you disable LLDP on an interface, LLDP and CDP packet transmission stops on the interface.
+
+To disable LLDP globally:
+
+{{< tabs "TabID51 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set service lldp state disabled 
+cumulus@leaf01:~$ nv config apply
+```
+
+To re-enable LLDP globally, run the `nv set service lldp state enabled` command.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Stop the `lldpd` service:
+
+```
+cumulus@leaf01:~$ sudo systemctl stop lldpd
+cumulus@leaf01:~$ sudo systemctl disable lldpd
+```
+
+To re-enable LLDP globally, enable and restart the `lldp` service:
+
+```
+cumulus@leaf01:~$ sudo systemctl enable lldpd
+cumulus@leaf01:~$ sudo systemctl restart lldpd
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To disable LLDP on an interface:
+
+{{< tabs "TabID54 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set interface swp1 lldp state disabled
+cumulus@leaf01:~$ nv config apply
+```
+
+To re-enable LLDP on an interface, run the `nv set interface swp1 lldp state enabled` command.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+{{< tabs "TabID59 ">}}
+{{< tab "Persistent Configuration ">}}
+
+Create the `/etc/lldp.d/lldp-interfaces.conf` file and add the `configure system interface pattern-blacklist` option. The following example disables LLDP on swp1 and swp2:
+
+```
+cumulus@leaf01:~$ sudo nano /etc/lldpd.d/lldp-interfaces.conf
+configure system interface pattern-blacklist swp1,swp2
+```
+
+An alternative method is to use the `system interface pattern` keyword to send LLDP on all interfaces except for swp1 and swp2:
+
+```
+cumulus@leaf01:~$ sudo nano /etc/lldpd.d/lldp-interfaces.conf
+configure system interface pattern eth*,swp*,!swp1,!swp2
+```
+
+Restart the `lldpd` service for the changes to take effect:
+
+```
+cumulus@leaf01:~$ sudo systemctl restart lldpd
+```
+
+{{< /tab >}}
+{{< tab "Runtime Configuration (Advanced)">}}
+
+{{%notice warning%}}
+A runtime configuration does not persist when you reboot the switch; you lose all changes.
+{{%/notice%}}
+
+To configure active interfaces:
+
+```
+cumulus@leaf01:~$ sudo lldpcli configure system interface pattern "swp*"
+```
+
+To configure inactive interfaces:
+
+```
+cumulus@leaf01:~$ sudo lldpcli configure system interface pattern *,!eth0,swp*
+```
+
+{{%notice note%}}
+The active interface list always overrides the inactive interface list.
+{{%/notice%}}
+
+To reset any interface list to none:
+
+```
+cumulus@leaf01:~$ sudo lldpcli configure system interface pattern ""
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To show if LLDP is enabled globally or on a interface, run the `nv show service lldp` command.
+
+The following example show that swp1 through swp4 are up and advertising LLDP between leaf01 and leaf02:
+
+```
+cumulus@leaf01:~$ sudo lldpctl | egrep 'Inter|Port|SysName'
+Interface:    eth0, via: LLDP, RID: 1, Time: 1 day, 03:07:48
+    SysName:      oob-mgmt-switch
+  Port:
+    PortID:       ifname swp2
+    PortDescr:    swp2
+Interface:    swp3, via: LLDP, RID: 2, Time: 0 day, 06:52:48
+    SysName:      leaf02
+  Port:
+    PortID:       ifname swp3
+    PortDescr:    swp3
+Interface:    swp4, via: LLDP, RID: 2, Time: 0 day, 00:07:38
+    SysName:      leaf02
+  Port:
+    PortID:       ifname swp4
+    PortDescr:    swp4
+```
+
+The following example shows that after disabling LLDP on swp1 and swp2, only swp3 and swp4 are generating and receiving LLDP on leaf01. leaf02 is only receiving LLDP on swp3 and swp4 from leaf01:
+
+```
+cumulus@leaf02:~$ sudo lldpctl | egrep 'Inter|Port|SysName'
+Interface:    eth0, via: LLDP, RID: 2, Time: 0 day, 00:09:16
+    SysName:      oob-mgmt-switch
+  Port:
+    PortID:       ifname swp3
+    PortDescr:    swp3
+Interface:    swp3, via: LLDP, RID: 1, Time: 0 day, 00:08:47
+    SysName:      leaf01
+  Port:
+    PortID:       ifname swp3
+    PortDescr:    swp3
+Interface:    swp4, via: LLDP, RID: 1, Time: 0 day, 00:09:16
+    SysName:      leaf01
+  Port:
+    PortID:       ifname swp4
+    PortDescr:    swp4
 ```
 
 ## Troubleshooting

@@ -110,12 +110,6 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <td>5.10.0</td>
 </tr>
 <tr>
-<td>3896967</td>
-<td>PTP doesn't come up with IPv6 over a trunk port due to the IPv6 VLAN tag not being sent.  PTP over an IPv4 trunk works fine.</td>
-<td>5.8.0-5.9.2</td>
-<td>5.10.0</td>
-</tr>
-<tr>
 <td>3890993</td>
 <td>On the NVIDIA spectrum-4 switch, {{l1-show}} command output does not show Eye opening information for an interface port.</td>
 <td>5.9.0-5.9.2</td>
@@ -538,12 +532,22 @@ You can safely ignore this warning.</td>
 <td>5.10.0</td>
 </tr>
 <tr>
+<td>4037434</td>
+<td>If you configure the anycast IP address with the {{nv set nve vxlan mlag shared-address &lt;anycast-address&gt;}} command after you configure MLAG, the anycast IP address configuration is not applied and the VXLAN interface is in a protodown state.  To work around this issue, run {{sudo ifreload -a}}. To avoid this issue, either apply the anycast configuration before you apply the MLAG configuration or configure the anycast IP address and MLAG together with a single  {{nv config apply}} command.</td>
+<td>5.9.0-5.9.1</td>
+</tr>
+<tr>
+<td>4037015</td>
+<td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
+<td>4.3.0-5.9.1</td>
+</tr>
+<tr>
 <td>4035681</td>
 <td>The {{nv show interface &lt;interface&gt;}} commands show RX and TX Power values from the wrong lanes on breakout ports.</td>
 <td>5.8.0-5.9.1, 5.10.0</td>
 </tr>
 <tr>
-<td>4012011</td>
+<td>4013592</td>
 <td>A memory corruption kernel crash might occur due to a {{netfilter}} error. The log message from {{netfilter}} might contain a warning similar to the following:kernel: WARNING: CPU: 1 PID: 0 at net/netfilter/nf_conntrack_core.c:1210 __nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]
 kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <td>5.9.1</td>
@@ -554,87 +558,102 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <td>5.9.1</td>
 </tr>
 <tr>
-<td>4004453</td>
-<td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
-<td>4.3.0-5.9.1, 5.10.0</td>
-</tr>
-<tr>
-<td>3990258</td>
+<td>4007329</td>
 <td>Cumulus Linux incorrectly handles unnumbered neighbor types, which causes discrepancies in the running configuration and session flaps during FRR reload.</td>
-<td>5.9.0-5.9.1, 5.10.0</td>
+<td>5.9.0-5.9.1</td>
 </tr>
 <tr>
-<td>3982222</td>
-<td>When SPAN is enabled on a bridge member, an ARP or Gratuitous ARP received during a failover event between locally attached redundant devices such as load balancers might fail to update the bridge MAC table to point to the interface with the newly active load balancer.</td>
-<td>5.4.0-5.9.1</td>
-</tr>
-<tr>
-<td>3974890</td>
-<td>The {{ntpsec@mgmt}} service does not come up by default when you install an image with ONIE because the trigger to bring up the service is missing.</td>
-<td>5.9.1, 5.10.0</td>
-</tr>
-<tr>
-<td>3966673</td>
-<td>In an EVPN multihoming deployment, if you enable multihoming without any local ESI configuration, {{arp-nd-redirect}} remains disabled unless you restart FRR.</td>
-<td>5.9.1</td>
-</tr>
-<tr>
-<td>3965021</td>
-<td>The optical DOM information in {{ethtool -m}} command output is incorrect for SFP modules.</td>
-<td>5.9.1</td>
-</tr>
-<tr>
-<td>3957620</td>
+<td>4005261</td>
 <td> On a Spectrum-4 switch, if you use PTP on a 800G link, jumbo frames traversing the same link might cause a degradation in PTP performance.</td>
-<td>5.9.0-5.9.1, 5.10.0</td>
-</tr>
-<tr>
-<td>3956091</td>
-<td>When you modify the default QoS configuration on top of the base RoCE configuration, NVUE reports an {{Invalid}} exception in the {{nv show qos roce}} command output even when the configuration is valid.</td>
-<td>5.8.0-5.9.1</td>
-</tr>
-<tr>
-<td>3955615</td>
-<td>Cumulus Linux does not recognize QSFP_CMIS optical modules correctly.</td>
-<td>5.6.0-5.9.1</td>
-</tr>
-<tr>
-<td>3943834</td>
-<td>The default memory configuration for NVIDIA Cumulus VX OVA is too low and needs to be increased.</td>
 <td>5.9.0-5.9.1</td>
 </tr>
 <tr>
-<td>3941608</td>
-<td>The default NIC for the VMWare OVA file is set to vmxnet3 instead of e1000.</td>
-<td>5.9.0-5.9.1</td>
-</tr>
-<tr>
-<td>3935658</td>
-<td>SNMP IF-MIB reports all interfaces (including layer 3 and VNIs) as {{ifType=6}} (ethernetCsmacd) instead of IANA MIB-II types. </td>
-<td>5.9.1</td>
-</tr>
-<tr>
-<td>3927016</td>
+<td>4003866</td>
 <td>Following an EVPN extended mobility event, where a host with IPA and MACA moves within the fabric and now resides at IPA MACB, you might see traffic destined to this host experience drops as the flow is being software forwarded on the egress VTEP.</td>
 <td>5.9.1</td>
 </tr>
 <tr>
-<td>3925259</td>
+<td>3994463</td>
+<td>The {{ntpsec@mgmt}} service does not come up by default when you install an image with ONIE because the trigger to bring up the service is missing.</td>
+<td>5.9.1</td>
+</tr>
+<tr>
+<td>3983497</td>
+<td>The NVIDIA SN4600C switch fails to boot fully after  you upgrade from Cumulus Linux 4.2.1 to 5.7 with ONIE install. To work around this issue, perform an intermediate step image upgrade; for example, upgrade the switch from Cumulus Linux 4.2.1 to 5.2.1 to 5.7.0.</td>
+<td></td>
+</tr>
+<tr>
+<td>3982294</td>
+<td>Cumulus Linux does not recognize QSFP_CMIS optical modules correctly.</td>
+<td>5.6.0-5.9.1</td>
+</tr>
+<tr>
+<td>3982260</td>
+<td>When you modify the default QoS configuration on top of the base RoCE configuration, NVUE reports an {{Invalid}} exception in the {{nv show qos roce}} command output even when the configuration is valid.</td>
+<td>5.8.0-5.9.1</td>
+</tr>
+<tr>
+<td>3982250</td>
 <td>When you start Cumulus VX in Vagrant with libvirt, VM provisioning might fail with errors that indicate a missing {{ifup@eth0.service}} systemd service.</td>
 <td>5.9.0-5.9.1</td>
 </tr>
 <tr>
-<td>3917601</td>
+<td>3982249</td>
 <td>If a packet containing an all zero source MAC address (00:00:00:00:00:00) is learned on the ASIC, {{switchd}} sends the learn notification to the kernel but the kernel rejects the MAC address as invalid. The ASIC continuously sends the mac-learn notifications, which wastes CPU resources. To work around this issue, configure ACLs to match on the all-zero source MAC address and drop the invalid packets.</td>
 <td>5.5.0-5.9.1</td>
 </tr>
 <tr>
-<td>3904516</td>
+<td>3982243</td>
 <td>With Optimized Multicast Flooding (OMF), when you unset multiple multicast router ports in a single commit, multicast traffic still floods one of the ports. To work around this issue, unset multicast router ports one by one instead of in a single commit.</td>
 <td>5.9.0-5.9.1</td>
 </tr>
 <tr>
-<td>3895042</td>
+<td>3982242</td>
+<td>PTP does not come up with IPv6 over a trunk port because the IPv6 VLAN tag is not sent. PTP over an IPv4 trunk works fine.</td>
+<td>5.8.0-5.9.1</td>
+</tr>
+<tr>
+<td>3982239</td>
+<td>MLAG bonds might report an incorrect DOWN reason of {{lacp partner mac mismatch}} when the bond is out of service for another reason.</td>
+<td>5.9.0-5.9.1</td>
+</tr>
+<tr>
+<td>3982231</td>
+<td>The switch forwards multicast traffic to the CPU when PIM is enabled globally, regardless of the interface configuration.</td>
+<td>5.6.0-5.9.1</td>
+</tr>
+<tr>
+<td>3982230</td>
+<td>On the Spectrum A1 switch, when you enable the {{ip-acl-heavy}} TCAM profile, VXLAN tunnel initialization might fail.</td>
+<td>5.8.0-5.9.1</td>
+</tr>
+<tr>
+<td>3982227</td>
+<td>In an EVPN multihoming deployment, if you enable multihoming without any local ESI configuration, {{arp-nd-redirect}} remains disabled unless you restart FRR.</td>
+<td>5.9.1</td>
+</tr>
+<tr>
+<td>3982226</td>
+<td>When SPAN is enabled on a bridge member, an ARP or Gratuitous ARP received during a failover event between locally attached redundant devices such as load balancers might fail to update the bridge MAC table to point to the interface with the newly active load balancer.</td>
+<td>5.4.0-5.9.1</td>
+</tr>
+<tr>
+<td>3980956</td>
+<td>The default memory configuration for NVIDIA Cumulus VX OVA is too low and needs to be increased.</td>
+<td>5.9.0-5.9.1</td>
+</tr>
+<tr>
+<td>3980943</td>
+<td>The default NIC for the VMWare OVA file is set to vmxnet3 instead of e1000.</td>
+<td>5.9.0-5.9.1</td>
+</tr>
+<tr>
+<td>3980942</td>
+<td>SNMP IF-MIB reports all interfaces (including layer 3 and VNIs) as {{ifType=6}} (ethernetCsmacd) instead of IANA MIB-II types. </td>
+<td>5.9.1</td>
+</tr>
+<tr>
+<td>3980941</td>
 <td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
   snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
 This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
@@ -642,34 +661,14 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <td>4.4.0-5.9.1</td>
 </tr>
 <tr>
-<td>3895017</td>
+<td>3980938</td>
 <td>When ARP suppression is off, remote EVPN VTEPs duplicate ARP packets from local hosts and each remote host receives two copies of the ARP packets. The issue also applies to IPv6 ND packets.</td>
 <td>5.8.0-5.9.1</td>
 </tr>
 <tr>
-<td>3881789</td>
-<td>If you configure the anycast IP address with the {{nv set nve vxlan mlag shared-address &lt;anycast-address&gt;}} command after you configure MLAG, the anycast IP address configuration is not applied and the VXLAN interface is in a protodown state.  To work around this issue, run {{sudo ifreload -a}}. To avoid this issue, either apply the anycast configuration before you apply the MLAG configuration or configure the anycast IP address and MLAG together with a single  {{nv config apply}} command.</td>
-<td>5.9.0-5.9.1</td>
-</tr>
-<tr>
-<td>3875589</td>
-<td>MLAG bonds might report an incorrect DOWN reason of {{lacp partner mac mismatch}} when the bond is out of service for another reason.</td>
-<td>5.9.0-5.9.1</td>
-</tr>
-<tr>
-<td>3854800</td>
-<td>The switch forwards multicast traffic to the CPU when PIM is enabled globally, regardless of the interface configuration.</td>
-<td>5.6.0-5.9.1</td>
-</tr>
-<tr>
-<td>3851499</td>
-<td>On the Spectrum A1 switch, when you enable the {{ip-acl-heavy}} TCAM profile, VXLAN tunnel initialization might fail.</td>
-<td>5.8.0-5.9.1</td>
-</tr>
-<tr>
-<td>3763543</td>
-<td>The NVIDIA SN4600C switch fails to boot fully after  you upgrade from Cumulus Linux 4.2.1 to 5.7 with ONIE install. To work around this issue, perform an intermediate step image upgrade; for example, upgrade the switch from Cumulus Linux 4.2.1 to 5.2.1 to 5.7.0.</td>
-<td></td>
+<td>3965574</td>
+<td>The optical DOM information in {{ethtool -m}} command output is incorrect for SFP modules.</td>
+<td>5.9.1</td>
 </tr>
 </table>
 <table name="Open Issues in 5.9.1">

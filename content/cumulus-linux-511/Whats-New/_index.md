@@ -15,6 +15,36 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 
 ### New Features and Enhancements
 
+- Upgrade using A/B type of upgrade
+- Factory Reset
+- OTLP phase 3
+- Improved interface range behaviors for breakouts
+- All packet histogram configuration
+- New profile for spectrum1
+- SN5400 - syncE
+- SN5400 -  ITU-T
+- NVUE
+  - `nv show interface <interface>> link stats`, commands include the date and time the operational state of an interface changes
+  - net show interface swX details for dom and optical info for the pluggables
+  - L1-show equivalent
+  - DHCP6 server - support static IP by iframe
+  - BGP large communities support
+  - DHCP snooping
+  - control ZTP enable disable
+  - enable and disable CDP or LLDP at global and interface level
+  - cl-resource-query equivalent
+  - match source protocol connected in a route map applied to BGP
+  - interface summary view with filtering
+  - L# BGP presentation part 2
+  - EVPN presentation - Phase 2
+  - net show route summary equivalent
+  - Command logging for RADIUS users
+  - RADIUS fallback authentication support when server unavailable
+  - nv config show --all
+  - SFlow
+  - LSAP encryption
+  - Align with common OM - many commands
+
 ## Release Considerations
 
 Review the following considerations before you upgrade to Cumulus Linux 5.11.

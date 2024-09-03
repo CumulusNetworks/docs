@@ -4,54 +4,61 @@ author: NVIDIA
 weight: 400
 toc: 3
 ---
-<span class="a-tooltip">[LLDP](## "Link Layer Discovery Protocol")</span> shows information about connected devices. The `lldpd` daemon implements the IEEE802.1AB LLDP standard and starts at system boot.
+<span class="a-tooltip">[LLDP](## "Link Layer Discovery Protocol")</span> shows information about connected devices. The `lldpd` daemon implements the IEEE802.1AB LLDP standard and starts at system boot. Cumulus Linux enables the `lldp` service by default.
 
 LLDP in Cumulus Linux supports CDP (Cisco Discovery Protocol v1 and v2) and logs by default into `/var/log/daemon.log` with an `lldpd` prefix.
 
-## Configure LLDP Timers
+## Disable LLDP
 
-You can configure the frequency of LLDP updates (between 5 and 32768 seconds) and the amount of time (between 1 and 8192 seconds) to hold the information before discarding it. The hold time interval is a multiple of the `tx-interval`.
+Cumulus Linux enables the `lldp` service by default.
 
-The following example commands configure the frequency of LLDP updates to 100 and the hold time to 3.
+You can disable LLDP globally or on an interface.
+- When you disable LLDP globally, the `lldp` service, and all LLDP and CDP packet transmission stops.
+- When you disable LLDP on an interface, LLDP and CDP packet transmission stops on the interface.
 
-{{< tabs "TabID67 ">}}
+To disable LLDP globally:
+
+{{< tabs "TabID51 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set service lldp tx-interval 100
-cumulus@switch:~$ nv set service lldp tx-hold-multiplier 3
-cumulus@switch:~$ nv config apply
+cumulus@leaf01:~$ nv set service lldp state disabled 
+cumulus@leaf01:~$ nv config apply
 ```
+
+To re-enable LLDP globally, run the `nv set service lldp state enabled` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Create the `/etc/lldpd.conf` file or create a file in the `/etc/lldpd.d/` directory with a `.conf` suffix and add the timers:
+Stop the `lldpd` service:
 
 ```
-cumulus@switch:~$ sudo nano /etc/lldpd.conf
-configure lldp tx-interval 100
-configure lldp tx-hold 3
-...
+cumulus@leaf01:~$ sudo systemctl stop lldpd
+cumulus@leaf01:~$ sudo systemctl disable lldpd
 ```
 
-Restart the `lldpd` service for the changes to take effect:
+To re-enable LLDP globally, enable and restart the `lldp` service:
 
 ```
-cumulus@switch:~$ sudo systemctl restart lldpd
+cumulus@leaf01:~$ sudo systemctl enable lldpd
+cumulus@leaf01:~$ sudo systemctl restart lldpd
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
 
-## Disable LLDP on an Interface
-
 To disable LLDP on an interface:
 
-{{< tabs "TabID51 ">}}
+{{< tabs "TabID54 ">}}
 {{< tab "NVUE Commands ">}}
 
-NVUE does not provide commands to disable LLDP on an interface. However, you can create an NVUE flexible snippet. See {{<link url="NVUE-Snippets/#flexible-snippet-examples" text="Flexible Snippets">}}.
+```
+cumulus@leaf01:~$ nv set interface swp1 lldp state disabled
+cumulus@leaf01:~$ nv config apply
+```
+
+To re-enable LLDP on an interface, run the `nv set interface swp1 lldp state enabled` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -155,6 +162,42 @@ Interface:    swp4, via: LLDP, RID: 1, Time: 0 day, 00:09:16
     PortID:       ifname swp4
     PortDescr:    swp4
 ```
+
+## Configure LLDP Timers
+
+You can configure the frequency of LLDP updates (between 5 and 32768 seconds) and the amount of time (between 1 and 8192 seconds) to hold the information before discarding it. The hold time interval is a multiple of the `tx-interval`.
+
+The following example commands configure the frequency of LLDP updates to 100 and the hold time to 3.
+
+{{< tabs "TabID67 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set service lldp tx-interval 100
+cumulus@switch:~$ nv set service lldp tx-hold-multiplier 3
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Create the `/etc/lldpd.conf` file or create a file in the `/etc/lldpd.d/` directory with a `.conf` suffix and add the timers:
+
+```
+cumulus@switch:~$ sudo nano /etc/lldpd.conf
+configure lldp tx-interval 100
+configure lldp tx-hold 3
+...
+```
+
+Restart the `lldpd` service for the changes to take effect:
+
+```
+cumulus@switch:~$ sudo systemctl restart lldpd
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## SNMP Subagent
 

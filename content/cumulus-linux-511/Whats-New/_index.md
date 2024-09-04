@@ -24,24 +24,24 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 - SN5400 - syncE
 - SN5400 -  ITU-T
 - NVUE
+  - {{<link url="DHCP-Snooping" text="DHCP snooping">}}
   - {{<link url="Link-Layer-Discovery-Protocol" text="Commands to disable LLDP">}}
   - {{<link url="Resource-Diagnostics/#disable-lldp" text="Command to show ASIC resources">}} (`cl-resource-query` equivalent)
+  - SFlow
   - `nv show interface <interface> link stats` command includes operational state change date and time
   - net show interface swX details for dom and optical info for the pluggables
   - L1-show equivalent
   - DHCP6 server - support static IP by iframe
   - BGP large communities support
-  - DHCP snooping
   - control ZTP enable disable
   - match source protocol connected in a route map applied to BGP
   - interface summary view with filtering
-  - L# BGP presentation part 2
+  - BGP presentation part 2
   - EVPN presentation - Phase 2
   - net show route summary equivalent
   - Command logging for RADIUS users
   - RADIUS fallback authentication support when server unavailable
   - nv config show --all
-  - SFlow
   - LSAP encryption
   - Align with common OM - many commands
 

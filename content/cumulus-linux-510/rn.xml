@@ -103,12 +103,6 @@
 <td></td>
 </tr>
 <tr>
-<td>3982242</td>
-<td>PTP does not come up with IPv6 over a trunk port because the IPv6 VLAN tag is not sent. PTP over an IPv4 trunk works fine.</td>
-<td>5.8.0-5.10.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3879717</td>
 <td>Running {{snmpwalk}} on the switch with the management IP address does not work. To work around this issue, use the localhost option ({{snmpwalk -v 2c -c public28 localhost 1.3.6.1.2.1.14}}) or create a control plane ACL whitelist rule.</td>
 <td>5.10.0</td>
@@ -616,7 +610,7 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 </tr>
 <tr>
 <td>3896967</td>
-<td>PTP doesn't come up with IPv6 over a trunk port due to the IPv6 VLAN tag not being sent.  PTP over an IPv4 trunk works fine.</td>
+<td>PTP does not come up with IPv6 over a trunk port because the IPv6 VLAN tag is not sent. PTP over an IPv4 trunk works fine.</td>
 <td>5.8.0-5.9.1</td>
 </tr>
 <tr>

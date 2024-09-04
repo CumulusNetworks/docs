@@ -98,11 +98,6 @@
 <th> Affects </th>
 </tr>
 <tr>
-<td>4011713</td>
-<td>When you run a duplicate address validation, NetQ might report a validation failure indicating 127.0.1.1 is duplicated on Cumulus Linux 5.10.0 switches. To suppress this validation failure, run the {{netq add check-filter  check_filter_id addr_1 check_name addr test_name IPV4_Duplicate_Address scope '[{"Prefix": "127.0.1.1"}]'}} CLI command, or use the NetQ UI to add duplicate address filter for address 127.0.1.1. </td>
-<td></td>
-</tr>
-<tr>
 <td>3948198</td>
 <td>When you upgrade a Cumulus Linux switch configured with NVUE using NetQ LCM, the upgrade might fail due to NVUE configuration validation if the NVUE object model was changed between the current and new Cumulus Linux version. When this failure occurs, NetQ is unable to rollback to the prior configuration and the switch remains running the default Cumulus Linux configuration. </td>
 <td>4.10.1</td>

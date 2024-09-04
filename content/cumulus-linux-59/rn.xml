@@ -15,8 +15,8 @@
 <tr>
 <td>4023637</td>
 <td>When you disable dynamic NAT manually in the {{/etc/cumulus/switchd.conf}} file instead of using NVUE commands but the dynamic NAT rules still exist in the {{/etc/cumulus/acl/policy,d/.rules}} file, the switch encounters a memory leak. To work around this issue, remove dynamic NAT rules in rules files in {{/etc/cumulus/acl/policy.d}} before you disable dynamic NAT in the {{/etc/cumulus/switchd.conf}} file.</td>
-<td>5.9.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.1-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4012011</td>
@@ -716,12 +716,6 @@ You can safely ignore this warning.</td>
 <td>The {{nv show interface &lt;interface&gt;}} commands show RX and TX Power values from the wrong lanes on breakout ports.</td>
 <td>5.8.0-5.10.0</td>
 <td></td>
-</tr>
-<tr>
-<td>4023637</td>
-<td>When you disable dynamic NAT manually in the {{/etc/cumulus/switchd.conf}} file instead of using NVUE commands but the dynamic NAT rules still exist in the {{/etc/cumulus/acl/policy,d/.rules}} file, the switch encounters a memory leak. To work around this issue, remove dynamic NAT rules in rules files in {{/etc/cumulus/acl/policy.d}} before you disable dynamic NAT in the {{/etc/cumulus/switchd.conf}} file.</td>
-<td>5.9.0-5.9.1</td>
-<td>5.10.0</td>
 </tr>
 <tr>
 <td>4004453</td>

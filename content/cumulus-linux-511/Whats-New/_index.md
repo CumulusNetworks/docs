@@ -24,15 +24,15 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 - SN5400 - syncE
 - SN5400 -  ITU-T
 - NVUE
-  - `nv show interface <interface>> link stats`, commands include the date and time the operational state of an interface changes
+  - {{<link url="Link-Layer-Discovery-Protocol" text="Commands to disable LLDP">}}
+  - {{<link url="Resource-Diagnostics/#disable-lldp" text="Command to show ASIC resources">}} (`cl-resource-query` equivalent)
+  - `nv show interface <interface> link stats` command includes operational state change date and time
   - net show interface swX details for dom and optical info for the pluggables
   - L1-show equivalent
   - DHCP6 server - support static IP by iframe
   - BGP large communities support
   - DHCP snooping
   - control ZTP enable disable
-  - enable and disable CDP or LLDP at global and interface level
-  - cl-resource-query equivalent
   - match source protocol connected in a route map applied to BGP
   - interface summary view with filtering
   - L# BGP presentation part 2

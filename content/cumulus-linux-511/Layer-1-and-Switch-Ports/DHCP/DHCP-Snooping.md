@@ -8,21 +8,31 @@ DHCP snooping is a network security feature that prevents unauthorized DHCP serv
 
 Cumulus Linux acts as a middle layer between the DHCP infrastructure and DHCP clients by scanning DHCP control packets and building an IP-MAC database. Cumulus Linux accepts DHCP offers from only trusted interfaces and can rate limit packets.
 
+When DHCP snooping detects a violation, Cumulus Linux drops the packet and logs a message in the `/var/log/dhcpsnoop.log` file.
+
 {{%notice note%}}
-Cumulus Linux does not support DHCP option 82 processing.
+- Cumulus Linux does not support DHCP option 82 processing.
+- DHCP snooping support single bridge mode only.
 {{%/notice%}}
 
 ## Configure DHCP Snooping
 
 To configure DHCP snooping:
-- Enable DHCP snooping on a VLAN.
-- Add a trusted interface. Cumulus Linux allows DHCP offers from only trusted interfaces to prevent malicious DHCP servers from assigning IP addresses inside the network. The interface must be a member of the bridge specified.
+- Enable DHCP snooping on a VLAN under a bridge.
+- Add a trusted interface. Cumulus Linux allows DHCP offers from only trusted interfaces to prevent malicious DHCP servers from assigning IP addresses inside the network. The interface must be a member of the bridge you specify.
 
-The following example shows how to configure DHCP snooping for IPv4 and IPv6.
+{{< tabs "TabID17 ">}}
+{{< tab "NVUE Commands ">}}
 
-{{%notice note%}}
-NVUE does not provide commands to configure DHCP Snooping.
-{{%/notice%}}
+The following example enables DHCP snooping on VLAN 10 and the trusted interface to swp3. swp3 is a member of the bridge `br_default`:
+
+```
+cumulus@leaf01:~$ nv set bridge domain br_default dhcp-snoop vlan 10 
+cumulus@leaf01:~$ nv set bridge domain br_default dhcp-snoop vlan 10 trust swp3
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
 
 Create the `/etc/dhcpsnoop/dhcp_snoop.json` file, then add DHCP snooping configuration under the bridge.
 
@@ -72,19 +82,48 @@ cumulus@leaf01:~$ sudo nano /etc/dhcpsnoop/dhcp_snoop.json
 }
 ```
 
-When DHCP snooping detects a violation, Cumulus Linux drops the packet and logs a message in the `/var/log/dhcpsnoop.log` file.
-<!--
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Show the DHCP Binding Table
 
-To show the DHCP binding table, run the `net show dhcp-snoop table` command for IPv4 or the `net show dhcp-snoop6 table` command for IPv6. The following example command shows the DHCP binding table for IPv4:
+To show the DHCP binding table, run the `nv show bridge domain <bridge> dhcp-snoop` command for IPv4 or the `nv show bridge domain <bridge> dhcp-snoop6` command for IPv6.
+
+The following example command shows the DHCP binding table for IPv4:
 
 ```
-cumulus@leaf01:~$ net show dhcp-snoop table
-Port VLAN IP        MAC               Lease State Bridge
----- ---- --------- ----------------- ----- ----- ------
-
-swp5 1002 10.0.0.3  00:02:00:00:00:04 7200  ACK   br0
-
-swp5 1000 10.0.1.3  00:02:00:00:00:04 7200  ACK   br0
+cumulus@leaf01:~$ nv show bridge domain br_default dhcp-snoop
+DHCP Snooping Table 
+====================== 
+VLAN  Port  IP        MAC                      Lease     State   Bridge 
+----  ----  ------    -----------------        -----     -----   ------ 
+10    swp3  10.0.0.4  00:02:00:00:00:04        7200      ACK     br_default
+      swp6  10.0.0.6  00:02:00:00:00:06        7200      ACK     br_default
 ```
--->
+
+To show the DHCP binding table for a specific VLAN, run the `nv show bridge domain <bridge> dhcp-snoop vlan <vlan-ID>` command for IPv4 or the `nv show bridge domain <bridge> dhcp-snoop6 vlan <vlan-id>` command for IPv6.
+
+The following example command shows the DHCP binding table for IPv6 for VLAN 10:
+
+```
+cumulus@leaf01:~$ nv show bridge domain br_default dhcp-snoop6 vlan 10
+DHCP Snooping Vlan Table 
+======================== 
+Port   IP           MAC                            Lease      State  
+----   ------       -----------------              -----      -----     
+swp6   128::1/64    00:02:00:00:00:04              7200       ACK 
+```
+
+To show information in the DHCP binding table for a specific trusted port, run the `nv show bridge domain <bridge> dhcp-snoop vlan <vlan-ID> trust <interface-id>` command for IPv4 or the `nv show bridge domain <bridge> dhcp-snoop6 vlan <vlan-id> trust <interface-id>` command for IPv6.
+
+The following example command shows information in the DHCP binding table for IPv4 for trusted port swp6:
+
+```
+cumulus@leaf01:~$ nv show bridge domain br_default dhcp-snoop vlan 10 trust swp6
+DHCP Snooping Table 
+====================== 
+IP    : 20.0.0.1 
+Mac   : 00:02:00:00:00:04 
+Lease : 7200    
+State : ACK  
+```

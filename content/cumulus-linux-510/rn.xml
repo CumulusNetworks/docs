@@ -97,18 +97,6 @@
 <td></td>
 </tr>
 <tr>
-<td>3982256</td>
-<td>After {{switchd}} restarts,  the sFlow sampling rate set in the hardware might not match with the configured values for about 3 minutes. This issue occurs because interfaces are not yet up during  the initial sampling rate setting.</td>
-<td>5.9.1-5.10.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3982251</td>
-<td>When there are multiple interface flaps with sFlow on 100G interfaces, sFlow might use a different value than the one configured.</td>
-<td>5.9.1-5.10.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3879717</td>
 <td>Running {{snmpwalk}} on the switch with the management IP address does not work. To work around this issue, use the localhost option ({{snmpwalk -v 2c -c public28 localhost 1.3.6.1.2.1.14}}) or create a control plane ACL whitelist rule.</td>
 <td>5.10.0</td>
@@ -226,12 +214,6 @@ To work around this issue when using fiber cables:
 <td>
 The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1 when you use 10G QSA adaptors. To work around this issue, use 25G QSA adaptors.</td>
 <td>4.4.0-4.4.5, 5.0.0-5.10.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3368217</td>
-<td>When daylight saving time changes, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
-<td>4.4.4-4.4.5, 5.2.1-5.10.0</td>
 <td></td>
 </tr>
 <tr>

@@ -24,10 +24,10 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 - SN5400 - syncE
 - SN5400 -  ITU-T
 - NVUE
-  - {{<link url="DHCP-Snooping" text="DHCP snooping">}}
+  - {{<link url="DHCP-Snooping" text="DHCP snooping commands">}}
   - {{<link url="Link-Layer-Discovery-Protocol" text="Commands to disable LLDP">}}
   - {{<link url="Resource-Diagnostics/#disable-lldp" text="Command to show ASIC resources">}} (`cl-resource-query` equivalent)
-  - SFlow
+  - {{<link url="Monitoring-System-Statistics-and-Network-Traffic-with-sFlow" text="sFlow commands">}}
   - `nv show interface <interface> link stats` command includes operational state change date and time
   - net show interface swX details for dom and optical info for the pluggables
   - L1-show equivalent

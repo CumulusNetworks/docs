@@ -207,6 +207,79 @@ Restart the `hsflowd` service with the `sudo systemctl start hsflowd` command.
 
 For information on configuring various sFlow visualization tools, read this [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Monitoring/Configure-and-Use-sFlow-Visualization-Tools" >}}).
 
+## Show sFlow Configuration
+
+To show all sFlow configuration on the switch:
+
+```
+cumulus@switch:~$ nv show system sflow
+                   operational  applied 
+
+-----------------  -----------  ---------- 
+State                           enabled 
+poll-interval                   30 
+[collector]                     10.10.10.1 
+sampling-rate 
+  default                       400 
+  speed-100m                    100 
+  speed-1g                      1000 
+  speed-10g                     10000 
+  speed-25g                      25000 
+  speed-40g                     40000 
+  speed-50g                     50000 
+  speed-100g                    100000 
+  speed-200g                    200000 
+  speed-400g                    400000 
+  Speed-800g                    800000 
+agent 
+  ip               10.0.2.15 
+  interface        eth0         eth0 
+policer 
+  rate                          1638
+  burst                         1638
+```
+
+To show sflow collector configuration:
+
+```
+cumulus@switch:~$ nv show system sflow collector
+Ip                    Port 
+--------------------------------- 
+192.0.2.100           6343 
+192.0.2.200           6344
+```
+
+To show the sFLow sampling rate configuration:
+
+```
+cumulus@switch:~$ nv show system sflow sampling-rate
+default             400 
+speed-100m          100     
+speed-1g           1000 
+speed-10g         10000 
+Speed-25g         25000 
+speed-40g         40000 
+speed-50g         50000 
+speed-100g       100000 
+speed-200g       200000 
+speed-400g       400000
+Speed-800g       800000 
+```
+
+To show the current sFlow polling interval"
+
+```
+cumulus@switch:~$ nv show system sflow poll-interval
+poll-interval      30
+```
+
+To show sFlow agent configuration:
+
+```
+cumulus@switch:~$ nv show system sflow agent
+10.0.0.5 
+```
+
 ## Considerations
 
 Cumulus Linux does not support sFlow egress sampling.

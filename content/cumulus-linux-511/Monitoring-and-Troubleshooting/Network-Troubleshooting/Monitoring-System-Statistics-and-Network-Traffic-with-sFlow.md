@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 1140
 toc: 4
 ---
-{{<exlink url="http://www.sflow.org/index.php" text="sFlow">}} is a monitoring protocol that samples network packets, application operations, and system counters. sFlow collects both interface counters and sampled 5-tuple packet information so that you can monitor your network traffic as well as your switch state and performance metrics. To collect and analyze this data, you need an outside server; an *sFlow collector*.
+sFlow is a monitoring protocol that samples network packets, application operations, and system counters. sFlow collects both interface counters and sampled 5-tuple packet information so that you can monitor your network traffic as well as your switch state and performance metrics. To collect and analyze this data, you need an outside server; an *sFlow collector*.
 
 {{%notice note%}}
 If you intend to run this service within a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}}, including the {{<link url="Management-VRF" text="management VRF">}}, follow {{<link url="Management-VRF#run-services-within-the-management-vrf" text="these steps">}} to configure the service.

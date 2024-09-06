@@ -29,6 +29,7 @@ The following example enables DHCP snooping on VLAN 10 and the trusted interface
 ```
 cumulus@leaf01:~$ nv set bridge domain br_default dhcp-snoop vlan 10 
 cumulus@leaf01:~$ nv set bridge domain br_default dhcp-snoop vlan 10 trust swp3
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -103,7 +104,7 @@ VLAN  Port  IP        MAC                      Lease     State   Bridge
 
 To show the DHCP binding table for a specific VLAN, run the `nv show bridge domain <bridge> dhcp-snoop vlan <vlan-ID>` command for IPv4 or the `nv show bridge domain <bridge> dhcp-snoop6 vlan <vlan-id>` command for IPv6.
 
-The following example command shows the DHCP binding table for IPv6 for VLAN 10:
+The following example command shows the IPv6 DHCP binding table for VLAN 10:
 
 ```
 cumulus@leaf01:~$ nv show bridge domain br_default dhcp-snoop6 vlan 10
@@ -116,7 +117,7 @@ swp6   128::1/64    00:02:00:00:00:04              7200       ACK
 
 To show information in the DHCP binding table for a specific trusted port, run the `nv show bridge domain <bridge> dhcp-snoop vlan <vlan-ID> trust <interface-id>` command for IPv4 or the `nv show bridge domain <bridge> dhcp-snoop6 vlan <vlan-id> trust <interface-id>` command for IPv6.
 
-The following example command shows information in the DHCP binding table for IPv4 for trusted port swp6:
+The following example command shows information in the IPv4 DHCP binding table for trusted port swp6:
 
 ```
 cumulus@leaf01:~$ nv show bridge domain br_default dhcp-snoop vlan 10 trust swp6

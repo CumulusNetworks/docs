@@ -97,7 +97,7 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <tr>
 <td>3368217</td>
 <td>When daylight saving time changes, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
-<td>4.4.4-4.4.5, 5.2.1-5.10.0</td>
+<td>4.4.4-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -2244,7 +2244,7 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <tr>
 <td>3368217</td>
 <td>When daylight saving time changes, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
-<td>4.4.4-4.4.5, 5.2.1-5.10.0</td>
+<td>4.4.4-4.4.5</td>
 <td></td>
 </tr>
 <tr>

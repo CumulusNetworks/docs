@@ -62,18 +62,6 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <td>5.10.0</td>
 </tr>
 <tr>
-<td>3982256</td>
-<td>After {{switchd}} restarts,  the sFlow sampling rate set in the hardware might not match with the configured values for about 3 minutes. This issue occurs because interfaces are not yet up during  the initial sampling rate setting.</td>
-<td>5.9.1-5.10.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3982251</td>
-<td>When there are multiple interface flaps with sFlow on 100G interfaces, sFlow might use a different value than the one configured.</td>
-<td>5.9.1-5.10.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3982222</td>
 <td>When SPAN is enabled on a bridge member, an ARP or Gratuitous ARP received during a failover event between locally attached redundant devices such as load balancers might fail to update the bridge MAC table to point to the interface with the newly active load balancer.</td>
 <td>5.4.0-5.10.0</td>
@@ -148,8 +136,8 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <tr>
 <td>3950322</td>
 <td>After {{switchd}} restarts,  the sFlow sampling rate set in the hardware might not match with the configured values for about 3 minutes. This issue occurs because interfaces are not yet up during  the initial sampling rate setting.</td>
-<td>5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.1-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3949367</td>
@@ -202,8 +190,8 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <tr>
 <td>3926523</td>
 <td>When there are multiple interface flaps with sFlow on 100G interfaces, sFlow might use a different value than the one configured.</td>
-<td>5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.1-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3925259</td>
@@ -468,12 +456,6 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <td>When you configure OSPF network statements using NVUE with the {{nv set vrf &lt;vrf&gt; router ospf area &lt;area&gt; network &lt;subnet&gt;}} command, subsequent configuration changes with NVUE might bring down all OSPF neighbors. To work around this issue, create an NVUE snippet to configure the network statement, or use the {{nv set interface &lt;interface&gt; router ospf area &lt;area&gt;}} command to enable OSPF on interfaces instead of using a network statement.</td>
 <td>5.5.0-5.9.1</td>
 <td>5.10.0</td>
-</tr>
-<tr>
-<td>3368217</td>
-<td>When daylight saving time changes, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
-<td>4.4.4-4.4.5, 5.2.1-5.10.0</td>
-<td></td>
 </tr>
 <tr>
 <td>3362113</td>
@@ -1076,12 +1058,6 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <td>When you configure OSPF network statements using NVUE with the {{nv set vrf &lt;vrf&gt; router ospf area &lt;area&gt; network &lt;subnet&gt;}} command, subsequent configuration changes with NVUE might bring down all OSPF neighbors. To work around this issue, create an NVUE snippet to configure the network statement, or use the {{nv set interface &lt;interface&gt; router ospf area &lt;area&gt;}} command to enable OSPF on interfaces instead of using a network statement.</td>
 <td>5.5.0-5.9.1</td>
 <td>5.10.0</td>
-</tr>
-<tr>
-<td>3368217</td>
-<td>When daylight saving time changes, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
-<td>4.4.4-4.4.5, 5.2.1-5.10.0</td>
-<td></td>
 </tr>
 <tr>
 <td>3362113</td>

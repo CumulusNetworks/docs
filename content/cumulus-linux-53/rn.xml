@@ -309,12 +309,6 @@ To obtain the correct packages, install the {{tacplus-client}} package and its d
 <td>5.5.0-5.10.0</td>
 </tr>
 <tr>
-<td>3368217</td>
-<td>When daylight saving time changes, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
-<td>4.4.4-4.4.5, 5.2.1-5.10.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3351953</td>
 <td>In rare circumstances, attempting to install a Cumulus Linux 5.3 image can fail during installation. The device stops at the (initramfs) prompt. To resume installation, enter the {{exit}} command at the (initramfs) prompt.</td>
 <td>5.3.0-5.3.1</td>
@@ -1086,12 +1080,6 @@ To obtain the correct packages, install the {{tacplus-client}} package and its d
 <td>{{apt source linux}} fails to download the Linux kernel source code.  To work around this issue, run the {{sudo apt update &amp;&amp; sudo apt install linux-source-5.10}} command or download the desired version from {{https://apt.cumulusnetworks.com/repo/pool/cumulus/l/linux/}} and install it with the {{sudo dpkg -i $filename}} command.  The source code in a {{tar.xz}} file will then be located in the {{/usr/src/}} directory.</td>
 <td>5.2.0-5.4.0</td>
 <td>5.5.0-5.10.0</td>
-</tr>
-<tr>
-<td>3368217</td>
-<td>When daylight saving time changes, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
-<td>4.4.4-4.4.5, 5.2.1-5.10.0</td>
-<td></td>
 </tr>
 <tr>
 <td>3351953</td>

@@ -18,7 +18,8 @@ PIM-SM has three configuration options:
 Cumulus Linux supports ASM and SSM only.
 
 {{%notice note%}}
-IGMPv3 works only with SSM multicast group ranges.
+- IGMPv3 works only with SSM multicast group ranges.
+- Cumulus Linux does not support IPv6 multicast routing with PIM.
 {{%/notice%}}
 
 For additional information on PIM-SM, refer to {{<exlink url="https://tools.ietf.org/html/rfc7761" text="RFC 7761 - Protocol Independent Multicast - Sparse Mode">}}. For a brief description of how PIM works, refer to [PIM Overview]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Configuration/PIM-Overview" >}}).

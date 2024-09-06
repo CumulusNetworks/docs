@@ -12,13 +12,15 @@ information about multicast capable routers, and the location of
 multicast senders and receivers. For this reason, multicast cannot be
 sent through a routed network without PIM.
 
+{{%notice note%}}
+Cumulus Linux does not support IPv6 multicast routing with PIM.
+{{%/notice%}}
+
 PIM has two modes of operation: Sparse Mode (PIM-SM) and Dense Mode
 (PIM-DM).
 
 {{%notice note%}}
-
 Cumulus Linux supports only PIM Sparse Mode.
-
 {{%/notice%}}
 
 ## PIM Overview

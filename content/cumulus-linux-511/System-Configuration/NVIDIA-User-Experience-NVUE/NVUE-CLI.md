@@ -515,3 +515,45 @@ cumulus@switch:~$ nv action clear system api session
 {{%notice note%}}
 If you do not clear a user session after making changes directly on the RADIUS, TACACS, or LDAP server, NVUE uses the existing session for authentication and authorization until the session times out (up to 60 minutes).
 {{%/notice%}}
+<!--
+## Passwords and Special Characters
+
+If you use certain special characters in a password, you must quote or escape (with a backslash) these characters so that the system understands that they are part of the password.
+
+The following table shows if you need to quote or escape a special character.
+
+| Special Character | Normal Use  | Single Quotes ('') | Double Quotes ("") | Escape (`\`)|
+|---------- | ------- | ------------------ | ------------------ | ------ |
+| backtick (`) | x | ✓ | 1 | ✓ |
+| exclamation point (`!`) | x | ✓ | x | ✓ |
+| semicolon (`;`) | x | ✓ | ✓ | ✓ |
+| ampersand (`&`) | x | ✓ | ✓ | ✓ |
+| question mark (`?`) |x | ✓ | ✓ | x |
+| tilde (~) | x | ✓ | ✓ | ✓ |
+| at-sign (`@`) | ✓ | ✓ | ✓ | ✓ |
+| hash sign (`#`) | x | ✓ | ✓ | ✓ |
+| dollar sign (`$`) | x | ✓ | x | ✓ |
+| percent sign (`%`) | ✓ | ✓ | ✓ | ✓ |
+| caret (`^`) | ✓ | ✓ | ✓ | ✓ |
+| asterisk (`*`) | ✓ | ✓ | ✓ | ✓ |
+| parentheses (`()`) | x |  ✓ | ✓ | ✓ |
+| dash (`-`) | ✓ | ✓ | ✓ | ✓ |
+| underscore (`_`)| ✓ | ✓ | ✓ | ✓ |
+| equals sign (`=`) | ✓ | ✓ | ✓ | ✓ |
+| plus sign (`+`) | ✓ | ✓ | ✓ | ✓ |
+| vertical bar | x | ✓ | ✓ | ✓ |
+| brackets (`[]`) | ✓ | ✓ | ✓ | ✓ |
+| braces (`{}`) | ✓ | ✓ | ✓ | ✓ |
+| colon (`:`) | ✓ | ✓ | ✓ | ✓ |
+| single quote (`‘`) | x | x |  ✓ | ✓ |
+| double quote (`“`) | x | ✓ |  x | ✓ |
+| comma (`,`) | ✓ | ✓ | ✓ | ✓ |
+| angle brackets (`<>`) | x | ✓ | ✓ | ✓ |
+| slash (`/`) | ✓ | ✓ | ✓ | ✓ |
+| dot (`.`) | 2 | 2 | 2 | 2 |
+| white space | x | x | 3 | x |
+
+1. Requires escape (`\`) in addition to the double quotes (`""`).
+2. You cannot use this character at the beginning of a word.
+3. A word cannot consist entirely of white space, even inside double quotes.
+-->

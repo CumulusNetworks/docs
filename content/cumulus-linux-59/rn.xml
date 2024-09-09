@@ -7,9 +7,21 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4043995</td>
+<td>﻿watchfrr process can restart FRR due to: 'zebra state -&gt; unresponsive' after network churn.</td>
+<td>5.9.1-5.10.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4035681</td>
 <td>The {{nv show interface &lt;interface&gt;}} commands show RX and TX Power values from the wrong lanes on breakout ports.</td>
 <td>5.8.0-5.10.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4023649</td>
+<td>&lt;TBD after RCA&gt;</td>
+<td>5.2.0-5.10.0</td>
 <td></td>
 </tr>
 <tr>
@@ -44,6 +56,12 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <td></td>
 </tr>
 <tr>
+<td>3990262</td>
+<td>&lt;TBD after RCA&gt;</td>
+<td>5.9.1-5.10.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3990258</td>
 <td>Cumulus Linux incorrectly handles unnumbered neighbor types, which causes discrepancies in the running configuration and session flaps during FRR reload.</td>
 <td>5.9.0-5.10.0</td>
@@ -74,12 +92,6 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <td></td>
 </tr>
 <tr>
-<td>3972715</td>
-<td>The fans on the NVIDIA SN2410 switch (Part Number SSG7A80800) might spin at high speed. </td>
-<td>5.9.1</td>
-<td>5.10.0</td>
-</tr>
-<tr>
 <td>3970626</td>
 <td>When you configure the {{bridge.kernel_mac_refresh_interval}} parameter in the {{switchd.conf}} file, a {{switchd}} restart fails with a core dump.</td>
 <td>5.8.0-5.9.1</td>
@@ -92,6 +104,18 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <td></td>
 </tr>
 <tr>
+<td>3965567</td>
+<td>&lt;TBD after RCA&gt;</td>
+<td>5.9.0-5.10.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3965548</td>
+<td>The fans on the NVIDIA SN2410 switch (Part Number SSG7A80800) might spin at high speed. </td>
+<td>5.9.1</td>
+<td>5.10.0</td>
+</tr>
+<tr>
 <td>3965021</td>
 <td>The optical DOM information in {{ethtool -m}} command output is incorrect for SFP modules.</td>
 <td>5.9.1-5.10.0</td>
@@ -100,8 +124,8 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <tr>
 <td>3957691</td>
 <td>After a networking restart, ERSPAN mirror sessions might not start. To work around this issue, run the {{systemctl reload switchd}} command to start the ERSPAN mirror sessions.</td>
-<td>5.9.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.0-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3957620</td>
@@ -130,8 +154,8 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <tr>
 <td>3951643</td>
 <td>The NVUE unset and set command for the same object in a patch file ({{nv config patch &lt;file&gt;.yaml}}) causes a python exception.</td>
-<td>5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.1-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3950322</td>
@@ -142,14 +166,14 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <tr>
 <td>3949367</td>
 <td>If you use NVUE to create an SNMP user with a password, then delete and recreate the user with additional encryption passwords (such as DES or AES), SNMP authorization fails for that user.</td>
-<td>5.3.1-5.9.1</td>
-<td>5.10.0</td>
+<td>5.3.1-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3947432</td>
 <td>In an EVPN multihoming configuration, if a host bond enters the protodown state due to a link flap, when you try to clear the protodown state, FRR reprograms it.</td>
-<td>5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.1-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3943834</td>
@@ -166,8 +190,8 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <tr>
 <td>3939667</td>
 <td>On NVIDIA Cumulus VX, the password does not reset to the default value of {{cumulus}}.</td>
-<td>5.9.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.0-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3935658</td>
@@ -178,8 +202,8 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <tr>
 <td>3929440</td>
 <td>When you enable or disable MLAG configuration on an interface, Cumulus Linux logs LACP partner MAC address and BPDU guard mismatches incorrectly. This issue does not impact functionality.</td>
-<td>5.9.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.0-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3927016</td>
@@ -208,15 +232,15 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <tr>
 <td>3917528</td>
 <td>With LACP bypass enabled, Cumulus Linux does not program the MAC address in the bridge FDB for VLAN unaware tagged ports.  With EVPN, the address is not advertised and the remote side might flood the packet instead of unicast.</td>
-<td>5.8.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.8.0-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3915842</td>
 <td>A kernel crash due to memory corruption might occur due to a {{netfilter}} error. The log message from {{netfilter}} might contain a warning similar to the following:kernel: WARNING: CPU: 1 PID: 0 at net/netfilter/nf_conntrack_core.c:1210 __nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]
 kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
-<td>5.9.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.0-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3904516</td>
@@ -258,12 +282,6 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <td></td>
 </tr>
 <tr>
-<td>3879635</td>
-<td>ERSPAN port-mirror sessions might not come up after a {{switchd}} service restart. To work around this issue and bring up the ERSPAN session, either run {{switchd reload}} after a {{switchd restart}} or use an ACL-based ERSPAN session.</td>
-<td>5.9.0-5.9.1</td>
-<td>5.10.0</td>
-</tr>
-<tr>
 <td>3878394</td>
 <td>When ZTP runs a script that contains {{wget}}, ZTP fails and you see a message similar to the following:
 ZTP: ZTP DHCP: Unexpected error: 'ascii' codec can't decode byte 0xe2 in position 181: ordinal not in range(128)
@@ -275,8 +293,8 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 <tr>
 <td>3878166</td>
 <td>The NVUE {{nv show interface eth0}} and {{nv show vrf}} commands take more than two minutes to run if you have configured hundreds of interfaces because NVUE makes repetitive system calls to get {{vlan/link/tunnel}} bridge information.</td>
-<td>5.9.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.0-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3875589</td>
@@ -299,8 +317,8 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 <tr>
 <td>3854807</td>
 <td>When you enable Optimized Multicast Flooding (OMF) and change VLAN configuration, a few ports might carry multicast traffic even when they are not in the MDB or they are not router ports.</td>
-<td>5.6.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.6.0-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3854800</td>
@@ -323,8 +341,8 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 <tr>
 <td>3821643</td>
 <td>When using SSM and the upstream interface goes away (the source stops sending or the link goes down) the PIMREG interface is added to the outgoing interface list of the S,G and is never removed. As a result, multicast traffic that hits the impacted S,G is forwarded to the CPU and dropped by the switch.</td>
-<td>5.9.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.0-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3775686</td>
@@ -700,6 +718,12 @@ You can safely ignore this warning.</td>
 <td></td>
 </tr>
 <tr>
+<td>4023649</td>
+<td>&lt;TBD after RCA&gt;</td>
+<td>5.2.0-5.10.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4004453</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
 <td>4.3.0-4.4.5, 5.0.0-5.10.0</td>
@@ -730,10 +754,16 @@ You can safely ignore this warning.</td>
 <td>5.10.0</td>
 </tr>
 <tr>
+<td>3965567</td>
+<td>&lt;TBD after RCA&gt;</td>
+<td>5.9.0-5.10.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3957691</td>
 <td>After a networking restart, ERSPAN mirror sessions might not start. To work around this issue, run the {{systemctl reload switchd}} command to start the ERSPAN mirror sessions.</td>
-<td>5.9.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.0-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3957620</td>
@@ -762,8 +792,8 @@ You can safely ignore this warning.</td>
 <tr>
 <td>3949367</td>
 <td>If you use NVUE to create an SNMP user with a password, then delete and recreate the user with additional encryption passwords (such as DES or AES), SNMP authorization fails for that user.</td>
-<td>5.3.1-5.9.1</td>
-<td>5.10.0</td>
+<td>5.3.1-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3943834</td>
@@ -780,14 +810,14 @@ You can safely ignore this warning.</td>
 <tr>
 <td>3939667</td>
 <td>On NVIDIA Cumulus VX, the password does not reset to the default value of {{cumulus}}.</td>
-<td>5.9.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.0-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3929440</td>
 <td>When you enable or disable MLAG configuration on an interface, Cumulus Linux logs LACP partner MAC address and BPDU guard mismatches incorrectly. This issue does not impact functionality.</td>
-<td>5.9.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.0-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3925259</td>
@@ -804,15 +834,15 @@ You can safely ignore this warning.</td>
 <tr>
 <td>3917528</td>
 <td>With LACP bypass enabled, Cumulus Linux does not program the MAC address in the bridge FDB for VLAN unaware tagged ports.  With EVPN, the address is not advertised and the remote side might flood the packet instead of unicast.</td>
-<td>5.8.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.8.0-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3915842</td>
 <td>A kernel crash due to memory corruption might occur due to a {{netfilter}} error. The log message from {{netfilter}} might contain a warning similar to the following:kernel: WARNING: CPU: 1 PID: 0 at net/netfilter/nf_conntrack_core.c:1210 __nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]
 kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
-<td>5.9.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.0-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3915829</td>
@@ -860,12 +890,6 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <td></td>
 </tr>
 <tr>
-<td>3879635</td>
-<td>ERSPAN port-mirror sessions might not come up after a {{switchd}} service restart. To work around this issue and bring up the ERSPAN session, either run {{switchd reload}} after a {{switchd restart}} or use an ACL-based ERSPAN session.</td>
-<td>5.9.0-5.9.1</td>
-<td>5.10.0</td>
-</tr>
-<tr>
 <td>3878394</td>
 <td>When ZTP runs a script that contains {{wget}}, ZTP fails and you see a message similar to the following:
 ZTP: ZTP DHCP: Unexpected error: 'ascii' codec can't decode byte 0xe2 in position 181: ordinal not in range(128)
@@ -877,8 +901,8 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 <tr>
 <td>3878166</td>
 <td>The NVUE {{nv show interface eth0}} and {{nv show vrf}} commands take more than two minutes to run if you have configured hundreds of interfaces because NVUE makes repetitive system calls to get {{vlan/link/tunnel}} bridge information.</td>
-<td>5.9.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.0-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3875589</td>
@@ -901,8 +925,8 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 <tr>
 <td>3854807</td>
 <td>When you enable Optimized Multicast Flooding (OMF) and change VLAN configuration, a few ports might carry multicast traffic even when they are not in the MDB or they are not router ports.</td>
-<td>5.6.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.6.0-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3854800</td>
@@ -925,8 +949,8 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 <tr>
 <td>3821643</td>
 <td>When using SSM and the upstream interface goes away (the source stops sending or the link goes down) the PIMREG interface is added to the outgoing interface list of the S,G and is never removed. As a result, multicast traffic that hits the impacted S,G is forwarded to the CPU and dropped by the switch.</td>
-<td>5.9.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.0-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3775686</td>

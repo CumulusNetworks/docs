@@ -155,7 +155,11 @@ Upgrade mode includes the following options:
 Cumulus Linux does not support warm upgrade in 5.9 on Spectrum-4 switches; for example, if you perform a warm upgrade from Cumulus Linux 5.9.0 to Cumulus Linux 5.9.1, the kernel crashes and the switch is unresponsive until you power cycle the switch. The first time you boot the switch from cold mode to warm mode, traffic flow is affected.
 {{%/notice%}}
 
-The following command upgrades all the system components to the latest release:
+The following command upgrades all the system components to the latest release.
+
+{{%notice note%}}
+To upgrade to Cumulus Linux 5.9 from Cumulus Linux 5.8 or earlier, you must install a disk image of the new release using ONIE. You cannot upgrade packages with {{<link url="Upgrading-Cumulus-Linux/#upgrade-cumulus-linux" text="package upgrade">}}.
+{{%/notice%}}
 
 {{< tabs "88 ">}}
 {{< tab "NVUE Command ">}}

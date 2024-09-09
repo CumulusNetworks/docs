@@ -33,8 +33,8 @@
 <tr>
 <td>3970626</td>
 <td>When you configure the {{bridge.kernel_mac_refresh_interval}} parameter in the {{switchd.conf}} file, a {{switchd}} restart fails with a core dump.</td>
-<td>5.8.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.8.0-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3956091</td>
@@ -51,8 +51,8 @@
 <tr>
 <td>3954026</td>
 <td>Static ARP configured with NVUE commands is deleted when the relevant layer 3 interface flaps.</td>
-<td>5.8.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.8.0-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3949367</td>

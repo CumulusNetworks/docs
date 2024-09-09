@@ -651,7 +651,7 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <tr>
 <td>3879635</td>
 <td>ERSPAN port-mirror sessions might not come up after a {{switchd}} service restart. To work around this issue and bring up the ERSPAN session, either run {{switchd reload}} after a {{switchd restart}} or use an ACL-based ERSPAN session.</td>
-<td></td>
+<td>5.9.0-5.9.1</td>
 </tr>
 <tr>
 <td>3878166</td>

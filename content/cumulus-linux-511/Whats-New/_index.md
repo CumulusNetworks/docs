@@ -16,7 +16,7 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 ### New Features and Enhancements
 
 - Upgrade using A/B type of upgrade
-- Factory Reset
+- {{<link url="Factory-Reset" text="Factory Reset">}}
 - OTLP phase 3
 - Improved interface range behaviors for breakouts
 - All packet histogram configuration
@@ -25,8 +25,8 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 - SN5400 - ITU-T
 - NVUE
   - {{<link url="DHCP-Snooping" text="DHCP snooping commands">}}
-  - {{<link url="Link-Layer-Discovery-Protocol" text="Commands to disable LLDP">}}
-  - {{<link url="Resource-Diagnostics/#disable-lldp" text="Command to show ASIC resources">}} (`cl-resource-query` equivalent)
+  - {{<link url="Link-Layer-Discovery-Protocol" text="Disable LLDP commands">}}
+  - {{<link url="Resource-Diagnostics/#disable-lldp" text="Show ASIC resources commands">}} (`cl-resource-query` equivalent)
   - {{<link url="Monitoring-System-Statistics-and-Network-Traffic-with-sFlow" text="sFlow commands">}}
   - {{<link url="DHCP-Servers/#assign-port-based-ip-addresses" text="IPv6 command to assign a port-based DHCP server address">}}
   - `nv show interface <interface> link stats` command includes operational state change date and time

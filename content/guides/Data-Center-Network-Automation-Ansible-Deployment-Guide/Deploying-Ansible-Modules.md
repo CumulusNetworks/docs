@@ -9,9 +9,9 @@ The NVUE ansible modules have been certified by RedHat and are available on Ansi
 
 ## Important points to remember
 
-- The modules have been tested with ansible core 2.11, 2.12 and 2.13.
+- The modules have been tested with ansible core 2.11 and above.
 - The modules support Python 3.6 and later.
-- The modules have been validated against Cumulus Linux 5.4 and 5.5.
+- The modules have been validated against Cumulus Linux 5.4 and above.
 
 ## Installing the modules
 

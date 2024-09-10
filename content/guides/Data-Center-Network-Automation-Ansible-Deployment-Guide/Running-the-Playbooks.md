@@ -14,7 +14,9 @@ imgData: guides
 
 ## Enable the NVUE API
 
-Cumulus Linux 5.5 and earlier disables the NVUE REST API by default. If you want to use any of the object specific modules or the `api` module, you need to enable the NVUE REST API with the following commands on the switch:
+The NVUE REST API is enabled by default with Cumulus Linux 5.6 onwards.
+
+For Cumulus Linux 5.5 and earlier, if you want to use any of the object specific modules or the `api` module, you need to enable the NVUE REST API with the following commands on the switch:
 
 ```
 cumulus@switch:~$ sudo ln -s /etc/nginx/sites-{available,enabled}/nvue.conf 

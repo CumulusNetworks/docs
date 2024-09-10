@@ -14,7 +14,7 @@
 </tr>
 <tr>
 <td>4043995</td>
-<td>﻿watchfrr process can restart FRR due to: 'zebra state -&gt; unresponsive' after network churn.</td>
+<td> After network churn, the ﻿{{watchfrr}} process might restart FRR due to an unresponsive zebra state.</td>
 <td>5.9.1-5.10.0</td>
 <td></td>
 </tr>
@@ -94,12 +94,6 @@
 <td>4004898</td>
 <td>When you configure the SNMP server listening address to a VRF that has no interfaces, {{snmp.service}} fails.To recover from the failure, set the SNMP server listening address back to the VRF that has interfaces. If you really want to move the SNMP server to the VRF with no interfaces, assign an interface to the VRF and move the SNMP server to the VRF.</td>
 <td>5.10.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3990262</td>
-<td>&lt;TBD after RCA&gt;</td>
-<td>5.9.1-5.10.0</td>
 <td></td>
 </tr>
 <tr>

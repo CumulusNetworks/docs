@@ -408,7 +408,10 @@ cumulus@switch:~$ nv config apply
 {{< tab "IPv6 ">}}
 
 ```
-Cumulus Linux does not provide NVUE commands for this setting.
+cumulus@switch:~$ nv set service dhcp-server6 default static server2
+cumulus@switch:~$ nv set service dhcp-server6 default static server2 ip-address 2001:db8:1::100
+cumulus@switch:~$ nv set service dhcp-server6 default static server2 ifname swp1
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}

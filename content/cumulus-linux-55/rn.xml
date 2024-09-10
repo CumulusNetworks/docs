@@ -21,8 +21,8 @@
 <tr>
 <td>3949367</td>
 <td>If you use NVUE to create an SNMP user with a password, then delete and recreate the user with additional encryption passwords (such as DES or AES), SNMP authorization fails for that user.</td>
-<td>5.3.1-5.9.1</td>
-<td>5.10.0</td>
+<td>5.3.1-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3917601</td>
@@ -954,8 +954,8 @@ You can safely ignore this warning.</td>
 <tr>
 <td>3949367</td>
 <td>If you use NVUE to create an SNMP user with a password, then delete and recreate the user with additional encryption passwords (such as DES or AES), SNMP authorization fails for that user.</td>
-<td>5.3.1-5.9.1</td>
-<td>5.10.0</td>
+<td>5.3.1-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3917601</td>

@@ -19,12 +19,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4023649</td>
-<td>&lt;TBD after RCA&gt;</td>
-<td>5.2.0-5.10.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4023637</td>
 <td>When you disable dynamic NAT manually in the {{/etc/cumulus/switchd.conf}} file instead of using NVUE commands but the dynamic NAT rules still exist in the {{/etc/cumulus/acl/policy,d/.rules}} file, the switch encounters a memory leak. To work around this issue, remove dynamic NAT rules in rules files in {{/etc/cumulus/acl/policy.d}} before you disable dynamic NAT in the {{/etc/cumulus/switchd.conf}} file.</td>
 <td>5.9.1-5.10.0</td>
@@ -101,12 +95,6 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <td>3966673</td>
 <td>In an EVPN multihoming deployment, if you enable multihoming without any local ESI configuration, {{arp-nd-redirect}} remains disabled unless you restart FRR.</td>
 <td>5.9.1-5.10.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3965567</td>
-<td>&lt;TBD after RCA&gt;</td>
-<td>5.9.0-5.10.0</td>
 <td></td>
 </tr>
 <tr>
@@ -724,12 +712,6 @@ You can safely ignore this warning.</td>
 <td></td>
 </tr>
 <tr>
-<td>4023649</td>
-<td>&lt;TBD after RCA&gt;</td>
-<td>5.2.0-5.10.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4004453</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
 <td>4.3.0-4.4.5, 5.0.0-5.10.0</td>
@@ -757,12 +739,6 @@ You can safely ignore this warning.</td>
 <td>3970626</td>
 <td>When you configure the {{bridge.kernel_mac_refresh_interval}} parameter in the {{switchd.conf}} file, a {{switchd}} restart fails with a core dump.</td>
 <td>5.8.0-5.10.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3965567</td>
-<td>&lt;TBD after RCA&gt;</td>
-<td>5.9.0-5.10.0</td>
 <td></td>
 </tr>
 <tr>

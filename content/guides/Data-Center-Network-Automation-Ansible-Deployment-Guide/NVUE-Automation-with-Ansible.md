@@ -33,6 +33,8 @@ The collection includes high-level wrapper modules and object specific modules a
 
 For REST API endpoints that are not covered by the object-specific modules or for sub-paths within the object specific modules (for example, `/interface/<id>/qos/roce/counters`), you can leverage the `nvidia.nvue.api` module and specify the endpoint in the `path` parameter.
 
+*Note: The NVUE Ansible modules are community supported and not validated by NVIDIA. Support for these modules are on a "Best-Effort" basis. If you have issues, please submit the request {{<exlink url="https://gitlab.com/nvidia-networking/systems-engineering/nvue/-/issues" text="here">}}*
+
 ## Production Ready Automation (PRA)
 
 The Production Ready Automation package from NVIDIA uses Ansible roles to provide several examples of a fully operationalized, automated data center in the form of playbooks and includes:

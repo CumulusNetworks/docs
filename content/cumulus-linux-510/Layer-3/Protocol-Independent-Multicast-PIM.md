@@ -18,7 +18,8 @@ PIM-SM has three configuration options:
 Cumulus Linux supports ASM and SSM only.
 
 {{%notice note%}}
-IGMPv3 works only with SSM multicast group ranges.
+- IGMPv3 works only with SSM multicast group ranges.
+- Cumulus Linux does not support IPv6 multicast routing with PIM.
 {{%/notice%}}
 
 For additional information on PIM-SM, refer to {{<exlink url="https://tools.ietf.org/html/rfc7761" text="RFC 7761 - Protocol Independent Multicast - Sparse Mode">}}. For a brief description of how PIM works, refer to [PIM Overview]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Configuration/PIM-Overview" >}}).
@@ -2438,9 +2439,7 @@ exit-address-family
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL59 - PIM" showNodes="leaf01,leaf02,spine01,server01,server02" >}}
-
-This simulation is running Cumulus Linux 5.9. The Cumulus Linux 5.10 simulation is coming soon.
+    {{< simulation name="Try It CL510 - PIM" showNodes="leaf01,leaf02,spine01,server01,server02" >}}
 
 The simulation starts with the example PIM configuration. To simplify the example, only one spine and two leafs are in the topology. The demo is pre-configured using NVUE commands.
 

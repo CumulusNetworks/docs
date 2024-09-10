@@ -19,6 +19,10 @@ Cumulus Linux supports ASM and SSM only.
 
 For additional information on PIM-SM, refer to {{<exlink url="https://tools.ietf.org/html/rfc7761" text="RFC 7761 - Protocol Independent Multicast - Sparse Mode">}}. For a brief description of how PIM works, refer to [PIM Overview]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Configuration/PIM-Overview" >}}).
 
+{{%notice note%}}
+Cumulus Linux does not support IPv6 multicast routing with PIM.
+{{%/notice%}}
+
 ## Example PIM Topology
 
 The following illustration shows a basic PIM [ASM](## "Any-source Mulitcast") configuration:

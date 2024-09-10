@@ -35,7 +35,7 @@ cumulus@leaf01:~$ nv set interface bond2 bond lacp-bypass on
 cumulus@leaf01:~$ nv set interface bond3 bond lacp-bypass on
 cumulus@leaf01:~$ nv set interface bond1-3 bridge domain br_default
 cumulus@leaf01:~$ nv set interface peerlink bond member swp49-50
-cumulus@leaf01:~$ nv set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ nv set mlag mac-address 44:38:39:FF:00:AA
 cumulus@leaf01:~$ nv set mlag backup 10.10.10.2
 cumulus@leaf01:~$ nv set mlag peer-ip linklocal
 cumulus@leaf01:~$ nv set interface vlan10 ip address 10.1.10.2/24
@@ -95,7 +95,7 @@ cumulus@leaf02:~$ nv set interface bond2 bond lacp-bypass on
 cumulus@leaf02:~$ nv set interface bond3 bond lacp-bypass on
 cumulus@leaf02:~$ nv set interface bond1-3 bridge domain br_default
 cumulus@leaf02:~$ nv set interface peerlink bond member swp49-50
-cumulus@leaf02:~$ nv set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf02:~$ nv set mlag mac-address 44:38:39:FF:00:AA
 cumulus@leaf02:~$ nv set mlag backup 10.10.10.1
 cumulus@leaf02:~$ nv set mlag peer-ip linklocal
 cumulus@leaf02:~$ nv set interface vlan10 ip address 10.1.10.3/24
@@ -225,7 +225,7 @@ cumulus@border01:~$ nv set interface vlan2001 ip vrr address 10.1.201.1/24
 cumulus@border01:~$ nv set interface vlan2001 ip vrr mac-address 00:00:5e:00:01:00
 cumulus@border01:~$ nv set interface vlan2001 ip vrr state up
 cumulus@border01:~$ nv set interface peerlink bond member swp49-50
-cumulus@border01:~$ nv set mlag mac-address 44:38:39:BE:EF:FF
+cumulus@border01:~$ nv set mlag mac-address 44:38:39:FF:00:FF
 cumulus@border01:~$ nv set mlag backup 10.10.10.64
 cumulus@border01:~$ nv set mlag peer-ip linklocal
 cumulus@border01:~$ nv set bridge domain br_default untagged 1
@@ -268,7 +268,7 @@ cumulus@border02:~$ nv set interface vlan2001 ip vrr address 10.1.201.1/24
 cumulus@border02:~$ nv set interface vlan2001 ip vrr mac-address 00:00:5e:00:01:00
 cumulus@border02:~$ nv set interface vlan2001 ip vrr state up
 cumulus@border02:~$ nv set interface peerlink bond member swp49-50
-cumulus@border02:~$ nv set mlag mac-address 44:38:39:BE:EF:FF
+cumulus@border02:~$ nv set mlag mac-address 44:38:39:FF:00:FF
 cumulus@border02:~$ nv set mlag backup 10.10.10.63
 cumulus@border02:~$ nv set mlag peer-ip linklocal
 cumulus@border02:~$ nv set bridge domain br_default untagged 1
@@ -453,7 +453,7 @@ cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
         10.10.10.2: {}
       enable: on
       init-delay: 5
-      mac-address: 44:38:39:BE:EF:AA
+      mac-address: 44:38:39:FF:00:AA
       peer-ip: linklocal
     router:
       ospf:
@@ -703,7 +703,7 @@ cumulus@leaf02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
         10.10.10.1: {}
       enable: on
       init-delay: 5
-      mac-address: 44:38:39:BE:EF:AA
+      mac-address: 44:38:39:FF:00:AA
       peer-ip: linklocal
     router:
       ospf:
@@ -1217,7 +1217,7 @@ cumulus@border01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
         10.10.10.64: {}
       enable: on
       init-delay: 5
-      mac-address: 44:38:39:BE:EF:FF
+      mac-address: 44:38:39:FF:00:FF
       peer-ip: linklocal
     router:
       ospf:
@@ -1416,7 +1416,7 @@ cumulus@border02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
         10.10.10.63: {}
       enable: on
       init-delay: 5
-      mac-address: 44:38:39:BE:EF:FF
+      mac-address: 44:38:39:FF:00:FF
       peer-ip: linklocal
     router:
       ospf:
@@ -1577,7 +1577,7 @@ auto peerlink.4094
 iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-backup-ip 10.10.10.2
-    clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-sys-mac 44:38:39:FF:00:AA
     clagd-args --initDelay 180
 
 auto vlan10
@@ -1677,7 +1677,7 @@ auto peerlink.4094
 iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-backup-ip 10.10.10.1
-    clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-sys-mac 44:38:39:FF:00:AA
     clagd-args --initDelay 180
 
 auto vlan10
@@ -1843,7 +1843,7 @@ auto peerlink.4094
 iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-backup-ip 10.10.10.64
-    clagd-sys-mac 44:38:39:BE:EF:FF
+    clagd-sys-mac 44:38:39:FF:00:FF
     clagd-args --initDelay 180
 
 auto br_default
@@ -1919,7 +1919,7 @@ auto peerlink.4094
 iface peerlink.4094
     clagd-peer-ip linklocal
     clagd-backup-ip 10.10.10.63
-    clagd-sys-mac 44:38:39:BE:EF:FF
+    clagd-sys-mac 44:38:39:FF:00:FF
     clagd-args --initDelay 180
 
 auto br_default
@@ -2158,9 +2158,7 @@ timers throttle spf 0 100 6000
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL59 - OSPFv2" showNodes="leaf01,leaf02,spine01,spine02,border01,border02,server01,server02,server03,server07,server08" >}}
-
-This simulation is running Cumulus Linux 5.9. The Cumulus Linux 5.10 simulation is coming soon.
+    {{< simulation name="Try It CL510 - OSPFv2" showNodes="leaf01,leaf02,spine01,spine02,border01,border02,server01,server02,server03,server07,server08" >}}
 
 The simulation starts with the example OSPF configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 

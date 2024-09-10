@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4023649</td>
+<td>&lt;TBD after RCA&gt;</td>
+<td>5.2.0-5.10.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4004453</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
 <td>4.3.0-4.4.5, 5.0.0-5.10.0</td>
@@ -188,12 +194,6 @@ To obtain the correct packages, install the {{tacplus-client}} package and its d
 <td>{{apt source linux}} fails to download the Linux kernel source code.  To work around this issue, run the {{sudo apt update &amp;&amp; sudo apt install linux-source-5.10}} command or download the desired version from {{https://apt.cumulusnetworks.com/repo/pool/cumulus/l/linux/}} and install it with the {{sudo dpkg -i $filename}} command.  The source code in a {{tar.xz}} file will then be located in the {{/usr/src/}} directory.</td>
 <td>5.2.0-5.4.0</td>
 <td>5.5.0-5.10.0</td>
-</tr>
-<tr>
-<td>3368217</td>
-<td>When daylight saving time changes, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
-<td>4.4.4-4.4.5, 5.2.1-5.10.0</td>
-<td></td>
 </tr>
 <tr>
 <td>3351951</td>
@@ -862,12 +862,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>2705056</td>
-<td>When configured with NVUE, SVIs do not inherit the pinned MAC address of the bridge.</td>
-<td>4.3.0, 5.0.0-5.10.0</td>
-<td>4.3.1-4.4.5</td>
-</tr>
-<tr>
 <td>2684925</td>
 <td>The NVUE {{nv show vrf default router bgp peer}} command produces a 404 not found error.</td>
 <td>4.4.0-4.4.5, 5.0.0-5.10.0</td>
@@ -907,6 +901,12 @@ You can safely ignore this warning.</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>4023649</td>
+<td>&lt;TBD after RCA&gt;</td>
+<td>5.2.0-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4004453</td>
@@ -1756,12 +1756,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>When you change the VRRP advertisement interval on the master, the {{master advertisement interval}} field in the {{show vrrp}} command output does not show the updated value.</td>
 <td>4.4.0-4.4.5, 5.0.0-5.10.0</td>
 <td></td>
-</tr>
-<tr>
-<td>2705056</td>
-<td>When configured with NVUE, SVIs do not inherit the pinned MAC address of the bridge.</td>
-<td>4.3.0, 5.0.0-5.10.0</td>
-<td>4.3.1-4.4.5</td>
 </tr>
 <tr>
 <td>2684925</td>

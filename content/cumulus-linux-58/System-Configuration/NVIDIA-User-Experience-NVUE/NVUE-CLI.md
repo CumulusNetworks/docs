@@ -396,7 +396,7 @@ NVUE manages the following configuration files:
 
 ## Search for a Specific Configuration
 
-To search for a specific portion of the NVUE configuration, run the `nv config find <search string>` command. The search shows all items above and below the search string. For example, to search the entire NVUE object model configuration for any mention of `ptm`:
+To search for a specific portion of the NVUE configuration, run the `nv config find <search string>` command. The search shows all items above and below the search string. For example, to search the entire NVUE object model configuration for any mention of `bond1`:
 
 ```
 cumulus@switch:~$ nv config find bond1

@@ -4,29 +4,29 @@ author: NVIDIA
 weight: 355
 toc: 3
 ---
-DHCP snooping enables Cumulus Linux to act as a middle layer between the DHCP infrastructure and DHCP clients by scanning DHCP control packets and building an IP-MAC database. Cumulus Linux accepts DHCP offers from only trusted interfaces and can rate limit packets.
+DHCP snooping is a network security feature that prevents unauthorized DHCP servers from assigning IP addresses, protects against DHCP spoofing and IP address conflicts, and enhances overall network security. By ensuring that only trusted DHCP servers can assign IP addresses and maintaining a binding table of IP address to MAC address mappings, DHCP snooping helps safeguard network integrity and reliability.
+
+Cumulus Linux acts as a middle layer between the DHCP infrastructure and DHCP clients by scanning DHCP control packets and building an IP-MAC database. Cumulus Linux accepts DHCP offers from only trusted interfaces and can rate limit packets.
 
 {{%notice note%}}
-DHCP option 82 processing is not supported.
+Cumulus Linux does not support DHCP option 82 processing.
 {{%/notice%}}
 
 ## Configure DHCP Snooping
 
-To configure DHCP snooping, you need to:
-
+To configure DHCP snooping:
 - Enable DHCP snooping on a VLAN.
 - Add a trusted interface. Cumulus Linux allows DHCP offers from only trusted interfaces to prevent malicious DHCP servers from assigning IP addresses inside the network. The interface must be a member of the bridge specified.
-- Set the rate limit for DHCP requests to avoid DoS attacks. The default value is 100 packets per second.
 
-The following example shows you how to configure DHCP snooping for IPv4 and IPv6.
+The following example shows how to configure DHCP snooping for IPv4 and IPv6.
 
 {{%notice note%}}
 NVUE does not provide commands to configure DHCP Snooping.
 {{%/notice%}}
 
-Create the `/etc/dhcpsnoop/dhcp_snoop.json` file and add DHCP snooping configuration under the bridge.
+Create the `/etc/dhcpsnoop/dhcp_snoop.json` file, then add DHCP snooping configuration under the bridge.
 
-The following example enables DHCP snooping for IPv4 on VLAN 10, sets the rate limit to 50 and the trusted interface to swp3. swp3 is a member of the bridge `br_default`:
+The following example enables DHCP snooping for IPv4 on VLAN 10 and the trusted interface to swp3. swp3 is a member of the bridge `br_default`:
 
 ```
 cumulus@leaf01:~$ sudo nano /etc/dhcpsnoop/dhcp_snoop.json
@@ -38,7 +38,6 @@ cumulus@leaf01:~$ sudo nano /etc/dhcpsnoop/dhcp_snoop.json
         {
           "vlan_id": 10,
           "snooping": 1,
-          "rate_limit": 50,
           "ip_version": 4,
           "trusted_interface": [
             "swp3"
@@ -50,7 +49,7 @@ cumulus@leaf01:~$ sudo nano /etc/dhcpsnoop/dhcp_snoop.json
 }
 ```
 
-The following example enables DHCP snooping for IPv6 on VLAN 10, sets the rate limit to 50 and the trusted interface to swp6. swp6 is a member of the bridge `br_default`:
+The following example enables DHCP snooping for IPv6 on VLAN 10 and the trusted interface to swp6. swp6 is a member of the bridge `br_default`:
 
 ```
 cumulus@leaf01:~$ sudo nano /etc/dhcpsnoop/dhcp_snoop.json
@@ -62,7 +61,6 @@ cumulus@leaf01:~$ sudo nano /etc/dhcpsnoop/dhcp_snoop.json
         {
           "vlan_id": 10,
           "snooping": 1,
-          "rate_limit": 50,
           "ip_version": 6,
           "trusted_interface": [
             "swp6"

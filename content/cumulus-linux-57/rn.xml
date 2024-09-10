@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4023649</td>
+<td>&lt;TBD after RCA&gt;</td>
+<td>5.2.0-5.10.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4004453</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
 <td>4.3.0-4.4.5, 5.0.0-5.10.0</td>
@@ -27,8 +33,8 @@
 <tr>
 <td>3949367</td>
 <td>If you use NVUE to create an SNMP user with a password, then delete and recreate the user with additional encryption passwords (such as DES or AES), SNMP authorization fails for that user.</td>
-<td>5.3.1-5.9.1</td>
-<td>5.10.0</td>
+<td>5.3.1-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3917601</td>
@@ -46,12 +52,6 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <td></td>
 </tr>
 <tr>
-<td>3875696</td>
-<td>The default TX State for 1G Base-X optical modules that are unconfigured or admin down in Cumulus Linux 5.7.0 and later is OFF.  However, on the first boot after upgrade from an earlier release, a module TX power might be ON or OFF depending on the TX State it was before the upgrade. The TX_Disable line is not properly set on first boot. To work around this issue, reboot the switch again, or {{ifup}} or {{ifdown}} the 1G Base-X interface to disable TX Power.</td>
-<td>5.7.0-5.10.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3863858</td>
 <td>VRR interfaces might show {{dadfailed}} on their IPv6 link-local address.</td>
 <td>5.6.0-5.8.0</td>
@@ -60,8 +60,8 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <tr>
 <td>3854807</td>
 <td>When you enable Optimized Multicast Flooding (OMF) and change VLAN configuration, a few ports might carry multicast traffic even when they are not in the MDB or they are not router ports.</td>
-<td>5.6.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.6.0-5.10.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3854800</td>
@@ -197,6 +197,7 @@ leaf01# exit</td>
 <tr>
 <td>3711913</td>
 <td>When you set an IPv4 ACL with a log action, logs do not appear under syslog after a match. This issue affects bridged packets when the rule is installed in iptables. To work around this issue, set the ACL with a MAC rule type so that it is installed in ebtables and the packets are logged correctly in {{syslog}}.The following shows an example configuration:
+
 cumulus@switch:~$ nv set acl one rule 1 action log log-prefix NVIDIA
 cumulus@switch:~$ nv set acl one rule 1 match ip protocol udp
 cumulus@switch:~$ nv set acl one rule 1 match ip source-ip 10.0.14.2
@@ -402,12 +403,6 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <td>When you configure OSPF network statements using NVUE with the {{nv set vrf &lt;vrf&gt; router ospf area &lt;area&gt; network &lt;subnet&gt;}} command, subsequent configuration changes with NVUE might bring down all OSPF neighbors. To work around this issue, create an NVUE snippet to configure the network statement, or use the {{nv set interface &lt;interface&gt; router ospf area &lt;area&gt;}} command to enable OSPF on interfaces instead of using a network statement.</td>
 <td>5.5.0-5.9.1</td>
 <td>5.10.0</td>
-</tr>
-<tr>
-<td>3368217</td>
-<td>When daylight saving time changes, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
-<td>4.4.4-4.4.5, 5.2.1-5.10.0</td>
-<td></td>
 </tr>
 <tr>
 <td>3362113</td>
@@ -622,12 +617,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>When you change the VRRP advertisement interval on the master, the {{master advertisement interval}} field in the {{show vrrp}} command output does not show the updated value.</td>
 <td>4.4.0-4.4.5, 5.0.0-5.10.0</td>
 <td></td>
-</tr>
-<tr>
-<td>2705056</td>
-<td>When configured with NVUE, SVIs do not inherit the pinned MAC address of the bridge.</td>
-<td>4.3.0, 5.0.0-5.10.0</td>
-<td>4.3.1-4.4.5</td>
 </tr>
 <tr>
 <td>2684925</td>

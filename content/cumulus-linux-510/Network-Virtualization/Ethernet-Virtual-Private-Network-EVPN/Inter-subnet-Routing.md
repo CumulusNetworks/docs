@@ -424,7 +424,7 @@ cumulus@leaf01:~$ sudo nano /etc/network/interfaces
 ...
 auto vlan4001
 iface vlan4001
-    address-virtual 44:38:39:BE:EF:AA
+    address-virtual 44:38:39:FF:00:AA
     vrf RED
     vlan-raw-device bridge
     vlan-id 4001
@@ -508,8 +508,8 @@ VNI: 4001 (known to the kernel)
   Advertise-svi-macip : n/a
   Advertise-pip: Yes
   System-IP: 10.10.10.1
-  System-MAC: 44:38:39:be:ef:aa
-  Router-MAC: 44:38:39:be:ef:aa
+  System-MAC: 44:38:39:FF:00:aa
+  Router-MAC: 44:38:39:FF:00:aa
   Import Route Target:
     65101:4001
   Export Route Target:
@@ -525,13 +525,13 @@ leaf01# show bgp l2vpn evpn route
 Route Distinguisher: 10.10.10.1:3
 *> [2]:[0]:[48]:[00:60:08:69:97:ef]
                     10.0.1.1                           32768 i
-                    ET:8 RT:65101:10 RT:65101:4001 Rmac:44:38:39:be:ef:aa
+                    ET:8 RT:65101:10 RT:65101:4001 Rmac:44:38:39:FF:00:aa
 *> [2]:[0]:[48]:[26:76:e6:93:32:78]
                     10.0.1.1                           32768 i
-                    ET:8 RT:65101:10 RT:65101:4001 Rmac:44:38:39:be:ef:aa
+                    ET:8 RT:65101:10 RT:65101:4001 Rmac:44:38:39:FF:00:aa
 *> [2]:[0]:[48]:[26:76:e6:93:32:78]:[32]:[10.1.10.101]
                     10.0.1.1                           32768 i
-                    ET:8 RT:65101:10 RT:65101:4001 Rmac:44:38:39:be:ef:aa
+                    ET:8 RT:65101:10 RT:65101:4001 Rmac:44:38:39:FF:00:aa
 ...
 ```
 
@@ -617,7 +617,7 @@ cumulus@leaf01:~$ nv set nve vxlan source address 10.10.10.1
 cumulus@leaf01:~$ nv set nve vxlan arp-nd-suppress on 
 cumulus@leaf01:~$ nv set vrf RED evpn vni 4001
 cumulus@leaf01:~$ nv set vrf BLUE evpn vni 4002
-cumulus@leaf01:~$ nv set system global anycast-mac 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ nv set system global anycast-mac 44:38:39:FF:00:AA
 cumulus@leaf01:~$ nv set evpn enable on
 cumulus@leaf01:~$ nv set router bgp autonomous-system 65101
 cumulus@leaf01:~$ nv set router bgp router-id 10.10.10.1
@@ -640,7 +640,7 @@ cumulus@leaf01:~$ nv set evpn multihoming enable on
 cumulus@leaf01:~$ nv set interface bond1 evpn multihoming segment local-id 1
 cumulus@leaf01:~$ nv set interface bond2 evpn multihoming segment local-id 2
 cumulus@leaf01:~$ nv set interface bond3 evpn multihoming segment local-id 3
-cumulus@leaf01:~$ nv set interface bond1-3 evpn multihoming segment mac-address 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ nv set interface bond1-3 evpn multihoming segment mac-address 44:38:39:FF:00:AA
 cumulus@leaf01:~$ nv set interface bond1-3 evpn multihoming segment df-preference 50000
 cumulus@leaf01:~$ nv set interface swp51-52 evpn multihoming uplink on
 cumulus@leaf01:~$ nv config apply
@@ -681,7 +681,7 @@ cumulus@border01:~$ nv set interface vlan2010 ip vrf VRF10
 cumulus@border01:~$ nv set nve vxlan source address 10.10.10.63
 cumulus@border01:~$ nv set nve vxlan arp-nd-suppress on 
 cumulus@border01:~$ nv set vrf VRF10 evpn vni 6000
-cumulus@border01:~$ nv set system global anycast-mac 44:38:39:BE:EF:FF
+cumulus@border01:~$ nv set system global anycast-mac 44:38:39:FF:00:FF
 cumulus@border01:~$ nv set evpn enable on
 cumulus@border01:~$ nv set router bgp autonomous-system 65163
 cumulus@border01:~$ nv set router bgp router-id 10.10.10.63
@@ -755,7 +755,7 @@ cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
               df-preference: 50000
               enable: on
               local-id: 1
-              mac-address: 44:38:39:BE:EF:AA
+              mac-address: 44:38:39:FF:00:AA
         link:
           mtu: 9000
         type: bond
@@ -774,7 +774,7 @@ cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
               df-preference: 50000
               enable: on
               local-id: 2
-              mac-address: 44:38:39:BE:EF:AA
+              mac-address: 44:38:39:FF:00:AA
         link:
           mtu: 9000
         type: bond
@@ -793,7 +793,7 @@ cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
               df-preference: 50000
               enable: on
               local-id: 3
-              mac-address: 44:38:39:BE:EF:AA
+              mac-address: 44:38:39:FF:00:AA
         link:
           mtu: 9000
         type: bond
@@ -933,7 +933,7 @@ cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
           acl-default-whitelist:
             inbound: {}
       global:
-        anycast-mac: 44:38:39:BE:EF:AA
+        anycast-mac: 44:38:39:FF:00:AA
         system-mac: 44:38:39:22:01:7a
       hostname: leaf01
       reboot:
@@ -1213,7 +1213,7 @@ cumulus@border01:~$ sudo cat /etc/nvue.d/startup.yaml
           acl-default-whitelist:
             inbound: {}
       global:
-        anycast-mac: 44:38:39:BE:EF:FF
+        anycast-mac: 44:38:39:FF:00:FF
         system-mac: 44:38:39:22:01:74
       hostname: border01
       reboot:
@@ -1376,7 +1376,7 @@ iface swp52
 auto bond1
 iface bond1
     mtu 9000
-    es-sys-mac 44:38:39:BE:EF:AA
+    es-sys-mac 44:38:39:FF:00:AA
     bond-slaves swp1
     bond-mode 802.3ad
     bond-lacp-bypass-allow yes
@@ -1384,7 +1384,7 @@ iface bond1
 auto bond2
 iface bond2
     mtu 9000
-    es-sys-mac 44:38:39:BE:EF:AA
+    es-sys-mac 44:38:39:FF:00:AA
     bond-slaves swp2
     bond-mode 802.3ad
     bond-lacp-bypass-allow yes
@@ -1392,7 +1392,7 @@ iface bond2
 auto bond3
 iface bond3
     mtu 9000
-    es-sys-mac 44:38:39:BE:EF:AA
+    es-sys-mac 44:38:39:FF:00:AA
     bond-slaves swp3
     bond-mode 802.3ad
     bond-lacp-bypass-allow yes
@@ -1581,15 +1581,15 @@ evpn mh startup-delay 180
 interface bond1
 evpn mh es-df-pref 50000
 evpn mh es-id 1
-evpn mh es-sys-mac 44:38:39:BE:EF:AA
+evpn mh es-sys-mac 44:38:39:FF:00:AA
 interface bond2
 evpn mh es-df-pref 50000
 evpn mh es-id 2
-evpn mh es-sys-mac 44:38:39:BE:EF:AA
+evpn mh es-sys-mac 44:38:39:FF:00:AA
 interface bond3
 evpn mh es-df-pref 50000
 evpn mh es-id 3
-evpn mh es-sys-mac 44:38:39:BE:EF:AA
+evpn mh es-sys-mac 44:38:39:FF:00:AA
 interface swp51
 evpn mh uplink
 interface swp52
@@ -1810,9 +1810,7 @@ exit-address-family
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL59 - DVNI" showNodes="leaf01,spine01,border01,server01,fw1" >}}
-
-This simulation is running Cumulus Linux 5.9. The Cumulus Linux 5.10 simulation is coming soon.
+    {{< simulation name="Try It CL510 - DVNI" showNodes="leaf01,spine01,border01,server01,fw1" >}}
 
 The simulation starts with the example downstream VNI configuration. To simplify the example, only one spine is in the topology. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 

@@ -4840,7 +4840,7 @@ To workaround this issue, run the command against each VRF independently.</td>
 <tr>
 <td>2668543</td>
 <td>When configured with NVUE, SVIs do not inherit the pinned MAC address of the bridge.</td>
-<td>4.3.0, 5.0.0-5.10.0</td>
+<td>4.3.0</td>
 </tr>
 <tr>
 <td>2663119</td>

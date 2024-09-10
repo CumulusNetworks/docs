@@ -240,7 +240,7 @@ The NVUE configuration management commands manage and apply configurations.
 | `nv config patch <nvue-file>` | Updates the pending configuration with the specified YAML configuration file. |
 | `nv config replace <nvue-file>` | Replaces the pending configuration with the specified YAML configuration file. |
 |`nv config revision` | Shows all the configuration revisions on the switch. |
-| `nv config save` | When you have the auto save option `off`, this command overwrites the startup configuration with the applied configuration by writing to the `/etc/nvu.d/startup.yaml` file. The configuration persists after a reboot. |
+| `nv config save` | This command overwrites the startup configuration with the applied configuration by writing to the `/etc/nvu.d/startup.yaml` file. The configuration persists after a reboot. Use this command when the auto save option is off. |
 | `nv config show` | Shows the currently applied configuration in `yaml` format. This command also shows NVUE version information. |
 | `nv config show -o commands` | Shows the currently applied configuration commands. |
 | `nv config diff -o commands` | Shows differences between two configuration revisions. |
@@ -279,7 +279,6 @@ nv show platform software installed
 nv show platform software installed <installed-id>
 nv show platform firmware
 nv show platform firmware <platform-component-id>
-nv show platform capabilities
 nv show platform environment
 ...
 ```
@@ -350,7 +349,7 @@ NVUE manages the following configuration files:
 
 ## Search for a Specific Configuration
 
-To search for a specific portion of the NVUE configuration, run the `nv config find <search string>` command. The search shows all items above and below the search string. For example, to search the entire NVUE object model configuration for any mention of `ptm`:
+To search for a specific portion of the NVUE configuration, run the `nv config find <search string>` command. The search shows all items above and below the search string. For example, to search the entire NVUE object model configuration for any mention of `bond1`:
 
 ```
 cumulus@switch:~$ nv config find bond1

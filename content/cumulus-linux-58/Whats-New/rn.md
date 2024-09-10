@@ -15,7 +15,6 @@ pdfhidden: True
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="4035681"></a> [4035681](#4035681) <a name="4035681"></a> <br /> | The <code>nv show interface <interface></code> commands show RX and TX Power values from the wrong lanes on breakout ports. | 5.8.0-5.10.0 | |
-| <a name="4023649"></a> [4023649](#4023649) <a name="4023649"></a> <br />None | <TBD after RCA> | 5.2.0-5.10.0 | |
 | <a name="4004453"></a> [4004453](#4004453) <a name="4004453"></a> <br />None | The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful. | 4.3.0-4.4.5, 5.0.0-5.10.0 | |
 | <a name="3982222"></a> [3982222](#3982222) <a name="3982222"></a> <br /> | When SPAN is enabled on a bridge member, an ARP or Gratuitous ARP received during a failover event between locally attached redundant devices such as load balancers might fail to update the bridge MAC table to point to the interface with the newly active load balancer. | 5.4.0-5.10.0 | |
 | <a name="3970626"></a> [3970626](#3970626) <a name="3970626"></a> <br />None | When you configure the <code>bridge.kernel_mac_refresh_interval</code> parameter in the <code>switchd.conf</code> file, a <code>switchd</code> restart fails with a core dump. | 5.8.0-5.10.0 | |

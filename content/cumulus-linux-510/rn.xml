@@ -61,12 +61,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4023649</td>
-<td>&lt;TBD after RCA&gt;</td>
-<td>5.2.0-5.10.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4023318</td>
 <td>If you run {{nv set}} commands after you perform an upgrade but before a reboot, NVUE creates a revision based off the pre-upgrade version. After reboot, the revision contains pre-upgrade data that might cause it to fail during {{config apply}}.  To work around this issue, detach the stale revision after upgrade with the {{nv config detach}} command.</td>
 <td>5.10.0</td>
@@ -112,12 +106,6 @@
 <td>3990135</td>
 <td>If there are multiple relay switches in the path reaching the DHCP server, DHCP packets are duplicated at each transit relay switch and the server receives duplicate packets.</td>
 <td>5.9.1-5.10.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3965567</td>
-<td>&lt;TBD after RCA&gt;</td>
-<td>5.9.0-5.10.0</td>
 <td></td>
 </tr>
 <tr>

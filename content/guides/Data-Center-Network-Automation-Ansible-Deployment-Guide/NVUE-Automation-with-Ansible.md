@@ -19,6 +19,7 @@ The collection includes high-level wrapper modules and object specific modules a
  - nvidia.nvue.api – A wrapper around the NVUE REST API to send and retrieve NVUE configuration.
 
 **Object specific modules**
+ - nvidia.nvue.acl - ACL configuration with the REST API
  - nvidia.nvue.bridge - Bridge configuration with the REST API.
  - nvidia.nvue.config – Revisions with the REST API
  - nvidia.nvue.evpn - EVPN configuration with the REST API.

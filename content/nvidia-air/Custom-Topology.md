@@ -190,4 +190,4 @@ After you create the simulation, you can restore the configuration files.
 
 This {{<exlink url="https://gitlab.com/cumulus-consulting/features/cl_support_file_extractor" text="python script">}} pulls out all the relevant files and collates them into folders so you can use them to restore configuration from inside the simulation.
 
-You can also use the {{<exlink url="https://gitlab.com/cumulus-consulting/features/simple-iac" text="infrastructure as code">}} Ansible playbook to restore configurations.
+You can also use the {{<exlink url="https://gitlab.com/cumulus-consulting/features/simple-iac" text="infrastructure as code">}} Ansible playbook to restore configurations. 

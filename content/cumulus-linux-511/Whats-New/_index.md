@@ -22,17 +22,16 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 - All packet histogram configuration
 - New profile for spectrum1
 - SN5400 - syncE
-- SN5400 -  ITU-T
+- SN5400 - ITU-T
 - NVUE
   - {{<link url="DHCP-Snooping" text="DHCP snooping commands">}}
   - {{<link url="Link-Layer-Discovery-Protocol" text="Commands to disable LLDP">}}
   - {{<link url="Resource-Diagnostics/#disable-lldp" text="Command to show ASIC resources">}} (`cl-resource-query` equivalent)
   - {{<link url="Monitoring-System-Statistics-and-Network-Traffic-with-sFlow" text="sFlow commands">}}
-  - {{<link url="DHCP-Servers/#assign-port-based-ip-addresses" text="Command to assign a DHCP server port-based IPv6 address">}}
+  - {{<link url="DHCP-Servers/#assign-port-based-ip-addresses" text="IPv6 command to assign a port-based DHCP server address">}}
   - `nv show interface <interface> link stats` command includes operational state change date and time
   - net show interface swX details for dom and optical info for the pluggables
   - L1-show equivalent
-  - DHCP6 server - support static IP by iframe
   - BGP large communities support
   - control ZTP enable disable
   - match source protocol connected in a route map applied to BGP

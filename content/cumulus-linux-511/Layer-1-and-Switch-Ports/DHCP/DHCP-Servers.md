@@ -61,11 +61,11 @@ To set the interface name for the static assignment, run the `nv set service dhc
 {{< tab "IPv6 ">}}
 
 ```
-cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 
-cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 pool-name storage-servers
-cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 domain-name-server 2001:db8:100::64
-cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 domain-name example.com
-cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 range 2001:db8:1::100 to 2001:db8:1::199 
+cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8:1::/64 
+cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8:1::/64 pool-name storage-servers
+cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8:1::/64 domain-name-server 2001:db8:1::64
+cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8:1::/64 domain-name example.com
+cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8:1::/64 range 2001:db8:1::100 to 2001:db8:1::199 
 cumulus@switch:~$ nv set service dhcp-server6 default static server1
 cumulus@switch:~$ nv set service dhcp-server6 default static server1 ip-address 2001:db8:1::100
 cumulus@switch:~$ nv set service dhcp-server6 default static server1 mac-address 44:38:39:00:01:7e
@@ -386,7 +386,7 @@ cumulus@switch:~$ nv config apply
 
 <!-- vale off -->
 <!-- Vale issue #253 -->
-### Assign Port-based IP Addresses
+### Assign a Port-based IP Addresses
 <!-- vale on -->
 
 You can assign an IP address and other DHCP options based on physical location or port regardless of MAC address to clients that attach directly to the Cumulus Linux switch through a switch port. This is helpful when swapping out switches and servers; you can avoid the inconvenience of collecting the MAC address and sending it to the network administrator to modify the DHCP server configuration.

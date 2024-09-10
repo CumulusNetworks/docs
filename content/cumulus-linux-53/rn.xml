@@ -7,12 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4023649</td>
-<td>&lt;TBD after RCA&gt;</td>
-<td>5.2.0-5.10.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4004453</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
 <td>4.3.0-4.4.5, 5.0.0-5.10.0</td>
@@ -865,12 +859,6 @@ You can safely ignore this warning.</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
-</tr>
-<tr>
-<td>4023649</td>
-<td>&lt;TBD after RCA&gt;</td>
-<td>5.2.0-5.10.0</td>
-<td></td>
 </tr>
 <tr>
 <td>4004453</td>

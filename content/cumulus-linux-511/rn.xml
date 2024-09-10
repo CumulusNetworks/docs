@@ -25,12 +25,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4023649</td>
-<td>&lt;TBD after RCA&gt;</td>
-<td>5.2.0-5.11.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4007612</td>
 <td>If you have SVIs with the same VLANs across more than one bridge, Cumulus Linux installs the router MAC for the first bridge only in the SDK. This can cause reachability issues within that VRF towards this switch from remote VTEPs. To work around this issue, bounce the second bridge with the {{sudo ifdown &lt;bridge&gt;}} and {{sudo ifup &lt;bridge&gt;}} commands. If you reboot the switch, you need to bounce the second bridge again.</td>
 <td>5.9.1-5.11.0</td>
@@ -40,12 +34,6 @@
 <td>3990262</td>
 <td>&lt;TBD after RCA&gt;</td>
 <td>5.9.1-5.11.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3965567</td>
-<td>&lt;TBD after RCA&gt;</td>
-<td>5.9.0-5.11.0</td>
 <td></td>
 </tr>
 <tr>

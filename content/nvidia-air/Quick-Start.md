@@ -55,9 +55,9 @@ After you log in, the NVIDIA Air landing page opens:
 
 ## Import a Topology
 
-Network topologies describe which nodes a data center is comprised of, how they are configured and which other nodes they are connected to. A format is a way to structure and represent such topologies. Air is able to create simulations out of network topologies structured using a supported format. In order to import a topology, [the following API endpoint](https://air.nvidia.com/api/#/v2/v2_simulations_import_create) should be used.
+Network topologies describe which nodes a data center is comprised of, how they are configured and which other nodes they are connected to. A format is a way to structure and represent such topologies. Air is able to create simulations out of network topologies structured using a supported format.
 
-{{< tabs "TabID111 ">}}
+{{< tabs "TabID110 ">}}
 {{< tab "Example 1">}}
 
 The following topology defines two nodes (`node-1` and `node-2`) connected to each other via their respective `eth1` interfaces, and the Out-of-Band management network enabled by default. 
@@ -112,6 +112,96 @@ The following topology defines two nodes (`node-1` and `node-2`) connected to ea
 {{< /tabs >}}
 
 A more detailed schema for this format can be viewed by visiting the [API documentation](https://air.nvidia.com/api/#/v2/v2_simulations_import_create).
+
+{{< expand "Import Instructions" >}}
+
+In order to import a topology, the following API v2 SDK method can be used:
+
+```
+from air_sdk.v2 import AirApi
+
+air = AirApi(
+    authenticate=True,
+    username='<username>',
+    password='<password-or-token>',
+)
+air.simulations.create_from(
+    title='<simulation-name>',
+    format='JSON',
+    content=<topology-content>,
+    organization=<optional-organization>
+)
+```
+
+{{%notice info%}}
+Minimum required SDK version for this feature is `air-sdk>=2.14.0`
+{{%/notice%}}
+
+Topology content can be provided in multiple ways:
+
+{{< tabs "TabID111 ">}}
+{{< tab "Python Dictionary">}}
+
+```
+air.simulations.create_from(
+    'my-simulation',
+    'JSON',
+    {
+        'nodes': {
+            'node-1': {
+                'os': 'generic/ubuntu2204',
+            },
+            'node-2': {
+                'os': 'generic/ubuntu2204',
+            },
+        },
+        'links': [
+            [{'node': 'node-1', 'interface': 'eth1'}, {'node': 'node-2', 'interface': 'eth1'}]
+        ]
+    },
+)
+```
+
+{{< /tab >}}
+{{< tab "JSON String">}}
+
+```
+air.simulations.create_from(
+    'my-simulation',
+    'JSON',
+    '{"nodes": {"node-1": {"os": "generic/ubuntu2204"}, "node-2": {"os": "generic/ubuntu2204"}}, "links": [[{"node": "node-1", "interface": "eth1"}, {"node": "node-2", "interface": "eth1"}]]}'
+)
+```
+
+{{< /tab >}}
+{{< tab "File Path">}}
+
+```
+import pathlib
+air.simulations.create_from(
+    'my-simulation',
+    'JSON',
+    pathlib.Path('/path/to/topology.json')
+)
+```
+
+{{< /tab >}}
+{{< tab "File Descriptor">}}
+
+```
+import pathlib
+with pathlib.Path('/path/to/topology.json').open('r') as topology_file:
+    air.simulations.create_from(
+        'my-simulation',
+        'JSON',
+        topology_file
+    )
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /expand >}}
 
 ## Simulation Views
 

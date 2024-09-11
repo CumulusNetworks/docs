@@ -347,7 +347,7 @@ cumulus@switch:~$ sudo netq config restart agent
 
 The NetQ Agent contains a pre-configured set of modular commands that run periodically and send event and resource data to the NetQ appliance or VM. You can fine tune which events the agent can poll and vary frequency of polling using the NetQ CLI.
 
-For example, if your network is not running OSPF, you can disable the command that polls for OSPF events. Or you can decrease the polling interval for LLDP from the default of 60 seconds to 120 seconds. By not polling for selected data or polling less frequently, you can reduce switch CPU usage by the NetQ Agent.
+For example, if your network is not running EVPN, you can disable the command that polls for EVPN events. Or you can decrease the polling interval for LLDP from the default of 60 seconds to 120 seconds. By not polling for selected data or polling less frequently, you can reduce switch CPU usage by the NetQ Agent.
 
 Depending on the switch platform, the NetQ Agent might not execute some supported protocol commands. For example, if a switch has no VXLAN capability, then the agent skips all VXLAN-related commands.
 

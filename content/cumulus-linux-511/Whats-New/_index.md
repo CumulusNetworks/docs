@@ -17,7 +17,7 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 
 - Upgrade using A/B type of upgrade
 - {{<link url="Factory-Reset" text="Factory Reset">}}
-- {{<link url="Forwarding-Table-Size-and-Profiles/#spectrum-1" text="Forwarding profile called ecmp-nh-heavy">}} for Spectrum 1 switches
+- {{<link url="Forwarding-Table-Size-and-Profiles/#spectrum-1" text="ecmp-nh-heavy forwarding profile">}} for Spectrum 1 switches
 - OTLP phase 3
 - Improved interface range behaviors for breakouts
 - All packet histogram configuration
@@ -29,11 +29,11 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
   - {{<link url="Resource-Diagnostics/#disable-lldp" text="Show ASIC resources commands">}} (`cl-resource-query` equivalent)
   - {{<link url="Monitoring-System-Statistics-and-Network-Traffic-with-sFlow" text="sFlow commands">}}
   - {{<link url="DHCP-Servers/#assign-port-based-ip-addresses" text="IPv6 command to assign a port-based DHCP server address">}}
+  - {{<link url="Zero-Touch-Provisioning-ZTP" text="Enable ZTP and run ZTP script commands">}}
   - `nv show interface <interface> link stats` command includes operational state change date and time
   - net show interface swX details for dom and optical info for the pluggables
   - L1-show equivalent
   - BGP large communities support
-  - control ZTP enable disable
   - match source protocol connected in a route map applied to BGP
   - interface summary view with filtering
   - BGP presentation part 2

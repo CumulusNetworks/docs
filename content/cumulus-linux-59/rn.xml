@@ -8,7 +8,7 @@
 </tr>
 <tr>
 <td>4043995</td>
-<td>﻿watchfrr process can restart FRR due to: 'zebra state -&gt; unresponsive' after network churn.</td>
+<td> After network churn, the ﻿{{watchfrr}} process might restart FRR due to an unresponsive zebra state.</td>
 <td>5.9.1-5.10.0</td>
 <td></td>
 </tr>
@@ -47,12 +47,6 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <td>4004453</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
 <td>4.3.0-4.4.5, 5.0.0-5.10.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3990262</td>
-<td>&lt;TBD after RCA&gt;</td>
-<td>5.9.1-5.10.0</td>
 <td></td>
 </tr>
 <tr>

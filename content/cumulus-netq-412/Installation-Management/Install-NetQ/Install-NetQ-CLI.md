@@ -11,7 +11,6 @@ After installing the NetQ software and agent on each switch you want to monitor,
 
 - Cumulus Linux 5.0.0 or later (Spectrum switches)
 - Cumulus Linux 4.3.1 and 4.3.2 (Broadcom switches)
-- SONiC 202012
 - Ubuntu 20.04
 
 {{<notice note>}}
@@ -27,7 +26,7 @@ For servers running the Ubuntu OS, you need to:
 - Install and configure NTP or PTP, if needed
 - Obtain NetQ software packages
 
-These steps are not required for Cumulus Linux or SONiC.
+These steps are not required for Cumulus Linux.
 
 ### Verify Service Package Versions
 
@@ -293,40 +292,6 @@ You can specify a NetQ CLI version in the repository configuration. The followin
 <!-- vale off -->
 {{<netq-install/cli-version version="4.11" opsys="cl">}}
 <!-- vale on -->
-4. Continue with NetQ CLI configuration in the next section.
-
-{{</tab>}}
-
-{{<tab "SONiC">}}
-
-To install the NetQ CLI you need to install `netq-apps` on each switch. This is available from the NVIDIA networking repository.
-
-{{<notice note>}}
-If your network uses a proxy server for external connections, you should first {{<kb_link latest="cl" url="System-Configuration/Configuring-a-Global-Proxy.md" text="configure a global proxy">}} so <code>apt-get</code> can access the software package in the NVIDIA networking repository.
-{{</notice>}}
-
-To obtain the NetQ CLI package:
-
-1. Edit the `/etc/apt/sources.list` file to add the repository for NetQ.
-
-       admin@switch:~$ sudo nano /etc/apt/sources.list
-       ...
-       deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb buster netq-5
-       ...
-
-2. Update the local `apt` repository and install the software on the switch.
-
-       admin@switch:~$ sudo apt-get update
-       admin@switch:~$ sudo apt-get install netq-apps
-
-3. Verify you have the correct version of the CLI.
-
-    ```
-    admin@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
-    ```
-
-    You should see version 4.11.0 and update 48 in the results: netq-apps_<strong>4.11.0</strong>-deb10u<strong>48</strong>~1722675559.0390e155f_amd64.deb
-
 4. Continue with NetQ CLI configuration in the next section.
 
 {{</tab>}}

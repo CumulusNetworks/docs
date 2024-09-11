@@ -29,7 +29,7 @@ NetQ Agents are installed via software and run on every monitored node in the ne
 
 ### Switch Agents
 
-The NetQ Agents running on Cumulus Linux or SONiC switches gather the following network data via {{<exlink url="https://tools.ietf.org/html/rfc3549" text="Netlink">}}:
+The NetQ Agents running on Cumulus Linux switches gather the following network data via {{<exlink url="https://tools.ietf.org/html/rfc3549" text="Netlink">}}:
 
   - Interfaces
   - IP addresses (v4 and v6)

@@ -9,12 +9,11 @@ After installing the NetQ software, you should install the NetQ Agents on each s
 
 - Cumulus Linux 5.0.0 or later (Spectrum switches)
 - Cumulus Linux 4.3.1 and 4.3.2 (Broadcom switches)
-- SONiC 202012
 - Ubuntu 20.04
 
 ## Prepare for NetQ Agent Installation
 
-For switches running Cumulus Linux or SONiC, you need to:
+For switches running Cumulus Linux, you need to:
 
 - Install and configure NTP or PTP, if needed
 - Obtain NetQ software packages
@@ -83,75 +82,6 @@ You can specify a NetQ Agent version in the repository configuration. The follow
 ```
 cumulus@switch:~$ wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | sudo apt-key add -
 ```
-
-{{</tab>}}
-
-{{<tab "SONiC">}}
-
-<!-- vale off -->
-### Verify NTP Is Installed and Configured
-<!-- vale on -->
-
-Verify that {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} is running on the switch as outlined in the steps below. The switch must be synchronized with the NetQ appliance to enable useful statistical analysis. Alternatively, you can configure {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Precision Time Protocol-PTP.md" text="PTP">}} for time synchronization.
-
-```
-admin@switch:~$ sudo systemctl status ntp
-● ntp.service - Network Time Service
-     Loaded: loaded (/lib/systemd/system/ntp.service; enabled; vendor preset: enabled)
-     Active: active (running) since Tue 2021-06-08 14:56:16 UTC; 2min 18s ago
-       Docs: man:ntpd(8)
-    Process: 1444909 ExecStart=/usr/lib/ntp/ntp-systemd-wrapper (code=exited, status=0/SUCCESS)
-   Main PID: 1444921 (ntpd)
-      Tasks: 2 (limit: 9485)
-     Memory: 1.9M
-     CGroup: /system.slice/ntp.service
-             └─1444921 /usr/sbin/ntpd -p /var/run/ntpd.pid -x -u 106:112
-```
-
-If NTP is not installed, install and configure it before continuing.  
-
-If NTP is not running:
-
-- Verify the IP address or hostname of the NTP server in the `/etc/sonic/config_db.json` file, and then
-- Reenable and start the NTP service using the `sudo config reload -n` command
-
-Verify NTP is operating correctly. Look for an asterisk (\*) or a plus sign (+) that indicates the clock synchronized with NTP.
-
-```
-admin@switch:~$ show ntp
-MGMT_VRF_CONFIG is not present.
-synchronised to NTP server (104.194.8.227) at stratum 3
-   time correct to within 2014 ms
-   polling server every 64 s
-     remote           refid      st t when poll reach   delay   offset  jitter
-==============================================================================
--144.172.118.20  139.78.97.128    2 u   26   64  377   47.023  -1798.1 120.803
-+208.67.75.242   128.227.205.3    2 u   32   64  377   72.050  -1939.3  97.869
-+216.229.4.66    69.89.207.99     2 u  160   64  374   41.223  -1965.9  83.585
-*104.194.8.227   164.67.62.212    2 u   33   64  377    9.180  -1934.4  97.376
-```
-
-### Obtain NetQ Agent Software Package
-
-To install the NetQ Agent you need to install `netq-agent` on each switch or host. This is available from the NVIDIA networking repository.
-
-*Note that NetQ and SONiC have separate repositories*
-
-To obtain the NetQ Agent package:
-
-1. Install the `wget` utility so that you can install the GPG keys in step 3.
-
-       admin@switch:~$ sudo apt-get update
-       admin@switch:~$ sudo apt-get install wget -y
-1. Edit the `/etc/apt/sources.list` file to add the SONiC repository:
-
-       admin@switch:~$ sudo vi /etc/apt/sources.list
-       ...
-       deb https://apps3.cumulusnetworks.com/repos/deb buster netq-latest
-       ...
-1. Add the SONiC repo key:
-
-       admin@switch:~$ sudo wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | sudo apt-key add -
 
 {{</tab>}}
 
@@ -375,33 +305,6 @@ Cumulus Linux 4.4 and later includes the `netq-agent` package by default. To ins
 
     ```
     cumulus@switch:~$ sudo systemctl restart rsyslog.service
-    ```
-
-4. Configure the NetQ Agent, as described in the next section.
-
-{{</tab>}}
-
-{{<tab "SONiC">}}
-
-To install the NetQ Agent (the following example uses Cumulus Linux but the steps are the same for SONiC):
-
-1. Update the local `apt` repository, then install the NetQ software on the switch.
-
-    ```
-    admin@switch:~$ sudo apt-get update
-    admin@switch:~$ sudo apt-get install netq-agent
-    ```
-
-2. Verify you have the correct version of the Agent.
-
-    ```
-    admin@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
-    ```
-
-3. Restart `rsyslog` so it sends log files to the correct destination.
-
-    ```
-    admin@switch:~$ sudo systemctl restart rsyslog.service
     ```
 
 4. Configure the NetQ Agent, as described in the next section.

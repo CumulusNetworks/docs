@@ -15,7 +15,7 @@ From a software perspective, a network switch has software associated with the h
 
 The NetQ Agent interacts with the various components and software on switches and hosts and provides the gathered information to the NetQ Platform. You can view the data using the NetQ CLI or UI.
 
-The NetQ Agent polls the user space applications for information about the performance of the various routing protocols and services that are running on the switch. Cumulus Linux supports BGP and OSPF routing protocols as well as static addressing through FRRouting (FRR). Cumulus Linux also supports LLDP and MSTP among other protocols, and a variety of services such as systemd and sensors. SONiC supports BGP and LLDP.
+The NetQ Agent polls the user space applications for information about the performance of the various routing protocols and services that are running on the switch. Cumulus Linux supports BGP and OSPF routing protocols as well as static addressing through FRRouting (FRR). Cumulus Linux also supports LLDP and MSTP among other protocols, and a variety of services such as systemd and sensors.
 
 For hosts, the NetQ Agent also polls for performance of containers managed with Kubernetes. This information is used to calculate the network's health and check if the network is configured and operating correctly.
 

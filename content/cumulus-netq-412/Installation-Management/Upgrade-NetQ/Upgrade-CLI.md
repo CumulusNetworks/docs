@@ -13,7 +13,7 @@ To upgrade the NetQ CLI:
 
     {{<tabs "Install Debian" >}}
 
-{{<tab "Cumulus Linux and SONiC Switches and Ubuntu Hosts">}}
+{{<tab "Cumulus Linux and Ubuntu Hosts">}}
 
 ```
 sudo apt-get update

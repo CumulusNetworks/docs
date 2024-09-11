@@ -17,10 +17,10 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 
 - Upgrade using A/B type of upgrade
 - {{<link url="Factory-Reset" text="Factory Reset">}}
+- {{<link url="Forwarding-Table-Size-and-Profiles/#spectrum-1" text="Forwarding profile called ecmp-nh-heavy">}} for Spectrum 1 switches
 - OTLP phase 3
 - Improved interface range behaviors for breakouts
 - All packet histogram configuration
-- New profile for spectrum1
 - SN5400 - syncE
 - SN5400 - ITU-T
 - NVUE

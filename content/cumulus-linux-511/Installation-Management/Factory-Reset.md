@@ -77,7 +77,7 @@ root@switch:~# systemctl restart factory-reset.service
 
 ## Considerations
 
-- If the switch is in warm boot mode when you run factory reset, the switch always reboots in cold mode.
+- The switch always reboots in cold mode after a factory reset even if the switch is in warm boot mode when you run factory reset commands.
 - If ZTP fails (the ZTP configuration file is not present, there is no USB drive, or there are DHCP errors), factory reset continues successfully; ZTP is a separate task and does not affect the factory reset status.
 - If there is an issue when running factory reset, the switch reverts to the previous configuration and logs the exceptions and errors.
 - The factory reset command is similar to the `onie-select -k` command; however, `onie-select -k` also removes the installed image.  

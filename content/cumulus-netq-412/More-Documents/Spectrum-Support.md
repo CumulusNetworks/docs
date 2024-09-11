@@ -13,7 +13,6 @@ Several NetQ features function exclusively on NVIDIA Spectrum switches. The foll
 |Bit error rate monitoring | No | No | Yes | Yes |
 |ECMP monitoring| Yes | Yes | Yes | Yes |
 |Flow analysis| No | Yes | Yes | Yes |
-|LCM with on-switch OPTA | No | Yes | Yes | Yes |
 |Process monitoring| Yes | Yes | Yes | Yes |
 |PTP monitoring| Yes | Yes | Yes | Yes |
 |Queue length histograms| Yes | Yes | Yes | Yes |

@@ -432,36 +432,11 @@ ospf-interface-json            60  no        ['/usr/bin/vtysh', '-c', 'show ip o
 
 ### Disable a Command
 
-You can disable unnecessary commands. This can help reduce the compute resources the NetQ Agent consumes on the switch. For example, if your network does not run OSPF, you can disable the two OSPF commands:
+You can disable unnecessary commands. This can help reduce the compute resources the NetQ Agent consumes on the switch. For example, if your network does not run EVPN, you can disable the EVPN command:
 
 ```
-cumulus@switch:~$ sudo netq config add agent command service-key ospf-neighbor-json enable False
-Command Service ospf-neighbor-json is disabled
-
-cumulus@switch:~$ sudo netq config show agent commands
- Service Key               Period  Active       Command
------------------------  --------  --------  ---------------------------------------------------------------------
-bgp-neighbors                  60  yes       ['/usr/bin/vtysh', '-c', 'show ip bgp vrf all neighbors json']
-evpn-vni                       60  yes       ['/usr/bin/vtysh', '-c', 'show bgp l2vpn evpn vni json']
-lldp-json                      60  yes       /usr/sbin/lldpctl -f json
-clagctl-json                   60  yes       /usr/bin/clagctl -j
-dpkg-query                  21600  yes       dpkg-query --show -f ${Package},${Version},${Status}\n
-ptmctl-json                   120  yes       /usr/bin/ptmctl -d -j
-mstpctl-bridge-json            60  yes       /sbin/mstpctl showall json
-ports                        3600  yes       Netq Predefined Command
-proc-net-dev                   30  yes       Netq Predefined Command
-agent_stats                   300  yes       Netq Predefined Command
-agent_util_stats               30  yes       Netq Predefined Command
-tcam-resource-json            120  yes       /usr/cumulus/bin/cl-resource-query -j
-btrfs-json                   1800  yes       /sbin/btrfs fi usage -b /
-config-mon-json               120  yes       Netq Predefined Command
-running-config-mon-json        30  yes       Netq Predefined Command
-cl-support-json               180  yes       Netq Predefined Command
-resource-util-json            120  yes       findmnt / -n -o FS-OPTIONS
-smonctl-json                   30  yes       /usr/sbin/smonctl -j
-ssd-util-json               86400  yes       sudo /usr/sbin/smartctl -a /dev/sda
-ospf-neighbor-json             60  no        ['/usr/bin/vtysh', '-c', 'show ip ospf vrf all neighbor detail json']
-ospf-interface-json            60  no        ['/usr/bin/vtysh', '-c', 'show ip ospf vrf all interface json']
+cumulus@switch:~$ sudo netq config add agent command service-key evpn-vni enable False
+Command Service evpn-vni is disabled
 ```
 
 ### Reset to Default

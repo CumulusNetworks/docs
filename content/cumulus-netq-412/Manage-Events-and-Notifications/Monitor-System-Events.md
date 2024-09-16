@@ -49,8 +49,6 @@ You can suppress events for the following types of messages:
 - MTU
 - NetQ agent
 - NTP
-- OSPF
-- PTM (prescriptive topology manager)
 - PTP
 - RoCE configuration
 - Running config diff (events related to the difference between two configurations)

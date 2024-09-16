@@ -110,20 +110,6 @@ The NTP validation test looks for poor operational status of the NTP service.
 | :---------: | --------- | ----------- |
 | 0 | NTP Sync | Checks if the NTP service is running and in sync state |
 
-## OSPF Validation Tests
-
-The OSPF validation tests look for indications of the service health and configuration consistency.
-
-| Test Number | Test Name | Description |
-| :---------: | --------- | ----------- |
-| 0 | Router ID | Checks for OSPF router ID conflicts in the network |
-| 1 | Adjacency | Checks for OSPF adjacencies in a down or unknown state |
-| 2 | Timers | Checks for consistency of OSPF timer values in an OSPF adjacency |
-| 3 | Network Type | Checks for consistency of network type configuration in an OSPF adjacency |
-| 4 | Area ID | Checks for consistency of area ID configuration in an OSPF adjacency |
-| 5 | Interface MTU | Checks for MTU consistency in an OSPF adjacency |
-| 6 | Service Status | Checks for OSPF service health in an OSPF adjacency |
-
 ## RoCE Validation Tests
 
 The RoCE validation tests look for consistent RoCE and QoS configurations across nodes.

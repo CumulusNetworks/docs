@@ -22,7 +22,6 @@ The following table displays the validation categories. Refer to the {{<link tit
 | MLAG (CLAG) | Yes | Yes |  Yes |  60 mins |
 | MTU | Yes | Yes | Yes |  60 mins |
 | NTP | Yes | Yes | Yes |  60 mins |
-| OSPF | Yes | Yes | Yes |  60 mins |
 | RoCE | Yes | Yes | No | on-demand, as scheduled |
 | Sensors | Yes | Yes |  Yes |  60 mins |
 | Topology (beta) | Yes | Yes | No | on-demand |

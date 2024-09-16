@@ -766,46 +766,6 @@ The following table lists all system event messages organized by type. You can {
 </tr>
 </body>
 </table>
-
-## OSPF Events
-
-<table>
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 25%" />
-<col style="width: 10%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Type</th>
-<th>Trigger</th>
-<th>Severity</th>
-<th>Message Format</th>
-<th>Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ospf</td>
-<td>OSPF session state on a given interface changed from Full to a down state</td>
-<td>Error</td>
-<td>OSPF session @ifname with @peer_address changed from Full to @down_state</td>
-<td><p>OSPF session swp7 with 27.0.0.18 state changed from Full to Fail</p>
-<p>OSPF session swp7 with 27.0.0.18 state changed from Full to ExStart</p></td>
-</tr><tr>
-<td>ospf</td>
-<td>OSPF session state on a given interface changed from a down state to full</td>
-<td>Info</td>
-<td>OSPF session @ifname with @peer_address changed from @down_state to Full</td>
-<td><p>OSPF session swp7 with 27.0.0.18 state changed from Down to Full</p>
-<p>OSPF session swp7 with 27.0.0.18 state changed from Init to Full</p>
-<p>OSPF session swp7 with 27.0.0.18 state changed from Fail to Full</p></td>
-</tr>
-</body>
-</table>
-
 ## Package Information Events
 
 <table>
@@ -832,43 +792,6 @@ The following table lists all system event messages organized by type. You can {
 <td>Error</td>
 <td>@package_name manifest version mismatch</td>
 <td>netq-apps manifest version mismatch</td>
-</tr>
-</body>
-</table>
-
-## PTM Events
-
-<table>
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 25%" />
-<col style="width: 10%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Type</th>
-<th>Trigger</th>
-<th>Severity</th>
-<th>Message Format</th>
-<th>Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ptm</td>
-<td>Physical interface cabling does not match configuration specified in <em>topology.dot</em> file</td>
-<td>Error</td>
-<td>PTM cable status failed</td>
-<td>PTM cable status failed</td>
-</tr>
-<tr>
-<td>ptm</td>
-<td>Physical interface cabling matches configuration specified in <em>topology.dot</em> file</td>
-<td>Error</td>
-<td>PTM cable status passed</td>
-<td>PTM cable status passed</td>
 </tr>
 </body>
 </table>

@@ -110,7 +110,6 @@ cumulus@switch:~$ netq check <<press Tab>>
     mlag        :  Multi-chassis LAG (alias of clag)
     mtu         :  Link MTU
     ntp         :  NTP
-    ospf        :  OSPF info
     roce        :  RoCE
     sensors     :  Temperature/Fan/PSU sensors
     topology    :  Topology
@@ -170,7 +169,6 @@ The {{<link title="check" text="netq check commands">}} validate the current or 
 - **mlag**: Cumulus MLAG (multi-chassis LAG/link aggregation) operation
 - **mtu**: Link MTU (maximum transmission unit) consistency across paths
 - **ntp**: NTP (Network Time Protocol) operation
-- **ospf**: OSPF (Open Shortest Path First) operation
 - **roce**: RoCE (RDMA over Converged Ethernet) configurations
 - **sensors**: Temperature/Fan/PSU sensor operation
 - **topology**: Topology configuration

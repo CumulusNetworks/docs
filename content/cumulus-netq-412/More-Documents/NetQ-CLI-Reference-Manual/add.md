@@ -84,7 +84,7 @@ None
 | ---- | ---- | ---- |
 | events_config_id | \<text-events-config-id-anchor\> | Identifier for existing configuration; use to edit existing configuration |
 | events_config_name | \<text-events-config-name-anchor\> | User-defined name for the configuration |
-| message_type | \<text-message-type-anchor\> | <!-- vale off -->Type of message to suppress. Values include *agent*, *bgp*, *btrfsinfo*, *clag*, *clsupport*, *configdiff*, *evpn*, *link*, *ntp*, *ospf*, *sensor*, *services*, and *ssdutil*. <!-- vale on -->|
+| message_type | \<text-message-type-anchor\> | <!-- vale off -->Type of message to suppress. Values include *agent*, *bgp*, *btrfsinfo*, *clag*, *clsupport*, *configdiff*, *evpn*, *link*, *ntp*, *sensor*, *services*, and *ssdutil*. <!-- vale on -->|
 | events_id | <text-events-id-anchor\> | Identifier for events |
 | scope | \<text-events-scope-anchor\> | Rule, in the form of a regular expression, indicating which devices, subset of devices or attributes to suppress |
 | is_active | true, false | Enables or disables configuration |
@@ -92,10 +92,10 @@ None
 
 ### Sample Usage
 
-Add a configuration called `mybtrfs` that suppresses OSPF-related events on leaf01 for the next 10 minutes:
+Add a configuration called `ntpconfig` that suppresses NTP-related events on leaf01 for the next 10 minutes:
 
 ```
-netq add events-config events_config_name mybtrfs message_type ospf scope '[{"scope_name":"hostname","scope_value":"leaf01"},{"scope_name":"severity","scope_value":"*"}]' suppress_until 600
+netq add events-config events_config_name ntpconfig message_type ntp scope '[{"scope_name":"hostname","scope_value":"leaf01"},{"scope_name":"severity","scope_value":"*"}]' suppress_until 600
 ```
 
 ### Related Commands
@@ -604,7 +604,7 @@ Creates a validation for various protocols and services to run on a regular inte
 ```
 netq add validation
     name <text-new-validation-name>
-    type (addr | agents | bgp | evpn | interfaces | mlag | mtu | ntp | ospf | roce | sensors | topology | vlan | vxlan)
+    type (addr | agents | bgp | evpn | interfaces | mlag | mtu | ntp | roce | sensors | topology | vlan | vxlan)
     interval <text-time-min>
     [alert-on-failure]
 ```
@@ -614,7 +614,7 @@ netq add validation
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | name | user defined | Unique name for the validation |
-| type | addr, agents, bgp, evpn, interfaces, mlag, mtu, ntp, ospf, roce, sensors, topology, vlan, or vxlan | Protocol or service to validate |
+| type | addr, agents, bgp, evpn, interfaces, mlag, mtu, ntp, roce, sensors, topology, vlan, or vxlan | Protocol or service to validate |
 | interval | \<text-time-min\> | Frequency to run the validation, in minutes. Value must include time unit of *m*, minutes. Default scheduled validations per type run every 60 minutes. |
 
 ### Options
@@ -648,7 +648,7 @@ Creates an on-demand validation for various protocols and services, with results
 
 ```
 netq add validation
-    type (addr | agents | bgp | evpn | interfaces | mlag | mtu | ntp | ospf | roce | sensors | topology | vlan | vxlan)
+    type (addr | agents | bgp | evpn | interfaces | mlag | mtu | ntp | roce | sensors | topology | vlan | vxlan)
     [alert-on-failure]
 ```
 
@@ -656,7 +656,7 @@ netq add validation
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| type | addr, agents, bgp, evpn, interfaces, mlag, mtu, ntp, ospf, roce, sensors, topology, vlan, or vxlan | Protocol or service to validate |
+| type | addr, agents, bgp, evpn, interfaces, mlag, mtu, ntp, roce, sensors, topology, vlan, or vxlan | Protocol or service to validate |
 
 ### Options
 

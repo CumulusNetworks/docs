@@ -150,7 +150,7 @@ To edit or delete a scheduled validation:
 ```
 netq show validation summary
     [name <text-validation-name>]
-    type (addr | agents | bgp | evpn | interfaces | mlag | mtu | ntp | ospf | roce | sensors | vlan | vxlan)
+    type (addr | agents | bgp | evpn | interfaces | mlag | mtu | ntp | roce | sensors | vlan | vxlan)
     [around <text-time-hr>]
     [json]
 ```

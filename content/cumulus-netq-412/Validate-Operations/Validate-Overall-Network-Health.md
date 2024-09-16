@@ -13,7 +13,7 @@ Overall network health in the NetQ UI is a calculated average of several key hea
 
 **System health** represents the NetQ Agent and sensor health validations. In all cases, validation checks are performed on the agents. If you are monitoring platform sensors, the validation checks include these as well.
 
-**Network service health** represents the individual network protocol and services validation checks. In all cases, checks are performed on NTP. If you are running BGP, EVPN, MLAG, OSPF, or VXLAN protocols the validation checks include these as well.
+**Network service health** represents the individual network protocol and services validation checks. In all cases, checks are performed on NTP. If you are running BGP, EVPN, MLAG, or VXLAN protocols the validation checks include these as well.
 
 **Interface health** represents the interfaces, VLAN, and link MTU validation checks.
 

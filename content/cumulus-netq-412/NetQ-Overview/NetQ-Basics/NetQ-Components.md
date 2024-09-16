@@ -42,7 +42,7 @@ The NetQ Agents running on Cumulus Linux switches gather the following network d
 for the following protocols:
 
   - Bridging protocols: LLDP, STP, MLAG
-  - Routing protocols: BGP, OSPF
+  - Routing protocols: BGP
   - Network virtualization: EVPN, VXLAN
 
 ### Host Agents

@@ -1145,7 +1145,7 @@ Event querying is supported for a 72-hour window within the past 30 days.
 ```
 netq [<hostname>] show events
     [severity info | severity error]
-    [message_type agent|bgp|btrfsinfo|cable|clsupport|configdiff|evpn|interfaces|lcm|link|lldp|mlag|mtu|node|ntp|ospf|port|ptm|ptp|resource|roceconfig|runningconfigdiff|sensor|services|ssdutil|tca_bgp|tca_dom|tca_ecmp|tca_ethtool|tca_hostd_roce|tca_link|tca_procdevstats|tca_resource|tca_roce|tca_sensors|tca_services|tca_wjh|topology|trace|vlan|vxlan]
+    [message_type agent|bgp|btrfsinfo|cable|clsupport|configdiff|evpn|interfaces|lcm|link|lldp|mlag|mtu|node|ntp|port|ptp|resource|roceconfig|runningconfigdiff|sensor|services|ssdutil|tca_bgp|tca_dom|tca_ecmp|tca_ethtool|tca_hostd_roce|tca_link|tca_procdevstats|tca_resource|tca_roce|tca_sensors|tca_services|tca_wjh|topology|trace|vlan|vxlan]
     [between <text-time> and <text-endtime>]
     [json]
 ```
@@ -1160,7 +1160,7 @@ None
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
 | severity | info, error| Only display events with this severity level |
-| message_type | agent, bgp, btrfsinfo, cable, clsupport, configdiff, evpn, interfaces, lcm, link, lldp, mlag, mtu, node, ntp, ospf, port, ptm, ptp, resource, roceconfig, runningconfigdiff, sensor, services, ssdutil, tca_bgp, tca_dom, tca_ecmp, tca_ethtool, tca_hostd_roce, tca_link, tca_procdevstats, tca_resource, tca_roce, tca_sensors, tca_services, tca_wjh, topology, trace, vlan, vxlan | Display events for the type with this name |
+| message_type | agent, bgp, btrfsinfo, cable, clsupport, configdiff, evpn, interfaces, lcm, link, lldp, mlag, mtu, node, ntp, port, ptp, resource, roceconfig, runningconfigdiff, sensor, services, ssdutil, tca_bgp, tca_dom, tca_ecmp, tca_ethtool, tca_hostd_roce, tca_link, tca_procdevstats, tca_resource, tca_roce, tca_sensors, tca_services, tca_wjh, topology, trace, vlan, vxlan | Display events for the type with this name |
 | between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: weeks</li><li><strong>d</strong>: days</li><li><strong>h</strong>: hours</li><li><strong>m</strong>: minutes</li><li><strong>s</strong>: seconds</li><li><strong>now</strong></li></ul></p><p>You can enter the start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
 | json | NA | Display the output in JSON format |
 
@@ -1266,7 +1266,7 @@ None
 | ---- | ---- | ---- |
 | events_config_id | \<text-events-config-id-anchor\> | Only display results for the switch or host with this name |
 | show-filter-conditions | NA | Only display results for sessions using the VNI with this name |
-| message_type | \<text-message-type-anchor\> | Only display results for configurations with this type. Values include <!-- vale off -->*agent*, *ar*, *bgp*, *btrfsinfo*, *clsupport*, *configdiff*, *evpn*, *lcm*, *link*, *lldp*, *mlag*, *mtu*, *ntp*, *ospf*, *packageinfo*, *ptm*, *ptp*, *roceconfig*, *runningconfigdiff*, *sensor*, *services*, and *ssdutil*<!-- vale on --> |
+| message_type | \<text-message-type-anchor\> | Only display results for configurations with this type. Values include <!-- vale off -->*agent*, *ar*, *bgp*, *btrfsinfo*, *clsupport*, *configdiff*, *evpn*, *lcm*, *link*, *lldp*, *mlag*, *mtu*, *ntp*, *packageinfo*, *ptp*, *roceconfig*, *runningconfigdiff*, *sensor*, *services*, and *ssdutil*<!-- vale on --> |
 | json | NA | Display the output in JSON format |
 ### Sample Usage
 
@@ -3409,100 +3409,6 @@ Version                              Uptime                    Reinitialize Time
 - ```netq show opta-health```
 
 - - -
-<!-- vale off -->
-## netq show ospf
-<!-- vale on -->
-
-Displays the health of all OSPF sessions or a single session on all nodes or a specific node in your network fabric currently or for a time in the past. The output displays:
-
-- The host interface
-- The routing domain (area)
-- Whether it uses a numbered or unnumbered protocol
-- The operational state of the session (up or down)
-- The hostname and interface of the peer node
-- When the last change occurred for any of these items
-
-### Syntax
-
-```
-netq [<hostname>] show ospf
-    [<remote-interface>]
-    [area <area-id>]
-    [around <text-time>]
-    [json]
-```
-
-### Required Arguments
-
-None
-
-### Options
-
-| Option | Value | Description |
-| ---- | ---- | ---- |
-| NA | \<hostname\> | Only display results for the switch or host with this name |
-| NA | \<remote-interface\> | Only display results for the host interface with this name |
-| area | \<area-id\> | Only display results for devices in this routing domain |
-| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| json | NA | Display the output in JSON format |
-
-### Sample Usage
-
-```
-cumulus@switch:~$ netq show ospf
-Matching ospf records:
-Hostname          Interface                 Area         Type             State      Peer Hostname     Peer Interface            Last Changed
------------------ ------------------------- ------------ ---------------- ---------- ----------------- ------------------------- -------------------------
-leaf01            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp1                      Thu Feb  7 14:42:16 2019
-leaf01            swp52                     0.0.0.0      Unnumbered       Full       spine02           swp1                      Thu Feb  7 14:42:16 2019
-leaf02            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp2                      Thu Feb  7 14:42:16 2019
-leaf02            swp52                     0.0.0.0      Unnumbered       Full       spine02           swp2                      Thu Feb  7 14:42:16 2019
-leaf03            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp3                      Thu Feb  7 14:42:16 2019
-leaf03            swp52                     0.0.0.0      Unnumbered       Full       spine02           swp3                      Thu Feb  7 14:42:16 2019
-leaf04            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp4                      Thu Feb  7 14:42:16 2019
-leaf04            swp52                     0.0.0.0      Unnumbered       Full       spine02           swp4                      Thu Feb  7 14:42:16 2019
-spine01           swp1                      0.0.0.0      Unnumbered       Full       leaf01            swp51                     Thu Feb  7 14:42:16 2019
-spine01           swp2                      0.0.0.0      Unnumbered       Full       leaf02            swp51                     Thu Feb  7 14:42:16 2019
-spine01           swp3                      0.0.0.0      Unnumbered       Full       leaf03            swp51                     Thu Feb  7 14:42:16 2019
-spine01           swp4                      0.0.0.0      Unnumbered       Full       leaf04            swp51                     Thu Feb  7 14:42:16 2019
-spine02           swp1                      0.0.0.0      Unnumbered       Full       leaf01            swp52                     Thu Feb  7 14:42:16 2019
-spine02           swp2                      0.0.0.0      Unnumbered       Full       leaf02            swp52                     Thu Feb  7 14:42:16 2019
-spine02           swp3                      0.0.0.0      Unnumbered       Full       leaf03            swp52                     Thu Feb  7 14:42:16 2019
-spine02           swp4                      0.0.0.0      Unnumbered       Full       leaf04            swp52                     Thu Feb  7 14:42:16 2019
-```
-
-This example show OSPF sessions on the *leaf01* switch:
-
-```
-cumulus@switch:~$ netq leaf01 show ospf
-Matching ospf records:
-Hostname          Interface                 Area         Type             State      Peer Hostname     Peer Interface            Last Changed
------------------ ------------------------- ------------ ---------------- ---------- ----------------- ------------------------- -------------------------
-leaf01            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp1                      Thu Feb  7 14:42:16 2019
-leaf01            swp52                     0.0.0.0      Unnumbered       Full       spine02           swp1                      Thu Feb  7 14:42:16 2019
-```
-
-This example shows OSPF sessions for all devices using the *swp51* interface on the host node.
-
-```
-cumulus@switch:~$ netq show ospf swp51
-Matching ospf records:
-Hostname          Interface                 Area         Type             State      Peer Hostname     Peer Interface            Last Changed
------------------ ------------------------- ------------ ---------------- ---------- ----------------- ------------------------- -------------------------
-leaf01            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp1                      Thu Feb  7 14:42:16 2019
-leaf02            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp2                      Thu Feb  7 14:42:16 2019
-leaf03            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp3                      Thu Feb  7 14:42:16 2019
-leaf04            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp4                      Thu Feb  7 14:42:16 2019
-```
-
-### Related Commands
-
-- ```netq show events```
-- ```netq check ospf```
-- ```netq show unit-tests ospf```
-
-- - -
-
 ## netq show ptp
 
 Displays PTP clock and configuration details, including:
@@ -4633,10 +4539,6 @@ netq show unit-tests ntp
     [check_filter_id <text-check-filter-id>] 
     [json]
 
-netq show unit-tests ospf 
-    [check_filter_id <text-check-filter-id>] 
-    [json]
-
 netq show unit-tests roce 
     [check_filter_id <text-check-filter-id>] 
     [json]
@@ -4662,7 +4564,7 @@ netq show unit-tests vxlan
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| <!-- vale off -->address, agent, bgp, cl-version, evpn, interfaces, mlag, mtu, ntp, ospf, roce, sensors, topology, vlan, or vxlan<!-- vale on --> | NA | Display tests run during standard validation for the protocol or service with this name |
+| <!-- vale off -->address, agent, bgp, cl-version, evpn, interfaces, mlag, mtu, ntp, roce, sensors, topology, vlan, or vxlan<!-- vale on --> | NA | Display tests run during standard validation for the protocol or service with this name |
 
 ### Options
 
@@ -4707,7 +4609,7 @@ Displays one or all scheduled validations, including their name, type, cadence, 
 ```
 netq show validation settings
     [name <text-validation-name>]
-    [type addr|agents|bgp|evpn|interfaces|mlag|mtu|ntp|ospf|roce|sensors|topology|vlan|vxlan]
+    [type addr|agents|bgp|evpn|interfaces|mlag|mtu|ntp|roce|sensors|topology|vlan|vxlan]
     [json]
 ```
 
@@ -4720,7 +4622,7 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | name | \<text-validation-name\> | Filter output to view settings for the scheduled validation with this name |
-| type | <!-- vale off -->addr, agents, bgp, evpn, interfaces, mlag, mtu, ntp, ospf, roce, sensors, topology, vlan, or vxlan<!-- vale on --> | Filter output to view settings for only the indicated protocol or service |
+| type | <!-- vale off -->addr, agents, bgp, evpn, interfaces, mlag, mtu, ntp, roce, sensors, topology, vlan, or vxlan<!-- vale on --> | Filter output to view settings for only the indicated protocol or service |
 | json | NA | Display the output in JSON format |
 
 ### Sample Usage
@@ -4745,8 +4647,6 @@ Default validat sensors    60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:
 ion SENSORS                               2020
 Default validat vxlan      60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
 ion VXLAN                                 2020
-Default validat ospf       60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
-ion OSPF                                  2020
 Default validat mtu        60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
 ion MTU                                   2020
 Default validat bgp        60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
@@ -4776,7 +4676,7 @@ Displays summary status of a scheduled validation for a given protocol or servic
 ```
 netq show validation summary
     [name <text-validation-name>]
-    type (addr | agents | bgp | evpn | interfaces | mlag | mtu | ntp | ospf | roce | sensors | topology | vlan | vxlan)
+    type (addr | agents | bgp | evpn | interfaces | mlag | mtu | ntp | roce | sensors | topology | vlan | vxlan)
     [around <text-time-hr>]
     [json]
 ```
@@ -4785,7 +4685,7 @@ netq show validation summary
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| type | <!-- vale off -->addr, agents, bgp, evpn, interfaces, mlag, mtu, ntp, ospf, roce, sensors, topology, vlan or vxlan <!-- vale on --> | Show validation runs summary for the indicated protocol or service |
+| type | <!-- vale off -->addr, agents, bgp, evpn, interfaces, mlag, mtu, ntp, roce, sensors, topology, vlan or vxlan <!-- vale on --> | Show validation runs summary for the indicated protocol or service |
 
 ### Options
 

@@ -558,10 +558,26 @@ To specify port ranges in commands:
 {{< tabs "TabID725 ">}}
 {{< tab "NVUE Commands ">}}
 
-Use commas to separate different port ranges (for example, swp1-46,10-12):
+Use commas to separate different port ranges.
+
+The following example configures the default bridge `br_default` with swp1 through swp46 and swp10 through swp12:
 
 ```
 cumulus@switch:~$ nv set interface swp1-4,6,10-12 bridge domain br_default
+cumulus@switch:~$ nv config apply
+```
+
+The following example sets all subinterfaces of swp1s within the range 1-4:
+
+```
+cumulus@switch:~$ nv set interface swp1s1-4
+cumulus@switch:~$ nv config apply
+```
+
+The following example sets all interfaces within the swp range 1 through 64 and their subinterface range 1 through 3:
+
+```
+cumulus@switch:~$ nv set interface swp1-64s1-3
 cumulus@switch:~$ nv config apply
 ```
 

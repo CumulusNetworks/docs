@@ -15,11 +15,10 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 
 ### New Features and Enhancements
 
-- Upgrade using A/B type of upgrade
 - {{<link url="Factory-Reset" text="Factory Reset">}}
 - {{<link url="Forwarding-Table-Size-and-Profiles/#spectrum-1" text="ecmp-nh-heavy forwarding profile">}} for Spectrum 1 switches
+- Upgrade using A/B type of upgrade
 - OTLP phase 3
-- Improved interface range behaviors for breakouts
 - All packet histogram configuration
 - SN5400 - syncE
 - SN5400 - ITU-T
@@ -30,7 +29,8 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
   - {{<link url="Monitoring-System-Statistics-and-Network-Traffic-with-sFlow" text="sFlow commands">}}
   - {{<link url="DHCP-Servers/#assign-port-based-ip-addresses" text="IPv6 command to assign a port-based DHCP server address">}}
   - {{<link url="Zero-Touch-Provisioning-ZTP" text="Enable ZTP and run ZTP script commands">}}
-  - `nv show interface <interface> link stats` command includes operational state change date and time
+  - {{<link url="Interface-Configuration-and-Management/#port-ranges" text="Additional port range support for breakout ports and subinterfaces">}}
+  - `nv show interface <interface>` commands show the last operational state change for an interface
   - net show interface swX details for dom and optical info for the pluggables
   - L1-show equivalent
   - BGP large communities support

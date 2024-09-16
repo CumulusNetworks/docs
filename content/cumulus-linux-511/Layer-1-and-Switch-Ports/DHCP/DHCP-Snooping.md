@@ -12,7 +12,7 @@ When DHCP snooping detects a violation, Cumulus Linux drops the packet and logs 
 
 {{%notice note%}}
 - Cumulus Linux does not support DHCP option 82 processing.
-- DHCP snooping support single bridge mode only.
+- DHCP snooping supports single bridge mode only.
 {{%/notice%}}
 
 ## Configure DHCP Snooping
@@ -115,7 +115,7 @@ Port   IP           MAC                            Lease      State
 swp6   128::1/64    00:02:00:00:00:04              7200       ACK 
 ```
 
-To show information in the DHCP binding table for a specific trusted port, run the `nv show bridge domain <bridge> dhcp-snoop vlan <vlan-ID> trust <interface-id>` command for IPv4 or the `nv show bridge domain <bridge> dhcp-snoop6 vlan <vlan-id> trust <interface-id>` command for IPv6.
+To show information in the DHCP binding table for a specific trusted port, run the `nv show bridge domain <bridge-id> dhcp-snoop vlan <vlan-ID> trust <interface-id>` command for IPv4 or the `nv show bridge domain <bridge> dhcp-snoop6 vlan <vlan-id> trust <interface-id>` command for IPv6.
 
 The following example command shows information in the IPv4 DHCP binding table for trusted port swp6:
 
@@ -127,4 +127,16 @@ IP    : 20.0.0.1
 Mac   : 00:02:00:00:00:04 
 Lease : 7200    
 State : ACK  
+```
+
+To see configured trust port information for all VLANs, run the `nv show bridge domain <bridge-id> dhcp-snoop trust-ports` command for IPv4 and the `nv show bridge domain <bridge-id> dhcp-snoop6 trust-ports` command for IPv6.
+
+The following example command shows configured trust port information for IPv6:
+
+```
+cumulus@leaf01:~$ nv show bridge domain br_default dhcp-snoop6 trust-ports
+Vlan     Ports
+-------- --------
+10      swp1,swp2
+20      swp3,swp6
 ```

@@ -9,20 +9,20 @@
 <tr>
 <td>4004453</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
-<td>4.3.0-4.4.5, 5.0.0-5.10.0</td>
-<td></td>
+<td>4.3.0-5.9.1, 5.10.0</td>
+<td>5.9.2</td>
 </tr>
 <tr>
 <td>3982222</td>
 <td>When SPAN is enabled on a bridge member, an ARP or Gratuitous ARP received during a failover event between locally attached redundant devices such as load balancers might fail to update the bridge MAC table to point to the interface with the newly active load balancer.</td>
-<td>5.4.0-5.10.0</td>
-<td></td>
+<td>5.4.0-5.9.1</td>
+<td>5.9.2-5.10.0</td>
 </tr>
 <tr>
 <td>3949367</td>
 <td>If you use NVUE to create an SNMP user with a password, then delete and recreate the user with additional encryption passwords (such as DES or AES), SNMP authorization fails for that user.</td>
-<td>5.3.1-5.10.0</td>
-<td></td>
+<td>5.3.1-5.9.1</td>
+<td>5.9.2-5.10.0</td>
 </tr>
 <tr>
 <td>3895042</td>
@@ -30,8 +30,14 @@
   snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
 This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
   #snmp ALL = NOPASSWD: /usr/cumulus/bin/poectl -j -a </td>
-<td>4.4.0-4.4.5, 5.0.0-5.10.0</td>
-<td></td>
+<td>4.4.0-5.9.1</td>
+<td>5.9.2-5.10.0</td>
+</tr>
+<tr>
+<td>3859422</td>
+<td>On rare occasions when certain events occur, such as changes to the topology in the network, when a bond comes online and directly transits to an STP blocking state, the slave ports might still be in a forwarding state. As a result, traffic is forwarded on a blocked port.</td>
+<td>5.2.0-5.9.1</td>
+<td>5.9.2-5.10.0</td>
 </tr>
 <tr>
 <td>3773177</td>
@@ -891,7 +897,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
 
 You can safely ignore this warning.</td>
-<td>4.0.0-5.9.1</td>
+<td>4.0.0-5.9.2</td>
 <td>5.10.0</td>
 </tr>
 </table>

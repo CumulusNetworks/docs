@@ -13,8 +13,14 @@
 <td></td>
 </tr>
 <tr>
+<td>4047828</td>
+<td>After network churn, the {{﻿watchfrr}} process might restart FRR because zebra is unresponsive.</td>
+<td>5.9.1-5.10.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4043995</td>
-<td> After network churn, the ﻿{{watchfrr}} process might restart FRR due to an unresponsive zebra state.</td>
+<td> After network churn, the ﻿{{watchfrr}} process might restart FRR because zebra is unresponsive.</td>
 <td>5.9.1-5.10.0</td>
 <td></td>
 </tr>
@@ -22,7 +28,7 @@
 <td>4043576</td>
 <td>If a ZTP script includes a directive to reboot, the reboot might stop the running ZTP process before it is able to disable itself from running again. As a result, the ZTP process starts again when the system comes back up. To work around this issue, run {{shutdown -r +1}} to schedule a reboot after one minute so that the ZTP process can successfully complete disabling the {{ztp.service}} systemd service.</td>
 <td>5.10.0</td>
-<td></td>
+<td>5.9.2</td>
 </tr>
 <tr>
 <td>4043575</td>
@@ -57,8 +63,8 @@
 <tr>
 <td>4035681</td>
 <td>The {{nv show interface &lt;interface&gt;}} commands show RX and TX Power values from the wrong lanes on breakout ports.</td>
-<td>5.8.0-5.10.0</td>
-<td></td>
+<td>5.8.0-5.9.1, 5.10.0</td>
+<td>5.9.2</td>
 </tr>
 <tr>
 <td>4023318</td>
@@ -70,17 +76,11 @@
 <td>4016216</td>
 <td>If a ZTP script includes a directive to reboot, the reboot might stop the running ZTP process before it is able to disable itself from running again. As a result, the ZTP process starts again when the system comes back up. To work around this issue, run {{shutdown -r +1}} to schedule a reboot after one minute so that the ZTP process can successfully complete disabling the {{ztp.service}} systemd service.</td>
 <td>5.10.0</td>
-<td></td>
+<td>5.9.2</td>
 </tr>
 <tr>
 <td>4007613</td>
 <td>If there are multiple relay switches in the path reaching the DHCP server, DHCP packets are duplicated at each transit relay switch and the server receives duplicate packets.</td>
-<td>5.9.1-5.10.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4007612</td>
-<td>If you have SVIs with the same VLANs across more than one bridge, Cumulus Linux installs the router MAC for the first bridge only in the SDK. This can cause reachability issues within that VRF towards this switch from remote VTEPs. To work around this issue, bounce the second bridge with the {{sudo ifdown &lt;bridge&gt;}} and {{sudo ifup &lt;bridge&gt;}} commands. If you reboot the switch, you need to bounce the second bridge again.</td>
 <td>5.9.1-5.10.0</td>
 <td></td>
 </tr>
@@ -464,7 +464,7 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <tr>
 <td>3985600</td>
 <td>NTP initialization issues prevent the NTP service from starting on a non-default VRF.</td>
-<td>5.9.0-5.9.1</td>
+<td>5.9.0-5.9.2</td>
 </tr>
 <tr>
 <td>3982222</td>
@@ -623,7 +623,7 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <tr>
 <td>3890993</td>
 <td>On the NVIDIA spectrum-4 switch, {{l1-show}} command output does not show Eye opening information for an interface port.</td>
-<td>5.9.0-5.9.1</td>
+<td>5.9.0-5.9.2</td>
 </tr>
 <tr>
 <td>3881789</td>
@@ -648,7 +648,12 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <tr>
 <td>3873219</td>
 <td>When you remove a port from a bond and add it to the bridge in a single set of NVUE commands, then apply the configuration, the port forwarding state is blocked on all the bridge VLANs. To work around this issue, apply the configuration in two steps. First remove the port from the bond and apply the configuration, then add the port to the bridge and apply the configuration. </td>
-<td>5.9.0-5.9.1</td>
+<td>5.9.0-5.9.2</td>
+</tr>
+<tr>
+<td>3859422</td>
+<td>On rare occasions when certain events occur, such as changes to the topology in the network, when a bond comes online and directly transits to an STP blocking state, the slave ports might still be in a forwarding state. As a result, traffic is forwarded on a blocked port.</td>
+<td>5.2.0-5.9.1</td>
 </tr>
 <tr>
 <td>3854807</td>
@@ -673,7 +678,7 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <tr>
 <td>3775686</td>
 <td>The BGP Suppress Route Advertisement feature under scale (more than 30000 routes) advertises partial updates to downstream neighbors. Because FRR does not read kernel route updates fast enough, the netlink socket receive buffer gets full and further update notifications are dropped.</td>
-<td>5.8.0-5.9.1</td>
+<td>5.8.0-5.9.2</td>
 </tr>
 <tr>
 <td>3763543</td>
@@ -691,22 +696,22 @@ cumulus@switch:~$ nv set acl one rule 1 match ip udp source-port 34
 cumulus@switch:~$ nv set acl one rule 1 match mac protocol ipv4
 cumulus@switch:~$ nv set acl one type mac
 </td>
-<td>5.7.0-5.9.1</td>
+<td>5.7.0-5.9.2</td>
 </tr>
 <tr>
 <td>3636266</td>
 <td>When an unresolved next hop is present in a next hop group, especially over an SVI interface, the switch checks if the neighbor MAC address is in the forwarding table. If the neighbor's MAC address is not there, the switch skips this next hop from backend programming and you see the {{switchd}} error {{ERR NH: l3 nhg v6 l3 nhg contains one or more unresolvable nexthops}}. There is no impact to switch functionality as unresolved neighbors are not programmed in hardware until they are resolved.</td>
-<td>5.7.0-5.9.1</td>
+<td>5.7.0-5.9.2</td>
 </tr>
 <tr>
 <td>3610591</td>
 <td>After configuring the system level pre-login and post-login banner messages, the messages do not return to their default settings when you run the {{nv unset system}} command or the {{nv config apply empty}} command.</td>
-<td>5.7.0-5.9.1</td>
+<td>5.7.0-5.9.2</td>
 </tr>
 <tr>
 <td>3393966</td>
 <td>When you configure OSPF network statements using NVUE with the {{nv set vrf &lt;vrf&gt; router ospf area &lt;area&gt; network &lt;subnet&gt;}} command, subsequent configuration changes with NVUE might bring down all OSPF neighbors. To work around this issue, create an NVUE snippet to configure the network statement, or use the {{nv set interface &lt;interface&gt; router ospf area &lt;area&gt;}} command to enable OSPF on interfaces instead of using a network statement.</td>
-<td>5.5.0-5.9.1</td>
+<td>5.5.0-5.9.2</td>
 </tr>
 <tr>
 <td>2705056</td>
@@ -720,7 +725,7 @@ cumulus@switch:~$ nv set acl one type mac
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
 
 You can safely ignore this warning.</td>
-<td>4.0.0-5.9.1</td>
+<td>4.0.0-5.9.2</td>
 </tr>
 </table>
 </tables>

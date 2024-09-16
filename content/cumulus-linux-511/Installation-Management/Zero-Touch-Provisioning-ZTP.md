@@ -12,9 +12,37 @@ While developing and testing the provisioning logic, you can use the `ztp` comma
 
 ZTP in Cumulus Linux can run automatically in one of the following ways, in this order:
 
-1. Through a local file
-2. Using a USB drive inserted into the switch (ZTP-USB)
-3. Through DHCP
+1. Manually with NVUE
+2. Through a local file
+3. Using a USB drive inserted into the switch (ZTP-USB)
+4. Through DHCP
+
+## Run ZTP Manually with NVUE
+
+To run ZTP manually, enable ZTP then run the ZTP script by providing the URL where the script is located.
+
+The following example enables ZTP, then runs the ZTP script at `https://myserver/mypath/`:
+
+```
+cumulus@switch:~$ nv set system ztp state enabled
+cumulus@switch:~$ nv config apply
+cumulus@switch:~$ nv action run ztp https://myserver/mypath/
+```
+
+To disable ZTP, run the `nv set system ztp state diabled` command.
+
+To show the status of the ZTP service, run the `nv show system ztp` command.
+
+```
+cumulus@switch:~$ nv show system ztp
+           operational
+---------  -----------
+status
+  method
+  state    in-progress
+  url
+  version  1.0
+```
 
 ## Use a Local File
 
@@ -91,21 +119,7 @@ option cumulus-provision-url code 239 = text;
   option cumulus-provision-url "http://192.0.2.1/demo.sh";
 }
 ```
-<!-- NO LONGER VALID in 5.9 RM-3875237
-In addition, you can specify the hostname of the switch with the `host-name` option:
 
-```
-subnet 192.168.0.0 netmask 255.255.255.0 {
-  range 192.168.0.100 192.168.0.200;
-  option cumulus-provision-url "http://192.0.2.1/demo.sh";
-  host dc1-tor-sw1 { hardware ethernet 44:38:39:00:1a:6b; fixed-address 192.168.0.101; option host-name "dc1-tor-sw1"; }
-}
-```
-
-{{%notice note%}}
-Do not use an underscore (_) in the hostname; underscores are not permitted in hostnames.
-{{%/notice%}}
--->
 ### DHCP on Front Panel Ports
 
 ZTP runs DHCP on all the front panel switch ports and on any active interface. ZTP assesses the list of active ports on every retry cycle. When it receives the DHCP lease and option 239 is present in the response, ZTP starts to execute the script.
@@ -309,6 +323,7 @@ NTP starts at boot by default on the switch and the NTP configuration includes d
 nv set service ntp default server 4.cumulusnetworks.pool.ntp.org iburst on
 nv config apply
 ```
+
 ### Test DNS Name Resolution
 
 DNS names are frequently used in ZTP scripts. The `ping_until_reachable` function tests that each DNS name resolves into a reachable IP address. Call this function with each DNS target used in your script before you use the DNS name elsewhere in your script.
@@ -365,6 +380,7 @@ After initially configuring a node with ZTP, use {{<exlink url="http://docs.ansi
 ```
 /usr/bin/curl -H "Content-Type:application/json" -k -X POST --data '{"host_config_key":"'somekey'"}' -u username:password http://ansible.example.com/api/v2/job_templates/1111/callback/
 ```
+
 ## Test ZTP Scripts
 
 Use these commands to test and debug your ZTP scripts.

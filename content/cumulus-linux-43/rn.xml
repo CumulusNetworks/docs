@@ -10,7 +10,7 @@
 <td>4037015</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
 <td>4.3.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.2-5.10.0, 5.10.0</td>
 </tr>
 <tr>
 <td>3856614</td>
@@ -1611,7 +1611,7 @@ To work around this issue, remove the interface alias description from {{iproute
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
 
 You can safely ignore this warning.</td>
-<td>4.0.0-5.9.1</td>
+<td>4.0.0-5.9.2</td>
 <td>5.10.0</td>
 </tr>
 <tr>
@@ -2268,7 +2268,7 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <td>4037015</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
 <td>4.3.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.2-5.10.0, 5.10.0</td>
 </tr>
 <tr>
 <td>3773177</td>
@@ -4067,7 +4067,7 @@ To work around this issue, remove the interface alias description from {{iproute
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
 
 You can safely ignore this warning.</td>
-<td>4.0.0-5.9.1</td>
+<td>4.0.0-5.9.2</td>
 <td>5.10.0</td>
 </tr>
 <tr>

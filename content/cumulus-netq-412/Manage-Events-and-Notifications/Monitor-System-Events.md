@@ -29,7 +29,7 @@ The dashboard presents a timeline of events alongside the devices that are causi
 
 Events are also generated when streaming {{<link title="Validate Overall Network Health" text="validation checks">}} detect a failure. If an event is generated from a failed validation check, it will be marked resolved automatically the next time the check runs successfully.
 
-  ## Suppress Events
+## Suppress Events
 
  If you are receiving too many event notifications or do not want NetQ to display known issues or false alarms, you can suppress these events. NetQ does not display suppressed events in the event summary dashboard, which effectively allows you to ignore them. In addition to the rules you create to suppress events, NetQ suppresses some events by default. 
 
@@ -41,7 +41,6 @@ You can suppress events for the following types of messages:
 - CL support (events generated when creating the `cl-support script`)
 - Config diff (events generated when a configuration file has changed)
 - EVPN
-- Installed packages
 - Lifecycle management
 - Link (events related to links, including state and interface name)
 - LLDP

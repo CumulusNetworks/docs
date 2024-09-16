@@ -8,7 +8,7 @@ With the NetQ UI and NetQ CLI, you can monitor the health of individual switches
 
 NetQ reports switch performance metrics for the following categories:
 
-- **System configuration**: events, interfaces, IP and MAC addresses, VLANs, IP routes, IP neighbors, and installed software packages
+- **System configuration**: events, interfaces, IP and MAC addresses, VLANs, IP routes, and IP neighbors
 - **Utilization statistics**: CPU, memory, disk, ACL and forwarding resources, SSD, BTRFS, and processes
 - **Physical sensing**: digital optics and switch sensors
 - **RoCE** and **Precision Time Protocol**
@@ -41,7 +41,7 @@ Hover over the top of the card and select the appropriate icon to view utilizati
 
 {{<figure src="/images/netq/switch-util-411.png" alt="large switch card displaying attributes" width="700" height="350">}}
 
-Expand the card to full-screen to view, filter, or export information about events, interfaces, MAC addresses, VLANs, IP routes, IP neighbors, IP addresses, BTRFS utilization, software packages, SSD utilization, forwarding resources, ACL resources, What Just Happened events, sensors, RoCE counters, digital optics, PTP, and process monitoring: 
+Expand the card to full-screen to view, filter, or export information about events, interfaces, MAC addresses, VLANs, IP routes, IP neighbors, IP addresses, BTRFS utilization, SSD utilization, forwarding resources, ACL resources, What Just Happened events, sensors, RoCE counters, digital optics, PTP, and process monitoring: 
 
 {{<figure src="/images/netq/switch-full-411.png" alt="" width="1200" height="625">}}
 

@@ -76,7 +76,7 @@ Refer to the command line reference for a comprehensive list of {{<link title="s
 
 ## View CPU and Memory Utilization for Processes and Services
 
-Use the UI or CLI to visualize which services and processes are consuming the most CPU and memory on a switch. You can add or remove certain services that NetQ monitors using the CLI.
+Use the UI or CLI to visualize which services and processes are consuming the most CPU and memory on a switch. NetQ displays all active processes except for `netqd`, which is always displayed regardless of its status. You can add or remove specific services that NetQ monitors using the CLI. 
 
 {{<notice note>}}
 

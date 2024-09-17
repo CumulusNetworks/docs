@@ -9,8 +9,8 @@
 <tr>
 <td>4004453</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
-<td>4.3.0-4.4.5, 5.0.0-5.10.0</td>
-<td></td>
+<td>4.3.0-5.9.1, 5.10.0</td>
+<td>5.9.2</td>
 </tr>
 <tr>
 <td>3895042</td>
@@ -18,8 +18,8 @@
   snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
 This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
   #snmp ALL = NOPASSWD: /usr/cumulus/bin/poectl -j -a </td>
-<td>4.4.0-4.4.5, 5.0.0-5.10.0</td>
-<td></td>
+<td>4.4.0-5.9.1</td>
+<td>5.9.2-5.10.0</td>
 </tr>
 <tr>
 <td>3773177</td>
@@ -942,7 +942,7 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
 
 You can safely ignore this warning.</td>
-<td>4.0.0-5.9.1</td>
+<td>4.0.0-5.9.2</td>
 <td>5.10.0</td>
 </tr>
 </table>
@@ -969,8 +969,8 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 <tr>
 <td>4004453</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
-<td>4.3.0-4.4.5, 5.0.0-5.10.0</td>
-<td></td>
+<td>4.3.0-5.9.1, 5.10.0</td>
+<td>5.9.2</td>
 </tr>
 <tr>
 <td>3895042</td>
@@ -978,8 +978,8 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
   snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
 This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
   #snmp ALL = NOPASSWD: /usr/cumulus/bin/poectl -j -a </td>
-<td>4.4.0-4.4.5, 5.0.0-5.10.0</td>
-<td></td>
+<td>4.4.0-5.9.1</td>
+<td>5.9.2-5.10.0</td>
 </tr>
 <tr>
 <td>3773177</td>
@@ -1740,7 +1740,7 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
 
 You can safely ignore this warning.</td>
-<td>4.0.0-5.9.1</td>
+<td>4.0.0-5.9.2</td>
 <td>5.10.0</td>
 </tr>
 </table>

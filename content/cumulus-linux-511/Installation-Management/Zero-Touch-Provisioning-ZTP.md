@@ -10,39 +10,13 @@ The provisioning framework allows you to execute a one-time, user-provided scrip
 
 While developing and testing the provisioning logic, you can use the `ztp` command in Cumulus Linux to run your provisioning script manually on a device.
 
-ZTP in Cumulus Linux can run automatically in one of the following ways, in this order:
+The ZTP service can run a script automatically in this order:
 
-1. Manually with NVUE
-2. Through a local file
-3. Using a USB drive inserted into the switch (ZTP-USB)
-4. Through DHCP
+1. Through a local file
+2. Using a USB drive inserted into the switch (ZTP-USB)
+3. Through DHCP
 
-## Run ZTP Manually with NVUE
-
-To run ZTP manually, enable ZTP then run the ZTP script by providing the URL where the script is located.
-
-The following example enables ZTP, then runs the ZTP script at `https://myserver/mypath/`:
-
-```
-cumulus@switch:~$ nv set system ztp state enabled
-cumulus@switch:~$ nv config apply
-cumulus@switch:~$ nv action run ztp https://myserver/mypath/
-```
-
-To disable ZTP, run the `nv set system ztp state diabled` command.
-
-To show the status of the ZTP service, run the `nv show system ztp` command.
-
-```
-cumulus@switch:~$ nv show system ztp
-           operational
----------  -----------
-status
-  method
-  state    in-progress
-  url
-  version  1.0
-```
+You can also run ZTP manually with NVUE commands.
 
 ## Use a Local File
 
@@ -142,6 +116,33 @@ CUMULUS-MGMT-MAC                                    44:38:39:FF:00:00
 CUMULUS-VERSION                                     5.1.0
 CUMULUS-PROV-COUNT                                  0
 CUMULUS-PROV-MAX                                    32
+```
+
+## Run ZTP Manually with NVUE
+
+To run ZTP manually, enable ZTP then run the ZTP script by providing the URL where the script is located.
+
+The following example enables ZTP, then runs the ZTP script at `https://myserver/mypath/`:
+
+```
+cumulus@switch:~$ nv set system ztp state enabled
+cumulus@switch:~$ nv config apply
+cumulus@switch:~$ nv action run ztp https://myserver/mypath/
+```
+
+To disable ZTP, run the `nv set system ztp state diabled` command.
+
+To show the status of the ZTP service, run the `nv show system ztp` command.
+
+```
+cumulus@switch:~$ nv show system ztp
+           operational
+---------  -----------
+status
+  method
+  state    in-progress
+  url
+  version  1.0
 ```
 
 ## Write ZTP Scripts

@@ -35,15 +35,15 @@ Alternately, you can add a device card to your workbench:
 
 Attributes are displayed as the default tab on the large Switch card. You can view the static information about the switch, including its hostname, addresses, server and ASIC vendors and models, OS and NetQ software information. You can also view the state of the interfaces and NetQ Agent on the switch.
 
-{{<figure src="/images/netq/switch-large-411.png" alt="large switch card displaying attributes" width="700" height="350">}}
+{{<figure src="/images/netq/indswitch-412.png" alt="large switch card displaying attributes" width="700" height="350">}}
 
 Hover over the top of the card and select the appropriate icon to view utilization info, interface statistics, digital optics info, RoCE metrics, and PTP clock graphs. This example displays utilization information, including CPU, memory, and disk utilization from the past 24 hours:
 
 {{<figure src="/images/netq/switch-util-411.png" alt="large switch card displaying attributes" width="700" height="350">}}
 
-Expand the card to full-screen to view, filter, or export information about events, interfaces, MAC addresses, VLANs, IP routes, IP neighbors, IP addresses, BTRFS utilization, SSD utilization, forwarding resources, ACL resources, What Just Happened events, sensors, RoCE counters, digital optics, PTP, and process monitoring: 
+Expand the card to full-screen to view, filter, or export information about events, interfaces, MAC addresses, VLANs, IP routes, IP neighbors, IP addresses, BTRFS utilization, SSD utilization, forwarding resources, ACL resources, What Just Happened events, sensors, RoCE counters, digital optics, BGP and EVPN sessions, PTP, and process monitoring for a given switch: 
 
-{{<figure src="/images/netq/switch-full-411.png" alt="" width="1200" height="625">}}
+{{<figure src="/images/netq/fullscreen-switch-412.png" alt="" width="1200" height="625">}}
 
 {{</tab>}}
 
@@ -137,7 +137,7 @@ Monitoring queue lengths in your network’s fabric is useful for detecting micr
 
 {{%notice note%}}
 
-- Queue length monitoring is supported on Spectrum switches running Cumulus Linux 5.1 and later. To display queue histogram data, you must set the snapshot file count to at least 120 when you are configuring ASIC monitoring, as described in the Snapshots section in the {{<kb_link latest="cl" url="Monitoring-and-Troubleshooting/ASIC-Monitoring.md" text="ASIC monitoring configuration">}} documentation.
+- Queue length monitoring is supported on Spectrum switches running Cumulus Linux 5.1 or later. To display queue histogram data, you must set the snapshot file count to at least 120 when you are configuring ASIC monitoring, as described in the Snapshots section in the {{<kb_link latest="cl" url="Monitoring-and-Troubleshooting/ASIC-Monitoring.md" text="ASIC monitoring configuration">}} documentation.
 - If you restart the `asic-monitor` service or edit the `/monitor.conf` configuration file, you must restart the NetQ agent with `netq config restart agent`.
 
 {{%/notice%}}

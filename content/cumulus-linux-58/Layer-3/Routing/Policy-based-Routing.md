@@ -73,7 +73,9 @@ When you configure PBR with NVUE commands, NVUE enables the `pbrd` service and r
     cumulus@switch:~$ nv set router pbr map map1 rule 1 action nexthop-group group1
     ```
 
-   If you want the rule to use a specific VRF table as its lookup, set the VRF. If you do not set a VRF, the rule uses the VRF table the interface is in as its lookup. The example command below sets the rule to use the `dmz` VRF table:
+   If you want the rule to use a specific VRF table as its lookup, set the VRF. If you do not set a VRF, the rule uses the VRF table the interface is in as its lookup. The example command below sets the rule to use the `dmz` VRF table.
+
+   You can set the VRF in a virtual environment only. Cumulus Linux on an NVIDIA switch does not support setting the VRF.
 
     ```
     cumulus@switch:~$ nv set router pbr map map1 rule 1 action vrf dmz
@@ -165,7 +167,9 @@ When you configure PBR with NVUE commands, NVUE enables the `pbrd` service and r
     switch(config)#
     ```
 
-    If you want the rule to use a specific VRF table as its lookup, set the VRF. If you do not set a VRF, the rule uses the VRF table the interface is in as its lookup. The example command below sets the rule to use the `dmz` VRF table:
+    If you want the rule to use a specific VRF table as its lookup, set the VRF. If you do not set a VRF, the rule uses the VRF table the interface is in as its lookup. The example command below sets the rule to use the `dmz` VRF table.
+
+    You can set the VRF in a virtual environment only. Cumulus Linux on an NVIDIA switch does not support setting the VRF.
 
     ```
     switch(config)# pbr-map map1 seq 1
@@ -402,6 +406,21 @@ The following examples show how to delete a PBR rule:
 cumulus@switch:~$ nv unset router pbr map map1
 cumulus@switch:~$ nv config apply
 ```
+
+{{%notice note%}}
+To remove a PBR map and the corresponding next hop group, you must first delete the PBR map and run `nv config apply`, then remove the corresponding next hop group; for example:
+
+```
+cumulus@switch:~$ nv unset router pbr map map1 rule 1
+cumulus@switch:~$ nv config apply
+```
+
+```
+cumulus@switch:~$ nv unset router nexthop group group1
+cumulus@switch:~$ nv config apply
+```
+
+{{%/notice%}}
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}

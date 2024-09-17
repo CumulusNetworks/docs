@@ -27,9 +27,9 @@ Cumulus Linux constructs the SyncE clock identity as follows:
 Basic SyncE configuration requires you:
 - Enable SyncE on the switch.
 - Configure SyncE on at least one interface so that the interface is a timing source that passes to the selection algorithm.
+- Set the SyncE bundle ID to prevent loops if more than one link comes from the same clock source. You can set a value between 0 and 256. A value of 0 indicates no bundle.
 
 The basic configuration shown below uses the default SyncE settings:
-<!-- - The {{<link url="#ql-for-the-switch" text="QL">}} for the switch is set to `option 1`, which includes PRC, SSU-A, SSU-B, SEC and DNU.-->
 - The {{<link url="#frequency-source-priority" text="frequency source priority">}} on the interface is set to 100.
 - The {{<link url="#wait-to-restore-time" text="amount of time SyncE waits">}} after the interface comes up before using the interface for synchronization is set to 5 minutes.
 
@@ -39,6 +39,7 @@ The basic configuration shown below uses the default SyncE settings:
 ```
 cumulus@switch:~$ nv set system synce enable on
 cumulus@switch:~$ nv set interface swp2 synce enable on
+cumulus@switch:~$ nv set interface swp2 synce bundle-id 10
 cumulus@switch:~$ nv config apply
 ```
 
@@ -47,22 +48,19 @@ cumulus@switch:~$ nv config apply
 
 Edit the `/etc/synced/synced.conf` file to configure the interface, then enable and start the SyncE service. Adding an interface section in the `/etc/synced/synced.conf` file enables SyncE on that interface.
 
-The following example enables SyncE on swp1, swp2, swp3.
+The following example enables SyncE on swp2.
 
 ```
 cumulus@switch:~$ sudo nano /etc/synced/synced.conf
-...
+....
+# NVUE SyncE state is enable on
+
 [global]
-twtr_seconds=10
+twtr_seconds=300
 priority=1
-loglevel=info
 
-[swp1]
-
-[swp3]
-
-[swp4]
-priority=4
+[swp2]
+bundle=10
 ```
 
 ```
@@ -186,7 +184,7 @@ cumulus@switch:~$ sudo systemctl reload synced.service
 
 ### Frequency Source Priority
 
-The clock selection algorithm uses the frequency source priority on an interface to choose between two sources that have the same <span class="a-tooltip">[QL](## "Quality Level")</span>. You can specify a value between 1 (the highest priority) and 254 (the lowest priority). The default value is 1.
+The clock selection algorithm uses the frequency source priority on an interface to choose between two sources that have the same <span class="a-tooltip">[QL](## "Quality Level")</span>. You can specify a value between 1 (the highest priority) and 256 (the lowest priority). The default value is 1.
 
 The following command example sets the priority on swp2 to 10, on swp2 to 20, and on swp3 to 10:
 
@@ -256,32 +254,20 @@ To show SyncE statistics for a specific interface, run the NVUE `nv show interfa
 
 ```
 cumulus@switch:~$ nv show interface swp2 counters synce
-                 operational  applied
----------------  -----------  -------
-rx-esmc          248899
-rx-esmc-dnu      0
-rx-esmc-e-eec    0
-rx-esmc-e-prc    241259
-rx-esmc-e-prtc   0
-rx-esmc-eec1     0
-rx-esmc-error    0
-rx-esmc-prc      4125
-rx-esmc-prtc     0
-rx-esmc-ssu-a    0
-rx-esmc-ssu-b    0
-rx-esmc-unknown  3515
-tx-esmc          249107
-tx-esmc-dnu      245111
-tx-esmc-e-eec    0
-tx-esmc-e-prc    107
-tx-esmc-e-prtc   0
-tx-esmc-eec1     2488
-tx-esmc-error    4
-tx-esmc-prc      1401
-tx-esmc-prtc     0
-tx-esmc-ssu-a    0
-tx-esmc-ssu-b    0
-tx-esmc-unknown  0
+Packet Type                       Received       Transmitted    
+---------------------             ------------   ------------   
+ESMC                                      700            708
+ESMC Error                                  0              0
+ESMC DNU                                  549              0
+ESMC EEC1                                   1            558
+ESMC E-EEC                                  0              0
+ESMC SSU B                                  0              0
+ESMC SSU A                                  0              0
+ESMC PRC                                  150            150
+ESMC E-PRC                                  0              0
+ESMC PRTC                                   0              0
+ESMC E-PRTC                                 0              0
+ESMC Unknown                                0              0
 ```
 
 ## Clear SyncE Interface Counters

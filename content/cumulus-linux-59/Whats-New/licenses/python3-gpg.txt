@@ -1,0 +1,97 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: GnuPG Made Easy (GPGME)
+Upstream-Contact: GnuPG development mailing list <gnupg-devel@gnupg.org>
+Source: https://www.gnupg.org/related_software/gpgme/
+
+Files: *
+Copyright:
+  g10 Code GmbH,
+  Free Software Foundation, Inc.,
+  Werner Koch
+License: LGPL-2.1+
+
+Files: src/argparse.*
+Copyright:
+ 1998-2001, 2006-2008, 2012 Free Software Foundation, Inc.,
+ 1997-2001, 2006-2008, 2013-2015 Werner Koch
+License: LGPL-3+ or GPL-2+
+
+Files: src/gpgme-tool.c doc/*
+Copyright:
+ 2002-2016 g10 Code GmbH
+License: GPL-3+
+
+Files: lang/cl/*
+Copyright: 2003, 2006, 2008 g10 Code GmbH
+License: GPL-2+
+
+Files: lang/python/* lang/python/*/* lang/python/src/constants/* lang/python/src/constants/*/*
+Copyright:
+ 2002 John Goerzen,
+ 2004-2008 Igor Belyi,
+ 2014-2015 Martin Albrecht,
+ 2015 Ben McGinnes,
+ 2016 g10 Code GmbH
+License: LGPL-2.1+
+
+Files: lang/cpp/* lang/cpp/src/* lang/cpp/src/interfaces/*
+Copyright:
+ 2003-2005, 2007-2010, 2016 Klarälvdalens Datakonsult AB,
+ 2016 Intevation GmbH,
+License: LGPL-2+
+
+Files: lang/qt/* lang/qt/*/*
+Copyright:
+ 2004, 2005, 2007-2010, 2016 Klarälvdalens Datakonsult AB,
+ 2016 Intevation GmbH
+License: GPL-2+
+
+License: LGPL-3+
+ You can redistribute and/or modify this software under the terms of
+ the GNU Lesser General Public License as published by the Free
+ Software Foundation; either version 3 of the License, or (at your
+ option) any later version.
+ .
+ On Debian systems, the complete text of the GNU Lesser General Public
+ License version 3 can be found in
+ `/usr/share/common-licenses/LGPL-3'.
+
+License: LGPL-2.1+
+ You can redistribute and/or modify this software under the terms of
+ the GNU Lesser General Public License as published by the Free
+ Software Foundation; either version 2.1 of the License, or (at your
+ option) any later version.
+ .
+ On Debian systems, the complete text of the GNU Lesser General Public
+ License version 2.1 can be found in
+ `/usr/share/common-licenses/LGPL-2.1'.
+
+License: LGPL-2+
+ You can redistribute and/or modify this software under the terms of
+ the GNU Library General Public License as published by the Free
+ Software Foundation; either version 2 of the License, or (at your
+ option) any later version.
+ .
+ On Debian systems, the complete text of the GNU Library General Public
+ License version 2 can be found in
+ `/usr/share/common-licenses/LGPL-2.
+
+License: GPL-2+
+ You can redistribute and/or modify this software under the terms of
+ the GNU General Public License as published by the Free
+ Software Foundation; either version 2 of the License, or (at your
+ option) any later version.
+ .
+ On Debian systems, the complete text of the GNU General Public
+ License version 2 can be found in
+ `/usr/share/common-licenses/GPL-2.
+
+License: GPL-3+
+ You can redistribute and/or modify this software under the terms of
+ the GNU General Public License as published by the Free
+ Software Foundation; either version 3 of the License, or (at your
+ option) any later version.
+ .
+ On Debian systems, the complete text of the GNU General Public
+ License version 3 can be found in
+ `/usr/share/common-licenses/GPL-3.

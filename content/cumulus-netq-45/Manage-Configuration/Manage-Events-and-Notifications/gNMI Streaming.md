@@ -4,64 +4,43 @@ author: Cumulus Networks
 weight: 811
 toc: 4
 ---
-## gNMI Support on Cumulus Linux
-
 You can use {{<exlink url="https://github.com/openconfig/gnmi" text="gRPC Network Management Interface">}} (gNMI) to collect system resource, interface, and counter information from Cumulus Linux and export it to your own gNMI client.
 
-### Configure the gNMI Agent
+## Configure the gNMI Agent
 
-The gNMI Agent is included in the `netq-agent` package and is disabled by default. To enable it, run:
+The gNMI agent is disabled by default. To enable it, run:
 
 ```
  cumulus@switch:~$ netq config add agent gnmi-enable true
  ```
 
-The gNMI Agent listens over port 9339. You can change the default port in case you use that port in another application. The `/etc/netq/netq.yml` file stores the configuration.
+The gNMI agent listens over port 9339. You can change the default port in case you use that port in another application. The `/etc/netq/netq.yml` file stores the configuration.
 
 Use the following commands to adjust the settings:
 
-1. Disable the gNMI Agent:
+1. Disable the gNMI agent:
 
        cumulus@switch:~$ netq config add agent gnmi-enable false
 
-2. Change the default port over which the gNMI Agent listens:
+2. Change the default port over which the gNMI agent listens:
 
        cumulus@switch:~$ netq config add agent gnmi-port <gnmi_port>
-3. Restart the NetQ Agent to incorporate the configuration changes:
+3. Restart the NetQ agent to incorporate the configuration changes:
 
        cumulus@switch:~$ netq config restart agent
 
-{{%notice note%}}
 
-The gNMI agent relies on data collected from the NVUE service. For complete data collection with gNMI, the NVUE service must be enabled. To check the status of the `nvued` service, run the `sudo systemctl status nvued.service` command:
+### Use the gNMI Agent Only
 
+NVIDIA recommends collecting data with both the gNMI and NetQ agents. However, if you do not want to collect data with both agents, you can disable the NetQ agent. Data is then sent exclusively to the gNMI agent.
 
-```
-cumulus@switch:mgmt:~$ sudo systemctl status nvued.service
-● nvued.service - NVIDIA User Experience Daemon
-   Loaded: loaded (/lib/systemd/system/nvued.service; enabled; vendor preset: enabled)
-   Active: active (running) since Thu 2023-03-09 20:00:17 UTC; 6 days ago
-```
-
-If necessary, enable and start the service:
-
-```
-cumulus@switch:mgmt:~$ sudo systemctl enable nvued.service
-cumulus@switch:mgmt:~$ sudo systemctl start nvued.service
-```
-
-{{%/notice%}}
-### Using the gNMI Agent Exclusively
-
-NVIDIA recommends collecting data with both the gNMI and NetQ Agents. However, if you do not want to collect data with both Agents, you can disable the NetQ Agent. Data is then sent exclusively to the gNMI Agent.
-
-To disable the NetQ Agent, use the following command:
+To disable the NetQ agent, use the following command:
 
     cumulus@switch:~$ netq config add agent opta-enable false
 
 {{%notice note%}}
 
-You cannot disable both the NetQ and gNMI Agents. If both Agents are enabled on Cumulus Linux and a NetQ server is unreachable, the data from the following models are not sent to gNMI:
+You cannot disable both the NetQ and gNMI agents. If both agents are enabled on Cumulus Linux and a NetQ server is unreachable, the data from the following models are not sent to gNMI:
 - openconfig-interfaces
 - openconfig-if-ethernet 
 - openconfig-if-ethernet-ext
@@ -72,28 +51,28 @@ WJH, `openconfig-platform`, and `openconfig-lldp` data continue streaming to gNM
 
 {{%/notice%}}
 
-### Supported Subscription Modes
-
-Cumulus Linux supports the following gNMI {{<exlink url="https://github.com/openconfig/reference/blob/master/rpc/gnmi/gnmi-specification.md#3515-creating-subscriptions" text="subscription modes">}}:
-
-- `POLL` mode
-- `ONCE` mode
-- `STREAM` mode, supported for `ON_CHANGE` subscriptions only
 ### Supported Models
 
 Cumulus Linux supports the following OpenConfig models:
 
 | Model| Supported Data |
 | --------- | ------ |
-| {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/interfaces/openconfig-interfaces.yang" text="openconfig-interfaces">}} | Name, Operstatus, AdminStatus, IfIndex, MTU, LoopbackMode, Enabled |
-| {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/interfaces/openconfig-if-ethernet.yang" text="openconfig-if-ethernet">}} | AutoNegotiate, PortSpeed, MacAddress, NegotiatedPortSpeed, Counters|
-| {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/interfaces/openconfig-if-ethernet-ext.yang" text="openconfig-if-ethernet-ext">}} | Frame size counters |
+| {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/interfaces/openconfig-interfaces.yang" text="openconfig-interfaces">}} | Name, Operstatus, AdminStatus, IfIndex, MTU, LoopbackMode, Enabled, Counters (InPkts, OutPkts, InOctets, InUnicastPkts, InDiscards, InMulticastPkts, InBroadcastPkts, InErrors, OutOctets, OutUnicastPkts, OutMulticastPkts, OutBroadcastPkts, OutDiscards, OutErrors) |
+| {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/interfaces/openconfig-if-ethernet.yang" text="openconfig-if-ethernet">}} | AutoNegotiate, PortSpeed, MacAddress, NegotiatedPortSpeed, Counters (InJabberFrames, InOversizeFrames,​ InUndersizeFrames)|
+| {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/interfaces/openconfig-if-ethernet-ext.yang" text="openconfig-if-ethernet-ext">}} | Frame size counters (InFrames_64Octets, InFrames_65_127Octets, InFrames_128_255Octets, InFrames_256_511Octets, InFrames_512_1023Octets, InFrames_1024_1518Octets) |
 | {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/system/openconfig-system.yang" text="openconfig-system">}} | Memory, CPU |
-| {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/platform/openconfig-platform.yang" text="openconfig-platform">}} | Platform data |
-| {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/lldp/openconfig-lldp.yang" text="openconfig-lldp">}} | LLDP data |
+| {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/platform/openconfig-platform.yang" text="openconfig-platform">}} | Platform data (Name, Description, Version) |
+| {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/lldp/openconfig-lldp.yang" text="openconfig-lldp">}} | LLDP data (PortIdType, PortDescription, LastUpdate, SystemName, SystemDescription, ChassisId, Ttl, Age, ManagementAddress, ManagementAddressType, Capability) |
 
-gNMI clients can also use the following model for extended Ethernet counters:
-<!-- vale off -->
+gNMI clients can also use the following NVIDIA models:
+
+| Model| Supported Data |
+| --------- | ------ |
+| nvidia-if-wjh-drop-aggregate | Aggregated WJH drops, including L1, L2, router, ACL, tunnel, and buffer drops |
+| nvidia-if-ethernet-ext | Extended Ethernet counters (AlignmentError, InAclDrops, InBufferDrops, InDot3FrameErrors, InDot3LengthErrors, InL3Drops, InPfc0Packets, InPfc1Packets, InPfc2Packets, InPfc3Packets, InPfc4Packets, InPfc5Packets, InPfc6Packets, InPfc7Packets, OutNonQDrops, OutPfc0Packets, OutPfc1Packets, OutPfc2Packets, OutPfc3Packets, OutPfc4Packets, OutPfc5Packets, OutPfc6Packets, OutPfc7Packets, OutQ0WredDrops, OutQ1WredDrops, OutQ2WredDrops, OutQ3WredDrops, OutQ4WredDrops, OutQ5WredDrops, OutQ6WredDrops, OutQ7WredDrops, OutQDrops, OutQLength, OutWredDrops, SymbolErrors, OutTxFifoFull)|
+
+The client should use the following YANG models as a reference:
+
 {{<expand "nvidia-if-ethernet-ext">}}
 ```
 module nvidia-if-ethernet-counters-ext {
@@ -279,16 +258,6 @@ module nvidia-if-ethernet-counters-ext {
 }
 ```
 {{</expand>}}
-{{%notice note%}}
-SONiC only supports collection of [WJH data](#collect-wjh-data-using-gnmi) with gNMI.
-{{%/notice%}}
-<!-- vale on -->
-## Collect WJH Data Using gNMI
-
-You can export What Just Happened data from the NetQ Agent to your own gNMI client.
-
-The client should use the following YANG model as a reference:
-<!-- vale off -->
 {{<expand "nvidia-if-wjh-drop-aggregate">}}
 
 ```
@@ -602,13 +571,19 @@ module wjh-drop-types {
 
 {{</expand>}}
 <!-- vale on -->
+## Collect WJH Data Using gNMI
+
+You can export What Just Happened data from the NetQ agent to your own gNMI client. Refer to the previous section for the `nvidia-if-wjh-drop-aggregate` reference YANG model. 
+<!-- vale on -->
 ### Supported Features
 
-The gNMI Agent currently supports `Capabilities` and `STREAM` subscribe requests for WJH events.
+ - The gNMI agent supports *capability* and *stream subscribe* requests for WJH events. 
+ - If you are using SONiC, WJH data can only be collected using gNMI.
+
 
 ### WJH Drop Reasons
 <!-- vale off -->
-The data NetQ sends to the gNMI Agent is in the form of WJH drop reasons. The reasons are generated by the SDK and are stored in the `/usr/etc/wjh_lib_conf.xml` file on the switch. Use this file as a guide to filter for specific reason types (L1, ACL, and so forth), reason IDs, or event severities.
+The data NetQ sends to the gNMI agent is in the form of WJH drop reasons. The reasons are generated by the SDK and are stored in the `/usr/etc/wjh_lib_conf.xml` file on the switch. Use this file as a guide to filter for specific reason types (L1, ACL, and so forth), reason IDs, or event severities.
 
 #### L1 Drop Reasons
 
@@ -703,105 +678,140 @@ The data NetQ sends to the gNMI Agent is in the form of WJH drop reasons. The re
 ### gNMI Client Requests
 
 <!-- vale off -->
-You can use your gNMI client on a host to request capabilities and data that the Agent is subscribed to. The examples below use the {{<exlink url="https://github.com/openconfig/reference/blob/master/rpc/gnmi/gnmi-specification.md#3515-creating-subscriptions" text="gNMIc client.">}}.
+You can use your gNMI client on a host server to request capabilities and data that the agent is subscribed to.
 <!-- vale on -->
 
-The following example shows a gNMIc `STREAM` request for WJH data:
+The following example shows a gNMI client request for interface speed:
 
 ```
-gnmic -a 10.209.37.121:9339 -u cumulus -p ****** --skip-verify subscribe --path "wjh/aggregate/l2/reasons/reason[id=209][severity=error]/state/drop" --mode stream --prefix "/interfaces/interface[name=swp8]/" --target netq
-
+gnmi_client -target_addr 10.209.37.121:9339 -xpath "/interfaces/interface[name=swp1]/ethernet/state/port-speed" -once
 {
-  "source": "10.209.37.121:9339",
-  "subscription-name": "default-1677695197",
-  "timestamp": 1677695102858146800,
-  "time": "2023-03-01T18:25:02.8581468Z",
-  "prefix": "interfaces/interface[name=swp8]/wjh/aggregate/l2/reasons/reason[severity=error][id=209]",
-  "target": "netq",
-  "updates": [
-    {
-      "Path": "state/drop",
-      "values": {
-        "state/drop": "[{\"AggCount\":283,\"Dip\":\"0.0.0.0\",\"Dmac\":\"1c:34:da:17:93:7c\",\"Dport\":0,\"DropType\":\"L2\",\"EgressPort\":\"\",\"EndTimestamp\":1677695102,\"FirstTimestamp\":1677695072,\"Hostname\":\"neo-switch01\",\"IngressLag\":\"\",\"IngressPort\":\"swp8\",\"Proto\":0,\"Reason\":\"Source MAC is multicast\",\"ReasonId\":209,\"Severity\":\"Error\",\"Sip\":\"0.0.0.0\",\"Smac\":\"01:00:5e:00:00:01\",\"Sport\":0}]"
+   "Response": {
+      "Update": {
+         "update": [
+            {
+               "val": {
+                  "Value": {
+                     "StringVal": "SPEED_40GB"
+                  }
+               },
+               "path": {
+                  "elem": [
+                     {
+                        "name": "state"
+                     },
+                     {
+                        "name": "port-speed"
+                     }
+                  ]
+               }
+            }
+         ],
+         "timestamp": 1636910588085654861,
+         "prefix": {
+            "target": "netq",
+            "elem": [
+               {
+                  "name": "interfaces"
+               },
+               {
+                  "name": "interface",
+                  "key": {
+                     "name": "swp1"
+                  }
+               },
+               {
+                  "name": "ethernet"
+               }
+            ]
+         }
       }
-    }
-  ]
+   }
 }
-{
-  "source": "10.209.37.121:9339",
-  "subscription-name": "default-1677695197",
-  "timestamp": 1677695132988218890,
-  "time": "2023-03-01T18:25:32.98821889Z",
-  "prefix": "interfaces/interface[name=swp8]/wjh/aggregate/l2/reasons/reason[severity=error][id=209]",
-  "target": "netq",
-  "updates": [
-    {
-      "Path": "state/drop",
-      "values": {
-        "state/drop": "[{\"AggCount\":287,\"Dip\":\"0.0.0.0\",\"Dmac\":\"1c:34:da:17:93:7c\",\"Dport\":0,\"DropType\":\"L2\",\"EgressPort\":\"\",\"EndTimestamp\":1677695132,\"FirstTimestamp\":1677695102,\"Hostname\":\"neo-switch01\",\"IngressLag\":\"\",\"IngressPort\":\"swp8\",\"Proto\":0,\"Reason\":\"Source MAC is multicast\",\"ReasonId\":209,\"Severity\":\"Error\",\"Sip\":\"0.0.0.0\",\"Smac\":\"01:00:5e:00:00:01\",\"Sport\":0}]"
-      }
-    }
-  ]
-}
-```
 
-The following example shows a gNMIc `ONCE` mode request for interface port speed:
 
 ```
-gnmic -a 10.209.37.121:9339 -u cumulus -p ****** --skip-verify subscribe --path "ethernet/state/port-speed" --mode once --prefix "/interfaces/interface[name=swp1]/" --target netq
-{
-  "source": "10.209.37.123:9339",
-  "subscription-name": "default-1677695151",
-  "timestamp": 1677256036962254134,
-  "time": "2023-02-24T16:27:16.962254134Z",
-  "target": "netq",
-  "updates": [
-    {
-      "Path": "interfaces/interface[name=swp1]/ethernet/state/port-speed",
-      "values": {
-        "interfaces/interface/ethernet/state/port-speed": "SPEED_1GB"
-      }
-    }
-  ]
-}
-```
 
-The following example shows a gNMIc `POLL` mode request for interface status:
+The following example shows a gNMI client request for WJH drop data:
 
 ```
-gnmic -a 10.209.37.121:9339 -u cumulus -p ****** --skip-verify subscribe --path "state/oper-status" --mode poll --prefix "/interfaces/interface[name=swp1]/" --target netq
+gnmi_client -target_addr 10.209.37.121:9339 -xpath "/interfaces/interface[name=swp8]/wjh/aggregate/l2/reasons/reason[id=210]"
 {
-  "timestamp": 1677644403153198642,
-  "time": "2023-03-01T04:20:03.153198642Z",
-  "prefix": "interfaces/interface[name=swp1]",
-  "target": "netq",
-  "updates": [
-    {
-      "Path": "state/oper-status",
-      "values": {
-        "state/oper-status": "UP"
+   "Response": {
+      "Update": {
+         "update": [
+            {
+               "val": {
+                  "Value": {
+                     "StringVal": "[{
+									  "IngressPort": "swp8",
+									  "DropType": "L2",
+									  "Reason": "Source MAC equals destination MAC",
+									  "Severity": "Error",
+									  "Smac": "00:02:10:00:00:01",
+									  "Dmac": "00:02:10:00:00:01",
+									  "Proto": 6,
+									  "Sport": 15,
+									  "Dport": 16,
+									  "Sip": "1.1.1.1"
+									  "Dip": "2.2.2.2",
+									  "AggCount": 192,
+									  "FirstTimestamp": 1636907412,
+									  "EndTimestamp": 1636907432,
+								   }]"
+
+                  }
+               },
+               "path": {
+                  "elem": [
+                     {
+                        "name": "state"
+                     },
+                     {
+                        "name": "drop"
+                     }
+                  ]
+               }
+            }
+         ],
+         "prefix": {
+            "elem": [
+               {
+                  "name": "interfaces"
+               },
+               {
+                  "key": {
+                     "name": "swp8"
+                  },
+                  "name": "interface"
+               },
+               {
+                  "name": "wjh"
+               },
+               {
+                  "name": "aggregate"
+               },
+               {
+                  "name": "l2"
+               },
+               {
+                  "name": "reasons"
+               },
+               {
+                  "key" : {
+                     "severity": "error",
+                     "id": "210"
+                  },
+                  "name" : "reason"
+               }
+            ],
+            "target": "netq"
+         },
+         "timestamp": 1636907442362981645
       }
-    }
-  ]
-}
-received sync response 'true' from '10.209.37.123:9339'
-{
-  "timestamp": 1677644403153198642,
-  "time": "2023-03-01T04:20:03.153198642Z",
-  "prefix": "interfaces/interface[name=swp1]",
-  "target": "netq",
-  "updates": [
-    {
-      "Path": "state/oper-status",
-      "values": {
-        "state/oper-status": "UP"
-      }
-    }
-  ]
+   }
 }
 ```
 ## Related Information
 
-- {{<exlink url="https://datatracker.ietf.org/meeting/101/materials/slides-101-netconf-grpc-network-management-interface-gnmi-00" text="gNMI presentation to IETF">}}
-- {{<exlink url="https://github.com/openconfig/reference/blob/master/rpc/gnmi/gnmi-specification.md#3515-creating-subscriptions" text="gNMIc client">}}
-- {{<exlink url="https://github.com/openconfig/reference/blob/master/rpc/gnmi/gnmi-specification.md#3515-creating-subscriptions" text="gNMI subscription mode documentation">}}
+- {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Monitoring-and-Troubleshooting/gNMI-Streaming/" text="gNMI Streaming and Cumulus Linux">}}

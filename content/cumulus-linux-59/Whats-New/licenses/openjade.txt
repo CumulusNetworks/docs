@@ -1,0 +1,43 @@
+Copyright (c) 1994, 1995, 1996 James Clark, 1999 Matthias Clasen
+
+This directory contains a DSSSL engine called OpenJade.
+
+See the file COPYING for copying permission.
+
+This is a production release.  
+
+All documentation is in HTML format in the jadedoc directory.  Start with
+jadedoc/index.htm.
+
+Please report any bugs you find.
+ 
+The OpenJade Team
+
+-----
+
+The distribution license for OpenJade is the GNU General Public License (GPL)
+version 2.  You can find a copy of the GPL version 2 in
+/usr/share/common-licenses/GPL-2.
+
+
+-----
+
+The distribution license for OpenJade is the GNU General Public License (GPL)
+version 2.  You can find a copy of the GPL version 2 in
+/usr/share/common-licenses/GPL-2.
+
+-----
+
+This package has borrowed heavily from the 'jade' package.  It was originally
+made into a Debian package by Adam Di Carlo <aph@debian.org> and is now
+maintained by Neil Roeth <neil@debian.org>.
+
+The original source was downloaded from
+<URL:ftp://openjade.sourceforge.net/pub/openjade/> and/or the CVS area at
+cvs.openjade.sourceforge.net:/cvsroot/openjade .
+
+All materials under the 'debian' subdirectory are licensed under the GNU
+General Public License (GPL) version 2 or later.  You can find a copy of the
+GPL in /usr/share/common-licenses/GPL on Debian systems.  Any changes made
+*not* under the 'debian' subdirectory are under the same license as the
+software itself.

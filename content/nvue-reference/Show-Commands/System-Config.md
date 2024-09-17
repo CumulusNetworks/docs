@@ -12,7 +12,11 @@ h { color: RGB(118,185,0)}
 
 ## <h>nv show system config</h>
 
-Shows the system configuration in json format.
+Shows system configuration.
+
+{{%notice note%}}
+In Cumulus Linux 5.6 and earlier, the command output is in `json` format.
+{{%/notice%}}
 
 ### Version History
 
@@ -22,18 +26,26 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show system config
-apply:
-  ignore: {}
-  overwrite: all
-auto-save:
-  enable: off
-snippet: {}
+            operational  applied
+-----------  -----------  ---------
+             apply        apply
+             auto-save    auto-save
+             snippet      snippet
+apply
+  overwrite  all          all
+auto-save
+  enable     off          off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show system config apply</h>
-Shows the system configuration apply settings in json format. The output shows if any configuration is ignored and the current overwrite setting (`all`, which overwrites all files (whether modified by NVUE or locally modified by any other user) or `controlled`, which overwrites only the files that NVUE last modified.)
+
+Shows the system configuration apply settings.
+
+{{%notice note%}}
+In Cumulus Linux 5.6 and earlier, the command output is in `json` format.
+{{%/notice%}}
 
 ### Version History
 
@@ -43,15 +55,16 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show system config apply
-ignore: {}
-overwrite: all
+          operational  applied
+---------  -----------  -------
+overwrite  all          all
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show system config apply ignore</h>
 
-Shows which files are ignored when you run the `nv config apply` command.
+Shows which files NVUE ignores when you run the `nv config apply` command.
 
 ### Version History
 
@@ -92,7 +105,12 @@ cumulus@switch:~$ nv show system config apply ignore /etc/frr/frr.conf
 
 Shows if configuration auto save is on or off.
 
-By default, when you run the `nv config apply` command to apply a configuration setting, NVUE applies the pending configuration to become the applied configuration but does not update the startup configuration file (`/etc/nvue.d/startup.yaml`). To save the applied configuration to the startup configuration so that the changes persist after the reboot, you must run the `nv config save` command. The auto save option lets you save the pending configuration to the startup configuration automatically when you run `nv config apply` so that you do not have to run the `nv config save` command.
+If auto save is `off` when you run the `nv config apply` command to apply a configuration setting, NVUE applies the pending configuration to become the applied configuration but does not update the startup configuration file (`/etc/nvue.d/startup.yaml`). To save the applied configuration to the startup configuration so that the changes persist after the reboot, you must run the `nv config save` command.
+
+If auto save is `on` when you run the `nv config apply` command, NVUE saves the configuration to the startup configuration automatically when you run `nv config apply` so that you do not have to run the `nv config save` command.
+
+- In Cumulus Linux 5.9 and later, auto save is `on` by default.
+- In Cumulus Linux 5.8 and earlier, auto save is `off` by default.
 
 ### Version History
 
@@ -122,4 +140,23 @@ cumulus@switch:~$ nv show system config snippet
 switchd.conf: |
   link_flap_window = 10
   link_flap_threshold = 5
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system tech-support files</h>
+
+Shows the `cl-support` files on the switch. The `cl-support` script generates a compressed archive file of useful information for troubleshooting. The system either creates the file automatically or you can create the file manually.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system tech-support files
+File name                              File path                                         
+-------------------------------------  --------------------------------------------------
+cl_support_leaf01_20240725_225811.txz  /var/support/cl_support_leaf01_20240725_225811.txz
 ```

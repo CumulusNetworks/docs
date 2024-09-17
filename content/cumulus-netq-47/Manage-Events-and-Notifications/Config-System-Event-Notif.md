@@ -568,7 +568,7 @@ Refer to the {{<link title="#rule-keys-and-values-reference" text="Rule Keys and
 To remove notification rules, run:
 
 ```
-netq config del notification rule <text-rule-name-anchor>
+netq del notification rule <text-rule-name-anchor>
 ```
 
 {{<expand "Example rules">}}
@@ -780,7 +780,7 @@ To remove notification channels:
 To remove notification channels, run:
 
 ```
-netq config del notification channel <text-channel-name-anchor>
+netq del notification channel <text-channel-name-anchor>
 ```
 
 This example removes a Slack integration and verifies it is no longer in
@@ -1383,7 +1383,7 @@ This example creates a notification integration with a Slack channel called *slk
     cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
     Successfully added/updated channel slk-netq-events
      
-    cumulus@switch:~$ netq add notification rule sysconf key configdiff value updated
+    cumulus@switch:~$ netq add notification rule sysconf key message_type value configdiff
     Successfully added/updated rule sysconf
      
     cumulus@switch:~$ netq add notification filter configChange severity info rule sysconf channel slk-netq-events
@@ -1403,7 +1403,7 @@ This example creates a notification integration with a Slack channel called *slk
     --------------- ---------------- --------------------
     bgpHostname     hostname         spine-01
     evpnVni         vni              42
-    sysconf         configdiff       updated
+    sysconf         message_type     configdiff 
 
     cumulus@switch:~$ netq show notification filter
     Matching config_notify records:

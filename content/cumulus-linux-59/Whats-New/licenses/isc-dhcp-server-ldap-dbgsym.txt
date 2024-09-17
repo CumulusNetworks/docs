@@ -1,0 +1,1 @@
+isc-dhcp-server-ldap-dbgsym has no copyright file

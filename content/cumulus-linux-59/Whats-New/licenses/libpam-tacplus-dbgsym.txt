@@ -1,0 +1,1 @@
+libpam-tacplus-dbgsym has no copyright file

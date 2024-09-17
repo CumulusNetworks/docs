@@ -417,7 +417,7 @@ mcheck          : no          admin-port-path-cost : 0
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show bridge domain \<domain-id\> stp port \<port\></h>
+## <h>nv show bridge domain \<domain-id\> stp port \<port-id\></h>
 
 Shows STP information for a specific bridge port.
 
@@ -426,7 +426,7 @@ Shows STP information for a specific bridge port.
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<domain-id>` | The name of the bridge domain. |
-| `<port>` | The bridge port. |
+| `<port-id>` | The bridge port. |
 
 ### Version History
 
@@ -567,6 +567,33 @@ disputed           : no
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show bridge domain \<domain-id\> svi-force-up</h>
+
+Shows if the `svi-force-up` option is set to `on` for SVIs in a specific bridge.
+
+The first time you configure a switch, all southbound bridge ports are down; therefore, by default, all SVIs are also down. You can force the SVIs in a specific bridge to always be UP with the `nv set bridge domain <bridge-id> svi-force-up enable on` option, which is beneficial if you want to perform connectivity testing.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<domain-id>` | The name of the bridge domain. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.8.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show bridge domain br_default svi-force-up
+        applied
+------  -------
+enable  on
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show bridge domain \<domain-id\> vlan</h>
 
 Shows all the VLANs for a bridge.
@@ -592,35 +619,6 @@ cumulus@switch:~$ nv show bridge domain br_default vlan
 30    0.0.0.0                               off         vni:   30
 1000  0.0.0.0                               off         vni: 1000
 3000  0.0.0.0                               off         vni: 3000
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show bridge domain \<domain-id\> vlan-vni-map</h>
-
-Shows the VLAN to VNI mapping for a specific bridge.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<domain-id>` | The name of the bridge domain. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.7.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show bridge domain br_default vlan-vni-map
-br_default  VLAN-VNI-Offset: None 
-
-VLAN  VNI
-----  -----   
-10    10
-20    20   
-30    30   
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -788,6 +786,35 @@ cumulus@switch:~$ nv show bridge domain br_default vlan 10 vni
 10  auto                                       off           IP Address: 10.10.10.2
                                                              IP Address: 10.10.10.3
                                                              IP Address: 10.10.10.4
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show bridge domain \<domain-id\> vlan-vni-map</h>
+
+Shows the VLAN to VNI mapping for a specific bridge.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<domain-id>` | The name of the bridge domain. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show bridge domain br_default vlan-vni-map
+br_default  VLAN-VNI-Offset: None 
+
+VLAN  VNI
+----  -----   
+10    10
+20    20   
+30    30   
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

@@ -90,6 +90,19 @@ curl --location --request GET 'https://air.nvidia.com/api/v1/simulation/' \
 {{< /tab >}}
 {{< /tabs >}}
 
+### Service account
+
+Internal NVIDIA users can use an SSA client ID to authenticate as a service account. First, a valid bearer token must be generated.
+
+```
+curl --user "$CLIENT_ID:$CLIENT_SECRET" --request POST $AIR_TOKEN_URL --header "Content-Type: application/x-www-form-urlencoded" --data-urlencode "grant_type=client_credentials" --data-urlencode "scope=api-access"
+{"access_token":"eyJraWQ...","token_type":"bearer","expires_in":900,"scope":"api-access"}
+```
+
+Replace $CLIENT_ID, $CLIENT_SECRET, and $AIR_TOKEN_URL with values generated during your client registration. For more detail, please refer to internal documentation on using service accounts.
+
+Once you have a bearer token, it can be used in the same way as an [Air bearer token](#bearer-token)
+
 </details>
 
 ## Examples
@@ -154,7 +167,11 @@ graph "sample_topology" {
     "cumulus0":"swp2" -- "cumulus1":"swp2"
 }
 ```
-Create the topology, organization, and simulation, then start the simulation:
+Create the organization, then create and start the simulation:
+
+{{<notice note>}}
+Organization creation is currently only supported for NVIDIA users.
+{{</notice>}}
 
 {{< tabs "TabID55113 ">}}
 {{< tab "SDK ">}}
@@ -164,22 +181,16 @@ Create the topology, organization, and simulation, then start the simulation:
 >>> user = 'user@nvidia.com'
 >>> api_token = 'fake_api_token'
 >>> air = AirApi(username=user, password=api_token)
->>> dot_file_path = '/Users/alexag/topology.dot'
->>> topology = air.topologies.create(dot=dot_file_path)
+>>> dot_file_path = '/tmp/topology.dot'
 >>> org_name = 'My Organization'
 >>> org = air.organizations.create(name=org_name, members=[{'username': f'{user}', 'roles': ['Organization Admin']}])
->>> sim_title = 'My Simulation'
->>> simulation = air.simulations.create(topology=topology, title=sim_title, organization=org)
->>> simulation.start()
+>>> simulation = air.simulations.create(topology_data=dot_file_path, organization=org)
 ```
 {{< /tab >}}
 {{< tab "cURL ">}}
 
 
 Create the organization:
-{{<notice note>}}
-Organization creation is currently only supported for NVIDIA users. 
-{{</notice>}}
 ```
 curl --location --request POST 'https://air.nvidia.com/api/v1/organization/' \
 --header 'Accept: application/json' \
@@ -194,41 +205,39 @@ curl --location --request POST 'https://air.nvidia.com/api/v1/organization/' \
   ]
 }'
 ```
-Create the topology:
-```
-curl --location --request POST 'https://air.nvidia.com/api/v1/topology/' \
---header 'Accept: application/json' \
---header 'Authorization: Bearer <bearer_token>' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "name": "test_topo",
-    "organization": "https://air.nvidia.com/api/v1/organization/63227c22-366c-4416-af25-73bbed6eacff/",
-    "dot": "graph 'sample_topo' {\n  'cumulus0' [ memory='1024' os='cumulus-vx-4.4.0' cpu='1']\n  'cumulus1' [ memory='1024' os='cumulus-vx-4.4.0' cpu='1']\n    'cumulus0':'swp1' -- 'cumulus1':'swp1'\n    'cumulus0':'swp2' -- 'cumulus1':'swp2'\n}\n"
-  }'
-```
 
-Create the simulation:
+Create and start the simulation:
 ```
-curl --location --request POST 'https://air.nvidia.com/api/v1/simulation/' \
+curl --location --request POST 'https://air.nvidia.com/api/v2/simulation/' \
 --header 'Authorization: Bearer <bearer_token>' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-  "topology": "<topology_uuid>",
-  "name": "user@nvidia.com",
-  "expires": "true",
-  "sleep": "true",
-  "title": "My Simulation",
+  "topology_data": "graph \"My Simulation\" {\n  \"cumulus0\" [ memory=\"1024\" os=\"cumulus-vx-5.7.0\" cpu=\"1\" ]\n  \"cumulus1\" [ memory=\"1024\" os=\"cumulus-vx-5.7.0\" cpu=\"1\"]\n    \"cumulus0\":\"swp1\" -- \"cumulus1\":\"swp1\"\n    \"cumulus0\":\"swp2\" -- \"cumulus1\":\"swp2\"\n}\n",
   "organization": "<organization_uuid>"
 }'
 ```
-Start the simulation:
+{{< /tab >}}
+{{< /tabs >}}
+
+Optionally, a ZTP script can also be included during simulation creation. The script will automatically be hosted by the oob-mgmt-server and fetched by nodes that support ZTP.
+
+{{< tabs "TabID224">}}
+{{< tab "SDK ">}}
+
 ```
-curl --location --request POST 'https://air.nvidia.com/api/v1/simulation/<simulation_uuid>/control/' \
+>>> ztp_contents = '<ztp_script_content_here>'
+>>> simulation = air.simulations.create(topology_data=dot_file_path, ztp_script=ztp_contents)
+```
+{{< /tab >}}
+{{< tab "cURL ">}}
+
+```
+curl --location --request POST 'https://air.nvidia.com/api/v2/simulation/' \
 --header 'Authorization: Bearer <bearer_token>' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-  "action": "load",
-  "start": true
+  "topology_data": "graph \"My Simulation\" {\n  \"cumulus0\" [ memory=\"1024\" os=\"cumulus-vx-5.7.0\" cpu=\"1\" ]\n  \"cumulus1\" [ memory=\"1024\" os=\"cumulus-vx-5.7.0\" cpu=\"1\"]\n    \"cumulus0\":\"swp1\" -- \"cumulus1\":\"swp1\"\n    \"cumulus0\":\"swp2\" -- \"cumulus1\":\"swp2\"\n}\n",
+  "ztp_script": "<ztp_script_content_here>"
 }'
 ```
 {{< /tab >}}
@@ -426,11 +435,12 @@ Upload and create the image object:
 >>> # Is the air-agent enabled in the Image by default?
 >>> agent_enabled = False
 >>> # Should the image be published and accessible to all users? 
->>> base = False
 >>> default_username = 'admin'
 >>> default_password = 'admin'
 >>> organization = '<organization_uuid>'
->>> image = air.images.create(name=image_name, base=base, filename=filename, agent_enabled=agent_enabled, default_username=default_username, default_password=default_password, organization=organization)
+>>> version = '1.0.0'
+>>> cpu_arch = 'x86'
+>>> image = air.images.create(name=image_name, filename=filename, agent_enabled=agent_enabled, default_username=default_username, default_password=default_password, organization=organization, version=version, cpu_arch=cpu_arch)
 ```
 
 {{< /tab >}}
@@ -450,7 +460,8 @@ curl --request POST 'https://air.nvidia.com/api/v1/image/' \
   "default_username": "admin",
   "organization": "<organization_id>",
   "simx": "false",
-  "provider": "VM"
+  "provider": "VM",
+  "version": "1.0.0"
 }'
 ```
 The response will contain an image upload URL:
@@ -482,21 +493,19 @@ Use the image you created in a custom topology:
 >>> topology_name = 'My Topology'
 >>> node_name = 'server01'
 >>> dot_graph = f'graph \"{topology_name}\" {{ \"{node_name}\" [ os=\"{image_name}\"] }}'
->>> topology = air.topologies.create(dot=dot_graph)
+>>> simulation = air.simulations.create(topology_data=dot_graph)
 ```
 
 {{< /tab >}}
 {{< tab "cURL">}}
 
 ```
-curl --request POST 'https://air.nvidia.com/api/v1/topology/' \
+curl --request POST 'https://air.nvidia.com/api/v2/simulation/' \
 --header 'Accept: application/json' \
 --header 'Authorization: Bearer <bearer_token>' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "name": "My Topology",
-    "organization": "https://air.nvidia.com/api/v1/organization/63227c22-366c-4416-af25-73bbed6eacff/",
-    "dot": "graph 'sample_topo' {\n  'cumulus0' [ memory='1024' os='<image_uuid>' cpu='1']\n  'cumulus1' [ memory='1024' os='<image_uuid>' cpu='1']\n    'cumulus0':'swp1' -- 'cumulus1':'swp1'\n    'cumulus0':'swp2' -- 'cumulus1':'swp2'\n}\n"
+    "topology_data": "graph \"My Topology\" {\n  \"cumulus0\" [ memory=\"1024\" os=\"<image_uuid>\" cpu=\"1\" ]\n  \"cumulus1\" [ memory=\"1024\" os=\"<image_uuid>\" cpu=\"1\" ]\n    \"cumulus0\":\"swp1\" -- \"cumulus1\":\"swp1\"\n    \"cumulus0\":\"swp2\" -- \"cumulus1\":\"swp2"\n}\n"
   }'
 ```
 
@@ -591,6 +600,66 @@ curl --request POST 'https://air.nvidia.com/api/v1/simulation-node/<simulation_n
 {{<notice info>}}
 To avoid a race condition on Cumulus Linux nodes running a version prior to 5.0.0, schedule the node instructions prior to starting the simulation. If you do not perform the steps in this order, the instructions might fail to complete. 
 {{</notice>}}
+
+### Using Cloud-init
+Cloud-init allows users to configure their nodes upon the first boot. One of its features is the ability to run user scripts, which can be used to perform various configuration tasks.
+Detailed information and examples of user data and metadata files can be found in the {{<exlink url="https://cloudinit.readthedocs.io/en/latest/explanation/format.html" text="cloud-init documentation">}}.
+
+After creating (but not starting) a simulation, get the specific simulation nodes to be configured. In this example the nodes are named node-1 and node-2: 
+
+```
+>>> sim_node_1 = air.simulation_nodes.list(name='node-1', simulation=simulation).pop()
+>>> sim_node_2 = air.simulation_nodes.list(name='node-2', simulation=simulation).pop()
+```
+
+Create user data and metadata user configs:
+
+```
+>>> USER_DATA = """#cloud-config
+... 
+... users:
+... - default
+... - name: custom-user
+...   passwd: "$6$kW4vfBM9kGgq4hr$TFtHW7.3jOECR9UCBuw9NrdSMJETzSVoNQGcVv2y.RqRUzWDEtYhYRkGvIpB6ml1fh/fZEVIgKbSXI9L1B6xF." # 'possible'
+...   shell: /bin/bash
+...   lock-passwd: false
+...   ssh_pwauth: True
+...   chpasswd: { expire: False }
+...   sudo: ALL=(ALL) NOPASSWD:ALL
+...   groups: users, admin
+... """
+>>> sim_node_1_metadata = air.user_configs.create(name='sim-node-1-metadata', kind='cloud-init-meta-data', organization=org, content='local-hostname: cloud-init-node-1')
+>>> sim_node_2_metadata = air.user_configs.create(name='sim-node-1-metadata', kind='cloud-init-meta-data', organization=org, content='local-hostname: cloud-init-node-2')
+>>> sim_node_shared_userdata = air.user_configs.create(name='sim-node-shared-userdata', kind='cloud-init-user-data', organization=org, content=USER_DATA)
+```
+
+Set the cloud-init assignment for the simulation nodes:
+
+```
+>>> sim_node_1.set_cloud_init_assignment({'user_data': sim_node_shared_userdata, 'meta_data': sim_node_1_metadata})
+>>> sim_node_2.set_cloud_init_assignment({'user_data': sim_node_shared_userdata, 'meta_data': sim_node_2_metadata})
+```
+
+Finally, start the simulation:
+
+```
+>>> simulation.start()
+```
+
+### Adjusting Request Timeouts
+
+By default, the SDK implements the following timeouts for all API requests:
+
+- Establishing a connection to the server (`connect_timeout`): 16 seconds
+- Receiving a response to a request (`read_timeout`): 61 seconds
+
+These values can be adjusted after instantiating the `AirApi` client:
+
+```
+>>> air = AirApi(username='<username>', password='<api_token>')
+>>> air.client.default_connect_timeout = 30
+>>> air.client.default_read_timeout = 120
+```
 
 ## Developing
 
@@ -997,6 +1066,24 @@ Delete the image. Once successful, the object should no longer be used and will 
 - `kwargs` _dict, optional_ - All optional keyword arguments are applied as key/value
   pairs in the request's JSON payload
 
+### publish
+Publish an image for public use
+
+**Arguments**:
+
+  - `contact` _str_ - The email address for the contact person associated with this image.
+
+**Raises**:
+
+  [`AirUnexpectedresponse`](#airerror) - Publish failed
+
+### unpublish
+Unpublish the image from public use
+
+**Raises**:
+
+  [`AirUnexpectedresponse`](#airerror) - Unpublish failed
+
 <a name="air_sdk.image.Image.upload"></a>
 ### upload
 
@@ -1103,8 +1190,14 @@ Create a new image
 **Example**:
 
 ```
->>> air.images.create(name='my_image', filename='/tmp/my_image.qcow2', agent_enabled=False)
+>>> image = air.images.create(name='my_image', filename='/tmp/my_image.qcow2', agent_enabled=False, default_username='user', default_password='password', organization=org, version='1.0.0', cpu_arch='x86')
+>>> image
 <Image my_image 01298e0c-4ef1-43ec-9675-93160eb29d9f>
+>>> image.upload_status
+'COMPLETE'
+>>> alt_img = air.images.create(name='my_alt_img', filename='/tmp/alt_img.qcow2', agent_enabled=False, default_username='user', default_password='password', organization=org, version='1.0.0', cpu_arch='x86')
+>>> alt_img.upload_status
+'FAILED'
 ```
 
 
@@ -1841,6 +1934,66 @@ Delete all instructions for a `SimulationNode`
 
 ```
 >>> simulation_node.delete_instructions()
+```
+
+<a name="air_sdk.simulation_node.simulationNode.set_cloud_init_assignment"></a>
+### set\_cloud\_init\_assignment
+
+Set assignment of cloud-init scripts for specific node
+
+**Arguments**:
+
+- `user_data` _str_ - UserConfig ID. UserConfig must be of kind 'cloud-init-user-data'
+- `meta_data` _str_ - UserConfig ID. UserConfig must be of kind 'cloud-init-meta-data'
+  
+
+**Returns**:
+
+- `dict` - Response JSON
+  
+
+**Raises**:
+
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
+  or valid response JSON
+  
+
+**Example**:
+
+```
+>>> simulation_node.set_cloud_init_assignment({'user_data': '09b168b8-f9dd-408c-b3c6-bbecf6a43a09', 'meta_data': 'a19a8715-b46b-4599-81e6-379adebe4bb4'})
+{'simulation_node': 'a44894a4-d805-42e2-a07f-7fd5fb0ea154', 'user_data': '09b168b8-f9dd-408c-b3c6-bbecf6a43a09', 'meta_data': 'a19a8715-b46b-4599-81e6-379adebe4bb4', 'user_data_name': 'userdata1', 'meta_data_name': 'metadata1'}
+
+>>> simulation_node.set_cloud_init_assignment({'user_data': userdata, 'meta_data': metadata})
+{'simulation_node': 'a44894a4-d805-42e2-a07f-7fd5fb0ea154', 'user_data': '09b168b8-f9dd-408c-b3c6-bbecf6a43a09', 'meta_data': 'a19a8715-b46b-4599-81e6-379adebe4bb4', 'user_data_name': 'userdata1', 'meta_data_name': 'metadata1'}
+
+>>> simulation_node.set_cloud_init_assignment({'user_data': userdata, 'meta_data': None})
+{'simulation_node': 'a44894a4-d805-42e2-a07f-7fd5fb0ea154', 'user_data': '09b168b8-f9dd-408c-b3c6-bbecf6a43a09', 'meta_data': None, 'user_data_name': 'userdata1', 'meta_data_name': None}
+>>> sim.start()
+```
+
+<a name="air_sdk.simulation_node.simulationNode.get_cloud_init_assignment"></a>
+### get\_cloud\_init\_assignment
+
+Get cloud-init assignment for a specific node
+
+
+**Returns**:
+
+- `dict` - Response JSON
+  
+
+**Raises**:
+
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
+  or valid response JSON
+  
+
+**Example**:
+
+```
+>>> simulation_node.get_cloud_init_assignment()
+{'simulation_node': 'a44894a4-d805-42e2-a07f-7fd5fb0ea154', 'user_data': 09b168b8-f9dd-408c-b3c6-bbecf6a43a09', 'meta_data': 'a19a8715-b46b-4599-81e6-379adebe4bb4', 'user_data_name': 'userdata1', 'meta_data_name': 'metadata1'}
 ```
 
 <a name="air_sdk.simulation_node.SimulationNode.control"></a>
@@ -2712,11 +2865,13 @@ List existing simulations
 <a name="air_sdk.simulation.SimulationApi.create"></a>
 ### create
 
-Create a new simulation
+Create a new simulation. The caller must provide either `topology` or `topology_data`.
 
 **Arguments**:
 
-- `topology` _str | `Topology`_ - `Topology` or ID
+- `topology` _str | `Topology`, optional_ - `Topology` or ID
+- `topology_data` _str | fd, optional_ - Topology in DOT format.
+  This can be passed as a string containing the raw DOT data, a path to the DOT file on your local disk, or as a file descriptor for a local file
 - `kwargs` _dict, optional_ - All other optional keyword arguments are applied as key/value
   pairs in the request's JSON payload
   
@@ -2737,6 +2892,12 @@ Create a new simulation
 ```
 >>> air.simulations.create(topology=topology, title='my_sim')
 <Simulation my_sim 01298e0c-4ef1-43ec-9675-93160eb29d9f>
+>>> air.simulations.create(topology_data='/tmp/my_net.dot', organization=my_org)
+<Simulation my_sim c0a4c018-0b85-4439-979d-9814166aaeac>
+>>> air.simulations.create(topology_data='graph "my_sim" { "server1" [ function="server" os="generic/ubuntu2204"] }', organization=my_org)
+<Simulation my_sim b9c0c68e-d4bd-4e9e-8a49-9faf41efaf70>
+>>> air.simulations.create(topology_data=open('/tmp/my_net.dot', 'r', encoding='utf-8')), organization=my_org)
+<Simulation my_sim 86162934-baa7-4d9a-a826-5863f92b03ef>
 ```
 
 
@@ -3477,3 +3638,154 @@ Create a new worker
 <Worker my_sim 01298e0c-4ef1-43ec-9675-93160eb29d9f>
 ```
 
+## UserConfig
+
+Manage a UserConfig
+
+### delete
+Delete the UserConfig. Once successful, the object should no longer be used and will raise
+[`AirDeletedObject`](#airerror) when referenced.
+
+**Raises**:
+
+  [`AirUnexpectedresponse`](#airerror) - Delete failed
+  
+### json
+Returns a JSON string representation of the UserConfig.
+
+### refresh
+Syncs the UserConfig with all values returned by the API
+
+### update
+Update the UserConfig with the provided data
+
+**Arguments**:
+
+- `kwargs` _dict, optional_ - All optional keyword arguments are applied as key/value
+  pairs in the request's JSON payload
+
+
+<a name="air_sdk.userconfig.UserConfigApi"></a>
+## UserConfigApi
+
+High-level interface for the UserConfig API
+
+<a name="air_sdk.userconfig.UserConfigApi.list"></a>
+### list
+
+List existing UserConfig scripts 
+
+**Arguments**:
+
+- `kwargs` _dict, optional_ - All other optional keyword arguments are applied as query
+  parameters/filters
+  
+
+**Returns**:
+
+  list
+  
+
+**Raises**:
+
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
+  or valid response JSON
+  
+
+**Example**:
+
+```
+>>> air.user_configs.list()
+[<UserConfig userdata1 cloud-init-user-data 84ddf2da-7a09-4a3b-a2b9-09179f4668c8>]
+```
+
+<a name="air_sdk.userconfig.UserConfigApi.create"></a>
+### create
+
+Create a new UserConfig
+
+**Arguments**:
+
+- `name` _str_ - UserConfig name
+- `kind` _str_ - Must be 'cloud-init-user-data' or 'cloud-init-meta-data'
+- `organization` _str_ - Organization ID
+- `content` _str_ - Plaintext content of the data-script or a path to an existing file or an open file handle
+  
+
+**Returns**:
+
+  [`UserConfig`](#UserConfig)
+  
+
+**Raises**:
+
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
+  or valid response JSON
+  
+
+**Example**:
+
+```
+>>> userdata = air.user_configs.create(name='userdata1', kind='cloud-init-user-data', organization=None, content='/tmp/userConfig-ex1.YML')
+<UserConfig userdata1 cloud-init-user-data 09b168b8-f9dd-408c-b3c6-bbecf6a43a09>
+ 
+>>> metadata = air.user_configs.create(name='metadata1', kind='cloud-init-meta-data', organization='3dadd54d-583c-432e-9383-a2b0b1d7f551', content='local-hostname: cloud-init-node')
+<UserConfig metadata1 cloud-init-meta-data a19a8715-b46b-4599-81e6-379adebe4bb4>
+```
+
+<a name="air_sdk.userconfig.UserConfigApi.get"></a>
+### get
+
+Get an existing UserConfig
+
+**Arguments**:
+
+- `kwargs` _dict, optional_ - All other optional keyword arguments are applied as query
+  parameters/filters
+  
+
+**Returns**:
+
+  [`UserConfig`](#UserConfig)
+  
+
+**Raises**:
+
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
+  or valid response JSON
+  
+
+**Example**:
+
+```
+>>> air.user_configs.get(id='09b168b8-f9dd-408c-b3c6-bbecf6a43a09')
+<UserConfig userdata1 cloud-init-user-data 09b168b8-f9dd-408c-b3c6-bbecf6a43a09>
+```
+
+<a name="air_sdk.userconfig.UserConfigApi.update"></a>
+### update
+
+Update specific properties of a UserConfig
+
+**Arguments**:
+
+- `kwargs` _dict, optional_ - All other optional keyword arguments are applied as key/value
+  pairs in the request's JSON payload. Kind and Organization fields cannot be changed. 
+
+
+<a name="air_sdk.userconfig.UserConfigApi.delete"></a>  
+### delete
+
+Delete existing UserConfig script
+
+**Raises**:
+
+  [`AirUnexpectedresponse`](#airerror) - Userconfig delete failed
+  
+
+**Example**:
+
+```
+>>> metadata = air.user_configs.create(name='metadata', kind='cloud-init-meta-data', organization=None, content='local-hostname: cloud-init-node') 
+>>> metadata.delete()
+```

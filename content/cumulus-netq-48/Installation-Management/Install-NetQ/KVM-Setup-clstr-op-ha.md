@@ -19,7 +19,7 @@ Follow these steps to set up and configure your VM on a cluster of servers in an
 
 3. Download the NetQ Platform image.
 
-    {{<netq-install/kvm-platform-image deployment="onprem" version="7">}}
+    {{<netq-install/kvm-platform-image deployment="onprem" version="4.8">}}
 
 4. Set up and configure your VM.
 

@@ -45,66 +45,65 @@ ECMP routes resolve to next hop groups, which identify one or more next hops. To
 
 ```
 cumulus@leaf01:mgmt:~$ nv show router nexthop rib
-Nexthop-group  address-family  installed  interface-index  ref-count  type   valid  vrf      Summary           
--------------  --------------  ---------  ---------------  ---------  -----  -----  -------  ------------------
-...
-75             ipv4            on         74               2          zebra  on     default                    
-76             ipv4            on         74               2          zebra  on     default                    
-77             unspecified     on                          2          zebra  on     default  Nexthop-group:  78
-                                                                                             Nexthop-group:  79
-                                                                                             Nexthop-group:  78
-                                                                                             Nexthop-group:  79
-78             ipv4            on         67               3          zebra  on     default                    
-79             ipv4            on         67               3          zebra  on     default                    
-90             ipv6            on         55               8          zebra  on     default                    
-96             ipv6            on         54               8          zebra  on     default                    
-108            unspecified     on                          6          zebra  on     default  Nexthop-group: 109
-                                                                                             Nexthop-group:  65
-                                                                                             Nexthop-group:  90
-                                                                                             Nexthop-group:  96
-                                                                                             Nexthop-group: 109
-                                                                                             Nexthop-group:  65
-                                                                                             Nexthop-group:  90
-                                                                                             Nexthop-group:  96
+                         
+Installed - Install state
+                         
+ID   Installed  UpTime    Vrf      Valid  Via                        ViaIntf        ViaVrf   Depends
+---  ---------  --------  -------  -----  -------------------------  -------------  -------  -------
+7    on         00:10:43  default  on     lo                                        default         
+8    on         00:13:36  default  on     eth0                                      mgmt            
+9    on         00:13:36  default  on     eth0                                      mgmt            
+10              00:10:43  default  on                                                               
+11   on         00:10:43  default  on     192.168.200.1              eth0           mgmt            
+12   on         00:10:43  default  on                                                               
+15   on         00:10:43  default  on                                                               
+30   on         00:10:43  default  on                                                               
+32   on         00:13:33  default  on     swp53                                     default         
+34              00:13:33  default  on     swp51                                     default         
+36              00:13:33  default  on     swp52                                     default         
+38              00:13:33  default  on     swp54                                     default         
+68              00:10:50  default  on     peerlink.4094                             default         
+76   on         00:10:48  default  on     fe80::4ab0:2dff:fe59:eedc  peerlink.4094  default         
+88              00:10:46  default  on     br_default                                default         
+89              00:10:46  default  on     vlan10v0                                  RED             
+90   on         00:10:46  default  on     vlan10                                    RED             
+91              00:10:46  default  on     vlan10v0                                  RED             
+92              00:10:46  default  on     vlan4024_l3                               RED             
+93              00:10:46  default  on     vlan20                                    RED             
+94   on         00:10:46  default  on     vlan10                                    RED             
+95   on         00:10:46  default  on     vlan20                                    RED             
+96   on         00:10:46  default  on     vlan30                                    BLUE            
+97              00:10:46  default  on     vlan4036_l3                               BLUE            
+98   on         00:10:46  default  on     vlan30                                    BLUE 
 ...
 ```
 
 The following example shows information for next hop group 108:
 
 ```
-cumulus@leaf01:mgmt:~$ nv show router nexthop rib 108
-                operational  applied
---------------  -----------  -------
-address-family  unspecified         
-installed       on                  
-ref-count       6                   
-type            zebra               
-valid           on                  
-vrf             default             
+cumulus@leaf01:mgmt:~$ nv show router nexthop rib 93
+                 operational
+---------------  -----------
+type             zebra      
+ref-count        2          
+vrf              default    
+valid            on         
+interface-index  67         
+uptime           00:12:58   
 
-resolved-via
-===============
-    Nexthop                    type        vrf      weight  Summary         
-    -------------------------  ----------  -------  ------  ----------------
-    fe80::4ab0:2dff:fe60:910e  ip-address  default  1       Interface: swp54
-    fe80::4ab0:2dff:fea7:7852  ip-address  default  1       Interface: swp53
-    fe80::4ab0:2dff:fec8:8fb9  ip-address  default  1       Interface: swp52
-    fe80::4ab0:2dff:feff:e147  ip-address  default  1       Interface: swp51
+Via
+======
+    Nexthop  type       vrf  weight  Summary
+    -------  ---------  ---  ------  -------
+    vlan20   interface  RED                 
 
-resolved-via-backup
-======================
+Via BackupNexthops
+=====================
+No Data
 
-depends
+Depends
 ==========
-    Nexthop-group
-    -------------
-    65           
-    90           
-    96           
-    109          
-
-dependents
-=============
+No Data
 ```
 
 ## ECMP Hashing
@@ -575,68 +574,6 @@ Restart `switchd` with the `sudo systemctl restart switchd.service` command.
 
 When you enable adaptive routing, Cumulus Linux uses the default profile settings for your switch ASIC type. You cannot change the default profile settings. If you need to make adjustments to the settings, contact NVIDIA Customer Support.
 
-<!--### Adaptive Routing Profiles
-
-Cumulus Linux provides these adaptive routing profiles:
-- `ar-profile-1` is the default profile for a switch with the Spectrum-2 and Spectrum-3 ASIC.
-- `ar-profile-2` is the default profile for a switch with the Spectrum-4 ASIC.
-- `ar-profile-custom` includes adaptive routing settings you can change (advanced users).
-
-You cannot make changes to the default profiles. You can customize the custom profile by editing the `/etc/cumulus/switchd.d/adaptive_routing_ar_profile_custom.conf` file. NVUE does not provide commands.
-
-After changing parameter values and saving the `/etc/cumulus/switchd.d/adaptive_routing_ar_profile_custom.conf` file, you must reload `switchd` with the `sudo systemctl reload switchd.service` command.
-
-{{%notice note%}}
-- Use caution when making changes to the custom profile settings; modifications might impact traffic. NVIDIA recommends working with Cumulus Linux Technical Support when changing values in the custom profile.
-- If you change the `adaptive_routing.ecmp_size` parameter in the `/etc/cumulus/switchd.d/adaptive_routing_ar_profile_custom.conf` file, you must **restart** `switchd` with the `systemctl restart switchd` command.
-{{%/notice%}}
-
-To apply an adaptive routing profile:
-
-{{< tabs "TabID581 ">}}
-{{< tab "NVUE Commands ">}}
-
-Run the `nv set router adaptive-routing profile <profile-name>` command. The following example sets the profile to `ar-profile-custom`:
-
-```
-cumulus@switch:~$ nv set router adaptive-routing profile ar-profile-custom
-cumulus@switch:~$ nv config apply
-```
-
-To revert the profile to the default profile for the switch:
-
-```
-cumulus@switch:~$ nv unset router adaptive-routing profile
-cumulus@switch:~$ nv config apply
-```
-
-{{%notice note%}}
-When you set the profile to the custom profile, NVUE reloads `switchd`.
-{{%/notice%}}
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Add the `adaptive_routing.profile` parameter to the `/etc/cumulus/switchd.d/adaptive_routing.conf` file.
-
-```
-cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing.conf
-## Global adaptive-routing enable/disable setting
-adaptive_routing.enable = TRUE
-
-## Global AR profile config
-adaptive_routing.profile = ar-profile-custom
-```
-
-Reload `switchd` with the `sudo systemctl reload switchd.service` command.
-
-{{< /tab >}}
-{{< /tabs >}}
-
-{{%notice note%}}
-If you modify the `adaptive_routing.ecmp_size` parameter in the custom profile, then revert to the default profile for the switch, you must restart `switchd`.
-{{%/notice%}}
--->
 ### Link Utilization
 
 Link utilization, when crossing a threshold, is one of the parameters in the adaptive routing decision. The default link utilization threshold percentage on an interface is 70. You can change the percentage to a value between 1 and 100.
@@ -644,7 +581,7 @@ Link utilization, when crossing a threshold, is one of the parameters in the ada
 Link utilization is off by default; you must enable the global link utilization setting to use the link utilization thresholds set on adaptive routing interfaces. You cannot enable or disable link utilization per interface.
 
 {{%notice note%}}
-In Cumulus Linux 5.5 and earlier, link utilization is on by default. If you configured link utilization in a previous release, be sure to enable link utilization after you upgrade to Cumulus Linux 5.8.
+In Cumulus Linux 5.5 and earlier, link utilization is on by default. If you configured link utilization in a previous release, be sure to enable link utilization after you upgrade.
 {{%/notice%}}
 
 {{< tabs "TabID624 ">}}
@@ -665,8 +602,8 @@ cumulus@switch:~$ nv set router adaptive-routing link-utilization-threshold on
 cumulus@switch:~$ nv config apply
 ```
 
-{{%notice note%}}
-When you enable or disable link utilization, NVUE reloads `switchd`.
+{{%notice warning%}}
+Enabling or disabling link utilization restarts the `switchd` service, which causes all network ports to reset, interrupts network services, and resets the switch hardware configuration.
 {{%/notice%}}
 
 {{< /tab >}}
@@ -689,11 +626,57 @@ interface.swp51.adaptive_routing.enable = TRUE
 interface.swp51.adaptive_routing.link_util_thresh = 100
 ```
 
-Reload `switchd` with the `sudo systemctl reload switchd.service` command.
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
 
 {{< /tab >}}
 {{< /tabs >}}
 
+<!--### Buffer Mode
+
+Adaptive routing in Cumulus Linux runs in shared buffer mode, where the switch automatically adjusts the ingress buffer behavior. To achieve better ASIC efficiency, you can change the buffer mode to ingress, where packets stay in the ingress port to absorb bigger traffic bursts and do not transfer elsewhere.
+
+{{%notice note%}}
+Cumulus Linux supports buffer mode on Spectrum-4 switches only.
+{{%/notice%}}
+
+To change the adaptive routing buffer mode to ingress:
+
+{{< tabs "TabID641 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set router adaptive-routing buffer-mode ingress
+cumulus@switch:~$ nv config apply
+```
+
+To reset the buffer mode back to the default setting, run the `nv set router adaptive-routing buffer-mode auto` command.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/cumulus/switchd.d/adaptive_routing.conf` file to set the `adaptive_routing.buffer-mode` parameter to `ingress`:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing.conf
+## Global adaptive-routing enable/disable setting
+adaptive_routing.enable = TRUE
+
+## Global adaptive-routing buffer mode setting
+adaptive_routing.buffer-mode = ingress
+
+## Global Link-utilization-threshold on/off
+adaptive_routing.link_utilization_threshold_disabled = FALSE
+
+## Per-port configuration
+interface.swp51.adaptive_routing.enable = TRUE
+interface.swp51.adaptive_routing.link_util_thresh = 100
+```
+
+To reset the buffer mode back to the default setting, set the `adaptive_routing.buffer-mode` parameter to `auto`.
+
+{{< /tab >}}
+{{< /tabs >}}
+-->
 ### Example Configuration
 
 {{< tabs "TabID693 ">}}
@@ -704,7 +687,7 @@ The following example enables adaptive routing on swp1 and swp2. Global link uti
 ```
 cumulus@switch:~$ nv set interface swp51 router adaptive-routing enable on
 cumulus@switch:~$ nv set interface swp52 router adaptive-routing enable on
-cumulus@switch:~$ nv config apply 
+cumulus@switch:~$ nv config apply
 ```
 
 The following example enables adaptive routing on swp51 and swp52, sets the link utilization threshold percentage to 100 on both swp51 and swp52, and enables global link utilization:
@@ -776,3 +759,9 @@ enable                      on            off
 ```
 
 To show adaptive routing configuration for an interface, run the `nv show interface <interface> router adaptive-routing`.
+
+## Considerations
+
+### IPv6 Next Hop Preference
+
+Cumulus Linux uses IPv6 link-local addresses as BGP next hops when receiving a route with both link-local and global next hops. To configure a BGP peering to prefer global next hop addresses, configure the `ipv6-nexthop-prefer-global` option in an inbound route map applied to the peer. This is required when there are multiple BGP peerings to the same router with adaptive routing enabled, or multiple peerings to the same router on interfaces that share the same MAC address or physical interface. Refer to {{<link url="Route-Filtering-and-Redistribution/#set-ipv6-prefer-global" text="Set IPv6 Prefer Global">}}.

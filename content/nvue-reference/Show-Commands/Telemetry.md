@@ -19,7 +19,7 @@ Shows the histogram configuration settings for the specified interface and opera
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` |  The interface ID. |
+| `<interface-id>` |  The interface name. |
 
 ### Version History
 
@@ -35,13 +35,13 @@ cumulus@switch:~$ nv show interface swp1 telemetry
 
 ## <h>nv show interface \<interface-id\> telemetry bw-gauge</h>
 
-Shows the bandwidth gauge setting for the specified interface
+Shows the bandwidth gauge setting for the specified interface.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` |  The interface ID. |
+| `<interface-id>` |  The interface name. |
 
 ### Version History
 
@@ -66,7 +66,7 @@ Shows histogram details for the specified interface.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` |  The interface ID. |
+| `<interface-id>` |  The interface name. |
 
 ### Version History
 
@@ -82,13 +82,13 @@ cumulus@switch:~$ nv show interface swp1 telemetry histogram
 
 ## <h>nv show interface \<interface-id\> telemetry histogram ingress-buffer</h>
 
-Shows ingress queue depth histogram samples collected or the specified interface.
+Shows ingress queue depth histogram samples collected for the specified interface.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` |  The interface ID. |
+| `<interface-id>` |  The interface name. |
 
 ### Version History
 
@@ -110,7 +110,7 @@ Shows the ingress queue depth histogram samples collected for all priority group
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` |  The interface ID. |
+| `<interface-id>` |  The interface name. |
 
 ### Version History
 
@@ -132,7 +132,8 @@ Shows the ingress queue depth histogram samples collected at the configured inte
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` |  The interface ID. |
+| `<interface-id>` |  The interface name. |
+| `<pg-id>` |  The priority group ID. |
 
 ### Version History
 
@@ -159,7 +160,7 @@ Show the configured interval set for ingress queue depth histogram samples.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` |  The interface ID. |
+| `<interface-id>` |  The interface name. |
 | `<pg-id>` |  The priority group ID. |
 
 ### Version History
@@ -182,7 +183,7 @@ Shows the snapshot collected for the ingress queue depth histogram samples.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` |  The interface ID. |
+| `<interface-id>` |  The interface name. |
 | `<pg-id>` |  The priority group ID. |
 
 ### Version History
@@ -217,7 +218,7 @@ Shows the egress queue depth histogram samples collected at the configured inter
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` |  The interface ID. |
+| `<interface-id>` |  The interface name. |
 
 ### Version History
 
@@ -239,7 +240,7 @@ Shows the ingress queue depth histogram samples collected for all traffic classe
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` |  The interface ID. |
+| `<interface-id>` |  The interface name. |
 
 ### Version History
 
@@ -261,7 +262,7 @@ Shows the egress queue depth histogram samples collected at the configured inter
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` |  The interface ID. |
+| `<interface-id>` |  The interface name. |
 | `<tc-id>` |  The traffic class ID. |
 
 ### Version History
@@ -284,7 +285,7 @@ Shows the configured interval set for egress queue depth histogram samples.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` |  The interface ID. |
+| `<interface-id>` |  The interface name. |
 | `<tc-id>` |  The traffic class ID. |
 
 ### Version History
@@ -307,7 +308,7 @@ Shows the snapshot collected for the egress queue depth histogram samples.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` |  The interface ID. |
+| `<interface-id>` |  The interface name. |
 | `<tc-id>` |  The traffic class ID. |
 
 ### Version History
@@ -330,7 +331,7 @@ Shows the counter histogram samples collected at the configured interval for the
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` |  The interface ID. |
+| `<interface-id>` |  The interface name. |
 
 ### Version History
 
@@ -352,7 +353,7 @@ Shows the counter histogram samples collected at the configured interval for all
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` |  The interface ID. |
+| `<interface-id>` |  The interface name. |
 
 ### Version History
 
@@ -374,7 +375,7 @@ Shows the counter histogram samples collected at the configured interval for the
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` |  The interface ID. |
+| `<interface-id>` |  The interface name. |
 | `<counter-type-id>` |  The counter type ID. |
 
 ### Version History
@@ -397,7 +398,7 @@ Shows the configured interval set for counter histogram samples for the specifie
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` |  The interface ID. |
+| `<interface-id>` |  The interface name. |
 | `<counter-type-id>` |  The counter type ID. |
 
 ### Version History
@@ -420,7 +421,7 @@ Shows the snapshot collected for the counter histogram samples for the specified
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` |  The interface ID. |
+| `<interface-id>` |  The interface name. |
 | `<counter-type-id>` |  The counter type ID. |
 
 ### Version History
@@ -435,10 +436,451 @@ cumulus@switch:~$ nv show interface swp1 telemetry histogram counter counter-typ
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service telemetry histogram</h>
+## <h>nv show interface \<interface-id\> telemetry histogram latency</h>
+
+Shows the latency histogram details for the interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 telemetry histogram latency
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> telemetry histogram latency traffic-class</h>
+
+Shows the latency histogram samples collected for all traffic classes for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 telemetry histogram latency traffic-class
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> telemetry histogram latency traffic-class \<tc-id\></h>
+
+Shows the latency histogram samples collected for the specified traffic class on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+| `tc-id`| The traffic class ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 telemetry histogram latency traffic-class 2
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> telemetry histogram latency traffic-class \<tc-id\> threshold</h>
+
+Shows the configured interval set for latency histogram samples for the specified traffic class on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+| `tc-id` | The traffic class ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 telemetry histogram latency traffic-class 2 threshold
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> telemetry histogram latency traffic-class \<tc-id\> snapshot</h>
+
+Shows the snapshot collected for latency histogram samples for the specified traffic class on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+| `tc-id` | The traffic class ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 telemetry histogram latency traffic-class 2 snapshot
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry bw-gauge</h>
+
+Shows a summary of the bandwidth gauge for all interfaces.
+
+{{%notice note%}}
+In Cumulus Linux 5.9 and earlier, this command is `nv show service telemetry bw-gauge`.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry bw-gauge
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry bw-gauge interface</h>
+
+Shows a summary of the bandwidth for all interfaces with bandwidth gauge enabled.
+
+{{%notice note%}}
+In Cumulus Linux 5.9 and earlier, this command is `nv show service telemetry bw-gauge interface`.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry bw-gauge interface
+Interface  Tx (Mbps)  Rx (Mbps)
+---------  ---------  ---------
+swp1       4          4
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry export</h>
+
+Shows telemetry export configuration on the switch.
+
+{{%notice note%}}
+- Cumulus Linux supports open telemetry export on switches with the Spectrum-4 ASIC only in Cumulus Linux 5.10.0 and later.
+- Open telemetry export is a beta feature in Cumulus Linux 5.10.0.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry export
+                    applied   pending 
+------------------  --------  --------
+vrf                 default   default 
+otlp                                  
+  state             disabled  disabled
+  grpc                                
+    insecure  disabled  disabled
+    port            8443      8443    
+    [destination]
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry export otlp gRPC</h>
+
+Shows OTLP gRPC export configuration on the switch.
+
+{{%notice note%}}
+- Cumulus Linux supports open telemetry export on switches with the Spectrum-4 ASIC only in Cumulus Linux 5.10.0 and later.
+- Open telemetry export is a beta feature in Cumulus Linux 5.10.0.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry export otlp gRPC
+          applied 
+--------  --------
+insecure  disabled
+port      8443 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry export otlp gRPC destination</h>
+
+Shows OTLP gRPC destination configuration on the switch.
+
+{{%notice note%}}
+- Cumulus Linux supports open telemetry export on switches with the Spectrum-4 ASIC only in Cumulus Linux 5.10.0 and later.
+- Open telemetry export is a beta feature in Cumulus Linux 5.10.0.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry export otlp gRPC destination
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry export otlp gRPC destination \<destination\></h>
+
+Shows specific OTLP gRPC destination configuration on the switch.
+
+{{%notice note%}}
+- Cumulus Linux supports open telemetry export on switches with the Spectrum-4 ASIC only in Cumulus Linux 5.10.0 and later.
+- Open telemetry export is a beta feature in Cumulus Linux 5.10.0.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry export otlp gRPC destination 10.1.1.100
+      applied  pending
+----  -------  -------
+port           4317
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry hft</h>
+
+Shows the high frequency telemetry configuration.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry hft
+profile
+==========
+    Profile   traffic-class  counter       sample-interval
+    --------  -------------  ------------  ---------------
+    profile2  0              rx-byte       1000           
+              1              tx-byte                      
+              2                                           
+              3                                           
+              4                                           
+              5                                           
+              6                                           
+              7                                           
+              8                                           
+              9                                           
+    standard  3              rx-byte       5000           
+                             tc-occupancy                 
+                             tx-byte
+...
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry hft profile</h>
+
+Shows the high frequency telemetry profiles configured on the switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry hft profile
+Profile   traffic-class  counter       sample-interval
+--------  -------------  ------------  ---------------
+profile2  0              rx-byte       1000           
+          1              tx-byte                      
+          2                                           
+          3                                           
+          4                                           
+          5                                           
+          6                                           
+          7                                           
+          8                                           
+          9                                           
+standard  3              rx-byte       5000           
+                         tc-occupancy                 
+                         tx-byte
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry hft profile \<profile-id\></h>
+
+Shows the configuration settings for a specific profile:
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |  The name of the profile. High frequency telemetry uses profiles for data collection. A profile is a set of configurations. Cumulus Linux provides a default profile called `standard`. You can create a maximum of four new profiles (four profiles in addition to the default profile).|
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry hft profile profile2
+                 operational  applied
+---------------  -----------  -------
+sample-interval  1000         1000   
+[traffic-class]  0            0      
+[traffic-class]  1            1      
+[traffic-class]  2            2      
+[traffic-class]  3            3      
+[traffic-class]  4            4      
+[traffic-class]  5            5      
+[traffic-class]  6            6      
+[traffic-class]  7            7      
+[traffic-class]  8            8      
+[traffic-class]  9            9      
+[counter]        rx-byte      rx-byte
+[counter]        tx-byte      tx-byte
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry hft target</h>
+
+Shows the high frequency telemetry configured targets.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry hft target
+applied
+-------
+local
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry hft job</h>
+
+Shows information for all data collection jobs, such as the start time, duration, status, and ports on which the data is collected.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry hft job
+Job Id      Start Time               Duration(s)        Profile     Ports    Status  
+
+---------   --------------           ------------       ---------   -------   ---------  
+
+1           10-05-2024 09:00:00      20                 standard    all       complete 
+2           12-05-2024 09:00:00      20                 standard    all       complete 
+3           15-05-2024 09:00:00      20                 standard    all       complete 
+4           16-05-2024 09:00:00      20                 standard    all       complete 
+5           17-05-2024 09:00:00      20                 standard    all       complete 
+6           19-05-2024 09:00:00      20                 standard    all       complete 
+7           19-05-2024 12:00:00      20                 standard    all       running 
+8           20-05-2024 09:00:00      20                 standard    all       pending
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry hft job \<job-id\></h>
+
+Shows information about a specific high frequency telemetry data collection job.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<job-id>`| The high frequency telemetry data collection job ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry hft job 1 
+                       operational
+---------------------  ----------------- 
+start-time             01-01-2024 12:00:00 
+duration               20 
+traffic-class          3 
+counter                tx-byte,rx-byte,tc-occupancy 
+sample-interval        5000 
+ports                  swp1-swp64 
+status                 pending 
+target                 scp://abc@server1:/hft-data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry histogram</h>
 
 Shows telemetry histogram configuration settings and operational data.
 
+{{%notice note%}}
+In Cumulus Linux 5.9 and earlier, this command is `nv show service telemetry histogram`.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -446,15 +888,19 @@ Introduced in Cumulus Linux 5.7.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show service telemetry histogram
+cumulus@switch:~$ nv show system telemetry histogram
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service telemetry histogram ingress-buffer</h>
+## <h>nv show system telemetry histogram ingress-buffer</h>
 
 Shows ingress queue length histogram configuration settings and operational data.
 
+{{%notice note%}}
+In Cumulus Linux 5.9 and earlier, this command is `nv show service telemetry histogram ingress-buffer`.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -462,15 +908,19 @@ Introduced in Cumulus Linux 5.7.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show service telemetry histogram ingress-buffer
+cumulus@switch:~$ nv show system telemetry histogram ingress-buffer
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service telemetry histogram egress-buffer</h>
+## <h>nv show system telemetry histogram egress-buffer</h>
 
 Shows egress queue length histogram configuration settings and operational data.
 
+{{%notice note%}}
+In Cumulus Linux 5.9 and earlier, this command is `nv show service telemetry histogram egress-buffer`.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -478,15 +928,19 @@ Introduced in Cumulus Linux 5.7.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show service telemetry histogram egress-buffer
+cumulus@switch:~$ nv show system telemetry histogram egress-buffer
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service telemetry histogram counter</h>
+## <h>nv show system telemetry histogram counter</h>
 
 Shows counter histogram configuration settings and operational data.
 
+{{%notice note%}}
+In Cumulus Linux 5.9 and earlier, this command is `nv show service telemetry histogram counter`.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -494,14 +948,18 @@ Introduced in Cumulus Linux 5.7.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show service telemetry histogram counter
+cumulus@switch:~$ nv show system telemetry histogram counter
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service telemetry histogram interface</h>
+## <h>nv show system telemetry histogram interface</h>
 
 Shows a list of the interfaces with enabled histograms.
+
+{{%notice note%}}
+In Cumulus Linux 5.9 and earlier, this command is `nv show service telemetry histogram interface`.
+{{%/notice%}}
 
 ### Version History
 
@@ -510,7 +968,7 @@ Introduced in Cumulus Linux 5.7.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show service telemetry histogram interface
+cumulus@switch:~$ nv show system telemetry histogram interface
 Interface         ingress-buffer          egress-buffer            counter 
 --------------------------------------------------------------------------------------- 
 swp1              0,1,2                   -                        tx-byte,rx-byte 
@@ -519,45 +977,106 @@ swp2              -                       0,1,8                    tx-byte,tx-by
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service telemetry bw-gauge</h>
+## <h>nv show system telemetry histogram latency</h>
 
-Shows a summary of the bandwidth gauge for all interfaces.
+Shows latency Histogram configuration and operational data.
+
+{{%notice note%}}
+In Cumulus Linux 5.9 and earlier, this command is `nv show service telemetry histogram latency`.
+{{%/notice%}}
 
 ### Version History
 
-Introduced in Cumulus Linux 5.7.0
+Introduced in Cumulus Linux 5.9.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv show service telemetry bw-gauge
+cumulus@switch:~$ nv show system telemetry histogram latency
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service telemetry bw-gauge interface</h>
+## <h>nv show system telemetry interface-stats</h>
 
-Shows a summary of the bandwidth for all interfaces with bandwidth gauge enabled.
+Shows telemetry interface statistics configuration.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.7.0
+Introduced in Cumulus Linux 5.10.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv show service telemetry bw-gauge interface
-Interface  Tx (Mbps)  Rx (Mbps)
----------  ---------  ---------
-swp1       4          4
+cumulus@switch:~$ nv show system telemetry interface-stats
+                 applied   pending 
+---------------  --------  --------
+sample-interval  1         1       
+export                             
+  state          enabled  enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service telemetry snapshot-file</h>
+## <h>nv show system telemetry interface-stats egress-buffer</h>
+
+Shows the telemetry interface statistics egress buffer configuration.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry interface-stats egress-buffer
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry interface-stats export</h>
+
+Shows if interface statistics export is enabled or disabled.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry interface-stats export
+      applied   pending 
+-----  --------  --------
+state  enabled  enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry interface-stats ingress-buffer</h>
+
+Shows telemetry interface statistics ingress buffer configuration.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry interface-stats ingress-buffer
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot-file</h>
 
 Shows histogram snapshot file configuration and operational data.
 
+{{%notice note%}}
+In Cumulus Linux 5.9 and earlier, this command is `nv show service telemetry snapshot-file`.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -565,5 +1084,5 @@ Introduced in Cumulus Linux 5.7.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show service telemetry snapshot-file
+cumulus@switch:~$ nv show system telemetry snapshot-file
 ```

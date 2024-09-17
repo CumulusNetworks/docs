@@ -1,0 +1,728 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: Simple DirectMedia Layer
+Upstream-Contact: https://bugzilla.libsdl.org/
+Source: https://www.libsdl.org/download-1.2.php
+ Repackaged, excluding potentially non-DFSG files.
+Files-Excluded:
+ Borland.zip
+ CWprojects.sea.bin
+ MPWmake.sea.bin
+ Watcom-OS2.zip
+ Watcom-Win32.zip
+ src/stdlib/SDL_qsort.c
+ src/video/fbcon/riva_mmio.h
+ symbian.zip
+
+Files: *
+Copyright:
+  1997-2012, Sam Lantinga <slouken@libsdl.org>
+  2002, Stephane Marchesin <stephane.marchesin@wanadoo.fr>
+License-Grant:
+ This library is free software; you can redistribute it and/or modify it
+ under the terms of the GNU Lesser General Public License as published
+ by the Free Software Foundation; either version 2.1 of the License, or
+ (at your option) any later version.
+License: LGPL-2.1+
+
+Files:
+ include/begin_code.h
+ include/close_code.h
+ src/audio/SDL_mixer_m68k.c
+ src/audio/SDL_mixer_m68k.h
+ src/audio/alsa/SDL_alsa_audio.c
+ src/audio/alsa/SDL_alsa_audio.h
+ src/audio/bsd/SDL_bsdaudio.c
+ src/audio/bsd/SDL_bsdaudio.h
+ src/audio/mint/SDL_mintaudio.c
+ src/audio/mint/SDL_mintaudio.h
+ src/audio/mint/SDL_mintaudio_dma8.c
+ src/audio/mint/SDL_mintaudio_dma8.h
+ src/audio/mint/SDL_mintaudio_gsxb.c
+ src/audio/mint/SDL_mintaudio_it.S
+ src/audio/mint/SDL_mintaudio_mcsn.c
+ src/audio/mint/SDL_mintaudio_mcsn.h
+ src/audio/mint/SDL_mintaudio_stfa.c
+ src/audio/mint/SDL_mintaudio_stfa.h
+ src/audio/mint/SDL_mintaudio_xbios.c
+ src/audio/mme/SDL_mmeaudio.c
+ src/audio/mme/SDL_mmeaudio.h
+ src/audio/nto/SDL_nto_audio.c
+ src/audio/nto/SDL_nto_audio.h
+ src/audio/symbian/SDL_epocaudio.cpp
+ src/audio/symbian/SDL_epocaudio.h
+ src/cdrom/macos/SDL_syscdrom_c.h
+ src/cdrom/macosx/AudioFilePlayer.c
+ src/cdrom/macosx/AudioFilePlayer.h
+ src/cdrom/macosx/AudioFileReaderThread.c
+ src/cdrom/macosx/CDPlayer.c
+ src/cdrom/macosx/CDPlayer.h
+ src/cdrom/macosx/SDL_syscdrom_c.h
+ src/cdrom/mint/SDL_syscdrom.c
+ src/joystick/darwin/SDL_sysjoystick.c
+ src/main/symbian/EKA1/SDL_main.cpp
+ src/thread/dc/SDL_systhread_c.h
+ src/thread/generic/SDL_systhread_c.h
+ src/thread/irix/SDL_systhread_c.h
+ src/thread/os2/SDL_systhread_c.h
+ src/thread/pth/SDL_systhread_c.h
+ src/thread/pthread/SDL_systhread_c.h
+ src/thread/riscos/SDL_systhread_c.h
+ src/thread/symbian/SDL_sysmutex.cpp
+ src/thread/symbian/SDL_syssem.cpp
+ src/thread/symbian/SDL_systhread.cpp
+ src/thread/symbian/SDL_systhread_c.h
+ src/thread/win32/SDL_systhread_c.h
+ src/timer/symbian/SDL_systimer.cpp
+ src/video/ataricommon/SDL_atarigl.c
+ src/video/ataricommon/SDL_atarigl_c.h
+ src/video/os2fslib/SDL_os2fslib.c
+ src/video/os2fslib/SDL_os2fslib.h
+ src/video/photon/SDL_ph_video.h
+ src/video/qtopia/SDL_QPEApp.cc
+ src/video/quartz/CGS.h
+ src/video/quartz/SDL_QuartzEvents.m
+ src/video/quartz/SDL_QuartzGL.m
+ src/video/quartz/SDL_QuartzKeys.h
+ src/video/quartz/SDL_QuartzVideo.h
+ src/video/quartz/SDL_QuartzVideo.m
+ src/video/quartz/SDL_QuartzWM.h
+ src/video/quartz/SDL_QuartzWM.m
+ src/video/quartz/SDL_QuartzWindow.h
+ src/video/quartz/SDL_QuartzWindow.m
+ src/video/riscos/SDL_riscosASM.S
+ src/video/riscos/SDL_riscosFullScreenVideo.c
+ src/video/riscos/SDL_riscosevents.c
+ src/video/riscos/SDL_riscosmouse.c
+ src/video/riscos/SDL_riscossprite.c
+ src/video/riscos/SDL_riscostask.c
+ src/video/riscos/SDL_riscostask.h
+ src/video/riscos/SDL_riscosvideo.c
+ src/video/riscos/SDL_wimppoll.c
+ src/video/riscos/SDL_wimpvideo.c
+ src/video/symbian/EKA1/SDL_epocevents.cpp
+ src/video/symbian/EKA1/SDL_epocvideo.cpp
+ src/video/symbian/EKA1/SDL_epocvideo.h
+ src/video/symbian/EKA2/SDL_epocvideo.cpp
+ src/video/symbian/EKA2/SDL_epocvideo.h
+ src/video/symbian/SDL_epocevents_c.h
+ src/video/x11/SDL_x11dyn.c
+ src/video/x11/SDL_x11dyn.h
+ src/video/x11/SDL_x11sym.h
+ src/video/xbios/SDL_xbios_blowup.c
+ src/video/xbios/SDL_xbios_blowup.h
+ src/video/xbios/SDL_xbios_centscreen.c
+ src/video/xbios/SDL_xbios_centscreen.h
+ src/video/xbios/SDL_xbios_milan.c
+ src/video/xbios/SDL_xbios_milan.h
+ src/video/xbios/SDL_xbios_sb3.c
+ src/video/xbios/SDL_xbios_sb3.h
+ src/video/xbios/SDL_xbios_tveille.c
+ src/video/xbios/SDL_xbios_tveille.h
+Copyright: 1997-2012, Sam Lantinga
+License-Grant:
+ This library is free software; you can redistribute it and/or modify it
+ under the terms of the GNU Library General Public License as published
+ by the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+License: LGPL-2+
+
+Files: Xcode/TemplatesForXcode*OpenGL*/atlantis/*
+Copyright:
+  1993-1994, Silicon Graphics, Inc.
+  1994, Mark J. Kilgard
+License: MIT-CMU~SGI
+
+Files: src/video/ps3/*
+Copyright: 2008-2009, International Business Machines Corporation
+License-Grant:
+ This library is free software; you can redistribute it and/or modify it
+ under the terms of the GNU Lesser General Public License as published
+ by the Free Software Foundation; either version 2.1 of the License, or
+ (at your option) any later version.
+License: LGPL-2.1+
+
+Files: src/video/nanox/*
+Copyright:
+  1997-2012, Sam Lantinga <slouken@libsdl.org>
+  2001, Hsieh-Fu Tsai <clare@setabox.com>
+  2002, Greg Haerr <greg@censoft.com>
+License-Grant:
+ This library is free software; you can redistribute it and/or modify it
+ under the terms of the GNU Library General Public License as published
+ by the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+License: LGPL-2+
+
+Files:
+ src/video/Xext/Xinerama/Xinerama.c
+ src/video/Xext/Xv/Xv.c
+ src/video/Xext/Xv/Xvlibint.h
+ src/video/Xext/extensions/Xv.h
+ src/video/Xext/extensions/Xvlib.h
+ src/video/Xext/extensions/Xvproto.h
+ src/video/Xext/extensions/panoramiXext.h
+ src/video/Xext/extensions/panoramiXproto.h
+Copyright: 1987,1991, Digital Equipment Corporation, Maynard, Massachusetts
+License: MIT~Digital
+
+Files: acinclude/ltdl.m4
+ acinclude/ltoptions.m4
+ acinclude/ltsugar.m4
+ acinclude/ltversion.m4
+ acinclude/lt~obsolete.m4
+Copyright: 1999-2008, Free Software Foundation, Inc.
+License: FSFULLR
+
+Files:
+ acinclude/libtool.m4
+ build-scripts/ltmain.sh
+Copyright: 1996-2001, 2003-2008, Free Software Foundation, Inc.
+License: GPL-2+ with Libtool exception
+ As a special exception to the GNU General Public License, if you
+ distribute this file as part of a program or library that is built
+ using GNU Libtool, you may include this file under the same
+ distribution terms that you use for the rest of that program.
+
+Files:
+ build-scripts/config.guess
+ build-scripts/config.sub
+Copyright: 1992-2009, Free Software Foundation, Inc.
+License: GPL-2+ with Autoconf exception
+ As a special exception to the GNU General Public License, if you
+ distribute this file as part of a program that contains a configuration
+ script generated by Autoconf, you may include it under the same
+ distribution terms that you use for the rest of that program.
+
+Files:
+ src/video/e_log.h
+ src/video/e_pow.h
+ src/video/e_sqrt.h
+ src/video/math_private.h
+Copyright: 1993, Sun Microsystems, Inc.
+License: MIT~Sun
+
+Files:
+ src/video/Xext/Xxf86vm/XF86VMode.c
+ src/video/Xext/extensions/xf86vmode.h
+ src/video/Xext/extensions/xf86vmstr.h
+Copyright: 1995, Kaleb S. KEITHLEY
+License: X11~Kaleb
+
+Files: src/hermes/*
+Copyright:
+  1998, Christian Nentwich <brn@eleet.mcb.at>
+  1998, Christian Nentwich <c.nentwich@cs.ucl.ac.uk>
+  1998, Glenn Fielder (gaffer@gaffer.org)
+  1999, Jonathan Matthew <jmatthew@uq.net.au>
+  Glenn Fiedler <ptc@gaffer.org>
+  Intel Corporation
+License-Grant:
+ This library and all the files enclosed in this package are free
+ software under the terms of the GNU Library General Public License
+ (LGPL). Please refer to the included file COPYING.LIB for the exact
+ terms.
+License: LGPL-2
+
+Files: src/video/caca/SDL_cacavideo.*
+Copyright: 2003, Sam Hocevar <sam@zoy.org>
+License-Grant:
+ This library is free software; you can redistribute it and/or modify it
+ under the terms of the GNU Library General Public License as published
+ by the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+License: LGPL-2+
+
+Files: src/cdrom/macosx/SDLOSXCAGuard.*
+Copyright:
+  1997-2012, Sam Lantinga
+  2002, Apple Computer, Inc.
+License: LGPL-2+ and AML
+
+Files:
+ src/video/Xext/Xxf86dga/XF86DGA.c
+ src/video/Xext/Xxf86dga/XF86DGA2.c
+ src/video/Xext/extensions/xf86dga1.h
+ src/video/Xext/extensions/xf86dga1str.h
+ src/video/Xext/extensions/xf86dgastr.h
+ src/video/fbcon/matrox_regs.h
+Copyright:
+  1995, Jon Tombs
+  1995-1996, The XFree86 Project, Inc
+  1999, XFree86 Inc
+License: X11
+Comment:
+ Source lacks licensing statement, but is clearly derived from XFree86.
+
+Files:
+ src/video/Xext/extensions/Xext.h
+ src/video/Xext/extensions/extutil.h
+Copyright: 1989, 1998, The Open Group
+License: X11~OpenGroup
+
+Files:
+ src/video/Xext/XME/xme.c
+ src/video/Xext/extensions/xme.h
+Copyright: 1993-2001, Xi Graphics, Inc.
+License: X11
+Comment:
+ Source lacks licensing statement.  Guessing it is same as other
+ somewhat related files.
+ .
+ FIXME: Find proof for the purely speculative licensing guesswork.
+
+Files: src/timer/macos/FastTimes.*
+Copyright: None (public domain)
+License: public-domain
+ This file is Copyright (C) Matt Slot, 1999-2012. It is hereby placed
+ into the public domain. The author makes no warranty as to fitness or
+ stability
+
+Files: build-scripts/install-sh
+Copyright: 1994, X Consortium
+License: X11
+
+Files: src/loadso/macosx/SDL_dlcompat.c
+Copyright:
+  1997-2012, Sam Lantinga
+  2002, Jorge Acereda <jacereda@users.sourceforge.net>
+  2002, Peter O'Gorman <ogorman@users.sourceforge.net>
+License: Expat and LGPL-2.1+
+
+Files: test/configure
+Copyright: 1992-1996, 1998-2006, Free Software Foundation, Inc.
+License: FSFUL
+
+Files: configure
+Copyright: 1992-1996, 1998-2006, Free Software Foundation, Inc.
+  1996-2001, 2003-2008, Free Software Foundation, Inc.
+  2006, Free Software Foundation, Inc.
+License-Grant:
+ GNU Libtool is free software; you can redistribute it and/or modify it
+ under the terms of the GNU General Public License as published by the
+ Free Software Foundation; either version 2 of the License, or (at your
+ option) any later version.
+License: FSFUL and GPL-2+ with Libtool exception
+ As a special exception to the GNU General Public License, if you
+ distribute this file as part of a program or library that is built
+ using GNU Libtool, you may include this file under the same
+ distribution terms that you use for the rest of that program.
+
+Files: src/audio/SDL_mixer_MMX.h
+Copyright: 2002, Stephane Marchesin <stephane.marchesin@wanadoo.fr>
+License-Grant:
+ This code is licensed under the LGPL (see COPYING for details)
+License: LGPL-2.1
+
+Files: src/cdrom/osf/SDL_syscdrom.c
+Copyright: 2003, UNKNOWN
+License-Grant:
+ This library is free software; you can redistribute it and/or modify it
+ under the terms of the GNU Library General Public License as published
+ by the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+License: LGPL-2+
+Comment:
+ FIXME: Copyright holder is unknown.
+
+Files: src/video/SDL_yuv_sw.c
+Copyright:
+  1995, Brown University
+  1995, Erik Corry
+  1995, The Regents of the University of California
+  1997-2012, Sam Lantinga
+License-Grant:
+ This library is free software; you can redistribute it and/or modify it
+ under the terms of the GNU Lesser General Public License as published
+ by the Free Software Foundation; either version 2.1 of the License, or
+ (at your option) any later version.
+License: LGPL-2.1+ and PostgreSQL and PostgreSQL~Corry and PostgreSQL~Brown
+
+Files: src/video/maccommon/SDL_macwm.c
+Copyright:
+  1997-2012, Sam Lantinga
+  1999, Apple Computer, Inc.
+License-Grant:
+ This library is free software; you can redistribute it and/or modify it
+ under the terms of the GNU Lesser General Public License as published
+ by the Free Software Foundation; either version 2.1 of the License, or
+ (at your option) any later version.
+License: LGPL-2.1+ and Apple-DSC
+
+Files: src/audio/sun/SDL_sunaudio.c
+Copyright:
+  1989, Rich Gopstein and Harris Corporation
+  1997-2012, Sam Lantinga
+License-Grant:
+ This library is free software; you can redistribute it and/or modify it
+ under the terms of the GNU Lesser General Public License as published
+ by the Free Software Foundation; either version 2.1 of the License, or
+ (at your option) any later version.
+License: LGPL-2.1+ and NTP~Gopstein
+
+Files: include/SDL_opengl.h
+Copyright:
+  1991-2004, Silicon Graphics, Inc.
+  1997-2012, Sam Lantinga
+License-Grant:
+ This library is free software; you can redistribute it and/or modify it
+ under the terms of the GNU Lesser General Public License as published
+ by the Free Software Foundation; either version 2.1 of the License, or
+ (at your option) any later version.
+License: LGPL-2.1+ and SGI-B-1.1
+
+Files: src/audio/dc/aica.c
+Copyright: 2000, Dan Potter
+License-Grant:
+ This file is part of the Dreamcast function library. Please see
+ libdream.c for further details.
+License: X11
+Comment:
+ Source lacks licensing statement, but is clearly derived from libdream.
+ See e.g. <http://cadcdev.sourceforge.net/softprj/libdream-0.6.tar.gz>.
+
+Files: src/thread/win32/win_ce_semaphore.c
+Copyright: 1998, Johnson M. Hart
+License: any-use
+
+Files: docs/html/guidevideoopengl.html
+Copyright: 2000, Michael Vance <briareos@lokigames.com>
+License-Grant:
+ Distributed under terms of the LGPL.
+License: LGPL
+
+Files: debian/copyright-check
+Copyright: 2016-2017, Jonas Smedegaard <dr@jones.dk>
+License-Grant:
+ This program is free software; you can redistribute it and/or modify it
+ under the terms of the GNU General Public License as published by the
+ Free Software Foundation; either version 3, or (at your option) any
+ later version.
+License: GPL-3+
+
+Files: debian/patches/replace-relicenced-SDL_qsort.patch
+Copyright: 1998-2016, Gareth McCaughan <gareth.mccaughan@pobox.com>
+License: Zlib
+
+License: MIT-CMU~SGI
+ Permission to use, copy, modify, and distribute this software for any
+ purpose and without fee is hereby granted, provided that the above
+ copyright notice appear in all copies and that both the copyright
+ notice and this permission notice appear in supporting documentation,
+ and that the name of Silicon Graphics, Inc. not be used in advertising
+ or publicity pertaining to distribution of the software without
+ specific, written prior permission.
+ .
+ THE MATERIAL EMBODIED ON THIS SOFTWARE IS PROVIDED TO YOU "AS-IS" AND
+ WITHOUT WARRANTY OF ANY KIND, EXPRESS, IMPLIED OR OTHERWISE, INCLUDING
+ WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY OR FITNESS FOR A
+ PARTICULAR PURPOSE.  IN NO EVENT SHALL SILICON GRAPHICS, INC. BE LIABLE
+ TO YOU OR ANYONE ELSE FOR ANY DIRECT, SPECIAL, INCIDENTAL, INDIRECT OR
+ CONSEQUENTIAL DAMAGES OF ANY KIND, OR ANY DAMAGES WHATSOEVER, INCLUDING
+ WITHOUT LIMITATION, LOSS OF PROFIT, LOSS OF USE, SAVINGS OR REVENUE, OR
+ THE CLAIMS OF THIRD PARTIES, WHETHER OR NOT SILICON GRAPHICS, INC. HAS
+ BEEN ADVISED OF THE POSSIBILITY OF SUCH LOSS, HOWEVER CAUSED AND ON ANY
+ THEORY OF LIABILITY, ARISING OUT OF OR IN CONNECTION WITH THE
+ POSSESSION, USE OR PERFORMANCE OF THIS SOFTWARE.
+
+License: MIT~Digital
+ Permission to use, copy, modify, and distribute this software and its
+ documentation for any purpose and without fee is hereby granted,
+ provided that the above copyright notice appear in all copies and that
+ both that copyright notice and this permission notice appear in
+ supporting documentation, and that the names of Digital or MIT not be
+ used in advertising or publicity pertaining to distribution of the
+ software without specific, written prior permission.
+ .
+ DIGITAL DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE,
+ INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO
+ EVENT SHALL DIGITAL BE LIABLE FOR ANY SPECIAL, INDIRECT OR
+ CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF
+ USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+ OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+ PERFORMANCE OF THIS SOFTWARE.
+
+License: MIT~Sun
+ As a special exception to the GNU General Public License, if you
+ distribute this file as part of a program that contains a configuration
+ script generated by Autoconf, you may include it under the same
+ distribution terms that you use for the rest of that program.
+
+License: Expat
+ Permission is hereby granted, free of charge, to any person obtaining a
+ copy of this software and associated documentation files (the
+ "Software"), to deal in the Software without restriction, including
+ without limitation the rights to use, copy, modify, merge, publish,
+ distribute, sublicense, and/or sell copies of the Software, and to
+ permit persons to whom the Software is furnished to do so, subject to
+ the following conditions:
+ .
+ The above copyright notice and this permission notice shall be included
+ in all copies or substantial portions of the Software.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+ OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+License: X11
+ Permission is hereby granted, free of charge, to any person obtaining a
+ copy of this software and associated documentation files (the
+ "Software"), to deal in the Software without restriction, including
+ without limitation the rights to use, copy, modify, merge, publish,
+ distribute, sublicense, and/or sell copies of the Software, and to
+ permit persons to whom the Software is furnished to do so, subject to
+ the following conditions:
+ .
+ The above copyright notice and this permission notice shall be included
+ in all copies or substantial portions of the Software.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+ OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ IN NO EVENT SHALL THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR
+ ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
+ CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
+ THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ .
+ Except as contained in this notice, the name of the copyright holder(s)
+ and author(s) shall not be used in advertising or otherwise to promote
+ the sale, use or other dealings in this Software without prior written
+ authorization from the copyright holder(s) and author(s).
+
+License: X11~OpenGroup
+ Permission to use, copy, modify, distribute, and sell this software and
+ its documentation for any purpose is hereby granted without fee,
+ provided that the above copyright notice appear in all copies and that
+ both that copyright notice and this permission notice appear in
+ supporting documentation.
+ .
+ The above copyright notice and this permission notice shall be included
+ in all copies or substantial portions of the Software.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+ OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ IN NO EVENT SHALL THE OPEN GROUP BE LIABLE FOR ANY CLAIM, DAMAGES OR
+ OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ OTHER DEALINGS IN THE SOFTWARE.
+ .
+ Except as contained in this notice, the name of The Open Group shall
+ not be used in advertising or otherwise to promote the sale, use or
+ other dealings in this Software without prior written authorization
+ from The Open Group.
+
+License: X11~Kaleb
+ Permission is hereby granted, free of charge, to any person obtaining a
+ copy of this software and associated documentation files (the
+ "Software"), to deal in the Software without restriction, including
+ without limitation the rights to use, copy, modify, merge, publish,
+ distribute, sublicense, and/or sell copies of the Software, and to
+ permit persons to whom the Software is furnished to do so, subject to
+ the following conditions:
+ .
+ The above copyright notice and this permission notice shall be included
+ in all copies or substantial portions of the Software.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+ OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ IN NO EVENT SHALL Kaleb S. KEITHLEY BE LIABLE FOR ANY CLAIM, DAMAGES OR
+ OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ OTHER DEALINGS IN THE SOFTWARE.
+ .
+ Except as contained in this notice, the name of Kaleb S. KEITHLEY shall
+ not be used in advertising or otherwise to promote the sale, use or
+ other dealings in this Software without prior written authorization
+ from Kaleb S. KEITHLEY.
+
+License: Zlib
+ This software is provided 'as-is', without any express or implied
+ warranty. In no event will the authors be held liable for any damages
+ arising from the use of this software.
+ .
+ Permission is granted to anyone to use this software for any purpose,
+ including commercial applications, and to alter it and redistribute it
+ freely, subject to the following restrictions:
+ .
+  1. The origin of this software must not be misrepresented; you must
+     not claim that you wrote the original software. If you use this
+     software in a product, an acknowledgment in the product
+     documentation would be appreciated but is not required.
+ .
+  2. Altered source versions must be plainly marked as such, and must
+     not be misrepresented as being the original software.
+ .
+  3. This notice may not be removed or altered from any source
+     distribution.
+
+License: NTP~Gopstein
+ Permission to use, copy, modify, and distribute this software and its
+ documentation for any purpose and without fee is hereby granted,
+ provided that the above copyright notice appears in all copies and that
+ both that copyright notice and this permission notice appear in
+ supporting documentation, and that the name of Rich Gopstein and Harris
+ Corporation not be used in advertising or publicity pertaining to
+ distribution of the software without specific, written prior
+ permission. Rich Gopstein and Harris Corporation make no
+ representations about the suitability of this software for any purpose.
+ It provided "as is" without express or implied warranty.
+
+License: PostgreSQL
+ Permission to use, copy, modify, and distribute this software and its
+ documentation for any purpose, without fee, and without written
+ agreement is hereby granted, provided that the above copyright notice
+ and the following two paragraphs appear in all copies of this software.
+ .
+ IN NO EVENT SHALL THE UNIVERSITY OF CALIFORNIA BE LIABLE TO ANY PARTY
+ FOR DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES
+ ARISING OUT OF THE USE OF THIS SOFTWARE AND ITS DOCUMENTATION, EVEN IF
+ THE UNIVERSITY OF CALIFORNIA HAS BEEN ADVISED OF THE POSSIBILITY OF
+ SUCH DAMAGE.
+ .
+ THE UNIVERSITY OF CALIFORNIA SPECIFICALLY DISCLAIMS ANY WARRANTIES,
+ INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE SOFTWARE
+ PROVIDED HEREUNDER IS ON AN "AS IS" BASIS, AND THE UNIVERSITY OF
+ CALIFORNIA HAS NO OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES,
+ ENHANCEMENTS, OR MODIFICATIONS.
+
+License: PostgreSQL~Corry
+ Permission to use, copy, modify, and distribute this software and its
+ documentation for any purpose, without fee, and without written
+ agreement is hereby granted, provided that the above copyright notice
+ and the following two paragraphs appear in all copies of this software.
+ .
+ IN NO EVENT SHALL ERIK CORRY BE LIABLE TO ANY PARTY FOR DIRECT,
+ INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING OUT OF
+ THE USE OF THIS SOFTWARE AND ITS DOCUMENTATION, EVEN IF ERIK CORRY HAS
+ BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ .
+ ERIK CORRY SPECIFICALLY DISCLAIMS ANY WARRANTIES, INCLUDING, BUT NOT
+ LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+ PARTICULAR PURPOSE.  THE SOFTWARE PROVIDED HEREUNDER IS ON AN "AS IS"
+ BASIS, AND ERIK CORRY HAS NO OBLIGATION TO PROVIDE MAINTENANCE,
+ SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
+
+License: PostgreSQL~Brown
+ Permission to use, copy, modify, and distribute this software and its
+ documentation for any purpose, without fee, and without written
+ agreement is hereby granted, provided that the above copyright notice
+ and the following two paragraphs appear in all copies of this software.
+ .
+ IN NO EVENT SHALL BROWN UNIVERSITY BE LIABLE TO ANY PARTY FOR DIRECT,
+ INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING OUT OF
+ THE USE OF THIS SOFTWARE AND ITS DOCUMENTATION, EVEN IF BROWN
+ UNIVERSITY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ .
+ BROWN UNIVERSITY SPECIFICALLY DISCLAIMS ANY WARRANTIES, INCLUDING, BUT
+ NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+ FOR A PARTICULAR PURPOSE.  THE SOFTWARE PROVIDED HEREUNDER IS ON AN "AS
+ IS" BASIS, AND BROWN UNIVERSITY HAS NO OBLIGATION TO PROVIDE
+ MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
+
+License: SGI-B-1.1
+ License Applicability. Except to the extent portions of this file are
+ made subject to an alternative license as permitted in the SGI Free
+ Software License B, Version 1.1 (the "License"), the contents of this
+ file are subject only to the provisions of the License. You may not use
+ this file except in compliance with the License. You may obtain a copy
+ of the License at Silicon Graphics, Inc., attn: Legal Services, 1600
+ Amphitheatre Parkway, Mountain View, CA 94043-1351, or at:
+ .
+ http://oss.sgi.com/projects/FreeB
+ .
+ Note that, as provided in the License, the Software is distributed on
+ an "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND
+ CONDITIONS DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED
+ WARRANTIES AND CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY,
+ FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+License: AML
+ Disclaimer: IMPORTANT: This Apple software is supplied to you by Apple
+ Computer, Inc. ("Apple") in consideration of your agreement to the
+ following terms, and your use, installation, modification or
+ redistribution of this Apple software constitutes acceptance of these
+ terms.  If you do not agree with these terms, please do not use,
+ install, modify or redistribute this Apple software.
+ .
+ In consideration of your agreement to abide by the following terms, and
+ subject to these terms, Apple grants you a personal, non-exclusive
+ license, under Apple's copyrights in this original Apple software (the
+ "Apple Software"), to use, reproduce, modify and redistribute the Apple
+ Software, with or without modifications, in source and/or binary forms;
+ provided that if you redistribute the Apple Software in its entirety
+ and without modifications, you must retain this notice and the
+ following text and disclaimers in all such redistributions of the Apple
+ Software.  Neither the name, trademarks, service marks or logos of
+ Apple Computer, Inc. may be used to endorse or promote products derived
+ from the Apple Software without specific prior written permission from
+ Apple. Except as expressly stated in this notice, no other rights or
+ licenses, express or implied, are granted by Apple herein, including
+ but not limited to any patent rights that may be infringed by your
+ derivative works or by other works in which the Apple Software may be
+ incorporated.
+ .
+ The Apple Software is provided by Apple on an "AS IS" basis.  APPLE
+ MAKES NO WARRANTIES, EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION
+ THE IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY AND FITNESS
+ FOR A PARTICULAR PURPOSE, REGARDING THE APPLE SOFTWARE OR ITS USE AND
+ OPERATION ALONE OR IN COMBINATION WITH YOUR PRODUCTS.
+ .
+ IN NO EVENT SHALL APPLE BE LIABLE FOR ANY SPECIAL, INDIRECT, INCIDENTAL
+ OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+ BUSINESS INTERRUPTION) ARISING IN ANY WAY OUT OF THE USE, REPRODUCTION,
+ MODIFICATION AND/OR DISTRIBUTION OF THE APPLE SOFTWARE, HOWEVER CAUSED
+ AND WHETHER UNDER THEORY OF CONTRACT, TORT (INCLUDING NEGLIGENCE),
+ STRICT LIABILITY OR OTHERWISE, EVEN IF APPLE HAS BEEN ADVISED OF THE
+ POSSIBILITY OF SUCH DAMAGE.
+
+License: Apple-DSC
+ Disclaimer: You may incorporate this sample code into your applications
+ without restriction, though the sample code has been provided "AS IS"
+ and the responsibility for its operation is 100% yours. However, what
+ you are not permitted to do is to redistribute the source as "DSC
+ Sample Code" after having made changes. If you're going to
+ re-distribute the source, we require that you make it clear in the
+ source that the code was descended from Apple Sample Code, but that
+ you've made changes.
+
+License: FSFUL
+ This configure script is free software; the Free Software Foundation
+ gives unlimited permission to copy, distribute and modify it.
+
+License: FSFULLR
+ This file is free software; the Free Software Foundation gives
+ unlimited permission to copy and/or distribute it, with or without
+ modifications, as long as this notice is preserved.
+
+License: any-use
+ Permission is granted for any and all use providing that this copyright
+ is properly acknowledged. There are no assurances of suitability for
+ any use whatsoever.
+
+License: LGPL
+License-Reference: /usr/share/common-licenses/LGPL
+
+License: LGPL-2
+License-Reference: /usr/share/common-licenses/LGPL-2
+
+License: LGPL-2+
+License-Reference: /usr/share/common-licenses/LGPL-2
+
+License: LGPL-2.1
+License-Reference: /usr/share/common-licenses/LGPL-2.1
+
+License: LGPL-2.1+
+License-Reference: /usr/share/common-licenses/LGPL-2.1
+
+License: GPL-2+
+License-Reference: /usr/share/common-licenses/GPL-2
+
+License: GPL-3+
+License-Reference: /usr/share/common-licenses/GPL-3

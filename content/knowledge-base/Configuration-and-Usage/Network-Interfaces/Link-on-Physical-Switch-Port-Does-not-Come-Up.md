@@ -17,10 +17,6 @@ The link on a physical switch port &mdash; an interface starting with "swp" &mda
 
 Here is a list of things to check:
 
-### Use Suggested Optics, Cables, Transceivers
-
-Read the pluggables section of the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="HCL">}} for recommendations on which optics, cables and transceivers to use with your platform.
-
 ### Ensure Your Cumulus Linux License Is Valid
 
 Until you install a valid Cumulus Linux license, none of the physical switch ports come up, so they do not appear in the output of `ip link show`.

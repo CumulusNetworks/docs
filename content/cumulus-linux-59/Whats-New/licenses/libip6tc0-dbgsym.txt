@@ -1,0 +1,1 @@
+libip6tc0-dbgsym has no copyright file

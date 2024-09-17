@@ -1,0 +1,18 @@
+This package was debianized by
+Noël Köthe <noel@debian.org> on Wed,  6 Mar 2002 13:10:18 +0100.
+
+It was downloaded from
+
+	http://download.fedora.redhat.com/pub/fedora/linux/development/source/SRPMS/
+
+Upstream Author: Bill Nottingham <notting@redhat.com>
+
+Copyright: (c) 2008 Different people
+
+This data is licenced under 2 different licenses
+
+1) GNU General Public License
+(see /usr/share/common-licenses/GPL)
+2) XFree86 license
+
+This data can be used freely under either license.

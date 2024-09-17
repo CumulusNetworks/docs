@@ -449,109 +449,89 @@ iface bridge1_vlan10
 {{< /tab >}}
 {{< /tabs >}}
 
-## Keep an SVI Perpetually UP
+## Keep SVIs Perpetually UP
 
-The first time you configure a switch, all southbound bridge ports are down; therefore, by default, the SVI is also down. You can force the SVI to always be up by disabling interface state tracking so that the SVI is always in the UP state, even if all member ports are down. Other implementations describe this feature as *no autostate*. This is beneficial if you want to perform connectivity testing.
-
-To keep the SVI perpetually UP, create a dummy interface, then make the dummy interface a member of the bridge so that even if all bridge members are down, the dummy interface forces the bridge to be in an UP state.
-
-Consider the following configuration, **without** a dummy interface in the bridge:
-
-```
-cumulus@switch:~$ sudo cat /etc/network/interfaces
-...
-auto br_default
-iface br_default
-    bridge-vlan-aware yes
-    bridge-ports swp3
-    bridge-vids 10
-    bridge-pvid 1
-...
-```
-
-With this configuration, when swp3 is down, the SVI is also down:
-
-```
-cumulus@switch:~$ ip link show swp3
-5: swp3: <BROADCAST,MULTICAST> mtu 1500 qdisc pfifo_fast master br_default state DOWN mode DEFAULT group default qlen 1000
-    link/ether 2c:60:0c:66:b1:7f brd ff:ff:ff:ff:ff:ff
-cumulus@switch:~$ ip link show br_default
-35: br_default: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN mode DEFAULT group default
-    link/ether 2c:60:0c:66:b1:7f brd ff:ff:ff:ff:ff:ff
-```
+The first time you configure a switch, all southbound bridge ports are down; therefore, by default, SVIs are also down. You can force SVIs to always be up by disabling interface state tracking so that the SVIs are always in the UP state even when all member ports are down. Other implementations describe this feature as *no autostate*. This is beneficial if you want to perform connectivity testing.
 
 {{< tabs "TabID483 ">}}
 {{< tab "NVUE Commands ">}}
 
-To configure all SVIs on the switch to be perpetually UP, run the `nv set system global svi-force-up enabled` command. This command adds a dummy interface to all bridges with SVIs on the switch.
+To configure all SVIs on the switch to be perpetually UP, run the `nv set system global svi-force-up enable on` command.
 
 ```
-cumulus@switch:~$ nv set system global svi-force-up enabled
+cumulus@switch:~$ nv set system global svi-force-up enable on
 cumulus@switch:~$ nv config apply
 ```
 
-To configure a specific SVI to be perpetually UP, run the `nv set interface <interface-name> link state forced-up` command:
+To configure SVIs in a specific bridge to be perpetually UP, run the `nv set bridge domain <bridge> svi-force-up enable on` command:
 
 ```
-cumulus@switch:~$ nv set interface vlan10 link state forced-up
+cumulus@switch:~$ nv set bridge domain br_default svi-force-up enable on
 cumulus@switch:~$ nv config apply
 ```
 
-To remove the dummy interfaces from all bridges with SVIs on the switch, run the `nv unset system global svi-force-up enabled` command. To remove the dummy interface from a bridge with a specific SVI, run the `nv unset interface <interface-name> link state forced-up` command.
+- To configure all SVIs on the switch to be perpetually DOWN, run the `nv set system global svi-force-up enable off` command.
+- To configure the SVIs in a specific bridge to be perpetually DOWN, run the `nv set bridge domain <bridge> svi-force-up enable off` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-To add a dummy interface to your network configuration:
+To configure the SVIs in a bridge to be perpetually UP, edit the `/etc/network/interfaces` file and add the `bridge-always-up on` option to the bridge stanza, then reload the configuration with the `sudo ifreload -a` command:
 
-1. Edit the `/etc/network/interfaces` file and add the dummy interface stanza before the bridge stanza:
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+auto br_default
+iface br_default
+    bridge-ports bond1 bond2 bond3 peerlink
+    hwaddress 48:b0:2d:4e:ad:89
+    bridge-vlan-aware yes
+    bridge-vids 10 20 30
+    bridge-pvid 1
+    bridge-stp yes
+    bridge-mcsnoop no
+    bridge-always-up on
+    mstpctl-forcevers rstp
+```
 
-    ```
-    cumulus@switch:~$ sudo nano /etc/network/interfaces
-    ...
-    auto dummy
-    iface dummy
-        link-type dummy
+```
+cumulus@switch:~$ sudo ifreload -a
+```
 
-    auto br_default
-    iface br_default
-    ...
-    ```
+To configure all SVIs on the switch to be perpetually UP, add the `bridge-always-up on` option to all bridge stanzas with SVIs.
 
-2. Add the dummy interface to the `bridge-ports` line in the bridge configuration:
-
-    ```
-    auto br_default
-    iface br_default
-        bridge-vlan-aware yes
-        bridge-ports swp3 dummy
-        bridge-vids 10
-        bridge-pvid 1
-    ```
-
-3. Save and exit the file, then reload the configuration:
-
-    ```
-    cumulus@switch:~$ sudo ifreload -a
-    ```
-
-To remove the dummy interface, remove the dummy interface stanza and the dummy interface from the `bridge-ports` line in the bridge configuration, then reload the configuration with the `sudo ifreload -a` command.
+- To configure the SVIs in a bridge to be perpetually DOWN, remove the `bridge-always-up on` option from the bridge stanza, then reload the configuration with the `sudo ifreload -a` command.
+- To configure all SVIs on the switch to be perpetually DOWN, remove the `bridge-always-up on` option from all bridge stanzas, then reload the configuration with the `sudo ifreload -a` command.
 
 {{< /tab >}}
 {{< /tabs >}}
 
-Now, even when swp3 is down, both the dummy interface and the bridge remain UP:
+With the `svi-force-up` (`bridge-always-up`) option set to `on`, even when an interface is down, the bridge remains UP:
 
 ```
-cumulus@switch:~$ ip link show swp3
-5: swp3: <BROADCAST,MULTICAST> mtu 1500 qdisc pfifo_fast master br_default state DOWN mode DEFAULT group default qlen 1000
-    link/ether 2c:60:0c:66:b1:7f brd ff:ff:ff:ff:ff:ff
-cumulus@switch:~$ ip link show dummy
-37: dummy: <BROADCAST,NOARP,UP,LOWER_UP> mtu 1500 qdisc noqueue master br_default state UNKNOWN mode DEFAULT group default
-    link/ether 66:dc:92:d4:f3:68 brd ff:ff:ff:ff:ff:ff
+cumulus@switch:~$ ip link show bond1
+7: bond1: <BROADCAST,MULTICAST,MASTER> mtu 9216 qdisc noqueue master br_default state DOWN mode DEFAULT group default qlen 1000
+    link/ether 48:b0:2d:cf:e4:3e brd ff:ff:ff:ff:ff:ff
 cumulus@switch:~$ ip link show br_default
-35: br_default: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default
-    link/ether 2c:60:0c:66:b1:7f brd ff:ff:ff:ff:ff:ff
+18: br_default: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default qlen 1000
+    link/ether 8:b0:2d:4e:ad:89 brd ff:ff:ff:ff:ff:ff
+```
+
+To show if the `svi-force-up` option is set to `on` for all SVIs on the switch, run the `nv show system global svi-force-up` command:
+
+```
+cumulus@switch:~$ nv show system global svi-force-up
+       operational  applied
+------  -----------  -------
+enable  on           on
+```
+
+To show if the `svi-force-up` option is set to `on` for SVIs in a specific bridge, run the `nv show bridge domain <domain-id> svi-force-up` command:
+
+```
+cumulus@switch:~$ nv show bridge domain br_default svi-force-up
+        applied
+------  -------
+enable  on
 ```
 
 <!-- vale off -->
@@ -600,6 +580,52 @@ Cumulus Linux does not provide NVUE commands for this setting.
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file to **remove** the line `ipv6-addrgen off` from the VLAN stanza, then run the `ifreload -a` command.
+
+{{< /tab >}}
+{{< /tabs >}}
+
+## MAC Address for a Bridge
+
+To configure a MAC address for a bridge, run the `nv set bridge domain <bridge> mac-address <mac-address>` command.
+
+The following example configures the bridge `br_default` with MAC address `00:00:5E:00:53:00`:
+
+{{< tabs "TabID609 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set bridge domain br_default mac-address 00:00:5E:00:53:00
+cumulus@switch:~$ nv config apply
+```
+
+To unset the MAC address for a bridge, run the `nv unset bridge domain <bridge> mac-address <mac-address>` command.
+
+```
+cumulus@switch:~$ nv unset bridge domain br_default mac-address
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/network/interfaces` file to add the MAC address (`hwaddress`) to the bridge stanza, then run the `sudo ifreload -a` command.
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+auto br_default
+iface br_default
+    bridge-ports bond1 bond2 bond3 peerlink vxlan48
+    hwaddress 00:00:5E:00:53:00
+    bridge-vlan-aware yes
+    bridge-vids 10 20 30
+```
+
+```
+cumulus@switch:~$ sudo ifreload -a
+```
+
+To unset the MAC address for a bridge, remove the MAC address from the bridge stanza and run the `sudo ifreload -a` command.
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -885,3 +911,14 @@ You cannot enable VLAN translation on a bridge in VLAN-aware mode. Only traditio
 ### Bridge Conversion
 
 You cannot convert traditional mode bridges automatically to and from a VLAN-aware bridge. You must delete the original configuration and bring down all member switch ports before creating a new bridge.
+
+### VLAN Memory Resource Limitations
+
+On Spectrum-2 and later, Cumulus Linux uses internal debugging flow counters for each VLAN that require <span class="a-tooltip">[KVD](## "Key Value Database")</span> and <span class="a-tooltip">[ATCAM](## "Algorithmic TCAM")</span> memory space. When you configure more than 1000 VLAN interfaces, you might not be able to apply ACLs if flow counter resources deplete the ACL resource space. In addition, you might see error messages in the `/var/log/switchd.log` file similar to the following:
+
+```
+error: hw sync failed (sync_acl hardware installation failed) Rolling back .. failed.
+error: hw sync failed (Bulk counter init failed with No More Resources). Rolling back ..
+```
+
+To troubleshoot this issue and manage netfilter resources with high VLAN and ACL scale, refer to {{<link url="Netfilter-ACLs/#troubleshooting-acl-rule-installation-failures" text="Troubleshooting ACL Rule Installation Failures">}}.

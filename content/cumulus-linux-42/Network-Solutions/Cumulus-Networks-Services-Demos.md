@@ -40,10 +40,6 @@ The Cumulus Linux *reference topology* includes cabling (in DOT format for dual 
 You can build out the reference topology in hardware or using Cumulus VX. The {{<exlink url="https://github.com/CumulusNetworks/cldemo-vagrant" text="Cumulus Reference Topology using Vagrant">}} is
 essentially the reference topology built out inside Vagrant with VirtualBox or KVM. The installation and setup instructions for bringing up the entire reference topology on a laptop or server are on the {{<exlink url="https://github.com/CumulusNetworks/cldemo-vagrant" text="cldemo-vagrant GitHub repo">}}.
 
-### Hardware
-
-Any switch from the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="hardware compatibility list">}} is compatible with the topology as long as you follow the interface count from the table above. Of course, in your own production environment, you don't have to use exactly the same devices and cabling as outlined above.
-
 ## Demos
 
 You can find an up to date list of all the demos in the {{<exlink url="https://github.com/CumulusNetworks/cldemo-vagrant#available-demos" text="cldemo-vagrant GitHub repository">}}, which is available to anyone free of charge.

@@ -25,14 +25,14 @@ Cumulus Linux supports:
 - PTP boundary clock mode only (the switch provides timing to downstream servers; it is a slave to a higher-level clock and a master to downstream clocks).
 - UDPv4, UDPv6, and 802.3 encapsulation.
 - Only a single PTP domain per network.
-- PTP on layer 3 interfaces, trunk ports, bonds, and switch ports belonging to a VLAN.
+- PTP on layer 3 interfaces, layer 3 bonds, trunk ports, and switch ports belonging to a VLAN.
 - Multicast, unicast, and mixed message mode.
 - End-to-End delay mechanism only. Cumulus Linux does not support Peer-to-Peer.
 - One-step and two-step clock timestamp mode.
 - Hardware timestamping for PTP packets. This allows PTP to avoid inaccuracies caused by message transfer delays and improves the accuracy of time synchronization.
 
 {{%notice note%}}
-- On NVIDIA switches with Spectrum-2 and later, PTP is not supported on 1G interfaces.
+- 1G interfaces on Spectrum-2 and later do not support PTP.
 - You cannot run *both* PTP and NTP on the switch.
 - PTP supports the default VRF only.
 {{%/notice%}}
@@ -40,7 +40,7 @@ Cumulus Linux supports:
 ## Basic Configuration
 
 Basic PTP configuration requires you:
-
+- Disable NTP and remove default NTP configuration.
 - Enable PTP on the switch.
 - Configure PTP on at least one interface; this can be a layer 3 routed port, switch port, or trunk port. You do not need to specify which is a master interface and which is a slave interface; the PTP Best Master Clock Algorithm (BMCA) determines the master and slave.
 
@@ -60,6 +60,53 @@ The basic configuration shown below uses the *default* PTP settings:
 - The clock timestamp mode is two-step.
 
 To configure other settings, such as the PTP profile, domain, priority, and DSCP, the PTP interface transport mode and timers, and PTP monitoring, see the Optional Configuration sections below.
+
+### Disable NTP
+
+{{< tabs "TabID67 ">}}
+{{< tab "NVUE Commands ">}}
+
+Remove the default NTP configuration on the switch:
+
+```
+cumulus@switch:~$ nv unset service ntp mgmt server 0.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ nv unset service ntp mgmt server 1.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ nv unset service ntp mgmt server 2.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ nv unset service ntp mgmt server 3.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ nv config apply
+```
+
+Stop and disable the NTP service in the management VRF:
+
+```
+cumulus@switch:~$ sudo systemctl stop ntpsec@mgmt.service
+cumulus@switch:~$ sudo systemctl disable ntpsec@mgmt.service
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+1. Edit the `/etc/ntpsec/ntp.conf` file to comment out the default NTP configuration:
+
+   ```
+   cumulus@switch:~$ sudo nano /etc/ntpsec/ntp.conf
+   # server 0.cumulusnetworks.pool.ntp.org iburst
+   # server 1.cumulusnetworks.pool.ntp.org iburst
+   # server 2.cumulusnetworks.pool.ntp.org iburst
+   # server 3.cumulusnetworks.pool.ntp.org iburst
+   ```
+
+   2. Stop and disable the NTP service in the management VRF:
+
+   ```
+   cumulus@switch:~$ sudo systemctl stop ntpsec@mgmt.service
+   cumulus@switch:~$ sudo systemctl disable ntpsec@mgmt.service
+   ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Configure PTP
 
 {{< tabs "TabID65 ">}}
 {{< tab "NVUE Commands ">}}
@@ -139,7 +186,16 @@ The configuration writes to the `/etc/ptp4l.conf` file.
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-1. Edit the `/etc/cumulus/switchd.d/ptp.conf` file to set the `ptp.timestamping` parameter to `TRUE`:
+1. Configure NVUE to stop managing PTP configuration files:
+
+```
+cumulus@switch:~$ nv set system config apply ignore /etc/linuxptp/phc2sys.conf
+cumulus@switch:~$ nv set system config apply ignore /etc/ptp4l.conf
+cumulus@switch:~$ nv set system config apply ignore /etc/cumulus/switchd.d/ptp.conf
+cumulus@switch:~$ nv config apply
+```
+
+2. Edit the `/etc/cumulus/switchd.d/ptp.conf` file to set the `ptp.timestamping` parameter to `TRUE`:
 
    ```
    cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/ptp.conf
@@ -148,7 +204,7 @@ The configuration writes to the `/etc/ptp4l.conf` file.
    ...
    ```
 
-2. Restart the `switchd` service:
+3. Restart the `switchd` service:
 
    ```
    cumulus@switch:~$ sudo systemctl restart switchd.service
@@ -158,97 +214,34 @@ The configuration writes to the `/etc/ptp4l.conf` file.
 Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
 {{%/notice%}}
 
-3. Enable and start the ptp4l and phc2sys services:
-
-    ```
-    cumulus@switch:~$ sudo systemctl enable ptp4l.service phc2sys.service
-    cumulus@switch:~$ sudo systemctl start ptp4l.service phc2sys.service
-    ```
-
 4. Edit the `Default interface options` section of the `/etc/ptp4l.conf` file to configure the interfaces on the switch that you want to use for PTP.
+
+{{< tabs "TabID227 ">}}
+{{< tab "Layer 3 Routed Port ">}}
 
    ```
    cumulus@switch:~$ sudo nano /etc/ptp4l.conf
    ...
-   [global]
-   #
-   # Default Data Set
-   #
-   slaveOnly               0
-   priority1               128
-   priority2               128
-   domainNumber            0
-   
-   twoStepFlag             1
-   dscp_event              46
-   dscp_general            46
-   network_transport              L2
-   dataset_comparison             G.8275.x
-   G.8275.defaultDS.localPriority 128
-   ptp_dst_mac                    01:80:C2:00:00:0E
-
-   #
-   # Port Data Set
-   #
-   logAnnounceInterval            -3
-   logSyncInterval                -4
-   logMinDelayReqInterval         -4
-   announceReceiptTimeout         3
-   delay_mechanism                E2E
-
-   offset_from_master_min_threshold   -50
-   offset_from_master_max_threshold   50
-   mean_path_delay_threshold          200
-   tsmonitor_num_ts                   100
-   tsmonitor_num_log_sets             3
-   tsmonitor_num_log_entries          4
-   tsmonitor_log_wait_seconds         1
-
-   #
-   # Run time options
-   #
-   logging_level           6
-   path_trace_enabled      0
-   use_syslog              1
-   verbose                 0
-   summary_interval        0
-   
-   #
-   # servo parameters
-   #
-   pi_proportional_const          0.000000
-   pi_integral_const              0.000000
-   pi_proportional_scale          0.700000
-   pi_proportional_exponent       -0.300000
-   pi_proportional_norm_max       0.700000
-   pi_integral_scale              0.300000
-   pi_integral_exponent           0.400000
-   pi_integral_norm_max           0.300000
-   step_threshold                 0.000002
-   first_step_threshold           0.000020
-   max_frequency                  900000000
-   sanity_freq_limit              0
-   
    #
    # Default interface options
    #
-   time_stamping                  software
-   
+   time_stamping                  hardware
    # Interfaces in which ptp should be enabled
    # these interfaces should be routed ports
    # if an interface does not have an ip address
    # the ptp4l will not work as expected.
-   
    [swp1]
    udp_ttl                 1
    masterOnly              0
    delay_mechanism         E2E
-   
    [swp2]
    udp_ttl                 1
    masterOnly              0
    delay_mechanism         E2E
    ```
+
+   {{< /tab >}}
+{{< tab "Trunk Port VLAN ">}}
 
    For a trunk VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `trunk`, `vlan_intf` to the VLAN interface, and `src_ip` to the IP address of the VLAN interface:
 
@@ -260,11 +253,14 @@ Restarting the `switchd` service causes all network ports to reset in addition t
    udp_ttl                 1
    masterOnly              0
    delay_mechanism         E2E
-   network_transport       UDPv4
+   network_transport       RAWUDPv4
    ```
 
-   For a switch port VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `access`, `vlan_intf` to the VLAN interface, and  `src_ip` to the IP address of the VLAN interface:
-   
+   {{< /tab >}}
+{{< tab "Switch Port (Access Port) VLAN ">}}
+
+   For a switch port VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `access`, `vlan_intf` to the VLAN interface, and `src_ip` to the IP address of the VLAN interface:
+
    ```
    [swp2]
    l2_mode                 access
@@ -273,13 +269,30 @@ Restarting the `switchd` service causes all network ports to reset in addition t
    udp_ttl                 1
    masterOnly              0
    delay_mechanism         E2E
-   network_transport       UDPv4
+   network_transport       RAWUDPv4
    ```
 
-5. Restart the `ptp4l` service:
+{{< /tab >}}
+{{< /tabs >}}
+
+5. Edit the `/etc/linuxptp/phc2sys.conf` file to add the following parameters:
+
+   ```
+   cumulus@switch:~$ sudo nano /etc/linuxptp/phc2sys.conf
+   # phc2sys is enabled
+   [global]
+   logging_level         6
+   path_trace_enabled    0
+   use_syslog            1
+   verbose               0
+   domainNumber          0
+   ```
+
+6. Enable and start the `ptp4l` and `phc2sys` services:
 
     ```
-    cumulus@switch:~$ sudo systemctl restart ptp4l.service
+    cumulus@switch:~$ sudo systemctl enable ptp4l.service phc2sys.service
+    cumulus@switch:~$ sudo systemctl start ptp4l.service phc2sys.service
     ```
 
 {{< /tab >}}
@@ -394,6 +407,14 @@ To revert the clock timestamp mode to the default setting (two-step mode), chang
 
 ### PTP Priority
 
+The <span class="a-tooltip">[BMC](## "Best Master Clock")</span> selects the PTP master according to the criteria in the following order:
+1. Priority 1
+2. Clock class
+3. Clock accuracy
+4. Clock variance
+5. Priority 2
+6. Port ID
+
 Use the PTP priority to select the best master clock. You can set priority 1 and 2:
 - Priority 1 overrides the clock class and quality selection criteria to select the best master clock.
 - Priority 2 identifies primary and backup clocks among identical redundant Grandmasters.
@@ -492,7 +513,7 @@ ITU-T specifies the following key elements to measure, test, and classify the ac
 - Transient response&mdash;the response from the clock to a transient.
 - Hold over&mdash;the time interval during which the clock maintains its output after losing the input reference signal.
 
-Cumulus Linux PTP has an option to use a servo specifically designed to handle ITU-T’s Noise Transfer specification. When you use this option, the <span class="a-tooltip">[PHC](## "Physical Hardware Clock")</span> is disciplined by Noise Transfer Servo, which smoothes the jitter and wander noise from the Master clock.
+Cumulus Linux PTP has an option to use a servo specifically designed to handle the ITU-T Noise Transfer specification. When you use this option, the <span class="a-tooltip">[PHC](## "Physical Hardware Clock")</span> is disciplined by Noise Transfer Servo, which smoothes the jitter and wander noise from the Master clock.
 
 {{%notice note%}}
 - To use Noise Transfer Servo, you need to enable SyncE on the switch and on PTP interfaces. 
@@ -713,13 +734,13 @@ time_stamping           hardware
 udp_ttl                 1
 masterOnly              0
 delay_mechanism         E2E
-network_transport       UDPv6
+network_transport       RAWUDPv6
 
 [swp2]
 udp_ttl                 1
 masterOnly              0
 delay_mechanism         E2E
-network_transport       UDPv6
+network_transport       RAWUDPv6
 ...
 ```
 
@@ -883,7 +904,7 @@ udp_ttl                      1
 hybrid_e2e                   1
 masterOnly                   0
 delay_mechanism              E2E
-network_transport            UDPv6
+network_transport            RAWUDPv6
 G.8275.portDS.localPriority  10
 ...
 ```
@@ -1020,7 +1041,7 @@ cumulus@switch:~$ nv config apply
    [unicast_master_table]
    table_id               1
    logQueryInterval       4
-   UDPv4                  10.10.10.1
+   RAWUDPv4                  10.10.10.1
    ...
    ```
 
@@ -1058,7 +1079,7 @@ cumulus@switch:~$ nv config apply
    [unicast_master_table]
    table_id               3
    logQueryInterval       0
-   UDPv4                  100.100.100.1
+   RAWUDPv4                  100.100.100.1
 
    [swp1]
    table_id                1
@@ -1265,7 +1286,7 @@ domainNumber                   24
 twoStepFlag                    1 
 dscp_event                     46
 dscp_general                   46
-network_transport              UDPv4
+network_transport              RAWUDPv4
 dataset_comparison             G.8275.x
 G.8275.defaultDS.localPriority 128
 hybrid_e2e                     1
@@ -1295,7 +1316,7 @@ domainNumber                   0
 twoStepFlag                    1
 dscp_event                     46
 dscp_general                   46
-network_transport              UDPv4
+network_transport              RAWUDPv4
 dataset_comparison             ieee1588
 ...
 ```
@@ -1399,7 +1420,7 @@ sanity_freq_limit              0
 #
 # Default interface options
 #
-time_stamping                  software
+time_stamping                  hardware
 
 
 # Interfaces in which ptp should be enabled
@@ -2052,7 +2073,7 @@ sanity_freq_limit              0
 #
 # Default interface options
 #
-time_stamping                  software
+time_stamping                  hardware
 
 
 # Interfaces in which ptp should be enabled
@@ -2064,31 +2085,86 @@ time_stamping                  software
 udp_ttl                      1
 masterOnly                   0
 delay_mechanism              E2E
-network_transport            UDPv4
+network_transport            RAWUDPv4
 
 [swp2]
 udp_ttl                      1
 masterOnly                   0
 delay_mechanism              E2E
-network_transport            UDPv4
+network_transport            RAWUDPv4
 
 [swp3]
 udp_ttl                      1
 masterOnly                   0
 delay_mechanism              E2E
-network_transport            UDPv4
+network_transport            RAWUDPv4
 
 [swp4]
 udp_ttl                      1
 masterOnly                   0
 delay_mechanism              E2E
-network_transport            UDPv4
+network_transport            RAWUDPv4
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
 
 ## Considerations
+
+### PTP Version
+
+Cumulus Linux uses a `linuxptp` package that is PTP v2.1 compliant, and sets the major PTP version to 2 and the minor PTP version to 1 by default in the configuration. If your PTP configuration does not work correctly when the minor version is set, you can change the minor version to 0.
+
+{{< tabs "TabID2097 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set service ptp 1 force-version 2.0
+cumulus@switch:~$ nv config apply
+```
+
+To set the minor PTP version back to the default, run the `nv unset service ptp 1 force-version` command.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/ptp4l.conf` file to add `ptp_minor_version 0` to the `Global` section, then restart the `ptp4l` service.
+
+```
+cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+...
+[global]
+#
+# Default Data Set
+#
+slaveOnly                      0
+priority1                      128
+priority2                      128
+domainNumber                   0
+
+twoStepFlag                    1
+dscp_event                     46
+dscp_general                   46
+ptp_minor_version              0
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart ptp4l.service
+```
+
+To set the minor PTP version back to the default value (1), remove `ptp_minor_version 0` from the `Global` section of the `/etc/ptp4l.conf` file, then restart the `ptp4l` service.
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To show that the PTP minor version is now 0, run the `nv show service ptp <instance> force-version` command:
+
+```
+cumulus@switch:~$ nv show service ptp 1 force-version
+               applied
+-------------  -------
+force-version  2.0
+```
 
 ### PTP Traffic Shaping
 

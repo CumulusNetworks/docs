@@ -11,6 +11,10 @@ This section discusses the following route filtering methods:
 - Route maps
 - Route redistribution
 
+{{%notice note%}}
+Route map and prefix list names must start with a letter and can contain letters, digits, underscores and dashes. For example, you can name a route map `MAP10` or `ROUTE-MAP_10` but you cannot name a route map `10` or `10_ROUTE-MAP`.
+{{%/notice%}}
+
 ## Prefix Lists
 
 Prefix lists are access lists for route advertisements that match routes instead of traffic. Prefix lists are typically used with route maps and other filtering methods. A prefix list can match the prefix (the network itself) and the prefix length (the length of the subnet mask).
@@ -271,7 +275,7 @@ You can use the following list of supported match and set statements with NVUE c
 | `tag` | Matches the specified tag value associated with the route. You can specify a value between 1 and 4294967295.
 
 {{%notice note%}}
-The `source-protocol` match statement is only supported in {{<link url="FRRouting/#architecture" text="zebra">}}. Cumulus Linux does not support the `match source-protocol` statement in route maps configured for routing protocols such as BGP and OSPF.
+The `source-protocol` match statement is supported in {{<link url="FRRouting/#architecture" text="zebra">}} and BGP. Cumulus Linux does not support the `match source-protocol` statement in route maps configured for other routing protocols, such as OSPF.
 {{%/notice%}}
 
 {{< /tab >}}

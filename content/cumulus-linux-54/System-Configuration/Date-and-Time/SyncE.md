@@ -134,7 +134,7 @@ cumulus@switch:~$ sudo systemctl restart syncd
 
 ### Frequency Source Priority
 
-The clock selection algorithm uses the frequency source priority on an interface to choose between two sources that have the same QL. You can specify a value between 1 (the highest priority) and 254 (the lowest priority). The default value is 100.
+The clock selection algorithm uses the frequency source priority on an interface to choose between two sources that have the same QL. You can specify a value between 1 (the highest priority) and 256 (the lowest priority). The default value is 100.
 
 The following command example sets the priority on swp2 to 254:
 

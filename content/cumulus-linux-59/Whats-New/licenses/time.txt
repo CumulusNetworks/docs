@@ -1,0 +1,54 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: time
+Upstream-Contact: bug-gnu-utils@gnu.org
+Source: http://ftp.gnu.org/pub/gnu/time/time-1.7.tar.gz
+Comment: 
+ This is Debian GNU/Linux's prepackaged version of the FSF's GNU time utility.
+ `time' is a program that measures many of the CPU resources, such as time and
+ memory, that other programs use.  It was written by David Keppel.  It
+ was subsequently maintained and improved by David MacKenzie with help
+ from Arne Henrik Juul, and Francois Pinard.
+ .
+ This package was put together by Dirk Eddelbuettel from the previous
+ Debian package time-1.6-2 (from ftp.debian.org) and the GNU sources
+ for time-1.6.  The package was subsequently maintained and updated by
+ Tollef Fog Heen, Salvatore Bonaccorso, and Bob Proulx.
+
+Files: *
+Copyright: Copyright 1987-1996 Free Software Foundation, Inc.
+License: GPL-2+
+
+Files: debian/*
+Copyright: Copyright 1995 Peter Tobias <tobias@et-inf.fho-emden.de>
+           Copyright 1995-2004 Dirk Eddelbuettel <edd@qed.econ.queensu.ca>
+           Copyright 2005, 2008 Tollef Fog Heen <tfheen@debian.org>
+           Copyright 2010 Salvatore Bonaccorso <salvatore.bonaccorso@gmail.com>
+           Copyright 2012 Bob Proulx <bob@proulx.com>
+License: GPL-2+
+
+Files: debian/time.1
+Copyright: Copyright 1996 Dirk Eddelbuettel <edd@miles.econ.queensu.ca>
+License: freely redistributable
+ Copyright Dirk Eddelbuettel but freely redistributable
+
+License: GPL-2+
+ This program is free software; you can redistribute it
+ and/or modify it under the terms of the GNU General Public
+ License as published by the Free Software Foundation; either
+ version 2 of the License, or (at your option) any later
+ version.
+ .
+ This program is distributed in the hope that it will be
+ useful, but WITHOUT ANY WARRANTY; without even the implied
+ warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+ PURPOSE.  See the GNU General Public License for more
+ details.
+ .
+ You should have received a copy of the GNU General Public
+ License along with this package; if not, write to the Free
+ Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+ Boston, MA  02110-1301 USA
+ .
+ On Debian systems, the full text of the GNU General Public
+ License version 2 can be found in the file
+ `/usr/share/common-licenses/GPL-2'.

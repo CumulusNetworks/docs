@@ -66,6 +66,10 @@ leaf01(config-router)# neighbor swp51 interface peer-group SPINE
 {{< /tab >}}
 {{< /tabs >}}
 
+{{%notice note%}}
+If you unset a peer group, make sure that it is not applied to any neighbors. If the peer group is applied to neighbors, configure all parameters, such as the remote AS, directly on the neighbors before removing the peer group.
+{{%/notice%}}
+
 ## BGP Dynamic Neighbors
 
 *BGP dynamic neighbors* provides BGP peering to remote neighbors within a specified range of IPv4 or IPv6 addresses for a BGP peer group. You can configure each range as a subnet IP address.
@@ -387,9 +391,9 @@ switch# exit
 -->
 ## Remove Private BGP ASNs
 
-If you use private ASNs in the data center, any routes you send out to the internet contain your private ASNs. You can remove all the private ASNs from routes to a specific neighbor.
+If you use private ASNs in the data center, routes advertised to neighbors contain your private ASNs. The examples below show how to remove the private ASNs from routes and how to replace the private ASNs with your public ASN.
 
-The following example command removes private ASNs from routes sent to the neighbor on swp51 (an unnumbered interface):
+The following example command removes private ASNs from routes advertised to the neighbor on swp51 (an unnumbered interface):
 
 {{< tabs "424 ">}}
 {{< tab "NVUE Commands ">}}
@@ -403,6 +407,18 @@ You can replace the private ASNs with your public ASN with the following command
 
 ```
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath replace-peer-as on
+cumulus@leaf01:~$ nv config apply
+```
+
+To unset the above configuration:
+
+```
+cumulus@leaf01:~$ nv unset vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath private-as remove
+cumulus@leaf01:~$ nv config apply
+```
+
+```
+cumulus@leaf01:~$ nv unset vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath replace-peer-as on
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -591,6 +607,13 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 cumulus@switch:~$ nv config apply
 ```
 
+To disable allowas-in, run the `nv unset` command:
+
+```
+cumulus@switch:~$ nv unset vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath allow-my-asn enable on
+cumulus@switch:~$ nv config apply
+```
+
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
@@ -634,6 +657,13 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 cumulus@switch:~$ nv config apply
 ```
 
+To unset the above configuration, run the `nv unset` command:
+
+```
+cumulus@switch:~$ nv unset vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath allow-my-asn occurrences 4
+cumulus@switch:~$ nv config apply
+```
+
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
@@ -670,6 +700,13 @@ The following example allows a received AS path containing the ASN of the local 
 
 ```
 cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath allow-my-asn origin on
+cumulus@switch:~$ nv config apply
+```
+
+To unset the above configuration, run the `nv unset` command:
+
+```
+cumulus@switch:~$ nv unset vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath allow-my-asn origin on
 cumulus@switch:~$ nv config apply
 ```
 
@@ -1360,6 +1397,8 @@ cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 timers hold 30
 cumulus@leaf01:~$ nv config apply
 ```
 
+To set the timers back to the default values, run the `nv unset vrf <vrf> router bgp neighbor <interface> timers keepalive` and the `nv unset vrf <vrf> router bgp neighbor <interface> timers hold` commands.
+
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
@@ -1521,7 +1560,8 @@ router bgp 65199
 {{< /tabs >}}
 
 {{%notice info%}}
-When you configure BGP for IPv6, you must run the `route-reflector-client` command **after** the `activate` command.
+- When you configure BGP for IPv6, you must run the `route-reflector-client` command **after** the `activate` command.
+- You can only configure a BGP node as a route reflector for an iBGP peer.
 {{%/notice%}}
 
 ## Administrative Distance
@@ -1726,6 +1766,10 @@ To minimize the negative effects that occur when BGP restarts, Cumulus Linux ena
 
 When BGP establishes a session, BGP peers use the BGP OPEN message to negotiate a graceful restart. If the BGP peer also supports graceful restart, it activates for that neighbor session. If the BGP session stops, the BGP peer (the restart helper) flags all routes associated with the device as stale but continues to forward packets to these routes for a certain period of time. The restarting device also continues to forward packets during the graceful restart. After the device comes back up and establishes BGP sessions again with its peers (restart helpers), it waits to learn all routes that these peers announce before selecting a cumulative path; after which, it updates its forwarding tables and re-announces the appropriate routes to its peers. These procedures ensure that if there are any routing changes while the BGP speaker is restarting, the network converges.
 
+{{%notice note%}}
+For warm boot to restart the switch with no interruption to traffic for existing route entries, you must enable BGP graceful restart in all BGP VRFs.
+{{%/notice%}}
+
 ### Restart Modes
 
 Cumulus Linux supports graceful BGP restart full mode and helper-only mode for IPv4 and IPv6. The default setting is helper-only mode.
@@ -1735,7 +1779,8 @@ Cumulus Linux supports graceful BGP restart full mode and helper-only mode for I
 You can configure graceful BGP restart globally, where all BGP peers inherit the graceful restart capability, or for a BGP peer or peer group (useful for misbehaving peers or when working with third party devices).
 
 {{%notice note%}}
-BGP goes through a graceful restart (as a restarting router) with a planned switch restart event that ISSU initiates. Any other time BGP restarts, such as when the BGP daemon restarts due to a software exception, or you restart the FRR service, BGP goes through a regular restart where the BGP session with peers terminates and Cumulus Linux removes the learned routes from the forwarding plane.
+- BGP goes through a graceful restart (as a restarting router) with a planned switch restart event that ISSU initiates. Any other time BGP restarts, such as when the BGP daemon restarts due to a software exception, or you restart the FRR service, BGP goes through a regular restart where the BGP session with peers terminates and Cumulus Linux removes the learned routes from the forwarding plane.
+- Changing graceful restart mode results in BGP session flaps.
 {{%/notice%}}
 
 {{< tabs "TabID1783 ">}}
@@ -2048,6 +2093,10 @@ An expanded BGP community list takes a regular expression of communities and mat
 
 When the neighbor receives the prefix, it examines the community value and takes action accordingly, such as permitting or denying the community member in the routing policy.
 
+{{%notice note%}}
+Community list names must start with a letter and can contain letters, digits, underscores and dashes. For example, you can name a community list `COMMUNITY1` or `EXTENDED-COMMUNITY_10` but you cannot name a community list `10` or `10_COMMUNITY`.
+{{%/notice%}}
+
 Here is an example of a standard community list filter:
 
 {{< tabs "1995 ">}}
@@ -2106,6 +2155,14 @@ leaf01# exit
 
 {{< /tab >}}
 {{< /tabs >}}
+
+{{%notice note%}}
+Cumulus Linux considers the full list of communities on a BGP route as a single string to evaluate. If you try to match `$` (ends with), Cumulus Linux matches the last community value in the list of communities, not the individual community values within the list.
+
+For example, if you use the regular expression `".*:(20)$"`, Cumulus Linux matches all the BGP routes with a list of communities ending in 20.
+- Routes with communities 45000:10 55000:40 65000:15000 123:20 match.
+- Routes with communities 45000:10 55000:20 65000:15000 do **not** match.
+{{%/notice%}}
 
 ## Related Information
 

@@ -329,7 +329,7 @@ iface vni20
 
 auto bridge
 iface bridge
-    bridge-ports swp1 swp2 vni10 vn20
+    bridge-ports swp1 swp2 vni10 vni20
     bridge-vlan-aware yes
     bridge-vids 10 20
     bridge-pvid 1
@@ -435,7 +435,7 @@ iface vni20
 
 auto bridge
 iface bridge
-    bridge-ports swp1 swp2 vni10 vn20
+    bridge-ports swp1 swp2 vni10 vni20
     bridge-vlan-aware yes
     bridge-vids 10 20
     bridge-pvid 1

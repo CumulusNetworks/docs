@@ -107,7 +107,7 @@ aspath-exp           ^100_
 
 ## <h>nv show router policy community-list</h>
 
-Shows the configured community lists. A community list is used for matching BGP community policies.
+Shows the configured community lists. You use a community list for matching BGP community policies.
 
 ### Version History
 
@@ -358,7 +358,6 @@ Shows the Route Target Extended Community configuration for the specified extend
 | --------- | -------------- |
 | `<list-id>` |  The extended community list name. |
 | `<rule-id>` |   The rule number. |
-| `<ext-community-id>` | The community number in AA:NN or IP:NN format. |
 
 ### Version History
 
@@ -493,7 +492,6 @@ Shows the rules for the specified large community list.
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<list-id>` |  The large community list name. |
-| `<rule-id>` |  The rule number. |
 
 ### Version History
 
@@ -600,7 +598,7 @@ cumulus@switch:~$
 
 ## <h>nv show router policy prefix-list \<prefix-list-id\></h>
 
-Shows the specified prefix list configuration. A prefix list is used for matching IPv4 and IPv6 address prefixes.
+Shows the specified prefix list configuration. You use a prefix list for matching IPv4 and IPv6 address prefixes.
 
 ### Command Syntax
 
@@ -725,13 +723,7 @@ min-prefix-len  30
 
 ## <h>nv show router policy route-map</h>
 
-Shows the route maps configured on the switch. A route map is used for policy configuration.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<route-map-id>` |  The route map name. |
+Shows the route maps configured on the switch. You use a route map for policy configuration.
 
 ### Version History
 
@@ -747,7 +739,7 @@ cumulus@switch:~$ nv show router policy route-map
 
 ## <h>nv show router policy route-map \<route-map-id\></h>
 
-Shows the specified route map configuration. A route map is used for policy configuration.
+Shows the specified route map configuration. You use a route map for policy configuration.
 
 ### Command Syntax
 
@@ -816,7 +808,10 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show router policy route-map MYROUTEMAP rule 10 match
+cumulus@switch:~$ nv show router policy route-map MAP2 rule 10 match
+        applied
+------  -------
+origin  igp
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -839,7 +834,10 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show router policy route-map MYROUTEMAP rule 10 set
+cumulus@switch:~$ nv show router policy route-map MAP1 rule 10 set
+        applied
+------  -------
+metric  50
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1128,7 +1126,7 @@ cumulus@switch:~$ nv show router policy route-map MYROUTEMAP rule 10 action perm
 
 ## <h>nv show router policy route-map \<route-map-id\> rule \<rule-id\> action permit exit-policy</h>
 
-Shopws the permit action exit policy for the specified route map rule.
+Shows the permit action exit policy for the specified route map rule.
 
 ### Command Syntax
 

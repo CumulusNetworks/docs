@@ -14,7 +14,7 @@ jobs:
       - name: Run the RN and FOSS scripts
         run: |
           python3 utils/build_rns.py
-          python3 utils/build_foss_licenses.py
+          #comment out foss 4-30-24      python3 utils/build_foss_licenses.py
       - name: Create PR
         uses: peter-evans/create-pull-request@v3
         with:

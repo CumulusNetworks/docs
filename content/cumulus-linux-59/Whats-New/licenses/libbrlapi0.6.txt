@@ -1,0 +1,48 @@
+This package was debianized by Mario Lang <mlang@delysid.org> on
+Thu,  4 Jan 2001 16:22:12 +0100.
+
+It was downloaded from <URL:http://brltty.com/download.html>
+
+Upstream Authors:
+   Nicolas Pitre <nico@cam.org>
+          Current maintainer; author of the drivers for the Alva B.V.
+          series and for the EuroBraille family of displays.
+       
+   Stéphane Doyon <s.doyon@videotron.ca>:
+          Active developer; author of the driver for Telesensory
+          Systems's PowerBraille and Navigator models.
+					      
+   Nikhil Nair <nn201@cus.cam.ac.uk>:
+          Original author; author of the drivers for the Tieman B.V.
+          CombiBraille and Blazie Engineering's BrailleLite.
+     
+   James Bowden <jrbowden@bcs.org.uk>:
+          Acted in an advisory capacity; contributed some braille
+          translation tables.
+    
+   August Hörandl <hoerandl@elina.htlw1.ac.at>:
+          Noted contributor of the driver for the Papenmeier Screen 2D
+          Terminal. Thanks to the members of his team (Tibor Becker,
+          Michael Burger, Herbert Gruber and Heimo Schön) who worked on
+          this project at the Technical High School, Department for
+          electrical engineering, Vienna, Austria.
+ 
+   Oscar Fernandez <ofa@once.es>:
+          Contributor of the driver for the EcoBraille from La O.N.C.E.
+
+  And some others.
+
+Copyright:
+
+Copyright (C) 1995-2009 by The BRLTTY Team, All rights reserved.
+
+BRLTTY comes with ABSOLUTELY NO WARRANTY.
+
+This is free software, placed under the terms of the
+GNU Lesser General Public License, as published by the Free Software
+Foundation; either version 2.1 of the License, or (at your option) any
+later version.
+
+On Debian GNU/Linux systems, the complete text of the GNU Lesser General
+Public License can be found in `/usr/share/common-licenses/LGPL-2.1'.
+

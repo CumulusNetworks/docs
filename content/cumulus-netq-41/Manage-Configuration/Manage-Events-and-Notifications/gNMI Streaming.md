@@ -4,44 +4,50 @@ author: Cumulus Networks
 weight: 811
 toc: 4
 ---
-## gNMI Support on Cumulus Linux
+You can use {{<exlink url="https://github.com/openconfig/gnmi" text="gRPC Network Management Interface">}} (gNMI) to collect system resource, interface, and counter information from Cumulus Linux and export it to your own gNMI client.
 
-You can use *gNMI*, the {{<exlink url="https://github.com/openconfig/gnmi" text="gRPC network management interface">}}, to collect system resource, interface, and counter information from Cumulus Linux and export it to your own gNMI client.
+## Configure the gNMI Agent
 
-### Configure the gNMI Agent
+The gNMI agent is disabled by default. To enable it, run:
 
-To configure the gNMI agent, you need to enable it on every switch you want to use with gNMI. Optionally, you can update the default gNMI port. The gNMI agent listens over port 9339 by default. You can change this setting in case you use that port in another application:
+```
+ cumulus@switch:~$ netq config add agent gnmi-enable true
+ ```
 
+The gNMI agent listens over port 9339. You can change the default port in case you use that port in another application. The `/etc/netq/netq.yml` file stores the configuration.
 
-The `/etc/netq/netq.yml` file stores the configuration.
+Use the following commands to adjust the settings:
 
-To configure the gNMI agent on a switch:
+1. Disable the gNMI agent:
 
-1. Enable the gNMI agent:
+       cumulus@switch:~$ netq config add agent gnmi-enable false
 
-       cumulus@switch:~$ netq config add agent gnmi-enable true
-
-1. If you want to change the default port over which the gNMI agent listens, run:
+2. Change the default port over which the gNMI agent listens:
 
        cumulus@switch:~$ netq config add agent gnmi-port <gnmi_port>
-1. Restart the NetQ Agent:
+3. Restart the NetQ agent to incorporate the configuration changes:
 
        cumulus@switch:~$ netq config restart agent
 
 
-### Use Only the gNMI Agent
+### Use the gNMI Agent Only
 
-It is possible (although it is not recommended) to collect data using only the gNMI agent, and not the NetQ Agent. However, this sends data only to gNMI and not to NetQ.
+NVIDIA recommends collecting data with both the gNMI and NetQ agents. However, if you do not want to collect data with both agents, you can disable the NetQ agent. Data is then sent exclusively to the gNMI agent.
 
-To use only gNMI for data collection, disable the NetQ Agent, which is always enabled by default:
+To disable the NetQ agent, use the following command:
 
     cumulus@switch:~$ netq config add agent opta-enable false
 
-{{%notice info%}}
+{{%notice note%}}
 
-You cannot disable both the NetQ Agent and the gNMI agent.
+You cannot disable both the NetQ and gNMI agents. If both agents are enabled on Cumulus Linux and a NetQ server is unreachable, the data from the following models are not sent to gNMI:
+- openconfig-interfaces
+- openconfig-if-ethernet 
+- openconfig-if-ethernet-ext
+- openconfig-system
+- nvidia-if-ethernet-ext
 
-If you enable both the gNMI agent and the traditional NetQ agent on Cumulus Linux, the data from [OpenConfig models](#supported-models) and the `nvidia-if-ethernet-ext` model are not sent to gNMI if a NetQ server is not reachable. WJH data continues streaming to gNMI in this state. If you are only using gNMI and a NetQ telemetry server does not exist, you should disable the NetQ agent by setting `opta-enable` to `false`.
+WJH, `openconfig-platform`, and `openconfig-lldp` data continue streaming to gNMI in this state. If you are only using gNMI and a NetQ telemetry server does not exist, you should disable the NetQ agent by setting `opta-enable` to `false`.
 
 {{%/notice%}}
 
@@ -51,13 +57,22 @@ Cumulus Linux supports the following OpenConfig models:
 
 | Model| Supported Data |
 | --------- | ------ |
-| {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/interfaces/openconfig-interfaces.yang" text="openconfig-interfaces">}} | Name, Operstatus, AdminStatus, IfIndex, MTU, LoopbackMode, Enabled |
-| {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/interfaces/openconfig-if-ethernet.yang" text="openconfig-if-ethernet">}} | AutoNegotiate, PortSpeed, MacAddress, NegotiatedPortSpeed, Counters|
-| {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/interfaces/openconfig-if-ethernet-ext.yang" text="openconfig-if-ethernet-ext">}} | Frame size counters |
+| {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/interfaces/openconfig-interfaces.yang" text="openconfig-interfaces">}} | Name, Operstatus, AdminStatus, IfIndex, MTU, LoopbackMode, Enabled, Counters (InPkts, OutPkts, InOctets, InUnicastPkts, InDiscards, InMulticastPkts, InBroadcastPkts, InErrors, OutOctets, OutUnicastPkts, OutMulticastPkts, OutBroadcastPkts, OutDiscards, OutErrors) |
+| {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/interfaces/openconfig-if-ethernet.yang" text="openconfig-if-ethernet">}} | AutoNegotiate, PortSpeed, MacAddress, NegotiatedPortSpeed, Counters (InJabberFrames, InOversizeFrames,​ InUndersizeFrames)|
+| {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/interfaces/openconfig-if-ethernet-ext.yang" text="openconfig-if-ethernet-ext">}} | Frame size counters (InFrames_64Octets, InFrames_65_127Octets, InFrames_128_255Octets, InFrames_256_511Octets, InFrames_512_1023Octets, InFrames_1024_1518Octets) |
 | {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/system/openconfig-system.yang" text="openconfig-system">}} | Memory, CPU |
+| {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/platform/openconfig-platform.yang" text="openconfig-platform">}} | Platform data (Name, Description, Version) |
+| {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/lldp/openconfig-lldp.yang" text="openconfig-lldp">}} | LLDP data (PortIdType, PortDescription, LastUpdate, SystemName, SystemDescription, ChassisId, Ttl, Age, ManagementAddress, ManagementAddressType, Capability) |
 
-gNMI clients can also use the following model for extended ethernet counters:
-<!-- vale off -->
+gNMI clients can also use the following NVIDIA models:
+
+| Model| Supported Data |
+| --------- | ------ |
+| nvidia-if-wjh-drop-aggregate | Aggregated WJH drops, including L1, L2, router, ACL, tunnel, and buffer drops |
+| nvidia-if-ethernet-ext | Extended Ethernet counters (AlignmentError, InAclDrops, InBufferDrops, InDot3FrameErrors, InDot3LengthErrors, InL3Drops, InPfc0Packets, InPfc1Packets, InPfc2Packets, InPfc3Packets, InPfc4Packets, InPfc5Packets, InPfc6Packets, InPfc7Packets, OutNonQDrops, OutPfc0Packets, OutPfc1Packets, OutPfc2Packets, OutPfc3Packets, OutPfc4Packets, OutPfc5Packets, OutPfc6Packets, OutPfc7Packets, OutQ0WredDrops, OutQ1WredDrops, OutQ2WredDrops, OutQ3WredDrops, OutQ4WredDrops, OutQ5WredDrops, OutQ6WredDrops, OutQ7WredDrops, OutQDrops, OutQLength, OutWredDrops, SymbolErrors, OutTxFifoFull)|
+
+The client should use the following YANG models as a reference:
+
 {{<expand "nvidia-if-ethernet-ext">}}
 ```
 module nvidia-if-ethernet-counters-ext {
@@ -243,16 +258,6 @@ module nvidia-if-ethernet-counters-ext {
 }
 ```
 {{</expand>}}
-{{%notice note%}}
-SONiC only supports collection of [WJH data](#collect-wjh-data-using-gnmi) with gNMI.
-{{%/notice%}}
-<!-- vale on -->
-## Collect WJH Data Using gNMI
-
-You can export What Just Happened data from the NetQ Agent to your own gNMI client.
-
-The client should use the following YANG model as a reference:
-<!-- vale off -->
 {{<expand "nvidia-if-wjh-drop-aggregate">}}
 
 ```
@@ -566,14 +571,19 @@ module wjh-drop-types {
 
 {{</expand>}}
 <!-- vale on -->
+## Collect WJH Data Using gNMI
+
+You can export What Just Happened data from the NetQ agent to your own gNMI client. Refer to the previous section for the `nvidia-if-wjh-drop-aggregate` reference YANG model. 
+<!-- vale on -->
 ### Supported Features
 
-In this release, the gNMI agent supports *capability* and *stream subscribe* requests for WJH events.
+ - The gNMI agent supports *capability* and *stream subscribe* requests for WJH events. 
+ - If you are using SONiC, WJH data can only be collected using gNMI.
 
 
 ### WJH Drop Reasons
 <!-- vale off -->
-The data NetQ sends to the gNMI agent is in the form of WJH drop reasons. The reasons are generated by the SDK and are stored in the `/usr/etc/wjh_lib_conf.xml` file on the switch and. Use this file as a guide to filter for specific reason types (L1, ACL, and so forth), reason IDs, and/or event severities.
+The data NetQ sends to the gNMI agent is in the form of WJH drop reasons. The reasons are generated by the SDK and are stored in the `/usr/etc/wjh_lib_conf.xml` file on the switch. Use this file as a guide to filter for specific reason types (L1, ACL, and so forth), reason IDs, or event severities.
 
 #### L1 Drop Reasons
 
@@ -618,7 +628,7 @@ The data NetQ sends to the gNMI agent is in the form of WJH drop reasons. The re
 | 304 | Blackhole ARP/neighbor | Warning | Validate ARP table for the next hop |
 | 305 | IPv6 destination in multicast scope FFx0:/16 | Notice | Expected behavior - packet is not routable |
 | 306 | IPv6 destination in multicast scope FFx1:/16 | Notice | Expected behavior - packet is not routable |
-| 307 | Non IP packet | Notice | Destination MAC is the router, packet is not routable |
+| 307 | Non-IP packet | Notice | Destination MAC is the router, packet is not routable |
 | 308 | Unicast destination IP but multicast destination MAC | Error | Bad packet was received from the peer |
 | 309 | Destination IP is loopback address | Error | Bad packet was received from the peer |
 | 310 | Source IP is multicast | Error | Bad packet was received from the peer |
@@ -662,17 +672,13 @@ The data NetQ sends to the gNMI agent is in the form of WJH drop reasons. The re
 | --------- | ------ | -------- | ----------- |
 | 503 | Tail drop | Warning | Monitor network congestion |
 | 504 | WRED | Warning | Monitor network congestion |
-| 505 | Port TC Congestion Threshold Crossed | Notice | Monitor network congestion |
-| 506 | Packet Latency Threshold Crossed | Notice | Monitor network congestion |
-
-### Related Information
-
-{{<exlink url="https://datatracker.ietf.org/meeting/101/materials/slides-101-netconf-grpc-network-management-interface-gnmi-00" text="gNMI presentation to IETF">}}
+| 505 | Port TC congestion threshold crossed | Notice | Monitor network congestion |
+| 506 | Packet latency threshold crossed | Notice | Monitor network congestion |
 
 ### gNMI Client Requests
 
 <!-- vale off -->
-You can use your gNMI client on a host server to request capabilities and data the agent is subscribed to.
+You can use your gNMI client on a host server to request capabilities and data that the agent is subscribed to.
 <!-- vale on -->
 
 The following example shows a gNMI client request for interface speed:
@@ -806,3 +812,6 @@ gnmi_client -target_addr 10.209.37.121:9339 -xpath "/interfaces/interface[name=s
    }
 }
 ```
+## Related Information
+
+- {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Monitoring-and-Troubleshooting/gNMI-Streaming/" text="gNMI Streaming and Cumulus Linux">}}

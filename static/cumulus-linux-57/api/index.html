@@ -37,6 +37,7 @@
     <script src="./swagger-ui-standalone-preset.js" charset="UTF-8"> </script>
     <script>
     window.onload = function() {
+      history.pushState(null, "", location.href.split("?")[0]);
       // Begin Swagger UI call region
       const ui = SwaggerUIBundle({
         url: "openapi.json",

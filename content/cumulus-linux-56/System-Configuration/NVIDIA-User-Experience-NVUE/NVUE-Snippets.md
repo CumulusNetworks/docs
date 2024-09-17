@@ -114,6 +114,59 @@ Make sure to use spaces not tabs; the parser expects spaces in yaml format.
 
 The traditional snippets for FRR write content to the `/etc/frr/frr.conf` file. When you apply the configuration and snippet with the `nv config apply` command, the FRR service goes through and reads in the `/etc/frr/frr.conf` file.
 
+#### Example 3: EVPN Multihoming FRR Debugging
+
+NVUE does not support configuring FRR debugging for EVPN multihoming. The following example configures FRR debugging:
+
+1. Create a `.yaml` file and add the following traditional snippet:
+
+   ```
+   cumulus@switch:~$ sudo nano mh_debug_snippet.yaml
+   - set:
+       system:
+         config:
+           snippet:
+             frr.conf: |
+               debug bgp evpn mh es
+               debug bgp evpn mh route
+               debug bgp zebra
+               debug zebra evpn mh es
+               debug zebra evpn mh mac
+               debug zebra evpn mh neigh
+               debug zebra evpn mh nh
+               debug zebra vxlan
+   ```
+
+2. Run the following command to patch the configuration:
+
+   ```
+   cumulus@switch:~$ nv config patch mh_debug_snippet.yaml
+   ```
+
+3. Run the `nv config apply` command to apply the configuration:
+
+   ```
+   cumulus@switch:~$ nv config apply
+   ```
+
+4. Verify that the configuration exists in the `/etc/frr/frr.conf` file:
+
+   ```
+   cumulus@switch:~$ sudo cat /etc/frr/frr.conf
+   ...
+   !---- NVUE snippets ----
+   debug bgp evpn mh es
+   debug bgp evpn mh route
+   debug bgp zebra
+   debug zebra evpn mh es
+   debug zebra evpn mh mac
+   debug zebra evpn mh neigh
+   debug zebra evpn mh nh
+   debug zebra vxlan
+   ```
+
+The traditional snippets for FRR write content to the `/etc/frr/frr.conf` file. When you apply the configuration and snippet with the `nv config apply` command, the FRR service goes through and reads in the `/etc/frr/frr.conf` file.
+
 ### /etc/network/interfaces Snippets
 
 #### MLAG Timers Example
@@ -204,6 +257,51 @@ NVUE does not support configuring traditional bridges. The following example con
      bridge-ports swp1 swp2
      bridge-vlan-aware no
    ```
+
+#### VLAN-aware RSTP Timers Example
+
+NVUE does not support configuring RSTP timers on VLAN-aware bridges. The following example configures non-default RSTP timers for the NVUE default bridge `br_default`:
+
+1. Create a `.yaml` file and add the following traditional snippet:
+
+   ```
+   cumulus@switch:~$ sudo nano vlan-aware_bridge_snippet.yaml
+   - set:
+       system:
+         config:
+           snippet:
+             ifupdown2_eni:
+               br_default: |
+                 mstpctl-maxage 10
+                 mstpctl-hello 1
+                 mstpctl-fdelay 8
+   ```
+
+2. Run the following command to patch the configuration:
+
+   ```
+   cumulus@switch:~$ nv config patch vlan-aware_bridge_snippet.yaml
+   ```
+
+3. Run the `nv config apply` command to apply the configuration:
+
+   ```
+   cumulus@switch:~$ nv config apply
+   ```
+
+4. Verify that the configuration exists at the end of the `/etc/network/interfaces` file:
+
+   ```
+   cumulus@switch:~$ sudo cat /etc/network/interfaces
+   ...
+   auto br_default
+   iface br_default
+       mstpctl-maxage 10
+       mstpctl-hello 1
+       mstpctl-fdelay 8
+   ...
+   ```
+
 <!-- vale off -->
 ### /etc/cumulus/switchd.conf Snippets
 <!-- vale on -->
@@ -288,6 +386,10 @@ The following example creates a file called `traffic_conf_snippet.yaml` and enab
 To add Cumulus Linux SNMP agent configuration not yet available with NVUE commands, create an `snmpd.conf` snippet.
 
 The following example creates a file called `snmpd.conf_snippet.yaml`, and sets the read only community string and the listening address to run in the mgmt VRF.
+
+{{%notice note%}}
+SNMP snippets do not take effect unless you first enable SNMP with the NVUE `nv set service snmp-server enable on` and `nv set service snmp-server listening-address` commands (or with the equivalent REST API methods).
+{{%/notice%}}
 
 1. Create a `.yaml` file and add the following traditional snippet:
 
@@ -481,6 +583,7 @@ cumulus@leaf01:mgmt:~$ sudo nano crontab-flex-snippet.yaml
 The following example flexible snippet called `apt-flex-snippet` creates a new file `/etc/apt/sources.list.d/microsoft-prod.list` with 0644 permissions and adds multi-line text:
 
 ```
+cumulus@leaf01:mgmt:~$ sudo nano apt-flex-snippet.yaml
 - set:
     system:
       config:
@@ -492,6 +595,44 @@ The following example flexible snippet called `apt-flex-snippet` creates a new f
               deb [arch=amd64] https://packages.microsoft.com/debian/10/prod buster main
             permissions: "0644"
 ```
+
+The following flexible snippet called `lldp_config_snipppet` disables LLDP on swp1 and swp2 using the `configure system interface pattern-blacklist` command:
+
+```
+cumulus@leaf01:mgmt:~$ sudo nano lldp_config_snipppet.yaml
+- set:
+    system:
+      config:
+        snippet:
+          lldp-interfaces-config:
+            file: "/etc/lldpd.d/lldp-interfaces.conf"
+            content: |
+              configure system interface pattern-blacklist swp1,swp2
+              services:
+                lldp:
+                  service: lldpd
+                  action: restart
+```
+
+The following flexible snippet disables LLDP on swp1 and swp2 using the `system interface pattern` keyword:
+
+```
+cumulus@leaf01:mgmt:~$ sudo nano lldp_config_snipppet.yaml
+- set:
+    system:
+      config:
+        snippet:
+          lldp-interfaces-config:
+            file: "/etc/lldpd.d/lldp-interfaces.conf"
+            content: |
+              configure system interface pattern eth*,swp*,!swp1,!swp2
+            services:
+              lldp:
+                service: lldpd
+                action: restart
+```
+
+After you patch and apply the configuration above, the snippet creates a new file in the `/etc/lldp.d` directory, then restarts the `lldpd` service to stop LLDP transmitting and receiving on swp1 and swp2. Other interfaces continue to participate in LLDP.
 
 {{%notice note%}}
 If you try to apply a flexible snippet to a file that NVUE does not allow, you see an error message similar to the following:

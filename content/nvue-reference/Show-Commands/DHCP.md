@@ -145,7 +145,7 @@ cumulus@switch:~$ nv show service dhcp-relay default agent remote-id 44:38:39:BE
 
 ## <h>nv show service dhcp-relay \<vrf-id\> agent use-pif-circuit-id
 
-Shows if circuit ID is enabled for DHCP Agent Information Option 82.
+Shows if circuit ID is ON for DHCP Agent Information Option 82.
 
 ### Command Syntax
 
@@ -518,7 +518,7 @@ cumulus@switch:~$ nv show service dhcp-server default domain-name-server 192.168
 
 ## <h>nv show service dhcp-server \<vrf-id\> interface</h>
 
-Shows a list of interfaces on which the IPv4 DHCP client is attached.
+Shows a list of interfaces on which the IPv4 DHCP client attaches.
 
 ### Command Syntax
 
@@ -543,7 +543,7 @@ swp1
 
 ## <h>nv show service dhcp-server \<vrf-id\> interface \<interface-id\></h>
 
-Shows information about a specific interface on which the IPv4 DHCP client is attached.
+Shows information about a specific interface on which the IPv4 DHCP client attaches.
 
 ### Command Syntax
 
@@ -1012,7 +1012,7 @@ cumulus@switch:~$ nv show service dhcp-server6 default domain-name-server 0:0:0:
 
 ## <h>nv show service dhcp-server6 \<vrf-id\> interface</h>
 
-Shows the interfaces on which the IPv6 DHCP client is attached.
+Shows the interfaces on which the IPv6 DHCP client attaches.
 
 ### Command Syntax
 
@@ -1034,7 +1034,7 @@ cumulus@switch:~$ nv show service dhcp-server6 default interface
 
 ## <h>nv show service dhcp-server6 \<vrf-id\> interface \<interface-id\></h>
 
-Shows information about a specific interface on which the IPv6 DHCP client is attached.
+Shows information about a specific interface on which the IPv6 DHCP client attaches.
 
 ### Command Syntax
 

@@ -13,8 +13,7 @@ This issue was reported as Cumulus Networks Product Bulletin 2017-02-08.
 <!-- vale on -->
 ## Environment
 
-This issue might affect the following switches on the NVIDIA {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="hardware compatibility list">}}:
-
+This issue might affect certain NVIDIA switches:
 - 100G switches: Dell Z9100-ON, Edge-Core AS7712-32X, HPE Altoline 6960, NVIDIA Spectrum SN2100, Penguin Arctica 3200C, QCT QuantaMesh BMS T7032-IX1, Supermicro SSE-C3632S
 - 40G switches: Dell S6010-ON, Edge-Core AS6712-32X, Edge-Core AS6812-32X, HPE Altoline 6940, HPE Altoline 6941, NVIDIA Spectrum SN2100B, Penguin Arctica 3200XLP, QCT QuantaMesh BMS T5032-LY6-x86
 - 10G switches: Dell S4048-ON, Dell S4048T-ON, Edge-Core AS5712-54X, Edge-Core AS5812-54T, Edge-Core AS5812-54X, HPE Altoline 6920, HPE Altoline 6921, HPE Altoline 6921T, Penguin Arctica 4806XP, QCT QuantaMesh BMS T3048-LY8, QCT QuantaMesh BMS T3048-LY9, Supermicro SSE-X3648S

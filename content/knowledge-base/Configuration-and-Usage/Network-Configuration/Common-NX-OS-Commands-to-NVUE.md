@@ -117,7 +117,7 @@ ACLs in Cumulus Linux derive from Linux `iptables` and behave differently from N
 - No implicit deny. ACLs must end in a `match any` and `action deny` rule to drop all unmatched traffic.
 - No support for wildcard masks. You must list subnets individually.
 
-For more information, refer to the {{<kb_link latest="cl" url="System-Configuration/Netfilter-ACLs.md" text="Netfilter - ACLs" >}} section of the Cumulus Linux User Guide.
+For more information, refer to the {{<kb_link latest="cl" url="System-Configuration/Access-Control-Lists/Access-Control-List-Configuration.md" text="ACLs" >}} section of the Cumulus Linux User Guide.
 
 | NX-OS Command | NVUE Command | Comments |
 | -----         | -----        | -----    |

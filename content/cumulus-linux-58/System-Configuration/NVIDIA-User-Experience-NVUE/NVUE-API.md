@@ -30,6 +30,7 @@ The NVUE REST API supports the following methods:
 - The **PATCH** method replaces or unsets a configuration. You use this method for the `nv set` and `nv config apply` commands. You can either perform:
   - A *targeted* configuration patch to make a configuration change, where you run a specific NVUE REST API targeted at a particular OpenAPI end-point URI. Based on the NVUE schema definition, you need to direct the PATCH REST API request at a particular endpoint (for example, `/nvue_v1/vrf/<vrf-id>/router/bgp`) and provide the payload that conforms to the schema. With a targeted configuration patch, you can control individual resources.
   - A *root* patch, where you run the NVUE PATCH API on the root node of the schema so that a single PATCH operation can change one, some, or the entire configuration in a single payload. The payload of the PATCH method must be aware of the entire NVUE object model schema because you make the configuration changes relative to the root node `/nvue_v1`. You typically perform a *root patch* to push all configurations to the switch in bulk; for example, if you use an SDN controller or a network management system to push the entire switch configuration every time you need to make a change, regardless of how small or large. A root patch can also make configuration changes with fewer round trips to the switch.
+  - The input payload in a PATCH request can have either a `set` or `unset` json object for the same resource, but not both. The order in which the API executes the `set` and `unset` objects is not deterministic and not supported.
 - The **DELETE** method deletes a configuration and is equivalent to the `nv unset` commands.
 
 ## Secure the API
@@ -189,7 +190,7 @@ cumulus@switch:~$ nv set system control-plane acl API-PROTECT inbound
 
 ## Supported Objects
 
-The NVUE object model supports most features on the Cumulus Linux switch. The following list shows the supported objects. The NVUE API supports more objects within each of these objects. You can find a full listing of the supported API endpoints {{<mib_link url="cumulus-linux-57/api/index.html" text="here.">}}
+The NVUE object model supports most features on the Cumulus Linux switch. The following list shows the supported objects. The NVUE API supports more objects within each of these objects. You can find a full listing of the supported API endpoints {{<mib_link url="cumulus-linux-59/api/index.html" text="here.">}}
 
 | High-level Objects | Description |
 | ------------------ | ----------- |
@@ -1248,6 +1249,24 @@ cumulus@switch:~$ nv show interface lo ip address
 {{</ tab >}}
 {{</ tabs>}}
 
+### View Differences Between Configurations
+
+To view differences between configurations, run the API `GET /nvue_v1/<resource>?rev=<rev-A>&diff=<rev-B>` method with the configurations you want to `diff`. This method is equivalent to the NVUE `nv config diff <rev-A> <rev-B>` command.
+
+To see the difference between the startup revision and the applied revision:
+
+```
+cumulus@switch:~$ curl -u 'cumulus:cumulus' --insecure -X GET /nvue_v1/interface?rev=startup&diff=applied
+```
+
+To see the difference between revision 1 and revision 2:
+
+```
+cumulus@switch:~$ curl -u 'cumulus:cumulus' --insecure -X GET /nvue_v1/<resource>?rev=1&diff=2
+```
+
+You can change the order of the revisions; for example, `GET /nvue_v1/<resource>?rev=2&diff=1`.
+
 ### Troubleshoot Configuration Changes
 
 When a configuration change fails, you see an error in the change request.
@@ -1469,6 +1488,30 @@ out-pkts             3536508                        total number of packets tran
 
 {{< /tab >}}
 {{< /tabs >}}
+
+### Retrieve View Types
+
+NVUE provides views for certain `show` commands. A view is a subset of information.
+
+To see the views available for a show command, run the command with `--view` and press TAB:
+
+```
+cumulus@switch:~$ nv show interface --view <<TAB>>
+acl-statistics  detail          lldp            mlag-cc         port-security   synce-counters  
+brief           dot1x-counters  lldp-detail     neighbor        qos-profile     
+counters        dot1x-summary   mac             pluggables      small
+```
+
+```
+cumulus@switch:~$ nv show vrf default router rib ipv4 route --view <<TAB>>
+brief   detail
+```
+
+To retrieve view types through the REST API, you use the `curl -u 'cumulus:CumulusLinux!' -k -X GET http://path?view=<brief>` syntax. For example, the equivalent REST API method for the NVUE `nv show vrf <vrf-id> router rib ipv4 route --view=brief` command is:
+
+```
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -k -X GET https://127.0.0.1:8765/nvue_v1/vrf/BLUE/router/rib/ipv4/route?view=brief
+```
 
 ### Convert CLI Changes to Use the API
 
@@ -3412,8 +3455,8 @@ To try out the NVUE REST API, use the {{<exlink url="https://air.nvidia.com/mark
 
 ## Resources
 
-For information about using the NVUE REST API, refer to the {{<mib_link url="cumulus-linux-57/api/index.html" text="NVUE API Swagger documentation.">}}
-The full object model download is available {{<mib_link url="cumulus-linux-57/api/openapi.json" text="here.">}}
+For information about using the NVUE REST API, refer to the {{<mib_link url="cumulus-linux-59/api/index.html" text="NVUE API Swagger documentation.">}}
+The full object model download is available {{<mib_link url="cumulus-linux-58/api/openapi.json" text="here.">}}
 
 ## Considerations
 
@@ -3422,6 +3465,6 @@ The full object model download is available {{<mib_link url="cumulus-linux-57/ap
 
 ## Related Information
 
-- {{<exlink url="https://docs.nginx.com/" text="NGINX documentaion">}}
+- {{<exlink url="https://docs.nginx.com/" text="NGINX documentation">}}
 - {{<exlink url="https://help.ubuntu.com/lts/serverguide/certificates-and-security.html" text="Ubuntu Certificates and Security documentation">}}
 - {{<exlink url="https://pypi.org/project/requests/" text="Python requests module">}}

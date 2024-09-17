@@ -12,7 +12,7 @@ This guide walks a network architect or administrator through the various techno
 
 ## Cumulus Linux Network Operating System
 
-Cumulus Linux is the industry-leading open network operating system (NOS) that drives [open networking switches](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/) built on commodity hardware and switching silicon. It is the key that brings the same hardware and software disaggregation advantages to the network that IT departments already enjoy for their application servers and storage resources.
+Cumulus Linux is the industry-leading open network operating system (NOS) that drives open networking switches built on commodity hardware and switching silicon. It is the key that brings the same hardware and software disaggregation advantages to the network that IT departments already enjoy for their application servers and storage resources.
 
 Incumbent and traditional networking vendors create lock-in by bundling a proprietary operating system on custom built and proprietary networking hardware. Open networking switches often contain the same hardware forwarding chipsets as traditional vendors. When you need to run Linux on a server today, you have your choice of any bare metal server from any manufacturer that meets your needs and budget. The commitment to the operating system is a separate choice from the hardware that it runs on.
 
@@ -35,8 +35,6 @@ Because Cumulus Linux is a full Linux distribution based on Debian, administrato
 ## Cumulus Hardware Partners
 
 Cumulus Linux runs on over 100 open switch platforms from more than 10 hardware manufacturers, providing the widest choice and ultimate control over supply chain, procurement, speeds and features. Networking hardware from multiple vendors can become unified and simple to operate with Cumulus Linux running as a standard NOS. Cumulus Linux supports the widest range of platforms in the industry from open hardware vendors and is now extending this freedom and choice to the modern campus.
-
-Refer to the [hardware compatibility list](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/) for complete and detailed hardware platform support.
 
 ## Cumulus NetQ Streaming Telemetry Platform
 
@@ -262,8 +260,6 @@ Chassis create lock-in and a certain inflexibility of the network devices and se
 
 Open networking switches are almost exclusively built in fixed and non-modular form factors and support a wide range of pluggables. The [Recommended Designs](#recommended-designs) section below illustrates how campus networks can be built at scale without the need for large port-dense chassis switches.
 
-For more information about switch platforms that run Cumulus Linux, refer to our [hardware compatibility list](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/).
-
 ## Recommended Designs
 
 ### Small Office - Remote Office
@@ -272,7 +268,7 @@ Small campus network sites such as remote and satellite offices are often able t
 
 For these small networks, [inter-subnet routing](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/#inter-subnet-routing) can be performed on either the LAN switch or on a layer 3 device upstream. Performing routing upstream provides the opportunity for more robust and granular security and policy enforcement beyond what a LAN switch can provide in its hardware forwarding path, but may not be able to meet performance requirements. Inter-subnet routing can be performed at wire speed and takes the most direct path when performed on the LAN switch.
 
-Platform choice is flexible and includes options with or without Power over Ethernet (PoE). To see all 1G switch options, refer to the [hardware compatibility list](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/).
+Platform choice is flexible and includes options with or without Power over Ethernet (PoE).
 
 {{<figure src="/images/guides/campus-SmallOfficeRemoteOffice.jpg" caption="Small campus networks with consolidated network layers. **Left**: A small campus site with a single LAN switch. **Right**: One collapsed layer with one MLAG switch pair and security services in the WAN edge.">}}
 
@@ -307,7 +303,6 @@ In this configuration, distribution layer switches only route IP packets between
 
 | Tier | Supported Platforms |
 | ---- | ------------------- |
-| Access | Any model on the Cumulus HCL. See the [1G models](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/). |
 | Distribution | Any Broadcom Trident3, Trident II+ or Mellanox Spectrum-based platform is preferred. Broadcom Tomahawk family is acceptable. |
 | Border | Any Broadcom Trident3, Trident II+ or Mellanox Spectrum-based platform is preferred. Broadcom Tomahawk family is acceptable. |
 
@@ -658,7 +653,6 @@ Platform choice in this design follows closely with other VXLAN options. Access 
 | Tier | Supported Platforms |
 | ---- | ------------------- |
 | Access | Any Broadcom Trident3, Trident II+ or Mellanox Spectrum-based platform. |
-| Distribution | Any supported platform on the Cumulus HCL. |
 | Border | Any Broadcom Trident3, Trident II+ or Mellanox Spectrum-based platform is preferred. Broadcom Tomahawk family is acceptable, although routing in and out of VXLAN tunnels (RIOT) on Tomahawk platforms introduces a [few limitations and extra configuration](/cumulus-linux/Network-Virtualization/VXLAN-Routing/#tomahawk-and-tomahawk). |
 
 ### Multiple Distribution Layers
@@ -693,10 +687,8 @@ Distribution layer or border switches serve as VTEPs; thus, they carry the most 
 
 | Tier | Supported Platforms |
 | ---- | ------------------- |
-| Access | Any model on the Cumulus HCL. See the [1G models](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/). |
 | Distribution | Any Broadcom Trident3, Trident II+ or Mellanox Spectrum-based platform is preferred. Broadcom Tomahawk family is acceptable, although routing in and out of VXLAN tunnels (RIOT) on Tomahawk platforms introduces a [few limitations and extra configuration](/cumulus-linux/Network-Virtualization/VXLAN-Routing/#tomahawk-and-tomahawk). |
 | Border | Any Broadcom Trident3, Trident II+ or Mellanox Spectrum-based platform is preferred. Broadcom Tomahawk family is acceptable, although routing in and out of VXLAN tunnels (RIOT) on Tomahawk platforms introduces a [few limitations and extra configuration](/cumulus-linux/Network-Virtualization/VXLAN-Routing/#tomahawk-and-tomahawk). |
-| Core | Any model on the Cumulus HCL. |
 
 Another variation of a campus EVPN VXLAN design is a more modern and scalable network version that uses BGP Unnumbered through the core down to the access layer switches. Access layer switches are VTEPs and perform VXLAN encapsulation and decapsulation and also routing in and out of VXLAN tunnels (RIOT). For performance and best scalability, [symmetric mode](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/#symmetric-routing) with IRB (integrated routing and bridging), is the recommended inter-subnet routing strategy.
 
@@ -715,9 +707,7 @@ Platform requirements in this example differ from the previous example when VTEP
 | Tier | Supported Platforms |
 | ---- | ------------------- |
 | Access | Any Broadcom Trident3, Trident II+ or Mellanox Spectrum-based platform. |
-| Distribution | Any model on the Cumulus HCL. |
 | Border | Any Broadcom Trident3, Trident II+ or Mellanox Spectrum-based platform. Broadcom Tomahawk family is acceptable, although routing in and out of VXLAN tunnels (RIOT) on Tomahawk platforms introduces a [few limitations and extra configuration](/cumulus-linux/Network-Virtualization/VXLAN-Routing/#tomahawk-and-tomahawk). |
-| Core | Any model on the Cumulus HCL. |
 
 ## Network Telemetry and Validation with Cumulus NetQ
 

@@ -292,7 +292,7 @@ def build_rn_markdown(json_file, version, file_type):
         The filed "jira_ticket" is the Jira CM number, but not every issue has a mapped Jira ticket.
         '''
         if "jira_ticket" in bug and not bug["jira_ticket"] == "":
-                issue_id_string = "| <a name=\"" + bug["ticket"] + "\"></a> [" + bug["ticket"] + "](#" + bug["ticket"] + ") <a name=\"" + bug["ticket"] + "\"></a> <br />" + bug["jira_ticket"] + " | "
+                issue_id_string = "| <a name=\"" + bug["ticket"] + "\"></a> [" + bug["ticket"] + "](#" + bug["ticket"] + ") <a name=\"" + bug["ticket"] + "\"></a> <br /> | "
         else:
             issue_id_string = "| <a name=\"" + bug["ticket"] + "\"></a> [" + bug["ticket"] + "](#" + bug["ticket"] + ") <a name=\"" + bug["ticket"] + "\"></a> <br /> | "
 
@@ -420,8 +420,8 @@ def build_rn_markdown_files(product, version_list):
     #### Temporarily skip NetQ 4.8.0 until Redmine updates complete - Nov 11 2023
     #   if version == "4.6.0":
     #       continue
-    #    if version == "4.8.0":
-    #        continue
+        if version == "4.9.0":
+            continue
         if version_string(version) in major_minor:
             major_minor[version_string(version)].append(version)
         else:

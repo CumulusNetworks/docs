@@ -84,7 +84,7 @@ The Linux packet forwarding construct is an overlay for how the silicon undernea
     ```
 
 - When using rules that do a mangle and a filter lookup for a packet, Cumulus Linux processes them in parallel and combines the action.
-- If a switch port has a bond, you must assign any egress rules to the bond.
+- If there is no ingress interface or egress interface match, Cumulus Linux installs FORWARD chain rules in ingress by default.
 - When using the OUTPUT chain, you must assign rules to the source. For example, if you assign a rule to the switch port in the direction of traffic but the source is a bridge (VLAN), the rule does not affect the traffic and you must apply it to the bridge.
 - If you need to apply a rule to all transit traffic, use the FORWARD chain, not the OUTPUT chain.
 - The switch puts `ebtable` rules into either the IPv4 or IPv6 memory space depending on whether the rule uses IPv4 or IPv6 to make a decision. The switch only puts layer 2 rules that match the MAC address into the IPv4 memory space.
@@ -790,6 +790,10 @@ copp.catch_all.burst = 100
 You can configure control plane ACLs to apply a single rule for all packets forwarded to the CPU regardless of the source interface or destination interface on the switch. Control plane ACLs allow you to regulate traffic forwarded to applications on the switch with more granularity than traps and to configure ACLs to block SSH from specific addresses or subnets.
 
 Cumulus Linux applies inbound control plane ACLs in the INPUT chain and outbound control plane ACLs in the OUTPUT chain.
+
+{{%notice note%}}
+Cumulus Linux does not support a **deny all** control plane rule.  This type of rule blocks traffic for interprocess communication and impacts overall system functionality.
+{{%/notice%}}
 
 The following example command applies the input control plane ACL called ACL1.
 

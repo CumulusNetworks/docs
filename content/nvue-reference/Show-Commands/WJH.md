@@ -22,6 +22,11 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show system wjh
+                operational  applied
+---------------  -----------  -------
+enable                        on
+[channel]
+[packet-buffer]
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

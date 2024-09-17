@@ -140,6 +140,10 @@ The {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-c
 occasionally sends malformed packets and does not send any flow samples; it
 sends only counters. This is a known limitation on this Helix4 platform.
 
+## Considerations
+
+Mellanox switches do not support sFlow egress sampling.
+
 ## Related Information
 
 - {{<exlink url="http://www.sflow.org/products/collectors.php" text="sFlow Collectors">}}

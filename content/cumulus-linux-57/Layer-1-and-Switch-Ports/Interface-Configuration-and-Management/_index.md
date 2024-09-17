@@ -4,156 +4,90 @@ author: NVIDIA
 weight: 290
 toc: 3
 ---
-This section discusses how to configure and manage network interfaces.
-
 Cumulus Linux uses `ifupdown2` to manage network interfaces, which is a new implementation of the Debian network interface manager `ifupdown`.
 
-## Basic Commands
+## Bring an Interface Up or Down
 
-### Bring Up the Physical Connection to an Interface
+An interface status can be in an:
+- Administrative state, where you configure the interface to be up or down.
+- Operational state, which reflects the current operational status of an interface.
 
-To bring up the physical connection to an interface or apply changes to an existing interface, run the `sudo ifup <interface>` command. The following example command brings up the physical connection to swp1:
-
-```
-cumulus@switch:~$ sudo ifup swp1
-```
-
-To bring down the physical connection to a single interface, run the `sudo ifdown <interface>` command. The following example command brings down the physical connection to swp1:
-
-```
-cumulus@switch:~$ sudo ifdown swp1
-```
-
-The `ifdown` command always deletes logical interfaces after bringing them down. When you bring down the physical connection to an interface, it comes back up automatically after you reboot the switch or apply configuration changes with `ifreload -a`.
-
-{{%notice note%}}
-By default, `ifupdown` is quiet. Use the verbose option (`-v`) to show commands as they execute when you bring an interface down or up.
-{{%/notice%}}
-
-### Bring Up an Interface Administratively
-
-When you bring an interface up or down administratively (admin up or admin down), you bring down a port, bridge, or bond but not the physical connection for the port, bridge, or bond.
-
-When you put an interface into an admin down state, the interface *remains down* after any future reboots or configuration changes with `ifreload -a`.
-
-{{< tabs "TabID39 ">}}
+{{< tabs "TabID17 ">}}
 {{< tab "NVUE Commands ">}}
 
-To put an interface into an admin *down* state:
+To configure and bring an interface up administratively, use the `nv set interface` command:
+
+```
+cumulus@switch:~$ nv set interface swp1
+cumulus@switch:~$ nv config apply
+```
+
+After you bring up an interface, you can bring it down administratively by changing the link state to `down`:
 
 ```
 cumulus@switch:~$ nv set interface swp1 link state down
 cumulus@switch:~$ nv config apply
 ```
 
-To bring the interface back *up*:
+To bring the interface back up, change the link state back to `up`:
 
 ```
 cumulus@switch:~$ nv set interface swp1 link state up
 cumulus@switch:~$ nv config apply
 ```
 
+To remove an interface from the configuration entirely, use the `nv unset interface` command:
+
+```
+cumulus@switch:~$ nv unset interface swp1
+cumulus@switch:~$ nv config apply
+```
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-To put an interface into an *admin* *down* state:
+To configure and bring an interface up administratively, edit the `/etc/network/interfaces` file to add the interface stanza, then run the `ifreload -a` command:
 
 ```
-cumulus@switch:~$ sudo ifdown swp1 --admin-state
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+auto lo
+iface lo inet loopback
+    address 10.10.10.1/32
+auto mgmt
+iface mgmt
+    address 127.0.0.1/8
+    address ::1/128
+    vrf-table auto
+auto eth0
+iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
+    vrf mgmt
+auto swp1
+iface swp1
+...
 ```
 
-To bring the interface back *up*:
+To bring an interface down administratively after you configure it, add `link-down yes` to the interface stanza in the `/etc/network/interfaces` file, then run `ifreload -a`:
 
 ```
-cumulus@switch:~$ sudo ifup swp1 --admin-state
+auto swp1
+iface swp1
+ link-down yes
 ```
+
+If you configure an interface in the `/etc/network/interfaces` file, you can bring it down administratively with the `ifdown swp1` command, then bring the interface back up with the `ifup swp1` command. These changes do not persist after a reboot. After a reboot, the configuration present in `/etc/network/interfaces` takes effect.
+
+{{%notice note%}}
+-By default, the `ifupdown` and `ifup` command is quiet. Use the verbose option (`-v`) to show commands as they execute when you bring an interface down or up.
+{{%/notice%}}
+
+To remove an interface from the configuration entirely, remove the interface stanza from the `/etc/network/interfaces` file, then run the `ifreload -a` command.
 
 {{< /tab >}}
 {{< /tabs >}}
 
 For additional information on interface administrative state and physical state, refer to [this knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Monitoring/Monitor-Interface-Administrative-State-and-Physical-State-on-Cumulus-Linux" >}}).
-
-## Interface Classes
-
-`ifupdown2` enables you to group interfaces into separate classes. A class is a user-defined label that groups interfaces that share a common function (such as `uplink`, `downlink` or `compute`). You specify classes in the `/etc/network/interfaces` file.
-
-The most common class is *auto*, which you configure like this:
-
-```
-auto swp1
-iface swp1
-```
-
-You can add other classes using the *allow* prefix. For example, if you have multiple interfaces used for uplinks, you can define a class called *uplinks:*
-
-```
-auto swp1
-allow-uplink swp1
-iface swp1 inet static
-    address 10.1.1.1/31
-
-auto swp2
-allow-uplink swp2
-iface swp2 inet static
-    address 10.1.1.3/31
-```
-
-This allows you to perform operations on only these interfaces using the `--allow=uplinks` option. You can still use the `-a` options because these interfaces are also in the *auto* class:
-
-```
-cumulus@switch:~$ sudo ifup --allow=uplinks
-cumulus@switch:~$ sudo ifreload -a
-```
-
-If you are using {{<link title="Management VRF">}}, you can use the special interface class called *mgmt* and put the management interface into that class. The management VRF must have an IPv6 address in addition to an IPv4 address to work correctly.
-
-```
-allow-mgmt eth0
-iface eth0 inet dhcp
-    vrf mgmt
-
-allow-mgmt mgmt
-iface mgmt
-    address 127.0.0.1/8
-    address ::1/128
-    vrf-table auto
-```
-
-All `ifupdown2` commands (`ifup`, `ifdown`, `ifquery`, `ifreload`) can take a class. Include the `--allow=<class>` option when you run the command. For example, to reload the configuration for the management interface described above, run:
-
-```
-cumulus@switch:~$ sudo ifreload --allow=mgmt
-```
-
-Use the `-a` option to bring up or down all interfaces with the common `auto` class in the `/etc/network/interfaces` file.
-
-To administratively bring up all interfaces marked `auto`, run:
-
-```
-cumulus@switch:~$ sudo ifup -a
-```
-
-To administratively bring down all interfaces marked `auto`, run:
-
-```
-cumulus@switch:~$ sudo ifdown -a
-```
-
-To reload all network interfaces marked `auto`, use the `ifreload` command. This command is equivalent to running `ifdown` then `ifup`; however, `ifreload` skips unchanged configurations:
-
-```
-cumulus@switch:~$ sudo ifreload -a
-```
-
-{{%notice note%}}
-Cumulus Linux checks syntax by default. As a precaution, apply configurations only if the syntax check passes. Use the following compound command:
-
-```
-cumulus@switch:~$ sudo bash -c "ifreload -s -a && ifreload -a"
-```
-{{%/notice%}}
-
-For more information, see the individual man pages for `ifup(8)`, `ifdown(8)`, `ifreload(8)`.
 
 ## Loopback Interface
 
@@ -192,7 +126,7 @@ iface lo inet loopback
 - You can configure multiple IP addresses for the loopback interface.
 {{%/notice%}}
 
-## Child Interfaces
+<!--## Child Interfaces
 
 By default, `ifupdown2` recognizes and uses any interface present on the system that is a dependent (child) of an interface (for example, a VLAN, bond, or physical interface). You do not need to list interfaces in the `/etc/network/interfaces` file unless the interfaces need specific configuration for {{<link url="Switch-Port-Attributes" text="MTU, link speed, and so on">}}. If you need to delete a child interface, delete all references to that interface from the `/etc/network/interfaces` file.
 
@@ -365,21 +299,49 @@ cumulus@switch:~$ sudo ifquery --print-dependency=dot -a >interfaces_all.dot
 ```
 
 {{< img src = "/images/cumulus-linux/layer1-interfaces-all.png" >}}
-
+-->
 ## Subinterfaces
 
 On Linux, an *interface* is a network device that can be either physical, (for example, swp1) or virtual (for example, vlan100). A *VLAN subinterface* is a VLAN device on an interface, and the VLAN ID appends to the parent interface using dot (.) VLAN notation. For example, a VLAN with ID 100 that is a subinterface of swp1 is swp1.100. The dot VLAN notation for a VLAN device name is a standard way to specify a VLAN device on Linux.
 
 A VLAN subinterface only receives traffic tagged for that VLAN; therefore, swp1.100 only receives packets that have a VLAN 100 tag on switch port swp1. Any packets that transmit from swp1.100 have a VLAN 100 tag.
 
-In an {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} configuration, the peer link interface that connects the two switches in the MLAG pair has a VLAN subinterface named 4094. The peerlink.4094 subinterface only receives traffic tagged for VLAN 4094.
+The following example configures a routed subinterface on swp1 in VLAN 100:
+
+{{< tabs "TabID316 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface swp1.100 ip address 192.168.100.1/24
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/network/interfaces` file, then run `ifreload -a`:
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+auto swp1.100
+iface swp1.100
+ address 192.168.100.1/24
+```
+
+```
+cumulus@switch:~$ sudo ifreload -a
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{%notice note%}}
 - If you are using a VLAN subinterface, do not add that VLAN under the bridge stanza.
 - You cannot use NVUE commands to create a routed subinterface for VLAN 1.
 {{%/notice%}}
 
-## Parent Interfaces
+<!--## Parent Interfaces
 
 When you run `ifup` on a logical interface (like a bridge, bond, or VLAN interface), if the `ifup` creates the logical interface, it also tries to execute on the upper (or parent) interfaces of the interface.
 
@@ -406,7 +368,7 @@ With `skip_upperifaces=1`, you have to execute `ifup` on the upper interfaces. I
 {{%notice note%}}
 If you specify a subinterface, such as swp1.100, then run `ifup swp1.100`, Cumulus Linux creates the swp1 interface automatically in the kernel. Consider also specifying the parent interface swp1. A parent interface is one where any physical layer configuration can reside, such as `link-speed 1000` or `link-duplex full`. If you create only swp1.100 and not swp1, you cannot run `ifup swp1`.
 {{%/notice%}}
-
+-->
 ## Interface IP Addresses
 
 You can specify both IPv4 and IPv6 addresses for the same interface.

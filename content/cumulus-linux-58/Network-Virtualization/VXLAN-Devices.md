@@ -10,77 +10,8 @@ Cumulus Linux supports both single and traditional <span class="a-tooltip">[VXLA
 - You can configure single VXLAN devices in VLAN-aware bridge mode only.
 - You cannot use a combination of single and traditional VXLAN devices.
 - A traditional VXLAN device configuration supports up to 2000 VNIs and a single VXLAN device configuration supports up to 4000 VNIs.
+- NVIDIA recommends you use single VXLAN devices instead of traditional VXLAN devices.
 {{%/notice%}}
-
-## Traditional VXLAN Device
-
-With a traditional VXLAN device, each VNI is a separate device (for example, vni10, vni20, vni30).
-You can configure traditional VXLAN devices by manually editing the `/etc/network/interfaces` file.
-
-The following example configuration:
-- Creates two unique VXLAN devices (vni10 and vni20)
-- Adds each VXLAN device (vni10 and vni20) to the bridge `bridge`
-- Configures the local tunnel IP address to be the loopback address of the switch
-
-{{< tabs "TabID25 ">}}
-{{< tab "NVUE Commands ">}}
-
-You cannot use NVUE commands to configure traditional VXLAN devices.
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command.
-
-```
-cumulus@leaf01:~$ sudo nano /etc/network/interfaces
-...
-auto lo
-iface lo inet loopback
-    address 10.10.10.1/32
-    vxlan-local-tunnelip 10.10.10.1
-
-auto mgmt
-iface mgmt
-    address 127.0.0.1/8
-    vrf-table auto
-
-auto swp1
-iface swp1
-    bridge-access 10
-
-auto swp2
-iface swp2
-    bridge-access 20
-
-auto vni10
-iface vni10
-    bridge-access 10
-    mstpctl-bpduguard yes
-    mstpctl-portbpdufilter yes
-    vxlan-id 10
-
-auto vni20
-iface vni20
-    bridge-access 20
-    mstpctl-bpduguard yes
-    mstpctl-portbpdufilter yes
-    vxlan-id 20
-
-auto bridge
-iface bridge
-    bridge-ports swp1 swp2 vni10 vni20
-    bridge-vlan-aware yes
-    bridge-vids 10 20
-    bridge-pvid 1
-```
-
-```
-cumulus@leaf01:~$ ifreload -a
-```
-
-{{< /tab >}}
-{{< /tabs >}}
 
 ## Single VXLAN Device
 
@@ -195,6 +126,76 @@ cumulus@leaf01:~$ ifreload -a
 {{< /tab >}}
 {{< /tabs >}}
 
+## Traditional VXLAN Device
+
+With a traditional VXLAN device, each VNI is a separate device (for example, vni10, vni20, vni30).
+You can configure traditional VXLAN devices by manually editing the `/etc/network/interfaces` file.
+
+The following example configuration:
+- Creates two unique VXLAN devices (vni10 and vni20)
+- Adds each VXLAN device (vni10 and vni20) to the bridge `bridge`
+- Configures the local tunnel IP address to be the loopback address of the switch
+
+{{< tabs "TabID25 ">}}
+{{< tab "NVUE Commands ">}}
+
+You cannot use NVUE commands to configure traditional VXLAN devices.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command.
+
+```
+cumulus@leaf01:~$ sudo nano /etc/network/interfaces
+...
+auto lo
+iface lo inet loopback
+    address 10.10.10.1/32
+    vxlan-local-tunnelip 10.10.10.1
+
+auto mgmt
+iface mgmt
+    address 127.0.0.1/8
+    vrf-table auto
+
+auto swp1
+iface swp1
+    bridge-access 10
+
+auto swp2
+iface swp2
+    bridge-access 20
+
+auto vni10
+iface vni10
+    bridge-access 10
+    mstpctl-bpduguard yes
+    mstpctl-portbpdufilter yes
+    vxlan-id 10
+
+auto vni20
+iface vni20
+    bridge-access 20
+    mstpctl-bpduguard yes
+    mstpctl-portbpdufilter yes
+    vxlan-id 20
+
+auto bridge
+iface bridge
+    bridge-ports swp1 swp2 vni10 vni20
+    bridge-vlan-aware yes
+    bridge-vids 10 20
+    bridge-pvid 1
+```
+
+```
+cumulus@leaf01:~$ ifreload -a
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Automatic VLAN to VNI Mapping
 
 In an EVPN VXLAN environment, you need to map individual VLANs to VNIs. For a single VXLAN device, you can do this with a separate NVUE command per VLAN; however, this can be cumbersome if you have to configure many VLANS or need to isolate tenants and reuse VLANs. To simplify the configuration, you can use these two commands instead:
@@ -229,6 +230,20 @@ cumulus@switch:mgmt:~$ nv set interface vlan20
 cumulus@switch:mgmt:~$ nv set interface vlan30
 cumulus@switch:mgmt:~$ nv set bridge domain br_default vlan 10,20,30 vni auto
 cumulus@switch:mgmt:~$ nv set bridge domain br_default vlan-vni-offset 10000
+cumulus@switch:mgmt:~$ nv config apply
+```
+
+To unset the above configuration, run the `nv unset` commands in the reverse order. You must omit the bridge name from the `nv unset interface swp1-2 bridge domain br_default` command and `auto` from the `nv unset bridge domain br_default vlan 10,20,30 vni auto` commands.
+
+```
+cumulus@switch:mgmt:~$ nv unset bridge domain br_default vlan-vni-offset
+cumulus@switch:mgmt:~$ nv unset bridge domain br_default vlan 10,20,30 vni
+cumulus@switch:mgmt:~$ nv unset interface vlan30
+cumulus@switch:mgmt:~$ nv unset interface vlan20
+cumulus@switch:mgmt:~$ nv unset interface vlan10
+cumulus@switch:mgmt:~$ nv unset bridge domain br_default vlan 10,20,30
+cumulus@switch:mgmt:~$ nv unset interface swp1-2 bridge domain
+cumulus@switch:mgmt:~$ nv unset interface lo ip address 10.10.10.1/32
 cumulus@switch:mgmt:~$ nv config apply
 ```
 
@@ -347,7 +362,7 @@ iface br_default
 
 ## VXLAN UDP Port
 
-You can change the UDP port that Cumulus Linux uses for VXLAN encapsulation. The default port is 4879.
+You can change the UDP port that Cumulus Linux uses for VXLAN encapsulation. The default port is 4789.
 
 The following example changes the UDP port for VXLAN encapsulation to 1024:
 

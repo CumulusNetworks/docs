@@ -1,0 +1,31 @@
+# From https://github.com/marketplace/actions/nightly-merge
+name: 'Scheduled Merge - Release golive branch to stage'
+
+  # Cron syntax is 'Minute[0,59] Hour[0,23] Day-of-month[1,31] Month-of-year[1,12] Day-of-week[0,6 with 0=Sunday]
+  # The following example runs only on Sundays at 1200 UTC (0700 EST, 0400 PST)
+
+  # To enable, uncomment the entire 'on' stanza belowan:
+
+#on:
+#  schedule:
+#    - cron:  '0 12 * * 0'
+
+jobs:
+  nightly-merge:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Merge release-golive branch to stage
+      uses: CumulusNetworks/gh-action-nightly-merge@v1.2.6
+      with:
+        source_branch: 'release-golive'
+        target_branch: 'stu-stage'
+        user_name: Cumulus Docs Auto Merge
+        user_email: ethernet.docs@nvidia.com
+
+      env:
+        GITHUB_TOKEN: ${{ secrets.STU_GITHUB_TOKEN }}

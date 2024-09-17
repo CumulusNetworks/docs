@@ -29,8 +29,7 @@
 
 <!-- Favicon and font-awesome -->
 <link rel="icon" href="{{ "icons/favicon.png" | absURL }}" type="image/x-icon">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 {{ "<!--" | safeHTML }}
     Made with Book Theme
     https://github.com/alex-shpak/hugo-book
@@ -48,5 +47,8 @@
 <!-- Canonical link element to prioritize search indexing of current version -->
 {{ if .Page.Params.old }}
 {{ $prod := (index (sort (where .Site.Sections "Params.product" .Page.Params.product) ".Page.Params.version" "desc") 0).Section }}
-<link rel="canonical" href=https://docs.nvidia.com/networking-ethernet-software{{ (index (where (where .Site.Pages "Section" $prod) "Title" .Page.Title) 0).RelPermalink | default (.Site.GetPage $prod).RelPermalink }} />
+<link rel="canonical" href=https://docs.nvidia.com/{{ (index (where (where .Site.Pages "Section" $prod) "Title" .Page.Title) 0).RelPermalink | default (.Site.GetPage $prod).RelPermalink }} />
+    {{else}}
+    {{ $prod := (index (sort (where .Site.Sections "Params.product" .Page.Params.product) ".Page.Params.version" "desc") 0).Section }}
+    <link rel="canonical" href=https://docs.nvidia.com/{{ (index (where (where .Site.Pages "Section" $prod) "Title" .Page.Title) 0).RelPermalink | default (.Site.GetPage $prod).RelPermalink }} />
 {{ end }}

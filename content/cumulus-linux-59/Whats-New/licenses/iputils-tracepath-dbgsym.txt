@@ -1,0 +1,1 @@
+iputils-tracepath-dbgsym has no copyright file

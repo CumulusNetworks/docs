@@ -198,6 +198,10 @@ The following ports are used for internal cluster communication and must also be
     <td style="text-align:right">2380</td>
     <td style="text-align:center">TCP</td>
     <td>etcd</td>
+    <tr>
+    <td style="text-align:right">36443</td>
+    <td style="text-align:center">TCP</td>
+    <td>Kubernetes control plane</td>
     </tr>
     </tbody>
     </table>
@@ -268,6 +272,11 @@ You must open the following ports on your NetQ on-premises server:
     <td style=“text-align:right”>6443</td>
     <td style=“text-align:center”>TCP</td>
     <td>kube-apiserver</td>
+    </tr>
+    <tr>
+    <td style=“text-align:right”>30001</td>
+    <td style=“text-align:center”>TCP</td>
+    <td>DPU communication</td>
     </tr>
     <tr>
     <td style=“text-align:right”>31980</td>
@@ -379,14 +388,13 @@ Additionally, for internal cluster communication, you must open these ports:
     <td>Zookeeper client</td>
     </tr>
     <tr>
-        <td style="text-align:right">36443</td>
-        <td style="text-align:center">TCP</td>
-        <td>Kubernetes control plane <b>(HA clusters only)</b></td>
-        </tr>
+    <td style="text-align:right">36443</td>
+    <td style="text-align:center">TCP</td>
+    <td>Kubernetes control plane</td>
+    </tr>
     </tbody>
     </table>
 
 {{ end }}
 
-<div class="notices note"><p>Port 32666 is no longer used for the NetQ UI.</p></div>
 {{ end }}

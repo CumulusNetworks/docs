@@ -6,7 +6,7 @@ toc: 3
 ---
 The NetQ user interface (UI) lets you access NetQ through a web browser instead of a terminal window with a command line interface (CLI). With the UI, you can visualize network health, inventory, and system events, making it easy to find errors and misconfigurations, and to fix them.
 
-You can access the UI from both the on-premises and cloud deployments. NetQ supports Google Chrome and Mozilla Firefox. Other browsers may have problems loading NetQ.
+The NetQ UI is supported on Google Chrome and Mozilla Firefox. It is designed to be viewed on a display with a minimum resolution of 1920 × 1080 pixels.
 
 {{<notice tip>}}
 

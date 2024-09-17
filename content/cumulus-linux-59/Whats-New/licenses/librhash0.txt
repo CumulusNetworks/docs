@@ -1,0 +1,30 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: rhash
+Upstream-Contact: Aleksey Kravchenko <rhash.admin@gmail.com>
+Source: http://rhash.sourceforge.net/
+Comment: The RHash program and LibRHash library are distributed under  RHash
+         License,  see  the  COPYING  file for details.  In particular,  the
+         program,  the library and  source code  can be used  free of charge
+         under the MIT, BSD or other  OSI-approved, commercial or a freeware
+         license without additional restrictions. In a case  an OSI-approved
+         license is required the  MIT license should be used.
+
+Files: *
+Copyright: 2005-2014 Aleksey Kravchenko
+License: RHash
+
+Files: bindings/*
+Copyright: 2011-2012 Sergey Basalaev, Aleksey Kravchenko
+License: RHash
+
+License: RHash
+ Permission is hereby granted, free of charge,  to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction,  including without limitation the rights
+ to  use,  copy,  modify,  merge, publish, distribute, sublicense, and/or sell
+ copies  of  the Software,  and  to permit  persons  to whom  the Software  is
+ furnished to do so.
+ .
+ This program  is distributed  in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  Use  this  program  at  your  own  risk!

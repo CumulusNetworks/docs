@@ -76,7 +76,7 @@ ipv4-unicast
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> router pim address-family ipv4</h>
+## <h>nv show interface \<interface-id\> router pim address-family ipv4-unicast</h>
 
 Shows IPv4 PIM configuration settings for the specified interface.
 
@@ -93,7 +93,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface vlan10 router pim address-family ipv4
+cumulus@switch:~$ nv show interface vlan10 router pim address-family ipv4-unicast
                         applied    
 ----------------------  -----------
 multicast-boundary-oil  MyPrefixLis
@@ -104,7 +104,7 @@ allow-rp
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> router pim address-family ipv4 allow-rp</h>
+## <h>nv show interface \<interface-id\> router pim address-family ipv4-unicast allow-rp</h>
 
 Shows PIM allow RP configuration settings for IPv4 for the specified interface.
 
@@ -121,7 +121,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface vlan10 router pim address-family ipv4 allow-rp
+cumulus@switch:~$ nv show interface vlan10 router pim address-family ipv4-unicast allow-rp
         applied
 ------  -------
 enable  on

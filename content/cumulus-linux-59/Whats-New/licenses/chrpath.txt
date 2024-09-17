@@ -1,0 +1,9 @@
+This package was debianized by Tollef Fog Heen <tfheen@debian.org> on
+Thu, 14 Feb 2002 04:03:22 +0100.
+
+It was downloaded from https://alioth.debian.org/projects/chrpath/
+
+Upstream Author: Petter Reinholdtsen <pere@hungry.com>
+
+chrpath is under the GNU Public License, which can normally
+be found in /usr/share/common-licenses/GPL on Debian systems.

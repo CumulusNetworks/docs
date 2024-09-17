@@ -13,4 +13,3 @@ This section describes how to monitor your inventory from networkwide and device
 - {{<link title="DPU Inventory">}}
 - {{<link title="NIC Inventory">}}
 - {{<link title="Device Groups">}}
-- {{<link title="Monitor Container Environments Using Kubernetes API Server">}}

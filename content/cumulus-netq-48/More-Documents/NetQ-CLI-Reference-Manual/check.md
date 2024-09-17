@@ -80,7 +80,7 @@ Validates the communication status of all nodes (leafs, spines, and hosts) runni
 - Total number of nodes found
 - Number of nodes validated
 - Number of nodes that failed the validation
-- Number of nodes that have been silent for 90 seconds (rotten)
+- Number of nodes that have been silent for 120 seconds (rotten)
 - Number of nodes with warnings
 
 ### Syntax
@@ -176,7 +176,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Total number of nodes found
 - Number of nodes validated
 - Number of nodes that failed the validation
-- Number of nodes that have been silent for 90 seconds (rotten)
+- Number of nodes that have been silent for 120 seconds (rotten)
 - Number of nodes with warnings
 - Total number of BGP sessions at the specified time
 - Number of sessions that have failed to establish a connection
@@ -387,7 +387,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Total number of nodes found
 - Number of nodes validated
 - Number of nodes that failed the validation
-- Number of nodes that have been silent for 90 seconds (rotten)
+- Number of nodes that have been silent for 120 seconds (rotten)
 - Number of nodes with warnings
 - Total number of VNIs
 - Number of failed BGP sessions
@@ -478,7 +478,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Total number of nodes found
 - Number of nodes validated
 - Number of nodes that failed validation
-- Number of nodes that have been silent for 90 seconds (rotten)
+- Number of nodes that have been silent for 120 seconds (rotten)
 - Number of nodes with warnings
 - Number of ports validated
 - Number of ports that failed validation
@@ -618,7 +618,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Total number of nodes found
 - Number of nodes validated
 - Number of nodes that failed the validation
-- Number of nodes that have been silent for 90 seconds (rotten)
+- Number of nodes that have been silent for 120 seconds (rotten)
 - Number of nodes with warnings
 
 ### Syntax
@@ -723,7 +723,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Total number of nodes found
 - Number of nodes validated
 - Number of nodes that failed validation
-- Number of nodes that have been silent for 90 seconds (rotten)
+- Number of nodes that have been silent for 120 seconds (rotten)
 - Number of nodes with warnings
 - Number of links validated
 - Number of links that failed validation
@@ -848,7 +848,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Total number of nodes found
 - Number of nodes validated
 - Number of nodes that failed validation
-- Number of nodes that have been silent for 90 seconds (rotten)
+- Number of nodes that have been silent for 120 seconds (rotten)
 - Number of nodes with warnings
 - Number of nodes found that are unknown to NetQ
 - Number of NTP servers available for synchronization
@@ -924,7 +924,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Total number of nodes found
 - Number of nodes validated
 - Number of nodes that failed validation (reporting session failures)
-- Number of nodes that have been silent for 90 seconds (rotten)
+- Number of nodes that have been silent for 120 seconds (rotten)
 - Number of nodes with warnings
 - Number of nodes with failed adjacencies
 - Total number of adjacencies
@@ -1098,7 +1098,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Total number of nodes found
 - Number of nodes validated
 - Number of nodes that failed validation
-- Number of nodes that have been silent for 90 seconds (rotten)
+- Number of nodes that have been silent for 120 seconds (rotten)
 - Number of nodes with warnings
 - Number of sensors validated
 - Number of sensors that failed validation
@@ -1169,7 +1169,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Total number of nodes found
 - Number of nodes validated
 - Number of nodes that failed validation
-- Number of nodes that have been silent for 90 seconds (rotten)
+- Number of nodes that have been silent for 120 seconds (rotten)
 - Number of nodes with warnings
 - Total number of links found
 - Number of links that failed validation
@@ -1263,7 +1263,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Total number of nodes found
 - Number of nodes validated
 - Number of nodes that failed validation
-- Number of nodes that have been silent for 90 seconds (rotten)
+- Number of nodes that have been silent for 120 seconds (rotten)
 - Number of nodes with warnings
 
 ### Syntax

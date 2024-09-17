@@ -138,7 +138,9 @@ Configures VXLAN flooding (how to handle BUM traffic).
 
 ## <h>nv set nve vxlan flooding enable</h>
 
-Turns VXLAN flooding on or off.
+Turns VXLAN flooding `on` or `off`.
+
+Enabling VXLAN flooding requires head-end replication. Make sure to set head-end replication on with the `nv set nve vxlan flooding head-end-replication evpn` command when you enable VXLAN flooding.
 
 ### Version History
 
@@ -254,7 +256,7 @@ cumulus@switch:~$ nv set nve vxlan mtu 1500
 
 ## <h>nv set nve vxlan port</h>
 
-Configures the UDP port for VXLAN frames.
+Configures the UDP port that Cumulus Linux uses for VXLAN encapsulation. The default port is 4789.
 
 ### Version History
 

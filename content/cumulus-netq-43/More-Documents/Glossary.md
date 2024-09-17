@@ -18,7 +18,7 @@ user documentation.
 |Device|UI term referring to a switch, host, or chassis or combination of these. Typically used when describing hardware and components versus a software or network topology. See also Node.|
 |Event|Change or occurrence in network or component that can trigger a notification. Events are categorized by severity: error, info, warning, and debug.|
 |Fabric|Network topology where a set of network nodes interconnects through one or more network switches.|
-|Fresh|Node that has been silent for the last 90 seconds.|
+|Fresh|Node that has been communicative for the last 120 seconds.|
 |High Availability|Software used to provide a high percentage of uptime (running and available) for network devices.|
 |Host|A device connected to a TCP/IP network. It can run one or more virtual machines.|
 |Hypervisor|Software which creates and runs virtual machines. Also called a virtual machine monitor.|
@@ -28,7 +28,7 @@ user documentation.
 |Node|UI term referring to a switch, host, or chassis in a topology.|
 |Notification|Item that informs a user of an event. Notifications are received through third-party applications, such as email or Slack. |
 |Peer link|Link, or bonded links, used to connect two switches in an MLAG pair.|
-|Rotten|Node that has been silent for 90 seconds or more.|
+|Rotten|Node that has been silent for 120 seconds or more.|
 |Router|Device that forwards data packets (directs traffic) from nodes on one communication network to nodes on another network. Occurs at the OSI Model Layer 3, Network Layer.|
 |Spine|Used to describe the role of a switch in a Spine-Leaf or Clos topology. See also Aggregation switch, End of Row switch, and distribution switch.|
 |Switch|High-speed device that receives data packets from one device or node and redirects them to other devices or nodes on a network.|

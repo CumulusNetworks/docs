@@ -5,7 +5,7 @@ weight: 40
 product: Cumulus VX
 version: '5.x'
 ---
-This section describes how to install and set up Cumulus VX in VMWare vSphere to create the two leaf and one spine topology shown below.
+This section describes how to install and set up Cumulus VX in VMware vSphere to create the two leaf and one spine topology shown below.
 
 {{% vx/intro %}}
 
@@ -15,7 +15,7 @@ These steps were tested with Cumulus VX 4.2, VMware vSphere (ESXi) 6.7.0, and VS
 
 ## Create and Configure the VMs
 
-The following procedure creates leaf01, leaf02, and spine01 and the network connections between them. This section assumes you have VMWare vSphere experience.
+The following procedure creates leaf01, leaf02, and spine01 and the network connections between them. This section assumes you have VMware vSphere experience.
 
 ### Download Cumulus VX
 
@@ -38,13 +38,11 @@ Follow these steps for each VM (leaf01, leaf02, and spine01):
    You import and deploy the Cumulus VX OVA image as a VM. After the deployment process is complete, the VM appears in the list of VMs in the left pane.
 
    {{% notice note %}}
-   The Cumulus VX OVA image defines the CPU, memory, and disk requirements. Cumulus VX requires at least 768MB of RAM and 6GB of disk space.
-
-   CumulusVX versions 4.3 and later requires 2 vCPUs.
-
+   The Cumulus VX OVA image defines the CPU, memory, and disk requirements. Cumulus VX requires at least 768MB of RAM and 6GB of disk space. CumulusVX versions 4.3 and later require 2 vCPUs. CumulusVX versions 5.0 and later require 2GB of RAM.
+   
    {{% /notice %}}
 
-7. Repeat the previous steps to create two additional VMs: `leaf02` and `spine01`.
+8. Repeat the previous steps to create two additional VMs: `leaf02` and `spine01`.
 
 ### Create Network Connections
 
@@ -98,7 +96,7 @@ Adapter 1 is a shared management interface. The examples above show it as disabl
 
 3. Start the VMs and launch the Console for each VM.
 
-## Log into the Switches
+## Log in to the Switches
 
 {{% vx/login %}}
 

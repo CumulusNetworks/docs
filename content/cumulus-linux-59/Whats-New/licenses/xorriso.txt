@@ -1,0 +1,99 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: libisoburn
+Upstream-Contact: bug-xorriso@gnu.org
+Source: http://files.libburnia-project.org/releases/
+
+Files: *
+Copyright: 2006-2008 Vreixo Formoso <metalpain2002@yahoo.es>
+    2006-2018 Thomas Schmitt <scdbackup@gmx.net>
+License: GPL-2+
+
+Files: INSTALL
+  Makefile.in
+Copyright: 1989, 1991, 1994-2013, Free Software Foundation, Inc.
+License: GPL-2+
+
+Files: aclocal.m4
+  compile
+  depcomp
+  ltmain.sh
+  missing
+Copyright: 1996-2013, Free Software Foundation, Inc.
+License: GPL-2+
+
+Files: texinfo.tex
+Copyright: 1985, 1986, 1988, 1990-2013, Free Software Foundation, Inc.
+License: GPL-3
+
+Files: configure
+Copyright: 1992-1996, 1998-2012, Free Software Foundation, Inc.
+License: FSFUL
+
+Files: frontend/xorriso-tcltk
+Copyright: 2012 - 2017 Thomas Schmitt <scdbackup@gmx.net>
+License: BSD-2-clause
+
+Files: debian/*
+Copyright: 2015 - 2018, Thomas Schmitt <scdbackup@gmx.net>
+  2011, Mats Erik Andersson <mats.andersson@gisladisker.se>
+  2008-2012, George Danchev <danchev@spnet.net>
+  2008-2010, Simon Huggins <huggie@earth.li>
+  2008, Matthew Rosewarne
+License: GPL-2
+
+Files: releng/*
+Copyright: 2011-2014, Thomas Schmitt <scdbackup@gmx.net>
+  2011, George Danchev <danchev@spnet.net>
+License: GPL-2+
+
+License: GPL-2
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; version 2 dated June, 1991.
+ .
+ On Debian systems, the complete text of version 2 of the GNU General
+ Public License can be found in '/usr/share/common-licenses/GPL-2'.
+
+License: GPL-2+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; version 2 dated June, 1991, or (at
+ your option) any later version.
+ .
+ On Debian systems, the complete text of version 2 of the GNU General
+ Public License can be found in '/usr/share/common-licenses/GPL-2'.
+
+License: GPL-3
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; version 3 dated June, 2007.
+ .
+ On Debian systems, the complete text of version 3 of the GNU General
+ Public License can be found in '/usr/share/common-licenses/GPL-3'.
+
+License: BSD-2-clause
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ 1. Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+ 2. Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERSS AND CONTRIBUTORS ``AS IS''
+ AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE
+ LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+ THE POSSIBILITY OF SUCH DAMAGE.
+
+License: FSFUL
+ This configure script is free software; the Free Software Foundation
+ gives unlimited permission to copy, distribute and modify it.
+

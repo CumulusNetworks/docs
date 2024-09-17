@@ -139,3 +139,28 @@ div.notices.info > *:first-child:after{
   left: 2rem;
   content: "Important"
 }
+
+div.notices.infonopad {
+  margin : 1rem;
+  position: relative;
+  display: block;
+  font-size: 1rem;
+  background-color: #FFF2DB;
+  border: 3px solid #F0B37E;
+  border-radius:5px;
+}
+
+div.notices.infonopad > *:first-child:before{
+display: block;
+content:url($alert-triangle-20x20);
+position: absolute;
+top: 5px;
+left: 5px;
+right: 10px;
+}
+div.notices.infonopad > *:first-child:after{
+position: absolute;
+top: 2px;
+left: 2rem;
+content: "Important"
+}

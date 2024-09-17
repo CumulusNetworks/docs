@@ -18,7 +18,7 @@ This type of model can be beneficial for:
 
 ## Requirements
 
-- {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Cumulus Linux switch">}}
+- Cumulus Linux switch
 - Server/laptop for running Ansible
 - {{<exlink url="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html" text="Install Ansible on the server/laptop">}}
 

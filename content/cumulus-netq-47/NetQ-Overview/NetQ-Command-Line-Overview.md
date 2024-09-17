@@ -9,7 +9,7 @@ The NetQ CLI provides access to all network state and event information collecte
 
 {{<notice note>}}
 
-The NetQ command line interface only runs on switches and server hosts implemented with Intel x86 or ARM-based architectures. If you are unsure what architecture your switch or server employs, check the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Hardware Compatibility List">}} and verify the value in the <strong>Platforms</strong> tab > <strong>CPU</strong> column.
+The NetQ command line interface only runs on switches and server hosts implemented with Intel x86 or ARM-based architectures.
 
 {{</notice>}}
 

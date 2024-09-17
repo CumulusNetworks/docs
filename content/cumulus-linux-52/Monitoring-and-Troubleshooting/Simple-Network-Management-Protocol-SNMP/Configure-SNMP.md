@@ -93,27 +93,7 @@ Cumulus Linux provides a listening address for VRFs together with trap and infor
 {{< tabs "SNMP and VRFs" >}}
 {{< tab "NVUE Commands" >}}
 
-The following command configures snmpd to listen to IP address 10.10.10.10 on eth0, the management interface in the management VRF:
-
-```
-cumulus@switch:~$ nv set service snmp-server listening-address 10.10.10.10 vrf mgmt
-cumulus@switch:~$ nv config apply
-```
-
-By default, `snmpd` does not cross VRF table boundaries. To listen on IP addresses in different VRF tables, use multiple `listening-address` commands each with a VRF name:
-
-```
-cumulus@switch:~$ nv set service snmp-server listening-address 10.10.10.10 vrf rocket
-cumulus@switch:~$ nv set service snmp-server listening-address 10.10.10.20 vrf turtle
-cumulus@switch:~$ nv config apply
-```
-
-By default, `snmpd` only responds to `localhost` requests in the `default` VRF. You can configure the switch to respond to requests sent to `localhost` in a `mgmt` VRF shell. To configure the `snmpd` daemon to listen on `localhost` in the `mgmt` VRF, run:
-
-```
-cumulus@switch:~$ nv set service snmp-server listening-address localhost vrf mgmt
-cumulus@switch:~$ nv config apply
-```
+Cumulus Linux does not provide NVUE commands for SNMP configuration.
 
 {{< /tab >}}
 {{< tab "Linux Commands" >}}

@@ -1,0 +1,78 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: po-debconf
+
+Files: *
+Copyright: 2002-2005, Denis Barbier <barbier@linuxfr.org>
+           2002, Martin Quinson <Martin.Quinson@ens-lyon.fr>
+License: GPL-2 or GPL-2+
+
+Files: podebconf-report-po
+Copyright: 2004-2006, Fabio Tranchitella <kobold@kobold.it>
+                      Denis Barbier <barbier@debian.org>
+           2007-2008, Nicolas François <nicolas.francois@centraliens.net>
+License: GPL-2+
+
+Files: doc/po4a/po/de.po
+Copyright: 2007-2008,2010,2018 Helge Kreutzmann <debian@helgefjell.de>
+License: GPL-2
+
+Files: doc/po4a/po/es.po
+Copyright: 2010, Omar Campagne <ocampagne@gmail.com>
+           2010, Software in the Public Interest
+License: GPL-2
+
+Files: doc/po4a/po/fr.po
+Copyright: 2003,       Nicolas Bertolissio <nico.bertol@free.fr>
+           2005-2006,  Denis Barbier <barbier@linuxfr.org>
+           2006-2007,  Florentin Duneau <fduneau@gmail.com>
+           2010,       Christian Perrier <bubulle@debian.org>
+License: GPL-2
+
+Files: doc/po4a/po/pt.po
+Copyright: 2007-2010, Miguel Figueiredo <elmig@debianpt.org>
+License: GPL-2
+
+Files: doc/po4a/po/ru.po
+Copyright: 2005-2008,2010, Yuri Kozlov <kozlov.y@gmail.com>
+           2007,           Sergey Alyoshin <alyoshin.s@gmail.com>
+License: GPL-2
+
+Files: doc/po4a/po/vi.po
+Copyright: 2007-2010, Clytie Siddall <clytie@riverland.net.au>
+           2010,      Free Software Foundation, Inc
+License: GPL-2
+
+Files: doc/en/podebconf-report-po.1.pod
+Copyright: 2008, Fabio Tranchitella <kobold@kobold.it>
+License: GPL-2
+
+Files: doc/es/*
+Copyright: 2010, Omar Campagne Polaino <ocampagne@gmail.com>
+License: GPL-2
+
+Files: debian/*
+Copyright: 2002-2006, Denis Barbier <barbier@debian.org>
+           2006-2009, Nicolas FRANCOIS <nicolas.francois@centraliens.net>
+           2010,      David Prévot <david@tilapin.org>
+           2011,      Christian Perrier <bubulle@debian.org>
+           2014,      Wookey <wookey@debian.org>
+           2015-2018, Herbert Parentes Fortes Neto <hpfn@debian.org>
+License: GPL-2
+
+License: GPL-2 or GPL-2+
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ .
+ On Debian systems, the complete text of the GNU General Public License
+ can be found in /usr/share/common-licenses/GPL-2 file.

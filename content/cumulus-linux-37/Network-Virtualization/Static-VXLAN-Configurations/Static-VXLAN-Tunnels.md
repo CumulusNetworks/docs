@@ -10,7 +10,7 @@ Enter *static VXLAN tunnels*, which simply serve to connect two VTEPs in a given
 
 ## Requirements
 
-Static VXLAN tunnels are supported only on switches in the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Cumulus Linux HCL">}} using the Broadcom Tomahawk, Trident II+, Trident II, and Maverick ASICs, as well as the Mellanox Spectrum ASIC.
+Static VXLAN tunnels are supported only on switches using the Broadcom Tomahawk, Trident II+, Trident II, and Maverick ASICs, as well as the Mellanox Spectrum ASIC.
 
 For a basic VXLAN configuration, make sure that:
 

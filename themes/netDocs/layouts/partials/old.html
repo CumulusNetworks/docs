@@ -5,8 +5,21 @@
         This documentation is for the extended support release (ESR) version of Cumulus Linux. We will continue to keep this content up to date until 21 February, 2023, when ESR support ends. For more information about ESR, please read this <a href={{"knowledge-base/Support/Support-Offerings/Cumulus-Linux-Release-Versioning-and-Support-Policy" | absURL }}>knowledge base article</a>.
         <br /><br />
         {{- end -}}
-        If you are using the current version of {{ .Page.Params.product }}, the content on this page may not be up to date. The current version of the documentation is available {{ $prod := (index (sort (where .Site.Sections "Params.product" .Page.Params.product) ".Page.Params.version" "desc") 0).Section }}
+
+{{ if eq .Page.Params.product "Cumulus NetQ" }}
+
+        If you are using the current version of {{ .Page.Params.product }}, the content on this page may not be up to date. The current version of the documentation is available {{ $prod := .Site.Params.netq_latest }}
         <a href = {{ (index (where (where .Site.Pages "Section" $prod) "Title" .Page.Title) 0).RelPermalink | default (.Site.GetPage $prod).RelPermalink }}>here</a>. If you are redirected to the main page of the user guide, then this page may have been renamed; please search for it there.
     </p>
 </div>
+{{ end}}
+
+{{ if eq .Page.Params.product "Cumulus Linux" }}
+
+        If you are using the current version of {{ .Page.Params.product }}, the content on this page may not be up to date. The current version of the documentation is available {{ $prod := .Site.Params.cl_latest }}
+        <a href = {{ (index (where (where .Site.Pages "Section" $prod) "Title" .Page.Title) 0).RelPermalink | default (.Site.GetPage $prod).RelPermalink }}>here</a>. If you are redirected to the main page of the user guide, then this page may have been renamed; please search for it there.
+    </p>
+</div>
+{{ end}}
+
 {{ end }}

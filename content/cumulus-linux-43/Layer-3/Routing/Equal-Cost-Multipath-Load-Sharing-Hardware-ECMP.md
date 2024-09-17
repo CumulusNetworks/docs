@@ -93,7 +93,7 @@ cl-ecmpcalc: error: --sport and --dport required for TCP and UDP frames
 
 `cl-ecmpcalc` can only take input interfaces that can be converted to a single physical port in the port tab file, such as the physical switch ports (swp). Virtual interfaces like bridges, bonds, and subinterfaces are not supported.
 
-`cl-ecmpcalc` is supported only on switches with the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Mellanox Spectrum and the Broadcom Maverick, Tomahawk, Trident II, Trident II+ and Trident3">}} chipsets.
+`cl-ecmpcalc` is supported only on switches with the Mellanox Spectrum and the Broadcom Maverick, Tomahawk, Trident II, Trident II+ and Trident3 chipsets.
 
 ### ECMP Hash Buckets
 
@@ -248,7 +248,7 @@ Resilient hashing supports both IPv4 and IPv6 routes.
 Resilient hashing behaves slightly differently depending upon whether you are running Cumulus Linux on a switch with a {{<link url="#resilient-hashing-on-broadcom-switches" text="Broadcom ASIC">}} or   {{<link url="#resilient-hashing-on-mellanox-switches" text="Mellanox ASIC">}}. The differences are described below.
 
 - Resilient hashing prevents disruptions when next hops are removed. It does not prevent disruption when next hops are added.
-- Resilient hashing is supported only on switches with the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Broadcom Tomahawk, Trident II, Trident II+, and Trident3 as well as Mellanox Spectrum">}} chipsets. You can run `net show system` to determine the chipset.
+- Resilient hashing is supported only on switches with the Broadcom Tomahawk, Trident II, Trident II+, and Trident3 as well as Mellanox Spectrum chipsets. You can run `net show system` to determine the chipset.
 
 ### Resilient Hashing on Broadcom Switches
 

@@ -10,77 +10,8 @@ Cumulus Linux supports both single and traditional <span class="a-tooltip">[VXLA
 - You can configure single VXLAN devices in VLAN-aware bridge mode only.
 - You cannot use a combination of single and traditional VXLAN devices.
 - A traditional VXLAN device configuration supports up to 2000 VNIs and a single VXLAN device configuration supports up to 4000 VNIs.
+- NVIDIA recommends you use single VXLAN devices instead of traditional VXLAN devices.
 {{%/notice%}}
-
-## Traditional VXLAN Device
-
-With a traditional VXLAN device, each VNI is a separate device (for example, vni10, vni20, vni30).
-You can configure traditional VXLAN devices by manually editing the `/etc/network/interfaces` file.
-
-The following example configuration:
-- Creates two unique VXLAN devices (vni10 and vni20)
-- Adds each VXLAN device (vni10 and vni20) to the bridge `bridge`
-- Configures the local tunnel IP address to be the loopback address of the switch
-
-{{< tabs "TabID25 ">}}
-{{< tab "NVUE Commands ">}}
-
-You cannot use NVUE commands to configure traditional VXLAN devices.
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command.
-
-```
-cumulus@leaf01:~$ sudo nano /etc/network/interfaces
-...
-auto lo
-iface lo inet loopback
-    address 10.10.10.1/32
-    vxlan-local-tunnelip 10.10.10.1
-
-auto mgmt
-iface mgmt
-    address 127.0.0.1/8
-    vrf-table auto
-
-auto swp1
-iface swp1
-    bridge-access 10
-
-auto swp2
-iface swp2
-    bridge-access 20
-
-auto vni10
-iface vni10
-    bridge-access 10
-    mstpctl-bpduguard yes
-    mstpctl-portbpdufilter yes
-    vxlan-id 10
-
-auto vni20
-iface vni20
-    bridge-access 20
-    mstpctl-bpduguard yes
-    mstpctl-portbpdufilter yes
-    vxlan-id 20
-
-auto bridge
-iface bridge
-    bridge-ports swp1 swp2 vni10 vni20
-    bridge-vlan-aware yes
-    bridge-vids 10 20
-    bridge-pvid 1
-```
-
-```
-cumulus@leaf01:~$ ifreload -a
-```
-
-{{< /tab >}}
-{{< /tabs >}}
 
 ## Single VXLAN Device
 
@@ -183,6 +114,76 @@ auto br_default
 iface br_default
     bridge-ports swp1 swp2 vxlan48
     hwaddress 44:38:39:22:01:ab
+    bridge-vlan-aware yes
+    bridge-vids 10 20
+    bridge-pvid 1
+```
+
+```
+cumulus@leaf01:~$ ifreload -a
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+## Traditional VXLAN Device
+
+With a traditional VXLAN device, each VNI is a separate device (for example, vni10, vni20, vni30).
+You can configure traditional VXLAN devices by manually editing the `/etc/network/interfaces` file.
+
+The following example configuration:
+- Creates two unique VXLAN devices (vni10 and vni20)
+- Adds each VXLAN device (vni10 and vni20) to the bridge `bridge`
+- Configures the local tunnel IP address to be the loopback address of the switch
+
+{{< tabs "TabID25 ">}}
+{{< tab "NVUE Commands ">}}
+
+You cannot use NVUE commands to configure traditional VXLAN devices.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command.
+
+```
+cumulus@leaf01:~$ sudo nano /etc/network/interfaces
+...
+auto lo
+iface lo inet loopback
+    address 10.10.10.1/32
+    vxlan-local-tunnelip 10.10.10.1
+
+auto mgmt
+iface mgmt
+    address 127.0.0.1/8
+    vrf-table auto
+
+auto swp1
+iface swp1
+    bridge-access 10
+
+auto swp2
+iface swp2
+    bridge-access 20
+
+auto vni10
+iface vni10
+    bridge-access 10
+    mstpctl-bpduguard yes
+    mstpctl-portbpdufilter yes
+    vxlan-id 10
+
+auto vni20
+iface vni20
+    bridge-access 20
+    mstpctl-bpduguard yes
+    mstpctl-portbpdufilter yes
+    vxlan-id 20
+
+auto bridge
+iface bridge
+    bridge-ports swp1 swp2 vni10 vni20
     bridge-vlan-aware yes
     bridge-vids 10 20
     bridge-pvid 1
@@ -347,14 +348,14 @@ iface br_default
 
 ## VXLAN UDP Port
 
-You can change the UDP port that Cumulus Linux uses for VXLAN encapsulation. The default port is 4879.
+You can change the UDP port that Cumulus Linux uses for VXLAN encapsulation. The default port is 4789.
 
 The following example changes the UDP port for VXLAN encapsulation to 1024:
 
 ```
 cumulus@switch:mgmt:~$ nv set nve vxlan port 1024
 ```
-<!-- remove in 5.7 -->
+
 Cumulus Linux protects against VXLAN hopping vulnerabilities by default for the standard UDP port 4789. If you configure the UDP port for VXLAN encapsulation to a port other than 4789, NVIDIA recommends you run TC filter commands on each VLAN interface on the VTEP to install rules to protect the port. If you have VRR configured on the VLAN, add a similar rule for the VRR device.
 
 The following example installs an IPv4 and an IPv6 filter on vlan10 to protect port 1024:

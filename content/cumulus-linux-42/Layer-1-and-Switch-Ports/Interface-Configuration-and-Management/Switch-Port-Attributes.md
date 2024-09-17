@@ -923,7 +923,7 @@ When you commit your change on a Broadcom switch, `switchd` restarts to apply th
    ...
    ```
 
-   The `/etc/cumulus/ports.conf` file varies across different hardware platforms. Check the current list of supported platforms in {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list" text="the hardware compatibility list">}}.
+   The `/etc/cumulus/ports.conf` file varies across different hardware platforms.
 
 2. Configure the breakout ports in the `/etc/network/interfaces` file. The following example shows the swp1 breakout ports (swp1s0, swp1s1, swp1s2, and swp1s3).
 
@@ -1035,7 +1035,7 @@ You can *gang* (combine) four 10G ports into one 40G port for use with a breakou
 {{%notice note%}}
 
 - Port ganging is not supported on Mellanox switches with the Spectrum ASIC.
-- The `/etc/cumulus/ports.conf` file varies across different hardware platforms. Check the current list of supported platforms on {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list" text="the hardware compatibility list">}}.
+- The `/etc/cumulus/ports.conf` file varies across different hardware platforms.
 
 {{%/notice%}}
 
@@ -1092,7 +1092,7 @@ Restart `switchd` with the following command:
 100G and 40G switches can support a certain number of logical ports, depending on the manufacturer; these include:
 
 - Mellanox SN2700, SN2700B, SN2410, and SN2410B switches
-- Switches with Broadcom Tomahawk, Trident II, Trident II+, and Trident3 chipsets (check the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="HCL">}})
+- Switches with Broadcom Tomahawk, Trident II, Trident II+, and Trident3 chipsets
 
 Before you configure any logical/unganged ports on a switch, check the limitations listed in `/etc/cumulus/ports.conf`; this file is specific to each manufacturer.
 

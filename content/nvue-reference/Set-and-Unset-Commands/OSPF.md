@@ -68,7 +68,7 @@ cumulus@switch:~$ nv set interface swp51 router ospf authentication enable on
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set interface \<interface-id\> router ospf authentication md5-key \<value\></h>
+## <h>nv set interface \<interface-id\> router ospf authentication md5-key \<value\></h>
 
 Configures the MD5 key for the specified interface.
 
@@ -815,7 +815,7 @@ cumulus@switch:~$ nv set vrf default router ospf area 0 range 172.16.1.0/24 supp
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set vrf \<vrf-id\> router ospf area \<area-id\> type</h>
+## <h>nv set vrf \<vrf-id\> router ospf area \<area-id\> type</h>
 
 Configures the OSPF area type. You can specify `normal`, `stub`, `totally-stub`, `nssa`, or `totally-nssa`.
 

@@ -1,0 +1,87 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: GNU Zile
+Upstream-Contact: Reuben Thomas <rrt@sc3d.org>
+Source: https://ftp.gnu.org/gnu/zile/
+
+Files: *
+Copyright: 1997-2016 Free Software Foundation, Inc.
+License: GPL-3+
+Comment: Upstream authors:
+ Sandro Sigala <sandro@sigala.it>
+ David A. Capello <dacap@users.sourceforge.net>
+ Reuben Thomas <rrt@sc3d.org>
+ Scott Lawrence <yorgle@gmail.com>
+
+Files: build-aux/install-sh
+Copyright: 1994 X Consortium
+License: MIT and public-domain
+
+Files: m4/ax_with_prog.m4
+Copyright: 2008 Francesco Salvestrini <salvestrini@users.sourceforge.net>
+           2008 Dustin J. Mitchell <dustin@cs.uchicago.edu>
+License: FSFAP
+
+Files: m4/ax_with_curses.m4
+Copyright: 2009 Mark Pulford <mark@kyne.com.au>
+           2009 Damian Pietras <daper@daper.net>
+           2009 Reuben Thomas <rrt@sc3d.org>
+License: GPL-3+
+
+Files: m4/ax_compare_version.m4
+Copyright: 2008 Tim Toolan <toolan@ele.uri.edu>
+License: FSFAP
+
+Files: debian/*
+Copyright: 1998      Joel Klecker <jk@espy.org>
+           2000-2003 Carsten Leonhardt <leo@debian.org>
+           2003-2013 Nicolas Duboc <nduboc@debian.org>
+           2013-2016 Axel Beckert <abe@debian.org>
+License: GPL-3+
+Comment: It is assumed that the packaging is licensed under the same
+ terms as the upstream code unless stated otherwise.
+
+License: GPL-3+
+ Zile is free software; you can redistribute it and/or modify it under
+ the terms of the GNU General Public License as published by the Free
+ Software Foundation; either version 3, or (at your option) any later
+ version.
+ .
+ Zile is distributed in the hope that it will be useful, but WITHOUT ANY
+ WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+ for more details.
+ .
+ The complete text of the GNU General Public License can be found in
+ file /usr/share/common-licenses/GPL-3.
+
+License: MIT
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to
+ deal in the Software without restriction, including without limitation the
+ rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+ sell copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+ .
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+ X CONSORTIUM BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+ AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNEC-
+ TION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ .
+ Except as contained in this notice, the name of the X Consortium shall not
+ be used in advertising or otherwise to promote the sale, use or other deal-
+ ings in this Software without prior written authorization from the X Consor-
+ tium.
+
+License: public-domain
+ FSF changes to this file are in the public domain.
+
+License: FSFAP
+ Copying and distribution of this file, with or without modification,
+ are permitted in any medium without royalty provided the copyright
+ notice and this notice are preserved. This file is offered as-is,
+ without any warranty.

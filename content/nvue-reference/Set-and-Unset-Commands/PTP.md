@@ -128,6 +128,29 @@ cumulus@switch:~$ nv set service ptp 1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set interface \<interface-id\> ptp ipv6-scope</h>
+
+Sets the PTP IPv6 scope on the specified interface. You can specify `admin-local`, `interface-local`, `organization-local`,
+`global`, `link-local`, or `site-local`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1 ptp ipv6-scope interface-local
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set interface \<interface-id\> ptp mixed-multicast-unicast</h>
 
 Configures the mode in which PTP delay messages transmit for the specified PTP interface; mixed (multicast and unicast) or multicast only. Specify `on` for mixed mode or `off` for multicast mode. The default setting is `off`.
@@ -505,6 +528,28 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@switch:~$ nv set service ptp 1 enable on
 ```
 
+HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set service ptp \<instance-id\> force-version</h>
+
+Configures the PTP minor version. Cumulus Linux uses a `linuxptp` package that is PTP v2.1 compliant, and sets the major PTP version to 2 and the minor PTP version to 1 by default in the configuration. If your PTP configuration does not work correctly when the minor version is set, you can change the minor version to 0.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<instance-id>` |  The PTP instance number used for management purposes. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.8.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service ptp 1 force-version 2.0
+```
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set service ptp \<instance-id\> ip-dscp</h>
@@ -525,6 +570,29 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv set service ptp 1 ip-dscp 22
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set service ptp \<instance-id\> ipv6-scope</h>
+
+Sets the PTP IPv6 scope. You can specify `admin-local`, `interface-local`, `organization-local`,
+`global`, `link-local`, or `site-local`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<instance-id>` |  The PTP instance number used for management purposes. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service ptp 1 ipv6-scope interface-local
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1195,7 +1263,7 @@ Turns PTP on or off in the specified VRF.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<vrf>` |  The VRF name. |
+| `<vrf-id>` |  The VRF name. |
 
 ### Version History
 

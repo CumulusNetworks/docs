@@ -78,7 +78,9 @@ When you commit a change that configures a new routing service such as PBR, the 
     cumulus@switch:~$ net add pbr-map map1 seq 1 set nexthop-group group1
     ```
 
-   If you want the rule to use a specific VRF table as its lookup, set the VRF. If you do not set a VRF, the rule uses the VRF table the interface is in as its lookup. The example command below sets the rule to use the `dmz` VRF table:
+   If you want the rule to use a specific VRF table as its lookup, set the VRF. If you do not set a VRF, the rule uses the VRF table the interface is in as its lookup. The example command below sets the rule to use the `dmz` VRF table.
+
+   You can set the VRF in a virtual environment only. Cumulus Linux on an NVIDIA switch does not support setting the VRF.
 
     ```
     cumulus@switch:~$ net add pbr-map map1 seq 1 set vrf dmz
@@ -145,7 +147,9 @@ pbr-policy map1
     cumulus@switch:~$ nv set router pbr map map1 rule 1 action nexthop-group group1
     ```
 
-   If you want the rule to use a specific VRF table as its lookup, set the VRF. If you do not set a VRF, the rule uses the VRF table the interface is in as its lookup. The example command below sets the rule to use the `dmz` VRF table:
+    If you want the rule to use a specific VRF table as its lookup, set the VRF. If you do not set a VRF, the rule uses the VRF table the interface is in as its lookup. The example command below sets the rule to use the `dmz` VRF table.
+
+    You can set the VRF in a virtual environment only. Cumulus Linux on an NVIDIA switch does not support setting the VRF.
 
     ```
     cumulus@switch:~$ nv set router pbr map map1 rule 1 action vrf dmz
@@ -237,7 +241,9 @@ pbr-policy map1
     switch(config)#
     ```
 
-    If you want the rule to use a specific VRF table as its lookup, set the VRF. If you do not set a VRF, the rule uses the VRF table the interface is in as its lookup. The example command below sets the rule to use the `dmz` VRF table:
+    If you want the rule to use a specific VRF table as its lookup, set the VRF. If you do not set a VRF, the rule uses the VRF table the interface is in as its lookup. The example command below sets the rule to use the `dmz` VRF table.
+
+    You can set the VRF in a virtual environment only. Cumulus Linux on an NVIDIA switch does not support setting the VRF.
 
     ```
     switch(config)# pbr-map map1 seq 1

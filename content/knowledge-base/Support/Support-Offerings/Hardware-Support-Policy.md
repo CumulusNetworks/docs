@@ -3,6 +3,7 @@ title: Hardware Support Policy
 author: NVIDIA
 weight: 706
 toc: 4
+draft: true
 ---
 
 NVIDIA supports Cumulus Linux only when running on hardware listed on the Cumulus Linux {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="hardware compatibility list (HCL)">}}. The HCL is the definitive source for supported platforms. NVIDIA does add hardware platforms to the HCL over time.

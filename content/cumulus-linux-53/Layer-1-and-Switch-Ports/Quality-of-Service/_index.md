@@ -11,7 +11,7 @@ Cumulus Linux supports several different <span class="a-tooltip">[QoS](## "Quali
 - <span class="a-tooltip">[COS](## "Class of Service")</span> and <span class="a-tooltip">[DSCP](## "Differentiated Services Code Point")</span> marking and remarking
 - Shaping and policing
 - Egress traffic scheduling (802.1Qaz, Enhanced Transmission Selection (ETS))
-- Flow control with IEEE Pause Frames, <span class="a-tooltip">[PFC](## "Priority Flow Control")</span>, and <span class="a-tooltip">[ECN](## "Explicit Congestion Notification")</span>
+- Flow control with IEEE Pause Frames and <span class="a-tooltip">[PFC](## "Priority Flow Control")</span>, and congestion control with <span class="a-tooltip">[ECN](## "Explicit Congestion Notification")</span>
 - {{<link title="RDMA over Converged Ethernet - RoCE" text="Lossless and lossy RoCE ">}}
 
 Cumulus Linux uses two configuration files for QoS:
@@ -419,13 +419,11 @@ To apply a custom profile to specific interfaces, see [Port Groups](#remarking).
 
 ## Flow Control
 
-Congestion control prevents traffic loss during times of congestion and helps identify which traffic to keep if you need to drop packets.
+Flow control influences data transmission to manage congestion along a network path.
 
-Cumulus Linux supports the following congestion control mechanisms:
-
+Cumulus Linux supports the following flow control mechanisms:
 - Pause Frames (IEEE 802.3x), sends specialized ethernet frames to an adjacent layer 2 switch to stop or *pause* **all** traffic on the link during times of congestion.
 - Priority Flow Control (PFC), which is an upgrade of Pause Frames that IEEE 802.1bb defines, extends the pause frame concept to act on a per-COS value basis instead of an entire link. A PFC pause frame indicates to the peer which specific COS value to pause, while other COS values or queues continue transmitting.
-- Explicit Congestion Notification (ECN). Unlike Pause Frames and PFC that operate only at layer 2, ECN is an end-to-end layer 3 congestion control protocol. Defined by RFC 3168, ECN relies on bits in the IPv4 header Traffic Class to signal congestion conditions. ECN requires one or both server endpoints to support ECN to be effective.
 
 ### Flow Control Buffers
 
@@ -482,7 +480,7 @@ flow_control.egress_buffer.dynamic_quota = ALPHA_INFINITY
 NVUE does not currently provide commands to configure pause frames.
 {{%/notice%}}
 
-Pause frames are an older congestion control mechanism that causes all traffic on a link between two devices (two switches or a host and switch) to stop transmitting during times of congestion. Pause frames start and stop depending on how congested the buffer is. The value that determines when pause frames start is the `xoff` value (transmit off). When the buffer congestion reaches the `xoff` point, the switch sends a pause frame to one or more neighbors. When congestion drops below the `xon` point (transmit on), the switch sends an updated pause frame so that the neighbor resumes sending traffic.
+Pause frames are an older flow control mechanism that causes all traffic on a link between two devices (two switches or a host and switch) to stop transmitting during times of congestion. Pause frames start and stop depending on how congested the buffer is. The value that determines when pause frames start is the `xoff` value (transmit off). When the buffer congestion reaches the `xoff` point, the switch sends a pause frame to one or more neighbors. When congestion drops below the `xon` point (transmit on), the switch sends an updated pause frame so that the neighbor resumes sending traffic.
 
 {{% notice note %}}
 NVIDIA recommends that you use Priority Flow Control (PFC) instead of pause frames.
@@ -611,9 +609,11 @@ pfc.default-global.cable_length = 50
 
 To apply a custom profile to specific interfaces, see [Port Groups](#pfc).
 
-### Explicit Congestion Notification (ECN)
+## Congestion Control (ECN)
 
-Unlike pause frames or PFC, ECN is an end-to-end flow control technology. Instead of telling adjacent devices to stop transmitting during times of buffer congestion, ECN sets the ECN bits of the transit IPv4 or IPv6 header to indicate to end hosts that congestion might occur. As a result, the sending hosts reduce their sending rate until the transit switch no longer sets ECN bits.
+Explicit Congestion Notification (ECN) is an end-to-end layer 3 congestion control protocol. Defined by RFC 3168, ECN relies on bits in the IPv4 header Traffic Class to signal congestion conditions. ECN requires one or both server endpoints to support ECN to be effective.
+
+You use ECN with {{<link title="RDMA over Converged Ethernet - RoCE" text="RDMA over Converged Ethernet - RoCE">}}. The RoCE section describes how to deploy PFC and ECN for RoCE environments.
 
 You use ECN with {{<link title="RDMA over Converged Ethernet - RoCE" text="RDMA over Converged Ethernet - RoCE">}}. The RoCE section describes how to deploy PFC and ECN for RoCE environments.
 

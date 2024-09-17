@@ -100,7 +100,7 @@ To back up and restore the configuration on the switch with NVUE, you can either
 - Back up and restore the NVUE configuration file (available when upgrading from 4.4 and later).
 - Back up and restore the NVUE configuration commands (available when upgrading from 5.0 and later).
 
-You can backup and restore the configuration with NVUE only if you used NVUE commands to configure the switch you want to upgrade.
+You can back up and restore the configuration with NVUE only if you used NVUE commands to configure the switch you want to upgrade.
 
 To back up and restore the configuration file:
 
@@ -120,7 +120,7 @@ To back up and restore the configuration file:
    applied
    ```
 
-To backup and restore the configuration commands:
+To back up and restore the configuration commands:
 
 1. Run the `nv config show -o commands > backup.config` command to save the commands to the `backup.config` file:
 
@@ -135,6 +135,8 @@ To backup and restore the configuration commands:
    ```
    cumulus@switch:~$ source backup.config
    ```
+
+   If the backup configuration contains an obfuscated password, you need to reconfigure the password after you run the `source backup.config` command; otherwise authentication fails.
 
 4. Verify the configuration on the switch, then run the `nv config save` command to save the configuration to the `/etc/nvue.d/startup.yaml` file.
 
@@ -178,7 +180,7 @@ Cumulus Linux also provides ISSU to upgrade an active switch with minimal disrup
 
 The decision to upgrade Cumulus Linux by either installing a Cumulus Linux image or upgrading packages depends on your environment and your preferences. Here are some recommendations for each upgrade method.
 
-**Install a Cumulus Linux image** if you are performing a rolling upgrade in a production environment and if are using up-to-date and comprehensive automation scripts. This upgrade method enables you to choose the exact release to which you want to upgrade and is the *only* method available to upgrade your switch to a new release train (for example, from 4.4.3 to 5.3.0).
+**Install a Cumulus Linux image** if you are performing a rolling upgrade in a production environment and if you are using up-to-date and comprehensive automation scripts. This upgrade method enables you to choose the exact release to which you want to upgrade and is the *only* method available to upgrade your switch to a new release train (for example, from 4.4.3 to 5.3.0).
 
 Be aware of the following when installing the Cumulus Linux image:
 
@@ -195,6 +197,7 @@ Run **package upgrade** if you are upgrading from Cumulus Linux 5.0.0 to a later
 Be aware of the following when upgrading packages:
 
 - You cannot upgrade the switch to a new release train. For example, you **cannot** upgrade the switch from 4.x to 5.x.
+- You can only use package upgrade to upgrade a switch with an image install to a maximum of two releases; for example, you can package upgrade a switch running the Cumulus Linux 5.1 image to 5.2 or 5.3 (5.1 plus two releases).
 - The `sudo -E  apt-get upgrade` command might restart or stop services as part of the upgrade process.
 - The `sudo -E apt-get upgrade` command might disrupt core services by changing core service dependency packages.
 - After you upgrade, account UIDs and GIDs created by packages might be different on different switches, depending on the configuration and package installation history.

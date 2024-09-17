@@ -121,7 +121,7 @@ You can also select the desired path and view the amount of packets distributed 
 
 You can view interface statistics, resource utilization, and alarms for each device by clicking on a device in the **Flow Graph** panel, or by clicking on the striped grey line associated with a device in the main flow analysis graph. This will change the left panel details to show statistics for that device:
 
-{{<figure src="/images/netq/device statistics - left panel.png" width="600">}}
+{{<figure src="/images/netq/device-statistics-left-panel.png" width="600">}}
 
 The **Flow Graph** panel also presents the option to bring up the topology view where you can also click the paths and devices to view statistics. Click {{<img src="/images/netq/flow-view-in-topology-410.png" height="29" width="141">}} to bring up the topology view:
 

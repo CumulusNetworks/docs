@@ -1,0 +1,1 @@
+isc-dhcp-client-ddns-dbgsym has no copyright file

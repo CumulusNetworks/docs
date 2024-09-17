@@ -1,0 +1,147 @@
+This is nss-pam-ldapd, a library for doging NSS and PAM lookups using an LDAP
+server.
+
+nss-pam-ldapd started as nss-ldapd which was a fork from nss_ldap which was
+originally written by Luke Howard of PADL Software Pty Ltd.
+http://www.padl.com/OSS/nss_ldap.html
+
+In 2006 Arthur de Jong of West Consuling forked the library to split it into a
+thin NSS part and a server part. Most of the code was rewritten.
+
+The software was renamed to nss-pam-ldapd when PAM code contributed by Howard
+Chu for the OpenLDAP nssov module was integrated. Solaris compatibility was
+developed by Ted C. Cheng of Symas Corporation.
+
+https://arthurdejong.org/nss-pam-ldapd/
+
+Arthur de Jong is both the upstream and Debian package maintainer, so there
+are no differences between the Debian package and the upstream version.
+
+The Debian package of nss-pam-ldapd was partially based on packaging of the
+libnss-ldap package. The libnss-ldap package was maintained by Ben Collins,
+Davide Puricelli (evo), Sami Haahtinen and Stephen Frost.
+
+  Copyright (C) 1997-2006 Luke Howard
+  Copyright (C) 2006-2007 West Consulting
+  Copyright (C) 2006-2017 Arthur de Jong
+  Copyright (C) 2009 Howard Chu
+  Copyright (C) 2010 Symas Corporation
+
+  This library is free software; you can redistribute it and/or
+  modify it under the terms of the GNU Lesser General Public
+  License as published by the Free Software Foundation; either
+  version 2.1 of the License, or (at your option) any later version.
+
+  This library is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  Lesser General Public License for more details.
+
+  On Debian GNU/Linux systems, the complete text of
+  the GNU Lesser General Public License can be found in
+  /usr/share/common-licenses/LGPL-2.1.
+
+The following files are also contain other copyright holders and are also
+covered by the GNU Lesser General Public License:
+
+common/expr.c:     Copyright (C) 2012 Thorsten Glaser
+common/expr.c:     Copyright (C) 2016 Giovanni Mascellani
+compat/pagectrl.c: Copyright (C) 2002 Max Caines
+debian/po/ca.po:   Copyright (C) 2004 Free Software Foundation, Inc.
+debian/po/da.po:   Copyright (C) 2008 Jonas Smedegaard
+debian/po/da.po:   Copyright (C) 2010, 2011, 2013 Joe Hansen
+debian/po/de.po:   Copyright (C) 2004 Erik Schanze
+debian/po/es.po:   Copyright (C) 2007 Rudy Godoy Guillén
+debian/po/es.po:   Copyright (C) 2009, 2010, 2011 Software in the Public Interest
+debian/po/fi.po:   Copyright (C) 2009 Esko Arajärvi
+debian/po/fr.po:   Copyright (C) 2007, 2009, 2010 Debian French l10n team
+debian/po/it.po:   Copyright (C) 2013 Beatrice Torracca
+debian/po/sv.po:   Copyright (C) 2011, 2013 Martin Bagge
+debian/po/tr.po:   Copyright (C) 2013 Atila KOÇ
+debian/po/vi.po:   Copyright (C) 2010 Free Software Foundation, Inc.
+nslcd/group.c:     Copyright (C) 2013 Steve Hill
+nslcd/pam.c:       Copyright (C) 2015 Nokia Solutions and Networks
+nss/bsdnss.c:      Copyright (C) 2003 Jacques Vidrine
+nss/bsdnss.c:      Copyright (C) 2006 Artem Kazakov
+nss/bsdnss.c:      Copyright (C) 2009 Alexander V. Chernikov
+nss/bsdnss.c:      Copyright (C) 2011 Tom Judge
+tests/test_expr.c: Copyright (c) 2016 Giovanni Mascellani
+
+The distribution includes code from the Autoconf and Automake suites. This
+code is either licensed under the GNU General Public License with the extra
+permission to use it in a configure script under the licensing terms of that
+configure script or gives unlimited permission to copy and/or distribute it
+with or without modifications. The code is
+  Copyright (C) 1996-2016 Free Software Foundation, Inc.
+(years aggregated).
+
+The file m4/ax_pthread.m4 contains the following copyright statement:
+
+  Copyright (c) 2008 Steven G. Johnson <stevenj@alum.mit.edu>
+  Copyright (c) 2011 Daniel Richard G. <skunk@iSKUNK.ORG>
+
+  This program is free software: you can redistribute it and/or modify it
+  under the terms of the GNU General Public License as published by the
+  Free Software Foundation, either version 3 of the License, or (at your
+  option) any later version.
+
+  This program is distributed in the hope that it will be useful, but
+  WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+  Public License for more details.
+
+  You should have received a copy of the GNU General Public License along
+  with this program. If not, see <http://www.gnu.org/licenses/>.
+
+  As a special exception, the respective Autoconf Macro's copyright owner
+  gives unlimited permission to copy, distribute and modify the configure
+  scripts that are the output of Autoconf when processing the Macro. You
+  need not follow the terms of the GNU General Public License when using
+  or distributing such scripts, even though portions of the text of the
+  Macro appear in them. The GNU General Public License (GPL) does govern
+  all other use of the material that constitutes the Autoconf Macro.
+
+  This special exception to the GPL applies to versions of the Autoconf
+  Macro released by the Autoconf Archive. When you make and distribute a
+  modified version of the Autoconf Macro, you may extend this special
+  exception to the GPL to apply to your modified version as well.
+
+The file m4/ax_tls.m4 contains the following copyright statement:
+
+  Copyright (c) 2008 Alan Woodland <ajw05@aber.ac.uk>
+  Copyright (c) 2010 Diego Elio Petteno` <flameeyes@gmail.com>
+
+  This program is free software: you can redistribute it and/or modify it
+  under the terms of the GNU General Public License as published by the
+  Free Software Foundation, either version 3 of the License, or (at your
+  option) any later version.
+
+  This program is distributed in the hope that it will be useful, but
+  WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+  Public License for more details.
+
+  You should have received a copy of the GNU General Public License along
+  with this program. If not, see <http://www.gnu.org/licenses/>.
+
+  As a special exception, the respective Autoconf Macro's copyright owner
+  gives unlimited permission to copy, distribute and modify the configure
+  scripts that are the output of Autoconf when processing the Macro. You
+  need not follow the terms of the GNU General Public License when using
+  or distributing such scripts, even though portions of the text of the
+  Macro appear in them. The GNU General Public License (GPL) does govern
+  all other use of the material that constitutes the Autoconf Macro.
+
+  This special exception to the GPL applies to versions of the Autoconf
+  Macro released by the Autoconf Archive. When you make and distribute a
+  modified version of the Autoconf Macro, you may extend this special
+  exception to the GPL to apply to your modified version as well.
+
+The file m4/ax_python_module.m4 contains the following copyright statement:
+
+  Copyright (c) 2008 Andrew Collier
+
+  Copying and distribution of this file, with or without modification, are
+  permitted in any medium without royalty provided the copyright notice
+  and this notice are preserved. This file is offered as-is, without any
+  warranty.

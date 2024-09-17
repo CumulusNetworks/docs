@@ -435,7 +435,7 @@ See the discussions in the {{<link url="#fec" text="FEC">}}, {{<link url="#auton
 
 ## Methodology to Troubleshoot Layer 1 Problems
 
-This section contains a troubleshooting methodology and checklist for helping to resolve layer 1 issues for modules, whether or not they are on the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Cumulus Linux HCL">}}.
+This section contains a troubleshooting methodology and checklist for helping to resolve layer 1 issues for modules.
 
 The root cause of a layer 1 problem falls into one of these three categories:
 
@@ -483,7 +483,7 @@ Try swapping the modules and fibers to determine which component is bad:
 - Swap the modules between the local and remote. Does the test indicate the symptoms move with the module or stay on the same neighbor?
 - Loopback tests: Move one of the modules to the neighbor and connect the two modules back-to-back in the same switch, ideally with the same cable. What does the test indicate now? Now, move both modules to the other side and repeat. Try to isolate the issue to a single fiber, module, port, platform or configuration.
 - Replace each module one at a time with a different module of the same type; the current module could be bad.
-- Replace each module with a different module from a different vendor, preferably one that is supported on the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Cumulus Linux HCL">}}.
+- Replace each module with a different module from a different vendor.
 
 ## Troubleshoot Down or Flapping Links
 
@@ -865,9 +865,9 @@ All Cumulus Linux switches support 3.5W across all QSFP ports simultaneously.
 
 Some modules require *high power modes* for driving long distance lasers. Power classes 5-8 &mdash; 4.0W, 4.5W, 5.0W, 10.0W &mdash; are high power modes. If a high power mode is needed by the module, it can request it and be granted if the switch or port supports it.
 
-To determine if a switch support higher power modes, consult the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Cumulus Linux HCL">}} and the hardware manufacturer specifications for power limitations for a switch in question.
+To determine if a switch support higher power modes, consult the hardware manufacturer specifications for power limitations for a switch in question.
 
-Mellanox switches vary in their support of high power modules. For example, on some Mellanox Spectrum 1 switches, only the first and last two QSFP ports support up to QSFP power class 6 (4.5W) and only the first and last two SFP ports support SFP power class 3 (2.0W) modules. Other Spectrum 1 switches do not support high power ports at all. Consult the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Cumulus Linux HCL">}} and the hardware manufacturer specifications for exact details of which ports support high power modules.
+Mellanox switches vary in their support of high power modules. For example, on some Mellanox Spectrum 1 switches, only the first and last two QSFP ports support up to QSFP power class 6 (4.5W) and only the first and last two SFP ports support SFP power class 3 (2.0W) modules. Other Spectrum 1 switches do not support high power ports at all. Consult the hardware manufacturer specifications for exact details of which ports support high power modules.
 
 Broadcom switches do not restrict power levels on a per-port basis; the power rating is done for the entire SFP or QSFP power bus.  
 
@@ -922,7 +922,7 @@ Since I2C issues are in the low speed control circuitry of a module, they are no
 
 When the I2C bus has issues or lockups, installed port modules may no longer show up in the output of `sudo l1-show <swp>` or `sudo ethtool -m <swp>`. A significant number of `smbus` or `i2c` or `EEPROM read` errors may be present in `/var/log/syslog`. Note that once one module has locked up the bus, some or all of the other modules will exhibit problems, making it nearly impossible to tell which module caused the failure.  
 
-The overwhelming number of I2C lockups are caused by failed I2C components or defective designs in port modules. Most failures are caused by low priced vendor modules, but even high price, high quality modules can fail, only with much lower incidence; that is, they have a higher MTBF rating. If an I2C issue is suspected, the first place to look is at the installed modules that are not on the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Cumulus Linux HCL">}}. The Cumulus Linux HCL is populated with modules that are known to work in Cumulus Linux switches, which also have a solid track record in customer networks.
+The overwhelming number of I2C lockups are caused by failed I2C components or defective designs in port modules. Most failures are caused by low priced vendor modules, but even high price, high quality modules can fail, only with much lower incidence; that is, they have a higher MTBF rating.
 
 You might resolve the issue if you remove each port module one by one until the problem clears &mdash; this may indicate which module caused the failure. However, often the bus may be blocked in a way that requires a reboot or power cycle to clear the I2C failure. Clearing the failure in one of these ways may work for a while, but unfortunately when the conditions are right again, hours, days or months later, the marginal I2C component may fail again and lock up the switch again.
 
@@ -948,7 +948,6 @@ Based on the failure scenario when the issue is discovered, choose when to addre
 If the switch is operational again due to one of the above methods, but the module that caused the problem has not been identified, try the following approach:
 
 - If there is a history in the `syslog` files of occasional errors on one module in advance of the failure, then remove or replace that module first.
-- If there are modules from vendors not on the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Cumulus Linux HCL">}}, then seek to replace those modules with high priority.
 - Replace any module that has caused problems in the past.
 - Replace all modules in the switch.
 

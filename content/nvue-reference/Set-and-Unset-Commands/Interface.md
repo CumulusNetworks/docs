@@ -472,7 +472,7 @@ cumulus@switch:~$ nv set interface swp1 link fec baser
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface <interface-id> link flap-protection enable</h>
+## <h>nv set interface \<interface-id\> link flap-protection enable</h>
 
 Enable (`on`) and disables (`off`) link flap protection on the specified interface. Cumulus Linux enables link flap detection by default. Link flap detection triggers when there are five link flaps within ten seconds, at which point the interface goes into a protodown state and shows `linkflap` as the reason. The `switchd` service also shows a log message.
 
@@ -512,6 +512,29 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv set interface swp1 link lanes 1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set interface \<interface-id\> link mac-address \<mac-address\></h>
+
+Configures a MAC address for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+|`<mac-address>` |  The MAC address you want to configure for the interface. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1 link mac-address 00:02:00:00:00:05
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -872,6 +895,10 @@ Configures the loopback in the specified VRF.
 
 Configures the loopback IP address in the specified VRF.
 
+{{%notice note%}}
+For the default VRF, use the `nv set interface lo ip address <ip-prefix-id>` command.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -886,5 +913,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default loopback ip address 10.10.10.1/32
+cumulus@switch:~$ nv set vrf RED loopback ip address 10.10.10.1/32
 ```

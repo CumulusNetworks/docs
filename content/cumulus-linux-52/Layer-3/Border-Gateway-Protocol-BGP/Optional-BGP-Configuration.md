@@ -333,9 +333,9 @@ Cumulus Linux does not enforce the MD5 password configured against a BGP listen-
 
 ## Remove Private BGP ASNs
 
-If you use private ASNs in the data center, any routes you send out to the internet contain your private ASNs. You can remove all the private ASNs from routes to a specific neighbor.
+If you use private ASNs in the data center, routes advertised to neighbors contain your private ASNs. The examples below show how to remove the private ASNs from routes and how to replace the private ASNs with your public ASN.
 
-The following example command removes private ASNs from routes sent to the neighbor on swp51 (an unnumbered interface):
+The following example command removes private ASNs from routes advertised to the neighbor on swp51 (an unnumbered interface):
 
 {{< tabs "424 ">}}
 {{< tab "NVUE Commands ">}}
@@ -349,6 +349,18 @@ You can replace the private ASNs with your public ASN with the following command
 
 ```
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath replace-peer-as on
+cumulus@leaf01:~$ nv config apply
+```
+
+To unset the above configuration:
+
+```
+cumulus@leaf01:~$ nv unset vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath private-as remove
+cumulus@leaf01:~$ nv config apply
+```
+
+```
+cumulus@leaf01:~$ nv unset vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath replace-peer-as on
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -537,6 +549,13 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 cumulus@switch:~$ nv config apply
 ```
 
+To disable allowas-in, run the `nv unset` command:
+
+```
+cumulus@switch:~$ nv unset vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath allow-my-asn enable on
+cumulus@switch:~$ nv config apply
+```
+
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
@@ -580,6 +599,13 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 cumulus@switch:~$ nv config apply
 ```
 
+To unset the above configuration, run the `nv unset` command:
+
+```
+cumulus@switch:~$ nv unset vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath allow-my-asn occurrences 4
+cumulus@switch:~$ nv config apply
+```
+
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
@@ -616,6 +642,13 @@ The following example allows a received AS path containing the ASN of the local 
 
 ```
 cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath allow-my-asn origin on
+cumulus@switch:~$ nv config apply
+```
+
+To unset the above configuration, run the `nv unset` command:
+
+```
+cumulus@switch:~$ nv unset vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath allow-my-asn origin on
 cumulus@switch:~$ nv config apply
 ```
 
@@ -1589,6 +1622,10 @@ To minimize the negative effects that occur when BGP restarts, Cumulus Linux ena
 
 When BGP establishes a session, BGP peers use the BGP OPEN message to negotiate a graceful restart. If the BGP peer also supports graceful restart, it activates for that neighbor session. If the BGP session stops, the BGP peer (the restart helper) flags all routes associated with the device as stale but continues to forward packets to these routes for a certain period of time. The restarting device also continues to forward packets during the graceful restart. After the device comes back up and establishes BGP sessions again with its peers (restart helpers), it waits to learn all routes that these peers announce before selecting a cumulative path; after which, it updates its forwarding tables and re-announces the appropriate routes to its peers. These procedures ensure that if there are any routing changes while the BGP speaker is restarting, the network converges.
 
+{{%notice note%}}
+For warm boot to restart the switch with no interruption to traffic for existing route entries, you must enable BGP graceful restart in all BGP VRFs.
+{{%/notice%}}
+
 ### Restart Modes
 
 Cumulus Linux supports graceful BGP restart full mode and helper-only mode for IPv4 and IPv6. The default setting is helper-only mode.
@@ -1598,7 +1635,8 @@ Cumulus Linux supports graceful BGP restart full mode and helper-only mode for I
 You can configure graceful BGP restart globally, where all BGP peers inherit the graceful restart capability, or for a BGP peer or peer group (useful for misbehaving peers or when working with third party devices).
 
 {{%notice note%}}
-BGP goes through a graceful restart (as a restarting router) with a planned switch restart event that ISSU initiates. Any other time BGP restarts, such as when the BGP daemon restarts due to a software exception, or you restart the FRR service, BGP goes through a regular restart where the BGP session with peers terminates and Cumulus Linux removes the learned routes from the forwarding plane.
+- BGP goes through a graceful restart (as a restarting router) with a planned switch restart event that ISSU initiates. Any other time BGP restarts, such as when the BGP daemon restarts due to a software exception, or you restart the FRR service, BGP goes through a regular restart where the BGP session with peers terminates and Cumulus Linux removes the learned routes from the forwarding plane.
+- Changing graceful restart mode results in BGP session flaps.
 {{%/notice%}}
 
 {{< tabs "TabID1783 ">}}
@@ -1910,6 +1948,10 @@ The BGP community list can be either *standard* or *expanded*. The standard BGP 
 An expanded BGP community list takes a regular expression of communities and matches the listed communities.
 
 When the neighbor receives the prefix, it examines the community value and takes action accordingly, such as permitting or denying the community member in the routing policy.
+
+{{%notice note%}}
+Community list names must start with a letter and can contain letters, digits, underscores and dashes. For example, you can name a community list `COMMUNITY1` or `EXTENDED-COMMUNITY_10` but you cannot name a community list `10` or `10_COMMUNITY`.
+{{%/notice%}}
 
 Here is an example of a standard community list filter:
 

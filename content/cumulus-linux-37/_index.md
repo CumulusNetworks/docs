@@ -13,7 +13,7 @@ cascade:
     esr: true
 ---
 
-NVIDIA® Cumulus Linux is the first full-featured Linux operating system for the networking industry. The {{<exlink url="https://www.debian.org/releases/jessie/" text="Debian Jessie" >}}-based, networking-focused distribution runs on hardware produced by a {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="broad partner ecosystem" >}}, ensuring unmatched customer choice regarding silicon, optics, cables, and systems.
+NVIDIA® Cumulus Linux is the first full-featured Linux operating system for the networking industry. The {{<exlink url="https://www.debian.org/releases/jessie/" text="Debian Jessie" >}}-based, networking-focused distribution runs on hardware produced by a broad partner ecosystem, ensuring unmatched customer choice regarding silicon, optics, cables, and systems.
 
 This user guide provides in-depth documentation on the Cumulus Linux installation process, system configuration and management, network solutions, and monitoring and troubleshooting recommendations. In addition, the quick start guide provides an end-to-end setup process to get you started.
 
@@ -24,18 +24,6 @@ For a list of the new features in this release, see {{<link url="Whats-New" text
 ## Open Source Contributions
 
 To implement various Cumulus Linux features, Cumulus Networks has forked various software projects, like CFEngine, `Netdev` and some Puppet Labs packages. The forked code resides in the Cumulus Networks {{<exlink url="https://github.com/CumulusNetworks" text="GitHub repository" >}}.
-
-<!-- Cumulus Networks has also developed and released new applications as
-open source. The list of open source projects is on the
-{{ /* link title="Cumulus Linux 3.7 Open Source Packages" text="open source software" */}} page.-->
-
-## Hardware Compatibility List
-
-You can find the most up-to-date hardware compatibility list (HCL)
-{{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="here" >}}. Use the HCL to confirm that
-your switch model is supported by Cumulus Linux. The HCL is updated
-regularly, listing products by port configuration, manufacturer, and SKU
-part number.
 
 ## Extended Support Release
 

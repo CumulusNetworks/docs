@@ -106,16 +106,18 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-1. Edit the `/etc/hostname` file with the desired hostname:
+1. Change the hostname with the `hostnamectl` command; for example:
 
-    ```
-    cumulus@switch:~$ sudo nano /etc/hostname
-    ```
+   ```
+   cumulus@switch:~$ sudo hostnamectl set-hostname leaf01
+   ```
 
-2. In the `/etc/hosts` file, replace the 127.0.1.1 IP address with the new hostname:
+2. In the `/etc/hosts` file, replace the host for IP address 127.0.1.1 with the new hostname:
 
     ```
     cumulus@switch:~$ sudo nano /etc/hosts
+    ...
+    127.0.1.1       leaf01
     ```
 
 {{< /tab >}}

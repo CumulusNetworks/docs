@@ -18,7 +18,8 @@ PIM-SM has three configuration options:
 Cumulus Linux supports ASM and SSM only.
 
 {{%notice note%}}
-IGMPv3 works only with SSM multicast group ranges.
+- IGMPv3 works only with SSM multicast group ranges.
+- Cumulus Linux does not support IPv6 multicast routing with PIM.
 {{%/notice%}}
 
 For additional information on PIM-SM, refer to {{<exlink url="https://tools.ietf.org/html/rfc7761" text="RFC 7761 - Protocol Independent Multicast - Sparse Mode">}}. For a brief description of how PIM works, refer to [PIM Overview]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Configuration/PIM-Overview" >}}).
@@ -494,7 +495,7 @@ Address         Interface      Nexthop
 
 Use multicast boundaries to limit the distribution of multicast traffic and push multicast to a subset of the network. With boundaries in place, the switch drops or accepts incoming IGMP or PIM joins according to a prefix list. To configure the boundary, apply an IP multicast boundary OIL (outgoing interface list) on an interface.
 
-First create a prefix list, then run the following commands:
+First create a prefix list consisting of multicast group addresses, then run the following commands:
 
 {{< tabs "TabID983 ">}}
 {{< tab "NVUE Commands ">}}
@@ -818,7 +819,7 @@ cumulus@switch:~$ nv set interface swp50 router pim address-family ipv4-unicast 
 cumulus@switch:~$ nv config apply
 ```
 
-The following example command configures PIM to only ignore the RP check for the upstream neighbors in the prefix list called allowRP:
+The following example command configures PIM to only ignore the RP check for RP addresses in the prefix list called allowRP:
 
 ```
 cumulus@switch:~$ nv set interface swp50 router pim address-family ipv4-unicast allow-rp rp-list allowRP
@@ -841,7 +842,7 @@ switch# write memory
 switch# exit
 ```
 
-The following example command configures PIM to only ignore the RP check for the upstream neighbors in the prefix list called allowRP:
+The following example command configures PIM to only ignore the RP check for RP addresses in the prefix list called allowRP:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1005,11 +1006,11 @@ cumulus@switch:~$ nv config apply
 ### IGMP Settings
 
 You can set the following optional IGMP settings on a PIM interface:
-- The last member query interval, which is the maximum response time advertised in IGMP group-specific queries. You can specify a value between 1 and 6553 seconds. The default setting is 10.
-- The maximum response time for IGMP general queries. You can specify a value between 1 and 6553 seconds. The default setting is 100.
-- The last member query count, which is the number of group-specific queries that a querier can send after receiving a leave message on the interface. You can specify a value between 1 and 255. The default setting is 2.
-- How often IGMP sends query-host messages to discover which multicast groups have members on the attached networks. You can specify a value between 1 and 65535 seconds. The default setting is 125.
-- Fast leave processing, where the switch immediately removes a port from the forwarding entry for a multicast group when the port receives a leave message. The default setting is off.
+- The last member query interval, which is the interval between the queries in response to the leave message received by the last member of the group. You can specify a value between 1 and 6553 seconds. The default setting is 10.
+- The maximum response time for IGMP general queries. You can specify a value between 1 and 6553 seconds. The default setting is 100. The maximum response time must be less than the last member query interval.
+- The last member query count, which is the number of group-specific queries that a querier can send after receiving a leave message from the last member of the group. You can specify a value between 1 and 255. The default setting is 2.
+- How often IGMP sends query messages to discover which multicast groups have members on the attached networks. You can specify a value between 1 and 65535 seconds. The default setting is 125.
+- Fast leave, where the switch immediately removes a port from the forwarding entry for a multicast group when the port receives a leave message. The default setting is off.
 
 {{< tabs "TabID356 ">}}
 {{< tab "NVUE Commands ">}}
@@ -1280,16 +1281,34 @@ To show the IGMP configuration settings for an interface, run the `nv show inter
 ```
 cumulus@lhr:~$ nv show interface swp3 ip igmp
                             operational  applied
---------------------------  -----------  -------
-enable                                   on     
-fast-leave                               off    
-last-member-query-count                  2      
-last-member-query-interval               10     
-query-interval                           125    
-query-max-response-time                  100    
-version                                  3      
-[static-group]                                  
-[group]           
+---------------------------  -----------  -------
+enable                                    on
+version                      3            3
+fast-leave                                off
+query-interval               125          125
+query-max-response-time      100          100
+last-member-query-interval                10
+last-member-query-count      2            2
+[static-group]
+interface-state              up
+ip-address                   33.1.1.10
+ifindex                      3
+querier                      local
+querier-ip                   33.1.1.10
+query-start-count            0
+group-membership-interval    350
+older-host-present-interval  350
+other-querier-interval       300
+robustness-variable          2
+startup-query-interval       31
+last-member-query-time       20
+timers
+  query-timer                00:00:12
+  query-other-timer          --:--:--
+flags
+  multicast                  on
+  broadcast                  on
+  lan-delay                  on             
 ```
 
 To show IGMP operational data for an interface, run the NVUE `nv show interface <interface> ip igmp -o json` command or the vtysh `show ip igmp statistics` command.
@@ -1441,8 +1460,8 @@ To troubleshoot this issue:
 
    ```
    fhr# show ip pim rp-info
-   RP address       group/prefix-list   OIF               I am RP    Source
-   10.10.10.101     224.0.0.0/4         swp51             no         Static
+   RP address       group/prefix-list   OIF               I am RP    Source      Group-Type
+   10.10.10.101     224.0.0.0/4         swp51             no         Static      ASM
    ```
 
 ### No S,G on the RP for an Active Group
@@ -1475,7 +1494,7 @@ cumulus@switch:~$ cl-resource-query  | grep Mcast
 Total Mcast Routes:         450,   0% of maximum value    450
 ```
 
-Refer to {{<link url="Supported-Route-Table-Entries#tcam-resource-profiles-for-spectrum-switches" text="TCAM Resource Profiles for Spectrum Switches">}}.
+Refer to {{<link url="Forwarding-Table-Size-and-Profiles" text="Forwarding Table Size and Profiles">}}.
 
 ### Verify the MSDP Session State
 
@@ -1735,7 +1754,7 @@ cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             enable: on
         router:
           pim:
-            enable: on
+           enable: on
         type: svi
         vlan: 10
     router:
@@ -1764,7 +1783,7 @@ cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
                 type: unnumbered
           pim:
             address-family:
-              ipv4-unicast:
+              ipv4:
                 rp:
                   10.10.10.101: {}
             enable: on
@@ -1839,7 +1858,7 @@ cumulus@leaf02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
                 type: unnumbered
           pim:
             address-family:
-              ipv4-unicast:
+              ipv4:
                 rp:
                   10.10.10.101: {}
             enable: on
@@ -1898,7 +1917,7 @@ cumulus@spine01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
                 type: unnumbered
           pim:
             address-family:
-              ipv4-unicast:
+              ipv4:
                 rp:
                   10.10.10.101: {}
             enable: on
@@ -2068,6 +2087,12 @@ iface eth2 inet manual
 ```
 cumulus@leaf01:mgmt:~$ sudo cat /etc/frr/frr.conf
 ...
+
+vrf default
+ip pim rp 10.10.10.101 224.0.0.0/4
+exit-vrf
+vrf mgmt
+exit-vrf
 interface lo
 ip pim
 interface swp51
@@ -2076,14 +2101,10 @@ interface vlan10
 ip igmp
 ip igmp version 3
 ip igmp query-interval 125
-ip igmp last-member-query-interval 10
-ip igmp query-max-response-time 100
+ip igmp last-member-query-interval 100
+ip igmp last-member-query-count 2
+ip igmp query-max-response-time 1000
 ip pim
-vrf default
-ip pim rp 10.10.10.101 224.0.0.0/4
-exit-vrf
-vrf mgmt
-exit-vrf
 router bgp 65101 vrf default
 bgp router-id 10.10.10.1
 timers bgp 3 9
@@ -2103,6 +2124,7 @@ maximum-paths 64
 distance bgp 20 200 200
 neighbor swp51 activate
 exit-address-family
+! end of router bgp 65101 vrf default
 ```
 
 {{< /tab >}}
@@ -2111,6 +2133,11 @@ exit-address-family
 ```
 cumulus@leaf02:mgmt:~$ sudo cat /etc/frr/frr.conf
 ...
+vrf default
+ip pim rp 10.10.10.101 224.0.0.0/4
+exit-vrf
+vrf mgmt
+exit-vrf
 interface lo
 ip pim
 interface swp51
@@ -2119,14 +2146,10 @@ interface vlan20
 ip igmp
 ip igmp version 3
 ip igmp query-interval 125
-ip igmp last-member-query-interval 10
-ip igmp query-max-response-time 100
+ip igmp last-member-query-interval 100
+ip igmp last-member-query-count 2
+ip igmp query-max-response-time 1000
 ip pim
-vrf default
-ip pim rp 10.10.10.101 224.0.0.0/4
-exit-vrf
-vrf mgmt
-exit-vrf
 router bgp 65102 vrf default
 bgp router-id 10.10.10.2
 timers bgp 3 9
@@ -2146,6 +2169,7 @@ maximum-paths 64
 distance bgp 20 200 200
 neighbor swp51 activate
 exit-address-family
+! end of router bgp 65102 vrf default
 ```
 
 {{< /tab >}}
@@ -2154,17 +2178,17 @@ exit-address-family
 ```
 cumulus@spine01:mgmt:~$ sudo cat /etc/frr/frr.conf
 ...
+rf default
+ip pim rp 10.10.10.101 224.0.0.0/4
+exit-vrf
+vrf mgmt
+exit-vrf
 interface lo
 ip pim
 interface swp1
 ip pim
 interface swp2
 ip pim
-vrf default
-ip pim rp 10.10.10.101 224.0.0.0/4
-exit-vrf
-vrf mgmt
-exit-vrf
 router bgp 65199 vrf default
 bgp router-id 10.10.10.101
 timers bgp 3 9
@@ -2189,6 +2213,7 @@ distance bgp 20 200 200
 neighbor swp1 activate
 neighbor swp2 activate
 exit-address-family
+! end of router bgp 65199 vrf default
 ```
 
 {{< /tab >}}
@@ -2196,7 +2221,7 @@ exit-address-family
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL57 - PIM" showNodes="leaf01,leaf02,spine01,server01,server02" >}}
+    {{< simulation name="Try It CL58 - PIM" showNodes="leaf01,leaf02,spine01,server01,server02" >}}
 
 This simulation starts with the example PIM configuration. To simplify the example, only one spine and two leafs are in the topology. The demo is pre-configured using NVUE commands.
 

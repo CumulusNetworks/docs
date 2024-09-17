@@ -56,7 +56,7 @@ Shows all the entries in the ARP table for the specified interface.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` | The interface. |
+| `<interface-id>` | The interface name. |
 
 ### Version History
 
@@ -109,7 +109,7 @@ Shows the flag set for the neighbor in the ARP table for the specified interface
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` | The interface. |
+| `<interface-id>` | The interface name. |
 | `<neighbor-id>` | The IPv4 address of the neighbor. |
 | `<lladdr-id>` |  The MAC address associated with IPv4 address. |
 
@@ -136,7 +136,7 @@ Shows the state of the neighbor in the ARP table for the specified interface and
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` | The interface. |
+| `<interface-id>` | The interface name. |
 | `<neighbor-id>` | The IPv4 address of the neighbor. |
 | `<lladdr-id>` |  The MAC address associated with IPv4 address. |
 

@@ -1,0 +1,1 @@
+linux-kbuild-5.10-dbgsym has no copyright file

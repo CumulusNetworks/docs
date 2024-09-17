@@ -12,6 +12,56 @@ h { color: RGB(118,185,0)}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
+## <h>nv set system cli pagination state</h>
+
+Enables or disables the CLI pager (pagination) state. The CLI pager enables you to view the contents of a large file or the output of an NVUE command one page at a time in the terminal window, using the up and down arrow keys or the space bar.
+
+You can set the pager state to `enabled` or `disabled`. The default value is `disabled`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system cli pagination state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system cli pagination pager</h>
+
+Configures the CLI pager settings. You can set the pager options to `more`, `less`, or `vim`. The default value is `less`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system cli pagination pager more
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system cli inactive-timeout</h>
+
+Configures the CLI session timeout. The timeout reduces the window of opportunity for unauthorized user access to an unattended CLI sessions on the switch, or ends an inactive session and releases the resources associated with it. You can specify a value between 0 and 86400 minutes. The default value is 0 (disabled).
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system cli inactive-timeout 300
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system config</h>
 
 Configures system configuration settings.
@@ -67,6 +117,9 @@ Configures the configuration auto save feature.
 ## <h>nv set system config auto-save enable</h>
 
 Turns auto save on or off. The auto save option lets you save the pending configuration to the startup configuration file automatically when you run `nv config apply` so that you do not have to run the `nv config save` command.
+
+- In Cumulus Linux 5.9 and later, auto save is `on` by default.
+- In Cumulus Linux 5.8 and earlier, auto save is `off` by default.
 
 ### Version History
 
@@ -380,13 +433,13 @@ cumulus@switch:~$ nv set system global reserved vlan internal range 4064-4094
 
 ## <h>nv set system global reserved vlan l3-vni-vlan</h>
 
-Configures the reserved VLANs to be used with layer 3 VNIs.
+Configures the reserved VLANs to use with layer 3 VNIs.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set system global reserved vlan l3-vni-vlan begin</h>
 
-Configures the reserved VLAN start range to be used with layer 3 VNIs. You can set a value between 1 and 4093.
+Configures the reserved VLAN start range to use with layer 3 VNIs. You can set a value between 1 and 4093.
 
 ### Version History
 
@@ -402,7 +455,7 @@ cumulus@switch:~$ nv set system global reserved vlan l3-vni-vlan begin 1
 
 ## <h>nv set system global reserved vlan l3-vni-vlan end</h>
 
-Configures the reserved VLAN end range to be used with layer 3 VNIs. You can set a value between 2 and 4093.
+Configures the reserved VLAN end range to use with layer 3 VNIs. You can set a value between 2 and 4093.
 
 ### Version History
 
@@ -492,6 +545,11 @@ Configures the restart mode for the switch. You can restart the switch in one of
 - `cold` restarts the system and resets all the hardware devices on the switch (including the switching ASIC).
 - `fast` restarts the system more efficiently with minimal impact to traffic by reloading the kernel and software stack without a hard reset of the hardware. During a fast restart, the system decouples from the network to the extent possible using existing protocol extensions before recovering to the operational mode of the system. The restart process maintains the forwarding entries of the switching ASIC and the data plane is not affected. Traffic outage is much lower in this mode as there is a momentary interruption after reboot, after switchd restarts.
 - `warm` restarts the system with minimal impact to traffic and without affecting the data plane. Warm mode diverts traffic from itself and restarts the system without a hardware reset of the switch ASIC. While this process does not affect the data plane, the control plane is absent during restart and is unable to process routing updates. However, if no alternate paths exist, the switch continues forwarding with the existing entries with no interruptions.
+
+{{%notice note%}}
+- Cumulus Linux 5.7 and earlier supports fast mode for all protocols and warm boot for layer 2 forwarding, and layer 3 forwarding with BGP and static routing.
+- Cumulus Linux 5.8 supports fast mode for all protocols and warm mode for 802.1X, layer 2 forwarding, layer 3 forwarding with BGP, and static routing. Warm mode for VXLAN routing with EVPN is available for beta and open to customer feedback. Cumulus Linux does not support warm boot with EVPN MLAG or EVPN multihoming.
+{{%/notice%}}
 
 ### Version History
 

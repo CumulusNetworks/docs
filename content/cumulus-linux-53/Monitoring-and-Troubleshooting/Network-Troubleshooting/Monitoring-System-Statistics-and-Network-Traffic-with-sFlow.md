@@ -108,6 +108,10 @@ cumulus@switch:~$ grep agentIP /etc/hsflowd.auto
 
 For information on configuring various sFlow visualization tools, read this [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Monitoring/Configure-and-Use-sFlow-Visualization-Tools" >}}).
 
+## Considerations
+
+Cumulus Linux does not support sFlow egress sampling.
+
 ## Related Information
 
 - {{<exlink url="http://www.sflow.org/products/collectors.php" text="sFlow Collectors">}}

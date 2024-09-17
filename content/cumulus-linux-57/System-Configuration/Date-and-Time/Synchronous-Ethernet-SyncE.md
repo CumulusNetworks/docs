@@ -23,6 +23,7 @@ The Cumulus Linux switch includes a SyncE controller and a SyncE daemon.
 Basic SyncE configuration requires you:
 - Enable SyncE on the switch.
 - Configure SyncE on at least one interface so that the interface is a timing source that passes to the selection algorithm.
+- Set the SyncE bundle ID to prevent loops if more than one link comes from the same clock source. You can set a value between 0 and 256. A value of 0 indicates no bundle.
 
 The basic configuration shown below uses the default SyncE settings:
 <!-- - The {{<link url="#ql-for-the-switch" text="QL">}} for the switch is set to `option 1`, which includes PRC, SSU-A, SSU-B, SEC and DNU.-->
@@ -35,6 +36,7 @@ The basic configuration shown below uses the default SyncE settings:
 ```
 cumulus@switch:~$ nv set system synce enable on
 cumulus@switch:~$ nv set interface swp2 synce enable on
+cumulus@switch:~$ nv set interface swp2 synce bundle-id 10
 cumulus@switch:~$ nv config apply
 ```
 
@@ -43,22 +45,19 @@ cumulus@switch:~$ nv config apply
 
 Edit the `/etc/synced/synced.conf` file to configure the interface, then enable and start the SyncE service. Adding an interface section in the `/etc/synced/synced.conf` file enables SyncE on that interface.
 
-The following example enables SyncE on swp1, swp2, swp3.
+The following example enables SyncE on swp.
 
 ```
 cumulus@switch:~$ sudo nano /etc/synced/synced.conf
-...
+....
+# NVUE SyncE state is enable on
+
 [global]
-twtr_seconds=10
+twtr_seconds=300
 priority=1
-loglevel=info
 
-[swp1]
-
-[swp3]
-
-[swp4]
-priority=4
+[swp2]
+bundle=10
 ```
 
 ```
@@ -182,7 +181,7 @@ cumulus@switch:~$ sudo systemctl reload synced.service
 
 ### Frequency Source Priority
 
-The clock selection algorithm uses the frequency source priority on an interface to choose between two sources that have the same <span class="a-tooltip">[QL](## "Quality Level")</span>. You can specify a value between 1 (the highest priority) and 254 (the lowest priority). The default value is 1.
+The clock selection algorithm uses the frequency source priority on an interface to choose between two sources that have the same <span class="a-tooltip">[QL](## "Quality Level")</span>. You can specify a value between 1 (the highest priority) and 256(the lowest priority). The default value is 1.
 
 The following command example sets the priority on swp2 to 10, on swp2 to 20, and on swp3 to 10:
 

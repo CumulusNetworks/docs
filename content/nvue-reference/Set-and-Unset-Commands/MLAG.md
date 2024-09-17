@@ -35,7 +35,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 bond mlag enable on
+cumulus@switch:~$ nv set interface bond1 bond mlag enable on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -57,7 +57,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 bond mlag id 1
+cumulus@switch:~$ nv set interface bond1 bond mlag id 1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -146,7 +146,7 @@ cumulus@switch:~$ nv set mlag enable on
 
 ## <h>nv set mlag init-delay</h>
 
-Configures the number of seconds `clagd` delays bringing up MLAG bonds and anycast IP addresses. You can set a value between 0 and 9000.
+Configures the number of seconds `clagd` delays bringing up MLAG bonds and anycast IP addresses. You can set a value between 1 and 900.
 
 This timer sets to 0 automatically under the following conditions:
 - When the peer is not alive and the backup link is not active after a reload timeout.
@@ -201,7 +201,7 @@ cumulus@switch:~$ nv set mlag peer-ip linklocal
 
 ## <h>nv set mlag priority</h>
 
-Configures the MLAG priority. By default, the switch determines the role by comparing the MAC addresses of the two sides of the peering link; the switch with the lower MAC address assumes the primary role. You can override this by setting the priority option for the peer link. You can set a value between 0-65535. The default setting is 32768.
+Configures the MLAG priority. By default, the switch determines the role by comparing the MAC addresses of the two sides of the peering link; the switch with the lower MAC address assumes the primary role. You can override this by setting the priority option for the peer link. You can set a value between 0 and 65535. The default setting is 32768.
 
 ### Version History
 
@@ -232,5 +232,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set mlag vxlan mlag shared-address 10.10.10.2
+cumulus@switch:~$ nv set eve vxlan mlag shared-address 10.10.10.2
 ```

@@ -1,0 +1,58 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: intltool-debian
+
+Files: *
+Copyright: 2000-2003 Free Software Foundation
+           2000-2001 Eazel, Inc
+License: GPL-2
+
+Files: intltool-bin/intltool-extract
+Copyright: 2000-2003 Free Software Foundation
+           2000-2001 Eazel, Inc
+License: GPL-2+
+
+Files: debian/*
+Copyright: 2003       Rodney.Dawes.<dobey@novell.com>
+           2003       Danilo.Šegan.<danilo@gnome.org>
+           2003       Kenneth Christiansen <kenneth@gnu.org>
+           2003       Darin Adler <darin@bentspoon.com>
+           2003       Maciej Stachowiak <mjs@noisehavoc.org>
+           2003-2006  Denis Barbier <barbier@debian.org>
+           2006       Nicolas FRANCOIS (Nekral) <nicolas.francois@centraliens.net>
+           2006,2015  Emanuele Rocca <ema@debian.org>
+           2015       Paulo Roberto Alves de Oliveira (aka kretcheu) <kretcheu@gmail.com>
+           2019       Boyuan Yang <byang@debian.org>
+License: GPL-2+
+
+License: GPL-2
+ This package is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <https://www.gnu.org/licenses/>
+ .
+ On Debian systems, the complete text of the GNU General
+ Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".
+
+License: GPL-2+
+ This package is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <https://www.gnu.org/licenses/>
+ .
+ On Debian systems, the complete text of the GNU General
+ Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".

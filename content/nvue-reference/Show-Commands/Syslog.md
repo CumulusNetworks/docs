@@ -51,7 +51,7 @@ cumulus@switch:~$ nv show service syslog default
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service syslog \<vrf-id\> server \<server-id\></h>
+## <h>nv show service syslog \<vrf-id\> server</h>
 
 Shows the remote DNS servers for the specified VRF.
 

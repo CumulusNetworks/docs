@@ -135,7 +135,7 @@ Displays basic configuration, health, and connectivity status for all nodes or a
 The output displays:
 
 <!-- vale off -->
-- Whether each node has communicated recently (last 90 seconds)
+- Whether each node has communicated recently (last 120 seconds)
 - If each node is in time synchronization with the NetQ appliance or virtual machine
 - The NetQ Agent software version currently running on the node
 - How long the node has been operationally up

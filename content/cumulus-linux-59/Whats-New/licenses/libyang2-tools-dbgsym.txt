@@ -1,0 +1,1 @@
+libyang2-tools-dbgsym has no copyright file

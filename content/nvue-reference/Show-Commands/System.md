@@ -32,6 +32,69 @@ timezone  Etc/UTC
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system cli</h>
+
+Shows the current CLI settings. CLI settings include timeout and pager configuration.
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system cli
+                  applied
+----------------  -------
+inactive-timeout  300  
+pagination               
+  state           enabled
+  pager           more
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system cli pagination</h>
+
+Shows if the pager is enabled and the configured pager settings (`more`, `less`, or `vim`.)
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system cli pagination
+       applied
+-----  -------
+state  enabled
+pager  more
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system counter</h>
+
+Shows the polling interval for the switch counters for both the logical and physical interfaces.
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system counter
+                      applied
+--------------------  -------
+polling-interval             
+  logical-interface   0:00:05
+  physical-interface  0:00:02
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system counter polling-interval</h>
 
 Shows the polling interval for the switch counters for both the logical and physical interfaces.
@@ -77,9 +140,13 @@ utilization  100.0%
 
 Shows the current date and time on the switch software clock.
 
+{{%notice note%}}
+In Cumulus Linux 5.7, 5.8, and 5.9, this command is `nv show system time`.
+{{%/notice%}}
+
 ### Version History
 
-Introduced in Cumulus Linux 5.7.0
+Introduced in Cumulus Linux 5.10.0
 
 ### Example
 
@@ -262,6 +329,51 @@ end    4064         4064
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system global </h>
+
+Shows if the `svi-force-up` option is set to `on` for all SVIs on the switch.
+
+The first time you configure a switch, all southbound bridge ports are down; therefore, by default, all SVIs are also down. You can force all SVIs to always be UP with the `nv set system global svi-force-up enable on` option, which is beneficial if you want to perform connectivity testing.
+
+### Version History
+
+Introduced in Cumulus Linux 5.8.0
+
+### Example
+
+```
+nv show system global svi-force-up
+       operational  applied
+------  -----------  -------
+enable  on           on
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system health</h>
+
+Shows system health information.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system health 
+            operational  applied
+----------  -----------  -------
+status      OK                  
+status-led  green               
+
+Health issues
+================
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system maintenance</h>
 
 Show the current system maintenance mode.
@@ -371,7 +483,7 @@ cumulus@switch:~$ nv show system reboot history
 
 ## <h>nv show system reboot reason</h>
 
-Shows the reason why the switch was rebooted.
+Shows the reason why the switch rebooted.
 
 ### Version History
 
@@ -386,4 +498,43 @@ cumulus@switch:~$ nv show system reboot reason
 gentime  2023-04-26T15:47:34.033663+00:00         
 reason   Unknown                                  
 user     system/root
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system reboot required</h>
+
+Shows if you need to reboot the switch after upgrade.
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system reboot required
+yes
+```
+
+<HR HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system version</h>
+
+Shows the version information, such as kernel version and the Cumulus Linux release number.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system version
+            operational                 
+----------  ----------------------------
+kernel      6.1.0-cl-1-amd64            
+build-date  Mon Jul 29 04:57:52 UTC 2024
+image       5.10.0.0021                 
+onie        N/A 
 ```

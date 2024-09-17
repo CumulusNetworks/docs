@@ -453,7 +453,7 @@ cumulus@switch:~$ nv show service snmp-server mibs
 
 ## <h>nv show service snmp-server viewname</h>
 
-Shows the configured SNMP server view names. SNMP views are named groups of MIB objects that you can associate with user accounts to allow limited access to view and modify SNMP statistics and system configuration.
+Shows the configured SNMP server view names. SNMP views are groups of MIB objects that you can associate with user accounts to allow limited access to view and modify SNMP statistics and system configuration.
 
 ### Version History
 
@@ -1492,7 +1492,6 @@ Shows the list of usernames for the SNMP trap destination.
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
-|`<username-id>` | The username. |
 
 ### Version History
 
@@ -1501,7 +1500,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show service snmp-server trap-destination localhost 
+cumulus@switch:~$ nv show service snmp-server trap-destination localhost username
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

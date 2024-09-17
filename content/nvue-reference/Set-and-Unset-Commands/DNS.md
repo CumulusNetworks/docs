@@ -18,7 +18,7 @@ Provides commands to configure the Domain Name Server (DNS) service.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service dns \<vrf-id\> search \<domain\></h>
+## <h>nv set service dns \<vrf-id\> search \<domain-id\></h>
 
 Configures the domains to search for name matches.
 
@@ -27,7 +27,7 @@ Configures the domains to search for name matches.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` | The VRF you want to configure. |
-| `<domain>` | The domain name or IPv4 address.|
+| `<domain-id>` | The domain name or IPv4 address.|
 
 ### Version History
 

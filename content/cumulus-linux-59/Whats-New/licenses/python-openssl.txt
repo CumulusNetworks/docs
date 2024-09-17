@@ -1,0 +1,47 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: pyOpenSSL
+Source: https://github.com/pyca/pyopenssl
+
+Files: *
+Copyright: Copyright (C) 2008-2015 Jean-Paul Calderone, All rights reserved
+License: Apache-2.0
+
+Files: debian/*
+Copyright: Copyright (C) 2008-2019, Sandro Tosi <morph@debian.org>
+License: Apache-2.0
+
+License: Apache-2.0
+ A copy of the Apache License (version 2) can be found in
+ /usr/share/common-licenses/Apache-2.0 on Debian systems.
+
+Files: examples/simple/*.py examples/certgen.py src/OpenSSL/version.py
+Copyright: Copyright (C) AB Strakt
+ Copyright (C) Jean-Paul Calderone
+License: Apache-2.0
+
+Files: examples/SecureXMLRPCServer.py
+Copyright: This code is in the public domain.
+License: public-domain
+ Written 0907.2002 by Michal Wallace
+ It is provided AS-IS WITH NO WARRANTY WHATSOEVER.
+
+Files: examples/proxy.py
+Copyright: Copyright (c) Mihai Ibanescu <misa@redhat.com>
+License: Apache-2.0
+
+Files: tests/test_rand.py
+Copyright: Copyright (c) Frederick Dean
+License: Apache-2.0
+
+Files: tests/util.py
+Copyright: Copyright (C) Jean-Paul Calderone
+ Copyright (C) Twisted Matrix Laboratories.
+License: Apache-2.0
+
+Files: src/OpenSSL/__init__.py
+Copyright: Copyright (C) AB Strakt
+License: Apache-2.0
+
+Files: tests/conftest.py
+Copyright: Copyright (c) The pyOpenSSL developers
+License: Apache-2.0

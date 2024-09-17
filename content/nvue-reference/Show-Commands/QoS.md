@@ -1302,7 +1302,7 @@ cumulus@switch:~$ nv show interface swp5 qos roce status tc-map
 
 ## <h>nv show interface \<interface-id\> qos pfc-watchdog</h>
 
-Shows if PFC watchdog is enabled and shows the state for each traffic class. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is enabled.
+Shows if the PFC watchdog setting is ON or OFF and shows the state for each traffic class. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is ON.
 
 ### Command Syntax
 
@@ -1341,7 +1341,7 @@ PFC WD Status
 
 ## <h>nv show interface \<interface-id\> qos pfc-watchdog status</h>
 
-Shows PFC watchdog data for every traffic class. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is enabled.
+Shows PFC watchdog data for every traffic class. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is ON.
 
 ### Command Syntax
 
@@ -1363,7 +1363,7 @@ cumulus@switch:~$ nv show interface swp1 qos pfc-watchdog status
 
 ## <h>nv show interface \<interface-id\> qos pfc-watchdog status \<qos-tc-id\></h>
 
-Shows PFC watchdog data for a specific traffic class. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is enabled.
+Shows PFC watchdog data for a specific traffic class. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is ON.
 
 ### Command Syntax
 
@@ -2003,6 +2003,46 @@ cumulus@switch:~$ nv show qos advance-buffer-config default-global ingress-pool 
 --------------  -----------  -------
 memory-percent  100          100    
 mode            dynamic      dynamic
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show qos advance-buffer-config \<profile-id\> egress-mgmt-buffer</h>
+
+Shows the lossy egress management buffer settings that you can configure to isolate management traffic to a different priority group. Management traffic consists of OSPF and BGP hello and update packets, and BFD packets that ingress and egress the CPU.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show qos advance-buffer-config default-global egress-mgmt-buffer 
+              operational       applied 
+------------  -----------       ---- 
+reserved       1200 Bytes       1200 Bytes 
+shared-bytes   13.53 KB         13.53 KB 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show qos advance-buffer-config \<profile-id\> ingress-mgmt-buffer</h>
+
+Shows the lossy ingress management buffer settings that you can configure to isolate management traffic to a different priority group. Management traffic consists of OSPF and BGP hello and update packets, and BFD packets that ingress and egress the CPU.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show qos advance-buffer-config default-global ingress-mgmt-buffer
+              operational       applied
+------------  -----------       ---- 
+headroom       1000 Bytes       1000 Bytes 
+shared-bytes   19.53 KB         19.53 KB 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3209,7 +3249,7 @@ cumulus@switch:~$ nv show qos traffic-pool default-lossy switch-priority 2
 
 ## <h>nv show qos pfc-watchdog</h>
 
-Shows PFC watchdog configuration settings. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is enabled. 
+Shows PFC watchdog configuration settings. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is ON. 
 
 ### Version History
 

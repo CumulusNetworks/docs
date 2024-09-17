@@ -409,12 +409,6 @@ In the above configuration, if your switch is configured for multicast routing, 
 
 {{%/notice%}}
 
-## Configure ARP Timers
-
-Cumulus Linux does not often interact directly with end systems as much as end systems interact with one another. Therefore, after a successful {{<exlink url="http://linux-ip.net/html/ether-arp.html" text="address resolution protocol">}} (ARP) places a neighbor into a reachable state, Cumulus Linux might not interact with the client again for a long enough period of time for the neighbor to move into a stale state. To keep neighbors in the reachable state, Cumulus Linux includes a background process (`/usr/bin/neighmgrd`). The background process tracks neighbors that move into a stale, delay, or probe state, and attempts to refresh their state before they are removed from the Linux kernel and from hardware forwarding.
-
-The ARP refresh timer defaults to 1080 seconds (18 minutes). To change this setting, follow the procedures outlined in {{<link url="Address-Resolution-Protocol-ARP">}}.
-
 ## Configure Multiple Ports in a Range
 
 To save time, you can specify a range of ports or VLANs instead of enumerating each one individually.

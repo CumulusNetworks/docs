@@ -12,13 +12,15 @@ h { color: RGB(118,185,0)}
 
 ## <h>nv config apply </h>
 
-Applies the current pending configuration. This command does not save the configuration; the configuration does not persist after a reboot. To save the startup configuration automatically when you run `nv config apply` without having to run the `nv config save` command, run the `nv set system config auto-save enable on` command, described in the System Configuration section of the Set and Unset commands.
+In Cumulus Linux 5.8 and earlier, the `nv config apply` command applies the current pending configuration. This command does not save the configuration; the configuration does not persist after a reboot. To save the startup configuration automatically when you run `nv config apply` without having to run the `nv config save` command, run the `nv set system config auto-save enable on` command.
+
+In Cumulus Linux 5.9 and later, auto save is `on` by default; the `nv config apply` command automatically saves the configuration and the configuration persists after a reboot.
 
 You can specify the following options with the `nv config apply` command:
 
 - `--y` or `--assume-yes` automatically replies yes to all prompts.
 - `--assume-no` automatically replies no to all prompts.
-- `--confirm` applies the configuration change but you must confirm the applied configuration. If you do not confirm within ten minutes, the configuration rolls back automatically. You can change the default time with the apply `--confirm <time>` command. For example, `nv config apply --confirm 60` requires you to confirm within one hour.
+- `--confirm` applies the configuration change, but you must confirm the applied configuration. If you do not confirm within ten minutes, the configuration rolls back automatically. You can change the default time with the `apply --confirm <time>` command. For example, `nv config apply --confirm 60` requires you to confirm within one hour.
 - `--confirm-status` shows the amount of time left before the automatic rollback.
 
 ### Version History
@@ -35,11 +37,15 @@ cumulus@switch:~$ nv config apply --y
 
 ## <h>nv config apply \<revision\></h>
 
-Applies a specific configuration revision. This command does not save the configuration; the configuration does not persist after a reboot. You can specify the following options with this command:
+Applies a specific configuration revision.
+
+In Cumulus Linux 5.8 and earlier, the `nv config apply <revision>` command applies the configuration for the revision. This command does not save the configuration; the configuration does not persist after a reboot. To save the revision automatically when you run `nv config apply <revision>` without having to run the `nv config save` command, run the `nv set system config auto-save enable on` command.
+
+In Cumulus Linux 5.9 and later, auto save is `on` by default; the `nv config apply <revision>` command automatically saves the configuration for the revision and the configuration persists after a reboot. You can specify the following options with this command:
 
 - `--y` or `--assume-yes` automatically replies yes to all prompts.
 - `--assume-no` automatically replies no to all prompts.
-- `--confirm` applies the configuration change but you must confirm the applied configuration. If you do not confirm within ten minutes, the configuration rolls back automatically. You can change the default time with the apply `--confirm <time>` command. For example, `nv config apply --confirm 60` requires you to confirm within one hour.
+- `--confirm` applies the configuration change, but you must confirm the applied configuration. If you do not confirm within ten minutes, the configuration rolls back automatically. You can change the default time with the `apply --confirm <time>` command. For example, `nv config apply --confirm 60` requires you to confirm within one hour.
 - `--confirm-status` shows the amount of time left before the automatic rollback.
 
 ### Command Syntax
@@ -78,7 +84,7 @@ cumulus@switch:~$ nv config detach
 
 ## <h>nv config diff \<revision-base\> \<revision-target\></h>
 
-Shows differences between configurations, such as the startup configuration and the applied configuration, or the applied configuration and a specific configuration revision.
+Shows the differences between configurations, such as the startup configuration and the applied configuration, or the applied configuration and a specific configuration revision.
 
 ### Command Syntax
 
@@ -214,9 +220,35 @@ cumulus@switch:~$ nv config replace myconfig.yaml
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv config revision</h>
+
+Shows the configuration revisions on the switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@switch:~$ nv config revision
+Rev ID                State              Apply ID                          Apply Date           Type      User     Reason         Message                        
+--------------------  -----------------  --------------------------------  -------------------  --------  -------  -------------  -------------------------------
+1                     applied_and_saved  rev_1_apply_1                     2024-04-26 11:24:50  CLI       root     Config update  Password sync for user: cumulus
+2                     applied_and_saved  rev_2_apply_2                     2024-04-26 16:06:14  CLI       cumulus  Config update  Config update by cumulus       
+3                     applied_and_saved  rev_3_apply_1                     2024-04-26 16:17:21  CLI       cumulus  Config update  Config update by cumulus       
+4                     applied_and_saved  rev_4_apply_1                     2024-04-26 16:34:04  CLI       cumulus  Config update  Config update by cumulus
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv config save</h>
 
 Overwrites the startup configuration with the applied configuration by writing to the `/etc/nvue.d/startup.yaml` file. The configuration persists after a reboot.
+
+In Cumulus Linux 5.9 and later, auto save is `on` by default; NVUE saves the configuration to the `/etc/nvue.d/startup.yaml` file automatically. Run this command to save the applied configuration if NVUE auto save if `off`.
+
+In Cumulus Linux 5.8 and earlier, auto save is `off` by default.
 
 ### Version History
 
@@ -242,4 +274,45 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv config show
+ header:
+    model: VX
+    nvue-api-version: nvue_v1
+    rev-id: 1.0
+    version: Cumulus Linux 5.7.0
+- set:
+    bridge:
+      domain:
+        br_default:
+          vlan:
+            '10':
+              vni:
+                '10': {}
+            '20':
+              vni:
+                '20': {}
+            '30':
+              vni:
+                '30': {}
+    evpn:
+      enable: on
+    interface:
+      bond1:
+        bond:
+          member:
+            swp1: {}
+          mlag:
+            id: 1
+        bridge:
+          domain:
+            br_default:
+              access: 10
+      bond1-3:
+        bond:
+          lacp-bypass: on
+          mlag:
+            enable: on
+        link:
+          mtu: 9000
+        type: bond
+...
 ```

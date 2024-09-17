@@ -25,7 +25,7 @@ The following diagrams illustrate these options.
 
 {{<img src="/images/guides/dwdm-interconnect-ii.png">}}
 
-Regardless of your architecture, it is important to make sure that your devices and pluggables are compatible. For more information about hardware support, refer to the {{<exlink url=https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/ text="NVIDIA hardware compatibility list">}}.
+Regardless of your architecture, it is important to make sure that your devices and pluggables are compatible.
 
 ## Third-party Ethernet Services Providers
 

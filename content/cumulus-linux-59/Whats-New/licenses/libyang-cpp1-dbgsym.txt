@@ -1,0 +1,1 @@
+libyang-cpp1-dbgsym has no copyright file

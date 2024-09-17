@@ -5,8 +5,6 @@ weight: 5
 toc: 2
 ---
 This document supports the Cumulus Linux 5.7 release, and lists new platforms, features, and enhancements.
-
-- For a list of all the platforms supported in Cumulus Linux 5.7, see the {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Hardware Compatibility List (HCL)">}}.
 - For a list of open and fixed issues in Cumulus Linux 5.7, see the {{<link title="Cumulus Linux 5.7 Release Notes" text="Cumulus Linux 5.7 Release Notes">}}.
 - To upgrade to Cumulus Linux 5.7, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 <!-- vale off -->
@@ -530,7 +528,7 @@ nv action import system security certificate
 {{< /expand >}}
 
 {{%notice note%}}
-Cumulus 5.7 provides updated {{<link url="Supported-Route-Table-Entries/#spectrum-1" text="Spectrum-1 forwarding profile numbers">}} to optimize hardware resources and prevent overutilization.
+Cumulus 5.7 provides updated {{<link url="Forwarding-Table-Size-and-Profiles" text="Spectrum-1 forwarding profile numbers">}} to optimize hardware resources and prevent overutilization.
 {{%/notice%}}
 
 {{%notice info%}}

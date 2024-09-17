@@ -1,0 +1,27 @@
+This package was debianized by Alberto Gonzalez Iniesta <agi@agi.as> on
+Thu, 08 May 2003 15:22:45 +0200
+
+It was downloaded from http://www.secdev.org/projects/scapy/files/ 
+
+Upstream Authors: Philippe Biondi <phil@secdev.org>
+
+Copyright (C) 2003 Philippe Biondi <phil@secdev.org>
+
+    This program is free software; you can redistribute it and/or modify it 
+    under the terms of the GNU General Public License version 2 as
+    published by the Free Software Foundation.
+
+    This program is distributed in the hope that it will be useful, but     
+    WITHOUT ANY WARRANTY; without even the implied warranty of              
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU       
+    General Public License for more details.                                
+                                                                         
+    You should have received a copy of the GNU General Public License along
+    with this program; if not, write to the Free Software Foundation, Inc.,
+    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+On Debian GNU/Linux systems, the complete text of the GNU General
+Public License can be found in `/usr/share/common-licenses/GPL-2'.
+
+The Debian packaging is (C) 2007,2008 David Villa <David.Villa@uclm.es> and
+is licensed under the GPL.

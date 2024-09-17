@@ -321,7 +321,7 @@ cumulus@switch:~$ nv set interface swp1 qos remark profile MYPROFILE
 
 ## <h>nv set interface \<interface-id\> qos pfc-watchdog state</h>
 
-Enables or disables PFC watchdog on the interface. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is enabled. The default setting is `disable`.
+Enables or disables PFC watchdog on the interface. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is ON. The default setting is `disable`.
 
 - PFC watchdog only works for lossless traffic queues.
 - You can only configure PFC watchdog on a port with PFC (or link pause) configuration.
@@ -1002,7 +1002,7 @@ Configures the priority group alias name for the ingress lossy buffer.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<profile-id>` |   The profile name. |
-| `<priority-group-id>` |  The priority group alias name. |
+| `<priority-group-id>` |  The priority group alias name. In Cumulus Linux 5.10 and later, you can specify `bulk`, and `service1` through `service7`. In Cumulus Linux 5.9 and earlier, you can specify `bulk`, `control`, and `service1` through `service6`.|
 
 ### Version History
 
@@ -1025,7 +1025,7 @@ Configures an alias name for the ingress lossy buffer priority group.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<profile-id>` |   The profile name. |
-| `<priority-group-id>` |  The priority group alias name. |
+| `<priority-group-id>` |  The priority group alias name. In Cumulus Linux 5.10 and later, you can specify `bulk` and `service1` through `service7`. In Cumulus Linux 5.9 and earlier, you can specify `bulk`, `control`, and `service1` through `service6`.|
 
 ### Version History
 
@@ -1048,7 +1048,7 @@ Configures the reserved buffer allocation in bytes for the ingress lossy buffer 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<profile-id>` |   The profile name. |
-| `<priority-group-id>` |  The priority group alias name. |
+| `<priority-group-id>` |  The priority group alias name.  In Cumulus Linux 5.10 and later, you can specify `bulk`, and `service1` through `service7`. In Cumulus Linux 5.9 and earlier, you can specify `bulk`, `control`, and `service1` through `service6`. |
 
 ### Version History
 
@@ -1071,7 +1071,7 @@ Configures the service pool for the ingress lossy buffer priority group.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<profile-id>` |   The profile name. |
-| `<priority-group-id>` |  The priority group alias name. |
+| `<priority-group-id>` |  The priority group alias name.  In Cumulus Linux 5.10 and later, you can specify `bulk`, and `service1` through `service7`. In Cumulus Linux 5.9 and earlier, you can specify `bulk`, `control`, and `service1` through `service6`.|
 
 ### Version History
 
@@ -1094,7 +1094,7 @@ Configures dynamic shared buffer alpha allocation in bytes for the ingress lossy
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<profile-id>` |   The profile name. |
-| `<priority-group-id>` |  The priority group alias name. |
+| `<priority-group-id>` |  The priority group alias name.  In Cumulus Linux 5.10 and later, you can specify `bulk`, and `service1` through `service7`. In Cumulus Linux 5.9 and earlier, you can specify `bulk`, `control`, and `service1` through `service6`.|
 
 ### Version History
 
@@ -1117,7 +1117,7 @@ Configures the static shared buffer allocation in bytes for the ingress lossy bu
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<profile-id>` |   The profile name. |
-| `<priority-group-id>` |  The priority group alias name. |
+| `<priority-group-id>` |  The priority group alias name.  In Cumulus Linux 5.10 and later, you can specify `bulk`, and `service1` through `service7`. In Cumulus Linux 5.9 and earlier, you can specify `bulk`, `control`, and `service1` through `service6`. |
 
 ### Version History
 
@@ -1140,7 +1140,7 @@ Configures the switch priority for the ingress lossy buffer priority group.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<profile-id>` |   The profile name. |
-| `<priority-group-id>` |  The priority group alias name. |
+| `<priority-group-id>` |  The priority group alias name. In Cumulus Linux 5.10 and later, you can specify `bulk`, and `service1` through `service7`. In Cumulus Linux 5.9 and earlier, you can specify `bulk`, `control`, and `service1` through `service6`.|
 | `<qos-sp-id>` |  The switch priority. |
 
 ### Version History
@@ -1312,6 +1312,158 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-pool 3 shared-bytes 10000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set qos advance-buffer-config default-global ingress-lossy-buffer priority-group \<priority-group\> headroom</h>
+
+Configures the lossy headroom for a specified priority group. Lossy headroom is the buffer on top of the reserved buffer that stores packets that ingress the switch. You can configure the lossy headroom to help analyze performance for a specific priority group.
+
+The switch calculates the default value internally based on the MTU and internal latency.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<priority-group-id>` |  The priority group alias name. In Cumulus Linux 5.10 and later, you can specify `bulk`, and `service1` through `service7`. In Cumulus Linux 5.9 and earlier, you can specify `bulk`, `control`, and `service1` through `service6`.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossy-buffer priority-group service1 headroom 50000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set qos advance-buffer-config \<profile-id\> egress-mgmt-buffer reserved</h>
+
+Configures the egress management reserved buffer allocation in bytes.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-mgmt-buffer reserved 30000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set qos advance-buffer-config \<profile-id\> egress-mgmt-buffer service-pool</h>
+
+Configures the QoS egress management buffer service pool mapping. You can specify a value between 0 and 7.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-mgmt-buffer service-pool 0
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set qos advance-buffer-config \<profile-id\> egress-mgmt-buffer shared-alpha</h>
+
+Configures the dynamic egress management shared buffer alpha allocation. You can specify one of these values: `alpha_0`, `alpha_1_128`, `alpha_1_64`, `alpha_1_32`, `alpha_1_16`, `alpha_1_8`, `alpha_1_4`, `alpha_1_2`, `alpha_1`, `alpha_2`, `alpha_4`, `alpha_8`, `alpha_16`, `alpha_32`, `alpha_64`, or `alpha_infinity`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-mgmt-buffer shared-alpha alpha_2
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set qos advance-buffer-config \<profile-id\> egress-mgmt-buffer shared-bytes</h>
+
+Configures the QoS static egress management shared buffer allocation in bytes.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-mgmt-buffer shared-bytes 14000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set qos advance-buffer-config \<profile-id\> ingress-mgmt-buffer headroom</h>
+
+Configures the QoS ingress management buffer headroom in bytes.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-mgmt-buffer headroom 10000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set qos advance-buffer-config \<profile-id\> ingress-mgmt-buffer service-pool</h>
+
+Configures the QoS ingress management buffer service pool mapping. You can specify a value between 0 and 7.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-mgmt-buffer service-pool 0
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set qos advance-buffer-config \<profile-id\> ingress-mgmt-buffer shared-alpha</h>
+
+Configures the QoS dynamic ingress management shared buffer alpha allocation. You can specify one of these values: `alpha_0`, `alpha_1_128`, `alpha_1_64`, `alpha_1_32`, `alpha_1_16`, `alpha_1_8`, `alpha_1_4`, `alpha_1_2`, `alpha_1`, `alpha_2`, `alpha_4`, `alpha_8`, `alpha_16`, `alpha_32`, `alpha_64`, or `alpha_infinity`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-mgmt-buffer shared-alpha alpha_2
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set qos advance-buffer-config \<profile-id\> ingress-mgmt-buffer shared-bytes</h>
+
+Configures the static ingress management shared buffer allocation in bytes.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-mgmt-buffer shared-bytes 14000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1778,7 +1930,7 @@ Configures trust 802.1p and DSCP marking.
 
 When a frame or packet arrives on the switch, Cumulus Linux maps it to an internal COS (switch priority) value. This value never writes to the frame or packet but classifies and schedules traffic internally through the switch.
 
-You can define which values are trusted: 802.1p, DSCP, or both.
+You can define the trusted values: 802.1p, DSCP, or both.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -2176,7 +2328,7 @@ cumulus@switch:~$ nv set qos roce enable off
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set qos roce mode</h>
+## <h>nv set qos roce mode</h>
 
 Configures the RoCE mode. You can specify `lossy` or `lossless`. The default setting is `lossless`.
 

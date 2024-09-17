@@ -57,7 +57,7 @@ To use EVPN-MH, you must remove any MLAG configuration on the switch:
   - When an EVPN-MH bond enters LACP bypass state, BGP stops advertising EVPN type-1 and type-4 routes for that bond. The switch disables split-horizon and designated forwarder filters.
   - When an EVPN-MH bond exits the LACP bypass state, BGP starts advertising EVPN type-1 and type-4 routes for that bond. The switch enables split-horizon and designated forwarder filters.
 - <span class="a-tooltip">[EVI](## "EVPN virtual instance")</span> - Cumulus Linux supports VLAN-based service only, so the EVI is just a layer 2 VNI.
-- Supported {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="ASICs">}} include NVIDIA Spectrum A1, Spectrum-2 and Spectrum-3.
+- Supported ASICs include NVIDIA Spectrum A1, Spectrum-2 and Spectrum-3.
 
 ### Supported EVPN Route Types
 
@@ -101,8 +101,7 @@ When you enable EVPN-MH, all SVI MAC addresses advertise as type-2 routes. You d
 ### Enable EVPN-MH
 
 {{%notice note%}}
-- On a switch with the Spectrum 1 ASIC, you must enable EVPN-MH with the Linux commands. On a switch with Spectrum-2 and later, you can use the NVUE command.
-- NVIDIA recommends that you enable EVPN-MH on all VTEPs throughout the fabric to avoid duplicate packets.
+NVIDIA recommends that you enable EVPN-MH on all VTEPs throughout the fabric to avoid duplicate packets.
 {{%/notice%}}
 
 <!-- vale on -->
@@ -140,9 +139,9 @@ To configure bond interfaces for EVPN-MH:
 {{<tabs "bond configuration">}}
 {{<tab "NVUE Commands">}}
 
-With NVUE commands, you can either set both the local Ethernet segment ID and the system MAC address to generate a unique ESI automatically or set the ESI manually. Both options are shown below.
+You can either set both the local Ethernet segment ID and the segment MAC address to generate a unique ESI automatically or set the 10-byte Ethernet segment ID manually, then set the segment MAC address. You can see both options below.
 
-The following example commands configure each bond interface with the local Ethernet segment ID and the system MAC address to generate a unique ESI automatically:
+The following example commands configure each bond interface with the local Ethernet segment ID and the segment MAC address to generate a unique ESI automatically:
 
 ```
 cumulus@leaf01:~$ nv set interface bond1 bond member swp1
@@ -156,7 +155,7 @@ cumulus@leaf01:~$ nv set interface bond1-3 evpn multihoming segment df-preferenc
 cumulus@leaf01:~$ nv config apply
 ```
 
-The following example commands configure each bond interface with an Ethernet segment ID manually. The ID must be a 10-byte (80-bit) integer and must be unique.
+The following example commands configure each bond interface with the Ethernet segment ID manually. The ID must be a 10-byte (80-bit) integer and must be unique. When you configure the 10-byte Ethernet segment ID, ensure that the local ID is not present. You must also configure the segment MAC address. The example configures a global segment MAC address for use on all the Ethernet segment bonds.
 
 ```
 cumulus@leaf01:~$ nv set interface bond1 bond member swp1
@@ -166,13 +165,16 @@ cumulus@leaf01:~$ nv set interface bond1 evpn multihoming segment identifier 00:
 cumulus@leaf01:~$ nv set interface bond2 evpn multihoming segment identifier 00:44:38:39:BE:EF:AA:00:00:02
 cumulus@leaf01:~$ nv set interface bond3 evpn multihoming segment identifier 00:44:38:39:BE:EF:AA:00:00:03
 cumulus@leaf01:~$ nv set interface bond1-3 evpn multihoming segment df-preference 50000
+cumulus@leaf01:~$ nv set evpn multihoming segment mac-address 44:38:39:ff:ff:01
 cumulus@leaf01:~$ nv config apply
 ```
 
 {{</tab>}}
 {{<tab "vtysh Commands">}}
 
-1. Configure the ESI on each bond interface with the local Ethernet segment ID and the system MAC address:
+The following example commands configure each bond interface with the local Ethernet segment ID and the segment MAC address to generate a unique ESI automatically:
+
+1. Configure the ESI on each bond interface with the local Ethernet segment ID and the segment MAC address:
 
    ```
    cumulus@leaf01:~$ sudo vtysh
@@ -221,10 +223,10 @@ cumulus@leaf01:~$ nv config apply
    !
    ```
 
-2. Add the system MAC address to the bond interfaces in the `/etc/network/interfaces` file, then run the `ifreload -a` command.
+2. Add the segment MAC address to the bond interfaces in the `/etc/network/interfaces` file, then run the `ifreload -a` command.
 
    ```
-   cumulus@leaf01:~$ sudo cat /etc/network/interfaces
+   cumulus@leaf01:~$ sudo nano /etc/network/interfaces
    ...
    interface bond1
      bond-slaves swp1
@@ -243,6 +245,66 @@ cumulus@leaf01:~$ nv config apply
    cumulus@leaf01:~$ sudo ifreload -a
    ```
 
+The following example commands configure each bond interface with the Ethernet segment ID manually. The ID must be a 10-byte (80-bit) integer and must be unique. When you configure the 10-byte Ethernet segment ID, ensure that the local ID is not present. You must also configure the segment MAC address separately. The example configures a global segment MAC address for use on all the Ethernet segment bonds.
+
+1. Configure each bond interface with the Ethernet segment ID manually:
+
+   ```
+   cumulus@leaf01:~$ sudo vtysh
+   leaf01# configure terminal
+   leaf01(config)# interface bond1
+   leaf01(config-if)# evpn mh es-df-pref 50000
+   leaf01(config-if)# evpn mh es-id 00:44:38:39:BE:EF:AA:00:00:01
+   leaf01(config-if)# exit
+   leaf01(config)# interface bond2
+   leaf01(config-if)# evpn mh es-df-pref 50000
+   leaf01(config-if)# evpn mh es-id 00:44:38:39:BE:EF:AA:00:00:02
+   leaf01(config-if)# exit
+   leaf01(config)# interface bond3
+   leaf01(config-if)# evpn mh es-df-pref 50000
+   leaf01(config-if)# evpn mh es-id 00:44:38:39:be:ef:aa:00:00:03
+   leaf01(config-if)# exit
+   leaf01(config)# write memory
+   leaf01(config)# exit
+   leaf01# exit
+   cumulus@leaf01:~$
+   ```
+
+   The vtysh commands create the following configuration in the `/etc/frr/frr.conf` file.
+
+   ```
+   cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
+   ...
+   interface bond1
+   evpn mh es-df-pref 50000
+   evpn mh es-id 00:44:38:39:BE:EF:AA:00:00:01
+   interface bond2
+   evpn mh es-df-pref 50000
+   evpn mh es-id 00:44:38:39:BE:EF:AA:00:00:02
+   interface bond3
+   evpn mh es-df-pref 50000
+   evpn mh es-id 00:44:38:39:BE:EF:AA:00:00:03
+   ...
+   ```
+
+2. Add the segment MAC address to the bond interfaces in the `/etc/network/interfaces` file, then run the `ifreload -a` command.
+
+   ```
+   cumulus@leaf01:~$ sudo nano /etc/network/interfaces
+   ...
+   interface bond1
+     bond-slaves swp1
+     es-sys-mac 44:38:39:BE:EF:AA
+   
+   interface bond2
+     bond-slaves swp2
+     es-sys-mac 44:38:39:BE:EF:AA
+   
+   interface bond3
+     bond-slaves swp3
+     es-sys-mac 44:38:39:BE:EF:AA
+   ```
+  
 {{</tab>}}
 {{</tabs>}}
 
@@ -456,7 +518,7 @@ You can add debug statements to the `/etc/frr/frr.conf` file to debug the Ethern
 {{<tabs "debug">}}
 {{<tab "NVUE Commands">}}
 
-Cumulus Linux does not provide NVUE commands for FRR Debugging.
+Cumulus Linux does not provide NVUE commands for FRR Debugging; however, you can create a snippet to enable FRR debugging. Refer to {{<link url="NVUE-Snippets/#example-3-evpn-multihoming-frr-debugging" text="/etc/frr/frr.conf snippets">}}.
 
 {{</tab>}}
 {{<tab "vtysh Commands">}}
@@ -761,7 +823,6 @@ cumulus@leaf01:~$ nv set nve vxlan source address 10.10.10.1
 cumulus@leaf01:~$ nv set nve vxlan arp-nd-suppress on 
 cumulus@leaf01:~$ nv set vrf RED evpn vni 4001
 cumulus@leaf01:~$ nv set vrf BLUE evpn vni 4002
-cumulus@leaf01:~$ nv set system global anycast-mac 44:38:39:BE:EF:AA
 cumulus@leaf01:~$ nv set evpn enable on
 cumulus@leaf01:~$ nv set router bgp autonomous-system 65101
 cumulus@leaf01:~$ nv set router bgp router-id 10.10.10.1
@@ -832,7 +893,6 @@ cumulus@leaf02:~$ nv set nve vxlan source address 10.10.10.2
 cumulus@leaf02:~$ nv set nve vxlan arp-nd-suppress on 
 cumulus@leaf02:~$ nv set vrf RED evpn vni 4001
 cumulus@leaf02:~$ nv set vrf BLUE evpn vni 4002
-cumulus@leaf02:~$ nv set system global anycast-mac 44:38:39:BE:EF:AA
 cumulus@leaf02:~$ nv set evpn enable on
 cumulus@leaf02:~$ nv set router bgp autonomous-system 65102
 cumulus@leaf02:~$ nv set router bgp router-id 10.10.10.2
@@ -903,7 +963,6 @@ cumulus@leaf03:~$ nv set nve vxlan source address 10.10.10.3
 cumulus@leaf03:~$ nv set nve vxlan arp-nd-suppress on 
 cumulus@leaf03:~$ nv set vrf RED evpn vni 4001
 cumulus@leaf03:~$ nv set vrf BLUE evpn vni 4002
-cumulus@leaf03:~$ nv set system global anycast-mac 44:38:39:BE:EF:AA
 cumulus@leaf03:~$ nv set evpn enable on
 cumulus@leaf03:~$ nv set router bgp autonomous-system 65103
 cumulus@leaf03:~$ nv set router bgp router-id 10.10.10.3
@@ -974,7 +1033,6 @@ cumulus@leaf04:~$ nv set nve vxlan source address 10.10.10.4
 cumulus@leaf04:~$ nv set nve vxlan arp-nd-suppress on 
 cumulus@leaf04:~$ nv set vrf RED evpn vni 4001
 cumulus@leaf04:~$ nv set vrf BLUE evpn vni 4002
-cumulus@leaf04:~$ nv set system global anycast-mac 44:38:39:BE:EF:AA
 cumulus@leaf04:~$ nv set evpn enable on
 cumulus@leaf04:~$ nv set router bgp autonomous-system 65104
 cumulus@leaf04:~$ nv set router bgp router-id 10.10.10.4

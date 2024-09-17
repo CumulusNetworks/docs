@@ -17,6 +17,7 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 
 - {{<link url="Factory-Reset" text="Factory Reset">}}
 - {{<link url="Forwarding-Table-Size-and-Profiles/#spectrum-1" text="ecmp-nh-heavy forwarding profile">}} for Spectrum 1 switches
+- {{<link url="Optional-BGP-Configuration/#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}}
 - Upgrade using A/B type of upgrade
 - OTLP phase 3
 - All packet histogram configuration

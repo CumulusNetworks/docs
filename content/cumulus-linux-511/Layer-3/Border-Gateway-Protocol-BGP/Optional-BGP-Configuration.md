@@ -1380,6 +1380,94 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
+## BGP Prefix Independent Convergence
+
+BGP prefix independent convergence (PIC) reduces data plane convergence times and improves unicast traffic convergence for remote link failures (when the BGP next hop fails). A remote link is a link between a spine and a remote leaf, or a spine and the super spine layer.
+
+{{%notice note%}}
+- BGP PIC is a BETA feature for Spectrum-4 switches.
+- Cumulus Linux does not support BGP PIC with EVPN, MLAG, or VRF route leaking.
+- You can configure PIC on the default VRF only.
+{{%/notice%}}
+
+When you configure BGP PIC, Cumulus Linux assigns one next hop group for each source and the remote leaf advertises the router ID loopback route. The remote leaf tags prefix routes with a route-origin extended community so that the local leaf recognizes the routes. When the network topology changes, the local leaf obtains the router ID loopback route with the updated ECMP, allowing a O (1) next hop group replace operation for all prefixes from the remote leaf without waiting for individual BGP updates.
+
+To enable PIC:
+
+{{< tabs "1393 ">}}
+{{< tab "NVUE Commands ">}}
+
+On a leaf switch, enable the BGP advertise origin option so that BGP can attach the Site-of-Origin (SOO) extended community to all routes advertised to its peers from the source where the routes originate.
+
+The following example enables BGP advertise origin for IPv4:
+
+```
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast advertise-origin
+cumulus@leaf01:~$ nv config apply
+```
+
+For IPv6, run the `nv set vrf <vrf> router bgp address-family ipv6-unicast advertise-origin` command.
+
+On all switches (leaf, spine and super spine), enable the next hop group per source option so that when BGP receives routes with the SOO extended community, it allocates a next hop group for each source:
+
+The following example enables the next hop group per source option for IPv4:
+
+```
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast nhg-per-origin
+cumulus@leaf01:~$ nv config apply
+```
+
+For IPv6, run the `nv set vrf <vrf> router bgp address-family ipv6-unicast nhg-per-origin` command.
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+On a leaf switch, enable the BGP advertise origin option so that BGP can attach the Site-of-Origin (SOO) extended community to all routes advertised to its peers from the source where the routes originate.
+
+The following example enables BGP advertise origin for IPv4:
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# address-family ipv4
+leaf01(config-router-af)# bgp advertise-origin
+leaf01(config-router-af)# end
+leaf01# write memory
+leaf01# exit
+```
+
+On all switches (leaf, spine and super spine), enable the next hop group per source option so that when BGP receives routes with the SOO extended community, it allocates a next hop group for each source.
+
+The following example enables BGP advertise origin for IPv4:
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# address-family ipv4
+leaf01(config-router-af)# bgp nhg-per-origin
+leaf01(config-router-af)# end
+leaf01# write memory
+leaf01# exit
+```
+
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65101
+  ...
+  bgp advertise-origin
+  bgp nhg-per-origin
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## BGP Timers
 
 BGP includes several timers that you can configure.

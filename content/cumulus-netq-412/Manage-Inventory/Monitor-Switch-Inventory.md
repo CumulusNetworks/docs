@@ -10,11 +10,11 @@ You can access {{<link title="Switches" text="switch performance data">}} for a 
 
 ## Switch Inventory Commands
 
-- To view a comprehensive list of inventory components, run {{<link title="show/#netq-show-inventory" text="netq show inventory">}}. 
-- To view Cumulus Linux OS versions supported on your switches, run {{<link title="show/#netq-show-cl-manifest" text="netq show cl-manifest">}}.
-- To view all installed software packages on your switches, run {{<link title="show/#netq-show-cl-pkg-info" text="netq show cl-pkg-info">}}.
-- To view recommended software package information for a switch, run {{<link title="show/#netq-show-recommended-pkg-version" text="netq show recommended-pkg-version">}}.
-- To view a list of services, run {{<link title="show/#netq-show-services" text="netq show services">}}.
+- {{<link title="show/#netq-show-inventory" text="netq show inventory">}}: view a comprehensive list of inventory components 
+- {{<link title="show/#netq-show-cl-manifest" text="netq show cl-manifest">}}: view Cumulus Linux OS versions supported on your switches
+- {{<link title="show/#netq-show-cl-pkg-info" text="netq show cl-pkg-info">}}: view all installed software packages on your switches
+- {{<link title="show/#netq-show-recommended-pkg-version" text="netq show recommended-pkg-version">}}: view recommended software package information for a switch
+- {{<link title="show/#netq-show-services" text="netq show services">}}: view a list of services
 ## View Switch Inventory in the UI
 
 {{<notice tip>}}
@@ -29,11 +29,11 @@ To view the hardware and software component inventory for switches running NetQ 
 
 Open the large Inventory/Switches card to display more granular information about software and hardware distribution. By default, the card displays data for fresh switches. Select **Rotten switches** from the dropdown to display information for switches that are in a down state. Hover over the top of the card and select a category to restrict the view to ASICs, platform, or software.
 
-{{<img src="/images/netq/switch-inventory-large-update.png" alt="switch software and hardware information" width="600">}}
+{{<img src="/images/netq/switch-inventory-large-update.png" alt="switch software and hardware information" width="600">}}<br>
 
 Expand the Inventory/Switches card to full-screen to view, filter or export information about ASICs, motherboards, CPUs, memory, disks, and operating system.
 
-{{<img src="/images/netq/inventory-switches-411.png" alt="" width="1200">}}
+{{<img src="/images/netq/inventory-switches-411.png" alt="" width="1200">}}<br>
 
 You can right-click the hostname of a given switch to open a monitoring dashboard for that switch in a new tab.
 ## Decommission a Switch

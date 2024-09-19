@@ -40,14 +40,21 @@ Use the Grafana CLI to install the NetQ plugin. For more detail about this comma
 
 The Grafana plugin comes unsigned. Before you can install it, you need to update the `grafana.ini` file then restart the Grafana service:
 
-1. Edit `/etc/grafana/grafana.ini` and add `allow_loading_unsigned_plugins = netq-dashboard` to the file.
+1. Edit `/etc/grafana/grafana.ini` and add `allow_loading_unsigned_plugins = netq-dashboard` to the file:
 
        cumulus@netq-appliance:~$ sudo nano /etc/grafana/grafana.ini
        ...
        allow_loading_unsigned_plugins = netq-dashboard
        ...
 
-1. Restart the Grafana service:
+2. If you are using Grafana v11.0 or later, add support for AngularJS to the same file:
+
+       cumulus@netq-appliance:~$ sudo nano /etc/grafana/grafana.ini
+       ...
+       angular_support_enabled = true
+       ...
+
+3. Restart the Grafana service:
 
        cumulus@netq-appliance:~$ sudo systemctl restart grafana-server.service
 

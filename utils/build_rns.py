@@ -292,7 +292,7 @@ def build_rn_markdown(json_file, version, file_type):
         The filed "jira_ticket" is the Jira CM number, but not every issue has a mapped Jira ticket.
         '''
         if "jira_ticket" in bug and not bug["jira_ticket"] == "":
-                issue_id_string = "| <a name=\"" + bug["ticket"] + "\"></a> [" + bug["ticket"] + "](#" + bug["ticket"] + ") <a name=\"" + bug["ticket"] + "\"></a> <br />" + bug["jira_ticket"] + " | "
+                issue_id_string = "| <a name=\"" + bug["ticket"] + "\"></a> [" + bug["ticket"] + "](#" + bug["ticket"] + ") <a name=\"" + bug["ticket"] + "\"></a> <br /> | "
         else:
             issue_id_string = "| <a name=\"" + bug["ticket"] + "\"></a> [" + bug["ticket"] + "](#" + bug["ticket"] + ") <a name=\"" + bug["ticket"] + "\"></a> <br /> | "
 

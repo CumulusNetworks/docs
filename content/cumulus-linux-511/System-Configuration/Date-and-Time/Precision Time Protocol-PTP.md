@@ -215,14 +215,7 @@ cumulus@switch:~$ nv config apply
 Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
 {{%/notice%}}
 
-4. Enable and start the ptp4l and phc2sys services:
-
-    ```
-    cumulus@switch:~$ sudo systemctl enable ptp4l.service phc2sys.service
-    cumulus@switch:~$ sudo systemctl start ptp4l.service phc2sys.service
-    ```
-
-5. Edit the `Default interface options` section of the `/etc/ptp4l.conf` file to configure the interfaces on the switch that you want to use for PTP.
+4. Edit the `Default interface options` section of the `/etc/ptp4l.conf` file to configure the interfaces on the switch that you want to use for PTP.
 
 {{< tabs "TabID227 ">}}
 {{< tab "Layer 3 Routed Port ">}}
@@ -283,7 +276,7 @@ Restarting the `switchd` service causes all network ports to reset in addition t
 {{< /tab >}}
 {{< /tabs >}}
 
-6. Edit the `/etc/linuxptp/phc2sys.conf` file to add the following parameters:
+5. Edit the `/etc/linuxptp/phc2sys.conf` file to add the following parameters:
 
    ```
    cumulus@switch:~$ sudo nano /etc/linuxptp/phc2sys.conf
@@ -296,7 +289,7 @@ Restarting the `switchd` service causes all network ports to reset in addition t
    domainNumber          0
    ```
 
-7. Enable and start the `ptp4l` and `phc2sys` services:
+6. Enable and start the `ptp4l` and `phc2sys` services:
 
     ```
     cumulus@switch:~$ sudo systemctl enable ptp4l.service phc2sys.service

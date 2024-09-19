@@ -19,6 +19,7 @@ The collection includes high-level wrapper modules and object specific modules a
  - nvidia.nvue.api – A wrapper around the NVUE REST API to send and retrieve NVUE configuration.
 
 **Object specific modules**
+ - nvidia.nvue.acl - ACL configuration with the REST API
  - nvidia.nvue.bridge - Bridge configuration with the REST API.
  - nvidia.nvue.config – Revisions with the REST API
  - nvidia.nvue.evpn - EVPN configuration with the REST API.
@@ -31,6 +32,8 @@ The collection includes high-level wrapper modules and object specific modules a
  - nvidia.nvue.vxlan - VXLAN configuration with the REST API.
 
 For REST API endpoints that are not covered by the object-specific modules or for sub-paths within the object specific modules (for example, `/interface/<id>/qos/roce/counters`), you can leverage the `nvidia.nvue.api` module and specify the endpoint in the `path` parameter.
+
+*Note: The NVUE Ansible modules are community supported and not validated by NVIDIA. Support for these modules are on a "Best-Effort" basis. If you have issues, please submit the request {{<exlink url="https://gitlab.com/nvidia-networking/systems-engineering/nvue/-/issues" text="here">}}*
 
 ## Production Ready Automation (PRA)
 

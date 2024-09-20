@@ -7,11 +7,28 @@ product: NVIDIA Air
 <!-- vale off -->
 Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
 
-## August 2024
+## September 2024
 <!-- Air:WhatsNew -->
+### 82.2024.0919-011
+- Fixed a pagination issue when viewing organization members
+- Fixed an issue when sorting members of an organization
+- Fixed an issue when adding multiple members to an organization
+- Fixed an issue where tokens could be created with an expiration date in the past
+- Fixed the SSH link content in the services list
+- Streamlined the node deletion confirmation
+- Updated the simulation edit dialog
+- Added an API endpoint supporting JSON import for simulations
+- Added a search field to the nodes and links tabs in the simulation workspace
+- Added a tooltip to display the full node name in the simulation workspace
+- Added layout options for the topology in the simulation workspace
+- Added an actions column to the nodes list
+- Added a running node count under the organization details
+- Added the ability to manage user permissions for a simulation
+<!-- Air:WhatsNew -->
+
+## August 2024
 ### 82.2024.0826-011
 - Updated ZTP script template
-<!-- Air:WhatsNew -->
 
 ### 82.2024.0819-011
 - Fixed an issue where the `Enable SSH` option was not displayed after deleting the service

@@ -12,6 +12,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 NetQ 4.12.0 includes the following new features and improvements:
 
+- Threshold crossing rules configured by NetQ by default
 - View and BGP and EVPN session information in the full-screen {{<link title="Switches" text="switch dashboard">}}
 
 ## Upgrade Paths

@@ -761,6 +761,8 @@ To reenable the rule, set the `is_active` option to *true*.
 
 ### Delete a Rule
 
+Some rules—for example those set up by default—cannot be deleted.
+
 {{<tabs "TabID2858" >}}
 
 {{<tab "NetQ UI" >}}

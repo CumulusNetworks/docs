@@ -12,6 +12,8 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 NetQ 4.12.0 includes the following new features and improvements:
 
+- {{<link title="Validate Network Protocol and Service Operations/#topology-validations" text="Topology validations">}} are now generally available
+- The {{<link title="Network Topology" text="topology view">}} is now generally available
 - Threshold crossing rules configured by NetQ by default
 - View and BGP and EVPN session information in the full-screen {{<link title="Switches" text="switch dashboard">}}
 

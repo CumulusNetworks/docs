@@ -13,6 +13,10 @@ This document supports the Cumulus Linux 5.10 release, and lists new platforms, 
 
 Cumulus Linux 5.10.1 provides bug fixes.
 
+{{%notice note%}}
+To upgrade from Cumulus Linux 5.9.2 to Cumulus Linux 5.10.1, you cannot use package upgrade; you must install the Cumulus Linux 5.10.1 image.
+{{%/notice%}}
+
 ## What's New in Cumulus Linux 5.10
 
 ### Platforms

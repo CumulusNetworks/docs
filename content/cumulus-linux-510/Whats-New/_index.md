@@ -9,6 +9,10 @@ This document supports the Cumulus Linux 5.10 release, and lists new platforms, 
 - To upgrade to Cumulus Linux 5.10, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 <!-- vale off -->
 
+## What's New in Cumulus Linux 5.10.1
+
+Cumulus Linux 5.10.1 provides bug fixes.
+
 ## What's New in Cumulus Linux 5.10
 
 ### Platforms

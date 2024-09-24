@@ -12,8 +12,12 @@ Cumulus Linux (including NVUE) uses ifupdown2 to manage network interfaces, whic
 ## Bring an Interface Up or Down
 
 An interface status can be in an:
-- Administrative state, where you configure the interface to be up or down.
-- Operational state, which reflects the current operational status of an interface.
+- Administrative state, where you configure the interface to be up or down. The administrative state reflects the intended configuration set by an administrator or management system. It indicates whether the interface is meant to be enabled or disabled. 
+- Operational state, which reflects the current operational status of an interface. The operational state reflects the actual current status of the interface, taking into account physical and logical conditions.
+
+The carrier state is the lower layer state of an interface. For a switch port, the carrier state represents if the switch port is enabled at the ASIC level and a cable is connected successfully. For a virtual interface, the carrier state involves the operational state of lower-level interfaces. For example, for a VLAN interface, the carrier state depends on the underlying bridge device operational state.
+
+The operational state always depends on administrative state and carrier state; the operational state is a function of the administrative state, carrier state and other link states.
 
 {{< tabs "TabID17 ">}}
 {{< tab "NVUE Commands ">}}
@@ -133,181 +137,7 @@ iface lo inet loopback
 - If the IP address has no subnet mask, it automatically becomes a /32 IP address. For example, 10.10.10.1 is 10.10.10.1/32.
 - You can configure multiple IP addresses for the loopback interface.
 {{%/notice%}}
-<!--
-## Child Interfaces
 
-By default, `ifupdown2` recognizes and uses any interface present on the system that is a dependent (child) of an interface (for example, a VLAN, bond, or physical interface). You do not need to list interfaces in the `/etc/network/interfaces` file unless the interfaces need specific configuration for {{<link url="Switch-Port-Attributes" text="MTU, link speed, and so on">}}. If you need to delete a child interface, delete all references to that interface from the `/etc/network/interfaces` file.
-
-In the following example, swp1 and swp2 do not need an entry in the `interfaces` file. The following stanzas in `/etc/network/interfaces` provide the exact same configuration:
-
-**With Child Interfaces Defined**
-
-```
-auto swp1
-iface swp1
-
-auto swp2
-iface swp2
-
-auto bridge
-iface bridge
-    bridge-vlan-aware yes
-    bridge-ports swp1 swp2
-    bridge-vids 1-100
-    bridge-pvid 1
-    bridge-stp on
-```
-
-**Without Child Interfaces Defined**
-
-```
-auto bridge
-iface bridge
-    bridge-vlan-aware yes
-    bridge-ports swp1 swp2
-    bridge-vids 1-100
-    bridge-pvid 1
-    bridge-stp on
-```
-
-In the following example, swp1.100 and swp2.100 do not need an entry in the `interfaces` file. The following stanzas defined in `/etc/network/interfaces` provide the exact same configuration:
-
-**With Child Interfaces Defined**
-
-```
-auto swp1.100
-iface swp1.100
-
-auto swp2.100
-iface swp2.100
-
-auto br-100
-iface br-100
-    address 10.0.12.2/24
-    address 2001:dad:beef::3/64
-    bridge-ports swp1.100 swp2.100
-    bridge-stp on
-```
-
-**Without Child Interfaces Defined**
-
-```
-auto br-100
-iface br-100
-    address 10.0.12.2/24
-    address 2001:dad:beef::3/64
-    bridge-ports swp1.100 swp2.100
-    bridge-stp on
-```
-
-## Interface Dependencies
-
-`ifupdown2` understands interface dependency relationships. When you run `ifup` and `ifdown` with all interfaces, the commands always run with all interfaces in dependency order. When you run `ifup` and `ifdown` with the interface list on the command line, the default behavior is to *not* run with dependents; however, if there are any built-in dependents, they do come up or go down.
-
-To run with dependents when you specify the interface list, use the `--with-depends` option. The `--with-depends` option walks through all dependents in the dependency tree rooted at the interface you specify. Consider the following example configuration:
-
-```
-auto bond1
-iface bond1
-    address 100.0.0.2/16
-    bond-slaves swp29 swp30
-
-auto bond2
-iface bond2
-    address 100.0.0.5/16
-    bond-slaves swp31 swp32
-
-auto br2001
-iface br2001
-    address 12.0.1.3/24
-    bridge-ports bond1.2001 bond2.2001
-    bridge-stp on
-```
-
-The `ifup --with-depends br2001` command brings up all dependents of br2001: bond1.2001, bond2.2001, bond1, bond2, bond1.2001, bond2.2001, swp29, swp30, swp31, swp32.
-
-```
-cumulus@switch:~$ sudo ifup --with-depends br2001
-```
-
-The `ifdown --with-depends br2001` command brings down all dependents of br2001: bond1.2001, bond2.2001, bond1, bond2, bond1.2001, bond2.2001, swp29, swp30, swp31, swp32.
-
-```
-cumulus@switch:~$ sudo ifdown --with-depends br2001
-```
-
-{{%notice warning%}}
-`ifdown2` always deletes logical interfaces after bringing them down. Use the `--admin-state` option if you only want to administratively bring the interface up or down. In the above example, `ifdown br2001` deletes `br2001`.
-{{%/notice%}}
-
-To guide you through which interfaces go down and come up, use the `--print-dependency` option.
-
-For example, run `ifquery --print-dependency=list -a` to show the dependency list for all interfaces:
-
-```
-cumulus@switch:~$ sudo ifquery --print-dependency=list -a
-lo : None
-eth0 : None
-bond0 : ['swp25', 'swp26']
-bond1 : ['swp29', 'swp30']
-bond2 : ['swp31', 'swp32']
-br0 : ['bond1', 'bond2']
-bond1.2000 : ['bond1']
-bond2.2000 : ['bond2']
-br2000 : ['bond1.2000', 'bond2.2000']
-bond1.2001 : ['bond1']
-bond2.2001 : ['bond2']
-br2001 : ['bond1.2001', 'bond2.2001']
-swp40 : None
-swp25 : None
-swp26 : None
-swp29 : None
-swp30 : None
-swp31 : None
-swp32 : None
-```
-
-To print the dependency list of a single interface, run the `ifquery --print-dependency=list <interface>` command.
-
-To show the dependency information for an interface in `dot` format, run the `ifquery --print-dependency=dot <interface>` command. The following example command shows the dependency information for interface br2001 in `dot` format:
-
-```
-cumulus@switch:~$ sudo ifquery --print-dependency=dot br2001
-/* Generated by GvGen v.0.9 (http://software.inl.fr/trac/wiki/GvGen) */
-digraph G {
-    compound=true;
-    node1 [label="br2001"];
-    node2 [label="bond1.2001"];
-    node3 [label="bond2.2001"];
-    node4 [label="bond1"];
-    node5 [label="bond2"];
-    node6 [label="swp29"];
-    node7 [label="swp30"];
-    node8 [label="swp31"];
-    node9 [label="swp32"];
-    node1->node2;
-    node1->node3;
-    node2->node4;
-    node3->node5;
-    node4->node6;
-    node4->node7;
-    node5->node8;
-    node5->node9;
-}
-```
-
-You can use `dot` to render the graph on an external system.
-
-{{< img src = "/images/cumulus-linux/layer1-interfaces.png" >}}
-
-To print the dependency information of the entire `interfaces` file, run the following command:
-
-```
-cumulus@switch:~$ sudo ifquery --print-dependency=dot -a >interfaces_all.dot
-```
-
-{{< img src = "/images/cumulus-linux/layer1-interfaces-all.png" >}}
--->
 ## Subinterfaces
 
 On Linux, an *interface* is a network device that can be either physical, (for example, swp1) or virtual (for example, vlan100). A *VLAN subinterface* is a VLAN device on an interface, and the VLAN ID appends to the parent interface using dot (.) VLAN notation. For example, a VLAN with ID 100 that is a subinterface of swp1 is swp1.100. The dot VLAN notation for a VLAN device name is a standard way to specify a VLAN device on Linux.
@@ -953,6 +783,74 @@ cumulus@switch:~$ ip link show dev swp1
 
 {{< /tab >}}
 {{< /tabs >}}
+
+To show the last time (date and time) the operational state of an interface changed and the number of carrier transitions for each interface (from the time of interface creation):
+
+```
+cumulus@switch:~$ nv show interface --view=carrier-stats
+Interface   Oper Status     Up Count  Down Count  Total State Changes  Last State Change
+----------  --------------  --------  ----------  -------------------  ----------------------- 
+br_default  down            0         1           1                    2024/09/21 20:54:37.706 
+eth0        up              1         1           2                    2024/09/21 20:54:33.672 
+lo          unknown         0         0           0                    Never 
+mgmt        up              0         0           0                    Never 
+swp1        down            0         1           1                    2024/09/21 20:54:36.584 
+swp2        down            0         1           1                    2024/09/21 20:54:36.591 
+swp3        down            0         1           1                    2024/09/21 20:54:36.599 
+swp4        down            0         1           1                    2024/09/21 20:54:36.606 
+swp5        down            0         1           1                    2024/09/21 20:54:36.613 
+swp6        down            0         1           1                    2024/09/21 20:54:36.620 
+swp7        down            0         1           1                    2024/09/21 20:54:36.628 
+swp8        down            0         1           1                    2024/09/21 20:54:36.635 
+swp9        up              1         1           2                    2024/09/21 20:54:45.935 
+swp10       up              1         1           2                    2024/09/21 20:54:47.017 
+```
+
+In the example above:
+- `Last State Change` shows the timestamp of the last operational state change.
+- `Total State Changes` shows the total number of transitions in carrier state.
+- `Up Count`shows the number of times the carrier transitioned to an UP state.
+- `Down Count` shows the number of times the carrier transitioned to a DOWN state.
+
+To show the date and time the operational state of a specific interface changes (`oper-status-last-change`) and the number of carrier transitions (`carrier-transitions`, `carrier-up-count`, `carrier-down-count`):
+
+```
+cumulus@switch:~$ nv show interface swp1 link
+                         operational                 applied 
+-----------------------  --------------------------  ------- 
+admin-status             up 
+oper-status              up 
+oper-status-last-change  2024/09/21 20:54:47.017 
+protodown                disabled 
+auto-negotiate           on                          on 
+duplex                   full                        full 
+speed                    100G                        auto 
+mac-address              1c:34:da:c2:44:5c 
+fec                      rs                          auto 
+mtu                      9216                        9216 
+fast-linkup              off 
+[breakout] 
+state                    up                          up 
+flap-protection 
+  enable                                             on 
+stats 
+  in-bytes               3.06 MB 
+  in-pkts                47321 
+  in-drops               0 
+  in-errors              0 
+  out-bytes              9.35 KB 
+  out-pkts               48 
+  out-drops              0 
+  out-errors             0 
+  carrier-transitions    2 
+  carrier-up-count       1 
+  carrier-down-count     1 
+eyes                     37, 57, 62, 30 
+grade                    11564, 15479, 18354, 10008 
+troubleshooting-info     No issue was observed 
+```
+
+To show the number of carrier transitions only (`carrier-transitions`, `carrier-up-count`, `carrier-down-count`) for a specific interface, run the `nv show interface <interface> link stats` command.
 
 To show the assigned IP address on an interface:
 

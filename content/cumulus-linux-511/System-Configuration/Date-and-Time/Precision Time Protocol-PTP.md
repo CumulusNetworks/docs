@@ -461,7 +461,7 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 
 ### Noise Transfer Servo
 
-ITU-T specifies the following key elements to measure, test, and classify the accuracy of a clock:
+ITU-T noise transfer specifies the following key elements to measure, test, and classify the accuracy of a clock:
 - Noise generation&mdash;jitter and wander noise in the output of a clock in reference to a <span class="a-tooltip">[PRTC](## "Primary Reference Time Clock")</span>.
 - Noise tolerance&mdash;how much noise the clock can tolerate before it switches to another stable source.
 - Noise transfer&mdash;smoothe out the input noise so that noise does not accumulate and increase over a network of clocks.

@@ -560,14 +560,20 @@ The following table shows if you need to quote or escape a special character.
 2. You cannot use this character at the beginning of a word.
 3. A word cannot consist entirely of white space, even inside double quotes.
 
-The following example shows a password that includes the dot (.) special character:
+The following example shows a password that includes a question mark (?):
 
 ```
-cumulus@switch:~$ nv set system aaa user cumulus password “hello.world.123”
+cumulus@switch:~$ nv set system aaa user cumulus password “Hello?world123”
 ```
 
-The following example shows a password that includes the tilde (~) special character:
+The following example shows a password that includes a dot (.):
 
 ```
-cumulus@switch:~$ nv set system aaa user cumulus password “hello.world\~123”
+cumulus@switch:~$ nv set system aaa user cumulus password “Hello.world.123”
+```
+
+The following example shows a password that includes a dot (.) and tilde (~):
+
+```
+cumulus@switch:~$ nv set system aaa user cumulus password “Hello.world\~123”
 ```

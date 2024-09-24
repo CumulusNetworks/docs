@@ -19,7 +19,7 @@ Cumulus Linux constructs the SyncE clock identity as follows:
 - The lower order 3 bytes are from the lower order 3 bytes of the base MAC address.
 
 {{%notice note%}}
-- Cumulus Linux supports SyncE for the NVIDIA SN3750-SX and the NVIDIA SN5400 switches only.
+- Only the NVIDIA SN3750-SX switch and the NVIDIA SN5400 switch support SyncE.
 {{%/notice%}}
 
 ## Basic Configuration

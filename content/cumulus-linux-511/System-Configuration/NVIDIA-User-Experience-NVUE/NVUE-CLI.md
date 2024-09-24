@@ -522,6 +522,9 @@ If you use certain special characters in a password, you must quote or escape (w
 
 The following table shows if you need to quote or escape a special character.
 
+- Normal Use indicates that you can use the special character without quotes or a backslash.
+- Single Quotes and Double Quotes indicate that the entire password needs to be enclosed in quotes.
+
 | Special Character | Normal Use  | Single Quotes ('') | Double Quotes ("") | Escape (`\`)|
 |---------- | ------- | ------------------ | ------------------ | ------ |
 | backtick (`) | x | ✓ | 1 | ✓ |
@@ -556,3 +559,15 @@ The following table shows if you need to quote or escape a special character.
 1. Requires escape (`\`) in addition to the double quotes (`""`).
 2. You cannot use this character at the beginning of a word.
 3. A word cannot consist entirely of white space, even inside double quotes.
+
+The following example shows a password that includes the dot (.) special character:
+
+```
+cumulus@switch:~$ nv set system aaa user cumulus password “hello.world.123”
+```
+
+The following example shows a password that includes the tilde (~) special character:
+
+```
+cumulus@switch:~$ nv set system aaa user cumulus password “hello.world\~123”
+```

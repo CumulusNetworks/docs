@@ -231,9 +231,10 @@ overlay          28G   7.9G     18G    31%
 <!-- vale off -->
 #### Upgrade from Cumulus Linux 5.9 to Cumulus Linux 5.10
 <!-- vale on -->
-If you are running Cumulus Linux 5.9.x (the current extended-support release), the default switch configuration allows you to upgrade to the latest Cumulus 5.9.x release only.
 
 To upgrade to Cumulus Linux 5.10.1 from Cumulus Linux 5.9.2, you must install the Cumulus Linux 5.10.1 image. You *cannot* upgrade packages with package upgrade.
+
+If you are running Cumulus Linux 5.9.x (the current extended-support release), the default switch configuration allows you to upgrade to the latest Cumulus 5.9.x release only.
 
 To upgrade from Cumulus Linux 5.9.0 or 5.9.1 to Cumulus Linux 5.10.1, perform the following procedure before you start the package upgrade:
 

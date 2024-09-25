@@ -344,7 +344,7 @@ cumulus@leaf01:~$ nv config apply
    ```
    cumulus@leaf01:mgmt:~$ sudo nano /etc/default/isc-dhcp-relay-RED
    SERVERS="10.1.10.104"
-   INTF_CMD=" -i vlan10 -i vlan20 -i swp51 -i swp52 -i vlan4024_l3 -i peerlink.4094" 
+   INTF_CMD=" -i vlan10 -i vlan20 -i swp51 -i swp52 -i peerlink.4094 -i vlan4024_l3" 
    OPTIONS="-U RED"
    ```
 

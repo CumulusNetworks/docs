@@ -9,13 +9,14 @@ pdfhidden: True
 ---
 ## 5.10.1 Packages
 
-Cumulus Linux 5.10.1 provides a new SDK version and new firmware versions. All other open source software licenses are the same as those listed in Cumulus Linux 5.10.0 Packages, below.
+Cumulus Linux 5.10.1 provides new SDK and firmware versions:
+- SDK: 4.7.1136
+- Spectrum 1 firmware: 13.2014_1136
+- Spectrum-2 firmware: 29.2014_1136
+- Spectrum-3 firmware: 30.2014_1136
+- Spectrum-4 firmware: 34.2014_1136
 
-SDK version: 4.7.1136
-Spectrum 1 firmware version: 13.2014_1136
-Spectrum-2 firmware version: 29.2014_1136
-Spectrum-3 firmware version: 30.2014_1136
-Spectrum-4 firmware version: 34.2014_1136
+All other open source software licenses are the same as those listed in Cumulus Linux 5.10.0 Packages, below.
 
 ## 5.10.0 Packages
 

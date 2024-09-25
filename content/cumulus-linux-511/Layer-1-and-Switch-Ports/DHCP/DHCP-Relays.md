@@ -280,9 +280,12 @@ The following example:
 
 ```
 cumulus@leaf01:~$ nv set vrf RED loopback ip address 20.20.20.1/32
+cumulus@leaf01:~$ nv set service dhcp-relay RED interface swp51
+cumulus@leaf01:~$ nv set service dhcp-relay RED interface swp52
 cumulus@leaf01:~$ nv set service dhcp-relay RED interface vlan10
 cumulus@leaf01:~$ nv set service dhcp-relay RED interface vlan20
 cumulus@leaf01:~$ nv set service dhcp-relay RED interface vlan4024_l3
+cumulus@leaf01:~$ nv set service dhcp-relay RED interface peerlink.4094
 cumulus@leaf01:~$ nv set service dhcp-relay RED server 10.1.10.104
 cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on
 cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn enable on
@@ -367,6 +370,8 @@ The following example:
 {{< tab "NVUE Commands ">}}
 
 ```
+cumulus@leaf01:~$ nv set service dhcp-relay RED interface swp51
+cumulus@leaf01:~$ nv set service dhcp-relay RED interface swp52
 cumulus@leaf01:~$ nv set service dhcp-relay RED interface vlan10
 cumulus@leaf01:~$ nv set service dhcp-relay RED interface vlan20
 cumulus@leaf01:~$ nv set service dhcp-relay RED interface vlan4024_l3

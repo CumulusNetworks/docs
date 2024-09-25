@@ -41,8 +41,8 @@ The following configuration defines the trap receiver IP address for SNMPv1 and 
 {{< tab "NVUE Commands" >}}
 
 ```
-cumulus@switch:~$ nv set service snmp-server trap-destination localhost vrf rocket community-password mymanagementvrfpassword version 1
-cumulus@switch:~$ nv set service snmp-server trap-destination localhost-v6 community-password mynotsosecretpassword version 2c
+cumulus@switch:~$ nv set system snmp-server trap-destination localhost vrf rocket community-password mymanagementvrfpassword version 1
+cumulus@switch:~$ nv set system snmp-server trap-destination localhost-v6 community-password mynotsosecretpassword version 2c
 cumulus@switch:~$ nv config apply
 ```
 
@@ -78,8 +78,8 @@ The SNMP trap receiving daemon must have usernames, authentication passwords, an
 {{< tab "NVUE Commands" >}}
 
 ```
-cumulus@switch:~$ nv set service snmp-server trap-destination localhost username myv3user auth-md5 md5password1 encrypt-aes myaessecret engine-id  0x80001f888070939b14a514da5a00000000 inform
-cumulus@switch:~$ nv set service snmp-server trap-destination localhost vrf mgmt username mymgmtvrfusername auth-md5 md5password2 encrypt-aes myaessecret2 engine-id  0x80001f888070939b14a514da5a00000000 inform
+cumulus@switch:~$ nv set system snmp-server trap-destination localhost username myv3user auth-md5 md5password1 encrypt-aes myaessecret engine-id  0x80001f888070939b14a514da5a00000000 inform
+cumulus@switch:~$ nv set system snmp-server trap-destination localhost vrf mgmt username mymgmtvrfusername auth-md5 md5password2 encrypt-aes myaessecret2 engine-id  0x80001f888070939b14a514da5a00000000 inform
 cumulus@switch:~$ nv config apply
 ```
 
@@ -224,8 +224,8 @@ These notifications include the following information.
 - `ifOperStatus`
 
 ```
-cumulus@switch:~$ nv set service snmp-server trap-link-down check-frequency 10
-cumulus@switch:~$ nv set service snmp-server trap-link-up check-frequency 15
+cumulus@switch:~$ nv set system snmp-server trap-link-down check-frequency 10
+cumulus@switch:~$ nv set system snmp-server trap-link-up check-frequency 15
 cumulus@switch:~$ nv config apply
 ```
 
@@ -307,7 +307,7 @@ The following example generates a trap when the 1 minute interval reaches 12%, t
 {{< tab "NVUE Commands" >}}
 
 ```
-cumulus@switch:~$ nv set service snmp-server trap-cpu-load-average one-minute 12 five-minute 10 fifteen-minute 5
+cumulus@switch:~$ nv set system snmp-server trap-cpu-load-average one-minute 12 five-minute 10 fifteen-minute 5
 cumulus@switch:~$ nv config apply
 ```
 
@@ -362,7 +362,7 @@ To generate SNMP trap notifications for every SNMP authentication failure, run t
 {{< tab "NVUE Commands" >}}
 
 ```
-cumulus@switch:~$ nv set service snmp-server trap-snmp-auth-failures
+cumulus@switch:~$ nv set system snmp-server trap-snmp-auth-failures
 cumulus@switch:~$ nv config apply
 ```
 

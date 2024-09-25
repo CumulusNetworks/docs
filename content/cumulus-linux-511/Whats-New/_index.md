@@ -15,14 +15,14 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 
 ### New Features and Enhancements
 
+- The NVIDIA SN5400 switch supports {{<link url="Synchronous-Ethernet-SyncE" text="syncE">}} and {{<link url="Precision-Time-Protocol-PTP/#noise-transfer-servo" text="ITU-T">}}
 - {{<link url="Factory-Reset" text="Factory Reset">}}
 - {{<link url="Forwarding-Table-Size-and-Profiles/#spectrum-1" text="ecmp-nh-heavy forwarding profile">}} for Spectrum 1 switches
 - {{<link url="Optional-BGP-Configuration/#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}}
+- {{<link url="RADIUS-AAA/#radius-user-command-accounting" text="RADIUS user command accounting">}}
 - Upgrade using A/B type of upgrade
 - OTLP phase 3
 - All packet histogram configuration
-- SN5400 - syncE
-- SN5400 - ITU-T
 - NVUE
   - {{<link url="DHCP-Snooping" text="DHCP snooping commands">}}
   - {{<link url="Link-Layer-Discovery-Protocol" text="Disable LLDP commands">}}
@@ -31,8 +31,8 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
   - {{<link url="DHCP-Servers/#assign-port-based-ip-addresses" text="IPv6 command to assign a port-based DHCP server address">}}
   - {{<link url="Zero-Touch-Provisioning-ZTP" text="Enable ZTP and run ZTP script commands">}}
   - {{<link url="Interface-Configuration-and-Management/#port-ranges" text="Additional port range support for breakout ports and subinterfaces">}}
-  - `nv show interface <interface>` commands show the last operational state change for an interface
-  - net show interface swX details for dom and optical info for the pluggables
+  - {{<link url="Interface-Configuration-and-Management/#troubleshooting" text="nv show interface <interface>">}} commands now show the date and time the operational state of an interface changes and number of carrier transitions
+  - net show interface swX details for dom and optical info for the plugables
   - L1-show equivalent
   - BGP large communities support
   - match source protocol connected in a route map applied to BGP

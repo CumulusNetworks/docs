@@ -10,7 +10,7 @@
 <td>4037015</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
 <td>4.3.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.2-5.10.0, 5.10.0</td>
 </tr>
 <tr>
 <td>3773177</td>
@@ -1564,7 +1564,7 @@ To work around this issue, remove the interface alias description from {{iproute
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
 
 You can safely ignore this warning.</td>
-<td>4.0.0-5.9.1</td>
+<td>4.0.0-5.9.2</td>
 <td>5.10.0</td>
 </tr>
 <tr>
@@ -2041,7 +2041,7 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <td>4037015</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
 <td>4.3.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.2-5.10.0, 5.10.0</td>
 </tr>
 <tr>
 <td>3856614</td>
@@ -2072,12 +2072,6 @@ cumulus@switch:~$ sudo apt upgrade
 <td>DHCP lease information is not collected in the {{cl-support}} file.</td>
 <td>4.3.0-5.6.0</td>
 <td>5.7.0-5.10.0</td>
-</tr>
-<tr>
-<td>3647424</td>
-<td>When you remove the {{update-source}} configuration for a BGP neighbor, the peering is reset if the neighbor is a member of a peer group with the same {{update-source}} configuration.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>3488136</td>
@@ -3642,7 +3636,7 @@ To work around this issue, remove the interface alias description from {{iproute
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
 
 You can safely ignore this warning.</td>
-<td>4.0.0-5.9.1</td>
+<td>4.0.0-5.9.2</td>
 <td>5.10.0</td>
 </tr>
 <tr>
@@ -4299,7 +4293,7 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <td>4037015</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
 <td>4.3.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.2-5.10.0, 5.10.0</td>
 </tr>
 <tr>
 <td>3773177</td>
@@ -4332,12 +4326,6 @@ Mitigation: Do not use ssh-agent forwarding (the man page for ssh_config says th
 For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turned off (chmod 0) to prevent its execution if a vulnerable version is detected.</td>
 <td>4.0.0-4.3.1, 5.0.0-5.6.0</td>
 <td>4.3.2-4.4.5, 5.7.0-5.10.0</td>
-</tr>
-<tr>
-<td>3647424</td>
-<td>When you remove the {{update-source}} configuration for a BGP neighbor, the peering is reset if the neighbor is a member of a peer group with the same {{update-source}} configuration.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>3534654</td>
@@ -6098,7 +6086,7 @@ To work around this issue, remove the interface alias description from {{iproute
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
 
 You can safely ignore this warning.</td>
-<td>4.0.0-5.9.1</td>
+<td>4.0.0-5.9.2</td>
 <td>5.10.0</td>
 </tr>
 <tr>

@@ -10,7 +10,7 @@
 <td>4037015</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
 <td>4.3.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.2-5.10.0, 5.10.0</td>
 </tr>
 <tr>
 <td>3980941</td>
@@ -19,7 +19,7 @@
 This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
   #snmp ALL = NOPASSWD: /usr/cumulus/bin/poectl -j -a </td>
 <td>4.4.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.2-5.10.0, 5.10.0</td>
 </tr>
 <tr>
 <td>3856614</td>
@@ -50,12 +50,6 @@ cumulus@switch:~$ sudo apt upgrade
 <td>DHCP lease information is not collected in the {{cl-support}} file.</td>
 <td>4.3.0-5.6.0</td>
 <td>5.7.0-5.10.0</td>
-</tr>
-<tr>
-<td>3647424</td>
-<td>When you remove the {{update-source}} configuration for a BGP neighbor, the peering is reset if the neighbor is a member of a peer group with the same {{update-source}} configuration.</td>
-<td>4.3.0-5.5.1</td>
-<td>5.6.0-5.10.0</td>
 </tr>
 <tr>
 <td>3488136</td>
@@ -1577,7 +1571,7 @@ To work around this issue, remove the interface alias description from {{iproute
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
 
 You can safely ignore this warning.</td>
-<td>4.0.0-5.9.1</td>
+<td>4.0.0-5.9.2</td>
 <td>5.10.0</td>
 </tr>
 <tr>
@@ -2157,7 +2151,7 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 <td>4037015</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
 <td>4.3.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.2-5.10.0, 5.10.0</td>
 </tr>
 <tr>
 <td>3980941</td>
@@ -2166,7 +2160,7 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
   #snmp ALL = NOPASSWD: /usr/cumulus/bin/poectl -j -a </td>
 <td>4.4.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.2-5.10.0, 5.10.0</td>
 </tr>
 <tr>
 <td>3856614</td>
@@ -2197,12 +2191,6 @@ cumulus@switch:~$ sudo apt upgrade
 <td>DHCP lease information is not collected in the {{cl-support}} file.</td>
 <td>4.3.0-5.6.0</td>
 <td>5.7.0-5.10.0</td>
-</tr>
-<tr>
-<td>3647424</td>
-<td>When you remove the {{update-source}} configuration for a BGP neighbor, the peering is reset if the neighbor is a member of a peer group with the same {{update-source}} configuration.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>3488136</td>
@@ -3832,7 +3820,7 @@ To work around this issue, remove the interface alias description from {{iproute
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
 
 You can safely ignore this warning.</td>
-<td>4.0.0-5.9.1</td>
+<td>4.0.0-5.9.2</td>
 <td>5.10.0</td>
 </tr>
 <tr>
@@ -4304,7 +4292,7 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <td>4037015</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
 <td>4.3.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.2-5.10.0, 5.10.0</td>
 </tr>
 <tr>
 <td>3980941</td>
@@ -4313,7 +4301,7 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
   #snmp ALL = NOPASSWD: /usr/cumulus/bin/poectl -j -a </td>
 <td>4.4.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.2-5.10.0, 5.10.0</td>
 </tr>
 <tr>
 <td>3856614</td>
@@ -4344,12 +4332,6 @@ cumulus@switch:~$ sudo apt upgrade
 <td>DHCP lease information is not collected in the {{cl-support}} file.</td>
 <td>4.3.0-5.6.0</td>
 <td>5.7.0-5.10.0</td>
-</tr>
-<tr>
-<td>3647424</td>
-<td>When you remove the {{update-source}} configuration for a BGP neighbor, the peering is reset if the neighbor is a member of a peer group with the same {{update-source}} configuration.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>3488136</td>
@@ -5973,7 +5955,7 @@ To work around this issue, remove the interface alias description from {{iproute
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
 
 You can safely ignore this warning.</td>
-<td>4.0.0-5.9.1</td>
+<td>4.0.0-5.9.2</td>
 <td>5.10.0</td>
 </tr>
 <tr>
@@ -6580,7 +6562,7 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 <td>4037015</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
 <td>4.3.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.2-5.10.0, 5.10.0</td>
 </tr>
 <tr>
 <td>3980941</td>
@@ -6589,7 +6571,7 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
   #snmp ALL = NOPASSWD: /usr/cumulus/bin/poectl -j -a </td>
 <td>4.4.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.2-5.10.0, 5.10.0</td>
 </tr>
 <tr>
 <td>3856614</td>
@@ -6620,12 +6602,6 @@ cumulus@switch:~$ sudo apt upgrade
 <td>DHCP lease information is not collected in the {{cl-support}} file.</td>
 <td>4.3.0-5.6.0</td>
 <td>5.7.0-5.10.0</td>
-</tr>
-<tr>
-<td>3647424</td>
-<td>When you remove the {{update-source}} configuration for a BGP neighbor, the peering is reset if the neighbor is a member of a peer group with the same {{update-source}} configuration.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>3488136</td>
@@ -8310,7 +8286,7 @@ To work around this issue, remove the interface alias description from {{iproute
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
 
 You can safely ignore this warning.</td>
-<td>4.0.0-5.9.1</td>
+<td>4.0.0-5.9.2</td>
 <td>5.10.0</td>
 </tr>
 <tr>
@@ -8820,7 +8796,7 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <td>4037015</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
 <td>4.3.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.2-5.10.0, 5.10.0</td>
 </tr>
 <tr>
 <td>3980941</td>
@@ -8829,7 +8805,7 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
   #snmp ALL = NOPASSWD: /usr/cumulus/bin/poectl -j -a </td>
 <td>4.4.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.2-5.10.0, 5.10.0</td>
 </tr>
 <tr>
 <td>3856614</td>
@@ -8860,12 +8836,6 @@ cumulus@switch:~$ sudo apt upgrade
 <td>DHCP lease information is not collected in the {{cl-support}} file.</td>
 <td>4.3.0-5.6.0</td>
 <td>5.7.0-5.10.0</td>
-</tr>
-<tr>
-<td>3647424</td>
-<td>When you remove the {{update-source}} configuration for a BGP neighbor, the peering is reset if the neighbor is a member of a peer group with the same {{update-source}} configuration.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>3488136</td>
@@ -10540,7 +10510,7 @@ To work around this issue, remove the interface alias description from {{iproute
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
 
 You can safely ignore this warning.</td>
-<td>4.0.0-5.9.1</td>
+<td>4.0.0-5.9.2</td>
 <td>5.10.0</td>
 </tr>
 <tr>
@@ -11237,7 +11207,7 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <td>4037015</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
 <td>4.3.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.2-5.10.0, 5.10.0</td>
 </tr>
 <tr>
 <td>3980941</td>
@@ -11246,7 +11216,7 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
   #snmp ALL = NOPASSWD: /usr/cumulus/bin/poectl -j -a </td>
 <td>4.4.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.2-5.10.0, 5.10.0</td>
 </tr>
 <tr>
 <td>3856614</td>
@@ -11277,12 +11247,6 @@ cumulus@switch:~$ sudo apt upgrade
 <td>DHCP lease information is not collected in the {{cl-support}} file.</td>
 <td>4.3.0-5.6.0</td>
 <td>5.7.0-5.10.0</td>
-</tr>
-<tr>
-<td>3647424</td>
-<td>When you remove the {{update-source}} configuration for a BGP neighbor, the peering is reset if the neighbor is a member of a peer group with the same {{update-source}} configuration.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>3488136</td>
@@ -13063,7 +13027,7 @@ To work around this issue, remove the interface alias description from {{iproute
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
 
 You can safely ignore this warning.</td>
-<td>4.0.0-5.9.1</td>
+<td>4.0.0-5.9.2</td>
 <td>5.10.0</td>
 </tr>
 <tr>
@@ -13530,7 +13494,7 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <td>4037015</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
 <td>4.3.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.2-5.10.0, 5.10.0</td>
 </tr>
 <tr>
 <td>3980941</td>
@@ -13539,7 +13503,7 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
   #snmp ALL = NOPASSWD: /usr/cumulus/bin/poectl -j -a </td>
 <td>4.4.0-5.9.1</td>
-<td>5.10.0</td>
+<td>5.9.2-5.10.0, 5.10.0</td>
 </tr>
 <tr>
 <td>3856614</td>
@@ -13570,12 +13534,6 @@ cumulus@switch:~$ sudo apt upgrade
 <td>DHCP lease information is not collected in the {{cl-support}} file.</td>
 <td>4.3.0-5.6.0</td>
 <td>5.7.0-5.10.0</td>
-</tr>
-<tr>
-<td>3647424</td>
-<td>When you remove the {{update-source}} configuration for a BGP neighbor, the peering is reset if the neighbor is a member of a peer group with the same {{update-source}} configuration.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>3488136</td>
@@ -15356,7 +15314,7 @@ To work around this issue, remove the interface alias description from {{iproute
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
 
 You can safely ignore this warning.</td>
-<td>4.0.0-5.9.1</td>
+<td>4.0.0-5.9.2</td>
 <td>5.10.0</td>
 </tr>
 <tr>

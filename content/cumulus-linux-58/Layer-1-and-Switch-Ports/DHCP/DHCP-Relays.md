@@ -271,7 +271,7 @@ In a multi-tenant EVPN symmetric routing environment with MLAG, you must enable 
 
 The following example:
 - Configures VRF RED with IPv4 address 20.20.20.1/32.
-- Configures the SVIs vlan10 and vlan20, the underlay interfaces swp51 and swp52, the MLAG interface peerlink.4094, and the layer 3 VNI VLAN interface for VRF RED vlan4024_l3 to be part of the `INTF_CMD` list to service DHCP packets.
+- Configures the SVIs vlan10 and vlan20, and the layer 3 VNI VLAN interface for VRF RED vlan4024_l3 to be part of the `INTF_CMD` list to service DHCP packets.
 - Sets the DHCP server to 10.1.10.104.
 - Configures VRF RED to advertise connected routes as type-5 so that the VRF RED loopback IPv4 address is reachable.
 
@@ -280,12 +280,9 @@ The following example:
 
 ```
 cumulus@leaf01:~$ nv set vrf RED loopback ip address 20.20.20.1/32
-cumulus@leaf01:~$ nv set service dhcp-relay RED interface swp51
-cumulus@leaf01:~$ nv set service dhcp-relay RED interface swp52
 cumulus@leaf01:~$ nv set service dhcp-relay RED interface vlan10
 cumulus@leaf01:~$ nv set service dhcp-relay RED interface vlan20
 cumulus@leaf01:~$ nv set service dhcp-relay RED interface vlan4024_l3
-cumulus@leaf01:~$ nv set service dhcp-relay RED interface peerlink.4094
 cumulus@leaf01:~$ nv set service dhcp-relay RED server 10.1.10.104
 cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on
 cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn enable on
@@ -344,7 +341,7 @@ cumulus@leaf01:~$ nv config apply
    ```
    cumulus@leaf01:mgmt:~$ sudo nano /etc/default/isc-dhcp-relay-RED
    SERVERS="10.1.10.104"
-   INTF_CMD=" -i vlan10 -i vlan20 -i swp51 -i swp52 -i peerlink.4094 -i vlan4024_l3" 
+   INTF_CMD=" -i vlan10 -i vlan20 -i vlan4024_l3" 
    OPTIONS="-U RED"
    ```
 
@@ -363,15 +360,13 @@ cumulus@leaf01:~$ nv config apply
 In a multi-tenant EVPN symmetric routing environment without MLAG, the VLAN interface (SVI) IPv4 address is typically unique on each leaf switch, which does not require RFC 3527 configuration.
 
 The following example:
-- Configures the SVIs vlan10 and vlan20, the underlay interfaces swp51 and swp52, and the layer 3 VNI VLAN interface for VRF RED vlan4024_l3 to be part of INTF_CMD list to service DHCP packets.
+- Configures the SVIs vlan10 and vlan20, and the layer 3 VNI VLAN interface for VRF RED vlan4024_l3 to be part of INTF_CMD list to service DHCP packets.
 - Sets the DHCP server IP address to 10.1.10.104.
 
 {{< tabs "TabID369 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set service dhcp-relay RED interface swp51
-cumulus@leaf01:~$ nv set service dhcp-relay RED interface swp52
 cumulus@leaf01:~$ nv set service dhcp-relay RED interface vlan10
 cumulus@leaf01:~$ nv set service dhcp-relay RED interface vlan20
 cumulus@leaf01:~$ nv set service dhcp-relay RED interface vlan4024_l3
@@ -387,7 +382,7 @@ cumulus@leaf01:~$ nv config apply
    ```
    cumulus@leaf01:mgmt:~$ sudo nano /etc/default/isc-dhcp-relay-RED
    SERVERS="10.1.10.104"
-   INTF_CMD=" -i vlan10 -i vlan20 -i swp51 -i swp52 -i vlan4024_l3" 
+   INTF_CMD=" -i vlan10 -i vlan20 -i vlan4024_l3" 
    OPTIONS=""
    ```
 

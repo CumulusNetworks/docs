@@ -20,6 +20,7 @@ Cumulus Linux constructs the SyncE clock identity as follows:
 
 {{%notice note%}}
 - Only the NVIDIA SN3750-SX switch and the NVIDIA SN5400 switch support SyncE.
+- SyncE on 1G interfaces only supports 1000BASE-SX transceivers, 1000BASE-LX transceivers, and ADVA 5401 GrandMaster transceivers.
 {{%/notice%}}
 
 ## Basic Configuration

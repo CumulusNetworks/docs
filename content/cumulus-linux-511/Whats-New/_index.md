@@ -16,6 +16,7 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 ### New Features and Enhancements
 
 - The NVIDIA SN5400 switch supports {{<link url="Synchronous-Ethernet-SyncE" text="syncE">}} and {{<link url="Precision-Time-Protocol-PTP/#noise-transfer-servo" text="ITU-T">}}
+- {{<link url="Pulse-Per-Second-PPS" text="PPS on the NVIDIA SN5400 switch">}} is now generally available.
 - {{<link url="Factory-Reset" text="Factory Reset">}}
 - {{<link url="Forwarding-Table-Size-and-Profiles/#spectrum-1" text="ecmp-nh-heavy forwarding profile">}} for Spectrum 1 switches
 - {{<link url="Optional-BGP-Configuration/#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}}
@@ -32,6 +33,7 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
   - {{<link url="Zero-Touch-Provisioning-ZTP" text="Enable ZTP and run ZTP script commands">}}
   - {{<link url="Interface-Configuration-and-Management/#port-ranges" text="Additional port range support for breakout ports and subinterfaces">}}
   - {{<link url="Interface-Configuration-and-Management/#troubleshooting" text="nv show interface <interface>">}} commands now show the date and time the operational state of an interface changes and number of carrier transitions
+  - RADIUS fallback authentication support when server unavailable
   - net show interface swX details for dom and optical info for the plugables
   - L1-show equivalent
   - BGP large communities support
@@ -40,11 +42,13 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
   - BGP presentation part 2
   - EVPN presentation - Phase 2
   - net show route summary equivalent
-  - Command logging for RADIUS users
-  - RADIUS fallback authentication support when server unavailable
   - nv config show --all
-  - LSAP encryption
-  - Align with common OM - many commands
+  - {{< expand "Changed NVUE Commands" >}}
+| New Command | Previous Command |
+| ----------- | ----------------|
+| nv set system snmp-server<br>nv unset system snmp-server | nv set service snmp-server<br>nv unset service snmp-server |
+| nv set system snmp-server state enable<br>nv set system snmp-server state disable| nv set service snmp-server enable on<br>nv set service snmp-server enable off|
+| nv show system snmp-server | nv show service snmp-server|
 
 ## Release Considerations
 
@@ -58,3 +62,4 @@ Cumulus Linux 5.11 includes the NVUE object model. After you upgrade to Cumulus 
 - Use Linux and FRR (vtysh) commands instead of NVUE for **all** switch configuration.
 
 Cumulus Linux 3.7, 4.3, and 4.4 continue to support NCLU. For more information, contact your NVIDIA Spectrum platform sales representative.
+encryption

@@ -18,7 +18,7 @@ Cumulus Linux 5.10.1 provides new SDK and firmware versions, and includes bug fi
 - Package upgrade to Cumulus Linux 5.10.1 from 5.9.1 and earlier does not support warm restart mode.
 {{%/notice%}}
 
-## What's New in Cumulus Linux 5.10
+## What's New in Cumulus Linux 5.10.0
 
 ### Platforms
 

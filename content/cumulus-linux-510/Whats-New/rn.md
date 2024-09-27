@@ -9,6 +9,7 @@ type: rn
 pdfhidden: True
 ---
 {{<rn_xls_link dir="cumulus-linux-510" >}}
+<!--
 ## 5.10.1 Release Notes
 ### Open Issues in 5.10.1
 
@@ -81,7 +82,7 @@ pdfhidden: True
 | <a name="4047828"></a> [4047828](#4047828) <a name="4047828"></a> <br /> | After network churn, the <code>﻿watchfrr</code> process might restart FRR because zebra is unresponsive. | 5.9.1-5.10.0 | |
 | <a name="4043575"></a> [4043575](#4043575) <a name="4043575"></a> <br /> | If a ZTP script includes a directive to reboot, the reboot might stop the running ZTP process before it is able to disable itself from running again. As a result, the ZTP process starts again when the system comes back up. To work around this issue, run <code>shutdown -r +1</code> to schedule a reboot after one minute so that the ZTP process can successfully complete disabling the <code>ztp.service</code> systemd service. | 5.10.0 | |
 | <a name="4037462"></a> [4037462](#4037462) <a name="4037462"></a> <br /> | The Open telemetry interface statistic description for <code>nvswitch_histogram_interface_egress_buffer</code> has a typographical error; engress should be egress. | 5.10.0 | |
-
+-->
 ## 5.10.0 Release Notes
 ### Open Issues in 5.10.0
 

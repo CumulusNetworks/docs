@@ -118,6 +118,135 @@ CUMULUS-PROV-COUNT                                  0
 CUMULUS-PROV-MAX                                    32
 ```
 
+## Manually Run ZTP
+
+Cumulus Linux provides commands so that you can manually:
+- Enable a ZTP session and activate the provisioning process.
+- Disable a ZTP session and deactivate the provisioning process.
+- Rerun the ZTP session from the beginning. You have the option of specifying a custom URL for the ZTP configuration files.
+- Terminate the current ZTP process.
+- Show the status of the ZTP service.
+
+{{< tabs "TabID569 ">}}
+{{< tab "NVUE Commands ">}}
+
+The following example enables a ZTP session and activates the provisioning process. The session tries to run the next time the switch boots. However, if ZTP already ran on a previous boot up or if there is a manual configuration, ZTP exits without trying to look for a script.
+
+```
+cumulus@switch:~$ nv action enable system ztp
+```
+
+If you add the `force` option, ZTP enables the session and activates the provisioning process even if ZTP already ran on a previous boot up or if there is a manual configuration.
+
+```
+cumulus@switch:~$ nv action enable system ztp force
+```
+
+The following example disables the ZTP session and deactivates the provisioning process. If there are ongoing configurations or restrictions in place, ZTP does not disable the session.
+
+```
+cumulus@switch:~$ nv action disable system ztp
+```
+
+If you add the `force` option, ZTP disables the session and deactivates the provisioning process even if there are ongoing configurations or restrictions in place.
+
+```
+cumulus@switch:~$ nv action disable system ztp force 
+```
+
+The following example manually reruns the ZTP session from the beginning. ZTP compares the recorded state to the current state of the configuration files. If they do not match, ZTP considers the switch as already provisioned and exits.
+
+```
+cumulus@switch:~$ nv action run system ztp
+```
+
+If you add the `force` option, the ZTP session runs even if there are existing configurations.
+
+```
+cumulus@switch:~$ nv action run system ztp force
+```
+
+The following example manually reruns the ZTP session and specifies a custom URL for the ZTP configuration files. ZTP compares the recorded state to the current state of the configuration files. If they do not match, ZTP considers the switch as already provisioned and exits.
+
+```
+cumulus@switch:~$ nv action run system ztp url /https://myserver/mypath/
+```
+
+If you add the `force` option, the ZTP session runs even if there are existing configurations.
+
+```
+cumulus@switch:~$ nv action run system ztp url /https://myserver/mypath/ force
+```
+
+The following example terminates the current ZTP process:
+
+```
+cumulus@switch:~$ nv action abort system ztp
+```
+
+To show the status of the ZTP service, run the `nv show system ztp` command.
+
+```
+cumulus@switch:~$ nv show system ztp
+           operational
+---------  -----------
+status
+  method
+  state    in-progress
+  url
+  version  1.0
+```
+
+{{%notice note%}}
+Use caution when using the above ZTP commands:
+- When running the ZTP session with a custom URL for the ZTP configuration files, ensure that the specified URL is accessible and contains the necessary files.
+- Abruptly ending a ZTP session can disrupt ongoing configurations and have unintended consequences for the system.
+- Enabling or disabling a ZTP session, especially with the `force` option can interrupt existing processes or configurations.
+{{%/notice%}}
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+To enable a ZTP session and activate the provisioning process, use the `-e` option:
+
+```
+cumulus@switch:~$ sudo ztp -e
+```
+
+To reset ZTP to its original state, use the `-R` option. This removes the `ztp` directory and ZTP runs the next time the switch reboots.
+
+```
+cumulus@switch:~$ sudo ztp -R
+```
+
+To disable the ZTP session and deactivate the provisioning process, use the `-d` option:
+
+```
+cumulus@switch:~$ sudo ztp -d
+```
+
+To force provisioning to occur and ignore the status listed in the configuration file, use the `-r` option:
+
+```
+cumulus@switch:~$ sudo ztp -r cumulus-ztp.sh
+```
+
+To see the current ZTP state, use the `-s` option:
+
+```
+cumulus@switch:~$ sudo ztp -s
+ZTP INFO:
+State          disabled
+Version        1.0
+Result         success
+Date           Mon May 20 21:51:04 2019 UTC
+Method         Switch manually configured  
+URL            None
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Write ZTP Scripts
 
 {{%notice note%}}
@@ -563,120 +692,6 @@ exit 0
 #CUMULUS-AUTOPROVISIONING
 root@oob-mgmt-server:/var/www/html#
 ```
-
-## Manually Run ZTP
-
-Cumulus Linux provides commands so that you can manually:
-- Enable a ZTP session and activate the provisioning process.
-- Disable a ZTP session and deactivate the provisioning process.
-- Rerun the ZTP session from the beginning. You have the option of specifying a custom URL for the ZTP configuration files.
-- Terminate the current ZTP process.
-- Show the status of the ZTP service.
-<!--
-When you enable ZTP, the session tries to run the next time the switch boots. However, if ZTP already ran on a previous boot up or if there is a manual configuration, ZTP exits without trying to look for a script. ZTP checks for manual configurations, such as password, users and group, package, and interfaces changes when the switch boots.
-
-When the switch boots for the first time, ZTP records the state of important files that update after you configure the switch. After a reboot, ZTP compares the recorded state to the current state of these files. If they do not match, ZTP considers the switch as already provisioned and exits. ZTP only deletes these files after a reset.
--->
-{{< tabs "TabID569 ">}}
-{{< tab "NVUE Commands ">}}
-
-The following example manually reruns the ZTP session from the beginning. ZTP compares the recorded state to the current state of the configuration files. If they do not match, ZTP considers the switch as already provisioned and exits.
-
-```
-cumulus@switch:~$ nv action run system ztp
-```
-
-If you add the `force` option, the ZTP session runs even if there are existing configurations.
-
-```
-cumulus@switch:~$ nv action run system ztp force
-```
-
-The following example manually reruns the ZTP session and specifies a custom URL for the ZTP configuration files. ZTP compares the recorded state to the current state of the configuration files. If they do not match, ZTP considers the switch as already provisioned and exits.
-
-```
-cumulus@switch:~$ nv action run system ztp url /https://myserver/mypath/
-```
-
-If you add the `force` option, the ZTP session runs even if there are existing configurations.
-
-```
-cumulus@switch:~$ nv action run system ztp url /https://myserver/mypath/ force
-```
-
-The following example terminates the current ZTP process:
-
-```
-cumulus@switch:~$ nv action abort system ztp
-```
-
-The following example enables a ZTP session and activates the provisioning process:
-
-```
-cumulus@switch:~$ nv action enable system ztp
-```
-
-The following example disables the ZTP session and deactivates the provisioning process:
-
-```
-cumulus@switch:~$ nv action disable system ztp
-```
-
-To show the status of the ZTP service, run the `nv show system ztp` command.
-
-```
-cumulus@switch:~$ nv show system ztp
-           operational
----------  -----------
-status
-  method
-  state    in-progress
-  url
-  version  1.0
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-To enable a ZTP session and activate the provisioning process, use the `-e` option:
-
-```
-cumulus@switch:~$ sudo ztp -e
-```
-
-To reset ZTP to its original state, use the `-R` option. This removes the `ztp` directory and ZTP runs the next time the switch reboots.
-
-```
-cumulus@switch:~$ sudo ztp -R
-```
-
-To disable the ZTP session and deactivate the provisioning process, use the `-d` option:
-
-```
-cumulus@switch:~$ sudo ztp -d
-```
-
-To force provisioning to occur and ignore the status listed in the configuration file, use the `-r` option:
-
-```
-cumulus@switch:~$ sudo ztp -r cumulus-ztp.sh
-```
-
-To see the current ZTP state, use the `-s` option:
-
-```
-cumulus@switch:~$ sudo ztp -s
-ZTP INFO:
-State          disabled
-Version        1.0
-Result         success
-Date           Mon May 20 21:51:04 2019 UTC
-Method         Switch manually configured  
-URL            None
-```
-
-{{< /tab >}}
-{{< /tabs >}}
 
 ## Considerations
 

@@ -14,7 +14,6 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| <a name="3993243"></a> [3993243](#3993243) <a name="3993243"></a> <br /> | When you upgrade your NetQ VM, RoCE validation data might not contain all RoCE-enabled switches in your network. This condition will clear within 24 hours of the NetQ upgrade.  | 4.10.0-4.11.0 | |
 | <a name="3948198"></a> [3948198](#3948198) <a name="3948198"></a> <br /> | When you upgrade a Cumulus Linux switch configured with NVUE using NetQ LCM, the upgrade might fail due to NVUE configuration validation if the NVUE object model was changed between the current and new Cumulus Linux version. When this failure occurs, NetQ is unable to rollback to the prior configuration and the switch remains running the default Cumulus Linux configuration.  | 4.10.1 | 4.11.0|
 | <a name="3863195"></a> [3863195](#3863195) <a name="3863195"></a> <br /> | When you perform an LCM switch discovery on a Cumulus Linux 5.9.0 switch in your network that was already added in the NetQ inventory on a prior Cumulus Linux version, the switch will appear as Rotten in the NetQ UI. To work around this issue, decommission the switch first,and run LCM discovery again after the switch is upgraded. | 4.10.0-4.10.1 | 4.11.0|
 | <a name="3858210"></a> [3858210](#3858210) <a name="3858210"></a> <br /> | When you upgrade your NetQ VM, DPUs in the inventory are not shown. To work around this issue, restart the DTS container on the DPUs in your network. | 4.10.0-4.11.0 | |
@@ -38,7 +37,6 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| <a name="3993243"></a> [3993243](#3993243) <a name="3993243"></a> <br /> | When you upgrade your NetQ VM, RoCE validation data might not contain all RoCE-enabled switches in your network. This condition will clear within 24 hours of the NetQ upgrade.  | 4.10.0-4.11.0 | |
 | <a name="3876238"></a> [3876238](#3876238) <a name="3876238"></a> <br /> | You cannot upgrade a switch to Cumulus Linux 5.9.0 with NetQ LCM. | 4.10.0 | 4.10.1-4.11.0|
 | <a name="3863195"></a> [3863195](#3863195) <a name="3863195"></a> <br /> | When you perform an LCM switch discovery on a Cumulus Linux 5.9.0 switch in your network that was already added in the NetQ inventory on a prior Cumulus Linux version, the switch will appear as Rotten in the NetQ UI. To work around this issue, decommission the switch first,and run LCM discovery again after the switch is upgraded. | 4.10.0-4.10.1 | 4.11.0|
 | <a name="3858210"></a> [3858210](#3858210) <a name="3858210"></a> <br /> | When you upgrade your NetQ VM, DPUs in the inventory are not shown. To work around this issue, restart the DTS container on the DPUs in your network. | 4.10.0-4.11.0 | |

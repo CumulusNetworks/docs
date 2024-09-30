@@ -12,7 +12,7 @@ To open the topology view, click <img src="https://icons.cumulusnetworks.com/01-
 
 The default view reflects the devices comprising the network. A two-tier architecture is made up of leaf and spine devices; a three-tier architecture is made up of leaf, spine, and super-spine devices. There is an additional 'unclassified' tier for devices that do not have a role assigned to them. If your devices appear in this tier, {{<link title="Switch Management/#assign-roles-to-switches" text="assign roles">}} to them. Then return to the topology view and select **Auto arrange**. 
 
-{{<figure src="/images/netq/topology-view-480.png" alt="view of a networkwide topology displaying connections between devices" width="1100">}}
+{{<figure src="/images/netq/topo-overview-412.png" alt="view of a networkwide topology displaying connections between devices" width="1100">}}
 
 ## Interact with the Topology
 

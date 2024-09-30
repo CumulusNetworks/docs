@@ -205,8 +205,8 @@ The following example sets the number of sFlow samples to 800 and the sample siz
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set  system sflow policer rate 8000
-cumulus@switch:~$ nv set  system sflow policer burst 9000
+cumulus@switch:~$ nv set system sflow policer rate 8000
+cumulus@switch:~$ nv set system sflow policer burst 9000
 cumulus@switch:~$ nv config apply
 ```
 

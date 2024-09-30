@@ -130,13 +130,13 @@ Cumulus Linux provides commands so that you can manually:
 {{< tabs "TabID569 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example enables a ZTP session and activates the provisioning process. The session tries to run the next time the switch boots. However, if ZTP already ran on a previous boot up or if there is a manual configuration, ZTP exits without trying to look for a script.
+The following example enables a ZTP session and activates the provisioning process. The session tries to run the next time the switch boots. However, if ZTP already ran on a previous boot up or if there is any manual configuration, ZTP exits without trying to look for a script.
 
 ```
 cumulus@switch:~$ nv action enable system ztp
 ```
 
-If you add the `force` option, ZTP enables the session and activates the provisioning process even if ZTP already ran on a previous boot up or if there is a manual configuration.
+If you add the `force` option, ZTP enables the session and activates the provisioning process even if ZTP already ran on a previous boot up or if there is any manual configuration.
 
 ```
 cumulus@switch:~$ nv action enable system ztp force
@@ -175,7 +175,7 @@ cumulus@switch:~$ nv action run system ztp url /https://myserver/mypath/
 If you add the `force` option, the ZTP session runs even if there are existing configurations.
 
 ```
-cumulus@switch:~$ nv action run system ztp url /https://myserver/mypath/ force
+cumulus@switch:~$ nv action run system ztp url /https://myserver/mypath/cumulus-ztp.sh force
 ```
 
 The following example terminates the current ZTP process:
@@ -228,7 +228,13 @@ cumulus@switch:~$ sudo ztp -d
 To force provisioning to occur and ignore the status listed in the configuration file, use the `-r` option:
 
 ```
-cumulus@switch:~$ sudo ztp -r cumulus-ztp.sh
+cumulus@switch:~$ sudo ztp -r
+```
+
+To rerun the ZTP session and specify a custom URL for the ZTP configuration file:
+
+```
+cumulus@switch:~$ sudo ztp -r /https://myserver/mypath/cumulus-ztp.sh
 ```
 
 To see the current ZTP state, use the `-s` option:

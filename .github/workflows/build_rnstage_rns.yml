@@ -3,7 +3,7 @@ name: 'Release Note Publisher'
 on:
   push:
     branches:
-      - none
+      - rn-stage
 
 jobs:
   release-notes:

@@ -9,7 +9,16 @@ This document supports the Cumulus Linux 5.10 release, and lists new platforms, 
 - To upgrade to Cumulus Linux 5.10, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 <!-- vale off -->
 
-## What's New in Cumulus Linux 5.10
+## What's New in Cumulus Linux 5.10.1
+
+Cumulus Linux 5.10.1 provides {{<link title="Cumulus Linux 5.10 Packages" text="new SDK and firmware versions">}}, and includes bug fixes.
+
+{{%notice note%}}
+- To upgrade to Cumulus Linux 5.10.1 from Cumulus Linux 5.9.2, you must install the Cumulus Linux 5.10.1 image. You cannot use package upgrade.
+- Package upgrade to Cumulus Linux 5.10.1 from 5.9.1 and earlier does not support warm restart mode.
+{{%/notice%}}
+
+## What's New in Cumulus Linux 5.10.0
 
 ### Platforms
 

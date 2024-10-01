@@ -49,6 +49,11 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 | nv set system snmp-server<br>nv unset system snmp-server | nv set service snmp-server<br>nv unset service snmp-server |
 | nv set system snmp-server state enable<br>nv set system snmp-server state disable| nv set service snmp-server enable on<br>nv set service snmp-server enable off|
 | nv show system snmp-server | nv show service snmp-server|
+- {{< expand "Deprecated NVUE Commands" >}}
+| Deprecated Command | Replace with |
+| ----------- | ----------------|
+| nv show interface pluggables  | |
+| nv show interface <interface> pluggable | |
 
 ## Release Considerations
 

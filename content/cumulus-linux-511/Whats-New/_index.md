@@ -29,8 +29,8 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
   - {{<link url="Link-Layer-Discovery-Protocol" text="Disable LLDP commands">}}
   - {{<link url="Resource-Diagnostics/#disable-lldp" text="Show ASIC resources commands">}} (`cl-resource-query` equivalent)
   - {{<link url="Monitoring-System-Statistics-and-Network-Traffic-with-sFlow" text="sFlow commands">}}
-  - {{<link url="DHCP-Servers/#assign-port-based-ip-addresses" text="IPv6 command to assign a port-based DHCP server address">}}
-  - {{<link url="Zero-Touch-Provisioning-ZTP" text="Enable ZTP and run ZTP script commands">}}
+  - {{<link url="DHCP-Servers/#assign-a-port-based-ip-address" text="IPv6 command to assign a port-based DHCP server address">}}
+  - {{<link url="Zero-Touch-Provisioning-ZTP/#manually-run-ztp" text="Enable ZTP and run ZTP script commands">}}
   - {{<link url="Interface-Configuration-and-Management/#port-ranges" text="Additional port range support for breakout ports and subinterfaces">}}
   - {{<link url="Interface-Configuration-and-Management/#troubleshooting" text="nv show interface <interface>">}} commands now show the date and time the operational state of an interface changes and number of carrier transitions
   - RADIUS fallback authentication support when server unavailable
@@ -49,6 +49,7 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 | nv set system snmp-server<br>nv unset system snmp-server | nv set service snmp-server<br>nv unset service snmp-server |
 | nv set system snmp-server state enable<br>nv set system snmp-server state disable| nv set service snmp-server enable on<br>nv set service snmp-server enable off|
 | nv show system snmp-server | nv show service snmp-server|
+
 - {{< expand "Deprecated NVUE Commands" >}}
 | Deprecated Command | Replace with |
 | ----------- | ----------------|

@@ -9,6 +9,16 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 
 ## September 2024
 <!-- Air:WhatsNew -->
+### 82.2024.0926-014
+- Allow a ZTP script to be added to any simulation at time of creation
+- Updated the topology API to allow retrieval of a topology based on the simulation ID
+- Fixed an issue where the organization dropdown was not rendered properly
+- Fixed an issue when creating a simulation using JSON containing an invalid interface name
+- Fixed an issue when importing JSON with a link for an undefined node
+- Fixed an issue when importing JSON containing a `network_pci` configuration
+- Fixed an issue where interfaces could be assigned an invalid MAC address when using the topology API
+<!-- Air:WhatsNew -->
+
 ### 82.2024.0919-011
 - Fixed a pagination issue when viewing organization members
 - Fixed an issue when sorting members of an organization
@@ -24,7 +34,6 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 - Added an actions column to the nodes list
 - Added a running node count under the organization details
 - Added the ability to manage user permissions for a simulation
-<!-- Air:WhatsNew -->
 
 ## August 2024
 ### 82.2024.0826-011

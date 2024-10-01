@@ -95,7 +95,8 @@ cumulus@switch:~$ sudo adduser admin2 nvapply
 ```
 
 {{%notice note%}}
-When you use Linux commands to add a new user, you must create a home directory for the user with the `-m` option. NVUE commands create a home directory automatically.
+- When you run Linux commands to add a new user, you must create a home directory for the user with the `-m` option. NVUE commands create a home directory automatically.
+- If you run Linux commands to configure a user password with five or fewer characters, Cumulus Linux logs the message {{BAD PASSWORD: The password is shorter than 6 characters}}<br>If password security is disabled, this is only a warning and the password is set.  If password security is enabled, the short password is not set.
 {{%/notice%}}
 
 {{< /tab >}}

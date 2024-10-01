@@ -112,15 +112,11 @@ NVIDIA recommends that you enable EVPN-MH on all VTEPs throughout the fabric to 
 cumulus@leaf01:~$ nv set evpn multihoming enable on
 cumulus@leaf01:~$ nv config apply
 ```
-<!--
-{{%notice note%}}
-On the Spectrum A1 switch, you must restart `switchd` with the `sudo systemctl restart switchd.service` command after you enable multihoming.
-{{%/notice%}}
--->
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Set the `evpn.multihoming.enable` variable in the `/etc/cumulus/switchd.conf` file to `TRUE`, then restart the `switchd` service. Cumulus Linux disables this variable by default.
+Set the `evpn.multihoming.enable` variable in the `/etc/cumulus/switchd.conf` file to `TRUE`. Cumulus Linux disables this variable by default.
 
 ```
 cumulus@leaf01:~$ sudo nano /etc/cumulus/switchd.conf
@@ -129,9 +125,9 @@ evpn.multihoming.enable = TRUE
 ...
 ```
 
-```
-cumulus@leaf01:~$ sudo systemctl restart switchd.service
-```
+{{%notice note%}}
+On the Spectrum A1 switch, you must restart `switchd` with the `sudo systemctl restart switchd.service` command after you enable multihoming.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}

@@ -124,10 +124,11 @@ cumulus@leaf01:~$ nv set evpn multihoming enable on
 cumulus@leaf01:~$ nv config apply
 ```
 
+<!--
 {{%notice note%}}
 On the Spectrum A1 switch, you must restart `switchd` with the `sudo systemctl restart switchd.service` command after you enable multihoming.
 {{%/notice%}}
-
+-->
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 

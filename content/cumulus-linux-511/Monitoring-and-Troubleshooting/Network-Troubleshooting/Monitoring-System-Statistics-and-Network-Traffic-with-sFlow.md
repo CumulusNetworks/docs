@@ -59,7 +59,6 @@ Cumulus Linux provides different sampling rate configurations. The value represe
 
 | Sampling Rate | Default Value | Description |
 | ------------- | ------------- | ----------- |
-| `default` | 400 | The Default sampling rate for ports with no speed or application with no sampling setting. |
 | `speed-100m` | 100 | The sampling rate on a 100Mbps port. |
 | `speed-1g` | 1000 | The sampling rate on a 1Gbps port. |
 | `speed-10g` | 10000 | The sampling rate on a 10Gbps port. |
@@ -94,7 +93,7 @@ Configure the sFlow sampling rate in number of packets if you do not want to use
 The following example polls the counters every 20 seconds and samples one in every 40000 packets for 40G interfaces:
 
 ```
-cumulus@switch:~$ nv set system sflow sampling-rate speed-40g default 40000
+cumulus@switch:~$ nv set system sflow sampling-rate speed-40g 40000
 cumulus@switch:~$ nv set system sflow poll-interval 20
 cumulus@switch:~$ nv config apply
 ```

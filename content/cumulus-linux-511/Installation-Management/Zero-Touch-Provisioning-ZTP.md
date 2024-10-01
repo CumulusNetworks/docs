@@ -170,7 +170,7 @@ The following example manually runs ZTP and specifies a custom URL for the ZTP s
 cumulus@switch:~$ nv action run system ztp url https://myserver/mypath/cumulus-ztp.sh
 ```
 
-The following example manually runs ZTP from the `/home/cumulus` directory on the switch:
+The following example manually runs ZTP from the `/home/cumulus` directory on the switch. If you made manual configuration changes, ZTP considers the switch as already provisioned and exits.
 
 ```
 cumulus@switch:~$ nv action run system ztp url /home/cumulus/cumulus-ztp.sh
@@ -180,6 +180,10 @@ If you add the `force` option, ZTP runs even if you made manual configuration ch
 
 ```
 cumulus@switch:~$ nv action run system ztp url https://myserver/mypath/cumulus-ztp.sh force
+```
+
+```
+cumulus@switch:~$ nv action run system ztp url /home/cumulus/cumulus-ztp.sh force
 ```
 
 The following example terminates ZTP if it is in the discovery process or is not currently running a script:
@@ -223,7 +227,7 @@ To enable ZTP and activate the provisioning process, use the `-e` option:
 cumulus@switch:~$ sudo ztp -e
 ```
 
-To reset ZTP to its original state, use the `-R` option. This removes the `ztp` directory and ZTP runs the next time the switch reboots.
+To reset ZTP to its original state, use the `-R` option. This option removes the `ztp` directory and ZTP runs the next time the switch reboots.
 
 ```
 cumulus@switch:~$ sudo ztp -R

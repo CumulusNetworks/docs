@@ -180,6 +180,8 @@ Be aware of the following when upgrading packages:
 - After you upgrade, account UIDs and GIDs created by packages might be different on different switches, depending on the configuration and package installation history.
 - Cumulus Linux does not support the `sudo -E apt-get dist-upgrade` command. Be sure to use `sudo -E apt-get upgrade` when upgrading packages.
 
+### Optimized Cumulus Linux Image Install
+
 ### Cumulus Linux Image Install (ONIE)
 
 ONIE is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a bare metal switch.

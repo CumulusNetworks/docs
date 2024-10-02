@@ -36,7 +36,7 @@ The default installation includes two accounts:
 - The user account (cumulus) has `sudo` privileges. The cumulus account uses the default password `cumulus`. When you log in for the first time with the cumulus account, Cumulus Linux prompts you to change the default password. After you provide a new password, the SSH session disconnects and you have to reconnect with the new password.
 
 {{%notice note%}}
-ONIE includes options that allow you to change the default password for the *cumulus* account automatically when you install a new Cumulus Linux image. Refer to {{<link url="Installing-a-New-Cumulus-Linux-Image-with-ONIE#onie-installation-options" text="ONIE Installation Options" >}}. You can also  {{<link url="Zero-Touch-Provisioning-ZTP/#set-the-default-cumulus-user-password" text="change the default password using a ZTP script">}}.
+ONIE includes options that allow you to change the default password for the *cumulus* account automatically when you install a new Cumulus Linux image. Refer to {{<link url="Installing-a-New-Cumulus-Linux-Image#onie-installation-options" text="ONIE Installation Options" >}}. You can also  {{<link url="Zero-Touch-Provisioning-ZTP/#set-the-default-cumulus-user-password" text="change the default password using a ZTP script">}}.
 {{%/notice%}}
 
 In this quick start guide, you use the *cumulus* account to configure Cumulus Linux.

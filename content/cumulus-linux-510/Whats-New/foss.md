@@ -7,9 +7,20 @@ version: "5.10"
 toc: 1
 pdfhidden: True
 ---
-## 5.10 Packages
+## 5.10.1 Packages
 
-Cumulus Linux 5.10 contains the following core switch package versions:
+Cumulus Linux 5.10.1 provides new SDK and firmware versions:
+- SDK: 4.7.1136
+- Spectrum 1 firmware: 13.2014_1136
+- Spectrum-2 firmware: 29.2014_1136
+- Spectrum-3 firmware: 30.2014_1136
+- Spectrum-4 firmware: 34.2014_1136
+
+All other open source software licenses are the same as those listed in Cumulus Linux 5.10.0 Packages, below.
+
+## 5.10.0 Packages
+
+Cumulus Linux 5.10.0 contains the following core switch package versions:
 
 | Package | Version | Description |
 | --- | ----| ----------- |
@@ -19,4 +30,4 @@ Cumulus Linux 5.10 contains the following core switch package versions:
 | NVUE (`python3-nvue`) | 1.6.0.62 | NVUE core package. |
 | kernel (`linux-image`) | 6.1.90 | Linux kernel package. |
 
-To obtain a complete list of open source packages included in Cumulus Linux 5.10, see the downloads section on the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise support portal">}}.
+To obtain a complete list of open source packages included in Cumulus Linux 5.10.0, see the downloads section on the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise support portal">}}.

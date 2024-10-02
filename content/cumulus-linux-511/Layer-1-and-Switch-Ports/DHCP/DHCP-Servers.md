@@ -386,7 +386,7 @@ cumulus@switch:~$ nv config apply
 
 <!-- vale off -->
 <!-- Vale issue #253 -->
-### Assign a Port-based IP Addresses
+### Assign a Port-based IP Address
 <!-- vale on -->
 
 You can assign an IP address and other DHCP options based on physical location or port regardless of MAC address to clients that attach directly to the Cumulus Linux switch through a switch port. This is helpful when swapping out switches and servers; you can avoid the inconvenience of collecting the MAC address and sending it to the network administrator to modify the DHCP server configuration.

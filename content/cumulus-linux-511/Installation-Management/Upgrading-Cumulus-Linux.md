@@ -412,14 +412,14 @@ NVIDIA has not tested running different versions of Cumulus Linux on MLAG peer s
 
    To upgrade the switch with package upgrade instead of booting into ONIE, see {{<link url="#package-upgrade" text="Package Upgrade">}}.
 
-5. Save the changes to the NVUE configuration from steps 2-3 and reboot the switch:
+5. Save the changes to the NVUE configuration from steps 2 and 3, then reboot the switch:
 
     ```
     cumulus@switch:~$ nv config save
     cumulus@switch:~$ nv action reboot system
     ```
 
-6. If you installed a new image on the switch, restore the configuration files to the new release. If you performed an upgrade with `apt`, bring the uplink and peer link interfaces you shut down in steps 2-3 up:
+6. If you installed a new image on the switch, restore the configuration files to the new release. If you performed an upgrade with `apt`, bring the uplink and peer link interfaces you shut down in steps 2 and 3 up:
 
     ```
     cumulus@switch:~$ nv set interface swp1 link state up

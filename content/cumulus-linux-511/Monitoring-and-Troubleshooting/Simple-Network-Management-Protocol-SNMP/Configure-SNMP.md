@@ -21,8 +21,8 @@ Before you can use SNMP, you need to enable and start the `snmpd` service, and c
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set service snmp-server enable on
-cumulus@switch:~$ nv set service snmp-server listening-address localhost
+cumulus@switch:~$ nv set system snmp-server state enable
+cumulus@switch:~$ nv set system snmp-server listening-address localhost
 cumulus@switch:~$ nv config apply
 ```
 
@@ -84,30 +84,30 @@ To configure the listening IP addresses:
 {{< tab "NVUE Commands" >}}
 
 ```
-cumulus@switch:~$ nv set service snmp-server listening-address localhost
-cumulus@switch:~$ nv set service snmp-server listening-address localhost-v6
+cumulus@switch:~$ nv set system snmp-server listening-address localhost
+cumulus@switch:~$ nv set system snmp-server listening-address localhost-v6
 cumulus@switch:~$ nv config apply
 ```
 
 To configure the `snmpd` daemon to listen on all interfaces for either IPv4 or IPv6 UDP port 161 SNMP requests, run the following command, which removes all other individual IP addresses configured:
 
 ```
-cumulus@switch:~$ nv set service snmp-server listening-address all
-cumulus@switch:~$ nv set service snmp-server listening-address all-v6
+cumulus@switch:~$ nv set system snmp-server listening-address all
+cumulus@switch:~$ nv set system snmp-server listening-address all-v6
 cumulus@switch:~$ nv config apply
 ```
 
 To configure `snmpd` to listen to a specific IPv4 or IPv6 address:
 
 ```
-cumulus@switch:~$ nv set service snmp-server listening-address 192.168.200.11
+cumulus@switch:~$ nv set system snmp-server listening-address 192.168.200.11
 cumulus@switch:~$ nv config apply
 ```
 
 To configure `snmpd` to listen to multiple addresses for incoming SNMP queries, separate the addresses with a space:
 
 ```
-cumulus@switch:~$ nv set service snmp-server listening-address 192.168.200.11 192.168.200.21
+cumulus@switch:~$ nv set system snmp-server listening-address 192.168.200.11 192.168.200.21
 cumulus@switch:~$ nv config apply
 ```
 
@@ -137,22 +137,22 @@ Cumulus Linux provides a listening address for VRFs together with trap and infor
 The following command configures snmpd to listen to IP address 10.10.10.10 on eth0, the management interface in the management VRF:
 
 ```
-cumulus@switch:~$ nv set service snmp-server listening-address 10.10.10.10 vrf mgmt
+cumulus@switch:~$ nv set system snmp-server listening-address 10.10.10.10 vrf mgmt
 cumulus@switch:~$ nv config apply
 ```
 
 By default, `snmpd` does not cross VRF table boundaries. To listen on IP addresses in different VRF tables, use multiple `listening-address` commands each with a VRF name:
 
 ```
-cumulus@switch:~$ nv set service snmp-server listening-address 10.10.10.10 vrf rocket
-cumulus@switch:~$ nv set service snmp-server listening-address 10.10.10.20 vrf turtle
+cumulus@switch:~$ nv set system snmp-server listening-address 10.10.10.10 vrf rocket
+cumulus@switch:~$ nv set system snmp-server listening-address 10.10.10.20 vrf turtle
 cumulus@switch:~$ nv config apply
 ```
 
 By default, `snmpd` only responds to `localhost` requests in the `default` VRF. You can configure the switch to respond to requests sent to `localhost` in a `mgmt` VRF shell. To configure the `snmpd` daemon to listen on `localhost` in the `mgmt` VRF, run:
 
 ```
-cumulus@switch:~$ nv set service snmp-server listening-address localhost vrf mgmt
+cumulus@switch:~$ nv set system snmp-server listening-address localhost vrf mgmt
 cumulus@switch:~$ nv config apply
 ```
 
@@ -202,55 +202,55 @@ You can authenticate the user in the following ways:
 The following example command requires no authentication password for the user `testusernoauth`:
 
 ```
-cumulus@switch:~$ nv set service snmp-server username testusernoauth auth-none
+cumulus@switch:~$ nv set system snmp-server username testusernoauth auth-none
 cumulus@switch:~$ nv config apply
 ```
 
 The following example command configures MD5 authentication for the user `limiteduser1`:
 
 ```
-cumulus@switch:~$ nv set service snmp-server username testuserauth auth-md5 myauthmd5password
+cumulus@switch:~$ nv set system snmp-server username testuserauth auth-md5 myauthmd5password
 cumulus@switch:~$ nv config apply
 ```
 
 The following example command configures SHA authentication for the user `limiteduser1`:
 
 ```
-cumulus@switch:~$ nv set service snmp-server username limiteduser1 auth-sha SHApassword1
+cumulus@switch:~$ nv set system snmp-server username limiteduser1 auth-sha SHApassword1
 cumulus@switch:~$ nv config apply
 ```
 
 If you specify MD5 or SHA authentication, you can also specify an AES or DES encryption password to encrypt the contents of the request and response packets.
 
 ```
-cumulus@switch:~$ nv set service snmp-server username testuserauth auth-md5 myauthmd5password encrypt-aes myencryptsecret
+cumulus@switch:~$ nv set system snmp-server username testuserauth auth-md5 myauthmd5password encrypt-aes myencryptsecret
 cumulus@switch:~$ nv config apply
 ```
 
 You can restrict a user to a particular OID tree. The OID can be either a string of decimal numbers separated by periods or a unique text string that identifies an SNMP MIB object. The MIBs that Cumulus Linux includes are in the `/usr/share/snmp/mibs/` directory. If the MIB you want to use does not install by default, you can install it with the latest Debian `snmp-mibs-downloader` package.
 
 ```
-cumulus@switch:~$ nv set service snmp-server username testuserauth auth-md5 myauthmd5password encrypt-aes myaessecret oid 1.3.6.1.2.1.1
+cumulus@switch:~$ nv set system snmp-server username testuserauth auth-md5 myauthmd5password encrypt-aes myaessecret oid 1.3.6.1.2.1.1
 cumulus@switch:~$ nv config apply
 ```
 
 You can restrict a user to a predefined view:
 
 ```
-cumulus@switch:~$ nv set service snmp-server username testuserauth auth-md5 myauthmd5password encrypt-aes myaessecret view rocket
+cumulus@switch:~$ nv set system snmp-server username testuserauth auth-md5 myauthmd5password encrypt-aes myaessecret view rocket
 cumulus@switch:~$ nv config apply
 ```
 
 The example below defines five users, each with a different combination of authentication and encryption:
 
 ```
-cumulus@switch:~$ nv set service snmp-server username user1 auth-none
-cumulus@switch:~$ nv set service snmp-server username user2 auth-md5 user2password
-cumulus@switch:~$ nv set service snmp-server username user3 auth-md5 user3password encrypt-des user3encryption
-cumulus@switch:~$ nv set service snmp-server username user666 auth-sha user666password encrypt-aes user666encryption
-cumulus@switch:~$ nv set service snmp-server username user999 auth-md5 user999password encrypt-des user999encryption
-cumulus@switch:~$ nv set service snmp-server username user1 auth-none oid 1.3.6.1.2.1
-cumulus@switch:~$ nv set service snmp-server username user3 auth-sha testshax encrypt-aes testaesx oid 1.3.6.1.2.1
+cumulus@switch:~$ nv set system snmp-server username user1 auth-none
+cumulus@switch:~$ nv set system snmp-server username user2 auth-md5 user2password
+cumulus@switch:~$ nv set system snmp-server username user3 auth-md5 user3password encrypt-des user3encryption
+cumulus@switch:~$ nv set system snmp-server username user666 auth-sha user666password encrypt-aes user666encryption
+cumulus@switch:~$ nv set system snmp-server username user999 auth-md5 user999password encrypt-des user999encryption
+cumulus@switch:~$ nv set system snmp-server username user1 auth-none oid 1.3.6.1.2.1
+cumulus@switch:~$ nv set system snmp-server username user3 auth-sha testshax encrypt-aes testaesx oid 1.3.6.1.2.1
 cumulus@switch:~$ nv config apply
 ```
 
@@ -354,11 +354,11 @@ By default, the `snmpd.conf` file contains many views within the `systemonly` vi
 {{< tab "NVUE Commands" >}}
 
 ```
-cumulus@switch:~$ nv set service snmp-server viewname cumulusOnly included .1.3.6.1.4.1.40310
-cumulus@switch:~$ nv set service snmp-server viewname cumulusCounters included .1.3.6.1.4.1.40310.2
-cumulus@switch:~$ nv set service snmp-server readonly-community simplepassword access any view cumulusOnly
-cumulus@switch:~$ nv set service snmp-server username testusernoauth auth-none view cumulusOnly
-cumulus@switch:~$ nv set service snmp-server username limiteduser1 auth-md5 md5password1 encrypt-aes myaessecret view cumulusCounters
+cumulus@switch:~$ nv set system snmp-server viewname cumulusOnly included .1.3.6.1.4.1.40310
+cumulus@switch:~$ nv set system snmp-server viewname cumulusCounters included .1.3.6.1.4.1.40310.2
+cumulus@switch:~$ nv set system snmp-server readonly-community simplepassword access any view cumulusOnly
+cumulus@switch:~$ nv set system snmp-server username testusernoauth auth-none view cumulusOnly
+cumulus@switch:~$ nv set system snmp-server username limiteduser1 auth-md5 md5password1 encrypt-aes myaessecret view cumulusCounters
 cumulus@switch:~$ nv config apply
 ```
 
@@ -400,15 +400,15 @@ The following example configuration:
 - Restricts viewing to the `mysystem` view, which you define with the `view` command.
 
 ```
-cumulus@switch:~$ nv set service snmp-server viewname mysystem included 1.3.6.1.2.1.1
-cumulus@switch:~$ nv set service snmp-server readonly-community simplepassword access 192.168.200.10/24 view mysystem
+cumulus@switch:~$ nv set system snmp-server viewname mysystem included 1.3.6.1.2.1.1
+cumulus@switch:~$ nv set system snmp-server readonly-community simplepassword access 192.168.200.10/24 view mysystem
 cumulus@switch:~$ nv config apply
 ```
 
 This example creates a read-only community password `showitall` that allows access to the entire OID tree for requests originating from any source IP address.
 
 ```
-cumulus@switch:~$ nv set service snmp-server readonly-community showitall access any
+cumulus@switch:~$ nv set system snmp-server readonly-community showitall access any
 cumulus@switch:~$ nv config apply
 ```
 
@@ -463,21 +463,21 @@ You can configure system settings for the SNMPv2 MIB. The following example comm
 To set the system physical location for the node in the SNMPv2-MIB system table:
 
 ```
-cumulus@switch:~$ nv set service snmp-server system-location my-private-bunker
+cumulus@switch:~$ nv set system snmp-server system-location my-private-bunker
 cumulus@switch:~$ nv config apply
 ```
 
 To set the username and email address of the contact person for this managed node:
 
 ```
-cumulus@switch:~$ nv set service snmp-server system-contact myemail@example.com
+cumulus@switch:~$ nv set system snmp-server system-contact myemail@example.com
 cumulus@switch:~$ nv config apply
 ```
 
 To set an administratively assigned name for the managed node, run the following command. Typically, this is the fully qualified domain name of the node.
 
 ```
-cumulus@switch:~$ nv set service snmp-server system-name CumulusBox-1,543,567
+cumulus@switch:~$ nv set system snmp-server system-name CumulusBox-1,543,567
 cumulus@switch:~$ nv config apply
 ```
 
@@ -502,7 +502,7 @@ sysname CumulusBox-1,543,567
 
 SNMP supports routing MIBs in {{<link url="FRRouting" text="FRR">}}. If you are running Linux commands to configure the switch, you need to configure {{<exlink url="http://www.net-snmp.org/docs/README.agentx.html" text="AgentX">}} (ASX) access in FRR.
 
-The NVUE `nv set service snmp-server enable on` command automatically configures {{<exlink url="http://www.net-snmp.org/docs/README.agentx.html" text="AgentX">}} (ASX) access in FRR; you do not need to run any additional commands.
+The NVUE `nv set system snmp-server state enable` command automatically configures {{<exlink url="http://www.net-snmp.org/docs/README.agentx.html" text="AgentX">}} (ASX) access in FRR; you do not need to run any additional commands.
 
 1. Enable AgentX:
 
@@ -585,10 +585,10 @@ Cumulus Linux enables all the scripts by default except for `bgp4_pp.py`, which 
 
 ## Disable SNMP
 
-To disable SNMP, run the `nv unset service snmp-server enable` command:
+To disable SNMP, run the `nv set system snmp-server state disable` command:
 
 ```
-cumulus@switch:~$ nv unset service snmp-server enable
+cumulus@switch:~$ nv set system snmp-server state disable
 cumulus@switch:~$ nv config apply
 ```
 
@@ -608,12 +608,12 @@ The following example configuration:
 {{< tab "NVUE Commands" >}}
 
 ```
-cumulus@switch:~$ nv set service snmp-server listening-address all
-cumulus@switch:~$ nv set service snmp-server readonly-community tempPassword access any
-cumulus@switch:~$ nv set service snmp-server trap-destination 1.1.1.1 community-password mypassword version 2c
-cumulus@switch:~$ nv set service snmp-server trap-link-up check-frequency 15
-cumulus@switch:~$ nv set service snmp-server trap-link-down check-frequency 10
-cumulus@switch:~$ nv set service snmp-server trap-snmp-auth-failures
+cumulus@switch:~$ nv set system snmp-server listening-address all
+cumulus@switch:~$ nv set system snmp-server readonly-community tempPassword access any
+cumulus@switch:~$ nv set system snmp-server trap-destination 1.1.1.1 community-password mypassword version 2c
+cumulus@switch:~$ nv set system snmp-server trap-link-up check-frequency 15
+cumulus@switch:~$ nv set system snmp-server trap-link-down check-frequency 10
+cumulus@switch:~$ nv set system snmp-server trap-snmp-auth-failures
 cumulus@switch:~$ nv config apply
 ```
 

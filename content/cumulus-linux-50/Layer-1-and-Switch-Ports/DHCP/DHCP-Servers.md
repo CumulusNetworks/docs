@@ -52,6 +52,13 @@ cumulus@switch:~$ nv set service dhcp-server default static server1 mac-address 
 cumulus@switch:~$ nv config apply
 ```
 
+To allocate DHCP addresses from the configured pool, you must configure an interface with an IP address from the pool subnet. For example:
+
+```
+cumulus@switch:~$ nv set interface vlan10 ip address 10.1.10.1/24
+cumulus@switch:~$ nv config apply
+```
+
 To set the DNS server IP address and domain name globally, use the `nv set service dhcp-server <vrf> domain-name-server <address>` and `nv set service dhcp-server <vrf> domain-name <domain>` commands.
 
 {{< /tab >}}

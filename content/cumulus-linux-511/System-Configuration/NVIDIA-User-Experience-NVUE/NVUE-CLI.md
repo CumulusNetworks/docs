@@ -415,6 +415,40 @@ When you disable auto save, you must run the `nv config save` command to save th
 
 To renable auto save, run the `nv set system config auto-save state enabled` command.
 
+## Show Switch Configuration
+
+To show the applied configuration on the switch, run the `nv config show` command:
+
+```
+cumulus@switch:~$ nv config show
+header:
+    model: VX
+    nvue-api-version: nvue_v1
+    rev-id: 1.0
+    version: Cumulus Linux 5.7.0
+- set:
+    bridge:
+      domain:
+        br_default:
+          vlan:
+            '10':
+              vni:
+                '10': {}
+            '20':
+              vni:
+                '20': {}
+            '30':
+              vni:
+                '30': {}
+...
+```
+
+To show the configuration on the switch in YAML format and include all default options, run the `nv config show --all` command:
+
+```
+cumulus@switch:~$ nv config show --all
+```
+
 ## Add Configuration Apply Messages
 
 When you run the `nv config apply` command, you can add a message that describes the configuration updates you make. You can see the message when you run the `nv config history` command.

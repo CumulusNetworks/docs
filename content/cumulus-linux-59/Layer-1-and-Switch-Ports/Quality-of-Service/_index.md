@@ -7,7 +7,7 @@ right_toc_levels: 2
 
 This section refers to frames for all internal QoS functionality. Unless explicitly stated, the actions are independent of layer 2 frames or layer 3 packets.
 
-Cumulus Linux supports several different <span class="a-tooltip">[QoS](## "Quality of Service")</span> features and standards including:
+Cumulus Linux supports several different <span ass="a-tooltip">[QoS](## "Quality of Service")</span> features and standards including:
 - <span class="a-tooltip">[COS](## "Class of Service")</span> and <span class="a-tooltip">[DSCP](## "Differentiated Services Code Point")</span> marking and remarking
 - Shaping and policing
 - Egress traffic scheduling (802.1Qaz, Enhanced Transmission Selection (ETS))

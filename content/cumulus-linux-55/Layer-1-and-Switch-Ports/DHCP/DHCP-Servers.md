@@ -65,14 +65,21 @@ To set the DNS server IP address and domain name globally, use the `nv set servi
 {{< tab "IPv6 ">}}
 
 ```
-cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 
-cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 pool-name storage-servers
-cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 domain-name-server 2001:db8:100::64
-cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 domain-name example.com
-cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 range 2001:db8:1::100 to 2001:db8:1::199 
+cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8::/64 
+cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8::/64 pool-name storage-servers
+cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8::/64 domain-name-server 2001:db8:100::64
+cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8::/64 domain-name example.com
+cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8::/64 range 2001:db8::100 to 2001:db8::199 
 cumulus@switch:~$ nv set service dhcp-server6 default static server1
-cumulus@switch:~$ nv set service dhcp-server6 default static server1 ip-address 2001:db8:1::100
+cumulus@switch:~$ nv set service dhcp-server6 default static server1 ip-address 2001:db8::100
 cumulus@switch:~$ nv set service dhcp-server6 default static server1 mac-address 44:38:39:00:01:7e
+cumulus@switch:~$ nv config apply
+```
+
+To allocate DHCP addresses from the configured pool, you must configure an interface with an IP address from the pool subnet. For example:
+
+```
+cumulus@switch:~$ nv set interface vlan10 ip address 2001:db8::10/64
 cumulus@switch:~$ nv config apply
 ```
 
@@ -95,7 +102,6 @@ To set the DNS server IP address and domain name globally, use the `nv set servi
    subnet 10.1.10.0 netmask 255.255.255.0 {
       option domain-name-servers 192.168.200.53;
       option domain-name example.com;
-      option routers 10.1.10.1;
       default-lease-time 3600;
       max-lease-time 3600;
       default-url ;
@@ -150,15 +156,14 @@ subnet 10.1.10.0 netmask 255.255.255.0 {
    ```
    cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd6.conf
    authoritative;
-   subnet6 2001:db8::1/128 {
+   subnet6 2001:db8::/64 {
       option domain-name-servers 2001:db8:100::64;
       option domain-name example.com;
-      option routers 2001:db8::a0a:0a01;
       default-lease-time 3600;
       max-lease-time 3600;
       default-url ;
       pool {
-          range6 2001:db8:1::100 2001:db8:1::199;
+          range6 2001:db8:1::100 2001:db8::199;
       }
    }
    #Statics
@@ -177,8 +182,7 @@ cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd6.conf
 authoritative;
 option domain-name servers;
 option domain-name-servers 2001:db8:100::64;
-subnet6 2001:db8::1/128 {
-   option routers 2001:db8::a0a:0a01;
+subnet6 2001:db8::/64
    default-lease-time 3600;
    max-lease-time 3600;
 ...
@@ -227,7 +231,7 @@ cumulus@switch:~$ nv config apply
 {{< tab "IPv6 ">}}
 
 ```
-cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 lease-time 200000
+cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8::/64 lease-time 200000
 cumulus@switch:~$ nv config apply
 ```
 
@@ -248,7 +252,6 @@ cumulus@switch:~$ nv config apply
    subnet 10.1.10.0 netmask 255.255.255.0 {
       option domain-name-servers 192.168.200.53;
       option domain-name example.com;
-      option routers 10.1.10.1;
       default-lease-time 200000;
       max-lease-time 200000;
       default-url ;
@@ -272,15 +275,14 @@ cumulus@switch:~$ nv config apply
    ```
    cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd6.conf
    authoritative;
-   subnet6 2001:db8::1/128 {
+   subnet6 2001:db8::/64 {
       option domain-name-servers 2001:db8:100::64;
       option domain-name example.com;
-      option routers 2001:db8::a0a:0a01;
       default-lease-time 200000;
       max-lease-time 200000;
       default-url ;
       pool {
-          range6 2001:db8:1::100 2001:db8:1::199;
+          range6 2001:db8:1::100 2001:db8::199;
       }
    }
    ```
@@ -316,7 +318,7 @@ cumulus@switch:~$ nv config apply
 {{< tab "IPv6 ">}}
 
 ```
-cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 ping-check on
+cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8::/64 ping-check on
 cumulus@switch:~$ nv config apply
 ```
 
@@ -337,7 +339,6 @@ cumulus@switch:~$ nv config apply
    subnet 10.1.10.0 netmask 255.255.255.0 {
       option domain-name-servers 192.168.200.53;
       option domain-name example.com;
-      option routers 10.1.10.1;
       default-lease-time 200000;
       max-lease-time 200000;
       ping-check true;
@@ -362,16 +363,15 @@ cumulus@switch:~$ nv config apply
    ```
    cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd6.conf
    authoritative;
-   subnet6 2001:db8::1/128 {
+   subnet6 2001:db8::/64 {
       option domain-name-servers 2001:db8:100::64;
       option domain-name example.com;
-      option routers 2001:db8::a0a:0a01;
       default-lease-time 200000;
       max-lease-time 200000;
       ping-check true;
       default-url ;
       pool {
-          range6 2001:db8:1::100 2001:db8:1::199;
+          range6 2001:db8:1::100 2001:db8::199;
       }
    }
    ```
@@ -432,7 +432,6 @@ Cumulus Linux does not provide NVUE commands for this setting.
    subnet 10.0.0.0 netmask 255.255.255.0 {
        option domain-name-servers 192.168.200.53;
        option domain-name "example.com";
-       option routers 10.0.0.1;
        default-lease-time 3600;
        max-lease-time 3600;
        ping-check off;
@@ -466,7 +465,7 @@ Cumulus Linux does not provide NVUE commands for this setting.
    ...
    host myhost {
        ifname "swp1" ;
-       fixed-address 2001:db8:1::100 ;
+       fixed-address 2001:db8::100 ;
    }
    ...
    ```
@@ -501,7 +500,7 @@ The DHCP server determines if a DHCP request is a relay or a non-relay DHCP requ
 ```
 cumulus@server02:~$ sudo tail /var/log/syslog | grep dhcpd
 2016-12-05T19:03:35.379633+00:00 server02 dhcpd: Relay-forward message from 2001:db8:101::1 port 547, link address 2001:db8:101::1, peer address fe80::4638:39ff:fe00:3
-2016-12-05T19:03:35.380081+00:00 server02 dhcpd: Advertise NA: address 2001:db8:1::110 to client with duid 00:01:00:01:1f:d8:75:3a:44:38:39:00:00:03 iaid = 956301315 valid for 600 seconds
+2016-12-05T19:03:35.380081+00:00 server02 dhcpd: Advertise NA: address 2001:db8::110 to client with duid 00:01:00:01:1f:d8:75:3a:44:38:39:00:00:03 iaid = 956301315 valid for 600 seconds
 2016-12-05T19:03:35.380470+00:00 server02 dhcpd: Sending Relay-reply to 2001:db8:101::1 port 547
 ```
 ## Considerations

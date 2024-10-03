@@ -37,6 +37,12 @@
 <td></td>
 </tr>
 <tr>
+<td>4062271</td>
+<td>ASIC monitoring histogram collection might not work because of a crash in the {{asic-monitor}} service. To work around this issue, see the &lt;a href="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-510/Whats-New/#release-considerations"&gt;Release Considerations section of the What’s New&lt;/a&gt;.</td>
+<td>5.10.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4050835</td>
 <td>The NVUE Service fails to start after an upgrade from Cumulus Linux 5.9 to Cumulus Linux 5.10 because of a corrupted database.</td>
 <td>5.10.0</td>
@@ -49,13 +55,7 @@
 <td></td>
 </tr>
 <tr>
-<td>4043995</td>
-<td> After network churn, the ﻿{{watchfrr}} process might restart FRR because zebra is unresponsive.</td>
-<td>5.9.1-5.10.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4043575</td>
+<td>4043576</td>
 <td>If a ZTP script includes a directive to reboot, the reboot might stop the running ZTP process before it is able to disable itself from running again. As a result, the ZTP process starts again when the system comes back up. To work around this issue, run {{shutdown -r +1}} to schedule a reboot after one minute so that the ZTP process can successfully complete disabling the {{ztp.service}} systemd service.</td>
 <td>5.10.0</td>
 <td>5.9.2</td>
@@ -85,12 +85,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4037224</td>
-<td>ASIC monitoring histogram collection might not work because of a crash in the {{asic-monitor}} service. To work around this issue, see the &lt;a href="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-510/Whats-New/#release-considerations"&gt;Release Considerations section of the What’s New&lt;/a&gt;.</td>
-<td>5.10.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4035681</td>
 <td>The {{nv show interface &lt;interface&gt;}} commands show RX and TX Power values from the wrong lanes on breakout ports.</td>
 <td>5.8.0-5.9.1, 5.10.0</td>
@@ -109,7 +103,7 @@
 <td></td>
 </tr>
 <tr>
-<td>4005422</td>
+<td>4007590</td>
 <td>When you upgrade Cumulus Linux 5.9.1 to Cumulus Linux 5.9.2 with package upgrade, the NTP service stops. To restart the NTP service, enable, then restart the service in the VRF in which it was running with the {{systemctl enable ntpsec@&lt;vrf&gt;}} and {{systemctl restart ntpsec@&lt;vrf&gt;}} commands.</td>
 <td>5.10.0</td>
 <td></td>

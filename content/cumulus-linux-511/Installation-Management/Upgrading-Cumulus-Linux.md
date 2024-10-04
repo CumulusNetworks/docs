@@ -149,6 +149,10 @@ You can upgrade Cumulus Linux in one of two ways:
 Cumulus Linux 5.11 includes commands for optimized image upgrade, which uses two partitions with just one reboot cycle. Optimized image upgrade takes less time than installing the image with ONIE, which requires two reboots. You can use optimized image upgrade to upgrade from Cumulus Linux 5.11.0 to future Cumulus Linux releases.
 {{%/notice%}}
 
+{{%notice warning%}}
+To align with a long-term vision of a common interface between Cumulus Linux, Nvidia OS(NVOS), and Host-Based Networking, certain NVUE commands in Cumulus Linux 5.11 have changed. Before you upgrade to 5.11, review the list of changed commands in {{<link url="Whats-New/#new-features-and-enhancements" text="Deprecated NVUE Commands">}} and be sure to make any necessary changes to your automation.
+{{%/notice%}}
+
 Cumulus Linux also provides ISSU to upgrade an active switch with minimal disruption to the network. See {{<link url="In-Service-System-Upgrade-ISSU" text="In-Service-System-Upgrade-ISSU">}}.
 
 {{%notice note%}}

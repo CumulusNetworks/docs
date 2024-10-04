@@ -58,6 +58,10 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 | nv show interface <interface> pluggable | |
 {{< /expand >}}
 
+{{%notice warning%}}
+To align with a long-term vision of a common interface between Cumulus Linux, Nvidia OS(NVOS), and Host-Based Networking, certain NVUE commands in Cumulus Linux 5.11 have changed. Before you upgrade to 5.11, review the list of changed commands in Deprecated NVUE Commands above and be sure to make any necessary changes to your automation.
+{{%/notice%}}
+
 ## Release Considerations
 
 Review the following considerations before you upgrade to Cumulus Linux 5.11.

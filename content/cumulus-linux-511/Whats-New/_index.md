@@ -35,11 +35,11 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
   - {{<link url="Interface-Configuration-and-Management/#troubleshooting" text="nv show interface <interface>">}} commands now show the date and time the operational state of an interface changes and number of carrier transitions
   - {{<link url="NVUE-CLI/#show-switch-configuration" text="nv config show --all command">}} to show applied configuration on the switch and include all default options
   - {{<link url="Services-and-Daemons-in-Cumulus-Linux/#limit-resources-for-services" text="Commands to limit resources (memory and CPU usage) for Cumulus Linux services">}}.
+  - {{<link url="Optional-BGP-Configuration/#bgp-community-lists" text="Commands to configure BGP large community lists">}}
   - RADIUS fallback authentication support when server unavailable
   - net show interface swX details for dom and optical info for the plugables
   - L1-show equivalent
-  - BGP large communities support
-  - match source protocol connected in a route map applied to BGP
+  - Command to match the source protocol connected in a route map applied to BGP
   - interface summary view with filtering
   - BGP presentation part 2
   - EVPN presentation - Phase 2
@@ -50,6 +50,10 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 | nv set system snmp-server<br>nv unset system snmp-server | nv set service snmp-server<br>nv unset service snmp-server |
 | nv set system snmp-server state enable<br>nv set system snmp-server state disable| nv set service snmp-server enable on<br>nv set service snmp-server enable off|
 | nv show system snmp-server | nv show service snmp-server|
+| nv set qos advance-buffer-config default-global ingress-service-pool <pool-id> <property> <value> | nv set qos advance-buffer-config default-global ingress-pool <pool-id> <property> <value>|
+| nv set qos advance-buffer-config default-global egress-service-pool <pool-id> <property> <value> | nv set qos advance-buffer-config default-global egress-pool <pool-id> <property> <value>  |
+| nv show qos advance-buffer-config default-global ingress-service-pool | nv show qos advance-buffer-config default-global ingress-pool |
+| nv show qos advance-buffer-config default-global egress-service-pool | nv show qos advance-buffer-config default-global egress-pool |
 {{< /expand >}}
   - {{< expand "Deprecated NVUE Commands" >}}
 | Deprecated Command | Replace with |

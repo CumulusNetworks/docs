@@ -126,6 +126,10 @@ cumulus@leaf01:~$ nv set evpn multihoming enable on
 cumulus@leaf01:~$ nv config apply
 ```
 
+{{%notice note%}}
+On the Spectrum A1 switch, NVUE restarts `switchd` when you enable multihoming.
+{{%/notice%}}
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 

@@ -150,7 +150,7 @@ Cumulus Linux 5.11 includes commands for optimized image upgrade, which uses two
 {{%/notice%}}
 
 {{%notice warning%}}
-To align with a long-term vision of a common interface between Cumulus Linux, Nvidia OS(NVOS), and Host-Based Networking, certain NVUE commands in Cumulus Linux 5.11 have changed. Before you upgrade to 5.11, review the list of changed commands in {{<link url="Whats-New/#new-features-and-enhancements" text="Deprecated NVUE Commands">}} and be sure to make any necessary changes to your automation.
+To align with a long-term vision of a common interface between Cumulus Linux, Nvidia OS(NVOS), and Host-Based Networking, certain NVUE commands in Cumulus Linux 5.11 have changed. Before you upgrade to 5.11, review the list of changed commands in {{<link url="Whats-New/#new-features-and-enhancements" text="Changed NVUE Commands">}} and be sure to make any necessary changes to your automation.
 {{%/notice%}}
 
 Cumulus Linux also provides ISSU to upgrade an active switch with minimal disruption to the network. See {{<link url="In-Service-System-Upgrade-ISSU" text="In-Service-System-Upgrade-ISSU">}}.

@@ -20,7 +20,7 @@
 </tr>
 <tr>
 <td>4042657</td>
-<td>SDK times out with a FW FATAL health event, which requires a reboot of the system to recover. 
+<td>The SDK times out with a FW FATAL health event, which requires a reboot of the system to recover. 
 </td>
 <td>5.9.1-5.10.0</td>
 <td>5.10.1</td>
@@ -703,7 +703,7 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 </tr>
 <tr>
 <td>4042657</td>
-<td>SDK times out with a FW FATAL health event, which requires a reboot of the system to recover. 
+<td>The SDK times out with a FW FATAL health event, which requires a reboot of the system to recover. 
 </td>
 <td>5.9.1-5.10.0</td>
 <td>5.10.1</td>

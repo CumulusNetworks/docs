@@ -423,8 +423,18 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>5.10.0</td>
 </tr>
 <tr>
+<td>4101051</td>
+<td>On rare occasion, SMBUS gateway handling causes a race condition that causes the SMBUS gateway to hang. As a result, all the ports located on the same SMBUS gateway are not able to get I2C service to the module EEPROM.</td>
+<td>5.10.0</td>
+</tr>
+<tr>
 <td>4101034</td>
 <td>The I2C module read output is incorrect intermittently for modules 0-7.</td>
+<td>5.10.0</td>
+</tr>
+<tr>
+<td>4065849</td>
+<td>A firmware upgrade on certain Innolight cables might get stuck or fail.</td>
 <td>5.10.0</td>
 </tr>
 <tr>
@@ -478,6 +488,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>5.10.1</td>
 </tr>
 <tr>
+<td>4101051</td>
+<td>On rare occasion, SMBUS gateway handling causes a race condition that causes the SMBUS gateway to hang. As a result, all the ports located on the same SMBUS gateway are not able to get I2C service to the module EEPROM.</td>
+<td>5.10.0</td>
+<td>5.10.1</td>
+</tr>
+<tr>
 <td>4101034</td>
 <td>The I2C module read output is incorrect intermittently for modules 0-7.</td>
 <td>5.10.0</td>
@@ -494,6 +510,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>Low power Intel SATA controllers experience issues when using the {{mobile}} low power chipset LPM policy. This can cause the SSD to become read only.</td>
 <td>5.8.0-5.10.1</td>
 <td></td>
+</tr>
+<tr>
+<td>4065849</td>
+<td>A firmware upgrade on certain Innolight cables might get stuck or fail.</td>
+<td>5.10.0</td>
+<td>5.10.1</td>
 </tr>
 <tr>
 <td>4065847</td>

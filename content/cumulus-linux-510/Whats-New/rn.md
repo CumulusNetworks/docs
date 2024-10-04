@@ -81,7 +81,9 @@ pdfhidden: True
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
 | <a name="4101060"></a> [4101060](#4101060) <a name="4101060"></a> <br /> | The port state can't be changed from down to up.  | 5.10.0 | |
+| <a name="4101051"></a> [4101051](#4101051) <a name="4101051"></a> <br /> | On rare occasion, SMBUS gateway handling causes a race condition that causes the SMBUS gateway to hang. As a result, all the ports located on the same SMBUS gateway are not able to get I2C service to the module EEPROM. | 5.10.0 | |
 | <a name="4101034"></a> [4101034](#4101034) <a name="4101034"></a> <br /> | The I2C module read output is incorrect intermittently for modules 0-7. | 5.10.0 | |
+| <a name="4065849"></a> [4065849](#4065849) <a name="4065849"></a> <br /> | A firmware upgrade on certain Innolight cables might get stuck or fail. | 5.10.0 | |
 | <a name="4065847"></a> [4065847](#4065847) <a name="4065847"></a> <br /> | Due to internal definition changes in Module firmware, ISSU on Spectrum-4 switches from earlier releases to Cumulus Linux 5.10.1 is not supported. | 5.10.0 | |
 | <a name="4043575"></a> [4043575](#4043575) <a name="4043575"></a> <br /> | If a ZTP script includes a directive to reboot, the reboot might stop the running ZTP process before it is able to disable itself from running again. As a result, the ZTP process starts again when the system comes back up. To work around this issue, run <code>shutdown -r +1</code> to schedule a reboot after one minute so that the ZTP process can successfully complete disabling the <code>ztp.service</code> systemd service. | 5.10.0 | |
 | <a name="4042657"></a> [4042657](#4042657) <a name="4042657"></a> <br /> | The SDK times out with a FW FATAL health event, which requires a reboot of the system to recover.  | 5.9.1-5.10.0 | |
@@ -96,9 +98,11 @@ pdfhidden: True
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="4101060"></a> [4101060](#4101060) <a name="4101060"></a> <br /> | The port state can't be changed from down to up.  | 5.10.0 | 5.10.1|
+| <a name="4101051"></a> [4101051](#4101051) <a name="4101051"></a> <br /> | On rare occasion, SMBUS gateway handling causes a race condition that causes the SMBUS gateway to hang. As a result, all the ports located on the same SMBUS gateway are not able to get I2C service to the module EEPROM. | 5.10.0 | 5.10.1|
 | <a name="4101034"></a> [4101034](#4101034) <a name="4101034"></a> <br /> | The I2C module read output is incorrect intermittently for modules 0-7. | 5.10.0 | 5.10.1|
 | <a name="4100170"></a> [4100170](#4100170) <a name="4100170"></a> <br /> | The NVUE Service fails to start after an upgrade from Cumulus Linux 5.9 to Cumulus Linux 5.10 because of a corrupted database. | 5.10.0-5.10.1 | |
 | <a name="4100164"></a> [4100164](#4100164) <a name="4100164"></a> <br /> | Low power Intel SATA controllers experience issues when using the <code>mobile</code> low power chipset LPM policy. This can cause the SSD to become read only. | 5.8.0-5.10.1 | |
+| <a name="4065849"></a> [4065849](#4065849) <a name="4065849"></a> <br /> | A firmware upgrade on certain Innolight cables might get stuck or fail. | 5.10.0 | 5.10.1|
 | <a name="4065847"></a> [4065847](#4065847) <a name="4065847"></a> <br /> | Due to internal definition changes in Module firmware, ISSU on Spectrum-4 switches from earlier releases to Cumulus Linux 5.10.1 is not supported. | 5.10.0 | 5.10.1|
 | <a name="4063273"></a> [4063273](#4063273) <a name="4063273"></a> <br /> | Low power Intel SATA controllers experience issues when using the <code>mobile</code> low power chipset LPM policy. This can cause the SSD to become read only. | 5.8.0-5.10.1 | |
 | <a name="4050835"></a> [4050835](#4050835) <a name="4050835"></a> <br /> | The NVUE Service fails to start after an upgrade from Cumulus Linux 5.9 to Cumulus Linux 5.10 because of a corrupted database. | 5.10.0-5.10.1 | |

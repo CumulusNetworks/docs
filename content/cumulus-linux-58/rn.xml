@@ -283,6 +283,12 @@ leaf01# exit</td>
 <td>5.9.0-5.10.1</td>
 </tr>
 <tr>
+<td>3753050</td>
+<td>On Spectrum 1 switches, {{switchd}} might crash due to an SDK health event or error.</td>
+<td>5.6.0-5.8.0</td>
+<td>5.9.0-5.10.1</td>
+</tr>
+<tr>
 <td>3752266</td>
 <td>If you configure DHCP Server HA, the switch failover might cause the DHCP service to report a {{time mismatch too great}} error.</td>
 <td>5.7.0-5.8.0</td>

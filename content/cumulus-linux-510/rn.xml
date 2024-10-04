@@ -55,13 +55,7 @@
 <td></td>
 </tr>
 <tr>
-<td>4007613</td>
-<td>If there are multiple relay switches in the path reaching the DHCP server, DHCP packets are duplicated at each transit relay switch and the server receives duplicate packets.</td>
-<td>5.9.1-5.10.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4007590</td>
+<td>4005422</td>
 <td>When you upgrade Cumulus Linux 5.9.1 to Cumulus Linux 5.9.2 with package upgrade, the NTP service stops. To restart the NTP service, enable, then restart the service in the VRF in which it was running with the {{systemctl enable ntpsec@&lt;vrf&gt;}} and {{systemctl restart ntpsec@&lt;vrf&gt;}} commands.</td>
 <td>5.10.0-5.10.1</td>
 <td></td>
@@ -76,6 +70,12 @@
 <td>4004898</td>
 <td>When you configure the SNMP server listening address to a VRF that has no interfaces, {{snmp.service}} fails.To recover from the failure, set the SNMP server listening address back to the VRF that has interfaces. If you really want to move the SNMP server to the VRF with no interfaces, assign an interface to the VRF and move the SNMP server to the VRF.</td>
 <td>5.10.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3990135</td>
+<td>If there are multiple relay switches in the path reaching the DHCP server, DHCP packets are duplicated at each transit relay switch and the server receives duplicate packets.</td>
+<td>5.9.1-5.10.1</td>
 <td></td>
 </tr>
 <tr>
@@ -423,24 +423,24 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>5.10.0</td>
 </tr>
 <tr>
+<td>4101051</td>
+<td>On rare occasion, SMBUS gateway handling causes a race condition that causes the SMBUS gateway to hang. As a result, all the ports located on the same SMBUS gateway are not able to get I2C service to the module EEPROM.</td>
+<td>5.10.0</td>
+</tr>
+<tr>
 <td>4101034</td>
 <td>The I2C module read output is incorrect intermittently for modules 0-7.</td>
+<td>5.10.0</td>
+</tr>
+<tr>
+<td>4065849</td>
+<td>A firmware upgrade on certain Innolight cables might get stuck or fail.</td>
 <td>5.10.0</td>
 </tr>
 <tr>
 <td>4065847</td>
 <td>Due to internal definition changes in Module firmware, ISSU on Spectrum-4 switches from earlier releases to Cumulus Linux 5.10.1 is not supported.</td>
 <td>5.10.0</td>
-</tr>
-<tr>
-<td>4062271</td>
-<td>ASIC monitoring histogram collection might not work because of a crash in the {{asic-monitor}} service. To work around this issue, see the &lt;a href="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-510/Whats-New/#release-considerations"&gt;Release Considerations section of the What’s New&lt;/a&gt;.</td>
-<td>5.10.0</td>
-</tr>
-<tr>
-<td>4047828</td>
-<td>After network churn, the {{﻿watchfrr}} process might restart FRR because zebra is unresponsive.</td>
-<td>5.9.1-5.10.0</td>
 </tr>
 <tr>
 <td>4043575</td>
@@ -463,6 +463,16 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>The Open telemetry interface statistic description for {{nvswitch_histogram_interface_egress_buffer}} has a typographical error; engress should be egress.</td>
 <td>5.10.0</td>
 </tr>
+<tr>
+<td>4037224</td>
+<td>ASIC monitoring histogram collection might not work because of a crash in the {{asic-monitor}} service. To work around this issue, see the &lt;a href="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-510/Whats-New/#release-considerations"&gt;Release Considerations section of the What’s New&lt;/a&gt;.</td>
+<td>5.10.0</td>
+</tr>
+<tr>
+<td>4034329</td>
+<td>After network churn, the {{﻿watchfrr}} process might restart FRR because zebra is unresponsive.</td>
+<td>5.9.1-5.10.0</td>
+</tr>
 </table>
 <table name="Open Issues in 5.10.0">
 <tr>
@@ -474,6 +484,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <tr>
 <td>4101060</td>
 <td>The port state can't be changed from down to up. </td>
+<td>5.10.0</td>
+<td>5.10.1</td>
+</tr>
+<tr>
+<td>4101051</td>
+<td>On rare occasion, SMBUS gateway handling causes a race condition that causes the SMBUS gateway to hang. As a result, all the ports located on the same SMBUS gateway are not able to get I2C service to the module EEPROM.</td>
 <td>5.10.0</td>
 <td>5.10.1</td>
 </tr>
@@ -494,6 +510,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>Low power Intel SATA controllers experience issues when using the {{mobile}} low power chipset LPM policy. This can cause the SSD to become read only.</td>
 <td>5.8.0-5.10.1</td>
 <td></td>
+</tr>
+<tr>
+<td>4065849</td>
+<td>A firmware upgrade on certain Innolight cables might get stuck or fail.</td>
+<td>5.10.0</td>
+<td>5.10.1</td>
 </tr>
 <tr>
 <td>4065847</td>

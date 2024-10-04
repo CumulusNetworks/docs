@@ -439,7 +439,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>4042657</td>
-<td>SDK times out with a FW FATAL health event, which requires a reboot of the system to recover. 
+<td>The SDK times out with a FW FATAL health event, which requires a reboot of the system to recover. 
 </td>
 <td>5.9.1-5.10.0</td>
 </tr>
@@ -521,7 +521,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>4042657</td>
-<td>SDK times out with a FW FATAL health event, which requires a reboot of the system to recover. 
+<td>The SDK times out with a FW FATAL health event, which requires a reboot of the system to recover. 
 </td>
 <td>5.9.1-5.10.0</td>
 <td>5.10.1</td>

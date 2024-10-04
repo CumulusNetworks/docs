@@ -146,7 +146,7 @@ You can upgrade Cumulus Linux in one of two ways:
 - Upgrade only the changed packages using package upgrade.
 
 {{%notice note%}}
-Cumulus Linux 5.11 includes commands for optimized image upgrade, which uses two partitions with just one reboot cycle that takes less time than installing the image with ONIE, which requires two reboots. You will be able to use optimized image upgrade to upgrade from Cumulus Linux 5.11.0 to future Cumulus Linux releases.
+Cumulus Linux 5.11 includes commands for optimized image upgrade, which uses two partitions with just one reboot cycle. Optimized image upgrade takes less time than installing the image with ONIE, which requires two reboots. You can use optimized image upgrade to upgrade from Cumulus Linux 5.11.0 to future Cumulus Linux releases.
 {{%/notice%}}
 
 Cumulus Linux also provides ISSU to upgrade an active switch with minimal disruption to the network. See {{<link url="In-Service-System-Upgrade-ISSU" text="In-Service-System-Upgrade-ISSU">}}.

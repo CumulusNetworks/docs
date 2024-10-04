@@ -418,6 +418,11 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Affects </th>
 </tr>
 <tr>
+<td>4101060</td>
+<td>The port state can't be changed from down to up. </td>
+<td>5.10.0</td>
+</tr>
+<tr>
 <td>4101034</td>
 <td>The I2C module read output is incorrect intermittently for modules 0-7.</td>
 <td>5.10.0</td>
@@ -434,8 +439,14 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>4042657</td>
-<td> A {{crspace}} timeout health event might occur when using VSEC GW if you perform the following steps:1. Write a valid {{Crspace}} to an address.2. Change the {{VSEC.space}} to a different space.3. Write {{VSEC.address=0}} 4. Write {{VSEC.space = crspace}}5. Read the address again.</td>
+<td>SDK times out with a FW FATAL health event, which requires a reboot of the system to recover. 
+</td>
 <td>5.9.1-5.10.0</td>
+</tr>
+<tr>
+<td>4042262</td>
+<td>The {{switchd}} service goes down and there is a FW Long Command Timeout.</td>
+<td>5.10.0</td>
 </tr>
 <tr>
 <td>4037462</td>
@@ -459,6 +470,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>4101060</td>
+<td>The port state can't be changed from down to up. </td>
+<td>5.10.0</td>
+<td>5.10.1</td>
 </tr>
 <tr>
 <td>4101034</td>
@@ -504,8 +521,15 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>4042657</td>
-<td> A {{crspace}} timeout health event might occur when using VSEC GW if you perform the following steps:1. Write a valid {{Crspace}} to an address.2. Change the {{VSEC.space}} to a different space.3. Write {{VSEC.address=0}} 4. Write {{VSEC.space = crspace}}5. Read the address again.</td>
+<td>SDK times out with a FW FATAL health event, which requires a reboot of the system to recover. 
+</td>
 <td>5.9.1-5.10.0</td>
+<td>5.10.1</td>
+</tr>
+<tr>
+<td>4042262</td>
+<td>The {{switchd}} service goes down and there is a FW Long Command Timeout.</td>
+<td>5.10.0</td>
 <td>5.10.1</td>
 </tr>
 <tr>

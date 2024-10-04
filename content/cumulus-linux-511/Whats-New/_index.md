@@ -21,7 +21,7 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 - {{<link url="Forwarding-Table-Size-and-Profiles/#spectrum-1" text="ecmp-nh-heavy forwarding profile">}} for Spectrum 1 switches
 - {{<link url="Optional-BGP-Configuration/#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}}
 - {{<link url="RADIUS-AAA/#radius-user-command-accounting" text="RADIUS user command accounting">}}
-- {{<link url="Upgrading-Cumulus-Linux/#install-an-image" text="Optimized image upgrade">}}
+- {{<link url="Upgrading-Cumulus-Linux/#upgrade-cumulus-linux" text="Optimized image upgrade commands">}} (available for future upgrades) so that you can use two partitions with just one reboot cycle that takes less time than installing the image with ONIE
 - OTLP phase 3
 - All packet histogram configuration
 - NVUE
@@ -67,4 +67,3 @@ Cumulus Linux 5.11 includes the NVUE object model. After you upgrade to Cumulus 
 - Update your automation tools to use NVUE.
 - {{<link url="NVUE-CLI/#configure-nvue-to-ignore-linux-files" text="Configure NVUE to ignore certain underlying Linux files">}} when applying configuration changes.
 - Use Linux and FRR (vtysh) commands instead of NVUE for **all** switch configuration.
-

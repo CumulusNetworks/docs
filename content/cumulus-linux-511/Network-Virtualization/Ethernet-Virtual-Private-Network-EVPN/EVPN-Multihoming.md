@@ -619,20 +619,33 @@ Fast failover also triggers:
 
 ### Disable Next Hop Group Sharing in the ASIC
 
-When you configure EVPN-MH, container sharing for both layer 2 and layer 3 next hop groups is on by default. The switch stores these settings in the `evpn.multihoming.shared_l2_groups` and `evpn.multihoming.shared_l3_groups` variables.
+When you configure EVPN-MH, container sharing for both layer 2 and layer 3 next hop groups is on by default. You can disable container sharing for faster failover when an Ethernet segment link flaps.
 
-Disabling container sharing allows for faster failover when an Ethernet segment link flaps.
-
-To disable either setting, edit the `switchd.conf` file, set the variable to _FALSE_, then restart the `switchd` service. For example, to disable container sharing for layer 3 next hop groups:
+To disable container sharing for layer 2 next hop groups, edit the `/etc/cumulus/switchd.conf` file, add the `evpn.multihoming.shared_l2_groups = FALSE` variable, then restart the `switchd` service:
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
 ...
-evpn.multihoming.shared_l3_groups = FALSE
+evpn.multihoming.shared_l2_groups = FALSE
 ...
+```
 
+```
 cumulus@switch:~$ sudo systemctl restart switchd.service
 ```
+
+To disable container sharing for layer 3 next hop groups, create the `etc/cumulus/switchd/switchd_misc.conf` file, add the `l3_nexthop.shared_ecmp_groups = FALSE` variable, then restart the `switchd` service:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/switchd/switchd_misc.conf 
+l3_nexthop.shared_ecmp_groups = FALSE
+...
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart switchd.service
+```
+
 <!-- vale off -->
 ### Disable EAD-per-EVI Route Advertisements
 <!-- vale on -->

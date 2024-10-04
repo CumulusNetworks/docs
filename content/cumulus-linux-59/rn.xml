@@ -20,7 +20,8 @@
 </tr>
 <tr>
 <td>4042657</td>
-<td> A {{crspace}} timeout health event might occur when using VSEC GW if you perform the following steps:1. Write a valid {{Crspace}} to an address.2. Change the {{VSEC.space}} to a different space.3. Write {{VSEC.address=0}} 4. Write {{VSEC.space = crspace}}5. Read the address again.</td>
+<td>SDK times out with a FW FATAL health event, which requires a reboot of the system to recover. 
+</td>
 <td>5.9.1-5.10.0</td>
 <td>5.10.1</td>
 </tr>
@@ -702,7 +703,8 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 </tr>
 <tr>
 <td>4042657</td>
-<td> A {{crspace}} timeout health event might occur when using VSEC GW if you perform the following steps:1. Write a valid {{Crspace}} to an address.2. Change the {{VSEC.space}} to a different space.3. Write {{VSEC.address=0}} 4. Write {{VSEC.space = crspace}}5. Read the address again.</td>
+<td>SDK times out with a FW FATAL health event, which requires a reboot of the system to recover. 
+</td>
 <td>5.9.1-5.10.0</td>
 <td>5.10.1</td>
 </tr>

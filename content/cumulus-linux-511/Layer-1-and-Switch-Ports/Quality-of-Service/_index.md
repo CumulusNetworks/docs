@@ -1599,8 +1599,8 @@ cumulus@switch:~$ nv config apply
 
 You can configure ingress and egress service pool profile properties with the following NVUE commands:
 
-- `nv set qos advance-buffer-config default-global ingress-pool <pool-id> <property> <value>`
-- `nv set qos advance-buffer-config default-global egress-pool <pool-id> <property> <value>`
+- `nv set qos advance-buffer-config default-global ingress-service-pool <pool-id> <property> <value>`
+- `nv set qos advance-buffer-config default-global egress-service-pool <pool-id> <property> <value>`
 
 You can adjust the following properties for each pool:
 
@@ -1626,26 +1626,26 @@ Use caution when configuring advanced buffer settings. NVUE presents a warning i
 Reference the table below to view the mappings between the default traffic pool and advanced buffer properties:
 
 | Default Traffic Pool | Default Traffic Pool Properties | Advanced Buffer Region or Service Pool | Advanced Buffer Properties |
-|------------- |----------- | ----------- | ----------- | 
-| `default-lossy` | `memory-percent` | `ingress-pool 0`<br>`egress-pool 0` | `memory-percent` |
+|------------- |----------- | ----------- | ----------- |
+| `default-lossy` | `memory-percent` | `ingress-service-pool 0`<br>`egress-service-pool 0` | `memory-percent` |
 | `default-lossy` | `switch-priority` | `ingress-lossy-buffer` | `priority-group bulk switch-priority` |
-| `default-lossless` | `memory-percent` | `ingress-pool 1`<br>`egress-pool 1` | `memory-percent` |
-| `roce-lossless` | `memory-percent` | `ingress-pool 1`<br>`egress-pool 1` | `memory-percent` |
-| `mc-lossy` | `memory-percent` | `ingress-pool 2`<br>`egress-pool 2` | `memory-percent` |
+| `default-lossless` | `memory-percent` | `ingress-service-pool 1`<br>`egress-service-pool 1` | `memory-percent` |
+| `roce-lossless` | `memory-percent` | `ingress-service-pool 1`<br>`egress-service-pool 1` | `memory-percent` |
+| `mc-lossy` | `memory-percent` | `ingress-service-pool 2`<br>`egress-service-pool 2` | `memory-percent` |
 | `mc-lossy` | `switch-priority` | `ingress-lossy-buffer` | `priority-group service2 switch-priority` |
 
-For example, to assign 20 percent of memory to a new static service pool, you must allow 20 percent of memory to be available from the default traffic pools. The following commands reduce the `default-lossy` traffic pool to 80 percent memory, allowing you to assign the memory to `ingress-pool 3`:
+For example, to assign 20 percent of memory to a new static service pool, you must allow 20 percent of memory to be available from the default traffic pools. The following commands reduce the `default-lossy` traffic pool to 80 percent memory, allowing you to assign the memory to `ingress-service-pool 3`:
 
 ```
 cumulus@switch:~$ nv set qos traffic-pool default-lossy memory-percent 80
-cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-pool 3 memory-percent 20
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-service-pool 3 memory-percent 20
 cumulus@switch:~$ nv config apply
 ```
 
 You can view advanced buffer configuration with the `nv show qos advance-buffer-config default-global <buffer/pool name>` command:
 
 ```
-cumulus@switch:~$ nv show qos advance-buffer-config default-global ingress-pool
+cumulus@switch:~$ nv show qos advance-buffer-config default-global ingress-service-pool
 Pool-Id  infinite  memory-percent  mode     reserved  shared-alpha  shared-bytes
 -------  --------  --------------  -------  --------  ------------  ------------
 0                  80              dynamic                                      

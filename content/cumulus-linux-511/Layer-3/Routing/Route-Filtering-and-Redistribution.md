@@ -940,6 +940,40 @@ cumulus@leaf01:~$
 {{< /tab >}}
 {{< /tabs >}}
 
+### Match Large Community List
+
+The following example configures a route map to allow prefixes that match BGP large community-list 11.
+
+{{< tabs "TabID939 ">}}
+{{< tab "NVUE Commands">}}
+
+```
+cumulus@leaf01:~$ nv set router policy large-community-list 11 rule 10 action permit
+cumulus@leaf01:~$ nv set router policy large-community-list 11 rule 10 large-community 4200857911:011:011
+cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 10 action permit
+cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 10 match large-community-list mylist
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# bgp large-community-list 11 seq 10 permit 4200857911:011:011
+leaf01(config)# route-map MAP1 permit 10
+leaf01(config-route-map)# match large-community 11
+leaf01(config-route-map)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Set IPv6 Prefer Global
 <!-- vale off -->
 With multiple BGP peerings to the same router when {{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" text="adaptive routing">}} is `on`, or with multiple peerings to the same router on interfaces that share the same MAC address or physical interface, you can configure a route map to prefer the global IPv6 address when a route contains both link-local and global next hop addresses.

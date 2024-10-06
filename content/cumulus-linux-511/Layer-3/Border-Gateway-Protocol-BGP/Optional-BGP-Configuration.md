@@ -2301,7 +2301,7 @@ The vtysh `show ip bgp summary json` command shows the last convergence event.
 <!-- vale off -->
 You can use *{{<exlink url="http://docs.frrouting.org/en/latest/bgp.html#community-lists" text="community lists">}}* to define a BGP community to tag one or more routes. You can then use the communities to apply a route policy on either egress or ingress.
 <!-- vale on -->
-The BGP community list can be either *standard* or *extended*. The standard BGP community list is a pair of values (such as *100:100*) that you can tag on a specific prefix and advertise to other neighbors, or you can apply them on route ingress. The standard BGP community list can be one of four BGP default communities:
+The BGP community list can be either *standard*, *extended*, or *large*. The standard BGP community list is a pair of values (such as *100:100*) that you can tag on a specific prefix and advertise to other neighbors, or you can apply them on route ingress. The standard BGP community list can be one of four BGP default communities:
 
 - *internet*: a BGP community that matches all routes
 - *local-AS*: a BGP community that restricts routes to your confederation's sub-AS
@@ -2309,6 +2309,8 @@ The BGP community list can be either *standard* or *extended*. The standard BGP 
 - *no-export*: a BGP community that is not advertised to the eBGP peer
 
 An extended BGP community list takes a regular expression of communities and matches the listed communities.
+
+A large community-list accommodate more identification information, including 4-byte AS numbers.
 
 When the neighbor receives the prefix, it examines the community value and takes action accordingly, such as permitting or denying the community member in the routing policy.
 
@@ -2494,6 +2496,38 @@ leaf01# exit
 {{%notice note%}}
 To use a special character, such as a period (.) in the regular expression for an extended BGP community list, you must escape the character with a backslash (`\`). For example, `nv set router policy community-list COMMUNITY1 rule 10 community "\.*_65000:2002_.*"`.
 {{%/notice%}}
+
+The following example configures a BGP large community list and applies the large community list to a route map.
+
+{{< tabs "TabID2500 ">}}
+{{< tab "NVUE Commands">}}
+
+```
+cumulus@leaf01:~$ nv set router policy large-community-list 11 rule 10 action permit
+cumulus@leaf01:~$ nv set router policy large-community-list 11 rule 10 large-community 4200857911:011:011
+cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 10 match large-community-list mylist
+cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 10 action permit
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# bgp large-community-list 11 seq 10 permit 4200857911:011:011
+leaf01(config)# route-map MAP1 permit 10
+leaf01(config-route-map)# match large-community 11
+leaf01(config-route-map)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{%notice note%}}
 Cumulus Linux considers the full list of communities on a BGP route as a single string to evaluate. If you try to match `$` (ends with), Cumulus Linux matches the last community value in the list of communities, not the individual community values within the list.

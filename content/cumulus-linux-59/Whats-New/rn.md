@@ -15,8 +15,12 @@ pdfhidden: True
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="4100164"></a> [4100164](#4100164) <a name="4100164"></a> <br /> | Low power Intel SATA controllers experience issues when using the <code>mobile</code> low power chipset LPM policy. This can cause the SSD to become read only. | 5.8.0-5.10.1 | |
+| <a name="4081784"></a> [4081784](#4081784) <a name="4081784"></a> <br /> | If you configure an inbound route policy that drops prefixes, then run a vtysh <code>show bgp vrf <vrf> neighbours <neighbor> received-routes</code> command, the BGP service might crash.>br>Avoid running a vtysh received routes show command if you configure an inbound route policy that drops prefixes. | 5.9.1-5.10.1 | |
+| <a name="4072165"></a> [4072165](#4072165) <a name="4072165"></a> <br /> | When you add a VLAN to a bridge member port, VXLAN traffic might be impacted for few seconds. | 5.7.0-5.10.1 | |
+| <a name="4066219"></a> [4066219](#4066219) <a name="4066219"></a> <br /> | Some STP interfaces might remain in a blocking state when there are large numbers of dis-contiguous VLANs enabled on a port. | 5.8.0-5.10.1 | |
 | <a name="4063273"></a> [4063273](#4063273) <a name="4063273"></a> <br /> | Low power Intel SATA controllers experience issues when using the <code>mobile</code> low power chipset LPM policy. This can cause the SSD to become read only. | 5.8.0-5.10.1 | |
 | <a name="4042657"></a> [4042657](#4042657) <a name="4042657"></a> <br /> | The SDK times out with a FW FATAL health event, which requires a reboot of the system to recover.  | 5.9.1-5.10.0 | 5.10.1|
+| <a name="4040024"></a> [4040024](#4040024) <a name="4040024"></a> <br /> | After network churn, the <code>﻿watchfrr</code> process might restart FRR because zebra is unresponsive. | 5.9.1-5.10.0 | 5.10.1|
 | <a name="4034329"></a> [4034329](#4034329) <a name="4034329"></a> <br /> | After network churn, the <code>﻿watchfrr</code> process might restart FRR because zebra is unresponsive. | 5.9.1-5.10.0 | 5.10.1|
 | <a name="3990135"></a> [3990135](#3990135) <a name="3990135"></a> <br /> | If there are multiple relay switches in the path reaching the DHCP server, DHCP packets are duplicated at each transit relay switch and the server receives duplicate packets. | 5.9.1-5.10.1 | |
 | <a name="3985600"></a> [3985600](#3985600) <a name="3985600"></a> <br /> | NTP initialization issues prevent the NTP service from starting on a non-default VRF. | 5.9.0-5.9.2 | 5.10.0-5.10.1|
@@ -136,8 +140,12 @@ pdfhidden: True
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="4100164"></a> [4100164](#4100164) <a name="4100164"></a> <br /> | Low power Intel SATA controllers experience issues when using the <code>mobile</code> low power chipset LPM policy. This can cause the SSD to become read only. | 5.8.0-5.10.1 | |
+| <a name="4081784"></a> [4081784](#4081784) <a name="4081784"></a> <br /> | If you configure an inbound route policy that drops prefixes, then run a vtysh <code>show bgp vrf <vrf> neighbours <neighbor> received-routes</code> command, the BGP service might crash.>br>Avoid running a vtysh received routes show command if you configure an inbound route policy that drops prefixes. | 5.9.1-5.10.1 | |
+| <a name="4072165"></a> [4072165](#4072165) <a name="4072165"></a> <br /> | When you add a VLAN to a bridge member port, VXLAN traffic might be impacted for few seconds. | 5.7.0-5.10.1 | |
+| <a name="4066219"></a> [4066219](#4066219) <a name="4066219"></a> <br /> | Some STP interfaces might remain in a blocking state when there are large numbers of dis-contiguous VLANs enabled on a port. | 5.8.0-5.10.1 | |
 | <a name="4063273"></a> [4063273](#4063273) <a name="4063273"></a> <br /> | Low power Intel SATA controllers experience issues when using the <code>mobile</code> low power chipset LPM policy. This can cause the SSD to become read only. | 5.8.0-5.10.1 | |
 | <a name="4042657"></a> [4042657](#4042657) <a name="4042657"></a> <br /> | The SDK times out with a FW FATAL health event, which requires a reboot of the system to recover.  | 5.9.1-5.10.0 | 5.10.1|
+| <a name="4040024"></a> [4040024](#4040024) <a name="4040024"></a> <br /> | After network churn, the <code>﻿watchfrr</code> process might restart FRR because zebra is unresponsive. | 5.9.1-5.10.0 | 5.10.1|
 | <a name="4035681"></a> [4035681](#4035681) <a name="4035681"></a> <br /> | The <code>nv show interface <interface></code> commands show RX and TX Power values from the wrong lanes on breakout ports. | 5.8.0-5.9.1, 5.10.0-5.10.1 | 5.9.2|
 | <a name="4034329"></a> [4034329](#4034329) <a name="4034329"></a> <br /> | After network churn, the <code>﻿watchfrr</code> process might restart FRR because zebra is unresponsive. | 5.9.1-5.10.0 | 5.10.1|
 | <a name="4023637"></a> [4023637](#4023637) <a name="4023637"></a> <br /> | When you disable dynamic NAT manually in the <code>/etc/cumulus/switchd.conf</code> file instead of using NVUE commands but the dynamic NAT rules still exist in the <code>/etc/cumulus/acl/policy,d/.rules</code> file, the switch encounters a memory leak. To work around this issue, remove dynamic NAT rules in rules files in <code>/etc/cumulus/acl/policy.d</code> before you disable dynamic NAT in the <code>/etc/cumulus/switchd.conf</code> file. | 5.9.1 | 5.9.2-5.10.1|
@@ -255,6 +263,8 @@ pdfhidden: True
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="4100164"></a> [4100164](#4100164) <a name="4100164"></a> <br /> | Low power Intel SATA controllers experience issues when using the <code>mobile</code> low power chipset LPM policy. This can cause the SSD to become read only. | 5.8.0-5.10.1 | |
+| <a name="4072165"></a> [4072165](#4072165) <a name="4072165"></a> <br /> | When you add a VLAN to a bridge member port, VXLAN traffic might be impacted for few seconds. | 5.7.0-5.10.1 | |
+| <a name="4066219"></a> [4066219](#4066219) <a name="4066219"></a> <br /> | Some STP interfaces might remain in a blocking state when there are large numbers of dis-contiguous VLANs enabled on a port. | 5.8.0-5.10.1 | |
 | <a name="4063273"></a> [4063273](#4063273) <a name="4063273"></a> <br /> | Low power Intel SATA controllers experience issues when using the <code>mobile</code> low power chipset LPM policy. This can cause the SSD to become read only. | 5.8.0-5.10.1 | |
 | <a name="4035681"></a> [4035681](#4035681) <a name="4035681"></a> <br /> | The <code>nv show interface <interface></code> commands show RX and TX Power values from the wrong lanes on breakout ports. | 5.8.0-5.9.1, 5.10.0-5.10.1 | 5.9.2|
 | <a name="4004453"></a> [4004453](#4004453) <a name="4004453"></a> <br /> | The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful. | 4.3.0-5.9.1, 5.10.0-5.10.1 | 5.9.2|

@@ -7,6 +7,30 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4100164</td>
+<td>Low power Intel SATA controllers experience issues when using the {{mobile}} low power chipset LPM policy. This can cause the SSD to become read only.</td>
+<td>5.8.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4072165</td>
+<td>When you add a VLAN to a bridge member port, VXLAN traffic might be impacted for few seconds.</td>
+<td>5.7.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4066219</td>
+<td>Some STP interfaces might remain in a blocking state when there are large numbers of dis-contiguous VLANs enabled on a port.</td>
+<td>5.8.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4063273</td>
+<td>Low power Intel SATA controllers experience issues when using the {{mobile}} low power chipset LPM policy. This can cause the SSD to become read only.</td>
+<td>5.8.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4035681</td>
 <td>The {{nv show interface &lt;interface&gt;}} commands show RX and TX Power values from the wrong lanes on breakout ports.</td>
 <td>5.8.0-5.9.1, 5.10.0-5.10.1</td>
@@ -86,12 +110,6 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <td>When ARP suppression is off, remote EVPN VTEPs duplicate ARP packets from local hosts and each remote host receives two copies of the ARP packets. The issue also applies to IPv6 ND packets.</td>
 <td>5.8.0-5.9.1</td>
 <td>5.9.2-5.10.1</td>
-</tr>
-<tr>
-<td>3875696</td>
-<td>The default TX State for 1G Base-X optical modules that are unconfigured or admin down in Cumulus Linux 5.7.0 and later is OFF.  However, on the first boot after upgrade from an earlier release, a module TX power might be ON or OFF depending on the TX State it was before the upgrade. The TX_Disable line is not properly set on first boot. To work around this issue, reboot the switch again, or {{ifup}} or {{ifdown}} the 1G Base-X interface to disable TX Power.</td>
-<td>5.8.0-5.10.1</td>
-<td></td>
 </tr>
 <tr>
 <td>3875419</td>
@@ -274,6 +292,12 @@ leaf01# exit</td>
 <td>3759515</td>
 <td>After upgrading to Cumulus Linux 5.8, MLAG reports bonds as {{bpdu guard mismatch}}. To work around this issue, restart the MLAG service with the {{systemctl restart clagd}} on the device that reports the conflict.</td>
 <td>5.8.0</td>
+<td>5.9.0-5.10.1</td>
+</tr>
+<tr>
+<td>3753050</td>
+<td>On Spectrum 1 switches, {{switchd}} might crash due to an SDK health event or error.</td>
+<td>5.6.0-5.8.0</td>
 <td>5.9.0-5.10.1</td>
 </tr>
 <tr>

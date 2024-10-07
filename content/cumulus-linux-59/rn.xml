@@ -7,22 +7,53 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4047828</td>
+<td>4100164</td>
+<td>Low power Intel SATA controllers experience issues when using the {{mobile}} low power chipset LPM policy. This can cause the SSD to become read only.</td>
+<td>5.8.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4081784</td>
+<td>If you configure an inbound route policy that drops prefixes, then run a vtysh {{show bgp vrf &lt;vrf&gt; neighbours &lt;neighbor&gt; received-routes}} command, the BGP service might crash.&gt;br&gt;Avoid running a vtysh received routes show command if you configure an inbound route policy that drops prefixes.</td>
+<td>5.9.1-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4072165</td>
+<td>When you add a VLAN to a bridge member port, VXLAN traffic might be impacted for few seconds.</td>
+<td>5.7.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4066219</td>
+<td>Some STP interfaces might remain in a blocking state when there are large numbers of dis-contiguous VLANs enabled on a port.</td>
+<td>5.8.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4063273</td>
+<td>Low power Intel SATA controllers experience issues when using the {{mobile}} low power chipset LPM policy. This can cause the SSD to become read only.</td>
+<td>5.8.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4042657</td>
+<td>The SDK times out with a FW FATAL health event, which requires a reboot of the system to recover. 
+</td>
+<td>5.9.1-5.10.0</td>
+<td>5.10.1</td>
+</tr>
+<tr>
+<td>4040024</td>
 <td>After network churn, the {{﻿watchfrr}} process might restart FRR because zebra is unresponsive.</td>
 <td>5.9.1-5.10.0</td>
 <td>5.10.1</td>
 </tr>
 <tr>
-<td>4043995</td>
-<td> After network churn, the ﻿{{watchfrr}} process might restart FRR because zebra is unresponsive.</td>
-<td>5.9.1-5.10.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4007613</td>
-<td>If there are multiple relay switches in the path reaching the DHCP server, DHCP packets are duplicated at each transit relay switch and the server receives duplicate packets.</td>
-<td>5.9.1-5.10.1</td>
-<td></td>
+<td>4034329</td>
+<td>After network churn, the {{﻿watchfrr}} process might restart FRR because zebra is unresponsive.</td>
+<td>5.9.1-5.10.0</td>
+<td>5.10.1</td>
 </tr>
 <tr>
 <td>3990135</td>
@@ -49,12 +80,6 @@ ZTP: ZTP DHCP: Unexpected error: 'ascii' codec can't decode byte 0xe2 in positio
 ZTP: Script returned failure 
 To work around this issue, use the {{-q}} option with {{wget}}.</td>
 <td>5.9.0-5.10.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3875696</td>
-<td>The default TX State for 1G Base-X optical modules that are unconfigured or admin down in Cumulus Linux 5.7.0 and later is OFF.  However, on the first boot after upgrade from an earlier release, a module TX power might be ON or OFF depending on the TX State it was before the upgrade. The TX_Disable line is not properly set on first boot. To work around this issue, reboot the switch again, or {{ifup}} or {{ifdown}} the 1G Base-X interface to disable TX Power.</td>
-<td>5.8.0-5.10.1</td>
 <td></td>
 </tr>
 <tr>
@@ -689,22 +714,59 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4047828</td>
-<td>After network churn, the {{﻿watchfrr}} process might restart FRR because zebra is unresponsive.</td>
+<td>4100164</td>
+<td>Low power Intel SATA controllers experience issues when using the {{mobile}} low power chipset LPM policy. This can cause the SSD to become read only.</td>
+<td>5.8.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4081784</td>
+<td>If you configure an inbound route policy that drops prefixes, then run a vtysh {{show bgp vrf &lt;vrf&gt; neighbours &lt;neighbor&gt; received-routes}} command, the BGP service might crash.&gt;br&gt;Avoid running a vtysh received routes show command if you configure an inbound route policy that drops prefixes.</td>
+<td>5.9.1-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4072165</td>
+<td>When you add a VLAN to a bridge member port, VXLAN traffic might be impacted for few seconds.</td>
+<td>5.7.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4066219</td>
+<td>Some STP interfaces might remain in a blocking state when there are large numbers of dis-contiguous VLANs enabled on a port.</td>
+<td>5.8.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4063273</td>
+<td>Low power Intel SATA controllers experience issues when using the {{mobile}} low power chipset LPM policy. This can cause the SSD to become read only.</td>
+<td>5.8.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4042657</td>
+<td>The SDK times out with a FW FATAL health event, which requires a reboot of the system to recover. 
+</td>
 <td>5.9.1-5.10.0</td>
 <td>5.10.1</td>
 </tr>
 <tr>
-<td>4043995</td>
-<td> After network churn, the ﻿{{watchfrr}} process might restart FRR because zebra is unresponsive.</td>
-<td>5.9.1-5.10.1</td>
-<td></td>
+<td>4040024</td>
+<td>After network churn, the {{﻿watchfrr}} process might restart FRR because zebra is unresponsive.</td>
+<td>5.9.1-5.10.0</td>
+<td>5.10.1</td>
 </tr>
 <tr>
 <td>4035681</td>
 <td>The {{nv show interface &lt;interface&gt;}} commands show RX and TX Power values from the wrong lanes on breakout ports.</td>
 <td>5.8.0-5.9.1, 5.10.0-5.10.1</td>
 <td>5.9.2</td>
+</tr>
+<tr>
+<td>4034329</td>
+<td>After network churn, the {{﻿watchfrr}} process might restart FRR because zebra is unresponsive.</td>
+<td>5.9.1-5.10.0</td>
+<td>5.10.1</td>
 </tr>
 <tr>
 <td>4023637</td>
@@ -718,12 +780,6 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <td>5.9.1</td>
 <td>5.9.2-5.10.1</td>
-</tr>
-<tr>
-<td>4007613</td>
-<td>If there are multiple relay switches in the path reaching the DHCP server, DHCP packets are duplicated at each transit relay switch and the server receives duplicate packets.</td>
-<td>5.9.1-5.10.1</td>
-<td></td>
 </tr>
 <tr>
 <td>4007612</td>
@@ -971,12 +1027,6 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 <td>The NVUE {{nv show interface eth0}} and {{nv show vrf}} commands take more than two minutes to run if you have configured hundreds of interfaces because NVUE makes repetitive system calls to get {{vlan/link/tunnel}} bridge information.</td>
 <td>5.9.0-5.9.1</td>
 <td>5.9.2-5.10.1</td>
-</tr>
-<tr>
-<td>3875696</td>
-<td>The default TX State for 1G Base-X optical modules that are unconfigured or admin down in Cumulus Linux 5.7.0 and later is OFF.  However, on the first boot after upgrade from an earlier release, a module TX power might be ON or OFF depending on the TX State it was before the upgrade. The TX_Disable line is not properly set on first boot. To work around this issue, reboot the switch again, or {{ifup}} or {{ifdown}} the 1G Base-X interface to disable TX Power.</td>
-<td>5.8.0-5.10.1</td>
-<td></td>
 </tr>
 <tr>
 <td>3875589</td>
@@ -1406,6 +1456,30 @@ You can safely ignore this warning.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4100164</td>
+<td>Low power Intel SATA controllers experience issues when using the {{mobile}} low power chipset LPM policy. This can cause the SSD to become read only.</td>
+<td>5.8.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4072165</td>
+<td>When you add a VLAN to a bridge member port, VXLAN traffic might be impacted for few seconds.</td>
+<td>5.7.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4066219</td>
+<td>Some STP interfaces might remain in a blocking state when there are large numbers of dis-contiguous VLANs enabled on a port.</td>
+<td>5.8.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4063273</td>
+<td>Low power Intel SATA controllers experience issues when using the {{mobile}} low power chipset LPM policy. This can cause the SSD to become read only.</td>
+<td>5.8.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4035681</td>
 <td>The {{nv show interface &lt;interface&gt;}} commands show RX and TX Power values from the wrong lanes on breakout ports.</td>
 <td>5.8.0-5.9.1, 5.10.0-5.10.1</td>
@@ -1591,12 +1665,6 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 <td>The NVUE {{nv show interface eth0}} and {{nv show vrf}} commands take more than two minutes to run if you have configured hundreds of interfaces because NVUE makes repetitive system calls to get {{vlan/link/tunnel}} bridge information.</td>
 <td>5.9.0-5.9.1</td>
 <td>5.9.2-5.10.1</td>
-</tr>
-<tr>
-<td>3875696</td>
-<td>The default TX State for 1G Base-X optical modules that are unconfigured or admin down in Cumulus Linux 5.7.0 and later is OFF.  However, on the first boot after upgrade from an earlier release, a module TX power might be ON or OFF depending on the TX State it was before the upgrade. The TX_Disable line is not properly set on first boot. To work around this issue, reboot the switch again, or {{ifup}} or {{ifdown}} the 1G Base-X interface to disable TX Power.</td>
-<td>5.8.0-5.10.1</td>
-<td></td>
 </tr>
 <tr>
 <td>3875589</td>
@@ -2126,6 +2194,11 @@ leaf01# exit</td>
 <td>3759515</td>
 <td>After upgrading to Cumulus Linux 5.8, MLAG reports bonds as {{bpdu guard mismatch}}. To work around this issue, restart the MLAG service with the {{systemctl restart clagd}} on the device that reports the conflict.</td>
 <td>5.8.0</td>
+</tr>
+<tr>
+<td>3753050</td>
+<td>On Spectrum 1 switches, {{switchd}} might crash due to an SDK health event or error.</td>
+<td>5.6.0-5.8.0</td>
 </tr>
 <tr>
 <td>3752266</td>

@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4072165</td>
+<td>When you add a VLAN to a bridge member port, VXLAN traffic might be impacted for few seconds.</td>
+<td>5.7.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4004453</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
 <td>4.3.0-5.9.1, 5.10.0-5.10.1</td>
@@ -126,6 +132,12 @@ leaf01(config-router-af)# end
 leaf01# write memory
 leaf01# exit</td>
 <td>5.5.0-5.8.0</td>
+<td>5.9.0-5.10.1</td>
+</tr>
+<tr>
+<td>3753050</td>
+<td>On Spectrum 1 switches, {{switchd}} might crash due to an SDK health event or error.</td>
+<td>5.6.0-5.8.0</td>
 <td>5.9.0-5.10.1</td>
 </tr>
 <tr>

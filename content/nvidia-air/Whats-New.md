@@ -7,8 +7,17 @@ product: NVIDIA Air
 <!-- vale off -->
 Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
 
-## September 2024
+## October 2024
 <!-- Air:WhatsNew -->
+### 82.2024.1007-011
+- Added link highlighting when a node is selected
+- Fixed an issue with the grid when creating a new simulation
+- Fixed an issue when an empty name wass provided while editing a simulation
+- Fixed an issue when creating a new service
+- Fixed an issue when sorting simulations by `Created`
+<!-- Air:WhatsNew -->
+
+## September 2024
 ### 82.2024.0926-014
 - Allow a ZTP script to be added to any simulation at time of creation
 - Updated the topology API to allow retrieval of a topology based on the simulation ID
@@ -17,7 +26,6 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 - Fixed an issue when importing JSON with a link for an undefined node
 - Fixed an issue when importing JSON containing a `network_pci` configuration
 - Fixed an issue where interfaces could be assigned an invalid MAC address when using the topology API
-<!-- Air:WhatsNew -->
 
 ### 82.2024.0919-011
 - Fixed a pagination issue when viewing organization members

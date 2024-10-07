@@ -407,7 +407,7 @@ You can assign an IP address and other DHCP options based on physical location o
 ```
 cumulus@switch:~$ nv set service dhcp-server default static server2
 cumulus@switch:~$ nv set service dhcp-server default static server2 ip-address 10.0.0.3
-cumulus@switch:~$ nv set service dhcp-server default static server2 ifname swp1
+cumulus@switch:~$ nv set service dhcp-server default static server2 interface swp1
 cumulus@switch:~$ nv config apply
 ```
 
@@ -417,7 +417,7 @@ cumulus@switch:~$ nv config apply
 ```
 cumulus@switch:~$ nv set service dhcp-server6 default static server2
 cumulus@switch:~$ nv set service dhcp-server6 default static server2 ip-address 2001:db8:1::100
-cumulus@switch:~$ nv set service dhcp-server6 default static server2 ifname swp1
+cumulus@switch:~$ nv set service dhcp-server6 default static server2 interface swp1
 cumulus@switch:~$ nv config apply
 ```
 

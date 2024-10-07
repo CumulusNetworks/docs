@@ -13,6 +13,18 @@
 <td></td>
 </tr>
 <tr>
+<td>4072165</td>
+<td>When you add a VLAN to a bridge member port, VXLAN traffic might be impacted for few seconds.</td>
+<td>5.7.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4066219</td>
+<td>Some STP interfaces might remain in a blocking state when there are large numbers of dis-contiguous VLANs enabled on a port.</td>
+<td>5.8.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4063273</td>
 <td>Low power Intel SATA controllers experience issues when using the {{mobile}} low power chipset LPM policy. This can cause the SSD to become read only.</td>
 <td>5.8.0-5.10.1</td>

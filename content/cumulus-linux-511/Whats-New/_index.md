@@ -22,6 +22,7 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 - {{<link url="Optional-BGP-Configuration/#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}}
 - {{<link url="RADIUS-AAA/#radius-user-command-accounting" text="RADIUS user command accounting">}}
 - {{<link url="Upgrading-Cumulus-Linux/#upgrade-cumulus-linux" text="Optimized image upgrade commands">}} (available for future upgrades)
+- {{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" text="Additional adaptive routing ECMP resource optimization for next hop groups">}} (Beta)
 - OTLP phase 3
 - All packet histogram configuration
 - NVUE
@@ -36,10 +37,11 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
   - {{<link url="NVUE-CLI/#show-switch-configuration" text="nv config show --all command">}} to show applied configuration on the switch and include all default options
   - {{<link url="Services-and-Daemons-in-Cumulus-Linux/#limit-resources-for-services" text="Commands to limit resources (memory and CPU usage) for Cumulus Linux services">}}.
   - {{<link url="Optional-BGP-Configuration/#bgp-community-lists" text="Commands to configure BGP large community lists">}}
+  - {{<link url="Route-Filtering-and-Redistribution/#match-source-protocol" text="Command to match BGP as the source protocol in a route map">}}
+  - interface summary view with filtering
   - RADIUS fallback authentication support when server unavailable
   - net show interface swX details for dom and optical info for the plugables
   - L1-show equivalent
-  - Command to match the source protocol connected in a route map applied to BGP
   - interface summary view with filtering
   - BGP presentation part 2
   - EVPN presentation - Phase 2

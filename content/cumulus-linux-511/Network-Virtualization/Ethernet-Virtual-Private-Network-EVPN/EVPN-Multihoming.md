@@ -634,10 +634,10 @@ evpn.multihoming.shared_l2_groups = FALSE
 cumulus@switch:~$ sudo systemctl restart switchd.service
 ```
 
-To disable container sharing for layer 3 next hop groups, create the `etc/cumulus/switchd/switchd_misc.conf` file, add the `l3_nexthop.shared_ecmp_groups = FALSE` variable, then restart the `switchd` service:
+To disable container sharing for layer 3 next hop groups, create the `/etc/cumulus/switchd.d/switchd_misc.conf` file, add the `l3_nexthop.shared_ecmp_groups = FALSE` variable, then restart the `switchd` service:
 
 ```
-cumulus@switch:~$ sudo nano /etc/cumulus/switchd/switchd_misc.conf 
+cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/switchd_misc.conf 
 l3_nexthop.shared_ecmp_groups = FALSE
 ...
 ```

@@ -15,6 +15,8 @@ pdfhidden: True
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="4100164"></a> [4100164](#4100164) <a name="4100164"></a> <br /> | Low power Intel SATA controllers experience issues when using the <code>mobile</code> low power chipset LPM policy. This can cause the SSD to become read only. | 5.8.0-5.10.1 | |
+| <a name="4072165"></a> [4072165](#4072165) <a name="4072165"></a> <br /> | When you add a VLAN to a bridge member port, VXLAN traffic might be impacted for few seconds. | 5.7.0-5.10.1 | |
+| <a name="4066219"></a> [4066219](#4066219) <a name="4066219"></a> <br /> | Some STP interfaces might remain in a blocking state when there are large numbers of dis-contiguous VLANs enabled on a port. | 5.8.0-5.10.1 | |
 | <a name="4063273"></a> [4063273](#4063273) <a name="4063273"></a> <br /> | Low power Intel SATA controllers experience issues when using the <code>mobile</code> low power chipset LPM policy. This can cause the SSD to become read only. | 5.8.0-5.10.1 | |
 | <a name="4035681"></a> [4035681](#4035681) <a name="4035681"></a> <br /> | The <code>nv show interface <interface></code> commands show RX and TX Power values from the wrong lanes on breakout ports. | 5.8.0-5.9.1, 5.10.0-5.10.1 | 5.9.2|
 | <a name="4004453"></a> [4004453](#4004453) <a name="4004453"></a> <br /> | The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful. | 4.3.0-5.9.1, 5.10.0-5.10.1 | 5.9.2|

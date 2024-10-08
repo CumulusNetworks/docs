@@ -38,11 +38,10 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
   - {{<link url="Services-and-Daemons-in-Cumulus-Linux/#limit-resources-for-services" text="Commands to limit resources (memory and CPU usage) for Cumulus Linux services">}}.
   - {{<link url="Optional-BGP-Configuration/#bgp-community-lists" text="Commands to configure BGP large community lists">}}
   - {{<link url="Route-Filtering-and-Redistribution/#match-source-protocol" text="Command to match BGP as the source protocol in a route map">}}
-  - interface summary view with filtering
+  - {{<link url="Switch-Port-Attributes/#interface-settings" text="nv show interface --view command includes additional filtering options">}}: `svi`, `vrf`, `bonds`, `bond-members`, `up`, and `down`
+  - {{<link url="Troubleshoot-Layer-1" text="Commands to show optical information for transceivers">}}
   - RADIUS fallback authentication support when server unavailable
-  - net show interface swX details for dom and optical info for the plugables
   - L1-show equivalent
-  - interface summary view with filtering
   - BGP presentation part 2
   - EVPN presentation - Phase 2
   - net show route summary equivalent
@@ -62,6 +61,45 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 | ----------- | ----------------|
 | nv show interface pluggables  | |
 | nv show interface <interface> pluggable | |
+{{< /expand >}}
+  - {{< expand "New NVUE Commands" >}}
+For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) for Cumulus Linux.
+{{< tabs "TabID108 ">}}
+{{< tab "nv show ">}}
+
+```
+nv show platform transceiver
+nv show platform transceiver <interface-id> 
+nv show platform transceiver <interface-id> channel 
+nv show platform transceiver <interface-id> channel <channel-id> 
+nv show platform transceiver <detail> 
+nv show interface <interface-id> transceiver 
+nv show interface <interface-id> transceiver thresholds
+```
+
+{{< /tab >}}
+{{< tab "nv set ">}}
+
+```
+
+```
+
+{{< /tab >}}
+{{< tab "nv unset ">}}
+
+```
+
+```
+
+{{< /tab >}}
+{{< tab "nv action ">}}
+
+```
+
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 {{< /expand >}}
 
 {{%notice warning%}}

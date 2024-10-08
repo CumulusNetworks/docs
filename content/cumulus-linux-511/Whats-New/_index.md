@@ -39,12 +39,12 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
   - {{<link url="Optional-BGP-Configuration/#bgp-community-lists" text="Commands to configure BGP large community lists">}}
   - {{<link url="Route-Filtering-and-Redistribution/#match-source-protocol" text="Command to match BGP as the source protocol in a route map">}}
   - {{<link url="Switch-Port-Attributes/#interface-settings" text="nv show interface --view command includes additional filtering options">}}: `svi`, `vrf`, `bonds`, `bond-members`, `up`, and `down`
+  - {{<link url="FRRouting/#show-routes-in-the-routing-table" text="Commands to show the number of routes in the routing table">}}
   - {{<link url="Troubleshoot-Layer-1" text="Commands to show optical information for transceivers">}}
   - RADIUS fallback authentication support when server unavailable
   - L1-show equivalent
   - BGP presentation part 2
   - EVPN presentation - Phase 2
-  - net show route summary equivalent
   - {{< expand "Changed NVUE Commands" >}}
 | New Command | Previous Command |
 | ----------- | ----------------|

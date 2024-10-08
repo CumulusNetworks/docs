@@ -311,7 +311,7 @@ You can use the following list of supported match and set statements with NVUE c
 | `evpn-default-route` | Matches the EVPN default route. You can specify `on` or `off`.|
 | `ip-nexthop-len` | Matches the specified next hop prefix length. |
 | `large-community-list` | Matches the specified large community list.|
-| `source-protocol` |Matches the specified source protocol, such as BGP or static. |
+| `source-protocol` |Matches the specified source protocol, such as BGP, OSPF, or static. |
 | `evpn-route-type` | Matches the specified EVPN route type. You can specify `macip`, `imet`, or `prefix`. |
 | `ip-nexthop-list` | Matches the specified next hop list.|
 | `local-preference` | Matches the specified local preference. You can specify a value between 0 and 4294967295. |
@@ -783,21 +783,16 @@ cumulus@leaf01:~$
 
 The following example configures a route map to allow prefixes that match BGP as the source protocol.
 
+{{%notice note%}}
+When you configure the match source protocol in a route map, the switch only advertises that protocol type to the peers. If you configure route leaking between VRFs and the leaked routes are learned as BGP routes, you need to match the BGP source protocol to advertise that route.
+{{%/notice%}}
+
 {{< tabs "TabID964 ">}}
 {{< tab "NVUE Commands">}}
 
 ```
 cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 100 action permit
 cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 100 match source-protocol bgp
-cumulus@leaf01:~$ nv config apply
-```
-
-When you configure the match source protocol in a route map, the switch only advertises that protocol type to the peers. If you configure route leaking between VRFs and the leaked routes are learned as BGP routes, you need to match the BGP source protocol to advertise that route in addition to matching the connected source protocol:
-
-```
-cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 100 action permit
-cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 100 match source-protocol bgp
-cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 100 match source-protocol connected
 cumulus@leaf01:~$ nv config apply
 ```
 

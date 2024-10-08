@@ -14,7 +14,7 @@ Follow these steps to set up and configure your VM on a cluster of servers in an
 Verify that each node in your cluster---the master node and two worker nodes---meets the VM requirements.
 
 | Resource | Minimum Requirements |
-| --- | :--- |
+| :--- | :--- |
 | Processor | 16 virtual CPUs |
 | Memory | 64 GB RAM |
 | Local disk storage | 500 GB SSD with minimum disk IOPS of 1000 for a standard 4kb block size<br> (Note: This must be an SSD; other storage options can lead to system instability and are not supported.)|
@@ -166,14 +166,14 @@ cumulus@hostname:~$ sudo opta-check
 
 8. Repeat steps 6 and 7 for each additional worker node in your cluster.
 
-9. Install and activate the NetQ software using the CLI:
+9. Install and activate the NetQ software using the CLI.
 
 Run the following command on your *master* node to initialize the cluster. Copy the output of the command to use on your worker nodes:
 
 ```
 cumulus@<hostname>:~$ netq install cluster master-init
     Please run the following command on all worker nodes:
-    netq install cluster worker-init c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCQVFDM2NjTTZPdVVUWWJ5c2Q3NlJ4SHdseHBsOHQ4N2VMRWVGR05LSWFWVnVNcy94OEE4RFNMQVhKOHVKRjVLUXBnVjdKM2lnMGJpL2hDMVhmSVVjU3l3ZmhvVDVZM3dQN1oySVZVT29ZTi8vR1lOek5nVlNocWZQMDNDRW0xNnNmSzVvUWRQTzQzRFhxQ3NjbndIT3dwZmhRYy9MWTU1a
+    netq install cluster worker-init c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCQVFDM2NjTTZPdVM3dQN9MWTU1a
 ```
 10. Run the `netq install cluster worker-init <ssh-key>` command on each of your worker nodes.
 

@@ -781,10 +781,6 @@ cumulus@leaf01:~$
 
 ### Match Source Protocol
 
-{{%notice note%}}
-When you configure the match source protocol in a route map, the switch only advertises that protocol type to the peers. When you configure route leaking between VRFs, if the leaked routes are learned as BGP routes, you need to match the BGP source protocol to advertise that route.
-{{%/notice%}}
-
 The following example configures a route map to allow prefixes that match BGP as the source protocol.
 
 {{< tabs "TabID964 ">}}
@@ -793,6 +789,15 @@ The following example configures a route map to allow prefixes that match BGP as
 ```
 cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 100 action permit
 cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 100 match source-protocol bgp
+cumulus@leaf01:~$ nv config apply
+```
+
+When you configure the match source protocol in a route map, the switch only advertises that protocol type to the peers. If you configure route leaking between VRFs and the leaked routes are learned as BGP routes, you need to match the BGP source protocol to advertise that route in addition to matching the connected source protocol:
+
+```
+cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 100 action permit
+cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 100 match source-protocol bgp
+cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 100 match source-protocol connected
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -805,6 +810,21 @@ cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# route-map MAP1 permit 100
 leaf01(config-route-map)# match source-protocol bgp
+leaf01(config-route-map)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
+```
+
+When you configure the match source protocol in a route map, the switch only advertises that protocol type to the peers. If you configure route leaking between VRFs and the leaked routes are learned as BGP routes, you need to match the BGP source protocol to advertise that route in addition to matching the connected source protocol:
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# route-map MAP1 permit 100
+leaf01(config-route-map)# match source-protocol bgp
+leaf01(config-route-map)# match source-protocol connected
 leaf01(config-route-map)# end
 leaf01# write memory
 leaf01# exit

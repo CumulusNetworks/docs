@@ -5,10 +5,9 @@ weight: 352
 toc: 3
 ---
 
-## Issue Overview
+## Symptom
 
-On Cumulus Linux 5 versions, SSDs might become read-only on the following
-platforms: SN2410/SN2410B and SN2700/SN2700B.
+On Cumulus Linux 5 versions, SSDs might become read-only on the following platforms: SN2410/SN2410B and SN2700/SN2700B.
 
 The following errors appear in `/var/log/syslog` before failing into R/O state:
 kernel: [3238274.795264] ata1.00: exception Emask 0×10 SAct 0×40 SErr 0×4050000
@@ -25,19 +24,9 @@ kernel: [3238274.837175] ata1.00: status: { DRDY }
 kernel: [3238274.841065] ata1: hard resetting link 
 
 
-Root-cause analysis 
-It was discovered that in CL 5.x there was a change in regard to SATA Link Power Management Policy.
-Example which shows that setting is different in CL 4.4 and CL 5.8/CL5.9:
+# Issue Overview 
 
-- 4.4.5 : max_performance
-- 5.8.0 : med_power_with_dipm
-- 5.9.1 : med_power_with_dipm
-
-
-More details about SATA LPM can be found here:
-https://www.thomas-krenn.com/en/wiki/SATA_Link_Power_Management#Kernel_Support
-
-Link Power Management Policy is controlled by the kernel setting `SATA_MOBILE_LPM_POLICY`. In CL5, the `SATA_MOBILE_LPM_POLICY` value was taken from Debian default configurations (Buster, bookworm) which is 3, or medium power with device initiated PM (`med_power_with_dipm`) enabled and imported into Cumulus. In Cumulus Linux 4, this configuration value was not specified and it is assigned the default value from firmware which is `max_performace`.
+In Cumulus Linux 5 there was a change to the SATA Link Power Management (LPM) policy. LPM policy is controlled by the kernel setting `SATA_MOBILE_LPM_POLICY`. In Cumulus Linux 5, the `SATA_MOBILE_LPM_POLICY` value was taken from Debian default configurations which is 3, or medium power with device initiated PM (`med_power_with_dipm`) enabled and imported into Cumulus. In Cumulus Linux 4, this configuration value was not specified and it is assigned the default value from firmware which is `max_performace`.
 
 It was discovered that not all combinations of SATA host controllers and storage devices work well with the default `med_power_with_dipm` setting. For example, platforms with Intel 7 Series Chipset controllers might experience timeouts and link degradation when accessing the SSD.
 

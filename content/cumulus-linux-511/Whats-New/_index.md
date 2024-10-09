@@ -27,7 +27,7 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 - All packet histogram configuration
 - NVUE
   - {{<link url="DHCP-Snooping" text="DHCP snooping commands">}}
-  - {{<link url="Link-Layer-Discovery-Protocol" text="Disable LLDP commands">}}
+  - {{<link url="Link-Layer-Discovery-Protocol/#disable-lldp" text="Disable LLDP commands">}}
   - {{<link url="Resource-Diagnostics/#disable-lldp" text="Show ASIC resources commands">}} (`cl-resource-query` equivalent)
   - {{<link url="Monitoring-System-Statistics-and-Network-Traffic-with-sFlow" text="sFlow commands">}}
   - {{<link url="DHCP-Servers/#assign-a-port-based-ip-address" text="IPv6 command to assign a port-based DHCP server address">}}

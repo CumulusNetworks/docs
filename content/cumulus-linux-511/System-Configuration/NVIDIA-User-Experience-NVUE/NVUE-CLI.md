@@ -215,11 +215,11 @@ The following example shows the views available for the `nv show interface` comm
 
 ```
 cumulus@switch:~$ nv show interface --view <<TAB>>
-acl-statistics  dot1x-summary   neighbor        status
-brief           lldp            pluggables      synce-counters
-counters        lldp-detail     port-security   
-detail          mac             qos-profile     
-dot1x-counters  mlag-cc         small
+acl-statistics  description     lldp            physical        status          
+bond-members    detail          lldp-detail     pluggables      svi             
+bonds           dot1x-counters  mac             port-security   synce-counters  
+brief           dot1x-summary   mlag-cc         qos-profile     up              
+counters        down            neighbor        small           vrf
 ```
 
 ### Configuration Management Commands
@@ -443,11 +443,7 @@ header:
 ...
 ```
 
-To show the configuration on the switch in YAML format and include all default options, run the `nv config show --all` command:
-
-```
-cumulus@switch:~$ nv config show --all
-```
+To show the configuration on the switch in YAML format and include all default options, run the `nv config show --all` command.
 
 ## Add Configuration Apply Messages
 

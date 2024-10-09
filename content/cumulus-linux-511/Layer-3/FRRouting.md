@@ -492,6 +492,35 @@ nv show vrf default router rib ipv6
 
 {{< /expand >}}
 
+## Show Routes in the Routing Table
+
+To show the total number of routes in the routing table, run the `nv show vrf <vrf> router rib <address-family> route-count` command:
+
+```
+cumulus@switch:~$ nv show vrf default router rib ipv4 route-count
+                 operational 
+------------     ----------- 
+total-routes    34 
+[protocol]      bgp 
+[protocol]      connected 
+```
+
+For IPv6 run the `nv show vrf <vrf> router rib ipv6 route-count` command.
+
+To show the total number of routes per protocol in the routing table, run the `nv show vrf <vrf> router rib <address-family> route-count protocol` command:
+
+```
+cumulus@switch:~$ nv show vrf default router rib ipv4 route-count protocol
+Protocol   Total 
+---------  ----- 
+bgp        6 
+connected  3 
+ospf       8 
+static     3 
+```
+
+For IPv6 run the `nv show vrf <vrf> router rib ipv6 route-count protocol` command.
+
 ## Next Hop Tracking
 
 Routing daemons track the validity of next hops through notifications from the `zebra` daemon. For example, FRR uninstalls BGP routes that resolve to a next hop over a connected route in `zebra` when `bgpd` receives a next hop tracking (NHT) notification after `zebra` removes the connected route if the associated interface goes down.

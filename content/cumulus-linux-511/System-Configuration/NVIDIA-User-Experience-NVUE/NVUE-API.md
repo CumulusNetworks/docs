@@ -1059,7 +1059,7 @@ To make a configuration change:
 {{< tab "Curl Command ">}}
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"99.99.99.99/32": {}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:876nvue_v1/interface/lo/ip/address?rev=2
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"99.99.99.99/32": {}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface/lo/ip/address?rev=2
 {
   "99.99.99.99/32": {}
 }
@@ -1511,9 +1511,11 @@ To see the views available for a show command, run the command with `--view` and
 
 ```
 cumulus@switch:~$ nv show interface --view <<TAB>>
-acl-statistics  detail          lldp            mlag-cc         port-security   synce-counters  
-brief           dot1x-counters  lldp-detail     neighbor        qos-profile     
-counters        dot1x-summary   mac             pluggables      small
+acl-statistics  description     lldp            physical        status          
+bond-members    detail          lldp-detail     pluggables      svi             
+bonds           dot1x-counters  mac             port-security   synce-counters  
+brief           dot1x-summary   mlag-cc         qos-profile     up              
+counters        down            neighbor        small           vrf
 ```
 
 ```

@@ -95,7 +95,10 @@ nv show interface <interface-id> transceiver thresholds
 {{< tab "nv action ">}}
 
 ```
-
+nv action reset system factory-reset
+nv action reset system factory-reset keep basic
+nv action reset system factory-reset keep all-config
+nv action reset system factory-reset keep all-files
 ```
 
 {{< /tab >}}

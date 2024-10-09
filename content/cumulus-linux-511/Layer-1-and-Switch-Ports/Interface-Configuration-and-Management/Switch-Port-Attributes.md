@@ -1928,8 +1928,8 @@ The following example shows the bonds on the switch:
 cumulus@switch:~$ nv show interface --view=bonds
 Interface  Admin Status  Oper Status  Mode  Mlag ID  Lacp-rate  Lacp-bypass  Up-delay  Down-delay  
 ---------  ------------  -----------  ----  -------  ---------  -----------  --------  ----------  
-bond1      up            down                        slow       off          50000     40000  
-bond2      up            down                        fast       off          60000     20000 
+bond1      up            up                 1        fast       on           50000     40000  
+bond2      up            up                 2        fast       on           60000     20000 
 ```
 
 You can filter the `nv show interface` command output on specific columns. For example, the `nv show interface --filter mtu=1500` shows only the interfaces with MTU set to 1500.

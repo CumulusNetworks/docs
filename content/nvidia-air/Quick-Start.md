@@ -203,6 +203,35 @@ with pathlib.Path('/path/to/topology.json').open('r') as topology_file:
 
 {{< /expand >}}
 
+## Export a Topology
+
+Existing simulations can be exported into a format representation. More information about this process can be found by visiting the [API documentation](https://air.nvidia.com/api/#/v2/v2_simulations_export_retrieve).
+
+{{< expand "Export Instructions" >}}
+
+In order to export a simulation, the following API v2 SDK method can be used:
+
+```
+from air_sdk.v2 import AirApi
+
+air = AirApi(
+    authenticate=True,
+    username='<username>',
+    password='<password-or-token>',
+)
+air.simulations.export(
+    simulation='<simulation-instance-or-id>',
+    format='JSON',
+    image_ids=True,  # defaults to False
+)
+```
+
+{{%notice info%}}
+Minimum required SDK version for this feature is `air-sdk>=2.15.0`
+{{%/notice%}}
+
+{{< /expand >}}
+
 ## Simulation Views
 
 Every simulation has a basic view and an advanced view.

@@ -112,11 +112,15 @@ The following example command shows the IPv6 DHCP binding table for VLAN 10:
 
 ```
 cumulus@leaf01:~$ nv show bridge domain br_default dhcp-snoop6 vlan 10
-DHCP Snooping Vlan Table 
-======================== 
-Port   IP           MAC                            Lease      State  
-----   ------       -----------------              -----      -----     
-swp6   128::1/64    00:02:00:00:00:04              7200       ACK 
+DHCP Snooping Vlan Trust Ports Table
+=======================================
+    Port 
+    -----
+    bond1
+
+DHCP Snooping Vlan Bind Table
+================================
+No Data
 ```
 
 To show information in the DHCP binding table for a specific trusted port, run the `nv show bridge domain <bridge-id> dhcp-snoop vlan <vlan-ID> trust <interface-id>` command for IPv4 or the `nv show bridge domain <bridge> dhcp-snoop6 vlan <vlan-id> trust <interface-id>` command for IPv6.

@@ -683,18 +683,18 @@ cumulus@leaf01:~$ sudo lldpcli configure system interface pattern ""
 {{< /tab >}}
 {{< /tabs >}}
 
-To show if LLDP is enabled globally or on a interface, run the `nv show service lldp` command.
+To show if LLDP is enabled globally or on an interface, run the `nv show service lldp` command.
 
 ```
 cumulus@leaf01:~$ nv show service lldp
-                        operational  applied  pending 
-----------------------  -----------  -------  --------
-tx-interval             30           30       30      
-tx-hold-multiplier      4            4        4       
-dot1-tlv                off          off      off     
-lldp-med-inventory-tlv  off          off      off     
-mode                    default      default  default 
-state                   enabled      enabled  disabled
+                        operational  applied
+----------------------  -----------  -------
+tx-interval             30           30     
+tx-hold-multiplier      4            4      
+dot1-tlv                off          off    
+lldp-med-inventory-tlv  off          off    
+mode                    default      default
+state                   enabled      disabled
 ```
 
 The following example show that swp1 through swp4 are up and advertising LLDP between leaf01 and leaf02:

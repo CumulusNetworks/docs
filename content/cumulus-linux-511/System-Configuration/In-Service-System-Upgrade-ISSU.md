@@ -26,6 +26,8 @@ You can configure the switch to restart in one of the following modes.
 
    When you restart the switch in warm mode, BGP only performs a graceful restart if the BGP graceful restart option is set to `full`. To set BGP graceful restart to full, run the `nv set router bgp graceful-restart mode full` command, then apply the configuration with `nv config apply`. For more information about BGP graceful restart, refer to {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="Optional BGP Configuration">}}.
 
+   In an eBGP multihop configuration, you must set the {{<link url="Optional-BGP-Configuration/#restart-timers" text="BGP graceful restart timer">}} to 180 seconds or more.
+
 {{%notice note%}}
 Cumulus Linux supports:
 - Fast mode for all protocols.

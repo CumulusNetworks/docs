@@ -160,7 +160,7 @@ Cumulus Linux 5.9.1 and later includes a default NVUE `startup.yaml` file and NV
 - The switch reboots after upgrade
 - You change the cumulus account password using the Linux `passwd` command.
 
-These upgrade issues occur only if you use Linux commands to configure the switch. To work around these issues, see {{<link url="Whats-New/#linux-configuration-file-upgrade-issues" text="Linux Configuration File Upgrade Issues">}}.
+These upgrade issues occur only if you use Linux commands to configure the switch. To work around these issues, see {{<link url="Whats-New/#linux-configuration-files-deleted" text="Linux Configuration Files Deleted">}}.
 {{%/notice%}}
 
 ### Install a Cumulus Linux Image or Upgrade Packages?

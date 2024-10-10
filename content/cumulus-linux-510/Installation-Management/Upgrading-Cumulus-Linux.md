@@ -156,6 +156,14 @@ Cumulus Linux also provides ISSU to upgrade an active switch with minimal disrup
 - Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in [Upgrade Switches in an MLAG Pair](#upgrade-switches-in-an-mlag-pair) below to ensure a smooth upgrade.
 {{%/notice%}}
 
+{{%notice warning%}}
+Cumulus Linux includes a default NVUE `startup.yaml` file. In addition, NVUE configuration auto save is enabled by default. As a result, Cumulus Linux deletes the Linux configuration files on the switch when:
+- The switch reboots after upgrade
+- You change the cumulus account password using the Linux `passwd` command.
+
+These upgrade issues occur only if you use Linux commands to configure the switch. To work around these issues, see {{<link url="Whats-New/#linux-configuration-files-deleted" text="Linux Configuration Files Deleted">}}.
+{{%/notice%}}
+
 ### Install a Cumulus Linux Image or Upgrade Packages?
 
 The decision to upgrade Cumulus Linux by either installing a Cumulus Linux image or upgrading packages depends on your environment and your preferences. The following section provides recommendations for each upgrade method.

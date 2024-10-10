@@ -13,6 +13,24 @@
 <td></td>
 </tr>
 <tr>
+<td>4081784</td>
+<td>If you configure an inbound route policy that drops prefixes, then run a vtysh {{show bgp vrf &lt;vrf&gt; neighbours &lt;neighbor&gt; received-routes}} command, the BGP service might crash.&gt;br&gt;Avoid running a vtysh received routes show command if you configure an inbound route policy that drops prefixes.</td>
+<td>5.9.1-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4072165</td>
+<td>When you add a VLAN to a bridge member port, VXLAN traffic might be impacted for few seconds.</td>
+<td>5.7.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4066219</td>
+<td>Some STP interfaces might remain in a blocking state when there are large numbers of dis-contiguous VLANs enabled on a port.</td>
+<td>5.8.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4063273</td>
 <td>Low power Intel SATA controllers experience issues when using the {{mobile}} low power chipset LPM policy. This can cause the SSD to become read only.</td>
 <td>5.8.0-5.10.1</td>
@@ -20,8 +38,14 @@
 </tr>
 <tr>
 <td>4042657</td>
-<td>SDK times out with a FW FATAL health event, which requires a reboot of the system to recover. 
+<td>The SDK times out with a FW FATAL health event, which requires a reboot of the system to recover. 
 </td>
+<td>5.9.1-5.10.0</td>
+<td>5.10.1</td>
+</tr>
+<tr>
+<td>4040024</td>
+<td>After network churn, the {{﻿watchfrr}} process might restart FRR because zebra is unresponsive.</td>
 <td>5.9.1-5.10.0</td>
 <td>5.10.1</td>
 </tr>
@@ -696,6 +720,24 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <td></td>
 </tr>
 <tr>
+<td>4081784</td>
+<td>If you configure an inbound route policy that drops prefixes, then run a vtysh {{show bgp vrf &lt;vrf&gt; neighbours &lt;neighbor&gt; received-routes}} command, the BGP service might crash.&gt;br&gt;Avoid running a vtysh received routes show command if you configure an inbound route policy that drops prefixes.</td>
+<td>5.9.1-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4072165</td>
+<td>When you add a VLAN to a bridge member port, VXLAN traffic might be impacted for few seconds.</td>
+<td>5.7.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4066219</td>
+<td>Some STP interfaces might remain in a blocking state when there are large numbers of dis-contiguous VLANs enabled on a port.</td>
+<td>5.8.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4063273</td>
 <td>Low power Intel SATA controllers experience issues when using the {{mobile}} low power chipset LPM policy. This can cause the SSD to become read only.</td>
 <td>5.8.0-5.10.1</td>
@@ -703,8 +745,14 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 </tr>
 <tr>
 <td>4042657</td>
-<td>SDK times out with a FW FATAL health event, which requires a reboot of the system to recover. 
+<td>The SDK times out with a FW FATAL health event, which requires a reboot of the system to recover. 
 </td>
+<td>5.9.1-5.10.0</td>
+<td>5.10.1</td>
+</tr>
+<tr>
+<td>4040024</td>
+<td>After network churn, the {{﻿watchfrr}} process might restart FRR because zebra is unresponsive.</td>
 <td>5.9.1-5.10.0</td>
 <td>5.10.1</td>
 </tr>
@@ -1410,6 +1458,18 @@ You can safely ignore this warning.</td>
 <tr>
 <td>4100164</td>
 <td>Low power Intel SATA controllers experience issues when using the {{mobile}} low power chipset LPM policy. This can cause the SSD to become read only.</td>
+<td>5.8.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4072165</td>
+<td>When you add a VLAN to a bridge member port, VXLAN traffic might be impacted for few seconds.</td>
+<td>5.7.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4066219</td>
+<td>Some STP interfaces might remain in a blocking state when there are large numbers of dis-contiguous VLANs enabled on a port.</td>
 <td>5.8.0-5.10.1</td>
 <td></td>
 </tr>
@@ -2134,6 +2194,11 @@ leaf01# exit</td>
 <td>3759515</td>
 <td>After upgrading to Cumulus Linux 5.8, MLAG reports bonds as {{bpdu guard mismatch}}. To work around this issue, restart the MLAG service with the {{systemctl restart clagd}} on the device that reports the conflict.</td>
 <td>5.8.0</td>
+</tr>
+<tr>
+<td>3753050</td>
+<td>On Spectrum 1 switches, {{switchd}} might crash due to an SDK health event or error.</td>
+<td>5.6.0-5.8.0</td>
 </tr>
 <tr>
 <td>3752266</td>

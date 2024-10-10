@@ -321,6 +321,48 @@ Cumulus Linux 5.9.0 is no longer available. Cumulus Linux 5.9.1 replaces Cumulus
 
 ## Release Considerations
 
+### Linux Configuration Files Deleted
+
+{{%notice warning%}}
+
+If you use Linux commands to configure the switch, read the following information before you upgrade to Cumulus Linux 5.9.1 or later.
+{{%/notice%}}
+
+Cumulus Linux 5.9.1 and later includes a default NVUE `startup.yaml` file and NVUE configuration auto save is enabled by default. As a result, Cumulus Linux deletes the Linux configuration files on the switch when:
+- The switch reboots after upgrade
+- You change the cumulus account password using the Linux `passwd` command.
+
+{{%notice note%}}
+These upgrade issues occur only if you use Linux commands to configure the switch. If you use NVUE commands to configure the switch, these issues do not occur and no action is needed.
+{{%/notice%}}
+
+To prevent Cumulus Linux from deleting the Linux configuration files when the switch reboots after upgrade:
+
+1. **Before** you upgrade to 5.9.1 or later, disable NVUE auto save:
+
+   ```
+   cumulus@switch:~$ nv set system config auto-save enable off
+   cumulus@switch:~$ nv config apply
+   cumulus@switch:~$ nv config save
+   ```
+
+2. Delete the `/etc/nvue.d/startup.yaml` file:
+
+   ```
+   cumulus@switch:~$ sudo rm -rf /etc/nvue.d/startup.yaml
+   ```
+
+To prevent Cumulus Linux from deleting the Linux configuration files when you change the cumulus account password using the Linux `passwd` command, run the following commands as root **before** you upgrade to 5.9.1 or later:
+
+```
+root@cumulus:mgmt:~# grep reconcile_password_with_nvue.sh /etc/pam.d/*
+/etc/pam.d/chpasswd:password optional pam_exec.so seteuid /usr/lib/cumulus/reconcile_password_with_nvue.sh
+/etc/pam.d/login:password optional pam_exec.so seteuid /usr/lib/cumulus/reconcile_password_with_nvue.sh
+/etc/pam.d/passwd:password optional pam_exec.so seteuid /usr/lib/cumulus/reconcile_password_with_nvue.sh
+```
+
+### NVUE Commands After Upgrade
+
 Cumulus Linux 5.9 includes the NVUE object model. After you upgrade to Cumulus Linux 5.9, running NVUE configuration commands might override configuration for features that are now configurable with NVUE and removes configuration you added manually to files or with automation tools like Ansible, Chef, or Puppet. To keep your configuration, you can do one of the following:
 - Update your automation tools to use NVUE.
 - {{<link url="NVUE-CLI/#configure-nvue-to-ignore-linux-files" text="Configure NVUE to ignore certain underlying Linux files">}} when applying configuration changes.

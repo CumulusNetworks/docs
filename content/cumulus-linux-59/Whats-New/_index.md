@@ -352,14 +352,10 @@ To prevent Cumulus Linux from deleting the Linux configuration files when the sw
    cumulus@switch:~$ sudo rm -rf /etc/nvue.d/startup.yaml
    ```
 
-To prevent Cumulus Linux from deleting the Linux configuration files when you change the cumulus account password using the Linux `passwd` command, run the following commands as root **before** you upgrade to 5.9.1 or later:
-
-```
-root@cumulus:mgmt:~# grep reconcile_password_with_nvue.sh /etc/pam.d/*
-/etc/pam.d/chpasswd:password optional pam_exec.so seteuid /usr/lib/cumulus/reconcile_password_with_nvue.sh
-/etc/pam.d/login:password optional pam_exec.so seteuid /usr/lib/cumulus/reconcile_password_with_nvue.sh
-/etc/pam.d/passwd:password optional pam_exec.so seteuid /usr/lib/cumulus/reconcile_password_with_nvue.sh
-```
+To prevent Cumulus Linux from deleting the Linux configuration files when you change the cumulus account password using the Linux `passwd` command, comment out the `password optional pam_exec.so seteuid /usr/lib/cumulus/reconcile_password_with_nvue.sh` line from the following files **before** you upgrade to 5.9.1 or later:
+- `/etc/pam.d/chpasswd`
+- `/etc/pam.d/login`
+- `/etc/pam.d/passwd`
 
 ### NVUE Commands After Upgrade
 

@@ -18,7 +18,7 @@ Verify that each node in your cluster---the master node and each worker node---m
 | Processor | 48 virtual CPUs |
 | Memory | 512GB RAM |
 | Local disk storage | 3.2TB SSD with minimum disk IOPS of 1000 for a standard 4kb block size<br> (Note: This must be an SSD; other storage options can lead to system instability and are not supported.)|
-| Network interface speed | TKTK |
+| Network interface speed | 1 Gb NIC |
 | Hypervisor | KVM/QCOW (QEMU Copy on Write) image for servers running Ubuntu;<br> VMware ESXi™ 6.5 or later (OVA image) for servers running Cumulus Linux or Ubuntu | 
 
 ## Port Requirements
@@ -153,18 +153,13 @@ Add the same NEW_HOSTNAME value to **/etc/hosts** on your VM for the localhost e
 
 6. Open your hypervisor and set up the VM for the worker nodes in the same manner as for the master node.
 
-    {{<notice note>}}
-Make a note of the private IP address you assign to the worker node. You will need it to complete the installation.
-    {{</notice>}}
-
 7. Verify that the worker node is ready for installation. Fix any errors indicated before installing the NetQ software.
 
-<!--double check this command-->
 ```
 cumulus@hostname:~$ sudo opta-check
 ```
 
-8. Repeat steps 6 and 7 for each additional worker node in your cluster.
+8. Repeat steps 6 and 7 for each worker node in your cluster.
 
 9. Install and activate the NetQ software using the CLI.
 

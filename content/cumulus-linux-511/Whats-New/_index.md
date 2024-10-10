@@ -68,6 +68,15 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 {{< tab "nv show ">}}
 
 ```
+nv show bridge domain <bridge-id> dhcp-snoop
+nv show bridge domain <bridge-id> dhcp-snoop6
+nv show bridge domain <bridge-id> dhcp-snoop vlan <vlan-id>
+nv show bridge domain <bridge-id> dhcp-snoop6 vlan <vlan-id>
+nv show bridge domain <bridge-id> dhcp-snoop vlan <vlan-id> trust <interface>
+nv show bridge domain <bridge-id> dhcp-snoop6 vlan <vlan-id> trust <interface>
+nv show platform asic resource
+nv show platform asic resource acl
+nv show platform asic resource global
 nv show platform transceiver
 nv show platform transceiver <interface-id> 
 nv show platform transceiver <interface-id> channel 
@@ -75,20 +84,69 @@ nv show platform transceiver <interface-id> channel <channel-id>
 nv show platform transceiver <detail> 
 nv show interface <interface-id> transceiver 
 nv show interface <interface-id> transceiver thresholds
+nv show system sflow
+nv show system sflow agent
+nv show system sflow collector
+nv show system sflow policer
+nv show system sflow sampling-rate
+nv show interface <interface-id> sflow
+nv show vrf <vrf-id> router rib ipv4 route-count
+nv show vrf <vrf-id> router rib ipv6 route-count
+nv show vrf <vrf-id> router rib ipv4 route-count protocol
+nv show vrf <vrf-id> router rib ipv6 route-count protocol
 ```
 
 {{< /tab >}}
 {{< tab "nv set ">}}
 
 ```
-
+nv set bridge domain <bridge-id> dhcp-snoop vlan <vlan-id>
+nv set bridge domain <bridge-id> dhcp-snoop6 vlan <vlan-id>
+nv set bridge domain <bridge-id> dhcp-snoop vlan <vlan-id> trust <interface-id>
+nv set bridge domain <bridge-id> dhcp-snoop6 vlan <vlan-id> trust <interface-id>
+nv set interface <interface-id> lldp state
+nv set interface <interface-id> sflow state
+nv set interface <interface-id> sflow sample-rate <rate>
+nv set router policy large-community-list
+nv set router policy route-map <map-id> rule <rule-id> match large-community-list
+nv set service dhcp-server6 default static <server-id>
+nv set service dhcp-server6 default static <server-id> ip-address <ip-address>
+nv set service dhcp-server6 default static <server-id> ifname <interface-id>
+nv set system sflow state
+nv set system sflow collector <colector-id> port <port-id>
+nv set system sflow collector <colector-id> interface <interface-id>
+nv set system sflow sampling-rate <speed> <packets>
+nv set system sflow poll-interval <interval>
+nv set system sflow agent ip <ip-address>
+nv set system sflow agent interface <interface-id>
+nv set system sflow dropmon
+nv set system sflow policer rate <samples>
+nv set system sflow policer burst <sample-size>
 ```
 
 {{< /tab >}}
 {{< tab "nv unset ">}}
 
 ```
-
+nv unset bridge domain <bridge-id> dhcp-snoop vlan <vlan-id>
+nv unset bridge domain <bridge-id> dhcp-snoop6 vlan <vlan-id>
+nv unset bridge domain <bridge-id> dhcp-snoop vlan <vlan-id> trust <interface-id>
+nv unset bridge domain <bridge-id> dhcp-snoop6 vlan <vlan-id> trust <interface-id>
+nv unset interface <interface-id> sflow sample-rate
+nv unset router policy large-community-list
+nv unset router policy route-map <map-id> rule <rule-id> match large-community-list
+nv unset service dhcp-server6 default static <server-id>
+nv unset service dhcp-server6 default static <server-id> ip-address <ip-address>
+nv unset service dhcp-server6 default static <server-id> ifname <interface-id>
+nv unset system sflow collector <colector-id> port <port-id>
+nv unset system sflow collector <colector-id> interface <interface-id>
+nv unset system sflow sampling-rate <speed> <packets>
+nv unset system sflow poll-interval
+nv unset system sflow agent ip <ip-address>
+nv unset system sflow agent interface <interface-id>
+nv unset system sflow dropmon
+nv unset system sflow policer rate
+nv unset system sflow policer burst
 ```
 
 {{< /tab >}}

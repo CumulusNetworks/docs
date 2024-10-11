@@ -132,51 +132,92 @@ The following example enables ZTP and activates the provisioning process. ZTP tr
 
 ```
 cumulus@switch:~$ nv action enable system ztp
+The operation will perform enable of the ZTP.
+Type [y] to perform enable of the ZTP.
+Type [N] to cancel an action.
+
+Do you want to continue? [y/N]
 ```
 
-If you add the `force` option, ZTP enables and activates the provisioning process even if ZTP already ran on a previous boot up or if you made manual configuration changes.
+If you add the `force` option, ZTP enables and activates the provisioning process without prompting you for confirmation.
 
 ```
 cumulus@switch:~$ nv action enable system ztp force
+ction executing ...
+Enabling ZTP for next reboot
+Action executing ...
+Action succeeded
 ```
 
 The following example disables ZTP and deactivates the provisioning process. If a ZTP script is currently running, ZTP is not disabled.
 
 ```
 cumulus@switch:~$ nv action disable system ztp
+The operation will perform disable of the ZTP.
+Type [y] to perform disable of the ZTP.
+Type [N] to cancel an action.
+
+Do you want to continue? [y/N] 
 ```
 
-If you add the `force` option, ZTP disables and deactivates the provisioning process even if a ZTP script is currently running.
+If you add the `force` option, ZTP runs without prompting you for confirmation.
 
 ```
-cumulus@switch:~$ nv action disable system ztp force 
+cumulus@switch:~$ nv action disable system ztp force
+Action executing ...
+Disabling ZTP for next reboot
+Action executing ...
+Action succeeded
 ```
 
 The following example manually runs ZTP from the beginning. If you made manual configuration changes, ZTP considers the switch as already provisioned and exits.
 
 ```
 cumulus@switch:~$ nv action run system ztp
+The operation will perform rerun of the ZTP.
+Type [y] to perform rerun of the ZTP.
+Type [N] to cancel an action.
+
+Do you want to continue? [y/N] 
 ```
 
-If you add the `force` option, ZTP runs even if you made manual configuration changes.
+If you add the `force` option, ZTP runs without prompting you for confirmation.
 
 ```
 cumulus@switch:~$ nv action run system ztp force
+Action executing ...
+Running ZTP using discovery process
+Broadcast message from root@leaf01 (somewhere) (Fri Oct 11 19:30:16 2024):     
+ZTP: Attempting to provision via ZTP DHCP from http://192.168.200.1/cumulus-ztp                                                                               
+Broadcast message from root@leaf01 (somewhere) (Fri Oct 11 19:30:16 2024):     
+ZTP: Provisioning via ZTP DHCP complete                                                                               
+Action executing ...
+Action succeeded
 ```
 
 The following example manually runs ZTP and specifies a custom URL for the ZTP script. If you made manual configuration changes, ZTP considers the switch as already provisioned and exits.
 
 ```
 cumulus@switch:~$ nv action run system ztp url https://myserver/mypath/cumulus-ztp.sh
+The operation will perform rerun of the ZTP.
+Type [y] to perform rerun of the ZTP.
+Type [N] to cancel an action.
+
+Do you want to continue? [y/N]
 ```
 
 The following example manually runs ZTP from the `/home/cumulus` directory on the switch. If you made manual configuration changes, ZTP considers the switch as already provisioned and exits.
 
 ```
 cumulus@switch:~$ nv action run system ztp url /home/cumulus/cumulus-ztp.sh
+The operation will perform rerun of the ZTP.
+Type [y] to perform rerun of the ZTP.
+Type [N] to cancel an action.
+
+Do you want to continue? [y/N]
 ```
 
-If you add the `force` option, ZTP runs even if you made manual configuration changes.
+If you add the `force` option, ZTP runs without prompting you for confirmation.
 
 ```
 cumulus@switch:~$ nv action run system ztp url https://myserver/mypath/cumulus-ztp.sh force
@@ -192,7 +233,7 @@ The following example terminates ZTP if it is in the discovery process or is not
 cumulus@switch:~$ nv action abort system ztp
 ```
 
-If you add the `force` option, ZTP terminates even if it is in the discovery process or currently running a script:
+If you add the `force` option, ZTP terminates without prompting you for confirmation:
 
 ```
 cumulus@switch:~$ nv action abort system ztp force
@@ -202,13 +243,11 @@ To show the status of the ZTP service, run the `nv show system ztp` command.
 
 ```
 cumulus@switch:~$ nv show system ztp
-           operational
----------  -----------
-status
-  method
-  state    in-progress
-  url
-  version  1.0
+        operational
+-------  -----------
+service  enabled   
+status   enabled   
+version  1.0  
 ```
 
 {{%notice note%}}

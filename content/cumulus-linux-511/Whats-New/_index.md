@@ -23,7 +23,7 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 - {{<link url="RADIUS-AAA/#radius-user-command-accounting" text="RADIUS user command accounting">}}
 - {{<link url="Upgrading-Cumulus-Linux/#upgrade-cumulus-linux" text="Optimized image upgrade commands">}} (available for future upgrades)
 - {{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" text="Additional adaptive routing ECMP resource optimization for next hop groups">}} (Beta)
-- OTLP phase 3
+- OTLP ???
 - All packet histogram configuration
 - NVUE
   - {{<link url="DHCP-Snooping" text="DHCP snooping commands">}}
@@ -41,7 +41,6 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
   - {{<link url="Switch-Port-Attributes/#interface-settings" text="nv show interface --view command includes additional filtering options">}}: `svi`, `vrf`, `bonds`, `bond-members`, `up`, and `down`
   - {{<link url="FRRouting/#show-routes-in-the-routing-table" text="Commands to show the number of routes in the routing table">}}
   - {{<link url="Troubleshoot-Layer-1" text="Commands to show optical information for transceivers">}}
-  - RADIUS fallback authentication support when server unavailable
   - L1-show equivalent
   - BGP presentation part 2
   - EVPN presentation - Phase 2

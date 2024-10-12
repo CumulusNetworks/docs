@@ -48,7 +48,7 @@ Cumulus Linux provides several histograms:
 - *Ingress queue length* shows information about ingress buffer utilization over time.
 - *Counter* shows information about bandwidth utilization for a port over time.
 - *Latency* shows information about packet latency over time.
-- *Packet and buffer* shows information about all packets, good and dropped packets, and queue occupancy for the ingress and egress queue.
+- *Packet and buffer* shows information about all, good, and dropped packets, and ingress and egress queue occupancy.
 
 {{%notice note%}}
 Cumulus Linux supports:
@@ -94,7 +94,7 @@ To configure Histogram Collection, you specify:
 - The switch ports to monitor.
   - For the egress queue length and latency histograms, you can specify the traffic class you want to monitor for a port or range of ports.
   - For the ingress queue length histogram, you can specify the priority group you want to monitor for a port or range of ports.
-- How and when to start reading the ASIC: at a specific queue length, number of packets or bytes received or transmitted, or number of nanoseconds latency.
+- How and when to start reading the ASIC: at a specific queue length, number of packets or bytes received or transmitted, or number of nanoseconds latency. For the packet and buffer histogram, you specify the collection interval in seconds.
 - What actions to take: create a snapshot file, send a message to the `/var/log/syslog` file, or both.
 
 ### Histogram Settings
@@ -111,14 +111,10 @@ Histogram settings include the type of data you want to collect, the ports you w
     - CRC counters (`crc`)
     - Layer 1 received byte counters (`l1-rx-byte`). The byte count includes layer 1<span class="a-tooltip">[IPG](## "Interpacket Gap")</span> bytes.
     - Layer 1 transmitted byte counters (`l1-tx-byte`). The byte count includes layer 1<span class="a-tooltip">[IPG](## "Interpacket Gap")</span> bytes.
-- The packet and buffer histogram can monitor the following packet types:
-  - The total number of packets, good packets, dropped packets, and the ingress queue and egress queue (`packet-all`).
-  - The total number of packets, good packets, and dropped packets (`packet-extended`)
-  - The total number of packets and good packets (`packet`)
-  - Queue occupancy for the ingress and egress queue (`buffer`)
+- The packet and buffer histogram can monitor all, good and dropped packets, and the ingress and egress queue occupancy.
 - You can enable up to two counter histogram counter types for each physical interface. The counter histogram does not support bonds or virtual interfaces.
-- The default minimum boundary size is 960 bytes. Adding this number to the size of the histogram produces the maximum boundary size. These values represent the range of queue lengths for each bin.
-- The default value for the sampling time is 1024 nanoseconds.
+- The default minimum boundary size is 960 bytes. Adding this number to the size of the histogram produces the maximum boundary size. These values represent the range of queue lengths for each bin. The packet and buffer histogram does not use these settings.
+- The default value for the sampling time is 1024 nanoseconds. For the packet and buffer histogram, the default interval is 1 second.
 
 {{%notice note%}}
 When you configure minimum boundary and histogram sizes, Cumulus Linux rounds down the configured byte value to the nearest multiple of the switch ASIC cell size before programming it into hardware. The cell size is a fixed number of bytes on each switching ASIC:
@@ -135,6 +131,8 @@ The histogram type can be `egress-buffer`, `ingress-buffer`, `counter`, or `late
 
 - To change global histogram settings, run the `nv set system telemetry histogram <type>` command.
 - To enable histograms on interfaces or to change interface level settings, run the `nv set interface <interface> telemetry histogram <type>` command.
+
+The packet and buffer histogram does not use the histogram type setting but uses the `nv set system telemetry interface-stats` command instead.
 
 {{< tabs "TabID93 ">}}
 {{< tab "Egress Queue Length ">}}
@@ -223,9 +221,9 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
-{{< tab "Packet and Buffer Statistics ">}}
+{{< tab "Packet and Buffer Histogram ">}}
 
-The following example enables the packet statistics histogram on all interfaces. The histogram monitors statistics for total packets, good packets, dropped packets, and the ingress queue and egress queue every second.
+The following example enables the packet and buffer histogram on all interfaces. The histogram collects statistics every second about all, good, and dropped packets, in addition to ingress and egress queue occupancy.
 
 ```
 cumulus@switch:~$ nv set system telemetry enable on
@@ -235,7 +233,7 @@ cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-
 cumulus@switch:~$ nv config apply
 ```
 
-The following example enables the packet statistics histogram on swp1 through swp8. The histogram monitors queue occupancy statistics for the ingress and egress queue every second.
+The following example enables the packet and buffer histogram on swp1 through swp8. The histogram collects statistics every second about ingress and egress queue occupancy.
 
 ```
 cumulus@switch:~$ nv set system telemetry enable on
@@ -245,22 +243,22 @@ cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-
 cumulus@switch:~$ nv config apply
 ```
 
-The following example enables the packet statistics histogram on all interfaces. The histogram monitors statistics for the total number of packets, good packets, and dropped packets every 5 seconds.
-
-```
-cumulus@switch:~$ nv set system telemetry enable on
-cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg interface all
-cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg stats-type packet-extended
-cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg timer-interval 5
-cumulus@switch:~$ nv config apply
-```
-
-The following example enables the packet statistics histogram on all interfaces. The histogram monitors statistics for the total number of packets and good packets every 5 seconds.
+The following example enables the packet and buffer histogram on all interfaces. The histogram collects statistics every five seconds about all and good packets.
 
 ```
 cumulus@switch:~$ nv set system telemetry enable on
 cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg interface all
 cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg stats-type packet
+cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg timer-interval 5
+cumulus@switch:~$ nv config apply
+```
+
+The following example enables the packet and buffer histogram on all interfaces. The histogram collects statistics every five seconds about all, good, and dropped packets.
+
+```
+cumulus@switch:~$ nv set system telemetry enable on
+cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg interface all
+cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg stats-type packet-extended
 cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg timer-interval 5
 cumulus@switch:~$ nv config apply
 ```
@@ -578,7 +576,7 @@ swp1       4          4
 ### Snapshots
 <!-- vale off -->
 To create a snapshot:
-- Set how often to write to a snapshot file. The default value is 1 second. This setting is not provided for the packet and buffer statistics histogram.
+- Set how often to write to a snapshot file. The default value is 1 second. This setting is not provided for the packet and buffer histogram.
 - Provide the snapshot file name and location. The default location and file name is `/var/run/cumulus/histogram_stats`.
 - Configure the number of snapshots to create before Cumulus Linux overwrites the first snapshot file. For example, if you set the snapshot file count to 30, the first snapshot file is `histogram_stats_0` and the 30th snapshot is `histogram_stats_30`. After the 30th snapshot, Cumulus Linux overwrites the original snapshot file (`histogram_stats_0`) and the sequence restarts. The default value is 64.
 <!-- vale on -->
@@ -598,7 +596,7 @@ cumulus@switch:~$ nv set system telemetry snapshot-interval 5
 cumulus@switch:~$ nv config apply
 ```
 
-The following example creates the `/var/run/cumulus/all_packet_stats` snapshot. The number of snapshots that you can create before the first snapshot file is overwritten is set to 120.
+The following example creates the `/var/run/cumulus/all_packet_stats` snapshot for all packet and buffer statistics. The number of snapshots that you can create before the first snapshot file is overwritten is set to 120.
 
 ```
 cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg snapshot-file name /var/run/cumulus/all_packet_stats 
@@ -621,9 +619,18 @@ Edit the `snapshot.file` settings in the `/etc/cumulus/datapath/monitor.conf` fi
 {{< /tabs >}}
 
 - To show an ingress queue snapshot, run the `nv show interface <interface> telemetry histogram ingress-buffer priority-group <value> snapshot` command
-- To show an egress queue snapshot, run the `nv show interface <interface> telemetry histogram egress-buffer traffic-class <type> snapshot`
-- To show a counter snapshot, run the `nv show interface <interface> telemetry histogram counter counter-type <type> snapshot`
-- To show a latency snapshot, run the `nv show interface <interface> telemetry histogram latency traffic-class <type> snapshot`
+- To show an egress queue snapshot, run the `nv show interface <interface> telemetry histogram egress-buffer traffic-class <type> snapshot` command
+- To show a counter snapshot, run the `nv show interface <interface> telemetry histogram counter counter-type <type> snapshot` command
+- To show a latency snapshot, run the `nv show interface <interface> telemetry histogram latency traffic-class <type> snapshot` command
+- To show a packet and buffer snapshot, run these commands:
+  - `nv show system telemetry interface-stats port-group packet-all-pg snapshot interface <interface> packet good [tx, rx]`
+  - `nv show system telemetry interface-stats port-group packet-all-pg snapshot interface <interface> packet discard [tx, rx, general]`
+  - `nv show system telemetry interface-stats port-group packet-all-pg snapshot interface <interface> packet good [tx, rx]`
+  - `nv show system telemetry interface-stats port-group packet-all-pg snapshot interface <interface> packet all [tx, rx]`
+  - `nv show system telemetry interface-stats port-group packet-all-pg snapshot interface <interface> packet pg [tx, rx]`
+  - `nv show system telemetry interface-stats port-group packet-all-pg snapshot interface <interface> packet tc`
+  - `nv show system telemetry interface-stats port-group packet-all-pg snapshot interface <interface> buffer [pg, tc, ingress-port]`
+  - `nv show system telemetry interface-stats port-group buffer-pg snapshot buffer pool`
 
 The following example shows an ingress queue snapshot:
 
@@ -643,13 +650,62 @@ Sl.No  Date-Time            Bin-0   Bin-1    Bin-2    Bin-3    Bin-4    Bin-5   
 9      2023-12-13 11:02:36  980318  0        0        0        0        0        0        0         0         0
 ```
 
+The following example shows a snapshot for good packets transmitted on swp1:
+
+```
+cumulus@switch:~$ nv show system telemetry interface-stats port-group all-packet-pg snapshot interface swp1 packet good tx 
+Id       Date-Time                 Packet         Byte             Mcast        Bcast         Mac Ctrl       Pause Mac Ctrl 
+
+-----    -------------------       ------------   -------------    ---------    ----------    ------------   ---------------
+
+1         2023-12-13 11:02:44      2              268              0            0             0              0
+2         2023-12-13 11:02:43      2              268              0            0             0              0
+3         2023-12-13 11:02:42      2              268              0            0             0              0         
+```
+
+The following example shows a snapshot for dropped packets received on swp1:
+
+```
+cumulus@switch:~$ nv show system telemetry interface-stats port-group all-packet-pg snapshot interface swp1 packet discard rx 
+Id       Date-Time                  General      Policy        Vlan         Tag Type     Opcode     Buffer   Runt     Other 
+
+-----    -------------------        ---------    -----------   -------      ----------    -------   -------  -------  -------- 
+
+1         2023-12-13 11:02:44       2            0             0            0             0         0        0        0
+2         2023-12-13 11:02:43       2            0             0            0             0         0        0        0
+3         2023-12-13 11:02:42       2            0             0            0             0         0        0        0 
+```
+
+The following example shows a snapshot for ingress queue packets received on swp1:
+
+```
+cumulus@switch:~$ nv show system telemetry interface-stats port-group all-packet-pg snapshot interface swp1 packet pg 0 tx
+Id       Date-Time                 Pause Packet        Pause Duration   
+-----    -------------------       ------------        --------------------- 
+
+1         2023-12-13 11:02:44      0                   0                 
+2         2023-12-13 11:02:43      0                   0               
+3         2023-12-13 11:02:42      0                   0
+```
+
+The following example shows a snapshot for buffer occupancy on swp1:
+
+```
+nv show system telemetry interface-stats port-group all-packet-pg snapshot interface swp1 buffer pg 0 
+Id       Date-Time                 Current Value        Watermark        
+-----    -------------------       ------------         -------------
+1        2023-12-13 11:02:44       0                    0                           
+2        2023-12-13 11:02:43       0                    0              
+3        2023-12-13 11:02:42       0                    0   
+```
+
 {{%notice note%}}
 Parsing the snapshot file and finding the information you need can be tedious; use a third-party analysis tool to analyze the data in the file.
 {{%/notice%}}
 
 ### Log files
 
-In addition to snapshots, you can configure the switch to send log messages to the `/var/log/syslog` file when the queue length reaches a specified number of bytes, the number of counters reach a specified value, or the latency reaches a specific number of nanoseconds.
+In addition to snapshots, you can configure the switch to send log messages to the `/var/log/syslog` file when the queue length reaches a specified number of bytes, the number of counters reach a specified value, the latency reaches a specific number of nanoseconds, or dropped error packets or dropped congested packets reach a specific number.
 
 {{< tabs "TabID293 ">}}
 {{< tab "NVUE Commands ">}}
@@ -678,12 +734,21 @@ cumulus@switch:~$ nv set interface swp1-8 telemetry histogram latency traffic-cl
 cumulus@switch:~$ nv config apply
 ```
 
-The following example sends a message to the `/var/log/syslog` file after the number of packet error drops collected in the `buffer-pg` port group reach 100:
+The following example sends a message to the `/var/log/syslog` file after the number of dropped error packets collected in the `buffer-pg` port group reaches 100:
 
 ```
 cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg threshold packet-error-drops value 100 
 cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg threshold packet-error-drops action log 
 cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg threshold packet-error-drops action collect port-group buffer-pg 
+cumulus@switch:~$ nv config apply
+```
+
+The following example sends a message to the `/var/log/syslog` file after the number of dropped congested packets collected in the `buffer-pg` port group reaches 100:
+
+```
+cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg threshold packet-congestion-drops value 100 
+cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg threshold packet-congestion-drops action log 
+cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg threshold packet-congestion-drops action collect port-group buffer-pg 
 cumulus@switch:~$ nv config apply
 ```
 
@@ -771,6 +836,23 @@ Time      0-863     864:2303    2304:3743  3744:5183   5184:6623   6624:8063   8
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
 08:56:19  978065        0          0           0           0            0           0           0             0
 08:56:20  978532        0          0           0           0            0           0           0             0
+```
+
+To show packet and buffer histogram configuration settings:
+
+```
+cumulus@switch:~$ nv show system telemetry interface-stats
+                    operational  applied   pending 
+------------------  -----------  --------  --------
+sample-interval                  1         1       
+[switch-priority]                                  
+ingress-buffer                                     
+  [priority-group]                                 
+egress-buffer                                      
+  [traffic-class]                                  
+[port-group]                                       
+export                                             
+  state                          disabled  disabled
 ```
 
 ## High Frequency Telemetry

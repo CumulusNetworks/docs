@@ -236,14 +236,16 @@ To enable RADIUS user command accounting:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set system aaa radius accounting enable on
+cumulus@switch:~$ nv set system aaa radius accounting enabled
 cumulus@switch:~$ nv config apply
 ```
+
+To disable RADIUS user command accounting, run the `nv set system aaa radius accounting disabled` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/pam_radius_auth.conf` file to add the `accounting????` parameter:
+Edit the `/etc/pam_radius_auth.conf` file to add the `accounting` parameter:
 
 ```
 cumulus@switch:~$ sudo nano /etc/pam_radius_auth.conf
@@ -262,7 +264,7 @@ mapped_priv_user radius_priv_user
 192.168.0.254:42           myradius$key        10                 192.168.1.10        
 
 vrf-name mgmt
-accounting????
+accounting
 ```
 
 {{< /tab >}}

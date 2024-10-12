@@ -271,7 +271,7 @@ To configure a limit on memory usage, run the `nv set service control <service-n
 The following example configures the DHCP service to limit memory usage to 70 percent:
 
 ```
-cumulus@switch:~$ nv set service control dhcpd resource-limit memory 60
+cumulus@switch:~$ nv set service control dhcpd resource-limit memory 70
 cumulus@switch:~$ nv config apply
 ```
 

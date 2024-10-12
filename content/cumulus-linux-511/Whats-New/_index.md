@@ -23,8 +23,8 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 - {{<link url="RADIUS-AAA/#radius-user-command-accounting" text="RADIUS user command accounting">}}
 - {{<link url="Upgrading-Cumulus-Linux/#upgrade-cumulus-linux" text="Optimized image upgrade commands">}} (available for future upgrades)
 - {{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" text="Additional adaptive routing ECMP resource optimization for next hop groups">}} (Beta)
-- OTLP ???
-- All packet histogram configuration
+- OTLP
+- {{<link url="ASIC-Monitoring/#histogram-collection" text="Packet and buffer histogram commands">}}
 - NVUE
   - {{<link url="DHCP-Snooping" text="DHCP snooping commands">}}
   - {{<link url="Link-Layer-Discovery-Protocol/#disable-lldp" text="Disable LLDP commands">}}

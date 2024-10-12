@@ -754,7 +754,7 @@ swp7       down          down                1500   swp
 ...
 ```
 
-To show the administrative and physical (operational) state of an interface:
+To show the administrative and physical (operational) state of an interface, and the date and time the physical state of the interface changed:
 
 {{< tabs "TabID875 ">}}
 {{< tab "NVUE Commands ">}}
@@ -764,8 +764,9 @@ cumulus@switch:~$ nv show interface swp1
                          operational        applied
 -----------------------  -----------------  -------
 ...
-  oper-status            down                      
-  admin-status           down 
+  oper-status              up                                       
+  admin-status             up                                       
+  oper-status-last-change  2024/10/11 19:12:16.339
 ```
 
 {{< /tab >}}
@@ -788,27 +789,32 @@ To show the last time (date and time) the operational state of an interface chan
 
 ```
 cumulus@switch:~$ nv show interface --view=carrier-stats
-Interface   Oper Status     Up Count  Down Count  Total State Changes  Last State Change
-----------  --------------  --------  ----------  -------------------  ----------------------- 
-br_default  down            0         1           1                    2024/09/21 20:54:37.706 
-eth0        up              1         1           2                    2024/09/21 20:54:33.672 
-lo          unknown         0         0           0                    Never 
-mgmt        up              0         0           0                    Never 
-swp1        down            0         1           1                    2024/09/21 20:54:36.584 
-swp2        down            0         1           1                    2024/09/21 20:54:36.591 
-swp3        down            0         1           1                    2024/09/21 20:54:36.599 
-swp4        down            0         1           1                    2024/09/21 20:54:36.606 
-swp5        down            0         1           1                    2024/09/21 20:54:36.613 
-swp6        down            0         1           1                    2024/09/21 20:54:36.620 
-swp7        down            0         1           1                    2024/09/21 20:54:36.628 
-swp8        down            0         1           1                    2024/09/21 20:54:36.635 
-swp9        up              1         1           2                    2024/09/21 20:54:45.935 
-swp10       up              1         1           2                    2024/09/21 20:54:47.017 
+Interface       Oper Status  Up Count  Down Count  Total State Changes  Last State Change      
+--------------  -----------  --------  ----------  -------------------  -----------------------
+BLUE            up           0         0           0                    Never                  
+RED             up           0         0           0                    Never                  
+bond1           up           2         1           3                    2024/10/11 19:14:59.265
+bond2           up           1         0           1                    2024/10/11 19:12:18.817
+bond3           up           1         0           1                    2024/10/11 19:12:18.833
+br_default      up           2         2           4                    2024/10/11 19:12:15.216
+eth0            up           1         1           2                    2024/10/11 19:12:02.157
+lo              unknown      0         0           0                    Never                  
+mgmt            up           0         0           0                    Never                  
+peerlink        up           1         0           1                    2024/10/11 19:12:06.913
+peerlink.4094   up           1         0           1                    2024/10/11 19:12:06.915
+swp1            up           2         2           4                    2024/10/11 19:12:16.339
+swp2            up           2         2           4                    2024/10/11 19:12:16.345
+swp3            up           2         2           4                    2024/10/11 19:12:16.351
+swp4            down         1         1           2                    2024/10/11 19:11:28.936
+swp5            down         1         1           2                    2024/10/11 19:11:28.936
+swp6            down         1         1           2                    2024/10/11 19:11:28.936
+swp7            down         1         1           2                    2024/10/11 19:11:28.936
+...
 ```
 
 In the example above:
 - `Last State Change` shows the timestamp of the last operational state change.
-- `Total State Changes` shows the total number of transitions in carrier state.
+- `Total State Changes` shows the total number of transitions in the carrier state.
 - `Up Count`shows the number of times the carrier transitioned to an UP state.
 - `Down Count` shows the number of times the carrier transitioned to a DOWN state.
 
@@ -816,38 +822,35 @@ To show the date and time the operational state of a specific interface changes 
 
 ```
 cumulus@switch:~$ nv show interface swp1 link
-                         operational                 applied 
------------------------  --------------------------  ------- 
-admin-status             up 
-oper-status              up 
-oper-status-last-change  2024/09/21 20:54:47.017 
-protodown                disabled 
-auto-negotiate           on                          on 
-duplex                   full                        full 
-speed                    100G                        auto 
-mac-address              1c:34:da:c2:44:5c 
-fec                      rs                          auto 
-mtu                      9216                        9216 
-fast-linkup              off 
-[breakout] 
-state                    up                          up 
-flap-protection 
-  enable                                             on 
-stats 
-  in-bytes               3.06 MB 
-  in-pkts                47321 
-  in-drops               0 
-  in-errors              0 
-  out-bytes              9.35 KB 
-  out-pkts               48 
-  out-drops              0 
-  out-errors             0 
-  carrier-transitions    2 
-  carrier-up-count       1 
-  carrier-down-count     1 
-eyes                     37, 57, 62, 30 
-grade                    11564, 15479, 18354, 10008 
-troubleshooting-info     No issue was observed 
+                         operational              applied  pending
+-----------------------  -----------------------  -------  -------
+admin-status             up                                       
+oper-status              up                                       
+oper-status-last-change  2024/10/11 19:12:16.339                  
+protodown                disabled                                 
+auto-negotiate           off                      on       on     
+duplex                   full                     full     full   
+speed                    1G                       auto     auto   
+mac-address              48:b0:2d:fa:a1:14                        
+fec                                               auto     auto   
+mtu                      9000                     9216     9216   
+fast-linkup              off                                      
+[breakout]                                                        
+state                    up                       up       up     
+flap-protection                                                   
+  enable                                          on       on     
+stats                                                             
+  in-bytes               1.96 MB                                  
+  in-pkts                16399                                    
+  in-drops               0                                        
+  in-errors              0                                        
+  out-bytes              2.37 MB                                  
+  out-pkts               24669                                    
+  out-drops              0                                        
+  out-errors             0                                        
+  carrier-transitions    4                                        
+  carrier-up-count       2                                        
+  carrier-down-count     2 
 ```
 
 To show the number of carrier transitions only (`carrier-transitions`, `carrier-up-count`, `carrier-down-count`) for a specific interface, run the `nv show interface <interface> link stats` command.
@@ -860,7 +863,8 @@ To show the assigned IP address on an interface:
 ```
 cumulus@switch:~$ nv show interface lo ip address
 -------------
-10.10.10.1/24
+10.0.1.12/32 
+10.10.10.1/32
 127.0.0.1/8  
 ::1/128
 ```

@@ -229,6 +229,9 @@ Cumulus Linux includes a default NVUE `startup.yaml` file. In addition, NVUE con
 These issues occur only if you use Linux commands to configure the switch. If you use NVUE commands to configure the switch, these issues do not occur and no action is needed.
 {{%/notice%}}
 
+{{< tabs "TabID232 ">}}
+{{< tab "Switch Reboot">}}
+
 To prevent Cumulus Linux from deleting the Linux configuration files when the switch reboots after upgrade:
 
 1. **Before** you upgrade to 5.10.0 or later, disable NVUE auto save:
@@ -245,10 +248,16 @@ To prevent Cumulus Linux from deleting the Linux configuration files when the sw
    cumulus@switch:~$ sudo rm -rf /etc/nvue.d/startup.yaml
    ```
 
+{{< /tab >}}
+{{< tab "cumulus Account Password">}}
+
 To prevent Cumulus Linux from deleting the Linux configuration files when you change the cumulus account password with the Linux `passwd` command, comment out the `password optional pam_exec.so seteuid /usr/lib/cumulus/reconcile_password_with_nvue.sh` line from the following files **before** you upgrade to 5.10.0 or later:
 - `/etc/pam.d/chpasswd`
 - `/etc/pam.d/login`
 - `/etc/pam.d/passwd`
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### DHCP Lease with the host-name Option
 

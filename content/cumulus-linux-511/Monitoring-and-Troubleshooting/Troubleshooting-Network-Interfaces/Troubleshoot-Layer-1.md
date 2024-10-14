@@ -129,7 +129,7 @@ The most useful DDM/DOM values when troubleshooting a problem link are:
 - RX optical power (receiver signal average optical power)
 - TX optical power (laser output power)  
 
-The location of DDM/DOM fields are standardized. If DDM/DOM capability is present on a module, the values are displayed in the output of `ethtool -m <swp>`.
+The location of DDM/DOM fields are standardized. If DDM/DOM capability is present on a module, the values are displayed in the output of the NVUE `nv show platform transceiver <interface>` command or the Linux `ethtool -m <swp>` command.
 
 For each DDM/DOM value there can be thresholds to mark a high or low *warning* or an *alarm* when the value exceeds that threshold.
 
@@ -249,7 +249,106 @@ A link might have no stability problems with a measurement below these values, a
 
 For 50G lanes (200G- and 400G-capable ports), the link uses PAM4 encoding, which has 3 eyes stacked on top of each other and therefore much smaller eye measurements. FEC is required on these links.
 
-## l1-show Command
+## Show Layer 1 Information
+
+Use the NVUE `nv show platform transceiver <interface>` command or the Linux `l1-show` command to show all layer 1 aspects of a Cumulus Linux port and link.
+
+{{< tabs "TabID254 ">}}
+{{< tab "NVUE Commands">}}
+
+```
+cumulus@switch:~$ nv show platform transceiver swp2
+cable-type             : Active cable 
+cable-length           : 3m 
+supported-cable-length : 0 om1, 0 om2, 0 om3, 3 om4, 0 om5 
+diagnostics-status     : Diagnostic Data Available 
+status                 : plugged_enabled 
+error-status           : Power_Budget_Exceeded 
+vendor-data-code       : 210215__ 
+identifier             : QSFP28 
+vendor-rev             : B2 
+vendor-name            : Mellanox 
+vendor-pn              : MFA1A00-C003 
+vendor-sn              : MT2108FT02204 
+temperature: 
+  temperature         : 48.74 C 
+  high-alarm-threshold: 80.00 C 
+  low-alarm-threshold : -10.00 C 
+  alarm               : Off 
+voltage: 
+  voltage             : 3.2692 V 
+  high-alarm-threshold: 3.5000 V 
+  low-alarm-threshold : 3.1000 V 
+  alarm               : Off 
+channel: 
+  channel-1: 
+    rx-power: 
+        power            : 0.0000 mW / -inf dBm 
+        high-alarm-thresh: 5.40 dBm 
+        low-alarm-thresh : -13.31 dBm 
+        alarm            : low 
+    tx-power: 
+        power            : 0.0000 mW / -inf dBm 
+        high-alarm-thresh: 5.40 dBm 
+        low-alarm-thresh : -11.40 dBm 
+        alarm            : Off 
+    tx-bias-current: 
+        current          : 0.000 mA 
+        high-alarm-thresh: 8.500 mA 
+        low-alarm-thresh : 5.492 mA 
+        alarm            : low 
+  channel-2: 
+    rx-power: 
+        power            : 0.0000 mW / -inf dBm 
+        high-alarm-thresh: 5.40 dBm 
+        low-alarm-thresh : -13.31 dBm 
+        alarm            : low 
+    tx-power: 
+        power            : 0.0000 mW / -inf dBm 
+        high-alarm-thresh: 5.40 dBm 
+        low-alarm-thresh : -11.40 dBm 
+        alarm            : low 
+    tx-bias-current: 
+        current          : 0.000 mA 
+        high-alarm-thresh: 8.500 mA 
+        low-alarm-thresh : 5.492 mA 
+        alarm            : low 
+  channel-3: 
+    rx-power: 
+        power            : 0.0000 mW / -inf dBm 
+        high-alarm-thresh: 5.40 dBm 
+        low-alarm-thresh : -13.31 dBm 
+        alarm            : low 
+    tx-power: 
+        power            : 0.0000 mW / -inf dBm 
+        high-alarm-thresh: 5.40 dBm 
+        low-alarm-thresh : -11.40 dBm 
+        alarm            : low 
+    tx-bias-current: 
+        current          : 0.000 mA 
+        high-alarm-thresh: 8.500 mA 
+        low-alarm-thresh : 5.492 mA 
+        alarm            : low 
+  channel-4: 
+    rx-power: 
+        power            : 0.0000 mW / -inf dBm 
+        high-alarm-thresh: 5.40 dBm 
+       low-alarm-thresh : -13.31 dBm 
+        alarm            : low 
+    tx-power: 
+        power            : 0.0000 mW / -inf dBm 
+        high-alarm-thresh: 5.40 dBm 
+        low-alarm-thresh : -11.40 dBm 
+        alarm            : low 
+    tx-bias-current: 
+        current          : 0.000 mA 
+        high-alarm-thresh: 8.500 mA 
+        low-alarm-thresh : 5.492 mA 
+        alarm            : low
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
 
 Because Linux Ethernet tools do not have a unified approach to the various vendor driver implementations and areas that affect layer 1, Cumulus Linux uses the `l1-show` command to show all layer 1 aspects of a Cumulus Linux port and link.
 
@@ -369,6 +468,9 @@ The NVIDIA port firmware automatically troubleshoots link problems and displays 
 
 See {{<link url="#fec" text="FEC">}}, {{<link url="#auto-negotiation" text="Auto-negotiation">}} and {{<link url="#signal-integrity" text="Signal Integrity">}} above for more details.
 
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Troubleshoot Layer 1 Problems
 
 This section provides a troubleshooting process and checklist to help resolve layer 1 issues for modules.
@@ -382,7 +484,7 @@ The root cause of a layer 1 problem falls into one of these three categories:
 To resolve a layer 1 problem, follow these steps:
 
 - {{<link url="#classify-the-layer-1-problem" text="Characterize and classify">}} the problem.
-- Design a test that best displays the lowest level indicator of that problem behavior. The hierarchy view of `l1-show` is often the best tool to find this indicator.
+- Design a test that best displays the lowest level indicator of that problem behavior. The hierarchy view of `l1-show` is often the best tool to find this indicator. You can also use the NVUE `nv show platform transceiver <interface>` command.
 - Make changes based on the problem type that leads toward isolating the root cause of the failure. Use the test to track progress.
   - Identify if the issue is likely a configuration issue or a hardware issue. If unclear, start with configuration first.
   - For configuration issues, ensure the configuration on both ends of the link matches the guidance in this guide and in {{<link url="Switch-Port-Attributes" text="Switch Port Attributes">}}.

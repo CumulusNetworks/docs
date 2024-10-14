@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4119696"></a> [4119696](#4119696) <a name="4119696"></a> <br /> | If you run <code>nv set</code> commands after you perform an upgrade but before a reboot, NVUE creates a revision based off the pre-upgrade version. After reboot, the revision contains pre-upgrade data that might cause it to fail during <code>config apply</code>.  To work around this issue, detach the stale revision after upgrade with the <code>nv config detach</code> command. | 5.10.0-5.10.1 | |
 | <a name="4100170"></a> [4100170](#4100170) <a name="4100170"></a> <br /> | The NVUE Service fails to start after an upgrade from Cumulus Linux 5.9 to Cumulus Linux 5.10 because of a corrupted database. | 5.10.0-5.10.1 | |
 | <a name="4100164"></a> [4100164](#4100164) <a name="4100164"></a> <br /> | Low power Intel SATA controllers experience issues when using the <code>mobile</code> low power chipset LPM policy. This can cause the SSD to become read only. | 5.8.0-5.10.1 | |
 | <a name="4081784"></a> [4081784](#4081784) <a name="4081784"></a> <br /> | If you configure an inbound route policy that drops prefixes, then run a vtysh <code>show bgp vrf <vrf> neighbours <neighbor> received-routes</code> command, the BGP service might crash.>br>Avoid running a vtysh received routes show command if you configure an inbound route policy that drops prefixes. | 5.9.1-5.10.1 | |
@@ -102,6 +103,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4119696"></a> [4119696](#4119696) <a name="4119696"></a> <br /> | If you run <code>nv set</code> commands after you perform an upgrade but before a reboot, NVUE creates a revision based off the pre-upgrade version. After reboot, the revision contains pre-upgrade data that might cause it to fail during <code>config apply</code>.  To work around this issue, detach the stale revision after upgrade with the <code>nv config detach</code> command. | 5.10.0-5.10.1 | |
 | <a name="4101060"></a> [4101060](#4101060) <a name="4101060"></a> <br /> | The port state can't be changed from down to up.  | 5.10.0 | 5.10.1|
 | <a name="4101051"></a> [4101051](#4101051) <a name="4101051"></a> <br /> | On rare occasion, SMBUS gateway handling causes a race condition that causes the SMBUS gateway to hang. As a result, all the ports located on the same SMBUS gateway are not able to get I2C service to the module EEPROM. | 5.10.0 | 5.10.1|
 | <a name="4101034"></a> [4101034](#4101034) <a name="4101034"></a> <br /> | The I2C module read output is incorrect intermittently for modules 0-7. | 5.10.0 | 5.10.1|

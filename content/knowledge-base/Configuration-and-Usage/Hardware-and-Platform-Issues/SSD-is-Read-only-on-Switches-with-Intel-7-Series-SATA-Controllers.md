@@ -1,5 +1,5 @@
 ---
-title: SSD is Read-only on Intel 7 Series Switches
+title: SSD is Read-only on Switches with Intel 7 Series SATA Controllers
 author: NVIDIA
 weight: 352
 toc: 3
@@ -76,7 +76,7 @@ To apply the fix so that it persists after a reboot:
 
    ```
    cumulus@switch:~$ vim /etc/default/grub
-   GRUB_CMDLINE_LINUX="cl_platform=mlnx_x86_MSN2410 console=tty0 console=ttyS0,115200n8 ahci.   mobile_lpm_policy=1 acpi_enforce_resources=lax acpi=noirq"
+   GRUB_CMDLINE_LINUX="cl_platform=mlnx_x86_MSN2410 console=tty0 console=ttyS0,115200n8 ahci.mobile_lpm_policy=1 acpi_enforce_resources=lax acpi=noirq"
    ```
 
    Alternatively, use `sed` to replace the last few characters in the console speed and add the LPM policy value, then validate the change:
@@ -87,7 +87,7 @@ To apply the fix so that it persists after a reboot:
 
    ```
    cumulus@switch:~$ grep 200n8 /etc/default/grub
-   GRUB_CMDLINE_LINUX="cl_platform=mlnx_x86_MSN2410 console=tty0 console=ttyS0,115200n8 ahci.   mobile_lpm_policy=1 acpi_enforce_resources=lax acpi=noirq"
+   GRUB_CMDLINE_LINUX="cl_platform=mlnx_x86_MSN2410 console=tty0 console=ttyS0,115200n8 ahci.mobile_lpm_policy=1 acpi_enforce_resources=lax acpi=noirq"
    ```
 
 2. Run the `update-grub` command to apply the new `/etc/default/grub` configuration:

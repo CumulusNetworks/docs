@@ -226,7 +226,7 @@ Cumulus Linux includes a default NVUE `startup.yaml` file. In addition, NVUE con
 - You change the cumulus account password with the Linux `passwd` command.
 
 {{%notice note%}}
-These upgrade issues occur only if you use Linux commands to configure the switch. If you use NVUE commands to configure the switch, these issues do not occur and no action is needed.
+These issues occur only if you use Linux commands to configure the switch. If you use NVUE commands to configure the switch, these issues do not occur and no action is needed.
 {{%/notice%}}
 
 To prevent Cumulus Linux from deleting the Linux configuration files when the switch reboots after upgrade:
@@ -249,6 +249,10 @@ To prevent Cumulus Linux from deleting the Linux configuration files when you ch
 - `/etc/pam.d/chpasswd`
 - `/etc/pam.d/login`
 - `/etc/pam.d/passwd`
+
+### DHCP Lease with the host-name Option
+
+When a Cumulus Linux switch running 5.10.0 or later with NVUE enabled receives a DHCP lease containing the host-name option, it ignores the received hostname and does not apply it. For details, see this [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Administration/Hostname-Option-Received-From-DHCP-Ignored" >}}).
 
 ### NVUE Commands After Upgrade
 

@@ -326,7 +326,7 @@ Review these release considerations before you upgrade to Cumulus Linux 5.9.
 ### Linux Configuration Files Deleted
 
 {{%notice warning%}}
-If you use Linux commands to configure the switch, read the following information before you upgrade to Cumulus Linux 5.9.1 or later.
+If you use Linux commands to configure the switch, read the following information before you upgrade to Cumulus Linux 5.9.2 or later.
 {{%/notice%}}
 
 Cumulus Linux 5.9.1 and later includes a default NVUE `startup.yaml` file. In addition, NVUE configuration auto save is enabled by default. As a result of these changes, Cumulus Linux deletes the Linux configuration files on the switch when:
@@ -334,12 +334,12 @@ Cumulus Linux 5.9.1 and later includes a default NVUE `startup.yaml` file. In ad
 - You change the cumulus account password with the Linux `passwd` command.
 
 {{%notice note%}}
-These upgrade issues occur only if you use Linux commands to configure the switch. If you use NVUE commands to configure the switch, these issues do not occur and no action is needed.
+These issues occur only if you use Linux commands to configure the switch. If you use NVUE commands to configure the switch, these issues do not occur and no action is needed.
 {{%/notice%}}
 
 To prevent Cumulus Linux from deleting the Linux configuration files when the switch reboots after upgrade:
 
-1. **Before** you upgrade to 5.9.1 or later, disable NVUE auto save:
+1. **Before** you upgrade to Cumulus Linux 5.9.2 or later, disable NVUE auto save:
 
    ```
    cumulus@switch:~$ nv set system config auto-save enable off
@@ -353,10 +353,16 @@ To prevent Cumulus Linux from deleting the Linux configuration files when the sw
    cumulus@switch:~$ sudo rm -rf /etc/nvue.d/startup.yaml
    ```
 
-To prevent Cumulus Linux from deleting the Linux configuration files when you change the cumulus account password with the Linux `passwd` command, comment out the `password optional pam_exec.so seteuid /usr/lib/cumulus/reconcile_password_with_nvue.sh` line from the following files **before** you upgrade to 5.9.1 or later:
+To prevent Cumulus Linux from deleting the Linux configuration files when you change the cumulus account password with the Linux `passwd` command, comment out the `password optional pam_exec.so seteuid /usr/lib/cumulus/reconcile_password_with_nvue.sh` line from the following files **before** you upgrade to 5.9.2 or later:
 - `/etc/pam.d/chpasswd`
 - `/etc/pam.d/login`
 - `/etc/pam.d/passwd`
+
+You can also add these commands to your automation scripts after you upgrade to Cumulus Linux 5.9.1.
+
+### DHCP Lease with the host-name Option
+
+When a Cumulus Linux switch running 5.9.1 or later with NVUE enabled receives a DHCP lease containing the host-name option, it ignores the received hostname and does not apply it. For details, see this [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Administration/Hostname-Option-Received-From-DHCP-Ignored" >}}).
 
 ### NVUE Commands After Upgrade
 

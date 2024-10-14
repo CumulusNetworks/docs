@@ -12,6 +12,10 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 NetQ 4.12.0 includes the following new features and improvements:
 
+- new cluster installation option that supports up to TKTK devices
+- {{<link title="Validate Network Protocol and Service Operations/#topology-validations" text="Topology validations">}} are now generally available
+- The {{<link title="Network Topology" text="topology view">}} is now generally available
+- {{<link title="Threshold-Crossing Events Reference" text="Threshold-Crossing Events">}} configured by NetQ by default
 - View and BGP and EVPN session information in the full-screen {{<link title="Switches" text="switch dashboard">}}
 
 ## Upgrade Paths
@@ -23,13 +27,13 @@ For deployments running:
 
 ## Compatible Agent Versions
 
-The NetQ 4.11 server is compatible with NetQ Agent 4.9 or later. You can install NetQ Agents on switches and servers running:
+The NetQ 4.12 server is compatible with NetQ Agent 4.10 or later. You can install NetQ Agents on switches and servers running:
 
 - Cumulus Linux 5.0.0 or later (Spectrum switches)
-- Cumulus Linux 4.3.1 and 4.3.2 (Broadcom switches)
-- Ubuntu 20.04
+- Cumulus Linux 4.3.1, 4.3.2 (Broadcom switches)
+- Ubuntu 20.04, 22.04
 
-You must upgrade to the latest agent version to enable 4.11 features.
+You must upgrade to the latest agent version to enable 4.12 features.
 
 {{%notice info%}}
 Switches running Cumulus Linux 5.9 or later require the NetQ 4.10 or later agent package. See {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq/Installation-Management/Install-NetQ/Install-NetQ-Agents/" text="Install NetQ Agents">}}.

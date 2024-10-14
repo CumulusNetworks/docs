@@ -5,18 +5,14 @@ weight: 890
 toc: 3
 ---
 
-The network topology dashboard displays a visual representation of your network, showing connections and device information for all monitored nodes. The view allows you to understand your network's architecture at a high-level, but also lets you isolate individual devices or sections.
-
-{{<notice note>}}
-The topology view has been redesigned to better accommodate larger networks with over 50 devices. This feature is in beta and feedback is welcome. You can still access the legacy topology view by following the instructions in the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-47/Monitor-Operations/Topology-View/" text="NetQ 4.7 documentation">}}.
-{{</notice>}}
+The network topology dashboard displays a visual representation of your network, showing connections and device information for all monitored nodes. The view allows you to understand your network's architecture at a high-level, but also lets you isolate individual devices or network tiers.
 ## Access the Topology View
 
-To open the topology view, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/41-Hierachy-Organization/hierarchy.svg" height="18" width="18"/> **Topology** in the workbench header. Select **Topology Beta** to open a full-screen view of your network topology. The UI displays the highest-level view of your network's topology, showing devices as part of tiers corresponding to your network's architecture.
+To open the topology view, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/41-Hierachy-Organization/hierarchy.svg" height="18" width="18"/> **Topology** in the workbench header. The UI displays the highest-level view of your network's topology, showing devices as part of tiers corresponding to your network's architecture.
 
 The default view reflects the devices comprising the network. A two-tier architecture is made up of leaf and spine devices; a three-tier architecture is made up of leaf, spine, and super-spine devices. There is an additional 'unclassified' tier for devices that do not have a role assigned to them. If your devices appear in this tier, {{<link title="Switch Management/#assign-roles-to-switches" text="assign roles">}} to them. Then return to the topology view and select **Auto arrange**. 
 
-{{<figure src="/images/netq/topology-view-480.png" alt="view of a networkwide topology displaying connections between devices" width="1100">}}
+{{<figure src="/images/netq/topo-overview-412.png" alt="view of a networkwide topology displaying connections between devices" width="1100">}}
 
 ## Interact with the Topology
 
@@ -24,9 +20,9 @@ The topology screen features a main panel displaying tiers or, when zoomed in, t
 
 ### View Device and Link Data
 
-Zoom in and select a device to open a side panel with additional statistics, including interfaces statistics, resource utilization, and events occurring on that device.
+Zoom in and select a device to open a side panel with additional statistics, including interfaces statistics, resource utilization, protocols, VNIs, and events.
 
-{{<figure src="/images/netq/topo-side-480.png" alt="overview of events, protocols, and utilization data for spine 1" width="500">}}
+{{<figure src="/images/netq/topo-device-412.png" alt="overview of events, protocols, and utilization data for torc 11" width="800">}}
 
 The following data is presented in the side panel for each selected device:
 
@@ -50,7 +46,7 @@ From the side panel, you can view the following data about links:
 | Link Data | Description |
 | --------- | ----------- |
 | Source hostname | Switch where the connection originates |
-| Source Interface | Port on the source switch used by the connection |
+| Source interface | Port on the source switch used by the connection |
 | Peer hostname | Switch where the connection ends |
 | Peer interface | Port on the destination switch used by the connection |
 

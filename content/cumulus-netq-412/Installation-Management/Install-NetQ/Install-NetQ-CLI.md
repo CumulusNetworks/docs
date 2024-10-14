@@ -10,8 +10,8 @@ Installing the NetQ CLI on your NetQ VMs, switches, or hosts gives you access to
 After installing the NetQ software and agent on each switch you want to monitor, you can also install the NetQ CLI on switches running:
 
 - Cumulus Linux 5.0.0 or later (Spectrum switches)
-- Cumulus Linux 4.3.1 and 4.3.2 (Broadcom switches)
-- Ubuntu 20.04
+- Cumulus Linux 4.3.1, 4.3.2 (Broadcom switches)
+- Ubuntu 20.04, 22.04
 
 {{<notice note>}}
 If your network uses a proxy server for external connections, you should first {{<kb_link latest="cl" url="System-Configuration/Configuring-a-Global-Proxy.md" text="configure a global proxy">}} so <code>apt-get</code> can access the software package in the NetQ repository.
@@ -76,7 +76,7 @@ If NTP is not already installed and configured, follow these steps:
 
 {{<tab "Ubuntu">}}
 
-1.  Install {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} on the server, if not already installed. Servers must be in time synchronization with the NetQ Platform or NetQ appliance to enable useful statistical analysis.
+1.  Install {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} on the server, if not already installed. Servers must be in time synchronization with the NetQ appliance to enable useful statistical analysis.
 
     ```
     root@ubuntu:~# sudo apt-get install ntp
@@ -116,89 +116,6 @@ If you are running NTP in your out-of-band management network with VRF, specify 
 
 {{</tab>}}
     
-{{<tab "Use Chrony (Ubuntu 18.04 only)" >}}
-
-1. Install chrony if needed.
-
-    ```
-    root@ubuntu:~# sudo apt install chrony
-    ```
-
-2. Start the chrony service.
-
-    ```
-    root@ubuntu:~# sudo /usr/local/sbin/chronyd
-    ```
-
-3. Verify it installed successfully.
-
-    ```
-    root@ubuntu:~# chronyc activity
-    200 OK
-    8 sources online
-    0 sources offline
-    0 sources doing burst (return to online)
-    0 sources doing burst (return to offline)
-    0 sources with unknown address
-    ```
-
-4. View the time servers that chrony is using.
-
-    ```
-    root@ubuntu:~# chronyc sources
-    210 Number of sources = 8
-
-    MS Name/IP address         Stratum Poll Reach LastRx Last sample
-    \=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=\=
-    ^+ golem.canonical.com           2   6   377    39  -1135us[-1135us] +/-   98ms
-    ^* clock.xmission.com            2   6   377    41  -4641ns[ +144us] +/-   41ms
-    ^+ ntp.ubuntu.net              2   7   377   106   -746us[ -573us] +/-   41ms
-    ...
-    ```
-
-    Open the *chrony.conf* configuration file (by default at */etc/chrony/*) and edit if needed.
-
-    Example with individual servers specified:
-
-    ```
-    server golem.canonical.com iburst
-    server clock.xmission.com iburst
-    server ntp.ubuntu.com iburst
-    driftfile /var/lib/chrony/drift
-    makestep 1.0 3
-    rtcsync
-    ```
-
-    Example when using a pool of servers:
-
-    ```
-    pool pool.ntp.org iburst
-    driftfile /var/lib/chrony/drift
-    makestep 1.0 3
-    rtcsync
-    ```
-
-5. View the server that chrony is currently tracking.
-
-    ```
-    root@ubuntu:~# chronyc tracking
-    Reference ID    : 5BBD59C7 (golem.canonical.com)
-    Stratum         : 3
-    Ref time (UTC)  : Mon Feb 10 14:35:18 2020
-    System time     : 0.0000046340 seconds slow of NTP time
-    Last offset     : -0.000123459 seconds
-    RMS offset      : 0.007654410 seconds
-    Frequency       : 8.342 ppm slow
-    Residual freq   : -0.000 ppm
-    Skew            : 26.846 ppm
-    Root delay      : 0.031207654 seconds
-    Root dispersion : 0.001234590 seconds
-    Update interval : 115.2 seconds
-    Leap status     : Normal
-    ```
-
-{{</tab>}}
-
 {{</tabs>}}
 
 {{</tab>}}
@@ -221,14 +138,14 @@ To get the NetQ CLI package:
 
     {{<tabs "TabID2" >}}
 
-{{<tab "Ubuntu 18.04" >}}
+{{<tab "Ubuntu 22.04" >}}
 
-Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-bionic.list` and add the following line:
+Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-jammy.list` and add the following line:
 
 ```
-root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-bionic.list
+root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-jammy.list
 ...
-deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
+deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb jammy netq-latest
 ...
 ```
 

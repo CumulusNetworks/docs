@@ -170,6 +170,10 @@ To align with a long-term vision of a common interface between Cumulus Linux, Nv
 
 Review the following considerations before you upgrade to Cumulus Linux 5.11.
 
+### DHCP Lease with the host-name Option
+
+When a Cumulus Linux switch with NVUE enabled receives a DHCP lease containing the host-name option, it ignores the received hostname and does not apply it. For details, see this [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Administration/Hostname-Option-Received-From-DHCP-Ignored" >}}).
+
 ### NVUE Commands After Upgrade
 
 Cumulus Linux 5.11 includes the NVUE object model. After you upgrade to Cumulus Linux 5.11, running NVUE configuration commands might override configuration for features that are now configurable with NVUE and removes configuration you added manually to files or with automation tools like Ansible, Chef, or Puppet. To keep your configuration, you can do one of the following:

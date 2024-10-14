@@ -95,7 +95,7 @@ To configure Histogram Collection, you specify:
   - For the egress queue length and latency histograms, you can specify the traffic class you want to monitor for a port or range of ports.
   - For the ingress queue length histogram, you can specify the priority group you want to monitor for a port or range of ports.
 - How and when to start reading the ASIC: at a specific queue length, number of packets or bytes received or transmitted, or number of nanoseconds latency. For the packet and buffer histogram, you specify the collection interval in seconds.
-- What actions to take: create a snapshot file, send a message to the `/var/log/syslog` file, or both. For the packet and buffer histogram, you can also set the action to trigger another port group to collect a set of statistics specified in the triggered port group.
+- What actions to take: create a snapshot file, send a message to the `/var/log/syslog` file, or both. You can also set the action to trigger another port group to collect additional statistics.
 
 ### Histogram Settings
 
@@ -111,7 +111,11 @@ Histogram settings include the type of data you want to collect, the ports you w
     - CRC counters (`crc`)
     - Layer 1 received byte counters (`l1-rx-byte`). The byte count includes layer 1<span class="a-tooltip">[IPG](## "Interpacket Gap")</span> bytes.
     - Layer 1 transmitted byte counters (`l1-tx-byte`). The byte count includes layer 1<span class="a-tooltip">[IPG](## "Interpacket Gap")</span> bytes.
-- The packet and buffer histogram can monitor all, good and dropped packets, and the ingress and egress queue occupancy.
+- The packet and buffer histogram can monitor:
+   - All, good, and dropped packets, and the ingress and egress queue occupancy (`packet-all`)
+   - All and good packets (`packet`)
+   - All, good, and dropped packets (`packet-extended`)
+   - Ingress and egress queue occupancy (`buffer`)
 - You can enable up to two counter histogram counter types for each physical interface. The counter histogram does not support bonds or virtual interfaces.
 - The default minimum boundary size is 960 bytes. Adding this number to the size of the histogram produces the maximum boundary size. These values represent the range of queue lengths for each bin. The packet and buffer histogram does not use these settings.
 - The default value for the sampling time is 1024 nanoseconds. For the packet and buffer histogram, there is no default collection interval; the histogram does not run unless you configure the interval setting.

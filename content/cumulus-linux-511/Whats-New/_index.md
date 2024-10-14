@@ -40,10 +40,10 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
   - {{<link url="Route-Filtering-and-Redistribution/#match-source-protocol" text="Command to match BGP as the source protocol in a route map">}}
   - {{<link url="Switch-Port-Attributes/#interface-settings" text="nv show interface --view command includes additional filtering options">}}: `svi`, `vrf`, `bonds`, `bond-members`, `up`, and `down`
   - {{<link url="FRRouting/#show-routes-in-the-routing-table" text="Commands to show the number of routes in the routing table">}}
-  - {{<link url="Troubleshoot-Layer-1" text="Commands to show optical information for transceivers">}}
-  - L1-show equivalent
-  - BGP presentation part 2
-  - EVPN presentation - Phase 2
+  - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#show-transceiver-information" text="Commands to show optical information for transceivers">}}
+  - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#show-transceiver-information" text="l1-show command equivalent">}}
+  - BGP command output updates
+  - EVPN command output changes
   - {{< expand "Changed NVUE Commands" >}}
 | New Command | Previous Command |
 | ----------- | ----------------|
@@ -58,8 +58,9 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
   - {{< expand "Deprecated NVUE Commands" >}}
 | Deprecated Command | Replace with |
 | ----------- | ----------------|
-| nv show interface pluggables  | |
-| nv show interface <interface> pluggable | |
+| nv show interface pluggables  | nv show platform transceiver|
+| nv show interface <interface> pluggable | nv show platform transceiver <interface>|
+
 {{< /expand >}}
   - {{< expand "New NVUE Commands" >}}
 For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) for Cumulus Linux.
@@ -83,16 +84,19 @@ nv show platform transceiver <interface-id> channel <channel-id>
 nv show platform transceiver <detail> 
 nv show interface <interface-id> transceiver 
 nv show interface <interface-id> transceiver thresholds
+nv show platform transceiver
+nv show platform transceiver <interface-id>
+nv show platform transceiver <interface-id> channel
+nv show platform transceiver <interface-id> channel <channel-id>
+nv show platform transceiver <interface-id> thresholds
 nv show system sflow
 nv show system sflow agent
 nv show system sflow collector
 nv show system sflow policer
 nv show system sflow sampling-rate
 nv show interface <interface-id> sflow
-nv show vrf <vrf-id> router rib ipv4 route-count
-nv show vrf <vrf-id> router rib ipv6 route-count
-nv show vrf <vrf-id> router rib ipv4 route-count protocol
-nv show vrf <vrf-id> router rib ipv6 route-count protocol
+nv show system telemetry interface-stats port-group packet-all-pg snapshot interface <interface>
+nv show system telemetry interface-stats port-group buffer-pg snapshot buffer pool
 ```
 
 {{< /tab >}}
@@ -121,6 +125,13 @@ nv set system sflow agent interface <interface-id>
 nv set system sflow dropmon
 nv set system sflow policer rate <samples>
 nv set system sflow policer burst <sample-size>
+nv set system telemetry interface-stats port-group packet-all-pg interface 
+nv set system telemetry interface-stats port-group packet-all-pg stats-type
+nv set system telemetry interface-stats port-group packet-all-pg timer-interval
+nv set system telemetry interface-stats port-group packet-all-pg snapshot-file name
+nv set system telemetry interface-stats port-group packet-all-pg snapshot-file count
+nv set system telemetry interface-stats port-group packet-all-pg threshold packet-error-drops value
+nv set system telemetry interface-stats port-group packet-all-pg threshold packet-error-drops action
 ```
 
 {{< /tab >}}
@@ -146,6 +157,13 @@ nv unset system sflow agent interface <interface-id>
 nv unset system sflow dropmon
 nv unset system sflow policer rate
 nv unset system sflow policer burst
+nv unset system telemetry interface-stats port-group packet-all-pg interface 
+nv unset system telemetry interface-stats port-group packet-all-pg stats-type
+nv unset system telemetry interface-stats port-group packet-all-pg timer-interval
+nv unset system telemetry interface-stats port-group packet-all-pg snapshot-file name
+nv unset system telemetry interface-stats port-group packet-all-pg snapshot-file count
+nv unset system telemetry interface-stats port-group packet-all-pg threshold packet-error-drops value
+nv unset system telemetry interface-stats port-group packet-all-pg threshold packet-error-drops action
 ```
 
 {{< /tab >}}

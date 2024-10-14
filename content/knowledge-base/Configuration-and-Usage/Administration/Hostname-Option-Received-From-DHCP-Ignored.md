@@ -7,17 +7,17 @@ toc: 4
 
 ## Issue
 
-If a Cumulus Linux switch running 5.9.0 or later with NVUE enabled receives a DHCP lease containing the `host-name` option, it ignores the received hostname and does not apply it.
+If a Cumulus Linux switch running 5.9.1 or later with NVUE enabled receives a DHCP lease containing the `host-name` option, it ignores the received hostname and does not apply it.
 
 ## Environment
 
-- Cumulus Linux 5.9.0 and later.
+- Cumulus Linux 5.9.1 and later.
 - Active DHCP lease containing the `host-name` option cached in `/var/lib/dhcp/dhclient.eth0.leases`, and, or a DHCP server offering a lease containing the `host-name` option.
-- You use NVUE to manage the switch or the {{nvued}} and {{nvue-startup}} services are enabled.
+- You use NVUE to manage the switch or the `nvued` and `nvue-startup` services are enabled.
 
 ## Cause and Resolution
 
-Cumulus Linux 5.9.0 and later ignores the DHCP `host-name` option because NVUE manages the hostname in the `/etc/nvue.d/startup.yaml` file and prevents DHCP from overwriting it. If you do not manage your switch with NVUE, you can enable the DHCP hostname as follows:
+Cumulus Linux 5.9.1 and later ignores the DHCP `host-name` option because NVUE manages the hostname in the `/etc/nvue.d/startup.yaml` file and prevents DHCP from overwriting it. If you do not manage your switch with NVUE, you can enable the DHCP hostname as follows:
 
 1. Disable and stop the `nvued` and `nvue-startup` services:
 

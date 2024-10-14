@@ -9,13 +9,16 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 
 ## October 2024
 <!-- Air:WhatsNew -->
+### 82.2024.1014-011
+- Fixed an issue when launching consoles from the `Nodes` tab
+<!-- Air:WhatsNew -->
+
 ### 82.2024.1007-011
 - Added link highlighting when a node is selected
 - Fixed an issue with the grid when creating a new simulation
 - Fixed an issue when an empty name wass provided while editing a simulation
 - Fixed an issue when creating a new service
 - Fixed an issue when sorting simulations by `Created`
-<!-- Air:WhatsNew -->
 
 ## September 2024
 ### 82.2024.0926-014

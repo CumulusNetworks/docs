@@ -15,8 +15,8 @@ NetQ 4.12.0 includes the following new features and improvements:
 - new cluster installation option that supports up to TKTK devices
 - {{<link title="Validate Network Protocol and Service Operations/#topology-validations" text="Topology validations">}} are now generally available
 - The {{<link title="Network Topology" text="topology view">}} is now generally available
-- {{<link title="Threshold-Crossing Events Reference" text="Threshold-Crossing Events">}} configured by NetQ by default
-- View and BGP and EVPN session information in the full-screen {{<link title="Switches" text="switch dashboard">}}
+- Some {{<link title="Threshold-Crossing Events Reference" text="threshold-crossing events">}} are now configured by NetQ by default
+- View a switch's BGP and EVPN session information from the full-screen {{<link title="Switches" text="switch dashboard">}}
 
 ## Upgrade Paths
 

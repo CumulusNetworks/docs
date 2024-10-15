@@ -43,7 +43,7 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
   - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#show-transceiver-information" text="Commands to show optical information for transceivers">}}
   - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#show-transceiver-information" text="l1-show command equivalent">}}
   - BGP command output updates
-  - EVPN command output changes
+  - EVPN command output updates
   - {{< expand "Changed NVUE Commands" >}}
 | New Command | Previous Command |
 | ----------- | ----------------|

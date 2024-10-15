@@ -12,8 +12,10 @@ Cards present information about your network for monitoring and troubleshooting;
 Each card focuses on a particular aspect of your network. They include:
 
 - **Validation summary**: overview of your network's health
-- **Events**: system anomalies and threshold-crossing events
-- **What Just Happened**: network issues and packet drops 
+- Events cards: system anomalies and threshold-crossing events (**Events** card), network issues and packet drops (**What Just Happened** card), and link events (**Link events** card)
+- Link cards: overview of links at the fabric level (**Switch link status** card) <!--check categorization of link events card-->
+- **Sensor health**: overview of fan, temperature, and PSU states
+- **Top 5 longest buffer**: ports experiencing most packet buffer congestion
 - **Device groups**: distribution of device components
 - **Trace request**: discovery workflow for paths between two devices in the network fabric
 - **MAC move commentary**: info about changes to a MAC address on a specific VLAN
@@ -142,15 +144,15 @@ The following icons are common in the full-screen card view:
 
 | Icon | Action | Description |
 | ---- | ---- | ---- |
-| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> | Select All | Selects all items in the list. |
-| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/subtract-circle.svg" height="18" width="18"/> | Clear All | Clears all existing selections in the list. |
-| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> | Add Item | Adds item to the list. |
+| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> | Select all | Selects all items in the list. |
+| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/subtract-circle.svg" height="18" width="18"/> | Clear all | Clears all existing selections in the list. |
+| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> | Add item | Adds item to the list. |
 | <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18"/> | Edit | Edits the selected item. |
 | <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/> | Delete | Removes the selected items. |
 | <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18"/> | Filter | Filters the list using available parameters. |
 | <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/04-Login-Logout/login-key-1.svg" height="18" width="18"/>, {{<img src="/images/netq/netq-mgmt-delete-keys-icon.png" height="18" width="18" >}} | Generate/Delete AuthKeys | Creates or removes NetQ CLI authorization keys. |
-| <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> | Open Cards | Opens the corresponding validation or trace card(s). |
+| <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> | Open cards | Opens the corresponding validation or trace card(s). |
 | <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/58-Tags-Bookmarks/tags.svg" height="18" width="18"/> | Assign role | Opens role assignment options for switches. |
 | <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/> | Export | Exports selected data into either a .csv or JSON-formatted file. |
 
-When there are many items in a table, NetQ loads up to 25 rows by default and provides the rest in additional table pages, accessible through the pagination controls. Pagination is displayed under the table.
+When there are many items in a table, NetQ loads up to 20 rows by default and provides the rest in additional table pages, accessible through the pagination controls. Pagination is displayed under the table.

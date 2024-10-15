@@ -320,6 +320,39 @@ You only need to set the `advertise-all-vni` option on leafs that are VTEPs. The
 {{< /tab >}}
 {{< /tabs >}}
 
+## Show EVPN Configuration
+
+To show the current EVPN configuration on the switch, run the `nv show evpn` command:
+
+```
+cumulus@leaf01:~$ nv show evpn  
+                       operational   applied      
+---------------------  ------------  -------------
+enable                               on           
+route-advertise                                   
+  nexthop-setting                    system-ip-mac
+  svi-ip               off           off          
+  default-gateway      off           off          
+dad                                               
+  enable               on            on           
+  mac-move-threshold   5             5            
+  move-window          180           180          
+  duplicate-action     warning-only  warning-only 
+[vni]                                             
+multihoming                                       
+  enable                             off          
+  mac-holdtime         1080                       
+  neighbor-holdtime    1080                       
+  startup-delay        180                        
+  startup-delay-timer  --:--:--                   
+  uplink-count         0                          
+  uplink-active        0                          
+l2vni-count            3                          
+l3vni-count            2
+```
+
+You can also show the EVPN configuration in `json` format with the `nv show evpn -o json` command or in `yaml` format with the `nv show evpn -o yaml` command.
+
 <!-- vale off -->
 ## EVPN and VXLAN Active-active Mode
 <!-- vale on -->

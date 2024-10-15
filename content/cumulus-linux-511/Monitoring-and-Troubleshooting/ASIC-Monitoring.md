@@ -94,7 +94,7 @@ To configure Histogram Collection, you specify:
 - The switch ports to monitor.
   - For the egress queue length and latency histograms, you can specify the traffic class you want to monitor for a port or range of ports.
   - For the ingress queue length histogram, you can specify the priority group you want to monitor for a port or range of ports.
-- How and when to start reading the ASIC: at a specific queue length, number of packets or bytes received or transmitted, or number of nanoseconds latency. For the packet and buffer histogram, you specify the collection interval in seconds.
+- How and when to start reading the ASIC: at a specific queue length, number of packets or bytes received or transmitted, or number of nanoseconds latency.
 - What actions to take: create a snapshot file, send a message to the `/var/log/syslog` file, or both. You can also set the action to trigger another port group to collect additional statistics.
 
 ### Histogram Settings
@@ -226,14 +226,14 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Packet and Buffer Histogram ">}}
 
-To set the sample interval for the packet and buffer histogram, run the `nv set system telemetry interface-stats sample-interval <value>` command. The following example sets the sample interval to 1024:
+To set the frequency that the ASIC monitoring service retrieves the data from the ASIC, run the `nv set system telemetry interface-stats sample-interval <value>` command. The following example sets the sample interval to 1024:
 
 ```
 cumulus@switch:~$ nv set system telemetry interface-stats sample-interval 1024
 cumulus@switch:~$ nv config apply
 ```
 
-The following example enables the packet and buffer histogram on all interfaces. The histogram collects statistics every second about all, good, and dropped packets, in addition to ingress and egress queue occupancy.
+The following example enables the packet and buffer histogram on all interfaces. The histogram sends the statistics to the snapshot file every second about all, good, and dropped packets, in addition to ingress and egress queue occupancy.
 
 ```
 cumulus@switch:~$ nv set system telemetry enable on
@@ -270,6 +270,21 @@ cumulus@switch:~$ nv set system telemetry enable on
 cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg interface all
 cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg stats-type packet-extended
 cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg timer-interval 5
+cumulus@switch:~$ nv config apply
+```
+
+The following example collects packets matching the specified switch priority for your telemetry configuration:
+
+```
+cumulus@switch:~$ nv set system telemetry interface-stats switch-priority 3
+cumulus@switch:~$ nv config apply
+```
+
+The following example collects buffer occupancy statistics matching the specified priority group and traffic class for your telemetry configuration:
+
+```
+cumulus@switch:~$ nv set system telemetry interface-stats ingress-buffer priority-group 0
+cumulus@switch:~$ nv set system telemetry interface-stats egress-buffer traffic-class 0
 cumulus@switch:~$ nv config apply
 ```
 
@@ -771,10 +786,9 @@ A collect action triggers the collection of additional information. You can dais
 {{< tabs "TabID821 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example configures the switch to collect ingress and egress queue occupancy statistics when the number of dropped error packets reaches 100:
+The following example configures the switch to collect the dropped packet statistics when the number of dropped error packets reaches 100:
 
 ```
-
 cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg threshold packet-error-drops value 100 
 cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg threshold packet-error-drops action collect port-group buffer-pg
 cumulus@switch:~$ nv config apply

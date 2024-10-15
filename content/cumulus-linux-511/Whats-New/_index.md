@@ -43,7 +43,7 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
   - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#show-transceiver-information" text="Commands to show optical information for transceivers">}}
   - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#show-transceiver-information" text="l1-show command equivalent">}}
   - BGP command output updates
-  - EVPN command output changes
+  - EVPN command output updates
   - {{< expand "Changed NVUE Commands" >}}
 | New Command | Previous Command |
 | ----------- | ----------------|
@@ -56,10 +56,16 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 | nv show qos advance-buffer-config default-global egress-service-pool | nv show qos advance-buffer-config default-global egress-pool |
 {{< /expand >}}
   - {{< expand "Deprecated NVUE Commands" >}}
-| Deprecated Command | Replace with |
-| ----------- | ----------------|
-| nv show interface pluggables  | nv show platform transceiver|
-| nv show interface <interface> pluggable | nv show platform transceiver <interface>|
+
+nv show interface pluggables (replaced with nv show platform transceiver)
+nv show interface <interface> pluggable (replaced with nv show platform transceiver <interface>)
+nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib (replaced with `nv show vrf <vrf-id> router bgp ddress-family l2vpn-evpn route)
+nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd
+nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id>
+nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> route-type
+nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> route-type <route-type-id>
+nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> route-type <route-type-id> route
+nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> route-type <route-type-id> route <evpn-route-id>
 
 {{< /expand >}}
   - {{< expand "New NVUE Commands" >}}

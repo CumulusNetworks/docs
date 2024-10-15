@@ -40,10 +40,10 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
   - {{<link url="Route-Filtering-and-Redistribution/#match-source-protocol" text="Command to match BGP as the source protocol in a route map">}}
   - {{<link url="Switch-Port-Attributes/#interface-settings" text="nv show interface --view command includes additional filtering options">}}: `svi`, `vrf`, `bonds`, `bond-members`, `up`, and `down`
   - {{<link url="FRRouting/#show-routes-in-the-routing-table" text="Commands to show the number of routes in the routing table">}}
-  - {{<link url="Troubleshoot-Layer-1" text="Commands to show optical information for transceivers">}}
-  - L1-show equivalent
-  - BGP presentation part 2
-  - EVPN presentation - Phase 2
+  - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#show-transceiver-information" text="Commands to show optical information for transceivers">}}
+  - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#show-transceiver-information" text="l1-show command equivalent">}}
+  - BGP command output updates
+  - EVPN command output changes
   - {{< expand "Changed NVUE Commands" >}}
 | New Command | Previous Command |
 | ----------- | ----------------|
@@ -58,8 +58,9 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
   - {{< expand "Deprecated NVUE Commands" >}}
 | Deprecated Command | Replace with |
 | ----------- | ----------------|
-| nv show interface pluggables  | |
-| nv show interface <interface> pluggable | |
+| nv show interface pluggables  | nv show platform transceiver|
+| nv show interface <interface> pluggable | nv show platform transceiver <interface>|
+
 {{< /expand >}}
   - {{< expand "New NVUE Commands" >}}
 For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) for Cumulus Linux.
@@ -83,16 +84,67 @@ nv show platform transceiver <interface-id> channel <channel-id>
 nv show platform transceiver <detail> 
 nv show interface <interface-id> transceiver 
 nv show interface <interface-id> transceiver thresholds
+nv show platform transceiver
+nv show platform transceiver <interface-id>
+nv show platform transceiver <interface-id> channel
+nv show platform transceiver <interface-id> channel <channel-id>
+nv show platform transceiver <interface-id> thresholds
 nv show system sflow
 nv show system sflow agent
 nv show system sflow collector
 nv show system sflow policer
 nv show system sflow sampling-rate
 nv show interface <interface-id> sflow
-nv show vrf <vrf-id> router rib ipv4 route-count
-nv show vrf <vrf-id> router rib ipv6 route-count
-nv show vrf <vrf-id> router rib ipv4 route-count protocol
-nv show vrf <vrf-id> router rib ipv6 route-count protocol
+nv show system telemetry interface-stats
+nv show system telemetry interface-stats port-group
+nv show system telemetry interface-stats port-group <port-group-id>
+nv show system telemetry interface-stats port-group <port-group-id> snapshot-file
+nv show system telemetry interface-stats port-group <port-group-id> threshold
+nv show system telemetry interface-stats port-group <port-group-id> threshold <threshold-stats-id>
+nv show system telemetry interface-stats port-group <port-group-id> threshold <threshold-stats-id> action
+nv show system telemetry interface-stats port-group <port-group-id> threshold <threshold-stats-id> action log
+nv show system telemetry interface-stats port-group <port-group-id> threshold <threshold-stats-id> action collect
+nv show system telemetry interface-stats port-group <port-group-id> stats-type
+nv show system telemetry interface-stats port-group <port-group-id> snapshot
+nv show system telemetry interface-stats port-group <port-group-id> snapshot buffer
+nv show system telemetry interface-stats port-group <port-group-id> snapshot buffer pool
+nv show system telemetry interface-stats port-group <port-group-id> snapshot buffer pool <buffer-pool-id>
+nv show system telemetry interface-stats port-group <port-group-id> snapshot interface
+nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id>
+nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> packet
+nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> packet good
+nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> packet good tx
+nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> packet good rx
+nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> packet discard
+nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> packet discard tx
+nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> packet discard rx
+nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> packet discard general
+nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> packet all
+nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> packet all tx
+nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> packet all rx
+nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> packet tc
+nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> packet tc <tc-id>
+nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> packet tc <tc-id> tx
+nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> packet pg
+nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> packet pg <pg-id>
+nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> packet pg <pg-id> tx
+nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> packet pg <pg-id> rx
+nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> buffer
+nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> buffer tc
+nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> buffer tc <tc-id>
+nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> buffer pg
+nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> buffer pg <pg-id>
+nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> buffer ingress-port
+nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> buffer ingress-port <buffer-pool-id>
+nv show system telemetry interface-stats export
+nv show system telemetry interface-stats switch-priority
+nv show system telemetry interface-stats switch-priority <pg-id>
+nv show system telemetry interface-stats ingress-buffer
+nv show system telemetry interface-stats ingress-buffer priority-group
+nv show system telemetry interface-stats ingress-buffer priority-group <pg-id>
+nv show system telemetry interface-stats egress-buffer
+nv show system telemetry interface-stats egress-buffer traffic-class
+nv show system telemetry interface-stats egress-buffer traffic-class <tc-id>
 ```
 
 {{< /tab >}}
@@ -121,6 +173,21 @@ nv set system sflow agent interface <interface-id>
 nv set system sflow dropmon
 nv set system sflow policer rate <samples>
 nv set system sflow policer burst <sample-size>
+nv set system telemetry interface-stats port-group <port-group-id>
+nv set system telemetry interface-stats port-group <port-group-id> snapshot-file name <value>
+nv set system telemetry interface-stats port-group <port-group-id> snapshot-file count
+nv set system telemetry interface-stats port-group <port-group-id> threshold <threshold-stats-id>
+nv set system telemetry interface-stats port-group <port-group-id> threshold <threshold-stats-id> action log
+nv set system telemetry interface-stats port-group <port-group-id> threshold <threshold-stats-id> action collect port-group <value>
+nv set system telemetry interface-stats port-group <port-group-id> threshold <threshold-stats-id> value
+nv set system telemetry interface-stats port-group <port-group-id> stats-type
+nv set system telemetry interface-stats port-group <port-group-id> interface <value>
+nv set system telemetry interface-stats port-group <port-group-id> timer-interval
+nv set system telemetry interface-stats export state (enabled|disabled)
+nv set system telemetry interface-stats switch-priority <pg-id>
+nv set system telemetry interface-stats ingress-buffer priority-group <pg-id>
+nv set system telemetry interface-stats egress-buffer traffic-class <tc-id>
+nv set system telemetry interface-stats sample-interval
 ```
 
 {{< /tab >}}
@@ -146,6 +213,33 @@ nv unset system sflow agent interface <interface-id>
 nv unset system sflow dropmon
 nv unset system sflow policer rate
 nv unset system sflow policer burst
+nv unset system telemetry interface-stats
+nv unset system telemetry interface-stats port-group
+nv unset system telemetry interface-stats port-group <port-group-id>
+nv unset system telemetry interface-stats port-group <port-group-id> snapshot-file
+nv unset system telemetry interface-stats port-group <port-group-id> snapshot-file name
+nv unset system telemetry interface-stats port-group <port-group-id> snapshot-file count
+nv unset system telemetry interface-stats port-group <port-group-id> threshold
+nv unset system telemetry interface-stats port-group <port-group-id> threshold <threshold-stats-id>
+nv unset system telemetry interface-stats port-group <port-group-id> threshold <threshold-stats-id> action
+nv unset system telemetry interface-stats port-group <port-group-id> threshold <threshold-stats-id> action log
+nv unset system telemetry interface-stats port-group <port-group-id> threshold <threshold-stats-id> action collect
+nv unset system telemetry interface-stats port-group <port-group-id> threshold <threshold-stats-id> action collect port-group
+nv unset system telemetry interface-stats port-group <port-group-id> threshold <threshold-stats-id> value
+nv unset system telemetry interface-stats port-group <port-group-id> stats-type
+nv unset system telemetry interface-stats port-group <port-group-id> interface
+nv unset system telemetry interface-stats port-group <port-group-id> timer-interval
+nv unset system telemetry interface-stats export
+nv unset system telemetry interface-stats export state
+nv unset system telemetry interface-stats switch-priority
+nv unset system telemetry interface-stats switch-priority <if-pg-id>
+nv unset system telemetry interface-stats ingress-buffer
+nv unset system telemetry interface-stats ingress-buffer priority-group
+nv unset system telemetry interface-stats ingress-buffer priority-group <if-pg-id>
+nv unset system telemetry interface-stats egress-buffer
+nv unset system telemetry interface-stats egress-buffer traffic-class
+nv unset system telemetry interface-stats egress-buffer traffic-class <if-tc-id>
+nv unset system telemetry interface-stats sample-interval
 ```
 
 {{< /tab >}}
@@ -169,6 +263,10 @@ To align with a long-term vision of a common interface between Cumulus Linux, Nv
 ## Release Considerations
 
 Review the following considerations before you upgrade to Cumulus Linux 5.11.
+
+### DHCP Lease with the host-name Option
+
+When a Cumulus Linux switch with NVUE enabled receives a DHCP lease containing the host-name option, it ignores the received hostname and does not apply it. For details, see this [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Administration/Hostname-Option-Received-From-DHCP-Ignored" >}}).
 
 ### NVUE Commands After Upgrade
 

@@ -100,10 +100,10 @@ To configure Histogram Collection, you specify:
 ### Histogram Settings
 
 Histogram settings include the type of data you want to collect, the ports you want the histogram to monitor, the sampling time of the histogram, the histogram size, and the minimum boundary size for the histogram.
-- The ingress queue length histogram can monitor a specific priority group for a port or range of ports.
-- The egress queue length histogram and the latency histogram can monitor a specific traffic class for a port or range of ports. Traffic class 0 through 7 is for unicast traffic and traffic class 8 through 15 is for multicast traffic.
-- The latency histogram can monitor a specific traffic class for a port or range of ports. Traffic class 0 through 7 is for unicast traffic and traffic class 8 through 15 is for multicast traffic.
-- The counter histogram can monitor the following counter types:
+- The *ingress queue length* histogram can monitor a specific priority group for a port or range of ports.
+- The *egress queue length* histogram and the latency histogram can monitor a specific traffic class for a port or range of ports. Traffic class 0 through 7 is for unicast traffic and traffic class 8 through 15 is for multicast traffic.
+- The *latency* histogram can monitor a specific traffic class for a port or range of ports. Traffic class 0 through 7 is for unicast traffic and traffic class 8 through 15 is for multicast traffic.
+- The *counter* histogram can monitor the following counter types:
     - Received packet counters (`rx-packet`)
     - Transmitted packet counters (`tx-packet`)
     - Received byte counters (`rx-byte`)
@@ -111,15 +111,14 @@ Histogram settings include the type of data you want to collect, the ports you w
     - CRC counters (`crc`)
     - Layer 1 received byte counters (`l1-rx-byte`). The byte count includes layer 1<span class="a-tooltip">[IPG](## "Interpacket Gap")</span> bytes.
     - Layer 1 transmitted byte counters (`l1-tx-byte`). The byte count includes layer 1<span class="a-tooltip">[IPG](## "Interpacket Gap")</span> bytes.
-- The packet and buffer histogram can monitor:
+- The *packet and buffer* histogram can monitor:
    - All, good, and dropped packets, and the ingress and egress queue occupancy (`packet-all`)
    - All and good packets (`packet`)
    - All, good, and dropped packets (`packet-extended`)
    - Ingress and egress queue occupancy (`buffer`)
 - You can enable up to two counter histogram counter types for each physical interface. The counter histogram does not support bonds or virtual interfaces.
 - The default minimum boundary size is 960 bytes. Adding this number to the size of the histogram produces the maximum boundary size. These values represent the range of queue lengths for each bin. The packet and buffer histogram does not use these settings.
-- The default value for the sampling time is 1024 nanoseconds. For the packet and buffer histogram, there is no default collection interval; the histogram does not run unless you configure the interval setting.
-
+- The default value for the sampling time is 1024 nanoseconds.
 {{%notice note%}}
 When you configure minimum boundary and histogram sizes, Cumulus Linux rounds down the configured byte value to the nearest multiple of the switch ASIC cell size before programming it into hardware. The cell size is a fixed number of bytes on each switching ASIC:
 
@@ -226,6 +225,13 @@ cumulus@switch:~$ nv config apply
 
 {{< /tab >}}
 {{< tab "Packet and Buffer Histogram ">}}
+
+To set the sample interval for the packet and buffer histogram, run the `nv set system telemetry interface-stats sample-interval <value>` command. The following example sets the sample interval to 1024:
+
+```
+cumulus@switch:~$ nv set system telemetry interface-stats sample-interval 1024
+cumulus@switch:~$ nv config apply
+```
 
 The following example enables the packet and buffer histogram on all interfaces. The histogram collects statistics every second about all, good, and dropped packets, in addition to ingress and egress queue occupancy.
 
@@ -485,59 +491,6 @@ monitor.discards_pg.timer                   = 5s
 ```
 
 {{< /tab >}}
-{{< tab "Collect Actions ">}}
-
-A collect action triggers the collection of additional information. You can daisy chain multiple monitors (port groups) into a single collect action.
-
-In the following example:
-- Queue length histograms collect for swp1 through swp50 every second.
-- The results write to the `/var/run/cumulus/histogram_stats` snapshot file.
-- When the queue length reaches 500 bytes, the system sends a message to the /var/log/syslog file and collects additional data; buffer occupancy and all packets for each port.
-- Buffer occupancy data writes to the `/var/lib/cumulus/buffer_stats` snapshot file and all packets for each port data writes to the `/var/lib/cumulus/all_packet_stats` snapshot file.
-- In addition, packet drops on swp1 through swp50 collect every two seconds. If the number of packet drops is greater than 100, the monitor writes the results to the `/var/lib/cumulus/discard_stats` snapshot file and sends a message to the `/var/log/syslog` file.
-
-```
-monitor.port_group_list                               = [histogram_pg,discards_pg]
-
-monitor.histogram_pg.port_set                         = swp1-swp50
-monitor.histogram_pg.stat_type                        = buffer
-monitor.histogram_pg.cos_list                         = [0]
-monitor.histogram_pg.trigger_type                     = timer
-monitor.histogram_pg.timer                            = 1s
-monitor.histogram_pg.action_list                      = [snapshot,collect,log]
-monitor.histogram_pg.snapshot.file                    = /var/run/cumulus/histogram_stats
-monitor.histogram_pg.snapshot.file_count              = 64
-monitor.histogram_pg.histogram.minimum_bytes_boundary = 960
-monitor.histogram_pg.histogram.histogram_size_bytes   = 12288
-monitor.histogram_pg.histogram.sample_time_ns         = 1024
-monitor.histogram_pg.log.queue_bytes                  = 500
-monitor.histogram_pg.collect.queue_bytes              = 500
-monitor.histogram_pg.collect.port_group_list          = [buffers_pg,all_packet_pg]
-
-monitor.buffers_pg.port_set                           = swp1-swp50
-monitor.buffers_pg.stat_type                          = buffer
-monitor.buffers_pg.action_list                        = [snapshot]
-monitor.buffers_pg.snapshot.file                      = /var/lib/cumulus/buffer_stats
-monitor.buffers_pg.snapshot.file_count                = 8
-
-monitor.all_packet_pg.port_set                        = swp1-swp50
-monitor.all_packet_pg.stat_type                       = packet_all
-monitor.all_packet_pg.action_list                     = [snapshot]
-monitor.all_packet_pg.snapshot.file                   = /var/lib/cumulus/all_packet_stats
-monitor.all_packet_pg.snapshot.file_count             = 8
-
-monitor.discards_pg.port_set                          = swp1-swp50
-monitor.discards_pg.stat_type                         = packet
-monitor.discards_pg.action_list                       = [snapshot,log]
-monitor.discards_pg.trigger_type                      = timer
-monitor.discards_pg.timer                             = 2s
-monitor.discards_pg.log.packet_error_drops            = 100
-monitor.discards_pg.snapshot.packet_error_drops       = 100
-monitor.discards_pg.snapshot.file                     = /var/lib/cumulus/discard_stats
-monitor.discards_pg.snapshot.file_count               = 16
-```
-
-{{< /tab >}}
 {{< /tabs >}}
 
 {{< /tab >}}
@@ -580,11 +533,11 @@ swp1       4          4
 <!-- vale off -->
 To create a snapshot:
 - Set how often to write to a snapshot file. The default value is 1 second. This setting is not provided for the packet and buffer histogram.
-- Provide the snapshot file name and location. The default location and file name is `/var/run/cumulus/histogram_stats`.
+- Provide the snapshot file name and location. The default location for snapshot files is `/var/run/cumulus`.
 - Configure the number of snapshots to create before Cumulus Linux overwrites the first snapshot file. For example, if you set the snapshot file count to 30, the first snapshot file is `histogram_stats_0` and the 30th snapshot is `histogram_stats_30`. After the 30th snapshot, Cumulus Linux overwrites the original snapshot file (`histogram_stats_0`) and the sequence restarts. The default value is 64.
 <!-- vale on -->
 {{%notice note%}}
-Snapshots provide you with more data; however, they can occupy a lot of disk space on the switch. To reduce disk usage, you can use a volatile partition for the snapshot files; for example, `/var/run/cumulus/histogram_stats`.
+Snapshots provide you with more data; however, they can occupy a lot of disk space on the switch. To reduce disk usage, use a volatile partition for the snapshot files.
 {{%/notice%}}
 
 The following example creates the `/var/run/cumulus/histogram_stats` snapshot every 5 seconds. The number of snapshots that you can create before the first snapshot file is overwritten is set to 30.

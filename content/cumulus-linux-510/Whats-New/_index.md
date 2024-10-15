@@ -215,6 +215,54 @@ nv action upload system telemetry hft job <hft-job-id> <remote-url-upload>
 
 Review the following considerations before you upgrade to Cumulus Linux 5.10.
 
+### Linux Configuration Files Deleted
+
+{{%notice warning%}}
+If you use Linux commands to configure the switch, read the following information before you upgrade to Cumulus Linux 5.10.0 or later.
+{{%/notice%}}
+
+Cumulus Linux includes a default NVUE `startup.yaml` file. In addition, NVUE configuration auto save is enabled by default. As a result, Cumulus Linux deletes the Linux configuration files on the switch when:
+- The switch reboots after upgrade
+- You change the cumulus account password with the Linux `passwd` command.
+
+{{%notice note%}}
+These issues occur only if you use Linux commands to configure the switch. If you use NVUE commands to configure the switch, these issues do not occur and no action is needed.
+{{%/notice%}}
+
+{{< tabs "TabID232 ">}}
+{{< tab "Switch Reboot">}}
+
+To prevent Cumulus Linux from deleting the Linux configuration files when the switch reboots after upgrade:
+
+1. **Before** you upgrade to 5.10.0 or later, disable NVUE auto save:
+
+   ```
+   cumulus@switch:~$ nv set system config auto-save state disabled
+   cumulus@switch:~$ nv config apply
+   cumulus@switch:~$ nv config save
+   ```
+
+2. Delete the `/etc/nvue.d/startup.yaml` file:
+
+   ```
+   cumulus@switch:~$ sudo rm -rf /etc/nvue.d/startup.yaml
+   ```
+
+{{< /tab >}}
+{{< tab "cumulus Account Password">}}
+
+To prevent Cumulus Linux from deleting the Linux configuration files when you change the cumulus account password with the Linux `passwd` command, comment out the `password optional pam_exec.so seteuid /usr/lib/cumulus/reconcile_password_with_nvue.sh` line from the following files **before** you upgrade to 5.10.0 or later:
+- `/etc/pam.d/chpasswd`
+- `/etc/pam.d/login`
+- `/etc/pam.d/passwd`
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### DHCP Lease with the host-name Option
+
+When a Cumulus Linux switch running 5.10.0 or later with NVUE enabled receives a DHCP lease containing the host-name option, it ignores the received hostname and does not apply it. For details, see this [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Administration/Hostname-Option-Received-From-DHCP-Ignored" >}}).
+
 ### NVUE Commands After Upgrade
 
 Cumulus Linux 5.10 includes the NVUE object model. After you upgrade to Cumulus Linux 5.10, running NVUE configuration commands might override configuration for features that are now configurable with NVUE and removes configuration you added manually to files or with automation tools like Ansible, Chef, or Puppet. To keep your configuration, you can do one of the following:

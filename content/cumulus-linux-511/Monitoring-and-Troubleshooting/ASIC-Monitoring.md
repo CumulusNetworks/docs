@@ -100,10 +100,10 @@ To configure Histogram Collection, you specify:
 ### Histogram Settings
 
 Histogram settings include the type of data you want to collect, the ports you want the histogram to monitor, the sampling time of the histogram, the histogram size, and the minimum boundary size for the histogram.
-- The ingress queue length histogram can monitor a specific priority group for a port or range of ports.
-- The egress queue length histogram and the latency histogram can monitor a specific traffic class for a port or range of ports. Traffic class 0 through 7 is for unicast traffic and traffic class 8 through 15 is for multicast traffic.
-- The latency histogram can monitor a specific traffic class for a port or range of ports. Traffic class 0 through 7 is for unicast traffic and traffic class 8 through 15 is for multicast traffic.
-- The counter histogram can monitor the following counter types:
+- The *ingress queue length* histogram can monitor a specific priority group for a port or range of ports.
+- The *egress queue length* histogram and the latency histogram can monitor a specific traffic class for a port or range of ports. Traffic class 0 through 7 is for unicast traffic and traffic class 8 through 15 is for multicast traffic.
+- The *latency* histogram can monitor a specific traffic class for a port or range of ports. Traffic class 0 through 7 is for unicast traffic and traffic class 8 through 15 is for multicast traffic.
+- The *counter* histogram can monitor the following counter types:
     - Received packet counters (`rx-packet`)
     - Transmitted packet counters (`tx-packet`)
     - Received byte counters (`rx-byte`)
@@ -111,15 +111,14 @@ Histogram settings include the type of data you want to collect, the ports you w
     - CRC counters (`crc`)
     - Layer 1 received byte counters (`l1-rx-byte`). The byte count includes layer 1<span class="a-tooltip">[IPG](## "Interpacket Gap")</span> bytes.
     - Layer 1 transmitted byte counters (`l1-tx-byte`). The byte count includes layer 1<span class="a-tooltip">[IPG](## "Interpacket Gap")</span> bytes.
-- The packet and buffer histogram can monitor:
+- The *packet and buffer* histogram can monitor:
    - All, good, and dropped packets, and the ingress and egress queue occupancy (`packet-all`)
    - All and good packets (`packet`)
    - All, good, and dropped packets (`packet-extended`)
    - Ingress and egress queue occupancy (`buffer`)
 - You can enable up to two counter histogram counter types for each physical interface. The counter histogram does not support bonds or virtual interfaces.
 - The default minimum boundary size is 960 bytes. Adding this number to the size of the histogram produces the maximum boundary size. These values represent the range of queue lengths for each bin. The packet and buffer histogram does not use these settings.
-- The default value for the sampling time is 1024 nanoseconds. For the packet and buffer histogram, there is no default collection interval; the histogram does not run unless you configure the interval setting.
-
+- The default value for the sampling time is 1024 nanoseconds.
 {{%notice note%}}
 When you configure minimum boundary and histogram sizes, Cumulus Linux rounds down the configured byte value to the nearest multiple of the switch ASIC cell size before programming it into hardware. The cell size is a fixed number of bytes on each switching ASIC:
 
@@ -226,6 +225,13 @@ cumulus@switch:~$ nv config apply
 
 {{< /tab >}}
 {{< tab "Packet and Buffer Histogram ">}}
+
+To set the sample interval for the packet and buffer histogram, run the `nv set system telemetry interface-stats sample-interval <value>` command. The following example sets the sample interval to 1024:
+
+```
+cumulus@switch:~$ nv set system telemetry interface-stats sample-interval 1024
+cumulus@switch:~$ nv config apply
+```
 
 The following example enables the packet and buffer histogram on all interfaces. The histogram collects statistics every second about all, good, and dropped packets, in addition to ingress and egress queue occupancy.
 

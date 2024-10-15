@@ -27,7 +27,7 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 - {{<link url="ASIC-Monitoring/#histogram-collection" text="Packet and buffer histogram commands">}}
 - NVUE
   - {{<link url="DHCP-Snooping" text="DHCP snooping commands">}}
-  - {{<link url="Link-Layer-Discovery-Protocol/#disable-lldp" text="Disable LLDP commands">}}
+  - {{<link url="Link-Layer-Discovery-Protocol/#disable-lldp" text="Enable and disable LLDP commands">}}
   - {{<link url="Resource-Diagnostics/#disable-lldp" text="Show ASIC resources commands">}} (`cl-resource-query` equivalent)
   - {{<link url="Monitoring-System-Statistics-and-Network-Traffic-with-sFlow" text="sFlow commands">}}
   - {{<link url="DHCP-Servers/#assign-a-port-based-ip-address" text="IPv6 command to assign a port-based DHCP server address">}}
@@ -74,12 +74,23 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 {{< tab "nv show ">}}
 
 ```
-nv show bridge domain <bridge-id> dhcp-snoop
-nv show bridge domain <bridge-id> dhcp-snoop6
-nv show bridge domain <bridge-id> dhcp-snoop vlan <vlan-id>
-nv show bridge domain <bridge-id> dhcp-snoop6 vlan <vlan-id>
-nv show bridge domain <bridge-id> dhcp-snoop vlan <vlan-id> trust <interface>
-nv show bridge domain <bridge-id> dhcp-snoop6 vlan <vlan-id> trust <interface>
+nv show bridge domain <domain-id> dhcp-snoop
+nv show bridge domain <domain-id> dhcp-snoop vlan
+nv show bridge domain <domain-id> dhcp-snoop vlan <vid>
+nv show bridge domain <domain-id> dhcp-snoop vlan <vid> trust
+nv show bridge domain <domain-id> dhcp-snoop vlan <vid> trust <interface-id>
+nv show bridge domain <domain-id> dhcp-snoop vlan <vid> bind
+nv show bridge domain <domain-id> dhcp-snoop vlan <vid> bind <interface-id>
+nv show bridge domain <domain-id> dhcp-snoop6
+nv show bridge domain <domain-id> dhcp-snoop6 vlan
+nv show bridge domain <domain-id> dhcp-snoop6 vlan <vid>
+nv show bridge domain <domain-id> dhcp-snoop6 vlan <vid> trust
+nv show bridge domain <domain-id> dhcp-snoop6 vlan <vid> trust <interface-id>
+nv show bridge domain <domain-id> dhcp-snoop6 vlan <vid> bind
+nv show bridge domain <domain-id> dhcp-snoop6 vlan <vid> bind <interface-id>
+nv show interface <interface-id> sflow
+nv show interface <interface-id> transceiver 
+nv show interface <interface-id> transceiver thresholds
 nv show platform asic resource
 nv show platform asic resource acl
 nv show platform asic resource global
@@ -88,19 +99,31 @@ nv show platform transceiver <interface-id>
 nv show platform transceiver <interface-id> channel 
 nv show platform transceiver <interface-id> channel <channel-id> 
 nv show platform transceiver <detail> 
-nv show interface <interface-id> transceiver 
-nv show interface <interface-id> transceiver thresholds
 nv show platform transceiver
-nv show platform transceiver <interface-id>
-nv show platform transceiver <interface-id> channel
-nv show platform transceiver <interface-id> channel <channel-id>
-nv show platform transceiver <interface-id> thresholds
+nv show platform transceiver brief
+nv show platform transceiver detail
+nv show platform transceiver <transceiver-id>
+nv show platform transceiver <transceiver-id> channel
+nv show platform transceiver <transceiver-id> channel <channel-id>
+nv show router policy large-community-list
+nv show router policy large-community-list <list-id>
+nv show router policy large-community-list <list-id> rule
+nv show router policy large-community-list <list-id> rule <rule-id>
+nv show router policy large-community-list <list-id> rule <rule-id> large-community
+nv show router policy large-community-list <list-id> rule <rule-id> large-community <large-community-id>
+nv show router policy route-map <route-map-id> rule <rule-id> set large-community
+nv show router policy route-map <route-map-id> rule <rule-id> set large-community <large-community-id>
+nv show service control
+nv show service control <service-name-id>
+nv show service control <service-name-id> resource-limit
 nv show system sflow
-nv show system sflow agent
 nv show system sflow collector
-nv show system sflow policer
+nv show system sflow collector <collector-ip>
 nv show system sflow sampling-rate
-nv show interface <interface-id> sflow
+nv show system sflow agent
+nv show system sflow policer
+nv show system sflow dropmon
+nv show system sflow dropmon <drop-type>
 nv show system telemetry interface-stats
 nv show system telemetry interface-stats port-group
 nv show system telemetry interface-stats port-group <port-group-id>
@@ -151,34 +174,65 @@ nv show system telemetry interface-stats ingress-buffer priority-group <pg-id>
 nv show system telemetry interface-stats egress-buffer
 nv show system telemetry interface-stats egress-buffer traffic-class
 nv show system telemetry interface-stats egress-buffer traffic-class <tc-id>
+nv show system ztp
+nv show system ztp script
+nv show vrf <vrf-id> router bgp address-family ipv4-unicast route <route-id> path <path-id> large-community
+nv show vrf <vrf-id> router bgp address-family ipv6-unicast route <route-id> path <path-id> large-community
+nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast advertised-routes <route-id> path <path-id> large-community
+nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast received-routes <route-id> path <path-id> large-community
+nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast received-routes <route-id> path <path-id> large-community
+nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast advertised-routes <route-id> path <path-id> large-community
+nv show vrf <vrf> router rib <address-family> route-count
+nv show vrf <vrf> router rib <address-family> route-count protocol
 ```
 
 {{< /tab >}}
 {{< tab "nv set ">}}
 
 ```
-nv set bridge domain <bridge-id> dhcp-snoop vlan <vlan-id>
-nv set bridge domain <bridge-id> dhcp-snoop6 vlan <vlan-id>
-nv set bridge domain <bridge-id> dhcp-snoop vlan <vlan-id> trust <interface-id>
-nv set bridge domain <bridge-id> dhcp-snoop6 vlan <vlan-id> trust <interface-id>
+nv set bridge domain <domain-id> dhcp-snoop vlan <vid>
+nv set bridge domain <domain-id> dhcp-snoop vlan <vid> trust <interface-id>
+nv set bridge domain <domain-id> dhcp-snoop6 vlan <vid>
+nv set bridge domain <domain-id> dhcp-snoop6 vlan <vid> trust <interface-id>
 nv set interface <interface-id> lldp state
 nv set interface <interface-id> sflow state
 nv set interface <interface-id> sflow sample-rate <rate>
-nv set router policy large-community-list
-nv set router policy route-map <map-id> rule <rule-id> match large-community-list
+nv set router policy large-community-list <list-id>
+nv set router policy large-community-list <list-id> rule <rule-id>
+nv set router policy large-community-list <list-id> rule <rule-id> large-community <large-community-id>
+nv set router policy large-community-list <list-id> rule <rule-id> action
+nv set router policy route-map <route-map-id> rule <rule-id> match large-community-list
+nv set router policy route-map <route-map-id> rule <rule-id> set large-community <large-community-id>
+nv set router policy route-map <route-map-id> rule <rule-id> set large-community-delete-list 
 nv set service dhcp-server6 default static <server-id>
 nv set service dhcp-server6 default static <server-id> ip-address <ip-address>
 nv set service dhcp-server6 default static <server-id> ifname <interface-id>
+nv set service control <service-name-id>
+nv set service control <service-name-id> resource-limit memory <size>
+nv set service control <service-name-id> resource-limit cpu (percent)
+nv set service lldp state
+nv set system aaa radius accounting
+nv set system sflow collector <collector-ip>
+nv set system sflow collector <collector-ip> port
+nv set system sflow collector <collector-ip> interface <interface-name>
+nv set system sflow sampling-rate default
+nv set system sflow sampling-rate speed-100m
+nv set system sflow sampling-rate speed-1g
+nv set system sflow sampling-rate speed-10g
+nv set system sflow sampling-rate speed-25g
+nv set system sflow sampling-rate speed-40g
+nv set system sflow sampling-rate speed-50g
+nv set system sflow sampling-rate speed-100g
+nv set system sflow sampling-rate speed-200g
+nv set system sflow sampling-rate speed-400g
+nv set system sflow sampling-rate speed-800g
+nv set system sflow agent ip <ipv4-prefix>
+nv set system sflow agent interface <interface-name>
+nv set system sflow policer rate
+nv set system sflow policer burst
+nv set system sflow dropmon <drop-type>
+nv set system sflow poll-interval
 nv set system sflow state
-nv set system sflow collector <colector-id> port <port-id>
-nv set system sflow collector <colector-id> interface <interface-id>
-nv set system sflow sampling-rate <speed> <packets>
-nv set system sflow poll-interval <interval>
-nv set system sflow agent ip <ip-address>
-nv set system sflow agent interface <interface-id>
-nv set system sflow dropmon
-nv set system sflow policer rate <samples>
-nv set system sflow policer burst <sample-size>
 nv set system telemetry interface-stats port-group <port-group-id>
 nv set system telemetry interface-stats port-group <port-group-id> snapshot-file name <value>
 nv set system telemetry interface-stats port-group <port-group-id> snapshot-file count
@@ -200,25 +254,61 @@ nv set system telemetry interface-stats sample-interval
 {{< tab "nv unset ">}}
 
 ```
-nv unset bridge domain <bridge-id> dhcp-snoop vlan <vlan-id>
-nv unset bridge domain <bridge-id> dhcp-snoop6 vlan <vlan-id>
-nv unset bridge domain <bridge-id> dhcp-snoop vlan <vlan-id> trust <interface-id>
-nv unset bridge domain <bridge-id> dhcp-snoop6 vlan <vlan-id> trust <interface-id>
+nv unset bridge domain <domain-id> dhcp-snoop
+nv unset bridge domain <domain-id> dhcp-snoop vlan
+nv unset bridge domain <domain-id> dhcp-snoop vlan <vid>
+nv unset bridge domain <domain-id> dhcp-snoop vlan <vid> trust
+nv unset bridge domain <domain-id> dhcp-snoop vlan <vid> trust <interface-id>
+nv unset bridge domain <domain-id> dhcp-snoop6
+nv unset bridge domain <domain-id> dhcp-snoop6 vlan
+nv unset bridge domain <domain-id> dhcp-snoop6 vlan <vid>
+nv unset bridge domain <domain-id> dhcp-snoop6 vlan <vid> trust
+nv unset bridge domain <domain-id> dhcp-snoop6 vlan <vid> trust <interface-id>
+nv unset interface <interface-id> lldp state
 nv unset interface <interface-id> sflow sample-rate
 nv unset router policy large-community-list
-nv unset router policy route-map <map-id> rule <rule-id> match large-community-list
+nv unset router policy large-community-list <list-id>
+nv unset router policy large-community-list <list-id> rule
+nv unset router policy large-community-list <list-id> rule <rule-id>
+nv unset router policy large-community-list <list-id> rule <rule-id> large-community
+nv unset router policy large-community-list <list-id> rule <rule-id> large-community <large-community-id>
+nv unset router policy large-community-list <list-id> rule <rule-id> action
+nv unset router policy route-map <route-map-id> rule <rule-id> match large-community-list
+nv unset router policy route-map <route-map-id> rule <rule-id> set large-community
+nv unset router policy route-map <route-map-id> rule <rule-id> set large-community <large-community-id>
+nv unset router policy route-map <route-map-id> rule <rule-id> set large-community-delete-list
 nv unset service dhcp-server6 default static <server-id>
 nv unset service dhcp-server6 default static <server-id> ip-address <ip-address>
 nv unset service dhcp-server6 default static <server-id> ifname <interface-id>
-nv unset system sflow collector <colector-id> port <port-id>
-nv unset system sflow collector <colector-id> interface <interface-id>
-nv unset system sflow sampling-rate <speed> <packets>
-nv unset system sflow poll-interval
-nv unset system sflow agent ip <ip-address>
-nv unset system sflow agent interface <interface-id>
-nv unset system sflow dropmon
+nv unset service lldp state
+nv unset system aaa radius accounting
+nv unset system sflow
+nv unset system sflow collector
+nv unset system sflow collector <collector-ip>
+nv unset system sflow collector <collector-ip> port
+nv unset system sflow collector <collector-ip> interface
+nv unset system sflow sampling-rate
+nv unset system sflow sampling-rate default
+nv unset system sflow sampling-rate speed-100m
+nv unset system sflow sampling-rate speed-1g
+nv unset system sflow sampling-rate speed-10g
+nv unset system sflow sampling-rate speed-25g
+nv unset system sflow sampling-rate speed-40g
+nv unset system sflow sampling-rate speed-50g
+nv unset system sflow sampling-rate speed-100g
+nv unset system sflow sampling-rate speed-200g
+nv unset system sflow sampling-rate speed-400g
+nv unset system sflow sampling-rate speed-800g
+nv unset system sflow agent
+nv unset system sflow agent ip
+nv unset system sflow agent interface
+nv unset system sflow policer
 nv unset system sflow policer rate
 nv unset system sflow policer burst
+nv unset system sflow dropmon
+nv unset system sflow dropmon <drop-type>
+nv unset system sflow poll-interval
+nv unset system sflow state
 nv unset system telemetry interface-stats
 nv unset system telemetry interface-stats port-group
 nv unset system telemetry interface-stats port-group <port-group-id>
@@ -256,6 +346,10 @@ nv action reset system factory-reset
 nv action reset system factory-reset keep basic
 nv action reset system factory-reset keep all-config
 nv action reset system factory-reset keep all-files
+nv action enable system ztp
+nv action disable system ztp
+nv action run system ztp
+nv action abort system ztp
 ```
 
 {{< /tab >}}

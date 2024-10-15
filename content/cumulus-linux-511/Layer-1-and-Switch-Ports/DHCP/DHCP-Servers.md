@@ -479,7 +479,7 @@ group {
 
 ## Troubleshooting
 
-To show the current DHCP server settings, run the `nv show service dhcp-server` command:
+To show the current DHCP server settings, run the `nv show service dhcp-server` command for IPv4 or `nv show service dhcp-server6` for IPv6:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show service dhcp-server

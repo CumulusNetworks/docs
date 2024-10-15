@@ -33,11 +33,7 @@ The operation will reset the system configuration and initiate a reboot.
 Type [y] to reset the system configuration and reboot. 
 Type [n] to abort. 
 Do you want to continue? [y/n] y 
-Action executing ... 
-System will be rebooted, configurations and system files might be deleted 
-Action executing ... 
-Broadcast message from root@cumulus (Fri 2024-08-09 17:12:02 UTC): 
-The system will reboot now! 
+...
 ```
 
 The following example resets the switch to the factory defaults but keeps password policy rules, management interface configuration (such as eth0), local user accounts and roles, and SSH configuration:
@@ -48,11 +44,7 @@ The operation will reset the system configuration and initiate a reboot.
 Type [y] to reset the system configuration and reboot. 
 Type [n] to abort. 
 Do you want to continue? [y/n] y 
-Action executing ... 
-System will be rebooted, configurations and system files might be deleted 
-Action executing ... 
-Broadcast message from root@cumulus (Fri 2024-08-09 17:12:02 UTC): 
-The system will reboot now! 
+... 
 ```
 
 The following example resets the switch to the factory defaults but keeps all configuration:
@@ -63,11 +55,7 @@ The operation will reset the system configuration and initiate a reboot.
 Type [y] to reset the system configuration and reboot. 
 Type [n] to abort. 
 Do you want to continue? [y/n] y 
-Action executing ... 
-System will be rebooted, configurations and system files might be deleted 
-Action executing ... 
-Broadcast message from root@cumulus (Fri 2024-08-09 17:12:02 UTC): 
-The system will reboot now! 
+...
 ```
 
 The following example resets the switch to the factory defaults but keeps all system files and log files:
@@ -78,11 +66,7 @@ The operation will reset the system configuration and initiate a reboot.
 Type [y] to reset the system configuration and reboot. 
 Type [n] to abort. 
 Do you want to continue? [y/n] y 
-Action executing ... 
-System will be rebooted, configurations and system files might be deleted 
-Action executing ... 
-Broadcast message from root@cumulus (Fri 2024-08-09 17:12:02 UTC): 
-The system will reboot now! 
+...
 ```
 
 The following example runs factory reset without the prompts to continue:

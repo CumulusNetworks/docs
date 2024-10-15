@@ -97,6 +97,7 @@ cumulus@switch:~$ sudo adduser admin2 nvapply
 {{%notice note%}}
 - When you run Linux commands to add a new user, you must create a home directory for the user with the `-m` option. NVUE commands create a home directory automatically.
 - If you run Linux commands to configure a user password with five or fewer characters, Cumulus Linux logs the message `BAD PASSWORD: The password is shorter than 6 characters`. If password security is disabled, this is only a warning and the password is set. If password security is enabled, the short password is not set.
+- Cumulus Linux 5.9 includes a default NVUE `startup.yaml` file. In addition, NVUE configuration auto save is enabled by default. As a result, Cumulus Linux deletes the Linux configuration files on the switch when you change the cumulus account password with the Linux `passwd` command. This issue occurs only if you use Linux commands to configure the switch. To work around this issues, see {{<link url="Whats-New/#linux-configuration-files-deleted" text="Linux Configuration Files Deleted">}}.
 {{%/notice%}}
 
 {{< /tab >}}

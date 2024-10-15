@@ -48,7 +48,7 @@ Cumulus Linux provides several histograms:
 - *Ingress queue length* shows information about ingress buffer utilization over time.
 - *Counter* shows information about bandwidth utilization for a port over time.
 - *Latency* shows information about packet latency over time.
-- *Packet and buffer* shows information about all, good, and dropped packets, and ingress and egress queue occupancy.
+- *Packet and buffer* shows interface statistics about all, good, and dropped packets, and interface ingress and egress buffer packet and occupancy statistics.
 
 {{%notice note%}}
 Cumulus Linux supports:
@@ -226,14 +226,14 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Packet and Buffer Histogram ">}}
 
-To set the frequency that the ASIC monitoring service retrieves the data from the ASIC, run the `nv set system telemetry interface-stats sample-interval <value>` command. The following example sets the sample interval to 1024:
+To set the frequency that the ASIC monitoring service retrieves data from the ASIC, run the `nv set system telemetry interface-stats sample-interval <value>` command. The following example sets the sample interval to 1024:
 
 ```
 cumulus@switch:~$ nv set system telemetry interface-stats sample-interval 1024
 cumulus@switch:~$ nv config apply
 ```
 
-The following example enables the packet and buffer histogram on all interfaces. The histogram sends the statistics to the snapshot file every second about all, good, and dropped packets, in addition to ingress and egress queue occupancy.
+The following example enables the packet and buffer histogram on all interfaces. The histogram sends the interface statistics about all, good, and dropped packets, in addition to ingress and egress queue occupancy to the default snapshot file every second.
 
 ```
 cumulus@switch:~$ nv set system telemetry enable on
@@ -243,7 +243,7 @@ cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-
 cumulus@switch:~$ nv config apply
 ```
 
-The following example enables the packet and buffer histogram on swp1 through swp8. The histogram collects statistics every second about ingress and egress queue occupancy.
+The following example enables the packet and buffer histogram on swp1 through swp8. The histogram sends the interface statistics about ingress and egress queue occupancy to the default snapshot file every second.
 
 ```
 cumulus@switch:~$ nv set system telemetry enable on
@@ -253,7 +253,7 @@ cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-
 cumulus@switch:~$ nv config apply
 ```
 
-The following example enables the packet and buffer histogram on all interfaces. The histogram collects statistics every five seconds about all and good packets.
+The following example enables the packet and buffer histogram on all interfaces. The histogram sends the interface statistics about all and good packets to the default snapshot file every five seconds.
 
 ```
 cumulus@switch:~$ nv set system telemetry enable on
@@ -263,7 +263,7 @@ cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-
 cumulus@switch:~$ nv config apply
 ```
 
-The following example enables the packet and buffer histogram on all interfaces. The histogram collects statistics every five seconds about all, good, and dropped packets.
+The following example enables the packet and buffer histogram on all interfaces. The histogram sends the interface statistics about all, good, and dropped packets to the default snapshot file every five seconds.
 
 ```
 cumulus@switch:~$ nv set system telemetry enable on
@@ -567,7 +567,7 @@ cumulus@switch:~$ nv set system telemetry snapshot-interval 5
 cumulus@switch:~$ nv config apply
 ```
 
-The following example creates the `/var/run/cumulus/all_packet_stats` snapshot for all packet and buffer statistics. The number of snapshots that you can create before the first snapshot file is overwritten is set to 120.
+The following example creates the `/var/run/cumulus/all_packet_stats` snapshot for all interface packet and buffer statistics. The number of snapshots that you can create before the first snapshot file is overwritten is set to 120.
 
 ```
 cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg snapshot-file name /var/run/cumulus/all_packet_stats 
@@ -781,7 +781,7 @@ When collecting data, the switch uses both the CPU and SDK process, which can af
 
 ### Collect Action
 
-A collect action triggers the collection of additional information. You can daisy chain multiple monitors (port groups) into a single collect action.
+A collect action triggers the collection of additional information. You can link multiple monitors (port groups) together into a single collect action.
 
 {{< tabs "TabID821 ">}}
 {{< tab "NVUE Commands ">}}

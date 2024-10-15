@@ -415,10 +415,8 @@ swp13      QSFP28                           Mellanox     MCP1650-V00AE30   MT212
 swp14      QSFP-DD                          Mellanox     MCP1660-W00AE30   MT2121VS01645  A3 
 swp15      QSFP-DD                          Mellanox     MCP1660-W00AE30   MT2121VS01645  A3 
 swp18      QSFP28                           Mellanox     MCP1600-C001E30N  MT2211VS01967  A3 
-swp20s0    QSFP28                           Mellanox     MFA1A00-C003      MT2108FT02204  B2 
-swp20s1    QSFP28                           Mellanox     MFA1A00-C003      MT2108FT02204  B2 
-swp21s0    QSFP28                           Mellanox     MFA1A00-C003      MT2108FT02204  B2 
-swp21s1    QSFP28                           Mellanox     MFA1A00-C003      MT2108FT02204  B2 
+swp20      QSFP28                           Mellanox     MFA1A00-C003      MT2108FT02204  B2 
+swp21      QSFP28                           Mellanox     MFA1A00-C003      MT2108FT02204  B2 
 swp22      QSFP28                           Mellanox     MFA1A00-C003      MT2108FT02194  B2 
 swp23      QSFP28                           Mellanox     MFA1A00-C003      MT2108FT02194  B2 
 swp31      QSFP28                           Mellanox     MCP1600-C001E30N  MT2039VB01191  A3 

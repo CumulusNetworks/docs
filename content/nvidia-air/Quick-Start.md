@@ -125,7 +125,7 @@ air = AirApi(
     username='<username>',
     password='<password-or-token>',
 )
-air.simulations.create_from(
+simulation = air.simulations.create_from(
     title='<simulation-name>',
     format='JSON',
     content=<topology-content>,
@@ -143,7 +143,7 @@ Topology content can be provided in multiple ways:
 {{< tab "Python Dictionary">}}
 
 ```
-air.simulations.create_from(
+simulation = air.simulations.create_from(
     'my-simulation',
     'JSON',
     {
@@ -166,7 +166,7 @@ air.simulations.create_from(
 {{< tab "JSON String">}}
 
 ```
-air.simulations.create_from(
+simulation = air.simulations.create_from(
     'my-simulation',
     'JSON',
     '{"nodes": {"node-1": {"os": "generic/ubuntu2204"}, "node-2": {"os": "generic/ubuntu2204"}}, "links": [[{"node": "node-1", "interface": "eth1"}, {"node": "node-2", "interface": "eth1"}]]}'
@@ -178,7 +178,7 @@ air.simulations.create_from(
 
 ```
 import pathlib
-air.simulations.create_from(
+simulation = air.simulations.create_from(
     'my-simulation',
     'JSON',
     pathlib.Path('/path/to/topology.json')
@@ -191,7 +191,7 @@ air.simulations.create_from(
 ```
 import pathlib
 with pathlib.Path('/path/to/topology.json').open('r') as topology_file:
-    air.simulations.create_from(
+    simulation = air.simulations.create_from(
         'my-simulation',
         'JSON',
         topology_file
@@ -219,7 +219,7 @@ air = AirApi(
     username='<username>',
     password='<password-or-token>',
 )
-air.simulations.export(
+topology = air.simulations.export(
     simulation='<simulation-instance-or-id>',
     format='JSON',
     image_ids=True,  # defaults to False

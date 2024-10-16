@@ -38,9 +38,11 @@ You can suppress events for the following types of messages:
 - Adaptive routing
 - BGP
 - BTRFS information (events related to the BTRFS file system in Cumulus Linux)
+- Cable
 - CL support (events generated when creating the `cl-support script`)
 - Config diff (events generated when a configuration file has changed)
 - EVPN
+- Installed packages
 - Lifecycle management
 - Link (events related to links, including state and interface name)
 - LLDP
@@ -48,16 +50,18 @@ You can suppress events for the following types of messages:
 - MTU
 - NetQ agent
 - NTP
+- PTM
 - PTP
 - RoCE configuration
 - Running config diff (events related to the difference between two configurations)
 - Sensor
 - Services (including whether a service is active or inactive)
 - SSD utilization (events related to the storage on a switch)
+- Topology
 
 {{<notice note>}} 
 
-NetQ suppresses BGP, EVPN, link, and sensor-related events with a severity level of 'info' by default in the UI. You can {{<link url="#delete-or-disable-an-event-suppression-rule" text="disable this rule">}} if you'd prefer to receive these notifications.
+NetQ suppresses BGP, EVPN, link, cable, and sensor-related events with a severity level of 'info' by default in the UI. You can {{<link url="#delete-or-disable-an-event-suppression-rule" text="disable this rule">}} if you'd prefer to receive these notifications.
 
 {{</notice>}}
 
@@ -140,10 +144,10 @@ clag                     severity                                   2           
 clag                     hostname                                   1                                                    Target Hostname
 ```
 
-For example, to create a configuration called `mybtrfs` that suppresses OSPF-related events on leaf01 for the next 10 minutes, run:
+For example, to create a configuration called `mybtrfs` that suppresses BTRFS-related events on leaf01 for the next 10 minutes, run:
 
 ```
-netq add events-config events_config_name mybtrfs message_type ospf scope '[{"scope_name":"hostname","scope_value":"leaf01"},{"scope_name":"severity","scope_value":"*"}]' suppress_until 600
+netq add events-config events_config_name mybtrfs message_type btrfsinfo scope '[{"scope_name":"hostname","scope_value":"leaf01"},{"scope_name":"severity","scope_value":"*"}]' suppress_until 600
 ```
 {{</tab>}}
 

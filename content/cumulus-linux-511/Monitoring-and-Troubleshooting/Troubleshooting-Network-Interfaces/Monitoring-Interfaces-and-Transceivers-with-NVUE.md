@@ -6,7 +6,7 @@ toc: 4
 ---
 NVUE enables you to check the status of an interface, and view and clear interface counters. Interface counters provide information about an interface, such as the number of packets dropped, the number of inbound and outbound packets not transmitted because of errors, and so on.
 
-## Monitor Interface Status
+## Show Interface Configuration and Statistics
 
 To check the configuration and statistics for an interface, run the `nv show interface <interface>` command:
 
@@ -398,3 +398,209 @@ Action succeeded
 {{%notice note%}}
 The `nv action clear interface <interface> counters` command does not clear counters in the hardware.
 {{%/notice%}}
+
+## Show Transceiver Information
+
+To show the identifier, vendor name, part number, serial number, and revision for all SFP or QSFP modules, run the `nv show platform transceiver` command:
+
+```
+cumulus@switch:~$ nv show platform transceiver 
+Transceiver  Identifier                     Vendor Name  Vendor PN         Vendor SN      Vendor Rev 
+---------  -------------------------------  -----------  ----------------  -------------  ---------- 
+swp1       QSFP28                           Mellanox     MCP1600-C001E30N  MT2039VB01185  A3 
+swp10      QSFP28                           Mellanox     MCP1600-C001E30N  MT2211VS01792  A3 
+swp11      QSFP28                           Mellanox     MCP1600-C001E30N  MT2211VS01792  A3 
+swp12      QSFP28                           Mellanox     MCP1650-V00AE30   MT2122VB02220  A2 
+swp13      QSFP28                           Mellanox     MCP1650-V00AE30   MT2122VB02220  A2 
+swp14      QSFP-DD                          Mellanox     MCP1660-W00AE30   MT2121VS01645  A3 
+swp15      QSFP-DD                          Mellanox     MCP1660-W00AE30   MT2121VS01645  A3 
+swp18      QSFP28                           Mellanox     MCP1600-C001E30N  MT2211VS01967  A3 
+swp20      QSFP28                           Mellanox     MFA1A00-C003      MT2108FT02204  B2 
+swp21      QSFP28                           Mellanox     MFA1A00-C003      MT2108FT02204  B2 
+swp22      QSFP28                           Mellanox     MFA1A00-C003      MT2108FT02194  B2 
+swp23      QSFP28                           Mellanox     MFA1A00-C003      MT2108FT02194  B2 
+swp31      QSFP28                           Mellanox     MCP1600-C001E30N  MT2039VB01191  A3 
+```
+
+To show a detailed view of SFP or QSFP module information for all ports that includes cable length, type, and diagnostics, current status and error status, run the `nv show platform transceiver details` command.
+
+To show hardware capabilities and measurement information on the SFP or QSFP module in a particular port, run the `nv show platform transceiver <interface>` command:
+
+```
+cumulus@switch:~$ nv show platform transceiver swp2
+cable-type             : Active cable 
+cable-length           : 3m 
+supported-cable-length : 0 om1, 0 om2, 0 om3, 3 om4, 0 om5 
+diagnostics-status     : Diagnostic Data Available 
+status                 : plugged_enabled 
+error-status           : Power_Budget_Exceeded 
+vendor-data-code       : 210215__ 
+identifier             : QSFP28 
+vendor-rev             : B2 
+vendor-name            : Mellanox 
+vendor-pn              : MFA1A00-C003 
+vendor-sn              : MT2108FT02204 
+temperature: 
+  temperature         : 48.74 C 
+  high-alarm-threshold: 80.00 C 
+  low-alarm-threshold : -10.00 C 
+  alarm               : Off 
+voltage: 
+  voltage             : 3.2692 V 
+  high-alarm-threshold: 3.5000 V 
+  low-alarm-threshold : 3.1000 V 
+  alarm               : Off 
+channel: 
+  channel-1: 
+    rx-power: 
+        power            : 0.0000 mW / -inf dBm 
+        high-alarm-thresh: 5.40 dBm 
+        low-alarm-thresh : -13.31 dBm 
+        alarm            : low 
+    tx-power: 
+        power            : 0.0000 mW / -inf dBm 
+        high-alarm-thresh: 5.40 dBm 
+        low-alarm-thresh : -11.40 dBm 
+        alarm            : Off 
+    tx-bias-current: 
+        current          : 0.000 mA 
+        high-alarm-thresh: 8.500 mA 
+        low-alarm-thresh : 5.492 mA 
+        alarm            : low 
+  channel-2: 
+    rx-power: 
+        power            : 0.0000 mW / -inf dBm 
+        high-alarm-thresh: 5.40 dBm 
+        low-alarm-thresh : -13.31 dBm 
+        alarm            : low 
+    tx-power: 
+        power            : 0.0000 mW / -inf dBm 
+        high-alarm-thresh: 5.40 dBm 
+        low-alarm-thresh : -11.40 dBm 
+        alarm            : low 
+    tx-bias-current: 
+        current          : 0.000 mA 
+        high-alarm-thresh: 8.500 mA 
+        low-alarm-thresh : 5.492 mA 
+        alarm            : low 
+  channel-3: 
+    rx-power: 
+        power            : 0.0000 mW / -inf dBm 
+        high-alarm-thresh: 5.40 dBm 
+        low-alarm-thresh : -13.31 dBm 
+        alarm            : low 
+    tx-power: 
+        power            : 0.0000 mW / -inf dBm 
+        high-alarm-thresh: 5.40 dBm 
+        low-alarm-thresh : -11.40 dBm 
+        alarm            : low 
+    tx-bias-current: 
+        current          : 0.000 mA 
+        high-alarm-thresh: 8.500 mA 
+        low-alarm-thresh : 5.492 mA 
+        alarm            : low 
+  channel-4: 
+    rx-power: 
+        power            : 0.0000 mW / -inf dBm 
+        high-alarm-thresh: 5.40 dBm 
+       low-alarm-thresh : -13.31 dBm 
+        alarm            : low 
+    tx-power: 
+        power            : 0.0000 mW / -inf dBm 
+        high-alarm-thresh: 5.40 dBm 
+        low-alarm-thresh : -11.40 dBm 
+        alarm            : low 
+    tx-bias-current: 
+        current          : 0.000 mA 
+        high-alarm-thresh: 8.500 mA 
+        low-alarm-thresh : 5.492 mA 
+        alarm            : low 
+```
+
+To show channel information for the SFP or QSFP module in a particular port, run the `nv show platform transceiver <interface> channel` command. To show specific channel information for the SFP or QSFP module in a particular port, run the `nv show platform transceiver <interface> channel <channel>` command.
+
+```
+cumulus@switch:~$ nv show platform transceiver swp25 channel 
+channel: 
+  channel-1: 
+    rx-power: 
+        power            : 0.0000 mW / -inf dBm 
+        high-alarm-thresh: 5.40 dBm 
+        low-alarm-thresh : -13.31 dBm 
+        alarm            : low 
+    tx-power: 
+        power            : 0.0000 mW / -inf dBm 
+        high-alarm-thresh: 5.40 dBm 
+        low-alarm-thresh : -11.40 dBm 
+        alarm            : Off 
+    tx-bias-current: 
+        current          : 0.000 mA 
+        high-alarm-thresh: 8.500 mA 
+        low-alarm-thresh : 5.492 mA 
+        alarm            : low 
+  channel-2: 
+    rx-power: 
+        power            : 0.0000 mW / -inf dBm 
+        high-alarm-thresh: 5.40 dBm 
+        low-alarm-thresh : -13.31 dBm 
+        alarm            : low 
+    tx-power: 
+        power            : 0.0000 mW / -inf dBm 
+        high-alarm-thresh: 5.40 dBm 
+        low-alarm-thresh : -11.40 dBm 
+        alarm            : low 
+    tx-bias-current:
+        current          : 0.000 mA 
+        high-alarm-thresh: 8.500 mA 
+        low-alarm-thresh : 5.492 mA 
+        alarm            : low 
+  channel-3: 
+    rx-power: 
+        power            : 0.0000 mW / -inf dBm 
+        high-alarm-thresh: 5.40 dBm 
+        low-alarm-thresh : -13.31 dBm 
+        alarm            : low 
+    tx-power: 
+        power            : 0.0000 mW / -inf dBm 
+        high-alarm-thresh: 5.40 dBm 
+        low-alarm-thresh : -11.40 dBm 
+        alarm            : low 
+    tx-bias-current: 
+        current          : 0.000 mA 
+        high-alarm-thresh: 8.500 mA 
+        low-alarm-thresh : 5.492 mA 
+        alarm            : low 
+  channel-4: 
+    rx-power: 
+        power            : 0.0000 mW / -inf dBm 
+        high-alarm-thresh: 5.40 dBm 
+        low-alarm-thresh : -13.31 dBm 
+        alarm            : low 
+    tx-power: 
+        power            : 0.0000 mW / -inf dBm 
+        high-alarm-thresh: 5.40 dBm 
+        low-alarm-thresh : -11.40 dBm 
+        alarm            : low 
+    tx-bias-current: 
+        current          : 0.000 mA 
+        high-alarm-thresh: 8.500 mA 
+        low-alarm-thresh : 5.492 mA 
+        alarm            : low 
+```
+
+To show the thresholds for the SFP or QSFP module in a particular port, run the `nv show interface <interface> transceiver thresholds` command:
+
+```
+cumulus@switch:~$ nv show interface swp3 transceiver thresholds
+                                      High Alarm  High Warn   Low Warn   Low Alarm 
+                     Ch   Value       Threshold   Threshold   Threshold  Threshold  Alt Value 
+------------------   -------------------------------------------------------------------------- 
+temperature          -    53.00 C      72.00       65.00        5.00      -2.00     127.4F 
+voltage              -     3.28 V       3.50        3.47        3.14       3.10     
+rx-power             1    -4.09 dBm     4.00        3.00       -4.00      -5.00       0.39 mW 
+                     2    -6.58 dBm     4.00        3.00       -4.00      -5.00       0.22 mW 
+tx-power             1     1.04 dBm     4.00        3.00       -4.00      -3.47       1.27 mW 
+                     2     1.21 dBm     4.00        3.00       -4.00      -3.47       1.32 mW 
+tx-bias-current      1     9.90 mA     11.00       10.00        8.00       7.00     
+                     2     9.25 mA     11.00       10.00        8.00       7.00
+```

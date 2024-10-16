@@ -7,7 +7,7 @@ toc: 3
 
 Threshold-crossing events are user-defined events that detect and prevent network failures for ACL resources, BGP, digital optics, ECMP, forwarding resources, interface errors and statistics, link flaps, resource utilization, RoCE, sensors, and What Just Happened events. 
 
-You can find a complete list of TCAs---including event IDs required for the command line---in the {{<link title="Threshold-Crossing Events Reference" text="Threshold-Crossing Events Reference">}}.
+NetQ configures some threshold crossing rules by default. You can find a complete list of TCAs---including event IDs required for the command line---in the {{<link title="Threshold-Crossing Events Reference" text="Threshold-Crossing Events Reference">}}.
 
 <!--
 
@@ -498,7 +498,7 @@ TCA_TXMULTICAST_UPPER_1      TCA_TXMULTICAST_UPPE {"ifname":"swp3","hostname inf
 {{</tab>}}
 
 {{</tabs>}}
-## Manage Threshold-crossing Event Notifications
+## Manage Threshold-crossing Events and Notifications
 
 ### Change the Threshold on a Rule
 
@@ -760,6 +760,8 @@ To reenable the rule, set the `is_active` option to *true*.
 {{</tabs>}}
 
 ### Delete a Rule
+
+Some rules—for example those set up by default—cannot be deleted.
 
 {{<tabs "TabID2858" >}}
 

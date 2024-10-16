@@ -257,7 +257,7 @@ You can configure a limit on memory and CPU usage for the following services to 
 - NTP
 - syslog
 
-To configure a limit on CPU usage, run the `nv set service control <service-name-id> resource-limit cpu <value>` command.
+To configure a limit on CPU usage, run the `nv set service control <service-name-id> resource-limit cpu <percent>` command.
 
 The following example configures the syslog service to limit CPU usage to 60 percent:
 
@@ -266,16 +266,16 @@ cumulus@switch:~$ nv set service control rsyslog resource-limit cpu 60
 cumulus@switch:~$ nv config apply
 ```
 
-To configure a limit on memory usage, run the `nv set service control <service-name-id> resource-limit memory <value>` command.
+To configure a limit on memory usage, run the `nv set service control <service-name-id> resource-limit memory <size>` command.
 
-The following example configures the DHCP service to limit memory usage to 70 percent:
+The following example configures the DHCP service to limit memory usage to 6700M:
 
 ```
-cumulus@switch:~$ nv set service control dhcpd resource-limit memory 60
+cumulus@switch:~$ nv set service control dhcpd resource-limit memory 6700M
 cumulus@switch:~$ nv config apply
 ```
 
-A value of 100 configures no limit on CPU or memory usage for the service.
+A value of 100 configures no limit on CPU usage for the service.
 
 To show the current CPU and memory usage for all services, run the `nv show service control` command:
 

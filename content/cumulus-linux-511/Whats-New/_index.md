@@ -42,8 +42,8 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
   - {{<link url="FRRouting/#show-routes-in-the-routing-table" text="Commands to show the number of routes in the routing table">}}
   - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#show-transceiver-information" text="Commands to show optical information for transceivers">}}
   - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#show-transceiver-information" text="l1-show command equivalent">}}
-  - BGP command output updates
-  - EVPN command output updates
+  - BGP command changes and output updates
+  - EVPN command changes and output updates
   - {{< expand "Changed NVUE Commands" >}}
 | New Command | Previous Command |
 | ----------- | ----------------|
@@ -55,17 +55,18 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 | nv show qos advance-buffer-config default-global ingress-service-pool | nv show qos advance-buffer-config default-global ingress-pool |
 | nv show qos advance-buffer-config default-global egress-service-pool | nv show qos advance-buffer-config default-global egress-pool |
 {{< /expand >}}
-  - {{< expand "Deprecated NVUE Commands" >}}
-
-nv show interface pluggables (replaced with nv show platform transceiver)
-nv show interface <interface> pluggable (replaced with nv show platform transceiver <interface>)
-nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib (replaced with `nv show vrf <vrf-id> router bgp ddress-family l2vpn-evpn route)
-nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd
-nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id>
-nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> route-type
-nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> route-type <route-type-id>
-nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> route-type <route-type-id> route
-nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> route-type <route-type-id> route <evpn-route-id>
+  - {{< expand "Removed NVUE Commands" >}}
+| Removed Command | 
+| --------------- |
+|nv show interface pluggables (replaced with nv show platform transceiver) |
+|nv show interface <interface> pluggable (replaced with nv show platform transceiver <interface>)|
+|nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib (replaced with nv show vrf <vrf-id> router bgp adress-family l2vpn-evpn route) |
+|nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd |
+|nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> |
+|nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> route-type |
+|nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> route-type <route-type-id> |
+|nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> route-type <route-type-id> route |
+|nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> route-type <route-type-id> route  <evpn-route-id> |
 
 {{< /expand >}}
   - {{< expand "New NVUE Commands" >}}
@@ -183,6 +184,7 @@ nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unica
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast received-routes <route-id> path <path-id> large-community
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast advertised-routes <route-id> path <path-id> large-community
 nv show vrf <vrf> router rib <address-family> route-count
+nv show vrf <vrf> router rib <address-family> route-count <prefix>
 nv show vrf <vrf> router rib <address-family> route-count protocol
 ```
 
@@ -357,7 +359,7 @@ nv action abort system ztp
 {{< /expand >}}
 
 {{%notice warning%}}
-To align with a long-term vision of a common interface between Cumulus Linux, Nvidia OS (NVOS), and Host-Based Networking, certain NVUE commands in Cumulus Linux 5.11 have changed. Before you upgrade to 5.11, review the list of changed commands in Changed NVUE Commands above and be sure to make any necessary changes to your automation.
+To align with a long-term vision of a common interface between Cumulus Linux, Nvidia OS (NVOS), and Host-Based Networking, certain NVUE commands in Cumulus Linux 5.11 have changed. Before you upgrade to 5.11, review the list of changed NVUE commands above and be sure to make any necessary changes to your automation.
 {{%/notice%}}
 
 ## Release Considerations

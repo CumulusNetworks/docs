@@ -300,13 +300,13 @@ tls_crlfile /etc/ssl/certs/rtp-example-ca.crt
 
 LDAP referrals allow a directory tree to be partitioned and distributed between multiple LDAP servers.
 
-To configure LDAP referrals:
+To enable LDAP referral:
 
 {{< tabs "TabID309 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set system aaa ldap referrals ldapserver2,ldapserver3
+cumulus@switch:~$ nv set system aaa ldap referrals enabled
 cumulus@switch:~$ nv config apply
 ```
 

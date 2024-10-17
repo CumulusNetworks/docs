@@ -24,7 +24,7 @@ The following table displays the validation categories. Refer to the {{<link tit
 | NTP | Yes | Yes | Yes |  60 mins |
 | RoCE | Yes | Yes | No | on-demand, as scheduled |
 | Sensors | Yes | Yes |  Yes |  60 mins |
-| Topology | Yes | Yes | No | on-demand |
+| Topology | Yes | Yes | No | on-demand, as scheduled |
 | VLAN | Yes | Yes | Yes |  60 mins |
 | VXLAN | Yes | Yes | Yes |  60 mins |
 

@@ -4,28 +4,13 @@ author: NVIDIA
 weight: 780
 toc: 3
 ---
-You can {{<link title="Monitor Events" text="view system events via the NetQ UI or CLI">}}. You can also receive event notifications via a third-party application. This page explains how to integrate NetQ with syslog, PagerDuty, Slack, or email to receive notifications about events on your network. Alternately, you can send notifications to other third-party applications via a generic webhook channel.
-
-In an on-premises deployment, NetQ receives the raw data stream from the NetQ Agents, processes the data, then delivers events to notification channels. In a cloud deployment, NetQ passes the raw data stream to the NetQ cloud service for processing and delivery.
-
-<!--
-
-{{<figure src="/images/netq/event-notif-arch-onprem-330.png">}}
-
-{{<figure src="/images/netq/event-notif-arch-cloud-330.png">}}
-
--->
+This section describes how to configure NetQ to send event notifications through a third-party-application, such as syslog, PagerDuty, Slack, email, or a generic webhook channel. NetQ can generate notifications for {{<link title="Threshold-Crossing Events Reference" text="threshold-crossing events">}} or according to a predefined set of rule keys. 
 
 {{<notice note>}}
 
 You can implement a proxy server (that sits between the NetQ appliance or VM and the integration channels) that receives, processes, and distributes the notifications rather than having them sent directly to the integration channel. If you use such a proxy, you must configure NetQ with the proxy information.
 
 {{</notice>}}
-
-NetQ generates notifications for network protocols, interfaces, services, traces, sensors, system software, and system hardware. Refer to the {{<link title="System Events Reference">}} for descriptions and examples of these events.
-
-Event filters are based on rules you create. You must have at least one rule per filter. A select set of events can be triggered by a user-configured threshold. Refer to the {{<link title="Threshold-Crossing Events Reference">}} for descriptions and examples of these events.
-
 ## Event Message Format
 
 Messages have the following structure:
@@ -63,8 +48,6 @@ The first step is to create a Slack, PagerDuty, syslog, email, or generic channe
 
 {{<tab "Slack" >}}
 
-You can use the NetQ UI or the NetQ CLI to create a Slack channel.
-
 {{<tabs "TabID191" >}}
 
 {{<tab "NetQ UI" >}}
@@ -78,13 +61,15 @@ You can use the NetQ UI or the NetQ CLI to create a Slack channel.
     - When no channels have been specified, click **Add Slack channel**.
     - When at least one channel has been specified, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> **Add** above the table.
 
-4. Provide a unique name for the channel. Note that spaces are not allowed. Use dashes or camelCase instead.
+4. Provide a unique name for the channel. Note that spaces are not allowed---use dashes or camelCase instead.
 
-5. Create an incoming webhook as described in the {{<exlink url="https://api.slack.com/messaging/webhooks#create_a_webhook" text="Slack documentation">}} Then copy and paste it in the *Webhook URL* field.
+5. Create an incoming webhook as described in the {{<exlink url="https://api.slack.com/messaging/webhooks#create_a_webhook" text="Slack documentation">}}. Then copy and paste it in the *Webhook URL* field.
 
-6. Click **Add**.
+6. (Optional) Select the toggle to send all notifications to this channel.
 
-7. (Optional) To verify the channel configuration, click **Test**.
+7. Click **Add**.
+
+8. (Optional) To verify the channel configuration, click **Test**.
 
 {{</tab>}}
 
@@ -159,8 +144,6 @@ The following example shows the creation of a *slk-netq-events* channel and veri
 
 {{<tab "PagerDuty" >}}
 
-You can use the NetQ UI or the NetQ CLI to create a PagerDuty channel.
-
 {{<tabs "TabID125" >}}
 
 {{<tab "NetQ UI" >}}
@@ -178,9 +161,11 @@ You can use the NetQ UI or the NetQ CLI to create a PagerDuty channel.
 
 5. Obtain and enter an integration key (also called a service key or routing key).
 
-6. Click **Add**.
+6. (Optional) Select the toggle to send all notifications to this channel.
 
-7. (Optional) To verify the channel configuration, click **Test**.
+7. Click **Add**.
+
+8. (Optional) To verify the channel configuration, click **Test**.
 
 {{</tab>}}
 
@@ -248,8 +233,6 @@ The following example shows the creation of a *pd-netq-events* channel and verif
 <!-- vale off -->
 {{<tab "Syslog" >}}
 <!-- vale on -->
-You can use the NetQ UI or the NetQ CLI to create a syslog channel.
-
 {{<tabs "TabID261" >}}
 
 {{<tab "NetQ UI" >}}
@@ -267,9 +250,11 @@ You can use the NetQ UI or the NetQ CLI to create a syslog channel.
 
 5. Enter the IP address and port of the syslog server.
 
-6. Click **Add**.
+6. (Optional) Select the toggle to send all notifications to this channel.
 
-7. (Optional) To verify the channel configuration, click **Test**.
+7. Click **Add**.
+
+8. (Optional) To verify the channel configuration, click **Test**.
 
 {{</tab>}}
 
@@ -343,8 +328,6 @@ The following example shows the creation of a *syslog-netq-events* channel and v
 
 {{<tab "Email" >}}
 
-You can use the NetQ UI or the NetQ CLI to create an email channel.
-
 {{<tabs "TabID328" >}}
 
 {{<tab "NetQ UI" >}}
@@ -360,22 +343,22 @@ You can use the NetQ UI or the NetQ CLI to create an email channel.
 
 4. Provide a unique name for the channel. Note that spaces are not allowed. Use dashes or camelCase instead.
 
-5. Enter a list of emails for the people who you want to receive notifications from this channel.
+5. Enter a list of recipient email addresses, separated by commas, and no spaces. For example: `user1@domain.com,user2@domain.com,user3@domain.com`
 
-    Enter the emails separated by commas, and no spaces. For example: `user1@domain.com,user2@domain.com,user3@domain.com`
+6. (Optional) Select the toggle to send all notifications to this channel.
 
-6. The first time you configure an email channel, you must also specify the SMTP server information:
+7. The first time you configure an email channel, you must also specify the SMTP server information:
 
     - **Host**: hostname or IP address of the SMTP server
     - **Port**: port of the SMTP server (typically 587)
     - **User ID/Password**: your administrative credentials
     - **From**: email address that indicates who sent the notifications
 
-    After the first time, any additional email channels you create can use this configuration, by clicking **Existing**.
+    After the initial setup, any additional email channels you create can use this configuration, by clicking **Existing**.
 
-7. Click **Add**.
+8. Click **Add**.
 
-8. (Optional) To verify the channel configuration, click **Test**.
+9. (Optional) To verify the channel configuration, click **Test**.
 
 {{</tab>}}
 
@@ -476,8 +459,6 @@ Successfully added/updated channel cloud-email
 
 {{<tab "Generic" >}}
 
-You can use the NetQ UI or the NetQ CLI to create a generic channel.
-
 {{<tabs "TabID470" >}}
 
 {{<tab "NetQ UI" >}}
@@ -497,9 +478,11 @@ You can use the NetQ UI or the NetQ CLI to create a generic channel.
 
 6. Set the desired notification severity, SSL, and authentication parameters for this channel.
 
-7. Click **Add**.
+7. (Optional) Select the toggle to send all notifications to this channel.
 
-8. (Optional) To verify the channel configuration, click **Test**.
+8. Click **Add**.
+
+9. (Optional) To verify the channel configuration, click **Test**.
 
 {{</tab>}}
 

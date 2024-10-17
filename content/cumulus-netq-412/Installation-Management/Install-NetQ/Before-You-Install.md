@@ -19,9 +19,12 @@ Consider the following deployment options and requirements before you install th
 | System requirements<br><br> On-premises: 16 virtual CPUs, 64GB RAM, 500GB SSD disk<br><br>Cloud: 4 virtual CPUs, 8GB RAM, 64GB SSD disk | System requirements (per node)<br><br> On-premises: 16 virtual CPUs, 64GB RAM, 500GB SSD disk<br><br>Cloud: 4 virtual CPUs, 8GB RAM, 64GB SSD disk |  System requirements (per node)<br><br>On-premises: 48 virtual CPUs, 512GB RAM, 3.2TB SSD disk|
 | All features supported | All features supported|  Limited or no support for:<ul><li>Topology dashboard</li><li>Network snapshots</li><li>Trace requests</li><li>Flow analysis</li><li>Duplicate IP address validations</li><li>MAC move commentary</li></ul>|
 
+NetQ is also available through NVIDIA Base Command Manager. To get started, refer to the {{<exlink url="https://docs.nvidia.com/base-command-manager/#product-manuals" text="Base Command Manager administrator and containerization manuals">}}.
 ## Deployment Type: On-premises or Cloud
 
-**On-premises deployments** are hosted at your location and require the in-house skill set to install, configure, back up, and maintain NetQ. This model is a good choice if you want very limited or no access to the internet from switches and hosts in your network. In the **cloud deployment**, you host only a small, local server on your premises that connects to the NetQ cloud service over selected ports or through a proxy server. NetQ cloud supports local data aggregation and forwarding---the majority of the NetQ applications use a hosted deployment strategy, storing data in the cloud. NVIDIA handles the backups and maintenance of the application and storage.
+**On-premises deployments** are hosted at your location and require the in-house skill set to install, configure, back up, and maintain NetQ. This model is a good choice if you want very limited or no access to the internet from switches and hosts in your network. 
+
+In the **cloud deployment**, you host only a small, local server on your premises that connects to the NetQ cloud service over selected ports or through a proxy server. NetQ cloud supports local data aggregation and forwarding---the majority of the NetQ applications use a hosted deployment strategy, storing data in the cloud. NVIDIA handles the backups and maintenance of the application and storage.
 
 In all deployment models, the NetQ Agents reside on the switches and hosts they monitor in your network.
 
@@ -29,11 +32,11 @@ In all deployment models, the NetQ Agents reside on the switches and hosts they 
 
 A **single server** is easier to set up, configure, and manage, but can limit your ability to scale your network monitoring quickly. Deploying multiple servers is more complicated, but you limit potential downtime and increase availability by having more than one server that can run the software and store the data. Select the standalone, single-server arrangements for smaller, simpler deployments.
 
-Select the **three-node cluster** arrangement to obtain for greater device support and high availability for your network. The clustering implementation comprises three servers: one master and two workers. In a clustered environment, NVIDIA recommends installing the virtual machines on different physical servers to increase redundancy in the event of a hardware failure. NetQ supports high availability server-cluster deployments using a virtual IP address. Even if the master node fails, NetQ services remain operational. However, keep in mind that the master hosts the Kubernetes control plane so anything that requires connectivity with the Kubernetes cluster&mdash;such as upgrading NetQ or rescheduling pods to other workers if a worker goes down&mdash;will not work.
+Select the **high-availability cluster** deployment for greater device support and high availability for your network. The clustering implementation comprises three servers: one master and two workers. NetQ supports high availability server-cluster deployments using a virtual IP address. Even if the master node fails, NetQ services remain operational. However, keep in mind that the master hosts the Kubernetes control plane so anything that requires connectivity with the Kubernetes cluster&mdash;such as upgrading NetQ or rescheduling pods to other workers if a worker goes down&mdash;will not work.
 
-During the installation process, you configure a virtual IP address that enables redundancy for the Kubernetes control plane. In this configuration, the majority of nodes must be operational for NetQ to function. For example, a three-node cluster can tolerate a one-node failure, but not a two-node failure. For more information, refer to the {{<exlink url="https://etcd.io/docs/v3.3/faq/" text="etcd documentation">}}. <!--how do we want to frame this? when will we stop promoting?-->
+During the installation process, you configure a virtual IP address that enables redundancy for the Kubernetes control plane. In this configuration, the majority of nodes must be operational for NetQ to function. For example, a three-node cluster can tolerate a one-node failure, but not a two-node failure. For more information, refer to the {{<exlink url="https://etcd.io/docs/v3.3/faq/" text="etcd documentation">}}.
 
-The **scale cluster** deployment provides support for the most number of devices. It is extensible: as your network grows, you can add additional nodes to the cluster to accommodate more devices. 
+The **high-availability scale cluster** deployment provides support for the greatest number of devices and provides an extensible framework for greater scalability. As the number of devices in your network grows, you can add additional nodes to the cluster to support the additional devices. 
 
 ### Cluster Deployments and Load Balancers
 
@@ -44,5 +47,3 @@ However, you need to be mindful of where you {{<link title="Install a Custom Sig
 ## Next Steps
 
 After you've decided on your deployment type, you're ready to {{<link title="Install the NetQ System" text="install NetQ">}}.
-
-Alternately, you can launch NetQ using NVIDIA Base Command Manager. To get started, refer to the {{<exlink url="https://docs.nvidia.com/base-command-manager/#product-manuals" text="Base Command Manager administrator and containerization manuals">}}.

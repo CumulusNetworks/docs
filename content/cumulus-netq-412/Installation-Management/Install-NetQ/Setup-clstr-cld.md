@@ -5,7 +5,7 @@ weight: 224
 toc: 5
 bookhidden: true
 ---
-Follow these steps to set up and configure your VM on a cluster of servers in a cloud deployment. First configure the VM on the master node, and then configure the VM on *each* worker node.
+Follow these steps to set up and configure your VM on a cluster of servers in a cloud deployment. First configure the VM on the master node, and then configure the VM on *each* worker node. NVIDIA recommends installing the virtual machines on different physical servers to increase redundancy in the event of a hardware failure. 
 
 - - -
 

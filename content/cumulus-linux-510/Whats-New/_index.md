@@ -251,7 +251,7 @@ To prevent Cumulus Linux from deleting the Linux configuration files when the sw
 {{< /tab >}}
 {{< tab "cumulus Account Password">}}
 
-To prevent Cumulus Linux from deleting the Linux configuration files when you change the cumulus account password with the Linux `passwd` command, comment out the `password optional pam_exec.so seteuid /usr/lib/cumulus/reconcile_password_with_nvue.sh` line from the following files **before** you upgrade to 5.10.0 or later:
+To prevent Cumulus Linux from deleting the Linux configuration files when you change the cumulus account password with the Linux `passwd` command, comment out `/usr/lib/cumulus/reconcile_password_with_nvue.sh` from the `password optional pam_exec.so seteuid` line in the following files **before** you upgrade to 5.10.0 or later:
 - `/etc/pam.d/chpasswd`
 - `/etc/pam.d/login`
 - `/etc/pam.d/passwd`

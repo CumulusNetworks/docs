@@ -23,6 +23,8 @@ Factory reset provides options to:
 {{< tabs "215 ">}}
 {{< tab "NVUE Commands ">}}
 
+To run factory reset with NVUE commands, the `nvued` service must be running.
+
 When you run the NVUE factory reset commands, the switch prompts you to confirm that you want to continue. To run the commands without the prompts to continue, add the `force` option at the end of the command.
 
 The following example resets the switch to the factory defaults and removes all configuration, system files, and log files:
@@ -69,10 +71,10 @@ Do you want to continue? [y/n] y
 ...
 ```
 
-The following example runs factory reset without the prompts to continue:
+The following example resets the switch to the factory defaults but keeps all system files and log files. The force option runs factory reset without the prompts to continue:
 
 ```
-cumulus@switch:~$ nv action reset system factory-reset all-files force 
+cumulus@switch:~$ nv action reset system factory-reset keep all-files force 
 ```
 
 {{< /tab >}}
@@ -85,15 +87,15 @@ cumulus@switch:~$ sudo systemctl restart factory-reset.service
 ```
 
 To keep certain configuration, keep all configuration but not system and log files, or keep system and log files but no configuration, create the `/tmp/factory-reset.conf` file, add one of the reset options to the file, then run the `systemctl restart factory-reset.service` command.
-- `MODE=keep-basic` resets the switch to the factory defaults but keeps password policy rules, management interface configuration (such as eth0), local user accounts and roles, and SSH configuration.
-- `MODE=keep-all-config` resets the switch to the factory defaults but keeps all configuration.
-- `MODE=keep-all-files` resets the switch to the factory defaults but keep all system files and log files.
+- `TYPE=keep-basic` resets the switch to the factory defaults but keeps password policy rules, management interface configuration (such as eth0), local user accounts and roles, and SSH configuration.
+- `TYPE=keep-all-config` resets the switch to the factory defaults but keeps all configuration.
+- `TYPE=keep-all-files` resets the switch to the factory defaults but keep all system files and log files.
 
 The following example resets the switch to the factory defaults but keeps password policy rules, management interface configuration (such as eth0), local user accounts and roles, and SSH configuration
 
 ```
 cumulus@switch:~$ sudo nano /tmp/factory-reset.conf
-MODE=keep-basic
+TYPE=keep-basic
 ```
 
 ```

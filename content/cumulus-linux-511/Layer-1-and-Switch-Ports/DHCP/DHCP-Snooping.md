@@ -34,7 +34,7 @@ cumulus@switch:~$ nv config apply
 
 For IPv6, run the `nv set bridge domain <bridge> dhcp-snoop6 vlan <vlan>` command.
 
-To disable DHCP snooping on a VLAN under a bridge, run the `nv unset bridge domain <bridge> dhcp-snoop vlan <vlan>` command.
+To disable DHCP snooping on a VLAN under a bridge, run the `nv unset bridge domain <bridge> dhcp-snoop vlan <vlan>` command for IPv4 or the `nv unset bridge domain <bridge> dhcp-snoop6 vlan <vlan>` command for IPv6.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

@@ -28,6 +28,7 @@ You can configure SPAN and ERSPAN in one of the following ways:
 - Mirroring to the same interface that you are monitoring causes a recursive flood of traffic and might impact traffic on other interfaces.
 - Cumulus VX does not support ACL rules for SPAN, ERSPAN, or port mirroring. To capture packets in Cumulus VX, use the `tcpdump` command line network traffic analyzer.
 - Cumulus VX does not support ACL rules for SPAN, ERSPAN, or port mirroring. To capture packets in Cumulus VX, use the `tcpdump` command line network traffic analyzer.
+- When you configure ERSPAN sessions with the NVUE `nv set system port-mirror` commands, the destination IP address must be reachable from the source IP address through the **default** VRF.
 {{%/notice%}}
 
 ## NVUE Configuration

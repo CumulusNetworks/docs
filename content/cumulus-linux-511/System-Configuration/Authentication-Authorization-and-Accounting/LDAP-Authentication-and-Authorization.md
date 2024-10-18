@@ -8,19 +8,17 @@ Cumulus Linux uses Pluggable Authentication Modules (PAM) and Name Service Switc
 - NSS specifies the order of the information sources that resolve names for each service. Using NSS with authentication and authorization provides the order and location for user lookup and group mapping on the system.
 - PAM handles the interaction between the user and the system, providing login handling, session setup, authentication of users, and authorization of user actions.
 
+NVUE manages LDAP authentication with PAM and NSS.
+
 ## Configure LDAP Server Settings
 
-You can configure LDAP server settings with NVUE commands or by editing configuration files.
-
-{{%notice note%}}
-To configure LDAP authentication on Linux, you can use `libnss-ldap`, `libnss-ldapd`, or `libnss-sss`. This document describes `libnss-ldapd` only. From internal testing, this library works best with Cumulus Linux and is the easiest to configure, automate, and troubleshoot.
-{{%/notice%}}
+You can configure LDAP server settings with NVUE commands or by editing Linux configuration files.
 
 ### Connection
 
 Configure the following connection settings:
-- The host name or IP address of the LDAP server from which you want to import users.
-- The port number of the LDAP server if you are using a non-default port. The default port numbers are TCP and UDP port 389 for LDAP and port 636 for LDAPS. In production environments, use the LDAPS protocol so that all communications are secure.
+- The host name or IP address of the LDAP server from which you want to import users. If you use multiple LDAP servers, you can also seta priority for each server.
+- The port number of the LDAP server if you are using a non-default port. The default port number for LDAP is TCP and UDP port 389.
 - Authenticated (Simple) BIND credentials. The BIND credentials are optional; if you do not specify the credentials, the switch assumes an anonymous bind. To use SASL (Simple Authentication and Security Layer) BIND, which provides authentication services using other mechanisms such as Kerberos, contact your LDAP server administrator for authentication information.
 
 The following example configures the LDAP server and port, and the BIND credentials.
@@ -36,6 +34,12 @@ cumulus@switch:~$ nv set system aaa ldap secret 1Q2w3e4r!
 cumulus@switch:~$ nv config apply
 ```
 
+The following example sets the priority to 2 for ldapserver2 when using multiple LDAP servers:
+
+```
+cumulus@switch:~$ nv set system aaa ldap hostname ldapserver2 priority 2
+```
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
@@ -45,13 +49,54 @@ Edit the `/etc/nslcd.conf` file to set the URI and BIND credentials, then uncomm
 cumulus@switch:~$ sudo nano /etc/nslcd.conf
 ...
 # The location at which the LDAP server(s) should be reachable.
-uri ldaps://ldapserver1:8443/
+uri ldaps://ldapserver1:388/
 #uripriority 1
 ...
 # The DN to bind with for normal lookups.
 binddn CN=cumulus admin,CN=Users,DC=rtp,DC=example,DC=test
 bindpw 1Q2w3e4r!
 ...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Set the Authentication Order to LDAP
+
+To prioritize the order in which Cumulus Linux attempts different authentication methods to verify user access to the switch, you set the authentication order. By default, Cumulus Linux verifies users according to their local passwords.
+
+If you set the authentication order to LDAP, but the LDAP servers do not have the user in the directory or does not respond, Cumulus Linux tries local password authentication.
+
+To set the authentication order for local accounts to LDAP:
+
+{{< tabs "TabID262 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set system aaa authentication-order 1 ldap
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/nsswitch.conf` file and add `ldap` before `files` for the `passwd` and `group` options:
+
+```
+cumulus@switch:~$ sudo nano /etc/nsswitch.conf
+...
+passwd:         ldap files
+group:          ldap files
+shadow:         files
+gshadow:        files
+
+hosts:          files dns
+networks:       files
+
+protocols:      db files
+services:       db files
+ethers:         db files
+rpc:            db files
 ```
 
 {{< /tab >}}
@@ -132,8 +177,8 @@ To limit the search scope when authenticating users, use search filters to speci
 
 ```
 cumulus@switch:~$ nv set system aaa ldap filter passwd cumulus
-cumulus@switch:~$ nv set system aaa ldap filter group 1234
-cumulus@switch:~$ nv set system aaa ldap filter shadow
+cumulus@switch:~$ nv set system aaa ldap filter group cn
+cumulus@switch:~$ nv set system aaa ldap filter shadow 1234
 cumulus@switch:~$ nv config apply
 ```
 
@@ -147,8 +192,8 @@ cumulus@switch:~$ sudo nano /etc/nslcd.conf
 ...
 # filters and maps
 filter passwd cumulus
-filter group 1234
-filter shadow abcd
+filter group cn
+filter shadow 1234
 ...
 ```
 
@@ -205,7 +250,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/nsswitch.conf` file to change the `ldap_version`.
+Edit the `/etc//etc/nslcd.conf` file to change the `ldap_version`.
 
 ```
 cumulus@switch:~$ sudo nano /etc/nslcd.conf
@@ -254,14 +299,14 @@ timelimit 60
 ### SSL Options
 
 You can configure the following SSL options:
-- The SSL mode.
+- The SSL mode. You can specify, `none`, `ssl`, or `start-tls`.
 - The SSL port.
-- The SSL certificate checker.
-- The SSL CA certificate file.
+- The SSL certificate checker (enabled or disabled).
+- The SSL CA certificate list.
 - The SSL cipher suites. You can specify TLS1.2, TLS1.3, TLS-CIPHERS, or all.
-- The SSL <span class="a-tooltip">[CRL](## "Certificate Revocation List")</span> checker.
+- The SSL <span class="a-tooltip">[CRL](## "Certificate Revocation List")</span> check.
 
-The following example sets the SSL mode to SSL, the port to 8443, enables the SSL certificate checker, sets the CA certificate list to none, the SSL cipher suites to TLS1.3 and the Certificate Revocation List to abc.
+The following example sets the SSL mode to SSL, the port to 8443, enables the SSL certificate checker, sets the CA certificate list to none, the SSL cipher suites to TLS1.3 and the Certificate Revocation List to /etc/ssl/certs/rtp-example-ca.crt.
 
 {{< tabs "TabID270 ">}}
 {{< tab "NVUE Commands ">}}
@@ -300,13 +345,13 @@ tls_crlfile /etc/ssl/certs/rtp-example-ca.crt
 
 LDAP referrals allow a directory tree to be partitioned and distributed between multiple LDAP servers.
 
-To configure LDAP referrals:
+To enable LDAP referral:
 
 {{< tabs "TabID309 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set system aaa ldap referrals ldapserver2,ldapserver3
+cumulus@switch:~$ nv set system aaa ldap referrals enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -361,8 +406,8 @@ ssl
   crl-check           none                                                 none                                               
 filter                                                                                                                        
   passwd              cumulus                                              cumulus                                            
-  group               1234                                                 1234                                               
-  shadow              abc                                                  abc                                                
+  group               cn                                                   cn                                             
+  shadow              1234                                                 1234                                                
 map                                                                                                                           
   passwd                                                                                                                      
     uid                                                                                                                       
@@ -403,32 +448,7 @@ cumulus@switch:~$ nv show system aaa ldap map group
 cn         sAMAccountName                                       sAMAccountName                                     
 memberuid                                                                                                          
 gidnumber  objectSid:S-1-5-21-1391733952-3059161487-1245441232  objectSid:S-1-5-21-1391733952-3059161487-1245441232
-
 ```
-
-## Create Home Directory on Login
-
-If you want to use unique home directories, run the `sudo pam-auth-update` command and select `Create home directory on login` in the PAM configuration dialog (press the space bar to select the option). Select OK, then press Enter to save the update and close the dialog.
-
-```
-cumulus@switch:~$ sudo pam-auth-update
-```
-
-{{< img src = "/images/cumulus-linux/authentication-pam-update.png" >}}
-
-The home directory for any user that logs in (using LDAP or not) populates with the standard dotfiles from `/etc/skel`.
-
-{{%notice note%}}
-When `nslcd` starts, an error message similar to the following (where 5816 is the `nslcd` PID) sometimes appears:
-
-```
-nslcd[5816]: unable to dlopen /usr/lib/x86_64-linux-gnu/sasl2/libsasldb.so: libdb-5.3.so: cannot open
-shared object file: No such file or directory
-```
-
-You can ignore this message. The `libdb` package and resulting log messages from `nslcd` do not cause any issues when you use LDAP as a client for login and authentication.
-{{%/notice%}}
-
 
 ## Configure LDAP Authorization
 
@@ -439,10 +459,6 @@ Linux uses the *sudo* command to allow non-administrator users (such as the defa
 %sudo ALL=(ALL:ALL) ALL
 %netadmin ALL=(ALL:ALL) ALL
 ```
-
-## Active Directory Configuration
-
-Active Directory (AD) is a fully featured LDAP-based NIS server created by Microsoft. It offers unique features that classic OpenLDAP servers do not have. AD can be more complicated to configure on the client and each version works a little differently with Linux-based LDAP clients. Some more advanced configuration examples, from testing LDAP clients on Cumulus Linux with Active Directory (AD/LDAP), are available in the [knowledge base]({{<ref "/knowledge-base/Security/Authentication/LDAP-on-Cumulus-Linux-Using-Server-2008-Active-Directory" >}}).
 
 ## LDAP Verification Tools
 
@@ -461,7 +477,7 @@ uid=1230(myuser) gid=3000(Development) groups=3000(Development),500(Employees),2
 
 ### getent
 
-The `getent` command retrieves all records found with NSS for a given map. It can also retrieve a specific entry under that map. You can perform tests with the `passwd`, `group`, `shadow`, or any other map in the `/etc/nsswitch.conf` file. The output from this command formats according to the map requested. For the  `passwd` service, the structure of the output is the same as the entries in `/etc/passwd`. The group map outputs the same structure as `/etc/group`.
+The `getent` command retrieves all records found with NSS for a given map. It can also retrieve a specific entry under that map. You can perform tests with the `passwd`, `group`, `shadow`, or any other map in the `/etc/nslcd.conf` file. The output from this command formats according to the map requested. For the  `passwd` service, the structure of the output is the same as the entries in `/etc/passwd`. The group map outputs the same structure as `/etc/group`.
 
 In this example, looking up a specific user in the `passwd` map, the user *cumulus* is locally defined in `/etc/passwd`, and *myuser* is only in LDAP.
 
@@ -482,65 +498,6 @@ netadmin:*:502:larry,moe,curly,shemp
 ```
 
 Running the command `getent passwd` or `getent group` without a specific request returns **all** local and LDAP entries for the *passwd* and *group* maps.
-
-### LDAP search
-
-The `ldapsearch` command performs LDAP operations directly on the LDAP server. This does not interact with NSS. This command displays the information that the LDAP daemon process receives back from the server. The command has several options. The simplest option uses anonymous bind to the host and specifies the search DN and the attribute to look up.
-
-```
-cumulus@switch:~$ ldapsearch -H ldap://ldap.example.com -b dc=example,dc=com -x uid=myuser
-```
-
-{{< expand "Click to expand the command output "  >}}
-
-```
-# extended LDIF
-#
-# LDAPv3
-# base <dc=example,dc=com> with scope subtree
-# filter: uid=myuser
-# requesting: ALL
-#
-# myuser, people, example.com
-dn: uid=myuser,ou=people,dc=example,dc=com
-cn: My User
-displayName: My User
-gecos: myuser
-gidNumber: 3000
-givenName: My
-homeDirectory: /home/myuser
-initials: MU
-loginShell: /bin/bash
-mail: myuser@example.com
-objectClass: inetOrgPerson
-objectClass: posixAccount
-objectClass: shadowAccount
-objectClass: top
-shadowExpire: -1
-shadowFlag: 0
-shadowMax: 999999
-shadowMin: 8
-shadowWarning: 7
-sn: User
-uid: myuser
-uidNumber: 1234
-
-# search result
-search: 2
-result: 0 Success
-
-# numResponses: 2
-# numEntries: 1
-```
-
-{{< /expand >}}
-
-### LDAP Browsers
-
-The GUI LDAP clients are free tools that show the structure of the LDAP database graphically.
-
-- {{<exlink url="http://directory.apache.org/studio/" text="Apache Directory Studio">}}
-- {{<exlink url="http://ldapmanager.sourceforge.net/" text="LDAPManager">}}
 
 ## Troubleshooting
 
@@ -603,12 +560,7 @@ nslcd: [8b4567] <passwd="myuser"> DEBUG: ldap_set_option(LDAP_OPT_RESTART,LDAP_O
 nslcd: [8b4567] <passwd="myuser"> DEBUG: ldap_simple_bind_s(NULL,NULL) (uri="ldap://<ip_address>")
 nslcd: [8b4567] <passwd="myuser"> DEBUG: ldap_result(): end of results (0 total)
 ```
-
-### SSL/TLS
-
-- The FQDN of the LDAP server URI does not match the FQDN in the CA-signed server certificate.
-- `nslcd` cannot read the SSL certificate and reports a *Permission denied* error during server connection negotiation. Check the permission on each directory in the path of the root SSL certificate. Ensure that it is readable by the `nslcd` user.
-
+<!--
 ### NSCD
 
 If you enable the `nscd cache` daemon then make changes to the user from LDAP, you can clear the cache using the following commands:
@@ -633,21 +585,12 @@ cumulus@switch:~$ sudo nscd -K
 cumulus@switch:~$ sudo systemctl restart nslcd@mgmt.service
 ```
 {{%/notice%}}
-
-### LDAP
-
-If the search filter returns incorrect results, check for typographical errors in the search filter. Use `ldapsearch` to test your filter or configure the basic LDAP connection and search parameters in the `/etc/ldap/ldap.conf` file.
-
-```
-# ldapsearch -D 'cn=CLadmin' -w 'CuMuLuS' "(&(ObjectClass=inetOrgUser)(uid=myuser))"
-```
+-->
 
 ## Related Information
 
 - {{<exlink url="https://wiki.debian.org/LDAP/NSS" text="Debian - configuring LDAP authentication">}}
 - {{<exlink url="https://wiki.debian.org/LDAP/PAM" text="Debian - configuring PAM to use LDAP">}}
-- {{<exlink url="https://raw.githubusercontent.com/arthurdejong/nss-pam-ldapd/master/nslcd.conf" text="GitHub - Arthur de Jong nslcd.conf file">}}
-- {{<exlink url="http://backports.debian.org/Instructions/" text="Debian backports">}}
 
 <!--
 ## Update the nslcd.conf File

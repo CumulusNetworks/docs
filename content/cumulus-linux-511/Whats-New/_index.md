@@ -24,7 +24,7 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 - {{<link url="Upgrading-Cumulus-Linux/#upgrade-cumulus-linux" text="Optimized image upgrade commands">}} (available for future upgrades)
 - {{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" text="Additional adaptive routing ECMP resource optimization for next hop groups">}} (Beta)
 - OTLP
-- {{<link url="ASIC-Monitoring/#histogram-collection" text="Packet and buffer histogram commands">}}
+- {{<link url="ASIC-Monitoring/#interface-packet-and-buffer-statistics" text="Packet and buffer histogram commands">}}
 - NVUE
   - {{<link url="DHCP-Snooping" text="DHCP snooping commands">}}
   - {{<link url="LDAP-Authentication-and-Authorization" text="LDAP authentication and authorization commands">}}

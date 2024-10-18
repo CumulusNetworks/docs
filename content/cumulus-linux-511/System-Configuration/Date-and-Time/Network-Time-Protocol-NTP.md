@@ -87,7 +87,7 @@ cumulus@switch:~$ ntpq -p
 {{< /tab >}}
 {{< /tabs >}}
 
-The following example commands remove some of the default NTP servers:
+The following example commands remove default NTP servers:
 
 {{< tabs "TabID204 ">}}
 {{< tab "NVUE Commands ">}}

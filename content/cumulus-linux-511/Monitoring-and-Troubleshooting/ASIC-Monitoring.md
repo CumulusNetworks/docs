@@ -1077,7 +1077,7 @@ monitor.buffer-pg_buffer.snapshot.file_count                  = 64
 {{< /tab >}}
 {{< /tabs >}}
 
-## Show Configuration settings
+### Show Configuration settings
 
 To show all the configuration settings for packet and buffer statistics, run the `nv show system telemetry interface-stats` command:
 

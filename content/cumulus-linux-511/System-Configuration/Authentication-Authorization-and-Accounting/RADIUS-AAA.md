@@ -270,6 +270,10 @@ accounting
 {{< /tab >}}
 {{< /tabs >}}
 
+The `/var/log/radius-cmd-acct.log` file contains the local copy of the logs, which match the logs that the server receives.
+
+If you do not receive any accounting packets, check the `/var/log/radius-send-cmd.log` file.
+
 ## Verify RADIUS Client Configuration
 
 To verify the RADIUS client configuration, log in as a non-privileged user and run the `nv set interface` command.

@@ -186,12 +186,6 @@ If you add the `force` option, ZTP runs without prompting you for confirmation.
 ```
 cumulus@switch:~$ nv action run system ztp force
 Action executing ...
-Running ZTP using discovery process
-Broadcast message from root@leaf01 (somewhere) (Fri Oct 11 19:30:16 2024):     
-ZTP: Attempting to provision via ZTP DHCP from http://192.168.200.1/cumulus-ztp                                                                               
-Broadcast message from root@leaf01 (somewhere) (Fri Oct 11 19:30:16 2024):     
-ZTP: Provisioning via ZTP DHCP complete                                                                               
-Action executing ...
 Action succeeded
 ```
 

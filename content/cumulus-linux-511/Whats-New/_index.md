@@ -345,10 +345,10 @@ nv unset system telemetry interface-stats sample-interval
 {{< tab "nv action ">}}
 
 ```
-nv action reset system factory-reset
-nv action reset system factory-reset keep basic
-nv action reset system factory-reset keep all-config
-nv action reset system factory-reset keep all-files
+nv action reset system factory-default
+nv action reset system factory-default keep basic
+nv action reset system factory-default keep all-config
+nv action reset system factory-default keep all-files
 nv action enable system ztp
 nv action disable system ztp
 nv action run system ztp

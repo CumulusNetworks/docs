@@ -14,7 +14,7 @@ NetQ 4.12.0 includes the following new features and improvements:
 
 - new cluster installation option that supports up to TKTK devices
 - new workbench with additional cards
-- Compare interfaces and view counter data across links with the {{<link title="Interfaces/#compare-link-interfaces" text="link health view">}}
+- Compare interfaces and view counter data across links with the {{<link title="Interfaces/#compare-link-interfaces" text="link health view">}} (beta)
 - The {{<link title="Network Topology" text="topology view">}} is now generally available
 - {{<link title="Validate Network Protocol and Service Operations/#topology-validations" text="Topology validations">}} are now generally available
 - View a switch's BGP and EVPN session information from the full-screen {{<link title="Switches" text="switch dashboard">}}

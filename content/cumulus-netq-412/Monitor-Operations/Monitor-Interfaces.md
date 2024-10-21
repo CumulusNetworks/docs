@@ -11,11 +11,15 @@ To view a table of interfaces along with types, states, and basic details, selec
 
 ## Compare Link Interfaces
 
-To troubleshoot link issues, navigate to the link health view by expanding the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**, then selecting **Link health view**. From this table, you can compare links according to different parameters, such as link utilization, link flaps, transmit and receive counters, drops and errors, and other counter data. The default view orders the links in the table from highest to lowest egress queue length.
+{{%notice note%}}
+Link health view is a beta feature.
+{{%/notice%}}
 
-To compare links, select the links from the table (up to 20), then click **Compare selected** above the table. The comparison charts update to reflect the data from the links you selected. Toggle the **Show top 5** switch on or off to view the top five and bottom five devices (and respective links) according to the parameters you selected. The charts' x-axis represents the time (in hours, according to a 24-hour clock) and the y-axis typically represents a count. The yellow line displays the average values for the selected links.
+To troubleshoot link issues, expand the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**, then select **Link health view**. From this dashboard you can compare links according to different parameters, such as link utilization, link flaps, transmit and receive counters, drops and errors, and other counter data. NetQ displays the links in the table ordered from highest to lowest egress queue length.
 
-You can select any of the three comparison charts to open a tabular view of the data that is displayed in the chart.
+To compare links, select the links from the dashboard (up to 20), then click **Compare selected** above the table. The comparison charts update to reflect the data from the links you selected. Toggle the **Show top 5** switch on or off to view the top five and bottom five devices (and respective links) according to the parameters you selected. The charts' x-axis represents the time (in hours, according to a 24-hour clock) and the y-axis represents a count of the parameter you selected. The yellow line displays the average values for the selected links.
+
+You can click the comparison charts to open a tabular view of the data that is displayed in the chart.
 
 {{<figure src="/images/netq/link-health-comp-412.png" alt="" width="1100">}}
 

@@ -478,7 +478,7 @@ https://security-tracker.debian.org/tracker/linux</td>
 <tr>
 <td>2648658</td>
 <td>If you try to use more than one percent of {{max-ecmp-nexthops}}, you get an error indicating a failure.</td>
-<td>3.7.15-4.3.2</td>
+<td>3.7.15-4.3.3</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -893,7 +893,7 @@ If you flap the link with the {{ip link set vni10100 down; ip link set vni10100 
 <tr>
 <td>2549371</td>
 <td>When Optimized Multicast Flooding (OMF) is enabled with the {{bridge.optimized_mcast_flood = TRUE}} setting in the {{/etc/cumulus/switchd.conf}} file, the switch continues to flood IPv6 multicast traffic to all slave ports when there is no MLD join receive.</td>
-<td>3.7.11-4.3.2</td>
+<td>3.7.11-4.3.3</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -2361,7 +2361,7 @@ Fixed: 1.6.2-5+deb8u9</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-3.7.15, 4.0.0-4.3.2</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.3</td>
 </tr>
 <tr>
 <td>2677063</td>
@@ -3472,7 +3472,7 @@ Fixed: 1.6.2-5+deb8u9</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-3.7.15, 4.0.0-4.3.2</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.3</td>
 <td>3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -3602,7 +3602,7 @@ Fixed: 0.4.1-1.2+deb8u1</td>
 <tr>
 <td>2648658</td>
 <td>If you try to use more than one percent of {{max-ecmp-nexthops}}, you get an error indicating a failure.</td>
-<td>3.7.15-4.3.2</td>
+<td>3.7.15-4.3.3</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -4054,7 +4054,7 @@ If you flap the link with the {{ip link set vni10100 down; ip link set vni10100 
 <tr>
 <td>2549371</td>
 <td>When Optimized Multicast Flooding (OMF) is enabled with the {{bridge.optimized_mcast_flood = TRUE}} setting in the {{/etc/cumulus/switchd.conf}} file, the switch continues to flood IPv6 multicast traffic to all slave ports when there is no MLD join receive.</td>
-<td>3.7.11-4.3.2</td>
+<td>3.7.11-4.3.3</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -5043,7 +5043,7 @@ Fixed: 1.4.4-2+deb8u3</td>
 <td>CVE-2020-12695: hostapd does not properly handle UPnP subscribe messages under certain conditions, allowing an attacker to cause a denial of service.
 Vulnerable: &lt;= 2.8.0-cl3.7.15u2
 Fixed: 2.8.0-cl3.7.15u3</td>
-<td>3.7.14-3.7.14.2, 4.3.0-4.3.2</td>
+<td>3.7.14-3.7.14.2, 4.3.0-4.3.3</td>
 </tr>
 <tr>
 <td>2617009</td>
@@ -5134,7 +5134,7 @@ Fixed: 0.99.beta19-2+deb8u2</td>
 <tr>
 <td>2566880</td>
 <td>CVE-2021-27803: A vulnerability was discovered in how p2p/p2p_pd.c in wpa_supplicant before 2.10 processes P2P (Wi-Fi Direct) provision discovery requests. It could result in denial of service or other impact (potentially execution of arbitrary code), for an attacker within radio range.</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.3.2</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.3.3</td>
 </tr>
 <tr>
 <td>2562511</td>
@@ -5168,7 +5168,7 @@ To work around this issue, disable ARP suppression.</td>
 <td>2556782</td>
 <td>CVE-2021-0326: An issue has been found in wpa, a set of tools to support WPA and WPA2 (IEEE 802.11i). Missing validation of data can result in a buffer over-write, which might lead to a DoS of the wpa_supplicant process or potentially arbitrary code execution.
 Vulnerable: &lt;= 2.8.0-cl3.7.14u1, &lt;= 2.8.0-cl4.2.1u1</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.3.2</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.3.3</td>
 </tr>
 <tr>
 <td>2556780</td>
@@ -6137,7 +6137,7 @@ Fixed: 1.6.2-5+deb8u9</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-3.7.15, 4.0.0-4.3.2</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.3</td>
 <td>3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -6309,7 +6309,7 @@ Fixed: 1.4.4-2+deb8u3</td>
 <td>CVE-2020-12695: hostapd does not properly handle UPnP subscribe messages under certain conditions, allowing an attacker to cause a denial of service.
 Vulnerable: &lt;= 2.8.0-cl3.7.15u2
 Fixed: 2.8.0-cl3.7.15u3</td>
-<td>3.7.14-3.7.14.2, 4.3.0-4.3.2</td>
+<td>3.7.14-3.7.14.2, 4.3.0-4.3.3</td>
 <td>3.7.15-3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -6420,7 +6420,7 @@ Fixed: 0.99.beta19-2+deb8u2</td>
 <tr>
 <td>2566880</td>
 <td>CVE-2021-27803: A vulnerability was discovered in how p2p/p2p_pd.c in wpa_supplicant before 2.10 processes P2P (Wi-Fi Direct) provision discovery requests. It could result in denial of service or other impact (potentially execution of arbitrary code), for an attacker within radio range.</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.3.2</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.3.3</td>
 <td>3.7.15-3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -6465,7 +6465,7 @@ To work around this issue, disable ARP suppression.</td>
 <td>2556782</td>
 <td>CVE-2021-0326: An issue has been found in wpa, a set of tools to support WPA and WPA2 (IEEE 802.11i). Missing validation of data can result in a buffer over-write, which might lead to a DoS of the wpa_supplicant process or potentially arbitrary code execution.
 Vulnerable: &lt;= 2.8.0-cl3.7.14u1, &lt;= 2.8.0-cl4.2.1u1</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.3.2</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.3.3</td>
 <td>3.7.15-3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -7108,7 +7108,7 @@ If you flap the link with the {{ip link set vni10100 down; ip link set vni10100 
 <tr>
 <td>2549371</td>
 <td>When Optimized Multicast Flooding (OMF) is enabled with the {{bridge.optimized_mcast_flood = TRUE}} setting in the {{/etc/cumulus/switchd.conf}} file, the switch continues to flood IPv6 multicast traffic to all slave ports when there is no MLD join receive.</td>
-<td>3.7.11-4.3.2</td>
+<td>3.7.11-4.3.3</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -8782,7 +8782,7 @@ Fixed: 1.6.2-5+deb8u9</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-3.7.15, 4.0.0-4.3.2</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.3</td>
 <td>3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -8943,7 +8943,7 @@ Fixed: 1.4.4-2+deb8u3</td>
 <td>CVE-2020-12695: hostapd does not properly handle UPnP subscribe messages under certain conditions, allowing an attacker to cause a denial of service.
 Vulnerable: &lt;= 2.8.0-cl3.7.15u2
 Fixed: 2.8.0-cl3.7.15u3</td>
-<td>3.7.14-3.7.14.2, 4.3.0-4.3.2</td>
+<td>3.7.14-3.7.14.2, 4.3.0-4.3.3</td>
 <td>3.7.15-3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -9048,7 +9048,7 @@ Fixed: 0.99.beta19-2+deb8u2</td>
 <tr>
 <td>2566880</td>
 <td>CVE-2021-27803: A vulnerability was discovered in how p2p/p2p_pd.c in wpa_supplicant before 2.10 processes P2P (Wi-Fi Direct) provision discovery requests. It could result in denial of service or other impact (potentially execution of arbitrary code), for an attacker within radio range.</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.3.2</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.3.3</td>
 <td>3.7.15-3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -9087,7 +9087,7 @@ To work around this issue, disable ARP suppression.</td>
 <td>2556782</td>
 <td>CVE-2021-0326: An issue has been found in wpa, a set of tools to support WPA and WPA2 (IEEE 802.11i). Missing validation of data can result in a buffer over-write, which might lead to a DoS of the wpa_supplicant process or potentially arbitrary code execution.
 Vulnerable: &lt;= 2.8.0-cl3.7.14u1, &lt;= 2.8.0-cl4.2.1u1</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.3.2</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.3.3</td>
 <td>3.7.15-3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -9792,7 +9792,7 @@ If you flap the link with the {{ip link set vni10100 down; ip link set vni10100 
 <tr>
 <td>2549371</td>
 <td>When Optimized Multicast Flooding (OMF) is enabled with the {{bridge.optimized_mcast_flood = TRUE}} setting in the {{/etc/cumulus/switchd.conf}} file, the switch continues to flood IPv6 multicast traffic to all slave ports when there is no MLD join receive.</td>
-<td>3.7.11-4.3.2</td>
+<td>3.7.11-4.3.3</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -11836,7 +11836,7 @@ Fixed: 1.6.2-5+deb8u9</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-3.7.15, 4.0.0-4.3.2</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.3</td>
 <td>3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -12836,7 +12836,7 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 <tr>
 <td>2549371</td>
 <td>When Optimized Multicast Flooding (OMF) is enabled with the {{bridge.optimized_mcast_flood = TRUE}} setting in the {{/etc/cumulus/switchd.conf}} file, the switch continues to flood IPv6 multicast traffic to all slave ports when there is no MLD join receive.</td>
-<td>3.7.11-4.3.2</td>
+<td>3.7.11-4.3.3</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -14938,7 +14938,7 @@ Fixed: 1.6.2-5+deb8u9</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-3.7.15, 4.0.0-4.3.2</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.3</td>
 <td>3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -15928,7 +15928,7 @@ To work around this issue, revert the configuration change.</td>
 <tr>
 <td>2549371</td>
 <td>When Optimized Multicast Flooding (OMF) is enabled with the {{bridge.optimized_mcast_flood = TRUE}} setting in the {{/etc/cumulus/switchd.conf}} file, the switch continues to flood IPv6 multicast traffic to all slave ports when there is no MLD join receive.</td>
-<td>3.7.11-4.3.2</td>
+<td>3.7.11-4.3.3</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -17834,7 +17834,7 @@ Fixed: 1.6.2-5+deb8u9</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-3.7.15, 4.0.0-4.3.2</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.3</td>
 <td>3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -18274,7 +18274,7 @@ To work around this issue, revert the configuration change.</td>
 <tr>
 <td>2549371</td>
 <td>When Optimized Multicast Flooding (OMF) is enabled with the {{bridge.optimized_mcast_flood = TRUE}} setting in the {{/etc/cumulus/switchd.conf}} file, the switch continues to flood IPv6 multicast traffic to all slave ports when there is no MLD join receive.</td>
-<td>3.7.11-4.3.2</td>
+<td>3.7.11-4.3.3</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -20535,7 +20535,7 @@ Fixed: 1.6.2-5+deb8u9</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-3.7.15, 4.0.0-4.3.2</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.3</td>
 <td>3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -22760,7 +22760,7 @@ Fixed: 1.6.2-5+deb8u9</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-3.7.15, 4.0.0-4.3.2</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.3</td>
 <td>3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -25313,7 +25313,7 @@ Fixed: 1.6.2-5+deb8u9</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-3.7.15, 4.0.0-4.3.2</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.3</td>
 <td>3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -27293,7 +27293,7 @@ Fixed: 1.6.2-5+deb8u9</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-3.7.15, 4.0.0-4.3.2</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.3</td>
 <td>3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -29612,7 +29612,7 @@ Fixed: 1.6.2-5+deb8u9</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-3.7.15, 4.0.0-4.3.2</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.3</td>
 <td>3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -31676,7 +31676,7 @@ Fixed: 1.6.2-5+deb8u9</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-3.7.15, 4.0.0-4.3.2</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.3</td>
 <td>3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -33385,7 +33385,7 @@ Fixed: 1.6.2-5+deb8u9</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-3.7.15, 4.0.0-4.3.2</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.3</td>
 <td>3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -35121,7 +35121,7 @@ Fixed: 1.6.2-5+deb8u9</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-3.7.15, 4.0.0-4.3.2</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.3</td>
 <td>3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -36957,7 +36957,7 @@ Fixed: 1.6.2-5+deb8u9</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-3.7.15, 4.0.0-4.3.2</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.3</td>
 <td>3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -38836,7 +38836,7 @@ Fixed: 1.6.2-5+deb8u9</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-3.7.15, 4.0.0-4.3.2</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.3</td>
 <td>3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -40028,7 +40028,7 @@ Fixed: 1.6.2-5+deb8u9</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-3.7.15, 4.0.0-4.3.2</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.3</td>
 <td>3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>

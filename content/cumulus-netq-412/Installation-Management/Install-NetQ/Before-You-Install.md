@@ -14,10 +14,10 @@ Consider the following deployment options and requirements before you install th
 | Single Server | High-Availability Cluster| High-Availability Scale Cluster |
 | --- | --- | --- |
 | On-premises or cloud | On-premises or cloud | On-premises only |
-| Low scale<ul><li>Single server supports up to TKTK devices</li></ul>| Medium scale<ul><li>3-node deployment supports up to 100 devices and 12,800 interfaces</li></ul>|  High scale<ul><li>3-node deployment supports up to 1000 devices and TKTK interfaces</li><li>5-node deployment supports up to 2000 devices and TKTK interfaces</li><li>7-node deployment supports up to 3000 devices nad TKTK interfaces</li></ul>|
+| Low scale<ul><li>Single server supports up to TKTK devices</li></ul>| Medium scale<ul><li>3-node deployment supports up to 100 devices and 12,800 interfaces</li></ul>|  High scale<ul><li>3-node deployment supports up to 1000 devices and TKTK interfaces</li></ul>|
 | KVM or VMware hypervisor | KVM or VMware hypervisor | KVM or VMware hypervisor |
 | System requirements<br><br> On-premises: 16 virtual CPUs, 64GB RAM, 500GB SSD disk<br><br>Cloud: 4 virtual CPUs, 8GB RAM, 64GB SSD disk | System requirements (per node)<br><br> On-premises: 16 virtual CPUs, 64GB RAM, 500GB SSD disk<br><br>Cloud: 4 virtual CPUs, 8GB RAM, 64GB SSD disk |  System requirements (per node)<br><br>On-premises: 48 virtual CPUs, 512GB RAM, 3.2TB SSD disk|
-| All features supported | All features supported|  Limited or no support for:<ul><li>Topology dashboard</li><li>Network snapshots</li><li>Trace requests</li><li>Flow analysis</li><li>Duplicate IP address validations</li><li>MAC move commentary</li></li><li>Link health view</li></ul>|
+| All features supported | All features supported|  Limited or no support for:<ul><li>Topology dashboard</li><li>Network snapshots</li><li>Trace requests</li><li>Flow analysis</li><li>Duplicate IP address validations</li><li>Topology validations</li></li><li>Link health view</li></ul>|
 
 NetQ is also available through NVIDIA Base Command Manager. To get started, refer to the {{<exlink url="https://docs.nvidia.com/base-command-manager/#product-manuals" text="Base Command Manager administrator and containerization manuals">}}.
 ## Deployment Type: On-premises or Cloud
@@ -36,7 +36,7 @@ Select the **high-availability cluster** deployment for greater device support a
 
 During the installation process, you configure a virtual IP address that enables redundancy for the Kubernetes control plane. In this configuration, the majority of nodes must be operational for NetQ to function. For example, a three-node cluster can tolerate a one-node failure, but not a two-node failure. For more information, refer to the {{<exlink url="https://etcd.io/docs/v3.3/faq/" text="etcd documentation">}}.
 
-The **high-availability scale cluster** deployment provides support for the greatest number of devices and provides an extensible framework for greater scalability. As the number of devices in your network grows, you can add additional nodes to the cluster to support the additional devices. 
+The **high-availability scale cluster** deployment provides support for the greatest number of devices and provides an extensible framework for greater scalability. <!--As the number of devices in your network grows, you can add additional nodes to the cluster to support the additional devices. 4.12 supports only 3-node cluster-->
 
 ### Cluster Deployments and Load Balancers
 

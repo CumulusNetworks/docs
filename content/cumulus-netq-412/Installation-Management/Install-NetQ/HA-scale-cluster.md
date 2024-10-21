@@ -5,7 +5,7 @@ weight: 227
 toc: 5
 bookhidden: true
 ---
-Follow these steps to set up and configure your VM on a cluster of servers in an on-premises deployment. First configure the VM on the master node, and then configure the VM on *each* worker node. NVIDIA recommends installing the virtual machines on different physical servers to increase redundancy in the event of a hardware failure. 
+Follow these steps to set up and configure your VM on a cluster of servers in an on-premises deployment. First configure the VM on the master node, and then configure the VM on *each* worker node. NVIDIA recommends installing the virtual machines on different servers to increase redundancy in the event of a hardware failure. 
 
 - - -
 
@@ -70,7 +70,7 @@ Additionally, for internal cluster communication, you must open these ports:
     b. Select **NVIDIA Licensing Portal**.<br>
     c. Select **Software Downloads** from the menu.<br>
     d. Click **Product Family** and select **NetQ**.<br>
-    e. For deployments using KVM, download the **NetQ SW 4.11 KVM** image. For deployments using VMware, download the **NetQ SW 4.11 VMware** image<br>
+    e. For deployments using KVM, download the **NetQ SW 4.12 KVM** image. For deployments using VMware, download the **NetQ SW 4.12 VMware** image<br>
     f. If prompted, read the license agreement and proceed with the download.<br>
 
 {{%notice note%}}
@@ -127,7 +127,7 @@ cumulus@ubuntu:~$
 4. Verify that the master node is ready for installation. Fix any errors before installing the NetQ software.
 
 ```
-cumulus@hostname:~$ sudo opta-check
+cumulus@hostname:~$ sudo opta-check scale
 ```
 
 5. Change the hostname for the VM from the default value.
@@ -156,7 +156,7 @@ Add the same NEW_HOSTNAME value to **/etc/hosts** on your VM for the localhost e
 7. Verify that the worker node is ready for installation. Fix any errors indicated before installing the NetQ software.
 
 ```
-cumulus@hostname:~$ sudo opta-check
+cumulus@hostname:~$ sudo opta-check scale
 ```
 
 8. Repeat steps 6 and 7 for each worker node in your cluster.

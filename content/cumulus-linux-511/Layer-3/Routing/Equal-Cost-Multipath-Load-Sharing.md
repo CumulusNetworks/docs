@@ -766,20 +766,3 @@ To show adaptive routing configuration for an interface, run the `nv show interf
 ### IPv6 Next Hop Preference
 
 Cumulus Linux uses IPv6 link-local addresses as BGP next hops when receiving a route with both link-local and global next hops. To configure a BGP peering to prefer global next hop addresses, configure the `ipv6-nexthop-prefer-global` option in an inbound route map applied to the peer. Use this configuration when there are multiple BGP peerings to the same router with adaptive routing enabled, or multiple peerings to the same router on interfaces that share the same MAC address or physical interface. Refer to {{<link url="Route-Filtering-and-Redistribution/#set-ipv6-prefer-global" text="Set IPv6 Prefer Global">}}.
-
-### ECMP Resource Sharing During Next Hop Group Updates
-
-During network events such as reboots, link flaps, and in any transient scenarios, next hop group churn might create a higher number of ECMP containers. Also, when {{<link url="Optional-BGP-Configuration/#bgp-prefix-independent-convergence" text="FRR allocates a single next hop group per source">}}, more ECMP hardware resources are required.  
-
-To configure the switch to share ECMP resources during next hop group updates with weight changes, create the `/etc/cumulus/switchd.d/switchd_misc.conf` file and add `nhg_update_ecmp_sharing_enable = TRUE`:
-
-```
-cumulus@leaf01:mgmt:~$ sudo nano /etc/cumulus/switchd.d/switchd_misc.conf
-nhg_update_ecmp_sharing_enable = TRUE 
-```
-
-To disable ECMP resource sharing during next hop group updates with weight changes, set the `nhg_update_ecmp_sharing_enable` option to `FALSE`.
-
-{{%notice note%}}
-This is a BETA feature.
-{{%/notice%}}

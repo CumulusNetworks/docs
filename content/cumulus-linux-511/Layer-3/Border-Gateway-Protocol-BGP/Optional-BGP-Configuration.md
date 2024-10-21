@@ -1388,6 +1388,7 @@ BGP prefix independent convergence (PIC) reduces data plane convergence times an
 - BGP PIC is a BETA feature for Spectrum-4 switches.
 - Cumulus Linux does not support BGP PIC with EVPN, MLAG, or VRF route leaking.
 - You can configure PIC on the default VRF only.
+- Additional ECMP hardware resources are required for PIC. Refer to {{<link url="Equal-Cost-Multipath-Load-Sharing/#ecmp-resource-sharing-during-next-hop-group-updates" text="Additional ECMP resource optimization for next hop groups">}}
 {{%/notice%}}
 
 When you configure BGP PIC, Cumulus Linux assigns one next hop group for each source and the remote leaf advertises the router ID loopback route. The remote leaf tags prefix routes with a route-origin extended community so that the local leaf recognizes the routes. When the network topology changes, the local leaf obtains the router ID loopback route with the updated ECMP, allowing a O (1) next hop group replace operation for all prefixes from the remote leaf without waiting for individual BGP updates.

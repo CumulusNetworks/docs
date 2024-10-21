@@ -19,10 +19,10 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 - {{<link url="Pulse-Per-Second-PPS" text="PPS on the NVIDIA SN5400 switch">}} is now generally available.
 - {{<link url="Factory-Reset" text="Factory Reset">}}
 - {{<link url="Forwarding-Table-Size-and-Profiles/#spectrum-1" text="ecmp-nh-heavy forwarding profile">}} for Spectrum 1 switches
-- {{<link url="Optional-BGP-Configuration/#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}}
 - {{<link url="RADIUS-AAA/#radius-user-command-accounting" text="RADIUS user command accounting">}}
 - {{<link url="Upgrading-Cumulus-Linux/#upgrade-cumulus-linux" text="Optimized image upgrade commands">}} (available for future upgrades)
-- {{<link url="Equal-Cost-Multipath-Load-Sharing/#ecmp-resource-sharing-during-next-hop-group-updates" text="Additional ECMP resource optimization for next hop groups">}} (Beta)
+- {{<link url="BGP-Weighted-Equal-Cost-Multipath/#ecmp-resource-sharing-during-next-hop-group-updates" text="Additional ECMP resource optimization for next hop groups">}} (Beta)
+- {{<link url="Optional-BGP-Configuration/#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}} (Beta)
 - OTLP
 - {{<link url="ASIC-Monitoring/#interface-packet-and-buffer-statistics" text="Interface packet and buffer statistics collection">}}
 - NVUE
@@ -48,26 +48,35 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
   - {{< expand "Changed NVUE Commands" >}}
 | New Command | Previous Command |
 | ----------- | ----------------|
-| nv set system snmp-server<br>nv unset system snmp-server | nv set service snmp-server<br>nv unset service snmp-server |
-| nv set system snmp-server state enable<br>nv set system snmp-server state disable| nv set service snmp-server enable on<br>nv set service snmp-server enable off|
-| nv show system snmp-server | nv show service snmp-server|
-| nv set qos advance-buffer-config default-global ingress-service-pool <pool-id> <property> <value> | nv set qos advance-buffer-config default-global ingress-pool <pool-id> <property> <value>|
-| nv set qos advance-buffer-config default-global egress-service-pool <pool-id> <property> <value> | nv set qos advance-buffer-config default-global egress-pool <pool-id> <property> <value>  |
-| nv show qos advance-buffer-config default-global ingress-service-pool | nv show qos advance-buffer-config default-global ingress-pool |
-| nv show qos advance-buffer-config default-global egress-service-pool | nv show qos advance-buffer-config default-global egress-pool |
+| `nv set system snmp-server`<br>`nv unset system snmp-server` | `nv set service snmp-server`<br>`nv unset service snmp-server` |
+| `nv set system snmp-server state enable`<br>`nv set system snmp-server state disable`| `nv set service snmp-server enable on`<br>`nv set service snmp-server enable off`|
+| `nv show system snmp-server` | `nv show service snmp-server`|
+| `nv set qos advance-buffer-config default-global ingress-service-pool <pool-id> <property> <value>` | `nv set qos advance-buffer-config default-global ingress-pool <pool-id> <property> <value>`|
+| `nv set qos advance-buffer-config default-global egress-service-pool <pool-id> <property> <value>` | n`v set qos advance-buffer-config default-global egress-pool <pool-id> <property> <value> ` |
+| `nv show qos advance-buffer-config default-global ingress-service-pool` | `nv show qos advance-buffer-config default-global ingress-pool` |
+| `nv show qos advance-buffer-config default-global egress-service-pool` | `nv show qos advance-buffer-config default-global egress-pool` |
 {{< /expand >}}
   - {{< expand "Removed NVUE Commands" >}}
 | Removed Command | 
 | --------------- |
-|nv show interface pluggables (replaced with nv show platform transceiver) |
-|nv show interface <interface> pluggable (replaced with nv show platform transceiver <interface>)|
-|nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib (replaced with nv show vrf <vrf-id> router bgp adress-family l2vpn-evpn route) |
-|nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd |
-|nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> |
-|nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> route-type |
-|nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> route-type <route-type-id> |
-|nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> route-type <route-type-id> route |
-|nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> route-type <route-type-id> route  <evpn-route-id> |
+|`nv show interface pluggables` (replaced with `nv show platform transceiver`) |
+|`nv show interface <interface>` pluggable (replaced with `nv show platform transceiver <interface>`)|
+|`nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib` (replaced with `nv show vrf <vrf-id> router bgp adress-family l2vpn-evpn route`) |
+|`nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd` |
+|`nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id>` |
+|`nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> route-type` |
+|`nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> route-type <route-type-id>` |
+|`nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> route-type <route-type-id> route` |
+|`nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> route-type <route-type-id> route <evpn-route-id>` |
+| `nv set vrf <vrf-id> router rib ipv4 protocol bgp fib-filter` |
+| `nv show vrf <vrf-id> router rib ipv6 protocol --applied`|
+| `nv show vrf <vrf_id> router rib ipv6 protocol <protocol>`|
+| `nv show vrf <vrf_id> router nexthop-tracking <afi> ip_address protocol <protocol>` |
+| `nv show vrf <vrf_id> router nexthop-tracking <afi> ip_address resolved-via <id>` |
+| `nv show router nexthop rib <nhg-id> dependents` |
+| `nv show router nexthop rib <nhg-id> depends` |
+| `nv show router nexthop rib <nhg-id> resolved-via <resolved-via-id>` |
+| `nv show router nexthop rib <nhg-id> resolved-via-backup <resolved-via-id>` |
 
 {{< /expand >}}
   - {{< expand "New NVUE Commands" >}}

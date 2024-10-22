@@ -484,13 +484,13 @@ neighbor swp51 route-map MAP2 in
 {{< /tab >}}
 {{< /tabs >}}
 
-The following example filters routes from Zebra (RIB) into the Linux kernel (FIB). The commands apply the route map called routemap1 to BGP routes in the RIB:
+The following example filters routes from Zebra (RIB) into the Linux kernel (FIB). The commands apply the route map called MAP1 to BGP routes in the RIB:
 
 {{< tabs "TabID152 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set vrf default router rib ipv4 protocol bgp fib-filter MAP1
+cumulus@switch:~$  nv set vrf default router rib ipv4 fib-filter protocol bgp route-map MAP1
 cumulus@switch:~$ nv config apply
 ```
 
@@ -526,7 +526,7 @@ To apply a route map to filter route updates from BGP into the RIB:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:$ nv set vrf default router bgp address-family ipv4-unicast rib-filter routemap1
+cumulus@switch:$ nv set vrf default router bgp address-family ipv4-unicast rib-filter MAP1
 cumulus@switch:$ nv config apply
 ```
 
@@ -551,7 +551,7 @@ The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For e
 cumulus@switch:~$ sudo cat /etc/frr/frr.conf
 ...
 address-family ipv4 unicast
-table-map routemap1
+table-map MAP1
 ```
 
 {{< /tab >}}

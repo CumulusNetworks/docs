@@ -339,8 +339,8 @@ To show VNI BGP information run the NVUE `nv show evpn vni <id> bgp-info` and `n
 
 ```
 cumulus@border01:mgmt:~$ nv show vrf RED evpn bgp-info
-                       operational        applied
----------------------  -----------------  -------
+                       operational
+---------------------  -----------------
 local-vtep             10.0.1.255                
 rd                     10.10.10.63:3             
 router-mac             44:38:39:be:ef:ff         
@@ -809,7 +809,7 @@ EVPN type-5 prefix: [5]:[EthTag]:[IPlen]:[IP]
 
 To display the VNI routing table for all VNIs, run the vtysh `show bgp l2vpn evpn route vni all` command.
 
-To view the EVPN RIB with NVUE, run the `nv show vrf <vrf> router bgp address-family l2vpn-evpn loc-rib rd <rd> route-type <type> route` command.
+To view the EVPN RIB with NVUE, run the `nv show vrf <vrf> router bgp address-family l2vpn-evpn route` command.
 
 ## Show the VRF BGP Routing Table
 

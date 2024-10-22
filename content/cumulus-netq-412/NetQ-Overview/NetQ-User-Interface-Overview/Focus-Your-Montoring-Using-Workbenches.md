@@ -11,9 +11,16 @@ Workbenches are dashboards where you can visualize and curate data representing 
 - Displays switches that you are troubleshooting.
 - Is focused on application or account management.
 
-{{%notice tip%}}
-NVIDIA includes two example workbenches----NetQ Workbench and Fabric Dashboard---to help get you started with NetQ. These workbenches are visible to all users within an organization and any changes to them will not be saved.
-{{%/notice%}}
+## Get Started with Workbenches
+
+NVIDIA includes two example workbenches---NetQ Workbench and Fabric Dashboard---to help get you started with NetQ. To access these workbenches or switch between them, select the workbench's name in the header. The menu displays recently accessed workbenches and the date at which they were created. 
+
+{{<figure src="/images/netq/fabric-wb-local-412.png" alt="list of available workbenches" width="300">}}
+
+**NetQ Workbench** includes cards displaying your network’s device inventory, switch inventory, validation summary, What Just Happened events, host inventory, DPU inventory, and system events. This workbench is visible to all users within an organization and any changes to it will not be saved.
+
+**Fabric Dashboard** includes cards displaying link status and events, sensor health, queue status, What Just Happened and system events, BGP and EVPN sessions, device inventory, and a validation summary. You can modify this workbench by adding or deleting cards and NetQ saves the changes automatically. This workbench is local to each premises, meaning that changes made to the workbench on one premises will not be reflected when you switch to a different premises.
+
 
 ## Create a Custom Workbench
 
@@ -35,10 +42,6 @@ To create a new workbench:
 You can clone a workbench to quickly create a new workbench with the same cards as the one you're viewing. In the header, select <b>Clone</b>, modify the workbench settings, then click <b>Clone</b>.
 {{</notice>}}
 
-## Switch Between Workbenches
-
-To access a different workbench, select the current workbench in the header. The menu displays recently accessed workbenches. Click **All my WB** to open a list of all workbenches.
-{{<figure src="/images/netq/wb-dropdown-411.png" alt="list of available workbenches" width="300">}}
 
 ## Manage Workbenches
 
@@ -49,7 +52,7 @@ You can also change your home workbench (the workbench that loads when you log i
 
 ## Delete a Workbench
 
-You can only delete workbenches that you created. The NVIDIA-supplied NetQ Workbench cannot be deleted. When you delete a workbench that you have designated as your home workbench, the NetQ Workbench will replace it as the home workbench. To delete a workbench:
+You can only delete workbenches that you created. The NVIDIA-supplied NetQ Workbench cannot be deleted. When you delete a workbench that you have designated as your home workbench, NetQ Workbench will replace it as the home workbench. To delete a workbench:
 
 1. Select <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> **User Settings** &nbsp;<span aria-label="and then">> **Profile & Preferences**.
 
@@ -59,7 +62,7 @@ You can only delete workbenches that you created. The NVIDIA-supplied NetQ Workb
 
 ## Manage Auto-refresh
 
-You can specify how often to update the data displayed on a workbench. By default, NetQ updates the data every five minutes. To alternately disable and re-enable auto-refresh, select <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" alt="pause icon" width="18"/> **Pause** or <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-play-1.svg" alt="play icon" width="18"/> **Play**. Each workbench refreshes according to its respective refresh interval. 
+You can specify how often to update the data displayed on a workbench. By default, NetQ updates the data every five minutes. To alternately disable or re-enable auto-refresh, select <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" alt="pause icon" width="18"/> **Pause** or <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-play-1.svg" alt="play icon" width="18"/> **Play**. Each workbench refreshes according to its respective refresh interval. 
 
 To modify the refresh rate:
 

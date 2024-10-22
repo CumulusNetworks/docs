@@ -5,7 +5,7 @@ weight: 140
 toc: 4
 ---
 
-Cards present information about your network for monitoring and troubleshooting; each card describes a particular aspect of the network. Cards are collected onto a {{<link title="Focus Your Monitoring Using Workbenches" text="workbench">}} where all data relevant to a task or set of tasks is visible. You can add and remove cards from a workbench, increase or decrease their sizes, change the time period of the data shown on a card, and make copies of cards to show different levels of data at the same time.
+Cards present information about your network for monitoring and troubleshooting; each card describes a particular aspect of the network. Cards are collected onto a {{<link title="Focus Your Monitoring Using Workbenches" text="workbench">}} where all data relevant to a task or set of tasks is visible. You can add and remove cards from a workbench, increase or decrease their sizes, change the time period of the data shown on a card, and make copies of cards to show different levels of data for the same time period.
 
 ## Available Cards
 
@@ -15,7 +15,7 @@ Each card focuses on a particular aspect of your network. They include:
 - Events cards: system anomalies and threshold-crossing events (**Events** card), network issues and packet drops (**What Just Happened** card), and link events (**Link events** card)
 - Link cards: overview of links at the fabric level (**Switch link status** card) <!--check categorization of link events card-->
 - **Sensor health**: overview of fan, temperature, and PSU states
-- **Top 5 longest buffer**: ports experiencing most packet buffer congestion
+- **Queue status**: ports experiencing most packet buffer congestion
 - **Device groups**: distribution of device components
 - **Trace request**: discovery workflow for paths between two devices in the network fabric
 - **MAC move commentary**: info about changes to a MAC address on a specific VLAN
@@ -24,7 +24,7 @@ Each card focuses on a particular aspect of your network. They include:
 
 ## Card Sizes
 
-Cards are available in 4 sizes. The granularity of the content on a card varies with the size of the card, with the highest level of information on the smallest card to the most detailed information on the full-screen card.
+You can increase or decrease the size of certain cards. The granularity of the content on a card varies with the size of the card, with the highest level of information on the smallest card to the most detailed information on the full-screen card.
 
 ### Card Size Summary
 
@@ -81,7 +81,7 @@ The cards are placed at the end of the set of cards currently on the workbench. 
 
 ### Add Switch Cards to Your Workbench
 
-You can add switch cards to a workbench from the header:
+The quickest way to access monitoring information for an individual switch is by searching for its hostname in the global search field. Search for the hostname and select the switch to open a full-screen overview of attributes and performance information. You can also add switch cards to a workbench from the header:
 
 1. Select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card&nbsp;<span aria-label="and then">></span> Device card**.
 
@@ -95,19 +95,19 @@ If you want to access a comprehensive overview of performance metrics and data f
 
 ### Remove Cards from Your Workbench
 
-To remove all the cards from your workbench, click the **Clear** icon in the header. To remove an individual card: 
+To remove all the cards from your workbench, click **Workbench**, then **Clear** in the header. To remove an individual card: 
 
 1. Hover over the top section of the card you want to remove.
 2. Click the three-dot menu.
 3. Select **Remove**.
 
-    {{<figure src="/images/netq/remove-card-411.png" alt="" width="250">}}
+    {{<figure src="/images/netq/remove-card-412.png" alt="" width="250">}}
 
 The card is removed from the workbench, but not from the application.
 
 ### Change the Size of the Card
 
-1. Hover over the top portion of the card until you see a rectangular box divided into four segments.
+1. Hover over the top portion of the card until you see a rectangular box divided into four segments. If you do not see the box, the size of the card cannot be adjusted.
 
 2. Move your cursor over the box until the desired size option is highlighted.
 

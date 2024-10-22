@@ -9,8 +9,12 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 
 ## October 2024
 <!-- Air:WhatsNew -->
-### 82.2024.1014-011
-- Fixed an issue when launching consoles from the `Nodes` tab
+### 82.2024.1021-011
+- Fixed an issue related to autoprovision redirects
+- Fixed a potential scheduling issue when creating multiple simulations
+- Improved logic around the Enable OOB toggle behavior
+- Improved the logout process
+- Moved the interface list to the node properties side panel
 <!-- Air:WhatsNew -->
 
 ### 82.2024.1007-011

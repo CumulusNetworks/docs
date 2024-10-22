@@ -72,6 +72,8 @@ To modify the refresh rate:
 
     {{<figure src="/images/netq/refresh-411.png" alt="refresh rate dropdown listng rate options of 1 minute, 2 minutes, and 5 minutes" width="150">}}
 
+To disable auto-refresh on individual cards, select the card's three-dot menu and click **Manual refresh**.
+
 ## Related Information
 
 - {{<link title="Configure Premises" text="Configure Premises">}}

@@ -81,7 +81,7 @@ The cards are placed at the end of the set of cards currently on the workbench. 
 
 ### Add Switch Cards to Your Workbench
 
-The quickest way to access monitoring information for an individual switch is by searching for its hostname in the global search field. Search for the hostname and select the switch to open a full-screen overview of attributes and performance information. You can also add switch cards to a workbench from the header:
+To add switch cards to a workbench:
 
 1. Select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card&nbsp;<span aria-label="and then">></span> Device card**.
 
@@ -91,7 +91,7 @@ The quickest way to access monitoring information for an individual switch is by
 
 3. Choose the card's size, then select **Add**.
 
-If you want to access a comprehensive overview of performance metrics and data for an individual switch without adding it as a card to your workbench, search for its hostname in the global search field and right-click the switch to open the overview in a new tab. 
+For a comprehensive overview of performance metrics and data for an individual switch, search for its hostname in the global search field and right-click the switch to open the overview in a new tab. 
 
 ### Remove Cards from Your Workbench
 

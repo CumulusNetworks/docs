@@ -11,9 +11,9 @@ Workbenches are dashboards where you can visualize and curate data representing 
 - Displays switches that you are troubleshooting.
 - Is focused on application or account management.
 
-NVIDIA provides an example workbench that opens when you first log in to NetQ, called NetQ Workbench. It includes cards displaying your network's device inventory, switch inventory, validation summary, What Just Happened events, host inventory, DPU inventory, and system events. This workbench is visible to all users within an organization and any changes to it will not be saved.
-
-{{<figure src="/images/netq/netq-workbench-411.png" alt="default netq workbench" width="1000">}}
+{{%notice tip%}}
+NVIDIA includes two example workbenches----NetQ Workbench and Fabric Dashboard---to help get you started with NetQ. These workbenches are visible to all users within an organization and any changes to them will not be saved.
+{{%/notice%}}
 
 ## Create a Custom Workbench
 

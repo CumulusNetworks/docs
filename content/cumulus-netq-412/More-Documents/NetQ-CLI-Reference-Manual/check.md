@@ -1090,7 +1090,8 @@ You must upload a network blueprint .dot file using the UI for this command to r
 ```
 netq check topology 
     [label <text-label-name> | hostnames <text-list-hostnames>] 
-    [check_filter_id <text-check-filter-id>] 
+    [check_filter_id <text-check-filter-id>]
+    [include <topology-number-range-list> | exclude <topology-number-range-list>] 
     [around <text-time>] 
     [json | summary]
 ```

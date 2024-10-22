@@ -535,79 +535,7 @@ leaf02            vx                   x86_64               3.6.2.1
 
 ### Related Commands
 
-- ```netq show cl-pkg-info```
 - ```netq show recommended-pkg-version```
-
-- - -
-
-<!-- vale off -->
-## netq show cl-pkg-info
-<!-- vale on -->
-
-Displays the versions for all software packages installed on a given device or all devices networkwide. The output provides the following information for each device:
-
-- Package name and version
-- Cumulus Linux version
-- Package status
-- When the last change occurred for any of these items
-
-The output can become very large for all devices and packages. When viewing results in a terminal window, consider filtering by hostname or package name to reduce the length of the output. Wildcards are not allowed for `hostname` or `text-package-name`.
-
-### Syntax
-
-```
-netq [<hostname>] show cl-pkg-info
-    [<text-package-name>]
-    [around <text-time>]
-    [json]
-```
-
-### Required Arguments
-
-None
-
-### Options
-
-| Option | Value | Description |
-| ---- | ---- | ---- |
-| NA | \<hostname\> | Only display results for the switch or host with this name |
-| NA | \<text-package-name\> | Only display results for the software package with this name |
-| around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| json | NA | Display the output in JSON format |
-
-### Sample Usage
-
-```
-cumulus@switch:~$ netq leaf01 show cl-pkg-info
-
-Matching package_info records:
-Hostname          Package Name             Version              CL Version           Package Status       Last Changed
------------------ ------------------------ -------------------- -------------------- -------------------- -------------------------
-leaf01            freeipmi-common          1.6.3-1.1            Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
-leaf01            libsystemd0              241-7~deb10u4        Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
-leaf01            arptables                0.0.4+snapshot201810 Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
-leaf01            libbinutils              2.31.1-16            Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
-leaf01            tzdata                   2020a-0+deb10u1      Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
-leaf01            gpgconf                  2.2.12-1+deb10u1     Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
-leaf01            irqbalance               1.5.0-3              Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
-leaf01            systemd                  241-7~deb10u4        Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
-leaf01            liblmdb0                 0.9.22-1             Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
-leaf01            libopts25                1:5.18.12-4          Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
-leaf01            libelf1                  0.176-1.1            Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
-leaf01            init-system-helpers      1.56+nmu1            Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
-leaf01            libudev1                 241-7~deb10u4        Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
-leaf01            gdisk                    1.0.3-1.1            Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
-leaf01            xxd                      2:8.1.0875-5         Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
-leaf01            libnl-nf-3-200           3.2.27-cl4.2.1u1     Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
-leaf01            libprotobuf17            3.6.1.3-2            Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
-leaf01            cron                     3.0pl1-133-cl4u1     Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
-...
-```
-
-### Related Commands
-
-- ```netq show recommended-pkg-version```
-- ```netq show cl-manifest```
 
 - - -
 
@@ -2077,7 +2005,6 @@ spine02           x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
 
 - `netq config agent cpu-limit`
 - `netq show cl-manifest`
-- `netq show cl-pkg-info` 
 - `netq show dom type`
 - `netq show resource-util`
 - `netq show sensors`
@@ -3561,7 +3488,6 @@ act-5712-09       3.7.2                bcm                  x86_64              
 ### Related Commands
 
 - ```netq show cl-manifest```
-- ```netq show cl-pkg-info```
 
 - - -
 

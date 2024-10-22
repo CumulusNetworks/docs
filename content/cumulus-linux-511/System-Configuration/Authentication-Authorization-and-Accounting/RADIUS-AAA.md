@@ -232,9 +232,6 @@ The RADIUS server must be configured to accept packets from clients and have a d
 
 To enable RADIUS user command accounting:
 
-{{< tabs "TabID235 ">}}
-{{< tab "NVUE Commands ">}}
-
 ```
 cumulus@switch:~$ nv set system aaa radius accounting enabled
 cumulus@switch:~$ nv config apply
@@ -242,39 +239,11 @@ cumulus@switch:~$ nv config apply
 
 To disable RADIUS user command accounting, run the `nv set system aaa radius accounting disabled` command.
 
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `/etc/pam_radius_auth.conf` file to add the `accounting` parameter:
-
-```
-cumulus@switch:~$ sudo nano /etc/pam_radius_auth.conf
-# Set the minimum privilege level in VSA attribute shell:privilege-level=VALUE
-# default is 15, range is 0-15.
-privilege-level 10
-#
-#  Uncomment to enable debugging, can be used instead of altering pam files
-debug
-#
-# Account for privileged radius user mapping.  If you change it here,  you need
-# to change /etc/nss_mapuser.conf as well
-mapped_priv_user radius_priv_user
-
-# server[:port]            shared_secret       timeout (secs)     src_ip
-192.168.0.254:42           myradius$key        10                 192.168.1.10        
-
-vrf-name mgmt
-accounting
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
 The `/var/log/radius-cmd-acct.log` file contains the local copy of the logs, which match the logs that the server receives.
 
 If you do not receive any accounting packets, check the `/var/log/radius-send-cmd.log` file.
 
-To see if user command accounting is enabled, run the `nv show system aaa radius` command.
+To see if RADIUS user command accounting is enabled, run the `nv show system aaa radius` command.
 
 ## Verify RADIUS Client Configuration
 

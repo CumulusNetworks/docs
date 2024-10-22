@@ -490,7 +490,7 @@ The following example filters routes from Zebra (RIB) into the Linux kernel (FIB
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$  nv set vrf default router rib ipv4 fib-filter protocol bgp route-map MAP1
+cumulus@switch:~$ nv set vrf default router rib ipv4 fib-filter protocol bgp route-map MAP1
 cumulus@switch:~$ nv config apply
 ```
 

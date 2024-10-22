@@ -274,6 +274,8 @@ The `/var/log/radius-cmd-acct.log` file contains the local copy of the logs, whi
 
 If you do not receive any accounting packets, check the `/var/log/radius-send-cmd.log` file.
 
+To see if user command accounting is enabled, run the `nv show system aaa radius` command.
+
 ## Verify RADIUS Client Configuration
 
 To verify the RADIUS client configuration, log in as a non-privileged user and run the `nv set interface` command.
@@ -298,16 +300,17 @@ To show global RADIUS configuration, run the `nv show system aaa radius` command
 
 ```
 cumulus@switch:~$ nv show system aaa radius
-                 operational    applied      
----------------  -------------  -------------
-enable           on             on           
-vrf              mgmt           mgmt         
-debug            disabled       disabled     
-privilege-level                 15           
-retransmit       0              0            
-port                            1812         
-timeout                         3            
-[server]         192.168.0.254  192.168.0.254
+                 operational    applied        
+---------------  -------------  ------------- 
+enable           on             on            
+vrf              mgmt           mgmt          
+debug            disabled       disabled      
+privilege-level                 15            
+retransmit       0              0             
+port                            1812          
+timeout                         3             
+accounting       enabled        enabled       
+[server]         192.168.0.254  192.168.0.254 
 ```
 
 To show all RADIUS configured servers, run the `nv show system aaa radius server` command:

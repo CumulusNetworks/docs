@@ -10,6 +10,7 @@ You can also run factory reset when you want to remove a complex or corrupted co
 
 {{%notice note%}}
 To run factory reset commands, you must have system admin, root, or sudo privileges.
+The switch does not support factory reset if you upgrade to Cumulus Linux 5.11 from Cumulus Linux 5.9.x or 5.10.x with package upgrade.
 {{%/notice%}}
 
 ## Run Factory Reset
@@ -80,13 +81,13 @@ cumulus@switch:~$ nv action reset system factory-default keep only-files force
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-To reset the switch to the factory defaults and remove all configuration, system files, and log files (the default option), run the `systemctl restart factory-default.service` command.
+To reset the switch to the factory defaults and remove all configuration, system files, and log files (the default option), run the `systemctl restart factory-reset.service` command.
 
 ```
-cumulus@switch:~$ sudo systemctl restart factory-default.service
+cumulus@switch:~$ sudo systemctl restart factory-reset.service
 ```
 
-To keep certain configuration, keep all configuration but not system and log files, or keep system and log files but no configuration, create the `/tmp/factory-default.conf` file, add one of the reset options to the file, then run the `systemctl restart factory-default.service` command.
+To keep certain configuration, keep all configuration but not system and log files, or keep system and log files but no configuration, create the `/tmp/factory-reset.conf` file, add one of the reset options to the file, then run the `systemctl restart factory-reset.service` command.
 - `TYPE=keep-basic` resets the switch to the factory defaults but keeps password policy rules, management interface configuration (such as eth0), local user accounts and roles, and SSH configuration.
 - `TYPE=keep-all-config` resets the switch to the factory defaults but keeps all configuration.
 - `TYPE=keep-all-files` resets the switch to the factory defaults but keep all system files and log files.
@@ -94,16 +95,16 @@ To keep certain configuration, keep all configuration but not system and log fil
 The following example resets the switch to the factory defaults but keeps password policy rules, management interface configuration (such as eth0), local user accounts and roles, and SSH configuration.
 
 ```
-cumulus@switch:~$ sudo nano /tmp/factory-default.conf
+cumulus@switch:~$ sudo nano /tmp/factory-reset.conf
 TYPE=keep-basic
 ```
 
 {{%notice note%}}
-When you use the `keep-basic` option, you must create the `/tmp/startup-new.yaml` file before restarting the `factory-default.service`. This is not necessary for the other options.
+When you use the `keep-basic` option, you must create a `/tmp/startup-new.yaml` file with the configuration you want after factory reset, then start `factory-reset.service`. This is not necessary for the other options.
 {{%/notice%}}
 
 ```
-cumulus@switch:~$ sudo systemctl restart factory-default.service
+cumulus@switch:~$ sudo systemctl restart factory-reset.service
 ```
 
 {{< /tab >}}

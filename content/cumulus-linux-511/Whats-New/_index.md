@@ -196,6 +196,7 @@ nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unica
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast received-routes <route-id> path <path-id> large-community
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast received-routes <route-id> path <path-id> large-community
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast advertised-routes <route-id> path <path-id> large-community
+nv show vrf <vrf> router rib <address-family> route
 nv show vrf <vrf> router rib <address-family> route-count
 nv show vrf <vrf> router rib <address-family> route-count <prefix>
 nv show vrf <vrf> router rib <address-family> route-count protocol
@@ -406,6 +407,13 @@ nv action enable system ztp
 nv action disable system ztp
 nv action run system ztp
 nv action abort system ztp
+```
+
+{{< /tab >}}
+{{< tab "nv config ">}}
+
+```
+nv config show --all
 ```
 
 {{< /tab >}}

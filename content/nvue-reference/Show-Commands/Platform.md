@@ -79,6 +79,144 @@ system-uuid    b41196dc-78f1-4048-8079-f3c0fbeef739
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show platform asic resource
+
+Shows both global and ACL ASIC resources.
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show platform asic resource
+Global 
+========= 
+    Resource Name             Count         Max        Percentage 
+    ------------------                      -----      ---------
+    IPv4-host-entries             4         32768      0% 
+    IPv6-host-entries             4         8192       0% 
+    IPv4-neighbors                4                    0% 
+    IPv6-neighbors                4                    0% 
+    IPv4-route-entries            22        65536      0% 
+    IPv6-route-entries            21        45056      0% 
+        IPv4-Routes               22                   0% 
+    IPv6-Routes                   13                   0% 
+    MAC-entries                   36        40960      0% 
+    Total-Mcast-Routes             0        1000       0% 
+    Ingress-ACL-entries            0                   0% 
+    Egress-ACL-entries             0                   0% 
+      Total-Routes                 43       110592     0% 
+    ACL-Regions                    2        400        0% 
+    ACL-18B-Rules-Key              2        3792       0% 
+    ACL-36B-Rules-Key              0        1536       0% 
+    ACL-54B-Rules-Key              0        1024       0% 
+    ECMP-entries                   5                   0% 
+    ECMP-nexthops                  8        7808       0% 
+    Flow-Counters                  10       16196      0% 
+       RIF-Basic-Counters          36       1000       3% 
+    RIF-Enhanced-Counters          0        964        0% 
+    Downstream-VNI-FID-count       0                   0% 
+    Total-FID-count                3        6143       0% 
+    Vport-FID-count                3                   0%
+Acl 
+====== 
+    Resource Name                         18B Rule     36B Rule     54B Rule      Rule Count 
+    ----------------------------          ----------   -----------  ----------     ------ 
+    Egress-ACL-ipv4-filter-table           0           0               0            0 
+    Egress-ACL-mac-filter-table            0           0               0            0 
+    Ingress-ACL-mac-filter-table           0           0               0            0 
+    Ingress-ACL-ipv4-filter-table          0           0               0            0 
+    Ingress-ACL-ipv6-filter-table          0           0               0            0 
+    Ingress-ACL-ipv4-mangle-table          1           0               0            1 
+    Ingress-ACL-ipv6-mangle-table          0           0               0            0 
+    Egress ACL-ipv4-mangle-table           1           0               0            1 
+    Egress-ACL-ipv6-mangle-table           0           0               0            0 
+    Ingress-PBR-ipv4-filter-table          0           0               0            0 
+    Ingress-PBR-ipv6-filter-tabl           0           0               0            0
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show platform asic resource acl
+
+Shows global and ASIC resources.
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show platform asic resource acl
+Resource Name                        18B Rule     36B Rule     54B Rule    Rule Count 
+    ----------------------------     ----------   ----------   ----------  -------- 
+    Egress-ACL-ipv4-filter-table       0          0             0          0 
+    Egress-ACL-mac-filter-table        0          0             0          0 
+    Ingress-ACL-mac-filter-table       0          0             0          0 
+    Ingress-ACL-ipv4-filter-table      0          0             0          0 
+    Ingress-ACL-ipv6-filter-table      0          0             0          0 
+    Ingress-ACL-ipv4-mangle-table      1          0             0          1 
+    Ingress-ACL-ipv6-mangle-table      0          0             0          0 
+    Egress ACL-ipv4-mangle-table      1           0             0          1 
+    Egress-ACL-ipv6-mangle-table      0           0             0          0 
+    Ingress-PBR-ipv4-filter-table     0           0             0          0 
+    Ingress-PBR-ipv6-filter-tabl      0           0             0          0 
+    Egress-ACL-ipv6-filter-table      0           0             0          0 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show platform asic resource global
+
+Shows ACL ASIC resources.
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show platform asic resource global
+Resource Name                     Count   Max      Percentage 
+    ------------------            -----   ----      ---------- 
+    IPv4-host-entries             4       32768     0%
+    IPv6-host-entries             4       8192      0% 
+    IPv4-neighbors                4                 0% 
+    IPv6-neighbors                4                 0% 
+    IPv4-route-entries            22      65536     0% 
+    IPv6-route-entries            21      45056     0% 
+    IPv4-Routes                   22                0% 
+    IPv6-Routes                   13                0% 
+    MAC-entries                   36      40960     0% 
+    Total-Mcast-Routes            0       1000      0% 
+    Ingress-ACL-entries           0                 0% 
+    Egress-ACL-entries            0                 0% 
+    Total-Routes                  43      110592    0% 
+    ACL-Regions                   2       400       0% 
+    ACL-18B-Rules-Key             2       3792      0% 
+    ACL-36B-Rules-Key             0       1536      0% 
+    ACL-54B-Rules-Key             0       1024      0% 
+    ECMP-entries                  5                 0% 
+    ECMP-nexthops                 8       7808      0% 
+    Flow-Counters                 10      16196     0% 
+    Ingress-ACL-entries           0                 0% 
+    RIF-Basic-Counters            36      1000      3% 
+    RIF-Enhanced-Counters         0       964       0% 
+    Downstream-VNI-FID-count      0                 0% 
+    Total-FID-count               3       6143      0% 
+    Vport-FID-count               3                 0%
+    Dynamic-Config-DNAT-entries   0       64        0.0% 
+    Dynamic-Config -SNAT-entries  0       64        0.0% 
+    Dynamic-DNAT-entries          0       1024      0.0% 
+    Dynamic-SNAT-entries          0       1024      0.0% 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show platform capabilities</h>
 
 Shows the platform capabilities of the switch.

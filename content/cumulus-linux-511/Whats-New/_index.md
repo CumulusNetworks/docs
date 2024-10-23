@@ -402,7 +402,7 @@ nv unset vrf <vrf> router bgp address-family <address-family> nhg-per-origin
 nv action reset system factory-default
 nv action reset system factory-default keep basic
 nv action reset system factory-default keep all-config
-nv action reset system factory-default keep all-files
+nv action reset system factory-default keep only-files
 nv action enable system ztp
 nv action disable system ztp
 nv action run system ztp

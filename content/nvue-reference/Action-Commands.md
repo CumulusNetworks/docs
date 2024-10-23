@@ -79,6 +79,24 @@ type: ''
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action abort system ztp</h>
+
+Terminates ZTP if it is in the discovery process or is not currently running a script.
+
+## Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action abort system ztp
+```
+
+If you add the `force` option (`nv action abort system ztp force`), ZTP terminates without prompting you for confirmation.
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action cancel system telemetry hft job \<job-id\> profile \<profile-id\></h>
 
 Cancels a specific or all high frequency telemetry data collection jobs, or a specific or all jobs for a high frequency telemetry profile. You can specify a job ID or `all` to cancel all jobs.
@@ -2503,6 +2521,29 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action disable system ztp</h>
+
+Disables ZTP and deactivates the provisioning process. If a ZTP script is currently running, ZTP is not disabled.
+
+## Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action disable system ztp
+The operation will perform disable of the ZTP.
+Type [y] to perform disable of the ZTP.
+Type [N] to cancel an action.
+
+Do you want to continue? [y/N]
+```
+
+If you add the `force` option (`nv action disable system ztp force`), ZTP disables and deactivates the provisioning process without prompting you for confirmation.
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action disconnect system aaa user \<user-id\></h>
 
 Disconnects authenticated and authorized users.
@@ -2570,6 +2611,52 @@ Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action enable system ztp</h>
+
+Enables ZTP and activates the provisioning process. ZTP tries to run the next time the switch boots. However, if ZTP already ran on a previous boot up or if you made manual configuration changes, ZTP exits without trying to look for a script.
+
+## Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action enable system ztp
+The operation will perform enable of the ZTP.
+Type [y] to perform enable of the ZTP.
+Type [N] to cancel an action.
+
+Do you want to continue? [y/N]
+```
+
+If you add the `force` option (`nv action enable system ztp force`), ZTP enables and activates the provisioning process without prompting you for confirmation.
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action run system ztp</h>
+
+Manually runs ZTP from the beginning. If you made manual configuration changes, ZTP considers the switch as already provisioned and exits.
+
+You can also specify a custom URL (`nv action run system ztp url <url-and-filename`) or directory (`nv action run system ztp url <directory-and-filename`) on the switch for the ZTP script.
+
+## Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action run system ztp
+The operation will perform rerun of the ZTP.
+Type [y] to perform rerun of the ZTP.
+Type [N] to cancel an action.
+
+Do you want to continue? [y/N]
+```
+
+If you add the force option (`nv action run system ztp force`), ZTP runs without prompting you for confirmation.
 
 ## <h>nv action delete system tech-support files \<file-id\></h>
 

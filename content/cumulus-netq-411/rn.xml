@@ -43,12 +43,6 @@
 <td></td>
 </tr>
 <tr>
-<td>3847280</td>
-<td>The {{netq-opta}} package fails to install on Cumulus Linux 5.9.0. On-switch OPTA is not supported on Cumulus Linux 5.9.0.</td>
-<td>4.10.0-4.11.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3800434</td>
 <td>When you upgrade NetQ from a version prior to 4.9.0, What Just Happened data that was collected before the upgrade is no longer present.</td>
 <td>4.9.0-4.11.0</td>

@@ -2690,6 +2690,128 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action reset system factory-default</h>
+
+Resets the switch to the factory defaults and removes all configuration, system files, and log files. When you perform a factory reset, the currently installed image remains on the switch.
+
+{{%notice note%}}
+- To run factory reset with NVUE commands, the `nvued` service must be running.
+- When you run the NVUE factory reset commands, the switch prompts you to confirm that you want to continue. To run the commands without the prompts to continue, add the `force` option at the end of the command.
+- The switch always reboots in cold mode after a factory reset even if the switch is in warm boot mode when you run factory reset commands.
+- If ZTP fails (the ZTP configuration file is not present, there is no USB drive, or there are DHCP errors), factory reset continues successfully; ZTP is a separate task and does not affect the factory reset status.
+- If there is an issue when running factory reset, the switch reverts to the previous configuration and logs the exceptions and errors.
+- The factory reset command is similar to the onie-select -k command; however, onie-select -k also removes the installed image.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action reset system factory-default
+This operation will reset the system configuration, delete the log files and reboot the switch.
+Type [y] continue. 
+Type [n] to abort. 
+Do you want to continue? [y/n] y
+...
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action reset system factory-default keep basic</h>
+
+Resets the switch to the factory defaults but keeps password policy rules, management interface configuration (such as eth0), local user accounts and roles, and SSH configuration.
+
+{{%notice note%}}
+- To run factory reset with NVUE commands, the `nvued` service must be running.
+- When you run the NVUE factory reset commands, the switch prompts you to confirm that you want to continue. To run the commands without the prompts to continue, add the `force` option at the end of the command.
+- The switch always reboots in cold mode after a factory reset even if the switch is in warm boot mode when you run factory reset commands.
+- If ZTP fails (the ZTP configuration file is not present, there is no USB drive, or there are DHCP errors), factory reset continues successfully; ZTP is a separate task and does not affect the factory reset status.
+- If there is an issue when running factory reset, the switch reverts to the previous configuration and logs the exceptions and errors.
+- The factory reset command is similar to the onie-select -k command; however, onie-select -k also removes the installed image.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action reset system factory-default keep basic
+This operation will keep only the basic system configuration, delete the log files and reboot the switch.
+Type [y] to continue. 
+Type [n] to abort. 
+Do you want to continue? [y/n] y
+...
+
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action reset system factory-default keep all-config</h>
+
+Resets the switch to the factory defaults but keeps all configuration.
+
+{{%notice note%}}
+- To run factory reset with NVUE commands, the `nvued` service must be running.
+- When you run the NVUE factory reset commands, the switch prompts you to confirm that you want to continue. To run the commands without the prompts to continue, add the `force` option at the end of the command.
+- The switch always reboots in cold mode after a factory reset even if the switch is in warm boot mode when you run factory reset commands.
+- If ZTP fails (the ZTP configuration file is not present, there is no USB drive, or there are DHCP errors), factory reset continues successfully; ZTP is a separate task and does not affect the factory reset status.
+- If there is an issue when running factory reset, the switch reverts to the previous configuration and logs the exceptions and errors.
+- The factory reset command is similar to the onie-select -k command; however, onie-select -k also removes the installed image.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action reset system factory-default keep all-config
+This operation will not reset the system configuration, only delete the log files and reboot the switch.
+Type [y] to continue.
+Type [n] to abort.
+Do you want to continue? [y/n] y 
+...
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action reset system factory-default keep only-files</h>
+
+Resets the switch to the factory defaults but keeps all system files and log files
+
+{{%notice note%}}
+- To run factory reset with NVUE commands, the `nvued` service must be running.
+- When you run the NVUE factory reset commands, the switch prompts you to confirm that you want to continue. To run the commands without the prompts to continue, add the `force` option at the end of the command.
+- The switch always reboots in cold mode after a factory reset even if the switch is in warm boot mode when you run factory reset commands.
+- If ZTP fails (the ZTP configuration file is not present, there is no USB drive, or there are DHCP errors), factory reset continues successfully; ZTP is a separate task and does not affect the factory reset status.
+- If there is an issue when running factory reset, the switch reverts to the previous configuration and logs the exceptions and errors.
+- The factory reset command is similar to the onie-select -k command; however, onie-select -k also removes the installed image.
+{{%/notice%}}
+
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action reset system factory-default keep only-files
+This operation will reset the system configuration, not delete the log files and reboot the switch.
+Type [y] to continue. 
+Type [n] to abort. 
+Do you want to continue? [y/n] y 
+...
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action rotate system log</h>
 
 Rotates the system log files. Cumulus Linux automatically manages log file size, preventing the logs from filling the storage space and slowing down the system.

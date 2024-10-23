@@ -138,6 +138,8 @@ To set the search scope to one level:
 {{< tabs "TabID97 ">}}
 {{< tab "NVUE Commands ">}}
 
+NVUE does not provide commands to set the search scope.
+<!--
 ```
 cumulus@switch:~$ nv set system aaa ldap scope one-level
 cumulus@switch:~$ nv config apply
@@ -149,7 +151,7 @@ To set the search scope back to the default setting (subtree):
 cumulus@switch:~$ nv set system aaa ldap scope subtree
 cumulus@switch:~$ nv config apply
 ```
-
+-->
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
@@ -175,13 +177,15 @@ To limit the search scope when authenticating users, use search filters to speci
 {{< tabs "TabID134 ">}}
 {{< tab "NVUE Commands ">}}
 
+NVUE does not provide commands to limit the search scope.
+<!--
 ```
 cumulus@switch:~$ nv set system aaa ldap filter passwd cumulus
 cumulus@switch:~$ nv set system aaa ldap filter group cn
 cumulus@switch:~$ nv set system aaa ldap filter shadow 1234
 cumulus@switch:~$ nv config apply
 ```
-
+-->
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
@@ -207,6 +211,8 @@ The *map* configuration allows you to override the attributes pushed from LDAP. 
 {{< tabs "TabID166 ">}}
 {{< tab "NVUE Commands ">}}
 
+NVUE does not provide commands for attribute mapping.
+<!--
 ```
 cumulus@switch:~$ nv set system aaa ldap map passwd homedirectory /home/$sAMAccountName
 cumulus@switch:~$ nv set system aaa ldap map passwd userpassword cumulus
@@ -214,7 +220,7 @@ cumulus@switch:~$ nv set system aaa ldap map group cn sAMAccountName
 cumulus@switch:~$ nv set system aaa ldap map group gidnumber objectSid:S-1-5-21-1391733952-3059161487-1245441232
 cumulus@switch:~$ nv config apply
 ```
-
+-->
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
@@ -301,7 +307,7 @@ timelimit 60
 You can configure the following SSL options:
 - The SSL mode. You can specify, `none`, `ssl`, or `start-tls`.
 - The SSL port.
-- The SSL certificate checker (enabled or disabled).
+- The SSL certificate checker (Linux only).
 - The SSL CA certificate list.
 - The SSL cipher suites. You can specify TLS1.2, TLS1.3, TLS-CIPHERS, or all.
 - The SSL <span class="a-tooltip">[CRL](## "Certificate Revocation List")</span> check.
@@ -314,7 +320,6 @@ The following example sets the SSL mode to SSL, the port to 8443, enables the SS
 ```
 cumulus@switch:~$ nv set system aaa ldap ssl mode ssl
 cumulus@switch:~$ nv set system aaa ldap ssl port 8443
-cumulus@switch:~$ nv set system aaa ldap ssl cert-verify enabled
 cumulus@switch:~$ nv set system aaa ldap ssl ca-list none
 cumulus@switch:~$ nv set system aaa ldap ssl tls-ciphers TLS1.3
 cumulus@switch:~$ nv set system aaa ldap ssl crl-check /etc/ssl/certs/rtp-example-ca.crt

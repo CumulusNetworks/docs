@@ -14,14 +14,21 @@ The bridge driver in Cumulus Linux kernel includes IGMP and MLD snooping. If you
 
 Without a multicast router, a single switch in an IP subnet can coordinate multicast traffic flows. This switch is the querier or the designated router. The querier generates query messages to check group membership, and processes membership reports and leave messages.
 
-To configure the querier on the switch for a {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}}, enable the multicast querier on the bridge and add the source IP address of the queries to the VLAN.
+To configure the querier on the switch for a {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}}, enable the multicast querier on the bridge and add the source IP address of the queries to the VLAN. 
 
-The following configuration example enables the multicast querier and sets source IP address of the queries to 10.10.10.1 (the loopback address of the switch).
+Before you configure the querier, make sure to configure the bridge, VLAN, and ports.
+
+The following example:
+- Configures a bridge called `br_default` that includes VLAN 10, and assigns swp1 to the bridge.
+- Enables the multicast querier and sets the source IP address of the queries to 10.10.10.1 (the loopback address of the switch).
 
 {{< tabs "TabID22 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
+cumulus@switch:~$ nv set interface swp1-3 bridge domain br_default
+cumulus@switch:~$ nv set bridge domain br_default vlan 10
+cumulus@switch:~$ nv set interface swp1 bridge domain br_default vlan 10
 cumulus@switch:~$ nv set bridge domain br_default multicast snooping querier enable on
 cumulus@switch:~$ nv set bridge domain br_default vlan 10 multicast snooping querier source-ip 10.10.10.1
 cumulus@switch:~$ nv config apply
@@ -43,6 +50,7 @@ vlan br_default.10
 
 auto br_default
 iface br_default
+    bridge-ports swp1 swp2 swp3
     hwaddress 1c:34:da:b9:46:fd
     bridge-vlan-aware yes
     bridge-vids 10

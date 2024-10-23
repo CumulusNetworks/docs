@@ -19,12 +19,12 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 - {{<link url="Pulse-Per-Second-PPS" text="PPS on the NVIDIA SN5400 switch">}} is now generally available.
 - {{<link url="Factory-Reset" text="Factory Reset">}}
 - {{<link url="Forwarding-Table-Size-and-Profiles/#spectrum-1" text="ecmp-nh-heavy forwarding profile">}} for Spectrum 1 switches
-- {{<link url="Optional-BGP-Configuration/#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}}
 - {{<link url="RADIUS-AAA/#radius-user-command-accounting" text="RADIUS user command accounting">}}
 - {{<link url="Upgrading-Cumulus-Linux/#upgrade-cumulus-linux" text="Optimized image upgrade commands">}} (available for future upgrades)
-- {{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" text="Additional adaptive routing ECMP resource optimization for next hop groups">}} (Beta)
+- {{<link url="BGP-Weighted-Equal-Cost-Multipath/#ecmp-resource-sharing-during-next-hop-group-updates" text="Additional ECMP resource optimization for next hop groups">}} (Beta)
+- {{<link url="Optional-BGP-Configuration/#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}} (Beta)
 - OTLP
-- {{<link url="ASIC-Monitoring/#histogram-collection" text="Packet and buffer histogram commands">}}
+- {{<link url="ASIC-Monitoring/#interface-packet-and-buffer-statistics" text="Interface packet and buffer statistics collection">}}
 - NVUE
   - {{<link url="DHCP-Snooping" text="DHCP snooping commands">}}
   - {{<link url="LDAP-Authentication-and-Authorization" text="LDAP authentication and authorization commands">}}
@@ -43,31 +43,39 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
   - {{<link url="FRRouting/#show-routes-in-the-routing-table" text="Commands to show the number of routes in the routing table">}}
   - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#show-transceiver-information" text="Commands to show optical information for transceivers">}}
   - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#show-transceiver-information" text="l1-show command equivalent">}}
-  - BGP command changes and output updates
-  - EVPN command changes and output updates
+  - BGP and EVPN command changes and output cleanup
   - {{< expand "Changed NVUE Commands" >}}
 | New Command | Previous Command |
 | ----------- | ----------------|
-| nv set system snmp-server<br>nv unset system snmp-server | nv set service snmp-server<br>nv unset service snmp-server |
-| nv set system snmp-server state enable<br>nv set system snmp-server state disable| nv set service snmp-server enable on<br>nv set service snmp-server enable off|
-| nv show system snmp-server | nv show service snmp-server|
-| nv set qos advance-buffer-config default-global ingress-service-pool <pool-id> <property> <value> | nv set qos advance-buffer-config default-global ingress-pool <pool-id> <property> <value>|
-| nv set qos advance-buffer-config default-global egress-service-pool <pool-id> <property> <value> | nv set qos advance-buffer-config default-global egress-pool <pool-id> <property> <value>  |
-| nv show qos advance-buffer-config default-global ingress-service-pool | nv show qos advance-buffer-config default-global ingress-pool |
-| nv show qos advance-buffer-config default-global egress-service-pool | nv show qos advance-buffer-config default-global egress-pool |
+| `nv set system snmp-server`<br>`nv unset system snmp-server` | `nv set service snmp-server`<br>`nv unset service snmp-server` |
+| `nv set system snmp-server state enable`<br>`nv set system snmp-server state disable`| `nv set service snmp-server enable on`<br>`nv set service snmp-server enable off`|
+| `nv show system snmp-server` | `nv show service snmp-server`|
+| `nv set qos advance-buffer-config default-global ingress-service-pool <pool-id> <property> <value>` | `nv set qos advance-buffer-config default-global ingress-pool <pool-id> <property> <value>`|
+| `nv set qos advance-buffer-config default-global egress-service-pool <pool-id> <property> <value>` | n`v set qos advance-buffer-config default-global egress-pool <pool-id> <property> <value> ` |
+| `nv show qos advance-buffer-config default-global ingress-service-pool` | `nv show qos advance-buffer-config default-global ingress-pool` |
+| `nv show qos advance-buffer-config default-global egress-service-pool` | `nv show qos advance-buffer-config default-global egress-pool` |
 {{< /expand >}}
   - {{< expand "Removed NVUE Commands" >}}
-| Removed Command | 
+| Removed Command |
 | --------------- |
-|nv show interface pluggables (replaced with nv show platform transceiver) |
-|nv show interface <interface> pluggable (replaced with nv show platform transceiver <interface>)|
-|nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib (replaced with nv show vrf <vrf-id> router bgp adress-family l2vpn-evpn route) |
-|nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd |
-|nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> |
-|nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> route-type |
-|nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> route-type <route-type-id> |
-|nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> route-type <route-type-id> route |
-|nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> route-type <route-type-id> route  <evpn-route-id> |
+|`nv show interface pluggables` (replaced with `nv show platform transceiver`) |
+|`nv show interface <interface>` pluggable (replaced with `nv show platform transceiver <interface>`)|
+|`nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib` (replaced with `nv show vrf <vrf-id> router bgp adress-family l2vpn-evpn route`) |
+|`nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd` |
+|`nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id>` |
+|`nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> route-type` |
+|`nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> route-type <route-type-id>` |
+|`nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> route-type <route-type-id> route` |
+|`nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> route-type <route-type-id> route <evpn-route-id>` |
+| `nv set vrf <vrf-id> router rib ipv4 protocol bgp fib-filter` |
+| `nv show vrf <vrf-id> router rib ipv6 protocol --applied`|
+| `nv show vrf <vrf_id> router rib ipv6 protocol <protocol>`|
+| `nv show vrf <vrf_id> router nexthop-tracking <afi> ip_address protocol <protocol>` |
+| `nv show vrf <vrf_id> router nexthop-tracking <afi> ip_address resolved-via <id>` |
+| `nv show router nexthop rib <nhg-id> dependents` |
+| `nv show router nexthop rib <nhg-id> depends` |
+| `nv show router nexthop rib <nhg-id> resolved-via <resolved-via-id>` |
+| `nv show router nexthop rib <nhg-id> resolved-via-backup <resolved-via-id>` |
 
 {{< /expand >}}
   - {{< expand "New NVUE Commands" >}}
@@ -118,6 +126,10 @@ nv show router policy route-map <route-map-id> rule <rule-id> set large-communit
 nv show service control
 nv show service control <service-name-id>
 nv show service control <service-name-id> resource-limit
+nv show system aaa ldap
+nv show system aaa ldap hostname
+nv show system aaa ldap hostname <hostname-id>
+nv show system aaa ldap ssl
 nv show system sflow
 nv show system sflow collector
 nv show system sflow collector <collector-ip>
@@ -184,6 +196,7 @@ nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unica
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast received-routes <route-id> path <path-id> large-community
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast received-routes <route-id> path <path-id> large-community
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast advertised-routes <route-id> path <path-id> large-community
+nv show vrf <vrf> router rib <address-family> route
 nv show vrf <vrf> router rib <address-family> route-count
 nv show vrf <vrf> router rib <address-family> route-count <prefix>
 nv show vrf <vrf> router rib <address-family> route-count protocol
@@ -207,14 +220,30 @@ nv set router policy large-community-list <list-id> rule <rule-id> action
 nv set router policy route-map <route-map-id> rule <rule-id> match large-community-list
 nv set router policy route-map <route-map-id> rule <rule-id> set large-community <large-community-id>
 nv set router policy route-map <route-map-id> rule <rule-id> set large-community-delete-list 
-nv set service dhcp-server6 default static <server-id>
-nv set service dhcp-server6 default static <server-id> ip-address <ip-address>
-nv set service dhcp-server6 default static <server-id> ifname <interface-id>
 nv set service control <service-name-id>
 nv set service control <service-name-id> resource-limit memory <size>
 nv set service control <service-name-id> resource-limit cpu (percent)
+nv set service dhcp-server6 default static <server-id>
+nv set service dhcp-server6 default static <server-id> ip-address <ip-address>
+nv set service dhcp-server6 default static <server-id> ifname <interface-id>
 nv set service lldp state
 nv set system aaa radius accounting
+nv set system aaa ldap base-dn <value>
+nv set system aaa ldap bind-dn <value>
+nv set system aaa ldap hostname <hostname-id>
+nv set system aaa ldap hostname <hostname-id> priority
+nv set system aaa ldap port
+nv set system aaa ldap referrals <value>
+nv set system aaa ldap secret <nslcd-string>
+nv set system aaa ldap ssl ca-list
+nv set system aaa ldap ssl crl-check <value>
+nv set system aaa ldap ssl mode
+nv set system aaa ldap ssl port
+nv set system aaa ldap ssl tls-ciphers
+nv set system aaa ldap timeout-bind
+nv set system aaa ldap timeout-search
+nv set system aaa ldap version
+nv set system aaa ldap vrf <value>
 nv set system sflow collector <collector-ip>
 nv set system sflow collector <collector-ip> port
 nv set system sflow collector <collector-ip> interface <interface-name>
@@ -251,6 +280,8 @@ nv set system telemetry interface-stats switch-priority <pg-id>
 nv set system telemetry interface-stats ingress-buffer priority-group <pg-id>
 nv set system telemetry interface-stats egress-buffer traffic-class <tc-id>
 nv set system telemetry interface-stats sample-interval
+nv set vrf <vrf> router bgp address-family <address-family> advertise-origin
+nv set vrf <vrf> router bgp address-family <address-family> nhg-per-origin
 ```
 
 {{< /tab >}}
@@ -280,11 +311,32 @@ nv unset router policy route-map <route-map-id> rule <rule-id> match large-commu
 nv unset router policy route-map <route-map-id> rule <rule-id> set large-community
 nv unset router policy route-map <route-map-id> rule <rule-id> set large-community <large-community-id>
 nv unset router policy route-map <route-map-id> rule <rule-id> set large-community-delete-list
+nv unset service control
+nv unset service control <service-name-id>
+nv unset service control <service-name-id> resource-limit
+nv unset service control <service-name-id> resource-limit memory
+nv unset service control <service-name-id> resource-limit cpu
 nv unset service dhcp-server6 default static <server-id>
 nv unset service dhcp-server6 default static <server-id> ip-address <ip-address>
 nv unset service dhcp-server6 default static <server-id> ifname <interface-id>
 nv unset service lldp state
 nv unset system aaa radius accounting
+nv unset system aaa ldap base-dn
+nv unset system aaa ldap bind-dn
+nv unset system aaa ldap hostname <hostname-id>
+nv unset system aaa ldap hostname <hostname-id> priority
+nv unset system aaa ldap port
+nv unset system aaa ldap referrals
+nv unset system aaa ldap secret
+nv unset system aaa ldap ssl ca-list
+nv unset system aaa ldap ssl crl-check <value>
+nv unset system aaa ldap ssl mode
+nv unset system aaa ldap ssl port
+nv unset system aaa ldap ssl tls-ciphers
+nv unset system aaa ldap timeout-bind
+nv unset system aaa ldap timeout-search
+nv unset system aaa ldap version
+nv unset system aaa ldap vrf
 nv unset system sflow
 nv unset system sflow collector
 nv unset system sflow collector <collector-ip>
@@ -339,20 +391,29 @@ nv unset system telemetry interface-stats egress-buffer
 nv unset system telemetry interface-stats egress-buffer traffic-class
 nv unset system telemetry interface-stats egress-buffer traffic-class <if-tc-id>
 nv unset system telemetry interface-stats sample-interval
+nv unset vrf <vrf> router bgp address-family <address-family> advertise-origin
+nv unset vrf <vrf> router bgp address-family <address-family> nhg-per-origin
 ```
 
 {{< /tab >}}
 {{< tab "nv action ">}}
 
 ```
-nv action reset system factory-reset
-nv action reset system factory-reset keep basic
-nv action reset system factory-reset keep all-config
-nv action reset system factory-reset keep all-files
+nv action reset system factory-default
+nv action reset system factory-default keep basic
+nv action reset system factory-default keep all-config
+nv action reset system factory-default keep only-files
 nv action enable system ztp
 nv action disable system ztp
 nv action run system ztp
 nv action abort system ztp
+```
+
+{{< /tab >}}
+{{< tab "nv config ">}}
+
+```
+nv config show --all
 ```
 
 {{< /tab >}}

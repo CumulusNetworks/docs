@@ -10,6 +10,7 @@ You can also run factory reset when you want to remove a complex or corrupted co
 
 {{%notice note%}}
 To run factory reset commands, you must have system admin, root, or sudo privileges.
+The switch does not support factory reset if you upgrade to Cumulus Linux 5.11 from Cumulus Linux 5.9.x or 5.10.x with package upgrade.
 {{%/notice%}}
 
 ## Run Factory Reset
@@ -23,37 +24,39 @@ Factory reset provides options to:
 {{< tabs "215 ">}}
 {{< tab "NVUE Commands ">}}
 
+To run factory reset with NVUE commands, the `nvued` service must be running.
+
 When you run the NVUE factory reset commands, the switch prompts you to confirm that you want to continue. To run the commands without the prompts to continue, add the `force` option at the end of the command.
 
 The following example resets the switch to the factory defaults and removes all configuration, system files, and log files:
 
 ```
-cumulus@switch:~$ nv action reset system factory-reset
-The operation will reset the system configuration and initiate a reboot. 
-Type [y] to reset the system configuration and reboot. 
+cumulus@switch:~$ nv action reset system factory-default
+This operation will reset the system configuration, delete the log files and reboot the switch.
+Type [y] continue. 
 Type [n] to abort. 
-Do you want to continue? [y/n] y 
+Do you want to continue? [y/n] y
 ...
 ```
 
 The following example resets the switch to the factory defaults but keeps password policy rules, management interface configuration (such as eth0), local user accounts and roles, and SSH configuration:
 
 ```
-cumulus@switch:~$ nv action reset system factory-reset keep basic
-The operation will reset the system configuration and initiate a reboot. 
-Type [y] to reset the system configuration and reboot. 
+cumulus@switch:~$ nv action reset system factory-default keep basic
+This operation will keep only the basic system configuration, delete the log files and reboot the switch.
+Type [y] to continue. 
 Type [n] to abort. 
-Do you want to continue? [y/n] y 
+Do you want to continue? [y/n] y
 ... 
 ```
 
 The following example resets the switch to the factory defaults but keeps all configuration:
 
 ```
-cumulus@switch:~$ nv action reset system factory-reset keep all-config
-The operation will reset the system configuration and initiate a reboot. 
-Type [y] to reset the system configuration and reboot. 
-Type [n] to abort. 
+cumulus@switch:~$ nv action reset system factory-default keep all-config
+This operation will not reset the system configuration, only delete the log files and reboot the switch.
+Type [y] to continue.
+Type [n] to abort.
 Do you want to continue? [y/n] y 
 ...
 ```
@@ -61,18 +64,18 @@ Do you want to continue? [y/n] y
 The following example resets the switch to the factory defaults but keeps all system files and log files:
 
 ```
-cumulus@switch:~$ nv action reset system factory-reset keep all-files
-The operation will reset the system configuration and initiate a reboot. 
-Type [y] to reset the system configuration and reboot. 
+cumulus@switch:~$ nv action reset system factory-default keep only-files
+This operation will reset the system configuration, not delete the log files and reboot the switch.
+Type [y] to continue. 
 Type [n] to abort. 
 Do you want to continue? [y/n] y 
 ...
 ```
 
-The following example runs factory reset without the prompts to continue:
+The following example resets the switch to the factory defaults but keeps all system files and log files. The force option runs factory reset without the prompts to continue:
 
 ```
-cumulus@switch:~$ nv action reset system factory-reset all-files force 
+cumulus@switch:~$ nv action reset system factory-default keep only-files force 
 ```
 
 {{< /tab >}}
@@ -85,16 +88,20 @@ cumulus@switch:~$ sudo systemctl restart factory-reset.service
 ```
 
 To keep certain configuration, keep all configuration but not system and log files, or keep system and log files but no configuration, create the `/tmp/factory-reset.conf` file, add one of the reset options to the file, then run the `systemctl restart factory-reset.service` command.
-- `MODE=keep-basic` resets the switch to the factory defaults but keeps password policy rules, management interface configuration (such as eth0), local user accounts and roles, and SSH configuration.
-- `MODE=keep-all-config` resets the switch to the factory defaults but keeps all configuration.
-- `MODE=keep-all-files` resets the switch to the factory defaults but keep all system files and log files.
+- `TYPE=keep-basic` resets the switch to the factory defaults but keeps password policy rules, management interface configuration (such as eth0), local user accounts and roles, and SSH configuration.
+- `TYPE=keep-all-config` resets the switch to the factory defaults but keeps all configuration.
+- `TYPE=keep-all-files` resets the switch to the factory defaults but keep all system files and log files.
 
-The following example resets the switch to the factory defaults but keeps password policy rules, management interface configuration (such as eth0), local user accounts and roles, and SSH configuration
+The following example resets the switch to the factory defaults but keeps password policy rules, management interface configuration (such as eth0), local user accounts and roles, and SSH configuration.
 
 ```
 cumulus@switch:~$ sudo nano /tmp/factory-reset.conf
-MODE=keep-basic
+TYPE=keep-basic
 ```
+
+{{%notice note%}}
+When you use the `keep-basic` option, you must create a `/tmp/startup-new.yaml` file with the configuration you want after factory reset, then start `factory-reset.service`. This is not necessary for the other options.
+{{%/notice%}}
 
 ```
 cumulus@switch:~$ sudo systemctl restart factory-reset.service

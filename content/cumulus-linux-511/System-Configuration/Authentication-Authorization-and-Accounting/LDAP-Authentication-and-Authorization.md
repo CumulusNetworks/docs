@@ -382,8 +382,6 @@ To show the LDAP configuration settings on the switch, run the following command
 - `nv show system aaa ldap hostname` shows the hostnames of the LDAP servers and their priorities.
 - `nv show system aaa ldap hostname <hostname>` shows the priority for the specified hostname.
 - `nv show system aaa ldap ssl` shows the LDAP SSL configuration settings.
-- `nv show system aaa ldap map` shows the attribute mapping settings. You can show the group, password or shadow mappings with the `nv show system aaa ldap map group`, `nv show system aaa ldap map passwd`, and `nv show system aaa ldap map shadow` commands.
-- `nv show system aaa ldap filter` shows the search filter settings.
 
 The following example shows all the LDAP configuration settings:
 
@@ -438,12 +436,11 @@ cumulus@switch:~$ nv show system aaa ldap ssl
 -----------  -----------  -------
 mode         none         none   
 port         389          636    
-cert-verify  enabled      enabled
 ca-list      default      default
 tls-ciphers  all          all    
 crl-check    none         none
 ```
-
+<!--
 The following example shows the search map group configuration settings:
 
 ```
@@ -454,7 +451,7 @@ cn         sAMAccountName                                       sAMAccountName
 memberuid                                                                                                          
 gidnumber  objectSid:S-1-5-21-1391733952-3059161487-1245441232  objectSid:S-1-5-21-1391733952-3059161487-1245441232
 ```
-
+-->
 ## Configure LDAP Authorization
 
 Linux uses the *sudo* command to allow non-administrator users (such as the default *cumulus* user account) to perform privileged operations. To control the users that can use sudo, define a series of rules in the `/etc/sudoers` file and files in the `/etc/sudoers.d/` directory. The rules apply to groups but you can also define specific users. You can add sudo rules using the group names from LDAP. For example, if a group of users are in the group *netadmin*, you can add a rule to give those users sudo privileges. Refer to the sudoers manual (`man sudoers`) for a complete usage description. The following shows an example in the `/etc/sudoers` file:

@@ -17,7 +17,7 @@ You can configure LDAP server settings with NVUE commands or by editing Linux co
 ### Connection
 
 Configure the following connection settings:
-- The host name or IP address of the LDAP server from which you want to import users. If you use multiple LDAP servers, you can also seta priority for each server.
+- The host name or IP address of the LDAP server from which you want to import users. If you use multiple LDAP servers, you can also set a priority for each server.
 - The port number of the LDAP server if you are using a non-default port. The default port number for LDAP is TCP and UDP port 389.
 - Authenticated (Simple) BIND credentials. The BIND credentials are optional; if you do not specify the credentials, the switch assumes an anonymous bind. To use SASL (Simple Authentication and Security Layer) BIND, which provides authentication services using other mechanisms such as Kerberos, contact your LDAP server administrator for authentication information.
 
@@ -393,7 +393,6 @@ vrf                   default                                              mgmt
 bind-dn               CN=cumulus-admin,CN=Users,DC=rtp,DC=example,DC=test  CN=cumulus-admin,CN=Users,DC=rtp,DC=example,DC=test
 base-dn               ou=support,dc=rtp,dc=example,dc=test                 ou=support,dc=rtp,dc=example,dc=test               
 referrals             yes                                                  off                                                
-scope                 one                                                  one-level                                          
 port                  389                                                  389                                                
 timeout-bind          5                                                    5                                                  
 timeout-search        5                                                    5                                                  
@@ -403,29 +402,20 @@ version               3                                                    3
 ssl                                                                                                                           
   mode                none                                                 none                                               
   port                389                                                  636                                                
-  cert-verify         enabled                                              enabled                                            
   ca-list             default                                              default                                            
   tls-ciphers         all                                                  all                                                
   crl-check           none                                                 none                                               
-filter                                                                                                                        
-  passwd              cumulus                                              cumulus                                            
-  group               cn                                                   cn                                             
-  shadow              1234                                                 1234                                                
-map                                                                                                                           
-  passwd                                                                                                                      
-    uid                                                                                                                       
-    uidnumber                                                                                                                 
-    gidnumber                                                                                                                 
-    userpassword      cumulus                                              cumulus                                            
-    homedirectory     /home/                                               /home/                                             
-    gecos                                                                                                                     
-  shadow                                                                                                                      
-    uid                                                                                                                       
-    shadowlastchange                                                                                                          
-  group                                                                                                                       
-    cn                sAMAccountName                                       sAMAccountName                                     
-    memberuid                                                                                                                 
-    gidnumber         objectSid:S-1-5-21-1391733952-3059161487-1245441232  objectSid:S-1-5-21-1391733952-3059161487-1245441232
+...
+```
+
+The following example shows the hostnames of the LDAP servers and their priorities:
+
+```
+cumulus@switch:~$ nv show system aaa ldap hostname
+Hostname     Priority
+-----------  --------
+ldapserver1  1
+ldapserver2  2     
 ```
 
 The following example shows the SSL configuration settings:

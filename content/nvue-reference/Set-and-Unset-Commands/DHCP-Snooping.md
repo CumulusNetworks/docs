@@ -1,5 +1,5 @@
 ---
-title: DHCP
+title: DHCP Snooping
 author: Cumulus Networks
 weight: 544
 
@@ -84,7 +84,7 @@ cumulus@switch:~$ nv set bridge domain br_default dhcp-snoop6 vlan 10
 
 ## <h>nv set bridge domain \<domain-id\> dhcp-snoop6 vlan \<vid\> trust \<interface-id\></h>
 
-Configures a trusted interface. Cumulus Linux allows DHCP offers from only trusted interfaces to prevent malicious DHCP servers from assigning IPv6 addresses inside the network. The interface must be a member of the bridge you specify.
+Configures a trusted interface for IPv6. Cumulus Linux allows DHCP offers from only trusted interfaces to prevent malicious DHCP servers from assigning IPv6 addresses inside the network. The interface must be a member of the bridge you specify.
 
 ### Command Syntax
 

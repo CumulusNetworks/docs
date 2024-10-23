@@ -43,8 +43,7 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
   - {{<link url="FRRouting/#show-routes-in-the-routing-table" text="Commands to show the number of routes in the routing table">}}
   - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#show-transceiver-information" text="Commands to show optical information for transceivers">}}
   - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#show-transceiver-information" text="l1-show command equivalent">}}
-  - BGP command changes and output cleanup
-  - EVPN command changes and output cleanup
+  - BGP and EVPN command changes and output cleanup
   - {{< expand "Changed NVUE Commands" >}}
 | New Command | Previous Command |
 | ----------- | ----------------|
@@ -57,7 +56,7 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 | `nv show qos advance-buffer-config default-global egress-service-pool` | `nv show qos advance-buffer-config default-global egress-pool` |
 {{< /expand >}}
   - {{< expand "Removed NVUE Commands" >}}
-| Removed Command | 
+| Removed Command |
 | --------------- |
 |`nv show interface pluggables` (replaced with `nv show platform transceiver`) |
 |`nv show interface <interface>` pluggable (replaced with `nv show platform transceiver <interface>`)|
@@ -127,6 +126,15 @@ nv show router policy route-map <route-map-id> rule <rule-id> set large-communit
 nv show service control
 nv show service control <service-name-id>
 nv show service control <service-name-id> resource-limit
+nv show system aaa ldap
+nv show system aaa ldap filter
+nv show system aaa ldap hostname
+nv show system aaa ldap hostname <hostname-id>
+nv show system aaa ldap map
+nv show system aaa ldap map group
+nv show system aaa ldap map group passwd
+nv show system aaa ldap map group shadow
+nv show system aaa ldap ssl
 nv show system sflow
 nv show system sflow collector
 nv show system sflow collector <collector-ip>
@@ -216,14 +224,46 @@ nv set router policy large-community-list <list-id> rule <rule-id> action
 nv set router policy route-map <route-map-id> rule <rule-id> match large-community-list
 nv set router policy route-map <route-map-id> rule <rule-id> set large-community <large-community-id>
 nv set router policy route-map <route-map-id> rule <rule-id> set large-community-delete-list 
-nv set service dhcp-server6 default static <server-id>
-nv set service dhcp-server6 default static <server-id> ip-address <ip-address>
-nv set service dhcp-server6 default static <server-id> ifname <interface-id>
 nv set service control <service-name-id>
 nv set service control <service-name-id> resource-limit memory <size>
 nv set service control <service-name-id> resource-limit cpu (percent)
+nv set service dhcp-server6 default static <server-id>
+nv set service dhcp-server6 default static <server-id> ip-address <ip-address>
+nv set service dhcp-server6 default static <server-id> ifname <interface-id>
 nv set service lldp state
 nv set system aaa radius accounting
+nv set system aaa ldap base-dn <value>
+nv set system aaa ldap bind-dn <value>
+nv set system aaa ldap filter group <value>
+nv set system aaa ldap filter passwd <value>
+nv set system aaa ldap filter shadow <value>
+nv set system aaa ldap hostname <hostname-id>
+nv set system aaa ldap hostname <hostname-id> priority
+nv set system aaa ldap map passwd uid <value>
+nv set system aaa ldap map passwd uidnumber <value>
+nv set system aaa ldap map passwd gidnumber <value>
+nv set system aaa ldap map passwd userpassword <value>
+nv set system aaa ldap map passwd homedirectory <value>
+nv set system aaa ldap map passwd gecos <value>
+nv set system aaa ldap map shadow uid <value>
+nv set system aaa ldap map shadow shadowlastchange <value>
+nv set system aaa ldap map group cn <value>
+nv set system aaa ldap map group memberuid <value>
+nv set system aaa ldap map group gidnumber <value>
+nv set system aaa ldap port
+nv set system aaa ldap referrals <value>
+nv set system aaa ldap scope <value>
+nv set system aaa ldap secret <nslcd-string>
+nv set system aaa ldap ssl ca-list
+nv set system aaa ldap ssl cert-verify
+nv set system aaa ldap ssl crl-check <value>
+nv set system aaa ldap ssl mode
+nv set system aaa ldap ssl port
+nv set system aaa ldap ssl tls-ciphers
+nv set system aaa ldap timeout-bind
+nv set system aaa ldap timeout-search
+nv set system aaa ldap version
+nv set system aaa ldap vrf <value>
 nv set system sflow collector <collector-ip>
 nv set system sflow collector <collector-ip> port
 nv set system sflow collector <collector-ip> interface <interface-name>
@@ -289,11 +329,48 @@ nv unset router policy route-map <route-map-id> rule <rule-id> match large-commu
 nv unset router policy route-map <route-map-id> rule <rule-id> set large-community
 nv unset router policy route-map <route-map-id> rule <rule-id> set large-community <large-community-id>
 nv unset router policy route-map <route-map-id> rule <rule-id> set large-community-delete-list
+nv unset service control
+nv unset service control <service-name-id>
+nv unset service control <service-name-id> resource-limit
+nv unset service control <service-name-id> resource-limit memory
+nv unset service control <service-name-id> resource-limit cpu
 nv unset service dhcp-server6 default static <server-id>
 nv unset service dhcp-server6 default static <server-id> ip-address <ip-address>
 nv unset service dhcp-server6 default static <server-id> ifname <interface-id>
 nv unset service lldp state
 nv unset system aaa radius accounting
+nv unset system aaa ldap base-dn
+nv unset system aaa ldap bind-dn
+nv unset system aaa ldap filter group 
+nv unset system aaa ldap filter passwd
+nv unset system aaa ldap filter shadow
+nv unset system aaa ldap hostname <hostname-id>
+nv unset system aaa ldap hostname <hostname-id> priority
+nv unset system aaa ldap map passwd uid
+nv unset system aaa ldap map passwd uidnumber
+nv unset system aaa ldap map passwd gidnumber
+nv unset system aaa ldap map passwd userpassword
+nv unset system aaa ldap map passwd homedirectory
+nv unset system aaa ldap map passwd gecos
+nv unset system aaa ldap map shadow uid
+nv unset system aaa ldap map shadow shadowlastchange
+nv unset system aaa ldap map group cn
+nv unset system aaa ldap map group memberuid
+nv unset system aaa ldap map group gidnumber
+nv unset system aaa ldap port
+nv unset system aaa ldap referrals
+nv unset system aaa ldap scope
+nv unset system aaa ldap secret
+nv unset system aaa ldap ssl ca-list
+nv unset system aaa ldap ssl cert-verify
+nv unset system aaa ldap ssl crl-check <value>
+nv unset system aaa ldap ssl mode
+nv unset system aaa ldap ssl port
+nv unset system aaa ldap ssl tls-ciphers
+nv unset system aaa ldap timeout-bind
+nv unset system aaa ldap timeout-search
+nv unset system aaa ldap version
+nv unset system aaa ldap vrf
 nv unset system sflow
 nv unset system sflow collector
 nv unset system sflow collector <collector-ip>

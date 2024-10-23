@@ -127,13 +127,8 @@ nv show service control
 nv show service control <service-name-id>
 nv show service control <service-name-id> resource-limit
 nv show system aaa ldap
-nv show system aaa ldap filter
 nv show system aaa ldap hostname
 nv show system aaa ldap hostname <hostname-id>
-nv show system aaa ldap map
-nv show system aaa ldap map group
-nv show system aaa ldap map group passwd
-nv show system aaa ldap map group shadow
 nv show system aaa ldap ssl
 nv show system sflow
 nv show system sflow collector
@@ -234,28 +229,12 @@ nv set service lldp state
 nv set system aaa radius accounting
 nv set system aaa ldap base-dn <value>
 nv set system aaa ldap bind-dn <value>
-nv set system aaa ldap filter group <value>
-nv set system aaa ldap filter passwd <value>
-nv set system aaa ldap filter shadow <value>
 nv set system aaa ldap hostname <hostname-id>
 nv set system aaa ldap hostname <hostname-id> priority
-nv set system aaa ldap map passwd uid <value>
-nv set system aaa ldap map passwd uidnumber <value>
-nv set system aaa ldap map passwd gidnumber <value>
-nv set system aaa ldap map passwd userpassword <value>
-nv set system aaa ldap map passwd homedirectory <value>
-nv set system aaa ldap map passwd gecos <value>
-nv set system aaa ldap map shadow uid <value>
-nv set system aaa ldap map shadow shadowlastchange <value>
-nv set system aaa ldap map group cn <value>
-nv set system aaa ldap map group memberuid <value>
-nv set system aaa ldap map group gidnumber <value>
 nv set system aaa ldap port
 nv set system aaa ldap referrals <value>
-nv set system aaa ldap scope <value>
 nv set system aaa ldap secret <nslcd-string>
 nv set system aaa ldap ssl ca-list
-nv set system aaa ldap ssl cert-verify
 nv set system aaa ldap ssl crl-check <value>
 nv set system aaa ldap ssl mode
 nv set system aaa ldap ssl port
@@ -300,6 +279,8 @@ nv set system telemetry interface-stats switch-priority <pg-id>
 nv set system telemetry interface-stats ingress-buffer priority-group <pg-id>
 nv set system telemetry interface-stats egress-buffer traffic-class <tc-id>
 nv set system telemetry interface-stats sample-interval
+nv set vrf <vrf> router bgp address-family <address-family> advertise-origin
+nv set vrf <vrf> router bgp address-family <address-family> nhg-per-origin
 ```
 
 {{< /tab >}}
@@ -341,28 +322,12 @@ nv unset service lldp state
 nv unset system aaa radius accounting
 nv unset system aaa ldap base-dn
 nv unset system aaa ldap bind-dn
-nv unset system aaa ldap filter group 
-nv unset system aaa ldap filter passwd
-nv unset system aaa ldap filter shadow
 nv unset system aaa ldap hostname <hostname-id>
 nv unset system aaa ldap hostname <hostname-id> priority
-nv unset system aaa ldap map passwd uid
-nv unset system aaa ldap map passwd uidnumber
-nv unset system aaa ldap map passwd gidnumber
-nv unset system aaa ldap map passwd userpassword
-nv unset system aaa ldap map passwd homedirectory
-nv unset system aaa ldap map passwd gecos
-nv unset system aaa ldap map shadow uid
-nv unset system aaa ldap map shadow shadowlastchange
-nv unset system aaa ldap map group cn
-nv unset system aaa ldap map group memberuid
-nv unset system aaa ldap map group gidnumber
 nv unset system aaa ldap port
 nv unset system aaa ldap referrals
-nv unset system aaa ldap scope
 nv unset system aaa ldap secret
 nv unset system aaa ldap ssl ca-list
-nv unset system aaa ldap ssl cert-verify
 nv unset system aaa ldap ssl crl-check <value>
 nv unset system aaa ldap ssl mode
 nv unset system aaa ldap ssl port
@@ -425,6 +390,8 @@ nv unset system telemetry interface-stats egress-buffer
 nv unset system telemetry interface-stats egress-buffer traffic-class
 nv unset system telemetry interface-stats egress-buffer traffic-class <if-tc-id>
 nv unset system telemetry interface-stats sample-interval
+nv unset vrf <vrf> router bgp address-family <address-family> advertise-origin
+nv unset vrf <vrf> router bgp address-family <address-family> nhg-per-origin
 ```
 
 {{< /tab >}}

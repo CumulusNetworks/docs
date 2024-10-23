@@ -47,6 +47,13 @@ cumulus@switch:~$ nv set system telemetry interface-stats egress-buffer traffic-
 cumulus@switch:~$ nv config apply
 ```
 
+You can enable additional switch priority interface statistic collection on all configured interfaces for specific switch priority values:
+
+```
+cumulus@switch:~$ nv set system telemetry interface-stats switch-priority 4
+cumulus@switch:~$ nv config apply
+```
+
 You can adjust the interface statistics sample interval (in seconds). You can specify a value between 1 and 86400. The default value 1.
 
 ```
@@ -93,6 +100,55 @@ otlp
 
 To show the OTLP gRPC destination configuration, run the `nv show system telemetry export otlp grpc destination` command.
 
+### Static Labels
+
+You can apply static labels to switches and individual interfaces to configure descriptions for devices and interface roles. Exported OTLP data includes these label names and descriptions.
+
+{{%notice note%}}
+- Cumulus Linux supports up to 10 device labels and up to 10 interface labels.
+- Label name and description strings can include alphanumeric characters with underscores, periods, or dashes. If spaces are included in the string, wrap the entire string inside double or single quotes.
+{{%/notice%}}
+
+To configure a switch device label `Data_Center_Location` and a string identifying it as part of `Data_Center_B`:
+
+```
+cumulus@switch:~$ nv set system telemetry label "Data Center Location" description "Data Center B"
+cumulus@switch:~$ nv config apply
+```
+
+Validate device label configuration with the `nv show system telemetry label` command:
+
+```
+cumulus@switch:~$ nv show system telemetry label
+                      description  
+--------------------  -------------
+Data Center Location  Data Center B
+```
+
+To configure a switch interface label `interface_swp10_label` with the description `Server 10 connection`:
+
+```
+cumulus@switch:~$ nv set interface swp10 telemetry label "interface_swp10_label" description "Server 10 connection"
+cumulus@switch:~$ nv config apply
+```
+
+Validate the configuration with the `nv show system telemetry label` command:
+
+```
+cumulus@switch:~$ nv show system telemetry label
+                      description  
+--------------------  -------------
+Data Center Location  Data Center B
+```
+
+Validate interface label configuration with the `nv show interface <interface> telemetry label` command:
+
+```
+cumulus@switch:~$ nv show interface swp10 telemetry label
+                       description         
+---------------------  --------------------
+interface_swp10_label  Server 10 connection
+```
 ## Telemetry Data Format
 
 Cumulus Linux exports interface statistic and histogram data in the following format.
@@ -135,6 +191,28 @@ The following table describes the interface statistics:
 | `nvswitch_interface_tc_tx_queue` | Interface egress traffic class transmit queue counter. |
 | `nvswitch_interface_tc_tx_uc_frames` | Interface egress traffic class transmit unicast frames counter. |
 | `nvswitch_interface_tc_tx_wred_discard` | Interface egress traffic class transmit WRED discard counter. |
+| `nvswitch_interface_performance_marked_packets` | Interface performance marked packets, with marking as `ece` or `ecn`. |
+
+The following additional interface switch priority statistics are collected and exported when you configure the `nv set system telemetry interfaces-stats switch-priority <priority>` command:
+
+|  Name | Description |
+|------ | ----------- |
+| `nvswitch_interface_sp_rx_bc_frames` | Received broadcast counter for the switch priority |
+| `nvswitch_interface_sp_rx_discard` | Receive discard counter for the switch priority |
+| `nvswitch_interface_sp_rx_frames` | Receive frame counter for the switch priority. |
+| `nvswitch_interface_sp_rx_mc_frames` | Receive multicast frame counter for the switch priority. |
+| `nvswitch_interface_sp_rx_octets` | Receive octets counter for the switch priority. |
+| `nvswitch_interface_sp_rx_pause` | Receive pause counter for the switch priority. |
+| `nvswitch_interface_sp_rx_pause_duration` | Recieve pause duration counter for the switch priority. |
+| `nvswitch_interface_sp_rx_pause_transition` | Recieve pause transition counter for the switch priority. |
+| `nvswitch_interface_sp_rx_uc_frames` | Receive unicast frame counter for the switch priority. |
+| `nvswitch_interface_sp_tx_bc_frames` | Transmit broadcast frame counter for the switch priority. |
+| `nvswitch_interface_sp_tx_frames` | Transmit frame counter for the switch priority. |
+| `nvswitch_interface_sp_tx_mc_frames` | Transmit multicast frame counter for the switch priority. |
+| `nvswitch_interface_sp_tx_octets` | Transmit octets counter for the switch priority. |
+| `nvswitch_interface_sp_tx_pause` | Transmit pause counter for the switch priority. |
+| `nvswitch_interface_sp_tx_pause_duration` | Transmit pause duration for the switch priority. |
+| `nvswitch_interface_sp_tx_uc_frames` | Transmit unicast frame counter for the switch priority. |
 
 {{< expand "Example JSON data for interface_oper_state:" >}}
 ```
@@ -331,7 +409,72 @@ The switch sends a sample with the following names for each interface enabled fo
 ```
 {{< /expand >}}
 
-<!-- Commenting out HTTP export for phase 1
+### Static Label Format
+
+Device static labels are exported in the {{<exlink url="https://opentelemetry.io/docs/specs/otel/resource/sdk/" text="resource">}} metric section of OTLP data:
+
+{{< expand "Example JSON data for static device label:" >}}
+
+{ 
+  "resourceMetrics": [ 
+    { 
+      "resource": { 
+        "attributes": [ 
+          { 
+            "key": "net.host.name", 
+            "value": { 
+              "stringValue": "switch-hostname" 
+            } 
+          }, 
+          { 
+            "key": "static_label_1", 
+            "value": { 
+              "stringValue": "label_1_string" 
+            } 
+          } 
+        ] 
+      }
+    }
+  ]
+}
+
+{{< /expand >}}
+<br>
+Interface static labels are exported as attributes in the gauge metrics for each interface.
+
+{{< expand "Example JSON data for static interface label:" >}}
+
+          "metrics": [ 
+              "name": "nvswitch_interface_iface_id", 
+              "description": "Network device property: iface_id", 
+              "gauge": { 
+                "dataPoints": [ 
+                  { 
+                    "attributes": [ 
+                      { 
+                        "key": "interface", 
+                        "value": { 
+                          "stringValue": "swp10" 
+                        } 
+                      } 
+                    ], 
+                    "timeUnixNano": "1727942163835000000", 
+                    "asDouble": 13 
+                  }, 
+                  { 
+                    "attributes": [ 
+                      { 
+                        "key": "interface_swp10_label", 
+                        "value": { 
+                          "stringValue": "swp10_label_string" 
+                        } 
+                      }
+
+{{< /expand >}}
+
+
+
+<!-- Commenting out HTTP export for phase 1 and 2
 ### HTTP OTLP Export
 
 You can configure open telemetry export to use HTTP to communicate with the collector and define the port to use for communication:

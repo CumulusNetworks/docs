@@ -23,7 +23,7 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 - {{<link url="Upgrading-Cumulus-Linux/#upgrade-cumulus-linux" text="Optimized image upgrade commands">}} (available for future upgrades)
 - {{<link url="BGP-Weighted-Equal-Cost-Multipath/#ecmp-resource-sharing-during-next-hop-group-updates" text="Additional ECMP resource optimization for next hop groups">}} (Beta)
 - {{<link url="Optional-BGP-Configuration/#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}} (Beta)
-- OTLP
+- {{<link url="Open-Telemetry-Export" text="New OTLP Statistics and Export">}}
 - {{<link url="ASIC-Monitoring/#interface-packet-and-buffer-statistics" text="Interface packet and buffer statistics collection">}}
 - NVUE
   - {{<link url="DHCP-Snooping" text="DHCP snooping commands">}}

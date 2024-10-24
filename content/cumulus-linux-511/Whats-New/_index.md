@@ -23,7 +23,7 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 - {{<link url="Upgrading-Cumulus-Linux/#upgrade-cumulus-linux" text="Optimized image upgrade commands">}} (available for future upgrades)
 - {{<link url="BGP-Weighted-Equal-Cost-Multipath/#ecmp-resource-sharing-during-next-hop-group-updates" text="Additional ECMP resource optimization for next hop groups">}} (Beta)
 - {{<link url="Optional-BGP-Configuration/#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}} (Beta)
-- OTLP
+- {{<link url="Open-Telemetry-Export" text="New OTLP Statistics and Export">}}
 - {{<link url="ASIC-Monitoring/#interface-packet-and-buffer-statistics" text="Interface packet and buffer statistics collection">}}
 - NVUE
   - {{<link url="DHCP-Snooping" text="DHCP snooping commands">}}
@@ -42,7 +42,7 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
   - {{<link url="Switch-Port-Attributes/#interface-settings" text="nv show interface --view command includes additional filtering options">}}: `svi`, `vrf`, `bonds`, `bond-members`, `up`, and `down`
   - {{<link url="FRRouting/#show-routes-in-the-routing-table" text="Commands to show the number of routes in the routing table">}}
   - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#show-transceiver-information" text="Commands to show optical information for transceivers">}}
-  - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#show-transceiver-information" text="l1-show command equivalent">}}
+  - {{<link url="Troubleshoot-Layer-1/#show-layer-1-information" text="l1-show command equivalent">}}
   - BGP and EVPN command changes and output cleanup
   - {{< expand "Changed NVUE Commands" >}}
 | New Command | Previous Command |
@@ -62,6 +62,8 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 |`nv show interface <interface>` pluggable (replaced with `nv show platform transceiver <interface>`)|
 |`nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib` (replaced with `nv show vrf <vrf-id> router bgp adress-family l2vpn-evpn route`) |
 | `nv show vrf <vrf_id> router nexthop-tracking <afi> ip_address` |
+| `nv set vrf <vrf-id> router rib ipv4 protocol bgp fib-filter` |
+| `nv show vrf <vrf-id> router rib ipv6 protocol` |
 | `nv show router nexthop rib <nhg-id> dependents` |
 | `nv show router nexthop rib <nhg-id> depends` |
 | `nv show router nexthop rib <nhg-id> resolved-via <resolved-via-id>` |
@@ -186,7 +188,6 @@ nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unica
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast received-routes <route-id> path <path-id> large-community
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast received-routes <route-id> path <path-id> large-community
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast advertised-routes <route-id> path <path-id> large-community
-nv show vrf <vrf> router rib <address-family> route
 nv show vrf <vrf> router rib <address-family> route-count
 nv show vrf <vrf> router rib <address-family> route-count <prefix>
 nv show vrf <vrf> router rib <address-family> route-count protocol
@@ -411,7 +412,7 @@ nv config show --all
 {{< /expand >}}
 
 {{%notice warning%}}
-To align with a long-term vision of a common interface between Cumulus Linux, Nvidia OS (NVOS), and Host-Based Networking, certain NVUE commands in Cumulus Linux 5.11 have changed. Before you upgrade to 5.11, review the list of changed NVUE commands above and be sure to make any necessary changes to your automation.
+To align with a long-term vision of a common interface between Cumulus Linux, Nvidia OS (NVOS), and Host-Based Networking, certain NVUE commands in Cumulus Linux 5.11 have changed. Before you upgrade to 5.11, review the list of changed and removed NVUE commands above and be sure to make any necessary changes to your automation.
 {{%/notice%}}
 
 ## Release Considerations

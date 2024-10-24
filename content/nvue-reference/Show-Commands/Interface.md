@@ -1129,6 +1129,10 @@ cumulus@switch:~$ nv show interface swp1 link traffic-engineering
 
 Shows the <span class="a-tooltip">[SFP](## "Small Form-Factor Pluggable")</span> module information for the specified interface.
 
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show platform transceiver <interface>` command instead.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax | Description |

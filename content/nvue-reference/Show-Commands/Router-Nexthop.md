@@ -313,6 +313,10 @@ dependents
 
 Shows information about the next hops on which a specific next hop relies.
 
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -335,6 +339,10 @@ cumulus@switch:~$ nv show router nexthop rib 39 depends
 
 Shows information about the next hop dependents on which a specific next hop relies.
 
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -356,6 +364,10 @@ cumulus@switch:~$ nv show router nexthop rib 10 dependents
 ## <h>nv show router nexthop rib \<nhg-id\> resolved-via</h>
 
 Shows details about the next hop address for a particular next hop.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -381,6 +393,10 @@ vxlan99  interface  default
 ## <h>nv show router nexthop rib \<nhg-id\> resolved-via \<resolved-via-id\></h>
 
 Shows details of a particular next hop specified by the next hop IP address.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -412,6 +428,10 @@ interface
 
 Shows information about the backup next hops for the specified next hop.
 
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -433,6 +453,10 @@ cumulus@switch:~$ nv show router nexthop rib 39 resolved-via-backup
 ## <h>nv show router nexthop rib \<nhg-id\> resolved-via-backup \<resolved-via-id\></h>
 
 Shows information about a specific backup next hop.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command.
+{{%/notice%}}
 
 ### Command Syntax
 

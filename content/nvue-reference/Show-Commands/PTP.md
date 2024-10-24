@@ -18,8 +18,8 @@ Shows PTP configuration and counters for a specific VLAN interface on the specif
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>`   |  The bridge domain. |
-| `<vid>`   |  The VLAN name. |
+| `<domain-id>`   |  The bridge name. |
+| `<vlan-id>`   |  The VLAN name. |
 
 ### Version History
 

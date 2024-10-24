@@ -511,7 +511,7 @@ Configures the VLAN for the EVPN instance in the specified VRF. You can specify 
 | Command |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` | The VRF name. |
-| `<vlan-id>` | The VLAN ID. |
+| `<vlan-id>` | The VLAN name. |
 
 ### Version History
 

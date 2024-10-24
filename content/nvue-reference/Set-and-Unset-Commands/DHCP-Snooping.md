@@ -20,8 +20,8 @@ Enables DHCP snooping for IPv4 on a VLAN under a bridge.
 
 | Syntax | Description |
 | --------- | -------------- |
-| `<domain-id>` | The name of the bridge domain. |
-| `<vid>` | The VLAN ID. |
+| `<domain-id>` | The bridge name. |
+| `<vlan-id>` | The VLAN name. |
 
 ### Version History
 
@@ -43,8 +43,8 @@ Configures a trusted interface for IPv4. Cumulus Linux allows DHCP offers from o
 
 | Syntax | Description |
 | --------- | -------------- |
-| `<domain-id>` | The name of the bridge domain. |
-| `<vid>` | The VLAN ID. |
+| `<domain-id>` | The bridge name. |
+| `<vlan-id>` | The VLAN name. |
 | `<interface-id>` | The trusted interface ID. |
 
 ### Version History
@@ -67,8 +67,8 @@ Enables DHCP snooping for IPv6 on a VLAN under a bridge.
 
 | Syntax | Description |
 | --------- | -------------- |
-| `<domain-id>` | The name of the bridge domain. |
-| `<vid>` | The VLAN ID. |
+| `<domain-id>` | The bridge name. |
+| `<vlan-id>` | The VLAN name. |
 
 ### Version History
 
@@ -90,8 +90,8 @@ Configures a trusted interface for IPv6. Cumulus Linux allows DHCP offers from o
 
 | Syntax | Description |
 | --------- | -------------- |
-| `<domain-id>` | The name of the bridge domain. |
-| `<vid>` | The VLAN ID. |
+| `<domain-id>` | The bridge name. |
+| `<vlan-id>` | The VLAN name. |
 | `<interface-id>` | The trusted interface ID. |
 
 ### Version History

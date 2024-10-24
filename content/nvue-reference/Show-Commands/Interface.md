@@ -78,35 +78,96 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show interface swp1
-                          operational        applied  pending
-------------------------  -----------------  -------  -------
-type                      swp                swp      swp    
-[acl]                                                        
-evpn                                                         
-  multihoming                                                
-    uplink                                   off      off    
-lldp                                                         
-  dcbx-ets-config-tlv     off                                
-  dcbx-ets-recomm-tlv     off                                
-  dcbx-pfc-tlv            off                                
-  [neighbor]              server01                           
-ptp                                                          
-  enable                                     off      off    
-router                                                       
-  adaptive-routing                                           
-    enable                                   off      off    
-  ospf                                                       
-    enable                                   off      off    
-  ospf6                                                      
-    enable                                   off      off    
-  pbr                                                        
-    [map]                                                    
-  pim                                                        
-    enable                                   off      off    
-synce                                                        
-  enable                                     off      off
+                           operational              applied
+-------------------------  -----------------------  -------
+type                       swp                      swp    
+router                                                     
+  pbr                                                      
+    [map]                                                  
+  ospf                                                     
+    enable                                          off    
+  pim                                                      
+    enable                                          off    
+  adaptive-routing                                         
+    enable                                          off    
+  ospf6                                                    
+    enable                                          off    
+lldp                                                       
+  dcbx-pfc-tlv             off                             
+  dcbx-ets-config-tlv      off                             
+  dcbx-ets-recomm-tlv      off                             
+  state                    enabled                         
+  [neighbor]               server01                        
+evpn                                                       
+  multihoming                                              
+    uplink                                          off    
+ptp                                                        
+  enable                   off                      off    
+[acl]                                                      
+synce                                                      
+  enable                                            off    
+neighbor                                                   
+  [ipv4]                                                   
+  [ipv6]                                                   
+sflow                                                      
+  sample-rate              0                               
+  state                    disabled                 enabled
+parent                     bond1                           
+ip                                                         
+  vrrp                                                     
+    enable                                          off    
+  igmp                                                     
+    enable                                          off    
+  neighbor-discovery                                       
+    enable                                          on     
+    router-advertisement                                   
+      enable                                        off    
+    home-agent                                             
+      enable                                        off    
+    [rdnss]                                                
+    [dnssl]                                                
+    [prefix]                                               
+  ipv4                                                     
+    forward                                         on     
+  ipv6                                                     
+    enable                                          on     
+    forward                                         on     
+  vrf                                               default
+  [gateway]                                                
+link                                                       
+  auto-negotiate           off                      on     
+  duplex                   full                     full   
+  speed                    1G                       auto   
+  mac-address              48:b0:2d:f0:b9:86               
+  fec                                               auto   
+  mtu                      9000                     9216   
+  fast-linkup              off                             
+  [breakout]                                               
+  state                    up                       up     
+  flap-protection                                          
+    enable                                          on     
+  stats                                                    
+    in-bytes               8.19 MB                         
+    in-pkts                67797                           
+    in-drops               0                               
+    in-errors              0                               
+    out-bytes              9.96 MB                         
+    out-pkts               102895                          
+    out-drops              0                               
+    out-errors             0                               
+    carrier-transitions    4                               
+    carrier-up-count       2                               
+    carrier-down-count     2                               
+  protodown                disabled                        
+  oper-status              up                              
+  admin-status             up                              
+  oper-status-last-change  2024/10/22 18:36:00.469 
 ...
 ```
+
+{{%notice note%}}
+Cumulus Linux 5.11 and later shows the last time (date and time) the operational state of an interface changed.
+{{%/notice%}}
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -694,28 +755,41 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp1 link
-                       operational        applied  pending
----------------------  -----------------  -------  -------
-auto-negotiate         off                on       on     
-duplex                 full               full     full   
-speed                  1G                 auto     auto   
-fec                                       auto     auto   
-mtu                    9000               9216     9216   
-[breakout]                                                
-state                  up                 up       up     
-stats                                                     
-  carrier-transitions  6                                  
-  in-bytes             39.21 MB                           
-  in-drops             0                                  
-  in-errors            0                                  
-  in-pkts              324461                             
-  out-bytes            48.50 MB                           
-  out-drops            0                                  
-  out-errors           0                                  
-  out-pkts             501807                             
-mac                    48:b0:2d:6c:72:a0
+cumulus@switch:~$  nv show interface swp1 link
+                         operational              applied
+-----------------------  -----------------------  -------
+admin-status             up                              
+oper-status              up                              
+oper-status-last-change  2024/10/22 18:36:00.469         
+protodown                disabled                        
+auto-negotiate           off                      on     
+duplex                   full                     full   
+speed                    1G                       auto   
+mac-address              48:b0:2d:f0:b9:86               
+fec                                               auto   
+mtu                      9000                     9216   
+fast-linkup              off                             
+[breakout]                                               
+state                    up                       up     
+flap-protection                                          
+  enable                                          on     
+stats                                                    
+  in-bytes               8.21 MB                         
+  in-pkts                67938                           
+  in-drops               0                               
+  in-errors              0                               
+  out-bytes              9.98 MB                         
+  out-pkts               103107                          
+  out-drops              0                               
+  out-errors             0                               
+  carrier-transitions    4                               
+  carrier-up-count       2                               
+  carrier-down-count     2
 ```
+
+{{%notice note%}}
+Cumulus Linux 5.11 and later shows the last time (date and time) the operational state of an interface changed and the number of carrier transitions.
+{{%/notice%}}
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -1054,6 +1128,10 @@ cumulus@switch:~$ nv show interface swp1 link traffic-engineering
 ## <h>nv show interface \<interface-id\> pluggable</h>
 
 Shows the <span class="a-tooltip">[SFP](## "Small Form-Factor Pluggable")</span> module information for the specified interface.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show platform transceiver <interface>` command instead.
+{{%/notice%}}
 
 ### Command Syntax
 

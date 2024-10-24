@@ -22,11 +22,19 @@ Provides commands to configure the routing table for the specified VRF.
 
 Provides commands to configure the switch to import protocols from where routes are known.
 
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command.
+{{%/notice%}}
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router rib \<afi\> protocol \<import-protocol-id\> fib-filter</h>
 
 Configures a route map to apply on the routes of the import protocol.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command.
+{{%/notice%}}
 
 ### Command Syntax
 

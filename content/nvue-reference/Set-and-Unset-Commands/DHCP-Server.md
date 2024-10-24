@@ -864,6 +864,30 @@ cumulus@switch:~$ nv set service dhcp-server6 default static server1 cumulus-pro
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set service dhcp-server \<vrf-id\> static \<static-id\> ifname \<interface-id\></h>
+
+Configures the interface for the static DHCP6 server.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<static-id>` |  The name of the resource. |
+| `<interface-id>` |  The interface ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service dhcp-server6 default static server1 ifname swp1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set service dhcp-server6 \<vrf-id\> static \<static-id\> ip-address \<ip-address-id\></h>
 
 Configures the IPv6 address for the static DHCP6 server.

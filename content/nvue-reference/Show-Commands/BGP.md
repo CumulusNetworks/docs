@@ -2399,6 +2399,10 @@ enable               off
 
 Shows the EVPN local RIB for the specified VRF.
 
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp adress-family l2vpn-evpn route` command instead.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax | Description |
@@ -2440,6 +2444,10 @@ rd
 
 Shows the EVPN local RIB <span class="a-tooltip">[RDs](## "Route Distinguisher")</span> for the specified VRF.
 
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax | Description |
@@ -2480,6 +2488,10 @@ cumulus@switch:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-r
 
 Shows a specific EVPN local RIB <span class="a-tooltip">[RD](## "Route Distinguisher")</span> for the specified VRF.
 
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax | Description |
@@ -2507,6 +2519,10 @@ cumulus@switch:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-r
 
 Shows the EVPN local RIB <span class="a-tooltip">[RD](## "Route Distinguisher")</span> route distinguisher route types for the specified VRF.
 
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax | Description |
@@ -2533,6 +2549,10 @@ cumulus@switch:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-r
 ## <h>nv show vrf \<vrf-id\> router bgp address-family l2vpn-evpn loc-rib rd \<rd-id\> route-type \<route-type-id\></h>
 
 Shows information about a specific EVPN local RIB <span class="a-tooltip">[RD](## "Route Distinguisher")</span> route distinguisher route type for the specified VRF.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -2575,6 +2595,10 @@ route
 
 Shows the routes in the EVPN local RIB for the specified VRF with a specific <span class="a-tooltip">[RD](## "Route Distinguisher")</span> and route type.
 
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax | Description |
@@ -2598,6 +2622,10 @@ cumulus@switch:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-r
 ## <h>nv show vrf \<vrf-id\> router bgp address-family l2vpn-evpn loc-rib rd \<rd-id\> route-type \<route-type-id\> route \<evpn-route-id\></h>
 
 Shows the routes in the EVPN local RIB for the specified VRF with a specific <span class="a-tooltip">[RD](## "Route Distinguisher")</span> route type and EVPN route type.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command.
+{{%/notice%}}
 
 ### Command Syntax
 

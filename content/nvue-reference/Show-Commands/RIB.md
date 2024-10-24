@@ -152,6 +152,63 @@ Route            Protocol   Distance  Uptime                NHGId  Metric  Flags
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show vrf \<vrf\> router rib \<afi\> route-count</h>
+
+Shows the total number of routes in the routing table.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` |  The VRF name.|
+| `<afi>` |  The route address family (IPv4 or IPv6). |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router rib ipv4 route-count
+                 operational 
+------------     ----------- 
+total-routes    34 
+[protocol]      bgp 
+[protocol]      connected 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf\> router rib \<afi\> route-count protocol</h>
+
+Shows the total number of routes per protocol in the routing table.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` |  The VRF name.|
+| `<afi>` |  The route address family (IPv4 or IPv6). |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router rib ipv4 route-count protocol
+Protocol   Total 
+---------  ----- 
+bgp        6 
+connected  3 
+ospf       8 
+static     3
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show vrf \<vrf-id\> router rib \<afi\> route \<route-id\></h>
 
 Shows the routing table for the specified route.

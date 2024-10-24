@@ -52,7 +52,7 @@ You can also change your home workbench (the workbench that loads when you log i
 
 ## Delete a Workbench
 
-You can only delete workbenches that you created. The NVIDIA-supplied NetQ Workbench cannot be deleted. When you delete a workbench that you have designated as your home workbench, NetQ Workbench will replace it as the home workbench. To delete a workbench:
+You can only delete workbenches that you created. The NVIDIA-supplied NetQ Workbench and Fabric Dashboard workbenches cannot be deleted. When you delete a workbench that you have designated as your home workbench, NetQ Workbench will replace it as the home workbench. To delete a workbench:
 
 1. Select <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> **User Settings** &nbsp;<span aria-label="and then">> **Profile & Preferences**.
 

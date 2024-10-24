@@ -2400,7 +2400,7 @@ enable               off
 Shows the EVPN local RIB for the specified VRF.
 
 {{%notice note%}}
-Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp adress-family l2vpn-evpn route` command instead.
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family l2vpn-evpn route` command instead.
 {{%/notice%}}
 
 ### Command Syntax

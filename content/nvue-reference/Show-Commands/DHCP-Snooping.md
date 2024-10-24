@@ -18,7 +18,7 @@ Shows the DHCP snooping table for IPv4.
 
 | Syntax | Description |
 | --------- | -------------- |
-| `<domain-id>` | The name of the bridge domain. |
+| `<domain-id>` | The bridge name. |
 
 ### Version History
 
@@ -46,7 +46,7 @@ Shows the IPv4 DHCP snooping trust ports table.
 
 | Syntax | Description |
 | --------- | -------------- |
-| `<domain-id>` | The name of the bridge domain. |
+| `<domain-id>` | The bridge name. |
 
 ### Version History
 
@@ -77,8 +77,8 @@ Shows the IPv4 DHCP snooping trust ports table for a specific VLAN.
 
 | Syntax | Description |
 | --------- | -------------- |
-| `<domain-id>` | The name of the bridge domain. |
-| `<vid>` | The VLAN ID. |
+| `<domain-id>` | The bridge name. |
+| `<vlan-id>` | The VLAN name. |
 
 ### Version History
 
@@ -109,8 +109,8 @@ Shows the trusted ports for a VLAN.
 
 | Syntax | Description |
 | --------- | -------------- |
-| `<domain-id>` | The name of the bridge domain. |
-| `<vid>` | The VLAN ID. |
+| `<domain-id>` | The bridge name. |
+| `<vlan-id>` | The VLAN name. |
 
 ### Version History
 
@@ -135,9 +135,9 @@ Shows information in the IPv4 DHCP snooping table for a specific trusted port.
 
 | Syntax | Description |
 | --------- | -------------- |
-| `<domain-id>` | The name of the bridge domain. |
-| `<vid>` | The VLAN ID. |
-| `<interface-id>` | The interface ID. |
+| `<domain-id>` | The bridge name. |
+| `<vlan-id>` | The VLAN name. |
+| `<interface-id>` | The interface name. |
 
 ### Version History
 
@@ -165,8 +165,8 @@ Shows IPv4 DHCP bind port information.
 
 | Syntax | Description |
 | --------- | -------------- |
-| `<domain-id>` | The name of the bridge domain. |
-| `<vid>` | The VLAN ID. |
+| `<domain-id>` | The bridge name. |
+| `<vlan-id>` | The VLAN name. |
 
 ### Version History
 
@@ -188,9 +188,9 @@ Shows IPv4 DHCP bind information for a specific port.
 
 | Syntax | Description |
 | --------- | -------------- |
-| `<domain-id>` | The name of the bridge domain. |
-| `<vid>` | The VLAN ID. |
-| `<interface-id>` | The interface ID. |
+| `<domain-id>` | The bridge name. |
+| `<vlan-id>` | The VLAN name. |
+| `<interface-id>` | The interface name. |
 
 ### Version History
 
@@ -212,7 +212,7 @@ Shows the DHCP snooping table for IPv6.
 
 | Syntax | Description |
 | --------- | -------------- |
-| `<domain-id>` | The name of the bridge domain. |
+| `<domain-id>` | The bridge name. |
 
 ### Version History
 
@@ -234,7 +234,7 @@ Shows the IPv6 DHCP snooping table for all VLANs
 
 | Syntax | Description |
 | --------- | -------------- |
-| `<domain-id>` | The name of the bridge domain. |
+| `<domain-id>` | The bridge name. |
 
 ### Version History
 
@@ -256,8 +256,8 @@ Shows the IPv6 DHCP snooping table for a specific VLAN.
 
 | Syntax | Description |
 | --------- | -------------- |
-| `<domain-id>` | The name of the bridge domain. |
-| `<vid>` | The VLAN ID. |
+| `<domain-id>` | The bridge name. |
+| `<vlan-id>` | The VLAN name. |
 
 ### Version History
 
@@ -288,8 +288,8 @@ Shows information in the IPv6 DHCP snooping table for trusted ports.
 
 | Syntax | Description |
 | --------- | -------------- |
-| `<domain-id>` | The name of the bridge domain. |
-| `<vid>` | The VLAN ID. |
+| `<domain-id>` | The bridge name. |
+| `<vlan-id>` | The VLAN name. |
 
 ### Version History
 
@@ -311,9 +311,9 @@ Shows information in the IPv6 DHCP snooping table for a specific trusted port.
 
 | Syntax | Description |
 | --------- | -------------- |
-| `<domain-id>` | The name of the bridge domain. |
-| `<vid>` | The VLAN ID. |
-| `<interface-id>` | The interface ID. |
+| `<domain-id>` | The bridge name. |
+| `<vlan-id>` | The VLAN name. |
+| `<interface-id>` | The interface name. |
 
 ### Version History
 
@@ -335,8 +335,8 @@ Shows IPv6 DHCP bind information.
 
 | Syntax | Description |
 | --------- | -------------- |
-| `<domain-id>` | The name of the bridge domain. |
-| `<vid>` | The VLAN ID. |
+| `<domain-id>` | The bridge name. |
+| `<vlan-id>` | The VLAN name. |
 
 ### Version History
 
@@ -358,9 +358,9 @@ Shows IPv6 DHCP bind information for a specific port.
 
 | Syntax | Description |
 | --------- | -------------- |
-| `<domain-id>` | The name of the bridge domain. |
-| `<vid>` | The VLAN ID. |
-| `<interface-id>` | The interface ID. |
+| `<domain-id>` | The bridge name. |
+| `<vlan-id>` | The VLAN name. |
+| `<interface-id>` | The interface name. |
 
 ### Version History
 

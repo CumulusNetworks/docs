@@ -17,7 +17,7 @@ You can configure LDAP server settings with NVUE commands or by editing Linux co
 ### Connection
 
 Configure the following connection settings:
-- The host name or IP address of the LDAP server from which you want to import users. If you use multiple LDAP servers, you can also seta priority for each server.
+- The host name or IP address of the LDAP server from which you want to import users. If you use multiple LDAP servers, you can also set a priority for each server.
 - The port number of the LDAP server if you are using a non-default port. The default port number for LDAP is TCP and UDP port 389.
 - Authenticated (Simple) BIND credentials. The BIND credentials are optional; if you do not specify the credentials, the switch assumes an anonymous bind. To use SASL (Simple Authentication and Security Layer) BIND, which provides authentication services using other mechanisms such as Kerberos, contact your LDAP server administrator for authentication information.
 
@@ -138,6 +138,8 @@ To set the search scope to one level:
 {{< tabs "TabID97 ">}}
 {{< tab "NVUE Commands ">}}
 
+NVUE does not provide commands to set the search scope.
+<!--
 ```
 cumulus@switch:~$ nv set system aaa ldap scope one-level
 cumulus@switch:~$ nv config apply
@@ -149,7 +151,7 @@ To set the search scope back to the default setting (subtree):
 cumulus@switch:~$ nv set system aaa ldap scope subtree
 cumulus@switch:~$ nv config apply
 ```
-
+-->
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
@@ -175,13 +177,15 @@ To limit the search scope when authenticating users, use search filters to speci
 {{< tabs "TabID134 ">}}
 {{< tab "NVUE Commands ">}}
 
+NVUE does not provide commands to limit the search scope.
+<!--
 ```
 cumulus@switch:~$ nv set system aaa ldap filter passwd cumulus
 cumulus@switch:~$ nv set system aaa ldap filter group cn
 cumulus@switch:~$ nv set system aaa ldap filter shadow 1234
 cumulus@switch:~$ nv config apply
 ```
-
+-->
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
@@ -207,6 +211,8 @@ The *map* configuration allows you to override the attributes pushed from LDAP. 
 {{< tabs "TabID166 ">}}
 {{< tab "NVUE Commands ">}}
 
+NVUE does not provide commands for attribute mapping.
+<!--
 ```
 cumulus@switch:~$ nv set system aaa ldap map passwd homedirectory /home/$sAMAccountName
 cumulus@switch:~$ nv set system aaa ldap map passwd userpassword cumulus
@@ -214,7 +220,7 @@ cumulus@switch:~$ nv set system aaa ldap map group cn sAMAccountName
 cumulus@switch:~$ nv set system aaa ldap map group gidnumber objectSid:S-1-5-21-1391733952-3059161487-1245441232
 cumulus@switch:~$ nv config apply
 ```
-
+-->
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
@@ -301,7 +307,7 @@ timelimit 60
 You can configure the following SSL options:
 - The SSL mode. You can specify, `none`, `ssl`, or `start-tls`.
 - The SSL port.
-- The SSL certificate checker (enabled or disabled).
+- The SSL certificate checker (Linux only).
 - The SSL CA certificate list.
 - The SSL cipher suites. You can specify TLS1.2, TLS1.3, TLS-CIPHERS, or all.
 - The SSL <span class="a-tooltip">[CRL](## "Certificate Revocation List")</span> check.
@@ -314,7 +320,6 @@ The following example sets the SSL mode to SSL, the port to 8443, enables the SS
 ```
 cumulus@switch:~$ nv set system aaa ldap ssl mode ssl
 cumulus@switch:~$ nv set system aaa ldap ssl port 8443
-cumulus@switch:~$ nv set system aaa ldap ssl cert-verify enabled
 cumulus@switch:~$ nv set system aaa ldap ssl ca-list none
 cumulus@switch:~$ nv set system aaa ldap ssl tls-ciphers TLS1.3
 cumulus@switch:~$ nv set system aaa ldap ssl crl-check /etc/ssl/certs/rtp-example-ca.crt
@@ -377,8 +382,6 @@ To show the LDAP configuration settings on the switch, run the following command
 - `nv show system aaa ldap hostname` shows the hostnames of the LDAP servers and their priorities.
 - `nv show system aaa ldap hostname <hostname>` shows the priority for the specified hostname.
 - `nv show system aaa ldap ssl` shows the LDAP SSL configuration settings.
-- `nv show system aaa ldap map` shows the attribute mapping settings. You can show the group, password or shadow mappings with the `nv show system aaa ldap map group`, `nv show system aaa ldap map passwd`, and `nv show system aaa ldap map shadow` commands.
-- `nv show system aaa ldap filter` shows the search filter settings.
 
 The following example shows all the LDAP configuration settings:
 
@@ -390,7 +393,6 @@ vrf                   default                                              mgmt
 bind-dn               CN=cumulus-admin,CN=Users,DC=rtp,DC=example,DC=test  CN=cumulus-admin,CN=Users,DC=rtp,DC=example,DC=test
 base-dn               ou=support,dc=rtp,dc=example,dc=test                 ou=support,dc=rtp,dc=example,dc=test               
 referrals             yes                                                  off                                                
-scope                 one                                                  one-level                                          
 port                  389                                                  389                                                
 timeout-bind          5                                                    5                                                  
 timeout-search        5                                                    5                                                  
@@ -400,29 +402,20 @@ version               3                                                    3
 ssl                                                                                                                           
   mode                none                                                 none                                               
   port                389                                                  636                                                
-  cert-verify         enabled                                              enabled                                            
   ca-list             default                                              default                                            
   tls-ciphers         all                                                  all                                                
   crl-check           none                                                 none                                               
-filter                                                                                                                        
-  passwd              cumulus                                              cumulus                                            
-  group               cn                                                   cn                                             
-  shadow              1234                                                 1234                                                
-map                                                                                                                           
-  passwd                                                                                                                      
-    uid                                                                                                                       
-    uidnumber                                                                                                                 
-    gidnumber                                                                                                                 
-    userpassword      cumulus                                              cumulus                                            
-    homedirectory     /home/                                               /home/                                             
-    gecos                                                                                                                     
-  shadow                                                                                                                      
-    uid                                                                                                                       
-    shadowlastchange                                                                                                          
-  group                                                                                                                       
-    cn                sAMAccountName                                       sAMAccountName                                     
-    memberuid                                                                                                                 
-    gidnumber         objectSid:S-1-5-21-1391733952-3059161487-1245441232  objectSid:S-1-5-21-1391733952-3059161487-1245441232
+...
+```
+
+The following example shows the hostnames of the LDAP servers and their priorities:
+
+```
+cumulus@switch:~$ nv show system aaa ldap hostname
+Hostname     Priority
+-----------  --------
+ldapserver1  1
+ldapserver2  2     
 ```
 
 The following example shows the SSL configuration settings:
@@ -433,12 +426,11 @@ cumulus@switch:~$ nv show system aaa ldap ssl
 -----------  -----------  -------
 mode         none         none   
 port         389          636    
-cert-verify  enabled      enabled
 ca-list      default      default
 tls-ciphers  all          all    
 crl-check    none         none
 ```
-
+<!--
 The following example shows the search map group configuration settings:
 
 ```
@@ -449,7 +441,7 @@ cn         sAMAccountName                                       sAMAccountName
 memberuid                                                                                                          
 gidnumber  objectSid:S-1-5-21-1391733952-3059161487-1245441232  objectSid:S-1-5-21-1391733952-3059161487-1245441232
 ```
-
+-->
 ## Configure LDAP Authorization
 
 Linux uses the *sudo* command to allow non-administrator users (such as the default *cumulus* user account) to perform privileged operations. To control the users that can use sudo, define a series of rules in the `/etc/sudoers` file and files in the `/etc/sudoers.d/` directory. The rules apply to groups but you can also define specific users. You can add sudo rules using the group names from LDAP. For example, if a group of users are in the group *netadmin*, you can add a rule to give those users sudo privileges. Refer to the sudoers manual (`man sudoers`) for a complete usage description. The following shows an example in the `/etc/sudoers` file:

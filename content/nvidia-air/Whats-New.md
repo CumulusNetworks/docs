@@ -9,13 +9,19 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 
 ## October 2024
 <!-- Air:WhatsNew -->
+### 82.2024.1024-011
+- Fixed an issue where simulations could be created with `expires_at` and `sleeps_at` set in the past
+- Fixed an issue when parsing interface MAC addresses
+- Improved the loading of the links tab when a large number of links exist
+- Improved the validation of the `features` field for a node
+<!-- Air:WhatsNew -->
+
 ### 82.2024.1021-011
 - Fixed an issue related to autoprovision redirects
 - Fixed a potential scheduling issue when creating multiple simulations
 - Improved logic around the Enable OOB toggle behavior
 - Improved the logout process
 - Moved the interface list to the node properties side panel
-<!-- Air:WhatsNew -->
 
 ### 82.2024.1007-011
 - Added link highlighting when a node is selected

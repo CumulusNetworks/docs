@@ -21,7 +21,7 @@ cumulus@switch:~$ nv set system telemetry export otlp state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-You can enable open telemetry for [interface statistics][#interface-statistics], (histogram data)[#histogram-data], (control plane statistics)[control-plane-statistics], and (platform statistics)[#platofrm-statistics].
+You can enable open telemetry for [interface statistics](#interface-statistics), [histogram data](#histogram-data), [control plane statistics](control-plane-statistics), and [platform statistics](#platofrm-statistics).
 
 ### Interface Statistics
 
@@ -80,7 +80,7 @@ cumulus@switch:~$ nv config apply
 
 ### Platform Statistics
 
-When you platform statistic open telemetry, data related to CPU, disk, filesystem, memory, and sensor health is exported. To enable all (platform statistics)[#platform-statistic-format] globally:
+When you platform statistic open telemetry, data related to CPU, disk, filesystem, memory, and sensor health is exported. To enable all [platform statistics](#platform-statistic-format) globally:
 
 ```
 cumulus@switch:~$ nv set system telemetry histogram export state enabled
@@ -428,18 +428,18 @@ When you enable control plane statistic telemetry, the following statistics are 
 
 | Name | Description |
 |----- | ----------- |
-| 'nvswitch_control_plane_tx_packets` | Control plane transmit packets. |
-| 'nvswitch_control_plane_tx_bytes` | Control plane transmit bytes. |
-| 'nvswitch_control_plane_rx_packets' | Control plane receive packets. |
-| 'nvswitch_control_plane_rx_bytes' | Control plane receive bytes. |
-| 'nvswitch_control_plane_rx_buffer_drops' | Control plane receive buffer drops. |
-| 'nvswitch_control_plane_trap_rx_packets` | Control plane trap group receive packets. |
-| 'nvswitch_control_plane_trap_rx_event_count`| Control plane trap group receive events. |
-| 'nvswitch_control_plane_trap_rx_drop` | Control plane trap group receive drops. |
-| 'nvswitch_control_plane_trap_rx_bytes` | Control plane trap group receive bytes. |
-| 'nvswitch_control_plane_trap_group_rx_packets' | Control plane trap group receive packets. |
-| 'nvswitch_control_plane_trap_group_rx_bytes' | Control plane trap group receive bytes. |
-| 'nvswitch_control_plane_trap_group_pkt_violations' | Control plane trap group packet violations. |
+| `nvswitch_control_plane_tx_packets` | Control plane transmit packets. |
+| `nvswitch_control_plane_tx_bytes` | Control plane transmit bytes. |
+| `nvswitch_control_plane_rx_packets` | Control plane receive packets. |
+| `nvswitch_control_plane_rx_bytes` | Control plane receive bytes. |
+| `nvswitch_control_plane_rx_buffer_drops` | Control plane receive buffer drops. |
+| `nvswitch_control_plane_trap_rx_packets` | Control plane trap group receive packets. |
+| `nvswitch_control_plane_trap_rx_event_count`| Control plane trap group receive events. |
+| `nvswitch_control_plane_trap_rx_drop` | Control plane trap group receive drops. |
+| `nvswitch_control_plane_trap_rx_bytes` | Control plane trap group receive bytes. |
+| `nvswitch_control_plane_trap_group_rx_packets` | Control plane trap group receive packets. |
+| `nvswitch_control_plane_trap_group_rx_bytes` | Control plane trap group receive bytes. |
+| `nvswitch_control_plane_trap_group_pkt_violations` | Control plane trap group packet violations. |
 
 ### Platform Statistic Format
 
@@ -447,122 +447,136 @@ When you enable platform statistic telemetry globally, or when you enable teleme
 
 **CPU:**
 
+CPU statistics include the CPU core number and operation mode (user, system, idle, iowait, irq, softirq, steal, guest, guest_nice).
+
 | Name | Description |
 |----- | ----------- |
-| `node_cpu_core_throttles_total` | |
-| `node_cpu_frequency_max_hertz` | |
-| `node_cpu_frequency_min_hertz` | |
-| `node_cpu_guest_seconds_total` | |
-| `node_cpu_package_throttles_total` | |
-| `node_cpu_scaling_frequency_hertz` | |  
-| `node_cpu_scaling_frequency_max_hertz` | |  
-| `node_cpu_scaling_frequency_min_hertz` | | 
-| `node_cpu_seconds_total` | | 
+| `node_cpu_core_throttles_total` | Number of times a CPU core has been throttled. |
+| `node_cpu_frequency_max_hertz` | Maxiumum CPU thread frequency in hertz. |
+| `node_cpu_frequency_min_hertz` | Minimum CPU thread frequency in hertz. |
+| `node_cpu_guest_seconds_total` | Seconds the CPUs spent in guests for each mode. |
+| `node_cpu_package_throttles_total` | Number of times the CPU package has been throttled. |
+| `node_cpu_scaling_frequency_hertz` | Current scaled CPU thread frequency in hertz. |  
+| `node_cpu_scaling_frequency_max_hertz` | Maximum scaled CPU thread frequency in hertz. |  
+| `node_cpu_scaling_frequency_min_hertz` | Minimum scaled CPU thread frequency in hertz. | 
+| `node_cpu_seconds_total` | Seconds the CPU spent in each mode. | 
 
 **Disk:**
 
 | Name | Description |
 |----- | ----------- |
-| `node_disk_ata_rotation_rate_rpm` | |
-| `node_disk_ata_write_cache` | |
-| `node_disk_ata_write_cache_enabled` | | 
-| `node_disk_discard_time_seconds_total` | |  
-| `node_disk_discarded_sectors_total` | |  
-| `node_disk_discards_completed_total` | |  
-| `node_disk_discards_merged_total` | |  
-| `node_disk_flush_requests_time_seconds_total` | |  
-| `node_disk_flush_requests_total` | |  
-| `node_disk_info` | |  
-| `node_disk_io_now` | |  
-| `node_disk_io_time_seconds_total` | |  
-| `node_disk_io_time_weighted_seconds_total` | |  
-| `node_disk_read_bytes_total` | |  
-| `node_disk_read_time_seconds_total` | |  
-| `node_disk_reads_completed_total` | |  
-| `node_disk_reads_merged_total` | |  
-| `node_disk_write_time_seconds_total` | |  
-| `node_disk_writes_completed_total` | |  
-| `node_disk_writes_merged_total` | |  
-| `node_disk_written_bytes_total` | |  
+| `node_disk_ata_rotation_rate_rpm` | ATA disk rotate rate in RPMs. (0 for SSDs). |
+| `node_disk_ata_write_cache` | ATA disk write cache presence. |
+| `node_disk_ata_write_cache_enabled` | ATA disk write cache status (enabled or disabled). | 
+| `node_disk_discard_time_seconds_total` | Total number of seconds spent by all discards. |  
+| `node_disk_discarded_sectors_total` | Total number of sectors discarded successfully. |  
+| `node_disk_discards_completed_total` | Total number of discards discards completed. |  
+| `node_disk_discards_merged_total` |  Total number of discards merged. |  
+| `node_disk_flush_requests_time_seconds_total` | Total number of seconds spent by all flush requests. |  
+| `node_disk_flush_requests_total` | The total number of flush requests completed successfully. |  
+| `node_disk_info` | Disk information from `/sys/block/<block_device>`. |  
+| `node_disk_io_now` | Number of I/Os in progress. |  
+| `node_disk_io_time_seconds_total` | Total seconds spent during I/O. |  
+| `node_disk_io_time_weighted_seconds_total` | Weighted number of seconds spent during I/O. |  
+| `node_disk_read_bytes_total` | Total number of bytes read successfully. |  
+| `node_disk_read_time_seconds_total` | Total number of seconds spent by all reads. |  
+| `node_disk_reads_completed_total` | Total number of reads completed successfully. |  
+| `node_disk_reads_merged_total` | Total number of reads merged. |  
+| `node_disk_write_time_seconds_total` | Total number of seconds spent by all writes. |  
+| `node_disk_writes_completed_total` | Total number of writes completed successfully. |  
+| `node_disk_writes_merged_total` | Number of writes merged. |  
+| `node_disk_written_bytes_total` | Total number of bytes written successfully. |  
+
+**Filesystem:**
+
+| Name | Description |
+|----- | ----------- |
+| `node_filesystem_avail_bytes` | Filesystem space available to non-root users in bytes.|
+| `node_filesystem_device_error` | Whether an error occurred while getting statistics for the given device. |
+| `node_filesystem_files` | Filesystem total file nodes.| 
+| `node_filesystem_files_free` | Filesystem total free file nodes. |  
+| `node_filesystem_free_bytes` | Filesystem free space in bytes. |  
+| `node_filesystem_readonly` | Filesystem read-only status. |  
+| `node_filesystem_size_bytes` |  Filesystem size in bytes. |  
 
 **Memory:**
 
 | Name | Description |
 |----- | ----------- |
-| `node_memory_Active_anon_bytes` | |
-| `node_memory_Active_bytes` | |  
-| `node_memory_Active_file_bytes` | |  
-| `node_memory_AnonHugePages_bytes` | |
-| `node_memory_AnonPages_bytes` | |  
-| `node_memory_Bounce_bytes` | |  
-| `node_memory_Buffers_bytes` | |  
-| `node_memory_Cached_bytes` | |  
-| `node_memory_CommitLimit_bytes` | |  
-| `node_memory_Committed_AS_bytes` | |  
-| `node_memory_DirectMap1G_bytes` | |  
-| `node_memory_DirectMap2M_bytes` | |  
-| `node_memory_DirectMap4k_bytes` | |  
-| `node_memory_Dirty_bytes` | |  
-| `node_memory_FileHugePages_bytes` | |  
-| `node_memory_FilePmdMapped_bytes` | |  
-| `node_memory_HardwareCorrupted_bytes` | |  
-| `node_memory_HugePages_Free` | |  
-| `node_memory_HugePages_Rsvd` | |  
-| `node_memory_HugePages_Surp` | |  
-| `node_memory_HugePages_Total` | |  
-| `node_memory_Hugepagesize_bytes` | |  
-| `node_memory_Hugetlb_bytes` | |  
-| `node_memory_Inactive_anon_bytes` | |  
-| `node_memory_Inactive_bytes` | |  
-| `node_memory_Inactive_file_bytes` | |  
-| `node_memory_KReclaimable_bytes` | |  
-| `node_memory_KernelStack_bytes` | |  
-| `node_memory_Mapped_bytes` | |  
-| `node_memory_MemAvailable_bytes` | |  
-| `node_memory_MemFree_bytes` | |  
-| `node_memory_MemTotal_bytes` | |  
-| `node_memory_Mlocked_bytes` | |  
-| `node_memory_NFS_Unstable_bytes` | |  
-| `node_memory_PageTables_bytes` | |  
-| `node_memory_Percpu_bytes` | |  
-| `node_memory_SReclaimable_bytes` | |  
-| `node_memory_SUnreclaim_bytes` | |  
-| `node_memory_SecPageTables_bytes` | |  
-| `node_memory_ShmemHugePages_bytes` | |  
-| `node_memory_ShmemPmdMapped_bytes` | |  
-| `node_memory_Shmem_bytes` | |  
-| `node_memory_Slab_bytes` | |  
-| `node_memory_SwapCached_bytes` | |  
-| `node_memory_SwapFree_bytes` | |  
-| `node_memory_SwapTotal_bytes` | |  
-| `node_memory_Unevictable_bytes` | |  
-| `node_memory_VmallocChunk_bytes` | |  
-| `node_memory_VmallocTotal_bytes` | |  
-| `node_memory_VmallocUsed_bytes` | |  
-| `node_memory_WritebackTmp_bytes` | |  
-| `node_memory_Writeback_bytes` | |  
-| `node_memory_Zswap_bytes` | |  
-| `node_memory_Zswapped_bytes` | |
+| `node_memory_Active_anon_bytes` | `/proc/meminfo` Active_anon bytes. |
+| `node_memory_Active_bytes` | `/proc/meminfo` Active bytes. |  
+| `node_memory_Active_file_bytes` | `/proc/meminfo` Active_file bytes. |  
+| `node_memory_AnonHugePages_bytes` | `/proc/meminfo` AnonHugePages bytes. |
+| `node_memory_AnonPages_bytes` | `/proc/meminfo` AnonPages bytes. |  
+| `node_memory_Bounce_bytes` | `/proc/meminfo` Bounce bytes. |  
+| `node_memory_Buffers_bytes`  `/proc/meminfo` Buffers bytes. | |  
+| `node_memory_Cached_bytes` | `/proc/meminfo` Cached bytes. |  
+| `node_memory_CommitLimit_bytes` | `/proc/meminfo` CommitLimit bytes. |  
+| `node_memory_Committed_AS_bytes` | `/proc/meminfo` Committed_AS bytes. |  
+| `node_memory_DirectMap1G_bytes` | `/proc/meminfo` DirectMap1G bytes. |  
+| `node_memory_DirectMap2M_bytes` | `/proc/meminfo` DirectMap2M bytes. |  
+| `node_memory_DirectMap4k_bytes` | `/proc/meminfo` DirectMap4k bytes. |  
+| `node_memory_Dirty_bytes` | `/proc/meminfo` Dirty bytes. |  
+| `node_memory_FileHugePages_bytes` | `/proc/meminfo` FileHugePages bytes. |  
+| `node_memory_FilePmdMapped_bytes` | `/proc/meminfo` FilePmdMapped bytes. |  
+| `node_memory_HardwareCorrupted_bytes` | `/proc/meminfo` HardwareCorrupted bytes. |  
+| `node_memory_HugePages_Free` | `/proc/meminfo` HugePages_Free. |  
+| `node_memory_HugePages_Rsvd` | `/proc/meminfo` HugePages_Rsvd. |  
+| `node_memory_HugePages_Surp` | `/proc/meminfo` HugePages_Surp. |  
+| `node_memory_HugePages_Total` | `/proc/meminfo` HugePages_Total.|  
+| `node_memory_Hugepagesize_bytes` | `/proc/meminfo` Hugepagesize bytes. |  
+| `node_memory_Hugetlb_bytes` | `/proc/meminfo` Hugetlb bytes. |  
+| `node_memory_Inactive_anon_bytes` | `/proc/meminfo` Inactive_anon bytes. |  
+| `node_memory_Inactive_bytes` | `/proc/meminfo` Inactive bytes. |  
+| `node_memory_Inactive_file_bytes` | `/proc/meminfo` Inactive_file bytes. |  
+| `node_memory_KReclaimable_bytes` | `/proc/meminfo` KReclaimable bytes. |  
+| `node_memory_KernelStack_bytes` | `/proc/meminfo` KernelStack bytes. |  
+| `node_memory_Mapped_bytes` | `/proc/meminfo` Mapped bytes. |  
+| `node_memory_MemAvailable_bytes` | `/proc/meminfo` MemAvailable bytes. |  
+| `node_memory_MemFree_bytes` | `/proc/meminfo` MemFree bytes. |  
+| `node_memory_MemTotal_bytes` | `/proc/meminfo` MemTotal bytes. |  
+| `node_memory_Mlocked_bytes` | `/proc/meminfo` Mlocked bytes. |  
+| `node_memory_NFS_Unstable_bytes` | `/proc/meminfo` NFS_Unstable bytes. |  
+| `node_memory_PageTables_bytes` | `/proc/meminfo` PageTables bytes. |  
+| `node_memory_Percpu_bytes` | `/proc/meminfo` Percpu bytes. |  
+| `node_memory_SReclaimable_bytes` | `/proc/meminfo` SReclaimable bytes. |  
+| `node_memory_SUnreclaim_bytes` | `/proc/meminfo` SUnreclaim bytes. |  
+| `node_memory_SecPageTables_bytes` | `/proc/meminfo` SecPageTables bytes. |  
+| `node_memory_ShmemHugePages_bytes` | `/proc/meminfo` ShmemHugePages bytes. |  
+| `node_memory_ShmemPmdMapped_bytes` | `/proc/meminfo` ShmemPmdMapped bytes. |  
+| `node_memory_Shmem_bytes` | `/proc/meminfo` Shmem bytes. |  
+| `node_memory_Slab_bytes` | `/proc/meminfo` Slab bytes. |  
+| `node_memory_SwapCached_bytes` | `/proc/meminfo` SwapCached bytes. |  
+| `node_memory_SwapFree_bytes` | `/proc/meminfo` SwapFree bytes. |  
+| `node_memory_SwapTotal_bytes` | `/proc/meminfo` SwapTotal bytes. |  
+| `node_memory_Unevictable_bytes` | `/proc/meminfo` Unevictable bytes. |  
+| `node_memory_VmallocChunk_bytes` | `/proc/meminfo` VmallocChunk bytes. |  
+| `node_memory_VmallocTotal_bytes` | `/proc/meminfo` VmallocTotal bytes. |  
+| `node_memory_VmallocUsed_bytes` | `/proc/meminfo` VmallocUsed bytes. |  
+| `node_memory_WritebackTmp_bytes` | `/proc/meminfo` WritebackTmp bytes. |  
+| `node_memory_Writeback_bytes` | `/proc/meminfo` Writeback bytes. |  
+| `node_memory_Zswap_bytes` | `/proc/meminfo` Zswap bytes. |  
+| `node_memory_Zswapped_bytes` | `/proc/meminfo` Zswapped bytes. |
 
 **Environment Sensors:**
 
 | Name | Description |
 |----- | ----------- |
-| `nvswitch_env_fan_cur_speed` | |  
-| `nvswitch_env_fan_dir` | | 
-| `nvswitch_env_fan_max_speed` | | 
-| `nvswitch_env_fan_min_speed` | |  
-| `nvswitch_env_fan_state` | | 
-| `nvswitch_env_psu_capacity` | | 
-| `nvswitch_env_psu_current` | | 
-| `nvswitch_env_psu_power` | | 
-| `nvswitch_env_psu_state` | | 
-| `nvswitch_env_psu_voltage` | | 
-| `nvswitch_env_temp_crit` | | 
-| `nvswitch_env_temp_current` | | 
-| `nvswitch_env_temp_max` | | 
-| `nvswitch_env_temp_min` | | 
-| `nvswitch_env_temp_state` | | 
+| `nvswitch_env_fan_cur_speed` | Current fan speed in RPM. |  
+| `nvswitch_env_fan_dir` | Fan direction (0: Front2Back, 1: Back2Front). | 
+| `nvswitch_env_fan_max_speed` | Fan maximum speed in RPM. | 
+| `nvswitch_env_fan_min_speed` | Fan minimum speed in RPM. |  
+| `nvswitch_env_fan_state` | Fan status (0: ABSENT, 1: OK, 2: FAILED, 3: BAD). | 
+| `nvswitch_env_psu_capacity` | PSU capacity in watts. | 
+| `nvswitch_env_psu_current` | PSU current in amperes. | 
+| `nvswitch_env_psu_power` | PSU power in watts. | 
+| `nvswitch_env_psu_state` | PSU state (0: ABSENT, 1: OK, 2: FAILED, 3: BAD). | 
+| `nvswitch_env_psu_voltage` | PSU voltage in volts. | 
+| `nvswitch_env_temp_crit` | Critical temperature threshold in centigrade. | 
+| `nvswitch_env_temp_current` | Current temperature in centigrade. | 
+| `nvswitch_env_temp_max` | Maximum temperature threshold in centigrade. | 
+| `nvswitch_env_temp_min` | Minimum temperature threshold in centigrade. | 
+| `nvswitch_env_temp_state` | Temperature sensor status (0: ABSENT, 1: OK, 2: FAILED, 3: BAD). | 
 ### Histogram Data Format
 
 The histogram data samples that the switch exports to the OTEL collector are {{<exlink url="https://opentelemetry.io/docs/specs/otel/metrics/data-model/#histogram" text="histogram data points">}} that include the {{<link url="ASIC-Monitoring#histogram-collection-example" text="histogram bucket (bin)">}} counts and the respective queue length size boundaries for each bucket. Latency and counter histogram data are also exported, if configured. 
@@ -726,7 +740,34 @@ The switch sends a sample with the following names for each interface enabled fo
                     ], 
                     "startTimeUnixNano": "1725403612794459038", 
                     "timeUnixNano": "1725403612795123308", 
-                    "count": "1018476", 
+                    "count": "1018476",
+                    "sum": 0, 
+                    "bucketCounts": [ 
+                      "1018476", 
+                      "0", 
+                      "0", 
+                      "0", 
+                      "0", 
+                      "0", 
+                      "0", 
+                      "0", 
+                      "0", 
+                      "0" 
+                    ], 
+                    "explicitBounds": [ 
+                      99999, 
+                      1337499, 
+                      2574999, 
+                      3812499, 
+                      5049999, 
+                      6287499, 
+                      7524999, 
+                      8762499, 
+                      9999999 
+                    ], 
+                    "min": 0, 
+                    "max": 1018476 
+                  },  
 ```
 {{< /expand >}}
 <br>
@@ -751,8 +792,37 @@ The switch sends a sample with the following names for each interface enabled fo
                         "value": { 
                           "intValue": "2" 
                         } 
-                      }
-                    ],
+                      } 
+                    ], 
+                    "startTimeUnixNano": "1725403612802039259", 
+                    "timeUnixNano": "1725403612802609732", 
+                    "sum": 0, 
+                    "bucketCounts": [ 
+                      "0", 
+                      "0", 
+                      "0", 
+                      "0", 
+                      "0", 
+                      "0", 
+                      "0", 
+                      "0", 
+                      "0", 
+                      "0" 
+                    ], 
+                    "explicitBounds": [ 
+                      319, 
+                      831, 
+                      1343, 
+                      1855, 
+                      2367, 
+                      2879, 
+                      3391, 
+                      3903, 
+                      4415 
+                    ], 
+                    "min": 0, 
+                    "max": 0 
+                  },
 ```
 {{< /expand >}}
 <br>

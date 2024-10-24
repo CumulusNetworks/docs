@@ -6,11 +6,10 @@ toc: 3
 ---
 Telemetry enables you to collect, send, and analyze large amounts of data, such as traffic statistics, port status, device health and configuration, and events. This data helps you monitor switch performance, health and behavior, traffic patterns, and <span class="a-tooltip">[QoS](## "Quality of Service")</span>.
 
-Cumulus Linux supports {{<exlink url="https://github.com/open-telemetry/" text="open telemetry (OTEL)">}} export. You can use <span class="a-tooltip">[OTLP](## "open telemetry protocol")</span> to export metrics, such as interface counters and histogram collection data to an external collector for analysis and visualization.
+Cumulus Linux supports {{<exlink url="https://github.com/open-telemetry/" text="open telemetry (OTEL)">}} export. You can use <span class="a-tooltip">[OTLP](## "open telemetry protocol")</span> to export metrics, such as interface counters, histogram collection, and platform statistic data to an external collector for analysis and visualization.
 
 {{%notice note%}}
 - Cumulus Linux supports open telemetry export on switches with Spectrum-4 ASIC only.
-- Open telemetry export is a beta feature.
 {{%/notice%}}
 
 ## Configure Open Telemetry
@@ -36,7 +35,7 @@ cumulus@switch:~$ nv config apply
 
 {{%notice note%}}
 - When you enable open telemetry for interface statistics, the switch exports counters on all configured interfaces.
-- When you enable open telemetry for histogram data, your {{<link url="ASIC-Monitoring#histogram-collection" text="histogram collection configuration">}} defines the data that the switch exports.
+- When you enable open telemetry for histogram data, your buffer, counter, and latency {{<link url="ASIC-Monitoring#histogram-collection" text="histogram collection configuration">}} defines the data that the switch exports. 
 {{%/notice%}}
 
 You can enable additional interface statistic collection per interface for specific ingress buffer traffic classes (0 through 15) and egress buffer priority groups (0 through 7). When you enable these settings, the switch exports `interface_pg` and `interface_tc` [counters](#interface-statistics) for the defined priority groups and traffic classes:
@@ -54,7 +53,7 @@ cumulus@switch:~$ nv set system telemetry interface-stats switch-priority 4
 cumulus@switch:~$ nv config apply
 ```
 
-You can adjust the interface statistics sample interval (in seconds). You can specify a value between 1 and 86400. The default value 1.
+You can adjust the interface statistics sample interval (in seconds). You can specify a value between 1 and 86400. The default value is 1.
 
 ```
 cumulus@switch:~$ nv set system telemetry interface-stats sample-interval 100
@@ -63,7 +62,7 @@ cumulus@switch:~$ nv config apply
 
 ### gRPC OTLP Export
 
-To configure open telemetry export:
+To configure the open telemetry export destination:
 
 1. Configure gRPC to communicate with the collector by providing the collector destination IP address or hostname. Specify the port to use for communication if it is different from the default port 8443:
 
@@ -276,14 +275,17 @@ The following additional interface switch priority statistics are collected and 
 
 ### Histogram Data
 
-The histogram data samples that the switch exports to the OTEL collector are {{<exlink url="https://opentelemetry.io/docs/specs/otel/metrics/data-model/#histogram" text="histogram data points">}} that include the {{<link url="ASIC-Monitoring#histogram-collection-example" text="histogram bucket (bin)">}} counts and the respective queue length size boundaries for each bucket.
+The histogram data samples that the switch exports to the OTEL collector are {{<exlink url="https://opentelemetry.io/docs/specs/otel/metrics/data-model/#histogram" text="histogram data points">}} that include the {{<link url="ASIC-Monitoring#histogram-collection-example" text="histogram bucket (bin)">}} counts and the respective queue length size boundaries for each bucket. Latency and counter histogram data are also exported, if configured. 
 
-The switch sends a sample with the following names for each interface enabled for ingress and egress buffer histogram collection:
+The switch sends a sample with the following names for each interface enabled for ingress and egress buffer, latency, and/or counter histogram collection:
 
 | Name | Description |
 |----- | ----------- |
 | `nvswitch_histogram_interface_egress_buffer` | Histogram interface egress buffer queue depth. |
 | `nvswitch_histogram_interface_ingress_buffer` | Histogram interface ingress buffer queue depth. |
+| `nvswitch_histogram_interface_counter` | Histogram interface counter data. |
+| `nvswitch_histogram_interface_latency` | Histogram interface latency data. |
+
 
 {{< expand "Example JSON data for interface_ingress_buffer:" >}}
 ```
@@ -408,6 +410,62 @@ The switch sends a sample with the following names for each interface enabled fo
                   },
 ```
 {{< /expand >}}
+<br>
+{{< expand "Example JSON data for interface_counter:" >}}
+```
+            {
+                "name": "nvswitch_histogram_interface_counter", 
+              "description": "NVIDIA Ethernet Switch Histogram Interface Counter", 
+              "unit": "counter", 
+              "histogram": { 
+                "dataPoints": [ 
+                  { 
+                    "attributes": [ 
+                      { 
+                        "key": "interface", 
+                        "value": { 
+                          "stringValue": "swp20" 
+                        } 
+                      }, 
+                      { 
+                        "key": "type", 
+                        "value": { 
+                          "stringValue": "rx-byte" 
+                        } 
+                      } 
+                    ], 
+                    "startTimeUnixNano": "1725403612794459038", 
+                    "timeUnixNano": "1725403612795123308", 
+                    "count": "1018476", 
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for interface_latency:" >}}
+```
+            { 
+              "name": "nvswitch_histogram_interface_latency", 
+              "description": "NVIDIA Ethernet Switch Histogram Interface Latency", 
+              "unit": "time", 
+              "histogram": { 
+                "dataPoints": [ 
+                  { 
+                    "attributes": [ 
+                      { 
+                        "key": "interface", 
+                        "value": { 
+                          "stringValue": "swp20" 
+                        } 
+                      }, 
+                      { 
+                        "key": "tc", 
+                        "value": { 
+                          "intValue": "2" 
+                        } 
+                      }
+                    ],
+```
+{{< /expand >}}
+<br>
 
 ### Static Label Format
 

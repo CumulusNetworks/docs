@@ -11,7 +11,7 @@ Telemetry enables you to collect, send, and analyze large amounts of data, such 
 Cumulus Linux supports {{<exlink url="https://github.com/open-telemetry/" text="open telemetry (OTEL)">}} export. You can use <span class="a-tooltip">[OTLP](## "open telemetry protocol")</span> to export metrics, such as interface counters, histogram collection, and platform statistic data to an external collector for analysis and visualization.
 
 {{%notice note%}}
-- Cumulus Linux supports open telemetry export on switches with Spectrum-4 ASIC only.
+Cumulus Linux supports open telemetry export on switches with Spectrum-4 ASIC only.
 {{%/notice%}}
 
 To enable open telemetry:
@@ -21,7 +21,7 @@ cumulus@switch:~$ nv set system telemetry export otlp state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-You can enable open telemetry for [interface statistics](#interface-statistics), [histogram data](#histogram-data), [control plane statistics](control-plane-statistics), and [platform statistics](#platofrm-statistics).
+You can enable open telemetry for [interface statistics](#interface-statistics), [histogram data](#histogram-data), [control plane statistics](#control-plane-statistics), and [platform statistics](#platform-statistics).
 
 ### Interface Statistics
 
@@ -56,7 +56,7 @@ cumulus@switch:~$ nv config apply
 
 ### Control Plane Statistics
 
-When you enable open telemetry for control plane statistics, additional counters for (control plane packets)[#control-plane-statistic-format] are exported:
+When you enable open telemetry for control plane statistics, additional counters for [control plane packets](#control-plane-statistic-format) are exported:
 
 ```
 cumulus@switch:~$ nv set system telemetry control-plane-stats export state enabled
@@ -87,9 +87,10 @@ cumulus@switch:~$ nv set system telemetry histogram export state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-If you do not wish to enable all platform statistics, you can enable or disable individual platform telemetry components or adjust the sample interval for individual components. The default sample interval is 1 second.
+If you do not want to enable all platform statistics, you can enable or disable individual platform telemetry components or adjust the sample interval for individual components. The default sample interval is 1 second.
 
-CPU:
+{{< tabs "TabID92 ">}}
+{{< tab "CPU ">}}
 
 ```
 cumulus@switch:~$ nv set system telemetry platform-stats class cpu state enabled
@@ -101,7 +102,8 @@ cumulus@switch:~$ nv set system telemetry platform-stats class cpu sample-interv
 cumulus@switch:~$ nv config apply
 ```
 
-Disk:
+{{< /tab >}}
+{{< tab "Disk">}}
 
 ```
 cumulus@switch:~$ nv set system telemetry platform-stats class disk state enabled
@@ -113,7 +115,8 @@ cumulus@switch:~$ nv set system telemetry platform-stats class disk sample-inter
 cumulus@switch:~$ nv config apply
 ```
 
-Filesystem:
+{{< /tab >}}
+{{< tab "Filesystem">}}
 
 ```
 cumulus@switch:~$ nv set system telemetry platform-stats class file-system state enabled
@@ -125,7 +128,8 @@ cumulus@switch:~$ nv set system telemetry platform-stats class file-system sampl
 cumulus@switch:~$ nv config apply
 ```
 
-Memory:
+{{< /tab >}}
+{{< tab "Memory">}}
 
 ```
 cumulus@switch:~$ nv set system telemetry platform-stats class memory state enabled
@@ -137,7 +141,8 @@ cumulus@switch:~$ nv set system telemetry platform-stats class memory sample-int
 cumulus@switch:~$ nv config apply
 ```
 
-Environment sensors:
+{{< /tab >}}
+{{< tab "Environment sensors">}}
 
 ```
 cumulus@switch:~$ nv set system telemetry platform-stats class environment-sensors state enabled
@@ -148,6 +153,9 @@ cumulus@switch:~$ nv config apply
 cumulus@switch:~$ nv set system telemetry platform-stats class environment-sensors sample-interval 100
 cumulus@switch:~$ nv config apply
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### gRPC OTLP Export
 
@@ -237,6 +245,7 @@ cumulus@switch:~$ nv show interface swp10 telemetry label
 ---------------------  --------------------
 interface_swp10_label  Server 10 connection
 ```
+
 ## Telemetry Data Format
 
 Cumulus Linux exports statistics and histogram data in the formats defined in this section.
@@ -245,7 +254,8 @@ Cumulus Linux exports statistics and histogram data in the formats defined in th
 
 The interface statistic data samples that the switch exports to the OTEL collector are {{<exlink url="https://opentelemetry.io/docs/specs/otel/metrics/data-model/#gauge" text="gauge streams">}} that include the interface name as an attribute and the statistics value reported in the asDouble {{<exlink url="https://opentelemetry.io/docs/specs/otel/metrics/data-model/#exemplars" text="exemplar">}}.
 
-The following table describes the interface statistics:
+{{< tabs "TabID249 ">}}
+{{< tab "Interface Statistics ">}}
 
 |  Name | Description |
 |------ | ----------- |
@@ -303,6 +313,9 @@ The following table describes the interface statistics:
 | `nvswitch_interface_ether_stats_pkts4096to8191octets` | Total packets received, 4096-8191 octets in length. |  
 | `nvswitch_interface_ether_stats_pkts8192to10239octets` | Total packets received, 8192-10239 octets in length. |  
 
+{{< /tab >}}
+{{< tab "Traffic Class ">}}
+
 The following additional interface traffic class statistics are collected and exported when you configure the `nv set system telemetry interface-stats egress-buffer traffic-class <class>` command:
 
 |  Name | Description |
@@ -316,6 +329,9 @@ The following additional interface traffic class statistics are collected and ex
 | `nvswitch_interface_tc_tx_queue` | Interface egress traffic class transmit queue counter. |
 | `nvswitch_interface_tc_tx_uc_frames` | Interface egress traffic class transmit unicast frames counter. |
 | `nvswitch_interface_tc_tx_wred_discard` | Interface egress traffic class transmit WRED discard counter. |
+
+{{< /tab >}}
+{{< tab "Priority Group ">}}
 
 The following additional interface priority group statistics are collected and exported when you configure the `nv set system telemetry interface-stats ingress-buffer priority-group <priority>` command:
 
@@ -340,6 +356,8 @@ The following additional interface priority group statistics are collected and e
 | `nvswitch_interface_pg_rx_pause_transition` | Interface receive priority group receive pause transition counter. |	 
 | `nvswitch_interface_pg_rx_discard` | Interface receive priority group receive discard counter. |
 
+{{< /tab >}}
+{{< tab "Switch Priority ">}}
 
 The following additional interface switch priority statistics are collected and exported when you configure the `nv set system telemetry interfaces-stats switch-priority <priority>` command:
 
@@ -362,6 +380,9 @@ The following additional interface switch priority statistics are collected and 
 | `nvswitch_interface_sp_tx_pause_duration` | Transmit pause duration for the switch priority. |
 | `nvswitch_interface_sp_tx_uc_frames` | Transmit unicast frame counter for the switch priority. |
 
+{{< /tab >}}
+{{< /tabs >}}
+
 {{< expand "Example JSON data for interface_oper_state:" >}}
 ```
             {
@@ -370,7 +391,7 @@ The following additional interface switch priority statistics are collected and 
               "gauge": {
                 "dataPoints": [
                   {
-                    "attributes": [
+                     "attributes": [
                       {
                         "key": "interface",
                         "value": {
@@ -396,6 +417,7 @@ The following additional interface switch priority statistics are collected and 
                 ]
               },
 ```
+
 {{< /expand >}}
 <br>
 {{< expand "Example JSON data for interface_dot3_stats_fcs_errors:" >}}
@@ -420,6 +442,7 @@ The following additional interface switch priority statistics are collected and 
                 ]
               },
 ```
+
 {{< /expand >}}
 
 ### Control Plane Statistic Format
@@ -445,7 +468,8 @@ When you enable control plane statistic telemetry, the following statistics are 
 
 When you enable platform statistic telemetry globally, or when you enable telemetry for the individual components, the following statistics are exported:
 
-**CPU:**
+{{< tabs "TabID201 ">}}
+{{< tab "CPU ">}}
 
 CPU statistics include the CPU core number and operation mode (user, system, idle, iowait, irq, softirq, steal, guest, guest_nice).
 
@@ -461,7 +485,8 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | `node_cpu_scaling_frequency_min_hertz` | Minimum scaled CPU thread frequency in hertz. | 
 | `node_cpu_seconds_total` | Seconds the CPU spent in each mode. | 
 
-**Disk:**
+{{< /tab >}}
+{{< tab "Disk ">}}
 
 | Name | Description |
 |----- | ----------- |
@@ -487,7 +512,8 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | `node_disk_writes_merged_total` | Number of writes merged. |  
 | `node_disk_written_bytes_total` | Total number of bytes written successfully. |  
 
-**Filesystem:**
+{{< /tab >}}
+{{< tab "Filesystem ">}}
 
 | Name | Description |
 |----- | ----------- |
@@ -499,7 +525,8 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | `node_filesystem_readonly` | Filesystem read-only status. |  
 | `node_filesystem_size_bytes` |  Filesystem size in bytes. |  
 
-**Memory:**
+{{< /tab >}}
+{{< tab "Memory ">}}
 
 | Name | Description |
 |----- | ----------- |
@@ -558,7 +585,8 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | `node_memory_Zswap_bytes` | `/proc/meminfo` Zswap bytes. |  
 | `node_memory_Zswapped_bytes` | `/proc/meminfo` Zswapped bytes. |
 
-**Environment Sensors:**
+{{< /tab >}}
+{{< tab "Environment Sensors ">}}
 
 | Name | Description |
 |----- | ----------- |
@@ -577,6 +605,10 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | `nvswitch_env_temp_max` | Maximum temperature threshold in centigrade. | 
 | `nvswitch_env_temp_min` | Minimum temperature threshold in centigrade. | 
 | `nvswitch_env_temp_state` | Temperature sensor status (0: ABSENT, 1: OK, 2: FAILED, 3: BAD). | 
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Histogram Data Format
 
 The histogram data samples that the switch exports to the OTEL collector are {{<exlink url="https://opentelemetry.io/docs/specs/otel/metrics/data-model/#histogram" text="histogram data points">}} that include the {{<link url="ASIC-Monitoring#histogram-collection-example" text="histogram bucket (bin)">}} counts and the respective queue length size boundaries for each bucket. Latency and counter histogram data are also exported, if configured. 
@@ -589,7 +621,6 @@ The switch sends a sample with the following names for each interface enabled fo
 | `nvswitch_histogram_interface_ingress_buffer` | Histogram interface ingress buffer queue depth. |
 | `nvswitch_histogram_interface_counter` | Histogram interface counter data. |
 | `nvswitch_histogram_interface_latency` | Histogram interface latency data. |
-
 
 {{< expand "Example JSON data for interface_ingress_buffer:" >}}
 ```
@@ -651,6 +682,7 @@ The switch sends a sample with the following names for each interface enabled fo
                     "max": 1028062
                   },
 ```
+
 {{< /expand >}}
 <br>
 {{< expand "Example JSON data for interface_egress_buffer:" >}}
@@ -713,6 +745,7 @@ The switch sends a sample with the following names for each interface enabled fo
                     "max": 1006965
                   },
 ```
+
 {{< /expand >}}
 <br>
 {{< expand "Example JSON data for interface_counter:" >}}
@@ -769,6 +802,7 @@ The switch sends a sample with the following names for each interface enabled fo
                     "max": 1018476 
                   },  
 ```
+
 {{< /expand >}}
 <br>
 {{< expand "Example JSON data for interface_latency:" >}}
@@ -824,6 +858,7 @@ The switch sends a sample with the following names for each interface enabled fo
                     "max": 0 
                   },
 ```
+
 {{< /expand >}}
 <br>
 
@@ -889,8 +924,6 @@ Interface static labels are exported as attributes in the gauge metrics for each
                       }
 
 {{< /expand >}}
-
-
 
 <!-- Commenting out HTTP export for phase 1 and 2
 ### HTTP OTLP Export

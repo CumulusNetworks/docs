@@ -6,13 +6,13 @@ toc: 3
 ---
 Telemetry enables you to collect, send, and analyze large amounts of data, such as traffic statistics, port status, device health and configuration, and events. This data helps you monitor switch performance, health and behavior, traffic patterns, and <span class="a-tooltip">[QoS](## "Quality of Service")</span>.
 
+## Configure Open Telemetry
+
 Cumulus Linux supports {{<exlink url="https://github.com/open-telemetry/" text="open telemetry (OTEL)">}} export. You can use <span class="a-tooltip">[OTLP](## "open telemetry protocol")</span> to export metrics, such as interface counters, histogram collection, and platform statistic data to an external collector for analysis and visualization.
 
 {{%notice note%}}
 - Cumulus Linux supports open telemetry export on switches with Spectrum-4 ASIC only.
 {{%/notice%}}
-
-## Configure Open Telemetry
 
 To enable open telemetry:
 
@@ -21,24 +21,18 @@ cumulus@switch:~$ nv set system telemetry export otlp state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-You can enable open telemetry for interface statistics, histogram collection, or both:
+You can enable open telemetry for [interface statistics][#interface-statistics], (histogram data)[#histogram-data], (control plane statistics)[control-plane-statistics], and (platform statistics)[#platofrm-statistics].
+
+### Interface Statistics
+
+When you enable open telemetry for interface statistics, the switch exports [counters](#interface-statistic-format) on all configured interfaces:
 
 ```
 cumulus@switch:~$ nv set system telemetry interface-stats export state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-```
-cumulus@switch:~$ nv set system telemetry histogram export state enabled
-cumulus@switch:~$ nv config apply
-```
-
-{{%notice note%}}
-- When you enable open telemetry for interface statistics, the switch exports counters on all configured interfaces.
-- When you enable open telemetry for histogram data, your buffer, counter, and latency {{<link url="ASIC-Monitoring#histogram-collection" text="histogram collection configuration">}} defines the data that the switch exports. 
-{{%/notice%}}
-
-You can enable additional interface statistic collection per interface for specific ingress buffer traffic classes (0 through 15) and egress buffer priority groups (0 through 7). When you enable these settings, the switch exports `interface_pg` and `interface_tc` [counters](#interface-statistics) for the defined priority groups and traffic classes:
+You can enable additional interface statistic collection per interface for specific ingress buffer traffic classes (0 through 15) and egress buffer priority groups (0 through 7). When you enable these settings, the switch exports `interface_pg` and `interface_tc` counters for the defined priority groups and traffic classes:
 
 ```
 cumulus@switch:~$ nv set system telemetry interface-stats ingress-buffer priority-group 4
@@ -57,6 +51,101 @@ You can adjust the interface statistics sample interval (in seconds). You can sp
 
 ```
 cumulus@switch:~$ nv set system telemetry interface-stats sample-interval 100
+cumulus@switch:~$ nv config apply
+```
+
+### Control Plane Statistics
+
+When you enable open telemetry for control plane statistics, additional counters for (control plane packets)[#control-plane-statistic-format] are exported:
+
+```
+cumulus@switch:~$ nv set system telemetry control-plane-stats export state enabled
+cumulus@switch:~$ nv config apply
+```
+You can adjust the control plane statistics sample interval (in seconds). You can specify a value between 1 and 86400. The default value is 1.
+
+```
+cumulus@switch:~$ nv set system telemetry control-plane-stats sample-interval 100
+cumulus@switch:~$ nv config apply
+```
+
+### Histogram Data
+
+When you enable open telemetry for histogram data, your buffer, counter, and latency {{<link url="ASIC-Monitoring#histogram-collection" text="histogram collection configuration">}} defines the data that the switch exports:
+
+```
+cumulus@switch:~$ nv set system telemetry histogram export state enabled
+cumulus@switch:~$ nv config apply
+```
+
+### Platform Statistics
+
+When you platform statistic open telemetry, data related to CPU, disk, filesystem, memory, and sensor health is exported. To enable all (platform statistics)[#platform-statistic-format] globally:
+
+```
+cumulus@switch:~$ nv set system telemetry histogram export state enabled
+cumulus@switch:~$ nv config apply
+```
+
+If you do not wish to enable all platform statistics, you can enable or disable individual platform telemetry components or adjust the sample interval for individual components. The default sample interval is 1 second.
+
+CPU:
+
+```
+cumulus@switch:~$ nv set system telemetry platform-stats class cpu state enabled
+cumulus@switch:~$ nv config apply
+```
+
+```
+cumulus@switch:~$ nv set system telemetry platform-stats class cpu sample-interval 100
+cumulus@switch:~$ nv config apply
+```
+
+Disk:
+
+```
+cumulus@switch:~$ nv set system telemetry platform-stats class disk state enabled
+cumulus@switch:~$ nv config apply
+```
+
+```
+cumulus@switch:~$ nv set system telemetry platform-stats class disk sample-interval 100
+cumulus@switch:~$ nv config apply
+```
+
+Filesystem:
+
+```
+cumulus@switch:~$ nv set system telemetry platform-stats class file-system state enabled
+cumulus@switch:~$ nv config apply
+```
+
+```
+cumulus@switch:~$ nv set system telemetry platform-stats class file-system sample-interval 100
+cumulus@switch:~$ nv config apply
+```
+
+Memory:
+
+```
+cumulus@switch:~$ nv set system telemetry platform-stats class memory state enabled
+cumulus@switch:~$ nv config apply
+```
+
+```
+cumulus@switch:~$ nv set system telemetry platform-stats class memory sample-interval 100
+cumulus@switch:~$ nv config apply
+```
+
+Environment sensors:
+
+```
+cumulus@switch:~$ nv set system telemetry platform-stats class environment-sensors state enabled
+cumulus@switch:~$ nv config apply
+```
+
+```
+cumulus@switch:~$ nv set system telemetry platform-stats class environment-sensors sample-interval 100
 cumulus@switch:~$ nv config apply
 ```
 
@@ -150,9 +239,9 @@ interface_swp10_label  Server 10 connection
 ```
 ## Telemetry Data Format
 
-Cumulus Linux exports interface statistic and histogram data in the following format.
+Cumulus Linux exports statistics and histogram data in the formats defined in this section.
 
-### Interface Statistics
+### Interface Statistic Format
 
 The interface statistic data samples that the switch exports to the OTEL collector are {{<exlink url="https://opentelemetry.io/docs/specs/otel/metrics/data-model/#gauge" text="gauge streams">}} that include the interface name as an attribute and the statistics value reported in the asDouble {{<exlink url="https://opentelemetry.io/docs/specs/otel/metrics/data-model/#exemplars" text="exemplar">}}.
 
@@ -177,10 +266,47 @@ The following table describes the interface statistics:
 | `nvswitch_interface_dot3_stats_single_collision_frames` | 802.3 single collision frames counter. |
 | `nvswitch_interface_dot3_stats_sqe_test_errors` | 802.3 SQE test error counter. |
 | `nvswitch_interface_dot3_stats_symbol_errors` | 802.3 symbol error counter. |
-| `nvswitch_interface_pg_rx_buffer_discard` | Interace ingress priority group receive buffer discard counter. |
-| `nvswitch_interface_pg_rx_frames` | Interface ingress priority group receive frames counter.|
-| `nvswitch_interface_pg_rx_octet` | Interface ingress priority group receive bytes counter. |
-| `nvswitch_interface_pg_rx_shared_buffer_discard` | Interface ingress priority group receive shared buffer discard counter. |
+| `nvswitch_interface_performance_marked_packets` | Interface performance marked packets, with marking as `ece` or `ecn`. |
+| `nvswitch_interface_discards_ingress_general` | Interface ingress general discards counter. |
+| `nvswitch_interface_discards_ingress_policy_engine` | Interface ingress policy engine discards counter. |
+| `nvswitch_interface_discards_ingress_vlan_membership` | Interface ingress VLAN membership filter discards counter. |
+| `nvswitch_interface_discards_ingress_tag_frame_type` | Interface ingress VLAN tag filter discards counter. |
+| `nvswitch_interface_discards_egress_vlan_membership` | Interface egress VLAN emmbership filter discards counter. |
+| `nvswitch_interface_discards_loopback_filter` | Interface loopback filter discards counter. |
+| `nvswitch_interface_discards_egress_general` | Interface egress general discards counter. |
+| `nvswitch_interface_discards_egress_link_down` | Interface egress link down discards counter. |
+| `nvswitch_interface_discards_egress_hoq` | Interface egress head-of-queue timeout discards. |
+| `nvswitch_interface_discards_port_isolation` | Interface port isolation filter discards. |
+| `nvswitch_interface_discards_egress_policy_engine` | Interface egress policy engine discards. |
+| `nvswitch_interface_discards_ingress_tx_link_down` | Interface ingress transmit link down discards. |
+| `nvswitch_interface_discards_egress_stp_filter` | Interface egress spanning tree filter discards. | 
+| `nvswitch_interface_discards_egress_hoq_stall` | Interface egress head-of-queue stall discards.|
+| `nvswitch_interface_discards_egress_sll` | Interface egress switch lifetime limit discards. |
+| `nvswitch_interface_discards_ingress_discard_all` | Interface total ingress discards.| 
+| `nvswitch_interface_tx_stats_pkts64octets` | Total packets transmitted, 64 octets in length. |  
+| `nvswitch_interface_tx_stats_pkts65-to127octets` | Total packets transmitted, 64 octets in length. |	 
+| `nvswitch_interface_tx_stats_pkts256-to511octets` | Total packets transmitted, 256-511 octets in length. |  
+| `nvswitch_interface_tx_stats_pkts512-to1023octets` | Total packets transmitted, 512-1023 octets in length. |  
+| `nvswitch_interface_tx_stats_pkts1024-to1518octets` | Total packets transmitted, 1024-1518 octets in length. |  
+| `nvswitch_interface_tx_stats_pkts1519-to2047octets` | Total packets transmitted, 1519-2047 octets in length. |  
+| `nvswitch_interface_tx_stats_pkts2048-to4095octets` | Total packets transmitted, 2048-4095 octets in length. |  
+| `nvswitch_interface_tx_stats_pkts4096-to8191octets` | Total packets transmitted, 4096-8191 octets in length. |  
+| `nvswitch_interface_tx_stats_pkts8192-to10239octets` | Total packets transmitted, 8192-10239 octets in length. |  
+| `nvswitch_interface_ether_stats_pkts64octets` | Total packets received, 64 octets in length. |  
+| `nvswitch_interface_ether_stats_pkts65to127octets` | Total packets received, 65-127 octets in length. |  
+| `nvswitch_interface_ether_stats_pkts128to255octets` | Total packets received, 128-255 octets in length. |  
+| `nvswitch_interface_ether_stats_pkts256to511octets` | Total packets received, 256-511 octets in length. |  
+| `nvswitch_interface_ether_stats_pkts512to1023octets` | Total packets received, 512-1023 octets in length. |  
+| `nvswitch_interface_ether_stats_pkts1024to1518octets` | Total packets received, 1024-1518 octets in length. |  
+| `nvswitch_interface_ether_stats_pkts1519to2047octets` | Total packets received, 1519-2047 octets in length. |  
+| `nvswitch_interface_ether_stats_pkts2048to4095octets` | Total packets received, 2048-4095 octets in length. |  
+| `nvswitch_interface_ether_stats_pkts4096to8191octets` | Total packets received, 4096-8191 octets in length. |  
+| `nvswitch_interface_ether_stats_pkts8192to10239octets` | Total packets received, 8192-10239 octets in length. |  
+
+The following additional interface traffic class statistics are collected and exported when you configure the `nv set system telemetry interface-stats egress-buffer traffic-class <class>` command:
+
+|  Name | Description |
+|------ | ----------- |
 | `nvswitch_interface_tc_tx_bc_frames` | Interface egress traffic class transmit broadcast frames counter. |
 | `nvswitch_interface_tc_tx_ecn_marked_tc` | Interface egress traffic class transmit ECN marked counter. |
 | `nvswitch_interface_tc_tx_frames` | Interface egress traffic class trasmit frames counter. |
@@ -190,7 +316,30 @@ The following table describes the interface statistics:
 | `nvswitch_interface_tc_tx_queue` | Interface egress traffic class transmit queue counter. |
 | `nvswitch_interface_tc_tx_uc_frames` | Interface egress traffic class transmit unicast frames counter. |
 | `nvswitch_interface_tc_tx_wred_discard` | Interface egress traffic class transmit WRED discard counter. |
-| `nvswitch_interface_performance_marked_packets` | Interface performance marked packets, with marking as `ece` or `ecn`. |
+
+The following additional interface priority group statistics are collected and exported when you configure the `nv set system telemetry interface-stats ingress-buffer priority-group <priority>` command:
+
+|  Name | Description |
+|------ | ----------- |
+| `nvswitch_interface_pg_rx_buffer_discard` | Interace ingress priority group receive buffer discard counter. |
+| `nvswitch_interface_pg_rx_frames` | Interface ingress priority group receive frames counter.|
+| `nvswitch_interface_pg_rx_octets` | Interface ingress priority group receive bytes counter. |
+| `nvswitch_interface_pg_rx_shared_buffer_discard` | Interface ingress priority group receive shared buffer discard counter. |
+| `nvswitch_interface_pg_rx_uc_frames` | Interface receive priority group unicast frames counter. |
+| `nvswitch_interface_pg_rx_mc_frames` | Interface receive priority group multicast frames counter. |
+| `nvswitch_interface_pg_rx_bc_frames` | Interface receive priority group broadcast frames counter. |	 	 
+| `nvswitch_interface_pg_tx_octets` | Interface receive priority group transmit bytes counter. |
+| `nvswitch_interface_pg_tx_uc_frames` | Interface receive priority group transmit unicast frames counter. |	 
+| `nvswitch_interface_pg_tx_mc_frames` | Interface receive priority group transmit multicast frames counter. |	 
+| `nvswitch_interface_pg_tx_bc_frames` | Interface receive priority group transmit broadcast frames counter. |	 
+| `nvswitch_interface_pg_tx_frames` | Interface receive priority group transmit frames counter. | 
+| `nvswitch_interface_pg_rx_pause` | Interface receive priority group receive pause counter. | 
+| `nvswitch_interface_pg_rx_pause_duration` | Interface receive priority group receive pause duration counter. |	 
+| `nvswitch_interface_pg_tx_pause` | Interface receive priority group transmit pause counter. |
+| `nvswitch_interface_pg_tx_pause_duration` | Interface receive priority group transmit pause duration counter. |	
+| `nvswitch_interface_pg_rx_pause_transition` | Interface receive priority group receive pause transition counter. |	 
+| `nvswitch_interface_pg_rx_discard` | Interface receive priority group receive discard counter. |
+
 
 The following additional interface switch priority statistics are collected and exported when you configure the `nv set system telemetry interfaces-stats switch-priority <priority>` command:
 
@@ -273,7 +422,148 @@ The following additional interface switch priority statistics are collected and 
 ```
 {{< /expand >}}
 
-### Histogram Data
+### Control Plane Statistic Format
+
+When you enable control plane statistic telemetry, the following statistics are exported:
+
+| Name | Description |
+|----- | ----------- |
+| 'nvswitch_control_plane_tx_packets` | Control plane transmit packets. |
+| 'nvswitch_control_plane_tx_bytes` | Control plane transmit bytes. |
+| 'nvswitch_control_plane_rx_packets' | Control plane receive packets. |
+| 'nvswitch_control_plane_rx_bytes' | Control plane receive bytes. |
+| 'nvswitch_control_plane_rx_buffer_drops' | Control plane receive buffer drops. |
+| 'nvswitch_control_plane_trap_rx_packets` | Control plane trap group receive packets. |
+| 'nvswitch_control_plane_trap_rx_event_count`| Control plane trap group receive events. |
+| 'nvswitch_control_plane_trap_rx_drop` | Control plane trap group receive drops. |
+| 'nvswitch_control_plane_trap_rx_bytes` | Control plane trap group receive bytes. |
+| 'nvswitch_control_plane_trap_group_rx_packets' | Control plane trap group receive packets. |
+| 'nvswitch_control_plane_trap_group_rx_bytes' | Control plane trap group receive bytes. |
+| 'nvswitch_control_plane_trap_group_pkt_violations' | Control plane trap group packet violations. |
+
+### Platform Statistic Format
+
+When you enable platform statistic telemetry globally, or when you enable telemetry for the individual components, the following statistics are exported:
+
+**CPU:**
+
+| Name | Description |
+|----- | ----------- |
+| `node_cpu_core_throttles_total` | |
+| `node_cpu_frequency_max_hertz` | |
+| `node_cpu_frequency_min_hertz` | |
+| `node_cpu_guest_seconds_total` | |
+| `node_cpu_package_throttles_total` | |
+| `node_cpu_scaling_frequency_hertz` | |  
+| `node_cpu_scaling_frequency_max_hertz` | |  
+| `node_cpu_scaling_frequency_min_hertz` | | 
+| `node_cpu_seconds_total` | | 
+
+**Disk:**
+
+| Name | Description |
+|----- | ----------- |
+| `node_disk_ata_rotation_rate_rpm` | |
+| `node_disk_ata_write_cache` | |
+| `node_disk_ata_write_cache_enabled` | | 
+| `node_disk_discard_time_seconds_total` | |  
+| `node_disk_discarded_sectors_total` | |  
+| `node_disk_discards_completed_total` | |  
+| `node_disk_discards_merged_total` | |  
+| `node_disk_flush_requests_time_seconds_total` | |  
+| `node_disk_flush_requests_total` | |  
+| `node_disk_info` | |  
+| `node_disk_io_now` | |  
+| `node_disk_io_time_seconds_total` | |  
+| `node_disk_io_time_weighted_seconds_total` | |  
+| `node_disk_read_bytes_total` | |  
+| `node_disk_read_time_seconds_total` | |  
+| `node_disk_reads_completed_total` | |  
+| `node_disk_reads_merged_total` | |  
+| `node_disk_write_time_seconds_total` | |  
+| `node_disk_writes_completed_total` | |  
+| `node_disk_writes_merged_total` | |  
+| `node_disk_written_bytes_total` | |  
+
+**Memory:**
+
+| Name | Description |
+|----- | ----------- |
+| `node_memory_Active_anon_bytes` | |
+| `node_memory_Active_bytes` | |  
+| `node_memory_Active_file_bytes` | |  
+| `node_memory_AnonHugePages_bytes` | |
+| `node_memory_AnonPages_bytes` | |  
+| `node_memory_Bounce_bytes` | |  
+| `node_memory_Buffers_bytes` | |  
+| `node_memory_Cached_bytes` | |  
+| `node_memory_CommitLimit_bytes` | |  
+| `node_memory_Committed_AS_bytes` | |  
+| `node_memory_DirectMap1G_bytes` | |  
+| `node_memory_DirectMap2M_bytes` | |  
+| `node_memory_DirectMap4k_bytes` | |  
+| `node_memory_Dirty_bytes` | |  
+| `node_memory_FileHugePages_bytes` | |  
+| `node_memory_FilePmdMapped_bytes` | |  
+| `node_memory_HardwareCorrupted_bytes` | |  
+| `node_memory_HugePages_Free` | |  
+| `node_memory_HugePages_Rsvd` | |  
+| `node_memory_HugePages_Surp` | |  
+| `node_memory_HugePages_Total` | |  
+| `node_memory_Hugepagesize_bytes` | |  
+| `node_memory_Hugetlb_bytes` | |  
+| `node_memory_Inactive_anon_bytes` | |  
+| `node_memory_Inactive_bytes` | |  
+| `node_memory_Inactive_file_bytes` | |  
+| `node_memory_KReclaimable_bytes` | |  
+| `node_memory_KernelStack_bytes` | |  
+| `node_memory_Mapped_bytes` | |  
+| `node_memory_MemAvailable_bytes` | |  
+| `node_memory_MemFree_bytes` | |  
+| `node_memory_MemTotal_bytes` | |  
+| `node_memory_Mlocked_bytes` | |  
+| `node_memory_NFS_Unstable_bytes` | |  
+| `node_memory_PageTables_bytes` | |  
+| `node_memory_Percpu_bytes` | |  
+| `node_memory_SReclaimable_bytes` | |  
+| `node_memory_SUnreclaim_bytes` | |  
+| `node_memory_SecPageTables_bytes` | |  
+| `node_memory_ShmemHugePages_bytes` | |  
+| `node_memory_ShmemPmdMapped_bytes` | |  
+| `node_memory_Shmem_bytes` | |  
+| `node_memory_Slab_bytes` | |  
+| `node_memory_SwapCached_bytes` | |  
+| `node_memory_SwapFree_bytes` | |  
+| `node_memory_SwapTotal_bytes` | |  
+| `node_memory_Unevictable_bytes` | |  
+| `node_memory_VmallocChunk_bytes` | |  
+| `node_memory_VmallocTotal_bytes` | |  
+| `node_memory_VmallocUsed_bytes` | |  
+| `node_memory_WritebackTmp_bytes` | |  
+| `node_memory_Writeback_bytes` | |  
+| `node_memory_Zswap_bytes` | |  
+| `node_memory_Zswapped_bytes` | |
+
+**Environment Sensors:**
+
+| Name | Description |
+|----- | ----------- |
+| `nvswitch_env_fan_cur_speed` | |  
+| `nvswitch_env_fan_dir` | | 
+| `nvswitch_env_fan_max_speed` | | 
+| `nvswitch_env_fan_min_speed` | |  
+| `nvswitch_env_fan_state` | | 
+| `nvswitch_env_psu_capacity` | | 
+| `nvswitch_env_psu_current` | | 
+| `nvswitch_env_psu_power` | | 
+| `nvswitch_env_psu_state` | | 
+| `nvswitch_env_psu_voltage` | | 
+| `nvswitch_env_temp_crit` | | 
+| `nvswitch_env_temp_current` | | 
+| `nvswitch_env_temp_max` | | 
+| `nvswitch_env_temp_min` | | 
+| `nvswitch_env_temp_state` | | 
+### Histogram Data Format
 
 The histogram data samples that the switch exports to the OTEL collector are {{<exlink url="https://opentelemetry.io/docs/specs/otel/metrics/data-model/#histogram" text="histogram data points">}} that include the {{<link url="ASIC-Monitoring#histogram-collection-example" text="histogram bucket (bin)">}} counts and the respective queue length size boundaries for each bucket. Latency and counter histogram data are also exported, if configured. 
 

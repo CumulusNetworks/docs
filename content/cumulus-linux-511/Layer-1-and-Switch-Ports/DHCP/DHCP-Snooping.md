@@ -90,7 +90,7 @@ cumulus@leaf01:~$ sudo nano /etc/dhcpsnoop/dhcp_snoop.json
 {{< /tab >}}
 {{< /tabs >}}
 
-## Show the DHCP Binding Table
+## Show the DHCP Snooping Table
 
 To show the DHCP snooping table, run the `nv show bridge domain <bridge> dhcp-snoop` command for IPv4 or the `nv show bridge domain <bridge> dhcp-snoop6` command for IPv6.
 

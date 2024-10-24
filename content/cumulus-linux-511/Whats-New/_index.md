@@ -61,17 +61,7 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 |`nv show interface pluggables` (replaced with `nv show platform transceiver`) |
 |`nv show interface <interface>` pluggable (replaced with `nv show platform transceiver <interface>`)|
 |`nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib` (replaced with `nv show vrf <vrf-id> router bgp adress-family l2vpn-evpn route`) |
-|`nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd` |
-|`nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id>` |
-|`nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> route-type` |
-|`nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> route-type <route-type-id>` |
-|`nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> route-type <route-type-id> route` |
-|`nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> route-type <route-type-id> route <evpn-route-id>` |
-| `nv set vrf <vrf-id> router rib ipv4 protocol bgp fib-filter` |
-| `nv show vrf <vrf-id> router rib ipv6 protocol --applied`|
-| `nv show vrf <vrf_id> router rib ipv6 protocol <protocol>`|
-| `nv show vrf <vrf_id> router nexthop-tracking <afi> ip_address protocol <protocol>` |
-| `nv show vrf <vrf_id> router nexthop-tracking <afi> ip_address resolved-via <id>` |
+| `nv show vrf <vrf_id> router nexthop-tracking <afi> ip_address` |
 | `nv show router nexthop rib <nhg-id> dependents` |
 | `nv show router nexthop rib <nhg-id> depends` |
 | `nv show router nexthop rib <nhg-id> resolved-via <resolved-via-id>` |

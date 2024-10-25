@@ -721,8 +721,6 @@ To monitor interface packet and buffer statistics, you specify:
    - All, good, and dropped packets (`packet-extended`)
    - Ingress and egress queue occupancy (`buffer`)
 - The switch ports to monitor.
-  - For the egress queue occupancy, you can specify the traffic class you want to monitor.
-  - For the ingress queue occupancy, you can specify the priority group you want to monitor.
 - The interval timer (how often to send the interface statistics to the snapshot file). There is no default value for this setting. If you do not configure this setting, you must configure the collect action. You also have the option to send a message to the `/var/log/syslog` file.
 <!-- ### Likely not applicable. Need to validate if there is still a sample-interval adjustment for ASIC sampling for "snapshot" or packet/buffer stat telemetry
 - The sampling time (the frequency that the ASIC monitoring service retrieves data from the ASIC). The default sampling time is 1024 nanoseconds.
@@ -782,21 +780,6 @@ cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg time
 cumulus@switch:~$ nv config apply
 ```
 
-The following example collects packets matching the specified switch priority for your telemetry configuration:
-
-```
-cumulus@switch:~$ nv set system telemetry snapshot switch-priority 3
-cumulus@switch:~$ nv config apply
-```
-
-The following example collects buffer occupancy statistics matching the specified priority group and traffic class for your telemetry configuration:
-
-```
-cumulus@switch:~$ nv set system telemetry snapshot ingress-buffer priority-group 0
-cumulus@switch:~$ nv set system telemetry snapshot egress-buffer traffic-class 0
-cumulus@switch:~$ nv config apply
-```
-
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
@@ -810,7 +793,6 @@ The following table describes the ASIC monitor settings.
 | `<port_group_name>.port_set` | Specifies the range of ports you want to monitor, such as `swp4,swp8,swp10-swp50` or `all`. |
 | `<port_group_name>.stat_type` | Specifies the type of data that the port group collects; `packet_all`, `buffer`, `packet`, or `packet_extended`.|
 | `<port_group_name>.timer` | Specifies how often the switch sends the data to the snapshot file; for example, if you specify 1s, the switch sends the data one time each second.|
-| `<port_group_name>.histogram.sample_time_ns` | The sampling time in nanoseconds.|
 <!--
 The following example changes the sampling size to 1000:
 
@@ -893,11 +875,11 @@ Snapshots provide you with more data; however, they can occupy a lot of disk spa
 {{< tabs "TabID893 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example creates the `/var/run/cumulus/all_packet_stats` snapshot for all interface packet and buffer statistics. The number of snapshots that you can create before the first snapshot file is overwritten is set to 120.
+The following example creates the `/var/run/cumulus/all_packet_stats1` snapshot for all interface packet and buffer statistics. The number of snapshots that you can create before the first snapshot file is overwritten is set to 80.
 
 ```
-cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg snapshot-file name /var/run/cumulus/all_packet_stats 
-cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg snapshot-file count 120 
+cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg snapshot-file name /var/run/cumulus/all_packet_stats1 
+cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg snapshot-file count 80 
 cumulus@switch:~$ nv config apply
 ```
 
@@ -917,21 +899,14 @@ The following example sets the snapshot file name to `all_packet_stats` and the 
 cumulus@switch:~$ sudo nano /etc/cumulus/datapath/monitor.conf
 ...
 monitor.packet-all-pg_packet_extended.action_list         = [snapshot]
-monitor.packet-all-pg_packet_extended.snapshot.file       = /var/run/cumulus/packet_buffer/all_packet_stats 
-monitor.packet-all-pg_packet_extended.snapshot.file_count = 120
+monitor.packet-all-pg_packet_extended.snapshot.file       = /var/run/cumulus/packet_buffer/all_packet_stats1 
+monitor.packet-all-pg_packet_extended.snapshot.file_count = 80
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
 
-## Show Interface Packet and Buffer Statistics
-
 To show a packet and buffer statistics snapshot, run these commands:
-- `nv show system telemetry snapshot port-group <port-group-id> stats-type`
-- `nv show system telemetry snapshot port-group <port-group-id> stats`
-- `nv show system telemetry snapshot port-group <port-group-id> stats buffer`
-- `nv show system telemetry snapshot port-group <port-group-id> stats buffer pool`
-- `nv show system telemetry snapshot port-group <port-group-id> stats buffer pool <buffer-pool-id>`
 - `nv show system telemetry snapshot port-group <port-group-id> stats interface  <interface> packet good [tx, rx]`
 - `nv show system telemetry snapshot port-group <port-group-id> stats interface  <interface> packet discard [tx, rx, general]`
 - `nv show system telemetry snapshot port-group <port-group-id> stats interface  <interface> packet good [tx, rx]`
@@ -1087,25 +1062,6 @@ monitor.buffer-pg_buffer.snapshot.file_count                  = 64
 
 {{< /tab >}}
 {{< /tabs >}}
-
-### Show Configuration settings
-
-To show all the configuration settings for packet and buffer statistics, run the `nv show system telemetry snapshot` command:
-
-```
-cumulus@switch:~$ nv show system telemetry snapshot
-                    operational  applied   pending 
-------------------  -----------  --------  --------
-sample-interval                  1         1       
-[switch-priority]                                  
-ingress-buffer                                     
-  [priority-group]                                 
-egress-buffer                                      
-  [traffic-class]                                  
-[port-group]                                       
-export                                             
-  state                          disabled  disabled
-```
 
 ## High Frequency Telemetry
 

@@ -579,7 +579,11 @@ You can show tracked next hops with the following NVUE commands:
 - `nv show vrf <vrf> router nexthop-tracking ipv6 <ip-address>`
 
 ```
-cumulus@leaf01:~$ nv show vrf default router nexthop-tracking ipv4
+cumulus@leaf01:~$  nv show vrf default router nexthop-tracking ipv4
+                      operational  applied  pending
+--------------------  -----------  -------  -------
+resolved-via-default                        on
+
 route-map
 ============
 No Data
@@ -595,15 +599,25 @@ ip-address
     IPAddress    DirectlyConnected  ResolvedProtocol  Interface      VRF      Weight  ProtocolFiltered  Flags
     -----------  -----------------  ----------------  -------------  -------  ------  ----------------  -----
     10.0.1.34    off                bgp               swp52          default  1       off               A    
+                                                      swp53          default  1                         A    
+                                                      swp54          default  1                         A    
                                                       swp51          default  1                         A    
     10.10.10.2   off                bgp               peerlink.4094  default  1       off               A    
     10.10.10.3   off                bgp               swp52          default  1       off               A    
+                                                      swp53          default  1                         A    
+                                                      swp54          default  1                         A    
                                                       swp51          default  1                         A    
     10.10.10.4   off                bgp               swp52          default  1       off               A    
+                                                      swp53          default  1                         A    
+                                                      swp54          default  1                         A    
                                                       swp51          default  1                         A    
     10.10.10.63  off                bgp               swp52          default  1       off               A    
+                                                      swp53          default  1                         A    
+                                                      swp54          default  1                         A    
                                                       swp51          default  1                         A    
     10.10.10.64  off                bgp               swp52          default  1       off               A    
+                                                      swp53          default  1                         A    
+                                                      swp54          default  1                         A    
                                                       swp51          default  1                         A
 ```
 

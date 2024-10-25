@@ -725,25 +725,28 @@ To monitor interface packet and buffer statistics, you specify:
   - For the egress queue occupancy, you can specify the traffic class you want to monitor.
   - For the ingress queue occupancy, you can specify the priority group you want to monitor.
 - The interval timer (how often to send the interface statistics to the snapshot file). There is no default value for this setting. If you do not configure this setting, you must configure the collect action. You also have the option to send a message to the `/var/log/syslog` file.
+<!-- ### Likely not applicable. Need to validate if there is still a sample-interval adjustment for ASIC sampling for "snapshot" or packet/buffer stat telemetry
 - The sampling time (the frequency that the ASIC monitoring service retrieves data from the ASIC). The default sampling time is 1024 nanoseconds.
+-->
 
 {{< tabs "TabID858 ">}}
 {{< tab "NVUE Commands ">}}
-
+<!-- ### Likely not applicable. Need to validate if there is still a sample-interval adjustment for ASIC sampling for "snapshot" or packet/buffer stat telemetry
 To set the sampling time, run the `nv set system telemetry interface-stats sample-interval <value>` command. The following example sets the sample interval to 1024:
 
 ```
 cumulus@switch:~$ nv set system telemetry interface-stats sample-interval 1024
 cumulus@switch:~$ nv config apply
 ```
+-->
 
 The following example enables packet and buffer data collection on all interfaces. The switch sends the interface statistics about all, good, and dropped packets, in addition to ingress and egress queue occupancy to the default snapshot file every second.
 
 ```
 cumulus@switch:~$ nv set system telemetry enable on
-cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg interface all 
-cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg stats-type packet-all 
-cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg timer-interval 1
+cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg interface all 
+cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg stats-type packet-all 
+cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg timer-interval 1
 cumulus@switch:~$ nv config apply
 ```
 
@@ -751,9 +754,9 @@ The following example enables packet and buffer data collection on swp1 through 
 
 ```
 cumulus@switch:~$ nv set system telemetry enable on
-cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg interface swp1-8 
-cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg stats-type buffer
-cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg timer-interval 1
+cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg interface swp1-8 
+cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg stats-type buffer
+cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg timer-interval 1
 cumulus@switch:~$ nv config apply
 ```
 
@@ -761,9 +764,9 @@ The following example enables packet and buffer data collection on all interface
 
 ```
 cumulus@switch:~$ nv set system telemetry enable on
-cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg interface all
-cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg stats-type packet
-cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg timer-interval 5
+cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg interface all
+cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg stats-type packet
+cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg timer-interval 5
 cumulus@switch:~$ nv config apply
 ```
 
@@ -771,24 +774,24 @@ The following example enables packet and buffer data collection on all interface
 
 ```
 cumulus@switch:~$ nv set system telemetry enable on
-cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg interface all
-cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg stats-type packet-extended
-cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg timer-interval 5
+cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg interface all
+cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg stats-type packet-extended
+cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg timer-interval 5
 cumulus@switch:~$ nv config apply
 ```
 
 The following example collects packets matching the specified switch priority for your telemetry configuration:
 
 ```
-cumulus@switch:~$ nv set system telemetry interface-stats switch-priority 3
+cumulus@switch:~$ nv set system telemetry snapshot switch-priority 3
 cumulus@switch:~$ nv config apply
 ```
 
 The following example collects buffer occupancy statistics matching the specified priority group and traffic class for your telemetry configuration:
 
 ```
-cumulus@switch:~$ nv set system telemetry interface-stats ingress-buffer priority-group 0
-cumulus@switch:~$ nv set system telemetry interface-stats egress-buffer traffic-class 0
+cumulus@switch:~$ nv set system telemetry snapshot ingress-buffer priority-group 0
+cumulus@switch:~$ nv set system telemetry snapshot egress-buffer traffic-class 0
 cumulus@switch:~$ nv config apply
 ```
 
@@ -891,8 +894,8 @@ Snapshots provide you with more data; however, they can occupy a lot of disk spa
 The following example creates the `/var/run/cumulus/all_packet_stats` snapshot for all interface packet and buffer statistics. The number of snapshots that you can create before the first snapshot file is overwritten is set to 120.
 
 ```
-cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg snapshot-file name /var/run/cumulus/all_packet_stats 
-cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg snapshot-file count 120 
+cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg snapshot-file name /var/run/cumulus/all_packet_stats 
+cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg snapshot-file count 120 
 cumulus@switch:~$ nv config apply
 ```
 
@@ -920,19 +923,19 @@ monitor.packet-all-pg_packet_extended.snapshot.file_count = 120
 {{< /tabs >}}
 
 - To show a packet and buffer statistics snapshot, run these commands:
-  - `nv show system telemetry interface-stats port-group packet-all-pg snapshot interface <interface> packet good [tx, rx]`
-  - `nv show system telemetry interface-stats port-group packet-all-pg snapshot interface <interface> packet discard [tx, rx, general]`
-  - `nv show system telemetry interface-stats port-group packet-all-pg snapshot interface <interface> packet good [tx, rx]`
-  - `nv show system telemetry interface-stats port-group packet-all-pg snapshot interface <interface> packet all [tx, rx]`
-  - `nv show system telemetry interface-stats port-group packet-all-pg snapshot interface <interface> packet pg [tx, rx]`
-  - `nv show system telemetry interface-stats port-group packet-all-pg snapshot interface <interface> packet tc`
-  - `nv show system telemetry interface-stats port-group packet-all-pg snapshot interface <interface> buffer [pg, tc, ingress-port]`
-  - `nv show system telemetry interface-stats port-group buffer-pg snapshot buffer pool`
+  - `nv show system telemetry snapshot port-group packet-all-pg snapshot interface <interface> packet good [tx, rx]`
+  - `nv show system telemetry snapshot port-group packet-all-pg snapshot interface <interface> packet discard [tx, rx, general]`
+  - `nv show system telemetry snapshot port-group packet-all-pg snapshot interface <interface> packet good [tx, rx]`
+  - `nv show system telemetry snapshot port-group packet-all-pg snapshot interface <interface> packet all [tx, rx]`
+  - `nv show system telemetry snapshot port-group packet-all-pg snapshot interface <interface> packet pg [tx, rx]`
+  - `nv show system telemetry snapshot port-group packet-all-pg snapshot interface <interface> packet tc`
+  - `nv show system telemetry snapshot port-group packet-all-pg snapshot interface <interface> buffer [pg, tc, ingress-port]`
+  - `nv show system telemetry snapshot port-group buffer-pg snapshot buffer pool`
 
 The following example shows a snapshot for good packets transmitted on swp1:
 
 ```
-cumulus@switch:~$ nv show system telemetry interface-stats port-group all-packet-pg snapshot interface swp1 packet good tx 
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg snapshot interface swp1 packet good tx 
 Id       Date-Time                 Packet         Byte             Mcast        Bcast         Mac Ctrl       Pause Mac Ctrl 
 
 -----    -------------------       ------------   -------------    ---------    ----------    ------------   ---------------
@@ -945,7 +948,7 @@ Id       Date-Time                 Packet         Byte             Mcast        
 The following example shows a snapshot for dropped packets received on swp1:
 
 ```
-cumulus@switch:~$ nv show system telemetry interface-stats port-group all-packet-pg snapshot interface swp1 packet discard rx 
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg snapshot interface swp1 packet discard rx 
 Id       Date-Time                  General      Policy        Vlan         Tag Type     Opcode     Buffer   Runt     Other 
 
 -----    -------------------        ---------    -----------   -------      ----------    -------   -------  -------  -------- 
@@ -958,7 +961,7 @@ Id       Date-Time                  General      Policy        Vlan         Tag 
 The following example shows a snapshot for ingress queue packets received on swp1:
 
 ```
-cumulus@switch:~$ nv show system telemetry interface-stats port-group all-packet-pg snapshot interface swp1 packet pg 0 tx
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg snapshot interface swp1 packet pg 0 tx
 Id       Date-Time                 Pause Packet        Pause Duration   
 -----    -------------------       ------------        --------------------- 
 
@@ -967,10 +970,10 @@ Id       Date-Time                 Pause Packet        Pause Duration
 3         2023-12-13 11:02:42      0                   0
 ```
 
-The following example shows a snapshot for buffer occupancy on swp1:
+The following example shows a snapshot for buffer occupancy on swp1. The current value is the number of bytes buffered at the time of the sample, and the watermark value represents the highest historical number of bytes buffered during a sample.
 
 ```
-nv show system telemetry interface-stats port-group all-packet-pg snapshot interface swp1 buffer pg 0 
+nv show system telemetry snapshot port-group all-packet-pg snapshot interface swp1 buffer pg 0 
 Id       Date-Time                 Current Value        Watermark        
 -----    -------------------       ------------         -------------
 1        2023-12-13 11:02:44       0                    0                           
@@ -992,16 +995,16 @@ In addition to snapshots, you can configure the switch to send log messages to t
 The following example sends a message to the `/var/log/syslog` file after the number of dropped error packets collected in the `packet-all-pg` port group reaches 100:
 
 ```
-cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg threshold packet-error-drops value 100 
-cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg threshold packet-error-drops action log  
+cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg threshold packet-error-drops value 100 
+cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg threshold packet-error-drops action log  
 cumulus@switch:~$ nv config apply
 ```
 
 The following example sends a message to the `/var/log/syslog` file after the number of dropped congested packets collected in the `packet-all-pg` port group reaches 100:
 
 ```
-cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg threshold packet-congestion-drops value 100 
-cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg threshold packet-congestion-drops action log 
+cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg threshold packet-congestion-drops value 100 
+cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg threshold packet-congestion-drops action log 
 cumulus@switch:~$ nv config apply
 ```
 
@@ -1045,8 +1048,8 @@ The following example configures the switch to collect ingress and egress queue 
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg threshold packet-error-drops value 100
-cumulus@switch:~$ nv set system telemetry interface-stats port-group packet-all-pg threshold packet-error-drops action collect port-group buffer-pg
+cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg threshold packet-error-drops value 100
+cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg threshold packet-error-drops action collect port-group buffer-pg
 cumulus@switch:~$ nv config apply
 ```
 
@@ -1079,10 +1082,10 @@ monitor.buffer-pg_buffer.snapshot.file_count                  = 64
 
 ### Show Configuration settings
 
-To show all the configuration settings for packet and buffer statistics, run the `nv show system telemetry interface-stats` command:
+To show all the configuration settings for packet and buffer statistics, run the `nv show system telemetry snapshot` command:
 
 ```
-cumulus@switch:~$ nv show system telemetry interface-stats
+cumulus@switch:~$ nv show system telemetry snapshot
                     operational  applied   pending 
 ------------------  -----------  --------  --------
 sample-interval                  1         1       

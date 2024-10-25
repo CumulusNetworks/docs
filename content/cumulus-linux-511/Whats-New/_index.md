@@ -218,7 +218,7 @@ nv set service dhcp-server6 default static <server-id>
 nv set service dhcp-server6 default static <server-id> ip-address <ip-address>
 nv set service dhcp-server6 default static <server-id> ifname <interface-id>
 nv set service lldp state
-nv set system aaa radius accounting
+nv set system aaa radius accounting state
 nv set system aaa ldap base-dn <value>
 nv set system aaa ldap bind-dn <value>
 nv set system aaa ldap hostname <hostname-id>

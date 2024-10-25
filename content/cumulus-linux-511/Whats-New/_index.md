@@ -130,56 +130,47 @@ nv show system sflow agent
 nv show system sflow policer
 nv show system sflow dropmon
 nv show system sflow dropmon <drop-type>
-nv show system telemetry interface-stats
-nv show system telemetry interface-stats port-group
-nv show system telemetry interface-stats port-group <port-group-id>
-nv show system telemetry interface-stats port-group <port-group-id> snapshot-file
-nv show system telemetry interface-stats port-group <port-group-id> threshold
-nv show system telemetry interface-stats port-group <port-group-id> threshold <threshold-stats-id>
-nv show system telemetry interface-stats port-group <port-group-id> threshold <threshold-stats-id> action
-nv show system telemetry interface-stats port-group <port-group-id> threshold <threshold-stats-id> action log
-nv show system telemetry interface-stats port-group <port-group-id> threshold <threshold-stats-id> action collect
-nv show system telemetry interface-stats port-group <port-group-id> stats-type
-nv show system telemetry interface-stats port-group <port-group-id> snapshot
-nv show system telemetry interface-stats port-group <port-group-id> snapshot buffer
-nv show system telemetry interface-stats port-group <port-group-id> snapshot buffer pool
-nv show system telemetry interface-stats port-group <port-group-id> snapshot buffer pool <buffer-pool-id>
-nv show system telemetry interface-stats port-group <port-group-id> snapshot interface
-nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id>
-nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> packet
-nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> packet good
-nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> packet good tx
-nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> packet good rx
-nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> packet discard
-nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> packet discard tx
-nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> packet discard rx
-nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> packet discard general
-nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> packet all
-nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> packet all tx
-nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> packet all rx
-nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> packet tc
-nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> packet tc <tc-id>
-nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> packet tc <tc-id> tx
-nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> packet pg
-nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> packet pg <pg-id>
-nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> packet pg <pg-id> tx
-nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> packet pg <pg-id> rx
-nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> buffer
-nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> buffer tc
-nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> buffer tc <tc-id>
-nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> buffer pg
-nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> buffer pg <pg-id>
-nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> buffer ingress-port
-nv show system telemetry interface-stats port-group <port-group-id> snapshot interface <intf-id> buffer ingress-port <buffer-pool-id>
-nv show system telemetry interface-stats export
-nv show system telemetry interface-stats switch-priority
-nv show system telemetry interface-stats switch-priority <pg-id>
-nv show system telemetry interface-stats ingress-buffer
-nv show system telemetry interface-stats ingress-buffer priority-group
-nv show system telemetry interface-stats ingress-buffer priority-group <pg-id>
-nv show system telemetry interface-stats egress-buffer
-nv show system telemetry interface-stats egress-buffer traffic-class
-nv show system telemetry interface-stats egress-buffer traffic-class <tc-id>
+nv show system telemetry snapshot
+nv show system telemetry snapshot port-group
+nv show system telemetry snapshot port-group <port-group-id>
+nv show system telemetry snapshot port-group <port-group-id> snapshot-file
+nv show system telemetry snapshot port-group <port-group-id> threshold
+nv show system telemetry snapshot port-group <port-group-id> threshold <threshold-stats-id>
+nv show system telemetry snapshot port-group <port-group-id> threshold <threshold-stats-id> action
+nv show system telemetry snapshot port-group <port-group-id> threshold <threshold-stats-id> action log
+nv show system telemetry snapshot port-group <port-group-id> threshold <threshold-stats-id> action collect
+nv show system telemetry snapshot port-group <port-group-id> stats-type
+nv show system telemetry snapshot port-group <port-group-id> stats
+nv show system telemetry snapshot port-group <port-group-id> stats buffer
+nv show system telemetry snapshot port-group <port-group-id> stats buffer pool
+nv show system telemetry snapshot port-group <port-group-id> stats buffer pool <buffer-pool-id>
+nv show system telemetry snapshot port-group <port-group-id> stats interface
+nv show system telemetry snapshot port-group <port-group-id> stats interface <intf-id>
+nv show system telemetry snapshot port-group <port-group-id> stats interface <intf-id> packet
+nv show system telemetry snapshot port-group <port-group-id> stats interface <intf-id> packet good
+nv show system telemetry snapshot port-group <port-group-id> stats interface <intf-id> packet good tx
+nv show system telemetry snapshot port-group <port-group-id> stats interface <intf-id> packet good rx
+nv show system telemetry snapshot port-group <port-group-id> stats interface <intf-id> packet discard
+nv show system telemetry snapshot port-group <port-group-id> stats interface <intf-id> packet discard tx
+nv show system telemetry snapshot port-group <port-group-id> stats interface <intf-id> packet discard rx
+nv show system telemetry snapshot port-group <port-group-id> stats interface <intf-id> packet discard general
+nv show system telemetry snapshot port-group <port-group-id> stats interface <intf-id> packet all
+nv show system telemetry snapshot port-group <port-group-id> stats interface <intf-id> packet all tx
+nv show system telemetry snapshot port-group <port-group-id> stats interface <intf-id> packet all rx
+nv show system telemetry snapshot port-group <port-group-id> stats interface <intf-id> packet tc
+nv show system telemetry snapshot port-group <port-group-id> stats interface <intf-id> packet tc <if-tc-id>
+nv show system telemetry snapshot port-group <port-group-id> stats interface <intf-id> packet tc <if-tc-id> tx
+nv show system telemetry snapshot port-group <port-group-id> stats interface <intf-id> packet pg
+nv show system telemetry snapshot port-group <port-group-id> stats interface <intf-id> packet pg <if-pg-id>
+nv show system telemetry snapshot port-group <port-group-id> stats interface <intf-id> packet pg <if-pg-id> tx
+nv show system telemetry snapshot port-group <port-group-id> stats interface <intf-id> packet pg <if-pg-id> rx
+nv show system telemetry snapshot port-group <port-group-id> stats interface <intf-id> buffer
+nv show system telemetry snapshot port-group <port-group-id> stats interface <intf-id> buffer tc
+nv show system telemetry snapshot port-group <port-group-id> stats interface <intf-id> buffer tc <if-tc-id>
+nv show system telemetry snapshot port-group <port-group-id> stats interface <intf-id> buffer pg
+nv show system telemetry snapshot port-group <port-group-id> stats interface <intf-id> buffer pg <if-pg-id>
+nv show system telemetry snapshot port-group <port-group-id> stats interface <intf-id> buffer ingress-port
+nv show system telemetry snapshot port-group <port-group-id> stats interface <intf-id> buffer ingress-port <buffer-pool-id>
 nv show system ztp
 nv show system ztp script
 nv show vrf <vrf-id> router bgp address-family ipv4-unicast route <route-id> path <path-id> large-community
@@ -256,21 +247,16 @@ nv set system sflow policer burst
 nv set system sflow dropmon <drop-type>
 nv set system sflow poll-interval
 nv set system sflow state
-nv set system telemetry interface-stats port-group <port-group-id>
-nv set system telemetry interface-stats port-group <port-group-id> snapshot-file name <value>
-nv set system telemetry interface-stats port-group <port-group-id> snapshot-file count
-nv set system telemetry interface-stats port-group <port-group-id> threshold <threshold-stats-id>
-nv set system telemetry interface-stats port-group <port-group-id> threshold <threshold-stats-id> action log
-nv set system telemetry interface-stats port-group <port-group-id> threshold <threshold-stats-id> action collect port-group <value>
-nv set system telemetry interface-stats port-group <port-group-id> threshold <threshold-stats-id> value
-nv set system telemetry interface-stats port-group <port-group-id> stats-type
-nv set system telemetry interface-stats port-group <port-group-id> interface <value>
-nv set system telemetry interface-stats port-group <port-group-id> timer-interval
-nv set system telemetry interface-stats export state (enabled|disabled)
-nv set system telemetry interface-stats switch-priority <pg-id>
-nv set system telemetry interface-stats ingress-buffer priority-group <pg-id>
-nv set system telemetry interface-stats egress-buffer traffic-class <tc-id>
-nv set system telemetry interface-stats sample-interval
+nv set system telemetry snapshot port-group <port-group-id>
+nv set system telemetry snapshot port-group <port-group-id> snapshot-file name <value>
+nv set system telemetry snapshot port-group <port-group-id> snapshot-file count
+nv set system telemetry snapshot port-group <port-group-id> threshold <threshold-stats-id>
+nv set system telemetry snapshot port-group <port-group-id> threshold <threshold-stats-id> action log
+nv set system telemetry snapshot port-group <port-group-id> threshold <threshold-stats-id> action collect port-group <value>
+nv set system telemetry snapshot port-group <port-group-id> threshold <threshold-stats-id> value
+nv set system telemetry snapshot port-group <port-group-id> stats-type
+nv set system telemetry snapshot port-group <port-group-id> interface <interface>
+nv set system telemetry snapshot port-group <port-group-id> timer-interval
 nv set vrf <vrf> router bgp address-family <address-family> advertise-origin
 nv set vrf <vrf> router bgp address-family <address-family> nhg-per-origin
 ```
@@ -355,33 +341,22 @@ nv unset system sflow dropmon
 nv unset system sflow dropmon <drop-type>
 nv unset system sflow poll-interval
 nv unset system sflow state
-nv unset system telemetry interface-stats
-nv unset system telemetry interface-stats port-group
-nv unset system telemetry interface-stats port-group <port-group-id>
-nv unset system telemetry interface-stats port-group <port-group-id> snapshot-file
-nv unset system telemetry interface-stats port-group <port-group-id> snapshot-file name
-nv unset system telemetry interface-stats port-group <port-group-id> snapshot-file count
-nv unset system telemetry interface-stats port-group <port-group-id> threshold
-nv unset system telemetry interface-stats port-group <port-group-id> threshold <threshold-stats-id>
-nv unset system telemetry interface-stats port-group <port-group-id> threshold <threshold-stats-id> action
-nv unset system telemetry interface-stats port-group <port-group-id> threshold <threshold-stats-id> action log
-nv unset system telemetry interface-stats port-group <port-group-id> threshold <threshold-stats-id> action collect
-nv unset system telemetry interface-stats port-group <port-group-id> threshold <threshold-stats-id> action collect port-group
-nv unset system telemetry interface-stats port-group <port-group-id> threshold <threshold-stats-id> value
-nv unset system telemetry interface-stats port-group <port-group-id> stats-type
-nv unset system telemetry interface-stats port-group <port-group-id> interface
-nv unset system telemetry interface-stats port-group <port-group-id> timer-interval
-nv unset system telemetry interface-stats export
-nv unset system telemetry interface-stats export state
-nv unset system telemetry interface-stats switch-priority
-nv unset system telemetry interface-stats switch-priority <if-pg-id>
-nv unset system telemetry interface-stats ingress-buffer
-nv unset system telemetry interface-stats ingress-buffer priority-group
-nv unset system telemetry interface-stats ingress-buffer priority-group <if-pg-id>
-nv unset system telemetry interface-stats egress-buffer
-nv unset system telemetry interface-stats egress-buffer traffic-class
-nv unset system telemetry interface-stats egress-buffer traffic-class <if-tc-id>
-nv unset system telemetry interface-stats sample-interval
+nv unset system telemetry snapshot
+nv unset system telemetry snapshot port-group
+nv unset system telemetry snapshot port-group <port-group-id>
+nv unset system telemetry snapshot port-group <port-group-id> snapshot-file
+nv unset system telemetry snapshot port-group <port-group-id> snapshot-file name
+nv unset system telemetry snapshot port-group <port-group-id> snapshot-file count
+nv unset system telemetry snapshot port-group <port-group-id> threshold
+nv unset system telemetry snapshot port-group <port-group-id> threshold <threshold-stats-id>
+nv unset system telemetry snapshot port-group <port-group-id> threshold <threshold-stats-id> action
+nv unset system telemetry snapshot port-group <port-group-id> threshold <threshold-stats-id> action log
+nv unset system telemetry snapshot port-group <port-group-id> threshold <threshold-stats-id> action collect
+nv unset system telemetry snapshot port-group <port-group-id> threshold <threshold-stats-id> action collect port-group
+nv unset system telemetry snapshot port-group <port-group-id> threshold <threshold-stats-id> value
+nv unset system telemetry snapshot port-group <port-group-id> stats-type
+nv unset system telemetry snapshot port-group <port-group-id> interface
+nv unset system telemetry snapshot port-group <port-group-id> timer-interval
 nv unset vrf <vrf> router bgp address-family <address-family> advertise-origin
 nv unset vrf <vrf> router bgp address-family <address-family> nhg-per-origin
 ```

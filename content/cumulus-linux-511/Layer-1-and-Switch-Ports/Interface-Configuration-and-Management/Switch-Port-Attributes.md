@@ -1893,7 +1893,17 @@ link
 ifindex                   3
 ```
 
-You can add the `--view` option to show different views: `acl-statistics`, `bonds`, `bond-members`, `brief`, `detail`, `down`, `lldp`, `mac`, `mlag-cc`, `pluggables`, `qos-profile`, and `small`, `svi`, `up`, and `vrf`. For example, the `nv show interface --view=small` command lists the interfaces on the switch. The `nv show interface --view=brief` command shows information about each interface on the switch, such as the interface type, speed, remote host and port. The `nv show interface --view=mac` command shows the MAC address of each interface.
+You can add the `--view` option to show different views:
+
+```
+cumulus@switch:~$ nv show interface --view <<TAB>>
+acl-statistics  carrier-stats   dot1x-counters  lldp-detail     physical        status          vrf
+bond-members    counters        dot1x-summary   mac             port-security   svi             
+bonds           description     down            mlag-cc         qos-profile     synce-counters  
+brief           detail          lldp            neighbor        small           up
+```
+
+For example, the `nv show interface --view=small` command lists the interfaces on the switch. The `nv show interface --view=brief` command shows information about each interface on the switch, such as the interface type, speed, remote host and port. The `nv show interface --view=mac` command shows the MAC address of each interface.
 
 The description column only shows in the output when you use the `--view=detail` option.
 

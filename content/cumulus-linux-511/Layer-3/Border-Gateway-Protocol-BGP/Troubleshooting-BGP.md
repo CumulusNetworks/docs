@@ -132,7 +132,24 @@ address-family
 ...
 ```
 
-To see details of a specific route, such as its source and destination, run the vtysh `show ip bgp <route>` command.
+To see details of a specific route, such as its source and destination, run the NVUE `nv show vrf <vrf-id> router rib ipv4 route <route>` or `nv show vrf <vrf-id> router rib ipv6 route <route>` command or the vtysh `show ip bgp <route>` command.
+
+```
+cumulus@switch:~$ nv show vrf default router rib ipv4 route 10.10.10.3/32
+route-entry
+==============
+                                                                                
+    Protocol - Protocol name, TblId - Table Id, NHGId - Nexthop group Id, Flags - u 
+    - unreachable, r - recursive, o - onlink, i - installed, d - duplicate, c -     
+    connected, A - active                                                           
+                                                                                
+    EntryIdx  Protocol  TblId  NHGId  Distance  Metric  ResolvedVia                ResolvedViaIntf  Weight  Flags
+    --------  --------  -----  -----  --------  ------  -------------------------  ---------------  ------  -----
+    1         bgp       254    132    20        0       fe80::4ab0:2dff:fe14:82a3  swp52            1       iA   
+                                                        fe80::4ab0:2dff:fe53:538c  swp53            1       iA   
+                                                        fe80::4ab0:2dff:fea3:d534  swp54            1       iA   
+                                                        fe80::4ab0:2dff:feac:d7c4  swp51            1       iA 
+```
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -176,10 +193,10 @@ To check BGP timers, such as the BGP keepalive interval, hold time, and advertis
 cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 timers
                      operational  applied
 -------------------  -----------  -------
+keepalive            3            auto   
+hold                 9            auto   
 connection-retry     10           auto   
-hold                 9000         auto   
-keepalive            3000         auto   
-route-advertisement               auto
+route-advertisement  none         auto
 ```
 
 ## BGP Update Groups
@@ -209,35 +226,38 @@ To show information about a specific update group, such as the number of peer re
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4-unicast update-group 1 -o json
 {
-  "create-time": 1682551552,
+  "create-time": "2024-10-25T14:02:24Z",
   "min-route-advertisement-interval": 0,
   "sub-group": {
     "1": {
-      "adjacency-count": 6,
-      "coalesce-time": 1100,
+      "adjacency-count": 13,
+      "coalesce-time": 1300,
       "counters": {
-        "join-events": 2,
+        "join-events": 5,
         "merge-check-events": 0,
-        "merge-events": 1,
+        "merge-events": 3,
         "peer-refresh-events": 0,
         "prune-events": 0,
         "split-events": 0,
         "switch-events": 0
       },
-      "create-time": 1682551552,
+      "create-time": "2024-10-25T14:02:24Z",
       "needs-refresh": "off",
       "neighbor": {
+        "peerlink.4094": {},
         "swp51": {},
-        "swp52": {}
+        "swp52": {},
+        "swp53": {},
+        "swp54": {}
       },
       "packet-counters": {
-        "queue-hwm-len": 4,
+        "queue-hwm-len": 2,
         "queue-len": 0,
-        "queue-total": 9,
-        "total-enqueued": 9
+        "queue-total": 14,
+        "total-enqueued": 14
       },
       "sub-group-id": 1,
-      "version": 9
+      "version": 18
     }
   },
   "update-group-id": "1"
@@ -272,54 +292,65 @@ Route            Protocol   Distance  Uptime                NHGId  Metric  Flags
 10.10.10.102/32  bgp        20        2024-07-18T22:02:22Z  58     0       *Si
 ```
 
-To show the local RIB routes, run the `nv show vrf <vrf> router bgp address-family ipv4-unicast loc-rib` command for IPv4 or the `nv show vrf <vrf> router bgp address-family ipv6-unicast loc-rib` for IPv6. These commands show the local RIB routes in brief format to improve performance in high scale environments. You can also run the command with `--view=detail` to see more detailed information or with `-o json` to show the received routes in json format.
+To show the local RIB routes, run the `nv show vrf <vrf> router bgp address-family ipv4-unicast route` command for IPv4 or the `nv show vrf <vrf> router bgp address-family ipv6-unicast route` for IPv6. You can also run the command with `-o json` to show the received routes in json format.
 
 ```
-cumulus@leaf02:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib
-IPV4 Routes
-==============
+cumulus@leaf02:~$ nv show vrf default router bgp address-family ipv4-unicast route                                            PathCount - Number of paths present for the prefix, MultipathCount - Number of  
+paths that are part of the ECMP, DestFlags - * - bestpath-exists, w - fib-wait- 
+for-install, s - fib-suppress, i - fib-installed, x - fib-install-failed        
                                                                                 
-    PathCount - Number of paths present for the prefix, MultipathCount - Number of  
-    paths that are part of the ECMP, DestFlags - * - bestpath-exists, w - fib-wait- 
-    for-install, s - fib-suppress, i - fib-installed, x - fib-install-failed,       
-    LocalPref - Local Preference, Best - Best path, Reason - Reason for selection   
+Prefix           PathCount  MultipathCount  DestFlags
+---------------  ---------  --------------  ---------
+10.0.1.12/32     2          1               *        
+10.0.1.34/32     5          4               *        
+10.0.1.255/32    5          4               *        
+10.10.10.1/32    1          1               *        
+10.10.10.2/32    5          1               *        
+10.10.10.3/32    5          4               *        
+10.10.10.4/32    5          4               *        
+10.10.10.63/32   5          4               *        
+10.10.10.64/32   5          4               *        
+10.10.10.101/32  2          1               *        
+10.10.10.102/32  2          1               *        
+10.10.10.103/32  2          1               *        
+10.10.10.104/32  2          1               * 
+```
+
+To show information about a specific local RIB route, run the `nv show vrf <vrf> router bgp address-family ipv4-unicast route <route>` for IPv4 or `nv show vrf <vrf> router bgp address-family ipv6-unicast route <route>` for IPv6.
+
+The above IPv4 and IPv6 command shows the local RIB route information in brief format to improve performance for high scale environments. You can also run the command with `-o json` to show the received routes in json format.
+
+```
+cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4-unicast route 10.10.10.64/32
+                 operational
+---------------  -----------
+path-count       5          
+multipath-count  4
+
+path
+=======                                                                           
+    Origin - Route origin, Local - Locally originated route, Sourced - Sourced      
+    route, Weight - Route weight, Metric - Route metric, LocalPref - Route local    
+    preference, PathFrom - Route path origin, LastUpdate - Route last update,       
+    NexthopCnt - Number of nexthops, Flags - = - multipath, * - bestpath, v - valid,
+    s - suppressed, R - removed, S - stale                                          
                                                                                 
-    Prefix           PathCount  MultipathCount  DestFlags  Nexthop  Metric  Weight  LocalPref  Aspath  Best  Reason
-    ---------------  ---------  --------------  ---------  -------  ------  ------  ---------  ------  ----  ------
-    10.1.10.0/24     3          1               *                                                                  
-    10.1.20.0/24     3          1               *                                                                  
-    10.1.30.0/24     3          1               *                                                                  
-    10.1.40.0/24     3          1               *                                                                  
-    10.1.50.0/24     3          1               *                                                                  
-    10.1.60.0/24     3          1               *                                                                  
-    10.10.10.1/32    2          1               *                                                                  
-    10.10.10.2/32    3          1               *                                                                  
-    10.10.10.3/32    3          1               *                                                                  
-    10.10.10.4/32    3          1               *                                                                  
-    10.10.10.101/32  2          1               *                                                                  
-    10.10.10.102/32  2          1               *
-```
-
-To show information about a specific local RIB route, run the `nv show vrf <vrf> router bgp address-family ipv4-unicast loc-rib <route>` for IPv4 or `nv show vrf <vrf> router bgp address-family ipv6-unicast loc-rib <route>` for IPv6.
-
-The above IPv4 and IPv6 command shows the local RIB route information in brief format to improve performance for high scale environments. You can also run the command with `--view=detail` to see more detailed information or with `-o json` to show the received routes in json format.
-
-```
-cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.63/32 --view=detail
-                 operational    description                                    
----------------  -------------  -----------------------------------------------
-[path]           1              IP route paths                                 
-[path]           2                                                             
-[path]           3                                                             
-[path]           4                                                             
-[path]           5                                                             
-[advertised-to]  peerlink.4094  List of peers to which the route was advertised
-[advertised-to]  swp51                                                         
-[advertised-to]  swp52                                                         
-[advertised-to]  swp53                                                         
-[advertised-to]  swp54                                                         
-path-count       5              Number of paths                                
-multipath-count  4              Number of multi paths
+    Path  Origin      Local  Sourced  Weight  Metric  LocalPref  PathFrom  LastUpdate            NexthopCnt  Flags
+    ----  ----------  -----  -------  ------  ------  ---------  --------  --------------------  ----------  -----
+    1     incomplete                                             external  2024-10-25T14:02:33Z  2           =*v  
+    2     incomplete                                             external  2024-10-25T14:02:42Z  2           =v   
+    3     incomplete                                             external  2024-10-25T14:02:36Z  2           =v   
+    4     incomplete                                             external  2024-10-25T14:02:36Z  2           =v   
+    5     incomplete                                             external  2024-10-25T14:02:33Z  2           *v   
+advertised-to
+================
+    Neighbor       hostname
+    -------------  --------
+    peerlink.4094  leaf02  
+    swp51          spine01 
+    swp52          spine02 
+    swp53          spine03 
+    swp54          spine04
 ```
 
 To show the route count, run the `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast route-counters` command for IPv4 or the `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast route-counters` for IPv6.
@@ -343,7 +374,7 @@ usable          8
 
 To show all advertised routes, run the `nv show vrf <vrf> router bgp neighbor <neighbor> address-family ipv4-unicast advertised-routes` command for IPv4 or the `nv show vrf <vrf>> router bgp neighbor <neighbor> address-family ipv6-unicast advertised-routes` for IPv6.
 
-The above IPv4 and IPv6 command shows advertised routes in brief format to improve performance for high scale environments. You can also run the command with `--view=detail` to see more detailed information or with `-o json` to show the received routes in json format.
+The above IPv4 and IPv6 command shows advertised routes in brief format to improve performance for high scale environments. You can also run the command with `-o json` to show the received routes in json format.
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 
@@ -431,113 +462,18 @@ Nexthops
                                             fe80::4ab0:2dff:feff:e147  swp51    
 ```
 
-To show information about a specific next hop, run the vtysh `show bgp vrf default nexthop <ip-address> ` command or run these NVUE commands:
-- `nv show vrf <vrf-id> router bgp nexthop ipv4 ip-address <ip-address> -o json` for IPv4
-- `nv show vrf <vrf-id> router bgp nexthop ipv6 ip-address <ip-address> -o json` for IPv6
+To show information about a specific next hop, run the vtysh NVUE `nv show vrf <vrf-id> router bgp nexthop ipv4 ip-address <ip-address>` command for IPv4 or `nv show vrf <vrf-id> router bgp nexthop ipv6 ip-address <ip-address>` for IPv6. You can also run the vtysh `show bgp vrf default nexthop <ip-address>` command.
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp nexthop ipv4 ip-address 10.10.10.2 -o json
-{
-  "complete": "on",
-  "igp-metric": 0,
-  "last-update-time": 1681940481,
-  "path": {
-    "1": {
-      "address-family": "l2vpn-evpn",
-      "flags": {
-        "damped": "off",
-        "deterministic-med-selected": "on",
-        "history": "off",
-        "multipath": "off",
-        "nexthop-self": "off",
-        "removed": "off",
-        "selected": "off",
-        "stale": "off",
-        "valid": "on"
-      },
-      "prefix": "[5]:[0]:[10.1.20.0/24]/352",
-      "rd": "10.10.10.2:3",
-      "vrf": "default"
-    },
-    "10": {
-      "address-family": "l2vpn-evpn",
-      "flags": {
-        "damped": "off",
-        "deterministic-med-selected": "off",
-        "history": "off",
-        "multipath": "off",
-        "nexthop-self": "off",
-        "removed": "off",
-        "selected": "off",
-        "stale": "off",
-        "valid": "on"
-      },
-      "prefix": "[5]:[0]:[10.1.30.0/24]/352",
-      "rd": "10.10.10.2:2",
-      "vrf": "default"
-    },
-    "11": {
-      "address-family": "l2vpn-evpn",
-      "flags": {
-        "damped": "off",
-        "deterministic-med-selected": "off",
-        "history": "off",
-        "multipath": "off",
-        "nexthop-self": "off",
-        "removed": "off",
-        "selected": "off",
-        "stale": "off",
-        "valid": "on"
-      },
-      "prefix": "[5]:[0]:[10.1.20.0/24]/352",
-      "rd": "10.10.10.2:3",
-      "vrf": "default"
-    },
-...
-```
-
-To show specific next hop path information, run these NVUE commands:
-- `nv show vrf <vrf-id> router bgp nexthop ipv4 ip-address <ip-address-id> path -o json` for IPv4
-- `nv show vrf <vrf-id> router bgp nexthop ipv6 ip-address <ip-address-id> path -o json` for IPv6
-
-```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp nexthop ipv4 ip-address 10.10.10.2 path -o json
-{
-  "1": {
-    "address-family": "l2vpn-evpn",
-    "flags": {
-      "damped": "off",
-      "deterministic-med-selected": "on",
-      "history": "off",
-      "multipath": "off",
-      "nexthop-self": "off",
-      "removed": "off",
-      "selected": "off",
-      "stale": "off",
-      "valid": "on"
-    },
-    "prefix": "[5]:[0]:[10.1.20.0/24]/352",
-    "rd": "10.10.10.2:3",
-    "vrf": "default"
-  },
-  "10": {
-    "address-family": "l2vpn-evpn",
-    "flags": {
-      "damped": "off",
-      "deterministic-med-selected": "off",
-      "history": "off",
-      "multipath": "off",
-      "nexthop-self": "off",
-      "removed": "off",
-      "selected": "off",
-      "stale": "off",
-      "valid": "on"
-    },
-    "prefix": "[5]:[0]:[10.1.30.0/24]/352",
-    "rd": "10.10.10.2:2",
-    "vrf": "default"
-  },
-...
+cumulus@leaf01:mgmt:~$  nv show vrf default router bgp nexthop ipv4 ip-address 10.10.10.2
+                  operational              
+----------------  -------------------------
+valid             yes                      
+complete          on                       
+igp-metric        0                        
+path-count        15                       
+last-update-time  2024-10-25T14:02:32Z     
+[resolved-via]    fe80::4ab0:2dff:fee8:57ba
 ```
 
 To show through which address and interface BGP resolves a specific next hop, run the `nv show vrf <vrf-id> router bgp nexthop ipv4 ip-address <ip-address-id> resolved-via` command for IPv4 or the `nv show vrf <vrf-id> router bgp nexthop ipv6 ip-address <ip-address-id> resolved-via` command for IPv6.

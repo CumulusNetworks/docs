@@ -1026,35 +1026,30 @@ cumulus@sleaf01:~$
 
 ### Show Route Filtering
 
-To show route filtering results in the BGP routing table after applying inbound policies, run the NVUE `nv show vrf <vrf> router bgp address-family <address-family> loc-rib` command or the vtysh `show ip bgp` command.
+To show route filtering results in the BGP routing table after applying inbound policies, run the NVUE `nv show vrf <vrf> router bgp address-family <address-family> route` command or the vtysh `show ip bgp` command.
 
 ```
-cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4 loc-rib 
-IPV4 Routes
-==============
-                                                                             
-    LocalPref - Local Preference, Best - Best path, Reason - Reason for selection
-                                                                             
-    IPv4 Prefix      Nexthop  Metric  Weight  LocalPref  Aspath  Best  Reason      Flags    
-    ---------------  -------  ------  ------  ---------  ------  ----  ----------  ---------
-    10.1.10.0/24              0       32768                      yes   First path           
-                                                                       received             
-    10.1.20.0/24              0       32768                      yes   First path           
-                                                                       received             
-    10.1.30.0/24              0       32768                      yes   First path           
-                                                                       received             
-    10.1.40.0/24     swp51    0                          65104                     multipath
-                                                         65199                              
-                     swp52    0                          65104   yes   Older Path  multipath
-                                                         65199                              
-    10.1.50.0/24     swp51    0                          65104                     multipath
-                                                         65199                              
-                     swp52    0                          65104   yes   Older Path  multipath
-                                                         65199                              
-    10.1.60.0/24     swp51    0                          65104                     multipath
-                                                         65199                              
-                     swp52    0                          65104   yes   Older Path  multipath
-                                                         65199
+cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4 route
+                                                                                
+PathCount - Number of paths present for the prefix, MultipathCount - Number of  
+paths that are part of the ECMP, DestFlags - * - bestpath-exists, w - fib-wait- 
+for-install, s - fib-suppress, i - fib-installed, x - fib-install-failed        
+                                                                                
+Prefix           PathCount  MultipathCount  DestFlags
+---------------  ---------  --------------  ---------
+10.0.1.12/32     2          1               *        
+10.0.1.34/32     5          4               *        
+10.0.1.255/32    5          4               *        
+10.10.10.1/32    1          1               *        
+10.10.10.2/32    5          1               *        
+10.10.10.3/32    5          4               *        
+10.10.10.4/32    5          4               *        
+10.10.10.63/32   5          4               *        
+10.10.10.64/32   5          4               *        
+10.10.10.101/32  2          1               *        
+10.10.10.102/32  2          1               *        
+10.10.10.103/32  2          1               *        
+10.10.10.104/32  2          1               *
 ```
 
 ## Considerations

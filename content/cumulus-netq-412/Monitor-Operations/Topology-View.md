@@ -57,7 +57,7 @@ You can rearrange the topology's tiers by selecting **Edit** at the top of the s
 
 ### Create Queries to View a Subset of Devices
 
-You can create queries to segment a topology into smaller, more manageable parts. This can be especially helpful when you need to view a particular section of a very large topology. To create a query, select **Queries** on the left side of the screen, then **Add query**. The name of the query is pre-populated with a unique identifier that you can edit by expanding the query.
+You can create queries to segment a topology into smaller, more manageable parts. This can be especially helpful when you need to view a particular section of a very large topology or when you want to find and view connections between two or more devices. To create a query, select **Queries** on the left side of the screen, then **Add query**. The name of the query is pre-populated with a unique identifier that you can edit by expanding the query.
 
 {{<figure src="/images/netq/topo-query-412.png" alt="" width="700">}}
 

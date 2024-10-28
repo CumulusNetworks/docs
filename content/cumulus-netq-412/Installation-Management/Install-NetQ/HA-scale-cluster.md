@@ -157,15 +157,13 @@ Add the same NEW_HOSTNAME value to **/etc/hosts** on your VM for the localhost e
 
 6. Open your hypervisor and set up the VM for the additional nodes in the same manner as for the master node.
 
-7. Verify that the node is ready for installation. Fix any errors indicated before installing the NetQ software.
+7. Run the following command on each node to verify that the node is ready for a NetQ software installation. Fix any errors indicated before installing the software.
 
 ```
 cumulus@hostname:~$ sudo opta-check scale
 ```
 
-8. Repeat steps 6 and 7 for each additional node in your cluster.
-
-9. Install and activate the NetQ software using the CLI.
+8. Install and activate the NetQ software using the CLI.
 
 Run the following command on your *master* node to initialize the cluster. Copy the output of the command to use on your additional HA and worker nodes:
 
@@ -174,16 +172,16 @@ cumulus@<hostname>:~$ netq install cluster master-init
     Please run the following command on all worker nodes:
     netq install cluster worker-init c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCQVFDM2NjTTZPdVM3dQN9MWTU1a
 ```
-10. Run the `netq install cluster worker-init <ssh-key>` command on each of your worker nodes.
+9. Run the `netq install cluster worker-init <ssh-key>` command on each of your worker nodes.
 
-11. Run the `netq install cluster config generate` command on your master node to generate a template for the cluster configuration JSON file:
+10. Run the `netq install cluster config generate` command on your master node to generate a template for the cluster configuration JSON file:
 
 ```
 cumulus@netq-server:~$ netq install cluster config generate
 2024-10-28 17:29:53.260462: master-node-installer: Writing cluster installation configuration template file @ /tmp/cluster-install-config.json
 ```
 
-12. Edit the cluster configuration JSON file with the desired values for each attribute:
+11. Edit the cluster configuration JSON file with the desired values for each attribute:
 
 {{< tabs "Tab188 ">}}
 
@@ -214,8 +212,8 @@ cumulus@netq-server:~$ vim /tmp/cluster-install-config.json
 | Attribute | Description |
 |----- | ----------- |
 | `interface` | The local network interface on your master node used for NetQ connectivity. |
-| `master-ip` | The IP address assigned to the interface on your master node used for NetQ connectivity. |
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your master and worker nodes. |
+| `master-ip` | The IP address assigned to the interface on your master node used for NetQ connectivity. |
 | `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. |
 | `ha-nodes` | The IP addresses of each of the HA nodes in your cluster, including the `master-ip`. |
 
@@ -246,15 +244,15 @@ cumulus@netq-server:~$ vim /tmp/cluster-install-config.json
 | Attribute | Description |
 |----- | ----------- |
 | `interface` | The local network interface on your master HA node used for NetQ connectivity. |
-| `master-ip` | The IP address assigned to the interface on your master HA node used for NetQ connectivity. |
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your master and worker nodes. |
+| `master-ip` | The IP address assigned to the interface on your master HA node used for NetQ connectivity. |
 | `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. |
 | `ha-nodes` | The IP addresses of each of the HA nodes in your cluster, including the `master-ip`. |
 {{< /tab >}}
 {{< /tabs >}}
 
 
-11. Run the following command on your master HA node, using the JSON configuration file created in step 10:
+12. Run the following command on your master HA node, using the JSON configuration file created in step 11:
 
 ```
 cumulus@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.12.0.tgz /tmp/cluster-config-profile.json

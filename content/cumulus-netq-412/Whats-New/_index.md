@@ -23,12 +23,12 @@ NetQ 4.12.0 includes the following new features and improvements:
 
 For deployments running:
 
-- 4.11, 4.10: {{<link title="Upgrade NetQ Virtual Machines" text="upgrade directly">}} to NetQ 4.12
-- 4.9 or earlier: {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}} and perform a {{<link title="Install the NetQ System" text="new installation">}}
+- 4.11, 4.10.1: {{<link title="Upgrade NetQ Virtual Machines" text="upgrade directly">}} to NetQ 4.12
+- 4.10.0 or earlier: {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}} and perform a {{<link title="Install the NetQ System" text="new installation">}}
 
 ## Compatible Agent Versions
 
-The NetQ 4.12 server is compatible with NetQ Agent 4.10 or later. You can install NetQ Agents on switches and servers running:
+The NetQ 4.12 server is compatible with NetQ Agent 4.10.1 or later. You can install NetQ Agents on switches and servers running:
 
 - Cumulus Linux 5.0.0 or later (Spectrum switches)
 - Ubuntu 22.04, 20.04

@@ -243,9 +243,9 @@ cumulus@netq-server:~$ vim /tmp/cluster-install-config.json
 ```
 | Attribute | Description |
 |----- | ----------- |
-| `interface` | The local network interface on your master HA node used for NetQ connectivity. |
+| `interface` | The local network interface on your master node used for NetQ connectivity. |
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your master and worker nodes. |
-| `master-ip` | The IP address assigned to the interface on your master HA node used for NetQ connectivity. |
+| `master-ip` | The IP address assigned to the interface on your master node used for NetQ connectivity. |
 | `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. |
 | `ha-nodes` | The IP addresses of each of the HA nodes in your cluster, including the `master-ip`. |
 {{< /tab >}}
@@ -255,7 +255,7 @@ cumulus@netq-server:~$ vim /tmp/cluster-install-config.json
 12. Run the following command on your master HA node, using the JSON configuration file created in step 11:
 
 ```
-cumulus@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.12.0.tgz /tmp/cluster-config-profile.json
+cumulus@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.12.0.tgz /tmp/cluster-install-config.json
 ```
 
 <!-- ## It's unclear how a user would override these settings in HA scale cluster. The "netq install cluster bundle" command doesn't allow for service-ip / pod-ip range options

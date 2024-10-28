@@ -39,26 +39,26 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
   - {{<link url="Services-and-Daemons-in-Cumulus-Linux/#limit-resources-for-services" text="Commands to limit resources (memory and CPU usage) for Cumulus Linux services">}}.
   - {{<link url="Optional-BGP-Configuration/#bgp-community-lists" text="Commands to configure BGP large community lists">}}
   - {{<link url="Route-Filtering-and-Redistribution/#match-source-protocol" text="Command to match BGP as the source protocol in a route map">}}
-  - {{<link url="Switch-Port-Attributes/#interface-settings" text="nv show interface --view command includes additional filtering options">}}: `svi`, `vrf`, `bonds`, `bond-members`, `up`, and `down`
+  - {{<link url="Switch-Port-Attributes/#interface-settings" text="nv show interface --view command includes additional filtering options">}}: `svi`, `vrf`, `bonds`, `bond-members`, and `down`
   - {{<link url="FRRouting/#show-routes-in-the-routing-table" text="Commands to show the number of routes in the routing table">}}
   - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#show-transceiver-information" text="Commands to show optical information for transceivers">}}
   - {{<link url="Troubleshoot-Layer-1/#show-layer-1-information" text="l1-show command equivalent">}}
   - BGP and EVPN command changes and output cleanup
   - {{< expand "Changed NVUE Commands" >}}
-| New Command | Previous Command |
+| New Commands | Previous Commands |
 | ----------- | ----------------|
 | `nv set system snmp-server`<br>`nv unset system snmp-server` | `nv set service snmp-server`<br>`nv unset service snmp-server` |
 | `nv set system snmp-server state enable`<br>`nv set system snmp-server state disable`| `nv set service snmp-server enable on`<br>`nv set service snmp-server enable off`|
 | `nv show system snmp-server` | `nv show service snmp-server`|
-| `nv set qos advance-buffer-config default-global ingress-service-pool <pool-id> <property> <value>` | `nv set qos advance-buffer-config default-global ingress-pool <pool-id> <property> <value>`|
-| `nv set qos advance-buffer-config default-global egress-service-pool <pool-id> <property> <value>` | n`v set qos advance-buffer-config default-global egress-pool <pool-id> <property> <value> ` |
-| `nv show qos advance-buffer-config default-global ingress-service-pool` | `nv show qos advance-buffer-config default-global ingress-pool` |
-| `nv show qos advance-buffer-config default-global egress-service-pool` | `nv show qos advance-buffer-config default-global egress-pool` |
+| `nv set qos advance-buffer-config <profile-id> ingress-service-pool <pool-id> <property> <value>` | `nv set qos advance-buffer-config <profile-id> ingress-pool <pool-id> <property> <value>`|
+| `nv set qos advance-buffer-config <profile-id> egress-service-pool <pool-id> <property> <value>` | `nv set qos advance-buffer-config <profile-id> egress-pool <pool-id> <property> <value> ` |
+| `nv show qos advance-buffer-config <profile-id> ingress-service-pool` | `nv show qos advance-buffer-config default-global ingress-pool` |
+| `nv show qos advance-buffer-config <profile-id> egress-service-pool` | `nv show qos advance-buffer-config default-global egress-pool` |
 {{< /expand >}}
   - {{< expand "Removed NVUE Commands" >}}
-| Removed Command |
+| Removed Commands |
 | --------------- |
-|`nv show interface pluggables` (replaced with `nv show platform transceiver`) |
+|`nv show interface pluggable` (replaced with `nv show platform transceiver`) |
 |`nv show interface <interface>` pluggable (replaced with `nv show platform transceiver <interface>`)|
 |`nv show vrf <vrf-id> router bgp address-family <afi> loc-rib` (replaced with `nv show vrf <vrf-id> router bgp address-family <afi>> route`) |
 | `nv set vrf <vrf-id> router rib ipv4 protocol bgp fib-filter` |
@@ -89,9 +89,16 @@ nv show bridge domain <domain-id> dhcp-snoop6 vlan <vid> trust
 nv show bridge domain <domain-id> dhcp-snoop6 vlan <vid> trust <interface-id>
 nv show bridge domain <domain-id> dhcp-snoop6 vlan <vid> bind
 nv show bridge domain <domain-id> dhcp-snoop6 vlan <vid> bind <interface-id>
+nv show interface bonds
+nv show interface bond-members
+nv show interface carrier-stats
+nv show interface down
+nv show interface svi
+nv show interface vrf
 nv show interface <interface-id> sflow
 nv show interface <interface-id> transceiver 
 nv show interface <interface-id> transceiver thresholds
+nv show qos buffer descriptor-pool
 nv show platform asic resource
 nv show platform asic resource acl
 nv show platform asic resource global
@@ -99,13 +106,8 @@ nv show platform transceiver
 nv show platform transceiver <interface-id> 
 nv show platform transceiver <interface-id> channel 
 nv show platform transceiver <interface-id> channel <channel-id> 
-nv show platform transceiver <detail> 
-nv show platform transceiver
 nv show platform transceiver brief
 nv show platform transceiver detail
-nv show platform transceiver <transceiver-id>
-nv show platform transceiver <transceiver-id> channel
-nv show platform transceiver <transceiver-id> channel <channel-id>
 nv show router policy large-community-list
 nv show router policy large-community-list <list-id>
 nv show router policy large-community-list <list-id> rule
@@ -121,6 +123,10 @@ nv show system aaa ldap
 nv show system aaa ldap hostname
 nv show system aaa ldap hostname <hostname-id>
 nv show system aaa ldap ssl
+nv show system aaa radius accounting
+nv show system image
+nv show system image files
+nv show system image files <image>
 nv show system sflow
 nv show system sflow collector
 nv show system sflow collector <collector-ip>
@@ -129,6 +135,10 @@ nv show system sflow agent
 nv show system sflow policer
 nv show system sflow dropmon
 nv show system sflow dropmon <drop-type>
+nv show interface swp1 telemetry label
+nv show interface swp1 telemetry label <label-id>
+nv show system telemetry label
+nv show system telemetry label <label-id>
 nv show system telemetry snapshot
 nv show system telemetry snapshot port-group
 nv show system telemetry snapshot port-group <port-group-id>
@@ -178,9 +188,37 @@ nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unica
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast received-routes <route-id> path <path-id> large-community
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast received-routes <route-id> path <path-id> large-community
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast advertised-routes <route-id> path <path-id> large-community
-nv show vrf <vrf> router rib <address-family> route-count
-nv show vrf <vrf> router rib <address-family> route-count <prefix>
-nv show vrf <vrf> router rib <address-family> route-count protocol
+nv show vrf <vrf-id> router rib <address-family> fib-filter
+nv show vrf <vrf-id> router rib <address-family> fib-filter protocol
+nv show vrf <vrf-id> router rib <address-family> fib-filter protocol <import-protocol-id>
+nv show vrf <vrf-id> router bgp address-family <address-family> route
+nv show vrf <vrf-id> router bgp address-family <address-family> route <route-id>
+nv show vrf <vrf-id> router bgp address-family <address-family> route <route-id> path
+nv show vrf <vrf-id> router bgp address-family <address-family> route <route-id> path <path-id>
+nv show vrf <vrf-id> router bgp address-family <address-family> route <route-id> path <path-id> nexthop
+nv show vrf <vrf-id> router bgp address-family <address-family> route <route-id> path <path-id> nexthop <nexthop-id>
+nv show vrf <vrf-id> router bgp address-family <address-family> route <route-id> path <path-id> peer
+nv show vrf <vrf-id> router bgp address-family <address-family> route <route-id> path <path-id> flags
+nv show vrf <vrf-id> router bgp address-family <address-family> route <route-id> path <path-id> bestpath
+nv show vrf <vrf-id> router bgp address-family <address-family> route <route-id> path <path-id> aspath
+nv show vrf <vrf-id> router bgp address-family <address-family> route <route-id> path <path-id> community
+nv show vrf <vrf-id> router bgp address-family <address-family> route <route-id> path <path-id> large-community
+nv show vrf <vrf-id> router bgp address-family <address-family> route <route-id> path <path-id> ext-community
+nv show vrf <vrf-id> router bgp address-family <address-family> route-count
+nv show vrf <vrf-id> router rib <address-family> route-count
+nv show vrf <vrf-id> router rib <address-family> route-count <prefix>
+nv show vrf <vrf-id> router rib <address-family> route-count protocol
+nv show vrf <vrf-id> router rib <afi> route <route-id> route-entry
+nv show vrf <vrf-id> router rib <afi> route <route-id> route-entry <route-entry>
+nv show vrf <vrf-id> router rib <afi> route <route-id> route-entry <route-entry> flags
+nv show vrf <vrf-id> router rib <afi> route <route-id> route-entry <route-entry> via-entry
+nv show vrf <vrf-id> router rib <afi> route <route-id> route-entry <route-entry> via-entry <via-entry-id>
+nv show vrf <vrf-id> router rib <afi> route <route-id> route-entry <route-entry> via-entry <via-entry-id> flags
+nv show vrf <vrf-id> router rib <afi> route <route-id> route-entry <route-entry> via-entry <via-entry-id> label
+nv show vrf <vrf-id> router rib <afi> route <route-id> route-entry <route-entry> via-entry <via-entry-id> resolved-via-entry
+nv show vrf <vrf-id> router rib <afi> route <route-id> route-entry <route-entry> via-entry <via-entry-id> resolved-via-entry <resolved-via-entry-id>
+nv show vrf <vrf-id> router nexthop-tracking <afi> ip-address <nht-ip-id> resolved-via <nht-resolved-id>
+nv show vrf <vrf-id> router nexthop-tracking <afi> ip-address <nht-ip-id> protocol <protocol-id>
 ```
 
 {{< /tab >}}
@@ -194,6 +232,8 @@ nv set bridge domain <domain-id> dhcp-snoop6 vlan <vid> trust <interface-id>
 nv set interface <interface-id> lldp state
 nv set interface <interface-id> sflow state
 nv set interface <interface-id> sflow sample-rate <rate>
+nv set interface <interface-id> telemetry label <label-id>
+nv set interface <interface-id> telemetry label <label-id> description <value>
 nv set router policy large-community-list <list-id>
 nv set router policy large-community-list <list-id> rule <rule-id>
 nv set router policy large-community-list <list-id> rule <rule-id> large-community <large-community-id>
@@ -204,7 +244,6 @@ nv set router policy route-map <route-map-id> rule <rule-id> set large-community
 nv set service control <service-name-id>
 nv set service control <service-name-id> resource-limit memory <size>
 nv set service control <service-name-id> resource-limit cpu (percent)
-nv set service dhcp-server6 default static <server-id>
 nv set service dhcp-server6 default static <server-id> ip-address <ip-address>
 nv set service dhcp-server6 default static <server-id> ifname <interface-id>
 nv set service lldp state
@@ -241,11 +280,11 @@ nv set system sflow sampling-rate speed-400g
 nv set system sflow sampling-rate speed-800g
 nv set system sflow agent ip <ipv4-prefix>
 nv set system sflow agent interface <interface-name>
-nv set system sflow policer rate
-nv set system sflow policer burst
 nv set system sflow dropmon <drop-type>
 nv set system sflow poll-interval
 nv set system sflow state
+nv set system telemetry label <label-id>
+nv set system telemetry label <label-id> description <value>
 nv set system telemetry snapshot port-group <port-group-id>
 nv set system telemetry snapshot port-group <port-group-id> snapshot-file name <value>
 nv set system telemetry snapshot port-group <port-group-id> snapshot-file count
@@ -275,7 +314,12 @@ nv unset bridge domain <domain-id> dhcp-snoop6 vlan <vid>
 nv unset bridge domain <domain-id> dhcp-snoop6 vlan <vid> trust
 nv unset bridge domain <domain-id> dhcp-snoop6 vlan <vid> trust <interface-id>
 nv unset interface <interface-id> lldp state
+nv unset interface <interface-id> sflow
 nv unset interface <interface-id> sflow sample-rate
+nv unset interface <interface-id> sflow state
+nv unset interface <interface-id> telemetry label
+nv unset interface <interface-id> telemetry label <label-id>
+nv unset interface <interface-id> telemetry label <label-id> description
 nv unset router policy large-community-list
 nv unset router policy large-community-list <list-id>
 nv unset router policy large-community-list <list-id> rule
@@ -292,7 +336,6 @@ nv unset service control <service-name-id>
 nv unset service control <service-name-id> resource-limit
 nv unset service control <service-name-id> resource-limit memory
 nv unset service control <service-name-id> resource-limit cpu
-nv unset service dhcp-server6 default static <server-id>
 nv unset service dhcp-server6 default static <server-id> ip-address <ip-address>
 nv unset service dhcp-server6 default static <server-id> ifname <interface-id>
 nv unset service lldp state
@@ -334,12 +377,13 @@ nv unset system sflow agent
 nv unset system sflow agent ip
 nv unset system sflow agent interface
 nv unset system sflow policer
-nv unset system sflow policer rate
-nv unset system sflow policer burst
 nv unset system sflow dropmon
 nv unset system sflow dropmon <drop-type>
 nv unset system sflow poll-interval
 nv unset system sflow state
+nv unset system telemetry label
+nv unset system telemetry label <label-id>
+nv unset system telemetry label <label-id> description
 nv unset system telemetry snapshot
 nv unset system telemetry snapshot port-group
 nv unset system telemetry snapshot port-group <port-group-id>
@@ -356,8 +400,8 @@ nv unset system telemetry snapshot port-group <port-group-id> threshold <thresho
 nv unset system telemetry snapshot port-group <port-group-id> stats-type
 nv unset system telemetry snapshot port-group <port-group-id> interface
 nv unset system telemetry snapshot port-group <port-group-id> timer-interval
-nv unset vrf <vrf> router bgp address-family <address-family> advertise-origin
-nv unset vrf <vrf> router bgp address-family <address-family> nhg-per-origin
+nv unset vrf <vrf-id> router bgp address-family <address-family> advertise-origin
+nv unset vrf <vr-id> router bgp address-family <address-family> nhg-per-origin
 ```
 
 {{< /tab >}}
@@ -372,6 +416,9 @@ nv action enable system ztp
 nv action disable system ztp
 nv action run system ztp
 nv action abort system ztp
+nv action fetch system image
+nv action install system image files <image>
+nv action upload system image files <image> <remote-url-upload>
 ```
 
 {{< /tab >}}

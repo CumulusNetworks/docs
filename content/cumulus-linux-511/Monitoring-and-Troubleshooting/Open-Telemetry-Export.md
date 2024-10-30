@@ -83,11 +83,11 @@ cumulus@switch:~$ nv config apply
 When you platform statistic open telemetry, data related to CPU, disk, filesystem, memory, and sensor health is exported. To enable all [platform statistics](#platform-statistic-format) globally:
 
 ```
-cumulus@switch:~$ nv set system telemetry histogram export state enabled
+cumulus@switch:~$ nv set system telemetry platform-stats export state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-If you do not want to enable all platform statistics, you can enable or disable individual platform telemetry components or adjust the sample interval for individual components. The default sample interval is 1 second.
+If you do not want to enable all platform statistics, you can enable or disable individual platform telemetry components or adjust the sample interval for individual components. The default sample interval is 60 seconds.
 
 {{< tabs "TabID92 ">}}
 {{< tab "CPU ">}}
@@ -179,7 +179,7 @@ By default, OTLP export is in **secure** mode that requires a certificate. For c
 
 ### Show Telemetry Export Configuration
 
-To show the telemetry export configuration, run the `nv show telemetry export` command:
+To show the telemetry export configuration, run the `nv show system telemetry export` command:
 
 ```
 cumulus@switch:~$ nv show system telemetry export
@@ -311,7 +311,16 @@ The interface statistic data samples that the switch exports to the OTEL collect
 | `nvswitch_interface_ether_stats_pkts1519to2047octets` | Total packets received, 1519-2047 octets in length. |  
 | `nvswitch_interface_ether_stats_pkts2048to4095octets` | Total packets received, 2048-4095 octets in length. |  
 | `nvswitch_interface_ether_stats_pkts4096to8191octets` | Total packets received, 4096-8191 octets in length. |  
-| `nvswitch_interface_ether_stats_pkts8192to10239octets` | Total packets received, 8192-10239 octets in length. |  
+| `nvswitch_interface_ether_stats_pkts8192to10239octets` | Total packets received, 8192-10239 octets in length. |
+| `nvswitch_interface_carrier_up_changes_total` | Total number of carrier up transitions for the interface. |
+| `nvswitch_interface_carrier_last_change_time_ms` | Time of last carrier change for the interface as Unix epoch timestamp, with millisecond granularity. |
+| `nvswitch_interface_carrier_down_changes_total` | Total number of carrier down transitions for the interface. |
+| `nvswitch_interface_carrier_changes_total` | Total number of carrier changes for the interface. |
+| `nvswitch_interface_mtu_bytes` | Operational MTU for the interface in bytes. |
+| `nvswitch_interface_info` | Provides information about the interface: MAC address, duplex, ifalias, interface name, operstate. |
+| `nvswitch_interface_iface_id` | The ifindex for the interface. |
+| `nvswitch_interface_flags` | Kernel device flags set for an interface as an integer representing the {{<exlink url="https://github.com/torvalds/linux/blob/c1e939a21eb111a6d6067b38e8e04b8809b64c4e/include/uapi/linux/if.h#L43" text="kernel `net_device` flags bitmask">}}. |
+| `nvswitch_interface_proto_down` | Interface protocol down status. |
 
 {{< /tab >}}
 {{< tab "Traffic Class ">}}
@@ -464,6 +473,108 @@ When you enable control plane statistic telemetry, the following statistics are 
 | `nvswitch_control_plane_trap_group_rx_bytes` | Control plane trap group receive bytes. |
 | `nvswitch_control_plane_trap_group_pkt_violations` | Control plane trap group packet violations. |
 
+{{< expand "Example JSON data for nvswitch_control_plane_trap_rx_drop:" >}}
+```
+            {
+              "name": "nvswitch_control_plane_trap_rx_drop",
+              "description": "NVIDIA Ethernet Switch trap t_drops counter",
+              "sum": {
+                "dataPoints": [
+                  {
+                    "attributes": [
+                      {
+                        "key": "group",
+                        "value": {
+                          "stringValue": "25"
+                        }
+                      }
+                    ],
+                    "startTimeUnixNano": "1729836350747000000",
+                    "timeUnixNano": "1729839232747000000",
+                    "asDouble": 0
+                  },
+                  {
+                    "attributes": [
+                      {
+                        "key": "group",
+                        "value": {
+                          "stringValue": "3"
+                        }
+                      }
+                    ],
+                    "startTimeUnixNano": "1729836350747000000",
+                    "timeUnixNano": "1729839232747000000",
+                    "asDouble": 0
+                  },
+                  {
+                    "attributes": [
+                      {
+                        "key": "group",
+                        "value": {
+                          "stringValue": "5"
+                        }
+                      }
+                    ],
+                    "startTimeUnixNano": "1729836350747000000",
+                    "timeUnixNano": "1729839232747000000",
+                    "asDouble": 0
+                  },
+                  {
+                    "attributes": [
+                      {
+                        "key": "group",
+                        "value": {
+                          "stringValue": "53"
+                        }
+                      }
+                    ],
+                    "startTimeUnixNano": "1729836350747000000",
+                    "timeUnixNano": "1729839232747000000",
+                    "asDouble": 0
+                  },
+                  {
+                    "attributes": [
+                      {
+                        "key": "group",
+                        "value": {
+                          "stringValue": "78"
+                        }
+                      }
+                    ],
+                    "startTimeUnixNano": "1729836350747000000",
+                    "timeUnixNano": "1729839232747000000",
+                    "asDouble": 1
+                  },
+                  {
+                    "attributes": [
+                      {
+                        "key": "group",
+                        "value": {
+                          "stringValue": "80"
+                        }
+                      }
+                    ],
+                    "startTimeUnixNano": "1729836350747000000",
+                    "timeUnixNano": "1729839232747000000",
+                    "asDouble": 1
+                  }
+                ],
+                "aggregationTemporality": 2,
+                "isMonotonic": true
+              },
+              "metadata": [
+                {
+                  "key": "prometheus.type",
+                  "value": {
+                    "stringValue": "counter"
+                  }
+                }
+              ]
+            }
+```
+
+{{< /expand >}}
+
 ### Platform Statistic Format
 
 When you enable platform statistic telemetry globally, or when you enable telemetry for the individual components, the following statistics are exported:
@@ -609,9 +720,598 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 {{< /tab >}}
 {{< /tabs >}}
 
+{{< expand "Example JSON data for PSU and temperature sensor telemetry:" >}}
+
+            {
+              "name": "nvswitch_platform_environment_psu_state",
+              "description": "PSU state. 0:ABSENT 1:OK 2:FAILED 3:BAD",
+              "gauge": {
+                "dataPoints": [
+                  {
+                    "attributes": [
+                      {
+                        "key": "description",
+                        "value": {
+                          "stringValue": "Power Supply Unit 1"
+                        }
+                      },
+                      {
+                        "key": "name",
+                        "value": {
+                          "stringValue": "PSU1"
+                        }
+                      }
+                    ],
+                    "timeUnixNano": "1729113543218000000",
+                    "asDouble": 1
+                  },
+                  {
+                    "attributes": [
+                      {
+                        "key": "description",
+                        "value": {
+                          "stringValue": "Power Supply Unit 2"
+                        }
+                      },
+                      {
+                        "key": "name",
+                        "value": {
+                          "stringValue": "PSU2"
+                        }
+                      }
+                    ],
+                    "timeUnixNano": "1729113543218000000",
+                    "asDouble": 3
+                  }
+                        "value": {
+                          "stringValue": "Power Supply Unit 1"
+                        }
+                      },
+                      {
+                        "key": "name",
+                        "value": {
+                          "stringValue": "PSU1"
+                        }
+                      }
+                    ],
+                    "timeUnixNano": "1729113543218000000",
+                    "asDouble": 1
+                  },
+                  {
+                    "attributes": [
+                      {
+                        "key": "description",
+                        "value": {
+                          "stringValue": "Power Supply Unit 2"
+                        }
+                      },
+                      {
+                        "key": "name",
+                        "value": {
+                          "stringValue": "PSU2"
+                        }
+                      }
+                    ],
+                    "timeUnixNano": "1729113543218000000",
+                    "asDouble": 3
+                  }
+                ]
+              },
+              "metadata": [
+                {
+                  "key": "prometheus.type",
+                  "value": {
+                    "stringValue": "gauge"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "nvswitch_platform_environment_temp_crit",
+              "description": "Critical temperature in Centigrade.",
+              "gauge": {
+                "dataPoints": [
+                  {
+                    "attributes": [
+                      {
+                        "key": "description",
+                        "value": {
+                          "stringValue": "Asic Temp Sensor"
+                        }
+                      },
+                      {
+                        "key": "name",
+                        "value": {
+                          "stringValue": "Temp4"
+                        }
+                      }
+                    ],
+                    "timeUnixNano": "1729113543218000000",
+                    "asDouble": 120
+                  },
+                  {
+                    "attributes": [
+                      {
+                        "key": "description",
+                        "value": {
+                          "stringValue": "CPU Core Sensor 0"
+                        }
+                      },
+                      {
+                        "key": "name",
+                        "value": {
+                          "stringValue": "Temp5"
+                        }
+                      }
+                    ],
+                    "timeUnixNano": "1729113543218000000",
+                    "asDouble": 100
+                  },
+                  {
+                    "attributes": [
+                      {
+                        "key": "description",
+                        "value": {
+                          "stringValue": "CPU Core Sensor 1"
+                        }
+                      },
+                      {
+                        "key": "name",
+                        "value": {
+                          "stringValue": "Temp6"
+                        }
+                      }
+                    ],
+                    "timeUnixNano": "1729113543218000000",
+                    "asDouble": 100
+                  },
+                  {
+                    "attributes": [
+                      {
+                        "key": "description",
+                        "value": {
+                          "stringValue": "CPU Core Sensor 2"
+                        }
+                      },
+                      {
+                        "key": "name",
+                        "value": {
+                          "stringValue": "Temp7"
+                        }
+                      }
+                    ],
+                    "timeUnixNano": "1729113543218000000",
+                    "asDouble": 100
+                  },
+                  {
+                    "attributes": [
+                      {
+                        "key": "description",
+                        "value": {
+                          "stringValue": "CPU Core Sensor 3"
+                        }
+                      },
+                      {
+                        "key": "name",
+                        "value": {
+                          "stringValue": "Temp8"
+                        }
+                      }
+                    ],
+                    "timeUnixNano": "1729113543218000000",
+                    "asDouble": 100
+                  },
+                  {
+                    "attributes": [
+                      {
+                        "key": "description",
+                        "value": {
+                          "stringValue": "CPU Core Sensor 4"
+                        }
+                      },
+                      {
+                        "key": "name",
+                        "value": {
+                          "stringValue": "Temp9"
+                        }
+                      }
+                    ],
+                    "timeUnixNano": "1729113543218000000",
+                    "asDouble": 100
+                  },
+                  {
+                    "attributes": [
+                      {
+                        "key": "description",
+                        "value": {
+                          "stringValue": "CPU Core Sensor 5"
+                        }
+                      },
+                      {
+                        "key": "name",
+                        "value": {
+                          "stringValue": "Temp10"
+                        }
+                      }
+                    ],
+                    "timeUnixNano": "1729113543218000000",
+                    "asDouble": 100
+                  },
+                  {
+                    "attributes": [
+                      {
+                        "key": "description",
+                        "value": {
+                          "stringValue": "CPU Package Sensor"
+                        }
+                      },
+                      {
+                        "key": "name",
+                        "value": {
+                          "stringValue": "Temp1"
+                        }
+                      }
+                    ],
+                    "timeUnixNano": "1729113543218000000",
+                    "asDouble": 100
+                  },
+                  {
+                    "attributes": [
+                      {
+                        "key": "description",
+                        "value": {
+                          "stringValue": "Main Board Ambient Sensor"
+                        }
+                      },
+                      {
+                        "key": "name",
+                        "value": {
+                          "stringValue": "Temp3"
+                        }
+                      }
+                    ],
+                    "timeUnixNano": "1729113543218000000",
+                    "asDouble": 85
+                  },
+                  {
+                    "attributes": [
+                      {
+                        "key": "description",
+                        "value": {
+                          "stringValue": "PSU1 Temp Sensor"
+                        }
+                      },
+                      {
+                        "key": "name",
+                        "value": {
+                          "stringValue": "PSU1Temp1"
+                        }
+                      }
+                    ],
+                    "timeUnixNano": "1729113543218000000",
+                    "asDouble": 85
+                  },
+                  {
+                    "attributes": [
+                      {
+                        "key": "description",
+                        "value": {
+                          "stringValue": "PSU2 Temp Sensor"
+                        }
+                      },
+                      {
+                        "key": "name",
+                        "value": {
+                          "stringValue": "PSU2Temp1"
+                        }
+                      }
+                    ],
+                    "timeUnixNano": "1729113543218000000",
+                    "asDouble": 0
+                  },
+                  {
+                    "attributes": [
+                      {
+                        "key": "description",
+                        "value": {
+                          "stringValue": "Port Ambient Sensor"
+                        }
+                      },
+                      {
+                        "key": "name",
+                        "value": {
+                          "stringValue": "Temp2"
+                        }
+                      }
+                    ],
+                    "timeUnixNano": "1729113543218000000",
+                    "asDouble": 85
+                  }
+                ]
+              },
+              "metadata": [
+                {
+                  "key": "prometheus.type",
+                  "value": {
+                    "stringValue": "gauge"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "nvswitch_platform_environment_temp_current",
+                  },
+                  {
+                    "attributes": [
+                      {
+                        "key": "description",
+                        "value": {
+                          "stringValue": "Port Ambient Sensor"
+                        }
+                      },
+                      {
+                        "key": "name",
+                        "value": {
+                          "stringValue": "Temp2"
+                        }
+                      }
+                    ],
+                    "timeUnixNano": "1729113543218000000",
+                    "asDouble": 85
+                  }
+                ]
+              },
+              "metadata": [
+                {
+                  "key": "prometheus.type",
+                  "value": {
+                    "stringValue": "gauge"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "nvswitch_platform_environment_temp_current",
+              "description": "Current temperature in Centigrade.",
+              "gauge": {
+                "dataPoints": [
+                  {
+                    "attributes": [
+                      {
+                        "key": "description",
+                        "value": {
+                          "stringValue": "Asic Temp Sensor"
+                        }
+                      },
+                      {
+                        "key": "name",
+                        "value": {
+                          "stringValue": "Temp4"
+                        }
+                      }
+                    ],
+                    "timeUnixNano": "1729113543218000000",
+                    "asDouble": 50
+                  },
+                  {
+                    "attributes": [
+                      {
+                        "key": "description",
+                        "value": {
+                          "stringValue": "CPU Core Sensor 0"
+                        }
+                      },
+                      {
+                        "key": "name",
+                        "value": {
+                          "stringValue": "Temp5"
+                        }
+                      }
+                    ],
+                    "timeUnixNano": "1729113543218000000",
+                    "asDouble": 52
+                  },
+                  {
+                    "attributes": [
+                      {
+                        "key": "description",
+                        "value": {
+                          "stringValue": "CPU Core Sensor 1"
+                        }
+                      },
+                      {
+                        "key": "name",
+                        "value": {
+                          "stringValue": "Temp6"
+                        }
+                      }
+                    ],
+                    "timeUnixNano": "1729113543218000000",
+                    "asDouble": 69
+                  },
+                  {
+                    "attributes": [
+                      {
+                        "key": "description",
+                        "value": {
+                          "stringValue": "CPU Core Sensor 2"
+                        }
+                      },
+                      {
+                        "key": "name",
+                        "value": {
+                          "stringValue": "Temp7"
+                        }
+                      }
+                    ],
+                    "timeUnixNano": "1729113543218000000",
+                    "asDouble": 55
+                  },
+                  {
+                    "attributes": [
+                      {
+                        "key": "description",
+                        "value": {
+                          "stringValue": "CPU Core Sensor 3"
+                        }
+                      },
+                      {
+                        "key": "name",
+                        "value": {
+                          "stringValue": "Temp8"
+                        }
+                      }
+                    ],
+                    "timeUnixNano": "1729113543218000000",
+                    "asDouble": 54
+                  },
+                  {
+                    "attributes": [
+                      {
+                        "key": "description",
+                        "value": {
+                          "stringValue": "CPU Core Sensor 4"
+                        }
+                      },
+                      {
+                        "key": "name",
+                        "value": {
+                          "stringValue": "Temp9"
+                        }
+                      }
+                    ],
+                    "timeUnixNano": "1729113543218000000",
+                    "asDouble": 52
+                  },
+                  {
+                    "attributes": [
+                      {
+                        "key": "description",
+                        "value": {
+                          "stringValue": "CPU Core Sensor 5"
+                        }
+                      },
+                      {
+                        "key": "name",
+                        "value": {
+                          "stringValue": "Temp10"
+                        }
+                      }
+                    ],
+                    "timeUnixNano": "1729113543218000000",
+                    "asDouble": 52
+                  },
+                  {
+                    "attributes": [
+                      {
+                        "key": "description",
+                        "value": {
+                          "stringValue": "CPU Package Sensor"
+                        }
+                      },
+                      {
+                        "key": "name",
+                        "value": {
+                          "stringValue": "Temp1"
+                        }
+                      }
+                    ],
+                    "timeUnixNano": "1729113543218000000",
+                    "asDouble": 69
+                  },
+                  {
+                    "attributes": [
+                      {
+                        "key": "description",
+                        "value": {
+                          "stringValue": "Main Board Ambient Sensor"
+                        }
+                      },
+                      {
+                        "key": "name",
+                        "value": {
+                          "stringValue": "Temp3"
+                        }
+                      }
+                    ],
+                    "timeUnixNano": "1729113543218000000",
+                    "asDouble": 24.687
+                  },
+                  {
+                    "attributes": [
+                      {
+                        "key": "description",
+                        "value": {
+                          "stringValue": "PSU1 Temp Sensor"
+                        }
+                      },
+                      {
+                        "key": "name",
+                        "value": {
+                          "stringValue": "PSU1Temp1"
+                        }
+                      }
+                    ],
+                    "timeUnixNano": "1729113543218000000",
+                    "asDouble": 24.531
+                  },
+                  {
+                    "attributes": [
+                      {
+                        "key": "description",
+                        "value": {
+                          "stringValue": "PSU2 Temp Sensor"
+                        }
+                      },
+                      {
+                        "key": "name",
+                        "value": {
+                          "stringValue": "PSU2Temp1"
+                        }
+                      }
+                    ],
+                    "timeUnixNano": "1729113543218000000",
+                    "asDouble": 0
+                  },
+                  {
+                    "attributes": [
+                      {
+                        "key": "description",
+                        "value": {
+                          "stringValue": "Port Ambient Sensor"
+                        }
+                      },
+                      {
+                        "key": "name",
+                        "value": {
+                          "stringValue": "Temp2"
+                        }
+                      }
+                    ],
+                    "timeUnixNano": "1729113543218000000",
+                    "asDouble": 22.312
+                  }
+                ]
+              },
+              "metadata": [
+                {
+                  "key": "prometheus.type",
+                  "value": {
+                    "stringValue": "gauge"
+                  }
+                }
+              ]
+            },
+
+{{< /expand >}}
+
 ### Histogram Data Format
 
 The histogram data samples that the switch exports to the OTEL collector are {{<exlink url="https://opentelemetry.io/docs/specs/otel/metrics/data-model/#histogram" text="histogram data points">}} that include the {{<link url="ASIC-Monitoring#histogram-collection-example" text="histogram bucket (bin)">}} counts and the respective queue length size boundaries for each bucket. Latency and counter histogram data are also exported, if configured. 
+
+{{% notice note %}}
+Latency histogram bucket counts do not increment in exported telemetry data if there are no packets transmitted in the traffic class during the sample interval.
+{{% /notice %}} 
 
 The switch sends a sample with the following names for each interface enabled for ingress and egress buffer, latency, and/or counter histogram collection:
 
@@ -635,21 +1335,21 @@ The switch sends a sample with the following names for each interface enabled fo
                       {
                         "key": "interface",
                         "value": {
-                          "stringValue": "swp1"
+                          "stringValue": "swp1s1"
                         }
                       },
                       {
                         "key": "pg",
                         "value": {
-                          "stringValue": "0"
+                          "intValue": "0"
                         }
                       }
                     ],
-                    "startTimeUnixNano": "1722458110024982775",
-                    "timeUnixNano": "1722458189324842275",
-                    "count": "79",
-                    "sum": 77705974,
+                    "startTimeUnixNano": "1729839231624809212",
+                    "timeUnixNano": "1729839231628434909",
+                    "count": "1019165",
                     "bucketCounts": [
+                      "1019165",
                       "0",
                       "0",
                       "0",
@@ -658,28 +1358,19 @@ The switch sends a sample with the following names for each interface enabled fo
                       "0",
                       "0",
                       "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "79"
+                      "0"
                     ],
                     "explicitBounds": [
-                      0,
-                      1024,
-                      2048,
-                      3072,
-                      4096,
-                      5120,
-                      6144,
-                      7168,
-                      8192,
-                      9216,
-                      10240,
-                      11264
-                    ],
-                    "min": 980353,
-                    "max": 1028062
+                      863,
+                      295775,
+                      590687,
+                      885599,
+                      1180511,
+                      1475423,
+                      1770335,
+                      2065247,
+                      2360159
+                    ]
                   },
 ```
 
@@ -687,9 +1378,9 @@ The switch sends a sample with the following names for each interface enabled fo
 <br>
 {{< expand "Example JSON data for interface_egress_buffer:" >}}
 ```
-            {
+{
               "name": "nvswitch_histogram_interface_egress_buffer",
-              "description": "NVIDIA Ethernet Switch Histogram Interface Engress Buffer Queue Depth",
+              "description": "NVIDIA Ethernet Switch Histogram Interface Egress Buffer Queue Depth",
               "unit": "bytes",
               "histogram": {
                 "dataPoints": [
@@ -698,20 +1389,126 @@ The switch sends a sample with the following names for each interface enabled fo
                       {
                         "key": "interface",
                         "value": {
-                          "stringValue": "swp1"
+                          "stringValue": "swp1s1"
                         }
                       },
                       {
                         "key": "tc",
                         "value": {
-                          "stringValue": "0"
+                          "intValue": "0"
                         }
                       }
                     ],
-                    "startTimeUnixNano": "1722460215693291034",
-                    "timeUnixNano": "1722460275853160707",
-                    "count": "60",
-                    "sum": 58945566,
+                    "startTimeUnixNano": "1729839232707032279",
+                    "timeUnixNano": "1729839232709312158",
+                    "count": "1077334",
+                    "bucketCounts": [
+                      "1077334",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0"
+                    ],
+                    "explicitBounds": [
+                      863,
+                      1180511,
+                      2360159,
+                      3539807,
+                      4719455,
+                      5899103,
+                      7078751,
+                      8258399,
+                      9438047
+                    ]
+                  }
+```
+
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for interface_counter:" >}}
+```
+            {
+              "name": "nvswitch_histogram_interface_counter",
+              "description": "NVIDIA Ethernet Switch Histogram Interface Counter",
+              "unit": "counter",
+              "histogram": {
+                "dataPoints": [
+                  {
+                    "attributes": [
+                      {
+                        "key": "interface",
+                        "value": {
+                          "stringValue": "swp1s1"
+                        }
+                      },
+                      {
+                        "key": "type",
+                        "value": {
+                          "stringValue": "crc"
+                        }
+                      }
+                    ],
+                    "startTimeUnixNano": "1729839235935525147",
+                    "timeUnixNano": "1729839235937099838",
+                    "count": "1033926",
+                    "bucketCounts": [
+                      "1033926",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0"
+                    ],
+                    "explicitBounds": [
+                      99999,
+                      1337499,
+                      2574999,
+                      3812499,
+                      5049999,
+                      6287499,
+                      7524999,
+                      8762499,
+                      9999999
+                    ]
+                  },  
+```
+
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for interface_latency:" >}}
+```
+            {
+              "name": "nvswitch_histogram_interface_latency",
+              "description": "NVIDIA Ethernet Switch Histogram Interface Latency",
+              "unit": "packets",
+              "histogram": {
+                "dataPoints": [
+                  {
+                    "attributes": [
+                      {
+                        "key": "interface",
+                        "value": {
+                          "stringValue": "swp1s1"
+                        }
+                      },
+                      {
+                        "key": "tc",
+                        "value": {
+                          "intValue": "0"
+                        }
+                      }
+                    ],
+                    "startTimeUnixNano": "1729839233815168456",
+                    "timeUnixNano": "1729839233818493910",
                     "bucketCounts": [
                       "0",
                       "0",
@@ -722,140 +1519,19 @@ The switch sends a sample with the following names for each interface enabled fo
                       "0",
                       "0",
                       "0",
-                      "0",
-                      "0",
-                      "0",
-                      "60"
+                      "0"
                     ],
                     "explicitBounds": [
-                      0,
-                      1024,
-                      2048,
-                      3072,
-                      4096,
-                      5120,
-                      6144,
-                      7168,
-                      8192,
-                      9216,
-                      10240,
-                      11264
-                    ],
-                    "min": 980181,
-                    "max": 1006965
-                  },
-```
-
-{{< /expand >}}
-<br>
-{{< expand "Example JSON data for interface_counter:" >}}
-```
-            {
-                "name": "nvswitch_histogram_interface_counter", 
-              "description": "NVIDIA Ethernet Switch Histogram Interface Counter", 
-              "unit": "counter", 
-              "histogram": { 
-                "dataPoints": [ 
-                  { 
-                    "attributes": [ 
-                      { 
-                        "key": "interface", 
-                        "value": { 
-                          "stringValue": "swp20" 
-                        } 
-                      }, 
-                      { 
-                        "key": "type", 
-                        "value": { 
-                          "stringValue": "rx-byte" 
-                        } 
-                      } 
-                    ], 
-                    "startTimeUnixNano": "1725403612794459038", 
-                    "timeUnixNano": "1725403612795123308", 
-                    "count": "1018476",
-                    "sum": 0, 
-                    "bucketCounts": [ 
-                      "1018476", 
-                      "0", 
-                      "0", 
-                      "0", 
-                      "0", 
-                      "0", 
-                      "0", 
-                      "0", 
-                      "0", 
-                      "0" 
-                    ], 
-                    "explicitBounds": [ 
-                      99999, 
-                      1337499, 
-                      2574999, 
-                      3812499, 
-                      5049999, 
-                      6287499, 
-                      7524999, 
-                      8762499, 
-                      9999999 
-                    ], 
-                    "min": 0, 
-                    "max": 1018476 
-                  },  
-```
-
-{{< /expand >}}
-<br>
-{{< expand "Example JSON data for interface_latency:" >}}
-```
-            { 
-              "name": "nvswitch_histogram_interface_latency", 
-              "description": "NVIDIA Ethernet Switch Histogram Interface Latency", 
-              "unit": "time", 
-              "histogram": { 
-                "dataPoints": [ 
-                  { 
-                    "attributes": [ 
-                      { 
-                        "key": "interface", 
-                        "value": { 
-                          "stringValue": "swp20" 
-                        } 
-                      }, 
-                      { 
-                        "key": "tc", 
-                        "value": { 
-                          "intValue": "2" 
-                        } 
-                      } 
-                    ], 
-                    "startTimeUnixNano": "1725403612802039259", 
-                    "timeUnixNano": "1725403612802609732", 
-                    "sum": 0, 
-                    "bucketCounts": [ 
-                      "0", 
-                      "0", 
-                      "0", 
-                      "0", 
-                      "0", 
-                      "0", 
-                      "0", 
-                      "0", 
-                      "0", 
-                      "0" 
-                    ], 
-                    "explicitBounds": [ 
-                      319, 
-                      831, 
-                      1343, 
-                      1855, 
-                      2367, 
-                      2879, 
-                      3391, 
-                      3903, 
-                      4415 
-                    ], 
-                    "min": 0, 
-                    "max": 0 
+                      319,
+                      831,
+                      1343,
+                      1855,
+                      2367,
+                      2879,
+                      3391,
+                      3903,
+                      4415
+                    ]
                   },
 ```
 

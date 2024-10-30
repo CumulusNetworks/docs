@@ -46,7 +46,7 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
   - {{<link url="FRRouting/#show-routes-in-the-routing-table" text="Commands to show the number of routes in the routing table">}}
   - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#show-transceiver-information" text="Commands to show optical information for transceivers">}}
   - {{<link url="Troubleshoot-Layer-1/#show-layer-1-information" text="l1-show command equivalent">}}
-  - BGP and EVPN command changes and output cleanup
+  - {{<link url="Troubleshooting-BGP" text="BGP">}} and {{<link url="Troubleshooting-EVPN" text="EVPN">}} command changes and output cleanup
   - {{< expand "Changed NVUE Commands" >}}
 | New Commands | Previous Commands |
 | ----------- | ----------------|

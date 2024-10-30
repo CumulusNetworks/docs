@@ -10,6 +10,10 @@ Cumulus Linux uses Pluggable Authentication Modules (PAM) and Name Service Switc
 
 NVUE manages LDAP authentication with PAM and NSS.
 
+{{%notice note%}}
+Cumulus Linux only supports LDAP with IPv4.
+{{%/notice%}}
+
 ## Configure LDAP Server Settings
 
 You can configure LDAP server settings with NVUE commands or by editing Linux configuration files.

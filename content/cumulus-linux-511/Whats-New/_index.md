@@ -24,7 +24,7 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 - {{<link url="BGP-Weighted-Equal-Cost-Multipath/#ecmp-resource-sharing-during-next-hop-group-updates" text="Additional ECMP resource optimization for next hop groups">}} (BETA)
 - {{<link url="Optional-BGP-Configuration/#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}} (BETA)
 - {{<link url="Open-Telemetry-Export" text="New OTLP Statistics and Export">}}
-- {{<link url="ASIC-Monitoring/#interface-packet-and-buffer-statistics" text="Interface packet and buffer statistics collection">}} (BETA)
+- {{<link url="ASIC-Monitoring/#interface-packet-and-buffer-statistics" text="Interface packet and buffer statistics collection">}}
 - NVUE
   - {{<link url="DHCP-Snooping" text="DHCP snooping commands">}}
   - {{<link url="LDAP-Authentication-and-Authorization" text="LDAP authentication and authorization commands">}}

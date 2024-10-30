@@ -1309,6 +1309,10 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 
 The histogram data samples that the switch exports to the OTEL collector are {{<exlink url="https://opentelemetry.io/docs/specs/otel/metrics/data-model/#histogram" text="histogram data points">}} that include the {{<link url="ASIC-Monitoring#histogram-collection-example" text="histogram bucket (bin)">}} counts and the respective queue length size boundaries for each bucket. Latency and counter histogram data are also exported, if configured. 
 
+{{% notice note %}}
+Latency histogram bucket counts do not increment in exported telemetry data if there are no packets transmitted in the traffic class during the sample interval.
+{{% /notice %}} 
+
 The switch sends a sample with the following names for each interface enabled for ingress and egress buffer, latency, and/or counter histogram collection:
 
 | Name | Description |

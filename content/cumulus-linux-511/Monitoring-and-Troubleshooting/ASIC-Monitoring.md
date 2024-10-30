@@ -6,7 +6,7 @@ toc: 3
 ---
 Cumulus Linux provides several ASIC monitoring tools that collect and distribute data about the state of the ASIC.
 - {{<link url="#histogram-collection" text="Histogram Collection">}}
-- {{<link url="#interface-packet-and-buffer-statistics" text="Interface Packet and Buffer Statistics">}}
+- {{<link url="#interface-packet-and-buffer-statistics" text="Interface Packet and Buffer Statistics">}} (BETA)
 - {{<link url="#high-frequency-telemetry" text="High frequency telemetry">}}
 
 ## Enable ASIC Monitoring
@@ -713,6 +713,10 @@ Time      0-863     864:2303    2304:3743  3744:5183   5184:6623   6624:8063   8
 Interface packet and buffer statistics show information about all, good, and dropped packets, and interface ingress and egress buffer occupancy.
 
 ### Interface Packet and Buffer Statistics Collection
+
+{{%notice note%}}
+This is a BETA feature.
+{{%/notice%}}
 
 To monitor interface packet and buffer statistics, you specify:
 - The type of data to collect. You can collect the following data types:

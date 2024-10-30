@@ -13,7 +13,8 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 
 ### Platforms
 
-- The NVIDIA SN5400 switch includes P2C Forward Airflow support
+- NVIDIA SN2201M (100G Spectrum 1)
+- NVIDIA SN5400 switch includes P2C Forward Airflow support
 
 ### New Features and Enhancements
 

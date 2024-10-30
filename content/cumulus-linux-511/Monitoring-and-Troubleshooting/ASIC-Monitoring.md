@@ -6,7 +6,7 @@ toc: 3
 ---
 Cumulus Linux provides several ASIC monitoring tools that collect and distribute data about the state of the ASIC.
 - {{<link url="#histogram-collection" text="Histogram Collection">}}
-- {{<link url="#interface-packet-and-buffer-statistics" text="Interface Packet and Buffer Statistics">}}
+- {{<link url="#interface-packet-and-buffer-statistics" text="Interface Packet and Buffer Statistics">}} (BETA)
 - {{<link url="#high-frequency-telemetry" text="High frequency telemetry">}}
 
 ## Enable ASIC Monitoring

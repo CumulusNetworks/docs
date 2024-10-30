@@ -13,6 +13,8 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 
 ### Platforms
 
+- The NVIDIA SN5400 switch includes P2C Forward Airflow support
+
 ### New Features and Enhancements
 
 - The NVIDIA SN5400 switch supports {{<link url="Synchronous-Ethernet-SyncE" text="syncE">}} and {{<link url="Precision-Time-Protocol-PTP/#noise-transfer-servo" text="ITU-T">}}

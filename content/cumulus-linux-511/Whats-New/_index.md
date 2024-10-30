@@ -21,10 +21,10 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 - {{<link url="Forwarding-Table-Size-and-Profiles/#spectrum-1" text="ecmp-nh-heavy forwarding profile">}} for Spectrum 1 switches
 - {{<link url="RADIUS-AAA/#radius-user-command-accounting" text="RADIUS user command accounting">}}
 - {{<link url="Upgrading-Cumulus-Linux/#upgrade-cumulus-linux" text="Optimized image upgrade commands">}} (available for future upgrades)
-- {{<link url="BGP-Weighted-Equal-Cost-Multipath/#ecmp-resource-sharing-during-next-hop-group-updates" text="Additional ECMP resource optimization for next hop groups">}} (Beta)
-- {{<link url="Optional-BGP-Configuration/#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}} (Beta)
+- {{<link url="BGP-Weighted-Equal-Cost-Multipath/#ecmp-resource-sharing-during-next-hop-group-updates" text="Additional ECMP resource optimization for next hop groups">}} (BETA)
+- {{<link url="Optional-BGP-Configuration/#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}} (BETA)
 - {{<link url="Open-Telemetry-Export" text="New OTLP Statistics and Export">}}
-- {{<link url="ASIC-Monitoring/#interface-packet-and-buffer-statistics" text="Interface packet and buffer statistics collection">}}
+- {{<link url="ASIC-Monitoring/#interface-packet-and-buffer-statistics" text="Interface packet and buffer statistics collection">}} (BETA)
 - NVUE
   - {{<link url="DHCP-Snooping" text="DHCP snooping commands">}}
   - {{<link url="LDAP-Authentication-and-Authorization" text="LDAP authentication and authorization commands">}}

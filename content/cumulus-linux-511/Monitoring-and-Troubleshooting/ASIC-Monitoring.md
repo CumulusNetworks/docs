@@ -714,10 +714,6 @@ Interface packet and buffer statistics show information about all, good, and dro
 
 ### Interface Packet and Buffer Statistics Collection
 
-{{%notice note%}}
-This is a BETA feature.
-{{%/notice%}}
-
 To monitor interface packet and buffer statistics, you specify:
 - The type of data to collect. You can collect the following data types:
    - All, good, and dropped packets, and the ingress and egress queue occupancy (`packet-all`)

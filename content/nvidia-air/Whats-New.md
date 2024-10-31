@@ -13,9 +13,9 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 ### 82.2024.1031-011
 - Fixed an issue when creating a new simulation from the nodes or links tabs
 - Fixed an issue when populating SSH keys on the oob-mgmt-server
-- Fixed an issue wehere topology fields could be updated after the simulation was LOADED
+- Fixed an issue where topology fields could be updated after the simulation was LOADED
 - Improved the initial processing when applying a filter
-- Added the ability add additional ports to non-switch nodes
+- Added the ability to add additional ports to non-switch nodes
 - Fixed an issue with link highlighting for newly created links
 - Fixed an issue when creating a simulation within an organization
 - Added the ability to disable node name popups

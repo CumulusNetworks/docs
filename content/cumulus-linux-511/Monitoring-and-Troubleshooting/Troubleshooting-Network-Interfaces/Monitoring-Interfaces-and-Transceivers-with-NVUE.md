@@ -401,7 +401,7 @@ The `nv action clear interface <interface> counters` command does not clear coun
 
 ## Show Transceiver Information
 
-To show the identifier, vendor name, part number, serial number, and revision for all SFP or QSFP modules, run the `nv show platform transceiver` command:
+To show the identifier, vendor name, part number, serial number, and revision for all modules, run the `nv show platform transceiver` command:
 
 ```
 cumulus@switch:~$ nv show platform transceiver 
@@ -422,9 +422,9 @@ swp23        QSFP28      Mellanox     MFA1A00-C003      MT2108FT02194  B2
 swp31        QSFP28      Mellanox     MCP1600-C001E30N  MT2039VB01191  A3 
 ```
 
-To show a detailed view of SFP or QSFP module information for all ports that includes cable length, type, and diagnostics, current status and error status, run the `nv show platform transceiver details` command.
+To show a detailed view of module information for all ports that includes cable length, type, and diagnostics, current status and error status, run the `nv show platform transceiver details` command.
 
-To show hardware capabilities and measurement information on the SFP or QSFP module in a particular port, run the `nv show platform transceiver <interface>` command:
+To show hardware capabilities and measurement information on the module in a particular port, run the `nv show platform transceiver <interface>` command:
 
 ```
 cumulus@switch:~$ nv show platform transceiver swp2
@@ -480,6 +480,10 @@ channel:
 ...  
 ```
 
+{{%notice note%}}
+The `nv show platform transceiver` commands do not display information for subinterfaces; run the `nv show interface <subinterface> transceiver` commands for subinterface information.
+{{%/notice%}}
+
 You can also show transceiver data in a more condensed format with the `nv show interface <interface> transceiver` command:
 
 ```
@@ -514,7 +518,7 @@ ch-4-tx-power          : 0.9695 mW / -0.13 dBm
 ch-4-tx-bias-current   : 6.750 mA 
 ```
 
-To show channel information for the SFP or QSFP module in a particular port, run the `nv show platform transceiver <interface> channel` command. To show specific channel information for the SFP or QSFP module in a particular port, run the `nv show platform transceiver <interface> channel <channel>` command.
+To show channel information for the module in a particular port, run the `nv show platform transceiver <interface> channel` command. To show specific channel information for the module in a particular port, run the `nv show platform transceiver <interface> channel <channel>` command.
 
 ```
 cumulus@switch:~$ nv show platform transceiver swp25 channel 
@@ -559,7 +563,7 @@ channel:
 ...
 ```
 
-To show the thresholds for the SFP or QSFP module for a specific interface, run the `nv show interface <interface> transceiver thresholds` command:
+To show the thresholds for the module for a specific interface, run the `nv show interface <interface> transceiver thresholds` command:
 
 ```
 cumulus@switch:~$ nv show interface swp3 transceiver thresholds

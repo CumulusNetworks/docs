@@ -47,7 +47,7 @@ You can clone a workbench to quickly create a new workbench with the same cards 
 
 The changes you make to a custom workbench are saved automatically. To change a workbench from local to global (or global to local) availability, select the workbench's name in the header and select **Manage my WB**. From the Workbenches card, locate the workbench whose availability you'd like to change and select **Local** or **Global**.
 
-You can also change your home workbench (the workbench that loads when you log in to NetQ) from this view. Select the {{<img src="/images/netq/home-workbench.png" width="18px">}} icon to the left of the workbench that you want to set as your home workbench. The next time you log in from this premises, the workbench you selected will be displayed.
+You can also change your home workbench (the workbench that loads when you log in to NetQ) from this view. Select the {{<img src="/images/netq/home-workbench.png" width="18px">}} house to the left of the workbench that you want to set as your home workbench. The next time you log in from this premises, the workbench you selected will be displayed.
 {{<figure src="/images/netq/wb-card-411.png" alt="" width="600">}}
 
 ## Delete a Workbench

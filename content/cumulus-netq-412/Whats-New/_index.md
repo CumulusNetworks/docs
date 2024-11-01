@@ -12,12 +12,13 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 NetQ 4.12.0 includes the following new features and improvements:
 
-- New installation option that supports up to 1,000 devices
+- {{<link title="Before You Install" text="New installation option">}} that supports up to 1,000 devices
 - {{<link title="Focus Your Monitoring Using Workbenches" text="New workbench">}} with {{<link title="Access Data with Cards" text="additional cards">}} that you can add to your existing workbenches
 - Compare interfaces and view counter data across links with the {{<link title="Interfaces/#compare-link-interfaces" text="link health view">}} (beta)
+- View a switch's BGP and EVPN session information from the full-screen {{<link title="Switches" text="switch dashboard">}}
+- New option to send all events to a notification channel as part of {{<link title="Configure System Event Notifications/#create-a-channel" text="the channel setup process">}}
 - The {{<link title="Network Topology" text="topology view">}} is now generally available
 - {{<link title="Validate Network Protocol and Service Operations/#topology-validations" text="Topology validations">}} are now generally available
-- View a switch's BGP and EVPN session information from the full-screen {{<link title="Switches" text="switch dashboard">}}
 
 ## Upgrade Paths
 

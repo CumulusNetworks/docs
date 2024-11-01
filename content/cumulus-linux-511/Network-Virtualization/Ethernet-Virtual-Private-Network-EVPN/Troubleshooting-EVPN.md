@@ -38,48 +38,39 @@ The following shows example output for the `nv show bridge domain <domain> mac-t
 -->
 ```
 cumulus@leaf01:mgmt:~$ nv show bridge domain br_default mac-table
-entry-id  age    bridge-domain  entry-type    interface   last-update  MAC address        remote-dst       src-vni  vlan
---------  -----  -------------  ------------  ----------  -----------  -----------------  ---------------  -------  ----
-1         12562  br_default     static        bond1       12562        48:b0:2d:98:61:d4                            10  
-2         22     br_default     static        bond1       10550        48:b0:2d:72:9d:99                            10  
-3         12777  br_default     permanent     bond1       12777        48:b0:2d:4c:da:d9                                
-4         12562  br_default     extern_learn  vxlan48     12562        48:b0:2d:aa:b7:0c                            10  
-5         12573  br_default     extern_learn  vxlan48     10549        48:b0:2d:ff:b8:07                            10  
-6         12773  br_default     extern_learn  vxlan48     12773        44:38:39:22:01:8a                            10  
-7         12773  br_default     extern_learn  vxlan48     12773        44:38:39:22:01:8a                            30  
-8         12773  br_default     extern_learn  vxlan48     12773        44:38:39:22:01:8a                            20  
-9         12773  br_default     extern_learn  vxlan48     116          44:38:39:22:01:78                            10  
-10        12773  br_default     extern_learn  vxlan48     98           44:38:39:22:01:78                            30  
-11        12773  br_default     extern_learn  vxlan48     86           44:38:39:22:01:78                            20  
-12        12774  br_default     extern_learn  vxlan48     12556        44:38:39:22:01:84                            20  
-13        12774  br_default     extern_learn  vxlan48     12566        44:38:39:22:01:84                            30  
-14        12774  br_default     extern_learn  vxlan48     12774        44:38:39:22:01:84                            10  
-15        12777  br_default     permanent     vxlan48     12777        76:2e:db:01:52:0e                                
-16        12773                 extern_learn  vxlan48     116          44:38:39:22:01:78  10.10.10.2       10           
-17        12562                 extern_learn  vxlan48     12562        48:b0:2d:aa:b7:0c  nhid: 536870916  10           
-18        12773                 extern_learn  vxlan48     12773        44:38:39:22:01:8a  10.10.10.4       30           
-19        12773                 extern_learn  vxlan48     86           44:38:39:22:01:78  10.10.10.2       20           
-20        12774                 extern_learn  vxlan48     12774        44:38:39:22:01:84  10.10.10.3       10           
-21        12773                 extern_learn  vxlan48     98           44:38:39:22:01:78  10.10.10.2       30           
-22        12573                 extern_learn  vxlan48     10549        48:b0:2d:ff:b8:07  nhid: 536870916  10           
-23        12774                 extern_learn  vxlan48     12566        44:38:39:22:01:84  10.10.10.3       30           
-24        12774                 extern_learn  vxlan48     12556        44:38:39:22:01:84  10.10.10.3       20           
-25        12773                 extern_learn  vxlan48     12773        44:38:39:22:01:8a  10.10.10.4       10           
-26        12773                 permanent     vxlan48     25           00:00:00:00:00:00  10.10.10.3       20           
-27        12773                 permanent     vxlan48     25           00:00:00:00:00:00  10.10.10.2       20           
-28        12773                 permanent     vxlan48     25           00:00:00:00:00:00  10.10.10.4       20           
-29        12773                 permanent     vxlan48     41           00:00:00:00:00:00  10.10.10.3       30           
-30        12773                 permanent     vxlan48     41           00:00:00:00:00:00  10.10.10.2       30           
-31        12773                 permanent     vxlan48     41           00:00:00:00:00:00  10.10.10.4       30           
-32        12773                 permanent     vxlan48     47           00:00:00:00:00:00  10.10.10.3       10           
-33        12773                 permanent     vxlan48     47           00:00:00:00:00:00  10.10.10.2       10           
-34        12773                 permanent     vxlan48     47           00:00:00:00:00:00  10.10.10.4       10           
-35        12773                 extern_learn  vxlan48     12773        44:38:39:22:01:8a  10.10.10.4       20           
-36        12562  br_default     static        bond2       12562        48:b0:2d:ac:01:da                            20  
-37        21     br_default     static        bond2       12556        48:b0:2d:8f:4b:ff                            20  
-38        12777  br_default     permanent     bond2       12777        48:b0:2d:f9:41:f5                                
-39        12562  br_default     static        bond3       12562        48:b0:2d:2d:8b:15                            30  
-40        21     br_default     static        bond3       12566        48:b0:2d:56:1a:96                            30
+entry-id  MAC address        vlan  interface   remote-dst   src-vni  entry-type    last-update  age    
+--------  -----------------  ----  ----------  -----------  -------  ------------  -----------  -------
+1         48:b0:2d:fd:d3:bf  10    vxlan48                           extern_learn  8:06:02      8:06:02
+2         48:b0:2d:4e:1c:fe  20    vxlan48                           extern_learn  8:06:02      8:06:02
+3         48:b0:2d:a7:4d:ce  30    vxlan48                           extern_learn  8:06:02      8:06:02
+4         48:b0:2d:53:d2:34  20    vxlan48                           extern_learn  8:06:30      8:06:30
+5         44:38:39:be:ef:bb  4063  vxlan48                           extern_learn  8:06:30      8:06:30
+6         48:b0:2d:2d:5f:b3  30    vxlan48                           extern_learn  8:06:32      8:06:32
+7         44:38:39:be:ef:bb  4006  vxlan48                           extern_learn  8:06:32      8:06:32
+8         48:b0:2d:93:a1:3e  10    vxlan48                           extern_learn  8:06:35      8:06:35
+9         44:38:39:22:01:74  4006  vxlan48                           extern_learn  8:06:38      8:06:38
+10        44:38:39:22:01:74  4063  vxlan48                           extern_learn  8:06:38      8:06:38
+11        44:38:39:22:01:7c  4006  vxlan48                           extern_learn  8:06:39      8:06:39
+12        44:38:39:22:01:7c  4063  vxlan48                           extern_learn  8:06:39      8:06:39
+13        44:38:39:22:01:8a  30    vxlan48                           extern_learn  8:06:42      8:06:42
+14        44:38:39:22:01:8a  20    vxlan48                           extern_learn  8:06:42      8:06:42
+15        44:38:39:22:01:8a  10    vxlan48                           extern_learn  8:06:42      8:04:05
+16        44:38:39:22:01:84  10    vxlan48                           extern_learn  8:06:43      8:06:43
+17        44:38:39:22:01:84  30    vxlan48                           extern_learn  8:06:43      8:06:15
+18        44:38:39:22:01:84  20    vxlan48                           extern_learn  8:06:43      8:06:43
+19        44:38:39:22:01:8a  4006  vxlan48                           extern_learn  8:06:43      8:06:43
+20        44:38:39:22:01:8a  4063  vxlan48                           extern_learn  8:06:43      8:06:43
+21        44:38:39:22:01:84  4063  vxlan48                           extern_learn  8:06:43      8:06:43
+22        44:38:39:22:01:84  4006  vxlan48                           extern_learn  8:06:43      8:06:43
+23        44:38:39:22:01:78  4063  vxlan48                           extern_learn  8:06:43      8:06:43
+24        44:38:39:22:01:78  4006  vxlan48                           extern_learn  8:06:43      8:06:43
+25        02:91:8d:cf:03:b2        vxlan48                           permanent     8:06:56      8:06:56
+26        00:00:00:00:00:00        vxlan48     10.0.1.34    30       permanent     8:06:43      0:28:22
+27        44:38:39:22:01:78        vxlan48     10.10.10.2   4001     extern_learn  8:06:43      8:06:43
+28        44:38:39:22:01:8a        vxlan48     10.0.1.34    30       static        8:06:43      8:06:43
+29        48:b0:2d:fd:d3:bf        vxlan48     10.0.1.34    10       extern_learn  8:06:02      8:06:02
+30        44:38:39:22:01:84        vxlan48     10.0.1.34    10       extern_learn  8:06:43      8:06:43
+31        48:b0:2d:2d:5f:b3        vxlan48     10.0.1.34    30       extern_learn  8:06:32      8:06:32
 ...
 ```
 
@@ -131,34 +122,25 @@ vxlan48        10.10.10.63                44:38:39:22:01:74  noarp      |ext_lea
 The following command shows the VLAN to VNI mapping for all bridges:
 
 ```
-cumulus@switch:mgmt:~$ nv show bridge vlan-vni-map
-br_default  VLAN-VNI-Offset: None 
-
-VLAN  VNI
-----  -----   
-10    10  
-20    20  
-30    30  
-
-br1   VLAN-VNI-Offset: None 
-
-VLAN  VNI     
-----  -----   
-40   40   
-50   50
+cumulus@switch:mgmt:~$nv show bridge vlan-vni-map
+br_default vlan-vni-offset: 0         
+      VLAN        VNI         
+      ----        -------     
+      10          10          
+      20          20          
+      30          30
 ```
 
 The following command shows the VLAN to VNI mapping for a specific bridge:
 
 ```
 cumulus@switch:mgmt:~$ nv show bridge domain br_default vlan-vni-map
-br_default  VLAN-VNI-Offset: None 
-
-VLAN  VNI
-----  -----   
-10    10
-20    20   
-30    30   
+vlan-vni-offset: 0         
+      VLAN        VNI         
+      ----        -------     
+      10          10          
+      20          20          
+      30          30   
 ```
 
 ## General BGP Commands
@@ -339,15 +321,15 @@ To show VNI BGP information run the NVUE `nv show evpn vni <id> bgp-info` and `n
 
 ```
 cumulus@border01:mgmt:~$ nv show vrf RED evpn bgp-info
-                       operational
+                       operational      
 ---------------------  -----------------
-local-vtep             10.0.1.255                
-rd                     10.10.10.63:3             
-router-mac             44:38:39:be:ef:ff         
-system-ip              10.10.10.63               
-system-mac             44:38:39:22:01:74         
-[export-route-target]  65253:4001                
-[import-route-target]  65253:4001
+rd                     10.10.10.1:3     
+local-vtep             10.0.1.12        
+router-mac             44:38:39:be:ef:aa
+system-mac             44:38:39:22:01:7a
+system-ip              10.10.10.1       
+[import-route-target]  65101:4001       
+[export-route-target]  65101:4001
 ```
 
 ## Examine Local and Remote MAC Addresses for a VNI
@@ -498,7 +480,24 @@ You can drill down and show information about a specific vlan with the `nv show 
 
 ## Show the VRF Routing Table in FRR
 
-Run the vtysh `show ip route vrf <vrf-name>` command to examine the VRF routing table. Use this command for symmetric routing to verify that remote host and prefix routes are in the VRF routing table and point to the appropriate gateway next hop.
+Run the NVUE `nv show vrf <vrf-id> router rib <address-family> route` command or the vtysh `show ip route vrf <vrf-name>` command to examine the VRF routing table. Use this command for symmetric routing to verify that remote host and prefix routes are in the VRF routing table and point to the appropriate gateway next hop.
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf RED router rib ipv4 route
+                                                                                
+Flags - * - selected, q - queued, o - offloaded, i - installed, S - fib-        
+selected, x - failed                                                            
+                                                                                
+Route           Protocol   Distance  Uptime                NHGId  Metric  Flags
+--------------  ---------  --------  --------------------  -----  ------  -----
+0.0.0.0/0       kernel     255       2024-10-25T14:02:23Z  21     8192    *Si  
+10.1.10.0/24    connected  0         2024-10-25T14:02:33Z  100    1024    io   
+                connected  0         2024-10-25T14:02:33Z  88     0       *Sio 
+10.1.20.0/24    connected  0         2024-10-25T14:02:33Z  103    1024    io   
+                connected  0         2024-10-25T14:02:33Z  92     0       *Sio 
+10.1.20.105/32  bgp        20        2024-10-25T14:02:46Z  166    0       *Si  
+10.1.30.0/24    bgp        20        2024-10-25T14:02:39Z  154    0       *Si
+```
 
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh

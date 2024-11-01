@@ -233,11 +233,11 @@ The RADIUS server must be configured to accept packets from clients and have a d
 To enable RADIUS user command accounting:
 
 ```
-cumulus@switch:~$ nv set system aaa radius accounting enabled
+cumulus@switch:~$ nv set system aaa radius accounting state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To disable RADIUS user command accounting, run the `nv set system aaa radius accounting disabled` command.
+To disable RADIUS user command accounting, run the `nv set system aaa radius accounting state disabled` command.
 
 The `/var/log/radius-cmd-acct.log` file contains the local copy of the logs, which match the logs that the server receives.
 

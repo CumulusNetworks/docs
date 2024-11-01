@@ -104,11 +104,11 @@ To back up and restore the configuration file:
 
 2. Copy the `/etc/nvue.d/startup.yaml` file off the switch to a different location.
 
-3. After upgrade is complete, restore the configuration. Copy the `/etc/nvue.d/startup.yaml` file to the switch, then run the `nv config patch` command. In the following example `startup.yaml` is in the `/home/cumulus` directory on the switch:
+3. After upgrade is complete, restore the configuration. Copy the `/etc/nvue.d/startup.yaml` file to the switch, run the `nv config patch` command, and restart the `nvued` service with the `sudo systemctl restart nvued.service` command. In the following example `startup.yaml` is in the `/home/cumulus` directory on the switch:
 
    ```
    cumulus@switch:~$ nv config patch /home/cumulus/startup.yaml
-   cumulus@switch:~$ nv config apply
+   cumulus@switch:~$ sudo systemctl restart nvued.service
    ```
 
 For information about the NVUE object model and commands, see {{<link url="NVIDIA-User-Experience-NVUE" text="NVIDIA User Experience - NVUE">}}.
@@ -150,7 +150,7 @@ Cumulus Linux 5.11 includes commands for optimized image upgrade, which uses two
 {{%/notice%}}
 
 {{%notice warning%}}
-To align with a long-term vision of a common interface between Cumulus Linux, Nvidia OS (NVOS), and Host-Based Networking, certain NVUE commands in Cumulus Linux 5.11 have changed. Before you upgrade to 5.11, review the list of changed commands in {{<link url="Whats-New/#new-features-and-enhancements" text="Changed NVUE Commands">}} and be sure to make any necessary changes to your automation.
+To align with a long-term vision of a common interface between Cumulus Linux, Nvidia OS (NVOS), and Host-Based Networking, certain NVUE commands in Cumulus Linux 5.11 have changed. Before you upgrade to 5.11, review the list of changed and removed commands in {{<link url="Whats-New/#new-features-and-enhancements" text="Changed NVUE Commands">}} and be sure to make any necessary changes to your automation.
 {{%/notice%}}
 
 Cumulus Linux also provides ISSU to upgrade an active switch with minimal disruption to the network. See {{<link url="In-Service-System-Upgrade-ISSU" text="In-Service-System-Upgrade-ISSU">}}.

@@ -159,12 +159,6 @@ leaf01# exit</td>
 <td>5.9.0-5.10.1</td>
 </tr>
 <tr>
-<td>3739159</td>
-<td>Disabling adaptive routing globally or on interfaces and performing ISSU, has a significant traffic outage. The issue recovers after ISSU completes.</td>
-<td>5.7.0-5.10.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3739008</td>
 <td>The Lenovo MSN4600-VS2RC (PN SSG7B27990 Back-to-Front/C2P Airflow) might run the fan tray fans at a high speed because the software believes the PSU fans are running in the wrong direction.</td>
 <td>5.5.1-5.8.0</td>
@@ -249,12 +243,6 @@ cumulus@switch:~$ nv set acl one type mac
 <td>When you use NVUE commands to configure an untagged VLAN (PVID) on a bridge to a non-default value, {{nv show bridge}} commands still indicate that the untagged VLAN is 1 (the default value). The untagged VLAN you configured is properly set on bridge ports, but displays incorrectly in operational NVUE show commands.</td>
 <td>5.6.0-5.7.0</td>
 <td>5.8.0-5.10.1</td>
-</tr>
-<tr>
-<td>3685007</td>
-<td>Cumulus Linux does not support 802.1X dynamic VLANs on PEAP with MS Windows-based supplicants.</td>
-<td>5.7.0-5.10.1</td>
-<td></td>
 </tr>
 <tr>
 <td>3679478</td>

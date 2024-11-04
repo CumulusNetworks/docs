@@ -66,12 +66,6 @@ interface_stats: [ERROR] interface_stats_collector.py:_parse_conf_file:201 — C
 <td></td>
 </tr>
 <tr>
-<td>4037359</td>
-<td>If you configure histograms and enable histogram export without configuring telemetry export, the {{asic-monitor}} attempts GRPC with the OTEL collector but the OTEL collector is down. As a result, Cumulus Linux does not generate snapshot files.</td>
-<td>5.10.0-5.10.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4037315</td>
 <td>NVUE fails to enforce the password length limitation of 512 characters or fewer.</td>
 <td>5.10.0-5.10.1</td>
@@ -92,12 +86,6 @@ interface_stats: [ERROR] interface_stats_collector.py:_parse_conf_file:201 — C
 <tr>
 <td>4005422</td>
 <td>When you upgrade Cumulus Linux 5.9.1 to Cumulus Linux 5.9.2 with package upgrade, the NTP service stops. To restart the NTP service, enable, then restart the service in the VRF in which it was running with the {{systemctl enable ntpsec@&lt;vrf&gt;}} and {{systemctl restart ntpsec@&lt;vrf&gt;}} commands.</td>
-<td>5.10.0-5.10.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4005378</td>
-<td>When you configure port breakouts, you might see {{switchd}} and SDK errors.</td>
 <td>5.10.0-5.10.1</td>
 <td></td>
 </tr>
@@ -162,18 +150,6 @@ cumulus@switch:~$ sudo apt upgrade
 <td>3771168</td>
 <td>When you perform an ISSU upgrade on a Spectrum 1 switch, the {{switchd}} service might crash.</td>
 <td>5.8.0-5.10.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3739159</td>
-<td>Disabling adaptive routing globally or on interfaces and performing ISSU, has a significant traffic outage. The issue recovers after ISSU completes.</td>
-<td>5.7.0-5.10.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3685007</td>
-<td>Cumulus Linux does not support 802.1X dynamic VLANs on PEAP with MS Windows-based supplicants.</td>
-<td>5.7.0-5.10.1</td>
 <td></td>
 </tr>
 <tr>
@@ -642,12 +618,6 @@ interface_stats: [ERROR] interface_stats_collector.py:_parse_conf_file:201 — C
 <td>5.10.1</td>
 </tr>
 <tr>
-<td>4037359</td>
-<td>If you configure histograms and enable histogram export without configuring telemetry export, the {{asic-monitor}} attempts GRPC with the OTEL collector but the OTEL collector is down. As a result, Cumulus Linux does not generate snapshot files.</td>
-<td>5.10.0-5.10.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4037315</td>
 <td>NVUE fails to enforce the password length limitation of 512 characters or fewer.</td>
 <td>5.10.0-5.10.1</td>
@@ -680,12 +650,6 @@ interface_stats: [ERROR] interface_stats_collector.py:_parse_conf_file:201 — C
 <tr>
 <td>4005422</td>
 <td>When you upgrade Cumulus Linux 5.9.1 to Cumulus Linux 5.9.2 with package upgrade, the NTP service stops. To restart the NTP service, enable, then restart the service in the VRF in which it was running with the {{systemctl enable ntpsec@&lt;vrf&gt;}} and {{systemctl restart ntpsec@&lt;vrf&gt;}} commands.</td>
-<td>5.10.0-5.10.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4005378</td>
-<td>When you configure port breakouts, you might see {{switchd}} and SDK errors.</td>
 <td>5.10.0-5.10.1</td>
 <td></td>
 </tr>
@@ -750,18 +714,6 @@ cumulus@switch:~$ sudo apt upgrade
 <td>3771168</td>
 <td>When you perform an ISSU upgrade on a Spectrum 1 switch, the {{switchd}} service might crash.</td>
 <td>5.8.0-5.10.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3739159</td>
-<td>Disabling adaptive routing globally or on interfaces and performing ISSU, has a significant traffic outage. The issue recovers after ISSU completes.</td>
-<td>5.7.0-5.10.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3685007</td>
-<td>Cumulus Linux does not support 802.1X dynamic VLANs on PEAP with MS Windows-based supplicants.</td>
-<td>5.7.0-5.10.1</td>
 <td></td>
 </tr>
 <tr>

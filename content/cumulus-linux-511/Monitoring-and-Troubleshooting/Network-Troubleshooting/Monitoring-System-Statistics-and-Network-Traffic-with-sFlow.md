@@ -285,17 +285,19 @@ interface.swp1.sflow.sample_rate.ingress = 100000
 
 ## Monitor Dropped Packets
 
-You can configure sFlow to monitor dropped packets in software or hardware.
+You can configure sFlow to monitor dropped packets in hardware.
 
 {{< tabs "TabID268 ">}}
 {{< tab "NVUE Commands ">}}
 
+<!-- ## NOT SUPPORTED IN 5.11. hw dropmon only. 
 The following example configures sFlow to monitor dropped packets in software:
 
 ```
 cumulus@switch:~$ nv set system sflow dropmon sw 
 cumulus@switch:~$ nv config apply
 ```
+-->
 
 The following example configures sFlow to monitor dropped packets in hardware:
 ```
@@ -306,7 +308,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/hsflowd.conf` file to add the `dropmon { group=1 start=on sw=off hw=on }` line to monitor dropped packets in hardware or the `dropmon { group=1 start=on sw=on hw=off }` line to monitor dropped packets in software:
+Edit the `/etc/hsflowd.conf` file to add the `dropmon { group=1 start=on sw=off hw=on }` line to monitor dropped packets in hardware: <!-- or the `dropmon { group=1 start=on sw=on hw=off }` line to monitor dropped packets in software: -->
 
 ```
 cumulus@switch:~$ sudo nano /etc/hsflowd.conf

@@ -82,12 +82,6 @@ For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turn
 <td>5.6.0-5.10.1</td>
 </tr>
 <tr>
-<td>3491259</td>
-<td>When BGP receives an EVPN type-5 route with a gateway IP overlay attribute, the gateway IP overlay attribute in the {{attr memory}} (which is already inserted in the attribute hash) might change. As a result, the modified {{attr memory}} might match with another {{attr}} in the attribute hash, which produces duplicate entries in the hash table. As a result, BGP might crash when deleting one of the duplicate {{attr}} structures. </td>
-<td>5.0.0-5.5.1</td>
-<td>5.6.0-5.10.1</td>
-</tr>
-<tr>
 <td>3488136</td>
 <td>When zebra receives route updates that include both a route with a recursive next hop and the route used to resolve that next hop, zebra might mark the route with the recursive next hop as inactive. To work around this issue, reprocess the route updates by running the appropriate clear command for the protocol in use. For example, for BGP, clear inbound routes from the relevant neighbor using the {{nv action clear vrf &lt;vrf&gt; router bgp neighbor &lt;neighbor&gt; address-family &lt;address-family&gt; in}} command.</td>
 <td>4.2.1-5.5.1</td>
@@ -1155,7 +1149,7 @@ Unrecoverable internal error
 <td>CVE-2020-35498: A vulnerability was found in openvswitch. A limitation in the implementation of userspace packet parsing can allow a malicious user to send a specially crafted packet causing the resulting megaflow in the kernel to be too wide, potentially causing a denial of service. The highest threat from this vulnerability is to system availability.
 Vulnerable: &lt;= 2.8.90-1-cl4u5
 Fixed: 2.8.90-1-cl4u6, 2.8.90-1-cl4.4.0u1, 2.8.90-1-cl5.0.0u8</td>
-<td>4.0.0-4.3.2</td>
+<td>4.0.0-4.3.3</td>
 </tr>
 <tr>
 <td>2886488</td>
@@ -1201,7 +1195,7 @@ warning: vni10: possible mis-configuration detected: l2-vni configured with brid
 
 thermal thermal_zoneX: critical temperature reached (33 C), shutting down
 </td>
-<td>4.3.0-4.3.2</td>
+<td>4.3.0-4.3.3</td>
 </tr>
 <tr>
 <td>2815646</td>

@@ -11,7 +11,8 @@ Cumulus Linux uses Pluggable Authentication Modules (PAM) and Name Service Switc
 NVUE manages LDAP authentication with PAM and NSS.
 
 {{%notice note%}}
-Cumulus Linux only supports LDAP with IPv4.
+- Cumulus Linux only supports LDAP with IPv4.
+- LDAP authentication is sensitive to network delay. For optimal performance, NVIDIA recommends a round trip time of 10ms or less between LDAP clients and the LDAP server. If latency is between 10-50ms, NVIDIA recommends changing the [authentication order](#set-the-authentication-order) to prioritize local authentication before LDAP. For connections exceeding 50ms of latency, authentication might experience unacceptable delays and alternative authentication methods should be considered.
 {{%/notice%}}
 
 ## Configure LDAP Server Settings
@@ -65,13 +66,13 @@ bindpw 1Q2w3e4r!
 {{< /tab >}}
 {{< /tabs >}}
 
-### Set the Authentication Order to LDAP
+### Set the Authentication Order
 
 To prioritize the order in which Cumulus Linux attempts different authentication methods to verify user access to the switch, you set the authentication order. By default, Cumulus Linux verifies users according to their local passwords.
 
-If you set the authentication order to LDAP, but the LDAP servers do not have the user in the directory or does not respond, Cumulus Linux tries local password authentication.
+If you set the authentication order to start with LDAP, but the LDAP servers do not have the user in the directory or does not respond, Cumulus Linux tries local password authentication.
 
-To set the authentication order for local accounts to LDAP:
+To set the authentication order to start with LDAP before local authentication:
 
 {{< tabs "TabID262 ">}}
 {{< tab "NVUE Commands ">}}
@@ -81,10 +82,18 @@ cumulus@switch:~$ nv set system aaa authentication-order 1 ldap
 cumulus@switch:~$ nv config apply
 ```
 
+To set the authentication order to start with local authentication before querying LDAP:
+
+```
+cumulus@switch:~$ nv set system aaa authentication-order 1 local
+cumulus@switch:~$ nv set system aaa authentication-order 2 ldap
+cumulus@switch:~$ nv config apply
+```
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/nsswitch.conf` file and add `ldap` before `files` for the `passwd` and `group` options:
+Edit the `/etc/nsswitch.conf` file and add `ldap` before `files` for the `passwd` and `group` options to attempt LDAP authentication first, or configure `files` first to prioritize local authentication:
 
 ```
 cumulus@switch:~$ sudo nano /etc/nsswitch.conf

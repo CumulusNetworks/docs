@@ -443,6 +443,51 @@ To align with a long-term vision of a common interface between Cumulus Linux, Nv
 
 Review the following considerations before you upgrade to Cumulus Linux 5.11.
 
+### Linux Configuration Files Overwritten
+
+{{%notice warning%}}
+If you use Linux commands to configure the switch, read the following information before you upgrade to Cumulus Linux 5.11.0 or later.
+{{%/notice%}}
+
+Cumulus Linux includes a default NVUE `startup.yaml` file. In addition, NVUE configuration auto save is enabled by default. As a result, Cumulus Linux overrides any manual changes to Linux configuration files on the switch when:
+- The switch reboots after upgrade
+- You change the cumulus account password with the Linux `passwd` command.
+
+{{%notice note%}}
+These issues occur only if you use Linux commands to configure the switch. If you use NVUE commands to configure the switch, these issues do not occur and no action is needed.
+{{%/notice%}}
+
+{{< tabs "TabID232 ">}}
+{{< tab "Switch Reboot">}}
+
+To prevent Cumulus Linux from overriding manual changes to the Linux configuration files when the switch reboots:
+
+1. **Before** you upgrade to 5.11.0 or later, or after a new binary image installation, disable NVUE auto save:
+
+   ```
+   cumulus@switch:~$ nv set system config auto-save state disabled
+   cumulus@switch:~$ nv config apply
+   cumulus@switch:~$ nv config save
+   ```
+
+2. Delete the `/etc/nvue.d/startup.yaml` file:
+
+   ```
+   cumulus@switch:~$ sudo rm -rf /etc/nvue.d/startup.yaml
+   ```
+
+{{< /tab >}}
+{{< tab "cumulus Account Password">}}
+
+To prevent Cumulus Linux from overriding changes to the Linux configuration files when you change the cumulus account password with the Linux `passwd` command, add the  `PASSWORD_NVUE_SYNC=no` line to the `/etc/default/nvued` file **before** you upgrade to 5.11.0 or later, or after a new binary image installation:
+   ```
+   cumulus@switch:~$ sudo nano /etc/default/nvued
+   PASSWORD_NVUE_SYNC=no
+   ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ### DHCP Lease with the host-name Option
 
 When a Cumulus Linux switch with NVUE enabled receives a DHCP lease containing the host-name option, it ignores the received hostname and does not apply it. For details, see this [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Administration/Hostname-Option-Received-From-DHCP-Ignored" >}}).

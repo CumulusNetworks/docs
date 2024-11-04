@@ -13,6 +13,12 @@
 <td>5.9.2</td>
 </tr>
 <tr>
+<td>4007590</td>
+<td>When you upgrade Cumulus Linux 5.9.1 to Cumulus Linux 5.9.2 with package upgrade, the NTP service stops. To restart the NTP service, enable, then restart the service in the VRF in which it was running with the {{systemctl enable ntpsec@&lt;vrf&gt;}} and {{systemctl restart ntpsec@&lt;vrf&gt;}} commands.</td>
+<td>5.10.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3879717</td>
 <td>Running {{snmpwalk}} on the switch with the management IP address does not work. To work around this issue, use the localhost option ({{snmpwalk -v 2c -c public28 localhost 1.3.6.1.2.1.14}}) or create a control plane ACL whitelist rule.</td>
 <td>5.10.0-5.11.0</td>
@@ -24,6 +30,12 @@
 ZTP: ZTP DHCP: Unexpected error: 'ascii' codec can't decode byte 0xe2 in position 181: ordinal not in range(128)
 ZTP: Script returned failure 
 To work around this issue, use the {{-q}} option with {{wget}}.</td>
+<td>5.9.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3861745</td>
+<td>On UEFI hardware (where the {{/sys/firmware/efi}} directory exists), using the update-grub program might generate a {{/boot/grub/grub.cfg}} that is incorrect for booting ONIE if the ONIE option is selected on the console while booting. To work around this issue, run {{mount LABEL="EFI System" /boot/efi}} before using update-grub.</td>
 <td>5.9.0-5.11.0</td>
 <td></td>
 </tr>
@@ -87,12 +99,6 @@ To work around this issue when using fiber cables:
 <td>3538321</td>
 <td>In rare cases, an STP topology change on PTP over a VLAN can result in the switch losing the slave state and one of the ports might remain in an uncalibrated state. To work around this issue, toggle the port that is in the uncalibrated state up and down so that one of the ports is selected as the slave.</td>
 <td>5.6.0-5.11.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3452681</td>
-<td>When you run the NVUE {{nv show system aaa tacacs authorization}} commands to show per command authorization for a specific TACACS+ user privilege level, you see an error message similar to {{Error: GET /nvue_v1/system/aaa/tacacs/authorization/1?rev=operational responded with 404 NOT FOUND}}.</td>
-<td>5.5.0-5.11.0</td>
 <td></td>
 </tr>
 <tr>
@@ -401,6 +407,11 @@ interface_stats: [ERROR] interface_stats_collector.py:_parse_conf_file:201 — C
 <td>3990135</td>
 <td>If there are multiple relay switches in the path reaching the DHCP server, DHCP packets are duplicated at each transit relay switch and the server receives duplicate packets.</td>
 <td>5.9.1-5.10.1</td>
+</tr>
+<tr>
+<td>3452681</td>
+<td>When you run the NVUE {{nv show system aaa tacacs authorization}} commands to show per command authorization for a specific TACACS+ user privilege level, you see an error message similar to {{Error: GET /nvue_v1/system/aaa/tacacs/authorization/1?rev=operational responded with 404 NOT FOUND}}.</td>
+<td>5.5.0-5.10.1</td>
 </tr>
 </table>
 </tables>

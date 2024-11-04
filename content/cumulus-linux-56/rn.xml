@@ -1030,7 +1030,7 @@ This configuration is not allowed; it is considered to be eBGP and local prefere
 <tr>
 <td>3491259</td>
 <td>When BGP receives an EVPN type-5 route with a gateway IP overlay attribute, the gateway IP overlay attribute in the {{attr memory}} (which is already inserted in the attribute hash) might change. As a result, the modified {{attr memory}} might match with another {{attr}} in the attribute hash, which produces duplicate entries in the hash table. As a result, BGP might crash when deleting one of the duplicate {{attr}} structures. </td>
-<td>5.0.0-5.5.1</td>
+<td>4.3.0-4.3.1</td>
 </tr>
 <tr>
 <td>3488136</td>

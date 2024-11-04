@@ -50,13 +50,14 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
   - {{< expand "Changed NVUE Commands" >}}
 | New Commands | Previous Commands |
 | ----------- | ----------------|
-| `nv set system snmp-server`<br>`nv unset system snmp-server` | `nv set service snmp-server`<br>`nv unset service snmp-server` |
+| `nv set system snmp-server`<br>`nv unset system snmp-server`<br><br>Note: **all** `snmp-server` set commands have moved from `nv set service` to `nv set system`.  | `nv set service snmp-server`<br>`nv unset service snmp-server` |
 | `nv set system snmp-server state enable`<br>`nv set system snmp-server state disable`| `nv set service snmp-server enable on`<br>`nv set service snmp-server enable off`|
-| `nv show system snmp-server` | `nv show service snmp-server`|
+| `nv show system snmp-server`<br><br>Note: **all** `snmp-server` show commands have moved from `nv show service` to `nv show system`. | `nv show service snmp-server`|
 | `nv set qos advance-buffer-config <profile-id> ingress-service-pool <pool-id> <property> <value>` | `nv set qos advance-buffer-config <profile-id> ingress-pool <pool-id> <property> <value>`|
 | `nv set qos advance-buffer-config <profile-id> egress-service-pool <pool-id> <property> <value>` | `nv set qos advance-buffer-config <profile-id> egress-pool <pool-id> <property> <value> ` |
 | `nv show qos advance-buffer-config <profile-id> ingress-service-pool` | `nv show qos advance-buffer-config default-global ingress-pool` |
 | `nv show qos advance-buffer-config <profile-id> egress-service-pool` | `nv show qos advance-buffer-config default-global egress-pool` |
+| `nv set system aaa user <user-id> state enabled`<br>`nv set system aaa user <user-id> state disabled`<br>`nv unset system aaa user <user-id> enable` | `nv set system aaa user <user-id> enable on`<br>`nv set system aaa user <user-id> enable off`<br>`nv unset system aaa user <user-id> state` |
 {{< /expand >}}
   - {{< expand "Removed NVUE Commands" >}}
 | Removed Commands |
@@ -70,6 +71,7 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 | `nv show router nexthop rib <nhg-id> depends` |
 | `nv show router nexthop rib <nhg-id> resolved-via <resolved-via-id>` |
 | `nv show router nexthop rib <nhg-id> resolved-via-backup <resolved-via-id>` |
+| `nv show system ztp status` (`nv show system ztp` provides the same output) |
 
 {{< /expand >}}
   - {{< expand "New NVUE Commands" >}}
@@ -183,8 +185,6 @@ nv show system telemetry snapshot port-group <port-group-id> stats interface <in
 nv show system telemetry snapshot port-group <port-group-id> stats interface <intf-id> buffer pg <if-pg-id>
 nv show system telemetry snapshot port-group <port-group-id> stats interface <intf-id> buffer ingress-port
 nv show system telemetry snapshot port-group <port-group-id> stats interface <intf-id> buffer ingress-port <buffer-pool-id>
-nv show system ztp
-nv show system ztp script
 nv show vrf <vrf-id> router bgp address-family ipv4-unicast route <route-id> path <path-id> large-community
 nv show vrf <vrf-id> router bgp address-family ipv6-unicast route <route-id> path <path-id> large-community
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast advertised-routes <route-id> path <path-id> large-community

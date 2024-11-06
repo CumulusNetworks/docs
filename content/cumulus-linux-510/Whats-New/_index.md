@@ -221,7 +221,7 @@ Review the following considerations before you upgrade to Cumulus Linux 5.10.
 If you use Linux commands to configure the switch, read the following information before you upgrade to Cumulus Linux 5.10.0 or later.
 {{%/notice%}}
 
-Cumulus Linux includes a default NVUE `startup.yaml` file. In addition, NVUE configuration auto save is enabled by default. As a result, Cumulus Linux overrides any manual changes to Linux configuration files on the switch when:
+Cumulus Linux includes a default NVUE `startup.yaml` file. In addition, NVUE configuration auto save is enabled by default. As a result, Cumulus Linux overwrites any manual changes to Linux configuration files on the switch when:
 - The switch reboots after upgrade
 - You change the cumulus account password with the Linux `passwd` command.
 
@@ -232,7 +232,7 @@ These issues occur only if you use Linux commands to configure the switch. If yo
 {{< tabs "TabID232 ">}}
 {{< tab "Switch Reboot">}}
 
-To prevent Cumulus Linux from overriding manual changes to the Linux configuration files when the switch reboots after upgrade:
+To prevent Cumulus Linux from overwriting manual changes to the Linux configuration files when the switch reboots after upgrade:
 
 1. **Before** you upgrade to 5.10.0 or later, disable NVUE auto save:
 

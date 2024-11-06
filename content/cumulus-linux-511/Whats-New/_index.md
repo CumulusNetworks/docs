@@ -31,8 +31,8 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 - NVUE
   - {{<link url="DHCP-Snooping" text="DHCP snooping commands">}}
   - {{<link url="LDAP-Authentication-and-Authorization" text="LDAP authentication and authorization commands">}}
-  - {{<link url="Link-Layer-Discovery-Protocol/#disable-lldp" text="Enable and disable LLDP commands">}}
-  - {{<link url="Resource-Diagnostics/#disable-lldp" text="Show ASIC resources commands">}} (`cl-resource-query` equivalent)
+  - {{<link url="Link-Layer-Discovery-Protocol/#enable-or-disable-lldp" text="Enable and disable LLDP commands">}}
+  - {{<link url="Resource-Diagnostics/#enable-or-disable-lldp" text="Show ASIC resources commands">}} (`cl-resource-query` equivalent)
   - {{<link url="Monitoring-System-Statistics-and-Network-Traffic-with-sFlow" text="sFlow commands">}}
   - {{<link url="DHCP-Servers/#assign-a-port-based-ip-address" text="IPv6 command to assign a port-based DHCP server address">}}
   - {{<link url="Zero-Touch-Provisioning-ZTP/#manually-run-ztp" text="Enable ZTP and run ZTP script commands">}}

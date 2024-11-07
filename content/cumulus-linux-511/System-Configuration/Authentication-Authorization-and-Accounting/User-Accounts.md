@@ -281,7 +281,7 @@ full-name           cumulus,,,
 hashed-password     *                   
 ssh                                     
   [authorized-key]                      
-enable              on  
+state               enabled       enabled 
 ```
 
 ## Enable the root User

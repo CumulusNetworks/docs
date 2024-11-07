@@ -131,12 +131,6 @@ cumulus@switch:~$ sudo apt upgrade
 <td></td>
 </tr>
 <tr>
-<td>3739159</td>
-<td>Disabling adaptive routing globally or on interfaces and performing ISSU, has a significant traffic outage. The issue recovers after ISSU completes.</td>
-<td>5.7.0-5.10.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3711913</td>
 <td>When you set an IPv4 ACL with a log action, logs do not appear under syslog after a match. This issue affects bridged packets when the rule is installed in iptables. To work around this issue, set the ACL with a MAC rule type so that it is installed in ebtables and the packets are logged correctly in {{syslog}}.The following shows an example configuration:
 
@@ -149,12 +143,6 @@ cumulus@switch:~$ nv set acl one type mac
 </td>
 <td>5.7.0-5.9.2</td>
 <td>5.10.0-5.10.1</td>
-</tr>
-<tr>
-<td>3685007</td>
-<td>Cumulus Linux does not support 802.1X dynamic VLANs on PEAP with MS Windows-based supplicants.</td>
-<td>5.7.0-5.10.1</td>
-<td></td>
 </tr>
 <tr>
 <td>3677533</td>
@@ -1113,12 +1101,6 @@ cumulus@switch:~$ sudo apt upgrade
 <td></td>
 </tr>
 <tr>
-<td>3739159</td>
-<td>Disabling adaptive routing globally or on interfaces and performing ISSU, has a significant traffic outage. The issue recovers after ISSU completes.</td>
-<td>5.7.0-5.10.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3711913</td>
 <td>When you set an IPv4 ACL with a log action, logs do not appear under syslog after a match. This issue affects bridged packets when the rule is installed in iptables. To work around this issue, set the ACL with a MAC rule type so that it is installed in ebtables and the packets are logged correctly in {{syslog}}.The following shows an example configuration:
 
@@ -1131,12 +1113,6 @@ cumulus@switch:~$ nv set acl one type mac
 </td>
 <td>5.7.0-5.9.2</td>
 <td>5.10.0-5.10.1</td>
-</tr>
-<tr>
-<td>3685007</td>
-<td>Cumulus Linux does not support 802.1X dynamic VLANs on PEAP with MS Windows-based supplicants.</td>
-<td>5.7.0-5.10.1</td>
-<td></td>
 </tr>
 <tr>
 <td>3677533</td>
@@ -1751,12 +1727,6 @@ cumulus@switch:~$ sudo apt upgrade
 <td></td>
 </tr>
 <tr>
-<td>3739159</td>
-<td>Disabling adaptive routing globally or on interfaces and performing ISSU, has a significant traffic outage. The issue recovers after ISSU completes.</td>
-<td>5.7.0-5.10.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3711913</td>
 <td>When you set an IPv4 ACL with a log action, logs do not appear under syslog after a match. This issue affects bridged packets when the rule is installed in iptables. To work around this issue, set the ACL with a MAC rule type so that it is installed in ebtables and the packets are logged correctly in {{syslog}}.The following shows an example configuration:
 
@@ -1769,12 +1739,6 @@ cumulus@switch:~$ nv set acl one type mac
 </td>
 <td>5.7.0-5.9.2</td>
 <td>5.10.0-5.10.1</td>
-</tr>
-<tr>
-<td>3685007</td>
-<td>Cumulus Linux does not support 802.1X dynamic VLANs on PEAP with MS Windows-based supplicants.</td>
-<td>5.7.0-5.10.1</td>
-<td></td>
 </tr>
 <tr>
 <td>3677533</td>

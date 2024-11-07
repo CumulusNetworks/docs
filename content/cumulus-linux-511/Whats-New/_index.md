@@ -31,8 +31,8 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 - NVUE
   - {{<link url="DHCP-Snooping" text="DHCP snooping commands">}}
   - {{<link url="LDAP-Authentication-and-Authorization" text="LDAP authentication and authorization commands">}}
-  - {{<link url="Link-Layer-Discovery-Protocol/#disable-lldp" text="Enable and disable LLDP commands">}}
-  - {{<link url="Resource-Diagnostics/#disable-lldp" text="Show ASIC resources commands">}} (`cl-resource-query` equivalent)
+  - {{<link url="Link-Layer-Discovery-Protocol/#enable-or-disable-lldp" text="Enable and disable LLDP commands">}}
+  - {{<link url="Resource-Diagnostics/#enable-or-disable-lldp" text="Show ASIC resources commands">}} (`cl-resource-query` equivalent)
   - {{<link url="Monitoring-System-Statistics-and-Network-Traffic-with-sFlow" text="sFlow commands">}}
   - {{<link url="DHCP-Servers/#assign-a-port-based-ip-address" text="IPv6 command to assign a port-based DHCP server address">}}
   - {{<link url="Zero-Touch-Provisioning-ZTP/#manually-run-ztp" text="Enable ZTP and run ZTP script commands">}}
@@ -50,13 +50,14 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
   - {{< expand "Changed NVUE Commands" >}}
 | New Commands | Previous Commands |
 | ----------- | ----------------|
-| `nv set system snmp-server`<br>`nv unset system snmp-server` | `nv set service snmp-server`<br>`nv unset service snmp-server` |
+| `nv set system snmp-server`<br>`nv unset system snmp-server`<br><br>Note: **all** `snmp-server` set commands have moved from `nv set service` to `nv set system`.  | `nv set service snmp-server`<br>`nv unset service snmp-server` |
 | `nv set system snmp-server state enable`<br>`nv set system snmp-server state disable`| `nv set service snmp-server enable on`<br>`nv set service snmp-server enable off`|
-| `nv show system snmp-server` | `nv show service snmp-server`|
+| `nv show system snmp-server`<br><br>Note: **all** `snmp-server` show commands have moved from `nv show service` to `nv show system`. | `nv show service snmp-server`|
 | `nv set qos advance-buffer-config <profile-id> ingress-service-pool <pool-id> <property> <value>` | `nv set qos advance-buffer-config <profile-id> ingress-pool <pool-id> <property> <value>`|
 | `nv set qos advance-buffer-config <profile-id> egress-service-pool <pool-id> <property> <value>` | `nv set qos advance-buffer-config <profile-id> egress-pool <pool-id> <property> <value> ` |
 | `nv show qos advance-buffer-config <profile-id> ingress-service-pool` | `nv show qos advance-buffer-config default-global ingress-pool` |
 | `nv show qos advance-buffer-config <profile-id> egress-service-pool` | `nv show qos advance-buffer-config default-global egress-pool` |
+| `nv set system aaa user <user-id> state enabled`<br>`nv set system aaa user <user-id> state disabled`<br>`nv unset system aaa user <user-id> enable` | `nv set system aaa user <user-id> enable on`<br>`nv set system aaa user <user-id> enable off`<br>`nv unset system aaa user <user-id> state` |
 {{< /expand >}}
   - {{< expand "Removed NVUE Commands" >}}
 | Removed Commands |
@@ -70,6 +71,7 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 | `nv show router nexthop rib <nhg-id> depends` |
 | `nv show router nexthop rib <nhg-id> resolved-via <resolved-via-id>` |
 | `nv show router nexthop rib <nhg-id> resolved-via-backup <resolved-via-id>` |
+| `nv show system ztp status` (`nv show system ztp` provides the same output) |
 
 {{< /expand >}}
   - {{< expand "New NVUE Commands" >}}
@@ -183,8 +185,6 @@ nv show system telemetry snapshot port-group <port-group-id> stats interface <in
 nv show system telemetry snapshot port-group <port-group-id> stats interface <intf-id> buffer pg <if-pg-id>
 nv show system telemetry snapshot port-group <port-group-id> stats interface <intf-id> buffer ingress-port
 nv show system telemetry snapshot port-group <port-group-id> stats interface <intf-id> buffer ingress-port <buffer-pool-id>
-nv show system ztp
-nv show system ztp script
 nv show vrf <vrf-id> router bgp address-family ipv4-unicast route <route-id> path <path-id> large-community
 nv show vrf <vrf-id> router bgp address-family ipv6-unicast route <route-id> path <path-id> large-community
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast advertised-routes <route-id> path <path-id> large-community
@@ -442,6 +442,41 @@ To align with a long-term vision of a common interface between Cumulus Linux, Nv
 ## Release Considerations
 
 Review the following considerations before you upgrade to Cumulus Linux 5.11.
+
+### Linux Configuration Files Overwritten
+
+{{%notice warning%}}
+If you use Linux commands to configure the switch, read the following information before you upgrade to Cumulus Linux 5.11.0 or later.
+{{%/notice%}}
+
+Cumulus Linux includes a default NVUE `startup.yaml` file. In addition, NVUE configuration auto save is enabled by default. As a result, Cumulus Linux overwrites any manual changes to Linux configuration files on the switch when the switch reboots after upgrade or you change the `cumulus` user account password with the Linux `passwd` command.
+
+{{%notice note%}}
+These issues occur only if you use Linux commands to configure the switch. If you use NVUE commands to configure the switch, these issues do not occur and no action is needed.
+{{%/notice%}}
+
+To prevent Cumulus Linux from overwriting manual changes to the Linux configuration files when the switch reboots or when changing the `cumulus` user account password with the `passwd` command, follow the steps below **before** you upgrade to 5.11.0 or later, or after a new binary image installation:
+
+1.  Disable NVUE auto save:
+
+   ```
+   cumulus@switch:~$ nv set system config auto-save state disabled
+   cumulus@switch:~$ nv config apply
+   cumulus@switch:~$ nv config save
+   ```
+
+2. Delete the `/etc/nvue.d/startup.yaml` file:
+
+   ```
+   cumulus@switch:~$ sudo rm -rf /etc/nvue.d/startup.yaml
+   ```
+
+
+3. Add the `PASSWORD_NVUE_SYNC=no` line to the `/etc/default/nvued` file:
+   ```
+   cumulus@switch:~$ sudo nano /etc/default/nvued
+   PASSWORD_NVUE_SYNC=no
+   ```
 
 ### DHCP Lease with the host-name Option
 

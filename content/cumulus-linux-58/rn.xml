@@ -313,12 +313,6 @@ leaf01# exit</td>
 <td>5.9.0-5.10.1</td>
 </tr>
 <tr>
-<td>3739159</td>
-<td>Disabling adaptive routing globally or on interfaces and performing ISSU, has a significant traffic outage. The issue recovers after ISSU completes.</td>
-<td>5.7.0-5.10.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3739008</td>
 <td>The Lenovo MSN4600-VS2RC (PN SSG7B27990 Back-to-Front/C2P Airflow) might run the fan tray fans at a high speed because the software believes the PSU fans are running in the wrong direction.</td>
 <td>5.5.1-5.8.0</td>
@@ -349,12 +343,6 @@ cumulus@switch:~$ nv set acl one type mac
 <td>Traditional SNMP snippets do not take effect unless you first enable SNMP with the NVUE {{nv set service snmp-server enable on}} and {{nv set service snmp-server listening-address}} commands. Alternatively, you can use the equivalent REST API methods.</td>
 <td>5.4.0-5.8.0</td>
 <td>5.9.0-5.10.1</td>
-</tr>
-<tr>
-<td>3685007</td>
-<td>Cumulus Linux does not support 802.1X dynamic VLANs on PEAP with MS Windows-based supplicants.</td>
-<td>5.7.0-5.10.1</td>
-<td></td>
 </tr>
 <tr>
 <td>3679478</td>

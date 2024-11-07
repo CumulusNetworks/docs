@@ -9,8 +9,9 @@ Factory reset puts the switch back to the same or similar state it was in when s
 You can also run factory reset when you want to remove a complex or corrupted configuration that is blocking your progress, when you want to move a switch from one network to another, reset the switch to factory defaults and configure it as a new switch, or if you want to selectively remove either configurations or system log files to identify issues.
 
 {{%notice note%}}
-To run factory reset commands, you must have system admin, root, or sudo privileges.
-The switch does not support factory reset if you upgrade to Cumulus Linux 5.11 from Cumulus Linux 5.9.x or 5.10.x with package upgrade.
+- To run factory reset commands, you must have system admin, root, or sudo privileges.
+- The switch does not support factory reset if you upgrade to Cumulus Linux 5.11 from Cumulus Linux 5.9.x or 5.10.x with package upgrade.
+- To run factory reset with NVUE commands, the `nvued` service must be running.
 {{%/notice%}}
 
 ## Run Factory Reset
@@ -24,11 +25,19 @@ Factory reset provides options to:
 {{< tabs "215 ">}}
 {{< tab "NVUE Commands ">}}
 
-To run factory reset with NVUE commands, the `nvued` service must be running.
+To reset the switch to the factory defaults and remove **all** configuration, system files, and log files, run the `nv action reset system factory-default` command.
+
+Use the following options to keep configuration or system and log files:
+
+| Option | Description|
+| ------ | ---------- |
+| `keep basic` | Retains password policy rules, management interface configuration, local user accounts and roles, and SSH configuration.|
+| `keep all-config` | Retains all configuration. |
+| `keep only-files` | Retains all system files and log files. |
 
 When you run the NVUE factory reset commands, the switch prompts you to confirm that you want to continue. To run the commands without the prompts to continue, add the `force` option at the end of the command.
 
-The following example resets the switch to the factory defaults and removes all configuration, system files, and log files:
+The following example resets the switch to the factory defaults and removes **all** configuration, system files, and log files:
 
 ```
 cumulus@switch:~$ nv action reset system factory-default

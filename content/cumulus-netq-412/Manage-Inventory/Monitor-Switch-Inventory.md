@@ -12,7 +12,6 @@ You can access {{<link title="Switches" text="switch performance data">}} for a 
 
 - {{<link title="show/#netq-show-inventory" text="netq show inventory">}}: view a comprehensive list of inventory components 
 - {{<link title="show/#netq-show-cl-manifest" text="netq show cl-manifest">}}: view Cumulus Linux OS versions supported on your switches
-- {{<link title="show/#netq-show-cl-pkg-info" text="netq show cl-pkg-info">}}: view all installed software packages on your switches
 - {{<link title="show/#netq-show-recommended-pkg-version" text="netq show recommended-pkg-version">}}: view recommended software package information for a switch
 - {{<link title="show/#netq-show-services" text="netq show services">}}: view a list of services
 ## View Switch Inventory in the UI

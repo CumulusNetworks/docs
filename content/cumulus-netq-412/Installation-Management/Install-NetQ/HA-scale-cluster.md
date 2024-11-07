@@ -5,20 +5,23 @@ weight: 227
 toc: 5
 bookhidden: true
 ---
-Follow these steps to set up and configure your VM on a cluster of servers in an on-premises deployment. First configure the VM on the master node, and then configure the VM on *each* worker node.
+Follow these steps to set up and configure your VM on a cluster of servers in an on-premises deployment. First configure the VM on the master node, and then configure the VM on *each* additional node. NVIDIA recommends installing the virtual machines on different servers to increase redundancy in the event of a hardware failure. 
 
+{{%notice note%}}
+NetQ 4.12.0 only supports a 3-node HA scale cluster consisting of one master and 2 additional HA worker nodes.
+{{%/notice%}}
 - - -
 
 ## System Requirements
 
-Verify that each node in your cluster---the master node and each worker node---meets the VM requirements.
+Verify that each node in your cluster meets the VM requirements.
 
 | Resource | Minimum Requirements |
 | :--- | :--- |
 | Processor | 48 virtual CPUs |
 | Memory | 512GB RAM |
 | Local disk storage | 3.2TB SSD with minimum disk IOPS of 1000 for a standard 4kb block size<br> (Note: This must be an SSD; other storage options can lead to system instability and are not supported.)|
-| Network interface speed | 1 Gb NIC |
+| Network interface speed | 10 Gbps NIC |
 | Hypervisor | KVM/QCOW (QEMU Copy on Write) image for servers running Ubuntu;<br> VMware ESXi™ 6.5 or later (OVA image) for servers running Cumulus Linux or Ubuntu | 
 
 ## Port Requirements
@@ -70,7 +73,7 @@ Additionally, for internal cluster communication, you must open these ports:
     b. Select **NVIDIA Licensing Portal**.<br>
     c. Select **Software Downloads** from the menu.<br>
     d. Click **Product Family** and select **NetQ**.<br>
-    e. For deployments using KVM, download the **NetQ SW 4.11 KVM** image. For deployments using VMware, download the **NetQ SW 4.11 VMware** image<br>
+    e. For deployments using KVM, download the **NetQ SW 4.12 KVM** image. For deployments using VMware, download the **NetQ SW 4.12 VMware** image<br>
     f. If prompted, read the license agreement and proceed with the download.<br>
 
 {{%notice note%}}
@@ -78,9 +81,10 @@ NVIDIA employees can download NetQ directly from the {{<exlink url="http://ui.li
 {{%/notice%}}
 
 2. Open your hypervisor and configure your VM. You can use the following examples for reference or use your own hypervisor instructions.
-<!--undo these shortcodes-->
-- {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem" version="4.11">}}
-- {{<netq-install/vm-setup hypervisor="vmware" deployment="onprem" version="4.11">}}
+
+ {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem-scale-cluster" version="4.12">}}
+
+ {{<netq-install/vm-setup hypervisor="vmware" version="4.12">}}
 
 3. Log in to the VM and change the password.
 
@@ -127,7 +131,7 @@ cumulus@ubuntu:~$
 4. Verify that the master node is ready for installation. Fix any errors before installing the NetQ software.
 
 ```
-cumulus@hostname:~$ sudo opta-check
+cumulus@hostname:~$ sudo opta-check scale
 ```
 
 5. Change the hostname for the VM from the default value.
@@ -151,42 +155,117 @@ Add the same NEW_HOSTNAME value to **/etc/hosts** on your VM for the localhost e
 127.0.0.1 localhost NEW_HOSTNAME
 ```
 
-6. Open your hypervisor and set up the VM for the worker nodes in the same manner as for the master node.
+6. Open your hypervisor and set up the VM for the additional nodes in the same manner as for the master node.
 
-7. Verify that the worker node is ready for installation. Fix any errors indicated before installing the NetQ software.
+7. Run the following command on each node to verify that the node is ready for a NetQ software installation. Fix any errors indicated before installing the software.
 
 ```
-cumulus@hostname:~$ sudo opta-check
+cumulus@hostname:~$ sudo opta-check scale
 ```
 
-8. Repeat steps 6 and 7 for each worker node in your cluster.
+8. Install and activate the NetQ software using the CLI.
 
-9. Install and activate the NetQ software using the CLI.
-
-Run the following command on your *master* node to initialize the cluster. Copy the output of the command to use on your worker nodes:
+Run the following command on your *master* node to initialize the cluster. Copy the output of the command to use on your additional HA and worker nodes:
 
 ```
 cumulus@<hostname>:~$ netq install cluster master-init
     Please run the following command on all worker nodes:
     netq install cluster worker-init c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCQVFDM2NjTTZPdVM3dQN9MWTU1a
 ```
-10. Run the `netq install cluster worker-init <ssh-key>` command on each of your worker nodes.
+9. Run the `netq install cluster worker-init <ssh-key>` command on each of your worker nodes.
 
-11. Run the following commands on your master node, using the IP addresses of your worker nodes and the HA cluster virtual IP address (VIP):
-
-{{<notice info>}}
-The HA cluster virtual IP must be:
-    <li>An unused IP address allocated from the same subnet assigned to the default interface for your master and worker nodes. The default interface is the interface used in the <code>netq install</code> <a href="/cumulus-netq-412/More-Documents/NetQ-CLI-Reference-Manual/install/#netq-install-cluster-full">command</a>.</li>
-    <li>A different IP address than the primary IP assigned to the default interface.</li>
-{{</notice>}}
+10. Run the `netq install cluster config generate` command on your master node to generate a template for the cluster configuration JSON file:
 
 ```
-cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.11.0.tgz workers <worker-1-ip> <worker-2-ip> cluster-vip <vip-ip>
+cumulus@netq-server:~$ netq install cluster config generate
+2024-10-28 17:29:53.260462: master-node-installer: Writing cluster installation configuration template file @ /tmp/cluster-install-config.json
 ```
+
+11. Edit the cluster configuration JSON file with the desired values for each attribute:
+
+{{< tabs "Tab188 ">}}
+
+{{< tab "Default JSON Template">}}
+
+``` 
+cumulus@netq-server:~$ vim /tmp/cluster-install-config.json 
+{
+        "version": "v2.0",
+        "interface": "<INPUT>",
+        "cluster-vip": "<INPUT>",
+        "master-ip": "<INPUT>",
+        "is-ipv6": false,
+        "ha-nodes": [
+                {
+                        "ip": "<INPUT>"
+                },
+                {
+                        "ip": "<INPUT>"
+                },
+                {
+                        "ip": "<INPUT>"
+                }
+        ]
+}
+```
+
+| Attribute | Description |
+|----- | ----------- |
+| `interface` | The local network interface on your master node used for NetQ connectivity. |
+| `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your master and worker nodes. |
+| `master-ip` | The IP address assigned to the interface on your master node used for NetQ connectivity. |
+| `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. |
+| `ha-nodes` | The IP addresses of each of the HA nodes in your cluster, including the `master-ip`. |
+
+{{< /tab >}}
+{{< tab "Completed JSON Example ">}}
+
+``` 
+cumulus@netq-server:~$ vim /tmp/cluster-install-config.json 
+{
+        "version": "v2.0",
+        "interface": "eth0",
+        "cluster-vip": "10.176.235.101",
+        "master-ip": "10.176.235.50",
+        "is-ipv6": false,
+        "ha-nodes": [
+                {
+                        "ip": "10.176.235.50"
+                },
+                {
+                        "ip": "10.176.235.51"
+                },
+                {
+                        "ip": "10.176.235.52"
+                }
+        ]
+}
+```
+| Attribute | Description |
+|----- | ----------- |
+| `interface` | The local network interface on your master node used for NetQ connectivity. |
+| `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your master and worker nodes. |
+| `master-ip` | The IP address assigned to the interface on your master node used for NetQ connectivity. |
+| `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. |
+| `ha-nodes` | The IP addresses of each of the HA nodes in your cluster, including the `master-ip`. |
+{{< /tab >}}
+{{< /tabs >}}
+
+
+12. Run the following command on your master HA node, using the JSON configuration file created in step 11:
+
+```
+cumulus@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.12.0.tgz /tmp/cluster-install-config.json
+```
+
+<!-- ## It's unclear how a user would override these settings in HA scale cluster. The "netq install cluster bundle" command doesn't allow for service-ip / pod-ip range options
+
 <div class="notices note"><p></p><p>NetQ uses the 10.244.0.0/16 (<code>pod-ip-range</code>) and 10.96.0.0/16 (<code>service-ip-range</code>) networks for internal communication by default. If you are using these networks, you must override each range by specifying new subnets for these parameters in the install command:</p>
     <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>cumulus@hostname:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.11.0.tgz workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt; pod-ip-range &lt;pod-ip-range&gt; service-ip-range &lt;service-ip-range&gt;</pre><p>You can specify the IP address of the server instead of the interface name using the <code>ip-addr &lt;ip-address&gt;</code> argument:</p>
     <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>cumulus@hostname:~$ netq install cluster full ip-addr &lt;ip-address&gt; bundle /mnt/installables/NetQ-4.11.0.tgz workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt;</pre><p>If you change the server IP address or hostname after installing NetQ, you must reset the server with the <code>netq bootstrap reset keep-db</code> command and rerun the install command.</p>
     <p></p></div>
+
+-->
 
 <div class="notices tip"><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
 
@@ -198,8 +277,8 @@ To view the status of the installation, use the `netq show status [verbose]` com
 State: Active
     NetQ Live State: Active
     Installation Status: FINISHED
-    Version: 4.11.0
-    Installer Version: 4.11.0
+    Version: 4.12.0
+    Installer Version: 4.12.0
     Installation Type: Cluster
     Activation Key: EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIixPSUJCOHBPWUFnWXI2dGlGY2hTRzExR2E5aSt6ZnpjOUvpVVTaDdpZEhFPQ==
     Master SSH Public Key: c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCZ1FDNW9iVXB6RkczNkRC

@@ -126,23 +126,27 @@ netq add notification channel email
     [login <text-email-id>]
     [password <text-email-password>]
     [severity info | severity error]
+    [default]
 
 netq add notification channel pagerduty
     <text-channel-name>
     integration-key <text-integration-key>
     [severity info | severity error]
+    [default]
 
 netq add notification channel slack
     <text-channel-name>
     webhook <text-webhook-url>
     [severity info | severity error]
     [tag <text-slack-tag>]
+    [default]
 
 netq add notification channel syslog
     <text-channel-name>
     hostname <text-syslog-hostname>
     port <text-syslog-port>
     [severity info | severity error]
+    [default]
 
 netq add notification channel generic 
     <text-channel-name> 
@@ -150,6 +154,7 @@ netq add notification channel generic
     [severity info | severity error ] 
     [use-ssl True | use-ssl False] 
     [auth-type basic-auth generic-username <text-generic-username> generic-password <text-generic-password> | auth-type api-key key-name <text-api-key-name> key-value <text-api-key-value>]
+    [default]
 ```
 
 ### Required Arguments
@@ -177,9 +182,10 @@ netq add notification channel generic
 | login | \<text-email-id\> | Email address for authentication |
 | password | \<text-email-password\> | Password for authentication |
 | severity | info, error | Only send notifications with this severity. Default severity is info. |
-| auth-type | <!-- Add these -->| Specify authentication method |
+| auth-type | \<auth-type\>| Specify authentication method |
 | use-ssl | True, False | Enable SSL encryption |
-| tag | \<text-slack-tag\> | Short text appended to a Slack notification to highlight particular channels or people. You must introduce the tag value with the @ sign. For example, *@netq-info* or *@net-admin*. |
+| NA | default| Set channel as default and send all notifications to this channel  |
+
 
 ### Sample Usage
 

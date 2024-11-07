@@ -5,7 +5,7 @@ weight: 227
 toc: 5
 bookhidden: true
 ---
-Follow these steps to set up and configure your VM on a cluster of servers in an on-premises deployment. First configure the VM on the master node, and then configure the VM on *each* worker node.
+Follow these steps to set up and configure your VM on a cluster of servers in an on-premises deployment. First configure the VM on the master node, and then configure the VM on *each* worker node. NVIDIA recommends installing the virtual machines on different physical servers to increase redundancy in the event of a hardware failure. 
 
 - - -
 
@@ -70,7 +70,7 @@ Additionally, for internal cluster communication, you must open these ports:
     b. Select **NVIDIA Licensing Portal**.<br>
     c. Select **Software Downloads** from the menu.<br>
     d. Click **Product Family** and select **NetQ**.<br>
-    e. For deployments using KVM, download the **NetQ SW 4.11 KVM** image. For deployments using VMware, download the **NetQ SW 4.11 VMware** image<br>
+    e. For deployments using KVM, download the **NetQ SW 4.12 KVM** image. For deployments using VMware, download the **NetQ SW 4.12 VMware** image<br>
     f. If prompted, read the license agreement and proceed with the download.<br>
 
 {{%notice note%}}
@@ -79,8 +79,8 @@ NVIDIA employees can download NetQ directly from the {{<exlink url="http://ui.li
 
 2. Open your hypervisor and configure your VM. You can use the following examples for reference or use your own hypervisor instructions.
 <!--undo these shortcodes-->
-- {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem" version="4.11">}}
-- {{<netq-install/vm-setup hypervisor="vmware" deployment="onprem" version="4.11">}}
+{{<netq-install/vm-setup hypervisor="kvm" deployment="onprem" version="4.12">}}
+{{<netq-install/vm-setup hypervisor="vmware" deployment="onprem" version="4.12">}}
 
 3. Log in to the VM and change the password.
 
@@ -186,11 +186,11 @@ The HA cluster virtual IP must be:
 {{</notice>}}
 
 ```
-cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.11.0.tgz workers <worker-1-ip> <worker-2-ip> cluster-vip <vip-ip>
+cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.12.0.tgz workers <worker-1-ip> <worker-2-ip> cluster-vip <vip-ip>
 ```
 <div class="notices note"><p></p><p>NetQ uses the 10.244.0.0/16 (<code>pod-ip-range</code>) and 10.96.0.0/16 (<code>service-ip-range</code>) networks for internal communication by default. If you are using these networks, you must override each range by specifying new subnets for these parameters in the install command:</p>
-    <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>cumulus@hostname:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.11.0.tgz workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt; pod-ip-range &lt;pod-ip-range&gt; service-ip-range &lt;service-ip-range&gt;</pre><p>You can specify the IP address of the server instead of the interface name using the <code>ip-addr &lt;ip-address&gt;</code> argument:</p>
-    <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>cumulus@hostname:~$ netq install cluster full ip-addr &lt;ip-address&gt; bundle /mnt/installables/NetQ-4.11.0.tgz workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt;</pre><p>If you change the server IP address or hostname after installing NetQ, you must reset the server with the <code>netq bootstrap reset keep-db</code> command and rerun the install command.</p>
+    <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>cumulus@hostname:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.12.0.tgz workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt; pod-ip-range &lt;pod-ip-range&gt; service-ip-range &lt;service-ip-range&gt;</pre><p>You can specify the IP address of the server instead of the interface name using the <code>ip-addr &lt;ip-address&gt;</code> argument:</p>
+    <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>cumulus@hostname:~$ netq install cluster full ip-addr &lt;ip-address&gt; bundle /mnt/installables/NetQ-4.12.0.tgz workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt;</pre><p>If you change the server IP address or hostname after installing NetQ, you must reset the server with the <code>netq bootstrap reset keep-db</code> command and rerun the install command.</p>
     <p></p></div>
 
 <div class="notices tip"><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
@@ -203,8 +203,8 @@ To view the status of the installation, use the `netq show status [verbose]` com
 State: Active
     NetQ Live State: Active
     Installation Status: FINISHED
-    Version: 4.11.0
-    Installer Version: 4.11.0
+    Version: 4.12.0
+    Installer Version: 4.12.0
     Installation Type: Cluster
     Activation Key: EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIixPSUJCOHBPWUFnWXI2dGlGY2hTRzExR2E5aSt6ZnpjOUvpVVTaDdpZEhFPQ==
     Master SSH Public Key: c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCZ1FDNW9iVXB6RkczNkRC

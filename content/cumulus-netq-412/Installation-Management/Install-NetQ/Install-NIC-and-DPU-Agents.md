@@ -11,12 +11,12 @@ Installing NetQ telemetry agents on your hosts with {{<exlink url="https://www.n
 
 To install and configure the {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="DOCA Telemetry Service">}} container on a host with ConnectX adapters, perform the following steps:
 
-1. Obtain the DTS container image path from {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="the NGC catalog">}}. Select **Get Container**, then **View all tags**. Copy the **1.16.1-doca2.6.0-host** image path.
+1. Obtain the DTS container image path from {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="the NGC catalog">}}. Select **Get Container**, then **View all tags**. Copy the **1.18.2-doca2.8.0-host** image path.
 
 2. Initialize the DTS container with Docker on the host. Use the image path obtained in the previous step for the **DTS_IMAGE** variable and configure the IP address of your NetQ server for the `-i` option:
 
 ```
-export DTS_IMAGE=nvcr.io/nvidia/doca/doca_telemetry:1.16.1-doca2.6.0-host
+export DTS_IMAGE=nvcr.io/nvidia/doca/doca_telemetry:1.18.2-doca2.8.0-host
 docker run -v "/opt/mellanox/doca/services/telemetry/config:/config" --rm --name doca-telemetry-init -ti $DTS_IMAGE /bin/bash -c "DTS_CONFIG_DIR=host_netq /usr/bin/telemetry-init.sh && /usr/bin/enable-fluent-forward.sh -i=10.10.10.1 -p=30001"
 ```
 
@@ -57,7 +57,7 @@ kubectl delete pod netq-prom-adapter-ffd9b874d-hxhbz
 
 To install and configure the DOCA Telemetry Service (DTS) container on a DPU, perform the following steps:
 
-1. Obtain the DTS container image path from {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="the NGC catalog">}}. Select **Get Container**, then **View all tags**. Copy the **1.15.5-doca2.5.0** image path.
+1. Obtain the DTS container image path from {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="the NGC catalog">}}. Select **Get Container**, then **View all tags**. Copy the **1.18.2-doca2.8.0-host** image path.
 
 2. Retrieve the container `yaml` configuration file onto the host. Use the path specified in the *Adjusting the .yaml Configuration* section in the {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="NGC instructions">}}. Copy it to `/etc/kubelet.d/doca_telemetry_standalone.yaml`:
 

@@ -5,7 +5,7 @@ weight: 140
 toc: 4
 ---
 
-Cards present information about your network for monitoring and troubleshooting; each card describes a particular aspect of the network. Cards are collected onto a {{<link title="Focus Your Monitoring Using Workbenches" text="workbench">}} where all data relevant to a task or set of tasks is visible. You can add and remove cards from a workbench, increase or decrease their sizes, change the time period of the data shown on a card, and make copies of cards to show different levels of data at the same time.
+Cards present information about your network for monitoring and troubleshooting; each card describes a particular aspect of the network. Cards are collected onto a {{<link title="Focus Your Monitoring Using Workbenches" text="workbench">}} where all data relevant to a task or set of tasks is visible. You can add and remove cards from a workbench, increase or decrease their sizes, change the time period of the data shown on a card, and make copies of cards to show different levels of data for the same time period.
 
 ## Available Cards
 
@@ -15,7 +15,7 @@ Each card focuses on a particular aspect of your network. They include:
 - Events cards: system anomalies and threshold-crossing events (**Events** card), network issues and packet drops (**What Just Happened** card), and link events (**Link events** card)
 - Link cards: overview of links at the fabric level (**Switch link status** card) <!--check categorization of link events card-->
 - **Sensor health**: overview of fan, temperature, and PSU states
-- **Top 5 longest buffer**: ports experiencing most packet buffer congestion
+- **Queue status**: ports experiencing most packet buffer congestion
 - **Device groups**: distribution of device components
 - **Trace request**: discovery workflow for paths between two devices in the network fabric
 - **MAC move commentary**: info about changes to a MAC address on a specific VLAN
@@ -24,7 +24,7 @@ Each card focuses on a particular aspect of your network. They include:
 
 ## Card Sizes
 
-Cards are available in 4 sizes. The granularity of the content on a card varies with the size of the card, with the highest level of information on the smallest card to the most detailed information on the full-screen card.
+You can increase or decrease the size of certain cards. The granularity of the content on a card varies with the size of the card, with the highest level of information on the smallest card to the most detailed information on the full-screen card.
 
 ### Card Size Summary
 
@@ -71,6 +71,10 @@ Cards are available in 4 sizes. The granularity of the content on a card varies 
 ## Card Actions
 ### Add Cards to Your Workbench
 
+{{<tabs "74">}}
+
+{{<tab "NetQ UI">}}
+
 1. Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card** in the header.
 
 2. Select the card(s) you want to add to your workbench.
@@ -79,9 +83,17 @@ Cards are available in 4 sizes. The granularity of the content on a card varies 
 
 The cards are placed at the end of the set of cards currently on the workbench. You might need to scroll down to see them. Drag and drop the cards on the workbench to rearrange them.
 
+{{</tab>}}
+
+{{</tabs>}}
+
 ### Add Switch Cards to Your Workbench
 
-You can add switch cards to a workbench from the header:
+{{<tabs "92">}}
+
+{{<tab "NetQ UI">}}
+
+To add switch cards to a workbench:
 
 1. Select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card&nbsp;<span aria-label="and then">></span> Device card**.
 
@@ -91,41 +103,65 @@ You can add switch cards to a workbench from the header:
 
 3. Choose the card's size, then select **Add**.
 
-If you want to access a comprehensive overview of performance metrics and data for an individual switch without adding it as a card to your workbench, search for its hostname in the global search field and right-click the switch to open the overview in a new tab. 
+For a comprehensive overview of performance metrics and data for an individual switch, search for its hostname in the global search field and right-click the switch to open the overview in a new tab. 
+
+{{</tab>}}
+
+{{</tabs>}}
 
 ### Remove Cards from Your Workbench
 
-To remove all the cards from your workbench, click the **Clear** icon in the header. To remove an individual card: 
+{{<tabs "114">}}
+
+{{<tab "NetQ UI">}}
+
+To remove all the cards from your workbench, click **Workbench**, then **Clear** in the header. To remove an individual card: 
 
 1. Hover over the top section of the card you want to remove.
 2. Click the three-dot menu.
 3. Select **Remove**.
 
-    {{<figure src="/images/netq/remove-card-411.png" alt="" width="250">}}
+    {{<figure src="/images/netq/remove-card-412.png" alt="" width="250">}}
 
 The card is removed from the workbench, but not from the application.
 
+{{</tab>}}
+
+{{</tabs>}}
+
 ### Change the Size of the Card
 
-1. Hover over the top portion of the card until you see a rectangular box divided into four segments.
+{{<tabs "134">}}
+
+{{<tab "NetQ UI">}}
+
+1. Hover over the top portion of the card until you see a rectangular box divided into four segments. If you do not see the box, the size of the card cannot be adjusted.
 
 2. Move your cursor over the box until the desired size option is highlighted.
 
     {{<figure src="/images/netq/size-picker-411.png" alt="" width="250" >}}
 
-    One-quarter width opens a small card. One-half width opens a medium card. Three-quarters width opens a large card. Full width opens a full-screen card.
+One-quarter width opens a small card. One-half width opens a medium card. Three-quarters width opens a large card. Full width opens a full-screen card.
 
 3. Select the size. When the card changes to the selected size, it might move to a different area on the workbench.
 
+{{</tab>}}
+
+{{</tabs>}}
+
 ### Change the Time Period for the Card Data
 
-All cards have a default time period for the data shown on the card, typically the last 24 hours. You can change the time period to view the data during a different time range to aid analysis of previous or existing issues.
+{{<tabs "154">}}
+
+{{<tab "NetQ UI">}}
+
+All cards have a default time period for the data shown on the card, typically the last 24 hours. You can change the time period to view the data during a different time range to better understand issues and events.
 
 To change the time period for a card:
 
 1. Hover over the top portion of the card and select the clock <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg" height="18" width="18"/>.
 
-3. Select a time period from the dropdown list.
+3. Select a time period from the dropdown menu.
 
     {{<figure src="/images/netq/time-dropdown-411.png" alt="time options" width="300">}}
 
@@ -133,8 +169,11 @@ To change the time period for a card:
 Changing the time period in this manner only changes the time period for the given card.
 {{</notice>}}
 
+{{</tab>}}
 
-### Table Settings
+{{</tabs>}}
+
+## Table Settings
 
 You can manipulate the tabular data displayed in a full-screen card by filtering and sorting the columns. Hover over the column header and select it to sort the column. The data is sorted in ascending or descending order: A-Z, Z-A, 1-n, or n-1. The number of rows that can be sorted via the UI is limited to 10,000. To reposition the columns, drag and drop them using your mouse. 
 
@@ -155,4 +194,4 @@ The following icons are common in the full-screen card view:
 | <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/58-Tags-Bookmarks/tags.svg" height="18" width="18"/> | Assign role | Opens role assignment options for switches. |
 | <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/> | Export | Exports selected data into either a .csv or JSON-formatted file. |
 
-When there are many items in a table, NetQ loads up to 20 rows by default and provides the rest in additional table pages, accessible through the pagination controls. Pagination is displayed under the table.
+When there are many items in a table, NetQ loads up to 20 rows by default and provides the rest in additional table pages, accessible through the pagination controls under the table.

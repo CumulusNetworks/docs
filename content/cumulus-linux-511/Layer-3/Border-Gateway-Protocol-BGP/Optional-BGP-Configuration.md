@@ -1379,7 +1379,7 @@ leaf01# write memory
 leaf01# exit
 cumulus@leaf01:~$
 ```
-
+<!--
 ## BGP Prefix Independent Convergence
 
 BGP prefix independent convergence (PIC) reduces data plane convergence times and improves unicast traffic convergence for remote link failures (when the BGP next hop fails). A remote link is a link between a spine and a remote leaf, or a spine and the super spine layer.
@@ -1468,7 +1468,7 @@ router bgp 65101
 
 {{< /tab >}}
 {{< /tabs >}}
-
+-->
 ## BGP Timers
 
 BGP includes several timers that you can configure.

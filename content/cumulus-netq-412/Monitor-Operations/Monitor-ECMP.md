@@ -36,15 +36,12 @@ Select **Forwarding resources** from the side menu. The ECMP next hops column di
 
 Adaptive routing is a load balancing feature that improves network utilization for eligible IP packets by selecting forwarding paths dynamically based on the state of the switch, such as queue occupancy and port utilization. You can use the adaptive routing dashboard to view switches with adaptive routing capabilities, events related to adaptive routing, RoCE settings, and egress queue lengths in the form of histograms.
 
-{{<notice note>}}
-
-Adaptive routing monitoring is supported on Spectrum-4 switches. It requires a switch fabric running Cumulus Linux 5.5.0 and later.
-
-{{</notice>}}
-
 ### Requirements
 
-To display adaptive routing data, you must have adaptive routing configured on the switch; it can be either enabled or disabled. Switches without an adaptive routing configuration will not appear in the UI or CLI. Additionally, {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-1-and-Switch-Ports/Quality-of-Service/RDMA-over-Converged-Ethernet-RoCE/" text="RoCE lossless mode">}} must be enabled to display adaptive routing data. Switches with RoCE lossy mode enabled will appear in the UI and CLI, but will not display adaptive routing data.
+- Adaptive routing monitoring is supported on Spectrum-4 switches. It requires a switch fabric running Cumulus Linux 5.5.0 or later.
+- To display adaptive routing data, you must {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-3/Routing/Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" text="configure adaptive routing">}} on the switch; it can be either enabled or disabled. Switches without an adaptive routing configuration will not appear in the UI or CLI. 
+- {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-1-and-Switch-Ports/Quality-of-Service/RDMA-over-Converged-Ethernet-RoCE/" text="RoCE lossless mode">}} must be enabled to display adaptive routing data. Switches with RoCE *lossy* mode enabled will appear in the UI and CLI, but will not display adaptive routing data.
+- To view a switch's {{<link title="Switches#view-queue-lengths-as-histograms" text="histogram data">}} and adaptive routing imbalance events, you must enable {{<kb_link latest="cl" url="Monitoring-and-Troubleshooting/ASIC-Monitoring.md" text="ASIC monitoring">}} on the switch. If you stop the `asic-monitor` service, NetQ will report values of 0 for all histogram metrics (P95, standard deviation, mean, and maximum queue lengths).
 
 ### Adaptive Routing Commands
 
@@ -57,7 +54,7 @@ netq show adaptive-routing config interface
 
 ### Access the Adaptive Routing Dashboard
 
-From the header or {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} menu, select **Spectrum-X**, then **Adaptive routing**.
+From the header or {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu, select **Spectrum-X**, then **Adaptive routing**.
 
 The adaptive routing dashboard displays:
 

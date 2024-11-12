@@ -30,7 +30,7 @@ You can view resource utilization for ECMP next hops in the full-screen switch c
 
 Select **Forwarding resources** from the side menu. The ECMP next hops column displays the maximum number of hops seen in the forwarding table, the number used, and the percentage of this usage compared to the maximum number.
 
-{{<figure src="/images/netq/ecmp-next-hops-490.png" alt="" width="1100">}}
+{{<figure src="/images/netq/ecmp-next-hops-490.png" alt="" width="1100" height="430">}}
 
 ## Adaptive Routing
 

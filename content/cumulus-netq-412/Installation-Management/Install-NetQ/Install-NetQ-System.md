@@ -6,6 +6,8 @@ toc: 3
 ---
 You can install NetQ either on your premises or as a remote, cloud solution. If you are unsure which option is best for your network, refer to {{<link title="Before You Install" text="Before You Install">}}.
 
+For installation troubleshooting, see {{<link title="Troubleshoot NetQ/#troubleshoot-netq-installation-and-upgrade-issues" text="Troubleshoot NetQ Installation and Upgrade Issues">}}.
+
 ## On-Premises Deployment Options
 
 <!--

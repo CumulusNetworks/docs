@@ -309,6 +309,19 @@ To obtain the correct packages, install the {{tacplus-client}} package and its d
 <td>5.5.0-5.10.1</td>
 </tr>
 <tr>
+<td>3375071</td>
+<td>On the NVIDIA SN2010 and SN2100 switch, {{smond}} indicates that the FAN status is {{BAD}} and syslog is flooded with {{Path /run/hw-management/thermal/fan1_status does not exist}} errors. When you run the {{smonctl -v}} command, the TEMP on switch looks OK.
+
+cumulus@switch:~$ smonctl -v
+Fan1(Fan 1): BAD fan:6931 RPM (max = 25000 RPM, min = 4500 RPM, limit_variance = 15%)
+Fan2(Fan 2): BAD fan:6619 RPM (max = 25000 RPM, min = 4500 RPM, limit_variance = 15%)
+Fan3(Fan 3): BAD fan:6931 RPM (max = 25000 RPM, min = 4500 RPM, limit_variance = 15%)
+Fan4(Fan 4): BAD fan:6720 RPM (max = 25000 RPM, min = 4500 RPM, limit_variance = 15%)
+</td>
+<td>5.1.0-5.4.0</td>
+<td>5.5.0-5.10.1</td>
+</tr>
+<tr>
 <td>3351953</td>
 <td>In rare circumstances, attempting to install a Cumulus Linux 5.3 image can fail during installation. The device stops at the (initramfs) prompt. To resume installation, enter the {{exit}} command at the (initramfs) prompt.</td>
 <td>5.3.0-5.3.1</td>
@@ -1079,6 +1092,19 @@ To obtain the correct packages, install the {{tacplus-client}} package and its d
 <td>3379873</td>
 <td>{{apt source linux}} fails to download the Linux kernel source code.  To work around this issue, run the {{sudo apt update &amp;&amp; sudo apt install linux-source-5.10}} command or download the desired version from {{https://apt.cumulusnetworks.com/repo/pool/cumulus/l/linux/}} and install it with the {{sudo dpkg -i $filename}} command.  The source code in a {{tar.xz}} file will then be located in the {{/usr/src/}} directory.</td>
 <td>5.2.0-5.4.0</td>
+<td>5.5.0-5.10.1</td>
+</tr>
+<tr>
+<td>3375071</td>
+<td>On the NVIDIA SN2010 and SN2100 switch, {{smond}} indicates that the FAN status is {{BAD}} and syslog is flooded with {{Path /run/hw-management/thermal/fan1_status does not exist}} errors. When you run the {{smonctl -v}} command, the TEMP on switch looks OK.
+
+cumulus@switch:~$ smonctl -v
+Fan1(Fan 1): BAD fan:6931 RPM (max = 25000 RPM, min = 4500 RPM, limit_variance = 15%)
+Fan2(Fan 2): BAD fan:6619 RPM (max = 25000 RPM, min = 4500 RPM, limit_variance = 15%)
+Fan3(Fan 3): BAD fan:6931 RPM (max = 25000 RPM, min = 4500 RPM, limit_variance = 15%)
+Fan4(Fan 4): BAD fan:6720 RPM (max = 25000 RPM, min = 4500 RPM, limit_variance = 15%)
+</td>
+<td>5.1.0-5.4.0</td>
 <td>5.5.0-5.10.1</td>
 </tr>
 <tr>

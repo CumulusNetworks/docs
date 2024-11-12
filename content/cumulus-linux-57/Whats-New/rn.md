@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4101027"></a> [4101027](#4101027) <a name="4101027"></a> <br /> | After you add a VLAN to a bridge member port,  you might experience a few seconds of VXLAN traffic loss. | 5.7.0-5.10.1 | |
 | <a name="4072165"></a> [4072165](#4072165) <a name="4072165"></a> <br /> | When you add a VLAN to a bridge member port, VXLAN traffic might be impacted for few seconds. | 5.7.0-5.10.1 | |
 | <a name="4004453"></a> [4004453](#4004453) <a name="4004453"></a> <br /> | The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful. | 4.3.0-5.9.1, 5.10.0-5.10.1 | 5.9.2|
 | <a name="3982222"></a> [3982222](#3982222) <a name="3982222"></a> <br /> | When SPAN is enabled on a bridge member, an ARP or Gratuitous ARP received during a failover event between locally attached redundant devices such as load balancers might fail to update the bridge MAC table to point to the interface with the newly active load balancer. | 5.4.0-5.9.1 | 5.9.2-5.10.1|

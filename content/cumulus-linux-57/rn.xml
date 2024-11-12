@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4101027</td>
+<td>After you add a VLAN to a bridge member port,  you might experience a few seconds of VXLAN traffic loss.</td>
+<td>5.7.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4072165</td>
 <td>When you add a VLAN to a bridge member port, VXLAN traffic might be impacted for few seconds.</td>
 <td>5.7.0-5.10.1</td>

@@ -205,16 +205,6 @@ interface_stats: [ERROR] interface_stats_collector.py:_parse_conf_file:201 — C
 <td></td>
 </tr>
 <tr>
-<td>3963492</td>
-<td>When you use LDAP and slow access to LDAP causes the {{nv config apply}} command to be slow, use the {{nscd}} name service cache daemon to cache requests to the LDAP server.  Edit the {{/etc/nscd.conf}} file, uncomment the {{passwd}} and {{group}} stanzas, then run {{sudo systemctl enable nscd}} and {{sudo systemctl start nscd}} commands.
-Note: Running {{nscd}} might result in issues using {{useradd}} to create local users.  If this occurs, run the following commands:
-cumulus@switch:~$ sudo systemctl stop nscd
-cumulus@switch:~$ sudo useradd [...]
-cumulus@switch:~$ sudo systemctl start nscd</td>
-<td>5.10.0-5.10.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3928905</td>
 <td>The {{nv show interface &lt;interface&gt;}} commands show RX and TX Power values from the wrong lanes on breakout ports.</td>
 <td>5.8.0-5.9.1, 5.10.0-5.10.1</td>
@@ -891,16 +881,6 @@ interface_stats: [ERROR] interface_stats_collector.py:_parse_conf_file:201 — C
 <td>3990135</td>
 <td>If there are multiple relay switches in the path reaching the DHCP server, DHCP packets are duplicated at each transit relay switch and the server receives duplicate packets.</td>
 <td>5.9.1-5.10.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3963492</td>
-<td>When you use LDAP and slow access to LDAP causes the {{nv config apply}} command to be slow, use the {{nscd}} name service cache daemon to cache requests to the LDAP server.  Edit the {{/etc/nscd.conf}} file, uncomment the {{passwd}} and {{group}} stanzas, then run {{sudo systemctl enable nscd}} and {{sudo systemctl start nscd}} commands.
-Note: Running {{nscd}} might result in issues using {{useradd}} to create local users.  If this occurs, run the following commands:
-cumulus@switch:~$ sudo systemctl stop nscd
-cumulus@switch:~$ sudo useradd [...]
-cumulus@switch:~$ sudo systemctl start nscd</td>
-<td>5.10.0-5.10.1</td>
 <td></td>
 </tr>
 <tr>

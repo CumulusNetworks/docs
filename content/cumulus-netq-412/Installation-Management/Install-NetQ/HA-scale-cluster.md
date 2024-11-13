@@ -268,7 +268,7 @@ cumulus@netq-server:~$ vim /tmp/cluster-install-config.json
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your master and worker nodes. |
 | `master-ip` | The IP address assigned to the interface on your master node used for NetQ connectivity. |
 | `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. |
-| `ha-nodes` | The IP addresses of each of the HA nodes in your cluster, including the `master-ip`. |
+| `ha-nodes` | The IP addresses of each of the HA nodes in your cluster. |
 {{< /tab >}}
 {{< /tabs >}}
 

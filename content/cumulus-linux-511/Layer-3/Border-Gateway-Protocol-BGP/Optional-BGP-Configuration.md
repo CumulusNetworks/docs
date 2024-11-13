@@ -1734,6 +1734,7 @@ spine01# exit
 The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
+cumulus@spine01:~$ sudo cat /etc/frr/frr.conf
 ...
 router bgp 65199
  bgp router-id 10.10.10.101

@@ -163,31 +163,9 @@ burst  9000
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system sflow dropmon</h>
+## <h>nv show system sflow dropmon hw</h>
 
-Shows the sFlow monitor dropped packets configuration setting (software or hardware).
-
-### Version History
-
-Introduced in Cumulus Linux 5.11.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system sflow dropmon
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system sflow dropmon <drop-type></h>
-
-Shows information for the type of dropped packets.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<drop-type>`    |  The type of dropped packets (in software or hardware). |
+Shows information for dropped packets in hardware.
 
 ### Version History
 
@@ -196,5 +174,5 @@ Introduced in Cumulus Linux 5.11.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system sflow dropmon sw
+cumulus@switch:~$ nv show system sflow dropmon hw
 ```

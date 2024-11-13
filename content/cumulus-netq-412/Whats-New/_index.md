@@ -29,7 +29,7 @@ For deployments running:
 
 ## Compatible Agent Versions
 
-The NetQ 4.12 server is compatible with NetQ Agent 4.10.1 or later. You can install NetQ Agents on switches and servers running:
+The NetQ 4.12 server is compatible with the NetQ 4.12 agent. You can install NetQ agents on switches and servers running:
 
 - Cumulus Linux 5.0.0 or later (Spectrum switches)
 - Ubuntu 22.04, 20.04
@@ -37,5 +37,6 @@ The NetQ 4.12 server is compatible with NetQ Agent 4.10.1 or later. You can inst
 You must upgrade to the latest agent version to enable 4.12 features.
 
 {{%notice info%}}
-Switches running Cumulus Linux 5.9 or later require the NetQ 4.10 or later agent package. See {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq/Installation-Management/Install-NetQ/Install-NetQ-Agents/" text="Install NetQ Agents">}}.
+- When you upgrade to NetQ 4.12, any pre-existing event and validation data will be lost.
+- Switches running Cumulus Linux 5.9 or later require the NetQ 4.10 or later agent package. See {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq/Installation-Management/Install-NetQ/Install-NetQ-Agents/" text="Install NetQ Agents">}}.
 {{%/notice%}}

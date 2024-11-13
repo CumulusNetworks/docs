@@ -186,7 +186,7 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 </tr>
 <tr>
 <td>3835635</td>
-<td>When adaptive routing is enabled, traffic for non adaptive routing enabled ports and non adaptive routing ECMPS might be routed over all ports in ECMP.  Avoid using regular ECMPs with adaptive routing enabled on the switch.</td>
+<td>When adaptive routing is enabled, traffic for non adaptive routing enabled ports and non adaptive routing ECMPs might be routed over all ports in ECMP.  Avoid using regular ECMPs with adaptive routing enabled on the switch.</td>
 <td>5.9.0-5.10.1</td>
 <td></td>
 </tr>
@@ -1234,7 +1234,7 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 </tr>
 <tr>
 <td>3835635</td>
-<td>When adaptive routing is enabled, traffic for non adaptive routing enabled ports and non adaptive routing ECMPS might be routed over all ports in ECMP.  Avoid using regular ECMPs with adaptive routing enabled on the switch.</td>
+<td>When adaptive routing is enabled, traffic for non adaptive routing enabled ports and non adaptive routing ECMPs might be routed over all ports in ECMP.  Avoid using regular ECMPs with adaptive routing enabled on the switch.</td>
 <td>5.9.0-5.10.1</td>
 <td></td>
 </tr>
@@ -1890,7 +1890,7 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 </tr>
 <tr>
 <td>3835635</td>
-<td>When adaptive routing is enabled, traffic for non adaptive routing enabled ports and non adaptive routing ECMPS might be routed over all ports in ECMP.  Avoid using regular ECMPs with adaptive routing enabled on the switch.</td>
+<td>When adaptive routing is enabled, traffic for non adaptive routing enabled ports and non adaptive routing ECMPs might be routed over all ports in ECMP.  Avoid using regular ECMPs with adaptive routing enabled on the switch.</td>
 <td>5.9.0-5.10.1</td>
 <td></td>
 </tr>

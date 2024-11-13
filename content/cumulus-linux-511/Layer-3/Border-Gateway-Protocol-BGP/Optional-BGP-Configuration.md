@@ -1695,6 +1695,56 @@ router bgp 65199
 - You can only configure a BGP node as a route reflector for an iBGP peer.
 {{%/notice%}}
 
+## BGP Confederations
+
+To reduce the number of iBGP peerings, configure a confederation to divide an <span class="a-tooltip">[AS](## "autonomous system")</span> into smaller <span class="a-tooltip">[sub-ASs](## "sub-autonomous systems")</span>sub-autonomous systems.
+
+To configure a BGP confederation:
+- Provide the configuration ID you want to use.
+- Provide the ASNs of the peers you want to add to the confederation.
+
+The following example configures confederation ID 2 with peer ASNs to 65101, 65102, 65103, and 65104.
+
+{{< tabs "1706 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@spine01:~$ nv set vrf default router bgp confederation id 2
+cumulus@spine01:~$ nv set vrf default router bgp confederation member-as 65101-65104
+cumulus@spine01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+spine01# configure terminal
+spine01(config)# router bgp 65199
+spine01(config-router)# bgp confederation identifier 2
+spine01(config-router-af)# bgp confederation peers 65102
+spine01(config-router-af)# bgp confederation peers 65103
+spine01(config-router-af)# bgp confederation peers 65104
+spine01(config-router-af)# end
+spine01# write memory
+spine01# exit
+```
+
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65199
+ bgp router-id 10.10.10.101
+ bgp confederation identifier 2
+ bgp confederation peers 65101 65102 65103 65104
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Administrative Distance
 
 Cumulus Linux uses the administrative distance to choose which routing protocol to use when two different protocols provide route information for the same destination. The smaller the distance, the more reliable the protocol. For example, if the switch receives a route from OSPF with an administrative distance of 110 and the same route from BGP with an administrative distance of 100, the switch chooses BGP.

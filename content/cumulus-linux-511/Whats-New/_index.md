@@ -296,8 +296,8 @@ nv set system telemetry snapshot port-group <port-group-id> threshold <threshold
 nv set system telemetry snapshot port-group <port-group-id> stats-type
 nv set system telemetry snapshot port-group <port-group-id> interface <interface>
 nv set system telemetry snapshot port-group <port-group-id> timer-interval
-nv set vrf <vrf> router bgp address-family <address-family> advertise-origin
-nv set vrf <vrf> router bgp address-family <address-family> nhg-per-origin
+nv set vrf <vrf> router rib <afi> fib-filter route-map <route-map>
+nv set vrf <vrf> router rib <afi> protocol <protocol-name> fib-filter <route-map>
 ```
 
 {{< /tab >}}
@@ -401,8 +401,8 @@ nv unset system telemetry snapshot port-group <port-group-id> threshold <thresho
 nv unset system telemetry snapshot port-group <port-group-id> stats-type
 nv unset system telemetry snapshot port-group <port-group-id> interface
 nv unset system telemetry snapshot port-group <port-group-id> timer-interval
-nv unset vrf <vrf-id> router bgp address-family <address-family> advertise-origin
-nv unset vrf <vr-id> router bgp address-family <address-family> nhg-per-origin
+nv unset vrf <vrf> router rib <afi> fib-filter route-map <route-map>
+nv unset vrf <vrf> router rib <afi> protocol <protocol-name> fib-filter <route-map>
 ```
 
 {{< /tab >}}

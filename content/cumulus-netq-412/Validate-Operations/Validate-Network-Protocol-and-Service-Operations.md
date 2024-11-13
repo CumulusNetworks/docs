@@ -286,7 +286,8 @@ You can use the `lldpctl` command to validate the current port ID received from 
 
 {{%notice note%}}
 - If you change the LLDP port ID subtype while the NetQ agent is running, restart the NetQ agent with the `netq config restart agent` command
-- If you do not configure all of your network devices in the topology blueprint, the total number of devices accounted for in the validation results card might include additional devices that NetQ has received LLDP data from. 
+- If you do not configure all of your network devices in the topology blueprint, the total number of devices accounted for in the validation results card might include additional devices that NetQ has received LLDP data from.
+- If you download a topology blueprint file from the UI and edit its parameters, give the file a new name before re-uploading it. 
 {{%/notice%}}
 
 ### Create a Topology Validation

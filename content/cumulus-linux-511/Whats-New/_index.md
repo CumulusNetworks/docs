@@ -134,8 +134,7 @@ nv show system sflow collector <collector-ip>
 nv show system sflow sampling-rate
 nv show system sflow agent
 nv show system sflow policer
-nv show system sflow dropmon
-nv show system sflow dropmon <drop-type>
+nv show system sflow dropmon hw
 nv show interface swp1 telemetry label
 nv show interface swp1 telemetry label <label-id>
 nv show system telemetry label

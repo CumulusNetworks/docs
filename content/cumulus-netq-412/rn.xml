@@ -7,12 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4093134</td>
-<td>The topology dashboard does not support light theme.</td>
-<td>4.12.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3985598</td>
 <td>When you configure multiple threshold-crossing events for the same TCA event ID on the same device, NetQ will only display one TCA event for each hostname per TCA event ID, even if both thresholds are crossed or status events are triggered.  </td>
 <td>4.11.0-4.12.0</td>

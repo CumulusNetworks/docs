@@ -20,13 +20,19 @@
 </tr>
 <tr>
 <td>4129757</td>
-<td>If you include is a comma in the BGP community list, extended community list, or large community list regex expression of a routing policy, you see error messages and FRR reload fails. Make sure the regex expression does not contain a comma.</td>
+<td>If you include a comma in the BGP community list, extended community list, or large community list regex expression of a routing policy, you see error messages and FRR reload fails. Make sure the regex expression does not contain a comma.</td>
 <td>5.11.0</td>
 <td></td>
 </tr>
 <tr>
 <td>4128952</td>
-<td>LDAP SSL encryption fails. Cumulus Linux does not support LDAP over IPv6.</td>
+<td>Cumulus Linux does not support LDAP over IPv6.</td>
+<td>5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4101560</td>
+<td>The {{nv set vrf &lt;vrf&gt; router rib &lt;address-family&gt; fib-filter route-map &lt;route-map&gt;}} command only works if you restart FRR after you run the command. To work around this issue, attach the route map to each needed protocol; for example, run the {{nv set vrf &lt;vrf-name&gt; router rib fib-filter protocol &lt;protocol string&gt; route-map &lt;route-map&gt; command.</td>
 <td>5.11.0</td>
 <td></td>
 </tr>
@@ -39,16 +45,6 @@
 <tr>
 <td>4007590</td>
 <td>When you upgrade Cumulus Linux 5.9.1 to Cumulus Linux 5.9.2 with package upgrade, the NTP service stops. To restart the NTP service, enable, then restart the service in the VRF in which it was running with the {{systemctl enable ntpsec@&lt;vrf&gt;}} and {{systemctl restart ntpsec@&lt;vrf&gt;}} commands.</td>
-<td>5.10.0-5.11.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3963492</td>
-<td>When you use LDAP and slow access to LDAP causes the {{nv config apply}} command to be slow, use the {{nscd}} name service cache daemon to cache requests to the LDAP server.  Edit the {{/etc/nscd.conf}} file, uncomment the {{passwd}} and {{group}} stanzas, then run {{sudo systemctl enable nscd}} and {{sudo systemctl start nscd}} commands.
-Note: Running {{nscd}} might result in issues using {{useradd}} to create local users.  If this occurs, run the following commands:
-cumulus@switch:~$ sudo systemctl stop nscd
-cumulus@switch:~$ sudo useradd [...]
-cumulus@switch:~$ sudo systemctl start nscd</td>
 <td>5.10.0-5.11.0</td>
 <td></td>
 </tr>
@@ -75,7 +71,7 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 </tr>
 <tr>
 <td>3835635</td>
-<td>When adaptive routing is enabled, traffic for non adaptive routing enabled ports and non adaptive routing ECMPS might be routed over all ports in ECMP.  Avoid using regular ECMPs with adaptive routing enabled on the switch.</td>
+<td>When adaptive routing is enabled, traffic for non adaptive routing enabled ports and non adaptive routing ECMPs might be routed over all ports in ECMP.  Avoid using regular ECMPs with adaptive routing enabled on the switch.</td>
 <td>5.9.0-5.11.0</td>
 <td></td>
 </tr>

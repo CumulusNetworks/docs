@@ -24,8 +24,6 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 - {{<link url="Forwarding-Table-Size-and-Profiles/#spectrum-1" text="ecmp-nh-heavy forwarding profile">}} for Spectrum 1 switches
 - {{<link url="RADIUS-AAA/#radius-user-command-accounting" text="RADIUS user command accounting">}}
 - {{<link url="Upgrading-Cumulus-Linux/#upgrade-cumulus-linux" text="Optimized image upgrade commands">}} (available for future upgrades)
-- {{<link url="BGP-Weighted-Equal-Cost-Multipath/#ecmp-resource-sharing-during-next-hop-group-updates" text="Additional ECMP resource optimization for next hop groups">}} (BETA)
-- {{<link url="Optional-BGP-Configuration/#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}} (BETA)
 - {{<link url="Open-Telemetry-Export" text="New OTLP Statistics and Export">}}
 - {{<link url="ASIC-Monitoring/#interface-packet-and-buffer-statistics" text="Interface packet and buffer statistics collection">}}
 - NVUE
@@ -138,8 +136,7 @@ nv show system sflow collector <collector-ip>
 nv show system sflow sampling-rate
 nv show system sflow agent
 nv show system sflow policer
-nv show system sflow dropmon
-nv show system sflow dropmon <drop-type>
+nv show system sflow dropmon hw
 nv show interface swp1 telemetry label
 nv show interface swp1 telemetry label <label-id>
 nv show system telemetry label
@@ -298,8 +295,8 @@ nv set system telemetry snapshot port-group <port-group-id> threshold <threshold
 nv set system telemetry snapshot port-group <port-group-id> stats-type
 nv set system telemetry snapshot port-group <port-group-id> interface <interface>
 nv set system telemetry snapshot port-group <port-group-id> timer-interval
-nv set vrf <vrf> router bgp address-family <address-family> advertise-origin
-nv set vrf <vrf> router bgp address-family <address-family> nhg-per-origin
+nv set vrf <vrf> router rib <afi> fib-filter route-map <route-map>
+nv set vrf <vrf> router rib <afi> protocol <protocol-name> fib-filter <route-map>
 ```
 
 {{< /tab >}}
@@ -403,8 +400,8 @@ nv unset system telemetry snapshot port-group <port-group-id> threshold <thresho
 nv unset system telemetry snapshot port-group <port-group-id> stats-type
 nv unset system telemetry snapshot port-group <port-group-id> interface
 nv unset system telemetry snapshot port-group <port-group-id> timer-interval
-nv unset vrf <vrf-id> router bgp address-family <address-family> advertise-origin
-nv unset vrf <vr-id> router bgp address-family <address-family> nhg-per-origin
+nv unset vrf <vrf> router rib <afi> fib-filter route-map <route-map>
+nv unset vrf <vrf> router rib <afi> protocol <protocol-name> fib-filter <route-map>
 ```
 
 {{< /tab >}}

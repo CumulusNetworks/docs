@@ -1379,7 +1379,7 @@ leaf01# write memory
 leaf01# exit
 cumulus@leaf01:~$
 ```
-
+<!--
 ## BGP Prefix Independent Convergence
 
 BGP prefix independent convergence (PIC) reduces data plane convergence times and improves unicast traffic convergence for remote link failures (when the BGP next hop fails). A remote link is a link between a spine and a remote leaf, or a spine and the super spine layer.
@@ -1468,7 +1468,7 @@ router bgp 65101
 
 {{< /tab >}}
 {{< /tabs >}}
-
+-->
 ## BGP Timers
 
 BGP includes several timers that you can configure.
@@ -1694,6 +1694,57 @@ router bgp 65199
 - When you configure BGP for IPv6, you must run the `route-reflector-client` command **after** the `activate` command.
 - You can only configure a BGP node as a route reflector for an iBGP peer.
 {{%/notice%}}
+
+## BGP Confederations
+
+To reduce the number of iBGP peerings, configure a confederation to divide an <span class="a-tooltip">[AS](## "autonomous system")</span> into smaller <span class="a-tooltip">[sub-ASs](## "sub-autonomous systems")</span>.
+
+To configure a BGP confederation:
+- Provide the configuration ID you want to use.
+- Provide the ASNs of the peers you want to add to the confederation.
+
+The following example configures confederation ID 2 with peer ASNs 65101, 65102, 65103, and 65104.
+
+{{< tabs "1706 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@spine01:~$ nv set vrf default router bgp confederation id 2
+cumulus@spine01:~$ nv set vrf default router bgp confederation member-as 65101-65104
+cumulus@spine01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+spine01# configure terminal
+spine01(config)# router bgp 65199
+spine01(config-router)# bgp confederation identifier 2
+spine01(config-router)# bgp confederation peers 65102
+spine01(config-router)# bgp confederation peers 65103
+spine01(config-router)# bgp confederation peers 65104
+spine01(config-router)# end
+spine01# write memory
+spine01# exit
+```
+
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+cumulus@spine01:~$ sudo cat /etc/frr/frr.conf
+...
+router bgp 65199
+ bgp router-id 10.10.10.101
+ bgp confederation identifier 2
+ bgp confederation peers 65101 65102 65103 65104
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Administrative Distance
 

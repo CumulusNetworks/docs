@@ -201,9 +201,6 @@ cumulus@netq-server:~$ vim /tmp/cluster-install-config.json
                 },
                 {
                         "ip": "<INPUT>"
-                },
-                {
-                        "ip": "<INPUT>"
                 }
         ]
 }
@@ -215,7 +212,34 @@ cumulus@netq-server:~$ vim /tmp/cluster-install-config.json
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your master and worker nodes. |
 | `master-ip` | The IP address assigned to the interface on your master node used for NetQ connectivity. |
 | `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. |
-| `ha-nodes` | The IP addresses of each of the HA nodes in your cluster, including the `master-ip`. |
+| `ha-nodes` | The IP addresses of each of the HA nodes in your cluster. |
+
+{{%notice note%}}
+
+NetQ uses the 10.244.0.0/16 (`pod-ip-range`) and 10.96.0.0/16 (`service-ip-range`) networks for internal communication by default. If you are using these networks, you must override each range by specifying new subnets for these parameters in the cluster configuration JSON file:
+
+```
+cumulus@netq-server:~$ vim /tmp/cluster-install-config.json 
+{
+        "version": "v2.0",
+        "interface": "eth0",
+        "cluster-vip": "10.176.235.101",
+        "master-ip": "10.176.235.50",
+        "is-ipv6": false,
+        "pod-ip-range": "192.168.0.1/32",
+	"service-ip-range": "172.168.0.1/32",
+        "ha-nodes": [
+                {
+                        "ip": "10.176.235.51"
+                },
+                {
+                        "ip": "10.176.235.52"
+                }
+        ]
+}
+```
+
+{{%/notice%}}
 
 {{< /tab >}}
 {{< tab "Completed JSON Example ">}}
@@ -229,9 +253,6 @@ cumulus@netq-server:~$ vim /tmp/cluster-install-config.json
         "master-ip": "10.176.235.50",
         "is-ipv6": false,
         "ha-nodes": [
-                {
-                        "ip": "10.176.235.50"
-                },
                 {
                         "ip": "10.176.235.51"
                 },

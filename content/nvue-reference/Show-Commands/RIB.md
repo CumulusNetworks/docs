@@ -68,40 +68,25 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv show vrf default router rib ipv4
 route
-========
-    Route            Protocol   Distance  ResolvedVia  ResolvedViaIntf  Uptime    NHGId  Metric  TableId  Flags       
-    ---------------  ---------  --------  -----------  ---------------  --------  -----  ------  -------  ------------
-    10.0.1.12/32     connected  0                                       07:01:03  7      0                fib-selected
-                                                                                                          installed   
-                                                                                                          offloaded   
-                                                                                                          selected    
-    10.0.1.34/32     bgp        20                                      00:01:54  144    0                fib-selected
-                                                                                                          installed   
-                                                                                                          selected    
-    10.0.1.255/32    bgp        20                                      00:01:54  144    0                fib-selected
-                                                                                                          installed   
-                                                                                                          selected    
-    10.10.10.1/32    connected  0                                       07:03:56  7      0                fib-selected
-                                                                                                          installed   
-                                                                                                          offloaded   
-                                                                                                          selected    
-    10.10.10.2/32    bgp        20                                      00:01:53  221    0                fib-selected
-                                                                                                          installed   
-                                                                                                          selected    
-    10.10.10.3/32    bgp        20                                      00:01:54  144    0                fib-selected
-                                                                                                          installed   
-                                                                                                          selected    
-    10.10.10.4/32    bgp        20                                      00:01:54  144    0                fib-selected
-                                                                                                          installed   
-                                                                                                          selected    
-    10.10.10.63/32   bgp        20                                      00:01:54  144    0                fib-selected
-                                                                                                          installed   
-                                                                                                          selected    
-    10.10.10.64/32   bgp        20                                      00:01:54  144    0                fib-selected
-                                                                                                          installed   
-                                                                                                          selected    
-    10.10.10.101/32  bgp        20                                      00:01:54  115    0                fib-selected
-                                                                                                          installed
+========                                                                             
+    Flags - * - selected, q - queued, o - offloaded, i - installed, S - fib-        
+    selected, x - failed                                                            
+                                                                                
+    Route            Protocol   Distance  ResolvedVia  ResolvedViaIntf  Uptime                NHGId  Metric  TableId  Flags
+    ---------------  ---------  --------  -----------  ---------------  --------------------  -----  ------  -------  -----
+    10.0.1.12/32     connected  0                                       2024-11-14T08:58:30Z  35     0                *Sio 
+    10.0.1.34/32     bgp        20                                      2024-11-14T09:00:07Z  127    0                *Si  
+    10.0.1.255/32    bgp        20                                      2024-11-14T09:00:12Z  127    0                *Si  
+    10.10.10.1/32    connected  0                                       2024-11-14T08:58:22Z  35     0                *Sio 
+    10.10.10.2/32    bgp        20                                      2024-11-14T08:59:58Z  62     0                *Si  
+    10.10.10.3/32    bgp        20                                      2024-11-14T09:00:08Z  127    0                *Si  
+    10.10.10.4/32    bgp        20                                      2024-11-14T09:00:07Z  127    0                *Si  
+    10.10.10.63/32   bgp        20                                      2024-11-14T09:00:12Z  127    0                *Si  
+    10.10.10.64/32   bgp        20                                      2024-11-14T09:00:08Z  127    0                *Si  
+    10.10.10.101/32  bgp        20                                      2024-11-14T08:59:58Z  102    0                *Si  
+    10.10.10.102/32  bgp        20                                      2024-11-14T08:59:58Z  115    0                *Si  
+    10.10.10.103/32  bgp        20                                      2024-11-14T08:59:58Z  121    0                *Si  
+    10.10.10.104/32  bgp        20                                      2024-11-14T08:59:58Z  113    0                *Si
 ...
 ```
 
@@ -228,17 +213,19 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router rib ipv4 route 10.1.40.0/24 
-protocol
-===========                                                                           
-    EntryIdx - Entry index, TblId - Table Id, NHGId - Nexthop group Id,             
-    ResolvedViaIntf - Resolved via interface, Flags - u - unreachable, r -          
-    recursive, o - onlink, i - installed, d - duplicate, c - connected, A - active  
+cumulus@switch:~$ nv show vrf default router rib ipv4 route 10.10.10.63/32
+route-entry
+==============                                                                               
+    Protocol - Protocol name, TblId - Table Id, NHGId - Nexthop group Id, Flags - u 
+    - unreachable, r - recursive, o - onlink, i - installed, d - duplicate, c -     
+    connected, A - active                                                           
                                                                                 
-    Protocol  EntryIdx  TblId  NHGId  Distance  Metric  ResolvedViaIntf  Weight  Flags
-    --------  --------  -----  -----  --------  ------  ---------------  ------  -----
-    bgp       1         254    57     20        0       swp51            1       iA                                               swp52            1       iA
-    ...
+    EntryIdx  Protocol  TblId  NHGId  Distance  Metric  ResolvedVia                ResolvedViaIntf  Weight  Flags
+    --------  --------  -----  -----  --------  ------  -------------------------  ---------------  ------  -----
+    1         bgp       254    127    20        0       fe80::4ab0:2dff:fe4d:1aed  swp51            1       iA   
+                                                        fe80::4ab0:2dff:fe5e:6ad   swp52            1       iA   
+                                                        fe80::4ab0:2dff:febf:7c74  swp54            1       iA   
+                                                        fe80::4ab0:2dff:fec2:1f26  swp53            1       iA  
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -246,6 +233,10 @@ protocol
 ## <h>nv show vrf \<vrf-id\> router rib \<afi\> route \<route-id\> protocol \<protocol-id\></h>
 
 Shows the routing table for the specified protocol route.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -277,6 +268,10 @@ entry-index
 
 Shows the route entry index values for the specified protocol route.
 
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -304,6 +299,10 @@ Entry
 ## <h>nv show vrf \<vrf-id\> router rib \<afi\> route \<route-id\> protocol \<protocol-id\> entry-index \<entry-index\></h>
 
 Shows detailed information about the specified protocol route entry index.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -372,6 +371,10 @@ installed
 
 Shows the routing table next hop information for the specified protocol route entry index.
 
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command.
+{{%/notice%}}
+
 ### Command Syntax
 
 |  Syntax | Description |
@@ -401,6 +404,10 @@ fe80::4ab0:2dff:feba:6208  iA            ip-address       1       Interface: swp
 ## <h>nv show vrf \<vrf-id\> router rib \<afi\> route \<route-id\> protocol \<protocol-id\> entry-index \<entry-index\> via \<via-id\></h>
 
 Shows the routing table next hop resolution information for the specified protocol route entry index.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -442,6 +449,10 @@ interface
 
 Shows the routing table flags for the specified protocol route entry index next hop.
 
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command.
+{{%/notice%}}
+
 ### Command Syntax
 
 |  Syntax | Description |
@@ -473,6 +484,10 @@ active
 
 Shows the routing table label information for the specified protocol route entry index next hop.
 
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command.
+{{%/notice%}}
+
 ### Command Syntax
 
 |  Syntax | Description |
@@ -501,6 +516,10 @@ cumulus@switch:~$ nv show vrf default router rib ipv4 route 10.1.40.0/24 protoco
 
 Shows the routing table recursive next hop resolution information for the specified protocol route entry index next hop.
 
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command.
+{{%/notice%}}
+
 ### Command Syntax
 
 |  Syntax | Description |
@@ -527,6 +546,10 @@ cumulus@switch:~$ nv show vrf default router rib ipv4 route 10.1.40.0/24 protoco
 ## <h>nv show vrf \<vrf-id\> router rib \<afi\> route \<route-id\> protocol \<protocol-id\> entry-index via \<via-id\> resolved-via \<resolved-via-id\>
 
 Shows the routing table information for a specific recursive next hop for the specified protocol route entry index next hop.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command.
+{{%/notice%}}
 
 ### Command Syntax
 

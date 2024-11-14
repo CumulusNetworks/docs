@@ -51,8 +51,8 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 | `nv set system snmp-server`<br>`nv unset system snmp-server`<br><br>Note: **all** `snmp-server` set commands have moved from `nv set service` to `nv set system`.  | `nv set service snmp-server`<br>`nv unset service snmp-server` |
 | `nv set system snmp-server state enabled`<br>`nv set system snmp-server state disabled`| `nv set service snmp-server enable on`<br>`nv set service snmp-server enable off`|
 | `nv show system snmp-server`<br><br>Note: **all** `snmp-server` show commands have moved from `nv show service` to `nv show system`. | `nv show service snmp-server`|
-| `nv set qos advance-buffer-config <profile-id> ingress-service-pool <pool-id> <property> <value>` | `nv set qos advance-buffer-config <profile-id> ingress-pool <pool-id> <property> <value>`|
-| `nv set qos advance-buffer-config <profile-id> egress-service-pool <pool-id> <property> <value>` | `nv set qos advance-buffer-config <profile-id> egress-pool <pool-id> <property> <value> ` |
+| `nv set qos advance-buffer-config <profile-id> ingress-service-pool` | `nv set qos advance-buffer-config <profile-id> ingress-pool`|
+| `nv set qos advance-buffer-config <profile-id> egress-service-pool` | `nv set qos advance-buffer-config <profile-id> egress-pool` |
 | `nv show qos advance-buffer-config <profile-id> ingress-service-pool` | `nv show qos advance-buffer-config default-global ingress-pool` |
 | `nv show qos advance-buffer-config <profile-id> egress-service-pool` | `nv show qos advance-buffer-config default-global egress-pool` |
 | `nv set system aaa user <user-id> state enabled`<br>`nv set system aaa user <user-id> state disabled`<br>`nv unset system aaa user <user-id> enable` | `nv set system aaa user <user-id> enable on`<br>`nv set system aaa user <user-id> enable off`<br>`nv unset system aaa user <user-id> state` |

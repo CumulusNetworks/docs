@@ -12,7 +12,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 NetQ 4.12.0 includes the following new features and improvements:
 
-- {{<link title="Before You Install" text="New installation option">}} that supports up to 1,000 devices
+- {{<link title="Before You Install" text="New installation option">}} that supports up to 1,000 switches
 - {{<link title="Focus Your Monitoring Using Workbenches" text="New workbench">}} with {{<link title="Access Data with Cards" text="additional cards">}} that you can add to your existing workbenches
 - Compare interfaces and view counter data across links with the {{<link title="Interfaces/#compare-link-interfaces" text="link health view">}} (beta)
 - View a switch's BGP and EVPN session information from the full-screen {{<link title="Switches" text="switch dashboard">}}

@@ -41,7 +41,7 @@ To create a new sim, click the **Create Simulation** button from the [Simulation
 
 - To learn about preconfigured, ready out-of-box simulations, visit [Pre-Built Demos](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Pre-Built-Demos).
 
-### Navigate your Sim
+### Navigate Simulations
 After you create a simulation, you can power them on/off, [edit](#edit-simulations) various aspects of it, [share it with others](#sharing-simulations), and delete it with the **Actions** {{<img src="/images/guides/nvidia-air/ActionsButton.png" alt="">}} button on each sim.
 
 {{<img src="/images/guides/nvidia-air/SimulationsActionHighlight.png" alt="">}}

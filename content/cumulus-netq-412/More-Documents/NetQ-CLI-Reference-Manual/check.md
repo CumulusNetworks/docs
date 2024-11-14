@@ -1090,7 +1090,8 @@ You must upload a network blueprint .dot file using the UI for this command to r
 ```
 netq check topology 
     [label <text-label-name> | hostnames <text-list-hostnames>] 
-    [check_filter_id <text-check-filter-id>] 
+    [check_filter_id <text-check-filter-id>]
+    [include <topology-number-range-list> | exclude <topology-number-range-list>] 
     [around <text-time>] 
     [json | summary]
 ```
@@ -1105,6 +1106,8 @@ None
 | label | \<text-label-name\> | Reserved |
 | hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
 | check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
+| include | \<topology-number-range-list\> | Include the specified validation tests |
+| exclude | \<topology-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |

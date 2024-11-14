@@ -12,7 +12,9 @@ For deployments running Cumulus Linux versions:
 - 5.6.0 to 5.8.0: you can upgrade up to Cumulus Linux version 5.9 or later if your environment is running NetQ 4.10.1 or later. If you are running an earlier NetQ version, you must {{<link title="Upgrade NetQ Agent" text="upgrade NetQ">}} before you upgrade Cumulus Linux.
 - 5.0.1 to 5.7.0: you can upgrade up to Cumulus Linux version 5.8.
 
-
+{{<notice note>}}
+Cloud deployments must be running NetQ v4.11 or later to perform the steps outlined on this page.
+{{</notice>}}
 To upgrade to Cumulus Linux 5.9 or later:
 
 1. Ensure your switches are configured with NVUE. 
@@ -49,7 +51,7 @@ If you are upgrading to Cumulus Linux 5.9 or later and select the option to roll
 
 3. Verify or add {{<link title="Credentials and Profiles" text="switch access credentials">}}.
 
-4. (Optional) {{<link title="Switch Management/#assign-roles-to-switches" text="Assign a role">}} to each switch.
+4. (Optional) {{<link title="Switch Management/#assign-roles-to-switches" text="Assign a role">}} to each switch to identify switch dependencies and avoid potential upgrade issues.
 
 {{</tab>}}
 
@@ -71,23 +73,21 @@ If the NetQ Agent is already installed on the switches you'd like to upgrade, fo
 
 4. Click {{<img src="/images/netq/cl-upgrade-icon-blk.png" height="14" width="18">}} **Upgrade OS** above the table.
 
-    Follow the steps in the UI. Create a name for the upgrade and review the switches that you selected to upgrade:
+    Follow the steps in the UI. Enter a name for the upgrade and review the switches that you selected to upgrade:
 
     {{<figure src="/images/netq/upgrade-switches-450.png" alt="screen displaying 2 switches selected for upgrading" width="550">}}
 
 If you accidentally included a switch that you do *not* want to upgrade, hover over the switch information card and click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18">}} **Delete** to remove it from the upgrade.
    
-If the role is incorrect or missing, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18">}} **Edit**, then select a role for that switch from the dropdown. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/delete-2.svg" height="18" width="18">}} **Cancel** to discard the change.
+5. Click **Next**.
 
-7. Click **Next**.
+6. Specify which Cumulus Linux version NetQ should use during the upgrade. If you previously uploaded NetQ images, you can also upgrade NetQ at this time.
 
-8. Select either a {{<link title="NetQ and Network OS Images/#specify-a-default-upgrade-version" text="default image">}} or custom version.
+7. Verify or add {{<link title="Credentials and Profiles" text="switch access credentials">}}.
 
-9. Verify or add {{<link title="Credentials and Profiles" text="switch access credentials">}}.
+8. Click **Next**.
 
-10. Click **Next**.
-
-11. Verify the upgrade job options.
+9. Verify the upgrade job options.
 
     By default, NetQ performs a roll back to the original Cumulus Linux version on any server which fails to upgrade. It also takes network snapshots before and after the upgrade.
 
@@ -95,11 +95,11 @@ You can exclude selected services and protocols from the snapshots by clicking t
 
     {{<figure src="/images/netq/upgrade-switch-options-450.png" width="500">}}
 
-12. Click **Next**.
+10. Click **Next**.
 
-13. NetQ performs several checks to eliminate preventable problems during the upgrade process. When all of the pre-checks pass, click **Preview**.
+11. NetQ performs several checks to eliminate preventable problems during the upgrade process. When all of the pre-checks pass, click **Preview**.
 
-14. NetQ directs you to a screen where you can review the upgrade. After reviewing, select **Start upgrade** and confirm.
+12. NetQ directs you to a screen where you can review the upgrade. After reviewing, select **Start upgrade** and confirm.
 
 {{</tab>}}
 
@@ -137,13 +137,11 @@ If one or more of the pre-checks fail, resolve the related issue and start the u
 
 ### Analyze Results
 
-After starting the upgrade you can monitor the progress in the NetQ UI. Successful upgrades are indicated by a green {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="16" width="18">}}. Failed upgrades display error messages indicating the cause of failure.
+After starting the upgrade you can monitor the progress in the NetQ UI. Successful upgrades are indicated by a green check {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="16" width="18">}}. Failed upgrades display error messages indicating the cause of failure.
 
-To view the progress of current upgrade jobs and the history of previous upgrade jobs using the CLI, run `netq lcm show upgrade-jobs cl-image`.
-
-To see details of a particular upgrade job, run `netq lcm show status job-ID`.
-
-To see only Cumulus Linux upgrade jobs, run `netq lcm show status cl-image job-ID`.
+ - To view the progress of current upgrade jobs and the history of previous upgrade jobs using the CLI, run `netq lcm show upgrade-jobs cl-image`.
+ - To see details of a particular upgrade job, run `netq lcm show status job-ID`.
+ - To see only Cumulus Linux upgrade jobs, run `netq lcm show status cl-image job-ID`.
 
 Upon successful upgrade, you can:
 

@@ -27,7 +27,7 @@ netq check roce
 
 ## View RoCE Counters Networkwide in the UI
 
-1. From the header or {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} menu, select **Spectrum-X**, then **RoCE**.
+1. From the header or {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu, select **Spectrum-X**, then **RoCE**.
 
 2. Select either **RoCE switches** or **RoCE DPUs**.
 

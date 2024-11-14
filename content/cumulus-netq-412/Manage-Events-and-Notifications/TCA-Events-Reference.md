@@ -7,7 +7,7 @@ toc: 4
 
 This reference lists the threshold-based events that NetQ supports. You can view these messages through third-party notification applications. For details about configuring notifications for these events, refer to {{<link title="Configure and Monitor Threshold-Crossing Events">}}.
 
-Items marked with an asterisk (*) indicate threshold-crossing events that NetQ configures by default across all premises. You can {{<link title="Configure and Monitor Threshold-Crossing Events/#Manage-Threshold-crossing-Events and-Notifications" text="edit the threshold values">}} for default rules or disable them to prevent NetQ from generating events.
+<!--hiding for 4.12 Items marked with an asterisk (*) indicate threshold-crossing events that NetQ configures by default across all premises. You can {{<link title="Configure and Monitor Threshold-Crossing Events/#Manage-Threshold-crossing-Events and-Notifications" text="edit the threshold values">}} for default rules or disable them to prevent NetQ from generating events.-->
 
 ## ACL Resources
 
@@ -38,7 +38,7 @@ Items marked with an asterisk (*) indicate threshold-crossing events that NetQ c
 <!-- vale off -->
 | NetQ UI Name | NetQ CLI Event ID | Description |
 | --- | --- | --- |
-| BGP connection drop* | TCA_BGP_CONN_DROP | Increase in drop count for a BGP session exceeding user-defined threshold |
+| BGP connection drop | TCA_BGP_CONN_DROP | Increase in drop count for a BGP session exceeding user-defined threshold |
 | BGP packet queue length | TCA_BGP_PACKET_QUEUE_LENGTH | Packet queue length persistently non-zero for more than the threshold duration (in seconds) |
 
 ## Digital Optics
@@ -114,7 +114,7 @@ Items marked with an asterisk (*) indicate threshold-crossing events that NetQ c
 <!-- vale off -->
 | NetQ UI Name | NetQ CLI Event ID | Description |
 | --- | --- | --- |
-| ECMP imbalance* | TCA_ECMP_IMBALANCE | ECMP path utilization imbalance greater than the threshold |
+| ECMP imbalance | TCA_ECMP_IMBALANCE | ECMP path utilization imbalance greater than the threshold |
 
 
 ## Forwarding Resources
@@ -123,8 +123,8 @@ Items marked with an asterisk (*) indicate threshold-crossing events that NetQ c
 | --- | --- | --- |
 | Total route entries % | TCA_TCAM_TOTAL_ROUTE_ENTRIES_UPPER | Number of routes on a given switch or host exceeded user-defined maximum threshold |
 | Mcast routes % | TCA_TCAM_TOTAL_MCAST_ROUTES_UPPER | Number of multicast routes on a given switch or host exceeded user-defined maximum threshold |
-| MAC entries %* | TCA_TCAM_MAC_ENTRIES_UPPER | Number of MAC addresses on a given switch or host exceeded user-defined maximum threshold |
-| IPv4 routes %* | TCA_TCAM_IPV4_ROUTE_UPPER | Number of IPv4 routes on a given switch or host exceeded user-defined maximum threshold |
+| MAC entries % | TCA_TCAM_MAC_ENTRIES_UPPER | Number of MAC addresses on a given switch or host exceeded user-defined maximum threshold |
+| IPv4 routes % | TCA_TCAM_IPV4_ROUTE_UPPER | Number of IPv4 routes on a given switch or host exceeded user-defined maximum threshold |
 | IPv4 hosts % | TCA_TCAM_IPV4_HOST_UPPER | Number of IPv4 hosts on a given switch or host exceeded user-defined maximum threshold |
 | Exceeding IPv6 routes % | TCA_TCAM_IPV6_ROUTE_UPPER | Number of IPv6 routes on a given switch or host exceeded user-defined maximum threshold |
 | IPv6 hosts % | TCA_TCAM_IPV6_HOST_UPPER | Number of IPv6 hosts on a given switch or host exceeded user-defined maximum threshold |
@@ -138,7 +138,7 @@ Items marked with an asterisk (*) indicate threshold-crossing events that NetQ c
 | Undersize errors | TCA_HW_IF_UNDERSIZE_ERRORS | Number of times a frame shorter than minimum size (64 Bytes) exceeded user-defined threshold |
 | Alignment errors | TCA_HW_IF_ALIGNMENT_ERRORS | Number of times a frame with an uneven byte count and a CRC error exceeded user-defined threshold |
 | Jabber errors | TCA_HW_IF_JABBER_ERRORS | Number of times a frame longer than maximum size (1518 bytes) and with a CRC error exceeded user-defined threshold |
-| Symbol errors* | TCA_HW_IF_SYMBOL_ERRORS | Number of times that detected undefined or invalid symbols exceeded user-defined threshold |
+| Symbol errors | TCA_HW_IF_SYMBOL_ERRORS | Number of times that detected undefined or invalid symbols exceeded user-defined threshold |
 
 ## Interface Statistics
 
@@ -155,17 +155,17 @@ Items marked with an asterisk (*) indicate threshold-crossing events that NetQ c
 
 | NetQ UI Name | NetQ CLI Event ID | Description |
 | --- | --- | --- |
-| Link flap errors* | TCA_LINK_FLAP_UPPER | Number of link flaps exceeded user-defined maximum threshold |
+| Link flap errors | TCA_LINK_FLAP_UPPER | Number of link flaps exceeded user-defined maximum threshold |
 
 ## Resource Utilization
 
 | NetQ UI Name | NetQ CLI Event ID | Description |
 | --- | --- | --- |
 | Service memory utilization | TCA_SERVICE_MEMORY_UTILIZATION_UPPER | Percentage of service memory utilization exceeded user-defined maximum threshold on a switch |
-| Disk utilization* | TCA_DISK_UTILIZATION_UPPER  |  Percentage of disk utilization exceeded user-defined maximum threshold on a switch or host |
-| CPU utilization* | TCA_CPU_UTILIZATION_UPPER | Percentage of CPU utilization exceeded user-defined maximum threshold on a switch or host |
+| Disk utilization | TCA_DISK_UTILIZATION_UPPER  |  Percentage of disk utilization exceeded user-defined maximum threshold on a switch or host |
+| CPU utilization | TCA_CPU_UTILIZATION_UPPER | Percentage of CPU utilization exceeded user-defined maximum threshold on a switch or host |
 | Service CPU utilization | TCA_SERVICE_CPU_UTILIZATION_UPPER | Percentage of service CPU utilization exceeded user-defined maximum threshold on a switch |
-| Memory utilization* | TCA_MEMORY_UTILIZATION_UPPER  |  Percentage of memory utilization exceeded user-defined maximum threshold on a switch or host |
+| Memory utilization | TCA_MEMORY_UTILIZATION_UPPER  |  Percentage of memory utilization exceeded user-defined maximum threshold on a switch or host |
 
 ## RoCE 
 
@@ -196,8 +196,8 @@ Items marked with an asterisk (*) indicate threshold-crossing events that NetQ c
 | Fan speed | TCA_SENSOR_FAN_UPPER  |  Fan speed exceeded user-defined maximum threshold on a switch |
 | Power supply watts | TCA_SENSOR_POWER_UPPER| Power supply output exceeded user-defined maximum threshold on a switch |
 | Power supply volts | TCA_SENSOR_VOLTAGE_UPPER  | Power supply voltage exceeded user-defined maximum threshold on a switch |
-| Switch temperature* | TCA_SENSOR_TEMPERATURE_UPPER  | Temperature (&deg; C) exceeded user-defined maximum threshold on a switch |
-| Sensor state* | TCA_SENSOR_STATE | Sensor state changed from good to either bad or absent |
+| Switch temperature | TCA_SENSOR_TEMPERATURE_UPPER  | Temperature (&deg; C) exceeded user-defined maximum threshold on a switch |
+| Sensor state | TCA_SENSOR_STATE | Sensor state changed from good to either bad or absent |
 
 ## What Just Happened
 
@@ -266,5 +266,3 @@ Items marked with an asterisk (*) indicate threshold-crossing events that NetQ c
 | Symbol error upper | TCA_WJH_SYMBOL_ERROR_UPPER | L1 | Peer is sending remote faults | Peer node is not operating correctly |
 | Symbol error upper | TCA_WJH_SYMBOL_ERROR_UPPER | L1 | Port admin down | Port has been purposely set down by user |
 <!-- vale on -->
-
-*Threshold-crossing event created by default

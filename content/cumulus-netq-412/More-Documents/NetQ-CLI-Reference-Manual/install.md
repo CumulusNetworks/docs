@@ -8,19 +8,9 @@ pdfhidden: true
 type: nojsscroll
 ---
 
-You can install NetQ with a single command or you can perform the individual steps using multiple commands. Generally, using the single command option is *strongly recommended*. However, the individual commands can be useful for troubleshooting the installation process when it fails.
+You can install NetQ with a single command or you can perform the individual steps using multiple commands. Generally, using the single command option is *strongly recommended*. However, the individual commands can be useful for troubleshooting the installation process when it fails. Refer to the {{<link title="Install the NetQ System" text="installation page for your deployment model">}} for step-by-step instructions.
 
 You can use these commands only after bootstrapping the physical server or VM. Refer to {{<link title="bootstrap" text="netq bootstrap">}}.
-
-<!--
-
-{{<figure src="/images/netq/cliref-install-onprem-single-server-330.png" width="500" caption="On-premises single server">}}
-
-{{<figure src="/images/netq/cliref-install-onprem-server-cluster-330.png" width="600" caption="On-premises server cluster">}}
-
-{{<figure src="/images/netq/cliref-install-cloud-remote-330.png" width="250" caption="Cloud/remote">}}
-
--->
 
 - - -
 
@@ -87,6 +77,70 @@ None
 - - -
 
 -->
+## netq install cluster bundle
+
+Installs the NetQ software for an on-premises HA scale cluster deployment. Run this command on your *master* node, specifying the cluster configuration JSON file you created with the `netq install cluster config generate` command.
+
+### Syntax
+
+```
+netq install cluster bundle
+    bundle <text-bundle-url>
+    <text-cluster-config>
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| bundle | \<text-bundle-url\> | Install the NetQ software bundle at this location; you must specify a full path |
+| NA | \<text-cluster-config\> | Specify the cluster configuration JSON file  |
+### Options
+
+None
+
+### Sample Usage
+
+```
+cumulus@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.12.0.tgz /tmp/cluster-install-config.json
+```
+
+### Related Commands
+
+- `netq install cluster config generate`
+- - -
+<!--need clarification
+## netq install cluster config generate
+
+### Syntax
+
+```
+netq install cluster config generate 
+    [<text-config-json-file>]
+
+netq install cluster config generate workers 
+    <text-cluster-nworkers> 
+    [<text-config-json-file>]
+```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<text-cluster-nworkers\> |  |
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<text-config-json-file\> |  |
+
+### Sample Usage
+
+### Related Commands
+
+- `netq install cluster bundle`
+
+- - -
+-->
 ## netq install cluster full
 
 Installs the NetQ software for an on-premises, server cluster deployment. Run this command on your *master* node. You must have the hostname or IP address of the master node, two worker nodes, virtual IP address, and the NetQ software bundle to run the command.
@@ -114,7 +168,7 @@ netq install cluster full
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | interface | \<text-opta-ifname\> | Install a server cluster with a master node using this interface to communicate with the NetQ Agents on the worker nodes |
-| ip-addr | \<text-ip-addr\>,\<text-ipv6-addr\>  | Install a server cluster with a master node with this IPv4 or IPv6 address to communicate with the NetQ Agents on the worker nodes |
+| ip-addr | \<text-ip-addr\>,\<text-ipv6-addr\>  | Install a server cluster with a master node with this IPv4 or IPv6 address to communicate with the NetQ agents on the worker nodes |
 | bundle | \<text-bundle-url\> | Install the NetQ software bundle at this location; you must specify a full path |
 | workers | \<text-worker-01\> \<text-worker-02\> | Install the worker nodes with these IPv4 addresses |
 | cluster-vip | \<text-cluster-vip\> | Specify a virtual IP address from the same subnet used for your master and worker nodes |
@@ -132,7 +186,7 @@ netq install cluster full
 ### Sample Usage
 
 ```
-cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.11.1.tgz workers 10.20.10.25 10.20.10.45 cluster-vip 10.20.10.254
+cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.12.0.tgz workers 10.20.10.25 10.20.10.45 cluster-vip 10.20.10.254
 ```
 
 ### Related Commands
@@ -171,7 +225,25 @@ cumulus@<hostname>:~$ netq install cluster master-init
 - `netq install cluster worker-init`
 
 - - -
+<!--need clarification
+## netq install cluster worker add
 
+### Syntax
+
+```
+netq install cluster worker add <text-cluster-config>
+```
+### Required Arguments
+| NA | \<text-cluster-config\> | Specify the cluster configuration JSON file  |
+
+### Options
+
+None
+
+### Related Commands
+
+- - -
+-->
 ## netq install cluster worker-init
 
 After initializing the cluster on the master node, run this command on each worker node.
@@ -284,7 +356,7 @@ netq install opta cluster full
 ### Sample Usage
 
 ```
-cumulus@<hostname>:~$ netq install opta cluster full interface en01 bundle /mnt/installables/NetQ-4.11.0.tgz config-key CI39fo5CZ3cucHJvZDEubmV0cS5jdW11bHVzbmVp6z8ma3MuY29tGLsD workers 10.20.10.25 10.20.10.45 cluster-vip 10.20.10.254
+cumulus@<hostname>:~$ netq install opta cluster full interface en01 bundle /mnt/installables/NetQ-4.12.0.tgz config-key CI39fo5CZ3cucHJvZDEubmV0cS5jdW11bHVzbmVp6z8ma3MuY29tGLsD workers 10.20.10.25 10.20.10.45 cluster-vip 10.20.10.254
 ```
 
 ### Related Commands
@@ -363,7 +435,7 @@ netq install opta standalone full
 ### Sample Usage
 
 ```
-cumulus@<hostname>:~$ netq install opta standalone full interface en01 bundle /mnt/installables/NetQ-4.11.0.tgz config-key CI39fo5CZ3cucHJvZDEubmV0cS5jdW11bHVzbmVp6z8ma3MuY29tGLsD
+cumulus@<hostname>:~$ netq install opta standalone full interface en01 bundle /mnt/installables/NetQ-4.12.0.tgz config-key CI39fo5CZ3cucHJvZDEubmV0cS5jdW11bHVzbmVp6z8ma3MuY29tGLsD
 ```
 
 ### Related Commands
@@ -485,7 +557,7 @@ netq install standalone full
 ### Sample Usage
 
 ```
-cumulus@<hostname>:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.11.0.tgz
+cumulus@<hostname>:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.12.0.tgz
 ```
 
 ### Related Commands

@@ -13,7 +13,7 @@ To open the topology view, click <img src="https://icons.cumulusnetworks.com/01-
 If your devices appear as a single tier, navigate to the device tab and select the **Assign roles** button. Select the switches to assign to the same role, then select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/58-Tags-Bookmarks/tags.svg" height="18" width="18" alt="Assign Role">}} **Assign role** above the table and follow the steps in the UI.
 
 {{%notice tip%}}
-For large networks with many devices, you can assign roles in batches using the **Bulk assign role** button.
+For large networks with many devices, you can assign roles in batches by selecting **Bulk assign role** and creating rules based on device hostnames.
 {{%/notice%}}
 
 After assigning roles to the switches, return to the topology view and select **Auto arrange** to clean up the view.
@@ -28,15 +28,15 @@ Select a device to view the connections between that devices and others in the n
 | Node Data | Description |
 | --------- | ----------- |
 | ASIC | Name of the ASIC used in the switch. A value of Cumulus Networks VX indicates a virtual machine. |
-| NetQ Agent status | Operational status of the NetQ Agent on the switch (fresh or rotten). |
-| NetQ Agent version | Version ID of the NetQ Agent on the switch. |
-| OS name | Operating system running on the switch. |
-| Platform | Vendor and name of the switch hardware. |
-| Protocols | Protocols running on the switch.|
-| VNIs | Count of virtual network identifiers (VNIs) on the switch. |
-| Interface statistics | Transmit and receive data. |
-| Resource utilization| CPU, memory, and disk utilization. |
-| Events| Warning and info events. |
+| NetQ Agent status | Operational status of the NetQ Agent on the switch (fresh or rotten) |
+| NetQ Agent version | Version ID of the NetQ Agent on the switch |
+| OS name | Operating system running on the switch |
+| Platform | Vendor and name of the switch hardware |
+| Protocols | Protocols running on the switch|
+| VNIs | Count of virtual network identifiers (VNIs) on the switch |
+| Interface statistics | Transmit and receive data |
+| Resource utilization| CPU, memory, and disk utilization |
+| Events| Warning and info events |
 
 Select a link connection to open a side panel with additional configuration data, which can be sorted by link pairs.
 
@@ -57,11 +57,11 @@ You can rearrange the topology's tiers by selecting **Edit** at the top of the s
 
 ### Create Queries to View a Subset of Devices
 
-You can create queries to segment a topology into smaller, more manageable parts. This can be especially helpful when you need to view a particular section of a very large topology. To create a query, select **Queries** on the left side of the screen, then **Add query**. The name of the query is pre-populated with a unique identifier that you can edit by expanding the query.
+You can create queries to segment a topology into smaller, more manageable parts. This can be especially helpful when you need to view a particular section of a very large topology or when you want to find and view connections between two or more devices. To create a query, select **Queries** on the left side of the screen, then **Add query**. The name of the query is pre-populated with a unique identifier that you can edit by expanding the query.
 
 {{<figure src="/images/netq/topo-query-412.png" alt="" width="700">}}
 
-Select *node_name* and enter the parameters to display a subsection of nodes based on their names. To combine multiple queries with logical operators, select **Add filter group**. 
+Select *node_name* and enter the parameters to display a subsection of nodes based on their hostnames. To combine multiple queries with logical operators, select **Add filter group**. 
 
 Select the three-dot menu on a given query to either delete or remove the query.
 

@@ -33,11 +33,11 @@ Selecting the NVIDIA logo takes you to your favorite workbench. For details abou
 
 ## Workbenches
 
-A workbench is a dashboard that displays a set of cards. A pre-configured default workbench, NetQ Workbench, is available to get you started. You can create multiple workbenches and customize them by adding or removing cards. For more detail about managing your data using workbenches, refer to {{<link title="Focus Your Monitoring Using Workbenches">}}.
+A workbench is a dashboard that displays a set of cards. Two pre-configured workbenches---NetQ Workbench and Fabric Dashboard---are available to get you started. You can create multiple workbenches and customize them by adding or removing cards. For more detail about managing your data using workbenches, refer to {{<link title="Focus Your Monitoring Using Workbenches">}}.
 
 ## Cards
 
-Cards display information about your network. Each card describes a particular aspect of the network and can be expanded to display information and statistics at increasingly granular levels. You can add or remove cards from a workbench, move between cards and card sizes, and make copies of cards that display different levels of data for a given time period. For details about working with cards, refer to {{<link url="Access-Data-with-Cards">}}.
+Cards display information about your network. Each card describes a particular aspect of the network and some cards can be expanded to display information and statistics at increasingly granular levels. You can add or remove cards from a workbench, move between cards and card sizes, and make copies of cards that display different levels of data for a given time period. For details about working with cards, refer to {{<link url="Access-Data-with-Cards">}}.
 
 ## User Settings
 

@@ -7,9 +7,29 @@ product: NVIDIA Air
 <!-- vale off -->
 Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
 
+## November 2024
+<!-- Air:WhatsNew -->
+### 82.2024.1112-011
+- Added support for customizing OOB nodes when using JSON 
+- Fixed an issue where the `Enable OOB` toggle was available when it should not be 
+- Fixed an issue with the alignment of the `Workspace` and `Services` menus 
+- Fixed an issue with links when a node is renamed 
+- Fixed an issue with the search functionality for ports when creating a link 
+- Fixed an issue when node names were improperly formatted 
+- Added the ability to create a simulation via JSON import 
+- Fixed an issue where the `Workspace` menu was visible when it should not be
+- Fixed an issue with user provided network configurations via `clould-init` in the `generic/ubuntu2004`, `generic/ubuntu2204` and `generic/ubuntu2404` images
+<!-- Air:WhatsNew -->
+
+### 82.2024.1104-011
+- Fixed an issue when updating node location on the canvas after the simulation is started
+- Fixed an issue when liking or unliking marketplace demos
+- Added support for additional ports on generic server nodes
+- Added ZTP script support when importing a simulation from JSON
+- Improved support for large scale simulations
+
 ## October 2024
 
-<!-- Air:WhatsNew -->
 ### 82.2024.1031-011
 - Fixed an issue when creating a new simulation from the nodes or links tabs
 - Fixed an issue when populating SSH keys on the oob-mgmt-server
@@ -19,7 +39,6 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 - Fixed an issue with link highlighting for newly created links
 - Fixed an issue when creating a simulation within an organization
 - Added the ability to disable node name popups
-<!-- Air:WhatsNew -->
 
 ### 82.2024.1028-011
 - Fixed an issue with autoprovision redirects

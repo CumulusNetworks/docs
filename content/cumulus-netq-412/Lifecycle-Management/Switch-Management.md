@@ -17,7 +17,7 @@ If you manage a switch using an in-band network interface, ensure that you have 
 
 {{<tab "NetQ UI" >}}
 
-Expand the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18">}} **Menu**, then select **Manage switches**. From the LCM dashboard, select the **Switch management** tab. The Switches card displays the number of switches that NetQ discovered and the network OS versions that are running on those switches:
+Expand the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18">}} **Menu**, then select **Manage switches**. From the dashboard, select the **Switch management** tab. The Switches card displays the number of switches that NetQ discovered and the network OS versions that are running on those switches:
 
 {{<figure src="/images/netq/lcm-switches-490.png" alt="switches card displaying 525 discovered switches" width="200" height="330">}}
 
@@ -31,7 +31,7 @@ If you have more than one network OS version running on your switches, you can c
 
 {{<tab "NetQ CLI" >}}
 
-To view a list of all switches discovered by lifecycle management, run:
+To view a list of all switches discovered by lifecycle management, run the {{<link title="lcm/#netq-lcm-show-switches" text="netq lcm show switches">}} command:
 
 ```
 netq lcm show switches
@@ -39,7 +39,6 @@ netq lcm show switches
     [netq-version <text-netq-version>]
     [json]
 ```
-Use the `version` options to display switches with a given OS version. For additional details, refer to the {{<link title="lcm/#netq-lcm-show-switches" text="command line reference">}}.
 
 {{</tab>}}
 
@@ -50,7 +49,7 @@ The table of switches is the starting point for network OS upgrades or NetQ inst
 - Verify the missing switches are reachable using `ping`
 - Run a [switch discovery](#switch-discovery), which locates all switches running Cumulus Linux in your network's fabric
 - {{<link title="Install NetQ Agents" text="Install NetQ Agents on the switch">}}
-- Verify the NetQ Agent is fresh and running version 4.1.0 or later for switches that already have the agent installed (click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} **Menu**, then click **Agents** or run `netq show agents`)
+- Verify that the NetQ Agent is fresh and running version 4.1.0 or later for switches that already have the agent installed (click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} **Menu**, then click **Agents** or run `netq show agents`)
 - {{<link title="Upgrade NetQ Agents" text="Upgrade NetQ Agents">}} (if needed)
 
 ## Switch Discovery
@@ -142,8 +141,6 @@ Click **Remove** if you decide to use a different file or want to use IP address
     - **OS not supported**: Switches found that are running a Cumulus Linux version not supported by LCM upgrades
     - **Not discovered**: IP addresses which did not have an associated Cumulus Linux switch
 
-    If the discovery process does not find any switches for a particular category, then it does not display that category.
-
 After performing a switch discovery, you can install or upgrade Cumulus Linux and NetQ.
 
 {{</tab>}}
@@ -207,13 +204,14 @@ Role assignment is optional, but recommended. Assigning roles can prevent switch
 
 ### Assign Roles to Switches
 
+
 {{<tabs "TabID136" >}}
 
 {{<tab "NetQ UI" >}}
 
 1. On the Switches card, click **Manage**.
 
-2. Select one switch or multiple switches to assign to the same role.
+2. Select one switch or multiple switches to assign to the same role. For large networks with many devices, you can assign roles in batches by selecting **Bulk assign role** and creating rules based on device hostnames.
 
 3. Above the table, select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/58-Tags-Bookmarks/tags.svg" height="18" width="18" alt="Assign Role">}} **Assign role**.
 

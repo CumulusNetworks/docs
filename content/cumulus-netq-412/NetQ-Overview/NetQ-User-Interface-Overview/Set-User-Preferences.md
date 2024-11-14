@@ -10,6 +10,10 @@ This section describes how to customize your NetQ display, change your password,
 
 The Display card contains the options for setting the application theme (light or dark), language, time zone, and date formats.
 
+{{<tabs "13">}}
+
+{{<tab "NetQ UI">}}
+
 To configure the display settings:
 
 1. Select <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> **User Settings** in the top-right corner.
@@ -30,7 +34,15 @@ To configure the display settings:
 
     {{<figure src="/images/netq/date-format-field.png" alt="" width="200">}}
 
+{{</tab>}}
+
+{{</tabs>}}
+
 ## Change Your Password
+
+{{<tabs "43">}}
+
+{{<tab "NetQ UI">}}
 
 1. Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> **User Settings** in the top-right corner.
 2. Click **Profile & Preferences**.
@@ -43,3 +55,7 @@ To configure the display settings:
 {{<notice note>}}
 To reset the password for an admin account, refer to {{<link title="Add and Manage Accounts#Reset an Admin Password" text="Reset an Admin Password">}}.
 {{</notice>}}
+
+{{</tab>}}
+
+{{</tabs>}}

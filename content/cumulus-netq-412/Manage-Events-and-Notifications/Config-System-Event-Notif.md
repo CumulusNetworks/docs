@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 780
 toc: 3
 ---
-This section describes how to configure NetQ to send event notifications through a third-party-application, such as syslog, PagerDuty, Slack, email, or a generic webhook channel. NetQ can generate notifications for {{<link title="Threshold-Crossing Events Reference" text="threshold-crossing events">}} or according to a predefined set of rule keys. 
+This section describes how to configure NetQ to send event notifications through a third-party-application, such as syslog, PagerDuty, Slack, email, or a generic webhook channel. NetQ can generate notifications for system and threshold-crossing events or according to a predefined set of rule keys. 
 
 {{<notice note>}}
 
@@ -78,7 +78,7 @@ The first step is to create a Slack, PagerDuty, syslog, email, or generic channe
 To create and verify a Slack channel, run:
 
 ```
-netq add notification channel slack <text-channel-name> webhook <text-webhook-url> [severity info|severity error] [tag <text-slack-tag>]
+netq add notification channel slack <text-channel-name> webhook <text-webhook-url> [severity info|severity error] [tag <text-slack-tag>] [default]
 netq show notification channel [json]
 ```
 
@@ -110,6 +110,10 @@ netq show notification channel [json]
 <td>tag &lt;text-slack-tag&gt;</td>
 <td>Optional tag appended to the Slack notification to highlight particular channels or people. An <strong>@</strong> sign must precede the tag value. For example, <em>@netq-info</em>.</td>
 </tr>
+<tr class="odd">
+<td>default</td>
+<td>Set the channel as default and send all notifications to this channel</td>
+</tr>
 </tbody>
 </table>
 
@@ -129,11 +133,11 @@ The following example shows the creation of a *slk-netq-events* channel and veri
     ```
     cumulus@switch:~$ netq show notification channel
     Matching config_notify records:
-    Name            Type             Severity Channel Info
-    --------------- ---------------- -------- ----------------------
-    slk-netq-events slack            info     webhook:https://hooks.s
-                                                lack.com/services/text/
-                                                moretext/evenmoretext
+    Name            Type             Severity Channel Info               Is Default
+    --------------- ---------------- -------- -------------------------- ------------
+    slk-netq-events slack            info     webhook:https://hooks.s    False
+                                                lack.com/services/text/ 
+                                                moretext/evenmoretext.  
     ```
 
 {{</tab>}}
@@ -174,7 +178,7 @@ The following example shows the creation of a *slk-netq-events* channel and veri
 To create and verify a PagerDuty channel, run:
 
 ```
-netq add notification channel pagerduty <text-channel-name> integration-key <text-integration-key> [severity info|severity error]
+netq add notification channel pagerduty <text-channel-name> integration-key <text-integration-key> [severity info|severity error] [default]
 netq show notification channel [json]
 ```
 
@@ -200,7 +204,11 @@ netq show notification channel [json]
 </tr>
 <tr>
 <td>severity &lt;level&gt;</td>
-<td>(Optional) The log level, either <em>info</em> or <em>error</em>. The severity defaults to <em>info</em> if unspecified.</td>
+<td>The log level, either <em>info</em> or <em>error</em>. The severity defaults to <em>info</em> if unspecified.</td>
+</tr>
+<tr class=“odd”>
+<td>default</td>
+<td>Set the channel as default and send all notifications to this channel</td>
 </tr>
 </tbody>
 </table>
@@ -219,9 +227,9 @@ The following example shows the creation of a *pd-netq-events* channel and verif
     ```
     cumulus@switch:~$ netq show notification channel
     Matching config_notify records:
-    Name            Type             Severity         Channel Info
-    --------------- ---------------- ---------------- ------------------------
-    pd-netq-events  pagerduty        info             integration-key: c6d666e
+    Name            Type             Severity         Channel Info              Is Default
+    --------------- ---------------- ---------------- ------------------------  ------------
+    pd-netq-events  pagerduty        info             integration-key: c6d666e  False
                                                     210a8425298ef7abde0d1998
     ```
 
@@ -263,7 +271,7 @@ The following example shows the creation of a *pd-netq-events* channel and verif
 To create and verify a syslog channel, run:
 
 ```
-netq add notification channel syslog <text-channel-name> hostname <text-syslog-hostname> port <text-syslog-port> [severity info | severity error ]
+netq add notification channel syslog <text-channel-name> hostname <text-syslog-hostname> port <text-syslog-port> [severity info | severity error] [default]
 netq show notification channel [json]
 ```
 
@@ -295,6 +303,10 @@ netq show notification channel [json]
 <td>severity &lt;level&gt;</td>
 <td>The log level, either <em>info</em> or <em>error</em>. The severity defaults to <em>info</em> if unspecified.</td>
 </tr>
+<tr class=“odd”>
+<td>default</td>
+<td>Set the channel as default and send all notifications to this channel</td>
+</tr>
 </tbody>
 </table>
 
@@ -314,9 +326,9 @@ The following example shows the creation of a *syslog-netq-events* channel and v
     ```
     cumulus@switch:~$ netq show notification channel
     Matching config_notify records:
-    Name            Type             Severity Channel Info
-    --------------- ---------------- -------- ----------------------
-    syslog-netq-eve syslog            info     host:syslog-server
+    Name            Type             Severity Channel Info           Is Default
+    --------------- ---------------- -------- ---------------------- ------------
+    syslog-netq-eve syslog            info     host:syslog-server    False
     nts                                        port: 514
     ```
 
@@ -367,8 +379,8 @@ The following example shows the creation of a *syslog-netq-events* channel and v
 To create and verify the specification of an email channel, run:
 
 ```
-netq add notification channel email <text-channel-name> to <text-email-toids> [smtpserver <text-email-hostname>] [smtpport <text-email-port>] [login <text-email-id>] [password <text-email-password>] [severity info | severity error ]
-netq add notification channel email <text-channel-name> to <text-email-toids>
+netq add notification channel email <text-channel-name> to <text-email-toids> [smtpserver <text-email-hostname>] [smtpport <text-email-port>] [login <text-email-id>] [password <text-email-password>] [severity info | severity error] [default]
+netq add notification channel email <text-channel-name> to <text-email-toids> [default]
 netq show notification channel [json]
 ```
 
@@ -380,10 +392,10 @@ For an **on-premises** deployment:
 
 2. Create a user account (login and password) on the SMTP server. NetQ sends notifications to this address.
 
-3. Create the notification channel using this form of the CLI command:
+3. Create the notification channel using the following command:
 
     ```
-    netq add notification channel email <text-channel-name> to <text-email-toids>  [smtpserver <text-email-hostname>] [smtpport <text-email-port>] [login <text-email-id>] [password <text-email-password>] [severity info | severity error ]
+    netq add notification channel email <text-channel-name> to <text-email-toids>  [smtpserver <text-email-hostname>] [smtpport <text-email-port>] [login <text-email-id>] [password <text-email-password>] [severity info | severity error] [default]
     ```
 
 <div style="padding-left: 18px;">For example:
@@ -400,9 +412,9 @@ Successfully added/updated channel onprem-email
     ```
     cumulus@switch:~$ netq show notification channel
     Matching config_notify records:
-    Name            Type             Severity         Channel Info
-    --------------- ---------------- ---------------- ------------------------
-    onprem-email    email            info             password: MyPassword123,
+    Name            Type             Severity         Channel Info             Is Default
+    --------------- ---------------- ---------------- ------------------------ ---------------
+    onprem-email    email            info             password: MyPassword123, False
                                                       port: 587,
                                                       isEncrypted: True,
                                                       host: smtp.domain.com,
@@ -416,7 +428,7 @@ Successfully added/updated channel onprem-email
 
 For a **cloud** deployment:
 
-1. Create the notification channel using this form of the CLI command:
+1. Create the notification channel using the following command:
 
     ```
     netq add notification channel email <text-channel-name> to <text-email-toids>
@@ -436,9 +448,9 @@ Successfully added/updated channel cloud-email
     ```
     cumulus@switch:~$ netq show notification channel
     Matching config_notify records:
-    Name            Type             Severity         Channel Info
-    --------------- ---------------- ---------------- ------------------------
-    cloud-email    email            info             password: TEiO98BOwlekUP
+    Name            Type             Severity         Channel Info             Is Default
+    --------------- ---------------- ---------------- ------------------------ --------------
+    cloud-email    email            info             password: TEiO98BOwlekUP  False
                                                      TrFev2/Q==, port: 587,
                                                      isEncrypted: True,
                                                      host: netqsmtp.domain.com,
@@ -491,7 +503,7 @@ Successfully added/updated channel cloud-email
 To create and verify a generic channel, run:
 
 ```
-netq add notification channel generic <text-channel-name> webhook <text-webhook-url> [severity info | severity error ] [use-ssl True | use-ssl False] [auth-type basic-auth generic-username <text-generic-username> generic-password <text-generic-password> | auth-type api-key key-name <text-api-key-name> key-value <text-api-key-value>]
+netq add notification channel generic <text-channel-name> webhook <text-webhook-url> [severity info | severity error ] [use-ssl True | use-ssl False] [auth-type basic-auth generic-username <text-generic-username> generic-password <text-generic-password> | auth-type api-key key-name <text-api-key-name> key-value <text-api-key-value>] [default]
 netq show notification channel [json]
 ```
 
@@ -525,6 +537,10 @@ netq show notification channel [json]
 <tr class="odd">
 <td>auth-type [basic-auth | api-key]</td>
 <td>Set authentication parameters. Either <b>basic-auth</b> with <i>generic-username</i> and <i>generic-password</i> or <b>api-key</b> with a <i>key-name</i> and <i>key-value</i></td>
+</tr>
+<tr class=“odd”>
+<td>default</td>
+<td>Set the channel as default and send all notifications to this channel</td>
 </tr>
 </tbody>
 </table>

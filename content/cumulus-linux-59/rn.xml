@@ -7,14 +7,92 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4135919</td>
+<td>You might experience a memory leak in {{ospfd}} when processing next hops due to network changes.</td>
+<td>5.9.1-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4134451</td>
+<td>When you set the SNMP server listening address to listen on all IPv4 and IPv6 addresses in a VRF with the {{nv set service snmp-server listening-address all vrf}} and {{nv set service snmp-server listening-address all-v6 vrf}} commands,SNMP requests over IPv6 addresses do not work.</td>
+<td>5.8.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4129344</td>
+<td>When you create an ACL rule that matches TCP state and more than seven TCP or UDP source or destination ports, the rule does not get framed properly and is rejected by the kernel.To work around this issue, create another rule number when the number of ports you want to match is more than seven.</td>
+<td>5.9.1-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4128913</td>
+<td>In an EVPN configuration,  when you use NVUE to configure a new host bond and an multihoming  ESI at the same time, the Split-Horizon preventive traffic class rule is not programmed in the egress direction. To work around this issue, configure the host bond and apply the configuration, then configure the EVPN multihoming ESI on the host bonds and apply the configuration in a separate step.</td>
+<td>5.9.1-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4122543</td>
+<td>When you use the NVUE {{nv set bridge domain &lt;bridge-id&gt; stp priority}} command to  configure the STP priority on two bridges, the STP priority on the second bridge does not apply.To work around this issue, configure an NVUE snippet for the second bridge and apply it to the switch; for example:
+Create the {{vlan-aware_bridge_snippet.yaml}} file and add the following:
+- set:
+   system:
+    config:
+     snippet:
+      ifupdown2_eni:
+       bridge2: |
+mstpctl-treeprio 8192
+Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} command, then the {{nv config apply}} command.</td>
+<td>5.9.1-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4119621</td>
+<td>When you set the SNMP server listening address to listen on all IPv4 and IPv6 addresses in a VRF with the {{nv set service snmp-server listening-address all vrf}} and {{nv set service snmp-server listening-address all-v6 vrf}} commands, SNMP requests over IPv6 addresses do not work.</td>
+<td>5.8.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4102992</td>
+<td>When you use the NVUE {{nv set bridge domain &lt;bridge-id&gt; stp priority}} command to  configure the STP priority on two bridges, the STP priority on the second bridge does not apply.To work around this issue, configure an NVUE snippet for the second bridge and apply it to the switch; for example:
+Create the {{vlan-aware_bridge_snippet.yaml}} file and add the following:
+- set:
+   system:
+    config:
+     snippet:
+      ifupdown2_eni:
+       bridge2: |
+mstpctl-treeprio 8192
+Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} command, then the {{nv config apply}} command.</td>
+<td>5.9.1-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4101808</td>
+<td>When the SNMP service is busy for approximately more than a minute, the applications using {{net-snmp}} APIs to support their MIBs (such as FRR) become blocked. </td>
+<td>5.9.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4101027</td>
+<td>After you add a VLAN to a bridge member port,  you might experience a few seconds of VXLAN traffic loss.</td>
+<td>5.7.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4100164</td>
 <td>Low power Intel SATA controllers experience issues when using the {{mobile}} low power chipset LPM policy. This can cause the SSD to become read only.</td>
 <td>5.8.0-5.10.1</td>
 <td></td>
 </tr>
 <tr>
+<td>4096505</td>
+<td>In an EVPN configuration,  when you use NVUE to configure a new host bond and a multihoming ESI at the same time, the Split-Horizon preventive traffic class rule is not programmed in the egress direction. To work around this issue, configure the host bond and apply the configuration, then configure the EVPN multihoming ESI on the host bonds and apply the configuration in a separate step.</td>
+<td>5.9.1-5.10.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4081784</td>
-<td>If you configure an inbound route policy that drops prefixes, then run a vtysh {{show bgp vrf &lt;vrf&gt; neighbours &lt;neighbor&gt; received-routes}} command, the BGP service might crash.&gt;br&gt;Avoid running a vtysh received routes show command if you configure an inbound route policy that drops prefixes.</td>
+<td>If you configure an inbound route policy that drops prefixes,  running the vtysh {{show bgp vrf &lt;vrf&gt; neighbours &lt;neighbor&gt; received-routes}} command might crash the BGP service.Avoid running the vtysh {{show bgp vrf &lt;vrf&gt; neighbours &lt;neighbor&gt; received-routes}} command if you configure a drop inbound route policy.</td>
 <td>5.9.1-5.10.1</td>
 <td></td>
 </tr>
@@ -74,6 +152,12 @@
 <td>5.10.0-5.10.1</td>
 </tr>
 <tr>
+<td>3878699</td>
+<td>In an EVPN multihoming configuration, when the VXLAN device associated with a layer 2 VNI flaps, there is a route entry in the tenant VRF associated with the locally learned host.  </td>
+<td>5.9.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3878394</td>
 <td>When ZTP runs a script that contains {{wget}}, ZTP fails and you see a message similar to the following:
 ZTP: ZTP DHCP: Unexpected error: 'ascii' codec can't decode byte 0xe2 in position 181: ordinal not in range(128)
@@ -102,7 +186,7 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 </tr>
 <tr>
 <td>3835635</td>
-<td>When adaptive routing is enabled, traffic for non adaptive routing enabled ports and non adaptive routing ECMPS might be routed over all ports in ECMP.  Avoid using regular ECMPs with adaptive routing enabled on the switch.</td>
+<td>When adaptive routing is enabled, traffic for non adaptive routing enabled ports and non adaptive routing ECMPs might be routed over all ports in ECMP.  Avoid using regular ECMPs with adaptive routing enabled on the switch.</td>
 <td>5.9.0-5.10.1</td>
 <td></td>
 </tr>
@@ -146,7 +230,7 @@ cumulus@switch:~$ nv set acl one type mac
 </tr>
 <tr>
 <td>3677533</td>
-<td>Due to resource constraints on the Spectrum 1 switch, {{staticd}} performance drops and  takes longer to read static routes compared to the time BGP takes to complete a graceful restart, and advertise routes and EOR to its helpers. As a result, static routes are advertised after the EOR is sent to graceful restart helpers, which delete the stale static routes and relearn them after receiving the EOR from the restarting node. Temporary traffic loss might occur.</td>
+<td>Due to resource constraints on the Spectrum 1 switch, {{staticd}} performance drops and  takes longer to read static routes compared to the time BGP takes to complete a graceful restart and advertise routes and EOR to its helpers. As a result, static routes are advertised after the EOR is sent to graceful restart helpers, which delete the stale static routes and relearn them after receiving the EOR from the restarting node. Temporary traffic loss might occur.</td>
 <td>5.7.0-5.10.1</td>
 <td></td>
 </tr>
@@ -459,11 +543,6 @@ You can safely ignore this warning.</td>
 <td></td>
 </tr>
 <tr>
-<td>4035681</td>
-<td>The {{nv show interface &lt;interface&gt;}} commands show RX and TX Power values from the wrong lanes on breakout ports.</td>
-<td>5.8.0-5.9.1, 5.10.0-5.10.1</td>
-</tr>
-<tr>
 <td>4023637</td>
 <td>When you disable dynamic NAT manually in the {{/etc/cumulus/switchd.conf}} file instead of using NVUE commands but the dynamic NAT rules still exist in the {{/etc/cumulus/acl/policy,d/.rules}} file, the switch encounters a memory leak. To work around this issue, remove dynamic NAT rules in rules files in {{/etc/cumulus/acl/policy.d}} before you disable dynamic NAT in the {{/etc/cumulus/switchd.conf}} file.</td>
 <td>5.9.1</td>
@@ -590,6 +669,11 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <td>5.9.0-5.9.1</td>
 </tr>
 <tr>
+<td>3928905</td>
+<td>The {{nv show interface &lt;interface&gt;}} commands show RX and TX Power values from the wrong lanes on breakout ports.</td>
+<td>5.8.0-5.9.1, 5.10.0-5.10.1</td>
+</tr>
+<tr>
 <td>3927016</td>
 <td>Following an EVPN extended mobility event, where a host with IPA and MACA moves within the fabric and now resides at IPA MACB, you might see traffic destined to this host experience drops as the flow is being software forwarded on the egress VTEP.</td>
 <td>5.9.1</td>
@@ -702,14 +786,92 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4135919</td>
+<td>You might experience a memory leak in {{ospfd}} when processing next hops due to network changes.</td>
+<td>5.9.1-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4134451</td>
+<td>When you set the SNMP server listening address to listen on all IPv4 and IPv6 addresses in a VRF with the {{nv set service snmp-server listening-address all vrf}} and {{nv set service snmp-server listening-address all-v6 vrf}} commands,SNMP requests over IPv6 addresses do not work.</td>
+<td>5.8.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4129344</td>
+<td>When you create an ACL rule that matches TCP state and more than seven TCP or UDP source or destination ports, the rule does not get framed properly and is rejected by the kernel.To work around this issue, create another rule number when the number of ports you want to match is more than seven.</td>
+<td>5.9.1-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4128913</td>
+<td>In an EVPN configuration,  when you use NVUE to configure a new host bond and an multihoming  ESI at the same time, the Split-Horizon preventive traffic class rule is not programmed in the egress direction. To work around this issue, configure the host bond and apply the configuration, then configure the EVPN multihoming ESI on the host bonds and apply the configuration in a separate step.</td>
+<td>5.9.1-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4122543</td>
+<td>When you use the NVUE {{nv set bridge domain &lt;bridge-id&gt; stp priority}} command to  configure the STP priority on two bridges, the STP priority on the second bridge does not apply.To work around this issue, configure an NVUE snippet for the second bridge and apply it to the switch; for example:
+Create the {{vlan-aware_bridge_snippet.yaml}} file and add the following:
+- set:
+   system:
+    config:
+     snippet:
+      ifupdown2_eni:
+       bridge2: |
+mstpctl-treeprio 8192
+Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} command, then the {{nv config apply}} command.</td>
+<td>5.9.1-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4119621</td>
+<td>When you set the SNMP server listening address to listen on all IPv4 and IPv6 addresses in a VRF with the {{nv set service snmp-server listening-address all vrf}} and {{nv set service snmp-server listening-address all-v6 vrf}} commands, SNMP requests over IPv6 addresses do not work.</td>
+<td>5.8.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4102992</td>
+<td>When you use the NVUE {{nv set bridge domain &lt;bridge-id&gt; stp priority}} command to  configure the STP priority on two bridges, the STP priority on the second bridge does not apply.To work around this issue, configure an NVUE snippet for the second bridge and apply it to the switch; for example:
+Create the {{vlan-aware_bridge_snippet.yaml}} file and add the following:
+- set:
+   system:
+    config:
+     snippet:
+      ifupdown2_eni:
+       bridge2: |
+mstpctl-treeprio 8192
+Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} command, then the {{nv config apply}} command.</td>
+<td>5.9.1-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4101808</td>
+<td>When the SNMP service is busy for approximately more than a minute, the applications using {{net-snmp}} APIs to support their MIBs (such as FRR) become blocked. </td>
+<td>5.9.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4101027</td>
+<td>After you add a VLAN to a bridge member port,  you might experience a few seconds of VXLAN traffic loss.</td>
+<td>5.7.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4100164</td>
 <td>Low power Intel SATA controllers experience issues when using the {{mobile}} low power chipset LPM policy. This can cause the SSD to become read only.</td>
 <td>5.8.0-5.10.1</td>
 <td></td>
 </tr>
 <tr>
+<td>4096505</td>
+<td>In an EVPN configuration,  when you use NVUE to configure a new host bond and a multihoming ESI at the same time, the Split-Horizon preventive traffic class rule is not programmed in the egress direction. To work around this issue, configure the host bond and apply the configuration, then configure the EVPN multihoming ESI on the host bonds and apply the configuration in a separate step.</td>
+<td>5.9.1-5.10.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4081784</td>
-<td>If you configure an inbound route policy that drops prefixes, then run a vtysh {{show bgp vrf &lt;vrf&gt; neighbours &lt;neighbor&gt; received-routes}} command, the BGP service might crash.&gt;br&gt;Avoid running a vtysh received routes show command if you configure an inbound route policy that drops prefixes.</td>
+<td>If you configure an inbound route policy that drops prefixes,  running the vtysh {{show bgp vrf &lt;vrf&gt; neighbours &lt;neighbor&gt; received-routes}} command might crash the BGP service.Avoid running the vtysh {{show bgp vrf &lt;vrf&gt; neighbours &lt;neighbor&gt; received-routes}} command if you configure a drop inbound route policy.</td>
 <td>5.9.1-5.10.1</td>
 <td></td>
 </tr>
@@ -743,12 +905,6 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <td>After network churn, the {{﻿watchfrr}} process might restart FRR because zebra is unresponsive.</td>
 <td>5.9.1-5.10.0</td>
 <td>5.10.1</td>
-</tr>
-<tr>
-<td>4035681</td>
-<td>The {{nv show interface &lt;interface&gt;}} commands show RX and TX Power values from the wrong lanes on breakout ports.</td>
-<td>5.8.0-5.9.1, 5.10.0-5.10.1</td>
-<td>5.9.2</td>
 </tr>
 <tr>
 <td>4034329</td>
@@ -920,6 +1076,12 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <td>5.9.2-5.10.1</td>
 </tr>
 <tr>
+<td>3928905</td>
+<td>The {{nv show interface &lt;interface&gt;}} commands show RX and TX Power values from the wrong lanes on breakout ports.</td>
+<td>5.8.0-5.9.1, 5.10.0-5.10.1</td>
+<td>5.9.2</td>
+</tr>
+<tr>
 <td>3927016</td>
 <td>Following an EVPN extended mobility event, where a host with IPA and MACA moves within the fabric and now resides at IPA MACB, you might see traffic destined to this host experience drops as the flow is being software forwarded on the egress VTEP.</td>
 <td>5.9.1</td>
@@ -1002,6 +1164,12 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <td>5.9.2-5.10.1</td>
 </tr>
 <tr>
+<td>3878699</td>
+<td>In an EVPN multihoming configuration, when the VXLAN device associated with a layer 2 VNI flaps, there is a route entry in the tenant VRF associated with the locally learned host.  </td>
+<td>5.9.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3878394</td>
 <td>When ZTP runs a script that contains {{wget}}, ZTP fails and you see a message similar to the following:
 ZTP: ZTP DHCP: Unexpected error: 'ascii' codec can't decode byte 0xe2 in position 181: ordinal not in range(128)
@@ -1066,7 +1234,7 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 </tr>
 <tr>
 <td>3835635</td>
-<td>When adaptive routing is enabled, traffic for non adaptive routing enabled ports and non adaptive routing ECMPS might be routed over all ports in ECMP.  Avoid using regular ECMPs with adaptive routing enabled on the switch.</td>
+<td>When adaptive routing is enabled, traffic for non adaptive routing enabled ports and non adaptive routing ECMPs might be routed over all ports in ECMP.  Avoid using regular ECMPs with adaptive routing enabled on the switch.</td>
 <td>5.9.0-5.10.1</td>
 <td></td>
 </tr>
@@ -1116,7 +1284,7 @@ cumulus@switch:~$ nv set acl one type mac
 </tr>
 <tr>
 <td>3677533</td>
-<td>Due to resource constraints on the Spectrum 1 switch, {{staticd}} performance drops and  takes longer to read static routes compared to the time BGP takes to complete a graceful restart, and advertise routes and EOR to its helpers. As a result, static routes are advertised after the EOR is sent to graceful restart helpers, which delete the stale static routes and relearn them after receiving the EOR from the restarting node. Temporary traffic loss might occur.</td>
+<td>Due to resource constraints on the Spectrum 1 switch, {{staticd}} performance drops and  takes longer to read static routes compared to the time BGP takes to complete a graceful restart and advertise routes and EOR to its helpers. As a result, static routes are advertised after the EOR is sent to graceful restart helpers, which delete the stale static routes and relearn them after receiving the EOR from the restarting node. Temporary traffic loss might occur.</td>
 <td>5.7.0-5.10.1</td>
 <td></td>
 </tr>
@@ -1432,6 +1600,30 @@ You can safely ignore this warning.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4134451</td>
+<td>When you set the SNMP server listening address to listen on all IPv4 and IPv6 addresses in a VRF with the {{nv set service snmp-server listening-address all vrf}} and {{nv set service snmp-server listening-address all-v6 vrf}} commands,SNMP requests over IPv6 addresses do not work.</td>
+<td>5.8.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4119621</td>
+<td>When you set the SNMP server listening address to listen on all IPv4 and IPv6 addresses in a VRF with the {{nv set service snmp-server listening-address all vrf}} and {{nv set service snmp-server listening-address all-v6 vrf}} commands, SNMP requests over IPv6 addresses do not work.</td>
+<td>5.8.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4101808</td>
+<td>When the SNMP service is busy for approximately more than a minute, the applications using {{net-snmp}} APIs to support their MIBs (such as FRR) become blocked. </td>
+<td>5.9.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4101027</td>
+<td>After you add a VLAN to a bridge member port,  you might experience a few seconds of VXLAN traffic loss.</td>
+<td>5.7.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4100164</td>
 <td>Low power Intel SATA controllers experience issues when using the {{mobile}} low power chipset LPM policy. This can cause the SSD to become read only.</td>
 <td>5.8.0-5.10.1</td>
@@ -1454,12 +1646,6 @@ You can safely ignore this warning.</td>
 <td>Low power Intel SATA controllers experience issues when using the {{mobile}} low power chipset LPM policy. This can cause the SSD to become read only.</td>
 <td>5.8.0-5.10.1</td>
 <td></td>
-</tr>
-<tr>
-<td>4035681</td>
-<td>The {{nv show interface &lt;interface&gt;}} commands show RX and TX Power values from the wrong lanes on breakout ports.</td>
-<td>5.8.0-5.9.1, 5.10.0-5.10.1</td>
-<td>5.9.2</td>
 </tr>
 <tr>
 <td>4004453</td>
@@ -1552,6 +1738,12 @@ You can safely ignore this warning.</td>
 <td>5.9.2-5.10.1</td>
 </tr>
 <tr>
+<td>3928905</td>
+<td>The {{nv show interface &lt;interface&gt;}} commands show RX and TX Power values from the wrong lanes on breakout ports.</td>
+<td>5.8.0-5.9.1, 5.10.0-5.10.1</td>
+<td>5.9.2</td>
+</tr>
+<tr>
 <td>3925259</td>
 <td>When you start Cumulus VX in Vagrant with libvirt, VM provisioning might fail with errors that indicate a missing {{ifup@eth0.service}} systemd service.</td>
 <td>5.9.0-5.9.1</td>
@@ -1628,6 +1820,12 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <td>5.9.2-5.10.1</td>
 </tr>
 <tr>
+<td>3878699</td>
+<td>In an EVPN multihoming configuration, when the VXLAN device associated with a layer 2 VNI flaps, there is a route entry in the tenant VRF associated with the locally learned host.  </td>
+<td>5.9.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3878394</td>
 <td>When ZTP runs a script that contains {{wget}}, ZTP fails and you see a message similar to the following:
 ZTP: ZTP DHCP: Unexpected error: 'ascii' codec can't decode byte 0xe2 in position 181: ordinal not in range(128)
@@ -1692,7 +1890,7 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 </tr>
 <tr>
 <td>3835635</td>
-<td>When adaptive routing is enabled, traffic for non adaptive routing enabled ports and non adaptive routing ECMPS might be routed over all ports in ECMP.  Avoid using regular ECMPs with adaptive routing enabled on the switch.</td>
+<td>When adaptive routing is enabled, traffic for non adaptive routing enabled ports and non adaptive routing ECMPs might be routed over all ports in ECMP.  Avoid using regular ECMPs with adaptive routing enabled on the switch.</td>
 <td>5.9.0-5.10.1</td>
 <td></td>
 </tr>
@@ -1742,7 +1940,7 @@ cumulus@switch:~$ nv set acl one type mac
 </tr>
 <tr>
 <td>3677533</td>
-<td>Due to resource constraints on the Spectrum 1 switch, {{staticd}} performance drops and  takes longer to read static routes compared to the time BGP takes to complete a graceful restart, and advertise routes and EOR to its helpers. As a result, static routes are advertised after the EOR is sent to graceful restart helpers, which delete the stale static routes and relearn them after receiving the EOR from the restarting node. Temporary traffic loss might occur.</td>
+<td>Due to resource constraints on the Spectrum 1 switch, {{staticd}} performance drops and  takes longer to read static routes compared to the time BGP takes to complete a graceful restart and advertise routes and EOR to its helpers. As a result, static routes are advertised after the EOR is sent to graceful restart helpers, which delete the stale static routes and relearn them after receiving the EOR from the restarting node. Temporary traffic loss might occur.</td>
 <td>5.7.0-5.10.1</td>
 <td></td>
 </tr>

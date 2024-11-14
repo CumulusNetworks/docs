@@ -38,7 +38,7 @@ Running `ifreload -a` disconnects the session for any interface configured as *a
 
 ## Run Services within the Management VRF
 
-Most services that ship with Cumulus Linux are VRF aware. If you want to run a service within the management VRF instead of the default VRF, run the following commands:
+Most default services in Cumulus Linux are VRF aware. If you want to run a service within the management VRF instead of the default VRF, run the following commands:
 
 1. If the service is running, stop the service:
 

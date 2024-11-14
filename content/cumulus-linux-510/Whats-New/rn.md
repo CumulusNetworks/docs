@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4163399"></a> [4163399](#4163399) <a name="4163399"></a> <br /> | When you configure the SNMP server listening address to a VRF that has no interfaces, <code>snmp.service</code> fails.<br>To recover from the failure, set the SNMP server listening address back to the VRF that has interfaces. If you really want to move the SNMP server to the VRF with no interfaces, assign an interface to the VRF and move the SNMP server to the VRF. | 5.10.0-5.10.1 | |
 | <a name="4142857"></a> [4142857](#4142857) <a name="4142857"></a> <br /> | The switch drops PTP packets received with extra ethernet padding and you see syslog <code>&#91;ptp4l.ERR&#93; messages. | 5.10.0-5.10.1 | |
 | <a name="4135919"></a> [4135919](#4135919) <a name="4135919"></a> <br /> | You might experience a memory leak in <code>ospfd</code> when processing next hops due to network changes. | 5.9.1-5.10.1 | |
 | <a name="4134451"></a> [4134451](#4134451) <a name="4134451"></a> <br /> | When you set the SNMP server listening address to listen on all IPv4 and IPv6 addresses in a VRF with the <code>nv set service snmp-server listening-address all vrf</code> and <code>nv set service snmp-server listening-address all-v6 vrf</code> commands,SNMP requests over IPv6 addresses do not work. | 5.8.0-5.10.1 | |
@@ -115,6 +116,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4163399"></a> [4163399](#4163399) <a name="4163399"></a> <br /> | When you configure the SNMP server listening address to a VRF that has no interfaces, <code>snmp.service</code> fails.<br>To recover from the failure, set the SNMP server listening address back to the VRF that has interfaces. If you really want to move the SNMP server to the VRF with no interfaces, assign an interface to the VRF and move the SNMP server to the VRF. | 5.10.0-5.10.1 | |
 | <a name="4142857"></a> [4142857](#4142857) <a name="4142857"></a> <br /> | The switch drops PTP packets received with extra ethernet padding and you see syslog <code>&#91;ptp4l.ERR&#93; messages. | 5.10.0-5.10.1 | |
 | <a name="4135919"></a> [4135919](#4135919) <a name="4135919"></a> <br /> | You might experience a memory leak in <code>ospfd</code> when processing next hops due to network changes. | 5.9.1-5.10.1 | |
 | <a name="4134451"></a> [4134451](#4134451) <a name="4134451"></a> <br /> | When you set the SNMP server listening address to listen on all IPv4 and IPv6 addresses in a VRF with the <code>nv set service snmp-server listening-address all vrf</code> and <code>nv set service snmp-server listening-address all-v6 vrf</code> commands,SNMP requests over IPv6 addresses do not work. | 5.8.0-5.10.1 | |

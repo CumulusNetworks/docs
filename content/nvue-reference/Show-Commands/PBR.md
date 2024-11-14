@@ -118,10 +118,29 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show router pbr map
-        operational  applied
-------  -----------  -------
-enable               on     
-[map]   map1         map1
+Rule - Rule number, IP-RuleId - Kernel IP rule table id, Installed - Install 
+state, Match - Match criteria, NHG - Nexthop group, NHG-state - Nexthop group 
+install state, NHG-tableId - Nexthop group table id, Vrf - VRF name, Reason - 
+Policy installation reason 
+Map                  Rule  IP-RuleId  Installed  valid  Match                           NHG     NHG-state  NHG-tableId  Vrf  Reason 
+
+-------------------  ----  ---------  ---------  -----  ------------------------------  ------  ---------  -----------  ---  ------ 
+
+POLICY_PBR_ISP       21    320        yes        yes    source-ip: 10.0.160.0/23        group1  on         10000             Valid 
+                     23    322        yes               source-ip: 10.0.162.0/23        group1  on         10000             Valid 
+                     24    323        yes               source-ip: 10.0.164.0/23        group1  on         10000             Valid 
+                     25    324        yes               source-ip: 10.0.166.0/23        group1  on         10000             Valid 
+                     26    325        yes               source-ip: 10.0.168.0/23        group1  on         10000             Valid 
+                     31    330        yes               source-ip: 10.0.172.0/23        group2  on         10001             Valid 
+                     32    331        yes               source-ip: 10.0.174.0/23        group2  on         10001             Valid 
+                     33    332        yes               source-ip: 10.0.176.0/23        group2  on         10001             Valid 
+                     34    333        yes               source-ip: 10.0.178.0/23        group2  on         10001             Valid 
+                     35    334        yes               source-ip: 10.0.180.0/23        group2  on         10001             Valid 
+                     36    335        yes               destination-ip: 190.1.1.128/28  group2  on         10001             Valid 
+                                                        source-ip: 10.0.182.0/24 
+POLICY_PBR_ISP_DSCP  10    309        yes        yes    dscp: 20                        group1  on         10000             Valid 
+                     11    310        yes               dscp: 24                        group1  on         10000             Valid
+                     12    311        yes               dscp: 28                        group2  on         10001             Valid
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -144,10 +163,27 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show router pbr map map1
-        operational  applied
-------  -----------  -------
-[rule]  1            1      
-[rule]  10           10
+POLICY_PBR_ISP 
+       operational  applied 
+-----  -----------  ------- 
+valid  yes 
+
+rule 
+======= 
+
+        action.vrf  installed  installed-reason  ip-rule-id  match.destination-ip  match.dscp  match.ecn  match.source-ip  Summary 
+    --  ----------  ---------  ----------------  ----------  --------------------  ----------  ---------  ---------------  ---------------------- 
+    21              yes        Valid             320                                                      10.0.160.0/23    Nexthop-groups: group1 
+    23              yes        Valid             322                                                      10.0.162.0/23    Nexthop-groups: group1 
+    24              yes        Valid             323                                                      10.0.164.0/23    Nexthop-groups: group1 
+    25              yes        Valid             324                                                      10.0.166.0/23    Nexthop-groups: group1 
+    26              yes        Valid             325                                                      10.0.168.0/23    Nexthop-groups: group1 
+    31              yes        Valid             330                                                      10.0.172.0/23    Nexthop-groups: group2 
+    32              yes        Valid             331                                                      10.0.174.0/23    Nexthop-groups: group2 
+    33              yes        Valid             332                                                      10.0.176.0/23    Nexthop-groups: group2 
+    34              yes        Valid             333                                                      10.0.178.0/23    Nexthop-groups: group2 
+    35              yes        Valid             334                                                      10.0.180.0/23    Nexthop-groups: group2 
+    36              yes        Valid             335         190.1.1.128/28                               10.0.182.0/24    Nexthop-groups: group2 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -247,9 +283,12 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show router pbr map map1 rule 1 action
-                operational  applied
----------------  -----------  -------
-[nexthop-group]  group1       group1
+POLICY_PBR_ISP rule 21 action 
+nexthop-group 
+================ 
+    Nexthop-groups  installed  table-id 
+    --------------  ---------  -------- 
+    group1          on         10000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -273,9 +312,10 @@ Introduced in Cumulus Linux 5.1.0
 
 ```
 cumulus@switch:~$ nv show router pbr map map1 rule 1 action nexthop-group
-       installed  table-id
-------  ---------  --------
-group1  off        5000
+POLICY_PBR_ISP rule 21 action nexthop-group 
+Nexthop-groups  installed  table-id 
+--------------  ---------  -------- 
+group1          on         10000 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

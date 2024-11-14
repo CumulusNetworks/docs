@@ -259,7 +259,9 @@ cumulus@cumulus:~$ sudo onie-install -i http://203.0.113.10/image-installer -t /
 ```
 
 {{%notice note%}}
-When you stage an NVUE `startup.yaml` file, ZTP will still run after the new image is installed. To avoid this, use the `-z` option to specify a ZTP script that exists without taking any action, or disable ZTP after the new image is running with the `sudo ztp -d` or `nv action disable system ztp` commands.
+When you stage an NVUE `startup.yaml` file, ZTP still runs after the new image is installed. To prevent ZTP from running after the new image is installed, either:
+- Use the `-z` option to specify an existing ZTP script that takes no action.
+- Run the `sudo ztp -d` or `nv action disable system ztp` commands to disable ZTP after the new image is running.
 {{%/notice%}}
 
 To activate the staged installation, use the `-a` option, then reboot the switch:

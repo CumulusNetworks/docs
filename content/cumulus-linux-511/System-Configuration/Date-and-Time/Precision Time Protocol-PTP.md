@@ -176,6 +176,7 @@ cumulus@switch:~$ nv config apply
 {{%notice note%}}
 - You can configure only one address; either IPv4 or IPv6.
 - For IPv6, set the trunk port transport mode to IPv6.
+- When you enable PTP on a bridge port, you must also enable PTP on the VLAN configured for the port with the `nv set bridge domain <domain> vlan <vlan-id> ptp enable on` command. 
 {{%/notice%}}
 
 The configuration writes to the `/etc/ptp4l.conf` file.

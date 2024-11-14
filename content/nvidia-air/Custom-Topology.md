@@ -13,7 +13,7 @@ One way to create fully custom simulations is with the built-in topology builder
 
 To get started, perform the following instructions:
 
-1. Click the **Create Simulation** button. You can also visit [air.nvidia.com/build](https://air.nvidia.com/build).
+1. From the [Simulations homepage](https://air.nvidia.com/simulations), click the **Create Simulation** button. You can also visit [air.nvidia.com/build](https://air.nvidia.com/build).
 2. Give your simulation a **Name**.
 3. Select **Blank Canvas** as the **Type**.
 4. Optionally, assign an Organization to the sim. Read more about them in [Organizations](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Organizations/). 
@@ -90,13 +90,12 @@ When you are done creating your topology, click **Workspace > Start Simulation**
 {{<img src="/images/guides/nvidia-air/WorkspaceStart.png" alt="" width="200px">}}
 
 ### OOB Management Network
-On the **System Palette**, there is an option to toggle **Enable OOB**. Toggling this setting enables the out-of-band management network 
-This setting creates an OOB network for you that connects all nodes with each other. It also adds an `oob-mgmt-switch` and `oob-mgmt-server` to your simulation. When you [enable SSH](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Quick-Start/#services)
+On the **System Palette**, there is an option to toggle **Enable OOB**. Toggling this setting enables the out-of-band management network that connects all nodes with each other. It also adds an `oob-mgmt-switch` and `oob-mgmt-server` to your simulation. When you [enable SSH](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Quick-Start/#services)
 in your sim, you will SSH into the `oob-mgmt-server`, making this node an ideal start point for configuration. Air handles the configuration automatically for you.
 
 {{<img src="/images/guides/nvidia-air/EnableOOB.png" alt="" width="200px">}}
 
-You can manually add more `oob-mgmt-switches` and `oob-mgmt-servers` to your simulation if you need. But the **Enable OOB** toggle must be enabled to use the OOB network.
+You can manually add more `oob-mgmt-switches` and `oob-mgmt-servers` to your simulation if you need when this toggle is **off**. But the **Enable OOB** toggle must be enabled to use the OOB network.
 
 ## Custom Topologies with DOT Files
 Air supports creating custom topologies using DOT files. 

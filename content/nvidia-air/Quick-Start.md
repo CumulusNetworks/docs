@@ -70,27 +70,30 @@ Click the {{<img src="/images/guides/nvidia-air/PopoutButton.png" alt=""  width=
 {{<img src="/images/guides/nvidia-air/Console.png" alt=""  width="800px" >}}
 
 ### Services
-Enabling services allows more integration with your sim, such as using a preferred SSH client to access your sim, running Grafana, or setting up SNMP polling.
+Enable services to create an external connection with your sim. This allows for more integration with your sim, such as using a preferred SSH client to access your sim, running Grafana, or setting up SNMP polling.
 
 To add a new service to your sim:
-1. Click **Services > New Services** to create an external connection with your sim.
+1. From within a simulation, click **Services > New Services**.
+
+{{<img src="/images/guides/nvidia-air/ServicesDropdown.png" alt=""  width="450px" >}}
+
 2. **Service Name**: Name for your service. Handy for running multiple instances of the same service on different interfaces or ports.
 3. **Interface**: Where the connection terminates. Typically `eth0` on the `oob-mgmt-server`.
-4. **Service Type**: NVIDIA Air creates a hyperlink to the URL automatically in the Services panel for _SSH_, _HTTP_ or _HTTPS_ services. For _Other_ services, any port can be used, but Air will not generate a hyperlink. The hyperlink provides a quick way to copy and paste the service if your browser supports it.
+4. **Service Type**: Type of service.
+   - NVIDIA Air creates a hyperlink to the URL automatically in the Services panel for _SSH_, _HTTP_ or _HTTPS_ services. For _Other_ services, any port can be used, but Air will not generate a hyperlink. The hyperlink provides a quick way to copy and paste the service if your browser supports it.
 5. **Service Port**: Internal port where service terminates.
 6. Click **Create**.
 
 {{<img src="/images/guides/nvidia-air/ServicesAdd.png" alt=""  width="450px" >}}
 
-Click **Services > Enable SSH** to enable SSH into the `oob-mgmt-server` immediately without having to create a custom service. Use this to leverage your preferred local SSH client. Only available when the [OOB network](http://localhost:1313/nvidia-air/Custom-Topology/#oob-management-network) is enabled. SSH password authentication is disabled on the `oob-mgmt-server` by default. To use SSH password authentication, you must upload SSH keys to your user profile; see [SSH Keys](#api-tokens--ssh-keys) below.
+Click **Services > Enable SSH** to enable SSH into the `oob-mgmt-server` immediately. Use this to leverage your preferred local SSH client. Only available when the [OOB network](https://docs.nvidia.com/networking-ethernet-software/Custom-Topology/#oob-management-network) is enabled. SSH password authentication is disabled on the `oob-mgmt-server` by default. To use SSH password authentication, you must upload SSH keys to your user profile; see [SSH Keys](#api-tokens--ssh-keys) below.
 
 Click **Services > Services List** to view existing services enabled on the sim. Here you can also view important access information such as the port and external host to connect with.
 
 {{<img src="/images/guides/nvidia-air/ServicesList.png" alt="">}}
 
 ### Rebuilding & Resetting Nodes
-
-Single click on a node to view its **Node Properties**. Click **Advanced Properties > Actions** to **Rebuild** or **Reset** the node.
+From within a sim, single click on a node to view its **Node Properties**. Click **Advanced Properties > Actions** to **Rebuild** or **Reset** the node.
 
 - **Rebuild**: Restores the node to its original or default configuration. If the node was created from a demo, or other snapshot, it will revert to that configuration had you just launched a copy.
 - **Reset**: Performs a hard reboot to the node.
@@ -100,8 +103,7 @@ Single click on a node to view its **Node Properties**. Click **Advanced Propert
 You can also rebuild the entire simulation with **Workspace > Rebuild All Nodes**.
 
 ### Edit Simulations
-
-Click **Workspace > Edit Simulation** to edit various aspects of your sim.
+From within a sim, click **Workspace > Edit Simulation** to edit various aspects of your sim.
 
 - **Name**: Edit the sim name. Simulations can have duplicate names, as they each have a unique ID under the hood.
 - **Organization**: Assign an Organization. You can read more about Organizations [here](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Organizations). This will assign this exact simulation to the Organization, _not a copy_. This means each user with appropriate permissions will have access to this exact sim.
@@ -114,8 +116,9 @@ You can also edit your sim from the **Simulations homepage > Actions {{<img src=
 {{<img src="/images/guides/nvidia-air/EditSim.png" alt=""  width="500px" >}}
 
 ## API Tokens & SSH Keys
-
 Click your username in the top right and click **Settings** to view your API tokens and SSH keys.
+
+You can also navigate to [air.nvidia.com/settings](https://air.nvidia.com/settings).
 
 ### API Tokens
 
@@ -148,7 +151,7 @@ Sharing a simulation with another user is a common use case in Air.
 
 To share a sim: 
 
-1. Click **Workspace > Manage Users** to share this exact sim, _not a copy_, with any other user. 
+1. From within a simulation, click **Workspace > Manage Users** to share this exact sim, _not a copy_, with any other user.  
 2.	Enter their email address. You can enter multiple addresses.
 3.	Toggle whether they only have **Read Only** access. This means they will not be able to make any modifications to the simulation in Air, such as deleting it or placing it in an Organization. The user can ##still access consoles## and modify the simulation directly that way.
 4.	Click **Add User**.

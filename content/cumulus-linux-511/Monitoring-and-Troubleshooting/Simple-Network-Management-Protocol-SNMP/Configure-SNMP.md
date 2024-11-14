@@ -21,19 +21,13 @@ Before you can use SNMP, you need to enable and start the `snmpd` service, and c
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set system snmp-server state enable
+cumulus@switch:~$ nv set system snmp-server state enabled
 cumulus@switch:~$ nv set system snmp-server listening-address localhost
 cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
-
-{{%notice note%}}
-If you intend to run this service within a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}}, including the {{<link url="Management-VRF" text="management VRF">}}, follow {{<link url="Management-VRF#run-services-as-a-non-root-user" text="these steps">}} for configuring the service.
-
-You do not need to run SNMP in the management VRF if you just want to allow SNMP communication through the management VRF interfaces; see {{<link url="#snmp-and-vrfs" text="SNMP and VRFs">}}.
-{{%/notice%}}
 
 1. Start the `snmpd` service:
 

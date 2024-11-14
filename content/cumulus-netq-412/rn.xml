@@ -7,6 +7,18 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4161342</td>
+<td>When NetQ runs a scheduled topology validation, the UI might display the message “No data available” in the medium-sized results card. To view the results from the validation, expand the card to its largest size.</td>
+<td>4.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4134445</td>
+<td>When you select a bin from the queue histogram card, NetQ might display the message “Histogram data unavailable for this device.”</td>
+<td>4.12.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3985598</td>
 <td>When you configure multiple threshold-crossing events for the same TCA event ID on the same device, NetQ will only display one TCA event for each hostname per TCA event ID, even if both thresholds are crossed or status events are triggered.  </td>
 <td>4.11.0-4.12.0</td>

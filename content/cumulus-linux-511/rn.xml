@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4142857</td>
+<td>The switch drops PTP packets received with extra ethernet padding and you see syslog {{[ptp4l.ERR] messages.</td>
+<td>5.10.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4135543</td>
 <td>Under certain rare scenarios, the operational status of a switch port interface shows as {{UP}} after you administratively configure it to stay down with the {{nv set interface &lt;interface&gt; link status down}} command. To clear this condition, toggle the admin status on the interface once.</td>
 <td>5.11.0</td>
@@ -14,7 +20,7 @@
 </tr>
 <tr>
 <td>4134174</td>
-<td>If you configure a route map by attaching it to a specific protocol, then you detach it from that protocol, if you then attach the same route map to all protocols, then detach it from all protocols, Cumulus Linux deletes routes from the forwarding table.To work around this issue, either attach the route map to all protocols or attach the route map to each protocol you want to use. For example, to attach the route map to all protocols, run the {{nv set vrf &lt;vrf-name&gt; router rib fib-filter route-map &lt;route-map&gt;}} command. To attach the route map to each protocol you want to use, run the {{nv set vrf &lt;vrf-name&gt; router rib fib-filter protocol &lt;protocol string&gt; route-map &lt;route-map}} command.</td>
+<td>If you configure a route map by attaching it to a specific protocol, then you detach it from that protocol, if you then attach the same route map to all protocols, then detach it from all protocols, Cumulus Linux deletes routes from the forwarding table.To work around this issue, either attach the route map to all protocols or attach the route map to each protocol you want to use. For example, to attach the route map to all protocols, run the {{nv set vrf &lt;vrf-name&gt; router rib fib-filter route-map &lt;route-map&gt;}} command. To attach the route map to each protocol you want to use, run the {{nv set vrf &lt;vrf-name&gt; router rib fib-filter protocol &lt;protocol string&gt; route-map &lt;route-map&gt;}} command.</td>
 <td>5.11.0</td>
 <td></td>
 </tr>
@@ -32,7 +38,7 @@
 </tr>
 <tr>
 <td>4101560</td>
-<td>The {{nv set vrf &lt;vrf&gt; router rib &lt;address-family&gt; fib-filter route-map &lt;route-map&gt;}} command only works if you restart FRR after you run the command. To work around this issue, attach the route map to each needed protocol; for example, run the {{nv set vrf &lt;vrf-name&gt; router rib fib-filter protocol &lt;protocol string&gt; route-map &lt;route-map&gt; command.</td>
+<td>The {{nv set vrf &lt;vrf&gt; router rib &lt;address-family&gt; fib-filter route-map &lt;route-map&gt;}} command only works if you restart FRR after you run the command. To work around this issue, attach the route map to each needed protocol; for example, run the {{nv set vrf &lt;vrf-name&gt; router rib fib-filter protocol &lt;protocol string&gt; route-map &lt;route-map&gt;}} command.</td>
 <td>5.11.0</td>
 <td></td>
 </tr>
@@ -44,7 +50,7 @@
 </tr>
 <tr>
 <td>4007590</td>
-<td>When you upgrade Cumulus Linux 5.9.1 to Cumulus Linux 5.9.2 with package upgrade, the NTP service stops. To restart the NTP service, enable, then restart the service in the VRF in which it was running with the {{systemctl enable ntpsec@&lt;vrf&gt;}} and {{systemctl restart ntpsec@&lt;vrf&gt;}} commands.</td>
+<td>When you upgrade Cumulus Linux 5.9.1 to Cumulus Linux 5.9.2 or later with package upgrade, the NTP service stops. To restart the NTP service, enable, then restart the service in the VRF in which it was running with the {{systemctl enable ntpsec@&lt;vrf&gt;}} and {{systemctl restart ntpsec@&lt;vrf&gt;}} commands.</td>
 <td>5.10.0-5.11.0</td>
 <td></td>
 </tr>
@@ -66,6 +72,12 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 <tr>
 <td>3861745</td>
 <td>On UEFI hardware (where the {{/sys/firmware/efi}} directory exists), using the update-grub program might generate a {{/boot/grub/grub.cfg}} that is incorrect for booting ONIE if the ONIE option is selected on the console while booting. To work around this issue, run {{mount LABEL="EFI System" /boot/efi}} before using update-grub.</td>
+<td>5.9.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3844670</td>
+<td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
 <td>5.9.0-5.11.0</td>
 <td></td>
 </tr>
@@ -95,7 +107,7 @@ cumulus@switch:~$ sudo apt upgrade
 </tr>
 <tr>
 <td>3677533</td>
-<td>Due to resource constraints on the Spectrum 1 switch, {{staticd}} performance drops and  takes longer to read static routes compared to the time BGP takes to complete a graceful restart, and advertise routes and EOR to its helpers. As a result, static routes are advertised after the EOR is sent to graceful restart helpers, which delete the stale static routes and relearn them after receiving the EOR from the restarting node. Temporary traffic loss might occur.</td>
+<td>Due to resource constraints on the Spectrum 1 switch, {{staticd}} performance drops and  takes longer to read static routes compared to the time BGP takes to complete a graceful restart and advertise routes and EOR to its helpers. As a result, static routes are advertised after the EOR is sent to graceful restart helpers, which delete the stale static routes and relearn them after receiving the EOR from the restarting node. Temporary traffic loss might occur.</td>
 <td>5.7.0-5.11.0</td>
 <td></td>
 </tr>
@@ -380,7 +392,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>4119621</td>
-<td>When you set the SNMP server listening address to listen on all IPv4 and IPv6 addresses in a VRF with the {{nv set service snmp-server listening-address all vrf}} and {{nv set service snmp-server listening-address all-v6 vrf}} commands,SNMP requests over IPv6 addresses do not work.</td>
+<td>When you set the SNMP server listening address to listen on all IPv4 and IPv6 addresses in a VRF with the {{nv set service snmp-server listening-address all vrf}} and {{nv set service snmp-server listening-address all-v6 vrf}} commands, SNMP requests over IPv6 addresses do not work.</td>
 <td>5.8.0-5.10.1</td>
 </tr>
 <tr>
@@ -409,7 +421,7 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 </tr>
 <tr>
 <td>4096505</td>
-<td>In an EVPN configuration,  when you use NVUE to configure a new host bond and an multihoming  ESI at the same time, the Split-Horizon preventive traffic class rule is not programmed in the egress direction. To work around this issue, configure the host bond and apply the configuration, then configure the EVPN multihoming ESI on the host bonds and apply the configuration in a separate step.</td>
+<td>In an EVPN configuration,  when you use NVUE to configure a new host bond and a multihoming ESI at the same time, the Split-Horizon preventive traffic class rule is not programmed in the egress direction. To work around this issue, configure the host bond and apply the configuration, then configure the EVPN multihoming ESI on the host bonds and apply the configuration in a separate step.</td>
 <td>5.9.1-5.10.1</td>
 </tr>
 <tr>
@@ -424,7 +436,7 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 </tr>
 <tr>
 <td>4086136</td>
-<td>If a Cumulus Linux 5.9.1 switch has an "nv set (service|interface swpX) lldp application-tlv" configuration with an empty value, when you upgrade to Cumulus Linux 5.10,  NVUE will not be able to apply the config due to  "Invalid config".</td>
+<td>If a Cumulus Linux 5.9.1 switch has an {{nv set interface &lt;interface&gt; lldp application-tlv}} configuration with an empty value, when you upgrade to Cumulus Linux 5.10,  NVUE cannot apply the configuration and shows an {{Invalid config}} message.</td>
 <td>5.10.0-5.10.1</td>
 </tr>
 <tr>
@@ -461,8 +473,7 @@ telemetry collection service.</td>
 <tr>
 <td>4050801</td>
 <td>When configuring telemetry for interface statistics with ranges or lists, the lists and ranges do not expand correctly in the configuration and the configuration is rejected. Configuration example:
-cumulus@leaf01:~$ nv set system telemetry interface-stats ingress-buffer priority-group 1-6
-cumulus@leaf01:~$ nv set system telemetry interface-stats egress-buffer traffic-class 0,3,6
+cumulus@leaf01:~$ nv set system telemetry interface-stats ingress-buffer priority-group 1-6cumulus@leaf01:~$ nv set system telemetry interface-stats egress-buffer traffic-class 0,3,6
  You see the following log errors:
 interface_stats: [ERROR] interface_stats_collector.py:_parse_conf_file:201 — Configured ingress-priority-group 0-6 is not an integer
 interface_stats: [ERROR] interface_stats_collector.py:_parse_conf_file:201 — Configured egress-traffic-class 0,3,6 is not an integer</td>

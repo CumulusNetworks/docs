@@ -356,6 +356,19 @@ sim.full_update(
 
 `Node` and `Interface` objects have similar `.update` and `.full_update` methods for modifying their data.
 
+#### Adding new nodes to a simulation
+```python
+>>> image = next(air.images.list(name='generic/ubuntu2204'))  # Obtain an image for the node
+>>> image
+Image(name='generic/ubuntu2204', version='22.04', organization_name=None)
+>>> new_node = air.nodes.create(simulation=sim, name='node13', os=image)
+>>> new_node.os.id == image.id
+True
+>>> new_node.simulation.id == sim.id
+True
+```
+
+
 ## Exporting Simulations
 Existing simulations can be [exported](https://air.nvidia.com/api/#/v2/v2_simulations_export_retrieve) into a JSON representation which can be shared and [re-imported](#file-import) into AIR.
 ```python

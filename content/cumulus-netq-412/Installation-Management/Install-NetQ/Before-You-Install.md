@@ -14,7 +14,7 @@ Consider the following deployment options and requirements before you install th
 | Single Server | High-Availability Cluster| High-Availability Scale Cluster |
 | --- | --- | --- |
 | On-premises or cloud | On-premises or cloud | On-premises only |
-| Low scale<ul><li>Single server supports up to TKTK devices</li></ul>| Medium scale<ul><li>3-node deployment supports up to 100 devices and 12,800 interfaces</li></ul>|  High scale<ul><li>3-node deployment supports up to 1,000 switches and 130,000 interfaces</li></ul>|
+| Low scale<ul><li>Single server supports up to TKTK devices</li></ul>| Medium scale<ul><li>3-node deployment supports up to 100 switches and 12,800 interfaces</li></ul>|  High scale<ul><li>3-node deployment supports up to 1,000 switches and 125,000 interfaces</li></ul>|
 | KVM or VMware hypervisor | KVM or VMware hypervisor | KVM or VMware hypervisor |
 | System requirements<br><br> On-premises: 16 virtual CPUs, 64GB RAM, 500GB SSD disk<br><br>Cloud: 4 virtual CPUs, 8GB RAM, 64GB SSD disk | System requirements (per node)<br><br> On-premises: 16 virtual CPUs, 64GB RAM, 500GB SSD disk<br><br>Cloud: 4 virtual CPUs, 8GB RAM, 64GB SSD disk |  System requirements (per node)<br><br>On-premises: 48 virtual CPUs, 512GB RAM, 3.2TB SSD disk|
 | All features supported | All features supported|  No support for:<ul><li>Network snapshots</li><li>Trace requests</li><li>Flow analysis</li><li>Duplicate IP address validations</li><li>MAC commentary</li><li>Link health view</li></ul> Limited support for:<ul><li>Topology validations</li></ul>|

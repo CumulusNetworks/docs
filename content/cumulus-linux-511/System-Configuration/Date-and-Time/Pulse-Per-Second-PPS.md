@@ -29,6 +29,10 @@ cumulus@switch:~$ nv set platform pulse-per-second in state enabled
 cumulus@switch:~$ nv config apply
 ```
 
+{{%notice note%}}
+If you configure SyncE or PTP noise transfer, Cumulus Linux does not support PPS In.
+{{%/notice%}}
+
 {{< /tab >}}
 {{< tab "Enable PPS Out ">}}
 

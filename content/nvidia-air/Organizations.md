@@ -24,7 +24,7 @@ Each user with appropriate permissions will now have access to this _exact_ sim.
 
 To create an Organization:
 1. Navigate to [air.nvidia.com/organizations](https://air.nvidia.com/organizations).
-2. Click Create **Organization**.
+2. Click **Create Organization**.
 3. Give the Organization a **Name**.
 4. Enter the email address of a user you wish to add to the Organization.
 5. Mark if the user is an **Admin** or not. This will grant admin capabilities for managing the Organization, such as adding more users.

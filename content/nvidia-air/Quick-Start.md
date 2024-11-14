@@ -42,7 +42,7 @@ To create a new sim, click the **Create Simulation** button from the [Simulation
 - To learn about preconfigured, ready out-of-box simulations, visit [Pre-Built Demos](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Pre-Built-Demos).
 
 ### Navigate Simulations
-After you create a simulation, you can power them on/off, [edit](#edit-simulations) various aspects of it, [share it with others](#sharing-simulations), and delete it with the **Actions** {{<img src="/images/guides/nvidia-air/ActionsButton.png" alt="">}} button on each sim.
+After you create a simulation, you can power them on/off, [edit](#edit-simulations) various aspects of it, [share it with others](#sharing-simulations), and delete it with the **Actions button** {{<img src="/images/guides/nvidia-air/ActionsButton.png" alt="">}} on each sim.
 
 {{<img src="/images/guides/nvidia-air/SimulationsActionHighlight.png" alt="">}}
 
@@ -93,7 +93,7 @@ Click **Services > Services List** to view existing services enabled on the sim.
 {{<img src="/images/guides/nvidia-air/ServicesList.png" alt="">}}
 
 ### Rebuilding & Resetting Nodes
-From within a sim, single click on a node to view its **Node Properties**. Click **Advanced Properties > Actions** to **Rebuild** or **Reset** the node.
+From within a sim, single click on a node to view its **Node Properties**. Click **Advanced Options > Actions** to **Rebuild** or **Reset** the node.
 
 - **Rebuild**: Restores the node to its original or default configuration. If the node was created from a demo, or other snapshot, it will revert to that configuration had you just launched a copy.
 - **Reset**: Performs a hard reboot to the node.
@@ -106,7 +106,7 @@ You can also rebuild the entire simulation with **Workspace > Rebuild All Nodes*
 From within a sim, click **Workspace > Edit Simulation** to edit various aspects of your sim.
 
 - **Name**: Edit the sim name. Simulations can have duplicate names, as they each have a unique ID under the hood.
-- **Organization**: Assign an Organization. You can read more about Organizations [here](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Organizations). This will assign this exact simulation to the Organization, _not a copy_. This means each user with appropriate permissions will have access to this exact sim.
+- **Organization**: Assign an Organization. This will assign this exact simulation to the Organization, _not a copy_. This means each user with appropriate permissions will have access to this exact sim. You can read more about Organizations [here](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Organizations). 
 
 - **Sleep date**: When the simulation will be automatically put to sleep. This means the state of the sim is saved and resources are freed for your account. Nodes are _not_ powered off.
 - **Expiration date**: When the simulation will be automatically deleted.

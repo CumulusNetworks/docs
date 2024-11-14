@@ -13,14 +13,15 @@ One way to create fully custom simulations is with the built-in topology builder
 
 To get started, perform the following instructions:
 
-1. From the [Simulations homepage](https://air.nvidia.com/simulations), click the **Create Simulation** button. You can also visit [air.nvidia.com/build](https://air.nvidia.com/build).
-2. Give your simulation a **Name**.
-3. Select **Blank Canvas** as the **Type**.
-4. Optionally, assign an Organization to the sim. Read more about them in [Organizations](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Organizations/). 
-5. Optionally, add a **ZTP script** to the simulation. You can read more about them in [ZTP Scripts](#ztp-scripts).
+1. Navigate to [https://air.nvidia.com/simulations](https://air.nvidia.com/simulations). 
+2. Click the **Create Simulation** button.
+3. Give your simulation a **Name**.
+4. Select **Blank Canvas** as the **Type**.
+5. Optionally, assign an Organization to the sim. Read more about them in [Organizations](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Organizations/). 
+6. Optionally, add a **ZTP script** to the simulation. You can read more about them in [ZTP Scripts](#ztp-scripts).
    1. Toggle on the **Apply ZTP Template** button.
    2. Enter your ZTP script. A default script is prefilled to help you get started. 
-6. Click **Create**.
+7. Click **Create**.
 
 {{<img src="/images/guides/nvidia-air/CreateSimulation.png" alt="" width="930px">}}
 
@@ -177,15 +178,17 @@ To access them, click on the **Documentation** button on any lab in the Demo Mar
 
 ### Uploading a DOT
 To upload a DOT file into Air:
-1.	Click the **Create Simulation** button. You can also click **Workspace > New Simulation**. 
+1. Navigate to [https://air.nvidia.com/simulations](https://air.nvidia.com/simulations). 
+2. Click the **Create Simulation** button.
 2.	Give your simulation a **Name**.
 3.	Select **DOT** as the **Type**.
 4.	Drag or select your DOT file to upload.
 5. Optionally, assign an Organization to the sim. Read more about them in [Organizations](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Organizations/). 
 6. Optionally, add a **ZTP script** to the simulation. You can read more about them in [ZTP Scripts](#ztp-scripts).
      1. Toggle on the **Apply ZTP Template** button.
-     2. Enter your ZTP script. A default script is prefilled to help you get started. 
-7. Click **Create**.
+     2. Enter your ZTP script. A default script is prefilled to help you get started.
+7. Optionally, click **Advanced** and provide a **OOB-MGMT-SERVER CONFIG SCRIPT** that executes on the `oob-mgmt-server` when the simulation is started.
+8. Click **Create**.
 
 Air will build a custom topology based on the DOT file. 
 

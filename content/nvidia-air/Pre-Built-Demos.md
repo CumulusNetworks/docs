@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 30
 product: NVIDIA Air
 ---
-NVIDIA Air offers many pre-built simulations in the [Demo Marketplace](https://air.nvidia.com/demos). These simulations, also called labs or demos, can be spun-up anytime as copies in your account. They are completely yours to learn from, explore, destroy and rebuild. The labs span a wide range of topics and environments. Some labs provide step-by step instructions to teach you about something, other labs show off different fabric options for a controlled topology. Some labs demonstrate full-fledged configurations fit for large data centers and run a three-tier spine-leaf architecture. 
+NVIDIA Air offers many preconfigured simulations in the [Demo Marketplace](https://air.nvidia.com/demos). These simulations, also called labs or demos, can be spun-up anytime as copies in your account. They are completely yours to learn from, explore, destroy and rebuild. The labs span a wide range of topics and environments. Some labs provide step-by step instructions to teach you about something, other labs show off different fabric options for a controlled topology. Some labs demonstrate full-fledged configurations fit for large data centers and run a three-tier spine-leaf architecture. 
 
 {{<img src="/images/guides/nvidia-air/DemoMarketplace.png" alt="">}}
 

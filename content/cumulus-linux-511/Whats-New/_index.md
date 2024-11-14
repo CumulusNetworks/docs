@@ -49,7 +49,7 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 | New Commands | Previous Commands |
 | ----------- | ----------------|
 | `nv set system snmp-server`<br>`nv unset system snmp-server`<br><br>Note: **all** `snmp-server` set commands have moved from `nv set service` to `nv set system`.  | `nv set service snmp-server`<br>`nv unset service snmp-server` |
-| `nv set system snmp-server state enable`<br>`nv set system snmp-server state disable`| `nv set service snmp-server enable on`<br>`nv set service snmp-server enable off`|
+| `nv set system snmp-server state enabled`<br>`nv set system snmp-server state disabled`| `nv set service snmp-server enable on`<br>`nv set service snmp-server enable off`|
 | `nv show system snmp-server`<br><br>Note: **all** `snmp-server` show commands have moved from `nv show service` to `nv show system`. | `nv show service snmp-server`|
 | `nv set qos advance-buffer-config <profile-id> ingress-service-pool <pool-id> <property> <value>` | `nv set qos advance-buffer-config <profile-id> ingress-pool <pool-id> <property> <value>`|
 | `nv set qos advance-buffer-config <profile-id> egress-service-pool <pool-id> <property> <value>` | `nv set qos advance-buffer-config <profile-id> egress-pool <pool-id> <property> <value> ` |

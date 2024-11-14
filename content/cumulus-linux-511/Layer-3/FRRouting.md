@@ -411,52 +411,6 @@ If you try to configure a routing protocol that is not running, vtysh ignores th
 
 NVUE provides the `--output raw` option for certain NVUE show commands to show vtysh native output.
 
-The following example shows the `nv show vrf default router bgp address-family l2vpn-evpn loc-rib` command with the `--output raw` option:
-
-```
-cumulus@leaf01:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-rib -o raw
-BGP routing table entry for 6.0.0.6:2:[5]:[0]:[0]:[::]
-Paths: (0 available, no best path)
-  Not advertised to any peer
-BGP routing table entry for 6.0.0.6:2:[5]:[0]:[16]:[21.0.0.0]
-Paths: (0 available, no best path)
-  Not advertised to any peer
-Route Distinguisher: 6.0.0.6:2
-BGP routing table entry for 6.0.0.6:2:[5]:[0]:[16]:[21.1.0.0]
-Paths: (1 available, best #1)
-  Advertised to non peer-group peers:
-  spine11(220.10.0.17) spine12(220.11.0.17)
-  Route [5]:[0]:[16]:[21.1.0.0] VNI 300011
-  Local
-    6.0.0.6 (leaf11) from 0.0.0.0 (6.0.0.6)
-      Origin incomplete, metric 0, weight 32768, valid, sourced, local, bestpath-from-AS Local, best (First path received)
-      Extended Community: ET:8 RT:65011:300011 Rmac:00:01:00:00:06:05
-      Last update: Wed Mar  6 12:14:41 2024
-BGP routing table entry for 6.0.0.6:2:[5]:[0]:[16]:[21.2.0.0]
-Paths: (1 available, best #1)
-  Advertised to non peer-group peers:
-  spine11(220.10.0.17) spine12(220.11.0.17)
-  Route [5]:[0]:[16]:[21.2.0.0] VNI 300011
-  Local
-    6.0.0.6 (leaf11) from 0.0.0.0 (6.0.0.6)
-      Origin incomplete, metric 0, weight 32768, valid, sourced, local, bestpath-from-AS Local, best (First path received)
-      Extended Community: ET:8 RT:65011:300011 Rmac:00:01:00:00:06:05
-      Last update: Wed Mar  6 12:14:41 2024
-BGP routing table entry for 6.0.0.6:2:[5]:[0]:[64]:[2020:0:1::]
-Paths: (0 available, no best path)
-  Not advertised to any peer
-BGP routing table entry for 6.0.0.6:2:[5]:[0]:[64]:[2020:0:1:1::]
-Paths: (1 available, best #1)
-  Advertised to non peer-group peers:
-  spine11(220.10.0.17) spine12(220.11.0.17)
-  Route [5]:[0]:[64]:[2020:0:1:1::] VNI 300011
-  Local
-    6.0.0.6 (leaf11) from 0.0.0.0 (6.0.0.6)
-      Origin incomplete, metric 1024, weight 32768, valid, sourced, local, bestpath-from-AS Local, best (First path received)
-      Extended Community: ET:8 RT:65011:300011 Rmac:00:01:00:00:06:05
-      Last update: Wed Mar  6 12:14:41 2024
-```
-
 {{< expand "NVUE Commands that support --output raw" >}}
 
 ```
@@ -469,20 +423,11 @@ nv show vrf <tenant vrf> evpn
 nv show vrf <tenant vrf> evpn bgp-info
 nv show vrf <vrf> evpn nexthop-vtep <vtep>
 nv show evpn vni <vni_id> bgp-info
-nv show vrf default router bgp address-family l2vpn-evpn loc-rib
-nv show vrf default router bgp address-family l2vpn-evpn loc-rib rd <rd-id>
-nv show vrf default router bgp address-family l2vpn-evpn loc-rib rd <rd-id> route-type <type> route
-nv show vrf <vrf-id> router bgp address-family <afi-safi> loc-rib
-nv show vrf <vrf-id> router bgp address-family <afi-safi> loc-rib route
-nv show vrf default router bgp neighbor
-nv show vrf default router bgp neighbor <neighbor-id>
+nv show vrf <vrf-id> router bgp neighbor
+nv show vrf <vrf-id> router bgp neighbor <neighbor-id>
 nv show vrf <vrf-id> router bgp nexthop
 nv show vrf <vrf-id> router bgp nexthop ipv4
-nv show vrf <vrf-id> router bgp nexthop ipv4 ip-address
-nv show vrf <vrf-id> router bgp nexthop ipv4 ip-address <prefix>
 nv show vrf <vrf-id> router bgp nexthop ipv6
-nv show vrf <vrf-id> router bgp nexthop ipv6 ip-address
-nv show vrf <vrf-id> router bgp nexthop ipv6 ip-address <prefix>
 nv show vrf default router rib ipv4 route
 nv show vrf default router rib ipv6 route
 nv show vrf default router rib
@@ -491,6 +436,75 @@ nv show vrf default router rib ipv6
 ```
 
 {{< /expand >}}
+
+## Show Routes in the Routing Table
+
+To show all the routes in the routing table, run the `nv show vrf <vrf> router rib <address-family> route` command:
+
+```
+cumulus@switch:~$ nv show vrf default router rib ipv4 route
+
+Flags - * - selected, q - queued, o - offloaded, i - installed, S - fib-        
+selected, x - failed                                                            
+                                                                                
+Route            Protocol   Distance  Uptime                NHGId  Metric  Flags
+---------------  ---------  --------  --------------------  -----  ------  -----
+10.0.1.12/32     connected  0         2024-10-22T18:36:01Z  15     0       *Sio 
+10.0.1.34/32     bgp        20        2024-10-22T18:42:22Z  125    0       *Si  
+10.0.1.255/32    bgp        20        2024-10-22T18:36:05Z  125    0       *Si  
+10.10.10.1/32    connected  0         2024-10-22T18:35:54Z  15     0       *Sio 
+10.10.10.2/32    bgp        20        2024-10-22T18:35:58Z  62     0       *Si  
+10.10.10.3/32    bgp        20        2024-10-22T18:42:16Z  125    0       *Si  
+10.10.10.4/32    bgp        20        2024-10-22T18:42:16Z  125    0       *Si  
+10.10.10.63/32   bgp        20        2024-10-22T18:36:05Z  125    0       *Si  
+10.10.10.64/32   bgp        20        2024-10-22T18:36:05Z  125    0       *Si  
+10.10.10.101/32  bgp        20        2024-10-22T18:36:05Z  115    0       *Si  
+10.10.10.102/32  bgp        20        2024-10-22T18:36:04Z  107    0       *Si
+```
+
+To show information about a specific route, run the `nv show vrf <vrf> router rib <address-family> route <prefix>` command:
+
+```
+cumulus@switch:~$ nv show vrf default router rib ipv4 route 10.0.1.34/32
+route-entry
+==============
+                                                                                
+    Protocol - Protocol name, TblId - Table Id, NHGId - Nexthop group Id, Flags - u 
+    - unreachable, r - recursive, o - onlink, i - installed, d - duplicate, c -     
+    connected, A - active                                                           
+                                                                                
+    EntryIdx  Protocol  TblId  NHGId  Distance  Metric  ResolvedVia                ResolvedViaIntf  Weight  Flags
+    --------  --------  -----  -----  --------  ------  -------------------------  ---------------  ------  -----
+    1         bgp       254    125    20        0       fe80::4ab0:2dff:fe32:2a3f  swp52            1       iA   
+                                                        fe80::4ab0:2dff:fe41:6b79  swp51            1       iA
+```
+
+To show the total number of routes in the routing table, run the `nv show vrf <vrf> router rib <address-family> route-count` command:
+
+```
+cumulus@switch:~$ nv show vrf default router rib ipv4 route-count
+                 operational 
+------------     ----------- 
+total-routes    34 
+[protocol]      bgp 
+[protocol]      connected 
+```
+
+For IPv6 run the `nv show vrf <vrf> router rib ipv6 route-count` command.
+
+To show the total number of routes per protocol in the routing table, run the `nv show vrf <vrf> router rib <address-family> route-count protocol` command:
+
+```
+cumulus@switch:~$ nv show vrf default router rib ipv4 route-count protocol
+Protocol   Total 
+---------  ----- 
+bgp        6 
+connected  3 
+ospf       8 
+static     3 
+```
+
+For IPv6 run the `nv show vrf <vrf> router rib ipv6 route-count protocol` command.
 
 ## Next Hop Tracking
 
@@ -563,6 +577,49 @@ You can show tracked next hops with the following NVUE commands:
 - `nv show vrf <vrf> router nexthop-tracking ipv4 <ip-address>`
 - `nv show vrf <vrf> router nexthop-tracking ipv6`
 - `nv show vrf <vrf> router nexthop-tracking ipv6 <ip-address>`
+
+```
+cumulus@leaf01:~$  nv show vrf default router nexthop-tracking ipv4
+                      operational  applied  pending
+--------------------  -----------  -------  -------
+resolved-via-default                        on
+
+route-map
+============
+No Data
+
+ip-address
+=============
+                                                                                
+    DirectlyConnected - Indicates if nexthop is directly connected or not,          
+    ResolvedProtocol - Resolved via protocol, Interface - Resolved via interface,   
+    ProtocolFiltered - Indicates whether protocol filtered or not, Flags - o -      
+    onlink, c - directly-connected, A - active                                      
+                                                                                
+    IPAddress    DirectlyConnected  ResolvedProtocol  Interface      VRF      Weight  ProtocolFiltered  Flags
+    -----------  -----------------  ----------------  -------------  -------  ------  ----------------  -----
+    10.0.1.34    off                bgp               swp52          default  1       off               A    
+                                                      swp53          default  1                         A    
+                                                      swp54          default  1                         A    
+                                                      swp51          default  1                         A    
+    10.10.10.2   off                bgp               peerlink.4094  default  1       off               A    
+    10.10.10.3   off                bgp               swp52          default  1       off               A    
+                                                      swp53          default  1                         A    
+                                                      swp54          default  1                         A    
+                                                      swp51          default  1                         A    
+    10.10.10.4   off                bgp               swp52          default  1       off               A    
+                                                      swp53          default  1                         A    
+                                                      swp54          default  1                         A    
+                                                      swp51          default  1                         A    
+    10.10.10.63  off                bgp               swp52          default  1       off               A    
+                                                      swp53          default  1                         A    
+                                                      swp54          default  1                         A    
+                                                      swp51          default  1                         A    
+    10.10.10.64  off                bgp               swp52          default  1       off               A    
+                                                      swp53          default  1                         A    
+                                                      swp54          default  1                         A    
+                                                      swp51          default  1                         A
+```
 
 You can also run the vtysh `show ip nht vrf <vrf> <ip-address>` command.
 

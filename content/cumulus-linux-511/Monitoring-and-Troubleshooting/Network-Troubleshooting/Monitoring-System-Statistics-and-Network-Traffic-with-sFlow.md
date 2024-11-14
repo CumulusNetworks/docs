@@ -10,42 +10,6 @@ sFlow is a monitoring protocol that samples network packets, application operati
 If you intend to run this service within a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}}, including the {{<link url="Management-VRF" text="management VRF">}}, follow {{<link url="Management-VRF#run-services-within-the-management-vrf" text="these steps">}} to configure the service.
 {{%/notice%}}
 
-## Enable sFlow
-
-{{< tabs "TabID15 ">}}
-{{< tab "NVUE Commands ">}}
-
-To enable sFlow:
-
-```
-cumulus@switch:~$ nv set system sflow state enabled 
-cumulus@switch:~$ nv config apply
-```
-
-To disable sFlow, run the `nv set system sflow state disabled` command.
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-By default, the `hsflowd` service is disabled and does *not* start automatically when the switch boots up.
-
-To enable and start the `hsflowd` service:
-
-```
-cumulus@switch:~$ sudo systemctl enable hsflowd
-cumulus@switch:~$ sudo systemctl start hsflowd
-```
-
-To disable the `hsflowd` service:
-
-```
-cumulus@switch:~$ sudo systemctl stop hsflowd
-cumulus@switch:~$ sudo systemctl disable hsflowd
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
 ## Configure sFlow
 
 To configure sFlow:
@@ -54,12 +18,12 @@ To configure sFlow:
 - Set the polling interval.
 - Provide the IP address and interface of the sFlow agent.
 - Configure the sFlow policer rate and policer burst.
+- Enable sFlow
 
 Cumulus Linux provides different sampling rate configurations. The value represents the sampling ratio; for example, if you specify a value of 400, SFlow samples one in every 400 packets.
 
 | Sampling Rate | Default Value | Description |
 | ------------- | ------------- | ----------- |
-| `default` | 400 | The Default sampling rate for ports with no speed or application with no sampling setting. |
 | `speed-100m` | 100 | The sampling rate on a 100Mbps port. |
 | `speed-1g` | 1000 | The sampling rate on a 1Gbps port. |
 | `speed-10g` | 10000 | The sampling rate on a 10Gbps port. |
@@ -94,7 +58,7 @@ Configure the sFlow sampling rate in number of packets if you do not want to use
 The following example polls the counters every 20 seconds and samples one in every 40000 packets for 40G interfaces:
 
 ```
-cumulus@switch:~$ nv set system sflow sampling-rate speed-40g default 40000
+cumulus@switch:~$ nv set system sflow sampling-rate speed-40g 40000
 cumulus@switch:~$ nv set system sflow poll-interval 20
 cumulus@switch:~$ nv config apply
 ```
@@ -149,7 +113,8 @@ Provide the IP address or prefix, or the interface for the sFlow agent.
 The following example configures the sFlow agent prefix to 10.0.0.0/8:
 
 ```
-cumulus@switch:~$ nv set system sflow agent ip 10.0.0.0/8 
+cumulus@switch:~$ nv set system sflow agent ip 10.0.0.0/8
+cumulus@switch:~$ nv config apply
 ```
 
 The following example configures the sFlow agent interface to eth0:
@@ -205,8 +170,8 @@ The following example sets the number of sFlow samples to 800 and the sample siz
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set  system sflow policer rate 8000
-cumulus@switch:~$ nv set  system sflow policer burst 9000
+cumulus@switch:~$ nv set system sflow policer rate 8000
+cumulus@switch:~$ nv set system sflow policer burst 9000
 cumulus@switch:~$ nv config apply
 ```
 
@@ -225,6 +190,42 @@ sflow.burst = 9000
 
 ```
 cumulus@switch:~$ sudo systemctl reload switchd.service 
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+## Enable sFlow
+
+{{< tabs "TabID15 ">}}
+{{< tab "NVUE Commands ">}}
+
+To enable sFlow:
+
+```
+cumulus@switch:~$ nv set system sflow state enabled 
+cumulus@switch:~$ nv config apply
+```
+
+To disable sFlow, run the `nv set system sflow state disabled` command.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+By default, the `hsflowd` service is disabled and does *not* start automatically when the switch boots up.
+
+To enable and start the `hsflowd` service:
+
+```
+cumulus@switch:~$ sudo systemctl enable hsflowd
+cumulus@switch:~$ sudo systemctl start hsflowd
+```
+
+To disable the `hsflowd` service:
+
+```
+cumulus@switch:~$ sudo systemctl stop hsflowd
+cumulus@switch:~$ sudo systemctl disable hsflowd
 ```
 
 {{< /tab >}}
@@ -284,19 +285,11 @@ interface.swp1.sflow.sample_rate.ingress = 100000
 
 ## Monitor Dropped Packets
 
-You can configure sFlow to monitor dropped packets in software or hardware.
+You can configure sFlow to monitor dropped packets in hardware.
 
 {{< tabs "TabID268 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example configures sFlow to monitor dropped packets in software:
-
-```
-cumulus@switch:~$ nv set system sflow dropmon sw 
-cumulus@switch:~$ nv config apply
-```
-
-The following example configures sFlow to monitor dropped packets in hardware:
 ```
 cumulus@switch:~$ nv set system sflow dropmon hw 
 cumulus@switch:~$ nv config apply
@@ -305,11 +298,11 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/hsflowd.conf` file to add the `dropmon { group=1 start=on sw=off hw=on }` line to monitor dropped packets in hardware or the `dropmon { group=1 start=on sw=on hw=off }` line to monitor dropped packets in software:
+Edit the `/etc/hsflowd.conf` file to change `start` to `on` in the `dropmon { group=1 start=off limit=1000 }` line.
 
 ```
 cumulus@switch:~$ sudo nano /etc/hsflowd.conf
-dropmon { group=1 start=on sw=off hw=on }
+dropmon { group=1 start=on limit=1000 }
 ```
 
 Restart the `hsflowd` service with the `sudo systemctl start hsflowd` command.
@@ -327,30 +320,31 @@ To show all sFlow configuration on the switch:
 
 ```
 cumulus@switch:~$ nv show system sflow
-                   operational  applied 
-
------------------  -----------  ---------- 
-State                           enabled 
-poll-interval                   30 
-[collector]                     10.10.10.1 
-sampling-rate 
-  default                       400 
-  speed-100m                    100 
-  speed-1g                      1000 
-  speed-10g                     10000 
-  speed-25g                      25000 
-  speed-40g                     40000 
-  speed-50g                     50000 
-  speed-100g                    100000 
-  speed-200g                    200000 
-  speed-400g                    400000 
-  Speed-800g                    800000 
-agent 
-  ip               10.0.2.15 
-  interface        eth0         eth0 
-policer 
-  rate                          1638
-  burst                         1638
+                operational  applied    
+-------------  -----------  -----------
+poll-interval               20         
+state                       enabled    
+[collector]                 192.0.2.100
+[collector]                 192.0.2.200
+sampling-rate                          
+  default                   400        
+  speed-100m                100        
+  speed-1g                  1000       
+  speed-10g                 10000      
+  speed-25g                 25000      
+  speed-40g                 40000      
+  speed-50g                 50000      
+  speed-100g                100000     
+  speed-200g                200000     
+  speed-400g                400000     
+  speed-800g                800000     
+agent                                  
+  ip                        10.0.0.0/8 
+  interface                 eth0       
+policer                                
+  rate                      8000       
+  burst                     9000       
+[dropmon]                   sw
 ```
 
 To show sFlow collector configuration:
@@ -367,31 +361,29 @@ To show the sFlow sampling rate configuration:
 
 ```
 cumulus@switch:~$ nv show system sflow sampling-rate
-default             400 
-speed-100m          100     
-speed-1g           1000 
-speed-10g         10000 
-Speed-25g         25000 
-speed-40g         40000 
-speed-50g         50000 
-speed-100g       100000 
-speed-200g       200000 
-speed-400g       400000
-Speed-800g       800000 
-```
-
-To show the current sFlow polling interval:
-
-```
-cumulus@switch:~$ nv show system sflow poll-interval
-poll-interval      30
+            applied
+----------  -------
+default     400    
+speed-100m  100    
+speed-1g    1000   
+speed-10g   10000  
+speed-25g   25000  
+speed-40g   40000  
+speed-50g   50000  
+speed-100g  100000 
+speed-200g  200000 
+speed-400g  400000 
+speed-800g  800000 
 ```
 
 To show sFlow agent configuration:
 
 ```
-cumulus@switch:~$ nv show system sflow agent:
-10.0.0.5 
+cumulus@switch:~$ nv show system sflow agent
+           operational  applied   
+---------  -----------  ----------
+ip                      10.0.0.0/8
+interface               eth0
 ```
 
 To show the number of samples per second and the sample burst size per second that the switch sends out:
@@ -399,8 +391,10 @@ To show the number of samples per second and the sample burst size per second th
 ```
 cumulus@switch:~$ nv show system sflow policer
 ---------------------- 
-Rate         16384 
-Burst        16384 
+       applied
+-----  -------
+rate   8000   
+burst  9000
 ```
 
 To show sFlow configuration on a specific interface:
@@ -408,8 +402,10 @@ To show sFlow configuration on a specific interface:
 ```
 cumulus@switch:~$ nv show interface swp1 sflow
 ---------------------- 
-sample-rate    100000 
-state         enabled 
+             operational  applied
+-----------  -----------  -------
+sample-rate  0            100000 
+state        disabled     enabled
 ```
 
 ## Considerations

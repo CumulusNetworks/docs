@@ -224,6 +224,27 @@ To configure local fallback authentication:
     cumulus@switch:~$ sudo passwd johnadmin
     ```
 
+## RADIUS User Command Accounting
+
+RADIUS user command accounting lets you log every command that a user runs and send the commands to the primary RADIUS server for auditing. Audit logs are a requirement for compliance standards, such as PCI and HIPPA.
+
+The RADIUS server must be configured to accept packets from clients and have a dictionary entry for `NV-Command-String`.
+
+To enable RADIUS user command accounting:
+
+```
+cumulus@switch:~$ nv set system aaa radius accounting state enabled
+cumulus@switch:~$ nv config apply
+```
+
+To disable RADIUS user command accounting, run the `nv set system aaa radius accounting state disabled` command.
+
+The `/var/log/radius-cmd-acct.log` file contains the local copy of the logs, which match the logs that the server receives.
+
+If you do not receive any accounting packets, check the `/var/log/radius-send-cmd.log` file.
+
+To see if RADIUS user command accounting is enabled, run the `nv show system aaa radius` command.
+
 ## Verify RADIUS Client Configuration
 
 To verify the RADIUS client configuration, log in as a non-privileged user and run the `nv set interface` command.
@@ -248,16 +269,17 @@ To show global RADIUS configuration, run the `nv show system aaa radius` command
 
 ```
 cumulus@switch:~$ nv show system aaa radius
-                 operational    applied      
----------------  -------------  -------------
-enable           on             on           
-vrf              mgmt           mgmt         
-debug            disabled       disabled     
-privilege-level                 15           
-retransmit       0              0            
-port                            1812         
-timeout                         3            
-[server]         192.168.0.254  192.168.0.254
+                 operational    applied        
+---------------  -------------  ------------- 
+enable           on             on            
+vrf              mgmt           mgmt          
+debug            disabled       disabled      
+privilege-level                 15            
+retransmit       0              0             
+port                            1812          
+timeout                         3             
+accounting       enabled        enabled       
+[server]         192.168.0.254  192.168.0.254 
 ```
 
 To show all RADIUS configured servers, run the `nv show system aaa radius server` command:

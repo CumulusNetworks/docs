@@ -107,11 +107,11 @@ To back up and restore the configuration file:
 
 2. Copy the `/etc/nvue.d/startup.yaml` file off the switch to a different location.
 
-3. After upgrade is complete, restore the configuration. Copy the `/etc/nvue.d/startup.yaml` file to the switch, then run the `nv config patch` command. In the following example `startup.yaml` is in the `/home/cumulus` directory on the switch:
+3. After upgrade is complete, restore the configuration. Copy the `/etc/nvue.d/startup.yaml` file to the switch, run the `nv config patch` command, and restart the `nvued` service with the `sudo systemctl restart nvued.service` command. In the following example `startup.yaml` is in the `/home/cumulus` directory on the switch:
 
    ```
    cumulus@switch:~$ nv config patch /home/cumulus/startup.yaml
-   cumulus@switch:~$ nv config apply
+   cumulus@switch:~$ sudo systemctl restart nvued.service
    ```
 
 For information about the NVUE object model and commands, see {{<link url="NVIDIA-User-Experience-NVUE" text="NVIDIA User Experience - NVUE">}}.
@@ -151,8 +151,17 @@ You can upgrade Cumulus Linux in one of two ways:
 Cumulus Linux also provides ISSU to upgrade an active switch with minimal disruption to the network. See {{<link url="In-Service-System-Upgrade-ISSU" text="In-Service-System-Upgrade-ISSU">}}.
 
 {{%notice note%}}
-- To upgrade to Cumulus Linux 5.10 from Cumulus Linux 4.x or 3.x, you must install a disk image of the new release using ONIE. You *cannot* upgrade packages with package upgrade.
+- To upgrade to Cumulus Linux 5.10.1 from Cumulus Linux 5.9.2, you must install the Cumulus Linux 5.10.1 image. You *cannot* upgrade packages with package upgrade.
+- To upgrade to Cumulus Linux 5.10.x from Cumulus Linux 4.x or 3.x, you must install a disk image of the new release using ONIE. You *cannot* upgrade packages with package upgrade.
 - Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in [Upgrade Switches in an MLAG Pair](#upgrade-switches-in-an-mlag-pair) below to ensure a smooth upgrade.
+{{%/notice%}}
+
+{{%notice warning%}}
+Cumulus Linux includes a default NVUE `startup.yaml` file. In addition, NVUE configuration auto save is enabled by default. As a result, Cumulus Linux deletes the Linux configuration files on the switch when:
+- The switch reboots after upgrade
+- You change the cumulus account password using the Linux `passwd` command.
+
+These upgrade issues occur only if you use Linux commands to configure the switch. To work around these issues, see {{<link url="Whats-New/#linux-configuration-files-deleted" text="Linux Configuration Files Deleted">}}.
 {{%/notice%}}
 
 ### Install a Cumulus Linux Image or Upgrade Packages?
@@ -228,11 +237,14 @@ tmpfs           7.7G    16K    7.7G     1%    /tmp
 overlay          28G   7.9G     18G    31%   
 ```
 <!-- vale off -->
-#### Upgrade from Cumulus Linux 5.9.x to Cumulus Linux 5.10.0
+#### Upgrade from Cumulus Linux 5.9 to Cumulus Linux 5.10
 <!-- vale on -->
+
+To upgrade to Cumulus Linux 5.10.1 from Cumulus Linux 5.9.2, you must install the Cumulus Linux 5.10.1 image. You *cannot* upgrade packages with package upgrade.
+
 If you are running Cumulus Linux 5.9.x (the current extended-support release), the default switch configuration allows you to upgrade to the latest Cumulus 5.9.x release only.
 
-To upgrade from Cumulus Linux 5.9.x to Cumulus Linux 5.10.0 or later, perform the following procedure before you start the package upgrade:
+To upgrade from Cumulus Linux 5.9.0 or 5.9.1 to Cumulus Linux 5.10.1, perform the following procedure before you start the package upgrade:
 
 1. Edit the `/etc/apt/sources.list` file to include the following lines at the top of the file.
 

@@ -311,7 +311,7 @@ You can use the following list of supported match and set statements with NVUE c
 | `evpn-default-route` | Matches the EVPN default route. You can specify `on` or `off`.|
 | `ip-nexthop-len` | Matches the specified next hop prefix length. |
 | `large-community-list` | Matches the specified large community list.|
-| `source-protocol` |Matches the specified source protocol, such as BGP, OSPF or static. |
+| `source-protocol` |Matches the specified source protocol, such as BGP, OSPF, or static. |
 | `evpn-route-type` | Matches the specified EVPN route type. You can specify `macip`, `imet`, or `prefix`. |
 | `ip-nexthop-list` | Matches the specified next hop list.|
 | `local-preference` | Matches the specified local preference. You can specify a value between 0 and 4294967295. |
@@ -484,13 +484,13 @@ neighbor swp51 route-map MAP2 in
 {{< /tab >}}
 {{< /tabs >}}
 
-The following example filters routes from Zebra (RIB) into the Linux kernel (FIB). The commands apply the route map called routemap1 to BGP routes in the RIB:
+The following example filters routes from Zebra (RIB) into the Linux kernel (FIB). The commands apply the route map called MAP1 to BGP routes in the RIB:
 
 {{< tabs "TabID152 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set vrf default router rib ipv4 protocol bgp fib-filter MAP1
+cumulus@switch:~$ nv set vrf default router rib ipv4 fib-filter protocol bgp route-map MAP1
 cumulus@switch:~$ nv config apply
 ```
 
@@ -526,7 +526,7 @@ To apply a route map to filter route updates from BGP into the RIB:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:$ nv set vrf default router bgp address-family ipv4-unicast rib-filter routemap1
+cumulus@switch:$ nv set vrf default router bgp address-family ipv4-unicast rib-filter MAP1
 cumulus@switch:$ nv config apply
 ```
 
@@ -551,7 +551,7 @@ The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For e
 cumulus@switch:~$ sudo cat /etc/frr/frr.conf
 ...
 address-family ipv4 unicast
-table-map routemap1
+table-map MAP1
 ```
 
 {{< /tab >}}
@@ -783,6 +783,10 @@ cumulus@leaf01:~$
 
 The following example configures a route map to allow prefixes that match BGP as the source protocol.
 
+{{%notice note%}}
+When you configure the match source protocol in a route map, the switch only advertises that protocol type to the peers. If you configure route leaking between VRFs and the leaked routes are learned as BGP routes, you need to match the BGP source protocol to advertise that route.
+{{%/notice%}}
+
 {{< tabs "TabID964 ">}}
 {{< tab "NVUE Commands">}}
 
@@ -801,6 +805,21 @@ cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# route-map MAP1 permit 100
 leaf01(config-route-map)# match source-protocol bgp
+leaf01(config-route-map)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
+```
+
+When you configure the match source protocol in a route map, the switch only advertises that protocol type to the peers. If you configure route leaking between VRFs and the leaked routes are learned as BGP routes, you need to match the BGP source protocol to advertise that route in addition to matching the connected source protocol:
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# route-map MAP1 permit 100
+leaf01(config-route-map)# match source-protocol bgp
+leaf01(config-route-map)# match source-protocol connected
 leaf01(config-route-map)# end
 leaf01# write memory
 leaf01# exit
@@ -940,6 +959,40 @@ cumulus@leaf01:~$
 {{< /tab >}}
 {{< /tabs >}}
 
+### Match Large Community List
+
+The following example configures a route map to allow prefixes that match BGP large community-list 11.
+
+{{< tabs "TabID939 ">}}
+{{< tab "NVUE Commands">}}
+
+```
+cumulus@leaf01:~$ nv set router policy large-community-list 11 rule 10 action permit
+cumulus@leaf01:~$ nv set router policy large-community-list 11 rule 10 large-community 4200857911:011:011
+cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 10 action permit
+cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 10 match large-community-list mylist
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# bgp large-community-list 11 seq 10 permit 4200857911:011:011
+leaf01(config)# route-map MAP1 permit 10
+leaf01(config-route-map)# match large-community 11
+leaf01(config-route-map)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Set IPv6 Prefer Global
 <!-- vale off -->
 With multiple BGP peerings to the same router when {{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" text="adaptive routing">}} is `on`, or with multiple peerings to the same router on interfaces that share the same MAC address or physical interface, you can configure a route map to prefer the global IPv6 address when a route contains both link-local and global next hop addresses.
@@ -973,35 +1026,30 @@ cumulus@sleaf01:~$
 
 ### Show Route Filtering
 
-To show route filtering results in the BGP routing table after applying inbound policies, run the NVUE `nv show vrf <vrf> router bgp address-family <address-family> loc-rib` command or the vtysh `show ip bgp` command.
+To show route filtering results in the BGP routing table after applying inbound policies, run the NVUE `nv show vrf <vrf> router bgp address-family <address-family> route` command or the vtysh `show ip bgp` command.
 
 ```
-cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4 loc-rib 
-IPV4 Routes
-==============
-                                                                             
-    LocalPref - Local Preference, Best - Best path, Reason - Reason for selection
-                                                                             
-    IPv4 Prefix      Nexthop  Metric  Weight  LocalPref  Aspath  Best  Reason      Flags    
-    ---------------  -------  ------  ------  ---------  ------  ----  ----------  ---------
-    10.1.10.0/24              0       32768                      yes   First path           
-                                                                       received             
-    10.1.20.0/24              0       32768                      yes   First path           
-                                                                       received             
-    10.1.30.0/24              0       32768                      yes   First path           
-                                                                       received             
-    10.1.40.0/24     swp51    0                          65104                     multipath
-                                                         65199                              
-                     swp52    0                          65104   yes   Older Path  multipath
-                                                         65199                              
-    10.1.50.0/24     swp51    0                          65104                     multipath
-                                                         65199                              
-                     swp52    0                          65104   yes   Older Path  multipath
-                                                         65199                              
-    10.1.60.0/24     swp51    0                          65104                     multipath
-                                                         65199                              
-                     swp52    0                          65104   yes   Older Path  multipath
-                                                         65199
+cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4 route
+                                                                                
+PathCount - Number of paths present for the prefix, MultipathCount - Number of  
+paths that are part of the ECMP, DestFlags - * - bestpath-exists, w - fib-wait- 
+for-install, s - fib-suppress, i - fib-installed, x - fib-install-failed        
+                                                                                
+Prefix           PathCount  MultipathCount  DestFlags
+---------------  ---------  --------------  ---------
+10.0.1.12/32     2          1               *        
+10.0.1.34/32     5          4               *        
+10.0.1.255/32    5          4               *        
+10.10.10.1/32    1          1               *        
+10.10.10.2/32    5          1               *        
+10.10.10.3/32    5          4               *        
+10.10.10.4/32    5          4               *        
+10.10.10.63/32   5          4               *        
+10.10.10.64/32   5          4               *        
+10.10.10.101/32  2          1               *        
+10.10.10.102/32  2          1               *        
+10.10.10.103/32  2          1               *        
+10.10.10.104/32  2          1               *
 ```
 
 ## Considerations

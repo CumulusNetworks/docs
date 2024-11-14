@@ -1059,7 +1059,7 @@ To make a configuration change:
 {{< tab "Curl Command ">}}
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"99.99.99.99/32": {}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:876nvue_v1/interface/lo/ip/address?rev=2
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"99.99.99.99/32": {}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface/lo/ip/address?rev=2
 {
   "99.99.99.99/32": {}
 }
@@ -1511,9 +1511,11 @@ To see the views available for a show command, run the command with `--view` and
 
 ```
 cumulus@switch:~$ nv show interface --view <<TAB>>
-acl-statistics  detail          lldp            mlag-cc         port-security   synce-counters  
-brief           dot1x-counters  lldp-detail     neighbor        qos-profile     
-counters        dot1x-summary   mac             pluggables      small
+acl-statistics  description     lldp            physical        status          
+bond-members    detail          lldp-detail     pluggables      svi             
+bonds           dot1x-counters  mac             port-security   synce-counters  
+brief           dot1x-summary   mlag-cc         qos-profile     up              
+counters        down            neighbor        small           vrf
 ```
 
 ```
@@ -3203,11 +3205,13 @@ cumulus@switch:~$ nv action clear interface swp1 qos counter
 {{< /tab >}}
 {{< /tabs >}}
 
-## Example Python Script
+### Example Python Scripts
+
+### Configuration example
 
 In the following python example, the `full_config_example()` method sets the system pre-login message, enables BGP globally, and changes a few other configuration settings in a single bulk operation. The API end-point goes to the root node `/nvue_v1`. The `bridge_config_example()` method performs a targeted API request to `/nvue_v1/bridge/domain/<domain-id>` to set the `vlan-vni-offset` attribute.
 
-{{< expand "Example Python Script" >}}
+{{< expand "Example Configuration Script" >}}
 
 ```
 #!/usr/bin/env python3
@@ -3439,6 +3443,362 @@ if __name__ == "__main__":
     bridge_config_example("br_default")
     time.sleep(DUMMY_SLEEP)
     message_get()
+```
+
+{{< /expand >}}
+
+### Link manipulation example
+
+In the following example, `get_link_status()` fetches the current running state of the switches passed as a parameter. The `link_status_down()` brings the down the `totalLinks` links between `leafs` and `spines` passed as parameters. It discovers the neighbor switches using LLDP and filters out the interfaces that are not 400G or swp. The `link_status_up()` brings the previously brought down `downLinks` up.
+
+{{< expand "Link Status Manipulation Script" >}}
+
+```
+#!/usr/bin/env python3
+
+import requests
+from requests.auth import HTTPBasicAuth
+import json
+import time
+from urllib3.exceptions import InsecureRequestWarning
+
+
+auth = HTTPBasicAuth(username="vagrant", password="vagrant")
+mime_header = {"Content-Type": "application/json"}
+
+DUMMY_SLEEP = 5  # In seconds
+POLL_APPLIED = 1  # in seconds
+RETRIES = 10
+ 
+# Suppress the warnings from urllib3
+requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
+
+def print_request(r: requests.Request):
+    print("API URL:", r.url)
+    print("API Body:", r.body)
+
+def print_response(r: requests.Response):
+    print("API response:", json.dumps(r.json(), indent=2))
+
+def create_nvue_changest(url):
+    r = requests.post(url=url + "/revision",
+                      auth=auth,
+                      verify=False)
+    print_response(r)
+    response = r.json()
+    changeset = response.popitem()[0]
+    return changeset
+
+def apply_nvue_changeset(url,changeset):
+    apply_payload = {"state": "apply", "auto-prompt": {"ays": "ays_yes"}}
+    url = url + "/revision/" + requests.utils.quote(changeset,
+                                                               safe="")
+    r = requests.patch(url=url,
+                       auth=auth,
+                       verify=False,
+                       data=json.dumps(apply_payload),
+                       headers=mime_header)
+    print_response(r)
+
+def is_config_applied(url,changeset) -> bool:
+    # Check if the configuration was indeed applied
+    global RETRIES
+    global POLL_APPLIED
+    retries = RETRIES
+    while retries > 0:
+        r = requests.get(url=url + "/revision/" + requests.utils.quote(changeset, safe=""),
+                         auth=auth,
+                         verify=False)
+        response = r.json()
+
+        if response["state"] == "applied":
+            return True
+        retries -= 1
+        time.sleep(POLL_APPLIED)
+    return False
+
+def apply_new_config(url,path,payload):
+    # Create a new revision ID
+    changeset = create_nvue_changest(url)
+    print("Using NVUE Changeset: '{}'".format(changeset))
+
+    # Patch the new configuration
+    query_string = {"rev": changeset}
+    r = requests.patch(url=url + path,
+                       auth=auth,
+                       verify=False,
+                       data=json.dumps(payload),
+                       params=query_string,
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+    # Apply the changes to the new revision changeset
+    apply_nvue_changeset(url,changeset)
+
+    # Check if the changeset was applied
+    is_config_applied(url,changeset)
+
+def nvue_get(url,path):
+    r = requests.get(url=url + path,
+                     auth=auth,
+                     verify=False)
+    return(r.json())
+
+def get_link_status(switches):
+    print("===Current Link State===")
+    for switch in switches:
+        print("===Switch name: " + switch + "===")
+        interfaces = nvue_get("https://" + switch + ":8765/nvue_v1","/interface")
+        for interface in interfaces:
+            if "swp" in interface:
+                print("Interface: " + interface)
+                for state in interfaces[interface]['link']['state']:
+                    print("State: " + state)
+
+def link_status_down(spines, leafs, totalLinks):
+    # Bring down switch-leaf interfaces
+    # Discover LLDP neighbor of the switch interfaces (swp with link speed 400G)
+    # Collate interfaces per leaf eg: leaf01 = ["swp1s0","swp1s1"]
+    discovery = {}
+    leafDiscovery = {}
+    for spine in spines:
+        leafDiscovery[spine] = {}
+        for leaf in leafs:
+            leafDiscovery[spine][leaf] = []
+        discovery[spine] = []
+        interfaces = nvue_get("https://" + spine +":8765/nvue_v1","/interface?rev=operational")
+        for interface in interfaces:
+            if "swp" in interface and "speed" in interfaces[interface]["link"].keys():
+                if interfaces[interface]["link"]["speed"] == "400G":
+                    details = {}
+                    details["LocalPort"] = interface
+                    if "lldp" in interfaces[interface].keys():
+                        for neighbor in interfaces[interface]["lldp"]["neighbor"]:
+                            details["Neighbor"] = neighbor
+                            details["RemotePort"] = interfaces[interface]["lldp"]["neighbor"][neighbor]['port']['name']
+                            if neighbor in leafs:
+                                leafDiscovery[spine][neighbor].append({"LocalPort": details["LocalPort"], "RemotePort": details["RemotePort"]})
+                        discovery[spine].append(details)
+                    else:
+                        print(spine + " - " + interface + " - No neighbors found!")
+                else:
+                    print(spine + " - " + interface + " is not a 400G interface!")
+            else:
+                print(spine + " - " + interface + " is not a swp or/and we are unable to determine the link speed!")
+
+    for switch in discovery:
+        print("Switch name: " + switch)
+        if not discovery[switch]:
+            print("No neighbors found!")
+        else:
+            print("\nLocal port Neighbor Remote port\n---------- -------- -----------\n")
+            for port in discovery[switch]:
+                print(port["LocalPort"] + "  " + port["Neighbor"] + "  " + port["RemotePort"] + "\n")
+        
+    # Bring down the links
+    downLinks = {}
+    for spine in leafDiscovery:
+        downLinks[spine] = []
+        for leaf in leafDiscovery[spine]:
+            downLinks[leaf] = []
+            if not leafDiscovery[switch][leaf]:
+                print("No link(s) between " + leaf + " and " + spine)
+            else:
+                spineBody = {}
+                leafBody = {}
+                print("===Bringing down " + str(totalLinks) + " link(s) between " + leaf + " and " + spine + "===")
+                i = 0
+                for interfaces in leafDiscovery[switch][leaf]:
+                    if i < totalLinks:
+                        # Build the spine int body
+                        spineBody[interfaces['LocalPort']] = {'link':{'state':{interfaceState:{}}}}
+                        downLinks[spine].append(interfaces['LocalPort'])
+                        # Build the leaf int body
+                        leafBody[interfaces['RemotePort']] = {'link':{'state':{interfaceState:{}}}}
+                        downLinks[leaf].append(interfaces['RemotePort'])
+                        i += 1
+                    else:
+                        break
+                apply_new_config("https://" + spine + ":8765/nvue_v1","/interface",spineBody)
+                apply_new_config("https://" + leaf + ":8765/nvue_v1","/interface",leafBody)
+        return downLinks
+ 
+def link_status_up(downLinks):
+        # Bring the links up
+        # The script assumes that the links were first brought down, and passed as a parameter
+        for switch in downLinks:
+            switchBody = {}
+            print("===Bringing up the links on " + switch + "===")
+            for interface in downLinks[switch]:
+                switchBody[interface] = {'link':{'state':{interfaceState:{}}}}
+            apply_new_config("https://" + switch + ":8765/nvue_v1","/interface",switchBody)
+
+if __name__ == "__main__":
+    switches = ['leaf01','leaf02','spine01']
+    spines = ['spine01']
+    leafs = ['leaf01', 'leaf02']
+    time.sleep(DUMMY_SLEEP)
+    get_link_status(switches)
+    time.sleep(DUMMY_SLEEP)
+    downLinks = link_status_down(spines, leafs, 1)
+    time.sleep(DUMMY_SLEEP)
+    link_status_up(downLinks)
+    get_link_status(switches)
+
+```
+
+{{< /expand >}}
+
+### Reboot example
+
+In the following example, `switch_reboot()` reboots the switches passed as a parameter. The `issu_reboot()` triggers ISSU (In System Service Upgrade) on the switches passed as a parameter, and reboots the switch in the `reboot_mode` defined.
+
+{{< expand "ISSU and Switch Reboot Script" >}}
+
+```
+#!/usr/bin/env python3
+
+import requests
+from requests.auth import HTTPBasicAuth
+import json
+import time
+from urllib3.exceptions import InsecureRequestWarning
+
+
+auth = HTTPBasicAuth(username="vagrant", password="vagrant")
+mime_header = {"Content-Type": "application/json"}
+
+DUMMY_SLEEP = 5  # In seconds
+POLL_APPLIED = 1  # in seconds
+RETRIES = 10
+ 
+# Suppress the warnings from urllib3
+requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
+
+def print_request(r: requests.Request):
+    print("API URL:", r.url)
+    print("API Body:", r.body)
+
+def print_response(r: requests.Response):
+    print("API response:", json.dumps(r.json(), indent=2))
+
+def create_nvue_changest(url):
+    r = requests.post(url=url + "/revision",
+                      auth=auth,
+                      verify=False)
+    print_response(r)
+    response = r.json()
+    changeset = response.popitem()[0]
+    return changeset
+
+def apply_nvue_changeset(url,changeset):
+    apply_payload = {"state": "apply", "auto-prompt": {"ays": "ays_yes"}}
+    url = url + "/revision/" + requests.utils.quote(changeset,
+                                                               safe="")
+    r = requests.patch(url=url,
+                       auth=auth,
+                       verify=False,
+                       data=json.dumps(apply_payload),
+                       headers=mime_header)
+    print_response(r)
+
+def is_config_applied(url,changeset) -> bool:
+    # Check if the configuration was indeed applied
+    global RETRIES
+    global POLL_APPLIED
+    retries = RETRIES
+    while retries > 0:
+        r = requests.get(url=url + "/revision/" + requests.utils.quote(changeset, safe=""),
+                         auth=auth,
+                         verify=False)
+        response = r.json()
+
+        if response["state"] == "applied":
+            return True
+        retries -= 1
+        time.sleep(POLL_APPLIED)
+    return False
+
+def apply_new_config(url,path,payload):
+    # Create a new revision ID
+    changeset = create_nvue_changest(url)
+    print("Using NVUE Changeset: '{}'".format(changeset))
+
+    # Patch the new configuration
+    query_string = {"rev": changeset}
+    r = requests.patch(url=url + path,
+                       auth=auth,
+                       verify=False,
+                       data=json.dumps(payload),
+                       params=query_string,
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+    # Apply the changes to the new revision changeset
+    apply_nvue_changeset(url,changeset)
+
+    # Check if the changeset was applied
+    is_config_applied(url,changeset)
+
+def nvue_post_action(url,payload):
+    r = requests.post(url=url,
+                    auth=auth,
+                    verify=False,
+                    data=json.dumps(payload),
+                    headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+def nvue_get(url,path):
+    r = requests.get(url=url + path,
+                     auth=auth,
+                     verify=False)
+    return(r.json())
+
+def switch_reboot(switches):
+    for switch in switches:
+        # Reboot the switch
+        payload = {
+            "@reboot":{
+                "state":"start",
+                "parameters":{
+                    "no-confirm": True
+                    }
+                }
+            }
+        nvue_post_action("https://" + switch + ":8765/nvue_v1/system",payload)
+
+        # Verify if switch is pingable
+        hostUP = True
+        time.sleep(DUMMY_SLEEP) # wait before reboot starts
+        while hostUP:
+            hostUP  = os.system(f"ping -c 1 {switch}") == 1
+            time.sleep(POLL_APPLIED)
+        print(json.dumps(nvue_get("https://" + switch + ":8765/nvue_v1","/system/reboot")["history"]["1"]))
+
+def issu_reboot(switches, mode):
+    for switch in switches:
+        # Configure ISSU in fast/warm mode
+        body = {
+            "reboot":{
+                "mode": mode
+            }
+
+        }
+        apply_new_config("https://" + switch + ":8765/nvue_v1","/system",body)
+        
+    switch_reboot(switches)
+
+if __name__ == "__main__":
+    switches = ['leaf01','leaf02','spine01']
+    issu_switches = ['spine01']
+    time.sleep(DUMMY_SLEEP)
+    switch_reboot(switches)
+    time.sleep(DUMMY_SLEEP)
+    issu_reboot(issu_switches, "fast")
+
 ```
 
 {{< /expand >}}

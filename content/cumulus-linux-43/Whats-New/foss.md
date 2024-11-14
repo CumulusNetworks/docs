@@ -7,7 +7,16 @@ version: "4.3"
 toc: 1
 pdfhidden: True
 ---
-## 4.3.2 Open Source Software Licenses 
+## 4.3.3 Packages
+
+Cumulus Linux 4.3.3 provides a new SDK and kernel version:
+- SDK: 6.5.14-cl4u4 Broadcom
+- Kernel: 4.19.321
+
+All other open source software licenses are the same as those listed in Cumulus Linux 4.3.2 Open Source Software Licenses, below.
+
+## 4.3.2 Open Source Software Licenses
+
 | Package | Version | License(s) |
 |---	        |---	        |---	    |
 | {{<foss_file text="acpi" url="cumulus-linux-43/Whats-New/licenses/acpi.txt" >}} | 1.7-1.1 | GPL |

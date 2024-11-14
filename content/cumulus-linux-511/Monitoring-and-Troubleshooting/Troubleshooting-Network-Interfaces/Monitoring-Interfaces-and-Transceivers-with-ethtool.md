@@ -105,9 +105,9 @@ To see the `cl-netstat` command options, run the `cl-netstat -h` command.
 Some services, such as {{<link url="Multi-Chassis-Link-Aggregation-MLAG/#large-packet-drops-on-the-peer-link-interface" text="MLAG">}} and {{<link url="DHCP-Relays/#considerations" text="DHCP">}} can cause drop counters to increment as expected and do not cause a problem on the switch.
 {{%/notice%}}
 
-## Monitor Switch Port SFP and QSFP Hardware Information
+## Monitor Switch Port Hardware Information
 
-To see hardware capabilities and measurement information on the SFP or QSFP module in a particular port, use the `ethtool -m` command. If the SFP or QSFP supports Digital Optical Monitoring (the `Optical diagnostics support` field is *Yes* in the output below), the optical power levels and thresholds also show below the standard hardware details.
+To see hardware capabilities and measurement information on the module in a particular port, use the `ethtool -m` command. If the module supports Digital Optical Monitoring (the `Optical diagnostics support` field is *Yes* in the output below), the optical power levels and thresholds also show below the standard hardware details.
 
 In the sample output below, you can see that this module is a 1000BASE-SX short-range optical module, manufactured by JDSU, part number PLRXPL-VI-S24-22. The second half of the output displays the current readings of the `Tx` power levels (`Laser output power`) and Rx power (`Receiver signal average optical power`), temperature, voltage and alarm threshold settings.
 

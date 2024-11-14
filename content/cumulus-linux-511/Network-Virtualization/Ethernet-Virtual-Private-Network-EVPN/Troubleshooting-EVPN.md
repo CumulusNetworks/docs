@@ -38,48 +38,39 @@ The following shows example output for the `nv show bridge domain <domain> mac-t
 -->
 ```
 cumulus@leaf01:mgmt:~$ nv show bridge domain br_default mac-table
-entry-id  age    bridge-domain  entry-type    interface   last-update  MAC address        remote-dst       src-vni  vlan
---------  -----  -------------  ------------  ----------  -----------  -----------------  ---------------  -------  ----
-1         12562  br_default     static        bond1       12562        48:b0:2d:98:61:d4                            10  
-2         22     br_default     static        bond1       10550        48:b0:2d:72:9d:99                            10  
-3         12777  br_default     permanent     bond1       12777        48:b0:2d:4c:da:d9                                
-4         12562  br_default     extern_learn  vxlan48     12562        48:b0:2d:aa:b7:0c                            10  
-5         12573  br_default     extern_learn  vxlan48     10549        48:b0:2d:ff:b8:07                            10  
-6         12773  br_default     extern_learn  vxlan48     12773        44:38:39:22:01:8a                            10  
-7         12773  br_default     extern_learn  vxlan48     12773        44:38:39:22:01:8a                            30  
-8         12773  br_default     extern_learn  vxlan48     12773        44:38:39:22:01:8a                            20  
-9         12773  br_default     extern_learn  vxlan48     116          44:38:39:22:01:78                            10  
-10        12773  br_default     extern_learn  vxlan48     98           44:38:39:22:01:78                            30  
-11        12773  br_default     extern_learn  vxlan48     86           44:38:39:22:01:78                            20  
-12        12774  br_default     extern_learn  vxlan48     12556        44:38:39:22:01:84                            20  
-13        12774  br_default     extern_learn  vxlan48     12566        44:38:39:22:01:84                            30  
-14        12774  br_default     extern_learn  vxlan48     12774        44:38:39:22:01:84                            10  
-15        12777  br_default     permanent     vxlan48     12777        76:2e:db:01:52:0e                                
-16        12773                 extern_learn  vxlan48     116          44:38:39:22:01:78  10.10.10.2       10           
-17        12562                 extern_learn  vxlan48     12562        48:b0:2d:aa:b7:0c  nhid: 536870916  10           
-18        12773                 extern_learn  vxlan48     12773        44:38:39:22:01:8a  10.10.10.4       30           
-19        12773                 extern_learn  vxlan48     86           44:38:39:22:01:78  10.10.10.2       20           
-20        12774                 extern_learn  vxlan48     12774        44:38:39:22:01:84  10.10.10.3       10           
-21        12773                 extern_learn  vxlan48     98           44:38:39:22:01:78  10.10.10.2       30           
-22        12573                 extern_learn  vxlan48     10549        48:b0:2d:ff:b8:07  nhid: 536870916  10           
-23        12774                 extern_learn  vxlan48     12566        44:38:39:22:01:84  10.10.10.3       30           
-24        12774                 extern_learn  vxlan48     12556        44:38:39:22:01:84  10.10.10.3       20           
-25        12773                 extern_learn  vxlan48     12773        44:38:39:22:01:8a  10.10.10.4       10           
-26        12773                 permanent     vxlan48     25           00:00:00:00:00:00  10.10.10.3       20           
-27        12773                 permanent     vxlan48     25           00:00:00:00:00:00  10.10.10.2       20           
-28        12773                 permanent     vxlan48     25           00:00:00:00:00:00  10.10.10.4       20           
-29        12773                 permanent     vxlan48     41           00:00:00:00:00:00  10.10.10.3       30           
-30        12773                 permanent     vxlan48     41           00:00:00:00:00:00  10.10.10.2       30           
-31        12773                 permanent     vxlan48     41           00:00:00:00:00:00  10.10.10.4       30           
-32        12773                 permanent     vxlan48     47           00:00:00:00:00:00  10.10.10.3       10           
-33        12773                 permanent     vxlan48     47           00:00:00:00:00:00  10.10.10.2       10           
-34        12773                 permanent     vxlan48     47           00:00:00:00:00:00  10.10.10.4       10           
-35        12773                 extern_learn  vxlan48     12773        44:38:39:22:01:8a  10.10.10.4       20           
-36        12562  br_default     static        bond2       12562        48:b0:2d:ac:01:da                            20  
-37        21     br_default     static        bond2       12556        48:b0:2d:8f:4b:ff                            20  
-38        12777  br_default     permanent     bond2       12777        48:b0:2d:f9:41:f5                                
-39        12562  br_default     static        bond3       12562        48:b0:2d:2d:8b:15                            30  
-40        21     br_default     static        bond3       12566        48:b0:2d:56:1a:96                            30
+entry-id  MAC address        vlan  interface   remote-dst   src-vni  entry-type    last-update  age    
+--------  -----------------  ----  ----------  -----------  -------  ------------  -----------  -------
+1         48:b0:2d:fd:d3:bf  10    vxlan48                           extern_learn  8:06:02      8:06:02
+2         48:b0:2d:4e:1c:fe  20    vxlan48                           extern_learn  8:06:02      8:06:02
+3         48:b0:2d:a7:4d:ce  30    vxlan48                           extern_learn  8:06:02      8:06:02
+4         48:b0:2d:53:d2:34  20    vxlan48                           extern_learn  8:06:30      8:06:30
+5         44:38:39:be:ef:bb  4063  vxlan48                           extern_learn  8:06:30      8:06:30
+6         48:b0:2d:2d:5f:b3  30    vxlan48                           extern_learn  8:06:32      8:06:32
+7         44:38:39:be:ef:bb  4006  vxlan48                           extern_learn  8:06:32      8:06:32
+8         48:b0:2d:93:a1:3e  10    vxlan48                           extern_learn  8:06:35      8:06:35
+9         44:38:39:22:01:74  4006  vxlan48                           extern_learn  8:06:38      8:06:38
+10        44:38:39:22:01:74  4063  vxlan48                           extern_learn  8:06:38      8:06:38
+11        44:38:39:22:01:7c  4006  vxlan48                           extern_learn  8:06:39      8:06:39
+12        44:38:39:22:01:7c  4063  vxlan48                           extern_learn  8:06:39      8:06:39
+13        44:38:39:22:01:8a  30    vxlan48                           extern_learn  8:06:42      8:06:42
+14        44:38:39:22:01:8a  20    vxlan48                           extern_learn  8:06:42      8:06:42
+15        44:38:39:22:01:8a  10    vxlan48                           extern_learn  8:06:42      8:04:05
+16        44:38:39:22:01:84  10    vxlan48                           extern_learn  8:06:43      8:06:43
+17        44:38:39:22:01:84  30    vxlan48                           extern_learn  8:06:43      8:06:15
+18        44:38:39:22:01:84  20    vxlan48                           extern_learn  8:06:43      8:06:43
+19        44:38:39:22:01:8a  4006  vxlan48                           extern_learn  8:06:43      8:06:43
+20        44:38:39:22:01:8a  4063  vxlan48                           extern_learn  8:06:43      8:06:43
+21        44:38:39:22:01:84  4063  vxlan48                           extern_learn  8:06:43      8:06:43
+22        44:38:39:22:01:84  4006  vxlan48                           extern_learn  8:06:43      8:06:43
+23        44:38:39:22:01:78  4063  vxlan48                           extern_learn  8:06:43      8:06:43
+24        44:38:39:22:01:78  4006  vxlan48                           extern_learn  8:06:43      8:06:43
+25        02:91:8d:cf:03:b2        vxlan48                           permanent     8:06:56      8:06:56
+26        00:00:00:00:00:00        vxlan48     10.0.1.34    30       permanent     8:06:43      0:28:22
+27        44:38:39:22:01:78        vxlan48     10.10.10.2   4001     extern_learn  8:06:43      8:06:43
+28        44:38:39:22:01:8a        vxlan48     10.0.1.34    30       static        8:06:43      8:06:43
+29        48:b0:2d:fd:d3:bf        vxlan48     10.0.1.34    10       extern_learn  8:06:02      8:06:02
+30        44:38:39:22:01:84        vxlan48     10.0.1.34    10       extern_learn  8:06:43      8:06:43
+31        48:b0:2d:2d:5f:b3        vxlan48     10.0.1.34    30       extern_learn  8:06:32      8:06:32
 ...
 ```
 
@@ -131,34 +122,25 @@ vxlan48        10.10.10.63                44:38:39:22:01:74  noarp      |ext_lea
 The following command shows the VLAN to VNI mapping for all bridges:
 
 ```
-cumulus@switch:mgmt:~$ nv show bridge vlan-vni-map
-br_default  VLAN-VNI-Offset: None 
-
-VLAN  VNI
-----  -----   
-10    10  
-20    20  
-30    30  
-
-br1   VLAN-VNI-Offset: None 
-
-VLAN  VNI     
-----  -----   
-40   40   
-50   50
+cumulus@switch:mgmt:~$nv show bridge vlan-vni-map
+br_default vlan-vni-offset: 0         
+      VLAN        VNI         
+      ----        -------     
+      10          10          
+      20          20          
+      30          30
 ```
 
 The following command shows the VLAN to VNI mapping for a specific bridge:
 
 ```
 cumulus@switch:mgmt:~$ nv show bridge domain br_default vlan-vni-map
-br_default  VLAN-VNI-Offset: None 
-
-VLAN  VNI
-----  -----   
-10    10
-20    20   
-30    30   
+vlan-vni-offset: 0         
+      VLAN        VNI         
+      ----        -------     
+      10          10          
+      20          20          
+      30          30   
 ```
 
 ## General BGP Commands
@@ -299,57 +281,55 @@ Flags: * - Kernel
 * 4001       L3   10.1.20.2:5           65101:4001                65101:4001               RED
 ```
 
-Run the vtysh `show evpn vni` command to see a summary of all VNIs and the number of MAC or ARP entries associated with each VNI.
+Run the NVUE `nv show evpn vni` command or the vtysh `show evpn vni` command to see a summary of all VNIs and the number of MAC or ARP entries associated with each VNI.
 
 ```
-cumulus@leaf01:mgmt:~$ sudo vtysh
-...
-leaf01# show evpn vni
-VNI        Type VxLAN IF              # MACs   # ARPs   # Remote VTEPs  Tenant VRF
-20         L2   vni20                 8        5        1               RED
-30         L2   vni30                 8        4        1               BLUE
-10         L2   vni10                 8        6        1               RED
-4001       L3   vniRED                1        1        n/a             RED
-4002       L3   vniBLUE               0        0        n/a             BLUE
+cumulus@leaf01:mgmt:~$ nv show evpn vni 
+NumMacs - Number of MACs (local and remote) known for this VNI, NumArps - Number
+of ARPs (IPv4 and IPv6, local and remote) known for this VNI                    
+, NumRemVteps - Number of Remote Vteps, Bridge - Bridge to which the vni        
+belongs, Vlan - VLAN assoicated to MAC                                          
+VNI  NumMacs  NumArps  NumRemVteps  TenantVrf  Bridge      Vlan
+---  -------  -------  -----------  ---------  ----------  ----
+10   7        4        1            RED        br_default  10  
+20   7        4        1            RED        br_default  20  
+30   7        4        1            BLUE       br_default  30  
 ```
-
-You can also show the above information with the NVUE `nv show evpn vni` and `nv show vrf <vrf> evpn vni` commands.
 
 Run the NVUE `nv show evpn vni <vni>` command or the vtysh `show evpn vni <vni>` command to examine EVPN information for a specific VNI in detail. The following example output shows details for the layer 2 VNI 10. The output shows the remote VTEPs that contain that VNI.
 
 ```
 cumulus@leaf01:mgmt:~$ nv show evpn vni 10
+-----------------  -----------  -------
                    operational  applied
 -----------------  -----------  -------
 route-advertise                        
-  default-gateway  off                 
   svi-ip           off                 
-[remote-vtep]      10.10.10.2          
-[remote-vtep]      10.10.10.3          
-[remote-vtep]      10.10.10.4          
-bridge-domain      br_default          
-host-count         4                   
-local-vtep         10.10.10.1          
-mac-count          8                   
-remote-vtep-count  3                   
-tenant-vrf         RED                 
+  default-gateway  off                 
+[remote-vtep]      10.0.1.34           
 vlan               10                  
-vxlan-interface    vxlan48
+bridge-domain      br_default          
+tenant-vrf         RED                 
+vxlan-interface    vxlan48             
+mac-count          7                   
+host-count         4                   
+remote-vtep-count  1                   
+local-vtep         10.0.1.12
 ```
 
 To show VNI BGP information run the NVUE `nv show evpn vni <id> bgp-info` and `nv show vrf <vrf_id> evpn bgp-info` commands, or the vtysh `show bgp l2vpn evpn vni <vni>` command.
 
 ```
 cumulus@border01:mgmt:~$ nv show vrf RED evpn bgp-info
-                       operational        applied
----------------------  -----------------  -------
-local-vtep             10.0.1.255                
-rd                     10.10.10.63:3             
-router-mac             44:38:39:be:ef:ff         
-system-ip              10.10.10.63               
-system-mac             44:38:39:22:01:74         
-[export-route-target]  65253:4001                
-[import-route-target]  65253:4001
+                       operational      
+---------------------  -----------------
+rd                     10.10.10.1:3     
+local-vtep             10.0.1.12        
+router-mac             44:38:39:be:ef:aa
+system-mac             44:38:39:22:01:7a
+system-ip              10.10.10.1       
+[import-route-target]  65101:4001       
+[export-route-target]  65101:4001
 ```
 
 ## Examine Local and Remote MAC Addresses for a VNI
@@ -358,18 +338,17 @@ Run the NVUE `nv show evpn vni <vni> mac` command or the vtysh `show evpn mac vn
 
 ```
 cumulus@leaf01:mgmt:~$ nv show evpn vni 10 mac                                                                               
-LocMobSeq - local mobility sequence, RemMobSeq - remote mobility sequence,       
-RemoteVtep - Remote Vtep address, Esi - Remote Esi                               
-                                                                                 
-MAC address        Type    State  LocMobSeq  RemMobSeq  Interface  RemoteVtep  Esi
------------------  ------  -----  ---------  ---------  ---------  ----------  ---
-44:38:39:22:01:7a  local          0          0          vlan10                    
-44:38:39:22:01:8a  remote         0          0                     10.0.1.34      
-44:38:39:22:01:84  remote         0          0                     10.0.1.34      
-48:b0:2d:0c:a9:f4  remote         0          0                     10.0.1.12      
-48:b0:2d:3a:a3:38  local          1408       1407       bond1                     
-48:b0:2d:d2:ac:68  remote         0          0                     10.0.1.34      
-48:b0:2d:eb:26:6e  remote         1          0                     10.0.1.34      
+LocMobSeq - local mobility sequence, RemMobSeq - remote mobility sequence,      
+RemoteVtep - Remote Vtep address, Esi - Remote Esi                              
+MAC address        Type    LocMobSeq  RemMobSeq  Interface  RemoteVtep  Esi
+-----------------  ------  ---------  ---------  ---------  ----------  ---
+44:38:39:22:01:8a  remote  0          0                     10.0.1.34      
+44:38:39:22:01:78  local   0          0          peerlink                  
+44:38:39:22:01:84  remote  0          0                     10.0.1.34      
+48:b0:2d:5c:8a:ee  local   0          0          bond1                     
+48:b0:2d:29:c0:bb  remote  0          0                     10.0.1.34      
+48:b0:2d:c9:f8:14  remote  0          0                     10.0.1.34      
+48:b0:2d:fa:72:e7  local   0          0          bond      
 ```
 
 Run the vtysh `show evpn mac vni all` command to examine MAC addresses for all VNIs.
@@ -455,8 +434,8 @@ To show the router MAC address for a specific next hop, run the NVUE `nv show vr
 
 ```
 cumulus@leaf01:mgmt:~$ nv show vrf RED evpn nexthop-vtep 10.10.10.2
-            operational        applied
-----------  -----------------  -------
+            operational       
+----------  -----------------
 router-mac  44:38:39:22:01:78
 ```
 
@@ -478,24 +457,47 @@ To show the VTEP IP addresses for the next hop groups, run the `nv show evpn l2-
 
 ## Show Access VLANs
 
-To show access VLANs on the switch and their corresponding VNI, run the NVUE `nv show evpn access-vlan-info vlan` command or the vtysh `show evpn access-vlan` command.
+To show access VLANs on the switch and their corresponding VNI, run the NVUE `nv show evpn access-vlan-info` command or the vtysh `show evpn access-vlan` command.
 
 ```
-cumulus@border01:mgmt:~$ nv show evpn access-vlan-info vlan
-Vlan-id  member-interface-count  vni  vni-count  vxlan-interface  Summary                
--------  ----------------------  ---  ---------  ---------------  -----------------------
-10       1                       10   1          vxlan48          member-interface: bond1
-20       1                       20   1          vxlan48          member-interface: bond2
-30       1                       30   1          vxlan48          member-interface: bond3
-220                                   1          vxlan99                                 
-297                                   1          vxlan99      
+cumulus@border01:mgmt:~$ nv show evpn access-vlan-info
+vlan
+=======
+    Id    MemberCnt  Vni  VniCnt  VxlanIntf  MemberIntf
+    ----  ---------  ---  ------  ---------  ----------
+    1     1                                  peerlink  
+    10    2          10   1       vxlan48    bond1     
+                                             peerlink  
+    20    2          20   1       vxlan48    bond2     
+                                             peerlink  
+    30    2          30   1       vxlan48    bond3     
+                                             peerlink  
+    4006                  1       vxlan48              
+    4063                  1       vxlan48    
 ```
 
 You can drill down and show information about a specific vlan with the `nv show evpn access-vlan-info vlan <vlan>` command.
 
 ## Show the VRF Routing Table in FRR
 
-Run the vtysh `show ip route vrf <vrf-name>` command to examine the VRF routing table. Use this command for symmetric routing to verify that remote host and prefix routes are in the VRF routing table and point to the appropriate gateway next hop.
+Run the NVUE `nv show vrf <vrf-id> router rib <address-family> route` command or the vtysh `show ip route vrf <vrf-name>` command to examine the VRF routing table. Use this command for symmetric routing to verify that remote host and prefix routes are in the VRF routing table and point to the appropriate gateway next hop.
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf RED router rib ipv4 route
+                                                                                
+Flags - * - selected, q - queued, o - offloaded, i - installed, S - fib-        
+selected, x - failed                                                            
+                                                                                
+Route           Protocol   Distance  Uptime                NHGId  Metric  Flags
+--------------  ---------  --------  --------------------  -----  ------  -----
+0.0.0.0/0       kernel     255       2024-10-25T14:02:23Z  21     8192    *Si  
+10.1.10.0/24    connected  0         2024-10-25T14:02:33Z  100    1024    io   
+                connected  0         2024-10-25T14:02:33Z  88     0       *Sio 
+10.1.20.0/24    connected  0         2024-10-25T14:02:33Z  103    1024    io   
+                connected  0         2024-10-25T14:02:33Z  92     0       *Sio 
+10.1.20.105/32  bgp        20        2024-10-25T14:02:46Z  166    0       *Si  
+10.1.30.0/24    bgp        20        2024-10-25T14:02:39Z  154    0       *Si
+```
 
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh
@@ -610,172 +612,87 @@ macip: MAC-IP (Type-2) route
 multicast: Multicast
 prefix: An IPv4 or IPv6 prefix
 
-## Show the EVPN Local RIB
-
-To show the EVPN local RIB, run the `nv show vrf <vrf> router bgp address-family l2vpn-evpn loc-rib` command. This command shows the local RIB in brief format to improve performance for high scale environments. To show the local RIB in more detail, run the `nv show vrf <vrf> router bgp address-family l2vpn-evpn loc-rib --view=detail` command. To show the local RIB in json format, run the `nv show vrf <vrf> router bgp address-family l2vpn-evpn loc-rib -o json` command.
-
-```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-rib
-rd
-=====
-                                                                                
-    PathCnt - Number of paths present for the prefix, MultipathCount - Number of    
-    paths that are part of the ECMP, RouteType - Route type, Route - Route ID,      
-    EVPNPrefixStr - EVPN prefix string, VNI - Peer VNI, Weight - Path Weight        
-                                                                                
-    RD             PathCnt  MultipathCount  DestFlags        RouteType  Route                EVPNPrefixStr                                                       VNI  Weight
-    -------------  -------  --------------  ---------------  ---------  -------------------  ------------------------------------------------------------------  ---  ------
-    10.10.10.1:2   5        1               bestpath-exists  5          0+10.1.30.0/24       [5]:[0]:[24]:[10.1.30.0]                                                       
-    10.10.10.1:3   5        1               bestpath-exists  5          0+10.1.10.0/24       [5]:[0]:[24]:[10.1.10.0]                                                       
-                   5        1               bestpath-exists                                  [5]:[0]:[24]:[10.1.20.0]                                                       
-    10.10.10.2:2   1        1               bestpath-exists  5          0+10.1.30.0/24       [5]:[0]:[24]:[10.1.30.0]                                                       
-    10.10.10.2:3   1        1               bestpath-exists  5          0+10.1.10.0/24       [5]:[0]:[24]:[10.1.10.0]                                                       
-                   1        1               bestpath-exists                                  [5]:[0]:[24]:[10.1.20.0]                                                       
-    10.10.10.2:4   1        1               bestpath-exists  2          0+44:38:39:22:01:7a  [2]:[0]:[48]:[44:38:39:22:01:7a]                                               
-                   1        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:11:fe:7e]                                               
-                   1        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:dc:a4:c5]                                               
-                   1        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:dc:a4:c5]:[32]:[10.1.20.102]                            
-                   1        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:dc:a4:c5]:[128]:[fe80::4ab0:2dff:fedc:a4c5]             
-                   1        1               bestpath-exists             0+10.0.1.12          [3]:[0]:[32]:[10.0.1.12]                                                       
-    10.10.10.2:5   1        1               bestpath-exists  2          0+44:38:39:22:01:7a  [2]:[0]:[48]:[44:38:39:22:01:7a]                                               
-                   1        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:98:57:4e]                                               
-                   1        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:ee:bf:d3]                                               
-                   1        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:ee:bf:d3]:[32]:[10.1.30.103]                            
-                   1        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:ee:bf:d3]:[128]:[fe80::4ab0:2dff:feee:bfd3]             
-                   1        1               bestpath-exists             0+10.0.1.12          [3]:[0]:[32]:[10.0.1.12]                                                       
-    10.10.10.2:6   1        1               bestpath-exists  2          0+44:38:39:22:01:7a  [2]:[0]:[48]:[44:38:39:22:01:7a]                                               
-                   1        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:ac:26:be]                                               
-                   1        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:ac:26:be]:[32]:[10.1.10.101]                            
-                   1        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:ac:26:be]:[128]:[fe80::4ab0:2dff:feac:26be]             
-                   1        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:d4:1e:6b]                                               
-                   1        1               bestpath-exists             0+10.0.1.12          [3]:[0]:[32]:[10.0.1.12]                                                       
-    10.10.10.3:2   5        1               bestpath-exists  5          0+10.1.30.0/24       [5]:[0]:[24]:[10.1.30.0]                                                       
-    10.10.10.3:3   5        1               bestpath-exists  5          0+10.1.10.0/24       [5]:[0]:[24]:[10.1.10.0]                                                       
-                   5        1               bestpath-exists                                  [5]:[0]:[24]:[10.1.20.0]                                                       
-    10.10.10.3:4   5        1               bestpath-exists  2          0+44:38:39:22:01:8a  [2]:[0]:[48]:[44:38:39:22:01:8a]                                               
-                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:d0:a7:fc]                                               
-                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:f5:f7:11]                                               
-                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:f5:f7:11]:[32]:[10.1.20.105]                            
-                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:f5:f7:11]:[128]:[fe80::4ab0:2dff:fef5:f711]             
-                   5        1               bestpath-exists             0+10.0.1.34          [3]:[0]:[32]:[10.0.1.34]                                                       
-    10.10.10.3:5   5        1               bestpath-exists  2          0+44:38:39:22:01:8a  [2]:[0]:[48]:[44:38:39:22:01:8a]                                               
-                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:0c:ce:31]                                               
-                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:0c:ce:31]:[32]:[10.1.30.106]                            
-                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:0c:ce:31]:[128]:[fe80::4ab0:2dff:fe0c:ce31]             
-                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:71:0f:89]                                               
-                   5        1               bestpath-exists             0+10.0.1.34          [3]:[0]:[32]:[10.0.1.34]                                                       
-    10.10.10.3:6   5        1               bestpath-exists  2          0+44:38:39:22:01:8a  [2]:[0]:[48]:[44:38:39:22:01:8a]                                               
-                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:9e:d8:7e]                                               
-                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:9e:d8:7e]:[32]:[10.1.10.104]                            
-                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:9e:d8:7e]:[128]:[fe80::4ab0:2dff:fe9e:d87e]             
-                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:84:7a:8c]                                               
-                   5        1               bestpath-exists             0+10.0.1.34          [3]:[0]:[32]:[10.0.1.34]                                                       
-    10.10.10.4:2   5        1               bestpath-exists  5          0+10.1.30.0/24       [5]:[0]:[24]:[10.1.30.0]                                                       
-    10.10.10.4:3   5        1               bestpath-exists  5          0+10.1.10.0/24       [5]:[0]:[24]:[10.1.10.0]                                                       
-                   5        1               bestpath-exists                                  [5]:[0]:[24]:[10.1.20.0]                                                       
-    10.10.10.4:4   5        1               bestpath-exists  2          0+48:b0:2d:d0:a7:fc  [2]:[0]:[48]:[48:b0:2d:d0:a7:fc]                                               
-                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:f5:f7:11]                                               
-                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:f5:f7:11]:[32]:[10.1.20.105]                            
-                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:f5:f7:11]:[128]:[fe80::4ab0:2dff:fef5:f711]             
-                   5        1               bestpath-exists             0+10.0.1.34          [3]:[0]:[32]:[10.0.1.34]                                                       
-    10.10.10.4:5   5        1               bestpath-exists  2          0+48:b0:2d:0c:ce:31  [2]:[0]:[48]:[48:b0:2d:0c:ce:31]                                               
-                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:0c:ce:31]:[32]:[10.1.30.106]                            
-                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:0c:ce:31]:[128]:[fe80::4ab0:2dff:fe0c:ce31]             
-                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:71:0f:89]                                               
-                   5        1               bestpath-exists             0+10.0.1.34          [3]:[0]:[32]:[10.0.1.34]                                                       
-    10.10.10.4:6   5        1               bestpath-exists  2          0+48:b0:2d:84:7a:8c  [2]:[0]:[48]:[48:b0:2d:9e:d8:7e]                                               
-                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:9e:d8:7e]:[32]:[10.1.10.104]                            
-                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:9e:d8:7e]:[128]:[fe80::4ab0:2dff:fe9e:d87e]             
-                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:84:7a:8c]                                               
-                   5        1               bestpath-exists             0+10.0.1.34          [3]:[0]:[32]:[10.0.1.34]                                                       
-    10.10.10.63:2  5        1               bestpath-exists  5          0+10.1.10.0/24       [5]:[0]:[24]:[10.1.10.0]                                                       
-                   5        1               bestpath-exists                                  [5]:[0]:[24]:[10.1.20.0]                                                       
-    10.10.10.63:3  5        1               bestpath-exists  5          0+10.1.30.0/24       [5]:[0]:[24]:[10.1.30.0]                                                       
-    10.10.10.64:2  5        1               bestpath-exists  5          0+10.1.10.0/24       [5]:[0]:[24]:[10.1.10.0]                                                       
-                   5        1               bestpath-exists                                  [5]:[0]:[24]:[10.1.20.0]                                                       
-    10.10.10.64:3  5        1               bestpath-exists  5          0+10.1.30.0/24       [5]:[0]:[24]:[10.1.30.0]
-```
-
 ## Show EVPN RD Routes
 
-To show EVPN RD routes, run the `nv show vrf <vrf> router bgp address-family l2vpn-evpn loc-rib rd` command. This command shows the EVPN RD routes in brief format to improve performance for high scale environments. To show the EVPN RD routes in more detail, run the `nv show vrf <vrf> router bgp address-family l2vpn-evpn loc-rib rd --view=detail` command. To show the local RIB in json format, run the `nv show vrf <vrf> router bgp address-family l2vpn-evpn loc-rib rd -o json` command.
+To show EVPN RD routes, run the `nv show vrf <vrf> router bgp address-family l2vpn-evpn route` command. This command shows the EVPN RD routes in brief format to improve performance for high scale environments. To show the EVPN RD routes in more detail, run the `nv show vrf <vrf> router bgp address-family l2vpn-evpn route --view=detail` command. To show the information in json format, run the `nv show vrf <vrf> router bgp address-family l2vpn-evpn route -o json` command.
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-rib rd                                                                               
-PathCnt - Number of paths present for the prefix, MultipathCount - Number of    
-paths that are part of the ECMP, EVPNPrefixStr - EVPN prefix string             
-                                                                                
-RD             PathCnt  MultipathCount  DestFlags        EVPNPrefixStr                                                     
--------------  -------  --------------  ---------------  ------------------------------------------------------------------
-10.10.10.1:2   5        1               bestpath-exists  [5]:[0]:[24]:[10.1.30.0]                                          
-10.10.10.1:3   5        1               bestpath-exists  [5]:[0]:[24]:[10.1.10.0]                                          
-               5        1               bestpath-exists  [5]:[0]:[24]:[10.1.20.0]                                          
-10.10.10.2:2   1        1               bestpath-exists  [5]:[0]:[24]:[10.1.30.0]                                          
-10.10.10.2:3   1        1               bestpath-exists  [5]:[0]:[24]:[10.1.10.0]                                          
-               1        1               bestpath-exists  [5]:[0]:[24]:[10.1.20.0]                                          
-10.10.10.2:4   1        1               bestpath-exists  [2]:[0]:[48]:[44:38:39:22:01:7a]                                  
-               1        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:11:fe:7e]                                  
-               1        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:dc:a4:c5]                                  
-               1        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:dc:a4:c5]:[32]:[10.1.20.102]               
-               1        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:dc:a4:c5]:[128]:[fe80::4ab0:2dff:fedc:a4c5]
-               1        1               bestpath-exists  [3]:[0]:[32]:[10.0.1.12]                                          
-10.10.10.2:5   1        1               bestpath-exists  [2]:[0]:[48]:[44:38:39:22:01:7a]                                  
-               1        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:98:57:4e]                                  
-               1        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:ee:bf:d3]                                  
-               1        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:ee:bf:d3]:[32]:[10.1.30.103]               
-               1        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:ee:bf:d3]:[128]:[fe80::4ab0:2dff:feee:bfd3]
-               1        1               bestpath-exists  [3]:[0]:[32]:[10.0.1.12]                                          
-10.10.10.2:6   1        1               bestpath-exists  [2]:[0]:[48]:[44:38:39:22:01:7a]                                  
-               1        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:ac:26:be]                                  
-               1        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:ac:26:be]:[32]:[10.1.10.101]               
-               1        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:ac:26:be]:[128]:[fe80::4ab0:2dff:feac:26be]
-               1        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:d4:1e:6b]                                  
-               1        1               bestpath-exists  [3]:[0]:[32]:[10.0.1.12]                                          
-10.10.10.3:2   5        1               bestpath-exists  [5]:[0]:[24]:[10.1.30.0]                                          
-10.10.10.3:3   5        1               bestpath-exists  [5]:[0]:[24]:[10.1.10.0]                                          
-               5        1               bestpath-exists  [5]:[0]:[24]:[10.1.20.0]                                          
-10.10.10.3:4   5        1               bestpath-exists  [2]:[0]:[48]:[44:38:39:22:01:8a]                                  
-               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:d0:a7:fc]                                  
-               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:f5:f7:11]                                  
-               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:f5:f7:11]:[32]:[10.1.20.105]               
-               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:f5:f7:11]:[128]:[fe80::4ab0:2dff:fef5:f711]
-               5        1               bestpath-exists  [3]:[0]:[32]:[10.0.1.34]                                          
-10.10.10.3:5   5        1               bestpath-exists  [2]:[0]:[48]:[44:38:39:22:01:8a]                                  
-               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:0c:ce:31]                                  
-               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:0c:ce:31]:[32]:[10.1.30.106]               
-               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:0c:ce:31]:[128]:[fe80::4ab0:2dff:fe0c:ce31]
-               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:71:0f:89]                                  
-               5        1               bestpath-exists  [3]:[0]:[32]:[10.0.1.34]                                          
-10.10.10.3:6   5        1               bestpath-exists  [2]:[0]:[48]:[44:38:39:22:01:8a]                                  
-               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:9e:d8:7e]                                  
-               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:9e:d8:7e]:[32]:[10.1.10.104]               
-               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:9e:d8:7e]:[128]:[fe80::4ab0:2dff:fe9e:d87e]
-               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:84:7a:8c]                                  
-               5        1               bestpath-exists  [3]:[0]:[32]:[10.0.1.34]                                          
-10.10.10.4:2   5        1               bestpath-exists  [5]:[0]:[24]:[10.1.30.0]                                          
-10.10.10.4:3   5        1               bestpath-exists  [5]:[0]:[24]:[10.1.10.0]                                          
-               5        1               bestpath-exists  [5]:[0]:[24]:[10.1.20.0]                                          
-10.10.10.4:4   5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:d0:a7:fc]                                  
-               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:f5:f7:11]                                  
-               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:f5:f7:11]:[32]:[10.1.20.105]               
-               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:f5:f7:11]:[128]:[fe80::4ab0:2dff:fef5:f711]
-               5        1               bestpath-exists  [3]:[0]:[32]:[10.0.1.34]                                          
-10.10.10.4:5   5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:0c:ce:31]                                  
-               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:0c:ce:31]:[32]:[10.1.30.106]               
-               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:0c:ce:31]:[128]:[fe80::4ab0:2dff:fe0c:ce31]
-               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:71:0f:89]                                  
-               5        1               bestpath-exists  [3]:[0]:[32]:[10.0.1.34]                                          
-10.10.10.4:6   5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:9e:d8:7e]                                  
-               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:9e:d8:7e]:[32]:[10.1.10.104]               
-               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:9e:d8:7e]:[128]:[fe80::4ab0:2dff:fe9e:d87e]
-               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:84:7a:8c]                                  
-               5        1               bestpath-exists  [3]:[0]:[32]:[10.0.1.34]                                          
-10.10.10.63:2  5        1               bestpath-exists  [5]:[0]:[24]:[10.1.10.0]                                          
-               5        1               bestpath-exists  [5]:[0]:[24]:[10.1.20.0]                                          
-10.10.10.63:3  5        1               bestpath-exists  [5]:[0]:[24]:[10.1.30.0]                                          
-10.10.10.64:2  5        1               bestpath-exists  [5]:[0]:[24]:[10.1.10.0]                                          
-               5        1               bestpath-exists  [5]:[0]:[24]:[10.1.20.0]                                          
-10.10.10.64:3  5        1               bestpath-exists  [5]:[0]:[24]:[10.1.30.0] 
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn route
+PathCnt - number of L2VPN EVPN per (RD, route-type) paths
+Route                                                                   rd             route-type  PathCnt
+----------------------------------------------------------------------  -------------  ----------  -------
+[10.10.10.1:2]:[5]:[0]:[10.1.30.0/24]                                   10.10.10.1:2   5           1      
+[10.10.10.1:3]:[5]:[0]:[10.1.10.0/24]                                   10.10.10.1:3   5           1      
+[10.10.10.1:3]:[5]:[0]:[10.1.20.0/24]                                   10.10.10.1:3   5           1      
+[10.10.10.1:4]:[2]:[0]:[44:38:39:22:01:78]                              10.10.10.1:4   2           1      
+[10.10.10.1:4]:[2]:[0]:[48:b0:2d:7f:74:13]                              10.10.10.1:4   2           1      
+[10.10.10.1:4]:[2]:[0]:[48:b0:2d:7f:74:13]:[10.1.20.102]                10.10.10.1:4   2           1      
+[10.10.10.1:4]:[2]:[0]:[48:b0:2d:7f:74:13]:[fe80::4ab0:2dff:fe7f:7413]  10.10.10.1:4   2           1      
+[10.10.10.1:4]:[2]:[0]:[48:b0:2d:a4:40:62]                              10.10.10.1:4   2           1      
+[10.10.10.1:4]:[3]:[0]:[10.0.1.12]                                      10.10.10.1:4   3           1      
+[10.10.10.1:5]:[2]:[0]:[44:38:39:22:01:78]                              10.10.10.1:5   2           1      
+[10.10.10.1:5]:[2]:[0]:[48:b0:2d:99:9e:04]                              10.10.10.1:5   2           1      
+[10.10.10.1:5]:[2]:[0]:[48:b0:2d:c2:f9:21]                              10.10.10.1:5   2           1      
+[10.10.10.1:5]:[2]:[0]:[48:b0:2d:c2:f9:21]:[10.1.30.103]                10.10.10.1:5   2           1      
+[10.10.10.1:5]:[2]:[0]:[48:b0:2d:c2:f9:21]:[fe80::4ab0:2dff:fec2:f921]  10.10.10.1:5   2           1      
+[10.10.10.1:5]:[3]:[0]:[10.0.1.12]                                      10.10.10.1:5   3           1      
+[10.10.10.1:6]:[2]:[0]:[44:38:39:22:01:78]                              10.10.10.1:6   2           1      
+[10.10.10.1:6]:[2]:[0]:[48:b0:2d:5c:8a:ee]                              10.10.10.1:6   2           1      
+[10.10.10.1:6]:[2]:[0]:[48:b0:2d:fa:72:e7]                              10.10.10.1:6   2           1      
+[10.10.10.1:6]:[2]:[0]:[48:b0:2d:fa:72:e7]:[10.1.10.101]                10.10.10.1:6   2           1      
+[10.10.10.1:6]:[2]:[0]:[48:b0:2d:fa:72:e7]:[fe80::4ab0:2dff:fefa:72e7]  10.10.10.1:6   2           1      
+[10.10.10.1:6]:[3]:[0]:[10.0.1.12]                                      10.10.10.1:6   3           1      
+[10.10.10.2:2]:[5]:[0]:[10.1.30.0/24]                                   10.10.10.2:2   5           5      
+[10.10.10.2:3]:[5]:[0]:[10.1.10.0/24]                                   10.10.10.2:3   5           5      
+[10.10.10.2:3]:[5]:[0]:[10.1.20.0/24]                                   10.10.10.2:3   5           5      
+[10.10.10.3:2]:[5]:[0]:[10.1.30.0/24]                                   10.10.10.3:2   5           5      
+[10.10.10.3:3]:[5]:[0]:[10.1.10.0/24]                                   10.10.10.3:3   5           5      
+[10.10.10.3:3]:[5]:[0]:[10.1.20.0/24]                                   10.10.10.3:3   5           5      
+[10.10.10.3:4]:[2]:[0]:[44:38:39:22:01:8a]                              10.10.10.3:4   2           5      
+[10.10.10.3:4]:[2]:[0]:[48:b0:2d:48:21:9d]                              10.10.10.3:4   2           5      
+[10.10.10.3:4]:[2]:[0]:[48:b0:2d:82:43:48]                              10.10.10.3:4   2           5      
+[10.10.10.3:4]:[2]:[0]:[48:b0:2d:82:43:48]:[10.1.20.105]                10.10.10.3:4   2           5      
+[10.10.10.3:4]:[2]:[0]:[48:b0:2d:82:43:48]:[fe80::4ab0:2dff:fe82:4348]  10.10.10.3:4   2           5      
+[10.10.10.3:4]:[3]:[0]:[10.0.1.34]                                      10.10.10.3:4   3           5      
+[10.10.10.3:5]:[2]:[0]:[44:38:39:22:01:8a]                              10.10.10.3:5   2           5      
+[10.10.10.3:5]:[2]:[0]:[48:b0:2d:d5:45:6f]                              10.10.10.3:5   2           5      
+[10.10.10.3:5]:[2]:[0]:[48:b0:2d:d5:45:6f]:[10.1.30.106]                10.10.10.3:5   2           5      
+[10.10.10.3:5]:[2]:[0]:[48:b0:2d:d5:45:6f]:[fe80::4ab0:2dff:fed5:456f]  10.10.10.3:5   2           5      
+[10.10.10.3:5]:[2]:[0]:[48:b0:2d:df:a8:20]                              10.10.10.3:5   2           5      
+[10.10.10.3:5]:[3]:[0]:[10.0.1.34]                                      10.10.10.3:5   3           5      
+[10.10.10.3:6]:[2]:[0]:[44:38:39:22:01:8a]                              10.10.10.3:6   2           5      
+[10.10.10.3:6]:[2]:[0]:[48:b0:2d:29:c0:bb]                              10.10.10.3:6   2           5      
+[10.10.10.3:6]:[2]:[0]:[48:b0:2d:29:c0:bb]:[10.1.10.104]                10.10.10.3:6   2           5      
+[10.10.10.3:6]:[2]:[0]:[48:b0:2d:29:c0:bb]:[fe80::4ab0:2dff:fe29:c0bb]  10.10.10.3:6   2           5      
+[10.10.10.3:6]:[2]:[0]:[48:b0:2d:c9:f8:14]                              10.10.10.3:6   2           5      
+[10.10.10.3:6]:[3]:[0]:[10.0.1.34]                                      10.10.10.3:6   3           5      
+[10.10.10.4:2]:[5]:[0]:[10.1.30.0/24]                                   10.10.10.4:2   5           5      
+[10.10.10.4:3]:[5]:[0]:[10.1.10.0/24]                                   10.10.10.4:3   5           5      
+[10.10.10.4:3]:[5]:[0]:[10.1.20.0/24]                                   10.10.10.4:3   5           5      
+[10.10.10.4:4]:[2]:[0]:[44:38:39:22:01:84]                              10.10.10.4:4   2           5      
+[10.10.10.4:4]:[2]:[0]:[48:b0:2d:48:21:9d]                              10.10.10.4:4   2           5      
+[10.10.10.4:4]:[2]:[0]:[48:b0:2d:82:43:48]                              10.10.10.4:4   2           5      
+[10.10.10.4:4]:[2]:[0]:[48:b0:2d:82:43:48]:[10.1.20.105]                10.10.10.4:4   2           5      
+[10.10.10.4:4]:[2]:[0]:[48:b0:2d:82:43:48]:[fe80::4ab0:2dff:fe82:4348]  10.10.10.4:4   2           5      
+[10.10.10.4:4]:[3]:[0]:[10.0.1.34]                                      10.10.10.4:4   3           5      
+[10.10.10.4:5]:[2]:[0]:[44:38:39:22:01:84]                              10.10.10.4:5   2           5      
+[10.10.10.4:5]:[2]:[0]:[48:b0:2d:d5:45:6f]                              10.10.10.4:5   2           5      
+[10.10.10.4:5]:[2]:[0]:[48:b0:2d:d5:45:6f]:[10.1.30.106]                10.10.10.4:5   2           5      
+[10.10.10.4:5]:[2]:[0]:[48:b0:2d:d5:45:6f]:[fe80::4ab0:2dff:fed5:456f]  10.10.10.4:5   2           5      
+[10.10.10.4:5]:[2]:[0]:[48:b0:2d:df:a8:20]                              10.10.10.4:5   2           5      
+[10.10.10.4:5]:[3]:[0]:[10.0.1.34]                                      10.10.10.4:5   3           5      
+[10.10.10.4:6]:[2]:[0]:[44:38:39:22:01:84]                              10.10.10.4:6   2           5      
+[10.10.10.4:6]:[2]:[0]:[48:b0:2d:29:c0:bb]                              10.10.10.4:6   2           5      
+[10.10.10.4:6]:[2]:[0]:[48:b0:2d:29:c0:bb]:[10.1.10.104]                10.10.10.4:6   2           5      
+[10.10.10.4:6]:[2]:[0]:[48:b0:2d:29:c0:bb]:[fe80::4ab0:2dff:fe29:c0bb]  10.10.10.4:6   2           5      
+[10.10.10.4:6]:[2]:[0]:[48:b0:2d:c9:f8:14]                              10.10.10.4:6   2           5      
+[10.10.10.4:6]:[3]:[0]:[10.0.1.34]                                      10.10.10.4:6   3           5      
+[10.10.10.63:2]:[5]:[0]:[10.1.10.0/24]                                  10.10.10.63:2  5           5      
+[10.10.10.63:2]:[5]:[0]:[10.1.20.0/24]                                  10.10.10.63:2  5           5      
+[10.10.10.63:3]:[5]:[0]:[10.1.30.0/24]                                  10.10.10.63:3  5           5      
+[10.10.10.64:2]:[5]:[0]:[10.1.10.0/24]                                  10.10.10.64:2  5           5      
+[10.10.10.64:2]:[5]:[0]:[10.1.20.0/24]                                  10.10.10.64:2  5           5      
+[10.10.10.64:3]:[5]:[0]:[10.1.30.0/24]                                  10.10.10.64:3  5           5 
 ```
 
 ## Show a Specific EVPN Route
@@ -824,7 +741,7 @@ Displayed 4 paths for requested prefix
 
 ## Show the VNI EVPN Routing Table
 
-The switch maintains the received EVPN routes in the global EVPN routing table (described above), even if there are no appropriate local VNIs to **import** them into. For example, a spine maintains the global EVPN routing table even though there are no VNIs present in the table. When local VNIs are present, the switch imports received EVPN routes into the per-VNI routing tables according to the route target attributes. You can examine the per-VNI routing table with the vtysh `show bgp vni <vni>` command:
+The switch maintains the received EVPN routes in the global EVPN routing table, even if there are no appropriate local VNIs to **import** them into. For example, a spine maintains the global EVPN routing table even though there are no VNIs present in the table. When local VNIs are present, the switch imports received EVPN routes into the per-VNI routing tables according to the route target attributes. You can examine the per-VNI routing table with the vtysh `show bgp vni <vni>` command:
 
 ```
 leaf01# show bgp vni 10
@@ -891,7 +808,7 @@ EVPN type-5 prefix: [5]:[EthTag]:[IPlen]:[IP]
 
 To display the VNI routing table for all VNIs, run the vtysh `show bgp l2vpn evpn route vni all` command.
 
-To view the EVPN RIB with NVUE, run the `nv show vrf <vrf> router bgp address-family l2vpn-evpn loc-rib rd <rd> route-type <type> route` command.
+To view the EVPN RIB with NVUE, run the `nv show vrf <vrf> router bgp address-family l2vpn-evpn route` command.
 
 ## Show the VRF BGP Routing Table
 

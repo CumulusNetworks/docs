@@ -7,11 +7,91 @@ product: NVIDIA Air
 <!-- vale off -->
 Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
 
-## August 2024
+## November 2024
 <!-- Air:WhatsNew -->
+### 82.2024.1112-011
+- Added support for customizing OOB nodes when using JSON 
+- Fixed an issue where the `Enable OOB` toggle was available when it should not be 
+- Fixed an issue with the alignment of the `Workspace` and `Services` menus 
+- Fixed an issue with links when a node is renamed 
+- Fixed an issue with the search functionality for ports when creating a link 
+- Fixed an issue when node names were improperly formatted 
+- Added the ability to create a simulation via JSON import 
+- Fixed an issue where the `Workspace` menu was visible when it should not be
+- Fixed an issue with user provided network configurations via `clould-init` in the `generic/ubuntu2004`, `generic/ubuntu2204` and `generic/ubuntu2404` images
+<!-- Air:WhatsNew -->
+
+### 82.2024.1104-011
+- Fixed an issue when updating node location on the canvas after the simulation is started
+- Fixed an issue when liking or unliking marketplace demos
+- Added support for additional ports on generic server nodes
+- Added ZTP script support when importing a simulation from JSON
+- Improved support for large scale simulations
+
+## October 2024
+
+### 82.2024.1031-011
+- Fixed an issue when creating a new simulation from the nodes or links tabs
+- Fixed an issue when populating SSH keys on the oob-mgmt-server
+- Fixed an issue where topology fields could be updated after the simulation was LOADED
+- Improved the initial processing when applying a filter
+- Added the ability to add additional ports to non-switch nodes
+- Fixed an issue with link highlighting for newly created links
+- Fixed an issue when creating a simulation within an organization
+- Added the ability to disable node name popups
+
+### 82.2024.1028-011
+- Fixed an issue with autoprovision redirects
+
+### 82.2024.1024-011
+- Fixed an issue where simulations could be created with `expires_at` and `sleeps_at` set in the past
+- Fixed an issue when parsing interface MAC addresses
+- Improved the loading of the links tab when a large number of links exist
+- Improved the validation of the `features` field for a node
+
+### 82.2024.1021-011
+- Fixed an issue related to autoprovision redirects
+- Fixed a potential scheduling issue when creating multiple simulations
+- Improved logic around the Enable OOB toggle behavior
+- Improved the logout process
+- Moved the interface list to the node properties side panel
+
+### 82.2024.1007-011
+- Added link highlighting when a node is selected
+- Fixed an issue with the grid when creating a new simulation
+- Fixed an issue when an empty name wass provided while editing a simulation
+- Fixed an issue when creating a new service
+- Fixed an issue when sorting simulations by `Created`
+
+## September 2024
+### 82.2024.0926-014
+- Allow a ZTP script to be added to any simulation at time of creation
+- Updated the topology API to allow retrieval of a topology based on the simulation ID
+- Fixed an issue where the organization dropdown was not rendered properly
+- Fixed an issue when creating a simulation using JSON containing an invalid interface name
+- Fixed an issue when importing JSON with a link for an undefined node
+- Fixed an issue when importing JSON containing a `network_pci` configuration
+- Fixed an issue where interfaces could be assigned an invalid MAC address when using the topology API
+
+### 82.2024.0919-011
+- Fixed a pagination issue when viewing organization members
+- Fixed an issue when sorting members of an organization
+- Fixed an issue when adding multiple members to an organization
+- Fixed an issue where tokens could be created with an expiration date in the past
+- Fixed the SSH link content in the services list
+- Streamlined the node deletion confirmation
+- Updated the simulation edit dialog
+- Added an API endpoint supporting JSON import for simulations
+- Added a search field to the nodes and links tabs in the simulation workspace
+- Added a tooltip to display the full node name in the simulation workspace
+- Added layout options for the topology in the simulation workspace
+- Added an actions column to the nodes list
+- Added a running node count under the organization details
+- Added the ability to manage user permissions for a simulation
+
+## August 2024
 ### 82.2024.0826-011
 - Updated ZTP script template
-<!-- Air:WhatsNew -->
 
 ### 82.2024.0819-011
 - Fixed an issue where the `Enable SSH` option was not displayed after deleting the service

@@ -215,11 +215,10 @@ The following example shows the views available for the `nv show interface` comm
 
 ```
 cumulus@switch:~$ nv show interface --view <<TAB>>
-acl-statistics  dot1x-summary   neighbor        status
-brief           lldp            pluggables      synce-counters
-counters        lldp-detail     port-security   
-detail          mac             qos-profile     
-dot1x-counters  mlag-cc         small
+acl-statistics  carrier-stats   dot1x-counters  lldp-detail     physical        status          vrf
+bond-members    counters        dot1x-summary   mac             port-security   svi             
+bonds           description     down            mlag-cc         qos-profile     synce-counters  
+brief           detail          lldp            neighbor        small           up
 ```
 
 ### Configuration Management Commands
@@ -316,7 +315,7 @@ NVUE provides a default `/etc/nvue.d/startup.yaml` file that includes configurat
 
 {{%notice info%}}
 - The default startup configuration file sets the default hostname as `cumulus`; therefore, Cumulus Linux does not accept the DHCP `host-name` option. To set a different hostname with NVUE, see {{<link url="Quick-Start-Guide/#configure-the-hostname" text="Configure the Hostname">}}. If you do not manage your switch with NVUE and want to change this behavior with Linux configuration files, see this [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Administration/Hostname-Option-Received-From-DHCP-Ignored" >}}).
-- The default NVUE `startup.yaml` file includes the `cumulus` user account, which is the default account for the system. Modifying the NVUE configuration to not include the `cumulus` user account, replacing the configuration or applying a startup configuration, deletes the `cumulus` account. To merge in configuration changes or to restore a backup `startup.yaml` file, use the `nv config patch` command.
+- The default NVUE `startup.yaml` file includes the `cumulus` user account, which is the default account for the system. Modifying the NVUE configuration to not include the `cumulus` user account, replacing the configuration or applying a startup configuration, deletes the `cumulus` account. To merge in configuration changes or to restore a backup `startup.yaml` file, use the `nv config patch` command as described in {{<link url="Upgrading-Cumulus-Linux#back-up-and-restore-configuration-with-nvue" text=" Back up and Restore Configuration with NVUE">}}.
 - You cannot delete a logged in user account.
 {{%/notice%}}
 
@@ -414,6 +413,36 @@ cumulus@switch:~$ nv config apply
 When you disable auto save, you must run the `nv config save` command to save the applied configuration to the startup configuration so that the changes persist after a reboot.
 
 To renable auto save, run the `nv set system config auto-save state enabled` command.
+
+## Show Switch Configuration
+
+To show the applied configuration on the switch, run the `nv config show` command:
+
+```
+cumulus@switch:~$ nv config show
+header:
+    model: VX
+    nvue-api-version: nvue_v1
+    rev-id: 1.0
+    version: Cumulus Linux 5.7.0
+- set:
+    bridge:
+      domain:
+        br_default:
+          vlan:
+            '10':
+              vni:
+                '10': {}
+            '20':
+              vni:
+                '20': {}
+            '30':
+              vni:
+                '30': {}
+...
+```
+
+To show the configuration on the switch in YAML format and include all default options, run the `nv config show --all` command.
 
 ## Add Configuration Apply Messages
 
@@ -515,12 +544,15 @@ cumulus@switch:~$ nv action clear system api session
 {{%notice note%}}
 If you do not clear a user session after making changes directly on the RADIUS, TACACS, or LDAP server, NVUE uses the existing session for authentication and authorization until the session times out (up to 60 minutes).
 {{%/notice%}}
-<!--
+
 ## Passwords and Special Characters
 
 If you use certain special characters in a password, you must quote or escape (with a backslash) these characters so that the system understands that they are part of the password.
 
 The following table shows if you need to quote or escape a special character.
+
+- Normal Use indicates that you can use the special character without quotes or a backslash.
+- Single Quotes and Double Quotes indicate that the entire password needs to be enclosed in quotes.
 
 | Special Character | Normal Use  | Single Quotes ('') | Double Quotes ("") | Escape (`\`)|
 |---------- | ------- | ------------------ | ------------------ | ------ |
@@ -556,4 +588,21 @@ The following table shows if you need to quote or escape a special character.
 1. Requires escape (`\`) in addition to the double quotes (`""`).
 2. You cannot use this character at the beginning of a word.
 3. A word cannot consist entirely of white space, even inside double quotes.
--->
+
+The following example shows a password that includes a question mark (?):
+
+```
+cumulus@switch:~$ nv set system aaa user cumulus password “Hello?world123”
+```
+
+The following example shows a password that includes a dot (.):
+
+```
+cumulus@switch:~$ nv set system aaa user cumulus password “Hello.world.123”
+```
+
+The following example shows a password that includes a dot (.) and tilde (~):
+
+```
+cumulus@switch:~$ nv set system aaa user cumulus password “Hello.world\~123”
+```

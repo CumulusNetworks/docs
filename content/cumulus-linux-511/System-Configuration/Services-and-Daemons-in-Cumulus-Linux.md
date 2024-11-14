@@ -248,4 +248,51 @@ The following table lists the most important services in Cumulus Linux.
 |`smond`|Reads {{<link url="Monitoring-System-Hardware" text="platform sensors and fan information">}} from pwmd.|NO|
 |`pwmd`|Reads and sets fan speeds.|NO|
 
+## Limit Resources for Services
+
+You can configure a limit on memory and CPU usage for the following services to divide hardware resources up among applications and users, increasing overall efficiency.
+- SNMP
+- DHCP Server
+- DHCP relay
+- NTP
+- syslog
+
+To configure a limit on CPU usage, run the `nv set service control <service-name-id> resource-limit cpu <percent>` command.
+
+The following example configures the syslog service to limit CPU usage to 60 percent:
+
+```
+cumulus@switch:~$ nv set service control rsyslog resource-limit cpu 60
+cumulus@switch:~$ nv config apply
+```
+
+To configure a limit on memory usage, run the `nv set service control <service-name-id> resource-limit memory <size>` command.
+
+The following example configures the DHCP service to limit memory usage to 6700M:
+
+```
+cumulus@switch:~$ nv set service control dhcpd resource-limit memory 6700M
+cumulus@switch:~$ nv config apply
+```
+
+A value of 100 configures no limit on CPU usage for the service.
+
+To show the current CPU and memory usage for all services, run the `nv show service control` command:
+
+```
+cumulus@switch:~$ nv show service control
+```
+
+To show the current CPU and memory usage for a specific service, run the `nv show service control <service>` command:
+
+```
+cumulus@switch:~$ nv show service control rsyslog
+```
+
+To show the configured resource limits for a specific service, run the `nv show service control <service-name-id> resource-limit` command:
+
+```
+cumulus@switch:~$ nv show service control rsyslog resource-limit
+```
+
 <!-- vale on -->

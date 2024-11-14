@@ -1379,7 +1379,96 @@ leaf01# write memory
 leaf01# exit
 cumulus@leaf01:~$
 ```
+<!--
+## BGP Prefix Independent Convergence
 
+BGP prefix independent convergence (PIC) reduces data plane convergence times and improves unicast traffic convergence for remote link failures (when the BGP next hop fails). A remote link is a link between a spine and a remote leaf, or a spine and the super spine layer.
+
+{{%notice note%}}
+- BGP PIC is a BETA feature for Spectrum-4 switches.
+- Cumulus Linux does not support BGP PIC with EVPN, MLAG, or VRF route leaking.
+- You can configure PIC on the default VRF only.
+- Additional ECMP hardware resources are required for PIC. Refer to {{<link url="Equal-Cost-Multipath-Load-Sharing/#ecmp-resource-sharing-during-next-hop-group-updates" text="Additional ECMP resource optimization for next hop groups">}}
+{{%/notice%}}
+
+When you configure BGP PIC, Cumulus Linux assigns one next hop group for each source and the remote leaf advertises the router ID loopback route. The remote leaf tags prefix routes with a route-origin extended community so that the local leaf recognizes the routes. When the network topology changes, the local leaf obtains the router ID loopback route with the updated ECMP, allowing a O (1) next hop group replace operation for all prefixes from the remote leaf without waiting for individual BGP updates.
+
+To enable PIC:
+
+{{< tabs "1393 ">}}
+{{< tab "NVUE Commands ">}}
+
+On a leaf switch, enable the BGP advertise origin option so that BGP can attach the Site-of-Origin (SOO) extended community to all routes advertised to its peers from the source where the routes originate.
+
+The following example enables BGP advertise origin for IPv4:
+
+```
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast advertise-origin
+cumulus@leaf01:~$ nv config apply
+```
+
+For IPv6, run the `nv set vrf <vrf> router bgp address-family ipv6-unicast advertise-origin` command.
+
+On all switches (leaf, spine and super spine), enable the next hop group per source option so that when BGP receives routes with the SOO extended community, it allocates a next hop group for each source:
+
+The following example enables the next hop group per source option for IPv4:
+
+```
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast nhg-per-origin
+cumulus@leaf01:~$ nv config apply
+```
+
+For IPv6, run the `nv set vrf <vrf> router bgp address-family ipv6-unicast nhg-per-origin` command.
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+On a leaf switch, enable the BGP advertise origin option so that BGP can attach the Site-of-Origin (SOO) extended community to all routes advertised to its peers from the source where the routes originate.
+
+The following example enables BGP advertise origin for IPv4:
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# address-family ipv4
+leaf01(config-router-af)# bgp advertise-origin
+leaf01(config-router-af)# end
+leaf01# write memory
+leaf01# exit
+```
+
+On all switches (leaf, spine and super spine), enable the next hop group per source option so that when BGP receives routes with the SOO extended community, it allocates a next hop group for each source.
+
+The following example enables BGP advertise origin for IPv4:
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# address-family ipv4
+leaf01(config-router-af)# bgp nhg-per-origin
+leaf01(config-router-af)# end
+leaf01# write memory
+leaf01# exit
+```
+
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65101
+  ...
+  bgp advertise-origin
+  bgp nhg-per-origin
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+-->
 ## BGP Timers
 
 BGP includes several timers that you can configure.
@@ -1605,6 +1694,57 @@ router bgp 65199
 - When you configure BGP for IPv6, you must run the `route-reflector-client` command **after** the `activate` command.
 - You can only configure a BGP node as a route reflector for an iBGP peer.
 {{%/notice%}}
+
+## BGP Confederations
+
+To reduce the number of iBGP peerings, configure a confederation to divide an <span class="a-tooltip">[AS](## "autonomous system")</span> into smaller <span class="a-tooltip">[sub-ASs](## "sub-autonomous systems")</span>.
+
+To configure a BGP confederation:
+- Provide the configuration ID you want to use.
+- Provide the ASNs of the peers you want to add to the confederation.
+
+The following example configures confederation ID 2 with peer ASNs 65101, 65102, 65103, and 65104.
+
+{{< tabs "1706 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@spine01:~$ nv set vrf default router bgp confederation id 2
+cumulus@spine01:~$ nv set vrf default router bgp confederation member-as 65101-65104
+cumulus@spine01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+spine01# configure terminal
+spine01(config)# router bgp 65199
+spine01(config-router)# bgp confederation identifier 2
+spine01(config-router)# bgp confederation peers 65102
+spine01(config-router)# bgp confederation peers 65103
+spine01(config-router)# bgp confederation peers 65104
+spine01(config-router)# end
+spine01# write memory
+spine01# exit
+```
+
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+cumulus@spine01:~$ sudo cat /etc/frr/frr.conf
+...
+router bgp 65199
+ bgp router-id 10.10.10.101
+ bgp confederation identifier 2
+ bgp confederation peers 65101 65102 65103 65104
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Administrative Distance
 
@@ -1894,7 +2034,8 @@ To minimize the negative effects that occur when BGP restarts, Cumulus Linux ena
 When BGP establishes a session, BGP peers use the BGP OPEN message to negotiate a graceful restart. If the BGP peer also supports graceful restart, it activates for that neighbor session. If the BGP session stops, the BGP peer (the restart helper) flags all routes associated with the device as stale but continues to forward packets to these routes for a certain period of time. The restarting device also continues to forward packets during the graceful restart. After the device comes back up and establishes BGP sessions again with its peers (restart helpers), it waits to learn all routes that these peers announce before selecting a cumulative path; after which, it updates its forwarding tables and re-announces the appropriate routes to its peers. These procedures ensure that if there are any routing changes while the BGP speaker is restarting, the network converges.
 
 {{%notice note%}}
-For warm boot to restart the switch with no interruption to traffic for existing route entries, you must enable BGP graceful restart in all BGP VRFs.
+- For warm boot to restart the switch with no interruption to traffic for existing route entries, you must enable BGP graceful restart in all BGP VRFs.
+- BGP graceful restart only supports eBGP direct and multihop peering. VRF leaking is not gracefully handled and traffic to destinations through these routes might drop while graceful restart is in progress.
 {{%/notice%}}
 
 ### Restart Modes
@@ -2213,7 +2354,7 @@ The vtysh `show ip bgp summary json` command shows the last convergence event.
 <!-- vale off -->
 You can use *{{<exlink url="http://docs.frrouting.org/en/latest/bgp.html#community-lists" text="community lists">}}* to define a BGP community to tag one or more routes. You can then use the communities to apply a route policy on either egress or ingress.
 <!-- vale on -->
-The BGP community list can be either *standard* or *extended*. The standard BGP community list is a pair of values (such as *100:100*) that you can tag on a specific prefix and advertise to other neighbors, or you can apply them on route ingress. The standard BGP community list can be one of four BGP default communities:
+The BGP community list can be either *standard*, *extended*, or *large*. The standard BGP community list is a pair of values (such as *100:100*) that you can tag on a specific prefix and advertise to other neighbors, or you can apply them on route ingress. The standard BGP community list can be one of four BGP default communities:
 
 - *internet*: a BGP community that matches all routes
 - *local-AS*: a BGP community that restricts routes to your confederation's sub-AS
@@ -2221,6 +2362,8 @@ The BGP community list can be either *standard* or *extended*. The standard BGP 
 - *no-export*: a BGP community that is not advertised to the eBGP peer
 
 An extended BGP community list takes a regular expression of communities and matches the listed communities.
+
+A large community-list accommodates more identification information, including 4-byte AS numbers.
 
 When the neighbor receives the prefix, it examines the community value and takes action accordingly, such as permitting or denying the community member in the routing policy.
 
@@ -2406,6 +2549,38 @@ leaf01# exit
 {{%notice note%}}
 To use a special character, such as a period (.) in the regular expression for an extended BGP community list, you must escape the character with a backslash (`\`). For example, `nv set router policy community-list COMMUNITY1 rule 10 community "\.*_65000:2002_.*"`.
 {{%/notice%}}
+
+The following example configures a BGP large community list and applies the large community list to a route map.
+
+{{< tabs "TabID2500 ">}}
+{{< tab "NVUE Commands">}}
+
+```
+cumulus@leaf01:~$ nv set router policy large-community-list 11 rule 10 action permit
+cumulus@leaf01:~$ nv set router policy large-community-list 11 rule 10 large-community 4200857911:011:011
+cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 10 match large-community-list mylist
+cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 10 action permit
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# bgp large-community-list 11 seq 10 permit 4200857911:011:011
+leaf01(config)# route-map MAP1 permit 10
+leaf01(config-route-map)# match large-community 11
+leaf01(config-route-map)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{%notice note%}}
 Cumulus Linux considers the full list of communities on a BGP route as a single string to evaluate. If you try to match `$` (ends with), Cumulus Linux matches the last community value in the list of communities, not the individual community values within the list.

@@ -1893,7 +1893,17 @@ link
 ifindex                   3
 ```
 
-You can add the `--view` option to show different views: `acl-statistics`, `brief`, `detail`, `lldp`, `mac`, `mlag-cc`, `pluggables`, `qos-profile`, and `small`. For example, the `nv show interface --view=small` command lists the interfaces on the switch. The `nv show interface --view=brief` command shows information about each interface on the switch, such as the interface type, speed, remote host and port. The `nv show interface --view=mac` command shows the MAC address of each interface.
+You can add the `--view` option to show different views:
+
+```
+cumulus@switch:~$ nv show interface --view <<TAB>>
+acl-statistics  carrier-stats   dot1x-counters  lldp-detail     physical        status          vrf
+bond-members    counters        dot1x-summary   mac             port-security   svi             
+bonds           description     down            mlag-cc         qos-profile     synce-counters  
+brief           detail          lldp            neighbor        small           up
+```
+
+For example, the `nv show interface --view=small` command lists the interfaces on the switch. The `nv show interface --view=brief` command shows information about each interface on the switch, such as the interface type, speed, remote host and port. The `nv show interface --view=mac` command shows the MAC address of each interface.
 
 The description column only shows in the output when you use the `--view=detail` option.
 
@@ -1920,6 +1930,16 @@ swp4        down          1500   48:b0:2d:c2:7e:cd  swp
 swp5        down          1500   48:b0:2d:6e:bc:c1  swp     
 swp6        down          1500   48:b0:2d:2d:89:16  swp 
 ...
+```
+
+The following example shows the bonds on the switch:
+
+```
+cumulus@switch:~$ nv show interface --view=bonds
+Interface  Admin Status  Oper Status  Mode  Mlag ID  Lacp-rate  Lacp-bypass  Up-delay  Down-delay  
+---------  ------------  -----------  ----  -------  ---------  -----------  --------  ----------  
+bond1      up            up                 1        fast       on           50000     40000  
+bond2      up            up                 2        fast       on           60000     20000 
 ```
 
 You can filter the `nv show interface` command output on specific columns. For example, the `nv show interface --filter mtu=1500` shows only the interfaces with MTU set to 1500.
@@ -1962,33 +1982,45 @@ For more information about showing and clearing interface counters, refer to {{<
 
 ### SFP Port Information
 
-To verify SFP settings, run the NVUE `nv show interface <interface> pluggable` command or the `ethtool -m` command. The following example shows the vendor, type and power output for swp1.
+To verify SFP settings, run the NVUE `nv show interface <interface> transceiver` command or the `ethtool -m` command. The following example shows the vendor, type and power output for swp1.
 
 ```
-cumulus@switch:~$ nv show interface swp1 pluggable
-             operational
------------  ----------------------------------
-identifier   OSFP 8X Pluggable Transceiver
-vendor-name  NVIDIA
-vendor-pn    MMS4X00-NS
-vendor-sn    MT2226FT08603
-vendor-rev   A7
-vendor-oui   48:b0:2d
-date-code    220630
-temperature  53.01 degrees C / 127.41 degrees F
-voltage      3.2519 V
+cumulus@switch:~$ nv show interface swp1 transceiver
+cable-length           : 3m 
+diagnostics-status     : Diagnostic Data Available 
+revision-compliance    : SFF-8636 Rev 2.5/2.6/2.7 
+vendor-data-code       : 210215__ 
+identifier             : QSFP28 
+vendor-rev             : B2 
+vendor-name            : Mellanox 
+vendor-pn              : MFA1A00-C003 
+vendor-sn              : MT2108FT02204 
+temperature            : 48.93 degrees C / 120.07 degrees F 
+voltage                : 3.2744 V 
+ch-1-rx-power          : 0.0000 mW / -inf dBm 
+ch-1-tx-power          : 0.0000 mW / -inf dBm 
+ch-1-tx-bias-current   : 0.000 mA 
+ch-2-rx-power          : 0.0000 mW / -inf dBm 
+ch-2-tx-power          : 0.0000 mW / -inf dBm 
+ch-2-tx-bias-current   : 0.000 mA 
+ch-3-rx-power          : 0.0000 mW / -inf dBm 
+ch-3-tx-power          : 0.0000 mW / -inf dBm 
+ch-3-tx-bias-current   : 0.000 mA 
+ch-4-rx-power          : 0.0000 mW / -inf dBm 
+ch-4-tx-power          : 0.0000 mW / -inf dBm
+ch-4-tx-bias-current   : 0.000 mA
 ```
 
 ```
 cumulus@switch:~$ sudo ethtool -m swp1 | egrep 'Vendor|type|power\s+:'
-        Transceiver type                          : 10G Ethernet: 10G Base-LR
-        Vendor name                               : FINISAR CORP.
-        Vendor OUI                                : 00:90:65
-        Vendor PN                                 : FTLX2071D327
-        Vendor rev                                : A
-        Vendor SN                                 : UY30DTX
-        Laser output power                        : 0.5230 mW / -2.81 dBm
-        Receiver signal average optical power     : 0.7285 mW / -1.38 dBm
+Transceiver type                          : 10G Ethernet: 10G Base-LR
+Vendor name                               : FINISAR CORP.
+Vendor OUI                                : 00:90:65
+Vendor PN                                 : FTLX2071D327
+Vendor rev                                : A
+Vendor SN                                 : UY30DTX
+Laser output power                        : 0.5230 mW / -2.81 dBm
+Receiver signal average optical power     : 0.7285 mW / -1.38 dBm
 ```
 
 ## Considerations

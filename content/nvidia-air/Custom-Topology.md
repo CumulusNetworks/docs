@@ -90,7 +90,6 @@ When you are done creating your topology, click **Workspace > Start Simulation**
 {{<img src="/images/guides/nvidia-air/WorkspaceStart.png" alt="" width="200px">}}
 
 ### OOB Management Network
-
 On the **System Palette**, there is an option to toggle **Enable OOB**. Toggling this setting enables the out-of-band management network 
 This setting creates an OOB network for you that connects all nodes with each other. It also adds an `oob-mgmt-switch` and `oob-mgmt-server` to your simulation. When you [enable SSH](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Quick-Start/#services)
 in your sim, you will SSH into the `oob-mgmt-server`, making this node an ideal start point for configuration. Air handles the configuration automatically for you.

@@ -155,6 +155,10 @@ cumulus@switch:~$ nv set system aaa role ROLE1 class class1
 
 Turns the user account for the switch on or off. You can specify `enabled` or `disabled`.
 
+{{%notice note%}}
+In Cumulus Linux 5.10 and earlier, this command is `nv set system aaa user <user-id> enable on` or `nv set system aaa user <user-id> enable off`.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |

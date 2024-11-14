@@ -14,17 +14,15 @@ Consider the following deployment options and requirements before you install th
 | Single Server | High-Availability Cluster| High-Availability Scale Cluster |
 | --- | --- | --- |
 | On-premises or cloud | On-premises or cloud | On-premises only |
-| Network size: small<ul></ul>| Network size: medium<ul><li>supports up to 100 switches and 128 interfaces per switch*</li></ul>|  Network size: large<ul><li>supports up to 1,000 switches and 125 interfaces per switch*</li></ul>|
+| Network size: small<ul></ul>| Network size: medium<ul><li>Supports up to 100 switches and 128 interfaces per switch*</li></ul>|  Network size: large<ul><li>Supports up to 1,000 switches and 125 interfaces per switch*</li></ul>|
 | KVM or VMware hypervisor | KVM or VMware hypervisor | KVM or VMware hypervisor |
 | System requirements<br><br> On-premises: 16 virtual CPUs, 64GB RAM, 500GB SSD disk<br><br>Cloud: 4 virtual CPUs, 8GB RAM, 64GB SSD disk | System requirements (per node)<br><br> On-premises: 16 virtual CPUs, 64GB RAM, 500GB SSD disk<br><br>Cloud: 4 virtual CPUs, 8GB RAM, 64GB SSD disk |  System requirements (per node)<br><br>On-premises: 48 virtual CPUs, 512GB RAM, 3.2TB SSD disk|
 | All features supported | All features supported|  No support for:<ul><li>Network snapshots</li><li>Trace requests</li><li>Flow analysis</li><li>Duplicate IP address validations</li><li>MAC commentary</li><li>Link health view</li></ul> Limited support for:<ul><li>Topology validations</li></ul>|
 
-*Exact device support can vary based on multiple factors, such as the number of links, routes, and IP addresses in your network.
+*Exact device support counts can vary based on multiple factors, such as the number of links, routes, and IP addresses in your network. Contact NVIDIA for assistance in selecting the appropriate deployment model for your network.
 
 
-
-NetQ is also available through NVIDIA Base Command Manager. To get started, refer to the {{<exlink url="https://docs.nvidia.com/base-command-manager/#product-manuals" text="Base Command Manager administrator and containerization manuals">}}.
-## Deployment Type: On-premises or Cloud
+## Deployment Type: On-Premises or Cloud
 
 **On-premises deployments** are hosted at your location and require the in-house skill set to install, configure, back up, and maintain NetQ. This model is a good choice if you want very limited or no access to the internet from switches and hosts in your network. 
 
@@ -40,7 +38,7 @@ The **high-availability cluster** deployment supports a greater number of switch
 
 During the installation process, you configure a virtual IP address that enables redundancy for the Kubernetes control plane. In this configuration, the majority of nodes must be operational for NetQ to function. For example, a three-node cluster can tolerate a one-node failure, but not a two-node failure. For more information, refer to the {{<exlink url="https://etcd.io/docs/v3.3/faq/" text="etcd documentation">}}.
 
-The **high-availability scale cluster** deployment provides the same benefits as the high-availability cluster deployment, but supports larger networks of up to 1,000 switches. NVIDIA recommends this option for networks that have over 100 switches and at least 100 interfaces per switch. It offers the highest level of scalability, allowing you to easily adjust NetQ's network monitoring capacity as your network expands. Depending on the size of your network, NetQ might experience delays in data retrieval. NVIDIA recommends exporting the data provided by NetQ as a CSV or JSON file when possible. 
+The **high-availability scale cluster** deployment provides the same benefits as the high-availability cluster deployment, but supports larger networks of up to 1,000 switches. NVIDIA recommends this option for networks that have over 100 switches and at least 100 interfaces per switch. It offers the highest level of scalability, allowing you to adjust NetQ's network monitoring capacity as your network expands. Depending on the size of your network, NetQ might experience delays in data retrieval. NVIDIA recommends exporting the data provided by NetQ as a CSV or JSON file when possible. 
 
 <!--As the number of devices in your network grows, you can add additional nodes to the cluster to support the additional devices. 4.12 supports only 3-node cluster-->
 
@@ -49,6 +47,10 @@ The **high-availability scale cluster** deployment provides the same benefits as
 As an alternative to the three-node cluster deployment with a virtual IP address, you can use an external load balancer to provide high availability for the NetQ API and the NetQ UI.
 
 However, you need to be mindful of where you {{<link title="Install a Custom Signed Certificate" text="install the certificates">}} for the NetQ UI (port 443); otherwise, you cannot access the NetQ UI. If you are using a load balancer in your deployment, NVIDIA recommends that you install the certificates directly on the load balancer for SSL offloading. However, if you install the certificates on the master node, then configure the load balancer to allow for SSL passthrough.
+
+## Base Command Manager
+
+NetQ is also available through NVIDIA Base Command Manager. To get started, refer to the {{<exlink url="https://docs.nvidia.com/base-command-manager/#product-manuals" text="Base Command Manager administrator and containerization manuals">}}.
 
 ## Next Steps
 

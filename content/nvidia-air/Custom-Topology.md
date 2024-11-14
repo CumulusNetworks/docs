@@ -172,13 +172,13 @@ You can customize the RAM with the `memory` option, in MB:
 ```
 
 ### Examples
-Labs in the [Demo Marketplace](air.nvidia.com/demos) are maintained with external GitLab repositories. Here you can find the `topology.dot` file used to build the lab to reference from. Many demonstrate how to use more options beyond what is listed above.
+Labs in the [Demo Marketplace](https://air.nvidia.com/demos) are maintained with external GitLab repositories. Here you can find the `topology.dot` file used to build the lab to reference from. Many demonstrate how to use more options beyond what is listed above.
 
 To access them, click on the **Documentation** button on any lab in the Demo Marketplace. It will lead you to the GitLab repo for the lab. You may have to explore the GitLab a bit to find the `topology.dot` file. 
 
 ### Uploading a DOT
 To upload a DOT file into Air:
-1. Navigate to [https://air.nvidia.com/simulations](https://air.nvidia.com/simulations). 
+1. Navigate to [air.nvidia.com/simulations](https://air.nvidia.com/simulations). 
 2. Click the **Create Simulation** button.
 2.	Give your simulation a **Name**.
 3.	Select **DOT** as the **Type**.

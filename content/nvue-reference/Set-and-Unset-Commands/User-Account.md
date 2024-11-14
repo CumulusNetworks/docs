@@ -151,9 +151,13 @@ cumulus@switch:~$ nv set system aaa role ROLE1 class class1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system aaa user \<user-id\> enable</h>
+## <h>nv set system aaa user \<user-id\> state</h>
 
-Turns the user account for the switch on or off.
+Turns the user account for the switch on or off. You can specify `enabled` or `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.10 and earlier, this command is `nv set system aaa user <user-id> enable on` or `nv set system aaa user <user-id> enable off`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -168,7 +172,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set system aaa user admin2 enable on
+cumulus@switch:~$ nv set system aaa user admin2 state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

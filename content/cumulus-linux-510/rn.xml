@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4163399</td>
+<td>When you configure the SNMP server listening address to a VRF that has no interfaces, {{snmp.service}} fails.To recover from the failure, set the SNMP server listening address back to the VRF that has interfaces. If you really want to move the SNMP server to the VRF with no interfaces, assign an interface to the VRF and move the SNMP server to the VRF.</td>
+<td>5.10.0-5.10.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4142857</td>
 <td>The switch drops PTP packets received with extra ethernet padding and you see syslog {{[ptp4l.ERR] messages.</td>
 <td>5.10.0-5.10.1</td>
@@ -610,6 +616,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>4163399</td>
+<td>When you configure the SNMP server listening address to a VRF that has no interfaces, {{snmp.service}} fails.To recover from the failure, set the SNMP server listening address back to the VRF that has interfaces. If you really want to move the SNMP server to the VRF with no interfaces, assign an interface to the VRF and move the SNMP server to the VRF.</td>
+<td>5.10.0-5.10.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4142857</td>

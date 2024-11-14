@@ -176,6 +176,7 @@ cumulus@switch:~$ nv config apply
 {{%notice note%}}
 - You can configure only one address; either IPv4 or IPv6.
 - For IPv6, set the trunk port transport mode to IPv6.
+- When you enable PTP on a bridge port, you must also enable PTP on the VLAN configured for the port with the `nv set bridge domain <domain> vlan <vlan-id> ptp enable on` command. 
 {{%/notice%}}
 
 The configuration writes to the `/etc/ptp4l.conf` file.
@@ -472,7 +473,6 @@ Cumulus Linux PTP has an option to use a servo specifically designed to handle t
 {{%notice note%}}
 - To use Noise Transfer Servo, you need to enable SyncE on the switch and on PTP interfaces. 
 - Cumulus Linux supports Noise Transfer Servo on Spectrum ASICs that support SyncE.
-- NVIDIA recommends you do not change the default Noise Transfer Servo configuration parameters.
 - NVIDIA recommends you use Noise Transfer Servo with PTP Telecom profiles. If you use other profiles or choose not to use a profile, make sure to set the sync interval to -3 or better.
 {{%/notice%}}
 

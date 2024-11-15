@@ -241,15 +241,15 @@ cumulus@switch:~$ netq show agents
 Matching agents records:
 Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
 ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
-exit-1            Fresh            yes      4.11.0-cl4u48~1719858419.3db6af0a5   Mon Jul  1 19:29:33 2024  Mon Jul  1 20:11:31 2024  Mon Jul  8 18:33:15 2024   Tue Jul  9 15:13:14 2024
-exit-2            Fresh            yes      4.11.0-cl4u48~1719858419.3db6af0a5   Mon Jul  1 19:29:34 2024  Mon Jul  1 20:11:52 2024  Mon Jul  8 18:33:12 2024   Tue Jul  9 15:13:17 2024
-firewall-1        Fresh            yes      4.11.0-cl4u48~1719858419.3db6af0a5   Mon Jul  1 19:29:32 2024  Mon Jul  1 20:12:13 2024  Mon Jul  8 18:33:07 2024   Tue Jul  9 15:13:02 2024
-firewall-2        Fresh            yes      4.11.0-cl4u48~1719858419.3db6af0a5   Mon Jul  1 19:29:32 2024  Mon Jul  1 20:12:42 2024  Mon Jul  8 18:33:13 2024   Tue Jul  9 15:13:05 2024
-hostd-11          Fresh            yes      4.11.0-ub18.04u48~1719859179.3db6af0 Mon Jul  1 20:01:50 2024  Mon Jul  1 20:12:59 2024  Mon Jul  8 18:33:15 2024   Tue Jul  9 15:13:02 2024
-hostd-21          Fresh            yes      4.11.0-ub18.04u48~1719859179.3db6af0 Mon Jul  1 20:02:50 2024  Mon Jul  1 20:13:15 2024  Mon Jul  8 18:32:52 2024   Tue Jul  9 15:13:11 2024
-hosts-11          Fresh            yes      4.11.0-ub18.04u48~1719859179.3db6af0 Mon Jul  1 20:03:47 2024  Mon Jul  1 20:13:31 2024  Mon Jul  8 18:33:16 2024   Tue Jul  9 15:13:21 2024
-hosts-13          Fresh            yes      4.11.0-ub18.04u48~1719859179.3db6af0 Mon Jul  1 20:04:48 2024  Mon Jul  1 20:13:46 2024  Mon Jul  8 18:33:18 2024   Tue Jul  9 15:13:08 2024
-hosts-21          Fresh            yes      4.11.0-ub18.04u48~1719859179.3db6af0 Mon Jul  1 20:05:54 2024  Mon Jul  1 20:13:59 2024  Mon Jul  8 18:33:21 2024   Tue Jul  9 15:13:20 2024
+exit-1            Fresh            yes      4.12.0-cl4u48~1719858419.3db6af0a5   Mon Jul  1 19:29:33 2024  Mon Jul  1 20:11:31 2024  Mon Jul  8 18:33:15 2024   Tue Jul  9 15:13:14 2024
+exit-2            Fresh            yes      4.12.0-cl4u48~1719858419.3db6af0a5   Mon Jul  1 19:29:34 2024  Mon Jul  1 20:11:52 2024  Mon Jul  8 18:33:12 2024   Tue Jul  9 15:13:17 2024
+firewall-1        Fresh            yes      4.12.0-cl4u48~1719858419.3db6af0a5   Mon Jul  1 19:29:32 2024  Mon Jul  1 20:12:13 2024  Mon Jul  8 18:33:07 2024   Tue Jul  9 15:13:02 2024
+firewall-2        Fresh            yes      4.12.0-cl4u48~1719858419.3db6af0a5   Mon Jul  1 19:29:32 2024  Mon Jul  1 20:12:42 2024  Mon Jul  8 18:33:13 2024   Tue Jul  9 15:13:05 2024
+hostd-11          Fresh            yes      4.12.0-ub18.04u48~1719859179.3db6af0 Mon Jul  1 20:01:50 2024  Mon Jul  1 20:12:59 2024  Mon Jul  8 18:33:15 2024   Tue Jul  9 15:13:02 2024
+hostd-21          Fresh            yes      4.12.0-ub18.04u48~1719859179.3db6af0 Mon Jul  1 20:02:50 2024  Mon Jul  1 20:13:15 2024  Mon Jul  8 18:32:52 2024   Tue Jul  9 15:13:11 2024
+hosts-11          Fresh            yes      4.12.0-ub18.04u48~1719859179.3db6af0 Mon Jul  1 20:03:47 2024  Mon Jul  1 20:13:31 2024  Mon Jul  8 18:33:16 2024   Tue Jul  9 15:13:21 2024
+hosts-13          Fresh            yes      4.12.0-ub18.04u48~1719859179.3db6af0 Mon Jul  1 20:04:48 2024  Mon Jul  1 20:13:46 2024  Mon Jul  8 18:33:18 2024   Tue Jul  9 15:13:08 2024
+hosts-21          Fresh            yes      4.12.0-ub18.04u48~1719859179.3db6af0 Mon Jul  1 20:05:54 2024  Mon Jul  1 20:13:59 2024  Mon Jul  8 18:33:21 2024   Tue Jul  9 15:13:20 2024
 ...
 ```
 

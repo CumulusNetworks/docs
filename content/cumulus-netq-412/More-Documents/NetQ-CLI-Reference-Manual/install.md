@@ -109,38 +109,44 @@ cumulus@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.12.0.
 
 - `netq install cluster config generate`
 - - -
-<!--need clarification
+
 ## netq install cluster config generate
 
+Run this command on your *master* node to generates a JSON template that you can use to specify your VM's cluster configuration attributes as part of the high-availability scale cluster deployment.
+<!--not applicable for 4.12
+netq install cluster config generate workers 
+    <text-cluster-nworkers> 
+    [<text-config-json-file>]
+-->
 ### Syntax
 
 ```
 netq install cluster config generate 
     [<text-config-json-file>]
-
-netq install cluster config generate workers 
-    <text-cluster-nworkers> 
-    [<text-config-json-file>]
 ```
 ### Required Arguments
 
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| NA | \<text-cluster-nworkers\> |  |
+None
+
 ### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| NA | \<text-config-json-file\> |  |
+| NA | \<text-config-json-file\> | Generate the file at this location; you must specify a full path |
 
 ### Sample Usage
+
+```
+cumulus@netq-server:~$ netq install cluster config generate
+2024-10-28 17:29:53.260462: master-node-installer: Writing cluster installation configuration template file @ /tmp/cluster-install-config.json
+```
 
 ### Related Commands
 
 - `netq install cluster bundle`
 
 - - -
--->
+
 ## netq install cluster full
 
 Installs the NetQ software for an on-premises, server cluster deployment. Run this command on your *master* node. You must have the hostname or IP address of the master node, two worker nodes, virtual IP address, and the NetQ software bundle to run the command.
@@ -225,7 +231,7 @@ cumulus@<hostname>:~$ netq install cluster master-init
 - `netq install cluster worker-init`
 
 - - -
-<!--need clarification
+<!--unhide when workflow is GA
 ## netq install cluster worker add
 
 ### Syntax

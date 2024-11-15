@@ -55,16 +55,16 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 | `nv set qos advance-buffer-config <profile-id> egress-service-pool` | `nv set qos advance-buffer-config <profile-id> egress-pool` |
 | `nv show qos advance-buffer-config <profile-id> ingress-service-pool` | `nv show qos advance-buffer-config default-global ingress-pool` |
 | `nv show qos advance-buffer-config <profile-id> egress-service-pool` | `nv show qos advance-buffer-config default-global egress-pool` |
-| `nv set system aaa user <user-id> state enabled`<br>`nv set system aaa user <user-id> state disabled`<br>`nv unset system aaa user <user-id> enable` | `nv set system aaa user <user-id> enable on`<br>`nv set system aaa user <user-id> enable off`<br>`nv unset system aaa user <user-id> state` |
+| `nv set system aaa user <user-id> state enabled`<br>`nv set system aaa user <user-id> state disabled`<br>`nv unset system aaa user <user-id> state`| `nv set system aaa user <user-id> enable on`<br>`nv set system aaa user <user-id> enable off`<br>`nv unset system aaa user <user-id> enable` |
 {{< /expand >}}
   - {{< expand "Removed NVUE Commands" >}}
 | Removed Commands |
 | --------------- |
-|`nv show interface pluggable` (replaced with `nv show platform transceiver`) |
-|`nv show interface <interface>` pluggable (replaced with `nv show platform transceiver <interface>`)|
-|`nv show vrf <vrf-id> router bgp address-family <afi> loc-rib` (replaced with `nv show vrf <vrf-id> router bgp address-family <afi>> route`) |
-| `nv set vrf <vrf-id> router rib ipv4 protocol bgp fib-filter` |
-| `nv show vrf <vrf-id> router rib ipv6 protocol` |
+| `nv show interface pluggable` (replaced with `nv show platform transceiver`) |
+| `nv show interface <interface>` pluggable (replaced with `nv show platform transceiver <interface>`)|
+| `nv show vrf <vrf-id> router bgp address-family <afi> loc-rib` (replaced with `nv show vrf <vrf-id> router bgp address-family <afi>> route`) |
+| `nv set vrf <vrf-id> router rib <address-family> protocol` |
+| `nv show vrf <vrf-id> router rib <address-family> protocol` |
 | `nv show router nexthop rib <nhg-id> dependents` |
 | `nv show router nexthop rib <nhg-id> depends` |
 | `nv show router nexthop rib <nhg-id> resolved-via <resolved-via-id>` |

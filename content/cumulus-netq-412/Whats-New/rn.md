@@ -15,6 +15,7 @@ pdfhidden: True
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="4161342"></a> [4161342](#4161342) <a name="4161342"></a> <br /> | When NetQ runs a scheduled topology validation, the UI might display the message “No data available” in the medium-sized results card. To view the results from the validation, expand the card to its largest size. | 4.12.0 | |
+| <a name="4155900"></a> [4155900](#4155900) <a name="4155900"></a> <br /> | When a fan’s sensor state is “high”, NetQ correctly displays the count information on the sensor health card. When the card is expanded to the detailed view, fans with a “high” sensor state will not be included among the fans with problematic states. | 4.12.0 | |
 | <a name="4134445"></a> [4134445](#4134445) <a name="4134445"></a> <br /> | When you select a bin from the queue histogram card, NetQ might display the message “Histogram data unavailable for this device.” | 4.12.0 | |
 | <a name="3985598"></a> [3985598](#3985598) <a name="3985598"></a> <br /> | When you configure multiple threshold-crossing events for the same TCA event ID on the same device, NetQ will only display one TCA event for each hostname per TCA event ID, even if both thresholds are crossed or status events are triggered.   | 4.11.0-4.12.0 | |
 | <a name="3800434"></a> [3800434](#3800434) <a name="3800434"></a> <br /> | When you upgrade NetQ from a version prior to 4.9.0, What Just Happened data that was collected before the upgrade is no longer present. | 4.9.0-4.12.0 | |

@@ -13,6 +13,12 @@
 <td></td>
 </tr>
 <tr>
+<td>4155900</td>
+<td>When a fan’s sensor state is “high”, NetQ correctly displays the count information on the sensor health card. When the card is expanded to the detailed view, fans with a “high” sensor state will not be included among the fans with problematic states.</td>
+<td>4.12.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4134445</td>
 <td>When you select a bin from the queue histogram card, NetQ might display the message “Histogram data unavailable for this device.”</td>
 <td>4.12.0</td>

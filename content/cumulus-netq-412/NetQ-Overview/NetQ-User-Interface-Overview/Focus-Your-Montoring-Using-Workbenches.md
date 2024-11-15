@@ -19,7 +19,7 @@ NVIDIA includes two example workbenches---NetQ Workbench and Fabric Dashboard---
 
 **NetQ Workbench** includes cards displaying your network’s device inventory, switch inventory, validation summary, What Just Happened events, host inventory, DPU inventory, and system events. This workbench is visible to all users within an organization and any changes to it will not be saved.
 
-**Fabric Dashboard** includes cards displaying link status and events, sensor health, queue status, What Just Happened and system events, BGP and EVPN sessions, device inventory, and a validation summary. You can modify this workbench by adding or deleting cards and NetQ saves the changes automatically. This workbench is local to each premises, meaning that changes made to the workbench on one premises will not be reflected when you switch to a different premises.
+**Fabric Dashboard** includes cards displaying link status and events, sensor health, queue lengths, What Just Happened and system events, BGP and EVPN sessions, and device inventory. You can modify this workbench by adding or deleting cards and NetQ saves the changes automatically. This workbench is local to each premises, meaning that changes made to the workbench on one premises will not be reflected when you switch to a different premises.
 
 
 ## Create a Custom Workbench

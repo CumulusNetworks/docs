@@ -6,6 +6,8 @@ toc: 3
 ---
 You can install NetQ either on your premises or as a remote, cloud solution. If you are unsure which option is best for your network, refer to {{<link title="Before You Install" text="Before You Install">}}.
 
+For installation troubleshooting, see {{<link title="Troubleshoot NetQ/#troubleshoot-netq-installation-and-upgrade-issues" text="Troubleshoot NetQ Installation and Upgrade Issues">}}.
+
 ## On-Premises Deployment Options
 
 <!--
@@ -24,7 +26,7 @@ You can install NetQ either on your premises or as a remote, cloud solution. If 
 | High-availability cluster | KVM or VMware | {{<link title="Set Up Your Virtual Machine for an On-premises HA Server Cluster" text="Start install">}} |
 | High-availability scale cluster | KVM or VMware | {{<link title="Set Up Your Virtual Machine for an On-premises HA Scale Cluster" text="Start install">}} |
 
-## Cloud/OPTA Deployment Options
+## Cloud (OPTA) Deployment Options
 <!--
 | Deployment Type | Server Arrangement | Hypervisor | Requirements & Installation |
 | --- | --- | --- | :---: |
@@ -33,10 +35,10 @@ You can install NetQ either on your premises or as a remote, cloud solution. If 
 | OPTA | High-availability server cluster | KVM | {{<link title="Set Up Your KVM Virtual Machine for a Cloud HA Server Cluster" text="Start install" >}} |
 | OPTA | High-availability server cluster | VMware | {{<link title="Set Up Your VMware Virtual Machine for a Cloud HA Server Cluster" text="Start install" >}} |
 -->
-| Server Arrangement | Hypervisor | Requirements & Installation |
+| Server Arrangement&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Hypervisor | Requirements & Installation |
 | :--- | --- | :---: |
 | Single server | KVM or VMware | {{<link title="Set Up Your Virtual Machine for a Single Cloud Server" text="Start install">}} |
-| High-availability cluster      | KVM or VMware | {{<link title="Set Up Your Virtual Machine for a Cloud HA Server Cluster" text="Start install">}}|
+| High-availability cluster| KVM or VMware | {{<link title="Set Up Your Virtual Machine for a Cloud HA Server Cluster" text="Start install">}}|
 
 ## Base Command Manager
 

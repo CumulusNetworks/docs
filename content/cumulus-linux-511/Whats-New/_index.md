@@ -60,11 +60,11 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
   - {{< expand "Removed NVUE Commands" >}}
 | Removed Commands |
 | --------------- |
-|`nv show interface pluggable` (replaced with `nv show platform transceiver`) |
-|`nv show interface <interface>` pluggable (replaced with `nv show platform transceiver <interface>`)|
-|`nv show vrf <vrf-id> router bgp address-family <afi> loc-rib` (replaced with `nv show vrf <vrf-id> router bgp address-family <afi>> route`) |
-| `nv set vrf <vrf-id> router rib ipv4 protocol bgp fib-filter` |
-| `nv show vrf <vrf-id> router rib ipv6 protocol` |
+| `nv show interface pluggable` (replaced with `nv show platform transceiver`) |
+| `nv show interface <interface>` pluggable (replaced with `nv show platform transceiver <interface>`)|
+| `nv show vrf <vrf-id> router bgp address-family <afi> loc-rib` (replaced with `nv show vrf <vrf-id> router bgp address-family <afi>> route`) |
+| `nv set vrf <vrf-id> router rib <address-family> protocol` |
+| `nv show vrf <vrf-id> router rib <address-family> protocol` |
 | `nv show router nexthop rib <nhg-id> dependents` |
 | `nv show router nexthop rib <nhg-id> depends` |
 | `nv show router nexthop rib <nhg-id> resolved-via <resolved-via-id>` |

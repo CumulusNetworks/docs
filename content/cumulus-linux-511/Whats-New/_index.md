@@ -280,7 +280,7 @@ nv set system sflow sampling-rate speed-400g
 nv set system sflow sampling-rate speed-800g
 nv set system sflow agent ip <ipv4-prefix>
 nv set system sflow agent interface <interface-name>
-nv set system sflow dropmon <drop-type>
+nv set system sflow dropmon hw
 nv set system sflow poll-interval
 nv set system sflow state
 nv set system telemetry label <label-id>
@@ -378,7 +378,6 @@ nv unset system sflow agent ip
 nv unset system sflow agent interface
 nv unset system sflow policer
 nv unset system sflow dropmon
-nv unset system sflow dropmon <drop-type>
 nv unset system sflow poll-interval
 nv unset system sflow state
 nv unset system telemetry label

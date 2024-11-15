@@ -18,7 +18,7 @@ NetQ 4.12.0 includes the following new features and improvements:
 - View a switch's BGP and EVPN session information from the full-screen {{<link title="Switches" text="switch dashboard">}}
 - New option to send all events to a notification channel as part of {{<link title="Configure System Event Notifications/#create-a-channel" text="the channel setup process">}}
 - The {{<link title="Network Topology" text="topology view">}} is now generally available
-- {{<link title="Validate Network Protocol and Service Operations/#topology-validations" text="Topology validations">}} are now generally available
+- The {{<link title="Validate Network Protocol and Service Operations/#topology-validations" text="topology validation">}} is now generally available
 
 ## Upgrade Paths
 
@@ -34,7 +34,8 @@ The NetQ 4.12 server is compatible with the NetQ 4.12 agent. You can install Net
 - Cumulus Linux 5.0.0 or later (Spectrum switches)
 - Ubuntu 22.04, 20.04
 
-{{%notice infonopad%}}
+## Release Considerations
+
 - NetQ 4.12 is not backward compatible with previous NetQ agent versions. You must install NetQ agent version 4.12 after upgrading your NetQ server to 4.12.
 - When you upgrade to NetQ 4.12, any pre-existing event and validation data will be lost.
-{{%/notice%}}
+- If you upgrade a NetQ server with scheduled OSPF validations, they might still appear in the UI but will display results from previous validations.

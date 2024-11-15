@@ -13,6 +13,12 @@
 <td></td>
 </tr>
 <tr>
+<td>4000939</td>
+<td>When you upgrade a NetQ VM with devices in the inventory that have been rotten for 7 or more days, NetQ inventory cards in the UI and table output might show inconsistent results and might not display the rotten devices. To work around this issue, decommission the rotten device and ensure it's running the appropriate NetQ agent version.</td>
+<td>4.11.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3995266</td>
 <td>When you use NetQ LCM to upgrade a Cumulus Linux switch with NTP configured using NVUE in a VRF that is not {{mgmt}}, the upgrade fails to complete. To work around this issue, first unset the NTP configuration with the {{nv unset service ntp}} and {{nv config apply}} commands, and reconfigure NTP after the upgrade completes.</td>
 <td>4.11.0</td>

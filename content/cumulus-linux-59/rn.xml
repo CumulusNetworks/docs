@@ -25,21 +25,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4122543</td>
-<td>When you use the NVUE {{nv set bridge domain &lt;bridge-id&gt; stp priority}} command to  configure the STP priority on two bridges, the STP priority on the second bridge does not apply.To work around this issue, configure an NVUE snippet for the second bridge and apply it to the switch; for example:
-Create the {{vlan-aware_bridge_snippet.yaml}} file and add the following:
-- set:
-   system:
-    config:
-     snippet:
-      ifupdown2_eni:
-       bridge2: |
-mstpctl-treeprio 8192
-Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} command, then the {{nv config apply}} command.</td>
-<td>5.9.1-5.10.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4119621</td>
 <td>When you set the SNMP server listening address to listen on all IPv4 and IPv6 addresses in a VRF with the {{nv set service snmp-server listening-address all vrf}} and {{nv set service snmp-server listening-address all-v6 vrf}} commands,SNMP requests over IPv6 addresses do not work.</td>
 <td>5.8.0-5.10.1</td>
@@ -788,21 +773,6 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <tr>
 <td>4128913</td>
 <td>In an EVPN configuration,  when you use NVUE to configure a new host bond and an multihoming  ESI at the same time, the Split-Horizon preventive traffic class rule is not programmed in the egress direction. To work around this issue, configure the host bond and apply the configuration, then configure the EVPN multihoming ESI on the host bonds and apply the configuration in a separate step.</td>
-<td>5.9.1-5.10.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4122543</td>
-<td>When you use the NVUE {{nv set bridge domain &lt;bridge-id&gt; stp priority}} command to  configure the STP priority on two bridges, the STP priority on the second bridge does not apply.To work around this issue, configure an NVUE snippet for the second bridge and apply it to the switch; for example:
-Create the {{vlan-aware_bridge_snippet.yaml}} file and add the following:
-- set:
-   system:
-    config:
-     snippet:
-      ifupdown2_eni:
-       bridge2: |
-mstpctl-treeprio 8192
-Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} command, then the {{nv config apply}} command.</td>
 <td>5.9.1-5.10.1</td>
 <td></td>
 </tr>

@@ -7,12 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4163399</td>
-<td>When you configure the SNMP server listening address to a VRF that has no interfaces, {{snmp.service}} fails.To recover from the failure, set the SNMP server listening address back to the VRF that has interfaces. If you really want to move the SNMP server to the VRF with no interfaces, assign an interface to the VRF and move the SNMP server to the VRF.</td>
-<td>5.10.0-5.10.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4142857</td>
 <td>The switch drops PTP packets received with extra ethernet padding and you see syslog {{[ptp4l.ERR] messages.</td>
 <td>5.10.0-5.10.1</td>
@@ -22,12 +16,6 @@
 <td>4135919</td>
 <td>You might experience a memory leak in {{ospfd}} when processing next hops due to network changes.</td>
 <td>5.9.1-5.10.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4134451</td>
-<td>When you set the SNMP server listening address to listen on all IPv4 and IPv6 addresses in a VRF with the {{nv set service snmp-server listening-address all vrf}} and {{nv set service snmp-server listening-address all-v6 vrf}} commands,SNMP requests over IPv6 addresses do not work.</td>
-<td>5.8.0-5.10.1</td>
 <td></td>
 </tr>
 <tr>
@@ -65,7 +53,7 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 </tr>
 <tr>
 <td>4119621</td>
-<td>When you set the SNMP server listening address to listen on all IPv4 and IPv6 addresses in a VRF with the {{nv set service snmp-server listening-address all vrf}} and {{nv set service snmp-server listening-address all-v6 vrf}} commands, SNMP requests over IPv6 addresses do not work.</td>
+<td>When you set the SNMP server listening address to listen on all IPv4 and IPv6 addresses in a VRF with the {{nv set service snmp-server listening-address all vrf}} and {{nv set service snmp-server listening-address all-v6 vrf}} commands,SNMP requests over IPv6 addresses do not work.</td>
 <td>5.8.0-5.10.1</td>
 <td></td>
 </tr>
@@ -508,12 +496,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <tr>
 <td>2867042</td>
 <td>When connecting the NVIDIA SN4600 switch to another NVIDIA Spectrum switch, you must use auto-negotiation mode (not force mode); otherwise the switch might use the wrong Tx configuration.</td>
-<td>5.0.0-5.10.1</td>
-<td></td>
-</tr>
-<tr>
-<td>2847755</td>
-<td>When you use NCLU to remove the configuration for a peer that is a member of a group but also has other peer-specific configuration, you must remove the peer-specific configuration before you delete the peer in a separate NCLU commit.</td>
 <td>5.0.0-5.10.1</td>
 <td></td>
 </tr>
@@ -618,12 +600,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4163399</td>
-<td>When you configure the SNMP server listening address to a VRF that has no interfaces, {{snmp.service}} fails.To recover from the failure, set the SNMP server listening address back to the VRF that has interfaces. If you really want to move the SNMP server to the VRF with no interfaces, assign an interface to the VRF and move the SNMP server to the VRF.</td>
-<td>5.10.0-5.10.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4142857</td>
 <td>The switch drops PTP packets received with extra ethernet padding and you see syslog {{[ptp4l.ERR] messages.</td>
 <td>5.10.0-5.10.1</td>
@@ -633,12 +609,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>4135919</td>
 <td>You might experience a memory leak in {{ospfd}} when processing next hops due to network changes.</td>
 <td>5.9.1-5.10.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4134451</td>
-<td>When you set the SNMP server listening address to listen on all IPv4 and IPv6 addresses in a VRF with the {{nv set service snmp-server listening-address all vrf}} and {{nv set service snmp-server listening-address all-v6 vrf}} commands,SNMP requests over IPv6 addresses do not work.</td>
-<td>5.8.0-5.10.1</td>
 <td></td>
 </tr>
 <tr>
@@ -676,7 +646,7 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 </tr>
 <tr>
 <td>4119621</td>
-<td>When you set the SNMP server listening address to listen on all IPv4 and IPv6 addresses in a VRF with the {{nv set service snmp-server listening-address all vrf}} and {{nv set service snmp-server listening-address all-v6 vrf}} commands, SNMP requests over IPv6 addresses do not work.</td>
+<td>When you set the SNMP server listening address to listen on all IPv4 and IPv6 addresses in a VRF with the {{nv set service snmp-server listening-address all vrf}} and {{nv set service snmp-server listening-address all-v6 vrf}} commands,SNMP requests over IPv6 addresses do not work.</td>
 <td>5.8.0-5.10.1</td>
 <td></td>
 </tr>
@@ -1192,12 +1162,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <tr>
 <td>2867042</td>
 <td>When connecting the NVIDIA SN4600 switch to another NVIDIA Spectrum switch, you must use auto-negotiation mode (not force mode); otherwise the switch might use the wrong Tx configuration.</td>
-<td>5.0.0-5.10.1</td>
-<td></td>
-</tr>
-<tr>
-<td>2847755</td>
-<td>When you use NCLU to remove the configuration for a peer that is a member of a group but also has other peer-specific configuration, you must remove the peer-specific configuration before you delete the peer in a separate NCLU commit.</td>
 <td>5.0.0-5.10.1</td>
 <td></td>
 </tr>

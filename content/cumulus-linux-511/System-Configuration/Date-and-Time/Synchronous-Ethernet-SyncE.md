@@ -22,7 +22,48 @@ Cumulus Linux constructs the SyncE clock identity as follows:
 - Only the NVIDIA SN3750-SX switch and the NVIDIA SN5400 switch support SyncE.
 - SyncE on 1G interfaces only supports 1000BASE-SX transceivers, 1000BASE-LX transceivers, and ADVA 5401 GrandMaster transceivers.
 - When you configure SyncE on a switch with PTP enabled, configure {{<link url="Precision-Time-Protocol-PTP#noise-transfer-servo" text="ITU-T noise transfer">}}.
+- To use SyncE on the SN5400 switch running Cumulus Linux 5.11 or later, you must upgrade SyncE firmware. See {{<link url="#upgrade-synce-firmware-on-the-sn5400-switch" text="Upgrade SyncE Firmware on the SN5400 Switch">}} below.
 {{%/notice%}}
+
+## Upgrade SyncE Firmware on the NVIDIA SN5400 Switch
+
+The NVIDIA SN5400 switch running Cumulus Linux 5.11 and later requires a firmware upgrade to use SyncE.
+
+To upgrade the SyncE firmware on the SN5400 switch:
+
+1. From the {{<exlink url="https://enterprise-support.nvidia.com/s/downloader" text="NVIDIA Enterprise support portal">}}, download all the SyncE firmware files.
+
+2. Upload the SyncE firmware files to the switch.
+
+3. Upgrade the firmware with the `sudo flint` command for each file; for example:
+
+   ```
+   cumulus@switch:~$ sudo flint -d /dev/mst/mt53120_pciconf0 -i MC000030_HIPPO_ALBATROSS_CLKBRD1_CLK_FW_UPGRADE_REV0100.bin burn
+       Current FW version on flash:  0.0
+       New FW version:               1.0
+   -I- Downloading FW ...
+   FSMST_INITIALIZE -   OK
+   Writing COMPID_CLOCK_SYNC_EEPROM component -   OK
+   FSMST_LOCKED -   OK
+   FSMST_DOWNSTREAM_DEVICE_TRANSFER -   OK
+   -I- Component FW burn finished successfully.
+   -I- To load new FW run reboot machine.
+   ```
+
+   ```
+   cumulus@switch:~$ sudo flint -d /dev/mst/mt53120_pciconf0 -i MC000031_HIPPO_ALBATROSS_CLKBRD2_CLK_FW_UPGRADE_REV0100.bin burn
+       Current FW version on flash:  0.0
+       New FW version:               1.0
+   -I- Downloading FW ...
+   FSMST_INITIALIZE -   OK
+   Writing COMPID_CLOCK_SYNC_EEPROM component -   OK
+   FSMST_LOCKED -   OK
+   FSMST_DOWNSTREAM_DEVICE_TRANSFER -   OK
+   -I- Component FW burn finished successfully.
+   -I- To load new FW run reboot machine.
+   ```
+
+4. Completely reset the system by removing power for at least 30 seconds.
 
 ## Basic Configuration
 

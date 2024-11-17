@@ -5593,6 +5593,132 @@ Provides commands to configure outbound EVPN policies.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn prefix-limits</h>
+
+Provides commands to configure EVPN prefix limits from the specified peer.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn prefix-limits inbound</h>
+
+Provides commands to configure the inbound prefix limit from the specified peer for EVPN.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn prefix-limits inbound maximum</h>
+
+Configures the maximum inbound prefix limit from the peer for EVPN. You can set a value between 0 and 4294967295 or `none`.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn prefix-limits inbound maximum 2
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn prefix-limits warning-threshold</h>
+
+Configures when to generate a warning syslog message. This is a percentage of the maximum inbound prefix limit. You can set a value between 0 and 100.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn prefix-limits warning-threshold 50
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn prefix-limits inbound warning-only</h>
+
+Configures the switch to generate a warning syslog message if the number of received prefixes exceeds the limit but does not bring down the BGP session. You can specify `on` or `off`.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn prefix-limits inbound warning-only on
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn prefix-limits inbound reestablish-wait</h>
+
+Configures the time in seconds to wait before establishing the BGP session again with the peer. The default value is `auto`, which uses standard BGP timers and processing (typically be 2-3 seconds). You can set avalue between 1 and 65535.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn prefix-limits inbound reestablish-wait 30
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> enable</h>
 
 Turns the exchange of information with a BGP neighbor on or off in the specified VRF. The default value is `on`.

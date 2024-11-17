@@ -6050,7 +6050,6 @@ unsuppress-map               none
 
 Shows all advertised and received EVPN capabilities for the specified BGP neighbor.
 
-
 ### Command Syntax
 
 | Syntax | Description |
@@ -6073,6 +6072,34 @@ rx-graceful-restart  on
 rx-mpbgp             on                           
 tx-addpath           off                          
 tx-mpbgp             on
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn prefix-limits inbound</h>
+
+Shows the configured prefix limits from the specified peer for EVPN.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show  vrf default router bgp neighbor swp51 address-family l2vpn-evpn prefix-limits inbound 
+                   operational  applied  
+-----------------  -----------  -------
+maximum                         none   
+warning-threshold               75     
+warning-only       off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

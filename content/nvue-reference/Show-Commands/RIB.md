@@ -480,7 +480,7 @@ active
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf-id\> router rib \<afi\> route \<route-id\> protocol \<protocol-id\> entry-index \<entry-index\> via \<via-id\> label
+## <h>nv show vrf \<vrf-id\> router rib \<afi\> route \<route-id\> protocol \<protocol-id\> entry-index \<entry-index\> via \<via-id\> label</h>
 
 Shows the routing table label information for the specified protocol route entry index next hop.
 
@@ -512,7 +512,7 @@ cumulus@switch:~$ nv show vrf default router rib ipv4 route 10.1.40.0/24 protoco
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf-id\> router rib \<afi\> route \<route-id\> protocol \<protocol-id\> entry-index \<entry-index\> via \<via-id\> resolved-via
+## <h>nv show vrf \<vrf-id\> router rib \<afi\> route \<route-id\> protocol \<protocol-id\> entry-index \<entry-index\> via \<via-id\> resolved-via</h>
 
 Shows the routing table recursive next hop resolution information for the specified protocol route entry index next hop.
 
@@ -543,7 +543,7 @@ cumulus@switch:~$ nv show vrf default router rib ipv4 route 10.1.40.0/24 protoco
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf-id\> router rib \<afi\> route \<route-id\> protocol \<protocol-id\> entry-index via \<via-id\> resolved-via \<resolved-via-id\>
+## <h>nv show vrf \<vrf-id\> router rib \<afi\> route \<route-id\> protocol \<protocol-id\> entry-index via \<via-id\> resolved-via \<resolved-via-id\></h>
 
 Shows the routing table information for a specific recursive next hop for the specified protocol route entry index next hop.
 
@@ -571,4 +571,31 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router rib ipv4 route 10.1.40.0/24 protocol bgp entry-index 1 via 10.0.1.0 resolved-via 10.0.10.0
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf\> router rib \<afi\> fib-filter protocol \<protocol-id\></h>
+
+Shows the route map configuration for the routes of the import protocol specified.
+
+### Command Syntax
+
+|  Syntax | Description |
+| ---------| ------ |
+| `<vrf-id>` |  The VRF name.|
+| `<afi>` |  The route address family (IPv4 or IPv6). |
+| `<protocol-id>`  | The protocol name, such as `bgp` or `ospf`.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router rib ipv4 fib-filter protocol bgp
+           applied
+---------  ------- 
+route-map  routemap
 ```

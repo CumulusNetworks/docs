@@ -771,9 +771,11 @@ switch# exit
 You can only match type-2 and type-5 routes based on VNI.
 {{%/notice%}}
 
-## Prefix Limits
+## Neighbor Prefix Limits
 
-Cumulus Linux provides commands to configure the inbound prefix limit from a peer for EVPN.
+To protect against an internal network connectivity disruption, you can control the number of EVPN route announcements (prefixes) you want to receive from a BGP neighbor.
+
+Cumulus Linux provides commands to configure the inbound prefix limit from a neighbor for EVPN.
 
 To configure inbound prefix limits, set:
 - The maximum inbound prefix limit from the peer. You can set a value between 0 and 4294967295 or `none`.

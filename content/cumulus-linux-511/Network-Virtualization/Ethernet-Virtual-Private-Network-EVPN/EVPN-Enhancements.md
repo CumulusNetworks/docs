@@ -771,6 +771,75 @@ switch# exit
 You can only match type-2 and type-5 routes based on VNI.
 {{%/notice%}}
 
+## Neighbor Prefix Limits
+
+To protect against an internal network connectivity disruption, you can control the number of EVPN route announcements (prefixes) you want to receive from a BGP neighbor.
+
+Cumulus Linux provides commands to configure the inbound prefix limit from a neighbor for EVPN.
+
+To configure inbound prefix limits, set:
+- The maximum inbound prefix limit from the peer. You can set a value between 0 and 4294967295 or `none`.
+- When to generate a warning syslog message and bring down the BGP session. This is a percentage of the maximum inbound prefix limit. You can set a value between 0 and 100. You can configure the switch to generate a warning syslog message only **without** bringing down the BGP session.
+- The time in seconds to wait before establishing the BGP session again with the peer. The default value is `auto`, which uses standard BGP timers and processing (typically between 2 and 3 seconds). You can set a value between 1 and 65535.
+
+{{< tabs "TabID781" >}}
+{{< tab "NVUE Commands" >}}
+
+The following example sets the maximum inbound prefix limit from peer swp51 to 3, generates a warning syslog message and brings down the BGP session at 50 percent of the maximum inbound prefix limit. After 60 seconds, the BGP session with the peer reestablishes again.
+
+```
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn prefix-limits inbound maximum 3
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn prefix-limits warning-threshold 50
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn prefix-limits inbound reestablish-wait 60
+cumulus@switch:~$ nv config apply
+```
+
+The following example sets the maximum inbound prefix limit from peer swp51 to 3, and generates a warning syslog message only (without bringing down the BGP session) when reaching the inbound maximum limit:
+
+```
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn prefix-limits inbound maximum 3
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn prefix-limits inbound warning-only on
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands" >}}
+
+The following example sets the maximum inbound prefix limit from peer swp51 to 3, generates a warning syslog message and brings down the BGP session at 50 percent of the maximum inbound prefix limit. After 1 minute, the BGP session with the peer reestablishes again.
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# router bgp 65101
+switch(config-router)# address-family l2vpn evpn 
+switch(config-router-af)# neighbor swp51 maximum-prefix 3 50 restart 1
+switch(config-router-af)# end
+switch# write memory
+switch# exit
+```
+
+You can use the force option (`neighbor swp51 maximum-prefix 3 50 restart 1 force`) to force checking all received routes, not only accepted routes.
+
+The following example sets the maximum inbound prefix limit from peer swp51 to 3, and generates a warning syslog message only (without bringing down the BGP session) when reaching the inbound maximum limit:
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# router bgp 65101
+switch(config-router)# address-family l2vpn evpn 
+switch(config-router-af)# neighbor swp51 maximum-prefix 3 warning-only 
+switch(config-router-af)# end
+switch# write memory
+switch# exit
+```
+
+You can use the force option (`neighbor swp51 maximum-prefix 3 warning-only force`) to force checking all received routes, not only accepted routes.
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Advertise SVI IP Addresses
 
 In a typical EVPN deployment, you *reuse* SVI IP addresses on VTEPs across multiple racks. However, if you use *unique* SVI IP addresses across multiple racks and you want the local SVI IP address to be reachable via remote VTEPs, you can enable the advertise SVI IP and MAC address option. This option advertises the SVI IP and MAC address as a type-2 route and eliminates the need for any flooding over VXLAN to reach the IP address from a remote VTEP or rack.

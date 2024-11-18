@@ -31,6 +31,12 @@
 <td></td>
 </tr>
 <tr>
+<td>4124831</td>
+<td>When Per-VLAN Rapid Spanning Tree (PVRST) mode is enabled, bonds with LACP bypass discard ingress DHCP packets.</td>
+<td>5.9.1-5.10.1</td>
+<td>5.11.0</td>
+</tr>
+<tr>
 <td>4119621</td>
 <td>When you set the SNMP server listening address to listen on all IPv4 and IPv6 addresses in a VRF with the {{nv set service snmp-server listening-address all vrf}} and {{nv set service snmp-server listening-address all-v6 vrf}} commands,SNMP requests over IPv6 addresses do not work.</td>
 <td>5.8.0-5.11.0</td>
@@ -787,6 +793,12 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <td>In an EVPN configuration,  when you use NVUE to configure a new host bond and an multihoming  ESI at the same time, the Split-Horizon preventive traffic class rule is not programmed in the egress direction. To work around this issue, configure the host bond and apply the configuration, then configure the EVPN multihoming ESI on the host bonds and apply the configuration in a separate step.</td>
 <td>5.9.1-5.11.0</td>
 <td></td>
+</tr>
+<tr>
+<td>4124831</td>
+<td>When Per-VLAN Rapid Spanning Tree (PVRST) mode is enabled, bonds with LACP bypass discard ingress DHCP packets.</td>
+<td>5.9.1-5.10.1</td>
+<td>5.11.0</td>
 </tr>
 <tr>
 <td>4119621</td>

@@ -5595,41 +5595,19 @@ Provides commands to configure outbound EVPN policies.
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn prefix-limits</h>
 
-Provides commands to configure EVPN prefix limits from the specified peer.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-| `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
-
-### Version History
-
-Introduced in Cumulus Linux 5.10.0
+Provides commands to configure EVPN prefix limits from the specified BGP neighbor.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn prefix-limits inbound</h>
 
-Provides commands to configure the inbound prefix limit from the specified peer for EVPN.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-| `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
-
-### Version History
-
-Introduced in Cumulus Linux 5.10.0
+Provides commands to configure the inbound prefix limit from the specified BGP neighbor for EVPN.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn prefix-limits inbound maximum</h>
 
-Configures the maximum inbound prefix limit from the peer for EVPN. You can set a value between 0 and 4294967295 or `none`.
+Configures the maximum number of inbound prefixes allowed from the BGP neighbor for EVPN. You can set a value between 0 and 4294967295 or `none`.
 
 ### Command Syntax
 
@@ -5652,7 +5630,7 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family l2
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn prefix-limits warning-threshold</h>
 
-Configures when to generate a warning syslog message. This is a percentage of the maximum inbound prefix limit. You can set a value between 0 and 100.
+Configures when to generate a warning syslog message and bring down the BGP session (if `warning-only` is set to `off`) when the number of BGP prefixes from the neighbor exceeds a percentage of the maximum limit. For example, if the maximum prefix limit is 3 and the warning threshold is 60, the switch generates a warning message when the number of BGP prefixes from the BGP neighbor is more than 60 percent of 20 (12 prefixes). You can set a value between 0 and 100.
 
 ### Command Syntax
 
@@ -5668,14 +5646,14 @@ Introduced in Cumulus Linux 5.10.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn prefix-limits warning-threshold 50
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn prefix-limits inbound warning-threshold 50
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn prefix-limits inbound warning-only</h>
 
-Configures the switch to generate a warning syslog message if the number of received prefixes exceeds the limit but does not bring down the BGP session. You can specify `on` or `off`.
+Configures the switch to generate a warning syslog message only when the number of BGP prefixes from the neighbor exceeds a percentage of the maximum limit but does not bring down the BGP session. You can specify `on` or `off`.
 
 ### Command Syntax
 
@@ -5698,7 +5676,7 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family l2
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn prefix-limits inbound reestablish-wait</h>
 
-Configures the time in seconds to wait before establishing the BGP session again with the peer. The default value is `auto`, which uses standard BGP timers and processing (typically between 2 and 3 seconds). You can set a value between 1 and 65535.
+Configures the time in seconds to wait before reestablishing the BGP session with a neighbor. The default value is `auto`, which uses standard BGP timers and processing (typically between 2 and 3 seconds). You can set a value between 1 and 65535.
 
 ### Command Syntax
 

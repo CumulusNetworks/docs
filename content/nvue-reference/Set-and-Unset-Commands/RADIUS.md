@@ -12,6 +12,26 @@ h { color: RGB(118,185,0)}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
+## <h>nv set system aaa radius accounting</h>
+
+Enables RADIUS user command accounting, which lets you log every command that a user runs and send the commands to the primary RADIUS server for auditing. Audit logs are a requirement for compliance standards, such as PCI and HIPPA.
+
+You can specify `enabled` or `disabled`.
+
+The RADIUS server must be configured to accept packets from clients and have a dictionary entry for NV-Command-String.
+
+The `/var/log/radius-cmd-acct.log` file contains the local copy of the logs, which match the logs that the server receives.
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa radius accounting enabled
+```
+
 ## <h>nv set system aaa radius server \<hostname-id\></h>
 
 Configures the IP address or hostname of the RADIUS server.

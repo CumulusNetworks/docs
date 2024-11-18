@@ -91,6 +91,10 @@ cumulus@switch:~$ nv show router nexthop -o json
 
 Shows the next hop groups in the RIB. Next hop groups are a way to encapsulate ECMP information together.
 
+{{%notice note%}}
+You must use `--applied` with this command to show the output.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -98,7 +102,8 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show router nexthop group
+cumulus@switch:~$ nv show router nexthop group  --applied
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -106,6 +111,10 @@ cumulus@switch:~$ nv show router nexthop group
 ## <h>nv show router nexthop group \<nexthop-group-id\></h>
 
 Shows information about the specified next hop group in the RIB.
+
+{{%notice note%}}
+Cumulus Linux 5.4 and later no longer provides this command.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -129,6 +138,10 @@ cumulus@switch:~$ nv show router nexthop 1
 
 Shows information about the next hop addresses for the specified next hop group.
 
+{{%notice note%}}
+Cumulus Linux 5.4 and later no longer provides this command.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -150,6 +163,10 @@ cumulus@switch:~$ nv show router nexthop 1 via
 ## <h>nv show router nexthop group \<nexthop-group-id\> via \<via-id\></h>
 
 Shows details of a particular next hop group specified by the next hop address.
+
+{{%notice note%}}
+Cumulus Linux 5.4 and later no longer provides this command.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -272,39 +289,41 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show router nexthop rib 108
-                operational  applied
---------------  -----------  -------
-address-family  unspecified         
-installed       on                  
-ref-count       6                   
-type            zebra               
-valid           on                  
-vrf             default             
+cumulus@switch:~$ nv show router nexthop rib 140
+                 operational         
+---------------  --------------------
+type             zebra               
+ref-count        3                   
+vrf              default             
+valid            on                  
+installed        on                  
+interface-index  67                  
+uptime           2024-11-14T09:00:18Z
 
-resolved-via
-===============
-    Nexthop                    type        vrf      weight  Summary         
-    -------------------------  ----------  -------  ------  ----------------
-    fe80::4ab0:2dff:fe60:910e  ip-address  default  1       Interface: swp54
-    fe80::4ab0:2dff:fea7:7852  ip-address  default  1       Interface: swp53
-    fe80::4ab0:2dff:fec8:8fb9  ip-address  default  1       Interface: swp52
-    fe80::4ab0:2dff:feff:e147  ip-address  default  1       Interface: swp51
+Via
+======
+                                                                                
+    Flags - u - unreachable, r - recursive, o - onlink, i - installed, d -          
+    duplicate, c - connected, A - active, Type - Type of nexthop, Weight - Weight to
+    be used by the nexthop for purposes of ECMP, VRF - VRF to use for egress.       
+                                                                                
+    Nexthop      Flags  Type        Weight  VRF   Interface  
+    -----------  -----  ----------  ------  ----  -----------
+    10.10.10.63  oiA    ip-address  1       BLUE  vlan4006_l3
 
-resolved-via-backup
-======================
+Via BackupNexthops
+=====================
+No Data
 
-depends
+Depends
 ==========
+No Data
+
+Dependents
+=============
     Nexthop-group
     -------------
-    65           
-    90           
-    96           
-    109          
-
-dependents
-=============
+    257
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -313,6 +332,10 @@ dependents
 
 Shows information about the next hops on which a specific next hop relies.
 
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -326,7 +349,11 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show router nexthop rib 39 depends
+cumulus@switch:~$ nv show router nexthop rib 55 depends 
+Nexthop-group 
+------------- 
+56
+57
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -335,6 +362,10 @@ cumulus@switch:~$ nv show router nexthop rib 39 depends
 
 Shows information about the next hop dependents on which a specific next hop relies.
 
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -348,7 +379,10 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show router nexthop rib 10 dependents
+cumulus@switch:~$ nv show router nexthop rib 56 dependents  
+Nexthop-group 
+------------- 
+55   
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -357,6 +391,10 @@ cumulus@switch:~$ nv show router nexthop rib 10 dependents
 
 Shows details about the next hop address for a particular next hop.
 
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -370,10 +408,14 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$  nv show router nexthop rib 39 resolved-via
-Nexthop  type       vrf      weight  Summary
--------  ---------  -------  ------  -------
-vxlan99  interface  default 
+cumulus@switch:~$  nv show router nexthop rib 140 resolved-via
+Flags - u - unreachable, r - recursive, o - onlink, i - installed, d -          
+duplicate, c - connected, A - active, Type - Type of nexthop, Weight - Weight to
+be used by the nexthop for purposes of ECMP, VRF - VRF to use for egress.       
+                                                                                
+Nexthop      Flags  Type        Weight  VRF   Interface  
+-----------  -----  ----------  ------  ----  -----------
+10.10.10.63  oiA    ip-address  1       BLUE  vlan4006_l3 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -381,6 +423,10 @@ vxlan99  interface  default
 ## <h>nv show router nexthop rib \<nhg-id\> resolved-via \<resolved-via-id\></h>
 
 Shows details of a particular next hop specified by the next hop IP address.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -396,14 +442,19 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show router nexthop rib 39 resolved-via vxlan99
-      operational  applied  pending
-----  -----------  -------  -------
-type  interface                    
-vrf   default                      
+cumulus@switch:~$ nv show router nexthop rib 56 resolved-via 10.10.10.63
+              operational 
+------------  ----------- 
+type          ip-address  
+weight        1           
+vrf           default     
+flags-string  iA          
 
-interface
-============
+interface 
+============ 
+    Interface 
+    --------- 
+    swp5
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -411,6 +462,10 @@ interface
 ## <h>nv show router nexthop rib \<nhg-id\> resolved-via-backup</h>
 
 Shows information about the backup next hops for the specified next hop.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -426,29 +481,7 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show router nexthop rib 39 resolved-via-backup
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show router nexthop rib \<nhg-id\> resolved-via-backup \<resolved-via-id\></h>
-
-Shows information about a specific backup next hop.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<nhg-id>` | The next hop group ID. |
-| `<resolved-via-id>` | The IP address. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.4.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show router nexthop rib 20 resolved-via-backup 
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -471,14 +504,35 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show vrf default router nexthop-tracking
-      resolved-via-default  Summary                              
-----  --------------------  -------------------------------------
-ipv4                        ip-address:                10.10.10.2
-                            ip-address:                10.10.10.3
-                            ip-address:                10.10.10.4
-                            ip-address:              192.168.0.22
-ipv6                        ip-address: fe80::4ab0:2dff:fe08:9898
-                            ip-address: fe80::4ab0:2dff:fed8:67cb
+
+IpAddress - Nexthop ip address, Interface - Resolved via interface,             
+DirectlyConnected - Indicates if nexthop is directly connected or not,          
+ProtocolFiltered - Indicates whether protocol filtered or not, Flags - o -      
+onlink, c - directly-connected, A - active                                      
+                                                                                
+AFI   IpAddress    Interface      VRF      Weight  ResolvedProtocol  DirectlyConnected  ProtocolFiltered  Flags
+----  -----------  -------------  -------  ------  ----------------  -----------------  ----------------  -----
+ipv4  10.0.1.34    swp51          default  1       bgp               off                off               A    
+                   swp52          default  1                                                              A    
+                   swp54          default  1                                                              A    
+                   swp53          default  1                                                              A    
+      10.10.10.2   peerlink.4094  default  1       bgp               off                off               A    
+      10.10.10.3   swp51          default  1       bgp               off                off               A    
+                   swp52          default  1                                                              A    
+                   swp54          default  1                                                              A    
+                   swp53          default  1                                                              A    
+      10.10.10.4   swp51          default  1       bgp               off                off               A    
+                   swp52          default  1                                                              A    
+                   swp54          default  1                                                              A    
+                   swp53          default  1                                                              A    
+      10.10.10.63  swp51          default  1       bgp               off                off               A    
+                   swp52          default  1                                                              A    
+                   swp54          default  1                                                              A    
+                   swp53          default  1                                                              A    
+      10.10.10.64  swp51          default  1       bgp               off                off               A    
+                   swp52          default  1                                                              A    
+                   swp54          default  1                                                              A    
+                   swp53          default  1                                                              A
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -516,6 +570,10 @@ cumulus@switch:~$ nv show vrf default router nexthop-tracking ipv4
 
 Shows the IPv4 or IPv6 next hop tracking information for all route maps in the specified VRF.
 
+{{%notice note%}}
+You must use `--applied` with this command to show the output.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -530,7 +588,10 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router nexthop-tracking ipv4 route-map ROUTEMAP1
+cumulus@switch:~$ nv show vrf default router nexthop-tracking ipv4 route-map --applied
+           Summary       
+---------  ------------- 
+routemap1  protocol: bgp 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -539,6 +600,10 @@ cumulus@switch:~$ nv show vrf default router nexthop-tracking ipv4 route-map ROU
 
 Shows the IPv4 or IPv6 next hop tracking information for a specific route map in the specified VRF.
 
+{{%notice note%}}
+You must use `--applied` with this command to show the output.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -554,7 +619,10 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router nexthop-tracking ipv4 route-map ROUTEMAP1
+cumulus@switch:~$ nv show vrf default router nexthop-tracking ipv4 route-map ROUTEMAP1 --applied
+            applied 
+----------  ------- 
+[protocol]  bgp
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -563,6 +631,10 @@ cumulus@switch:~$ nv show vrf default router nexthop-tracking ipv4 route-map ROU
 
 Shows the IPv4 or IPv6 next hop tracking information for all protocols in the route map in the specified VRF.
 
+{{%notice note%}}
+You must use `--applied` with this command to show the output.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -578,7 +650,9 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router nexthop-tracking ipv4 route-map ROUTEMAP1
+cumulus@switch:~$ nv show vrf default router nexthop-tracking ipv4 route-map ROUTEMAP1 protocol --applied
+--- 
+Bgp 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -586,6 +660,10 @@ cumulus@switch:~$ nv show vrf default router nexthop-tracking ipv4 route-map ROU
 ## <h>nv show vrf \<vrf-id\> router nexthop-tracking \<afi\> route-map \<nht-routemap-id\> protocol \<nht-protocol-id\></h>
 
 Shows the IPv4 or IPv6 next hop tracking information for a specific route map protocol for the specified VRF.
+
+{{%notice note%}}
+You must use `--applied` with this command to show the output.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -603,5 +681,5 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router nexthop-tracking ipv4 route-map ROUTEMAP1 bgp
+cumulus@switch:~$ nv show vrf default router nexthop-tracking ipv4 route-map ROUTEMAP1 protocol bgp --applied
 ```

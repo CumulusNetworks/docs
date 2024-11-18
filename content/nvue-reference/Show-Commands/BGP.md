@@ -22,22 +22,25 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show router bgp
-                                applied    
-------------------------------  -----------
-enable                          on         
-autonomous-system               65101      
-graceful-shutdown               off        
-policy-update-timer             5          
-router-id                       10.10.10.1 
-wait-for-install                off        
-convergence-wait                           
-  establish-wait-time           0          
-  time                          0          
-graceful-restart                           
-  mode                          helper-only
-  path-selection-deferral-time  360        
-  restart-time                  120        
-  stale-routes-time             360
+                                applied      pending    
+------------------------------  -----------  -----------
+enable                          on           on         
+autonomous-system               65101        65101      
+router-id                       10.10.10.1   10.10.10.1 
+policy-update-timer             5            5          
+graceful-shutdown               off          off        
+wait-for-install                off          off        
+graceful-restart                                        
+  mode                          helper-only  helper-only
+  restart-time                  120          120        
+  path-selection-deferral-time  360          360        
+  stale-routes-time             360          360        
+convergence-wait                                        
+  time                          0            0          
+  establish-wait-time           0            0          
+queue-limit                                             
+  input                         10000        10000      
+  output                        10000        10000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -55,9 +58,9 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv show router bgp convergence-wait
                      applied
--------------------  -------
-establish-wait-time  0      
+-------------------  -------     
 time                 0
+establish-wait-time  0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -122,36 +125,36 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp
-                              operational  applied  
-----------------------------  -----------  ---------
-enable                                     on       
-autonomous-system                          auto     
-rd                                         none     
-router-id                     10.10.10.1   auto     
-address-family                                      
-  ipv4-unicast                                      
-    rib-filter                             none     
-    admin-distance                                  
-      external                             20       
-      internal                             200      
-    multipaths                                      
-      compare-cluster-length               off      
-      ebgp                                 64       
-      ibgp                                 64       
-    route-export                                    
-      to-evpn                                       
-        enable                             off      
-    route-import                                    
-      from-vrf                                      
-        enable                             off      
-    enable                                 on       
-    [aggregate-route]                               
-    [network]                                       
-    redistribute                                    
-      connected                                     
-        enable                             on       
-        metric                             auto     
-        route-map                          none
+                              operational  applied        pending      
+----------------------------  -----------  -------------  -------------
+enable                                     on             on           
+autonomous-system                          auto           auto         
+router-id                     10.10.10.1   auto           auto         
+rd                                         none           none         
+address-family                                                         
+  ipv4-unicast                                                         
+    rib-filter                             none           none         
+    route-export                                                       
+      to-evpn                                                          
+        enable                             off            off          
+    route-import                                                       
+      from-vrf                                                         
+        enable                             off            off          
+    admin-distance                                                     
+      external                             20             20           
+      internal                             200            200          
+    multipaths                                                         
+      ebgp                                 64             64           
+      ibgp                                 64             64           
+      compare-cluster-length               off            off          
+    enable                                 on             on           
+    redistribute                                                       
+      static                                                           
+        enable                             off            off          
+      connected                                                        
+        enable                             on             on           
+        metric                             auto           auto         
+        route-map                          none           none
 ...
 ```
 
@@ -175,25 +178,41 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp address-family
-                           operational  applied
---------------------------  -----------  -------
-ipv4-unicast                                    
-  rib-filter                             none   
-  admin-distance                                
-    external                             20     
-    internal                             200    
-  multipaths                                    
-    compare-cluster-length               off    
-    ebgp                                 64     
-    ibgp                                 64     
-  route-export                                  
-    to-evpn                                     
-      enable                             off    
-  route-import                                  
-    from-vrf                                    
-      enable                             off    
-  enable                                 on
-...
+                            operational  applied  pending
+--------------------------  -----------  -------  -------
+ipv4-unicast                                             
+  rib-filter                             none     none   
+  route-export                                           
+    to-evpn                                              
+      enable                             off      off    
+  route-import                                           
+    from-vrf                                             
+      enable                             off      off    
+  admin-distance                                         
+    external                             20       20     
+    internal                             200      200    
+  multipaths                                             
+    ebgp                                 64       64     
+    ibgp                                 64       64     
+    compare-cluster-length               off      off    
+  enable                                 on       on     
+  redistribute                                           
+    static                                               
+      enable                             off      off    
+    connected                                            
+      enable                             on       on     
+      metric                             auto     auto   
+      route-map                          none     none   
+    kernel                                               
+      enable                             off      off    
+    ospf                                                 
+      enable                             off      off    
+  [network]                                              
+  [aggregate-route]                                      
+ipv6-unicast                                             
+  enable                                 off      off    
+l2vpn-evpn                                               
+  enable                                 on       on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -216,23 +235,36 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast
-                          operational  applied
-------------------------  -----------  -------
-rib-filter                             none   
-admin-distance                                
-  external                             20     
-  internal                             200    
-multipaths                                    
-  compare-cluster-length               off    
-  ebgp                                 64     
-  ibgp                                 64     
-route-export                                  
-  to-evpn                                     
-    enable                             off    
-route-import                                  
-  from-vrf                                    
-    enable                             off    
-enable                                 on
+                          operational  applied  pending
+------------------------  -----------  -------  -------
+rib-filter                             none     none   
+route-export                                           
+  to-evpn                                              
+    enable                             off      off    
+route-import                                           
+  from-vrf                                             
+    enable                             off      off    
+admin-distance                                         
+  external                             20       20     
+  internal                             200      200    
+multipaths                                             
+  ebgp                                 64       64     
+  ibgp                                 64       64     
+  compare-cluster-length               off      off    
+enable                                 on       on     
+redistribute                                           
+  static                                               
+    enable                             off      off    
+  connected                                            
+    enable                             on       on     
+    metric                             auto     auto   
+    route-map                          none     none   
+  kernel                                               
+    enable                             off      off    
+  ospf                                                 
+    enable                             off      off    
+[network]                                              
+[aggregate-route]
 ...
 ```
 
@@ -256,18 +288,18 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast redistribute
-             operational  applied
------------  -----------  -------
-connected                        
-  enable                  on     
-  metric                  auto   
-  route-map               none   
-kernel                           
-  enable                  off    
-static                           
-  enable                  off    
-ospf                             
-  enable                  off
+             applied  pending
+-----------  -------  -------
+static                       
+  enable     off      off    
+connected                    
+  enable     on       on     
+  metric     auto     auto   
+  route-map  none     none   
+kernel                       
+  enable     off      off    
+ospf                         
+  enable     off      off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -290,9 +322,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast redistribute static
-        operational  applied
-------  -----------  -------
-enable               off
+        applied  pending
+------  -------  -------
+enable  off      off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -315,11 +347,11 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast redistribute connected
-           operational  applied
----------  -----------  -------
-enable                  on     
-metric                  auto   
-route-map               none
+           applied  pending
+---------  -------  -------
+enable     on       on     
+metric     auto     auto   
+route-map  none     none
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -342,9 +374,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast redistribute kernel
-        operational  applied
-------  -----------  -------
-enable               off
+        applied  pending
+------  -------  -------
+enable  off      off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -367,9 +399,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast redistribute ospf
-        operational  applied
-------  -----------  -------
-enable               off
+        applied  pending
+------  -------  -------
+enable  off      off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -392,7 +424,6 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast aggregate-route
-
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -416,11 +447,11 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast aggregate-route 10.1.0.0/16
-              operational  applied  
+              applied      pending  
 ------------  -----------  ---------
-as-set                     on       
-route-map                  routemap1
-summary-only               on 
+as-set        on          on       
+route-map                 routemap1
+summary-only  on          on 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -443,6 +474,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast network
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -546,8 +578,6 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast route-import from-vrf list
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast route-import from-vrf list
-
 ----
 none
 ```
@@ -573,6 +603,8 @@ Introduced in Cumulus Linux 5.1.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast route-import from-vrf list BLUE
+----
+none
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -652,9 +684,9 @@ cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast rou
 --------------  -----------  -------
 to-evpn                             
   enable                     off    
-[route-target]  none                
-to-vrf
-  [list]        none                
+to-vrf                                       
+  [list]        none                         
+[route-target]  none                         
 rd              none
 ```
 
@@ -688,6 +720,12 @@ enable               off
 ## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast loc-rib</h>
 
 Shows the IPv4 local RIB for the specified VRF.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route` command instead.
+{{%/notice%}}
+
+nv show vrf <vrf-id> router bgp address-family <afi>> route
 
 ### Command Syntax
 
@@ -729,6 +767,10 @@ IPV4 Routes
 ## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast loc-rib route</h>
 
 Shows information about the IPv4 routes in the local RIB.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route` command instead.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -783,6 +825,10 @@ IPv4 Prefix      Nexthop  Metric  Weight  LocalPref  Aspath  Best  Reason      F
 
 Shows information about the specified IPv4 route in the local RIB, such as the BGP peer to which the path is advertised and the path count.
 
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route <route-id>` command instead.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description |
@@ -813,6 +859,10 @@ multipath-count  1
 ## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast loc-rib route \<route-id\> path</h>
 
 Shows information about the paths for the specified IPv4 route in the local RIB.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route <route-id>` command instead.
+{{%/notice%}}
 
 {{%notice note%}}
 Add `-o json` at the end of the command to see the output in a more readable format.
@@ -931,6 +981,10 @@ cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast loc
 Shows information about a specific IPv4 route path in the local RIB.
 
 {{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route <route-id>` command instead.
+{{%/notice%}}
+
+{{%notice note%}}
 Add `-o json` at the end of the command to see the output in a more readable format.
 {{%/notice%}}
 
@@ -1004,6 +1058,10 @@ cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast loc
 
 Shows information about the nexthops for the specified IPv4 route path in the local RIB.
 
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route <route-id>` command instead.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax | Description |
@@ -1031,6 +1089,10 @@ Nexthop  accessible  afi   ip                         metric  scope       used
 ## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast loc-rib route \<route-id\> path \<path-id\> nexthop \<nexthop-id\></h>
 
 Shows next hop information for the specified IPv4 route path in the local RIB.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route <route-id>` command instead.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1064,6 +1126,10 @@ metric      0
 
 Shows BGP peer information for the specified IPv4 route path in the local RIB.
 
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route <route-id>` command instead.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax | Description |
@@ -1095,6 +1161,10 @@ type       external
 
 Shows route path flags for the specified IPv4 route in the local RIB.
 
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route <route-id>` command instead.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax | Description |
@@ -1121,6 +1191,10 @@ multipath
 ## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast loc-rib route \<route-id\> path \<path-id\> bestpath</h>
 
 Shows best path information, such as the selection reason, for the specified IPv4 route in the local RIB.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route <route-id>` command instead.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1151,6 +1225,10 @@ selection-reason  Older Path
 
 Shows the AS paths for the specified IPv4 route in the local RIB.
 
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route <route-id>` command instead.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax | Description |
@@ -1179,6 +1257,10 @@ Aspath
 
 Shows the community names for the community list for the specified IPv4 route path in the local RIB.
 
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route <route-id>` command instead.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax | Description |
@@ -1203,6 +1285,10 @@ cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast loc
 
 Shows the community names for the large community list for the specified IPv4 route path in the local RIB.
 
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route <route-id>` command instead.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax | Description |
@@ -1226,6 +1312,10 @@ cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast loc
 ## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast loc-rib route \<route-id\> path \<path-id\> ext-community</h>
 
 Shows the community names for the extended community list for the specified IPv4 route path in the local RIB.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route <route-id>` command instead.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1265,6 +1355,7 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast update-group
+
  RouteMap - Outbound route map, MinAdvInterval - Minimum route advertisement      
 interval, CreationTime - Time when the update group was created, LocalAsChange - 
 LocalAs changes for inbound route, Flags - r - replace-as, x - no-prepend
@@ -1281,7 +1372,7 @@ UpdateGrp  RouteMap  MinAdvInterval  CreationTime          LocalAsChange  Flags
 Shows information about a specific BGP IPv4 update group in the specified VRF.
 
 {{%notice note%}}
-Add `-o json` at the end of the command to see the output in a more readable format.
+In Cumulus Linux 5.10 and earlier, add `-o json` at the end of the command to see the output in a more readable format.
 {{%/notice%}}
 
 ### Command Syntax
@@ -1298,42 +1389,27 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast update-group 3 -o json
-{
-  "create-time": 1682967480,
-  "min-route-advertisement-interval": 0,
-  "sub-group": {
-    "7": {
-      "adjacency-count": 8,
-      "coalesce-time": 1250,
-      "counters": {
-        "join-events": 6,
-        "merge-check-events": 0,
-        "merge-events": 4,
-        "peer-refresh-events": 0,
-        "prune-events": 4,
-        "split-events": 0,
-        "switch-events": 0
-      },
-      "create-time": 1682967480,
-      "needs-refresh": "off",
-      "neighbor": {
-        "swp51": {},
-        "swp52": {}
-      },
-      "packet-counters": {
-        "queue-hwm-len": 5,
-        "queue-len": 0,
-        "queue-total": 42,
-        "total-enqueued": 42
-      },
-      "sub-group-id": 7,
-      "version": 106
-    }
-  },
-  "update-group-id": "3"
-}
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast update-group 1
+                                  operational         
+--------------------------------  --------------------
+update-group-id                   1                   
+min-route-advertisement-interval  0                   
+create-time                       2024-11-15T10:01:47Z
 
+sub-group
+============
+                                                                                
+    CreateTime - Time when the sub group was created, AdvRouteCnt - Number of routes
+    advertised to peer, Refresh - Indicates if subgroup requires refresh,           
+    TotalQueuePkt - Total packets in queue, TotalEnqueuePkt - Total packets         
+    enqueued, PktQueueLength - Packet queue length, Neighbor - Sub group peer info  
+                                                                                
+    GrpID  CreateTime            AdvRouteCnt  Refresh  TotalQueuePkt  TotalEnqueuePkt  PktQueueLength  Neighbor     
+    -----  --------------------  -----------  -------  -------------  ---------------  --------------  -------------
+    1      2024-11-15T10:01:47Z  13           off      31             31               0               peerlink.4094
+                                                                                                       swp52        
+                                                                                                       swp53        
+                                                                                                       swp54
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1342,10 +1418,6 @@ cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast upd
 
 Shows the subgroups for a specific BGP IPv4 update group in the specified VRF.
 
-{{%notice note%}}
-Add `-o json` at the end of the command to see the output in a more readable format.
-{{%/notice%}}
-
 ### Command Syntax
 
 | Syntax | Description |
@@ -1360,37 +1432,19 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast update-group 3 subgroup
- -o json
-{
-  "7": {
-    "adjacency-count": 8,
-    "coalesce-time": 1250,
-    "counters": {
-      "join-events": 6,
-      "merge-check-events": 0,
-      "merge-events": 4,
-      "peer-refresh-events": 0,
-      "prune-events": 4,
-      "split-events": 0,
-      "switch-events": 0
-    },
-    "create-time": 1682967480,
-    "needs-refresh": "off",
-    "neighbor": {
-      "swp51": {},
-      "swp52": {}
-    },
-    "packet-counters": {
-      "queue-hwm-len": 5,
-      "queue-len": 0,
-      "queue-total": 42,
-      "total-enqueued": 42
-    },
-    "sub-group-id": 7,
-    "version": 106
-  }
-}
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast update-group 1 sub-group 
+                                                                                
+CreateTime - Time when the sub group was created, AdvRouteCnt - Number of routes
+advertised to peer, Refresh - Indicates if subgroup requires refresh,           
+TotalQueuePkt - Total packets in queue, TotalEnqueuePkt - Total packets         
+enqueued, PktQueueLength - Packet queue length, Neighbor - Sub group peer info  
+                                                                                
+GrpID  CreateTime            AdvRouteCnt  Refresh  TotalQueuePkt  TotalEnqueuePkt  PktQueueLength  Neighbor     
+-----  --------------------  -----------  -------  -------------  ---------------  --------------  -------------
+1      2024-11-15T10:01:47Z  13           off      31             31               0               peerlink.4094
+                                                                                                   swp52        
+                                                                                                   swp53        
+                                                                                                   swp54
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1413,36 +1467,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast
-                         operational  applied  
-------------------------  -----------  -------- 
-rib-filter                             none     
-route-export                                    
-  to-evpn                                       
-    enable                             off      
-route-import                                    
-  from-vrf                                      
-    enable                             off      
-admin-distance                                  
-  external                             20       
-  internal                             200      
-multipaths                                      
-  ebgp                                 64       
-  ibgp                                 16       
-  compare-cluster-length               off      
-enable                                 on       
-redistribute                                    
-  static                                        
-    enable                             off      
-  connected                                     
-    enable                             on       
-    metric                             auto     
-    route-map                          ALLOW_LO 
-  kernel                                        
-    enable                             off      
-  ospf6                                         
-    enable                             off      
-[network]
-[aggregate-route] 
+        operational  applied  pending
+------  -----------  -------  -------
+enable               off      off 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1636,11 +1663,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast multipaths
-                       operational  applied
-----------------------  -----------  -------
-compare-cluster-length               off    
-ebgp                                 120    
-ibgp                                 120
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1863,6 +1886,10 @@ enable               on
 
 Shows the IPv6 local RIB for the specified VRF.
 
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route` command instead.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax | Description |
@@ -1895,6 +1922,10 @@ IPV6 Routes
 
 Shows information about the specified IPv6 route in the local RIB, such as the BGP peer to which the path is advertised and the path count.
 
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route <route-id>` command instead.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax | Description |
@@ -1925,6 +1956,10 @@ multipath-count  1
 ## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast loc-rib route \<route-id\> path</h>
 
 Shows the paths for the specified IPv6 route in the local RIB.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route <route-id>` command instead.
+{{%/notice%}}
 
 {{%notice note%}}
 Add `-o json` at the end of the command to see the output in a more readable format.
@@ -1990,6 +2025,10 @@ cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast loc
 Shows information about the paths for the specified IPv6 route in the local RIB.
 
 {{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route <route-id>` command instead.
+{{%/notice%}}
+
+{{%notice note%}}
 You must add `-o json` at the end of the command to see the output.
 {{%/notice%}}
 
@@ -2052,6 +2091,10 @@ cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast loc
 Shows the next hops for the specified IPv6 route path in the local RIB.
 
 {{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route <route-id>` command instead.
+{{%/notice%}}
+
+{{%notice note%}}
 You must add `-o json` at the end of the command to see the output.
 {{%/notice%}}
 
@@ -2090,6 +2133,10 @@ cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast loc
 Shows next hop information for the specified IPv6 route path in the local RIB.
 
 {{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route <route-id>` command instead.
+{{%/notice%}}
+
+{{%notice note%}}
 You must add `-o json` at the end of the command to see the output.
 {{%/notice%}}
 
@@ -2126,6 +2173,10 @@ cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast loc
 Shows BGP peer information for the specified IPv6 route path in the local RIB.
 
 {{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route <route-id>` command instead.
+{{%/notice%}}
+
+{{%notice note%}}
 You must add `-o json` at the end of the command to see the output.
 {{%/notice%}}
 
@@ -2158,6 +2209,10 @@ cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast loc
 Shows route path flags for the specified IPv6 route in the local RIB.
 
 {{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route <route-id>` command instead.
+{{%/notice%}}
+
+{{%notice note%}}
 You must add `-o json` at the end of the command to see the output.
 {{%/notice%}}
 
@@ -2186,6 +2241,10 @@ cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast loc
 
 Shows best path information, such as the selection reason, for the specified IPv6 route in the local RIB.
 
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route <route-id>` command instead.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax | Description |
@@ -2209,6 +2268,10 @@ cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast loc
 ## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast loc-rib route \<route-id\> path \<path-id\> aspath</h>
 
 Shows the AS paths for the specified IPv6 route in the local RIB.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route <route-id>` command instead.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -2234,6 +2297,10 @@ cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast loc
 
 Shows the community names for the community list for the specified IPv6 route path in the local RIB.
 
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route <route-id>` command instead.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax | Description |
@@ -2258,6 +2325,10 @@ cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast loc
 
 Shows the community names for the large community list for the specified IPv6 route path in the local RIB.
 
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route <route-id>` command instead.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax | Description |
@@ -2281,6 +2352,10 @@ cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast loc
 ## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast loc-rib route \<route-id\> path \<path-id\> ext-community</h>
 
 Shows the community names for the extended community list for the specified IPv6 route path in the local RIB.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route <route-id>` command instead.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -2399,6 +2474,10 @@ enable               off
 
 Shows the EVPN local RIB for the specified VRF.
 
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family l2vpn-evpn route` command instead.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax | Description |
@@ -2440,6 +2519,10 @@ rd
 
 Shows the EVPN local RIB <span class="a-tooltip">[RDs](## "Route Distinguisher")</span> for the specified VRF.
 
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax | Description |
@@ -2480,6 +2563,10 @@ cumulus@switch:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-r
 
 Shows a specific EVPN local RIB <span class="a-tooltip">[RD](## "Route Distinguisher")</span> for the specified VRF.
 
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax | Description |
@@ -2507,6 +2594,10 @@ cumulus@switch:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-r
 
 Shows the EVPN local RIB <span class="a-tooltip">[RD](## "Route Distinguisher")</span> route distinguisher route types for the specified VRF.
 
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax | Description |
@@ -2533,6 +2624,10 @@ cumulus@switch:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-r
 ## <h>nv show vrf \<vrf-id\> router bgp address-family l2vpn-evpn loc-rib rd \<rd-id\> route-type \<route-type-id\></h>
 
 Shows information about a specific EVPN local RIB <span class="a-tooltip">[RD](## "Route Distinguisher")</span> route distinguisher route type for the specified VRF.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -2575,6 +2670,10 @@ route
 
 Shows the routes in the EVPN local RIB for the specified VRF with a specific <span class="a-tooltip">[RD](## "Route Distinguisher")</span> and route type.
 
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax | Description |
@@ -2598,6 +2697,10 @@ cumulus@switch:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-r
 ## <h>nv show vrf \<vrf-id\> router bgp address-family l2vpn-evpn loc-rib rd \<rd-id\> route-type \<route-type-id\> route \<evpn-route-id\></h>
 
 Shows the routes in the EVPN local RIB for the specified VRF with a specific <span class="a-tooltip">[RD](## "Route Distinguisher")</span> route type and EVPN route type.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -2638,9 +2741,13 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp address-family l2vpn-evpn update-group
-   Time created  LocalAs change  Prepend Flag  Replace AS flag  Minimum advertisement interval  Routemap  Update group  Summary     
--  ------------  --------------  ------------  ---------------  ------------------------------  --------  ------------  ------------
-2  1682551553                                                   0                                         2             sub-group: 2
+RouteMap - Outbound route map, MinAdvInterval - Minimum route advertisement     
+interval, CreationTime - Time when the update group was created, LocalAsChange -
+LocalAs changes for inbound route, Flags - r - replace-as, x - no-prepend       
+                                                                                
+UpdateGrp  RouteMap  MinAdvInterval  CreationTime          LocalAsChange  Flags
+---------  --------  --------------  --------------------  -------------  -----
+2                    0               2024-11-14T08:58:25Z
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2650,7 +2757,7 @@ cumulus@switch:~$ nv show vrf default router bgp address-family l2vpn-evpn updat
 Shows information about a specific BGP EVPN update group.
 
 {{%notice note%}}
-Add `-o json` at the end of the command to see the output in a more readable format.
+In Cumulus Linux 5.10 and earlier, add `-o json` at the end of the command to see the output in a more readable format.
 {{%/notice%}}
 
 ### Command Syntax
@@ -2667,41 +2774,27 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp address-family l2vpn-evpn update-group 2 -o json
-{
-  "create-time": 1682551552,
-  "min-route-advertisement-interval": 0,
-  "sub-group": {
-    "2": {
-      "adjacency-count": 90,
-      "coalesce-time": 1150,
-      "counters": {
-        "join-events": 3,
-        "merge-check-events": 0,
-        "merge-events": 2,
-        "peer-refresh-events": 0,
-        "prune-events": 1,
-        "split-events": 0,
-        "switch-events": 0
-      },
-      "create-time": 1682551552,
-      "needs-refresh": "off",
-      "neighbor": {
-        "swp51": {},
-        "swp52": {}
-      },
-      "packet-counters": {
-        "queue-hwm-len": 39,
-        "queue-len": 0,
-        "queue-total": 222,
-        "total-enqueued": 222
-      },
-      "sub-group-id": 2,
-      "version": 38
-    }
-  },
-  "update-group-id": "2"
-}
+cumulus@switch:~$ nv show vrf default router bgp address-family l2vpn-evpn update-group 2
+                                  operational         
+--------------------------------  --------------------
+update-group-id                   2                   
+min-route-advertisement-interval  0                   
+create-time                       2024-11-15T10:01:47Z
+
+sub-group
+============
+                                                                                
+    CreateTime - Time when the sub group was created, AdvRouteCnt - Number of routes
+    advertised to peer, Refresh - Indicates if subgroup requires refresh,           
+    TotalQueuePkt - Total packets in queue, TotalEnqueuePkt - Total packets         
+    enqueued, PktQueueLength - Packet queue length, Neighbor - Sub group peer info  
+                                                                                
+    GrpID  CreateTime            AdvRouteCnt  Refresh  TotalQueuePkt  TotalEnqueuePkt  PktQueueLength  Neighbor     
+    -----  --------------------  -----------  -------  -------------  ---------------  --------------  -------------
+    2      2024-11-15T10:01:47Z  72           off      104            104              0               peerlink.4094
+                                                                                                       swp52        
+                                                                                                       swp53        
+                                                                                                       swp54
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2711,7 +2804,7 @@ cumulus@switch:~$ nv show vrf default router bgp address-family l2vpn-evpn updat
 Shows the subgroup information for a specific BGP EVPN update group.
 
 {{%notice note%}}
-Add `-o json` at the end of the command to see the output in a more readable format.
+In Cumulus Linux 5.10 and earlier, add `-o json` at the end of the command to see the output in a more readable format.
 {{%/notice%}}
 
 ### Command Syntax
@@ -2728,36 +2821,19 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp address-family l2vpn-evpn update-group 2 sub-group -o json
-{
-  "2": {
-    "adjacency-count": 90,
-    "coalesce-time": 1150,
-    "counters": {
-      "join-events": 3,
-      "merge-check-events": 0,
-      "merge-events": 2,
-      "peer-refresh-events": 0,
-      "prune-events": 1,
-      "split-events": 0,
-      "switch-events": 0
-    },
-    "create-time": 1682551552,
-    "needs-refresh": "off",
-    "neighbor": {
-      "swp51": {},
-      "swp52": {}
-    },
-    "packet-counters": {
-      "queue-hwm-len": 39,
-      "queue-len": 0,
-      "queue-total": 222,
-      "total-enqueued": 222
-    },
-    "sub-group-id": 2,
-    "version": 38
-  }
-}
+cumulus@switch:~$ nv show vrf default router bgp address-family l2vpn-evpn update-group 2 sub-group 
+                                                                                
+CreateTime - Time when the sub group was created, AdvRouteCnt - Number of routes
+advertised to peer, Refresh - Indicates if subgroup requires refresh,           
+TotalQueuePkt - Total packets in queue, TotalEnqueuePkt - Total packets         
+enqueued, PktQueueLength - Packet queue length, Neighbor - Sub group peer info  
+                                                                                
+GrpID  CreateTime            AdvRouteCnt  Refresh  TotalQueuePkt  TotalEnqueuePkt  PktQueueLength  Neighbor     
+-----  --------------------  -----------  -------  -------------  ---------------  --------------  -------------
+2      2024-11-15T10:01:47Z  72           off      104            104              0               peerlink.4094
+                                                                                                   swp52        
+                                                                                                   swp53        
+                                                                                                   swp54
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2781,19 +2857,19 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast route-counters
-                operational  applied
---------------  -----------  -------
-adj-rib-in      0                   
-all-rib         6                   
-best-routes     1                   
-damped          0                   
-history         0                   
-removed         0                   
-route-count     7                   
-routes-counted  6                   
-stale           0                   
-usable          6                   
-valid           6
+                operational
+--------------  -----------
+route-count     8          
+adj-rib-in      0          
+damped          0          
+removed         0          
+history         0          
+stale           0          
+valid           8          
+all-rib         8          
+routes-counted  8          
+best-routes     3          
+usable          8
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2817,11 +2893,24 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes
-PathCount - Number of paths present for the prefix, MultipathCount - Number of paths that are part of the ECMP
-
-IPv4 Prefix   PathCount  MultipathCount  DestFlags 
-------------  ---------  --------------  --------------- 
-10.0.0.9/32    1          1               bestpath-exists
+PathCount - Number of paths present for the prefix, MultipathCount - Number of  
+paths that are part of the ECMP                                                 
+                                                                                
+IPv4 Prefix      PathCount  MultipathCount  DestFlags      
+---------------  ---------  --------------  ---------------
+10.0.1.12/32     2          1               bestpath-exists
+10.0.1.34/32     5          4               bestpath-exists
+10.0.1.255/32    5          4               bestpath-exists
+10.10.10.1/32    1          1               bestpath-exists
+10.10.10.2/32    5          1               bestpath-exists
+10.10.10.3/32    5          4               bestpath-exists
+10.10.10.4/32    5          4               bestpath-exists
+10.10.10.63/32   5          4               bestpath-exists
+10.10.10.64/32   5          4               bestpath-exists
+10.10.10.101/32  2          1               bestpath-exists
+10.10.10.102/32  2          1               bestpath-exists
+10.10.10.103/32  2          1               bestpath-exists
+10.10.10.104/32  2          1               bestpath-exists
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2831,7 +2920,7 @@ IPv4 Prefix   PathCount  MultipathCount  DestFlags
 Shows information about a specific IPv4 advertised route for a BGP neighbor in the specified VRF.
 
 {{%notice note%}}
-Add `-o json` at the end of the command to see the output in a more readable format.
+In Cumulus Linux 5.10 and earlier, add `-o json` at the end of the command to see the output in a more readable format.
 {{%/notice%}}
 
 ### Command Syntax
@@ -2849,39 +2938,27 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 -o json
-{
-  "path": {
-    "1": {
-      "aspath": {},
-      "bestpath": {
-        "overall": "on",
-        "selection-reason": "First path received"
-      },
-      "flags": {},
-      "last-update": 1682551550,
-      "metric": 0,
-      "nexthop": {
-        "1": {
-          "accessible": "on",
-          "afi": "ipv4",
-          "ip": "0.0.0.0",
-          "metric": 0,
-          "used": "on"
-        }
-      },
-      "nexthop-count": 1,
-      "origin": "incomplete",
-      "peer": {
-        "id": "0.0.0.0",
-        "router-id": "10.10.10.1"
-      },
-      "sourced": "on",
-      "valid": "on",
-      "weight": 32768
-    }
-  }
-}
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp52 address-family ipv4-unicast advertised-routes 10.10.10.3/32
+                 operational
+---------------  -----------
+path-count       4          
+multipath-count  3          
+
+path
+=======
+                                                                                
+    Origin - Route origin, Local - Locally originated route, Sourced - Sourced      
+    route, Weight - Route weight, Metric - Route metric, LocalPref - Route local    
+    preference, PathFrom - Route path origin, LastUpdate - Route last update,       
+    NexthopCnt - Number of nexthops, Flags - = - multipath, * - bestpath, v - valid,
+    s - suppressed, R - removed, S - stale                                          
+                                                                                
+    Path  Origin      Local  Sourced  Weight  Metric  LocalPref  PathFrom  LastUpdate            NexthopCnt  Flags
+    ----  ----------  -----  -------  ------  ------  ---------  --------  --------------------  ----------  -----
+    1     incomplete                                             external  2024-11-15T10:03:31Z  2           =*v  
+    2     incomplete                                             external  2024-11-15T10:03:26Z  2           =v   
+    3     incomplete                                             external  2024-11-15T10:03:26Z  2           =v   
+    4     incomplete                                             external  2024-11-15T10:03:23Z  2           *v
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2891,7 +2968,7 @@ cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family i
 Shows path information about a specific IPv4 advertised route for a BGP neighbor in the specified VRF.
 
 {{%notice note%}}
-Add `-o json` at the end of the command to see the output in a more readable format.
+In Cumulus Linux 5.10 and earlier, add `-o json` at the end of the command to see the output in a more readable format.
 {{%/notice%}}
 
 ### Command Syntax
@@ -2909,37 +2986,20 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path -o json
-{
-  "1": {
-    "aspath": {},
-    "bestpath": {
-      "overall": "on",
-      "selection-reason": "First path received"
-    },
-    "flags": {},
-    "last-update": 1682551549,
-    "metric": 0,
-    "nexthop": {
-      "1": {
-        "accessible": "on",
-        "afi": "ipv4",
-        "ip": "0.0.0.0",
-        "metric": 0,
-        "used": "on"
-      }
-    },
-    "nexthop-count": 1,
-    "origin": "incomplete",
-    "peer": {
-      "id": "0.0.0.0",
-      "router-id": "10.10.10.1"
-    },
-    "sourced": "on",
-    "valid": "on",
-    "weight": 32768
-  }
-}
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp52 address-family ipv4-unicast advertised-routes 10.10.10.3/32 path
+                                                                                
+Origin - Route origin, Local - Locally originated route, Sourced - Sourced      
+route, Weight - Route weight, Metric - Route metric, LocalPref - Route local    
+preference, PathFrom - Route path origin, LastUpdate - Route last update,       
+NexthopCnt - Number of nexthops, Flags - = - multipath, * - bestpath, v - valid,
+s - suppressed, R - removed, S - stale                                          
+                                                                                
+Path  Origin      Local  Sourced  Weight  Metric  LocalPref  PathFrom  LastUpdate            NexthopCnt  Flags
+----  ----------  -----  -------  ------  ------  ---------  --------  --------------------  ----------  -----
+1     incomplete                                             external  2024-11-15T10:03:31Z  2           =*v  
+2     incomplete                                             external  2024-11-15T10:03:26Z  2           =v   
+3     incomplete                                             external  2024-11-15T10:03:26Z  2           =v   
+4     incomplete                                             external  2024-11-15T10:03:23Z  2           *v
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2949,7 +3009,7 @@ cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family i
 Shows information about a specific IPv4 advertised route path ID for a BGP neighbor in the specified VRF.
 
 {{%notice note%}}
-Add `-o json` at the end of the command to see the output in a more readable format.
+In Cumulus Linux 5.10 and earlier, add `-o json` at the end of the command to see the output in a more readable format.
 {{%/notice%}}
 
 ### Command Syntax
@@ -2968,37 +3028,51 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 -o json
-{
-  "1": {
-    "aspath": {},
-    "bestpath": {
-      "overall": "on",
-      "selection-reason": "First path received"
-    },
-    "flags": {},
-    "last-update": 1682551549,
-    "metric": 0,
-    "nexthop": {
-      "1": {
-        "accessible": "on",
-        "afi": "ipv4",
-        "ip": "0.0.0.0",
-        "metric": 0,
-        "used": "on"
-      }
-    },
-    "nexthop-count": 1,
-    "origin": "incomplete",
-    "peer": {
-      "id": "0.0.0.0",
-      "router-id": "10.10.10.1"
-    },
-    "sourced": "on",
-    "valid": "on",
-    "weight": 32768
-  }
-}
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp52 address-family ipv4-unicast advertised-routes 10.10.10.3/32 path 1
+                    operational             
+------------------  ------------------------
+origin              incomplete              
+valid               on                      
+path-from           external                
+last-update         2024-11-15T10:03:31Z    
+nexthop-count       2                       
+flags-string        =*v                     
+peer                                        
+  id                fe80::4ab0:2dff:fe5e:6ad
+  router-id         10.10.10.102            
+  hostname          spine02                 
+  interface         swp52                   
+  type              external                
+bestpath                                    
+  from-as           65199                   
+  overall           yes                     
+  selection-reason  AS Path                 
+
+nexthop
+==========
+    Nexthop  accessible  afi   ip                        metric  scope       used
+    -------  ----------  ----  ------------------------  ------  ----------  ----
+    1        on          ipv6  fe80::4ab0:2dff:fe5e:6ad  0       global          
+    2        on          ipv6  fe80::4ab0:2dff:fe5e:6ad          link-local  on  
+
+aspath
+=========
+    Aspath
+    ------
+    65103 
+    65199 
+
+community
+============
+No Data
+
+ext-community
+================
+No Data
+
+large-community
+==================
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3008,7 +3082,7 @@ cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family i
 Shows information about the next hops for an IPv4 advertised route path ID for a BGP neighbor in the specified VRF.
 
 {{%notice note%}}
-Add `-o json` at the end of the command to see the output in a more readable format.
+In Cumulus Linux 5.10 and earlier, add `-o json` at the end of the command to see the output in a more readable format.
 {{%/notice%}}
 
 ### Command Syntax
@@ -3027,16 +3101,11 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 nexthop -o json
-{
-  "1": {
-    "accessible": "on",
-    "afi": "ipv4",
-    "ip": "0.0.0.0",
-    "metric": 0,
-    "used": "on"
-  }
-}
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp52 address-family ipv4-unicast advertised-routes 10.10.10.3/32 path 1 nexthop
+Nexthop  accessible  afi   ip                        metric  scope       used
+-------  ----------  ----  ------------------------  ------  ----------  ----
+1        on          ipv6  fe80::4ab0:2dff:fe5e:6ad  0       global          
+2        on          ipv6  fe80::4ab0:2dff:fe5e:6ad          link-local  on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3062,14 +3131,14 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 nexthop 1
-            operational
-----------  ----------- 
-accessible  on                  
-afi         ipv4                
-ip          0.0.0.0             
-metric      0                   
-used        on 
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp52 address-family ipv4-unicast advertised-routes 10.10.10.3/32 path 1 nexthop 1
+            operational             
+----------  ------------------------
+ip          fe80::4ab0:2dff:fe5e:6ad
+afi         ipv6                    
+scope       global                  
+accessible  on                      
+metric      0 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3094,11 +3163,14 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 peer
-           operational
----------  -----------
-id         0.0.0.0             
-router-id  10.10.10.1
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp52 address-family ipv4-unicast advertised-routes 10.10.10.3/32 path 1 peer
+           operational             
+---------  ------------------------
+id         fe80::4ab0:2dff:fe5e:6ad
+router-id  10.10.10.102            
+hostname   spine02                 
+interface  swp52                   
+type       external 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3123,10 +3195,12 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 flags
- operational
-  -----------
-  multipath
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp52 address-family ipv4-unicast advertised-routes 10.10.10.3/32 path 1 flags 
+operational
+-----------
+multipath  
+bestpath   
+valid
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3151,11 +3225,12 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 bestpath
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp52 address-family ipv4-unicast advertised-routes 10.10.10.3/32 path 1 bestpath 
                   operational
-----------------  -------------------
-overall           on                          
-selection-reason  First path received
+----------------  -----------
+from-as           65199      
+overall           yes        
+selection-reason  AS Path
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3180,9 +3255,10 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.101/32 path 1 aspath
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp52 address-family ipv4-unicast advertised-routes 10.10.10.3/32 path 1 aspath 
 Aspath
 ------
+65103 
 65199
 ```
 
@@ -3208,7 +3284,8 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.101/32 path 1 community -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.101/32 path 1 community
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3233,7 +3310,8 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 large-community -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 large-community
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3258,7 +3336,8 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.101/32 path 1 ext-community -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 ext-community
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3282,6 +3361,10 @@ Introduced in Cumulus Linux 5.9.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast graceful-restart timers
+             operational
+-----------  -----------
+stale-path              
+  timer-sec  360
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3303,6 +3386,9 @@ Introduced in Cumulus Linux 5.9.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast graceful-restart timers stale-path
+           operational
+---------  -----------
+timer-sec  360
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3346,7 +3432,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3370,7 +3456,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3419,7 +3505,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3444,7 +3530,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 nexthop -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 nexthop
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3470,7 +3556,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 nexthop 1 -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 nexthop 1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3495,7 +3581,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 peer -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 peer
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3573,7 +3659,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 aspath -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 aspath
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3598,7 +3684,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 community -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 community
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3623,7 +3709,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 large-community -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 large-community
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3648,7 +3734,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 ext-community -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 ext-community
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3736,7 +3822,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3760,7 +3846,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3784,7 +3870,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3809,7 +3895,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3860,7 +3946,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 nexthop 1 -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 nexthop 1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3885,7 +3971,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 peer -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 peer
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3910,7 +3996,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 flags -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 flags
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3935,7 +4021,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 bestpath -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 bestpath
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3960,7 +4046,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 aspath -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 aspath
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3985,7 +4071,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 community -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 community
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4010,7 +4096,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 large-community -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 large-community
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4035,7 +4121,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 ext-community -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 ext-community
 ```
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -4057,7 +4143,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast route-counters -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast route-counters
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4080,7 +4166,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4105,7 +4191,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes 2001:db8::1/128 -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes 2001:db8::1/128
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4130,7 +4216,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes  2001:db8::1/128 path -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes  2001:db8::1/128 path
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4156,7 +4242,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes 2001:db8::1/128 path 1 -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes 2001:db8::1/128 path 1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4182,7 +4268,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes 2001:db8::1/128 path 1 nexthop -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes 2001:db8::1/128 path 1 nexthop
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4208,7 +4294,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes 2001:db8::1/128 path 1 peers -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes 2001:db8::1/128 path 1 peers
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4234,7 +4320,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes 2001:db8::1/128 path 1 flags -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes 2001:db8::1/128 path 1 flags
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4260,7 +4346,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes 2001:db8::1/128 path 1 bestpath -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes 2001:db8::1/128 path 1 bestpath
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4286,7 +4372,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes 2001:db8::1/128 path 1 aspath -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes 2001:db8::1/128 path 1 aspath
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4312,7 +4398,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes 2001:db8::1/128 path 1 community -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes 2001:db8::1/128 path 1 community
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4338,7 +4424,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes 2001:db8::1/128 path 1 large-community -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes 2001:db8::1/128 path 1 large-community
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4364,7 +4450,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes 2001:db8::1/128 path 1 ext-community -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes 2001:db8::1/128 path 1 ext-community
 ```
 
 
@@ -4388,16 +4474,17 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show evpn vni 10 bgp-info
-                           operational
+                           operational 
 -------------------------  ------------
-advertise-default-gateway  off                  
-advertise-svi-ip           off                  
-in-kernel                  on                   
-local-vtep                 10.0.0.1             
-rd                         10.10.10.1:5         
-type                       L2                   
-[export-route-target]      65101:10             
-[import-route-target]      65101:10
+rd                         10.10.10.1:6
+local-vtep                 10.0.1.12   
+advertise-svi-ip           off         
+advertise-default-gateway  off         
+in-kernel                  on          
+type                       L2          
+mac-vrf-soo                            
+[import-route-target]      65101:10    
+[export-route-target]      65101:10
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4420,15 +4507,15 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show vrf RED evpn bgp-info
-                       operational       
+                       operational      
 ---------------------  -----------------
-local-vtep             10.0.1.12                 
-rd                     10.10.10.1:3              
-router-mac             44:38:39:be:ef:aa         
-system-ip              10.10.10.1                
-system-mac             44:38:39:22:01:7a         
-[export-route-target]  65101:4001                
-[import-route-target]  65101:4001
+rd                     10.10.10.1:3     
+local-vtep             10.0.1.12        
+router-mac             44:38:39:be:ef:aa
+system-mac             44:38:39:22:01:7a
+system-ip              10.10.10.1       
+[import-route-target]  65101:4001       
+[export-route-target]  65101:4001 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4451,10 +4538,10 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp confederation
-             operational  applied
------------  -----------  -------
-id                        none   
-[member-as]   
+             operational  applied    
+-----------  -----------  -----------
+id                        2          
+[member-as]               65101-65104   
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4477,6 +4564,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp confederation member-as
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4513,6 +4601,7 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp dynamic-neighbor listen-range
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4555,31 +4644,57 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor swp51
-                               operational                applied     pending   
------------------------------  -------------------------  ----------  ----------
-description                                               none        none      
-enforce-first-as                                          off         off       
-multihop-ttl                                              auto        auto      
-nexthop-connected-check                                   on          on        
-passive-mode                                              off         off       
-password                                                  none        none      
-address-family                                                                  
-  ipv4-unicast                                                                  
-    enable                                                on          on        
-    add-path-tx                                           off         off       
-    nexthop-setting                                       auto        auto      
-    route-reflector-client                                off         off       
-    route-server-client                                   off         off       
-    soft-reconfiguration                                  off         off       
-    aspath                                                                      
-      private-as                                          none        none      
-      replace-peer-as                                     off         off       
-      allow-my-asn                                                              
-        enable                                            off         off       
-    attribute-mod                                                               
-      aspath                   off                        on          on        
-      med                      off                        on          on        
-      nexthop                  off                        on          on
+                               operational                applied                                
+-----------------------------  -------------------------  ---------------------------------------
+password                                                  $nvsec$d1a028e8c7f97db92876c2a30fcc403f
+enforce-first-as                                          off                                    
+passive-mode                                              off                                    
+nexthop-connected-check                                   on                                     
+description                                               none                                   
+bfd                                                                                              
+  enable                                                  off                                    
+ttl-security                                                                                     
+  enable                       on                         off                                    
+  hops                         1                                                                 
+local-as                                                                                         
+  enable                                                  off                                    
+timers                                                                                           
+  keepalive                    3                          auto                                   
+  hold                         9                          auto                                   
+  connection-retry             10                         auto                                   
+  route-advertisement          none                       auto                                   
+address-family                                                                                   
+  ipv4-unicast                                                                                   
+    enable                                                on                                     
+    route-reflector-client                                off                                    
+    route-server-client                                   off                                    
+    soft-reconfiguration                                  off                                    
+    nexthop-setting                                       auto                                   
+    add-path-tx                                           off                                    
+    attribute-mod                                                                                
+      aspath                   off                        on                                     
+      med                      off                        on                                     
+      nexthop                  off                        on                                     
+    aspath                                                                                       
+      replace-peer-as                                     off                                    
+      private-as                                          none                                   
+      allow-my-asn                                                                               
+        enable                                            off                                    
+    graceful-restart                                                                             
+      rx-eof-rib               off                                                               
+      tx-eof-rib               off                                                               
+    weight                                                0                                      
+    community-advertise                                                                          
+      regular                  on                         on                                     
+      extended                 on                         on                                     
+      large                    off                        off                                    
+    conditional-advertise                                                                        
+      enable                                              off                                    
+    policy                                                                                       
+      inbound                                                                                    
+        route-map                                         none                                   
+        prefix-list                                       none                                   
+        aspath-list                                       none
 ...
 ```
 
@@ -4604,9 +4719,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 bfd
-        operational  applied  pending
-------  -----------  -------  -------
-enable               off      off
+        applied
+------  -------
+enable  off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4630,17 +4745,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 capabilities
-                     operational  applied  pending
--------------------  -----------  -------  -------
-extended-nexthop     on           auto     auto   
-rx-asn32             off                          
-rx-extended-nexthop  off                          
-rx-graceful-restart  on                           
-rx-restart-r-bit     off                          
-rx-route-refresh     on                           
-tx-asn32             on                           
-tx-graceful-restart  on                           
-tx-route-refresh     on
+                  operational  applied
+----------------  -----------  -------
+extended-nexthop               auto
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4664,9 +4771,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 local-as
-        operational  applied  pending
-------  -----------  -------  -------
-enable               off      off
+        applied
+------  -------
+enable  off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4690,9 +4797,11 @@ Introduced in Cumulus Linux 5.1.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 graceful-restart
-      operational  applied  pending
-----  -----------  -------  -------
-mode               auto     auto
+                 operational    applied
+---------------  -------------  -------
+remote-mode      NotApplicable         
+rx-restart-time  120                   
+mode                            auto
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4716,9 +4825,10 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 ttl-security
-        operational  applied  pending
-------  -----------  -------  -------
-enable  off          off      off  
+        operational  applied
+------  -----------  -------
+enable  on           off    
+hops    1 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4772,16 +4882,16 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 message-stats
                     operational
 ------------------  -----------
-input-queue         0                            
-output-queue        0                            
-rx-keepalives       93900                        
-rx-opens            1                            
-rx-route-refreshes  0                            
-rx-total            93980                        
-tx-keepalives       93898                        
-tx-opens            1                            
-tx-route-refreshes  0                            
-tx-total            94007
+input-queue         0          
+output-queue        0          
+rx-opens            1          
+tx-opens            1          
+rx-keepalives       1544       
+tx-keepalives       1544       
+rx-route-refreshes  0          
+tx-route-refreshes  0          
+tx-total            1678       
+rx-total            1697
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4834,32 +4944,34 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family
-                             operational  applied  pending
----------------------------  -----------  -------  -------
-ipv4-unicast                                              
-  enable                                  on       on     
-  add-path-tx                             off      off    
-  nexthop-setting                         auto     auto   
-  route-reflector-client                  off      off    
-  route-server-client                     off      off    
-  soft-reconfiguration                    off      off    
-  aspath                                                  
-    private-as                            none     none   
-    replace-peer-as                       off      off    
-    allow-my-asn                                          
-      enable                              off      off    
-  attribute-mod                                           
-    aspath                   off          on       on     
-    med                      off          on       on     
-    nexthop                  off          on       on     
-  rx-prefix                  17                           
-  tx-prefix                  8                            
-  update-group               1                            
-  capabilities                                            
-    rx-addpath               on                           
-    rx-graceful-restart      on                           
-    rx-mpbgp                 on                           
-    rx-restart-f-bit         off
+                             operational  applied
+---------------------------  -----------  -------
+ipv4-unicast                                     
+  enable                                  on     
+  route-reflector-client                  off    
+  route-server-client                     off    
+  soft-reconfiguration                    off    
+  nexthop-setting                         auto   
+  add-path-tx                             off    
+  attribute-mod                                  
+    aspath                   off          on     
+    med                      off          on     
+    nexthop                  off          on     
+  aspath                                         
+    replace-peer-as                       off    
+    private-as                            none   
+    allow-my-asn                                 
+      enable                              off    
+  graceful-restart                               
+    rx-eof-rib               off                 
+    tx-eof-rib               off                 
+  weight                                  0      
+  community-advertise                            
+    regular                  on           on     
+    extended                 on           on     
+    large                    off          off    
+  conditional-advertise                          
+    enable                                off
 ...
 ```
 
@@ -4884,33 +4996,27 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast
-                           operational  applied  pending
--------------------------  -----------  -------  -------
-enable                                  on       on     
-add-path-tx                             off      off    
-nexthop-setting                         auto     auto   
-route-reflector-client                  off      off    
-route-server-client                     off      off    
-soft-reconfiguration                    off      off    
-aspath                                                  
-  private-as                            none     none   
-  replace-peer-as                       off      off    
-  allow-my-asn                                          
-    enable                              off      off    
-attribute-mod                                           
-  aspath                   off          on       on     
-  med                      off          on       on     
-  nexthop                  off          on       on     
-rx-prefix                  17                           
-tx-prefix                  8                            
-update-group               1                            
-capabilities                                            
-  rx-addpath               on                           
-  rx-graceful-restart      on                           
-  rx-mpbgp                 on                           
-  rx-restart-f-bit         off                          
-  tx-addpath               off                          
-  tx-mpbgp                 on
+                           operational  applied
+-------------------------  -----------  -------
+enable                                  on     
+route-reflector-client                  off    
+route-server-client                     off    
+soft-reconfiguration                    off    
+nexthop-setting                         auto   
+add-path-tx                             off    
+attribute-mod                                  
+  aspath                   off          on     
+  med                      off          on     
+  nexthop                  off          on     
+aspath                                         
+  replace-peer-as                       off    
+  private-as                            none   
+  allow-my-asn                                 
+    enable                              off    
+graceful-restart                               
+  rx-eof-rib               off                 
+  tx-eof-rib               off                 
+weight                                  0
 ...
 ```
 
@@ -4935,11 +5041,11 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast attribute-mod
-         operational  applied  pending
--------  -----------  -------  -------
-aspath   off          on       on     
-med      off          on       on     
-nexthop  off          on       on
+          operational  applied
+-------  -----------  -------
+aspath   off          on     
+med      off          on     
+nexthop  off          on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4963,12 +5069,12 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath
-                 operational  applied  pending
----------------  -----------  -------  -------
-private-as                    none     none   
-replace-peer-as               off      off    
-allow-my-asn                                  
-  enable                      off      off
+                 applied
+---------------  -------
+replace-peer-as  off    
+private-as       none   
+allow-my-asn            
+  enable         off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4992,9 +5098,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath allow-my-asn
-        operational  applied  pending
-------  -----------  -------  -------
-enable               off      off
+        applied
+------  -------
+enable  off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5018,17 +5124,17 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast policy
-                  operational  applied  pending
-----------------  -----------  -------  -------
-inbound                                        
-  route-map                    none     none   
-  aspath-list                  none     none   
-  prefix-list                  none     none   
-outbound                                       
-  route-map                    none     none   
-  unsuppress-map               none     none   
-  aspath-list                  none     none   
-  prefix-list                  none     none
+                  operational  applied
+----------------  -----------  -------
+inbound                               
+  route-map                    none   
+  prefix-list                  none   
+  aspath-list                  none   
+outbound                              
+  route-map                    none   
+  unsuppress-map               none   
+  prefix-list                  none   
+  aspath-list                  none
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5052,11 +5158,11 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast policy inbound
-             operational  applied  pending
------------  -----------  -------  -------
-route-map                 none     none   
-aspath-list               none     none   
-prefix-list               none     none
+             operational  applied
+-----------  -----------  -------
+route-map                 none   
+prefix-list               none   
+aspath-list               none
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5080,12 +5186,12 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast policy outbound
-                operational  applied  pending
---------------  -----------  -------  -------
-route-map                    none     none   
-unsuppress-map               none     none   
-aspath-list                  none     none   
-prefix-list                  none     none
+                operational  applied
+--------------  -----------  -------
+route-map                    none   
+unsuppress-map               none   
+prefix-list                  none   
+aspath-list                  none
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5109,12 +5215,12 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast prefix-limits
-                     operational  applied  pending
--------------------  -----------  -------  -------
-inbound                                           
-  maximum                         none     none   
-  warning-only       off                          
-  warning-threshold               75       75
+                     operational  applied
+-------------------  -----------  -------
+inbound                                  
+  maximum                         none   
+  warning-threshold               75     
+  warning-only       off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5138,11 +5244,11 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast prefix-limits inbound
-                   operational  applied  pending
------------------  -----------  -------  -------
-maximum                         none     none   
-warning-only       off                          
-warning-threshold               75       75
+                   operational  applied
+-----------------  -----------  -------
+maximum                         none   
+warning-threshold               75     
+warning-only       off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5166,9 +5272,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast default-route-origination
-        operational  applied  pending
-------  -----------  -------  -------
-enable               off      off
+        operational  applied
+------  -----------  -------
+enable               off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5192,9 +5298,11 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast community-advertise
-extended  on           on       on     
-large     off          off      off    
-regular   on           on       on
+          operational  applied
+--------  -----------  -------
+regular   on           on     
+extended  on           on     
+large     off          off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5218,9 +5326,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast conditional-advertise
-        operational  applied  pending
-------  -----------  -------  -------
-enable               off      off
+        operational  applied
+------  -----------  -------
+enable               off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5244,14 +5352,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast capabilities
-                     operational
--------------------  -----------
-rx-addpath           on                           
-rx-graceful-restart  on                           
-rx-mpbgp             on                           
-rx-restart-f-bit     off                          
-tx-addpath           off                          
-tx-mpbgp             on
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5302,6 +5403,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast
+        operational  applied
+------  -----------  -------
+enable               off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5425,10 +5529,10 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast prefix-limits inbound
-                   operational  applied  pending
------------------  -----------  -------  -------
-maximum                                  none   
-warning-threshold                        75
+                   operational  applied
+-----------------  -----------  ------- 
+maximum                         none   
+warning-threshold               75
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5669,25 +5773,21 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn
-                       operational  applied  pending
----------------------  -----------  -------  -------
-enable                              on       on     
-attribute-mod                                       
-  aspath               off                          
-  med                  off                          
-  nexthop              on                           
-rx-prefix              63                           
-tx-prefix              90                           
-update-group           2                            
-capabilities                                        
-  rx-addpath           on                           
-  rx-graceful-restart  on                           
-  rx-mpbgp             on                           
-  tx-addpath           off                          
-  tx-mpbgp             on                           
-graceful-restart                                    
-  rx-eof-rib           on                           
-  tx-eof-rib           on
+                       operational  applied
+---------------------  -----------  -------
+enable                              on     
+attribute-mod                              
+  aspath               off                 
+  med                  off                 
+  nexthop              on                  
+graceful-restart                           
+  rx-eof-rib           off                 
+  tx-eof-rib           off                 
+prefix-limits                              
+  inbound                                  
+    maximum            1                   
+    warning-threshold  75                  
+    warning-only       off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5711,10 +5811,10 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn attribute-mod
-         operational  applied  pending
--------  -----------  -------  -------
-aspath   off                          
-med      off                          
+         operational  applied
+-------  -----------  -------
+aspath   off                 
+med      off                 
 nexthop  on
 ```
 
@@ -5950,7 +6050,6 @@ unsuppress-map               none
 
 Shows all advertised and received EVPN capabilities for the specified BGP neighbor.
 
-
 ### Command Syntax
 
 | Syntax | Description |
@@ -5973,6 +6072,34 @@ rx-graceful-restart  on
 rx-mpbgp             on                           
 tx-addpath           off                          
 tx-mpbgp             on
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn prefix-limits inbound</h>
+
+Shows the configured prefix limits from the specified peer for EVPN.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show  vrf default router bgp neighbor swp51 address-family l2vpn-evpn prefix-limits inbound 
+                   operational  applied  
+-----------------  -----------  -------
+maximum                         none   
+warning-threshold               75     
+warning-only       off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -6126,21 +6253,14 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp nexthop ipv4 ip-address 10.10.10.2
-nv show vrf default router bgp nexthop ipv4 ip-address 10.10.10.2
-                  operational  applied     pending   
-----------------  -----------  ----------  ----------
-complete          on           on          on        
-igp-metric        0            0           0         
-last-update-time  1682551559   1682551559  1682551560
-path-count        54           54          54        
-valid             on           on          on        
-
-resolved-via
-===============
-    Nexthop                    interface
-    -------------------------  ---------
-    fe80::4ab0:2dff:fe08:9898  swp51    
-    fe80::4ab0:2dff:fed8:67cb  swp52
+                  operational              
+----------------  -------------------------
+valid             yes                      
+complete          on                       
+igp-metric        0                        
+path-count        15                       
+last-update-time  2024-11-14T08:58:31Z     
+[resolved-via]    fe80::4ab0:2dff:fe5e:b1fc      
 ...
 ```
 
@@ -6203,6 +6323,60 @@ cumulus@switch:~$ nv show vrf default router bgp nexthop ipv4 ip-address 10.10.1
     "address-family": "l2vpn-evpn",
     "flags": {
       "damped": "off",
+      "deterministic-med-selected": "on",
+      "history": "off",
+      "multipath": "off",
+      "nexthop-self": "off",
+      "removed": "off",
+      "selected": "off",
+      "stale": "off",
+      "valid": "on"
+    },
+    "flags-string": "vd",
+    "prefix": "[5]:[0]:[24]:[10.1.20.0]",
+    "rd": "10.10.10.2:3",
+    "vrf": "default"
+  },
+  "2": {
+    "address-family": "l2vpn-evpn",
+    "flags": {
+      "damped": "off",
+      "deterministic-med-selected": "on",
+      "history": "off",
+      "multipath": "off",
+      "nexthop-self": "off",
+      "removed": "off",
+      "selected": "off",
+      "stale": "off",
+      "valid": "on"
+    },
+    "flags-string": "vd",
+    "prefix": "[5]:[0]:[24]:[10.1.10.0]",
+    "rd": "10.10.10.2:3",
+    "vrf": "default"
+  },
+  "3": {
+    "address-family": "l2vpn-evpn",
+    "flags": {
+      "damped": "off",
+      "deterministic-med-selected": "on",
+      "history": "off",
+      "multipath": "off",
+      "nexthop-self": "off",
+      "removed": "off",
+      "selected": "off",
+      "stale": "off",
+      "valid": "on"
+    },
+    "flags-string": "vd",
+    "prefix": "[5]:[0]:[24]:[10.1.30.0]",
+    "rd": "10.10.10.2:2",
+    "vrf": "default"
+  },
+  "4": {
+    "address-family": "l2vpn-evpn",
+    "flags": {
+      "damped": "off",
       "deterministic-med-selected": "off",
       "history": "off",
       "multipath": "off",
@@ -6212,45 +6386,13 @@ cumulus@switch:~$ nv show vrf default router bgp nexthop ipv4 ip-address 10.10.1
       "stale": "off",
       "valid": "on"
     },
-    "prefix": "[5]:[0]:[10.1.20.0/24]/352",
+    "flags-string": "v",
+    "prefix": "[5]:[0]:[24]:[10.1.20.0]",
     "rd": "10.10.10.2:3",
     "vrf": "default"
-  },
-  "10": {
-    "address-family": "l2vpn-evpn",
-    "flags": {
-      "damped": "off",
-      "deterministic-med-selected": "on",
-      "history": "off",
-      "multipath": "off",
-      "nexthop-self": "off",
-      "removed": "off",
-      "selected": "on",
-      "stale": "off",
-      "valid": "on"
-    },
-    "prefix": "[5]:[0]:[10.1.30.0/24]/352",
-    "rd": "10.10.10.2:2",
-    "vrf": "default"
-  },
-  "11": {
-    "address-family": "l2vpn-evpn",
-    "flags": {
-      "damped": "off",
-      "deterministic-med-selected": "on",
-      "history": "off",
-      "multipath": "off",
-      "nexthop-self": "off",
-      "removed": "off",
-      "selected": "on",
-      "stale": "off",
-      "valid": "on"
-    },
-    "prefix": "[5]:[0]:[10.1.20.0/24]/352",
-    "rd": "10.10.10.2:3",
-    "vrf": "default"
-  },
+  }
 ...
+}
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -6276,22 +6418,23 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp nexthop ipv4 ip-address 10.10.10.2 path 1
-                              operational                 applied                     pending                   
-----------------------------  --------------------------  --------------------------  --------------------------
-address-family                l2vpn-evpn                  l2vpn-evpn                  l2vpn-evpn                
-prefix                        [5]:[0]:[10.1.30.0/24]/352  [5]:[0]:[10.1.30.0/24]/352  [5]:[0]:[10.1.30.0/24]/352
-rd                            10.10.10.2:9                10.10.10.2:9                10.10.10.2:9              
-vrf                           default                     default                     default                   
-flags                                                                                                           
-  damped                      off                         off                         off                       
-  deterministic-med-selected  off                         off                         off                       
-  history                     off                         off                         off                       
-  multipath                   off                         off                         off                       
-  nexthop-self                off                         off                         off                       
-  removed                     off                         off                         off                       
-  selected                    off                         off                         off                       
-  stale                       off                         off                         off                       
-  valid                       on                          on                          on
+                              operational             
+----------------------------  ------------------------
+address-family                l2vpn-evpn              
+prefix                        [5]:[0]:[24]:[10.1.20.0]
+rd                            10.10.10.2:3            
+vrf                           default                 
+flags-string                  vd                      
+flags                                                 
+  damped                      off                     
+  history                     off                     
+  selected                    off                     
+  valid                       on                      
+  deterministic-med-selected  on                      
+  stale                       off                     
+  removed                     off                     
+  multipath                   off                     
+  nexthop-self                off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -6314,21 +6457,21 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp path-selection
-                         operational  applied    pending  
------------------------  -----------  ---------  ---------
-routerid-compare                      off        off      
-aspath                                                    
-  compare-confed                      off        off      
-  compare-lengths                     on         on       
-med                                                       
-  compare-always                      off        off      
-  compare-confed                      off        off      
-  compare-deterministic               on         on       
-  missing-as-max                      off        off      
-multipath                                                 
-  aspath-ignore                       off        off      
-  bandwidth                           all-paths  all-paths
-  generate-asset                      off        off
+                         applied  
+-----------------------  ---------
+routerid-compare         off      
+aspath                            
+  compare-lengths        on       
+  compare-confed         off      
+med                               
+  compare-always         off      
+  compare-deterministic  on       
+  compare-confed         off      
+  missing-as-max         off      
+multipath                         
+  aspath-ignore          off      
+  generate-asset         off      
+  bandwidth              all-paths
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -6351,10 +6494,10 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp path-selection aspath
-                 operational  applied  pending
----------------  -----------  -------  -------
-compare-confed                off      off    
-compare-lengths               on       on
+                 applied
+---------------  -------
+compare-lengths  on     
+compare-confed   off 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -6377,12 +6520,12 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp path-selection med
-                       operational  applied  pending
----------------------  -----------  -------  -------
-compare-always                      off      off    
-compare-confed                      off      off    
-compare-deterministic               on       on     
-missing-as-max                      off      off
+                       applied
+---------------------  -------
+compare-always         off    
+compare-deterministic  on     
+compare-confed         off    
+missing-as-max         off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -6405,11 +6548,11 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp path-selection multipath
-                operational  applied    pending  
---------------  -----------  ---------  ---------
-aspath-ignore                off        off      
-bandwidth                    all-paths  all-paths
-generate-asset               off        off
+                applied  
+--------------  ---------
+aspath-ignore   off      
+generate-asset  off      
+bandwidth       all-paths
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -6431,7 +6574,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp peer-group
+cumulus@switch:~$ nv show vrf default router bgp peer-group                                                              
+RemoteAs - Remote Autonomous System, Afi-Safi - Address family
+                                                              
+Name      RemoteAs  Type      Afi-Safi  MemberCount
+--------  --------  --------  --------  -----------
+underlay            external            5
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -6454,74 +6602,41 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES
-                               applied   
------------------------------  ----------
-description                    none      
-enforce-first-as               off       
-multihop-ttl                   auto      
-nexthop-connected-check        on        
-passive-mode                   off       
-password                       none      
-address-family                           
-  ipv4-unicast                           
-    enable                     on        
-    add-path-tx                off       
-    nexthop-setting            auto      
-    route-reflector-client     off       
-    route-server-client        off       
-    soft-reconfiguration       off       
-    aspath                               
-      private-as               none      
-      replace-peer-as          off       
-      allow-my-asn                       
-        enable                 off       
-    attribute-mod                        
-      aspath                   on        
-      med                      on        
-      nexthop                  on        
-    weight                     0         
-    community-advertise                  
-      extended                 on        
-      large                    off       
-      regular                  on        
-    conditional-advertise                
-      enable                   on       
-    default-route-origination            
-      enable                   off       
-    policy                               
-      inbound                            
-        route-map              myroutemap
-        aspath-list            none      
-        prefix-list            none      
-      outbound                           
-        route-map              none      
-        unsuppress-map         none      
-        aspath-list            none      
-        prefix-list            none      
-    prefix-limits                        
-      inbound                            
-        maximum                3000      
-        warning-threshold      4         
-  ipv6-unicast                           
-    enable                     off       
-  l2vpn-evpn                             
-    enable                     on       
-bfd                                      
-  enable                       off       
-local-as                                 
-  enable                       off       
-timers                                   
-  connection-retry             auto      
-  hold                         auto      
-  keepalive                    auto      
-  route-advertisement          auto      
-ttl-security                             
-  enable                       off       
-capabilities                             
-  extended-nexthop             auto      
-graceful-restart                         
-  mode                         auto 
+cumulus@switch:~$ nv show vrf default router bgp peer-group underlay
+password                                    $nvsec$d1a028e8c7f97db92876c2a30fcc403f
+enforce-first-as                            off                                    
+passive-mode                                off                                    
+nexthop-connected-check                     on                                     
+description                                 none                                   
+bfd                                                                                
+  enable                                    off                                    
+ttl-security                                                                       
+  enable                                    off                                    
+local-as                                                                           
+  enable                                    off                                    
+timers                                                                             
+  keepalive                                 auto                                   
+  hold                                      auto                                   
+  connection-retry                          auto                                   
+  route-advertisement                       auto                                   
+address-family                                                                     
+  ipv4-unicast                                                                     
+    enable                                  on                                     
+    route-reflector-client                  off                                    
+    route-server-client                     off                                    
+    soft-reconfiguration                    off                                    
+    nexthop-setting                         auto                                   
+    add-path-tx                             off                                    
+    attribute-mod                                                                  
+      aspath                                on                                     
+      med                                   on                                     
+      nexthop                               on                                     
+    aspath                                                                         
+      replace-peer-as                       off                                    
+      private-as                            none                                   
+      allow-my-asn                                                                 
+        enable                              off
+...
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -6545,9 +6660,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES bfd
-        applied
-------  -------
-enable  on 
+        operational  applied
+------  -----------  -------
+enable               off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -6598,9 +6713,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES capabilities
-                  applied
-----------------  -------
-extended-nexthop  auto
+                  operational  applied
+----------------  -----------  -------
+extended-nexthop               auto
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -6650,9 +6765,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES local-as
-        applied
-------  -------
-enable  on
+        operational  applied
+------  -----------  -------
+enable               off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -6677,12 +6792,12 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES timers
-                     applied
--------------------  -------
-connection-retry     auto   
-hold                 30     
-keepalive            10     
-route-advertisement  auto
+                     operational  applied
+-------------------  -----------  -------
+keepalive                         auto   
+hold                              auto   
+connection-retry                  auto   
+route-advertisement               auto
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -6706,49 +6821,37 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family
-                             applied   
----------------------------  ----------
-ipv4-unicast                           
-  enable                     on        
-  add-path-tx                off       
-  nexthop-setting            auto      
-  route-reflector-client     off       
-  route-server-client        off       
-  soft-reconfiguration       off       
-  aspath                               
-    private-as               none      
-    replace-peer-as          off       
-    allow-my-asn                       
-      enable                 off       
-  attribute-mod                        
-    aspath                   on        
-    med                      on        
-    nexthop                  on        
-  weight                     0         
-  community-advertise                  
-    extended                 on        
-    large                    off       
-    regular                  on        
-  conditional-advertise                
-    enable                   off       
-  default-route-origination            
-    enable                   off       
-  policy                               
-    inbound                            
-      route-map              myroutemap
-      aspath-list            none      
-      prefix-list            none      
-    outbound                           
-      route-map              none      
-      unsuppress-map         none      
-      aspath-list            none      
-      prefix-list            none      
-  prefix-limits                        
-    inbound                            
-      maximum                3000      
-      warning-threshold      4         
-ipv6-unicast                           
-  enable                     off
+                             operational  applied
+---------------------------  -----------  -------
+ipv4-unicast                                     
+  enable                                  on     
+  route-reflector-client                  off    
+  route-server-client                     off    
+  soft-reconfiguration                    off    
+  nexthop-setting                         auto   
+  add-path-tx                             off    
+  attribute-mod                                  
+    aspath                                on     
+    med                                   on     
+    nexthop                               on     
+  aspath                                         
+    replace-peer-as                       off    
+    private-as                            none   
+    allow-my-asn                                 
+      enable                              off    
+  weight                                  0      
+  community-advertise                            
+    regular                               on     
+    extended                              on     
+    large                                 off    
+  conditional-advertise                          
+    enable                                off    
+  policy                                         
+    inbound                                      
+      route-map                           none   
+      prefix-list                         none   
+      aspath-list                         none
+...
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -6772,46 +6875,41 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast
-                           applied   
--------------------------  ----------
-enable                     on        
-add-path-tx                off       
-nexthop-setting            auto      
-route-reflector-client     off       
-route-server-client        off       
-soft-reconfiguration       off       
-aspath                               
-  private-as               none      
-  replace-peer-as          off       
-  allow-my-asn                       
-    enable                 off       
-attribute-mod                        
-  aspath                   on        
-  med                      on        
-  nexthop                  on        
-weight                     0         
-community-advertise                  
-  extended                 on        
-  large                    off       
-  regular                  on        
-conditional-advertise                
-  enable                   off       
-default-route-origination            
-  enable                   off       
-policy                               
-  inbound                            
-    route-map              myroutemap
-    aspath-list            none      
-    prefix-list            none      
-  outbound                           
-    route-map              none      
-    unsuppress-map         none      
-    aspath-list            none      
-    prefix-list            none      
-prefix-limits                        
-  inbound                            
-    maximum                3000      
-    warning-threshold      4
+                           operational  applied
+-------------------------  -----------  -------
+enable                                  on     
+route-reflector-client                  off    
+route-server-client                     off    
+soft-reconfiguration                    off    
+nexthop-setting                         auto   
+add-path-tx                             off    
+attribute-mod                                  
+  aspath                                on     
+  med                                   on     
+  nexthop                               on     
+aspath                                         
+  replace-peer-as                       off    
+  private-as                            none   
+  allow-my-asn                                 
+    enable                              off    
+weight                                  0      
+community-advertise                            
+  regular                               on     
+  extended                              on     
+  large                                 off    
+conditional-advertise                          
+  enable                                off    
+policy                                         
+  inbound                                      
+    route-map                           none   
+    prefix-list                         none   
+    aspath-list                         none   
+  outbound                                     
+    route-map                           none   
+    unsuppress-map                      none   
+    prefix-list                         none   
+    aspath-list                         none
+...
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -6835,11 +6933,11 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast community-advertise
-          applied
---------  -------
-extended  off    
-large     off    
-regular   off
+          operational  applied
+--------  -----------  -------
+regular                on     
+extended               on     
+large                  off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -6863,11 +6961,11 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast attribute-mod
-         applied
--------  -------
-aspath   on     
-med      on     
-nexthop  on
+         operational  applied
+-------  -----------  -------
+aspath                on     
+med                   on     
+nexthop               on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -6891,12 +6989,12 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast aspath
-                 applied
----------------  -------
-private-as       none   
-replace-peer-as  off    
-allow-my-asn            
-  enable         off
+                 operational  applied
+---------------  -----------  -------
+replace-peer-as               off    
+private-as                    none   
+allow-my-asn                         
+  enable                      off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -6920,9 +7018,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast aspath allow-my-asn
-        applied
-------  -------
-enable  on
+        operational  applied
+------  -----------  -------
+enable               off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -6946,11 +7044,11 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast prefix-limits
-                     applied
--------------------  -------
-inbound                     
-  maximum            3000   
-  warning-threshold  4
+                     operational  applied
+-------------------  -----------  -------
+inbound                                  
+  maximum                         none   
+  warning-threshold               75
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -6974,10 +7072,10 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast prefix-limits inbound
-                   applied
------------------  -------
-maximum            3000   
-warning-threshold  4
+                   operational  applied
+-----------------  -----------  -------
+maximum                         none   
+warning-threshold               75
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

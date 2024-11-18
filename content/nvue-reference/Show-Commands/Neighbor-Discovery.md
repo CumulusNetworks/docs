@@ -28,29 +28,13 @@ Introduced in Cumulus Linux 5.1.0
 
 ```
 cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery
-                      applied              
---------------------  ---------------------
-enable                on                   
-mtu                   1500                 
-[dnssl]               accounting.nvidia.com
-home-agent                                 
-  enable              on                   
-  lifetime            200                  
-  preference          0                    
-[prefix]              2001:db8:1::100/32   
-[rdnss]               2001:db8:1::100      
-router-advertisement                       
-  enable              off                  
-  fast-retransmit     off                  
-  hop-limit           64                   
-  interval            600000               
-  interval-option     off                  
-  lifetime            1800                 
-  managed-config      off                  
-  other-config        off                  
-  reachable-time      0                    
-  retransmit-time     0                    
-  router-preference   medium
+                      applied
+--------------------  -------
+enable                on     
+router-advertisement         
+  enable              off    
+home-agent                   
+  enable              off 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -58,6 +42,10 @@ router-advertisement
 ## <h>nv show interface \<interface-id\> ip neighbor-discovery dnssl</h>
 
 Shows the <span class="a-tooltip">[DNSSL](## "DNS search list")</span>domain suffixes configured on the specified interface.
+
+{{%notice note%}}
+You must use `--applied` with this command to show the output.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -72,7 +60,8 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery dnssl
+cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery dnssl --applied
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -80,6 +69,10 @@ cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery dnssl
 ## <h>nv show interface \<interface-id\> ip neighbor-discovery dnssl \<domain-name-id\></h>
 
 Shows configuration information for the specified <span class="a-tooltip">[DNSSL](## "DNS search list")</span>domain suffix.
+
+{{%notice note%}}
+You must use `--applied` with this command to show the output.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -95,8 +88,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery dnssl accounting.nvidia.com
-          applied 
+cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery dnssl accounting.nvidia.com --applied
 --------  --------
 lifetime  infinite
 ```
@@ -134,6 +126,10 @@ preference  0
 
 Shows the ND prefixes for the specified interface.
 
+{{%notice note%}}
+You must use `--applied` with this command to show the output.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -147,7 +143,8 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery prefix
+cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery prefix --applied
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -186,6 +183,10 @@ valid-lifetime      2000000000
 
 Shows the <span class="a-tooltip">[RDNSS](## "recursive DNS servers")</span> configured on the specified interface.
 
+{{%notice note%}}
+You must use `--applied` with this command to show the output.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -199,7 +200,8 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery rdnss
+cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery rdnss --applied
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -207,6 +209,10 @@ cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery rdnss
 ## <h>nv show interface \<interface-id\> ip neighbor-discovery rdnss \<ipv6-address-id\></h>
 
 Shows configuration for the specified <span class="a-tooltip">[RDNSS](## "recursive DNS server")</span> configured on the specified interface.
+
+{{%notice note%}}
+You must use `--applied` with this command to show the output.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -222,10 +228,8 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery rdnss 2001:db8:1::100
-          applied 
---------  --------
-lifetime  infinite
+cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery rdnss 2001:db8:1::100 --applied
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -323,15 +327,122 @@ Introduced in Cumulus Linux 5.7.0
 cumulus@switch:~$ nv show interface swp51 neighbor
 ipv4
 =========
-    IPV4         LLADR(MAC)         State      Flag
-    -----------  -----------------  ---------  ----
-    10.5.5.51    00:00:5e:00:53:51  permanent      
-    169.254.0.1  48:b0:2d:a2:4c:79  permanent
+    IPV4         LLADR(MAC)         
+    -----------  -----------------  
+    10.5.5.51    00:00:5e:00:53:51      
+    169.254.0.1  48:b0:2d:a2:4c:79
 ipv6
 =========
-    IPV6                       LLADR(MAC)         State      Flag     
-    -------------------------  -----------------  ---------  ---------
-    fe80::4ab0:2dff:fea2:4c79  48:b0:2d:a2:4c:79  reachable  is-router
+    IPV6                       LLADR(MAC)         
+    -------------------------  -----------------
+    fe80::4ab0:2dff:fea2:4c79  48:b0:2d:a2:4c:79
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> neighbor ipv4</h>
+
+Shows all IPv4 table entries for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` | The interface. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 neighbor ipv4
+IPV4         LLADR(MAC)       
+-----------  -----------------
+169.254.0.1  48:b0:2d:4d:1a:ed
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> neighbor ipv4 \<neighbor-id\></h>
+
+Shows table entries for an interface with a specific IPv4 address.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` | The interface. |
+| `<neighbor-id>` | The IPv4 address of the neighbor. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp51 neighbor ipv4 169.254.0.1
+lladdr
+=========
+    LLADR(MAC)         State      Flag
+    -----------------  ---------  ----
+    48:b0:2d:4d:1a:ed  permanent
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> neighbor ipv4 \<neighbor-id\> lladdr \<lladdr-id\> state</h>
+
+Shows the state of the neighbor in the IPv4 neighbor table for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` | The interface. |
+| `<neighbor-id>` | The IPv4 address of the neighbor. |
+| `<lladdr-id>` |  The MAC address associated with IPv4 address. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp51 neighbor ipv4 169.254.0.1 lladdr 48:b0:2d:4d:1a:ed state
+operational  applied
+-----------  -------
+permanent
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> neighbor ipv4 \<neighbor-id\> lladdr \<lladdr-id\> flag</h>
+
+Shows the flag set for the neighbor in the IPv4 neighbor table for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` | The interface. |
+| `<neighbor-id>` | The IPv4 address of the neighbor. |
+| `<lladdr-id>` |  The MAC address associated with IPv4 address. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp51 neighbor ipv4 169.254.0.1 lladdr 48:b0:2d:4d:1a:ed flag
+  operational  applied  
+   -----------  ---------
+   is-router    is-router
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -354,10 +465,10 @@ Introduced in Cumulus Linux 5.7.0
 
 ```
 cumulus@switch:~$ nv show interface swp1 neighbor ipv6
-IPV6                       LLADR(MAC)         State      Flag
--------------------------  -----------------  ---------  ---------
-fe80::1e34:daff:fe6c:dd8   1c:34:da:6c:0d:d8  stale
-fe80::3e2c:30ff:fe4b:800   3c:2c:30:4b:08:00  reachable
+IPV6                       LLADR(MAC)
+-------------------------  -----------------
+fe80::1e34:daff:fe6c:dd8   1c:34:da:6c:0d:d8
+fe80::3e2c:30ff:fe4b:800   3c:2c:30:4b:08:00
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -410,9 +521,7 @@ Introduced in Cumulus Linux 5.7.0
 
 ```
 cumulus@switch:~$ nv show interface swp51 neighbor ipv6 fe80::4ab0:2dff:fea2:4c79 lladdr 00:00:5E:00:53:51 state
-  operational  applied  
-   -----------  ---------
-   permanent    permanent
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

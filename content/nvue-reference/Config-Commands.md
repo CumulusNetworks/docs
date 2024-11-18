@@ -266,6 +266,8 @@ cumulus@switch:~$ nv config save
 
 Shows the currently applied configuration in YAML format.
 
+To show the configuration on the switch in YAML format and include all default options, run the `nv config show --all` command.
+
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0

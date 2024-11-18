@@ -5698,7 +5698,7 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family l2
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn prefix-limits inbound reestablish-wait</h>
 
-Configures the time in seconds to wait before establishing the BGP session again with the peer. The default value is `auto`, which uses standard BGP timers and processing (typically be 2-3 seconds). You can set avalue between 1 and 65535.
+Configures the time in seconds to wait before establishing the BGP session again with the peer. The default value is `auto`, which uses standard BGP timers and processing (typically between 2 and 3 seconds). You can set a value between 1 and 65535.
 
 ### Command Syntax
 
@@ -5714,7 +5714,7 @@ Introduced in Cumulus Linux 5.10.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn prefix-limits inbound reestablish-wait 30
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn prefix-limits inbound reestablish-wait 60
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

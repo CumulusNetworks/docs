@@ -5,7 +5,7 @@ weight: 890
 toc: 3
 ---
 
-The network topology dashboard displays a visual representation of your network, showing connections and device information for all monitored nodes. The view allows you to understand your network's architecture at a high-level, but also lets you isolate individual devices or network tiers. NVIDIA recommends using the dark theme for the topology dashboard.
+The network topology dashboard displays a visual representation of your network, showing connections and device information for all monitored nodes. The view allows you to understand your network's architecture at a high-level, but also lets you isolate individual devices or network tiers.
 ## Access the Topology View
 
 To open the topology view, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/41-Hierachy-Organization/hierarchy.svg" height="18" width="18"/> **Topology** in the workbench header. The UI displays the highest-level view of your network's topology, showing devices as part of tiers corresponding to your network's architecture: a two-tier architecture is made up of leaf and spine devices; a three-tier architecture is made up of leaf, spine, and super-spine devices. The bottom-most tier is reserved for devices which do not have a role assigned to them.
@@ -15,7 +15,8 @@ To open the topology view, click <img src="https://icons.cumulusnetworks.com/01-
 If your devices appear as a single tier, navigate to the device tab and select the **Assign roles** button. Select the switches to assign to the same role, then select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/58-Tags-Bookmarks/tags.svg" height="18" width="18" alt="Assign Role">}} **Assign role** above the table and follow the steps in the UI.
 
 {{%notice tip%}}
-For large networks with many devices, you can assign roles in batches by selecting **Bulk assign role** and creating rules based on device hostnames.
+- For large networks with many devices, you can assign roles in batches by selecting **Bulk assign role** and creating rules based on device hostnames.
+- NVIDIA recommends using the dark theme for the topology dashboard.
 {{%/notice%}}
 
 After assigning roles to the switches, return to the topology view and select **Auto arrange** to clean up the view.

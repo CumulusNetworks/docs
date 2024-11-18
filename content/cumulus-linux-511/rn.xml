@@ -7,6 +7,19 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4170628</td>
+<td>If you use a bridge name that isn't {{br_default}}, NVUE generates incorrect ptp4l.conf files.</td>
+<td>5.10.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4150508</td>
+<td>When there is a large number of discontiguous VTEP to VLAN mappings, {{switchd}} crashes with a Netlink error similar to the following:
+netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported truncated message</td>
+<td>5.10.1-5.11.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4142857</td>
 <td>The switch drops PTP packets received with extra ethernet padding and you see syslog {{[ptp4l.ERR] messages.</td>
 <td>5.10.0-5.11.0</td>
@@ -21,6 +34,12 @@
 <tr>
 <td>4134174</td>
 <td>If you configure a route map by attaching it to a specific protocol, then you detach it from that protocol, if you then attach the same route map to all protocols, then detach it from all protocols, Cumulus Linux deletes routes from the forwarding table.To work around this issue, either attach the route map to all protocols or attach the route map to each protocol you want to use. For example, to attach the route map to all protocols, run the {{nv set vrf &lt;vrf-name&gt; router rib fib-filter route-map &lt;route-map&gt;}} command. To attach the route map to each protocol you want to use, run the {{nv set vrf &lt;vrf-name&gt; router rib fib-filter protocol &lt;protocol string&gt; route-map &lt;route-map&gt;}} command.</td>
+<td>5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4130022</td>
+<td>When you configure LDAP authentication, applying NVUE configuration might take a long time if the LDAP server is slow.  To avoid this delay, ensure that {{local}} is before {{ldap}} in the authentication order.</td>
 <td>5.11.0</td>
 <td></td>
 </tr>
@@ -370,6 +389,11 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Affects </th>
 </tr>
 <tr>
+<td>4137492</td>
+<td>Accessing NVIDIA Spectrum-4 SPICE from multiple applications to the same path in parallel might cause a kernel crash.</td>
+<td>5.10.1</td>
+</tr>
+<tr>
 <td>4135919</td>
 <td>You might experience a memory leak in {{ospfd}} when processing next hops due to network changes.</td>
 <td>5.9.1-5.10.1</td>
@@ -382,6 +406,16 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <tr>
 <td>4129344</td>
 <td>When you create an ACL rule that matches TCP state and more than seven TCP or UDP source or destination ports, the rule does not get framed properly and is rejected by the kernel.To work around this issue, create another rule number when the number of ports you want to match is more than seven.</td>
+<td>5.9.1-5.10.1</td>
+</tr>
+<tr>
+<td>4127636</td>
+<td>Multicast traffic continues to egress an interface that leaves the group. Logs and multicast data show that the IGMP group is deleted but the OIF is still listed.</td>
+<td>5.10.0-5.10.1</td>
+</tr>
+<tr>
+<td>4124831</td>
+<td>When Per-VLAN Rapid Spanning Tree (PVRST) mode is enabled, bonds with LACP bypass discard ingress DHCP packets.</td>
 <td>5.9.1-5.10.1</td>
 </tr>
 <tr>

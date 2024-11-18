@@ -60,6 +60,10 @@ location  /var/lib/cumulus/ztp/ztp_script-202304261538
 
 Shows the status of the ZTPs script run on the switch.
 
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command; use `nv show system ztp` instead.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.2.0

@@ -153,6 +153,30 @@ cumulus@switch:~$ nv set interface swp1 lldp dcbx-pfc-tlv on
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set interface \<interface-id\> lldp state</h>
+
+Enables and disables LLDP on an interface.
+
+When you disable LLDP on an interface, LLDP and CDP packet transmission stops on the interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1 lldp state disabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set service lldp</h>
 
 Provides commands to configure LLDP globally on the switch.
@@ -279,6 +303,24 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv set service lldp mode force-send-cdpv1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set service lldp state</h>
+
+Enables and disables LLDP globally. Cumulus Linux enables the LLDP service by default.
+
+When you disable LLDP globally, the `lldp` service, and all LLDP and CDP packet transmission stops.
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp state disabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

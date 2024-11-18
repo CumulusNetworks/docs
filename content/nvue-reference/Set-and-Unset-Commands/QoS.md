@@ -754,9 +754,13 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-lossy-b
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set qos advance-buffer-config \<profile-id\> egress-pool \<pool-id\></h>
+## <h>nv set qos advance-buffer-config \<profile-id\> egress-service-pool \<pool-id\></h>
 
 Configures the QoS egress service pool ID.
+
+{{%notice note%}}
+In Cumulus Linux 5.10 and earlier, `egress-service-pool` is `egress-pool`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -772,15 +776,19 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-pool 3
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-service-pool 3
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set qos advance-buffer-config \<profile-id\> egress-pool \<pool-id\> infinite</h>
+## <h>nv set qos advance-buffer-config \<profile-id\> egress-service-pool \<pool-id\> infinite</h>
 
 Configures the egress service pool flag to infinite. You can specify `true` or `false`. The default setting is `false`.
 
+{{%notice note%}}
+In Cumulus Linux 5.10 and earlier, `egress-service-pool` is `egress-pool`.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -795,15 +803,19 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-pool 3 infinite true
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-service-pool 3 infinite true
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set qos advance-buffer-config \<profile-id\> egress-pool \<pool-id\> memory-percent</h>
+## <h>nv set qos advance-buffer-config \<profile-id\> egress-service-pool \<pool-id\> memory-percent</h>
 
 Configures the egress service pool memory percent allocation. You can specify a value between 0 and 100. The sum of `memory-percent` values across all egress pools must be less than or equal to 100 percent.
 
+{{%notice note%}}
+In Cumulus Linux 5.10 and earlier, `egress-service-pool` is `egress-pool`.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -818,15 +830,19 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-pool 3 memory-percent 20
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-service-pool 3 memory-percent 20
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set qos advance-buffer-config \<profile-id\> egress-pool \<pool-id\> mode</h>
+## <h>nv set qos advance-buffer-config \<profile-id\> egress-service-pool \<pool-id\> mode</h>
 
 Configures the egress service pool mode. You can specify `static` or `dynamic`.
 
+{{%notice note%}}
+In Cumulus Linux 5.10 and earlier, `egress-service-pool` is `egress-pool`.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -841,15 +857,19 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-pool 3 mode dynamic
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-service-pool 3 mode dynamic
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set qos advance-buffer-config \<profile-id\> egress-pool \<pool-id\> reserved</h>
+## <h>nv set qos advance-buffer-config \<profile-id\> egress-service-pool \<pool-id\> reserved</h>
 
 Configures the egress service pool reserved buffer allocation in bytes. You can specify a value between 0 and 4294967295.
 
+{{%notice note%}}
+In Cumulus Linux 5.10 and earlier, `egress-service-pool` is `egress-pool`.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -864,15 +884,19 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-pool 3 reserved 10000
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-service-pool 3 reserved 10000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set qos advance-buffer-config \<profile-id\> egress-pool \<pool-id\> shared-alpha</h>
+## <h>nv set qos advance-buffer-config \<profile-id\> egress-service-pool \<pool-id\> shared-alpha</h>
 
 Configures the egress service pool dynamic shared buffer alpha allocation.
 
+{{%notice note%}}
+In Cumulus Linux 5.10 and earlier, `egress-service-pool` is `egress-pool`.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -887,14 +911,18 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-pool 3 shared-alpha alpha_1_4
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-service-pool 3 shared-alpha alpha_1_4
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set qos advance-buffer-config \<profile-id\> egress-pool \<pool-id\> shared-bytes</h>
+## <h>nv set qos advance-buffer-config \<profile-id\> egress-service-pool \<pool-id\> shared-bytes</h>
 
 Configures the egress service pool static shared buffer allocation in bytes. You can specify a value between 0 and 4294967295.
+
+{{%notice note%}}
+In Cumulus Linux 5.10 and earlier, `egress-service-pool` is `egress-pool`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -910,7 +938,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-pool 3 shared-bytes 10000
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-service-pool 3 shared-bytes 10000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1155,10 +1183,14 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossy-
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set qos advance-buffer-config \<profile-id\> ingress-pool \<pool-id\></h>
+## <h>nv set qos advance-buffer-config \<profile-id\> ingress-service-pool \<pool-id\></h>
 
 Configures the QoS ingress service pool name.
 
+{{%notice note%}}
+In Cumulus Linux 5.10 and earlier, `ingress-service-pool` is `ingress-pool`.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1173,15 +1205,19 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-pool 3
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-service-pool 3
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set qos advance-buffer-config \<profile-id\> ingress-pool \<pool-id\> infinite</h>
+## <h>nv set qos advance-buffer-config \<profile-id\> ingress-service-pool \<pool-id\> infinite</h>
 
 Configures the ingress service pool flag to infinite. You can specify `true` or `false`. The default setting is `false`.
 
+{{%notice note%}}
+In Cumulus Linux 5.10 and earlier, `ingress-service-pool` is `ingress-pool`.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1196,15 +1232,19 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-pool 3 infinite true
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-service-pool 3 infinite true
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set qos advance-buffer-config \<profile-id\> ingress-pool \<pool-id\> memory-percent</h>
+## <h>nv set qos advance-buffer-config \<profile-id\> ingress-service-pool \<pool-id\> memory-percent</h>
 
 Configures the ingress service pool memory percent allocation. You can specify a value between 0 and 100. The sum of `memory-percent` values across all ingress pools must be less than or equal to 100 percent.
 
+{{%notice note%}}
+In Cumulus Linux 5.10 and earlier, `ingress-service-pool` is `ingress-pool`.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1219,15 +1259,19 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-pool 3 memory-percent 20
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-service-pool 3 memory-percent 20
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set qos advance-buffer-config \<profile-id\> ingress-pool \<pool-id\> mode</h>
+## <h>nv set qos advance-buffer-config \<profile-id\> ingress-service-pool \<pool-id\> mode</h>
 
 Configures the ingress service pool mode. You can specify `static` or `dynamic`.
 
+{{%notice note%}}
+In Cumulus Linux 5.10 and earlier, `ingress-service-pool` is `ingress-pool`.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1242,15 +1286,19 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-pool 3 mode dynamic
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-service-pool 3 mode dynamic
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set qos advance-buffer-config \<profile-id\> ingress-pool \<pool-id\> reserved</h>
+## <h>nv set qos advance-buffer-config \<profile-id\> ingress-service-pool \<pool-id\> reserved</h>
 
 Configures the ingress service pool reserved buffer allocation in bytes. You can specify a value between 0 and 4294967295.
 
+{{%notice note%}}
+In Cumulus Linux 5.10 and earlier, `ingress-service-pool` is `ingress-pool`.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1265,15 +1313,19 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-pool 3 reserved 10000
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-service-pool 3 reserved 10000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set qos advance-buffer-config \<profile-id\> ingress-pool \<pool-id\> shared-alpha</h>
+## <h>nv set qos advance-buffer-config \<profile-id\> ingress-service-pool \<pool-id\> shared-alpha</h>
 
 Configures the ingress service pool dynamic shared buffer alpha allocation.
 
+{{%notice note%}}
+In Cumulus Linux 5.10 and earlier, `ingress-service-pool` is `ingress-pool`.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1288,14 +1340,18 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-pool 3 shared-alpha alpha_1_4
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-service-pool 3 shared-alpha alpha_1_4
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set qos advance-buffer-config \<profile-id\> ingress-pool \<pool-id\> shared-bytes</h>
+## <h>nv set qos advance-buffer-config \<profile-id\> ingress-service-pool \<pool-id\> shared-bytes</h>
 
 Configures the ingress service pool static shared buffer allocation in bytes. You can specify a value between 0 and 4294967295.
+
+{{%notice note%}}
+In Cumulus Linux 5.10 and earlier, `ingress-service-pool` is `ingress-pool`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1311,7 +1367,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-pool 3 shared-bytes 10000
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-service-pool 3 shared-bytes 10000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

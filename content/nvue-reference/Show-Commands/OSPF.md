@@ -31,7 +31,7 @@ cumulus@switch:~$ nv show interface swp51 router ospf
                        applied       
 ---------------------  --------------
 enable                 on            
-area                   0             
+area                   none             
 cost                   auto          
 mtu-ignore             off           
 network-type           point-to-point
@@ -70,9 +70,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@switch:~$ nv show interface swp51 router ospf authentication
                     applied     
 ------------------  ------------
-enable              on          
-md5-key             thisisthekey
-message-digest-key  1
+enable              on
+message-digest-key  100 
+md5-key             $nvsec$0c77b609ae035726bf2f37cb08e6ec67 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -302,16 +302,17 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router ospf area 0
-                  applied           
-----------------  ------------------
-default-lsa-cost  2000              
-type              stub              
-filter-list                         
-  in              MY-OSPF-IN-FILTER 
-  out             MY-OSPF-OUT-FILTER
-[network]         10.10.10.1/32     
-[range]           172.16.1.0/24
+cumulus@switch:~$ nv show vrf default router ospf area 0.0.0.0 --rev=applied
+rev ID: applied
+----------------  --------------- 
+type              normal 
+default-lsa-cost  1 
+filter-list 
+  in              none 
+  out             none 
+[network]         9.9.0.0/16 
+[network]         9.9.12.11/32 
+[network]         200.254.0.0/16
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -471,7 +472,6 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@switch:~$ nv show vrf default router ospf interface
 Interface  Summary             
 ---------  --------------------
-lo         local-ip: 10.10.10.1
 swp51      local-ip: 10.10.10.1
 swp52      local-ip: 10.10.10.1
 vlan10     local-ip:  10.1.10.2
@@ -507,6 +507,7 @@ cumulus@switch:~$ nv show vrf default router ospf interface swp51 -o json
 {
   "local-ip": {
     "10.10.10.1": {
+      "area-id": "0.0.0.0"
       "cost": 100,
       "counters": {
         "adjacent-neighbor-count": 0,
@@ -581,7 +582,7 @@ cumulus@switch:~$ nv show vrf default router ospf interface swp51 local-ip -o js
     "dead-interval": 60,
     "hello-interval": 5000,
     "hello-interval-remain": 1199,
-    "passive": "off",
+    "interface-netmask": 24,
     "priority": 1,
     "retransmit-interval": 5,
     "state": "Point-To-Point",
@@ -613,31 +614,32 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv show vrf default router ospf interface swp51 local-ip 10.10.10.1
-                           operational     applied
--------------------------  --------------  -------
-cost                       100                    
-dead-interval              60                     
-hello-interval             5000                   
-hello-interval-remain      1391                   
-passive                    off                    
-priority                   1                      
-retransmit-interval        5                      
-state                      Point-To-Point         
-transmit-delay             1                      
-wait-timer                 60                     
-counters                                          
-  adjacent-neighbor-count  0                      
-  dbd-rx                   0                      
-  dbd-tx                   0                      
-  hello-rx                 0                      
-  hello-tx                 119                    
-  ls-ack-rx                0                      
-  ls-ack-tx                0                      
-  ls-request-rx            0                      
-  ls-request-tx            0                      
-  ls-update-rx             0                      
-  ls-update-tx             0                      
-  neighbor-count           0
+                           operational     
+-------------------------  --------------
+interface-netmask          24 
+priority                   1 
+hello-interval             10000 
+hello-interval-remain      6130 
+dead-interval              40 
+retransmit-interval        5 
+transmit-delay             1 
+state                      Point-To-Point 
+wait-timer                 40 
+cost                       10 
+area-id                    0.0.0.0 
+counters 
+  neighbor-count           1 
+  adjacent-neighbor-count  1 
+  hello-rx                 9502 
+  hello-tx                 9502 
+  dbd-rx                   2 
+  dbd-tx                   3 
+  ls-request-rx            1 
+  ls-request-tx            1 
+  ls-update-rx             258 
+  ls-update-tx             286 
+  ls-ack-rx                249 
+  ls-ack-tx                257 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -774,6 +776,7 @@ cumulus@switch:~$ nv show vrf default router ospf neighbor 10.10.10.1 interface 
 {
   "local-ip": {
     "10.10.10.1": {
+      "area-id": "0.0.0.0", 
       "dead-timer-expiry": -1,
       "neighbor-ip": "10.10.10.1",
       "priority": 1,
@@ -818,6 +821,7 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@switch:~$ nv show vrf default router ospf neighbor 10.10.10.1 interface swp51 local-ip -o json
 {
   "10.10.10.1": {
+    "area-id": "0.0.0.0", 
     "dead-timer-expiry": -1,
     "neighbor-ip": "10.10.10.1",
     "priority": 1,
@@ -864,6 +868,7 @@ neighbor-ip        10.0.1.1
 priority           1                    
 role               BDR                  
 state              full                 
+area-id            0.0.0.0
 statistics                              
   db-summary-qlen  0                    
   ls-request-qlen  0                    

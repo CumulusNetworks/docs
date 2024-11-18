@@ -97,12 +97,15 @@ cumulus@switch:~$ nv show interface swp1 ip vrrp virtual-router -o json
         },
         "vmac": "00:00:5e:00:02:2c"
       }
-    },
-    "advertisement-interval": 5000,
-    "interface": "swp1",
-    "preempt": "off",
-    "version": 3
-  }
+    }, 
+    "advertisement-interval": 1000, 
+    "auto-config": "off", 
+    "interface": "vlan101", 
+    "is-shutdown": "off", 
+    "preempt": "on", 
+    "priority": 110, 
+    "version": 3 
+  } 
 }
 ```
 
@@ -129,15 +132,17 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@switch:~$ nv show interface swp1 ip vrrp virtual-router 44
                         operational  applied     
 ----------------------  -----------  ------------
-advertisement-interval  5000         5000        
-preempt                 off          auto        
-priority                             254         
-version                 3            3           
-[address]                            10.0.0.1    
-[address]                            2001:0db8::1
-accept-mode             off                      
-interface               swp1                     
-[address-family]        ipv4                     
+version                 3            3 
+priority                110          110 
+preempt                 on           auto 
+advertisement-interval  1000         1000 
+[address]                            50.0.0.1 
+[address]                            2001:50::1 
+auto-config             off 
+is-shutdown             off 
+accept-mode             on 
+interface               vlan101 
+[address-family]        ipv4 
 [address-family]        ipv6
 ```
 
@@ -162,6 +167,10 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show interface swp1 ip vrrp virtual-router 44 address
+IP address 
+---------- 
+10.0.0.1 
+2001:50::1 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -186,6 +195,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show interface swp1 ip vrrp virtual-router 44 address 10.0.0.1
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -248,6 +258,7 @@ cumulus@switch:~$ nv show interface swp1 ip vrrp virtual-router 44 address-famil
       "2001:db8::1": {}
     },
     "vmac": "00:00:5e:00:02:2c"
+    "vrrp-interface": "vrrp6-10-1"
   }
 }
 ```
@@ -274,19 +285,21 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show interface swp1 ip vrrp virtual-router 44 address-family ipv4
-                     operational        applied
--------------------  -----------------  -------
-down-interval        0                         
-master-adv-interval  0                         
-priority             254                       
-skew-time            0                         
-status               Initialize                
-vmac                 00:00:5e:00:01:2c         
-counters                                       
-  adv-rx             0                         
-  adv-tx             0                         
-  garp-tx            0                         
-  state-transitions  0                         
+                     operational
+-------------------  -----------------
+vrrp-interface       vrrp4-10-1 
+vmac                 00:00:5e:00:01:2c 
+primary-addr         10.0.0.2
+status               Master 
+priority             110 
+master-adv-interval  1000 
+skew-time            570 
+down-interval        3570 
+counters 
+  adv-tx             947 
+  adv-rx             0 
+  garp-tx            1 
+  state-transitions  2 
 [virtual-addresses]  10.0.0.1
 ```
 

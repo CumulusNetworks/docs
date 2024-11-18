@@ -15,7 +15,8 @@ To open the topology view, click <img src="https://icons.cumulusnetworks.com/01-
 If your devices appear as a single tier, navigate to the device tab and select the **Assign roles** button. Select the switches to assign to the same role, then select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/58-Tags-Bookmarks/tags.svg" height="18" width="18" alt="Assign Role">}} **Assign role** above the table and follow the steps in the UI.
 
 {{%notice tip%}}
-For large networks with many devices, you can assign roles in batches by selecting **Bulk assign role** and creating rules based on device hostnames.
+- For large networks with many devices, you can assign roles in batches by selecting **Bulk assign role** and creating rules based on device hostnames.
+- NVIDIA recommends using the dark theme for the topology dashboard.
 {{%/notice%}}
 
 After assigning roles to the switches, return to the topology view and select **Auto arrange** to clean up the view.

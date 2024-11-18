@@ -188,9 +188,6 @@ nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unica
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast received-routes <route-id> path <path-id> large-community
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast received-routes <route-id> path <path-id> large-community
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast advertised-routes <route-id> path <path-id> large-community
-nv show vrf <vrf-id> router rib <address-family> fib-filter
-nv show vrf <vrf-id> router rib <address-family> fib-filter protocol
-nv show vrf <vrf-id> router rib <address-family> fib-filter protocol <import-protocol-id>
 nv show vrf <vrf-id> router bgp address-family <address-family> route
 nv show vrf <vrf-id> router bgp address-family <address-family> route <route-id>
 nv show vrf <vrf-id> router bgp address-family <address-family> route <route-id> path
@@ -205,6 +202,9 @@ nv show vrf <vrf-id> router bgp address-family <address-family> route <route-id>
 nv show vrf <vrf-id> router bgp address-family <address-family> route <route-id> path <path-id> large-community
 nv show vrf <vrf-id> router bgp address-family <address-family> route <route-id> path <path-id> ext-community
 nv show vrf <vrf-id> router bgp address-family <address-family> route-count
+nv show vrf <vrf-id> router nexthop-tracking <afi> ip-address <nht-ip-id> resolved-via <nht-resolved-id>
+nv show vrf <vrf-id> router nexthop-tracking <afi> ip-address <nht-ip-id> protocol <protocol-id>
+nv show vrf <vrf-id> router rib <address-family> fib-filter protocol <import-protocol-id>
 nv show vrf <vrf-id> router rib <address-family> route-count
 nv show vrf <vrf-id> router rib <address-family> route-count <prefix>
 nv show vrf <vrf-id> router rib <address-family> route-count protocol
@@ -217,8 +217,6 @@ nv show vrf <vrf-id> router rib <afi> route <route-id> route-entry <route-entry>
 nv show vrf <vrf-id> router rib <afi> route <route-id> route-entry <route-entry> via-entry <via-entry-id> label
 nv show vrf <vrf-id> router rib <afi> route <route-id> route-entry <route-entry> via-entry <via-entry-id> resolved-via-entry
 nv show vrf <vrf-id> router rib <afi> route <route-id> route-entry <route-entry> via-entry <via-entry-id> resolved-via-entry <resolved-via-entry-id>
-nv show vrf <vrf-id> router nexthop-tracking <afi> ip-address <nht-ip-id> resolved-via <nht-resolved-id>
-nv show vrf <vrf-id> router nexthop-tracking <afi> ip-address <nht-ip-id> protocol <protocol-id>
 ```
 
 {{< /tab >}}
@@ -295,8 +293,8 @@ nv set system telemetry snapshot port-group <port-group-id> threshold <threshold
 nv set system telemetry snapshot port-group <port-group-id> stats-type
 nv set system telemetry snapshot port-group <port-group-id> interface <interface>
 nv set system telemetry snapshot port-group <port-group-id> timer-interval
-nv set vrf <vrf> router rib <afi> fib-filter route-map <route-map>
-nv set vrf <vrf> router rib <afi> protocol <protocol-name> fib-filter <route-map>
+nv set vrf <vrf-id> router rib <afi> fib-filter protocol <protocol-id> route-map <route-map>
+nv set vrf <vrf-id> router rib <afi> fib-filter route-map <route-map>
 ```
 
 {{< /tab >}}
@@ -399,8 +397,8 @@ nv unset system telemetry snapshot port-group <port-group-id> threshold <thresho
 nv unset system telemetry snapshot port-group <port-group-id> stats-type
 nv unset system telemetry snapshot port-group <port-group-id> interface
 nv unset system telemetry snapshot port-group <port-group-id> timer-interval
-nv unset vrf <vrf> router rib <afi> fib-filter route-map <route-map>
-nv unset vrf <vrf> router rib <afi> protocol <protocol-name> fib-filter <route-map>
+nv unset vrf <vrf-id> router rib <afi> fib-filter protocol <protocol-id> route-map <route-map>
+nv unset vrf <vrf-id> router rib <afi> fib-filter route-map <route-map>
 ```
 
 {{< /tab >}}

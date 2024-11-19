@@ -30,8 +30,8 @@ NetQ software installation file names include a version number, in the form of x
 
 For example:
 
-- netq-apps_<strong>4.11.0</strong>-deb11u<strong>48</strong>~1722675551.0390e155f_amd64.deb
-- netq-agent_<strong>4.11.0</strong>-deb11u<strong>48</strong>~1722675551.0390e155f_amd64.deb
+- netq-apps_<strong>4.12.0</strong>-deb11u<strong>49</strong>~1731404547.ffa541ea6_amd64.deb
+- netq-agent_<strong>4.12.0</strong>-deb11u<strong>49</strong>~1731404547.ffa541ea6_amd64.deb
 
 ## Release, Support Lifecycle and Support Policy
 
@@ -48,6 +48,7 @@ The following table depicts the NetQ release support matrix:
 
 | NetQ Release | Release Date | End of Support |
 | :--------: | --------- | --------- |
+| 4.12.z | 15-Nov-2024 | 15-Nov-2026 |
 | 4.11.z | 07-Aug-2024 | 07-Aug-2026 |
 | 4.10.z | 30-Apr-2024 | 30-Apr-2026 |
 | 4.9.z | 18-Mar-2024 | 18-Mar-2026 |

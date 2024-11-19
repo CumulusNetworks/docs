@@ -8,7 +8,7 @@ toc: 4
 After installing the NetQ software, you should install the NetQ Agents on each switch you want to monitor. You can install NetQ Agents on switches and servers running:
 
 - Cumulus Linux 5.0.0 or later (Spectrum switches)
-- Ubuntu 20.04, 22.04
+- Ubuntu 22.04, 20.04
 
 ## Prepare for NetQ Agent Installation
 
@@ -73,7 +73,7 @@ deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest
 ```
 
 {{<notice tip>}}
-You can specify a NetQ Agent version in the repository configuration. The following example shows the repository configuration to retrieve NetQ Agent 4.9: <pre>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-4.9</pre>
+You can specify a NetQ Agent version in the repository configuration. The following example shows the repository configuration to retrieve NetQ Agent 4.12: <pre>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-4.12</pre>
 {{</notice>}}
 
 2. Add the `apps3.cumulusnetworks.com` authentication key to Cumulus Linux:
@@ -232,7 +232,7 @@ Cumulus Linux 4.4 and later includes the `netq-agent` package by default. To ins
     cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/agent-version version="4.11.0" opsys="cl">}}
+    {{<netq-install/agent-version version="4.12.0" opsys="cl">}}
 
 3. Restart `rsyslog` so it sends log files to the correct destination.
 
@@ -261,7 +261,7 @@ To install the NetQ Agent:
     root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/agent-version version="4.11.0" opsys="ub">}}
+    {{<netq-install/agent-version version="4.12.0" opsys="ub">}}
 
 3. Restart `rsyslog` so it sends log files to the correct destination.
 

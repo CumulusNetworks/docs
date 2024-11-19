@@ -311,10 +311,10 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-1. Edit the `/etc/audisp/plugins.d/audisp-tacplus.conf` file and change the `active` parameter to `no`:
+1. Edit the `/etc/audit/plugins.d/audisp-tacplus.conf` file and change the `active` parameter to `no`:
 
    ```
-   cumulus@switch:~$ sudo nano /etc/audisp/plugins.d/audisp-tacplus.conf
+   cumulus@switch:~$ sudo nano /etc/audit/plugins.d/audisp-tacplus.conf
    ...
    # default to enabling tacacs accounting; change to no to disable
    active = no

@@ -6,7 +6,7 @@ weight: 999
 type: nojsscroll
 ---
 
-The NVIDIA Air SDK V2 provides a Python SDK for interacting with most [NVIDIA Air API V2 endpoints](https://air.nvidia.com/api/v2/).
+The NVIDIA Air SDK V2 provides a Python SDK for interacting with most [NVIDIA Air API V2 endpoints](https://air.nvidia.com/api/#/v2).
 # Overview
 
 ## API V1 vs API V2

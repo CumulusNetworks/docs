@@ -1703,7 +1703,7 @@ To configure a BGP confederation:
 - Provide the configuration ID you want to use.
 - Provide the ASNs of the peers you want to add to the confederation.
 
-The following example configures confederation ID 2 with peer ASNs 65101, 65102, 65103, and 65104.
+The following example configures confederation ID 2 with sub-ASs 65101, 65102, 65103, and 65104.
 
 {{< tabs "1706 ">}}
 {{< tab "NVUE Commands ">}}
@@ -1723,6 +1723,7 @@ cumulus@leaf01:~$ sudo vtysh
 spine01# configure terminal
 spine01(config)# router bgp 65199
 spine01(config-router)# bgp confederation identifier 2
+spine01(config-router)# bgp confederation peers 65101
 spine01(config-router)# bgp confederation peers 65102
 spine01(config-router)# bgp confederation peers 65103
 spine01(config-router)# bgp confederation peers 65104

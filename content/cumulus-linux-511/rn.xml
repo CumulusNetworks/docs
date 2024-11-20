@@ -7,16 +7,16 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4170628</td>
-<td>If you use a bridge name that isn't {{br_default}}, NVUE generates incorrect ptp4l.conf files.</td>
-<td>5.10.0-5.11.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4150508</td>
+<td>4175217</td>
 <td>When there is a large number of discontiguous VTEP to VLAN mappings, {{switchd}} crashes with a Netlink error similar to the following:
 netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported truncated message</td>
 <td>5.10.1-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4170628</td>
+<td>If you use a bridge name that isn't {{br_default}}, NVUE generates incorrect ptp4l.conf files.</td>
+<td>5.10.0-5.11.0</td>
 <td></td>
 </tr>
 <tr>

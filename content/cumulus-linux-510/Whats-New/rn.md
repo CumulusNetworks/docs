@@ -14,10 +14,10 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4175217"></a> [4175217](#4175217) <a name="4175217"></a> <br /> | When there is a large number of discontiguous VTEP to VLAN mappings, <code>switchd</code> crashes with a Netlink error similar to the following:<pre><br>netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported truncated message</pre> | 5.10.1-5.11.0 | |
 | <a name="4173498"></a> [4173498](#4173498) <a name="4173498"></a> <br /> | After network churn, the <code>﻿watchfrr</code> process might restart FRR because zebra is unresponsive. | 5.9.1-5.11.0 | |
 | <a name="4170628"></a> [4170628](#4170628) <a name="4170628"></a> <br /> | If you use a bridge name that isn't <code>br_default</code>, NVUE generates incorrect ptp4l.conf files. | 5.10.0-5.11.0 | |
 | <a name="4170598"></a> [4170598](#4170598) <a name="4170598"></a> <br /> | When you create an ACL rule that matches TCP state and more than seven TCP or UDP source or destination ports, the rule does not get framed properly and is rejected by the kernel.<br>To work around this issue, create another rule number when the number of ports you want to match is more than seven. | 5.9.1-5.11.0 | |
-| <a name="4150508"></a> [4150508](#4150508) <a name="4150508"></a> <br /> | When there is a large number of discontiguous VTEP to VLAN mappings, <code>switchd</code> crashes with a Netlink error similar to the following:<pre><br>netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported truncated message</pre> | 5.10.1-5.11.0 | |
 | <a name="4142857"></a> [4142857](#4142857) <a name="4142857"></a> <br /> | The switch drops PTP packets received with extra ethernet padding and you see syslog <code>&#91;ptp4l.ERR&#93; messages. | 5.10.0-5.11.0 | |
 | <a name="4137492"></a> [4137492](#4137492) <a name="4137492"></a> <br /> | Accessing NVIDIA Spectrum-4 SPICE from multiple applications to the same path in parallel might cause a kernel crash. | 5.10.1 | 5.11.0|
 | <a name="4135919"></a> [4135919](#4135919) <a name="4135919"></a> <br /> | You might experience a memory leak in <code>ospfd</code> when processing next hops due to network changes. | 5.9.1-5.11.0 | |

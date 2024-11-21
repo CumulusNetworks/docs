@@ -382,8 +382,6 @@ This section describes how to create a simulation based on an existing productio
 These scripts have only been validated in a Linux environment.
 {{%/notice%}}
 
-{{< /expand >}}
-
 ### Gather cl-support from the Production Network
 Use [these playbooks](https://gitlab.com/cumulus-consulting/features/cl_support_ansible) to gather the `cl-support` script output. The `ReadMe` in the repository provides instructions on how to run the playbook to gather the `cl-support` output.
 

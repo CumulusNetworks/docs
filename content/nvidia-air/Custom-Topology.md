@@ -378,9 +378,14 @@ Minimum required SDK version for this feature is `air-sdk>=2.15.0`
 
 This section describes how to create a simulation based on an existing production deployment.
 
+{{%notice info%}}
+These scripts have only been validated in a Linux environment.
+{{%/notice%}}
+
+{{< /expand >}}
+
 ### Gather cl-support from the Production Network
-Use [these playbooks](https://gitlab.com/cumulus-consulting/features/cl_support_ansible)
- to gather the `cl-support` script output. The `ReadMe` in the repository provides instructions on how to run the playbook to gather the `cl-support` output.
+Use [these playbooks](https://gitlab.com/cumulus-consulting/features/cl_support_ansible) to gather the `cl-support` script output. The `ReadMe` in the repository provides instructions on how to run the playbook to gather the `cl-support` output.
 
 ### Create topology.dot from the Production Network
 After you obtain the `cl-support` output, you can create a `topology.dot` file with [this script](https://gitlab.com/cumulus-consulting/features/cl_support_lldp_parser)

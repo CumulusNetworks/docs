@@ -25,6 +25,55 @@ cumulus@switch:~$ sudo apt update
 cumulus@switch:~$ sudo apt upgrade
 ```
 
+## Package Upgrade from Cumulus Linux 4.3.0 to 4.3.X Latest BCM
+
+### Issue
+
+When you try to upgrade a switch from Cumulus Linux 4.3.0 to 4.3.X  Latest BCM with package upgrade, you see errors for expired GPG keys that prevent you from upgrading:
+
+```
+Err:4 https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo CumulusLinux-4.3.2 InRelease
+  The following signatures were invalid: EXPKEYSIG A3C0E377EB5BF3F0 Cumulus Linux 4.0 Package Repository Release Signing Key <dev-support@cumulusnetworks.com>
+Reading package lists... Done
+W: GPG error: https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo CumulusLinux-4.3.2 InRelease: The following signatures were invalid: EXPKEYSIG A3C0E377EB5BF3F0 Cumulus Linux 4.0 Package Repository Release Signing Key <dev-support@cumulusnetworks.com>
+```
+
+### Resolution
+
+Download the new repository keys, then upgrade the switch:
+
+```
+cumulus@switch:~$  wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl4.3.4u1_all.deb
+cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl4.3.4u1_all.deb 
+cumulus@switch:~$ sudo apt update
+cumulus@switch:~$ sudo apt upgrade
+```
+
+## Package Upgrade from Cumulus Linux 4.4.0 to 4.4.x
+
+### Issue
+
+When you try to upgrade a switch from Cumulus Linux 4.4.0 to 4.4.X with package upgrade, you see errors for expired GPG keys that prevent you from upgrading:
+
+```
+Err:4 https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo CumulusLinux-4.4-latest InRelease
+  The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 191184DAB33070E2
+Reading package lists... Done
+W: GPG error: https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo CumulusLinux-4.4-latest InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 191184DAB33070E2
+E: The repository 'http://apt.cumulusnetworks.com/repo CumulusLinux-4.4-latest InRelease' is not signed.
+```
+
+### Resolution
+
+Download the new repository keys, then upgrade the switch:
+
+```
+cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl4.4.7u1_all.deb
+cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl4.4.7u1_all.deb 
+cumulus@switch:~$ sudo -E apt-get update
+cumulus@switch:~$ sudo -E apt-get upgrade
+```
+
 ## Package Upgrade from Cumulus Linux 3.7.x to 3.7.16
 
 ### Issue

@@ -270,15 +270,15 @@ redistribute
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute</h>
+## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast admin-distance</h>
 
-Shows configuration information for BGP IPv4 route redistribution for the specified VRF.
+Shows the BGP IPv4 admin distances configured for the specified VRF.
 
 ### Command Syntax
 
 | Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |  The VRF name. |
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -287,121 +287,11 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast redistribute
-             applied  pending
------------  -------  -------
-static                       
-  enable     off      off    
-connected                    
-  enable     on       on     
-  metric     auto     auto   
-  route-map  none     none   
-kernel                       
-  enable     off      off    
-ospf                         
-  enable     off      off
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute static</h>
-
-Shows configuration information for IPv4 BGP static route redistribution for the specified VRF.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` |  The VRF name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast redistribute static
-        applied  pending
-------  -------  -------
-enable  off      off
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute connected</h>
-
-Shows configuration information for BGP IPv4 connected route redistribution for the specified VRF.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` |  The VRF name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast redistribute connected
-           applied  pending
----------  -------  -------
-enable     on       on     
-metric     auto     auto   
-route-map  none     none
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute kernel</h>
-
-Shows configuration information for BGP IPv4 kernel route redistribution for the specified VRF.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast redistribute kernel
-        applied  pending
-------  -------  -------
-enable  off      off
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute ospf</h>
-
-Shows configuration information for redistributing OSPF IPv4 routes into BGP for the specified VRF.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` |    The VRF name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast redistribute ospf
-        applied  pending
-------  -------  -------
-enable  off      off
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast admin-distance
+          operational  applied
+--------  -----------  -------
+external               20     
+internal               200
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -452,242 +342,6 @@ cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast agg
 as-set        on          on       
 route-map                 routemap1
 summary-only  on          on 
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast network</h>
-
-Shows BGP IPv4 static networks for the specified VRF.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` |    The VRF name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast network
-No Data
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast network \<static-network-id\></h>
-
-Shows information about a specific BGP IPv4 static network for the specified VRF.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` |    The VRF name. |
-| `<static-network-id>` |   The IPv4 address and route prefix in CIDR notation. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast network 10.10.10.101/32
-           operational  applied
----------  -----------  -------
-route-map               HI-PRIO
-
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast route-import</h>
-
-Shows configuration information about BGP IPV4 route import (route leaking) for the specified VRF.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` |    The VRF name.  |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast route-import
-                operational  applied
---------------  -----------  -------
-from-vrf                            
-  enable                     off    
-  [list]        none                
-[route-target]  none
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast route-import from-vrf</h>
-
-Shows configuration information about VRF to VRF IPv4 route leaking.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` |   The VRF name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast route-import from-vrf
-       operational  applied
-------  -----------  -------
-enable               off    
-[list]  none
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast route-import from-vrf list</h>
-
-Shows the IPv4 routes in the BGP RIB imported from the VRF.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast route-import from-vrf list
-----
-none
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast route-import from-vrf list \<leak-vrf-id\></h>
-
-Shows IPv4 routes in the BGP RIB that leak between VRFs.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-| `<leak-vrf-id>` |  The VRF from which routes are leaked. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.1.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast route-import from-vrf list BLUE
-----
-none
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast multipaths</h>
-
-Shows BGP IPv4 multipath configuration for the specified VRF.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast multipaths
-                        operational  applied
-----------------------  -----------  -------
-compare-cluster-length               off    
-ebgp                                 64     
-ibgp                                 64
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast admin-distance</h>
-
-Shows the BGP IPv4 admin distances configured for the specified VRF.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast admin-distance
-          operational  applied
---------  -----------  -------
-external               20     
-internal               200
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast route-export</h>
-
-Shows BGP IPv4 route export configuration for the specified VRF.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast route-export
-                operational  applied
---------------  -----------  -------
-to-evpn                             
-  enable                     off    
-to-vrf                                       
-  [list]        none                         
-[route-target]  none                         
-rd              none
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1029,6 +683,186 @@ cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast loc
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast loc-rib route \<route-id\> path \<path-id\> aspath</h>
+
+Shows the AS paths for the specified IPv4 route in the local RIB.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route <route-id>` command instead.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<route-id>` | The IPv4 address and route prefix in CIDR notation. |
+| `<path-id>` | The path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 aspath
+Aspath
+------
+65103 
+65199
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast loc-rib route \<route-id\> path \<path-id\> bestpath</h>
+
+Shows best path information, such as the selection reason, for the specified IPv4 route in the local RIB.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route <route-id>` command instead.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<route-id>` | The IPv4 address and route prefix in CIDR notation.  |
+| `<path-id>` | The path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 bestpath
+                  operational  applied
+----------------  -----------  -------
+from-as           65199               
+overall           on                  
+selection-reason  Older Path
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast loc-rib route \<route-id\> path \<path-id\> community</h>
+
+Shows the community names for the community list for the specified IPv4 route path in the local RIB.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route <route-id>` command instead.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<route-id>` | The IPv4 address and route prefix in CIDR notation. |
+| `<path-id>` | The path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 community
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast loc-rib route \<route-id\> path \<path-id\> ext-community</h>
+
+Shows the community names for the extended community list for the specified IPv4 route path in the local RIB.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route <route-id>` command instead.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name.|
+| `<route-id>` | The IPv4 address and route prefix in CIDR notation. |
+| `<path-id>`  | The path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 ext-community
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast loc-rib route \<route-id\> path \<path-id\> flags</h>
+
+Shows route path flags for the specified IPv4 route in the local RIB.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route <route-id>` command instead.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<route-id>` | The IPv4 address and route prefix in CIDR notation.  |
+| `<path-id>` | The path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 flags
+operational  applied
+-----------  -------
+multipath
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast loc-rib route \<route-id\> path \<path-id\> large-community</h>
+
+Shows the community names for the large community list for the specified IPv4 route path in the local RIB.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route <route-id>` command instead.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<route-id>` | The IPv4 address and route prefix in CIDR notation. |
+| `<path-id>` | The path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 large-community
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast loc-rib route \<route-id\> path \<path-id\> nexthop</h>
 
 Shows information about the nexthops for the specified IPv4 route path in the local RIB.
@@ -1132,21 +966,15 @@ type       external
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast loc-rib route \<route-id\> path \<path-id\> flags</h>
+## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast multipaths</h>
 
-Shows route path flags for the specified IPv4 route in the local RIB.
-
-{{%notice note%}}
-Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route <route-id>` command instead.
-{{%/notice%}}
+Shows BGP IPv4 multipath configuration for the specified VRF.
 
 ### Command Syntax
 
 | Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
-| `<route-id>` | The IPv4 address and route prefix in CIDR notation.  |
-| `<path-id>` | The path ID. |
 
 ### Version History
 
@@ -1155,29 +983,25 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 flags
-operational  applied
------------  -------
-multipath
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast multipaths
+                        operational  applied
+----------------------  -----------  -------
+compare-cluster-length               off    
+ebgp                                 64     
+ibgp                                 64
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast loc-rib route \<route-id\> path \<path-id\> bestpath</h>
+## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast network</h>
 
-Shows best path information, such as the selection reason, for the specified IPv4 route in the local RIB.
-
-{{%notice note%}}
-Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route <route-id>` command instead.
-{{%/notice%}}
+Shows BGP IPv4 static networks for the specified VRF.
 
 ### Command Syntax
 
 | Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-| `<route-id>` | The IPv4 address and route prefix in CIDR notation.  |
-| `<path-id>` | The path ID. |
+| `<vrf-id>` |    The VRF name. |
 
 ### Version History
 
@@ -1186,31 +1010,22 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 bestpath
-                  operational  applied
-----------------  -----------  -------
-from-as           65199               
-overall           on                  
-selection-reason  Older Path
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast network
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast loc-rib route \<route-id\> path \<path-id\> aspath</h>
+## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast network \<static-network-id\></h>
 
-Shows the AS paths for the specified IPv4 route in the local RIB.
-
-{{%notice note%}}
-Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route <route-id>` command instead.
-{{%/notice%}}
+Shows information about a specific BGP IPv4 static network for the specified VRF.
 
 ### Command Syntax
 
 | Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-| `<route-id>` | The IPv4 address and route prefix in CIDR notation. |
-| `<path-id>` | The path ID. |
+| `<vrf-id>` |    The VRF name. |
+| `<static-network-id>` |   The IPv4 address and route prefix in CIDR notation. |
 
 ### Version History
 
@@ -1219,30 +1034,23 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 aspath
-Aspath
-------
-65103 
-65199
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast network 10.10.10.101/32
+           operational  applied
+---------  -----------  -------
+route-map               HI-PRIO
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast loc-rib route \<route-id\> path \<path-id\> community</h>
+## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute</h>
 
-Shows the community names for the community list for the specified IPv4 route path in the local RIB.
-
-{{%notice note%}}
-Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route <route-id>` command instead.
-{{%/notice%}}
+Shows configuration information for BGP IPv4 route redistribution for the specified VRF.
 
 ### Command Syntax
 
 | Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-| `<route-id>` | The IPv4 address and route prefix in CIDR notation. |
-| `<path-id>` | The path ID. |
+| `<vrf-id>` |  The VRF name. |
 
 ### Version History
 
@@ -1251,26 +1059,32 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 community
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast redistribute
+             applied  pending
+-----------  -------  -------
+static                       
+  enable     off      off    
+connected                    
+  enable     on       on     
+  metric     auto     auto   
+  route-map  none     none   
+kernel                       
+  enable     off      off    
+ospf                         
+  enable     off      off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast loc-rib route \<route-id\> path \<path-id\> large-community</h>
+## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute connected</h>
 
-Shows the community names for the large community list for the specified IPv4 route path in the local RIB.
-
-{{%notice note%}}
-Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route <route-id>` command instead.
-{{%/notice%}}
+Shows configuration information for BGP IPv4 connected route redistribution for the specified VRF.
 
 ### Command Syntax
 
 | Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-| `<route-id>` | The IPv4 address and route prefix in CIDR notation. |
-| `<path-id>` | The path ID. |
+| `<vrf-id>` |  The VRF name. |
 
 ### Version History
 
@@ -1279,26 +1093,25 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 large-community
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast redistribute connected
+           applied  pending
+---------  -------  -------
+enable     on       on     
+metric     auto     auto   
+route-map  none     none
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast loc-rib route \<route-id\> path \<path-id\> ext-community</h>
+## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute kernel</h>
 
-Shows the community names for the extended community list for the specified IPv4 route path in the local RIB.
-
-{{%notice note%}}
-Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route <route-id>` command instead.
-{{%/notice%}}
+Shows configuration information for BGP IPv4 kernel route redistribution for the specified VRF.
 
 ### Command Syntax
 
 | Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name.|
-| `<route-id>` | The IPv4 address and route prefix in CIDR notation. |
-| `<path-id>`  | The path ID. |
 
 ### Version History
 
@@ -1307,7 +1120,193 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 ext-community
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast redistribute kernel
+        applied  pending
+------  -------  -------
+enable  off      off
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute ospf</h>
+
+Shows configuration information for redistributing OSPF IPv4 routes into BGP for the specified VRF.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` |    The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast redistribute ospf
+        applied  pending
+------  -------  -------
+enable  off      off
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute static</h>
+
+Shows configuration information for IPv4 BGP static route redistribution for the specified VRF.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` |  The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast redistribute static
+        applied  pending
+------  -------  -------
+enable  off      off
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast route-export</h>
+
+Shows BGP IPv4 route export configuration for the specified VRF.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast route-export
+                operational  applied
+--------------  -----------  -------
+to-evpn                             
+  enable                     off    
+to-vrf                                       
+  [list]        none                         
+[route-target]  none                         
+rd              none
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast route-import</h>
+
+Shows configuration information about BGP IPV4 route import (route leaking) for the specified VRF.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` |    The VRF name.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast route-import
+                operational  applied
+--------------  -----------  -------
+from-vrf                            
+  enable                     off    
+  [list]        none                
+[route-target]  none
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast route-import from-vrf</h>
+
+Shows configuration information about VRF to VRF IPv4 route leaking.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` |   The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast route-import from-vrf
+       operational  applied
+------  -----------  -------
+enable               off    
+[list]  none
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast route-import from-vrf list</h>
+
+Shows the IPv4 routes in the BGP RIB imported from the VRF.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast route-import from-vrf list
+----
+none
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast route-import from-vrf list \<leak-vrf-id\></h>
+
+Shows IPv4 routes in the BGP RIB that leak between VRFs.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<leak-vrf-id>` |  The VRF from which routes are leaked. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.1.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast route-import from-vrf list BLUE
+----
+none
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1389,41 +1388,6 @@ sub-group
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast update-group \<group-id\> sub-group</h>
-
-Shows the subgroups for a specific BGP IPv4 update group in the specified VRF.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name.|
-| `<group-id>` | The group ID.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.4.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast update-group 1 sub-group 
-                                                                                
-CreateTime - Time when the sub group was created, AdvRouteCnt - Number of routes
-advertised to peer, Refresh - Indicates if subgroup requires refresh,           
-TotalQueuePkt - Total packets in queue, TotalEnqueuePkt - Total packets         
-enqueued, PktQueueLength - Packet queue length, Neighbor - Sub group peer info  
-                                                                                
-GrpID  CreateTime            AdvRouteCnt  Refresh  TotalQueuePkt  TotalEnqueuePkt  PktQueueLength  Neighbor     
------  --------------------  -----------  -------  -------------  ---------------  --------------  -------------
-1      2024-11-15T10:01:47Z  13           off      31             31               0               peerlink.4094
-                                                                                                   swp52        
-                                                                                                   swp53        
-                                                                                                   swp54
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast route-counters</h>
 
 Shows the number of IPv4 routes for a specific BGP neighbor in the specified VRF.
@@ -1456,6 +1420,41 @@ all-rib         8
 routes-counted  8          
 best-routes     3          
 usable          8
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast update-group \<group-id\> sub-group</h>
+
+Shows the subgroups for a specific BGP IPv4 update group in the specified VRF.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name.|
+| `<group-id>` | The group ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast update-group 1 sub-group 
+                                                                                
+CreateTime - Time when the sub group was created, AdvRouteCnt - Number of routes
+advertised to peer, Refresh - Indicates if subgroup requires refresh,           
+TotalQueuePkt - Total packets in queue, TotalEnqueuePkt - Total packets         
+enqueued, PktQueueLength - Packet queue length, Neighbor - Sub group peer info  
+                                                                                
+GrpID  CreateTime            AdvRouteCnt  Refresh  TotalQueuePkt  TotalEnqueuePkt  PktQueueLength  Neighbor     
+-----  --------------------  -----------  -------  -------------  ---------------  --------------  -------------
+1      2024-11-15T10:01:47Z  13           off      31             31               0               peerlink.4094
+                                                                                                   swp52        
+                                                                                                   swp53        
+                                                                                                   swp54
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1663,6 +1662,173 @@ No Data
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast advertised-routes \<route-id\> path \<path-id\> aspath</h>
+
+Shows information about the AS path for an IPv4 advertised route path ID for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax | Description |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF name.|
+| `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<route-id>` |   The IPv4 advertised route. |
+| `<path-id>` |   The IPv4 advertised route path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp52 address-family ipv4-unicast advertised-routes 10.10.10.3/32 path 1 aspath 
+Aspath
+------
+65103 
+65199
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast advertised-routes \<route-id\> path \<path-id\> bestpath</h>
+
+Shows information about the bestpath for an IPv4 advertised route path ID for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax | Description |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF name.|
+| `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<route-id>` |   The IPv4 advertised route. |
+| `<path-id>` |   The IPv4 advertised route path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp52 address-family ipv4-unicast advertised-routes 10.10.10.3/32 path 1 bestpath 
+                  operational
+----------------  -----------
+from-as           65199      
+overall           yes        
+selection-reason  AS Path
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast advertised-routes \<route-id\> path \<path-id\> community</h>
+
+Shows information about the communities for an IPv4 advertised route path ID for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax | Description |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF name.|
+| `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<route-id>` |   The IPv4 advertised route. |
+| `<path-id>` |   The IPv4 advertised route path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.101/32 path 1 community
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast advertised-routes \<route-id\> path \<path-id\> ext-community</h>
+
+Shows information about the extended communities for an IPv4 advertised route path ID for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax | Description |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF name.|
+| `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<route-id>` |   The IPv4 advertised route. |
+| `<path-id>` |   The IPv4 advertised route path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 ext-community
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast advertised-routes \<route-id\> path \<path-id\> flags</h>
+
+Shows information about the flags for an IPv4 advertised route path ID for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax | Description |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF name.|
+| `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<route-id>` |   The IPv4 advertised route. |
+| `<path-id>` |   The IPv4 advertised route path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp52 address-family ipv4-unicast advertised-routes 10.10.10.3/32 path 1 flags 
+operational
+-----------
+multipath  
+bestpath   
+valid
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast advertised-routes \<route-id\> path \<path-id\> large-community</h>
+
+Shows information about the large communities for an IPv4 advertised route path ID for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax | Description |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF name.|
+| `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<route-id>` |   The IPv4 advertised route. |
+| `<path-id>` |   The IPv4 advertised route path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 large-community
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast advertised-routes \<route-id\> path \<path-id\> nexthop</h>
 
 Shows information about the next hops for an IPv4 advertised route path ID for a BGP neighbor in the specified VRF.
@@ -1757,173 +1923,6 @@ router-id  10.10.10.102
 hostname   spine02                 
 interface  swp52                   
 type       external 
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast advertised-routes \<route-id\> path \<path-id\> flags</h>
-
-Shows information about the flags for an IPv4 advertised route path ID for a BGP neighbor in the specified VRF.
-
-### Command Syntax
-
-| Syntax | Description |
-| ---------  | -------------- |
-| `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
-| `<route-id>` |   The IPv4 advertised route. |
-| `<path-id>` |   The IPv4 advertised route path ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.5.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp52 address-family ipv4-unicast advertised-routes 10.10.10.3/32 path 1 flags 
-operational
------------
-multipath  
-bestpath   
-valid
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast advertised-routes \<route-id\> path \<path-id\> bestpath</h>
-
-Shows information about the bestpath for an IPv4 advertised route path ID for a BGP neighbor in the specified VRF.
-
-### Command Syntax
-
-| Syntax | Description |
-| ---------  | -------------- |
-| `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
-| `<route-id>` |   The IPv4 advertised route. |
-| `<path-id>` |   The IPv4 advertised route path ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.5.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp52 address-family ipv4-unicast advertised-routes 10.10.10.3/32 path 1 bestpath 
-                  operational
-----------------  -----------
-from-as           65199      
-overall           yes        
-selection-reason  AS Path
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast advertised-routes \<route-id\> path \<path-id\> aspath</h>
-
-Shows information about the AS path for an IPv4 advertised route path ID for a BGP neighbor in the specified VRF.
-
-### Command Syntax
-
-| Syntax | Description |
-| ---------  | -------------- |
-| `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
-| `<route-id>` |   The IPv4 advertised route. |
-| `<path-id>` |   The IPv4 advertised route path ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.5.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp52 address-family ipv4-unicast advertised-routes 10.10.10.3/32 path 1 aspath 
-Aspath
-------
-65103 
-65199
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast advertised-routes \<route-id\> path \<path-id\> community</h>
-
-Shows information about the communities for an IPv4 advertised route path ID for a BGP neighbor in the specified VRF.
-
-### Command Syntax
-
-| Syntax | Description |
-| ---------  | -------------- |
-| `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
-| `<route-id>` |   The IPv4 advertised route. |
-| `<path-id>` |   The IPv4 advertised route path ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.5.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.101/32 path 1 community
-No Data
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast advertised-routes \<route-id\> path \<path-id\> large-community</h>
-
-Shows information about the large communities for an IPv4 advertised route path ID for a BGP neighbor in the specified VRF.
-
-### Command Syntax
-
-| Syntax | Description |
-| ---------  | -------------- |
-| `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
-| `<route-id>` |   The IPv4 advertised route. |
-| `<path-id>` |   The IPv4 advertised route path ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.5.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 large-community
-No Data
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast advertised-routes \<route-id\> path \<path-id\> ext-community</h>
-
-Shows information about the extended communities for an IPv4 advertised route path ID for a BGP neighbor in the specified VRF.
-
-### Command Syntax
-
-| Syntax | Description |
-| ---------  | -------------- |
-| `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
-| `<route-id>` |   The IPv4 advertised route. |
-| `<path-id>` |   The IPv4 advertised route path ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.5.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 ext-community
-No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

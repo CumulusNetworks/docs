@@ -22,7 +22,7 @@ Cumulus Linux 5.10.1 provides {{<link title="Cumulus Linux 5.10 Packages" text="
 
 ### Platforms
 
-NVIDIA SN5400 (400G Spectrum-4)
+NVIDIA SN5400 (400G Spectrum-4) - C2P (connnector-to-power) version only
 
 {{%notice note%}}
 {{<link url="Precision-Time-Protocol-PTP" text="PTP">}} and {{<link url="Pulse-Per-Second-PPS" text="PPS">}} on the NVIDIA SN5400 switch are in BETA.

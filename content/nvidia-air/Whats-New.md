@@ -9,6 +9,14 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 
 ## November 2024
 <!-- Air:WhatsNew -->
+### 82.2024.1121-011
+- Fixed issue where a modal could be larger than the window and scrolling was not available
+- Fixed an issue with scrolling of a simulation guide when it was popped out
+- Fixed an issue where the count in the Organization tabs was not updated
+- Fixed an issue where node names could be duplicated, causing issues with the OOB configuration
+- Fixed a performance issue when loading the menu bar
+<!-- Air:WhatsNew -->
+
 ### 82.2024.1112-011
 - Added support for customizing OOB nodes when using JSON 
 - Fixed an issue where the `Enable OOB` toggle was available when it should not be 
@@ -19,7 +27,6 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 - Added the ability to create a simulation via JSON import 
 - Fixed an issue where the `Workspace` menu was visible when it should not be
 - Fixed an issue with user provided network configurations via `clould-init` in the `generic/ubuntu2004`, `generic/ubuntu2204` and `generic/ubuntu2404` images
-<!-- Air:WhatsNew -->
 
 ### 82.2024.1104-011
 - Fixed an issue when updating node location on the canvas after the simulation is started

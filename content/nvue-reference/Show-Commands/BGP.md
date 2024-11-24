@@ -3196,61 +3196,6 @@ best-routes     3
 usable          8
 ```
 
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\></h>
-
-Shows informaiton and statistics about the specified BGP neighbor.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ v show vrf default router bgp neighbor swp51
-                                    operational                applied
-----------------------------------  -------------------------  ---------------------------------------
-password                                                       $nvsec$d1a028e8c7f97db92876c2a30fcc403f
-enforce-first-as                                               off
-passive-mode                                                   off
-nexthop-connected-check                                        on
-description                                                    none
-bfd
-  enable                                                       off
-ttl-security
-  enable                            on                         off
-  hops                              1
-local-as
-  enable                                                       off
-timers
-  keepalive                         3                          auto
-  hold                              9                          auto
-  connection-retry                  10                         auto
-  route-advertisement               none                       auto
-address-family
-  ipv4-unicast
-    enable                                                     on
-    route-reflector-client                                     off
-    route-server-client                                        off
-    soft-reconfiguration                                       off
-    nexthop-setting                                            auto
-    add-path-tx                                                off
-    attribute-mod
-      aspath                        off                        on
-      med                           off                        on
-      nexthop                       off                        on
-...
-```
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> bfd</h>
@@ -3385,6 +3330,41 @@ cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 local-as
         applied
 ------  -------
 enable  off
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> message-stats</h>
+
+Shows message statistics for the BGP neighbor.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.8.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 message-stats 
+                   operational
+------------------  -----------
+input-queue         0
+output-queue        0
+rx-opens            1
+tx-opens            1
+rx-keepalives       848
+tx-keepalives       848
+rx-route-refreshes  0
+tx-route-refreshes  0
+tx-total            916
+rx-total            933
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

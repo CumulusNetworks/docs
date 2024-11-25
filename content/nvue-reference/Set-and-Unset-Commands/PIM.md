@@ -12,10 +12,6 @@ h { color: RGB(118,185,0)}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## <h>nv set interface \<interface-id\> router pim</h>
-
-Configures PIM on an interface.
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set interface \<interface-id\> router pim active-active</h>
@@ -37,12 +33,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set interface swp51 router pim active-active on
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set interface \<interface-id\> router pim address-family</h>
-
-Configures the address family on the PIM interface.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -149,12 +139,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set interface swp51 router pim address-family ipv4 use-source 10.100.100.100
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set interface \<interface-id\> router pim bfd</h>
-
-Configures BFD for the PIM interface.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -290,12 +274,6 @@ cumulus@switch:~$ nv set interface swp51 router pim enable on
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> router pim timers</h>
-
-Configures PIM timers on the interface.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set interface \<interface-id\> router pim timers hello-interval</h>
 
 Configures the PIM Hello packets periodic interval on the PIM interface. The hold time is 3.5 times the `hello-interval`, the amount of time the neighbor must be in a reachable state.
@@ -318,15 +296,9 @@ cumulus@switch:~$ nv set interface router pim timers hello-interval 100
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set router pim</h>
-
-Configures PIM globally on the switch.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set router pim enable</h>
 
-Turns PIM on or off globally. The default setting is `off`.
+Turns PIM on or off globally on the switch. The default setting is `off`.
 
 ### Version History
 
@@ -353,12 +325,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set router pim packets 50
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set router pim timers</h>
-
-Configures PIM timers.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -395,15 +361,13 @@ cumulus@switch:~$ nv set router pim timers join-prune-interval 100
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set router pim timers keep-alive</h>
-<!--
-## <h>nv set router pim timers keepalive</h>
--->
+
 Configures the timeout value for the S,G stream in seconds. You can specify a value between 31 and 60000. The default setting is 210 seconds.
-<!--
+
 {{%notice note%}}
 In Cumulus Linux 5.6 and earlier, the command is `nv set router pim timers keep-alive`.
 {{%/notice%}}
--->
+
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -413,11 +377,7 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set router pim timers keep-alive 10000
 ```
-<!--
-```
-cumulus@switch:~$ nv set router pim timers keepalive 10000
-```
--->
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set router pim timers register-suppress</h>
@@ -456,12 +416,6 @@ cumulus@switch:~$ nv set router pim timers rp-keepalive 10000
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router pim</h>
-
-Configures PIM on the specified VRF.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router pim address-family</h>
 
 Configures the address family for PIM on the specified VRF.
@@ -497,12 +451,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf default router pim address-family ipv4 register-accept-list MYACCEPTLIST
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router pim address-family ipv4 rp \<rp-id\></h>
-
-Configures RP settings for the specified VRF.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -770,23 +718,10 @@ cumulus@switch:~$ nv set vrf default router pim msdp-mesh-group cumulus source-a
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router pim timers</h>
-
-Configures PIM timers on the specified VRF.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router pim timers keep-alive</h>
-<!--
-## <h>nv set vrf \<vrf-id\> router pim timers keepalive</h>
--->
+
 Configures the timeout value for the S,G stream in seconds for the specified VRF. You can set a value between 31 and 60000. The default setting is 210 seconds.
 
-<!--
-{{%notice note%}}
-In Cumulus Linux 5.6 and earlier, the command is `nv set vrf <vrf-id> router pim timers keep-alive`.
-{{%/notice%}}
--->
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -796,24 +731,13 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf default router pim timers keep-alive 10000
 ```
-<!--
-```
-cumulus@switch:~$ nv set vrf default router pim timers keepalive 10000
-```
--->
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router pim timers rp-keep-alive</h>
-<!--
-## <h>nv set vrf \<vrf-id\> router pim timers rp-keepalive</h>
--->
+
 Configures the timeout value for the RP in seconds on the specified VRF. You can specify a value between 31 and 60000. The default setting is 185 seconds.
-<!--
-{{%notice note%}}
-In Cumulus Linux 5.6 and earlier, the command is `nv set vrf <vrf-id> router pim timers rp-keep-alive`.
-{{%/notice%}}
--->
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -829,8 +753,4 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf default router pim timers rp-keep-alive 1000
 ```
-<!--
-```
-cumulus@switch:~$ nv set vrf default router pim timers rp-keepalive 1000
-```
--->
+

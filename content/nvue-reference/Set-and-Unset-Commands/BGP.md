@@ -12,6 +12,8 @@ h { color: RGB(118,185,0)}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set router bgp</h>
 
 Configures BGP globally on the switch.
@@ -102,7 +104,7 @@ Configures BGP graceful restart globally on the switch to minimize the negative 
 
 Configures the BGP graceful restart mode globally on the switch. You can specify the following settings:
 - `off`, where graceful restart is not negotiated with peers.
-- `helper-only`, where the switch is in a helper role only, and routes originated and advertised from a BGP peer in the peer group are not deleted.
+- `helper-only`, where the switch is in a helper role only, and routes originated and advertised from a BGP neighbor in the peer group are not deleted.
 - `full`, where the switch is in both a helper and restarter role.
 
 The default setting is `off`.
@@ -121,7 +123,7 @@ cumulus@switch:~$ nv set router bgp graceful-restart mode helper-only
 
 ## <h>nv set router bgp graceful-restart path-selection-deferral-time</h>
 
-Configures the number of seconds a restarting peer defers path-selection when waiting for the EOR marker from peers. The default is 360 seconds. You can set a value between 0 and 3600.
+Configures the number of seconds a restarting neighbor defers path-selection when waiting for the EOR marker from peers. The default is 360 seconds. You can set a value between 0 and 3600.
 
 ### Version History
 
@@ -137,7 +139,7 @@ cumulus@switch:~$ nv set router bgp graceful-restart path-selection-deferral-tim
 
 ## <h>nv set router bgp graceful-restart restart-time</h>
 
-Configures the number of seconds to wait for a graceful restart capable peer to re-establish BGP peering. The default is 120 seconds. You can set a value between 1 and 4095.
+Configures the number of seconds to wait for a graceful restart capable neighbor to re-establish BGP peering. The default is 120 seconds. You can set a value between 1 and 4095.
 
 ### Version History
 
@@ -153,7 +155,7 @@ cumulus@switch:~$ nv set router bgp graceful-restart restart-time 400
 
 ## <h>nv set router bgp graceful-restart stale-routes-time</h>
 
-Configures the number of seconds to hold stale routes for a restarting peer. The default is 360 seconds. You can set a value between 1 and 4095.
+Configures the number of seconds to hold stale routes for a restarting neighbor. The default is 360 seconds. You can set a value between 1 and 4095.
 
 ### Version History
 
@@ -263,33 +265,11 @@ cumulus@switch:~$ nv set router bgp wait-for-install on
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp</h>
-
-Provides commands to configure BGP in the specified VRF.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp address-family
-
-Provides commands to configure the address family in the specified VRF.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast</h>
-
-Provides commands to configure the IPv4 unicast address family in the specified VRF.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast admin-distance</h>
-
-Provides commands to configure the BGP administrative distance so that the switch can choose which routing protocol to use when two different protocols provide IPv4 route information for the same destination. The smaller the distance, the more reliable the protocol. For example, if the switch receives a route from OSPF with an administrative distance of 110 and the same route from BGP with an administrative distance of 100, the switch chooses BGP.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast admin-distance external</h>
 
 Configures the distance to apply to IPv4 routes from eBGP peers when installed into the RIB. You can specify a value between 1 and 255.
+
+The BGP administrative distance lets the switch choose which routing protocol to use when two different protocols provide IPv4 route information for the same destination. The smaller the distance, the more reliable the protocol. For example, if the switch receives a route from OSPF with an administrative distance of 110 and the same route from BGP with an administrative distance of 100, the switch chooses BGP.
 
 ### Command Syntax
 
@@ -381,12 +361,6 @@ Introduced in Cumulus Linux 5.11.0
 cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unicast nhg-per-origin
 ```
 -->
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast aggregate-route \<aggregate-route-id\></h>
-
-Provides commands to configure IPv4 route aggregation to minimize the size of the routing table and save bandwidth. You can aggregate a range of networks in your routing table into a single prefix.
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast aggregate-route \<aggregate-route-id\> as-set</h>
@@ -636,18 +610,6 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unicast rib-
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast route-export</h>
-
-Provides commands to configure IPv4 route export settings for the specified VRF.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast route-export to-evpn</h>
-
-Provides commands to configure IPv4 prefix-based routing using EVPN type-5 routes for the specified VRF. Type-5 routes (or prefix routes) primarily route to destinations outside of the data center fabric. EVPN prefix routes carry the layer 3 VNI and router MAC address and follow the symmetric routing model to route to the destination prefix.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast route-export to-evpn default-route-origination</h>
 
 Configures originating EVPN default type-5 routes for the specified VRF. The default type-5 route originates from a border (exit) leaf and advertises to all the other leafs within the pod. Any leaf within the pod follows the default route towards the border leaf for all external traffic (towards the Internet or a different pod). The default setting is `off`.
@@ -714,21 +676,11 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unicast rout
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast route-import</h>
-
-Provides commands to configure IPv4 VRF route leaking, where a destination VRF wants to know the routes of a source VRF. As routes come and go in the source VRF, they dynamically leak to the destination VRF through BGP.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast route-import from-vrf</h>
-
-Provides commands to configure the VRF from which IPv4 route leaking occurs.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast route-import from-vrf list \<leak-vrf-id\></h>
 
-Configures the VRF from which to import IPv4 routes. You can specify multiple VRFs.
+Configures the VRF from which to import (leak) IPv4 routes. You can specify multiple VRFs.
+
+VRF route leaking is where a destination VRF wants to know the routes of a source VRF. As routes come and go in the source VRF, they dynamically leak to the destination VRF through BGP.
 
 ### Command Syntax
 
@@ -813,12 +765,6 @@ cumulus@switch:~$ nv set vrf default router bgp autonomous-system 65101
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp confederation</h>
-
-Provides commands to configure BGP Confederation options in this VRF.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp confederation id</h>
 
 Configures the Confederation Identifier to advertise routes outside the confederation; sub-AS numbers are not visible externally. You can set a value between 1 and 4294967295 or `none`.
@@ -843,7 +789,7 @@ cumulus@switch:~$ nv set vrf default router bgp confederation id 100
 
 ## <h>nv set vrf \<vrf-id\> router bgp confederation member-as</h>
 
-Configures the confederation peer ASNs. You can set a value between 1 and 4294967295.
+Configures the confederation neighbor ASNs. You can set a value between 1 and 4294967295.
 
 ### Command Syntax
 
@@ -867,7 +813,7 @@ cumulus@switch:~$ nv set vrf default router bgp confederation member-as 65101
 
 Configures BGP dynamic neighbors that provide BGP peering to remote neighbors within a specified range of IPv4 or IPv6 addresses for a BGP peer group. You can configure each range as a subnet IP address.
 
-After you configure the dynamic neighbors, a BGP speaker can listen for, and form peer relationships with, any neighbor that is in the IP address range and maps to a peer group. 
+After you configure the dynamic neighbors, a BGP speaker can listen for, and form neighbor relationships with, any neighbor that is in the IP address range and maps to a peer group.
 
 ## <h>nv set vrf \<vrf-id\> router bgp dynamic-neighbor limit</h>
 
@@ -934,19 +880,6 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@switch:~$ nv set vrf default router bgp enable on
 ```
 
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\></h>
-
-Provides commands to configure BGP global configuration.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> bfd</h>
-
-Provides commands to configure tracking BGP peering sessions using this configuration with BFD.
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> bfd detect-multiplier</h>
@@ -958,7 +891,7 @@ Configures the BFD detect multiplier that determines the maximum number of concu
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -981,7 +914,7 @@ Turns BFD on or off to configure tracking BGP peering sessions using this config
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1004,7 +937,7 @@ Configures the minimum interval for receiving single-hop BFD control packets. Yo
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`  | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`  | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1020,14 +953,14 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 bfd min-rx-interv
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> bfd min-tx-interval</h>
 
-Configures the minimum interval for transmitting single-hop BFD control packets. You can specify a value between 50 and 60000. The actual value used is the smaller of this value or the value that the peer expects.
+Configures the minimum interval for transmitting single-hop BFD control packets. You can specify a value between 50 and 60000. The actual value used is the smaller of this value or the value that the neighbor expects.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1050,7 +983,7 @@ Configures BGP capabilities, which the switch advertises to its BGP peers to inf
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1073,7 +1006,7 @@ Turns on or off advertisement of IPv4 prefixes with IPv6 next hops over global I
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1096,7 +1029,7 @@ Configures the source IP address of the TCP connection, which is often used as t
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1112,14 +1045,14 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 capabilities sour
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> description</h>
 
-Configures a description for the BGP peer in the specified VRF. If the description is more than one word, enclose it in double quotes (").
+Configures a description for the BGP neighbor in the specified VRF. If the description is more than one word, enclose it in double quotes (").
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1135,7 +1068,7 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 description SPINE
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> enforce-first-as</h>
 
-Configures BGP to check that the first AS matches the peer's AS when BGP updates are received from eBGP peers with this configuration. You can specify `on` or `off`.
+Configures BGP to check that the first AS matches the AS of the neighbor when BGP updates are received from eBGP neighbors with this configuration. You can specify `on` or `off`.
 
 
 ### Command Syntax
@@ -1143,7 +1076,7 @@ Configures BGP to check that the first AS matches the peer's AS when BGP updates
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1172,7 +1105,7 @@ Configures the ASN to use to establish the peering if different from the ASN of 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1195,7 +1128,7 @@ Turns BGP local AS on or off, which allows the switch to appear to be a member o
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1218,7 +1151,7 @@ Turns local AS prepend on or off. When on, BGP prepends the configured local AS 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>` | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1234,14 +1167,14 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 local-as prepend 
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> multihop-ttl</h>
 
-Configures the maximum number of hops allowed. You can specify a value between 1 and 255 or `auto`. The default setting is `auto`, where the type of peer determines the appropriate value (255 for iBGP and 1 for eBGP).
+Configures the maximum number of hops allowed. You can specify a value between 1 and 255 or `auto`. The default setting is `auto`, where the type of neighbor determines the appropriate value (255 for iBGP and 1 for eBGP).
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1257,14 +1190,14 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 multihop-ttl 25
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> nexthop-connected-check</h>
 
-Turns next hop connected check on or off. If you set the value to `on`, BGP disables checking that a non-multihop eBGP peer is directly connected and only announces connected next hops.
+Turns next hop connected check on or off. If you set the value to `on`, BGP disables checking that a non-multihop eBGP neighbor is directly connected and only announces connected next hops.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1287,7 +1220,7 @@ Turns passive mode on so that the switch does not initiate the BGP connection bu
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1310,7 +1243,7 @@ Turns local AS replace on or off. When on, BGP attaches only the configured loca
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1324,17 +1257,11 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 local-as replace 
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> graceful-restart</h>
-
-Provides commands to configure BGP graceful restart per neighbor.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> graceful-restart mode</h>
 
-Configures the BGP graceful restart mode for the peer session. You can specify the following settings:
+Configures the BGP graceful restart mode for the neighbor session. You can specify the following settings:
 - `off`, where graceful restart is not negotiated with peers.
-- `helper-only`, where the switch is in a helper role only, and routes originated and advertised from a BGP peer in the peer group are not deleted. 
+- `helper-only`, where the switch is in a helper role only, and routes originated and advertised from a BGP neighbor in the peer group are not deleted. 
 - `full`, where the switch is in both a helper and restarter role.
 
 The default setting is `off`.
@@ -1344,7 +1271,7 @@ The default setting is `off`.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1358,22 +1285,16 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 graceful-restart 
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> ttl-security</h>
-
-Provides commands to configure TTL security (RFC 5082).
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> ttl-security enable</h>
 
-Turns TTL security on or off for the peer session.
+Turns TTL security (RFC 5082) on or off for the neighbor session.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1389,7 +1310,7 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 ttl-security enab
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> ttl-security hops</h>
 
-Configures the TTL security hop count to prevent attacks against eBGP, such as denial of service (DoS) attacks. By default, BGP messages to eBGP neighbors have an IP time-to-live (TTL) of 1, which requires the peer to be directly connected, otherwise, the packets expire along the way. You can adjust the TTL with the eBGP multihop option. An attacker can adjust the TTL of packets so that they look like they originate from a directly connected peer.
+Configures the TTL security hop count to prevent attacks against eBGP, such as denial of service (DoS) attacks. By default, BGP messages to eBGP neighbors have an IP time-to-live (TTL) of 1, which requires the neighbor to be directly connected, otherwise, the packets expire along the way. You can adjust the TTL with the eBGP multihop option. An attacker can adjust the TTL of packets so that they look like they originate from a directly connected neighbor.
 
 The BGP TTL security hops option inverts the direction in which BGP counts the TTL. Instead of accepting only packets with a TTL of 1, Cumulus Linux accepts BGP messages with a TTL greater than or equal to 255 minus the specified hop count.
 
@@ -1398,7 +1319,7 @@ The BGP TTL security hops option inverts the direction in which BGP counts the T
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1409,30 +1330,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 ttl-security hops 200
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family</h>
-
-Provides commands to configure the IPv4 or IPv6 address family.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast</h>
-
-Provides commands to configure the peer IPv4 unicast address family. The peer IPv4 unicast address family is always on, unless you disable it globally.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast attribute-mod</h>
-
-Provides commands to configure the attribute mode for IPv4.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast aspath</h>
-
-Provides commands to configure options for handling the AS_PATH for prefixes to and from the peer for IPv4.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -1469,7 +1366,7 @@ Configures the maximum number of times the local system AS number can occur in t
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv4 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv4 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1483,28 +1380,16 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast policy</h>
-
-Provides commands to configure policies for IPv4 unicast.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast policy inbound</h>
-
-Provides commands to configure outbound unicast policies.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast policy inbound aspath-list</h>
 
-Configures the AS Path filter list to apply to updates received from this peer.
+Configures the AS Path filter list to apply to updates received from this neighbor.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv4 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv4 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1518,12 +1403,6 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast policy outbound</h>
-
-Provides commands to configure outbound unicast policies.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast policy outbound aspath-list none</h>
 
 Applies the IPv4 outbound policy for the specified AS_PATH list.
@@ -1533,7 +1412,7 @@ Applies the IPv4 outbound policy for the specified AS_PATH list.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv4 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv4 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1547,18 +1426,6 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast prefix-limits</h>
-
-Provides commands to configure IPv4 prefix limits.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast prefix-limits inbound</h>
-
-Provides commands to configure limits on inbound IPv4 prefixes from the peer.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast prefix-limits inbound warning-threshold</h>
 
 Configures the percentage of the maximum at which a warning syslog is generated. You can set a value between 1 and 100.
@@ -1568,7 +1435,7 @@ Configures the percentage of the maximum at which a warning syslog is generated.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv4 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv4 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1584,14 +1451,14 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast prefix-limits inbound reestablish-wait</h>
 
-Specifes the time in seconds to wait before establishing the IPv4 BGP session again with the peer. You can set a value between 1 and 4294967295. The default setting is auto, which uses standard BGP timers and processing (typically between 2-3 seconds).
+Specifes the time in seconds to wait before establishing the IPv4 BGP session again with the neighbor. You can set a value between 1 and 4294967295. The default setting is auto, which uses standard BGP timers and processing (typically between 2-3 seconds).
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv4 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv4 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1605,24 +1472,6 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast default-route-origination</h>
-
-Provides commands to configure the default IPv4 route origination.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast community-advertise</h>
-
-Provides commands to configure community advertisement for IPv4.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast conditional-advertise</h>
-
-Provides commands to configure conditional advertisement for IPv4.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast conditional-advertise advertise-map \<instance-name\></h>
 
 Configures the route map that contains the prefix list with a list of IPv4 routes and prefixes on which to operate.
@@ -1632,7 +1481,7 @@ Configures the route map that contains the prefix list with a list of IPv4 route
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv4 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv4 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1656,7 +1505,7 @@ Configures a route map that uses a prefix list with the IPv4 routes that must ex
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv4 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv4 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1679,7 +1528,7 @@ Configures a route map that uses a prefix list with the IPv4 routes that must no
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv4 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv4 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1695,14 +1544,14 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast weight</h>
 
-Configures the weights to apply to IPv4 routes from the peer; this is used in the BGP route selection algorithm.
+Configures the weights to apply to IPv4 routes from the neighbor; this is used in the BGP route selection algorithm.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv4 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv4 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1725,7 +1574,7 @@ Turns the exchange of information with a BGP neighbor on or off in the specified
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1748,7 +1597,7 @@ Administratively shuts down a specific neighbor in the specified VRF. You can sp
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1762,22 +1611,16 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 shutdown on
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> timers</h>
-
-Provides commands to configure BGP peer timers.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> timers connection-retry</h>
 
-Configures how often the BGP process attempts to connect to a peer after a failure or when starting up. The default value is 10 seconds. 
+Configures how often the BGP process attempts to connect to a neighbor after a failure or when starting up. The default value is 10 seconds. 
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1793,14 +1636,14 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 timers connection
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> timers hold</h>
 
-Configures the hold time in seconds. If BGP does not receive a keepalive or update message from the peer within the hold time, it declares the peer down and withdraws all routes received by this peer from the local BGP table. The default value is 9 seconds.
+Configures the hold time in seconds. If BGP does not receive a keepalive or update message from the neighbor within the hold time, it declares the neighbor down and withdraws all routes received by this neighbor from the local BGP table. The default value is 9 seconds.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>`   |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 
 ### Version History
 
@@ -1823,7 +1666,7 @@ Configures the interval during which keepalive messages are exchanged. To decrea
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>`   | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 
 ### Version History
 
@@ -1839,14 +1682,14 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 timers keepalive 
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> timers route-advertisement</h>
 
-Configures the delay in seconds before advertising new results to a peer after making a new best path decision for a prefix. This delay rate limits the number of changes advertised to downstream peers and lowers processing requirements by slowing down convergence. The default value is 0 seconds.
+Configures the delay in seconds before advertising new results to a neighbor after making a new best path decision for a prefix. This delay rate limits the number of changes advertised to downstream peers and lowers processing requirements by slowing down convergence. The default value is 0 seconds.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   |  The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1862,14 +1705,14 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 timers route-adve
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> password</h>
 
-Configures MD5 authentication for a BGP peer connection to prevent interference with your routing tables. You must set the same password on each BGP peer.
+Configures MD5 authentication for a BGP neighbor connection to prevent interference with your routing tables. You must set the same password on each BGP neighbor.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>`   | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 
 ### Version History
 
@@ -1885,14 +1728,14 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 mypassword
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> peer-group</h>
 
-Configures the peer group in which the specified BGP peer belongs. The BGP peer inherits the group's configuration.
+Configures the peer group in which the specified BGP neighbor belongs. The BGP neighbor inherits the group's configuration.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>`   | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 
 ### Version History
 
@@ -1915,7 +1758,7 @@ Configures BGP to establish a connection between two eBGP peers that are not dir
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>`   | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 
 ### Version History
 
@@ -1931,14 +1774,14 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor 10.10.10.101 peer-group
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> type</h>
 
-Configures the BGP peer type in the specified VRF. You can set a value of `numbered` or `unnumbered`.
+Configures the BGP neighbor type in the specified VRF. You can set a value of `numbered` or `unnumbered`.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>`   | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 
 ### Version History
 
@@ -1961,7 +1804,7 @@ Configures the BGP source of routing updates. You can specify an interface, or a
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>`   | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 
 ### Version History
 
@@ -1972,18 +1815,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 update-source 10.10.10.5
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp path-selection</h>
-
-Provides commands to configure BGP best path selection for the specified VRF.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp path-selection aspath</h>
-
-Provides commands to configure how BGP selects the best path to an autonomous system (AS).
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -2028,12 +1859,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf default router bgp path-selection aspath compare-confed on
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp path-selection med</h>
-
-Provides commands to configure BGP multi-exit discriminator (MED) path selection.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -2125,12 +1950,6 @@ cumulus@switch:~$ nv set vrf default router bgp path-selection med missing-as-ma
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp path-selection multipath</h>
-
-Provides commands to configure BGP multipath path selection.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp path-selection multipath aspath-ignore</h>
 
 Configures BGP to ignore the AS path when determining multipath routing for the specified VRF. The default setting is `off`.
@@ -2217,26 +2036,6 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@switch:~$ nv set vrf default router bgp path-selection routerid-compare on
 ```
 
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\></h>
-
-Provides commands to configure BGP peer groups.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family</h>
-
-Provides commands to configure the address family settings for the peer group in the specified VRF.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast</h>
-
-Provides commands to configure IPv4 settings for the BGP peer group in the specified VRF.
-
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast add-path-tx</h>
@@ -2259,18 +2058,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast add-path-tx all-paths
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast aspath</h>
-
-Provides commands to configure options for handling the BGP `AS_PATH` for IPv4 prefixes from or to the peer group in the specified VRF.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast aspath allow-my-asn</h>
-
-Provides commands to configure BGP to accept a received `AS_PATH` that contains the ASN of the local system.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -2322,7 +2109,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast aspath replace-peer-as</h>
 
-Configures BGP to replace the AS path in an outgoing update that contains the ASN of the peer with the ASN of the local system.
+Configures BGP to replace the AS path in an outgoing update that contains the ASN of the neighbor with the ASN of the local system.
 
 ### Command Syntax
 
@@ -2345,7 +2132,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast aspath private-as</h>
 
-Configures what action to take with private ASNs for the peer group in the specified VRF. You can specify `none` to take no action, `remove`, to remove any private ASNs in the update to the peer, or `replace` to replace any private ASNs in the update to the peer with the ASN of the local system.
+Configures what action to take with private ASNs for the peer group in the specified VRF. You can specify `none` to take no action, `remove`, to remove any private ASNs in the update to the neighbors, or `replace` to replace any private ASNs in the update to the neighbors with the ASN of the local system.
 
 ### Command Syntax
 
@@ -2363,13 +2150,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast aspath private-as replace
 ```
-
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast attribute-mod</h>
-
-Provides commands to configure the BGP attribute mode for the peer group in the specified VRF.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -2442,12 +2222,6 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast community-advertise</h>
-
-Provides commands to configure the BGP COMMUNITY attribute to advertise to the peer group in the specified VRF.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast community-advertise regular</h>
 
 Configures BGP to announce the `COMMUNITIES` attribute to the peer group in the specified VRF. You can specify `on` or `off`. The default setting is `on`.
@@ -2517,15 +2291,11 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast conditional-advertise</h>
-
-Provides commands to configure BGP conditional advertisement, which lets you advertise certain routes only if other routes either do or do not exist. BGP conditional advertisement is typically used in multihomed networks where BGP advertises some prefixes to one of the providers only if information from the other provider is not present. For example, a multihomed router can use conditional advertisement to choose which upstream provider learns about the routes it provides so that it can influence which provider handles traffic destined for the downstream router. This is useful for cost of service, latency, or other policy requirements that are not natively accounted for in BGP.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast conditional-advertise enable</h>
 
 Turns BGP conditional advertisement for IPv4 on or off. The default setting is `off`.
+
+BGP conditional advertisement lets you advertise certain routes only if other routes either do or do not exist. BGP conditional advertisement is typically used in multihomed networks where BGP advertises some prefixes to one of the providers only if information from the other provider is not present. For example, a multihomed router can use conditional advertisement to choose which upstream provider learns about the routes it provides so that it can influence which provider handles traffic destined for the downstream router. This is useful for cost of service, latency, or other policy requirements that are not natively accounted for in BGP.
 
 ### Command Syntax
 
@@ -2615,12 +2385,6 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast default-route-origination</h>
-
-Provides commands to configure default route origination for IPv4.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast enable</h>
 
 Turns IPv4 on or off for the BGP peer group in the specified VRF. The default setting is `off`.
@@ -2664,18 +2428,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast nexthop-setting force
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast prefix-limits</h>
-
-Provides commands to configure IPv4 prefix limits from peers in the peer group in the specified VRF.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast prefix-limits inbound</h>
-
-Provides commands to configure limits on the inbound IPv4 prefix from the peers in the peer group in the specified VRF.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -2748,18 +2500,6 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast policy</h>
-
-Provides commands to configure an optional route map policy to control the conditions under which the default IPv4 route is originated.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast policy inbound</h>
-
-Provides commands to configure the inbound unicast policy for IPv4.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast policy inbound route-map</h>
 
 Configures the route map you want to apply to updates received from the peers in the peer group.
@@ -2826,12 +2566,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast policy inbound aspath-filter myaspathlist
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast policy outbound</h>
-
-Provides commands to configure the outbound IPv4 unicast policy for the peer group.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -3017,13 +2751,6 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast weight 65535
 ```
 
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> bfd</h>
-
-Provides commands to configure Bidirectional Forwarding Detection (BFD) for BGP sessions for a peer group. When you configure BFD in BGP, PTM registers and de-registers neighbors dynamically.
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> bfd enable</h>
@@ -3118,12 +2845,6 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES bfd min-tx-int
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> capabilities</h>
-
-Provides commands for advertising IPv4 prefixes with IPv6 next hops over global IPv6 peerings.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> capabilities extended-nexthop</h>
 
 Turns the extended next hop capability defined in RFC 5549 on or off in the specified VRF. The extended nexthop is advertised to peers in the peer group. If you specify `auto`, extended next hop is `on` for unnumbered peers and `off` otherwise. The default setting is `auto`.
@@ -3191,12 +2912,6 @@ Introduced in Cumulus Linux 5.1.0
 ```
 cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES description none
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> local-as</h>
-
-Provides commands to configure the local AS for the peer group in the specified VRF.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -3311,16 +3026,9 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES password none
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> timers</h>
-
-Provides commands to configure BGP timers for the peer group in the specified VRF.
-
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> timers connection-retry</h>
 
-Configures the time interval at which BGP attempts to connect to a peer in the peer group after a failure. You can specify a value between 1 and 65535. If you specify `auto`, BGP uses the global value. The default setting is `auto`.
+Configures the time interval at which BGP attempts to connect to a neighbor in the peer group after a failure. You can specify a value between 1 and 65535. If you specify `auto`, BGP uses the global value. The default setting is `auto`.
 
 ### Command Syntax
 
@@ -3366,7 +3074,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES timers keepali
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> timers hold</h>
 
-Configures the hold timer for the peer group in the specified VRF. If BGP does not receive a keepalive or update message from a peer in the peer group within the hold time, it declares the peer down and withdraws all routes received by this peer from the local BGP table. If you specify `none`, BGP does not track keepalives from the peer and the peering session does not experience a hold timeout. You can specify a value between 3 and 65535. If you specify `auto`, BGP uses the global value. The default setting is `auto`.
+Configures the hold timer for the peer group in the specified VRF. If BGP does not receive a keepalive or update message from a neighbor in the peer group within the hold time, it declares the neighbor down and withdraws all routes received by this neighbor from the local BGP table. If you specify `none`, BGP does not track keepalives from the neighbor and the peering session does not experience a hold timeout. You can specify a value between 3 and 65535. If you specify `auto`, BGP uses the global value. The default setting is `auto`.
 
 ### Command Syntax
 
@@ -3389,7 +3097,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES timers hold 30
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> timers route-advertisement</h>
 
-Configures the time between route advertisements (BGP updates) for the BGP group in the specified VRF. After making a new best path decision for a prefix, BGP can insert a delay before advertising the new results to a peer. This delay rate limits the number of changes advertised to downstream peers and lowers processing requirements by slowing down convergence. You can specify a value between 1 and 65535. If you specify `none`, BGP delays and sends route advertisements in batches. If you specify `auto`, BGP uses the global value. The default setting is `auto`.
+Configures the time between route advertisements (BGP updates) for the BGP group in the specified VRF. After making a new best path decision for a prefix, BGP can insert a delay before advertising the new results to a neighbor. This delay rate limits the number of changes advertised to downstream peers and lowers processing requirements by slowing down convergence. You can specify a value between 1 and 65535. If you specify `none`, BGP delays and sends route advertisements in batches. If you specify `auto`, BGP uses the global value. The default setting is `auto`.
 
 ### Command Syntax
 
@@ -3410,15 +3118,11 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES timers route-a
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> ttl-security</h>
-
-Provides commands to configure the TTL security hop count for the peer group to prevent attacks against eBGP, such as denial of service (DoS). By default, BGP messages to eBGP neighbors have an IP time-to-live (TTL) of 1, which requires the peer to be directly connected, otherwise, the packets expire along the way. An attacker can adjust the TTL of packets so that they look like they originate from a directly connected peer. The BGP TTL security hops option inverts the direction in which BGP counts the TTL. Instead of accepting only packets with a TTL of 1, Cumulus Linux accepts BGP messages with a TTL greater than or equal to 255 minus the specified hop count.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> ttl-security enable</h>
 
 Turns BGP TTL security on or off in the specified VRF.
+
+Use this option to prevent attacks against eBGP, such as denial of service (DoS). By default, BGP messages to eBGP neighbors have an IP time-to-live (TTL) of 1, which requires the neighbor to be directly connected, otherwise, the packets expire along the way. An attacker can adjust the TTL of packets so that they look like they originate from a directly connected neighbor. The BGP TTL security hops option inverts the direction in which BGP counts the TTL. Instead of accepting only packets with a TTL of 1, Cumulus Linux accepts BGP messages with a TTL greater than or equal to 255 minus the specified hop count.
 
 ### Command Syntax
 
@@ -3484,18 +3188,6 @@ cumulus@switch:~$ nv set vrf RED router bgp rd 10.1.20.2:5
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp route-export</h>
-
-Provides commands to configure exporting IPv4 and IPv6 routes from this VRF.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp route-export to-evpn</h>
-
-Provides commands to configure exporting routes from this VRF into EVPN.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp route-export to-evpn route-target \<rt-id\></h>
 
 Configures the tenant VRF <span class="a-tooltip">[RTs](## "route targets")</span> (layer 3 RTs) for BGP route export.
@@ -3516,18 +3208,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf default router bgp route-export to-evpn route-target 10.10.10.1:20
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp route-import</h>
-
-Provides commands to configure importing IPv4 and IPv6 routes from this VRF.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp route-import from-evpn</h>
-
-Provides commands to configure importing EVPN type-2 and type-5 routes into this VRF.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -3554,15 +3234,11 @@ cumulus@switch:~$ nv set vrf default router bgp route-import from-evpn route-tar
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp route-reflection</h>
-
-Provides commands to configure BGP route reflection. When you configure an iBGP speaker as a route reflector, it can send iBGP learned routes to other iBGP peers.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp route-reflection enable</h>
 
 Turns BGP route reflection on or off. The default setting is `off`.
+
+When you configure an iBGP speaker as a route reflector, it can send iBGP learned routes to other iBGP peers.
 
 ### Command Syntax
 
@@ -3628,7 +3304,7 @@ cumulus@switch:~$ nv set vrf default router bgp route-reflection reflect-between
 
 ## <h>nv set vrf \<vrf-id\> router bgp route-reflection outbound-policy</h>
 
-Allows an outbound peer policy to modify the attributes for reflected routes. Typically, reflected routes have to retain their original attributes. The default setting is `off`.
+Allows an outbound neighbor policy to modify the attributes for reflected routes. Typically, reflected routes have to retain their original attributes. The default setting is `off`.
 
 ### Command Syntax
 
@@ -3667,12 +3343,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf default router bgp router-id 10.10.10.1
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp timers</h>
-
-Provides commands to configure timer values for all peers in this VRF.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -3721,7 +3391,7 @@ cumulus@switch:~$ nv set vrf default router bgp timers connection-retry 10
 
 ## <h>nv set vrf \<vrf-id\> router bgp timers hold</h>
 
-Configures the hold time (in seconds). By default, BGP exchanges periodic keepalive messages to measure and ensure that a peer is still alive and functioning. If BGP does not receive a keepalive or update message from the peer within the hold time, it declares the peer down and withdraws all routes received by this peer from the local BGP table. 
+Configures the hold time (in seconds). By default, BGP exchanges periodic keepalive messages to measure and ensure that a neighbor is still alive and functioning. If BGP does not receive a keepalive or update message from the neighbor within the hold time, it declares the neighbor down and withdraws all routes received by this neighbor from the local BGP table. 
 
 You can specify a value between 03and 65535 or `none`. The default value is 9 seconds.
 
@@ -3747,7 +3417,7 @@ cumulus@switch:~$ nv set vrf default router bgp timers hold 30
 
 ## <h>nv set vrf \<vrf-id\> router bgp timers keepalive</h>
 
-Configures the rate (in seconds) at which BGP sends keepalive messages to all the peers in the specified VRF. BGP exchanges periodic keepalive messages to measure and ensure that a peer is still alive and functioning. You can specify a value between 0 and 65535 or `none`. The default value is 3 seconds.
+Configures the rate (in seconds) at which BGP sends keepalive messages to all the peers in the specified VRF. BGP exchanges periodic keepalive messages to measure and ensure that a neighbor is still alive and functioning. You can specify a value between 0 and 65535 or `none`. The default value is 3 seconds.
 
 The keepalive interval can be less than or equal to one third of the hold time, but cannot be less than 1 second. Setting the keepalive and hold time values to 0 disables the exchange of keepalives.
 
@@ -3771,7 +3441,7 @@ cumulus@switch:~$ nv set vrf default router bgp timers keepalive 10
 
 ## <h>nv set vrf \<vrf-id\> router bgp timers route-advertisement</h>
 
-Configures the delay to insert before advertising the new results to a peer after making a new best path decision for a prefix. This delay rate limits the number of changes advertised to downstream peers and lowers processing requirements by slowing down convergence. You can set a value between 1 and 600 or `none`. The default value is 0 for both eBGP and iBGP sessions, which allows for fast convergence. 
+Configures the delay to insert before advertising the new results to a neighbor after making a new best path decision for a prefix. This delay rate limits the number of changes advertised to downstream peers and lowers processing requirements by slowing down convergence. You can set a value between 1 and 600 or `none`. The default value is 0 for both eBGP and iBGP sessions, which allows for fast convergence. 
 
 ### Command Syntax
 

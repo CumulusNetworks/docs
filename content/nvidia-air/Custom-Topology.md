@@ -4,6 +4,10 @@ author: NVIDIA
 weight: 40
 product: NVIDIA Air
 ---
+{{%notice note%}}
+The information on this page reflects the workflows for the new Air UI. The legacy UI is being deprecated and will be shut down. {{<link title="Custom Topology (Legacy)" text="View documentation for the legacy UI">}}
+{{%/notice%}}
+
 Network topologies describe which nodes a data center is comprised of, how they are configured and which other nodes they are connected to.
 
 NVIDIA Air offers multiple means of creating custom topologies and new simulations.

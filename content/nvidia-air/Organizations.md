@@ -4,6 +4,10 @@ author: NVIDIA
 weight: 50
 product: NVIDIA Air
 ---
+{{%notice note%}}
+The information on this page reflects the workflows for the new Air UI. The legacy UI is being deprecated and will be shut down. {{<link title="Organizations (Legacy)" text="View documentation for the legacy UI">}}
+{{%/notice%}}
+
 NVIDIA Air supports collaboration so that you can share simulations with your colleagues in an Organization. To join an Organization, contact your Organization Administrator or your NVIDIA sales team. 
 
 If you do not know who your Organization Administrator is, reach out to air-support@nvidia.com.

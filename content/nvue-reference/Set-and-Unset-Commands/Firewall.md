@@ -148,12 +148,6 @@ cumulus@switch:~$ nv set acl acl-default-dos rule 10 action erspan ttl 200
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set acl acl-default-dos rule \<rule-id\> action log</h>
-
-Configures logging for the firewall DoS rule.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set acl acl-default-dos rule \<rule-id\> action log level</h>
 
 Configures the log level for the firewall DoS rule. You can specify a value between 1 and 7.

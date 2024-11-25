@@ -48,12 +48,6 @@ cumulus@switch:~$ nv set system aaa tacacs accounting send-records first-respons
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system aaa tacacs authentication</h>
-
-Configures TACACS+ authentication.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set system aaa tacacs authentication mode</h>
 
 Configures the TACACS+ authentication mode. You can specify `pap` to send clear text between the user and the server, `chap` to establish a PPP connection between the user and the server, or `login`. The default is `pap`.

@@ -173,22 +173,6 @@ cumulus@switch:~$ nv set interface swp1 lldp state disabled
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service lldp dot1-tlv</h>
-
-Turns dot1 TLV advertisements on or off. The default setting is `off`.
-
-### Version History
-
-Introduced in Cumulus Linux 5.1.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set service lldp dot1-tlv on
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set service lldp application-tlv app \<application\> priority \<priority-id\></h>
 
 Configures the specified application TLV priority.
@@ -254,6 +238,22 @@ Introduced in Cumulus Linux 5.9.0
 
 ```
 cumulus@switch:~$ nv set service lldp application-tlv udp-port 4317 priority 4
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set service lldp dot1-tlv</h>
+
+Turns dot1 TLV advertisements on or off. The default setting is `off`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.1.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp dot1-tlv on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

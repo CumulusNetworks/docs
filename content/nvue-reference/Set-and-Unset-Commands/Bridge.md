@@ -12,10 +12,6 @@ h { color: RGB(118,185,0)}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## <h>nv set bridge</h>
-
-Configures a bridge on the switch.
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set bridge domain \<domain-id\></h>
@@ -134,15 +130,11 @@ cumulus@switch:~$ nv set bridge domain br_default multicast snooping enable on
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set bridge domain \<domain-id\> multicast snooping querier</h>
-
-Configures the IGMP and MLD querier. Without a multicast router, a single switch in an IP subnet can coordinate multicast traffic flows. This switch is the querier or the designated router. The querier generates query messages to check group membership, and processes membership reports and leave messages.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set bridge domain \<domain-id\> multicast snooping querier enable</h>
 
-Turns the multicast querier on or off. The default setting is `off`.
+Turns the IGMP and MLD multicast querier on or off. The default setting is `off`.
+
+Without a multicast router, a single switch in an IP subnet can coordinate multicast traffic flows. This switch is the querier or the designated router. The querier generates query messages to check group membership, and processes membership reports and leave messages.
 
 ### Command Syntax
 
@@ -159,12 +151,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set bridge domain br_default multicast snooping querier enable on
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set bridge domain \<domain-id\> stp</h>
-
-Configures STP on the bridge.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -255,12 +241,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set bridge domain br_default stp state up
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set bridge domain \<domain-id\> stp vlan \<vid\></h>
-
-Configures PVRST settings for a VLAN.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -447,12 +427,6 @@ cumulus@switch:~$ nv set bridge domain br_default vlan 10
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set bridge domain \<domain-id\> vlan \<vid\> ptp</h>
-
-Configures Precision Time Protocol (PTP) on the all interfaces in the specified VLAN.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set bridge domain \<domain-id\> vlan \<vid\> ptp enable</h>
 
 Turns PTP on or off for the specified VLAN. The default setting is `off`.
@@ -500,15 +474,9 @@ cumulus@switch:~$ nv set bridge domain br_default vlan 10 vni 10
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> flooding</h>
-
-Configures <span class="a-tooltip">[BUM](## "Broadcast, unknown-unicast and multicast")</span> traffic handling.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> flooding enable</h>
 
-Turns flooding on or off for the specified VNI.
+Turns <span class="a-tooltip">[BUM](## "Broadcast, unknown-unicast and multicast")</span> traffic handling on or off for the specified VNI.
 
 ### Command Syntax
 
@@ -604,28 +572,6 @@ cumulus@switch:~$ nv set bridge domain br_default vlan 10 vni 10 mac-learning of
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set bridge domain \<domain-id\> vlan \<vid\> multicast</h>
-
-Configures multicast on the VLAN.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set bridge domain \<domain-id\> vlan \<vid\> multicast snooping</h>
-
-Configures IGMP and MLD snooping on the VLAN.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set bridge domain \<domain-id\> vlan \<vid\> multicast snooping querier</h>
-
-Configures the IGMP and MLD querier on the VLAN.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set bridge domain \<domain-id\> vlan \<vid\> multicast snooping querier source-ip \<source-ip\></h>
 
 Configures the source IP address you want to use to send IGMP MLD queries.
@@ -668,12 +614,6 @@ Introduced in Cumulus Linux 5.1.0
 ```
 cumulus@switch:~$ nv set bridge domain br_default vlan-vni-offset 10000
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set interface \<interface-id\> bridge</h>
-
-Configures the bridged interface.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -743,12 +683,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set interface swp1 bridge domain default learning on
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set interface \<interface-id\> bridge domain \<domain-id\> stp</h>
-
-Configures STP on the bridged interface domain.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -889,12 +823,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set interface swp1 bridge domain default stp restrrole
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set interface \<interface-id\> bridge domain \<domain-id\> stp vlan \<vid\></h>
-
-Configures PVRST settings for an interface.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

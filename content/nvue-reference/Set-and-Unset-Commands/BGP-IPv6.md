@@ -14,18 +14,6 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast</h>
-
-Provides commands to configure the BGP for IPv6 for the specified VRF.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast admin-distance</h>
-
-Provides commands to configure the administrative distance for internal and external IPv6 routes for the specified VRF.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast admin-distance external</h>
 
 Configures the distance to apply to IPv6 routes from eBGP peers when installed into the RIB. You can specify a value between 1 and 255.
@@ -94,11 +82,6 @@ Introduced in Cumulus Linux 5.11.0
 cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast advertise-origin
 ```
 -->
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast aggregate-route \<aggregate-route-id\></h>
-
-Provides commands to configure an IPv6 aggregate route for the specified VRF.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -193,12 +176,6 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast enab
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast multipaths</h>
-
-Provides commands to configure the maximum number of equal-cost BGP paths allowed for the specified VRF. The BGP multipath option is on by default and the maximum number of paths is 64 so that the switch can install multiple equal-cost BGP paths to the forwarding table and load balance traffic across multiple links. You can change the number of paths allowed, according to your needs.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast multipaths compare-cluster-length</h>
 
 Turns on cluster length comparison for IPv6 for the specified VRF. When `on` and iBGP paths have a cluster list, their lengths must be equal to be selected as multipaths. The default setting is `off`.
@@ -263,11 +240,6 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast multipaths ibgp 120
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast network \<static-network-id\></h>
-
-Provides commands to configure an IPv6 static network for the specified VRF.
 <!--
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -297,21 +269,11 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast nhg-
 -->
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute</h>
-
-Provides commands to configure IPv6 route redistribution, which allows a network to use a routing protocol to route traffic dynamically based on the information learned from a different routing protocol or from static routes. Route redistribution helps increase accessibility within networks.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute connected</h>
-
-Provides commands to configure route redistribution of IPv6 connected routes.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute connected enable</h>
 
 Turns route redistribution of IPv6 connected routes on or off for the specified VRF. The default setting is `off`.
+
+Route redistribution allows a network to use a routing protocol to route traffic dynamically based on the information learned from a different routing protocol or from static routes. Route redistribution helps increase accessibility within networks.
 
 ### Command Syntax
 
@@ -374,12 +336,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast redistribute connected route-map routemap1
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute kernel</h>
-
-Provides commands to configure redistribution of IPv6 kernel routes.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -451,12 +407,6 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast redi
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute ospf6</h>
-
-Provides commands to configure redistribution of OSPF IPv6 routes.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute ospf6 enable</h>
 
 Turns redistribution of OSPF IPv6 routes on or off for the specified VRF.
@@ -522,12 +472,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast redistribute ospf route-map routemap1
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute static</h>
-
-Provides commands to configure redistribution of IPv6 static routes for the specified VRF.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -619,18 +563,6 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast rib-
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast route-export</h>
-
-Provides commands to configure IPv6 route export settings for the specified VRF.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast route-export to-evpn</h>
-
-Provides commands to export IPv6 routes from this VRF into EVPN as type-5 routes.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast route-export to-evpn default-route-origination</h>
 
 Configures originating EVPN default type-5 routes for the specified VRF. The default type-5 route originates from a border (exit) leaf and advertises to all the other leafs within the pod. Any leaf within the pod follows the default route towards the border leaf for all external traffic (towards the Internet or a different pod). The default setting is `off`.
@@ -696,18 +628,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast route-export to-evpn route-map HIGH-PRIO
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast route-import</h>
-
-Provides commands to configure IPv6 route leaking, where a destination VRF wants to know the routes of a source VRF. As routes come and go in the source VRF, they dynamically leak to the destination VRF through BGP.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast route-import from-vrf</h>
-
-Provides commands to configure VRF to VRF route leaking for IPv6.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -777,18 +697,6 @@ cumulus@switch:~$ nv set vrf RED router bgp address-family ipv6-unicast route-im
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast</h>
-
-Provides commands to configure the BGP peer for IPv6.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast aspath</h>
-
-Provides commands to configure options for handling the AS_PATH for IPv6 prefixes to and from the peer.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast aspath allow-my-asn enable</h>
 
 Enables or disables the option to allow the received AS_PATH to contain the ASN of the local system.
@@ -798,7 +706,7 @@ Enables or disables the option to allow the received AS_PATH to contain the ASN 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -821,7 +729,7 @@ Configures the maximum number of times the local system's AS number can be in th
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Example
 
@@ -840,19 +748,13 @@ Configures whether a received AS_PATH containing the ASN of the local system is 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Example
 
 ```
 cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unicast aspath allow-my-asn origin on
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast attribute-mod</h>
-
-Provides commands to configure the BGP attribute mode for IPv6.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -865,7 +767,7 @@ Configures BGP to follow normal IPv6 BGP procedures when generating the `AS_PATH
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -888,7 +790,7 @@ Configures BGP to follow normal BGP procedures when generating the `NEXT_HOP` at
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -911,7 +813,7 @@ Configures BGP to follow normal BGP procedures when generating the `MED` attribu
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -925,12 +827,6 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast community-advertise</h>
-
-Provides commands to configure community advertisement for IPv6.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast community-advertise regular</h>
 
 Configures BGP to announce the `COMMUNITIES` attribute to the neighbor for the specified VRF. The default setting is `off`.
@@ -940,7 +836,7 @@ Configures BGP to announce the `COMMUNITIES` attribute to the neighbor for the s
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -963,7 +859,7 @@ Configures BGP to announce the `EXT_COMMUNITIES` attribute to the neighbor for t
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -986,7 +882,7 @@ Configures BGP to announce the `LARGE_COMMUNITIES` attribute to the neighbor for
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1000,12 +896,6 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast conditional-advertise</h>
-
-Provides commands to configure conditional advertisement for IPv6.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast conditional-advertise advertise-map \<instance-name\></h>
 
 Configures the route map that contains the prefix-list with the list of IPv6 routes and prefixes on which to operate.
@@ -1015,7 +905,7 @@ Configures the route map that contains the prefix-list with the list of IPv6 rou
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1038,7 +928,7 @@ Enables and disables community advertisement on the neighbor for IPv6.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1061,7 +951,7 @@ Applies a route map that uses a prefix list with the IPv6 routes that must exist
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1084,7 +974,7 @@ Configures a route map that uses a prefix list with the IPv6 routes that must no
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1098,12 +988,6 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast default-route-origination</h>
-
-Provides commands to configure the default IPv6 route origination.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast default-route-origination enable</h>
 
 Turns IPv6 default route origination on or off for the neighbor. The default setting is `off`.
@@ -1113,7 +997,7 @@ Turns IPv6 default route origination on or off for the neighbor. The default set
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1136,7 +1020,7 @@ Configures the optional route map policy to control the conditions under which t
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1159,7 +1043,7 @@ Turns IPv6 on or off for the neighbor. The default setting is `off`.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1182,7 +1066,7 @@ Configures the BGP next hop value of advertised IPv6 routes for the BGP neighbor
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1196,28 +1080,16 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast policy</h>
+## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast policy inbound aspath-list</h>
 
-Provides commands to configure IPv6 policies.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast policy inbound</h>
-
-Provides commands to configure IPv6 outbound unicast policies.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast policy inbound aspath-list none</h>
-
-Configures the AS-Path filter list to apply to updates received from the peer.
+Configures the AS-Path filter list to apply to updates received from the neighbor.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1233,14 +1105,14 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast policy inbound prefix-list</h>
 
-Configures the prefix list you want to apply to updates received from the peer for the specified VRF.
+Configures the prefix list you want to apply to updates received from the neighbor for the specified VRF.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1256,14 +1128,14 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast policy inbound route-map</h>
 
-Configures the route map you want to apply to updates received from the peer for the specified VRF.
+Configures the route map you want to apply to updates received from the neighbor for the specified VRF.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1277,22 +1149,16 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast policy outbound</h>
-
-Provides commands to configure IPv6 outbound unicast policies.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast policy outbound aspath-list</h>
 
-Configures the AS-Path filter list to apply to updates sent to this peer.
+Configures the AS-Path filter list to apply to updates sent to this neighbor.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1309,14 +1175,14 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast policy outbound prefix-list</h>
 
-Configures the prefix list you want to apply to updates sent to the peer for the specified VRF.
+Configures the prefix list you want to apply to updates sent to the neighbor for the specified VRF.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1332,14 +1198,14 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast policy outbound route-map</h>
 
-Configures the route map you want to apply to updates sent to the peer for the specified VRF.
+Configures the route map you want to apply to updates sent to the neighbor for the specified VRF.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1355,14 +1221,14 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast policy outbound unsuppress-map</h>
 
-Configures the route map you want to use to unsuppress routes selectively when advertising to this peer; these are routes that have been suppressed due to aggregation configuration.
+Configures the route map you want to use to unsuppress routes selectively when advertising to this neighbor; these are routes that have been suppressed due to aggregation configuration.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1376,24 +1242,16 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast prefix-limits</h>
-
-Provides commands to configure limits on IPv6 prefixes from the peer.
-
-
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast prefix-limits inbound maximum</h>
 
-Configures the maximum number of IPv6 prefixes that BGP can receive from the peer for the specified VRF. By default, there is no limit.
+Configures the maximum number of IPv6 prefixes that BGP can receive from the neighbor for the specified VRF. By default, there is no limit.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1407,22 +1265,16 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast prefix-limits inbound</h>
-
-Provides commands to configure limits on inbound IPv6 prefixes from the peer.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast prefix-limits inbound reestablish-wait</h>
 
-Specifes the time in seconds to wait before establishing the BGP IPv6 session again with the peer after reaching the prefix limit. The defaults is `auto`, which uses standard BGP timers and processing (typically between 2 and 3 seconds).
+Specifes the time in seconds to wait before establishing the BGP IPv6 session again with the neighbor after reaching the prefix limit. The defaults is `auto`, which uses standard BGP timers and processing (typically between 2 and 3 seconds).
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1445,7 +1297,7 @@ Configures the switch to generate a warning syslog only (without bringing down t
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1468,7 +1320,7 @@ Configures when to generate a warning syslog message and bring down the BGP sess
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1484,14 +1336,14 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp1 address-family ipv
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast route-reflector-client</h>
 
-Configures the BGP node as a route reflector for the BGP peer. The default setting is `off`.
+Configures the BGP node as a route reflector for the BGP neighbor. The default setting is `off`.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1507,14 +1359,14 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast route-server-client</h>
 
-Configures the BGP node as a route server for the BGP peer. The default setting is `off`.
+Configures the BGP node as a route server for the BGP neighbor. The default setting is `off`.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1531,14 +1383,14 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast soft-reconfiguration</h>
 
-Turns on soft configuration so that received IPv6 routes from the peer that are rejected by inbound policy are still stored. This allows policy changes to take effect without any exchange of BGP updates. The default setting is `off`.
+Turns on soft configuration so that received IPv6 routes from the neighbor that are rejected by inbound policy are still stored. This allows policy changes to take effect without any exchange of BGP updates. The default setting is `off`.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1554,14 +1406,14 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast weight</h>
 
-Configures the weight applied to IPv6 routes from the peer; this is used in the BGP route selection algorithm. You can set a value between 0 and 65535.
+Configures the weight applied to IPv6 routes from the neighbor; this is used in the BGP route selection algorithm. You can set a value between 0 and 65535.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1572,12 +1424,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unicast weight 200
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast</h>
-
-Provides commands to configure IPv6 for the BGP peer group in the specified VRF.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -1601,18 +1447,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast add-path-tx all-paths
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast aspath</h>
-
-Provides commands to configure the AS path filter list you want to apply to updates sent to the peers in the peer group for the specified VRF.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast aspath allow-my-asn</h>
-
-Provides commands to configure BGP to allow a received AS path to contain the ASN of the local system.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -1731,12 +1565,6 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast attribute-mod</h>
-
-Provides commands to configure the BGP attribute mode for the peer group for IPv6.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast attribute-mod aspath</h>
 
 Configures BGP to follow normal IPv6 BGP procedures when generating the `AS_PATH` attribute for the peer group in the specified VRF. You can specify `on` or `off`.
@@ -1802,12 +1630,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast attribute-mod nexthop on
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast community-advertise</h>
-
-Provides commands to configure the BGP `COMMUNITY` attribute to advertise to the peer group for IPv6.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -1880,15 +1702,11 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast conditional-advertise</h>
-
-Provides commands to configure BGP conditional advertisement, which lets you advertise certain routes only if other routes either do or do not exist. BGP conditional advertisement is typically used in multihomed networks where BGP advertises some prefixes to one of the providers only if information from the other provider is not present. For example, a multihomed router can use conditional advertisement to choose which upstream provider learns about the routes it provides so that it can influence which provider handles traffic destined for the downstream router. This is useful for cost of service, latency, or other policy requirements that are not natively accounted for in BGP.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast conditional-advertise enable</h>
 
 Turns BGP conditional advertisement on or off for IPv6 for the peer group. The default setting is `off`.
+
+BGP conditional advertisement lets you advertise certain routes only if other routes either do or do not exist. BGP conditional advertisement is typically used in multihomed networks where BGP advertises some prefixes to one of the providers only if information from the other provider is not present. For example, a multihomed router can use conditional advertisement to choose which upstream provider learns about the routes it provides so that it can influence which provider handles traffic destined for the downstream router. This is useful for cost of service, latency, or other policy requirements that are not natively accounted for in BGP.
 
 ### Command Syntax
 
@@ -1975,12 +1793,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast conditional-advertise non-exist-map NONEXIST 
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast default-route-origination</h>
-
-Provides commands to configure IPv6 default route origination.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -2076,18 +1888,6 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy</h>
-
-Provides commands to configure IPv6 policies for the peer group in the specified VRF.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy inbound</h>
-
-Provides commands to configure inbound IPv6 unicast policies.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy inbound route-map</h>
 
 Configures the IPv6 route map you want to apply to updates received from the peers in the peer group.
@@ -2157,12 +1957,6 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy outbound</h>
-
-Provides commands to configure the outbound IPv6 unicast policy for the peer group for the specified VRF.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy outbound aspath-list none</h>
 
 Configures the AS path filter list you want to apply to updates sent to the peers in the peer group for the specified VRF.
@@ -2229,18 +2023,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast policy outbound unsuppress-map myunsuppress
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast prefix-limits</h>
-
-Provides commands to configure IPv6 prefix limits from peers in the peer group for the specified VRF.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast prefix-limits inbound</h>
-
-Provides commands to configure limits on the IPv6 inbound prefix from the peers in the peer group. 
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

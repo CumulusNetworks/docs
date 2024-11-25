@@ -12,15 +12,11 @@ h { color: RGB(118,185,0)}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## <h>nv set service dhcp-server</h>
-
-Configures the Dynamic Host Configuration Protocol Server (DHCP server) for IPv4.
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set service dhcp-server \<vrf-id\> domain-name \<domain-name-id\></h>
 
-Configures the DHCP domain name.
+Configures the Dynamic Host Configuration Protocol Server (DHCP server) domain name.
 
 ### Command Syntax
 

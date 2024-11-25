@@ -12,6 +12,8 @@ h { color: RGB(118,185,0)}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set interface \<interface-id\> neighbor ipv4 \<ip-address-id\> lladdr \<lladdr-id\></h>
 
 Configures a static ARP table entry for an interface with an IPv4 address associated with a MAC address for easy management or as a security measure to prevent spoofing and other nefarious activities.

@@ -12,10 +12,6 @@ h { color: RGB(118,185,0)}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## <h>nv set interface \<interface-id\> ptp
-
-Provides PTP interface configuration commands.
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set interface \<interface-id\> ptp acceptable-master</h>
@@ -410,12 +406,6 @@ cumulus@switch:~$ nv set interface swp1 ptp unicast-service-mode server
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service ptp \<instance-id\></h>
-
-Provides commands to configure global Precision Time Protocol (PTP) settings. The NVUE PTP commands require an instance number for management purposes.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set service ptp \<instance-id\> acceptable-master \<clock-id\></h>
 
 Configures the ID of a known Grandmaster clock in the acceptable master table. This setting prevents a rogue player from pretending to be the Grandmaster to take over the PTP network.
@@ -594,12 +584,6 @@ Introduced in Cumulus Linux 5.9.0
 ```
 cumulus@switch:~$ nv set service ptp 1 ipv6-scope interface-local
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set service ptp \<instance-id\> monitor</h>
-
-Provides commands to configure PTP monitor settings.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

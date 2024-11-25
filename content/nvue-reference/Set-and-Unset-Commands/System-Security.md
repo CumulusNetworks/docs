@@ -12,6 +12,8 @@ h { color: RGB(118,185,0)}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system security encryption db state</h>
 
 Enables and disables password encryption in the NVUE `startup.yaml` file. By default, NVUE encrypts passwords, such as the RADIUS secret, TACACS secret, BGP peer password, OSPF MD5 key, and SNMP strings in the startup.yaml file.

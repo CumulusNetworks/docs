@@ -12,10 +12,6 @@ h { color: RGB(118,185,0)}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## <h>nv set service dhcp-relay \<vrf-id\></h>
-
-Configures DHCP relays for IPv4 and IPv6.
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set service dhcp-relay \<vrf-id\> agent enable</h>
@@ -205,19 +201,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set service dhcp-relay default source-ip gateway
 ```
-
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set service dhcp-relay6 \<vrf-id\></h>
-
-Configures DHCP relay for IPv6 on a specific VRF.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set service dhcp-relay6 \<vrf-id\> interface</h>
-
-Configures the DHCP relay IPv6 interfaces.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

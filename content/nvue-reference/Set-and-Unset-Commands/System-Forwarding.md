@@ -12,21 +12,13 @@ h { color: RGB(118,185,0)}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## <h>nv set system forwarding</h>
-
-Configures switch forwarding.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system forwarding ecmp-hash</h>
-
-Configures custom hashing to specify what to include in the hash calculation during load balancing between multiple next hops of a layer 3 route (ECMP hashing).
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set system forwarding ecmp-hash destination-ip</h>
 
 Turns ECMP hashing on the destination IP field on or off. The default setting is `off`.
+
+Custom hashing lets you specify what to include in the hash calculation during load balancing between multiple next hops of a layer 3 route (ECMP hashing).
 
 ### Version History
 

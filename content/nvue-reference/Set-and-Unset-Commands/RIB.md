@@ -12,20 +12,6 @@ h { color: RGB(118,185,0)}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## <h>nv set vrf \<vrf-id\> router rib
-
-Provides commands to configure the routing table for the specified VRF.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router rib \<afi\> protocol \<import-protocol-id\></h>
-
-Provides commands to configure the switch to import protocols from where routes are known.
-
-{{%notice note%}}
-Cumulus Linux 5.11 and later no longer provides this command. Use `nv set vrf <vrf> router rib <address-family> fib-filter protocol  <protocol-id> route-map <route-map-id>` instead.
-{{%/notice%}}
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router rib \<afi\> protocol \<import-protocol-id\> fib-filter \<route-map\></h>

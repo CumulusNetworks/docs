@@ -110,12 +110,6 @@ cumulus@switch:~$ nv set system config apply overwrite controlled
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system config auto-save</h>
-
-Configures the configuration auto save feature.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set system config auto-save enable</h>
 
 Turns auto save on or off. The auto save option lets you save the pending configuration to the startup configuration file automatically when you run `nv config apply` so that you do not have to run the `nv config save` command.
@@ -132,18 +126,6 @@ Introduced in Cumulus Linux 5.4.0
 ```
 cumulus@switch:~$ nv set system config auto-save enable on
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system control-plane</h>
-
-Configures control plane settings.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system control-plane policer \<policer-id\></h>
-
-Configures control plane policers.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -241,18 +223,6 @@ cumulus@switch:~$ nv set system control-plane trap l3-mtu-err state on
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system counter</h>
-
-Configures the system counter polling intervals.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system counter polling-interval</h>
-
-Configures the system counter polling interval for logical and physical interfaces
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set system counter polling-interval logical-interface</h>
 
 Configures the system counter polling interval in seconds for logical interfaces. You can set a value between 1 and 30.
@@ -282,12 +252,6 @@ Introduced in Cumulus Linux 5.3.0
 ```
 cumulus@switch:~$ nv set system counter polling-interval physical-interface 5
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system global</h>
-
-Configures global system settings.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

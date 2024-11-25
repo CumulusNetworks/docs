@@ -48,7 +48,7 @@ cumulus@switch:~$ nv set system aaa ldap bind-dn CN=cumulus-admin,CN=Users,DC=rt
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system aaa ldap hostname \<hostname-id\>
+## <h>nv set system aaa ldap hostname \<hostname-id\></h>
 
 Configures the host name or IP address of the LDAP server from which you want to import users. If you use multiple LDAP servers, you can also set a priority for each server.
 
@@ -70,7 +70,7 @@ cumulus@switch:~$ nv set system aaa ldap hostname ldapserver1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system aaa ldap hostname \<hostname-id\> priority
+## <h>nv set system aaa ldap hostname \<hostname-id\> priority</h>
 
 Configures the priority when using multiple LDAP servers.
 
@@ -92,7 +92,7 @@ cumulus@switch:~$ nv set system aaa ldap hostname ldapserver2 priority 2
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system aaa ldap port
+## <h>nv set system aaa ldap port</h>
 
 Configures the port number of the LDAP server if you are using a non-default port. The default port number for LDAP is TCP and UDP port 389.
 
@@ -108,7 +108,7 @@ cumulus@switch:~$ nv set system aaa ldap port 388
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system aaa ldap referrals
+## <h>nv set system aaa ldap referrals</h>
 
 Enables or disables LDAP referrals, which allow a directory tree to be partitioned and distributed between multiple LDAP servers.
 
@@ -124,7 +124,7 @@ cumulus@switch:~$ nv set system aaa ldap referrals enabled
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system aaa ldap secret
+## <h>nv set system aaa ldap secret</h>
 
 Configures the LDAP secret.
 
@@ -140,7 +140,7 @@ cumulus@switch:~$ nv set system aaa ldap secret 1Q2w3e4r!
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system aaa ldap ssl ca-list
+## <h>nv set system aaa ldap ssl ca-list</h>
 
 Configures the SSL CA certificate list.
 
@@ -156,7 +156,7 @@ cumulus@switch:~$ nv set system aaa ldap ssl ca-list none
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system aaa ldap ssl crl-check
+## <h>nv set system aaa ldap ssl crl-check</h>
 
 Configures the SSL CRL (Certificate Revocation List) check.
 
@@ -172,7 +172,7 @@ cumulus@switch:~$ nv set system aaa ldap ssl crl-check /etc/ssl/certs/rtp-exampl
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system aaa ldap ssl mode
+## <h>nv set system aaa ldap ssl mode</h>
 
 Configures the LDAP SSL mode. You can specify `none`, `ssl`, or `start-tls`.
 
@@ -188,7 +188,7 @@ cumulus@switch:~$ nv set system aaa ldap ssl mode ssl
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system aaa ldap ssl port
+## <h>nv set system aaa ldap ssl port</h>
 
 Configures the LDAP SSL port.
 
@@ -204,7 +204,7 @@ cumulus@switch:~$ nv set system aaa ldap ssl port 8443
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system aaa ldap ssl tls-ciphers
+## <h>nv set system aaa ldap ssl tls-ciphers</h>
 
 Configures the SSL cipher suites. You can specify `TLS1.2`, `TLS1.3`, `TLS-CIPHERS`, or `all`.
 
@@ -220,7 +220,7 @@ cumulus@switch:~$ nv set system aaa ldap ssl tls-ciphers TLS1.3
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system aaa ldap timeout-bind
+## <h>nv set system aaa ldap timeout-bind</h>
 
 Configures the number of seconds before the BIND operation times out. The default setting is 5 seconds.
 
@@ -236,7 +236,7 @@ cumulus@switch:~$ nv set system aaa ldap timeout-bind 60
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system aaa ldap timeout-search
+## <h>nv set system aaa ldap timeout-search</h>
 
 Configures the number of seconds before the search times out. The default setting is 5 seconds.
 
@@ -252,7 +252,7 @@ cumulus@switch:~$ nv set system aaa ldap timeout-search 60
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system aaa ldap version
+## <h>nv set system aaa ldap version</h>
 
 Configures the LDAP version. You can specify version 2 or 3. Cumulus Linux uses LDAP version 3 by default.
 
@@ -268,7 +268,7 @@ cumulus@switch:~$ nv set system aaa ldap version 2
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system aaa ldap vrf
+## <h>nv set system aaa ldap vrf</h>
 
 Configures the LDAP VRF.
 

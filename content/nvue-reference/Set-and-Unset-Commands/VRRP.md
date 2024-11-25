@@ -169,12 +169,6 @@ cumulus@switch:~$ nv set interface swp1 ip vrrp virtual-router 44 address 10.0.0
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set router vrrp</h>
-
-Configures VRRP globally on the switch.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set router vrrp advertisement-interval</h>
 
 Configures the advertisement interval between successive advertisements by the master in a virtual router group. You can specify a value between 10 and 40950. The default setting is 1000 milliseconds.
@@ -193,7 +187,7 @@ cumulus@switch:~$ nv set router vrrp advertisement-interval 2000
 
 ## <h>nv set router vrrp enable</h>
 
-Turns VRRP on or off. The default setting is `off`.
+Turns VRRP on or off globally on the switch. The default setting is `off`.
 
 ### Version History
 

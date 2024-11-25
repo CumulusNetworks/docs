@@ -452,7 +452,7 @@ IPv4 Prefix      Nexthop  Metric  Weight  LocalPref  Aspath  Best  Reason      F
 
 ## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast loc-rib route \<route-id\></h>
 
-Shows information about the specified IPv4 route in the local RIB, such as the BGP peer to which the path is advertised and the path count.
+Shows information about the specified IPv4 route in the local RIB, such as the BGP neighbor to which the path is advertised and the path count.
 
 {{%notice note%}}
 Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route <route-id>` command instead.
@@ -933,7 +933,7 @@ metric      0
 
 ## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast loc-rib route \<route-id\> path \<path-id\> peer</h>
 
-Shows BGP peer information for the specified IPv4 route path in the local RIB.
+Shows BGP neighbor information for the specified IPv4 route path in the local RIB.
 
 {{%notice note%}}
 Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route <route-id>` command instead.
@@ -1180,7 +1180,7 @@ enable  off      off
 
 ## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast route</h>
 
-Shows BGP IPv4 routing table.
+Shows the BGP IPv4 routing table.
 
 ### Command Syntax
 
@@ -1228,6 +1228,7 @@ Shows information about the BGP IPv4 route.
 | Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
+| `<route-id>` | The IPv4 address and route prefix in CIDR notation.  |
 
 ### Version History
 
@@ -1488,6 +1489,7 @@ Shows information about the specific BGP Site-of-Origin route.
 | Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
+| `<ip-address>` | The IP address. |
 
 ### Version History
 
@@ -1615,7 +1617,7 @@ GrpID  CreateTime            AdvRouteCnt  Refresh  TotalQueuePkt  TotalEnqueuePk
 
 ## <h>nv show vrf \<vrf-id\> router bgp confederation</h>
 
-Shows BGP confederation configuration.
+Shows BGP confederation configuration. To reduce the number of iBGP peerings, configure a confederation to divide an AS into a smaller sub-AS.
 
 ### Command Syntax
 
@@ -1625,7 +1627,7 @@ Shows BGP confederation configuration.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.8.0
 
 ### Example
 
@@ -1651,7 +1653,7 @@ Shows the BGP confederation member AS. A BGP confederation divides a large AS in
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.8.0
 
 ### Example
 
@@ -1667,6 +1669,12 @@ No Data
 Shows BGP dynamic neighbor configuration on the switch. BGP dynamic neighbors provide BGP peering to remote neighbors within a specified range of IPv4 or IPv6 addresses for a BGP peer group. You can configure each range as a subnet IP address.
 
 After you configure the dynamic neighbors, a BGP speaker can listen for, and form peer relationships with, any neighbor that is in the IP address range and maps to a peer group.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -1686,6 +1694,12 @@ limit                        5
 
 Shows the address range configuration for BGP peering to remote neighbors.
 
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+
 ### Version History
 
 Introduced in Cumulus Linux 5.3.0
@@ -1702,6 +1716,13 @@ No Data
 ## <h>nv show vrf \<vrf-id\> router bgp dynamic-neighbor listen-range \<ip-sub-prefix-id\></h>
 
 Shows information about a specific address range for BGP peering to remote neighbors.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<ip-sub-prefix-id>` | The address range. |
 
 ### Version History
 
@@ -1938,7 +1959,7 @@ Shows information about the IPv4 advertised routes for a BGP neighbor in the spe
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 
 ### Version History
 
@@ -1983,7 +2004,7 @@ In Cumulus Linux 5.10 and earlier, add `-o json` at the end of the command to se
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv4 advertised route. |
 
 ### Version History
@@ -2032,7 +2053,7 @@ In Cumulus Linux 5.10 and earlier, add `-o json` at the end of the command to se
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv4 advertised route. |
 
 ### Version History
@@ -2073,7 +2094,7 @@ In Cumulus Linux 5.10 and earlier, add `-o json` at the end of the command to se
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>` | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 | `<route-id>` |   The IPv4 advertised route. |
 | `<path-id>` |   The IPv4 advertised route path ID. |
 
@@ -2142,7 +2163,7 @@ Shows information about the AS path for an IPv4 advertised route path ID for a B
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv4 advertised route. |
 | `<path-id>` |   The IPv4 advertised route path ID. |
 
@@ -2171,7 +2192,7 @@ Shows information about the bestpath for an IPv4 advertised route path ID for a 
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv4 advertised route. |
 | `<path-id>` |   The IPv4 advertised route path ID. |
 
@@ -2201,7 +2222,7 @@ Shows information about the communities for an IPv4 advertised route path ID for
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv4 advertised route. |
 | `<path-id>` |   The IPv4 advertised route path ID. |
 
@@ -2227,7 +2248,7 @@ Shows information about the extended communities for an IPv4 advertised route pa
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv4 advertised route. |
 | `<path-id>` |   The IPv4 advertised route path ID. |
 
@@ -2253,7 +2274,7 @@ Shows information about the flags for an IPv4 advertised route path ID for a BGP
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv4 advertised route. |
 | `<path-id>` |   The IPv4 advertised route path ID. |
 
@@ -2283,7 +2304,7 @@ Shows information about the large communities for an IPv4 advertised route path 
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>` | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 | `<route-id>` |   The IPv4 advertised route. |
 | `<path-id>` |   The IPv4 advertised route path ID. |
 
@@ -2313,7 +2334,7 @@ In Cumulus Linux 5.10 and earlier, add `-o json` at the end of the command to se
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv4 advertised route. |
 | `<path-id>` |   The IPv4 advertised route path ID. |
 
@@ -2335,14 +2356,14 @@ Nexthop  accessible  afi   ip                        metric  scope       used
 
 ## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast advertised-routes \<route-id\> path \<path-id\> nexthop \<nexthop-id\></h>
 
-Shows information about the a specific next hop for an IPv4 advertised route path ID for a BGP neighbor in the specified VRF.
+Shows information about a specific next hop for an IPv4 advertised route path ID for a BGP neighbor in the specified VRF.
 
 ### Command Syntax
 
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv4 advertised route. |
 | `<path-id>` |   The IPv4 advertised route path ID. |
 | `<nexthop-id>` |   The nexthop ID. |
@@ -2375,7 +2396,7 @@ Shows information about the peers for an IPv4 advertised route path ID for a BGP
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>` |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 | `<route-id>` |   The IPv4 advertised route. |
 | `<path-id>` |   The IPv4 advertised route path ID. |
 
@@ -2617,14 +2638,14 @@ tx-eof-rib  on
 
 ## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast graceful-restart timers</h>
 
-Shows the BGP graceful restart selection deferral and stale path timer settings for the BGP peer.
+Shows the BGP graceful restart selection deferral and stale path timer settings for the BGP neighbor.
 
 ### Command Syntax
 
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 
 ### Version History
 
@@ -2644,12 +2665,12 @@ stale-path
 
 ## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast graceful-restart timers selection-deferral</h>
 
-Shows the BGP graceful restart  selection deferral timers for the BGP peer.
+Shows the BGP graceful restart  selection deferral timers for the BGP neighbor.
 
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 
 ### Version History
 
@@ -2665,12 +2686,12 @@ cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family i
 
 ## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast graceful-restart timers stale-path</h>
 
-Shows the BGP graceful restart stale path timer settings for the BGP peer.
+Shows the BGP graceful restart stale path timer settings for the BGP neighbor.
 
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 
 ### Version History
 
@@ -2844,7 +2865,7 @@ Shows information about the IPv4 received routes for a BGP neighbor in the speci
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 
 ### Version History
 
@@ -2867,7 +2888,7 @@ Shows information about a specific IPv4 received route for a BGP neighbor in the
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv4 route. |
 
 ### Version History
@@ -2891,7 +2912,7 @@ Shows information about a specific IPv4 received route path for a BGP neighbor i
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv4 route. |
 
 ### Version History
@@ -2915,7 +2936,7 @@ Shows information about a specific IPv4 received route path ID for a BGP neighbo
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |   The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |   The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv4 route. |
 | `<path-id>` |   The path ID. |
 
@@ -2940,7 +2961,7 @@ Shows information about the AS paths for a specific IPv4 received route path ID 
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv4 route. |
 | `<path-id>` |   The path ID. |
 
@@ -2965,7 +2986,7 @@ Shows information about the best paths for a specific IPv4 received route path I
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv4 route. |
 | `<path-id>` |   The path ID. |
 
@@ -2991,7 +3012,7 @@ Shows information about the communities for a specific IPv4 received route path 
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv4 route. |
 | `<path-id>` |   The path ID. |
 
@@ -3016,7 +3037,7 @@ Shows information about the extended communities for a specific IPv4 received ro
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv4 route. |
 | `<path-id>` |   The path ID. |
 
@@ -3041,7 +3062,7 @@ Shows information about flags for a specific IPv4 received route path ID for a B
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv4 route. |
 | `<path-id>` |   The path ID. |
 
@@ -3070,7 +3091,7 @@ Shows information about the large communities for a specific IPv4 received route
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv4 route. |
 | `<path-id>` |   The path ID. |
 
@@ -3095,7 +3116,7 @@ Shows information about the next hops for a specific IPv4 received route path ID
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv4 route. |
 | `<path-id>` |   The path ID. |
 
@@ -3120,7 +3141,7 @@ Shows information about a specific next hop for a specific IPv4 received route p
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv4 route. |
 | `<path-id>` |   The path ID. |
 | `<nexthop-id>` |   The nexthop ID. |
@@ -3146,7 +3167,7 @@ Shows information about peers for a specific IPv4 received route path ID for a B
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv4 route. |
 | `<path-id>` |   The path ID. |
 
@@ -3171,7 +3192,7 @@ Shows the number of IPv4 routes for a specific BGP neighbor in the specified VRF
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |   The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |   The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 
 ### Version History
 
@@ -3399,7 +3420,7 @@ ipv6-local   fe80::4ab0:2dff:fed1:9b88
 
 ## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> timers</h>
 
-Shows timer configuration for the specified BGP peer, such as the reconnect, advertisement and keepalive intervals, and the hold time.
+Shows timer configuration for the specified BGP neighbor, such as the reconnect, advertisement and keepalive intervals, and the hold time.
 
 ### Command Syntax
 
@@ -3456,6 +3477,12 @@ hops    1
 ## <h>nv show vrf \<vrf-id\> router bgp nexthop</h>
 
 Shows BGP next hop information for the specified VRF.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -3799,7 +3826,7 @@ multipath
 
 ## <h>nv show vrf \<vrf-id\> router bgp path-selection aspath</h>
 
-Shows the BGP AS path path selection configuration for the specified VRF.
+Shows the BGP AS path selection configuration for the specified VRF.
 
 ### Command Syntax
 
@@ -3853,7 +3880,7 @@ missing-as-max         off
 
 ## <h>nv show vrf \<vrf-id\> router bgp path-selection multipath</h>
 
-Shows BGP multipath path-selection configuration for the specified VRF.
+Shows BGP multipath path selection configuration for the specified VRF.
 
 ### Command Syntax
 
@@ -4468,8 +4495,8 @@ enable               off
 
 ## <h>nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> timers</h>
 
-Shows BGP timer configuration for the peer group in the specified VRF, such the conditional advertisement, connection retry,
-and keepalive interval and the hold time for keepalive messages.
+Shows BGP timer configuration for the peer group in the specified VRF, such as the conditional advertisement, connection retry,
+and keepalive interval, and the hold time for keepalive messages.
 
 ### Command Syntax
 
@@ -4653,8 +4680,8 @@ enable               off      off
 
 ## <h>nv show vrf \<vrf-id\> router bgp timers</h>
 
-Shows BGP timer configuration for all peers in the specified VRF, such the conditional advertisement, connection retry,
-and keepalive interval and the hold time for keepalive messages.
+Shows BGP timer configuration for all peers in the specified VRF, such as the conditional advertisement, connection retry,
+and keepalive interval, and the hold time for keepalive messages.
 
 ### Command Syntax
 

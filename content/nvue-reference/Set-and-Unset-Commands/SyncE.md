@@ -11,12 +11,6 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> synce</h>
-
-Configures <span class="a-tooltip">[SynCe](## "Synchronous Ethernet")</span> on the specified interface. SyncE is a standard for transmitting clock signals over the Ethernet physical layer to synchronize clocks across the network by propagating frequency using the transmission rate of symbols in the network. A dedicated Ethernet channel, (ESMC), manages this synchronization.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set interface \<interface-id\> synce bundle-id</h>
 
 Configures the SyncE bundle that this interface belongs to. You can specify a value between 0 and 256. A value of zero indicates no bundle.
@@ -41,7 +35,9 @@ cumulus@switch:~$ nv set interface swp1 synce bundle-id 0
 
 ## <h>nv set interface \<interface-id\> synce enable</h>
 
-Turns SyncE on or off on the specified interface. The default setting is `off`.
+Turns <span class="a-tooltip">[SynCe](## "Synchronous Ethernet")</span> on or off on the specified interface. The default setting is `off`.
+
+SyncE is a standard for transmitting clock signals over the Ethernet physical layer to synchronize clocks across the network by propagating frequency using the transmission rate of symbols in the network. A dedicated Ethernet channel, (ESMC), manages this synchronization.
 
 ### Command Syntax
 
@@ -83,19 +79,15 @@ cumulus@switch:~$ nv set interface swp1 synce provider-priority 10
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system synce</h>
+## <h>nv set system synce enable</h>
 
-Configures the SyncE service (`synced.service`) that manages:
+Turns the SyncE service on or off. The default setting is `off`.
+
+The SyncE service (`synced.service`) manages:
 - Transmitting and receiving <span class="a-tooltip">[SSMs](## "Synchronization Status Messages")</span> on all SyncE enabled ports using the <span class="a-tooltip">[ESMC](## "Ethernet Synchronization Messaging Channel")</span>.
 - The synchronization hierarchy and runs the master selection algorithm to choose the best reference clock from the QL in the SSM.
 - Using to the next best clock when the master clock fails. The selection algorithm only selects the best source, which is the Primary Clock source.
 - The switchover time if the algorithm also selects a secondary reference clock in case of primary failure.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system synce enable</h>
-
-Turns the SyncE service on or off. The default setting is `off`.
 
 ### Version History
 

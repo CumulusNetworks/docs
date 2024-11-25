@@ -150,7 +150,7 @@ IPV6 Routes
 
 ## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast loc-rib route \<route-id\></h>
 
-Shows information about the specified IPv6 route in the local RIB, such as the BGP peer to which the path is advertised and the path count.
+Shows information about the specified IPv6 route in the local RIB, such as the BGP neighbor to which the path is advertised and the path count.
 
 {{%notice note%}}
 Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route <route-id>` command instead.
@@ -400,7 +400,7 @@ cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast loc
 
 ## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast loc-rib route \<route-id\> path \<path-id\> peer</h>
 
-Shows BGP peer information for the specified IPv6 route path in the local RIB.
+Shows BGP neighbor information for the specified IPv6 route path in the local RIB.
 
 {{%notice note%}}
 Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route <route-id>` command instead.
@@ -1137,7 +1137,7 @@ Shows information about the IPv6 advertised routes for a BGP neighbor in the spe
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |   The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>` |   The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1160,7 +1160,7 @@ Shows information about a specific IPv6 advertised route for a BGP neighbor in t
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv6 route. |
 
 ### Version History
@@ -1184,7 +1184,7 @@ Shows information about the IPv6 advertised route paths for a BGP neighbor in th
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv6 route. |
 
 ### Version History
@@ -1208,7 +1208,7 @@ Shows information about a specific IPv6 advertised route path for a BGP neighbor
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv6 route. |
 | `<path-id>` |   The path ID. |
 
@@ -1233,7 +1233,7 @@ Shows information about the IPv6 advertised route AS path for a BGP neighbor in 
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv6 route. |
 | `<path-id>` |   The path ID. |
 
@@ -1258,7 +1258,7 @@ Shows information about the IPv6 advertised route best path for a BGP neighbor i
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv6 route. |
 | `<path-id>` |   The path ID. |
 
@@ -1283,7 +1283,7 @@ Shows information about the IPv6 advertised route communities for a BGP neighbor
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv6 route. |
 | `<path-id>` |   The path ID. |
 
@@ -1308,7 +1308,7 @@ Shows information about the IPv6 advertised route extended communities for a BGP
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv6 route. |
 | `<path-id>` |   The path ID. |
 
@@ -1333,7 +1333,7 @@ Shows information about the IPv6 advertised route flags for a BGP neighbor in th
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv6 route. |
 | `<path-id>` |   The path ID. |
 
@@ -1358,7 +1358,7 @@ Shows information about the IPv6 advertised route large communities for a BGP ne
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv6 route. |
 | `<path-id>` |   The path ID. |
 
@@ -1383,7 +1383,7 @@ Shows information about the IPv6 advertised route nexthops for a BGP neighbor in
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv6 route. |
 | `<path-id>` |   The path ID. |
 
@@ -1408,7 +1408,7 @@ Shows information about the IPv6 advertised route peers for a BGP neighbor in th
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv6 route. |
 | `<path-id>` |   The path ID. |
 
@@ -1634,14 +1634,14 @@ cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family i
 
 ## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast graceful-restart timers</h>
 
-Shows the BGP graceful restart selection deferral and stale path timer settings for the BGP peer.
+Shows the BGP graceful restart selection deferral and stale path timer settings for the BGP neighbor.
 
 ### Command Syntax
 
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 
 ### Version History
 
@@ -1657,12 +1657,12 @@ cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family i
 
 ## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast graceful-restart timers selection-deferral</h>
 
-Shows the BGP graceful restart selection deferral timers for the BGP peer.
+Shows the BGP graceful restart selection deferral timers for the BGP neighbor.
 
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 
 ### Version History
 
@@ -1678,12 +1678,12 @@ cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family i
 
 ## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast graceful-restart timers stale-path</h>
 
-Shows the BGP graceful restart stale path timer settings for the BGP peer.
+Shows the BGP graceful restart stale path timer settings for the BGP neighbor.
 
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 
 ### Version History
 
@@ -1850,7 +1850,7 @@ Shows information about the IPv6 received routes for a BGP neighbor in the speci
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |   The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>` |   The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -1873,7 +1873,7 @@ Shows information about a specific IPv6 received route for a BGP neighbor in the
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv6 route. |
 
 ### Version History
@@ -1897,7 +1897,7 @@ Shows information about IPv6 received route paths for a BGP neighbor in the spec
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv6 route. |
 
 ### Version History
@@ -1921,7 +1921,7 @@ Shows information about a specific IPv6 received route path for a BGP neighbor i
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP.  |
+| `<neighbor-id>` | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.  |
 | `<route-id>` |   The IPv6 route. |
 | `<path-id>` |   The path ID. |
 
@@ -1946,7 +1946,7 @@ Shows information about the IPv6 received route path AS path for a BGP neighbor 
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |   The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |   The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv6 route. |
 | `<path-id>` |   The path ID. |
 
@@ -1971,7 +1971,7 @@ Shows information about the IPv6 received route path bestpath for a BGP neighbor
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |   The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |   The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv6 route. |
 | `<path-id>` |   The path ID. |
 
@@ -1996,7 +1996,7 @@ Shows information about the IPv6 received route path communities for a BGP neigh
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv6 route. |
 | `<path-id>` |   The path ID. |
 
@@ -2021,7 +2021,7 @@ Shows information about the IPv6 received route path extended communities for a 
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |   The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |   The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv6 route. |
 | `<path-id>` |   The path ID. |
 
@@ -2046,7 +2046,7 @@ Shows information about the IPv6 received route path flags for a BGP neighbor in
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv6 route. |
 | `<path-id>` |   The path ID. |
 
@@ -2071,7 +2071,7 @@ Shows information about the IPv6 received route path large communities for a BGP
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |  The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv6 route. |
 | `<path-id>` |   The path ID. |
 
@@ -2096,7 +2096,7 @@ Shows information about the IPv6 received route path nexthops for a BGP neighbor
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |   The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |   The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv6 route. |
 | `<path-id>` |   The path ID. |
 
@@ -2121,7 +2121,7 @@ Shows information about a specific IPv6 received route path nexthop for a BGP ne
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv6 route. |
 | `<path-id>` |   The path ID. |
 | `<nexthop-id>` |   The nexthop ID. |
@@ -2147,7 +2147,7 @@ Shows information about the IPv6 received route path peers for a BGP neighbor in
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |   The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>` |   The IP address of the BGP neighbor or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv6 route. |
 | `<path-id>` |   The path ID. |
 
@@ -2172,7 +2172,7 @@ Shows the number of IPv6 routes for a specific BGP neighbor in the specified VRF
 | Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<neighbor-id>` |   The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>` |   The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 

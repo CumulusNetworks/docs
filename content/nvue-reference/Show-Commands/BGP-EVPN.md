@@ -677,7 +677,7 @@ cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family l
 
 ## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn graceful-restart</h>
 
-Shows graceful restart configuration for the specified BGP peer for EVPN.
+Shows graceful restart configuration for the specified BGP neighbor for EVPN.
 
 ### Command Syntax
 
@@ -887,7 +887,7 @@ tx-mpbgp             on
 
 ## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn prefix-limits inbound</h>
 
-Shows the configured prefix limits from the specified peer for EVPN.
+Shows the configured prefix limits from the specified neighbor for EVPN.
 
 ### Command Syntax
 

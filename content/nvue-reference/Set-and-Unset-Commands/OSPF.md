@@ -12,10 +12,6 @@ h { color: RGB(118,185,0)}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## <h>nv set interface \<interface-id\> router ospf</h>
-
-Configures OSPF on an interface.
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set interface \<interface-id\> router ospf area</h>
@@ -113,12 +109,6 @@ cumulus@switch:~$ nv set interface swp51 router ospf authentication message-dige
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> router ospf bfd</h>
-
-Configures <span class="a-tooltip">[BFD](## "Bidirectional Forwarding Detection")</span> on the specified interface. BFD provides low overhead and rapid detection of failures in the paths between two network devices.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set interface \<interface-id\> router ospf bfd detect-multiplier</h>
 
 Configures the detection time multiplier on the specified OSPF interface. You can specify a value between 2 and 255.
@@ -143,7 +133,9 @@ cumulus@switch:~$ nv set interface swp51 router ospf bfd detect-multiplier 100
 
 ## <h>nv set interface \<interface-id\> router ospf bfd enable</h>
 
-Turns BFD on and off on the specified OSPF interface. The default setting is `off`.
+Turns <span class="a-tooltip">[BFD](## "Bidirectional Forwarding Detection")</span> on and off on the specified OSPF interface. The default setting is `off`.
+
+BFD provides low overhead and rapid detection of failures in the paths between two network devices.
 
 ### Command Syntax
 
@@ -339,12 +331,6 @@ cumulus@switch:~$ nv set interface swp51 router ospf priority 5
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> router ospf timers</h>
-
-Configures OSPF timers.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set interface \<interface-id\> router ospf timers dead-interval</h>
 
 Configures the number of seconds to wait without a hello before declaring the neighbor dead. You can specify a value between 1 and 65535, or `minimal`. If you specify `minimal`, you must set the `hello-multiplier`.
@@ -455,15 +441,9 @@ cumulus@switch:~$ nv set interface swp51 router ospf timers retransmit-delay 600
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set router ospf</h>
-
-Configures global OSPF settings on the switch.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set router ospf enable</h>
 
-Turns OSPF on or off. The default setting is `off`.
+Turns OSPF on or off globally on the switch. The default setting is `off`.
 
 ### Version History
 
@@ -493,21 +473,9 @@ cumulus@switch:~$ nv set router ospf router-id 10.10.10.1.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set router ospf timers</h>
-
-Configures the OSPF <span class="a-tooltip">[LSA](## "Link State Advertisement")</span> timers, <span class="a-tooltip">[SPF](## "Shortest Path First")</span> timers, and the refresh interval.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set router ospf timers lsa</h>
-
-Configures <span class="a-tooltip">[LSA](## "Link State Advertisement")</span> timers.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set router ospf timers lsa min-arrival</h>
 
-Configures the minimum interval in seconds during which OSPF can accept the same LSA. You can specify a value between 0 and 600000.
+Configures the minimum interval in seconds during which OSPF can accept the same <span class="a-tooltip">[LSA](## "Link State Advertisement")</span>. You can specify a value between 0 and 600000.
 
 ### Version History
 
@@ -550,12 +518,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set router ospf timers refresh 100
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set router ospf timers spf</h>
-
-Configures OSPF <span class="a-tooltip">[SPF](## "Shortest Path First")</span> timers.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -607,12 +569,6 @@ cumulus@switch:~$ nv set router ospf timers spf max-holdtime 100
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router ospf</h>
-
-Configures OSPF in the specified VRF.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router ospf area \<area-id\></h>
 
 Configures the OSPF area in the specified VRF.
@@ -656,12 +612,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf default router ospf area 0 default-lsa-cost 2000
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router ospf area \<area-id\> filter-list</h>
-
-Configures network filtering between OSPF areas.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -734,12 +684,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router ospf area \<area-id\> range</h>
-
-Configures the OSPF area prefix range settings.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -835,12 +779,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf default router ospf area 0 type stub
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router ospf default-originate</h>
-
-Configures OSPF to advertise the default route to its neighbors, regardless of whether it is in the routing table or not.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -954,15 +892,11 @@ cumulus@switch:~$ nv set vrf default router ospf default-originate route-map ROU
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router ospf distance</h>
-
-Configures the administrative distance for OSPF routes. Cumulus Linux uses the administrative distance to choose which routing protocol to use when two different protocols provide route information for the same destination. The smaller the distance, the more reliable the protocol. For example, if the switch receives a route from OSPF with an administrative distance of 110 and the same route from BGP with an administrative distance of 100, the switch chooses BGP.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router ospf distance external</h>
 
 Configures the external administrative distance for OSPF routes. You can specify a value between 1 and 255, or `none`.
+
+Cumulus Linux uses the administrative distance to choose which routing protocol to use when two different protocols provide route information for the same destination. The smaller the distance, the more reliable the protocol. For example, if the switch receives a route from OSPF with an administrative distance of 110 and the same route from BGP with an administrative distance of 100, the switch chooses BGP.
 
 ### Command Syntax
 
@@ -985,6 +919,8 @@ cumulus@switch:~$ nv set vrf default router ospf distance external 220
 ## <h>nv set vrf \<vrf-id\> router ospf distance inter-area</h>
 
 Configures the administrative distance for internal OSPF routes. You can specify a value between 1 and 255, or `none`.
+
+Cumulus Linux uses the administrative distance to choose which routing protocol to use when two different protocols provide route information for the same destination. The smaller the distance, the more reliable the protocol. For example, if the switch receives a route from OSPF with an administrative distance of 110 and the same route from BGP with an administrative distance of 100, the switch chooses BGP.
 
 ### Command Syntax
 
@@ -1048,12 +984,6 @@ cumulus@switch:~$ nv set vrf default router ospf enable on
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router ospf log</h>
-
-Configures OSPF logging.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router ospf log adjacency-changes</h>
 
 Configures logging for adjacency changes. You can specify `on`, `off`, or `detail`.
@@ -1076,15 +1006,11 @@ cumulus@switch:~$ nv set vrf default router ospf log adjacency-changes on
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router ospf max-metric</h>
-
-Configures an OSPF maximum metric to notify its neighbors not to use the router as part of the OSPF topology. While the network converges, all traffic forwarded to the max-metric router is still forwarded. After you update the network, the max-metric router no longer receives any traffic and you can configure the max-metric setting.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router ospf max-metric administrative</h>
 
 Turns OSPF maximum metric on or off administratively, for an indefinite period. The default setting is `off`.
+
+OSPF maximum metric notifies neighbors not to use the router as part of the OSPF topology. While the network converges, all traffic forwarded to the max-metric router is still forwarded. After you update the network, the max-metric router no longer receives any traffic and you can configure the max-metric setting.
 
 ### Command Syntax
 
@@ -1145,18 +1071,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf default router ospf max-metric on-startup 200
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router ospf redistribute</h>
-
-Configures OSPF route redistribution.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router ospf redistribute bgp</h>
-
-Configures OSPF BGP route redistribution.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -1249,12 +1163,6 @@ cumulus@switch:~$ nv set vrf default router ospf redistribute bgp route-map ROUT
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router ospf redistribute connected</h>
-
-Configures connected route redistribution.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router ospf redistribute connected enable</h>
 
 Turns OSPF connected route redistribution on or off. The default setting is `off`.
@@ -1344,12 +1252,6 @@ cumulus@switch:~$ nv set vrf default router ospf redistribute connected route-ma
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router ospf redistribute kernel</h>
-
-Configures OSPF kernel route redistribution.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router ospf redistribute kernel enable</h>
 
 Turns OSPF kernel route redistribution on or off. The default setting is `off`.
@@ -1436,12 +1338,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf default router ospf redistribute kernel route-map ROUTEMAP1
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router ospf redistribute static</h>
-
-Configures OSPF static route redistribution.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -1596,18 +1492,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf default router ospf router-id 10.10.10.1 
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router ospf timers</h>
-
-Configures OSPF timers.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router ospf timers lsa</h>
-
-Configures OSPF LSA timers.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

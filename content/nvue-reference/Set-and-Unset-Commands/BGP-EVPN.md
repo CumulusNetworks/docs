@@ -14,12 +14,6 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp address-family l2vpn-evpn</h>
-
-Provides commands to configure the EVPN address family.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp address-family l2vpn-evpn enable</h>
 
 Tuns the EVPN address family on or off for the specified VRF. The default setting is `off`.
@@ -42,22 +36,16 @@ cumulus@switch:~$ nv set vrf default router bgp address-family l2vpn-evpn enable
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn</h>
-
-Provides commands to configure the peer for EVPN.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn add-path-tx</h>
 
-Configures BGP to advertise more than just the best path for an EVPN prefix to the BGP peer. You can specify `all-paths` to advertise all known paths to the peer or `best-per-as` to advertise only the best path learned from each AS. The default setting is `off`.
+Configures BGP to advertise more than just the best path for an EVPN prefix to the BGP neighbor. You can specify `all-paths` to advertise all known paths to the neighbor or `best-per-as` to advertise only the best path learned from each AS. The default setting is `off`.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -69,9 +57,7 @@ Introduced in Cumulus Linux 5.8.0
 cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn add-path-tx all-paths
 ```
 
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn aspath</h>
-
-Provides commands to configure the AS path filter list you want to apply to updates sent to the peer for the specified VRF.
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn aspath allow-my-asn enable</h>
 
@@ -82,7 +68,7 @@ Configures BGP to allow a received AS path to contain the ASN of the local syste
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -94,6 +80,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn aspath allow-my-asn enable on
 ```
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn aspath allow-my-asn occurrences</h>
 
 Configures the maximum number of times the AS number of the local system can be in the received AS path.
@@ -103,7 +91,7 @@ Configures the maximum number of times the AS number of the local system can be 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -115,6 +103,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn aspath allow-my-asn occurrences 5
 ```
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn aspath allow-my-asn origin</h>
 
 Configures BGP to allow a received AS path to contain the ASN of the local system only if it is the originating AS.
@@ -124,7 +114,7 @@ Configures BGP to allow a received AS path to contain the ASN of the local syste
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -138,12 +128,6 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family l2
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn attribute-mod</h>
-
-Provides commands to configure the attribute mode for EVPN.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn attribute-mod aspath</h>
 
 Configures BGP to follow normal BGP procedures when generating the `AS_PATH` attribute for the neighbor for EVPN. You can specify `on` or `off`.
@@ -153,7 +137,7 @@ Configures BGP to follow normal BGP procedures when generating the `AS_PATH` att
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -176,7 +160,7 @@ Configures BGP to follow normal BGP procedures when generating the `MED` attribu
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -199,7 +183,7 @@ Configures BGP to follow normal BGP procedures when generating the `NEXT_HOP` at
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -222,7 +206,7 @@ Tuns the EVPN address family on or off for the specified neighbor. The default s
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`  | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`  | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -245,7 +229,7 @@ Configures the BGP next hop value of advertised EVPN routes for the BGP neighbor
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`  | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`  | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -259,12 +243,6 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family l2
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn policy</h>
-
-Provides commands to configure policies for EVPN.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn policy inbound route-map</h>
 
 Configures the route map to use for inbound EVPN policies.
@@ -274,7 +252,7 @@ Configures the route map to use for inbound EVPN policies.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`  | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`  | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -297,7 +275,7 @@ Provides the route map to use for outbound EVPN policies.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`  | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`  | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -312,14 +290,14 @@ HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);H
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn policy outbound unsuppress-map</h>
 
-Configures the route map you want to use to unsuppress EVPN routes selectively when advertising to this peer; these are routes that have been suppressed due to aggregation configuration.
+Configures the route map you want to use to unsuppress EVPN routes selectively when advertising to this neighbor; these are routes that have been suppressed due to aggregation configuration.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`  | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`  | The IP address of the BGP neighbor or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -330,12 +308,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn policy outbound unsuppress-map none
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn prefix-limits</h>
-
-Provides commands to configure EVPN prefix limits from the specified BGP neighbor.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -433,7 +405,7 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family l2
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn route-reflector-client</h>
 
-Configures the BGP node as a route reflector for the BGP peer for EVPN. The default setting is `off`.
+Configures the BGP node as a route reflector for the BGP neighbor for EVPN. The default setting is `off`.
 
 ### Command Syntax
 
@@ -456,7 +428,7 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family l2
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn route-server-client</h>
 
-Configures the BGP node as a route server for the BGP peer for EVPN. The default setting is `off`.
+Configures the BGP node as a route server for the BGP neighbor for EVPN. The default setting is `off`.
 
 ### Command Syntax
 
@@ -479,7 +451,7 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family l2
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn soft-reconfiguration</h>
 
-Turns on soft configuration so that received EVPN routes from the peer that are rejected by inbound policy are still stored. This allows policy changes to take effect without any exchange of BGP updates. The default setting is `off`.
+Turns on soft configuration so that received EVPN routes from the neighbor that are rejected by inbound policy are still stored. This allows policy changes to take effect without any exchange of BGP updates. The default setting is `off`.
 
 ### Command Syntax
 
@@ -497,12 +469,6 @@ Introduced in Cumulus Linux 5.10.0
 ```
 cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn soft-reconfiguration on
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn</h>
-
-Provides commands to configure EVPN for the peer group.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -526,18 +492,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn add-path-tx best-per-as
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn aspath</h>
-
-Provides commands to configure options for handling the `AS_PATH` for prefixes to and from peers in the peer group.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn aspath allow-my-asn</h>
-
-Provides commands to allow the `AS_PATH` to contain the ASN of the local system.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -652,12 +606,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn aspath replace-peer-as on
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn attribute-mod</h>
-
-Provides commands to configure the attribute mode for EVPN for the peer group.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -776,12 +724,6 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group underlay address-fami
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn policy</h>
-
-Provides commands to configure EVPN policies for the peer group.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn policy inbound route-map</h>
 
 Configures the EVPN route map you want to apply to updates received from the peers in the peer group.
@@ -848,12 +790,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn policy outbound unsuppress-map map3
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn prefix-limits</h>
-
-Provides commands to configure EVPN prefix limits from the specified BGP peer group.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

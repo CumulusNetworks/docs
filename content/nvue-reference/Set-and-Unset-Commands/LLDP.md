@@ -12,15 +12,11 @@ h { color: RGB(118,185,0)}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## <h>nv set interface \<interface-id\> lldp</h>
-
-Provides commands to configure <span class="a-tooltip">[LLDP](## "Link Layer Discovery Protocol")</span> on an interface.
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set interface \<interface-id\> lldp application-tlv app \<application-id\> </h>
 
-Configures the interface on which LLDP sends application priority TLVs in LLDP PDUs.
+Configures the interface on which <span class="a-tooltip">[LLDP](## "Link Layer Discovery Protocol")</span> sends application priority TLVs in LLDP PDUs.
 
 ### Command Syntax
 
@@ -174,12 +170,6 @@ Introduced in Cumulus Linux 5.11.0
 ```
 cumulus@switch:~$ nv set interface swp1 lldp state disabled
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set service lldp</h>
-
-Provides commands to configure LLDP globally on the switch.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

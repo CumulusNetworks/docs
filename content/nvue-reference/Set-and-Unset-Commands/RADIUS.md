@@ -12,6 +12,8 @@ h { color: RGB(118,185,0)}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system aaa radius accounting</h>
 
 Enables RADIUS user command accounting, which lets you log every command that a user runs and send the commands to the primary RADIUS server for auditing. Audit logs are a requirement for compliance standards, such as PCI and HIPPA.

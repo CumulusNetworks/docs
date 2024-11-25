@@ -12,15 +12,11 @@ h { color: RGB(118,185,0)}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## <h>nv set system acl</h>
-
-Configures Access Control lists (ACLs) on the switch.
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set system acl mode</h>
 
-Configures the ACL mode; atomic or non-atomic. The default setting is atomic mode.
+Configures the Access Control list (ACL) mode; atomic or non-atomic. The default setting is atomic mode.
 
 Atomic mode limits the number of ACL rules that you can configure. To increase the number of configurable ACL rules, configure the switch to operate in nonatomic mode, which offers better scaling because all TCAM resources actively impact traffic. With atomic updates, half of the hardware resources are on standby and do not actively impact traffic.
 
@@ -35,12 +31,6 @@ Introduced in Cumulus Linux 5.3.0
 ```
 cumulus@switch:~$ nv set system acl mode non-atomic
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set acl \<acl-id\> rule \<rule-id\> action</h>
-
-Configures the ACL action.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

@@ -129,12 +129,6 @@ cumulus@switch:~$ nv set interface vlan10 ip vrr state up
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set router vrr</h>
-
-Configures VRR globally on the switch.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set router vrr enable</h>
 
 Turns VRR on or off. The default setting is `off`.

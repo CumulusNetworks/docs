@@ -229,5 +229,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set router igmp on
+cumulus@switch:~$ nv set router igmp enable on
 ```

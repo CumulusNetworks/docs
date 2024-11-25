@@ -16,7 +16,7 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 ## <h>nv set service dns \<vrf-id\> search \<domain-id\></h>
 
-Configures the domains to search for name matches.
+Configures the domains you want to search for name matches.
 
 ### Command Syntax
 

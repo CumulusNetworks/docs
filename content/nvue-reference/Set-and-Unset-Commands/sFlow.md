@@ -62,6 +62,28 @@ cumulus@switch:~$ nv set system sflow collector 192.0.2.100
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system sflow collector \<collector-ip\> interface</h>
+
+Configures the interface for the designated sFlow collector.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<collector-ip>` |  The IP address of the collector. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system sflow collector 192.0.2.200 interface eth0
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system sflow collector \<collector-ip\> port</h>
 
 Configures the UDP port number for the designated sFlow collector.
@@ -84,15 +106,9 @@ cumulus@switch:~$ nv set system sflow collector 192.0.2.100 port 6344
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system sflow collector \<collector-ip\> interface</h>
+## <h>nv set system sflow dropmon hw</h>
 
-Configures the interface for the designated sFlow collector.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<collector-ip>` |  The IP address of the collector. |
+Configures sFlow to monitor dropped packets in hardware.
 
 ### Version History
 
@@ -101,7 +117,23 @@ Introduced in Cumulus Linux 5.11.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set system sflow collector 192.0.2.200 interface eth0
+cumulus@switch:~$ nv set system sflow dropmon shw 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system sflow poll-interval</h>
+
+Configures the sFlow polling interval in seconds.
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system sflow poll-interval 20
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -277,7 +309,7 @@ Introduced in Cumulus Linux 5.11.0
 ```
 cumulus@switch:~$ nv set system sflow sampling-rate speed-800G 800000
 ```
-
+<!--
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set system sflow policer rate</h>
@@ -313,39 +345,7 @@ Introduced in Cumulus Linux 5.11.0
 ```
 cumulus@switch:~$ nv set system sflow policer burst 9000
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system sflow dropmon</h>
-
-Configurea sFlow to monitor dropped packets in software or hardware. You can specify `sw` or `hw`.
-
-### Version History
-
-Introduced in Cumulus Linux 5.11.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system sflow dropmon sw 
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system sflow poll-interval</h>
-
-Configures the sFlow polling interval in seconds.
-
-### Version History
-
-Introduced in Cumulus Linux 5.11.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system sflow poll-interval 20
-```
-
+-->
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set system sflow state</h>

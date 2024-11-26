@@ -14,6 +14,130 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system ssh-server allow-users \<user-id\></h>
+
+Configures the user accounts that you to allow to establish an SSH session.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<user-id>` |   The user account name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system ssh-server allow-users user1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system ssh-server authentication-retries</h>
+
+Configures the number of login attempts allowed before rejecting the SSH session. You can set a value between 3 and 100.
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system ssh-server authentication-retries 10
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system ssh-server deny-users \<user-id\></h>
+
+Configures the user accounts that are **not** allowed to establish an SSH session.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<user-id>` |   The user account name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system ssh-server deny-users user3
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system ssh-server inactive-timeout</h>
+
+Configures the amount of time a session can be inactive before the SSH server terminates the connection.
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system ssh-server inactive-timeout 5
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system ssh-server login-record-period</h>
+
+Configures the number of days on which to calculate login records, to be shown after login. You can set a value between 1 and 30.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system ssh-server login-record-period 20
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system ssh-server login-timeout</h>
+
+Configures the number of seconds allowed before login times out. You can set a value between 1 and 600.
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system ssh-server login-timeout 200
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system ssh-server max-sessions-per-connection </h>
+
+Configures the maximum number of SSH sessions allowed per TCP connection. You can specify a value between 1 and 100.
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system ssh-server max-sessions-per-connection 10
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system ssh-server max-unauthenticated session-count</h>
 
 Configures the maximum number of unauthenticated SSH sessions allowed. You can set a value between 1 and 10000.
@@ -62,15 +186,12 @@ cumulus@switch:~$ nv set system ssh-server max-unauthenticated throttle-start 5
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system ssh-server vrf \<vrf-id\></h>
+## <h>nv set system ssh-server permit-root-login</h>
 
-Configures the VRFs on which you want the SSH service to run. The SSH service runs in the default VRF on the switch but listens on all interfaces in all VRFs.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |   The VRF you want to configure. |
+Configures the root account to use SSH to log into the switch with one of the following:
+- A password (`enabled` or `disabled`).
+- A public key or any allowed mechanism that is not a password and not keyboardinteractive. This is the default setting (`prohibit-password`).
+- A set of commands defined in the authorized_keys file (`forced-commands-only`).
 
 ### Version History
 
@@ -79,45 +200,7 @@ Introduced in Cumulus Linux 5.6.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set system ssh-server vrf RED
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system ssh-server allow-users \<user-id\></h>
-
-Configures the user accounts that you to allow to establish an SSH session.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<user-id>` |   The user account name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.6.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system ssh-server allow-users user1
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system ssh-server deny-users \<user-id\></h>
-
-Configures the user accounts that are **not** allowed to establish an SSH session.
-
-### Version History
-
-Introduced in Cumulus Linux 5.6.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system ssh-server deny-users user3
+cumulus@switch:~$ nv set system ssh-server permit-root-login forced-commands-only
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -140,89 +223,6 @@ Introduced in Cumulus Linux 5.6.0
 
 ```
 cumulus@switch:~$ nv set system ssh-server port 443
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system ssh-server authentication-retries</h>
-
-Configures the number of login attempts allowed before rejecting the SSH session. You can set a value between 3 and 100.
-
-### Version History
-
-Introduced in Cumulus Linux 5.6.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system ssh-server authentication-retries 10
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system ssh-server login-timeout</h>
-
-Configures the number of seconds allowed before login times out. You can set a value between 1 and 600.
-
-### Version History
-
-Introduced in Cumulus Linux 5.6.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system ssh-server login-timeout 200
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system ssh-server inactive-timeout</h>
-
-Configures the amount of time a session can be inactive before the SSH server terminates the connection.
-
-### Version History
-
-Introduced in Cumulus Linux 5.6.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system ssh-server inactive-timeout 5
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system ssh-server permit-root-login</h>
-
-Configures the root account to use SSH to log into the switch with one of the following:
-- A password (`enabled` or `disabled`).
-- A public key or any allowed mechanism that is not a password and not keyboardinteractive. This is the default setting (`prohibit-password`).
-- A set of commands defined in the authorized_keys file (`forced-commands-only`).
-
-### Version History
-
-Introduced in Cumulus Linux 5.6.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system ssh-server permit-root-login forced-commands-only
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system ssh-server max-sessions-per-connection </h>
-
-Configures the maximum number of SSH sessions allowed per TCP connection. You can specify a value between 1 and 100.
-
-### Version History
-
-Introduced in Cumulus Linux 5.6.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system ssh-server max-sessions-per-connection 10
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -255,4 +255,26 @@ Introduced in Cumulus Linux 5.9.0
 
 ```
 cumulus@switch:~$ nv set system ssh-server strict disabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system ssh-server vrf \<vrf-id\></h>
+
+Configures the VRFs on which you want the SSH service to run. The SSH service runs in the default VRF on the switch but listens on all interfaces in all VRFs.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system ssh-server vrf RED
 ```

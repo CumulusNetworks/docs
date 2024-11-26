@@ -24,9 +24,57 @@ Cumulus Linux adds static routes to the FRR routing table and then to the kernel
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set vrf \<vrf-id\> router static \<route-id\> address-family \<address-family\></h>
+
+Configures static routes for the specified address family. The default value is `IPv4-unicast`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<address-family>` |  The address family: `IPv4-unicast` or `IPv6-unicast`. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 address-family ipv4
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set vrf \<vrf-id\> router static \<route-id\> distance \<distance-id\></h>
 
 Configures static route settings with the destination path distance.
+
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> router static \<route-id\> distance \<distance-id\> tag</h>
+
+Configures the destination path distance and tag for a specific static route in the specified VRF. The tag provides additional information about the static route, such as the community tag or a route metric and is with the route in the routing table. The tag can be a value between 1 and 4294967295, or `none`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<route-id>` |  The IPv4 or IPv6 prefix. |
+| `<distance-id>` |  The path distance. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 distance 2 tag none
+```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -102,30 +150,6 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 distance 2 via 10.0.1.0 interface swp1
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router static \<route-id\> distance \<distance-id\> tag</h>
-
-Configures the destination path distance and tag for a specific static route in the specified VRF. The tag provides additional information about the static route, such as the community tag or a route metric and is with the route in the routing table. The tag can be a value between 1 and 4294967295, or `none`.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |   The VRF you want to configure. |
-| `<route-id>` |  The IPv4 or IPv6 prefix. |
-| `<distance-id>` |  The path distance. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 distance 2 tag none
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

@@ -27,7 +27,7 @@ Cumulus Linux 5.11 and later no longer provides this command. Use `nv set vrf <v
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<afi>`   |  The route address family. |
+| `<afi>`   |  The route address family: `ipv4` or `ipv6`. |
 | `<import-protocol-id>` |  The import protocol list. |
 
 ### Version History
@@ -51,7 +51,7 @@ Configures the protocol you want to import from the RIB to the FIB.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<afi>`   |  The route address family. |
+| `<afi>`   |  The route address family: `ipv4` or `ipv6`. |
 | `<protocol-id>` |  The import protocol list. |
 | `<route-map>` |  The route map name. |
 
@@ -76,7 +76,7 @@ Configures a route map to apply on the routes of the import protocol.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<afi>`   |  The route address family. |
+| `<afi>`   |  The route address family: `ipv4` or `ipv6`. |
 | `<route-map>` |  The route map name. |
 
 ### Version History

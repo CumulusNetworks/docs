@@ -32,10 +32,10 @@ Cumulus Linux supports:
 - Hardware timestamping for PTP packets. This allows PTP to avoid inaccuracies caused by message transfer delays and improves the accuracy of time synchronization.
 
 {{%notice note%}}
-- On NVIDIA switches with Spectrum-2 and later, PTP is not supported on 1G interfaces.
 - On Spectrum-4 switches, PTP is Beta.
 - You cannot run *both* PTP and NTP on the switch.
 - PTP supports the default VRF only.
+- 1G links might a lower accuracy for PTP due to hardware limitations. If your application needs high accuracy from PTP, use higher link speeds.
 {{%/notice%}}
 
 ## Basic Configuration

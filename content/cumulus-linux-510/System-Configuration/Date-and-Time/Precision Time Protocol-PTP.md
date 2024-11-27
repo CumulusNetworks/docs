@@ -35,6 +35,7 @@ Cumulus Linux supports:
 - You cannot run *both* PTP and NTP on the switch.
 - PTP supports the default VRF only.
 - PTP on the NVIDIA SN5400 switch is in BETA
+- 1G links might have a lower accuracy for PTP due to hardware limitations. If your application needs high accuracy from PTP, use higher link speeds.
 {{%/notice%}}
 
 ## Basic Configuration

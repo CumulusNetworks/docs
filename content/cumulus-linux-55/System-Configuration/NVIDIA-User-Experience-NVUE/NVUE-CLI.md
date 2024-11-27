@@ -194,7 +194,7 @@ Additional options are available for the `nv show` commands. For example, you ca
 | `--operational`   | Shows the running configuration (the actual system state). For example, `nv show --operational interface bond1` shows the running configuration for bond1. The running and applied configuration should be the same. If different, inspect the logs. |
 | `--pending`       | Shows the last applied configuration and any pending set or unset configuration that you have not yet applied. For example, `nv show --pending interface bond1`.|
 | `--startup`  | Shows configuration saved with the `nv config save` command. This is the configuration after the switch boots. |
-| `--output`        | Shows command output in table (`auto`), `json`, or `yaml` format. For example:<br>`nv show --ouptut auto interface bond1`<br>`nv show --output json interface bond1`<br>`nv show --ouptut yaml interface bond1` |
+| `--output`        | Shows command output in table (`auto`), `json`, or `yaml` format. For example:<br>`nv show --output auto interface bond1`<br>`nv show --output json interface bond1`<br>`nv show --output yaml interface bond1` |
 | `--color`         | Turns colored output on or off. For example, `nv show --color on interface bond1`|
 | `--paginate`      | Paginates the output. For example, `nv show --paginate on interface bond1`. |
 | `--help` | Shows `help` for the NVUE commands. |
@@ -654,3 +654,7 @@ The following example patches the pending configuration (runs the set or unset c
 ```
 cumulus@switch:~$ nv config patch /deps/nv-02/13/2021.yaml
 ```
+
+{{%notice note%}}
+A patch contains a single request to the NVUE service. Ordering of parameters within a patch is not guaranteed; NVUE does not support both unset and set commands for the same object in a single patch.
+{{%/notice%}}

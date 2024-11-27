@@ -389,9 +389,9 @@ To obtain the NetQ CLI package:
     admin@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
 
-    You should see version 4.10.0 and update 46 in the results. For example:
+    You should see version 4.10.1 and update 47 in the results. For example:
 
-    netq-apps_<strong>4.10.0</strong>-deb10u<strong>46</strong>~1713949850.127fb0c1b_amd64.deb
+    netq-apps_<strong>4.10.1</strong>-deb10u<strong>47</strong>~1716565486.f08a4a95b_amd64.deb
 
 4. Continue with NetQ CLI configuration in the next section.
 

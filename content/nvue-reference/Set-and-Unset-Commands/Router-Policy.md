@@ -95,7 +95,7 @@ Configures the regular expression you want to use to match BGP AS paths.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<list-id>` | The AS path list name. |
-| `<rule-id> ` | The AS path list rule number. |
+| `<rule-id>` | The AS path list rule number. |
 | `bgp-regex` | The regular expression you want to use to match BGP AS paths.|
 
 ### Version History
@@ -291,8 +291,8 @@ Configures the site-of-origin (SoO) extended community to identify routes that o
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<list-id> ` | The extended community list name. |
-| `<rule-id> ` |  The extended community list rule number. |
+| `<list-id>` | The extended community list name. |
+| `<rule-id>` |  The extended community list rule number. |
 | `<ext-community-id>` | The extended community number in AA:NN or IP:NN format. |
 
 ### Version History
@@ -361,7 +361,7 @@ Configures the action for the large community list policy match. You can specify
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<list-id>` |  The large community list name. |
-| `<rule-id> ` | The large community list rule number. |
+| `<rule-id>` | The large community list rule number. |
 
 ### Version History
 
@@ -384,7 +384,7 @@ Configures the community names for the large community list.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<list-id>` |  The large community list name. |
-| `<rule-id> ` | The large community list rule number. |
+| `<rule-id>` | The large community list rule number. |
 | `<large-community-id>` | The community number in AA:BB:CC format. |
 
 ### Version History
@@ -476,7 +476,7 @@ Configures the prefix match criteria you want to use.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<prefix-list-id>` | The prefix list name. |
-| `<rule-id> ` | The prefix list rule number. |
+| `<rule-id>` | The prefix list rule number. |
 | `<match-id>` | The IPv4 or IPv6 prefix you want to match.|
 
 ### Version History
@@ -905,7 +905,7 @@ cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 match interface sw
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> match ip-nexthop \<address\></h>
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> match ip-nexthop \<ip-address-id\></h>
 
 Configures the route map to match the IP address of a next hop.
 
@@ -915,7 +915,7 @@ Configures the route map to match the IP address of a next hop.
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
-| `<address>` | The IPv4 or IPv6 address of the next hop.|
+| `<ip-address-id>` | The IPv4 or IPv6 address of the next hop.|
 
 ### Version History
 

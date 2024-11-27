@@ -11,6 +11,10 @@ This section discusses the following route filtering methods:
 - Route maps
 - Route redistribution
 
+{{%notice note%}}
+Route map and prefix list names must start with a letter and can contain letters, digits, underscores and dashes. For example, you can name a route map `MAP10` or `ROUTE-MAP_10` but you cannot name a route map `10` or `10_ROUTE-MAP`.
+{{%/notice%}}
+
 ## Prefix Lists
 
 Prefix lists are access lists for route advertisements that match routes instead of traffic. Prefix lists are typically used with route maps and other filtering methods. A prefix list can match the prefix (the network itself) and the prefix length (the length of the subnet mask).
@@ -284,7 +288,7 @@ You can use the following list of supported match and set statements with NVUE c
 | `evpn-default-route` | Matches the EVPN default route. You can specify `on` or `off`.|
 | `ip-nexthop-len` | Matches the specified next hop prefix length. |
 | `large-community-list` | Matches the specified large community list.|
-| `source-protocol` |Matches the specified source protocol, such as BGP, OSPF or static. |
+| `source-protocol` |Matches the specified source protocol, such as BGP, OSPF or static. NVUE does not support source protocol match.|
 | `evpn-route-type` | Matches the specified EVPN route type. You can specify `macip`, `imet`, or `prefix`. |
 | `ip-nexthop-list` | Matches the specified next hop list.|
 | `local-preference` | Matches the specified local preference. You can specify a value between 0 and 4294967295. |
@@ -622,6 +626,37 @@ cumulus@switch:~$
 For OSPF, redistribution loads the database unnecessarily with type-5 LSAs. Only use this method to generate real external prefixes (type-5 LSAs).
 {{%/notice%}}
 
+### Set IPv6 Prefer Global
+
+The following example configures a route map to prefer the global IPv6 address when a route contains both link-local and global next hop addresses. This is required when there are multiple BGP peerings to the same router with {{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" text="adaptive routing">}} enabled, or with multiple peerings to the same router on interfaces that share the same MAC address or physical interface.
+
+{{< tabs "TabID947 ">}}
+{{< tab "NVUE Commands">}}
+
+```
+cumulus@leaf01:~$ nv set router policy route-map IPV6-PREFER-GLOBAL rule 10 action permit
+cumulus@leaf01:~$ nv set router policy route-map IPV6-PREFER-GLOBAL rule 10 set ipv6-nexthop-prefer-global on
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# route-map IPV6-PREFER-GLOBAL permit 10
+leaf01(config-route-map)# set ipv6 next-hop prefer-global
+leaf01(config-route-map)# end
+leaf01# write memory
+leaf01# exit
+cumulus@sleaf01:~$
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Configuration Examples
 
 This section shows the `/etc/frr/frr.conf` file configuration for example route filters and redistribution.
@@ -747,8 +782,33 @@ route-map EXTERNAL-2-1K permit 10
 
 ## Considerations
 
+### Match Lists
+
 When you configure a route map to match a prefix list, community list, or aspath list, the permit or deny actions in the list determine the criteria to evaluate in each route map sequence; for example:
 - If you match a list in a route map permit sequence, Cumulus Linux matches the permitted routes in the list for that route map sequence and the policy permits them. Denied routes in the list do not match and Cumulus Linux evaluates them in later route map sequences.
 - If you match a list in a route map deny sequence, Cumulus Linux matches the permitted routes in the list for that route map sequence and the policy denies them. Denied routes in the list do not match and Cumulus Linux evaluates them in later route map sequences.
 
 NVIDIA recommends you always configure a community list as `permit`, and permit or deny routes using route map sequences.
+
+### Set BGP Community Additive
+
+To set more than one community in a route map, you can run the `nv set router policy route-map <route-map-id> rule <rule-id> set community additive` command. The following example sets both community 100:100 and community 555:111 in the route map called ROUTEMAP1:
+
+```
+cumulus@leaf01:~$ nv set router policy route-map ROUTEMAP1 rule 5 action permit
+cumulus@leaf01:~$ nv set router policy route-map ROUTEMAP1 rule 5 match ip-prefix-list LIST1
+cumulus@leaf01:~$ nv set router policy route-map ROUTEMAP1 rule 5 match type ipv4
+cumulus@leaf01:~$ nv set router policy route-map ROUTEMAP1 rule 5 set community 100:100
+cumulus@leaf01:~$ nv set router policy route-map ROUTEMAP1 rule 5 set community 555:111
+cumulus@leaf01:~$ nv set router policy route-map ROUTEMAP1 rule 5 set community additive
+cumulus@leaf01:~$ nv config apply
+```
+
+When you unset the additive community with the `nv unset router policy route-map <route-map-id> rule <rule-id> set community additive` command, NVUE does not remove the communities. You must unset each community and the community additive to remove the communities:
+
+```
+cumulus@leaf01:~$ nv unset router policy route-map ROUTEMAP1 rule 5 set community 100:100
+cumulus@leaf01:~$ nv unset router policy route-map ROUTEMAP1 rule 5 set community 555:111
+cumulus@leaf01:~$ nv unset router policy route-map ROUTEMAP1 rule 5 set community additive
+cumulus@leaf01:~$ nv config apply
+```

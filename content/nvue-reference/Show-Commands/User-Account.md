@@ -22,29 +22,42 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show system aaa
-                        operational       applied
-----------------------  ----------------  -------
-[authentication-order]  1                        
-[authentication-order]  2                        
-[authentication-order]                    5      
-[authentication-order]                    10     
-tacacs                                           
-  enable                on                on     
-  timeout               5                 5      
-  vrf                   mgmt              mgmt   
-  accounting                                     
-    enable              off               off    
-  authentication                                 
-    mode                pap               pap    
-    per-user-homedir    off               off    
-  [authorization]       0                 0      
-  [server]              5                 5      
-[user]                  _apt                     
-[user]                  _lldpd                   
-[user]                  backup                   
-[user]                  bin                      
-[user]                  cumulus                  
-[user]                  daemon
+                        operational      applied                   
+----------------------  ---------------  --------------------------
+tacacs                                                             
+  enable                off              off                       
+radius                                                             
+  enable                off              off                       
+  accounting                                                       
+    state               disabled                                   
+ldap                                                               
+  vrf                                    mgmt                      
+  bind-dn                                                          
+  base-dn                                ou=users,dc=example,dc=com
+  referrals                              off                       
+  scope                                  sub                       
+  port                                   389                       
+  timeout-bind                           5                         
+  timeout-search                         5                         
+  version                                3                         
+  [hostname]                                                       
+  ssl                                                              
+    mode                                 none                      
+    port                                 636                       
+    cert-verify                          enabled                   
+    ca-list                              default                   
+    tls-ciphers                          all                       
+    crl-check                            none                      
+[authentication-order]  1                                          
+[user]                  Debian-snmp                                
+[user]                  _apt                                       
+[user]                  _lldpd                                     
+[user]                  backup                                     
+[user]                  bin                                        
+[user]                  cumulus          cumulus                   
+[user]                  daemon                                     
+[user]                  dnsmasq                                    
+[user]                  frr
 ...
 ```
 
@@ -186,14 +199,12 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show system aaa user cumulus
-                    operational  applied
-------------------  -----------  -------
-full-name           cumulus,,,          
-hashed-password     *                   
-role                Unknown             
-ssh                                     
-  [authorized-key]                      
-enable              on
+                 operational   applied     
+---------------  ------------  ------------
+state            enabled       enabled     
+role             system-admin  system-admin
+full-name        cumulus,,,    cumulus,,,  
+hashed-password  *             *
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -399,6 +410,7 @@ Shows configuration of a specific class assigned to the specified role.
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<role-id>` |  The name of the role. |
+| `<class-id>` |  The name of the class. |
 
 ### Version History
 

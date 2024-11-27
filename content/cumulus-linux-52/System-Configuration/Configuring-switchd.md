@@ -99,7 +99,7 @@ Restarting the `switchd` service causes all network ports to reset in addition t
 | `ptp.timestamping` | Enables PTP time stamping.</br>The default setting is TRUE. | restart|
 | `vrf_route_leak_enable_dynamic` | Enables dynamic VRF route leaking.</br>The default setting is FALSE. | restart |
 | `sync_queue_depth_val` | The event queue depth.</br>The default setting is 50000. | restart |
-| `route.route_preferred_over_neigh` | Sets the preference between a route and neighbor with the same IP address and mask. You can specify `TRUE` to prefer the route over the neighbor, `FALSE` to prefer the neighbor over the route, or `BOTH` to install both the route and neighbor.</br>The default setting is TRUE. | reload |
+| `route.route_preferred_over_neigh` | Sets the preference between a route and neighbor with the same IP address and mask. You can specify `TRUE` to prefer the route over the neighbor, `FALSE` to prefer the neighbor over the route, or `BOTH` to install both the route and neighbor.</br>The default setting is TRUE. | restart |
 | `evpn.multihoming.enable` | Enables EVPN multihoming.</br>The default setting is TRUE. | restart |
 | `evpn.multihoming.shared_l2_groups` | Enables sharing for layer 2 next hop groups.</br>The default setting is FALSE. | restart |
 | `evpn.multihoming.shared_l3_groups` | Enables sharing for layer 3 next hop groups.</br>The default setting is FALSE. | restart |

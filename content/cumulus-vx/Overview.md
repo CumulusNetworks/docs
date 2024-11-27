@@ -24,7 +24,7 @@ Cumulus VX is designed for testing and not data plane performance. Cumulus VX is
 ## NVIDIA AIR
 
 As an alternative to Cumulus VX, which requires a hypervisor (or hypervisor and orchestrator), you can use
-{{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/air/" text="NVIDIA AIR">}}, which is a free, personal, virtual data center network that provides a low-effort way to see NVIDIA networking technology in action. Your virtual data center consists of two racks with two dual-homed servers connected with a leaf-spine network. This is a good way to try out Cumulus Linux if you have platform or disk limitations.
+{{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/air/" text="NVIDIA Air">}}, which is a free, personal, virtual data center network that provides a low-effort way to see NVIDIA networking technology in action. Your virtual data center consists of two racks with two dual-homed servers connected with a leaf-spine network. This is a good way to try out Cumulus Linux if you have platform or disk limitations.
 
 ## Supported Hypervisors
 
@@ -57,7 +57,7 @@ Due to hardware specific implementations, virtual environments do **not** suppor
 
 | Feature | Supported in a Virtual Environment |
 | -----------------------------------------------------| ------------|
-|{{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/Netfilter-ACLs" text="ACL configuration ">}}|<font color="red">No</font> |
+|{{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/Access-Control-Lists/" text="ACL configuration ">}}|<font color="red">No</font> |
 |{{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/In-Service-System-Upgrade-ISSU" text="In Service System Upgrade - ISSU ">}}| <font color="red">No</font> |
 |{{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/Date-and-Time/Precision-Time-Protocol-PTP" text="Precision Time Protocol - PTP">}}| <font color="red">No</font> |
 |{{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-1-and-Switch-Ports/Port-Security" text="Port Security">}}| <font color="red">No</font> |
@@ -68,7 +68,7 @@ Due to hardware specific implementations, virtual environments do **not** suppor
 |{{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-1-and-Switch-Ports/Quality-of-Service/#policing-and-shaping" text="QoS shaping ">}}| <font color="red">No</font> |
 |{{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Monitoring-and-Troubleshooting/Network-Troubleshooting/Mellanox-WJH" text="What Just Happened (WJH)">}}| <font color="red">No</font> |
 |{{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-3/Network-Address-Translation-NAT" text="Network Address Translation (NAT)">}}| <font color="red">No</font> |
-|{{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-3/Routing/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#adaptive-routing" text="Adaptive Routing" >}}| <font color="red">No</font> |
+|{{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-3/Routing/Equal-Cost-Multipath-Load-Sharing/" text="Adaptive Routing" >}}| <font color="red">No</font> |
 |{{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-2/Storm-Control" text="Storm control ">}}|<font color="red">No</font>|
 
 ## Support Policy
@@ -97,5 +97,5 @@ For non-customers, Cumulus VX remains a community-supported product, with no for
 - {{<exlink url="http://www.linux-kvm.org/page/Documents" text="KVM documentation">}}
 - {{<exlink url="https://www.vagrantup.com/docs" text="Vagrant documentation">}}
 - {{<exlink url="https://www.gns3.com/software" text="GNS3 documentation">}}
-- {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/air/" text="NVIDIA AIR">}}
-- {{<exlink url="https://www.nvidia.com/en-us/networking/linux-on-demand/" text="Cumulus Linux on demand">}}
+- {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/air/" text="NVIDIA Air">}}
+- {{<exlink url="https://www.nvidia.com/en-us/networking/linux-on-demand/" text="Cumulus Linux on-demand">}}

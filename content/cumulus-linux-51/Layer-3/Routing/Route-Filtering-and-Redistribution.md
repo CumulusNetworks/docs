@@ -11,6 +11,10 @@ This section discusses the following route filtering methods:
 - Route maps
 - Route redistribution
 
+{{%notice note%}}
+Route map and prefix list names must start with a letter and can contain letters, digits, underscores and dashes. For example, you can name a route map `MAP10` or `ROUTE-MAP_10` but you cannot name a route map `10` or `10_ROUTE-MAP`.
+{{%/notice%}}
+
 ## Prefix Lists
 
 Prefix lists are access lists for route advertisements that match routes instead of traffic. Prefix lists are typically used with route maps and other filtering methods. A prefix list can match the prefix (the network itself) and the prefix length (the length of the subnet mask).

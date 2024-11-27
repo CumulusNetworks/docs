@@ -41,19 +41,19 @@ cumulus@netq-appliance:/home/cumulus# chmod +x /usr/sbin/vm-backuprestore.sh
 ```
 cumulus@netq-appliance:~$ sudo ./vm-backuprestore.sh --backup
 [sudo] password for cumulus:
-Mon Feb  6 12:37:18 2023 - Please find detailed logs at: /var/log/vm-backuprestore.log
-Mon Feb  6 12:37:18 2023 - Starting backup of data, the backup might take time based on the size of the data
-Mon Feb  6 12:37:19 2023 - Scaling static pods to replica 0
-Mon Feb  6 12:37:19 2023 - Scaling all pods to replica 0
-Mon Feb  6 12:37:28 2023 - Scaling all daemonsets to replica 0
-Mon Feb  6 12:37:29 2023 - Waiting for all pods to go down
-Mon Feb  6 12:37:29 2023 - All pods are down
-Mon Feb  6 12:37:29 2023 - Creating backup tar /opt/backuprestore/backup-netq-standalone-onprem-4.4.0-2023-02-06_12_37_29_UTC.tar
+Mon Feb  6 12:37:18 2024 - Please find detailed logs at: /var/log/vm-backuprestore.log
+Mon Feb  6 12:37:18 2024 - Starting backup of data, the backup might take time based on the size of the data
+Mon Feb  6 12:37:19 2024 - Scaling static pods to replica 0
+Mon Feb  6 12:37:19 2024 - Scaling all pods to replica 0
+Mon Feb  6 12:37:28 2024 - Scaling all daemonsets to replica 0
+Mon Feb  6 12:37:29 2024 - Waiting for all pods to go down
+Mon Feb  6 12:37:29 2024 - All pods are down
+Mon Feb  6 12:37:29 2024 - Creating backup tar /opt/backuprestore/backup-netq-standalone-onprem-4.9.0-2024-02-06_12_37_29_UTC.tar
 Backup is successful, please scp it to the master node the below command:
-      sudo scp /opt/backuprestore/backup-netq-standalone-onprem-4.4.0-2023-02-06_12_37_29_UTC.tar cumulus@<ip_addr>:/home/cumulus
+      sudo scp /opt/backuprestore/backup-netq-standalone-onprem-4.9.0-2024-02-06_12_37_29_UTC.tar cumulus@<ip_addr>:/home/cumulus
  
   Restore the backup file using the below command:
-      ./vm-backuprestore.sh --restore --backupfile /opt/backuprestore/backup-netq-standalone-onprem-4.4.0-2023-02-06_12_37_29_UTC.tar
+      ./vm-backuprestore.sh --restore --backupfile /opt/backuprestore/backup-netq-standalone-onprem-4.9.0-2024-02-06_12_37_29_UTC.tar
 cumulus@netq-appliance:~$
 ```
 
@@ -62,7 +62,7 @@ cumulus@netq-appliance:~$
    ```
    cumulus@netq-appliance:~$ cd /opt/backuprestore/
    cumulus@netq-appliance:~/opt/backuprestore$ ls
-   backup-netq-standalone-onprem-4.4.0-2023-02-06_12_37_29_UTC.tar
+   backup-netq-standalone-onprem-4.9.0-2024-02-06_12_37_29_UTC.tar
    ```
 ## Restore Your NetQ Data
 
@@ -75,22 +75,22 @@ If you restore NetQ data to a server with an IP address that is different from t
 {{</notice>}}
 
 ```
-cumulus@netq-appliance:~$ sudo vm-backuprestore.sh --restore --backupfile /home/cumulus/backup-netq-standalone-onprem-4.4.0-2023-02-06_12_37_29_UTC.tar
-Mon Feb  6 12:39:57 2023 - Please find detailed logs at: /var/log/vm-backuprestore.log
-Mon Feb  6 12:39:57 2023 - Starting restore of data
-Mon Feb  6 12:39:57 2023 - Extracting release file from backup tar
-Mon Feb  6 12:39:57 2023 - Cleaning the system
-Mon Feb  6 12:39:57 2023 - Restoring data from tarball /home/cumulus/backup-netq-standalone-onprem-4.4.0-2023-02-06_12_37_29_UTC.tar
+cumulus@netq-appliance:~$ sudo vm-backuprestore.sh --restore --backupfile /home/cumulus/backup-netq-standalone-onprem-4.9.0-2029-02-06_12_37_29_UTC.tar
+Mon Feb  6 12:39:57 2024 - Please find detailed logs at: /var/log/vm-backuprestore.log
+Mon Feb  6 12:39:57 2024 - Starting restore of data
+Mon Feb  6 12:39:57 2024 - Extracting release file from backup tar
+Mon Feb  6 12:39:57 2024 - Cleaning the system
+Mon Feb  6 12:39:57 2024 - Restoring data from tarball /home/cumulus/backup-netq-standalone-onprem-4.9.0-2024-02-06_12_37_29_UTC.tar
 Data restored successfully
   Please follow the below instructions to bootstrap the cluster
   The config key restored is EhVuZXRxLWVuZHBvaW50LWdhdGVfYXkYsagDIix2OUJhMUpyekMwSHBBaitUdTVDaTRvbVJDR3F6Qlo4VHhZRytjUUhLZGJRPQ==, alternately the config key is available in file /tmp/config-key
  
   Pass the config key while bootstrapping:
-  Example(standalone): netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.10.0.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix2OUJhMUpyekMwSHBbaitUdTVDaTRvbVJDR3F6Qlo4VHhZRytjUUhLZGJRPQ==
-  Example(cluster):    netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.10.0.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix2OUJhMUpyekMwSHBbaitUdTVDaTRvbVJDR3F6Qlo4VHhZRytjUUhLZGJRPQ==
+  Example(standalone): netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.10.1.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix2OUJhMUpyekMwSHBbaitUdTVDaTRvbVJDR3F6Qlo4VHhZRytjUUhLZGJRPQ==
+  Example(cluster):    netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.10.1.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix2OUJhMUpyekMwSHBbaitUdTVDaTRvbVJDR3F6Qlo4VHhZRytjUUhLZGJRPQ==
   Alternately you can setup config-key post bootstrap in case you missed to pass it during bootstrap
   Example(standalone): netq install standalone activate-job config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix2OUJhMUpyekMwSHBbaitUdTVDaTRvbVJDR3F6Qlo4VHhZRytjUUhLZGJRPQ==
   Example(cluster):    netq install cluster activate-job config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix2OUJhMUpyekMwSHBbaitUdTVDaTRvbVJDR3F6Qlo4VHhZRytjUUhLZGJRPQ==
-  In case the IP of the restore machine is different from the backup machine, please reconfigure the agents using: https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-44/Installation-Management/Install-NetQ/Install-NetQ-Agents/#configure-netq-agents-using-a-configuration-file
+  In case the IP of the restore machine is different from the backup machine, please reconfigure the agents using: https://docs.nvidia.com/networking-ethernet-software/cumulus-netq/Installation-Management/Install-NetQ/Install-NetQ-Agents/#configure-netq-agents-using-a-configuration-file
 cumulus@netq-appliance:~$
 ```

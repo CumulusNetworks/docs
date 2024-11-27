@@ -12,10 +12,6 @@ h { color: RGB(118,185,0)}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## <h>nv set nve vxlan</h>
-
-Configures VXLAN settings on the switch.
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set nve vxlan ageing</h>
@@ -50,12 +46,6 @@ cumulus@switch:~$ nv set nve vxlan arp-nd-suppress off
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set nve vxlan decapsulation</h>
-
-Configures VXLAN decapsulation.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set nve vxlan decapsulation dscp action</h>
 
 Configures the VXLAN decapsulation DSCP or COS action. You can specify one of the following options:
@@ -84,12 +74,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set nve vxlan enable on
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set nve vxlan encapsulation</h>
-
-Configures VXLAN encapsulation.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -127,12 +111,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set nve vxlan encapsulation dscp 16
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set nve vxlan flooding</h>
-
-Configures VXLAN flooding (how to handle BUM traffic).
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -256,7 +234,7 @@ cumulus@switch:~$ nv set nve vxlan mtu 1500
 
 ## <h>nv set nve vxlan port</h>
 
-Configures the UDP port for VXLAN frames.
+Configures the UDP port that Cumulus Linux uses for VXLAN encapsulation. The default port is 4789.
 
 ### Version History
 

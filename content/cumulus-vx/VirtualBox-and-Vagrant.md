@@ -34,7 +34,7 @@ CumulusVX versions 4.3 and later requires 2 vCPUs.
 
 {{% vx/vagrant-setup %}}
 
-## Log into the Switches
+## Log in to the Switches
 
 {{% vx/login-vagrant %}}
 

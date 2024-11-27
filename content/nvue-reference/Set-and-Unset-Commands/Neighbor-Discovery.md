@@ -12,7 +12,9 @@ h { color: RGB(118,185,0)}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## <h>nv set interface \<interface-id\> neighbor ipv6 \<address\> lladdr \<lladdr-id\></h>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set interface \<interface-id\> neighbor ipv6 \<ip-address-id\> lladdr \<lladdr-id\></h>
 
 Configures a static ARP table entry for an interface with an IPv6 address associated with a MAC address for easy management or as a security measure to prevent spoofing and other nefarious activities.
 
@@ -21,7 +23,7 @@ Configures a static ARP table entry for an interface with an IPv6 address associ
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` | The interface you want to configure. |
-| `<address>` |  The static IPv6 address. |
+| `<ip-address-id>` |  The static IPv6 address. |
 | `<lladdr-id>` |  The MAC address you want to associate with IPv6 address. |
 
 ### Version History
@@ -36,7 +38,7 @@ cumulus@switch:~$ nv set interface swp51 neighbor ipv6 fe80::4ab0:2dff:fea2:4c79
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> neighbor ipv6 \<address\> lladdr \<lladdr-id\> flag</h>
+## <h>nv set interface \<interface-id\> neighbor ipv6 \<ip-address-id\> lladdr \<lladdr-id\> flag</h>
 
 Configures a flag to indicate that the neighbor in the IP neighbor table is a router (`is-router`) or learned externally (`ext_learn`).
 
@@ -45,7 +47,7 @@ Configures a flag to indicate that the neighbor in the IP neighbor table is a ro
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` | The interface you want to configure. |
-| `<address>` |  The static IPv6 address. |
+| `<ip-address-id>` |  The static IPv6 address. |
 | `<lladdr-id>` |  The MAC address you want to associate with IPv6 address. |
 
 ### Version History
@@ -60,7 +62,7 @@ cumulus@switch:~$ nv set interface swp51 neighbor ipv6 fe80::4ab0:2dff:fea2:4c79
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> neighbor ipv6 \<address\> lladdr \<lladdr-id\> state</h>
+## <h>nv set interface \<interface-id\> neighbor ipv6 \<ip-address-id\> lladdr \<lladdr-id\> state</h>
 
 Configures the state of the neighbor in the IP neighbor table (`delay`, `failed`, `incomplete`, `noarp`, `permanent`, `probe`, `reachable`, or `stale`).
 
@@ -69,7 +71,7 @@ Configures the state of the neighbor in the IP neighbor table (`delay`, `failed`
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` | The interface you want to configure. |
-| `<address>` |  The static IPv6 address. |
+| `<ip-address-id>` |  The static IPv6 address. |
 | `<lladdr-id>` |  The MAC address you want to associate with IPv6 address. |
 
 ### Version History
@@ -84,15 +86,9 @@ cumulus@switch:~$ nv set interface swp51 neighbor ipv6 fe80::4ab0:2dff:fea2:4c79
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> ip neighbor-discovery</h>
-
-Configures <span class="a-tooltip">[ND](## "Neighbor Discovery")</span> for an interface. ND allows different devices on the same link to advertise their existence to their neighbors and to learn about the existence of their neighbors. ND is the IPv6 equivalent of IPv4 ARP for layer 2 address resolution.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set interface \<interface-id\> ip neighbor-discovery dnssl \<domain-name-id\></h>
 
-Configures the DNS search lists (DNSSL).
+Configures the <span class="a-tooltip">[ND](## "Neighbor Discovery")</span> search lists (DNSSL).
 
 ### Command Syntax
 
@@ -140,6 +136,8 @@ cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery dnssl accounting.n
 
 Turns ND on or off. The default setting is `on`.
 
+ND allows different devices on the same link to advertise their existence to their neighbors and to learn about the existence of their neighbors. ND is the IPv6 equivalent of IPv4 ARP for layer 2 address resolution.
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -155,12 +153,6 @@ Introduced in Cumulus Linux 5.1.0
 ```
 cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery enable off
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set interface \<interface-id\> ip neighbor-discovery home-agent</h>
-
-Configures the switch to be a Home Agent.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -249,12 +241,6 @@ Introduced in Cumulus Linux 5.1.0
 ```
 cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery mtu 1500
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set interface \<interface-id\> ip neighbor-discovery prefix</h>
-
-Configures the IPv6 prefix you want to include in router advertisements.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -421,18 +407,12 @@ cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery rdnss 2001:db8:1::
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> ip neighbor-discovery router-advertisement</h>
-
-Configures router advertisement for an interface.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set interface \<interface-id\> ip neighbor-discovery router-advertisement enable</h>
 
 Enables router advertisement (`on`) or disables router advertisement (`off`) for the interface. The default setting is `off`.
 
 {{%notice note%}}
-In Cumulus Linux 5.4 and earlier, the NVUE command to enable router advertisment for an interface is `nv set interface <interface> ip neighbor-discovery router-advertisement enable off` and the NVUE command to disable router advertisment for an interface is `nv set interface <interface> ip neighbor-discovery router-advertisement enable on`.
+In Cumulus Linux 5.4 and earlier, the NVUE command to enable router advertisment for an interface is `nv set interface <interface-id> ip neighbor-discovery router-advertisement enable off` and the NVUE command to disable router advertisment for an interface is `nv set interface <interface-id> ip neighbor-discovery router-advertisement enable on`.
 {{%/notice%}}
 
 ### Command Syntax

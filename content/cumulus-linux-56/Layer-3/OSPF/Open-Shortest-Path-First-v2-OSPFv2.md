@@ -1292,6 +1292,21 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router ospf interface swp51
 Action succeeded
 ```
 
+## Considerations
+
+With NVUE, you cannot run both the `nv set vrf default router ospf area <area> network` command and the `nv set interface <interface> router ospf area` command in the same configuration; for example, if you run the following commands, NVUE shows an invalid configuration error:
+
+```
+cumulus@switch:~$ nv set router ospf enable on
+cumulus@switch:~$ nv set vrf default router ospf area 0 network 10.10.10.101/32
+cumulus@switch:~$ nv set vrf default router ospf enable on
+cumulus@switch:~$ nv set vrf default router ospf router-id 10.10.10.101
+cumulus@switch:~$ nv set interface swp1 router ospf area 10
+cumulus@switch:~$ nv config apply
+Invalid config [rev_id: 3]
+  Please remove all network commands from `vrf.default.router.ospf.area.42` first.
+```
+
 ## Related Information
 <!-- vale off -->
 - {{<exlink url="http://docs.frrouting.org/en/latest/ospfd.html" text="FRR OSPFv2">}}

@@ -39,6 +39,32 @@ state        up                 up
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show interface \<interface-id\> ip vrr address</h>
+
+Shows the VRR IP addresses on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>`    |  The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface vlan10 ip vrr address
+-------------------------- 
+11.0.1.1/24 
+2001:aa:0:1::1/64 
+fe80::200:5eff:fe00:101/64
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show interface \<interface-id\> ip vrr address \<ip-prefix-id\></h>
 
 Shows information about a specific VRR IP address on the specified interface.
@@ -58,6 +84,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show interface vlan10 ip vrr address 10.1.10.1/24
+No Data 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

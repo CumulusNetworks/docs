@@ -233,5 +233,5 @@ For information about using the NVUE REST API, refer to the {{<mib_link url="cum
 
 ## Related Information
 
-- {{<exlink url="https://docs.nginx.com/" text="NGINX documentaion">}}
+- {{<exlink url="https://docs.nginx.com/" text="NGINX documentation">}}
 - {{<exlink url="https://help.ubuntu.com/lts/serverguide/certificates-and-security.html" text="Ubuntu Certificates and Security documentation">}}

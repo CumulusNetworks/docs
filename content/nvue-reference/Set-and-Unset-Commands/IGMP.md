@@ -12,15 +12,11 @@ h { color: RGB(118,185,0)}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## <h>nv set interface \<interface-id\> ip igmp</h>
-
-Provides commands to configure <span class="a-tooltip">[IGMP](## "Internet Group Management Protocol")</span>.
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set interface \<interface-id\> ip igmp enable</h>
 
-Turns IGMP on or off on the specified interface. The default setting is `off`.
+Turns <span class="a-tooltip">[IGMP](## "Internet Group Management Protocol")</span> on or off on the specified interface. The default setting is `off`.
 
 ### Command Syntax
 
@@ -110,9 +106,8 @@ cumulus@switch:~$ nv set interface swp1 ip igmp last-member-query-interval 100
 
 Configures how often IGMP sends query-host messages to discover which multicast groups have members on the attached networks.
 
-In Cumulus Linux 5.6 and later, you can specify a value between 1 and 65535 seconds. The default setting is 100.
-
-In Cumulus Linux 5.5 and earlier, you can specify a value between 1 and 1800 seconds. The default setting is 180.
+- In Cumulus Linux 5.6 and later, you can specify a value between 1 and 65535 seconds. The default setting is 100.
+- In Cumulus Linux 5.5 and earlier, you can specify a value between 1 and 1800 seconds. The default setting is 180.
 
 ### Command Syntax
 
@@ -223,12 +218,6 @@ cumulus@switch:~$ nv set interface swp1 ip igmp version 2
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set router igmp</h>
-
-Provides commands to configure global IGMP settings.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set router igmp enable</h>
 
 Turns IGMP on or off globally. The default setting is `off`.
@@ -240,5 +229,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set router igmp on
+cumulus@switch:~$ nv set router igmp enable on
 ```

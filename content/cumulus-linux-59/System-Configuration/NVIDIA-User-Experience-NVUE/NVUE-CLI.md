@@ -187,7 +187,7 @@ Additional options are available for certain `nv show` commands. For example, yo
 | `--applied`| Shows configuration applied with the `nv config apply` command. For example, `nv show --applied`. |
 | `--brief-help` | Shows help about the `nv show` command. For example, `nv show interface swp1 --brief-help`|
 | `--color`  | Turns colored output on or off. For example, `nv show interface swp1 --color on`|
-| `--filter` | Filters show command output on column data. For example, the `nv show interface --filter mtu=1500` shows only the interfaces with MTU set to 1500.</br>To filter on multiple column outputs, enclose the filter types in parentheses; for example, `nv show interface --filter "type=bridge&mtu=9216"` shows data for bridges with MTU 9216.</br>You can use wildcards; for example, `nv show interface swp1 --filter "ip.address=1*"` shows all IP addresses that start with `1` for swp1.</br>You can filter on all revisions (operational, applied, and pending); for example, `nv show interface  --filter "ip.address=1*" --rev=applied` shows all IP addresses that start with `1` for swp1 in the applied revision.|
+| `--filter` | Filters show command output on column data. For example, the `nv show interface --filter mtu=1500` shows only the interfaces with MTU set to 1500.</br>To filter on multiple column outputs, enclose the entire filter in double quotes; for example, `nv show interface --filter "type=bridge&mtu=9216"` shows data for bridges with MTU 9216.</br>You can use wildcards; for example, `nv show interface swp1 --filter "ip.address=1*"` shows all IP addresses that start with `1` for swp1.</br>You can filter on all revisions (operational, applied, and pending); for example, `nv show interface  --filter "ip.address=1*" --rev=applied` shows all IP addresses that start with `1` for swp1 in the applied revision.|
 | `--hostname`| Shows system configuration for the switch with the specified hostname. For example, `nv show --hostname leaf01`.|
 | `--operational` | Shows the running configuration (the actual system state). For example, `nv show interface swp1 --operational` shows the running configuration for swp1. The running and applied configuration should be the same. If different, inspect the logs. |
 | `--output`        | Shows command output in table (`auto`), `json`, `yaml` or plain text (`raw`) format, such as vtysh native output. For example:<br>`nv show interface bond1 --output auto`<br>`nv show interface bond1 --output json`<br>`nv show interface bond1 --output yaml`<br>`nv show router bgp -output raw`|
@@ -240,7 +240,7 @@ The NVUE configuration management commands manage and apply configurations.
 | `nv config patch <nvue-file>` | Updates the pending configuration with the specified YAML configuration file. |
 | `nv config replace <nvue-file>` | Replaces the pending configuration with the specified YAML configuration file. |
 |`nv config revision` | Shows all the configuration revisions on the switch. |
-| `nv config save` | When you have the auto save option `off`, this command overwrites the startup configuration with the applied configuration by writing to the `/etc/nvu.d/startup.yaml` file. The configuration persists after a reboot. |
+| `nv config save` | This command overwrites the startup configuration with the applied configuration by writing to the `/etc/nvu.d/startup.yaml` file. The configuration persists after a reboot. Use this command when the auto save option is off. |
 | `nv config show` | Shows the currently applied configuration in `yaml` format. This command also shows NVUE version information. |
 | `nv config show -o commands` | Shows the currently applied configuration commands. |
 | `nv config diff -o commands` | Shows differences between two configuration revisions. |
@@ -279,7 +279,6 @@ nv show platform software installed
 nv show platform software installed <installed-id>
 nv show platform firmware
 nv show platform firmware <platform-component-id>
-nv show platform capabilities
 nv show platform environment
 ...
 ```
@@ -321,7 +320,7 @@ NVUE provides a default `/etc/nvue.d/startup.yaml` file that includes configurat
 
 {{%notice info%}}
 - The default startup configuration file sets the default hostname as `cumulus`; therefore, Cumulus Linux does not accept the DHCP `host-name` option. To set a different hostname with NVUE, see {{<link url="Quick-Start-Guide/#configure-the-hostname" text="Configure the Hostname">}}. If you do not manage your switch with NVUE and want to change this behavior with Linux configuration files, see this [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Administration/Hostname-Option-Received-From-DHCP-Ignored" >}}).
-- The default NVUE `startup.yaml` file includes the `cumulus` user account, which is the default account for the system. Modifying the NVUE configuration to not include the `cumulus` user account, replacing the configuration or applying a startup configuration, deletes the `cumulus` account. To merge in configuration changes or to restore a backup `startup.yaml` file, use the `nv config patch` command.
+- The default NVUE `startup.yaml` file includes the `cumulus` user account, which is the default account for the system. Modifying the NVUE configuration to not include the `cumulus` user account, replacing the configuration or applying a startup configuration, deletes the `cumulus` account. To merge in configuration changes or to restore a backup `startup.yaml` file, use the `nv config patch` command as described in {{<link url="Upgrading-Cumulus-Linux#back-up-and-restore-configuration-with-nvue" text=" Back up and Restore Configuration with NVUE">}}.
 - You cannot delete a user account that is logged into the switch.
 {{%/notice%}}
 
@@ -350,7 +349,7 @@ NVUE manages the following configuration files:
 
 ## Search for a Specific Configuration
 
-To search for a specific portion of the NVUE configuration, run the `nv config find <search string>` command. The search shows all items above and below the search string. For example, to search the entire NVUE object model configuration for any mention of `ptm`:
+To search for a specific portion of the NVUE configuration, run the `nv config find <search string>` command. The search shows all items above and below the search string. For example, to search the entire NVUE object model configuration for any mention of `bond1`:
 
 ```
 cumulus@switch:~$ nv config find bond1
@@ -470,8 +469,7 @@ The following example patches the pending configuration (runs the set or unset c
 ```
 cumulus@switch:~$ nv config patch /deps/nv-02/13/2021.yaml
 ```
-<!--
-{{%notice info%}}
-- When you run the `nv config replace` command and auto save is `on`, NVUE removes the default startup configuration.
+
+{{%notice note%}}
+A patch contains a single request to the NVUE service. Ordering of parameters within a patch is not guaranteed; NVUE does not support both unset and set commands for the same object in a single patch.
 {{%/notice%}}
--->

@@ -24,9 +24,9 @@ To install Cumulus VX, run the `onie-nos-install <URL to cumulus-linux-vx-amd64.
 
 ## Convert the Topology for Cumulus Linux on Demand
 
-NVIDIA offers {{<exlink url="https://www.nvidia.com/en-us/networking/linux-on-demand/" text="Cumulus Linux on demand">}} to help you get familiar with Cumulus Linux. This introductory lab tutorial includes various self-paced labs that let you practice configuring Cumulus Linux and use features such as NCLU, FRR, and BGP unnumbered.
+NVIDIA offers {{<exlink url="https://www.nvidia.com/en-us/networking/linux-on-demand/" text="Cumulus Linux on-demand">}} to help you get familiar with Cumulus Linux. This introductory lab tutorial includes various self-paced labs that let you practice configuring Cumulus Linux and use features such as NCLU, FRR, and BGP unnumbered.
 
-The Cumulus Linux on demand labs use the following topology:
+The Cumulus Linux on-demand labs use the following topology:
 
 {{< img src="/images/cumulus-vx/testdrive-topology.png" width="400" >}}
 
@@ -124,7 +124,7 @@ Cumulus VX supports the use of Linux {{<exlink text="udev rules" url="https://wi
    root@leaf01:mgmt:~$ reboot
    ```
 
-4. Log into the switch, then bring up swp49, swp50, and swp51:
+4. Log in to the switch, then bring up swp49, swp50, and swp51:
 
    ```
    cumulus@leaf01:mgmt:~$ net add interface swp49,swp50,swp51
@@ -138,9 +138,9 @@ In your hypervisor environment, create two Ubuntu virtual servers; server01 and 
 - On server01, connect eth1 to swp1 on leaf01 and eth02 to swp1 on leaf02.
 - On server02, connect eth1 to swp2 on leaf01 and eth02 to swp2 on leaf02.
 
-Refer to the your hypervisor documentation for detailed instructions on creating virtual servers and network connections.
+Refer to your hypervisor documentation for detailed instructions on creating virtual servers and network connections.
 
-After you change the ports and create server01 and server02, you are ready to go to {{<exlink url="https://www.nvidia.com/en-us/networking/linux-on-demand/" text="Cumulus Linux on demand">}} and follow the lab tutorials.
+After you change the ports and create server01 and server02, you are ready to go to {{<exlink url="https://www.nvidia.com/en-us/networking/linux-on-demand/" text="Cumulus Linux on-demand">}} and follow the lab tutorials.
 
 ## Run the Topology Converter
 
@@ -171,7 +171,7 @@ This procedure assumes you are on a system running Linux and have a Vagrant <!--
    local@host:~$ sudo pip3 install ipaddress
    ```
 
-2. Download the topology converter source code from {{<exlink url="https://gitlab.com/cumulus-consulting/tools/topology_converter/" text="gitlab">}}.
+2. Download the topology converter source code from {{<exlink url="https://gitlab.com/cumulus-consulting/tools/topology_converter/" text="GitLab">}}.
 
    The topology converter script (`topology_converter.py`) and required files download to the `topology_converter` folder, which also includes a subfolder for documentation and a subfolder for example topologies.
 
@@ -212,12 +212,12 @@ This procedure assumes you are on a system running Linux and have a Vagrant <!--
    local@host:$ python3 ./topology_converter.py ./topology.dot -p libvirt
    ```
 
-   The topology converter reads the provided topology file line by line, and learns information about each node and each link in the topology. It stores this information in a `variables` datastructure. You use a `jinja2` template (`/templates/Vagrantfile.j2`) to create a Vagrantfile based on the `variables` datastructure.
+   The topology converter reads the provided topology file line by line, and learns information about each node and each link in the topology. It stores this information in a `variables` data structure. You use a `jinja2` template (`/templates/Vagrantfile.j2`) to create a Vagrantfile based on the `variables` data structure.
 
 3. Start the simulation with the `vagrant up` command. With Livirt, start the simulation with the `vagrant up --provider=libvirt` command.
 
-4. Log into each switch, then bring up the interfaces.
+4. Log in to each switch, then bring up the interfaces.
 
 To explore the topology converter further, read the documentation and take a look at the selection of example topologies included with the source code you downloaded.
 
-If you encounter any issues, you can file them directly in the {{<exlink url="https://gitlab.com/cumulus-consulting/tools/topology_converter/" text="gitlab topology converter project">}}.
+If you encounter any issues, you can file them directly in the {{<exlink url="https://gitlab.com/cumulus-consulting/tools/topology_converter/" text="GitLab topology converter project">}}.

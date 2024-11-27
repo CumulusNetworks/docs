@@ -45,8 +45,8 @@ leaf01(config)# router bgp 65101
 leaf01(config-router)# address-family l2vpn evpn
 leaf01(config-router-af)# advertise-default-gw
 leaf01(config-router-af)# end
-leaf01)# write memory
-leaf01)# exit
+leaf01# write memory
+leaf01# exit
 cumulus@leaf01:~$
 ```
 
@@ -806,6 +806,12 @@ iface vlan4001
 If you use an MLAG pair instead of a single exit/border leaf, add the same temporary VNIs on both switches of the MLAG pair.
 
 {{< /expand >}}
+
+{{%notice note%}}
+
+Trident II+ and Maverick switches do not support VXLAN routing from underlay networks to overlay networks. This limitation does not apply to Trident 3 switches.
+
+{{%/notice%}}
 
 ### Centralized Routing with ARP Suppression Enabled on the Gateway
 

@@ -584,6 +584,52 @@ Edit the `/etc/network/interfaces` file to **remove** the line `ipv6-addrgen off
 {{< /tab >}}
 {{< /tabs >}}
 
+## MAC Address for a Bridge
+
+To configure a MAC address for a bridge, run the `nv set bridge domain <bridge> mac-address <mac-address>` command.
+
+The following example configures the bridge `br_default` with MAC address `00:00:5E:00:53:00`:
+
+{{< tabs "TabID609 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set bridge domain br_default mac-address 00:00:5E:00:53:00
+cumulus@switch:~$ nv config apply
+```
+
+To unset the MAC address for a bridge, run the `nv unset bridge domain <bridge> mac-address <mac-address>` command.
+
+```
+cumulus@switch:~$ nv unset bridge domain br_default mac-address
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/network/interfaces` file to add the MAC address (`hwaddress`) to the bridge stanza, then run the `sudo ifreload -a` command.
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+auto br_default
+iface br_default
+    bridge-ports bond1 bond2 bond3 peerlink vxlan48
+    hwaddress 00:00:5E:00:53:00
+    bridge-vlan-aware yes
+    bridge-vids 10 20 30
+```
+
+```
+cumulus@switch:~$ sudo ifreload -a
+```
+
+To unset the MAC address for a bridge, remove the MAC address from the bridge stanza and run the `sudo ifreload -a` command.
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## MAC Address Ageing
 
 By default, Cumulus Linux stores MAC addresses in the Ethernet switching table for 1800 seconds (30 minutes). You can change this setting to a value between 0 and 65535. A value of 0 disables MAC learning and frames flood out of all ports in a VLAN.

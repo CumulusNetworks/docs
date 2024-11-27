@@ -41,8 +41,8 @@ leaf01(config)# router bgp 65101
 leaf01(config-router)# address-family l2vpn evpn
 leaf01(config-router-af)# advertise-default-gw
 leaf01(config-router-af)# end
-leaf01)# write memory
-leaf01)# exit
+leaf01# write memory
+leaf01# exit
 cumulus@leaf01:~$
 ```
 

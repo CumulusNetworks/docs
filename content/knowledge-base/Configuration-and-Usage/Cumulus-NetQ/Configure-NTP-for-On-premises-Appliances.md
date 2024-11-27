@@ -7,13 +7,14 @@ toc: 4
 
 ## Issue
 
-NVIDIA NetQ uses `{{<exlink url="https://chrony.tuxfamily.org/" text="chrony">}}` to synchronize time on NetQ appliances. `chrony` syncs with NTP to keep the system clock correct in the appliance, as having the correct system clock is necessary for NetQ to function.
+NVIDIA NetQ uses `{{<exlink url="https://chrony.tuxfamily.org/" text="chrony">}}` to synchronize time on NetQ appliances. `chrony` syncs with NTP to ensure that the system clock on the appliance is accurate. 
 
-By default, NetQ configures `chrony` with public NTP pool servers. However, this does not work for air gapped on-premises environments, as they block egress traffic to NTP pool servers on the internet. If you are using the NetQ On-premises Appliance, you need to verify NTP points to internal NTP pool servers and not to external public servers.
+By default, NetQ configures `chrony` with public NTP pool servers. However, this does not work for air gapped on-premises environments, as they block egress traffic to NTP pool servers on the internet. If you are using the NetQ On-premises Appliance, you need to verify that NTP points to internal NTP pool servers and not to external public servers.
 
-##  Environment
+{{%notice note%}}
+If you are attempting to install or upgrade NetQ, you must uninstall NTP or any other NTP services (such as `ntpd` or SNTP) prior to the installation or upgrade.
+{{%/notice%}}
 
-- NetQ 3.2.0 and later
 
 ## Resolution
 
@@ -37,4 +38,4 @@ To configure NTP in `chrony`:
 
        cumulus@appliance:~$ sudo systemctl restart chronyd
 
-For more information about NTP, read the [Cumulus Linux user guide]({{<ref "/cumulus-linux-43/System-Configuration/Setting-Date-and-Time#use-ntp" >}}).
+For more information about NTP, refer to the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-59/System-Configuration/Date-and-Time/Network-Time-Protocol-NTP/" text="Cumulus Linux user guide">}}.

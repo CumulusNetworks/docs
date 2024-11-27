@@ -12,21 +12,13 @@ h { color: RGB(118,185,0)}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## <h>nv set system forwarding</h>
-
-Configures switch forwarding.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system forwarding ecmp-hash</h>
-
-Configures custom hashing to specify what to include in the hash calculation during load balancing between multiple next hops of a layer 3 route (ECMP hashing).
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set system forwarding ecmp-hash destination-ip</h>
 
 Turns ECMP hashing on the destination IP field on or off. The default setting is `off`.
+
+Custom hashing lets you specify what to include in the hash calculation during load balancing between multiple next hops of a layer 3 route (ECMP hashing).
 
 ### Version History
 
@@ -95,22 +87,6 @@ cumulus@switch:~$ nv set system forwarding ecmp-hash ingress-interface on
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system forwarding ecmp-hash inner-ip-protocol</h>
-
-Turns ECMP hashing on the inner IP protocol field on or off. The default setting is `off`.
-
-### Version History
-
-Introduced in Cumulus Linux 5.2.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system forwarding ecmp-hash inner-ip-protocol on
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set system forwarding ecmp-hash inner-destination-ip</h>
 
 Turns ECMP hashing on the inner destination IP address field on or off. The default setting is `off`.
@@ -139,6 +115,22 @@ Introduced in Cumulus Linux 5.2.0
 
 ```
 cumulus@switch:~$ nv set system forwarding ecmp-hash inner-destination-port on
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system forwarding ecmp-hash inner-ip-protocol</h>
+
+Turns ECMP hashing on the inner IP protocol field on or off. The default setting is `off`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.2.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system forwarding ecmp-hash inner-ip-protocol on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -255,29 +247,15 @@ cumulus@switch:~$ nv set system forwarding ecmp-hash source-port on
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system forwarding hash-seed</h>
-
-Configures a unique hash seed for each switch to prevent hash polarization, a type of network congestion that occurs when multiple data flows try to reach a switch using the same switch ports.
-
-You can set a hash seed value between 0 and 4294967295. If you do not specify a value, `switchd` creates a randomly generated seed.
-
-### Version History
-
-Introduced in Cumulus Linux 5.2.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system forwarding hash-seed 50
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set system forwarding ecmp-weight-normalisation max-hw-weight</h>
 
-Configures the maximum number of hardware entries for weighted ECMP. You can specify a value between 10 and 255. The default value is 32.
+Configures the maximum number of hardware entries for weighted ECMP. You can specify a value between 8 and 4096. The default value is 32.
 
 The NVIDIA Spectrum switch supports weight programming for ECMP by repeating each individual path, which consumes resources. To reduce hardware utilization of ECMP resources, you can enable weight normalization.
+
+{{%notice note%}}
+In Cumulus Linux 5.9 and earlier, the minimum number of hardware entries for weighted ECMP that you can specify is 10 and the maximum number is 255.
+{{%/notice%}}
 
 ### Version History
 
@@ -305,6 +283,24 @@ Introduced in Cumulus Linux 5.7.0
 
 ```
 cumulus@switch:~$ nv set system forwarding ecmp-weight-normalisation mode enabled on
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system forwarding hash-seed</h>
+
+Configures a unique hash seed for each switch to prevent hash polarization, a type of network congestion that occurs when multiple data flows try to reach a switch using the same switch ports.
+
+You can set a hash seed value between 0 and 4294967295. If you do not specify a value, `switchd` creates a randomly generated seed.
+
+### Version History
+
+Introduced in Cumulus Linux 5.2.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system forwarding hash-seed 50
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

@@ -41,7 +41,6 @@ Understanding the location of configuration data is important for successful upg
 | `/etc/cumulus/datapath/traffic.conf` | Configuration for the forwarding table profiles| {{<link title="Forwarding Table Size and Profiles">}} | N/A |
 | `/etc/cumulus/ports.conf` | Breakout cable configuration file | {{<link title="Switch Port Attributes">}} | N/A; read the guide on breakout cables |
 | `/etc/cumulus/switchd.conf` | `switchd` configuration | {{<link title="Configuring switchd">}} | N/A; read the guide on `switchd` configuration |
-| `/etc/cumulus/switchd.d/qos.conf` | QoS configuration | {{<link title="Quality of Service">}} | N/A |
 
 {{< /tab >}}
 {{< tab "Commonly Used Files ">}}
@@ -95,7 +94,7 @@ The following commands verify which files have changed compared to the previous 
 
 ### Back Up and Restore Configuration with NVUE
 
-You can backup and restore the configuration file with NVUE only if you used NVUE commands to configure the switch you want to upgrade.
+You can back up and restore the configuration file with NVUE only if you used NVUE commands to configure the switch you want to upgrade.
 
 To back up and restore the configuration file:
 
@@ -108,11 +107,11 @@ To back up and restore the configuration file:
 
 2. Copy the `/etc/nvue.d/startup.yaml` file off the switch to a different location.
 
-3. After upgrade is complete, restore the configuration. Copy the `/etc/nvue.d/startup.yaml` file to the switch, then run the `nv config patch` command. In the following example `startup.yaml` is in the `/home/cumulus` directory on the switch:
+3. After upgrade is complete, restore the configuration. Copy the `/etc/nvue.d/startup.yaml` file to the switch, run the `nv config patch` command, and restart the `nvued` service with the `sudo systemctl restart nvued.service` command. In the following example `startup.yaml` is in the `/home/cumulus` directory on the switch:
 
    ```
    cumulus@switch:~$ nv config patch /home/cumulus/startup.yaml
-   cumulus@switch:~$ nv config apply
+   cumulus@switch:~$ sudo systemctl restart nvued.service
    ```
 
 For information about the NVUE object model and commands, see {{<link url="NVIDIA-User-Experience-NVUE" text="NVIDIA User Experience - NVUE">}}.
@@ -145,28 +144,32 @@ cumulus@switch:~$ sudo cl-support
 
 ## Upgrade Cumulus Linux
 
-<span class="a-tooltip">[ONIE](## "Open Network Install Environment")</span> is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a bare metal switch.
-
 You can upgrade Cumulus Linux in one of two ways:
-
-- Install a Cumulus Linux image of the new release, using ONIE.
+- Install a Cumulus Linux image of the new release, using <span class="a-tooltip">[ONIE](## "Open Network Install Environment")</span>.
 - Upgrade only the changed packages using package upgrade.
 
 Cumulus Linux also provides ISSU to upgrade an active switch with minimal disruption to the network. See {{<link url="In-Service-System-Upgrade-ISSU" text="In-Service-System-Upgrade-ISSU">}}.
 
 {{%notice note%}}
-- To upgrade to Cumulus Linux 5.9.0 from Cumulus Linux 4.x or 3.x, you must install a disk image of the new release using ONIE. You *cannot* upgrade packages with package upgrade.
+- To upgrade to Cumulus Linux 5.9 from Cumulus Linux 5.8 or earlier, you must install a disk image of the new release using ONIE. You *cannot* upgrade packages with package upgrade.
 - Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in [Upgrade Switches in an MLAG Pair](#upgrade-switches-in-an-mlag-pair) below to ensure a smooth upgrade.
+{{%/notice%}}
+
+{{%notice warning%}}
+Cumulus Linux 5.9.1 and later includes a default NVUE `startup.yaml` file and NVUE configuration auto save is enabled by default. As a result, Cumulus Linux deletes the Linux configuration files on the switch when:
+- The switch reboots after upgrade
+- You change the cumulus account password using the Linux `passwd` command.
+
+These upgrade issues occur only if you use Linux commands to configure the switch. To work around these issues, see {{<link url="Whats-New/#linux-configuration-files-deleted" text="Linux Configuration Files Deleted">}}.
 {{%/notice%}}
 
 ### Install a Cumulus Linux Image or Upgrade Packages?
 
 The decision to upgrade Cumulus Linux by either installing a Cumulus Linux image or upgrading packages depends on your environment and your preferences. Here are some recommendations for each upgrade method.
 
-**Install a Cumulus Linux image** if you are performing a rolling upgrade in a production environment and if are using up-to-date and comprehensive automation scripts. This upgrade method enables you to choose the exact release to which you want to upgrade and is the *only* method available to upgrade your switch to a new release train (for example, from 4.4.3 to 5.9.0).
+**Install a Cumulus Linux image** if you are performing a rolling upgrade in a production environment and if you are using up-to-date and comprehensive automation scripts. This upgrade method enables you to choose the exact release to which you want to upgrade and is the *only* method available to upgrade your switch to a new release train (for example, from 4.4.3 to 5.9.1).
 
 Be aware of the following when installing the Cumulus Linux image:
-
 - Installing a Cumulus Linux image is destructive; any configuration files on the switch are not saved; copy them to a different server before you start the Cumulus Linux image install.
 - You must move configuration data to the new OS using ZTP or automation while the OS is first booted, or soon afterwards using out-of-band management.
 - Moving a configuration file can cause issues.
@@ -175,15 +178,15 @@ Be aware of the following when installing the Cumulus Linux image:
 - If configuration files do not restore correctly, you cannot ssh to the switch from in-band management. Use out-of-band connectivity (eth0 or console).
 - You *must* reinstall and reconfigure third-party applications after upgrade.
 
-Run **package upgrade** if you are upgrading from Cumulus Linux 5.0.0 to a later 5.x release, or if you use third-party applications (package upgrade does not replace or remove third-party applications, unlike the Cumulus Linux image install).
+Run **package upgrade** if you are upgrading from one Cumulus Linux 5.9 release to a later 5.9 release, or if you use third-party applications (package upgrade does not replace or remove third-party applications, unlike the Cumulus Linux image install).
 
 Be aware of the following when upgrading packages:
-
 - You cannot upgrade the switch to a new release train. For example, you **cannot** upgrade the switch from 4.x to 5.x.
+- You cannot upgrade a switch from Cumulus Linux 5.8 or earlier to Cumulus Linux 5.9 or later. 
 - The package upgrade command might restart or stop services as part of the upgrade process.
 - The package upgrade command might disrupt core services by changing core service dependency packages.
 - After you upgrade, account UIDs and GIDs created by packages might be different on different switches, depending on the configuration and package installation history.
-- Cumulus Linux does not support the `sudo -E apt-get dist-upgrade` command.
+- Cumulus Linux does not support the `sudo -E apt-get dist-upgrade` command. Be sure to use `sudo -E apt-get upgrade` when upgrading packages.
 
 ### Cumulus Linux Image Install (ONIE)
 
@@ -196,10 +199,10 @@ To upgrade the switch:
 3. Install the Cumulus Linux image with the `onie-install -a -i <image-location>` command, which boots the switch into ONIE. The following example command installs the image from a web server, then reboots the switch. There are additional ways to install the Cumulus Linux image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image">}}.
 
     ```
-    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-linux-4.1.0-mlx-amd64.bin && sudo reboot
+    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-linux-5.9.1-mlx-amd64.bin && sudo reboot
     ```
 
-4. Restore the configuration files to the new release (restoring files with automation is not recommended).
+4. Restore the configuration files to the new release (NVIDIA does not recommend restoring files with automation).
 5. Verify correct operation with the old configurations on the new release.
 6. Reinstall third party applications and associated configurations.
 
@@ -208,28 +211,16 @@ To upgrade the switch:
 {{%notice note%}}
 - NVUE deprecated the port split command options (2x10G, 2x25G, 2x40G, 2x50G, 2x100G, 2x200G, 4x10G, 4x25G, 4x50G, 4x100G, 8x50G) available in Cumulus Linux 5.3 and earlier. If you use NVUE to configure port breakout speeds in Cumulus 5.3 or earlier, NVUE automatically updates the configuration during upgrade to Cumulus Linux 5.5 and later to use the new format (2x, 4x, 8x).
 - Cumulus Linux continues to support the old port split format in the `/etc/cumulus/ports.conf` file; however NVIDIA recommends that you use the new format.
+
 {{%/notice%}}
 
 Cumulus Linux completely embraces the Linux and Debian upgrade workflow, where you use an installer to install a base image, then perform any package upgrades within that release train. Any packages that have changed after the base install get upgraded in place from the repository. All switch configuration files remain untouched, or in rare cases merged during the package upgrade.
 
 When you use package upgrade to upgrade your switch, configuration data stays in place during the upgrade. If the new release updates a previously changed configuration file, the upgrade process prompts you to either specify the version you want to use or evaluate the differences.
 
-{{%notice note%}}
-When you upgrade a switch from Cumulus Linux 5.5 or earlier with package upgrade, expired GPG keys prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
-
-```
-cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb
-cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb
-cumulus@switch:~$ sudo apt update
-cumulus@switch:~$ sudo apt upgrade
-```
-{{%/notice%}}
-<!--
 #### Disk Space Requirements
 
-Make sure you have enough disk space to perform a package upgrade. Cumulus Linux 5.9.0 requires:
-- 0.8GB of free disk space to upgrade from 5.8
-- 1GB of free disk space to upgrade from 5.7
+Make sure you have enough disk space to perform a package upgrade. To upgrade from Cumulus Linux 5.9.0 to Cumulus Linux 5.9.1, you need 0.5GB of free disk space.
 
 Before you upgrade, run the `sudo df -h` command to show how much disk space you are currently using on the switch.
 
@@ -245,7 +236,7 @@ tmpfs           7.7G      0    7.7G     0%    /sys/fs/cgroup
 tmpfs           7.7G    16K    7.7G     1%    /tmp
 overlay          28G   7.9G     18G    31%   
 ```
--->
+
 #### Upgrade the Switch
 
 To upgrade the switch using package upgrade:
@@ -363,8 +354,8 @@ To upgrade the switch using package upgrade:
 
 Cumulus Linux is a collection of different Debian Linux packages; be aware of the following:
 
-- The `/etc/os-release` and `/etc/lsb-release` files update to the currently installed Cumulus Linux release when you upgrade the switch using either *package upgrade* or *Cumulus Linux image install*. For example, if you perform a package upgrade and the latest Cumulus Linux release on the repository is 5.8.0, these two files display the release as 5.8.0 after the upgrade.
-- The `/etc/image-release` file updates **only** when you run a Cumulus Linux image install. Therefore, if you run a Cumulus Linux image install of Cumulus Linux 5.6.0, followed by a package upgrade to 5.8.0, the `/etc/image-release` file continues to display Cumulus Linux 5.6.0, which is the originally installed base image.
+- The `/etc/os-release` and `/etc/lsb-release` files update to the currently installed Cumulus Linux release when you upgrade the switch using either *package upgrade* or *Cumulus Linux image install*. For example, if you perform a package upgrade and the latest Cumulus Linux release on the repository is 5.9.1, these two files display the release as 5.9.1 after the upgrade.
+- The `/etc/image-release` file updates **only** when you run a Cumulus Linux image install. Therefore, if you run a Cumulus Linux image install of Cumulus Linux 5.9.0, followed by a package upgrade to 5.9.1, the `/etc/image-release` file continues to display Cumulus Linux 5.9.0, which is the originally installed base image.
 
 ## Upgrade Switches in an MLAG Pair
 
@@ -404,7 +395,7 @@ NVIDIA has not tested running different versions of Cumulus Linux on MLAG peer s
 4. To boot the switch into ONIE, run the `onie-install -a -i <image-location>` command. The following example command installs the image from a web server. There are additional ways to install the Cumulus Linux image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image">}}.
 
     ```
-    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/downloads/cumulus-linux-4.1.0-mlx-amd64.bin
+    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/downloads/cumulus-linux-5.9.1-mlx-amd64.bin
     ```
 
    To upgrade the switch with package upgrade instead of booting into ONIE, see {{<link url="#package-upgrade" text="Package Upgrade">}}.
@@ -420,7 +411,7 @@ NVIDIA has not tested running different versions of Cumulus Linux on MLAG peer s
 
     ```
     cumulus@switch:~$ nv set interface swp1 link state up
-    cumulus@switch:~$ nv set interface peerlink link state down
+    cumulus@switch:~$ nv set interface peerlink link state up
     cumulus@switch:~$ nv config apply
     cumulus@switch:~$ nv config save
     ```
@@ -481,7 +472,7 @@ NVIDIA has not tested running different versions of Cumulus Linux on MLAG peer s
 4. To boot the switch into ONIE, run the `onie-install -a -i <image-location>` command. The following example command installs the image from a web server. There are additional ways to install the Cumulus Linux image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image">}}.
 
     ```
-    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/downloads/cumulus-linux-4.1.0-mlx-amd64.bin
+    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/downloads/cumulus-linux-5.9.1-mlx-amd64.bin
     ```
 
    To upgrade the switch with package upgrade instead of booting into ONIE, see {{<link url="#package-upgrade" text="Package Upgrade">}}.

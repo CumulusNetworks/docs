@@ -12,15 +12,11 @@ h { color: RGB(118,185,0)}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## <h>nv set service dns \<vrf-id\></h>
-
-Provides commands to configure the Domain Name Server (DNS) service.
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set service dns \<vrf-id\> search \<domain-id\></h>
 
-Configures the domains to search for name matches.
+Configures the domains you want to search for name matches.
 
 ### Command Syntax
 

@@ -13,6 +13,12 @@ In Cumulus Linux 5.8 and earlier, the set of default firewall rules are more ope
 The default set of firewall rules consists of IP and transport level rules. To block specific layer 2 packets such as ARP, LLDP, or STP or any packets sent to the CPU as part of generic traps, you must configure separate rules using control plane ACLs in the INPUT or OUTPUT chain of ebtables. See {{<link url="Access-Control-List-Configuration" text="Access Control List Configuration">}}.
 {{%/notice%}}
 
+## Default Firewall Rule Files without NVUE
+
+Cumulus Linux enables the default firewall rules on the switch even before you apply NVUE configuration for the first time. The default firewall rules are in the `01control_plane.rules` and `98control_plane_whitelist.rules` files in the `/etc/cumulus/acl/policy.d/` directory.
+
+If you prefer to configure the switch by editing Linux files instead of running NVUE commands, you can make changes to these files to add additional rules.
+
 ## DoS Rules
 
 DoS rules protect the switch control plane and CPU from DOS attacks. Cumulus Linux provides firewall DoS rules to:
@@ -471,12 +477,6 @@ cumulus@switch:~$ nv show acl acl-default-dos rule 30 --rev=applied -o json
   }
 }
 ```
-
-## Default Firewall Rule Files without NVUE
-
-Cumulus Linux enables the default firewall rules on the switch even before you apply NVUE configuration for the first time. The default firewall rules are in the `01control_plane.rules` and `98control_plane_whitelist.rules` files in the `/etc/cumulus/acl/policy.d/` directory.
-
-If you prefer to configure the switch by editing Linux files instead of running NVUE commands, you can make changes to these files to add additional rules.
 
 ## Syslog Messages
 

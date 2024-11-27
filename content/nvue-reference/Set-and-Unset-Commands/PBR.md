@@ -12,6 +12,8 @@ h { color: RGB(118,185,0)}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set interface \<interface-id\> router pbr</h>
 
 Configures PBR on the specified interface.
@@ -56,15 +58,9 @@ cumulus@switch:~$ nv set interface swp51 router pbr map MAP1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set router pbr</h>
-
-Configures global PBR (Policy-based Routing) settings.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set router pbr enable</h>
 
-Enables or disables PBR. The default setting is `off`.
+Enables or disables Policy-based Routing (PBR). The default setting is `off`.
 
 ### Version History
 
@@ -132,7 +128,7 @@ Sets the action you want the PBR map rule to take, such as apply a next hop grou
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<pbr-map-id>` | The PBR route map name. |
-| `<rule-id> `  |  The PBR rule number. |
+| `<rule-id`  |  The PBR rule number. |
 
 ### Version History
 
@@ -194,13 +190,7 @@ cumulus@switch:~$ nv set router pbr map map1 rule 10 action vrf RED
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set router pbr map \<pbr-map-id\> rule \<rule-id\> match</h>
-
-Sets the match criteria you want to use for the PBR map rule.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set router pbr map \<pbr-map-id\> rule \<rule-id\> match destination-ip \<ip-address\></h>
+## <h>nv set router pbr map \<pbr-map-id\> rule \<rule-id\> match destination-ip \<ip-address-id\></h>
 
 Sets PBR to match packets according to the destination IP prefix.
 
@@ -210,7 +200,7 @@ Sets PBR to match packets according to the destination IP prefix.
 | ---------  | -------------- |
 | `<pbr-map-id>` |  The PBR route map name. |
 | `<rule-id>`   | The PBR rule number. |
-| `<ip-address>` | The destination IPv4 or IPv6 prefix. |
+| `<ip-address-id>` | The destination IPv4 or IPv6 prefix. |
 
 ### Version History
 
@@ -291,12 +281,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set router pbr map map1 rule 10 match source-ip 10.1.4.1/24 
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system global reserved routing-table pbr</h>
-
-Configures the reserved routing table ranges for PBR.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

@@ -499,5 +499,5 @@ Unlike the NVUE CLI, the NVUE API does not support configuring a plain text pass
 
 ## Related Information
 
-- {{<exlink url="https://docs.nginx.com/" text="NGINX documentaion">}}
+- {{<exlink url="https://docs.nginx.com/" text="NGINX documentation">}}
 - {{<exlink url="https://help.ubuntu.com/lts/serverguide/certificates-and-security.html" text="Ubuntu Certificates and Security documentation">}}

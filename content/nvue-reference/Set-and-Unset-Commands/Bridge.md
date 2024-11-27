@@ -12,21 +12,17 @@ h { color: RGB(118,185,0)}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## <h>nv set bridge</h>
-
-Configures a bridge on the switch.
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set bridge domain \<domain-id\></h>
 
-Configures the bridge domain. The default bridge domain is `br_default`.
+Configures the bridge.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<domain-id>` |  The name of the bridge domain. |
+| `<domain-id>` |  The bridge name. |
 
 ### Version History
 
@@ -42,7 +38,7 @@ Configures the number of seconds that Cumulus Linux stores MAC addresses in the 
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<domain-id>` |  The name of the bridge domain. |
+| `<domain-id>` |  The bridge name. |
 
 ### Version History
 
@@ -56,6 +52,100 @@ cumulus@switch:~$ nv set bridge domain br_default ageing 600
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set bridge domain \<domain-id\> dhcp-snoop vlan \<vid\></h>
+
+Enables DHCP snooping for IPv4 on a VLAN under a bridge.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<domain-id>` | The bridge name. |
+| `<vlan-id>` | The VLAN name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set bridge domain br_default dhcp-snoop vlan 10
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set bridge domain \<domain-id\> dhcp-snoop vlan \<vid\> trust \<interface-id\></h>
+
+Configures a trusted interface for IPv4. Cumulus Linux allows DHCP offers from only trusted interfaces to prevent malicious DHCP servers from assigning IPv4 addresses inside the network. The interface must be a member of the bridge you specify.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<domain-id>` | The bridge name. |
+| `<vlan-id>` | The VLAN name. |
+| `<interface-id>` | The trusted interface ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set bridge domain br_default dhcp-snoop vlan 10 trust swp3
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set bridge domain \<domain-id\> dhcp-snoop6 vlan \<vid\></h>
+
+Enables DHCP snooping for IPv6 on a VLAN under a bridge.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<domain-id>` | The bridge name. |
+| `<vlan-id>` | The VLAN name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set bridge domain br_default dhcp-snoop6 vlan 10
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set bridge domain \<domain-id\> dhcp-snoop6 vlan \<vid\> trust \<interface-id\></h>
+
+Configures a trusted interface for IPv6. Cumulus Linux allows DHCP offers from only trusted interfaces to prevent malicious DHCP servers from assigning IPv6 addresses inside the network. The interface must be a member of the bridge you specify.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<domain-id>` | The bridge name. |
+| `<vlan-id>` | The VLAN name. |
+| `<interface-id>` | The trusted interface ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set bridge domain br_default dhcp-snoop6 vlan 10 trust swp3
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set bridge domain \<domain-id\> encap 802.1Q</h>
 
 Configures all interfaces in this bridge domain to use 802.1Q encapsulation.
@@ -64,7 +154,7 @@ Configures all interfaces in this bridge domain to use 802.1Q encapsulation.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-|`<domain-id>` |  The name of the bridge domain. |
+|`<domain-id>` |  The bridge name. |
 
 ### Version History
 
@@ -86,7 +176,7 @@ Configures all interfaces in this bridge domain to use this MAC address.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-|`<domain-id>` |  The name of the bridge domain. |
+|`<domain-id>` | The bridge name. |
 
 ### Version History
 
@@ -102,7 +192,7 @@ cumulus@switch:~$ nv set bridge domain br_default mac-address 00:00:00:00:00:10
 
 ## <h>nv set bridge domain \<domain-id\> multicast</h>
 
-Configures multicast on the bridge domain.
+Configures multicast on the bridge.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -120,7 +210,7 @@ Turns IGMP and MLD snooping on or off. The default setting is `off`.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-|`<domain-id>` |  The name of the bridge domain. |
+|`<domain-id>` |  The bridge name. |
 
 ### Version History
 
@@ -134,21 +224,17 @@ cumulus@switch:~$ nv set bridge domain br_default multicast snooping enable on
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set bridge domain \<domain-id\> multicast snooping querier</h>
-
-Configures the IGMP and MLD querier. Without a multicast router, a single switch in an IP subnet can coordinate multicast traffic flows. This switch is the querier or the designated router. The querier generates query messages to check group membership, and processes membership reports and leave messages.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set bridge domain \<domain-id\> multicast snooping querier enable</h>
 
-Turns the multicast querier on or off. The default setting is `off`.
+Turns the IGMP and MLD multicast querier on or off. The default setting is `off`.
+
+Without a multicast router, a single switch in an IP subnet can coordinate multicast traffic flows. This switch is the querier or the designated router. The querier generates query messages to check group membership, and processes membership reports and leave messages.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-|`<domain-id>` |  The name of the bridge domain. |
+|`<domain-id>` |  The bridge name. |
 
 ### Version History
 
@@ -162,12 +248,6 @@ cumulus@switch:~$ nv set bridge domain br_default multicast snooping querier ena
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set bridge domain \<domain-id\> stp</h>
-
-Configures STP on the bridge domain.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set bridge domain \<domain-id\> stp force-protocol-version</h>
 
 Configures the switch to send BPDU type 0 STP configuration BPDUs. By default, the switch sends RSTP type 2 BPDUs. You can configure the switch to send BPDU type 0 STP configuration BPDUs when you need to interoperate with other systems.
@@ -178,7 +258,7 @@ You can specify either `stp` or `rstp`.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-|`<domain-id>` |  The name of the bridge domain. |
+|`<domain-id>` |  The bridge name. |
 
 ### Version History
 
@@ -200,7 +280,7 @@ Configures STP mode on the bridge. You can specify PVRST or RSTP mode. RSTP is t
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-|`<domain-id>` |  The name of the bridge domain. |
+|`<domain-id>` |  The bridge name. |
 
 ### Version History
 
@@ -222,7 +302,7 @@ Configures the spanning tree priority. The bridge with the lowest priority is th
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-|`<domain-id>` |  The name of the bridge domain. |
+|`<domain-id>` |  The bridge name. |
 
 ### Version History
 
@@ -244,7 +324,7 @@ Configures the STP state on the bridge. You can set a value of `up`, or `down`.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-|`<domain-id>` |  The name of the bridge domain. |
+|`<domain-id>` |  The bridge name. |
 
 ### Version History
 
@@ -258,12 +338,6 @@ cumulus@switch:~$ nv set bridge domain br_default stp state up
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set bridge domain \<domain-id\> stp vlan \<vid\></h>
-
-Configures PVRST settings for a VLAN.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set bridge domain \<domain-id\> stp vlan \<vid\> bridge-priority</h>
 
 Configures the spanning tree priority for a VLAN when in PVRST mode. You can set a value between 4096 and 61440.
@@ -272,8 +346,8 @@ Configures the spanning tree priority for a VLAN when in PVRST mode. You can set
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-|`<domain-id>` |  The name of the bridge domain. |
-| `<vid>`   |  The VLAN identifier.|
+|`<domain-id>` |  The bridge name. |
+| `<vlan-id>`   |  The VLAN name.|
 
 ### Version History
 
@@ -295,8 +369,8 @@ Configures the hello timer for a VLAN when in PVRST mode. The hello timer sets h
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-|`<domain-id>` |  The name of the bridge domain. |
-| `<vid>`   |  The VLAN identifier.|
+|`<domain-id>` |  The bridge name. |
+| `<vlan-id>`   |  The VLAN name.|
 
 ### Version History
 
@@ -318,8 +392,8 @@ Configures the forward delay for a VLAN when in PVRST mode. The forward delay se
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-|`<domain-id>` |  The name of the bridge domain. |
-| `<vid>`   |  The VLAN identifier.|
+|`<domain-id>` |  The bridge name. |
+| `<vlan-id>`   |  The VLAN name.|
 
 ### Version History
 
@@ -341,8 +415,8 @@ Configures the max age for a VLAN when in PVRST mode. The max age sets the maxim
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-|`<domain-id>` |  The name of the bridge domain. |
-| `<vid>`   |  The VLAN identifier.|
+|`<domain-id>` |  The bridge name. |
+| `<vlan-id>`   |  The VLAN name.|
 
 ### Version History
 
@@ -366,7 +440,7 @@ You can specify `on` or `off`.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-|`<domain-id>` |  The name of the bridge domain. |
+|`<domain-id>` |  The bridge name. |
 
 ### Version History
 
@@ -382,13 +456,13 @@ cumulus@switch:~$ nv set bridge domain br_default svi-force-up enable on
 
 ## <h>nv set bridge domain \<domain-id\> type vlan-aware</h>
 
-Configures the bridge domain to be VLAN-aware.
+Configures the bridge to be VLAN-aware.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-|`<domain-id>` |  The name of the bridge domain. |
+|`<domain-id>` |  The bridge name. |
 
 ### Version History
 
@@ -404,13 +478,13 @@ cumulus@switch:~$ nv set bridge domain br_default type vlan-aware
 
 ## <h>nv set bridge domain \<domain-id\> untagged</h>
 
-Configures the interfaces on the bridge domain to be *untagged* so that they pass traffic for only a single VLAN.
+Configures the interfaces on the bridge to be *untagged* so that they pass traffic for only a single VLAN.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-|`<domain-id>` |  The name of the bridge domain. |
+|`<domain-id>` | The bridge name. |
 
 ### Version History
 
@@ -432,8 +506,8 @@ Configures the VLAN tag identifier.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<domain-id>` |  The name of the bridge domain. |
-| `<vid>`   |  The VLAN identifier.|
+| `<domain-id>` | The bridge name. |
+| `<vlan-id>`   |  The VLAN name.|
 
 ### Version History
 
@@ -447,12 +521,6 @@ cumulus@switch:~$ nv set bridge domain br_default vlan 10
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set bridge domain \<domain-id\> vlan \<vid\> ptp</h>
-
-Configures Precision Time Protocol (PTP) on the all interfaces in the specified VLAN.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set bridge domain \<domain-id\> vlan \<vid\> ptp enable</h>
 
 Turns PTP on or off for the specified VLAN. The default setting is `off`.
@@ -461,8 +529,8 @@ Turns PTP on or off for the specified VLAN. The default setting is `off`.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<domain-id>`   | The name of the bridge domain. |
-| `<vid>`   |  The VLAN identifier.
+| `<domain-id>`   | The bridge name. |
+| `<vlan-id>`   |  The VLAN name. |
 
 ### Version History
 
@@ -484,9 +552,9 @@ Maps a VLAN to a VNI.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<domain-id>`   | The name of the bridge domain. |
-| `<vid>`   |  The VLAN identifier.
-| `<vni-id>` | The VXLAN ID. |
+| `<domain-id>`   | The bridge name. |
+| `<vlan-id>`   |  The VLAN name. |
+| `<vni-id>` | The VXLAN name. |
 
 ### Version History
 
@@ -500,23 +568,17 @@ cumulus@switch:~$ nv set bridge domain br_default vlan 10 vni 10
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> flooding</h>
-
-Configures <span class="a-tooltip">[BUM](## "Broadcast, unknown-unicast and multicast")</span> traffic handling.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> flooding enable</h>
 
-Turns flooding on or off for the specified VNI.
+Turns <span class="a-tooltip">[BUM](## "Broadcast, unknown-unicast and multicast")</span> traffic handling on or off for the specified VNI.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<domain-id>`   | The name of the bridge domain. |
-| `<vid>`   |  The VLAN identifier.
-| `<vni-id>` | The VXLAN ID. |
+| `<domain-id>` | The bridge name. |
+| `<vlan-id>`   |  The VLAN name. |
+| `<vni-id>` | The VXLAN name. |
 
 ### Version History
 
@@ -538,9 +600,9 @@ Configures replication of BUM traffic where individual copies send to remote des
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<domain-id>`   | The name of the bridge domain. |
-| `<vid>`   |  The VLAN identifier.
-| `<vni-id>` | The VXLAN ID. |
+| `<domain-id>`   | The bridge name. |
+| `<vlan-id>`   |  The VLAN name. |
+| `<vni-id>` | The VXLAN name. |
 | `<hrep-id>`  |  The IPv4 unicast addresses or `evpn`. |
 
 ### Version History
@@ -563,9 +625,9 @@ Configures BUM traffic to go to the specified multicast group, where receivers w
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<domain-id>`   | The name of the bridge domain. |
-| `<vid>`   |  The VLAN identifier.
-| `<vni-id>` | The VXLAN ID. |
+| `<domain-id>`   | The bridge name. |
+| `<vlan-id>`   |  The VLAN name. |
+| `<vni-id>` | The VXLAN name. |
 | `<ipv4-multicast>` | The multicast group.|
 
 ### Version History
@@ -580,7 +642,7 @@ cumulus@switch:~$ nv set bridge domain br_default vlan 10 vni 10 flooding multic
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set bridge domain \<domain-id\> vlan \<vid> vni \<vni-id\> mac-learning</h>
+## <h>nv set bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> mac-learning</h>
 
 Turns MAC learning on or off for the VNI. The default setting is `off`.
 
@@ -588,9 +650,9 @@ Turns MAC learning on or off for the VNI. The default setting is `off`.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<domain-id>`   | The name of the bridge domain. |
-| `<vid>`   |  The VLAN identifier.
-| `<vni-id>` | The VXLAN ID. |
+| `<domain-id>`   | The bridge name. |
+| `<vlan-id>`   |  The VLAN name. |
+| `<vni-id>` | The VXLAN name. |
 
 ### Version History
 
@@ -604,28 +666,6 @@ cumulus@switch:~$ nv set bridge domain br_default vlan 10 vni 10 mac-learning of
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set bridge domain \<domain-id\> vlan \<vid\> multicast</h>
-
-Configures multicast on the VLAN.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set bridge domain \<domain-id\> vlan \<vid\> multicast snooping</h>
-
-Configures IGMP and MLD snooping on the VLAN.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set bridge domain \<domain-id\> vlan \<vid\> multicast snooping querier</h>
-
-Configures the IGMP and MLD querier on the VLAN.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set bridge domain \<domain-id\> vlan \<vid\> multicast snooping querier source-ip \<source-ip\></h>
 
 Configures the source IP address you want to use to send IGMP MLD queries.
@@ -634,8 +674,8 @@ Configures the source IP address you want to use to send IGMP MLD queries.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<domain-id>`   | The name of the bridge domain. |
-| `<vid>`   |  The VLAN identifier.
+| `<domain-id>` | The bridge name. |
+| `<vlan-id>`   |  The VLAN name. |
 
 ### Version History
 
@@ -657,7 +697,7 @@ Configures the VNI offset when mapping VLANs to VNIs automatically. You can set 
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-|`<domain-id>` |  The name of the bridge domain. |
+|`<domain-id>` |  The bridge name. |
 
 ### Version History
 
@@ -671,12 +711,6 @@ cumulus@switch:~$ nv set bridge domain br_default vlan-vni-offset 10000
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> bridge</h>
-
-Configures the bridged interface.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set interface \<interface-id\> bridge domain \<domain-id\></h>
 
 Configures the bridged interface domain.
@@ -686,7 +720,7 @@ Configures the bridged interface domain.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
-| `<domain-id>` |  The name of the bridge domain. |
+| `<domain-id>` |  The bridge name. |
 
 ### Version History
 
@@ -709,7 +743,7 @@ Configures access ports to ignore all tagged packets. You can set a value betwee
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
-| `<domain-id>` |  The name of the bridge domain. |
+| `<domain-id>` |  The bridge name. |
 
 ### Version History
 
@@ -732,7 +766,7 @@ Turns source MAC address learning on or off for this bridged interface.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
-| `<domain-id>` |  The name of the bridge domain. |
+| `<domain-id>` |  The bridge name. |
 
 ### Version History
 
@@ -746,12 +780,6 @@ cumulus@switch:~$ nv set interface swp1 bridge domain default learning on
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> bridge domain \<domain-id\> stp</h>
-
-Configures STP on the bridged interface domain.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set interface \<interface-id\> bridge domain \<domain-id\> stp admin-edge</h>
 
 Turns STP PortAdminEdge on or off on the bridged interface. PortAdminEdge is equivalent to the PortFast feature offered by other vendors. It enables or disables the initial edge state of a port in a bridge. All ports with PortAdminEdge on bypass the listening and learning states and go straight to forwarding.
@@ -761,7 +789,7 @@ Turns STP PortAdminEdge on or off on the bridged interface. PortAdminEdge is equ
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
-| `<domain-id>` |  The name of the bridge domain. |
+| `<domain-id>` |  The bridge name. |
 
 ### Version History
 
@@ -786,7 +814,7 @@ When a port with PortAutoEdge receives a BPDU, the port stops being in the edge 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
-| `<domain-id>` |  The name of the bridge domain. |
+| `<domain-id>` |  The bridge name. |
 
 ### Version History
 
@@ -809,7 +837,7 @@ Turns `bpdufilter` on or off on a bridge domain. When on, `bpdufilter` filters B
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
-| `<domain-id>` |  The name of the bridge domain. |
+| `<domain-id>` | The bridge name. |
 
 ### Version History
 
@@ -832,7 +860,7 @@ Turns BPDU guard on or off on the bridged interface to protect the spanning tree
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
-| `<domain-id>` |  The name of the bridge domain. |
+| `<domain-id>` |  The bridge name. |
 
 ### Version History
 
@@ -855,7 +883,7 @@ Turns bridge assurance capability for a bridged port on or off.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
-| `<domain-id>` |  The name of the bridge domain. |
+| `<domain-id>` |  The bridge name. |
 
 ### Version History
 
@@ -878,7 +906,7 @@ Turns STP restricted role for the bridged port on or off.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
-| `<domain-id>` |  The name of the bridge domain. |
+| `<domain-id>` |  The bridge name. |
 
 ### Version History
 
@@ -892,12 +920,6 @@ cumulus@switch:~$ nv set interface swp1 bridge domain default stp restrrole
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> bridge domain \<domain-id\> stp vlan \<vid\></h>
-
-Configures PVRST settings for an interface.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set interface \<interface-id\> bridge domain \<domain-id\> stp vlan \<vid\> priority</h>
 
 Configures the interface port priority for a VLAN. You can specify a priority between 0 and 240; the value must be a multiple of 16.
@@ -907,8 +929,8 @@ Configures the interface port priority for a VLAN. You can specify a priority be
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
-| `<domain-id>` |  The name of the bridge domain. |
-| `<vid>` | The VLAN identifier. |
+| `<domain-id>` |  The bridge name. |
+| `<vlan-id>` | The VLAN name. |
 
 ### Version History
 
@@ -931,8 +953,8 @@ Configures the interface path cost for a VLAN to influence the spanning tree for
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
-| `<domain-id>` |  The name of the bridge domain. |
-| `<vid>` | The VLAN identifier. |
+| `<domain-id>` |  The bridge name. |
+| `<vlan-id>` | The VLAN name. |
 
 ### Version History
 
@@ -957,7 +979,7 @@ For PVRST mode, the port cost for a VLAN takes precedence over the cost for a po
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
-| `<domain-id>` |  The name of the bridge domain. |
+| `<domain-id>` |  The bridge name. |
 
 ### Version History
 
@@ -980,7 +1002,7 @@ Configures the VLAN in which untagged packets ingress this bridged interface. Eg
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
-| `<domain-id>` |  The name of the bridge domain. |
+| `<domain-id>` |  The bridge name. |
 
 ### Version History
 
@@ -1003,8 +1025,8 @@ Configures a VLAN for the bridged interface.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
-| `<domain-id>` |  The name of the bridge domain. |
-| `<vid>` |  The VLAN name. |
+| `<domain-id>` |  The bridge name. |
+| `<vlan-id>` |  The VLAN name. |
 
 ### Version History
 

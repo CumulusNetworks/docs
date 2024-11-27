@@ -185,7 +185,7 @@ cumulus@switch:~$ nv show platform software installed vrf
              operational        
 -----------  -------------------
 package      vrf                
-version      1.0-cl5.9.0u2      
+version      1.0-cl5.9.0u4      
 description  Linux tools for VRF
 ```
 
@@ -201,7 +201,7 @@ Desired=Unknown/Install/Remove/Purge/Hold
 |/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
 ||/ Name       Version      Architecture Description
 +++-==========-============-============-=================================
-ii  vrf        1.0-cl5.7.0u9    amd64        Linux tools for VRF
+ii  vrf        1.0-cl5.9.0u4    amd64        Linux tools for VRF
 ```
 
 {{< /tab >}}

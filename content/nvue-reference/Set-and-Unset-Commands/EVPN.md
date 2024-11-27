@@ -12,28 +12,6 @@ h { color: RGB(118,185,0)}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## <h>nv set evpn</h>
-
-Configures the EVPN control plane.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set evpn dad</h>
-
-Configures EVPN duplicate address detection. The VTEP considers a host MAC or IP address to be duplicate if the address moves across the network more than a certain number of times within a certain number of seconds. In addition to legitimate host or VM mobility scenarios, address movement can occur when you configure IP addresses incorrectly on a host or when packet looping occurs in the network due to faulty configuration or behavior.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set evpn dad duplicate-action</h>
-
-Configures the action to take when the switch flags a MAC address as a possible duplicate.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set evpn dad duplicate-action freeze</h>
-
-Configures the switch to take no action for further move events for the MAC address.
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set evpn dad duplicate-action freeze duration</h>
@@ -52,9 +30,27 @@ cumulus@switch:~$ nv set evpn dad duplicate-action freeze duration permanent
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set evpn dad duplicate-action warning-only</h>
+
+Sets the duplicate address action to only generate a warning log message. This is the default setting.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set evpn dad duplicate-action warning-only
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set evpn dad enable</h>
 
 Enables and disables duplicate address detection. The default setting is `off`.
+
+The VTEP considers a host MAC or IP address to be duplicate if the address moves across the network more than a certain number of times within a certain number of seconds. In addition to legitimate host or VM mobility scenarios, address movement can occur when you configure IP addresses incorrectly on a host or when packet looping occurs in the network due to faulty configuration or behavior.
 
 ### Version History
 
@@ -138,25 +134,13 @@ cumulus@switch:~$ nv set evpn mac-vrf-soo 10.0.1.12:10
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set evpn multihoming</h>
-
-Configures global EVPN multihoming configuration settings.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set evpn multihoming ead-evi-route</h>
-
-Configures the switch to advertise type-1/EAD (Ethernet Auto-discovery) routes as EAD-per-EVI (Ethernet Auto-discovery per EVPN instance) routes.
-
-{{%notice note%}}
-Some third-party switch vendors do not advertise EAD-per-EVI routes; they only advertise EAD-per-ES routes. To interoperate with these vendors, you need to disable EAD-per-EVI route advertisements.
-{{%/notice%}}
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set evpn multihoming ead-evi-route rx</h>
 
-Turns EAD-per-EVI at the receiving end on or off. The default setting is `on`.
+Configures the switch to advertise type-1/EAD (Ethernet Auto-discovery) routes as EAD-per-EVI (Ethernet Auto-discovery per EVPN instance) routes for EVPN multihoming at the receiving end.
+
+{{%notice note%}}
+Some third-party switch vendors do not advertise EAD-per-EVI routes; they only advertise EAD-per-ES routes. To interoperate with these vendors, you need to disable EAD-per-EVI route advertisements.  The default setting is `on`.
+{{%/notice%}}
 
 ### Version History
 
@@ -172,7 +156,7 @@ cumulus@switch:~$ nv set evpn multihoming ead-evi-route rx off
 
 ## <h>nv set evpn multihoming ead-evi-route tx</h>
 
-Turns EAD-per-EVI route advertisement on or off. The default setting is `on`.
+Configures the switch to advertise type-1/EAD (Ethernet Auto-discovery) routes as EAD-per-EVI (Ethernet Auto-discovery per EVPN instance) routes for EVPN multihoming at egress. The default setting is `on`.
 
 ### Version History
 
@@ -264,6 +248,12 @@ cumulus@switch:~$ nv set evpn multihoming segment df-preference 50000
 
 Configures the MAC address per Ethernet segment for EVPN multihoming. This setting is required.
 
+### Command Syntax
+
+| Command |  Description   |
+| ---------  | -------------- |
+| `<mac-address>` | The MAC address. |
+
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -289,12 +279,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set evpn multihoming startup-delay 1000
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set evpn route-advertise</h>
-
-Configures EVPN route advertising.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -356,7 +340,7 @@ In Cumulus Linux 5.3 and earlier, this command is `nv set evpn evi,`
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set evpn vni \<vni-id\> rd</h>
+## <h>nv set evpn vni \<vni-id\> rd \<rd-id\></h>
 
 Configures the BGP Route Distinguisher to use for EVPN type-5 routes originated from this VNI.
 
@@ -369,7 +353,7 @@ In Cumulus Linux 5.3 and earlier, this command is `nv set evpn evi <vni-id> rd`
 | Command |  Description   |
 | ---------  | -------------- |
 | `<vni-id>` | The VNI ID. |
-| `<rt-id>` |  The route target. |
+| `<rd-id>` |  The BGP route distinguisher. |
 
 ### Version History
 
@@ -380,16 +364,6 @@ Introduced in Cumulus Linux 5.4.0
 ```
 cumulus@switch:~$ nv set evpn vni 10 rd 10.10.10.1:20
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set evpn vni \<vni-id\> route-target</h>
-
-Configures route targets for the specified VNI.
-
-{{%notice note%}}
-In Cumulus Linux 5.3 and earlier, this command is `nv set evpn evi <vni-id> route-target`
-{{%/notice%}}
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -474,12 +448,6 @@ cumulus@switch:~$ nv set evpn vni 10 route-target import 65102:10
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> evpn</h>
-
-Configures the EVPN control plane on the specified VRF.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> evpn enable</h>
 
 Turns the EVPN control plane on or off in the specified VRF.
@@ -502,7 +470,29 @@ cumulus@switch:~$ nv set vrf RED evpn enable on
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> evpn vlan</h>
+## <h>nv set vrf \<vrf-id\> evpn prefix-routes-only</h>
+
+Configures the switch to advertise IP prefix routes (type 5 routes) only in the specified VRF. You can specify `on` or `off`.
+
+### Command Syntax
+
+| Command |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` | The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf RED evpn prefix-routes-only on
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> evpn vlan \<vlan-id\></h>
 
 Configures the VLAN for the EVPN instance in the specified VRF. You can specify a value between 1 and 4094, or `auto`.
 
@@ -511,7 +501,7 @@ Configures the VLAN for the EVPN instance in the specified VRF. You can specify 
 | Command |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` | The VRF name. |
-| `<vlan-id>` | The VLAN ID. |
+| `<vlan-id>` | The VLAN name. |
 
 ### Version History
 
@@ -544,26 +534,4 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv set vrf RED evpn vni 10
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> evpn prefix-routes-only</h>
-
-Configures the switch to advertise IP prefix routes (type 5 routes) only in the specified VRF. You can specify `on` or `off`.
-
-### Command Syntax
-
-| Command |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` | The VRF name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set vrf RED evpn prefix-routes-only on
 ```

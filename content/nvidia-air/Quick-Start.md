@@ -53,6 +53,185 @@ After you log in, the NVIDIA Air landing page opens:
 
    {{<img src="/images/guides/nvidia-air/Catalog.png" alt="options to build a simulation from a pre-defined topology, a custom topology, or from the demo marketplace" width="800px">}}
 
+## Import a Topology
+
+Network topologies describe which nodes a data center is comprised of, how they are configured and which other nodes they are connected to. A format is a way to structure and represent such topologies. Air is able to create simulations out of network topologies structured using a supported format.
+
+{{< tabs "TabID110 ">}}
+{{< tab "Example 1">}}
+
+The following topology defines two nodes (`node-1` and `node-2`) connected to each other via their respective `eth1` interfaces, and the Out-of-Band management network enabled by default. 
+
+```
+{
+    "nodes": {
+        "node-1": {
+            "os": "generic/ubuntu2204"
+        },
+        "node-2": {
+            "os": "generic/ubuntu2204"
+        }
+    },
+    "links": [
+        [{"node": "node-1", "interface": "eth1"}, {"node": "node-2", "interface": "eth1"}]
+    ]
+}
+```
+
+{{< /tab >}}
+{{< tab "Example 2">}}
+
+The following topology defines two nodes (`node-1` and `node-2`) connected to each other via their respective `eth1` interfaces, and the Out-of-Band management network disabled (`"oob": false`). The example showcases:
+- Custom values for configurable node fields (`cpu`, `memory`, `storage`)
+- Public-facing interface (with a custom `mac` address) to the outside world (`eth2` of `node-1`)
+- Referencing `os` image by specific UUID (`node-2`)
+
+```
+{
+    "oob": false,
+    "nodes": {
+        "node-1": {
+            "os": "generic/ubuntu2204",
+            "cpu": 2,
+            "memory": 2048
+        },
+        "node-2": {
+            "os": "defb3ffc-e29b-4d3a-a5fb-41ed1974f938",
+            "memory": 2048,
+            "storage": 25
+        }
+    },
+    "links": [
+        [{"node": "node-1", "interface": "eth1"}, {"node": "node-2", "interface": "eth1"}],
+        [{"node": "node-1", "interface": "eth2", "mac": "02:00:00:00:00:07"}, "exit"]
+    ]
+}
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+A more detailed schema for this format can be viewed by visiting the [API documentation](https://air.nvidia.com/api/#/v2/v2_simulations_import_create).
+
+{{< expand "Import Instructions" >}}
+
+In order to import a topology, the following API v2 SDK method can be used:
+
+```
+from air_sdk.v2 import AirApi
+
+air = AirApi(
+    authenticate=True,
+    username='<username>',
+    password='<password-or-token>',
+)
+simulation = air.simulations.create_from(
+    title='<simulation-name>',
+    format='JSON',
+    content=<topology-content>,
+    organization=<optional-organization>
+)
+```
+
+{{%notice info%}}
+Minimum required SDK version for this feature is `air-sdk>=2.14.0`
+{{%/notice%}}
+
+Topology content can be provided in multiple ways:
+
+{{< tabs "TabID111 ">}}
+{{< tab "Python Dictionary">}}
+
+```
+simulation = air.simulations.create_from(
+    'my-simulation',
+    'JSON',
+    {
+        'nodes': {
+            'node-1': {
+                'os': 'generic/ubuntu2204',
+            },
+            'node-2': {
+                'os': 'generic/ubuntu2204',
+            },
+        },
+        'links': [
+            [{'node': 'node-1', 'interface': 'eth1'}, {'node': 'node-2', 'interface': 'eth1'}]
+        ]
+    },
+)
+```
+
+{{< /tab >}}
+{{< tab "JSON String">}}
+
+```
+simulation = air.simulations.create_from(
+    'my-simulation',
+    'JSON',
+    '{"nodes": {"node-1": {"os": "generic/ubuntu2204"}, "node-2": {"os": "generic/ubuntu2204"}}, "links": [[{"node": "node-1", "interface": "eth1"}, {"node": "node-2", "interface": "eth1"}]]}'
+)
+```
+
+{{< /tab >}}
+{{< tab "File Path">}}
+
+```
+import pathlib
+simulation = air.simulations.create_from(
+    'my-simulation',
+    'JSON',
+    pathlib.Path('/path/to/topology.json')
+)
+```
+
+{{< /tab >}}
+{{< tab "File Descriptor">}}
+
+```
+import pathlib
+with pathlib.Path('/path/to/topology.json').open('r') as topology_file:
+    simulation = air.simulations.create_from(
+        'my-simulation',
+        'JSON',
+        topology_file
+    )
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /expand >}}
+
+## Export a Topology
+
+Existing simulations can be exported into a format representation. More information about this process can be found by visiting the [API documentation](https://air.nvidia.com/api/#/v2/v2_simulations_export_retrieve).
+
+{{< expand "Export Instructions" >}}
+
+In order to export a simulation, the following API v2 SDK method can be used:
+
+```
+from air_sdk.v2 import AirApi
+
+air = AirApi(
+    authenticate=True,
+    username='<username>',
+    password='<password-or-token>',
+)
+topology = air.simulations.export(
+    simulation='<simulation-instance-or-id>',
+    format='JSON',
+    image_ids=True,  # defaults to False
+)
+```
+
+{{%notice info%}}
+Minimum required SDK version for this feature is `air-sdk>=2.15.0`
+{{%/notice%}}
+
+{{< /expand >}}
+
 ## Simulation Views
 
 Every simulation has a basic view and an advanced view.

@@ -7,7 +7,7 @@ extends: existence
 message: '"%s" inside a command should be lowercase.'
 level: error
 nonword: True
-scope: code
+scope: raw
 tokens:
     - 'Hugo '
     - 'Git '

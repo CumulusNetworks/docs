@@ -30,6 +30,7 @@ The NVUE REST API supports the following methods:
 - The **PATCH** method replaces or unsets a configuration. You use this method for the `nv set` and `nv config apply` commands. You can either perform:
   - A *targeted* configuration patch to make a configuration change, where you run a specific NVUE REST API targeted at a particular OpenAPI end-point URI. Based on the NVUE schema definition, you need to direct the PATCH REST API request at a particular endpoint (for example, `/nvue_v1/vrf/<vrf-id>/router/bgp`) and provide the payload that conforms to the schema. With a targeted configuration patch, you can control individual resources.
   - A *root* patch, where you run the NVUE PATCH API on the root node of the schema so that a single PATCH operation can change one, some, or the entire configuration in a single payload. The payload of the PATCH method must be aware of the entire NVUE object model schema because you make the configuration changes relative to the root node `/nvue_v1`. You typically perform a *root patch* to push all configurations to the switch in bulk; for example, if you use an SDN controller or a network management system to push the entire switch configuration every time you need to make a change, regardless of how small or large. A root patch can also make configuration changes with fewer round trips to the switch.
+  - The input payload in a PATCH request can have either a `set` or `unset` json object for the same resource, but not both. The order in which the API executes the `set` and `unset` objects is not deterministic and not supported.
 - The **DELETE** method deletes a configuration and is equivalent to the `nv unset` commands.
 
 ## Secure the API
@@ -1044,7 +1045,7 @@ To make a configuration change:
 {{< tab "Curl Command ">}}
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"99.99.99.99/32": {}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:876nvue_v1/interface/lo/ip/address?rev=2
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"99.99.99.99/32": {}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface/lo/ip/address?rev=2
 {
   "99.99.99.99/32": {}
 }
@@ -3455,7 +3456,7 @@ To try out the NVUE REST API, use the {{<exlink url="https://air.nvidia.com/mark
 ## Resources
 
 For information about using the NVUE REST API, refer to the {{<mib_link url="cumulus-linux-59/api/index.html" text="NVUE API Swagger documentation.">}}
-The full object model download is available {{<mib_link url="cumulus-linux-58/api/openapi.json" text="here.">}}
+The full object model download is available {{<mib_link url="cumulus-linux-59/api/openapi.json" text="here.">}}
 
 ## Considerations
 
@@ -3464,6 +3465,6 @@ The full object model download is available {{<mib_link url="cumulus-linux-58/ap
 
 ## Related Information
 
-- {{<exlink url="https://docs.nginx.com/" text="NGINX documentaion">}}
+- {{<exlink url="https://docs.nginx.com/" text="NGINX documentation">}}
 - {{<exlink url="https://help.ubuntu.com/lts/serverguide/certificates-and-security.html" text="Ubuntu Certificates and Security documentation">}}
 - {{<exlink url="https://pypi.org/project/requests/" text="Python requests module">}}

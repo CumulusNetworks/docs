@@ -45,7 +45,7 @@ Due to licensing restrictions, Cumulus Linux does not install all MIBs. For the 
 To install more MIBs, install `snmp-mibs-downloader`, then either remove or comment out the "non-free" repository in `/etc/apt/sources.list`. Refer to {{<link url="Configure-SNMP-Traps/#enable-mib-to-oid-translation" text="Enable MIB-to-OID Translation">}}.
 <!-- vale off -->
 {{<expand "Installed MIBs">}}
-
+```
 cumulus@switch:~$ ls /usr/share/snmp/mibs/
 AGENTX-MIB.txt                       IP-MIB.txt                        SNMP-MPD-MIB.txt
 BRIDGE-MIB.txt                       IPV6-FLOW-LABEL-MIB.txt           SNMP-NOTIFICATION-MIB.txt
@@ -76,6 +76,6 @@ IF-INVERTED-STACK-MIB.txt            SCTP-MIB.txt                      UCD-SNMP-
 IF-MIB.txt                           SMUX-MIB.txt                      UDP-MIB.txt
 INET-ADDRESS-MIB.txt                 SNMP-COMMUNITY-MIB.txt
 IP-FORWARD-MIB.txt                   SNMP-FRAMEWORK-MIB.txt
-
+```
 {{</expand>}}
 <!-- vale on -->

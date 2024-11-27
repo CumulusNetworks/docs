@@ -291,6 +291,9 @@ subnet_checks=1
 
 You can add static ARP table entries for easy management or as a security measure to prevent spoofing and other nefarious activities.
 
+{{< tabs "TabID294 ">}}
+{{< tab "NVUE Commands ">}}
+
 To create a static ARP entry for an interface with an IPv4 address associated with a MAC address, run the `nv set interface <interface> neighbor ipv4 <ip-address> lladdr <mac-address>` command.
 
 ```
@@ -313,9 +316,49 @@ cumulus@leaf01:mgmt:~$ nv unset interface swp51 neighbor ipv4 10.5.5.51
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+To create a static ARP entry for an interface with an IPv4 address associated with a MAC address, add `post-up ip neigh add <ipv4-address> lladdr <mac-address>` to the interface stanza of the `/etc/network/interfaces` file, then run the `ifreload -a` command:
+
+```
+cumulus@leaf01:mgmt:~$ sudo nano /etc/network/interfaces
+...
+auto swp51
+iface swp51
+    address 10.5.5.1/24
+    post-up ip neigh add 10.5.5.51 lladdr 00:00:5E:00:53:51 dev swp51
+...
+```
+
+```
+cumulus@leaf01:mgmt:~$ sudo ifreload -a
+```
+
+You can also set a flag to indicate that the neighbour is a router (`router`) or learned externally (`extern_learn`) and set the neighbor state (`delay`, `failed`, `incomplete`, `noarp`, `permanent`, `probe`, `reachable`, or `stale`).
+
+```
+cumulus@leaf01:mgmt:~$ sudo nano /etc/network/interfaces
+...
+auto swp51
+iface swp51
+    address 10.5.5.1/24
+    post-up ip neigh add 10.5.5.51 lladdr 00:00:5E:00:53:51 dev swp51 nud permanent router
+...
+```
+
+```
+cumulus@leaf01:mgmt:~$ sudo ifreload -a
+```
+
+To delete an entry in the ARP table, remove the `post-up ip neigh add` line from the interface stanza of the `/etc/network/interfaces` file.
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Show the ARP Table
 
-To show all the entries in the IP neighbor table, run the `nv show interface neighbor` command or the Linux `ip neighbor` command:
+To show all the entries in the IP neighbor table, run the `nv show interface neighbor` command or the Linux `ip neighbor show` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface neighbor
@@ -349,6 +392,15 @@ vlan20         10.1.20.105                48:b0:2d:75:bf:9e  noarp      |ext_lea
                fe80::4638:39ff:fe22:178   44:38:39:22:01:78  permanent            
                fe80::4ab0:2dff:fe75:bf9e  48:b0:2d:75:bf:9e  noarp      |ext_learn
                fe80::4ab0:2dff:fe00:e905  48:b0:2d:00:e9:05  reachable
+...
+```
+
+```
+cumulus@leaf01:mgmt:~$ ip neighbor show
+192.168.200.251 dev eth0 lladdr 48:b0:2d:00:00:01 STALE 
+10.5.5.51 dev swp51 lladdr 00:00:5e:00:53:51 router PERMANENT 
+192.168.200.1 dev eth0 lladdr 48:b0:2d:b1:48:ef REACHABLE 
+fe80::4ab0:2dff:fe00:1 dev eth0 lladdr 48:b0:2d:00:00:01 router REACHABLE
 ...
 ```
 

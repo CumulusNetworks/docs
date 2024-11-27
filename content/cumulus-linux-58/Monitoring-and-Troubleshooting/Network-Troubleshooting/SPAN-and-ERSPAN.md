@@ -274,7 +274,7 @@ Cumulus Linux controls how much traffic reaches the CPU so that mirrored traffic
 
 You configure the CPU port as the SPAN destination with ACLs.
 
-To monitor traffic mirrored to the CPU, run the `tcpcdump -i mirror` command.
+To monitor traffic mirrored to the CPU, run the `tcpdump -i mirror` command.
 
 {{%notice note%}}
 - Cumulus Linux does not support egress mirroring for control plane generated traffic to the CPU port.
@@ -574,3 +574,4 @@ cumulus@switch:~$ sudo cl-acltool -L all | grep SPAN
 - ERSPAN does not cause the kernel to send ARP requests to resolve the next hop for the ERSPAN destination. If an ARP entry for the destination or next hop does not already exist in the kernel, you need to manually resolve this before sending mirrored traffic (use `ping` or `arping`).
 - Mirroring to the same interface that you are monitoring causes a recursive flood of traffic and might impact traffic on other interfaces.
 - Cumulus VX does not support ACL-based SPAN, ERSPAN, or port mirroring. To capture packets in Cumulus VX, use the `tcpdump` command line network traffic analyzer.
+- When you configure ERSPAN sessions with the NVUE `nv set system port-mirror` commands, the destination IP address must be reachable from the source IP address through the **default** VRF.

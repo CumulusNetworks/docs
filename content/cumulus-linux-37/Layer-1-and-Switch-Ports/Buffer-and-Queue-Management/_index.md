@@ -13,7 +13,7 @@ scheduling in hardware. There are two configuration input files:
 
     {{%notice note%}}
 
-The default thresholds defined in the `datapath.conf` file are intended for data center environments, but certain workloads may require additional tuning. It is best to make small, incremental changes to validate the changes with your application performance. Be sure to backup the original file before making changes.
+The default thresholds defined in the `datapath.conf` file are intended for data center environments, but certain workloads may require additional tuning. It is best to make small, incremental changes to validate the changes with your application performance. Be sure to back up the original file before making changes.
 
     {{%/notice%}}
 

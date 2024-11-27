@@ -49,8 +49,8 @@ leaf01(config-router)# neighbor swp51 interface remote-as external
 leaf01(config-router)# address-family l2vpn evpn
 leaf01(config-router-af)# neighbor swp51 activate
 leaf01(config-router-af)# end
-leaf01)# write memory
-leaf01)# exit
+leaf01# write memory
+leaf01# exit
 cumulus@leaf01:~$
 ```
 
@@ -116,8 +116,8 @@ leaf01(config)# router bgp 65101
 leaf01(config-router)# address-family l2vpn evpn
 leaf01(config-router-af)# advertise-all-vni
 leaf01(config-router-af)# end
-leaf01)# write memory
-leaf01)# exit
+leaf01# write memory
+leaf01# exit
 cumulus@leaf01:~$
 ```
 

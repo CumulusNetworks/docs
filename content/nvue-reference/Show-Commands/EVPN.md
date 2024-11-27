@@ -22,33 +22,28 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show evpn
-                       operational   applied        pending      
----------------------  ------------  -------------  -------------
-enable                               on             on           
-dad                                                              
-  enable               off           on             on           
-  mac-move-threshold   5             5              5            
-  move-window          180           180            180          
-  duplicate-action     warning-only  warning-only   warning-only 
-multihoming                                                      
-  enable                             on             on           
-  mac-holdtime         1080          1080           1080         
-  neighbor-holdtime    1080          1080           1080         
-  startup-delay        180           180            180          
-  ead-evi-route                                                  
-    rx                               on             on           
-    tx                               on             on           
-  segment                                                        
-    df-preference                    32767          32767        
-  startup-delay-timer  --:--:--                                  
-  uplink-active        2                                         
-  uplink-count         2                                         
-route-advertise                                                  
-  default-gateway      off           off            off          
-  nexthop-setting                    system-ip-mac  system-ip-mac
-  svi-ip               off           off            off          
-[vni]                                                            
-l2vni-count            5                                         
+perational   applied
+---------------------  ------------  -------------
+enable                               on
+route-advertise
+  nexthop-setting                    system-ip-mac
+  svi-ip               off           off
+  default-gateway      off           off
+dad
+  enable               on            on
+  mac-move-threshold   5             5
+  move-window          180           180
+  duplicate-action     warning-only  warning-only
+[vni]
+multihoming
+  enable                             off
+  mac-holdtime         1080
+  neighbor-holdtime    1080
+  startup-delay        180
+  startup-delay-timer  --:--:--
+  uplink-count         0
+  uplink-active        0
+l2vni-count            3
 l3vni-count            2
 ```
 
@@ -272,6 +267,12 @@ Vtepip      es-ref-count  nexthop-group
 
 Shows EVPN next hop group information for the specified VTEP.
 
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vtep-id>` | The VTEP ID. |
+
 ### Version History
 
 Introduced in Cumulus Linux 5.5.0
@@ -426,6 +427,12 @@ cumulus@switch:~$ nv show evpn multihoming bgp-info esi -o json
 ## <h>nv show evpn multihoming bgp-info esi \<esi-id\></h>
 
 Shows EVPN multihoming BGP information for the specified ESI.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<esi-id>` | The ESI identifier. |
 
 ### Version History
 
@@ -657,7 +664,6 @@ Shows information about the specified EVPN multihoming Ethernet segment ID.
 
 | Syntax | Description |
 | --------- | -------------- |
-| `<vni-id>` | The VNI name. |
 | `<esi-id>` | The ESI identifier. |
 
 ### Version History
@@ -695,7 +701,6 @@ Shows information about the specified EVPN multihoming Ethernet segment ID for r
 
 | Syntax | Description |
 | --------- | -------------- |
-| `<vni-id>` | The VNI name. |
 | `<esi-id>` | The ESI identifier. |
 
 ### Version History
@@ -721,8 +726,8 @@ Shows information about a specific EVPN multihoming Ethernet segment ID for the 
 
 | Syntax | Description |
 | --------- | -------------- |
-| `<vni-id>` | The VNI name. |
 | `<esi-id>` | The ESI identifier. |
+| `<ipv4-address-id>` | The IPv4 address. |
 
 ### Version History
 
@@ -1286,7 +1291,6 @@ In Cumulus Linux 5.3 and earlier, this command is `nv show evpn evi <vni-id> rou
 | Syntax | Description |
 | --------- | -------------- |
 | `<vni-id>` | The VNI name. |
-| `<rt-id>` | The route target ID. |
 
 ### Version History
 
@@ -1340,7 +1344,6 @@ In Cumulus Linux 5.3 and earlier, this command is `nv show evpn evi <vni-id> rou
 | Syntax | Description |
 | --------- | -------------- |
 | `<vni-id>` | The VNI name. |
-| `<rt-id>` | The route target ID. |
 
 ### Version History
 
@@ -1394,7 +1397,6 @@ In Cumulus Linux 5.3 and earlier, this command is `nv show evpn evi <vni-id> rou
 | Syntax | Description |
 | --------- | -------------- |
 | `<vni-id>` | The VNI name. |
-| `<rt-id>` | The route target ID. |
 
 ### Version History
 

@@ -14,15 +14,15 @@ toc: 4
 
 EVPN-MH uses {{<link url="#supported-evpn-route-types" text="BGP-EVPN type-1, type-2 and type-4 routes">}} to discover Ethernet segments (ES) and to forward traffic to those Ethernet segments. The MAC and neighbor databases synchronize between the Ethernet segment peers through these routes as well. An *{{<exlink url="https://tools.ietf.org/html/rfc7432#section-5" text="Ethernet segment">}}* is a group of switch links that attach to the same server. Each Ethernet segment has an unique Ethernet segment ID (ESI) across the entire PoD.
 
-To configure EVPN-MH, you set an Ethernet segment system MAC address and a local Ethernet segment ID on a static or LACP bond. These two parameters generate the unique MAC-based ESI value ({{<exlink url="https://tools.ietf.org/html/rfc7432#section-5" text="type-3">}}) automatically:
+To configure EVPN-MH, you set an Ethernet segment segment MAC address and a local Ethernet segment ID on a static or LACP bond. These two parameters generate the unique MAC-based ESI value ({{<exlink url="https://tools.ietf.org/html/rfc7432#section-5" text="type-3">}}) automatically:
 
-- The Ethernet segment system MAC address is the <span class="a-tooltip">[LACP](## "Link Aggregation Control Protocol")</span> system identifier.
-- The local Ethernet segment ID configuration defines a local discriminator to uniquely enumerate each bond that shares the same Ethernet segment system MAC address.
-- The resulting 10-byte ESI value has the following format, where the MMs denote the 6-byte Ethernet segment system MAC address and the XXs denote the 3-byte local Ethernet segment ID value:
+- The Ethernet segment MAC address is the <span class="a-tooltip">[LACP](## "Link Aggregation Control Protocol")</span> system identifier.
+- The local Ethernet segment ID configuration defines a local discriminator to uniquely enumerate each bond that shares the same Ethernet segment MAC address.
+- The resulting 10-byte ESI value has the following format, where the MMs denote the 6-byte Ethernet segment MAC address and the XXs denote the 3-byte local Ethernet segment ID value:
 
       03:MM:MM:MM:MM:MM:MM:XX:XX:XX
 
-While you can specify a different system MAC address on different Ethernet segments attached to the same switch, the Ethernet segment system MAC address must be the same on the downlinks attached to the same server.
+While you can specify a different segment MAC address on different Ethernet segments attached to the same switch, the Ethernet segment MAC address must be the same on the downlinks attached to the same server.
 
 {{%notice info%}}
 On Spectrum-2 and later, an Ethernet segment can span more than two switches. Each Ethernet segment is a distinct redundancy group. However, on Spectrum A1 switches, you can include a maximum of two switches in a redundancy group or Ethernet segment.
@@ -126,10 +126,14 @@ cumulus@leaf01:~$ nv set evpn multihoming enable on
 cumulus@leaf01:~$ nv config apply
 ```
 
+{{%notice warning%}}
+When you enable multihoming on the Spectrum A1 switch with the `nv set evpn multihoming enable on` command, NVUE restarts the `switchd` service, which causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Set the `evpn.multihoming.enable` variable in the `/etc/cumulus/switchd.conf` file to `TRUE`, then restart the `switchd` service. Cumulus Linux disables this variable by default.
+Set the `evpn.multihoming.enable` variable in the `/etc/cumulus/switchd.conf` file to `TRUE`. Cumulus Linux disables this variable by default.
 
 ```
 cumulus@leaf01:~$ sudo nano /etc/cumulus/switchd.conf
@@ -138,9 +142,9 @@ evpn.multihoming.enable = TRUE
 ...
 ```
 
-```
-cumulus@leaf01:~$ sudo systemctl restart switchd.service
-```
+{{%notice note%}}
+On the Spectrum A1 switch, you must restart `switchd` with the `sudo systemctl restart switchd.service` command after you enable multihoming.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -152,9 +156,9 @@ To configure bond interfaces for EVPN-MH:
 {{<tabs "bond configuration">}}
 {{<tab "NVUE Commands">}}
 
-With NVUE commands, you can either set both the local Ethernet segment ID and the system MAC address to generate a unique ESI automatically or set the Ethernet segment ID manually. You can see both options below.
+You can either set both the local Ethernet segment ID and the segment MAC address to generate a unique ESI automatically or set the 10-byte Ethernet segment ID manually, then set the segment MAC address. You can see both options below.
 
-The following example commands configure each bond interface with the local Ethernet segment ID and the system MAC address to generate a unique ESI automatically:
+The following example commands configure each bond interface with the local Ethernet segment ID and the segment MAC address to generate a unique ESI automatically:
 
 ```
 cumulus@leaf01:~$ nv set interface bond1 bond member swp1
@@ -168,7 +172,7 @@ cumulus@leaf01:~$ nv set interface bond1-3 evpn multihoming segment df-preferenc
 cumulus@leaf01:~$ nv config apply
 ```
 
-The following example commands configure each bond interface with the Ethernet segment ID manually. The ID must be a 10-byte (80-bit) integer and must be unique.
+The following example commands configure each bond interface with the Ethernet segment ID manually. The ID must be a 10-byte (80-bit) integer and must be unique. When you configure the 10-byte Ethernet segment ID, ensure that the local ID is not present. You must also configure the segment MAC address. The example configures a global segment MAC address for use on all the Ethernet segment bonds.
 
 {{%notice note%}}
 In Cumulus Linux 5.6 and later, NVUE no longer supports a 10-byte ESI value starting with a non 00 hex value.
@@ -182,13 +186,16 @@ cumulus@leaf01:~$ nv set interface bond1 evpn multihoming segment identifier 00:
 cumulus@leaf01:~$ nv set interface bond2 evpn multihoming segment identifier 00:44:38:39:BE:EF:AA:00:00:02
 cumulus@leaf01:~$ nv set interface bond3 evpn multihoming segment identifier 00:44:38:39:BE:EF:AA:00:00:03
 cumulus@leaf01:~$ nv set interface bond1-3 evpn multihoming segment df-preference 50000
+cumulus@leaf01:~$ nv set evpn multihoming segment mac-address 44:38:39:ff:ff:01
 cumulus@leaf01:~$ nv config apply
 ```
 
 {{</tab>}}
 {{<tab "vtysh Commands">}}
 
-1. Configure the ESI on each bond interface with the local Ethernet segment ID and the system MAC address:
+The following example commands configure each bond interface with the local Ethernet segment ID and the segment MAC address to generate a unique ESI automatically:
+
+1. Configure the ESI on each bond interface with the local Ethernet segment ID and the segment MAC address:
 
    ```
    cumulus@leaf01:~$ sudo vtysh
@@ -237,10 +244,10 @@ cumulus@leaf01:~$ nv config apply
    !
    ```
 
-2. Add the system MAC address to the bond interfaces in the `/etc/network/interfaces` file, then run the `ifreload -a` command.
+2. Add the segment MAC address to the bond interfaces in the `/etc/network/interfaces` file, then run the `ifreload -a` command.
 
    ```
-   cumulus@leaf01:~$ sudo cat /etc/network/interfaces
+   cumulus@leaf01:~$ sudo nano /etc/network/interfaces
    ...
    interface bond1
      bond-slaves swp1
@@ -259,6 +266,70 @@ cumulus@leaf01:~$ nv config apply
    cumulus@leaf01:~$ sudo ifreload -a
    ```
 
+The following example commands configure each bond interface with the Ethernet segment ID manually. The ID must be a 10-byte (80-bit) integer and must be unique. When you configure the 10-byte Ethernet segment ID, ensure that the local ID is not present. You must also configure the segment MAC address separately. The example configures a global segment MAC address for use on all the Ethernet segment bonds.
+
+{{%notice note%}}
+In Cumulus Linux 5.6 and later, NVUE no longer supports a 10-byte ESI value starting with a non 00 hex value.
+{{%/notice%}}
+
+1. Configure each bond interface with the Ethernet segment ID manually:
+
+   ```
+   cumulus@leaf01:~$ sudo vtysh
+   leaf01# configure terminal
+   leaf01(config)# interface bond1
+   leaf01(config-if)# evpn mh es-df-pref 50000
+   leaf01(config-if)# evpn mh es-id 00:44:38:39:BE:EF:AA:00:00:01
+   leaf01(config-if)# exit
+   leaf01(config)# interface bond2
+   leaf01(config-if)# evpn mh es-df-pref 50000
+   leaf01(config-if)# evpn mh es-id 00:44:38:39:BE:EF:AA:00:00:02
+   leaf01(config-if)# exit
+   leaf01(config)# interface bond3
+   leaf01(config-if)# evpn mh es-df-pref 50000
+   leaf01(config-if)# evpn mh es-id 00:44:38:39:be:ef:aa:00:00:03
+   leaf01(config-if)# exit
+   leaf01(config)# write memory
+   leaf01(config)# exit
+   leaf01# exit
+   cumulus@leaf01:~$
+   ```
+
+   The vtysh commands create the following configuration in the `/etc/frr/frr.conf` file.
+
+   ```
+   cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
+   ...
+   interface bond1
+   evpn mh es-df-pref 50000
+   evpn mh es-id 00:44:38:39:BE:EF:AA:00:00:01
+   interface bond2
+   evpn mh es-df-pref 50000
+   evpn mh es-id 00:44:38:39:BE:EF:AA:00:00:02
+   interface bond3
+   evpn mh es-df-pref 50000
+   evpn mh es-id 00:44:38:39:BE:EF:AA:00:00:03
+   ...
+   ```
+
+2. Add the segment MAC address to the bond interfaces in the `/etc/network/interfaces` file, then run the `ifreload -a` command.
+
+   ```
+   cumulus@leaf01:~$ sudo nano /etc/network/interfaces
+   ...
+   interface bond1
+     bond-slaves swp1
+     es-sys-mac 44:38:39:BE:EF:AA
+   
+   interface bond2
+     bond-slaves swp2
+     es-sys-mac 44:38:39:BE:EF:AA
+   
+   interface bond3
+     bond-slaves swp3
+     es-sys-mac 44:38:39:BE:EF:AA
+   ```
+  
 {{</tab>}}
 {{</tabs>}}
 
@@ -329,6 +400,26 @@ interface swp4
 
 {{</tab>}}
 {{</tabs>}}
+
+To show if uplinks are down, run the `nv show interface status` command:
+
+```
+cumulus@leaf01:~$ nv show interface status
+Interface    Admin Status  Oper Status  Protodown  Protodown Reason
+-----------  ------------  -----------  ---------  ----------------
+br_default   up            up           disabled
+br_l3vni     up            up           disabled
+eth0         up            up           disabled
+bond3        up            down         disabled
+bond4        up            down         disabled
+bond5        up            down         disabled
+bond6        up            up           disabled
+lo           up            unknown      disabled
+mgmt         up            up           disabled
+swp5         up            down         enabled    frr   <<<< part of bond3 
+swp6         up            down         enabled    frr
+swp7         up            down         enabled    frr
+```
 
 ## Optional EVPN MH Configuration
 
@@ -472,7 +563,7 @@ You can add debug statements to the `/etc/frr/frr.conf` file to debug the Ethern
 {{<tabs "debug">}}
 {{<tab "NVUE Commands">}}
 
-Cumulus Linux does not provide NVUE commands for FRR Debugging.
+Cumulus Linux does not provide NVUE commands for FRR debugging; however, you can create a snippet to enable FRR debugging. Refer to {{<link url="NVUE-Snippets/#example-3-evpn-multihoming-frr-debugging" text="/etc/frr/frr.conf snippets">}}.
 
 {{</tab>}}
 {{<tab "vtysh Commands">}}
@@ -628,7 +719,36 @@ uplink-count         2
 
 ### Show Ethernet Segment Information
 
-To display the Ethernet segments across all VNIs, run the `nv show evpn multihoming esi -o json` command or the vtysh `show evpn es` command. For example:
+To show the Ethernet segments across all VNIs, run the `nv show evpn multihoming esi` command or the vtysh `show evpn es` command. For example:
+
+```
+cumulus@switch:~$ nv show evpn multihoming esi
+SInterface - Local interface, NHG - Nexthop group ID, DFPref - Designated
+forwarder preference, VNICnt - ESI EVPN instances, MacCnt - Mac entries using
+this ES as destination, RemoteVTEPs - Remote tunnel Endpoint
+
+ESI                            ESInterface  NHG        DFPref  VNICnt  MacCnt  Flags   RemoteVTEPs
+-----------------------------  -----------  ---------  ------  ------  ------  ------  -----------
+03:44:38:39:be:ef:aa:00:00:01  bond1        536870913  50000   1       2       local   10.10.10.2
+03:44:38:39:be:ef:aa:00:00:02  bond2        536870914  50000   1       2       local   10.10.10.2
+03:44:38:39:be:ef:aa:00:00:03  bond3        536870915  50000   1       2       local   10.10.10.2
+03:44:38:39:be:ef:bb:00:00:01               536870916  0       0       2       remote  10.10.10.3
+       10.10.10.4
+```
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# show evpn es
+Type: B bypass, L local, R remote, N non-DF
+ESI                            Type ES-IF                 VTEPs
+03:44:38:39:be:ef:aa:00:00:01  LR   bond1                 10.10.10.2
+03:44:38:39:be:ef:aa:00:00:02  LR   bond2                 10.10.10.2
+03:44:38:39:be:ef:aa:00:00:03  LR   bond3                 10.10.10.2
+03:44:38:39:be:ef:bb:00:00:01  R    -                     10.10.10.3,10.10.10.4
+```
+
+You can also show the Ethernet segments across all VNIs with NVUE in json format:
 
 ```
 cumulus@switch:~$ nv show evpn multihoming esi -o json
@@ -723,18 +843,6 @@ cumulus@switch:~$ nv show evpn multihoming esi -o json
 }
 ```
 
-```
-cumulus@switch:~$ sudo vtysh
-...
-switch# show evpn es
-Type: B bypass, L local, R remote, N non-DF
-ESI                            Type ES-IF                 VTEPs
-03:44:38:39:be:ef:aa:00:00:01  LR   bond1                 10.10.10.2
-03:44:38:39:be:ef:aa:00:00:02  LR   bond2                 10.10.10.2
-03:44:38:39:be:ef:aa:00:00:03  LR   bond3                 10.10.10.2
-03:44:38:39:be:ef:bb:00:00:01  R    -                     10.10.10.3,10.10.10.4
-```
-
 To show information about a specific ESI:
 
 ```
@@ -771,7 +879,7 @@ VNI      ESI                            Type
 10       03:44:38:39:be:ef:aa:00:00:01  L 
 ```
 
-To display the Ethernet segments for a specific VNI, run the NVUE `nv show evpn vni <vni> multihoming esi` command. For example:
+To show the Ethernet segments for a specific VNI, run the NVUE `nv show evpn vni <vni> multihoming esi` command. For example:
 
 ```
 cumulus@switch:~$ nv show evpn vni 10 multihoming esi
@@ -782,7 +890,38 @@ ESI                            Local  Remote
 
 ### Show BGP Ethernet Segment Information
 
-To display the Ethernet segments across all VNIs learned via type-1 and type-4 routes, run the NVUE `nv show evpn multihoming bgp-info esi -o json` command or the vtysh `show bgp l2vpn evpn es` command. For example:
+To show the Ethernet segments across all VNIs learned through type-1 and type-4 routes, run the NVUE `nv show evpn multihoming bgp-info esi` command or the vtysh `show bgp l2vpn evpn es` command. For example:
+
+```
+cumulus@switch:~$ nv show evpn multihoming bgp-info esi
+SrcIP - Originator IP, VNICnt - VNI Count, VRFCnt - VRF Count, MACIPCnt - MAC IP
+path count, MacGlblCnt - Mac global count, VTEP - Remote VTEP ID, FragID -
+Fragments ID
+ESI                            RD            SrcIP       VNICnt  VRFCnt  MACIPCnt  MacGlblCnt  Local  Remote  VTEP        FragID
+-----------------------------  ------------  ----------  ------  ------  --------  ----------  -----  ------  ----------  ------------
+03:44:38:39:be:ef:aa:00:00:01  10.10.10.1:3  10.10.10.1  1       1       3   6           yes    yes     10.10.10.2  10.10.10.1:3
+03:44:38:39:be:ef:aa:00:00:02  10.10.10.1:4  10.10.10.1  1       1       2   4           yes    yes     10.10.10.2  10.10.10.1:4
+03:44:38:39:be:ef:aa:00:00:03  10.10.10.1:5  10.10.10.1  1       1       2   4           yes    yes     10.10.10.2  10.10.10.1:5
+03:44:38:39:be:ef:bb:00:00:01                0.0.0.0     1       1       0   12                 yes     10.10.10.3
+                              10.10.10.4
+03:44:38:39:be:ef:bb:00:00:02                0.0.0.0     1       1       0   0                  yes
+03:44:38:39:be:ef:bb:00:00:03                0.0.0.0     1       1       0   0                  yes
+```
+
+```
+cumulus@switch:~$ show bgp l2vpn evpn es
+ES Flags: B - bypass, L local, R remote, I inconsistent
+VTEP Flags: E ESR/Type-4, A active nexthop
+ESI                            Flags RD                    #VNIs    VTEPs
+03:44:38:39:be:ef:aa:00:00:01  LR    10.10.10.1:3          1        10.10.10.2(EA)
+03:44:38:39:be:ef:aa:00:00:02  LR    10.10.10.1:4          1        10.10.10.2(EA)
+03:44:38:39:be:ef:aa:00:00:03  LR    10.10.10.1:5          1        10.10.10.2(EA)
+03:44:38:39:be:ef:bb:00:00:01  R     (null)                1        10.10.10.3(A),10.10.10.4(A)
+03:44:38:39:be:ef:bb:00:00:02  R     (null)                1
+03:44:38:39:be:ef:bb:00:00:03  R     (null)                1
+```
+
+You can also show the Ethernet segments across all VNIs learned through type-1 and type-4 routes with NVUE in json format:
 
 ```
 cumulus@switch:~$ nv show evpn multihoming bgp-info esi -o json
@@ -936,7 +1075,7 @@ cumulus@switch:~$ nv show evpn multihoming bgp-info esi -o json
 
 ### Show BGP Ethernet Segment per VNI Information
 
-To display the Ethernet segments per VNI learned via type-1 and type-4 routes, run the vtysh `show bgp l2vpn evpn es-evi` command.
+To display the Ethernet segments per VNI learned through type-1 and type-4 routes, run the vtysh `show bgp l2vpn evpn es-evi` command.
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1410,6 +1549,12 @@ cumulus@leaf01:~$ cat /etc/nvue.d/startup.yaml
         link:
           mtu: 9000
         type: bond
+      eth0:
+        ip:
+          address:
+            dhcp: {}
+          vrf: mgmt
+        type: eth
       lo:
         ip:
           address:
@@ -1483,9 +1628,76 @@ cumulus@leaf01:~$ cat /etc/nvue.d/startup.yaml
         router-id: 10.10.10.1
       vrr:
         enable: on
+    service:
+      ntp:
+        mgmt:
+          server:
+            0.cumulusnetworks.pool.ntp.org: {}
+            1.cumulusnetworks.pool.ntp.org: {}
+            2.cumulusnetworks.pool.ntp.org: {}
+            3.cumulusnetworks.pool.ntp.org: {}
     system:
+      aaa:
+        class:
+          nvapply:
+            action: allow
+            command-path:
+              /:
+                permission: all
+          nvshow:
+            action: allow
+            command-path:
+              /:
+                permission: ro
+          sudo:
+            action: allow
+            command-path:
+              /:
+                permission: all
+        role:
+          nvue-admin:
+            class:
+              nvapply: {}
+          nvue-monitor:
+            class:
+              nvshow: {}
+          system-admin:
+            class:
+              nvapply: {}
+              sudo: {}
+        user:
+          cumulus:
+            full-name: cumulus,,,
+            hashed-password: $6$0UJ.vs.J1XC6/Kwq$jLHpbKGoLU0wI.NezCBMtHjXHSixMAgbLP3aF3vFbrjF2ZoJx5RIDoNE3v1qELWhVQ0RqB9uY/BSF6o7ypyxS0
+            role: system-admin
+      api:
+        state: enabled
+      config:
+        auto-save:
+          enable: on
+      control-plane:
+        acl:
+          acl-default-dos:
+            inbound: {}
+          acl-default-whitelist:
+            inbound: {}
       global:
         anycast-mac: 44:38:39:BE:EF:AA
+        fabric-mac: 00:00:5E:00:01:01
+        system-mac: 44:38:39:22:01:7a
+      hostname: leaf01
+      reboot:
+        mode: cold
+      ssh-server:
+        state: enabled
+      wjh:
+        channel:
+          forwarding:
+            trigger:
+              l2: {}
+              l3: {}
+              tunnel: {}
+        enable: on
     vrf:
       BLUE:
         evpn:
@@ -1534,6 +1746,8 @@ cumulus@leaf01:~$ cat /etc/nvue.d/startup.yaml
                 redistribute:
                   connected:
                     enable: on
+              l2vpn-evpn:
+                enable: on
             enable: on
             neighbor:
               swp51:
@@ -1631,6 +1845,12 @@ cumulus@leaf02:~$ cat /etc/nvue.d/startup.yaml
         link:
           mtu: 9000
         type: bond
+      eth0:
+        ip:
+          address:
+            dhcp: {}
+          vrf: mgmt
+        type: eth
       lo:
         ip:
           address:
@@ -1704,9 +1924,76 @@ cumulus@leaf02:~$ cat /etc/nvue.d/startup.yaml
         router-id: 10.10.10.2
       vrr:
         enable: on
+    service:
+      ntp:
+        mgmt:
+          server:
+            0.cumulusnetworks.pool.ntp.org: {}
+            1.cumulusnetworks.pool.ntp.org: {}
+            2.cumulusnetworks.pool.ntp.org: {}
+            3.cumulusnetworks.pool.ntp.org: {}
     system:
+      aaa:
+        class:
+          nvapply:
+            action: allow
+            command-path:
+              /:
+                permission: all
+          nvshow:
+            action: allow
+            command-path:
+              /:
+                permission: ro
+          sudo:
+            action: allow
+            command-path:
+              /:
+                permission: all
+        role:
+          nvue-admin:
+            class:
+              nvapply: {}
+          nvue-monitor:
+            class:
+              nvshow: {}
+          system-admin:
+            class:
+              nvapply: {}
+              sudo: {}
+        user:
+          cumulus:
+            full-name: cumulus,,,
+            hashed-password: $6$3l/mGeft8luHcK4f$IBKQ3M5rSzk/w2Czp4m0FYT3W/o8uDvqPQVN7ffy9qIfVAZuhyEdISSgbcU7ey7qD1AmfBKSNM42j0M0Nssar0
+            role: system-admin
+      api:
+        state: enabled
+      config:
+        auto-save:
+          enable: on
+      control-plane:
+        acl:
+          acl-default-dos:
+            inbound: {}
+          acl-default-whitelist:
+            inbound: {}
       global:
         anycast-mac: 44:38:39:BE:EF:AA
+        fabric-mac: 00:00:5E:00:01:01
+        system-mac: 44:38:39:22:01:78
+      hostname: leaf02
+      reboot:
+        mode: cold
+      ssh-server:
+        state: enabled
+      wjh:
+        channel:
+          forwarding:
+            trigger:
+              l2: {}
+              l3: {}
+              tunnel: {}
+        enable: on
     vrf:
       BLUE:
         evpn:
@@ -1755,6 +2042,8 @@ cumulus@leaf02:~$ cat /etc/nvue.d/startup.yaml
                 redistribute:
                   connected:
                     enable: on
+              l2vpn-evpn:
+                enable: on
             enable: on
             neighbor:
               swp51:
@@ -1852,6 +2141,12 @@ cumulus@leaf03:~$ cat /etc/nvue.d/startup.yaml
         link:
           mtu: 9000
         type: bond
+      eth0:
+        ip:
+          address:
+            dhcp: {}
+          vrf: mgmt
+        type: eth
       lo:
         ip:
           address:
@@ -1925,9 +2220,76 @@ cumulus@leaf03:~$ cat /etc/nvue.d/startup.yaml
         router-id: 10.10.10.3
       vrr:
         enable: on
+    service:
+      ntp:
+        mgmt:
+          server:
+            0.cumulusnetworks.pool.ntp.org: {}
+            1.cumulusnetworks.pool.ntp.org: {}
+            2.cumulusnetworks.pool.ntp.org: {}
+            3.cumulusnetworks.pool.ntp.org: {}
     system:
+      aaa:
+        class:
+          nvapply:
+            action: allow
+            command-path:
+              /:
+                permission: all
+          nvshow:
+            action: allow
+            command-path:
+              /:
+                permission: ro
+          sudo:
+            action: allow
+            command-path:
+              /:
+                permission: all
+        role:
+          nvue-admin:
+            class:
+              nvapply: {}
+          nvue-monitor:
+            class:
+              nvshow: {}
+          system-admin:
+            class:
+              nvapply: {}
+              sudo: {}
+        user:
+          cumulus:
+            full-name: cumulus,,,
+            hashed-password: $6$fXqglI7FdhhtxVQq$oFuDfEvAWHFpSpLJYuBwckXJ0TOdK6H0RkWYRf4QXXUtom3oIBrn2JIucCvMYZUW02Me6jf9FOPe.xFfKdrfl/
+            role: system-admin
+      api:
+        state: enabled
+      config:
+        auto-save:
+          enable: on
+      control-plane:
+        acl:
+          acl-default-dos:
+            inbound: {}
+          acl-default-whitelist:
+            inbound: {}
       global:
         anycast-mac: 44:38:39:BE:EF:AA
+        fabric-mac: 00:00:5E:00:01:01
+        system-mac: 44:38:39:22:01:84
+      hostname: leaf03
+      reboot:
+        mode: cold
+      ssh-server:
+        state: enabled
+      wjh:
+        channel:
+          forwarding:
+            trigger:
+              l2: {}
+              l3: {}
+              tunnel: {}
+        enable: on
     vrf:
       BLUE:
         evpn:
@@ -1976,6 +2338,8 @@ cumulus@leaf03:~$ cat /etc/nvue.d/startup.yaml
                 redistribute:
                   connected:
                     enable: on
+              l2vpn-evpn:
+                enable: on
             enable: on
             neighbor:
               swp51:
@@ -2073,6 +2437,12 @@ cumulus@leaf04:~$ cat /etc/nvue.d/startup.yaml
         link:
           mtu: 9000
         type: bond
+      eth0:
+        ip:
+          address:
+            dhcp: {}
+          vrf: mgmt
+        type: eth
       lo:
         ip:
           address:
@@ -2146,9 +2516,76 @@ cumulus@leaf04:~$ cat /etc/nvue.d/startup.yaml
         router-id: 10.10.10.4
       vrr:
         enable: on
+    service:
+      ntp:
+        mgmt:
+          server:
+            0.cumulusnetworks.pool.ntp.org: {}
+            1.cumulusnetworks.pool.ntp.org: {}
+            2.cumulusnetworks.pool.ntp.org: {}
+            3.cumulusnetworks.pool.ntp.org: {}
     system:
+      aaa:
+        class:
+          nvapply:
+            action: allow
+            command-path:
+              /:
+                permission: all
+          nvshow:
+            action: allow
+            command-path:
+              /:
+                permission: ro
+          sudo:
+            action: allow
+            command-path:
+              /:
+                permission: all
+        role:
+          nvue-admin:
+            class:
+              nvapply: {}
+          nvue-monitor:
+            class:
+              nvshow: {}
+          system-admin:
+            class:
+              nvapply: {}
+              sudo: {}
+        user:
+          cumulus:
+            full-name: cumulus,,,
+            hashed-password: $6$V2IH48/ZUEa5lSC3$24Gvui8RFRw24XUmnhT2BqCZa8BHkEJO2ruqZ0xqXldRXJkQUOqxx4X0q/PHWjpIx5W5MsWVSqjEpG8iw4SBW1
+            role: system-admin
+      api:
+        state: enabled
+      config:
+        auto-save:
+          enable: on
+      control-plane:
+        acl:
+          acl-default-dos:
+            inbound: {}
+          acl-default-whitelist:
+            inbound: {}
       global:
         anycast-mac: 44:38:39:BE:EF:AA
+        fabric-mac: 00:00:5E:00:01:01
+        system-mac: 44:38:39:22:01:8a
+      hostname: leaf04
+      reboot:
+        mode: cold
+      ssh-server:
+        state: enabled
+      wjh:
+        channel:
+          forwarding:
+            trigger:
+              l2: {}
+              l3: {}
+              tunnel: {}
+        enable: on
     vrf:
       BLUE:
         evpn:
@@ -2197,6 +2634,8 @@ cumulus@leaf04:~$ cat /etc/nvue.d/startup.yaml
                 redistribute:
                   connected:
                     enable: on
+              l2vpn-evpn:
+                enable: on
             enable: on
             neighbor:
               swp51:
@@ -2220,6 +2659,12 @@ cumulus@leaf04:~$ cat /etc/nvue.d/startup.yaml
 cumulus@spine01:~$ cat /etc/nvue.d/startup.yaml
 - set:
     interface:
+      eth0:
+        ip:
+          address:
+            dhcp: {}
+          vrf: mgmt
+        type: eth
       lo:
         ip:
           address:
@@ -2238,6 +2683,75 @@ cumulus@spine01:~$ cat /etc/nvue.d/startup.yaml
         autonomous-system: 65199
         enable: on
         router-id: 10.10.10.101
+    service:
+      ntp:
+        mgmt:
+          server:
+            0.cumulusnetworks.pool.ntp.org: {}
+            1.cumulusnetworks.pool.ntp.org: {}
+            2.cumulusnetworks.pool.ntp.org: {}
+            3.cumulusnetworks.pool.ntp.org: {}
+    system:
+      aaa:
+        class:
+          nvapply:
+            action: allow
+            command-path:
+              /:
+                permission: all
+          nvshow:
+            action: allow
+            command-path:
+              /:
+                permission: ro
+          sudo:
+            action: allow
+            command-path:
+              /:
+                permission: all
+        role:
+          nvue-admin:
+            class:
+              nvapply: {}
+          nvue-monitor:
+            class:
+              nvshow: {}
+          system-admin:
+            class:
+              nvapply: {}
+              sudo: {}
+        user:
+          cumulus:
+            full-name: cumulus,,,
+            hashed-password: $6$qruUi1M0Kp3aiwbm$e5Wt0hwS7p70L5TfzVOz7YD05wFHlE7a6HEie4CtV0exC8G7WrsaQ8OUddnsN9rP4xl4fdkInFDQfoBUUhVgg1
+            role: system-admin
+      api:
+        state: enabled
+      config:
+        auto-save:
+          enable: on
+      control-plane:
+        acl:
+          acl-default-dos:
+            inbound: {}
+          acl-default-whitelist:
+            inbound: {}
+      global:
+        fabric-mac: 00:00:5E:00:01:01
+        system-mac: 44:38:39:22:01:82
+      hostname: spine01
+      reboot:
+        mode: cold
+      ssh-server:
+        state: enabled
+      wjh:
+        channel:
+          forwarding:
+            trigger:
+              l2: {}
+              l3: {}
+              tunnel: {}
+        enable: on
     vrf:
       default:
         router:
@@ -2279,6 +2793,12 @@ cumulus@spine01:~$ cat /etc/nvue.d/startup.yaml
 cumulus@spine02:~$ cat /etc/nvue.d/startup.yaml
 - set:
     interface:
+      eth0:
+        ip:
+          address:
+            dhcp: {}
+          vrf: mgmt
+        type: eth
       lo:
         ip:
           address:
@@ -2297,6 +2817,75 @@ cumulus@spine02:~$ cat /etc/nvue.d/startup.yaml
         autonomous-system: 65199
         enable: on
         router-id: 10.10.10.102
+    service:
+      ntp:
+        mgmt:
+          server:
+            0.cumulusnetworks.pool.ntp.org: {}
+            1.cumulusnetworks.pool.ntp.org: {}
+            2.cumulusnetworks.pool.ntp.org: {}
+            3.cumulusnetworks.pool.ntp.org: {}
+    system:
+      aaa:
+        class:
+          nvapply:
+            action: allow
+            command-path:
+              /:
+                permission: all
+          nvshow:
+            action: allow
+            command-path:
+              /:
+                permission: ro
+          sudo:
+            action: allow
+            command-path:
+              /:
+                permission: all
+        role:
+          nvue-admin:
+            class:
+              nvapply: {}
+          nvue-monitor:
+            class:
+              nvshow: {}
+          system-admin:
+            class:
+              nvapply: {}
+              sudo: {}
+        user:
+          cumulus:
+            full-name: cumulus,,,
+            hashed-password: $6$KXiEkc0lH0nj62X1$5AJMEw8EPgIJyq8C3KuKNwH11ykSdXEpncFAxz.I9YZCb6HeYrZRw5dLBW5oHGn5kBWyH52wUh.8gwa1w1uGh1
+            role: system-admin
+      api:
+        state: enabled
+      config:
+        auto-save:
+          enable: on
+      control-plane:
+        acl:
+          acl-default-dos:
+            inbound: {}
+          acl-default-whitelist:
+            inbound: {}
+      global:
+        fabric-mac: 00:00:5E:00:01:01
+        system-mac: 44:38:39:22:01:92
+      hostname: spine02
+      reboot:
+        mode: cold
+      ssh-server:
+        state: enabled
+      wjh:
+        channel:
+          forwarding:
+            trigger:
+              l2: {}
+              l3: {}
+              tunnel: {}
+        enable: on
     vrf:
       default:
         router:
@@ -3570,9 +4159,7 @@ exit-address-family
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL58 - EVPN Multihoming" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server02,server03,server04" >}}
-
-This simulation is running Cumulus Linux 5.8. The Cumulus Linux 5.9 simulation is coming soon.
+    {{< simulation name="Try It CL59 - EVPN Multihoming" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server02,server03,server04" >}}
 
 This simulation starts with the EVPN-MH with Head End Replication configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 

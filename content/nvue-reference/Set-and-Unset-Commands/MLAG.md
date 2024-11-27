@@ -12,15 +12,11 @@ h { color: RGB(118,185,0)}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## <h>nv set interface \<interface-id\> bond mlag</h>
-
-Provides commands to configure <span class="a-tooltip">[MLAG](## "Multi-chassis Link Aggregation")</span> on a bond interface.
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set interface \<interface-id\> bond mlag enable</h>
 
-Turns MLAG on or off on the bond interface. The default setting is `off`.
+Turns <span class="a-tooltip">[MLAG](## "Multi-chassis Link Aggregation")</span> on or off on the bond interface. The default setting is `off`.
 
 ### Command Syntax
 
@@ -35,7 +31,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 bond mlag enable on
+cumulus@switch:~$ nv set interface bond1 bond mlag enable on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -57,14 +53,8 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 bond mlag id 1
+cumulus@switch:~$ nv set interface bond1 bond mlag id 1
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set mlag</h>
-
-Provides commands to configure global MLAG settings.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -146,7 +136,7 @@ cumulus@switch:~$ nv set mlag enable on
 
 ## <h>nv set mlag init-delay</h>
 
-Configures the number of seconds `clagd` delays bringing up MLAG bonds and anycast IP addresses. You can set a value between 0 and 9000.
+Configures the number of seconds `clagd` delays bringing up MLAG bonds and anycast IP addresses. You can set a value between 1 and 900.
 
 This timer sets to 0 automatically under the following conditions:
 - When the peer is not alive and the backup link is not active after a reload timeout.
@@ -215,12 +205,6 @@ cumulus@switch:~$ nv set mlag priority 2084
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set nve vxlan mlag</h>
-
-Provides commands to configure MLAG for VXLAN.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set nve vxlan mlag shared-address</h>
 
 Configures the shared anycast address for MLAG peers.
@@ -232,5 +216,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set mlag vxlan mlag shared-address 10.10.10.2
+cumulus@switch:~$ nv set eve vxlan mlag shared-address 10.10.10.2
 ```

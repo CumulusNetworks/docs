@@ -12,6 +12,30 @@ h { color: RGB(118,185,0)}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system api certificate \<certificate-string\></h>
+
+Configures the X.509 certificate to be used with the API end-point.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `certificate-string` | The certificate string. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.8.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system api certificate <string>
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system api listening-address \<listening-address-id\></h>
 
 Configures the NVUE REST API listening address; you can specify an IPv4 address or localhost. If you do not specify a listening address, NGINX listens on all addresses for the target port.
@@ -34,22 +58,24 @@ cumulus@switch:~$ nv set system api listening-address localhost
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system api state</h>
+## <h>nv set system api mtls ca-certificate \<certificate-string\></h>
 
-Enables or disables the NVUE REST API. The default setting is `enabled`.
+Configures the certificate for client validation during Mutual TLS (mTLS) authentication.
 
-{{%notice note%}}
-To use the NVUE REST API in Cumulus Linux 5.6, you must change the password for the cumulus user; otherwise you see 403 responses when you run commands.
-{{%/notice%}}
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `certificate-string` | The certificate string. |
 
 ### Version History
 
-Introduced in Cumulus Linux 5.6.0
+Introduced in Cumulus Linux 5.8.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv set system api state enabled
+cumulus@switch:~$ nv set system api mtls ca-certificate <string>
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -66,4 +92,24 @@ Introduced in Cumulus Linux 5.6.0
 
 ```
 cumulus@switch:~$ nv set system api port 8888
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system api state</h>
+
+Enables or disables the NVUE REST API. The default setting is `enabled`.
+
+{{%notice note%}}
+To use the NVUE REST API in Cumulus Linux 5.6, you must change the password for the cumulus user; otherwise you see 403 responses when you run commands.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system api state enabled
 ```

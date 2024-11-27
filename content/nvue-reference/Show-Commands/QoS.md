@@ -1472,7 +1472,7 @@ cumulus@switch:~$ nv show qos advance-buffer-config -o json
         }
       }
     },
-    "egress-pool": {
+    "egress-service-pool": {
       "0": {
         "memory-percent": 100,
         "mode": "dynamic"
@@ -1496,7 +1496,7 @@ cumulus@switch:~$ nv show qos advance-buffer-config -o json
         }
       }
     },
-    "ingress-pool": {
+    "ingress-service-pool": {
       "0": {
         "memory-percent": 100,
         "mode": "dynamic"
@@ -1545,10 +1545,10 @@ egress-lossy-buffer
   [traffic-class]              5            5      
   [traffic-class]              6            6      
   [traffic-class]              7            7      
-[egress-pool]                  0            0      
+[egress-service-pool]                  0            0      
 ingress-lossy-buffer                               
   [priority-group]             bulk         bulk   
-[ingress-pool]                 0            0
+[ingress-service-pool]                 0            0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1731,9 +1731,13 @@ service-pool  0            0
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show qos advance-buffer-config \<profile-id\> egress-pool</h>
+## <h>nv show qos advance-buffer-config \<profile-id\> egress-service-pool</h>
 
 Shows all egress service pool settings for the specified QoS advanced buffer profile.
+
+{{%notice note%}}
+In Cumulus Linux 5.10 and earlier, `egress-service-pool` is `egress-pool`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1748,7 +1752,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show qos advance-buffer-config default-global egress-pool
+cumulus@switch:~$ nv show qos advance-buffer-config default-global egress-service-pool
 Pool-Id  infinite  memory-percent  mode     reserved  shared-alpha  shared-bytes
 -------  --------  --------------  -------  --------  ------------  ------------
 0                  100             dynamic
@@ -1756,9 +1760,13 @@ Pool-Id  infinite  memory-percent  mode     reserved  shared-alpha  shared-bytes
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show qos advance-buffer-config \<profile-id\> egress-pool \<pool-id\></h>
+## <h>nv show qos advance-buffer-config \<profile-id\> egress-service-pool \<pool-id\></h>
 
 Shows configuration settings for a specific egress service pool for the specified QoS advanced buffer profile.
+
+{{%notice note%}}
+In Cumulus Linux 5.10 and earlier, `egress-service-pool` is `egress-pool`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1774,7 +1782,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show qos advance-buffer-config default-global egress-pool 3
+cumulus@switch:~$ nv show qos advance-buffer-config default-global egress-service-pool 3
                 operational  applied
 --------------  -----------  -------
 memory-percent  100          100    
@@ -1954,9 +1962,13 @@ cumulus@switch:~$ nv show qos advance-buffer-config default-global ingress-lossy
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show qos advance-buffer-config \<profile-id\> ingress-pool</h>
+## <h>nv show qos advance-buffer-config \<profile-id\> ingress-service-pool</h>
 
 Shows all ingress service pool settings for the specified QoS advanced buffer profile.
+
+{{%notice note%}}
+In Cumulus Linux 5.10 and earlier, `ingress-service-pool` is `ingress-pool`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1971,7 +1983,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show qos advance-buffer-config default-global ingress-pool
+cumulus@switch:~$ nv show qos advance-buffer-config default-global ingress-service-pool
 Pool-Id  infinite  memory-percent  mode     reserved  shared-alpha  shared-bytes
 -------  --------  --------------  -------  --------  ------------  ------------
 0                  80              dynamic                                      
@@ -1980,9 +1992,13 @@ Pool-Id  infinite  memory-percent  mode     reserved  shared-alpha  shared-bytes
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show qos advance-buffer-config \<profile-id\> ingress-pool \<pool-id\></h>
+## <h>nv show qos advance-buffer-config \<profile-id\> ingress-service-pool \<pool-id\></h>
 
 Shows configuration settings for a specific ingress service pool for the specified QoS advanced buffer profile.
+
+{{%notice note%}}
+In Cumulus Linux 5.10 and earlier, `ingress-service-pool` is `ingress-pool`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1998,11 +2014,51 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show qos advance-buffer-config default-global ingress-pool 3
+cumulus@switch:~$ nv show qos advance-buffer-config default-global ingress-service-pool 3
                 operational  applied
 --------------  -----------  -------
 memory-percent  100          100    
 mode            dynamic      dynamic
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show qos advance-buffer-config \<profile-id\> egress-mgmt-buffer</h>
+
+Shows the lossy egress management buffer settings that you can configure to isolate management traffic to a different priority group. Management traffic consists of OSPF and BGP hello and update packets, and BFD packets that ingress and egress the CPU.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show qos advance-buffer-config default-global egress-mgmt-buffer 
+              operational       applied 
+------------  -----------       ---- 
+reserved       1200 Bytes       1200 Bytes 
+shared-bytes   13.53 KB         13.53 KB 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show qos advance-buffer-config \<profile-id\> ingress-mgmt-buffer</h>
+
+Shows the lossy ingress management buffer settings that you can configure to isolate management traffic to a different priority group. Management traffic consists of OSPF and BGP hello and update packets, and BFD packets that ingress and egress the CPU.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show qos advance-buffer-config default-global ingress-mgmt-buffer
+              operational       applied
+------------  -----------       ---- 
+headroom       1000 Bytes       1000 Bytes 
+shared-bytes   19.53 KB         19.53 KB 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2208,6 +2264,23 @@ max-threshold  200000 B     200000 B  Maximum Threshold (in bytes)
 min-threshold  40000 B      40000 B   Minimum Threshold (in bytes)
 probability    100          100       Probability
 red            enable       enable    Random Early Detection State
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show qos buffer descriptor-pool</h>
+
+Shows the buffer descriptor pool counters.
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show qos buffer descriptor-pool
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

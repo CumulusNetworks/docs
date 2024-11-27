@@ -473,6 +473,9 @@ cumulus@leaf01:mgmt:~$ nv config apply
 
 You can add static IPv6 neighbor table entries for easy management or as a security measure to prevent spoofing and other nefarious activities.
 
+{{< tabs "TabID476 ">}}
+{{< tab "NVUE Commands ">}}
+
 To create a static neighbor entry for an interface with an IPv6 address associated with a MAC address, run the `nv set interface <interface> neighbor ipv6 <ip-address> lladdr <mac-address>` command.
 
 ```
@@ -494,6 +497,44 @@ To delete an entry in the IP neighbor table, run the `nv unset interface <interf
 cumulus@leaf01:mgmt:~$ nv unset interface swp51 neighbor ipv6 fe80::4ab0:2dff:fea2:4c79
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+To create a static neighbor entry for an interface with an IPv6 address associated with a MAC address, add `post-up ip neigh add <ipv6-address> lladdr <mac-address>` to the interface stanza of the `/etc/network/interfaces` file, then run the `ifreload -a` command:
+
+```
+cumulus@leaf01:mgmt:~$ sudo nano /etc/network/interfaces
+...
+auto swp51
+iface swp51
+    post-up ip neigh add fe80::4ab0:2dff:fea2:4c79 lladdr 00:00:5E:00:53:51 dev swp51
+...
+```
+
+```
+cumulus@leaf01:mgmt:~$ sudo ifreload -a
+```
+
+You can also set a flag to indicate that the IPv6 neighbor is a router (`router`) or learned externally (`extern_learn`) and set the neighbor state (`delay`, `failed`, `incomplete`, `noarp`, `permanent`, `probe`, `reachable`, or `stale`).
+
+```
+cumulus@leaf01:mgmt:~$ sudo nano /etc/network/interfaces
+...
+auto swp51
+iface swp51
+    post-up ip neigh add fe80::4ab0:2dff:fea2:4c79 lladdr 00:00:5E:00:53:51 dev swp51 nud permanent router
+...
+```
+
+```
+cumulus@leaf01:mgmt:~$ sudo ifreload -a
+```
+
+To delete a static neighbor entry, remove the `post-up ip neigh add` line from the interface stanza of the `/etc/network/interfaces` file.
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Show the IP Neighbor Table
 

@@ -11,6 +11,10 @@ This section discusses the following route filtering methods:
 - Route maps
 - Route redistribution
 
+{{%notice note%}}
+Route map and prefix list names must start with a letter and can contain letters, digits, underscores and dashes. For example, you can name a route map `MAP10` or `ROUTE-MAP_10` but you cannot name a route map `10` or `10_ROUTE-MAP`.
+{{%/notice%}}
+
 ## Prefix Lists
 
 Prefix lists are access lists for route advertisements that match routes instead of traffic. Prefix lists are typically used with route maps and other filtering methods. A prefix list can match the prefix (the network itself) and the prefix length (the length of the subnet mask).
@@ -260,7 +264,7 @@ You can use the following list of supported match and set statements with NVUE c
 | `evpn-default-route` | Matches the EVPN default route. You can specify `on` or `off`.|
 | `ip-nexthop-len` | Matches the specified next hop prefix length. |
 | `large-community-list` | Matches the specified large community list.|
-| `source-protocol` |Matches the specified source protocol, such as BGP, OSPF or static. |
+| `source-protocol` |Matches the specified source protocol, such as BGP, OSPF or static. NVUE does not support source protocol match.|
 | `evpn-route-type` | Matches the specified EVPN route type. You can specify `macip`, `imet`, or `prefix`. |
 | `ip-nexthop-list` | Matches the specified next hop list.|
 | `local-preference` | Matches the specified local preference. You can specify a value between 0 and 4294967295. |

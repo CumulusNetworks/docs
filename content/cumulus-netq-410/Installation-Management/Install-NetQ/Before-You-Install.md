@@ -48,9 +48,7 @@ Both single-server and server-cluster deployments provide identical services and
 
 A single server is easier to set up, configure, and manage, but can limit your ability to scale your network monitoring quickly. Deploying multiple servers is more complicated, but you limit potential downtime and increase availability by having more than one server that can run the software and store the data. Select the standalone, single-server arrangements for smaller, simpler deployments. Be sure to consider the capabilities and resources needed on this server to support the size of your final deployment.
 
-Select the server-cluster arrangement to obtain scalability and high availability for your network. The clustering implementation comprises three servers: one master and two workers. <!-- However, NetQ supports up to 10 worker nodes in a cluster.--> <!-- and up to 5000 total devices (switches, servers, and hosts).--> Part of the cluster configuration includes {{<link url="Install-NetQ-Agents/#configure-netq-agent" text="configuring the NetQ Agents">}} to connect to the three servers. <!-- removed for 4.9 - If you decide to add additional nodes to the cluster, you do not need to configure these nodes again. -->
-
-<!-- removed for 4.9 - You can enable {{<link title="Data Center Network Deployments#high-availability" text="high availability">}} (HA) of NetQ control plane processing and UI access with the use of an additional virtual IP address assigned to the cluster nodes.  -->
+Select the server-cluster arrangement to obtain scalability and high availability for your network. The clustering implementation comprises three servers: one master and two workers. In a clustered environment, NVIDIA recommends installing the virtual machines on different physical servers to increase redundancy in the event of a hardware failure.<!-- However, NetQ supports up to 10 worker nodes in a cluster.--> <!-- and up to 5000 total devices (switches, servers, and hosts).-->
 
 ### Cluster Deployments and Kubernetes 
 

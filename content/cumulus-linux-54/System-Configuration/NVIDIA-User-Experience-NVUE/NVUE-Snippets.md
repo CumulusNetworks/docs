@@ -116,6 +116,59 @@ Make sure to use spaces not tabs; the parser expects spaces in yaml format.
 
 The traditional snippets for FRR write content to the `/etc/frr/frr.conf` file. When you apply the configuration and snippet with the `nv config apply` command, the FRR service goes through and reads in the `/etc/frr/frr.conf` file.
 
+#### Example 3: EVPN Multihoming FRR Debugging
+
+NVUE does not support configuring FRR debugging for EVPN multihoming. The following example configures FRR debugging:
+
+1. Create a `.yaml` file and add the following traditional snippet:
+
+   ```
+   cumulus@switch:~$ sudo nano mh_debug_snippet.yaml
+   - set:
+       system:
+         config:
+           snippet:
+             frr.conf: |
+               debug bgp evpn mh es
+               debug bgp evpn mh route
+               debug bgp zebra
+               debug zebra evpn mh es
+               debug zebra evpn mh mac
+               debug zebra evpn mh neigh
+               debug zebra evpn mh nh
+               debug zebra vxlan
+   ```
+
+2. Run the following command to patch the configuration:
+
+   ```
+   cumulus@switch:~$ nv config patch mh_debug_snippet.yaml
+   ```
+
+3. Run the `nv config apply` command to apply the configuration:
+
+   ```
+   cumulus@switch:~$ nv config apply
+   ```
+
+4. Verify that the configuration exists in the `/etc/frr/frr.conf` file:
+
+   ```
+   cumulus@switch:~$ sudo cat /etc/frr/frr.conf
+   ...
+   !---- NVUE snippets ----
+   debug bgp evpn mh es
+   debug bgp evpn mh route
+   debug bgp zebra
+   debug zebra evpn mh es
+   debug zebra evpn mh mac
+   debug zebra evpn mh neigh
+   debug zebra evpn mh nh
+   debug zebra vxlan
+   ```
+
+The traditional snippets for FRR write content to the `/etc/frr/frr.conf` file. When you apply the configuration and snippet with the `nv config apply` command, the FRR service goes through and reads in the `/etc/frr/frr.conf` file.
+
 ### /etc/network/interfaces Snippets
 
 #### MLAG Timers Example

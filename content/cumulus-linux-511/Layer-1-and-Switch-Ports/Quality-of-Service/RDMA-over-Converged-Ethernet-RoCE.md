@@ -10,7 +10,7 @@ toc: 3
 While Cumulus Linux can support RoCE environments, the end hosts must support the RoCE protocol.
 {{%/notice%}}
 
-RoCE helps you obtain a *converged network*, where all services run over the Ethernet infrastructure, including Infiniband apps.
+RoCE helps you obtain a *converged network*, where all services run over the Ethernet infrastructure, including Infiniband applications.
 
 ## Default RoCE Mode Configuration
 
@@ -115,7 +115,7 @@ Using the RoCE single shared buffer pool can help absorb lossy traffic as well a
 
 To enable the single shared buffer pool for RoCE:
 
-{{< tabs "TabID288 ">}}
+{{< tabs "TabID188 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```

@@ -12,7 +12,7 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 
 ### Platforms
 
-- SN5610 (Spectrum-4)
+- SN5610 (800G Spectrum-4)
 - SN5400 ITU-T G.82732 Class C compliant
 
 ### New Features and Enhancements

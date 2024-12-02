@@ -56,12 +56,6 @@ netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported tru
 <td>5.11.0</td>
 </tr>
 <tr>
-<td>4128913</td>
-<td>In an EVPN configuration,  when you use NVUE to configure a new host bond and an multihoming  ESI at the same time, the Split-Horizon preventive traffic class rule is not programmed in the egress direction. To work around this issue, configure the host bond and apply the configuration, then configure the EVPN multihoming ESI on the host bonds and apply the configuration in a separate step.</td>
-<td>5.9.1-5.11.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4127636</td>
 <td>Multicast traffic continues to egress an interface that leaves the group. Logs and multicast data show that the IGMP group is deleted but the OIF is still listed.</td>
 <td>5.10.0-5.10.1</td>
@@ -132,9 +126,9 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 </tr>
 <tr>
 <td>4096505</td>
-<td>In an EVPN configuration,  when you use NVUE to configure a new host bond and a multihoming ESI at the same time, the Split-Horizon preventive traffic class rule is not programmed in the egress direction. To work around this issue, configure the host bond and apply the configuration, then configure the EVPN multihoming ESI on the host bonds and apply the configuration in a separate step.</td>
-<td>5.9.1-5.10.1</td>
-<td>5.11.0</td>
+<td>In an EVPN configuration,  when you use NVUE to configure a new host bond and an multihoming  ESI at the same time, the Split-Horizon preventive traffic class rule is not programmed in the egress direction. To work around this issue, configure the host bond and apply the configuration, then configure the EVPN multihoming ESI on the host bonds and apply the configuration in a separate step.</td>
+<td>5.9.1-5.11.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4086136</td>
@@ -167,13 +161,6 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <td>5.11.0</td>
 </tr>
 <tr>
-<td>4061534</td>
-<td>When you remove a secondary OTLP collector, there is a telemetry spike and existing connections with OTLP exporters reset. When new connections with the OTLP collector re-establish, the server experiences a high CPU and memory leak, which can bring down the 
-telemetry collection service.</td>
-<td>5.10.0-5.10.1</td>
-<td>5.11.0</td>
-</tr>
-<tr>
 <td>4050835</td>
 <td>The NVUE Service fails to start after an upgrade from Cumulus Linux 5.9 to Cumulus Linux 5.10 because of a corrupted database.</td>
 <td>5.10.0-5.10.1</td>
@@ -191,7 +178,7 @@ interface_stats: [ERROR] interface_stats_collector.py:_parse_conf_file:201 — C
 </tr>
 <tr>
 <td>4047798</td>
-<td>Packet distribution based on ECMP hash is not working for VXLAN. To balance traffic between egress ports, you can use lag or ECMP hash. For consistency, lag hash is for all layer 2 flows including VXLAN. ECMP hash is for layer 3 flows only.</td>
+<td>Packet distribution based on ECMP hash is not working for VXLAN  at TOR switches where it is encapped. To balance traffic between egress ports, you can use lag or ECMP hash.  To enable traffic distribution in this use case,  lag hashing as well needed to be enabled. </td>
 <td>5.10.0-5.11.0</td>
 <td></td>
 </tr>
@@ -670,12 +657,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>5.11.0</td>
 </tr>
 <tr>
-<td>4128913</td>
-<td>In an EVPN configuration,  when you use NVUE to configure a new host bond and an multihoming  ESI at the same time, the Split-Horizon preventive traffic class rule is not programmed in the egress direction. To work around this issue, configure the host bond and apply the configuration, then configure the EVPN multihoming ESI on the host bonds and apply the configuration in a separate step.</td>
-<td>5.9.1-5.11.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4127636</td>
 <td>Multicast traffic continues to egress an interface that leaves the group. Logs and multicast data show that the IGMP group is deleted but the OIF is still listed.</td>
 <td>5.10.0-5.10.1</td>
@@ -764,9 +745,9 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 </tr>
 <tr>
 <td>4096505</td>
-<td>In an EVPN configuration,  when you use NVUE to configure a new host bond and a multihoming ESI at the same time, the Split-Horizon preventive traffic class rule is not programmed in the egress direction. To work around this issue, configure the host bond and apply the configuration, then configure the EVPN multihoming ESI on the host bonds and apply the configuration in a separate step.</td>
-<td>5.9.1-5.10.1</td>
-<td>5.11.0</td>
+<td>In an EVPN configuration,  when you use NVUE to configure a new host bond and an multihoming  ESI at the same time, the Split-Horizon preventive traffic class rule is not programmed in the egress direction. To work around this issue, configure the host bond and apply the configuration, then configure the EVPN multihoming ESI on the host bonds and apply the configuration in a separate step.</td>
+<td>5.9.1-5.11.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4086136</td>
@@ -811,13 +792,6 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <td>5.11.0</td>
 </tr>
 <tr>
-<td>4061534</td>
-<td>When you remove a secondary OTLP collector, there is a telemetry spike and existing connections with OTLP exporters reset. When new connections with the OTLP collector re-establish, the server experiences a high CPU and memory leak, which can bring down the 
-telemetry collection service.</td>
-<td>5.10.0-5.10.1</td>
-<td>5.11.0</td>
-</tr>
-<tr>
 <td>4050835</td>
 <td>The NVUE Service fails to start after an upgrade from Cumulus Linux 5.9 to Cumulus Linux 5.10 because of a corrupted database.</td>
 <td>5.10.0-5.10.1</td>
@@ -841,7 +815,7 @@ interface_stats: [ERROR] interface_stats_collector.py:_parse_conf_file:201 — C
 </tr>
 <tr>
 <td>4047798</td>
-<td>Packet distribution based on ECMP hash is not working for VXLAN. To balance traffic between egress ports, you can use lag or ECMP hash. For consistency, lag hash is for all layer 2 flows including VXLAN. ECMP hash is for layer 3 flows only.</td>
+<td>Packet distribution based on ECMP hash is not working for VXLAN  at TOR switches where it is encapped. To balance traffic between egress ports, you can use lag or ECMP hash.  To enable traffic distribution in this use case,  lag hashing as well needed to be enabled. </td>
 <td>5.10.0-5.11.0</td>
 <td></td>
 </tr>

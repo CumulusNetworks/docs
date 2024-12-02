@@ -274,7 +274,35 @@ cumulus@switch:mgmt:~$ nv set qos egress-queue-mapping default-global switch-pri
 cumulus@switch:mgmt:~$ nv set qos mapping default-global trust both
 cumulus@switch:mgmt:~$ nv set qos mapping default-global dscp 26 switch-priority 2
 ```
+<!-- FOR 5.12
+## RoCE Single Shared Buffer Pool
 
+By default, Cumulus Linux separates lossy and lossless traffic into different dedicated pools on both ingress and egress. You can configure the switch to map ingress lossy and lossless traffic to the same single ingress pool. This configuration is useful if most of the traffic is of one type or when a reasonable amount of the shared buffer by lossy and lossless traffic is of less importance.
+
+Using the RoCE single shared buffer pool can help absorb lossy traffic as well as prioritize lossless traffic.
+
+<<<<CHECK CALCULATION AND CNP
+
+To enable the single shared buffer pool for RoCE:
+
+```
+cumulus@switch:~$ nv set qos roce mode lossless-single-ipool
+cumulus@switch:~$ nv config apply
+```
+
+To disable the single shared buffer pool for RoCE, run the `nv unset qos roce` command.
+
+To show if the single shared buffer pool for RoCE is enabled, run the `nv show qos roce` command.
+
+```
+cumulus@switch:mgmt:~$ nv show qos roce
+                   operational             applied 
+------------------  -----------            --------
+enable                                     on      
+mode                lossless-single-ipool  lossless-single-ipool
+...
+```
+-->
 ## Related Information
 
 - {{<exlink url="http://www.roceinitiative.org/roce-introduction/" text="RoCE introduction">}} - roceinitiative.org

@@ -31,12 +31,6 @@
 <td>5.11.0</td>
 </tr>
 <tr>
-<td>4128913</td>
-<td>In an EVPN configuration,  when you use NVUE to configure a new host bond and an multihoming  ESI at the same time, the Split-Horizon preventive traffic class rule is not programmed in the egress direction. To work around this issue, configure the host bond and apply the configuration, then configure the EVPN multihoming ESI on the host bonds and apply the configuration in a separate step.</td>
-<td>5.9.1-5.11.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4124831</td>
 <td>When Per-VLAN Rapid Spanning Tree (PVRST) mode is enabled, bonds with LACP bypass discard ingress DHCP packets.</td>
 <td>5.9.1-5.10.1</td>
@@ -89,9 +83,9 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 </tr>
 <tr>
 <td>4096505</td>
-<td>In an EVPN configuration,  when you use NVUE to configure a new host bond and a multihoming ESI at the same time, the Split-Horizon preventive traffic class rule is not programmed in the egress direction. To work around this issue, configure the host bond and apply the configuration, then configure the EVPN multihoming ESI on the host bonds and apply the configuration in a separate step.</td>
-<td>5.9.1-5.10.1</td>
-<td>5.11.0</td>
+<td>In an EVPN configuration,  when you use NVUE to configure a new host bond and an multihoming  ESI at the same time, the Split-Horizon preventive traffic class rule is not programmed in the egress direction. To work around this issue, configure the host bond and apply the configuration, then configure the EVPN multihoming ESI on the host bonds and apply the configuration in a separate step.</td>
+<td>5.9.1-5.11.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4081784</td>
@@ -807,12 +801,6 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <td>5.11.0</td>
 </tr>
 <tr>
-<td>4128913</td>
-<td>In an EVPN configuration,  when you use NVUE to configure a new host bond and an multihoming  ESI at the same time, the Split-Horizon preventive traffic class rule is not programmed in the egress direction. To work around this issue, configure the host bond and apply the configuration, then configure the EVPN multihoming ESI on the host bonds and apply the configuration in a separate step.</td>
-<td>5.9.1-5.11.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4124831</td>
 <td>When Per-VLAN Rapid Spanning Tree (PVRST) mode is enabled, bonds with LACP bypass discard ingress DHCP packets.</td>
 <td>5.9.1-5.10.1</td>
@@ -859,9 +847,9 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 </tr>
 <tr>
 <td>4096505</td>
-<td>In an EVPN configuration,  when you use NVUE to configure a new host bond and a multihoming ESI at the same time, the Split-Horizon preventive traffic class rule is not programmed in the egress direction. To work around this issue, configure the host bond and apply the configuration, then configure the EVPN multihoming ESI on the host bonds and apply the configuration in a separate step.</td>
-<td>5.9.1-5.10.1</td>
-<td>5.11.0</td>
+<td>In an EVPN configuration,  when you use NVUE to configure a new host bond and an multihoming  ESI at the same time, the Split-Horizon preventive traffic class rule is not programmed in the egress direction. To work around this issue, configure the host bond and apply the configuration, then configure the EVPN multihoming ESI on the host bonds and apply the configuration in a separate step.</td>
+<td>5.9.1-5.11.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4081784</td>

@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4181296</td>
+<td>NetQ might become unresponsive when someone with a non-admin (user) role attempts to create or clone workbenches, add cards to a workbench, create validations, or run a flow analysis.</td>
+<td>4.11.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4001098</td>
 <td>When you use NetQ LCM to upgrade a Cumulus Linux switch from version 5.9 to 5.10, and if the upgrade fails, NetQ rolls back to version 5.9 and reverts the {{cumulus}} user password to the default password. After rollback, reconfigure the password with the {{nv set system aaa user cumulus password &lt;password&gt;}} command.  </td>
 <td>4.11.0</td>

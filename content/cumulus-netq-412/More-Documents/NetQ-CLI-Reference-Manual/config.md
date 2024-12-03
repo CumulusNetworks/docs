@@ -51,7 +51,7 @@ netq config add agent cluster-servers
 
 ### Sample Usage
 
-Configure cluster with default port and VRF
+Configure cluster with default port and VRF:
 
 ```
 cumulus@switch:~$ netq config add agent cluster-servers leaf01,leaf02,spine01
@@ -99,24 +99,35 @@ netq config add agent command
 
 ### Sample Usage
 
-Modify the polling frequency for a command:
+For example, to change the polling frequency of the `ntp` command to 60 seconds from its default of 30 seconds, run:
 
 ```
-cumulus@switch:~$ netq config add agent command service-key lldp-json poll-period 60
-Successfully added/modified Command service lldpd command /usr/sbin/lldpctl -f json
+cumulus@switch:~$ sudo netq config add agent command service-key ntp poll-period 30
+Successfully added/modified Command service misc command None
+
+cumulus@switch:~$ sudo netq config show agent commands
+ Service Key          Period  Active       Command
+------------------  --------  --------  --------------------------
+ports                   3600  yes       Netq Predefined Command
+proc-net-dev              30  yes       Netq Predefined Command
+ntp                       60  yes       Netq Predefined Command
+agent_stats              300  yes       Netq Predefined Command
+agent_util_stats          30  yes       Netq Predefined Command
+resource-util-json       120  yes       findmnt / -n -o FS-OPTIONS
+box-info               86400  yes       Netq Predefined Command
 ```
 
 Disable a command:
 
 ```
-cumulus@switch:~$ netq config add agent command service-key ospf-neighbor-json enable False
-Command Service ospf-neighbor-json is disabled
+cumulus@switch:~$ netq config add agent command service-key ntp enable False
+Command Service ntp is disabled
 ```
 
 ### Related Commands
 
-- ```netq config show agent```
-- ```netq config agent factory-reset```
+- `netq config show agent`
+- `netq config agent factory-reset`
 
 - - -
 
@@ -1366,45 +1377,16 @@ netq config show agent commands
 Show the configuration for all commands:
 
 ```
-cumulus@switch:~$ netq config show agent commands
- Service Key               Period  Active       Command
------------------------  --------  --------  ---------------------------------------------------------------------
-bgp-neighbors                  60  yes       ['/usr/bin/vtysh', '-c', 'show ip bgp vrf all neighbors json']
-evpn-vni                       60  yes       ['/usr/bin/vtysh', '-c', 'show bgp l2vpn evpn vni json']
-lldp-json                     120  yes       /usr/sbin/lldpctl -f json
-clagctl-json                   60  yes       /usr/bin/clagctl -j
-dpkg-query                  21600  yes       dpkg-query --show -f ${Package},${Version},${Status}\n
-ptmctl-json                   600  yes       /usr/bin/ptmctl -d -j
-mstpctl-bridge-json            60  yes       /sbin/mstpctl showall json
-ports                        3600  yes       Netq Predefined Command
-proc-net-dev                   30  yes       Netq Predefined Command
-dom                          1800  yes       Netq Predefined Command
-roce                           60  yes       Netq Predefined Command
-roce-config                    60  yes       Netq Predefined Command
-nvue-roce-config               60  yes       Netq Predefined Command
-agent_stats                   300  yes       Netq Predefined Command
-agent_util_stats               30  yes       Netq Predefined Command
-tcam-resource-json            300  yes       /usr/cumulus/bin/cl-resource-query -j
-config-mon-json               120  yes       Netq Predefined Command
-nvue-mon-json                  60  yes       Netq Predefined Command
-running-config-mon-json        30  yes       Netq Predefined Command
-cl-support-json               180  yes       Netq Predefined Command
-resource-util-json            120  yes       findmnt / -n -o FS-OPTIONS
-smonctl-json                  120  yes       /usr/sbin/smonctl -j
-sensors-json                 1800  yes       sensors -u
-ssd-util-json               86400  yes       /usr/sbin/smartctl -a /dev/sda
-ssd-util-nvme-json          86400  yes       /usr/sbin/smartctl -a /dev/nvme0
-ospf-neighbor-json             60  yes       ['/usr/bin/vtysh', '-c', 'show ip ospf vrf all neighbor detail json']
-ospf-interface-json            60  yes       ['/usr/bin/vtysh', '-c', 'show ip ospf vrf all interface json']
-ecmp-hash-info                 60  yes       cat /etc/cumulus/datapath/traffic.conf
-ecmp-info                      60  yes       Netq Predefined Command
-ptp-config-info                60  yes       cat /etc/ptp4l.conf
-ptp-clock-info                 60  yes       Netq Predefined Command
-ptp-clock-status               60  yes       Netq Predefined Command
-ptp-statistics                 60  yes       Netq Predefined Command
-ptp-correction                 30  yes       Netq Predefined Command
-log-exporter                   60  yes       Netq Predefined Command
-adaptive-routing-config       120  yes       Netq Predefined Command
+cumulus@switch:~$ sudo netq config show agent commands
+ Service Key          Period  Active       Command
+------------------  --------  --------  --------------------------
+ports                   3600  yes       Netq Predefined Command
+proc-net-dev              30  yes       Netq Predefined Command
+ntp                       30  yes       Netq Predefined Command
+agent_stats              300  yes       Netq Predefined Command
+agent_util_stats          30  yes       Netq Predefined Command
+resource-util-json       120  yes       findmnt / -n -o FS-OPTIONS
+box-info               86400  yes       Netq Predefined Command
 ```
 
 Show the configuration for a specified command:
@@ -1418,8 +1400,8 @@ agent_stats           300  yes       Netq Predefined Command
 
 ### Related Commands
 
-- ```netq config add agent commands```
-- ```netq config agent factory-reset commands```
+- `netq config add agent commands`
+- `netq config agent factory-reset commands`
 
 - - -
 ## netq config show all
@@ -1454,7 +1436,7 @@ exhibiturl
 server                    127.0.0.1  127.0.0.1
 cpu-limit                 100        100
 agenturl
-wjh                                  Enabled
+wjh                       Enabled    Enabled
 enable-opta-discovery     False      False
 agentport                 8981       8981
 port                      31980      31980
@@ -1465,16 +1447,17 @@ netq_stream_address       127.0.0.1  127.0.0.1
 is-ssl-enabled            False      False
 ssl-cert
 generate-unique-hostname  False      False
+agent-hostname            cumulus    cumulus
 ()
-netq-cli     value              default
------------  -----------------  ---------
-server       10.188.45.236      127.0.0.1
+netq-cli     value          default
+-----------  -------------  ---------
+server       10.188.46.182  127.0.0.1
 netq-user    admin
-premises     admin-1708956199
-port         32708              32708
-count        4000               4000
-vrf          default            default
-api-logging  False              False
+premises     OPID0
+port         32708          32708
+count        4000           4000
+vrf          default        default
+api-logging  False          False
 ()
 ```
 

@@ -10,12 +10,12 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 ## December 2024
 ### 82.2024.1203-011
 <!-- Air:WhatsNew -->
-- UserConfigs are now budgeted based on the overall content length instead of instance amount
-- Fixed an issue with Air Agent not running on nodes after a simulation wake up
-- Fixed an issue with nodes not being able to get started when CDROM value is defined
-- Added the capability to upload JSON topology file with title and ZTP included.
-- Fixed an issue when copying to clipboard button for service that always generated the username as 'ubuntu'. It now correctly displays the username based on the node's type.
-- Removed `organization` field in JSON Export API
+- UserConfigs are now budgeted based on the overall content length instead of the instance amount
+- Fixed an issue where the Air agent did not run on nodes after a simulation woke up
+- Fixed an issue where nodes did not start when the CDROM value was defined
+- Added the ability to upload a JSON topology file that includes a title and ZTP
+- Fixed an issue where the copy-to-clipboard button for a service always generated the username *ubuntu*. It now correctly displays the username based on the node’s type.
+- Removed the `organization` field from the JSON export API
 <!-- Air:WhatsNew -->
 
 ## November 2024

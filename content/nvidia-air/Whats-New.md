@@ -7,15 +7,24 @@ product: NVIDIA Air
 <!-- vale off -->
 Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
 
-## November 2024
+## December 2024
+### 82.2024.1203-011
 <!-- Air:WhatsNew -->
+- UserConfigs are now budgeted based on the overall content length instead of the instance amount
+- Fixed an issue where the Air agent did not run on nodes after a simulation woke up
+- Fixed an issue where nodes did not start when the CDROM value was defined
+- Added the ability to upload a JSON topology file that includes a title and ZTP
+- Fixed an issue where the copy-to-clipboard button for a service always generated the username *ubuntu*. It now correctly displays the username based on the node’s type.
+- Removed the `organization` field from the JSON export API
+<!-- Air:WhatsNew -->
+
+## November 2024
 ### 82.2024.1121-011
 - Fixed issue where a modal could be larger than the window and scrolling was not available
 - Fixed an issue with scrolling of a simulation guide when it was popped out
 - Fixed an issue where the count in the Organization tabs was not updated
 - Fixed an issue where node names could be duplicated, causing issues with the OOB configuration
 - Fixed a performance issue when loading the menu bar
-<!-- Air:WhatsNew -->
 
 ### 82.2024.1112-011
 - Added support for customizing OOB nodes when using JSON 

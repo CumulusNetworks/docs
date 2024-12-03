@@ -57,14 +57,22 @@ For example, you can view all events across your network with the {{<link title=
 cumulus@switch:~$ netq leaf01 show events
 
 Matching events records:
-Hostname          Message Type             Severity         Message                             Timestamp
------------------ ------------------------ ---------------- ----------------------------------- -------------------------
-leaf01            btrfsinfo                error            data storage efficiency : space lef Wed Sep  2 20:34:31 2020
-                                                            t after allocation greater than chu
-                                                            nk size 0.57 GB
-leaf01            btrfsinfo                error            data storage efficiency : space lef Wed Sep  2 20:04:30 2020
-                                                            t after allocation greater than chu
-                                                            nk size 0.57 GB
+Hostname          Message Type             Severity         State      Message                             Timestamp
+----------------- ------------------------ ---------------- ---------- ----------------------------------- -------------------------
+leaf01            tca_procdevstats         info             open       RX bytes exceeded threshold,        Tue Dec  3 16:18:40 2024
+                                                                       for ifname: eth0 value: 228
+leaf01            tca_procdevstats         info             open       RX bytes exceeded threshold,        Tue Dec  3 16:18:11 2024
+                                                                       for ifname: swp50 value: 898
+leaf01            tca_procdevstats         info             open       RX bytes exceeded threshold,        Tue Dec  3 16:13:36 2024
+                                                                       for ifname: eth0 value: 253
+leaf01            tca_procdevstats         info             open       RX bytes exceeded threshold,        Tue Dec  3 16:13:05 2024
+                                                                       for ifname: swp50 value: 885
+leaf01            tca_procdevstats         info             open       RX bytes exceeded threshold,        Tue Dec  3 16:08:21 2024
+                                                                       for ifname: eth0 value: 240
+leaf01            tca_procdevstats         info             open       RX bytes exceeded threshold,        Tue Dec  3 16:07:50 2024
+                                                                       for ifname: swp50 value: 919
+leaf01            tca_procdevstats         info             open       RX bytes exceeded threshold,        Tue Dec  3 16:03:08 2024
+                                                                       for ifname: eth0 value: 250
 ```
 
 Refer to the command line reference for a comprehensive list of {{<link title="show" text="netq show commands">}}.

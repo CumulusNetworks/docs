@@ -7,9 +7,9 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4161354</td>
-<td>The NetQ UI might take several minutes to load and display BGP unestablished sessions.</td>
-<td>4.12.0</td>
+<td>4181296</td>
+<td>NetQ might become unresponsive when someone with a non-admin (user) role attempts to create or clone workbenches, add cards to a workbench, create validations, or run a flow analysis.</td>
+<td>4.11.0-4.12.0</td>
 <td></td>
 </tr>
 <tr>
@@ -21,12 +21,6 @@
 <tr>
 <td>4160704</td>
 <td>In large-scale environments, NetQ might take up to a minute to display the results of the BGP validation in the UI and the {{netq check bgp}} command using the CLI.</td>
-<td>4.12.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4158463</td>
-<td>When you add additional devices to you network, the topology view might take up to an hour to display interface transmit and receive data for the added switches.</td>
 <td>4.12.0</td>
 <td></td>
 </tr>
@@ -44,12 +38,6 @@ To work around this issue, adjust the poll period to 60 seconds on the new switc
 <tr>
 <td>4155900</td>
 <td>When a fan’s sensor state is “high”, NetQ correctly displays the count information on the sensor health card. When the card is expanded to the detailed view, fans with a “high” sensor state will not be included among the fans with problematic states.</td>
-<td>4.12.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4134445</td>
-<td>When you select a bin from the queue histogram card, NetQ might display the message “Histogram data unavailable for this device.”</td>
 <td>4.12.0</td>
 <td></td>
 </tr>

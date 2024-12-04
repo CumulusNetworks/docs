@@ -30,7 +30,7 @@ To get started, perform the following instructions:
 {{<img src="/images/guides/nvidia-air/CreateSimulation.png" alt="" width="930px">}}
 
 ### ZTP Scripts
-You can add an optional **ZTP script** to the simulation when creating a new one. The ZTP script will be copied directly as-is into the `oob-mgmt-server` of the simulation. Any node making a ZTP request on the OOB management network has access to this ZTP script through a DHCP server and web server running on the `oob-mgmt-server`.
+You can add an optional **ZTP script** to the simulation when creating a new one. The ZTP script will be copied directly as-is into the `oob-mgmt-server` of the simulation. Any node making a ZTP request on the out-of-band management network has access to this ZTP script through a DHCP server and web server running on the `oob-mgmt-server`.
 
 A default script is prefilled to help you get started. It implements some common ZTP features on Cumulus Linux, such as changing the default password or downloading SSH keys. You can modify it to your needs.
 

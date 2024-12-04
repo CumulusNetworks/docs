@@ -421,7 +421,7 @@ def build_rn_markdown_files(product, version_list):
     #   if version == "4.6.0":
     #       continue
     #    if version == "4.12.0":
-            continue
+    #        continue
         if version_string(version) in major_minor:
             major_minor[version_string(version)].append(version)
         else:

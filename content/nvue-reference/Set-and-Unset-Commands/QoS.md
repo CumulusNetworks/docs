@@ -2388,7 +2388,16 @@ cumulus@switch:~$ nv set qos roce enable off
 
 ## <h>nv set qos roce mode</h>
 
-Configures the RoCE mode. You can specify `lossy` or `lossless`. The default setting is `lossless`.
+Configures the RoCE mode. You can specify the following modes:
+- `lossy` enables RoCE with ECN.
+- `lossless` enables RoCE with PFC and ECN.
+- `lossless-single-ipool` enables the single shared buffer pool for RoCE.
+
+The default setting is `lossless`.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and earlier does not provide `lossless-single-ipool` mode. Cumulus Linux 5.12.0 introduces  `lossless-single-ipool` mode.
+{{%/notice%}}
 
 ### Version History
 

@@ -167,6 +167,198 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action clear bridge domain \<bridge-id\> mac-table dynamic</h>
+
+Clears all dynamic MAC addresses from the forwarding database.
+
+{{%notice note%}}
+This command clears static entries learned on ES bonds that are installed as static entries in EVPN multihoming including static VXLAN entries in the bridge driver.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<bridge-id>` |  The bridge name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear bridge domain \<bridge-id\> mac-table dynamic interface \<interface-id\</h>
+
+Clears all dynamic MAC addresses for a specific interface from the forwarding database.
+
+{{%notice note%}}
+This command does not clear sticky entries, permanent entries, or neighbor entries learned externally.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<bridge-id>` |  The bridge name.|
+| `<interface-id>` |  The IP address or interface name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic interface swp1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear bridge domain \<bridge-id\> mac-table dynamic interface \<interface-id\> vlan \<vlan-id\></h>
+
+Clears all dynamic MAC addresses for a specific interface and VLAN from the forwarding database.
+
+{{%notice note%}}
+This command does not clear sticky entries, permanent entries, or neighbor entries learned externally.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<bridge-id>` |  The bridge name.|
+| `<interface-id>` |  The IP address or interface name.|
+| `<vni-id>` |  The VNI ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic interface swp1 vlan 10
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear bridge domain \<bridge-id\> mac-table dynamic mac \<mac-address\> interface \<interface-id\></h>
+
+Clears a specific dynamic MAC address for an interface from the forwarding database.
+
+{{%notice note%}}
+This command does not clear sticky entries, permanent entries, or neighbor entries learned externally.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<bridge-id>` |  The bridge name.|
+| `<mac-address>` |  The MAC address.|
+| `<interface-id>` |  The IP address or interface name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic mac 00:00:0A:BB:28:FC interface swp1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear bridge domain \<bridge-id\> mac-table dynamic mac \<mac-address\> vlan \<vlan-id\></h>
+
+Clears a specific dynamic MAC addresses for a VLAN from the forwarding database.
+
+{{%notice note%}}
+This command does not clear sticky entries, permanent entries, or neighbor entries learned externally.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<bridge-id>` |  The bridge name.|
+| `<mac-address>` |  The MAC address.|
+| `<vni-id>` |  The VNI ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic mac 00:00:0A:BB:28:FC vlan 10
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear bridge domain \<bridge-id\> mac-table dynamic mac \<mac-address\> vlan \<vlan-id\> interface \<interface-id\></h>
+
+Clears a specific dynamic MAC address for a VLAN and interface from the forwarding database.
+
+{{%notice note%}}
+This command does not clear sticky entries, permanent entries, or neighbor entries learned externally.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+ `<bridge-id>` |  The bridge name.|
+| `<mac-address>` |  The MAC address.|
+| `<vni-id>` |  The VNI ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic mac 00:00:0A:BB:28:FC vlan 10 interface swp1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear bridge domain \<bridge-id\> mac-table dynamic vlan \<vlan-id\></h>
+
+Clears all dynamic MAC addresses for a specific VLAN from the forwarding database.
+
+{{%notice note%}}
+This command does not clear sticky entries, permanent entries, or neighbor entries learned externally.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<bridge-id>` |  The bridge name.|
+| `<vni-id>` |  The VNI ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic vlan 10
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action clear evpn vni</h>
 
 Clears duplicate addresses for all VNIs.
@@ -2756,6 +2948,35 @@ Introduced in Cumulus Linux 5.7.0
 cumulus@switch:~$ nv action import system security certificate tls-cert-1 passphrase mypassphrase uri-bundle scp://user@pass:1.2.3.4:/opt/certs/cert.p12
 ```
 
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action lookup vrf <vrf-id> router fib <address-family> <ip-address></h>
+
+Looks up the route in the routing table for a specific destination.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` |  The VRF name.|
+| `<address-family>` |  The address family; IPv4 or IPv6.|
+| `<ip-address>` |  The IP address.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action lookup vrf default router fib ipv4 10.10.10.3
+Action executing ... 
+ [{"dst":"10.10.10.3","nhid":455,"table":"default","protocol":"bgp","metric":20,"flags":[]}] 
+
+ Action succeeded
+```
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv action reboot system</h>
@@ -2772,6 +2993,32 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@switch:~$ nv action reboot system
 Rebooting System in cold mode
 True
+Action succeeded
+```
+
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action reset platform transceiver <port-id></h>
+
+Resets a specific transceiver to its initial, stable state without having to be present physically in the data center to pull the transceiver.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<port-id>` |  The port in which the transceiver you want to reset is attached.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action reset platform transceiver swp1
+Action executing ... 
+Resetting module swp1 ... OK 
 Action succeeded
 ```
 

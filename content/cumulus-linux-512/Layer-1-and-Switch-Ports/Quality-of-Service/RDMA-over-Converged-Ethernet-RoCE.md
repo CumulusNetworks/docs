@@ -104,7 +104,6 @@ cumulus@switch:~$ sudo systemctl reload switchd.service
 {{< /tab >}}
 {{< /tabs >}}
 
-<!-- FOR 5.12
 ## RoCE Single Shared Buffer Pool
 
 By default, Cumulus Linux separates lossy and lossless traffic into different dedicated pools on both ingress and egress. You can configure the switch to map ingress lossy and lossless traffic to the same single ingress pool. This configuration is useful if most of the traffic is of one type or when a reasonable amount of the shared buffer by lossy and lossless traffic is of less importance.
@@ -141,7 +140,6 @@ cumulus@switch:~$ sudo systemctl reload switchd.service
 
 {{< /tab >}}
 {{< /tabs >}}
--->
 
 ## Remove RoCE Configuration
 

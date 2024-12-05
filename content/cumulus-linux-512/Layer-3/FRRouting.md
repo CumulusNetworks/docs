@@ -505,7 +505,7 @@ static     3
 ```
 
 For IPv6 run the `nv show vrf <vrf> router rib ipv6 route-count protocol` command.
-<!--
+
 ## Look Up the Route for a Destination
 
 To look up the route in the routing table for a specific destination, run the `nv action lookup vrf <vrf-id> router fib <address-family> <ip-address>` command.
@@ -528,7 +528,7 @@ cumulus@switch:~$ nv action lookup vrf RED router fib ipv6 228:35::5
 
  Action succeeded 
 ```
--->
+
 ## Next Hop Tracking
 
 Routing daemons track the validity of next hops through notifications from the `zebra` daemon. For example, FRR uninstalls BGP routes that resolve to a next hop over a connected route in `zebra` when `bgpd` receives a next hop tracking (NHT) notification after `zebra` removes the connected route if the associated interface goes down.

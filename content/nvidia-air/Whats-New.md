@@ -10,7 +10,7 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 ## December 2024
 <!-- Air:WhatsNew -->
 ### 82.2024.1205-011
-- Fixed an issue where the messages of API errors for invalid files were with a general message. now there is a clear detail of the error.
+- Updated and clarified API error messages for invalid files.
 <!-- Air:WhatsNew -->
 ### 82.2024.1203-011
 - UserConfigs are now budgeted based on the overall content length instead of the instance amount

@@ -21,6 +21,7 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 - BGB graceful shutdown for a peer group
 - Software module reset
 - Clear dynamic MAC address entries from the forwarding database
+- Show routes in the routing table for destination
 -->
 ## What's New in Cumulus Linux 5.11
 

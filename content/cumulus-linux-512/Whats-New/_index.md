@@ -17,12 +17,12 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
 
 ### New Features and Enhancements
 
-- RoCE single shared buffer pool
-- BGB graceful shutdown for a peer group
-- Software module reset
-- Clear dynamic MAC address entries from the forwarding database
+- {{<link url="RDMA-over-Converged-Ethernet-RoCE/#roce-single-shared-buffer-pool" text="RoCE single shared buffer pool">}}
+- {{<link url="Optional-BGP-Configuration/#graceful-bgp-shutdown-on-a-peer-group" text="Graceful BGP shutdown on a peer group">}}
+- {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#reset-a-transceiver" text="Software module reset">}}
+- {{<link url="VLAN-aware-Bridge-Mode/#clear-dynamic-mac-address-entries" text="Clear dynamic MAC address entries from the forwarding database">}}
 - NVUE
-  - Show routes in the routing table for destination
+  - {{<link url="FRRouting/#look-up-the-route-for-a-destination" text="Look up the route for a destination">}}
   - {{< expand "Changed NVUE Commands" >}}
 | New Commands | Previous Commands |
 | ----------- | ----------------|
@@ -40,28 +40,37 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 {{< tab "nv show ">}}
 
 ```
-
+nv show vrf <vrf> router bgp peer-group <peer-group-id>
 ```
 
 {{< /tab >}}
 {{< tab "nv set ">}}
 
 ```
-
+nv set qos roce mode lossless-single-ipool
+nv set vrf <vrf> router bgp peer-group <peer-group-id> graceful-shutdown
 ```
 
 {{< /tab >}}
 {{< tab "nv unset ">}}
 
 ```
-
+nv unset vrf <vrf> router bgp peer-group <peer-group-id> graceful-shutdown
 ```
 
 {{< /tab >}}
 {{< tab "nv action ">}}
 
 ```
-
+nv action clear bridge domain <bridge-id> mac-table dynamic
+nv action clear bridge domain <bridge-id> mac-table dynamic interface <interface-id
+nv action clear bridge domain <bridge-id> mac-table dynamic vlan <vlan-id>
+nv action clear bridge domain <bridge-id> mac-table dynamic interface <interface-id> vlan <vlan-id>
+nv action clear bridge domain <domain-id> mac-table dynamic mac <mac-address> vlan <vlan-id>
+nv action clear bridge domain <domain-id> mac-table dynamic mac <mac-address> interface <interface-id>
+nv action clear bridge domain <domain-id> mac-table dynamic mac <mac-address> vlan <vlan-id interface <interface-id>
+nv action lookup vrf <vrf-id> router fib <address-family> <ip-address>
+nv action reset platform transceiver <port>
 ```
 
 {{< /tab >}}

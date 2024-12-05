@@ -402,7 +402,7 @@ Action succeeded
 {{%notice note%}}
 The `nv action clear interface <interface> counters` command does not clear counters in the hardware.
 {{%/notice%}}
-<!-- FOR 2.12
+
 ## Reset a Transceiver
 
 NVUE provides a command to reset a specific transceiver to its initial, stable state without having to be present physically in the data center to pull the transceiver.
@@ -435,7 +435,7 @@ hal_mlx_host_ifc.c:3392 port [104] module state has changed to [Plugged]
 {{%notice note%}}
 If a cable is faulty, the `nv action reset platform transceiver <transceiver-id` command completes successfully, but the module does not come back unless you resolve the issue or reboot the system if necessary,
 {{%/notice%}}
--->
+
 ## Show Transceiver Information
 
 To show the identifier, vendor name, part number, serial number, and revision for all modules, run the `nv show platform transceiver` command:

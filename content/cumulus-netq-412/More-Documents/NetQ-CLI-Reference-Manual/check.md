@@ -516,60 +516,57 @@ None
 
 ```
 cumulus@switch:~$ netq check interfaces
-interface check result summary:
+interfaces check result summary:
 
-Total nodes         : 21
-Checked nodes       : 21
-Failed nodes        : 6
+Total nodes         : 17
+Checked nodes       : 17
+Failed nodes        : 2
 Rotten nodes        : 0
 Warning nodes       : 0
+Skipped nodes       : 0
 
 Additional summary:
-Checked Ports       : 145
-Failed Ports        : 12
-Unverified Ports    : 69
+Checked Ports       : 484
+Failed Ports        : 6
 
-Admin State Test   : passed
-Oper State Test    : passed
-Speed Test         : passed
-Autoneg Test       : 0 warnings, 12 errors
+
+Admin State Test   :  Passed.
+Oper State Test    :  Passed.
+Speed Test         :  Passed.
+Autoneg Test       :  0 warnings, 6 errors
+
 
 Autoneg Test details:
-Hostname          Interface                 Peer Hostname     Peer Interface            Message                             Last Changed
------------------ ------------------------- ----------------- ------------------------- ----------------------------------- -------------------------
-server01          eth1                      leaf01            swp1                      Autoneg mismatch (on, off)          Wed Nov 18 21:58:07 2020 
-server01          eth2                      leaf02            swp1                      Autoneg mismatch (on, off)          Wed Nov 18 21:58:07 2020 
-server02          eth1                      leaf01            swp2                      Autoneg mismatch (on, off)          Wed Nov 18 21:58:07 2020 
-server02          eth2                      leaf02            swp2                      Autoneg mismatch (on, off)          Wed Nov 18 21:58:07 2020 
-server03          eth1                      leaf01            swp3                      Autoneg mismatch (on, off)          Wed Nov 18 21:58:07 2020 
-server03          eth2                      leaf02            swp3                      Autoneg mismatch (on, off)          Wed Nov 18 21:58:07 2020 
-server04          eth1                      leaf03            swp1                      Autoneg mismatch (on, off)          Wed Nov 18 21:58:07 2020 
-server04          eth2                      leaf04            swp1                      Autoneg mismatch (on, off)          Wed Nov 18 21:58:07 2020 
-server05          eth1                      leaf03            swp2                      Autoneg mismatch (on, off)          Wed Nov 18 21:58:07 2020 
-server05          eth2                      leaf04            swp2                      Autoneg mismatch (on, off)          Wed Nov 18 21:58:07 2020 
-server06          eth1                      leaf03            swp3                      Autoneg mismatch (on, off)          Wed Nov 18 21:58:07 2020 
-server06          eth2                      leaf04            swp3                      Autoneg mismatch (on, off)          Wed Nov 18 21:58:07 2020 
+Hostname          Interface                 Peer Hostname     Peer Interface            Message                             Reason                                        Last Changed
+----------------- ------------------------- ----------------- ------------------------- ----------------------------------- --------------------------------------------- -------------------------
+leaf01            swp1                      server01          eth1                      Autoneg mismatch (off, on)          Autoneg mismatch (off, on)                    Mon Nov  4 17:53:18 2024 
+leaf01            swp2                      server02          eth1                      Autoneg mismatch (off, on)          Autoneg mismatch (off, on)                    Mon Nov  4 17:53:18 2024 
+leaf01            swp3                      server03          eth1                      Autoneg mismatch (off, on)          Autoneg mismatch (off, on)                    Mon Nov  4 17:53:18 2024 
+leaf02            swp1                      server01          eth2                      Autoneg mismatch (off, on)          Autoneg mismatch (off, on)                    Mon Oct 28 16:28:30 2024 
+leaf02            swp2                      server02          eth2                      Autoneg mismatch (off, on)          Autoneg mismatch (off, on)                    Mon Oct 28 16:28:30 2024 
+leaf02            swp3                      server03          eth2                      Autoneg mismatch (off, on)          Autoneg mismatch (off, on)                    Mon Oct 28 16:28:30 2024 
 ```
 
 ```
 cumulus@switch:~$ netq check interfaces summary
-interface check result summary:
+interfaces check result summary:
 
-Total nodes         : 21
-Checked nodes       : 21
-Failed nodes        : 6
+Total nodes         : 17
+Checked nodes       : 17
+Failed nodes        : 2
 Rotten nodes        : 0
 Warning nodes       : 0
+Skipped nodes       : 0
 
 Additional summary:
-Checked Ports       : 145
-Failed Ports        : 12
-Unverified Ports    : 69
+Checked Ports       : 484
+Failed Ports        : 6
 
-Admin State Test   : passed
-Oper State Test    : passed
-Speed Test         : passed
-Autoneg Test       : 0 warnings, 12 errors
+
+Admin State Test   :  Passed.
+Oper State Test    :  Passed.
+Speed Test         :  Passed.
+Autoneg Test       :  0 warnings, 6 errors
 ```
 This example checks for configuration mismatches and finds a link speed mismatch on server03. The link speed on swp49 is *40G* and the peer port swp50 shows as *unknown*.
 
@@ -887,23 +884,35 @@ None
 cumulus@switch:~$ netq check ntp
 ntp check result summary:
 
-Total nodes         : 21
-Checked nodes       : 21
-Failed nodes        : 2
+Total nodes         : 17
+Checked nodes       : 17
+Failed nodes        : 11
 Rotten nodes        : 0
 Warning nodes       : 0
+Skipped nodes       : 0
 
 Additional summary:
+NTP Servers         : 0
 Unknown nodes       : 0
-NTP Servers         : 2
 
-NTP Sync Test   : 0 warnings, 2 errors
+
+NTP Sync Test   :  0 warnings, 11 errors
+
 
 NTP Sync Test details:
-Hostname          NTP Sync Connect Time
------------------ -------- -------------------------
-fw1               no       2020-11-18 19:50:31
-fw2               no       2020-11-18 19:50:46
+Hostname          NTP Sync Connect Time              Reason
+----------------- -------- ------------------------- ---------------------------------------------
+border01          no       Tue Nov 12 17:04:09 2024  Sync status changed from yes to no           
+border02          no       Tue Nov 12 17:04:10 2024  Sync status changed from yes to no           
+fw1               no       Tue Nov 12 17:04:11 2024  Sync status changed from yes to no           
+leaf01            no       Tue Nov 12 17:04:10 2024  Sync status changed from yes to no           
+leaf02            no       Tue Nov 12 17:04:09 2024  Sync status changed from yes to no           
+leaf03            no       Tue Nov 12 17:04:10 2024  Sync status changed from yes to no           
+leaf04            no       Tue Nov 12 17:04:12 2024  Sync status changed from yes to no           
+spine01           no       Tue Nov 12 17:04:13 2024  Sync status changed from yes to no           
+spine02           no       Tue Nov 12 17:04:10 2024  Sync status changed from yes to no           
+spine03           no       Tue Nov 12 17:04:18 2024  Sync status changed from yes to no           
+spine04           no       Tue Nov 12 17:04:12 2024  Sync status changed from yes to no   
 ```
 
 ### Related Commands

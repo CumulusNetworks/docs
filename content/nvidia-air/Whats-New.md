@@ -8,15 +8,17 @@ product: NVIDIA Air
 Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
 
 ## December 2024
-### 82.2024.1203-011
 <!-- Air:WhatsNew -->
+### 82.2024.1205-011
+- Fixed an issue where the messages of API errors for invalid files were with a general message. now there is a clear detail of the error.
+<!-- Air:WhatsNew -->
+### 82.2024.1203-011
 - UserConfigs are now budgeted based on the overall content length instead of the instance amount
 - Fixed an issue where the Air agent did not run on nodes after a simulation woke up
 - Fixed an issue where nodes did not start when the CDROM value was defined
 - Added the ability to upload a JSON topology file that includes a title and ZTP
 - Fixed an issue where the copy-to-clipboard button for a service always generated the username *ubuntu*. It now correctly displays the username based on the node’s type.
 - Removed the `organization` field from the JSON export API
-<!-- Air:WhatsNew -->
 
 ## November 2024
 ### 82.2024.1121-011

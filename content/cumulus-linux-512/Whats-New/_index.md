@@ -40,7 +40,7 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 {{< tab "nv show ">}}
 
 ```
-nv show vrf <vrf> router bgp peer-group <peer-group-id>
+
 ```
 
 {{< /tab >}}

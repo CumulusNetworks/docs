@@ -82,7 +82,7 @@ EVPN multihoming supports the following route types.
 | 2 | MAC/IP advertisement route | {{<exlink url="https://tools.ietf.org/html/rfc7432" text="RFC 7432">}} |
 | 3 | Inclusive multicast route | {{<exlink url="https://tools.ietf.org/html/rfc7432" text="RFC 7432">}} |
 | 4 | Ethernet segment route | {{<exlink url="https://tools.ietf.org/html/rfc7432" text="RFC 7432">}} |
-| 5 | IP prefix route | {{<exlink url="https://tools.ietf.org/html/rfc9136 text="RFC 9136">}} |
+| 5 | IP prefix route | {{<exlink url="https://tools.ietf.org/html/rfc9136" text="RFC 9136">}} |
 
 ### Unsupported Features
 

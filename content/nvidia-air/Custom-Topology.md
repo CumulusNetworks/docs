@@ -5,34 +5,35 @@ weight: 40
 product: NVIDIA Air
 ---
 {{%notice note%}}
-The information on this page reflects the workflows for the new Air UI. The legacy UI is being deprecated and will be shut down. {{<link title="Custom Topology (Legacy)" text="View documentation for the legacy UI">}}
+The information on this page reflects the workflows for the new Air UI. The legacy UI is being deprecated. {{<link title="Custom Topology (Legacy)" text="View documentation for the legacy UI">}}
 {{%/notice%}}
-
-Network topologies describe which nodes a data center is comprised of, how they are configured and which other nodes they are connected to.
 
 NVIDIA Air offers multiple means of creating custom topologies and new simulations.
 
 ## The Drag-and-Drop Topology Builder
+
 One way to create fully custom simulations is with the built-in topology builder. It provides a drag-and-drop editor to design any custom network.
 
-To get started, perform the following instructions:
+To get started, navigate to [https://air.nvidia.com/simulations](https://air.nvidia.com/simulations).
 
-1. Navigate to [https://air.nvidia.com/simulations](https://air.nvidia.com/simulations). 
-2. Click the **Create Simulation** button.
-3. Give your simulation a **Name**.
-4. Select **Blank Canvas** as the **Type**.
-5. Optionally, assign an Organization to the sim. Read more about them in [Organizations](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Organizations/). 
-6. Optionally, add a **ZTP script** to the simulation. You can read more about them in [ZTP Scripts](#ztp-scripts).
+2. Select **Create Simulation**.
+3. Give your simulation a name.
+4. Select **Blank Canvas** as the type.
+5. (Optional) assign the simulation to an [Organization](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Organizations/). 
+6. (Optional), add a [ZTP script](#ztp-scripts) to the simulation.
    1. Toggle on the **Apply ZTP Template** button.
    2. Enter your ZTP script. A default script is prefilled to help you get started. 
 7. Click **Create**.
 
-{{<img src="/images/guides/nvidia-air/CreateSimulation.png" alt="" width="930px">}}
+{{<img src="/images/guides/nvidia-air/CreateSimulation.png" alt="" width="800px">}}
 
 ### ZTP Scripts
-You can add an optional **ZTP script** to the simulation when creating a new one. The ZTP script will be copied directly as-is into the `oob-mgmt-server` of the simulation. Any node making a ZTP request on the out-of-band management network has access to this ZTP script through a DHCP server and web server running on the `oob-mgmt-server`.
+
+When you create a new simulation, Air gives you the option to add a zero-touch provisioning (ZTP) script. The ZTP script is copied to the simulation's `oob-mgmt-server`. Any node making a ZTP request on the out-of-band management network has access to this ZTP script through a DHCP server and web server running on the `oob-mgmt-server`.
 
 A default script is prefilled to help you get started. It implements some common ZTP features on Cumulus Linux, such as changing the default password or downloading SSH keys. You can modify it to your needs.
+
+{{< expand "Default ZTP script" >}}
 
 ```
 #!/bin/bash
@@ -69,13 +70,15 @@ SSH_URL="http://192.168.200.1/authorized_keys"
 exit 0
 #CUMULUS-AUTOPROVISIONING
 ```
+{{< /expand >}}
 
 ### Manage Nodes
+
 Drag and drop servers and switches from the **System Palette** on the right into the workspace.
 
 You can choose your hardware model based on available NVIDIA Spectrum (SNXXXX) switches. This does not affect the simulation but acts as a macro to pre-populate the number of ports per switch model. You don’t need to use each port.
 
-Click on a node to view its **Node Properties**.
+Click on a node to view its properties.
 
 - **Name**: Node hostname.
 - **Operating System**: OS automatically installed onto the node. No need to boot into ONIE or install it yourself.
@@ -89,12 +92,13 @@ Click on a node to view its **Node Properties**.
 There are also various **Advanced Options**, such as enabling **UEFI Secure Boot**.
 
 {{<img src="/images/guides/nvidia-air/AddNode.png" alt="">}}
-
-When you are done creating your topology, click **Workspace > Start Simulation** to start the sim. **You cannot add, remove or edit nodes once the sim is started for the first time.**
+<br>
+When you are done creating your topology, click **Workspace > Start Simulation**. **You cannot add, remove or edit nodes after the simulation is started for the first time.**
 
 {{<img src="/images/guides/nvidia-air/WorkspaceStart.png" alt="" width="200px">}}
 
 ### OOB Management Network
+
 On the **System Palette**, there is an option to toggle **Enable OOB**. Toggling this setting enables the out-of-band management network that connects all nodes with each other. It also adds an `oob-mgmt-switch` and `oob-mgmt-server` to your simulation. When you [enable SSH](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Quick-Start/#services)
 in your sim, you will SSH into the `oob-mgmt-server`, making this node an ideal start point for configuration. Air handles the configuration automatically for you.
 
@@ -103,16 +107,16 @@ in your sim, you will SSH into the `oob-mgmt-server`, making this node an ideal 
 You can manually add more `oob-mgmt-switches` and `oob-mgmt-servers` to your simulation if you need when this toggle is **off**. But the **Enable OOB** toggle must be enabled to use the OOB network.
 
 ## Custom Topologies with DOT Files
-Air supports creating custom topologies using DOT files. 
 
-DOT files are the filetype used with the open-source graph visualization software Graphviz. They are simple, text-based files and allow for quick and easy customization. 
+Air supports creating custom topologies using DOT files, which are the file type used with the open-source graph visualization software Graphviz. They are simple, customizable text-based files.
 
-You can upload DOT files directly into Air to generate a topology. This allows you to easily share and create copies of a topology and save the topology somewhere in a reusable file. You can modify them in any text editor, like notepad or VS Code.
+You can upload DOT files directly into Air to generate a topology. This allows you to share and create copies of a topology and save the topology in a reusable file. You can modify them using a text editor.
 
 ### DOT Syntax
-DOT files use the `.dot` file extention. They define nodes, attributes and connections for generating a topology for a network.
 
-Here is an example of a simple topology DOT file with 1 spine, 2 leaves and 2 servers connected to each leaf.
+DOT files use the `.dot` file extension. They define nodes, attributes and connections for generating a topology for a network.
+
+The following is an example of a simple topology DOT file with 1 spine, 2 leaf nodes, and 2 servers connected to each leaf.
 ```
 graph "Demo" {
   "spine01" [ function="spine" memory="4096" os="sonic-vs-202305" cpu="2" ]
@@ -137,19 +141,20 @@ You can set the OS of the node with the `os` option:
 For a list of available operating systems, view the **Operating System** dropdown in the **Node Properties** when using the [drag-and-drop editor](#the-drag-and-drop-topology-builder). 
 
 #### Disk Space
-By default, nodes in Air have 10GB of hard disk space. You can give more with the `storage` option, in GB:
+
+By default, nodes in Air have 10GB of hard disk space. You can increase the space (in GB) by using the `storage` option:
 
 ```
 "server" [os="generic/ubuntu2404" storage="20"]
 ```
 
-If the node does not recognize the increase in storage, you can perform the following commands in the node to extend the partition and resize the fileystem: 
+If the node does not recognize the increased storage, you can perform the following commands from the node to extend the partition and resize the file system: 
 ```
 sudo growpart /dev/vda 1
 sudo resize2fs /dev/vda1
 ```
 
-Verify the change was applied:
+Verify that the change was applied:
 
 ```
 df -h | grep vda1
@@ -157,31 +162,37 @@ df -h | grep vda1
 ```
 
 #### CPU
+
 You can customize the number of allocated CPUs with the `cpu` option:
 ```
 "server" [os="generic/ubuntu2404" cpu="4"]
 ```
 
-#### Creating Connections
-You can create port connections by defining the node and its port with another.
+#### Create Connections
+
+You can create port connections by defining the node and its port with another node and port.
 ```
 "leaf01":"swp49" -- "leaf02":"swp49"
 "leaf01":"swp50" -- "leaf02":"swp50"
 ```
 
 #### Memory
-You can customize the RAM with the `memory` option, in MB: 
+
+You can customize RAM (in MB) with the `memory` option: 
 ```
 "server" [os="generic/ubuntu2404"  memory="2048"]
 ```
 
 ### Examples
+
 Labs in the [Demo Marketplace](https://air.nvidia.com/demos) are maintained with external GitLab repositories. Here you can find the `topology.dot` file used to build the lab to reference from. Many demonstrate how to use more options beyond what is listed above.
 
 To access them, click on the **Documentation** button on any lab in the Demo Marketplace. It will lead you to the GitLab repo for the lab. You may have to explore the GitLab a bit to find the `topology.dot` file. 
 
-### Uploading a DOT
+### Upload a DOT File
+
 To upload a DOT file into Air:
+
 1. Navigate to [air.nvidia.com/simulations](https://air.nvidia.com/simulations). 
 2. Click the **Create Simulation** button.
 2.	Give your simulation a **Name**.
@@ -199,12 +210,13 @@ Air will build a custom topology based on the DOT file.
 {{<img src="/images/guides/nvidia-air/CreateADOT.png" alt="">}}
 
 ## Import a Topology via API
+
 You can import JSON formatted topologies via API.
 
 {{< tabs "TabID110 ">}}
 {{< tab "Example 1">}}
 
-The following topology defines two nodes (`node-1` and `node-2`) connected to each other via their respective `eth1` interfaces, and the Out-of-Band management network enabled by default. 
+The following topology defines two nodes (`node-1` and `node-2`) connected to each other via their respective `eth1` interfaces. The out-of-band management network is enabled by default. 
 
 ```
 {
@@ -225,7 +237,8 @@ The following topology defines two nodes (`node-1` and `node-2`) connected to ea
 {{< /tab >}}
 {{< tab "Example 2">}}
 
-The following topology defines two nodes (`node-1` and `node-2`) connected to each other via their respective `eth1` interfaces, and the Out-of-Band management network disabled (`"oob": false`). The example showcases:
+The following topology defines two nodes (`node-1` and `node-2`) connected to each other via their respective `eth1` interfaces. The out-of-band management network is disabled (`"oob": false`). The example includes:
+
 - Custom values for configurable node fields (`cpu`, `memory`, `storage`)
 - Public-facing interface (with a custom `mac` address) to the outside world (`eth2` of `node-1`)
 - Referencing `os` image by specific UUID (`node-2`)
@@ -255,11 +268,11 @@ The following topology defines two nodes (`node-1` and `node-2`) connected to ea
 {{< /tab >}}
 {{< /tabs >}}
 
-A more detailed schema for this format can be viewed by visiting the [API documentation](https://air.nvidia.com/api/#/v2/v2_simulations_import_create).
+Refer to the [API documentation](https://air.nvidia.com/api/#/v2/v2_simulations_import_create) for additional schemas.
 
 {{< expand "Import Instructions" >}}
 
-In order to import a topology, the following API v2 SDK method can be used:
+Use the following API v2 SDK method to import a topology:
 
 ```
 from air_sdk.v2 import AirApi
@@ -278,10 +291,10 @@ simulation = air.simulations.create_from(
 ```
 
 {{%notice info%}}
-Minimum required SDK version for this feature is `air-sdk>=2.14.0`
+This feature requires SDK version `air-sdk>=2.14.0` or later.
 {{%/notice%}}
 
-Topology content can be provided in multiple ways:
+You can also use the following methods to provide topology content:
 
 {{< tabs "TabID111 ">}}
 {{< tab "Python Dictionary">}}
@@ -348,14 +361,11 @@ with pathlib.Path('/path/to/topology.json').open('r') as topology_file:
 {{< /expand >}}
 
 ## Export a Topology via API
-Existing simulations can be exported into a JSON representation via API. 
-
-A more detailed schema for this format can be viewed by visiting the [API documentation](https://air.nvidia.com/api/#/v2/v2_simulations_export_retrieve).
-
+Existing simulations can be exported into a JSON representation via API. Refer to the [API documentation](https://air.nvidia.com/api/#/v2/v2_simulations_export_retrieve) for additional schema details.
 
 {{< expand "Export Instructions" >}}
 
-In order to export a simulation, the following API v2 SDK method can be used:
+Use the API v2 SDK to export a simulation:
 
 ```
 from air_sdk.v2 import AirApi
@@ -371,9 +381,8 @@ topology = air.simulations.export(
     image_ids=True,  # defaults to False
 )
 ```
-
 {{%notice info%}}
-Minimum required SDK version for this feature is `air-sdk>=2.15.0`
+This feature requires SDK version `air-sdk>=2.15.0` or later.
 {{%/notice%}}
 
 {{< /expand >}}
@@ -387,11 +396,11 @@ These scripts have only been validated in a Linux environment.
 {{%/notice%}}
 
 ### Gather cl-support from the Production Network
-Use [these playbooks](https://gitlab.com/cumulus-consulting/features/cl_support_ansible) to gather the `cl-support` script output. The `ReadMe` in the repository provides instructions on how to run the playbook to gather the `cl-support` output.
+Use [these Ansible playbooks](https://gitlab.com/cumulus-consulting/features/cl_support_ansible) to gather the `cl-support` script output. The repository's `ReadMe` provides additional instructions.
 
 ### Create topology.dot from the Production Network
-After you obtain the `cl-support` output, you can create a `topology.dot` file with [this script](https://gitlab.com/cumulus-consulting/features/cl_support_lldp_parser)
-. You can run the script using `python3`. Here is sample output:
+
+After you obtain the `cl-support` output, you can create a `topology.dot` file using [this parser script](https://gitlab.com/cumulus-consulting/features/cl_support_lldp_parser). You can run the script using `python3`. Here is sample output:
 
 ```
 $ python3 cl_support_lldp_parser.py
@@ -422,7 +431,7 @@ spine01
 DOTFILE: cl_support_lldp_parser.dot
 ```
 
-The command writes the output to `cl_support_lldp_parser.dot`. You need to manually edit this file to define the node versions and clean up any superfluous configurations:
+The command writes the output to the `cl_support_lldp_parser.dot` file. You need to manually edit this file to define the node versions and clean up any extra configurations:
 
 ```
 $ cat cl_support_lldp_parser.dot
@@ -447,7 +456,7 @@ graph dc1 {
 After you create the simulation, you can restore the configuration files.
 
 This [python script](https://gitlab.com/cumulus-consulting/features/cl_support_file_extractor)
-pulls out all the relevant files and collates them into folders so you can use them to restore configuration from inside the simulation.
+extracts relevant files and collates them into folders which you can use to restore configurations.
 
-You can also use the [infrastructure as code](https://gitlab.com/cumulus-consulting/features/simple-iac)
+You can also use the [infrastructure-as-code](https://gitlab.com/cumulus-consulting/features/simple-iac)
 Ansible playbook to restore configurations.

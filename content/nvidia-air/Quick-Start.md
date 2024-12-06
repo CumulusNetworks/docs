@@ -5,8 +5,6 @@ weight: 20
 product: NVIDIA Air
 ---
 
-This quick start provides the basics so that you can get started with the NVIDIA Air network simulation platform.
-
 ## Supported Browsers
 
 The following browsers are fully supported:
@@ -47,9 +45,9 @@ After you create a simulation, you can power it on or off, edit it, share it wit
 {{<img src="/images/guides/nvidia-air/SimulationsActionHighlight.png" alt="action menu displaying options to stop, edit, or delete the simulation">}}
 <br>
 
-Click on a simulation to view it. You can choose between the **Topology**, **Nodes**, or **Links** tabs to view the simulation as a topology, a list of nodes, or a list of links, respectively. 
+Select a simulation's name to load the simulation. You can choose between the **Topology**, **Nodes**, or **Links** tabs to view the simulation as a topology, a list of nodes, or a list of links, respectively. 
 
-The timer displays when your simulation will automatically sleep, or enter a stored status to conserve system resources. You can add more time by selecting the timer's three-dot menu, then clicking **Add Time**. You can also reposition the timer by dragging it to a different part of the screen.
+The timer displays when your simulation will automatically sleep, or enter a stored status to conserve system resources. You can extend the amount of time that your simulation is active by selecting the timer's three-dot menu, then clicking **Add Time**. You can also reposition the timer by dragging it to a different part of the screen.
 
 Select a node to open a side panel which displays the node's properties, including its operating system, number of CPUs, memory and storage capacities, and connectors.
 
@@ -66,7 +64,7 @@ Click the {{<img src="/images/guides/nvidia-air/LoginCredsButton.png" alt="infor
  
 Click the {{<img src="/images/guides/nvidia-air/PopoutButton.png" alt="pop-out"  width="32px" >}} button to open the console in its own window.
 
-{{<img src="/images/guides/nvidia-air/Console.png" alt=""  width="800px" >}}
+{{<img src="/images/guides/nvidia-air/Console.png" alt="example console with login prompt"  width="800px" >}}
 
 ### Services
 
@@ -134,7 +132,8 @@ To share a simulation:
 
 {{<img src="/images/guides/nvidia-air/ManageUsers.png" alt="" width="600px">}}
 <br>
-The users will see the simulation listed in their [Simulations](https://air.nvidia.com/simulations) list. The user will not receive any notification that they were given access to the simulation. <!--why not if they entered their email?--> 
+<br>
+Users will see the simulation listed in their [Simulations](https://air.nvidia.com/simulations) list. The user will not receive any notification that they were given access to the simulation. <!--why not if they entered their email?--> 
 
 ## API Tokens
 

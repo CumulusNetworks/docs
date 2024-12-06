@@ -554,7 +554,7 @@ The method you employ is specific to your deployment strategy. Providing detaile
 
 The SN3700C-S, SN5400, and SN5600 secure boot switch running Cumulus Linux 5.11.0 boots with shim 15.8 that adds entries to the SBAT revocations to prevent the switch from booting shim 15.7 or earlier, which has security vulnerabilities.
 
-**Before** you downgrade the secure boot switch from Cumulus Linux 5.11.0, follow the steps below to disable, then enable secure boot.
+After downgrading the switch from Cumulus Linux 5.11.0, follow the steps below to disable, then enable secure boot **before** the switch boots.
 
 You can also follow the steps below to recover a downgraded secure boot switch that does not boot and that shows the following error:
 
@@ -563,7 +563,7 @@ You can also follow the steps below to recover a downgraded secure boot switch t
   Something has gone seriously wrong: SBAT self-check failed: Security Policy Violation
   ```
 
-1. On the Cumulus Linux 5.11.0 switch, **disable** SecureBoot in BIOS:
+1. On the switch, **disable** SecureBoot in BIOS:
 
    a. Press Ctrl B through the serial console during system boot while the BIOS version prints.
 

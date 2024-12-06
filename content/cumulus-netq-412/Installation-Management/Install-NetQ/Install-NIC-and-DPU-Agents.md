@@ -59,15 +59,21 @@ To install and configure the DOCA Telemetry Service (DTS) container on a DPU, pe
 
 1. Obtain the DTS container image path from {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="the NGC catalog">}}. Select **Get Container**, then **View all tags**. Copy the **1.18.2-doca2.8.0-host** image path.
 
-2. Retrieve the container `yaml` configuration file onto the host. Use the path specified in the *Adjusting the .yaml Configuration* section in the {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="NGC instructions">}}. Copy it to `/etc/kubelet.d/doca_telemetry_standalone.yaml`:
+2. Remove any current DTS configurations using the following command:
+
+```
+sudo rm -rf /opt/mellanox/doca/services/telemetry/config
+```
+
+3. Retrieve the container `yaml` configuration file onto the host. Use the path specified in the *Adjusting the .yaml Configuration* section in the {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="NGC instructions">}}. Copy it to `/etc/kubelet.d/doca_telemetry_standalone.yaml`:
 
 ```
 wget --content-disposition https://api.ngc.nvidia.com/v2/resources/nvidia/doca/doca_container_configs/versions/2.0.2v1/files/configs/2.0.2/doca_telemetry.yaml -O /etc/kubelet.d/doca_telemetry_standalone.yaml
 ```
 
-3. Edit the `image` in both the `containers` and `initContainers` sections of the `/etc/kubelet.d/doca_telemetry_standalone.yaml` file to set the container image path retrieved in step 1.
+4. Edit the `image` in both the `containers` and `initContainers` sections of the `/etc/kubelet.d/doca_telemetry_standalone.yaml` file to set the container image path retrieved in step 1.
 
-4. Edit the `command` in the `initContainers` section of the `/etc/kubelet.d/doca_telemetry_standalone.yaml` file to set the `DTS_CONFIG_DIR` parameter to `inventory_netq`. Configure the fluent forwarding `-i` option to your NetQ server IP address and the `-p` option to 30001:
+5. Edit the `command` in the `initContainers` section of the `/etc/kubelet.d/doca_telemetry_standalone.yaml` file to set the `DTS_CONFIG_DIR` parameter to `inventory_netq`. Configure the fluent forwarding `-i` option to your NetQ server IP address and the `-p` option to 30001:
 
 ```
   initContainers:
@@ -79,7 +85,7 @@ wget --content-disposition https://api.ngc.nvidia.com/v2/resources/nvidia/doca/d
 This step replaces the default configuration of `command: ["/bin/bash", "-c", "/usr/bin/telemetry-init.sh && /usr/bin/enable-fluent-forward.sh"]`.
 {{%/notice%}}
 
-5. Restart the DPE service with the `service dpe restart` command.
+6. Restart the DPE service with the `service dpe restart` command.
 
 ## Related Information
 

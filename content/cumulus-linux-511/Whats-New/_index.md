@@ -7,22 +7,7 @@ toc: 2
 This document supports the Cumulus Linux 5.11 release, and lists new platforms, features, and enhancements.
 - For a list of open and fixed issues in Cumulus Linux 5.11, see the {{<link title="Cumulus Linux 5.11 Release Notes" text="Cumulus Linux 5.11 Release Notes">}}.
 - To upgrade to Cumulus Linux 5.11, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
-<!--
-## What's New in Cumulus Linux 5.12
 
-### Platforms
-
-- SN5610 (800G Spectrum-4)
-- SN5400 ITU-T G.82732 Class C compliant
-
-### New Features and Enhancements
-
-- RoCE single shared buffer pool
-- BGB graceful shutdown for a peer group
-- Software module reset
-- Clear dynamic MAC address entries from the forwarding database
-- Show routes in the routing table for destination
--->
 ## What's New in Cumulus Linux 5.11
 
 ### Platforms
@@ -478,7 +463,6 @@ To prevent Cumulus Linux from overwriting manual changes to the Linux configurat
    ```
    cumulus@switch:~$ sudo rm -rf /etc/nvue.d/startup.yaml
    ```
-
 
 3. Add the `PASSWORD_NVUE_SYNC=no` line to the `/etc/default/nvued` file:
    ```

@@ -78,10 +78,10 @@ Drag and drop servers and switches from the **System Palette** on the right into
 
 You can choose your hardware model based on available NVIDIA Spectrum (SNXXXX) switches. This does not affect the simulation but acts as a macro to pre-populate the number of ports per switch model. You don’t need to use each port.
 
-Click on a node to view its properties.
+Select a node to view its properties.
 
 - **Name**: Node hostname.
-- **Operating System**: OS automatically installed onto the node. No need to boot into ONIE or install it yourself.
+- **Operating System**: Name of the OS that was installed on the node. The OS is installed automatically.
 - **CPUs**: Number of CPUs. Default 1-2 GB depending on Spectrum switch selected.
 - **Memory (GB)**: Amount of RAM. Default 2 GB.
 - **Storage (GB)**: Amount of hard disk space. Default 10 GB.

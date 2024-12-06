@@ -78,10 +78,10 @@ EVPN multihoming supports the following route types.
 
 | Route Type | Description | RFC or Draft |
 | ---------- | ----------- | ------------ |
-| 1 | Ethernet auto-discovery (A-D) route | {{<exlink url="https://tools.ietf.org/html/rfc7432" text="RFC 7432">}} |
-| 2 | MAC/IP advertisement route | {{<exlink url="https://tools.ietf.org/html/rfc7432" text="RFC 7432">}} |
-| 3 | Inclusive multicast route | {{<exlink url="https://tools.ietf.org/html/rfc7432" text="RFC 7432">}} |
-| 4 | Ethernet segment route | {{<exlink url="https://tools.ietf.org/html/rfc7432" text="RFC 7432">}} |
+| 1 | Ethernet auto-discovery (A-D) route | {{<exlink url="https://tools.ietf.org/html/rfc7432" text="RFC 8365">}} |
+| 2 | MAC/IP advertisement route | {{<exlink url="https://tools.ietf.org/html/rfc7432" text="RFC 8365">}} |
+| 3 | Inclusive multicast route | {{<exlink url="https://tools.ietf.org/html/rfc7432" text="RFC 8365">}} |
+| 4 | Ethernet segment route | {{<exlink url="https://tools.ietf.org/html/rfc7432" text="RFC 8365">}} |
 | 5 | IP prefix route | {{<exlink url="https://tools.ietf.org/html/draft-ietf-bess-evpn-prefix-advertisement-04" text="draft-ietf-bess-evpn-prefix-advertisement-04">}} |
 
 ### Unsupported Features
@@ -649,7 +649,7 @@ cumulus@switch:~$ sudo systemctl restart switchd.service
 <!-- vale off -->
 ### Disable EAD-per-EVI Route Advertisements
 <!-- vale on -->
-{{<exlink url="https://tools.ietf.org/html/rfc7432" text="RFC 7432">}} requires the switch to advertise type-1/EAD (Ethernet Auto-discovery) routes:
+{{<exlink url="https://tools.ietf.org/html/rfc7432" text="RFC 8365">}} requires the switch to advertise type-1/EAD (Ethernet Auto-discovery) routes:
 
 - As EAD-per-ES (Ethernet Auto-discovery per Ethernet segment) routes
 - As EAD-per-EVI (Ethernet Auto-discovery per EVPN instance) routes

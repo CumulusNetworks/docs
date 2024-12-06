@@ -12,15 +12,14 @@ NVIDIA Air supports collaboration so that you can share simulations with your co
 
 ## Assign Simulations to an Organization
 
-Make sure you are a member of an organization before attempting to assign a simulation to it. To assign a simulation to an organization:
+Make sure you are a member of an organization before attempting to assign a simulation to it.
 
 1. From [Simulations](https://air.nvidia.com/simulations), click **Actions {{<img src="/images/guides/nvidia-air/ActionsButton.png" alt="">}} > Edit Simulation**.
-
 2. Select an organization.
 
 {{<img src="/images/guides/nvidia-air/EditSim.png" alt="" width="400px">}}
 
-3. (Optional) Choose a date on which the organization loses access to the simulation.
+3. (Optional) Choose a date when the simulation expires and is automatically deleted.
 <br>
 <br>
 Each user with appropriate permissions will now have access to this _exact_ simulation (and not a clone of the simulation). It will appear in their list of available simulations.
@@ -40,12 +39,12 @@ To create an organization, navigate to [air.nvidia.com/organizations](https://ai
 
 ## Manage an Organization
 
-Admins can add or remove members, delete or rename organizations, view resource utilization, and manage [images](#organization-images) for the organization.
+Admins can add or remove members, delete or rename organizations, view resource utilization data, and manage [images](#organization-images) for the organization.
 
 {{<img src="/images/guides/nvidia-air/OrganizationMembers.png" alt="">}}
 
 {{%notice info%}}
-Deleting an organization also deletes all the simulations and resources assigned to it. Removing a member from an organization also moves all removes their simulations from the organization.
+When you delete an organization, you also delete all the simulations and resources assigned to it. When you remove a member from an organization, their simulations are also removed from the organization.
 {{%/notice%}}
 
 ## Organization Images

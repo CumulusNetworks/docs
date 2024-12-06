@@ -22,7 +22,8 @@ Make sure you are a member of an organization before attempting to assign a simu
 
 3. (Optional) Choose a date on which the organization loses access to the simulation.
 <br>
-Each user with appropriate permissions will now have access to this _exact_ simulation. It will appear in their list of available simulations.
+<br>
+Each user with appropriate permissions will now have access to this _exact_ simulation (and not a clone of the simulation). It will appear in their list of available simulations.
 
 {{<img src="/images/guides/nvidia-air/SimulationOrganization.png" alt="" >}}
 
@@ -32,30 +33,26 @@ To create an organization, navigate to [air.nvidia.com/organizations](https://ai
 
 1. Click **Create Organization**.
 2. Give the organization a name.
-3. Enter the email addresses of the users you wish to add to the organization. You can select **Admin** to grant users additional privileges, such as adding additional users.
-4. Choose whether the user is an **Admin** or not. This will grant admin 
-5. When you are finished adding users, click **Create**. 
+3. Enter the email addresses of the users you wish to add to the organization. You can select the **Admin** toggle to grant users additional privileges, such as adding additional users.
+4. When you are finished adding users, click **Create**. 
 
 {{<img src="/images/guides/nvidia-air/CreateOrganization.png" alt="">}}
 
 ## Manage an Organization
 
-You can view, add and remove assigned members, simulations and [images](#organization-images) for the organization. You can also view utilized resources.
+Admins can add or remove members, delete or rename organizations, view resource utilization, and manage [images](#organization-images) for the organization.
 
 {{<img src="/images/guides/nvidia-air/OrganizationMembers.png" alt="">}}
 
-Rename or delete an organization with the **Actions {{<img src="/images/guides/nvidia-air/ActionsButton.png" alt="">}} button**.
-
 {{%notice info%}}
-Deleting an organization also deletes all the simulations and resources assigned to it. Removing a member from an organization also moves all their simulations out of the organization. <!--move to where? where do they go?>
+Deleting an organization also deletes all the simulations and resources assigned to it. Removing a member from an organization also moves all removes their simulations from the organization.
 {{%/notice%}}
-
 
 ## Organization Images
 
 _Public_ images are published for all users of NVIDIA Air, and simulations using public images can be assigned to any organization, or the organization can be left unassigned.
 
-An organization administrator can upload a _private_ image for use in simulations assigned to the organization. Images in an organization can be shared with individual users of NVIDIA Air outside of that organization for use in simulations.
+An organization administrator can upload a _private_ image for use in simulations assigned to the organization. Images in an organization can be shared with individual users of NVIDIA Air outside of a particular organization for use in their own simulations.
 
 ### Requirements
 

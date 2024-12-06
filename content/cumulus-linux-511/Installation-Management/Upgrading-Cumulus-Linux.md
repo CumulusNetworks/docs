@@ -161,12 +161,6 @@ Cumulus Linux also provides ISSU to upgrade an active switch with minimal disrup
 - Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in [Upgrade Switches in an MLAG Pair](#upgrade-switches-in-an-mlag-pair) below to ensure a smooth upgrade.
 {{%/notice%}}
 
-{{%notice warning%}}
-The SN3700C-S, SN5400, and SN5600 secure boot switch running Cumulus Linux 5.11.0 boots with shim 15.8 that adds entries to the SBAT revocations to prevent the switch from booting shim 15.7 or earlier, which has security vulnerabilities.
-
-If you want to downgrade from Cumulus Linux 5.11.0 to a Cumulus Linux release that uses an older shim version (Cumulus Linux 5.10 or earlier) follow the procedure in {{<link url="#downgrade-a-secure-boot-switch-from-Cumulus-Linux-5.11.0" text="Downgrade a Secure Boot Switch from Cumulus Linux 5.11.0">}} below **before** performing the downgrade. You can also follow the procedure if you need to recover a secure boot switch downgraded from 5.11.0 that does not boot.
-{{%/notice%}}
-
 ### Install a Cumulus Linux Image or Upgrade Packages?
 
 The decision to upgrade Cumulus Linux by either installing a Cumulus Linux image or upgrading packages depends on your environment and your preferences. The following section provides recommendations for each upgrade method.

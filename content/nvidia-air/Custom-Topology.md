@@ -8,22 +8,18 @@ product: NVIDIA Air
 The information on this page reflects the workflows for the new Air UI. The legacy UI is being deprecated. {{<link title="Custom Topology (Legacy)" text="View documentation for the legacy UI">}}
 {{%/notice%}}
 
-NVIDIA Air offers multiple means of creating custom topologies and new simulations.
-
 ## The Drag-and-Drop Topology Builder
 
-One way to create fully custom simulations is with the built-in topology builder. It provides a drag-and-drop editor to design any custom network.
+One way to create fully custom simulations is with the built-in topology builder. It provides a drag-and-drop editor to design any custom network. To get started, navigate to [https://air.nvidia.com/simulations](https://air.nvidia.com/simulations).
 
-To get started, navigate to [https://air.nvidia.com/simulations](https://air.nvidia.com/simulations).
-
-2. Select **Create Simulation**.
-3. Give your simulation a name.
-4. Select **Blank Canvas** as the type.
-5. (Optional) assign the simulation to an [Organization](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Organizations/). 
-6. (Optional), add a [ZTP script](#ztp-scripts) to the simulation.
+1. Select **Create Simulation**.
+2. Give your simulation a name.
+3. Select **Blank Canvas** as the type.
+4. (Optional) Assign the simulation to an [Organization](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Organizations/). 
+5. (Optional) Add a [ZTP script](#ztp-scripts) to the simulation.
    1. Toggle on the **Apply ZTP Template** button.
-   2. Enter your ZTP script. A default script is prefilled to help you get started. 
-7. Click **Create**.
+   2. Enter your ZTP script. A default script is prefilled to help get you started. 
+6. Click **Create**.
 
 {{<img src="/images/guides/nvidia-air/CreateSimulation.png" alt="" width="800px">}}
 
@@ -31,7 +27,7 @@ To get started, navigate to [https://air.nvidia.com/simulations](https://air.nvi
 
 When you create a new simulation, Air gives you the option to add a zero-touch provisioning (ZTP) script. The ZTP script is copied to the simulation's `oob-mgmt-server`. Any node making a ZTP request on the out-of-band management network has access to this ZTP script through a DHCP server and web server running on the `oob-mgmt-server`.
 
-A default script is prefilled to help you get started. It implements some common ZTP features on Cumulus Linux, such as changing the default password or downloading SSH keys. You can modify it to your needs.
+A default script is prefilled to help you get started. It implements some common ZTP features on Cumulus Linux, such as changing the default password or downloading SSH keys. You can edit the default script directly in the UI.
 
 {{< expand "Default ZTP script" >}}
 
@@ -74,20 +70,18 @@ exit 0
 
 ### Manage Nodes
 
-Drag and drop servers and switches from the **System Palette** on the right into the workspace.
+You can drag servers and switches from the **System Palette** to the workspace. Air provides access to hardware models based on available NVIDIA Spectrum (SNXXXX) switches. The model does not affect the simulation, but allows Air to pre-populate the number of ports based on the switch model. You do not need to use each port.
 
-You can choose your hardware model based on available NVIDIA Spectrum (SNXXXX) switches. This does not affect the simulation but acts as a macro to pre-populate the number of ports per switch model. You don’t need to use each port.
-
-Select a node to view its properties.
+Select a node to view or edit its properties.
 
 - **Name**: Node hostname.
 - **Operating System**: Name of the OS that was installed on the node. The OS is installed automatically.
-- **CPUs**: Number of CPUs. Default 1-2 GB depending on Spectrum switch selected.
-- **Memory (GB)**: Amount of RAM. Default 2 GB.
-- **Storage (GB)**: Amount of hard disk space. Default 10 GB.
-- **Connectors**: Choose an available port to directly connect to any port on another node.
-- Make sure to click the **Update Node** button when finished making changes.
-- Delete a node with the **Delete Node** button.
+- **CPUs**: Number of CPUs. The default is 1-2 GB depending on the Spectrum switch.
+- **Memory (GB)**: Amount of RAM (default is 2 GB).
+- **Storage (GB)**: Amount of hard disk space (default is 10 GB).
+- **Connectors**: Choose an available port to connect directly to any port on another node.
+
+Make sure to select **Update Node** when you are finished making changes. You can delete nodes by selecting **Delete Node**.
 
 There are also various **Advanced Options**, such as enabling **UEFI Secure Boot**.
 
@@ -99,22 +93,21 @@ When you are done creating your topology, click **Workspace > Start Simulation**
 
 ### OOB Management Network
 
-On the **System Palette**, there is an option to toggle **Enable OOB**. Toggling this setting enables the out-of-band management network that connects all nodes with each other. It also adds an `oob-mgmt-switch` and `oob-mgmt-server` to your simulation. When you [enable SSH](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Quick-Start/#services)
-in your sim, you will SSH into the `oob-mgmt-server`, making this node an ideal start point for configuration. Air handles the configuration automatically for you.
+On the **System Palette**, there is an option to **Enable OOB**. This setting enables the out-of-band management network that connects all nodes with each other. It also adds an `oob-mgmt-switch` and `oob-mgmt-server` to your simulation. When you enable SSH, you will SSH into the `oob-mgmt-server`, making this node an ideal starting point for configurations. Air handles the configuration automatically for you.
 
-{{<img src="/images/guides/nvidia-air/EnableOOB.png" alt="" width="200px">}}
+{{<img src="/images/guides/nvidia-air/EnableOOB.png" alt="" width="250px">}}
 
-You can manually add more `oob-mgmt-switches` and `oob-mgmt-servers` to your simulation if you need when this toggle is **off**. But the **Enable OOB** toggle must be enabled to use the OOB network.
+You can manually add more `oob-mgmt-switches` and `oob-mgmt-servers` to your simulation even when **Enable OOB** is set to off. However, you must switch **Enable OOB** to use the OOB network.
 
 ## Custom Topologies with DOT Files
 
-Air supports creating custom topologies using DOT files, which are the file type used with the open-source graph visualization software Graphviz. They are simple, customizable text-based files.
+You can also create custom topologies in Air using a DOT file, which is the file type used with the open-source graph visualization software, Graphviz. They are simple, customizable text-based files.
 
-You can upload DOT files directly into Air to generate a topology. This allows you to share and create copies of a topology and save the topology in a reusable file. You can modify them using a text editor.
+You can upload DOT files directly to Air to generate a topology. This allows you to share and create copies of a topology and save the topology in a reusable file. You can modify them using a text editor.
 
 ### DOT Syntax
 
-DOT files use the `.dot` file extension. They define nodes, attributes and connections for generating a topology for a network.
+DOT files use the `.dot` file extension. They define nodes, attributes, and connections for generating a topology for a network.
 
 The following is an example of a simple topology DOT file with 1 spine, 2 leaf nodes, and 2 servers connected to each leaf.
 ```
@@ -130,7 +123,7 @@ graph "Demo" {
     "spine01":"eth2" -- "leaf02":"eth2"
 }
 ```
-Below are some common use cases for customizing your DOT topology. Air is not limited to accepting only these options. Contact [NVIDIA Networking Support](https://www.nvidia.com/en-us/networking/support/) for more information.
+The following sections provide examples for common DOT file customizations.
 
 #### Operating System
 You can set the OS of the node with the `os` option: 
@@ -138,11 +131,9 @@ You can set the OS of the node with the `os` option:
 "server" [os="cumulus-vx-5.10.1"]
 ```
 
-For a list of available operating systems, view the **Operating System** dropdown in the **Node Properties** when using the [drag-and-drop editor](#the-drag-and-drop-topology-builder). 
-
 #### Disk Space
 
-By default, nodes in Air have 10GB of hard disk space. You can increase the space (in GB) by using the `storage` option:
+By default, nodes in Air have 10 GB of hard disk space. You can increase the space (in GB) by using the `storage` option:
 
 ```
 "server" [os="generic/ubuntu2404" storage="20"]
@@ -185,24 +176,21 @@ You can customize RAM (in MB) with the `memory` option:
 
 ### Examples
 
-Labs in the [Demo Marketplace](https://air.nvidia.com/demos) are maintained with external GitLab repositories. Here you can find the `topology.dot` file used to build the lab to reference from. Many demonstrate how to use more options beyond what is listed above.
-
-To access them, click on the **Documentation** button on any lab in the Demo Marketplace. It will lead you to the GitLab repo for the lab. You may have to explore the GitLab a bit to find the `topology.dot` file. 
+Labs in the [Demo Marketplace](https://air.nvidia.com/demos) are maintained with external GitLab repositories. Here you can find the `topology.dot` file used to build the lab and use it as a reference. To access the files, select **Documentation** on any lab in the Demo Marketplace. It will direct you to the demo's GitLab repository for the lab, where you can download the `.dot` file used for the demo's topology.
 
 ### Upload a DOT File
 
-To upload a DOT file into Air:
+To upload a DOT file to Air, navigate to [air.nvidia.com/simulations](https://air.nvidia.com/simulations). 
 
-1. Navigate to [air.nvidia.com/simulations](https://air.nvidia.com/simulations). 
-2. Click the **Create Simulation** button.
-2.	Give your simulation a **Name**.
-3.	Select **DOT** as the **Type**.
-4.	Drag or select your DOT file to upload.
-5. Optionally, assign an Organization to the sim. Read more about them in [Organizations](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Organizations/). 
-6. Optionally, add a **ZTP script** to the simulation. You can read more about them in [ZTP Scripts](#ztp-scripts).
-     1. Toggle on the **Apply ZTP Template** button.
+1. Select **Create Simulation**.
+2. Enter a name for the simulation.
+3. Select **DOT** as the type.
+4. Upload the file to the UI.
+5. (Optional) Assign the simulation to an [organization](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Organizations/). 
+6. (Optional) Add a [ZTP scripts](#ztp-scripts).
+     1. Select **Apply ZTP Template**.
      2. Enter your ZTP script. A default script is prefilled to help you get started.
-7. Optionally, click **Advanced** and provide a **OOB-MGMT-SERVER CONFIG SCRIPT** that executes on the `oob-mgmt-server` when the simulation is started.
+7. (Optional) Click **Advanced** and provide an out-of-band management server configuration script that executes on the `oob-mgmt-server` when the simulation is started.
 8. Click **Create**.
 
 Air will build a custom topology based on the DOT file. 

@@ -21,7 +21,7 @@ The following browsers are supported on a best-effort basis:
 
 ## Log in to Air
 
-To log in, go to [air.nvidia.com](https://air.nvidia.com/). Enter your business email address, then click **Next**.
+To log in, go to [air.nvidia.com](https://air.nvidia.com/). Enter your business email address, then click **Next**. <!--include air inside login path?-->
 
 {{<img src="/images/guides/nvidia-air/Login.png" alt="" width="800px">}}
 

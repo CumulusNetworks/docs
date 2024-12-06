@@ -76,7 +76,7 @@ To use EVPN-MH, you must remove any MLAG configuration on the switch:
 
 EVPN multihoming supports the following route types.
 
-| Route Type | Description | RFC or Draft |
+| Route Type | Description | RFC |
 | ---------- | ----------- | ------------ |
 | 1 | Ethernet auto-discovery (A-D) route | {{<exlink url="https://tools.ietf.org/html/rfc7432" text="RFC 7432">}} |
 | 2 | MAC/IP advertisement route | {{<exlink url="https://tools.ietf.org/html/rfc7432" text="RFC 7432">}} |

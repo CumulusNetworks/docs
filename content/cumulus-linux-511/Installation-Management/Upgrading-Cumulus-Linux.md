@@ -161,6 +161,12 @@ Cumulus Linux also provides ISSU to upgrade an active switch with minimal disrup
 - Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in [Upgrade Switches in an MLAG Pair](#upgrade-switches-in-an-mlag-pair) below to ensure a smooth upgrade.
 {{%/notice%}}
 
+{{%notice warning%}}
+The SN3700C-S, SN5400, and SN5600 secure boot switch running Cumulus Linux 5.11.0 boots with shim 15.8 that adds entries to the SBAT revocations to prevent the switch from booting shim 15.7 or earlier, which has security vulnerabilities.
+
+If you want to downgrade from Cumulus Linux 5.11.0 to a Cumulus Linux release that uses an older shim version (Cumulus Linux 5.10 or earlier) follow the procedure in {{<link url="#downgrade-a-secure-boot-switch-from-Cumulus-Linux-5.11.0" text="Downgrade a Secure Boot Switch from Cumulus Linux 5.11.0">}} below **before** performing the downgrade. You can also follow the procedure if you need to recover a secure boot switch downgraded from 5.11.0 that does not boot.
+{{%/notice%}}
+
 ### Install a Cumulus Linux Image or Upgrade Packages?
 
 The decision to upgrade Cumulus Linux by either installing a Cumulus Linux image or upgrading packages depends on your environment and your preferences. The following section provides recommendations for each upgrade method.
@@ -549,6 +555,37 @@ Even the most well planned and tested upgrades can result in unforeseen problems
 - Restore to a previous state using a backup configuration captured before the upgrade.
 
 The method you employ is specific to your deployment strategy. Providing detailed steps for each scenario is outside the scope of this document.
+
+## Downgrade a Secure Boot Switch from Cumulus Linux 5.11.0
+
+The SN3700C-S, SN5400, and SN5600 secure boot switch running Cumulus Linux 5.11.0 boots with shim 15.8 that adds entries to the SBAT revocations to prevent the switch from booting shim 15.7 or earlier, which has security vulnerabilities.
+
+**Before** you downgrade the secure boot switch from Cumulus Linux 5.11.0, follow the steps below to disable, then enable secure boot.
+
+You can also follow the steps below to recover a downgraded secure boot switch that does not boot and that shows the following error:
+
+  ```
+  Verifiying shim SBAT data failed: Security Policy Violation
+  Something has gone seriously wrong: SBAT self-check failed: Security Policy Violation
+  ```
+
+1. On the Cumulus Linux 5.11.0 switch, **disable** SecureBoot in BIOS:
+
+   a. Press Ctrl B through the serial console during system boot while the BIOS version prints.
+
+   b. To access the BIOS menu, use the default BIOS password `admin`.
+
+   c. To disable secure boot, navigate to `Security` and select `Secure Boot`.
+
+   d. Select `Save & Exit`.
+
+2. Boot into Cumulus Linux.
+
+3. Run the `mokutil --set-sbat-policy delete` command.
+
+4. Reboot the switch.
+
+5. Follow steps a through d above to **enable** secure boot in BIOS.
 
 ## Third Party Packages
 

@@ -567,7 +567,7 @@ You can also follow the steps below to recover a downgraded secure boot switch t
 
    a. Press Ctrl B through the serial console during system boot while the BIOS version prints.
 
-   b. To access the BIOS menu, use the default BIOS password `admin`.
+   b. When prompted, provide the BIOS password. The default password is `admin`.
 
    c. To disable secure boot, navigate to `Security`, and change `Secure Boot` to `Disabled`.
 

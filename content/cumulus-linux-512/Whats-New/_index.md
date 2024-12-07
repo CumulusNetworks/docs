@@ -22,6 +22,7 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
 - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#reset-a-transceiver" text="Software module reset">}}
 - {{<link url="VLAN-aware-Bridge-Mode/#clear-dynamic-mac-address-entries" text="Clear dynamic MAC address entries from the forwarding database">}}
 - NVUE
+  - ping command to check the reachability of a destination on a network
   - {{<link url="FRRouting/#look-up-the-route-for-a-destination" text="Look up the route for a destination">}}
   - {{< expand "Changed NVUE Commands" >}}
 | New Commands | Previous Commands |

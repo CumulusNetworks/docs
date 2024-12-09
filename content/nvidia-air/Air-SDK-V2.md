@@ -338,7 +338,7 @@ Update specific fields by calling `.update`:
 >>> sim.title
 "Sam's Personal 10 node sim with OOB"
 ```
-Calling `.update` on a simulation objects corresponds to [PATCH simulation V2](https://air-stg.nvidia.com/api/#/v2/v2_simulations_partial_update).
+Calling `.update` on a simulation object corresponds to [PATCH simulation V2](https://air.nvidia.com/api/#/v2/v2_simulations_partial_update).
 
 There is also a `.full_update` method on the simulation which updates all fields on the simulation:
 ```python

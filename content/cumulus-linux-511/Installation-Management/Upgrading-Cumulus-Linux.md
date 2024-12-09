@@ -108,8 +108,12 @@ To back up and restore the configuration file:
 
    ```
    cumulus@switch:~$ nv config patch /home/cumulus/startup.yaml
-   cumulus@switch:~$ sudo systemctl restart nvued.service
+   cumulus@switch:~$ nv config apply
    ```
+
+{{%notice note%}}
+When you restore an NVUE configuration file that includes TACACS, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the `systemctl restart nvued.service` command.
+{{%/notice%}}
 
 For information about the NVUE object model and commands, see {{<link url="NVIDIA-User-Experience-NVUE" text="NVIDIA User Experience - NVUE">}}.
 

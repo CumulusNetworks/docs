@@ -263,7 +263,9 @@ There are two paths for creating simulations using the SDK V2:
 ### File Import
 Entire simulations can efficiently and reliably be created by importing a file. This process is similar to the DOT file upload process supported by the original SDK and mirrors the [simulation import](https://air.nvidia.com/api/#/v2/v2_simulations_import_create) endpoint.
 
+<!--
 More details can be found in the [import instructions section](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Quick-Start/#import-a-topology) of the quick start guide.
+-->
 ```python
 from air_sdk.v2 import AirApi
 
@@ -336,7 +338,7 @@ Update specific fields by calling `.update`:
 >>> sim.title
 "Sam's Personal 10 node sim with OOB"
 ```
-Calling `.update` on a simulation objects corresponds to [PATCH simulation V2](https://air-stg.nvidia.com/api/#/v2/v2_simulations_partial_update).
+Calling `.update` on a simulation object corresponds to [PATCH simulation V2](https://air.nvidia.com/api/#/v2/v2_simulations_partial_update).
 
 There is also a `.full_update` method on the simulation which updates all fields on the simulation:
 ```python
@@ -385,4 +387,6 @@ simulation = air.simulations.get('<simulation-id>')
 
 sim_export_json = simulation.export(format="JSON")
 ```
+<!--
 For more information, refer to the [export instructions](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Quick-Start/#export-a-topology) section in the quick start guide.
+-->

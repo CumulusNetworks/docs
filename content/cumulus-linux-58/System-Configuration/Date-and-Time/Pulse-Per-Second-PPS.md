@@ -29,6 +29,10 @@ cumulus@switch:~$ nv set platform pulse-per-second in state enabled
 cumulus@switch:~$ nv config apply
 ```
 
+{{%notice note%}}
+When you enable PPS In, the PTP log reporting offset is one every two seconds instead of one every second.
+{{%/notice%}}
+
 {{< /tab >}}
 {{< tab "Enable PPS Out ">}}
 

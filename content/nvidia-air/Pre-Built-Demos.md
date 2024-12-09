@@ -4,47 +4,16 @@ author: NVIDIA
 weight: 30
 product: NVIDIA Air
 ---
+{{%notice note%}}
+The information on this page reflects the workflows for the new Air UI. The legacy UI is being deprecated. {{<link title="Pre-built Demos (Legacy)" text="View documentation for the legacy UI">}}
+{{%/notice%}}
 
-NVIDIA Air provides three pre-built demos:
-- Cumulus in the Cloud
-- Cumulus and SONiC in the Cloud
-- SONiC in the Cloud
+NVIDIA Air offers preconfigured network simulations---also called labs or demos---in the [Demo Marketplace](https://air.nvidia.com/demos). You can clone these demos and use them to learn about network configuration best practices, try out new features, and experiment with different environments or fabrics. They are completely yours to learn from, explore, destroy, and rebuild. Each demo includes a link to documentation that explains the goals of the simulation and provides step-by-step instructions or general information about the demo.
 
-All three demos use the NVIDIA Cumulus Linux [reference topology](https://gitlab.com/cumulus-consulting/goldenturtle/cldemo2-air-builder/), which provides a common and consistent pre-configured spine and leaf-based network topology and serves as the basis for all supported NVIDIA demos and golden standards. The reference topology is a blank slate with minimal configuration, and prepares the simulation to receive additional deployment and provisioning that demonstrates a feature or represents a fully operational production network.
+{{<img src="/images/guides/nvidia-air/DemoMarketplace.png" alt="demo marketplace homepage displaying available demos">}}
 
-The reference topology provides a complete two-tier spine and leaf topology. It also includes a complete out-of-band management network. The devices include:
-- Four Cumulus Linux spines
-- Four Cumulus Linux leafs
-- Eight Ubuntu servers
-- Two Cumulus Linux border leafs
-- Two Cumulus Linux *fw* devices that provide a placeholder for *policy* devices
-- One Ubuntu out-of-band management server (*oob-server*)
-- One Cumulus Linux out-of-band management switch (*oob-switch*)
-- One NVIDIA NetQ Cloud virtual appliance (*netq-ts*)
+- Click **Launch** on any demo to create a copy of the simulation in your account. Depending on its size, it may take several minutes to deploy the simulation. You can access it from your list of [Simulations](https://air.nvidia.com/simulations).
 
-<!--{{<img src="/images/guides/cldemo2-diagram.png" >}}-->
-When you start the reference topology simulation environment, none of the interfaces are configured (except for the out-of-band management network) and all interfaces are administratively down. The golden standard configurations and demos provide interface and routing protocol configurations that you can apply to this simulation topology.
+- Click **Documentation** to view the instructions for or information about the demo. This link directs you to the GitLab repository which hosts code, configurations, Ansible files, and additional content. GitLab also hosts topology DOT files, which you can use as references when creating custom topologies. You can read more about DOT files and custom topologies in [Custom Topology](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Custom-Topology/).
 
-## Cumulus In The Cloud
-
-In the NVIDIA Cumulus in the Cloud demo, all nodes in the reference topology use Cumulus Linux as the network operating system.
-
-{{<img src="/images/guides/nvidia-air/1CumulusInTheCloud.png">}}
-
-## Cumulus and SONiC In The Cloud
-
-In the Cumulus and SONiC In The Cloud demo, two spines in the reference topology use SONiC as the network operating system and all the remaining nodes use Cumulus Linux.
-
-{{<img src="/images/guides/nvidia-air/2SonicSpines.png" >}}
-
-## SONiC In The Cloud
-
-In the SONiC In The Cloud demo, all nodes in the reference topology use SONiC as the network operating system.
-
-{{<img src="/images/guides/nvidia-air/3SonicDemo.png" >}}
-
-## Guided Tour
-
-Every demo has a Guided Tour that provides step-by-step instructions on how to run the demo infrastructure in a console session.
-
-{{<img src="/images/guides/nvidia-air/GuidedTour.png" width="800px">}}
+{{<img src="/images/guides/nvidia-air/Documentation.png" alt="sample page of documentation hosted in gitlab">}}

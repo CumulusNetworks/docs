@@ -475,6 +475,7 @@ Cumulus Linux PTP has an option to use a servo specifically designed to handle t
 - To use Noise Transfer Servo, you need to enable SyncE on the switch and on PTP interfaces. 
 - Cumulus Linux supports Noise Transfer Servo on Spectrum ASICs that support SyncE.
 - NVIDIA recommends you use Noise Transfer Servo with PTP Telecom profiles. If you use other profiles or choose not to use a profile, make sure to set the sync interval to -3 or better.
+- When you enable Noise Transfer Servo, the PTP log reporting offset is one every two seconds instead of one every second.
 {{%/notice%}}
 
 To enable Noise Transfer Servo:

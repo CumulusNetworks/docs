@@ -30,7 +30,8 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{%notice note%}}
-If you configure SyncE or PTP noise transfer, Cumulus Linux does not support PPS In.
+- If you configure SyncE or PTP noise transfer, Cumulus Linux does not support PPS In.
+- When you enable PPS In, the PTP log reporting offset is one every two seconds instead of one every second.
 {{%/notice%}}
 
 {{< /tab >}}

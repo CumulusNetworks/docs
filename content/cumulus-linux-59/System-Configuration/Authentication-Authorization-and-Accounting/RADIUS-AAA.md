@@ -21,6 +21,16 @@ cumulus@switch:~$ sudo apt-get update
 cumulus@switch:~$ sudo apt-get install libnss-mapuser libpam-radius-auth
 ```
 
+{{%notice note%}}
+When installing the `libpam-radius-auth` package, Cumulus Linux prompts you to either overwrite the local files with those from the package or to keep the local files. The default option is to keep the local files, which does not allow RADIUS to operate as expected. To install the `libpam-radius-auth` package and overwrite the local files, run the following command:
+
+```
+cumulus@switch:~$ sudo apt-get -y -o Dpkg::Options::=--force-confnew install libnss-mapuser libpam-radius-auth
+```
+
+If you install the `libpam-radius-auth` package without overwriting the local files, you must either remove and reinstall the package with the `sudo apt-get -y -o Dpkg::Options::=--force-confnew install libnss-mapuser libpam-radius-auth` command, or overwrite the local files without removing or reinstalling the package with the `sudo pam-auth-update –force` command.
+{{%/notice%}}
+
 After installation completes, either reboot the switch or run the `sudo systemctl restart nvued` command.
 
 The `nvshow` group includes the `radius_user` account, and the `nvset` and `nvapply` groups. The `sudo` groups include the `radius_priv_user` account. This enables all RADIUS logins to run NVUE `nv show` commands and all privileged RADIUS users to also run `nv set`, `nv unset`, and `nv apply` commands, and to use `sudo`.

@@ -21,9 +21,31 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
 - {{<link url="Optional-BGP-Configuration/#graceful-bgp-shutdown-on-a-peer-group" text="Graceful BGP shutdown on a peer group">}}
 - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#reset-a-transceiver" text="Software module reset">}}
 - {{<link url="VLAN-aware-Bridge-Mode/#clear-dynamic-mac-address-entries" text="Clear dynamic MAC address entries from the forwarding database">}}
+- {{<link url="Optional-BGP-Configuration/#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}}
+- {{<link url="BGP-Weighted-Equal-Cost-Multipath/#ecmp-resource-sharing-during-next-hop-group-updates" text="ECMP Resource Sharing During Next Hop Group Updates">}}
+- Switch Telemetry Exposure - OTLP(Phase 3)
+- OTLP | Support different sample rate per OTLP exporter destination
+- Create a single CLI service check for OTLP exporter(s)
+- BER monitoring - GSHUT and port down due to error disabled
+- Align system/aaa/radius
+- Align system/log
+- Command logging for RADIUS users (Phase 2)
+- IPV6 SLAAC (Stateless Address Auto-Configuration) Support
+- Implement flow-control/backpressure between zebra and clients (like bgpd) to handle heavy churn at high scale( EVPN Scenarios)
+- SN5400 Hippo | Add SyncE support at 1G (optical)
 - NVUE
-  - ping command to check the reachability of a destination on a network
+  - API call for traceroute 
+  - API call for Ping
+  - support SPIFFE ID for AAA (Validation)
+  - Support for defining APT sources
+  - API call for "ls" linux command to list files in a directory
+  - Support for defining APT sources
+  - Storage Utilization Visibility
   - {{<link url="FRRouting/#look-up-the-route-for-a-destination" text="Look up the route for a destination">}}
+  - Show Logging Information
+  - View support for API as well as CLI
+  - ping command to check the reachability of a destination on a network
+  - Filtering based on FRR – Phase-1
   - {{< expand "Changed NVUE Commands" >}}
 | New Commands | Previous Commands |
 | ----------- | ----------------|

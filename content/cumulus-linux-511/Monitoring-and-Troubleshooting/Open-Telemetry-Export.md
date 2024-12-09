@@ -80,7 +80,7 @@ cumulus@switch:~$ nv config apply
 
 ### Platform Statistics
 
-When you platform statistic open telemetry, data related to CPU, disk, filesystem, memory, and sensor health is exported. To enable all [platform statistics](#platform-statistic-format) globally:
+When you enable platform statistic open telemetry, data related to CPU, disk, filesystem, memory, and sensor health is exported. To enable all [platform statistics](#platform-statistic-format) globally:
 
 ```
 cumulus@switch:~$ nv set system telemetry platform-stats export state enabled

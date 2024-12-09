@@ -76,13 +76,13 @@ To use EVPN-MH, you must remove any MLAG configuration on the switch:
 
 EVPN multihoming supports the following route types.
 
-| Route Type | Description | RFC or Draft |
+| Route Type | Description | RFC |
 | ---------- | ----------- | ------------ |
 | 1 | Ethernet auto-discovery (A-D) route | {{<exlink url="https://tools.ietf.org/html/rfc7432" text="RFC 7432">}} |
 | 2 | MAC/IP advertisement route | {{<exlink url="https://tools.ietf.org/html/rfc7432" text="RFC 7432">}} |
 | 3 | Inclusive multicast route | {{<exlink url="https://tools.ietf.org/html/rfc7432" text="RFC 7432">}} |
 | 4 | Ethernet segment route | {{<exlink url="https://tools.ietf.org/html/rfc7432" text="RFC 7432">}} |
-| 5 | IP prefix route | {{<exlink url="https://tools.ietf.org/html/draft-ietf-bess-evpn-prefix-advertisement-04" text="draft-ietf-bess-evpn-prefix-advertisement-04">}} |
+| 5 | IP prefix route | {{<exlink url="https://tools.ietf.org/html/rfc9136" text="RFC 9136">}} |
 
 ### Unsupported Features
 
@@ -4173,9 +4173,7 @@ exit-address-family
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL510 - EVPN Multihoming" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server02,server03,server04" >}}
-
-This simulation is running Cumulus Linux 5.10. The Cumulus Linux 5.11 simulation is coming soon.
+    {{< simulation name="Try It CL511 - EVPN Multihoming" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server02,server03,server04" >}}
 
 The simulation starts with the EVPN-MH with Head End Replication configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 

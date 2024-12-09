@@ -79,6 +79,24 @@ type: ''
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action abort system ztp</h>
+
+Terminates ZTP if it is in the discovery process or is not currently running a script.
+
+## Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action abort system ztp
+```
+
+If you add the `force` option (`nv action abort system ztp force`), ZTP terminates without prompting you for confirmation.
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action cancel system telemetry hft job \<job-id\> profile \<profile-id\></h>
 
 Cancels a specific or all high frequency telemetry data collection jobs, or a specific or all jobs for a high frequency telemetry profile. You can specify a job ID or `all` to cancel all jobs.
@@ -2503,6 +2521,29 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action disable system ztp</h>
+
+Disables ZTP and deactivates the provisioning process. If a ZTP script is currently running, ZTP is not disabled.
+
+## Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action disable system ztp
+The operation will perform disable of the ZTP.
+Type [y] to perform disable of the ZTP.
+Type [N] to cancel an action.
+
+Do you want to continue? [y/N]
+```
+
+If you add the `force` option (`nv action disable system ztp force`), ZTP disables and deactivates the provisioning process without prompting you for confirmation.
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action disconnect system aaa user \<user-id\></h>
 
 Disconnects authenticated and authorized users.
@@ -2570,6 +2611,52 @@ Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action enable system ztp</h>
+
+Enables ZTP and activates the provisioning process. ZTP tries to run the next time the switch boots. However, if ZTP already ran on a previous boot up or if you made manual configuration changes, ZTP exits without trying to look for a script.
+
+## Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action enable system ztp
+The operation will perform enable of the ZTP.
+Type [y] to perform enable of the ZTP.
+Type [N] to cancel an action.
+
+Do you want to continue? [y/N]
+```
+
+If you add the `force` option (`nv action enable system ztp force`), ZTP enables and activates the provisioning process without prompting you for confirmation.
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action run system ztp</h>
+
+Manually runs ZTP from the beginning. If you made manual configuration changes, ZTP considers the switch as already provisioned and exits.
+
+You can also specify a custom URL (`nv action run system ztp url <url-and-filename`) or directory (`nv action run system ztp url <directory-and-filename`) on the switch for the ZTP script.
+
+## Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action run system ztp
+The operation will perform rerun of the ZTP.
+Type [y] to perform rerun of the ZTP.
+Type [N] to cancel an action.
+
+Do you want to continue? [y/N]
+```
+
+If you add the force option (`nv action run system ztp force`), ZTP runs without prompting you for confirmation.
 
 ## <h>nv action delete system tech-support files \<file-id\></h>
 
@@ -2686,6 +2773,128 @@ cumulus@switch:~$ nv action reboot system
 Rebooting System in cold mode
 True
 Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action reset system factory-default</h>
+
+Resets the switch to the factory defaults and removes all configuration, system files, and log files. When you perform a factory reset, the currently installed image remains on the switch.
+
+{{%notice note%}}
+- To run factory reset with NVUE commands, the `nvued` service must be running.
+- When you run the NVUE factory reset commands, the switch prompts you to confirm that you want to continue. To run the commands without the prompts to continue, add the `force` option at the end of the command.
+- The switch always reboots in cold mode after a factory reset even if the switch is in warm boot mode when you run factory reset commands.
+- If ZTP fails (the ZTP configuration file is not present, there is no USB drive, or there are DHCP errors), factory reset continues successfully; ZTP is a separate task and does not affect the factory reset status.
+- If there is an issue when running factory reset, the switch reverts to the previous configuration and logs the exceptions and errors.
+- The factory reset command is similar to the onie-select -k command; however, onie-select -k also removes the installed image.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action reset system factory-default
+This operation will reset the system configuration, delete the log files and reboot the switch.
+Type [y] continue. 
+Type [n] to abort. 
+Do you want to continue? [y/n] y
+...
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action reset system factory-default keep basic</h>
+
+Resets the switch to the factory defaults but keeps password policy rules, management interface configuration (such as eth0), local user accounts and roles, and SSH configuration.
+
+{{%notice note%}}
+- To run factory reset with NVUE commands, the `nvued` service must be running.
+- When you run the NVUE factory reset commands, the switch prompts you to confirm that you want to continue. To run the commands without the prompts to continue, add the `force` option at the end of the command.
+- The switch always reboots in cold mode after a factory reset even if the switch is in warm boot mode when you run factory reset commands.
+- If ZTP fails (the ZTP configuration file is not present, there is no USB drive, or there are DHCP errors), factory reset continues successfully; ZTP is a separate task and does not affect the factory reset status.
+- If there is an issue when running factory reset, the switch reverts to the previous configuration and logs the exceptions and errors.
+- The factory reset command is similar to the onie-select -k command; however, onie-select -k also removes the installed image.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action reset system factory-default keep basic
+This operation will keep only the basic system configuration, delete the log files and reboot the switch.
+Type [y] to continue. 
+Type [n] to abort. 
+Do you want to continue? [y/n] y
+...
+
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action reset system factory-default keep all-config</h>
+
+Resets the switch to the factory defaults but keeps all configuration.
+
+{{%notice note%}}
+- To run factory reset with NVUE commands, the `nvued` service must be running.
+- When you run the NVUE factory reset commands, the switch prompts you to confirm that you want to continue. To run the commands without the prompts to continue, add the `force` option at the end of the command.
+- The switch always reboots in cold mode after a factory reset even if the switch is in warm boot mode when you run factory reset commands.
+- If ZTP fails (the ZTP configuration file is not present, there is no USB drive, or there are DHCP errors), factory reset continues successfully; ZTP is a separate task and does not affect the factory reset status.
+- If there is an issue when running factory reset, the switch reverts to the previous configuration and logs the exceptions and errors.
+- The factory reset command is similar to the onie-select -k command; however, onie-select -k also removes the installed image.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action reset system factory-default keep all-config
+This operation will not reset the system configuration, only delete the log files and reboot the switch.
+Type [y] to continue.
+Type [n] to abort.
+Do you want to continue? [y/n] y 
+...
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action reset system factory-default keep only-files</h>
+
+Resets the switch to the factory defaults but keeps all system files and log files
+
+{{%notice note%}}
+- To run factory reset with NVUE commands, the `nvued` service must be running.
+- When you run the NVUE factory reset commands, the switch prompts you to confirm that you want to continue. To run the commands without the prompts to continue, add the `force` option at the end of the command.
+- The switch always reboots in cold mode after a factory reset even if the switch is in warm boot mode when you run factory reset commands.
+- If ZTP fails (the ZTP configuration file is not present, there is no USB drive, or there are DHCP errors), factory reset continues successfully; ZTP is a separate task and does not affect the factory reset status.
+- If there is an issue when running factory reset, the switch reverts to the previous configuration and logs the exceptions and errors.
+- The factory reset command is similar to the onie-select -k command; however, onie-select -k also removes the installed image.
+{{%/notice%}}
+
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action reset system factory-default keep only-files
+This operation will reset the system configuration, not delete the log files and reboot the switch.
+Type [y] to continue. 
+Type [n] to abort. 
+Do you want to continue? [y/n] y 
+...
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

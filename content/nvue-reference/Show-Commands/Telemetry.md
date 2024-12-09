@@ -1086,3 +1086,855 @@ Introduced in Cumulus Linux 5.7.0
 ```
 cumulus@switch:~$ nv show system telemetry snapshot-file
 ```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> threshold</h>
+
+Shows threshold configuration for the specified port group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group packet-all-pg threshold
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> threshold \<threshold-stats-id\></h>
+
+Shows configuration information for a specific type of threshold statistics for the port group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<threshold-stats-id>` | The type of threshold ststistics; `packet-congestion-drops` or `packet-error-drops`. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group packet-all-pg threshold packet-error-drops
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> threshold \<threshold-stats-id\> action</h>
+
+Shows port group threshold action configuration.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<threshold-stats-id>` | The type of threshold ststistics; `packet-congestion-drops` or `packet-error-drops`. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group packet-all-pg threshold packet-error-drops action
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> threshold \<threshold-stats-id\> action log</h>
+
+Shows port group threshold log action configuration.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<threshold-stats-id>` | The type of threshold ststistics; `packet-congestion-drops` or `packet-error-drops`. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group packet-all-pg threshold packet-error-drops action log
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> threshold <threshold-stats-id> action collect</h>
+
+Shows port group threshold collect action configuration.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<threshold-stats-id>` | The type of threshold ststistics; `packet-congestion-drops` or `packet-error-drops`. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group packet-all-pg threshold packet-error-drops action collect
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats-type</h>
+
+Shows port group configuration for the different types of statistics.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group packet-all-pg stats-type
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats buffer</h>
+
+Shows port group buffer information.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group packet-all-pg stats buffer
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats buffer pool</h>
+
+Shows port group buffer pool information.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group packet-all-pg stats buffer pool
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats buffer pool \<buffer-pool-id\></h>
+
+Shows specific buffer pool information for a port group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<buffer-pool-id>`| The buffer pool ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group packet-all-pg stats buffer pool 2
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface</h>
+
+Shows port group interface snapshots.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group packet-all-pg stats interface
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\></h>
+
+Shows port group snapshots for a specific interface .
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<interface-id>`| The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group packet-all-pg stats interface swp1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet</h>
+
+Shows interface packet information for a port group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<interface-id>`| The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group packet-all-pg stats interface swp1 packet
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet good</h>
+
+Shows a snapshot for good packets transmitted and received on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<interface-id>`| The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group nv show system telemetry snapshot port-group packet-all-pg stats interface swp1 packet good
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet good tx</h>
+
+Shows a snapshot for good packets transmitted on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<interface-id>`| The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 packet good tx 
+Id       Date-Time                 Packet         Byte             Mcast        Bcast         Mac Ctrl       Pause Mac Ctrl 
+
+-----    -------------------       ------------   -------------    ---------    ----------    ------------   ---------------
+
+1         2023-12-13 11:02:44      2              268              0            0             0              0
+2         2023-12-13 11:02:43      2              268              0            0             0              0
+3         2023-12-13 11:02:42      2              268              0            0             0              0
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet good rx</h>
+
+Shows a snapshot for good packets received on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<interface-id>`| The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 packet good rx
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet discard</h>
+
+Shows a snapshot for discarded packets on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<interface-id>`| The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 packet discard
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet discard tx</h>
+
+Shows a snapshot for discarded packets transmitted on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<interface-id>`| The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 packet discard tx
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet discard rx</h>
+
+Shows a snapshot for discarded packets received on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<interface-id>`| The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 packet discard rx 
+Id       Date-Time                  General      Policy        Vlan         Tag Type     Opcode     Buffer   Runt     Other 
+
+-----    -------------------        ---------    -----------   -------      ----------    -------   -------  -------  -------- 
+
+1         2023-12-13 11:02:44       2            0             0            0             0         0        0        0
+2         2023-12-13 11:02:43       2            0             0            0             0         0        0        0
+3         2023-12-13 11:02:42       2            0             0            0             0         0        0        0 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet discard general</h>
+
+Shows a snapshot for general discarded packets on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<interface-id>`| The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 packet discard general
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet all</h>
+
+Shows a snapshot for all packets on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<interface-id>`| The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 packet all
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet all tx</h>
+
+Shows a snapshot for all transmitted packets on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<interface-id>`| The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 packet all tx
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet all rx</h>
+
+Shows a snapshot for all received packets on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<interface-id>`| The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 packet all rx
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet tc</h>
+
+Shows a snapshot for traffic class packets on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<interface-id>`| The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 packet tc
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet tc \<tc-id\></h>
+
+Shows a snapshot for specific traffic class packets on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<interface-id>`| The interface name. |
+| `<tc-id>`| The traffic class ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 packet tc 1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet tc \<tc-id\> tx
+
+Shows a snapshot for specific traffic class transmitted packets on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<interface-id>`| The interface name. |
+| `<tc-id>`| The traffic class ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 packet tc 1 tx
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet pg</h>
+
+Shows a snapshot for priority group packets on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<interface-id>`| The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 packet pg
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet pg \<pg-id\></h>
+
+Shows a snapshot for specific priority group packets on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<interface-id>`| The interface name. |
+| `<pg-id>`| The priority group ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 packet pg 1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet pg \<pg-id\> tx</h>
+
+Shows a snapshot for priority group packets transmitted on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<interface-id>`| The interface name. |
+| `<pg-id>`| The priority group ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 packet pg 1 tx 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet pg \<pg-id\> rx</h>
+
+Shows a snapshot for priority group packets received on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<interface-id>`| The interface name. |
+| `<pg-id>`| The priority group ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 packet pg 1 tc
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> buffer</h>
+
+Shows interface buffer information.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<interface-id>`| The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 buffer 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> buffer tc</h>
+
+Shows interface egress buffer information.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<interface-id>`| The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 buffer tc
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> buffer tc \<tc-id\></h>
+
+Shows specific interface egress buffer information.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<interface-id>`| The interface name. |
+| `<tc-id>`| The traffic class ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 buffer tc 1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> buffer pg</h>
+
+Shows interface ingress buffer information.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<interface-id>`| The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 buffer pg
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> buffer pg \<pg-id\></h>
+
+Shows specific interface ingress buffer information.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<interface-id>`| The interface name. |
+| `<pg-id>`| The priority group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 buffer pg 0 
+Id       Date-Time                 Current Value        Watermark        
+-----    -------------------       ------------         -------------
+1        2023-12-13 11:02:44       0                    0                           
+2        2023-12-13 11:02:43       0                    0              
+3        2023-12-13 11:02:42       0                    0 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> buffer ingress-port</h>
+
+Shows port group snapshot interface ingress port buffer configuration.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<interface-id>`| The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 buffer ingress-port
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> buffer ingress-port \<buffer-pool-id\></h>
+
+Shows port group snapshot interface ingress port buffer pool configuration.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `<interface-id>`| The interface name. |
+| `<buffer-pool-id>`| The buffer pool ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 buffer ingress-port 2
+```

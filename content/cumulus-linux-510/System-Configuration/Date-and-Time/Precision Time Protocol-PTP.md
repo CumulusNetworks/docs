@@ -35,6 +35,7 @@ Cumulus Linux supports:
 - You cannot run *both* PTP and NTP on the switch.
 - PTP supports the default VRF only.
 - PTP on the NVIDIA SN5400 switch is in BETA
+- 1G links might have a lower accuracy for PTP due to hardware limitations. If your application needs high accuracy from PTP, use higher link speeds.
 {{%/notice%}}
 
 ## Basic Configuration
@@ -474,6 +475,7 @@ Cumulus Linux PTP has an option to use a servo specifically designed to handle t
 - Cumulus Linux supports Noise Transfer Servo on Spectrum ASICs that support SyncE.
 - NVIDIA recommends you do not change the default Noise Transfer Servo configuration parameters.
 - NVIDIA recommends you use Noise Transfer Servo with PTP Telecom profiles. If you use other profiles or choose not to use a profile, make sure to set the sync interval to -3 or better.
+- When you enable Noise Transfer Servo, the PTP log reporting offset is one every two seconds instead of one every second.
 {{%/notice%}}
 
 To enable Noise Transfer Servo:

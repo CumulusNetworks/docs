@@ -10,7 +10,7 @@ toc: 3
 While Cumulus Linux can support RoCE environments, the end hosts must support the RoCE protocol.
 {{%/notice%}}
 
-RoCE helps you obtain a *converged network*, where all services run over the Ethernet infrastructure, including Infiniband apps.
+RoCE helps you obtain a *converged network*, where all services run over the Ethernet infrastructure, including Infiniband applications.
 
 ## Default RoCE Mode Configuration
 
@@ -32,6 +32,9 @@ RoCE uses the Infiniband (IB) Protocol over converged Ethernet. The IB global ro
 
 To enable RoCE with PFC and ECN:
 
+{{< tabs "TabID36 ">}}
+{{< tab "NVUE Commands ">}}
+
 ```
 cumulus@switch:~$ nv set qos roce
 cumulus@switch:~$ nv config apply
@@ -42,6 +45,25 @@ NVUE defaults to `roce mode lossless`. The command `nv set qos roce` and `nv set
 
 If you enable `roce mode lossy`, configuring `nv set qos roce` without a `mode` does not change the RoCE mode. To change to lossless, you must configure lossless mode with the `nv set qos roce mode lossless` command.
 {{% /notice %}}
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/cumulus/switchd.d/qos.conf` file to set the `traffic.roce_mode` parameter to 3, then reload `switchd`.
+
+```
+cumulus@switch:~$ sudo cat /etc/cumulus/switchd.d/qos.conf
+...
+traffic.roce_mode = 3
+...
+```
+
+```
+cumulus@switch:~$ sudo systemctl reload switchd.service
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{%notice note%}}
 {{<link url="Quality-of-Service#link-pause" text="Link pause">}} is another way to provide lossless ethernet; however, PFC is the preferred method. PFC allows more granular control by pausing the traffic flow for a given CoS group instead of the entire link.
@@ -55,19 +77,102 @@ RoCEv2 congestion management uses RFC 3168 to signal congestion experienced to t
 
 To enable RoCE with ECN:
 
+{{< tabs "TabID80 ">}}
+{{< tab "NVUE Commands ">}}
+
 ```
 cumulus@switch:~$ nv set qos roce mode lossy
 cumulus@switch:~$ nv config apply
 ```
 
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/cumulus/switchd.d/qos.conf` file to set the `traffic.roce_mode` parameter to 1, then reload `switchd`.
+
+```
+cumulus@switch:~$ sudo cat /etc/cumulus/switchd.d/qos.conf
+...
+traffic.roce_mode = 1
+...
+```
+
+```
+cumulus@switch:~$ sudo systemctl reload switchd.service
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+<!-- FOR 5.12
+## RoCE Single Shared Buffer Pool
+
+By default, Cumulus Linux separates lossy and lossless traffic into different dedicated pools on both ingress and egress. You can configure the switch to map ingress lossy and lossless traffic to the same single ingress pool. This configuration is useful if most of the traffic is of one type or when a reasonable amount of the shared buffer by lossy and lossless traffic is of less importance.
+
+Using the RoCE single shared buffer pool can help absorb lossy traffic as well as prioritize lossless traffic.
+
+<<<<CHECK CALCULATION AND CNP
+
+To enable the single shared buffer pool for RoCE:
+
+{{< tabs "TabID188 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set qos roce mode lossless-single-ipool
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/cumulus/switchd.d/qos.conf` file to set the `traffic.roce_mode` parameter to 4, then reload `switchd`.
+
+```
+cumulus@switch:~$ sudo cat /etc/cumulus/switchd.d/qos.conf
+...
+traffic.roce_mode = 4
+...
+```
+
+```
+cumulus@switch:~$ sudo systemctl reload switchd.service
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+-->
+
 ## Remove RoCE Configuration
 
 To remove RoCE configuration:
+
+{{< tabs "TabID111 ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ nv unset qos roce
 cumulus@switch:~$ nv config apply
 ```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `etc/cumulus/switchd.d/qos.conf` file to set the `traffic.roce_mode` parameter to 0, then reload `switchd`.
+
+```
+cumulus@switch:~$ sudo cat etc/cumulus/switchd.d/qos.conf
+...
+traffic.roce_mode = 0
+...
+```
+
+```
+cumulus@switch:~$ sudo systemctl reload switchd.service
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Verify RoCE Configuration
 

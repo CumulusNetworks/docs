@@ -79,6 +79,144 @@ system-uuid    b41196dc-78f1-4048-8079-f3c0fbeef739
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show platform asic resource
+
+Shows both global and ACL ASIC resources.
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show platform asic resource
+Global 
+========= 
+    Resource Name             Count         Max        Percentage 
+    ------------------                      -----      ---------
+    IPv4-host-entries             4         32768      0% 
+    IPv6-host-entries             4         8192       0% 
+    IPv4-neighbors                4                    0% 
+    IPv6-neighbors                4                    0% 
+    IPv4-route-entries            22        65536      0% 
+    IPv6-route-entries            21        45056      0% 
+        IPv4-Routes               22                   0% 
+    IPv6-Routes                   13                   0% 
+    MAC-entries                   36        40960      0% 
+    Total-Mcast-Routes             0        1000       0% 
+    Ingress-ACL-entries            0                   0% 
+    Egress-ACL-entries             0                   0% 
+      Total-Routes                 43       110592     0% 
+    ACL-Regions                    2        400        0% 
+    ACL-18B-Rules-Key              2        3792       0% 
+    ACL-36B-Rules-Key              0        1536       0% 
+    ACL-54B-Rules-Key              0        1024       0% 
+    ECMP-entries                   5                   0% 
+    ECMP-nexthops                  8        7808       0% 
+    Flow-Counters                  10       16196      0% 
+       RIF-Basic-Counters          36       1000       3% 
+    RIF-Enhanced-Counters          0        964        0% 
+    Downstream-VNI-FID-count       0                   0% 
+    Total-FID-count                3        6143       0% 
+    Vport-FID-count                3                   0%
+Acl 
+====== 
+    Resource Name                         18B Rule     36B Rule     54B Rule      Rule Count 
+    ----------------------------          ----------   -----------  ----------     ------ 
+    Egress-ACL-ipv4-filter-table           0           0               0            0 
+    Egress-ACL-mac-filter-table            0           0               0            0 
+    Ingress-ACL-mac-filter-table           0           0               0            0 
+    Ingress-ACL-ipv4-filter-table          0           0               0            0 
+    Ingress-ACL-ipv6-filter-table          0           0               0            0 
+    Ingress-ACL-ipv4-mangle-table          1           0               0            1 
+    Ingress-ACL-ipv6-mangle-table          0           0               0            0 
+    Egress ACL-ipv4-mangle-table           1           0               0            1 
+    Egress-ACL-ipv6-mangle-table           0           0               0            0 
+    Ingress-PBR-ipv4-filter-table          0           0               0            0 
+    Ingress-PBR-ipv6-filter-tabl           0           0               0            0
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show platform asic resource acl
+
+Shows global and ASIC resources.
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show platform asic resource acl
+Resource Name                        18B Rule     36B Rule     54B Rule    Rule Count 
+    ----------------------------     ----------   ----------   ----------  -------- 
+    Egress-ACL-ipv4-filter-table       0          0             0          0 
+    Egress-ACL-mac-filter-table        0          0             0          0 
+    Ingress-ACL-mac-filter-table       0          0             0          0 
+    Ingress-ACL-ipv4-filter-table      0          0             0          0 
+    Ingress-ACL-ipv6-filter-table      0          0             0          0 
+    Ingress-ACL-ipv4-mangle-table      1          0             0          1 
+    Ingress-ACL-ipv6-mangle-table      0          0             0          0 
+    Egress ACL-ipv4-mangle-table      1           0             0          1 
+    Egress-ACL-ipv6-mangle-table      0           0             0          0 
+    Ingress-PBR-ipv4-filter-table     0           0             0          0 
+    Ingress-PBR-ipv6-filter-tabl      0           0             0          0 
+    Egress-ACL-ipv6-filter-table      0           0             0          0 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show platform asic resource global
+
+Shows ACL ASIC resources.
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show platform asic resource global
+Resource Name                     Count   Max      Percentage 
+    ------------------            -----   ----      ---------- 
+    IPv4-host-entries             4       32768     0%
+    IPv6-host-entries             4       8192      0% 
+    IPv4-neighbors                4                 0% 
+    IPv6-neighbors                4                 0% 
+    IPv4-route-entries            22      65536     0% 
+    IPv6-route-entries            21      45056     0% 
+    IPv4-Routes                   22                0% 
+    IPv6-Routes                   13                0% 
+    MAC-entries                   36      40960     0% 
+    Total-Mcast-Routes            0       1000      0% 
+    Ingress-ACL-entries           0                 0% 
+    Egress-ACL-entries            0                 0% 
+    Total-Routes                  43      110592    0% 
+    ACL-Regions                   2       400       0% 
+    ACL-18B-Rules-Key             2       3792      0% 
+    ACL-36B-Rules-Key             0       1536      0% 
+    ACL-54B-Rules-Key             0       1024      0% 
+    ECMP-entries                  5                 0% 
+    ECMP-nexthops                 8       7808      0% 
+    Flow-Counters                 10      16196     0% 
+    Ingress-ACL-entries           0                 0% 
+    RIF-Basic-Counters            36      1000      3% 
+    RIF-Enhanced-Counters         0       964       0% 
+    Downstream-VNI-FID-count      0                 0% 
+    Total-FID-count               3       6143      0% 
+    Vport-FID-count               3                 0%
+    Dynamic-Config-DNAT-entries   0       64        0.0% 
+    Dynamic-Config -SNAT-entries  0       64        0.0% 
+    Dynamic-DNAT-entries          0       1024      0.0% 
+    Dynamic-SNAT-entries          0       1024      0.0% 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show platform capabilities</h>
 
 Shows the platform capabilities of the switch.
@@ -714,4 +852,283 @@ cumulus@switch:~$ nv show platform software installed what-just-happened
 description  Package containing what-just-happened feature for Cumulus Linux                  
 package      what-just-happened                                                               
 version      2.3.0-cl5.6.0u3
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show platform transceiver</h>
+
+Shows the identifier, vendor name, part number, serial number, and revision for all SFP or QSFP modules
+
+Use the `nv show platform transceiver brief` command to see condensed information or the `nv show platform transceiver detail` command to see detailed information.
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show platform transceiver 
+Transceiver  Identifier  Vendor name  Vendor PN         Vendor SN      Vendor revision
+-----------  ----------  -----------  ----------------  -------------  --------------- 
+swp1         QSFP28      Mellanox     MCP1600-C001E30N  MT2039VB01185  A3 
+swp10        QSFP28      Mellanox     MCP1600-C001E30N  MT2211VS01792  A3 
+swp11        QSFP28      Mellanox     MCP1600-C001E30N  MT2211VS01792  A3 
+swp12        QSFP28      Mellanox     MCP1650-V00AE30   MT2122VB02220  A2 
+swp13        QSFP28      Mellanox     MCP1650-V00AE30   MT2122VB02220  A2 
+swp14        QSFP-DD     Mellanox     MCP1660-W00AE30   MT2121VS01645  A3 
+swp15        QSFP-DD     Mellanox     MCP1660-W00AE30   MT2121VS01645  A3 
+swp18        QSFP28      Mellanox     MCP1600-C001E30N  MT2211VS01967  A3 
+swp20        QSFP28      Mellanox     MFA1A00-C003      MT2108FT02204  B2 
+swp21        QSFP28      Mellanox     MFA1A00-C003      MT2108FT02204  B2 
+swp22        QSFP28      Mellanox     MFA1A00-C003      MT2108FT02194  B2 
+swp23        QSFP28      Mellanox     MFA1A00-C003      MT2108FT02194  B2 
+swp31        QSFP28      Mellanox     MCP1600-C001E30N  MT2039VB01191  A3 
+... 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show platform transceiver \<interface\></h>
+
+Shows hardware capabilities and measurement information on the SFP or QSFP module in a particular port.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` |  The interface with the SFP or QSFP module. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show platform transceiver swp2
+cable-type             : Active cable 
+cable-length           : 3m 
+supported-cable-length : 0m om1, 0m om2, 0m om3, 3m om4, 0m om5 
+diagnostics-status     : Diagnostic Data Available 
+status                 : plugged_enabled 
+error-status           : N/A 
+vendor-date-code       : 210215__ 
+identifier             : QSFP28 
+vendor-rev             : B2 
+vendor-name            : Mellanox 
+vendor-pn              : MFA1A00-C003 
+vendor-sn              : MT2108FT02204 
+temperature: 
+  temperature           : 42.56 C 
+  high-alarm-threshold  : 80.00 C 
+  low-alarm-threshold   : -10.00 C 
+  high-warning-threshold: 70.00 C 
+  low-warning-threshold : 0.00 C 
+  alarm                 : Off 
+voltage: 
+  voltage               : 3.2862 V 
+  high-alarm-threshold  : 3.5000 V 
+  low-alarm-threshold   : 3.1000 V 
+  high-warning-threshold: 3.4650 V 
+  low-warning-threshold : 3.1350 V 
+  alarm                 : Off 
+channel: 
+  channel-1: 
+    rx-power: 
+        power                 : 0.8625 mW / -0.64 dBm 
+        high-alarm-threshold  : 5.40 dBm 
+        low-alarm-threshold   : -13.31 dBm 
+        high-warning-threshold: 2.40 dBm 
+        low-warning-threshold : -10.30 dBm 
+        alarm                 : Off 
+    tx-power: 
+        power                 : 0.8988 mW / -0.46 dBm 
+        high-alarm-threshold  : 5.40 dBm 
+        low-alarm-threshold   : -11.40 dBm 
+        high-warning-threshold: 2.40 dBm 
+        low-warning-threshold : -8.40 dBm 
+        alarm                 : Off 
+    tx-bias-current: 
+        current               : 6.750 mA 
+        high-alarm-threshold  : 8.500 mA 
+        low-alarm-threshold   : 5.492 mA 
+        high-warning-threshold: 8.000 mA 
+        low-warning-threshold : 6.000 mA 
+        alarm                 : Off
+...
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show platform transceiver \<interface\> channel</h>
+
+Shows channel information for the SFP or QSFP module in a particular port.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` |  The interface with the SFP or QSFP module. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show platform transceiver swp25 channel 
+channel: 
+  channel-1: 
+    rx-power: 
+        power                 : 0.8625 mW / -0.64 dBm 
+        high-alarm-threshold  : 5.40 dBm 
+        low-alarm-threshold   : -13.31 dBm 
+        high-warning-threshold: 2.40 dBm 
+        low-warning-threshold : -10.30 dBm 
+        alarm                 : Off 
+    tx-power: 
+        power                 : 0.8988 mW / -0.46 dBm 
+        high-alarm-threshold  : 5.40 dBm 
+        low-alarm-threshold   : -11.40 dBm 
+        high-warning-threshold: 2.40 dBm 
+        low-warning-threshold : -8.40 dBm 
+        alarm                 : Off 
+    tx-bias-current: 
+        current               : 6.750 mA 
+        high-alarm-threshold  : 8.500 mA 
+        low-alarm-threshold   : 5.492 mA 
+        high-warning-threshold: 8.000 mA 
+        low-warning-threshold : 6.000 mA 
+        alarm                 : Off 
+  channel-2: 
+    rx-power: 
+        power                 : 0.8385 mW / -0.76 dBm 
+        high-alarm-threshold  : 5.40 dBm 
+        low-alarm-threshold   : -13.31 dBm 
+        high-warning-threshold: 2.40 dBm 
+        low-warning-threshold : -10.30 dBm 
+        alarm                 : Off 
+    tx-power: 
+        power                 : 0.9154 mW / -0.38 dBm 
+        high-alarm-threshold  : 5.40 dBm 
+        low-alarm-threshold   : -11.40 dBm 
+        high-warning-threshold: 2.40 dBm 
+        low-warning-threshold : -8.40 dBm 
+        alarm                 : Off
+...
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show platform transceiver \<interface\> channel \<channel-id\></h>
+
+Shows specific channel information for the SFP or QSFP module in a particular port.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` |  The interface with the SFP or QSFP module. |
+| `<channel-id>` |  The channel ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show platform transceiver swp25 channel 1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface\> transceiver</h>
+
+Shows transceiver data for an interface in a condensed format.
+
+## Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<interface-id>` | The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 transceiver
+cable-type             : Active cable 
+cable-length           : 3m 
+supported-cable-length : 0m om1, 0m om2, 0m om3, 3m om4, 0m om5 
+diagnostics-status     : Diagnostic Data Available 
+status                 : plugged_enabled 
+error-status           : N/A 
+revision-compliance    : SFF-8636 Rev 2.5/2.6/2.7 
+vendor-date-code       : 210215__ 
+identifier             : QSFP28 
+vendor-rev             : B2 
+vendor-oui             : 00:02:c9 
+vendor-name            : Mellanox 
+vendor-pn              : MFA1A00-C003 
+vendor-sn              : MT2108FT02204 
+temperature            : 42.56 degrees C / 108.61 degrees F 
+voltage                : 3.2888 V 
+ch-1-rx-power          : 0.8625 mW / -0.64 dBm 
+ch-1-tx-power          : 0.8988 mW / -0.46 dBm 
+ch-1-tx-bias-current   : 6.750 mA 
+ch-2-rx-power          : 0.8385 mW / -0.76 dBm 
+ch-2-tx-power          : 0.9154 mW / -0.38 dBm 
+ch-2-tx-bias-current   : 6.750 mA 
+ch-3-rx-power          : 0.8556 mW / -0.68 dBm 
+ch-3-tx-power          : 0.9537 mW / -0.21 dBm 
+ch-3-tx-bias-current   : 6.750 mA 
+ch-4-rx-power          : 0.8576 mW / -0.67 dBm 
+ch-4-tx-power          : 0.9695 mW / -0.13 dBm 
+ch-4-tx-bias-current   : 6.750 mA
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> transceiver thresholds</h>
+
+Shows the thresholds for the SFP or QSFP module for a specific interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` |  The interface with the SFP or QSFP module. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp3 transceiver thresholds
+                     Ch    Value          High Alarm       High Warn        Low Warn       Low Alarm       Alt Value 
+                                          Threshold        Threshold       Threshold       Threshold 
+------------------------------------------------------------------------------------------------------------------------ 
+temperature          -     42.74 C         80.00 C         70.00 C         0.00 C          -10.00 C        108.94F 
+voltage              -     3.2862 V        3.5000 V        3.4650 V        3.1350 V        3.1000 V 
+rx-power             1     -0.64 dBm       5.40 dBm        2.40 dBm        -10.30 dBm      -13.31 dBm      0.8625 mW 
+                     2     -0.70 dBm       5.40 dBm        2.40 dBm        -10.30 dBm      -13.31 dBm      0.8514 mW 
+                     3     -0.68 dBm       5.40 dBm        2.40 dBm        -10.30 dBm      -13.31 dBm      0.8556 mW 
+                     4     -0.60 dBm       5.40 dBm        2.40 dBm        -10.30 dBm      -13.31 dBm      0.8704 mW 
+tx-power             1     -0.48 dBm       5.40 dBm        2.40 dBm        -8.40 dBm       -11.40 dBm      0.8963 mW 
+                     2     -0.38 dBm       5.40 dBm        2.40 dBm        -8.40 dBm       -11.40 dBm      0.9154 mW 
+                     3     -0.19 dBm       5.40 dBm        2.40 dBm        -8.40 dBm       -11.40 dBm      0.9562 mW 
+                     4     -0.13 dBm       5.40 dBm        2.40 dBm        -8.40 dBm       -11.40 dBm      0.9695 mW 
+tx-bias-current      1     6.750 mA        8.500 mA        8.000 mA        6.000 mA        5.492 mA 
+                     2     6.750 mA        8.500 mA        8.000 mA        6.000 mA        5.492 mA 
+                     3     6.750 mA        8.500 mA        8.000 mA        6.000 mA        5.492 mA 
+                     4     6.750 mA        8.500 mA        8.000 mA        6.000 mA        5.492 mA
 ```

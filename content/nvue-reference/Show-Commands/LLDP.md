@@ -446,7 +446,7 @@ Shows information about a specific VLAN for the specified LLDP neighbor.
 | --------- | -------------- |
 | `<interface-id>`    |  The interface name.|
 | `<neighbor-id>` |  The LLDP neighbor name. |
-| `<vid>` | The VLAN name.|
+| `<vlan-id>` | The VLAN name.|
 
 ### Version History
 

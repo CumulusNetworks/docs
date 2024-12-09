@@ -1703,7 +1703,7 @@ To configure a BGP confederation:
 - Provide the configuration ID you want to use.
 - Provide the ASNs of the peers you want to add to the confederation.
 
-The following example configures confederation ID 2 with peer ASNs 65101, 65102, 65103, and 65104.
+The following example configures confederation ID 2 with sub-ASs 65101, 65102, 65103, and 65104.
 
 {{< tabs "1706 ">}}
 {{< tab "NVUE Commands ">}}
@@ -1723,6 +1723,7 @@ cumulus@leaf01:~$ sudo vtysh
 spine01# configure terminal
 spine01(config)# router bgp 65199
 spine01(config-router)# bgp confederation identifier 2
+spine01(config-router)# bgp confederation peers 65101
 spine01(config-router)# bgp confederation peers 65102
 spine01(config-router)# bgp confederation peers 65103
 spine01(config-router)# bgp confederation peers 65104
@@ -2025,6 +2026,287 @@ graceful-shutdown                                                   on
 ...
 ```
 
+<!-- REWRITTEN FOR 5.12
+
+## Graceful BGP Shutdown
+
+To reduce packet loss during planned switch or link maintenance, you can configure graceful BGP shutdown globally, on a peer group, or on a specific peer.
+
+{{%notice note%}}
+You can enable graceful BGP shutdown either globally or on a peer or peer group but not both.
+{{%/notice%}}
+
+### Global Graceful BGP Shutdown
+
+When you enable graceful shutdown globally on the switch, Cumulus Linux adds the `graceful-shutdown` community to all inbound and outbound routes from all eBGP peers and sets the `local-pref` for the routes to `0` (refer to {{<exlink url="https://datatracker.ietf.org/doc/html/rfc8326" text="RFC8326">}}).
+
+{{< tabs "1481 ">}}
+{{< tab "NVUE Commands ">}}
+
+To enable graceful shutdown globally on the switch:
+
+```
+cumulus@leaf01:~$ nv set router bgp graceful-shutdown on
+cumulus@leaf01:~$ nv config apply
+```
+
+To disable graceful shutdown globally on the switch:
+
+```
+cumulus@leaf01:~$ nv set router bgp graceful-shutdown off
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+To enable graceful shutdown globally:
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# bgp graceful-shutdown
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+```
+
+To disable graceful shutdown globally on the switch:
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# no bgp graceful-shutdown
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To show the configuration, run the vtysh `show ip bgp <route>` command. For example:
+
+```
+cumulus@leaf01:~$ sudo vtysh
+leaf01# show ip bgp 10.10.10.0/24
+BGP routing table entry for 10.10.10.0/24
+Paths: (2 available, best #1, table Default-IP-Routing-Table)
+  Advertised to non peer-group peers:
+  bottom0(10.10.10.2)
+  30 20
+    10.10.10.2 (metric 10) from top1(10.10.10.2) (10.10.10.2)
+      Origin IGP, localpref 100, valid, internal, bestpath-from-AS 30, best
+      Community: 99:1
+      AddPath ID: RX 0, TX 52
+      Last update: Mon Sep 18 17:01:18 2017
+
+  20
+    10.10.10.3 from bottom0(10.10.10.32) (10.10.10.10)
+      Origin IGP, metric 0, localpref 0, valid, external, bestpath-from-AS 20
+      Community: 99:1 graceful-shutdown
+      AddPath ID: RX 0, TX 2
+      Last update: Mon Sep 18 17:01:18 2017
+```
+
+As optional configuration, you can create a route map to prepend the AS so that reduced preference using a longer AS path propagates to other parts of network.
+
+{{< expand "Example Configuration Using a Route Map" >}}
+
+```
+router bgp 65101
+ bgp router-id 10.10.10.1
+ bgp graceful-restart
+ bgp bestpath as-path multipath-relax
+ neighbor fabric peer-group
+ neighbor swp51 interface remote-as external
+
+ address-family ipv4 unicast
+  redistribute connected
+  neighbor swp51 route-map prependas out
+ exit-address-family
+
+bgp community-list standard gshut seq 5 permit graceful-shutdown
+
+route-map prependas permit 10
+ match community gshut exact-match
+ set as-path prepend 65101
+
+route-map prependas permit 20
+```
+
+With the above configuration, the peer sees:
+
+```
+cumulus@spine01:~$ sudo vtysh
+...
+spine01# show ip bgp 10.10.10.1/32
+BGP routing table entry for 10.10.10.1/32
+Paths: (1 available, best #1, table default)
+Advertised to non peer-group peers:
+65101 65101
+10.10.10.1 from leaf01(10.10.10.1) (10.10.10.1)
+Origin incomplete, metric 0, localpref 0, valid, external, bestpath-from-AS 65101, best (First path received)
+Community: graceful-shutdown
+Last update: Sun Dec 20 03:04:53 2020
+```
+
+{{< /expand >}}
+
+### Graceful BGP Shutdown on a Peer
+
+When you enable BGP graceful shutdown on a peer, Cumulus Linux attaches a `graceful-shutdown` community to the relevant routes. Neighbors receiving the `graceful-shutdown` community mark these routes as less preferred if alternative routes exist. If no other routes are available, neighbors continue to use the routes with the `graceful-shutdown` community. If you enable graceful shutdown (maintenance) in multiple parts of the network or where there are no additional routes, traffic does not stop on the routes that have the attached `graceful-shutdown` community.
+
+{{%notice note%}}
+Before you enable graceful shutdown on a peer, make sure that *global* graceful shutdown is `off`.
+{{%/notice%}}
+
+{{< tabs "1807 ">}}
+{{< tab "NVUE Commands ">}}
+
+To enable graceful shutdown on a peer, run the `nv set vrf <vrf> router bgp neighbor <neighbor> graceful-shutdown on` command:
+
+```
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 graceful-shutdown on
+cumulus@leaf01:~$ nv config apply
+```
+
+To disable graceful shutdown on a peer, run the `nv unset vrf <vrf> router bgp neighbor <neighbor> graceful-shutdown` command:
+
+```
+cumulus@leaf01:~$ nv unset vrf default router bgp neighbor swp51 graceful-shutdown
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+To enable graceful shutdown on a peer:
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# neighbor swp51 graceful-shutdown
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+```
+
+To disable graceful shutdown on a peer:
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# neighbor swp51 no graceful-shutdown
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To show if graceful shutdown is `on` a peer, run the `nv show vrf <vrf> router bgp neighbor <neighbor>` command:
+
+```
+cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51
+                                    operational                     applied   
+----------------------------------  ------------------------------  ----------
+password                                                            *         
+enforce-first-as                                                    off       
+passive-mode                                                        off       
+nexthop-connected-check                                             on        
+description                                                         none      
+bfd                                                                           
+  enable                                                            off       
+...
+graceful-shutdown                                                   on      
+...
+```
+
+### Graceful BGP Shutdown on a Peer Group
+
+When you enable BGP graceful shutdown on a peer group, Cumulus Linux attaches a `graceful-shutdown` community to the relevant routes. Neighbors receiving the `graceful-shutdown` community mark these routes as less preferred if alternative routes exist. If no other routes are available, neighbors continue to use the routes with the `graceful-shutdown` community. If you enable graceful shutdown (maintenance) in multiple parts of the network or where there are no additional routes, traffic does not stop on the routes that have the attached `graceful-shutdown` community.
+
+{{%notice note%}}
+Before you enable graceful shutdown on a peer group, make sure that *global* graceful shutdown is `off`.
+{{%/notice%}}
+
+{{< tabs "1807 ">}}
+{{< tab "NVUE Commands ">}}
+
+To enable graceful shutdown on a peer group, run the `nv set vrf <vrf> router bgp peer-group <peer-group-id> graceful-shutdown on` command:
+
+```
+cumulus@leaf01:~$ nv set vrf default router bgp peer-group underlay graceful-shutdown on
+cumulus@leaf01:~$ nv config apply
+```
+
+To disable graceful shutdown on a peer group, run the `nv unset vrf <vrf> router bgp peer-group <peer-group-id> graceful-shutdown` command:
+
+```
+cumulus@leaf01:~$ nv unset vrf default router bgp peer-group underlay graceful-shutdown
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+To enable graceful shutdown on a peer group:
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# neighbor underlay graceful-shutdown
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+```
+
+To disable graceful shutdown on a peer group:
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# neighbor underlay no graceful-shutdown
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To show if graceful shutdown is `on` a peer group, run the `nv show vrf <vrf> router bgp peer-group <peer-group-id>` command:
+
+```
+cumulus@leaf01:~$ nv show vrf default router bgp peer-group underlay
+                                    operational                     applied   
+----------------------------------  ------------------------------  ----------
+password                                                            *         
+enforce-first-as                                                    off       
+passive-mode                                                        off       
+nexthop-connected-check                                             on        
+description                                                         none      
+bfd                                                                           
+  enable                                                            off       
+...
+graceful-shutdown                                                   on      
+...
+```
+-->
 ## Graceful BGP Restart
 
 When BGP restarts on a switch, all BGP peers detect that the session goes down and comes back up. This session transition results in a routing flap on BGP peers that causes BGP to recompute routes, generate route updates, and add unnecessary churn to the forwarding tables. The routing flaps can create transient forwarding blackholes and loops, and also consume resources on the switches affected by the flap, which can affect overall network performance.

@@ -12,6 +12,98 @@ h { color: RGB(118,185,0)}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system aaa radius accounting state</h>
+
+Enables RADIUS user command accounting, which lets you log every command that a user runs and send the commands to the primary RADIUS server for auditing. Audit logs are a requirement for compliance standards, such as PCI and HIPPA.
+
+You can specify `enabled` or `disabled`.
+
+The RADIUS server must be configured to accept packets from clients and have a dictionary entry for NV-Command-String.
+
+The `/var/log/radius-cmd-acct.log` file contains the local copy of the logs, which match the logs that the server receives.
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa radius accounting state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system aaa radius debug</h>
+
+Configures the debug option for troubleshooting. The debugging messages write to `/var/log/syslog`. When the RADIUS client is working correctly, you can disable the debug option. You can specify `enable` or `disable`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa radius debug enable
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system aaa radius enable</h>
+
+Enables (`on`) and disables (`off`) RADIUS.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa radius enable on
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system aaa radius port</h>
+
+Configures the port you want to use for all RADIUS communication. You can specify a value between 0 and 65535. The default value is 1812.
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system aaa radius privilege-level</h>
+
+Configures the minimum privilege level that determines if users can configure the switch with NVUE commands and sudo, or have read-only rights. The default privilege level is 15, which provides full administrator access. This is a global option only; you cannot set the minimum privilege level for specific RADIUS servers.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa radius privilege-level 10
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system aaa radius retransmit</h>
+
+Configures the maximum number of retransmission attempts allowed for requests when a RADIUS authentication request times out. This is a global option only; you cannot set the number of retransmission attempts for specific RADIUS servers.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa radius retransmit 8
+```
+
 ## <h>nv set system aaa radius server \<hostname-id\></h>
 
 Configures the IP address or hostname of the RADIUS server.
@@ -100,31 +192,9 @@ cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 secret 'myradius
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system aaa radius server \<hostname-id\> source-ipv4</h>
+## <h>nv set system aaa radius server \<hostname-id\> source-ip</h>
 
-Configures the specific interface IPv4 address you want to use to reach the specified RADIUS server. If you configure multiple RADIUS servers, you can configure a specific interface to reach all RADIUS servers with the `nv set system aaa radius source-ipv4` command, described below.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<hostname-id>` | The IP address or hostname of the RADIUS server. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.7.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 source-ipv4 192.168.1.10
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system aaa radius server \<hostname-id\> source-ipv6</h>
-
-Configures the specific interface IPv6 address you want to use to reach the specified RADIUS server. If you configure multiple RADIUS servers, you can configure a specific interface to reach all RADIUS servers with the `nv set system aaa radius source-ipv6` command, described below.
+Configures the specific interface IPv4 or IPv6 address you want to use to reach the RADIUS server. If you configure multiple RADIUS servers, you can configure a specific interface to reach all RADIUS servers with the `nv set system aaa radius source-ip` command, described below.
 
 ### Command Syntax
 
@@ -139,7 +209,7 @@ Introduced in Cumulus Linux 5.7.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 source-ipv6 0:0:0:0:0:ffff:c0a8:010a
+cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 source-ip 192.168.1.10
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -162,76 +232,6 @@ Introduced in Cumulus Linux 5.7.0
 
 ```
 cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 timeout 10
-```
-
- <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system aaa radius debug</h>
-
-Configures the debug option for troubleshooting. The debugging messages write to `/var/log/syslog`. When the RADIUS client is working correctly, you can disable the debug option. You can specify `enable` or `disable`.
-
-### Version History
-
-Introduced in Cumulus Linux 5.7.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system aaa radius debug enable
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system aaa radius enable</h>
-
-Enables (`on`) and disables (`off`) RADIUS.
-
-### Version History
-
-Introduced in Cumulus Linux 5.7.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system aaa radius enable on
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system aaa radius port</h>
-
-Configures the port you want to use for all RADIUS communication. You can specify a value between 0 and 65535. The default value is 1812.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system aaa radius privilege-level</h>
-
-Configures the minimum privilege level that determines if users can configure the switch with NVUE commands and sudo, or have read-only rights. The default privilege level is 15, which provides full administrator access. This is a global option only; you cannot set the minimum privilege level for specific RADIUS servers.
-
-### Version History
-
-Introduced in Cumulus Linux 5.7.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system aaa radius privilege-level 10
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system aaa radius retransmit</h>
-
-Configures the maximum number of retransmission attempts allowed for requests when a RADIUS authentication request times out. This is a global option only; you cannot set the number of retransmission attempts for specific RADIUS servers.
-
-### Version History
-
-Introduced in Cumulus Linux 5.7.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system aaa radius retransmit 8
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

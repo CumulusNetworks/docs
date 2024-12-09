@@ -75,19 +75,19 @@ If you restore NetQ data to a server with an IP address that is different from t
 {{</notice>}}
 
 ```
-cumulus@netq-appliance:~$ sudo vm-backuprestore.sh --restore --backupfile /home/cumulus/backup-netq-standalone-onprem-4.9.0-2029-02-06_12_37_29_UTC.tar
+cumulus@netq-appliance:~$ sudo vm-backuprestore.sh --restore --backupfile /home/cumulus/backup-netq-standalone-onprem-4.10.0-2029-02-06_12_37_29_UTC.tar
 Mon Feb  6 12:39:57 2024 - Please find detailed logs at: /var/log/vm-backuprestore.log
 Mon Feb  6 12:39:57 2024 - Starting restore of data
 Mon Feb  6 12:39:57 2024 - Extracting release file from backup tar
 Mon Feb  6 12:39:57 2024 - Cleaning the system
-Mon Feb  6 12:39:57 2024 - Restoring data from tarball /home/cumulus/backup-netq-standalone-onprem-4.9.0-2024-02-06_12_37_29_UTC.tar
+Mon Feb  6 12:39:57 2024 - Restoring data from tarball /home/cumulus/backup-netq-standalone-onprem-4.10.0-2024-02-06_12_37_29_UTC.tar
 Data restored successfully
   Please follow the below instructions to bootstrap the cluster
   The config key restored is EhVuZXRxLWVuZHBvaW50LWdhdGVfYXkYsagDIix2OUJhMUpyekMwSHBBaitUdTVDaTRvbVJDR3F6Qlo4VHhZRytjUUhLZGJRPQ==, alternately the config key is available in file /tmp/config-key
  
   Pass the config key while bootstrapping:
-  Example(standalone): netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.11.0.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix2OUJhMUpyekMwSHBbaitUdTVDaTRvbVJDR3F6Qlo4VHhZRytjUUhLZGJRPQ==
-  Example(cluster):    netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.11.0.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix2OUJhMUpyekMwSHBbaitUdTVDaTRvbVJDR3F6Qlo4VHhZRytjUUhLZGJRPQ==
+  Example(standalone): netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.12.0.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix2OUJhMUpyekMwSHBbaitUdTVDaTRvbVJDR3F6Qlo4VHhZRytjUUhLZGJRPQ==
+  Example(cluster):    netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.12.0.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix2OUJhMUpyekMwSHBbaitUdTVDaTRvbVJDR3F6Qlo4VHhZRytjUUhLZGJRPQ==
   Alternately you can setup config-key post bootstrap in case you missed to pass it during bootstrap
   Example(standalone): netq install standalone activate-job config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix2OUJhMUpyekMwSHBbaitUdTVDaTRvbVJDR3F6Qlo4VHhZRytjUUhLZGJRPQ==
   Example(cluster):    netq install cluster activate-job config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix2OUJhMUpyekMwSHBbaitUdTVDaTRvbVJDR3F6Qlo4VHhZRytjUUhLZGJRPQ==

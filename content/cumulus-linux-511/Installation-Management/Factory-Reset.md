@@ -12,6 +12,7 @@ You can also run factory reset when you want to remove a complex or corrupted co
 - To run factory reset commands, you must have system admin, root, or sudo privileges.
 - The switch does not support factory reset if you upgrade to Cumulus Linux 5.11 from Cumulus Linux 5.9.x or 5.10.x with package upgrade.
 - To run factory reset with NVUE commands, the `nvued` service must be running.
+- After a successful reset, Cumulus Linux runs `ztp-X` to restart the ZTP process. The ZTP `-X` option resets ZTP and clears the URL cache.
 {{%/notice%}}
 
 ## Run Factory Reset

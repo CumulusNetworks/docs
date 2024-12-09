@@ -12,15 +12,11 @@ h { color: RGB(118,185,0)}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## <h>nv set interface \<interface-id\> lldp</h>
-
-Provides commands to configure <span class="a-tooltip">[LLDP](## "Link Layer Discovery Protocol")</span> on an interface.
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set interface \<interface-id\> lldp application-tlv app \<application-id\> </h>
 
-Configures the interface on which LLDP sends application priority TLVs in LLDP PDUs.
+Configures the interface on which <span class="a-tooltip">[LLDP](## "Link Layer Discovery Protocol")</span> sends application priority TLVs in LLDP PDUs.
 
 ### Command Syntax
 
@@ -153,24 +149,26 @@ cumulus@switch:~$ nv set interface swp1 lldp dcbx-pfc-tlv on
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service lldp</h>
+## <h>nv set interface \<interface-id\> lldp state</h>
 
-Provides commands to configure LLDP globally on the switch.
+Enables and disables LLDP on an interface.
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+When you disable LLDP on an interface, LLDP and CDP packet transmission stops on the interface.
 
-## <h>nv set service lldp dot1-tlv</h>
+### Command Syntax
 
-Turns dot1 TLV advertisements on or off. The default setting is `off`.
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
 
 ### Version History
 
-Introduced in Cumulus Linux 5.1.0
+Introduced in Cumulus Linux 5.11.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv set service lldp dot1-tlv on
+cumulus@switch:~$ nv set interface swp1 lldp state disabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -244,6 +242,22 @@ cumulus@switch:~$ nv set service lldp application-tlv udp-port 4317 priority 4
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set service lldp dot1-tlv</h>
+
+Turns dot1 TLV advertisements on or off. The default setting is `off`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.1.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp dot1-tlv on
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set service lldp lldp-med-inventory-tlv></h>
 
 Configures the `lldpd` service to send <span class="a-tooltip">[LLDP-MED](## "LLDP for Media Endpoint Devices")</span> Inventory TLV advertisements. By default, Cumulus Linux transmits LLDP-MED Inventory TLV advertisements on enabled ports.
@@ -279,6 +293,24 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv set service lldp mode force-send-cdpv1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set service lldp state</h>
+
+Enables and disables LLDP globally. Cumulus Linux enables the LLDP service by default.
+
+When you disable LLDP globally, the `lldp` service, and all LLDP and CDP packet transmission stops.
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp state disabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

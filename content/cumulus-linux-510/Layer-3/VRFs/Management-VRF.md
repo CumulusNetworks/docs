@@ -38,81 +38,62 @@ Running `ifreload -a` disconnects the session for any interface configured as *a
 
 ## Run Services within the Management VRF
 
-At installation, the only two enabled services that run in the management VRF are NTP (`ntp@mgmt.service`) and netqd (`netqd@mgmt`). However, you can run a variety of services within the management VRF instead of the default VRF. When you run a `systemd` service inside the management VRF, that service runs **only** on eth0. You cannot configure the same service to run in both the management VRF and the default VRF; you must stop and disable the normal service with `systemctl`.
+Most default services in Cumulus Linux are VRF aware. If you want to run a service within the management VRF instead of the default VRF, run the following commands:
 
-You must disable the following services in the default VRF if you want to run them in the management VRF:
-
-- chef-client
-- collectd
-- hsflowd
-- netq-agent
-- netq-notifier
-- puppet
-- snmpd
-- snmptrapd
-- ssh
-- zabbix-agent
-
-You can configure certain services (such as `snmpd`) to use multiple routing tables, some in the management VRF, some in the default or additional VRFs. The kernel provides a `sysctl` that allows a single instance to accept connections over all VRFs.
-
-{{%notice note%}}
-For TCP, connected sockets bind to the VRF on which the first packet arrives.
-{{%/notice%}}
-
-The following steps show how to enable the SNMP service to run in the management VRF. You can enable any of the services listed above, except for `dhcrelay` (see {{<link url="DHCP-Relays">}}).
-
-1. If SNMP is running, stop the service:
+1. If the service is running, stop the service:
 
     ```
-    cumulus@switch:~$ sudo systemctl stop snmpd.service
+    cumulus@switch:~$ sudo systemctl stop <service>.service
     ```
 
-2. Disable SNMP from starting automatically in the default VRF:
+2. Disable the service from starting automatically in the default VRF:
 
     ```
-    cumulus@switch:~$ sudo systemctl disable snmpd.service
+    cumulus@switch:~$ sudo systemctl disable <service>.service
     ```
 
-3. Start SNMP in the management VRF:
+3. Start the service in the management VRF:
 
     ```
-    cumulus@switch:~$ sudo systemctl start snmpd@mgmt.service
+    cumulus@switch:~$ sudo systemctl start <service>@mgmt.service
     ```
 
-4. Enable `snmpd@mgmt` so that it starts when the switch boots:
+4. Enable the service in the management VRF so that it starts when the switch boots:
 
     ```
-    cumulus@switch:~$ sudo systemctl enable snmpd@mgmt.service
+    cumulus@switch:~$ sudo systemctl enable <service>@mgmt.service
     ```
 
-5. Verify that the SNMP service is running in the management VRF:
-
-    ```
-    cumulus@switch:~$ ps aux | grep snmpd
-    snmp      3083  0.1  1.9  35916 13292 ?        Ss   21:07   0:00 /usr/sbin/snmpd -y -LS 0-4 d -Lf /dev/null -u snmp -g snmp -I -smux -p /run/snmpd.pid -f
-    cumulus   3225  0.0  0.1   6076   884 pts/0    S+   21:07   0:00 grep snmpd
-    ```
+5. Verify that the service is running in the management VRF with the `ps aux | grep <service>` command.
 
 Run the following command to show the process IDs associated with the management VRF:
 
 ```
 cumulus@switch:~$ ip vrf pids mgmt
-1149  ntpd
- 1159  login
- 1227  bash
-16178  vi
-  948  dhclient
-20934  sshd
-20975  bash
-21343  sshd
-21384  bash
-21477  ip
+ 2559  login
+ 2753  bash
+ 2045  dhclient
+ 5421  sshd
+ 5462  sshd
+ 5463  bash
+37691  sshd
+37732  sshd
+37735  bash
+55679  sshd
+55720  sshd
+55721  bash
+55993  ip
+ 3834  ntpd
+ 2023  python3
+ 2563  netqd
+ 1855  login
+ 2770  bash
 ```
 
 Run the following command to show the VRF association of the specified process:
 
 ```
-cumulus@switch:~$ ip vrf identify 2055
+cumulus@switch:~$ ip vrf identify 2045
 mgmt
 ```
 

@@ -108,8 +108,12 @@ To back up and restore the configuration file:
 
    ```
    cumulus@switch:~$ nv config patch /home/cumulus/startup.yaml
-   cumulus@switch:~$ sudo systemctl restart nvued.service
+   cumulus@switch:~$ nv config apply
    ```
+
+{{%notice note%}}
+When you restore an NVUE configuration file that includes TACACS, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the `systemctl restart nvued.service` command.
+{{%/notice%}}
 
 For information about the NVUE object model and commands, see {{<link url="NVIDIA-User-Experience-NVUE" text="NVIDIA User Experience - NVUE">}}.
 
@@ -550,6 +554,37 @@ Even the most well planned and tested upgrades can result in unforeseen problems
 
 The method you employ is specific to your deployment strategy. Providing detailed steps for each scenario is outside the scope of this document.
 
+## Downgrade a Secure Boot Switch from Cumulus Linux 5.11.0
+
+The SN3700C-S, SN5400, and SN5600 secure boot switch running Cumulus Linux 5.11.0 boots with shim 15.8 that adds entries to the SBAT revocations to prevent the switch from booting shim 15.7 or earlier, which has security vulnerabilities.
+
+After downgrading the switch from Cumulus Linux 5.11.0, follow the steps below to disable, then enable secure boot **before** the switch boots.
+
+You can also follow the steps below to recover a downgraded secure boot switch that does not boot and that shows the following error:
+
+  ```
+  Verifiying shim SBAT data failed: Security Policy Violation
+  Something has gone seriously wrong: SBAT self-check failed: Security Policy Violation
+  ```
+
+1. On the switch, **disable** SecureBoot in BIOS:
+
+   a. Press Ctrl B through the serial console during system boot while the BIOS version prints.
+
+   b. When prompted, provide the BIOS password. The default password is `admin`.
+
+   c. To disable secure boot, navigate to `Security`, and change `Secure Boot` to `Disabled`.
+
+   d. Select `Save & Exit`.
+
+2. Boot into Cumulus Linux.
+
+3. Run the `mokutil --set-sbat-policy delete` command.
+
+4. Reboot the switch.
+
+5. Follow steps a through d above to **enable** secure boot in BIOS. In step c, change `Secure Boot` to `Enabled`.
+
 ## Third Party Packages
 
 If you install any third party applications on a Cumulus Linux switch, configuration data is typically installed in the `/etc` directory, but it is not guaranteed. It is your responsibility to understand the behavior and configuration file information of any third party packages installed on the switch.
@@ -719,7 +754,7 @@ You can upgrade Cumulus Linux in one of two ways:
 Cumulus Linux also provides ISSU to upgrade an active switch with minimal disruption to the network. See {{<link url="In-Service-System-Upgrade-ISSU" text="In-Service-System-Upgrade-ISSU">}}.
 
 {{%notice note%}}
-- To upgrade to Cumulus Linux 5.11 from Cumulus Linux 4.x or 3.x, you must install a disk image of the new release. You *cannot* upgrade packages with package upgrade.
+- To upgrade to Cumulus Linux 5.12 from Cumulus Linux 4.x or 3.x, you must install a disk image of the new release. You *cannot* upgrade packages with package upgrade.
 - Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in [Upgrade Switches in an MLAG Pair](#upgrade-switches-in-an-mlag-pair) below to ensure a smooth upgrade.
 {{%/notice%}}
 
@@ -727,7 +762,7 @@ Cumulus Linux also provides ISSU to upgrade an active switch with minimal disrup
 
 The decision to upgrade Cumulus Linux by either installing a Cumulus Linux image or upgrading packages depends on your environment and your preferences. The following section provides recommendations for each upgrade method.
 
-**Install a Cumulus Linux image** if you are performing a rolling upgrade in a production environment and if you are using up-to-date and comprehensive automation scripts. This upgrade method enables you to choose the exact release to which you want to upgrade and is the *only* method available to upgrade your switch to a new release train (for example, from 4.4.3 to 5.11).
+**Install a Cumulus Linux image** if you are performing a rolling upgrade in a production environment and if you are using up-to-date and comprehensive automation scripts. This upgrade method enables you to choose the exact release to which you want to upgrade and is the *only* method available to upgrade your switch to a new release train (for example, from 4.4.3 to 5.12).
 
 Be aware of the following when installing the Cumulus Linux image:
 - Installing a Cumulus Linux image with ONIE is destructive; any configuration files on the switch are not saved; copy them to a different server before you start the Cumulus Linux image install.
@@ -738,7 +773,7 @@ Be aware of the following when installing the Cumulus Linux image:
 - If configuration files do not restore correctly, you cannot `ssh` to the switch from in-band management. Use out-of-band connectivity (eth0 or the console).
 - You *must* reinstall and reconfigure third-party applications after upgrade.
 
-Run **package upgrade** if you are upgrading from one Cumulus Linux 5.11 release to a later 5.11 release, and if you use third-party applications (package upgrade does not replace or remove third-party applications, unlike the Cumulus Linux image install).
+Run **package upgrade** if you are upgrading from one Cumulus Linux 5.x release to a later 5.x release, and if you use third-party applications (package upgrade does not replace or remove third-party applications, unlike the Cumulus Linux image install).
 
 Be aware of the following when upgrading packages:
 - You cannot upgrade the switch to a new release train. For example, you **cannot** upgrade the switch from 4.x to 5.x.
@@ -765,7 +800,7 @@ To upgrade the switch with optimized install:
 1. Download the Cumulus Linux image with the `nv action fetch system image <remote-url>` command:
 
    ```
-   cumulus@switch:~$ nv action fetch system image http://10.0.1.251/cumulus-linux-5.11.0-mlx-amd64.bin
+   cumulus@switch:~$ nv action fetch system image http://10.0.1.251/cumulus-linux-5.12.0-mlx-amd64.bin
    ```
 
 2. Install the image on the second partition:
@@ -810,7 +845,7 @@ cumulus@switch:~$ nv show system image files
 To show information about a specific Cumulus Linux image file:
 
 ```
-cumulus@switch:~$ nv show system image files cumulus-linux-5.11.0-mlx-amd64.bin
+cumulus@switch:~$ nv show system image files cumulus-linux-5.12.0-mlx-amd64.bin
 ```
 
 {{< /tab >}}
@@ -821,7 +856,7 @@ cumulus@switch:~$ nv show system image files cumulus-linux-5.11.0-mlx-amd64.bin
 2. Install the image on the second partition:
 
    ```
-   cumulus@switch:~$ cl-image-upgrade -u cumulus-linux-5.11.0-mlx-amd64.bin
+   cumulus@switch:~$ cl-image-upgrade -u cumulus-linux-5.12.0-mlx-amd64.bin
    ```
 
 To check the current boot partition status, run the `cl-image-upgrade -s` command:
@@ -829,9 +864,9 @@ To check the current boot partition status, run the `cl-image-upgrade -s` comman
 ```
 cumulus@switch:~$ cl-image-upgrade -s  
 Current system partition is 1 on /dev/sda5 
-Current system partition has "Cumulus Linux 5.11.0" 
+Current system partition has "Cumulus Linux 5.12.0" 
 Other system partition is 2 on /dev/sda6 
-Other system partition has "Cumulus Linux 5.11.0" 
+Other system partition has "Cumulus Linux 5.12.0" 
 Next boot to partition 1. 
 ```
 
@@ -856,7 +891,7 @@ To upgrade the switch with ONIE:
 3. Install the Cumulus Linux image with the `onie-install -a -i <image-location>` command, which boots the switch into ONIE. The following example command installs the image from a web server, then reboots the switch. There are additional ways to install the Cumulus Linux image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image">}}.
 
     ```
-    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-linux-5.11.0-mlx-amd64.bin && sudo reboot
+    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-linux-5.12.0-mlx-amd64.bin && sudo reboot
     ```
 
 4. Restore the configuration files to the new release (NVIDIA does not recommend restoring files with automation).
@@ -880,7 +915,7 @@ When you use package upgrade to upgrade your switch, configuration data stays in
 
 #### Disk Space Requirements
 
-Make sure you have enough disk space to perform a package upgrade. To upgrade from Cumulus Linux 5.11 to Cumulus Linux 5.11, you need 0.8GB of free disk space.
+Make sure you have enough disk space to perform a package upgrade. To upgrade from Cumulus Linux 5.11 to Cumulus Linux 5.12, you need 0.8GB of free disk space.
 
 Before you upgrade, run the `sudo df -h` command to show how much disk space you are currently using on the switch.
 
@@ -897,7 +932,7 @@ tmpfs           7.7G    16K    7.7G     1%    /tmp
 overlay          28G   7.9G     18G    31%   
 ```
 
-#### Upgrade from Cumulus Linux 5.9.x to Cumulus Linux 5.11.0
+#### Upgrade from Cumulus Linux 5.9.x to Cumulus Linux 5.12.0
 
 If you are running Cumulus Linux 5.9.x (the current extended-support release), the default switch configuration allows you to upgrade to the latest Cumulus 5.9.x release only.
 
@@ -1076,7 +1111,7 @@ NVIDIA has not tested running different versions of Cumulus Linux on MLAG peer s
 4. To boot the switch into ONIE, run the `onie-install -a -i <image-location>` command. The following example command installs the image from a web server. There are additional ways to install the Cumulus Linux image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image">}}.
 
     ```
-    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/downloads/cumulus-linux-5.11.0-mlx-amd64.bin
+    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/downloads/cumulus-linux-5.12.0-mlx-amd64.bin
     ```
 
    To upgrade the switch with package upgrade instead of booting into ONIE, see {{<link url="#package-upgrade" text="Package Upgrade">}}.
@@ -1153,7 +1188,7 @@ NVIDIA has not tested running different versions of Cumulus Linux on MLAG peer s
 4. To boot the switch into ONIE, run the `onie-install -a -i <image-location>` command. The following example command installs the image from a web server. There are additional ways to install the Cumulus Linux image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image">}}.
 
     ```
-    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/downloads/cumulus-linux-5.11.0-mlx-amd64.bin
+    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/downloads/cumulus-linux-5.12.0-mlx-amd64.bin
     ```
 
    To upgrade the switch with package upgrade instead of booting into ONIE, see {{<link url="#package-upgrade" text="Package Upgrade">}}.

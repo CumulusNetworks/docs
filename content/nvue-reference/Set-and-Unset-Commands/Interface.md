@@ -12,6 +12,8 @@ h { color: RGB(118,185,0)}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set interface \<interface-id\> base-interface</h>
 
 Configures the specified interface to be the base interface.
@@ -191,12 +193,6 @@ cumulus@switch:~$ nv set interface swp1 description hypervisor_port_1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> ip</h>
-
-Configures IP addressing for an interface.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set interface \<interface-id\> ip address \<ip-prefix-id\></h>
 
 Configures an IP address with a route prefix for the specified interface.
@@ -243,12 +239,6 @@ cumulus@switch:~$ nv set interface swp1 ip gateway 10.10.10.1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> ip ipv4</h>
-
-Configures IPv4 settings for the specified interface.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set interface \<interface-id\> ip ipv4 forward</h>
 
 Turns IPv4 forwarding on or off for the specified interface. The default setting is `off`.
@@ -268,12 +258,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set interface swp1 ip ipv4 forward on
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set interface \<interface-id\> ip ipv6</h>
-
-Configures IPv6 settings for an interface.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -318,12 +302,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set interface swp1 ip ipv6 forward off
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set interface \<interface-id\> link</h>
-
-Provides commands to configure physical interface settings, such as the link state, auto-negotiation, breakouts, FEC, MTU, speed, 802.1X, and MAC authentication bypass (MAB).
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -605,12 +583,6 @@ cumulus@switch:~$ nv set interface swp1 link state up
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> storm-control</h>
-
-Configures storm control on the specified interface. Storm control provides protection against excessive inbound BUM (broadcast, unknown unicast, multicast) traffic on layer 2 switch port interfaces, which can cause poor network performance.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set interface \<interface-id\> storm-control broadcast</h>
 
 Configures the number of broadcast packets per second (pps) that signifies a broadcast storm. You can set a value between 1 and 4294967295.
@@ -674,12 +646,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set interface swp1 storm-control unknown-unicast 2000
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set interface \<interface-id\> tunnel</h>
-
-Configures GRE tunneling.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -876,18 +842,6 @@ Introduced in Cumulus Linux 5.7.0
 ```
 cumulus@switch:~$ nv set interface swp1 link flap-protection threshold 8
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> loopback</h>
-
-Configures the loopback address in the specified VRF.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> loopback ip</h>
-
-Configures the loopback in the specified VRF.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

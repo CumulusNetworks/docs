@@ -7,14 +7,13 @@ toc: 2
 This document supports the Cumulus Linux 5.11 release, and lists new platforms, features, and enhancements.
 - For a list of open and fixed issues in Cumulus Linux 5.11, see the {{<link title="Cumulus Linux 5.11 Release Notes" text="Cumulus Linux 5.11 Release Notes">}}.
 - To upgrade to Cumulus Linux 5.11, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
-<!-- vale off -->
 
 ## What's New in Cumulus Linux 5.11
 
 ### Platforms
 
 - NVIDIA SN2201M (100G Spectrum 1)
-- NVIDIA SN5400 switch includes P2C Forward Airflow support
+- NVIDIA SN5400 - P2C (power-to-connector) Airflow version; C2P (connnector-to-power) version GA is 5.10.1
 
 ### New Features and Enhancements
 
@@ -49,22 +48,22 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 | New Commands | Previous Commands |
 | ----------- | ----------------|
 | `nv set system snmp-server`<br>`nv unset system snmp-server`<br><br>Note: **all** `snmp-server` set commands have moved from `nv set service` to `nv set system`.  | `nv set service snmp-server`<br>`nv unset service snmp-server` |
-| `nv set system snmp-server state enable`<br>`nv set system snmp-server state disable`| `nv set service snmp-server enable on`<br>`nv set service snmp-server enable off`|
+| `nv set system snmp-server state enabled`<br>`nv set system snmp-server state disabled`| `nv set service snmp-server enable on`<br>`nv set service snmp-server enable off`|
 | `nv show system snmp-server`<br><br>Note: **all** `snmp-server` show commands have moved from `nv show service` to `nv show system`. | `nv show service snmp-server`|
-| `nv set qos advance-buffer-config <profile-id> ingress-service-pool <pool-id> <property> <value>` | `nv set qos advance-buffer-config <profile-id> ingress-pool <pool-id> <property> <value>`|
-| `nv set qos advance-buffer-config <profile-id> egress-service-pool <pool-id> <property> <value>` | `nv set qos advance-buffer-config <profile-id> egress-pool <pool-id> <property> <value> ` |
+| `nv set qos advance-buffer-config <profile-id> ingress-service-pool` | `nv set qos advance-buffer-config <profile-id> ingress-pool`|
+| `nv set qos advance-buffer-config <profile-id> egress-service-pool` | `nv set qos advance-buffer-config <profile-id> egress-pool` |
 | `nv show qos advance-buffer-config <profile-id> ingress-service-pool` | `nv show qos advance-buffer-config default-global ingress-pool` |
 | `nv show qos advance-buffer-config <profile-id> egress-service-pool` | `nv show qos advance-buffer-config default-global egress-pool` |
-| `nv set system aaa user <user-id> state enabled`<br>`nv set system aaa user <user-id> state disabled`<br>`nv unset system aaa user <user-id> enable` | `nv set system aaa user <user-id> enable on`<br>`nv set system aaa user <user-id> enable off`<br>`nv unset system aaa user <user-id> state` |
+| `nv set system aaa user <user-id> state enabled`<br>`nv set system aaa user <user-id> state disabled`<br>`nv unset system aaa user <user-id> state`| `nv set system aaa user <user-id> enable on`<br>`nv set system aaa user <user-id> enable off`<br>`nv unset system aaa user <user-id> enable` |
 {{< /expand >}}
   - {{< expand "Removed NVUE Commands" >}}
 | Removed Commands |
 | --------------- |
-|`nv show interface pluggable` (replaced with `nv show platform transceiver`) |
-|`nv show interface <interface>` pluggable (replaced with `nv show platform transceiver <interface>`)|
-|`nv show vrf <vrf-id> router bgp address-family <afi> loc-rib` (replaced with `nv show vrf <vrf-id> router bgp address-family <afi>> route`) |
-| `nv set vrf <vrf-id> router rib ipv4 protocol bgp fib-filter` |
-| `nv show vrf <vrf-id> router rib ipv6 protocol` |
+| `nv show interface pluggable` (replaced with `nv show platform transceiver`) |
+| `nv show interface <interface>` pluggable (replaced with `nv show platform transceiver <interface>`)|
+| `nv show vrf <vrf-id> router bgp address-family <afi> loc-rib` (replaced with `nv show vrf <vrf-id> router bgp address-family <afi>> route`) |
+| `nv set vrf <vrf-id> router rib <afi> protocol` (replaced with `nv set vrf <vrf-id> router rib <afi> fib-filter protocol`) |
+| `nv show vrf <vrf-id> router rib <address-family> protocol` (replaced with `nv show vrf <vrf-id> router rib <afi> fib-filter protocol`)|
 | `nv show router nexthop rib <nhg-id> dependents` |
 | `nv show router nexthop rib <nhg-id> depends` |
 | `nv show router nexthop rib <nhg-id> resolved-via <resolved-via-id>` |
@@ -188,9 +187,6 @@ nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unica
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast received-routes <route-id> path <path-id> large-community
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast received-routes <route-id> path <path-id> large-community
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast advertised-routes <route-id> path <path-id> large-community
-nv show vrf <vrf-id> router rib <address-family> fib-filter
-nv show vrf <vrf-id> router rib <address-family> fib-filter protocol
-nv show vrf <vrf-id> router rib <address-family> fib-filter protocol <import-protocol-id>
 nv show vrf <vrf-id> router bgp address-family <address-family> route
 nv show vrf <vrf-id> router bgp address-family <address-family> route <route-id>
 nv show vrf <vrf-id> router bgp address-family <address-family> route <route-id> path
@@ -205,6 +201,9 @@ nv show vrf <vrf-id> router bgp address-family <address-family> route <route-id>
 nv show vrf <vrf-id> router bgp address-family <address-family> route <route-id> path <path-id> large-community
 nv show vrf <vrf-id> router bgp address-family <address-family> route <route-id> path <path-id> ext-community
 nv show vrf <vrf-id> router bgp address-family <address-family> route-count
+nv show vrf <vrf-id> router nexthop-tracking <afi> ip-address <nht-ip-id> resolved-via <nht-resolved-id>
+nv show vrf <vrf-id> router nexthop-tracking <afi> ip-address <nht-ip-id> protocol <protocol-id>
+nv show vrf <vrf-id> router rib <address-family> fib-filter protocol <import-protocol-id>
 nv show vrf <vrf-id> router rib <address-family> route-count
 nv show vrf <vrf-id> router rib <address-family> route-count <prefix>
 nv show vrf <vrf-id> router rib <address-family> route-count protocol
@@ -217,8 +216,6 @@ nv show vrf <vrf-id> router rib <afi> route <route-id> route-entry <route-entry>
 nv show vrf <vrf-id> router rib <afi> route <route-id> route-entry <route-entry> via-entry <via-entry-id> label
 nv show vrf <vrf-id> router rib <afi> route <route-id> route-entry <route-entry> via-entry <via-entry-id> resolved-via-entry
 nv show vrf <vrf-id> router rib <afi> route <route-id> route-entry <route-entry> via-entry <via-entry-id> resolved-via-entry <resolved-via-entry-id>
-nv show vrf <vrf-id> router nexthop-tracking <afi> ip-address <nht-ip-id> resolved-via <nht-resolved-id>
-nv show vrf <vrf-id> router nexthop-tracking <afi> ip-address <nht-ip-id> protocol <protocol-id>
 ```
 
 {{< /tab >}}
@@ -280,7 +277,7 @@ nv set system sflow sampling-rate speed-400g
 nv set system sflow sampling-rate speed-800g
 nv set system sflow agent ip <ipv4-prefix>
 nv set system sflow agent interface <interface-name>
-nv set system sflow dropmon <drop-type>
+nv set system sflow dropmon hw
 nv set system sflow poll-interval
 nv set system sflow state
 nv set system telemetry label <label-id>
@@ -295,8 +292,8 @@ nv set system telemetry snapshot port-group <port-group-id> threshold <threshold
 nv set system telemetry snapshot port-group <port-group-id> stats-type
 nv set system telemetry snapshot port-group <port-group-id> interface <interface>
 nv set system telemetry snapshot port-group <port-group-id> timer-interval
-nv set vrf <vrf> router rib <afi> fib-filter route-map <route-map>
-nv set vrf <vrf> router rib <afi> protocol <protocol-name> fib-filter <route-map>
+nv set vrf <vrf-id> router rib <afi> fib-filter protocol <protocol-id> route-map <route-map>
+nv set vrf <vrf-id> router rib <afi> fib-filter route-map <route-map>
 ```
 
 {{< /tab >}}
@@ -378,7 +375,6 @@ nv unset system sflow agent ip
 nv unset system sflow agent interface
 nv unset system sflow policer
 nv unset system sflow dropmon
-nv unset system sflow dropmon <drop-type>
 nv unset system sflow poll-interval
 nv unset system sflow state
 nv unset system telemetry label
@@ -400,8 +396,8 @@ nv unset system telemetry snapshot port-group <port-group-id> threshold <thresho
 nv unset system telemetry snapshot port-group <port-group-id> stats-type
 nv unset system telemetry snapshot port-group <port-group-id> interface
 nv unset system telemetry snapshot port-group <port-group-id> timer-interval
-nv unset vrf <vrf> router rib <afi> fib-filter route-map <route-map>
-nv unset vrf <vrf> router rib <afi> protocol <protocol-name> fib-filter <route-map>
+nv unset vrf <vrf-id> router rib <afi> fib-filter protocol <protocol-id> route-map <route-map>
+nv unset vrf <vrf-id> router rib <afi> fib-filter route-map <route-map>
 ```
 
 {{< /tab >}}
@@ -468,7 +464,6 @@ To prevent Cumulus Linux from overwriting manual changes to the Linux configurat
    cumulus@switch:~$ sudo rm -rf /etc/nvue.d/startup.yaml
    ```
 
-
 3. Add the `PASSWORD_NVUE_SYNC=no` line to the `/etc/default/nvued` file:
    ```
    cumulus@switch:~$ sudo nano /etc/default/nvued
@@ -485,3 +480,9 @@ Cumulus Linux 5.11 includes the NVUE object model. After you upgrade to Cumulus 
 - Update your automation tools to use NVUE.
 - {{<link url="NVUE-CLI/#configure-nvue-to-ignore-linux-files" text="Configure NVUE to ignore certain underlying Linux files">}} when applying configuration changes.
 - Use Linux and FRR (vtysh) commands instead of NVUE for **all** switch configuration.
+
+### Secure Boot Switch Downgrade
+
+The SN3700C-S, SN5400, and SN5600 secure boot switch running Cumulus Linux 5.11.0 boots with shim 15.8 that adds entries to the SBAT revocations to prevent the switch from booting shim 15.7 or earlier.
+
+If you want to downgrade from Cumulus Linux 5.11.0 to a Cumulus Linux release that uses an older shim version (Cumulus Linux 5.10 or earlier), follow the steps in {{<link url="/Upgrading-Cumulus-Linux/#downgrade-a-secure-boot-switch-from-cumulus-linux-5110" text="Downgrade a Secure Boot Switch from Cumulus Linux 5.11.0">}} **before** the downgraded switch boots.

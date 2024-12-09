@@ -22,33 +22,28 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show evpn
-                       operational   applied        pending      
----------------------  ------------  -------------  -------------
-enable                               on             on           
-dad                                                              
-  enable               off           on             on           
-  mac-move-threshold   5             5              5            
-  move-window          180           180            180          
-  duplicate-action     warning-only  warning-only   warning-only 
-multihoming                                                      
-  enable                             on             on           
-  mac-holdtime         1080          1080           1080         
-  neighbor-holdtime    1080          1080           1080         
-  startup-delay        180           180            180          
-  ead-evi-route                                                  
-    rx                               on             on           
-    tx                               on             on           
-  segment                                                        
-    df-preference                    32767          32767        
-  startup-delay-timer  --:--:--                                  
-  uplink-active        2                                         
-  uplink-count         2                                         
-route-advertise                                                  
-  default-gateway      off           off            off          
-  nexthop-setting                    system-ip-mac  system-ip-mac
-  svi-ip               off           off            off          
-[vni]                                                            
-l2vni-count            5                                         
+perational   applied
+---------------------  ------------  -------------
+enable                               on
+route-advertise
+  nexthop-setting                    system-ip-mac
+  svi-ip               off           off
+  default-gateway      off           off
+dad
+  enable               on            on
+  mac-move-threshold   5             5
+  move-window          180           180
+  duplicate-action     warning-only  warning-only
+[vni]
+multihoming
+  enable                             off
+  mac-holdtime         1080
+  neighbor-holdtime    1080
+  startup-delay        180
+  startup-delay-timer  --:--:--
+  uplink-count         0
+  uplink-active        0
+l2vni-count            3
 l3vni-count            2
 ```
 

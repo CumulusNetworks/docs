@@ -405,7 +405,7 @@ Routing entry for 192.168.10.1/32
 ### W-ECMP with BGP Link Bandwidth
 
 W-ECMP with BGP link bandwidth is only available for BGP-learned routes.
-<!--
+
 ### ECMP Resource Sharing During Next Hop Group Updates
 
 During network events such as reboots, link flaps, and in any transient scenarios, next hop group churn might create a higher number of ECMP containers. Also, when {{<link url="Optional-BGP-Configuration/#bgp-prefix-independent-convergence" text="FRR allocates a single next hop group per source">}}, more ECMP hardware resources are required.  
@@ -420,10 +420,9 @@ nhg_update_ecmp_sharing_enable = TRUE
 To disable ECMP resource sharing during next hop group updates with weight changes, set the `nhg_update_ecmp_sharing_enable` option to `FALSE`.
 
 {{%notice note%}}
-- This is a BETA feature.
-- NVUE does not provide commands to enable or disable ECMP resource sharing during next hop group updates with weight changes.
+NVUE does not provide commands to enable or disable ECMP resource sharing during next hop group updates with weight changes.
 {{%/notice%}}
--->
+
 ## Related Information
 
 {{<exlink url="https://tools.ietf.org/html/draft-ietf-idr-link-bandwidth-07" text="IETF draft - BGP Link Bandwidth Extended Community">}}

@@ -56,81 +56,74 @@ Use the `traceroute` tool for network troubleshooting, identifying routing issue
 
 You send traceroute packets to a destination to which you want to trace the route. You can specify either an IP address or a domain name. In addition, you can specify the following options:
 - The hop count (the maximum number of hops). You can specify a value between 1 and 255.
-- The `traceroute` packet size. You can specify a value between 8 and 65000.
+- The `traceroute` packet size in bytes. You can specify a value between 28 and 65000 bytes.
 - The source IP address to use for sending the `traceroute` packets.
 - The layer 4 protocol packets to send. You can specify ICMP, TCP, or UDP.
 
 {{< tabs "TabID15 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example checks the traceroute to localhost.
+The following example validates the path to destination 10.10.10.10.
 
 ```
-cumulus@switch:~$ nv action traceroute interface localhost
+cumulus@switch:~$ nv action traceroute interface 10.10.10.10
 ```
 
-The following example sends 50 byte packets to check the traceroute to interface 10.10.10.6.
+The following example sends 50-byte packets to validate the path to destination 10.10.10.10.
 
 ```
-cumulus@switch:~$ nv action traceroute interface 10.10.10.6 packet_len 50 
+cumulus@switch:~$ nv action traceroute interface 10.10.10.10 packet_len 50 
 ```
 
-The following example checks the traceroute to localhost with 4 maximum hops.
+The following example validates the path to destination 10.10.10.10 with 4 maximum hops.
 
 ```
-cumulus@switch:~$ nv action traceroute interface localhost hop-count 4
+cumulus@switch:~$ nv action traceroute interface 10.10.10.10  hop-count 4
 ```
 
-The following example checks the traceroute to localhost from the source IP address 10.10.10.10
+The following example validates the path to destination 10.10.10.10 from the source IP address 10.10.5.1
 
 ```
-cumulus@switch:~$ nv action traceroute interface localhost source-address 10.10.10.10
+cumulus@switch:~$ nv action traceroute interface 10.10.10.10 source-address 10.10.5.1
 ```
 
-The following example sends UPD packets to check the traceroute to localhost:
+The following example sends UDP packets to validate the path to destination 10.10.10.10:
 
 ```
-cumulus@switch:~$ nv action traceroute interface localhost protocol upd
+cumulus@switch:~$ nv action traceroute interface 10.10.10.10 protocol udp
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-The following example checks the traceroute to www.google.com.
+The following example validates the path to destination 10.10.10.10.
 
 ```
-cumulus@switch:~$ traceroute www.google.com
-traceroute to www.google.com (74.125.239.49), 30 hops max, 60 byte packets
-1  cumulusnetworks.com (192.168.1.1)  0.614 ms  0.863 ms  0.932 ms
-...
-5  core2-1-1-0.pao.net.google.com (198.32.176.31)  22.347 ms  22.584 ms  24.328 ms
-6  216.239.49.250 (216.239.49.250)  24.371 ms  25.757 ms  25.987 ms
-7  72.14.232.35 (72.14.232.35)  27.505 ms  22.925 ms  22.323 ms
-8  nuq04s19-in-f17.1e100.net (74.125.239.49)  23.544 ms  21.851 ms  22.604 ms
+cumulus@switch:~$ traceroute 10.10.10.10
 ```
 
-The following example sends 50 byte packets to check the traceroute to interface www.google.com.
+The following example sends 50-byte packets to validate the path to destination 10.10.10.10.
 
 ```
-cumulus@switch:~$ traceroute www.google.com packet_len 50
+cumulus@switch:~$ traceroute 10.10.10.10 packet_len 50
 ```
 
-The following example checks the traceroute to localhost with 4 maximum hops.
+The following example validates the path to destination 10.10.10.10 with 4 maximum hops.
 
 ```
-cumulus@switch:~$ traceroute www.google.com -m 4
+cumulus@switch:~$ traceroute 10.10.10.10 -m 4
 ```
 
-The following example checks the traceroute to localhost from the source IP address 10.10.10.10
+The following example validates the path to destination 10.10.10.10 from the source IP address 10.10.5.1
 
 ```
-cumulus@switch:~$ traceroute www.google.com -s 10.10.10.10
+cumulus@switch:~$ traceroute 10.10.10.10 -s 10.10.5.1
 ```
 
-The following example sends UPD packets to check the traceroute to localhost:
+The following example sends UDP packets to validate the path to destination 10.10.10.10:
 
 ```
-cumulus@switch:~$ traceroute www.google.com -U
+cumulus@switch:~$ traceroute 10.10.10.10 -U
 ```
 
 To send TCP packets, use the -T option. To send ICMP packets, use the -I option.
@@ -138,6 +131,39 @@ To send TCP packets, use the -T option. To send ICMP packets, use the -I option.
 {{< /tab >}}
 {{< /tabs >}}
 <!-- vale off -->
+
+### Monitor Control Plane Traffic with tcpdump
+
+You can use `tcpdump` to monitor control plane traffic (traffic sent to and coming from the switch CPUs). `tcpdump` does **not** monitor data plane traffic; use `cl-acltool` instead (see above).
+
+For more information on `tcpdump`, read the {{<exlink url="http://www.tcpdump.org/#documentation" text="documentation">}} and the {{<exlink url="http://www.tcpdump.org/manpages/tcpdump.1.html" text="man page">}}.
+
+The following example incorporates `tcpdump` options:
+
+- `-i bond0` captures packets from bond0 to the CPU and from the CPU to bond0
+- `host 169.254.0.2` filters for this IP address
+- `-c 10` captures 10 packets then stops
+
+```
+cumulus@switch:~$ sudo tcpdump -i bond0 host 169.254.0.2 -c 10
+tcpdump: WARNING: bond0: no IPv4 address assigned
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on bond0, link-type EN10MB (Ethernet), capture size 65535 bytes
+16:24:42.532473 IP 169.254.0.2 > 169.254.0.1: ICMP echo request, id 27785, seq 6, length 64
+16:24:42.532534 IP 169.254.0.1 > 169.254.0.2: ICMP echo reply, id 27785, seq 6, length 64
+16:24:42.804155 IP 169.254.0.2.40210 > 169.254.0.1.5342: Flags [.], seq 266275591:266277039, ack 3813627681, win 58, options [nop,nop,TS val 590400681 ecr 530346691], length 1448
+16:24:42.804228 IP 169.254.0.1.5342 > 169.254.0.2.40210: Flags [.], ack 1448, win 166, options [nop,nop,TS val 530348721 ecr 590400681], length 0
+16:24:42.804267 IP 169.254.0.2.40210 > 169.254.0.1.5342: Flags [P.], seq 1448:1836, ack 1, win 58, options [nop,nop,TS val 590400681 ecr 530346691], length 388
+16:24:42.804293 IP 169.254.0.1.5342 > 169.254.0.2.40210: Flags [.], ack 1836, win 165, options [nop,nop,TS val 530348721 ecr 590400681], length 0
+16:24:43.532389 IP 169.254.0.2 > 169.254.0.1: ICMP echo request, id 27785, seq 7, length 64
+16:24:43.532447 IP 169.254.0.1 > 169.254.0.2: ICMP echo reply, id 27785, seq 7, length 64
+16:24:43.838652 IP 169.254.0.1.59951 > 169.254.0.2.5342: Flags [.], seq 2555144343:2555145791, ack 2067274882, win 58, options [nop,nop,TS val 530349755 ecr 590399688], length 1448
+16:24:43.838692 IP 169.254.0.1.59951 > 169.254.0.2.5342: Flags [P.], seq 1448:1838, ack 1, win 58, options [nop,nop,TS val 530349755 ecr 590399688], length 390
+10 packets captured
+12 packets received by filter
+0 packets dropped by kernel
+```
+
 ## Run Commands in a Non-default VRF
 <!-- vale on -->
 You can use `ip vrf exec` to run commands in a non-default VRF context, which is useful for network utilities like `ping`, `traceroute`, and `nslookup`.
@@ -185,149 +211,3 @@ cumulus@switch:~$ sudo ip vrf exec Tenant1 traceroute6 -i swp1 -s 2001:db8::1 20
 ```
 
 The VRF context for `ping` and `traceroute` commands move automatically to the default VRF context, therefore, you must use the source interface flag to specify the management VRF. Typically, there is only a single interface in the management VRF (eth0) and only a single IPv4 address or IPv6 global unicast address assigned to it. You cannot specify both a source interface and a source IP address with `ping -I`.
-
-## Manipulate the System ARP Cache
-
-The `arp` command manipulates or displays the kernel's IPv4 network neighbor cache. See `man arp` for details.
-
-To display the ARP cache:
-
-```
-cumulus@switch:~$ arp -a
-? (11.0.2.2) at 00:02:00:00:00:10 [ether] on swp3
-? (11.0.3.2) at 00:02:00:00:00:01 [ether] on swp4
-? (11.0.0.2) at 44:38:39:00:01:c1 [ether] on swp1
-```
-
-To delete an ARP cache entry:
-
-```
-cumulus@switch:~$ arp -d 11.0.2.2
-cumulus@switch:~$ arp -a
-? (11.0.2.2) at <incomplete> on swp3
-? (11.0.3.2) at 00:02:00:00:00:01 [ether] on swp4
-? (11.0.0.2) at 44:38:39:00:01:c1 [ether] on swp1
-```
-
-To add a static ARP cache entry:
-
-```
-cumulus@switch:~$ arp -s 11.0.2.2 00:02:00:00:00:10
-cumulus@switch:~$ arp -a
-? (11.0.2.2) at 00:02:00:00:00:10 [ether] PERM on swp3
-? (11.0.3.2) at 00:02:00:00:00:01 [ether] on swp4
-? (11.0.0.2) at 44:38:39:00:01:c1 [ether] on swp1
-```
-
-If you need to flush or remove an ARP entry for a specific interface, you can disable dynamic ARP learning:
-
-```
-cumulus@switch:~$ ip link set arp off dev INTERFACE
-```
-
-## Generate Traffic Using mz
-
-`{{<exlink url="http://www.netsniff-ng.org" text="mz">}}` (or `mausezahn`) is a fast traffic generator that can generate a large variety of packet types at high speed. See `man mz` for details.
-
-For example, to send two sets of packets to TCP port 23 and 24, with source IP address 11.0.0.1 and destination IP address 11.0.0.2:
-
-```
-cumulus@switch:~$ sudo mz swp1 -A 11.0.0.1 -B 11.0.0.2 -c 2 -v -t tcp "dp=23-24"
-
-Mausezahn 0.40 - (C) 2007-2010 by Herbert Haas - https://packages.debian.org/unstable/mz
-Use at your own risk and responsibility!
--- Verbose mode --
-
-This system supports a high resolution clock.
-  The clock resolution is 4000250 nanoseconds.
-Mausezahn will send 4 frames...
-  IP:  ver=4, len=40, tos=0, id=0, frag=0, ttl=255, proto=6, sum=0, SA=11.0.0.1, DA=11.0.0.2,
-       payload=[see next layer]
-  TCP: sp=0, dp=23, S=42, A=42, flags=0, win=10000, len=20, sum=0,
-       payload=
-
-  IP:  ver=4, len=40, tos=0, id=0, frag=0, ttl=255, proto=6, sum=0, SA=11.0.0.1, DA=11.0.0.2,
-       payload=[see next layer]
-  TCP: sp=0, dp=24, S=42, A=42, flags=0, win=10000, len=20, sum=0,
-       payload=
-
-  IP:  ver=4, len=40, tos=0, id=0, frag=0, ttl=255, proto=6, sum=0, SA=11.0.0.1, DA=11.0.0.2,
-       payload=[see next layer]
-  TCP: sp=0, dp=23, S=42, A=42, flags=0, win=10000, len=20, sum=0,
-       payload=
-
-  IP:  ver=4, len=40, tos=0, id=0, frag=0, ttl=255, proto=6, sum=0, SA=11.0.0.1, DA=11.0.0.2,
-       payload=[see next layer]
-  TCP: sp=0, dp=24, S=42, A=42, flags=0, win=10000, len=20, sum=0,
-       payload=
-```
-
-## Create Counter ACL Rules
-
-In Linux, all ACL rules are always counted. To create an ACL rule for counting purposes only, set the rule action to ACCEPT. For details on how to use `cl-acltool` to set up iptables, ip6tables, and ebtables-based ACLs, see {{<link title="Access Control List Configuration" text="Access Control List Configuration">}}.
-
-{{%notice note%}}
-Always place your rule files under `/etc/cumulus/acl/policy.d/`.
-{{%/notice%}}
-
-To count all packets going to a Web server:
-
-```
-cumulus@switch:~$ cat sample_count.rules
-
-  [iptables]
-  -A FORWARD -p tcp --dport 80 -j ACCEPT
-
-  cumulus@switch:~$ sudo cl-acltool -i -p sample_count.rules
-  Using user provided rule file sample_count.rules
-  Reading rule file sample_count.rules ...
-  Processing rules in file sample_count.rules ...
-  Installing acl policy... done.
-
-  cumulus@switch:~$ sudo iptables -L -v
-  Chain INPUT (policy ACCEPT 16 packets, 2224 bytes)
-  pkts bytes target     prot opt in     out     source          destination
-
-  Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
-  pkts bytes target     prot opt in     out     source          destination
-    2   156 ACCEPT     tcp  --  any    any     anywhere         anywhere           tcp dpt:http
-
-  Chain OUTPUT (policy ACCEPT 44 packets, 8624 bytes)
-  pkts bytes target     prot opt in     out     source          destination
-```
-
-{{%notice warning%}}
-The `-p` option clears out all other rules. The `-i` option reinstalls all the rules.
-{{%/notice%}}
-
-### Monitor Control Plane Traffic with tcpdump
-
-You can use `tcpdump` to monitor control plane traffic (traffic sent to and coming from the switch CPUs). `tcpdump` does **not** monitor data plane traffic; use `cl-acltool` instead (see above).
-
-For more information on `tcpdump`, read the {{<exlink url="http://www.tcpdump.org/#documentation" text="documentation">}} and the {{<exlink url="http://www.tcpdump.org/manpages/tcpdump.1.html" text="man page">}}.
-
-The following example incorporates `tcpdump` options:
-
-- `-i bond0` captures packets from bond0 to the CPU and from the CPU to bond0
-- `host 169.254.0.2` filters for this IP address
-- `-c 10` captures 10 packets then stops
-
-```
-cumulus@switch:~$ sudo tcpdump -i bond0 host 169.254.0.2 -c 10
-tcpdump: WARNING: bond0: no IPv4 address assigned
-tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
-listening on bond0, link-type EN10MB (Ethernet), capture size 65535 bytes
-16:24:42.532473 IP 169.254.0.2 > 169.254.0.1: ICMP echo request, id 27785, seq 6, length 64
-16:24:42.532534 IP 169.254.0.1 > 169.254.0.2: ICMP echo reply, id 27785, seq 6, length 64
-16:24:42.804155 IP 169.254.0.2.40210 > 169.254.0.1.5342: Flags [.], seq 266275591:266277039, ack 3813627681, win 58, options [nop,nop,TS val 590400681 ecr 530346691], length 1448
-16:24:42.804228 IP 169.254.0.1.5342 > 169.254.0.2.40210: Flags [.], ack 1448, win 166, options [nop,nop,TS val 530348721 ecr 590400681], length 0
-16:24:42.804267 IP 169.254.0.2.40210 > 169.254.0.1.5342: Flags [P.], seq 1448:1836, ack 1, win 58, options [nop,nop,TS val 590400681 ecr 530346691], length 388
-16:24:42.804293 IP 169.254.0.1.5342 > 169.254.0.2.40210: Flags [.], ack 1836, win 165, options [nop,nop,TS val 530348721 ecr 590400681], length 0
-16:24:43.532389 IP 169.254.0.2 > 169.254.0.1: ICMP echo request, id 27785, seq 7, length 64
-16:24:43.532447 IP 169.254.0.1 > 169.254.0.2: ICMP echo reply, id 27785, seq 7, length 64
-16:24:43.838652 IP 169.254.0.1.59951 > 169.254.0.2.5342: Flags [.], seq 2555144343:2555145791, ack 2067274882, win 58, options [nop,nop,TS val 530349755 ecr 590399688], length 1448
-16:24:43.838692 IP 169.254.0.1.59951 > 169.254.0.2.5342: Flags [P.], seq 1448:1838, ack 1, win 58, options [nop,nop,TS val 530349755 ecr 590399688], length 390
-10 packets captured
-12 packets received by filter
-0 packets dropped by kernel
-```

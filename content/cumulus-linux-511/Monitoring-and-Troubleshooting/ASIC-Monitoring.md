@@ -47,7 +47,7 @@ The histogram collection monitoring tool polls for data at specific intervals an
 Cumulus Linux provides several histograms:
 - *Egress queue length* shows information about egress buffer utilization over time.
 - *Ingress queue length* shows information about ingress buffer utilization over time.
-- *Counter* shows information about bandwidth utilization for a port over time.
+- The *counter rate* histogram can monitor the following counter types to report the changes in counter data between samples.
 - *Latency* shows information about packet latency over time.
 - *Packet drops due to errors* (Linux only).
 
@@ -55,8 +55,8 @@ Cumulus Linux provides several histograms:
 Cumulus Linux supports:
 - The egress queue length histogram on Spectrum 1 and later.
 - The ingress queue length histogram and the latency histogram on Spectrum-2 and later.
-- The counter histogram (transmitted packet, transmitted byte, received packet, received byte, and CRC counters) on Spectrum-2 and later.
-- The counter histogram (layer 1 received byte counters and layer 1 transmitted byte counters) on Spectrum-4 only.
+- The counter rate histogram (transmitted packet, transmitted byte, received packet, received byte, and CRC counters) on Spectrum-2 and later.
+- The counter rate histogram (layer 1 received byte counters and layer 1 transmitted byte counters) on Spectrum-4 only.
 {{%/notice%}}
 
 ### Histogram Collection Example
@@ -103,7 +103,7 @@ To configure Histogram Collection, you specify:
 Histogram settings include the type of data you want to collect, the ports you want the histogram to monitor, the sampling time of the histogram, the histogram size, and the minimum boundary size for the histogram.
 - The ingress queue length histogram can monitor a specific priority group for a port or range of ports.
 - The egress queue length histogram and the latency histogram can monitor a specific traffic class for a port or range of ports. Traffic class 0 through 7 is for unicast traffic and traffic class 8 through 15 is for multicast traffic.
-- The counter histogram can monitor the following counter types:
+- - The counter rate histogram can monitor the following counter types to report the changes in counter data between samples.
     - Received packet counters (`rx-packet`)
     - Transmitted packet counters (`tx-packet`)
     - Received byte counters (`rx-byte`)
@@ -111,7 +111,7 @@ Histogram settings include the type of data you want to collect, the ports you w
     - CRC counters (`crc`)
     - Layer 1 received byte counters (`l1-rx-byte`). The byte count includes layer 1<span class="a-tooltip">[IPG](## "Interpacket Gap")</span> bytes.
     - Layer 1 transmitted byte counters (`l1-tx-byte`). The byte count includes layer 1<span class="a-tooltip">[IPG](## "Interpacket Gap")</span> bytes.
-- You can enable up to two counter histogram counter types for each physical interface. The counter histogram does not support bonds or virtual interfaces.
+- You can enable up to two counter rate histogram counter types for each physical interface. The counter rate histogram does not support bonds or virtual interfaces.
 - The default minimum boundary size is 960 bytes. Adding this number to the size of the histogram produces the maximum boundary size. These values represent the range of queue lengths for each bin.
 - The default value for the sampling time is 1024 nanoseconds.
 
@@ -178,9 +178,9 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
-{{< tab "Counter Histogram ">}}
+{{< tab "Counter Rate Histogram ">}}
 
-The following example configures the counter histogram and sets the minimum boundary size to 960, the histogram size to 12288, and the sampling interval to 1024. The histogram monitors all counter types. These settings apply to interfaces that have the `counter` histogram enabled and do not have different values configured for these settings at the interface level:
+The following example configures the counter rate histogram and sets the minimum boundary size to 960, the histogram size to 12288, and the sampling interval to 1024. The histogram monitors all counter types and reports the changes in counter data between samples. These settings apply to interfaces that have the `counter` histogram enabled and do not have different values configured for these settings at the interface level:
 
 ```
 cumulus@switch:~$ nv set system telemetry histogram counter bin-min-boundary 960
@@ -189,7 +189,7 @@ cumulus@switch:~$ nv set system telemetry histogram counter sample-interval 1024
 cumulus@switch:~$ nv config apply
 ```
 
-The following example enables the counter histogram on swp1 through swp8 and uses the global settings for the minimum boundary size, histogram size, and the sampling interval. The histogram monitors all received packet counters on ports 1 through 8:
+The following example enables the counter rate histogram on swp1 through swp8 and uses the global settings for the minimum boundary size, histogram size, and the sampling interval. The histogram monitors all received packet counters on ports 1 through 8 and reports the changes in counter data between samples.
 
 ```
 cumulus@switch:~$ nv set interface swp1-8 telemetry histogram counter counter-type rx-packet
@@ -231,9 +231,9 @@ The following table describes the ASIC monitor settings.
 |------- |----------- |
 | `port_group_list` | Specifies the names of the monitors (port groups) you want to use to collect data, such as `histogram_pg`. You can provide any name you want for the port group. You must use the same name for all the port group settings.<br><br>Example:<pre>monitor.port_group_list = [histogram_pg,discards_pg,buffers_pg,all_packets_pg]</pre>**Note**: You must specify at least one port group. If the port group list is empty, `systemd` shuts down the `asic-monitor` service. |
 | `<port_group_name>.port_set` | Specifies the range of ports you want to monitor, such as `swp4,swp8,swp10-swp50`. To specify all ports, use the `all_ports` option.<br><br>Example:<pre>monitor.histogram_pg.port_set = swp1-swp50</pre><pre>monitor.histogram_pg.port_set = all_ports</pre> |
-| `<port_group_name>.stat_type` | Specifies the type of data that the port group collects.<br><br>For egress queue length histograms, specify `histogram_tc`. For example:<pre>monitor.histogram_pg.stat_type = histogram_tc</pre>For ingress queue length histograms, specify `histogram_pg`. For example: <pre>monitor.histogram_pg.stat_type = histogram_pg</pre>For counter histograms, specify `histogram_counter`. For example:<pre>monitor.histogram_pg.stat_type = histogram_counter</pre>. For latency histograms, specify `histogram_latency`. For example:<pre> monitor.histogram_pg.stat_type = histogram_latency</pre>.|
+| `<port_group_name>.stat_type` | Specifies the type of data that the port group collects.<br><br>For egress queue length histograms, specify `histogram_tc`. For example:<pre>monitor.histogram_pg.stat_type = histogram_tc</pre>For ingress queue length histograms, specify `histogram_pg`. For example: <pre>monitor.histogram_pg.stat_type = histogram_pg</pre>For counter rate histograms, specify `histogram_counter`. For example:<pre>monitor.histogram_pg.stat_type = histogram_counter</pre>. For latency histograms, specify `histogram_latency`. For example:<pre> monitor.histogram_pg.stat_type = histogram_latency</pre>.|
 | `<port_group_name>.cos_list` | For histogram monitoring, each CoS (Class of Service) value in the list has its own histogram on each port. The global limit on the number of histograms is an average of one histogram for each port.<br><br>Example:<pre>monitor.histogram_pg.cos_list = [0]</pre> |
-| `<port_group_name>.counter_type` | Specifies the counter type for counter histogram monitoring. The counter types can be `tx-pkt`,`rx-pkt`,`tx-byte`,`rx-byte`.<br><br>Example:<pre>monitor.histogram_pg.counter_type = [rx_byte]</pre> |
+| `<port_group_name>.counter_type` | Specifies the counter type for counter rate histogram monitoring. The counter types can be `tx-pkt`,`rx-pkt`,`tx-byte`,`rx-byte`.<br><br>Example:<pre>monitor.histogram_pg.counter_type = [rx_byte]</pre> |
 | `<port_group_name>.trigger_type` | Specifies the type of trigger that initiates data collection. The only option is timer. At least one port group must have a configured timer, otherwise no data is ever collected.<br><br>Example:<pre>monitor.histogram_pg.trigger_type = timer</pre> |
 | `<port_group_name>.timer` | Specifies the frequency at which data collects; for example, a setting of 1s indicates that data collects one time each second. You can set the timer to the following:<br>1 to 60 seconds: 1s, 2s, and so on up to 60s<br>1 to 60 minutes: 1m, 2m, and so on up to 60m<br>1 to 24 hours: 1h, 2h, and so on up to 24h<br>1 to 7 days: 1d, 2d and so on up to 7d<br><br>Example:<pre>monitor.histogram_pg.timer = 4s</pre> |
 | `<port_group_name>.histogram.minimum_bytes_boundary` | *For histogram monitoring*.<br><br>The minimum boundary size for the histogram in bytes. On a Spectrum switch, this number must be a multiple of 96. Adding this number to the size of the histogram produces the maximum boundary size. These values represent the range of queue lengths for each bin.<br><br>Example:<pre>monitor.histogram_pg.histogram.minimum_bytes_boundary = 960</pre> |
@@ -335,9 +335,9 @@ monitor.histogram_gr2.histogram.sample_time_ns         = 1024
 ```
 
 {{< /tab >}}
-{{< tab "Counter Histogram Examples ">}}
+{{< tab "Counter Rate Histogram Examples ">}}
 
-The following example configures the counter histogram and sets the minimum boundary size to 960, the histogram size to 12288, and the sampling interval to 1024. The histogram monitors all counter types:
+The following example configures the counter rate histogram and sets the minimum boundary size to 960, the histogram size to 12288, and the sampling interval to 1024. The histogram monitors all counter types:
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/datapath/monitor.conf
@@ -354,7 +354,7 @@ monitor.histogram_pg.histogram.histogram_size_bytes   = 12288
 monitor.histogram_pg.histogram.sample_time_ns         = 1024
 ```
 
-The following example configures the counter histogram and sets the minimum boundary size to 960, the histogram size to 12288, and the sampling interval to 1024. The histogram monitors all received packets on ports 1 through 8:
+The following example configures the counter rate histogram and sets the minimum boundary size to 960, the histogram size to 12288, and the sampling interval to 1024. The histogram monitors all received packets on ports 1 through 8:
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/datapath/monitor.conf
@@ -566,7 +566,7 @@ Edit the `snapshot.file` settings in the `/etc/cumulus/datapath/monitor.conf` fi
 
 - To show an ingress queue snapshot, run the `nv show interface <interface> telemetry histogram ingress-buffer priority-group <value> snapshot` command
 - To show an egress queue snapshot, run the `nv show interface <interface> telemetry histogram egress-buffer traffic-class <type> snapshot`
-- To show a counter snapshot, run the `nv show interface <interface> telemetry histogram counter counter-type <type> snapshot`
+- To show a counter rate snapshot, run the `nv show interface <interface> telemetry histogram counter counter-type <type> snapshot`
 - To show a latency snapshot, run the `nv show interface <interface> telemetry histogram latency traffic-class <type> snapshot`
 
 The following example shows an ingress queue snapshot:

@@ -6,43 +6,147 @@ toc: 3
 ---
 Cumulus Linux includes command line and analytical tools to help you troubleshoot issues with your network.
 
-## Use ping
+## Check if a Host is Reachable with ping
 
 Use `ping` to check that a host is reachable. `ping` also calculates the time it takes for packets to travel round trip. See `man ping` for details.
 
-To test the connection to an IPv4 host:
+Use the ping tool to check that a destination on a network is reachable. Ping sends <span class="a-tooltip">[ICMP](## "Internet Control Message Protocol")</span> Echo Request packets to the specified address and listens for Echo Reply packets.  
 
-{{< tabs "TabID15 ">}}
+You send Echo Request packets to a destination (IP address or a hostname) to check if it is reachable. In addition, you can specify the following options:
+- The number of Echo Request packets to send. You can specify a value between 1 and 10. The default packet count is 3.
+- How often two send Echo Request packets. You can specify a value between 0.1 and 5 seconds???. The default value is ???.
+- The packet size in bytes. You can specify a value between 1 and 9216. The default value is ???
+- The number of seconds to wait for an Echo Reply packet before the ping request times out. You can specify a value between 0.1 and 10. The default value is ???.
+- The source IP address from which to send the Echo Request packets.
+- Do not fragment. If the packet is larger than the maximum transmission unit (MTU) of any network segment it traverses, drop the packet instead of fragmenting the packet.
+- The layer 3 protocol you want to use to send the Echo Request packets. You can specify IPv4 or IPv6.
+- The VRF for which you want to test the routing paths.
+- A source interface for which you want to test the routing path for a link local address. IPv6 only.
+
+{{< tabs "TabID26 ">}}
 {{< tab "NVUE Commands ">}}
 
-```
-cumulus@switch:~$ 
-```
-
-To test the connection to an IPv6 host:
+The following example checks if destination 10.10.10.10 is reachable on the network.
 
 ```
-cumulus@switch:~$ 
+cumulus@switch:~$ nv action ping system 10.10.10.10
+```
+
+The following example sends 5 Echo Request packets to check if destination 10.10.10.10 is reachable on the network.
+
+```
+cumulus@switch:~$ nv action ping system 10.10.10.10 count 5
+```
+
+The following example sends Echo Request packets every two seconds to check if destination 10.10.10.10 is reachable on the network.
+
+```
+cumulus@switch:~$ nv action ping system 10.10.10.10 interval 2
+```
+
+The following example sends 50-byte Echo Request packets to check if destination 10.10.10.10 is reachable on the network.
+
+```
+cumulus@switch:~$ nv action ping system 10.10.10.10 size 200
+```
+
+The following example checks if destination 10.10.10.10 is reachable on the network and waits for 3 seconds for an Echo Reply packet before timing out.
+
+```
+cumulus@switch:~$ nv action ping system 10.10.10.10 time 3
+```
+
+The following example checks if destination 10.10.10.10 is reachable on the network and sets the `do not fragment` bit.
+
+```
+cumulus@switch:~$ nv action ping system 10.10.10.10 do-not-fragment
+```
+
+The following example sends Echo Request packets to destination 10.10.10.10 from the source IP address 10.10.5.1.
+
+```
+cumulus@switch:~$ nv action ping system 10.10.10.10 source 10.10.5.1
+```
+
+The following example sends Echo Request packets to destination 10.10.10.10 for the management VRF.
+
+```
+cumulus@switch:~$ nv action ping system 10.10.10.10 vrf mgmt
+```
+
+The following example sends Echo Request packets to destination 10.10.10.10 for IPv4.
+
+```
+cumulus@switch:~$ nv action ping system 10.10.10.10 l3protocol ipv4 
+```
+
+The following example sends Echo Request packets from source interface eth0.
+
+```
+cumulus@switch:~$ nv action ping system fe80::a00:27ff:fe00:0 source-interface eth0 
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-```
-cumulus@switch:~$ ping 192.0.2.45
-PING 192.0.2.45 (192.0.2.45) 56(84) bytes of data.
-64 bytes from 192.0.2.45: icmp_req=1 ttl=53 time=40.4 ms
-64 bytes from 192.0.2.45: icmp_req=2 ttl=53 time=39.6 ms
-...
-```
-
-To test the connection to an IPv6 host:
+The following example checks if destination 10.10.10.10 is reachable on the network.
 
 ```
-cumulus@switch:~$ ping6 -I swp1 2001::db8:ff:fe00:2
-PING 2001::db8:ff:fe00:2(2001::db8:ff:fe00:2) from 2001::db8:ff:fe00:1 swp1: 56 data bytes
-64 bytes from 2001::db8:ff:fe00:2: icmp_seq=1 ttl=64 time=1.43 ms
-64 bytes from 2001::db8:ff:fe00:2: icmp_seq=2 ttl=64 time=0.927 ms
+cumulus@switch:~$ ping 10.10.10.10
+```
+
+The following example sends 5 Echo Request packets to check if destination 10.10.10.10 is reachable on the network.
+
+```
+cumulus@switch:~$ ping -c 5 10.10.10.10
+```
+
+The following example sends Echo Request packets every two seconds to check if destination 10.10.10.10 is reachable on the network.
+
+```
+cumulus@switch:~$ ping -i 2 10.10.10.10
+```
+
+The following example sends 50-byte Echo Request packets to check if destination 10.10.10.10 is reachable on the network.
+
+```
+cumulus@switch:~$ ping -s 50 10.10.10.10
+```
+
+The following example checks if destination 10.10.10.10 is reachable and waits for 3 seconds for an Echo Reply packet before the ping request times out.
+
+```
+cumulus@switch:~$ ping -W 10.10.10.10
+```
+
+The following example checks if destination 10.10.10.10 is reachable and sets the `do not fragment` bit for IPv4.
+
+```
+cumulus@switch:~$ ping –4 -M do 10.10.10.10
+```
+
+The following example sends Echo Request packets to destination 10.10.10.10 from the source IP address 10.10.5.1.
+
+```
+cumulus@switch:~$ ping system -1 10.10.5.1 10.10.10.10
+```
+
+The following example sends Echo Request packets to destination 10.10.10.10 for the management VRF.
+
+```
+cumulus@switch:~$ ping vrf mgmt 10.10.10.10
+```
+
+The following example sends Echo Request packets to destination 10.10.10.10 for IPv4.
+
+```
+cumulus@switch:~$ ping -1 ipv4 10.10.10.10
+```
+
+The following example sends Echo Request packets to destination fe80::a00:27ff:fe00:0 from source interface eth0.
+
+```
+cumulus@switch:~$ ping -5 fe80::a00:27ff:fe00:0%eth0 
 ```
 
 {{< /tab >}}
@@ -52,15 +156,15 @@ When troubleshooting intermittent connectivity issues, it is helpful to send con
 
 ## Print Route Trace with traceroute
 
-Use the `traceroute` tool for network troubleshooting, identifying routing issues, measuring latency, mapping network paths, detecting performance bottlenecks, and diagnosing connectivity problems.
+Use the traceroute tool for network troubleshooting, identifying routing issues, measuring latency, mapping network paths, detecting performance bottlenecks, and diagnosing connectivity problems.
 
 You send traceroute packets to a destination to which you want to trace the route. You can specify either an IP address or a domain name. In addition, you can specify the following options:
 - The hop count (the maximum number of hops). You can specify a value between 1 and 255.
-- The `traceroute` packet size in bytes. You can specify a value between 28 and 65000 bytes.
+- The traceroute packet size in bytes. You can specify a value between 28 and 65000 bytes.
 - The source IP address to use for sending the `traceroute` packets.
 - The layer 4 protocol packets to send. You can specify ICMP, TCP, or UDP.
 
-{{< tabs "TabID15 ">}}
+{{< tabs "TabID167 ">}}
 {{< tab "NVUE Commands ">}}
 
 The following example validates the path to destination 10.10.10.10.

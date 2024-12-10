@@ -111,7 +111,7 @@ Histogram settings include the type of data you want to collect, the ports you w
     - CRC counters (`crc`)
     - Layer 1 received byte counters (`l1-rx-byte`). The byte count includes layer 1<span class="a-tooltip">[IPG](## "Interpacket Gap")</span> bytes.
     - Layer 1 transmitted byte counters (`l1-tx-byte`). The byte count includes layer 1<span class="a-tooltip">[IPG](## "Interpacket Gap")</span> bytes.
-- You can enable up to two counter rate histogram counter types for each physical interface. The counter histogram does not support bonds or virtual interfaces.
+- You can enable up to two counter rate histogram counter types for each physical interface. The counter rate histogram does not support bonds or virtual interfaces.
 - The default minimum boundary size is 960 bytes. Adding this number to the size of the histogram produces the maximum boundary size. These values represent the range of queue lengths for each bin.
 - The default value for the sampling time is 1024 nanoseconds.
 

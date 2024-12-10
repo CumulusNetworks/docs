@@ -12,19 +12,22 @@ Use `ping` to check that a host is reachable. `ping` also calculates the time it
 
 Use the ping tool to check that a destination on a network is reachable. Ping sends <span class="a-tooltip">[ICMP](## "Internet Control Message Protocol")</span> Echo Request packets to the specified address and listens for Echo Reply packets.  
 
-You send Echo Request packets to a destination (IP address or a hostname) to check if it is reachable. In addition, you can specify the following options:
-- The number of Echo Request packets to send. You can specify a value between 1 and 10. The default packet count is 3.
-- How often two send Echo Request packets. You can specify a value between 0.1 and 5 seconds???. The default value is ???.
-- The packet size in bytes. You can specify a value between 1 and 9216. The default value is ???
-- The number of seconds to wait for an Echo Reply packet before the ping request times out. You can specify a value between 0.1 and 10. The default value is ???.
-- The source IP address from which to send the Echo Request packets.
-- Do not fragment. If the packet is larger than the maximum transmission unit (MTU) of any network segment it traverses, drop the packet instead of fragmenting the packet.
-- The layer 3 protocol you want to use to send the Echo Request packets. You can specify IPv4 or IPv6.
-- The VRF for which you want to test the routing paths.
-- A source interface for which you want to test the routing path for a link local address. IPv6 only.
-
 {{< tabs "TabID26 ">}}
 {{< tab "NVUE Commands ">}}
+
+You send Echo Request packets to a destination (IP address or a hostname) to check if it is reachable. In addition, you can specify the following options:
+
+| Option       | Description |
+| ------------ | ------------ |
+| `count` | The number of Echo Request packets to send. You can specify a value between 1 and 10. The default packet count is 3.|
+| `interval` | How often two send Echo Request packets. You can specify a value between 0.1 and 5 seconds???. The default value is ???. |
+| `size` | The packet size in bytes. You can specify a value between 1 and 9216. The default value is ??? |
+| `time` | The number of seconds to wait for an Echo Reply packet before the ping request times out. You can specify a value between 0.1 and 10. The default value is ???.|
+| `source` | The source IP address from which to send the Echo Request packets. |
+| `do-not-fragment` | Do not fragment. If the packet is larger than the maximum transmission unit (MTU) of any network segment it traverses, drop the packet instead of fragmenting the packet. |
+| `l3protocol` | The layer 3 protocol you want to use to send the Echo Request packets. You can specify IPv4 or IPv6. |
+| `vrf` | The VRF for which you want to test the routing paths. |
+| `source-interface` | A source interface for which you want to test the routing path for a link local address. IPv6 only. |
 
 The following example checks if destination 10.10.10.10 is reachable on the network.
 
@@ -89,6 +92,20 @@ cumulus@switch:~$ nv action ping system fe80::a00:27ff:fe00:0 source-interface e
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
+You send Echo Request packets to a destination (IP address or a hostname) to check if it is reachable. In addition, you can specify the following options:
+
+| Option       | Description |
+| ------------ | ------------ |
+| `-c` | The number of Echo Request packets to send. You can specify a value between 1 and 10. The default packet count is 3.|
+| `-i` | How often two send Echo Request packets. You can specify a value between 0.1 and 5 seconds???. The default value is ???. |
+| `-s` | The packet size in bytes. You can specify a value between 1 and 9216. The default value is ??? |
+| `-W` | The number of seconds to wait for an Echo Reply packet before the ping request times out. You can specify a value between 0.1 and 10. The default value is ???.|
+| `-I <ip-address>` | The source IP address from which to send the Echo Request packets. |
+| `–4 -M do` | Do not fragment. If the packet is larger than the maximum transmission unit (MTU) of any network segment it traverses, drop the packet instead of fragmenting the packet. |
+| `l3protocol` | The layer 3 protocol you want to use to send the Echo Request packets. You can specify IPv4 or IPv6. |
+| `-I <vrf-name>` | The VRF for which you want to test the routing paths. |
+| `-6` | A source interface for which you want to test the routing path for a link local address. IPv6 only. |
+
 The following example checks if destination 10.10.10.10 is reachable on the network.
 
 ```
@@ -128,7 +145,7 @@ cumulus@switch:~$ ping –4 -M do 10.10.10.10
 The following example sends Echo Request packets to destination 10.10.10.10 from the source IP address 10.10.5.1.
 
 ```
-cumulus@switch:~$ ping system -1 10.10.5.1 10.10.10.10
+cumulus@switch:~$ ping system -I 10.10.5.1 10.10.10.10
 ```
 
 The following example sends Echo Request packets to destination 10.10.10.10 for the management VRF.
@@ -140,13 +157,13 @@ cumulus@switch:~$ ping vrf mgmt 10.10.10.10
 The following example sends Echo Request packets to destination 10.10.10.10 for IPv4.
 
 ```
-cumulus@switch:~$ ping -1 ipv4 10.10.10.10
+cumulus@switch:~$ ping -I ipv4 10.10.10.10
 ```
 
 The following example sends Echo Request packets to destination fe80::a00:27ff:fe00:0 from source interface eth0.
 
 ```
-cumulus@switch:~$ ping -5 fe80::a00:27ff:fe00:0%eth0 
+cumulus@switch:~$ ping -6 fe80::a00:27ff:fe00:0%eth0 
 ```
 
 {{< /tab >}}
@@ -158,14 +175,17 @@ When troubleshooting intermittent connectivity issues, it is helpful to send con
 
 Use the traceroute tool for network troubleshooting, identifying routing issues, measuring latency, mapping network paths, detecting performance bottlenecks, and diagnosing connectivity problems.
 
-You send traceroute packets to a destination to which you want to trace the route. You can specify either an IP address or a domain name. In addition, you can specify the following options:
-- The hop count (the maximum number of hops). You can specify a value between 1 and 255.
-- The traceroute packet size in bytes. You can specify a value between 28 and 65000 bytes.
-- The source IP address to use for sending the `traceroute` packets.
-- The layer 4 protocol packets to send. You can specify ICMP, TCP, or UDP.
-
 {{< tabs "TabID167 ">}}
 {{< tab "NVUE Commands ">}}
+
+You send traceroute packets to a destination to which you want to trace the route. You can specify either an IP address or a domain name. In addition, you can specify the following options:
+
+| Option | Description |
+| ------ | ----------- |
+| `packet_len` | The hop count (the maximum number of hops). You can specify a value between 1 and 255. |
+| `hop-count` | The traceroute packet size in bytes. You can specify a value between 28 and 65000 bytes. |
+| `source-address` | The source IP address to use for sending the `traceroute` packets. |
+| `protocol` | The layer 4 protocol packets to send. You can specify ICMP, TCP, or UDP. |
 
 The following example validates the path to destination 10.10.10.10.
 
@@ -182,7 +202,7 @@ cumulus@switch:~$ nv action traceroute interface 10.10.10.10 packet_len 50
 The following example validates the path to destination 10.10.10.10 with 4 maximum hops.
 
 ```
-cumulus@switch:~$ nv action traceroute interface 10.10.10.10  hop-count 4
+cumulus@switch:~$ nv action traceroute interface 10.10.10.10 hop-count 4
 ```
 
 The following example validates the path to destination 10.10.10.10 from the source IP address 10.10.5.1
@@ -199,6 +219,15 @@ cumulus@switch:~$ nv action traceroute interface 10.10.10.10 protocol udp
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
+
+You send traceroute packets to a destination to which you want to trace the route. You can specify either an IP address or a domain name. In addition, you can specify the following options:
+
+| Option | Description |
+| ------ | ----------- |
+| `packet_len` | The maximum number of hops. You can specify a value between 1 and 255. |
+| `-m` | The traceroute packet size in bytes. You can specify a value between 28 and 65000 bytes. |
+| `-s` | The source IP address to use for sending the `traceroute` packets. |
+| `<protocol>` | The layer 4 protocol packets to send. You can specify ICMP (-I), TCP (-T), or UDP (-U). |
 
 The following example validates the path to destination 10.10.10.10.
 
@@ -230,11 +259,8 @@ The following example sends UDP packets to validate the path to destination 10.1
 cumulus@switch:~$ traceroute 10.10.10.10 -U
 ```
 
-To send TCP packets, use the -T option. To send ICMP packets, use the -I option.
-
 {{< /tab >}}
 {{< /tabs >}}
-<!-- vale off -->
 
 ### Monitor Control Plane Traffic with tcpdump
 
@@ -269,7 +295,7 @@ listening on bond0, link-type EN10MB (Ethernet), capture size 65535 bytes
 ```
 
 ## Run Commands in a Non-default VRF
-<!-- vale on -->
+
 You can use `ip vrf exec` to run commands in a non-default VRF context, which is useful for network utilities like `ping`, `traceroute`, and `nslookup`.
 
 The full syntax is `ip vrf exec <vrf-name> <command> <arguments>`. For example:

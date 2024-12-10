@@ -12,6 +12,22 @@ Use `ping` to check that a host is reachable. `ping` also calculates the time it
 
 To test the connection to an IPv4 host:
 
+{{< tabs "TabID15 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ 
+```
+
+To test the connection to an IPv6 host:
+
+```
+cumulus@switch:~$ 
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
 ```
 cumulus@switch:~$ ping 192.0.2.45
 PING 192.0.2.45 (192.0.2.45) 56(84) bytes of data.
@@ -29,13 +45,58 @@ PING 2001::db8:ff:fe00:2(2001::db8:ff:fe00:2) from 2001::db8:ff:fe00:1 swp1: 56 
 64 bytes from 2001::db8:ff:fe00:2: icmp_seq=2 ttl=64 time=0.927 ms
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 When troubleshooting intermittent connectivity issues, it is helpful to send continuous pings to a host.
 
 ## Print Route Trace with traceroute
 
-Use `traceroute` to track the route that packets take from an IP network on their way to a given host. See `man traceroute` for details.
+Use the `traceroute` tool for network troubleshooting, identifying routing issues, measuring latency, mapping network paths, detecting performance bottlenecks, and diagnosing connectivity problems.
 
-To track the route to an IPv4 host:
+You send traceroute packets to a destination to which you want to trace the route. You can specify either an IP address or a domain name. In addition, you can specify the following options:
+- The hop count (the maximum number of hops). You can specify a value between 1 and 255.
+- The `traceroute` packet size. You can specify a value between 8 and 65000.
+- The source IP address to use for sending the `traceroute` packets.
+- The layer 4 protocol packets to send. You can specify ICMP, TCP, or UDP.
+
+{{< tabs "TabID15 ">}}
+{{< tab "NVUE Commands ">}}
+
+The following example checks the traceroute to localhost.
+
+```
+cumulus@switch:~$ nv action traceroute interface localhost
+```
+
+The following example sends 50 byte packets to check the traceroute to interface 10.10.10.6.
+
+```
+cumulus@switch:~$ nv action traceroute interface 10.10.10.6 packet_len 50 
+```
+
+The following example checks the traceroute to localhost with 4 maximum hops.
+
+```
+cumulus@switch:~$ nv action traceroute interface localhost hop-count 4
+```
+
+The following example checks the traceroute to localhost from the source IP address 10.10.10.10
+
+```
+cumulus@switch:~$ nv action traceroute interface localhost source-address 10.10.10.10
+```
+
+The following example sends UPD packets to check the traceroute to localhost:
+
+```
+cumulus@switch:~$ nv action traceroute interface localhost protocol upd
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+The following example checks the traceroute to www.google.com.
 
 ```
 cumulus@switch:~$ traceroute www.google.com
@@ -47,6 +108,35 @@ traceroute to www.google.com (74.125.239.49), 30 hops max, 60 byte packets
 7  72.14.232.35 (72.14.232.35)  27.505 ms  22.925 ms  22.323 ms
 8  nuq04s19-in-f17.1e100.net (74.125.239.49)  23.544 ms  21.851 ms  22.604 ms
 ```
+
+The following example sends 50 byte packets to check the traceroute to interface www.google.com.
+
+```
+cumulus@switch:~$ traceroute www.google.com packet_len 50
+```
+
+The following example checks the traceroute to localhost with 4 maximum hops.
+
+```
+cumulus@switch:~$ traceroute www.google.com -m 4
+```
+
+The following example checks the traceroute to localhost from the source IP address 10.10.10.10
+
+```
+cumulus@switch:~$ traceroute www.google.com -s 10.10.10.10
+```
+
+The following example sends UPD packets to check the traceroute to localhost:
+
+```
+cumulus@switch:~$ traceroute www.google.com -U
+```
+
+To send TCP packets, use the -T option. To send ICMP packets, use the -I option.
+
+{{< /tab >}}
+{{< /tabs >}}
 <!-- vale off -->
 ## Run Commands in a Non-default VRF
 <!-- vale on -->

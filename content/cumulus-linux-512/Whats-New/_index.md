@@ -34,8 +34,8 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
 - Implement flow-control/backpressure between zebra and clients (like bgpd) to handle heavy churn at high scale( EVPN Scenarios)
 - SN5400 Hippo | Add SyncE support at 1G (optical)
 - NVUE
-  - API call for traceroute 
-  - API call for Ping
+  - {{<link title="Network Troubleshooting/#print-route-trace-with-traceroute" text="Traceroute command">}}
+  - {{<link title="Network Troubleshooting/#check-if-a-host-is-reachable-with-ping" text="Ping command">}}
   - support SPIFFE ID for AAA (Validation)
   - Support for defining APT sources
   - API call for "ls" linux command to list files in a directory

@@ -47,7 +47,7 @@ The histogram collection monitoring tool polls for data at specific intervals an
 Cumulus Linux provides several histograms:
 - *Egress queue length* shows information about egress buffer utilization over time.
 - *Ingress queue length* shows information about ingress buffer utilization over time.
-- *Counter rate* shows information about bandwidth utilization for a port over time.
+- *Counter rate* shows information about counter accrual for a port.
 - *Latency* shows information about packet latency over time.
 - *Packet drops due to errors* (Linux only).
 
@@ -103,7 +103,7 @@ To configure Histogram Collection, you specify:
 Histogram settings include the type of data you want to collect, the ports you want the histogram to monitor, the sampling time of the histogram, the histogram size, and the minimum boundary size for the histogram.
 - The ingress queue length histogram can monitor a specific priority group for a port or range of ports.
 - The egress queue length histogram and the latency histogram can monitor a specific traffic class for a port or range of ports. Traffic class 0 through 7 is for unicast traffic and traffic class 8 through 15 is for multicast traffic.
-- The counter rate histogram can monitor the following counter types to tally the accumulated counter value in the configured polling interval.
+- The counter rate histogram can monitor the following counter types to report the changes in counter data between samples.
     - Received packet counters (`rx-packet`)
     - Transmitted packet counters (`tx-packet`)
     - Received byte counters (`rx-byte`)
@@ -180,7 +180,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Counter Rate Histogram ">}}
 
-The following example configures the counter rate histogram and sets the minimum boundary size to 960, the histogram size to 12288, and the sampling interval to 1024. The histogram monitors all counter types tallying the delta values of a counter between each polling interval. These settings apply to interfaces that have the `counter` histogram enabled and do not have different values configured for these settings at the interface level:
+The following example configures the counter rate histogram and sets the minimum boundary size to 960, the histogram size to 12288, and the sampling interval to 1024. The histogram monitors all counter types and reports the changes in counter data between samples. These settings apply to interfaces that have the `counter` histogram enabled and do not have different values configured for these settings at the interface level:
 
 ```
 cumulus@switch:~$ nv set system telemetry histogram counter bin-min-boundary 960
@@ -189,7 +189,7 @@ cumulus@switch:~$ nv set system telemetry histogram counter sample-interval 1024
 cumulus@switch:~$ nv config apply
 ```
 
-The following example enables the counter rate histogram on swp1 through swp8 and uses the global settings for the minimum boundary size, histogram size, and the sampling interval. The histogram monitors all received packet counters on ports 1 through 8 and tallies the delta values of the counters between each polling interval.
+The following example enables the counter rate histogram on swp1 through swp8 and uses the global settings for the minimum boundary size, histogram size, and the sampling interval. The histogram monitors all received packet counters on ports 1 through 8 and reports the changes in counter data between samples.
 
 ```
 cumulus@switch:~$ nv set interface swp1-8 telemetry histogram counter counter-type rx-packet

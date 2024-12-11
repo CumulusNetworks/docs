@@ -79,7 +79,7 @@ The following example imports a CA certificate with a public key and calls the c
 
 {{%notice note%}}
 - You must enclose the public key in the NVUE command with three quotes (`"""<public-key>"""`).
-- With the REST API, you must enclose the public key with double quotes (`""<public-key>""`).
+- With the REST API, you must enclose the public key with double quotes (`"<public-key>"`).
 {{%/notice%}}
 
 ```

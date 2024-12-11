@@ -19,10 +19,10 @@ You send Echo Request packets to a destination (IP address or a hostname) to che
 
 | Option       | Description |
 | ------------ | ------------ |
-| `count` | The number of Echo Request packets to send. You can specify a value between 1 and 10. The default packet count is 3.|
-| `interval` | How often two send Echo Request packets. You can specify a value between 0.1 and 5 seconds???. The default value is ???. |
-| `size` | The packet size in bytes. You can specify a value between 1 and 9216. The default value is ??? |
-| `time` | The number of seconds to wait for an Echo Reply packet before the ping request times out. You can specify a value between 0.1 and 10. The default value is ???.|
+| `count` | The number of Echo Request packets to send. You can specify a value between 1 and 10. The default packet count is 3. |
+| `interval` | How often two send Echo Request packets. You can specify a value between 0.1 and 5 seconds. The default value is 4. |
+| `size` | The packet size in bytes. You can specify a value between 1 and 9216. The default value is 64. |
+| `time` | The number of seconds to wait for an Echo Reply packet before the ping request times out. You can specify a value between 0.1 and 10. The default value is 10.|
 | `source` | The source IP address from which to send the Echo Request packets. |
 | `do-not-fragment` | Do not fragment. If the packet is larger than the maximum transmission unit (MTU) of any network segment it traverses, drop the packet instead of fragmenting the packet. |
 | `l3protocol` | The layer 3 protocol you want to use to send the Echo Request packets. You can specify IPv4 or IPv6. |
@@ -97,9 +97,9 @@ You send Echo Request packets to a destination (IP address or a hostname) to che
 | Option       | Description |
 | ------------ | ------------ |
 | `-c` | The number of Echo Request packets to send. You can specify a value between 1 and 10. The default packet count is 3.|
-| `-i` | How often two send Echo Request packets. You can specify a value between 0.1 and 5 seconds???. The default value is ???. |
-| `-s` | The packet size in bytes. You can specify a value between 1 and 9216. The default value is ??? |
-| `-W` | The number of seconds to wait for an Echo Reply packet before the ping request times out. You can specify a value between 0.1 and 10. The default value is ???.|
+| `-i` | How often two send Echo Request packets. You can specify a value between 0.1 and 5 seconds. The default value is 4. |
+| `-s` | The packet size in bytes. You can specify a value between 1 and 9216. The default value is 64. |
+| `-W` | The number of seconds to wait for an Echo Reply packet before the ping request times out. You can specify a value between 0.1 and 10. The default value is 10.|
 | `-I <ip-address>` | The source IP address from which to send the Echo Request packets. |
 | `–4 -M do` | Do not fragment. If the packet is larger than the maximum transmission unit (MTU) of any network segment it traverses, drop the packet instead of fragmenting the packet. |
 | `l3protocol` | The layer 3 protocol you want to use to send the Echo Request packets. You can specify IPv4 or IPv6. |
@@ -182,8 +182,8 @@ You send traceroute packets to a destination to which you want to trace the rout
 
 | Option | Description |
 | ------ | ----------- |
-| `packet_len` | The hop count (the maximum number of hops). You can specify a value between 1 and 255. |
-| `hop-count` | The traceroute packet size in bytes. You can specify a value between 28 and 65000 bytes. |
+| `hop-count` | The maximum number of hops allowed from the destination. You can specify a value between 1 and 255. The default is 255. |
+| `packet_len` | The traceroute packet size in bytes. You can specify a value between 28 and 65000 bytes. |
 | `source-address` | The source IP address to use for sending the `traceroute` packets. |
 | `protocol` | The layer 4 protocol packets to send. You can specify ICMP, TCP, or UDP. |
 
@@ -224,8 +224,8 @@ You send traceroute packets to a destination to which you want to trace the rout
 
 | Option | Description |
 | ------ | ----------- |
-| `packet_len` | The maximum number of hops. You can specify a value between 1 and 255. |
-| `-m` | The traceroute packet size in bytes. You can specify a value between 28 and 65000 bytes. |
+| `-m` | The maximum number of hops allowed from the destination. You can specify a value between 1 and 255. The default is 255. |
+| `packet_len` | The traceroute packet size in bytes. You can specify a value between 28 and 65000 bytes. |
 | `-s` | The source IP address to use for sending the `traceroute` packets. |
 | `<protocol>` | The layer 4 protocol packets to send. You can specify ICMP (-I), TCP (-T), or UDP (-U). |
 

@@ -13,6 +13,18 @@
 <td></td>
 </tr>
 <tr>
+<td>4185426</td>
+<td>When you add a new MLAG bond, the BPDU guard state of its peer is initialized to False and immediately updated correctly after resync if the bond is up. If the bond is down, resync is not done and the peer PBDU guard state is not updated, which leads to a conflict if the local PBDU guard is enabled.Even though it seems that PBDU configuration does not match between MLAG peers, this issue does not have any functional impact. It gets cleared when the bond becomes up.</td>
+<td>5.9.2-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4182753</td>
+<td>When you configure the SPAN port mirror truncate size to a value greater than 4 and less than the supported minimum, NVUE allows the configuration even though there are errors and failures in the mirror session configuration.The supported values for truncate size are 32 to 4088 for Spectrum 1, 48 to 4088 for Spectrum-2 and Spectrum-3, and 64 to 4088 for Spectrum-4.To work around this issue, run the {{echo &lt;supported_value&gt; &gt; /cumulus/switchd/config/mirror/session/1/truncate_size}} command before you reconfigure mirror sessions with the supported values.</td>
+<td>5.8.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4175695</td>
 <td>If all of the neighbors returned in the {{nv show vrf &lt;vrf&gt; router bgp neighbor}} command output have no {{address-family}} configuration, you see an internal error when the nested table in the  output is being rendered.</td>
 <td>5.10.0-5.11.0</td>
@@ -32,8 +44,26 @@ netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported tru
 <td></td>
 </tr>
 <tr>
+<td>4170628</td>
+<td>If you use a bridge name that isn't {{br_default}}, NVUE generates incorrect ptp4l.conf files.</td>
+<td>5.10.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4170604</td>
+<td>When you configure EVPN multihoming with more than one ESI bond member, you might see intermediate traffic loss. </td>
+<td>5.9.1-5.11.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4170598</td>
 <td>When you create an ACL rule that matches TCP state and more than seven TCP or UDP source or destination ports, the rule does not get framed properly and is rejected by the kernel.To work around this issue, create another rule number when the number of ports you want to match is more than seven.</td>
+<td>5.9.1-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4159554</td>
+<td>When you configure EVPN multihoming with more than one ESI bond member, you might see intermediate traffic loss.</td>
 <td>5.9.1-5.11.0</td>
 <td></td>
 </tr>
@@ -785,6 +815,18 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
+<td>4185426</td>
+<td>When you add a new MLAG bond, the BPDU guard state of its peer is initialized to False and immediately updated correctly after resync if the bond is up. If the bond is down, resync is not done and the peer PBDU guard state is not updated, which leads to a conflict if the local PBDU guard is enabled.Even though it seems that PBDU configuration does not match between MLAG peers, this issue does not have any functional impact. It gets cleared when the bond becomes up.</td>
+<td>5.9.2-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4182753</td>
+<td>When you configure the SPAN port mirror truncate size to a value greater than 4 and less than the supported minimum, NVUE allows the configuration even though there are errors and failures in the mirror session configuration.The supported values for truncate size are 32 to 4088 for Spectrum 1, 48 to 4088 for Spectrum-2 and Spectrum-3, and 64 to 4088 for Spectrum-4.To work around this issue, run the {{echo &lt;supported_value&gt; &gt; /cumulus/switchd/config/mirror/session/1/truncate_size}} command before you reconfigure mirror sessions with the supported values.</td>
+<td>5.8.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4175695</td>
 <td>If all of the neighbors returned in the {{nv show vrf &lt;vrf&gt; router bgp neighbor}} command output have no {{address-family}} configuration, you see an internal error when the nested table in the  output is being rendered.</td>
 <td>5.10.0-5.11.0</td>
@@ -797,8 +839,26 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
+<td>4170628</td>
+<td>If you use a bridge name that isn't {{br_default}}, NVUE generates incorrect ptp4l.conf files.</td>
+<td>5.10.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4170604</td>
+<td>When you configure EVPN multihoming with more than one ESI bond member, you might see intermediate traffic loss. </td>
+<td>5.9.1-5.11.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4170598</td>
 <td>When you create an ACL rule that matches TCP state and more than seven TCP or UDP source or destination ports, the rule does not get framed properly and is rejected by the kernel.To work around this issue, create another rule number when the number of ports you want to match is more than seven.</td>
+<td>5.9.1-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4159554</td>
+<td>When you configure EVPN multihoming with more than one ESI bond member, you might see intermediate traffic loss.</td>
 <td>5.9.1-5.11.0</td>
 <td></td>
 </tr>

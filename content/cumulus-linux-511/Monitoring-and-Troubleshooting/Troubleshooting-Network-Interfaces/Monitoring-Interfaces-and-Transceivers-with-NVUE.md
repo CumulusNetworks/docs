@@ -518,7 +518,8 @@ channel:
 ```
 
 {{%notice note%}}
-The `nv show platform transceiver` commands do not display information for subinterfaces; run the `nv show interface <subinterface> transceiver` commands for subinterface information.
+- The `nv show platform transceiver` commands show information for front panel physical ports only (for example swp1). The commands do not show information for logical ports, such as SVIs, bonds, or eth0.
+- To show information for subinterfaces; run the `nv show interface <subinterface> transceiver` commands.
 {{%/notice%}}
 
 You can also show transceiver data in a more condensed format with the `nv show interface <interface> transceiver` command:

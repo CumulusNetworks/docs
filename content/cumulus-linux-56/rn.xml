@@ -7,67 +7,67 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4004453</td>
+<td>4037015</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
-<td>4.3.0-5.9.1, 5.10.0-5.11.0</td>
-<td>5.9.2</td>
+<td>4.3.0-5.9.1</td>
+<td>5.9.2-5.11.0, 5.10.0-5.11.0</td>
 </tr>
 <tr>
-<td>3982222</td>
-<td>When SPAN is enabled on a bridge member, an ARP or Gratuitous ARP received during a failover event between locally attached redundant devices such as load balancers might fail to update the bridge MAC table to point to the interface with the newly active load balancer.</td>
-<td>5.4.0-5.9.1</td>
-<td>5.9.2-5.11.0</td>
+<td>4023649</td>
+<td>On rare occasions when certain events occur, such as changes to the topology in the network, when a bond comes online and directly transits to an STP blocking state, the slave ports might still be in a forwarding state. As a result, traffic is forwarded on a blocked port.</td>
+<td>5.2.0-5.9.1</td>
+<td>5.9.2-5.11.0, 5.10.0-5.11.0</td>
 </tr>
 <tr>
-<td>3955615</td>
+<td>3982294</td>
 <td>Cumulus Linux does not recognize QSFP_CMIS optical modules correctly.</td>
 <td>5.6.0-5.9.1</td>
-<td>5.9.2-5.11.0</td>
+<td>5.9.2-5.11.0, 5.10.0-5.11.0</td>
 </tr>
 <tr>
-<td>3949367</td>
-<td>If you use NVUE to create an SNMP user with a password, then delete and recreate the user with additional encryption passwords (such as DES or AES), SNMP authorization fails for that user.</td>
-<td>5.3.1-5.9.1</td>
-<td>5.9.2-5.11.0</td>
-</tr>
-<tr>
-<td>3917601</td>
+<td>3982249</td>
 <td>If a packet containing an all zero source MAC address (00:00:00:00:00:00) is learned on the ASIC, {{switchd}} sends the learn notification to the kernel but the kernel rejects the MAC address as invalid. The ASIC continuously sends the mac-learn notifications, which wastes CPU resources. To work around this issue, configure ACLs to match on the all-zero source MAC address and drop the invalid packets.</td>
 <td>5.5.0-5.9.1</td>
-<td>5.9.2-5.11.0</td>
+<td>5.9.2-5.11.0, 5.10.0-5.11.0</td>
 </tr>
 <tr>
-<td>3895042</td>
+<td>3982233</td>
+<td>When you enable Optimized Multicast Flooding (OMF) and change VLAN configuration, a few ports might carry multicast traffic even when they are not in the MDB or they are not router ports.</td>
+<td>5.6.0-5.9.1</td>
+<td>5.9.2-5.11.0, 5.10.0-5.11.0</td>
+</tr>
+<tr>
+<td>3982231</td>
+<td>The switch forwards multicast traffic to the CPU when PIM is enabled globally, regardless of the interface configuration.</td>
+<td>5.6.0-5.9.1</td>
+<td>5.9.2-5.11.0, 5.10.0-5.11.0</td>
+</tr>
+<tr>
+<td>3982226</td>
+<td>When SPAN is enabled on a bridge member, an ARP or Gratuitous ARP received during a failover event between locally attached redundant devices such as load balancers might fail to update the bridge MAC table to point to the interface with the newly active load balancer.</td>
+<td>5.4.0-5.9.1</td>
+<td>5.9.2-5.11.0, 5.10.0-5.11.0</td>
+</tr>
+<tr>
+<td>3980941</td>
 <td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
   snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
 This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
   #snmp ALL = NOPASSWD: /usr/cumulus/bin/poectl -j -a </td>
 <td>4.4.0-5.9.1</td>
-<td>5.9.2-5.11.0</td>
+<td>5.9.2-5.11.0, 5.10.0-5.11.0</td>
+</tr>
+<tr>
+<td>3965573</td>
+<td>If you use NVUE to create an SNMP user with a password, then delete and recreate the user with additional encryption passwords (such as DES or AES), SNMP authorization fails for that user.</td>
+<td>5.3.1-5.9.1</td>
+<td>5.9.2-5.11.0, 5.10.0-5.11.0</td>
 </tr>
 <tr>
 <td>3863858</td>
 <td>VRR interfaces might show {{dadfailed}} on their IPv6 link-local address.</td>
 <td>5.6.0-5.8.0</td>
 <td>5.9.0-5.11.0</td>
-</tr>
-<tr>
-<td>3859422</td>
-<td>On rare occasions when certain events occur, such as changes to the topology in the network, when a bond comes online and directly transits to an STP blocking state, the slave ports might still be in a forwarding state. As a result, traffic is forwarded on a blocked port.</td>
-<td>5.2.0-5.9.1</td>
-<td>5.9.2-5.11.0</td>
-</tr>
-<tr>
-<td>3854807</td>
-<td>When you enable Optimized Multicast Flooding (OMF) and change VLAN configuration, a few ports might carry multicast traffic even when they are not in the MDB or they are not router ports.</td>
-<td>5.6.0-5.9.1</td>
-<td>5.9.2-5.11.0</td>
-</tr>
-<tr>
-<td>3854800</td>
-<td>The switch forwards multicast traffic to the CPU when PIM is enabled globally, regardless of the interface configuration.</td>
-<td>5.6.0-5.9.1</td>
-<td>5.9.2-5.11.0</td>
 </tr>
 <tr>
 <td>3824750</td>
@@ -425,6 +425,12 @@ In addition, the CL5.7.0 default configuration for {{vi}} now disables modelines
 <td>5.7.0-5.11.0</td>
 </tr>
 <tr>
+<td>3591918</td>
+<td>The {{nv action disconnect system aaa user}} command does not clear all the open sessions. To work around this issue, run the command as many times as the number of sessions to clear all the sessions.</td>
+<td>5.6.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3590394</td>
 <td>Under rare conditions, running NVUE commands that capture output larger than 4k bytes from Linux tools or utilities might result in failures with 500 INTERNAL SERVER ERROR or Unrecoverable internal error messages. This issue occurs when there are non-ascii characters in large outputs that Cumulus Linux can't decode. This failure is observed only in Cumulus Linux 5.6 and earlier.</td>
 <td>5.6.0</td>
@@ -528,6 +534,12 @@ For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turn
 <td>5.9.0-5.11.0</td>
 </tr>
 <tr>
+<td>3540510</td>
+<td>400Gx8 ports only support traffic line rate with packets that are larger than 172 bytes.</td>
+<td>5.6.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3538321</td>
 <td>In rare cases, an STP topology change on PTP over a VLAN can result in the switch losing the slave state and one of the ports might remain in an uncalibrated state. To work around this issue, toggle the port that is in the uncalibrated state up and down so that one of the ports is selected as the slave.</td>
 <td>5.6.0-5.11.0</td>
@@ -559,10 +571,28 @@ For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turn
 <td>5.7.0-5.11.0</td>
 </tr>
 <tr>
+<td>3497622</td>
+<td>When you remove PSUs, then plug them back in, you might   experience traffic loss and some ports might be in a down state.</td>
+<td>5.6.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3484058</td>
 <td>When you power on the NVIDIA SN3420 switch with no connected cables, the QSFP ports LEDs light in amber.</td>
 <td>5.3.0-5.8.0</td>
 <td>5.9.0-5.11.0</td>
+</tr>
+<tr>
+<td>3472163</td>
+<td>On a switch with the Spectrum-4 ASIC, packets that are smaller than 256 bytes are not included in multicast flows.  Multicast flows support packets that are 256 bytes or larger.</td>
+<td>5.6.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3470940</td>
+<td>On a switch with the Spectrum-4 ASIC, packets that are smaller than 256 bytes are not included in multicast flows.  Multicast flows support packets that are 256 bytes or larger.</td>
+<td>5.6.0-5.11.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3463827</td>
@@ -601,6 +631,12 @@ cumulus@switch:~$ nv config patch frr_policy.yaml
 <td>5.7.0-5.11.0</td>
 </tr>
 <tr>
+<td>3444490</td>
+<td>Migration from ONYX to Cumulus Linux is supported and tested with ONYX version 3.10.4302 GA only.</td>
+<td>5.6.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3442569</td>
 <td>When trying to access the NVUE API, user accounts authenticated with a newly-configured external service, such as TACACS, RADIUS, or LDAP, receive a 401 forbidden error. To work around this issue, after enabling a new authentication service, make sure to restart both {{nginx.service}} and {{nvued.service}} to begin authenticating users against the new authentication service.</td>
 <td>5.5.0-5.11.0</td>
@@ -611,6 +647,12 @@ cumulus@switch:~$ nv config patch frr_policy.yaml
 <td>When you use a single VXLAN device (SVD) with MLAG and static VXLAN tunnels, Cumulus Linux incorrectly associates the MAC addresses it learns from the VXLAN fabric to the bridge PVID. This issue can lead to a feedback loop between the {{clagd}} service and {{switchd}}, and might result in critical CPU usage with an out of memory condition. Do not use an SVD when enabling MLAG in a static VXLAN environment.</td>
 <td>5.5.0-5.8.0</td>
 <td>5.9.0-5.11.0</td>
+</tr>
+<tr>
+<td>3430430</td>
+<td>When you configure PTP on 50G ports, the offset correction might be higher, which can affect the time synchronization of the node. To work around this issue, configure PTP on 100G ports, or on 10G or 1G ports with PTP shaper enabled.</td>
+<td>5.5.0-5.11.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3428677</td>
@@ -716,6 +758,12 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <td>5.7.0-5.11.0</td>
 </tr>
 <tr>
+<td>3253218</td>
+<td>Auto-negotiation isn't supported on Spectrum-2 and Spectrum-3 switches using the 1G SFP-T module; FORCE 1G is configured instead. </td>
+<td>5.4.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3241567</td>
 <td>When you apply switch configuration for the first time on a freshly booted switch and you run the {{nv config apply}} command after setting the hostname with {{nv set system hostname}}, you might see the error message {{Failed to start Hostname Service}}. To work around this issue, run the {{nv config apply}} command a second time.</td>
 <td>5.3.0-5.11.0</td>
@@ -731,6 +779,12 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <td>3226506</td>
 <td>The {{l1-show eth0}} command does not show port information and is not supported in this release. </td>
 <td>5.3.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3225117</td>
+<td>Occasionally, packet losses might occur on 25G ports when link is raised without FEC.</td>
+<td>5.4.0-5.11.0</td>
 <td></td>
 </tr>
 <tr>
@@ -874,6 +928,12 @@ Vulnerable: 2.6.0+dfsg.1-1
 Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>4.0.0-4.4.1, 5.0.0-5.11.0</td>
 <td>4.4.2-4.4.5</td>
+</tr>
+<tr>
+<td>2885305</td>
+<td>Certain Murata PSU attributes show intermittently in the sensors command output. To work around this issue, upgrade to the latest PSU firmware on Murata.</td>
+<td>5.0.0-5.11.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2867042</td>

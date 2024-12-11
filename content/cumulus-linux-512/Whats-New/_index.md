@@ -36,7 +36,6 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
 - NVUE
   - {{<link title="Network Troubleshooting/#print-route-trace-with-traceroute" text="Traceroute command">}}
   - {{<link title="Network Troubleshooting/#check-if-a-host-is-reachable-with-ping" text="Ping command">}}
-  - support SPIFFE ID for AAA (Validation)
   - Support for defining APT sources
   - API call for "ls" linux command to list files in a directory
   - Support for defining APT sources

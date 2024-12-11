@@ -7,22 +7,34 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4119621</td>
-<td>When you set the SNMP server listening address to listen on all IPv4 and IPv6 addresses in a VRF with the {{nv set service snmp-server listening-address all vrf}} and {{nv set service snmp-server listening-address all-v6 vrf}} commands,SNMP requests over IPv6 addresses do not work.</td>
+<td>4182753</td>
+<td>When you configure the SPAN port mirror truncate size to a value greater than 4 and less than the supported minimum, NVUE allows the configuration even though there are errors and failures in the mirror session configuration.The supported values for truncate size are 32 to 4088 for Spectrum 1, 48 to 4088 for Spectrum-2 and Spectrum-3, and 64 to 4088 for Spectrum-4.To work around this issue, run the {{echo &lt;supported_value&gt; &gt; /cumulus/switchd/config/mirror/session/1/truncate_size}} command before you reconfigure mirror sessions with the supported values.</td>
 <td>5.8.0-5.11.0</td>
 <td></td>
+</tr>
+<tr>
+<td>4134451</td>
+<td>When you set the SNMP server listening address to listen on all IPv4 and IPv6 addresses in a VRF with the {{nv set service snmp-server listening-address all vrf}} and {{nv set service snmp-server listening-address all-v6 vrf}} commands,SNMP requests over IPv6 addresses do not work.</td>
+<td>5.8.0-5.10.1</td>
+<td>5.11.0</td>
 </tr>
 <tr>
 <td>4101027</td>
 <td>After you add a VLAN to a bridge member port,  you might experience a few seconds of VXLAN traffic loss.</td>
-<td>5.7.0-5.11.0</td>
-<td></td>
+<td>5.7.0-5.10.1</td>
+<td>5.11.0</td>
 </tr>
 <tr>
 <td>4100164</td>
 <td>Low power Intel SATA controllers experience issues when using the {{mobile}} low power chipset LPM policy. This can cause the SSD to become read only.</td>
-<td>5.8.0-5.11.0</td>
-<td></td>
+<td>5.8.0-5.10.1</td>
+<td>5.11.0</td>
+</tr>
+<tr>
+<td>4086714</td>
+<td>Some STP interfaces might remain in a blocking state when there are large numbers of dis-contiguous VLANs enabled on a port.</td>
+<td>5.8.0-5.10.1</td>
+<td>5.11.0</td>
 </tr>
 <tr>
 <td>4072165</td>
@@ -31,97 +43,115 @@
 <td>5.11.0</td>
 </tr>
 <tr>
-<td>4066219</td>
-<td>Some STP interfaces might remain in a blocking state when there are large numbers of dis-contiguous VLANs enabled on a port.</td>
-<td>5.8.0-5.11.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4063273</td>
 <td>Low power Intel SATA controllers experience issues when using the {{mobile}} low power chipset LPM policy. This can cause the SSD to become read only.</td>
 <td>5.8.0-5.10.1</td>
 <td>5.11.0</td>
 </tr>
 <tr>
-<td>4004453</td>
+<td>4037015</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
-<td>4.3.0-5.9.1, 5.10.0-5.11.0</td>
-<td>5.9.2</td>
+<td>4.3.0-5.9.1</td>
+<td>5.9.2-5.11.0, 5.10.0-5.11.0</td>
 </tr>
 <tr>
-<td>3982222</td>
-<td>When SPAN is enabled on a bridge member, an ARP or Gratuitous ARP received during a failover event between locally attached redundant devices such as load balancers might fail to update the bridge MAC table to point to the interface with the newly active load balancer.</td>
-<td>5.4.0-5.9.1</td>
-<td>5.9.2-5.11.0</td>
+<td>4035681</td>
+<td>The {{nv show interface &lt;interface&gt;}} commands show RX and TX Power values from the wrong lanes on breakout ports.</td>
+<td>5.8.0-5.9.1, 5.10.0-5.10.1</td>
+<td>5.9.2, 5.11.0</td>
 </tr>
 <tr>
-<td>3970626</td>
-<td>When you configure the {{bridge.kernel_mac_refresh_interval}} parameter in the {{switchd.conf}} file, a {{switchd}} restart fails with a core dump.</td>
-<td>5.8.0-5.9.1</td>
-<td>5.9.2-5.11.0</td>
+<td>4023649</td>
+<td>On rare occasions when certain events occur, such as changes to the topology in the network, when a bond comes online and directly transits to an STP blocking state, the slave ports might still be in a forwarding state. As a result, traffic is forwarded on a blocked port.</td>
+<td>5.2.0-5.9.1</td>
+<td>5.9.2-5.11.0, 5.10.0-5.11.0</td>
 </tr>
 <tr>
-<td>3956091</td>
-<td>When you modify the default QoS configuration on top of the base RoCE configuration, NVUE reports an {{Invalid}} exception in the {{nv show qos roce}} command output even when the configuration is valid.</td>
-<td>5.8.0-5.9.1</td>
-<td>5.9.2-5.11.0</td>
-</tr>
-<tr>
-<td>3955615</td>
-<td>Cumulus Linux does not recognize QSFP_CMIS optical modules correctly.</td>
-<td>5.6.0-5.9.1</td>
-<td>5.9.2-5.11.0</td>
-</tr>
-<tr>
-<td>3954026</td>
+<td>4007614</td>
 <td>Static ARP configured with NVUE commands is deleted when the relevant layer 3 interface flaps.</td>
 <td>5.8.0-5.9.1</td>
-<td>5.9.2-5.11.0</td>
+<td>5.9.2-5.11.0, 5.10.0-5.11.0</td>
 </tr>
 <tr>
-<td>3949367</td>
-<td>If you use NVUE to create an SNMP user with a password, then delete and recreate the user with additional encryption passwords (such as DES or AES), SNMP authorization fails for that user.</td>
-<td>5.3.1-5.9.1</td>
-<td>5.9.2-5.11.0</td>
+<td>3982294</td>
+<td>Cumulus Linux does not recognize QSFP_CMIS optical modules correctly.</td>
+<td>5.6.0-5.9.1</td>
+<td>5.9.2-5.11.0, 5.10.0-5.11.0</td>
 </tr>
 <tr>
-<td>3928905</td>
-<td>The {{nv show interface &lt;interface&gt;}} commands show RX and TX Power values from the wrong lanes on breakout ports.</td>
-<td>5.8.0-5.9.1, 5.10.0-5.11.0</td>
-<td>5.9.2</td>
+<td>3982260</td>
+<td>When you modify the default QoS configuration on top of the base RoCE configuration, NVUE reports an {{Invalid}} exception in the {{nv show qos roce}} command output even when the configuration is valid.</td>
+<td>5.8.0-5.9.1</td>
+<td>5.9.2-5.11.0, 5.10.0-5.11.0</td>
 </tr>
 <tr>
-<td>3917601</td>
+<td>3982249</td>
 <td>If a packet containing an all zero source MAC address (00:00:00:00:00:00) is learned on the ASIC, {{switchd}} sends the learn notification to the kernel but the kernel rejects the MAC address as invalid. The ASIC continuously sends the mac-learn notifications, which wastes CPU resources. To work around this issue, configure ACLs to match on the all-zero source MAC address and drop the invalid packets.</td>
 <td>5.5.0-5.9.1</td>
-<td>5.9.2-5.11.0</td>
+<td>5.9.2-5.11.0, 5.10.0-5.11.0</td>
 </tr>
 <tr>
-<td>3917528</td>
-<td>With LACP bypass enabled, Cumulus Linux does not program the MAC address in the bridge FDB for VLAN unaware tagged ports.  With EVPN, the address is not advertised and the remote side might flood the packet instead of unicast.</td>
-<td>5.8.0-5.9.1</td>
-<td>5.9.2-5.11.0</td>
-</tr>
-<tr>
-<td>3896967</td>
+<td>3982242</td>
 <td>PTP does not come up with IPv6 over a trunk port because the IPv6 VLAN tag is not sent. PTP over an IPv4 trunk works fine.</td>
 <td>5.8.0-5.9.1</td>
-<td>5.9.2-5.11.0</td>
+<td>5.9.2-5.11.0, 5.10.0-5.11.0</td>
 </tr>
 <tr>
-<td>3895042</td>
+<td>3982234</td>
+<td>With LACP bypass enabled, Cumulus Linux does not program the MAC address in the bridge FDB for VLAN unaware tagged ports.  With EVPN, the address is not advertised and the remote side might flood the packet instead of unicast.</td>
+<td>5.8.0-5.9.1</td>
+<td>5.9.2-5.11.0, 5.10.0-5.11.0</td>
+</tr>
+<tr>
+<td>3982233</td>
+<td>When you enable Optimized Multicast Flooding (OMF) and change VLAN configuration, a few ports might carry multicast traffic even when they are not in the MDB or they are not router ports.</td>
+<td>5.6.0-5.9.1</td>
+<td>5.9.2-5.11.0, 5.10.0-5.11.0</td>
+</tr>
+<tr>
+<td>3982231</td>
+<td>The switch forwards multicast traffic to the CPU when PIM is enabled globally, regardless of the interface configuration.</td>
+<td>5.6.0-5.9.1</td>
+<td>5.9.2-5.11.0, 5.10.0-5.11.0</td>
+</tr>
+<tr>
+<td>3982230</td>
+<td>On the Spectrum A1 switch, when you enable the {{ip-acl-heavy}} TCAM profile, VXLAN tunnel initialization might fail.</td>
+<td>5.8.0-5.9.1</td>
+<td>5.9.2-5.11.0, 5.10.0-5.11.0</td>
+</tr>
+<tr>
+<td>3982226</td>
+<td>When SPAN is enabled on a bridge member, an ARP or Gratuitous ARP received during a failover event between locally attached redundant devices such as load balancers might fail to update the bridge MAC table to point to the interface with the newly active load balancer.</td>
+<td>5.4.0-5.9.1</td>
+<td>5.9.2-5.11.0, 5.10.0-5.11.0</td>
+</tr>
+<tr>
+<td>3980941</td>
 <td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
   snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
 This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
   #snmp ALL = NOPASSWD: /usr/cumulus/bin/poectl -j -a </td>
 <td>4.4.0-5.9.1</td>
-<td>5.9.2-5.11.0</td>
+<td>5.9.2-5.11.0, 5.10.0-5.11.0</td>
 </tr>
 <tr>
-<td>3895017</td>
+<td>3980938</td>
 <td>When ARP suppression is off, remote EVPN VTEPs duplicate ARP packets from local hosts and each remote host receives two copies of the ARP packets. The issue also applies to IPv6 ND packets.</td>
 <td>5.8.0-5.9.1</td>
-<td>5.9.2-5.11.0</td>
+<td>5.9.2-5.11.0, 5.10.0-5.11.0</td>
+</tr>
+<tr>
+<td>3980925</td>
+<td>When you configure the {{bridge.kernel_mac_refresh_interval}} parameter in the {{switchd.conf}} file, a {{switchd}} restart fails with a core dump.</td>
+<td>5.8.0-5.9.1</td>
+<td>5.9.2-5.11.0, 5.10.0-5.11.0</td>
+</tr>
+<tr>
+<td>3965573</td>
+<td>If you use NVUE to create an SNMP user with a password, then delete and recreate the user with additional encryption passwords (such as DES or AES), SNMP authorization fails for that user.</td>
+<td>5.3.1-5.9.1</td>
+<td>5.9.2-5.11.0, 5.10.0-5.11.0</td>
 </tr>
 <tr>
 <td>3875419</td>
@@ -140,30 +170,6 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <td>When simultaneously changing the {{maxage}} and {{forward-delay}} bridge timers in RSTP for VLAN-aware bridges, the commands might not be accepted if the {{2xfdelay-1}} is less than the previously configured {{maxage}} timer because {{ifupdown2}} configures the forward delay first. To work around this issue, run the {{ifreload -a}} command again to process the {{forward-delay}} command after the new {{maxage}} configuration has been accepted.  You have to repeat the {{ifreload -a}} command after a reboot to set the forward delay correctly in the bridge.</td>
 <td>5.8.0</td>
 <td>5.9.0-5.11.0</td>
-</tr>
-<tr>
-<td>3859422</td>
-<td>On rare occasions when certain events occur, such as changes to the topology in the network, when a bond comes online and directly transits to an STP blocking state, the slave ports might still be in a forwarding state. As a result, traffic is forwarded on a blocked port.</td>
-<td>5.2.0-5.9.1</td>
-<td>5.9.2-5.11.0</td>
-</tr>
-<tr>
-<td>3854807</td>
-<td>When you enable Optimized Multicast Flooding (OMF) and change VLAN configuration, a few ports might carry multicast traffic even when they are not in the MDB or they are not router ports.</td>
-<td>5.6.0-5.9.1</td>
-<td>5.9.2-5.11.0</td>
-</tr>
-<tr>
-<td>3854800</td>
-<td>The switch forwards multicast traffic to the CPU when PIM is enabled globally, regardless of the interface configuration.</td>
-<td>5.6.0-5.9.1</td>
-<td>5.9.2-5.11.0</td>
-</tr>
-<tr>
-<td>3851499</td>
-<td>On the Spectrum A1 switch, when you enable the {{ip-acl-heavy}} TCAM profile, VXLAN tunnel initialization might fail.</td>
-<td>5.8.0-5.9.1</td>
-<td>5.9.2-5.11.0</td>
 </tr>
 <tr>
 <td>3837121</td>
@@ -240,6 +246,12 @@ router1: wjhd: Fail to deinit SDK telemetry, error: [3]: [Invalid Handle]
 <td>Enabling or disabling link utilization causes the {{switchd}} service to restart, which causes all network ports to reset, interrupts network services, and resets the switch hardware configuration.</td>
 <td>5.8.0</td>
 <td>5.9.0-5.11.0</td>
+</tr>
+<tr>
+<td>3774274</td>
+<td>When you manually configure the {{/etc/cumulus/datapath/qos/qos_features.conf}} file without applying the QoS configuration with NVUE, running the {{nv config apply empty}} command later does not clean up the QoS configuration. If the QoS configuration includes breakout ports, the {{nv config apply empty}} command fails due to a {{switchd}} reload trigger failure. To work around this issue, clean up the configuration manually in the {{/etc/cumulus/datapath/qos/qos_features.conf}}, then run the {{nv config apply empty}} command.</td>
+<td>5.8.0-5.11.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3773991</td>
@@ -380,6 +392,12 @@ This is due to both the ASIC Monitoring service and the What Just Happened (WJH)
 <td>5.9.0-5.11.0</td>
 </tr>
 <tr>
+<td>3655681</td>
+<td>When you disable, then enable STP auto-edge on a port, the port might not transition to the operational edge even though the port does not receive bpdus. To work around this issue, configure the port as an admin-edge port.</td>
+<td>5.7.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3637444</td>
 <td>Applying an inbound control plane ACL on the eth0 management interface does not take effect. To work around this issue, apply the ACL on the {{mgmt}} interface; for example, {{nv set interface mgmt acl &lt;acl-id&gt; inbound control-plane}}.</td>
 <td>5.7.0-5.11.0</td>
@@ -402,6 +420,12 @@ This is due to both the ASIC Monitoring service and the What Just Happened (WJH)
 <td>After configuring the system level pre-login and post-login banner messages, the messages do not return to their default settings when you run the {{nv unset system}} command or the {{nv config apply empty}} command.</td>
 <td>5.7.0-5.9.2</td>
 <td>5.10.0-5.11.0</td>
+</tr>
+<tr>
+<td>3591918</td>
+<td>The {{nv action disconnect system aaa user}} command does not clear all the open sessions. To work around this issue, run the command as many times as the number of sessions to clear all the sessions.</td>
+<td>5.6.0-5.11.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3587393</td>
@@ -438,8 +462,20 @@ To work around this issue when using fiber cables:
 <td>5.9.0-5.11.0</td>
 </tr>
 <tr>
+<td>3540510</td>
+<td>400Gx8 ports only support traffic line rate with packets that are larger than 172 bytes.</td>
+<td>5.6.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3538321</td>
 <td>In rare cases, an STP topology change on PTP over a VLAN can result in the switch losing the slave state and one of the ports might remain in an uncalibrated state. To work around this issue, toggle the port that is in the uncalibrated state up and down so that one of the ports is selected as the slave.</td>
+<td>5.6.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3497622</td>
+<td>When you remove PSUs, then plug them back in, you might   experience traffic loss and some ports might be in a down state.</td>
 <td>5.6.0-5.11.0</td>
 <td></td>
 </tr>
@@ -448,6 +484,18 @@ To work around this issue when using fiber cables:
 <td>When you power on the NVIDIA SN3420 switch with no connected cables, the QSFP ports LEDs light in amber.</td>
 <td>5.3.0-5.8.0</td>
 <td>5.9.0-5.11.0</td>
+</tr>
+<tr>
+<td>3472163</td>
+<td>On a switch with the Spectrum-4 ASIC, packets that are smaller than 256 bytes are not included in multicast flows.  Multicast flows support packets that are 256 bytes or larger.</td>
+<td>5.6.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3470940</td>
+<td>On a switch with the Spectrum-4 ASIC, packets that are smaller than 256 bytes are not included in multicast flows.  Multicast flows support packets that are 256 bytes or larger.</td>
+<td>5.6.0-5.11.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3463827</td>
@@ -462,6 +510,12 @@ To work around this issue when using fiber cables:
 <td>5.11.0</td>
 </tr>
 <tr>
+<td>3444490</td>
+<td>Migration from ONYX to Cumulus Linux is supported and tested with ONYX version 3.10.4302 GA only.</td>
+<td>5.6.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3442569</td>
 <td>When trying to access the NVUE API, user accounts authenticated with a newly-configured external service, such as TACACS, RADIUS, or LDAP, receive a 401 forbidden error. To work around this issue, after enabling a new authentication service, make sure to restart both {{nginx.service}} and {{nvued.service}} to begin authenticating users against the new authentication service.</td>
 <td>5.5.0-5.11.0</td>
@@ -472,6 +526,12 @@ To work around this issue when using fiber cables:
 <td>When you use a single VXLAN device (SVD) with MLAG and static VXLAN tunnels, Cumulus Linux incorrectly associates the MAC addresses it learns from the VXLAN fabric to the bridge PVID. This issue can lead to a feedback loop between the {{clagd}} service and {{switchd}}, and might result in critical CPU usage with an out of memory condition. Do not use an SVD when enabling MLAG in a static VXLAN environment.</td>
 <td>5.5.0-5.8.0</td>
 <td>5.9.0-5.11.0</td>
+</tr>
+<tr>
+<td>3430430</td>
+<td>When you configure PTP on 50G ports, the offset correction might be higher, which can affect the time synchronization of the node. To work around this issue, configure PTP on 100G ports, or on 10G or 1G ports with PTP shaper enabled.</td>
+<td>5.5.0-5.11.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3424967</td>
@@ -529,6 +589,12 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <td></td>
 </tr>
 <tr>
+<td>3253218</td>
+<td>Auto-negotiation isn't supported on Spectrum-2 and Spectrum-3 switches using the 1G SFP-T module; FORCE 1G is configured instead. </td>
+<td>5.4.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3241567</td>
 <td>When you apply switch configuration for the first time on a freshly booted switch and you run the {{nv config apply}} command after setting the hostname with {{nv set system hostname}}, you might see the error message {{Failed to start Hostname Service}}. To work around this issue, run the {{nv config apply}} command a second time.</td>
 <td>5.3.0-5.11.0</td>
@@ -538,6 +604,12 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <td>3226506</td>
 <td>The {{l1-show eth0}} command does not show port information and is not supported in this release. </td>
 <td>5.3.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3225117</td>
+<td>Occasionally, packet losses might occur on 25G ports when link is raised without FEC.</td>
+<td>5.4.0-5.11.0</td>
 <td></td>
 </tr>
 <tr>
@@ -675,6 +747,12 @@ Vulnerable: 2.6.0+dfsg.1-1
 Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>4.0.0-4.4.1, 5.0.0-5.11.0</td>
 <td>4.4.2-4.4.5</td>
+</tr>
+<tr>
+<td>2885305</td>
+<td>Certain Murata PSU attributes show intermittently in the sensors command output. To work around this issue, upgrade to the latest PSU firmware on Murata.</td>
+<td>5.0.0-5.11.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2867042</td>

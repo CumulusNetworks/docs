@@ -7,6 +7,60 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4203748</td>
+<td>If you include a comma in the BGP community list, extended community list, or large community list regex expression of a routing policy, you see error messages and FRR reload fails. Make sure the regex expression does not contain a comma.</td>
+<td>5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4200961</td>
+<td>If you use a bridge name that isn't {{br_default}}, NVUE generates incorrect ptp4l.conf files.</td>
+<td>5.10.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4200952</td>
+<td>Configuring the listening-address for the SNMP server fails for IP addresses associated with VRFs other than the management VRF.</td>
+<td>5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4198683</td>
+<td>Configuring the listening-address for the SNMP server fails for IP addresses associated with VRFs other than the management VRF.</td>
+<td>5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4185426</td>
+<td>When you add a new MLAG bond, the BPDU guard state of its peer is initialized to False and immediately updated correctly after resync if the bond is up. If the bond is down, resync is not done and the peer PBDU guard state is not updated, which leads to a conflict if the local PBDU guard is enabled.Even though it seems that PBDU configuration does not match between MLAG peers, this issue does not have any functional impact. It gets cleared when the bond becomes up.</td>
+<td>5.9.2-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4183214</td>
+<td>If you upgrade the switch from Cumulus Linux 5.9.x or 5.10.x to Cumulus Linux 5.11.0 or later with package upgrade and Radius is enabled, you see configuration and commit errors. To avoid this issue,  either disable Radius during package upgrade or disable Radius before package upgrade with the {{sudo adduser --system --group --home /run/nslcd --no-create-home  --gecos 'nslcd name service LDAP connection daemon' nslcd}} command.</td>
+<td>5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4182753</td>
+<td>When you configure the SPAN port mirror truncate size to a value greater than 4 and less than the supported minimum, NVUE allows the configuration even though there are errors and failures in the mirror session configuration.The supported values for truncate size are 32 to 4088 for Spectrum 1, 48 to 4088 for Spectrum-2 and Spectrum-3, and 64 to 4088 for Spectrum-4.To work around this issue, run the {{echo &lt;supported_value&gt; &gt; /cumulus/switchd/config/mirror/session/1/truncate_size}} command before you reconfigure mirror sessions with the supported values.</td>
+<td>5.8.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4176931</td>
+<td>The {{nv show platform firmware}} command results in a Python traceback and takes a long time to complete because the VX image does not support the {{smartctl}} utility.</td>
+<td>5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4175695</td>
+<td>If all of the neighbors returned in the {{nv show vrf &lt;vrf&gt; router bgp neighbor}} command output have no {{address-family}} configuration, you see an internal error when the nested table in the  output is being rendered.</td>
+<td>5.10.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4175217</td>
 <td>When there is a large number of discontiguous VTEP to VLAN mappings, {{switchd}} crashes with a Netlink error similar to the following:
 netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported truncated message</td>
@@ -17,6 +71,27 @@ netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported tru
 <td>4170628</td>
 <td>If you use a bridge name that isn't {{br_default}}, NVUE generates incorrect ptp4l.conf files.</td>
 <td>5.10.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4170604</td>
+<td>When you configure EVPN multihoming with more than one ESI bond member, you might see intermediate traffic loss. </td>
+<td>5.9.1-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4159554</td>
+<td>When you configure EVPN multihoming with more than one ESI bond member, you might see intermediate traffic loss.</td>
+<td>5.9.1-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4154839</td>
+<td>When you run certain SDK commands (such as {{sudo sx_api_port_counter_dump_all.py}} or {{sx_api_fdb_dump etc'}}) first as the cumulus user, then with {{sudo}}, you see the following error:
+
+PermissionError: Errno 13] Permission denied: '/tmp/python_err_log.txt'
+To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
+<td>5.11.0</td>
 <td></td>
 </tr>
 <tr>
@@ -32,6 +107,12 @@ netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported tru
 <td></td>
 </tr>
 <tr>
+<td>4134447</td>
+<td>The journal logs might include the error message {{ERR kernel: [    7.453789] usb usb2-port2: connect-debounce failed}}. This log message has no functionality impact and can be safely ignored.</td>
+<td>5.11.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4134174</td>
 <td>If you configure a route map by attaching it to a specific protocol, then you detach it from that protocol, if you then attach the same route map to all protocols, then detach it from all protocols, Cumulus Linux deletes routes from the forwarding table.To work around this issue, either attach the route map to all protocols or attach the route map to each protocol you want to use. For example, to attach the route map to all protocols, run the {{nv set vrf &lt;vrf-name&gt; router rib fib-filter route-map &lt;route-map&gt;}} command. To attach the route map to each protocol you want to use, run the {{nv set vrf &lt;vrf-name&gt; router rib fib-filter protocol &lt;protocol string&gt; route-map &lt;route-map&gt;}} command.</td>
 <td>5.11.0</td>
@@ -40,12 +121,6 @@ netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported tru
 <tr>
 <td>4130022</td>
 <td>When you configure LDAP authentication, applying NVUE configuration might take a long time if the LDAP server is slow.  To avoid this delay, ensure that {{local}} is before {{ldap}} in the authentication order.</td>
-<td>5.11.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4129757</td>
-<td>If you include a comma in the BGP community list, extended community list, or large community list regex expression of a routing policy, you see error messages and FRR reload fails. Make sure the regex expression does not contain a comma.</td>
 <td>5.11.0</td>
 <td></td>
 </tr>
@@ -65,15 +140,45 @@ cumulus@switch:~$ sudo umount tmpfs-installer</td>
 <td></td>
 </tr>
 <tr>
+<td>4124376</td>
+<td>The SN3700C-S, SN5400, and SN5600 secure boot switch running Cumulus Linux 5.11.0 boots with shim 15.8 that adds entries to the SBAT revocations to prevent the switch from booting shim 15.7 or earlier (included in Cumulus Linux 5.10 and earlier).To downgrade a secure boot switch from Cumulus Linux 5.11.0 or to recover a downgraded switch that does not boot, follow the steps in &lt;a href="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-511/Installation-Management/Upgrading-Cumulus-Linux/#downgrade-a-secure-boot-switch-from-cumulus-linux-5110"&gt;Downgrade a Secure Boot Switch from Cumulus Linux 5.11.0&lt;/a&gt;.</td>
+<td>5.11.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4115126</td>
 <td>When IPv4 layer 3 switch ports and virtual interfaces flap, {{switchd}} might send an ICMP Reply message instead of an ARP request (although no ICMP request was sent). Multiple ICMP Replies might be sent to any of the neighbor IP addresses of that interface.</td>
 <td>5.9.2-5.11.0</td>
 <td></td>
 </tr>
 <tr>
+<td>4105127</td>
+<td>Any sFlow configuration changes that require an {{hsflowd}} restart are operational only after an initial delay of 60 seconds.</td>
+<td>5.11.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4101560</td>
 <td>The {{nv set vrf &lt;vrf&gt; router rib &lt;address-family&gt; fib-filter route-map &lt;route-map&gt;}} command only works if you restart FRR after you run the command. To work around this issue, attach the route map to each needed protocol; for example, run the {{nv set vrf &lt;vrf-name&gt; router rib fib-filter protocol &lt;protocol string&gt; route-map &lt;route-map&gt;}} command.</td>
 <td>5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4100629</td>
+<td>LLDP neighbor changes get reflected in show command outputs only after the tx-interval timer times the tx-hold-multiplier. </td>
+<td>5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4082210</td>
+<td>When you change the CPU resource limit with the {{nv set service control rsyslog resource-limit cpu &lt;value&gt;}} command, the {{rsyslog}} agent does not start. To work around this issue, increase the CPU resource limit, then restart the service manually.</td>
+<td>5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4077921</td>
+<td>You cannot use package upgrade to upgrade from Cumulus Linux 5.9.2 to Cumulus Linux 5.10.1. You must install the Cumulus Linux 5.10.1 image.</td>
+<td>5.10.1-5.11.0</td>
 <td></td>
 </tr>
 <tr>
@@ -86,6 +191,33 @@ cumulus@switch:~$ sudo umount tmpfs-installer</td>
 <td>4007590</td>
 <td>When you upgrade Cumulus Linux 5.9.1 to Cumulus Linux 5.9.2 or later with package upgrade, the NTP service stops. To restart the NTP service, enable, then restart the service in the VRF in which it was running with the {{systemctl enable ntpsec@&lt;vrf&gt;}} and {{systemctl restart ntpsec@&lt;vrf&gt;}} commands.</td>
 <td>5.10.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3985682</td>
+<td>On Spectrum-4 switches, multicast flows containing packets smaller than 512 bytes might not reach full line rate. Cumulus Linux supports 512 byte and larger multicast packets.</td>
+<td>5.10.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3966312</td>
+<td>When connecting the SN5xxx switch to third party test equipment (such as IXIA) using copper cables at 100GbE, 200GbE, 400GbE, or 800GbE, links do not come up.</td>
+<td>5.10.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3915878</td>
+<td>If you configure remote syslog export through a non-default VRF, you might see repeated error logs from the {{rsyslog}} process while the switch is booting:
+rsyslogd: create UDP socket bound to device failed: No such device [v8.2302.0]
+rsyslogd: No UDP socket could successfully be initialized, some functionality may be disabled.  [v8.2302.0]
+The logs occur because the {{rsyslog}} service starts before the networking service creates the configured VRF for syslog export. There is no functional impact with this issue.</td>
+<td>5.9.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3879809</td>
+<td>What Just Happened (WJH) does not work on Spectrum-4 switches.</td>
+<td>5.9.0-5.11.0</td>
 <td></td>
 </tr>
 <tr>
@@ -104,8 +236,32 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 <td></td>
 </tr>
 <tr>
+<td>3877516</td>
+<td>When you connect two NVIDIA switches and configure 400G speed in force mode, links don't come up.To work around this issue, make sure auto negotiation is always on when connecting NVIDIA to NVIDIA in PAM4.</td>
+<td>5.9.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3875373</td>
+<td>When you run the {{nv config apply empty}} command, NVUE removes the {{cumulus user}}. If you are logged in as the {{cumulus}} user when you run the {{nv config apply empty}} command, the command fails.</td>
+<td>5.9.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3861745</td>
 <td>On UEFI hardware (where the {{/sys/firmware/efi}} directory exists), using the update-grub program might generate a {{/boot/grub/grub.cfg}} that is incorrect for booting ONIE if the ONIE option is selected on the console while booting. To work around this issue, run {{mount LABEL="EFI System" /boot/efi}} before using update-grub.</td>
+<td>5.9.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3855796</td>
+<td>When configuring a Unicast Master Table for clients, the server addresses must be reachable and the route to the destination must exist. The unicast table can have one directly-connected port for a client. This restriction is only for directly connected ports and doesn't apply to Unicast Servers on other devices or switches.</td>
+<td>5.9.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3847439</td>
+<td>In rare cases on the Spectrum 1 switch  where a dual connected host transmits all traffic flows to only one switch in a connected MLAG pair and the host changes behavior to hash all flows to the other MLAG switch, there might be traffic loss if the MAC FDB entry on the original switch ages out.</td>
 <td>5.9.0-5.11.0</td>
 <td></td>
 </tr>
@@ -119,6 +275,29 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 <td>3835635</td>
 <td>When adaptive routing is enabled, traffic for non adaptive routing enabled ports and non adaptive routing ECMPs might be routed over all ports in ECMP.  Avoid using regular ECMPs with adaptive routing enabled on the switch.</td>
 <td>5.9.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3819945</td>
+<td>When you connect an NVIDIA SN4410, SN4700, or SN5600 switch to any Spectrum 1, Spectrum-2, or Spectrum-3 peer switch (with four lanes) using a 4x breakout configuration and the default lanes per port setting, links do not come up. To work around this issue, provide the lanes per port configuration shown below:
+cumulus@switch:~$ nv set interface &lt;interface&gt; link breakout 4x lanes-per-port 1</td>
+<td>5.9.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3818545</td>
+<td>The terminal monitoring software SecureCRT has a known issue when running on both Windows and Mac systems where it gets "stuck" when monitoring the serial port of the switch as Cumulus Linux boots up.  When this occurs, the serial port stops as shown below and SecureCRT is unable to receive any more serial data from the switch (it is able to transmit).
+
+Mounting dev-hugepages.mount - Huge Pages File System...
+Mounting dev-mqueue.mount
+</td>
+<td>5.9.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3774274</td>
+<td>When you manually configure the {{/etc/cumulus/datapath/qos/qos_features.conf}} file without applying the QoS configuration with NVUE, running the {{nv config apply empty}} command later does not clean up the QoS configuration. If the QoS configuration includes breakout ports, the {{nv config apply empty}} command fails due to a {{switchd}} reload trigger failure. To work around this issue, clean up the configuration manually in the {{/etc/cumulus/datapath/qos/qos_features.conf}}, then run the {{nv config apply empty}} command.</td>
+<td>5.8.0-5.11.0</td>
 <td></td>
 </tr>
 <tr>
@@ -146,9 +325,21 @@ cumulus@switch:~$ sudo apt upgrade
 <td></td>
 </tr>
 <tr>
+<td>3655681</td>
+<td>When you disable, then enable STP auto-edge on a port, the port might not transition to the operational edge even though the port does not receive bpdus. To work around this issue, configure the port as an admin-edge port.</td>
+<td>5.7.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3637444</td>
 <td>Applying an inbound control plane ACL on the eth0 management interface does not take effect. To work around this issue, apply the ACL on the {{mgmt}} interface; for example, {{nv set interface mgmt acl &lt;acl-id&gt; inbound control-plane}}.</td>
 <td>5.7.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3591918</td>
+<td>The {{nv action disconnect system aaa user}} command does not clear all the open sessions. To work around this issue, run the command as many times as the number of sessions to clear all the sessions.</td>
+<td>5.6.0-5.11.0</td>
 <td></td>
 </tr>
 <tr>
@@ -172,14 +363,50 @@ To work around this issue when using fiber cables:
 <td></td>
 </tr>
 <tr>
+<td>3540510</td>
+<td>400Gx8 ports only support traffic line rate with packets that are larger than 172 bytes.</td>
+<td>5.6.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3538321</td>
 <td>In rare cases, an STP topology change on PTP over a VLAN can result in the switch losing the slave state and one of the ports might remain in an uncalibrated state. To work around this issue, toggle the port that is in the uncalibrated state up and down so that one of the ports is selected as the slave.</td>
 <td>5.6.0-5.11.0</td>
 <td></td>
 </tr>
 <tr>
+<td>3497622</td>
+<td>When you remove PSUs, then plug them back in, you might   experience traffic loss and some ports might be in a down state.</td>
+<td>5.6.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3472163</td>
+<td>On a switch with the Spectrum-4 ASIC, packets that are smaller than 256 bytes are not included in multicast flows.  Multicast flows support packets that are 256 bytes or larger.</td>
+<td>5.6.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3470940</td>
+<td>On a switch with the Spectrum-4 ASIC, packets that are smaller than 256 bytes are not included in multicast flows.  Multicast flows support packets that are 256 bytes or larger.</td>
+<td>5.6.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3444490</td>
+<td>Migration from ONYX to Cumulus Linux is supported and tested with ONYX version 3.10.4302 GA only.</td>
+<td>5.6.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3442569</td>
 <td>When trying to access the NVUE API, user accounts authenticated with a newly-configured external service, such as TACACS, RADIUS, or LDAP, receive a 401 forbidden error. To work around this issue, after enabling a new authentication service, make sure to restart both {{nginx.service}} and {{nvued.service}} to begin authenticating users against the new authentication service.</td>
+<td>5.5.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3430430</td>
+<td>When you configure PTP on 50G ports, the offset correction might be higher, which can affect the time synchronization of the node. To work around this issue, configure PTP on 100G ports, or on 10G or 1G ports with PTP shaper enabled.</td>
 <td>5.5.0-5.11.0</td>
 <td></td>
 </tr>
@@ -233,6 +460,12 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <td></td>
 </tr>
 <tr>
+<td>3253218</td>
+<td>Auto-negotiation isn't supported on Spectrum-2 and Spectrum-3 switches using the 1G SFP-T module; FORCE 1G is configured instead. </td>
+<td>5.4.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3241567</td>
 <td>When you apply switch configuration for the first time on a freshly booted switch and you run the {{nv config apply}} command after setting the hostname with {{nv set system hostname}}, you might see the error message {{Failed to start Hostname Service}}. To work around this issue, run the {{nv config apply}} command a second time.</td>
 <td>5.3.0-5.11.0</td>
@@ -242,6 +475,12 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <td>3226506</td>
 <td>The {{l1-show eth0}} command does not show port information and is not supported in this release. </td>
 <td>5.3.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3225117</td>
+<td>Occasionally, packet losses might occur on 25G ports when link is raised without FEC.</td>
+<td>5.4.0-5.11.0</td>
 <td></td>
 </tr>
 <tr>
@@ -365,6 +604,12 @@ Vulnerable: 2.6.0+dfsg.1-1
 Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>4.0.0-4.4.1, 5.0.0-5.11.0</td>
 <td>4.4.2-4.4.5</td>
+</tr>
+<tr>
+<td>2885305</td>
+<td>Certain Murata PSU attributes show intermittently in the sensors command output. To work around this issue, upgrade to the latest PSU firmware on Murata.</td>
+<td>5.0.0-5.11.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2867042</td>
@@ -501,6 +746,11 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <td>4063273</td>
 <td>Low power Intel SATA controllers experience issues when using the {{mobile}} low power chipset LPM policy. This can cause the SSD to become read only.</td>
 <td>5.8.0-5.10.1</td>
+</tr>
+<tr>
+<td>4061534</td>
+<td>When you remove a secondary OTLP collector, there is a telemetry spike and existing connections with OTLP exporters reset. When new connections with the OTLP collector re-establish, the server experiences a high CPU and memory leak, which can bring down the  telemetry collection service.</td>
+<td>5.10.0-5.10.1</td>
 </tr>
 <tr>
 <td>4050835</td>

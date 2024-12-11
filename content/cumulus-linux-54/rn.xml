@@ -7,37 +7,37 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4004453</td>
+<td>4037015</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
-<td>4.3.0-5.9.1, 5.10.0-5.11.0</td>
-<td>5.9.2</td>
+<td>4.3.0-5.9.1</td>
+<td>5.9.2-5.11.0, 5.10.0-5.11.0</td>
 </tr>
 <tr>
-<td>3982222</td>
+<td>4023649</td>
+<td>On rare occasions when certain events occur, such as changes to the topology in the network, when a bond comes online and directly transits to an STP blocking state, the slave ports might still be in a forwarding state. As a result, traffic is forwarded on a blocked port.</td>
+<td>5.2.0-5.9.1</td>
+<td>5.9.2-5.11.0, 5.10.0-5.11.0</td>
+</tr>
+<tr>
+<td>3982226</td>
 <td>When SPAN is enabled on a bridge member, an ARP or Gratuitous ARP received during a failover event between locally attached redundant devices such as load balancers might fail to update the bridge MAC table to point to the interface with the newly active load balancer.</td>
 <td>5.4.0-5.9.1</td>
-<td>5.9.2-5.11.0</td>
+<td>5.9.2-5.11.0, 5.10.0-5.11.0</td>
 </tr>
 <tr>
-<td>3949367</td>
-<td>If you use NVUE to create an SNMP user with a password, then delete and recreate the user with additional encryption passwords (such as DES or AES), SNMP authorization fails for that user.</td>
-<td>5.3.1-5.9.1</td>
-<td>5.9.2-5.11.0</td>
-</tr>
-<tr>
-<td>3895042</td>
+<td>3980941</td>
 <td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
   snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
 This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
   #snmp ALL = NOPASSWD: /usr/cumulus/bin/poectl -j -a </td>
 <td>4.4.0-5.9.1</td>
-<td>5.9.2-5.11.0</td>
+<td>5.9.2-5.11.0, 5.10.0-5.11.0</td>
 </tr>
 <tr>
-<td>3859422</td>
-<td>On rare occasions when certain events occur, such as changes to the topology in the network, when a bond comes online and directly transits to an STP blocking state, the slave ports might still be in a forwarding state. As a result, traffic is forwarded on a blocked port.</td>
-<td>5.2.0-5.9.1</td>
-<td>5.9.2-5.11.0</td>
+<td>3965573</td>
+<td>If you use NVUE to create an SNMP user with a password, then delete and recreate the user with additional encryption passwords (such as DES or AES), SNMP authorization fails for that user.</td>
+<td>5.3.1-5.9.1</td>
+<td>5.9.2-5.11.0, 5.10.0-5.11.0</td>
 </tr>
 <tr>
 <td>3773177</td>
@@ -638,6 +638,12 @@ cumulus@switch:~$ sudo chmod 0664 /run/tacacs_client_map
 <td>5.7.0-5.11.0</td>
 </tr>
 <tr>
+<td>3253218</td>
+<td>Auto-negotiation isn't supported on Spectrum-2 and Spectrum-3 switches using the 1G SFP-T module; FORCE 1G is configured instead. </td>
+<td>5.4.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3241567</td>
 <td>When you apply switch configuration for the first time on a freshly booted switch and you run the {{nv config apply}} command after setting the hostname with {{nv set system hostname}}, you might see the error message {{Failed to start Hostname Service}}. To work around this issue, run the {{nv config apply}} command a second time.</td>
 <td>5.3.0-5.11.0</td>
@@ -662,6 +668,12 @@ Can't set non-static MAC address for non-vPort 0x0001006B when VID is VFID.
 <td>3226506</td>
 <td>The {{l1-show eth0}} command does not show port information and is not supported in this release. </td>
 <td>5.3.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3225117</td>
+<td>Occasionally, packet losses might occur on 25G ports when link is raised without FEC.</td>
+<td>5.4.0-5.11.0</td>
 <td></td>
 </tr>
 <tr>
@@ -866,6 +878,12 @@ Vulnerable: 2.6.0+dfsg.1-1
 Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>4.0.0-4.4.1, 5.0.0-5.11.0</td>
 <td>4.4.2-4.4.5</td>
+</tr>
+<tr>
+<td>2885305</td>
+<td>Certain Murata PSU attributes show intermittently in the sensors command output. To work around this issue, upgrade to the latest PSU firmware on Murata.</td>
+<td>5.0.0-5.11.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2867042</td>

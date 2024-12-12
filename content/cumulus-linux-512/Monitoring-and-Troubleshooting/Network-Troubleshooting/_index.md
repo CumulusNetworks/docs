@@ -6,7 +6,7 @@ toc: 3
 ---
 Cumulus Linux includes command line and analytical tools to help you troubleshoot issues with your network.
 
-## Check if a Host is Reachable with ping
+## ping
 
 Use `ping` to check that a host is reachable. `ping` also calculates the time it takes for packets to travel round trip. See `man ping` for details.
 
@@ -171,7 +171,7 @@ cumulus@switch:~$ ping -6 fe80::a00:27ff:fe00:0%eth0
 
 When troubleshooting intermittent connectivity issues, it is helpful to send continuous pings to a host.
 
-## Print Route Trace with traceroute
+## traceroute
 
 Use the traceroute tool for network troubleshooting, identifying routing issues, measuring latency, mapping network paths, detecting performance bottlenecks, and diagnosing connectivity problems.
 
@@ -262,7 +262,7 @@ cumulus@switch:~$ traceroute 10.10.10.10 -U
 {{< /tab >}}
 {{< /tabs >}}
 
-### Monitor Control Plane Traffic with tcpdump
+## tcpdump
 
 You can use `tcpdump` to monitor control plane traffic (traffic sent to and coming from the switch CPUs). `tcpdump` does **not** monitor data plane traffic; use `cl-acltool` instead (see above).
 

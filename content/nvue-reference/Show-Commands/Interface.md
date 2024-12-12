@@ -1151,6 +1151,32 @@ cumulus@switch:~$ nv show interface swp1 pluggable
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show interface \<interface-id\> rates</h>
+
+Shows the traffic rate and <span class="a-tooltip">[PPS](## "Packets Per Second")</span> for a specific interface.
+
+Monitoring the traffic rate and PPS for an interface ensures optimal network performance and reliability. You can use the data provided to allocate and utilize network resources efficiently, ensuring quality of service and preventing network bottlenecks. The data helps you to obtain a comprehensive view of network health, detect any DDoS attacks, and see if the current network can handle peak loads or if you need future network capacity expansion and upgrades.
+
+By monitoring both the traffic rate and PPS, you can identify peak usage times and adjust bandwidth allocation or optimize packet paths to ensure low latency and high throughput.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<interface-id>` | The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 rates
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show interface \<interface-id\> storm-control</h>
 
 Shows storm control configuration settings for the specified interface.
@@ -1268,6 +1294,25 @@ swp6       down         1         1           2                    2024/11/04 19
 swp7       down         1         1           2                    2024/11/04 19:41:56.512
 swp8       down         1         1           2                    2024/11/04 19:41:56.512
 ...
+```
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface rates</h>
+
+Shows the traffic rate and <span class="a-tooltip">[PPS](## "Packets Per Second")</span> for all interfaces.
+
+Monitoring the traffic rate and PPS for your interfaces ensures optimal network performance and reliability. You can use the data provided to allocate and utilize network resources efficiently, ensuring quality of service and preventing network bottlenecks. The data helps you to obtain a comprehensive view of network health, detect any DDoS attacks, and see if the current network can handle peak loads or if you need future network capacity expansion and upgrades.
+
+By monitoring both the traffic rate and PPS, you can identify peak usage times and adjust bandwidth allocation or optimize packet paths to ensure low latency and high throughput.
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface rates
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

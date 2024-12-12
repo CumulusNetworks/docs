@@ -71,6 +71,8 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 ```
 nv set qos roce mode lossless-single-ipool
 nv set vrf <vrf> router bgp peer-group <peer-group-id> graceful-shutdown
+nv set vrf <vrf> router bgp address-family <address-family> advertise-origin
+nv set vrf <vrf> router bgp address-family <address-family> nhg-per-origin
 ```
 
 {{< /tab >}}
@@ -78,6 +80,8 @@ nv set vrf <vrf> router bgp peer-group <peer-group-id> graceful-shutdown
 
 ```
 nv unset vrf <vrf> router bgp peer-group <peer-group-id> graceful-shutdown
+nv unset vrf <vrf> router bgp address-family <address-family> advertise-origin
+nv unset vrf <vrf> router bgp address-family <address-family> nhg-per-origin
 ```
 
 {{< /tab >}}
@@ -93,6 +97,21 @@ nv action clear bridge domain <domain-id> mac-table dynamic mac <mac-address> in
 nv action clear bridge domain <domain-id> mac-table dynamic mac <mac-address> vlan <vlan-id interface <interface-id>
 nv action lookup vrf <vrf-id> router fib <address-family> <ip-address>
 nv action reset platform transceiver <port>
+nv action ping system <destination>
+nv action ping system <destination> count
+nv action ping system <destination> interval
+nv action ping system <destination> size
+nv action ping system <destination> time
+nv action ping system <destination> do-not-fragment
+nv action ping system <destination> source <source-ip-address>
+nv action ping system <destination> vrf
+nv action ping system <destination> l3protocol
+nv action ping system <destination> source-interface <interface>
+nv action traceroute interface <interface> 
+nv action traceroute interface <interface> packet_len
+nv action traceroute interface <interface> hop-count
+nv action traceroute interface <interface> source-address
+nv action traceroute interface <interface> protocol
 ```
 
 {{< /tab >}}

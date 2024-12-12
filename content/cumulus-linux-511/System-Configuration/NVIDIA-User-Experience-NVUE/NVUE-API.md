@@ -64,7 +64,7 @@ You can import certificates onto the switch (fetch certificates from an external
 #### Import a Certificate
 
 {{%notice note%}}
-- You can import a maximum of 25 entity certificates and a maximum of 25 CA certificates.
+- You can import a maximum of 25 entity certificates and a maximum of 25 CA bundles. Each CA bundle file supports up to 100 CA certificates.
 - The certificate you import contains sensitive private key information. NVIDIA recommends that you use a secure transport such as SFTP, SCP, or HTTPS.
 {{%/notice%}}
 
@@ -101,7 +101,7 @@ cumulus@switch:~$ nv action import system security certificate tls-cert-1 uri-pu
 
 You can configure the NVUE REST API to use a specific certificate.
 
-The following example configures the API to use the certificate `tls-cert-1`:
+The following example configures the API to use the certificate or CA bundle named `tls-cert-1`:
 
 ```
 cumulus@switch:~$ nv set system api certificate tls-cert-1
@@ -119,6 +119,12 @@ To unset the certificate to use with the NVUE REST API:
 
 ```
 cumulus@switch:~$ nv unset system api certificate tls-cert-1
+```
+
+To configure a certificate to use for mutual authentication with mTLS:
+
+```
+cumulus@switch:~$ nv set system api mtls ca-certificate tls-cert-1
 ```
 
 #### Delete Certificates

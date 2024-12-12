@@ -29,6 +29,7 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
 - BER monitoring - GSHUT and port down due to error disabled
 - Align system/aaa/radius
 - Align system/log
+- Support for defining APT sources
 - Command logging for RADIUS users (Phase 2)
 - IPV6 SLAAC (Stateless Address Auto-Configuration) Support
 - Implement flow-control/backpressure between zebra and clients (like bgpd) to handle heavy churn at high scale( EVPN Scenarios)
@@ -37,8 +38,7 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
   - {{<link title="Network Troubleshooting/#print-route-trace-with-traceroute" text="Traceroute command">}}
   - {{<link title="Network Troubleshooting/#check-if-a-host-is-reachable-with-ping" text="Ping command">}}
   - {{<link title="Troubleshooting Network Interfaces/#monitor-interface-traffic-rate-and-pps" text="Commands to monitor interface traffic rate and PPS">}}
-  - Support for defining APT sources
-  - Storage Utilization Visibility
+  - {{<link url="Monitoring-Best-Practices/#disk-usage" text="Command to monitor disk usage">}}
   - {{<link url="FRRouting/#look-up-the-route-for-a-destination" text="Look up the route for a destination">}}
   - Show Logging Information
   - Filtering based on FRR Phase-1
@@ -59,7 +59,8 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 {{< tab "nv show ">}}
 
 ```
-
+nv show interface <interface> rates
+nv show interface rates
 ```
 
 {{< /tab >}}
@@ -67,6 +68,7 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 
 ```
 nv set qos roce mode lossless-single-ipool
+nv set system counter rates load-interval
 nv set vrf <vrf> router bgp peer-group <peer-group-id> graceful-shutdown
 nv set vrf <vrf> router bgp address-family <address-family> advertise-origin
 nv set vrf <vrf> router bgp address-family <address-family> nhg-per-origin
@@ -76,6 +78,7 @@ nv set vrf <vrf> router bgp address-family <address-family> nhg-per-origin
 {{< tab "nv unset ">}}
 
 ```
+nv unset system counter rates load-interval
 nv unset vrf <vrf> router bgp peer-group <peer-group-id> graceful-shutdown
 nv unset vrf <vrf> router bgp address-family <address-family> advertise-origin
 nv unset vrf <vrf> router bgp address-family <address-family> nhg-per-origin

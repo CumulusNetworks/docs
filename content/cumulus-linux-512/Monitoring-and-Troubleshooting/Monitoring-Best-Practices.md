@@ -136,19 +136,66 @@ Spectrum 1 CPUs can become overloaded at moderate to high network scale. If your
 
 ### Disk Usage
 
-When monitoring disk utilization, you can exclude `tmpfs` from monitoring.
+To monitor disk utilization such as the total storage capacity of the filesystem, the amount of space currently being used, the amount of free space available, the percentage of the filesystem’s total capacity currently in use, and the directory or mount point where the filesystem is attached to the system, run the NVUE `nv show system disk usage` command or the Linux `sudo df -h` command.
 
-| System Element | Monitoring Commands | Interval Poll |
-|--------------- |-------------------- |-------------- |
-| Disk utilization | `/bin/df -x tmpfs` | 300 seconds |
+```
+cumulus@switch:~$ nv show system disk usage 
+Mount Point   Filesystem   Size   Used         Avail   Use% 
+-----------   ----------   --     ---------    ----    ---- 
+/             /dev/sda5    5.4G    3.0G        2.2G     58% 
+/dev          udev         2.0G    0           2.0G     0% 
+/dev/shm      tmpfs        2.1G    61M         2.0G     3% 
+/run          tmpfs        411M    38M         374M     10% 
+/run/lock     tmpfs        5.0M    0           5.0M     0% 
+/tmp          tmpfs        2.1G    12K         2.1G     1% 
+/vagrant      vagrant      4.3T    3.1T        1.3T     72% 
+```
+
+- To show the disk usage in json format, run the `nv show system disk usage -o json` command.
+- To show the disk usage in json yaml, run the `nv show system disk usage -o yaml` command.
+
+When monitoring disk utilization with the Linux command, you can exclude the `tmpfs` filesystem with `/bin/df -x tmpfs`.
+
+```
+cumulus@switch:~$ /bin/df -x tmpfs
+Filesystem     1K-blocks     Used  Available  Use%  Mounted on
+udev              867272        0     867272    0%  /dev
+/dev/vda5        5646348  2417272    2921624   46%  /
+/dev/vdb             354      354          0  100%  /mnt/air
+```
 
 ## Process Restart
 
 In Cumulus Linux, `systemd` monitors and restarts processes.
 
-| Process Element | Monitoring Commands |
-|---------------- |-------------------- |
-| View processes that `systemd` monitors | `systemctl status` |
+To view processes that `systemd` monitors, run the `systemctl status` command.
+
+```
+cumulus@switch:~$ systemctl status
+● leaf01
+    State: running
+    Units: 521 loaded (incl. loaded aliases)
+     Jobs: 0 queued
+   Failed: 0 units
+    Since: Wed 2024-11-13 19:16:28 UTC; 4 weeks 0 days ago
+  systemd: 252.30-1~deb12u2
+   CGroup: /
+           ├─1001 bpfilter_umh
+           ├─init.scope
+           │ └─1 /sbin/init
+           └─system.slice
+             ├─acpid.service
+             │ └─850 /usr/sbin/acpid
+             ├─auditd.service
+             │ └─373 /sbin/auditd
+             ├─cl-system-services.service
+             │ └─1182 /usr/sbin/cl_system_services -l INFO
+             ├─clagd.service
+             │ └─2550 /usr/bin/python3 -u /usr/sbin/clagd --daemon linklocal pe>
+             ├─cron.service
+             │ └─869 /usr/sbin/cron -f -L 38
+             ├─csmgrd.service
+```
 
 ## Layer 1 Protocols and Interfaces
 

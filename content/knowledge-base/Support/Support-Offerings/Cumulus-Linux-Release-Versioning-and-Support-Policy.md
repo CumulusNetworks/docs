@@ -60,13 +60,13 @@ Consistent with this two-pronged approach, the mainline and LTS code branches ar
 </tr>
 <tr class="even">
 <td>Frequency</td>
-<td>Minor releases every quarter; maintenance releases as needed</td>
+<td>Maintenance releases as needed</td>
 <td>Maintenance releases as needed</td>
 </tr>
 <tr class="odd">
 <td>Support Duration (Software updates and support)</td>
 <td><p>LTS branch, before releasing LTS: Software updates and NVIDIA support</p>
-<p>LTS branch, after releasing LTS: 12 months NVIDIA support only from date of LTS release</p></td>
+<p>LTS branch, after releasing LTS: 12 months of NVIDIA support from date of LTS release to triage issues and help migrate to a newer release</p></td>
 <td>3 years from release date of version</td>
 </tr>
 <tr class="even">
@@ -88,8 +88,9 @@ NVIDIA does not provide support for end of life releases; migrate to a current r
 
 | Cumulus Linux Version | LTS Start Date    | End of Life Date  |
 | --------------------- | ----------------- | ----------------- |
-| 5.y.z                 | N/A               | April 2025        |
+| 5.8.z or earlier      | N/A               | April 2025        |
 | 5.9.z                 | April 2024        | April 2027        |
+| 5.10.z                | N/A               | November 2025     |
 | 5.11.z                | November 2024     | November 2027     |
 
 Cumulus Linux 5.y.z supports Spectrum based switches only.

@@ -72,7 +72,7 @@ You can enable services to create external connections to your simulation. By en
 
 To add a new service to your simulation:
 
-1. Load the simulation, then select **Services > New Services**.
+1. Load the simulation, then select **Services > New Service**.
 
 {{<img src="/images/guides/nvidia-air/ServicesDropdown.png" alt=""  width="450px" >}}
 

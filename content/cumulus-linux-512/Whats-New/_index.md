@@ -34,18 +34,14 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
 - Implement flow-control/backpressure between zebra and clients (like bgpd) to handle heavy churn at high scale( EVPN Scenarios)
 - SN5400 Hippo | Add SyncE support at 1G (optical)
 - NVUE
-  - API call for traceroute 
-  - API call for Ping
-  - support SPIFFE ID for AAA (Validation)
-  - Support for defining APT sources
-  - API call for "ls" linux command to list files in a directory
+  - {{<link title="Network Troubleshooting/#print-route-trace-with-traceroute" text="Traceroute command">}}
+  - {{<link title="Network Troubleshooting/#check-if-a-host-is-reachable-with-ping" text="Ping command">}}
+  - {{<link title="Troubleshooting Network Interfaces/#monitor-interface-traffic-rate-and-pps" text="Commands to monitor interface traffic rate and PPS">}}
   - Support for defining APT sources
   - Storage Utilization Visibility
   - {{<link url="FRRouting/#look-up-the-route-for-a-destination" text="Look up the route for a destination">}}
   - Show Logging Information
-  - View support for API as well as CLI
-  - ping command to check the reachability of a destination on a network
-  - Filtering based on FRR – Phase-1
+  - Filtering based on FRR Phase-1
   - {{< expand "Changed NVUE Commands" >}}
 | New Commands | Previous Commands |
 | ----------- | ----------------|
@@ -72,6 +68,8 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 ```
 nv set qos roce mode lossless-single-ipool
 nv set vrf <vrf> router bgp peer-group <peer-group-id> graceful-shutdown
+nv set vrf <vrf> router bgp address-family <address-family> advertise-origin
+nv set vrf <vrf> router bgp address-family <address-family> nhg-per-origin
 ```
 
 {{< /tab >}}
@@ -79,6 +77,8 @@ nv set vrf <vrf> router bgp peer-group <peer-group-id> graceful-shutdown
 
 ```
 nv unset vrf <vrf> router bgp peer-group <peer-group-id> graceful-shutdown
+nv unset vrf <vrf> router bgp address-family <address-family> advertise-origin
+nv unset vrf <vrf> router bgp address-family <address-family> nhg-per-origin
 ```
 
 {{< /tab >}}
@@ -94,6 +94,21 @@ nv action clear bridge domain <domain-id> mac-table dynamic mac <mac-address> in
 nv action clear bridge domain <domain-id> mac-table dynamic mac <mac-address> vlan <vlan-id interface <interface-id>
 nv action lookup vrf <vrf-id> router fib <address-family> <ip-address>
 nv action reset platform transceiver <port>
+nv action ping system <destination>
+nv action ping system <destination> count
+nv action ping system <destination> interval
+nv action ping system <destination> size
+nv action ping system <destination> time
+nv action ping system <destination> do-not-fragment
+nv action ping system <destination> source <source-ip-address>
+nv action ping system <destination> vrf
+nv action ping system <destination> l3protocol
+nv action ping system <destination> source-interface <interface>
+nv action traceroute interface <interface> 
+nv action traceroute interface <interface> packet_len
+nv action traceroute interface <interface> hop-count
+nv action traceroute interface <interface> source-address
+nv action traceroute interface <interface> protocol
 ```
 
 {{< /tab >}}

@@ -13,18 +13,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4161342</td>
-<td>When NetQ runs a scheduled topology validation, the UI might display the message “No data available” in the medium-sized results card. To view the results from the validation, expand the card to its largest size.</td>
-<td>4.12.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4160704</td>
-<td>In large-scale environments, NetQ might take up to a minute to display the results of the BGP validation in the UI and the {{netq check bgp}} command using the CLI.</td>
-<td>4.12.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4157785</td>
 <td>When you add a new switch to the NetQ inventory, the NetQ UI might not display interface statistics or interface validation data for the new switch for up to one hour.
 
@@ -38,12 +26,6 @@ To work around this issue, adjust the poll period to 60 seconds on the new switc
 <tr>
 <td>4155900</td>
 <td>When a fan’s sensor state is “high”, NetQ correctly displays the count information on the sensor health card. When the card is expanded to the detailed view, fans with a “high” sensor state will not be included among the fans with problematic states.</td>
-<td>4.12.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4134341</td>
-<td>If you continuously toggle the option to send all notifications to a default channel, NetQ might ignore the request. To work around this issue, refresh the page or create a new channel and set it as the default channel.</td>
 <td>4.12.0</td>
 <td></td>
 </tr>

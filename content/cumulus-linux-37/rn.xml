@@ -452,6 +452,12 @@ This is an information leak in algorithm negotiation that can allow man-in-the-m
 <td></td>
 </tr>
 <tr>
+<td>2669438</td>
+<td>Editing the {{/etc/frr/frr.conf}} file to add a new sequence at the beginning of an existing large prefix list changes the subsequent sequence numbers of the next entries in the list and FRR reload might fail with the error message {{frr.service reload operation timed out. Stopping}}. To work around this issue, instead of adding the new prefix using an existing sequence number and pushing other sequences forward, use a sequence number that is free; for example, instead of of using 5 -&gt; 10 -&gt; 15, use 5 -&gt; 7 -&gt; 10.</td>
+<td>3.7.11-3.7.16</td>
+<td></td>
+</tr>
+<tr>
 <td>2656291</td>
 <td>The following CVEs affect the linux kernel package:
 CVE-2019-14821 CVE-2019-14835 CVE-2019-15117 CVE-2019-15118 CVE-2019-15902
@@ -3518,6 +3524,12 @@ username cumulus nopassword
 <td>3.7.16</td>
 </tr>
 <tr>
+<td>2669438</td>
+<td>Editing the {{/etc/frr/frr.conf}} file to add a new sequence at the beginning of an existing large prefix list changes the subsequent sequence numbers of the next entries in the list and FRR reload might fail with the error message {{frr.service reload operation timed out. Stopping}}. To work around this issue, instead of adding the new prefix using an existing sequence number and pushing other sequences forward, use a sequence number that is free; for example, instead of of using 5 -&gt; 10 -&gt; 15, use 5 -&gt; 7 -&gt; 10.</td>
+<td>3.7.11-3.7.16</td>
+<td></td>
+</tr>
+<tr>
 <td>2668483</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
 <td>3.7.15-4.3.0, 4.4.0-4.4.3, 5.0.0-5.0.1</td>
@@ -6183,6 +6195,12 @@ username cumulus nopassword
 <td>3.7.16</td>
 </tr>
 <tr>
+<td>2669438</td>
+<td>Editing the {{/etc/frr/frr.conf}} file to add a new sequence at the beginning of an existing large prefix list changes the subsequent sequence numbers of the next entries in the list and FRR reload might fail with the error message {{frr.service reload operation timed out. Stopping}}. To work around this issue, instead of adding the new prefix using an existing sequence number and pushing other sequences forward, use a sequence number that is free; for example, instead of of using 5 -&gt; 10 -&gt; 15, use 5 -&gt; 7 -&gt; 10.</td>
+<td>3.7.11-3.7.16</td>
+<td></td>
+</tr>
+<tr>
 <td>2668477</td>
 <td>CVE-2021-31535: libX11, the X11 protocol client library, was vulnerable to protocol command injection due to insufficient validation of arguments to some functions.
 Vulnerable: &lt;= 1.6.2-3+deb8u4
@@ -8814,6 +8832,12 @@ Fixed: 2.7.9-2-ds1-1+deb8u7</td>
 <td>OpenSSH is vulnerable to CVE-2020-14145, as described in https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf.  
 This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</td>
 <td>3.7.14-3.7.16, 4.0.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>2669438</td>
+<td>Editing the {{/etc/frr/frr.conf}} file to add a new sequence at the beginning of an existing large prefix list changes the subsequent sequence numbers of the next entries in the list and FRR reload might fail with the error message {{frr.service reload operation timed out. Stopping}}. To work around this issue, instead of adding the new prefix using an existing sequence number and pushing other sequences forward, use a sequence number that is free; for example, instead of of using 5 -&gt; 10 -&gt; 15, use 5 -&gt; 7 -&gt; 10.</td>
+<td>3.7.11-3.7.16</td>
 <td></td>
 </tr>
 <tr>
@@ -11862,6 +11886,12 @@ Vulnerable: &lt;= 2.7.9-2-ds1-1+deb8u6
 Fixed: 2.7.9-2-ds1-1+deb8u7</td>
 <td>3.7.0-3.7.15</td>
 <td>3.7.16</td>
+</tr>
+<tr>
+<td>2669438</td>
+<td>Editing the {{/etc/frr/frr.conf}} file to add a new sequence at the beginning of an existing large prefix list changes the subsequent sequence numbers of the next entries in the list and FRR reload might fail with the error message {{frr.service reload operation timed out. Stopping}}. To work around this issue, instead of adding the new prefix using an existing sequence number and pushing other sequences forward, use a sequence number that is free; for example, instead of of using 5 -&gt; 10 -&gt; 15, use 5 -&gt; 7 -&gt; 10.</td>
+<td>3.7.11-3.7.16</td>
+<td></td>
 </tr>
 <tr>
 <td>2668477</td>
@@ -14966,6 +14996,12 @@ Fixed: 2.7.9-2-ds1-1+deb8u7</td>
 <td>3.7.16</td>
 </tr>
 <tr>
+<td>2669438</td>
+<td>Editing the {{/etc/frr/frr.conf}} file to add a new sequence at the beginning of an existing large prefix list changes the subsequent sequence numbers of the next entries in the list and FRR reload might fail with the error message {{frr.service reload operation timed out. Stopping}}. To work around this issue, instead of adding the new prefix using an existing sequence number and pushing other sequences forward, use a sequence number that is free; for example, instead of of using 5 -&gt; 10 -&gt; 15, use 5 -&gt; 7 -&gt; 10.</td>
+<td>3.7.11-3.7.16</td>
+<td></td>
+</tr>
+<tr>
 <td>2668477</td>
 <td>CVE-2021-31535: libX11, the X11 protocol client library, was vulnerable to protocol command injection due to insufficient validation of arguments to some functions.
 Vulnerable: &lt;= 1.6.2-3+deb8u4
@@ -17860,6 +17896,12 @@ Vulnerable: &lt;= 2.7.9-2-ds1-1+deb8u6
 Fixed: 2.7.9-2-ds1-1+deb8u7</td>
 <td>3.7.0-3.7.15</td>
 <td>3.7.16</td>
+</tr>
+<tr>
+<td>2669438</td>
+<td>Editing the {{/etc/frr/frr.conf}} file to add a new sequence at the beginning of an existing large prefix list changes the subsequent sequence numbers of the next entries in the list and FRR reload might fail with the error message {{frr.service reload operation timed out. Stopping}}. To work around this issue, instead of adding the new prefix using an existing sequence number and pushing other sequences forward, use a sequence number that is free; for example, instead of of using 5 -&gt; 10 -&gt; 15, use 5 -&gt; 7 -&gt; 10.</td>
+<td>3.7.11-3.7.16</td>
+<td></td>
 </tr>
 <tr>
 <td>2668477</td>

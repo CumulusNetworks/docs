@@ -7,19 +7,19 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4004453</td>
+<td>4037015</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
-<td>4.3.0-5.9.1, 5.10.0-5.11.0</td>
-<td>5.9.2</td>
+<td>4.3.0-5.9.1</td>
+<td>5.9.2-5.11.0, 5.10.0-5.11.0</td>
 </tr>
 <tr>
-<td>3895042</td>
+<td>3980941</td>
 <td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
   snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
 This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
   #snmp ALL = NOPASSWD: /usr/cumulus/bin/poectl -j -a </td>
 <td>4.4.0-5.9.1</td>
-<td>5.9.2-5.11.0</td>
+<td>5.9.2-5.11.0, 5.10.0-5.11.0</td>
 </tr>
 <tr>
 <td>3773177</td>
@@ -842,6 +842,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>If you enable or disable the advertise primary IP address setting when originating EVPN default type-5 routes, the default route or prefix originated from one of the MLAG peers sends a null layer 3 VNI, which prevents the remote VTEP from installing the default route.</td>
 <td>5.0.0-5.1.0</td>
 <td>5.2.0-5.11.0</td>
+</tr>
+<tr>
+<td>2885305</td>
+<td>Certain Murata PSU attributes show intermittently in the sensors command output. To work around this issue, upgrade to the latest PSU firmware on Murata.</td>
+<td>5.0.0-5.11.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2867248</td>

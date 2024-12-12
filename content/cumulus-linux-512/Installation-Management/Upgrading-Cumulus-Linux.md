@@ -320,19 +320,19 @@ When you use package upgrade to upgrade your switch, configuration data stays in
 
 Make sure you have enough disk space to perform a package upgrade. To upgrade from Cumulus Linux 5.11 to Cumulus Linux 5.12, you need 0.8GB of free disk space.
 
-Before you upgrade, run the `sudo df -h` command to show how much disk space you are currently using on the switch.
+Before you upgrade, run the NVUE `nv show system disk usage` command or the Linux `sudo df -h` command to show how much disk space you are currently using on the switch.
 
 ```
-cumulus@switch:~$ sudo df -h
-Filesystem      Size   Used   Avail   Use%    Mounted on
-udev            7.7G      0    7.7G     0%    /dev
-tmpfs           1.6G    18M    1.6G     2%    /run
-/dev/sda4        28G   7.9G     18G    31%    /
-tmpfs           7.7G   277M    7.4G     4%    /dev/shm
-tmpfs           5.0M      0    5.0M     0%    /run/lock
-tmpfs           7.7G      0    7.7G     0%    /sys/fs/cgroup
-tmpfs           7.7G    16K    7.7G     1%    /tmp
-overlay          28G   7.9G     18G    31%   
+cumulus@switch:~$ nv show system disk usage 
+Mount Point   Filesystem   Size   Used         Avail   Use% 
+-----------   ----------   --     ---------    ----    ---- 
+/             /dev/sda5    5.4G    3.0G        2.2G     58% 
+/dev          udev         2.0G    0           2.0G     0% 
+/dev/shm      tmpfs        2.1G    61M         2.0G     3% 
+/run          tmpfs        411M    38M         374M     10% 
+/run/lock     tmpfs        5.0M    0           5.0M     0% 
+/tmp          tmpfs        2.1G    12K         2.1G     1% 
+/vagrant      vagrant      4.3T    3.1T        1.3T     72% 
 ```
 
 #### Upgrade from Cumulus Linux 5.9.x to Cumulus Linux 5.12.0

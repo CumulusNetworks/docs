@@ -730,7 +730,7 @@ addon_scripts_support=1
 - `$METHOD` represents the address method; for example, loopback, DHCP, DHCP6, manual, static, and so on.
 - `$ADDRFAM` represents the address families associated with the interface in a comma-separated list; for example, `"inet,inet6"`.
 
-## Troubleshooting
+## Show Interface Information
 
 To show the administrative and physical (operational) state of all interfaces on the switch:
 
@@ -935,6 +935,8 @@ cumulus@switch$ ip link show swp1
 
 {{< /tab >}}
 {{< /tabs >}}
+
+You can monitor the traffic rate and <span class="a-tooltip">[PPS](## "Packets per Second")</span> for an interface to ensure optimal network performance and reliability; refer to {{<link title="Troubleshooting Network Interfaces/#monitor-interface-traffic-rate-and-pps" text="Commands to monitor interface traffic rate and PPS">}}.
 
 ## Considerations
 

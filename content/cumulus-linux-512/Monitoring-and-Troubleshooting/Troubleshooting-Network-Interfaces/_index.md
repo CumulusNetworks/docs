@@ -6,6 +6,38 @@ toc: 3
 ---
 The following sections describe various ways you can troubleshoot `ifupdown2` and network interfaces.
 
+## Monitor Interface Traffic Rate and PPS
+
+Monitoring the traffic rate and <span class="a-tooltip">[PPS](## "Packets per Second")</span> for an interface ensures optimal network performance and reliability. You can use the data provided to allocate and utilize network resources efficiently, ensuring quality of service and preventing network bottlenecks. The data helps you to obtain a comprehensive view of network health, detect any DDoS attacks, and see if the current network can handle peak loads or if you need future network capacity expansion and upgrades.
+
+By monitoring both the traffic rate and PPS, you can identify peak usage times and adjust bandwidth allocation or optimize packet paths to ensure low latency and high throughput.
+
+To show a summary view of the traffic rate and PPS for all interfaces, run the `nv show interface rates` command.
+
+```
+cumulus@switch:~$ nv show interface rates
+
+```
+
+To show the traffic rate and PPS for a specific interface, run the `nv show interface <interface> rates` command.
+
+```
+cumulus@switch:~$ nv show interface swp1 rates
+
+```
+
+{{%notice note%}}
+You must specify a specific interface; the `nv show interface <interface> rates` command does not support a range of interfaces.
+{{%/notice%}}
+
+You can configure the load interval you want to use to calculate interface rates with the `nv set system counter rates load-interval` command. Cumulus Linux uses this load interval to measure and average out the rate counters to smoothen any short-term fluctuations. You can specify a value between 1 and 600. The default load interval is 60 seconds.
+
+```
+cumulus@switch:~$ nv set system counter rates load-interval 30
+```
+
+To view the configured load interval, run the `nv show system counter rates` command.
+
 ## Enable Network Logging
 
 To obtain verbose logs when you run `systemctl start networking.service` or `systemctl restart networking.service` as well as when the switch boots, create an overrides file with the `systemctl edit networking.service` command and add the following lines:

@@ -2951,7 +2951,7 @@ cumulus@switch:~$ nv action import system security certificate tls-cert-1 passph
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action lookup vrf <vrf-id> router fib <address-family> <ip-address></h>
+## <h>nv action lookup vrf \<vrf-id\> router fib \<address-family\> \<ip-address\></h>
 
 Looks up the route in the routing table for a specific destination.
 
@@ -2979,6 +2979,226 @@ Action executing ...
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action ping system \<destination\></h>
+
+Sends Echo Request packets to a destination (IP address or a hostname) to check if it is reachable.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<destination>` |  The IP address or hostname of the destination you want to ping.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action ping system 10.10.10.10
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action ping system \<destination\> count</h>
+
+Configures the number of Echo Request packets to send. You can specify a value between 1 and 10. The default packet count is 3.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<destination>` |  The IP address or hostname of the destination you want to ping.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action ping system 10.10.10.10 count 5
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action ping system \<destination\> do-not-fragment</h>
+
+Configures *Do not fragment*. If the packet is larger than the maximum transmission unit (MTU) of any network segment it traverses, drop the packet instead of fragmenting the packet. 
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<destination>` |  The IP address or hostname of the destination you want to ping.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action ping system 10.10.10.10 do-not-fragment
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action ping system \<destination\> interval</h>
+
+Configures how often two send Echo Request packets. You can specify a value between 0.1 and 5 seconds. The default value is 4.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<destination>` |  The IP address or hostname of the destination you want to ping.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action ping system 10.10.10.10 interval 2
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action ping system \<destination\> l3protocol</h>
+
+Configures the layer 3 protocol you want to use to send the Echo Request packets. You can specify IPv4 or IPv6.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<destination>` |  The IP address or hostname of the destination you want to ping.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action ping system 10.10.10.10 l3protocol ipv4
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action ping system \<destination\> size</h>
+
+Configures the packet size in bytes. You can specify a value between 1 and 9216. The default value is 64.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<destination>` |  The IP address or hostname of the destination you want to ping.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action ping system 10.10.10.10 size 200
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action ping system \<destination\> source</h>
+
+Configures the source IP address from which to send the Echo Request packets.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<destination>` |  The IP address or hostname of the destination you want to ping.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action ping system 10.10.10.10 source 10.10.5.1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action ping system \<destination\> source-interface</h>
+
+Configures the source interface for which you want to test the routing path for a link local address. IPv6 only.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<destination>` |  The IP address or hostname of the destination you want to ping.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action ping system fe80::a00:27ff:fe00:0 source-interface eth0
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action ping system \<destination\> time</h>
+
+Configures the number of seconds to wait for an Echo Reply packet before the ping request times out. You can specify a value between 0.1 and 10. The default value is 10.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<destination>` |  The IP address or hostname of the destination you want to ping.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action ping system 10.10.10.10 time 3
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action ping system \<destination\> vrf</h>
+
+Configures the VRF for which you want to test the routing paths.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<destination>` |  The IP address or hostname of the destination you want to ping.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action ping system 10.10.10.10 vrf mgmt
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action reboot system</h>
 
 Reboots the switch.
@@ -2999,7 +3219,7 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action reset platform transceiver <port-id></h>
+## <h>nv action reset platform transceiver \<port-id\></h>
 
 Resets a specific transceiver to its initial, stable state without having to be present physically in the data center to pull the transceiver.
 
@@ -3200,6 +3420,116 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action traceroute interface \<destination\></h>
+
+Sends traceroute packets to the destination to which you want to trace the route. You can specify either an IP address or a domain name.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<destination>` |  The IP address or a domain name.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action traceroute interface 10.10.10.10
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action traceroute interface \<destination\> hop-count</h>
+
+Configures the maximum number of hops allowed from the destination. You can specify a value between 1 and 255. The default is 255.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<destination>` |  The IP address or a domain name.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action traceroute interface 10.10.10.10 hop-count 4
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action traceroute interface \<destination\> packet_len</h>
+
+Configures the traceroute packet size in bytes. You can specify a value between 28 and 65000 bytes.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<destination>` |  The IP address or a domain name.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action traceroute interface 10.10.10.10 packet_len 50
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action traceroute interface \<destination\> protocol</h>
+
+Configures the layer 4 protocol packets to send. You can specify ICMP, TCP, or UDP.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<destination>` |  The IP address or a domain name.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action traceroute interface 10.10.10.10 protocol udp
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action traceroute interface \<destination\> source-address</h>
+
+Configures the source IP address to use for sending the traceroute packets.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<destination>` |  The IP address or a domain name.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action traceroute interface 10.10.10.10 source-address 10.10.5.1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action upgrade system packages to latest use-vrf \<vrf-id\></h>
 
 Upgrades all the packages to the latest distribution.
@@ -3271,7 +3601,7 @@ cumulus@switch:~$ nv action upload tech-support files cl_support_leaf01_20240725
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action upload system telemetry hft job <hft-job-id> \<remote-url\></h>
+## <h>nv action upload system telemetry hft job \<hft-job-id\> \<remote-url\></h>
 
 Uploads high frequency telemetry data for a specific session (job) off the switch to an external location.
 

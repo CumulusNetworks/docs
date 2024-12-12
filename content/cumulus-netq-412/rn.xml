@@ -13,12 +13,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4160704</td>
-<td>In large-scale environments, NetQ might take up to a minute to display the results of the BGP validation in the UI and the {{netq check bgp}} command using the CLI.</td>
-<td>4.12.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4157785</td>
 <td>When you add a new switch to the NetQ inventory, the NetQ UI might not display interface statistics or interface validation data for the new switch for up to one hour.
 

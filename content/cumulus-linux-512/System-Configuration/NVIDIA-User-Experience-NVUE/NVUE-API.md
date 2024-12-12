@@ -69,24 +69,24 @@ You can import certificates onto the switch (fetch certificates from an external
 {{%/notice%}}
 
 - To import an entity certificate, run an `nv action import system security certificate <cert-id> `command.
-- To import a CA certificate, run an `nv action import system security ca-certificate <cert-id>` command.
+- To import a CA certificate bundle file, run an `nv action import system security ca-certificate <cert-id>` command.
 
 If the certificate is passphrase protected, you need to include the passphrase.
 
 You must provide a certificate ID (`<cert-id>`) to uniquely identify the certificate you import.
 
-The following example imports a CA certificate with a public key and calls the certificate `tls-cert-1`. The certificate is passphrase protected with `mypassphrase`. The public key is a Base64 ASCII encoded PEM string.
+The following example imports a CA certificate bundle with a public key and calls the certificate `tls-cert-1`. The certificate is passphrase protected with `mypassphrase`. The public key is a Base64 ASCII encoded PEM string.
 
 {{%notice note%}}
 - You must enclose the public key in the NVUE command with three double quotes (`"""<public-key>"""`).
-- With the REST API, you must enclose the public key with double quotes (`"<public-key>"`).
+- With the REST API, you must enclose the public key with one double quote (`"<public-key>"`).
 {{%/notice%}}
 
 ```
 cumulus@switch:~$ nv action import system security ca-certificate tls-cert-1 passphrase mypassphrase data """<public-key>""" 
 ```
 
-The following example imports an entity certificate bundle and calls the certificate `tls-cert-1`. The certificate bundle is passphrase protected with `mypassphrase`.
+The following example imports an entity certificate and calls the certificate `tls-cert-1`. The certificate is passphrase protected with `mypassphrase`.
 
 A certificate bundle must be in .PFX or .P12 format.
 
@@ -106,7 +106,7 @@ cumulus@switch:~$ nv action import system security certificate tls-cert-1 uri-pu
 
 You can configure the NVUE REST API to use a specific certificate.
 
-The following example configures the API to use the certificate `tls-cert-1`:
+The following example configures the API to use the certificate or CA bundle named `tls-cert-1`:
 
 ```
 cumulus@switch:~$ nv set system api certificate tls-cert-1

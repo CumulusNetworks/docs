@@ -166,6 +166,31 @@ unix-time                  1700670174.4371066
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system disk usage </h>
+
+Shows disk utilization.
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$  nv show system disk usage 
+Mount Point   Filesystem   Size   Used         Avail   Use% 
+-----------   ----------   --     ---------    ----    ---- 
+/             /dev/sda5    5.4G    3.0G        2.2G     58% 
+/dev          udev         2.0G    0           2.0G     0% 
+/dev/shm      tmpfs        2.1G    61M         2.0G     3% 
+/run          tmpfs        411M    38M         374M     10% 
+/run/lock     tmpfs        5.0M    0           5.0M     0% 
+/tmp          tmpfs        2.1G    12K         2.1G     1% 
+/vagrant      vagrant      4.3T    3.1T        1.3T     72% 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system forwarding profile-option</h>
 
 Shows forwarding profile information.

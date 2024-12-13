@@ -50,8 +50,6 @@ cumulus@switch:~$ sudo dpkg-reconfigure tzdata
 
 {{< img src = "/images/cumulus-linux/date-time-wizard.png" >}}
 
-For more information, see the Debian {{<exlink url="http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html" text="System Administrator's Manual - Time">}}.
-
 ## Set the Date and Time
 
 The switch contains a battery backed hardware clock that maintains the time while the switch powers off and between reboots. When the switch is running, the Cumulus Linux operating system maintains its own software clock.
@@ -81,7 +79,3 @@ cumulus@switch:~$ sudo hwclock -w
 ```
 
 See `man hwclock(8)` for more information.
-
-## Related Information
-
-- {{<exlink url="http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html" text="Debian System Administrator's Manual - Time">}}

@@ -46,8 +46,6 @@ cumulus@switch:~$ sudo dpkg-reconfigure tzdata
 
 {{< img src = "/images/cumulus-linux/date-time-wizard.png" >}}
 
-For more information, see the Debian {{<exlink url="http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html" text="System Administrator's Manual - Time">}}.
-
 ## Set the Date and Time
 
 The switch contains a battery backed hardware clock that maintains the time while the switch is powered off and in between reboots. When the switch is running, the Cumulus Linux operating system maintains its own software clock.
@@ -649,7 +647,6 @@ If you configure PTP on bridge ports, NVIDIA recommends that the bridge ports ar
 
 ## Related Information
 
-- {{<exlink url="http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html" text="Debian System Administrator's Manual - Time">}}
 - {{<exlink url="http://www.ntp.org" text="NTP website">}}
 - {{<exlink url="http://en.wikipedia.org/wiki/Network_Time_Protocol" text="Wikipedia - Network Time Protocol">}}
 - {{<exlink url="http://wiki.debian.org/NTP" text="Debian wiki - NTP">}}

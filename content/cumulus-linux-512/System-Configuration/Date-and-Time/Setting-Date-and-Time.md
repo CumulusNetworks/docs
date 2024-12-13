@@ -57,7 +57,7 @@ You can use one of these methods to set the time zone on the switch:
 
 {{< tabs "TabID58 ">}}
 {{< tab "NVUE Command ">}}
-<!-- vale off -->
+
 Run the `nv set system timezone <timezone>` command. To see all the available time zones, run `nv set system timezone` and press the Tab key. The following example sets the time zone to US/Eastern:
 
 ```
@@ -78,11 +78,9 @@ cumulus@switch:~$ nv config apply
 
    {{< img src = "/images/cumulus-linux/date-time-wizard.png" >}}
 
-For more information, see the Debian {{<exlink url="http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html" text="System Administrator's Manual - Time">}}.
-
 {{< /tab >}}
 {{< tab "Edit the /etc/timezone File ">}}
-<!-- vale on -->
+
 1. Edit the `/etc/timezone` file to add your desired time zone. For a list of valid time zones, refer to {{<exlink url="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones" text="tz database time zones">}}.
 
    ```

@@ -3420,9 +3420,9 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action traceroute interface \<destination\></h>
+## <h>nv action traceroute system \<destination\></h>
 
-Sends traceroute packets to the destination to which you want to trace the route. You can specify either an IP address or a domain name.
+Sends traceroute packets to a destination so you can validate the route. You can specify either an IP address or a domain name.
 
 ### Command Syntax
 
@@ -3437,14 +3437,14 @@ Introduced in Cumulus Linux 5.12.0
 ### Example
 
 ```
-cumulus@switch:~$ nv action traceroute interface 10.10.10.10
+cumulus@switch:~$ nv action traceroute system 10.10.10.10
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action traceroute interface \<destination\> hop-count</h>
+## <h>nv action traceroute system \<destination\> do-not-fragment</h>
 
-Configures the maximum number of hops allowed from the destination. You can specify a value between 1 and 255. The default is 255.
+Drops the traceroute packet instead of fragmenting it if the packet is larger than the maximum transmission unit (MTU) of any network segment it traverses.
 
 ### Command Syntax
 
@@ -3459,14 +3459,16 @@ Introduced in Cumulus Linux 5.12.0
 ### Example
 
 ```
-cumulus@switch:~$ nv action traceroute interface 10.10.10.10 hop-count 4
+cumulus@switch:~$ nv action traceroute system 10.10.10.10 do-not-fragment
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action traceroute interface \<destination\> packet_len</h>
+## <h>nv action traceroute system \<destination\> initial-ttl</h>
 
-Configures the traceroute packet size in bytes. You can specify a value between 28 and 65000 bytes.
+Sends traceroute packets to the destination with the minimum number of hops specified. You can specify a value between 1 and 30. The default value is 1.
+
+The minimum number of hops must be less than or equal to the maximum number of hops.
 
 ### Command Syntax
 
@@ -3481,14 +3483,14 @@ Introduced in Cumulus Linux 5.12.0
 ### Example
 
 ```
-cumulus@switch:~$ nv action traceroute interface 10.10.10.10 packet_len 50
+cumulus@switch:~$ nv action traceroute system 10.10.10.10 initial-ttl 3
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action traceroute interface \<destination\> protocol</h>
+## <h>nv action traceroute system \<destination\> l3protocol</h>
 
-Configures the layer 4 protocol packets to send. You can specify ICMP, TCP, or UDP.
+Sends layer 3 traceroute packets to the destination specified. You can specify `ipv4` or `ipv6`. The default is `ipv4`.
 
 ### Command Syntax
 
@@ -3503,14 +3505,14 @@ Introduced in Cumulus Linux 5.12.0
 ### Example
 
 ```
-cumulus@switch:~$ nv action traceroute interface 10.10.10.10 protocol udp
+cumulus@switch:~$ nv action traceroute system fe80::a00:27ff:fe00:0 l3protocol ipv6
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action traceroute interface \<destination\> source-address</h>
+## <h>nv action traceroute system \<destination\> l4protocol</h>
 
-Configures the source IP address to use for sending the traceroute packets.
+Sends the specified layer 4 traceroute packets to the destination. You can specify `icmp`, `tcp`, or `udp`. The default is `icmp`.
 
 ### Command Syntax
 
@@ -3525,7 +3527,95 @@ Introduced in Cumulus Linux 5.12.0
 ### Example
 
 ```
-cumulus@switch:~$ nv action traceroute interface 10.10.10.10 source-address 10.10.5.1
+cumulus@switch:~$ nv action traceroute system 10.10.10.10 l4protocol udp
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action traceroute system \<destination\> max-ttl</h>
+
+Sends traceroute packets to the destination with the minimum number of hops specified. You can specify a value between 1 and 30.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<destination>` |  The IP address or a domain name.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action traceroute system 10.10.10.10 max-ttl 10
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action traceroute system \<destination\> source-address</h>
+
+Sends traceroute packets to the destination from the specified source IP address.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<destination>` |  The IP address or a domain name.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action traceroute system 10.10.10.10 source-address 10.10.5.1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action traceroute system \<destination\> vrf</h>
+
+Sends traceroute packets to the destination using the specified VRF.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<destination>` |  The IP address or a domain name.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action traceroute system 10.10.10.10 vrf RED
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action traceroute system \<destination\> wait</h>
+
+Sends traceroute packets to the destination and waits for the specified maximum number of nanoseconds for a response from each hop. You can specify a value between 0.1 and 10.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<destination>` |  The IP address or a domain name.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action traceroute system 10.10.10.10 wait 2
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

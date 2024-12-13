@@ -17,6 +17,7 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
 
 ### New Features and Enhancements
 
+- {{<link url="Upgrading-Cumulus-Linux/#upgrade-cumulus-linux" text="Ability to ugrade from Cumulus Linux 5.11 with Optimized Image Upgrade">}}
 - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#roce-single-shared-buffer-pool" text="RoCE single shared buffer pool">}}
 - {{<link url="Optional-BGP-Configuration/#graceful-bgp-shutdown-on-a-peer-group" text="Graceful BGP shutdown on a peer group">}}
 - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#reset-a-transceiver" text="Software module reset">}}
@@ -35,8 +36,8 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
 - Implement flow-control/backpressure between zebra and clients (like bgpd) to handle heavy churn at high scale( EVPN Scenarios)
 - SN5400 Hippo | Add SyncE support at 1G (optical)
 - NVUE
-  - {{<link title="Network Troubleshooting/#print-route-trace-with-traceroute" text="Traceroute command">}}
-  - {{<link title="Network Troubleshooting/#check-if-a-host-is-reachable-with-ping" text="Ping command">}}
+  - {{<link title="Network Troubleshooting/#traceroute" text="Traceroute command">}}
+  - {{<link title="Network Troubleshooting/#ping" text="Ping command">}}
   - {{<link title="Troubleshooting Network Interfaces/#monitor-interface-traffic-rate-and-pps" text="Commands to monitor interface traffic rate and PPS">}}
   - {{<link url="Monitoring-Best-Practices/#disk-usage" text="Command to monitor disk usage">}}
   - {{<link url="FRRouting/#look-up-the-route-for-a-destination" text="Look up the route for a destination">}}

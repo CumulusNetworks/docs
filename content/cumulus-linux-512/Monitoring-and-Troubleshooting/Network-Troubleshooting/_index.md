@@ -8,58 +8,50 @@ Cumulus Linux includes command line and analytical tools to help you troubleshoo
 
 ## ping
 
-Use `ping` to check that a host is reachable. `ping` also calculates the time it takes for packets to travel round trip. See `man ping` for details.
-
-Use the ping tool to check that a destination on a network is reachable. Ping sends <span class="a-tooltip">[ICMP](## "Internet Control Message Protocol")</span> Echo Request packets to the specified address and listens for Echo Reply packets.  
+Use the ping tool to check that a destination on a network is reachable. Ping sends <span class="a-tooltip">[ICMP](## "Internet Control Message Protocol")</span> Echo Request packets to the specified destination and listens for Echo Reply packets.  
 
 {{< tabs "TabID26 ">}}
 {{< tab "NVUE Commands ">}}
 
-You send Echo Request packets to a destination (IP address or a hostname) to check if it is reachable. In addition, you can specify the following options:
+You send Echo Request packets to a destination (IP address or a hostname) to check if it is reachable. You can specify the following options:
 
 | Option       | Description |
 | ------------ | ------------ |
 | `count` | The number of Echo Request packets to send. You can specify a value between 1 and 10. The default packet count is 3. |
-| `interval` | How often two send Echo Request packets. You can specify a value between 0.1 and 5 seconds. The default value is 4. |
-| `size` | The packet size in bytes. You can specify a value between 1 and 9216. The default value is 64. |
+| `interval` | How often to send Echo Request packets. You can specify a value between 0.1 and 5 seconds. The default value is 4. |
+| `size` | The Echo Request packet size in bytes. You can specify a value between 1 and 9216. The default value is 64. |
 | `time` | The number of seconds to wait for an Echo Reply packet before the ping request times out. You can specify a value between 0.1 and 10. The default value is 10.|
 | `source` | The source IP address from which to send the Echo Request packets. |
 | `do-not-fragment` | Do not fragment. If the packet is larger than the maximum transmission unit (MTU) of any network segment it traverses, drop the packet instead of fragmenting the packet. |
-| `l3protocol` | The layer 3 protocol you want to use to send the Echo Request packets. You can specify IPv4 or IPv6. |
-| `vrf` | The VRF for which you want to test the routing paths. |
-| `source-interface` | A source interface for which you want to test the routing path for a link local address. IPv6 only. |
+| `l3protocol` | The layer 3 protocol you want to use to send the Echo Request packets. You can specify IPv4 or IPv6. If you don't specify either IPv4 or IPv6, ping uses IPv4. |
+| `vrf` | The VRF you want to use. |
+| `source-interface` | The source interface from which to send Echo Request packets for a link local address. IPv6 only.|
 
-The following example checks if destination 10.10.10.10 is reachable on the network.
+The following example sends Echo Request packets to destination 10.10.10.10 to check if it is reachable.
 
 ```
 cumulus@switch:~$ nv action ping system 10.10.10.10
 ```
 
-The following example sends 5 Echo Request packets to check if destination 10.10.10.10 is reachable on the network.
+The following example sends Echo Request packets to IPv6 destination fe80::a00:27ff:fe00:0 to check if it is reachable.
 
 ```
-cumulus@switch:~$ nv action ping system 10.10.10.10 count 5
+cumulus@switch:~$ nv action ping system fe80::a00:27ff:fe00:0 l3protocol ipv6
 ```
 
-The following example sends Echo Request packets every two seconds to check if destination 10.10.10.10 is reachable on the network.
+The following example sends 5 Echo Request packets every 2 seconds to check if destination 10.10.10.10 is reachable and waits for 3 seconds for an Echo Reply packet before timing out.
 
 ```
-cumulus@switch:~$ nv action ping system 10.10.10.10 interval 2
+cumulus@switch:~$ nv action ping system 10.10.10.10 count 5 interval 2 time 3
 ```
 
-The following example sends 50-byte Echo Request packets to check if destination 10.10.10.10 is reachable on the network.
+The following example sends 50-byte Echo Request packets to check if destination 10.10.10.10 is reachable.
 
 ```
-cumulus@switch:~$ nv action ping system 10.10.10.10 size 200
+cumulus@switch:~$ nv action ping system 10.10.10.10 size 50
 ```
 
-The following example checks if destination 10.10.10.10 is reachable on the network and waits for 3 seconds for an Echo Reply packet before timing out.
-
-```
-cumulus@switch:~$ nv action ping system 10.10.10.10 time 3
-```
-
-The following example checks if destination 10.10.10.10 is reachable on the network and sets the `do not fragment` bit.
+The following example checks if destination 10.10.10.10 is reachable and drops the packet instead of fragmenting it if the packet is larger than the maximum transmission unit (MTU) of any network segment it traverses.
 
 ```
 cumulus@switch:~$ nv action ping system 10.10.10.10 do-not-fragment
@@ -77,13 +69,7 @@ The following example sends Echo Request packets to destination 10.10.10.10 for 
 cumulus@switch:~$ nv action ping system 10.10.10.10 vrf mgmt
 ```
 
-The following example sends Echo Request packets to destination 10.10.10.10 for IPv4.
-
-```
-cumulus@switch:~$ nv action ping system 10.10.10.10 l3protocol ipv4 
-```
-
-The following example sends Echo Request packets from source interface eth0.
+The following example sends Echo Request packets to destination fe80::a00:27ff:fe00:0 from source interface eth0.
 
 ```
 cumulus@switch:~$ nv action ping system fe80::a00:27ff:fe00:0 source-interface eth0 
@@ -101,10 +87,10 @@ You send Echo Request packets to a destination (IP address or a hostname) to che
 | `-s` | The packet size in bytes. You can specify a value between 1 and 9216. The default value is 64. |
 | `-W` | The number of seconds to wait for an Echo Reply packet before the ping request times out. You can specify a value between 0.1 and 10. The default value is 10.|
 | `-I <ip-address>` | The source IP address from which to send the Echo Request packets. |
-| `–4 -M do` | Do not fragment. If the packet is larger than the maximum transmission unit (MTU) of any network segment it traverses, drop the packet instead of fragmenting the packet. |
-| `l3protocol` | The layer 3 protocol you want to use to send the Echo Request packets. You can specify IPv4 or IPv6. |
-| `-I <vrf-name>` | The VRF for which you want to test the routing paths. |
-| `-6` | A source interface for which you want to test the routing path for a link local address. IPv6 only. |
+| `M do` | Do not fragment. If the packet is larger than the maximum transmission unit (MTU) of any network segment it traverses, drop the packet instead of fragmenting the packet. |
+| `<l3protocol>` | The layer 3 protocol you want to use to send the Echo Request packets. You can specify `-4` for IPv4 or `-6` for IPv6. If you don't specify either IPv4 or IPv6, ping uses IPv4.|
+| `-I <vrf-name>` | The VRF you want to use. |
+| `-6 <ipv6-address>%<interface>` | The source interface from which to send Echo Request packets for a link local address. IPv6 only. |
 
 The following example checks if destination 10.10.10.10 is reachable on the network.
 
@@ -112,16 +98,16 @@ The following example checks if destination 10.10.10.10 is reachable on the netw
 cumulus@switch:~$ ping 10.10.10.10
 ```
 
-The following example sends 5 Echo Request packets to check if destination 10.10.10.10 is reachable on the network.
+The following example sends Echo Request packets to destination fe80::a00:27ff:fe00:0 for IPv6.
 
 ```
-cumulus@switch:~$ ping -c 5 10.10.10.10
+cumulus@switch:~$ ping -6 fe80::a00:27ff:fe00:0
 ```
 
-The following example sends Echo Request packets every two seconds to check if destination 10.10.10.10 is reachable on the network.
+The following example sends 5 Echo Request packets every two seconds to check if destination 10.10.10.10 is reachable on the network and waits for 3 seconds for an Echo Reply packet before timing out.
 
 ```
-cumulus@switch:~$ ping -i 2 10.10.10.10
+cumulus@switch:~$ ping -c 5 -i 2 -W 3 10.10.10.10
 ```
 
 The following example sends 50-byte Echo Request packets to check if destination 10.10.10.10 is reachable on the network.
@@ -130,34 +116,22 @@ The following example sends 50-byte Echo Request packets to check if destination
 cumulus@switch:~$ ping -s 50 10.10.10.10
 ```
 
-The following example checks if destination 10.10.10.10 is reachable and waits for 3 seconds for an Echo Reply packet before the ping request times out.
-
-```
-cumulus@switch:~$ ping -W 10.10.10.10
-```
-
 The following example checks if destination 10.10.10.10 is reachable and sets the `do not fragment` bit for IPv4.
 
 ```
-cumulus@switch:~$ ping –4 -M do 10.10.10.10
+cumulus@switch:~$ ping -M do 10.10.10.10
 ```
 
-The following example sends Echo Request packets to destination 10.10.10.10 from the source IP address 10.10.5.1.
+The following example sends Echo Request packets to destination 10.10.10.10 from the source IP address 10.10.5.1 for the management VRF.
 
 ```
-cumulus@switch:~$ ping system -I 10.10.5.1 10.10.10.10
+cumulus@switch:~$ ping -I vrf mgmt 10.10.5.1 10.10.10.10 
 ```
 
 The following example sends Echo Request packets to destination 10.10.10.10 for the management VRF.
 
 ```
-cumulus@switch:~$ ping vrf mgmt 10.10.10.10
-```
-
-The following example sends Echo Request packets to destination 10.10.10.10 for IPv4.
-
-```
-cumulus@switch:~$ ping -I ipv4 10.10.10.10
+cumulus@switch:~$ ping 10.10.10.10 vrf mgmt
 ```
 
 The following example sends Echo Request packets to destination fe80::a00:27ff:fe00:0 from source interface eth0.
@@ -169,94 +143,114 @@ cumulus@switch:~$ ping -6 fe80::a00:27ff:fe00:0%eth0
 {{< /tab >}}
 {{< /tabs >}}
 
-When troubleshooting intermittent connectivity issues, it is helpful to send continuous pings to a host.
-
 ## traceroute
 
-Use the traceroute tool for network troubleshooting, identifying routing issues, measuring latency, mapping network paths, detecting performance bottlenecks, and diagnosing connectivity problems.
+The traceroute tool traces the path of data packets from a source to a destination across an IP network, showing the sequence of routers (hops) the data passes through.  
+
+By measuring the round-trip time for each hop, traceroute helps identify latency problems, routing inefficiencies, or potential network failures, enabling you to troubleshoot and optimize network performance.
 
 {{< tabs "TabID167 ">}}
 {{< tab "NVUE Commands ">}}
 
-You send traceroute packets to a destination to which you want to trace the route. You can specify either an IP address or a domain name. In addition, you can specify the following options:
+You send traceroute packets to a destination with the `nv action traceroute system <destination>` command. The destination can be either an IP address or a domain name. You can specify the following options:
 
 | Option | Description |
 | ------ | ----------- |
-| `hop-count` | The maximum number of hops allowed from the destination. You can specify a value between 1 and 255. The default is 255. |
-| `packet_len` | The traceroute packet size in bytes. You can specify a value between 28 and 65000 bytes. |
-| `source-address` | The source IP address to use for sending the `traceroute` packets. |
-| `protocol` | The layer 4 protocol packets to send. You can specify ICMP, TCP, or UDP. |
+| `max-ttl` | The maximum number of hops to reach the destination. You can specify a value between 1 and 30. The default is 30. |
+| `initial-ttl` | The minimum number of hops to reach the destination. You can specify a value between 1 and 30. The default is 1. The minimum number of hops must be less than or equal to the maximum number of hops. |
+| `wait` | The maximum number of nanoseconds to wait for a response from each hop. You can specify a value between 0.1 and 10. The maximum number of hops must be more than or equal to the minimum number of hops.|
+| `vrf` | The VRF to use. |
+| `source` | The source IP address from which the route originates. |
+| `l3protocol` | The layer 3 protocol; `ipv4` or `ipv6`. The default is `ipv4`.|
+| `l4protocol` | The layer 4 protocol; `icmp`, `tcp`, or `udp`. The default is `icmp`.|
+| `do-not-fragment` | Do not fragment. Trace the route to the destination without fragmentation. |
 
-The following example validates the path to destination 10.10.10.10.
-
-```
-cumulus@switch:~$ nv action traceroute interface 10.10.10.10
-```
-
-The following example sends 50-byte packets to validate the path to destination 10.10.10.10.
+The following example validates the route path to IPv4 destination 10.10.10.10.
 
 ```
-cumulus@switch:~$ nv action traceroute interface 10.10.10.10 packet_len 50 
+cumulus@switch:~$ nv action traceroute system 10.10.10.10
 ```
 
-The following example validates the path to destination 10.10.10.10 with 4 maximum hops.
+The following example validates the route path to IPv6 destination fe80::a00:27ff:fe00:0.
 
 ```
-cumulus@switch:~$ nv action traceroute interface 10.10.10.10 hop-count 4
+cumulus@switch:~$ nv action traceroute system fe80::a00:27ff:fe00:0 ipv6
 ```
 
-The following example validates the path to destination 10.10.10.10 from the source IP address 10.10.5.1
+The following example validates the path to destination 10.10.10.10 with 5 minimum hops and 10 maximum hops.
 
 ```
-cumulus@switch:~$ nv action traceroute interface 10.10.10.10 source-address 10.10.5.1
+cumulus@switch:~$ nv action traceroute system 127.0.0.1 initial-ttl 5 max-ttl 10
 ```
 
-The following example sends UDP packets to validate the path to destination 10.10.10.10:
+The following example sends UDP packets to validate the path to destination 10.10.10.10 and waits 2 nanoseconds for a response.
 
 ```
-cumulus@switch:~$ nv action traceroute interface 10.10.10.10 protocol udp
+cumulus@switch:~$ nv action traceroute system 10.10.10.10 l4protocol udp wait 2
+```
+
+The following example validates the path to destination 10.10.10.10 from the source IP address 10.10.5.1.
+
+```
+cumulus@switch:~$ nv action traceroute system 10.10.10.10 source 10.10.5.1
+```
+
+The following example validates the path to destination 10.10.10.10 from the source IP address 10.10.5.1 in VRF RED.
+
+```
+cumulus@switch:~$ nv action traceroute system 10.10.10.10 source 10.10.5.1 vrf RED 
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-You send traceroute packets to a destination to which you want to trace the route. You can specify either an IP address or a domain name. In addition, you can specify the following options:
+You send traceroute packets to a destination with the `traceroute ` command. The destination can be either an IP address or a domain name. You can specify the following options:
 
 | Option | Description |
 | ------ | ----------- |
-| `-m` | The maximum number of hops allowed from the destination. You can specify a value between 1 and 255. The default is 255. |
-| `packet_len` | The traceroute packet size in bytes. You can specify a value between 28 and 65000 bytes. |
-| `-s` | The source IP address to use for sending the `traceroute` packets. |
-| `<protocol>` | The layer 4 protocol packets to send. You can specify ICMP (-I), TCP (-T), or UDP (-U). |
+| `-m` | The maximum number of hops to reach the destination. You can specify a value between 1 and 30. The default is 30. |
+| `-s` | The source IP address from which the route originates.|
+| `-f` |The minimum number of hops to reach the destination. You can specify a value between 1 and 30. The default is 1. The minimum number of hops must be less than or equal to the maximum number of hops.|
+| `-w` | The maximum number of nanoseconds to wait for a response from each hop. You can specify a value between 0.1 and 10.|
+| `-i` | The VRF to use. |
+| `<layer3-protocol>` | The layer 3 protocol; `-4` for IPv4 or `-6` for IPv6. The default is IPv4.|
+| `<layer4-protocol>` | The layer 4 protocol packets to send; `-I` for ICMP, `-T` for TCP, or `-U` for UDP.|
+| `-F` | Do not fragment. Trace the route to the destination without fragmentation. |
 
-The following example validates the path to destination 10.10.10.10.
+The following example validates the route path to IPv4 destination 10.10.10.10.
 
 ```
 cumulus@switch:~$ traceroute 10.10.10.10
 ```
 
-The following example sends 50-byte packets to validate the path to destination 10.10.10.10.
+The following example validates the route path to IPv6 destination fe80::a00:27ff:fe00:0.
 
 ```
-cumulus@switch:~$ traceroute 10.10.10.10 packet_len 50
+cumulus@switch:~$ traceroute fe80::a00:27ff:fe00:0 -6
 ```
 
-The following example validates the path to destination 10.10.10.10 with 4 maximum hops.
+The following example validates the path to destination 10.10.10.10 with 5 minimum hops and 10 maximum hops.
 
 ```
-cumulus@switch:~$ traceroute 10.10.10.10 -m 4
+cumulus@switch:~$ traceroute 10.10.10.10 -f 5 -m 10
 ```
 
-The following example validates the path to destination 10.10.10.10 from the source IP address 10.10.5.1
+The following example sends UDP packets to validate the path to destination 10.10.10.10 and waits 2 nanoseconds for a response.
+
+```
+cumulus@switch:~$ traceroute 10.10.10.10 -U -w 2
+```
+
+The following example validates the path to destination 10.10.10.10 from the source IP address 10.10.5.1.
 
 ```
 cumulus@switch:~$ traceroute 10.10.10.10 -s 10.10.5.1
 ```
 
-The following example sends UDP packets to validate the path to destination 10.10.10.10:
+The following example validates the path to destination 10.10.10.10 from the source IP address 10.10.5.1 in VRF RED.
 
 ```
-cumulus@switch:~$ traceroute 10.10.10.10 -U
+cumulus@switch:~$ traceroute 10.10.10.10 -s 10.10.5.1 -i RED
 ```
 
 {{< /tab >}}

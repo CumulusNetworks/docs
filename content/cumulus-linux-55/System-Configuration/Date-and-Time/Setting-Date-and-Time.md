@@ -39,8 +39,6 @@ cumulus@switch:~$ nv config apply
 
    {{< img src = "/images/cumulus-linux/date-time-wizard.png" >}}
 
-For more information, see the Debian {{<exlink url="http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html" text="System Administrator's Manual - Time">}}.
-
 {{< /tab >}}
 {{< tab "Edit the /etc/timezone File ">}}
 <!-- vale on -->

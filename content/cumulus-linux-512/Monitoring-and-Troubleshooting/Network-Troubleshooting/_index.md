@@ -173,48 +173,60 @@ When troubleshooting intermittent connectivity issues, it is helpful to send con
 
 ## traceroute
 
-Use the traceroute tool for network troubleshooting, identifying routing issues, measuring latency, mapping network paths, detecting performance bottlenecks, and diagnosing connectivity problems.
+The traceroute tool traces the path of data packets from a source to a destination across an IP network, showing the sequence of routers (or hops) the data passes through.  
+
+By measuring the round-trip time for each hop, traceroute helps identify latency problems, routing inefficiencies, or potential network failures, enabling you to troubleshoot and optimize network performance.
 
 {{< tabs "TabID167 ">}}
 {{< tab "NVUE Commands ">}}
 
-You send traceroute packets to a destination to which you want to trace the route. You can specify either an IP address or a domain name. In addition, you can specify the following options:
+You send traceroute packets to a destination to which you want to trace the route with the `nv action traceroute system <destination>` command. You can specify either an IP address or a domain name. In addition, you can specify the following options:
 
 | Option | Description |
 | ------ | ----------- |
-| `hop-count` | The maximum number of hops allowed from the destination. You can specify a value between 1 and 255. The default is 255. |
-| `packet_len` | The traceroute packet size in bytes. You can specify a value between 28 and 65000 bytes. |
-| `source-address` | The source IP address to use for sending the `traceroute` packets. |
-| `protocol` | The layer 4 protocol packets to send. You can specify ICMP, TCP, or UDP. |
+| `max-ttl` | The maximum number of hops to reach the destination. You can specify a value between 1 and 30. The default is 30. |
+| `initial-ttl` | The minimum number of hops to reach the destination. You can specify a value between 1 and 30. The default is 1. The minimum number of hops must be less than or equal to the maximum number of hops. |
+| `wait` | The maximum number of nanoseconds to wait for a response from each hop. You can specify a value between 0.1 and 10. |
+| `vrf` | The VRF to use. |
+| `source` | The source IP address from which the route originates. |
+| `l3protocol` | The layer 3 protocol; `ipv4` or `ipv6`. The default is `ipv4`.|
+| `l4protocol` | The layer 4 protocol; `icmp`, `tcp`, or `udp`. The default is `icmp`.|
+| `do-not-fragment` | Do not fragment. Trace the route to the destination without fragmentation. |
 
-The following example validates the path to destination 10.10.10.10.
-
-```
-cumulus@switch:~$ nv action traceroute interface 10.10.10.10
-```
-
-The following example sends 50-byte packets to validate the path to destination 10.10.10.10.
+The following example validates the route path to IPv4 destination 10.10.10.10.
 
 ```
-cumulus@switch:~$ nv action traceroute interface 10.10.10.10 packet_len 50 
+cumulus@switch:~$ nv action traceroute system 10.10.10.10
 ```
 
-The following example validates the path to destination 10.10.10.10 with 4 maximum hops.
+The following example validates the route path to IPv6 destination fe80::a00:27ff:fe00:0.
 
 ```
-cumulus@switch:~$ nv action traceroute interface 10.10.10.10 hop-count 4
+cumulus@switch:~$ nv action traceroute system fe80::a00:27ff:fe00:0 ipv6
+```
+
+The following example validates the path to destination 10.10.10.10 with 5 minimum hops and 10 maximum hops.
+
+```
+cumulus@switch:~$ nv action traceroute system 127.0.0.1 initial-ttl 5 max-ttl 10
+```
+
+The following example sends UDP packets to validate the path to destination 10.10.10.10 and waits 2 nanoseconds for a response.
+
+```
+cumulus@switch:~$ nv action traceroute system 10.10.10.10 l4protocol udp wait 2
 ```
 
 The following example validates the path to destination 10.10.10.10 from the source IP address 10.10.5.1
 
 ```
-cumulus@switch:~$ nv action traceroute interface 10.10.10.10 source-address 10.10.5.1
+cumulus@switch:~$ nv action traceroute system 10.10.10.10 source 10.10.5.1
 ```
 
-The following example sends UDP packets to validate the path to destination 10.10.10.10:
+The following example validates the path to destination 10.10.10.10 from the source IP address 10.10.5.1 in VRF RED.
 
 ```
-cumulus@switch:~$ nv action traceroute interface 10.10.10.10 protocol udp
+cumulus@switch:~$ nv action traceroute system 10.10.10.10 source 10.10.5.1 vrf RED 
 ```
 
 {{< /tab >}}
@@ -224,27 +236,37 @@ You send traceroute packets to a destination to which you want to trace the rout
 
 | Option | Description |
 | ------ | ----------- |
-| `-m` | The maximum number of hops allowed from the destination. You can specify a value between 1 and 255. The default is 255. |
-| `packet_len` | The traceroute packet size in bytes. You can specify a value between 28 and 65000 bytes. |
-| `-s` | The source IP address to use for sending the `traceroute` packets. |
-| `<protocol>` | The layer 4 protocol packets to send. You can specify ICMP (-I), TCP (-T), or UDP (-U). |
+| `-m` | The maximum number of hops to reach the destination. You can specify a value between 1 and 30. The default is 30. |
+| `-s` | The source IP address from which the route originates.|
+| `-f` |The minimum number of hops to reach the destination. You can specify a value between 1 and 30. The default is 1. The minimum number of hops must be less than or equal to the maximum number of hops.|
+| `-w` | The maximum number of nanoseconds to wait for a response from each hop. You can specify a value between 0.1 and 10.|
+| `-i` | The VRF to use. |
+| `<layer3-protocol>` |The layer 3 protocol; `-4` for IPv4 or `-6` for IPv6. The default is IPv4.|
+| `<layer4-protocol>` | The layer 4 protocol packets to send; `-I` for ICMP, `-T` for TCP, or `-U` for UDP.|
+| `-F` | Do not fragment. Trace the route to the destination without fragmentation. |
 
-The following example validates the path to destination 10.10.10.10.
+The following example validates the route path to IPv4 destination 10.10.10.10.
 
 ```
 cumulus@switch:~$ traceroute 10.10.10.10
 ```
 
-The following example sends 50-byte packets to validate the path to destination 10.10.10.10.
+The following example validates the route path to IPv6 destination fe80::a00:27ff:fe00:0.
 
 ```
-cumulus@switch:~$ traceroute 10.10.10.10 packet_len 50
+cumulus@switch:~$ traceroute fe80::a00:27ff:fe00:0 -6
 ```
 
-The following example validates the path to destination 10.10.10.10 with 4 maximum hops.
+The following example validates the path to destination 10.10.10.10 with 5 minimum hops and 10 maximum hops.
 
 ```
-cumulus@switch:~$ traceroute 10.10.10.10 -m 4
+cumulus@switch:~$ traceroute 10.10.10.10 -f 5 -m 10
+```
+
+The following example sends UDP packets to validate the path to destination 10.10.10.10 and waits 2 nanoseconds for a response.
+
+```
+cumulus@switch:~$ traceroute 10.10.10.10 -U -w 2
 ```
 
 The following example validates the path to destination 10.10.10.10 from the source IP address 10.10.5.1
@@ -253,10 +275,10 @@ The following example validates the path to destination 10.10.10.10 from the sou
 cumulus@switch:~$ traceroute 10.10.10.10 -s 10.10.5.1
 ```
 
-The following example sends UDP packets to validate the path to destination 10.10.10.10:
+The following example validates the path to destination 10.10.10.10 from the source IP address 10.10.5.1 in VRF RED.
 
 ```
-cumulus@switch:~$ traceroute 10.10.10.10 -U
+cumulus@switch:~$ traceroute 10.10.10.10 -s 10.10.5.1 -i RED
 ```
 
 {{< /tab >}}

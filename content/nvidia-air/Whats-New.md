@@ -10,14 +10,14 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 ## December 2024
 <!-- Air:WhatsNew -->
 ### 82.2024.1212-011
-- Supporting automatic NetQ enablement after simulations have been created.
-- Link data now includes `network_pci` to distinguish between interfaces on a node and interfaces on a network PCI entity on the node `port_index` is now calculated with `network_pci` in mind
-- Fixed display for some error messages
-- Fix bug in pop-up text displayed when creating a new API token.
-- Simulation list can now be searched by UUID.
+- Added the ability to launch NetQ after you create a simulation
+- Added the ability to search for simulations by UUID
+- Link data now includes `network_pci` to distinguish between interfaces on a node and interfaces on a network PCI entity
+- Fixed an error message display issue
+- Fixed an issue with the modal that Air displays when creating a new API token
 <!-- Air:WhatsNew -->
 ### 82.2024.1205-011
-- Updated and clarified API error messages for invalid files.
+- Updated and clarified API error messages for invalid files
 
 ### 82.2024.1203-011
 - UserConfigs are now budgeted based on the overall content length instead of the instance amount

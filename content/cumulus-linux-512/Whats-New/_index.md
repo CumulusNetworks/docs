@@ -24,15 +24,14 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
 - {{<link url="VLAN-aware-Bridge-Mode/#clear-dynamic-mac-address-entries" text="Clear dynamic MAC address entries from the forwarding database">}}
 - {{<link url="Optional-BGP-Configuration/#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}}
 - {{<link url="BGP-Weighted-Equal-Cost-Multipath/#ecmp-resource-sharing-during-next-hop-group-updates" text="ECMP Resource Sharing During Next Hop Group Updates">}}
+-  {{<link url="RADIUS-AAA/#radius-user-command-accounting" text="RADIUS user command accounting support for multiple servers with first response option">}}
+- IPV6 Stateless Address Auto-Configuration
 - Switch Telemetry Exposure - OTLP(Phase 3)
 - OTLP | Support different sample rate per OTLP exporter destination
 - Create a single CLI service check for OTLP exporter(s)
 - BER monitoring - GSHUT and port down due to error disabled
-- Align system/aaa/radius
 - Align system/log
 - Support for defining APT sources
-- Command logging for RADIUS users (Phase 2)
-- IPV6 SLAAC (Stateless Address Auto-Configuration) Support
 - Implement flow-control/backpressure between zebra and clients (like bgpd) to handle heavy churn at high scale( EVPN Scenarios)
 - SN5400 Hippo | Add SyncE support at 1G (optical)
 - NVUE

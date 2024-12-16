@@ -236,9 +236,15 @@ To configure local fallback authentication:
 
 ## RADIUS User Command Accounting
 
-RADIUS user command accounting lets you log every command that a user runs and send the commands to the primary RADIUS server for auditing. Audit logs are a requirement for compliance standards, such as PCI and HIPPA.
+RADIUS user command accounting lets you log every command that a RADIUS user runs and send the commands to RADIUS servers for auditing. Audit logs are a requirement for compliance standards, such as PCI and HIPPA.
 
-The RADIUS server must be configured to accept packets from clients and have a dictionary entry for `NV-Command-String`.
+The RADIUS servers must be configured to accept packets from clients and have a dictionary entry for `NV-Command-String`.
+
+{{%notice note%}}
+When you enable or change accounting settings, NVUE disconnects currently logged in RADIUS users.
+{{%/notice%}}
+
+### Enable RADIUS Accounting
 
 To enable RADIUS user command accounting:
 
@@ -254,6 +260,17 @@ The `/var/log/radius-cmd-acct.log` file contains the local copy of the logs, whi
 If you do not receive any accounting packets, check the `/var/log/radius-send-cmd.log` file.
 
 To see if RADIUS user command accounting is enabled, run the `nv show system aaa radius` command.
+
+### Send Accounting Records to First Response
+
+By default, Cumulus Linux sends accounting records to all servers. You can change this setting to send accounting records to the server that is first to respond. If the first available server does not respond, Cumulus Linux continues trying down the list of servers (by priority) until one is reachable. If none of the servers are reachable, there is a 30 second timeout, after which Cumulus Linux retries the servers. After 10 failed retries, the switch drops the packet.
+
+```
+cumulus@switch:~$ nv set system aaa radius accounting send-records first-response
+cumulus@switch:~$ nv config apply
+```
+
+To reset to the default configuration (send accounting records to all servers), run the `nv set system aaa radius accounting send-records all` command. If none of the servers respond, there is a 30 second timeout, after which Cumulus Linux retries the servers. After 10 failed retries, the switch drops the packet.
 
 ## Verify RADIUS Client Configuration
 

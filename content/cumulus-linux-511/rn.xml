@@ -7,12 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4203748</td>
-<td>If you include a comma in the BGP community list, extended community list, or large community list regex expression of a routing policy, you see error messages and FRR reload fails. Make sure the regex expression does not contain a comma.</td>
-<td>5.11.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4200961</td>
 <td>If you use a bridge name that isn't {{br_default}}, NVUE generates incorrect ptp4l.conf files.</td>
 <td>5.10.0-5.11.0</td>
@@ -68,6 +62,12 @@ netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported tru
 <td></td>
 </tr>
 <tr>
+<td>4173498</td>
+<td>After network churn, the {{﻿watchfrr}} process might restart FRR because zebra is unresponsive.</td>
+<td>5.9.1-5.11.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4170628</td>
 <td>If you use a bridge name that isn't {{br_default}}, NVUE generates incorrect ptp4l.conf files.</td>
 <td>5.10.0-5.11.0</td>
@@ -76,6 +76,12 @@ netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported tru
 <tr>
 <td>4170604</td>
 <td>When you configure EVPN multihoming with more than one ESI bond member, you might see intermediate traffic loss. </td>
+<td>5.9.1-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4170598</td>
+<td>When you create an ACL rule that matches TCP state and more than seven TCP or UDP source or destination ports, the rule does not get framed properly and is rejected by the kernel.To work around this issue, create another rule number when the number of ports you want to match is more than seven.</td>
 <td>5.9.1-5.11.0</td>
 <td></td>
 </tr>
@@ -132,6 +138,12 @@ netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported tru
 <td></td>
 </tr>
 <tr>
+<td>4129757</td>
+<td>If you include a comma in the BGP community list, extended community list, or large community list regex expression of a routing policy, you see error messages and FRR reload fails. Make sure the regex expression does not contain a comma.</td>
+<td>5.11.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4128952</td>
 <td>Cumulus Linux does not support LDAP over IPv6.</td>
 <td>5.11.0</td>
@@ -171,9 +183,27 @@ cumulus@switch:~$ sudo umount tmpfs-installer</td>
 <td></td>
 </tr>
 <tr>
+<td>4101027</td>
+<td>After you add a VLAN to a bridge member port,  you might experience a few seconds of VXLAN traffic loss.</td>
+<td>5.7.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4100629</td>
 <td>LLDP neighbor changes get reflected in show command outputs only after the tx-interval timer times the tx-hold-multiplier. </td>
 <td>5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4100170</td>
+<td>The NVUE Service fails to start after an upgrade from Cumulus Linux 5.9 to Cumulus Linux 5.10 because of a corrupted database.</td>
+<td>5.10.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4100164</td>
+<td>Low power Intel SATA controllers experience issues when using the {{mobile}} low power chipset LPM policy. This can cause the SSD to become read only.</td>
+<td>5.8.0-5.11.0</td>
 <td></td>
 </tr>
 <tr>

@@ -307,6 +307,28 @@ To unset the MAC address for an interface, remove the mac address from the inter
 {{< /tab >}}
 {{< /tabs >}}
 
+## IPv6 Stateless Address Auto-Configuration
+
+Stateless Address Auto-Configuration (SLAAC) configures an IPv6 address automatically for an interface by appending its interface identifier to the prefix advertised by the route.
+
+{{< tabs "TabID314 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface swp1
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+```
+cumulus@switch:~$ 
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Interface Descriptions
 
 You can add a description (alias) to an interface.

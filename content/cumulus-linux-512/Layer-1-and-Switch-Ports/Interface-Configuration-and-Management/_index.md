@@ -200,13 +200,6 @@ cumulus@switch:~$ nv set interface swp1 ip address 2001:DB8::1/126
 cumulus@switch:~$ nv config apply
 ```
 
-The following command uses SLAAC to configure the IPv6 address automatically for swp1:
-
-```
-cumulus@switch:~$ nv set interface swp1 ipv6 address auto-configure
-cumulus@switch:~$ nv config apply
-```
-
 To show the MAC address for an interface, run the `nv show interface <interface> link` command.
 
 {{< /tab >}}
@@ -241,19 +234,6 @@ To remove an address from an interface, use `ip addr del`:
 ```
 cumulus@switch:~$ sudo ip addr del 10.0.0.1/30 dev swp1
 cumulus@switch:~$ sudo ip addr del 2001:DB8::1/126 dev swp1
-```
-
-To use SLAAC to configure the IPv6 address automatically:
-
-```
-cumulus@switch:~$ sudo vtysh
-...
-leaf01# configure terminal
-leaf01(config)# interface swp1
-leaf01(config-if)# ipv6 address auto configuration
-leaf01(config-if)# end
-leaf01# write memory
-leaf01# exit
 ```
 
 {{< /tab >}}

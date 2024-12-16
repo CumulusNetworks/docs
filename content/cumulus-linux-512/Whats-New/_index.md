@@ -25,7 +25,7 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
 - {{<link url="Optional-BGP-Configuration/#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}}
 - {{<link url="BGP-Weighted-Equal-Cost-Multipath/#ecmp-resource-sharing-during-next-hop-group-updates" text="ECMP Resource Sharing During Next Hop Group Updates">}}
 -  {{<link url="RADIUS-AAA/#radius-user-command-accounting" text="RADIUS user command accounting support for multiple servers with first response option">}}
-- IPV6 Stateless Address Auto-Configuration
+- {{<link url="Neighbor-Discovery-ND" text="IPV6 Stateless Address Auto-Configuration">}}
 - Switch Telemetry Exposure - OTLP(Phase 3)
 - OTLP | Support different sample rate per OTLP exporter destination
 - Create a single CLI service check for OTLP exporter(s)

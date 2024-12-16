@@ -43,6 +43,10 @@ leaf01(config-if)# no ipv6 nd suppress-ra
 {{< /tab >}}
 {{< /tabs >}}
 
+{{%notice note%}}
+For Stateless Address Auto-Configuration (SLAAC), Router Advertisment must be enabled on the interface. The prefix advertised in Router Advertisement must belong to the /64 subnet.
+{{%/notice%}}
+
 You can configure these optional settings:
 
 - Allow consecutive Router Advertisement packets to transmit more frequently than every three seconds (fast retransmit). You can set this parameter to `on` or `off`. The default setting is `on`.
@@ -578,7 +582,7 @@ vlan20         10.1.20.105                48:b0:2d:75:bf:9e  noarp      |ext_lea
 To show IPv6 entries only, run the Linux `ip -6 neighbor` command:
 
 ```
-cumulus@leaf01:mgmt:~$
+cumulus@leaf01:mgmt:~$ ip -6 neighbor
 fe80::4ab0:2dff:fe4e:c76a dev vlan30 lladdr 48:b0:2d:4e:c7:6a extern_learn  NOARP proto zebra 
 fe80::4ab0:2dff:fea1:3f4b dev vlan10 lladdr 48:b0:2d:a1:3f:4b REACHABLE
 fe80::4ab0:2dff:fee9:d399 dev vlan30-v0 lladdr 48:b0:2d:e9:d3:99 STALE
@@ -686,23 +690,26 @@ lifetime    20000    Lifetime of a home agent in seconds
 preference  100      Home agent's preference value that is used to order the addresses r...
 ```
 
-To show router advertisement configuration for an interface, run the `nv show interface <interface> ip neighbor-discovery router-advertisement` command:
+To show router advertisement configuration for an interface, run the `nv show interface <interface> ip neighbor-discovery router-advertisement` command. The command also shows the number of router advertisement packets sent on the interface and the number of router advertisement and router solicitation packets received on the interface.
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery router-advertisement
-                   applied   description
------------------  -------   ----------------------------------------------------------------------
-enable             on        Turn the feature 'on' or 'off'.  The default is 'on'.
-fast-retransmit    on        Allow consecutive RA packets more frequently than every 3 seconds
-hop-limit          64        Value in hop count field in IP header of the outgoing router advert...
-interval           600000    Maximum time in milliseconds allowed between sending unsolicited mu...
-interval-option    on        Indicates hosts that the router will use advertisement interval to...
-lifetime           1800      Maximum time in seconds that the router can be treated as default g...
-managed-config     off       Knob to allow dynamic host to use managed (stateful) protocol for a...
-other-config       off       Knob to allow dynamic host to use managed (stateful) protocol for a...
-reachable-time     0         Time in milliseconds that a IPv6 node is considered reachable
-retransmit-time    0         Time in milliseconds between retransmission of neighbor solicitatio...
-router-preference  medium    Hosts use router preference in selection of the default router
+                      applied
+-----------------     -----------------
+enable                on
+interval              10000
+interval-option       off
+fast-retransmit       on
+lifetime              1800
+reachable-time        0
+retransmit-time       0
+managed-config        off
+other-config          off
+hop-limit             64
+router-preference     medium
+ra-sent               218
+ra-received           2
+rs-received           1
 ```
 
 To show RDNSS configuration for an interface, run the `nv show interface <interface> ip neighbor-discovery rdnss <address>` command:

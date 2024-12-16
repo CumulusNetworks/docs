@@ -136,7 +136,7 @@ Spectrum 1 CPUs can become overloaded at moderate to high network scale. If your
 
 ### Disk Usage
 
-To monitor disk utilization such as the total storage capacity of the filesystem, the amount of space currently being used, the amount of free space available, the percentage of the filesystem’s total capacity currently in use, and the directory or mount point where the filesystem is attached to the system, run the NVUE `nv show system disk usage` command or the Linux `sudo df -h` command.
+To monitor disk utilization such as the total storage capacity of the filesystem, the amount of space currently being used, the amount of free space available, the percentage of the filesystem’s total capacity currently in use, and the directory or mount point where the filesystem is attached to the system, run the NVUE `nv show system disk usage` command or the Linux `sudo df` command.
 
 ```
 cumulus@switch:~$ nv show system disk usage 
@@ -154,10 +154,10 @@ Mount Point   Filesystem   Size   Used         Avail   Use%
 - To show the disk usage in json format, run the `nv show system disk usage -o json` command.
 - To show the disk usage in json yaml, run the `nv show system disk usage -o yaml` command.
 
-When monitoring disk utilization with the Linux command, you can exclude the `tmpfs` filesystem with `/bin/df -x tmpfs`.
+When monitoring disk utilization with the Linux command, you can exclude the `tmpfs` filesystem with `sudo df -x tmpfs`.
 
 ```
-cumulus@switch:~$ /bin/df -x tmpfs
+cumulus@switch:~$ sudo df -x tmpfs
 Filesystem     1K-blocks     Used  Available  Use%  Mounted on
 udev              867272        0     867272    0%  /dev
 /dev/vda5        5646348  2417272    2921624   46%  /

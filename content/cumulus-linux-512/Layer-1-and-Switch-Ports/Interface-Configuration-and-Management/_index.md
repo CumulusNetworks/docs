@@ -186,6 +186,7 @@ You can specify both IPv4 and IPv6 addresses for the same interface.
 For IPv6 addresses:
 - You can create or modify the IP address for an interface using either `::` or `0:0:0` notation. For example, both 2620:149:43:c109:0:0:0:5 and 2001:DB8::1/126 are valid.
 - Cumulus Linux assigns the IPv6 address with all zeroes in the interface identifier (2001:DB8::/126) for each subnet; connected hosts cannot use this address.
+- You can use Stateless Address Auto-Configuration (SLAAC) to configure an IPv6 address for an interface automatically.
 
 The following example commands configure three IP addresses for swp1; two IPv4 addresses and one IPv6 address.
 
@@ -196,6 +197,13 @@ The following example commands configure three IP addresses for swp1; two IPv4 a
 cumulus@switch:~$ nv set interface swp1 ip address 10.0.0.1/30
 cumulus@switch:~$ nv set interface swp1 ip address 10.0.0.2/30
 cumulus@switch:~$ nv set interface swp1 ip address 2001:DB8::1/126
+cumulus@switch:~$ nv config apply
+```
+
+The following command uses SLAAC to configure the IPv6 address automatically for swp1:
+
+```
+cumulus@switch:~$ nv set interface swp1 ipv6 address auto-configure
 cumulus@switch:~$ nv config apply
 ```
 
@@ -233,6 +241,19 @@ To remove an address from an interface, use `ip addr del`:
 ```
 cumulus@switch:~$ sudo ip addr del 10.0.0.1/30 dev swp1
 cumulus@switch:~$ sudo ip addr del 2001:DB8::1/126 dev swp1
+```
+
+To use SLAAC to configure the IPv6 address automatically:
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# interface swp1
+leaf01(config-if)# ipv6 address auto configuration
+leaf01(config-if)# end
+leaf01# write memory
+leaf01# exit
 ```
 
 {{< /tab >}}
@@ -303,28 +324,6 @@ cumulus@switch:~$ sudo ifreload -a
 ```
 
 To unset the MAC address for an interface, remove the mac address from the interface stanza, then run the `sudo ifreload -a` command.
-
-{{< /tab >}}
-{{< /tabs >}}
-
-## IPv6 Stateless Address Auto-Configuration
-
-Stateless Address Auto-Configuration (SLAAC) configures an IPv6 address automatically for an interface by appending its interface identifier to the prefix advertised by the route.
-
-{{< tabs "TabID314 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set interface swp1
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-```
-cumulus@switch:~$ 
-```
 
 {{< /tab >}}
 {{< /tabs >}}

@@ -32,12 +32,8 @@ After you log in, Air displays a list of simulations associated with your accoun
 ### Create a Simulation
 
 To create a simulation, you can either:
-- Build a custom topology from scratch
-- Load a pre-configured demo from the [Demo Marketplace](https://air.nvidia.com/demos) and customize it.
-
-To learn how to create custom topologies and simulations using the Air drag-and-drop editor, see [Custom Topology](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Custom-Topology/).
-
-To learn about pre-configured simulations that you can clone and customize, see [Pre-Built Demos](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Pre-Built-Demos).
+- Build a custom topology; see [Custom Topology](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Custom-Topology/).
+- Load a pre-configured demo from the [Demo Marketplace](https://air.nvidia.com/demos) and customize it; see [Pre-Built Demos](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Pre-Built-Demos).
 
 ### Navigate Simulations
 
@@ -125,7 +121,7 @@ Sharing a simulation allows other users to view and interact with a simulation. 
 To share a simulation:
 
 1. Load the simulation you want to share, then click **Workspace > Manage Users**.
-2. Enter the email addresses of the users with which you would like to share the simulation.
+2. Enter the email addresses of the users with which you want to share the simulation.
 3. Select whether to give the users read-only access.
 4. Click **Add User**.
 5. Click **Close**.
@@ -145,7 +141,7 @@ To generate an API token, fill in the **Name** and **Expiration Date** fields, t
 
 ## SSH Keys
 
-To view your SSH keys, click your username in the UI and select **Settings**. To enable the SSH service on simulations, you must add SSH keys to your authentication settings. Any SSH keys that you add are automatically included in your simulation's list of authorized keys under the `oob-mgmt-server`.
+To view your SSH keys, click your username in the UI and select **Settings**. To enable the SSH service on simulations, you must add SSH keys to your authentication settings. Any SSH keys that you add are included automatically in your simulation's list of authorized keys under the `oob-mgmt-server`.
 
 To add an SSH key, fill in the **Name** and **Public Key** fields, then select **Add**.
 
@@ -156,7 +152,7 @@ You can revoke or delete both API tokens and SSH keys if you no longer need them
 
 ## Resource Budgets
 
-The number of simulation resources allotted to a user is tied to the user's account. For an account using a valid business email, AIR allocates a user the following resource budget:
+The number of simulation resources allotted to a user is tied to the user's account. For an account using a valid business email, AIR allocates the following resource budget:
 - 60 vCPUs
 - 90 GB memory
 - 650 GB storage

@@ -188,7 +188,7 @@ Additional options are available for certain `nv show` commands. For example, yo
 | `--applied`| Shows configuration applied with the `nv config apply` command. For example, `nv show --applied`. |
 | `--brief-help` | Shows help about the `nv show` command. For example, `nv show interface swp1 --brief-help`|
 | `--color`  | Turns colored output on or off. For example, `nv show interface swp1 --color on`|
-| `--filter` | Filters show command output on column data. For example, the `nv show interface --filter mtu=1500` shows only the interfaces with MTU set to 1500.</br>To filter on multiple column outputs, enclose the entire filter in double quotes; for example, `nv show interface --filter "type=bridge&mtu=9216"` shows data for bridges with MTU 9216.</br>You can use wildcards; for example, `nv show interface swp1 --filter "ip.address=1*"` shows all IP addresses that start with `1` for swp1.</br>You can filter on all revisions (operational, applied, and pending); for example, `nv show interface  --filter "ip.address=1*" --rev=applied` shows all IP addresses that start with `1` for swp1 in the applied revision.|
+| `--filter` | Filters show command output on column data. For example, the `nv show interface --filter mtu=1500` shows only the interfaces with MTU set to 1500. For more information, see {{<link url="#filter-nv-show-command-output" text="Filter nv show Command Output">}} below.|
 | `--hostname`| Shows system configuration for the switch with the specified hostname. For example, `nv show --hostname leaf01`.|
 | `--operational` | Shows the running configuration (the actual system state). For example, `nv show interface swp1 --operational` shows the running configuration for swp1. The running and applied configuration should be the same. If different, inspect the logs. |
 | `--output`        | Shows command output in table (`auto`), `json`, `yaml` or plain text (`raw`) format, such as vtysh native output. For example:<br>`nv show interface bond1 --output auto`<br>`nv show interface bond1 --output json`<br>`nv show interface bond1 --output yaml`<br>`nv show router bgp -output raw`|
@@ -605,4 +605,81 @@ The following example shows a password that includes a dot (.) and tilde (~):
 
 ```
 cumulus@switch:~$ nv set system aaa user cumulus password “Hello.world\~123”
+```
+
+## Filter nv show Command Output
+
+Filters show command output on column data; for example, to show only the interfaces with MTU set to 1500:
+
+```
+cumulus@switch:~$ nv show interface --filter mtu=1500
+```
+
+To filter on multiple column outputs, enclose the entire filter in double quotes; for example, to show data for bridges with MTU 9216:
+
+```
+cumulus@switch:~$ nv show interface --filter "type=bridge&mtu=9216" 
+```
+
+You can use wildcards; for example, to show all IP addresses that start with 1 for swp1:
+
+```
+cumulus@switch:~$ nv show interface swp1 --filter "ip.address=1*"
+```
+
+You can filter on all revisions (operational, applied, and pending); for example, to show all IP addresses that start with 1 for swp1 in the applied revision:
+
+```
+cumulus@switch:~$ nv show interface --filter "ip.address=1*" --rev=applied
+```
+
+You can filter the FRR `nv show vrf <vrf> router rib` command output by protocol (gp, ospf, kernel, static, ospf6, sharp, or connected); for example, to show all BGP IPv4 routes in the routing table:
+
+```
+cumulus@switch:~$ nv show vrf default router rib ipv4 route --filter=protocol=bgp                                                                             
+Flags - * - selected, q - queued, o - offloaded, i - installed, S - fib-        
+selected, x - failed                                                            
+                                                                                
+Route            Protocol  Distance  Uptime                NHGId  Metric  Flags
+---------------  --------  --------  --------------------  -----  ------  -----
+10.0.1.34/32     bgp       20        2024-12-17T10:24:14Z  127    0       *Si  
+10.0.1.255/32    bgp       20        2024-12-17T10:24:10Z  127    0       *Si  
+10.10.10.2/32    bgp       20        2024-12-17T10:24:10Z  62     0       *Si  
+10.10.10.3/32    bgp       20        2024-12-17T10:24:17Z  127    0       *Si  
+10.10.10.4/32    bgp       20        2024-12-17T10:24:10Z  127    0       *Si  
+10.10.10.63/32   bgp       20        2024-12-17T10:24:10Z  127    0       *Si  
+10.10.10.64/32   bgp       20        2024-12-17T10:24:17Z  127    0       *Si  
+10.10.10.101/32  bgp       20        2024-12-17T10:24:10Z  102    0       *Si  
+10.10.10.102/32  bgp       20        2024-12-17T10:24:10Z  115    0       *Si  
+10.10.10.103/32  bgp       20        2024-12-17T10:24:10Z  121    0       *Si  
+10.10.10.104/32  bgp       20        2024-12-17T10:24:10Z  113    0       *Si  
+```
+
+You can filter the FRR `nv show vrf <vrf> router bgp neighbor` command output by state (established or non-established); for example, to show all BGP established neighbors:
+
+```
+cumulus@switch:~$ nv show vrf default router bgp neighbor --filter=state=established                                                                             
+AS - Remote Autonomous System, PeerEstablishedTime - Peer established time in   
+UTC format, UpTime - Uptime in milliseconds, Afi-Safi - Address family, PfxSent 
+- Transmitted prefix counter, PfxRcvd - Recieved prefix counter                 
+                                                                                
+Neighbor       AS     State        PeerEstablishedTime   UpTime   MsgRcvd  MsgSent  Afi-Safi      PfxSent  PfxRcvd
+-------------  -----  -----------  --------------------  -------  -------  -------  ------------  -------  -------
+peerlink.4094  65102  established  2024-12-17T10:22:36Z  8998000  3145     3151     ipv4-unicast  13       12     
+                                                                                    l2vpn-evpn    72       51     
+swp51          65199  established  2024-12-17T10:22:41Z  8998000  3132     3149     ipv4-unicast  13       8      
+                                                                                    l2vpn-evpn    72       51     
+swp52          65199  established  2024-12-17T10:22:44Z  8998000  3125     3139     ipv4-unicast  13       8      
+                                                                                    l2vpn-evpn    72       51     
+swp53          65199  established  2024-12-17T10:22:44Z  8998000  3138     3139     ipv4-unicast  13       8      
+                                                                                    l2vpn-evpn    72       51     
+swp54          65199  established  2024-12-17T10:22:44Z  8998000  3143     3139     ipv4-unicast  13       8      
+                                                                                    l2vpn-evpn    72       51  
+```
+
+To show all BGP non-established neighbors:
+
+```
+cumulus@switch:~$ nv show vrf default router bgp neighbor --filter=state!=established
+No Data
 ```

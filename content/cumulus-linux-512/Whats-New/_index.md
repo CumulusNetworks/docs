@@ -27,12 +27,10 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
 -  {{<link url="RADIUS-AAA/#radius-user-command-accounting" text="RADIUS user command accounting support for multiple servers with first response option">}}
 - {{<link url="Neighbor-Discovery-ND" text="IPV6 Stateless Address Auto-Configuration">}}
 - Switch Telemetry Exposure - OTLP(Phase 3)
-- OTLP | Support different sample rate per OTLP exporter destination
-- Create a single CLI service check for OTLP exporter(s)
+- Support different sample rate per OTLP exporter destination
+- Create a single CLI service check for OTLP exporters
 - BER monitoring - GSHUT and port down due to error disabled
-- Align system/log
 - Support for defining APT sources
-- Implement flow-control/backpressure between zebra and clients (like bgpd) to handle heavy churn at high scale( EVPN Scenarios)
 - SN5400 Hippo | Add SyncE support at 1G (optical)
 - NVUE
   - {{<link title="Network Troubleshooting/#traceroute" text="Traceroute command">}}
@@ -40,8 +38,8 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
   - {{<link title="Troubleshooting Network Interfaces/#monitor-interface-traffic-rate-and-pps" text="Commands to monitor interface traffic rate and PPS">}}
   - {{<link url="Monitoring-Best-Practices/#disk-usage" text="Command to monitor disk usage">}}
   - {{<link url="FRRouting/#look-up-the-route-for-a-destination" text="Look up the route for a destination">}}
-  - Show Logging Information
-  - Filtering based on FRR Phase-1
+  - {{<link url="NVUE-CLI/#filter-nv-show-command-output" text="Filter FRR nv show command output">}}
+  - {{<link title="Log Files with NVUE" text="Logging commands">}}
   - {{< expand "Changed NVUE Commands" >}}
 | New Commands | Previous Commands |
 | ----------- | ----------------|
@@ -50,7 +48,7 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
   - {{< expand "Removed NVUE Commands" >}}
 | Removed Commands |
 | --------------- |
-| |
+| `nv set system aaa radius enable`|
 
 {{< /expand >}}
   - {{< expand "New NVUE Commands" >}}
@@ -62,6 +60,10 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 nv show interface <interface> rates
 nv show interface rates
 nv show system disk usage
+nv show system log
+nv show system log file
+nv show system log component
+
 ```
 
 {{< /tab >}}
@@ -113,6 +115,10 @@ nv action traceroute interface <interface> packet_len
 nv action traceroute interface <interface> hop-count
 nv action traceroute interface <interface> source-address
 nv action traceroute interface <interface> protocol
+nv action delete system log component <component-name> file <file-name>`
+nv action delete system log file <file-name>
+nv action upload system log file <file-name> <remote-url-upload>
+nv action upload system log component <component-name> file <file-name> <remote-url-upload>
 ```
 
 {{< /tab >}}

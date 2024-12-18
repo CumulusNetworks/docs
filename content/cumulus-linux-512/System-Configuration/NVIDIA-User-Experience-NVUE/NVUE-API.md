@@ -1534,6 +1534,14 @@ To retrieve view types through the REST API, you use the `curl -u 'cumulus:Cumul
 cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -k -X GET https://127.0.0.1:8765/nvue_v1/vrf/BLUE/router/rib/ipv4/route?view=brief
 ```
 
+The equivalent REST API method for the NVUE `nv show interface --view=acl-statistics` command is:
+
+```
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -k -X GET https://127.0.0.1:8765/nvue_v1/interface?view=acl-statistics
+```
+
+For a query with a view that does not exist. The API returns a `400 Bad Request` error and displays all the defined views for that endpoint.
+
 ### Convert CLI Changes to Use the API
 
 You can take a configuration change from the CLI and use the API to configure the same set of changes.

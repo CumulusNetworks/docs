@@ -9,5 +9,4 @@ This section describes the various integrations you can configure after installi
 - {{<link title="Install a Custom Signed Certificate">}}
 - {{<link title="Update Cloud Activation Key">}}
 - {{<link title="Configure Premises">}}
-- {{<link title="Integrate NetQ with Grafana">}}
 

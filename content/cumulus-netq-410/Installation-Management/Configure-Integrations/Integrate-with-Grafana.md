@@ -3,6 +3,7 @@ title: Integrate NetQ with Grafana
 author: NVIDIA
 weight: 550
 toc: 3
+bookhidden: true
 ---
 Switches collect statistics about the performance of their interfaces. The NetQ Agent on each switch collects these statistics every 15 seconds and then sends them to your NetQ appliance or virtual machine.
 

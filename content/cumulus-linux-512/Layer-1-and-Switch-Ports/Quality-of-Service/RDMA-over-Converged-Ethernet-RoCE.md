@@ -182,24 +182,27 @@ To show detailed information about the configured buffers, utilization and DSCP 
 cumulus@switch:mgmt:~$ nv show qos roce
                    operational  applied 
 ------------------  -----------  --------
-enable                           on      
-mode                lossless     lossless
-congestion-control                       
-  congestion-mode   ECN                  
-  enabled-tc        0,3                  
-  max-threshold     1.43 MB              
-  min-threshold     146.48 KB            
-  probability       100                  
-lldp-app-tlv                             
-  priority          3                    
-  protocol-id       4791                 
-  selector          UDP                  
-pfc                                      
-  pfc-priority      3                    
-  rx-enabled        enabled              
-  tx-enabled        enabled              
-trust                                    
-  trust-mode        pcp,dscp             
+                    operational            applied              
+------------------  ---------------------  ---------------------
+enable                                     on                   
+mode                lossless-single-ipool  lossless-single-ipool
+pfc                                                             
+  pfc-priority      3                                           
+  rx-enabled        enabled                                     
+  tx-enabled        enabled                                     
+  cable-length      100                                         
+congestion-control                                              
+  congestion-mode   ECN                                         
+  enabled-tc        0,3                                         
+  min-threshold     146.48 KB                                   
+  max-threshold     1.43 MB                                     
+  probability       100                                         
+trust                                                           
+  trust-mode        pcp,dscp                                    
+lldp-app-tlv                                                    
+  priority          -1                                          
+  protocol-id       -1                                          
+  selector          Non-UDP       
 
 RoCE PCP/DSCP->SP mapping configurations
 ===========================================

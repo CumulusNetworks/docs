@@ -609,13 +609,13 @@ cumulus@switch:~$ nv set system aaa user cumulus password “Hello.world\~123”
 
 ## Filter nv show Command Output
 
-Filters show command output on column data. For example, to show only the interfaces with MTU set to 1500:
+Filters show command output on column data; for example, to show only the interfaces with MTU set to 1500:
 
 ```
 cumulus@switch:~$ nv show interface --filter mtu=1500
 ```
 
-To filter on multiple column outputs, enclose the entire filter in double quotes. For example, to show data for bridges with MTU 9216:
+To filter on multiple column outputs, enclose the entire filter in double quotes; for example, to show data for bridges with MTU 9216:
 
 ```
 cumulus@switch:~$ nv show interface --filter "type=bridge&mtu=9216" 
@@ -627,15 +627,13 @@ You can use wildcards; for example, to show all IP addresses that start with 1 f
 cumulus@switch:~$ nv show interface swp1 --filter "ip.address=1*"
 ```
 
-To filter on all revisions (operational, applied, and pending). For example, to show all IP addresses that start with 1 for swp1 in the applied revision:
+You can filter on all revisions (operational, applied, and pending); for example, to show all IP addresses that start with 1 for swp1 in the applied revision:
 
 ```
 cumulus@switch:~$ nv show interface --filter "ip.address=1*" --rev=applied
 ```
 
-You can filter the FRR `nv show vrf <vrf> router rib` command output by protocol (gp, ospf, kernel, static, ospf6, sharp, or connected).
-
-The following example shows all BGP IPv4 routes in the routing table:
+You can filter the FRR `nv show vrf <vrf> router rib` command output by protocol (gp, ospf, kernel, static, ospf6, sharp, or connected); for example, to show all BGP IPv4 routes in the routing table:
 
 ```
 cumulus@switch:~$ nv show vrf default router rib ipv4 route --filter=protocol=bgp                                                                             
@@ -657,9 +655,7 @@ Route            Protocol  Distance  Uptime                NHGId  Metric  Flags
 10.10.10.104/32  bgp       20        2024-12-17T10:24:10Z  113    0       *Si  
 ```
 
-You can filter the FRR `nv show vrf <vrf> router bgp neighbor` command output by state (established or non-established).
-
-The following example shows all BGP established neighbors:
+You can filter the FRR `nv show vrf <vrf> router bgp neighbor` command output by state (established or non-established); for example, to show all BGP established neighbors:
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor --filter=state=established                                                                             
@@ -681,7 +677,7 @@ swp54          65199  established  2024-12-17T10:22:44Z  8998000  3143     3139 
                                                                                     l2vpn-evpn    72       51  
 ```
 
-The following example shows all BGP non-established neighbors:
+To show all BGP non-established neighbors:
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor --filter=state!=established

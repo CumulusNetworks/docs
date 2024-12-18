@@ -27,10 +27,9 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
 -  {{<link url="RADIUS-AAA/#radius-user-command-accounting" text="RADIUS user command accounting support for multiple servers with first response option">}}
 - {{<link url="Neighbor-Discovery-ND" text="IPV6 Stateless Address Auto-Configuration">}}
 - Switch Telemetry Exposure - OTLP(Phase 3)
-- OTLP | Support different sample rate per OTLP exporter destination
-- Create a single CLI service check for OTLP exporter(s)
+- Support different sample rate per OTLP exporter destination
+- Create a single CLI service check for OTLP exporters
 - BER monitoring - GSHUT and port down due to error disabled
-- Align system/log
 - Support for defining APT sources
 - SN5400 Hippo | Add SyncE support at 1G (optical)
 - NVUE

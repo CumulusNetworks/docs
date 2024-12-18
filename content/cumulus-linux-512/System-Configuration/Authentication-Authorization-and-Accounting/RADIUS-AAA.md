@@ -43,7 +43,6 @@ After you install the required RADIUS packages, configure the following required
 - If you use NVUE commands to configure RADIUS, you must also:
   - Set the priority at which Cumulus Linux contacts a RADIUS server for load balancing. You can set a value between 1 and 100. The lower value is the higher priority.
   - Set the priority for the authentication order for local and RADIUS users. You can set a value between 1 and 100. The lower value is the higher priority.
-  - Enable RADIUS.
 
 {{%notice note%}}
 After you configure any RADIUS settings with NVUE and you run `nv config apply`, you must restart the NVUE service with the `sudo systemctl restart nvued.service` command.
@@ -57,7 +56,6 @@ The following example commands set:
 - The secret to `'myradius$key'`.
 - The priority at which Cumulus Linux contacts the RADIUS server to 10.
 - The authentication order to 10 so that RADIUS authentication has priority over local.
-- The RADIUS option to `enable`.
 
 ```
 cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 port 42
@@ -65,7 +63,6 @@ cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 secret 'myradius
 cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 priority 10
 cumulus@switch:~$ nv set system aaa authentication-order 10 radius
 cumulus@switch:~$ nv set system aaa authentication-order 20 local
-cumulus@switch:~$ nv set system aaa radius enable on
 cumulus@switch:~$ nv config apply
 ```
 
@@ -298,7 +295,6 @@ To show global RADIUS configuration, run the `nv show system aaa radius` command
 cumulus@switch:~$ nv show system aaa radius
                  operational    applied        
 ---------------  -------------  ------------- 
-enable           on             on            
 vrf              mgmt           mgmt          
 debug            disabled       disabled      
 privilege-level                 15            

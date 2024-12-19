@@ -9,13 +9,15 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 
 ## December 2024
 <!-- Air:WhatsNew -->
+### 82.2024.1219-011
+- Added SN5610 System to manager.
+<!-- Air:WhatsNew -->
 ### 82.2024.1212-011
 - Added the ability to launch NetQ after you create a simulation
 - Added the ability to search for simulations by UUID
-- Link data now includes `network_pci` to distinguish between interfaces on a node and interfaces on a network PCI entity
 - Fixed an error message display issue
 - Fixed an issue with the modal that Air displays when creating a new API token
-<!-- Air:WhatsNew -->
+
 ### 82.2024.1205-011
 - Updated and clarified API error messages for invalid files
 

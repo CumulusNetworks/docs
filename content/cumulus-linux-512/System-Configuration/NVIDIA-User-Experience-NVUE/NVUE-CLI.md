@@ -522,6 +522,32 @@ cumulus@switch:~$ nv config patch /deps/nv-02/13/2021.yaml
 A patch contains a single request to the NVUE service. Ordering of parameters within a patch is not guaranteed; NVUE does not support both unset and set commands for the same object in a single patch.
 {{%/notice%}}
 
+## Translate a Configuration Revision or File
+
+NVUE provides commands to translate an NVUE configuration revision or yaml file into NVUE commands. The revision ID must be either an integer or a named revision (such as startup, applied, pending). The configuration file must be located on the switch and must include the full path to the file containing the configuration you want to translate. The file must be in YAML format and must be accessible with proper read permissions.
+
+To translate a specific NVUE configuration revision, run the `nv config translate system config revision <revision-id>` command. NVUE displays the translation on the console.
+
+The following command translates the configuration in revision 1:
+
+```
+cumulus@switch:~$ nv config translate revision 10 
+```
+
+The following command translates the configuration in the applied revision:
+
+```
+cumulus@switch:~$ nv config translate revision applied 
+```
+
+To translate a configuration file, run the `nv config translate system config input-file <file-path>` command. The following example translates the `backup.yaml` file in the `/home/cumulus` directory. NVUE displays the translation on the console.
+
+```
+cumulus@switch:~$ nv config translate input-file /home/cumulus/backup.yaml
+```
+
+If the revision or yaml file is not readable, is in an invalid format, or includes invalid parameters, NVUE returns an error message and prompts you to correct the issue before proceeding.
+
 ## Session-Based Authentication
 
 NVUE uses sessions to authenticate and authorize requests. After authenticating the user with the first request, NVUE stores the session in the `nvued` cache. NVUE authenticates subsequent interactions within the session locally so that it does not have to keep checking with external authentication servers. This process enhances system performance and efficiency, making it ideal for high-traffic environments.

@@ -14,10 +14,10 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
 
 - SN5610 (800G Spectrum-4)
 - SN5400 ITU-T G.82732 Class C compliant
-- SN5400  1G (optical) supported with SyncE
 
 ### New Features and Enhancements
 
+- 1G (optical) supported with SyncE on the SN5400 switch  
 - {{<link url="Upgrading-Cumulus-Linux/#upgrade-cumulus-linux" text="Ability to ugrade from Cumulus Linux 5.11 with Optimized Image Upgrade">}}
 - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#roce-single-shared-buffer-pool" text="RoCE single shared buffer pool">}}
 - {{<link url="Optional-BGP-Configuration/#graceful-bgp-shutdown-on-a-peer-group" text="Graceful BGP shutdown on a peer group">}}
@@ -27,8 +27,8 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
 - {{<link url="BGP-Weighted-Equal-Cost-Multipath/#ecmp-resource-sharing-during-next-hop-group-updates" text="ECMP Resource Sharing During Next Hop Group Updates">}}
 -  {{<link url="RADIUS-AAA/#radius-user-command-accounting" text="RADIUS user command accounting support for multiple servers with first response option">}}
 - {{<link url="Neighbor-Discovery-ND" text="IPV6 Stateless Address Auto-Configuration">}}
-- Switch Telemetry Exposure - OTLP(Phase 3)
-- Support different sample rate per OTLP exporter destination
+- OTLP new routing metrics
+- Support different sample rate for OTLP exporter destinations
 - Create a single CLI service check for OTLP exporters
 - Support for defining APT sources
 - NVUE
@@ -39,6 +39,7 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
   - {{<link url="FRRouting/#look-up-the-route-for-a-destination" text="Look up the route for a destination">}}
   - {{<link url="NVUE-CLI/#filter-nv-show-command-output" text="Filter FRR nv show command output">}}
   - {{<link title="Log Files with NVUE" text="Logging commands">}}
+  - {{<link url="NVUE-CLI/#translate-a-configuration-revision-or-file" text="Commands to translate a revision or yaml configuration file">}}
   - {{< expand "Changed NVUE Commands" >}}
 | New Commands | Previous Commands |
 | ----------- | ----------------|

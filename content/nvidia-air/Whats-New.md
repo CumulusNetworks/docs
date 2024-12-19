@@ -10,7 +10,7 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 ## December 2024
 <!-- Air:WhatsNew -->
 ### 82.2024.1219-011
-- Added SN5610 System to manager.
+- Added SN5610 system to manager
 <!-- Air:WhatsNew -->
 ### 82.2024.1212-011
 - Added the ability to launch NetQ after you create a simulation

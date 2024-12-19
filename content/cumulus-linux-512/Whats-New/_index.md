@@ -48,7 +48,8 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
   - {{< expand "Removed NVUE Commands" >}}
 | Removed Commands |
 | --------------- |
-| `nv set system aaa radius enable`|
+| `nv set system aaa radius enable` |
+| `nv set system aaa ldap ssl ca-list`|
 
 {{< /expand >}}
   - {{< expand "New NVUE Commands" >}}

@@ -4,10 +4,7 @@ author: NVIDIA
 weight: 145
 toc: 3
 ---
-NVUE provides commands to:
-- Show the current system logging configuration and the contents of the log files on the switch.
-- Upload log files to a remote URL
-- Delete log files
+NVUE provides commands to show the current system logging configuration, show the contents of the log files on the switch, and to delete log files.
 
 ## Show System Logging Configuration
 
@@ -127,7 +124,7 @@ The following example shows the log files and associated logs for NVUE:
 ```
 cumulus@switch:~$ nv show system log component nvue file list 
 ```
-
+<!--
 ## Upload System Log Files to a Remote URL
 
 You can transfer specific log files or system component-specific log files for remote analysis, backup, or troubleshooting, you can upload the file to a remote URL or server.
@@ -149,7 +146,7 @@ You can perform the upload within a specific VRF context; for example:
 ```
 cumulus@switch:~$ nv action upload system log component nvue file nvued.log <remote-url-upload> vrf RED
 ```
-
+-->
 ## Delete System Log Files
 
 Deleting log files enables you to manage storage space and ensure that only relevant logs remain. You typically delete log files after you upload or archive them, or when you no longer need the logs for troubleshooting or auditing.

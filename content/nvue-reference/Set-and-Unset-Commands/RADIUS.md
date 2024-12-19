@@ -56,6 +56,10 @@ cumulus@switch:~$ nv set system aaa radius debug enable
 
 Enables (`on`) and disables (`off`) RADIUS.
 
+{{%notice note%}}
+Cumulus Linux 5.12 and later no longer provides this command.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0

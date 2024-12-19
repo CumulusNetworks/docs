@@ -14,6 +14,7 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
 
 - SN5610 (800G Spectrum-4)
 - SN5400 ITU-T G.82732 Class C compliant
+- SN5400  1G (optical) supported with SyncE
 
 ### New Features and Enhancements
 
@@ -29,9 +30,7 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
 - Switch Telemetry Exposure - OTLP(Phase 3)
 - Support different sample rate per OTLP exporter destination
 - Create a single CLI service check for OTLP exporters
-- BER monitoring - GSHUT and port down due to error disabled
 - Support for defining APT sources
-- SN5400 Hippo | Add SyncE support at 1G (optical)
 - NVUE
   - {{<link title="Network Troubleshooting/#traceroute" text="Traceroute command">}}
   - {{<link title="Network Troubleshooting/#ping" text="Ping command">}}
@@ -48,7 +47,8 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
   - {{< expand "Removed NVUE Commands" >}}
 | Removed Commands |
 | --------------- |
-| `nv set system aaa radius enable`|
+| `nv set system aaa radius enable` |
+| `nv set system aaa ldap ssl ca-list`|
 
 {{< /expand >}}
   - {{< expand "New NVUE Commands" >}}

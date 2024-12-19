@@ -135,12 +135,14 @@ To show system reboot information, such as the reboot date and time, reason, and
 
 ```
 cumulus@switch:~$ nv show system reboot
-           operational                       applied  pending
----------  --------------------------------  -------  -------
+           operational                       applied
+---------  --------------------------------  -------
 reason                                                       
   gentime  2023-04-26T15:11:23.140569+00:00                  
   reason   Unknown                                           
   user     system/root
+  mode     cold                              cold
+  required no
 ```
 
 ## Upgrade Mode

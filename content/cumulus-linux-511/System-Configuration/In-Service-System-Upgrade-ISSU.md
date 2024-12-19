@@ -137,8 +137,8 @@ reason
   gentime  2023-04-26T15:11:23.140569+00:00                  
   reason   Unknown                                           
   user     system/root
-  mode       cold                              cold
-  required   no
+  mode     cold                              cold
+  required no
 ```
 
 ## Upgrade Mode

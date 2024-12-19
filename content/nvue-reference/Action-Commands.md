@@ -2624,6 +2624,53 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action delete system log file \<file-name\></h>
+
+Deletes the specified system log file.
+
+Deleting log files enables you to manage storage space and ensure that only relevant logs remain. You typically delete log files after you upload or archive them, or when you no longer need the logs for troubleshooting or auditing. Log file deletion is a crucial step in log management to ensure that outdated or irrelevant data does not occupy system resources.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<file-name>` | The system log file you want to delete. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action delete system log file mstpd.log 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action delete system log component \<component-name\> file \<filename\></h>
+
+Delete a log file from a specific system component.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<component-name>` | The system component whose log file you want to delete. |
+| `<file-name>` | The system log file you want to delete. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action delete system log component nvue file nvued.log
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action delete system security ca-certificate \<cert-id\></h>
 
 Deletes the CA certificate you specify.

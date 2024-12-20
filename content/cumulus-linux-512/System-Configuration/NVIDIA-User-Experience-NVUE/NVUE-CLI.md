@@ -709,3 +709,13 @@ To show all BGP non-established neighbors:
 cumulus@switch:~$ nv show vrf default router bgp neighbor --filter=state!=established
 No Data
 ```
+
+## FRR and NVUE
+
+Restarting FRR restarts all the routing protocol daemons that you enable and are running, which might impact traffic.
+
+NVUE restarts the FRR service when you:
+- Change the `/etc/frr/daemons` file
+- Change the BGP ASN
+- Remove the default instance
+- Disable the SNMP server with `agentx` configured

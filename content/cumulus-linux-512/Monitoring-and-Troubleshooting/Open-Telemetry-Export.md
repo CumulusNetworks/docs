@@ -62,6 +62,7 @@ When you enable open telemetry for control plane statistics, additional counters
 cumulus@switch:~$ nv set system telemetry control-plane-stats export state enabled
 cumulus@switch:~$ nv config apply
 ```
+
 You can adjust the control plane statistics sample interval (in seconds). You can specify a value between 1 and 86400. The default value is 1.
 
 ```
@@ -156,6 +157,45 @@ cumulus@switch:~$ nv config apply
 
 {{< /tab >}}
 {{< /tabs >}}
+
+### Layer 3 Router Statistics
+
+When you enable open telemetry for layer 3 router statistics, the switch exports data related to the routing table, BGP peers, BGP advertised routes, and the BGP packet input and output queue. To enable [router statistics](#router-statistic-format):
+
+To enable BGP peer state statistic open telemetry:
+
+```
+cumulus@switch:~$ nv set system telemetry router bgp export state
+cumulus@switch:~$ nv config apply
+```
+
+To enable BGP statistic open telemetry for all peers under a VRF:
+
+```
+cumulus@switch:~$ nv set system telemetry router bgp vrf <vrf_id> export state
+cumulus@switch:~$ nv config apply
+```
+
+To enable BGP statistic open telemetry for a specific peer under a VRF:
+
+```
+cumulus@switch:~$ nv set system telemetry router bgp vrf <vrf_id> peer <peer_id> export state
+cumulus@switch:~$ nv config apply
+```
+
+To enable statistic open telemetry for the routing table:
+
+```
+cumulus@switch:~$ nv set system telemetry router rib export state
+cumulus@switch:~$ nv config apply 
+```
+
+To enable statistic open telemetry for the routing table for a VRF:
+
+```
+cumulus@switch:~$ nv set system telemetry router vrf <vrf_id> rib export state
+cumulus@switch:~$ nv config apply
+```
 
 ### gRPC OTLP Export
 
@@ -1305,13 +1345,36 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 
 {{< /expand >}}
 
+### Router Data Format
+
+When you enable Router statistic telemetry, the following statistics are exported:
+
+| Name | Description |
+|----- | ----------- |
+| `nvswitch_routing_bgp_peer_state` | BGP peer state: Established, Idle, Connect, Active, OpenSent.  |
+| `nvswitch_routing_bgp_peer_fsm_established_transitions` | BGP peer state transitions to the Established state. |
+| `nvswitch_routing_bgp_peer_rib_in_total_routes_ipv4` | Total number of routes advertised to a specific IPv4 BGP peer. |
+| `nvswitch_routing_bgp_peer_rib_in_total_routes_ipv6` | Total number of routes advertised to a specific IPv6 BGP peer.|
+| `nvswitch_routing_bgp_in_queue_socket` | Total number of BGP messages in the input queue.|
+| `nvswitch_routing_bgp_out_queue_socket` | Total number of BGP messages in the output queue.|
+| `nvswitch_routing_bgp_rx_updates` | Total number of BGP received packets.|
+| `nvswitch_routing_bgp_tx_updates` | Total number of BGP sent packets. |
+| `nvswitch_routing_rib_count` | Total route counts in the routing table. |
+| `nvswitch_routing_bgp_peer_rib_count` | Total number of routes for each Address Family Indicator (AFI) and Subsequent Address Family Indicator (SAFI).|
+
+{{< expand "Example JSON data for bgp_peer_state:" >}}
+```
+ADD EXAMPLE
+```
+{{< /expand >}}
+
 ### Histogram Data Format
 
 The histogram data samples that the switch exports to the OTEL collector are {{<exlink url="https://opentelemetry.io/docs/specs/otel/metrics/data-model/#histogram" text="histogram data points">}} that include the {{<link url="ASIC-Monitoring#histogram-collection-example" text="histogram bucket (bin)">}} counts and the respective queue length size boundaries for each bucket. Latency and counter histogram data are also exported, if configured. 
 
 {{% notice note %}}
 Latency histogram bucket counts do not increment in exported telemetry data if there are no packets transmitted in the traffic class during the sample interval.
-{{% /notice %}} 
+{{% /notice %}}
 
 The switch sends a sample with the following names for each interface enabled for ingress and egress buffer, latency, and/or counter histogram collection:
 

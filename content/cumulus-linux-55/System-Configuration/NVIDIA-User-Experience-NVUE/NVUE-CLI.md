@@ -658,3 +658,13 @@ cumulus@switch:~$ nv config patch /deps/nv-02/13/2021.yaml
 {{%notice note%}}
 A patch contains a single request to the NVUE service. Ordering of parameters within a patch is not guaranteed; NVUE does not support both unset and set commands for the same object in a single patch.
 {{%/notice%}}
+
+## NVUE and FRR Restart
+
+NVUE restarts the FRR service when you:
+- Change the `/etc/frr/daemons` file.
+- Change the BGP ASN.
+- Remove the default instance.
+- Disable the SNMP server with `agentx` configured.
+
+Restarting FRR restarts all the routing protocol daemons that you enable and that are running, which might impact traffic.

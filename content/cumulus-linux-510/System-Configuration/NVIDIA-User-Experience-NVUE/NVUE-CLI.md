@@ -515,3 +515,13 @@ cumulus@switch:~$ nv action clear system api session
 {{%notice note%}}
 If you do not clear a user session after making changes directly on the RADIUS, TACACS, or LDAP server, NVUE uses the existing session for authentication and authorization until the session times out (up to 60 minutes).
 {{%/notice%}}
+
+## NVUE and FRR Restart
+
+NVUE restarts the FRR service when you:
+- Change the `/etc/frr/daemons` file.
+- Change the BGP ASN.
+- Remove the default instance.
+- Disable the SNMP server with `agentx` configured.
+
+Restarting FRR restarts all the routing protocol daemons that you enable and that are running, which might impact traffic.

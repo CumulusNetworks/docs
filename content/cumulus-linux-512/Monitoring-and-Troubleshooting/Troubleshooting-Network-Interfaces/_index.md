@@ -53,6 +53,7 @@ You can configure the load interval you want to use to calculate interface rates
 
 ```
 cumulus@switch:~$ nv set system counter rates load-interval 30
+cumulus@switch:~$ nv config apply
 ```
 
 To view the configured load interval, run the `nv show system counter rates` command.

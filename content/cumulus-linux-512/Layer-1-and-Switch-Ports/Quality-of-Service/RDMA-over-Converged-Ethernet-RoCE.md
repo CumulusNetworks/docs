@@ -136,6 +136,8 @@ traffic.roce_mode = 4
 cumulus@switch:~$ sudo systemctl reload switchd.service
 ```
 
+To disable single shared buffer pool mode and use the default mode (lossless), set the `traffic.roce_mode` parameter to 3.
+
 {{< /tab >}}
 {{< /tabs >}}
 

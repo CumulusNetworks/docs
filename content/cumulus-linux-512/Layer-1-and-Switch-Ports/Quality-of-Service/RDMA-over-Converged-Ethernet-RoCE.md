@@ -12,7 +12,7 @@ While Cumulus Linux can support RoCE environments, the end hosts must support th
 
 RoCE helps you obtain a *converged network*, where all services run over the Ethernet infrastructure, including Infiniband applications.
 
-## Default RoCE Mode Configuration
+## Default RoCE Configuration
 
 The following table shows the default RoCE configuration for lossy and lossless mode.
 
@@ -26,11 +26,11 @@ The following table shows the default RoCE configuration for lossy and lossless 
 | Enable PFC on switch priority 3 (RoCE)|NO|YES|
 | Switch priority 3 allocated to RoCE lossless traffic pool| NO | YES |
 
-## RDMA over Converged Ethernet lossless (with PFC and ECN)
+## RoCE lossless (with PFC and ECN)
 
 RoCE uses the Infiniband (IB) Protocol over converged Ethernet. The IB global route header rides directly on top of the Ethernet header. The lossless Ethernet layer handles congestion hop by hop.
 
-To enable RoCE with PFC and ECN:
+To enable RoCE lossless:
 
 {{< tabs "TabID36 ">}}
 {{< tab "NVUE Commands ">}}
@@ -41,7 +41,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{% notice note %}}
-NVUE defaults to `roce mode lossless`. The command `nv set qos roce` and `nv set qos roce mode lossless` are equivalent.
+NVUE defaults to RoCE lossless. The command `nv set qos roce` and `nv set qos roce mode lossless` are equivalent.
 
 If you enable `roce mode lossy`, configuring `nv set qos roce` without a `mode` does not change the RoCE mode. To change to lossless, you must configure lossless mode with the `nv set qos roce mode lossless` command.
 {{% /notice %}}
@@ -69,13 +69,13 @@ cumulus@switch:~$ sudo systemctl reload switchd.service
 {{<link url="Quality-of-Service#link-pause" text="Link pause">}} is another way to provide lossless ethernet; however, PFC is the preferred method. PFC allows more granular control by pausing the traffic flow for a given CoS group instead of the entire link.
 {{%/notice%}}
 
-## Enable RDMA over Converged Ethernet lossy (with ECN)
+## RoCE lossy (with ECN)
 
 RoCEv2 requires flow control for lossless Ethernet. RoCEv2 uses the Infiniband (IB) Transport Protocol over UDP. The IB transport protocol includes an end-to-end reliable delivery mechanism and has its own sender notification mechanism.
 
 RoCEv2 congestion management uses RFC 3168 to signal congestion experienced to the receiver. The receiver generates an RoCEv2 congestion notification packet directed to the source of the packet.
 
-To enable RoCE with ECN:
+To enable RoCE lossy:
 
 {{< tabs "TabID80 ">}}
 {{< tab "NVUE Commands ">}}
@@ -104,11 +104,11 @@ cumulus@switch:~$ sudo systemctl reload switchd.service
 {{< /tab >}}
 {{< /tabs >}}
 
-## RoCE Single Shared Buffer Pool
+## Single Shared Buffer Pool
 
-By default, Cumulus Linux separates lossy and lossless traffic into different dedicated pools on both ingress and egress. You can configure the switch to map ingress lossy and lossless traffic to the same single ingress pool. Using the RoCE single shared buffer pool can help absorb lossy traffic as well as prioritize lossless traffic.
+By default, Cumulus Linux separates lossy and lossless traffic into different dedicated buffer pools on both ingress and egress. You can configure the switch to combine lossy and lossless traffic on the same buffer pool for better load absorption.
 
-To enable the single shared buffer pool for RoCE:
+To enable single shared buffer pool mode:
 
 {{< tabs "TabID188 ">}}
 {{< tab "NVUE Commands ">}}

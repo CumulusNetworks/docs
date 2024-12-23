@@ -172,14 +172,14 @@ cumulus@switch:~$ nv config apply
 To enable BGP statistic open telemetry for all peers under a VRF:
 
 ```
-cumulus@switch:~$ nv set system telemetry router bgp vrf <vrf_id> export state
+cumulus@switch:~$ nv set system telemetry router bgp vrf RED export state
 cumulus@switch:~$ nv config apply
 ```
 
 To enable BGP statistic open telemetry for a specific peer under a VRF:
 
 ```
-cumulus@switch:~$ nv set system telemetry router bgp vrf <vrf_id> peer <peer_id> export state
+cumulus@switch:~$ nv set system telemetry router bgp vrf RED peer swp1 export state
 cumulus@switch:~$ nv config apply
 ```
 
@@ -193,7 +193,7 @@ cumulus@switch:~$ nv config apply
 To enable statistic open telemetry for the routing table for a VRF:
 
 ```
-cumulus@switch:~$ nv set system telemetry router vrf <vrf_id> rib export state
+cumulus@switch:~$ nv set system telemetry router vrf RED rib export state
 cumulus@switch:~$ nv config apply
 ```
 
@@ -1345,9 +1345,9 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 
 {{< /expand >}}
 
-### Router Data Format
+### Router Statistic Format
 
-When you enable Router statistic telemetry, the following statistics are exported:
+When you enable layer 3 router statistic telemetry, the following statistics are exported:
 
 | Name | Description |
 |----- | ----------- |
@@ -1362,9 +1362,18 @@ When you enable Router statistic telemetry, the following statistics are exporte
 | `nvswitch_routing_rib_count` | Total route counts in the routing table. |
 | `nvswitch_routing_bgp_peer_rib_count` | Total number of routes for each Address Family Indicator (AFI) and Subsequent Address Family Indicator (SAFI).|
 
-{{< expand "Example JSON data for bgp_peer_state:" >}}
+{{< expand "Example JSON data for bgp_peer_fsm_established_transitions:" >}}
 ```
-ADD EXAMPLE
+ { 
+            "name": "207.2.2.2", 
+            "status": "Established", 
+            "established-transitions": 1, 
+            "in-queue": 0, 
+            "out-queue": 0, 
+            "tx-updates": 116, 
+            "rx-updates": 66, 
+            "ipv4-unicast-rcvd": 152, 
+            "ipv6-unicast-rcvd": 1 
 ```
 {{< /expand >}}
 

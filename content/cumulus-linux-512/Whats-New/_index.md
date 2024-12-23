@@ -105,7 +105,7 @@ nv action ping system <destination>
 nv action ping system <destination> count
 nv action ping system <destination> interval
 nv action ping system <destination> size
-nv action ping system <destination> time
+nv action ping system <destination> wait
 nv action ping system <destination> do-not-fragment
 nv action ping system <destination> source <source-ip-address>
 nv action ping system <destination> vrf

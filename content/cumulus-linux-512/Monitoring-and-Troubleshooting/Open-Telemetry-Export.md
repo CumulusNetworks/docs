@@ -172,14 +172,14 @@ cumulus@switch:~$ nv config apply
 To enable BGP statistic open telemetry for all peers under a VRF:
 
 ```
-cumulus@switch:~$ nv set system telemetry router bgp vrf <vrf_id> export state
+cumulus@switch:~$ nv set system telemetry router bgp vrf RED export state
 cumulus@switch:~$ nv config apply
 ```
 
 To enable BGP statistic open telemetry for a specific peer under a VRF:
 
 ```
-cumulus@switch:~$ nv set system telemetry router bgp vrf <vrf_id> peer <peer_id> export state
+cumulus@switch:~$ nv set system telemetry router bgp vrf RED peer swp1 export state
 cumulus@switch:~$ nv config apply
 ```
 
@@ -193,7 +193,7 @@ cumulus@switch:~$ nv config apply
 To enable statistic open telemetry for the routing table for a VRF:
 
 ```
-cumulus@switch:~$ nv set system telemetry router vrf <vrf_id> rib export state
+cumulus@switch:~$ nv set system telemetry router vrf RED rib export state
 cumulus@switch:~$ nv config apply
 ```
 

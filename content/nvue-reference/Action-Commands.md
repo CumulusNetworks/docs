@@ -3202,7 +3202,7 @@ cumulus@switch:~$ nv action ping system fe80::a00:27ff:fe00:0 source-interface e
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action ping system \<destination\> time</h>
+## <h>nv action ping system \<destination\> wait</h>
 
 Configures the number of seconds to wait for an Echo Reply packet before the ping request times out. You can specify a value between 0.1 and 10. The default value is 10.
 
@@ -3219,7 +3219,7 @@ Introduced in Cumulus Linux 5.12.0
 ### Example
 
 ```
-cumulus@switch:~$ nv action ping system 10.10.10.10 time 3
+cumulus@switch:~$ nv action ping system 10.10.10.10 wait 3
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

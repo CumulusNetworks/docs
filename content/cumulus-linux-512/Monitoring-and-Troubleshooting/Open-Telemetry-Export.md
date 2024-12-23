@@ -1345,9 +1345,9 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 
 {{< /expand >}}
 
-### Router Data Format
+### Router Statistic Format
 
-When you enable Router statistic telemetry, the following statistics are exported:
+When you enable layer 3 router statistic telemetry, the following statistics are exported:
 
 | Name | Description |
 |----- | ----------- |
@@ -1362,9 +1362,18 @@ When you enable Router statistic telemetry, the following statistics are exporte
 | `nvswitch_routing_rib_count` | Total route counts in the routing table. |
 | `nvswitch_routing_bgp_peer_rib_count` | Total number of routes for each Address Family Indicator (AFI) and Subsequent Address Family Indicator (SAFI).|
 
-{{< expand "Example JSON data for bgp_peer_state:" >}}
+{{< expand "Example JSON data for bgp_peer_fsm_established_transitions:" >}}
 ```
-ADD EXAMPLE
+ { 
+            "name": "207.2.2.2", 
+            "status": "Established", 
+            "established-transitions": 1, 
+            "in-queue": 0, 
+            "out-queue": 0, 
+            "tx-updates": 116, 
+            "rx-updates": 66, 
+            "ipv4-unicast-rcvd": 152, 
+            "ipv6-unicast-rcvd": 1 
 ```
 {{< /expand >}}
 

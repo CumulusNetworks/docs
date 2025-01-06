@@ -5,13 +5,14 @@ weight: 50
 toc: 3
 ---
 {{%notice warning%}}
-The default password for the *cumulus* user account is `cumulus`. The first time you log into Cumulus Linux, you **must** change this default password. Be sure to update any automation scripts before you upgrade. You can use ONIE command line options to change the default password automatically during the Cumulus Linux image installation process. Refer to {{<link url="Installing-a-New-Cumulus-Linux-Image#onie-installation-options" text="ONIE Installation Options">}}.
+The default password for the *cumulus* user account is `cumulus`. The first time you log into Cumulus Linux, you **must** change this default password. Be sure to update any automation scripts before you upgrade. You can use ONIE command line options to change the default password automatically during the Cumulus Linux image installation process. Refer to {{<link url="Installing-a-New-Cumulus-Linux-Image-with-ONIE#onie-installation-options" text="ONIE Installation Options">}}.
 {{%/notice%}}
 
-Cumulus Linux provides several options for upgrading the switch:
-- {{<link url="#install-an-image" text="Optimized image upgrade">}}
-- <span class="a-tooltip">[ONIE](## "Open Network Install Environment")</span>
-- {{<link url="#package-upgrade" text="Package upgrade">}}
+You can upgrade Cumulus Linux in one of two ways:
+- Install a Cumulus Linux image of the new release with either:
+  - {{<link url="#install-an-image" text="Optimized image upgrade">}}
+  - <span class="a-tooltip">[ONIE](## "Open Network Install Environment")</span>
+- Upgrade only the changed packages using {{<link url="#package-upgrade" text="package upgrade">}}.
 
 {{%notice tip%}}
 NVIDIA recommends deploying, provisioning, configuring, and upgrading switches using automation, even with small networks or test labs. During the upgrade process, you can upgrade dozens of devices in a repeatable manner. Using tools like Ansible, Chef, or Puppet for configuration management greatly increases the speed and accuracy of the next major upgrade; these tools also enable you to quickly swap failed switch hardware.
@@ -291,7 +292,7 @@ To upgrade the switch with ONIE:
 
 1. Back up the configurations off the switch.
 2. Download the Cumulus Linux image.
-3. Install the Cumulus Linux image with the `onie-install -a -i <image-location>` command, which boots the switch into ONIE. The following example command installs the image from a web server, then reboots the switch. There are additional ways to install the Cumulus Linux image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image">}}.
+3. Install the Cumulus Linux image with the `onie-install -a -i <image-location>` command, which boots the switch into ONIE. The following example command installs the image from a web server, then reboots the switch. There are additional ways to install the Cumulus Linux image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image with ONIE">}}.
 
     ```
     cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-linux-5.12.0-mlx-amd64.bin && sudo reboot
@@ -511,7 +512,7 @@ NVIDIA has not tested running different versions of Cumulus Linux on MLAG peer s
     cumulus@switch:~$ nv config apply
     ```
 
-4. To boot the switch into ONIE, run the `onie-install -a -i <image-location>` command. The following example command installs the image from a web server. There are additional ways to install the Cumulus Linux image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image">}}.
+4. To boot the switch into ONIE, run the `onie-install -a -i <image-location>` command. The following example command installs the image from a web server. There are additional ways to install the Cumulus Linux image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image with ONIE">}}.
 
     ```
     cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/downloads/cumulus-linux-5.12.0-mlx-amd64.bin
@@ -588,7 +589,7 @@ NVIDIA has not tested running different versions of Cumulus Linux on MLAG peer s
     cumulus@switch:~$ sudo ip link set peerlink down
     ```
 
-4. To boot the switch into ONIE, run the `onie-install -a -i <image-location>` command. The following example command installs the image from a web server. There are additional ways to install the Cumulus Linux image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image">}}.
+4. To boot the switch into ONIE, run the `onie-install -a -i <image-location>` command. The following example command installs the image from a web server. There are additional ways to install the Cumulus Linux image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image with ONIE">}}.
 
     ```
     cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/downloads/cumulus-linux-5.12.0-mlx-amd64.bin

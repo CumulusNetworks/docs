@@ -705,12 +705,26 @@ You can clear the following entries from the forwarding database instead of wait
 
 The clear dynamic MAC address commands do not clear sticky entries, permanent entries, or neighbor entries learned externally.
 
+NVUE provides a `verbose` option that shows details of the number of cleared forwarding database records when clearing entries.
+
 ### Clear All Dynamic MAC Addresses
 
 To clear **all** dynamic MAC addresses from the forwarding database, run the `nv action clear bridge domain <bridge-id> mac-table dynamic` command:
 
 ```
 cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic
+Action executing ... 
+The matching FDB entries were deleted successfully. 
+```
+
+To clear **all** dynamic MAC addresses from the forwarding database and show the number of cleared entries, add the `verbose` option:
+
+```
+cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic verbose
+Action executing ... 
+The matching FDB entries were deleted successfully. 
+Total number of records deleted: 2 
+...
 ```
 
 {{%notice note%}}
@@ -723,12 +737,16 @@ To clear all dynamic MAC addresses for a specific interface, run the `nv action 
 
 ```
 cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic interface swp1
+Action executing ... 
+The matching FDB entries were deleted successfully. 
 ```
 
 To clear all dynamic MAC addresses for a specific VLAN, run the `nv action clear bridge domain <bridge-id> mac-table dynamic vlan <vlan-id` command:
 
 ```
 cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic vlan 10
+Action executing ... 
+The matching FDB entries were deleted successfully. 
 ```
 
 {{%notice note%}}
@@ -739,6 +757,18 @@ To clear all dynamic MAC addresses for a specific interface and VLAN, run the `n
 
 ```
 cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic interface swp1 vlan 10
+Action executing ... 
+The matching FDB entries were deleted successfully. 
+```
+
+To show the number of cleared entries, add the `verbose` option; for example:
+
+```
+cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic interface swp1 vlan 10 verbose
+Action executing ... 
+The matching FDB entries were deleted successfully. 
+Total number of records deleted: 3 
+...
 ```
 
 ### Clear A Specific Dynamic MAC Address for an Interface, VLAN, or Interface and VLAN
@@ -747,18 +777,34 @@ To clear a specific dynamic MAC addresses for a VLAN, run the `nv action clear b
 
 ```
 cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic mac 00:00:0A:BB:28:FC vlan 10
+Action executing ... 
+The matching FDB entries were deleted successfully.
 ```
 
 To clear a specific dynamic MAC address for an interface, run the `nv action clear bridge domain <domain-id> mac-table dynamic mac <mac-address> interface <interface-id>` command:
 
 ```
 cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic mac 00:00:0A:BB:28:FC interface swp1
+Action executing ... 
+The matching FDB entries were deleted successfully. 
 ```
 
 To clear a specific dynamic MAC address for a VLAN and interface, run the `nv action clear bridge domain <domain-id> mac-table dynamic mac <mac-address> vlan <vlan-id interface <interface-id>` command:
 
 ```
 cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic mac 00:00:0A:BB:28:FC vlan 10 interface swp1
+Action executing ... 
+The matching FDB entries were deleted successfully. 
+```
+
+To show the number of cleared entries, add the `verbose` option; for example:
+
+```
+cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic mac 00:00:0A:BB:28:FC vlan 10 interface swp1 verbose
+Action executing ... 
+The matching FDB entries were deleted successfully. 
+Total number of records deleted: 3 
+...
 ```
 
 ## Static MAC Address Entries

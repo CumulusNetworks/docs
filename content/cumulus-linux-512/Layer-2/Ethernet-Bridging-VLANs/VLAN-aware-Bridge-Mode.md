@@ -732,7 +732,7 @@ cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic vla
 ```
 
 {{%notice note%}}
-The `nv action clear bridge domain <bridge-id> mac-table dynamic vlan <vlan-id>` command clears the static VXLAN entries in bridge or VXLAN driver for the corresponding VLAN or VNI.
+The `nv action clear bridge domain <bridge-id> mac-table dynamic vlan <vlan-id>` command clears the static VXLAN entries in the bridge or VXLAN driver for the corresponding VLAN or VNI.
 {{%/notice%}}
 
 To clear all dynamic MAC addresses for a specific interface and VLAN, run the `nv action clear bridge domain <bridge-id> mac-table dynamic interface <interface-id> vlan <vlan-id>` command:

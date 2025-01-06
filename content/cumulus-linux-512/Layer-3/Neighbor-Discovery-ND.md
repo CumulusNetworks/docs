@@ -19,7 +19,7 @@ Cumulus Linux provides options to configure:
 
 ## Router Advertisement
 <!-- vale off -->
-Router Advertisement is disabled by default. To enable Router Advertisment for an interface:
+Router Advertisement is disabled by default. To enable Router Advertisement for an interface:
 <!-- vale on -->
 {{< tabs "TabID135 ">}}
 {{< tab "NVUE Commands ">}}
@@ -44,7 +44,7 @@ leaf01(config-if)# no ipv6 nd suppress-ra
 {{< /tabs >}}
 
 {{%notice note%}}
-For Stateless Address Auto-Configuration (SLAAC), Router Advertisment must be enabled on the interface. The prefix advertised in Router Advertisement must belong to the /64 subnet.
+For Stateless Address Auto-Configuration (SLAAC), you must enable Router Advertisment on the interface. The prefix advertised in the Router Advertisement must belong to the /64 subnet.
 {{%/notice%}}
 
 You can configure these optional settings:

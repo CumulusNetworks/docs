@@ -16,7 +16,7 @@ If the peer you want to add to a group already exists in the BGP configuration, 
 
 The following example commands create a peer group called SPINE that includes two external peers.
 
-{{< tabs "21 ">}}
+{{< tabs "19 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -49,7 +49,7 @@ cumulus@leaf01:~$
 
 For an unnumbered configuration, you can use a single command to configure a neighbor and attach it to a peer group.
 
-{{< tabs "62 ">}}
+{{< tabs "52 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -82,7 +82,7 @@ The following example commands configure BGP peering to remote neighbors within 
 The peer group must already exist otherwise the configuration does not apply.
 {{%/notice%}}
 
-{{< tabs "96 ">}}
+{{< tabs "85 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -125,7 +125,7 @@ The eBGP multihop option lets you use BGP to exchange routes with an external pe
 
 The following example command configures Cumulus Linux to establish a connection between two <span class="a-tooltip">[eBGP](## "external BGP")</span> peers that are not directly connected and sets the maximum number of hops used to reach a eBGP peer to 1.
 
-{{< tabs "154 ">}}
+{{< tabs "128 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -163,7 +163,7 @@ When you use TTL security, you do not need eBGP multihop.
 
 The following command example sets the TTL security hop count value to 200:
 
-{{< tabs "197 ">}}
+{{< tabs "166 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -212,10 +212,10 @@ To enable MD5 authentication for BGP peers, set the same password on each peer.
 
 The following example commands set the password *mypassword* on BGP peers leaf01 and spine01:
 
-{{< tabs "40 ">}}
+{{< tabs "215 ">}}
 {{< tab "NVUE Commands ">}}
 
-{{< tabs "270 ">}}
+{{< tabs "218 ">}}
 {{< tab "leaf01 ">}}
 
 ```
@@ -237,7 +237,7 @@ cumulus@spine01:~$ nv config apply
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
-{{< tabs "281 ">}}
+{{< tabs "240 ">}}
 {{< tab "leaf01 ">}}
 
 ```
@@ -395,7 +395,7 @@ If you use private ASNs in the data center, routes advertised to neighbors conta
 
 The following example command removes private ASNs from routes advertised to the neighbor on swp51 (an unnumbered interface):
 
-{{< tabs "424 ">}}
+{{< tabs "398 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -458,7 +458,7 @@ The following example configures VRF RED and VRF BLUE on border01 to use ASN 655
 
 {{< img src = "/images/cumulus-linux/asn-vrf-config.png" >}}
 
-{{< tabs "411 ">}}
+{{< tabs "461 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -599,7 +599,7 @@ To prevent loops, the switch automatically discards BGP network prefixes if it s
 
 To enable allowas-in:
 
-{{< tabs "528 ">}}
+{{< tabs "602 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -649,7 +649,7 @@ You can configure additional options:
 
 The following example sets the maximum number of occurrences of the local system's AS number in the received AS path to 4:
 
-{{< tabs "571 ">}}
+{{< tabs "652 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -695,7 +695,7 @@ address-family ipv4 unicast
 
 The following example allows a received AS path containing the ASN of the local system but only if it is the originating AS:  
 
-{{< tabs "610 ">}}
+{{< tabs "698 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -743,7 +743,7 @@ address-family ipv4 unicast
 
 You can configure BGP to use a specific IP address when exchanging BGP updates with a neighbor. For example, in a numbered BGP configuration, you can set the source IP address to be the loopback address of the switch.
 
-{{< tabs "661 ">}}
+{{< tabs "746 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -787,7 +787,7 @@ Cumulus Linux enables the *BGP multipath* option by default and sets the maximum
 
 The example commands change the maximum number of paths to 120. You can set a value between 1 and 256. 1 disables the BGP multipath option.
 
-{{< tabs "617 ">}}
+{{< tabs "790 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -827,7 +827,7 @@ exit-address-family
 
 When you enable *BGP multipath*, Cumulus Linux load balances BGP routes from the same AS. If the routes go across several different AS neighbors, even if the AS path length is the same, they are not load balanced. To load balance between multiple paths received from different AS neighbors:.
 
-{{< tabs "601 ">}}
+{{< tabs "830 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -874,7 +874,7 @@ When BGP peering uses IPv6 global addresses, and BGP advertises and installs IPv
 
 To enable advertisement of IPv4 prefixes with IPv6 next hops over global IPv6 peerings, add the `extended-nexthop` capability to the global IPv6 neighbor statements on each end of the BGP sessions.
 
-{{< tabs "724 ">}}
+{{< tabs "877 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -911,7 +911,7 @@ router bgp 65101
 
 Ensure that you have activated the IPv6 peers under the IPv4 unicast address family; otherwise, all peers activate in the IPv4 unicast address family by default. If you configure `no bgp default ipv4-unicast`, you need to activate the IPv6 neighbor under the IPv4 unicast address family as shown below:
 
-{{< tabs "769 ">}}
+{{< tabs "914 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -961,7 +961,7 @@ To protect against an internal network connectivity disruption caused by BGP, yo
 
 The following example commands set the maximum number of prefixes allowed from the BGP neighbor on swp51 to 3000:
 
-{{< tabs "829 ">}}
+{{< tabs "964 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -1008,7 +1008,7 @@ cumulus@leaf01:~$ nv config apply
 
 You can configure BGP to wait for a response from the RIB indicating that the routes installed in the RIB are also installed in the ASIC before sending updates to peers.
 
-{{< tabs "TabID788 ">}}
+{{< tabs "TabID1011 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -1135,7 +1135,7 @@ BGP add-path TX enables BGP to advertise more than just the best path for a pref
 
 The following example commands configure leaf01 to advertise the best path learned from each AS to the BGP neighbor on swp50:
 <!-- vale on -->
-{{< tabs "895 ">}}
+{{< tabs "1138 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -1240,7 +1240,7 @@ The following example commands configure the switch to send a 10.0.0.0/8 summary
 - Create a route map called ADVERTISEMAP that uses the prefix list ADVERTISE. You must provide the route map match type (`ipv4` or `ipv6`).
 - Configure BGP neighbor swp51 to use the route maps.
 
-{{< tabs "1293 ">}}
+{{< tabs "1243 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -1307,7 +1307,7 @@ Cumulus Linux scans the entire <span class="a-tooltip">[RIB](## "BGP Routing Inf
 A lower value (such as 5) increases the amount of processing needed. Use caution when configuring conditional advertisement on a large number of BGP neighbors.
 {{%/notice%}}
 
-{{< tabs "1358 ">}}
+{{< tabs "1310 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -1395,7 +1395,7 @@ When you configure BGP PIC, Cumulus Linux assigns one next hop group for each so
 
 To enable PIC:
 
-{{< tabs "1393 ">}}
+{{< tabs "1398 ">}}
 {{< tab "NVUE Commands ">}}
 
 On a leaf switch, enable the BGP advertise origin option so that BGP can attach the Site-of-Origin (SOO) extended community to all routes advertised to its peers from the source where the routes originate.
@@ -1479,7 +1479,7 @@ By default, BGP exchanges periodic keepalive messages to measure and ensure that
 
 The following example commands set the keepalive interval to 10 seconds and the hold time to 30 seconds.
 
-{{< tabs "1120 ">}}
+{{< tabs "1482 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -1523,7 +1523,7 @@ By default, the BGP process attempts to connect to a peer after a failure (or on
 
 The following example commands set the reconnect value to 30 seconds:
 
-{{< tabs "1040 ">}}
+{{< tabs "1526 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -1564,7 +1564,7 @@ After making a new best path decision for a prefix, BGP can insert a delay befor
 
 The following example commands set the advertisement interval to 5 seconds:
 
-{{< tabs "1082 ">}}
+{{< tabs "1567 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -1607,7 +1607,7 @@ You can configure the input and the output message queue limit for all peers. Fo
 Only increase the input or output queue if you have enough memory to handle large queues of messages at the same time.
 {{%/notice%}}
 
-{{< tabs "1477 ">}}
+{{< tabs "1610 ">}}
 {{< tab "NVUE Commands ">}}
 
 The following example sets the input queue limit to 2048 messages and the output queue limit to 2048 messages:
@@ -1649,7 +1649,7 @@ In the following example, spine01 is acting as a route reflector. The leaf switc
 
 To configure the BGP node as a route reflector for a BGP peer, set the neighbor `route-reflector-client` option. The following example sets spine01 shown in the illustration above to be a route reflector for leaf01 (on swp1), which is a route reflector client. You do not have to configure the client.
 
-{{< tabs "1212 ">}}
+{{< tabs "1652 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -1705,7 +1705,7 @@ To configure a BGP confederation:
 
 The following example configures confederation ID 2 with sub-ASs 65101, 65102, 65103, and 65104.
 
-{{< tabs "1706 ">}}
+{{< tabs "1708 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -1753,7 +1753,7 @@ Cumulus Linux uses the administrative distance to choose which routing protocol 
 
 The following example commands set the administrative distance for external routes to 150 and internal routes to 110:
 
-{{< tabs "1451 ">}}
+{{< tabs "1756 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -1783,7 +1783,7 @@ spine01# exit
 
 You can shut down all active BGP sessions with a neighbor and remove all associated routing information without removing its associated configuration. When shut down, the neighbor goes into an administratively idle state.
 
-{{< tabs "1504 ">}}
+{{< tabs "1786 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -1834,7 +1834,7 @@ You can enable graceful BGP shutdown either globally or on a peer or peer group 
 
 When you enable graceful shutdown globally on the switch, Cumulus Linux adds the `graceful-shutdown` community to all inbound and outbound routes from all eBGP peers and sets the `local-pref` for the routes to `0` (refer to {{<exlink url="https://datatracker.ietf.org/doc/html/rfc8326" text="RFC8326">}}).
 
-{{< tabs "1481 ">}}
+{{< tabs "1837 ">}}
 {{< tab "NVUE Commands ">}}
 
 To enable graceful shutdown globally on the switch:
@@ -1959,7 +1959,7 @@ When you enable BGP graceful shutdown on a peer, Cumulus Linux attaches a `grace
 Before you enable graceful shutdown on a peer, make sure that *global* graceful shutdown is `off`.
 {{%/notice%}}
 
-{{< tabs "1807 ">}}
+{{< tabs "1962 ">}}
 {{< tab "NVUE Commands ">}}
 
 To enable graceful shutdown on a peer, run the `nv set vrf <vrf> router bgp neighbor <neighbor> graceful-shutdown on` command:
@@ -2034,7 +2034,7 @@ When you enable BGP graceful shutdown on a peer group, Cumulus Linux attaches a 
 Before you enable graceful shutdown on a peer group, make sure that *global* graceful shutdown is `off`.
 {{%/notice%}}
 
-{{< tabs "1807 ">}}
+{{< tabs "2037 ">}}
 {{< tab "NVUE Commands ">}}
 
 To enable graceful shutdown on a peer group, run the `nv set vrf <vrf> router bgp peer-group <peer-group-id> graceful-shutdown on` command:
@@ -2127,7 +2127,7 @@ You can configure graceful BGP restart globally, where all BGP peers inherit the
 - Changing graceful restart mode results in BGP session flaps.
 {{%/notice%}}
 
-{{< tabs "TabID1783 ">}}
+{{< tabs "TabID2130 ">}}
 {{< tab "NVUE Commands ">}}
 
 The switch has graceful restart enabled in helper-only mode by default. To set graceful BGP restart to full mode globally on the switch:
@@ -2186,7 +2186,7 @@ To set graceful BGP restart back to the default setting (helper-only mode), run 
 If you disable graceful BGP restart, you cannot achieve a switch restart or switch software upgrade with minimal traffic loss in a BGP configuration. Refer to {{<link url="In-Service-System-Upgrade-ISSU" text="ISSU">}} for more information.
 {{%/notice%}}
 
-{{< tabs "TabID1816 ">}}
+{{< tabs "TabID2189 ">}}
 {{< tab "NVUE Commands ">}}
 
 To disable graceful BGP restart globally on the switch:
@@ -2239,7 +2239,7 @@ leaf01# exit
 
 You can configure the following graceful BGP restart timers.
 
-{{< tabs "TabID1557 ">}}
+{{< tabs "TabID2242 ">}}
 {{< tab "NVUE Commands ">}}
 
 |<div style="width:250px">Timer | Description |
@@ -2365,7 +2365,7 @@ While in read-only mode, BGP does not run best-path or generate any updates to i
 
 The following example commands enable read-only mode:
 
-{{< tabs "1723 ">}}
+{{< tabs "2368 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -2445,7 +2445,7 @@ When the neighbor receives the prefix, it examines the community value and takes
 
 The following example configures a standard community list filter:
 
-{{< tabs "1995 ">}}
+{{< tabs "2448 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -2472,7 +2472,7 @@ leaf01# exit
 
 To apply the community list to a route map to define the routing policy:
 
-{{< tabs "2029">}}
+{{< tabs "2475">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -2500,7 +2500,7 @@ leaf01# exit
 
 The following example configures a BGP extended community <span class="a-tooltip">[RT](## "route target")</span> filter and applies the extended community list to a route map.
 
-{{< tabs "2207">}}
+{{< tabs "2503">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -2531,7 +2531,7 @@ leaf01# exit
 
 The following example configures a BGP extended community <span class="a-tooltip">[RT](## "route target")</span> filter with a regex match and applies the extended community list to a route map.
 
-{{< tabs "2231">}}
+{{< tabs "2534">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -2562,7 +2562,7 @@ leaf01# exit
 
 The following example configures a BGP extended community <span class="a-tooltip">[SOO](## "Site of Origin")</span> filter and applies the extended community list to a route map.
 
-{{< tabs "2247">}}
+{{< tabs "2565">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -2593,7 +2593,7 @@ leaf01# exit
 
 The following example configures a BGP extended community <span class="a-tooltip">[SOO](## "Site of Origin")</span> filter with a regex match and applies the extended community list to a route map.
 
-{{< tabs "2267">}}
+{{< tabs "2596">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -2628,7 +2628,7 @@ To use a special character, such as a period (.) in the regular expression for a
 
 The following example configures a BGP large community list and applies the large community list to a route map.
 
-{{< tabs "TabID2500 ">}}
+{{< tabs "TabID2631 ">}}
 {{< tab "NVUE Commands">}}
 
 ```

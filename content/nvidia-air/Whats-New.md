@@ -7,11 +7,18 @@ product: NVIDIA Air
 <!-- vale off -->
 Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
 
-## December 2024
+## January 2025
 <!-- Air:WhatsNew -->
+### 82.2025.0107-011
+- Fixed an issue where demo marketplace search showed incorrect results
+- Fixed an issue where image details showing as updated despite the image update request failed
+<!-- Air:WhatsNew -->
+
+## December 2024
+
 ### 82.2024.1219-011
 - Added SN5610 system to manager
-<!-- Air:WhatsNew -->
+
 ### 82.2024.1212-011
 - Added the ability to launch NetQ after you create a simulation
 - Added the ability to search for simulations by UUID

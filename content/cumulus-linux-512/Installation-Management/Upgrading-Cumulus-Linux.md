@@ -94,9 +94,8 @@ Understanding the location of configuration data is important for successful upg
 
 {{< /expand >}}
 
-The following commands verify which files have changed compared to the previous Cumulus Linux install. Be sure to back up any changed files.
-- Run the `sudo dpkg --verify` command to show a list of changed files.
-- Run the `egrep -v '^$|^#|=""$' /etc/default/isc-dhcp-*` command to see if any of the generated `/etc/default/isc-*` files have changed.
+To show a list of files changed from the previous Cumulus Linux install, run the `sudo dpkg --verify` command.
+To show a list of generated `/etc/default/isc-*` files changed from the previous Cumulus Linux install, run the `egrep -v '^$|^#|=""$' /etc/default/isc-dhcp-*` command.
 
 ### Back Up and Restore Configuration with NVUE
 
@@ -278,6 +277,8 @@ To upgrade the switch with ONIE:
 
 Run **package upgrade** if you are upgrading from one Cumulus Linux 5.x release to a later 5.x release, and if you use third-party applications (package upgrade does not replace or remove third-party applications, unlike the Cumulus Linux image install).
 
+*Package upgrade* always updates to the latest available release in the Cumulus Linux repository. For example, if you are currently running Cumulus Linux 5.0.0 and perform a package upgrade, the packages upgrade to the latest releases in the latest 5.x release.
+
 When you use package upgrade to upgrade the switch, configuration data stays in place during the upgrade. If the new release updates a previously changed configuration file, the upgrade process prompts you to either specify the version you want to use or evaluate the differences.
 
 {{%notice note%}}
@@ -289,7 +290,7 @@ When you use package upgrade to upgrade the switch, configuration data stays in 
 - Cumulus Linux does not support the `sudo -E apt-get dist-upgrade` command. Be sure to use `sudo -E apt-get upgrade` when upgrading packages.
 - To upgrade from Cumulus Linux 5.11 to Cumulus Linux 5.12, you need 0.8GB of free disk space. Before you upgrade, run the NVUE `nv show system disk usage` command or the Linux `sudo df -h` command to show how much disk space you are currently using on the switch.
 {{%/notice%}}
-
+<!--
 {{%notice note%}}
 
 If you are running Cumulus Linux 5.9.x (the current extended-support release), the default switch configuration allows you to upgrade to the latest Cumulus 5.9.x release only.
@@ -312,7 +313,7 @@ To upgrade from Cumulus Linux 5.9.x to Cumulus Linux 5.12, perform the following
    ```
 
 {{%/notice%}}
-
+-->
 To upgrade the switch with package upgrade:
 
 {{< tabs "TabID253 ">}}
@@ -421,16 +422,6 @@ To upgrade the switch with package upgrade:
 
 {{< /tab >}}
 {{< /tabs >}}
-
-{{%notice note%}}
-
-*Package upgrade* always updates to the latest available release in the Cumulus Linux repository. For example, if you are currently running Cumulus Linux 5.0.0 and perform a package upgrade, the packages upgrade to the latest releases in the latest 5.x release.
-
-Cumulus Linux is a collection of different Debian Linux packages.
-- The `/etc/os-release` and `/etc/lsb-release` files update to the currently installed Cumulus Linux release when you upgrade the switch using either *package upgrade* or *Cumulus Linux image install*. For example, if you perform a package upgrade and the latest Cumulus Linux release on the repository is 5.9.1, these two files display the release as 5.9.1 after the upgrade.
-- The `/etc/image-release` file updates **only** when you run a Cumulus Linux image install. Therefore, if you run a Cumulus Linux image install of Cumulus Linux 5.9.0, followed by a package upgrade to 5.9.1, the `/etc/image-release` file continues to display Cumulus Linux 5.9.0, which is the originally installed base image.
-
-{{%/notice%}}
 
 ## Upgrade Switches in an MLAG Pair
 
@@ -598,6 +589,11 @@ The method you employ is specific to your deployment strategy. Providing detaile
 If you install any third party applications on a Cumulus Linux switch, configuration data is typically installed in the `/etc` directory, but it is not guaranteed. It is your responsibility to understand the behavior and configuration file information of any third party packages installed on the switch.
 
 After you upgrade using a full Cumulus Linux image install, you need to reinstall any third party packages or any Cumulus Linux add-on packages.
+
+## Considerations
+
+- The `/etc/os-release` and `/etc/lsb-release` files update to the currently installed Cumulus Linux release when you upgrade the switch using either *package upgrade* or *Cumulus Linux image install*. For example, if you perform a package upgrade and the latest Cumulus Linux release on the repository is 5.9.1, these two files display the release as 5.9.1 after the upgrade.
+- The `/etc/image-release` file updates **only** when you run a Cumulus Linux image install. Therefore, if you run a Cumulus Linux image install of Cumulus Linux 5.9.0, followed by a package upgrade to 5.9.1, the `/etc/image-release` file continues to display Cumulus Linux 5.9.0, which is the originally installed base image.
 
 ## Related Information
 

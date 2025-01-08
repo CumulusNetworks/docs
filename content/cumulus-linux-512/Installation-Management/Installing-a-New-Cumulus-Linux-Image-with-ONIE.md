@@ -1,5 +1,5 @@
 ---
-title: Installing a New Cumulus Linux Image
+title: Installing a New Cumulus Linux Image with ONIE
 author: NVIDIA
 weight: 40
 toc: 3
@@ -629,4 +629,4 @@ On a switch with the Spectrum-4 ASIC, if the ASIC firmware fails to boot, you se
 
 - {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/" text="ONIE Design Specification">}}
 - {{<exlink url="https://enterprise-support.nvidia.com/s/downloader" text="NVIDIA Enterprise support portal">}}
-- {{<link url="Managing-Cumulus-Linux-Disk-Images" text="Managing Cumulus Linux Disk Images">}}
+- {{<link url="Managing-Cumulus-Linux-Disk-Images-with-ONIE" text="Managing Cumulus Linux Disk Images with ONIE">}}

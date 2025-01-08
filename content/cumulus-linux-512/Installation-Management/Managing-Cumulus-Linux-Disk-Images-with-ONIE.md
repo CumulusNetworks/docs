@@ -1,12 +1,12 @@
 ---
-title: Managing Cumulus Linux Disk Images
+title: Managing Cumulus Linux Disk Images with ONIE
 author: NVIDIA
 weight: 30
 toc: 3
 ---
 The Cumulus Linux operating system resides on a switch as a *disk image*. This section discusses how to manage the image.
 
-To install a new Cumulus Linux image, refer to {{<link title="Installing a New Cumulus Linux Image">}}. To upgrade Cumulus Linux, refer to {{<link title="Upgrading Cumulus Linux">}}.
+To install a new Cumulus Linux image, refer to {{<link title="Installing a New Cumulus Linux Image with ONIE">}}. To upgrade Cumulus Linux, refer to {{<link title="Upgrading Cumulus Linux">}}.
 
 ## Reprovision the System (Restart the Installer)
 

@@ -29,8 +29,7 @@ For troubleshooting any upgrade issues, create a cl-support file before you star
 
 Understanding the location of configuration data is important for successful upgrades, migrations, and backup. As with other Linux distributions, the `/etc` directory is the primary location for all configuration data in Cumulus Linux. The following list contains the files you need to back up and migrate to a new release. Make sure you examine any changed files. Make the following files and directories part of a backup strategy.
 
-{{< tabs "TabID25 ">}}
-{{< tab "Network Configuration Files ">}}
+{{< expand "Network Configuration Files" >}}
 
 | File Name and Location | Description| Cumulus Linux Documentation | Debian Documentation |
 | ---------------------- | ---------- | ----------------------------| -------------------- |
@@ -48,8 +47,9 @@ Understanding the location of configuration data is important for successful upg
 | `/etc/cumulus/ports.conf` | Breakout cable configuration file | {{<link title="Switch Port Attributes">}} | N/A; read the guide on breakout cables |
 | `/etc/cumulus/switchd.conf` | `switchd` configuration | {{<link title="Configuring switchd">}} | N/A; read the guide on `switchd` configuration |
 
-{{< /tab >}}
-{{< tab "Commonly Used Files ">}}
+{{< /expand >}}
+
+{{< expand "Commonly Used Files" >}}
 
 | File Name and Location | Description| Cumulus Linux Documentation | Debian Documentation |
 | ---------------------- | ---------- | --------------------------- | -------------------- |
@@ -68,8 +68,9 @@ Understanding the location of configuration data is important for successful upg
 - If you have custom user accounts, consider including `/home/<username>/`.
 {{%/notice%}}
 
-{{< /tab >}}
-{{< tab "Never Migrate Files ">}}
+{{< /expand >}}
+
+{{< expand "Never Migrate Files" >}}
 
 | File Name and Location  | Description |
 | ----------------------- | ----------- |
@@ -91,8 +92,7 @@ Understanding the location of configuration data is important for successful upg
 | `/root/.ansible` | Ansible `tmp` files. Do not copy. |
 | `/home/cumulus/.ansible` | Ansible `tmp` files. Do not copy.|
 
-{{< /tab >}}
-{{< /tabs >}}
+{{< /expand >}}
 
 The following commands verify which files have changed compared to the previous Cumulus Linux install. Be sure to back up any changed files.
 - Run the `sudo dpkg --verify` command to show a list of changed files.

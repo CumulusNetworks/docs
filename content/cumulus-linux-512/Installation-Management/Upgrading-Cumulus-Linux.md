@@ -8,8 +8,6 @@ toc: 3
 The default password for the *cumulus* user account is `cumulus`. The first time you log into Cumulus Linux, you **must** change this default password. Be sure to update any automation scripts before you upgrade. You can use ONIE command line options to change the default password automatically during the Cumulus Linux image installation process. Refer to {{<link url="Installing-a-New-Cumulus-Linux-Image-with-ONIE#onie-installation-options" text="ONIE Installation Options">}}.
 {{%/notice%}}
 
-Cumulus Linux is a collection of different Debian Linux packages.
-
 You can upgrade Cumulus Linux in one of two ways:
 - Install a new Cumulus Linux image with either {{<link url="#install-an-image" text="Optimized image upgrade">}} or <span class="a-tooltip">[ONIE](## "Open Network Install Environment")</span>.
 - Upgrade only the changed packages using {{<link url="#package-upgrade" text="package upgrade">}}.

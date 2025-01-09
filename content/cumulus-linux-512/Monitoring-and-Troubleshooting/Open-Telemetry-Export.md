@@ -463,17 +463,17 @@ The following interface statistics are collected and exported when you configure
 
 |  Name | Description |
 |------ | ----------- |
-| `nvswitch_interface_time_since_last_clear` | Time passed since the last counters clear event in msec. |
+| `nvswitch_interface_time_since_last_clear` | Number of milliseconds from the last clear counters event. |
 | `nvswitch_interface_phy_received_bits` | Total amount of traffic (bits) received. |
 | `nvswitch_interface_phy_symbol_errors` | Error bits not corrected by the FEC correction algorithm or when FEC is not active. |
 | `nvswitch_interface_phy_effective_errors` | Number of errors after FEC is applied. |
 | `nvswitch_interface_phy_raw_errors_lane0` | Error bits identified on lane 0. When FEC is enabled, this induction corresponds to corrected errors. |
 | `nvswitch_interface_phy_raw_errors_lane1` | Error bits identified on lane 1. When FEC is enabled, this induction corresponds to corrected errors. |
-| `nvswitch_interface_phy_raw_errors_lane2` | Error bits that were identified on lane 2. When FEC is enabled, this induction corresponds to corrected errors. |
-| `nvswitch_interface_phy_raw_errors_lane3` | Error bits that were identified on lane 3. When FEC is enabled, this induction corresponds to corrected errors. |
-| `nvswitch_interface_phy_raw_errors_lane4` | Error bits that were identified on lane 4. When FEC is enabled, this induction corresponds to corrected errors. |
-| `nvswitch_interface_phy_raw_errors_lane5` | Error bits that were identified on lane 6. When FEC is enabled, this induction corresponds to corrected errors. |
-| `nvswitch_interface_phy_raw_errors_lane7` | Error bits that were identified on lane 7. When FEC is enabled, this induction corresponds to corrected errors. |
+| `nvswitch_interface_phy_raw_errors_lane2` | Error bits identified on lane 2. When FEC is enabled, this induction corresponds to corrected errors. |
+| `nvswitch_interface_phy_raw_errors_lane3` | Error bits identified on lane 3. When FEC is enabled, this induction corresponds to corrected errors. |
+| `nvswitch_interface_phy_raw_errors_lane4` | Error bits identified on lane 4. When FEC is enabled, this induction corresponds to corrected errors. |
+| `nvswitch_interface_phy_raw_errors_lane5` | Error bits identified on lane 6. When FEC is enabled, this induction corresponds to corrected errors. |
+| `nvswitch_interface_phy_raw_errors_lane7` | Error bits identified on lane 7. When FEC is enabled, this induction corresponds to corrected errors. |
 | `nvswitch_interface_raw-ber-lane0` | raw_ber-lane0 = raw_ber_coef_lane0*10^(raw_ber_magnitude) |
 | `nvswitch_interface_raw-ber-lane1` | raw_ber-lane1 = raw_ber_coef_lane0*10^(raw_ber_magnitude) |
 | `nvswitch_interface_raw-ber-lane2` | raw_ber-lane2 = raw_ber_coef_lane0*10^(raw_ber_magnitude) |
@@ -496,43 +496,43 @@ The following interface statistics are collected and exported when you configure
 | `nvswitch_interface_shared_buffer_port_pg_desc_watermark` | Maximum buffer occupancy for descriptors. |
 | `nvswitch_interface_shared_buffer_port_pg_watermark_recorded_max` | Highest maximum buffer occupancy recorded since running sdk_stats. |
 | `nvswitch_interface_shared_buffer_port_pg_desc_watermark_recorded_max` | Highest maximum buffer occupancy for descriptors recorded since running sdk_stats. |
-| `nvswitch_interface_shared_buffer_ingress_pool_curr_occupancy` | Current buffer occupancy. |
-| `nvswitch_interface_shared_buffer_ingress_pool_watermark` | Maximum buffer occupancy. |
-| `nvswitch_interface_shared_buffer_ingress_pool_desc_curr_occupancy` | Current buffer occupancy for descriptors. |
-| `nvswitch_interface_shared_buffer_ingress_pool_desc_watermark` | Maximum buffer occupancy for descriptors. |
-| `nvswitch_interface_shared_buffer_ingress_pool_watermark_recorded_max` | Highest maximum buffer occupancy recorded since running sdk_stats. |
-| `nvswitch_interface_shared_buffer_ingress_pool_desc_watermark_recorded_max` | Highest maximum buffer occupancy for descriptors recorded since running sdk_stats. |
-| `nvswitch_interface_shared_buffer_port_tc_curr_occupancy` | Current buffer occupancy. |
-| `nvswitch_interface_shared_buffer_port_tc_watermark` | Maximum buffer occupancy. |
+| `nvswitch_interface_shared_buffer_ingress_pool_curr_occupancy` | Current ingress pool buffer occupancy. |
+| `nvswitch_interface_shared_buffer_ingress_pool_watermark` | Maximum ingress pool buffer occupancy. |
+| `nvswitch_interface_shared_buffer_ingress_pool_desc_curr_occupancy` | Current ingress pool buffer occupancy for descriptors. |
+| `nvswitch_interface_shared_buffer_ingress_pool_desc_watermark` | Maximum ingress pool buffer occupancy for descriptors. |
+| `nvswitch_interface_shared_buffer_ingress_pool_watermark_recorded_max` | Highest maximum ingress pool buffer occupancy recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_ingress_pool_desc_watermark_recorded_max` | Highest maximum ingress pool buffer occupancy for descriptors recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_port_tc_curr_occupancy` | Current buffer occupancy for traffic class. |
+| `nvswitch_interface_shared_buffer_port_tc_watermark` | Maximum buffer occupancy for traffic class. |
 | `nvswitch_interface_shared_buffer_port_tc_desc_curr_occupancy` | Current buffer occupancy for descriptors. |
 | `nvswitch_interface_shared_buffer_port_tc_desc_watermark` | Maximum buffer occupancy for descriptors. |
 | `nvswitch_interface_shared_buffer_port_tc_watermark_recorded_max` | Highest maximum buffer occupancy recorded since running sdk_stats. |
 | `nvswitch_interface_shared_buffer_port_tc_desc_watermark_recorded_max` | Highest maximum buffer occupancy for TC descriptors recorded since running sdk_stats. |
-| `nvswitch_interface_shared_buffer_egress_pool_curr_occupancy` | Current buffer occupancy. |
-| `nvswitch_interface_shared_buffer_egress_pool_watermark` | Maximum buffer occupancy. |
-| `nvswitch_interface_shared_buffer_egress_pool_desc_curr_occupancy` | Current buffer occupancy for descriptors. |
-| `nvswitch_interface_shared_buffer_egress_pool_desc_watermark` | Maximum buffer occupancy for descriptors. |
-| `nvswitch_interface_shared_buffer_egress_pool_watermark_recorded_max` | Highest maximum buffer occupancy recorded since running sdk_stats. |
-| `nvswitch_interface_shared_buffer_egress_pool_desc_watermark_recorded_max` | Highest maximum buffer occupancy for pool desc recorded since running sdk_stats. |
-| `nvswitch_interface_shared_buffer_mc_port_curr_occupancy`  | Current buffer occupancy for mc port. |
-| `nvswitch_interface_shared_buffer_mc_port_watermark` | Maximum buffer occupancy for mc port. |
-| `nvswitch_interface_shared_buffer_mc_port_watermark_max` | Highest maximum buffer occupancy for mc port recorded since running sdk_stats. |
-| `nvswitch_interface_shared_buffer_mc_sp_curr_occupancy` | Current buffer occupancy for mc switch priority. |
-| `nvswitch_interface_shared_buffer_mc_sp_watermark` | Maximum buffer occupancy for mc switch priority. |
-| `nvswitch_interface_shared_buffer_mc_sp_watermark_max` | Highest maximum buffer occupancy for mc switch priority recorded since running sdk_stats. |
-| `nvswitch_shared_buffer_pool_curr_occupancy` | Current buffer occupancy. |
-| `nvswitch_shared_buffer_pool_watermark` | Maximum buffer occupancy |
-| `nvswitch_shared_buffer_pool_watermark_max` | Highest maximum buffer occupancy for mc switch priority recorded since running sdk_stats. |
-| `nvswitch_interface_headroom_buffer_pg_curr_occupancy` | Current buffer occupancy for port buffer. |
-| `nvswitch_interface_headroom_buffer_pg_watermark` | Maximum buffer occupancy for port buffer. |
-| `nvswitch_interface_headroom_buffer_pg_watermark_recorded_max` | Highest maximum buffer occupancy for port buffer recorded since running sdk_stats. |
-| `nvswitch_interface_headroom_buffer_shared_curr_occupancy` | Current buffer occupancy for port shared buffer. |
-| `nvswitch_interface_headroom_shared_buffer_shared_watermark` | Maximum buffer occupancy for port shared buffer. |
-| `nvswitch_interface_headroom_shared_buffer_shared_watermark_recorded_max` | Highest maximum buffer occupancy for port shared buffer recorded since running sdk_stats. |
-| `nvswitch_interface_headroom_buffer_shared_pool_curr_occupancy` | Current buffer occupancy for port shared pool buffer |
-| `nvswitch_interface_headroom_shared_buffer_shared_pool_watermark` | Maximum buffer occupancy for port shared pool buffer. |
-| `nvswitch_interface_headroom_shared_buffer_shared_pool_watermark_recorded_max` | Highest maximum buffer occupancy for port shared pool buffer. |
-| `nvswitch_interface_oper_aggregate_speed` | Speed in bps for the connected interface. |
+| `nvswitch_interface_shared_buffer_egress_pool_curr_occupancy` | Current egress pool buffer occupancy. |
+| `nvswitch_interface_shared_buffer_egress_pool_watermark` | Maximum egress pool buffer occupancy. |
+| `nvswitch_interface_shared_buffer_egress_pool_desc_curr_occupancy` | Current egress pool buffer occupancy for descriptors. |
+| `nvswitch_interface_shared_buffer_egress_pool_desc_watermark` | Maximum egress pool buffer occupancy for descriptors. |
+| `nvswitch_interface_shared_buffer_egress_pool_watermark_recorded_max` | Highest maximum egress pool buffer occupancy recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_egress_pool_desc_watermark_recorded_max` | Highest maximum egress pool buffer occupancy for pool desc recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_mc_port_curr_occupancy`  | Current buffer occupancy for multicast port. |
+| `nvswitch_interface_shared_buffer_mc_port_watermark` | Maximum buffer occupancy for multicast port. |
+| `nvswitch_interface_shared_buffer_mc_port_watermark_max` | Highest maximum buffer occupancy for multicast port recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_mc_sp_curr_occupancy` | Current buffer occupancy for multicast switch priority. |
+| `nvswitch_interface_shared_buffer_mc_sp_watermark` | Maximum buffer occupancy for multicast switch priority. |
+| `nvswitch_interface_shared_buffer_mc_sp_watermark_max` | Highest maximum buffer occupancy for multicast switch priority recorded since running sdk_stats. |
+| `nvswitch_shared_buffer_pool_curr_occupancy` | Current pool buffer occupancy. |
+| `nvswitch_shared_buffer_pool_watermark` | Maximum pool buffer occupancy |
+| `nvswitch_shared_buffer_pool_watermark_max` | Highest maximum pool buffer occupancy for multicast switch priority recorded since running sdk_stats. |
+| `nvswitch_interface_headroom_buffer_pg_curr_occupancy` | Current headroom buffer occupancy for port buffer. |
+| `nvswitch_interface_headroom_buffer_pg_watermark` | Maximum pool headroom buffer occupancy for port buffer. |
+| `nvswitch_interface_headroom_buffer_pg_watermark_recorded_max` | Highest maximum headroom buffer occupancy for port buffer recorded since running sdk_stats. |
+| `nvswitch_interface_headroom_buffer_shared_curr_occupancy` | Current headroom buffer occupancy for port shared buffer. |
+| `nvswitch_interface_headroom_shared_buffer_shared_watermark` | Maximum headroom buffer occupancy for port shared buffer. |
+| `nvswitch_interface_headroom_shared_buffer_shared_watermark_recorded_max` | Highest maximum headroom buffer occupancy for port shared buffer recorded since running sdk_stats. |
+| `nvswitch_interface_headroom_buffer_shared_pool_curr_occupancy` | Current headroom buffer occupancy for port shared pool buffer |
+| `nvswitch_interface_headroom_shared_buffer_shared_pool_watermark` | Maximum headroom buffer occupancy for port shared pool buffer. |
+| `nvswitch_interface_headroom_shared_buffer_shared_pool_watermark_recorded_max` | Highest maximum headroom buffer occupancy for port shared pool buffer. |
+| `nvswitch_interface_oper_aggregate_speed` | Speed in bits per second for the connected interface. |
 | `nvswitch_interface_number_of_lanes` | Number of lanes used by the interface. |
 
 {{< /tab >}}

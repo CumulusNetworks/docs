@@ -222,7 +222,8 @@ Cumulus Linux provides commands to:
 {{< tabs "TabID218 ">}}
 {{< tab "NVUE Commands ">}}
 
-To fetch a repository key from a remote location, run the `nv action fetch system packages key <key>` command. By default, Cumulus Linux saves the key in the directory based on the scope value you provide; `global` or `repository`. The default scope is `global`, where the key is saved in the `/etc/apt/trusted.gpg.d` directory. If you set the scope to `repository`, the key is saved in the `/etc/apt/keyrings` directory.
+- To fetch and save a key globally, run the `nv action fetch system packages key <key>` command. Cumulus Linux fetches the key and saves it globally in the `/etc/apt/trusted.gpg.d/` directory. This is the default.
+- To fetch and save a key for a specific repository, run the `nv action fetch system packages key <key> scope repository` command. Cumulus Linux fetches the key and saves it in the `/etc/apt/keyrings/` directory.
 
 The following example fetches the repository key `http://deb.opera.com/archive.key` and saves it in the `/etc/apt/trusted.gpg.d` directory:
 

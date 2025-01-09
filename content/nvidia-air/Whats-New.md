@@ -10,8 +10,8 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 ## January 2025
 <!-- Air:WhatsNew -->
 ### 82.2025.0107-011
-- Fixed an issue where demo marketplace search showed incorrect results
-- Fixed an issue where image details showing as updated despite the image update request failed
+- Fixed an issue with the Demo Marketplace search results
+- Fixed an issue where image details displayed an updated status even though the image update request failed
 <!-- Air:WhatsNew -->
 
 ## December 2024

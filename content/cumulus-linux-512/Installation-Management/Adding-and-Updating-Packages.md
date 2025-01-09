@@ -250,27 +250,27 @@ To fetch and save a repository key globally:
 - If the key already exists on the filesystem, copy it to the `/etc/apt/trusted.gpg.d/` directory. 
 - If the key is at a remote URL, fetch it with `wget` or another utility, then copy it to the `/etc/apt/trusted.gpg.d/` directory.
 
-The following example fetches the key `http://deb.opera.com/archive.key` from the remote URL and saves it in the `/etc/apt/trusted.gpg.d/` directory:
+The following example fetches the key `http://your-url.com/name.key` from the remote URL and copies it to the `/etc/apt/trusted.gpg.d/` directory:
 
 ```
-cumulus@switch:~$ wget -qO - http://deb.opera.com/archive.key
-cumulus@switch:~$ sudo apt-key add /etc/apt/trusted.gpg.d/archive.key
+cumulus@switch:~$ wget -qO - http://your-url.com/name.key
+cumulus@switch:~$ sudo cp name.key /etc/apt/trusted.gpg.d
 ```
 
 To fetch and save a key for a specific repository:
 - If your key already exists on the filesystem, copy it to the `/etc/apt/keyrings/` directory. 
 - If the key is at a remote URL, fetch it with `wget` or another utility, then copy it to the `/etc/apt/keyrings/` directory.
 
-The following example copies the key `archive.key` for the repository `deb.opera.com` to the `/etc/apt/keyrings/` directory.
+The following example copies the key `name.key` located on the filesystem to the `/etc/apt/keyrings/` directory.
 
 ```
-cumulus@switch:~$ sudo apt-key add /etc/apt/keyrings/archive.key
+cumulus@switch:~$ sudo cp name.key /etc/apt/keyrings/
 ```
 
 To delete a key, remove the key from the `/etc/apt/keyrings` or `/etc/apt/trusted.gpg.d` directory.
 
 ```
-cumulus@switch:~$ sudo rm /etc/apt/keyrings/archive.key
+cumulus@switch:~$ sudo rm /etc/apt/keyrings/name.key
 ```
 
 {{< /tab >}}

@@ -237,14 +237,12 @@ tmpfs           7.7G      0    7.7G     0%    /sys/fs/cgroup
 tmpfs           7.7G    16K    7.7G     1%    /tmp
 overlay          28G   7.9G     18G    31%   
 ```
-<!-- 
-#### Upgrade from Cumulus Linux 5.9 to Cumulus Linux 5.10
 
-To upgrade to Cumulus Linux 5.10.1 from Cumulus Linux 5.9.2, you must install the Cumulus Linux 5.10.1 image. You *cannot* upgrade packages with package upgrade.
+#### Upgrade from Cumulus Linux 5.9
 
-If you are running Cumulus Linux 5.9.x (the current extended-support release), the default switch configuration allows you to upgrade to the latest Cumulus 5.9.x release only.
+If you are running Cumulus Linux 5.9 (the current extended-support release), the default switch configuration allows you to upgrade to the latest Cumulus 5.9 maintenance release only.
 
-To upgrade from Cumulus Linux 5.9.0 or 5.9.1 to Cumulus Linux 5.10.1, perform the following procedure before you start the package upgrade:
+To upgrade from Cumulus Linux 5.9 to the latest Cumulus Linux 5 release, perform the following procedure before you start the package upgrade:
 
 1. Edit the `/etc/apt/sources.list` file to include the following lines at the top of the file.
 
@@ -260,7 +258,6 @@ To upgrade from Cumulus Linux 5.9.0 or 5.9.1 to Cumulus Linux 5.10.1, perform th
    deb      https://apt.cumulusnetworks.com/repo CumulusLinux-5.9-latest cumulus upstream netq
    deb-src  https://apt.cumulusnetworks.com/repo CumulusLinux-5.9-latest cumulus upstream netq
    ```
--->
 
 #### Upgrade the Switch
 

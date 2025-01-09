@@ -13,7 +13,7 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
 ### Platforms
 
 - NVIDIA SN5400 ITU-T G.82732 Class C compliant
-- NVIDIA SN2201M includes an updated Parameter-Set IDentification (PSID) and INI. You cannot downgrade the switch to 5.11.
+- NVIDIA SN2201M includes an updated Parameter-Set IDentification (PSID) and firmware. You cannot downgrade the switch to 5.11.
 
 ### New Features and Enhancements
 

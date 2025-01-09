@@ -25,17 +25,29 @@ You can enable open telemetry for [interface statistics](#interface-statistics),
 
 ### Interface Statistics
 
-When you enable open telemetry for interface statistics, the switch exports [counters](#interface-statistic-format) on all configured interfaces:
+When you enable open telemetry for interface statistics, the switch exports [interface statistics](#interface-statistic-format) on all configured interfaces:
 
 ```
 cumulus@switch:~$ nv set system telemetry interface-stats export state enabled
 cumulus@switch:~$ nv config apply
 ```
 
+You can adjust the interface statistics sample interval (in seconds). You can specify a value between 1 and 86400. The default value is 1.
+
+```
+cumulus@switch:~$ nv set system telemetry interface-stats sample-interval 100
+cumulus@switch:~$ nv config apply
+```
+
+You can enable these additional interface statistics:
+- Traffic Class and Switch Priority metrics for ingress buffer traffic classes (0 through 15) and egress buffer priority groups (0 through 7)
+- PHY BER for interface PHY metrics
+- Buffer occupancy and watermark metrics
+
 {{< tabs "TabID35 ">}}
 {{< tab "Traffic Class and Switch Priority ">}}
 
-You can enable additional interface statistic collection per interface for specific ingress buffer traffic classes (0 through 15) and egress buffer priority groups (0 through 7). When you enable these settings, the switch exports `interface_pg` and `interface_tc` counters for the defined priority groups and traffic classes:
+When you enable these settings, the switch exports `interface_pg` and `interface_tc` counters for the defined priority groups and traffic classes:
 
 ```
 cumulus@switch:~$ nv set system telemetry interface-stats ingress-buffer priority-group 4
@@ -50,13 +62,6 @@ cumulus@switch:~$ nv set system telemetry interface-stats switch-priority 4
 cumulus@switch:~$ nv config apply
 ```
 
-You can adjust the interface statistics sample interval (in seconds). You can specify a value between 1 and 86400. The default value is 1.
-
-```
-cumulus@switch:~$ nv set system telemetry interface-stats sample-interval 100
-cumulus@switch:~$ nv config apply
-```
-
 {{< /tab >}}
 {{< tab "PHY BER">}}
 
@@ -66,7 +71,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
-{{< tab "Buffer">}}
+{{< tab "Buffer Occupancy">}}
 
 ```
 cumulus@switch:~$ nv set system telemetry buffer-stats export state enable 
@@ -479,11 +484,11 @@ The following interface statistics are collected and exported when you configure
 | `nvswitch_interface_raw-ber-lane7` | raw_ber-lane7 = raw_ber_coef_lane0*10^(raw_ber_magnitude) |
 
 {{< /tab >}}
-{{< tab "Buffer">}}
+{{< tab "Buffer Occupancy">}}
 
 The following interface statistics are collected and exported when you configure the `nv set system telemetry buffer-stats export state enable` command:
 
-|  <div style="width:200px">Name | Description |
+|  Name | Description |
 |------ | ----------- |
 | `nvswitch_interface_shared_buffer_port_pg_curr_occupancy` | Current buffer occupancy. |
 | `nvswitch_interface_shared_buffer_port_pg_watermark` | Maximum buffer occupancy. |

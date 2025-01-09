@@ -6,7 +6,7 @@ toc: 3
 ---
 You can upgrade Cumulus Linux in one of two ways:
 - Install a new Cumulus Linux image with either {{<link url="#install-an-image" text="Optimized image upgrade">}} or <span class="a-tooltip">[ONIE](## "Open Network Install Environment")</span>.
-- Upgrade only the changed packages using {{<link url="#package-upgrade" text="package upgrade">}}.
+- Upgrade only changed packages using {{<link url="#package-upgrade" text="package upgrade">}}.
 
 Cumulus Linux provides ISSU to upgrade an active switch with minimal disruption to the network. See {{<link url="In-Service-System-Upgrade-ISSU" text="In-Service-System-Upgrade-ISSU">}}.
 
@@ -149,7 +149,7 @@ Image upgrade enables you to choose the exact release to which you want to upgra
 
 Cumulus Linux provides two different ways to upgrade the switch with a new image:
 - **ONIE** is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a switch.
-- **Optimized image upgrade** uses two partitions to upgrade the image with just one reboot cycle instead of two reboots. With two partitions on the switch, the current image boots from one partition, from which the image upgrade triggers. After detecting the running partition and checking if the second partition is available for installation, optimized upgrade starts to stage the installation in the second partition (copying the image, preparing the partition, unpacking the new image, and tuning and finalizing the new partition for the new image). The subsequent boot occurs from the second partition.
+- **Optimized image upgrade** uses two partitions to upgrade the image with just one reboot cycle. With two partitions on the switch, the current image boots from one partition, from which the image upgrade triggers. After detecting the running partition and checking if the second partition is available for installation, optimized upgrade starts to stage the installation in the second partition (copying the image, preparing the partition, unpacking the new image, and tuning and finalizing the new partition for the new image). The subsequent boot occurs from the second partition.
 
 {{< tabs "TabID183 ">}}
 {{< tab "Optimized Image Upgrade ">}}

@@ -5,129 +5,18 @@ weight: 80
 toc: 3
 ---
 
-To manage additional applications in the form of packages and to install the latest updates, use the Advanced Packaging Tool (`apt`).
-
 {{%notice warning%}}
-Updating, upgrading, and installing packages with `apt` causes disruptions to network services:
+Updating, upgrading, and installing packages causes disruptions to network services:
 - Upgrading a package can cause services to restart or stop.
 - Installing a package sometimes disrupts core services by changing core service dependency packages. In some cases, installing new packages also upgrades additional existing packages due to dependencies.
 - If services stop, you need to reboot the switch to restart the services.
 {{%/notice%}}
 
-## Update the Package Cache
+## List Packages Installed on the Switch
 
-To work correctly, `apt` relies on a local cache listing of the available packages. You must populate the cache initially, then periodically update it with `sudo -E apt-get update`:
+To show the packages installed on the switch, run the following command.
 
-```
-cumulus@switch:~$ sudo -E apt-get update
-Ign:1 copy:/var/lib/cumulus/cumulus-local-apt-archive cumulus-local-apt-archive InRelease
-Get:2 copy:/var/lib/cumulus/cumulus-local-apt-archive cumulus-local-apt-archive Release [1,115 B]
-Ign:3 copy:/var/lib/cumulus/cumulus-local-apt-archive cumulus-local-apt-archive Release.gpg
-Get:4 http://security.debian.org buster/updates InRelease [65.4 kB]                 
-Hit:5 http://deb.debian.org/debian buster InRelease                                 
-Get:6 http://deb.debian.org/debian buster-updates InRelease [51.9 kB]
-Get:7 http://deb.debian.org/debian buster-backports InRelease [46.7 kB]
-Get:8 http://deb.debian.org/debian buster-updates/main Sources.diff/Index [8,608 B] 
-Get:9 http://deb.debian.org/debian buster-updates/main amd64 Packages.diff/Index [8,608 B]
-Get:10 http://deb.debian.org/debian buster-updates/main Sources 2021-09-28-1420.03.pdiff [185 B]
-Get:10 http://deb.debian.org/debian buster-updates/main Sources 2021-09-28-1420.03.pdiff [185 B]
-Get:11 http://deb.debian.org/debian buster-updates/main amd64 Packages 2021-09-28-1420.03.pdiff [184 B]               
-Get:11 http://deb.debian.org/debian buster-updates/main amd64 Packages 2021-09-28-1420.03.pdiff [184 B]               
-Get:12 http://deb.debian.org/debian buster-backports/main Sources.diff/Index [27.8 kB]                     
-Get:13 http://deb.debian.org/debian buster-backports/main amd64 Packages.diff/Index [27.8 kB]                         
-Hit:14 http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 InRelease                                            
-Get:15 http://security.debian.org buster/updates/main Sources [200 kB]                             
-Get:16 http://security.debian.org buster/updates/main amd64 Packages [305 kB]              
-Hit:17 http://apt.cumulusnetworks.com/repo CumulusLinux-4-latest InRelease                       
-Get:18 http://deb.debian.org/debian buster-backports/main Sources 2021-10-02-0801.17.pdiff [681 B]
-Get:19 http://deb.debian.org/debian buster-backports/main Sources 2021-10-02-1405.24.pdiff [31 B]
-Get:19 http://deb.debian.org/debian buster-backports/main Sources 2021-10-02-1405.24.pdiff [31 B]
-Get:20 http://deb.debian.org/debian buster-backports/main amd64 Packages 2021-10-02-1405.24.pdiff [178 B]
-Get:20 http://deb.debian.org/debian buster-backports/main amd64 Packages 2021-10-02-1405.24.pdiff [178 B]
-Fetched 744 kB in 1s (982 kB/s)
-Reading package lists... Done
-```
-
-{{%notice tip%}}
-Use the `-E` option with `sudo` whenever you run any `apt-get` command. This option preserves your environment variables (such as HTTP proxies) before you install new packages or upgrade your distribution.
-{{%/notice%}}
-
-## List Available Packages
-
-After the cache populates, use the `apt-cache` command to search the cache and find the packages of interest or to get information about an available package.
-
-The following shows examples of the `search` and `show` sub-commands:
-
-```
-cumulus@switch:~$ apt-cache search tcp
-collectd-core - statistics collection and monitoring daemon (core system)
-fakeroot - tool for simulating superuser privileges
-iperf - Internet Protocol bandwidth measuring tool
-iptraf-ng - Next Generation Interactive Colorful IP LAN Monitor
-libfakeroot - tool for simulating superuser privileges - shared libraries
-libfstrm0 - Frame Streams (fstrm) library
-libibverbs1 - Library for direct userspace use of RDMA (InfiniBand/iWARP)
-libnginx-mod-stream - Stream module for Nginx
-libqt4-network - Qt 4 network module
-librtr-dev - Small extensible RPKI-RTR-Client C library - development files
-librtr0 - Small extensible RPKI-RTR-Client C library
-libwiretap8 - network packet capture library -- shared library
-libwrap0 - Wietse Venema's TCP wrappers library
-libwrap0-dev - Wietse Venema's TCP wrappers library, development files
-netbase - Basic TCP/IP networking system
-nmap-common - Architecture independent files for nmap
-nuttcp - network performance measurement tool
-openssh-client - secure shell (SSH) client, for secure access to remote machines
-openssh-server - secure shell (SSH) server, for secure access from remote machines
-openssh-sftp-server - secure shell (SSH) sftp server module, for SFTP access from remote machines
-python-dpkt - Python 2 packet creation / parsing module for basic TCP/IP protocols
-rsyslog - reliable system and kernel logging daemon
-socat - multipurpose relay for bidirectional data transfer
-tcpdump - command-line network traffic analyzer
-```
-
-```
-cumulus@switch:~$ apt-cache show tcpdump
-Package: tcpdump
-Version: 4.9.3-1~deb10u1
-Installed-Size: 1109
-Maintainer: Romain Francoise <rfrancoise@debian.org>
-Architecture: amd64
-Replaces: apparmor-profiles-extra (<< 1.12~)
-Depends: libc6 (>= 2.14), libpcap0.8 (>= 1.5.1), libssl1.1 (>= 1.1.0)
-Suggests: apparmor (>= 2.3)
-Breaks: apparmor-profiles-extra (<< 1.12~)
-Size: 400060
-SHA256: 3a63be16f96004bdf8848056f2621fbd863fadc0baf44bdcbc5d75dd98331fd3
-SHA1: 2ab9f0d2673f49da466f5164ecec8836350aed42
-MD5sum: 603baaf914de63f62a9f8055709257f3
-Description: command-line network traffic analyzer
- This program allows you to dump the traffic on a network. tcpdump
- is able to examine IPv4, ICMPv4, IPv6, ICMPv6, UDP, TCP, SNMP, AFS
- BGP, RIP, PIM, DVMRP, IGMP, SMB, OSPF, NFS and many other packet
- types.
- .
- It can be used to print out the headers of packets on a network
- interface, filter packets that match a certain expression. You can
- use this tool to track down network problems, to detect attacks
- or to monitor network activities.
-Description-md5: f01841bfda357d116d7ff7b7a47e8782
-Homepage: http://www.tcpdump.org/
-Multi-Arch: foreign
-Section: net
-Priority: optional
-Filename: pool/upstream/t/tcpdump/tcpdump_4.9.3-1~deb10u1_amd64.deb
-```
-
-{{%notice note%}}
-The search commands look for the search terms not only in the package name but in other parts of the package information; the search matches on more packages than you expect.
-{{%/notice%}}
-
-## List Packages Installed on the System
-
-The `apt-cache` command shows information about all the packages available in the repository. To see which packages are actually installed on your system, run the following command.
-
-{{< tabs "TabID130 ">}}
+{{< tabs "TabID19 ">}}
 {{< tab "NVUE Command ">}}
 
 ```
@@ -171,14 +60,14 @@ ii  arptables           0.0.4+snapshot20181021-4  amd64        ARP table adminis
 {{< /tab >}}
 {{< /tabs >}}
 
-## Show the Version of a Package
+## Show the Package Version
 
-To show the version of a specific package installed on the system:
+To show the version of a package installed on the switch:
 
-{{< tabs "TabID202 ">}}
+{{< tabs "TabID67 ">}}
 {{< tab "NVUE Command ">}}
 
-The following example command shows which version of the `vrf` package is on the system:
+The following example command shows which version of the `vrf` package is on the switch:
 
 ```
 cumulus@switch:~$ nv show platform software installed vrf
@@ -192,7 +81,7 @@ description  Linux tools for VRF
 {{< /tab >}}
 {{< tab "Linux Command ">}}
 
-The following example command shows which version of the `vrf` package is on the system:
+The following example command shows which version of the `vrf` package is on the switch:
 
 ```
 cumulus@switch:~$ dpkg -l vrf
@@ -207,11 +96,11 @@ ii  vrf        1.0-cl5.9.0u4    amd64        Linux tools for VRF
 {{< /tab >}}
 {{< /tabs >}}
 
-## Upgrade Packages
+## Upgrade All Packages
 
-To upgrade all the packages installed on the system to their latest versions, run the following commands:
+To upgrade all the packages installed on the switch to their latest versions, run the following commands:
 
-{{< tabs "TabID214 ">}}
+{{< tabs "TabID103 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -230,21 +119,20 @@ cumulus@switch:~$ sudo -E apt-get upgrade
 
 The system lists the packages for upgrade and prompts you to continue.
 
-The above commands upgrade all installed versions with their latest versions but do not install any new packages.
+The above commands upgrade all installed versions with their latest versions but do not install any new packages. To add a new package, refer to {{<link url="#add-a-package" text="Add a Package">}} below.
+
+{{%notice tip%}}
+Use the `-E` option with `sudo` whenever you run any `apt-get` command. This option preserves your environment variables (such as HTTP proxies) before you install new packages or upgrade your distribution.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}
 
-## Add New Packages
+## Add a Package
 
-To add a new package, first ensure the package is not already on the system:
-
-```
-cumulus@switch:~$ dpkg -l | grep <name of package>
-```
-
+To add a new package, first ensure the package is not already on the system with the NVUE `nv show platform software installed <package-name>` command or the Linux `dpkg -l | grep <package-name>` command.
 - If the package is already on the system, you can update the package from the Cumulus Linux repository as part of the package upgrade process, which upgrades all packages on the system. See {{<link url="#upgrade-packages" text="Upgrade Packages">}} above.
-- If the package is *not* already on the system, add it by running `sudo -E apt-get install <name of package>`. This retrieves the package from the Cumulus Linux repository and installs it on your system together with any other dependent packages. The following example adds the `tcpreplay` package to the system:
+- If the package is *not* already on the system, add it with the Linux `sudo -E apt-get install <name of package>` command. This command retrieves the package from the Cumulus Linux repository and installs it on your switch together with any dependent packages. The following example adds the `tcpreplay` package on the switch:
 
 ```
 cumulus@switch:~$ sudo -E apt-get update
@@ -270,76 +158,241 @@ cumulus@switch:~$ sudo -E apt-get install <package1> <package2> <package3>
 In some cases, installing a new package also upgrades additional existing packages due to dependencies. To view these additional packages before you install, run the `apt-get install --dry-run` command.
 {{%/notice%}}
 
-## Add Packages From Another Repository
+## Configure Additional Repositories
 
-As shipped, Cumulus Linux searches the Cumulus Linux repository for available packages. You can add additional repositories to search by adding them to the list of sources that `apt-get` consults. See `man sources.list` for more information.
-
-NVIDIA adds features or makes bug fixes to certain packages; do not replace these packages with versions from other repositories.
-
-If you want to install packages that are not in the Cumulus Linux repository, the procedure is the same as above, but with one additional step.
+As shipped, Cumulus Linux searches the Cumulus Linux repository for available packages. You can add additional repositories to search by adding them to the list of sources that Cumulus Linux consults.
 
 {{%notice note%}}
-NVIDIA does not test and Cumulus Linux Technical Support does not support packages that are not part of the Cumulus Linux repository.
+- NVIDIA adds features or makes bug fixes to certain packages; do not replace these packages with versions from other repositories.
+- NVIDIA does not test and Cumulus Linux Technical Support does not support packages that are not part of the Cumulus Linux repository.
 {{%/notice%}}
 
-Installing packages outside of the Cumulus Linux repository requires the use of `sudo -E apt-get`; however, depending on the package, you can use `easy-install` and other commands.
+To add an additional repository:
+- Provide the repository location, distribution, and pool.
+- Either set the repository to trusted or provide the secure key.
+- Enable repository source to add source files from the repository (optional).
+- Set the VRF to use when adding an additional repository (optional). The default VRF is `mgmt`.
 
-To install a new package, complete the following steps:
+{{< tabs "TabID176 ">}}
+{{< tab "NVUE Commands ">}}
 
-1. Run the `dpkg` command to ensure that the package is not already
-    installed on the system:
+The following example adds the repository located at `http://test.myrepo.com` with distribution `mydist` and pool `mypool`, enables source files from the repository, and sets the repository to trusted. The example also sets the VRF to `default`.
 
-    ```
-    cumulus@switch:~$ dpkg -l | grep <name of package>
-    ```
+```
+cumulus@switch:~$ nv set system packages use-vrf default
+cumulus@switch:~$ nv set system packages repository http://test.myrepo.com distribution mydist pool mypool 
+cumulus@switch:~$ nv set system packages repository http://test.myrepo.com source enabled
+cumulus@switch:~$ nv set system packages repository http://test.myrepo.com insecure enabled
+```
 
-2. If the package is already on the system, ensure it is the version you need. If it is an older version, update the package from the Cumulus Linux repository:
+The following example adds the repository located at `http://test.myrepo.com` with distribution `mydist` and pool `mypool`, enables source files from the repository, and provides the secure key `thekey.asc`.
 
-    ```
-    cumulus@switch:~$ sudo -E apt-get update
-    cumulus@switch:~$ sudo -E apt-get install <name of package>
-    cumulus@switch:~$ sudo -E apt-get upgrade
-    ```
+```
+cumulus@switch:~$ nv set system packages repository http://test.myrepo.com distribution mydist pool mypool
+cumulus@switch:~$ nv set system packages repository http://test.myrepo.com source enabled
+cumulus@switch:~$ nv set system packages repository http://test.myrepo.com key thekey.asc 
+```
 
-3. If the package is not on the system, the package source location is **not** in the `/etc/apt/sources.list` file. Edit and add the appropriate source to the file. For example, add the following if you want a package from the Debian repository that is **not** in the Cumulus Linux repository:
+{{< /tab >}}
+{{< tab "Linux Command ">}}
 
-    ```
-    deb http://http.us.debian.org/debian buster main
-    deb http://security.debian.org/ buster/updates main
-    ```
+Edit the `/etc/apt/sources.list` file and add the repository.
 
-    Otherwise, `/etc/apt/sources.list` lists the repository but comments it out. To uncomment the repository, remove the `#` at the start of the line, then save the file.
+The following example adds the repository located at `http://test.myrepo.com` with distribution `mydist` and pool `mypool`, enables source files from the repository, and sets the repository to trusted. The example also sets the VRF to `default`.
 
-4. Run `sudo -E apt-get update`, then install the package and upgrade:
+```
+debdeb-src http://test.myrepo.com mydist mypool 
+```
 
-    ```
-    cumulus@switch:~$ sudo -E apt-get update
-    cumulus@switch:~$ sudo -E apt-get install <name of package>
-    cumulus@switch:~$ sudo -E apt-get upgrade
-    ```
+The following example adds the repository located at `http://test.myrepo.com` with distribution `mydist` and pool `mypool`, enables source files from the repository, and provides the secure key `thekey.asc`.
 
-## Add Packages from the Cumulus Linux Local Archive
+```
+deb-src [signed-by=/etc/apt/keyrings/thekey.asc] http://test.myrepo.com mydist mypool 
+```
 
-Cumulus Linux contains a local archive embedded in the Cumulus Linux image. This archive, `cumulus-local-apt-archive`, contains the packages you need to install `{{<link title="ifplugd" text="ifplugd">}}`, {{<link url="LDAP-Authentication-and-Authorization" text="LDAP">}}, {{<link url="RADIUS-AAA" text="RADIUS">}} or  {{<link url="TACACS" text="TACACS+">}} without a network connection.
+{{< /tab >}}
+{{< /tabs >}}
 
-The archive contains the following packages:
+### Manage Repository Keys
 
-- audisp-tacplus
-- ifplugd
-- libdaemon0
-- libnss-ldapd
-- libnss-mapuser
-- libnss-tacplus
-- libpam-ldapd
-- libpam-radius-auth
-- libpam-tacplus
-- libtac2
-- libtacplus-map1
-- nslcd
+Cumulus Linux provides commands to:
+- Fetch a repository key from a remote location and save it on the switch.
+- Delete a repository key.
 
-Add these packages with `apt-get update && apt-get install`, as {{<link url="#add-packages-from-another-repository" text="described above">}}.
+{{< tabs "TabID218 ">}}
+{{< tab "NVUE Commands ">}}
 
-## Related Information
+To fetch a repository key from a remote location, run the `nv action fetch system packages key <key>` command. By default, Cumulus Linux saves the key in the directory based on the scope value you provide; `global` or `repository`. The default scope is `global`, where the key is saved in the `/etc/apt/trusted.gpg.d` directory. If you set the scope to `repository`, the key is saved in the `/etc/apt/keyrings` directory.
 
-- {{<exlink url="https://www.debian.org/doc/manuals/debian-faq/pkgtools.en.html" text="Debian GNU/Linux FAQ, Ch 8 Package management tools">}}
-- man pages for `apt-get`, `dpkg`, `sources.list`, `apt_preferences`
+The following example fetches the repository key `http://deb.opera.com/archive.key` and saves it in the `/etc/apt/trusted.gpg.d` directory:
+
+```
+cumulus@switch:~$ nv action fetch system packages key http://deb.opera.com/archive.key 
+```
+
+The following example fetches the repository key `http://deb.opera.com/archive.key` and saves it in the `/etc/apt/keyrings` directory by setting the scope to `repository`:
+
+```
+cumulus@switch:~$ nv action fetch system packages key http://deb.opera.com/archive.key scope repository
+```
+
+To delete a package key, run the `nv action delete system packages key <key>` command:
+
+```
+cumulus@switch:~$ nv action delete system packages key debian-archive-bookworm-automatic.asc
+```
+
+{{< /tab >}}
+{{< tab "Linux Command ">}}
+
+To fetch and save a repository key globally:
+- If the key already exists on the filesystem, copy it to the `/etc/apt/trusted.gpg.d/` directory. 
+- If the key is at a remote URL, fetch it with `wget` or another utility, then copy it to the `/etc/apt/trusted.gpg.d/` directory.
+
+The following example fetches the key `http://deb.opera.com/archive.key` from the remote URL and saves it in the `/etc/apt/trusted.gpg.d/` directory:
+
+```
+cumulus@switch:~$ wget -qO - http://deb.opera.com/archive.key
+cumulus@switch:~$ sudo apt-key add /etc/apt/trusted.gpg.d/archive.key
+```
+
+To fetch and save a key for a specific repository:
+- If your key already exists on the filesystem, copy it to the `/etc/apt/keyrings/` directory. 
+- If the key is at a remote URL, fetch it with `wget` or another utility, then copy it to the `/etc/apt/keyrings/` directory.
+
+The following example copies the key `archive.key` for the repository `deb.opera.com` to the `/etc/apt/keyrings/` directory.
+
+```
+cumulus@switch:~$ sudo apt-key add /etc/apt/keyrings/archive.key
+```
+
+To delete a key, remove the key from the `/etc/apt/keyrings` or `/etc/apt/trusted.gpg.d` directory.
+
+```
+cumulus@switch:~$ sudo rm /etc/apt/keyrings/archive.key
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Show Repository Information
+
+To show the list of repositories and their details:
+
+```
+cumulus@switch:~$ nv show system packages repository https://apps3.cumulusnetworks.com/repos/deb/ 
+                operational              applied 
+--------------  -----------------------  ------- 
+insecure        enabled                  enabled 
+source          enabled                  enabled 
+[distribution]  CumulusLinux-d12         CumulusLinux-d12 
+[distribution]  CumulusLinux-d12-latest  CumulusLinux-d12-latest 
+```
+
+To show the details for a specific repository:
+
+```
+cumulus@switch:~$ nv show system packages repository https://apt.cumulusnetworks.com/repo
+```
+
+To show the list of distributions for a repository:
+
+```
+cumulus@switch:~$ nv show system packages repository https://apt.cumulusnetworks.com/repo distribution
+Distribution      Origin            Version  Codename          Pool         Priority 
+----------------  ----------------  -------  ----------------  -----------  --------
+CumulusLinux-d12  Cumulus Networks           CumulusLinux-d12  netq-latest  991
+```
+
+To show the details for a distribution for a repository:
+
+```
+cumulus@switch:~$ nv show system packages repository https://apps3.cumulusnetworks.com/repos/deb/ distribution CumulusLinux-d12 
+          operational       applied 
+--------  ----------------  ------- 
+[pool]    netq-latest 
+codename  CumulusLinux-d12 
+origin    Cumulus Networks 
+```
+
+To show the list of distribution pools for a repository:
+
+```
+cumulus@switch:~$ nv show system packages repository https://apps3.cumulusnetworks.com/repos/deb/ distribution CumulusLinux-d12 pool 
+Pool          priority 
+--------      -------- 
+netq-latest   100 
+```
+
+To show the list of repositories and keys:
+
+```
+cumulus@switch:~$ nv show system packages
+         operational  applied 
+-------  -----------  ------- 
+use-vrf               mgmt 
+repository 
+============= 
+    Repository                                                     Insecure  Source  Distribution               Pool 
+    -------------------------------------------------------------  --------  ------  -------------------------  ----------------- 
+    copy:/var/lib/cumulus/cumulus-local-apt-archive                                  cumulus-local-apt-archive  main 
+    https://ftp.debian.org/debian                                                    proposed-updates           contrib 
+                                                                                                                main 
+                                                                                                                non-free 
+                                                                                                                non-free-firmware 
+                                                                                     stable                     contrib 
+                                                                                                                main 
+                                                                                                                non-free 
+                                                                                                                non-free-firmware 
+                                                                                     stable-backports           contrib 
+                                                                                                                main 
+                                                                                                                non-free 
+                                                                                                                non-free-firmware 
+                                                                                     stable-updates             contrib 
+                                                                                                                main 
+                                                                                                                non-free 
+                                                                                                                non-free-firmware 
+    https://security.debian.org/debian-security                                      stable-security            contrib 
+                                                                                                                main 
+                                                                                                                non-free-firmware 
+    https://urm.nvidia.com/artifactory/sw-nbu-cl-debian-local                        CumulusLinux-5-devsigned   cumulus 
+                                                                                                                upstream 
+    https://urm.nvidia.com/artifactory/sw-nbu-cl-dev-debian-local                    CumulusLinux-d12           upstream 
+
+key 
+====== 
+    Key ID                                          Path                                                                   Scope 
+    ----------------------------------------------  ---------------------------------------------------------------------  ------ 
+    deb-bookworm-dup.asc                            /etc/apt/trusted.gpg.d/deb-bookworm-dup.asc                            global 
+    deb-bullseye-dup.asc                            /etc/apt/trusted.gpg.d/deb-bullseye-dup.asc                            global 
+    debian-archive-bookworm-automatic.asc           /etc/apt/trusted.gpg.d/debian-archive-bookworm-automatic.asc           global 
+    debian-archive-bookworm-security-automatic.asc  /etc/apt/trusted.gpg.d/debian-archive-bookworm-security-automatic.asc  global 
+    debian-archive-bookworm-stable.asc              /etc/apt/trusted.gpg.d/debian-archive-bookworm-stable.asc              global 
+    Test-sample-key.asc                             /etc/apt/keyrings/debian-archive-bookworm-stable.asc                   repository 
+```
+
+To show the list of keys:
+
+```
+cumulus@switch:~$ nv show system packages keys
+Key ID                                          Path                                                                   Scope 
+----------------------------------------------  ---------------------------------------------------------------------  ------ 
+
+debian-archive-bookworm-automatic.asc           /etc/apt/trusted.gpg.d/debian-archive-bookworm-automatic.asc           global 
+
+debian-archive-bookworm-security-automatic.asc  /etc/apt/trusted.gpg.d/debian-archive-bookworm-security-automatic.asc  global 
+
+debian-archive-bookworm-stable.asc              /etc/apt/trusted.gpg.d/debian-archive-bookworm-stable.asc              global 
+
+sample-test-key.asc                             /etc/apt/keyrings/sample-test-key.asc                                  repository
+```
+
+To show the details for a package key:
+
+```
+cumulus@switch:~$ nv show system packages key debian-archive-bookworm-automatic.asc
+        operational 
+ -----  --------------------------------------------------------------------- 
+ scope  global 
+ path   /etc/apt/trusted.gpg.d/debian-archive-bookworm-security-automatic.asc
+```

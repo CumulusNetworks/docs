@@ -26,7 +26,7 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
 - {{<link url="Optional-BGP-Configuration/#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}}
 - {{<link url="BGP-Weighted-Equal-Cost-Multipath/#ecmp-resource-sharing-during-next-hop-group-updates" text="ECMP Resource Sharing During Next Hop Group Updates">}}
 -  {{<link url="RADIUS-AAA/#radius-user-command-accounting" text="RADIUS user command accounting support for multiple servers with first response option">}}
-- {{<link url="Open-Telemetry-Export/#layer-3-router-statistics" text="OTLP new routing metrics">}}
+- {{<link url="Open-Telemetry-Export/#layer-3-router-statistics" text="New OTLP routing metrics">}} and additional {{<link url="Open-Telemetry-Export/#interface-statistics" text="OTLP interface metrics">}} (PHY BER counters, and buffer watermark counters).
 - Support different sample rate for OTLP exporter destinations
 - Create a single CLI service check for OTLP exporters
 - NVUE

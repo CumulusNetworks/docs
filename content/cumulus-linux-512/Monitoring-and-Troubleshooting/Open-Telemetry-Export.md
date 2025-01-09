@@ -32,6 +32,9 @@ cumulus@switch:~$ nv set system telemetry interface-stats export state enabled
 cumulus@switch:~$ nv config apply
 ```
 
+{{< tabs "TabID35 ">}}
+{{< tab "Ingress and Egress Buffer Traffic Class and Switch Priority ">}}
+
 You can enable additional interface statistic collection per interface for specific ingress buffer traffic classes (0 through 15) and egress buffer priority groups (0 through 7). When you enable these settings, the switch exports `interface_pg` and `interface_tc` counters for the defined priority groups and traffic classes:
 
 ```
@@ -53,6 +56,25 @@ You can adjust the interface statistics sample interval (in seconds). You can sp
 cumulus@switch:~$ nv set system telemetry interface-stats sample-interval 100
 cumulus@switch:~$ nv config apply
 ```
+
+{{< /tab >}}
+{{< tab "PHY BER">}}
+
+```
+cumulus@switch:~$ nv set system telemetry interface-stats class phy-stats state enable 
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Interface and Switch Buffer Watermark ">}}
+
+```
+cumulus@switch:~$ nv set system telemetry buffer-stats export state enable 
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Control Plane Statistics
 
@@ -90,7 +112,7 @@ cumulus@switch:~$ nv config apply
 
 If you do not want to enable all platform statistics, you can enable or disable individual platform telemetry components or adjust the sample interval for individual components. The default sample interval is 60 seconds.
 
-{{< tabs "TabID92 ">}}
+{{< tabs "TabID115 ">}}
 {{< tab "CPU ">}}
 
 ```
@@ -294,7 +316,7 @@ Cumulus Linux exports statistics and histogram data in the formats defined in th
 
 The interface statistic data samples that the switch exports to the OTEL collector are {{<exlink url="https://opentelemetry.io/docs/specs/otel/metrics/data-model/#gauge" text="gauge streams">}} that include the interface name as an attribute and the statistics value reported in the asDouble {{<exlink url="https://opentelemetry.io/docs/specs/otel/metrics/data-model/#exemplars" text="exemplar">}}.
 
-{{< tabs "TabID249 ">}}
+{{< tabs "TabID319 ">}}
 {{< tab "Interface Statistics ">}}
 
 |  Name | Description |
@@ -428,6 +450,85 @@ The following additional interface switch priority statistics are collected and 
 | `nvswitch_interface_sp_tx_pause` | Transmit pause counter for the switch priority. |
 | `nvswitch_interface_sp_tx_pause_duration` | Transmit pause duration for the switch priority. |
 | `nvswitch_interface_sp_tx_uc_frames` | Transmit unicast frame counter for the switch priority. |
+
+{{< /tab >}}
+{{< tab "PHY BER">}}
+
+The following interface statistics are collected and exported when you configure the `nv set system telemetry interface-stats class phy-stats state enable` command:
+
+|  Name | Description |
+|------ | ----------- |
+| `nvswitch_interface_time_since_last_clear` | The time passed since the last counters clear event in msec. |
+| `nvswitch_interface_phy_received_bits` | The total amount of traffic (bits) received. |
+| `nvswitch_interface_phy_symbol_errors` | Error bits not corrected by the FEC correction algorithm or when FEC is not active. |
+| `nvswitch_interface_phy_effective_errors` | The number of errors after FEC is applied. |
+| `nvswitch_interface_phy_raw_errors_lane0` | Error bits identified on lane 0. When FEC is enabled, this induction corresponds to corrected errors. |
+| `nvswitch_interface_phy_raw_errors_lane1` | Error bits identified on lane 1. When FEC is enabled, this induction corresponds to corrected errors. |
+| `nvswitch_interface_phy_raw_errors_lane2` | Error bits that were identified on lane 2. When FEC is enabled, this induction corresponds to corrected errors. |
+| `nvswitch_interface_phy_raw_errors_lane3` | Error bits that were identified on lane 3. When FEC is enabled, this induction corresponds to corrected errors. |
+| `nvswitch_interface_phy_raw_errors_lane4` | Error bits that were identified on lane 4. When FEC is enabled, this induction corresponds to corrected errors. |
+| `nvswitch_interface_phy_raw_errors_lane5` | Error bits that were identified on lane 6. When FEC is enabled, this induction corresponds to corrected errors. |
+| `nvswitch_interface_phy_raw_errors_lane7` | Error bits that were identified on lane 7. When FEC is enabled, this induction corresponds to corrected errors. |
+| `nvswitch_interface_raw-ber-lane0` | raw_ber-lane0 = raw_ber_coef_lane0*10^(raw_ber_magnitude) |
+| `nvswitch_interface_raw-ber-lane1` | raw_ber-lane1 = raw_ber_coef_lane0*10^(raw_ber_magnitude) |
+| `nvswitch_interface_raw-ber-lane2` | raw_ber-lane2 = raw_ber_coef_lane0*10^(raw_ber_magnitude) |
+| `nvswitch_interface_raw-ber-lane3` | raw_ber-lane3 = raw_ber_coef_lane0*10^(raw_ber_magnitude) |
+| `nvswitch_interface_raw-ber-lane4` | raw_ber-lane4 = raw_ber_coef_lane0*10^(raw_ber_magnitude) |
+| `nvswitch_interface_raw-ber-lane5` | raw_ber-lane5 = raw_ber_coef_lane0*10^(raw_ber_magnitude) |
+| `nvswitch_interface_raw-ber-lane6` | raw_ber-lane6 = raw_ber_coef_lane0*10^(raw_ber_magnitude) |
+| `nvswitch_interface_raw-ber-lane7` | raw_ber-lane7 = raw_ber_coef_lane0*10^(raw_ber_magnitude) |
+
+{{< /tab >}}
+{{< tab "Buffer">}}
+
+The following interface statistics are collected and exported when you configure the `nv set system telemetry buffer-stats export state enable` command:
+
+|  Name | Description |
+|------ | ----------- |
+| `nvswitch_interface_shared_buffer_port_pg_curr_occupancy` | Current buffer occupancy. |
+| `nvswitch_interface_shared_buffer_port_pg_watermark` | Maximum buffer occupancy. |
+| `nvswitch_interface_shared_buffer_port_pg_desc_curr_occupancy` | Current buffer occupancy for descriptors. |
+| `nvswitch_interface_shared_buffer_port_pg_desc_watermark` | Maximum buffer occupancy for descriptors. |
+| `nvswitch_interface_shared_buffer_port_pg_watermark_recorded_max` | Highest maximum buffer occupancy recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_port_pg_desc_watermark_recorded_max` | Highest maximum buffer occupancy for descriptors recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_ingress_pool_curr_occupancy` | Current buffer occupancy. |
+| `nvswitch_interface_shared_buffer_ingress_pool_watermark` | Maximum buffer occupancy. |
+| `nvswitch_interface_shared_buffer_ingress_pool_desc_curr_occupancy` | Current buffer occupancy for descriptors. |
+| `nvswitch_interface_shared_buffer_ingress_pool_desc_watermark` | Maximum buffer occupancy for descriptors. |
+| `nvswitch_interface_shared_buffer_ingress_pool_watermark_recorded_max` | Highest maximum buffer occupancy recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_ingress_pool_desc_watermark_recorded_max` | Highest maximum buffer occupancy for descriptors recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_port_tc_curr_occupancy` | Current buffer occupancy. |
+| `nvswitch_interface_shared_buffer_port_tc_watermark` | Maximum buffer occupancy. |
+| `nvswitch_interface_shared_buffer_port_tc_desc_curr_occupancy` | Current buffer occupancy for descriptors. |
+| `nvswitch_interface_shared_buffer_port_tc_desc_watermark` | Maximum buffer occupancy for descriptors. |
+| `nvswitch_interface_shared_buffer_port_tc_watermark_recorded_max` | Highest maximum buffer occupancy recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_port_tc_desc_watermark_recorded_max` | Highest maximum buffer occupancy for TC descriptors recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_egress_pool_curr_occupancy` | Current buffer occupancy. |
+| `nvswitch_interface_shared_buffer_egress_pool_watermark` | Maximum buffer occupancy. |
+| `nvswitch_interface_shared_buffer_egress_pool_desc_curr_occupancy` | Current buffer occupancy for descriptors. |
+| `nvswitch_interface_shared_buffer_egress_pool_desc_watermark` | Maximum buffer occupancy for descriptors. |
+| `nvswitch_interface_shared_buffer_egress_pool_watermark_recorded_max` | Highest maximum buffer occupancy recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_egress_pool_desc_watermark_recorded_max` | Highest maximum buffer occupancy for pool desc recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_mc_port_curr_occupancy`  | Current buffer occupancy for mc port. |
+| `nvswitch_interface_shared_buffer_mc_port_watermark` | Maximum buffer occupancy for mc port. |
+| `nvswitch_interface_shared_buffer_mc_port_watermark_max` | Highest maximum buffer occupancy for mc port recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_mc_sp_curr_occupancy` | Current buffer occupancy for mc switch priority. |
+| `nvswitch_interface_shared_buffer_mc_sp_watermark` | Maximum buffer occupancy for mc switch priority. |
+| `nvswitch_interface_shared_buffer_mc_sp_watermark_max` | Highest maximum buffer occupancy for mc switch priority recorded since running sdk_stats. |
+| `nvswitch_shared_buffer_pool_curr_occupancy` | Current buffer occupancy. |
+| `nvswitch_shared_buffer_pool_watermark` | Maximum buffer occupancy |
+| `nvswitch_shared_buffer_pool_watermark_max` | Highest maximum buffer occupancy for mc switch priority recorded since running sdk_stats. |
+| `nvswitch_interface_headroom_buffer_pg_curr_occupancy` | Current buffer occupancy for port buffer. |
+| `nvswitch_interface_headroom_buffer_pg_watermark` | Maximum buffer occupancy for port buffer. |
+| `nvswitch_interface_headroom_buffer_pg_watermark_recorded_max` | Highest maximum buffer occupancy for port buffer recorded since running sdk_stats. |
+| `nvswitch_interface_headroom_buffer_shared_curr_occupancy` | Current buffer occupancy for port shared buffer. |
+| `nvswitch_interface_headroom_shared_buffer_shared_watermark` | Maximum buffer occupancy for port shared buffer. |
+| `nvswitch_interface_headroom_shared_buffer_shared_watermark_recorded_max` | Highest maximum buffer occupancy for port shared buffer recorded since running sdk_stats. |
+| `nvswitch_interface_headroom_buffer_shared_pool_curr_occupancy` | Current buffer occupancy for port shared pool buffer |
+| `nvswitch_interface_headroom_shared_buffer_shared_pool_watermark` | Maximum buffer occupancy for port shared pool buffer. |
+| `nvswitch_interface_headroom_shared_buffer_shared_pool_watermark_recorded_max` | Highest maximum buffer occupancy for port shared pool buffer. |
+| `nvswitch_interface_oper_aggregate_speed` | Speed in bps for the connected interface. |
+| `nvswitch_interface_number_of_lanes` | Number of lanes used by the interface. |
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -619,7 +720,7 @@ When you enable control plane statistic telemetry, the following statistics are 
 
 When you enable platform statistic telemetry globally, or when you enable telemetry for the individual components, the following statistics are exported:
 
-{{< tabs "TabID201 ">}}
+{{< tabs "TabID723 ">}}
 {{< tab "CPU ">}}
 
 CPU statistics include the CPU core number and operation mode (user, system, idle, iowait, irq, softirq, steal, guest, guest_nice).

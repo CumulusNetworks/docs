@@ -33,7 +33,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< tabs "TabID35 ">}}
-{{< tab "Ingress and Egress Buffer Traffic Class and Switch Priority ">}}
+{{< tab "Traffic Class and Switch Priority ">}}
 
 You can enable additional interface statistic collection per interface for specific ingress buffer traffic classes (0 through 15) and egress buffer priority groups (0 through 7). When you enable these settings, the switch exports `interface_pg` and `interface_tc` counters for the defined priority groups and traffic classes:
 
@@ -66,7 +66,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
-{{< tab "Interface and Switch Buffer Watermark ">}}
+{{< tab "Buffer">}}
 
 ```
 cumulus@switch:~$ nv set system telemetry buffer-stats export state enable 

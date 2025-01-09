@@ -29,12 +29,12 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
 - {{<link url="Open-Telemetry-Export/#layer-3-router-statistics" text="OTLP new routing metrics">}}
 - Support different sample rate for OTLP exporter destinations
 - Create a single CLI service check for OTLP exporters
-- Support for defining APT sources
 - NVUE
   - {{<link title="Network Troubleshooting/#traceroute" text="Traceroute command">}}
   - {{<link title="Network Troubleshooting/#ping" text="Ping command">}}
   - {{<link title="Troubleshooting Network Interfaces/#monitor-interface-traffic-rate-and-pps" text="Commands to monitor interface traffic rate and PPS">}}
   - {{<link url="Monitoring-Best-Practices/#disk-usage" text="Command to monitor disk usage">}}
+  - {{<link url="Adding-and-Updating-Packages/#add-packages-from-another-repository" text="Configure additional package repositories">}}
   - {{<link url="FRRouting/#look-up-the-route-for-a-destination" text="Look up the route for a destination">}}
   - {{<link url="NVUE-CLI/#filter-nv-show-command-output" text="Filter FRR nv show command output">}}
   - {{<link title="Log Files with NVUE" text="Logging commands">}}

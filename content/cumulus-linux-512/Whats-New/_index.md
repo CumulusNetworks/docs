@@ -13,7 +13,7 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
 ### Platforms
 
 - NVIDIA SN5400 ITU-T G.82732 Class C compliant
-- NVIDIA SN2201M includes an updated Parameter-Set IDentification (PSID) and INI. You cannot downgrade the switch to 5.11.
+- NVIDIA SN2201M includes an updated Parameter-Set IDentification (PSID) and firmware. You cannot downgrade the switch to 5.11.
 
 ### New Features and Enhancements
 
@@ -26,7 +26,7 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
 - {{<link url="Optional-BGP-Configuration/#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}}
 - {{<link url="BGP-Weighted-Equal-Cost-Multipath/#ecmp-resource-sharing-during-next-hop-group-updates" text="ECMP Resource Sharing During Next Hop Group Updates">}}
 -  {{<link url="RADIUS-AAA/#radius-user-command-accounting" text="RADIUS user command accounting support for multiple servers with first response option">}}
-- {{<link url="Open-Telemetry-Export/#layer-3-router-statistics" text="New OTLP routing metrics">}} and additional {{<link url="Open-Telemetry-Export/#interface-statistics" text="OTLP interface metrics">}} (PHY BER counters, and buffer watermark counters).
+- {{<link url="Open-Telemetry-Export/#layer-3-router-statistics" text="New OTLP routing metrics">}} and additional {{<link url="Open-Telemetry-Export/#interface-statistics" text="OTLP interface metrics">}} (PHY BER and buffer pool counters).
 - Support different sample rate for OTLP exporter destinations
 - Create a single CLI service check for OTLP exporters
 - NVUE
@@ -63,7 +63,14 @@ nv show system disk usage
 nv show system log
 nv show system log file
 nv show system log component
-
+nv show system packages
+nv show system packages keys
+nv show system packages keys <key>
+nv show system packages repository
+nv show system packages repository <repository>
+nv show system packages repository <repository> distribution
+nv show system packages repository <repository> distribution <distribution>
+nv show system packages repository <repository> distribution <distribution> pool
 ```
 
 {{< /tab >}}
@@ -72,6 +79,13 @@ nv show system log component
 ```
 nv set qos roce mode lossless-single-ipool
 nv set system counter rates load-interval
+nv set system packages repository <repository> distribution <distribution> pool <pool>
+nv set system packages repository <repository> insecure
+nv set system packages repository <repository> key <key>
+nv set system packages repository <repository> source
+nv set system packages use-vrf
+nv set system telemetry buffer-stats export state
+nv set system telemetry interface-stats class phy-stats state
 nv set vrf <vrf> router bgp peer-group <peer-group-id> graceful-shutdown
 nv set vrf <vrf> router bgp address-family <address-family> advertise-origin
 nv set vrf <vrf> router bgp address-family <address-family> nhg-per-origin
@@ -82,6 +96,13 @@ nv set vrf <vrf> router bgp address-family <address-family> nhg-per-origin
 
 ```
 nv unset system counter rates load-interval
+nv unset system packages repository <repository> distribution <distribution> pool <pool>
+nv unset system packages repository <repository> insecure
+nv unset system packages repository <repository> key <key>
+nv unset system packages repository <repository> source
+nv unset system packages use-vrf
+nv unset system telemetry buffer-stats export state
+nv unset system telemetry interface-stats class phy-stats state
 nv unset vrf <vrf> router bgp peer-group <peer-group-id> graceful-shutdown
 nv unset vrf <vrf> router bgp address-family <address-family> advertise-origin
 nv unset vrf <vrf> router bgp address-family <address-family> nhg-per-origin
@@ -98,8 +119,12 @@ nv action clear bridge domain <bridge-id> mac-table dynamic interface <interface
 nv action clear bridge domain <domain-id> mac-table dynamic mac <mac-address> vlan <vlan-id>
 nv action clear bridge domain <domain-id> mac-table dynamic mac <mac-address> interface <interface-id>
 nv action clear bridge domain <domain-id> mac-table dynamic mac <mac-address> vlan <vlan-id interface <interface-id>
+nv action delete system log component <component-name> file <file-name>`
+nv action delete system log file <file-name>
+nv action delete system packages key <key>
+nv action fetch system packages key <key>
+nv action fetch system packages key <key> scope
 nv action lookup vrf <vrf-id> router fib <address-family> <ip-address>
-nv action reset platform transceiver <port>
 nv action ping system <destination>
 nv action ping system <destination> count
 nv action ping system <destination> interval
@@ -110,22 +135,14 @@ nv action ping system <destination> source <source-ip-address>
 nv action ping system <destination> vrf
 nv action ping system <destination> l3protocol
 nv action ping system <destination> source-interface <interface>
+nv action reset platform transceiver <port>
 nv action traceroute interface <interface> 
 nv action traceroute interface <interface> packet_len
 nv action traceroute interface <interface> hop-count
 nv action traceroute interface <interface> source-address
 nv action traceroute interface <interface> protocol
-nv action delete system log component <component-name> file <file-name>`
-nv action delete system log file <file-name>
-nv action upload system log file <file-name> <remote-url-upload>
 nv action upload system log component <component-name> file <file-name> <remote-url-upload>
-```
-
-{{< /tab >}}
-{{< tab "nv config ">}}
-
-```
-
+nv action upload system log file <file-name> <remote-url-upload>
 ```
 
 {{< /tab >}}

@@ -160,14 +160,14 @@ In some cases, installing a new package also upgrades additional existing packag
 
 ## Configure Additional Repositories
 
-As shipped, Cumulus Linux searches the Cumulus Linux repository for available packages. You can add additional repositories to search by adding them to the list of sources that Cumulus Linux consults.
+As shipped, Cumulus Linux searches the Cumulus Linux repository for available packages. You can configure additional repositories to search by adding them to the list of sources that Cumulus Linux consults.
 
 {{%notice note%}}
 - NVIDIA adds features or makes bug fixes to certain packages; do not replace these packages with versions from other repositories.
 - NVIDIA does not test and Cumulus Linux Technical Support does not support packages that are not part of the Cumulus Linux repository.
 {{%/notice%}}
 
-To add an additional repository:
+To configure an additional repository:
 - Provide the repository location, distribution, and pool.
 - Either set the repository to trusted or provide the secure key.
 - Enable repository source to add source files from the repository (optional).
@@ -176,7 +176,7 @@ To add an additional repository:
 {{< tabs "TabID176 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example adds the repository located at `http://test.myrepo.com` with distribution `mydist` and pool `mypool`, enables source files from the repository, and sets the repository to trusted. The example also sets the VRF to `default`.
+The following example configures the repository located at `http://test.myrepo.com` with distribution `mydist` and pool `mypool`, enables source files from the repository, and sets the repository to trusted. The example also sets the VRF to `default`.
 
 ```
 cumulus@switch:~$ nv set system packages use-vrf default
@@ -185,7 +185,7 @@ cumulus@switch:~$ nv set system packages repository http://test.myrepo.com sourc
 cumulus@switch:~$ nv set system packages repository http://test.myrepo.com insecure enabled
 ```
 
-The following example adds the repository located at `http://test.myrepo.com` with distribution `mydist` and pool `mypool`, enables source files from the repository, and provides the secure key `thekey.asc`.
+The following example configures the repository located at `http://test.myrepo.com` with distribution `mydist` and pool `mypool`, enables source files from the repository, and provides the secure key `thekey.asc`.
 
 ```
 cumulus@switch:~$ nv set system packages repository http://test.myrepo.com distribution mydist pool mypool
@@ -196,15 +196,15 @@ cumulus@switch:~$ nv set system packages repository http://test.myrepo.com key t
 {{< /tab >}}
 {{< tab "Linux Command ">}}
 
-Edit the `/etc/apt/sources.list` file and add the repository.
+Edit the `/etc/apt/sources.list` file to configure the repository.
 
-The following example adds the repository located at `http://test.myrepo.com` with distribution `mydist` and pool `mypool`, enables source files from the repository, and sets the repository to trusted. The example also sets the VRF to `default`.
+The following example configures the repository located at `http://test.myrepo.com` with distribution `mydist` and pool `mypool`, enables source files from the repository, and sets the repository to trusted. The example also sets the VRF to `default`.
 
 ```
 debdeb-src http://test.myrepo.com mydist mypool 
 ```
 
-The following example adds the repository located at `http://test.myrepo.com` with distribution `mydist` and pool `mypool`, enables source files from the repository, and provides the secure key `thekey.asc`.
+The following example configures the repository located at `http://test.myrepo.com` with distribution `mydist` and pool `mypool`, enables source files from the repository, and provides the secure key `thekey.asc`.
 
 ```
 deb-src [signed-by=/etc/apt/keyrings/thekey.asc] http://test.myrepo.com mydist mypool 
@@ -216,13 +216,14 @@ deb-src [signed-by=/etc/apt/keyrings/thekey.asc] http://test.myrepo.com mydist m
 ### Manage Repository Keys
 
 Cumulus Linux provides commands to:
-- Fetch a repository key from a remote location and save it on the switch.
+- Fetch a repository key and save it on the switch.
 - Delete a repository key.
 
 {{< tabs "TabID218 ">}}
 {{< tab "NVUE Commands ">}}
 
-To fetch a repository key from a remote location, run the `nv action fetch system packages key <key>` command. By default, Cumulus Linux saves the key in the directory based on the scope value you provide; `global` or `repository`. The default scope is `global`, where the key is saved in the `/etc/apt/trusted.gpg.d` directory. If you set the scope to `repository`, the key is saved in the `/etc/apt/keyrings` directory.
+- To fetch and save a key globally, run the `nv action fetch system packages key <key>` command. Cumulus Linux fetches the key and saves it globally in the `/etc/apt/trusted.gpg.d/` directory. This is the default setting.
+- To fetch and save a key for a specific repository, run the `nv action fetch system packages key <key> scope repository` command. Cumulus Linux fetches the key and saves it in the `/etc/apt/keyrings/` directory.
 
 The following example fetches the repository key `http://deb.opera.com/archive.key` and saves it in the `/etc/apt/trusted.gpg.d` directory:
 
@@ -249,27 +250,27 @@ To fetch and save a repository key globally:
 - If the key already exists on the filesystem, copy it to the `/etc/apt/trusted.gpg.d/` directory. 
 - If the key is at a remote URL, fetch it with `wget` or another utility, then copy it to the `/etc/apt/trusted.gpg.d/` directory.
 
-The following example fetches the key `http://deb.opera.com/archive.key` from the remote URL and saves it in the `/etc/apt/trusted.gpg.d/` directory:
+The following example fetches the key `http://your-url.com/name.key` from the remote URL and copies it to the `/etc/apt/trusted.gpg.d/` directory:
 
 ```
-cumulus@switch:~$ wget -qO - http://deb.opera.com/archive.key
-cumulus@switch:~$ sudo apt-key add /etc/apt/trusted.gpg.d/archive.key
+cumulus@switch:~$ wget -qO - http://your-url.com/name.key
+cumulus@switch:~$ sudo cp name.key /etc/apt/trusted.gpg.d
 ```
 
 To fetch and save a key for a specific repository:
 - If your key already exists on the filesystem, copy it to the `/etc/apt/keyrings/` directory. 
 - If the key is at a remote URL, fetch it with `wget` or another utility, then copy it to the `/etc/apt/keyrings/` directory.
 
-The following example copies the key `archive.key` for the repository `deb.opera.com` to the `/etc/apt/keyrings/` directory.
+The following example copies the key `name.key` located on the filesystem to the `/etc/apt/keyrings/` directory.
 
 ```
-cumulus@switch:~$ sudo apt-key add /etc/apt/keyrings/archive.key
+cumulus@switch:~$ sudo cp name.key /etc/apt/keyrings/
 ```
 
 To delete a key, remove the key from the `/etc/apt/keyrings` or `/etc/apt/trusted.gpg.d` directory.
 
 ```
-cumulus@switch:~$ sudo rm /etc/apt/keyrings/archive.key
+cumulus@switch:~$ sudo rm /etc/apt/keyrings/name.key
 ```
 
 {{< /tab >}}
@@ -280,19 +281,27 @@ cumulus@switch:~$ sudo rm /etc/apt/keyrings/archive.key
 To show the list of repositories and their details:
 
 ```
-cumulus@switch:~$ nv show system packages repository https://apps3.cumulusnetworks.com/repos/deb/ 
-                operational              applied 
---------------  -----------------------  ------- 
-insecure        enabled                  enabled 
-source          enabled                  enabled 
-[distribution]  CumulusLinux-d12         CumulusLinux-d12 
-[distribution]  CumulusLinux-d12-latest  CumulusLinux-d12-latest 
+cumulus@switch:~$ nv show system packages repository 
+Repository                                    Insecure  Source   Distribution             Pool 
+--------------------------------------------  --------  -------  -----------------------  ----------- 
+https://apps3.cumulusnetworks.com/repos/deb/  enabled   enabled  CumulusLinux-d12         netq-latest 
+                                                                 CumulusLinux-d12-latest  netq 
+                                                                                          upstream 
+https://apt.cumulusnetworks.com/repo                             CumulusLinux-d12-latest  cumulus 
+                                                                                          netq 
+                                                                                          upstream
 ```
 
 To show the details for a specific repository:
 
 ```
 cumulus@switch:~$ nv show system packages repository https://apt.cumulusnetworks.com/repo
+                operational              applied 
+--------------  -----------------------  ------- 
+insecure        enabled                  enabled 
+source          enabled                  enabled 
+[distribution]  CumulusLinux-d12         CumulusLinux-d12 
+[distribution]  CumulusLinux-d12-latest  CumulusLinux-d12-latest
 ```
 
 To show the list of distributions for a repository:
@@ -377,13 +386,9 @@ To show the list of keys:
 cumulus@switch:~$ nv show system packages keys
 Key ID                                          Path                                                                   Scope 
 ----------------------------------------------  ---------------------------------------------------------------------  ------ 
-
 debian-archive-bookworm-automatic.asc           /etc/apt/trusted.gpg.d/debian-archive-bookworm-automatic.asc           global 
-
 debian-archive-bookworm-security-automatic.asc  /etc/apt/trusted.gpg.d/debian-archive-bookworm-security-automatic.asc  global 
-
 debian-archive-bookworm-stable.asc              /etc/apt/trusted.gpg.d/debian-archive-bookworm-stable.asc              global 
-
 sample-test-key.asc                             /etc/apt/keyrings/sample-test-key.asc                                  repository
 ```
 

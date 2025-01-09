@@ -460,7 +460,7 @@ NVIDIA has not tested running different versions of Cumulus Linux on MLAG peer s
 
 4. Upgrade the switch:
 
-   - To upgrade the switch with optimized image upgrade, see {{<link url="#package-upgrade" text="Package Upgrade">}}.
+   - To upgrade the switch with optimized image upgrade, see {{<link url="#image-upgrade" text="Image Upgrade">}}.
    - To boot the switch into ONIE, see {{<link title="Installing a New Cumulus Linux Image with ONIE">}}.
    - To upgrade the switch with package upgrade instead of booting into ONIE, see {{<link url="#package-upgrade" text="Package Upgrade">}}.
 
@@ -528,7 +528,7 @@ NVIDIA has not tested running different versions of Cumulus Linux on MLAG peer s
 
 4. Upgrade the switch:
 
-   - To upgrade the switch with optimized image upgrade, see {{<link url="#package-upgrade" text="Package Upgrade">}}.
+   - To upgrade the switch with optimized image upgrade, see {{<link url="#image-upgrade" text="Image Upgrade">}}.
    - To boot the switch into ONIE, see {{<link title="Installing a New Cumulus Linux Image with ONIE">}}.
    - To upgrade the switch with package upgrade instead of booting into ONIE, see {{<link url="#install-an-image" text="Install an image">}}.
 

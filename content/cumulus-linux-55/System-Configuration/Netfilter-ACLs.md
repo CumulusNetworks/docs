@@ -499,6 +499,22 @@ The NVIDIA Spectrum ASIC has one common {{<exlink url="https://en.wikipedia.org/
 - The ip-acl-heavy profile shows an updated number of supported atomic mode and nonatomic mode IPv4 rules. The previously published numbers were 7500 for atomic mode and 15000 for nonatomic mode IPv4 rules.
 {{%/notice%}}
 
+### ATCAM on Spectrum-2 and Later
+
+Switches with Spectrum-2 and later use a newer <span class="a-tooltip">[KVD](## "Key Value Database")</span> scheme and an <span class="a-tooltip">[ATCAM](## "Algorithmic TCAM")</span> design that is more flexible and allows a higher ACL scale than Spectrum 1. There is no TCAM resource profile on Spectrum-2 and later.
+
+The following table shows the tested ACL rule limits. Because the KVD and ATCAM space is shared with forwarding table entries, multicast route entries, and VLAN flow counters, these ACL limits might vary based on your use of other tables.
+
+These limits are valid when using any Spectrum-2 and later forwarding profile, except for the l2-heavy-3 and v6-lpm-heavy1 profiles, which reduce the ACL scale significantly.
+
+For Spectrum-2 and later, all profiles support the same number of rules.
+
+|Atomic Mode IPv4 Rules |Atomic Mode IPv6 Rules |Nonatomic Mode IPv4 Rules |Nonatomic Mode IPv6 Rules |
+|-------------------|-------------------|-------------------|-------------------------|
+|12500 |6250 |25000 |12500|
+
+For information about nonatomic and atomic mode, refer to {{<link url="#nonatomic-update-mode-and-atomic-update-mode" text="Nonatomic Update Mode and Atomic Update Mode">}}.
+
 ## Supported Rule Types
 
 The `iptables`/`ip6tables`/`ebtables` construct tries to layer the Linux implementation on top of the underlying hardware but they are not always directly compatible. Here are the supported rules for chains in `iptables`, `ip6tables` and `ebtables`.

@@ -24,7 +24,9 @@ cumulus@masternode:~$ /home/cumulus# kubectl get pods|grep admin
 
 If the output of this command displays errors or returns an empty response, you will not be able to upgrade NetQ. Try waiting and then re-run the command. If after several attempts the command continues to fail, reset the NetQ server with `netq bootstrap reset keep-db` and perform a fresh installation of the tarball with the appropriate {{<link title="install" text="netq install">}} command for your deployment type. For more information, refer to {{<link title="Troubleshoot NetQ/#troubleshoot-netq-installation-and-upgrade-issues" text="Troubleshoot NetQ Installation and Upgrade Issues">}}.
 
-2. {{<link title="Back Up and Restore NetQ" text="Back up your NetQ data">}}. This is an optional step for on-premises deployments. NVIDIA automatically creates backups for NetQ cloud deployments.
+2. {{<link title="Switch Management/#decommission-a-switch-with-LCM" text="Decommission any devices">}} that display a 'rotten' status.
+
+3. {{<link title="Back Up and Restore NetQ" text="Back up your NetQ data">}}. This is an optional step for on-premises deployments. NVIDIA automatically creates backups for NetQ cloud deployments.
 
 ## Update NetQ Debian Packages
 

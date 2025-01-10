@@ -10,7 +10,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 ## What's New in NetQ 4.13
 
-NetQ 4.13.0 includes the following new features and improvements:
+NetQ 4.13.0 includes the following new features:
 
 - {{<link title="Before You Install" text="New installation option">}} that supports up to 2,000 switches
 - performance and usability improvements to queue length histograms
@@ -18,14 +18,15 @@ NetQ 4.13.0 includes the following new features and improvements:
 - {{<link title="Interfaces/#compare-link-interfaces" text="Link health view">}} is now generally available
 - added support for Ubuntu 22.04
 - added support for Kubernetes 1.31.1
+- security and performance improvements
 
 
 ## Upgrade Paths
 
 For deployments running:
 
-- 4.11, 4.10.1: {{<link title="Upgrade NetQ Virtual Machines" text="upgrade directly">}} to NetQ 4.12
-- 4.10.0 or earlier: {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}} and perform a {{<link title="Install the NetQ System" text="new installation">}}
+- 4.11, 4.12: {{<link title="Upgrade NetQ Virtual Machines" text="upgrade directly">}} to NetQ 4.13
+- 4.10.1 or earlier: {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}} and perform a {{<link title="Install the NetQ System" text="new installation">}}
 
 ## Compatible Agent Versions
 

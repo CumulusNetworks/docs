@@ -482,7 +482,7 @@ If you exceed the maximum number of rules for a particular table, `cl-acltool -i
 error: hw sync failed (sync_acl hardware installation failed) Rolling back .. failed.
 ```
 
-In the table below, the default rules count toward the limits listed. The raw limits below assume only one ingress and one egress table are present.
+In the tables below, the default rules count toward the limits listed. The raw limits below assume only one ingress and one egress table are present.
 
 ### TCAM Profiles on Spectrum 1
 

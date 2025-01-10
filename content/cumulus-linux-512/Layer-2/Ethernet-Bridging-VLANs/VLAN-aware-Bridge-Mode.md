@@ -703,9 +703,7 @@ You can clear the following entries from the forwarding database instead of wait
 - All dynamic MAC addresses for a specific interface, VLAN, or interface and VLAN.
 - A specific dynamic MAC address for a VLAN, interface, or VLAN and interface.
 
-The clear dynamic MAC address commands do not clear sticky entries, permanent entries, or neighbor entries learned externally.
-
-NVUE provides a `verbose` option that shows details of the number of cleared forwarding database records when clearing entries.
+The clear dynamic MAC address commands do not clear sticky entries, permanent entries, or and EVPN MAC entries.
 
 ### Clear All Dynamic MAC Addresses
 
@@ -717,18 +715,8 @@ Action executing ...
 The matching FDB entries were deleted successfully. 
 ```
 
-To clear **all** dynamic MAC addresses from the forwarding database and show the number of cleared entries, add the `verbose` option:
-
-```
-cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic verbose
-Action executing ... 
-The matching FDB entries were deleted successfully. 
-Total number of records deleted: 2 
-...
-```
-
 {{%notice note%}}
-The `nv action clear bridge domain <bridge-id> mac-table dynamic` command clears static entries learned on ES bonds that are installed as static entries in EVPN multihoming including static VXLAN entries in the bridge driver.
+The `nv action clear bridge domain <bridge-id> mac-table dynamic` command clears static entries learned on ES bonds that are installed as static entries in EVPN multihoming including static VXLAN entries in the bridge driver and VXLAN driver.
 {{%/notice%}}
 
 ### Clear All Dynamic MAC Addresses for an Interface, VLAN, or Interface and VLAN
@@ -750,7 +738,7 @@ The matching FDB entries were deleted successfully.
 ```
 
 {{%notice note%}}
-The `nv action clear bridge domain <bridge-id> mac-table dynamic vlan <vlan-id>` command clears the static VXLAN entries in the bridge or VXLAN driver for the corresponding VLAN or VNI.
+The `nv action clear bridge domain <bridge-id> mac-table dynamic vlan <vlan-id>` command clears the static VXLAN entries in the bridge and VXLAN driver for the corresponding VLAN or VNI.
 {{%/notice%}}
 
 To clear all dynamic MAC addresses for a specific interface and VLAN, run the `nv action clear bridge domain <bridge-id> mac-table dynamic interface <interface-id> vlan <vlan-id>` command:
@@ -759,16 +747,6 @@ To clear all dynamic MAC addresses for a specific interface and VLAN, run the `n
 cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic interface swp1 vlan 10
 Action executing ... 
 The matching FDB entries were deleted successfully. 
-```
-
-To show the number of cleared entries, add the `verbose` option; for example:
-
-```
-cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic interface swp1 vlan 10 verbose
-Action executing ... 
-The matching FDB entries were deleted successfully. 
-Total number of records deleted: 3 
-...
 ```
 
 ### Clear A Specific Dynamic MAC Address for an Interface, VLAN, or Interface and VLAN
@@ -795,16 +773,6 @@ To clear a specific dynamic MAC address for a VLAN and interface, run the `nv ac
 cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic mac 00:00:0A:BB:28:FC vlan 10 interface swp1
 Action executing ... 
 The matching FDB entries were deleted successfully. 
-```
-
-To show the number of cleared entries, add the `verbose` option; for example:
-
-```
-cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic mac 00:00:0A:BB:28:FC vlan 10 interface swp1 verbose
-Action executing ... 
-The matching FDB entries were deleted successfully. 
-Total number of records deleted: 3 
-...
 ```
 
 ## Static MAC Address Entries

@@ -940,7 +940,7 @@ cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.10
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system telemetry histogram export state enabled</h>
+## <h>nv set system telemetry histogram export state</h>
 
 Enables or disables open telemetry export for histogram collection. You can specify `enabled` or `disabled`.
 

@@ -703,7 +703,7 @@ You can clear the following entries from the forwarding database instead of wait
 - All dynamic MAC addresses for a specific interface, VLAN, or interface and VLAN.
 - A specific dynamic MAC address for a VLAN, interface, or VLAN and interface.
 
-The clear dynamic MAC address commands do not clear sticky entries, permanent entries, or and EVPN MAC entries.
+The clear dynamic MAC address commands do not clear sticky entries, permanent entries, or EVPN MAC entries.
 
 ### Clear All Dynamic MAC Addresses
 

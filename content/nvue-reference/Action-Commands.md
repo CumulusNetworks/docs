@@ -198,7 +198,7 @@ cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic
 Clears all dynamic MAC addresses for a specific interface from the forwarding database.
 
 {{%notice note%}}
-This command does not clear sticky entries, permanent entries, or neighbor entries learned externally.
+This command does not clear sticky entries, permanent entries, or EVPN MAC entries.
 {{%/notice%}}
 
 ### Command Syntax
@@ -225,7 +225,7 @@ cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic int
 Clears all dynamic MAC addresses for a specific interface and VLAN from the forwarding database.
 
 {{%notice note%}}
-This command does not clear sticky entries, permanent entries, or neighbor entries learned externally.
+This command does not clear sticky entries, permanent entries, or EVPN MAC entries.
 {{%/notice%}}
 
 ### Command Syntax
@@ -253,7 +253,7 @@ cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic int
 Clears a specific dynamic MAC address for an interface from the forwarding database.
 
 {{%notice note%}}
-This command does not clear sticky entries, permanent entries, or neighbor entries learned externally.
+This command does not clear sticky entries, permanent entries, or EVPN MAC entries.
 {{%/notice%}}
 
 ### Command Syntax
@@ -281,7 +281,7 @@ cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic mac
 Clears a specific dynamic MAC addresses for a VLAN from the forwarding database.
 
 {{%notice note%}}
-This command does not clear sticky entries, permanent entries, or neighbor entries learned externally.
+This command does not clear sticky entries, permanent entries, or EVPN MAC entries.
 {{%/notice%}}
 
 ### Command Syntax
@@ -309,7 +309,7 @@ cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic mac
 Clears a specific dynamic MAC address for a VLAN and interface from the forwarding database.
 
 {{%notice note%}}
-This command does not clear sticky entries, permanent entries, or neighbor entries learned externally.
+This command does not clear sticky entries, permanent entries, or EVPN MAC entries.
 {{%/notice%}}
 
 ### Command Syntax
@@ -337,7 +337,7 @@ cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic mac
 Clears all dynamic MAC addresses for a specific VLAN from the forwarding database.
 
 {{%notice note%}}
-This command does not clear sticky entries, permanent entries, or neighbor entries learned externally.
+This command does not clear sticky entries, permanent entries, or EVPN MAC entries.
 {{%/notice%}}
 
 ### Command Syntax

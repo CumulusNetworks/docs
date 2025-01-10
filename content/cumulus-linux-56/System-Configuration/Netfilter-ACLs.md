@@ -485,7 +485,9 @@ error: hw sync failed (sync_acl hardware installation failed) Rolling back .. fa
 
 In the table below, the default rules count toward the limits listed. The raw limits below assume only one ingress and one egress table are present.
 
-The NVIDIA Spectrum ASIC has one common {{<exlink url="https://en.wikipedia.org/wiki/Content-addressable_memory#Ternary_CAMs" text="TCAM">}} for both ingress and egress, which you can use for other non-ACL-related resources. However, the number of supported rules varies with the {{<link url="Supported-Route-Table-Entries#tcam-resource-profiles-for-spectrum-switches" text="TCAM profile">}} for the switch.
+### TCAM Profiles on Spectrum 1
+
+The NVIDIA Spectrum 1 ASIC (model numbers 2xx0) has one common {{<exlink url="https://en.wikipedia.org/wiki/Content-addressable_memory#Ternary_CAMs" text="TCAM">}} for both ingress and egress, which you can use for other non-ACL-related resources. However, the number of supported rules varies with the {{<link url="Supported-Route-Table-Entries#tcam-resource-profiles-for-spectrum-switches" text="TCAM profile">}} for the switch.
 <!-- vale off -->
 |Profile |Atomic Mode IPv4 Rules |Atomic Mode IPv6 Rules |Nonatomic Mode IPv4 Rules |Nonatomic Mode IPv6 Rules |
 |------------|-------------------|-------------------|-------------------|-------------------------|

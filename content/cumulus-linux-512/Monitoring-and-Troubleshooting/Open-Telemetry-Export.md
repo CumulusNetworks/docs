@@ -66,7 +66,7 @@ cumulus@switch:~$ nv config apply
 {{< tab "PHY BER">}}
 
 ```
-cumulus@switch:~$ nv set system telemetry interface-stats class phy-stats state enable 
+cumulus@switch:~$ nv set system telemetry interface-stats class phy-stats state enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -74,7 +74,7 @@ cumulus@switch:~$ nv config apply
 {{< tab "Buffer Occupancy">}}
 
 ```
-cumulus@switch:~$ nv set system telemetry buffer-stats export state enable 
+cumulus@switch:~$ nv set system telemetry buffer-stats export state enabled 
 cumulus@switch:~$ nv config apply
 ```
 
@@ -192,35 +192,35 @@ When you enable open telemetry for layer 3 router statistics, the switch exports
 To enable BGP peer state statistic open telemetry:
 
 ```
-cumulus@switch:~$ nv set system telemetry router bgp export state
+cumulus@switch:~$ nv set system telemetry router bgp export state enabled
 cumulus@switch:~$ nv config apply
 ```
 
 To enable BGP statistic open telemetry for all peers under a VRF:
 
 ```
-cumulus@switch:~$ nv set system telemetry router bgp vrf RED export state
+cumulus@switch:~$ nv set system telemetry router bgp vrf RED export state enabled
 cumulus@switch:~$ nv config apply
 ```
 
 To enable BGP statistic open telemetry for a specific peer under a VRF:
 
 ```
-cumulus@switch:~$ nv set system telemetry router bgp vrf RED peer swp1 export state
+cumulus@switch:~$ nv set system telemetry router bgp vrf RED peer swp1 export state enabled
 cumulus@switch:~$ nv config apply
 ```
 
 To enable statistic open telemetry for the routing table:
 
 ```
-cumulus@switch:~$ nv set system telemetry router rib export state
+cumulus@switch:~$ nv set system telemetry router rib export state enabled
 cumulus@switch:~$ nv config apply 
 ```
 
 To enable statistic open telemetry for the routing table for a VRF:
 
 ```
-cumulus@switch:~$ nv set system telemetry router vrf RED rib export state
+cumulus@switch:~$ nv set system telemetry router vrf RED rib export state enabled
 cumulus@switch:~$ nv config apply
 ```
 

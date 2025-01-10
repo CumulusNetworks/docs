@@ -12,8 +12,12 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 NetQ 4.13.0 includes the following new features and improvements:
 
-- {{<link title="Before You Install" text="New installation option">}} that supports up to 1,000 switches
+- {{<link title="Before You Install" text="New installation option">}} that supports up to 2,000 switches
+- performance and usability improvements to queue length histograms
+- filter hostnames using regular expressions
 - {{<link title="Interfaces/#compare-link-interfaces" text="Link health view">}} is now generally available
+- added support for Ubuntu 22.04
+- added support for Kubernetes 1.31.1
 
 
 ## Upgrade Paths

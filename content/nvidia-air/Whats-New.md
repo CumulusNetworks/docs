@@ -10,7 +10,7 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 ## January 2025
 <!-- Air:WhatsNew -->
 ### 82.2025.0110-011
-- Fixed an issue with node instructions not being executed on demo marketplace simulations
+- Fixed an issue where node instructions were not being executed on Demo Marketplace simulations
 <!-- Air:WhatsNew -->
 
 ### 82.2025.0107-011

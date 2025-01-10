@@ -1148,6 +1148,105 @@ cumulus@switch:~$ nv set system telemetry histogram latency histogram-size 12288
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system telemetry router bgp export state</h>
+
+Enables and disables open telemetry for BGP peer state statistics.
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry router bgp export state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry router bgp vrf \<vrf-id\> export state</h>
+
+Enables and disables open telemetry  state statistics for all BGP peers under a VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF name.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry router bgp vrf RED export state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry router bgp vrf \<vrf-id\> peer \<peer-id\> export state</h>
+
+Enables and disables open telemetry state statistics for a specific BGP peer under a VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF name.  |
+| `<peer-id>` |  The BGP peer.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry router bgp vrf RED peer swp1 export state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry router rib export state</h>
+
+Enables and disables open telemetry routing table statistics.
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry router rib export state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry router vrf \<vrf\> rib export state</h>
+
+Enables and disables open telemetry routing table statistics for a VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF name.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry router vrf RED rib export state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system telemetry snapshot-file count</h>
 
 Configures the number of snapshots you can create before Cumulus Linux overwrites the first snapshot file. For example, if you set the snapshot file count to 30, the first snapshot file is `histogram_stats_0` and the thirtieth snapshot is `histogram_stats_30`. After the thirtieth snapshot, Cumulus Linux overwrites the original snapshot file (`histogram_stats_0`) and the sequence restarts. The default value is 64.
@@ -1214,7 +1313,7 @@ cumulus@switch:~$ nv set system telemetry snapshot-interval 5
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system telemetry snapshot port-group <port-group-id></h>
+## <h>nv set system telemetry snapshot port-group \<port-group-id\></h>
 
 ### Command Syntax
 

@@ -427,10 +427,10 @@ cumulus@switch:~$ nv config apply -m "this is my message"
 
 ## Reset NVUE Configuration to Default Values
 
-To reset the NVUE configuration on the switch back to the default values, run the following command:
+To reset the NVUE configuration on the switch back to the default values, run the `nv config replace <filename>` command; for example:
 
 ```
-cumulus@switch:~$ nv config replace /usr/lib/python3/dist-packages/cue_config_v1/initial.yaml
+cumulus@switch:~$ nv config replace /etc/switch.yaml
 cumulus@switch:~$ nv config apply
 ```
 

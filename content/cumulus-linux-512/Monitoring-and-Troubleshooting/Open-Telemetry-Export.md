@@ -42,7 +42,6 @@ cumulus@switch:~$ nv config apply
 You can enable these additional interface statistics:
 - Traffic Class and Switch Priority metrics for ingress buffer traffic classes (0 through 15) and egress buffer priority groups (0 through 7)
 - PHY BER for interface PHY metrics
-- Buffer occupancy and watermark metrics
 
 {{< tabs "TabID35 ">}}
 {{< tab "Traffic Class and Switch Priority ">}}
@@ -66,24 +65,25 @@ cumulus@switch:~$ nv config apply
 {{< tab "PHY BER">}}
 
 ```
-cumulus@switch:~$ nv set system telemetry interface-stats class phy-stats state enable 
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Buffer Occupancy">}}
-
-```
-cumulus@switch:~$ nv set system telemetry buffer-stats export state enable 
+cumulus@switch:~$ nv set system telemetry interface-stats phy-stats state enabled
 cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
 
+### Buffer Statistics
+
+When you enable open telemetry for buffer statistics, the switch exports interface and switch [buffer occupancy and watermark](#buffer-statistic-format) metrics.
+
+```
+cumulus@switch:~$ nv set system telemetry buffer-stats export state enabled 
+cumulus@switch:~$ nv config apply
+```
+
 ### Control Plane Statistics
 
-When you enable open telemetry for control plane statistics, additional counters for [control plane packets](#control-plane-statistic-format) are exported:
+When you enable open telemetry for control plane statistics, the switch exports additional counters for [control plane packets](#control-plane-statistic-format):
 
 ```
 cumulus@switch:~$ nv set system telemetry control-plane-stats export state enabled
@@ -108,7 +108,7 @@ cumulus@switch:~$ nv config apply
 
 ### Platform Statistics
 
-When you enable platform statistic open telemetry, data related to CPU, disk, filesystem, memory, and sensor health is exported. To enable all [platform statistics](#platform-statistic-format) globally:
+When you enable platform statistic open telemetry, the switch exports data about the CPU, disk, filesystem, memory, and sensor health. To enable all [platform statistics](#platform-statistic-format) globally:
 
 ```
 cumulus@switch:~$ nv set system telemetry platform-stats export state enabled
@@ -185,42 +185,42 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< /tabs >}}
 
-### Layer 3 Router Statistics
+### Router Statistics
 
-When you enable open telemetry for layer 3 router statistics, the switch exports data related to the routing table, BGP peers, BGP advertised routes, and the BGP packet input and output queue. To enable [router statistics](#router-statistic-format):
+When you enable open telemetry for layer 3 router statistics, the switch exports data about the routing table, BGP peers, BGP advertised routes, and the BGP packet input and output queue. To enable [router statistics](#router-statistic-format):
 
 To enable BGP peer state statistic open telemetry:
 
 ```
-cumulus@switch:~$ nv set system telemetry router bgp export state
+cumulus@switch:~$ nv set system telemetry router bgp export state enabled
 cumulus@switch:~$ nv config apply
 ```
 
 To enable BGP statistic open telemetry for all peers under a VRF:
 
 ```
-cumulus@switch:~$ nv set system telemetry router bgp vrf RED export state
+cumulus@switch:~$ nv set system telemetry router bgp vrf RED export state enabled
 cumulus@switch:~$ nv config apply
 ```
 
 To enable BGP statistic open telemetry for a specific peer under a VRF:
 
 ```
-cumulus@switch:~$ nv set system telemetry router bgp vrf RED peer swp1 export state
+cumulus@switch:~$ nv set system telemetry router bgp vrf RED peer swp1 export state enabled
 cumulus@switch:~$ nv config apply
 ```
 
 To enable statistic open telemetry for the routing table:
 
 ```
-cumulus@switch:~$ nv set system telemetry router rib export state
+cumulus@switch:~$ nv set system telemetry router rib export state enabled
 cumulus@switch:~$ nv config apply 
 ```
 
 To enable statistic open telemetry for the routing table for a VRF:
 
 ```
-cumulus@switch:~$ nv set system telemetry router vrf RED rib export state
+cumulus@switch:~$ nv set system telemetry router vrf RED rib export state enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -388,11 +388,13 @@ The interface statistic data samples that the switch exports to the OTEL collect
 | `nvswitch_interface_iface_id` | The ifindex for the interface. |
 | `nvswitch_interface_flags` | Kernel device flags set for an interface as an integer representing the {{<exlink url="https://github.com/torvalds/linux/blob/c1e939a21eb111a6d6067b38e8e04b8809b64c4e/include/uapi/linux/if.h#L43" text="kernel `net_device` flags bitmask">}}. |
 | `nvswitch_interface_proto_down` | Interface protocol down status. |
+| `nvswitch_interface_oper_aggregate_speed` | Speed in bits per second for the connected interface. |
+| `nvswitch_interface_number_of_lanes` | Number of lanes used by the interface. |
 
 {{< /tab >}}
 {{< tab "Traffic Class ">}}
 
-The following additional interface traffic class statistics are collected and exported when you configure the `nv set system telemetry interface-stats egress-buffer traffic-class <class>` command:
+The switch collects and exports the following additional interface traffic class statistics when you configure the `nv set system telemetry interface-stats egress-buffer traffic-class <class>` command:
 
 |  Name | Description |
 |------ | ----------- |
@@ -409,7 +411,7 @@ The following additional interface traffic class statistics are collected and ex
 {{< /tab >}}
 {{< tab "Priority Group ">}}
 
-The following additional interface priority group statistics are collected and exported when you configure the `nv set system telemetry interface-stats ingress-buffer priority-group <priority>` command:
+The switch collects and exports the following additional interface priority group statistics when you configure the `nv set system telemetry interface-stats ingress-buffer priority-group <priority>` command:
 
 |  Name | Description |
 |------ | ----------- |
@@ -435,7 +437,7 @@ The following additional interface priority group statistics are collected and e
 {{< /tab >}}
 {{< tab "Switch Priority ">}}
 
-The following additional interface switch priority statistics are collected and exported when you configure the `nv set system telemetry interfaces-stats switch-priority <priority>` command:
+The switch collects and exports the following additional interface switch priority statistics when you configure the `nv set system telemetry interfaces-stats switch-priority <priority>` command:
 
 |  Name | Description |
 |------ | ----------- |
@@ -459,7 +461,7 @@ The following additional interface switch priority statistics are collected and 
 {{< /tab >}}
 {{< tab "PHY BER">}}
 
-The following interface statistics are collected and exported when you configure the `nv set system telemetry interface-stats class phy-stats state enable` command:
+The switch collects and exports the following additional interface statistics when you configure the `nv set system telemetry interface-stats phy-stats state enable` command:
 
 |  Name | Description |
 |------ | ----------- |
@@ -482,58 +484,6 @@ The following interface statistics are collected and exported when you configure
 | `nvswitch_interface_raw-ber-lane5` | raw_ber-lane5 = raw_ber_coef_lane0*10^(raw_ber_magnitude) |
 | `nvswitch_interface_raw-ber-lane6` | raw_ber-lane6 = raw_ber_coef_lane0*10^(raw_ber_magnitude) |
 | `nvswitch_interface_raw-ber-lane7` | raw_ber-lane7 = raw_ber_coef_lane0*10^(raw_ber_magnitude) |
-
-{{< /tab >}}
-{{< tab "Buffer Occupancy">}}
-
-The following interface statistics are collected and exported when you configure the `nv set system telemetry buffer-stats export state enable` command:
-
-|  Name | Description |
-|------ | ----------- |
-| `nvswitch_interface_shared_buffer_port_pg_curr_occupancy` | Current buffer occupancy. |
-| `nvswitch_interface_shared_buffer_port_pg_watermark` | Maximum buffer occupancy. |
-| `nvswitch_interface_shared_buffer_port_pg_desc_curr_occupancy` | Current buffer occupancy for descriptors. |
-| `nvswitch_interface_shared_buffer_port_pg_desc_watermark` | Maximum buffer occupancy for descriptors. |
-| `nvswitch_interface_shared_buffer_port_pg_watermark_recorded_max` | Highest maximum buffer occupancy recorded since running sdk_stats. |
-| `nvswitch_interface_shared_buffer_port_pg_desc_watermark_recorded_max` | Highest maximum buffer occupancy for descriptors recorded since running sdk_stats. |
-| `nvswitch_interface_shared_buffer_ingress_pool_curr_occupancy` | Current ingress pool buffer occupancy. |
-| `nvswitch_interface_shared_buffer_ingress_pool_watermark` | Maximum ingress pool buffer occupancy. |
-| `nvswitch_interface_shared_buffer_ingress_pool_desc_curr_occupancy` | Current ingress pool buffer occupancy for descriptors. |
-| `nvswitch_interface_shared_buffer_ingress_pool_desc_watermark` | Maximum ingress pool buffer occupancy for descriptors. |
-| `nvswitch_interface_shared_buffer_ingress_pool_watermark_recorded_max` | Highest maximum ingress pool buffer occupancy recorded since running sdk_stats. |
-| `nvswitch_interface_shared_buffer_ingress_pool_desc_watermark_recorded_max` | Highest maximum ingress pool buffer occupancy for descriptors recorded since running sdk_stats. |
-| `nvswitch_interface_shared_buffer_port_tc_curr_occupancy` | Current buffer occupancy for traffic class. |
-| `nvswitch_interface_shared_buffer_port_tc_watermark` | Maximum buffer occupancy for traffic class. |
-| `nvswitch_interface_shared_buffer_port_tc_desc_curr_occupancy` | Current buffer occupancy for descriptors. |
-| `nvswitch_interface_shared_buffer_port_tc_desc_watermark` | Maximum buffer occupancy for descriptors. |
-| `nvswitch_interface_shared_buffer_port_tc_watermark_recorded_max` | Highest maximum buffer occupancy recorded since running sdk_stats. |
-| `nvswitch_interface_shared_buffer_port_tc_desc_watermark_recorded_max` | Highest maximum buffer occupancy for TC descriptors recorded since running sdk_stats. |
-| `nvswitch_interface_shared_buffer_egress_pool_curr_occupancy` | Current egress pool buffer occupancy. |
-| `nvswitch_interface_shared_buffer_egress_pool_watermark` | Maximum egress pool buffer occupancy. |
-| `nvswitch_interface_shared_buffer_egress_pool_desc_curr_occupancy` | Current egress pool buffer occupancy for descriptors. |
-| `nvswitch_interface_shared_buffer_egress_pool_desc_watermark` | Maximum egress pool buffer occupancy for descriptors. |
-| `nvswitch_interface_shared_buffer_egress_pool_watermark_recorded_max` | Highest maximum egress pool buffer occupancy recorded since running sdk_stats. |
-| `nvswitch_interface_shared_buffer_egress_pool_desc_watermark_recorded_max` | Highest maximum egress pool buffer occupancy for pool desc recorded since running sdk_stats. |
-| `nvswitch_interface_shared_buffer_mc_port_curr_occupancy`  | Current buffer occupancy for multicast port. |
-| `nvswitch_interface_shared_buffer_mc_port_watermark` | Maximum buffer occupancy for multicast port. |
-| `nvswitch_interface_shared_buffer_mc_port_watermark_max` | Highest maximum buffer occupancy for multicast port recorded since running sdk_stats. |
-| `nvswitch_interface_shared_buffer_mc_sp_curr_occupancy` | Current buffer occupancy for multicast switch priority. |
-| `nvswitch_interface_shared_buffer_mc_sp_watermark` | Maximum buffer occupancy for multicast switch priority. |
-| `nvswitch_interface_shared_buffer_mc_sp_watermark_max` | Highest maximum buffer occupancy for multicast switch priority recorded since running sdk_stats. |
-| `nvswitch_shared_buffer_pool_curr_occupancy` | Current pool buffer occupancy. |
-| `nvswitch_shared_buffer_pool_watermark` | Maximum pool buffer occupancy |
-| `nvswitch_shared_buffer_pool_watermark_max` | Highest maximum pool buffer occupancy for multicast switch priority recorded since running sdk_stats. |
-| `nvswitch_interface_headroom_buffer_pg_curr_occupancy` | Current headroom buffer occupancy for port buffer. |
-| `nvswitch_interface_headroom_buffer_pg_watermark` | Maximum pool headroom buffer occupancy for port buffer. |
-| `nvswitch_interface_headroom_buffer_pg_watermark_recorded_max` | Highest maximum headroom buffer occupancy for port buffer recorded since running sdk_stats. |
-| `nvswitch_interface_headroom_buffer_shared_curr_occupancy` | Current headroom buffer occupancy for port shared buffer. |
-| `nvswitch_interface_headroom_shared_buffer_shared_watermark` | Maximum headroom buffer occupancy for port shared buffer. |
-| `nvswitch_interface_headroom_shared_buffer_shared_watermark_recorded_max` | Highest maximum headroom buffer occupancy for port shared buffer recorded since running sdk_stats. |
-| `nvswitch_interface_headroom_buffer_shared_pool_curr_occupancy` | Current headroom buffer occupancy for port shared pool buffer |
-| `nvswitch_interface_headroom_shared_buffer_shared_pool_watermark` | Maximum headroom buffer occupancy for port shared pool buffer. |
-| `nvswitch_interface_headroom_shared_buffer_shared_pool_watermark_recorded_max` | Highest maximum headroom buffer occupancy for port shared pool buffer. |
-| `nvswitch_interface_oper_aggregate_speed` | Speed in bits per second for the connected interface. |
-| `nvswitch_interface_number_of_lanes` | Number of lanes used by the interface. |
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -600,9 +550,58 @@ The following interface statistics are collected and exported when you configure
 
 {{< /expand >}}
 
+### Buffer Statistic Format
+
+The switch collects and exports the following interface and switch, buffer occupancy and watermark statistics when you configure the `nv set system telemetry buffer-stats export state enable` command:
+
+|  Name | Description |
+|------ | ----------- |
+| `nvswitch_interface_shared_buffer_port_pg_curr_occupancy` | Current buffer occupancy. |
+| `nvswitch_interface_shared_buffer_port_pg_watermark` | Maximum buffer occupancy. |
+| `nvswitch_interface_shared_buffer_port_pg_desc_curr_occupancy` | Current buffer occupancy for descriptors. |
+| `nvswitch_interface_shared_buffer_port_pg_desc_watermark` | Maximum buffer occupancy for descriptors. |
+| `nvswitch_interface_shared_buffer_port_pg_watermark_recorded_max` | Highest maximum buffer occupancy recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_port_pg_desc_watermark_recorded_max` | Highest maximum buffer occupancy for descriptors recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_ingress_pool_curr_occupancy` | Current ingress pool buffer occupancy. |
+| `nvswitch_interface_shared_buffer_ingress_pool_watermark` | Maximum ingress pool buffer occupancy. |
+| `nvswitch_interface_shared_buffer_ingress_pool_desc_curr_occupancy` | Current ingress pool buffer occupancy for descriptors. |
+| `nvswitch_interface_shared_buffer_ingress_pool_desc_watermark` | Maximum ingress pool buffer occupancy for descriptors. |
+| `nvswitch_interface_shared_buffer_ingress_pool_watermark_recorded_max` | Highest maximum ingress pool buffer occupancy recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_ingress_pool_desc_watermark_recorded_max` | Highest maximum ingress pool buffer occupancy for descriptors recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_port_tc_curr_occupancy` | Current buffer occupancy for traffic class. |
+| `nvswitch_interface_shared_buffer_port_tc_watermark` | Maximum buffer occupancy for traffic class. |
+| `nvswitch_interface_shared_buffer_port_tc_desc_curr_occupancy` | Current buffer occupancy for descriptors. |
+| `nvswitch_interface_shared_buffer_port_tc_desc_watermark` | Maximum buffer occupancy for descriptors. |
+| `nvswitch_interface_shared_buffer_port_tc_watermark_recorded_max` | Highest maximum buffer occupancy recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_port_tc_desc_watermark_recorded_max` | Highest maximum buffer occupancy for TC descriptors recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_egress_pool_curr_occupancy` | Current egress pool buffer occupancy. |
+| `nvswitch_interface_shared_buffer_egress_pool_watermark` | Maximum egress pool buffer occupancy. |
+| `nvswitch_interface_shared_buffer_egress_pool_desc_curr_occupancy` | Current egress pool buffer occupancy for descriptors. |
+| `nvswitch_interface_shared_buffer_egress_pool_desc_watermark` | Maximum egress pool buffer occupancy for descriptors. |
+| `nvswitch_interface_shared_buffer_egress_pool_watermark_recorded_max` | Highest maximum egress pool buffer occupancy recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_egress_pool_desc_watermark_recorded_max` | Highest maximum egress pool buffer occupancy for pool desc recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_mc_port_curr_occupancy`  | Current buffer occupancy for multicast port. |
+| `nvswitch_interface_shared_buffer_mc_port_watermark` | Maximum buffer occupancy for multicast port. |
+| `nvswitch_interface_shared_buffer_mc_port_watermark_max` | Highest maximum buffer occupancy for multicast port recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_mc_sp_curr_occupancy` | Current buffer occupancy for multicast switch priority. |
+| `nvswitch_interface_shared_buffer_mc_sp_watermark` | Maximum buffer occupancy for multicast switch priority. |
+| `nvswitch_interface_shared_buffer_mc_sp_watermark_max` | Highest maximum buffer occupancy for multicast switch priority recorded since running sdk_stats. |
+| `nvswitch_shared_buffer_pool_curr_occupancy` | Current pool buffer occupancy. |
+| `nvswitch_shared_buffer_pool_watermark` | Maximum pool buffer occupancy |
+| `nvswitch_shared_buffer_pool_watermark_max` | Highest maximum pool buffer occupancy for multicast switch priority recorded since running sdk_stats. |
+| `nvswitch_interface_headroom_buffer_pg_curr_occupancy` | Current headroom buffer occupancy for port buffer. |
+| `nvswitch_interface_headroom_buffer_pg_watermark` | Maximum pool headroom buffer occupancy for port buffer. |
+| `nvswitch_interface_headroom_buffer_pg_watermark_recorded_max` | Highest maximum headroom buffer occupancy for port buffer recorded since running sdk_stats. |
+| `nvswitch_interface_headroom_buffer_shared_curr_occupancy` | Current headroom buffer occupancy for port shared buffer. |
+| `nvswitch_interface_headroom_shared_buffer_shared_watermark` | Maximum headroom buffer occupancy for port shared buffer. |
+| `nvswitch_interface_headroom_shared_buffer_shared_watermark_recorded_max` | Highest maximum headroom buffer occupancy for port shared buffer recorded since running sdk_stats. |
+| `nvswitch_interface_headroom_buffer_shared_pool_curr_occupancy` | Current headroom buffer occupancy for port shared pool buffer |
+| `nvswitch_interface_headroom_shared_buffer_shared_pool_watermark` | Maximum headroom buffer occupancy for port shared pool buffer. |
+| `nvswitch_interface_headroom_shared_buffer_shared_pool_watermark_recorded_max` | Highest maximum headroom buffer occupancy for port shared pool buffer. |
+
 ### Control Plane Statistic Format
 
-When you enable control plane statistic telemetry, the following statistics are exported:
+When you enable control plane statistic telemetry, the switch exports the following statistics:
 
 | Name | Description |
 |----- | ----------- |
@@ -723,7 +722,7 @@ When you enable control plane statistic telemetry, the following statistics are 
 
 ### Platform Statistic Format
 
-When you enable platform statistic telemetry globally, or when you enable telemetry for the individual components, the following statistics are exported:
+When you enable platform statistic telemetry globally, or when you enable telemetry for the individual components, the switch exports the following statistics:
 
 {{< tabs "TabID723 ">}}
 {{< tab "CPU ">}}
@@ -1453,7 +1452,7 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 
 ### Router Statistic Format
 
-When you enable layer 3 router statistic telemetry, the following statistics are exported:
+When you enable layer 3 router statistic telemetry, the switch exports the following statistics:
 
 | Name | Description |
 |----- | ----------- |
@@ -1778,35 +1777,3 @@ Interface static labels are exported as attributes in the gauge metrics for each
                       }
 
 {{< /expand >}}
-
-<!-- Commenting out HTTP export for phase 1 and 2
-### HTTP OTLP Export
-
-You can configure open telemetry export to use HTTP to communicate with the collector and define the port to use for communication:
-
-```
-cumulus@switch:~$ nv set system telemetry export otlp http port 9443
-cumulus@switch:~$ nv config apply
-```
-
-Optionally, you can configure an X.509 certificate to secure the HTTP connection:
-
-```
-cumulus@switch:~$ nv set system telemetry export otlp http cert-id <certificate>
-cumulus@switch:~$ nv config apply
-```
-
-For connections without a configured certificate, enable `insecure` mode:
-
-```
-cumulus@switch:~$ nv set system telemetry export otlp http insecure enabled
-cumulus@switch:~$ nv config apply
-```
-
-The default encoding format for HTTP export is binary protocol buffer (`proto`); You can configure the encoding format to JSON:
-
-```
-cumulus@switch:~$ nv set system telemetry export otlp http encoding json
-cumulus@switch:~$ nv config apply
-```
--->

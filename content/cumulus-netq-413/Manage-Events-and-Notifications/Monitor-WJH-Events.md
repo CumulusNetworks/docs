@@ -18,7 +18,7 @@ To use a gNMI client to export WJH data to a collector, refer to {{<link title="
 
 {{<notice note>}}
 
-WJH is only supported on NVIDIA Spectrum switches running Cumulus Linux 4.4.0 or later. WJH latency and congestion monitoring is supported on NVIDIA Spectrum-2 switches or later. SONiC only supports collection of WJH data with gNMI.
+WJH is only supported on NVIDIA Spectrum switches running Cumulus Linux 4.4.0 or later. WJH latency and congestion monitoring is supported on NVIDIA Spectrum-2 switches or later.
 
 {{</notice>}}
 
@@ -80,7 +80,7 @@ You can expand the card to see a detailed summary of WJH data, including devices
 
    {{<figure src="/images/netq/wjh-large-450.png" alt="expanded what just happened card displaying devices with the most drops" width="700">}}
 
-Expand the card to its largest size to open the WJH dashboard. You can also access this dashboard by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**, then **What Just Happened**.
+Expand the card to its largest size to open the WJH dashboard. From here, you can create, save, and apply filters {{<link title="Monitor Events/#create-event-filters" text="create, save, and apply filters">}} to show a subset of events.
 
    {{<figure src="/images/netq/wjh-fullscreen-450.png" alt="fully expanded what just happened card with detailed drop information" width="1000">}}
 
@@ -240,9 +240,9 @@ cumulus@switch:~$ sudo netq config add agent wjh-threshold congestion 4 swp1 200
 ```
 Refer to the {{<link title="config/#netq-config-add-agent-wjh-threshold" text="command line reference">}} for a comprehensive list of options and definitions for this command.
 
-## Suppress Events with Filters
+## Suppress WJH Events
 
-You can create filters with the UI or CLI to prevent WJH from generating events. Filters can be applied to a drop category (such as layer 1 drops or buffer drops), a drop reason (for example, "decapsulation error" or "multicast MAC mismatch"), or according to severity level (notice, warning, or error). With the CLI, you can create filters to suppress events according to their source or destination IP addresses. 
+You can create suppression rules with the UI or CLI to prevent WJH from generating events. Rules can be applied to a drop category (such as layer 1 drops or buffer drops), a drop reason (for example, "decapsulation error" or "multicast MAC mismatch"), or according to severity level (notice, warning, or error). With the CLI, you can create rules to suppress events according to their source or destination IP addresses. 
 
 For a complete list of drop types, reasons, and severity levels, refer to the {{<link title="WJH Events Reference">}}.
 
@@ -250,7 +250,7 @@ For a complete list of drop types, reasons, and severity levels, refer to the {{
 
 {{<tab "NetQ UI">}}
 
-Before configuring the NetQ Agent to filter WJH drops, you must generate AuthKeys. {{<link title="Install NetQ CLI/#configure-the-netq-cli" text="Copy the access key and secret key">}} to an accessible location. You will enter them in one of the final steps.
+Before configuring the NetQ Agent to suppress WJH drops, you must generate AuthKeys. {{<link title="Install NetQ CLI/#configure-the-netq-cli" text="Copy the access key and secret key">}} to an accessible location. You will enter them in one of the final steps.
 
 1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu** and select **Manage switches**.
 
@@ -270,7 +270,7 @@ Before configuring the NetQ Agent to filter WJH drops, you must generate AuthKey
 
 {{<tab "NetQ CLI">}}
 
-To configure the NetQ Agent to filter WJH drops, run {{<link title="config/#netq-config-add-agent-wjh-drop-filter" text="netq config add agent wjh-drop-filter">}}. Use tab completion to view the available drop type, drop reason, and severity values.
+To configure the NetQ Agent to suppress WJH drops, run {{<link title="config/#netq-config-add-agent-wjh-drop-filter" text="netq config add agent wjh-drop-filter">}}. Use tab completion to view the available drop type, drop reason, and severity values.
 
 ```
 netq config add agent wjh-drop-filter 
@@ -285,7 +285,7 @@ netq config add agent wjh-drop-filter
    ips [<text-wjh-ips>]
 ```
 
-To display filter configurations, run {{<link title="config/#netq-config-show-agent" text="netq config show agent wjh-drop-filter">}}. To delete a filter, run {{<link title="config/#netq-config-del-agent-wjh-drop-filter" text="netq config del agent wjh-drop-filter">}}.
+To display suppression configurations, run {{<link title="config/#netq-config-show-agent" text="netq config show agent wjh-drop-filter">}}. To delete a suppression rule, run {{<link title="config/#netq-config-del-agent-wjh-drop-filter" text="netq config del agent wjh-drop-filter">}}.
 
 {{</tab>}}
 

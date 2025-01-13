@@ -29,6 +29,32 @@ The dashboard presents a timeline of events alongside the devices that are causi
 
 Events are also generated when streaming {{<link title="Validate Overall Network Health" text="validation checks">}} detect a failure. If an event is generated from a failed validation check, it will be marked resolved automatically the next time the check runs successfully.
 
+## Create Event Filters
+
+You can create, save, and apply filters to show a subset of events. After you save the filters, navigate back to your workbench to view filtered and unfiltered data side-by-side. For example, the left-most card displays all network events from the past 24 hours alongside a filtered subset of BGP 'error' events from the past six hours:
+
+{{<figure src="/images/netq/events-plus-filter-413.png" width="500" alt="">}}
+
+{{<tabs "TabID38" >}}
+
+{{<tab "NetQ UI">}}
+
+To create a filter in the NetQ UI:
+
+1. Expand the Events card to full-screen.
+
+2. Use the controls above the events summary to create a filter according to time parameters, hostname, type, or severity.
+
+3. Select **Save filters** and enter a descriptive name for the filter. Then select **Save**.
+
+The events summary now displays the filtered data. Select the X in the top-right corner to navigate back to your dashboard. The events card displays a filter with a red dot, indicating that you are viewing filtered data. Hover your mouse over the filter to view its name. 
+
+To clear or delete the filter, expand the card to full-screen and select **Clear all filters** from above the table. When you remove cards from a workbench, the cards' respective filters are also deleted. Note that when you clone a workbench, you must recreate the filters on the new, cloned workbench. 
+
+{{</tab>}}
+
+{{</tabs>}}
+
 ## Suppress Events
 
  If you are receiving too many event notifications or do not want NetQ to display known issues or false alarms, you can suppress these events. NetQ does not display suppressed events in the event summary dashboard, which effectively allows you to ignore them. In addition to the rules you create to suppress events, NetQ suppresses some events by default. 

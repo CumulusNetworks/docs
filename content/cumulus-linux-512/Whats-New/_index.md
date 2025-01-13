@@ -87,7 +87,14 @@ nv set system packages repository <repository> key <key>
 nv set system packages repository <repository> source
 nv set system packages use-vrf
 nv set system telemetry buffer-stats export state
-nv set system telemetry interface-stats class phy-stats state
+nv set system telemetry interface-stats class phy state
+nv set system telemetry router bgp export state
+nv set system telemetry router vrf <vrf> bgp export state
+nv set system telemetry router vrf <vrf> bgp peer <interface> export state
+nv set system telemetry router rib export state
+nv set system telemetry router vrf <vrf> rib export state
+nv set system telemetry router bgp export state
+
 nv set vrf <vrf> router bgp peer-group <peer-group-id> graceful-shutdown
 nv set vrf <vrf> router bgp address-family <address-family> advertise-origin
 nv set vrf <vrf> router bgp address-family <address-family> nhg-per-origin
@@ -105,6 +112,12 @@ nv unset system packages repository <repository> source
 nv unset system packages use-vrf
 nv unset system telemetry buffer-stats export state
 nv unset system telemetry interface-stats class phy-stats state
+nv unset system telemetry router bgp export state
+nv unset system telemetry router vrf <vrf> bgp export state
+nv unset system telemetry router vrf <vrf> bgp peer <interface> export state
+nv unset system telemetry router rib export state
+nv unset system telemetry router vrf <vrf> rib export state
+nv unset system telemetry router bgp export state
 nv unset vrf <vrf> router bgp peer-group <peer-group-id> graceful-shutdown
 nv unset vrf <vrf> router bgp address-family <address-family> advertise-origin
 nv unset vrf <vrf> router bgp address-family <address-family> nhg-per-origin

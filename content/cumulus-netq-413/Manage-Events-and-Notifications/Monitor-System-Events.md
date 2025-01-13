@@ -102,9 +102,12 @@ If you see a type of event displayed in the events dashboard that you'd like to 
 To suppress events using the NetQ UI:
 
 1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**, then **Events**.
+
 2. In the top-right corner, select **Show suppression rules**.
+
 3. Select **Add rule**. You can configure individual suppression rules or you can create a group rule that suppresses events for all message types.
     {{<figure src="/images/netq/create-suppression-rule-modal.png" width="600">}}
+
 4. Give your rule a name and fill out the fields. Then select **Create**.
 
 {{</tab>}}
@@ -189,8 +192,11 @@ You can delete or disable suppression rules. After you delete a rule, event noti
 To remove suppressed event configurations:
 
 1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**, then **Events**.
+
 2. Select **Show suppression rules** at the top of the page.
+
 3. Toggle between the **Single** and **All** tabs to alternately view one suppression rule or a group of rules. Navigate to the rule you want to delete or disable.
+
 4. For a single rule, click the three-dot menu and select **Delete**. To pause the rule instead of deleting it, click **Disable**. To delete a group of rules, click the three-dot menu and select **Delete**. To disable individual rules within the group, select **View all**, then **Disable**.
 
 {{</tab>}}
@@ -215,7 +221,9 @@ Successfully deleted Events Config eventsconfig_10
 To view suppressed events:
 
 1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**, then **Events**.
+
 2. Select **Show suppression rules** at the top of the page.
+
 3. Toggle between the **Single** and **All** tabs to view individual and groups of rules, respectively. 
 
 {{</tab>}}

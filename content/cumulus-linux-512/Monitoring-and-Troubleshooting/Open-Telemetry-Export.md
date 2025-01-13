@@ -41,7 +41,7 @@ cumulus@switch:~$ nv config apply
 
 You can enable these additional interface statistics:
 - Traffic Class and Switch Priority metrics for ingress buffer traffic classes (0 through 15) and egress buffer priority groups (0 through 7)
-- PHY BER for interface PHY metrics
+- PHY for interface PHY metrics
 
 {{< tabs "TabID35 ">}}
 {{< tab "Traffic Class and Switch Priority ">}}
@@ -62,10 +62,10 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
-{{< tab "PHY BER">}}
+{{< tab "PHY">}}
 
 ```
-cumulus@switch:~$ nv set system telemetry interface-stats phy-stats state enabled
+cumulus@switch:~$ nv set system telemetry interface-stats class phy state enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -199,14 +199,14 @@ cumulus@switch:~$ nv config apply
 To enable BGP statistic open telemetry for all peers under a VRF:
 
 ```
-cumulus@switch:~$ nv set system telemetry router bgp vrf RED export state enabled
+cumulus@switch:~$ nv set system telemetry router vrf RED bgp export state enabled
 cumulus@switch:~$ nv config apply
 ```
 
 To enable BGP statistic open telemetry for a specific peer under a VRF:
 
 ```
-cumulus@switch:~$ nv set system telemetry router bgp vrf RED peer swp1 export state enabled
+cumulus@switch:~$ nv set system telemetry router vrf RED bgp peer swp1 export state enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -459,9 +459,9 @@ The switch collects and exports the following additional interface switch priori
 | `nvswitch_interface_sp_tx_uc_frames` | Transmit unicast frame counter for the switch priority. |
 
 {{< /tab >}}
-{{< tab "PHY BER">}}
+{{< tab "PHY">}}
 
-The switch collects and exports the following additional interface statistics when you configure the `nv set system telemetry interface-stats phy-stats state enable` command:
+The switch collects and exports the following additional interface statistics when you configure the `nv set system telemetry interface-stats class phy state enabled` command:
 
 |  Name | Description |
 |------ | ----------- |

@@ -22,6 +22,7 @@ You send Echo Request packets to a destination (IP address or a hostname) to che
 | `size` | The Echo Request packet size in bytes. You can specify a value between 1 and 9216. The default value is 64. |
 | `wait` | The number of seconds to wait for an Echo Reply packet before the ping request times out. You can specify a value between 0.1 and 10. The default value is 10.|
 | `source` | The source IP address from which to send the Echo Request packets. |
+| `source-interface` | The source interface from which to send the Echo Request packets. |
 | `do-not-fragment` | Do not fragment. If the packet is larger than the maximum transmission unit (MTU) of any network segment it traverses, drop the packet instead of fragmenting the packet. |
 | `l3protocol` | The layer 3 protocol you want to use to send the Echo Request packets. You can specify IPv4 or IPv6. If you don't specify either IPv4 or IPv6, ping uses IPv4. |
 | `vrf` | The VRF you want to use. |
@@ -131,7 +132,7 @@ cumulus@switch:~$ ping -I vrf mgmt 10.10.5.1 10.10.10.10
 The following example sends Echo Request packets to destination 10.10.10.10 for the management VRF.
 
 ```
-cumulus@switch:~$ ping 10.10.10.10 vrf mgmt
+cumulus@switch:~$ ping vrf mgmt 10.10.10.10 
 ```
 
 The following example sends Echo Request packets to destination fe80::a00:27ff:fe00:0 from source interface eth0.
@@ -174,7 +175,7 @@ cumulus@switch:~$ nv action traceroute system 10.10.10.10
 The following example validates the route path to IPv6 destination fe80::a00:27ff:fe00:0.
 
 ```
-cumulus@switch:~$ nv action traceroute system fe80::a00:27ff:fe00:0 ipv6
+cumulus@switch:~$ nv action traceroute system fe80::a00:27ff:fe00:0 l3protocol ipv6
 ```
 
 The following example validates the path to destination 10.10.10.10 with 5 minimum hops and 10 maximum hops.

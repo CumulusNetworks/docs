@@ -279,7 +279,7 @@ When you use package upgrade to upgrade the switch, configuration data stays in 
 
 {{%notice note%}}
 - You cannot upgrade the switch to a new release train. For example, you **cannot** use package upgrade to upgrade the switch from 4.x to 5.x.
-- Package upgrade only supports the current version plus two. For example, you can upgrade from Cumulus Linux 5.6 to 5.8 with package upgrade only if you installed the 5.6 binary image.
+- Package upgrade only supports the current version plus two. For example, you can upgrade from Cumulus Linux 5.10.1 to Cumulus Linux 5.12 with package upgrade only if you installed the 5.10.1 binary image.
 - The package upgrade command might restart or stop services as part of the upgrade process.
 - The package upgrade command might disrupt core services by changing core service dependency packages.
 - After you upgrade, account UIDs and GIDs created by packages might be different on different switches, depending on the configuration and package installation history.

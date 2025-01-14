@@ -28,10 +28,39 @@ You send Echo Request packets to a destination (IP address or a hostname) to che
 | `vrf` | The VRF you want to use. |
 | `source-interface` | The source interface from which to send Echo Request packets for a link local address. IPv6 only.|
 
-The following example sends Echo Request packets to destination 10.10.10.10 to check if it is reachable.
+The following example sends Echo Request packets to destination 10.10.10.2 to check if it is reachable.
 
 ```
-cumulus@switch:~$ nv action ping system 10.10.10.10
+cumulus@switch:~$ nv action ping system 10.10.10.2
+Action executing ...
+{
+    "sent": 3,
+    "received": 3,
+    "min_time": 602000,
+    "avg_time": 790000,
+    "max_time": 1090000,
+    "packets_info": {
+        "1": {
+            "bytes": 64,
+            "source": "10.10.10.2",
+            "ttl": 64,
+            "time": 1090000
+        },
+        "2": {
+            "bytes": 64,
+            "source": "10.10.10.2",
+            "ttl": 64,
+            "time": 680000
+        },
+        "3": {
+            "bytes": 64,
+            "source": "10.10.10.2",
+            "ttl": 64,
+            "time": 602000
+        }
+    }
+}
+Action succeeded
 ```
 
 The following example sends Echo Request packets to IPv6 destination fe80::a00:27ff:fe00:0 to check if it is reachable.
@@ -40,40 +69,226 @@ The following example sends Echo Request packets to IPv6 destination fe80::a00:2
 cumulus@switch:~$ nv action ping system fe80::a00:27ff:fe00:0 l3protocol ipv6
 ```
 
-The following example sends 5 Echo Request packets every 2 seconds to check if destination 10.10.10.10 is reachable and waits for 3 seconds for an Echo Reply packet before timing out.
+The following example sends 5 Echo Request packets every 2 seconds to check if destination 10.10.10.2 is reachable and waits for 3 seconds for an Echo Reply packet before timing out.
 
 ```
-cumulus@switch:~$ nv action ping system 10.10.10.10 count 5 interval 2 wait 3
+cumulus@switch:~$ nv action ping system 10.10.10.2 count 5 interval 2 wait 3
+Action executing ...
+{
+    "sent": 5,
+    "received": 5,
+    "min_time": 569000,
+    "avg_time": 647000,
+    "max_time": 801000,
+    "packets_info": {
+        "1": {
+            "bytes": 64,
+            "source": "10.10.10.2",
+            "ttl": 64,
+            "time": 660000
+        },
+        "2": {
+            "bytes": 64,
+            "source": "10.10.10.2",
+            "ttl": 64,
+            "time": 625000
+        },
+        "3": {
+            "bytes": 64,
+            "source": "10.10.10.2",
+            "ttl": 64,
+            "time": 569000
+        },
+        "4": {
+            "bytes": 64,
+            "source": "10.10.10.2",
+            "ttl": 64,
+            "time": 801000
+        },
+        "5": {
+            "bytes": 64,
+            "source": "10.10.10.2",
+            "ttl": 64,
+            "time": 580000
+        }
+    }
+}
+Action succeeded
 ```
 
-The following example sends 50-byte Echo Request packets to check if destination 10.10.10.10 is reachable.
+The following example sends 50-byte Echo Request packets to check if destination 10.10.10.2 is reachable.
 
 ```
-cumulus@switch:~$ nv action ping system 10.10.10.10 size 50
+cumulus@switch:~$ nv action ping system 10.10.10.2 size 50
+Action executing ...
+{
+    "sent": 3,
+    "received": 3,
+    "min_time": 610000,
+    "avg_time": 845000,
+    "max_time": 1008000,
+    "packets_info": {
+        "1": {
+            "bytes": 58,
+            "source": "10.10.10.2",
+            "ttl": 64,
+            "time": 610000
+        },
+        "2": {
+            "bytes": 58,
+            "source": "10.10.10.2",
+            "ttl": 64,
+            "time": 917000
+        },
+        "3": {
+            "bytes": 58,
+            "source": "10.10.10.2",
+            "ttl": 64,
+            "time": 1010000
+        }
+    }
+}
+Action succeeded
 ```
 
-The following example checks if destination 10.10.10.10 is reachable and drops the packet instead of fragmenting it if the packet is larger than the maximum transmission unit (MTU) of any network segment it traverses.
+The following example checks if destination 10.10.10.2 is reachable and drops the packet instead of fragmenting it if the packet is larger than the maximum transmission unit (MTU) of any network segment it traverses.
 
 ```
-cumulus@switch:~$ nv action ping system 10.10.10.10 do-not-fragment
+cumulus@switch:~$ nv action ping system 10.10.10.2 do-not-fragment
+Action executing ...
+{
+    "sent": 3,
+    "received": 3,
+    "min_time": 651000,
+    "avg_time": 827000,
+    "max_time": 1071000,
+    "packets_info": {
+        "1": {
+            "bytes": 64,
+            "source": "10.10.10.2",
+            "ttl": 64,
+            "time": 1070000
+        },
+        "2": {
+            "bytes": 64,
+            "source": "10.10.10.2",
+            "ttl": 64,
+            "time": 651000
+        },
+        "3": {
+            "bytes": 64,
+            "source": "10.10.10.2",
+            "ttl": 64,
+            "time": 761000
+        }
+    }
+}
+Action succeeded
 ```
 
-The following example sends Echo Request packets to destination 10.10.10.10 from the source IP address 10.10.5.1.
+The following example sends Echo Request packets to destination 10.10.10.2 from the source IP address 10.10.10.1
 
 ```
-cumulus@switch:~$ nv action ping system 10.10.10.10 source 10.10.5.1
+cumulus@switch:~$ nv action ping system 10.10.10.2 source 10.10.10.1
+Action executing ...
+{
+    "sent": 3,
+    "received": 3,
+    "min_time": 434000,
+    "avg_time": 574000,
+    "max_time": 812000,
+    "packets_info": {
+        "1": {
+            "bytes": 64,
+            "source": "10.10.10.2",
+            "ttl": 64,
+            "time": 812000
+        },
+        "2": {
+            "bytes": 64,
+            "source": "10.10.10.2",
+            "ttl": 64,
+            "time": 478000
+        },
+        "3": {
+            "bytes": 64,
+            "source": "10.10.10.2",
+            "ttl": 64,
+            "time": 434000
+        }
+    }
+}
+Action succeeded
 ```
 
-The following example sends Echo Request packets to destination 10.10.10.10 for the management VRF.
+The following example sends Echo Request packets to destination 10.10.10.2 for the management VRF.
 
 ```
-cumulus@switch:~$ nv action ping system 10.10.10.10 vrf mgmt
+cumulus@switch:~$ nv action ping system 10.10.10.2 vrf mgmt
+Action executing ...
+{
+    "sent": 3,
+    "received": 3,
+    "min_time": 651000,
+    "avg_time": 827000,
+    "max_time": 1071000,
+    "packets_info": {
+        "1": {
+            "bytes": 64,
+            "source": "10.10.10.2",
+            "ttl": 64,
+            "time": 1070000
+        },
+        "2": {
+            "bytes": 64,
+            "source": "10.10.10.2",
+            "ttl": 64,
+            "time": 651000
+        },
+        "3": {
+            "bytes": 64,
+            "source": "10.10.10.2",
+            "ttl": 64,
+            "time": 761000
+        }
+    }
+}
+Action succeeded
 ```
 
 The following example sends Echo Request packets to destination fe80::a00:27ff:fe00:0 from source interface eth0.
 
 ```
-cumulus@switch:~$ nv action ping system fe80::a00:27ff:fe00:0 source-interface eth0 
+cumulus@switch:~$ nv action ping system fe80::a00:27ff:fe00:0 source-interface eth0
+Action executing ...
+{
+    "sent": 3,
+    "received": 3,
+    "min_time": 651000,
+    "avg_time": 827000,
+    "max_time": 1071000,
+    "packets_info": {
+        "1": {
+            "bytes": 64,
+            "source": "10.10.10.2",
+            "ttl": 64,
+            "time": 1070000
+        },
+        "2": {
+            "bytes": 64,
+            "source": "10.10.10.2",
+            "ttl": 64,
+            "time": 651000
+        },
+        "3": {
+            "bytes": 64,
+            "source": "10.10.10.2",
+            "ttl": 64,
+            "time": 761000
+        }
+    }
+}
+Action succeeded 
 ```
 
 {{< /tab >}}
@@ -93,52 +308,118 @@ You send Echo Request packets to a destination (IP address or a hostname) to che
 | `-I <vrf-name>` | The VRF you want to use. |
 | `-6 <ipv6-address>%<interface>` | The source interface from which to send Echo Request packets for a link local address. IPv6 only. |
 
-The following example checks if destination 10.10.10.10 is reachable on the network.
+The following example checks if destination 10.10.10.2 is reachable on the network.
 
 ```
-cumulus@switch:~$ ping 10.10.10.10
+cumulus@switch:~$ ping 10.10.10.2
+vrf-wrapper.sh: switching to vrf "default"; use '--no-vrf-switch' to disable
+PING 10.10.10.2 (10.10.10.2) 56(84) bytes of data.
+64 bytes from 10.10.10.2: icmp_seq=1 ttl=64 time=0.719 ms
+64 bytes from 10.10.10.2: icmp_seq=2 ttl=64 time=0.711 ms
+64 bytes from 10.10.10.2: icmp_seq=3 ttl=64 time=0.710 ms
+64 bytes from 10.10.10.2: icmp_seq=4 ttl=64 time=0.607 ms
+64 bytes from 10.10.10.2: icmp_seq=5 ttl=64 time=0.882 ms
+64 bytes from 10.10.10.2: icmp_seq=6 ttl=64 time=0.808 ms
+64 bytes from 10.10.10.2: icmp_seq=7 ttl=64 time=0.833 ms
+64 bytes from 10.10.10.2: icmp_seq=8 ttl=64 time=0.680 ms
+64 bytes from 10.10.10.2: icmp_seq=9 ttl=64 time=0.790 ms
+...
 ```
 
 The following example sends Echo Request packets to destination fe80::a00:27ff:fe00:0 for IPv6.
 
 ```
 cumulus@switch:~$ ping -6 fe80::a00:27ff:fe00:0
+vrf-wrapper.sh: switching to vrf "default"; use '--no-vrf-switch' to disable
+PING fe80::a00:27ff:fe00:0(fe80::a00:27ff:fe00:0) 56 data bytes
+64 bytes from  fe80::a00:27ff:fe00:0: icmp_seq=1 ttl=64 time=0.719 ms
+64 bytes from  fe80::a00:27ff:fe00:0: icmp_seq=2 ttl=64 time=0.711 ms
+64 bytes from  fe80::a00:27ff:fe00:0: icmp_seq=3 ttl=64 time=0.710 ms
+64 bytes from  fe80::a00:27ff:fe00:0: icmp_seq=4 ttl=64 time=0.607 ms
+64 bytes from  fe80::a00:27ff:fe00:0: icmp_seq=5 ttl=64 time=0.882 ms
+64 bytes from  fe80::a00:27ff:fe00:0: icmp_seq=6 ttl=64 time=0.808 ms
+64 bytes from  fe80::a00:27ff:fe00:0: icmp_seq=7 ttl=64 time=0.833 ms
+64 bytes from  fe80::a00:27ff:fe00:0: icmp_seq=8 ttl=64 time=0.680 ms
+64 bytes from  fe80::a00:27ff:fe00:0: icmp_seq=9 ttl=64 time=0.790 ms
+...
 ```
 
-The following example sends 5 Echo Request packets every two seconds to check if destination 10.10.10.10 is reachable on the network and waits for 3 seconds for an Echo Reply packet before timing out.
+The following example sends 5 Echo Request packets every two seconds to check if destination 10.10.10.2 is reachable on the network and waits for 3 seconds for an Echo Reply packet before timing out.
 
 ```
-cumulus@switch:~$ ping -c 5 -i 2 -W 3 10.10.10.10
+cumulus@switch:~$ ping -c 5 -i 2 -W 3 10.10.10.2
+vrf-wrapper.sh: switching to vrf "default"; use '--no-vrf-switch' to disable
+PING 10.10.10.2 (10.10.10.2) 56(84) bytes of data.
+64 bytes from 10.10.10.2: icmp_seq=1 ttl=64 time=0.901 ms
+64 bytes from 10.10.10.2: icmp_seq=2 ttl=64 time=0.833 ms
+64 bytes from 10.10.10.2: icmp_seq=3 ttl=64 time=0.834 ms
+64 bytes from 10.10.10.2: icmp_seq=4 ttl=64 time=1.06 ms
+64 bytes from 10.10.10.2: icmp_seq=5 ttl=64 time=1.08 ms
+...
 ```
 
-The following example sends 50-byte Echo Request packets to check if destination 10.10.10.10 is reachable on the network.
+The following example sends 50-byte Echo Request packets to check if destination 10.10.10.2 is reachable on the network.
 
 ```
-cumulus@switch:~$ ping -s 50 10.10.10.10
+cumulus@switch:~$ ping -s 50 10.10.10.2
+vrf-wrapper.sh: switching to vrf "default"; use '--no-vrf-switch' to disable
+PING 10.10.10.2 (10.10.10.2) 50(78) bytes of data.
+58 bytes from 10.10.10.2: icmp_seq=1 ttl=64 time=1.04 ms
+58 bytes from 10.10.10.2: icmp_seq=2 ttl=64 time=0.748 ms
+58 bytes from 10.10.10.2: icmp_seq=3 ttl=64 time=0.782 ms
+58 bytes from 10.10.10.2: icmp_seq=4 ttl=64 time=0.683 ms
+58 bytes from 10.10.10.2: icmp_seq=5 ttl=64 time=0.951 ms
+58 bytes from 10.10.10.2: icmp_seq=6 ttl=64 time=0.646 ms
+58 bytes from 10.10.10.2: icmp_seq=7 ttl=64 time=0.809 ms
+58 bytes from 10.10.10.2: icmp_seq=8 ttl=64 time=0.672 ms
+58 bytes from 10.10.10.2: icmp_seq=9 ttl=64 time=0.640 ms
+58 bytes from 10.10.10.2: icmp_seq=10 ttl=64 time=0.679 ms
+58 bytes from 10.10.10.2: icmp_seq=11 ttl=64 time=0.667 ms
 ```
 
-The following example checks if destination 10.10.10.10 is reachable and sets the `do not fragment` bit for IPv4.
+The following example checks if destination 10.10.10.2 is reachable and sets the `do not fragment` bit for IPv4.
 
 ```
-cumulus@switch:~$ ping -M do 10.10.10.10
+cumulus@switch:~$ ping -M do 10.10.10.2
+vrf-wrapper.sh: switching to vrf "default"; use '--no-vrf-switch' to disable
+PING 10.10.10.2 (10.10.10.2) 56(84) bytes of data.
+64 bytes from 10.10.10.2: icmp_seq=1 ttl=64 time=0.722 ms
+64 bytes from 10.10.10.2: icmp_seq=2 ttl=64 time=0.708 ms
+64 bytes from 10.10.10.2: icmp_seq=3 ttl=64 time=0.633 ms
+64 bytes from 10.10.10.2: icmp_seq=4 ttl=64 time=1.11 ms
+64 bytes from 10.10.10.2: icmp_seq=5 ttl=64 time=0.519 ms
+64 bytes from 10.10.10.2: icmp_seq=6 ttl=64 time=1.04 ms
+64 bytes from 10.10.10.2: icmp_seq=7 ttl=64 time=0.716 ms
 ```
 
-The following example sends Echo Request packets to destination 10.10.10.10 from the source IP address 10.10.5.1 for the management VRF.
+The following example sends Echo Request packets to destination 10.10.10.2 from the source IP address 10.10.10.1 for the management VRF.
 
 ```
-cumulus@switch:~$ ping -I vrf mgmt 10.10.5.1 10.10.10.10 
-```
-
-The following example sends Echo Request packets to destination 10.10.10.10 for the management VRF.
-
-```
-cumulus@switch:~$ ping vrf mgmt 10.10.10.10 
+cumulus@switch:~$ ping -I mgmt 10.10.10.1 10.10.10.2
+vrf-wrapper.sh: switching to vrf "default"; use '--no-vrf-switch' to disable
+PING 10.10.10.2 (10.10.10.2) from 192.168.200.11 mgmt: 56(124) bytes of data.
+64 bytes from 10.10.10.2: icmp_seq=1 ttl=64 time=0.722 ms
+64 bytes from 10.10.10.2: icmp_seq=2 ttl=64 time=0.708 ms
+64 bytes from 10.10.10.2: icmp_seq=3 ttl=64 time=0.633 ms
+64 bytes from 10.10.10.2: icmp_seq=4 ttl=64 time=1.11 ms
+64 bytes from 10.10.10.2: icmp_seq=5 ttl=64 time=0.519 ms
+64 bytes from 10.10.10.2: icmp_seq=6 ttl=64 time=1.04 ms
+64 bytes from 10.10.10.2: icmp_seq=7 ttl=64 time=0.716 ms
 ```
 
 The following example sends Echo Request packets to destination fe80::a00:27ff:fe00:0 from source interface eth0.
 
 ```
-cumulus@switch:~$ ping -6 fe80::a00:27ff:fe00:0%eth0 
+cumulus@switch:~$ ping -6 fe80::a00:27ff:fe00:eth0
+vrf-wrapper.sh: switching to vrf "default"; use '--no-vrf-switch' to disable
+PING fe80::a00:27ff:fe00:0 (fe80::a00:27ff:fe00:0) from eth0: 56(124) bytes of data.
+64 bytes from fe80::a00:27ff:fe00:0: icmp_seq=1 ttl=64 time=0.722 ms
+64 bytes from fe80::a00:27ff:fe00:0: icmp_seq=2 ttl=64 time=0.708 ms
+64 bytes from fe80::a00:27ff:fe00:0: icmp_seq=3 ttl=64 time=0.633 ms
+64 bytes from fe80::a00:27ff:fe00:0: icmp_seq=4 ttl=64 time=1.11 ms
+64 bytes from fe80::a00:27ff:fe00:0: icmp_seq=5 ttl=64 time=0.519 ms
+64 bytes from fe80::a00:27ff:fe00:0: icmp_seq=6 ttl=64 time=1.04 ms
+64 bytes from fe80::a00:27ff:fe00:0: icmp_seq=7 ttl=64 time=0.716 ms
 ```
 
 {{< /tab >}}
@@ -162,50 +443,218 @@ You send traceroute packets to a destination with the `nv action traceroute syst
 | `wait` | The maximum number of nanoseconds to wait for a response from each hop. You can specify a value between 0.1 and 10. The maximum number of hops must be more than or equal to the minimum number of hops.|
 | `vrf` | The VRF to use. |
 | `source` | The source IP address from which the route originates. |
-| `l3protocol` | The layer 3 protocol; `ipv4` or `ipv6`. The default is `ipv4`.|
-| `l4protocol` | The layer 4 protocol; `icmp`, `tcp`, or `udp`. The default is `icmp`.|
+| `l3protocol` | The layer 3 protocol to use for the traceroute; `ipv4` or `ipv6`. The default is `ipv4`.|
+| `l4protocol` | The layer 4 protocol to use for the traceroute; `icmp`, `tcp`, or `udp`. The default is `icmp`.|
 | `do-not-fragment` | Do not fragment. Trace the route to the destination without fragmentation. |
 
-The following example validates the route path to IPv4 destination 10.10.10.10.
+The following example validates the route path to IPv4 destination 10.10.10.2.
 
 ```
-cumulus@switch:~$ nv action traceroute system 10.10.10.10
+cumulus@switch:~$ nv action traceroute system 10.10.10.2
+Action executing ...
+traceroute response 
+{
+  "destination_name": "10.10.10.2",
+  "destination_address": "10.10.10.2",
+  "hops": 30,
+  "packet_size": 60,
+  "trace": {
+    "1": {
+      "hop": 1,
+      "address": "*",
+      "name": "*",
+      "rtt": [],
+      "state": "NONE"
+    },
+    "2": {
+      "hop": 2,
+      "address": "*",
+      "name": "*",
+      "rtt": [],
+      "state": "NONE"
+    },
+    "3": {
+      "address": "*",
+      "name": "*",
+      "rtt": [],
+      "state": "NONE"
+    },
+...
 ```
 
-The following example validates the route path to IPv6 destination fe80::a00:27ff:fe00:0.
+The following example validates the route path to IPv6 destination fe80::a00:27ff:fe00:0:
 
 ```
-cumulus@switch:~$ nv action traceroute system fe80::a00:27ff:fe00:0 l3protocol ipv6
+cumulus@switch:~$ nv action traceroute system 0:0:0:0:0:0:0:1 l3protocol ipv6
+Action executing ...
+traceroute response 
+{
+  "destination_name": "",
+  "destination_address": "",
+  "hops": 1,
+  "packet_size": 60,
+  "trace": {
+    "1": {
+      "hop": 0,
+      "address": "",
+      "name": "",
+      "rtt": [],
+      "state": "DEFAULT"
+    }
+  }
+}
+Action succeeded
 ```
 
-The following example validates the path to destination 10.10.10.10 with 5 minimum hops and 10 maximum hops.
+The following example validates the path to destination 10.10.10.2 with 5 minimum hops and 10 maximum hops.
 
 ```
-cumulus@switch:~$ nv action traceroute system 127.0.0.1 initial-ttl 5 max-ttl 10
+cumulus@switch:~$ nv action traceroute system 10.10.10.2 initial-ttl 5 max-ttl 10
+Action executing ...
+traceroute response 
+{
+  "destination_name": "10.10.10.2",
+  "destination_address": "10.10.10.2",
+  "hops": 6,
+  "packet_size": 60,
+  "trace": {
+    "1": {
+      "hop": 5,
+      "address": "*",
+      "name": "*",
+      "rtt": [],
+      "state": "NONE"
+    },
+    "2": {
+      "hop": 6,
+      "address": "*",
+      "name": "*",
+      "rtt": [],
+      "state": "NONE"
+    },
+    "3": {
+      "hop": 7,
+      "address": "*",
+      "name": "*",
+      "rtt": [],
+      "state": "NONE"
+    },
+...
 ```
 
-The following example sends UDP packets to validate the path to destination 10.10.10.10 and waits 2 nanoseconds for a response.
+The following example sends UDP packets to validate the path to destination 10.10.10.2 and waits 2 nanoseconds for a response.
 
 ```
-cumulus@switch:~$ nv action traceroute system 10.10.10.10 l4protocol udp wait 2
+cumulus@switch:~$ nv action traceroute system 10.10.10.2 l4protocol udp wait 2
+Action executing ...
+traceroute response 
+{
+  "destination_name": "10.10.10.2",
+  "destination_address": "10.10.10.2",
+  "hops": 30,
+  "packet_size": 60,
+  "trace": {
+    "1": {
+      "hop": 1,
+      "address": "*",
+      "name": "*",
+      "rtt": [],
+      "state": "NONE"
+    },
+    "2": {
+      "hop": 2,
+      "address": "*",
+      "name": "*",
+      "rtt": [],
+      "state": "NONE"
+    },
+    "3": {
+      "hop": 3,
+      "address": "*",
+      "name": "*",
+      "rtt": [],
+      "state": "NONE"
+    },
+...
 ```
 
-The following example validates the path to destination 10.10.10.10 from the source IP address 10.10.5.1.
+The following example validates the path to destination 10.10.10.2 from the source IP address 10.10.10.1.
 
 ```
-cumulus@switch:~$ nv action traceroute system 10.10.10.10 source 10.10.5.1
+cumulus@switch:~$ nv action traceroute system 10.10.10.2 source 10.10.10.1
+Action executing ...
+traceroute response 
+{
+  "destination_name": "10.10.10.2",
+  "destination_address": "10.10.10.2",
+  "hops": 30,
+  "packet_size": 60,
+  "trace": {
+    "1": {
+      "hop": 1,
+      "address": "*",
+      "name": "*",
+      "rtt": [],
+      "state": "NONE"
+    },
+    "2": {
+      "hop": 2,
+      "address": "*",
+      "name": "*",
+      "rtt": [],
+      "state": "NONE"
+    },
+    "3": {
+      "hop": 3,
+      "address": "*",
+      "name": "*",
+      "rtt": [],
+      "state": "NONE"
+    },
+    "4":
+...
 ```
 
-The following example validates the path to destination 10.10.10.10 from the source IP address 10.10.5.1 in VRF RED.
+The following example validates the path to destination 10.10.10.2 from the source IP address 10.0.0.1 in VRF RED.
 
 ```
-cumulus@switch:~$ nv action traceroute system 10.10.10.10 source 10.10.5.1 vrf RED 
+cumulus@switch:~$ nv action traceroute system 10.10.10.2 source 10.10.10.1 vrf RED
+Action executing ...
+traceroute response 
+{
+  "destination_name": "10.10.10.2",
+  "destination_address": "10.10.10.2",
+  "hops": 30,
+  "packet_size": 60,
+  "trace": {
+    "1": {
+      "hop": 1,
+      "address": "*",
+      "name": "*",
+      "rtt": [],
+      "state": "NONE"
+    },
+    "2": {
+      "hop": 2,
+      "address": "*",
+      "name": "*",
+      "rtt": [],
+      "state": "NONE"
+    },
+    "3": {
+      "hop": 3,
+      "address": "*",
+      "name": "*",
+      "rtt": [],
+      "state": "NONE"
+    },
+...
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-You send traceroute packets to a destination with the `traceroute ` command. The destination can be either an IP address or a domain name. You can specify the following options:
+You send traceroute packets to a destination with the `traceroute` command. The destination can be either an IP address or a domain name. You can specify the following options:
 
 | Option | Description |
 | ------ | ----------- |
@@ -218,40 +667,94 @@ You send traceroute packets to a destination with the `traceroute ` command. The
 | `<layer4-protocol>` | The layer 4 protocol packets to send; `-I` for ICMP, `-T` for TCP, or `-U` for UDP.|
 | `-F` | Do not fragment. Trace the route to the destination without fragmentation. |
 
-The following example validates the route path to IPv4 destination 10.10.10.10.
+The following example validates the route path to IPv4 destination 10.10.10.2.
 
 ```
-cumulus@switch:~$ traceroute 10.10.10.10
+cumulus@switch:~$ traceroute 10.10.10.2
+vrf-wrapper.sh: switching to vrf "default"; use '--no-vrf-switch' to disable
+traceroute to 10.10.10.2 (10.10.10.2), 30 hops max, 60 byte packets
+ 1  * * *
+ 2  * * *
+ 3  * * *
+ 4  * * *
+ 5  * * *
+ 6  * * *
+ 7  * * *
+ 8  * * *
+ 9  * * *
+10  * * *
+...
 ```
 
 The following example validates the route path to IPv6 destination fe80::a00:27ff:fe00:0.
 
 ```
-cumulus@switch:~$ traceroute fe80::a00:27ff:fe00:0 -6
+cumulus@switch:~$ traceroute -6 0:0:0:0:0:0:0:1
+vrf-wrapper.sh: switching to vrf "default"; use '--no-vrf-switch' to disable
+traceroute to 0:0:0:0:0:0:0:1 (::1), 30 hops max, 80 byte packets
+ 1  localhost (::1)  0.114 ms  0.007 ms  0.005 ms
 ```
 
-The following example validates the path to destination 10.10.10.10 with 5 minimum hops and 10 maximum hops.
+The following example validates the path to destination 10.10.10.2 with 5 minimum hops and 10 maximum hops.
 
 ```
-cumulus@switch:~$ traceroute 10.10.10.10 -f 5 -m 10
+cumulus@switch:~$ traceroute -f 5 -m 10 10.10.10.2
+vrf-wrapper.sh: switching to vrf "default"; use '--no-vrf-switch' to disable
+traceroute to 10.10.10.2 (10.10.10.2), 10 hops max, 60 byte packets
+ 5  * * *
+ 6  * * *
+ 7  * * *
+ 8  * * *
+ 9  * * *
 ```
 
-The following example sends UDP packets to validate the path to destination 10.10.10.10 and waits 2 nanoseconds for a response.
+The following example sends UDP packets to validate the path to destination 10.10.10.2 and waits 2 nanoseconds for a response.
 
 ```
-cumulus@switch:~$ traceroute 10.10.10.10 -U -w 2
+cumulus@switch:~$ traceroute  -U -w 2 10.10.10.2
+vrf-wrapper.sh: switching to vrf "default"; use '--no-vrf-switch' to disable
+traceroute to 10.10.10.2 (10.10.10.2), 30 hops max, 60 byte packets
+ 1  * * *
+ 2  * * *
+ 3  * * *
+ 4  * * *
+ 5  * * *
+ 6  * * *
+ 7  * * *
 ```
 
-The following example validates the path to destination 10.10.10.10 from the source IP address 10.10.5.1.
+The following example validates the path to destination 10.10.10.2 from the source IP address 10.10.10.1.
 
 ```
-cumulus@switch:~$ traceroute 10.10.10.10 -s 10.10.5.1
+cumulus@switch:~$ traceroute -s 10.10.10.1 10.10.10.2
+vrf-wrapper.sh: switching to vrf "default"; use '--no-vrf-switch' to disable
+traceroute to 10.10.10.2 (10.10.10.2), 30 hops max, 60 byte packets
+ 1  * * *
+ 2  * * *
+ 3  * * *
+ 4  * * *
+ 5  * * *
+ 6  * * *
+ 7  * * *
+ 8  * * *
+...
 ```
 
-The following example validates the path to destination 10.10.10.10 from the source IP address 10.10.5.1 in VRF RED.
+The following example validates the path to destination 10.10.10.2 from the source IP address 10.0.0.1 in VRF mgmt.
 
 ```
-cumulus@switch:~$ traceroute 10.10.10.10 -s 10.10.5.1 -i RED
+cumulus@switch:~$ traceroute -s 10.10.10.1 -i mgmt 10.10.10.2
+vrf-wrapper.sh: switching to vrf "default"; use '--no-vrf-switch' to disable
+traceroute to 10.10.10.2 (10.10.10.2), 30 hops max, 60 byte packets
+ 1  * * *
+ 2  * * *
+ 3  * * *
+ 4  * * *
+ 5  * * *
+ 6  * * *
+ 7  * * *
+ 8  * * *
+...
 ```
 
 {{< /tab >}}
@@ -259,12 +762,9 @@ cumulus@switch:~$ traceroute 10.10.10.10 -s 10.10.5.1 -i RED
 
 ## tcpdump
 
-You can use `tcpdump` to monitor control plane traffic (traffic sent to and coming from the switch CPUs). `tcpdump` does **not** monitor data plane traffic; use `cl-acltool` instead (see above).
+You can use the Linux `tcpdump` command to monitor control plane traffic (traffic sent to and coming from the switch CPUs). `tcpdump` does **not** monitor data plane traffic; use `cl-acltool` instead.
 
-For more information on `tcpdump`, read the {{<exlink url="http://www.tcpdump.org/#documentation" text="documentation">}} and the {{<exlink url="http://www.tcpdump.org/manpages/tcpdump.1.html" text="man page">}}.
-
-The following example incorporates `tcpdump` options:
-
+The example below uses the following `tcpdump` options:
 - `-i bond0` captures packets from bond0 to the CPU and from the CPU to bond0
 - `host 169.254.0.2` filters for this IP address
 - `-c 10` captures 10 packets then stops
@@ -288,8 +788,8 @@ listening on bond0, link-type EN10MB (Ethernet), capture size 65535 bytes
 12 packets received by filter
 0 packets dropped by kernel
 ```
-
-## Run Commands in a Non-default VRF
+<!--
+## Run Linux Commands in a Non-default VRF
 
 You can use `ip vrf exec` to run commands in a non-default VRF context, which is useful for network utilities like `ping`, `traceroute`, and `nslookup`.
 
@@ -302,9 +802,9 @@ cumulus@switch:~$ sudo ip vrf exec Tenant1 nslookup google.com - 8.8.8.8
 By default, `ping` and `ping6`, and `traceroute` and `traceroute6` all use the default VRF and use a mechanism that checks the VRF context of the current shell, which you can see when you run `ip vrf id`. If the VRF context of the shell is *mgmt*, these commands run in the default VRF context.
 
 `ping` and `traceroute` have additional arguments that you can use to specify an egress interface or a source address. In the default VRF, the source interface flag (`ping -I` or `traceroute -i`) specifies the egress interface for the `ping` or `traceroute` operation. However, you can use the source interface flag instead to specify a non-default VRF to use for the command. Doing so causes the routing lookup for the destination address to occur in that VRF.
-<!-- vale off -->
+
 With `ping -I`, you can specify the source interface or the source IP address but you cannot use the flag more than once. Either choose an egress interface/VRF or a source IP address. For `traceroute`, you can use `traceroute -s` to specify the source IP address.
-<!-- vale on -->
+
 You gain additional flexibility if you run `ip vrf exec` in combination with `ping`/`ping6`  or `traceroute`/`traceroute6`, as the VRF context is outside of the `ping` and `traceroute` commands. This allows for the most granular control of `ping` and `traceroute`, as you can specify both the VRF and the source interface flag.
 
 For `ping`, use the following syntax:
@@ -336,3 +836,4 @@ cumulus@switch:~$ sudo ip vrf exec Tenant1 traceroute6 -i swp1 -s 2001:db8::1 20
 ```
 
 The VRF context for `ping` and `traceroute` commands move automatically to the default VRF context, therefore, you must use the source interface flag to specify the management VRF. Typically, there is only a single interface in the management VRF (eth0) and only a single IPv4 address or IPv6 global unicast address assigned to it. You cannot specify both a source interface and a source IP address with `ping -I`.
+-->

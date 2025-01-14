@@ -41,11 +41,6 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
   - {{<link url="NVUE-CLI/#filter-nv-show-command-output" text="Filter FRR nv show command output">}}
   - {{<link title="Log Files with NVUE" text="Logging commands">}}
   - {{<link url="NVUE-CLI/#translate-a-configuration-revision-or-file" text="Commands to translate a revision or yaml configuration file">}}
-  - {{< expand "Changed NVUE Commands" >}}
-| New Commands | Previous Commands |
-| ----------- | ----------------|
-|  | |
-{{< /expand >}}
   - {{< expand "Removed NVUE Commands" >}}
 | Removed Commands |
 | --------------- |

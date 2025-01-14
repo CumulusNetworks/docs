@@ -10,10 +10,10 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 ## January 2025
 <!-- Air:WhatsNew -->
 ### 82.2025.0114-011
-- Added support for Exporting simulations to JSON topology files from the UI
-- Added support for Breakout ports from API and the UI, before starting the simulation
-- Fixed an issue with Node consoles when switching between Topology/Nodes/Links views
-- Fixed an issue with Port search in Node side panel 
+- Added support for exporting simulations to JSON topology files from the UI
+- Added the ability to configure switch breakout ports prior to starting a simulation using the API or UI 
+- Fixed an issue with node consoles when switching between topology, nodes, and links views
+- Fixed an issue with port search in the node side panel 
 <!-- Air:WhatsNew -->
 
 ### 82.2025.0110-011

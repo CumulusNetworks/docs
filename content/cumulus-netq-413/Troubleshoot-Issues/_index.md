@@ -250,9 +250,9 @@ at org.apache.cassandra.service.CassandraDaemon.main(CassandraDaemon.java:889)
 cumulus@master1scale1:~$
 ```
 
-To fix the issue, log in to the corrupted node using SSH and delete the corrupted file. The example below uses `master1scale1` as an example.
+To fix the issue, log in to the corrupted node using SSH and delete the corrupted file. The following example deletes the corrupted file from node `master1scale1`:
 
-1. Log in as a root user:
+1. Log in as the root user:
 
 ```
 cumulus@master1scale1:/mnt/cassandra/commitlog$ sudo su
@@ -266,7 +266,7 @@ root@master1scale1:/mnt/cassandra/commitlog#
 cumulus@master1scale1:/mnt/cassandra/commitlog$ cd /mnt/cassandra/commitlog
 ```
 
-3. Remove the corrupted commit log:
+3. Remove the corrupted commit log file:
 
 ```
 root@master1scale1:/mnt/cassandra/commitlog# rm CommitLog-7-1735662812573.log

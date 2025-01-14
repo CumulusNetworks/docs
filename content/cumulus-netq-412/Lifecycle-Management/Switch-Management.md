@@ -108,19 +108,9 @@ To import switches through a CSV file:
 
 2. Select the CSV file containing the list of switches.
 
-    The CSV file must include a header containing *hostname*, *ip*, and *port*. They can be in any order you like, but the data must match that order. For example, a CSV file that represents the Cumulus reference topology could look like this:
+    The CSV file must include a header containing either the word "hostname" or "ip", followed by a list of either:
 
-    {{<figure src="/images/netq/lcm-import-switches-310.png" width="200" height="275">}}
-
-<div style="padding-left: 18px;">or this:</div>
-
-    {{<figure src="/images/netq/lcm-import-switches-2-310.png" width="200" height="275">}}
-
-<div style="padding-left: 18px;">
-{{<notice note>}}
-You must have an IP address in your file, but the hostname is optional. If the port is blank, NetQ uses switch port 22 by default.
-{{</notice>}}
-</div>
+    {{<figure src="/images/netq/csv-examples-413.png" width="600" height="275">}}
 
 Click **Remove** if you decide to use a different file or want to use IP address ranges instead. If you entered ranges before selecting the CSV file option, they remain.
 

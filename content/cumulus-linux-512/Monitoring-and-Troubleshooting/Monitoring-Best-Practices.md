@@ -140,19 +140,107 @@ To monitor disk utilization such as the total storage capacity of the filesystem
 
 ```
 cumulus@switch:~$ nv show system disk usage 
-Mount Point   Filesystem   Size   Used         Avail   Use% 
------------   ----------   --     ---------    ----    ---- 
-/             /dev/sda5    5.4G    3.0G        2.2G     58% 
-/dev          udev         2.0G    0           2.0G     0% 
-/dev/shm      tmpfs        2.1G    61M         2.0G     3% 
-/run          tmpfs        411M    38M         374M     10% 
-/run/lock     tmpfs        5.0M    0           5.0M     0% 
-/tmp          tmpfs        2.1G    12K         2.1G     1% 
-/vagrant      vagrant      4.3T    3.1T        1.3T     72% 
+Mount Point  Filesystem  Size  Used  Avail  Use%
+-----------  ----------  ----  ----  -----  ----
+/            /dev/vda5   5.4G  2.5G  2.7G   49% 
+/dev         udev        847M  0     847M   0%  
+/dev/shm     tmpfs       856M  31M   825M   4%  
+/run         tmpfs       172M  1.4M  170M   1%  
+/run/lock    tmpfs       5.0M  0     5.0M   0%  
+/tmp         tmpfs       856M  8.0K  856M   1%
 ```
 
-- To show the disk usage in json format, run the `nv show system disk usage -o json` command.
-- To show the disk usage in json yaml, run the `nv show system disk usage -o yaml` command.
+To show the disk usage in json format, run the `nv show system disk usage -o json` command.
+
+```
+cumulus@switch:~$ nv show system disk usage -o json
+{
+  "/": {
+    "available": "2.7G",
+    "file-system": "/dev/vda5",
+    "size": "5.4G",
+    "used": "2.5G",
+    "used-percent": "49%"
+  },
+  "/dev": {
+    "available": "847M",
+    "file-system": "udev",
+    "size": "847M",
+    "used": "0",
+    "used-percent": "0%"
+  },
+  "/dev/shm": {
+    "available": "825M",
+    "file-system": "tmpfs",
+    "size": "856M",
+    "used": "31M",
+    "used-percent": "4%"
+  },
+  "/run": {
+    "available": "170M",
+    "file-system": "tmpfs",
+    "size": "172M",
+    "used": "1.4M",
+    "used-percent": "1%"
+  },
+  "/run/lock": {
+    "available": "5.0M",
+    "file-system": "tmpfs",
+    "size": "5.0M",
+    "used": "0",
+    "used-percent": "0%"
+  },
+  "/tmp": {
+    "available": "856M",
+    "file-system": "tmpfs",
+    "size": "856M",
+    "used": "8.0K",
+    "used-percent": "1%"
+  }
+}
+```
+
+To show the disk usage in json yaml, run the `nv show system disk usage -o yaml` command:
+
+```
+cumulus@switch:~$ nv show system disk usage -o yaml
+/:
+  available: 2.7G
+  file-system: /dev/vda5
+  size: 5.4G
+  used: 2.5G
+  used-percent: 49%
+/dev:
+  available: 847M
+  file-system: udev
+  size: 847M
+  used: '0'
+  used-percent: 0%
+/dev/shm:
+  available: 825M
+  file-system: tmpfs
+  size: 856M
+  used: 31M
+  used-percent: 4%
+/run:
+  available: 170M
+  file-system: tmpfs
+  size: 172M
+  used: 1.4M
+  used-percent: 1%
+/run/lock:
+  available: 5.0M
+  file-system: tmpfs
+  size: 5.0M
+  used: '0'
+  used-percent: 0%
+/tmp:
+  available: 856M
+  file-system: tmpfs
+  size: 856M
+  used: 8.0K
+  used-percent: 1%
+```
 
 When monitoring disk utilization with the Linux command, you can exclude the `tmpfs` filesystem with `sudo df -x tmpfs`.
 

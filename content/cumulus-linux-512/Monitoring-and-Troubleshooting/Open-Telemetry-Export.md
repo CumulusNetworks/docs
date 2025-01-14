@@ -244,6 +244,29 @@ To configure the open telemetry export destination:
 
 By default, OTLP export is in **secure** mode that requires a certificate. For connections without a configured certificate, you must enable `insecure` mode with the `nv set system telemetry export otlp grpc insecure enabled` command.
 
+#### Customize Export
+
+By default, the switch exports all statistics enabled {{<link url="#configure-open-telemetry" text="globally">}} (with the `nv set system telemetry <statistics>` command) to a configured OTLP destination. If you want to export different metrics to different OTLP destinations, you can customize the export by specifying a statistics group (`interface-stats`, `platform-stats`, `histogram-stats`, or `routing-stats`) for a destination. You can also configure the sample interval for each statistics group.
+
+{{%notice note%}}
+The `routing-stats` group does not support a customized sample interval for a destination.
+{{%/notice%}}
+
+The following example exports all platform statistics to the destination IP address 10.1.1.100 at sample interval 100:
+
+```
+cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.100 stats-group platform-stats state enable
+cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.100 stats-group platform-stats sample-interval 100
+cumulus@switch:~$ nv config apply
+```
+
+The following example exports all routing statistics to the destination IP address 10.1.1.200 and uses the sample interval configured globally:
+
+```
+cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.200 stats-group routing state enable
+cumulus@switch:~$ nv config apply
+```
+
 ### Show Telemetry Export Configuration
 
 To show the telemetry export configuration, run the `nv show system telemetry export` command:

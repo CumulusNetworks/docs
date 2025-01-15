@@ -21,7 +21,7 @@ cumulus@switch:~$ nv set system telemetry export otlp state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-When you enable open telemetry, the switch collects and exports [system information](#system-information) metrics to the configured external collector by default. In addition, you can enable open telemetry to collect and export [interface statistics](#interface-statistics), [histogram data](#histogram-data), [control plane statistics](#control-plane-statistics), [platform statistics](#platform-statistics), [buffer statistics](#buffer-statistics), and [router statistics](#router-statistics).
+When you enable open telemetry, the switch collects and exports [system information](#system-information-format) metrics to the configured external collector by default. In addition, you can enable open telemetry to collect and export [interface statistics](#interface-statistics), [histogram data](#histogram-data), [control plane statistics](#control-plane-statistics), [platform statistics](#platform-statistics), [buffer statistics](#buffer-statistics), and [router statistics](#router-statistics).
 
 ### Interface Statistics
 
@@ -361,7 +361,7 @@ interface_swp10_label  Server 10 connection
 
 Cumulus Linux exports statistics and histogram data in the formats defined in this section.
 
-### System Information
+### System Information Format
 
 When you enable open telemetry with the `nv set system telemetry export otlp state enabled` command, the switch exports the following system information metrics to the configured OTEL collector by default:
 

@@ -246,10 +246,10 @@ By default, OTLP export is in **secure** mode that requires a certificate. For c
 
 #### Customize Export
 
-By default, the switch exports all statistics enabled {{<link url="#configure-open-telemetry" text="globally">}} (with the `nv set system telemetry <statistics>` command) to a configured OTLP destination. If you want to export different metrics to different OTLP destinations, you can customize the export by specifying a statistics group (`interface-stats`, `platform-stats`, `histogram-stats`, or `routing-stats`) for a destination. You can also configure the sample interval for each statistics group.
+By default, the switch exports all statistics enabled {{<link url="#configure-open-telemetry" text="globally">}} (with the `nv set system telemetry <statistics>` command) to all configured OTLP destinations. If you want to export different metrics to different OTLP destinations, you can customize the export by specifying a statistics group (`interface-stats`, `platform-stats`, `histogram-stats`, or `routing-stats`) for a destination. For certain statistics groups, you can also configure the sample interval.
 
 {{%notice note%}}
-The `routing-stats` group does not support a customized sample interval for a destination.
+The `routing-stats` group and `histogram-stats` group do not support a customized sample interval for a destination.
 {{%/notice%}}
 
 The following example exports all platform statistics to the destination IP address 10.1.1.100 at sample interval 100:

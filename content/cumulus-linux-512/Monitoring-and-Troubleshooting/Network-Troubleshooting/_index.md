@@ -485,10 +485,10 @@ traceroute response
 ...
 ```
 
-The following example validates the route path to IPv6 destination 0:0:0:0:0:0:0:1:
+The following example validates the route path to IPv6 destination 2001:DB8::1.
 
 ```
-cumulus@switch:~$ nv action traceroute system 0:0:0:0:0:0:0:1 l3protocol ipv6
+cumulus@switch:~$ nv action traceroute system 2001:DB8::1 l3protocol ipv6
 Action executing ...
 traceroute response 
 {
@@ -689,13 +689,19 @@ traceroute to 10.10.10.2 (10.10.10.2), 30 hops max, 60 byte packets
 ...
 ```
 
-The following example validates the route path to IPv6 destination 0:0:0:0:0:0:0:1.
+The following example validates the route path to IPv6 destination 2001:DB8::1.
 
 ```
-cumulus@switch:~$ traceroute -6 0:0:0:0:0:0:0:1
+cumulus@switch:~$ traceroute -6 2001:DB8::1
 vrf-wrapper.sh: switching to vrf "default"; use '--no-vrf-switch' to disable
-traceroute to 0:0:0:0:0:0:0:1 (::1), 30 hops max, 80 byte packets
- 1  localhost (::1)  0.114 ms  0.007 ms  0.005 ms
+traceroute to 2001:DB8::1 (::1), 30 hops max, 80 byte packets
+ 1  * * *
+ 2  * * *
+ 3  * * *
+ 4  * * *
+ 5  * * *
+ 6  * * *
+ 7  * * *
 ```
 
 The following example validates the path to destination 10.10.10.2 with 5 minimum hops and 10 maximum hops.

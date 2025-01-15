@@ -8,7 +8,7 @@ Telemetry enables you to collect, send, and analyze large amounts of data, such 
 
 ## Configure Open Telemetry
 
-Cumulus Linux supports {{<exlink url="https://github.com/open-telemetry/" text="open telemetry (OTEL)">}} export. You can use <span class="a-tooltip">[OTLP](## "open telemetry protocol")</span> to export metrics, such as interface counters, histogram collection, and platform statistic data to an external collector for analysis and visualization.
+Cumulus Linux supports {{<exlink url="https://github.com/open-telemetry/" text="open telemetry (OTEL)">}} export. You can use <span class="a-tooltip">[OTLP](## "open telemetry protocol")</span> to export metrics, such as interface counters, histogram collection, platform statistics, and router metrics to an external collector for analysis and visualization.
 
 {{%notice note%}}
 Cumulus Linux supports open telemetry export on switches with the Spectrum-2 ASIC and later.
@@ -21,7 +21,7 @@ cumulus@switch:~$ nv set system telemetry export otlp state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-You can enable open telemetry for [interface statistics](#interface-statistics), [histogram data](#histogram-data), [control plane statistics](#control-plane-statistics), and [platform statistics](#platform-statistics).
+When you enable open telemetry, the switch collects and exports [system information](#system-information) metrics to the configured external collector by default. In addition, you can enable open telemetry to collect and export [interface statistics](#interface-statistics), [histogram data](#histogram-data), [control plane statistics](#control-plane-statistics), [platform statistics](#platform-statistics), [buffer statistics](#buffer-statistics), and [router statistics](#router-statistics).
 
 ### Interface Statistics
 
@@ -64,6 +64,8 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "PHY">}}
 
+When you enable this setting, the switch exports interface PHY metrics:
+
 ```
 cumulus@switch:~$ nv set system telemetry interface-stats class phy state enabled
 cumulus@switch:~$ nv config apply
@@ -71,6 +73,8 @@ cumulus@switch:~$ nv config apply
 
 {{< /tab >}}
 {{< /tabs >}}
+
+To show interface statistics configuration, run the `nv show system telemetry interface-stats` command.
 
 ### Buffer Statistics
 
@@ -80,6 +84,8 @@ When you enable open telemetry for buffer statistics, the switch exports interfa
 cumulus@switch:~$ nv set system telemetry buffer-stats export state enabled 
 cumulus@switch:~$ nv config apply
 ```
+
+To show buffer statistics configuration, run the `nv show system telemetry buffer-stats` command.
 
 ### Control Plane Statistics
 
@@ -97,6 +103,8 @@ cumulus@switch:~$ nv set system telemetry control-plane-stats sample-interval 10
 cumulus@switch:~$ nv config apply
 ```
 
+To show control plane statistics configuration, run the `nv show system telemetry control-plane-stats` command.
+
 ### Histogram Data
 
 When you enable open telemetry for histogram data, your buffer, counter, and latency {{<link url="ASIC-Monitoring#histogram-collection" text="histogram collection configuration">}} defines the data that the switch exports:
@@ -105,6 +113,8 @@ When you enable open telemetry for histogram data, your buffer, counter, and lat
 cumulus@switch:~$ nv set system telemetry histogram export state enabled
 cumulus@switch:~$ nv config apply
 ```
+
+To show histogram data configuration, run the `nv show system telemetry histogram` command.
 
 ### Platform Statistics
 
@@ -185,44 +195,55 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< /tabs >}}
 
+To show platform statistics configuration, run the `nv show system telemetry platform-stats` command.
+
 ### Router Statistics
 
-When you enable open telemetry for layer 3 router statistics, the switch exports data about the routing table, BGP peers, BGP advertised routes, and the BGP packet input and output queue. To enable [router statistics](#router-statistic-format):
+When you enable open telemetry for layer 3 [router statistics](#router-statistic-format), the switch exports data about the routing table, BGP peers, BGP advertised routes, and the BGP packet input and output queue.
 
-To enable BGP peer state statistic open telemetry:
+To enable collection and export of BGP peer state statistics:
 
 ```
 cumulus@switch:~$ nv set system telemetry router bgp export state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To enable BGP statistic open telemetry for all peers under a VRF:
+To enable collection and export of statistics for all BGP peers under a VRF:
 
 ```
 cumulus@switch:~$ nv set system telemetry router vrf RED bgp export state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To enable BGP statistic open telemetry for a specific peer under a VRF:
+To enable collection and export of statistics for a specific BGP peer under a VRF:
 
 ```
 cumulus@switch:~$ nv set system telemetry router vrf RED bgp peer swp1 export state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To enable statistic open telemetry for the routing table:
+To enable collection and export of statistics for the routing table:
 
 ```
 cumulus@switch:~$ nv set system telemetry router rib export state enabled
 cumulus@switch:~$ nv config apply 
 ```
 
-To enable statistic open telemetry for the routing table for a VRF:
+To enable collection and export of statistics for the routing table for a VRF:
 
 ```
 cumulus@switch:~$ nv set system telemetry router vrf RED rib export state enabled
 cumulus@switch:~$ nv config apply
 ```
+
+You can adjust the sample interval (in seconds) for router statistics. You can specify a value between 1 and 86400. The default value is 1.
+
+```
+cumulus@switch:~$ nv set system telemetry router sample-interval 100
+cumulus@switch:~$ nv config apply
+```
+
+To show router statistics configuration, run the `nv show system telemetry router` command.
 
 ### gRPC OTLP Export
 
@@ -244,7 +265,7 @@ To configure the open telemetry export destination:
 
 By default, OTLP export is in **secure** mode that requires a certificate. For connections without a configured certificate, you must enable `insecure` mode with the `nv set system telemetry export otlp grpc insecure enabled` command.
 
-#### Customize Export
+### Customize Export
 
 By default, the switch exports all statistics enabled {{<link url="#configure-open-telemetry" text="globally">}} (with the `nv set system telemetry <statistics>` command) to all configured OTLP destinations. If you want to export different metrics to different OTLP destinations, you can customize the export by specifying a statistics group (`interface-stats`, `platform-stats`, `histogram-stats`, or `routing-stats`) for a destination. For certain statistics groups, you can also configure the sample interval.
 
@@ -339,6 +360,16 @@ interface_swp10_label  Server 10 connection
 ## Telemetry Data Format
 
 Cumulus Linux exports statistics and histogram data in the formats defined in this section.
+
+### System Information
+
+When you enable open telemetry with the `nv set system telemetry export otlp state enabled` command, the switch exports the following system information metrics to the configured OTEL collector by default:
+
+|  Name | Description |
+|------ | ----------- |
+| `node_boot_time_seconds` | Node boot time, in unixtime. |
+| `node_time_seconds` | System time in seconds since epoch (1970). |
+| `node_os_info` |  Operating system and image information, such as name and version. |
 
 ### Interface Statistic Format
 
@@ -606,9 +637,9 @@ The switch collects and exports the following interface and switch, buffer occup
 | `nvswitch_interface_shared_buffer_mc_port_curr_occupancy`  | Current buffer occupancy for multicast port. |
 | `nvswitch_interface_shared_buffer_mc_port_watermark` | Maximum buffer occupancy for multicast port. |
 | `nvswitch_interface_shared_buffer_mc_port_watermark_max` | Highest maximum buffer occupancy for multicast port recorded since running sdk_stats. |
-| `nvswitch_interface_shared_buffer_mc_sp_curr_occupancy` | Current buffer occupancy for multicast switch priority. |
-| `nvswitch_interface_shared_buffer_mc_sp_watermark` | Maximum buffer occupancy for multicast switch priority. |
-| `nvswitch_interface_shared_buffer_mc_sp_watermark_max` | Highest maximum buffer occupancy for multicast switch priority recorded since running sdk_stats. |
+| `nvswitch_shared_buffer_mc_sp_curr_occupancy` | Current buffer occupancy for multicast switch priority. |
+| `nvswitch_shared_buffer_mc_sp_watermark` | Maximum buffer occupancy for multicast switch priority. |
+| `nvswitch_shared_buffer_mc_sp_watermark_max` | Highest maximum buffer occupancy for multicast switch priority recorded since running sdk_stats. |
 | `nvswitch_shared_buffer_pool_curr_occupancy` | Current pool buffer occupancy. |
 | `nvswitch_shared_buffer_pool_watermark` | Maximum pool buffer occupancy |
 | `nvswitch_shared_buffer_pool_watermark_max` | Highest maximum pool buffer occupancy for multicast switch priority recorded since running sdk_stats. |
@@ -1479,41 +1510,83 @@ When you enable layer 3 router statistic telemetry, the switch exports the follo
 
 | Name | Description |
 |----- | ----------- |
-| `nvswitch_routing_bgp_peer_state` | BGP peer state: Established, Idle, Connect, Active, OpenSent.  |
-| `nvswitch_routing_bgp_peer_fsm_established_transitions` | BGP peer state transitions to the Established state. |
-| `nvswitch_routing_bgp_peer_rib_in_total_routes_ipv4` | Total number of routes advertised to a specific IPv4 BGP peer. |
-| `nvswitch_routing_bgp_peer_rib_in_total_routes_ipv6` | Total number of routes advertised to a specific IPv6 BGP peer.|
-| `nvswitch_routing_bgp_in_queue_socket` | Total number of BGP messages in the input queue.|
-| `nvswitch_routing_bgp_out_queue_socket` | Total number of BGP messages in the output queue.|
-| `nvswitch_routing_bgp_rx_updates` | Total number of BGP received packets.|
-| `nvswitch_routing_bgp_tx_updates` | Total number of BGP sent packets. |
-| `nvswitch_routing_rib_count` | Total route counts in the routing table. |
-| `nvswitch_routing_bgp_peer_rib_count` | Total number of routes for each Address Family Indicator (AFI) and Subsequent Address Family Indicator (SAFI).|
+| `nvrouting_bgp_peer_state` |  BGP peer state: `Established`, `Idle`, `Connect`, `Active`, `OpenSent`.  |
+| `nvrouting_bgp_peer_fsm_established_transitions` | Number of BGP peer state transitions to the `Established` state for the peer session.|
+| `nvrouting_bgp_peer_rib_adj_in_ipv4_unicast` | Number of IPv4 unicast routes received from the BGP neighbor after applying any policies. This count is the number of routes present in the post-policy Adj-RIB-In for the neighbor. |
+| `nvrouting_bgp_peer_rib_adj_in_ipv6_unicast` | Number of IPv6 unicast routes received from the BGP neighbor after applying any policies. This count is the number of routes present in the post-policy Adj-RIB-In for the neighbor. |
+| `nvrouting_bgp_peer_rib_adj_in_l2vpn_evpn` | Number of EVPN routes received from the BGP neighbor after applying any policies. This count is the number of routes present in the post-policy Adj-RIB-In for the neighbor. |
+| `nvrouting_bgp_peer_socket_in_queue` | Number of messages queued to be received from the BGP neighbor.|
+| `nvrouting_bgp_peer_socket_out_queue` | Number of messages queued to be sent to the BGP neighbor.|
+| `nvrouting_bgp_peer_rx_updates` | Number of BGP messages received from the neighbor.|
+| `nvrouting_bgp_peer_tx_updates` | Number of BGP messages sent to the neighbor. |
+| `nvrouting_rib_count` | Number of routes in the routing table for each route source. |
+| `nvrouting_rib_total_count` | Total number of routes in the routing table.|
 
 {{< expand "Example JSON data for bgp_peer_fsm_established_transitions:" >}}
 ```
  { 
-            "name": "207.2.2.2", 
-            "status": "Established", 
-            "established-transitions": 1, 
+
+  "frr-bgp-peer:lib": { 
+    "vrf": [ 
+      { 
+        "id": "default", 
+        "peer": [ 
+          { 
+            "name": "swp1.2", 
+            "status": "Idle", 
+            "established-transitions": 0, 
             "in-queue": 0, 
             "out-queue": 0, 
-            "tx-updates": 116, 
-            "rx-updates": 66, 
-            "ipv4-unicast-rcvd": 152, 
-            "ipv6-unicast-rcvd": 1 
+            "tx-updates": 0, 
+            "rx-updates": 0, 
+            "ipv4-unicast-rcvd": 0, 
+            "ipv6-unicast-rcvd": 0 
+          }, 
+          { 
+            "name": "swp1.3", 
+            "status": "Idle", 
+            "established-transitions": 0, 
+            "in-queue": 0, 
+            "out-queue": 0, 
+            "tx-updates": 0, 
+            "rx-updates": 0, 
+            "ipv4-unicast-rcvd": 0, 
+            "ipv6-unicast-rcvd": 0 
+          }, 
+          { 
+            "name": "swp1.4", 
+            "status": "Idle", 
+            "established-transitions": 0, 
+            "in-queue": 0, 
+            "out-queue": 0, 
+            "tx-updates": 0, 
+            "rx-updates": 0, 
+            "ipv4-unicast-rcvd": 0, 
+            "ipv6-unicast-rcvd": 0 
+          }, 
+          { 
+            "name": "swp1.5", 
+            "status": "Idle", 
+            "established-transitions": 0, 
+            "in-queue": 0, 
+            "out-queue": 0, 
+            "tx-updates": 0, 
+            "rx-updates": 0, 
+            "ipv4-unicast-rcvd": 0, 
+            "ipv6-unicast-rcvd": 0 
+          }, 
 ```
 {{< /expand >}}
 
 ### Histogram Data Format
 
-The histogram data samples that the switch exports to the OTEL collector are {{<exlink url="https://opentelemetry.io/docs/specs/otel/metrics/data-model/#histogram" text="histogram data points">}} that include the {{<link url="ASIC-Monitoring#histogram-collection-example" text="histogram bucket (bin)">}} counts and the respective queue length size boundaries for each bucket. Latency and counter histogram data are also exported, if configured. 
+The histogram data samples that the switch exports to the OTEL collector are {{<exlink url="https://opentelemetry.io/docs/specs/otel/metrics/data-model/#histogram" text="histogram data points">}} that include the {{<link url="ASIC-Monitoring#histogram-collection-example" text="histogram bucket (bin)">}} counts and the respective queue length size boundaries for each bucket. Latency and counter histogram data are also exported, if configured.
 
 {{% notice note %}}
 Latency histogram bucket counts do not increment in exported telemetry data if there are no packets transmitted in the traffic class during the sample interval.
 {{% /notice %}}
 
-The switch sends a sample with the following names for each interface enabled for ingress and egress buffer, latency, and/or counter histogram collection:
+The switch sends a sample with the following names for each interface enabled for ingress and egress buffer, latency, and counter histogram collection:
 
 | Name | Description |
 |----- | ----------- |
@@ -1800,3 +1873,12 @@ Interface static labels are exported as attributes in the gauge metrics for each
                       }
 
 {{< /expand >}}
+
+## Show Telemetry Health Metrics
+
+To show telemetry health metrics, run the following commands.
+- `nv show system telemetry health internal-metrics` shows information about the telemetry health internal metrics.
+- `nv show system telemetry health internal-metrics process` shows information about the telemetry health internal metrics process.
+- `nv show system telemetry health internal-metrics receiver` shows information about the telemetry health internal metrics receiver.
+- `nv show system telemetry health internal-metrics processor` shows information about the telemetry health internal metrics processor.
+- `nv show system telemetry health internal-metrics exporter` shows information about the telemetry health internal metrics exporter.

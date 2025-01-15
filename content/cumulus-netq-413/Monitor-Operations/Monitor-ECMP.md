@@ -30,7 +30,7 @@ You can view resource utilization for ECMP next hops in the full-screen switch c
 
 Select **Forwarding resources** from the side menu. The ECMP next hops column displays the maximum number of hops seen in the forwarding table, the number used, and the percentage of this usage compared to the maximum number.
 
-{{<figure src="/images/netq/ecmp-next-hops-490.png" alt="" width="1100" height="430">}}
+{{<figure src="/images/netq/ecmp-hops-413.png" alt="" width="1100" height="430">}}
 
 ## Adaptive Routing
 
@@ -61,12 +61,12 @@ The adaptive routing dashboard displays:
 - Devices with adaptive routing configured (enabled or disabled) and their RoCE modes (lossy or lossless).
 - A list of interfaces on the switch and their configurations. 
 
-{{<figure src="/images/netq/ar-dashboard-480.png" alt="adaptive routing dashboard displaying two devices with AR enabled" width="1100">}}
+{{<figure src="/images/netq/adaptive-routing-413.png" alt="adaptive routing dashboard displaying 10 devices with AR enabled" width="1100">}}
 
 In the Interfaces column, select **View details** to view interfaces with adaptive routing configured:
 
 {{<figure src="/images/netq/int-details-490.png" alt="list of interfaces adaptive routing configured" width="600">}}
 
-The Events tab displays a summary of adaptive routing events, including ECMP traffic imbalances. The table displays up to 10 switches, which can be sorted by highest P95 value, highest standard deviation, or ports with the widest deviation from the P95 value (aggregated over the past 3 minutes). From this panel, you can select **View more** in the View histogram column to display {{<link title="Switches/#view-queue-lengths-in-histograms" text="queue lengths in the form of histograms">}} for any listed switch.
+The Events tab displays a summary of adaptive routing events, including ECMP traffic imbalances. The table displays up to 10 switches, which can be sorted by highest P95 value, highest standard deviation, or ports with the widest deviation from the P95 value (aggregated over the past five minutes). From this panel, you can select **View more** in the View histogram column to display {{<link title="Switches/#view-queue-lengths-in-histograms" text="queue lengths in the form of histograms">}} for any listed switch.
 
 {{<figure src="/images/netq/ecmp-imbalance-490.png" alt="dashboard displaying ECMP imbalances" width="1000">}}

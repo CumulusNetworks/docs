@@ -13,7 +13,7 @@ Use the ping tool to check that a destination on a network is reachable. Ping se
 {{< tabs "TabID26 ">}}
 {{< tab "NVUE Commands ">}}
 
-You send Echo Request packets to a destination (IP address or a hostname) to check if it is reachable. You can specify the following options:
+Send Echo Request packets to a destination (IP address or a hostname) to check if it is reachable. You can specify the following options:
 
 | Option       | Description |
 | ------------ | ------------ |
@@ -63,10 +63,39 @@ Action executing ...
 Action succeeded
 ```
 
-The following example sends Echo Request packets to IPv6 destination fe80::a00:27ff:fe00:0 to check if it is reachable.
+The following example sends Echo Request packets to IPv6 destination fe80::4ab0:2dff:fee4:e069 to check if it is reachable.
 
 ```
-cumulus@switch:~$ nv action ping system fe80::a00:27ff:fe00:0 l3protocol ipv6
+cumulus@switch:~$ nv action ping system fe80::4ab0:2dff:fee4:e069 l3protocol ipv6
+Action executing ...
+{
+    "sent": 3,
+    "received": 3,
+    "min_time": 58000,
+    "avg_time": 87000,
+    "max_time": 141000,
+    "packets_info": {
+        "1": {
+            "bytes": 64,
+            "source": "fe80::4ab0:2dff:fee4:e069%peerlink.4094",
+            "ttl": 64,
+            "time": 141000
+        },
+        "2": {
+            "bytes": 64,
+            "source": "fe80::4ab0:2dff:fee4:e069%peerlink.4094",
+            "ttl": 64,
+            "time": 58000
+        },
+        "3": {
+            "bytes": 64,
+            "source": "fe80::4ab0:2dff:fee4:e069%peerlink.4094",
+            "ttl": 64,
+            "time": 63000
+        }
+    }
+}
+Action succeeded
 ```
 
 The following example sends 5 Echo Request packets every 2 seconds to check if destination 10.10.10.2 is reachable and waits for 3 seconds for an Echo Reply packet before timing out.
@@ -221,74 +250,49 @@ Action executing ...
 Action succeeded
 ```
 
-The following example sends Echo Request packets to destination 10.10.10.2 for the management VRF.
+The following example sends Echo Request packets to destination 10.10.10.2 from the source IP address 10.10.10.1 in the management VRF:
 
 ```
-cumulus@switch:~$ nv action ping system 10.10.10.2 vrf mgmt
+cumulus@switch:~$ nv action ping system 10.10.10.2 source 10.10.10.1 vrf mgmt
 Action executing ...
 {
     "sent": 3,
     "received": 3,
-    "min_time": 651000,
-    "avg_time": 827000,
-    "max_time": 1071000,
+    "min_time": 617000,
+    "avg_time": 695000,
+    "max_time": 837000,
     "packets_info": {
         "1": {
             "bytes": 64,
             "source": "10.10.10.2",
             "ttl": 64,
-            "time": 1070000
+            "time": 617000
         },
         "2": {
             "bytes": 64,
             "source": "10.10.10.2",
             "ttl": 64,
-            "time": 651000
+            "time": 837000
         },
         "3": {
             "bytes": 64,
             "source": "10.10.10.2",
             "ttl": 64,
-            "time": 761000
+            "time": 631000
         }
     }
 }
 Action succeeded
 ```
 
-The following example sends Echo Request packets to destination fe80::a00:27ff:fe00:0 from source interface eth0.
+The following example sends Echo Request packets to destination fe80::4638:39ff:fe00:5a from source interface bond1.
 
 ```
-cumulus@switch:~$ nv action ping system fe80::a00:27ff:fe00:0 source-interface eth0
-Action executing ...
-{
-    "sent": 3,
-    "received": 3,
-    "min_time": 651000,
-    "avg_time": 827000,
-    "max_time": 1071000,
-    "packets_info": {
-        "1": {
-            "bytes": 64,
-            "source": "10.10.10.2",
-            "ttl": 64,
-            "time": 1070000
-        },
-        "2": {
-            "bytes": 64,
-            "source": "10.10.10.2",
-            "ttl": 64,
-            "time": 651000
-        },
-        "3": {
-            "bytes": 64,
-            "source": "10.10.10.2",
-            "ttl": 64,
-            "time": 761000
-        }
-    }
-}
-Action succeeded 
+cumulus@switch:~$ nv action ping system fe80::4638:39ff:fe00:5a source-interface bond1
+nv action ping system fe80::4638:39ff:fe00:5a source-interface bond1
+Error: Action failed with the following issue:
+
+3 packets transmitted, 0 received, 100% packet loss, time 2056ms
 ```
 
 {{< /tab >}}
@@ -326,21 +330,17 @@ PING 10.10.10.2 (10.10.10.2) 56(84) bytes of data.
 ...
 ```
 
-The following example sends Echo Request packets to destination fe80::a00:27ff:fe00:0 for IPv6.
+The following example sends Echo Request packets to destination fe80::4ab0:2dff:fee4:e069 for IPv6.
 
 ```
-cumulus@switch:~$ ping -6 fe80::a00:27ff:fe00:0
+cumulus@switch:~$ ping -6 fe80::4ab0:2dff:fee4:e069
 vrf-wrapper.sh: switching to vrf "default"; use '--no-vrf-switch' to disable
-PING fe80::a00:27ff:fe00:0(fe80::a00:27ff:fe00:0) 56 data bytes
-64 bytes from  fe80::a00:27ff:fe00:0: icmp_seq=1 ttl=64 time=0.719 ms
-64 bytes from  fe80::a00:27ff:fe00:0: icmp_seq=2 ttl=64 time=0.711 ms
-64 bytes from  fe80::a00:27ff:fe00:0: icmp_seq=3 ttl=64 time=0.710 ms
-64 bytes from  fe80::a00:27ff:fe00:0: icmp_seq=4 ttl=64 time=0.607 ms
-64 bytes from  fe80::a00:27ff:fe00:0: icmp_seq=5 ttl=64 time=0.882 ms
-64 bytes from  fe80::a00:27ff:fe00:0: icmp_seq=6 ttl=64 time=0.808 ms
-64 bytes from  fe80::a00:27ff:fe00:0: icmp_seq=7 ttl=64 time=0.833 ms
-64 bytes from  fe80::a00:27ff:fe00:0: icmp_seq=8 ttl=64 time=0.680 ms
-64 bytes from  fe80::a00:27ff:fe00:0: icmp_seq=9 ttl=64 time=0.790 ms
+PING fe80::4ab0:2dff:fee4:e069(fe80::4ab0:2dff:fee4:e069) 56 data bytes
+64 bytes from fe80::4ab0:2dff:fee4:e069%peerlink.4094: icmp_seq=1 ttl=64 time=0.067 ms
+64 bytes from fe80::4ab0:2dff:fee4:e069%peerlink.4094: icmp_seq=2 ttl=64 time=0.058 ms
+64 bytes from fe80::4ab0:2dff:fee4:e069%peerlink.4094: icmp_seq=3 ttl=64 time=0.029 ms
+64 bytes from fe80::4ab0:2dff:fee4:e069%peerlink.4094: icmp_seq=4 ttl=64 time=0.061 ms
+64 bytes from fe80::4ab0:2dff:fee4:e069%peerlink.4094: icmp_seq=5 ttl=64 time=0.038 ms
 ...
 ```
 
@@ -374,7 +374,8 @@ PING 10.10.10.2 (10.10.10.2) 50(78) bytes of data.
 58 bytes from 10.10.10.2: icmp_seq=8 ttl=64 time=0.672 ms
 58 bytes from 10.10.10.2: icmp_seq=9 ttl=64 time=0.640 ms
 58 bytes from 10.10.10.2: icmp_seq=10 ttl=64 time=0.679 ms
-58 bytes from 10.10.10.2: icmp_seq=11 ttl=64 time=0.667 ms
+58 bytes from 10.10.10.2: icmp_seq=11 ttl=64 time=0.667 m
+...
 ```
 
 The following example checks if destination 10.10.10.2 is reachable and sets the `do not fragment` bit for IPv4.
@@ -390,6 +391,7 @@ PING 10.10.10.2 (10.10.10.2) 56(84) bytes of data.
 64 bytes from 10.10.10.2: icmp_seq=5 ttl=64 time=0.519 ms
 64 bytes from 10.10.10.2: icmp_seq=6 ttl=64 time=1.04 ms
 64 bytes from 10.10.10.2: icmp_seq=7 ttl=64 time=0.716 ms
+...
 ```
 
 The following example sends Echo Request packets to destination 10.10.10.2 from the source IP address 10.10.10.1 for the management VRF.
@@ -405,21 +407,22 @@ PING 10.10.10.2 (10.10.10.2) from 192.168.200.11 mgmt: 56(124) bytes of data.
 64 bytes from 10.10.10.2: icmp_seq=5 ttl=64 time=0.519 ms
 64 bytes from 10.10.10.2: icmp_seq=6 ttl=64 time=1.04 ms
 64 bytes from 10.10.10.2: icmp_seq=7 ttl=64 time=0.716 ms
+...
 ```
 
-The following example sends Echo Request packets to destination fe80::a00:27ff:fe00:0 from source interface eth0.
+The following example sends Echo Request packets to destination fe80::a00:27ff:fe00:0 from source interface bond1.
 
 ```
-cumulus@switch:~$ ping -6 fe80::a00:27ff:fe00:eth0
+cumulus@switch:~$  ping -6 fe80::a00:27ff:fe00:0%bond1
 vrf-wrapper.sh: switching to vrf "default"; use '--no-vrf-switch' to disable
-PING fe80::a00:27ff:fe00:0 (fe80::a00:27ff:fe00:0) from eth0: 56(124) bytes of data.
-64 bytes from fe80::a00:27ff:fe00:0: icmp_seq=1 ttl=64 time=0.722 ms
-64 bytes from fe80::a00:27ff:fe00:0: icmp_seq=2 ttl=64 time=0.708 ms
-64 bytes from fe80::a00:27ff:fe00:0: icmp_seq=3 ttl=64 time=0.633 ms
-64 bytes from fe80::a00:27ff:fe00:0: icmp_seq=4 ttl=64 time=1.11 ms
-64 bytes from fe80::a00:27ff:fe00:0: icmp_seq=5 ttl=64 time=0.519 ms
-64 bytes from fe80::a00:27ff:fe00:0: icmp_seq=6 ttl=64 time=1.04 ms
-64 bytes from fe80::a00:27ff:fe00:0: icmp_seq=7 ttl=64 time=0.716 ms
+PING fe80::a00:27ff:fe00:0%bond1(fe80::a00:27ff:fe00:0%bond1)
+64 bytes from ::1: icmp_seq=1 ttl=64 time=0.044 ms
+64 bytes from ::1: icmp_seq=2 ttl=64 time=0.058 ms
+64 bytes from ::1: icmp_seq=3 ttl=64 time=0.292 ms
+64 bytes from ::1: icmp_seq=4 ttl=64 time=0.026 ms
+64 bytes from ::1: icmp_seq=5 ttl=64 time=0.055 ms
+64 bytes from ::1: icmp_seq=6 ttl=64 time=0.056 ms
+...
 ```
 
 {{< /tab >}}
@@ -434,7 +437,7 @@ By measuring the round-trip time for each hop, traceroute helps identify latency
 {{< tabs "TabID167 ">}}
 {{< tab "NVUE Commands ">}}
 
-You send traceroute packets to a destination with the `nv action traceroute system <destination>` command. The destination can be either an IP address or a domain name. You can specify the following options:
+Send traceroute packets to a destination with the `nv action traceroute system <destination>` command. The destination can be either an IP address or a domain name. You can specify the following options:
 
 | Option | Description |
 | ------ | ----------- |
@@ -482,7 +485,7 @@ traceroute response
 ...
 ```
 
-The following example validates the route path to IPv6 destination fe80::a00:27ff:fe00:0:
+The following example validates the route path to IPv6 destination 0:0:0:0:0:0:0:1:
 
 ```
 cumulus@switch:~$ nv action traceroute system 0:0:0:0:0:0:0:1 l3protocol ipv6
@@ -615,10 +618,10 @@ traceroute response
 ...
 ```
 
-The following example validates the path to destination 10.10.10.2 from the source IP address 10.0.0.1 in VRF RED.
+The following example validates the path to destination 10.10.10.2 from the source IP address 10.0.0.1 in the management VRF.
 
 ```
-cumulus@switch:~$ nv action traceroute system 10.10.10.2 source 10.10.10.1 vrf RED
+cumulus@switch:~$ nv action traceroute system 10.10.10.2 source 10.10.10.1 vrf mgmt
 Action executing ...
 traceroute response 
 {
@@ -686,7 +689,7 @@ traceroute to 10.10.10.2 (10.10.10.2), 30 hops max, 60 byte packets
 ...
 ```
 
-The following example validates the route path to IPv6 destination fe80::a00:27ff:fe00:0.
+The following example validates the route path to IPv6 destination 0:0:0:0:0:0:0:1.
 
 ```
 cumulus@switch:~$ traceroute -6 0:0:0:0:0:0:0:1
@@ -740,7 +743,7 @@ traceroute to 10.10.10.2 (10.10.10.2), 30 hops max, 60 byte packets
 ...
 ```
 
-The following example validates the path to destination 10.10.10.2 from the source IP address 10.0.0.1 in VRF mgmt.
+The following example validates the path to destination 10.10.10.2 from the source IP address 10.0.0.1 in the management VRF.
 
 ```
 cumulus@switch:~$ traceroute -s 10.10.10.1 -i mgmt 10.10.10.2

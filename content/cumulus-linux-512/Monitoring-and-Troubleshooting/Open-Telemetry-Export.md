@@ -1876,6 +1876,22 @@ Interface static labels are exported as attributes in the gauge metrics for each
 
 ## Show Telemetry Health Metrics
 
+To show telemetry health information, run the `nv show system telemetry health` command:
+
+```
+cumulus@switch:~$ nv show system telemetry health
+                          operational
+------------------------  -----------
+service-status                       
+  platform-stats-service  active     
+
+Health export status
+=======================
+No Data
+```
+
+Cumulus Linux Open telemetry also provides a set of internal metrics exposed by the collector to monitor its performance and behavior. These metrics are essential to understand the health and efficiency of the collector.
+
 To show telemetry health metrics, run the following commands.
 - `nv show system telemetry health internal-metrics` shows information about the telemetry health internal metrics.
 - `nv show system telemetry health internal-metrics process` shows information about the telemetry health internal metrics process.

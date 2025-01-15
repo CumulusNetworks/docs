@@ -26,9 +26,13 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
 - {{<link url="Optional-BGP-Configuration/#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}}
 - {{<link url="BGP-Weighted-Equal-Cost-Multipath/#ecmp-resource-sharing-during-next-hop-group-updates" text="ECMP Resource Sharing During Next Hop Group Updates">}}
 -  {{<link url="RADIUS-AAA/#radius-user-command-accounting" text="RADIUS user command accounting support for multiple servers with first response option">}}
-- {{<link url="Open-Telemetry-Export/#layer-3-router-statistics" text="New OTLP routing metrics">}} and additional {{<link url="Open-Telemetry-Export/#interface-statistics" text="OTLP interface metrics">}} (PHY and buffer pool counters).
-- {{<link url="Open-Telemetry-Export/#customize-export" text="Export different open telemetry statistics and sample rates to different destinations">}}
-- Create a single CLI service check for OTLP exporters
+- Open Telemetry:
+  - {{<link url="Open-Telemetry-Export/#system-information" text="New system information data">}}
+  - {{<link url="Open-Telemetry-Export/#router-statistic-format" text="New routing statistics">}}
+  - {{<link url="Open-Telemetry-Export/#interface-statistic-format" text="New interface PHY statistics">}}
+  - {{<link url="Open-Telemetry-Export/#buffer-statistic-format" text="New buffer statistics">}}
+  - {{<link url="Open-Telemetry-Export/#customize-export" text="Export different statistics and sample rates to different destinations">}}
+  - {{<link url="Open-Telemetry-Export/#show-telemetry-health-metrics" text="Commands to show telemetry health metrics">}}
 - NVUE
   - {{<link title="Network Troubleshooting/#traceroute" text="Traceroute command">}}
   - {{<link title="Network Troubleshooting/#ping" text="Ping command">}}

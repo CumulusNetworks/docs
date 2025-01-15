@@ -639,24 +639,44 @@ Filters show command output on column data; for example, to show only the interf
 
 ```
 cumulus@switch:~$ nv show interface --filter mtu=1500
+Interface  Admin Status  Oper Status  Speed  MTU   Type  Remote Host      Remote Port  Summary                                
+---------  ------------  -----------  -----  ----  ----  ---------------  -----------  ---------------------------------------
+eth0       up            up           1G     1500  eth   oob-mgmt-switch  swp10        IP Address:           192.168.200.11/24
+                                                                                       IP Address: fe80::4638:39ff:fe22:17a/64
+swp4       down          down                1500  swp                                                                        
+swp5       down          down                1500  swp                                                                        
+swp6       down          down                1500  swp                                                                        
+swp7       down          down                1500  swp                                                                        
+swp8       down          down                1500  swp                                                                        
+swp9       down          down                1500  swp                                                                        
+swp10      down          down                1500  swp                                                                        
+swp11      down          down                1500  swp                                                                        
+swp12      down          down                1500  swp                                                                        
+swp13      down          down                1500  swp
+...
 ```
 
 To filter on multiple column outputs, enclose the entire filter in double quotes; for example, to show data for bridges with MTU 9216:
 
 ```
 cumulus@switch:~$ nv show interface --filter "type=bridge&mtu=9216" 
+Interface   Admin Status  Oper Status  Speed  MTU   Type    Remote Host  Remote Port  Summary                                
+----------  ------------  -----------  -----  ----  ------  -----------  -----------  ---------------------------------------
+br_default  up            up                  9216  bridge                            IP Address: fe80::4638:39ff:fe22:17a/64
 ```
 
-You can use wildcards; for example, to show all IP addresses that start with 1 for swp1:
-
-```
-cumulus@switch:~$ nv show interface swp1 --filter "ip.address=1*"
-```
+You can use wildcards; for example, to show all IP addresses that start with 1 for swp1, run the `nv show interface swp1 --filter "ip.address=1*"` command.
 
 You can filter on all revisions (operational, applied, and pending); for example, to show all IP addresses that start with 1 for swp1 in the applied revision:
 
 ```
 cumulus@switch:~$ nv show interface --filter "ip.address=1*" --rev=applied
+Interface  Admin Status  Oper Status  Speed  MTU   Type      Remote Host  Remote Port  Summary                  
+---------  ------------  -----------  -----  ----  --------  -----------  -----------  -------------------------
+lo                                                 loopback                            IP Address: 10.10.10.1/32
+vlan10                                       9216  svi                                 IP Address:  10.1.10.2/24
+vlan20                                       9216  svi                                 IP Address:  10.1.20.2/24
+vlan30                                       9216  svi                                 IP Address:  10.1.30.2/24
 ```
 
 You can filter the FRR `nv show vrf <vrf> router rib` command output by protocol (gp, ospf, kernel, static, ospf6, sharp, or connected); for example, to show all BGP IPv4 routes in the routing table:
@@ -707,7 +727,16 @@ To show all BGP non-established neighbors:
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor --filter=state!=established
-No Data
+AS - Remote Autonomous System, PeerEstablishedTime - Peer established time in
+UTC format, UpTime - Uptime in milliseconds, Afi-Safi - Address family, PfxSent
+- Transmitted prefix counter, PfxRcvd - Recieved prefix counter
+
+Neighbor  AS  State  PeerEstablishedTime  UpTime   MsgRcvd  MsgSent  Afi-Safi      PfxSent  PfxRcvd
+--------  --  -----  -------------------  -------  -------  -------  ------------  -------  -------
+swp53         idle                        9318000  0        0        ipv4-unicast                  
+                                                                     l2vpn-evpn                    
+swp54         idle                        9318000  0        0        ipv4-unicast                  
+                                                                     l2vpn-evpn
 ```
 
 ## NVUE and FRR Restart

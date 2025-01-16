@@ -271,9 +271,7 @@ To upgrade the switch with ONIE:
 
 ## Package Upgrade
 
-Run **package upgrade** if you are upgrading from one Cumulus Linux 5.x release to a later 5.x release, and if you use third-party applications (package upgrade does not replace or remove third-party applications, unlike the Cumulus Linux image install).
-
-*Package upgrade* always updates to the latest available release in the Cumulus Linux repository. For example, if you are currently running Cumulus Linux 5.0.0 and perform a package upgrade, the packages upgrade to the latest 5.x release.
+Package upgrade always updates to the latest available release in the Cumulus Linux repository. For example, if you are currently running Cumulus Linux 5.10 and perform a package upgrade, the packages upgrade to the latest 5.x release.
 
 When you use package upgrade to upgrade the switch, configuration data stays in place during the upgrade. If the new release updates a previously changed configuration file, the upgrade process prompts you to either specify the version you want to use or evaluate the differences.
 

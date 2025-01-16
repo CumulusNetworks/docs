@@ -160,7 +160,6 @@ To align with a long-term vision of a common interface between Cumulus Linux, Nv
 Cumulus Linux also provides ISSU to upgrade an active switch with minimal disruption to the network. See {{<link url="In-Service-System-Upgrade-ISSU" text="In-Service-System-Upgrade-ISSU">}}.
 
 {{%notice note%}}
-- To upgrade to Cumulus Linux 5.11 from Cumulus Linux 5.9.2, you must install the Cumulus Linux 5.11 image. You *cannot* upgrade packages with package upgrade.
 - To upgrade to Cumulus Linux 5.11.x from Cumulus Linux 4.x or 3.x, you must install a disk image of the new release using ONIE. You *cannot* upgrade packages with package upgrade.
 - Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in [Upgrade Switches in an MLAG Pair](#upgrade-switches-in-an-mlag-pair) below to ensure a smooth upgrade.
 {{%/notice%}}
@@ -180,11 +179,11 @@ Be aware of the following when installing the Cumulus Linux image:
 - If configuration files do not restore correctly, you cannot `ssh` to the switch from in-band management. Use out-of-band connectivity (eth0 or the console).
 - You *must* reinstall and reconfigure third-party applications after upgrade.
 
-Run **package upgrade** if you are upgrading from one Cumulus Linux 5.11 release to a later 5.11 release, and if you use third-party applications (package upgrade does not replace or remove third-party applications, unlike the Cumulus Linux image install).
+Run **package upgrade** if you are upgrading from one Cumulus Linux 5.x release to a later 5.x release, and if you use third-party applications (package upgrade does not replace or remove third-party applications, unlike the Cumulus Linux image install).
 
 Be aware of the following when upgrading packages:
 - You cannot upgrade the switch to a new release train. For example, you **cannot** upgrade the switch from 4.x to 5.x.
-- Package upgrade only supports the current version plus two. For example, you can upgrade from Cumulus Linux 5.6 to 5.8 with package upgrade only if you installed the 5.6 binary image.
+- Package upgrade only supports the current version plus two. For example, you can upgrade from Cumulus Linux 5.9.2 to 5.11 with package upgrade only if you installed the 5.9.2 binary image.
 - The package upgrade command might restart or stop services as part of the upgrade process.
 - The package upgrade command might disrupt core services by changing core service dependency packages.
 - After you upgrade, account UIDs and GIDs created by packages might be different on different switches, depending on the configuration and package installation history.

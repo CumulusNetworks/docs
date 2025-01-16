@@ -12,14 +12,52 @@ To show the current system log configuration on the switch, run the `nv show sys
 
 ```
 cumulus@switch:~$ nv show system log
+            operational      
+-----------  -----------------
+[file]       syslog           
+[component]  apt              
+[component]  audit            
+[component]  auth             
+[component]  boot             
+[component]  csmgr            
+[component]  datapath         
+[component]  dpkg             
+[component]  ifupdown2        
+[component]  installer        
+[component]  mlag             
+[component]  nginx            
+[component]  nvue             
+[component]  otlp-telemetry   
+[component]  platform-phc     
+[component]  platform-thermal 
+[component]  pps              
+[component]  ptm              
+[component]  ptp              
+[component]  ptp-firefly-servo
+[component]  routing          
+[component]  stp              
+[component]  synce
 ```
 
 ## Show System Log Files
 
-To show the contents of the most current system log file, run the `nv show system log file` command. The contents are shown with the `less` command, which enables you to scroll through the file interactively. The `less` command is typically used to view the most recent log entries.
+To show the contents of the most current system log file, run the `nv show system log file` command:
 
 ```
 cumulus@switch:~$ nv show system log file
+2025-01-15T11:59:20.314123+00:00 cumulus systemd-modules-load[322]: Inserted module 'loop'
+2025-01-15T11:59:20.314357+00:00 cumulus systemd-random-seed[331]: Kernel entropy pool is not initialized yet, waiting until it is.
+2025-01-15T11:59:20.314386+00:00 cumulus systemd-modules-load[322]: Inserted module 'bonding'
+2025-01-15T11:59:20.314396+00:00 cumulus systemd[1]: Starting systemd-journal-flush.service - Flush Journal to Persistent Storage...
+2025-01-15T11:59:20.314438+00:00 cumulus systemd[1]: modprobe@drm.service: Deactivated successfully.
+2025-01-15T11:59:20.314448+00:00 cumulus systemd[1]: Finished modprobe@drm.service - Load Kernel Module drm.
+2025-01-15T11:59:20.314456+00:00 cumulus systemd-modules-load[322]: Inserted module 'bridge'
+2025-01-15T11:59:20.314464+00:00 cumulus systemd-modules-load[322]: Inserted module 'br_netfilter'
+2025-01-15T11:59:20.314472+00:00 cumulus systemd[1]: Finished systemd-journal-flush.service - Flush Journal to Persistent Storage.
+2025-01-15T11:59:20.314486+00:00 cumulus systemd-modules-load[322]: Inserted module 'tun'
+2025-01-15T11:59:20.314494+00:00 cumulus systemd-modules-load[322]: Inserted module 'at24'
+2025-01-15T11:59:20.314502+00:00 cumulus systemd[1]: Finished systemd-random-see/var/log/syslog
+...
 ```
 
 The `nv show system log file` command provides the following options:
@@ -29,100 +67,153 @@ The `nv show system log file` command provides the following options:
 | `brief` | Shows the contents of the most current system log file but in a more concise format. |
 | `follow`| Shows the contents of a system log file in real-time.  The command shows the log file output continuously as it is updated, similar to the behavior of the `tail -f` command.|
 | `list` |  Shows the available system log files on the system with their filenames and corresponding file paths. |
-| `<file-name>`|  Shows the contents of a specific system log file. If the file is a regular log file (such as `syslog.1`), the system uses `less` so that you can scroll and search through the log entries. If the file is compressed (such as `syslog.2.gz`), the system displays the contents without decompressing the file. This command is useful for viewing both archived and compressed log files.|
+| `<file-name>`|  Shows the contents of a specific system log file. |
 
 The following example shows the contents of the most current system log file:
 
 ```
 cumulus@switch:~$ nv show system log file
+2025-01-15T11:59:20.314123+00:00 cumulus systemd-modules-load[322]: Inserted module 'loop'
+2025-01-15T11:59:20.314357+00:00 cumulus systemd-random-seed[331]: Kernel entropy pool is not initialized yet, waiting until it is.
+2025-01-15T11:59:20.314386+00:00 cumulus systemd-modules-load[322]: Inserted module 'bonding'
+2025-01-15T11:59:20.314396+00:00 cumulus systemd[1]: Starting systemd-journal-flush.service - Flush Journal to Persistent Storage...
+2025-01-15T11:59:20.314438+00:00 cumulus systemd[1]: modprobe@drm.service: Deactivated successfully.
+2025-01-15T11:59:20.314448+00:00 cumulus systemd[1]: Finished modprobe@drm.service - Load Kernel Module drm.
+2025-01-15T11:59:20.314456+00:00 cumulus systemd-modules-load[322]: Inserted module 'bridge'
+2025-01-15T11:59:20.314464+00:00 cumulus systemd-modules-load[322]: Inserted module 'br_netfilter'
+2025-01-15T11:59:20.314472+00:00 cumulus systemd[1]: Finished systemd-journal-flush.service - Flush Journal to Persistent Storage.
+2025-01-15T11:59:20.314486+00:00 cumulus systemd-modules-load[322]: Inserted module 'tun'
+2025-01-15T11:59:20.314494+00:00 cumulus systemd-modules-load[322]: Inserted module 'at24'
+...
 ```
 
 The following example shows the contents of the most current system log file in a more concise format:
 
 ```
 cumulus@switch:~$ nv show system log file brief
+2025-01-15T11:59:20.314123+00:00 cumulus systemd-modules-load[322]: Inserted module 'loop'
+2025-01-15T11:59:20.314357+00:00 cumulus systemd-random-seed[331]: Kernel entropy pool is not initialized yet, waiting until it is.
+2025-01-15T11:59:20.314386+00:00 cumulus systemd-modules-load[322]: Inserted module 'bonding'
+2025-01-15T11:59:20.314396+00:00 cumulus systemd[1]: Starting systemd-journal-flush.service - Flush Journal to Persistent Storage...
+2025-01-15T11:59:20.314438+00:00 cumulus systemd[1]: modprobe@drm.service: Deactivated successfully.
+2025-01-15T11:59:20.314448+00:00 cumulus systemd[1]: Finished modprobe@drm.service - Load Kernel Module drm.
+2025-01-15T11:59:20.314456+00:00 cumulus systemd-modules-load[322]: Inserted module 'bridge'
+2025-01-15T11:59:20.314464+00:00 cumulus systemd-modules-load[322]: Inserted module 'br_netfilter'
+...
 ```
 
-The following example shows the contents of a system log file in real-time:
+The following example shows the contents of the most current system log file in real-time:
 
 ```
 cumulus@switch:~$ nv show system log file follow
+2025-01-16T22:00:08.749566+00:00 leaf01 sshd[17758]: pam_unix(sshd:session): session closed for user cumulus
+2025-01-16T22:00:19.589388+00:00 leaf01 sshd[18387]: Accepted publickey for cumulus from 192.168.200.1 port 39400 ssh2: RSA SHA256:l/CnwXBKo6zp1gdL48W0Qpntk4wpJuV0567K+sPF66w
+2025-01-16T22:00:19.590984+00:00 leaf01 sshd[18387]: pam_unix(sshd:session): session opened for user cumulus(uid=1000) by (uid=0)
+2025-01-16T22:00:19.626551+00:00 leaf01 sshd[18387]: pam_env(sshd:session): deprecated reading of user environment enabled
+2025-01-16T22:00:29.900648+00:00 leaf01 sudo:  cumulus : TTY=pts/0 ; PWD=/var/home/cumulus ; USER=root ; COMMAND=/usr/bin/nv show system log file brief
+2025-01-16T22:00:30.525635+00:00 leaf01 systemd[1]: mnt-air.mount: Deactivated successfully.
+2025-01-16T22:01:00.534717+00:00 leaf01 systemd[1]: mnt-air.mount: Deactivated successfully.
+2025-01-16T22:01:30.544233+00:00 leaf01 systemd[1]: mnt-air.mount: Deactivated successfully.
+...
 ```
 
 The following example shows the available system log files on the system with their filenames and corresponding file paths:
 
 ```
 cumulus@switch:~$ nv show system log file list
+File name  File path      
+---------  ---------------
+syslog     /var/log/syslog
 ```
 
-The following example shows the contents of `syslog.1`
+The following example shows the contents of the `syslog` file:
 
 ```
-cumulus@switch:~$ nv show system log file syslog.1
+cumulus@switch:~$ nv show system log file syslog
+2025-01-15T11:59:20.314123+00:00 cumulus systemd-modules-load[322]: Inserted mod
+ule 'loop'
+2025-01-15T11:59:20.314357+00:00 cumulus systemd-random-seed[331]: Kernel entropy pool is not initialized yet, waiting until it is.
+2025-01-15T11:59:20.314386+00:00 cumulus systemd-modules-load[322]: Inserted module 'bonding'
+2025-01-15T11:59:20.314396+00:00 cumulus systemd[1]: Starting systemd-journal-flush.service - Flush Journal to Persistent Storage...
+2025-01-15T11:59:20.314438+00:00 cumulus systemd[1]: modprobe@drm.service: Deactivated successfully.
+2025-01-15T11:59:20.314448+00:00 cumulus systemd[1]: Finished modprobe@drm.service - Load Kernel Module drm.
+2025-01-15T11:59:20.314456+00:00 cumulus systemd-modules-load[322]: Inserted module 'bridge'
+2025-01-15T11:59:20.314464+00:00 cumulus systemd-modules-load[322]: Inserted module 'br_netfilter'
+...
 ```
 
 ## Show Components Generating the Logs
 
-To show the components of the system generating the logs and the log severity levels associated with each component, run the `nv show system log component` command.
+To show the components of the system generating the logs, run the `nv show system log component` command.
 
 ```
 cumulus@switch:~$ nv show system log component 
 Component         Level 
 ----------------  ------ 
-nvue             info  
-orchagent         notice 
-portsyncd         notice 
-sai_api_port      notice 
-sai_api_switch    notice 
-symmetry-manager  info  
-syncd             notice
+apt                dpkg               otlp-telemetry     ptp-firefly-servo
+audit              ifupdown2          platform-phc       routing
+auth               installer          platform-thermal   stp
+boot               mlag               pps                synce
+csmgr              nginx              ptm                
+datapath           nvue               ptp
 ```
 
 The `nv show system log component` command provides the following options:
 
 | Option  | Description |
 | ------- | ----------- |
-| `<component-name> file` | Shows the contents of the most current file for a specific component. The system uses the `less` command so that you can scroll through the file interactively. |
+| `<component-name> file` | Shows the contents of the most current file for a specific component. |
 |  `<component-name> file list` | Provides a list of log files for the specified component and shows the associated logs.|
 
 {{< expand "Component File List" >}}
 | System Component  | Files |
 | ---------- | ----------- |
 | `apt` | All files in the `/var/log/apt` directory. The most current file is `history.log`. |
-| `routing` | All files in `/var/log/frr` directory. The most current file is `frr.log`.  |
-| `auth` | `auth.log` |
 | `audit` | All files in the `/var/log/audit` directory.|
+| `auth` | `auth.log` |
 | `boot` | `boot.log`|
+| `csmgr` | `csmgrd.log`, `cl-system-services.log` |
+| `datapath` | `mswitchd.log` |
 | `dpkg` | All files in the `/var/log/dpkg` directory. |
+| `ifupdown2` | `ifupdown2/*/ifupdown2.debug.log` |
 | `installer` | All files in the `/var/log/installer` directory. |
-| `stp` | `mstpd.log` |
+| `mlag` | `clagd.log` |
+| `nginx` | All files in the `nginx` folder. The most current file is `access.log`. |
 | `nvue` | `nvued.log`, `nv-cli.log`. The most current file is `nvued.log` |
 | `otlp-telemetry` | All files in the `/var/log/otlp-telemetry` directory. |
-| `nv-telemetry` | All files in the `/var/log/nv-telemetry` directory. |
-| `mlag` | `clagd.log` |
-| `csmgr` | `csmgrd.log`, `cl-system-services.log` |
-| `platform-thermal` | `tc_log` |
-| `ptp` | `ptp4l.log` |
-| `synce` | `synced.log`, `synced.log`, `synced-selector.log` |
-| `pps` | `ts2phc.log` |
 | `platform-phc` | `phc2sys.log` |
-| `ptp-firefly-servo` |
+| `platform-thermal` | `tc_log` |
+| `pps` | `ts2phc.log` |
 | `ptm` | `ptmd.log` |
-| `ifupdown2` | `ifupdown2/*/ifupdown2.debug.log` |
-| `nginx` | All files in the `nginx` folder. The most current file is `access.log`. |
-| `datapath` | `mswitchd.log` |
+| `ptp` | `ptp4l.log` |
+| `ptp-firefly-servo` |
+| `routing` | All files in `/var/log/frr` directory. The most current file is `frr.log`.  |
+| `stp` | `mstpd.log` |
+| `synce` | `synced.log`, `synced.log`, `synced-selector.log` |
 {{< /expand >}}
 
-The following example shows the contents of the most current file for NVUE:
+The following example shows the contents of the most current log file for NVUE:
 
 ```
 cumulus@switch:~$ nv show system log component nvue file
+2025-01-15T11:59:23.648913+00:00 cumulus nvued:    INFO: nvued:214 Starting nvued
+2025-01-15T11:59:23.649568+00:00 cumulus nvued:    INFO: nvued:216 NVUE logging set to INFO, chatty deps set to INFO
+2025-01-15T11:59:23.650005+00:00 cumulus nvued:    INFO: nvued:171 Attempting to extend the SystemD start/stop timeout on Cumulus/VX platform to 15 minutes
+2025-01-15T11:59:23.650327+00:00 cumulus nvued:    INFO: nvued:184 Successfully sent request to SystemD to extend start timeout: True
+2025-01-15T11:59:23.692508+00:00 cumulus nvued:    INFO: _access.py:137 Loaded /etc/nvue-auth.yaml
+2025-01-15T11:59:23.768857+00:00 cumulus nvued:    INFO: safe_sh.py:108 <Running: '/usr/bin/platform-detect'>
+2025-01-15T11:59:23.826070+00:00 cumulus nvued:    INFO: safe_sh.py:195 <Finished: '/usr/bin/platform-detect'>
+2025-01-15T11:59:23.826338+00:00 cumulus nvued:    INFO: osinfo.py:298 Platform name vx
+...
 ```
 
 The following example shows the log files and associated logs for NVUE:
 
 ```
-cumulus@switch:~$ nv show system log component nvue file list 
+cumulus@switch:~$ nv show system log component nvue file list
+File name   File path          
+----------  -------------------
+nv-cli.log  /var/log/nv-cli.log
 ```
 <!--
 ## Upload System Log Files to a Remote URL

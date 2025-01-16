@@ -166,7 +166,7 @@ Select **View more** to open a dashboard that displays the full range of ports c
 
 {{<figure src="/images/netq/hist-compare-413.png" alt="histogram comparison of the same device with different time parameters" width="1100" height="500">}}
 
-The y-axis represents the values contained in bins 0 through 9. The hostname associated with the port is displayed on the x-axis. Hover your mouse over the data to view the associated port name, count data, bin number, and LLDP peer.
+The y-axis represents the values contained in bins 0 through 9. The switch's ports are displayed on the x-axis. Hover your mouse over the data to view the associated port name, count data, bin number, and LLDP peer.
 
 ## Related Information
 

@@ -271,20 +271,20 @@ To upgrade the switch with ONIE:
 
 ## Package Upgrade
 
-Run **package upgrade** if you are upgrading from one Cumulus Linux 5.x release to a later 5.x release, and if you use third-party applications (package upgrade does not replace or remove third-party applications, unlike the Cumulus Linux image install).
-
-*Package upgrade* always updates to the latest available release in the Cumulus Linux repository. For example, if you are currently running Cumulus Linux 5.0.0 and perform a package upgrade, the packages upgrade to the latest 5.x release.
+Cumulus Linux completely embraces the Linux and Debian upgrade workflow, where you use an installer to install a base image, then perform any upgrades within that release train with package upgrade. Any packages that have been changed since the base install get upgraded in place from the repository. All switch configuration files remain untouched, or in rare cases merged (using the Debian merge function) during the package upgrade.
 
 When you use package upgrade to upgrade the switch, configuration data stays in place during the upgrade. If the new release updates a previously changed configuration file, the upgrade process prompts you to either specify the version you want to use or evaluate the differences.
 
 {{%notice note%}}
 - You cannot upgrade the switch to a new release train. For example, you **cannot** use package upgrade to upgrade the switch from 4.x to 5.x.
 - Package upgrade only supports the current version plus two. For example, you can upgrade from Cumulus Linux 5.10.1 to Cumulus Linux 5.12 with package upgrade only if you installed the 5.10.1 binary image.
+- Package upgrade always updates to the latest available release in the Cumulus Linux repository. For example, if you are currently running Cumulus Linux 5.10.0 and perform a package upgrade, the packages upgrade to the 5.12 release.
 - The package upgrade command might restart or stop services as part of the upgrade process.
 - The package upgrade command might disrupt core services by changing core service dependency packages.
 - After you upgrade, account UIDs and GIDs created by packages might be different on different switches, depending on the configuration and package installation history.
 - Cumulus Linux does not support the Linux `sudo -E apt-get dist-upgrade` command. Be sure to use `sudo -E apt-get upgrade` when upgrading packages.
-- To upgrade from Cumulus Linux 5.11 to Cumulus Linux 5.12, you need 0.8GB of free disk space. Before you upgrade, run the NVUE `nv show system disk usage` command or the Linux `sudo df -h` command to show how much disk space you are currently using on the switch.
+- Package upgrade does not replace or remove third-party applications.
+- To upgrade from Cumulus Linux 5.10 or 5.11 to Cumulus Linux 5.12, you need 0.8GB of free disk space. Before you upgrade, run the NVUE `nv show system disk usage` command or the Linux `sudo df -h` command to show how much disk space you are currently using on the switch.
 {{%/notice%}}
 
 {{%notice info%}}

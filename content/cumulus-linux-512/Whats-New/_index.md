@@ -38,7 +38,7 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
   - {{<link title="Network Troubleshooting/#ping" text="Ping command">}}
   - {{<link title="Troubleshooting Network Interfaces/#monitor-interface-traffic-rate-and-pps" text="Commands to monitor interface traffic rate and PPS">}}
   - {{<link url="Monitoring-Best-Practices/#disk-usage" text="Command to monitor disk usage">}}
-  - {{<link url="Adding-and-Updating-Packages/#add-packages-from-another-repository" text="Configure additional package repositories">}}
+  - {{<link url="Adding-and-Updating-Packages/#configure-additional-repositories" text="Configure additional package repositories">}}
   - {{<link url="FRRouting/#look-up-the-route-for-a-destination" text="Look up the route for a destination">}}
   - {{<link url="NVUE-CLI/#filter-nv-show-command-output" text="Filter FRR nv show command output">}}
   - {{<link title="Log Files with NVUE" text="Logging commands">}}

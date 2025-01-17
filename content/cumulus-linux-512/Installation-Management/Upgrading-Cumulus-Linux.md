@@ -5,15 +5,10 @@ weight: 50
 toc: 3
 ---
 You can upgrade Cumulus Linux in one of two ways:
-- Install a new Cumulus Linux image with either {{<link url="#install-an-image" text="Optimized image upgrade">}} or <span class="a-tooltip">[ONIE](## "Open Network Install Environment")</span>.
+- Install a new Cumulus Linux image with either {{<link url="#image-upgrade" text="Optimized image upgrade">}} or <span class="a-tooltip">[ONIE](## "Open Network Install Environment")</span>.
 - Upgrade only changed packages using {{<link url="#package-upgrade" text="package upgrade">}}.
 
 Cumulus Linux provides ISSU to upgrade an active switch with minimal disruption to the network. See {{<link url="In-Service-System-Upgrade-ISSU" text="In-Service-System-Upgrade-ISSU">}}.
-
-{{%notice note%}}
-- To upgrade to Cumulus Linux 5.12 from Cumulus Linux 4.4 or earlier, you must install a disk image of the new release. You *cannot* upgrade packages with package upgrade.
-- Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in [Upgrade Switches in an MLAG Pair](#upgrade-switches-in-an-mlag-pair) below to ensure a smooth upgrade.
-{{%/notice%}}
 
 ## Before You Upgrade
 
@@ -151,6 +146,10 @@ Cumulus Linux provides two different ways to upgrade the switch with a new image
 - **ONIE** is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a switch.
 - **Optimized image upgrade** uses two partitions to upgrade the image with just one reboot cycle. With two partitions on the switch, the current image boots from one partition, from which the image upgrade triggers. After detecting the running partition and checking if the second partition is available for installation, optimized upgrade starts to stage the installation in the second partition (copying the image, preparing the partition, unpacking the new image, and tuning and finalizing the new partition for the new image). The subsequent boot occurs from the second partition.
 
+{{%notice note%}}
+Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in [Upgrade Switches in an MLAG Pair](#upgrade-switches-in-an-mlag-pair) below to ensure a smooth upgrade.
+{{%/notice%}}
+
 {{< tabs "TabID183 ">}}
 {{< tab "Optimized Image Upgrade ">}}
 
@@ -194,19 +193,18 @@ To show information about a cumulus image:
 
 ```
 cumulus@switch:~$ nv show system image
+               operational         
+-------------  --------------------
+current        1                   
+partition1                         
+  build-id     5.12.0.0012         
+  description  Cumulus Linux 5.12.0
+  disk         /dev/vda5           
+  release      5.12.0
 ```
 
-To list the available Cumulus Linux image files:
-
-```
-cumulus@switch:~$ nv show system image files
-```
-
-To show information about a specific Cumulus Linux image file:
-
-```
-cumulus@switch:~$ nv show system image files cumulus-linux-5.12.0-mlx-amd64.bin
-```
+- To list the available Cumulus Linux image files, run the `nv show system image files` command.
+- To show information about a specific Cumulus Linux image file, run the `nv show system image files <image-filename>` command.`
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -224,10 +222,9 @@ To check the current boot partition status, run the `cl-image-upgrade -s` comman
 ```
 cumulus@switch:~$ cl-image-upgrade -s  
 Current system partition is 1 on /dev/sda5 
-Current system partition has "Cumulus Linux 5.12.0" 
+Current system partition has 5.12.0 "Cumulus Linux 5.12.0" 5.12.0.0012
 Other system partition is 2 on /dev/sda6 
-Other system partition has "Cumulus Linux 5.12.0" 
-Next boot to partition 1. 
+...
 ```
 
 To activate the other partition at next boot, run the `cl-image-upgrade -a` command:
@@ -275,6 +272,8 @@ Cumulus Linux completely embraces the Linux and Debian upgrade workflow, where y
 
 When you use package upgrade to upgrade the switch, configuration data stays in place during the upgrade. If the new release updates a previously changed configuration file, the upgrade process prompts you to either specify the version you want to use or evaluate the differences.
 
+Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in [Upgrade Switches in an MLAG Pair](#upgrade-switches-in-an-mlag-pair) below to ensure a smooth upgrade.
+
 {{%notice note%}}
 - You cannot upgrade the switch to a new release train. For example, you **cannot** use package upgrade to upgrade the switch from 4.x to 5.x.
 - Package upgrade only supports the current version plus two. For example, you can upgrade from Cumulus Linux 5.10.1 to Cumulus Linux 5.12 with package upgrade only if you installed the 5.10.1 binary image.
@@ -283,7 +282,6 @@ When you use package upgrade to upgrade the switch, configuration data stays in 
 - The package upgrade command might disrupt core services by changing core service dependency packages.
 - After you upgrade, account UIDs and GIDs created by packages might be different on different switches, depending on the configuration and package installation history.
 - Cumulus Linux does not support the Linux `sudo -E apt-get dist-upgrade` command. Be sure to use `sudo -E apt-get upgrade` when upgrading packages.
-- Package upgrade does not replace or remove third-party applications.
 - To upgrade from Cumulus Linux 5.10 or 5.11 to Cumulus Linux 5.12, you need 0.8GB of free disk space. Before you upgrade, run the NVUE `nv show system disk usage` command or the Linux `sudo df -h` command to show how much disk space you are currently using on the switch.
 {{%/notice%}}
 
@@ -456,8 +454,8 @@ NVIDIA has not tested running different versions of Cumulus Linux on MLAG peer s
 
 4. Upgrade the switch:
 
-   - To upgrade the switch with optimized image upgrade, see {{<link url="#image-upgrade" text="Image Upgrade">}}.
-   - To boot the switch into ONIE, see {{<link title="Installing a New Cumulus Linux Image with ONIE">}}.
+   - To upgrade the switch with optimized image upgrade, see {{<link url="#image-upgrade" text="Optimized Image Upgrade">}}.
+   - To boot the switch into ONIE, see {{<link url="#image-upgrade" text="ONIE Image Install">}}.
    - To upgrade the switch with package upgrade instead of booting into ONIE, see {{<link url="#package-upgrade" text="Package Upgrade">}}.
 
 5. If you installed a new image on the switch, restore the configuration files to the new release. If you performed an upgrade with `apt`, bring the uplink and peer link interfaces you shut down in steps 2 and 3 up:
@@ -524,9 +522,9 @@ NVIDIA has not tested running different versions of Cumulus Linux on MLAG peer s
 
 4. Upgrade the switch:
 
-   - To upgrade the switch with optimized image upgrade, see {{<link url="#image-upgrade" text="Image Upgrade">}}.
-   - To boot the switch into ONIE, see {{<link title="Installing a New Cumulus Linux Image with ONIE">}}.
-   - To upgrade the switch with package upgrade instead of booting into ONIE, see {{<link url="#install-an-image" text="Install an image">}}.
+   - To upgrade the switch with optimized image upgrade, see {{<link url="#image-upgrade" text="Optimized Image Upgrade">}}.
+   - To boot the switch into ONIE, see {{<link url="#image-upgrade" text="ONIE Image Upgrade">}}.
+   - To upgrade the switch with package upgrade instead of booting into ONIE, see {{<link url="#package-upgrade" text="Package Upgrade">}}.
 
 5. Reboot the switch:
 
@@ -575,7 +573,7 @@ NVIDIA has not tested running different versions of Cumulus Linux on MLAG peer s
 
 If you install any third party applications on a Cumulus Linux switch, configuration data is typically installed in the `/etc` directory, but it is not guaranteed. It is your responsibility to understand the behavior and configuration file information of any third party packages installed on the switch.
 
-After you upgrade using a full Cumulus Linux image install, you need to reinstall any third party packages.
+After you upgrade using a full Cumulus Linux image install, you need to reinstall any third party packages. Package upgrade does **not** replace or remove third-party applications.
 
 ## Considerations
 

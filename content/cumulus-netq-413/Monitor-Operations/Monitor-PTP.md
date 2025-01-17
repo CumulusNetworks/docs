@@ -26,7 +26,7 @@ Monitor PTP with the following commands. See the {{<link title="show/#netq-show-
 ```
 ## Access the PTP Dashboard
 
-From the header or {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} menu, select **Spectrum-X**, then **PTP**.
+From the header or {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu, select **Spectrum-X**, then **PTP**.
 
 The PTP summary dashboard displays:
 - clock count, type, and distribution

@@ -19,6 +19,7 @@ NetQ 4.13.0 includes the following new features:
 - Added ability to filter hostnames using regular expressions
 - Improved table layout and column order
 - Security and performance improvements
+- Added support for Ubuntu 22.04
 
 
 ## Upgrade Paths

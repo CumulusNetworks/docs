@@ -14,7 +14,7 @@ Consider the following deployment options and requirements before you install th
 | Single Server | High-Availability Cluster| High-Availability Scale Cluster |
 | --- | --- | --- |
 | On-premises or cloud | On-premises or cloud | On-premises only |
-| Network size: small<ul></ul>| Network size: medium<ul><li>Supports up to 100 switches and 128 interfaces per switch*</li></ul>|  Network size: large<ul><li>Supports up to 1,000 switches and 125,000 interfaces* </li></ul>|
+| Network size: small<ul></ul>| Network size: medium<ul><li>Supports up to 100 switches and 128 interfaces per switch*</li></ul>|  Network size: large<ul><li>3-node: Supports up to 1,000 switches and 125,000 interfaces* </li><li>5-node: Supports up to 2,000 switches and 250,000 interfaces* </li></ul>|
 | KVM or VMware hypervisor | KVM or VMware hypervisor | KVM or VMware hypervisor |
 | System requirements<br><br> On-premises: 16 virtual CPUs, 64GB RAM, 500GB SSD disk<br><br>Cloud: 4 virtual CPUs, 8GB RAM, 64GB SSD disk | System requirements (per node)<br><br> On-premises: 16 virtual CPUs, 64GB RAM, 500GB SSD disk<br><br>Cloud: 4 virtual CPUs, 8GB RAM, 64GB SSD disk |  System requirements (per node)<br><br>On-premises: 48 virtual CPUs, 512GB RAM, 3.2TB SSD disk|
 | All features supported | All features supported|  No support for:<ul><li>Network snapshots</li><li>Trace requests</li><li>Flow analysis</li><li>Duplicate IP address validations</li><li>MAC commentary</li><li>Link health view</li></ul>|
@@ -38,7 +38,7 @@ The **high-availability cluster** deployment supports a greater number of switch
 
 During the installation process, you configure a virtual IP address that enables redundancy for the Kubernetes control plane. In this configuration, the majority of nodes must be operational for NetQ to function. For example, a three-node cluster can tolerate a one-node failure, but not a two-node failure. For more information, refer to the {{<exlink url="https://etcd.io/docs/v3.3/faq/" text="etcd documentation">}}.
 
-The **high-availability scale cluster** deployment provides the same benefits as the high-availability cluster deployment, but supports larger networks of up to 1,000 switches. NVIDIA recommends this option for networks that have over 100 switches and at least 100 interfaces per switch. It offers the highest level of scalability, allowing you to adjust NetQ's network monitoring capacity as your network expands. 
+The **high-availability scale cluster** deployment provides the same benefits as the high-availability cluster deployment, but supports larger networks. NVIDIA recommends this option for networks with more than 100 switches with at least 100 interfaces per switch. It offers the highest level of scalability, allowing you to adjust NetQ's network monitoring capacity by adding additional nodes to your cluster as your network expands. 
 
 Tabular data in the UI is limited to 10,000 rows. For large networks, NVIDIA recommends downloading and exporting the tabular data as a CSV or JSON file and opening it in a spreadsheet program for further analysis. Refer to the installation overview table at the beginning of this section for additional HA scale cluster deployment support information. 
 

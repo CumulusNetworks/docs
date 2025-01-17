@@ -181,6 +181,8 @@ cumulus@netq-server:~$ netq install cluster config generate
 2024-10-28 17:29:53.260462: master-node-installer: Writing cluster installation configuration template file @ /tmp/cluster-install-config.json
 ```
 
+For deployments with greater than the minimum of 3 HA nodes, generate a cluster configuration JSON file with additional `worker-nodes` objects with the `netq install cluster config generate workers <#workers>` command. For example, `netq install cluster config generate workers 2` for two additional workers. 
+
 11. Edit the cluster configuration JSON file with the desired values for each attribute:
 
 {{< tabs "Tab188 ">}}
@@ -203,8 +205,18 @@ cumulus@netq-server:~$ vim /tmp/cluster-install-config.json
                         "ip": "<INPUT>"
                 }
         ]
+        "worker-nodes": [
+                {
+                        "ip": "<INPUT>"
+                },
+                {
+                        "ip": "<INPUT>"
+                }
+        ]
 }
 ```
+
+
 
 | Attribute | Description |
 |----- | ----------- |
@@ -213,6 +225,7 @@ cumulus@netq-server:~$ vim /tmp/cluster-install-config.json
 | `master-ip` | The IP address assigned to the interface on your master node used for NetQ connectivity. |
 | `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. |
 | `ha-nodes` | The IP addresses of each of the HA nodes in your cluster. |
+| `worker-nodes` | The IP addresses of additional worker nodes in your cluster. |
 
 {{%notice note%}}
 
@@ -244,6 +257,7 @@ cumulus@netq-server:~$ vim /tmp/cluster-install-config.json
 {{< /tab >}}
 {{< tab "Completed JSON Example ">}}
 
+The following example configures a 3 node cluster installation with the master IP of 10.176.235.50, and the HA nodes 10.176.235.51 and 10.176.235.52: 
 ``` 
 cumulus@netq-server:~$ vim /tmp/cluster-install-config.json 
 {
@@ -262,6 +276,34 @@ cumulus@netq-server:~$ vim /tmp/cluster-install-config.json
         ]
 }
 ```
+The following example configures a 5 node cluster installation using the same master and HA nodes, with two additional worker nodes:
+
+```
+{
+        "version": "v2.0",
+        "interface": "eth0",
+        "cluster-vip": "10.176.235.101",
+        "master-ip": "10.176.235.50",
+        "is-ipv6": false,
+        "ha-nodes": [
+                {
+                        "ip": "10.176.235.51"
+                },
+                {
+                        "ip": "10.176.235.52"
+                }
+        ]
+        "worker-nodes": [
+                {
+                        "ip": "10.176.235.53"
+                },
+                {
+                        "ip": "10.176.235.54"
+                }
+        ]
+}
+```
+
 | Attribute | Description |
 |----- | ----------- |
 | `interface` | The local network interface on your master node used for NetQ connectivity. |
@@ -269,6 +311,8 @@ cumulus@netq-server:~$ vim /tmp/cluster-install-config.json
 | `master-ip` | The IP address assigned to the interface on your master node used for NetQ connectivity. |
 | `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. |
 | `ha-nodes` | The IP addresses of each of the HA nodes in your cluster. |
+| `worker-nodes` | The IP addresses of additional worker nodes in your cluster. |
+
 {{< /tab >}}
 {{< /tabs >}}
 
@@ -327,3 +371,67 @@ cumulus@hostname:~$ netq show opta-health
 If any of the applications or services display a DOWN status after 30 minutes, open a support ticket and attach the output of the `opta-support` command.
 {{%/notice%}}
 After NetQ is installed, you can {{<link title="Access the NetQ UI" text="log in to NetQ">}} from your browser.
+
+## Add Additional Worker Nodes
+
+To add additional worker nodes to an existing HA scale cluster, generate a JSON configuration template referencing the number of additional worker nodes you want to add. For example, to add two additional worker nodes to an existing 3 node cluster, run the `netq install cluster config generate workers 2` command to generate the JSON configuration template `/tmp/cluster-install-config.json`:
+
+```
+cumulus@netq-appliance:~$ cat /tmp/cluster-install-config.json
+{
+        "version": "v2.0",
+        "interface": "<INPUT>",
+        "cluster-vip": "<INPUT>",
+        "master-ip": "<INPUT>",
+        "is-ipv6": false,
+        "ha-nodes": [
+                {
+                        "ip": "<INPUT>"
+                },
+                {
+                        "ip": "<INPUT>"
+                }
+        ],
+        "worker-nodes": [
+                {
+                        "ip": "<INPUT>"
+                },
+                {
+                        "ip": "<INPUT>"
+                }
+        ]
+}
+```
+
+Edit this file and configure all of the parameters including the existing nodes in your cluster and the new worker IP addresses.
+
+```
+{
+        "version": "v2.0",
+        "interface": "eth0",
+        "cluster-vip": "10.176.235.101",
+        "master-ip": "10.176.235.50",
+        "is-ipv6": false,
+        "ha-nodes": [
+                {
+                        "ip": "10.176.235.51"
+                },
+                {
+                        "ip": "10.176.235.52"
+                }
+        ]
+        "worker-nodes": [
+                {
+                        "ip": "10.176.235.53"
+                },
+                {
+                        "ip": "10.176.235.54"
+                }
+        ]
+}
+```
+
+Install the new workers using the `netq install cluster worker add /tmp/cluster-install-config.json` command.
+
+
+

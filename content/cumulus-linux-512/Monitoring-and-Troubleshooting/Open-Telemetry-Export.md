@@ -8,7 +8,7 @@ Telemetry enables you to collect, send, and analyze large amounts of data, such 
 
 ## Configure Open Telemetry
 
-Cumulus Linux supports {{<exlink url="https://github.com/open-telemetry/" text="open telemetry (OTEL)">}} export. You can use <span class="a-tooltip">[OTLP](## "open telemetry protocol")</span> to export metrics, such as interface counters, histogram collection, platform statistics, and router metrics to an external collector for analysis and visualization.
+Cumulus Linux supports {{<exlink url="https://github.com/open-telemetry/" text="open telemetry (OTEL)">}} export. You can use <span class="a-tooltip">[OTLP](## "open telemetry protocol")</span> to export metrics, such as interface counters, buffer statistics, histogram collection, platform statistics, and router statistics to an external collector for analysis and visualization.
 
 {{%notice note%}}
 Cumulus Linux supports open telemetry export on switches with the Spectrum-2 ASIC and later.
@@ -21,7 +21,7 @@ cumulus@switch:~$ nv set system telemetry export otlp state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-When you enable open telemetry, the switch collects and exports [system information](#system-information-format) metrics to the configured external collector by default. In addition, you can enable open telemetry to collect and export [interface statistics](#interface-statistics), [histogram data](#histogram-data), [control plane statistics](#control-plane-statistics), [platform statistics](#platform-statistics), [buffer statistics](#buffer-statistics), and [router statistics](#router-statistics).
+When you enable open telemetry, the switch collects and exports [system information](#system-information-format) metrics to the configured external collector by default. In addition, you can enable open telemetry to collect and export [interface statistics](#interface-statistics), [buffer statistics](#buffer-statistics), [histogram data](#histogram-data), [control plane statistics](#control-plane-statistics), [platform statistics](#platform-statistics), and [router statistics](#router-statistics).
 
 ### Interface Statistics
 
@@ -64,7 +64,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "PHY">}}
 
-When you enable this setting, the switch exports interface PHY metrics:
+When you enable this setting, the switch exports `nvswitch_interface_phy` and `nvswitch_interface_raw` interface PHY counters:
 
 ```
 cumulus@switch:~$ nv set system telemetry interface-stats class phy state enabled

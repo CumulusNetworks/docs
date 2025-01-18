@@ -202,15 +202,17 @@ cumulus@switch:~$ nv config apply
 
 Edit the `/etc/apt/sources.list` file to configure the repository.
 
-The following example configures the repository located at `http://test.myrepo.com` with distribution `mydist` and pool `mypool`, enables source files from the repository, and sets the repository to trusted. The example also sets the VRF to `default`.
+The following example configures the repository located at `http://test.myrepo.com` with distribution `mydist` and pool `mypool`, enables source files from the repository, and sets the repository to trusted.
 
 ```
-debdeb-src http://test.myrepo.com mydist mypool 
+deb [trusted=yes] http://test.myrepo.com mydist mypool
+deb-src [trusted=yes] http://test.myrepo.com mydist mypool
 ```
 
 The following example configures the repository located at `http://test.myrepo.com` with distribution `mydist` and pool `mypool`, enables source files from the repository, and provides the secure key `thekey.asc`.
 
 ```
+deb [signed-by=/etc/apt/keyrings/thekey.asc] http://test.myrepo.com mydist mypool 
 deb-src [signed-by=/etc/apt/keyrings/thekey.asc] http://test.myrepo.com mydist mypool 
 ```
 

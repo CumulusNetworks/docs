@@ -551,6 +551,15 @@ router bgp 65199
 {{< /tab >}}
 {{< /tabs >}}
 
+## Configure Global BGP Configuration on All BGP VRFs
+
+To configure the BGP ASN and router ID globally on all BGP VRF instances, run the `nv set vrf <vrf-id> router bgp` command on each VRF:
+
+```
+cumulus@leaf01:~$ nv set vrf RED router bgp 
+cumulus@leaf01:~$ nv set vrf BLUE router bgp 
+```
+
 ## Verify Configuration
 
 To verify that the switch can see its BGP neighbors, run the vtysh `show ip bgp summary` command:

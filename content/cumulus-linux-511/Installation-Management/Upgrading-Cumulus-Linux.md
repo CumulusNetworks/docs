@@ -371,7 +371,7 @@ To upgrade the switch using package upgrade:
 
 ### Upgrade Notes
 
-*Package upgrade* always updates to the latest available release in the Cumulus Linux repository. For example, if you are currently running Cumulus Linux 5.0.0 and perform a package upgrade, the packages upgrade to the latest releases in the latest 5.x release.
+*Package upgrade* always updates to the latest available release in the Cumulus Linux repository. For example, if you are currently running Cumulus Linux 5.9.2 and perform a package upgrade, the packages upgrade to the latest releases in the latest 5.x release.
 
 Cumulus Linux is a collection of different Debian Linux packages; be aware of the following:
 

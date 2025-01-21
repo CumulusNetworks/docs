@@ -82,9 +82,9 @@ NVIDIA employees can download NetQ directly from the {{<exlink url="http://ui.li
 
 2. Open your hypervisor and configure your VM. You can use the following examples for reference or use your own hypervisor instructions.
 
- {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem-scale-cluster" version="4.12">}}
+ {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem-scale-cluster" version="4.13">}}
 
- {{<netq-install/vm-setup hypervisor="vmware" version="4.12">}}
+ {{<netq-install/vm-setup hypervisor="vmware" version="4.13">}}
 
 3. Log in to the VM and change the password.
 
@@ -165,14 +165,14 @@ cumulus@hostname:~$ sudo opta-check scale
 
 8. Install and activate the NetQ software using the CLI.
 
-Run the following command on your *master* node to initialize the cluster. Copy the output of the command to use on your additional HA and worker nodes:
+Run the following command on your *master* node to initialize the cluster. Copy the output of the command which includes the SSH key. You will use it in the next step.
 
 ```
 cumulus@<hostname>:~$ netq install cluster master-init
     Please run the following command on all worker nodes:
     netq install cluster worker-init c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCQVFDM2NjTTZPdVM3dQN9MWTU1a
 ```
-9. Run the `netq install cluster worker-init <ssh-key>` command on each of your worker nodes.
+9. Run the `netq install cluster worker-init <ssh-key>` command on each non-master node.
 
 10. Create a JSON template using the installation command for your deployment model.
 
@@ -188,7 +188,7 @@ cumulus@netq-server:~$ netq install cluster config generate
 ```
 {{< /tab >}}
 {{< tab "5-Node Cluster">}}
-For a 5-node cluster, run the `netq install cluster config generate workers <#workers>` command on your master node to generate a cluster configuration JSON file with 2 additional `worker-nodes` objects:
+For a 5-node cluster, run the `netq install cluster config generate workers 2` command on your master node to generate a cluster configuration JSON file with 2 additional `worker-nodes` objects:
 
 ```
 cumulus@netq-server:~$ netq install cluster config generate workers 2
@@ -198,13 +198,13 @@ cumulus@netq-server:~$ netq install cluster config generate workers 2
 {{< /tab >}}
 {{< /tabs >}}
 
-11. Edit the cluster configuration JSON file with the desired values for each attribute:
+11. Edit the cluster configuration JSON file with the values for each attribute:
 
 {{< tabs "Tab188 ">}}
 
 {{< tab "Default JSON Template">}}
 
-The following example includes the `worker-nodes` objects for a 5-node deployment. The JSON template for the 3-node deployment will not include these objects.  
+The following example includes the `worker-nodes` objects for a 5-node deployment. The JSON template for the 3-node deployment will not include `worker-nodes`.  
 
 ``` 
 cumulus@netq-server:~$ vim /tmp/cluster-install-config.json 
@@ -241,8 +241,8 @@ cumulus@netq-server:~$ vim /tmp/cluster-install-config.json
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your master and worker nodes. |
 | `master-ip` | The IP address assigned to the interface on your master node used for NetQ connectivity. |
 | `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. |
-| `ha-nodes` | The IP addresses of each of the HA nodes in your cluster. |
-| `worker-nodes` | The IP addresses of additional worker nodes in your cluster. |
+| `ha-nodes` | The IP addresses of the two HA nodes in your cluster. |
+| `worker-nodes` | The IP addresses of the two worker nodes (for 5-node deployments). |
 
 {{%notice note%}}
 
@@ -328,8 +328,8 @@ cumulus@netq-server:~$ vim /tmp/cluster-install-config.json
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your master and worker nodes. |
 | `master-ip` | The IP address assigned to the interface on your master node used for NetQ connectivity. |
 | `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. |
-| `ha-nodes` | The IP addresses of each of the HA nodes in your cluster. |
-| `worker-nodes` | The IP addresses of additional worker nodes in your 5-node cluster. |
+| `ha-nodes` | The IP addresses of the two HA nodes in your cluster. |
+| `worker-nodes` | The IP addresses of the two worker nodes (for 5-node deployments). |
 
 {{< /tab >}}
 {{< /tabs >}}

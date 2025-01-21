@@ -23,7 +23,7 @@ Follow these steps to set up and configure your VM cluster for an on-premises de
 
 4. Set up and configure your VM.
 
-    {{<netq-install/vm-setup hypervisor="vmware" deployment="onprem" version="4.12">}}
+    {{<netq-install/vm-setup hypervisor="vmware" deployment="onprem" version="4.13">}}
 
 5. Log in to the VM and change the password.
 

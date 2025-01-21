@@ -19,7 +19,7 @@ Follow these steps to set up and configure your VM for a cloud deployment:
 
 4. Set up and configure your VM.
 
-    {{<netq-install/vm-setup hypervisor="vmware" deployment="cloud" version="4.12">}}
+    {{<netq-install/vm-setup hypervisor="vmware" deployment="cloud" version="4.13">}}
 
 5. Log in to the VM and change the password.
 

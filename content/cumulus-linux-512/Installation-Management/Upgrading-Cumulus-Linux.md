@@ -284,7 +284,7 @@ Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual 
 - Cumulus Linux does not support the Linux `sudo -E apt-get dist-upgrade` command. Be sure to use `sudo -E apt-get upgrade` when upgrading packages.
 - To upgrade from Cumulus Linux 5.10 or 5.11 to Cumulus Linux 5.12, you need 0.8GB of free disk space. Before you upgrade, run the NVUE `nv show system disk usage` command or the Linux `sudo df -h` command to show how much disk space you are currently using on the switch.
 {{%/notice%}}
-
+<!--
 {{%notice info%}}
 
 If you are running Cumulus Linux 5.9 (the current extended-support release), the default switch configuration allows you to upgrade to the latest Cumulus 5.9 maintenance release only.
@@ -307,7 +307,7 @@ To upgrade from Cumulus Linux 5.9 to the latest Cumulus Linux 5 release, perform
    ```
 
 {{%/notice%}}
-
+-->
 To upgrade the switch with package upgrade:
 
 {{< tabs "TabID253 ">}}

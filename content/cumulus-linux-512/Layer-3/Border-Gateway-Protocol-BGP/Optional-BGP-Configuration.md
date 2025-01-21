@@ -2439,7 +2439,7 @@ The BGP community list can be either *standard*, *extended*, or *large*. The sta
 
 An extended BGP community list takes a regular expression of communities and matches the listed communities.
 
-A large community-list accommodates more identification information, including 4-byte AS numbers.
+A large community-list accommodates more identification information, including 4-byte AS numbers. BGP enables large communities by default. To disable large communities, run the `nv set vrf <vrf> router bgp neighbor <neighbor> address-family <address-family> community-advertise large off` command or the `nv set vrf <vrf> router bgp peer-group <peer-group> address-family <address-family> community-advertise large off` command.
 
 When the neighbor receives the prefix, it examines the community value and takes action accordingly, such as permitting or denying the community member in the routing policy.
 

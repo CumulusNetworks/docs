@@ -10,7 +10,7 @@ TACACS+ in Cumulus Linux:
 - Uses PAM authentication and includes `login`, `ssh`, `sudo` and `su`.
 - Allows users with privilege level 15 to run any command with sudo.
 - Allows users with privilege level 15 to run NVUE `nv set`, `nv unset`, and `nv apply` commands in addition to `nv show` commands. TACACS+ users with a lower privilege level can only execute `nv show` commands.
-- Supports up to seven TACACS+ servers. Be sure to configure your TACACS+ servers in addition to the TACACS+ client. Refer to your TACACS+ server documentation.
+- Supports up to eight TACACS+ servers. Be sure to configure your TACACS+ servers in addition to the TACACS+ client. Refer to your TACACS+ server documentation.
 
 ## TACACS+ Client Packages
 
@@ -95,7 +95,7 @@ cumulus@switch:~$ nv config apply
    server=192.168.0.30
    ```
 
-   Cumulus Linux supports a maximum of seven TACACS+ servers. To specify multiple servers, add one per line to the `/etc/tacplus_servers` file. Connections establish in the order in the file.
+   Cumulus Linux supports a maximum of eight TACACS+ servers. To specify multiple servers, add one per line to the `/etc/tacplus_servers` file. Connections establish in the order in the file.
 
    ```
    cumulus@switch:~$ sudo nano /etc/tacplus_servers

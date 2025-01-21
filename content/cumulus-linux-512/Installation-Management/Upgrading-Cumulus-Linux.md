@@ -6,13 +6,13 @@ toc: 3
 ---
 You can upgrade Cumulus Linux in one of two ways:
 - Install a new Cumulus Linux image with either {{<link url="#image-upgrade" text="Optimized image upgrade">}} or <span class="a-tooltip">[ONIE](## "Open Network Install Environment")</span>.
-- Upgrade only changed packages using {{<link url="#package-upgrade" text="package upgrade">}}.
+- Upgrade only changed packages with {{<link url="#package-upgrade" text="package upgrade">}}.
 
 Cumulus Linux provides ISSU to upgrade an active switch with minimal disruption to the network. See {{<link url="In-Service-System-Upgrade-ISSU" text="In-Service-System-Upgrade-ISSU">}}.
 
 ## Before You Upgrade
 
-Optimized image upgrade and package upgrade do not overwrite configuration files on the switch, however upgrading Cumulus Linux with ONIE is destructive and any configuration files on the switch are not saved; before you start an upgrade with ONIE, back up configuration files to a different server.
+Optimized image upgrade and package upgrade do not overwrite configuration files on the switch, however upgrading Cumulus Linux with ONIE is destructive and any configuration files on the switch are not saved. Before you start an upgrade with ONIE, back up configuration files to a different server.
 
 For troubleshooting any upgrade issues, create a cl-support file before you start and after you complete the upgrade.
 
@@ -492,7 +492,7 @@ NVIDIA has not tested running different versions of Cumulus Linux on MLAG peer s
     ```
 
 10. Verify the other switch is now in the secondary role.
-11. Repeat steps 2-9 on the new secondary switch.
+11. Repeat steps 2-8 on the new secondary switch.
 12. Remove the priority 2048 and restore the priority back to 32768 on the current primary switch:
 
     ```
@@ -577,5 +577,5 @@ After you upgrade using a full Cumulus Linux image install, you need to reinstal
 
 ## Considerations
 
-- The `/etc/os-release` and `/etc/lsb-release` files update to the currently installed Cumulus Linux release when you upgrade the switch using either *package upgrade* or *Cumulus Linux image install*. For example, if you perform a package upgrade and the latest Cumulus Linux release on the repository is 5.9.1, these two files display the release as 5.9.1 after the upgrade.
-- The `/etc/image-release` file updates **only** when you run a Cumulus Linux image install. Therefore, if you run a Cumulus Linux image install of Cumulus Linux 5.9.0, followed by a package upgrade to 5.9.1, the `/etc/image-release` file continues to display Cumulus Linux 5.9.0, which is the originally installed base image.
+- The `/etc/os-release` and `/etc/lsb-release` files update to the currently installed Cumulus Linux release when you upgrade the switch using either *package upgrade* or *Cumulus Linux image install*. For example, if you perform a package upgrade and the latest Cumulus Linux release on the repository is 5.12, these two files display the release as 5.12 after the upgrade.
+- The `/etc/image-release` file updates **only** when you run a Cumulus Linux image install. Therefore, if you run a Cumulus Linux image install of Cumulus Linux 5.10.1, followed by a package upgrade to 5.12, the `/etc/image-release` file continues to display Cumulus Linux 5.10.1, which is the originally installed base image.

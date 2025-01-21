@@ -17,7 +17,7 @@ Follow these steps to set up and configure your VM on a single server in an on-p
 
 3. Download the NetQ image.
 
-    {{<netq-install/kvm-platform-image deployment="onprem" version="4.12">}}
+    {{<netq-install/kvm-platform-image deployment="onprem" version="4.13">}}
 
 4. Set up and configure your VM.
 
@@ -37,6 +37,6 @@ Follow these steps to set up and configure your VM on a single server in an on-p
 
 8. Run the install command on your NetQ server:
 
-{{<netq-install/install-with-cli version="4.12" deployment="onprem-single">}}
+{{<netq-install/install-with-cli version="4.13" deployment="onprem-single">}}
 
 After NetQ is installed, you can {{<link title="Access the NetQ UI" text="log in to NetQ">}} from your browser.

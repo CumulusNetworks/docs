@@ -8,7 +8,7 @@ bookhidden: true
 Follow these steps to set up and configure your VM on a cluster of servers in an on-premises deployment. First configure the VM on the master node, and then configure the VM on each additional node. NVIDIA recommends installing the virtual machines on different servers to increase redundancy in the event of a hardware failure. 
 
 {{%notice note%}}
-NetQ supports a 3-node HA scale cluster consisting of 1 master and 2 additional high-availability (HA) nodes or a 5-node cluster consisting of 1 master, 2 HA nodes, and 2 worker nodes.
+NetQ 4.13.0 supports a 3-node HA scale cluster consisting of 1 master and 2 additional high-availability (HA) nodes or a 5-node cluster consisting of 1 master, 2 HA nodes, and 2 worker nodes.
 {{%/notice%}}
 - - -
 

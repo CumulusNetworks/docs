@@ -146,6 +146,8 @@ Cumulus Linux provides two different ways to upgrade the switch with a new image
 - **ONIE** is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a switch.
 - **Optimized image upgrade** uses two partitions to upgrade the image with just one reboot cycle. With two partitions on the switch, the current image boots from one partition, from which the image upgrade triggers. After detecting the running partition and checking if the second partition is available for installation, optimized upgrade starts to stage the installation in the second partition (copying the image, preparing the partition, unpacking the new image, and tuning and finalizing the new partition for the new image). The subsequent boot occurs from the second partition.
 
+  The switch does not support optimized image upgrade in {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="warm restart mode">}}.
+
 {{%notice note%}}
 Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in [Upgrade Switches in an MLAG Pair](#upgrade-switches-in-an-mlag-pair) below to ensure a smooth upgrade.
 {{%/notice%}}
@@ -165,13 +167,13 @@ Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual 
 2. Install the image on the second partition:
 
    ```
-   cumulus@switch:~$ nv action install system image
+   cumulus@switch:~$ nv action install system image cumulus-linux-5.12.0-mlx-amd64.bin
    ```
 
    Use the `force` option to force install the image:
 
    ```
-   cumulus@switch:~$ nv action install system image force
+   cumulus@switch:~$ nv action install system image cumulus-linux-5.12.0-mlx-amd64.bin force
    ```
 
 3. Set the boot partition:
@@ -193,13 +195,19 @@ To show information about a cumulus image:
 
 ```
 cumulus@switch:~$ nv show system image
-               operational         
+              operational
 -------------  --------------------
-current        1                   
-partition1                         
-  build-id     5.12.0.0012         
+current        1
+next           1
+partition1
+  build-id     5.deb12.dev.0813
   description  Cumulus Linux 5.12.0
-  disk         /dev/vda5           
+  disk         /dev/sda5
+  release      5.12.0
+partition2
+  build-id     5.deb12.dev.0813
+  description  Cumulus Linux 5.12.0
+  disk         /dev/sda6
   release      5.12.0
 ```
 

@@ -1384,21 +1384,22 @@ cumulus@leaf01:~$
 
 BGP prefix independent convergence (PIC) reduces data plane convergence times and improves unicast traffic convergence for remote link failures (when the BGP next hop fails). A remote link is a link between a spine and a remote leaf, or a spine and the super spine layer.
 
+When you configure BGP PIC, Cumulus Linux assigns one next hop group for each source and the remote leaf advertises the router ID loopback route. The remote leaf tags prefix routes with a route-origin extended community (SOO) so that the local leaf recognizes the routes. When the network topology changes, the local leaf obtains the router ID loopback route with the updated ECMP, allowing a O (1) next hop group replace operation for all prefixes from the remote leaf without waiting for individual BGP updates.
+
 {{%notice note%}}
-- BGP PIC is a BETA feature for Spectrum-4 switches.
+- Cumulus Linux supports BGP PIC on Spectrum-4 switches.
 - Cumulus Linux does not support BGP PIC with EVPN, MLAG, or VRF route leaking.
 - You can configure PIC on the default VRF only.
+- BGP PIC only redistributes the switch loopback address in addition to the host prefixes from the leaf. NVIDIA does not recommend redistributing interface addresses into BGP when you enable PIC.
 - Additional ECMP hardware resources are required for PIC. Refer to {{<link url="Equal-Cost-Multipath-Load-Sharing/#ecmp-resource-sharing-during-next-hop-group-updates" text="Additional ECMP resource optimization for next hop groups">}}
 {{%/notice%}}
 
-When you configure BGP PIC, Cumulus Linux assigns one next hop group for each source and the remote leaf advertises the router ID loopback route. The remote leaf tags prefix routes with a route-origin extended community so that the local leaf recognizes the routes. When the network topology changes, the local leaf obtains the router ID loopback route with the updated ECMP, allowing a O (1) next hop group replace operation for all prefixes from the remote leaf without waiting for individual BGP updates.
-
-To enable PIC:
+### Configure PIC
 
 {{< tabs "1398 ">}}
 {{< tab "NVUE Commands ">}}
 
-On a leaf switch, enable the BGP advertise origin option so that BGP can attach the Site-of-Origin (SOO) extended community to all routes advertised to its peers from the source where the routes originate.
+On a leaf switch, enable the BGP advertise origin option so that BGP can attach the SOO extended community to all routes advertised to its peers from the source where the routes originate.
 
 The following example enables BGP advertise origin for IPv4:
 
@@ -1414,11 +1415,13 @@ On all switches (leaf, spine and super spine), enable the next hop group per sou
 The following example enables the next hop group per source option for IPv4:
 
 ```
-cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast nhg-per-origin
-cumulus@leaf01:~$ nv config apply
+cumulus@spine01:~$ nv set vrf default router bgp address-family ipv4-unicast nhg-per-origin
+cumulus@spine01:~$ nv config apply
 ```
 
 For IPv6, run the `nv set vrf <vrf> router bgp address-family ipv6-unicast nhg-per-origin` command.
+
+To disable BGP PIC, run the `nv unset vrf <vrf> router bgp address-family <address-family> advertise-origin` command on the leaf switch and the `nv unset vrf <vrf> router bgp address-family <address-family> nhg-per-origin` command on all switches.
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -1439,20 +1442,39 @@ leaf01# write memory
 leaf01# exit
 ```
 
-On all switches (leaf, spine and super spine), enable the next hop group per source option so that when BGP receives routes with the SOO extended community, it allocates a next hop group for each source.
+You can set the SOO admin value to override the default value of the last 2 bytes used in the SOO, which is generated automatically when you set `bgp advertise-origin`. The default value is 0x0.
 
-The following example enables BGP advertise origin for IPv4:
+{{%notice note%}}
+You must set the same SOO admin value across the entire data center.
+{{%/notice%}}
+
+To set the SOO admin value:
 
 ```
 cumulus@leaf01:~$ sudo vtysh
 ...
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
-leaf01(config-router)# address-family ipv4
-leaf01(config-router-af)# bgp nhg-per-origin
-leaf01(config-router-af)# end
+leaf01(config-router)# bgp per-source-nhg soo-admin-value 1
+leaf01(config-router)# end
 leaf01# write memory
 leaf01# exit
+```
+
+On all switches (leaf, spine and super spine), enable the next hop group per source option so that when BGP receives routes with the SOO extended community, it allocates a next hop group for each source.
+
+The following example enables BGP next hop group per source for IPv4:
+
+```
+cumulus@spine01:~$ sudo vtysh
+...
+spine01# configure terminal
+spine01(config)# router bgp 65101
+spine01(config-router)# address-family ipv4
+spine01(config-router-af)# bgp nhg-per-origin
+spine01(config-router-af)# end
+spine01# write memory
+spine01# exit
 ```
 
 The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
@@ -1464,6 +1486,354 @@ router bgp 65101
   bgp advertise-origin
   bgp nhg-per-origin
 ...
+```
+
+You can set the convergence timer to override the default amount of time BGP waits to expand the ECMP path when it receives a SOO route. This setting lets you dampen the SOO route updates BGP receives from peers especially in a high ECMP topology and helps to reduce churn.
+
+You can set a value between 5 and 1000 milliseconds. The default value is 50.
+
+To set the convergence timer:
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# bgp per-source-nhg convergence-timer 100
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+```
+
+To disable BGP PIC, use the `no bgp advertise-origin` command on the leaf switch and the `no bgp nhg-per-origin` on all switches. For example:
+
+```
+cumulus@spine02:~$ sudo vtysh
+...
+spine01# configure terminal
+spine01(config)# router bgp 65101
+spine01(config-router)# address-family ipv4
+spine01(config-router-af)# no bgp nhg-per-origin
+spine01(config-router-af)# end
+spine01# write memory
+spine01# exit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Show PIC Information
+
+{{< tabs "1585 ">}}
+{{< tab "NVUE Commands ">}}
+
+To show information about all SOO routes, run the `nv show <vrf> default router bgp address-family <address-family> soo-route` command:
+
+```
+cumulus@spine01:~$ nv show vrf default router bgp address-family ipv4-unicast soo-route 
+
+PathCnt - Number of paths for this SoO., RouteCnt - Number of routes with this
+SoO, SoONhgID - Nexthop group id used by this SoO, SoORouteFlag - Indicates
+Site-of-Origin route flag - I - Installed, NhgRouteCnt - Number of routes using
+SoO NHG, NhgFlag - V - valid, Ip - install-pending, Dp - delete-pending
+
+SoORouteID  PathCnt  RouteCnt  SoONhgID  SoORouteFlag  NhgRouteCnt  NhgFlag
+----------  -------  --------  --------  ------------  -----------  -------
+10.10.10.1  1        1         70328885  I             1            V  
+```
+
+To show information about a specific SOO route, run the `nv show <vrf> default router bgp address-family <address-family> soo-route` command:
+
+```
+cumulus@spine01:~$ nv show vrf default router bgp address-family ipv4-unicast soo-route 10.10.10.1
+                          operational              
+------------------------  -------------------------
+num-paths                 1                        
+nexthop-group-id          70328885                 
+num-routes-with-soo       1                        
+num-routes-using-soo-nhg  1                        
+soo-route-flag            I                        
+nhg-flags-string          V                        
+nhg-flags                                          
+  nhg-valid               yes                      
+  nhg-install-pending     no                       
+  nhg-delete-pending      no                       
+[peer-index]              fe80::4ab0:2dff:fe3a:a928
+bit-map                                            
+  selected-path-bitmap     1                       
+  installed-path-bitmap    1                       
+[route-with-soo]          10.0.1.12/32
+```
+
+To show the SOO peer bit index mapping for an SOO route, run the `nv show <vrf> default router bgp address-family <address-family> soo-route <prefix> peer-index` command:
+
+```
+cumulus@spine01:~$ nv show vrf default router bgp address-family ipv4-unicast soo-route 10.10.10.1 peer-index
+SooPeerBitIndex - Indicates Site-of-Origin peer bit index mapping
+
+IPAddress                  SooPeerBitIndex
+-------------------------  ---------------
+fe80::4ab0:2dff:fe3a:a928  1
+```
+
+To show if a specific route uses PIC, run the `nv show <vrf> default router bgp address-family <address-family> soo-route <prefix> route-with-soo` command:
+
+```
+cumulus@spine01:~$ nv show vrf default router bgp address-family ipv4-unicast soo-route 10.10.10.1 route-with-soo 
+UseSooNhg - Indicates this route-with-soo uses SooNhg, SelectedPathBitmap -
+Details of Site-of-Origin selected path bitmap
+
+Prefix        UseSooNhg  SelectedPathBitmap
+------------  ---------  ------------------
+10.0.1.12/32  yes         1
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+To show information about all SOO routes, run the `show bgp vrf <vrf> <address-family> unicast soo route` command:
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+show bgp vrf default ipv4 unicast soo route
+BGP: VRF default
+
+SoO: 10.10.10.1
+  NHG:
+    NHG ID: 70328887
+    NHG flags: Valid, Installed
+  SoO route:
+    Number of paths: 1
+    Number of Routes with SoO: 1
+    Number of Routes with SoO using SoO NHG: 1
+    SoO route flags: Installed
+  Nexthop cache:
+      fe80::4ab0:2dff:feec:f8e/128 NH ifidx: 3 type: 5 flags: 5 lbw: 0
+  Peer BitIndex Mappings:
+    fe80::4ab0:2dff:feec:f8e: 1
+  Bitmaps:
+    Selected path info bitmap  bits set: 1
+    Installed path info bitmap bits set: 1
+  Route with SoO:
+      10.0.1.12/32 uses SoO NHG Selected path info bitmap bits set: 1
+SoO: 10.10.10.3
+  NHG:
+    NHG ID: 70328889
+    NHG flags: Valid, Installed
+  SoO route:
+    Number of paths: 1
+    Number of Routes with SoO: 1
+    Number of Routes with SoO using SoO NHG: 1
+    SoO route flags: Installed
+  Nexthop cache:
+      fe80::4ab0:2dff:fef2:6bc5/128 NH ifidx: 5 type: 5 flags: 5 lbw: 0
+  Peer BitIndex Mappings:
+    fe80::4ab0:2dff:fef2:6bc5: 3
+  Bitmaps:
+    Selected path info bitmap  bits set: 3
+    Installed path info bitmap bits set: 3
+  Route with SoO:
+      10.0.1.34/32 uses SoO NHG Selected path info bitmap bits set: 3
+SoO: 10.10.10.2
+  NHG:
+    NHG ID: 70328888
+    NHG flags: Valid, Installed
+  SoO route:
+    Number of paths: 1
+    Number of Routes with SoO: 1
+    Number of Routes with SoO using SoO NHG: 0
+    SoO route flags: Installed
+  Nexthop cache:
+      fe80::4ab0:2dff:fe5d:6456/128 NH ifidx: 4 type: 5 flags: 5 lbw: 0
+  Peer BitIndex Mappings:
+    fe80::4ab0:2dff:fe5d:6456: 2
+  Bitmaps:
+    Selected path info bitmap  bits set: 2
+    Installed path info bitmap bits set: 2
+  Route with SoO:
+      10.0.1.12/32 Selected path info bitmap bits set: 2
+```
+
+To show information about a specific SOO route, run the `show bgp vrf <vrf> <address-family> unicast soo route <prefix>` command:
+
+```
+cumulus@spine01:~$ sudo vtysh
+...
+show bgp vrf default ipv4 unicast soo route 10.10.10.3
+BGP: VRF default
+
+SoO: 10.10.10.3
+  NHG:
+    NHG ID: 70328889
+    NHG flags: Valid, Installed
+  SoO route:
+    Number of paths: 1
+    Number of Routes with SoO: 1
+    Number of Routes with SoO using SoO NHG: 1
+    SoO route flags: Installed
+  Nexthop cache:
+      fe80::4ab0:2dff:fef2:6bc5/128 NH ifidx: 5 type: 5 flags: 5 lbw: 0
+  Peer BitIndex Mappings:
+    fe80::4ab0:2dff:fef2:6bc5: 3
+  Bitmaps:
+    Selected path info bitmap  bits set: 3
+    Installed path info bitmap bits set: 3
+  Route with SoO:
+      10.0.1.34/32 uses SoO NHG Selected path info bitmap bits set: 3
+```
+
+You can show the above commands in json format. For example:
+
+```
+cumulus@spine01:~$ sudo vtysh
+...
+show bgp vrf default ipv4 unicast soo route json 
+{
+  "default":[
+    {
+      "SoORoute":"10.10.10.1",
+      "numPaths":1,
+      "nexthopgroupId":70328887,
+      "numRoutesWithSoO":1,
+      "numRoutesWithSoOUsingSoONHG":1,
+      "nhgValid":true,
+      "nhgInstallPending":false,
+      "nhgDeletePending":false,
+      "SoORouteFlag":"Installed",
+      "nextHopCache":[
+        {
+          "prefix":"fe80::4ab0:2dff:feec:f8e/128",
+          "ifIndex":3,
+          "type":5,
+          "flags":5,
+          "lbw":0
+        }
+      ],
+      "peerBitIndexMapping":[
+        {
+          "peerIp":"fe80::4ab0:2dff:feec:f8e",
+          "bitIndex":1
+        }
+      ],
+      "bitMaps":[
+        {
+          "selectedPathBitmap":" 1",
+          "installedPathBitmap":" 1"
+        }
+      ],
+      "routeWithSoO":[
+        {
+          "prefix":"10.0.1.12/32",
+          "usesSoONhg":true,
+          "selectedPathBitmap":" 1"
+        }
+      ]
+    },
+    {
+      "SoORoute":"10.10.10.3",
+      "numPaths":1,
+      "nexthopgroupId":70328889,
+      "numRoutesWithSoO":1,
+      "numRoutesWithSoOUsingSoONHG":1,
+      "nhgValid":true,
+      "nhgInstallPending":false,
+      "nhgDeletePending":false,
+      "SoORouteFlag":"Installed",
+      "nextHopCache":[
+        {
+          "prefix":"fe80::4ab0:2dff:fef2:6bc5/128",
+          "ifIndex":5,
+          "type":5,
+          "flags":5,
+          "lbw":0
+        }
+      ],
+      "peerBitIndexMapping":[
+        {
+          "peerIp":"fe80::4ab0:2dff:fef2:6bc5",
+          "bitIndex":3
+        }
+      ],
+      "bitMaps":[
+        {
+          "selectedPathBitmap":" 3",
+          "installedPathBitmap":" 3"
+        }
+      ],
+      "routeWithSoO":[
+        {
+          "prefix":"10.0.1.34/32",
+          "usesSoONhg":true,
+          "selectedPathBitmap":" 3"
+        }
+      ]
+    },
+    {
+      "SoORoute":"10.10.10.2",
+      "numPaths":1,
+      "nexthopgroupId":70328888,
+      "numRoutesWithSoO":1,
+      "numRoutesWithSoOUsingSoONHG":0,
+      "nhgValid":true,
+      "nhgInstallPending":false,
+      "nhgDeletePending":false,
+      "SoORouteFlag":"Installed",
+      "nextHopCache":[
+        {
+          "prefix":"fe80::4ab0:2dff:fe5d:6456/128",
+          "ifIndex":4,
+          "type":5,
+          "flags":5,
+          "lbw":0
+        }
+      ],
+      "peerBitIndexMapping":[
+        {
+          "peerIp":"fe80::4ab0:2dff:fe5d:6456",
+          "bitIndex":2
+        }
+      ],
+      "bitMaps":[
+        {
+          "selectedPathBitmap":" 2",
+          "installedPathBitmap":" 2"
+        }
+      ],
+      "routeWithSoO":[
+        {
+          "prefix":"10.0.1.12/32",
+          "usesSoONhg":false,
+          "selectedPathBitmap":" 2"
+        }
+      ]
+    }
+  ]
+}
+```
+
+The `show bgp ipv4 unicast` and `show bgp ipv4 unicast <prefix>` commands also show SOO information:
+
+```
+cumulus@spine01:~$ sudo vtysh
+...
+show bgp ipv4 unicast 10.10.10.3
+BGP routing table entry for 10.10.10.3/32, version 29 SoO:10.10.10.3, multipath soo nhg:70328889
+Paths: (2 available, best #1, table default)
+  Advertised to non peer-group peers:
+  leaf01(swp1) leaf02(swp2) leaf03(swp3) leaf04(swp4) border01(swp5) border02(swp6)
+  65103
+    fe80::4ab0:2dff:fef2:6bc5 (leaf03) from leaf03(swp3) (10.10.10.3)
+    (fe80::4ab0:2dff:fef2:6bc5) (used)
+      Origin IGP, metric 0, valid, external, bestpath-from-AS 65103, best (AS Path)
+      Extended Community: SoO:10.10.10.3:0
+      Last update: Wed Jan 22 20:12:46 2025
+  65104 65103
+    fe80::4ab0:2dff:feab:57dd (leaf04) from leaf04(swp4) (10.10.10.4)
+    (fe80::4ab0:2dff:feab:57dd) (used)
+      Origin IGP, valid, external, bestpath-from-AS 65104
+      Extended Community: SoO:10.10.10.3:0
+      Last update: Wed Jan 22 20:12:46 2025
 ```
 
 {{< /tab >}}

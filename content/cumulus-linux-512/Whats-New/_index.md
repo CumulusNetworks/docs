@@ -161,10 +161,6 @@ nv action upload system log file <file-name> <remote-url-upload>
 {{< /tabs >}}
 {{< /expand >}}
 
-{{%notice warning%}}
-To align with a long-term vision of a common interface between Cumulus Linux, Nvidia OS (NVOS), and Host-Based Networking, certain NVUE commands in Cumulus Linux 5.12 have changed. Before you upgrade to 5.12, review the list of changed and removed NVUE commands above and be sure to make any necessary changes to your automation.
-{{%/notice%}}
-
 ## Release Considerations
 
 Review the following considerations before you upgrade to Cumulus Linux 5.12.

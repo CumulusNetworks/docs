@@ -117,7 +117,7 @@ To configure DHCP Agent Information Option 82:
 {{< tabs "TabID117 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example enables Option 82 and enables circuit ID:
+The following example enables Option 82 and enables circuit ID to inject the *physical switch port* on which the relayed DHCP discover packet arrives instead of the SVI:
 
 ```
 cumulus@leaf01:~$ nv set service dhcp-relay <vrf-id> agent enable on
@@ -125,7 +125,7 @@ cumulus@leaf01:~$ nv set service dhcp-relay <vrf-id> agent use-pif-circuit-id en
 cumulus@leaf01:~$ nv config apply
 ```
 
-The following example enables Option 82 and sets the remote ID to MAC address 44:38:39:BE:EF:AA:
+The following example enables Option 82 and sets the remote ID to be MAC address 44:38:39:BE:EF:AA. The remote ID is a custom string (up to 255 characters in length).
 
 ```
 cumulus@leaf01:~$ nv set service dhcp-relay <vrf-id> agent enable on
@@ -156,13 +156,13 @@ cumulus@leaf01:~$ nv config apply
    OPTIONS="-a --use-pif-circuit-id"
    ```
 
-   To customize the Remote ID sub-option, add `-a -r` to the `OPTIONS` line followed by a custom string (up to 255 characters):
+   To customize the Remote ID sub-option, add `-a -r` to the `OPTIONS` line followed by a custom string (up to 255 characters). The following example adds the MAC address 44:38:39:BE:EF:AA:
 
    ```
    cumulus@leaf01:~$ sudo nano /etc/default/isc-dhcp-relay-default
    ...
    # Additional options that are passed to the DHCP relay daemon?
-   OPTIONS="-a -r CUSTOMVALUE"
+   OPTIONS="-a -r 44:38:39:BE:EF:AA"
    ```
 
 2. Restart the `dhcrelay` service to apply the new configuration:

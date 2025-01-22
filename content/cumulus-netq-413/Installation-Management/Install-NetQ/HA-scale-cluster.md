@@ -144,12 +144,12 @@ Kubernetes requires hostnames to be composed of a sequence of labels concatenate
 The Internet standards (RFCs) for protocols specify that labels may contain only the ASCII letters a through z (in lower case), the digits 0 through 9, and the hyphen-minus character ('-').
 {{</notice>}}
 
-Use the following command:
+Set the new hostname using the following command. Replace `NEW_HOSTNAME` with the name you chose.
 
 ```
 cumulus@hostname:~$ sudo hostnamectl set-hostname NEW_HOSTNAME
 ```
-Add the same NEW_HOSTNAME value to **/etc/hosts** on your VM for the localhost entry. For example:
+Add the same `NEW_HOSTNAME` value to **/etc/hosts** on your VM for the localhost entry. For example:
 
 ```
 127.0.0.1 localhost NEW_HOSTNAME
@@ -198,7 +198,7 @@ cumulus@netq-server:~$ netq install cluster config generate workers 2
 {{< /tab >}}
 {{< /tabs >}}
 
-11. Edit the cluster configuration JSON file with the values for each attribute:
+11. Edit the cluster configuration JSON file with the values for each attribute.
 
 {{< tabs "Tab188 ">}}
 

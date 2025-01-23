@@ -9,12 +9,17 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 
 ## January 2025
 <!-- Air:WhatsNew -->
+### 82.2025.0123-011
+- Fixed an issue with scrollbars in the Demo Marketplace simulation guide
+- Fixed an issue with services links in the node side panel
+- Fixed an issue with CD-ROM image transfers between organizations
+<!-- Air:WhatsNew -->
+
 ### 82.2025.0114-011
 - Added support for exporting simulations to JSON topology files from the UI
 - Added the ability to configure switch breakout ports prior to starting a simulation using the API or UI 
 - Fixed an issue with node consoles when switching between topology, nodes, and links views
 - Fixed an issue with port search in the node side panel 
-<!-- Air:WhatsNew -->
 
 ### 82.2025.0110-011
 - Fixed an issue where node instructions were not being executed on Demo Marketplace simulations

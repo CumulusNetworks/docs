@@ -10,9 +10,9 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 ## January 2025
 <!-- Air:WhatsNew -->
 ### 82.2025.0123-011
-- Fixed an issue with scrollbars in the demo marketplace Simulation Guide
-- Fixed an issue with services links in node side panel
-- Fixed an issue with CD-ROM images not being able to get transferred between organizations while in use
+- Fixed an issue with scrollbars in the Demo Marketplace simulation guide
+- Fixed an issue with services links in the node side panel
+- Fixed an issue with CD-ROM image transfers between organizations
 <!-- Air:WhatsNew -->
 
 ### 82.2025.0114-011

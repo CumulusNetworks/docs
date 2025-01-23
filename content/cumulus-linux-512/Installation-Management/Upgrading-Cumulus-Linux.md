@@ -195,20 +195,20 @@ To show information about a cumulus image:
 
 ```
 cumulus@switch:~$ nv show system image
-              operational
--------------  --------------------
-current        1
-next           1
-partition1
-  build-id     5.deb12.dev.0813
-  description  Cumulus Linux 5.12.0
-  disk         /dev/sda5
-  release      5.12.0
-partition2
-  build-id     5.deb12.dev.0813
-  description  Cumulus Linux 5.12.0
-  disk         /dev/sda6
-  release      5.12.0
+               operational              
+-------------  -------------------------
+current        2                        
+next           2                        
+partition1                              
+  build-id     5.11.0.0026.devsignedpkgs
+  description  Cumulus Linux 5.11.0     
+  disk         /dev/sda5                
+  release      5.11.0                   
+partition2                              
+  build-id     5.12.0.0018.devsignedpkgs
+  description  Cumulus Linux 5.12.0     
+  disk         /dev/sda6                
+  release      5.12.0 
 ```
 
 - To list the available Cumulus Linux image files, run the `nv show system image files` command.

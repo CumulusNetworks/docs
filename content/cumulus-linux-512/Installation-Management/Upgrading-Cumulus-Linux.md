@@ -167,13 +167,13 @@ Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual 
 2. Install the image on the second partition:
 
    ```
-   cumulus@switch:~$ nv action install system image cumulus-linux-5.12.0-mlx-amd64.bin
+   cumulus@switch:~$ nv action install system image files cumulus-linux-5.12.0-mlx-amd64.bin
    ```
 
    Use the `force` option to force install the image:
 
    ```
-   cumulus@switch:~$ nv action install system image cumulus-linux-5.12.0-mlx-amd64.bin force
+   cumulus@switch:~$ nv action install system image files cumulus-linux-5.12.0-mlx-amd64.bin force
    ```
 
 3. Set the boot partition:

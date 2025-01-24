@@ -156,15 +156,15 @@ To add the queue histogram card to your workbench, select **Add card** and searc
 
 Devices are {{<link title="Switch Management/#role-management" text="grouped according to their roles">}}: superspine, leaf, spine, or exit. If you haven't assigned roles to your devices, they appear in the 'unassigned' group. Each group lists the five devices with the highest P95 values. From here, you can select an individual device or **View all** to view all devices assigned a particular role along with their queue length values.
 
-{{<figure src="/images/netq/queue-hist-updated-413.png" alt="dashboard displaying devices grouped according to their respective roles" width="1200" height="425">}}
+{{<figure src="/images/netq/fabric-overview-queue-413.png" alt="dashboard displaying devices grouped according to their respective roles" width="1200" height="425">}}
 
 Each device is represented by a card that displays its hostname, the port with the longest queue length (displayed horizontally, divided into bins), standard deviation, P95 value across all ports that have ASIC monitoring configured, and average queue length over the past five minutes. The values reflected in the bins are color-coded, with higher values displayed in darker colors and lower values in lighter colors. Hover over a bin to view its corresponding queue length count.
 
-{{<figure src="/images/netq/single-queue-470.png" alt="dashboard displaying 6 devices with egress queue lengths as histograms" width="250" height="225">}}
+{{<figure src="/images/netq/single-device-queue-413.png" alt="single device with standard deviation, P95, and average queue length values" width="250" height="225">}}
 
-Select **View more** to open a dashboard that displays the full range of ports configured to send histogram data along with their LLDP peers, which are visible when you hover over a section with your cursor. From this view, you can compare devices against each other or the same devices over a different time period. For example, the following view displays switch *mose-isr1-su4-13* compared with switch *mose-isr1-su2-l4* with queue length data from the past five minutes.
+Select **View more** to open a dashboard that displays the full range of ports configured to send histogram data along with their LLDP peers, which are visible when you hover over a section with your cursor. From this view, you can compare devices against each other or the same devices over a different time period. For example, the following view compares queue length data from two switches over the past 30 minutes.
 
-{{<figure src="/images/netq/hist-compare-413.png" alt="histogram comparison of the same device with different time parameters" width="1100" height="500">}}
+{{<figure src="/images/netq/queue-compare-413.png" alt="histogram comparison of the same device with different time parameters" width="1100" height="500">}}
 
 The y-axis represents the values contained in bins 0 through 9. The switch's ports are displayed on the x-axis. Hover your mouse over the data to view the associated port name, count data, bin number, and LLDP peer.
 

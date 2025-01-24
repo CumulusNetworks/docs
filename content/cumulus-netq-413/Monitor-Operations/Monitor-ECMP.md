@@ -61,7 +61,7 @@ The adaptive routing dashboard displays:
 - Devices with adaptive routing configured (enabled or disabled) and their RoCE modes (lossy or lossless).
 - A list of interfaces on the switch and their configurations. 
 
-{{<figure src="/images/netq/adaptive-routing-413.png" alt="adaptive routing dashboard displaying 10 devices with AR enabled" width="1100">}}
+{{<figure src="/images/netq/ar-isr1-413.png" alt="adaptive routing dashboard displaying 10 devices with AR enabled" width="1200">}}
 
 In the Interfaces column, select **View details** to view interfaces with adaptive routing configured:
 

@@ -12,10 +12,9 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
 
 ### Platforms
 
+<!-- - SN5610 (800G Spectrum-4) -->
 - NVIDIA SN5400 ITU-T G.82732 Class C compliant
-<!--
 - NVIDIA SN2201M includes an updated Parameter-Set IDentification (PSID) and firmware. You cannot downgrade the switch to 5.11.
--->
 
 ### New Features and Enhancements
 
@@ -28,24 +27,23 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
 - {{<link url="Optional-BGP-Configuration/#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence">}}
 - {{<link url="BGP-Weighted-Equal-Cost-Multipath/#ecmp-resource-sharing-during-next-hop-group-updates" text="ECMP Resource Sharing During Next Hop Group Updates">}}
 -  {{<link url="RADIUS-AAA/#radius-user-command-accounting" text="RADIUS user command accounting support for multiple servers with first response option">}}
-- {{<link url="Open-Telemetry-Export/#layer-3-router-statistics" text="New OTLP routing metrics">}} and additional {{<link url="Open-Telemetry-Export/#interface-statistics" text="OTLP interface metrics">}} (PHY and buffer pool counters).
-- {{<link url="Open-Telemetry-Export/#customize-export" text="Export different open telemetry statistics and sample rates to different destinations">}}
-- Create a single CLI service check for OTLP exporters
+- Open Telemetry:
+  - {{<link url="Open-Telemetry-Export/#system-information-format" text="New system information data">}}
+  - {{<link url="Open-Telemetry-Export/#router-statistic-format" text="New router statistics">}}
+  - {{<link url="Open-Telemetry-Export/#interface-statistic-format" text="New interface PHY statistics">}}
+  - {{<link url="Open-Telemetry-Export/#buffer-statistic-format" text="New buffer statistics">}}
+  - {{<link url="Open-Telemetry-Export/#customize-export" text="Export different statistics and sample rates to different destinations">}}
+  - {{<link url="Open-Telemetry-Export/#show-telemetry-health-metrics" text="Commands to show telemetry health metrics">}}
 - NVUE
   - {{<link title="Network Troubleshooting/#traceroute" text="Traceroute command">}}
   - {{<link title="Network Troubleshooting/#ping" text="Ping command">}}
   - {{<link title="Troubleshooting Network Interfaces/#monitor-interface-traffic-rate-and-pps" text="Commands to monitor interface traffic rate and PPS">}}
   - {{<link url="Monitoring-Best-Practices/#disk-usage" text="Command to monitor disk usage">}}
-  - {{<link url="Adding-and-Updating-Packages/#add-packages-from-another-repository" text="Configure additional package repositories">}}
+  - {{<link url="Adding-and-Updating-Packages/#configure-additional-repositories" text="Configure additional package repositories">}}
   - {{<link url="FRRouting/#look-up-the-route-for-a-destination" text="Look up the route for a destination">}}
   - {{<link url="NVUE-CLI/#filter-nv-show-command-output" text="Filter FRR nv show command output">}}
   - {{<link title="Log Files with NVUE" text="Logging commands">}}
   - {{<link url="NVUE-CLI/#translate-a-configuration-revision-or-file" text="Commands to translate a revision or yaml configuration file">}}
-  - {{< expand "Changed NVUE Commands" >}}
-| New Commands | Previous Commands |
-| ----------- | ----------------|
-|  | |
-{{< /expand >}}
   - {{< expand "Removed NVUE Commands" >}}
 | Removed Commands |
 | --------------- |
@@ -163,10 +161,6 @@ nv action upload system log file <file-name> <remote-url-upload>
 {{< /tab >}}
 {{< /tabs >}}
 {{< /expand >}}
-
-{{%notice warning%}}
-To align with a long-term vision of a common interface between Cumulus Linux, Nvidia OS (NVOS), and Host-Based Networking, certain NVUE commands in Cumulus Linux 5.12 have changed. Before you upgrade to 5.12, review the list of changed and removed NVUE commands above and be sure to make any necessary changes to your automation.
-{{%/notice%}}
 
 ## Release Considerations
 

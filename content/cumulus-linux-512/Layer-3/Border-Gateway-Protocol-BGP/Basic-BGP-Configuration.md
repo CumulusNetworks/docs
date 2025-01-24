@@ -46,7 +46,7 @@ To configure BGP numbered on a BGP node, you need to:
 
        The auto BGP `leaf` keyword is only used to configure the ASN. The configuration files and `nv show` commands display the AS number.
 
-2. BGP automatically assigns the loopback address of the switch to be the router ID. If you do not have a loopback address configured or you do not want to use the loopback address as the router ID, you must assign the router ID either globally with the `nv set router bgp router-id` command or in a VRF with the `nv set vrf <vrf> router bgp router-id` command.
+2. BGP automatically assigns the loopback address of the switch to be the router ID. If you do not have a loopback address configured or you do not want to use the loopback address as the router ID, you must assign the router ID either globally with the `nv set router bgp router-id` command or in a VRF with the `nv set vrf <vrf> router bgp router-id` command. If you do not set the router ID in a VRF, BGP uses the global router ID.
 
    ```
    cumulus@leaf01:~$ nv set router bgp router-id 10.10.10.1

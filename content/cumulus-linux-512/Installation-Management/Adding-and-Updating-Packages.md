@@ -173,6 +173,8 @@ To configure an additional repository:
 - Enable repository source to add source files from the repository (optional).
 - Set the VRF to use when adding an additional repository (optional). The default VRF is `mgmt`.
 
+The repository URL can be `https`, `http`, or `ftp` format, or the directory and file name on the switch (`/etc/myrepo`).
+
 {{< tabs "TabID176 ">}}
 {{< tab "NVUE Commands ">}}
 
@@ -183,6 +185,7 @@ cumulus@switch:~$ nv set system packages use-vrf default
 cumulus@switch:~$ nv set system packages repository http://test.myrepo.com distribution mydist pool mypool 
 cumulus@switch:~$ nv set system packages repository http://test.myrepo.com source enabled
 cumulus@switch:~$ nv set system packages repository http://test.myrepo.com insecure enabled
+cumulus@switch:~$ nv config apply
 ```
 
 The following example configures the repository located at `http://test.myrepo.com` with distribution `mydist` and pool `mypool`, enables source files from the repository, and provides the secure key `thekey.asc`.
@@ -190,7 +193,8 @@ The following example configures the repository located at `http://test.myrepo.c
 ```
 cumulus@switch:~$ nv set system packages repository http://test.myrepo.com distribution mydist pool mypool
 cumulus@switch:~$ nv set system packages repository http://test.myrepo.com source enabled
-cumulus@switch:~$ nv set system packages repository http://test.myrepo.com key thekey.asc 
+cumulus@switch:~$ nv set system packages repository http://test.myrepo.com key thekey.asc
+cumulus@switch:~$ nv config apply 
 ```
 
 {{< /tab >}}
@@ -198,15 +202,17 @@ cumulus@switch:~$ nv set system packages repository http://test.myrepo.com key t
 
 Edit the `/etc/apt/sources.list` file to configure the repository.
 
-The following example configures the repository located at `http://test.myrepo.com` with distribution `mydist` and pool `mypool`, enables source files from the repository, and sets the repository to trusted. The example also sets the VRF to `default`.
+The following example configures the repository located at `http://test.myrepo.com` with distribution `mydist` and pool `mypool`, enables source files from the repository, and sets the repository to trusted.
 
 ```
-debdeb-src http://test.myrepo.com mydist mypool 
+deb [trusted=yes] http://test.myrepo.com mydist mypool
+deb-src [trusted=yes] http://test.myrepo.com mydist mypool
 ```
 
 The following example configures the repository located at `http://test.myrepo.com` with distribution `mydist` and pool `mypool`, enables source files from the repository, and provides the secure key `thekey.asc`.
 
 ```
+deb [signed-by=/etc/apt/keyrings/thekey.asc] http://test.myrepo.com mydist mypool 
 deb-src [signed-by=/etc/apt/keyrings/thekey.asc] http://test.myrepo.com mydist mypool 
 ```
 

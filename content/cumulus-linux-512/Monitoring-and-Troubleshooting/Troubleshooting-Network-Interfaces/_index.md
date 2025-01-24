@@ -22,27 +22,55 @@ To show a summary view of the traffic rate and PPS for all interfaces, run the `
 
 ```
 cumulus@switch:~$ nv show interface rates
-Interface    Intvl     In-Bits Rate    In-Util   In-Pkts Rate    Out-Bits Rate  Out-Util     Out-Packets Rate
----------    ------    ------------    -------   ------------    -------------   ---------   ---------------
-swp1         50        153.40 Gbps     0.1%      1.00 Mpps       253.40 Gbps     2.0%        20.00 Mpps
-swp2         50        2.00 kbps       0.0%      20.00 kpps      3.00 kbps       3.0%        30.00 Mpps
-swp3         50        3.00 Mbps       0.0%      30.00 kpps      4.00 kbps       0.0%        40.00 kpps
-swp4         50        300 bps         0.0%      30 pps          400 bps         0.0%        40 pps
+Interface  Intvl  In-Bits Rate  In-Util  In-Pkts Rate  Out-Bits Rate  Out-Util  Out-Pkts Rate
+---------  -----  ------------  -------  ------------  -------------  --------  -------------
+swp1       10     0 bps                  0 pps         0 bps                    0 pps
+swp2       10     0 bps                  0 pps         0 bps                    0 pps
+swp3       10     0 bps                  0 pps         0 bps                    0 pps
+swp4       10     0 bps                  0 pps         0 bps                    0 pps
+swp5       10     0 bps                  0 pps         0 bps                    0 pps
+swp6       10     0 bps                  0 pps         0 bps                    0 pps
+swp7       10     0 bps                  0 pps         0 bps                    0 pps
+swp8       10     0 bps                  0 pps         0 bps                    0 pps
+swp9       10     10.00 Gbps    100.0%   822.41 kpps   10.00 Gbps     100.0%    822.42 kpps
+swp10      10     0 bps                  0 pps         0 bps                    0 pps
+swp11      10     0 bps                  0 pps         0 bps                    0 pps
+swp12      10     0 bps                  0 pps         0 bps                    0 pps
+swp13      10     7.34 Gbps     73.4%    603.21 kpps   5.00 Gbps      50.0%     411.19 kpps
+swp14      10     0 bps                  0 pps         0 bps                    0 pps
+swp15      10     0 bps                  0 pps         0 bps                    0 pps
+swp16      10     0 bps                  0 pps         0 bps                    0 pps
+swp17      10     8.42 Gbps     84.2%    692.80 kpps   6.73 Gbps      67.3%     553.59 kpps
+swp18      10     0 bps                  0 pps         0 bps                    0 pps
+swp19      10     204 bps       0.0%     0 pps         539 bps        0.0%      1 pps
+swp20      10     0 bps                  0 pps         0 bps                    0 pps
+swp21      10     6.73 Gbps     67.3%    553.59 kpps   8.42 Gbps      84.2%     692.81 kpps
+swp22      10     10.00 Gbps    100.0%   14.88 Mpps    10.00 Gbps     100.0%    14.88 Mpps
+swp23      10     10.00 Gbps    100.0%   14.88 Mpps    10.00 Gbps     100.0%    14.88 Mpps
+swp24      10     0 bps                  0 pps         0 bps                    0 pps
+swp25      10     5.00 Gbps     50.0%    411.19 kpps   7.34 Gbps      73.4%     603.21 kpps
+swp26      10     0 bps                  0 pps         0 bps                    0 pps
+swp27      10     10.00 Gbps    100.0%   822.42 kpps   10.00 Gbps     100.0%    822.41 kpps
+swp28      10     0 bps                  0 pps         0 bps                    0 pps
+swp29      10     0 bps                  0 pps         0 bps                    0 pps
+swp30      10     0 bps                  0 pps         0 bps                    0 pps
+swp31      10     0 bps                  0 pps         0 bps                    0 pps
+swp32      10     0 bps                  0 pps         0 bps                    0 pps
 ```
 
 To show the traffic rate and PPS for a specific interface, run the `nv show interface <interface> rates` command.
 
 ```
 cumulus@switch:~$ nv show interface swp1 rates
-                operational    applied
---------------  -----------    ------- 
-load-interval    30              
-in-bits-rate    6000 
-in-pkts-rate    200 
-in-utilization  20.00% 
-out-bits-rate    8000 
-out-pkts-rate    100 
-out-utilization  10.00% 
+                operational
+---------------  -----------
+load-interval    10        
+in-bits-rate     10.00 Gbps
+in-utilization   100.0%    
+in-pkts-rate     822.41 kpps
+out-bits-rate    10.00 Gbps
+out-utilization  100.0%    
+out-pkts-rate    822.40 kpps
 ```
 
 {{%notice note%}}

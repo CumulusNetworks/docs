@@ -1384,21 +1384,22 @@ cumulus@leaf01:~$
 
 BGP prefix independent convergence (PIC) reduces data plane convergence times and improves unicast traffic convergence for remote link failures (when the BGP next hop fails). A remote link is a link between a spine and a remote leaf, or a spine and the super spine layer.
 
+When you configure BGP PIC, Cumulus Linux assigns one next hop group for each source and the remote leaf advertises the router ID loopback route. The remote leaf tags prefix routes with a route-origin extended community (SOO) so that the local leaf recognizes the routes. When the network topology changes, the local leaf obtains the router ID loopback route with the updated ECMP, allowing a O (1) next hop group replace operation for all prefixes from the remote leaf without waiting for individual BGP updates.
+
 {{%notice note%}}
-- BGP PIC is a BETA feature for Spectrum-4 switches.
+- Cumulus Linux supports BGP PIC on Spectrum-4 switches.
 - Cumulus Linux does not support BGP PIC with EVPN, MLAG, or VRF route leaking.
 - You can configure PIC on the default VRF only.
+- BGP PIC only redistributes the switch loopback address in addition to the host prefixes from the leaf. NVIDIA does not recommend redistributing interface addresses into BGP when you enable PIC.
 - Additional ECMP hardware resources are required for PIC. Refer to {{<link url="Equal-Cost-Multipath-Load-Sharing/#ecmp-resource-sharing-during-next-hop-group-updates" text="Additional ECMP resource optimization for next hop groups">}}
 {{%/notice%}}
 
-When you configure BGP PIC, Cumulus Linux assigns one next hop group for each source and the remote leaf advertises the router ID loopback route. The remote leaf tags prefix routes with a route-origin extended community so that the local leaf recognizes the routes. When the network topology changes, the local leaf obtains the router ID loopback route with the updated ECMP, allowing a O (1) next hop group replace operation for all prefixes from the remote leaf without waiting for individual BGP updates.
-
-To enable PIC:
+### Configure PIC
 
 {{< tabs "1398 ">}}
 {{< tab "NVUE Commands ">}}
 
-On a leaf switch, enable the BGP advertise origin option so that BGP can attach the Site-of-Origin (SOO) extended community to all routes advertised to its peers from the source where the routes originate.
+On a leaf switch, enable the BGP advertise origin option so that BGP can attach the SOO extended community to all routes advertised to its peers from the source where the routes originate.
 
 The following example enables BGP advertise origin for IPv4:
 
@@ -1414,11 +1415,13 @@ On all switches (leaf, spine and super spine), enable the next hop group per sou
 The following example enables the next hop group per source option for IPv4:
 
 ```
-cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast nhg-per-origin
-cumulus@leaf01:~$ nv config apply
+cumulus@spine01:~$ nv set vrf default router bgp address-family ipv4-unicast nhg-per-origin
+cumulus@spine01:~$ nv config apply
 ```
 
 For IPv6, run the `nv set vrf <vrf> router bgp address-family ipv6-unicast nhg-per-origin` command.
+
+To disable BGP PIC, run the `nv unset vrf <vrf> router bgp address-family <address-family> advertise-origin` command on the leaf switch and the `nv unset vrf <vrf> router bgp address-family <address-family> nhg-per-origin` command on all switches.
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -1439,20 +1442,39 @@ leaf01# write memory
 leaf01# exit
 ```
 
-On all switches (leaf, spine and super spine), enable the next hop group per source option so that when BGP receives routes with the SOO extended community, it allocates a next hop group for each source.
+You can set the SOO admin value to override the default value of the last 2 bytes used in the SOO, which is generated automatically when you set `bgp advertise-origin`. The default value is 0x0.
 
-The following example enables BGP advertise origin for IPv4:
+{{%notice note%}}
+You must set the same SOO admin value across the entire data center.
+{{%/notice%}}
+
+To set the SOO admin value:
 
 ```
 cumulus@leaf01:~$ sudo vtysh
 ...
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
-leaf01(config-router)# address-family ipv4
-leaf01(config-router-af)# bgp nhg-per-origin
-leaf01(config-router-af)# end
+leaf01(config-router)# bgp per-source-nhg soo-admin-value 1
+leaf01(config-router)# end
 leaf01# write memory
 leaf01# exit
+```
+
+On all switches (leaf, spine and super spine), enable the next hop group per source option so that when BGP receives routes with the SOO extended community, it allocates a next hop group for each source.
+
+The following example enables BGP next hop group per source for IPv4:
+
+```
+cumulus@spine01:~$ sudo vtysh
+...
+spine01# configure terminal
+spine01(config)# router bgp 65101
+spine01(config-router)# address-family ipv4
+spine01(config-router-af)# bgp nhg-per-origin
+spine01(config-router-af)# end
+spine01# write memory
+spine01# exit
 ```
 
 The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
@@ -1466,8 +1488,41 @@ router bgp 65101
 ...
 ```
 
+You can set the convergence timer to override the default amount of time BGP waits to expand the ECMP path when it receives a SOO route. This setting lets you dampen the SOO route updates BGP receives from peers especially in a high ECMP topology and helps to reduce churn.
+
+You can set a value between 5 and 1000 milliseconds. The default value is 50.
+
+To set the convergence timer:
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# bgp per-source-nhg convergence-timer 100
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+```
+
+To disable BGP PIC, use the `no bgp advertise-origin` command on the leaf switch and the `no bgp nhg-per-origin` on all switches. For example:
+
+```
+cumulus@spine02:~$ sudo vtysh
+...
+spine01# configure terminal
+spine01(config)# router bgp 65101
+spine01(config-router)# address-family ipv4
+spine01(config-router-af)# no bgp nhg-per-origin
+spine01(config-router-af)# end
+spine01# write memory
+spine01# exit
+```
+
 {{< /tab >}}
 {{< /tabs >}}
+
+Cumulus Linux provides several show commands to help you troubleshoot BGP PIC. Refer to {{<link url="Troubleshooting-BGP/#show-prefix-independent-convergence-information" text="Show Prefix Independent Convergence Information">}}.
 
 ## BGP Timers
 
@@ -2439,7 +2494,7 @@ The BGP community list can be either *standard*, *extended*, or *large*. The sta
 
 An extended BGP community list takes a regular expression of communities and matches the listed communities.
 
-A large community-list accommodates more identification information, including 4-byte AS numbers.
+A large community-list accommodates more identification information, including 4-byte AS numbers. BGP enables large communities by default. To disable large communities, run the `nv set vrf <vrf> router bgp neighbor <neighbor> address-family <address-family> community-advertise large off` command or the `nv set vrf <vrf> router bgp peer-group <peer-group> address-family <address-family> community-advertise large off` command.
 
 When the neighbor receives the prefix, it examines the community value and takes action accordingly, such as permitting or denying the community member in the routing policy.
 

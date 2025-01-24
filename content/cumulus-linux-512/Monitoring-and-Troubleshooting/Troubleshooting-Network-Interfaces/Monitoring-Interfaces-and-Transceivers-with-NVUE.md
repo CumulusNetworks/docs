@@ -419,21 +419,36 @@ Action succeeded
 The following example resets a range of transceivers:
 
 ```
-cumulus@switch:~$ nv action reset platform transceiver swp1-swp5
+cumulus@switch:~$ nv action reset platform transceiver swp1-3 
 Action executing ... 
-Resetting module swp1-swp5 ... OK 
+Resetting module swp1 ... OK 
+Action executing ... 
+Resetting module swp2 ... OK 
+Action executing ... 
+Resetting module swp3 ... OK 
 Action succeeded 
 ```
 
-When the reset completes successfully, you see the following `switchd.log` messages:
+The following example resets the transceiver in swp5 and swp7:
 
 ```
-hal_mlx_host_ifc.c:3392 port [104] module state has changed to [Unplugged] 
-hal_mlx_host_ifc.c:3392 port [104] module state has changed to [Plugged] 
+cumulus@switch:~$ nv action reset platform transceiver swp5,swp7 
+Action executing ... 
+Resetting module swp5 ... OK 
+Action executing ... 
+Resetting module swp7 ... OK 
+Action executing ... 
+Action succeeded 
+```
+
+When the reset completes successfully, you see `switchd.log` messages similar to the following:
+
+```
+2024-12-06T07:12:37.996339+00:00 cumulus nvue-port-reset: The module reset was successfully completed on swp1
 ```
 
 {{%notice note%}}
-If a cable is faulty, the `nv action reset platform transceiver <transceiver-id` command completes successfully, but the module does not come back unless you resolve the issue or reboot the system if necessary,
+If a cable is faulty, the `nv action reset platform transceiver <transceiver-id` command completes successfully, but the details of the transceiver do not show until you resolve the issue or reboot the system if necessary,
 {{%/notice%}}
 
 ## Show Transceiver Information

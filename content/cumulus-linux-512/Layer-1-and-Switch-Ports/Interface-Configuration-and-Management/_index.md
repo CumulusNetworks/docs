@@ -115,7 +115,7 @@ To configure an IP address for the loopback interface:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface lo ip address 10.10.10.1
+cumulus@switch:~$ nv set interface lo ip address 10.10.10.1/32
 cumulus@switch:~$ nv config apply
 ```
 
@@ -127,15 +127,14 @@ Edit the `/etc/network/interfaces` file to add an `address` line:
 ```
 auto lo
 iface lo inet loopback
-    address 10.10.10.1
+    address 10.10.10.1/32
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
 
 {{%notice note%}}
-- If the IP address has no subnet mask, it automatically becomes a /32 IP address. For example, 10.10.10.1 is 10.10.10.1/32.
-- You can configure multiple IP addresses for the loopback interface.
+You can configure multiple IP addresses for the loopback interface.
 {{%/notice%}}
 
 ## Subinterfaces

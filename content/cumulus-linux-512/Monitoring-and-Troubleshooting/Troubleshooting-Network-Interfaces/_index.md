@@ -13,12 +13,13 @@ Monitoring the traffic rate and <span class="a-tooltip">[PPS](## "Packets per Se
 By monitoring both the traffic rate and PPS, you can identify peak usage times and adjust bandwidth allocation or optimize packet paths to ensure low latency and high throughput.
 
 {{%notice note%}}
-- You can monitor interface traffic rates and PPS on Spectrum-1 and later.
 - You can monitor the traffic rate and PPS of physical ports only.
 - The command outputs provide approximate values.
 {{%/notice%}}
 
 To show a summary view of the traffic rate and PPS for all interfaces, run the `nv show interface rates` command.
+
+This output shows the received and transmitted traffic rate counters in bits per second, packet rate counters in packets per second, and the link utilization percentage. The unit of measurement for rate counters changes dynamically based on the value of the rate counters. The units can be kbps, Mbps, Gbps or Tbps for bits and kpps, Mpps, Gpps, and Tpps for packets.
 
 ```
 cumulus@switch:~$ nv show interface rates
@@ -74,15 +75,19 @@ out-pkts-rate    822.40 kpps
 ```
 
 {{%notice note%}}
-You must specify a specific interface; the `nv show interface <interface> rates` command does not support a range of interfaces.
+The `nv show interface <interface> rates` command only supports a range of interfaces with the filter option; for example, `nv show interface rates --filter "Interface=swp1|Interface=swp2"`.
 {{%/notice%}}
 
-You can configure the load interval you want to use to calculate interface rates with the `nv set system counter rates load-interval` command. Cumulus Linux uses the load interval to measure and average out the rate counters to smoothen any short-term fluctuations. You can specify a value between 1 and 600. The default load interval is 60 seconds.
+You can configure the load interval you want to use to calculate interface rates with the `nv set system counter rates load-interval` command. You can specify a value between 1 and 600. The default load interval is 60 seconds.
+
+Cumulus Linux uses the data during the load interval time period and averages it to calculate the interface rate counters. Interface rates are equal weight averages. You configure the load interval globally, not for an interface.
 
 ```
 cumulus@switch:~$ nv set system counter rates load-interval 30
 cumulus@switch:~$ nv config apply
 ```
+
+To reset the load interval to the default value of 60 seconds, run the `nv unset system counter rates load-interval` command.
 
 To view the configured load interval, run the `nv show system counter rates` command.
 

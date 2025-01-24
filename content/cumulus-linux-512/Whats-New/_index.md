@@ -59,40 +59,125 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 ```
 nv show interface <interface> rates
 nv show interface rates
+nv show system aaa user <user-id> spiffe-id
+nv show system aaa user <user-id> spiffe-id <spiffe-id>
+nv show system counter rates
 nv show system disk usage
 nv show system log
 nv show system log file
+nv show system log file brief
+nv show system log file list
+nv show system log file follow
+nv show system log file <file-name>nv show system packages
+nv show system log file <file-name> brief
 nv show system log component
+nv show system log component <component-name>
+nv show system log component <component-name> file
+nv show system log component <component-name> file <file-name>
 nv show system packages
-nv show system packages keys
-nv show system packages keys <key>
+nv show system packages key
+nv show system packages key <key-id>
 nv show system packages repository
-nv show system packages repository <repository>
-nv show system packages repository <repository> distribution
-nv show system packages repository <repository> distribution <distribution>
-nv show system packages repository <repository> distribution <distribution> pool
+nv show system packages repository <repo-url-id>
+nv show system packages repository <repo-url-id> distribution
+nv show system packages repository <repo-url-id> distribution <repo-dist-id>
+nv show system packages repository <repo-url-id> distribution <repo-dist-id> pool
+nv show system packages repository <repo-url-id> distribution <repo-dist-id> pool <repo-pool-id>
+nv show system telemetry buffer-stats
+nv show system telemetry buffer-stats export
+nv show system telemetry health
+nv show system telemetry health brief
+nv show system telemetry health detail
+nv show system telemetry interface-stats class
+nv show system telemetry interface-stats class phy
+nv show system telemetry stats-group
+nv show system telemetry stats-group <stats-group-id>
+nv show system telemetry stats-group <stats-group-id> interface-stats
+nv show system telemetry stats-group <stats-group-id> interface-stats export
+nv show system telemetry stats-group <stats-group-id> buffer-stats
+nv show system telemetry stats-group <stats-group-id> buffer-stats export
+nv show system telemetry stats-group <stats-group-id> histogram
+nv show system telemetry stats-group <stats-group-id> histogram export
+nv show system telemetry stats-group <stats-group-id> router
+nv show system telemetry stats-group <stats-group-id> router export
+nv show system telemetry stats-group <stats-group-id> control-plane-stats
+nv show system telemetry stats-group <stats-group-id> control-plane-stats export
+nv show system telemetry stats-group <stats-group-id> platform-stats
+nv show system telemetry stats-group <stats-group-id> platform-stats export
+nv show system telemetry stats-group <stats-group-id> platform-stats class
+nv show system telemetry stats-group <stats-group-id> platform-stats class cpu
+nv show system telemetry stats-group <stats-group-id> platform-stats class disk
+nv show system telemetry stats-group <stats-group-id> platform-stats class file-system
+nv show system telemetry stats-group <stats-group-id> platform-stats class environment-sensor
+nv show system telemetry stats-group <stats-group-id> platform-stats class memory
+nv show system telemetry router
+nv show system telemetry router export
+nv show system telemetry router bgp
+nv show system telemetry router bgp export
+nv show system telemetry router rib
+nv show system telemetry router rib export
+nv show system telemetry router vrf
+nv show system telemetry router vrf <vrf-id>
+nv show system telemetry router vrf <vrf-id> bgp
+nv show system telemetry router vrf <vrf-id> bgp export
+nv show system telemetry router vrf <vrf-id> bgp peer
+nv show system telemetry router vrf <vrf-id> bgp peer <neighbor-id>
+nv show system telemetry router vrf <vrf-id> bgp peer <neighbor-id> export
+nv show system telemetry router vrf <vrf-id> rib
+nv show system telemetry router vrf <vrf-id> rib export
+nv show vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id> interface
+nv show vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id> interface <interface-id>
+nv show vrf <vrf-id> router static <route-id> via <via-id> interface
+nv show vrf <vrf-id> router static <route-id> via <via-id> interface <interface-id>
 ```
 
 {{< /tab >}}
 {{< tab "nv set ">}}
 
 ```
-nv set qos roce mode lossless-single-ipool
+nv set system aaa radius accounting state
+nv set system aaa radius accounting send-records
+nv set system aaa user <user-id> spiffe-id <spiffe-id>
 nv set system counter rates load-interval
 nv set system packages repository <repository> distribution <distribution> pool <pool>
 nv set system packages repository <repository> insecure
 nv set system packages repository <repository> key <key>
 nv set system packages repository <repository> source
 nv set system packages use-vrf
+nv set system telemetry export otlp grpc destination <destination-id> stats-group <value>
 nv set system telemetry buffer-stats export state
+nv set system telemetry buffer-stats sample-interval
 nv set system telemetry interface-stats class phy state
 nv set system telemetry router bgp export state
-nv set system telemetry router vrf <vrf> bgp export state
-nv set system telemetry router vrf <vrf> bgp peer <interface> export state
 nv set system telemetry router rib export state
+nv set system telemetry router sample-interval <interval>
+nv set system telemetry router vrf <vrf> bgp export state
+nv set system telemetry router vrf <vrf> bgp peer <peer-id> export state
 nv set system telemetry router vrf <vrf> rib export state
 nv set system telemetry router bgp export state
-
+nv set system telemetry stats-group <stats-group-id>
+nv set system telemetry stats-group <stats-group-id> interface-stats export state 
+nv set system telemetry stats-group <stats-group-id> interface-stats sample-interval 
+nv set system telemetry stats-group <stats-group-id> buffer-stats export state 
+nv set system telemetry stats-group <stats-group-id> buffer-stats sample-interval 
+nv set system telemetry stats-group <stats-group-id> histogram export state 
+nv set system telemetry stats-group <stats-group-id> router export state 
+nv set system telemetry stats-group <stats-group-id> router sample-interval <interval>
+nv set system telemetry stats-group <stats-group-id> control-plane-stats export state
+nv set system telemetry stats-group <stats-group-id> control-plane-stats sample-interval 
+nv set system telemetry stats-group <stats-group-id> platform-stats export state
+nv set system telemetry stats-group <stats-group-id> platform-stats export sample-interval
+nv set system telemetry stats-group <stats-group-id> platform-stats class cpu state 
+nv set system telemetry stats-group <stats-group-id> platform-stats class cpu sample-interval 
+nv set system telemetry stats-group <stats-group-id> platform-stats class disk state
+nv set system telemetry stats-group <stats-group-id> platform-stats class disk sample-interval
+nv set system telemetry stats-group <stats-group-id> platform-stats class file-system state 
+nv set system telemetry stats-group <stats-group-id> platform-stats class file-system sample-interval
+nv set system telemetry stats-group <stats-group-id> platform-stats class environment-sensor state
+nv set system telemetry stats-group <stats-group-id> platform-stats class environment-sensor sample-interval 
+nv set system telemetry stats-group <stats-group-id> platform-stats class memory state 
+nv set system telemetry stats-group <stats-group-id> platform-stats class memory sample-interval 
+nv set qos roce mode lossless-single-ipool
 nv set vrf <vrf> router bgp peer-group <peer-group-id> graceful-shutdown
 nv set vrf <vrf> router bgp address-family <address-family> advertise-origin
 nv set vrf <vrf> router bgp address-family <address-family> nhg-per-origin
@@ -102,20 +187,49 @@ nv set vrf <vrf> router bgp address-family <address-family> nhg-per-origin
 {{< tab "nv unset ">}}
 
 ```
+nv unset system aaa radius accounting state
+nv unset system aaa radius accounting send-records
+nv unset system aaa user <user-id> spiffe-id <spiffe-id>
 nv unset system counter rates load-interval
 nv unset system packages repository <repository> distribution <distribution> pool <pool>
 nv unset system packages repository <repository> insecure
 nv unset system packages repository <repository> key <key>
 nv unset system packages repository <repository> source
 nv unset system packages use-vrf
+nv unset system telemetry export otlp grpc destination <destination-id> stats-group <value>
 nv unset system telemetry buffer-stats export state
-nv unset system telemetry interface-stats class phy-stats state
+nv unset system telemetry buffer-stats sample-interval
+nv unset system telemetry interface-stats class phy state
 nv unset system telemetry router bgp export state
-nv unset system telemetry router vrf <vrf> bgp export state
-nv unset system telemetry router vrf <vrf> bgp peer <interface> export state
 nv unset system telemetry router rib export state
+nv unset system telemetry router sample-interval <interval>
+nv unset system telemetry router vrf <vrf> bgp export state
+nv unset system telemetry router vrf <vrf> bgp peer <peer-id> export state
 nv unset system telemetry router vrf <vrf> rib export state
 nv unset system telemetry router bgp export state
+nv unset system telemetry stats-group <stats-group-id>
+nv unset system telemetry stats-group <stats-group-id> interface-stats export state 
+nv unset system telemetry stats-group <stats-group-id> interface-stats sample-interval 
+nv unset system telemetry stats-group <stats-group-id> buffer-stats export state 
+nv unset system telemetry stats-group <stats-group-id> buffer-stats sample-interval 
+nv unset system telemetry stats-group <stats-group-id> histogram export state 
+nv unset system telemetry stats-group <stats-group-id> router export state 
+nv unset system telemetry stats-group <stats-group-id> router sample-interval <interval>
+nv unset system telemetry stats-group <stats-group-id> control-plane-stats export state
+nv unset system telemetry stats-group <stats-group-id> control-plane-stats sample-interval 
+nv unset system telemetry stats-group <stats-group-id> platform-stats export state
+nv unset system telemetry stats-group <stats-group-id> platform-stats export sample-interval
+nv unset system telemetry stats-group <stats-group-id> platform-stats class cpu state 
+nv unset system telemetry stats-group <stats-group-id> platform-stats class cpu sample-interval 
+nv unset system telemetry stats-group <stats-group-id> platform-stats class disk state
+nv unset system telemetry stats-group <stats-group-id> platform-stats class disk sample-interval
+nv unset system telemetry stats-group <stats-group-id> platform-stats class file-system state 
+nv unset system telemetry stats-group <stats-group-id> platform-stats class file-system sample-interval
+nv unset system telemetry stats-group <stats-group-id> platform-stats class environment-sensor state
+nv unset system telemetry stats-group <stats-group-id> platform-stats class environment-sensor sample-interval 
+nv unset system telemetry stats-group <stats-group-id> platform-stats class memory state 
+nv unset system telemetry stats-group <stats-group-id> platform-stats class memory sample-interval 
+nv unset qos roce mode lossless-single-ipool
 nv unset vrf <vrf> router bgp peer-group <peer-group-id> graceful-shutdown
 nv unset vrf <vrf> router bgp address-family <address-family> advertise-origin
 nv unset vrf <vrf> router bgp address-family <address-family> nhg-per-origin
@@ -137,6 +251,7 @@ nv action delete system log file <file-name>
 nv action delete system packages key <key>
 nv action fetch system packages key <key>
 nv action fetch system packages key <key> scope
+nv action fetch system image files
 nv action lookup vrf <vrf-id> router fib <address-family> <ip-address>
 nv action ping system <destination>
 nv action ping system <destination> count

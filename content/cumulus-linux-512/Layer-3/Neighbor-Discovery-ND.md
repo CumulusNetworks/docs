@@ -238,9 +238,7 @@ The vtysh commands write to the `/etc/frr/frr.conf` file:
 cumulus@leaf01:mgmt:~$ sudo cat /etc/frr/frr.conf
 ...
 interface swp1
- ipv6 nd prefix 2001:db8::/32 off-link
  ipv6 nd prefix 2001:db8::/32 router-address
- ipv6 nd prefix 2001:db8::/32 no-autoconfig
  ...
 ```
 

@@ -704,7 +704,7 @@ You can clear the following entries from the forwarding database instead of wait
 - A specific dynamic MAC address for a VLAN, interface, or VLAN and interface.
 
 {{%notice note%}}
-- The clear dynamic MAC address commands do not clear sticky entries, permanent entries, or EVPN MAC entries.
+- The clear dynamic MAC address commands do not clear sticky entries, permanent entries, and EVPN MAC entries.
 - NVUE does not show any errors or warnings if the entry does not exist in the bridge forwarding database.
 {{%/notice%}}
 

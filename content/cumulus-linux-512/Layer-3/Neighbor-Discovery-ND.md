@@ -205,13 +205,13 @@ interface swp1
 {{< /tab >}}
 {{< /tabs >}}
 
-The following example commands set advertisement to make no statement about prefix on-link or off-link properties, enable the specified prefix to use IPv6 autoconfiguration, and indicate to hosts on the local link that the specified prefix contains a complete IP address.
+The following example commands set advertisement to make no statement about prefix on-link or off-link properties, enable the specified prefix to use IPv6 autoconfiguration, and indicate to hosts on the local link that the specified prefix contains a complete IP address. The prefixes that have `router-address on` must be on-link and auto-configurable.
 
 {{< tabs "TabID207 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32 off-link on
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32 off-link off
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32 autoconfig on
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32 router-address on
 cumulus@leaf01:mgmt:~$ nv config apply
@@ -225,8 +225,6 @@ cumulus@leaf01:mgmt:~$ sudo vtysh
 ...
 leaf01# configure terminal
 leaf01(config)# interface swp1
-leaf01(config-if)# ipv6 nd prefix 2001:db8:1::100/32 off-link
-leaf01(config-if)# ipv6 nd prefix 2001:db8:1::100/32 no-autoconfig
 leaf01(config-if)# ipv6 nd prefix 2001:db8:1::100/32 router-address
 leaf01(config-if)# end
 leaf01# write memory

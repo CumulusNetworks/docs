@@ -9,21 +9,16 @@ Use the UI or CLI to monitor Precision Time Protocol (PTP), including clock hier
 
 {{<notice note>}}
 
-PTP monitoring is only supported on Spectrum switches running Cumulus Linux version 5.0.0 and later.
+PTP monitoring is only supported on Spectrum switches running Cumulus Linux version 5.0.0 or later.
 
 {{</notice>}}
 
 ## PTP Commands
 
-Monitor PTP with the following commands. See the {{<link title="show/#netq-show-ptp" text="command line reference">}} for additional options, definitions, and examples.
+- {{<link title="show/#netq-show-ptp" text="netq show ptp">}}
+- {{<link title="show/#netq-show-events" text="netq show events message_type ptp">}}
+- {{<link title="show/#netq-show-events-config" text="netq show events-config message_type ptp">}} 
 
-```
-   netq show ptp clock-details
-   netq show ptp counters (tx | rx) 
-   netq show ptp global-config
-   netq show ptp port-status 
-   netq show events message_type ptp
-```
 ## Access the PTP Dashboard
 
 From the header or {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu, select **Spectrum-X**, then **PTP**.

@@ -28,23 +28,22 @@ You can bookmark the link health view in your browser. When you navigate back to
 {{%/notice%}}
 ## Interface Commands
 
-NetQ uses {{<kb_link latest="cl" url="Layer-2/Link-Layer-Discovery-Protocol.md" text="LLDP">}} (Link Layer Discovery Protocol) to collect port information. NetQ can also identify peer ports connected to DACs (Direct Attached Cables) and AOCs (Active Optical Cables) without using LLDP, even if the link is not UP. To monitor OSI Layer 1 physical components on network devices, use the {{<link title="show/#netq-show-interfaces" text="netq show interfaces physical">}} command.
+NetQ uses {{<kb_link latest="cl" url="Layer-2/Link-Layer-Discovery-Protocol.md" text="LLDP">}} (Link Layer Discovery Protocol) to collect port information. NetQ can also identify peer ports connected to DACs (Direct Attached Cables) and AOCs (Active Optical Cables) without using LLDP, even if the link is not UP. 
 
-View interface (link) state, type, count, aliases, and additional information with the {{<link title="show/#netq-show-interfaces" text="netq show interfaces">}} and {{<link title="show/#netq-show-events" text="netq show events">}} commands.
+- {{<link title="show/#netq-show-interfaces" text="netq show interfaces physical">}}
+- {{<link title="show/#netq-show-interfaces" text="netq show interfaces">}}
+- {{<link title="show/#netq-show-events" text="netq show events message_type interfaces">}}
+- {{<link title="check/#netq check interfaces" text="netq check interfaces">}}
 
-The {{<link title="check/#netq check interfaces" text="netq check interfaces">}} command verifies interface communication status for all nodes (leafs, spines, and hosts) or an interface between specific nodes in your network fabric. This command only checks the physical interfaces; it does not check bridges, bonds, or other software constructs.
-
-```
-netq check interfaces
-```
 You can view link and interface statistics with the following commands:
 
-- View statistics about a given node and interface, including frame errors, ACL drops, and buffer drops with {{<link title="show/#netq-show-ethtool-stats" text="netq show ethtool-stats">}}
-- View interface statistics and utilization with the {{<link title="show/#netq-show-interface-stats" text="netq show interface-stats">}} or {{<link title="show/#netq-show-interface-utilization" text="netq show interface-utilization">}} commands.
-- View incoming and outgoing access control lists (ACLs) configured on all switches and host with {{<link title="show/#netq-show-cl-resource" text="netq show cl-resource acl">}}
-- View forwarding resources on all devices with {{<link title="show/#netq-show-cl-resource" text="netq show cl-resource forwarding">}}
-- View SDD utilization with {{<link title="show/#netq-show-cl-ssd-util" text="netq show cl-ssd-util">}}
-- View how many compute resources&mdash;CPU, disk, and memory&mdash;the switches on your network consume with {{<link title="show/#netq-show-resource-util" text="netq show resource-util">}}
+- {{<link title="show/#netq-show-ethtool-stats" text="netq show ethtool-stats">}}
+- {{<link title="show/#netq-show-interface-stats" text="netq show interface-stats">}}
+- {{<link title="show/#netq-show-interface-utilization" text="netq show interface-utilization">}}
+- {{<link title="show/#netq-show-cl-resource" text="netq show cl-resource acl">}}
+- {{<link title="show/#netq-show-cl-resource" text="netq show cl-resource forwarding">}}
+- {{<link title="show/#netq-show-cl-ssd-util" text="netq show cl-ssd-util">}}
+- {{<link title="show/#netq-show-resource-util" text="netq show resource-util">}}
 
 ## Check for MTU Inconsistencies
 

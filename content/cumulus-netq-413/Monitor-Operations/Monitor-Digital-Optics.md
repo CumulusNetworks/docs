@@ -9,13 +9,7 @@ With the NetQ UI and NetQ CLI, you can monitor the health of digital optics modu
 
 ## Digital Optics Commands
 
-Use the {{<link title="show/#netq show dom" text="netq show dom">}} commands to monitor performance degradations or outages of any digital optics modules (DOMs) on a given device. The output of the DOM commands indicate if a digital optics module's {{<link title="Threshold-Crossing Events Reference/#digital-optics" text="threshold value ">}} has been crossed:
-
-```
-netq [<hostname>] show dom type (laser_rx_power|laser_output_power|laser_bias_current)
-netq [<hostname>] show dom type (module_temp|module_voltage)
-netq <hostname> show dom ber 
-```
+- {{<link title="show/#netq show dom" text="netq show dom">}}
 
 ## View Digital Optics in the UI
 

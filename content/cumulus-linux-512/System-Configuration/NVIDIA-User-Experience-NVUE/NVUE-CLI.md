@@ -526,7 +526,7 @@ A patch contains a single request to the NVUE service. Ordering of parameters wi
 
 NVUE provides commands to translate an NVUE configuration revision or yaml file into NVUE commands. The revision ID must be either an integer or a named revision (such as startup, applied, pending). The configuration file must be located on the switch and must include the full path to the file containing the configuration you want to translate. The file must be in YAML format and must be accessible with proper read permissions.
 
-To translate a specific NVUE configuration revision, run the `nv config translate system config revision <revision-id>` command. NVUE displays the translation on the console.
+To translate a specific NVUE configuration revision, run the `nv config translate revision <revision-id>` command. NVUE displays the translation on the console.
 
 The following command translates the configuration in revision 1:
 
@@ -540,10 +540,10 @@ The following command translates the configuration in the applied revision:
 cumulus@switch:~$ nv config translate revision applied 
 ```
 
-To translate a configuration file, run the `nv config translate system config input-file <file-path>` command. The following example translates the `backup.yaml` file in the `/home/cumulus` directory. NVUE displays the translation on the console.
+To translate a configuration file, run the `nv config translate filename <filename>` command. The following example translates the `backup.yaml` file in the `/home/cumulus` directory. NVUE displays the translation on the console.
 
 ```
-cumulus@switch:~$ nv config translate input-file /home/cumulus/backup.yaml
+cumulus@switch:~$ nv config translate filename /home/cumulus/backup.yaml
 ```
 
 If the revision or yaml file is not readable, is in an invalid format, or includes invalid parameters, NVUE returns an error message and prompts you to correct the issue before proceeding.

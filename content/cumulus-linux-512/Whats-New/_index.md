@@ -274,6 +274,14 @@ nv action upload system log file <file-name> <remote-url-upload>
 ```
 
 {{< /tab >}}
+{{< tab "nv config ">}}
+
+```
+nv config translate revision
+nv config translate filename <filename>
+```
+
+{{< /tab >}}
 {{< /tabs >}}
 {{< /expand >}}
 

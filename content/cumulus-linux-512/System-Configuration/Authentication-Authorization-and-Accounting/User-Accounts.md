@@ -70,11 +70,13 @@ cumulus@switch:~$ nv set system aaa user admin2 full-name "FIRST LAST"
 cumulus@switch:~$ nv config apply
 ```
 
-You can also run the `nv set system aaa user <user> password <plain-text-password>` command to specify the plain text password inline. This command bypasses the `Enter new password` and `Confirm password` prompts but displays the plain text password as you type it.
+You can run the `nv set system aaa user <user> password <plain-text-password>` command to specify the plain text password inline. This command bypasses the `Enter new password` and `Confirm password` prompts but displays the plain text password as you type it.
 
 {{%notice note%}}
 If you are an NVUE-managed user, you can update your own password with the Linux `passwd` command.
 {{%/notice%}}
+
+To configure a <span class="a-tooltip">[SPIFFE](## "Secure Production Identity Framework for Everyone")</span> ID for the user account instead of a password, run the `nv set system aaa user cumulus spiffe-id <id>` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

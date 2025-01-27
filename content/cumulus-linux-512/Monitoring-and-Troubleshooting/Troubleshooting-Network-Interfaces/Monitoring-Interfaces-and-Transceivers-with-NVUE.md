@@ -441,14 +441,15 @@ Action executing ...
 Action succeeded 
 ```
 
-When the reset completes successfully, you see `switchd.log` messages similar to the following:
+When the reset completes successfully, you see syslog messages similar to the following:
 
 ```
 2024-12-06T07:12:37.996339+00:00 cumulus nvue-port-reset: The module reset was successfully completed on swp1
 ```
 
 {{%notice note%}}
-If a cable is faulty, the `nv action reset platform transceiver <transceiver-id` command completes successfully, but the details of the transceiver do not show until you resolve the issue or reboot the system if necessary,
+- To reset a transceiver on a split port, specify the parent port; for example, to reset swp1s0, run the `nv action reset platform transceiver swp1` command.
+- If a cable is faulty, the `nv action reset platform transceiver <transceiver-id` command completes successfully, but the details of the transceiver do not show until you resolve the issue or reboot the system if necessary,
 {{%/notice%}}
 
 ## Show Transceiver Information

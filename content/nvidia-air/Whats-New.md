@@ -28,6 +28,8 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 - Fixed an issue with the Demo Marketplace search results
 - Fixed an issue where image details displayed an updated status even though the image update request failed
 
+## Archive
+{{< expand "Changelog Archive 2024" >}}
 ## December 2024
 
 ### 82.2024.1219-011
@@ -212,9 +214,8 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 
 ### 82.2024.0104-012
 - Updated font used by configuration migration tool
-
-## Archive
-{{< expand "Changelog Archive" >}}
+{{< /expand >}}
+{{< expand "Changelog Archive 2023" >}}
 ## November 2023
 ### 82.2023.1109-012
 - Fixed an issue where the font failed to render correctly

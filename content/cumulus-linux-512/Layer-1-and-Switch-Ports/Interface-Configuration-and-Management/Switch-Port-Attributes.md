@@ -1535,17 +1535,17 @@ Maximum 800G ports: 64
 
 {{< /tab >}}
 {{< /tab >}}
-
+<!--
 {{< /tabs >}}
 {{< tab "SN5610">}}
 
-SN5600 64xOSFP (800GbE) interfaces support both PAM4 and NRZ encodings with all speeds down to 10G.
+SN5610 64xOSFP (800GbE) interfaces support both PAM4 and NRZ encodings with all speeds down to 10G.
 
 For lower speeds, PAM4 is automatically converted to NRZ encoding.
 
-Bonus ports #65 #66 support 1G, 10G, and 25G but does not support breakouts.
+Bonus ports #65 and #66 support 1G, 10G, and 25G but does not support breakouts.
 
-{{< tabs "5600_ports ">}}
+{{< tabs "5610_ports ">}}
 {{< tab "1G ">}}
 
 Maximum 1G ports: 2 (bonus ports)
@@ -1608,7 +1608,7 @@ Maximum 800G ports: 64
 
 {{< /tab >}}
 {{< /tab >}}
-
+-->
 {{< /tab >}}
 {{< /tabs >}}
 <!-- vale on -->

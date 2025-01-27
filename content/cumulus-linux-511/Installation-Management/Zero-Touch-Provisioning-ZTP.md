@@ -350,7 +350,25 @@ nv config apply
 exit 0
 ```
 
-## Continue Provisioning
+### Error Handling
+
+When commands in a ZTP script produce an error, it is necessary to act on them to prevent the script from exiting early. NVIDIA recommends you avoid redirecting `stderr` with `&> /dev/null` or other methods in your ZTP scripts. Redirecting `stderr` might disrupt the order of operations and lead to unexpected results with interactive commands and NVUE.
+
+To handle errors and log them to the `/var/log/autoprovision` file, use `function error()` as shown in the following example and the sample script in the previous section:
+
+```
+function error() {
+  echo -e "\e[0;33mERROR: The ZTP script failed while running the command $BASH_COMMAND at line $BASH_LINENO.\e[0m" >&2
+  exit 1
+}
+
+# Log all output from this script
+exec >> /var/log/autoprovision 2>&1
+date "+%FT%T ztp starting script $0"
+
+trap error ERR
+```
+### Continue Provisioning
 
 Typically ZTP exits after executing the script locally and does not continue. To continue with provisioning so that you do not have to intervene manually or embed an Ansible callback into the script, you can add the `CUMULUS-AUTOPROVISION-CASCADE` directive.
 

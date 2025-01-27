@@ -135,7 +135,6 @@ nv show vrf <vrf-id> router static <route-id> via <via-id> interface <interface-
 {{< tab "nv set ">}}
 
 ```
-nv set system aaa radius accounting state
 nv set system aaa radius accounting send-records
 nv set system aaa user <user-id> spiffe-id <spiffe-id>
 nv set system counter rates load-interval
@@ -187,7 +186,6 @@ nv set vrf <vrf> router bgp address-family <address-family> nhg-per-origin
 {{< tab "nv unset ">}}
 
 ```
-nv unset system aaa radius accounting state
 nv unset system aaa radius accounting send-records
 nv unset system aaa user <user-id> spiffe-id <spiffe-id>
 nv unset system counter rates load-interval

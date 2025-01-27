@@ -1536,6 +1536,79 @@ Maximum 800G ports: 64
 {{< /tab >}}
 {{< /tab >}}
 
+{{< /tabs >}}
+{{< tab "SN5610">}}
+
+SN5600 64xOSFP (800GbE) interfaces support both PAM4 and NRZ encodings with all speeds down to 10G.
+
+For lower speeds, PAM4 is automatically converted to NRZ encoding.
+
+Bonus ports #65 #66 support 1G, 10G, and 25G but does not support breakouts.
+
+{{< tabs "5600_ports ">}}
+{{< tab "1G ">}}
+
+Maximum 1G ports: 2 (bonus ports)
+
+{{< /tab >}}
+{{< tab "10G ">}}
+
+256x 10G
+
+Maximum 10G ports: 258 (256 + 2 bonus ports)
+
+{{< /tab >}}
+{{< tab "25G ">}}
+
+256x 25G
+
+Maximum 25G ports: 258 (256 + 2 bonus ports)
+
+{{< /tab >}}
+{{< tab "40G ">}}
+
+128x 40G
+
+Maximum 40G ports: 128
+
+{{< /tab >}}
+{{< tab "50G ">}}
+
+256x 50G - 32x OSFP break out into 8x - You must disable the adjacent OSFP port.
+
+Maximum 50G ports: 256
+
+{{< /tab >}}
+{{< tab "100G ">}}
+
+256x 100G - 32x OSFP break out into 8x - You must disable the adjacent OSFP port.
+
+Maximum 100G ports: 256
+
+{{< /tab >}}
+{{< tab "200G ">}}
+
+256x 200G - 64x OSFP break out into 4x
+
+Maximum 200G ports: 256
+
+{{< /tab >}}
+{{< tab "400G ">}}
+
+128x 400G - 64x OSFP break out into 2x
+
+Maximum 400G ports: 128
+
+{{< /tab >}}
+{{< tab "800G ">}}
+
+64x 800G
+
+Maximum 800G ports: 64
+
+{{< /tab >}}
+{{< /tab >}}
+
 {{< /tab >}}
 {{< /tabs >}}
 <!-- vale on -->

@@ -523,21 +523,8 @@ The switch collects and exports the following additional interface statistics wh
 | `nvswitch_interface_phy_received_bits` | Total amount of traffic (bits) received. |
 | `nvswitch_interface_phy_symbol_errors` | Error bits not corrected by the FEC correction algorithm or when FEC is not active. |
 | `nvswitch_interface_phy_effective_errors` | Number of errors after FEC is applied. |
-| `nvswitch_interface_phy_raw_errors_lane0` | Error bits identified on lane 0. When FEC is enabled, this induction corresponds to corrected errors. |
-| `nvswitch_interface_phy_raw_errors_lane1` | Error bits identified on lane 1. When FEC is enabled, this induction corresponds to corrected errors. |
-| `nvswitch_interface_phy_raw_errors_lane2` | Error bits identified on lane 2. When FEC is enabled, this induction corresponds to corrected errors. |
-| `nvswitch_interface_phy_raw_errors_lane3` | Error bits identified on lane 3. When FEC is enabled, this induction corresponds to corrected errors. |
-| `nvswitch_interface_phy_raw_errors_lane4` | Error bits identified on lane 4. When FEC is enabled, this induction corresponds to corrected errors. |
-| `nvswitch_interface_phy_raw_errors_lane5` | Error bits identified on lane 6. When FEC is enabled, this induction corresponds to corrected errors. |
-| `nvswitch_interface_phy_raw_errors_lane7` | Error bits identified on lane 7. When FEC is enabled, this induction corresponds to corrected errors. |
-| `nvswitch_interface_raw-ber-lane0` | raw_ber-lane0 = raw_ber_coef_lane0*10^(raw_ber_magnitude) |
-| `nvswitch_interface_raw-ber-lane1` | raw_ber-lane1 = raw_ber_coef_lane0*10^(raw_ber_magnitude) |
-| `nvswitch_interface_raw-ber-lane2` | raw_ber-lane2 = raw_ber_coef_lane0*10^(raw_ber_magnitude) |
-| `nvswitch_interface_raw-ber-lane3` | raw_ber-lane3 = raw_ber_coef_lane0*10^(raw_ber_magnitude) |
-| `nvswitch_interface_raw-ber-lane4` | raw_ber-lane4 = raw_ber_coef_lane0*10^(raw_ber_magnitude) |
-| `nvswitch_interface_raw-ber-lane5` | raw_ber-lane5 = raw_ber_coef_lane0*10^(raw_ber_magnitude) |
-| `nvswitch_interface_raw-ber-lane6` | raw_ber-lane6 = raw_ber_coef_lane0*10^(raw_ber_magnitude) |
-| `nvswitch_interface_raw-ber-lane7` | raw_ber-lane7 = raw_ber_coef_lane0*10^(raw_ber_magnitude) |
+| `nvswitch_interface_phy_raw_errors` | Error bits identified on lane 0 through lane 7. When FEC is enabled, this induction corresponds to corrected errors. |
+| `nvswitch_interface_raw-ber` | raw_ber_coef_laneX*10^(raw_ber_magnitude) |
 
 {{< /tab >}}
 {{< /tabs >}}

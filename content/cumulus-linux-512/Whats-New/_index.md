@@ -60,7 +60,6 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 ```
 nv show interface <interface> rates
 nv show interface rates
-nv show system aaa user <user-id> spiffe-id
 nv show system aaa user <user-id> spiffe-id <spiffe-id>
 nv show system counter rates
 nv show system disk usage

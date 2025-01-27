@@ -440,6 +440,12 @@ To work around this issue, disable next hop groups in zebra with the vtysh {{zeb
 <td>5.6.0-5.11.0</td>
 </tr>
 <tr>
+<td>3463976</td>
+<td>Multipath routes using next hop objects might end up hashing to an unresolved next hop and drop traffic.</td>
+<td>5.4.0-5.5.1</td>
+<td>5.6.0-5.11.0</td>
+</tr>
+<tr>
 <td>3459696</td>
 <td>If you run the NVUE {{nv show vrf &lt;vrf&gt; router bgp peer-group &lt;peer-group&gt;}} command when the BGP instance is not enabled, you see an NVUE traceback error.</td>
 <td>5.4.0-5.5.1</td>
@@ -1310,6 +1316,12 @@ To work around this issue, disable next hop groups in zebra with the vtysh {{zeb
 <td>3466703</td>
 <td>In rare cases when there is high load, the {{clagd}} service might experience a buffer overflow and MLAG bonds stay in a proto-down state on the secondary switch. You see a "NetlinkThread: Netlink overflow" log message and the MLAG state indicates VLAN conflicts between peers. To work around this issue, restart the {{clagd}} service with the {{sudo systemctl restart clagd}} command on the switch that reports the overflow log message.</td>
 <td>5.2.0-5.5.1</td>
+<td>5.6.0-5.11.0</td>
+</tr>
+<tr>
+<td>3463976</td>
+<td>Multipath routes using next hop objects might end up hashing to an unresolved next hop and drop traffic.</td>
+<td>5.4.0-5.5.1</td>
 <td>5.6.0-5.11.0</td>
 </tr>
 <tr>

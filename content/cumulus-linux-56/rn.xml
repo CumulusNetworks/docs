@@ -1144,6 +1144,11 @@ To work around this issue, disable next hop groups in zebra with the vtysh {{zeb
 <td>5.2.0-5.5.1</td>
 </tr>
 <tr>
+<td>3463976</td>
+<td>Multipath routes using next hop objects might end up hashing to an unresolved next hop and drop traffic.</td>
+<td>5.4.0-5.5.1</td>
+</tr>
+<tr>
 <td>3459696</td>
 <td>If you run the NVUE {{nv show vrf &lt;vrf&gt; router bgp peer-group &lt;peer-group&gt;}} command when the BGP instance is not enabled, you see an NVUE traceback error.</td>
 <td>5.4.0-5.5.1</td>

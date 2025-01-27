@@ -68,7 +68,7 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <tr>
 <td>3129819</td>
 <td>On the EdgeCore AS4610 switch, the {{clagd}} service loses communication after 198 days of uptime.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.5</td>
+<td>3.7.15-3.7.16</td>
 <td></td>
 </tr>
 <tr>
@@ -2558,7 +2558,7 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <tr>
 <td>3129819</td>
 <td>On the EdgeCore AS4610 switch, the {{clagd}} service loses communication after 198 days of uptime.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.5</td>
+<td>3.7.15-3.7.16</td>
 <td></td>
 </tr>
 <tr>

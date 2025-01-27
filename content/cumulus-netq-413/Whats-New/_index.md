@@ -24,10 +24,7 @@ NetQ 4.13.0 includes the following new features:
 
 ## Upgrade Paths
 
-For deployments running:
-
-- 4.11, 4.12: {{<link title="Upgrade NetQ Virtual Machines" text="upgrade directly">}} to NetQ 4.13
-- 4.10.1 or earlier: {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}} and perform a {{<link title="Install the NetQ System" text="new installation">}}
+NetQ 4.13.0 images have been upgraded to Ubuntu 22.04. To upgrade to NetQ 4.13.0, {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}} and perform a new installation of NetQ 4.13.0.
 
 ## Compatible Agent Versions
 
@@ -38,6 +35,4 @@ The NetQ 4.12 server is compatible with the NetQ 4.12 agent. You can install Net
 
 ## Release Considerations
 
-- NetQ 4.12 is not backward compatible with previous NetQ agent versions. You must install NetQ agent version 4.12 after upgrading your NetQ server to 4.12.
-- When you upgrade to NetQ 4.12, any pre-existing event and validation data will be lost.
-- If you upgrade a NetQ server with scheduled OSPF validations, they might still appear in the UI but will display results from previous validations.
+- When you upgrade to NetQ 4.13, any pre-existing PTP data will be lost.

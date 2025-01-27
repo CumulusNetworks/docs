@@ -6,6 +6,7 @@ toc: 2
 ---
 
 - {{<link title="BGP">}}
+- {{<link title="Digital Optics">}}
 - {{<link title="DPUs">}}
 - {{<link title="ECMP">}}
 - {{<link title="EVPN">}}

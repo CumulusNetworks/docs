@@ -473,7 +473,7 @@ NVIDIA has not tested running different versions of Cumulus Linux on MLAG peer s
 {{< /tab >}}
 {{< /tabs >}}
 
-## Downgrade a Secure Boot Switch from Cumulus Linux 5.11.0
+## Downgrade a Secure Boot Switch
 
 The SN3700C-S, SN5400, and SN5600 secure boot switch running Cumulus Linux 5.11.0 boots with shim 15.8 that adds entries to the SBAT revocations to prevent the switch from booting shim 15.7 or earlier, which has security vulnerabilities.
 

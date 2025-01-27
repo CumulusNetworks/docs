@@ -12,14 +12,14 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 NetQ 4.13.0 includes the following new features:
 
-- {{<link title="Before You Install" text="New installation option">}} that supports up to 2,000 switches
-- Performance and usability improvements to queue length histograms
+- New option to add additional nodes to your HA scale cluster deployment, supporting up to 2,000 switches
+- Performance and usability improvements to {{<link title="Switches/#view-queue-lengths-as-histograms" text="queue length histograms">}}
 - New functionality that allows you to {{<link title="Monitor Events/#create-event-filters" text="create and save filters">}} for system and What Just Happened events
 - {{<link title="Interfaces/#compare-link-interfaces" text="Link health view">}} is now generally available
-- Filter hostnames using regular expressions
-- Added support for Ubuntu 22.04
-- Added support for Kubernetes 1.31.1
+- Added ability to filter hostnames using regular expressions
+- Improved table layout and column order
 - Security and performance improvements
+- Added support for Ubuntu 22.04
 
 
 ## Upgrade Paths

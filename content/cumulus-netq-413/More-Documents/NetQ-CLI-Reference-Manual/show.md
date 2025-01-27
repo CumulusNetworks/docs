@@ -1340,7 +1340,7 @@ leaf04            4001       10.0.1.2         L3               Vrf RED        ye
 - - -
 ## netq show histogram
 
-Displays a device's egress queue lengths as a histogram, grouped into bins. For more information, refer to {{<link title="Switches/#view-queue-lengths-in-histograms" text="Monitoring Switches">}}.
+Displays a device's egress queue lengths as a histogram, grouped into bins. For more information, refer to {{<link title="Switches/#view-queue-lengths-as-histograms" text="Monitoring Switches">}}.
 
 ### Syntax
 

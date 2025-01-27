@@ -24,14 +24,12 @@ MAC addresses are associated with switch interfaces. They are classified as:
 
 ## MAC Commands
 
-Monitor MAC addresses with the following commands. Refer to the {{<link title="show/#netq-show-macs" text="command line reference">}} for additional options, definitions, and examples.
-
-- To view all MAC addresses across the network, use the {{<link title="show/#netq-show-macs" text="netq show macs">}} command.
-- To view MAC addresses associated with a VLAN, use the {{<link title="show/#netq-show-macs" text="netq show macs vlan">}} command.
-- To view MAC addresses associated with an egress port, use the {{<link title="show/#netq-show-macs" text="netq show macs egress-port">}} command.
-- To view all MAC addresses associated with a VRR (virtual router reflector) interface configuration, use the {{<link title="show/#netq-show-interfaces" text="netq show interfaces type macvlan">}} command.
-- To view the history of a MAC address, use the {{<link title="show/#netq-show-mac-history" text="netq show mac-history">}} command.
-- To view MAC address commentary, use the {{<link title="show/#netq-show-mac-commentary" text="netq show mac-commentary">}} command.
+- {{<link title="show/#netq-show-macs" text="netq show macs">}}
+- {{<link title="show/#netq-show-macs" text="netq show macs vlan">}}
+- {{<link title="show/#netq-show-macs" text="netq show macs egress-port">}}
+- {{<link title="show/#netq-show-interfaces" text="netq show interfaces type macvlan">}}
+- {{<link title="show/#netq-show-mac-history" text="netq show mac-history">}}
+- {{<link title="show/#netq-show-mac-commentary" text="netq show mac-commentary">}}
 
 ## View MAC Addresses in the UI
 

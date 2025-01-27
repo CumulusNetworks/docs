@@ -141,7 +141,7 @@ To actively monitor process-level CPU and memory utilization, you can create {{<
 
 ## View Queue Lengths as Histograms
 
-Monitoring queue lengths in your network’s fabric is useful for detecting microbursts which can lead to higher packet latency or buffer congestion. The {{<kb_link latest="cl" url="Monitoring-and-Troubleshooting/ASIC-Monitoring.md" text="Cumulus Linux documentation">}} provides a detailed description of ASIC monitoring, including example bin configurations and information on interpreting histogram queue lengths. 
+Monitoring queue lengths in your network’s fabric is useful for detecting microbursts or packet buffer congestion, which can lead to higher latency or packet drops. The {{<kb_link latest="cl" url="Monitoring-and-Troubleshooting/ASIC-Monitoring.md" text="Cumulus Linux documentation">}} provides a detailed description of ASIC monitoring, including example bin configurations and information on interpreting histogram queue lengths. 
 
 {{%notice note%}}
 
@@ -152,23 +152,21 @@ Monitoring queue lengths in your network’s fabric is useful for detecting micr
 
 The information available in the UI can also be displayed via the CLI with the {{<link title="show/#netq-show-histogram" text="netq show histogram">}} command. 
 
-To view queue histograms in the UI:
+To add the queue histogram card to your workbench, select **Add card** and search for the 'Top 5 longest buffers' card. For a more detailed view, expand the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**. In the Spectrum-X section, select **Queue histogram**.
 
-1. Expand the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**. In the Spectrum-X section, select **Queue histogram**.
+Devices are {{<link title="Switch Management/#role-management" text="grouped according to their roles">}}: superspine, leaf, spine, or exit. If you haven't assigned roles to your devices, they appear in the 'unassigned' group. Each group lists the five devices with the highest P95 values. From here, you can select an individual device or **View all** to view all devices assigned a particular role along with their queue length values.
 
-Devices are {{<link title="Switch Management/#role-management" text="grouped according to their roles">}}: superspine, leaf, spine, or exit. If you haven't assigned roles to your devices, they appear as 'unassigned.'
+{{<figure src="/images/netq/fabric-overview-queue-413.png" alt="dashboard displaying devices grouped according to their respective roles" width="1200" height="425">}}
 
-{{<figure src="/images/netq/queue-hist-411.png" alt="dashboard displaying 6 devices with egress queue lengths as histograms" width="1200" height="350">}}
+Each device is represented by a card that displays its hostname, the port with the longest queue length (displayed horizontally, divided into bins), standard deviation, P95 value across all ports that have ASIC monitoring configured, and average queue length over the past five minutes. The values reflected in the bins are color-coded, with higher values displayed in darker colors and lower values in lighter colors. Hover over a bin to view its corresponding queue length count.
 
-Each device is represented by a card that displays its hostname, the port with the longest queue length (displayed horizontally, divided into bins), standard deviation, P95 value across all ports (with an ASIC monitoring configuration), and average queue length. The data updates when you change the time parameters using the controls at the top of the screen. The values reflected in the bins are color-coded, with higher values displayed in darker colors and lower values in lighter colors. Hover over a bin to view its corresponding queue length count.
+{{<figure src="/images/netq/single-device-queue-413.png" alt="single device with standard deviation, P95, and average queue length values" width="250" height="225">}}
 
-{{<figure src="/images/netq/single-queue-470.png" alt="dashboard displaying 6 devices with egress queue lengths as histograms" width="250" height="225">}}
+Select **View more** to open a dashboard that displays the full range of ports configured to send histogram data along with their LLDP peers, which are visible when you hover over a section with your cursor. From this view, you can compare devices against each other or the same devices over a different time period. For example, the following view compares queue length data from two switches over the past 30 minutes.
 
-Select **View more** to open a dashboard that displays the full range of ports configured to send histogram data along with their associated devices, which are visible when you hover over a section with your cursor. From this view, you can compare devices against each other or the same devices over a different time period. For example, the following view displays switch *r-qa-sw-eth-2231* with queue length data from the past minute in the top panel and the past 30 minutes in the bottom panel.
+{{<figure src="/images/netq/queue-compare-413.png" alt="histogram comparison of the same device with different time parameters" width="1100" height="500">}}
 
-{{<figure src="/images/netq/compare-queue-hist-470.png" alt="histogram comparison of the same device with different time parameters" width="1100" height="500">}}
-
-The y-axis represents bins 0 through 9. The hostname associated with the port is displayed on the x-axis.
+The y-axis represents the values contained in bins 0 through 9. The switch's ports are displayed on the x-axis. Hover your mouse over the data to view the associated port name, count data, bin number, and LLDP peer.
 
 ## Related Information
 

@@ -70,7 +70,7 @@ Additionally, for internal cluster communication, you must open these ports:
     b. Select **NVIDIA Licensing Portal**.<br>
     c. Select **Software Downloads** from the menu.<br>
     d. Click **Product Family** and select **NetQ**.<br>
-    e. For deployments using KVM, download the **NetQ SW 4.12 KVM** image. For deployments using VMware, download the **NetQ SW 4.12 VMware** image<br>
+    e. For deployments using KVM, download the **NetQ SW 4.13 KVM** image. For deployments using VMware, download the **NetQ SW 4.13 VMware** image<br>
     f. If prompted, read the license agreement and proceed with the download.<br>
 
 {{%notice note%}}
@@ -79,8 +79,8 @@ NVIDIA employees can download NetQ directly from the {{<exlink url="http://ui.li
 
 2. Open your hypervisor and configure your VM. You can use the following examples for reference or use your own hypervisor instructions.
 <!--undo these shortcodes-->
-{{<netq-install/vm-setup hypervisor="kvm" deployment="onprem" version="4.12">}}
-{{<netq-install/vm-setup hypervisor="vmware" deployment="onprem" version="4.12">}}
+{{<netq-install/vm-setup hypervisor="kvm" deployment="onprem" version="4.13">}}
+{{<netq-install/vm-setup hypervisor="vmware" deployment="onprem" version="4.13">}}
 
 3. Log in to the VM and change the password.
 
@@ -92,10 +92,10 @@ Use the default credentials to log in the first time:
 ```
 $ ssh cumulus@<ipaddr>
 Warning: Permanently added '<ipaddr>' (ECDSA) to the list of known hosts.
-Ubuntu 20.04 LTS
+Ubuntu 22.04 LTS
 cumulus@<ipaddr>'s password:
 You are required to change your password immediately (root enforced)
-System information as of Thu Dec  3 21:35:42 UTC 2020
+System information as of Thu Dec  3 21:35:42 UTC 2024
 System load:  0.09              Processes:           120
 Usage of /:   8.1% of 61.86GB   Users logged in:     0
 Memory usage: 5%                IP address for eth0: <ipaddr>
@@ -114,14 +114,14 @@ Log in again with your new password.
 ```
 $ ssh cumulus@<ipaddr>
 Warning: Permanently added '<ipaddr>' (ECDSA) to the list of known hosts.
-Ubuntu 20.04 LTS
+Ubuntu 22.04 LTS
 cumulus@<ipaddr>'s password:
-  System information as of Thu Dec  3 21:35:59 UTC 2020
+  System information as of Thu Dec  3 21:35:59 UTC 2024
   System load:  0.07              Processes:           121
   Usage of /:   8.1% of 61.86GB   Users logged in:     0
   Memory usage: 5%                IP address for eth0: <ipaddr>
   Swap usage:   0%
-Last login: Thu Dec  3 21:35:43 2020 from <local-ipaddr>
+Last login: Thu Dec  3 21:35:43 2024 from <local-ipaddr>
 cumulus@ubuntu:~$
 ```
 4. Verify that the master node is ready for installation. Fix any errors before installing the NetQ software.
@@ -181,16 +181,16 @@ cumulus@<hostname>:~$ netq install cluster master-init
 
 {{<notice info>}}
 The HA cluster virtual IP must be:
-    <li>An unused IP address allocated from the same subnet assigned to the default interface for your master and worker nodes. The default interface is the interface used in the <code>netq install</code> <a href="/cumulus-netq-412/More-Documents/NetQ-CLI-Reference-Manual/install/#netq-install-cluster-full">command</a>.</li>
+    <li>An unused IP address allocated from the same subnet assigned to the default interface for your master and worker nodes. The default interface is the interface used in the <code>netq install</code> <a href="/cumulus-netq/More-Documents/NetQ-CLI-Reference-Manual/install/#netq-install-cluster-full">command</a>.</li>
     <li>A different IP address than the primary IP assigned to the default interface.</li>
 {{</notice>}}
 
 ```
-cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.12.0.tgz workers <worker-1-ip> <worker-2-ip> cluster-vip <vip-ip>
+cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.13.0.tgz workers <worker-1-ip> <worker-2-ip> cluster-vip <vip-ip>
 ```
 <div class="notices note"><p></p><p>NetQ uses the 10.244.0.0/16 (<code>pod-ip-range</code>) and 10.96.0.0/16 (<code>service-ip-range</code>) networks for internal communication by default. If you are using these networks, you must override each range by specifying new subnets for these parameters in the install command:</p>
-    <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>cumulus@hostname:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.12.0.tgz workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt; pod-ip-range &lt;pod-ip-range&gt; service-ip-range &lt;service-ip-range&gt;</pre><p>You can specify the IP address of the server instead of the interface name using the <code>ip-addr &lt;ip-address&gt;</code> argument:</p>
-    <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>cumulus@hostname:~$ netq install cluster full ip-addr &lt;ip-address&gt; bundle /mnt/installables/NetQ-4.12.0.tgz workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt;</pre><p>If you change the server IP address or hostname after installing NetQ, you must reset the server with the <code>netq bootstrap reset keep-db</code> command and rerun the install command.</p>
+    <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>cumulus@hostname:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.13.0.tgz workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt; pod-ip-range &lt;pod-ip-range&gt; service-ip-range &lt;service-ip-range&gt;</pre><p>You can specify the IP address of the server instead of the interface name using the <code>ip-addr &lt;ip-address&gt;</code> argument:</p>
+    <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>cumulus@hostname:~$ netq install cluster full ip-addr &lt;ip-address&gt; bundle /mnt/installables/NetQ-4.13.0.tgz workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt;</pre><p>If you change the server IP address or hostname after installing NetQ, you must reset the server with the <code>netq bootstrap reset keep-db</code> command and rerun the install command.</p>
     <p></p></div>
 
 <div class="notices tip"><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
@@ -203,8 +203,8 @@ To view the status of the installation, use the `netq show status [verbose]` com
 State: Active
     NetQ Live State: Active
     Installation Status: FINISHED
-    Version: 4.12.0
-    Installer Version: 4.12.0
+    Version: 4.13.0
+    Installer Version: 4.13.0
     Installation Type: Cluster
     Activation Key: EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIixPSUJCOHBPWUFnWXI2dGlGY2hTRzExR2E5aSt6ZnpjOUvpVVTaDdpZEhFPQ==
     Master SSH Public Key: c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCZ1FDNW9iVXB6RkczNkRC

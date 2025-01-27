@@ -64,7 +64,7 @@ The data aggregation component collects data coming from all of the NetQ Agents.
 
 ### Data Stores
 
-NetQ uses two types of data stores. The first stores the raw data, data aggregations, and discrete events needed for quick response to data requests. The second stores data based on correlations, transformations, and raw-data processing.
+NetQ uses two types of data stores. The first stores the raw data, data aggregations, and discrete events needed for quick response to data requests. The second stores data based on correlations, transformations, and raw-data processing. Refer to {{<link title="Data Retention Policies">}} for information about the types of data NetQ collects.
 
 <!-- vale off -->
 ### Real-time Streaming
@@ -84,4 +84,4 @@ NetQ data is available through several interfaces:
   - NetQ GUI (graphical user interface)
   - NetQ RESTful API (representational state transfer application programming interface)
 
-The CLI and UI query the RESTful API to present data. NetQ can integrate with event notification applications and third-party analytics tools.
+The CLI and UI query the {{<link title="API User Guide" text="RESTful API">}} to present data. NetQ can integrate with event notification applications and third-party analytics tools.

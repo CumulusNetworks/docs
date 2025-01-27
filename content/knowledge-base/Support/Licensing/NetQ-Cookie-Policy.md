@@ -21,4 +21,4 @@ To find out more about cookies, including how to see what cookies have been set 
 These cookies are required to operate parts of the website, such as user authentication, country (for language settings), time zone, and account preferences.
 
 **Analytics Cookies**<br>
-These cookies are used to better understand and optimize the web experience. NetQ uses {{<exlink url="https://www.walkme.com/" text="WalkMe">}} to onboard users and gather insights. These cookies are not required for NetQ to function.
+These cookies are used to better understand and optimize the web experience.

@@ -1,7 +1,7 @@
 ---
-title: Integrate NetQ API with Your Applications
+title: API User Guide
 author: NVIDIA
-weight: 1130
+weight: 1150
 toc: 3
 ---
 The NetQ API provides data about the performance and operation of your network and its devices. You can view the data with your internal tools or with third-party analytic tools. The API displays the health of individual switches, network protocols and services, trace and validation results, as well as networkwide inventory and events.

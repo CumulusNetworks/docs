@@ -8,19 +8,11 @@ toc: 3
 Use the UI or CLI to monitor Ethernet VPN (EVPN) on a networkwide or per-session basis. 
 ## EVPN Commands
 
-Monitor EVPN with the following commands. See the {{<link title="show/#netq-show-evpn" text="command line reference">}} for additional options, definitions, and examples.
+- {{<link title="show/#netq-show-evpn"text="netq show evpn">}}
+- {{<link title="check/#netq check evpn" text="netq check evpn">}}
+- {{<link title="show/#netq-show-events" text="netq show events message_type evpn">}}
+- {{<link title="show/#netq-show-events-config" text="netq show events-config message_type evpn">}} 
 
-```
-netq show evpn
-netq show events message_type evpn
-netq show events-config message_type evpn
-```
-
-The {{<link title="check/#netq check evpn" text="netq check evpn">}} command verifies the communication status for all nodes (leafs, spines, and hosts) running instances of EVPN in your network fabric:
-
-```
-netq check evpn
-```
 ## View EVPN in the UI
 
 To add the EVPN card to your workbench, navigate to the header and select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card&nbsp;<span aria-label="and then">></span> Other card&nbsp;<span aria-label="and then">></span> Network services&nbsp;<span aria-label="and then">></span> All EVPN Sessions card&nbsp;<span aria-label="and then">></span> Open cards**. In this example, there are 33 nodes running the EVPN service, 0 events (from the last 24 hours), and 23,070 VNIs.

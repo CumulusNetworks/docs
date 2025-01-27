@@ -8,7 +8,7 @@ bookhidden: true
 Follow these steps to set up and configure your VM on a cluster of servers in an on-premises deployment. First configure the VM on the master node, and then configure the VM on each additional node. NVIDIA recommends installing the virtual machines on different servers to increase redundancy in the event of a hardware failure. 
 
 {{%notice note%}}
-NetQ 4.12.0 supports a 3-node HA scale cluster consisting of 1 master and 2 additional HA worker nodes.
+NetQ 4.13.0 supports a 3-node HA scale cluster consisting of 1 master and 2 additional high-availability (HA) nodes or a 5-node cluster consisting of 1 master, 2 HA nodes, and 2 worker nodes.
 {{%/notice%}}
 - - -
 
@@ -73,7 +73,7 @@ Additionally, for internal cluster communication, you must open these ports:
     b. Select **NVIDIA Licensing Portal**.<br>
     c. Select **Software Downloads** from the menu.<br>
     d. Click **Product Family** and select **NetQ**.<br>
-    e. For deployments using KVM, download the **NetQ SW 4.12.0 KVM Scale** image. For deployments using VMware, download the **NetQ SW 4.12.0 VMware Scale** image<br>
+    e. For deployments using KVM, download the **NetQ SW 4.13.0 KVM Scale** image. For deployments using VMware, download the **NetQ SW 4.13.0 VMware Scale** image<br>
     f. If prompted, read the license agreement and proceed with the download.<br>
 
 {{%notice note%}}
@@ -82,9 +82,9 @@ NVIDIA employees can download NetQ directly from the {{<exlink url="http://ui.li
 
 2. Open your hypervisor and configure your VM. You can use the following examples for reference or use your own hypervisor instructions.
 
- {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem-scale-cluster" version="4.12">}}
+ {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem-scale-cluster" version="4.13">}}
 
- {{<netq-install/vm-setup hypervisor="vmware" version="4.12">}}
+ {{<netq-install/vm-setup hypervisor="vmware" version="4.13">}}
 
 3. Log in to the VM and change the password.
 
@@ -96,10 +96,10 @@ Use the default credentials to log in the first time:
 ```
 $ ssh cumulus@<ipaddr>
 Warning: Permanently added '<ipaddr>' (ECDSA) to the list of known hosts.
-Ubuntu 20.04 LTS
+Ubuntu 22.04 LTS
 cumulus@<ipaddr>'s password:
 You are required to change your password immediately (root enforced)
-System information as of Thu Dec  3 21:35:42 UTC 2020
+System information as of Thu Dec  3 21:35:42 UTC 2024
 System load:  0.09              Processes:           120
 Usage of /:   8.1% of 61.86GB   Users logged in:     0
 Memory usage: 5%                IP address for eth0: <ipaddr>
@@ -118,14 +118,14 @@ Log in again with your new password.
 ```
 $ ssh cumulus@<ipaddr>
 Warning: Permanently added '<ipaddr>' (ECDSA) to the list of known hosts.
-Ubuntu 20.04 LTS
+Ubuntu 22.04 LTS
 cumulus@<ipaddr>'s password:
-  System information as of Thu Dec  3 21:35:59 UTC 2020
+  System information as of Thu Dec  3 21:35:59 UTC 2024
   System load:  0.07              Processes:           121
   Usage of /:   8.1% of 61.86GB   Users logged in:     0
   Memory usage: 5%                IP address for eth0: <ipaddr>
   Swap usage:   0%
-Last login: Thu Dec  3 21:35:43 2020 from <local-ipaddr>
+Last login: Thu Dec  3 21:35:43 2024 from <local-ipaddr>
 cumulus@ubuntu:~$
 ```
 4. Verify that the master node is ready for installation. Fix any errors before installing the NetQ software.
@@ -144,12 +144,12 @@ Kubernetes requires hostnames to be composed of a sequence of labels concatenate
 The Internet standards (RFCs) for protocols specify that labels may contain only the ASCII letters a through z (in lower case), the digits 0 through 9, and the hyphen-minus character ('-').
 {{</notice>}}
 
-Use the following command:
+Set the new hostname using the following command. Replace `NEW_HOSTNAME` with the name you chose.
 
 ```
 cumulus@hostname:~$ sudo hostnamectl set-hostname NEW_HOSTNAME
 ```
-Add the same NEW_HOSTNAME value to **/etc/hosts** on your VM for the localhost entry. For example:
+Add the same `NEW_HOSTNAME` value to **/etc/hosts** on your VM for the localhost entry. For example:
 
 ```
 127.0.0.1 localhost NEW_HOSTNAME
@@ -165,27 +165,46 @@ cumulus@hostname:~$ sudo opta-check scale
 
 8. Install and activate the NetQ software using the CLI.
 
-Run the following command on your *master* node to initialize the cluster. Copy the output of the command to use on your additional HA and worker nodes:
+Run the following command on your *master* node to initialize the cluster. Copy the output of the command which includes the SSH key. You will use it in the next step.
 
 ```
 cumulus@<hostname>:~$ netq install cluster master-init
     Please run the following command on all worker nodes:
     netq install cluster worker-init c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCQVFDM2NjTTZPdVM3dQN9MWTU1a
 ```
-9. Run the `netq install cluster worker-init <ssh-key>` command on each of your worker nodes.
+9. Run the `netq install cluster worker-init <ssh-key>` command on each non-master node.
 
-10. Run the `netq install cluster config generate` command on your master node to generate a template for the cluster configuration JSON file:
+10. Create a JSON template using the installation command for your deployment model.
+
+{{< tabs "Tab179 ">}}
+
+{{< tab "3-Node Cluster">}}
+
+For a 3-node cluster, run the `netq install cluster config generate` command on your master node to generate a template for the cluster configuration JSON file:
 
 ```
 cumulus@netq-server:~$ netq install cluster config generate
 2024-10-28 17:29:53.260462: master-node-installer: Writing cluster installation configuration template file @ /tmp/cluster-install-config.json
 ```
+{{< /tab >}}
+{{< tab "5-Node Cluster">}}
+For a 5-node cluster, run the `netq install cluster config generate workers 2` command on your master node to generate a cluster configuration JSON file with 2 additional `worker-nodes` objects:
 
-11. Edit the cluster configuration JSON file with the desired values for each attribute:
+```
+cumulus@netq-server:~$ netq install cluster config generate workers 2
+2024-10-28 17:29:53.260462: master-node-installer: Writing cluster installation configuration template file @ /tmp/cluster-install-config.json
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+11. Edit the cluster configuration JSON file with the values for each attribute.
 
 {{< tabs "Tab188 ">}}
 
 {{< tab "Default JSON Template">}}
+
+The following example includes the `worker-nodes` objects for a 5-node deployment. The JSON template for the 3-node deployment will not include `worker-nodes`.  
 
 ``` 
 cumulus@netq-server:~$ vim /tmp/cluster-install-config.json 
@@ -203,8 +222,18 @@ cumulus@netq-server:~$ vim /tmp/cluster-install-config.json
                         "ip": "<INPUT>"
                 }
         ]
+        "worker-nodes": [
+                {
+                        "ip": "<INPUT>"
+                },
+                {
+                        "ip": "<INPUT>"
+                }
+        ]
 }
 ```
+
+
 
 | Attribute | Description |
 |----- | ----------- |
@@ -212,7 +241,8 @@ cumulus@netq-server:~$ vim /tmp/cluster-install-config.json
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your master and worker nodes. |
 | `master-ip` | The IP address assigned to the interface on your master node used for NetQ connectivity. |
 | `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. |
-| `ha-nodes` | The IP addresses of each of the HA nodes in your cluster. |
+| `ha-nodes` | The IP addresses of the two HA nodes in your cluster. |
+| `worker-nodes` | The IP addresses of the two worker nodes (for 5-node deployments). |
 
 {{%notice note%}}
 
@@ -244,6 +274,7 @@ cumulus@netq-server:~$ vim /tmp/cluster-install-config.json
 {{< /tab >}}
 {{< tab "Completed JSON Example ">}}
 
+The following example configures a 3-node cluster installation with the master IP of 10.176.235.50, and the HA nodes 10.176.235.51 and 10.176.235.52: 
 ``` 
 cumulus@netq-server:~$ vim /tmp/cluster-install-config.json 
 {
@@ -262,35 +293,66 @@ cumulus@netq-server:~$ vim /tmp/cluster-install-config.json
         ]
 }
 ```
+The following example configures a 5-node cluster installation with a master node, two HA nodes, and two worker nodes:
+
+```
+cumulus@netq-server:~$ vim /tmp/cluster-install-config.json 
+{
+        "version": "v2.0",
+        "interface": "eth0",
+        "cluster-vip": "10.176.235.101",
+        "master-ip": "10.176.235.50",
+        "is-ipv6": false,
+        "ha-nodes": [
+                {
+                        "ip": "10.176.235.51"
+                },
+                {
+                        "ip": "10.176.235.52"
+                }
+        ]
+        "worker-nodes": [
+                {
+                        "ip": "10.176.235.53"
+                },
+                {
+                        "ip": "10.176.235.54"
+                }
+        ]
+}
+```
+
 | Attribute | Description |
 |----- | ----------- |
 | `interface` | The local network interface on your master node used for NetQ connectivity. |
 | `cluster-vip` | The cluster virtual IP address must be an unused IP address allocated from the same subnet assigned to the default interface for your master and worker nodes. |
 | `master-ip` | The IP address assigned to the interface on your master node used for NetQ connectivity. |
 | `is-ipv6` | Set the value to `true` if your network connectivity and node address assignments are IPv6. |
-| `ha-nodes` | The IP addresses of each of the HA nodes in your cluster. |
+| `ha-nodes` | The IP addresses of the two HA nodes in your cluster. |
+| `worker-nodes` | The IP addresses of the two worker nodes (for 5-node deployments). |
+
 {{< /tab >}}
 {{< /tabs >}}
 
 
-12. Run the following command on your master HA node, using the JSON configuration file created in step 11:
+12. Run the following command on your master node, using the JSON configuration file created in step 11:
 
 ```
-cumulus@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.12.0.tgz /tmp/cluster-install-config.json
+cumulus@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.13.0.tgz /tmp/cluster-install-config.json
 ```
 
 <div class="notices tip"><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
 
 ## Verify Installation Status
 
-To view the status of the installation, use the `netq show status [verbose]` command. The following example shows a successful on-premises installation:
+To view the status of the installation, use the `netq show status [verbose]` command. The following example shows a successful 3-node installation:
 
 ```
 State: Active
     NetQ Live State: Active
     Installation Status: FINISHED
-    Version: 4.12.0
-    Installer Version: 4.12.0
+    Version: 4.13.0
+    Installer Version: 4.13.0
     Installation Type: Cluster
     Activation Key: EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIixPSUJCOHBPWUFnWXI2dGlGY2hTRzExR2E5aSt6ZnpjOUvpVVTaDdpZEhFPQ==
     Master SSH Public Key: c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCZ1FDNW9iVXB6RkczNkRC
@@ -327,3 +389,69 @@ cumulus@hostname:~$ netq show opta-health
 If any of the applications or services display a DOWN status after 30 minutes, open a support ticket and attach the output of the `opta-support` command.
 {{%/notice%}}
 After NetQ is installed, you can {{<link title="Access the NetQ UI" text="log in to NetQ">}} from your browser.
+
+## Add Additional Worker Nodes
+
+When the number of devices in your network grows, you can add additional nodes to your cluster deployment so that NetQ remains operational and can accommodate the additional devices. Refer to the  {{<link title="Before You Install/#installation-overview" text="Installation Overview">}} for device support information.
+
+To add additional worker nodes to an existing HA scale cluster, generate a JSON configuration template referencing the number of additional worker nodes you want to add. For example, to expand a 3-node cluster to a 5-node cluster, run the `netq install cluster config generate workers 2` command to generate the JSON configuration template, `/tmp/cluster-install-config.json`:
+
+```
+cumulus@netq-appliance:~$ cat /tmp/cluster-install-config.json
+{
+        "version": "v2.0",
+        "interface": "<INPUT>",
+        "cluster-vip": "<INPUT>",
+        "master-ip": "<INPUT>",
+        "is-ipv6": false,
+        "ha-nodes": [
+                {
+                        "ip": "<INPUT>"
+                },
+                {
+                        "ip": "<INPUT>"
+                }
+        ],
+        "worker-nodes": [
+                {
+                        "ip": "<INPUT>"
+                },
+                {
+                        "ip": "<INPUT>"
+                }
+        ]
+}
+```
+
+Edit this file and configure the parameters, including the existing nodes in your cluster and the new worker IP addresses.
+
+```
+{
+        "version": "v2.0",
+        "interface": "eth0",
+        "cluster-vip": "10.176.235.101",
+        "master-ip": "10.176.235.50",
+        "is-ipv6": false,
+        "ha-nodes": [
+                {
+                        "ip": "10.176.235.51"
+                },
+                {
+                        "ip": "10.176.235.52"
+                }
+        ]
+        "worker-nodes": [
+                {
+                        "ip": "10.176.235.53"
+                },
+                {
+                        "ip": "10.176.235.54"
+                }
+        ]
+}
+```
+
+Install the new workers using the `netq install cluster worker add /tmp/cluster-install-config.json` command.
+
+
+

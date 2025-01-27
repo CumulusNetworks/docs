@@ -16,17 +16,11 @@ Other vendors refer to the Cumulus Linux implementation of MLAG as MLAG, MC-LAG 
 
 ## MLAG Commands
 
-Monitor MLAG with the following commands. See the {{<link title="show/#netq-show-mlag" text="command line reference">}} for additional options, definitions, and examples.
+- {{<link title="show/#netq-show-mlag" text="netq show mlag">}}
+- {{<link title="show/#netq-show-events" text="netq show events message_type mlag">}}
+- {{<link title="show/#netq-show-events-config" text="netq show events-config message_type mlag">}} 
+- {{<link title="check/#netq-check-mlag" text="netq check mlag">}}
 
-```
-netq show mlag
-netq show events message_type mlag
-```
-The {{<link title="check/#netq check mlag" text="netq check mlag">}} command verifies MLAG session consistency by identifying all MLAG peers with errors or misconfigurations in the NetQ domain.
-
-```
-netq check mlag
-```
 ## View MLAG in the UI
 
 To add the MLAG card to your workbench, navigate to the header and select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card&nbsp;<span aria-label="and then">></span> Other card&nbsp;<span aria-label="and then">></span> Network services&nbsp;<span aria-label="and then">></span> All MLAG Sessions card&nbsp;<span aria-label="and then">></span> Open cards**.  This example shows the following for the last 24 hours:

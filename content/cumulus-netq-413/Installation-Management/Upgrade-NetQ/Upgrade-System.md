@@ -76,7 +76,7 @@ If the output of this command displays errors or returns an empty response, you 
 
 1. Download the upgrade tarball.
 
-    {{<netq-install/upgrade-image version="4.12">}}
+    {{<netq-install/upgrade-image version="4.13">}}
 
 2. Copy the tarball to the `/mnt/installables/` directory on your NetQ VM.
 

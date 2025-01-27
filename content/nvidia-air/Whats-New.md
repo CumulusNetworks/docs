@@ -9,12 +9,17 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 
 ## January 2025
 <!-- Air:WhatsNew -->
+### 82.2025.0123-011
+- Fixed an issue with scrollbars in the Demo Marketplace simulation guide
+- Fixed an issue with services links in the node side panel
+- Fixed an issue with CD-ROM image transfers between organizations
+<!-- Air:WhatsNew -->
+
 ### 82.2025.0114-011
 - Added support for exporting simulations to JSON topology files from the UI
 - Added the ability to configure switch breakout ports prior to starting a simulation using the API or UI 
 - Fixed an issue with node consoles when switching between topology, nodes, and links views
 - Fixed an issue with port search in the node side panel 
-<!-- Air:WhatsNew -->
 
 ### 82.2025.0110-011
 - Fixed an issue where node instructions were not being executed on Demo Marketplace simulations
@@ -23,6 +28,8 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 - Fixed an issue with the Demo Marketplace search results
 - Fixed an issue where image details displayed an updated status even though the image update request failed
 
+## Archive
+{{< expand "Changelog Archive 2024" >}}
 ## December 2024
 
 ### 82.2024.1219-011
@@ -207,9 +214,8 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 
 ### 82.2024.0104-012
 - Updated font used by configuration migration tool
-
-## Archive
-{{< expand "Changelog Archive" >}}
+{{< /expand >}}
+{{< expand "Changelog Archive 2023" >}}
 ## November 2023
 ### 82.2023.1109-012
 - Fixed an issue where the font failed to render correctly
@@ -364,7 +370,8 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 - Updated oob-mgmt-server image
   - Added socat package
 - Updated generic/ubuntu1804 image
-
+{{< /expand >}}
+{{< expand "Changelog Archive 2022" >}}
 ## December 2022
 ### 82.2022.1215
 - Fixed an issue with instruction execution by the agent on the oob-mgmt-switch
@@ -531,7 +538,8 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 - NVIDIA Cumulus Linux 5.0.1 is now available for use in custom topologies
 ### 82.2022.0131
 - Customizable templates for simulation email notifications
-
+{{< /expand >}}
+{{< expand "Changelog Archive 2021" >}}
 ## December 2021
 - NVIDIA Cumulus Linux 5.0 is now available for use in custom topologies
 - VMs in a custom topology now use their operating system's default username and password. See the {{<link url="/Quick-Start#logging-into-virtual-machines" text="Quick Start">}} guide for more details.

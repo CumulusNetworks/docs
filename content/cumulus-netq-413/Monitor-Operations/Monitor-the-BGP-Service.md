@@ -7,18 +7,11 @@ toc: 3
 Use the UI or CLI to monitor Border Gateway Protocol (BGP) on a networkwide or per-session basis. 
 ## BGP Commands
 
-Monitor BGP with the following commands. See the {{<link title="show/#netq-show-bgp" text="command line reference">}} for additional options, definitions, and examples.
+- {{<link title="show/#netq-show-bgp" text="netq show bgp">}}
+- {{<link title="check/#netq-check-bgp" text="netq check bgp">}}
+- {{<link title="show/#netq-show-events" text="netq show events message_type bgp">}}
+- {{<link title="show/#netq-show-events-config" text="netq show events-config message_type bgp">}}
 
-```
-netq show bgp
-netq show events message_type bgp
-netq show events-config message_type bgp
-```
-The {{<link title="check/#netq check bgp" text="netq check bgp">}} command checks for consistency across BGP sessions in your network fabric.
-
-```
-netq check bgp
-```
 ## View BGP in the UI
 
 To add the BGP card to your workbench, navigate to the header and select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card&nbsp;<span aria-label="and then">></span> Other card&nbsp;<span aria-label="and then">></span> Network services&nbsp;<span aria-label="and then">></span> All BGP Sessions card&nbsp;<span aria-label="and then">></span> Open cards**. In this example, there are 44 nodes running the BGP protocol, 252 open events (from the last 24 hours), and 9 nodes with unestablished sessions.

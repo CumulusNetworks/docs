@@ -1882,7 +1882,8 @@ To bring BGP sessions with the neighbor back up, run the `no neighbor swp51 shut
 To reduce packet loss during planned switch or link maintenance, you can configure graceful BGP shutdown globally, on a peer group, or on a specific peer.
 
 {{%notice note%}}
-You can enable graceful BGP shutdown either globally or on a peer or peer group but not both.
+Graceful shutdown is active for a peer if you enable it at any level; globally, on the peer group, **or** on the specific peer.
+Graceful shutdown is **not** active for a peer if you disable it on all levels; globally, on the peer group **and** on the specific peer.
 {{%/notice%}}
 
 ### Global Graceful BGP Shutdown
@@ -2010,10 +2011,6 @@ Last update: Sun Dec 20 03:04:53 2020
 
 When you enable BGP graceful shutdown on a peer, Cumulus Linux attaches a `graceful-shutdown` community to the relevant routes. Neighbors receiving the `graceful-shutdown` community mark these routes as less preferred if alternative routes exist. If no other routes are available, neighbors continue to use the routes with the `graceful-shutdown` community. If you enable graceful shutdown (maintenance) in multiple parts of the network or where there are no additional routes, traffic does not stop on the routes that have the attached `graceful-shutdown` community.
 
-{{%notice note%}}
-Before you enable graceful shutdown on a peer, make sure that *global* graceful shutdown is `off`.
-{{%/notice%}}
-
 {{< tabs "1962 ">}}
 {{< tab "NVUE Commands ">}}
 
@@ -2084,10 +2081,6 @@ graceful-shutdown                                                   on
 ### Graceful BGP Shutdown on a Peer Group
 
 When you enable BGP graceful shutdown on a peer group, Cumulus Linux attaches a `graceful-shutdown` community to the relevant routes. Neighbors receiving the `graceful-shutdown` community mark these routes as less preferred if alternative routes exist. If no other routes are available, neighbors continue to use the routes with the `graceful-shutdown` community. If you enable graceful shutdown (maintenance) in multiple parts of the network or where there are no additional routes, traffic does not stop on the routes that have the attached `graceful-shutdown` community.
-
-{{%notice note%}}
-Before you enable graceful shutdown on a peer group, make sure that *global* graceful shutdown is `off`.
-{{%/notice%}}
 
 {{< tabs "2037 ">}}
 {{< tab "NVUE Commands ">}}

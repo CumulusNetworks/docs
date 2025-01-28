@@ -335,7 +335,7 @@ cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4-unicast upd
 
 You can run NVUE commands to show route statistics for a BGP neighbor, such as the number of routes, and information about advertised and received routes.
 
-To show the RIB table for IPv4 routes, run the `nv show vrf <vrf> router rib ipv4 route` command. To show the RIB table for IPv6 routes, run the `nv show vrf <vrf> router rib ipv6 route` command.
+To show the routing table for IPv4 routes, run the `nv show vrf <vrf> router rib ipv4 route` command. To show the RIB table for IPv6 routes, run the `nv show vrf <vrf> router rib ipv6 route` command.
 
 ```
 cumulus@leaf01:mgmt:~$ nv show vrf default router rib ipv4 route
@@ -359,7 +359,7 @@ Route            Protocol   Distance  Uptime                NHGId  Metric  Flags
 10.10.10.102/32  bgp        20        2024-07-18T22:02:22Z  58     0       *Si
 ```
 
-To show the local RIB routes, run the `nv show vrf <vrf> router bgp address-family ipv4-unicast route` command for IPv4 or the `nv show vrf <vrf> router bgp address-family ipv6-unicast route` for IPv6. You can also run the command with `-o json` to show the received routes in json format.
+To show the routes in the local routing table, run the `nv show vrf <vrf> router bgp address-family ipv4-unicast route` command for IPv4 or the `nv show vrf <vrf> router bgp address-family ipv6-unicast route` for IPv6. You can also run the command with `-o json` to show the received routes in json format.
 
 ```
 cumulus@leaf02:~$ nv show vrf default router bgp address-family ipv4-unicast route                                            PathCount - Number of paths present for the prefix, MultipathCount - Number of  
@@ -383,9 +383,9 @@ Prefix           PathCount  MultipathCount  DestFlags
 10.10.10.104/32  2          1               * 
 ```
 
-To show information about a specific local RIB route, run the `nv show vrf <vrf> router bgp address-family ipv4-unicast route <route>` for IPv4 or `nv show vrf <vrf> router bgp address-family ipv6-unicast route <route>` for IPv6.
+To show information about a specific route in the local routing table, run the `nv show vrf <vrf> router bgp address-family ipv4-unicast route <route>` for IPv4 or `nv show vrf <vrf> router bgp address-family ipv6-unicast route <route>` for IPv6.
 
-The above IPv4 and IPv6 command shows the local RIB route information in brief format to improve performance for high scale environments. You can also run the command with `-o json` to show the received routes in json format.
+The above IPv4 and IPv6 command shows the local routing table route information in brief format to improve performance for high scale environments. You can also run the command with `-o json` to show the received routes in json format.
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4-unicast route 10.10.10.64/32

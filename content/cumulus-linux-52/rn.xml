@@ -1897,6 +1897,11 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 <td>4.3.0-5.1.0</td>
 </tr>
 <tr>
+<td>3115419</td>
+<td>When you configure conditional advertisement, BGP might crash when you run show commands or during a steady state.</td>
+<td>5.1.0</td>
+</tr>
+<tr>
 <td>3115415</td>
 <td>In the Cumulus-BGPVRF-MIB, the {{bgpPeerFsmEstablishedTime}} OID does not correctly report the time since a BGP session goes down. </td>
 <td>4.4.4-5.1.0</td>

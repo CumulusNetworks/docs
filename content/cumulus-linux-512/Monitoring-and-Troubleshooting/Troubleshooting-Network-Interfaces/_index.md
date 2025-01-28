@@ -25,38 +25,38 @@ This output shows the received and transmitted traffic rate counters in bits per
 cumulus@switch:~$ nv show interface rates
 Interface  Intvl  In-Bits Rate  In-Util  In-Pkts Rate  Out-Bits Rate  Out-Util  Out-Pkts Rate
 ---------  -----  ------------  -------  ------------  -------------  --------  -------------
-swp1       10     0 bps                  0 pps         0 bps                    0 pps
-swp2       10     0 bps                  0 pps         0 bps                    0 pps
-swp3       10     0 bps                  0 pps         0 bps                    0 pps
-swp4       10     0 bps                  0 pps         0 bps                    0 pps
-swp5       10     0 bps                  0 pps         0 bps                    0 pps
-swp6       10     0 bps                  0 pps         0 bps                    0 pps
-swp7       10     0 bps                  0 pps         0 bps                    0 pps
-swp8       10     0 bps                  0 pps         0 bps                    0 pps
-swp9       10     10.00 Gbps    100.0%   822.41 kpps   10.00 Gbps     100.0%    822.42 kpps
-swp10      10     0 bps                  0 pps         0 bps                    0 pps
-swp11      10     0 bps                  0 pps         0 bps                    0 pps
-swp12      10     0 bps                  0 pps         0 bps                    0 pps
-swp13      10     7.34 Gbps     73.4%    603.21 kpps   5.00 Gbps      50.0%     411.19 kpps
-swp14      10     0 bps                  0 pps         0 bps                    0 pps
-swp15      10     0 bps                  0 pps         0 bps                    0 pps
-swp16      10     0 bps                  0 pps         0 bps                    0 pps
-swp17      10     8.42 Gbps     84.2%    692.80 kpps   6.73 Gbps      67.3%     553.59 kpps
-swp18      10     0 bps                  0 pps         0 bps                    0 pps
-swp19      10     204 bps       0.0%     0 pps         539 bps        0.0%      1 pps
-swp20      10     0 bps                  0 pps         0 bps                    0 pps
-swp21      10     6.73 Gbps     67.3%    553.59 kpps   8.42 Gbps      84.2%     692.81 kpps
-swp22      10     10.00 Gbps    100.0%   14.88 Mpps    10.00 Gbps     100.0%    14.88 Mpps
-swp23      10     10.00 Gbps    100.0%   14.88 Mpps    10.00 Gbps     100.0%    14.88 Mpps
-swp24      10     0 bps                  0 pps         0 bps                    0 pps
-swp25      10     5.00 Gbps     50.0%    411.19 kpps   7.34 Gbps      73.4%     603.21 kpps
-swp26      10     0 bps                  0 pps         0 bps                    0 pps
-swp27      10     10.00 Gbps    100.0%   822.42 kpps   10.00 Gbps     100.0%    822.41 kpps
-swp28      10     0 bps                  0 pps         0 bps                    0 pps
-swp29      10     0 bps                  0 pps         0 bps                    0 pps
-swp30      10     0 bps                  0 pps         0 bps                    0 pps
-swp31      10     0 bps                  0 pps         0 bps                    0 pps
-swp32      10     0 bps                  0 pps         0 bps                    0 pps
+swp1       60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp2       60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp3       60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp4       60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp5       60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp6       60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp7       60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp8       60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp9       60     10.00 Gbps    100.0%   822.41 kpps   10.00 Gbps     100.0%    822.42 kpps
+swp10      60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp11      60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp12      60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp13      60     7.34 Gbps     73.4%    603.21 kpps   5.00 Gbps      50.0%     411.19 kpps
+swp14      60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp15      60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp16      60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp17      60     8.42 Gbps     84.2%    692.80 kpps   6.73 Gbps      67.3%     553.59 kpps
+swp18      60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp19      60     204 bps       0.0%     0 pps         539 bps        0.0%      1 pps
+swp20      60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp21      60     6.73 Gbps     67.3%    553.59 kpps   8.42 Gbps      84.2%     692.81 kpps
+swp22      60     10.00 Gbps    100.0%   14.88 Mpps    10.00 Gbps     100.0%    14.88 Mpps
+swp23      60     10.00 Gbps    100.0%   14.88 Mpps    10.00 Gbps     100.0%    14.88 Mpps
+swp24      60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp25      60     5.00 Gbps     50.0%    411.19 kpps   7.34 Gbps      73.4%     603.21 kpps
+swp26      60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp27      60     10.00 Gbps    100.0%   822.42 kpps   10.00 Gbps     100.0%    822.41 kpps
+swp28      60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp29      60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp30      60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp31      60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp32      60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
 ```
 
 To show the traffic rate and PPS for a specific interface, run the `nv show interface <interface> rates` command.

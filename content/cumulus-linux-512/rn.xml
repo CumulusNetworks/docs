@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4249096</td>
+<td>Binary upgrade from Cumulus Linux 4.3.1 to 5.12.0 is not supported. To work around this issue, perform a binary upgrade from Cumulus Linux 4.3.1 to 5.9.0, then perform a binary upgrade from Cumulus Linux 5.9.0 to 5.12.0.</td>
+<td>5.12.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4200952</td>
 <td>Configuring the listening-address for the SNMP server fails for IP addresses associated with VRFs other than the management VRF.</td>
 <td>5.11.0-5.12.0</td>
@@ -22,8 +28,7 @@ cumulus@switch:~$ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "Dpkg::Optio
 </tr>
 <tr>
 <td>4154839</td>
-<td>When you run certain SDK commands (such as {{sudo sx_api_port_counter_dump_all.py}} or {{sx_api_fdb_dump etc'}}) first as the cumulus user, then with {{sudo}}, you see the following error:
-
+<td>When you run certain SDK commands (such as {{sudo sx_api_port_counter_dump_all.py}} or {{sx_api_fdb_dump etc}}) first as the cumulus user, then with {{sudo}}, you see the following error:
 PermissionError: Errno 13] Permission denied: '/tmp/python_err_log.txt'
 To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <td>5.11.0-5.12.0</td>
@@ -53,6 +58,12 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <td></td>
 </tr>
 <tr>
+<td>4129757</td>
+<td>If you include a comma in the BGP community list, extended community list, or large community list regex expression of a routing policy, you see error messages and FRR reload fails. Make sure the regex expression does not contain a comma. For example, instead of {{^65550:([0-9]{1,2}|[1-9][1-9]):.*$}}, specify {{^65550:([0-9]|[0-9][0-9]):.*$}} and instead of {{^65550:([0-4]{1,2}|[7-9][8-9]):.*$}}, specify {{^65550:([0-4]|[0-4][0-4]|[7-9][8-9]):.*$}}.</td>
+<td>5.11.0-5.12.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4124376</td>
 <td>The SN3700C-S, SN5400, and SN5600 secure boot switch running Cumulus Linux 5.11.0 or later boots with shim 15.8 that adds entries to the SBAT revocations to prevent the switch from booting shim 15.7 or earlier (included in Cumulus Linux 5.10 and earlier).To downgrade a secure boot switch from Cumulus Linux 5.11.0 or later, or to recover a downgraded switch that does not boot, follow the steps in &lt;a href="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux/#downgrade-a-secure-boot-switch"&gt;Downgrade a Secure Boot Switch&lt;/a&gt;.</td>
 <td>5.11.0-5.12.0</td>
@@ -72,7 +83,7 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 </tr>
 <tr>
 <td>4100629</td>
-<td>LLDP neighbor changes get reflected in show command outputs only after the tx-interval timer times the tx-hold-multiplier. </td>
+<td>NVUE show command outputs show LLDP neighbor changes only after the LLDP update frequency multiplied by the hold time.</td>
 <td>5.11.0-5.12.0</td>
 <td></td>
 </tr>
@@ -90,7 +101,7 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 </tr>
 <tr>
 <td>4047798</td>
-<td>Packet distribution based on ECMP hash is not working for VXLAN  at TOR switches where it is encapped. To balance traffic between egress ports, you can use lag or ECMP hash.  To enable traffic distribution in this use case,  lag hashing as well needed to be enabled. </td>
+<td>Packet distribution based on ECMP hash is not working for VXLAN on top of rack switches where it is encapped. To work around this issue, enable lag hashing with gtp-teid to distribute VXLAN encapped packets across egress interfaces on the top of rack switches.</td>
 <td>5.10.0-5.12.0</td>
 <td></td>
 </tr>
@@ -150,7 +161,7 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 </tr>
 <tr>
 <td>3877516</td>
-<td>When you connect two NVIDIA switches and configure 400G speed in force mode, links don't come up.To work around this issue, make sure auto negotiation is always on when connecting NVIDIA to NVIDIA in PAM4.</td>
+<td>When you connect two NVIDIA switches and configure 400G speed in force mode, links don't come up.To work around this issue, make sure auto-negotiation is always on when connecting NVIDIA to NVIDIA in PAM4.</td>
 <td>5.9.0-5.12.0</td>
 <td></td>
 </tr>
@@ -556,6 +567,16 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Affects </th>
 </tr>
 <tr>
+<td>4262605</td>
+<td>BGP consumes most of the memory in the system after continuous remote link flaps with BGP link-bandwidth extended-community present.</td>
+<td></td>
+</tr>
+<tr>
+<td>4262348</td>
+<td>When upgrading the switch with optimized image upgrade (using two partitions), if there are uncommented {{include_file_dirs:}} lines in the {{/etc/cumulus/config_backup.conf}} file, the configuration backup onto the new partition fails to restore.</td>
+<td></td>
+</tr>
+<tr>
 <td>4256151</td>
 <td>After rebooting the spine switch in an EVPN multihoming configuration, the BGP EVPN Type-2 entry is missing, which causes flooding and duplicates in the fabric. To work around this issue, flush the IP neighbor entries with the {{sudo ip neigh flush x.x.x.x}} command.</td>
 <td>5.9.1-5.11.0</td>
@@ -601,7 +622,7 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 </tr>
 <tr>
 <td>4228236</td>
-<td>After using apt upgrade, cl-image-upgrade might incorrectly fail to see that the current system status from {{csmgrctl -s}} is cold when the output shows {{Current System Status: Upgrade, cold}}.</td>
+<td>After using apt upgrade, cl-image-upgrade might fail to see that the current system status from {{csmgrctl -s}} is cold when the output shows {{Current System Status: Upgrade, cold}}.</td>
 <td></td>
 </tr>
 <tr>
@@ -645,18 +666,28 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 <td>5.11.0</td>
 </tr>
 <tr>
+<td>4203784</td>
+<td>Under unique hardware failure conditions, when the ASIC temperature sensor read fails repeatedly, the fans are set to twenty percent, which might not be high enough to maintain proper ASIC cooling, resulting in a thermal shutdown.</td>
+<td>5.11.0</td>
+</tr>
+<tr>
 <td>4203733</td>
 <td>On the SN5610 switch, the {{/var/run/hw-management/config/tc_config.json}} file shows the name msn5640 instead of msn5610.</td>
 <td></td>
 </tr>
 <tr>
 <td>4200758</td>
-<td>The {{nv show service ntp &lt;vrf&gt;}} command displays the peers that are discovered together with the configured NTP servers instead of displaying only the NTP configuration. As a result, the "applied" and "operational" columns have different values, which causes confusion.</td>
+<td>The {{nv show service ntp &lt;vrf&gt;}} command shows the peers that are discovered together with the configured NTP servers instead of displaying only the NTP configuration. As a result, the applied and operational columns have different values, which causes confusion.</td>
 <td>5.11.0</td>
 </tr>
 <tr>
 <td>4199734</td>
 <td>The {{nv show system ztp}} command might report an error when you use a system local that represents time differently from {{%a %b %d %H:%M:%S %Y %Z}}.</td>
+<td>5.11.0</td>
+</tr>
+<tr>
+<td>4199125</td>
+<td>ZTP scripts return an error due to incorrect ASCI to UTF-8 conversion.</td>
 <td>5.11.0</td>
 </tr>
 <tr>
@@ -680,8 +711,13 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 <td>5.9.2-5.11.0</td>
 </tr>
 <tr>
+<td>4184845</td>
+<td>Stale Next Hop Groups are left in the kernel resulting in polarized Adaptive Routing traffic.</td>
+<td>5.10.1-5.11.0</td>
+</tr>
+<tr>
 <td>4183214</td>
-<td>If you upgrade the switch from Cumulus Linux 5.9.x or 5.10.x to Cumulus Linux 5.11.0 or later with package upgrade and Radius is enabled, you see configuration and commit errors. To avoid this issue,  either disable Radius during package upgrade or disable Radius before package upgrade with the {{sudo adduser --system --group --home /run/nslcd --no-create-home  --gecos 'nslcd name service LDAP connection daemon' nslcd}} command.</td>
+<td>If you upgrade the switch from Cumulus Linux 5.9.x or 5.10.x with package upgrade and Radius is enabled, you see configuration and commit errors. To avoid this issue,  either disable Radius during package upgrade or disable Radius before package upgrade with the {{sudo adduser --system --group --home /run/nslcd --no-create-home  --gecos 'nslcd name service LDAP connection daemon' nslcd}} command.</td>
 <td>5.11.0</td>
 </tr>
 <tr>
@@ -738,7 +774,7 @@ netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported tru
 </tr>
 <tr>
 <td>4130022</td>
-<td>LDAP does not support per-command authorization in this phase</td>
+<td>LDAP does not support per-command authorization.</td>
 <td>5.11.0</td>
 </tr>
 <tr>
@@ -747,6 +783,11 @@ netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported tru
 cumulus@switch:~$ sudo mount --make-rslave /var/installer/sys
 cumulus@switch:~$ sudo umount -R /var/installer/sys
 cumulus@switch:~$ sudo umount tmpfs-installer</td>
+<td>5.11.0</td>
+</tr>
+<tr>
+<td>4127315</td>
+<td>If you set BGP community-advertise large to off with NVUE, large communities are still sent to BGP peers.To resolve this issue, NVUE has changed the default value of community-advertise large from off to on.</td>
 <td>5.11.0</td>
 </tr>
 <tr>

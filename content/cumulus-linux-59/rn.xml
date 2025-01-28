@@ -264,7 +264,7 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 </tr>
 <tr>
 <td>3877516</td>
-<td>When you connect two NVIDIA switches and configure 400G speed in force mode, links don't come up.To work around this issue, make sure auto negotiation is always on when connecting NVIDIA to NVIDIA in PAM4.</td>
+<td>When you connect two NVIDIA switches and configure 400G speed in force mode, links don't come up.To work around this issue, make sure auto-negotiation is always on when connecting NVIDIA to NVIDIA in PAM4.</td>
 <td>5.9.0-5.11.0</td>
 <td></td>
 </tr>
@@ -1449,7 +1449,7 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 </tr>
 <tr>
 <td>3877516</td>
-<td>When you connect two NVIDIA switches and configure 400G speed in force mode, links don't come up.To work around this issue, make sure auto negotiation is always on when connecting NVIDIA to NVIDIA in PAM4.</td>
+<td>When you connect two NVIDIA switches and configure 400G speed in force mode, links don't come up.To work around this issue, make sure auto-negotiation is always on when connecting NVIDIA to NVIDIA in PAM4.</td>
 <td>5.9.0-5.11.0</td>
 <td></td>
 </tr>
@@ -2239,7 +2239,7 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 </tr>
 <tr>
 <td>3877516</td>
-<td>When you connect two NVIDIA switches and configure 400G speed in force mode, links don't come up.To work around this issue, make sure auto negotiation is always on when connecting NVIDIA to NVIDIA in PAM4.</td>
+<td>When you connect two NVIDIA switches and configure 400G speed in force mode, links don't come up.To work around this issue, make sure auto-negotiation is always on when connecting NVIDIA to NVIDIA in PAM4.</td>
 <td>5.9.0-5.11.0</td>
 <td></td>
 </tr>

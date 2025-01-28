@@ -31,6 +31,12 @@
 <td></td>
 </tr>
 <tr>
+<td>4271207</td>
+<td>Stale Next Hop Groups are left in the kernel resulting in polarized Adaptive Routing traffic.</td>
+<td>5.10.1-5.11.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4260012</td>
 <td>If all of the neighbors returned in the {{nv show vrf &lt;vrf&gt; router bgp neighbor}} command output have no {{address-family}} configuration, you see an internal error when the nested table in the  output is being rendered.</td>
 <td>5.10.0-5.11.0</td>
@@ -94,6 +100,12 @@
 <td>4185426</td>
 <td>When you add a new MLAG bond, the BPDU guard state of its peer is initialized to False and immediately updated correctly after resync if the bond is up. If the bond is down, resync is not done and the peer PBDU guard state is not updated, which leads to a conflict if the local PBDU guard is enabled.Even though it seems that PBDU configuration does not match between MLAG peers, this issue does not have any functional impact. It gets cleared when the bond becomes up.</td>
 <td>5.9.2-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4184845</td>
+<td>Stale Next Hop Groups are left in the kernel resulting in polarized Adaptive Routing traffic.</td>
+<td>5.10.1-5.11.0</td>
 <td></td>
 </tr>
 <tr>
@@ -318,7 +330,7 @@ interface_stats: [ERROR] interface_stats_collector.py:_parse_conf_file:201 — C
 </tr>
 <tr>
 <td>4047798</td>
-<td>Packet distribution based on ECMP hash is not working for VXLAN  at TOR switches where it is encapped. To balance traffic between egress ports, you can use lag or ECMP hash.  To enable traffic distribution in this use case,  lag hashing as well needed to be enabled. </td>
+<td>Packet distribution based on ECMP hash is not working for VXLAN on top of rack switches where it is encapped. To work around this issue, enable lag hashing with gtp-teid to distribute VXLAN encapped packets across egress interfaces on the top of rack switches.</td>
 <td>5.10.0-5.11.0</td>
 <td></td>
 </tr>
@@ -420,7 +432,7 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 </tr>
 <tr>
 <td>3877516</td>
-<td>When you connect two NVIDIA switches and configure 400G speed in force mode, links don't come up.To work around this issue, make sure auto negotiation is always on when connecting NVIDIA to NVIDIA in PAM4.</td>
+<td>When you connect two NVIDIA switches and configure 400G speed in force mode, links don't come up.To work around this issue, make sure auto-negotiation is always on when connecting NVIDIA to NVIDIA in PAM4.</td>
 <td>5.9.0-5.11.0</td>
 <td></td>
 </tr>
@@ -1215,7 +1227,7 @@ interface_stats: [ERROR] interface_stats_collector.py:_parse_conf_file:201 — C
 </tr>
 <tr>
 <td>4047798</td>
-<td>Packet distribution based on ECMP hash is not working for VXLAN  at TOR switches where it is encapped. To balance traffic between egress ports, you can use lag or ECMP hash.  To enable traffic distribution in this use case,  lag hashing as well needed to be enabled. </td>
+<td>Packet distribution based on ECMP hash is not working for VXLAN on top of rack switches where it is encapped. To work around this issue, enable lag hashing with gtp-teid to distribute VXLAN encapped packets across egress interfaces on the top of rack switches.</td>
 <td>5.10.0-5.11.0</td>
 <td></td>
 </tr>
@@ -1354,7 +1366,7 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 </tr>
 <tr>
 <td>3877516</td>
-<td>When you connect two NVIDIA switches and configure 400G speed in force mode, links don't come up.To work around this issue, make sure auto negotiation is always on when connecting NVIDIA to NVIDIA in PAM4.</td>
+<td>When you connect two NVIDIA switches and configure 400G speed in force mode, links don't come up.To work around this issue, make sure auto-negotiation is always on when connecting NVIDIA to NVIDIA in PAM4.</td>
 <td>5.9.0-5.11.0</td>
 <td></td>
 </tr>

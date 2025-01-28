@@ -37,6 +37,18 @@
 <td></td>
 </tr>
 <tr>
+<td>4271207</td>
+<td>Stale Next Hop Groups are left in the kernel resulting in polarized Adaptive Routing traffic.</td>
+<td>5.10.1-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4260018</td>
+<td>NVUE does not let you set the IPv6 RA lifetime to zero. To work around this issue, run the vtysh command.</td>
+<td>5.11.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4260012</td>
 <td>If all of the neighbors returned in the {{nv show vrf &lt;vrf&gt; router bgp neighbor}} command output have no {{address-family}} configuration, you see an internal error when the nested table in the  output is being rendered.</td>
 <td>5.10.0-5.11.0</td>
@@ -185,6 +197,12 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 <td></td>
 </tr>
 <tr>
+<td>4203784</td>
+<td>Under unique hardware failure conditions, when the ASIC temperature sensor read fails repeatedly, the fans are set to twenty percent, which might not be high enough to maintain proper ASIC cooling, resulting in a thermal shutdown.</td>
+<td>5.11.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4200961</td>
 <td>If you use a bridge name that isn't {{br_default}}, NVUE generates incorrect ptp4l.conf files.</td>
 <td>5.10.0-5.11.0</td>
@@ -198,13 +216,19 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 </tr>
 <tr>
 <td>4200758</td>
-<td>The {{nv show service ntp &lt;vrf&gt;}} command displays the peers that are discovered together with the configured NTP servers instead of displaying only the NTP configuration. As a result, the "applied" and "operational" columns have different values, which causes confusion.</td>
+<td>The {{nv show service ntp &lt;vrf&gt;}} command shows the peers that are discovered together with the configured NTP servers instead of displaying only the NTP configuration. As a result, the applied and operational columns have different values, which causes confusion.</td>
 <td>5.11.0</td>
 <td></td>
 </tr>
 <tr>
 <td>4199734</td>
 <td>The {{nv show system ztp}} command might report an error when you use a system local that represents time differently from {{%a %b %d %H:%M:%S %Y %Z}}.</td>
+<td>5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4199125</td>
+<td>ZTP scripts return an error due to incorrect ASCI to UTF-8 conversion.</td>
 <td>5.11.0</td>
 <td></td>
 </tr>
@@ -233,8 +257,14 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 <td></td>
 </tr>
 <tr>
+<td>4184845</td>
+<td>Stale Next Hop Groups are left in the kernel resulting in polarized Adaptive Routing traffic.</td>
+<td>5.10.1-5.11.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4183214</td>
-<td>If you upgrade the switch from Cumulus Linux 5.9.x or 5.10.x to Cumulus Linux 5.11.0 or later with package upgrade and Radius is enabled, you see configuration and commit errors. To avoid this issue,  either disable Radius during package upgrade or disable Radius before package upgrade with the {{sudo adduser --system --group --home /run/nslcd --no-create-home  --gecos 'nslcd name service LDAP connection daemon' nslcd}} command.</td>
+<td>If you upgrade the switch from Cumulus Linux 5.9.x or 5.10.x with package upgrade and Radius is enabled, you see configuration and commit errors. To avoid this issue,  either disable Radius during package upgrade or disable Radius before package upgrade with the {{sudo adduser --system --group --home /run/nslcd --no-create-home  --gecos 'nslcd name service LDAP connection daemon' nslcd}} command.</td>
 <td>5.11.0</td>
 <td></td>
 </tr>
@@ -304,8 +334,7 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 </tr>
 <tr>
 <td>4154839</td>
-<td>When you run certain SDK commands (such as {{sudo sx_api_port_counter_dump_all.py}} or {{sx_api_fdb_dump etc'}}) first as the cumulus user, then with {{sudo}}, you see the following error:
-
+<td>When you run certain SDK commands (such as {{sudo sx_api_port_counter_dump_all.py}} or {{sx_api_fdb_dump etc}}) first as the cumulus user, then with {{sudo}}, you see the following error:
 PermissionError: Errno 13] Permission denied: '/tmp/python_err_log.txt'
 To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <td>5.11.0</td>
@@ -355,7 +384,13 @@ netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported tru
 </tr>
 <tr>
 <td>4130022</td>
-<td>LDAP does not support per-command authorization in this phase</td>
+<td>LDAP does not support per-command authorization.</td>
+<td>5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4129757</td>
+<td>If you include a comma in the BGP community list, extended community list, or large community list regex expression of a routing policy, you see error messages and FRR reload fails. Make sure the regex expression does not contain a comma. For example, instead of {{^65550:([0-9]{1,2}|[1-9][1-9]):.*$}}, specify {{^65550:([0-9]|[0-9][0-9]):.*$}} and instead of {{^65550:([0-4]{1,2}|[7-9][8-9]):.*$}}, specify {{^65550:([0-4]|[0-4][0-4]|[7-9][8-9]):.*$}}.</td>
 <td>5.11.0</td>
 <td></td>
 </tr>
@@ -371,6 +406,12 @@ netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported tru
 cumulus@switch:~$ sudo mount --make-rslave /var/installer/sys
 cumulus@switch:~$ sudo umount -R /var/installer/sys
 cumulus@switch:~$ sudo umount tmpfs-installer</td>
+<td>5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4127315</td>
+<td>If you set BGP community-advertise large to off with NVUE, large communities are still sent to BGP peers.To resolve this issue, NVUE has changed the default value of community-advertise large from off to on.</td>
 <td>5.11.0</td>
 <td></td>
 </tr>
@@ -419,7 +460,7 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 </tr>
 <tr>
 <td>4100629</td>
-<td>LLDP neighbor changes get reflected in show command outputs only after the tx-interval timer times the tx-hold-multiplier. </td>
+<td>NVUE show command outputs show LLDP neighbor changes only after the LLDP update frequency multiplied by the hold time.</td>
 <td>5.11.0</td>
 <td></td>
 </tr>
@@ -449,7 +490,7 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 </tr>
 <tr>
 <td>4047798</td>
-<td>Packet distribution based on ECMP hash is not working for VXLAN  at TOR switches where it is encapped. To balance traffic between egress ports, you can use lag or ECMP hash.  To enable traffic distribution in this use case,  lag hashing as well needed to be enabled. </td>
+<td>Packet distribution based on ECMP hash is not working for VXLAN on top of rack switches where it is encapped. To work around this issue, enable lag hashing with gtp-teid to distribute VXLAN encapped packets across egress interfaces on the top of rack switches.</td>
 <td>5.10.0-5.11.0</td>
 <td></td>
 </tr>
@@ -509,7 +550,7 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 </tr>
 <tr>
 <td>3877516</td>
-<td>When you connect two NVIDIA switches and configure 400G speed in force mode, links don't come up.To work around this issue, make sure auto negotiation is always on when connecting NVIDIA to NVIDIA in PAM4.</td>
+<td>When you connect two NVIDIA switches and configure 400G speed in force mode, links don't come up.To work around this issue, make sure auto-negotiation is always on when connecting NVIDIA to NVIDIA in PAM4.</td>
 <td>5.9.0-5.11.0</td>
 <td></td>
 </tr>

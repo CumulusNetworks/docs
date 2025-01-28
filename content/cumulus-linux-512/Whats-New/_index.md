@@ -12,7 +12,7 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
 
 ### Platforms
 
-<!-- - SN5610 (800G Spectrum-4) -->
+<!-- - SN5610 (800G Spectrum-4)-->
 - NVIDIA SN5400 ITU-T G.82732 Class C compliant
 - NVIDIA SN2201M includes an updated Parameter-Set IDentification (PSID) and firmware. You cannot downgrade the switch to 5.11.
 
@@ -42,7 +42,7 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
   - {{<link url="Monitoring-Best-Practices/#disk-usage" text="Command to monitor disk usage">}}
   - {{<link url="Adding-and-Updating-Packages/#configure-additional-repositories" text="Configure additional package repositories">}}
   - {{<link url="FRRouting/#look-up-the-route-for-a-destination" text="Look up the route for a destination">}}
-  - {{<link url="NVUE-CLI/#filter-nv-show-command-output" text="Filter FRR nv show command output">}}
+  - {{<link url="NVUE-CLI/#filter-nv-show-command-output" text="Addtional nv show command filters to filter by protocol, filter by neighbor state, and to filter neighbor details">}}
   - {{<link title="Log Files with NVUE" text="Logging commands">}}
   - {{<link url="NVUE-CLI/#translate-a-configuration-revision-or-file" text="Commands to translate a revision or yaml configuration file">}}
   - {{< expand "Removed NVUE Commands" >}}

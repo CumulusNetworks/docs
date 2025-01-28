@@ -13,11 +13,11 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
 ### Platforms
 
 <!-- - SN5610 (800G Spectrum-4)-->
-- NVIDIA SN5400 ITU-T G.82732 Class C compliant
 - NVIDIA SN2201M includes an updated Parameter-Set IDentification (PSID) and firmware. You cannot downgrade the switch to 5.11.
 
 ### New Features and Enhancements
 
+- NVIDIA SN5400 ITU-T G.82732 Class C compliant
 - 1G (optical) supported with SyncE on the SN5400 switch  
 - {{<link url="Upgrading-Cumulus-Linux/#upgrade-cumulus-linux" text="Ability to ugrade from Cumulus Linux 5.11 with Optimized Image Upgrade">}}
 - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#roce-single-shared-buffer-pool" text="RoCE single shared buffer pool">}}

@@ -739,6 +739,35 @@ swp54         idle                        9318000  0        0        ipv4-unicas
                                                                      l2vpn-evpn
 ```
 
+To show a summary of the connection information for all BGP neighbors:
+
+```
+cumulus@switch:~$ nv show vrf default router bgp neighbor --view=detail
+
+AS - Remote Autonomous System, PeerEstablishedTime - Peer established time in
+UTC format, UpTime - Uptime in milliseconds, Afi-Safi - Address family, PfxSent
+- Transmitted prefix counter, PfxRcvd - Recieved prefix counter
+
+Neighbor       AS     State        PeerEstablishedTime   UpTime    MsgRcvd  MsgSent  Afi-Safi      PfxSent  PfxRcvd
+-------------  -----  -----------  --------------------  --------  -------  -------  ------------  -------  -------
+peerlink.4094  65102  established  2025-01-26T15:28:11Z  27073000  561127   473795   ipv4-unicast  11       10     
+                                                                                     l2vpn-evpn    70       50     
+swp51          65199  established  2025-01-26T15:28:16Z  27073000  548373   473791   ipv4-unicast  11       8      
+                                                                                     l2vpn-evpn    70       50     
+swp52          65199  established  2025-01-26T15:28:19Z  27073000  548377   473789   ipv4-unicast  11       8      
+                                                                                     l2vpn-evpn    70       50     
+swp53                 idle                               27073000  0        0        ipv4-unicast                  
+                                                                                     l2vpn-evpn                    
+swp54                 idle                               27073000  0        0        ipv4-unicast                  
+                                                                                     l2vpn-evpn                    
+```
+
+To show a summary of the connection information for all BGP neighbors in json format, run the `nv show vrf default router bgp neighbor -o json` command.
+
+{{%notice note%}}
+In Cumulus Linux 5.11 and earlier, the `nv show vrf default router bgp neighbor -o json` command output shows more detailed information about BGP peers. To show the more detailed information in Cumulus Linux 5.12, run the `nv show vrf <vrf> router bgp neighbor --view=detail -o json` command.
+{{%/notice%}}
+
 ## NVUE and FRR Restart
 
 NVUE restarts the FRR service when you:

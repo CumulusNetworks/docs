@@ -2498,6 +2498,10 @@ A large community-list accommodates more identification information, including 4
 
 When the neighbor receives the prefix, it examines the community value and takes action accordingly, such as permitting or denying the community member in the routing policy.
 
+{{%notice note%}}
+If you include a comma in the BGP community list, extended community list, or large community list regex expression of a routing policy, you see error messages and FRR reload fails. Make sure the regex expression does not contain a comma.
+{{%/notice%}}
+
 The following example configures a standard community list filter:
 
 {{< tabs "2448 ">}}

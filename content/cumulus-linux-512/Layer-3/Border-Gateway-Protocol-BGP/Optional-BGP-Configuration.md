@@ -1389,120 +1389,113 @@ When you configure BGP PIC, Cumulus Linux assigns one next hop group for each so
 {{%notice note%}}
 - Cumulus Linux supports BGP PIC on Spectrum-4 switches.
 - Cumulus Linux does not support BGP PIC with EVPN, MLAG, or VRF route leaking.
+- Do not configure PIC if you have configured EVPN.
 - You can configure PIC on the default VRF only.
 - BGP PIC only redistributes the switch loopback address in addition to the host prefixes from the leaf. NVIDIA does not recommend redistributing interface addresses into BGP when you enable PIC.
+- Do not configure the router ID and network address with the same value.
+- The BGP router ID and the aggregate address must not be in the same subnet.
+- Do not use martian addresses as the BGP router ID when you enable PIC.
 - Additional ECMP hardware resources are required for PIC. Refer to {{<link url="Equal-Cost-Multipath-Load-Sharing/#ecmp-resource-sharing-during-next-hop-group-updates" text="Additional ECMP resource optimization for next hop groups">}}
 {{%/notice%}}
 
 ### Configure PIC
 
+To configure PIC:
+- **On a leaf only**, enable the BGP advertise origin option so that BGP can attach the SOO extended community to all routes advertised to its peers from the source where the routes originate.
+- **On all switches**, enable the BGP next hop group per source option so that when BGP receives routes with the SOO extended community, it allocates a next hop group for each source.
+- **On a spine and super spine**, set the {{<link url="#enable-read-only-mode" text="read-only mode">}} BGP convergence wait time to 30 and the convergence wait establish wait time to 15. These exact settings are required for PIC to work correctly.
+
+{{%notice note%}}
+Changing the BGP advertise origin option or the BGP next hop group per source option can cause traffic disruption.
+{{%/notice%}}
+
 {{< tabs "1398 ">}}
 {{< tab "NVUE Commands ">}}
 
-On a leaf switch, enable the BGP advertise origin option so that BGP can attach the SOO extended community to all routes advertised to its peers from the source where the routes originate.
+1. **On a leaf switch**, enable the BGP advertise origin option. The following example enables BGP advertise origin for IPv4:
 
-The following example enables BGP advertise origin for IPv4:
+   ```
+   cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast advertise-origin
+   cumulus@leaf01:~$ nv config apply
+   ```
 
-```
-cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast advertise-origin
-cumulus@leaf01:~$ nv config apply
-```
+   For IPv6, run the `nv set vrf <vrf> router bgp address-family ipv6-unicast advertise-origin` command.
 
-For IPv6, run the `nv set vrf <vrf> router bgp address-family ipv6-unicast advertise-origin` command.
+2. **On all switches** (leaf, spine and super spine), enable the next hop group per source option. The following example enables the next hop group per source option for IPv4:
 
-On all switches (leaf, spine and super spine), enable the next hop group per source option so that when BGP receives routes with the SOO extended community, it allocates a next hop group for each source:
+   ```
+   cumulus@spine01:~$ nv set vrf default router bgp address-family ipv4-unicast nhg-per-origin
+   cumulus@spine01:~$ nv config apply
+   ```
 
-The following example enables the next hop group per source option for IPv4:
+   For IPv6, run the `nv set vrf <vrf> router bgp address-family ipv6-unicast nhg-per-origin` command.
 
-```
-cumulus@spine01:~$ nv set vrf default router bgp address-family ipv4-unicast nhg-per-origin
-cumulus@spine01:~$ nv config apply
-```
+3. **On a spine and super spine**, set the BGP convergence wait time to 30 and the convergence wait establish wait time to 15.
 
-For IPv6, run the `nv set vrf <vrf> router bgp address-family ipv6-unicast nhg-per-origin` command.
+   ```
+   cumulus@leaf01:~$ nv set router bgp convergence-wait time 30
+   cumulus@leaf01:~$ nv set router bgp convergence-wait establish-wait-time 15
+   cumulus@leaf01:~$ nv config apply
+   ```
 
 To disable BGP PIC, run the `nv unset vrf <vrf> router bgp address-family <address-family> advertise-origin` command on the leaf switch and the `nv unset vrf <vrf> router bgp address-family <address-family> nhg-per-origin` command on all switches.
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
-On a leaf switch, enable the BGP advertise origin option so that BGP can attach the Site-of-Origin (SOO) extended community to all routes advertised to its peers from the source where the routes originate.
+1. **On a leaf switch**, enable the BGP advertise origin option. The following example enables BGP advertise origin for IPv4:
 
-The following example enables BGP advertise origin for IPv4:
+   ```
+   cumulus@leaf01:~$ sudo vtysh
+   ...
+   leaf01# configure terminal
+   leaf01(config)# router bgp 65101
+   leaf01(config-router)# address-family ipv4
+   leaf01(config-router-af)# bgp advertise-origin
+   leaf01(config-router-af)# end
+   leaf01# write memory
+   leaf01# exit
+   ```
 
-```
-cumulus@leaf01:~$ sudo vtysh
-...
-leaf01# configure terminal
-leaf01(config)# router bgp 65101
-leaf01(config-router)# address-family ipv4
-leaf01(config-router-af)# bgp advertise-origin
-leaf01(config-router-af)# end
-leaf01# write memory
-leaf01# exit
-```
+2. **On all switches** (leaf, spine and super spine), enable the next hop group per source option. The following example enables BGP next hop group per source for IPv4:
 
-You can set the SOO admin value to override the default value of the last 2 bytes used in the SOO, which is generated automatically when you set `bgp advertise-origin`. The default value is 0x0.
+   ```
+   cumulus@spine01:~$ sudo vtysh
+   ...
+   spine01# configure terminal
+   spine01(config)# router bgp 65101
+   spine01(config-router)# address-family ipv4
+   spine01(config-router-af)# bgp nhg-per-origin
+   spine01(config-router-af)# end
+   spine01# write memory
+   spine01# exit
+   ```
 
-{{%notice note%}}
-You must set the same SOO admin value across the entire data center.
-{{%/notice%}}
+3. **On a spine and super spine**, set the BGP convergence wait time to 30 and the convergence wait establish wait time to 15.
 
-To set the SOO admin value:
-
-```
-cumulus@leaf01:~$ sudo vtysh
-...
-leaf01# configure terminal
-leaf01(config)# router bgp 65101
-leaf01(config-router)# bgp per-source-nhg soo-admin-value 1
-leaf01(config-router)# end
-leaf01# write memory
-leaf01# exit
-```
-
-On all switches (leaf, spine and super spine), enable the next hop group per source option so that when BGP receives routes with the SOO extended community, it allocates a next hop group for each source.
-
-The following example enables BGP next hop group per source for IPv4:
-
-```
-cumulus@spine01:~$ sudo vtysh
-...
-spine01# configure terminal
-spine01(config)# router bgp 65101
-spine01(config-router)# address-family ipv4
-spine01(config-router-af)# bgp nhg-per-origin
-spine01(config-router-af)# end
-spine01# write memory
-spine01# exit
-```
+  ```
+  cumulus@leaf01:~$ sudo vtysh
+  ...
+  leaf01# configure terminal
+  leaf01(config)# router bgp
+  leaf01(config-router)# update-delay 30 15
+  leaf01(config-router)# end
+  leaf01# write memory
+  leaf01# exit
+  ```
 
 The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
+bgp update-delay 30 15
 router bgp 65101
   ...
-  bgp advertise-origin
-  bgp nhg-per-origin
+  address-family ipv4 unicast
+  ...
+   bgp advertise-origin
+   bgp nhg-per-origin
 ...
-```
-
-You can set the convergence timer to override the default amount of time BGP waits to expand the ECMP path when it receives a SOO route. This setting lets you dampen the SOO route updates BGP receives from peers especially in a high ECMP topology and helps to reduce churn.
-
-You can set a value between 5 and 1000 milliseconds. The default value is 50.
-
-To set the convergence timer:
-
-```
-cumulus@leaf01:~$ sudo vtysh
-...
-leaf01# configure terminal
-leaf01(config)# router bgp 65101
-leaf01(config-router)# bgp per-source-nhg convergence-timer 100
-leaf01(config-router)# end
-leaf01# write memory
-leaf01# exit
 ```
 
 To disable BGP PIC, use the `no bgp advertise-origin` command on the leaf switch and the `no bgp nhg-per-origin` on all switches. For example:

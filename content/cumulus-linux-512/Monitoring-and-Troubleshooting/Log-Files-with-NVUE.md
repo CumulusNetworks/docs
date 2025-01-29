@@ -148,14 +148,30 @@ To show the components of the system generating the logs, run the `nv show syste
 
 ```
 cumulus@switch:~$ nv show system log component 
-Component         Level 
-----------------  ------ 
-apt                dpkg               otlp-telemetry     ptp-firefly-servo
-audit              ifupdown2          platform-phc       routing
-auth               installer          platform-thermal   stp
-boot               mlag               pps                synce
-csmgr              nginx              ptm                
-datapath           nvue               ptp
+Component          Summary
+-----------------  -------
+apt                       
+audit                     
+auth                      
+boot                      
+csmgr                     
+datapath                  
+dpkg                      
+ifupdown2                 
+installer                 
+mlag                      
+nginx                     
+nvue                      
+otlp-telemetry            
+platform-phc              
+platform-thermal          
+pps                       
+ptm                       
+ptp                       
+ptp-firefly-servo         
+routing                   
+stp                       
+synce
 ```
 
 The `nv show system log component` command provides the following options:
@@ -211,9 +227,11 @@ The following example shows the log files and associated logs for NVUE:
 
 ```
 cumulus@switch:~$ nv show system log component nvue file list
-File name   File path          
-----------  -------------------
-nv-cli.log  /var/log/nv-cli.log
+File name    File path           
+-----------  --------------------
+nv-cli.log   /var/log/nv-cli.log 
+nvued.log    /var/log/nvued.log  
+nvued.log.1  /var/log/nvued.log.1
 ```
 <!--
 ## Upload System Log Files to a Remote URL

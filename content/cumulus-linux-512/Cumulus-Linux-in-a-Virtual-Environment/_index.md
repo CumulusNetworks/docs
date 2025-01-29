@@ -28,7 +28,7 @@ Due to hardware specific implementations, virtual environments do **not** suppor
 |{{<link url="Port-Security" >}}| <font color="red">No</font> |
 |{{<link url="SPAN-and-ERSPAN" >}}| <font color="red">No</font> |
 |{{<link url="Monitoring-System-Hardware/#sensors-command" text="Temperature and sensor outputs">}}| Artificial temperature and sensor outputs for simulation.|
-|{{<link url="Troubleshooting-Network-Interfaces/#monitor-interface-traffic-rate-and-pps" text="Monitor Interface Rates and PPS">}}|<font color="red">No</font>|
+|{{<link url="Troubleshooting-Network-Interfaces/#monitor-interface-traffic-rate-and-pps" text="Interface Rates and PPS">}}|<font color="red">No</font>|
 |{{<link url="Quality-of-Service/#mark-and-remark-traffic" text="Packet marking and remarking">}}| <font color="red">No</font> |
 |{{<link url="Quality-of-Service" text="QoS buffer management and buffer monitoring">}}| <font color="red">No</font> |
 |{{<link url="Quality-of-Service/#policing-and-shaping" text="QoS shaping ">}}| <font color="red">No</font> |

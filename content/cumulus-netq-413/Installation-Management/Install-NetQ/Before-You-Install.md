@@ -17,7 +17,7 @@ Consider the following deployment options and requirements before you install th
 | Network size: small<ul></ul>| Network size: medium<ul><li>Supports up to 100 switches and 128 interfaces per switch*</li></ul>|  Network size: large<ul><li>3-node: Supports up to 1,000 switches and 125,000 interfaces* </li><li>5-node: Supports up to 2,000 switches and 250,000 interfaces* </li></ul>|
 | KVM or VMware hypervisor | KVM or VMware hypervisor | KVM or VMware hypervisor |
 | System requirements<br><br> On-premises: 16 virtual CPUs, 64GB RAM, 500GB SSD disk<br><br>Cloud: 4 virtual CPUs, 8GB RAM, 64GB SSD disk | System requirements (per node)<br><br> On-premises: 16 virtual CPUs, 64GB RAM, 500GB SSD disk<br><br>Cloud: 4 virtual CPUs, 8GB RAM, 64GB SSD disk |  System requirements (per node)<br><br>On-premises: 48 virtual CPUs, 512GB RAM, 3.2TB SSD disk|
-| All features supported | All features supported|  No support for:<ul><li>Network snapshots</li><li>Trace requests</li><li>Flow analysis</li><li>Duplicate IP address validations</li><li>MAC commentary</li><li>Link health view</li></ul>|
+| All features supported | All features supported|  No support for:<ul><li>Network snapshots</li><li>Trace requests</li><li>Flow analysis</li><li>Duplicate IP address validations</li><li>MAC commentary</li></ul>|
 
 *Exact device support counts can vary based on multiple factors, such as the number of links, routes, and IP addresses in your network. Contact NVIDIA for assistance in selecting the appropriate deployment model for your network.
 

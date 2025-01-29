@@ -1590,7 +1590,9 @@ gauge {
   }
 ```
 {{< /expand >}}
+<br>
 {{< expand "Example JSON data for nvrouting_bgp_peer_fsm_established_transitions:" >}}
+```
 INFO:root:Metric name: nvrouting_bgp_peer_fsm_established_transitions
 INFO:root:Metric:
 name: "nvrouting_bgp_peer_fsm_established_transitions"
@@ -1644,6 +1646,7 @@ gauge {
   }
 ```
 {{< /expand >}}
+<br>
 {{< expand "Example JSON data for nvrouting_rib_count_bgp_ipv6:" >}}
 ```
 name: "nvrouting_rib_count_bgp_ipv6"

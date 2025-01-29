@@ -524,7 +524,7 @@ A patch contains a single request to the NVUE service. Ordering of parameters wi
 
 ## Translate a Configuration Revision or File
 
-NVUE provides commands to translate an NVUE configuration revision or yaml file into NVUE commands. The revision ID must be either an integer or a named revision (such as startup, applied, pending). The configuration file must be located on the switch and must include the full path to the file containing the configuration you want to translate. The file must be in YAML format and must be accessible with proper read permissions.
+NVUE provides commands to translate an NVUE configuration revision or yaml file into NVUE commands. The revision ID must be either an integer or a named revision (such as startup or applied). The configuration file must be located on the switch and must include the full path to the file containing the configuration you want to translate. The file must be in YAML format and must be accessible with proper read permissions.
 
 To translate a specific NVUE configuration revision, run the `nv config translate revision <revision-id>` command. NVUE displays the translation on the console.
 

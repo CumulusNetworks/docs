@@ -1394,16 +1394,16 @@ When you configure BGP PIC, Cumulus Linux assigns one next hop group for each so
 - BGP PIC only redistributes the switch loopback address in addition to the host prefixes from the leaf. NVIDIA does not recommend redistributing interface addresses into BGP when you enable PIC.
 - Do not configure the router ID and network address with the same value.
 - The BGP router ID and the aggregate address must not be in the same subnet.
-- Do not use martian addresses with PIC.
+- Do not use martian addresses as the BGP router ID when you enable PIC.
 - Additional ECMP hardware resources are required for PIC. Refer to {{<link url="Equal-Cost-Multipath-Load-Sharing/#ecmp-resource-sharing-during-next-hop-group-updates" text="Additional ECMP resource optimization for next hop groups">}}
 {{%/notice%}}
 
 ### Configure PIC
 
 To configure PIC:
-- **On the leaf switch only**, enable the BGP advertise origin option so that BGP can attach the SOO extended community to all routes advertised to its peers from the source where the routes originate.
+- **On a leaf only**, enable the BGP advertise origin option so that BGP can attach the SOO extended community to all routes advertised to its peers from the source where the routes originate.
 - **On all switches**, enable the BGP next hop group per source option so that when BGP receives routes with the SOO extended community, it allocates a next hop group for each source.
-- **On all switches**, set the {{<link url="#enable-read-only-mode" text="read-only mode">}} BGP convergence wait time to 30 and the convergence wait establish wait time to 15. These exact settings are required for PIC to work correctly.
+- **On a spine and super spine**, set the {{<link url="#enable-read-only-mode" text="read-only mode">}} BGP convergence wait time to 30 and the convergence wait establish wait time to 15. These exact settings are required for PIC to work correctly.
 
 {{%notice note%}}
 Changing the BGP advertise origin option or the BGP next hop group per source option can cause traffic disruption.
@@ -1412,7 +1412,7 @@ Changing the BGP advertise origin option or the BGP next hop group per source op
 {{< tabs "1398 ">}}
 {{< tab "NVUE Commands ">}}
 
-1. **On a leaf switch only**, enable the BGP advertise origin option. The following example enables BGP advertise origin for IPv4:
+1. **On a leaf switch**, enable the BGP advertise origin option. The following example enables BGP advertise origin for IPv4:
 
    ```
    cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast advertise-origin
@@ -1430,7 +1430,7 @@ Changing the BGP advertise origin option or the BGP next hop group per source op
 
    For IPv6, run the `nv set vrf <vrf> router bgp address-family ipv6-unicast nhg-per-origin` command.
 
-3. **On all switches**, set the BGP convergence wait time to 30 and the convergence wait establish wait time to 15.
+3. **On a spine and super spine**, set the BGP convergence wait time to 30 and the convergence wait establish wait time to 15.
 
    ```
    cumulus@leaf01:~$ nv set router bgp convergence-wait time 30
@@ -1471,7 +1471,7 @@ To disable BGP PIC, run the `nv unset vrf <vrf> router bgp address-family <addre
    spine01# exit
    ```
 
-3. **On all switches**, set the BGP convergence wait time to 30 and the convergence wait establish wait time to 15.
+3. **On a spine and super spine**, set the BGP convergence wait time to 30 and the convergence wait establish wait time to 15.
 
   ```
   cumulus@leaf01:~$ sudo vtysh

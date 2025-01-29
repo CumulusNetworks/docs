@@ -1159,6 +1159,11 @@ Monitoring the traffic rate and PPS for an interface ensures optimal network per
 
 By monitoring both the traffic rate and PPS, you can identify peak usage times and adjust bandwidth allocation or optimize packet paths to ensure low latency and high throughput.
 
+{{%notice note%}}
+- You can monitor the traffic rate and PPS of physical ports only.
+- The command outputs provide approximate values.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax | Description |
@@ -1173,6 +1178,15 @@ Introduced in Cumulus Linux 5.12.0
 
 ```
 cumulus@switch:~$ nv show interface swp1 rates
+                operational
+---------------  -----------
+load-interval    10        
+in-bits-rate     10.00 Gbps
+in-utilization   100.0%    
+in-pkts-rate     822.41 kpps
+out-bits-rate    10.00 Gbps
+out-utilization  100.0%    
+out-pkts-rate    822.40 kpps
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1305,6 +1319,11 @@ Monitoring the traffic rate and PPS for your interfaces ensures optimal network 
 
 By monitoring both the traffic rate and PPS, you can identify peak usage times and adjust bandwidth allocation or optimize packet paths to ensure low latency and high throughput.
 
+{{%notice note%}}
+- You can monitor the traffic rate and PPS of physical ports only.
+- The command outputs provide approximate values.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.12.0
@@ -1313,6 +1332,40 @@ Introduced in Cumulus Linux 5.12.0
 
 ```
 cumulus@switch:~$ nv show interface rates
+Interface  Intvl  In-Bits Rate  In-Util  In-Pkts Rate  Out-Bits Rate  Out-Util  Out-Pkts Rate
+---------  -----  ------------  -------  ------------  -------------  --------  -------------
+swp1       60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp2       60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp3       60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp4       60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp5       60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp6       60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp7       60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp8       60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp9       60     10.00 Gbps    100.0%   822.41 kpps   10.00 Gbps     100.0%    822.42 kpps
+swp10      60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp11      60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp12      60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp13      60     7.34 Gbps     73.4%    603.21 kpps   5.00 Gbps      50.0%     411.19 kpps
+swp14      60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp15      60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp16      60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp17      60     8.42 Gbps     84.2%    692.80 kpps   6.73 Gbps      67.3%     553.59 kpps
+swp18      60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp19      60     204 bps       0.0%     0 pps         539 bps        0.0%      1 pps
+swp20      60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp21      60     6.73 Gbps     67.3%    553.59 kpps   8.42 Gbps      84.2%     692.81 kpps
+swp22      60     10.00 Gbps    100.0%   14.88 Mpps    10.00 Gbps     100.0%    14.88 Mpps
+swp23      60     10.00 Gbps    100.0%   14.88 Mpps    10.00 Gbps     100.0%    14.88 Mpps
+swp24      60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp25      60     5.00 Gbps     50.0%    411.19 kpps   7.34 Gbps      73.4%     603.21 kpps
+swp26      60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp27      60     10.00 Gbps    100.0%   822.42 kpps   10.00 Gbps     100.0%    822.41 kpps
+swp28      60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp29      60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp30      60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp31      60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
+swp32      60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

@@ -1520,7 +1520,6 @@ When you enable layer 3 router statistic telemetry, the switch exports the follo
 | `nvrouting_bgp_peer_rx_updates` | Number of BGP messages received from the neighbor.|
 | `nvrouting_bgp_peer_tx_updates` | Number of BGP messages sent to the neighbor. |
 | `nvrouting_rib_count` | Number of routes in the routing table for each route source. |
-| `nvrouting_rib_total_count` | Total number of routes in the routing table.|
 | `nvrouting_rib_count_ipv6` | Tracks the IPv6 RIB route count for each route source. |
 | `nvrouting_rib_count_connected` | Tracks the total IPv4 RIB connected route count. |
 | `nvrouting_rib_count_bgp` | Tracks the total IPv4 RIB BGP route count. |
@@ -1589,7 +1588,11 @@ gauge {
       }
     }
   }
- 
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvrouting_bgp_peer_fsm_established_transitions:" >}}
+```
 INFO:root:Metric name: nvrouting_bgp_peer_fsm_established_transitions
 INFO:root:Metric:
 name: "nvrouting_bgp_peer_fsm_established_transitions"
@@ -1641,9 +1644,11 @@ gauge {
       }
     }
   }
- 
-Example JSON data for RIB:
- 
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvrouting_rib_count_bgp_ipv6:" >}}
+```
 name: "nvrouting_rib_count_bgp_ipv6"
 description: "Total Number of ipv6 BGP routes in Zebra"
 gauge {

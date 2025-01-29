@@ -43,6 +43,7 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
   - {{<link url="Adding-and-Updating-Packages/#configure-additional-repositories" text="Configure additional package repositories">}}
   - {{<link url="FRRouting/#look-up-the-route-for-a-destination" text="Look up the route for a destination">}}
   - {{<link url="NVUE-CLI/#filter-nv-show-command-output" text="Addtional nv show command filters to filter by protocol, filter by neighbor state, and to filter neighbor details">}}
+  - {{<link url="NVUE-API/#retrieve-view-types" text="API support for views with show commands">}}
   - {{<link title="Log Files with NVUE" text="Logging commands">}}
   - {{<link url="NVUE-CLI/#translate-a-configuration-revision-or-file" text="Commands to translate a revision or yaml configuration file">}}
   - {{< expand "Removed NVUE Commands" >}}

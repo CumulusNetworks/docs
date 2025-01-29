@@ -319,7 +319,7 @@ cumulus@switch:~$ nv set interface &lt;interface&gt; link breakout 4x lanes-per-
 </tr>
 <tr>
 <td>3818545</td>
-<td>The terminal monitoring software SecureCRT has a known issue when running on both Windows and Mac systems where it gets "stuck" when monitoring the serial port of the switch as Cumulus Linux boots up.  When this occurs, the serial port stops as shown below and SecureCRT is unable to receive any more serial data from the switch (it is able to transmit).
+<td>The terminal monitoring software SecureCRT has a known issue when running on both Windows and Mac systems where it gets stuck when monitoring the serial port of the switch as Cumulus Linux boots up.  When this occurs, the serial port stops as shown below and SecureCRT is unable to receive any more serial data from the switch (it is able to transmit).
 
 Mounting dev-hugepages.mount - Huge Pages File System...
 Mounting dev-mqueue.mount
@@ -1540,7 +1540,7 @@ cumulus@switch:~$ nv set interface &lt;interface&gt; link breakout 4x lanes-per-
 </tr>
 <tr>
 <td>3818545</td>
-<td>The terminal monitoring software SecureCRT has a known issue when running on both Windows and Mac systems where it gets "stuck" when monitoring the serial port of the switch as Cumulus Linux boots up.  When this occurs, the serial port stops as shown below and SecureCRT is unable to receive any more serial data from the switch (it is able to transmit).
+<td>The terminal monitoring software SecureCRT has a known issue when running on both Windows and Mac systems where it gets stuck when monitoring the serial port of the switch as Cumulus Linux boots up.  When this occurs, the serial port stops as shown below and SecureCRT is unable to receive any more serial data from the switch (it is able to transmit).
 
 Mounting dev-hugepages.mount - Huge Pages File System...
 Mounting dev-mqueue.mount
@@ -2330,7 +2330,7 @@ cumulus@switch:~$ nv set interface &lt;interface&gt; link breakout 4x lanes-per-
 </tr>
 <tr>
 <td>3818545</td>
-<td>The terminal monitoring software SecureCRT has a known issue when running on both Windows and Mac systems where it gets "stuck" when monitoring the serial port of the switch as Cumulus Linux boots up.  When this occurs, the serial port stops as shown below and SecureCRT is unable to receive any more serial data from the switch (it is able to transmit).
+<td>The terminal monitoring software SecureCRT has a known issue when running on both Windows and Mac systems where it gets stuck when monitoring the serial port of the switch as Cumulus Linux boots up.  When this occurs, the serial port stops as shown below and SecureCRT is unable to receive any more serial data from the switch (it is able to transmit).
 
 Mounting dev-hugepages.mount - Huge Pages File System...
 Mounting dev-mqueue.mount

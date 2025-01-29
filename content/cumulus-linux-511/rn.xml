@@ -276,7 +276,7 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 </tr>
 <tr>
 <td>4177067</td>
-<td>When doing an apt-get upgrade from CL5.9 or CL5.10 to CL5.11 or later, the installation of {{nslcd}} for CL5.11 or later might open an interactive dialog to configure {{nslcd.conf }}.To avoid this interactive dialog, set the {{DEBIAN_FRONTEND}} environment variable to {{noninteractive}}. For example:
+<td>When doing a package upgrade from CL5.9 or CL5.10, the installation of {{nslcd}} might open an interactive dialog to configure {{nslcd.conf }}.To avoid this interactive dialog, set the {{DEBIAN_FRONTEND}} environment variable to {{noninteractive}}. For example:
 cumulus@switch:~$ sudo apt-get update
 cumulus@switch:~$ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "Dpkg::Options::=--force-confdef" -o "Dpkg::Options::=--force-confold" upgrade</td>
 <td>5.11.0</td>
@@ -335,7 +335,7 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <tr>
 <td>4154839</td>
 <td>When you run certain SDK commands (such as {{sudo sx_api_port_counter_dump_all.py}} or {{sx_api_fdb_dump etc}}) first as the cumulus user, then with {{sudo}}, you see the following error:
-PermissionError: Errno 13] Permission denied: '/tmp/python_err_log.txt'
+PermissionError: Errno 13] Permission denied: '/tmp/python_err_log.txt'
 To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <td>5.11.0</td>
 <td></td>
@@ -411,7 +411,7 @@ cumulus@switch:~$ sudo umount tmpfs-installer</td>
 </tr>
 <tr>
 <td>4127315</td>
-<td>If you set BGP community-advertise large to off with NVUE, large communities are still sent to BGP peers.To resolve this issue, NVUE has changed the default value of community-advertise large from off to on.</td>
+<td>If you set BGP community-advertise large to off with NVUE, large communities are still sent to BGP peers. To resolve this issue, NVUE has changed the default value of community-advertise large from off to on.</td>
 <td>5.11.0</td>
 <td></td>
 </tr>
@@ -496,7 +496,7 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 </tr>
 <tr>
 <td>4030380</td>
-<td>When you rollback interface configuration to the default with the {{nv unset interface}} command, NVUE removes the complete entry for the interface from the {{/etc/network/interface}} file, and puts the interface in admin down. As a result, you can't configure FEC on the interface at the lower layers.</td>
+<td>When you rollback interface configuration to the default setting with the {{nv unset interface}} command, NVUE removes the complete entry for the interface from the {{/etc/network/interface}} file, and puts the interface in admin down. As a result, you can't configure FEC on the interface at the lower layers.</td>
 <td>5.10.0-5.11.0</td>
 <td></td>
 </tr>
@@ -599,7 +599,7 @@ cumulus@switch:~$ nv set interface &lt;interface&gt; link breakout 4x lanes-per-
 </tr>
 <tr>
 <td>3818545</td>
-<td>The terminal monitoring software SecureCRT has a known issue when running on both Windows and Mac systems where it gets "stuck" when monitoring the serial port of the switch as Cumulus Linux boots up.  When this occurs, the serial port stops as shown below and SecureCRT is unable to receive any more serial data from the switch (it is able to transmit).
+<td>The terminal monitoring software SecureCRT has a known issue when running on both Windows and Mac systems where it gets stuck when monitoring the serial port of the switch as Cumulus Linux boots up.  When this occurs, the serial port stops as shown below and SecureCRT is unable to receive any more serial data from the switch (it is able to transmit).
 
 Mounting dev-hugepages.mount - Huge Pages File System...
 Mounting dev-mqueue.mount

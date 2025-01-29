@@ -32,9 +32,6 @@ RoCE uses the Infiniband (IB) Protocol over converged Ethernet. The IB global ro
 
 To enable RoCE lossless:
 
-{{< tabs "TabID36 ">}}
-{{< tab "NVUE Commands ">}}
-
 ```
 cumulus@switch:~$ nv set qos roce
 cumulus@switch:~$ nv config apply
@@ -45,25 +42,6 @@ NVUE defaults to RoCE lossless. The command `nv set qos roce` and `nv set qos ro
 
 If you enable `roce mode lossy`, configuring `nv set qos roce` without a `mode` does not change the RoCE mode. To change to lossless, you must configure lossless mode with the `nv set qos roce mode lossless` command.
 {{% /notice %}}
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `/etc/cumulus/switchd.d/qos.conf` file to set the `traffic.roce_mode` parameter to 3, then reload `switchd`.
-
-```
-cumulus@switch:~$ sudo cat /etc/cumulus/switchd.d/qos.conf
-...
-traffic.roce_mode = 3
-...
-```
-
-```
-cumulus@switch:~$ sudo systemctl reload switchd.service
-```
-
-{{< /tab >}}
-{{< /tabs >}}
 
 {{%notice note%}}
 {{<link url="Quality-of-Service#link-pause" text="Link pause">}} is another way to provide lossless ethernet; however, PFC is the preferred method. PFC allows more granular control by pausing the traffic flow for a given CoS group instead of the entire link.
@@ -77,41 +55,16 @@ RoCEv2 congestion management uses RFC 3168 to signal congestion experienced to t
 
 To enable RoCE lossy:
 
-{{< tabs "TabID80 ">}}
-{{< tab "NVUE Commands ">}}
-
 ```
 cumulus@switch:~$ nv set qos roce mode lossy
 cumulus@switch:~$ nv config apply
 ```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `/etc/cumulus/switchd.d/qos.conf` file to set the `traffic.roce_mode` parameter to 1, then reload `switchd`.
-
-```
-cumulus@switch:~$ sudo cat /etc/cumulus/switchd.d/qos.conf
-...
-traffic.roce_mode = 1
-...
-```
-
-```
-cumulus@switch:~$ sudo systemctl reload switchd.service
-```
-
-{{< /tab >}}
-{{< /tabs >}}
 
 ## Single Shared Buffer Pool
 
 By default, Cumulus Linux separates lossy and lossless traffic into different dedicated buffer pools on both ingress and egress. You can configure the switch to combine lossy and lossless traffic on the same buffer pool on ingress for better load absorption.
 
 To enable single shared buffer pool mode:
-
-{{< tabs "TabID188 ">}}
-{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ nv set qos roce mode lossless-single-ipool
@@ -120,57 +73,14 @@ cumulus@switch:~$ nv config apply
 
 To disable single shared buffer pool mode and use the default mode (lossless), run the `nv unset qos roce mode lossless-single-ipool` command.
 
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `/etc/cumulus/switchd.d/qos.conf` file to set the `traffic.roce_mode` parameter to 4, then reload `switchd`.
-
-```
-cumulus@switch:~$ sudo cat /etc/cumulus/switchd.d/qos.conf
-...
-traffic.roce_mode = 4
-...
-```
-
-```
-cumulus@switch:~$ sudo systemctl reload switchd.service
-```
-
-To disable single shared buffer pool mode and use the default mode (lossless), set the `traffic.roce_mode` parameter to 3.
-
-{{< /tab >}}
-{{< /tabs >}}
-
 ## Remove RoCE Configuration
 
 To remove RoCE configuration:
-
-{{< tabs "TabID111 ">}}
-{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ nv unset qos roce
 cumulus@switch:~$ nv config apply
 ```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `etc/cumulus/switchd.d/qos.conf` file to set the `traffic.roce_mode` parameter to 0, then reload `switchd`.
-
-```
-cumulus@switch:~$ sudo cat etc/cumulus/switchd.d/qos.conf
-...
-traffic.roce_mode = 0
-...
-```
-
-```
-cumulus@switch:~$ sudo systemctl reload switchd.service
-```
-
-{{< /tab >}}
-{{< /tabs >}}
 
 ## Verify RoCE Configuration
 
@@ -376,4 +286,4 @@ cumulus@switch:mgmt:~$ nv set qos mapping default-global dscp 26 switch-priority
 
 ## Related Information
 
-- {{<exlink url="http://www.roceinitiative.org/roce-introduction/" text="RoCE introduction">}} - roceinitiative.org
+{{<exlink url="http://www.roceinitiative.org/roce-introduction/" text="RoCE introduction">}} - roceinitiative.org

@@ -1382,7 +1382,7 @@ cumulus@leaf01:~$
 
 ## BGP Prefix Independent Convergence
 
-BGP prefix independent convergence (PIC) reduces data plane convergence times and improves unicast traffic convergence for remote link failures (when the BGP next hop fails). A remote link is a link between a spine and a remote leaf, or a spine and the super spine layer.
+BGP prefix independent convergence (PIC) reduces convergence times and improves unicast traffic convergence for remote link and node failures (when the BGP next hop fails) regardless of route scale (for example, for changes in individual routes). A remote link is a link between a spine and a remote leaf, or a spine and the super spine layer.
 
 When you configure BGP PIC, Cumulus Linux assigns one next hop group for each source and the remote leaf advertises the router ID loopback route. The remote leaf tags prefix routes with a route-origin extended community (SOO) so that the local leaf recognizes the routes. When the network topology changes, the local leaf obtains the router ID loopback route with the updated ECMP, allowing a O (1) next hop group replace operation for all prefixes from the remote leaf without waiting for individual BGP updates.
 

@@ -202,7 +202,7 @@ To configure an account for local fallback authentication:
 
 1. Add a local user account with the desired role and permissions as described in {{<link url="User-Accounts#add-a-new-user-account" text="Add a New User Account">}}.
 
-2. To ensure the local user account password will authenticate the user only when none of the RADIUS servers are reachable, configure the {{<link url="RADIUS-AAA#required-radius-client-configuration" text="authentication order">}} such that RADIUS has a preferred priority over local authentication:
+2. To ensure the local user account password authenticates the user only when none of the RADIUS servers are reachable, configure the {{<link url="RADIUS-AAA#required-radius-client-configuration" text="authentication order">}} so that RADIUS has a preferred priority over local authentication:
 
 {{< tabs "TabID211 ">}}
 {{< tab "NVUE Commands ">}}
@@ -247,6 +247,7 @@ netgroup:       nis
 {{%notice note%}}
 If you configure the authentication order to prefer local authentication before RADIUS, both the local user account password and the password configured on the RADIUS server can be used to authenticate the user when the RADIUS servers are reachable.  
 {{%/notice%}}
+
 ## RADIUS User Command Accounting
 
 RADIUS user command accounting lets you log every command that a user runs and send the commands to the primary RADIUS server for auditing. Audit logs are a requirement for compliance standards, such as PCI and HIPPA.

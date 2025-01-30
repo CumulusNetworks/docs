@@ -1071,7 +1071,7 @@ cumulus@switch:~$ nv show system telemetry interface-stats ingress-buffer
 
 ## <h>nv show system telemetry router</h>
 
-Shows which telemetry router statistics are enabled/
+Shows which telemetry router statistics are enabled.
 
 ### Version History
 
@@ -1168,11 +1168,19 @@ Introduced in Cumulus Linux 5.12.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system telemetry router rib
-         applied 
--------  --------
-export           
-  state  disabled
+cumulus@switch:~$ nv show system telemetry router
+                 applied
+---------------  -------
+bgp                     
+  export                
+    state        enabled
+rib                     
+  export                
+    state        enabled
+[vrf]            RED    
+export                  
+  state          enabled
+sample-interval  100
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1191,7 +1199,7 @@ Introduced in Cumulus Linux 5.12.0
 cumulus@switch:~$ nv show system telemetry router rib export
        applied 
 -----  --------
-state  disabled
+state  enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1214,6 +1222,11 @@ Introduced in Cumulus Linux 5.12.0
 
 ```
 cumulus@switch:~$ nv show system telemetry router vrf RED bgp
+         applied
+-------  -------
+export          
+  state  enabled
+[peer]   swp1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1236,6 +1249,9 @@ Introduced in Cumulus Linux 5.12.0
 
 ```
 cumulus@switch:~$ nv show system telemetry router vrf RED bgp export
+       applied
+-----  -------
+state  enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1258,7 +1274,10 @@ Introduced in Cumulus Linux 5.12.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system telemetry router vrf default bgp peer swp1 export
+cumulus@switch:~$ nv show system telemetry router vrf RED bgp peer swp1 export
+       applied
+-----  -------
+state  enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1281,6 +1300,10 @@ Introduced in Cumulus Linux 5.12.0
 
 ```
 cumulus@switch:~$ nv show system telemetry router vrf RED rib
+         applied
+-------  -------
+export          
+  state  enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1303,6 +1326,9 @@ Introduced in Cumulus Linux 5.12.0
 
 ```
 cumulus@switch:~$ nv show system telemetry router vrf RED rib export
+       applied
+-----  -------
+state  enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1323,6 +1349,10 @@ Introduced in Cumulus Linux 5.7.0
 
 ```
 cumulus@switch:~$ nv show system telemetry snapshot-file
+       operational  applied                         
+-----  -----------  --------------------------------
+name                /var/run/cumulus/histogram_stats
+count               64
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1369,6 +1399,7 @@ Introduced in Cumulus Linux 5.11.0
 
 ```
 cumulus@switch:~$ nv show system telemetry snapshot port-group packet-all-pg threshold packet-error-drops
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1392,6 +1423,7 @@ Introduced in Cumulus Linux 5.11.0
 
 ```
 cumulus@switch:~$ nv show system telemetry snapshot port-group packet-all-pg threshold packet-error-drops action
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1415,6 +1447,7 @@ Introduced in Cumulus Linux 5.11.0
 
 ```
 cumulus@switch:~$ nv show system telemetry snapshot port-group packet-all-pg threshold packet-error-drops action log
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

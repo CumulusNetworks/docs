@@ -1391,7 +1391,7 @@ When you configure BGP PIC, Cumulus Linux assigns one next hop group for each so
 - Cumulus Linux does not support BGP PIC with EVPN, MLAG, or VRF route leaking.
 - Do not configure PIC if you have configured EVPN.
 - You can configure PIC on the default VRF only.
-- BGP PIC only redistributes the switch loopback address in addition to the host prefixes from the leaf. NVIDIA does not recommend redistributing interface addresses into BGP when you enable PIC.
+- NVIDIA recommends that you do not redistribute interface addresses into BGP when you enable PIC.
 - Do not configure the router ID and network address with the same value.
 - The BGP router ID and the aggregate address must not be in the same subnet.
 - Do not use martian addresses as the BGP router ID when you enable PIC.

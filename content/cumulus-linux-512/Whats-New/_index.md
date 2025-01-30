@@ -127,10 +127,6 @@ nv show system telemetry router vrf <vrf-id> bgp peer <neighbor-id>
 nv show system telemetry router vrf <vrf-id> bgp peer <neighbor-id> export
 nv show system telemetry router vrf <vrf-id> rib
 nv show system telemetry router vrf <vrf-id> rib export
-nv show vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id> interface
-nv show vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id> interface <interface-id>
-nv show vrf <vrf-id> router static <route-id> via <via-id> interface
-nv show vrf <vrf-id> router static <route-id> via <via-id> interface <interface-id>
 ```
 
 {{< /tab >}}

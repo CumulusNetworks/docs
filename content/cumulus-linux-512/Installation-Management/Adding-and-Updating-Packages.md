@@ -173,7 +173,7 @@ To configure an additional repository:
 - Enable repository source to add source files from the repository (optional).
 - Set the VRF to use when adding an additional repository (optional). The default VRF is `mgmt`.
 
-The repository URL can be `https`, `http`, or `ftp` format, or the directory and file name on the switch (`/etc/myrepo`).
+The repository URL can be `https`or `http` format, or the directory and file name on the switch (`/etc/myrepo`).
 
 {{< tabs "TabID176 ">}}
 {{< tab "NVUE Commands ">}}
@@ -343,47 +343,29 @@ To show the list of repositories and keys:
 
 ```
 cumulus@switch:~$ nv show system packages
-         operational  applied 
--------  -----------  ------- 
-use-vrf               mgmt 
-repository 
-============= 
-    Repository                                                     Insecure  Source  Distribution               Pool 
-    -------------------------------------------------------------  --------  ------  -------------------------  ----------------- 
-    copy:/var/lib/cumulus/cumulus-local-apt-archive                                  cumulus-local-apt-archive  main 
-    https://ftp.debian.org/debian                                                    proposed-updates           contrib 
-                                                                                                                main 
-                                                                                                                non-free 
-                                                                                                                non-free-firmware 
-                                                                                     stable                     contrib 
-                                                                                                                main 
-                                                                                                                non-free 
-                                                                                                                non-free-firmware 
-                                                                                     stable-backports           contrib 
-                                                                                                                main 
-                                                                                                                non-free 
-                                                                                                                non-free-firmware 
-                                                                                     stable-updates             contrib 
-                                                                                                                main 
-                                                                                                                non-free 
-                                                                                                                non-free-firmware 
-    https://security.debian.org/debian-security                                      stable-security            contrib 
-                                                                                                                main 
-                                                                                                                non-free-firmware 
-    https://urm.nvidia.com/artifactory/sw-nbu-cl-debian-local                        CumulusLinux-5-devsigned   cumulus 
-                                                                                                                upstream 
-    https://urm.nvidia.com/artifactory/sw-nbu-cl-dev-debian-local                    CumulusLinux-d12           upstream 
+         operational  applied
+-------  -----------  -------
+use-vrf               mgmt
 
-key 
-====== 
+repository
+=============
+    Repository                                       Insecure  Source    Key  Distribution               Pool
+    -----------------------------------------------  --------  --------  ---  -------------------------  ----
+    copy:/var/lib/cumulus/cumulus-local-apt-archive  enabled   disabled       cumulus-local-apt-archive  main
+
+key
+======
     Key ID                                          Path                                                                   Scope 
-    ----------------------------------------------  ---------------------------------------------------------------------  ------ 
-    deb-bookworm-dup.asc                            /etc/apt/trusted.gpg.d/deb-bookworm-dup.asc                            global 
-    deb-bullseye-dup.asc                            /etc/apt/trusted.gpg.d/deb-bullseye-dup.asc                            global 
-    debian-archive-bookworm-automatic.asc           /etc/apt/trusted.gpg.d/debian-archive-bookworm-automatic.asc           global 
-    debian-archive-bookworm-security-automatic.asc  /etc/apt/trusted.gpg.d/debian-archive-bookworm-security-automatic.asc  global 
-    debian-archive-bookworm-stable.asc              /etc/apt/trusted.gpg.d/debian-archive-bookworm-stable.asc              global 
-    Test-sample-key.asc                             /etc/apt/keyrings/debian-archive-bookworm-stable.asc                   repository 
+    ----------------------------------------------  ---------------------------------------------------------------------  ------
+    debian-archive-bookworm-automatic.asc           /etc/apt/trusted.gpg.d/debian-archive-bookworm-automatic.asc           global
+    debian-archive-bookworm-security-automatic.asc  /etc/apt/trusted.gpg.d/debian-archive-bookworm-security-automatic.asc  global
+    debian-archive-bookworm-stable.asc              /etc/apt/trusted.gpg.d/debian-archive-bookworm-stable.asc              global
+    debian-archive-bullseye-automatic.asc           /etc/apt/trusted.gpg.d/debian-archive-bullseye-automatic.asc           global
+    debian-archive-bullseye-security-automatic.asc  /etc/apt/trusted.gpg.d/debian-archive-bullseye-security-automatic.asc  global
+    debian-archive-bullseye-stable.asc              /etc/apt/trusted.gpg.d/debian-archive-bullseye-stable.asc              global
+    debian-archive-buster-automatic.asc             /etc/apt/trusted.gpg.d/debian-archive-buster-automatic.asc             global
+    debian-archive-buster-security-automatic.asc    /etc/apt/trusted.gpg.d/debian-archive-buster-security-automatic.asc    global
+    debian-archive-buster-stable.asc                /etc/apt/trusted.gpg.d/debian-archive-buster-stable.asc                global
 ```
 
 To show the list of keys:

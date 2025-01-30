@@ -549,6 +549,76 @@ cumulus@switch:~$ nv show interface swp1 telemetry histogram latency traffic-cla
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system telemetry buffer-stats</h>
+
+Shows telemetry buffer statistics configuration settings.
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry buffer-stats
+                 operational  applied
+---------------  -----------  -------
+sample-interval               1      
+export                               
+  state                       enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry buffer-stats export</h>
+
+Shows if collection and export of buffer statistics is enabled.
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry buffer-stats export
+       operational  applied
+-----  -----------  -------
+state               enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry health</h>
+
+Shows telemetry health information.
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry health
+                             operational
+---------------------------  -----------
+service-status                          
+  nv-telemetry-service       inactive   
+  platform-stats-service     active     
+  histogram-export-service   inactive   
+  sdk-stats-service          inactive   
+  routing-telemetry-service  active     
+
+
+
+Export Destination Status
+============================
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system telemetry bw-gauge</h>
 
 Shows a summary of the bandwidth gauge for all interfaces.

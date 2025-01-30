@@ -86,8 +86,10 @@ nv show system packages repository <repo-url-id> distribution <repo-dist-id> poo
 nv show system telemetry buffer-stats
 nv show system telemetry buffer-stats export
 nv show system telemetry health
-nv show system telemetry health brief
-nv show system telemetry health detail
+nv show system telemetry health internal-metrics exporters
+nv show system telemetry health internal-metrics process
+nv show system telemetry health internal-metrics processors
+nv show system telemetry health internal-metrics receivers
 nv show system telemetry interface-stats class
 nv show system telemetry interface-stats class phy
 nv show system telemetry stats-group

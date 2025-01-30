@@ -555,7 +555,7 @@ fe80::4ab0:2dff:fe93:d92d  swp52
 
 ## Show Prefix Independent Convergence Information
 
-When you enable {{<link url="Optional-BGP-Configuration/#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence (PIC)">}} to reduce data plane convergence times and improve unicast traffic convergence for remote link failures, you can use the following commands to show information about route-origin extended community (SOO) routes and SOO peer bit index mapping for the routes.
+When you enable {{<link url="Optional-BGP-Configuration/#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence (PIC)">}}, you can use the following commands to show information about route-origin extended community (SOO) routes and SOO peer bit index mapping for the routes.
 
 {{< tabs "1585 ">}}
 {{< tab "NVUE Commands ">}}

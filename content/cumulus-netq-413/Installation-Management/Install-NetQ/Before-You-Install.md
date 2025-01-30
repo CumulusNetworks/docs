@@ -40,9 +40,7 @@ During the installation process, you configure a virtual IP address that enables
 
 The **high-availability scale cluster** deployment provides the same benefits as the high-availability cluster deployment, but supports larger networks. NVIDIA recommends this option for networks with more than 100 switches with at least 100 interfaces per switch. It offers the highest level of scalability, allowing you to adjust NetQ's network monitoring capacity by adding additional nodes to your cluster as your network expands. 
 
-Tabular data in the UI is limited to 10,000 rows. For large networks, NVIDIA recommends downloading and exporting the tabular data as a CSV or JSON file and opening it in a spreadsheet program for further analysis. Refer to the installation overview table at the beginning of this section for additional HA scale cluster deployment support information. 
-
-<!--As the number of devices in your network grows, you can add additional nodes to the cluster to support the additional devices. 4.12 supports only 3-node cluster-->
+ {{<link title="Access Data with Cards/#table-settings" text="Tabular data in the UI">}} is limited to 10,000 rows. For large networks, NVIDIA recommends downloading and exporting the tabular data as a CSV or JSON file and opening it in a spreadsheet program for further analysis. Refer to the installation overview table at the beginning of this section for additional HA scale cluster deployment support information. 
 
 ### Cluster Deployments and Load Balancers
 

@@ -1069,6 +1069,244 @@ cumulus@switch:~$ nv show system telemetry interface-stats ingress-buffer
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system telemetry router</h>
+
+Shows which telemetry router statistics are enabled/
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry router
+                 applied 
+---------------  --------
+bgp                      
+  export                 
+    state        enabled
+rib                      
+  export                 
+    state        enabled
+export                   
+  state          enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry router export</h>
+
+Shows if the open telemetry routing service is enabled.
+
+{{%notice note%}}
+To export any of the routing metrics, you must first enable the open telemetry routing service.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry router export
+       applied 
+-----  --------
+state  disabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry router bgp</h>
+
+Shows configuration settings for BGP peer state statistics across all VRFs.
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry router bgp
+         applied 
+-------  --------
+export           
+  state  disabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry router bgp export</h>
+
+Shows if collection and export of BGP peer state statistics across all VRFs is enabled.
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry router bgp export
+       applied 
+-----  --------
+state  disabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry router rib</h>
+
+Shows configuration settings for routing table statistics across all VRFs.
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry router rib
+         applied 
+-------  --------
+export           
+  state  disabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry router rib export</h>
+
+Shows if collection and export of routing table statistics across all VRFs is enabled.
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry router rib export
+       applied 
+-----  --------
+state  disabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry router vrf \<vrf-id\> bgp</h>
+
+Shows configuration settings for BGP peer state statistics in a specific VRF.
+
+### Command Syntax
+
+|  Syntax | Description |
+| ---------| ------ |
+| `<vrf-id>` |  The VRF name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry router vrf RED bgp
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry router vrf \<vrf-id\> bgp export</h>
+
+Shows if collection and export of BGP peer state statistics in a specific VRF is enabled.
+
+### Command Syntax
+
+|  Syntax | Description |
+| ---------| ------ |
+| `<vrf-id>` |  The VRF name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry router vrf RED bgp export
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry router vrf \<vrf-id\> bgp peer \<neighbor-id\> export</h>
+
+Shows if collection and export of routing statistics for a specifc peer in a VRF is enabled.
+
+### Command Syntax
+
+|  Syntax | Description |
+| ---------| ------ |
+| `<vrf-id>` |  The VRF name.|
+| `<neighbor-id>` |  The BGP neighbor ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry router vrf default bgp peer swp1 export
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry router vrf \<vrf-id\> rib</h>
+
+Shows configuration settings for routing table statistics for a specific VRF.
+
+### Command Syntax
+
+|  Syntax | Description |
+| ---------| ------ |
+| `<vrf-id>` |  The VRF name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry router vrf RED rib
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry router vrf \<vrf-id\> rib export</h>
+
+Shows if collection and export of routing table statistics for a specific VRF is enabled.
+
+### Command Syntax
+
+|  Syntax | Description |
+| ---------| ------ |
+| `<vrf-id>` |  The VRF name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry router vrf RED rib export
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system telemetry snapshot-file</h>
 
 Shows histogram snapshot file configuration and operational data.

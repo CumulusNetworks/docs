@@ -193,43 +193,57 @@ A flat file mapping derives from the session number assigned during login, which
 
 ## Local Fallback Authentication
 
+If a site wants to allow local fallback authentication for a user when none of the RADIUS servers are reachable, you can add a privileged user account as a local account on the switch.
+
+To configure an account for local fallback authentication:
+
+1. Add a local user account with the desired role and permissions as described in {{<link url="User-Accounts#add-a-new-user-account" text="Add a New User Account">}}.
+
+2. To ensure the local user account password authenticates the user only when none of the RADIUS servers are reachable, configure the {{<link url="RADIUS-AAA#required-radius-client-configuration" text="authentication order">}} so that RADIUS has a preferred priority over local authentication:
+
+{{< tabs "TabID211 ">}}
+{{< tab "NVUE Commands ">}}
+```
+cumulus@switch:~$ nv set system aaa authentication-order 10 radius
+cumulus@switch:~$ nv set system aaa authentication-order 20 local
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Configure the `passwd` line in the `/etc/nsswitch.conf` file to place `files` after `mapuid` in the authentication order:
+
+```
+cumulus@switch:~$ vi /etc/nsswitch.conf 
+
+# /etc/nsswitch.conf
+#
+# Example configuration of GNU Name Service Switch functionality.
+# If you have the `glibc-doc-reference' and `info' packages installed, try:
+# `info libc "Name Service Switch"' for information about this file.
+
+passwd:         mapuid files mapname
+group:          mapname files
+shadow:         files
+gshadow:        files
+
+hosts:          files dns
+networks:       files
+
+protocols:      db files
+services:       db files
+ethers:         db files
+rpc:            db files
+
+netgroup:       nis
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 {{%notice note%}}
-NVUE does not provide commands to configure local fallback authentication.
+If you configure the authentication order to prefer local authentication before RADIUS, both the local user account password and the password configured on the RADIUS server can be used to authenticate the user when the RADIUS servers are reachable.  
 {{%/notice%}}
-
-If a site wants to allow local fallback authentication for a user when none of the RADIUS servers are reachable, you can add a privileged user account as a local account on the switch. The local account must have the same unique identifier as the privileged user and the shell must be the same.
-
-To configure local fallback authentication:
-
-1. Add a local privileged user account. For example, if the `radius_priv_user` account in the `/etc/passwd` file is `radius_priv_user:x:1002:1001::/home/radius_priv_user:/sbin/radius_shell`, run the following command to add a local privileged user account named `johnadmin`:
-
-    ```
-    cumulus@switch:~$ sudo useradd -u 1002 -g 1001 -o -s /sbin/radius_shell johnadmin
-    ```
-
-2. To enable the local privileged user to run `sudo` and NVUE commands, run the following commands:
-
-    ```
-    cumulus@switch:~$ sudo adduser johnadmin nvset
-    cumulus@switch:~$ sudo adduser johnadmin nvapply
-    cumulus@switch:~$ sudo adduser johnadmin sudo
-    cumulus@switch:~$ sudo systemctl restart nvued
-    ```
-
-3. Edit the `/etc/passwd` file to move the local user line before to the `radius_priv_user` line:
-
-    ```
-    cumulus@switch:~$ sudo vi /etc/passwd
-    ...
-    johnadmin:x:1002:1001::/home/johnadmin:/sbin/radius_shell
-    radius_priv_user:x:1002:1001::/home/radius_priv_user:/sbin/radius_shell
-    ```
-
-4. To set the local password for the local user, run the following command:
-
-    ```
-    cumulus@switch:~$ sudo passwd johnadmin
-    ```
 
 ## RADIUS User Command Accounting
 

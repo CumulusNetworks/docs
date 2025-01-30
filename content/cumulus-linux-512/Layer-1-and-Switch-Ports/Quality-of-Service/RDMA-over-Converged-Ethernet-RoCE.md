@@ -62,7 +62,7 @@ cumulus@switch:~$ nv config apply
 
 ## Single Shared Buffer Pool
 
-By default, Cumulus Linux separates lossy and lossless traffic into different dedicated buffer pools on both ingress and egress. You can configure the switch to combine lossy and lossless traffic on the same buffer pool on ingress for better load absorption.
+By default, Cumulus Linux separates lossy and lossless traffic into different dedicated buffer pools on both ingress and egress. You can configure the switch to combine lossy and lossless traffic on the same ingress buffer pool for better load absorption of lossless traffic.
 
 To enable single shared buffer pool mode:
 

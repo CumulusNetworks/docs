@@ -969,6 +969,31 @@ Introduced in Cumulus Linux 5.10.0
 ```
 cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.100 port 4317
 ```
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry export otlp grpc destination \<destination\> stats-group</h>
+
+Applies the statistics group configuration to the OTLP destination.
+
+By default, the switch exports all statistics enabled globally (with the `nv set system telemetry <statistics>` command) to all configured OTLP destinations. If you want to export different metrics to different OTLP destinations, you can customize the export by specifying a statistics group to control which statistics you export and the sample interval for a destination.
+
+Statistics groups inherit global OTLP export configurations by default. More specific configuration under a statistics group, such as enabling or disabling a statistic type or changing the sample interval overrides any global OTLP configuration.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<destination>` | The IP address of the collector. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.100 stats-group STAT-GROUP2
+```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

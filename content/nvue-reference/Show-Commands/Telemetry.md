@@ -2415,7 +2415,10 @@ Introduced in Cumulus Linux 5.12.0
 
 ```
 cumulus@switch:~$ nv show system telemetry stats-group
-No Data
+             Histogram  Interface Stats  Platform Stats  ControlPlane Stats  Buffer Stats  Routing Stats
+-----------  ---------  ---------------  --------------  ------------------  ------------  -------------
+STAT-GROUP1  disabled   enabled          disabled        disabled            disabled      disabled     
+blah         disabled   disabled         disabled        disabled            disabled      disabled 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

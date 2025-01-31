@@ -10,10 +10,10 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 ## January 2025
 <!-- Air:WhatsNew -->
 ### 82.2025.0130-011
-- Fixed an issue with ZTP when importing simulation from JSON file.
-- Fixed an issue with handling failed auto-provisioning POST requests.
-- Fixed issue with copying a node from topology files
-- Fixed formatting of links in Demo Marketplace simulation guides
+- Fixed an issue with ZTP when importing a simulation from a JSON file
+- Fixed an issue with handling failed auto-provisioning POST requests
+- Fixed an issue with copying a node from topology files
+- Fixed link formatting in Demo Marketplace simulation guides
 - Added functionality to configure external ports and view outbound links in the topology builder
 <!-- Air:WhatsNew -->
 

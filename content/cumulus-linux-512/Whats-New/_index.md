@@ -246,7 +246,7 @@ nv action delete system log component <component-name> file <file-name>`
 nv action delete system log file <file-name>
 nv action delete system packages key <key>
 nv action fetch system packages key <key>
-nv action fetch system packages key <key> scope
+nv action fetch system packages key <key> scope repository
 nv action fetch system image files
 nv action lookup vrf <vrf-id> router fib <address-family> <ip-address>
 nv action ping system <destination>
@@ -265,8 +265,6 @@ nv action traceroute interface <interface> packet_len
 nv action traceroute interface <interface> hop-count
 nv action traceroute interface <interface> source-address
 nv action traceroute interface <interface> protocol
-nv action upload system log component <component-name> file <file-name> <remote-url-upload>
-nv action upload system log file <file-name> <remote-url-upload>
 ```
 
 {{< /tab >}}

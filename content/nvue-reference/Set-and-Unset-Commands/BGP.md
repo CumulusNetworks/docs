@@ -313,9 +313,9 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unicast admi
 
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast advertise-origin</h>
 
-Configures BGP prefix independent convergence (PIC) for IPv4 to reduce data plane convergence times and improve unicast traffic convergence for remote link failures (when the BGP next hop fails). A remote link is a link between a spine and a remote leaf, or a spine and the super spine layer.
+BGP prefix independent convergence (PIC) reduces convergence times and improves unicast traffic convergence for remote link and node failures (when the BGP next hop fails) regardless of route scale (for example, for changes in individual routes). A remote link is a link between a spine and a remote leaf, or a spine and the super spine layer.
 
-When you configure BGP PIC, Cumulus Linux assigns one next hop group for each source and the remote leaf advertises the router ID loopback route. The remote leaf tags prefix routes with a route-origin extended community so that the local leaf recognizes the routes. When the network topology changes, the local leaf obtains the router ID loopback route with the updated ECMP, allowing a O (1) next hop group replace operation for all prefixes from the remote leaf without waiting for individual BGP updates.
+When you configure BGP PIC, Cumulus Linux assigns one next hop group for each source and the remote leaf advertises the router ID loopback route. The remote leaf tags prefix routes with a route-origin extended community (SOO) so that the local leaf recognizes the routes. When the network topology changes, the local leaf obtains the router ID loopback route with the updated ECMP, allowing a O (1) next hop group replace operation for all prefixes from the remote leaf without waiting for individual BGP updates.
 
 You enable the BGP advertise origin option on a leaf switch, so that BGP can attach the Site-of-Origin (SOO) extended community to all routes advertised to its peers from the source where the routes originate. On all switches (leaf, spine and super spine), you enable the next hop group per source option (`nv set vrf <vrf-id> router bgp address-family ipv4-unicast nhg-per-origin`) so that when BGP receives routes with the SOO extended community, it allocates a next hop group for each source.
 
@@ -339,9 +339,9 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unicast adve
 
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast nhg-per-origin</h>
 
-Configures BGP prefix independent convergence (PIC) for IPv4 to reduce data plane convergence times and improve unicast traffic convergence for remote link failures (when the BGP next hop fails). A remote link is a link between a spine and a remote leaf, or a spine and the super spine layer.
+BGP prefix independent convergence (PIC) reduces convergence times and improves unicast traffic convergence for remote link and node failures (when the BGP next hop fails) regardless of route scale (for example, for changes in individual routes). A remote link is a link between a spine and a remote leaf, or a spine and the super spine layer.
 
-When you configure BGP PIC, Cumulus Linux assigns one next hop group for each source and the remote leaf advertises the router ID loopback route. The remote leaf tags prefix routes with a route-origin extended community so that the local leaf recognizes the routes. When the network topology changes, the local leaf obtains the router ID loopback route with the updated ECMP, allowing a O (1) next hop group replace operation for all prefixes from the remote leaf without waiting for individual BGP updates.
+When you configure BGP PIC, Cumulus Linux assigns one next hop group for each source and the remote leaf advertises the router ID loopback route. The remote leaf tags prefix routes with a route-origin extended community (SOO) so that the local leaf recognizes the routes. When the network topology changes, the local leaf obtains the router ID loopback route with the updated ECMP, allowing a O (1) next hop group replace operation for all prefixes from the remote leaf without waiting for individual BGP updates.
 
 You enable the next hop group per source option on all switches (leaf, spine and super spine), so that when BGP receives routes with the SOO extended community, it allocates a next hop group for each source. On a leaf switch, you enable the BGP advertise origin option (`nv set vrf <vrf> router bgp address-family ipv4-unicast advertise-origin`) so that BGP can attach the Site-of-Origin (SOO) extended community to all routes advertised to its peers from the source where the routes originate.
 

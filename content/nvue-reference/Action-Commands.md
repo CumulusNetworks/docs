@@ -198,7 +198,7 @@ cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic
 Clears all dynamic MAC addresses for a specific interface from the forwarding database.
 
 {{%notice note%}}
-This command does not clear sticky entries, permanent entries, or EVPN MAC entries.
+This command does not clear sticky entries, permanent entries, and EVPN MAC entries.
 {{%/notice%}}
 
 ### Command Syntax
@@ -225,7 +225,7 @@ cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic int
 Clears all dynamic MAC addresses for a specific interface and VLAN from the forwarding database.
 
 {{%notice note%}}
-This command does not clear sticky entries, permanent entries, or EVPN MAC entries.
+This command does not clear sticky entries, permanent entries, and EVPN MAC entries.
 {{%/notice%}}
 
 ### Command Syntax
@@ -253,7 +253,7 @@ cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic int
 Clears a specific dynamic MAC address for an interface from the forwarding database.
 
 {{%notice note%}}
-This command does not clear sticky entries, permanent entries, or EVPN MAC entries.
+This command does not clear sticky entries, permanent entries, and EVPN MAC entries.
 {{%/notice%}}
 
 ### Command Syntax
@@ -281,7 +281,7 @@ cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic mac
 Clears a specific dynamic MAC addresses for a VLAN from the forwarding database.
 
 {{%notice note%}}
-This command does not clear sticky entries, permanent entries, or EVPN MAC entries.
+This command does not clear sticky entries, permanent entries, and EVPN MAC entries.
 {{%/notice%}}
 
 ### Command Syntax
@@ -309,7 +309,7 @@ cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic mac
 Clears a specific dynamic MAC address for a VLAN and interface from the forwarding database.
 
 {{%notice note%}}
-This command does not clear sticky entries, permanent entries, or EVPN MAC entries.
+This command does not clear sticky entries, permanent entries, and EVPN MAC entries.
 {{%/notice%}}
 
 ### Command Syntax
@@ -337,7 +337,7 @@ cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic mac
 Clears all dynamic MAC addresses for a specific VLAN from the forwarding database.
 
 {{%notice note%}}
-This command does not clear sticky entries, permanent entries, or EVPN MAC entries.
+This command does not clear sticky entries, permanent entries, and EVPN MAC entries.
 {{%/notice%}}
 
 ### Command Syntax
@@ -2650,14 +2650,14 @@ cumulus@switch:~$ nv action delete system log file mstpd.log
 
 ## <h>nv action delete system log component \<component-name\> file \<filename\></h>
 
-Delete a log file from a specific system component.
+Deletes a log file from a specific system component.
 
 ### Command Syntax
 
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<component-name>` | The system component whose log file you want to delete. |
-| `<file-name>` | The system log file you want to delete. |
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<component-name>` | The system component from which you want to delete a log file. |
+| `<filename>` | The name of the log file you want to delete. |
 
 ### Version History
 
@@ -2667,6 +2667,28 @@ Introduced in Cumulus Linux 5.12.0
 
 ```
 cumulus@switch:~$ nv action delete system log component nvue file nvued.log
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action delete system packages key <key></h>
+
+Deletes a package repository key.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<key-id>` | The repository key. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action delete system packages key debian-archive-bookworm-automatic.asc
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2872,30 +2894,74 @@ Do you want to continue? [y/N]
 
 If you add the `force` option (`nv action enable system ztp force`), ZTP enables and activates the provisioning process without prompting you for confirmation.
 
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action run system ztp</h>
+## <h>nv action fetch system image \<remote-url\></h>
 
-Manually runs ZTP from the beginning. If you made manual configuration changes, ZTP considers the switch as already provisioned and exits.
+Fetches a binary image from the specified URL.
 
-You can also specify a custom URL (`nv action run system ztp url <url-and-filename`) or directory (`nv action run system ztp url <directory-and-filename`) on the switch for the ZTP script.
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<remote-url>` |  The remote URL.|
 
 ## Version History
 
-Introduced in Cumulus Linux 5.11.0
+Introduced in Cumulus Linux 5.12.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv action run system ztp
-The operation will perform rerun of the ZTP.
-Type [y] to perform rerun of the ZTP.
-Type [N] to cancel an action.
-
-Do you want to continue? [y/N]
+cumulus@switch:~$ nv action fetch system image http://10.0.1.251/cumulus-linux-5.12.0-mlx-amd64.bin
 ```
 
-If you add the force option (`nv action run system ztp force`), ZTP runs without prompting you for confirmation.
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action fetch system packages key \<key\></h>
+
+Fetches a repository key and saves it globally in the `/etc/apt/trusted.gpg.d/` directory.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<key>` |  The repository key.|
+
+## Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action fetch system packages key http://deb.opera.com/archive.key 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action fetch system packages key \<key\> scope repository</h>
+
+Fetches and saves the repository key in the `/etc/apt/keyrings/` directory.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<key>` |  The repository key.|
+
+## Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action fetch system packages key http://deb.opera.com/archive.key scope repository
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv action delete system tech-support files \<file-id\></h>
 
@@ -2995,6 +3061,27 @@ Introduced in Cumulus Linux 5.7.0
 cumulus@switch:~$ nv action import system security certificate tls-cert-1 passphrase mypassphrase uri-bundle scp://user@pass:1.2.3.4:/opt/certs/cert.p12
 ```
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action install system image file \<filename\>
+
+Installs the specified binary image on the second partition (optimized upgrade).
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<filename>` |  The binary image filename.|
+
+## Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action install system image files cumulus-linux-5.12.0-mlx-amd64.bin
+```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -3429,6 +3516,31 @@ Action executing ...
 Log rotation successful
 Action succeeded
 ```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action run system ztp</h>
+
+Manually runs ZTP from the beginning. If you made manual configuration changes, ZTP considers the switch as already provisioned and exits.
+
+You can also specify a custom URL (`nv action run system ztp url <url-and-filename`) or directory (`nv action run system ztp url <directory-and-filename`) on the switch for the ZTP script.
+
+## Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action run system ztp
+The operation will perform rerun of the ZTP.
+Type [y] to perform rerun of the ZTP.
+Type [N] to cancel an action.
+
+Do you want to continue? [y/N]
+```
+
+If you add the force option (`nv action run system ztp force`), ZTP runs without prompting you for confirmation.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

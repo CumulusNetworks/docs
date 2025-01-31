@@ -578,6 +578,38 @@ cumulus@switch:~$ nv set interface swp9-16 telemetry histogram latency traffic-c
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system telemetry buffer-stats export state</h>
+
+Enables collection and export of switch buffer occupancy and watermark metrics. You can specify `enabled` or `disabled`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry buffer-stats export state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry buffer-stats sample-interval</h>
+
+Configures the sample interval for buffer statistics. You can specify a value between 1 and 86400. The default value is 1.
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry buffer-stats sample-interval 100
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system telemetry export otlp state</h>
 
 Enables and disables open telemetry export so that you can export interface counters and histogram collection data to an external collector. You can specify `enabled` or `disabled`.
@@ -1018,6 +1050,22 @@ Introduced in Cumulus Linux 5.7.0
 
 ```
 cumulus@switch:~$ nv set system telemetry histogram ingress-buffer sample-interval 1024
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry interface-stats class phy state</h>
+
+Configures collection and export of interface PHY metrics. You can specify `enabled` or `disabled`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry interface-stats class phy state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

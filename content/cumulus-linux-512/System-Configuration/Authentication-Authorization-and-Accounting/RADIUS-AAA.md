@@ -242,7 +242,7 @@ netgroup:       nis
 {{< /tabs >}}
 
 {{%notice note%}}
-If you configure the authentication order to prefer local authentication before RADIUS, both the local user account password and the password configured on the RADIUS server can be used to authenticate the user when the RADIUS servers are reachable.  
+If you configure the authentication order to prefer local authentication before RADIUS, login falls back to RADIUS only if the user is not present locally.
 {{%/notice%}}
 
 ## RADIUS User Command Accounting

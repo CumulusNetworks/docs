@@ -242,7 +242,8 @@ netgroup:       nis
 {{< /tabs >}}
 
 {{%notice note%}}
-If you configure the authentication order to prefer local authentication before RADIUS, login falls back to RADIUS only if the user is not present locally.
+- If you configure the authentication order to prefer local authentication before RADIUS, login falls back to RADIUS only if the user is not configured locally.
+- If you configure the same account on the switch locally and on your RADIUS server, you must configure the local user account before attempting authentication with RADIUS for the user; otherwise, local account creation fails.
 {{%/notice%}}
 
 ## RADIUS User Command Accounting

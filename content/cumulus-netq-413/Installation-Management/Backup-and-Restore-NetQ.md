@@ -5,10 +5,11 @@ weight: 520
 toc: 3
 ---
 
-The following sections describe how to back up and restore your NetQ data and VMs for on-premises deployments. Cloud deployments are backed up automatically. 
+The following sections describe how to back up and restore your NetQ data and VMs for on-premises deployments. Cloud deployments are backed up automatically. The data restoration workflow upgrades your deployment to NetQ 4.13. 
 
 {{<notice note>}}
-You must run backup and restore scripts with sudo privileges.
+- You must run backup and restore scripts with sudo privileges.
+- When you upgrade to NetQ 4.13, any pre-existing PTP data will be lost.
 {{</notice>}}
 
 ## Back Up Your NetQ Data
@@ -42,7 +43,7 @@ cumulus@netq-server:~$ sudo cp ./vmbackuprestore.sh /sbin/
 cumulus@netq-appliance:/home/cumulus# chmod +x /usr/sbin/vm-backuprestore.sh
 ```
 
-4. From the `/usr/sbin` directory, run the `vm-backuprestore.sh --backup` command. This command backs up each node in your deployment and combines the data into a single .tar file. Take note of the config key in the output of this command. You will enter it when you restore your data:  
+4. On your NetQ server (or the master node in cluster deployments), run the `/usr/sbin/vm-backuprestore.sh --backup` command. This command backs up each node in your deployment and combines the data into a single .tar file. Take note of the config key in the output of this command. You will enter it when you restore your data:  
 
 ```
 cumulus@netq-appliance:~$ sudo /usr/sbin/vm-backuprestore.sh --backup
@@ -93,7 +94,7 @@ Fri Jan 17 05:58:14 2025 - All pods are up
 
 Restore your data with the backup file you created in the preceding steps. The `restore` option copies the data from the backup file to the database, decompresses it, verifies the restoration, and starts all necessary services. 
 
-Run the installation command on your deployment's *master* node, referencing the directory where the backup file resides and including the config key created during the backup process.
+Run the installation command on your NetQ server (or on the master node in cluster deployments), referencing the path where the backup file resides and including the `config-key` created during the backup process.
 
 {{<tabs "96">}}
 
@@ -114,7 +115,7 @@ cumulus@netq-appliance:~$ netq install cluster full interface eth0 bundle /mnt/i
 
 {{<tab "Scale Cluster">}}
 
-1. Add the `config key` parameter to the JSON template you used during the {{<link title="Set Up Your Virtual Machine for an On-premises HA Scale Cluster" text="scale cluster installation">}}. Edit the file with values for each attribute.
+1. Add the `config-key` parameter to the JSON template you used during the {{<link title="Set Up Your Virtual Machine for an On-premises HA Scale Cluster" text="scale cluster installation">}}. Edit the file with values for each attribute.
 
 ```
 cumulus@netq-server:~$ vim /tmp/cluster-install-config.json 
@@ -125,7 +126,7 @@ cumulus@netq-server:~$ vim /tmp/cluster-install-config.json
         "cluster-vip": "<INPUT>",
         "master-ip": "<INPUT>",
         "is-ipv6": false,
-        "ha-nodes": [
+        "ha-nodes":
                 {
                         "ip": "<INPUT>"
                 },
@@ -135,16 +136,10 @@ cumulus@netq-server:~$ vim /tmp/cluster-install-config.json
 }
 ```
 
-2. Run the following command on your master node, using the JSON configuration file from the previous step. Include the restore option referencing this file:
+2. Run the following command on your master node, using the JSON configuration file from the previous step. Include the restore option referencing the path where the backup file resides:
 
 ```
-netq install cluster bundle <text-bundle-url> <text-cluster-config> [restore <text-backup-file]
-```
-
-(from the install docs) Run the following command on your master node, using the JSON configuration file created in step 11:
-
-```
-cumulus@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.13.0.tgz /tmp/cluster-install-config.json
+cumulus@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.13.0.tgz /tmp/cluster-install-config.json restore /home/cumulus/combined_backup_20241211111316.tar
 ```
 {{</tab>}}
 

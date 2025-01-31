@@ -7,8 +7,20 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4262480</td>
+<td>NVUE fails to apply numbered BGP large community lists (community lists with multiple rules). To work around this issue, use named large community lists.</td>
+<td>5.12.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4249096</td>
 <td>Binary upgrade from Cumulus Linux 4.3.1 to 5.12.0 is not supported. To work around this issue, perform a binary upgrade from Cumulus Linux 4.3.1 to 5.9.0, then perform a binary upgrade from Cumulus Linux 5.9.0 to 5.12.0.</td>
+<td>5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4214678</td>
+<td>Changes to open telemetry configuration or export states restarts the telemetry service and resets all health metrics.</td>
 <td>5.12.0</td>
 <td></td>
 </tr>
@@ -27,9 +39,16 @@ cumulus@switch:~$ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "Dpkg::Optio
 <td></td>
 </tr>
 <tr>
+<td>4156409</td>
+<td>When you enable the BGP PIC next hop group per source option:&lt;ul&gt;&lt;li&gt;In a 2-CLOS or 3-CLOS configuration when all links between a pair of devices (leaf and spine  or spine and super spine) come up, there is traffic loss.&lt;/li&gt; 
+&lt;li&gt;In a 3-CLOS topology when the remote spine reboots, there is traffic loss when the switch is restarting.&lt;/li&gt;&lt;/ul&gt;</td>
+<td>5.11.0-5.12.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4154839</td>
 <td>When you run certain SDK commands (such as {{sudo sx_api_port_counter_dump_all.py}} or {{sx_api_fdb_dump etc}}) first as the cumulus user, then with {{sudo}}, you see the following error:
-PermissionError: Errno 13] Permission denied: '/tmp/python_err_log.txt'
+PermissionError: Errno 13] Permission denied: '/tmp/python_err_log.txt'
 To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <td>5.11.0-5.12.0</td>
 <td></td>
@@ -397,7 +416,7 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 </tr>
 <tr>
 <td>3225117</td>
-<td>Occasionally, packet losses might occur on 25G ports when link is raised without FEC.</td>
+<td>Occasionally, packet losses might occur on 25G ports when the link is raised without FEC.</td>
 <td>5.4.0-5.12.0</td>
 <td></td>
 </tr>
@@ -567,6 +586,11 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Affects </th>
 </tr>
 <tr>
+<td>4265142</td>
+<td>On the Spectrum-2 switch with the {{v4_lpm_heavy_1}} profile configured at high scale, the {{switchd}} service might crash after a bridge changes state (between down and up).</td>
+<td></td>
+</tr>
+<tr>
 <td>4262605</td>
 <td>BGP consumes most of the memory in the system after continuous remote link flaps with BGP link-bandwidth extended-community present.</td>
 <td></td>
@@ -574,6 +598,24 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <tr>
 <td>4262348</td>
 <td>When upgrading the switch with optimized image upgrade (using two partitions), if there are uncommented {{include_file_dirs:}} lines in the {{/etc/cumulus/config_backup.conf}} file, the configuration backup onto the new partition fails to restore.</td>
+<td></td>
+</tr>
+<tr>
+<td>4258009</td>
+<td>After you perform an optimized, two partition upgrade, then downgrade the switch to a previous release, {{lldpcli}} and certain services, including the NVUE service fail to start. To work around this issue, run the following commands on the switch running the previous release to ensure that file ownership is correct:
+sudo chown _lldpd /usr/sbin/lldpcli
+sudo chmod u+s /usr/sbin/lldpcli
+sudo chown frr /etc/frr
+sudo chown frr /etc/frr/support_bundle_commands.conf
+sudo chown frr /etc/frr/vtysh.conf
+sudo chown -R nvue /var/lib/nvue
+sudo chown -R nvue /etc/nvue/certificates/private
+sudo chown -R nvue /etc/nvue/certificates/public
+sudo chown -R nvue /usr/local/share/ca-certificates/nvue
+sudo chown -R ntpsec /var/lib/ntpsec
+sudo chown -R Debian-snmp /var/lib/snmp
+
+You might need to reboot the switch to start the services.</td>
 <td></td>
 </tr>
 <tr>
@@ -622,7 +664,7 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 </tr>
 <tr>
 <td>4228236</td>
-<td>After using apt upgrade, cl-image-upgrade might fail to see that the current system status from {{csmgrctl -s}} is cold when the output shows {{Current System Status: Upgrade, cold}}.</td>
+<td>After using package upgrade, {{cl-image-upgrade}} might fail to see that the current system status from {{csmgrctl -s}} is cold when the output shows {{Current System Status: Upgrade, cold}}.</td>
 <td></td>
 </tr>
 <tr>
@@ -639,6 +681,11 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 <td>4209429</td>
 <td>Unreachable or reject routes might not get installed into the SDK.</td>
 <td>5.11.0</td>
+</tr>
+<tr>
+<td>4209084</td>
+<td>Resetting the switch to the factory defaults with the {{nv action reset system factory-default}} command does not remove the CA certificate.</td>
+<td></td>
 </tr>
 <tr>
 <td>4208746</td>
@@ -805,6 +852,16 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 <td>4101560</td>
 <td>The {{nv set vrf &lt;vrf&gt; router rib &lt;address-family&gt; fib-filter route-map &lt;route-map&gt;}} command only works if you restart FRR after you run the command. To work around this issue, attach the route map to each needed protocol; for example, run the {{nv set vrf &lt;vrf-name&gt; router rib fib-filter protocol &lt;protocol string&gt; route-map &lt;route-map&gt;}} command.</td>
 <td>5.11.0</td>
+</tr>
+<tr>
+<td>4052578</td>
+<td>When you perform a binary upgrade from Cumulus Linux 5.8 or earlier to 5.9.0 or later with a pre-staged {{startup.yaml}} file, the cumulus user password is reset to the default password because there is no default {{startup.yaml}} file present in 5.8.0 or earlier. To work around this issue, generate the {{startup.yaml}} file from the existing NVUE configuration. </td>
+<td>5.9.2-5.11.0</td>
+</tr>
+<tr>
+<td>3844670</td>
+<td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
+<td>5.9.0-5.11.0</td>
 </tr>
 </table>
 </tables>

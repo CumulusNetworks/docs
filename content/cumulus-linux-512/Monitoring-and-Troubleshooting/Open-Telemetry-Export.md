@@ -280,19 +280,43 @@ By default, OTLP export is in **secure** mode that requires a certificate. For c
 
 ### Customize Export
 
-By default, the switch exports all statistics enabled {{<link url="#configure-open-telemetry" text="globally">}} (with the `nv set system telemetry <statistics>` command) to all configured OTLP destinations. If you want to export different metrics to different OTLP destinations, you can customize the export by specifying a statistics group (`interface-stats`, `platform-stats`, `histogram-stats`, or `routing-stats`) for a destination.
+By default, the switch exports all statistics enabled {{<link url="#configure-open-telemetry" text="globally">}} (with the `nv set system telemetry <statistics>` command) to all configured OTLP destinations. If you want to export different metrics to different OTLP destinations, you can customize the export by specifying a statistics group to control which statistics you export and the sample interval for a destination.
 
-The following example exports all platform statistics to the destination IP address 10.1.1.100:
+{{%notice note%}}
+Statistics groups inherit global OTLP export configurations by default. More specific configuration under a statistics group, such as enabling or disabling a statistic type or changing the sample interval overrides any global OTLP configuration.
+{{%/notice%}}
+
+The following example:
+- Configures STAT-GROUP1 to export all platform statistics (`platform-stats`) but not interface statistics (`interface-stats`).
+- Applies the STAT-GROUP1 configuration to the OTLP destination 10.1.1.100.
 
 ```
-cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.100 stats-group platform-stats
+cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP1 platform-stats export state enabled
+cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP1 interface-stats export state disabled
+cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.100 stats-group STAT-GROUP1
 cumulus@switch:~$ nv config apply
 ```
 
-The following example exports all routing statistics to the destination IP address 10.1.1.200:
+The following example:
+- Configures STAT-GROUP2 to inherit all statistic configuration from the global telemetry configuration, but changes the sample interval of `router` statistics to 100:
+- Applies the STAT-GROUP2 configuration to the OTLP destination 10.1.1.200.
 
 ```
-cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.200 stats-group routing
+cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP2 router sample-interval 100
+cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.200 stats-group STAT-GROUP2
+cumulus@switch:~$ nv config apply
+```
+
+The following example:
+- Configures STAT-GROUP3 to disable histogram (`histogram`) and buffer (`buffer-stats`) statistics, and enables all platform statistics(`platform-stats`) except for disk state:
+- Applies the STAT-GROUP3 configuration to the OTLP destination 10.1.1.30.
+
+```
+cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP3 buffer-stats export state disabled
+cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP3 histogram export state disabled
+cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP3 platform-stats export state enabled
+cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP3 platform-stats class disk state disabled
+cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.30 stats-group STAT-GROUP3
 cumulus@switch:~$ nv config apply
 ```
 

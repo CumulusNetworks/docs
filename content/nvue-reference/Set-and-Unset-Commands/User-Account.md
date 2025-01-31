@@ -243,6 +243,29 @@ cumulus@switch:~$ nv set system aaa user admin2 nvue-monitor
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system aaa user <user-id> spiffe-id <spiffe-id></h>
+
+Configures a SPIFFE ID for the user account instead of a password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<user-id>`  |  The user account. |
+| `<spiffe-id>`  |  The SPIFFE ID mapped to the user. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa user admin2 spiffe-id spiffe://acme.com/billing/payments
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system aaa user \<user-id\> state</h>
 
 Turns the user account for the switch on or off. You can specify `enabled` or `disabled`.

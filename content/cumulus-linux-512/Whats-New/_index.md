@@ -68,7 +68,7 @@ nv show system log file
 nv show system log file brief
 nv show system log file list
 nv show system log file follow
-nv show system log file <file-name>nv show system packages
+nv show system log file <file-name>
 nv show system log file <file-name> brief
 nv show system log component
 nv show system log component <component-name>

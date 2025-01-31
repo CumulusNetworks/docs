@@ -1133,7 +1133,7 @@ Can't set non-static MAC address for non-vPort 0x0001006B when VID is VFID.
 </tr>
 <tr>
 <td>3225117</td>
-<td>Occasionally, packet losses might occur on 25G ports when link is raised without FEC.</td>
+<td>Occasionally, packet losses might occur on 25G ports when the link is raised without FEC.</td>
 <td>5.4.0-5.11.0</td>
 <td></td>
 </tr>

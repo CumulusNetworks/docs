@@ -326,6 +326,13 @@ netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported tru
 <td></td>
 </tr>
 <tr>
+<td>4156409</td>
+<td>When you enable the BGP PIC next hop group per source option:&lt;ul&gt;&lt;li&gt;In a 2-CLOS or 3-CLOS configuration when all links between a pair of devices (leaf and spine  or spine and super spine) come up, there is traffic loss.&lt;/li&gt; 
+&lt;li&gt;In a 3-CLOS topology when the remote spine reboots, there is traffic loss when the switch is restarting.&lt;/li&gt;&lt;/ul&gt;</td>
+<td>5.11.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4156332</td>
 <td>On the Spectrum-4 switch, {{switchd}} might crash with the following log message:
 CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
@@ -335,7 +342,7 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <tr>
 <td>4154839</td>
 <td>When you run certain SDK commands (such as {{sudo sx_api_port_counter_dump_all.py}} or {{sx_api_fdb_dump etc}}) first as the cumulus user, then with {{sudo}}, you see the following error:
-PermissionError: Errno 13] Permission denied: '/tmp/python_err_log.txt'
+PermissionError: Errno 13] Permission denied: '/tmp/python_err_log.txt'
 To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <td>5.11.0</td>
 <td></td>
@@ -486,6 +493,12 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 <td>4077921</td>
 <td>You cannot use package upgrade to upgrade from Cumulus Linux 5.9.2 to Cumulus Linux 5.10.1. You must install the Cumulus Linux 5.10.1 image.</td>
 <td>5.10.1-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4052578</td>
+<td>When you perform a binary upgrade from Cumulus Linux 5.8 or earlier to 5.9.0 or later with a pre-staged {{startup.yaml}} file, the cumulus user password is reset to the default password because there is no default {{startup.yaml}} file present in 5.8.0 or earlier. To work around this issue, generate the {{startup.yaml}} file from the existing NVUE configuration. </td>
+<td>5.9.2-5.11.0</td>
 <td></td>
 </tr>
 <tr>
@@ -792,7 +805,7 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 </tr>
 <tr>
 <td>3225117</td>
-<td>Occasionally, packet losses might occur on 25G ports when link is raised without FEC.</td>
+<td>Occasionally, packet losses might occur on 25G ports when the link is raised without FEC.</td>
 <td>5.4.0-5.11.0</td>
 <td></td>
 </tr>

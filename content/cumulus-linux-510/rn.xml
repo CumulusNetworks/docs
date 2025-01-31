@@ -313,6 +313,12 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <td>5.11.0</td>
 </tr>
 <tr>
+<td>4052578</td>
+<td>When you perform a binary upgrade from Cumulus Linux 5.8 or earlier to 5.9.0 or later with a pre-staged {{startup.yaml}} file, the cumulus user password is reset to the default password because there is no default {{startup.yaml}} file present in 5.8.0 or earlier. To work around this issue, generate the {{startup.yaml}} file from the existing NVUE configuration. </td>
+<td>5.9.2-5.11.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4050835</td>
 <td>The NVUE Service fails to start after an upgrade from Cumulus Linux 5.9 to Cumulus Linux 5.10 because of a corrupted database.</td>
 <td>5.10.0-5.10.1</td>
@@ -680,7 +686,7 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 </tr>
 <tr>
 <td>3225117</td>
-<td>Occasionally, packet losses might occur on 25G ports when link is raised without FEC.</td>
+<td>Occasionally, packet losses might occur on 25G ports when the link is raised without FEC.</td>
 <td>5.4.0-5.11.0</td>
 <td></td>
 </tr>
@@ -1204,6 +1210,12 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <td>5.11.0</td>
 </tr>
 <tr>
+<td>4052578</td>
+<td>When you perform a binary upgrade from Cumulus Linux 5.8 or earlier to 5.9.0 or later with a pre-staged {{startup.yaml}} file, the cumulus user password is reset to the default password because there is no default {{startup.yaml}} file present in 5.8.0 or earlier. To work around this issue, generate the {{startup.yaml}} file from the existing NVUE configuration. </td>
+<td>5.9.2-5.11.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4050835</td>
 <td>The NVUE Service fails to start after an upgrade from Cumulus Linux 5.9 to Cumulus Linux 5.10 because of a corrupted database.</td>
 <td>5.10.0-5.10.1</td>
@@ -1614,7 +1626,7 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 </tr>
 <tr>
 <td>3225117</td>
-<td>Occasionally, packet losses might occur on 25G ports when link is raised without FEC.</td>
+<td>Occasionally, packet losses might occur on 25G ports when the link is raised without FEC.</td>
 <td>5.4.0-5.11.0</td>
 <td></td>
 </tr>

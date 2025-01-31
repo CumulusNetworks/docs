@@ -2420,7 +2420,15 @@ No Data
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry stats-group <stats-group-id></h>
+## <h>nv show system telemetry stats-group \<stats-group-id\> interface-stats</h>
+
+Shows configuration for the custom statistics group for interface statistics export.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
 
 ### Version History
 
@@ -2429,78 +2437,488 @@ Introduced in Cumulus Linux 5.12.0
 ### Example
 
 ```
-cumulus@switch:~$ 
+cumulus@switch:~$ nv show system telemetry stats-group STAT-GROUP1 interface-stats
+                 applied 
+---------------  --------
+sample-interval  100     
+export                   
+  state          enabled 
+class                    
+  phy                    
+    state        disabled
 ```
-<!--
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system telemetry stats-group <stats-group-id> interface-stats</h>
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry stats-group <stats-group-id> interface-stats export</h>
+## <h>nv show system telemetry stats-group \<stats-group-id\> interface-stats export</h>
+
+Shows if the custom statistics group for interface statistics export is enabled.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry stats-group STAT-GROUP1 interface-stats export 
+       applied
+-----  -------
+state  enabled
+```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry stats-group <stats-group-id> buffer-stats</h>
+## <h>nv show system telemetry stats-group \<stats-group-id\> buffer-stats</h>
+
+Shows configuration for the custom statistics group for buffer statistics export.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry stats-group STAT-GROUP1 buffer-stats
+                 applied 
+---------------  --------
+sample-interval  1       
+export                   
+  state          disabled
+```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry stats-group <stats-group-id> buffer-stats export</h>
+## <h>nv show system telemetry stats-group \<stats-group-id\> buffer-stats export</h>
+
+Shows if the custom statistics group for buffer statistics export is enabled.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry stats-group STAT-GROUP1 buffer-stats export 
+       applied
+-----  -------
+state  enabled
+```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry stats-group <stats-group-id> histogram</h>
+## <h>nv show system telemetry stats-group \<stats-group-id\> histogram</h>
+
+Shows configuration for the custom statistics group for histogram statistics export.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry stats-group STAT-GROUP1 histogram
+                    applied 
+------------------  --------
+ingress-buffer              
+  bin-min-boundary  960     
+  histogram-size    12288   
+  sample-interval   1024    
+egress-buffer               
+  bin-min-boundary  960     
+  histogram-size    12288   
+  sample-interval   1024    
+counter                     
+  bin-min-boundary  100000  
+  histogram-size    10000000
+  sample-interval   1024    
+latency                     
+  bin-min-boundary  320     
+  histogram-size    5440    
+export                      
+  state             disabled
+```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry stats-group <stats-group-id> histogram export</h>
+## <h>nv show system telemetry stats-group \<stats-group-id\> histogram export</h>
+
+Shows if the custom statistics group for histogram statistics export is enabled.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry stats-group STAT-GROUP1 histogram export 
+       applied
+-----  -------
+state  enabled
+```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry stats-group <stats-group-id> router</h>
+## <h>nv show system telemetry stats-group \<stats-group-id\> router</h>
+
+Shows configuration for the custom statistics group for router statistics export.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system telemetry stats-group STAT-GROUP1 router
+                 applied 
+---------------  --------
+bgp                      
+  export                 
+    state        disabled
+rib                      
+  export                 
+    state        disabled
+export                   
+  state          disabled
+sample-interval  30      
+```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry stats-group <stats-group-id> router export</h>
+## <h>nv show system telemetry stats-group \<stats-group-id\> router export</h>
+
+Shows if the custom statistics group for router statistics export is enabled.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry stats-group STAT-GROUP1 router export 
+       applied
+-----  -------
+state  enabled
+```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry stats-group <stats-group-id> control-plane-stats</h>
+## <h>nv show system telemetry stats-group \<stats-group-id\> control-plane-stats</h>
+
+Shows configuration for the custom statistics group for control plane statistics export.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system telemetry stats-group STAT-GROUP1 control-plane-stats
+                 applied 
+---------------  --------
+sample-interval  1       
+export                   
+  state          disabled
+```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry stats-group <stats-group-id> control-plane-stats export</h>
+## <h>nv show system telemetry stats-group \<stats-group-id\> control-plane-stats export</h>
+
+Shows if the custom statistics group for control plane statistics export is enabled.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry stats-group STAT-GROUP1 control-plane-stats export 
+       applied
+-----  -------
+state  enabled
+```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry stats-group <stats-group-id> platform-stats</h>
+## <h>nv show system telemetry stats-group \<stats-group-id\> platform-stats</h>
+
+Shows configuration for the custom statistics group for platform statistics export.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system telemetry stats-group STAT-GROUP1 platform-stats
+                      applied 
+--------------------  --------
+class                         
+  cpu                         
+    state             enabled 
+  disk                        
+    state             enabled 
+  file-system                 
+    state             enabled 
+  memory                      
+    state             enabled 
+  environment-sensor          
+    state             enabled 
+export                        
+  state               disabled
+  sample-interval     60      
+```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry stats-group <stats-group-id> platform-stats export</h>
+## <h>nv show system telemetry stats-group \<stats-group-id\> platform-stats export</h>
+
+Shows if the custom statistics group for platform statistics export is enabled.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry stats-group STAT-GROUP1 platform-stats export 
+       applied
+-----  -------
+state  enabled
+```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry stats-group <stats-group-id> platform-stats class</h>
+## <h>nv show system telemetry stats-group \<stats-group-id\> platform-stats class</h>
+
+Shows configuration for the custom statistics group for each category of platform statistics export.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system telemetry stats-group STAT-GROUP1 platform-stats class
+                    applied  pending
+------------------  -------  -------
+cpu                                 
+  state             enabled  enabled
+disk                                
+  state             enabled  enabled
+file-system                         
+  state             enabled  enabled
+memory                              
+  state             enabled  enabled
+environment-sensor                  
+  state             enabled  enabled
+```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry stats-group <stats-group-id> platform-stats class cpu</h>
+## <h>nv show system telemetry stats-group \<stats-group-id\> platform-stats class cpu</h>
+
+Shows if the custom statistics group for CPU platform statistics export is enabled.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system telemetry stats-group STAT-GROUP1 platform-stats class cpu
+       applied
+-----  -------
+state  enabled
+```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry stats-group <stats-group-id> platform-stats class disk</h>
+## <h>nv show system telemetry stats-group \<stats-group-id\> platform-stats class disk</h>
+
+Shows if the custom statistics group for disk platform statistics export  is enabled.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system telemetry stats-group STAT-GROUP1 platform-stats class disk
+       applied
+-----  -------
+state  enabled
+```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry stats-group <stats-group-id> platform-stats class file-system</h>
+## <h>nv show system telemetry stats-group \<stats-group-id\> platform-stats class file-system</h>
+
+Shows if the custom statistics group for file system platform statistics export is enabled.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system telemetry stats-group STAT-GROUP1 platform-stats class file-system
+       applied
+-----  -------
+state  enabled
+```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry stats-group <stats-group-id> platform-stats class environment-sensor</h>
+## <h>nv show system telemetry stats-group \<stats-group-id\> platform-stats class environment-sensor</h>
+
+Shows if the custom statistics group for environment sensor platform statistics export is enabled.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system telemetry stats-group STAT-GROUP1 platform-stats class environment-sensor
+       applied
+-----  -------
+state  enabled
+```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry stats-group <stats-group-id> platform-stats class memory</h>
--->
+## <h>nv show system telemetry stats-group \<stats-group-id\> platform-stats class memory</h>
+
+Shows if the custom statistics group for memory platform statistics export is enabled.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system telemetry stats-group STAT-GROUP1 platform-stats class memory
+       applied
+-----  -------
+state  enabled
+```

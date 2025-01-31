@@ -199,37 +199,46 @@ To show platform statistics configuration, run the `nv show system telemetry pla
 
 ### Router Statistics
 
-When you enable open telemetry for layer 3 [router statistics](#router-statistic-format), the switch exports data about the routing table, BGP peers, BGP advertised routes, and the BGP packet input and output queue.
+To enable open telemetry for layer 3 [router statistics](#router-statistic-format), enable the OTEL routing service:
 
-To enable collection and export of BGP peer state statistics:
+```
+cumulus@switch:~$ nv set system telemetry router export state enabled
+cumulus@switch:~$ nv config apply
+```
+
+{{%notice note%}}
+To export any of the routing metrics, you must first enable the OTEL routing service.
+{{%/notice%}}
+
+To enable collection and export of BGP peer state statistics across all VRFs:
 
 ```
 cumulus@switch:~$ nv set system telemetry router bgp export state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To enable collection and export of statistics for all BGP peers under a VRF:
+To enable collection and export of statistics for all BGP peers under a specific VRF:
 
 ```
 cumulus@switch:~$ nv set system telemetry router vrf RED bgp export state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To enable collection and export of statistics for a specific BGP peer under a VRF:
+To enable collection and export of statistics for a specific BGP peer under a specific VRF:
 
 ```
 cumulus@switch:~$ nv set system telemetry router vrf RED bgp peer swp1 export state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To enable collection and export of statistics for the routing table:
+To enable collection and export of statistics for the routing table across all VRFs:
 
 ```
 cumulus@switch:~$ nv set system telemetry router rib export state enabled
 cumulus@switch:~$ nv config apply 
 ```
 
-To enable collection and export of statistics for the routing table for a VRF:
+To enable collection and export of statistics for the routing table for a specific VRF:
 
 ```
 cumulus@switch:~$ nv set system telemetry router vrf RED rib export state enabled
@@ -242,6 +251,10 @@ You can adjust the sample interval (in seconds) for router statistics. You can s
 cumulus@switch:~$ nv set system telemetry router sample-interval 100
 cumulus@switch:~$ nv config apply
 ```
+
+{{%notice note%}}
+You can disable BGP export across all VRFs with the `nv set telemetry router bgp export state disabled` command and enable it only for specific VRFs with the `nv set telemetry router vrf <vrf-name> bgp export state enabled` command. You can also disable BGP export across all peers in a VRF with the `nv set telemetry router vrf <vrf-name> bgp export state disabled` command, and enable telemetry only for specific peers in the VRF with the `nv set telemetry router vrf <vrf-name> bgp peer <peer> export state enabled` command.
+{{%/notice%}}
 
 To show router statistics configuration, run the `nv show system telemetry router` command.
 
@@ -267,24 +280,19 @@ By default, OTLP export is in **secure** mode that requires a certificate. For c
 
 ### Customize Export
 
-By default, the switch exports all statistics enabled {{<link url="#configure-open-telemetry" text="globally">}} (with the `nv set system telemetry <statistics>` command) to all configured OTLP destinations. If you want to export different metrics to different OTLP destinations, you can customize the export by specifying a statistics group (`interface-stats`, `platform-stats`, `histogram-stats`, or `routing-stats`) for a destination. For certain statistics groups, you can also configure the sample interval.
+By default, the switch exports all statistics enabled {{<link url="#configure-open-telemetry" text="globally">}} (with the `nv set system telemetry <statistics>` command) to all configured OTLP destinations. If you want to export different metrics to different OTLP destinations, you can customize the export by specifying a statistics group (`interface-stats`, `platform-stats`, `histogram-stats`, or `routing-stats`) for a destination.
 
-{{%notice note%}}
-The `routing-stats` group and `histogram-stats` group do not support a customized sample interval for a destination.
-{{%/notice%}}
-
-The following example exports all platform statistics to the destination IP address 10.1.1.100 at sample interval 100:
+The following example exports all platform statistics to the destination IP address 10.1.1.100:
 
 ```
-cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.100 stats-group platform-stats state enable
-cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.100 stats-group platform-stats sample-interval 100
+cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.100 stats-group platform-stats
 cumulus@switch:~$ nv config apply
 ```
 
-The following example exports all routing statistics to the destination IP address 10.1.1.200 and uses the sample interval configured globally:
+The following example exports all routing statistics to the destination IP address 10.1.1.200:
 
 ```
-cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.200 stats-group routing state enable
+cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.200 stats-group routing
 cumulus@switch:~$ nv config apply
 ```
 
@@ -523,21 +531,8 @@ The switch collects and exports the following additional interface statistics wh
 | `nvswitch_interface_phy_received_bits` | Total amount of traffic (bits) received. |
 | `nvswitch_interface_phy_symbol_errors` | Error bits not corrected by the FEC correction algorithm or when FEC is not active. |
 | `nvswitch_interface_phy_effective_errors` | Number of errors after FEC is applied. |
-| `nvswitch_interface_phy_raw_errors_lane0` | Error bits identified on lane 0. When FEC is enabled, this induction corresponds to corrected errors. |
-| `nvswitch_interface_phy_raw_errors_lane1` | Error bits identified on lane 1. When FEC is enabled, this induction corresponds to corrected errors. |
-| `nvswitch_interface_phy_raw_errors_lane2` | Error bits identified on lane 2. When FEC is enabled, this induction corresponds to corrected errors. |
-| `nvswitch_interface_phy_raw_errors_lane3` | Error bits identified on lane 3. When FEC is enabled, this induction corresponds to corrected errors. |
-| `nvswitch_interface_phy_raw_errors_lane4` | Error bits identified on lane 4. When FEC is enabled, this induction corresponds to corrected errors. |
-| `nvswitch_interface_phy_raw_errors_lane5` | Error bits identified on lane 6. When FEC is enabled, this induction corresponds to corrected errors. |
-| `nvswitch_interface_phy_raw_errors_lane7` | Error bits identified on lane 7. When FEC is enabled, this induction corresponds to corrected errors. |
-| `nvswitch_interface_raw-ber-lane0` | raw_ber-lane0 = raw_ber_coef_lane0*10^(raw_ber_magnitude) |
-| `nvswitch_interface_raw-ber-lane1` | raw_ber-lane1 = raw_ber_coef_lane0*10^(raw_ber_magnitude) |
-| `nvswitch_interface_raw-ber-lane2` | raw_ber-lane2 = raw_ber_coef_lane0*10^(raw_ber_magnitude) |
-| `nvswitch_interface_raw-ber-lane3` | raw_ber-lane3 = raw_ber_coef_lane0*10^(raw_ber_magnitude) |
-| `nvswitch_interface_raw-ber-lane4` | raw_ber-lane4 = raw_ber_coef_lane0*10^(raw_ber_magnitude) |
-| `nvswitch_interface_raw-ber-lane5` | raw_ber-lane5 = raw_ber_coef_lane0*10^(raw_ber_magnitude) |
-| `nvswitch_interface_raw-ber-lane6` | raw_ber-lane6 = raw_ber_coef_lane0*10^(raw_ber_magnitude) |
-| `nvswitch_interface_raw-ber-lane7` | raw_ber-lane7 = raw_ber_coef_lane0*10^(raw_ber_magnitude) |
+| `nvswitch_interface_phy_raw_errors` | Error bits identified on lane 0 through lane 7. When FEC is enabled, this induction corresponds to corrected errors. |
+| `nvswitch_interface_raw-ber` | raw_ber_coef_laneX*10^(raw_ber_magnitude) |
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -1520,61 +1515,160 @@ When you enable layer 3 router statistic telemetry, the switch exports the follo
 | `nvrouting_bgp_peer_rx_updates` | Number of BGP messages received from the neighbor.|
 | `nvrouting_bgp_peer_tx_updates` | Number of BGP messages sent to the neighbor. |
 | `nvrouting_rib_count` | Number of routes in the routing table for each route source. |
-| `nvrouting_rib_total_count` | Total number of routes in the routing table.|
+| `nvrouting_rib_count_ipv6` | Tracks the IPv6 RIB route count for each route source. |
+| `nvrouting_rib_count_connected` | Tracks the total IPv4 RIB connected route count. |
+| `nvrouting_rib_count_bgp` | Tracks the total IPv4 RIB BGP route count. |
+| `nvrouting_rib_count_kernel` | Tracks the total IPv4 RIB kernel route count.|
+| `nvrouting_rib_count_static` | Tracks the total IPv4 RIB static route count. |
+| `nvrouting_rib_count_pbr` | Tracks the total IPv4 RIB PBR route count. |
+| `nvrouting_rib_count_ospf` | Tracks the total IPv4 RIB OSPF route count. |
+| `nvrouting_rib_count_connected_ipv6` | Tracks the total IPv6 RIB connected route count. |
+| `nvrouting_rib_count_bgp_ipv6` | Tracks the total IPv6 RIB BGP route count. |
+| `nvrouting_rib_count_kernel_ipv6` | Tracks the total IPv6 RIB kernel route count. |
+| `nvrouting_rib_count_static_ipv6` | Tracks the total IPv6 RIB static route count. |
+| `nvrouting_rib_count_pbr_ipv6` | Tracks the total IPv6 RIB PBR route count. |
+| `nvrouting_rib_count_ospf_ipv6` | Tracks the total IPv6 RIB OSPF route count. |
 
-{{< expand "Example JSON data for bgp_peer_fsm_established_transitions:" >}}
+{{< expand "Example JSON data for nvrouting_bgp_peer_state:" >}}
 ```
- { 
-
-  "frr-bgp-peer:lib": { 
-    "vrf": [ 
-      { 
-        "id": "default", 
-        "peer": [ 
-          { 
-            "name": "swp1.2", 
-            "status": "Idle", 
-            "established-transitions": 0, 
-            "in-queue": 0, 
-            "out-queue": 0, 
-            "tx-updates": 0, 
-            "rx-updates": 0, 
-            "ipv4-unicast-rcvd": 0, 
-            "ipv6-unicast-rcvd": 0 
-          }, 
-          { 
-            "name": "swp1.3", 
-            "status": "Idle", 
-            "established-transitions": 0, 
-            "in-queue": 0, 
-            "out-queue": 0, 
-            "tx-updates": 0, 
-            "rx-updates": 0, 
-            "ipv4-unicast-rcvd": 0, 
-            "ipv6-unicast-rcvd": 0 
-          }, 
-          { 
-            "name": "swp1.4", 
-            "status": "Idle", 
-            "established-transitions": 0, 
-            "in-queue": 0, 
-            "out-queue": 0, 
-            "tx-updates": 0, 
-            "rx-updates": 0, 
-            "ipv4-unicast-rcvd": 0, 
-            "ipv6-unicast-rcvd": 0 
-          }, 
-          { 
-            "name": "swp1.5", 
-            "status": "Idle", 
-            "established-transitions": 0, 
-            "in-queue": 0, 
-            "out-queue": 0, 
-            "tx-updates": 0, 
-            "rx-updates": 0, 
-            "ipv4-unicast-rcvd": 0, 
-            "ipv6-unicast-rcvd": 0 
-          }, 
+INFO:root:Received metrics export request
+INFO:root:Metric name: nvrouting_bgp_peer_state
+INFO:root:Metric:
+name: "nvrouting_bgp_peer_state"
+description: "Tracks BGP peer state information (Established:1,Idle:2,Connect:3, Active:4, Opensent:5 )"
+gauge {
+  data_points {
+    start_time_unix_nano: 1738017981273381011
+    time_unix_nano: 1738017981275774678
+    as_int: 1
+    attributes {
+      key: "peer-id"
+      value {
+        string_value: "swp17.100"
+      }
+    }
+    attributes {
+      key: "state"
+      value {
+        string_value: "Established"
+      }
+    }
+    attributes {
+      key: "vrf"
+      value {
+        string_value: "default"
+      }
+    }
+  }
+  data_points {
+    start_time_unix_nano: 1738017981273381011
+    time_unix_nano: 1738017981275774678
+    as_int: 1
+    attributes {
+      key: "peer-id"
+      value {
+        string_value: "swp17.101"
+      }
+    }
+    attributes {
+      key: "state"
+      value {
+        string_value: "Established"
+      }
+    }
+    attributes {
+      key: "vrf"
+      value {
+        string_value: "default"
+      }
+    }
+  }
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvrouting_bgp_peer_fsm_established_transitions:" >}}
+```
+INFO:root:Metric name: nvrouting_bgp_peer_fsm_established_transitions
+INFO:root:Metric:
+name: "nvrouting_bgp_peer_fsm_established_transitions"
+description: "Tracks BGP peer state transitions to the Established state"
+gauge {
+  data_points {
+    start_time_unix_nano: 1738017981273393225
+    time_unix_nano: 1738017981275785883
+    as_int: 1
+    attributes {
+      key: "peer-id"
+      value {
+        string_value: "swp16.100"
+      }
+    }
+    attributes {
+      key: "state"
+      value {
+        string_value: "Established"
+      }
+    }
+    attributes {
+      key: "vrf"
+      value {
+        string_value: "default"
+      }
+    }
+  }
+  data_points {
+    start_time_unix_nano: 1738017981273393225
+    time_unix_nano: 1738017981275785883
+    as_int: 1
+    attributes {
+      key: "peer-id"
+      value {
+        string_value: "swp18.101"
+      }
+    }
+    attributes {
+      key: "state"
+      value {
+        string_value: "Established"
+      }
+    }
+    attributes {
+      key: "vrf"
+      value {
+        string_value: "default"
+      }
+    }
+  }
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvrouting_rib_count_bgp_ipv6:" >}}
+```
+name: "nvrouting_rib_count_bgp_ipv6"
+description: "Total Number of ipv6 BGP routes in Zebra"
+gauge {
+  data_points {
+    start_time_unix_nano: 1738016804524747485
+    time_unix_nano: 1738016804529163046
+    as_int: 2062
+    attributes {
+      key: "vrf"
+      value {
+        string_value: "vrf2"
+      }
+    }
+  }
+  data_points {
+    start_time_unix_nano: 1738016804524747485
+    time_unix_nano: 1738016804529163046
+    as_int: 2062
+    attributes {
+      key: "vrf"
+      value {
+        string_value: "vrf6"
+      }
+    }
+  }
 ```
 {{< /expand >}}
 

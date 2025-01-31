@@ -128,58 +128,129 @@ address-family
 ...
 ```
 
-To see details of a specific route, such as its source and destination, run the NVUE `nv show vrf <vrf-id> router rib ipv4 route <route>` or `nv show vrf <vrf-id> router rib ipv6 route <route>` command or the vtysh `show ip bgp <route>` command.
+## Show BGP Peer Information
+
+To show detailed information about all BGP neighbors, run the `nv show vrf <vrf> router bgp neighbor --view=detail -o json` command:
 
 ```
-cumulus@switch:~$ nv show vrf default router rib ipv4 route 10.10.10.3/32
-route-entry
-==============
-                                                                                
-    Protocol - Protocol name, TblId - Table Id, NHGId - Nexthop group Id, Flags - u 
-    - unreachable, r - recursive, o - onlink, i - installed, d - duplicate, c -     
-    connected, A - active                                                           
-                                                                                
-    EntryIdx  Protocol  TblId  NHGId  Distance  Metric  ResolvedVia                ResolvedViaIntf  Weight  Flags
-    --------  --------  -----  -----  --------  ------  -------------------------  ---------------  ------  -----
-    1         bgp       254    132    20        0       fe80::4ab0:2dff:fe14:82a3  swp52            1       iA   
-                                                        fe80::4ab0:2dff:fe53:538c  swp53            1       iA   
-                                                        fe80::4ab0:2dff:fea3:d534  swp54            1       iA   
-                                                        fe80::4ab0:2dff:feac:d7c4  swp51            1       iA 
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor --view=detail -o json
+{
+  "peerlink.4094": {
+    "address-family": {
+      "ipv4-unicast": {
+        "attribute-mod": {
+          "aspath": "off",
+          "med": "off",
+          "nexthop": "off"
+        },
+        "capabilities": {
+          "rx-addpath": "on",
+          "rx-graceful-restart": "on",
+          "rx-mpbgp": "on",
+          "rx-restart-f-bit": "off",
+          "tx-addpath": "off",
+          "tx-mpbgp": "on"
+        },
+        "community-advertise": {
+          "extended": "on",
+          "large": "on",
+          "regular": "on"
+        },
+        "graceful-restart": {
+          "rx-eof-rib": "on",
+          "timers": {
+            "stale-path": {
+              "timer-sec": 360
+            }
+          },
+          "tx-eof-rib": "on",
+          "tx-eof-rib-sent-after-update": "off"
+        },
+        "prefix-limits": {
+          "inbound": {
+            "warning-only": "off"
+          }
+        },
+        "rx-prefix": 10,
+        "tx-prefix": 11,
+        "update-group": 1
+      },
+      "l2vpn-evpn": {
+        "attribute-mod": {
+          "aspath": "off",
+          "med": "off",
+          "nexthop": "on"
+        },
+        "capabilities": {
+          "rx-addpath": "on",
+          "rx-graceful-restart": "on",
+          "rx-mpbgp": "on",
+          "rx-restart-f-bit": "off",
+          "tx-addpath": "off",
+          "tx-mpbgp": "on"
+        },
+        "graceful-restart": {
+          "rx-eof-rib": "on",
+          "timers": {
+            "stale-path": {
+              "timer-sec": 360
+            }
+          },
+          "tx-eof-rib": "on",
+          "tx-eof-rib-sent-after-update": "off"
+        },
+        "prefix-limits": {
+          "inbound": {
+            "warning-only": "off"
+          }
+        },
+        "rx-prefix": 50,
+        "tx-prefix": 70,
+        "update-group": 2
+      }
+    },
+    "bgp-version": 4,
+    "capabilities": {
+      "extended-nexthop": "on",
+      "rx-asn32": "off",
+      "rx-extended-nexthop": "off",
+      "rx-graceful-restart": "on",
+      "rx-restart-r-bit": "off",
+      "rx-route-refresh": "on",
+      "tx-asn32": "on",
+      "tx-graceful-restart": "on",
+      "tx-route-refresh": "on"
+      ...
 ```
 
+To see a summary of the connection information for all BGP peers, such as the state (established, idle), uptime, number of messages received and sent, and the time the connections are established, run the `nv show vrf <vrf> router bgp neighbor` command.
+
 ```
-cumulus@switch:~$ sudo vtysh
-...
-switch# show ip bgp 10.10.10.3/32
-GP routing table entry for 10.10.10.3/32
-Paths: (5 available, best #5, table default)
-  Advertised to non peer-group peers:
-  spine01(swp51) spine02(swp52) spine03(swp53) spine04(swp54) leaf02(peerlink.4094)
-  65199 65102
-    fe80::8e24:2bff:fe79:7d46 from spine04(swp54) (10.10.10.104)
-    (fe80::8e24:2bff:fe79:7d46) (used)
-      Origin incomplete, valid, external, multipath
-      Last update: Wed Oct  7 13:13:13 2020
-  65199 65102
-    fe80::841:43ff:fe27:caf from spine02(swp52) (10.10.10.102)
-    (fe80::841:43ff:fe27:caf) (used)
-      Origin incomplete, valid, external, multipath
-      Last update: Wed Oct  7 13:13:14 2020
-  65199 65102
-    fe80::90b1:7aff:fe00:3121 from leaf02(peerlink.4094) (10.10.10.2)
-      Origin incomplete, localpref 100, valid, internal
-      Last update: Wed Oct  7 13:13:08 2020
-  65199 65102
-    fe80::48e7:fbff:fee9:5bcf from spine03(swp53) (10.10.10.103)
-    (fe80::48e7:fbff:fee9:5bcf) (used)
-      Origin incomplete, valid, external, multipath
-      Last update: Wed Oct  7 13:13:13 2020
-  65199 65102
-    fe80::7c41:fff:fe93:b711 from spine01(swp51) (10.10.10.101)
-    (fe80::7c41:fff:fe93:b711) (used)
-      Origin incomplete, valid, external, multipath, bestpath-from-AS 65199, best (Older Path)
-      Last update: Wed Oct  7 13:13:13 2020
+cumulus@switch:~$ nv show vrf default router bgp neighbor
+
+AS - Remote Autonomous System, PeerEstablishedTime - Peer established time in
+UTC format, UpTime - Uptime in milliseconds, Afi-Safi - Address family, PfxSent
+- Transmitted prefix counter, PfxRcvd - Recieved prefix counter
+
+Neighbor       AS     State        PeerEstablishedTime   UpTime    MsgRcvd  MsgSent  Afi-Safi      PfxSent  PfxRcvd
+-------------  -----  -----------  --------------------  --------  -------  -------  ------------  -------  -------
+peerlink.4094  65102  established  2025-01-26T15:28:11Z  27073000  561127   473795   ipv4-unicast  11       10     
+                                                                                     l2vpn-evpn    70       50     
+swp51          65199  established  2025-01-26T15:28:16Z  27073000  548373   473791   ipv4-unicast  11       8      
+                                                                                     l2vpn-evpn    70       50     
+swp52          65199  established  2025-01-26T15:28:19Z  27073000  548377   473789   ipv4-unicast  11       8      
+                                                                                     l2vpn-evpn    70       50     
+swp53                 idle                               27073000  0        0        ipv4-unicast                  
+                                                                                     l2vpn-evpn                    
+swp54                 idle                               27073000  0        0        ipv4-unicast                  
+                                                                                     l2vpn-evpn
 ```
+
+Run the `nv show vrf default router bgp neighbor -o json` command to show a summary of the connection information for all BGP neighbors in json format.
+
+{{%notice note%}}
+In Cumulus Linux 5.11 and earlier, the `nv show vrf default router bgp neighbor -o json` command output shows more detailed information about BGP peers. To show the more detailed BGP peer information in Cumulus Linux 5.12 and later, run the `nv show vrf <vrf> router bgp neighbor --view=detail -o json` command, shown above.
+{{%/notice%}}
 
 ## Check BGP Timer Settings
 
@@ -264,7 +335,7 @@ cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4-unicast upd
 
 You can run NVUE commands to show route statistics for a BGP neighbor, such as the number of routes, and information about advertised and received routes.
 
-To show the RIB table for IPv4 routes, run the `nv show vrf <vrf> router rib ipv4 route` command. To show the RIB table for IPv6 routes, run the `nv show vrf <vrf> router rib ipv6 route` command.
+To show the routing table for IPv4 routes, run the `nv show vrf <vrf> router rib ipv4 route` command. To show the RIB table for IPv6 routes, run the `nv show vrf <vrf> router rib ipv6 route` command.
 
 ```
 cumulus@leaf01:mgmt:~$ nv show vrf default router rib ipv4 route
@@ -288,7 +359,7 @@ Route            Protocol   Distance  Uptime                NHGId  Metric  Flags
 10.10.10.102/32  bgp        20        2024-07-18T22:02:22Z  58     0       *Si
 ```
 
-To show the local RIB routes, run the `nv show vrf <vrf> router bgp address-family ipv4-unicast route` command for IPv4 or the `nv show vrf <vrf> router bgp address-family ipv6-unicast route` for IPv6. You can also run the command with `-o json` to show the received routes in json format.
+To show the routes in the local routing table, run the `nv show vrf <vrf> router bgp address-family ipv4-unicast route` command for IPv4 or the `nv show vrf <vrf> router bgp address-family ipv6-unicast route` for IPv6. You can also run the command with `-o json` to show the received routes in json format.
 
 ```
 cumulus@leaf02:~$ nv show vrf default router bgp address-family ipv4-unicast route                                            PathCount - Number of paths present for the prefix, MultipathCount - Number of  
@@ -312,9 +383,9 @@ Prefix           PathCount  MultipathCount  DestFlags
 10.10.10.104/32  2          1               * 
 ```
 
-To show information about a specific local RIB route, run the `nv show vrf <vrf> router bgp address-family ipv4-unicast route <route>` for IPv4 or `nv show vrf <vrf> router bgp address-family ipv6-unicast route <route>` for IPv6.
+To show information about a specific route in the local routing table, run the `nv show vrf <vrf> router bgp address-family ipv4-unicast route <route>` for IPv4 or `nv show vrf <vrf> router bgp address-family ipv6-unicast route <route>` for IPv6.
 
-The above IPv4 and IPv6 command shows the local RIB route information in brief format to improve performance for high scale environments. You can also run the command with `-o json` to show the received routes in json format.
+The above IPv4 and IPv6 command shows the local routing table route information in brief format to improve performance for high scale environments. You can also run the command with `-o json` to show the received routes in json format.
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4-unicast route 10.10.10.64/32
@@ -484,7 +555,7 @@ fe80::4ab0:2dff:fe93:d92d  swp52
 
 ## Show Prefix Independent Convergence Information
 
-When you enable {{<link url="Optional-BGP-Configuration/#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence (PIC)">}} to reduce data plane convergence times and improve unicast traffic convergence for remote link failures, you can use the following commands to show information about route-origin extended community (SOO) routes and SOO peer bit index mapping for the routes.
+When you enable {{<link url="Optional-BGP-Configuration/#bgp-prefix-independent-convergence" text="BGP Prefix Independent Convergence (PIC)">}}, you can use the following commands to show information about route-origin extended community (SOO) routes and SOO peer bit index mapping for the routes.
 
 {{< tabs "1585 ">}}
 {{< tab "NVUE Commands ">}}

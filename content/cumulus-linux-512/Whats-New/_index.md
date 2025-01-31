@@ -12,8 +12,7 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
 
 ### Platforms
 
-<!-- - SN5610 (800G Spectrum-4) -->
-- NVIDIA SN5400 ITU-T G.82732 Class C compliant
+<!-- - SN5610 (800G Spectrum-4)-->
 - NVIDIA SN2201M includes an updated Parameter-Set IDentification (PSID) and firmware. You cannot downgrade the switch to 5.11.
 
 ### New Features and Enhancements
@@ -42,7 +41,8 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
   - {{<link url="Monitoring-Best-Practices/#disk-usage" text="Command to monitor disk usage">}}
   - {{<link url="Adding-and-Updating-Packages/#configure-additional-repositories" text="Configure additional package repositories">}}
   - {{<link url="FRRouting/#look-up-the-route-for-a-destination" text="Look up the route for a destination">}}
-  - {{<link url="NVUE-CLI/#filter-nv-show-command-output" text="Filter FRR nv show command output">}}
+  - {{<link url="NVUE-CLI/#filter-nv-show-command-output" text="Addtional nv show command filters to filter by protocol, filter by neighbor state, and to filter neighbor details">}}
+  - {{<link url="NVUE-API/#retrieve-view-types" text="API support for views with show commands">}}
   - {{<link title="Log Files with NVUE" text="Logging commands">}}
   - {{<link url="NVUE-CLI/#translate-a-configuration-revision-or-file" text="Commands to translate a revision or yaml configuration file">}}
   - {{< expand "Removed NVUE Commands" >}}
@@ -86,8 +86,10 @@ nv show system packages repository <repo-url-id> distribution <repo-dist-id> poo
 nv show system telemetry buffer-stats
 nv show system telemetry buffer-stats export
 nv show system telemetry health
-nv show system telemetry health brief
-nv show system telemetry health detail
+nv show system telemetry health internal-metrics exporters
+nv show system telemetry health internal-metrics process
+nv show system telemetry health internal-metrics processors
+nv show system telemetry health internal-metrics receivers
 nv show system telemetry interface-stats class
 nv show system telemetry interface-stats class phy
 nv show system telemetry stats-group
@@ -125,17 +127,12 @@ nv show system telemetry router vrf <vrf-id> bgp peer <neighbor-id>
 nv show system telemetry router vrf <vrf-id> bgp peer <neighbor-id> export
 nv show system telemetry router vrf <vrf-id> rib
 nv show system telemetry router vrf <vrf-id> rib export
-nv show vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id> interface
-nv show vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id> interface <interface-id>
-nv show vrf <vrf-id> router static <route-id> via <via-id> interface
-nv show vrf <vrf-id> router static <route-id> via <via-id> interface <interface-id>
 ```
 
 {{< /tab >}}
 {{< tab "nv set ">}}
 
 ```
-nv set system aaa radius accounting state
 nv set system aaa radius accounting send-records
 nv set system aaa user <user-id> spiffe-id <spiffe-id>
 nv set system counter rates load-interval
@@ -187,7 +184,6 @@ nv set vrf <vrf> router bgp address-family <address-family> nhg-per-origin
 {{< tab "nv unset ">}}
 
 ```
-nv unset system aaa radius accounting state
 nv unset system aaa radius accounting send-records
 nv unset system aaa user <user-id> spiffe-id <spiffe-id>
 nv unset system counter rates load-interval
@@ -250,7 +246,7 @@ nv action delete system log component <component-name> file <file-name>`
 nv action delete system log file <file-name>
 nv action delete system packages key <key>
 nv action fetch system packages key <key>
-nv action fetch system packages key <key> scope
+nv action fetch system packages key <key> scope repository
 nv action fetch system image files
 nv action lookup vrf <vrf-id> router fib <address-family> <ip-address>
 nv action ping system <destination>
@@ -269,8 +265,6 @@ nv action traceroute interface <interface> packet_len
 nv action traceroute interface <interface> hop-count
 nv action traceroute interface <interface> source-address
 nv action traceroute interface <interface> protocol
-nv action upload system log component <component-name> file <file-name> <remote-url-upload>
-nv action upload system log file <file-name> <remote-url-upload>
 ```
 
 {{< /tab >}}

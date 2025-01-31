@@ -328,7 +328,7 @@ cumulus@switch:~$ nv set system security encryption db state disabled
 cumulus@switch:~$ nv config apply
 ```
 
-To reenable password encryption, run the `nv set system security encryption db state enabled` command.
+To set password encryption back to the default setting (enabled), run the `nv unset system security encryption db state` command or the `nv set system security encryption db state enabled` command.
 
 To show if password encryption is `on`, run the `nv show system security encryption` command:
 
@@ -459,7 +459,7 @@ cumulus@switch:~$ nv config apply -m "this is my message"
 To reset the NVUE configuration on the switch back to the default values, run the `nv config replace <filename>` command; for example:
 
 ```
-cumulus@switch:~$ nv config replace /etc/switch.yaml
+cumulus@switch:~$ nv config replace /usr/lib/python3/dist-packages/cue_config_v1/initial.yaml
 cumulus@switch:~$ nv config apply
 ```
 
@@ -524,7 +524,7 @@ A patch contains a single request to the NVUE service. Ordering of parameters wi
 
 ## Translate a Configuration Revision or File
 
-NVUE provides commands to translate an NVUE configuration revision or yaml file into NVUE commands. The revision ID must be either an integer or a named revision (such as startup, applied, pending). The configuration file must be located on the switch and must include the full path to the file containing the configuration you want to translate. The file must be in YAML format and must be accessible with proper read permissions.
+NVUE provides commands to translate an NVUE configuration revision or yaml file into NVUE commands. The revision ID must be either an integer or a named revision (such as startup or applied). The configuration file must be located on the switch and must include the full path to the file containing the configuration you want to translate. The file must be in YAML format and must be accessible with proper read permissions.
 
 To translate a specific NVUE configuration revision, run the `nv config translate revision <revision-id>` command. NVUE displays the translation on the console.
 
@@ -738,6 +738,35 @@ swp53         idle                        9318000  0        0        ipv4-unicas
 swp54         idle                        9318000  0        0        ipv4-unicast                  
                                                                      l2vpn-evpn
 ```
+
+To show a summary of the connection information for all BGP neighbors:
+
+```
+cumulus@switch:~$ nv show vrf default router bgp neighbor --view=detail
+
+AS - Remote Autonomous System, PeerEstablishedTime - Peer established time in
+UTC format, UpTime - Uptime in milliseconds, Afi-Safi - Address family, PfxSent
+- Transmitted prefix counter, PfxRcvd - Recieved prefix counter
+
+Neighbor       AS     State        PeerEstablishedTime   UpTime    MsgRcvd  MsgSent  Afi-Safi      PfxSent  PfxRcvd
+-------------  -----  -----------  --------------------  --------  -------  -------  ------------  -------  -------
+peerlink.4094  65102  established  2025-01-26T15:28:11Z  27073000  561127   473795   ipv4-unicast  11       10     
+                                                                                     l2vpn-evpn    70       50     
+swp51          65199  established  2025-01-26T15:28:16Z  27073000  548373   473791   ipv4-unicast  11       8      
+                                                                                     l2vpn-evpn    70       50     
+swp52          65199  established  2025-01-26T15:28:19Z  27073000  548377   473789   ipv4-unicast  11       8      
+                                                                                     l2vpn-evpn    70       50     
+swp53                 idle                               27073000  0        0        ipv4-unicast                  
+                                                                                     l2vpn-evpn                    
+swp54                 idle                               27073000  0        0        ipv4-unicast                  
+                                                                                     l2vpn-evpn                    
+```
+
+To show a summary of the connection information for all BGP neighbors in json format, run the `nv show vrf default router bgp neighbor -o json` command.
+
+{{%notice note%}}
+In Cumulus Linux 5.11 and earlier, the `nv show vrf default router bgp neighbor -o json` command output shows more detailed information about BGP peers. To show the more detailed information in Cumulus Linux 5.12, run the `nv show vrf <vrf> router bgp neighbor --view=detail -o json` command.
+{{%/notice%}}
 
 ## NVUE and FRR Restart
 

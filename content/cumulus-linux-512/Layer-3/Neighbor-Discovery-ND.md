@@ -44,7 +44,8 @@ leaf01(config-if)# no ipv6 nd suppress-ra
 {{< /tabs >}}
 
 {{%notice note%}}
-For Stateless Address Auto-Configuration (SLAAC), you must enable Router Advertisment on the interface. The prefix advertised in the Router Advertisement must belong to the /64 subnet.
+- For Stateless Address Auto-Configuration (SLAAC), you must enable Router Advertisment on the interface. The prefix advertised in the Router Advertisement must belong to the /64 subnet.
+- If you configure IPv6 router advertisements in a network where physical interfaces are part of a bridge with VLANs, you must enable IPv6 router advertisements on the VLAN interfaces instead of the physical interfaces.
 {{%/notice%}}
 
 You can configure these optional settings:

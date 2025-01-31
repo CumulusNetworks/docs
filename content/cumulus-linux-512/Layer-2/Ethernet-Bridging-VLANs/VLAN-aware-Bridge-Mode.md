@@ -778,6 +778,12 @@ Action executing ...
 The matching FDB entries were deleted successfully. 
 ```
 
+You can specify a range of interfaces and VLANs. For example:
+
+```
+cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic mac 48:b0:2d:ab:fd:1f vlan 10,20,30 interface bond1-3
+```
+
 ## Static MAC Address Entries
 
 You can add a static MAC address entry to the layer 2 table for an interface within the VLAN-aware bridge by running a command similar to the following:

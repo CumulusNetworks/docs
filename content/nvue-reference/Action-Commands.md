@@ -234,7 +234,7 @@ This command does not clear sticky entries, permanent entries, and EVPN MAC entr
 | --------- | -------------- |
 | `<bridge-id>` |  The bridge name.|
 | `<interface-id>` |  The IP address or interface name.|
-| `<vni-id>` |  The VNI ID.|
+| `<vlan-id>` |  The VLAN ID.|
 
 ### Version History
 
@@ -290,7 +290,7 @@ This command does not clear sticky entries, permanent entries, and EVPN MAC entr
 | --------- | -------------- |
 | `<bridge-id>` |  The bridge name.|
 | `<mac-address>` |  The MAC address.|
-| `<vni-id>` |  The VNI ID.|
+| `<vlan-id>` |  The VLAN ID.|
 
 ### Version History
 
@@ -316,9 +316,9 @@ This command does not clear sticky entries, permanent entries, and EVPN MAC entr
 
 | Syntax |  Description   |
 | --------- | -------------- |
- `<bridge-id>` |  The bridge name.|
+| `<bridge-id>` |  The bridge name.|
 | `<mac-address>` |  The MAC address.|
-| `<vni-id>` |  The VNI ID.|
+| `<VLAN-id>` |  The VLAN ID.|
 
 ### Version History
 
@@ -345,7 +345,7 @@ This command does not clear sticky entries, permanent entries, and EVPN MAC entr
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<bridge-id>` |  The bridge name.|
-| `<vni-id>` |  The VNI ID.|
+| `<VLAN-id>` |  The VLAN ID.|
 
 ### Version History
 

@@ -8,7 +8,7 @@ toc: 3
 The following sections describe how to back up and restore your NetQ data and VMs for on-premises deployments. Cloud deployments are backed up automatically. The data restoration workflow upgrades your deployment to NetQ 4.13. 
 
 {{<notice note>}}
-- You must run backup and restore scripts with sudo privileges.
+- You must run backup and restore scripts with sudo privileges.<br>
 - When you upgrade to NetQ 4.13, any pre-existing PTP data will be lost.
 {{</notice>}}
 

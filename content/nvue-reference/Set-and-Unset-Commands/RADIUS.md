@@ -14,6 +14,24 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system aaa radius accounting send-records</h>
+
+Configures where to send accounting records. By default, Cumulus Linux sends accounting records to all servers. You can change this setting to send accounting records to the server that is first to respond. If the first available server does not respond, Cumulus Linux continues trying down the list of servers (by priority) until one is reachable. If none of the servers are reachable, there is a 30-second timeout, after which Cumulus Linux retries the servers. After 10 failed retries, the switch drops the packet.
+
+You can specify `first-response` or `all`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa radius accounting send-records first-response
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system aaa radius accounting state</h>
 
 Enables RADIUS user command accounting, which lets you log every command that a user runs and send the commands to the primary RADIUS server for auditing. Audit logs are a requirement for compliance standards, such as PCI and HIPPA.

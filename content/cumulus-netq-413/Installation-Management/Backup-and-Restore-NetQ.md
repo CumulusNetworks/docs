@@ -22,21 +22,21 @@ You must run backup and restore scripts with sudo privileges.
 <p style="text-indent: 40px">e. Locate the latest <i>NetQ Upgrade Backup Restore</i> file and select <b>Download</b>.</p>
 <p style="text-indent: 40px">f. If prompted, read the license agreement and proceed with the download.<br></p>
 
-2. Copy the `vm-backuprestore.sh` script to your NetQ server:
+2. Copy the `vm-backuprestore.sh` script to each node in your deployment:
 
 ```
-username@hostname:~$ scp ./vm-backuprestore.sh cumulus@10.10.10.10:/home/cumulus/
+username@hostname:~$ scp /usr/sbin/vm-backuprestore.sh cumulus@10.10.10.10:/home/cumulus/
 cumulus@10.10.10.10's password:
-vm-backuprestore.sh                                                                                       100%   15KB  54.0KB/s   00:00 
+vm-backuprestore.sh                                                                                        
 ```
 
-3. Log in to your NetQ server and set the script to executable:
+3. Log in to your NetQ server and set the script to executable on each node in your deployment:
 
 ```
 cumulus@netq-appliance:/home/cumulus# chmod +x /usr/sbin/vm-backuprestore.sh
 ```
 
-4. In the directory you copied the `vm-backuprestore.sh` script, run the `vm-backuprestore.sh --backup` command. This command backs up each node in your deployment and combines the data into a single .tar file. Take note of the config key in the output of this command. You will enter it when you restore your data:  
+4. In the `/usr/sbin` directory, run the `vm-backuprestore.sh --backup` command. This command backs up each node in your deployment and combines the data into a single .tar file. Take note of the config key in the output of this command. You will enter it when you restore your data:  
 
 ```
 cumulus@netq-appliance:~$ sudo /usr/sbin/vm-backuprestore.sh --backup
@@ -85,7 +85,7 @@ Fri Jan 17 05:58:14 2025 - All pods are up
 
 ## Restore Your NetQ Data
 
-Restore your data with the backup file you created in the preceding steps. The `restore` option copies the data from the backup file to the database, decompresses it, verifies the restoration, and starts all necessary services. Run the installation command on your deployment's *master* node, referencing the directory where the backup file resides and the config key created during the backup process.
+Restore your data with the backup file you created in the preceding steps. The `restore` option copies the data from the backup file to the database, decompresses it, verifies the restoration, and starts all necessary services. Run the installation command on your deployment's *master* node, referencing the directory where the backup file resides and including the config key created during the backup process.
 
 Single server installation command:
 

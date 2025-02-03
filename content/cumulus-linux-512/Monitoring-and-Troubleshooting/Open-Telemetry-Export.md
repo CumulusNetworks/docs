@@ -2006,9 +2006,79 @@ No Data
 
 Cumulus Linux Open telemetry also provides a set of internal metrics exposed by the collector to monitor its performance and behavior. These metrics are essential to understand the health and efficiency of the collector.
 
-To show telemetry health metrics, run the following commands.
-- `nv show system telemetry health internal-metrics` shows information about the telemetry health internal metrics.
-- `nv show system telemetry health internal-metrics process` shows information about the telemetry health internal metrics process.
-- `nv show system telemetry health internal-metrics receiver` shows information about the telemetry health internal metrics receiver.
-- `nv show system telemetry health internal-metrics processor` shows information about the telemetry health internal metrics processor.
-- `nv show system telemetry health internal-metrics exporter` shows information about the telemetry health internal metrics exporter.
+To show information about the telemetry health internal metrics, run the `nv show system telemetry health internal-metrics` command:
+
+```
+cumulus@switch:~$ nv show system telemetry health internal-metrics
+                                     operational
+------------------------             -----------
+process        
+  cpu-seconds                        029
+  memory-rss-kilobytes               182812672
+  runtime-heap-alloc-bytes           28617960
+  runtime-total-alloc-bytes          915541979208
+  runtime-total-sys-memory-bytes     151368752
+  uptime-seconds                     65313
+[receivers]                          otlp/global
+[receivers]                          prometheus/global
+processors
+  [memory-limiter]                   memory_limiter/1
+  [batch]                            batch/1
+[exporters]                          otlp/global
+```
+
+To show information about the telemetry health internal metrics process, run the `nv show system telemetry health internal-metrics process` command:
+
+```
+cumulus@switch:~$ nv show system telemetry health internal-metrics process
+                                   operational
+------------------------           -----------
+cpu-seconds                        029
+memory-rss-kilobytes               182812672
+runtime-heap-alloc-bytes           28617960
+runtime-total-alloc-bytes          915541979208
+runtime-total-sys-memory-bytes     151368752
+uptime-seconds                     65313
+```
+
+To show information about the telemetry health internal metrics receivers, run the `nv show system telemetry health internal-metrics receivers` command:
+
+```
+cumulus@switch:~$ nv show system telemetry health internal-metrics receivers
+Receivers            Accepted Metric Points      Refused Metric Points
+---------            ----------------------      ---------------------
+otlp/global          4967144                     0
+prometheus/global    46989135                    0
+```
+
+To show information about the telemetry health internal metrics processors, run the `nv show system telemetry health internal-metrics processors` command:
+
+```
+cumulus@switch:~$ nv show system telemetry health internal-metrics processors
+  Memory-limiter
+  ==============
+    memory_limiter/1
+     Accepted Metric Points: 25002370
+     Dropped Metric Points: 0
+     Inserted Metric Points: 0
+     Refused Metric Points: 0
+
+  Batch Processor
+  ===============
+    batch/1
+     Batch Send Size Bucket 10: 828620
+     Batch Send Size Bucket 25: 828620
+     Batch Send Size Bucket 50: 828620
+     Batch Send Size Bucket 75: 828620
+     Batch Send Size Bucket 100: 828620
+...
+```
+
+To show information about the telemetry health internal metrics exporters, run the `nv show system telemetry health internal-metrics exporters` command:
+
+```
+cumulus@switch:~$ nv show system telemetry health internal-metrics exporters
+Exporters       Enqueue Failed Metric Points   Queue Capacity   Queue Size   Send Failed Metric Points   Sent Metric Points
+---------       ----------------------------   --------------   ----------   -------------------------   ------------------
+otlp/global     0                              1000             0            7087                        52000844
+```

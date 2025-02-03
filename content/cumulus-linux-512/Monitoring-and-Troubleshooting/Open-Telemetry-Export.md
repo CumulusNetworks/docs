@@ -8,7 +8,7 @@ Telemetry enables you to collect, send, and analyze large amounts of data, such 
 
 ## Configure Open Telemetry
 
-Cumulus Linux supports {{<exlink url="https://github.com/open-telemetry/" text="open telemetry (OTEL)">}} export. You can use <span class="a-tooltip">[OTLP](## "open telemetry protocol")</span> to export metrics, such as interface counters, buffer statistics, histogram collection, platform statistics, and router statistics to an external collector for analysis and visualization.
+Cumulus Linux supports {{<exlink url="https://github.com/open-telemetry/" text="open telemetry (OTEL)">}} export. You can use <span class="a-tooltip">[OTLP](## "open telemetry protocol")</span> to export metrics, such as interface counters, buffer statistics, histogram collection, platform statistics, and routing metrics to an external collector for analysis and visualization.
 
 {{%notice note%}}
 Cumulus Linux supports open telemetry export on switches with the Spectrum-2 ASIC and later.
@@ -21,7 +21,7 @@ cumulus@switch:~$ nv set system telemetry export otlp state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-When you enable open telemetry, the switch collects and exports [system information](#system-information-format) metrics to the configured external collector by default. In addition, you can enable open telemetry to collect and export [interface statistics](#interface-statistics), [buffer statistics](#buffer-statistics), [histogram data](#histogram-data), [control plane statistics](#control-plane-statistics), [platform statistics](#platform-statistics), and [router statistics](#router-statistics).
+When you enable open telemetry, the switch collects and exports [system information](#system-information-format) metrics to the configured external collector by default. In addition, you can enable open telemetry to collect and export [interface statistics](#interface-statistics), [buffer statistics](#buffer-statistics), [histogram data](#histogram-data), [control plane statistics](#control-plane-statistics), [platform statistics](#platform-statistics), and [routing metrics](#router-statistics).
 
 ### Interface Statistics
 
@@ -197,9 +197,9 @@ cumulus@switch:~$ nv config apply
 
 To show platform statistics configuration, run the `nv show system telemetry platform-stats` command.
 
-### Router Statistics
+### Routing Metrics
 
-To enable open telemetry for layer 3 [router statistics](#router-statistic-format), enable the OTEL routing service:
+To enable open telemetry for layer 3 [routing metrics](#routing-metrics-format), enable the OTEL routing service:
 
 ```
 cumulus@switch:~$ nv set system telemetry router export state enabled
@@ -217,38 +217,38 @@ cumulus@switch:~$ nv set system telemetry router bgp export state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To enable collection and export of statistics for all BGP peers under a specific VRF:
+To enable collection and export of statistics for all BGP peers under a specific VRF, run the `nv set system telemetry router vrf <vrf-id> bgp export state enabled` command; for example:
 
 ```
 cumulus@switch:~$ nv set system telemetry router vrf RED bgp export state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To enable collection and export of statistics for a specific BGP peer under a specific VRF:
+To enable collection and export of statistics for a specific BGP peer under a specific VRF, run the `nv set system telemetry router vrf <vrf-id> bgp peer <peer-id> export state enabled` command; for example:
 
 ```
 cumulus@switch:~$ nv set system telemetry router vrf RED bgp peer swp1 export state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To enable collection and export of statistics for the routing table across all VRFs:
+To enable collection and export of statistics for the IP routing table across all VRFs:
 
 ```
 cumulus@switch:~$ nv set system telemetry router rib export state enabled
 cumulus@switch:~$ nv config apply 
 ```
 
-To enable collection and export of statistics for the routing table for a specific VRF:
+To enable collection and export of statistics for the IP routing table for a specific VRF, run the `nv set system telemetry router vrf <vrf-id> rib export state enabled` command; for example::
 
 ```
 cumulus@switch:~$ nv set system telemetry router vrf RED rib export state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-You can adjust the sample interval (in seconds) for router statistics. You can specify a value between 1 and 86400. The default value is 1.
+You can adjust the sample interval (in seconds) for routing metrics. You can specify a value in multiples of 10 up to 60. The default value is 10.
 
 ```
-cumulus@switch:~$ nv set system telemetry router sample-interval 100
+cumulus@switch:~$ nv set system telemetry router sample-interval 30
 cumulus@switch:~$ nv config apply
 ```
 
@@ -256,7 +256,7 @@ cumulus@switch:~$ nv config apply
 You can disable BGP export across all VRFs with the `nv set telemetry router bgp export state disabled` command and enable it only for specific VRFs with the `nv set telemetry router vrf <vrf-name> bgp export state enabled` command. You can also disable BGP export across all peers in a VRF with the `nv set telemetry router vrf <vrf-name> bgp export state disabled` command, and enable telemetry only for specific peers in the VRF with the `nv set telemetry router vrf <vrf-name> bgp peer <peer> export state enabled` command.
 {{%/notice%}}
 
-To show router statistics configuration, run the `nv show system telemetry router` command.
+To show routing metrics configuration settings, run the `nv show system telemetry router` command.
 
 ### gRPC OTLP Export
 
@@ -1523,9 +1523,9 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 
 {{< /expand >}}
 
-### Router Statistic Format
+### Routing Metrics Format
 
-When you enable layer 3 router statistic telemetry, the switch exports the following statistics:
+When you enable layer 3 routing metrics telemetry, the switch exports the following statistics:
 
 | Name | Description |
 |----- | ----------- |
@@ -1538,7 +1538,7 @@ When you enable layer 3 router statistic telemetry, the switch exports the follo
 | `nvrouting_bgp_peer_socket_out_queue` | Number of messages queued to be sent to the BGP neighbor.|
 | `nvrouting_bgp_peer_rx_updates` | Number of BGP messages received from the neighbor.|
 | `nvrouting_bgp_peer_tx_updates` | Number of BGP messages sent to the neighbor. |
-| `nvrouting_rib_count` | Number of routes in the routing table for each route source. |
+| `nvrouting_rib_count` | Number of routes in the IP routing table for each route source. |
 | `nvrouting_rib_count_ipv6` | Tracks the IPv6 RIB route count for each route source. |
 | `nvrouting_rib_count_connected` | Tracks the total IPv4 RIB connected route count. |
 | `nvrouting_rib_count_bgp` | Tracks the total IPv4 RIB BGP route count. |
@@ -1553,7 +1553,7 @@ When you enable layer 3 router statistic telemetry, the switch exports the follo
 | `nvrouting_rib_count_pbr_ipv6` | Tracks the total IPv6 RIB PBR route count. |
 | `nvrouting_rib_count_ospf_ipv6` | Tracks the total IPv6 RIB OSPF route count. |
 
-{{< expand "Example JSON data for nvrouting_bgp_peer_state:" >}}
+{{< expand "Example JSON data for BGP peer metrics:" >}}
 ```
 INFO:root:Received metrics export request
 INFO:root:Metric name: nvrouting_bgp_peer_state
@@ -1607,11 +1607,7 @@ gauge {
       }
     }
   }
-```
-{{< /expand >}}
-<br>
-{{< expand "Example JSON data for nvrouting_bgp_peer_fsm_established_transitions:" >}}
-```
+ 
 INFO:root:Metric name: nvrouting_bgp_peer_fsm_established_transitions
 INFO:root:Metric:
 name: "nvrouting_bgp_peer_fsm_established_transitions"
@@ -1666,7 +1662,7 @@ gauge {
 ```
 {{< /expand >}}
 <br>
-{{< expand "Example JSON data for nvrouting_rib_count_bgp_ipv6:" >}}
+{{< expand "Example JSON data for RIB count metrics:" >}}
 ```
 name: "nvrouting_rib_count_bgp_ipv6"
 description: "Total Number of ipv6 BGP routes in Zebra"

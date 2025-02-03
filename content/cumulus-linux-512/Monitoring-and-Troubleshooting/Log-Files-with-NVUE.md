@@ -283,3 +283,5 @@ Action executing ...
 Log rotation successful
 Action succeeded
 ```
+
+Cumulus Linux automatically manages log file size, preventing the logs from filling the storage space and slowing down the system.

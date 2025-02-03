@@ -135,6 +135,24 @@ The configuration writes to the `/etc/ptp4l.conf` file.
 {{< /tab >}}
 {{< tab "Trunk Port VLAN ">}}
 
+Layer 2 Transport
+
+```
+cumulus@switch:~$ nv set service ptp 1 enable on
+cumulus@switch:~$ nv set bridge domain br_default
+cumulus@switch:~$ nv set bridge domain br_default type vlan-aware
+cumulus@switch:~$ nv set bridge domain br_default vlan 10-30
+cumulus@switch:~$ nv set bridge domain br_default vlan 10 ptp enable on
+cumulus@switch:~$ nv set interface swp1 bridge domain br_default
+cumulus@switch:~$ nv set interface swp1 bridge domain br_default vlan 10
+cumulus@switch:~$ nv set interface swp1 bridge domain br_default vlan 20
+cumulus@switch:~$ nv set interface swp1 ptp transport 802.3
+cumulus@switch:~$ nv set interface swp1 ptp enable on
+cumulus@switch:~$ nv config apply
+```
+
+Layer 3 Transport
+
 ```
 cumulus@switch:~$ nv set service ptp 1 enable on
 cumulus@switch:~$ nv set bridge domain br_default
@@ -143,9 +161,11 @@ cumulus@switch:~$ nv set bridge domain br_default vlan 10-30
 cumulus@switch:~$ nv set bridge domain br_default vlan 10 ptp enable on
 cumulus@switch:~$ nv set interface vlan10 type svi
 cumulus@switch:~$ nv set interface vlan10 ip address 10.1.10.2/24
+cumulus@switch:~$ nv set interface vlan10 base-interface br_default
 cumulus@switch:~$ nv set interface vlan10 ptp enable on
 cumulus@switch:~$ nv set interface swp1 bridge domain br_default
 cumulus@switch:~$ nv set interface swp1 bridge domain br_default vlan 10
+cumulus@switch:~$ nv set interface swp1 bridge domain br_default vlan 20
 cumulus@switch:~$ nv set interface swp1 ptp enable on
 cumulus@switch:~$ nv config apply
 ```
@@ -153,12 +173,33 @@ cumulus@switch:~$ nv config apply
 {{%notice note%}}
 - You can configure only one address; either IPv4 or IPv6.
 - For IPv6, set the trunk port transport mode to IPv6.
+- Layer 2 and layer 3 PTP transport cannot coexist.
+- When you configure PTP layer 3 transport, you must configure:
+  - An SVI for VLAN-based routing.
+  - A base interface configuration to ensure proper packet forwarding.
 {{%/notice%}}
 
 The configuration writes to the `/etc/ptp4l.conf` file.
 
 {{< /tab >}}
 {{< tab "Switch Port (Access Port) VLAN ">}}
+
+Layer 2 Transport
+
+```
+cumulus@switch:~$ nv set service ptp 1 enable on
+cumulus@switch:~$ nv set bridge domain br_default
+cumulus@switch:~$ nv set bridge domain br_default type vlan-aware
+cumulus@switch:~$ nv set bridge domain br_default vlan 10-30
+cumulus@switch:~$ nv set bridge domain br_default vlan 10 ptp enable on
+cumulus@switch:~$ nv set interface swp2 bridge domain br_default
+cumulus@switch:~$ nv set interface swp2 bridge domain br_default access 10
+cumulus@switch:~$ nv set interface swp2 ptp transport 802.3
+cumulus@switch:~$ nv set interface swp2 ptp enable on
+cumulus@switch:~$ nv config apply
+```
+
+Layer 3 Transport
 
 ```
 cumulus@switch:~$ nv set service ptp 1 enable on
@@ -168,6 +209,7 @@ cumulus@switch:~$ nv set bridge domain br_default vlan 10-30
 cumulus@switch:~$ nv set bridge domain br_default vlan 10 ptp enable on
 cumulus@switch:~$ nv set interface vlan10 type svi
 cumulus@switch:~$ nv set interface vlan10 ip address 10.1.10.2/24
+cumulus@switch:~$ nv set interface vlan10 base-interface br_default
 cumulus@switch:~$ nv set interface swp2 bridge domain br_default
 cumulus@switch:~$ nv set interface swp2 bridge domain br_default access 10
 cumulus@switch:~$ nv set interface swp2 ptp enable on
@@ -177,7 +219,11 @@ cumulus@switch:~$ nv config apply
 {{%notice note%}}
 - You can configure only one address; either IPv4 or IPv6.
 - For IPv6, set the trunk port transport mode to IPv6.
-- When you enable PTP on a bridge port, you must also enable PTP on the VLAN configured for the port with the `nv set bridge domain <domain> vlan <vlan-id> ptp enable on` command. 
+- When you enable PTP on a bridge port, you must also enable PTP on the VLAN configured for the port with the `nv set bridge domain <domain> vlan <vlan-id> ptp enable on` command.
+- Layer 2 and layer 3 PTP transport cannot coexist.
+- When you configure PTP layer 3 transport, you must configure:
+  - An SVI for VLAN-based routing.
+  - A base interface configuration to ensure proper packet forwarding.
 {{%/notice%}}
 
 The configuration writes to the `/etc/ptp4l.conf` file.
@@ -1236,6 +1282,8 @@ cumulus@switch:~$ nv config apply
 
 PTP profiles are a standardized set of configurations and rules intended to meet the requirements of a specific application. Profiles define required, allowed, and restricted PTP options, network restrictions, and performance requirements.
 
+All interfaces inherit PTP profile parameter values. PTP parameter values configured under an interface take precedence over PTP profile parameter values.
+
 Cumulus Linux supports three predefined profiles: IEEE 1588, and two Telecom profiles - ITU 8275-1 and ITU 8275-2.
 
 |  | IEEE 1588 | ITU 8275-1 | ITU 8275-2 |
@@ -1250,7 +1298,7 @@ Cumulus Linux supports three predefined profiles: IEEE 1588, and two Telecom pro
 - You cannot modify the predefined profiles. If you want to set a parameter to a different value in a predefined profile, you need to create a custom profile. You can modify a custom profile within the range applicable to the profile type.
 - You cannot set the current profile to a profile not yet created.
 - You cannot set global PTP parameters in a profile currently in use.
-- PTP profiles do not support VLANs or bonds.
+- PTP profiles do not support bonds.
 - If you set a predefined or custom profile, do not change any global PTP settings, such as the <span class="a-tooltip">[DSCP](## "DiffServ code point")</span> or the clock domain.
 - For better performance in a high scale network with PTP on multiple interfaces, configure a higher system policer rate with the `nv set system control-plane policer lldp-ptp burst <value>` and `nv set system control-plane policer lldp-ptp rate <value>` commands. The switch uses the LLDP policer for PTP protocol packets. The default value for the LLDP policer is 2500. When you use the ITU 8275.1 profile with higher sync rates, use higher policer values.
 {{%/notice%}}

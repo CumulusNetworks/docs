@@ -13,6 +13,12 @@
 <td></td>
 </tr>
 <tr>
+<td>4271216</td>
+<td>NVUE overwrites the MOTD file during NVUE configuration with no option to ignore it.</td>
+<td>5.11.0-5.12.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4262480</td>
 <td>NVUE fails to apply numbered BGP large community lists (community lists with multiple rules). To work around this issue, use named large community lists.</td>
 <td>5.12.0</td>
@@ -44,7 +50,7 @@
 </tr>
 <tr>
 <td>4177067</td>
-<td>When doing a package upgrade from CL5.9 or CL5.10, the installation of {{nslcd}} might open an interactive dialog to configure {{nslcd.conf }}.To avoid this interactive dialog, set the {{DEBIAN_FRONTEND}} environment variable to {{noninteractive}}. For example:
+<td>When doing a package upgrade from CL5.9 or CL5.10 to CL5.11, the installation of {{nslcd}} might open an interactive dialog to configure {{nslcd.conf }}.To avoid this interactive dialog, set the {{DEBIAN_FRONTEND}} environment variable to {{noninteractive}}. For example:
 cumulus@switch:~$ sudo apt-get update
 cumulus@switch:~$ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "Dpkg::Options::=--force-confdef" -o "Dpkg::Options::=--force-confold" upgrade</td>
 <td>5.11.0-5.12.0</td>
@@ -91,6 +97,12 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <tr>
 <td>4129757</td>
 <td>If you include a comma in the BGP community list, extended community list, or large community list regex expression of a routing policy, you see error messages and FRR reload fails. Make sure the regex expression does not contain a comma. For example, instead of {{^65550:([0-9]{1,2}|[1-9][1-9]):.*$}}, specify {{^65550:([0-9]|[0-9][0-9]):.*$}} and instead of {{^65550:([0-4]{1,2}|[7-9][8-9]):.*$}}, specify {{^65550:([0-4]|[0-4][0-4]|[7-9][8-9]):.*$}}.</td>
+<td>5.11.0-5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4128952</td>
+<td>Cumulus Linux does not support LDAP over IPv6.</td>
 <td>5.11.0-5.12.0</td>
 <td></td>
 </tr>

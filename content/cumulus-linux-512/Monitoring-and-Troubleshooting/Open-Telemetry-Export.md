@@ -1994,14 +1994,34 @@ To show telemetry health information, run the `nv show system telemetry health` 
 
 ```
 cumulus@switch:~$ nv show system telemetry health
-                          operational
-------------------------  -----------
-service-status                       
-  platform-stats-service  active     
+                                     operational
+---------------------------          -----------
+service-status    
+  nv-telemtry-service                active                      
+  platform-stats-service             active
+  histogram-export-service           active
+  sdk-stats-service                  active
+  routing-telemtry-service           inactive
+internal-metrics 
+  process 
+    cpu-seconds                      3020
+    memory-rss-kilobytes             182812672
+    runtime-heap-alloc-bytes         28617960
+    runtime-total-alloc-bytes        915541979208
+    runtime-total-sys-memory-bytes   151368752
+    uptime-seconds                   65313
+[receivers]                          otlp/global
+[receivers]                          prometheus/global
+processors
+  [memory-limiter]                   memory_limiter/1
+  [batch]                            batch/1
+[exporters]                          otlp/global
 
-Health export status
+Export Destination Status
 =======================
-No Data
+    Destination         Connectivity          Export Counter       Drop Counter
+    -----------         ------------          --------------       ------------
+    11.0.10.2:4317      Pass                  51534586             7087
 ```
 
 Cumulus Linux Open telemetry also provides a set of internal metrics exposed by the collector to monitor its performance and behavior. These metrics are essential to understand the health and efficiency of the collector.

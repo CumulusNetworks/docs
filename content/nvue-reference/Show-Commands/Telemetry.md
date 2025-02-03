@@ -1417,19 +1417,12 @@ Introduced in Cumulus Linux 5.12.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system telemetry router
+cumulus@switch:~$ nv show system telemetry router rib
                  applied
 ---------------  -------
-bgp                     
-  export                
-    state        enabled
-rib                     
-  export                
-    state        enabled
-[vrf]            RED    
-export                  
-  state          enabled
-sample-interval  100
+export                
+  state         enabled
+
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

@@ -60,7 +60,7 @@ Introduced in Cumulus Linux 5.12.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system packages keys
+cumulus@switch:~$ nv show system packages key
 Key ID                                          Path                                                                   Scope 
 ----------------------------------------------  ---------------------------------------------------------------------  ------ 
 debian-archive-bookworm-automatic.asc           /etc/apt/trusted.gpg.d/debian-archive-bookworm-automatic.asc           global 

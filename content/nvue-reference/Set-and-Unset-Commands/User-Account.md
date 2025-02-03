@@ -243,7 +243,7 @@ cumulus@switch:~$ nv set system aaa user admin2 nvue-monitor
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system aaa user <user-id> spiffe-id <spiffe-id></h>
+## <h>nv set system aaa user \<user-id\> spiffe-id \<spiffe-id\></h>
 
 Configures a SPIFFE ID for the user account instead of a password.
 

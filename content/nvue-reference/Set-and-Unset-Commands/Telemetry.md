@@ -1237,51 +1237,6 @@ cumulus@switch:~$ nv set system telemetry router bgp export state enabled
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system telemetry router bgp vrf \<vrf-id\> export state</h>
-
-Enables and disables open telemetry  state statistics for all BGP peers under a VRF.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |  The VRF name.  |
-
-### Version History
-
-Introduced in Cumulus Linux 5.12.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system telemetry router bgp vrf RED export state enabled
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system telemetry router bgp vrf \<vrf-id\> peer \<peer-id\> export state</h>
-
-Enables and disables open telemetry state statistics for a specific BGP peer under a VRF.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |  The VRF name.  |
-| `<peer-id>` |  The BGP peer.  |
-
-### Version History
-
-Introduced in Cumulus Linux 5.12.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system telemetry router bgp vrf RED peer swp1 export state enabled
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set system telemetry router rib export state</h>
 
 Enables and disables open telemetry routing table statistics.
@@ -1294,6 +1249,66 @@ Introduced in Cumulus Linux 5.12.0
 
 ```
 cumulus@switch:~$ nv set system telemetry router rib export state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry router sample-interval</h>
+
+Configures the sample interval (in seconds) for routing metrics. You can specify a value in multiples of 10, up to 60. The default value is 10.
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry router sample-interval 30
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry router vrf \<vrf\> bgp export state</h>
+
+Enables and disables open telemetry BGP statistics for a VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF name.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry router vrf RED bgp export state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry router vrf \<vrf\> bgp peer \<peer-id\> export state</h>
+
+Enables and disables open telemetry specific BGP peer statistics for a VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF name.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry router vrf RED bgp peer swp51 export state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

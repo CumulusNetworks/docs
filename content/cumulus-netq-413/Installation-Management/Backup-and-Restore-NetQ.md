@@ -31,10 +31,10 @@ cumulus@10.10.10.10's password:
 vm-backuprestore.sh                                                                                        
 ```
 
-Then copy the `vm-backuprestore.sh` script to the `/sbin/` directory on your NetQ servers:
+Then copy the `vm-backuprestore.sh` script to the `/usr/sbin/` directory on your NetQ servers:
 
 ```
-cumulus@netq-server:~$ sudo cp ./vmbackuprestore.sh /sbin/
+cumulus@netq-server:~$ sudo cp ./vmbackuprestore.sh /usr/sbin/
 ```
 
 3. Log in to your NetQ server and set the script to executable. Do this for each node in your deployment:

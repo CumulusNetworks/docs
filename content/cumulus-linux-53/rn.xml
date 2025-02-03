@@ -665,12 +665,6 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>3122301</td>
-<td>On the NVIDIA SN4700 switch, inserting and removing the PSU might cause loss of frames.</td>
-<td>5.2.0-5.11.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3115242</td>
 <td>When you configure two VNIs in the same VLAN, ifupdown2  shows a {{vlan added to two or more VXLANS}} warning, which is only issued after the VNI is already added to the bridge. This leaves the new VNI in the PVID even if there is already an existing VNI configured in that PVID.</td>
 <td>5.1.0-5.11.0</td>
@@ -726,12 +720,6 @@ exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,
 <td>After you run Linux commands to enable a custom ECMP or LAG hash parameter,  if you set the {{hash_config.enable}} or {{lag_hash_config.enable}} parameter to {{false}}, the custom parameters do not restore their default values. To work around this issue, change the custom ECMP or LAG hash parameters to their default values manually.</td>
 <td>5.1.0-5.4.0</td>
 <td>5.5.0-5.11.0</td>
-</tr>
-<tr>
-<td>3053094</td>
-<td>When the CPU load is high during a warm boot, bonds with a slow LACP rate fail to forward layer 2 traffic for up to 60 seconds (depending on the duration of the CPU load) and static bonds fail to forward layer 2 traffic for up to 5 seconds.</td>
-<td>5.1.0-5.11.0</td>
-<td></td>
 </tr>
 <tr>
 <td>3045310</td>
@@ -1460,12 +1448,6 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>3122301</td>
-<td>On the NVIDIA SN4700 switch, inserting and removing the PSU might cause loss of frames.</td>
-<td>5.2.0-5.11.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3115242</td>
 <td>When you configure two VNIs in the same VLAN, ifupdown2  shows a {{vlan added to two or more VXLANS}} warning, which is only issued after the VNI is already added to the bridge. This leaves the new VNI in the PVID even if there is already an existing VNI configured in that PVID.</td>
 <td>5.1.0-5.11.0</td>
@@ -1521,12 +1503,6 @@ exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,
 <td>After you run Linux commands to enable a custom ECMP or LAG hash parameter,  if you set the {{hash_config.enable}} or {{lag_hash_config.enable}} parameter to {{false}}, the custom parameters do not restore their default values. To work around this issue, change the custom ECMP or LAG hash parameters to their default values manually.</td>
 <td>5.1.0-5.4.0</td>
 <td>5.5.0-5.11.0</td>
-</tr>
-<tr>
-<td>3053094</td>
-<td>When the CPU load is high during a warm boot, bonds with a slow LACP rate fail to forward layer 2 traffic for up to 60 seconds (depending on the duration of the CPU load) and static bonds fail to forward layer 2 traffic for up to 5 seconds.</td>
-<td>5.1.0-5.11.0</td>
-<td></td>
 </tr>
 <tr>
 <td>3045310</td>

@@ -7,8 +7,20 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4280299</td>
+<td>The {{nv action fetch system packages key &lt;key-id&gt;}} command fails if the key ID is an scp/ftp or URL path that requires a password to access the key. To work around this issue, use a URI that does not require password authentication for the key ID.</td>
+<td>5.12.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4262480</td>
 <td>NVUE fails to apply numbered BGP large community lists (community lists with multiple rules). To work around this issue, use named large community lists.</td>
+<td>5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4259744</td>
+<td>The {{nv config replace}} command fails with a 404 NOT FOUND error. To work around this issue, run the {{nv config detach}} command before trying another configuration change.</td>
 <td>5.12.0</td>
 <td></td>
 </tr>
@@ -324,12 +336,6 @@ To work around this issue when using fiber cables:
 <td></td>
 </tr>
 <tr>
-<td>3470940</td>
-<td>On a switch with the Spectrum-4 ASIC, packets that are smaller than 256 bytes are not included in multicast flows.  Multicast flows support packets that are 256 bytes or larger.</td>
-<td>5.6.0-5.12.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3444490</td>
 <td>Migration from ONYX to Cumulus Linux is supported and tested with ONYX version 3.10.4302 GA only.</td>
 <td>5.6.0-5.12.0</td>
@@ -453,12 +459,6 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>3122301</td>
-<td>On the NVIDIA SN4700 switch, inserting and removing the PSU might cause loss of frames.</td>
-<td>5.2.0-5.12.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3115242</td>
 <td>When you configure two VNIs in the same VLAN, ifupdown2  shows a {{vlan added to two or more VXLANS}} warning, which is only issued after the VNI is already added to the bridge. This leaves the new VNI in the PVID even if there is already an existing VNI configured in that PVID.</td>
 <td>5.1.0-5.12.0</td>
@@ -490,12 +490,6 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>3061656</td>
-<td>When the CPU load is high during a warm boot, bonds with a slow LACP rate fail to forward layer 2 traffic for up to 60 seconds (depending on the duration of the CPU load) and static bonds fail to forward layer 2 traffic for up to 5 seconds.</td>
-<td>5.1.0-5.12.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3053094</td>
 <td>When the CPU load is high during a warm boot, bonds with a slow LACP rate fail to forward layer 2 traffic for up to 60 seconds (depending on the duration of the CPU load) and static bonds fail to forward layer 2 traffic for up to 5 seconds.</td>
 <td>5.1.0-5.12.0</td>
 <td></td>
@@ -586,37 +580,9 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Affects </th>
 </tr>
 <tr>
-<td>4265142</td>
-<td>On the Spectrum-2 switch with the {{v4_lpm_heavy_1}} profile configured at high scale, the {{switchd}} service might crash after a bridge changes state (between down and up).</td>
-<td></td>
-</tr>
-<tr>
-<td>4262605</td>
-<td>BGP consumes most of the memory in the system after continuous remote link flaps with BGP link-bandwidth extended-community present.</td>
-<td></td>
-</tr>
-<tr>
-<td>4262348</td>
-<td>When upgrading the switch with optimized image upgrade (using two partitions), if there are uncommented {{include_file_dirs:}} lines in the {{/etc/cumulus/config_backup.conf}} file, the configuration backup onto the new partition fails to restore.</td>
-<td></td>
-</tr>
-<tr>
-<td>4258009</td>
-<td>After you perform an optimized, two partition upgrade, then downgrade the switch to a previous release, {{lldpcli}} and certain services, including the NVUE service fail to start. To work around this issue, run the following commands on the switch running the previous release to ensure that file ownership is correct:
-sudo chown _lldpd /usr/sbin/lldpcli
-sudo chmod u+s /usr/sbin/lldpcli
-sudo chown frr /etc/frr
-sudo chown frr /etc/frr/support_bundle_commands.conf
-sudo chown frr /etc/frr/vtysh.conf
-sudo chown -R nvue /var/lib/nvue
-sudo chown -R nvue /etc/nvue/certificates/private
-sudo chown -R nvue /etc/nvue/certificates/public
-sudo chown -R nvue /usr/local/share/ca-certificates/nvue
-sudo chown -R ntpsec /var/lib/ntpsec
-sudo chown -R Debian-snmp /var/lib/snmp
-
-You might need to reboot the switch to start the services.</td>
-<td></td>
+<td>4270957</td>
+<td>Optimized (two partition) upgrade from Cumulus Linux 5.11.0 requires approximately 2.4 Gbytes of free space in {{/var}} after downloading the image with NVUE commands instead of 1.6 Gbytes of free space. Upgrade needs the extra space for an additional copy of the downloaded image in {{/var}} .</td>
+<td>5.11.0</td>
 </tr>
 <tr>
 <td>4256151</td>
@@ -653,39 +619,14 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 <td>5.11.0</td>
 </tr>
 <tr>
-<td>4237057</td>
-<td>When ROCE is in lossless or lossy mode, the {{nv show interface &lt;interface&gt; qos roce counters}} command sometimes shows {{unknown}}. To get the accurate statistics, either check the statistics with the {{/usr/lib/cumulus/mlxcmd --json  roce  counters --port &lt;port_num&gt;}} command or delete the contents of the {{/tmp}} directory, then run {{systemctl restart switchd}}.</td>
-<td></td>
-</tr>
-<tr>
-<td>4236555</td>
-<td>Different optical modules can enter a plugged with error state due to a high module temperature causing link flaps. </td>
-<td></td>
-</tr>
-<tr>
-<td>4228236</td>
-<td>After using package upgrade, {{cl-image-upgrade}} might fail to see that the current system status from {{csmgrctl -s}} is cold when the output shows {{Current System Status: Upgrade, cold}}.</td>
-<td></td>
-</tr>
-<tr>
 <td>4220393</td>
 <td>The default GRUB timeout style changed from menu to countdown. When booting, a countdown displays on the console and you can use the escape key to break out of the countdown and show the GRUB menu. This reduces the chance of console noise halting the reboot process. If you press the escape key twice, you might go to the GRUB command line. In this case, type {{normal}} to get back to the GRUB menu or {{reboot}} to reboot the switch.</td>
 <td>5.11.0</td>
 </tr>
 <tr>
-<td>4214822</td>
-<td>When using optimized image upgrade, if you import a CA certificate with the NVUE {{nv action import system security ca-certificate}} command and the certificate is used in mTLS configuration in any application, only the configuration is copied to the new partition; CA certificates are not copied. As a result, the existing configuration does not work for the new partition and you have to re-import the certificate on the new partition.</td>
-<td></td>
-</tr>
-<tr>
 <td>4209429</td>
 <td>Unreachable or reject routes might not get installed into the SDK.</td>
 <td>5.11.0</td>
-</tr>
-<tr>
-<td>4209084</td>
-<td>Resetting the switch to the factory defaults with the {{nv action reset system factory-default}} command does not remove the CA certificate.</td>
-<td></td>
 </tr>
 <tr>
 <td>4208746</td>
@@ -696,11 +637,6 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 <td>4207037</td>
 <td>NVUE Rest API calls that are authenticated with TACACS on the switch append unnecessary database entries to the {{/run/tacacs_clent_map}} file, which increases the file size. Over time, this increases the TACACS login authentication time, resulting in delayed login authentication. To work around this issue, delete the {{tacacs_client_map}} file with the {{sudo rm rf /run/tacacs_client_map}} command.</td>
 <td>5.11.0</td>
-</tr>
-<tr>
-<td>4205188</td>
-<td>On the SN5610 switch with MMS4X00-NS-QP2 optics, an 8x breakout configuration might cause a {{switchd}} watchdog timeout.</td>
-<td></td>
 </tr>
 <tr>
 <td>4205060</td>
@@ -716,11 +652,6 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 <td>4203784</td>
 <td>Under unique hardware failure conditions, when the ASIC temperature sensor read fails repeatedly, the fans are set to twenty percent, which might not be high enough to maintain proper ASIC cooling, resulting in a thermal shutdown.</td>
 <td>5.11.0</td>
-</tr>
-<tr>
-<td>4203733</td>
-<td>On the SN5610 switch, the {{/var/run/hw-management/config/tc_config.json}} file shows the name msn5640 instead of msn5610.</td>
-<td></td>
 </tr>
 <tr>
 <td>4200758</td>

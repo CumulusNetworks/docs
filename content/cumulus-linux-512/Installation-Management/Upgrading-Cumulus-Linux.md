@@ -118,6 +118,7 @@ As NVUE supports more features and introduces new syntax, {{<link url="NVUE-Snip
 Before you upgrade Cumulus Linux to a new release, make sure to:
 - Review the {{<link url="Whats-New" text="What's New">}} for new NVUE syntax.
 - If NVUE introduces new syntax for the feature that a snippet configures, you must remove the snippet before upgrading.
+- NVUE provides commands to convert old configuration files to the format of the currently running release on the switch. Refer to {{<link url="NVUE-CLI/#translate-a-configuration-revision-or-file" text="Translate a Configuration Revision or File">}}.
 {{%/notice%}}
 
 ### Create a cl-support File

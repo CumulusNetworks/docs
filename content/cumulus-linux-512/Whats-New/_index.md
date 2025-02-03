@@ -29,7 +29,7 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
 - {{<link title="User Accounts/#default-roles" text="SPIFFE ID support for user accounts">}}
 - Open Telemetry:
   - {{<link url="Open-Telemetry-Export/#system-information-format" text="New system information data">}}
-  - {{<link url="Open-Telemetry-Export/#router-statistic-format" text="New router statistics">}}
+  - {{<link url="Open-Telemetry-Export/#routing-metrics-format" text="New routing metrics">}}
   - {{<link url="Open-Telemetry-Export/#interface-statistic-format" text="New interface PHY statistics">}}
   - {{<link url="Open-Telemetry-Export/#buffer-statistic-format" text="New buffer statistics">}}
   - {{<link url="Open-Telemetry-Export/#customize-export" text="Export different statistics and sample rates to different destinations">}}

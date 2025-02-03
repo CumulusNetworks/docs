@@ -744,25 +744,41 @@ Introduced in Cumulus Linux 5.12.0
 
 ```
 cumulus@switch:~$ nv show system telemetry health
-                             operational
----------------------------  -----------
-service-status                          
-  nv-telemetry-service       inactive   
-  platform-stats-service     active     
-  histogram-export-service   inactive   
-  sdk-stats-service          inactive   
-  routing-telemetry-service  active     
+                                     operational
+---------------------------          -----------
+service-status    
+  nv-telemtry-service                active                      
+  platform-stats-service             active
+  histogram-export-service           active
+  sdk-stats-service                  active
+  routing-telemtry-service           inactive
+internal-metrics 
+  process 
+    cpu-seconds                      3020
+    memory-rss-kilobytes             182812672
+    runtime-heap-alloc-bytes         28617960
+    runtime-total-alloc-bytes        915541979208
+    runtime-total-sys-memory-bytes   151368752
+    uptime-seconds                   65313
+[receivers]                          otlp/global
+[receivers]                          prometheus/global
+processors
+  [memory-limiter]                   memory_limiter/1
+  [batch]                            batch/1
+[exporters]                          otlp/global
 
 Export Destination Status
-============================
-No Data
+=======================
+    Destination         Connectivity          Export Counter       Drop Counter
+    -----------         ------------          --------------       ------------
+    11.0.10.2:4317      Pass                  51534586             7087
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show system telemetry health internal-metrics</h>
 
-Shows information about the telemetry health internal metrics.
+Shows all the telemetry health internal metrics.
 
 ### Version History
 
@@ -772,7 +788,21 @@ Introduced in Cumulus Linux 5.12.0
 
 ```
 cumulus@switch:~$ nv show system telemetry health internal-metrics
-No Data
+                                     operational
+------------------------             -----------
+process        
+  cpu-seconds                        029
+  memory-rss-kilobytes               182812672
+  runtime-heap-alloc-bytes           28617960
+  runtime-total-alloc-bytes          915541979208
+  runtime-total-sys-memory-bytes     151368752
+  uptime-seconds                     65313
+[receivers]                          otlp/global
+[receivers]                          prometheus/global
+processors
+  [memory-limiter]                   memory_limiter/1
+  [batch]                            batch/1
+[exporters]                          otlp/global
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -789,7 +819,14 @@ Introduced in Cumulus Linux 5.12.0
 
 ```
 cumulus@switch:~$ nv show system telemetry health internal-metrics process
-No Data
+                                   operational
+------------------------           -----------
+cpu-seconds                        029
+memory-rss-kilobytes               182812672
+runtime-heap-alloc-bytes           28617960
+runtime-total-alloc-bytes          915541979208
+runtime-total-sys-memory-bytes     151368752
+uptime-seconds                     65313
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -806,14 +843,17 @@ Introduced in Cumulus Linux 5.12.0
 
 ```
 cumulus@switch:~$ nv show system telemetry health internal-metrics receivers
-No Data
+Receivers            Accepted Metric Points      Refused Metric Points
+---------            ----------------------      ---------------------
+otlp/global          4967144                     0
+prometheus/global    46989135                    0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show system telemetry health internal-metrics processors</h>
 
-Shows information about the telemetry health internal metrics processor.
+Shows information about the telemetry health internal metrics processors.
 
 ### Version History
 
@@ -823,13 +863,29 @@ Introduced in Cumulus Linux 5.12.0
 
 ```
 cumulus@switch:~$ nv show system telemetry health internal-metrics processors
+  Memory-limiter
+  ==============
+    memory_limiter/1
+     Accepted Metric Points: 25002370
+     Dropped Metric Points: 0
+     Inserted Metric Points: 0
+     Refused Metric Points: 0
+
+  Batch Processor
+  ===============
+    batch/1
+     Batch Send Size Bucket 10: 828620
+     Batch Send Size Bucket 25: 828620
+     Batch Send Size Bucket 50: 828620
+     Batch Send Size Bucket 75: 828620
+     Batch Send Size Bucket 100: 828620
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show system telemetry health internal-metrics exporters</h>
 
-Shows information about the telemetry health internal metrics exporter.
+Shows information about the telemetry health internal metrics exporters.
 
 ### Version History
 
@@ -838,8 +894,10 @@ Introduced in Cumulus Linux 5.12.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system telemetry health internal-metrics exporters 
-No Data
+cumulus@switch:~$ nv show system telemetry health internal-metrics exporters
+Exporters       Enqueue Failed Metric Points   Queue Capacity   Queue Size   Send Failed Metric Points   Sent Metric Points
+---------       ----------------------------   --------------   ----------   -------------------------   ------------------
+otlp/global     0                              1000             0            7087                        52000844
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

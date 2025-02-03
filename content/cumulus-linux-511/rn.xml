@@ -25,6 +25,12 @@
 <td></td>
 </tr>
 <tr>
+<td>4271216</td>
+<td>NVUE overwrites the MOTD file during NVUE configuration with no option to ignore it.</td>
+<td>5.11.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4271213</td>
 <td>When IPv4 layer 3 switch ports and virtual interfaces flap, {{switchd}} might send an ICMP Reply message instead of an ARP request (although no ICMP request was sent). Multiple ICMP Replies might be sent to any of the neighbor IP addresses of that interface.</td>
 <td>5.9.2-5.11.0</td>
@@ -64,12 +70,6 @@
 <td>4260011</td>
 <td>If all of the neighbors returned in the {{nv show vrf &lt;vrf&gt; router bgp neighbor}} command output have no {{address-family}} configuration, you see an internal error when the nested table in the  output is being rendered.</td>
 <td>5.10.0-5.11.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4257386</td>
-<td>NVUE overwrites the MOTD file during NVUE configuration with no option to ignore it.</td>
-<td>5.11.0</td>
 <td></td>
 </tr>
 <tr>
@@ -282,7 +282,7 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 </tr>
 <tr>
 <td>4177067</td>
-<td>When doing a package upgrade from CL5.9 or CL5.10, the installation of {{nslcd}} might open an interactive dialog to configure {{nslcd.conf }}.To avoid this interactive dialog, set the {{DEBIAN_FRONTEND}} environment variable to {{noninteractive}}. For example:
+<td>When doing a package upgrade from CL5.9 or CL5.10 to CL5.11, the installation of {{nslcd}} might open an interactive dialog to configure {{nslcd.conf }}.To avoid this interactive dialog, set the {{DEBIAN_FRONTEND}} environment variable to {{noninteractive}}. For example:
 cumulus@switch:~$ sudo apt-get update
 cumulus@switch:~$ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "Dpkg::Options::=--force-confdef" -o "Dpkg::Options::=--force-confold" upgrade</td>
 <td>5.11.0</td>

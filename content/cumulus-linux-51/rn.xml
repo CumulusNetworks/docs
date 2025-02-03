@@ -658,12 +658,6 @@ export HOME
 <td>5.2.0-5.11.0</td>
 </tr>
 <tr>
-<td>3053094</td>
-<td>When the CPU load is high during a warm boot, bonds with a slow LACP rate fail to forward layer 2 traffic for up to 60 seconds (depending on the duration of the CPU load) and static bonds fail to forward layer 2 traffic for up to 5 seconds.</td>
-<td>5.1.0-5.11.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3053015</td>
 <td>Spectrum-2 and Spectrum-3 switches do not support 1G speed with Cumulus Linux.</td>
 <td>5.1.0-5.2.1</td>

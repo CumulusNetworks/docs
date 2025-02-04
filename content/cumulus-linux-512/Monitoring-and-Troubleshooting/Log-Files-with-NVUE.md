@@ -272,3 +272,16 @@ To delete a log file from a specific system component, run the `nv action delete
 ```
 cumulus@switch:~$ nv action delete system log component nvue file nvued.log
 ```
+
+## Rotate the System Log File
+
+To rotate the system log file:
+
+```
+cumulus@switch:~$ nv action rotate system log
+Action executing ...
+Log rotation successful
+Action succeeded
+```
+
+Cumulus Linux automatically manages log file size, preventing the logs from filling the storage space and slowing down the system.

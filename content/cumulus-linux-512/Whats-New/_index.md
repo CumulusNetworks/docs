@@ -29,7 +29,7 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
 - {{<link title="User Accounts/#default-roles" text="SPIFFE ID support for user accounts">}}
 - Open Telemetry:
   - {{<link url="Open-Telemetry-Export/#system-information-format" text="New system information data">}}
-  - {{<link url="Open-Telemetry-Export/#router-statistic-format" text="New router statistics">}}
+  - {{<link url="Open-Telemetry-Export/#routing-metrics-format" text="New routing metrics">}}
   - {{<link url="Open-Telemetry-Export/#interface-statistic-format" text="New interface PHY statistics">}}
   - {{<link url="Open-Telemetry-Export/#buffer-statistic-format" text="New buffer statistics">}}
   - {{<link url="Open-Telemetry-Export/#customize-export" text="Export different statistics and sample rates to different destinations">}}
@@ -41,7 +41,7 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
   - {{<link url="Monitoring-Best-Practices/#disk-usage" text="Command to monitor disk usage">}}
   - {{<link url="Adding-and-Updating-Packages/#configure-additional-repositories" text="Configure additional package repositories">}}
   - {{<link url="FRRouting/#look-up-the-route-for-a-destination" text="Look up the route for a destination">}}
-  - {{<link url="NVUE-CLI/#filter-nv-show-command-output" text="Addtional nv show command filters to filter by protocol, filter by neighbor state, and to filter neighbor details">}}
+  - {{<link url="NVUE-CLI/#filter-nv-show-command-output" text="Additional nv show command filters to filter by protocol, filter by neighbor state, and to filter neighbor details">}}
   - {{<link url="NVUE-API/#retrieve-view-types" text="API support for views with show commands">}}
   - {{<link title="Log Files with NVUE" text="Logging commands">}}
   - {{<link url="NVUE-CLI/#translate-a-configuration-revision-or-file" text="Commands to translate a revision or yaml configuration file">}}
@@ -86,6 +86,7 @@ nv show system packages repository <repo-url-id> distribution <repo-dist-id> poo
 nv show system telemetry buffer-stats
 nv show system telemetry buffer-stats export
 nv show system telemetry health
+nv show system telemetry health internal-metrics
 nv show system telemetry health internal-metrics exporters
 nv show system telemetry health internal-metrics process
 nv show system telemetry health internal-metrics processors
@@ -260,11 +261,15 @@ nv action ping system <destination> vrf
 nv action ping system <destination> l3protocol
 nv action ping system <destination> source-interface <interface>
 nv action reset platform transceiver <port>
-nv action traceroute interface <interface> 
-nv action traceroute interface <interface> packet_len
-nv action traceroute interface <interface> hop-count
-nv action traceroute interface <interface> source-address
-nv action traceroute interface <interface> protocol
+nv action traceroute system <destination>
+nv action traceroute system <destination> do-not-fragment
+nv action traceroute system <destination> initial-ttl
+nv action traceroute system <destination> l3protocol
+nv action traceroute system <destination> l4protocol
+nv action traceroute system <destination> max-ttl
+nv action traceroute system <destination> source <source-ip-address>
+nv action traceroute system <destination> vrf
+nv action traceroute system <destination> wait
 ```
 
 {{< /tab >}}

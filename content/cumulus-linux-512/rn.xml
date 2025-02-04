@@ -14,6 +14,12 @@
 </tr>
 <tr>
 <td>4271216</td>
+<td>NVUE overwrites the MOTD file during NVUE configuration with no option to ignore.</td>
+<td>5.11.0-5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4271215</td>
 <td>NVUE overwrites the MOTD file during NVUE configuration with no option to ignore it.</td>
 <td>5.11.0-5.12.0</td>
 <td></td>
@@ -28,6 +34,13 @@
 <td>4259744</td>
 <td>The {{nv config replace}} command fails with a 404 NOT FOUND error. To work around this issue, run the {{nv config detach}} command before trying another configuration change.</td>
 <td>5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4257386</td>
+<td>NVUE overwrites the MOTD file during NVUE configuration with no option to ignore it.
+</td>
+<td>5.11.0-5.12.0</td>
 <td></td>
 </tr>
 <tr>
@@ -590,6 +603,11 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Issue ID </th>
 <th> Description </th>
 <th> Affects </th>
+</tr>
+<tr>
+<td>4280823</td>
+<td>When you configure an invalid switch port (swp), NVUE adds the invalid configuration instead of rejecting it. The invalid interface in the configuration does not have any functional impact.</td>
+<td></td>
 </tr>
 <tr>
 <td>4270957</td>

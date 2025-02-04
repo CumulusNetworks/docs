@@ -15,9 +15,11 @@ pdfhidden: True
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="4280299"></a> [4280299](#4280299) <a name="4280299"></a> <br /> | The <code>nv action fetch system packages key <key-id></code> command fails if the key ID is an scp/ftp or URL path that requires a password to access the key. To work around this issue, use a URI that does not require password authentication for the key ID. | 5.12.0 | |
-| <a name="4271216"></a> [4271216](#4271216) <a name="4271216"></a> <br /> | NVUE overwrites the MOTD file during NVUE configuration with no option to ignore it. | 5.11.0-5.12.0 | |
+| <a name="4271216"></a> [4271216](#4271216) <a name="4271216"></a> <br /> | NVUE overwrites the MOTD file during NVUE configuration with no option to ignore. | 5.11.0-5.12.0 | |
+| <a name="4271215"></a> [4271215](#4271215) <a name="4271215"></a> <br /> | NVUE overwrites the MOTD file during NVUE configuration with no option to ignore it. | 5.11.0-5.12.0 | |
 | <a name="4262480"></a> [4262480](#4262480) <a name="4262480"></a> <br /> | NVUE fails to apply numbered BGP large community lists (community lists with multiple rules). To work around this issue, use named large community lists. | 5.12.0 | |
 | <a name="4259744"></a> [4259744](#4259744) <a name="4259744"></a> <br /> | The <code>nv config replace</code> command fails with a 404 NOT FOUND error. To work around this issue, run the <code>nv config detach</code> command before trying another configuration change. | 5.12.0 | |
+| <a name="4257386"></a> [4257386](#4257386) <a name="4257386"></a> <br /> | NVUE overwrites the MOTD file during NVUE configuration with no option to ignore it<br /> | 5.11.0-5.12.0 | |
 | <a name="4249096"></a> [4249096](#4249096) <a name="4249096"></a> <br /> | Binary upgrade from Cumulus Linux 4.3.1 to 5.12.0 is not supported. To work around this issue, perform a binary upgrade from Cumulus Linux 4.3.1 to 5.9.0, then perform a binary upgrade from Cumulus Linux 5.9.0 to 5.12.0. | 5.12.0 | |
 | <a name="4214678"></a> [4214678](#4214678) <a name="4214678"></a> <br /> | Changes to open telemetry configuration or export states restarts the telemetry service and resets all health metrics. | 5.12.0 | |
 | <a name="4200952"></a> [4200952](#4200952) <a name="4200952"></a> <br /> | Configuring the listening-address for the SNMP server fails for IP addresses associated with VRFs other than the management VRF. | 5.11.0-5.12.0 | |
@@ -106,6 +108,7 @@ pdfhidden: True
 ### Fixed Issues in 5.12.0
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
+| <a name="4280823"></a> [4280823](#4280823) <a name="4280823"></a> <br /> | When you configure an invalid switch port (swp), NVUE adds the invalid configuration instead of rejecting it. The invalid interface in the configuration does not have any functional impact. |  | |
 | <a name="4270957"></a> [4270957](#4270957) <a name="4270957"></a> <br /> | Optimized (two partition) upgrade from Cumulus Linux 5.11.0 requires approximately 2.4 Gbytes of free space in <code>/var</code> after downloading the image with NVUE commands instead of 1.6 Gbytes of free space. Upgrade needs the extra space for an additional copy of the downloaded image in <code>/var</code> . | 5.11.0 | |
 | <a name="4256151"></a> [4256151](#4256151) <a name="4256151"></a> <br /> | After rebooting the spine switch in an EVPN multihoming configuration, the BGP EVPN Type-2 entry is missing, which causes flooding and duplicates in the fabric. To work around this issue, flush the IP neighbor entries with the <code>sudo ip neigh flush x.x.x.x</code> command. | 5.9.1-5.11.0 | |
 | <a name="4251984"></a> [4251984](#4251984) <a name="4251984"></a> <br /> | NVUE prevents you from setting the IPv6 RA lifetime to 0 (zero). Use vtysh mode to apply the setting. | 5.11.0 | |

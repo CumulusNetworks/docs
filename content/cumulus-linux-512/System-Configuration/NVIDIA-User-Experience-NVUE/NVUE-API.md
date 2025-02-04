@@ -228,7 +228,7 @@ The NVUE object model supports most features on the Cumulus Linux switch. The fo
 | platform | Platform configuration, such as hardware and software components. |
 | qos | QoS RoCE configuration. |
 | router | Router configuration, such as router policies, global BGP and OSPF configuration, PBR, PIM, IGMP, VRR, and VRRP configuration. |
-| service | DHCP relays and server, NTP, PTP, LLDP, and syslog configuration. |
+| service | DHCP relays and server, NTP, PTP, LLDP and syslog configuration. |
 | system | Global system settings, such as the reserved routing table range for PBR and the reserved VLAN range for layer 3 VNIs, system login messages and switch reboot history. |
 | vrf | VRF configuration. |
 

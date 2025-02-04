@@ -26,6 +26,12 @@
 </tr>
 <tr>
 <td>4271216</td>
+<td>NVUE overwrites the MOTD file during NVUE configuration with no option to ignore.</td>
+<td>5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4271215</td>
 <td>NVUE overwrites the MOTD file during NVUE configuration with no option to ignore it.</td>
 <td>5.11.0</td>
 <td></td>
@@ -70,6 +76,13 @@
 <td>4260011</td>
 <td>If all of the neighbors returned in the {{nv show vrf &lt;vrf&gt; router bgp neighbor}} command output have no {{address-family}} configuration, you see an internal error when the nested table in the  output is being rendered.</td>
 <td>5.10.0-5.11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4257386</td>
+<td>NVUE overwrites the MOTD file during NVUE configuration with no option to ignore it.
+</td>
+<td>5.11.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1025,16 +1038,6 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <td>4096505</td>
 <td>In an EVPN configuration,  when you use NVUE to configure a new host bond and an multihoming  ESI at the same time, the Split-Horizon preventive traffic class rule is not programmed in the egress direction. To work around this issue, configure the host bond and apply the configuration, then configure the EVPN multihoming ESI on the host bonds and apply the configuration in a separate step.</td>
 <td>5.9.1-5.10.1</td>
-</tr>
-<tr>
-<td>4089469</td>
-<td>When you apply interface configuration at the same time as VRF based services (such as the DHCP service for a VRF), the VRF based service does not become fully operational because the service is not receiving protocol packets.To work around this issue, first apply the interface configuration, then apply the configuration for the VRF based service.</td>
-<td></td>
-</tr>
-<tr>
-<td>4087368</td>
-<td>On the NVIDIA SN2201 switch, the {{nv show platform firmware SSD}} command shows the error {{The requested item does not exist}} and the {{nv show platform firmware}} command does not show SSD details.</td>
-<td></td>
 </tr>
 <tr>
 <td>4086136</td>

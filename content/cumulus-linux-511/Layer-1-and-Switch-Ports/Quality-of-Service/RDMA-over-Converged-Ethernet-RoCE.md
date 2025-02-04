@@ -239,7 +239,7 @@ tx-stats
     unicast-no-buffer-discard  663060754115           Tx buffer discards for RoCE traffic
 ```
 
-To reset the counters in the `nv show interface <interface> qos roce` command output, run the `nv action clear interface <interface> qos roce counters` command.
+To reset the counters in the `nv show interface <interface> qos roce` command output, run the `nv action clear interface <interface> qos roce counters` command. The `nv action clear interface <interface> qos roce counters` command does not support a range of interfaces (such as swp1-4); You must specify a single interface.
 
 ## Change RoCE Configuration
 

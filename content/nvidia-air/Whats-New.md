@@ -10,14 +10,14 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 ## Feburary 2025
 <!-- Air:WhatsNew -->
 ### 82.2025.0204-011
-- Fixed an issue with simulations falsely entering ERROR state at start
-- Fixed an issue when adding time to a simulation caused open consoles to reconnect
-- Fixed an issue when importing topologies with DPU nodes where creation would fail due to a validation error
-- Fixed an issue with Out-of-Band node resource scaling not being applied when defining custom resource amounts
-- Fixed an issue with delete simulation prompt
-- Added the functionality to select and deselect multiple nodes individually by pressing CTRL + left-click 
-- Update Node.js runtime to v20.18.2
-- Added ability to resize Node consoles in the UI
+- Fixed an issue where simulations entered an error state when started
+- Fixed an issue where adding time to a simulation caused open consoles to reconnect
+- Fixed an issue where importing topologies with DPU nodes would fail with a validation error
+- Fixed an issue with out-of-band node resource scaling not being applied when defining custom resource amounts
+- Fixed an issue with the simulation deletion prompt
+- Added functionality to select or clear multiple nodes individually by pressing Ctrl + left-click 
+- Updated Node.js runtime to v20.18.2
+- Added ability to resize node consoles in the UI
 <!-- Air:WhatsNew -->
 
 ## January 2025

@@ -66,7 +66,7 @@ Using <em>wjh_dump.py</em> on an NVIDIA platform that is running Cumulus Linux a
 
 ## View What Just Happened Metrics
 
-WJH metrics are available on the WJH card and the Events card. To view the metrics on the Events card, open the large card and select the WJH tab at the top of the card. For a more detailed view, open the WJH card. You can {{<link title="Monitor Events/#create-event-filters" text="create, save, and apply filters">}} to show a subset of events from either the Events or WJH cards.
+WJH metrics are available on the WJH and Events cards. To view the metrics on the Events card, open the large card and select the WJH tab at the top of the card. For a more detailed view, open the WJH card. You can {{<link title="Monitor Events/#create-event-filters" text="create, save, and apply filters">}} to show a subset of events from either the Events or WJH cards.
 
 {{<tabs "WJH metrics">}}
 

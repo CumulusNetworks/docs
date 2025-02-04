@@ -2671,7 +2671,7 @@ cumulus@switch:~$ nv action delete system log component nvue file nvued.log
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action delete system packages key <key></h>
+## <h>nv action delete system packages key \<key\></h>
 
 Deletes a package repository key.
 

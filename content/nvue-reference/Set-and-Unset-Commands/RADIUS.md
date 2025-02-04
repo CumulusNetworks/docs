@@ -34,13 +34,17 @@ cumulus@switch:~$ nv set system aaa radius accounting send-records first-respons
 
 ## <h>nv set system aaa radius accounting state</h>
 
-Enables RADIUS user command accounting, which lets you log every command that a user runs and send the commands to the primary RADIUS server for auditing. Audit logs are a requirement for compliance standards, such as PCI and HIPPA.
+Enables RADIUS user command accounting, which lets you log every command that a user runs and send the commands to the RADIUS servers for auditing. Audit logs are a requirement for compliance standards, such as PCI and HIPPA.
 
 You can specify `enabled` or `disabled`.
 
-The RADIUS server must be configured to accept packets from clients and have a dictionary entry for NV-Command-String.
+The RADIUS servers must be configured to accept packets from clients and have a dictionary entry for NV-Command-String.
 
-The `/var/log/radius-cmd-acct.log` file contains the local copy of the logs, which match the logs that the server receives.
+The `/var/log/radius-cmd-acct.log` file contains the local copy of the logs, which match the logs that the servers receive.
+
+{{%notice note%}}
+In cumulus Linux 5.11 and earlier you can only send the commands to the primary RADIUS server. Cumulus Linux 5.12 and later supports more than one RADIUS server.
+{{%/notice%}}
 
 ### Version History
 

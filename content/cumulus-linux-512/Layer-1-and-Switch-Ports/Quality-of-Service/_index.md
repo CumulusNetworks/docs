@@ -2000,7 +2000,7 @@ Qos Port Statistics
 
 - To clear the Qos pool buffers, run the `nv action clear qos buffer pool` command.
 - To clear the QoS multicast switch priority buffers, run the `nv action clear qos buffer multicast-switch-priority` command.
-- To clear the Qos buffers on an interface, run the `nv action clear interface <interface> qos buffer` command.
+- To clear the Qos buffers on an interface, run the `nv action clear interface <interface> qos buffer` command. This command supports a range of interfaces (such as swp1-4) and comma-separated interfaces (such as swp1,swp4,swp5).
 
 ```
 cumulus@switch:~$ nv action clear qos buffer pool

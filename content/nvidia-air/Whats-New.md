@@ -7,15 +7,26 @@ product: NVIDIA Air
 <!-- vale off -->
 Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
 
-## January 2025
+## Feburary 2025
 <!-- Air:WhatsNew -->
+### 82.2025.0204-011
+- Fixed an issue with simulations falsely entering ERROR state at start
+- Fixed an issue when adding time to a simulation caused open consoles to reconnect
+- Fixed an issue when importing topologies with DPU nodes where creation would fail due to a validation error
+- Fixed an issue with Out-of-Band node resource scaling not being applied when defining custom resource amounts
+- Fixed an issue with delete simulation prompt
+- Added the functionality to select and deselect multiple nodes individually by pressing CTRL + left-click 
+- Update Node.js runtime to v20.18.2
+- Added ability to resize Node consoles in the UI
+<!-- Air:WhatsNew -->
+
+## January 2025
 ### 82.2025.0130-011
 - Fixed an issue with ZTP when importing a simulation from a JSON file
 - Fixed an issue with handling failed auto-provisioning POST requests
 - Fixed an issue with copying a node from topology files
 - Fixed link formatting in Demo Marketplace simulation guides
 - Added functionality to configure external ports and view outbound links in the topology builder
-<!-- Air:WhatsNew -->
 
 ### 82.2025.0123-011
 - Fixed an issue with scrollbars in the Demo Marketplace simulation guide

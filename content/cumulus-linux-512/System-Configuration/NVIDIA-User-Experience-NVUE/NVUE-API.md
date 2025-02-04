@@ -215,7 +215,7 @@ cumulus@switch:~$ nv set system control-plane acl API-PROTECT inbound
 
 ## Supported Objects
 
-The NVUE object model supports most features on the Cumulus Linux switch. The following list shows the supported objects. The NVUE API supports more objects within each of these objects. To see a full listing of the supported API endpoints, refer to {{<mib_link url="cumulus-linux-511/api/index.html" text="NVUE OpenAPI Specification for Cumulus Linux.">}}
+The NVUE object model supports most features on the Cumulus Linux switch. The following list shows the supported objects. The NVUE API supports more objects within each of these objects. To see a full listing of the supported API endpoints, refer to {{<mib_link url="cumulus-linux-512/api/index.html" text="NVUE OpenAPI Specification for Cumulus Linux.">}}
 
 | High-level Objects | Description |
 | ------------------ | ----------- |
@@ -228,7 +228,7 @@ The NVUE object model supports most features on the Cumulus Linux switch. The fo
 | platform | Platform configuration, such as hardware and software components. |
 | qos | QoS RoCE configuration. |
 | router | Router configuration, such as router policies, global BGP and OSPF configuration, PBR, PIM, IGMP, VRR, and VRRP configuration. |
-| service | DHCP relays and server, NTP, PTP, LLDP, and syslog configuration. |
+| service | DHCP relays and server, NTP, PTP, LLDP and syslog configuration. |
 | system | Global system settings, such as the reserved routing table range for PBR and the reserved VLAN range for layer 3 VNIs, system login messages and switch reboot history. |
 | vrf | VRF configuration. |
 
@@ -3828,8 +3828,8 @@ To try out the NVUE REST API, use the {{<exlink url="https://air.nvidia.com/mark
 
 ## Resources
 
-For information about using the NVUE REST API, refer to the {{<mib_link url="cumulus-linux-511/api/index.html" text="NVUE API Swagger documentation.">}}
-The full object model download is available {{<mib_link url="cumulus-linux-511/api/openapi.json" text="here.">}}
+For information about using the NVUE REST API, refer to the {{<mib_link url="cumulus-linux-512/api/index.html" text="NVUE API Swagger documentation.">}}
+The full object model download is available {{<mib_link url="cumulus-linux-512/api/openapi.json" text="here.">}}
 
 ## Considerations
 

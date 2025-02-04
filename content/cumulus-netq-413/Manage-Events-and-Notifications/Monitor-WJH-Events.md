@@ -80,7 +80,7 @@ You can expand the card to see a detailed summary of WJH data, including devices
 
    {{<figure src="/images/netq/wjh-large-450.png" alt="expanded what just happened card displaying devices with the most drops" width="700">}}
 
-Expand the card to its largest size to open the WJH dashboard. From here, you can create, save, and apply filters {{<link title="Monitor Events/#create-event-filters" text="create, save, and apply filters">}} to show a subset of events.
+Expand the card to its largest size to open the WJH dashboard. From here, you can {{<link title="Monitor Events/#create-event-filters" text="create, save, and apply filters">}} to show a subset of events.
 
    {{<figure src="/images/netq/wjh-fullscreen-450.png" alt="fully expanded what just happened card with detailed drop information" width="1000">}}
 

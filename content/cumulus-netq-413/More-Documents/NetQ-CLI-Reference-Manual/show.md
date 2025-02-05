@@ -3656,6 +3656,10 @@ mlx-3700c-24      swp8            Lossy      0,3          ECN      1502208  1566
 
 Displays RoCE counters for switches, DPUs, and NICs.
 
+{{%notice note%}}
+The output of this command only displays interfaces in the `up` state. To view a complete list of interfaces that are streaming RoCE data (regardless of state), use the UI.
+{{%/notice%}}
+
 ### Syntax
 
 ```
@@ -3757,7 +3761,7 @@ Hostname          Interface            PG packets           PG bytes            
 ----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- --------------------
 switch            swp1s1               1643392              154094520            0                    0                    1                    0                    1
 ```
-Dislpay RoCE counters for BlueField DPUs:
+Display RoCE counters for BlueField DPUs:
 
 ```
 cumulus@dpu:~$ netq show roce-counters dpu 

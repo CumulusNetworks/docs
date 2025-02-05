@@ -577,8 +577,8 @@ If you use certain special characters in a password, you must quote or escape (w
 
 The following table shows which quote or escape you can use for each special character.
 
-- Normal Use indicates that you can use the special character without quotes or a backslash.
-- Single Quotes and Double Quotes indicate that the entire password needs to be enclosed in quotes.
+- *Normal Use* indicates that you can use the special character without quotes or a backslash.
+- *Single Quotes* and *Double Quotes* indicate that you need to enclose the entire password in quotes.
 
 | Special Character | Normal Use  | Single Quotes ('') | Double Quotes ("") | Escape (`\`)|
 |---------- | ------- | ------------------ | ------------------ | ------ |
@@ -633,9 +633,9 @@ The following example shows a password that includes a dot (.) and tilde (~):
 cumulus@switch:~$ nv set system aaa user cumulus password “Hello.world\~123”
 ```
 
-When using a password in a URL, you might need to encode special characters. The following table shows the special character encoding.
-- ✓ indicates that encoding is not needed.
-- %xx indicates that you need to replace the special character with %xx.
+You might need to encode special characters in a password, for example in a URL.  The following table shows the special character encoding.
+- `✓` indicates that encoding is not needed.
+- `%xx` indicates that you need to replace the special character with `%xx`.
 
 | Symbol             | Normal | Single Quotes ('') | Double Quotes ("") | Escape (`\`)|
 |--------------------|--------|-----------------|-----------------|---------|

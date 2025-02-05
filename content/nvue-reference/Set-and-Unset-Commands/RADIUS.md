@@ -14,15 +14,37 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system aaa radius accounting send-records</h>
+
+Configures where to send accounting records. By default, Cumulus Linux sends accounting records to all servers. You can change this setting to send accounting records to the server that is first to respond. If the first available server does not respond, Cumulus Linux continues trying down the list of servers (by priority) until one is reachable. If none of the servers are reachable, there is a 30-second timeout, after which Cumulus Linux retries the servers. After 10 failed retries, the switch drops the packet.
+
+You can specify `first-response` or `all`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa radius accounting send-records first-response
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system aaa radius accounting state</h>
 
-Enables RADIUS user command accounting, which lets you log every command that a user runs and send the commands to the primary RADIUS server for auditing. Audit logs are a requirement for compliance standards, such as PCI and HIPPA.
+Enables RADIUS user command accounting, which lets you log every command that a user runs and send the commands to the RADIUS servers for auditing. Audit logs are a requirement for compliance standards, such as PCI and HIPPA.
 
 You can specify `enabled` or `disabled`.
 
-The RADIUS server must be configured to accept packets from clients and have a dictionary entry for NV-Command-String.
+The RADIUS servers must be configured to accept packets from clients and have a dictionary entry for NV-Command-String.
 
-The `/var/log/radius-cmd-acct.log` file contains the local copy of the logs, which match the logs that the server receives.
+The `/var/log/radius-cmd-acct.log` file contains the local copy of the logs, which match the logs that the servers receive.
+
+{{%notice note%}}
+In cumulus Linux 5.11 and earlier you can only send the commands to the primary RADIUS server. Cumulus Linux 5.12 and later supports more than one RADIUS server.
+{{%/notice%}}
 
 ### Version History
 
@@ -55,6 +77,10 @@ cumulus@switch:~$ nv set system aaa radius debug enable
 ## <h>nv set system aaa radius enable</h>
 
 Enables (`on`) and disables (`off`) RADIUS.
+
+{{%notice note%}}
+Cumulus Linux 5.12 and later no longer provides this command.
+{{%/notice%}}
 
 ### Version History
 

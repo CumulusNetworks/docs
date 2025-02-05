@@ -308,16 +308,20 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unicast admin-distance internal 110
 ```
-<!-- ASKED NOT TO DOCUMENT FOR 5.11
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast advertise-origin</h>
 
-Configures BGP prefix independent convergence (PIC) for IPv4 to reduce data plane convergence times and improve unicast traffic convergence for remote link failures (when the BGP next hop fails). A remote link is a link between a spine and a remote leaf, or a spine and the super spine layer.
+BGP prefix independent convergence (PIC) reduces convergence times and improves unicast traffic convergence for remote link and node failures (when the BGP next hop fails) regardless of route scale. A remote link is a link between a spine and a remote leaf, or a spine and the super spine layer.
 
-When you configure BGP PIC, Cumulus Linux assigns one next hop group for each source and the remote leaf advertises the router ID loopback route. The remote leaf tags prefix routes with a route-origin extended community so that the local leaf recognizes the routes. When the network topology changes, the local leaf obtains the router ID loopback route with the updated ECMP, allowing a O (1) next hop group replace operation for all prefixes from the remote leaf without waiting for individual BGP updates.
+When you configure BGP PIC, Cumulus Linux assigns one next hop group for each source and the remote leaf advertises a route with a prefix derived from the router ID. The remote leaf tags prefix routes with a route-origin extended community (SOO) so that the local leaf recognizes the routes. When the network topology changes, the local leaf obtains the router ID route with the updated ECMP, allowing a O (1) next hop group replace operation for all prefixes from the remote leaf without waiting for individual BGP updates.
 
 You enable the BGP advertise origin option on a leaf switch, so that BGP can attach the Site-of-Origin (SOO) extended community to all routes advertised to its peers from the source where the routes originate. On all switches (leaf, spine and super spine), you enable the next hop group per source option (`nv set vrf <vrf-id> router bgp address-family ipv4-unicast nhg-per-origin`) so that when BGP receives routes with the SOO extended community, it allocates a next hop group for each source.
+
+{{%notice note%}}
+On a spine and super spine, you must set the read-only mode BGP convergence wait time to 30 (`nv set router bgp convergence-wait time 30`)and the convergence wait establish wait time to 15 (`nv set router bgp convergence-wait establish-wait-time 15`). These are the minimum recommended timer settings to ensure optimal convergence when using PIC.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -327,7 +331,7 @@ You enable the BGP advertise origin option on a leaf switch, so that BGP can att
 
 ### Version History
 
-Introduced in Cumulus Linux 5.11.0
+Introduced in Cumulus Linux 5.12.0
 
 ### Example
 
@@ -339,11 +343,15 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unicast adve
 
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast nhg-per-origin</h>
 
-Configures BGP prefix independent convergence (PIC) for IPv4 to reduce data plane convergence times and improve unicast traffic convergence for remote link failures (when the BGP next hop fails). A remote link is a link between a spine and a remote leaf, or a spine and the super spine layer.
+BGP prefix independent convergence (PIC) reduces convergence times and improves unicast traffic convergence for remote link and node failures (when the BGP next hop fails) regardless of route scale. A remote link is a link between a spine and a remote leaf, or a spine and the super spine layer.
 
-When you configure BGP PIC, Cumulus Linux assigns one next hop group for each source and the remote leaf advertises the router ID loopback route. The remote leaf tags prefix routes with a route-origin extended community so that the local leaf recognizes the routes. When the network topology changes, the local leaf obtains the router ID loopback route with the updated ECMP, allowing a O (1) next hop group replace operation for all prefixes from the remote leaf without waiting for individual BGP updates.
+When you configure BGP PIC, Cumulus Linux assigns one next hop group for each source and the remote leaf advertises a route with a prefix derived from the router ID. The remote leaf tags prefix routes with a route-origin extended community (SOO) so that the local leaf recognizes the routes. When the network topology changes, the local leaf obtains the router ID route with the updated ECMP, allowing a O (1) next hop group replace operation for all prefixes from the remote leaf without waiting for individual BGP updates.
 
 You enable the next hop group per source option on all switches (leaf, spine and super spine), so that when BGP receives routes with the SOO extended community, it allocates a next hop group for each source. On a leaf switch, you enable the BGP advertise origin option (`nv set vrf <vrf> router bgp address-family ipv4-unicast advertise-origin`) so that BGP can attach the Site-of-Origin (SOO) extended community to all routes advertised to its peers from the source where the routes originate.
+
+{{%notice note%}}
+On a spine and super spine, you must set the read-only mode BGP convergence wait time to 30 (`nv set router bgp convergence-wait time 30`)and the convergence wait establish wait time to 15 (`nv set router bgp convergence-wait establish-wait-time 15`). These are the minimum recommended timer settings to ensure optimal convergence when using PIC.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -360,7 +368,7 @@ Introduced in Cumulus Linux 5.11.0
 ```
 cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unicast nhg-per-origin
 ```
--->
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast aggregate-route \<aggregate-route-id\> as-set</h>
@@ -2911,6 +2919,29 @@ Introduced in Cumulus Linux 5.1.0
 
 ```
 cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES description none
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> graceful-shutdown</h>
+
+Enables and disables graceful shutdown on a peer group. You can specify `on` or `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp peer-group underlay graceful-shutdown on  
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

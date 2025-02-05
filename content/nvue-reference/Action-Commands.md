@@ -167,6 +167,198 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action clear bridge domain \<bridge-id\> mac-table dynamic</h>
+
+Clears all dynamic MAC addresses from the forwarding database.
+
+{{%notice note%}}
+This command clears static entries learned on ES bonds that are installed as static entries in EVPN multihoming including static VXLAN entries in the bridge driver.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<bridge-id>` |  The bridge name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear bridge domain \<bridge-id\> mac-table dynamic interface \<interface-id\></h>
+
+Clears all dynamic MAC addresses for a specific interface from the forwarding database.
+
+{{%notice note%}}
+This command does not clear sticky entries, permanent entries, and EVPN MAC entries.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<bridge-id>` |  The bridge name.|
+| `<interface-id>` |  The IP address or interface name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic interface swp1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear bridge domain \<bridge-id\> mac-table dynamic interface \<interface-id\> vlan \<vlan-id\></h>
+
+Clears all dynamic MAC addresses for a specific interface and VLAN from the forwarding database.
+
+{{%notice note%}}
+This command does not clear sticky entries, permanent entries, and EVPN MAC entries.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<bridge-id>` |  The bridge name.|
+| `<interface-id>` |  The IP address or interface name.|
+| `<vlan-id>` |  The VLAN ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic interface swp1 vlan 10
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear bridge domain \<bridge-id\> mac-table dynamic mac \<mac-address\> interface \<interface-id\></h>
+
+Clears a specific dynamic MAC address for an interface from the forwarding database.
+
+{{%notice note%}}
+This command does not clear sticky entries, permanent entries, and EVPN MAC entries.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<bridge-id>` |  The bridge name.|
+| `<mac-address>` |  The MAC address.|
+| `<interface-id>` |  The IP address or interface name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic mac 00:00:0A:BB:28:FC interface swp1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear bridge domain \<bridge-id\> mac-table dynamic mac \<mac-address\> vlan \<vlan-id\></h>
+
+Clears a specific dynamic MAC addresses for a VLAN from the forwarding database.
+
+{{%notice note%}}
+This command does not clear sticky entries, permanent entries, and EVPN MAC entries.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<bridge-id>` |  The bridge name.|
+| `<mac-address>` |  The MAC address.|
+| `<vlan-id>` |  The VLAN ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic mac 00:00:0A:BB:28:FC vlan 10
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear bridge domain \<bridge-id\> mac-table dynamic mac \<mac-address\> vlan \<vlan-id\> interface \<interface-id\></h>
+
+Clears a specific dynamic MAC address for a VLAN and interface from the forwarding database.
+
+{{%notice note%}}
+This command does not clear sticky entries, permanent entries, and EVPN MAC entries.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<bridge-id>` |  The bridge name.|
+| `<mac-address>` |  The MAC address.|
+| `<VLAN-id>` |  The VLAN ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic mac 00:00:0A:BB:28:FC vlan 10 interface swp1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear bridge domain \<bridge-id\> mac-table dynamic vlan \<vlan-id\></h>
+
+Clears all dynamic MAC addresses for a specific VLAN from the forwarding database.
+
+{{%notice note%}}
+This command does not clear sticky entries, permanent entries, and EVPN MAC entries.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<bridge-id>` |  The bridge name.|
+| `<VLAN-id>` |  The VLAN ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic vlan 10
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action clear evpn vni</h>
 
 Clears duplicate addresses for all VNIs.
@@ -2432,6 +2624,75 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action delete system log file \<file-name\></h>
+
+Deletes the specified system log file.
+
+Deleting log files enables you to manage storage space and ensure that only relevant logs remain. You typically delete log files after you upload or archive them, or when you no longer need the logs for troubleshooting or auditing. Log file deletion is a crucial step in log management to ensure that outdated or irrelevant data does not occupy system resources.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<file-name>` | The system log file you want to delete. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action delete system log file mstpd.log 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action delete system log component \<component-name\> file \<filename\></h>
+
+Deletes a log file from a specific system component.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<component-name>` | The system component from which you want to delete a log file. |
+| `<filename>` | The name of the log file you want to delete. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action delete system log component nvue file nvued.log
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action delete system packages key \<key\></h>
+
+Deletes a package repository key.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<key-id>` | The repository key. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action delete system packages key debian-archive-bookworm-automatic.asc
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action delete system security ca-certificate \<cert-id\></h>
 
 Deletes the CA certificate you specify.
@@ -2633,30 +2894,74 @@ Do you want to continue? [y/N]
 
 If you add the `force` option (`nv action enable system ztp force`), ZTP enables and activates the provisioning process without prompting you for confirmation.
 
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action run system ztp</h>
+## <h>nv action fetch system image \<remote-url\></h>
 
-Manually runs ZTP from the beginning. If you made manual configuration changes, ZTP considers the switch as already provisioned and exits.
+Fetches a binary image from the specified URL.
 
-You can also specify a custom URL (`nv action run system ztp url <url-and-filename`) or directory (`nv action run system ztp url <directory-and-filename`) on the switch for the ZTP script.
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<remote-url>` |  The remote URL.|
 
 ## Version History
 
-Introduced in Cumulus Linux 5.11.0
+Introduced in Cumulus Linux 5.12.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv action run system ztp
-The operation will perform rerun of the ZTP.
-Type [y] to perform rerun of the ZTP.
-Type [N] to cancel an action.
-
-Do you want to continue? [y/N]
+cumulus@switch:~$ nv action fetch system image http://10.0.1.251/cumulus-linux-5.12.0-mlx-amd64.bin
 ```
 
-If you add the force option (`nv action run system ztp force`), ZTP runs without prompting you for confirmation.
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action fetch system packages key \<key\></h>
+
+Fetches a repository key and saves it globally in the `/etc/apt/trusted.gpg.d/` directory.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<key>` |  The repository key.|
+
+## Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action fetch system packages key http://deb.opera.com/archive.key 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action fetch system packages key \<key\> scope repository</h>
+
+Fetches and saves the repository key in the `/etc/apt/keyrings/` directory.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<key>` |  The repository key.|
+
+## Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action fetch system packages key http://deb.opera.com/archive.key scope repository
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv action delete system tech-support files \<file-id\></h>
 
@@ -2758,6 +3063,276 @@ cumulus@switch:~$ nv action import system security certificate tls-cert-1 passph
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action install system image file \<filename\>
+
+Installs the specified binary image on the second partition (optimized upgrade).
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<filename>` |  The binary image filename.|
+
+## Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action install system image files cumulus-linux-5.12.0-mlx-amd64.bin
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action lookup vrf \<vrf-id\> router fib \<address-family\> \<ip-address\></h>
+
+Looks up the route in the routing table for a specific destination.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` |  The VRF name.|
+| `<address-family>` |  The address family; IPv4 or IPv6.|
+| `<ip-address>` |  The IP address.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action lookup vrf default router fib ipv4 10.10.10.3
+Action executing ... 
+ [{"dst":"10.10.10.3","nhid":455,"table":"default","protocol":"bgp","metric":20,"flags":[]}] 
+
+ Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action ping system \<destination\></h>
+
+Sends Echo Request packets to a destination (IP address or a hostname) to check if it is reachable.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<destination>` |  The IP address or hostname of the destination you want to ping.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action ping system 10.10.10.10
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action ping system \<destination\> count</h>
+
+Configures the number of Echo Request packets to send. You can specify a value between 1 and 10. The default packet count is 3.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<destination>` |  The IP address or hostname of the destination you want to ping.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action ping system 10.10.10.10 count 5
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action ping system \<destination\> do-not-fragment</h>
+
+Configures *Do not fragment*. If the packet is larger than the maximum transmission unit (MTU) of any network segment it traverses, drop the packet instead of fragmenting the packet. 
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<destination>` |  The IP address or hostname of the destination you want to ping.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action ping system 10.10.10.10 do-not-fragment
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action ping system \<destination\> interval</h>
+
+Configures how often two send Echo Request packets. You can specify a value between 0.1 and 5 seconds. The default value is 4.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<destination>` |  The IP address or hostname of the destination you want to ping.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action ping system 10.10.10.10 interval 2
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action ping system \<destination\> l3protocol</h>
+
+Configures the layer 3 protocol you want to use to send the Echo Request packets. You can specify IPv4 or IPv6.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<destination>` |  The IP address or hostname of the destination you want to ping.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action ping system 10.10.10.10 l3protocol ipv4
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action ping system \<destination\> size</h>
+
+Configures the packet size in bytes. You can specify a value between 1 and 9216. The default value is 64.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<destination>` |  The IP address or hostname of the destination you want to ping.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action ping system 10.10.10.10 size 200
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action ping system \<destination\> source</h>
+
+Configures the source IP address from which to send the Echo Request packets.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<destination>` |  The IP address or hostname of the destination you want to ping.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action ping system 10.10.10.10 source 10.10.5.1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action ping system \<destination\> source-interface</h>
+
+Configures the source interface for which you want to test the routing path for a link local address. IPv6 only.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<destination>` |  The IP address or hostname of the destination you want to ping.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action ping system fe80::a00:27ff:fe00:0 source-interface eth0
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action ping system \<destination\> wait</h>
+
+Configures the number of seconds to wait for an Echo Reply packet before the ping request times out. You can specify a value between 0.1 and 10. The default value is 10.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<destination>` |  The IP address or hostname of the destination you want to ping.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action ping system 10.10.10.10 wait 3
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action ping system \<destination\> vrf</h>
+
+Configures the VRF for which you want to test the routing paths.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<destination>` |  The IP address or hostname of the destination you want to ping.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action ping system 10.10.10.10 vrf mgmt
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action reboot system</h>
 
 Reboots the switch.
@@ -2772,6 +3347,32 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@switch:~$ nv action reboot system
 Rebooting System in cold mode
 True
+Action succeeded
+```
+
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action reset platform transceiver \<port-id\></h>
+
+Resets a specific transceiver to its initial, stable state without having to be present physically in the data center to pull the transceiver.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<port-id>` |  The port in which the transceiver you want to reset is attached.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action reset platform transceiver swp1
+Action executing ... 
+Resetting module swp1 ... OK 
 Action succeeded
 ```
 
@@ -2918,6 +3519,31 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action run system ztp</h>
+
+Manually runs ZTP from the beginning. If you made manual configuration changes, ZTP considers the switch as already provisioned and exits.
+
+You can also specify a custom URL (`nv action run system ztp url <url-and-filename`) or directory (`nv action run system ztp url <directory-and-filename`) on the switch for the ZTP script.
+
+## Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action run system ztp
+The operation will perform rerun of the ZTP.
+Type [y] to perform rerun of the ZTP.
+Type [N] to cancel an action.
+
+Do you want to continue? [y/N]
+```
+
+If you add the force option (`nv action run system ztp force`), ZTP runs without prompting you for confirmation.
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action schedule system telemetry hft job \<date-time\> duration \<duration\> profile \<profile\> ports \<port-id\> description \<text\></h>
 
 Configures the schedule for a high frequency telemetry data collection.
@@ -2949,6 +3575,206 @@ Action executing ...
 Job schedule successfull.
 
 Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action traceroute system \<destination\></h>
+
+Sends traceroute packets to a destination so you can validate the route. You can specify either an IP address or a domain name.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<destination>` |  The IP address or a domain name.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action traceroute system 10.10.10.10
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action traceroute system \<destination\> do-not-fragment</h>
+
+Drops the traceroute packet instead of fragmenting it if the packet is larger than the maximum transmission unit (MTU) of any network segment it traverses.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<destination>` |  The IP address or a domain name.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action traceroute system 10.10.10.10 do-not-fragment
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action traceroute system \<destination\> initial-ttl</h>
+
+Sends traceroute packets to the destination with the minimum number of hops specified. You can specify a value between 1 and 30. The default value is 1.
+
+The minimum number of hops must be less than or equal to the maximum number of hops.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<destination>` |  The IP address or a domain name.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action traceroute system 10.10.10.10 initial-ttl 3
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action traceroute system \<destination\> l3protocol</h>
+
+Sends layer 3 traceroute packets to the destination specified. You can specify `ipv4` or `ipv6`. The default is `ipv4`.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<destination>` |  The IP address or a domain name.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action traceroute system fe80::a00:27ff:fe00:0 l3protocol ipv6
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action traceroute system \<destination\> l4protocol</h>
+
+Sends the specified layer 4 traceroute packets to the destination. You can specify `icmp`, `tcp`, or `udp`. The default is `icmp`.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<destination>` |  The IP address or a domain name.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action traceroute system 10.10.10.10 l4protocol udp
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action traceroute system \<destination\> max-ttl</h>
+
+Sends traceroute packets to the destination with the minimum number of hops specified. You can specify a value between 1 and 30.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<destination>` |  The IP address or a domain name.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action traceroute system 10.10.10.10 max-ttl 10
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action traceroute system \<destination\> source-address</h>
+
+Sends traceroute packets to the destination from the specified source IP address.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<destination>` |  The IP address or a domain name.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action traceroute system 10.10.10.10 source-address 10.10.5.1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action traceroute system \<destination\> vrf</h>
+
+Sends traceroute packets to the destination using the specified VRF.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<destination>` |  The IP address or a domain name.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action traceroute system 10.10.10.10 vrf RED
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action traceroute system \<destination\> wait</h>
+
+Sends traceroute packets to the destination and waits for the specified maximum number of nanoseconds for a response from each hop. You can specify a value between 0.1 and 10.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<destination>` |  The IP address or a domain name.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action traceroute system 10.10.10.10 wait 2
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3024,7 +3850,7 @@ cumulus@switch:~$ nv action upload tech-support files cl_support_leaf01_20240725
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action upload system telemetry hft job <hft-job-id> \<remote-url\></h>
+## <h>nv action upload system telemetry hft job \<hft-job-id\> \<remote-url\></h>
 
 Uploads high frequency telemetry data for a specific session (job) off the switch to an external location.
 

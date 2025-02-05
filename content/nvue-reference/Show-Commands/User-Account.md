@@ -209,6 +209,29 @@ hashed-password  *             *
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system aaa user \<user-id\> spiffe-id</h>
+
+Shows all SPIFFE IDs for the specified user.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<user-id>`    |  The user account. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system aaa user cumulus spiffe-id 
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system aaa user \<user-id\> ssh</h>
 
 Shows SSH information about the specified user account.

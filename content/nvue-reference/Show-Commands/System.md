@@ -95,6 +95,25 @@ polling-interval
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system counter rates</h>
+
+Shows the load interval for the switch counters for both the logical and physical interfaces.
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system counter rates 
+               applied
+-------------  -------
+load-interval  6
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system counter polling-interval</h>
 
 Shows the polling interval for the switch counters for both the logical and physical interfaces.
@@ -162,6 +181,30 @@ system-clock-synchronized  no
 ntp-service                inactive                     
 rtc-in-local-tz            no                           
 unix-time                  1700670174.4371066
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system disk usage </h>
+
+Shows disk utilization.
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system disk usage 
+Mount Point  Filesystem  Size  Used  Avail  Use%
+-----------  ----------  ----  ----  -----  ----
+/            /dev/vda5   5.4G  2.5G  2.7G   49% 
+/dev         udev        847M  0     847M   0%  
+/dev/shm     tmpfs       856M  31M   825M   4%  
+/run         tmpfs       172M  1.4M  170M   1%  
+/run/lock    tmpfs       5.0M  0     5.0M   0%  
+/tmp         tmpfs       856M  8.0K  856M   1% 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

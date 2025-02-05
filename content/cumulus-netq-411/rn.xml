@@ -67,12 +67,6 @@
 <td></td>
 </tr>
 <tr>
-<td>3771279</td>
-<td>When an interface speed is changed in the network, NetQ might not reflect the new speed until up to an hour after the change.</td>
-<td>4.11.0-4.12.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3769936</td>
 <td>When there is a NetQ interface validation failure for admin state mismatch, the validation failure might clear unexpectedly while one side of the link is still administratively down.</td>
 <td>4.9.0-4.12.0</td>

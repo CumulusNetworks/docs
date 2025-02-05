@@ -18,8 +18,8 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
 ### New Features and Enhancements
 
 - 1G (optical) supported with SyncE on the SN5400 switch  
-- {{<link url="Upgrading-Cumulus-Linux/#upgrade-cumulus-linux" text="Ability to ugrade from Cumulus Linux 5.11 with Optimized Image Upgrade">}}
-- {{<link url="RDMA-over-Converged-Ethernet-RoCE/#roce-single-shared-buffer-pool" text="RoCE single shared buffer pool">}}
+- {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="Ability to ugrade from Cumulus Linux 5.11 with Optimized Image Upgrade">}}
+- {{<link url="RDMA-over-Converged-Ethernet-RoCE/#single-shared-buffer-pool" text="RoCE single shared buffer pool">}}
 - {{<link url="Optional-BGP-Configuration/#graceful-bgp-shutdown-on-a-peer-group" text="Graceful BGP shutdown on a peer group">}}
 - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#reset-a-transceiver" text="Software module reset">}}
 - {{<link url="VLAN-aware-Bridge-Mode/#clear-dynamic-mac-address-entries" text="Clear dynamic MAC address entries from the forwarding database">}}

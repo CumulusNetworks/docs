@@ -575,7 +575,7 @@ If you do not clear a user session after making changes directly on the RADIUS, 
 
 If you use certain special characters in a password, you must quote or escape (with a backslash) these characters so that the system understands that they are part of the password.
 
-The following table shows if you need to quote or escape a special character.
+The following table shows which quote or escape you can use for each special character.
 
 - Normal Use indicates that you can use the special character without quotes or a backslash.
 - Single Quotes and Double Quotes indicate that the entire password needs to be enclosed in quotes.
@@ -631,6 +631,50 @@ The following example shows a password that includes a dot (.) and tilde (~):
 
 ```
 cumulus@switch:~$ nv set system aaa user cumulus password “Hello.world\~123”
+```
+
+When using a password in a URL, you might need to encode special characters. The following table shows the special character encoding.
+- ✓ indicates that encoding is not needed.
+- %xx indicates that you need to replace the special character with %xx.
+
+| Symbol             | Normal | Single Quotes ('') | Double Quotes ("") | Escape (`\`)|
+|--------------------|--------|-----------------|-----------------|---------|
+| backtick (`)      | %60    | ✓               | %60             | ✓       |
+| exclamation point (`!`)  | %21    | ✓               | %21             | ✓       |
+| semicolon (`;`)      | %3B    | ✓               | ✓               | ✓       |
+| ampersand (`&`)     | %26    | ✓               | ✓               | ✓       |
+| question mark (`?`)      | %3F    | %3F             | %3F             | %3F     |
+| tilde (~)         | ✓      | ✓               | ✓               | ✓       |
+| at-sign (`@`)       | ✓      | ✓               | ✓               | ✓       |
+| hash sign (`#`)         | %23    | %23             | %23             | %23     |
+| dollar sign (`$`)        | %24    | ✓               | %24             | ✓       |
+| percent sign (`%`)        | ✓      | ✓               | ✓               | ✓       |
+| caret (`^`)         | ✓      | ✓               | ✓               | ✓       |
+| asterisk (`*`)    | ✓      | ✓               | ✓               | ✓       |
+| left parenthesis (`(`)     | %28    | ✓               | ✓               | ✓       |
+| right parenthesis (`)`)   | %29    | ✓               | ✓               | ✓       |
+| dash (`-`)        | ✓      | ✓               | ✓               | ✓       |
+| underscore (`_`) | ✓      | ✓               | ✓               | ✓       |
+| equals sign (`=`) | ✓      | ✓               | ✓               | ✓       |
+| plus sign (`+`)         | ✓      | ✓               | ✓               | ✓       |
+| vertical bar  | %7C    | ✓               | ✓               | ✓       |
+| left bracket (`[`)  | %5B    | %5B             | %5B             | %5B     |
+| right bracket (`]`) | %5D    | %5D             | %5D             | %5D     |
+| braces (`{}`)        | ✓      | ✓               | ✓               | ✓       |
+| colon (`:`)          | ✓      | ✓               | ✓               | ✓       |
+| single quote (`‘`)   | %27    | %27             | ✓               | ✓       |
+| double quote (`“`)   | %22    | ✓               | %22             | ✓       |
+| comma (`,`)         | ✓      | ✓               | ✓               | ✓       |
+| left angle bracket (`<`)    | %3C    | ✓               | ✓               | ✓       |
+| right angle bracket (`>`)  | %3E    | ✓               | ✓               | ✓       |
+| slash (`/`)         | %2F    | %2F             | %2F             | %2F     |
+| dot (`.`)             | ✓      | ✓               | ✓               | ✓       |
+| white space  | %20    | ✓               | ✓               | ✓       |
+
+The following example fetches an image stored on a device with IP address 10.0.1.251 using the password `Pass#pass1` for user1:
+
+```
+cumulus@switch:~$ nv action fetch system image scp://user1:Pass1%23pass1@10.0.1.251/host/nos-images/nvos-amd64-25.02.1857.bin
 ```
 
 ## Filter nv show Command Output

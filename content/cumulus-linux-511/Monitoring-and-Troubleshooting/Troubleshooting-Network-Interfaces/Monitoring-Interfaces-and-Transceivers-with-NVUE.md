@@ -383,7 +383,7 @@ Switches with the Spectrum 1 ASIC do not support the `nv show interface <interfa
 
 ## Clear Interface Counters
 
-To clear counters (statistics) for all interfaces, run the `nv action clear interface counters` command. This command supports a range of interfaces (such as swp1-4) and comma-separated interfaces (such as swp1,swp4,swp5).
+To clear counters (statistics) for all interfaces, run the `nv action clear interface counters` command.
 
 ```
 cumulus@switch$ nv action clear interface counters

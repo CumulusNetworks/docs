@@ -515,8 +515,6 @@ cumulus@switch:~$ nv action clear interface swp1 bridge domain br_default stp bp
 
 Clears all interface-specific counters from the specified interface. Interface counters provide information about an interface, such as the number of packets intentionally or intentionally dropped, the number of inbound and outbound packets discarded even though the switch detected no errors, the number of inbound and outbound packets not transmitted because of errors, and so on.
 
-You can specify a single interface, a range of interfaces (such as swp1-4) or comma-separated interfaces (such as swp1,swp4,swp5).
-
 {{%notice note%}}
 This command does not clear counters in the kernel or hardware.
 {{%/notice%}}
@@ -620,7 +618,7 @@ Action succeeded
 
 ## <h>nv action clear interface \<interface-id\> qos buffer</h>
 
-Clears QoS buffer counters on the specified interface. You can specify a single interface, a range of interfaces (such as swp1-4) or comma-separated interfaces (such as swp1,swp4,swp5).
+Clears QoS buffer counters on the specified interface.
 
 ### Command Syntax
 
@@ -667,10 +665,6 @@ Action succeeded
 ## <h>nv action clear interface \<interface-id\> qos roce counters</h>
 
 Clears QoS RoCE counters on the specified interface.
-
-{{%notice note%}}
-The `nv action clear interface <interface> qos roce counters` command does not support a range of interfaces (such as swp1-4); You must specify a single interface.
-{{%/notice%}}
 
 ### Command Syntax
 

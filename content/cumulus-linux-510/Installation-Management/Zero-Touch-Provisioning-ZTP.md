@@ -194,7 +194,7 @@ trap error ERR
 ```
 ### Continue Provisioning
 
-Typically ZTP exits after executing the script locally and does not continue. To continue with provisioning so that you do not have to intervene manually or embed an Ansible callback into the script, you can add the `CUMULUS-AUTOPROVISION-CASCADE` directive.
+Typically ZTP exits after executing the script locally and does not continue. To continue with provisioning so that you do not have to intervene manually or embed an Ansible callback into the script, you can add the `CUMULUS-AUTOPROVISIONING-CASCADE` directive.
 
 ## Best Practices
 

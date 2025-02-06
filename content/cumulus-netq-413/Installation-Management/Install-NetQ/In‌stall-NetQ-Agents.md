@@ -295,44 +295,14 @@ Two methods are available for configuring a NetQ Agent:
 - Edit the configuration file on the switch, or
 - Use the NetQ CLI
 
-### Configure NetQ Agents Using a Configuration File
-
-You can configure the NetQ Agent in the `netq.yml` configuration file contained in the `/etc/netq/` directory.
-
-1. Open the `netq.yml` file using your text editor of choice. For example:
-
-    ```
-    sudo nano /etc/netq/netq.yml
-    ```
-
-2. Locate the *netq-agent* section, or add it.
-
-3. Set the parameters for the agent as follows:
-    - port: 31980 (default configuration)
-    - server: IP address of the NetQ server where the agent should send its collected data
-    - vrf: default (or one that you specify)
-    - inband-interface: the interface used to reach your NetQ server and used by lifecycle management to connect to the switch (for deployments where switches are managed through an in-band interface)
-
-    Your configuration should be similar to this:
-
-    ```
-    netq-agent:
-        port: 31980
-        server: 192.168.1.254
-        vrf: mgmt
-    ```
-
-    For in-band deployments:
-    ```
-    netq-agent:
-        inband-interface: swp1
-        port: 31980
-        server: 192.168.1.254
-        vrf: default
-    ```
+{{<tabs "TabID298" >}}
 
 
-### Configure NetQ Agents Using the NetQ CLI
+{{<tab "Standalone Deployments" >}}
+
+{{<tabs "TabID318" >}}
+
+{{<tab "NetQ CLI" >}}
 
 If you configured the NetQ CLI, you can use it to configure the NetQ Agent to send telemetry data to the NetQ appliance or VM. To configure the NetQ CLI, refer to {{<link title="Install NetQ CLI">}}.
 
@@ -361,6 +331,127 @@ sudo netq config add agent server 192.168.1.254 vrf default inband-interface swp
 Updated agent server 192.168.1.254 vrf default. Please restart netq-agent (netq config restart agent).
 sudo netq config restart agent
 ```
+
+{{</tab>}}
+
+{{<tab "Configuration Files" >}}
+
+You can configure the NetQ Agent in the `netq.yml` configuration file contained in the `/etc/netq/` directory.
+
+1. Open the `netq.yml` file using your text editor of choice. For example:
+
+    ```
+    sudo nano /etc/netq/netq.yml
+    ```
+
+2. Locate the *netq-agent* section, or add it.
+
+3. Set the parameters for the agent as follows:
+    - port: 31980 (default configuration)
+    - server: IP address of the NetQ server where the agent should send its collected data
+    - vrf: default (or one that you specify)
+    - inband-interface: the interface used to reach your NetQ server and used by lifecycle management to connect to the switch (for deployments where switches are managed through an in-band interface)
+
+    Your configuration should be similar to this:
+
+    ```
+    netq-agent:
+        port: 31980
+        server: 192.168.1.254
+        vrf: mgmt
+    ```
+
+    For in-band deployments, using the `default` VRF:
+    ```
+    netq-agent:
+        inband-interface: swp1
+        port: 31980
+        server: 192.168.1.254
+        vrf: default
+    ```
+
+
+{{</tab>}}
+
+{{</tabs>}}
+
+{{</tab>}}
+
+{{<tab "Cluster Deployments" >}}
+
+{{<tabs "TabID302" >}}
+
+{{<tab "NetQ CLI" >}}
+
+If you have a high-availability server cluster arrangement, you should configure the NetQ Agent to distribute data across all servers in the cluster. For {{<link title="Set Up Your Virtual Machine for an On-premises HA Scale Cluster" text="scale cluster deployments">}}, configure the agent with the IP address of the `master-ip` and each `ha-node`. For 5-node deployments, you do not need to specify the `worker-nodes`.
+
+To configure the agent to send data to the servers in your cluster, run:
+
+```
+sudo netq config add agent cluster-servers <text-opta-ip-list> [port <text-opta-port>] [vrf <text-vrf-name>]
+```
+
+You must separate the list of IP addresses by commas (not spaces). You can optionally specify a port or VRF.
+
+This example configures the NetQ Agent on a switch to send the data to three servers located at *10.0.0.21*, *10.0.0.22*, and *10.0.0.23* using the *mgmt* VRF.
+
+```
+cumulus@switch:~$ sudo netq config add agent cluster-servers 10.0.0.21,10.0.0.22,10.0.0.23 vrf mgmt
+```
+
+To stop a NetQ Agent from sending data to a server cluster, run:
+
+```
+cumulus@switch:~$ sudo netq config del agent cluster-servers
+```
+
+
+{{</tab>}}
+
+{{<tab "Configuration Files" >}}
+
+
+You can configure the NetQ Agent in the `netq.yml` configuration file contained in the `/etc/netq/` directory.
+
+1. Open the `netq.yml` file using your text editor of choice. For example:
+
+    ```
+    sudo nano /etc/netq/netq.yml
+    ```
+
+2. Locate the *netq-agent* section, or add it.
+
+3. Set the parameters for the agent as follows:
+    - port: 31980 (default configuration)
+    - cluster-servers: IP addresses of all NetQ servers in your cluster. For {{<link title="Set Up Your Virtual Machine for an On-premises HA Scale Cluster" text="scale cluster deployments">}}, configure the agent with the IP address of the `master-ip` and each `ha-node`. For 5-node deployments, you do not need to specify the `worker-nodes`.
+    - vrf: default (or one that you specify)
+    - inband-interface: the interface used to reach your NetQ server and used by lifecycle management to connect to the switch (for deployments where switches are managed through an in-band interface)
+
+    Your configuration should be similar to this:
+
+    ```
+    netq-agent:
+        cluster-servers: 10.0.0.21,10.0.0.22,10.0.0.23
+        port: 31980
+        vrf: mgmt
+    ```
+
+    For in-band deployments, using the `default` VRF:
+    ```
+    netq-agent:
+        inband-interface: swp1
+        cluster-servers: 10.0.0.21,10.0.0.22,10.0.0.23
+        port: 31980
+        vrf: mgmt
+    ```
+
+{{</tab>}}
+
+{{</tabs>}}
+
+{{</tab>}}
+   
+{{</tabs>}}
 
 
 ## Configure Advanced NetQ Agent Settings

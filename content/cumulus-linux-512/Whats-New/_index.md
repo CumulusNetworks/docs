@@ -27,6 +27,7 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
 - {{<link url="BGP-Weighted-Equal-Cost-Multipath/#ecmp-resource-sharing-during-next-hop-group-updates" text="ECMP Resource Sharing During Next Hop Group Updates">}}
 -  {{<link url="RADIUS-AAA/#radius-user-command-accounting" text="RADIUS user command accounting support for multiple servers with first response option">}}
 - {{<link title="User Accounts/#default-roles" text="SPIFFE ID support for user accounts">}}
+- {{<link url="Neighbor-Discovery-ND/#router-advertisement" text="Address Auto-Configuration (SLAAC)">}} is now generally available
 - Open Telemetry:
   - {{<link url="Open-Telemetry-Export/#system-information-format" text="New system information data">}}
   - {{<link url="Open-Telemetry-Export/#routing-metrics-format" text="New routing metrics">}}

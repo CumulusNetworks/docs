@@ -34,5 +34,4 @@ You can upgrade directly to NetQ 4.13 if your deployment is running version 4.12
 The NetQ 4.13 server is compatible with NetQ agent 4.12 or later. You can install NetQ agents on switches and servers running:
 
 - Cumulus Linux 5.0.0 or later (Spectrum switches)
-- Cumulus Linux 4.3.1 and 4.3.2 (Broadcom switches)
 - Ubuntu 22.04

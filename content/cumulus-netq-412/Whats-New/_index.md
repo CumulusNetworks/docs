@@ -32,7 +32,6 @@ For deployments running:
 The NetQ 4.12 server is compatible with the NetQ 4.12 agent. You can install NetQ agents on switches and servers running:
 
 - Cumulus Linux 5.0.0 or later (Spectrum switches)
-- Cumulus Linux 4.3.1 and 4.3.2 (Broadcom switches)
 - Ubuntu 22.04, 20.04
 
 ## Release Considerations

@@ -242,7 +242,7 @@ cumulus@switch:~$ nv show system log file brief
 
 ## <h>nv show system log file follow</h>
 
-Shows the contents of a system log file in real-time. The command shows the log file output continuously as it is updated, similar to the behavior of the tail -f command.
+Shows the contents of a system log file in real-time. The command shows the log file output continuously as it is updated, similar to the behavior of the `tail -f` command.
 
 ### Version History
 

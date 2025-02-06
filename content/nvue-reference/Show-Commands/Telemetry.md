@@ -809,7 +809,7 @@ processors
 
 ## <h>nv show system telemetry health internal-metrics process</h>
 
-Shows information about the telemetry health internal metrics process.
+Shows health information about the telemetry process.
 
 ### Version History
 
@@ -833,7 +833,7 @@ uptime-seconds                     65313
 
 ## <h>nv show system telemetry health internal-metrics receivers</h>
 
-Shows information about the telemetry health internal metrics receivers.
+Shows health metrics about the telemetry receivers.
 
 ### Version History
 
@@ -853,7 +853,7 @@ prometheus/global    46989135                    0
 
 ## <h>nv show system telemetry health internal-metrics processors</h>
 
-Shows information about the telemetry health internal metrics processors.
+Shows health metrics about the telemetry processors.
 
 ### Version History
 
@@ -885,7 +885,7 @@ cumulus@switch:~$ nv show system telemetry health internal-metrics processors
 
 ## <h>nv show system telemetry health internal-metrics exporters</h>
 
-Shows information about the telemetry health internal metrics exporters.
+Shows health metrics about the telemetry exporters.
 
 ### Version History
 
@@ -904,7 +904,7 @@ otlp/global     0                              1000             0            708
 
 ## <h>nv show system telemetry hft</h>
 
-Shows the high frequency telemetry configuration.
+Shows high frequency telemetry configuration.
 
 ### Version History
 

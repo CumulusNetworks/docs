@@ -1,18 +1,20 @@
 ---
 title: Data Retention
 author: NVIDIA
-weight: 1120
+weight: 1130
 toc: 3
 ---
 
-NetQ deletes some types of data periodically to minimize database usage and increase performance. The following table outlines the amount of time (in days) that NetQ retains data. There is no way to modify these values. 
+NetQ deletes some types of data periodically to minimize database usage and increase performance. The following table outlines the amount of time (in days) that NetQ retains data. When data reaches the end of the retention period, it is deleted automatically. There is no way to reduce or increase the retention period. 
 
-| Feature | Feature | D |
-| ------------- | :---: | :---: |
-|netq.acl_resource |  | 40 |
-|netq.address | IP addresses | 40 |
-|netq.agentstats | NetQ Agent data | 40 |
-|netq.appinfo | 
-|netq.arconfigglobal |
-|netq.arconfigglobalv2 |
-|netq.arconfigintf |
+| Feature | Retention Period (Days) |
+| -------------| :---: |
+|Queue histograms | 3 |
+|Link health | 3 |
+|Validation results | 30-40 |
+|Flow analysis | 40 |
+|RoCE data | 40 |
+|Device inventory  | 40 |
+|Network snapshots | 40 |
+|Topology data | 40 |
+|What Just Happened data | 40 |

@@ -258,7 +258,7 @@ cumulus@switch:~$ sudo netq config restart agent
 
 ### Configure a NetQ Agent to Send Data to a Server Cluster
 
-If you have a high-availability server cluster arrangement, you should configure the NetQ Agent to distribute data across all servers in the cluster. For {{<link title="Set Up Your Virtual Machine for an On-premises HA Scale Cluster" text="scale cluster deployments">}}, configure the agent with the IP address of the `master-ip` and each `ha-node`. For 5-node deployments, you do not need to specify the `worker-nodes`.
+If you have a high-availability server cluster arrangement, you should configure the NetQ Agent to distribute data across all servers in the cluster. For {{<link title="Set Up Your Virtual Machine for an On-premises HA Scale Cluster" text="scale cluster deployments">}}, configure the agent with the IP address of the `master-ip` and each `ha-node`. For 5-node deployments, you do not need to specify the `worker-nodes`. Refer to {{<link title="Install NetQ Agents/#configure-netq-agents" text="Configure NetQ Agents">}} for step-by-step instructions.
 
 To configure the agent to send data to the servers in your cluster, run:
 

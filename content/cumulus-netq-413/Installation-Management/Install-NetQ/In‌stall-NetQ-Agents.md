@@ -12,12 +12,12 @@ After installing the NetQ software, you should install the NetQ Agents on each s
 
 ## Prepare for NetQ Agent Installation
 
-For switches running Cumulus Linux, you need to:
+For switches running *Cumulus Linux*, you need to:
 
 - Install and configure NTP or PTP, if needed
 - Obtain NetQ software packages
 
-For servers running Ubuntu, you need to:
+For servers running *Ubuntu*, you need to:
 
 - Verify you installed the minimum package versions
 - Verify the server is running `lldpd`
@@ -275,14 +275,12 @@ root@ubuntu:~# sudo systemctl restart rsyslog.service
 
 {{</tabs>}}
 
-## Configure NetQ Agent
+## Configure NetQ Agents
 
 After you install the NetQ Agents on the switches you want to monitor, you must configure them to obtain useful and relevant data.
 
 {{%notice note%}}
-The NetQ Agent is aware of and communicates through the designated VRF. If you do not specify one, it uses the default VRF (named *default*). If you later change the VRF configured for the NetQ Agent (using a lifecycle management configuration profile, for example), you might cause the NetQ Agent to lose communication.
-
-If you configure the NetQ Agent to communicate in a VRF that is not *default* or *mgmt*, the following line must be added to `/etc/netq/netq.yml` in the `netq-agent` section:
+The NetQ Agent is aware of and communicates through the designated VRF. If you do not specify one, it uses the default VRF (named *default*). If you later change the VRF configured for the NetQ Agent (using a lifecycle management configuration profile, for example), you might cause the NetQ Agent to lose communication.<br><br> If you configure the NetQ Agent to communicate in a VRF that is not *default* or *mgmt*, add the following line to `/etc/netq/netq.yml` in the `netq-agent` section:
 
 ```
 netq-agent:
@@ -304,7 +302,7 @@ Two methods are available for configuring a NetQ Agent:
 
 {{<tab "NetQ CLI" >}}
 
-If you configured the NetQ CLI, you can use it to configure the NetQ Agent to send telemetry data to the NetQ appliance or VM. To configure the NetQ CLI, refer to {{<link title="Install NetQ CLI">}}.
+If you {{<link title="Install NetQ CLI" text="configured the NetQ CLI">}}, you can use it to configure the NetQ Agent to send telemetry data to the NetQ appliance or VM.
 
 {{<notice info>}}
 If you intend to use a VRF for agent communication (recommended), refer to {{<link url="#configure-the-agent-to-use-a-vrf" text="Configure the Agent to Use VRF">}}. If you intend to specify a port for communication, refer to {{<link url="#configure-the-agent-to-communicate-over-a-specific-port" text="Configure the Agent to Communicate over a Specific Port">}}.
@@ -313,7 +311,12 @@ If you intend to use a VRF for agent communication (recommended), refer to {{<li
 Use the following command to configure the NetQ Agent:
 
 ```
-sudo netq config add agent server <text-opta-ip> [port <text-opta-port>] [ssl true | ssl false] [ssl-cert <text-ssl-cert-file> | ssl-cert download] [vrf <text-vrf-name>] [inband-interface <interface-name>]
+sudo netq config add agent server <text-opta-ip> 
+    [port <text-opta-port>] 
+    [ssl true | ssl false] 
+    [ssl-cert <text-ssl-cert-file> | ssl-cert download] 
+    [vrf <text-vrf-name>] 
+    [inband-interface <interface-name>]
 ```
 
 This example uses a NetQ server IP address of *192.168.1.254*, the default port, and the `mgmt` VRF for a switch managed through an out-of-band connection:

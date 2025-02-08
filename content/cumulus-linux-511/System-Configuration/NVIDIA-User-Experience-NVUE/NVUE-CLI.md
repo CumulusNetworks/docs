@@ -121,8 +121,8 @@ The `nv set` and `nv unset` commands are in the following categories. Each comma
 | `nv set platform`<br>`nv unset platform`|  Configures Pulse per Second; the simplest form of synchronization for the physical hardware clock.|
 | `nv set qos`<br>`nv unset qos` | Configures QoS RoCE. |
 | `nv set router`<br>`nv unset router` | Configures router policies (prefix list rules and route maps), sets global BGP options (enable and disable, ASN and router ID, BGP graceful restart and shutdown), global OSPF options (enable and disable, router ID, and OSPF timers) PIM, IGMP, PBR, VRR, and VRRP. |
-| `nv set service`<br>`nv unset service` | Configures DHCP relays and servers, NTP, PTP, LLDP, SNMP servers, DNS, and syslog. |
-| `nv set system`<br>`nv unset system` | Configures system settings, such as the hostname of the switch, pre and post login messages, reboot options (warm, cold, fast), the time zone and global system settings, such as the anycast ID, the system MAC address, and the anycast MAC address. This is also where you configure SPAN and ERSPAN sessions, telemetry, and set how configuration apply operations work (which files to ignore and which files to overwrite; see {{<link title="#configure-nvue-to-ignore-linux-files" text="Configure NVUE to Ignore Linux Files">}}).|
+| `nv set service`<br>`nv unset service` | Configures DHCP relays and servers, NTP, PTP, LLDP, DNS, and syslog. |
+| `nv set system`<br>`nv unset system` | Configures system settings, such as the hostname of the switch, pre and post login messages, reboot options (warm, cold, fast), the time zone and global system settings, such as the anycast ID, the system MAC address, and the anycast MAC address. This is also where you configure SNMP, SPAN and ERSPAN sessions, telemetry, and set how configuration apply operations work (which files to ignore and which files to overwrite; see {{<link title="#configure-nvue-to-ignore-linux-files" text="Configure NVUE to Ignore Linux Files">}}).|
 | `nv set vrf  <vrf-id>`<br>`nv unset vrf <vrf-id>` | Configures VRFs. This is where you configure VRF-level configuration for PTP, BGP, OSPF, and EVPN. |
 
 ### Monitoring Commands
@@ -142,7 +142,7 @@ The NVUE monitoring commands show various parts of the network configuration. Fo
 | `nv show qos` | Shows QoS RoCE configuration.|
 | `nv show router` | Shows router configuration, such as router policies, global BGP and OSPF configuration, PBR, PIM, IGMP, VRR, and VRRP configuration. |
 | `nv show service` | Shows DHCP relays and server, NTP, PTP, LLDP, and syslog configuration. |
-| `nv show system` | Shows global system settings, such as the reserved routing table range for PBR and the reserved VLAN range for layer 3 VNIs. You can also see system login messages and switch reboot history. |
+| `nv show system` | Shows global system settings. |
 | `nv show system version` | Shows the Cumulus Linux release running on the switch.|
 | `nv show vrf` | Shows VRF configuration.|
 
@@ -150,31 +150,30 @@ The following example shows the `nv show router` commands after pressing the tab
 
 ```
 cumulus@leaf01:mgmt:~$ nv show router <<tab>>
-adaptive-routing  igmp              ospf              pim               ptm               vrrp              
-bgp               nexthop           pbr               policy            vrr               
+adaptive-routing  igmp              pbr               ptm
+bgp               nexthop           pim               vrr
+graceful-restart  ospf              policy            vrrp               
 
 cumulus@leaf01:mgmt:~$ nv show router bgp
-                                operational  applied  pending
-------------------------------  -----------  -------  -----------  ----------------------------------------------------------------------
-                                applied      pending    
-------------------------------  -----------  -----------
-enable                          on           on         
-autonomous-system               65101        65101      
-router-id                       10.10.10.1   10.10.10.1 
-policy-update-timer             5            5          
-graceful-shutdown               off          off        
-wait-for-install                off          off        
-graceful-restart                                        
-  mode                          helper-only  helper-only
-  restart-time                  120          120        
-  path-selection-deferral-time  360          360        
-  stale-routes-time             360          360        
-convergence-wait                                        
-  time                          0            0          
-  establish-wait-time           0            0          
-queue-limit                                             
-  input                         10000        10000      
-  output                        10000        10000 
+                                applied    
+------------------------------  -----------
+enable                          on         
+autonomous-system               65101      
+router-id                       10.10.10.1 
+policy-update-timer             5          
+graceful-shutdown               off        
+wait-for-install                off        
+graceful-restart                           
+  mode                          helper-only
+  restart-time                  120        
+  path-selection-deferral-time  360        
+  stale-routes-time             360        
+convergence-wait                           
+  time                          0          
+  establish-wait-time           0          
+queue-limit                                
+  input                         10000      
+  output                        10000 
 ```
 
 {{%notice note%}}
@@ -365,7 +364,7 @@ NVUE manages the following configuration files:
 
 ## Search for a Specific Configuration
 
-To search for a specific portion of the NVUE configuration, run the `nv config find <search string>` command. The search shows all items above and below the search string. For example, to search the entire NVUE object model configuration for any mention of `ptm`:
+To search for a specific portion of the NVUE configuration, run the `nv config find <search string>` command. The search shows all items above and below the search string. For example, to search the entire NVUE object model configuration for any mention of `bond1`:
 
 ```
 cumulus@switch:~$ nv config find bond1

@@ -41,10 +41,10 @@ cumulus@switch:~$ nv set interface swp1 link state ?
     down                   The interface is not ready
     up                     The interface is ready
 cumulus@switch:~$ nv set interface swp1 link mtu ?
-    <arg>                  (integer:552 - 9216)
+    <arg>                  Interface MTU (default:9216 | integer:552 - 9216)
 cumulus@switch:~$ nv set interface swp1 link speed ?
-    <arg>                  (string | enum:10M, 100M, 1G, 10G, 25G, 40G, 50G, 100G,
-                           200G, 400G, 800G, auto)
+    <arg>                  Link speed (default:auto | enum:auto, 10M, 100M, 1G, 10G, 25G,
+                           40G, 50G, 100G, 200G, 400G, 800G | string)
 ```
 
 NVUE also indicates if you need to provide specific values for the command:
@@ -62,9 +62,9 @@ If the command you type is ambiguous, NVUE shows the reason for the ambiguity so
 
 ```
 cumulus@switch:~$ nv s i 
-Ambiguous Command: 
-   set interface 
-   show interface 
+Error: Ambiguous Command:
+  set interface
+  show interface 
 ```
 
 ## Command Help
@@ -77,13 +77,13 @@ usage:
   nv [options] set interface <interface-id>
 
 Description:
-  interface             Update all interfaces. Provide single interface or multiple interfaces using ranging (e.g. swp1-2,5-6 -> swp1,swp2,swp5,swp6).
+  interface       Update all interfaces. Provide single interface or multiple interfaces using ranging (e.g. swp1-2,5-6 -> swp1,swp2,swp5,swp6).
 
 Identifiers:
-  <interface-id>        Interface (interface-name)
+  <interface-id>  Interface (interface-name)
 
 General Options:
-  -h, --help            Show help.
+  -h, --help      Show help.
 ```
 
 ## Command List
@@ -121,8 +121,8 @@ The `nv set` and `nv unset` commands are in the following categories. Each comma
 | `nv set platform`<br>`nv unset platform`|  Configures Pulse per Second; the simplest form of synchronization for the physical hardware clock.|
 | `nv set qos`<br>`nv unset qos` | Configures QoS RoCE. |
 | `nv set router`<br>`nv unset router` | Configures router policies (prefix list rules and route maps), sets global BGP options (enable and disable, ASN and router ID, BGP graceful restart and shutdown), global OSPF options (enable and disable, router ID, and OSPF timers) PIM, IGMP, PBR, VRR, and VRRP. |
-| `nv set service`<br>`nv unset service` | Configures DHCP relays and servers, NTP, PTP, LLDP, SNMP servers, DNS, and syslog. |
-| `nv set system`<br>`nv unset system` | Configures system settings, such as the hostname of the switch, pre and post login messages, reboot options (warm, cold, fast), the time zone and global system settings, such as the anycast ID, the system MAC address, and the anycast MAC address. This is also where you configure SPAN and ERSPAN sessions, telemetry, and set how configuration apply operations work (which files to ignore and which files to overwrite; see {{<link title="#configure-nvue-to-ignore-linux-files" text="Configure NVUE to Ignore Linux Files">}}).|
+| `nv set service`<br>`nv unset service` | Configures DHCP relays and servers, NTP, PTP, LLDP, DNS, and syslog. |
+| `nv set system`<br>`nv unset system` | Configures system settings, such as the hostname of the switch, pre and post login messages, reboot options (warm, cold, fast), the time zone and global system settings, such as the anycast ID, the system MAC address, and the anycast MAC address. This is also where you configure SNMP, SPAN and ERSPAN sessions, telemetry, and set how configuration apply operations work (which files to ignore and which files to overwrite; see {{<link title="#configure-nvue-to-ignore-linux-files" text="Configure NVUE to Ignore Linux Files">}}).|
 | `nv set vrf  <vrf-id>`<br>`nv unset vrf <vrf-id>` | Configures VRFs. This is where you configure VRF-level configuration for PTP, BGP, OSPF, and EVPN. |
 
 ### Monitoring Commands
@@ -142,39 +142,37 @@ The NVUE monitoring commands show various parts of the network configuration. Fo
 | `nv show qos` | Shows QoS RoCE configuration.|
 | `nv show router` | Shows router configuration, such as router policies, global BGP and OSPF configuration, PBR, PIM, IGMP, VRR, and VRRP configuration. |
 | `nv show service` | Shows DHCP relays and server, NTP, PTP, LLDP, and syslog configuration. |
-| `nv show system` | Shows global system settings, such as the reserved routing table range for PBR and the reserved VLAN range for layer 3 VNIs. You can also see system login messages and switch reboot history. |
-| `nv show system version` | Shows the Cumulus Linux release running on the switch.|
+| `nv show system` | Shows system settings. |
 | `nv show vrf` | Shows VRF configuration.|
 
 The following example shows the `nv show router` commands after pressing the tab key, then shows the output of the `nv show router bgp` command.
 
 ```
 cumulus@leaf01:mgmt:~$ nv show router <<tab>>
-adaptive-routing  igmp              ospf              pim               ptm               vrrp              
-bgp               nexthop           pbr               policy            vrr               
+adaptive-routing  igmp              pbr               ptm               
+bgp               nexthop           pim               vrr               
+graceful-restart  ospf              policy            vrrp               
 
 cumulus@leaf01:mgmt:~$ nv show router bgp
-                                operational  applied  pending
-------------------------------  -----------  -------  -----------  ----------------------------------------------------------------------
-                                applied      pending    
-------------------------------  -----------  -----------
-enable                          on           on         
-autonomous-system               65101        65101      
-router-id                       10.10.10.1   10.10.10.1 
-policy-update-timer             5            5          
-graceful-shutdown               off          off        
-wait-for-install                off          off        
-graceful-restart                                        
-  mode                          helper-only  helper-only
-  restart-time                  120          120        
-  path-selection-deferral-time  360          360        
-  stale-routes-time             360          360        
-convergence-wait                                        
-  time                          0            0          
-  establish-wait-time           0            0          
-queue-limit                                             
-  input                         10000        10000      
-  output                        10000        10000 
+                                applied    
+------------------------------  -----------
+enable                          on         
+autonomous-system               65101      
+router-id                       10.10.10.1 
+policy-update-timer             5          
+graceful-shutdown               off        
+wait-for-install                off        
+graceful-restart                           
+  mode                          helper-only
+  restart-time                  120        
+  path-selection-deferral-time  360        
+  stale-routes-time             360        
+convergence-wait                           
+  time                          0          
+  establish-wait-time           0          
+queue-limit                                
+  input                         10000      
+  output                        10000 
 ```
 
 {{%notice note%}}
@@ -191,13 +189,13 @@ Additional options are available for certain `nv show` commands. For example, yo
 | `--filter` | Filters show command output on column data. For example, the `nv show interface --filter mtu=1500` shows only the interfaces with MTU set to 1500. For more information, see {{<link url="#filter-nv-show-command-output" text="Filter nv show Command Output">}} below.|
 | `--hostname`| Shows system configuration for the switch with the specified hostname. For example, `nv show --hostname leaf01`.|
 | `--operational` | Shows the running configuration (the actual system state). For example, `nv show interface swp1 --operational` shows the running configuration for swp1. The running and applied configuration should be the same. If different, inspect the logs. |
-| `--output`        | Shows command output in table (`auto`), `json`, `yaml` or plain text (`raw`) format, such as vtysh native output. For example:<br>`nv show interface bond1 --output auto`<br>`nv show interface bond1 --output json`<br>`nv show interface bond1 --output yaml`<br>`nv show router bgp -output raw`|
+| `--output`        | Shows command output in table (`auto`), `json`, or `yaml` format. For example:<br>`nv show interface bond1 --output auto`<br>`nv show interface bond1 --output json`<br>`nv show interface bond1 --output yaml`|
 | `--paginate`      | Paginates the output. For example, `nv show interface bond1 --paginate on`. |
 | `--pending`       | Shows the last applied configuration and any pending set or unset configuration that you have not yet applied. For example, `nv show interface bond1 --pending`.|
 | `--rev <revision>`| Shows a detached pending configuration. See the `nv config detach` configuration management command below. For example, `nv show --rev 1`. You can also show only applied or only operational information in the `nv show` output. For example, to show only the applied settings for swp1 configuration, run the `nv show interface swp1 --rev=applied` command. To show only the operational settings for swp1 configuration, run the `nv show interface swp1 --rev=operational` command. |
-| `--startup`  | Shows configuration saved with the `nv config apply` command. This is the configuration after the switch boots. For example: `nv show interface --startup.`|
+| `--startup`  | Shows configuration saved with the `nv config apply` command. This is the configuration after the switch boots. For example: `nv show interface --startup`.|
 | `--tab`| Show information in tab format. For example, `nv show interface swp1 --tab.`|
-| `--view` | Shows different views. A view is a subset of information provided by certain `nv show` commands. To see the views available for an `nv show` command, run the command with `--view` and press TAB.|
+| `--view` | Shows different views. A view is a subset of information provided by certain `nv show` commands. To see the views available for an `nv show` command, run the command with `--view` and press TAB (for example `nv show interface --view`).|
 
 The following example shows *pending* BGP graceful restart configuration:
 
@@ -215,10 +213,11 @@ The following example shows the views available for the `nv show interface` comm
 
 ```
 cumulus@switch:~$ nv show interface --view <<TAB>>
-acl-statistics  carrier-stats   dot1x-counters  lldp-detail     physical        status          vrf
-bond-members    counters        dot1x-summary   mac             port-security   svi             
-bonds           description     down            mlag-cc         qos-profile     synce-counters  
-brief           detail          lldp            neighbor        small           up
+acl-statistics  counters        down            neighbor        small           vrf
+bond-members    description     lldp            physical        status          
+bonds           detail          lldp-detail     port-security   svi             
+brief           dot1x-counters  mac             qos-profile     synce-counters  
+carrier-stats   dot1x-summary   mlag-cc         rates           up
 ```
 
 ### Configuration Management Commands
@@ -227,7 +226,7 @@ The NVUE configuration management commands manage and apply configurations.
 
 | <div style="width:450px">Command | Description |
 | ------- | ----------- |
-| `nv config apply` | Saves the pending configuration (`nv config apply`) or a specific revision (`nv config apply 2`) to the startup configuration automatically (when auto save is `on`, which is the default setting). To see the list of revisions you can apply, run `nv config apply <<Tab>>`. <br>You can also use these prompt options:<ul><li>`--y` or `--assume-yes` to automatically reply `yes` to all prompts.</li><li>`--assume-no` to automatically reply `no` to all prompts.</li></ul>You can also use these apply options:<br>`--confirm` applies the configuration change but you must confirm the applied configuration. If you do not confirm within ten minutes, the configuration rolls back automatically. You can change the default time with the apply `--confirm <time>` command. For example, `apply --confirm 60` requires you to confirm within one hour.<br>`--confirm-status` shows the amount of time left before the automatic rollback.</br>|
+| `nv config apply` | Saves the pending configuration (`nv config apply`) or a specific revision (`nv config apply 2`) to the startup configuration automatically (when auto save is `on`, which is the default setting). To see the list of revisions you can apply, run `nv config apply <<Tab>>`. <br>You can also use these prompt options:<ul><li>`--assume-yes` to automatically reply `yes` to all prompts.</li><li>`--assume-no` to automatically reply `no` to all prompts.</li></ul>You can also use these apply options:<br>`--confirm` applies the configuration change but you must confirm the applied configuration. If you do not confirm within ten minutes, the configuration rolls back automatically. You can change the default time with the apply `--confirm <time>` command. For example, `nv config apply --confirm 60m` requires you to confirm within one hour.<br>`--confirm-status` shows the amount of time left before the automatic rollback.</br>|
 | `nv config detach` | Detaches the configuration from the current pending configuration and uses an integer to identify it; for example, `4`. To list all the current detached pending configurations, run `nv config diff <<press tab>`.|
 | `nv config diff <revision> <revision>` | Shows differences between configurations, such as the pending configuration and the applied configuration, or the detached configuration and the pending configuration.|
 | `nv config find <string>`| Finds a portion of the applied configuration according to the search string you provide. For example to find swp1 in the applied configuration, run `nv config find swp1`.|
@@ -244,21 +243,36 @@ You can use the NVUE configuration management commands to back up and restore co
 
 ### Action Commands
 
-The NVUE action commands clear counters, and provide system reboot and TACACS user disconnect options.
+The NVUE action commands fetch and install image files, upgrade system packages, run ping and traceroute, disable system maintenance and ZTP scripts, clear counters, rotate log files, and provide system reboot and TACACS user disconnect options.
 
 | <div style="width:400px">Command | Description |
 | ------- | ----------- |
-| `nv action change system time`| Sets the software clock date and time. |
+| `nv action abort`| Terminates {{<link url="Zero-Touch-Provisioning-ZTP" text="ZTP">}} if it is in the discovery process or is not currently running a script. |
+| `nv action boot-next`| Sets the boot partition for {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="optimized (two partition) upgrade">}}.|
+| `nv action change`| Sets the {{<link title="Setting the Date and Time/#set-the-date-and-time" text="software clock date and time">}}. |
 | `nv action clear` | Provides commands to clear ACL statistics, {{<link url="EVPN-Enhancements/#clear-duplicate-addresses" text="duplicate addresses">}}, {{<link url="Precision-Time-Protocol-PTP/#clear-ptp-violation-logs" text="PTP violations">}}, {{<link url="Interface-Configuration-and-Management/#clear-the-interface-protodown-state-and-reason" text="interfaces from a protodown state">}}, {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#clear-interface-counters" text="interface counters">}}, {{<link url="Quality-of-Service/#clear-qos-buffers" text="Qos buffers">}}, {{<link url="Troubleshooting-BGP/#clear-bgp-routes" text="BGP routes">}}, {{<link url="Open-Shortest-Path-First-v2-OSPFv2/#clear-ospf-counters" text="OSPF interface counters">}}, {{<link url="Route-Filtering-and-Redistribution/#clear-matches-against-a-route-map" text="matches against a route map">}}, and remove {{<link url="Multi-Chassis-Link-Aggregation-MLAG/#lacp-partner-mac-address-duplicate-or-mismatch" text="conflicts from protodown MLAG bonds">}}. |
 | `nv action deauthenticate interface <interface>> dot1x authorized-sessions`| Deauthenticates the 802.1X supplicant on the specified interface. If you do not want to notify the supplicant when deauthenticating, you can add the silent option; for example, `nv action deauthenticate interface swp1 dot1x authorized-sessions 00:55:00:00:00:09 silent`.|
-| `nv action delete system security` | Provides commands to delete CA and entity certificates. |
-| `nv action disable system maintenance mode`<br>`nv action disable system maintenance ports`| Disables system maintenance mode<br> Brings up the ports.|
-| `nv action disconnect system aaa user`|  Provides commands to disconnect users logged into the switch. |
-| `nv action enable system maintenance mode`<br>`nv action enable system maintenance ports`| Enables system maintenance mode.<br> Brings all the ports down for maintenance. |
-| `nv action import system security ca-certificate`<br>`nv action import system security certificate` | Provides commands to import CA and entity certificates. |
-| `nv action reboot system` |  Reboots the switch in the configured restart mode ({{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="fast, cold, or warm">}}). You must specify the `no-confirm` option with this command. |
-|`nv action rename`| Renames the system configuration.|
-|`nv action upload` | Uploads system configuration to the switch.|
+| `nv action delete` | Provides commands to delete images, log files, packages, CA and entity certificates and tech support files. |
+| `nv action disable`| Provides commands to disable {{<link url="In-Service-System-Upgrade-ISSU/#maintenance-mode" text="system maintenance mode">}} and {{<link url="Zero-Touch-Provisioning-ZTP" text="ZTP scripts">}}.|
+| `nv action disconnect`|  Provides commands to disconnect users logged into the switch. |
+| `nv action enable`| Provides commands to enable {{<link url="In-Service-System-Upgrade-ISSU/#maintenance-mode" text="system maintenance mode">}} and {{<link url="Zero-Touch-Provisioning-ZTP" text="ZTP scripts">}}. |
+| `nv action export`| Exports a system configuration file.|
+| `nv action fetch`| Fetches image files, package files, configuration files, and platform firmware. |
+| `nv action generate` | Generates {{<link url="Understanding-the-cl-support-Output-File/#manual-cl-support-file" text="cl-support files">}}.|
+| `nv action import` | Provides commands to import CA and entity certificates. |
+| `nv action install` | Installs {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="system image files">}}. |
+| `nv action lookup`| Looks up the route in the routing table for a specific destination. |
+| `nv action ping` | Provides commands to run {{<link url="Network-Troubleshooting/#ping" text="ping">}}.|
+| `nv action reboot` | Reboots the switch in the configured restart mode ({{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="fast, cold, or warm">}}). You must specify the `no-confirm` option with this command. |
+| `nv action rename` | Provides commands to rename system image files.|
+| `nv action reset` | Provides commands to {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#reset-a-transceiver" text="reset transceivers">}} and to reset the switch to {{<link url="Factory-Reset" text="factory defaults">}}.|
+| `nv action rotate` | Provides commands to {{<link url="Log-Files-with-NVUE/#rotate-the-system-log-file" text="rotate the system log file">}}.|
+| `nv action run` | Provides commands to run {{<link url="Zero-Touch-Provisioning-ZTP" text="ZTP scripts">}}.|
+| `nv action schedule` | Configures the schedule for {{<link url="ASIC-Monitoring/#high-frequency-telemetry" text="high frequency telemetry data collection">}}.|
+| `nv action traceroute` | Provides commands to run {{<link url="Network-Troubleshooting/#traceroute" text="traceroute">}}.|
+| `nv action rename`| Renames the system configuration.|
+| `nv action upgrade` | Upgrades system packages.|
+| `nv action upload` | Uploads {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="system image files">}}, {{<link url="Understanding-the-cl-support-Output-File/#manual-cl-support-file" text="cl-support files">}}, and configuration files to the switch.|
 
 ### List All NVUE Commands
 
@@ -365,7 +379,7 @@ NVUE manages the following configuration files:
 
 ## Search for a Specific Configuration
 
-To search for a specific portion of the NVUE configuration, run the `nv config find <search string>` command. The search shows all items above and below the search string. For example, to search the entire NVUE object model configuration for any mention of `ptm`:
+To search for a specific portion of the NVUE configuration, run the `nv config find <search string>` command. The search shows all items above and below the search string. For example, to search the entire NVUE object model configuration for any mention of `bond1`:
 
 ```
 cumulus@switch:~$ nv config find bond1

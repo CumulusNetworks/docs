@@ -452,10 +452,6 @@ iface lo inet loopback
 {{< /tab >}}
 {{< /tabs >}}
 
-{{%notice note%}}
-If you configure an IP address without a subnet mask, it becomes a /32 IP address. For example, 10.10.10.1 is 10.10.10.1/32.
-{{%/notice%}}
-
 You can add multiple loopback addresses. For more information, see {{<link url="Interface-Configuration-and-Management/#loopback-interface" text="Interface Configuration and Management">}}.
 
 ## Show Platform and System Settings

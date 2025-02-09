@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4277143"></a> [4277143](#4277143) <a name="4277143"></a> <br /> | After a factory reset with the <code>nv action reset system factory-default force</code> command, RADIUS does not fully reset; the <code>radius-cmd-acct</code> package is not installed correctly and includes missing files. In addition, <code>/etc/pam.d/common-auth</code> is incorrect. | 5.11.0 | 5.12.0|
 | <a name="4271232"></a> [4271232](#4271232) <a name="4271232"></a> <br /> | A Python version change removed the encoding argument parameter of the json loads function, which causes an exception. | 5.11.0-5.12.0 | |
 | <a name="4271229"></a> [4271229](#4271229) <a name="4271229"></a> <br /> | After rebooting the spine switch in an EVPN multihoming configuration, the BGP EVPN Type-2 entry is missing, which causes flooding and duplicates in the fabric. To work around this issue, flush the IP neighbor entries with the <code>sudo ip neigh flush x.x.x.x</code> command. | 5.9.1-5.12.0 | |
 | <a name="4271228"></a> [4271228](#4271228) <a name="4271228"></a> <br /> | After rebooting the spine switch in an EVPN multihoming configuration, the BGP EVPN Type-2 entry is missing, which causes flooding and duplicates in the fabric. To work around this issue, flush the IP neighbor entries with the <code>sudo ip neigh flush x.x.x.x</code> command. | 5.9.1-5.12.0 | |

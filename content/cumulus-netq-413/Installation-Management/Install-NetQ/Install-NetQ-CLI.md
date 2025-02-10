@@ -1,7 +1,7 @@
 ---
 title: Install NetQ CLI
 author: NVIDIA
-weight: 220
+weight: 210
 toc: 4
 --- 
 
@@ -10,7 +10,7 @@ Installing the NetQ CLI on your NetQ VMs, switches, or hosts gives you access to
 After installing the NetQ software and agent on each switch you want to monitor, you can also install the NetQ CLI on switches running:
 
 - Cumulus Linux 5.0.0 or later (Spectrum switches)
-- Ubuntu 20.04, 22.04
+- Ubuntu 22.04
 
 {{<notice note>}}
 If your network uses a proxy server for external connections, you should first {{<kb_link latest="cl" url="System-Configuration/Configuring-a-Global-Proxy.md" text="configure a global proxy">}} so <code>apt-get</code> can access the software package in the NetQ repository.
@@ -189,7 +189,7 @@ deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest
 ```
 
 {{<notice tip>}}
-You can specify a NetQ CLI version in the repository configuration. The following example shows the repository configuration to retrieve NetQ CLI v4.12: <pre>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-4.12</pre>
+You can specify a NetQ CLI version in the repository configuration. The following example shows the repository configuration to retrieve NetQ CLI v4.13: <pre>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-4.13</pre>
 {{</notice>}}
 
 

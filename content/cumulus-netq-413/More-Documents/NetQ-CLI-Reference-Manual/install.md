@@ -85,8 +85,9 @@ Installs the NetQ software for an on-premises HA scale cluster deployment. Run t
 
 ```
 netq install cluster bundle
-    bundle <text-bundle-url>
+    <text-bundle-url>
     <text-cluster-config>
+    [restore <text-backup-file>]
 ```
 
 ### Required Arguments
@@ -95,14 +96,17 @@ netq install cluster bundle
 | ---- | ---- | ---- |
 | bundle | \<text-bundle-url\> | Install the NetQ software bundle at this location; you must specify a full path |
 | NA | \<text-cluster-config\> | Specify the cluster configuration JSON file  |
+
 ### Options
 
-None
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| restore | \<text-backup-file\> | Specify the path where the backup .tar file resides |
 
 ### Sample Usage
 
 ```
-cumulus@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.12.0.tgz /tmp/cluster-install-config.json
+cumulus@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.13.0.tgz /tmp/cluster-install-config.json restore /home/cumulus/combined_backup_20241211111316.tar
 ```
 
 ### Related Commands
@@ -113,11 +117,7 @@ cumulus@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.12.0.
 ## netq install cluster config generate
 
 Run this command on your *master* node to generates a JSON template that you can use to specify your VM's cluster configuration attributes as part of the high-availability scale cluster deployment.
-<!--not applicable for 4.12
-netq install cluster config generate workers 
-    <text-cluster-nworkers> 
-    [<text-config-json-file>]
--->
+
 ### Syntax
 
 ```
@@ -147,6 +147,40 @@ cumulus@netq-server:~$ netq install cluster config generate
 
 - - -
 
+## netq install cluster config generate workers
+
+For a 5-node scale cluster, run this command on your master node to generate a cluster configuration JSON file with 2 additional `worker-nodes` objects.
+
+### Syntax
+
+```
+netq install cluster config generate workers
+    <text-cluster-nworkers> 
+    [<text-config-json-file>]
+```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| workers | \<text-cluster-nworkers\> | Adds *n* number of `worker-nodes` objects. For 5-node clusters, this value should be 2.|
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<text-config-json-file\> | Generate the file at this location; you must specify a full path |
+
+### Sample Usage
+
+```
+cumulus@netq-server:~$ netq install cluster config generate workers 2
+2024-10-28 17:29:53.260462: master-node-installer: Writing cluster installation configuration template file @ /tmp/cluster-install-config.json
+```
+### Related Commands
+
+- `netq install cluster bundle`
+
+- - -
 ## netq install cluster full
 
 Installs the NetQ software for an on-premises, server cluster deployment. Run this command on your *master* node. You must have the hostname or IP address of the master node, two worker nodes, virtual IP address, and the NetQ software bundle to run the command.
@@ -167,6 +201,7 @@ netq install cluster full
     cluster-vip <text-cluster-vip> 
     [ipv6]
     [s3-access-key <text-s3-access-key> s3-secret-key <text-s3-secret-key>]
+    [restore <text-backup-file>]
 ```
 
 ### Required Arguments
@@ -178,6 +213,7 @@ netq install cluster full
 | bundle | \<text-bundle-url\> | Install the NetQ software bundle at this location; you must specify a full path |
 | workers | \<text-worker-01\> \<text-worker-02\> | Install the worker nodes with these IPv4 addresses |
 | cluster-vip | \<text-cluster-vip\> | Specify a virtual IP address from the same subnet used for your master and worker nodes |
+
 ### Options
 
 | Option | Value | Description |
@@ -188,11 +224,12 @@ netq install cluster full
 | workers-ipv6 | \<text-worker-ipv6-01\> \<text-worker-ipv6-02\> | Install the worker nodes with these IPv6 addresses |
 | s3-access-key | \<text-s3-access-key\> | AWS S3 access key ID |
 | s3-secret-key| \<text-s3-secret-key\>| AWS S3 secret key ID |
+| restore | \<text-backup-file\> | Specify the path where the backup .tar file resides |
 
 ### Sample Usage
 
 ```
-cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.12.0.tgz workers 10.20.10.25 10.20.10.45 cluster-vip 10.20.10.254
+cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.13.0.tgz workers 10.20.10.25 10.20.10.45 cluster-vip 10.20.10.254
 ```
 
 ### Related Commands
@@ -231,25 +268,34 @@ cumulus@<hostname>:~$ netq install cluster master-init
 - `netq install cluster worker-init`
 
 - - -
-<!--unhide when workflow is GA
 ## netq install cluster worker add
+
+Adds additional worker nodes to an existing HA scale cluster. Use this command to generate a JSON configuration template referencing the number of additional worker nodes you want to add. See the {{<link title="Set Up Your Virtual Machine for an On-premises HA Scale Cluster/#add-additional-worker-nodes" text="scale cluster deployment guide">}} for more information.
 
 ### Syntax
 
 ```
 netq install cluster worker add <text-cluster-config>
+    [restore <text-backup-file>]
 ```
 ### Required Arguments
-| NA | \<text-cluster-config\> | Specify the cluster configuration JSON file  |
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<text-cluster-config\> | Specify the cluster configuration JSON file |
 
 ### Options
 
-None
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| restore | \<text-backup-file\> | Specify the path where the backup .tar file resides |
 
 ### Related Commands
 
+- `netq install cluster config generate`
+
 - - -
--->
+
 ## netq install cluster worker-init
 
 After initializing the cluster on the master node, run this command on each worker node.
@@ -334,6 +380,7 @@ netq install opta cluster full
     cluster-vip <text-cluster-vip>
     [proxy-host <text-proxy-host> proxy-port <text-proxy-port>]
     [s3-access-key <text-s3-access-key> s3-secret-key <text-s3-secret-key>]
+    [restore <text-backup-file>]
 ```
 
 ### Required Arguments
@@ -358,11 +405,12 @@ netq install opta cluster full
 | service-ip-range | \<text-service-ip-range\> | Specify a range of IP addresses for the service |
 | s3-access-key | \<text-s3-access-key\> | AWS S3 access key ID |
 | s3-secret-key| \<text-s3-secret-key\>| AWS S3 secret key ID |
+| restore | \<text-backup-file\> | Specify the path where the backup .tar file resides |
 
 ### Sample Usage
 
 ```
-cumulus@<hostname>:~$ netq install opta cluster full interface en01 bundle /mnt/installables/NetQ-4.12.0.tgz config-key CI39fo5CZ3cucHJvZDEubmV0cS5jdW11bHVzbmVp6z8ma3MuY29tGLsD workers 10.20.10.25 10.20.10.45 cluster-vip 10.20.10.254
+cumulus@<hostname>:~$ netq install opta cluster full interface en01 bundle /mnt/installables/NetQ-4.13.0.tgz config-key CI39fo5CZ3cucHJvZDEubmV0cS5jdW11bHVzbmVp6z8ma3MuY29tGLsD workers 10.20.10.25 10.20.10.45 cluster-vip 10.20.10.254
 ```
 
 ### Related Commands
@@ -416,6 +464,7 @@ netq install opta standalone full
     [service-ip-range <text-service-ip-range>]
     [proxy-host <text-proxy-host> proxy-port<text-proxy-port>]
     [s3-access-key <text-s3-access-key> s3-secret-key <text-s3-secret-key>]
+    [restore <text-backup-file>]
 ```
 
 ### Required Arguments
@@ -437,11 +486,13 @@ netq install opta standalone full
 | proxy-port | \<text-proxy-port\> | Use this port on the proxy server instead of directly connecting to the VM; you must also specify a proxy host |
 | s3-access-key | \<text-s3-access-key\> | AWS S3 access key ID |
 | s3-secret-key| \<text-s3-secret-key\>| AWS S3 secret key ID |
+| restore | \<text-backup-file\> | Specify the path where the backup .tar file resides |
+
 
 ### Sample Usage
 
 ```
-cumulus@<hostname>:~$ netq install opta standalone full interface en01 bundle /mnt/installables/NetQ-4.12.0.tgz config-key CI39fo5CZ3cucHJvZDEubmV0cS5jdW11bHVzbmVp6z8ma3MuY29tGLsD
+cumulus@<hostname>:~$ netq install opta standalone full interface en01 bundle /mnt/installables/NetQ-4.13.0.tgz config-key CI39fo5CZ3cucHJvZDEubmV0cS5jdW11bHVzbmVp6z8ma3MuY29tGLsD
 ```
 
 ### Related Commands
@@ -539,6 +590,7 @@ netq install standalone full
     [pod-ip-range <text-pod-ip-range>]
     [service-ip-range <text-service-ip-range>]
     [s3-access-key <text-s3-access-key> s3-secret-key <text-s3-secret-key>]
+    [restore <text-backup-file>]
 ```
 ### Required Arguments
 
@@ -559,11 +611,12 @@ netq install standalone full
 | service-ip-range | \<text-service-ip-range\> | Specify a range of IP addresses for the service |
 | s3-access-key | \<text-s3-access-key\> | AWS S3 access key ID |
 | s3-secret-key| \<text-s3-secret-key\>| AWS S3 secret key ID |
+| restore | \<text-backup-file\> | Specify the path where the backup .tar file resides |
 
 ### Sample Usage
 
 ```
-cumulus@<hostname>:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.12.0.tgz
+cumulus@<hostname>:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.13.0.tgz
 ```
 
 ### Related Commands

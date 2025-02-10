@@ -64,7 +64,7 @@ The data aggregation component collects data coming from all of the NetQ Agents.
 
 ### Data Stores
 
-NetQ uses two types of data stores. The first stores the raw data, data aggregations, and discrete events needed for quick response to data requests. The second stores data based on correlations, transformations, and raw-data processing. Refer to {{<link title="Data Retention Policies">}} for information about the types of data NetQ collects.
+NetQ uses two types of data stores. The first stores the raw data, data aggregations, and discrete events needed for quick response to data requests. The second stores data based on correlations, transformations, and raw-data processing. Refer to {{<link title="Data Retention">}} for information about the types of data NetQ collects.
 
 <!-- vale off -->
 ### Real-time Streaming

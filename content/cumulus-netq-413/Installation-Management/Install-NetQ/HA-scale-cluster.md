@@ -392,7 +392,7 @@ After NetQ is installed, you can {{<link title="Access the NetQ UI" text="log in
 
 ## Add Additional Worker Nodes
 
-When the number of devices in your network grows, you can add additional nodes to your cluster deployment so that NetQ remains operational and can accommodate the additional devices. Refer to the  {{<link title="Before You Install/#installation-overview" text="Installation Overview">}} for device support information.
+When the number of devices in your network grows, you can add additional nodes to your cluster deployment so that NetQ remains operational and can accommodate the additional devices. Refer to the {{<link title="Before You Install/#installation-overview" text="Installation Overview">}} for device support information.
 
 To add additional worker nodes to an existing HA scale cluster, generate a JSON configuration template referencing the number of additional worker nodes you want to add. For example, to expand a 3-node cluster to a 5-node cluster, run the `netq install cluster config generate workers 2` command to generate the JSON configuration template, `/tmp/cluster-install-config.json`:
 

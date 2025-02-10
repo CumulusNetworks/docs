@@ -19,6 +19,24 @@
 <td></td>
 </tr>
 <tr>
+<td>4271232</td>
+<td>A Python version change removed the encoding argument parameter of the json loads function, which causes an exception.</td>
+<td>5.11.0-5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4271229</td>
+<td>After rebooting the spine switch in an EVPN multihoming configuration, the BGP EVPN Type-2 entry is missing, which causes flooding and duplicates in the fabric. To work around this issue, flush the IP neighbor entries with the {{sudo ip neigh flush x.x.x.x}} command.</td>
+<td>5.9.1-5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4271228</td>
+<td>After rebooting the spine switch in an EVPN multihoming configuration, the BGP EVPN Type-2 entry is missing, which causes flooding and duplicates in the fabric. To work around this issue, flush the IP neighbor entries with the {{sudo ip neigh flush x.x.x.x}} command.</td>
+<td>5.9.1-5.12.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4271216</td>
 <td>NVUE overwrites the MOTD file during NVUE configuration with no option to ignore.</td>
 <td>5.11.0-5.12.0</td>
@@ -31,9 +49,45 @@
 <td></td>
 </tr>
 <tr>
+<td>4271213</td>
+<td>When IPv4 layer 3 switch ports and virtual interfaces flap, {{switchd}} might send an ICMP Reply message instead of an ARP request (although no ICMP request was sent). Multiple ICMP Replies might be sent to any of the neighbor IP addresses of that interface.</td>
+<td>5.9.2-5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4271212</td>
+<td>When IPv4 layer 3 switch ports and virtual interfaces flap, {{switchd}} might send an ICMP Reply message instead of an ARP request (although no ICMP request was sent). Multiple ICMP Replies might be sent to any of the neighbor IP addresses of that interface.</td>
+<td>5.9.2-5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4271207</td>
+<td>Stale Next Hop Groups are left in the kernel resulting in polarized Adaptive Routing traffic.</td>
+<td>5.10.1-5.12.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4262480</td>
 <td>NVUE fails to apply numbered BGP large community lists (community lists with multiple rules). To work around this issue, use named large community lists.</td>
 <td>5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4260018</td>
+<td>NVUE does not let you set the IPv6 RA lifetime to zero. To work around this issue, run the vtysh command.</td>
+<td>5.11.0-5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4260012</td>
+<td>If all of the neighbors returned in the {{nv show vrf &lt;vrf&gt; router bgp neighbor}} command output have no {{address-family}} configuration, you see an internal error when the nested table in the  output is being rendered.</td>
+<td>5.10.0-5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4260011</td>
+<td>If all of the neighbors returned in the {{nv show vrf &lt;vrf&gt; router bgp neighbor}} command output have no {{address-family}} configuration, you see an internal error when the nested table in the  output is being rendered.</td>
+<td>5.10.0-5.12.0</td>
 <td></td>
 </tr>
 <tr>
@@ -56,9 +110,63 @@
 <td></td>
 </tr>
 <tr>
+<td>4248626</td>
+<td>The {{nv show system ztp}} command might report an error when you use a system local that represents time differently from {{%a %b %d %H:%M:%S %Y %Z}}.</td>
+<td>5.11.0-5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4246859</td>
+<td>The {{nv show service ntp &lt;vrf&gt;}} command displays the peers that are discovered together with the configured NTP servers instead of displaying only the NTP configuration. As a result, the "applied" and "operational" columns have different values, which causes confusion.</td>
+<td>5.11.0-5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4246858</td>
+<td>The {{nv show service ntp &lt;vrf&gt;}} command displays the peers that are discovered together with the configured NTP servers instead of displaying only the NTP configuration. As a result, the "applied" and "operational" columns have different values, which causes confusion.</td>
+<td>5.11.0-5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4245856</td>
+<td>The {{nv show platform transceiver &lt;interface&gt;}} command sometimes does not show transceiver data for layer 3 Dot1q subinterfaces (such as swp2.10). To work around this issue, run the {{ethtool -m &lt;interface&gt;}} command.</td>
+<td>5.11.0-5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4245853</td>
+<td>NVUE Rest API calls that are authenticated with TACACS on the switch append unnecessary database entries to the {{/run/tacacs_clent_map}} file, which increases the file size. Over time, this increases the TACACS login authentication time, resulting in delayed login authentication. To work around this issue, delete the {{tacacs_client_map}} file with the {{sudo rm rf /run/tacacs_client_map}} command.</td>
+<td>5.11.0-5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4245852</td>
+<td>NVUE Rest API calls that are authenticated with TACACS on the switch append unnecessary database entries to the {{/run/tacacs_clent_map}} file, which increases the file size. Over time, this increases the TACACS login authentication time, resulting in delayed login authentication. To work around this issue, delete the {{tacacs_client_map}} file with the {{sudo rm rf /run/tacacs_client_map}} command.</td>
+<td>5.11.0-5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4245850</td>
+<td>When using the REST API  to move a port from one bridge to another bridge, the {{bridge-vlan}} configuration on the port might be programmed incorrectly. To resolve the issue,  run the {{ifreload -a}} command.</td>
+<td>5.9.1-5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4245819</td>
+<td>A Python version change removed the encoding argument parameter of the json loads function, which causes an exception.</td>
+<td>5.11.0-5.12.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4214678</td>
 <td>Changes to open telemetry configuration or export states restarts the telemetry service and resets all health metrics.</td>
 <td>5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4214550</td>
+<td>When using the REST API  to move a port from one bridge to another bridge, the {{bridge-vlan}} configuration on the port might be programmed incorrectly. To resolve the issue,  run the {{ifreload -a}} command.</td>
+<td>5.9.1-5.12.0</td>
 <td></td>
 </tr>
 <tr>
@@ -67,6 +175,12 @@
 cumulus@switch:~$ sudo pam-auth-update --enable tacplus --force
 cumulus@switch:~$ sudo pam-auth-update --enable unix --force</td>
 <td>5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4200961</td>
+<td>If you use a bridge name that isn't {{br_default}}, NVUE generates incorrect ptp4l.conf files.</td>
+<td>5.10.0-5.12.0</td>
 <td></td>
 </tr>
 <tr>
@@ -81,6 +195,19 @@ cumulus@switch:~$ sudo pam-auth-update --enable unix --force</td>
 cumulus@switch:~$ sudo apt-get update
 cumulus@switch:~$ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "Dpkg::Options::=--force-confdef" -o "Dpkg::Options::=--force-confold" upgrade</td>
 <td>5.11.0-5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4175217</td>
+<td>When there is a large number of discontiguous VTEP to VLAN mappings, {{switchd}} crashes with a Netlink error similar to the following:
+netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported truncated message</td>
+<td>5.10.1-5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4173498</td>
+<td>After network churn, the {{﻿watchfrr}} process might restart FRR because zebra is unresponsive.</td>
+<td>5.9.1-5.12.0</td>
 <td></td>
 </tr>
 <tr>
@@ -152,9 +279,27 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <td></td>
 </tr>
 <tr>
+<td>4101027</td>
+<td>After you add a VLAN to a bridge member port,  you might experience a few seconds of VXLAN traffic loss.</td>
+<td>5.7.0-5.12.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4100629</td>
 <td>NVUE show command outputs show LLDP neighbor changes only after the LLDP update frequency multiplied by the hold time.</td>
 <td>5.11.0-5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4100170</td>
+<td>The NVUE Service fails to start after an upgrade from Cumulus Linux 5.9 to Cumulus Linux 5.10 because of a corrupted database.</td>
+<td>5.10.0-5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4100164</td>
+<td>Low power Intel SATA controllers experience issues when using the {{mobile}} low power chipset LPM policy. This can cause the SSD to become read only.</td>
+<td>5.8.0-5.12.0</td>
 <td></td>
 </tr>
 <tr>

@@ -234,7 +234,7 @@ The NVUE configuration management commands manage and apply configurations.
 | `nv config patch <nvue-file>` | {{<link url="NVUE-CLI/#replace-and-patch-a-pending-configuration" text="Updates the pending configuration">}} with the specified YAML configuration file. |
 | `nv config replace <nvue-file>` | {{<link url="NVUE-CLI/#replace-and-patch-a-pending-configuration" text="Replaces the pending configuration">}} with the specified YAML configuration file. |
 |`nv config revision` | Shows all the configuration revisions on the switch. |
-| `nv config save` | {{<link url="NVUE-CLI/#auto-save" text="overwrites the startup configuration">}} with the applied configuration by writing to the `/etc/nvu.d/startup.yaml` file. The configuration persists after a reboot. Use this command when the auto save option is off.|
+| `nv config save` | {{<link url="NVUE-CLI/#auto-save" text="Overwrites the startup configuration">}} with the applied configuration by writing to the `/etc/nvu.d/startup.yaml` file. The configuration persists after a reboot. Use this command when the auto save option is off.|
 | `nv config show` | Shows the {{<link url="NVUE-CLI/#show-switch-configuration" text="currently applied configuration">}} in `yaml` format. This command also shows NVUE version information. |
 | `nv config show -o commands` | Shows the currently applied configuration commands. |
 | `nv config diff -o commands` | Shows differences between two configuration revisions. |

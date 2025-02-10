@@ -189,7 +189,7 @@ deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest
 ```
 
 {{<notice tip>}}
-You can specify a NetQ CLI version in the repository configuration. The following example shows the repository configuration to retrieve NetQ CLI v4.12: <pre>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-4.12</pre>
+You can specify a NetQ CLI version in the repository configuration. The following example shows the repository configuration to retrieve NetQ CLI v4.13: <pre>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-4.13</pre>
 {{</notice>}}
 
 

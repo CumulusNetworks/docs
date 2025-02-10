@@ -228,6 +228,14 @@ cumulus@switch:~$ sudo userdel admin2
 {{< /tab >}}
 {{< /tabs >}}
 
+## Disconnect User Account Active Terminals
+
+To disconnect all active terminals for a user account, run the `nv action disconnect system aaa user <user-account>` command.
+
+```
+cumulus@switch:~$ nv action disconnect system aaa user admin3
+```
+
 ## Show User Accounts
 
 To show the user accounts configured on the system, run the NVUE `nv show system aaa` command or the linux `sudo cat /etc/passwd` command.

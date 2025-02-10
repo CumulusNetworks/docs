@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4286489</td>
+<td>Optimized (two partition) upgrade and rollback fails when you apply configuration by editing the {{/etc/nvue.d/startup.yaml}} file, then run {{nv config apply startup}}. To work around this issue, after activating optimized &lt;b&gt;upgrade&lt;/b&gt;, but &lt;b&gt;before&lt;/b&gt; rebooting, save a copy of the contents of {{/var/lib/nvue/}} to some other location. Then, &lt;b&gt;after&lt;/b&gt; activating &lt;b&gt;rollback&lt;/b&gt;, but &lt;b&gt;before&lt;/b&gt; rebooting, move {{/var/lib/nvue/}} to some other location and copy the previously saved contents to {{/var/lib/nvue/}}.</td>
+<td>5.12.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4280299</td>
 <td>The {{nv action fetch system packages key &lt;key-id&gt;}} command fails if the key ID is an scp/ftp or URL path that requires a password to access the key. To work around this issue, use a URI that does not require password authentication for the key ID.</td>
 <td>5.12.0</td>
@@ -52,6 +58,14 @@
 <tr>
 <td>4214678</td>
 <td>Changes to open telemetry configuration or export states restarts the telemetry service and resets all health metrics.</td>
+<td>5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4210596</td>
+<td>After a factory reset, TACACS does not work. To work around this issue, run the following commands one after the other:
+cumulus@switch:~$ sudo pam-auth-update --enable tacplus --force
+cumulus@switch:~$ sudo pam-auth-update --enable unix --force</td>
 <td>5.12.0</td>
 <td></td>
 </tr>
@@ -608,6 +622,11 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>4280823</td>
 <td>When you configure an invalid switch port (swp), NVUE adds the invalid configuration instead of rejecting it. The invalid interface in the configuration does not have any functional impact.</td>
 <td></td>
+</tr>
+<tr>
+<td>4277143</td>
+<td>After a factory reset with the {{nv action reset system factory-default force}} command, RADIUS does not fully reset; the {{radius-cmd-acct}} package is not installed correctly and includes missing files. In addition, {{/etc/pam.d/common-auth}} is incorrect.</td>
+<td>5.11.0</td>
 </tr>
 <tr>
 <td>4270957</td>

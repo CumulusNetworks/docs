@@ -43,11 +43,11 @@ To create a filter in the NetQ UI:
 
 1. Expand the Events card to full-screen.
 
-2. Use the controls above the events summary to create a filter according to time parameters, hostname, type, or severity.
+2. Use the controls above the events summary to create a filter according to time parameters, hostname, event type, or event severity.
 
 3. Select **Save filters** and enter a descriptive name for the filter. Then select **Save**.
 
-The events summary now displays the filtered data. Select the X in the top-right corner to navigate back to your dashboard. The events card displays a filter with a red dot, indicating that you are viewing filtered data. Hover your mouse over the filter to view its name. 
+The events summary now displays the filtered data. Select the X in the top-right corner to return to your workbench. The events card displays a filter with a red dot, indicating that you are viewing filtered data. Hover your mouse over the filter to view its name. If you have not included a custom time filter, you can select the clock <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg" height="18" width="18"/> to adjust the time period of the data reflected on the card.
 
 To clear or delete the filter, expand the card to full-screen and select **Clear all filters** from above the table. When you remove cards from a workbench, the cards' respective filters are also deleted. Note that when you clone a workbench, you must recreate the filters on the new, cloned workbench. 
 

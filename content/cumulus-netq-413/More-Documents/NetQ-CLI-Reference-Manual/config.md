@@ -80,6 +80,7 @@ netq config add agent command
     service-key <text-service-key-anchor>
     [poll-period <text-cmd-periodicity>]
     [command <text-cmd-text>]
+    [timeout <text-cmd-timeout>]
     [enable True | enable False]
 ```
 
@@ -95,6 +96,7 @@ netq config add agent command
 | ---- | ---- | ---- |
 | poll-period | \<text-cmd-periodicity\> | Set the polling period (in seconds) for the NetQ Agent command with the designated service key |
 | command | \<text-cmd-text\> | Run this executable command for the NetQ Agent command with the designated service key |
+| timeout | \<text-cmd-timeout\> | Set the timeout interval (in seconds) for the NetQ Agent command with the designated service key |
 | enable | True, False | Enable (True) or disable (False) the NetQ Agent command with the designated service key |
 
 ### Sample Usage
@@ -153,6 +155,7 @@ Command Service ntp is disabled
 
 - `netq config show agent`
 - `netq config agent factory-reset`
+- `netq config del agent global-timeout`
 
 - - -
 
@@ -556,7 +559,7 @@ Restarting netq-agent... Success!
 
 ## netq config add agent wjh
 
-Configures the NetQ Agent to collect and send What Just Happened events from  NVIDIA Spectrum&trade; switches. Refer to the {{<link title="WJH Events Reference" text="WJH events reference">}} for a list of supported WJH events and to {{<link title="Configure and Monitor What Just Happened" text="WJH configuration">}} for configuration information.
+Configures the NetQ Agent to collect and send What Just Happened events from NVIDIA Spectrum switches. Refer to the {{<link title="WJH Events Reference" text="WJH events reference">}} for a list of supported WJH events and to {{<link title="Configure and Monitor What Just Happened" text="WJH configuration">}} for configuration information.
 
 ### Syntax
 
@@ -683,6 +686,8 @@ cumulus@switch:~$ sudo netq config add agent wjh-drop-filter ips 192.168.0.15/16
 - `netq config show agent wjh-drop-filter`
 
 - - -
+
+<!--## netq config add agent wjh-simulation added in 4.13, not for external users-->
 
 ## netq config add agent wjh-threshold
 
@@ -920,7 +925,7 @@ Disables or removes NetQ Agent configurations on a switch.
 
 ```
 netq config del agent 
-    [asic-monitor|cluster-servers|cpu-limit|frr-monitor|loglevel|server|spice|ssl|stats|wjh] 
+    [asic-monitor|cluster-servers|cpu-limit|frr-monitor|global-timeout|loglevel|server|spice|ssl|stats|wjh] 
     [json]
 ```
 ### Required Arguments
@@ -933,7 +938,8 @@ None
 | ---- | ---- | ---- |
 | asic-monitor | NA | Stop the NetQ Agent from monitoring ASICs |
 | cluster-servers | NA | Remove all cluster servers configured to receive NetQ Agent data |
-| cpu-limit | NA | Remove CPU usage limit for the NetQ Agent on this device | 
+| cpu-limit | NA | Remove CPU usage limit for the NetQ Agent on this device |
+| global-timeout | NA | Remove any timeout interval configurations from the NetQ Agent | 
 | frr-monitor | NA | Stop the NetQ Agent from monitoring FRR when running in a container |
 | loglevel | NA | Stop the NetQ Agent from logging events about the agent |
 | server | NA | Delete the current destination of NetQ Agent data and API requests |
@@ -1316,7 +1322,7 @@ Displays the configuration of the NetQ Agent on a switch. Several forms of this 
 
 ```
 netq config show agent 
-    [asic-monitor|cpu-limit|frr-monitor|loglevel|services|ssl|stats|wjh|wjh-drop-filter|wjh-threshold] 
+    [asic-monitor|cpu-limit|frr-monitor|global-timeout|loglevel|services|ssl|stats|wjh|wjh-drop-filter|wjh-threshold] 
     [json]
 ```
 ### Required Arguments
@@ -1330,6 +1336,7 @@ None
 | asic-monitor | NA | Display NetQ Agent ASIC monitoring configuration |
 | cpu-limit | NA | View the maximum percentage of CPU resources that the NetQ Agent can use |
 | frr-monitor | NA | Display FRR monitoring configuration |
+| global-timeout | NA | Display the NetQ Agent timeout interval configuration |
 | loglevel | NA | Display the NetQ Agent logging level configuration |
 | services | NA | Display custom services and processes configuration |
 | ssl | NA | Display SSL configuration |
@@ -1338,6 +1345,7 @@ None
 | wjh-drop-filter | NA | Display NetQ Agent WJH filter configuration |
 | wjh-threshold | NA | Display NetQ Agent WJH latency and congestion thresholds configuration |
 | json | NA | Display the output in JSON format |
+
 ### Sample Usage
 
 ```

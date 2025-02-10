@@ -7,7 +7,7 @@ toc: 2
 
 NetQ periodically runs default validations to verify whether devices, hosts, network protocols, and services are operating as expected. These validations measure what NetQ expects from a healthy network against the data it receives from the network it is monitoring. When NetQ detects an anomaly or inconsistency, the system will broadcast an event.
 
-NetQ excludes certain checks from running by default. You can run an {{<link title="Validate Network Protocol and Service Operations#on-demand-validations" text="on-demand validation">}} or {{<link title="Validate Network Protocol and Service Operations#schedule-a-validation" text="schedule a validation">}} to view validation results for those protocols and services.
+By default, NetQ excludes certain validation tests to reduce the number of event notifications. You can run an {{<link title="Validate Network Protocol and Service Operations#on-demand-validations" text="on-demand validation">}} or {{<link title="Validate Network Protocol and Service Operations#schedule-a-validation" text="schedule a validation">}} to view validation results for those protocols and services.
 
 The following table displays the validation categories. Refer to the {{<link title="Validation Tests Reference" text="Validation Reference">}} for a comprehensive breakdown of each test included in each category.
 

@@ -66,7 +66,7 @@ Using <em>wjh_dump.py</em> on an NVIDIA platform that is running Cumulus Linux a
 
 ## View What Just Happened Metrics
 
-You can view the WJH metrics from the NetQ UI or the NetQ CLI. WJH metrics are visible on the WJH card and the Events card. To view the metrics on the Events card, open the large card and select the WJH tab at the top of the card. For a more detailed view, open the WJH card.
+WJH metrics are available on the WJH and Events cards. To view the metrics on the Events card, open the large card and select the WJH tab at the top of the card. For a more detailed view, open the WJH card. You can {{<link title="Monitor Events/#create-event-filters" text="create, save, and apply filters">}} to show a subset of events from either the Events or WJH cards.
 
 {{<tabs "WJH metrics">}}
 
@@ -80,7 +80,7 @@ You can expand the card to see a detailed summary of WJH data, including devices
 
    {{<figure src="/images/netq/wjh-large-450.png" alt="expanded what just happened card displaying devices with the most drops" width="700">}}
 
-Expand the card to its largest size to open the WJH dashboard. From here, you can create, save, and apply filters {{<link title="Monitor Events/#create-event-filters" text="create, save, and apply filters">}} to show a subset of events.
+Expand the card to its largest size to open the WJH dashboard.
 
    {{<figure src="/images/netq/wjh-fullscreen-450.png" alt="fully expanded what just happened card with detailed drop information" width="1000">}}
 

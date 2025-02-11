@@ -106,12 +106,12 @@ At the command prompt, press the Up Arrow and Down Arrow keys to move back and f
 
 ## Command Categories
 
-The NVUE CLI has a flat structure; however, the commands are in three functional categories:
+The NVUE CLI has a flat structure; however, the commands are in four functional categories:
 
-- Configuration
-- Monitoring
-- Configuration Management
-- Action
+- {{<link url="#configuration-commands" text="Configuration">}}
+- {{<link url="#monitoring-commands" text="Monitoring">}}
+- {{<link url="#configuration-management-commands" text="Configuration Management">}}
+- {{<link url="#action-commands" text="Action">}}
 
 ### Configuration Commands
 

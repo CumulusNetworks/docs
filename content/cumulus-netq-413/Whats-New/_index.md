@@ -29,6 +29,10 @@ You can upgrade directly to NetQ 4.13 if your deployment is running version 4.12
 - For on-premises deployments: {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}} and use the new data restoration workflow to install NetQ 4.13
 - For cloud deployments: perform a {{<link title="Install the NetQ System" text="fresh 4.13 installation">}}
 
+{{%notice note%}}
+When you upgrade to NetQ 4.13, any pre-existing event and validation data will be lost.
+{{%/notice%}}
+
 ## Compatible Agent Versions
 
 The NetQ 4.13 server is compatible with NetQ agent 4.12 or later. You can install NetQ agents on switches and servers running:

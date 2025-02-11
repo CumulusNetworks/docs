@@ -152,12 +152,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4242756</td>
-<td>A Python version change removed the encoding argument parameter of the json loads function, which causes an exception.</td>
-<td>5.11.0</td>
-<td>5.12.0</td>
-</tr>
-<tr>
 <td>4240584</td>
 <td>When you enable SNMP, Cumulus Linux enables and creates an {{agentx}} user called {{debian-snmp}} automatically for FRR. As a result, TACACS sends log messages similar to the following:
 &lt;&lt;sudo: nss_tacplus: TACACS+ server 10.23.1.0:49 read failed (-3) for user Debian-snmp: Success&gt;&gt;
@@ -299,12 +293,6 @@ cumulus@switch:~$ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "Dpkg::Optio
 <td>4176931</td>
 <td>The {{nv show platform firmware}} command results in a Python traceback and takes a long time to complete because the VX image does not support the {{smartctl}} utility.</td>
 <td>5.11.0</td>
-<td>5.12.0</td>
-</tr>
-<tr>
-<td>4175695</td>
-<td>If all of the neighbors returned in the {{nv show vrf &lt;vrf&gt; router bgp neighbor}} command output have no {{address-family}} configuration, you see an internal error when the nested table in the  output is being rendered.</td>
-<td>5.10.0-5.11.0</td>
 <td>5.12.0</td>
 </tr>
 <tr>

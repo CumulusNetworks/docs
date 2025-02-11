@@ -14,7 +14,7 @@ If you choose to configure Cumulus Linux with NVUE, you can configure features t
 
 ## Command Syntax
 
-NVUE commands all begin with `nv` and fall into one of three syntax categories:
+NVUE commands all begin with `nv` and fall into one of four syntax categories:
 - Configuration (`nv set` and ` nv unset`)
 - Monitoring (`nv show`)
 - Configuration management (`nv config`)

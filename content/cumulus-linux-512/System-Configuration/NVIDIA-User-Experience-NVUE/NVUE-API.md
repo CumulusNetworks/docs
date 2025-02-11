@@ -1553,7 +1553,7 @@ You can also use include or omit options for a query with a view to include or o
 The following example returns all the routes in the routing table and includes all attributes (the API request does not contain include or omit options):
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:NvidiaR0cks!' --insecure -X GET https://127.0.0.1:8765/nvue_v1/vrf/default/router/rib/ipv4/route
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure -X GET https://127.0.0.1:8765/nvue_v1/vrf/default/router/rib/ipv4/route
 {
   "10.0.1.12/32": {
     "route-entry": {
@@ -1663,7 +1663,7 @@ cumulus@switch:~$ curl -u 'cumulus:NvidiaR0cks!' --insecure -X GET https://127.0
 The following example returns all the routes in the routing table but only includes the protocol, uptime, and nexthop-group-id attributes:
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:NvidiaR0cks!' --insecure -X GET "https://127.0.0.1:8765/nvue_v1/vrf/default/router/rib/ipv4/route?include=/*/route-entry/*/protocol,/*/route-entry/*/nexthop-group-id,/*/route-entry/*/uptime"
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure -X GET "https://127.0.0.1:8765/nvue_v1/vrf/default/router/rib/ipv4/route?include=/*/route-entry/*/protocol,/*/route-entry/*/nexthop-group-id,/*/route-entry/*/uptime"
 {
   "10.0.1.12/32": {
     "route-entry": {
@@ -1725,7 +1725,7 @@ cumulus@switch:~$ curl -u 'cumulus:NvidiaR0cks!' --insecure -X GET "https://127.
 The following example returns all the routes in routing table but omits all other attributes (nexthop-group-id, protocol, uptime, distance, metrics, and flags):
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:NvidiaR0cks!' --insecure -X GET https://127.0.0.1:8765/nvue_v1/vrf/default/router/rib/ipv4/route?omit=/*/*
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure -X GET https://127.0.0.1:8765/nvue_v1/vrf/default/router/rib/ipv4/route?omit=/*/*
 {
   "10.0.1.12/32": {},
   "10.0.1.34/32": {},

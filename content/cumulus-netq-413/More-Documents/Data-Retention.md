@@ -11,7 +11,7 @@ NetQ deletes some types of data periodically to minimize database usage and incr
 | -------------| :---: |
 |Queue histograms | 3 |
 |Link health | 3 |
-|Validation results | 30*, 40**|
+|Validation results | 30*, 40<sup>†</sup>|
 |Flow analysis | 40 |
 |RoCE data | 40 |
 |Device inventory  | 40 |
@@ -20,5 +20,5 @@ NetQ deletes some types of data periodically to minimize database usage and incr
 |What Just Happened data | 40 |
 
 *30-day: BGP, EVPN, interfaces, MLAG, MTU, RoCE, VLAN, VXLAN<br>
-**40-day: addresses, agent, NTP, sensors, topology, validation filters
+<sup>†</sup>40-day: addresses, agent, NTP, sensors, topology, validation filters
 

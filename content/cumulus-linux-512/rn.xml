@@ -73,12 +73,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4260018</td>
-<td>NVUE does not let you set the IPv6 RA lifetime to zero. To work around this issue, run the vtysh command.</td>
-<td>5.11.0-5.12.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4260012</td>
 <td>If all of the neighbors returned in the {{nv show vrf &lt;vrf&gt; router bgp neighbor}} command output have no {{address-family}} configuration, you see an internal error when the nested table in the  output is being rendered.</td>
 <td>5.10.0-5.12.0</td>
@@ -124,12 +118,6 @@
 <tr>
 <td>4246858</td>
 <td>The {{nv show service ntp &lt;vrf&gt;}} command displays the peers that are discovered together with the configured NTP servers instead of displaying only the NTP configuration. As a result, the "applied" and "operational" columns have different values, which causes confusion.</td>
-<td>5.11.0-5.12.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4245856</td>
-<td>The {{nv show platform transceiver &lt;interface&gt;}} command sometimes does not show transceiver data for layer 3 Dot1q subinterfaces (such as swp2.10). To work around this issue, run the {{ethtool -m &lt;interface&gt;}} command.</td>
 <td>5.11.0-5.12.0</td>
 <td></td>
 </tr>
@@ -785,7 +773,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>4251984</td>
-<td>NVUE prevents you from setting the IPv6 RA lifetime to 0 (zero). Use vtysh mode to apply the setting.</td>
+<td>NVUE does not let you set the IPv6 RA lifetime to zero. To work around this issue, run the vtysh command.</td>
 <td>5.11.0</td>
 </tr>
 <tr>

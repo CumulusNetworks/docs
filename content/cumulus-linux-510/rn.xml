@@ -91,13 +91,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4175217</td>
-<td>When there is a large number of discontiguous VTEP to VLAN mappings, {{switchd}} crashes with a Netlink error similar to the following:
-netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported truncated message</td>
-<td>5.10.1-5.12.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4174646</td>
 <td>On the NVIDIA SN5400 and SN5600 switch, the fans might run at full speed when it is not necessary.</td>
 <td>5.10.1-5.11.0</td>
@@ -138,8 +131,8 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <td>4150508</td>
 <td>When there is a large number of discontiguous VTEP to VLAN mappings, {{switchd}} crashes with a Netlink error similar to the following:
 netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported truncated message</td>
-<td>5.10.1-5.11.0</td>
-<td>5.12.0</td>
+<td>5.10.1-5.12.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4142857</td>
@@ -188,12 +181,6 @@ netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported tru
 <td>When you set the SNMP server listening address to listen on all IPv4 and IPv6 addresses in a VRF with the {{nv set service snmp-server listening-address all vrf}} and {{nv set service snmp-server listening-address all-v6 vrf}} commands,SNMP requests over IPv6 addresses do not work.</td>
 <td>5.8.0-5.12.0</td>
 <td></td>
-</tr>
-<tr>
-<td>4115126</td>
-<td>When IPv4 layer 3 switch ports and virtual interfaces flap, {{switchd}} might send an ICMP Reply message instead of an ARP request (although no ICMP request was sent). Multiple ICMP Replies might be sent to any of the neighbor IP addresses of that interface.</td>
-<td>5.9.2-5.11.0</td>
-<td>5.12.0</td>
 </tr>
 <tr>
 <td>4102992</td>
@@ -1013,12 +1000,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>When you set the SNMP server listening address to listen on all IPv4 and IPv6 addresses in a VRF with the {{nv set service snmp-server listening-address all vrf}} and {{nv set service snmp-server listening-address all-v6 vrf}} commands,SNMP requests over IPv6 addresses do not work.</td>
 <td>5.8.0-5.12.0</td>
 <td></td>
-</tr>
-<tr>
-<td>4115126</td>
-<td>When IPv4 layer 3 switch ports and virtual interfaces flap, {{switchd}} might send an ICMP Reply message instead of an ARP request (although no ICMP request was sent). Multiple ICMP Replies might be sent to any of the neighbor IP addresses of that interface.</td>
-<td>5.9.2-5.11.0</td>
-<td>5.12.0</td>
 </tr>
 <tr>
 <td>4102992</td>

@@ -335,13 +335,55 @@ cumulus@netq-server:~$ vim /tmp/cluster-install-config.json
 {{< /tabs >}}
 
 
-12. Run the following command on your master node, using the JSON configuration file created in step 11:
+12. Run the installation command on your master node. Follow the steps under _Restore Data and New Install_ if you have a {{<link title="Back Up and Restore NetQ" text="backup data tarball">}} from a previous NetQ installation to restore.
+
+{{< tabs "TabID41 ">}}
+{{< tab "New Install">}}
+
+Run the following command on your master node, using the JSON configuration file created in step 11:
 
 ```
 cumulus@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.13.0.tgz /tmp/cluster-install-config.json
 ```
 
 <div class="notices tip"><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
+
+
+{{< /tab >}}
+{{< tab "Restore Data and New Install">}}
+
+1. Add the `config-key` parameter to the JSON template you used during the {{<link title="Set Up Your Virtual Machine for an On-premises HA Scale Cluster" text="scale cluster installation">}}. Edit the file with values for each attribute.
+
+```
+cumulus@netq-server:~$ vim /tmp/cluster-install-config.json 
+{
+        "version": "v2.0",
+        "config-key": "<INPUT>",
+        "interface": "<INPUT>",
+        "cluster-vip": "<INPUT>",
+        "master-ip": "<INPUT>",
+        "is-ipv6": false,
+        "ha-nodes":
+                {
+                        "ip": "<INPUT>"
+                },
+                {
+                        "ip": "<INPUT>"
+                }
+}
+```
+
+2. Run the following command on your master node, using the JSON configuration file from the previous step. Include the restore option referencing the path where the backup file resides:
+
+```
+cumulus@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.13.0.tgz /tmp/cluster-install-config.json restore /home/cumulus/combined_backup_20241211111316.tar
+```
+
+<div class="notices tip"><p><ul><li>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</li><li>If you restore NetQ data to a server with an IP address that is different from the one used to back up the data, you must <a href="/networking-ethernet-software/cumulus-netq/Installation-Management/Install-NetQ/Install-NetQ-Agents/#configure-netq-agents">reconfigure the agents</a> on each switch as a final step.</li></ul></p></div>
+
+{{< /tab >}}
+{{< /tabs >}}
+
 
 ## Verify Installation Status
 

@@ -7,6 +7,30 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4280664</td>
+<td>If the name of a device group includes spaces, validations might fail with the message “Validation failed to run.” To work around this issue, remove the spaces from the device group’s name.</td>
+<td>4.13.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4280023</td>
+<td>After backing up and restoring your NetQ data, any modifications to default suppression rules will be lost.</td>
+<td>4.12.0-4.13.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4279008</td>
+<td>The following commands are not supported and will return an error message in 3- node and 5-node scale deployments: &lt;code&gt;netq show ecmp&lt;/code&gt;, &lt;code&gt;netq show ecmp-hash-config&lt;/code&gt;, &lt;code&gt;netq show line-utilization&lt;/code&gt;</td>
+<td>4.13.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4261327</td>
+<td>In a 5-node scale deployment, queue histogram data might take up to 5 minutes to load in the UI.</td>
+<td>4.13.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4248942</td>
 <td>When you assign a role to a switch, NetQ might take up to five minutes to reflect the new or updated role in the queue histogram fabric overview page.</td>
 <td>4.13.0</td>
@@ -21,6 +45,12 @@
 <tr>
 <td>4131550</td>
 <td>When you run a topology validation, the full-screen topology validation view might not display the latest results. To work around this issue, refresh the page.</td>
+<td>4.12.0-4.13.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4100882</td>
+<td>When an exported file is very large, your browser might prevent you from opening the downloaded file. To work around this issue, use filters in the UI to decrease the size of the dataset that you intend to export and download.</td>
 <td>4.12.0-4.13.0</td>
 <td></td>
 </tr>
@@ -71,6 +101,11 @@
 <td>4181296</td>
 <td>NetQ might become unresponsive when someone with a non-admin (user) role attempts to create or clone workbenches, add cards to a workbench, create validations, or run a flow analysis.</td>
 <td>4.11.0-4.12.0</td>
+</tr>
+<tr>
+<td>4162383</td>
+<td>When you upgrade a NetQ VM with devices in the inventory that have been rotten for 7 or more days, NetQ's global search field might fail to return results for individual devices. To work around this issue, decommission rotten devices and ensure they are running the appropriate NetQ agent version.</td>
+<td>4.12.0</td>
 </tr>
 <tr>
 <td>4157785</td>

@@ -7,9 +7,21 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4280023</td>
+<td>After backing up and restoring your NetQ data, any modifications to default suppression rules will be lost.</td>
+<td>4.12.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4181296</td>
 <td>NetQ might become unresponsive when someone with a non-admin (user) role attempts to create or clone workbenches, add cards to a workbench, create validations, or run a flow analysis.</td>
 <td>4.11.0-4.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4162383</td>
+<td>When you upgrade a NetQ VM with devices in the inventory that have been rotten for 7 or more days, NetQ's global search field might fail to return results for individual devices. To work around this issue, decommission rotten devices and ensure they are running the appropriate NetQ agent version.</td>
+<td>4.12.0</td>
 <td></td>
 </tr>
 <tr>
@@ -38,6 +50,12 @@ To work around this issue, adjust the poll period to 60 seconds on the new switc
 <tr>
 <td>4124724</td>
 <td>External notifications for DPU RoCE threshold-crossing events are not supported. To work around this issue, use the UI or CLI to view DPU RoCE threshold-crossing events.</td>
+<td>4.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4100882</td>
+<td>When an exported file is very large, your browser might prevent you from opening the downloaded file. To work around this issue, use filters in the UI to decrease the size of the dataset that you intend to export and download.</td>
 <td>4.12.0</td>
 <td></td>
 </tr>

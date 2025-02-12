@@ -25,12 +25,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4271216</td>
-<td>NVUE overwrites the MOTD file during NVUE configuration with no option to ignore.</td>
-<td>5.11.0-5.12.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4271215</td>
 <td>NVUE overwrites the MOTD file during NVUE configuration with no option to ignore it.</td>
 <td>5.11.0-5.12.0</td>
@@ -159,13 +153,6 @@ cumulus@switch:~$ sudo pam-auth-update --enable unix --force</td>
 cumulus@switch:~$ sudo apt-get update
 cumulus@switch:~$ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "Dpkg::Options::=--force-confdef" -o "Dpkg::Options::=--force-confold" upgrade</td>
 <td>5.11.0-5.12.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4175217</td>
-<td>When there is a large number of discontiguous VTEP to VLAN mappings, {{switchd}} crashes with a Netlink error similar to the following:
-netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported truncated message</td>
-<td>5.10.1-5.12.0</td>
 <td></td>
 </tr>
 <tr>

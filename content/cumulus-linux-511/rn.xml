@@ -19,18 +19,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4271229</td>
-<td>After rebooting the spine switch in an EVPN multihoming configuration, the BGP EVPN Type-2 entry is missing, which causes flooding and duplicates in the fabric. To work around this issue, flush the IP neighbor entries with the {{sudo ip neigh flush x.x.x.x}} command.</td>
-<td>5.9.1-5.12.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4271228</td>
-<td>After rebooting the spine switch in an EVPN multihoming configuration, the BGP EVPN Type-2 entry is missing, which causes flooding and duplicates in the fabric. To work around this issue, flush the IP neighbor entries with the {{sudo ip neigh flush x.x.x.x}} command.</td>
-<td>5.9.1-5.12.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4271216</td>
 <td>NVUE overwrites the MOTD file during NVUE configuration with no option to ignore.</td>
 <td>5.11.0-5.12.0</td>
@@ -88,8 +76,8 @@
 <tr>
 <td>4256151</td>
 <td>After rebooting the spine switch in an EVPN multihoming configuration, the BGP EVPN Type-2 entry is missing, which causes flooding and duplicates in the fabric. To work around this issue, flush the IP neighbor entries with the {{sudo ip neigh flush x.x.x.x}} command.</td>
-<td>5.9.1-5.11.0</td>
-<td>5.12.0</td>
+<td>5.9.1-5.12.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4251984</td>
@@ -140,12 +128,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4245850</td>
-<td>When using the REST API  to move a port from one bridge to another bridge, the {{bridge-vlan}} configuration on the port might be programmed incorrectly. To resolve the issue,  run the {{ifreload -a}} command.</td>
-<td>5.9.1-5.12.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4245819</td>
 <td>A Python version change removed the encoding argument parameter of the json loads function, which causes an exception.</td>
 <td>5.11.0-5.12.0</td>
@@ -168,12 +150,6 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 <td>5.12.0</td>
 </tr>
 <tr>
-<td>4214550</td>
-<td>When using the REST API  to move a port from one bridge to another bridge, the {{bridge-vlan}} configuration on the port might be programmed incorrectly. To resolve the issue,  run the {{ifreload -a}} command.</td>
-<td>5.9.1-5.12.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4209429</td>
 <td>Unreachable or reject routes might not get installed into the SDK.</td>
 <td>5.11.0</td>
@@ -182,8 +158,8 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 <tr>
 <td>4208746</td>
 <td>When using the REST API  to move a port from one bridge to another bridge, the {{bridge-vlan}} configuration on the port might be programmed incorrectly. To resolve the issue,  run the {{ifreload -a}} command.</td>
-<td>5.9.1-5.11.0</td>
-<td>5.12.0</td>
+<td>5.9.1-5.12.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4207037</td>

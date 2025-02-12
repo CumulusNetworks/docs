@@ -1551,7 +1551,7 @@ For a query with a view that does not exist. The API returns a `400 Bad Request`
 You can also provide `include` and `omit` parameters in a query to include or omit certain attributes in a response.
 
 {{%notice note%}}
-You cannot use both `view=` and `include` or `omit` parameters in the same API method. For example, `curl -u 'cumulus:NvidiaR0cks!' --insecure -X GET "https://127.0.0.1:8765/nvue_v1/vrf/default/router/rib/ipv4/route?include=/*/route-entry/*/protocol,/*/route-entry/*/nexthop-group-id,/*/route-entry/*/uptime&view=brief"` returns an error.
+You cannot use both `view=` and `include` or `omit` parameters in the same API method. For example, `curl -u 'cumulus:CumulusLinux!' --insecure -X GET "https://127.0.0.1:8765/nvue_v1/vrf/default/router/rib/ipv4/route?include=/*/route-entry/*/protocol,/*/route-entry/*/nexthop-group-id,/*/route-entry/*/uptime&view=brief"` returns an error.
 {{%/notice%}}
 
 The following example returns all the routes in the routing table and includes all attributes (the API request does not contain include or omit options):

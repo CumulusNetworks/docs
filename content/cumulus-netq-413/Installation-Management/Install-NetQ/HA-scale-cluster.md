@@ -352,7 +352,7 @@ cumulus@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.13.0.
 {{< /tab >}}
 {{< tab "Restore Data and New Install">}}
 
-1. Add the `config-key` parameter to the JSON template you used during the {{<link title="Set Up Your Virtual Machine for an On-premises HA Scale Cluster" text="scale cluster installation">}}. Edit the file with values for each attribute.
+1. Add the `config-key` parameter to the JSON template from step 11 using the key created during the {{<link title="Back Up and Restore NetQ" text="backup process">}}. Edit the file with values for each attribute.
 
 ```
 cumulus@netq-server:~$ vim /tmp/cluster-install-config.json 

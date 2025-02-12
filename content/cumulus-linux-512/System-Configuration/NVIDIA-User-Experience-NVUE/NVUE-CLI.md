@@ -826,6 +826,70 @@ To show a summary of the connection information for all BGP neighbors in json fo
 In Cumulus Linux 5.11 and earlier, the `nv show vrf default router bgp neighbor -o json` command output shows more detailed information about BGP peers. To show the more detailed information in Cumulus Linux 5.12, run the `nv show vrf <vrf> router bgp neighbor --view=detail -o json` command.
 {{%/notice%}}
 
+## Show Command View Include and Omit Options
+
+NVUE show commands provide `--view` include and omit options that let you specify which table columns you want to include or omit from the command output.
+
+The following example shows the `nv show vrf default router rib ipv4 route` command output (without the `--view` include or omit option):
+
+```
+cumulus@switch:~$ nv show vrf default router rib ipv4 route
+Flags - * - selected, q - queued, o - offloaded, i - installed, S - fib-
+selected, x - failed
+
+Route            Protocol   Distance  Uptime                NHGId  Metric  Flags
+---------------  ---------  --------  --------------------  -----  ------  -----
+10.0.1.12/32     connected  0         2025-02-08T16:26:22Z  12     0       *Sio 
+10.0.1.34/32     bgp        20        2025-02-11T16:05:22Z  124    0       *Si  
+10.0.1.255/32    bgp        20        2025-02-11T16:05:22Z  124    0       *Si  
+10.10.10.1/32    connected  0         2025-02-08T16:26:13Z  12     0       *Sio 
+10.10.10.2/32    bgp        20        2025-02-11T16:05:22Z  62     0       *Si  
+10.10.10.3/32    bgp        20        2025-02-11T16:05:22Z  124    0       *Si  
+10.10.10.4/32    bgp        20        2025-02-11T16:05:22Z  124    0       *Si  
+10.10.10.63/32   bgp        20        2025-02-11T16:05:22Z  124    0       *Si  
+10.10.10.64/32   bgp        20        2025-02-11T16:05:22Z  124    0       *Si  
+10.10.10.101/32  bgp        20        2025-02-11T16:05:22Z  100    0       *Si  
+10.10.10.102/32  bgp        20        2025-02-11T16:05:22Z  120    0       *Si 
+```
+
+The following example shows the `nv show vrf default router rib ipv4 route` command with the option to only include the Routes, Protocol, Uptime, and NHGID (nexthop group ID) columns in the output:
+
+```
+cumulus@switch:~$ nv show vrf default router rib ipv4 route --view "include=/*/route-entry/*/protocol,/*/route-entry/*/nexthop-group-id,/*/route-entry/*/uptime"
+Route            Protocol   Uptime                NHGId
+---------------  ---------  --------------------  -----
+10.0.1.12/32     connected  2025-02-08T16:26:22Z  12   
+10.0.1.34/32     bgp        2025-02-11T16:05:22Z  124  
+10.0.1.255/32    bgp        2025-02-11T16:05:22Z  124  
+10.10.10.1/32    connected  2025-02-08T16:26:13Z  12   
+10.10.10.2/32    bgp        2025-02-11T16:05:22Z  62   
+10.10.10.3/32    bgp        2025-02-11T16:05:22Z  124  
+10.10.10.4/32    bgp        2025-02-11T16:05:22Z  124  
+10.10.10.63/32   bgp        2025-02-11T16:05:22Z  124  
+10.10.10.64/32   bgp        2025-02-11T16:05:22Z  124  
+10.10.10.101/32  bgp        2025-02-11T16:05:22Z  100  
+10.10.10.102/32  bgp        2025-02-11T16:05:22Z  120
+```
+
+The following example shows the `nv show vrf default router rib ipv4 route` command with the option to omit all columns (except Route) in the output:
+
+```
+cumulus@switch:~$ nv show vrf default router rib ipv4 route --view "omit=/*/*"
+Route          
+---------------
+10.0.1.12/32   
+10.0.1.34/32   
+10.0.1.255/32  
+10.10.10.1/32  
+10.10.10.2/32  
+10.10.10.3/32  
+10.10.10.4/32  
+10.10.10.63/32 
+10.10.10.64/32 
+10.10.10.101/32
+10.10.10.102/32
+```
+
 ## NVUE and FRR Restart
 
 NVUE restarts the FRR service when you:

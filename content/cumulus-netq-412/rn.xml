@@ -42,6 +42,12 @@ To work around this issue, adjust the poll period to 60 seconds on the new switc
 <td></td>
 </tr>
 <tr>
+<td>4100882</td>
+<td>When an exported file is very large, your browser might prevent you from opening the downloaded file. To work around this issue, use filters in the UI to decrease the size of the dataset that you intend to export and download.</td>
+<td>4.12.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3985598</td>
 <td>When you configure multiple threshold-crossing events for the same TCA event ID on the same device, NetQ will only display one TCA event for each hostname per TCA event ID, even if both thresholds are crossed or status events are triggered.  </td>
 <td>4.11.0-4.12.0</td>

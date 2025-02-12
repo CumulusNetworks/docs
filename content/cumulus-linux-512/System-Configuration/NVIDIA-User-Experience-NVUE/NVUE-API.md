@@ -1548,6 +1548,198 @@ cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -k -X GET https://127.0.0.1:87
 
 For a query with a view that does not exist. The API returns a `400 Bad Request` error and displays all the defined views for that endpoint.
 
+You can also provide `include` and `omit` parameters in a query to include or omit certain attributes in a response.
+
+{{%notice note%}}
+You cannot use both `view=` and `include` or `omit` parameters in the same API method. For example, `curl -u 'cumulus:CumulusLinux!' --insecure -X GET "https://127.0.0.1:8765/nvue_v1/vrf/default/router/rib/ipv4/route?include=/*/route-entry/*/protocol,/*/route-entry/*/nexthop-group-id,/*/route-entry/*/uptime&view=brief"` returns an error.
+{{%/notice%}}
+
+The following example returns all the routes in the routing table and includes all attributes (the API request does not contain include or omit options):
+
+```
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure -X GET https://127.0.0.1:8765/nvue_v1/vrf/default/router/rib/ipv4/route
+{
+  "10.0.1.12/32": {
+    "route-entry": {
+      "1": {
+        "distance": 0,
+        "flags": {
+          "fib-selected": {},
+          "installed": {},
+          "offloaded": {},
+          "selected": {}
+        },
+        "flags-string": "*Sio",
+        "metric": 0,
+        "nexthop-group-id": 12,
+        "protocol": "connected",
+        "uptime": "2024-10-18T22:27:35Z"
+      }
+    }
+  },
+  "10.0.1.34/32": {
+    "route-entry": {
+      "1": {
+        "distance": 20,
+        "flags": {
+          "fib-selected": {},
+          "installed": {},
+          "selected": {}
+        },
+        "flags-string": "*Si",
+        "metric": 0,
+        "nexthop-group-id": 45,
+        "protocol": "bgp",
+        "uptime": "2024-10-18T22:27:39Z"
+      }
+    }
+  },
+  "10.0.1.255/32": {
+    "route-entry": {
+      "1": {
+        "distance": 20,
+        "flags": {
+          "fib-selected": {},
+          "installed": {},
+          "selected": {}
+        },
+        "flags-string": "*Si",
+        "metric": 0,
+        "nexthop-group-id": 38,
+        "protocol": "bgp",
+        "uptime": "2024-10-18T22:27:39Z"
+      }
+    }
+  },
+  "10.10.10.1/32": {
+    "route-entry": {
+      "1": {
+        "distance": 20,
+        "flags": {
+          "fib-selected": {},
+          "installed": {},
+          "selected": {}
+        },
+        "flags-string": "*Si",
+        "metric": 0,
+        "nexthop-group-id": 45,
+        "protocol": "bgp",
+        "uptime": "2024-10-18T22:27:39Z"
+      }
+    }
+  },
+  "10.10.10.2/32": {
+    "route-entry": {
+      "1": {
+        "distance": 20,
+        "flags": {
+          "fib-selected": {},
+          "installed": {},
+          "selected": {}
+        },
+        "flags-string": "*Si",
+        "metric": 0,
+        "nexthop-group-id": 38,
+        "protocol": "bgp",
+        "uptime": "2024-10-18T22:27:39Z"
+      }
+    }
+  },
+  "10.10.10.3/32": {
+    "route-entry": {
+      "1": {
+        "distance": 20,
+        "flags": {
+          "fib-selected": {},
+          "installed": {},
+          "selected": {}
+        },
+        "flags-string": "*Si",
+        "metric": 0,
+        "nexthop-group-id": 34,
+        "protocol": "bgp",
+        "uptime": "2024-10-18T22:27:38Z"
+    }
+  }
+}
+```
+
+The following example returns all the routes in the routing table but only includes the protocol, uptime, and nexthop-group-id attributes:
+
+```
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure -X GET "https://127.0.0.1:8765/nvue_v1/vrf/default/router/rib/ipv4/route?include=/*/route-entry/*/protocol,/*/route-entry/*/nexthop-group-id,/*/route-entry/*/uptime"
+{
+  "10.0.1.12/32": {
+    "route-entry": {
+      "1": {
+        "nexthop-group-id": 12,
+        "protocol": "connected",
+        "uptime": "2024-10-18T22:27:35Z"
+      }
+    }
+  },
+  "10.0.1.34/32": {
+    "route-entry": {
+      "1": {
+        "nexthop-group-id": 45,
+        "protocol": "bgp",
+        "uptime": "2024-10-18T22:27:39Z"
+      }
+    }
+  },
+  "10.0.1.255/32": {
+    "route-entry": {
+      "1": {
+        "nexthop-group-id": 38,
+        "protocol": "bgp",
+        "uptime": "2024-10-18T22:27:39Z"
+      }
+    }
+  },
+  "10.10.10.1/32": {
+    "route-entry": {
+      "1": {
+        "nexthop-group-id": 45,
+        "protocol": "bgp",
+        "uptime": "2024-10-18T22:27:39Z"
+      }
+    }
+  },
+  "10.10.10.2/32": {
+    "route-entry": {
+      "1": {
+        "nexthop-group-id": 38,
+        "protocol": "bgp",
+        "uptime": "2024-10-18T22:27:39Z"
+      }
+    }
+  },
+  "10.10.10.3/32": {
+    "route-entry": {
+      "1": {
+        "nexthop-group-id": 34,
+        "protocol": "bgp",
+        "uptime": "2024-10-18T22:27:38Z"
+      }
+    }
+  }
+}
+```
+
+The following example returns all the routes in routing table but omits all other attributes (nexthop-group-id, protocol, uptime, distance, metrics, and flags):
+
+```
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure -X GET https://127.0.0.1:8765/nvue_v1/vrf/default/router/rib/ipv4/route?omit=/*/*
+{
+  "10.0.1.12/32": {},
+  "10.0.1.34/32": {},
+  "10.0.1.255/32": {},
+  "10.10.10.1/32": {},
+  "10.10.10.2/32": {},
+  "10.10.10.3/32": {}
+}
+```
+
 ### Convert CLI Changes to Use the API
 
 You can take a configuration change from the CLI and use the API to configure the same set of changes.

@@ -34,7 +34,7 @@ Configure the following required settings on the switch (the TACACS+ client).
 - Set the secret (key) shared between the TACACS+ server and client.
 - Set the VRF you want to use to communicate with the TACACS+ server. This is typically the management VRF (`mgmt`), which is the default VRF on the switch.
 
-If you use NVUE commands to configure TACACS+, you must also set the priority for the authentication order for local and TACACS+ users, and enable TACACS+.
+If you use NVUE commands to configure TACACS+, you must also set the priority for the authentication order for local and TACACS+ users.
 
 {{< tabs "TabID31 ">}}
 {{< tab "NVUE Commands ">}}
@@ -44,7 +44,7 @@ NVUE commands require you to specify the priority for each TACACS+ server. You m
 The following example commands set:
 - The TACACS+ server priority to 5.
 - The IP address of the server to 192.168.0.30.
-- The secret to `mytacac$key`.
+- The secret to abcdefghijklmnopqrstuvwxyz.
   {{%notice note%}}
   If you include special characters in the password (such as $), you must enclose the password in single quotes (').
   {{%/notice%}}
@@ -73,7 +73,7 @@ If you configure more than one TACACS+ server, you need to set the priority for 
 ```
 cumulus@switch:~$ nv set system aaa tacacs server 192.168.0.30 priority 5
 cumulus@switch:~$ nv set system aaa tacacs server 192.168.0.30 secret abcdefghijklmnopqrstuvwxyz 
-cumulus@switch:~$ nv set system aaa tacacs server 192.168.1.30 priority 2
+cumulus@switch:~$ nv set system aaa tacacs server 192.168.1.30 priority 10
 cumulus@switch:~$ nv set system aaa tacacs server 192.168.0.30 secret zyxwvutsrqponmlkjihgfedcba
 cumulus@switch:~$ nv config apply
 ```

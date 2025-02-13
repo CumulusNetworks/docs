@@ -96,12 +96,6 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 <td>5.12.0</td>
 </tr>
 <tr>
-<td>4207037</td>
-<td>NVUE Rest API calls that are authenticated with TACACS on the switch append unnecessary database entries to the {{/run/tacacs_clent_map}} file, which increases the file size. Over time, this increases the TACACS login authentication time, resulting in delayed login authentication. To work around this issue, delete the {{tacacs_client_map}} file with the {{sudo rm rf /run/tacacs_client_map}} command.</td>
-<td>5.11.0-5.11.1</td>
-<td>5.12.0</td>
-</tr>
-<tr>
 <td>4205060</td>
 <td>Debian 12 does not support LDAP SSL CRL check. Cumulus Linux now uses CRL file.</td>
 <td>5.11.0-5.11.1</td>
@@ -818,6 +812,11 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>5.8.0-5.11.0</td>
 </tr>
 <tr>
+<td>4245853</td>
+<td>NVUE Rest API calls that are authenticated with TACACS on the switch append unnecessary database entries to the {{/run/tacacs_clent_map}} file, which increases the file size. Over time, this increases the TACACS login authentication time, resulting in delayed login authentication. To work around this issue, delete the {{tacacs_client_map}} file with the {{sudo rm rf /run/tacacs_client_map}} command.</td>
+<td>5.11.0</td>
+</tr>
+<tr>
 <td>4245819</td>
 <td>A Python version change removed the encoding argument parameter of the json loads function, which causes an exception.</td>
 <td>5.11.0</td>
@@ -1014,12 +1013,6 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 <td>When using the REST API  to move a port from one bridge to another bridge, the {{bridge-vlan}} configuration on the port might be programmed incorrectly. To resolve the issue,  run the {{ifreload -a}} command.</td>
 <td>5.9.1-5.12.0</td>
 <td></td>
-</tr>
-<tr>
-<td>4207037</td>
-<td>NVUE Rest API calls that are authenticated with TACACS on the switch append unnecessary database entries to the {{/run/tacacs_clent_map}} file, which increases the file size. Over time, this increases the TACACS login authentication time, resulting in delayed login authentication. To work around this issue, delete the {{tacacs_client_map}} file with the {{sudo rm rf /run/tacacs_client_map}} command.</td>
-<td>5.11.0</td>
-<td>5.12.0</td>
 </tr>
 <tr>
 <td>4205060</td>

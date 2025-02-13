@@ -108,6 +108,7 @@ pdfhidden: True
 ### Fixed Issues in 5.12.1
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
+| <a name="4286489"></a> [4286489](#4286489) <a name="4286489"></a> <br /> | Optimized (two partition) upgrade and rollback fails when you apply configuration by editing the <code>/etc/nvue.d/startup.yaml</code> file, then run <code>nv config apply startup</code>. To work around this issue, after activating optimized <b>upgrade</b>, but <b>before</b> rebooting, save a copy of the contents of <code>/var/lib/nvue/</code> to some other location. Then, <b>after</b> activating <b>rollback</b>, but <b>before</b> rebooting, move <code>/var/lib/nvue/</code> to some other location and copy the previously saved contents to <code>/var/lib/nvue/</code>. | 5.12.0 | |
 
 ## 5.12.0 Release Notes
 ### Open Issues in 5.12.0

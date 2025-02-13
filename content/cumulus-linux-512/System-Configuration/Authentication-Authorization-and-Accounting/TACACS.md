@@ -36,10 +36,6 @@ Configure the following required settings on the switch (the TACACS+ client).
 
 If you use NVUE commands to configure TACACS+, you must also set the priority for the authentication order for local and TACACS+ users, and enable TACACS+.
 
-{{%notice note%}}
-After you configure any TACACS+ settings with NVUE and you run `nv config apply`, you must restart the NVUE service with the `sudo systemctl restart nvued.service` command.
-{{%/notice%}}
-
 {{< tabs "TabID31 ">}}
 {{< tab "NVUE Commands ">}}
 
@@ -54,33 +50,31 @@ The following example commands set:
   {{%/notice%}}
 - The VRF to `mgmt`.
 - The authentication order so that TACACS+ authentication has priority over local (the lower number has priority).
-- TACACS+ to enabled.
 
 ```
-cumulus@switch:~$ nv set system aaa tacacs server 5 host 192.168.0.30
-cumulus@switch:~$ nv set system aaa tacacs server 5 secret 'mytacac$key'
+cumulus@switch:~$ nv set system aaa tacacs server 192.168.0.30 priority 5
+cumulus@switch:~$ nv set system aaa tacacs server 192.168.0.30 secret abcdefghijklmnopqrstuvwxyz
 cumulus@switch:~$ nv set system aaa tacacs vrf mgmt 
 cumulus@switch:~$ nv set system aaa authentication-order 5 tacacs
 cumulus@switch:~$ nv set system aaa authentication-order 10 local
-cumulus@switch:~$ nv set system aaa tacacs enable on
 cumulus@switch:~$ nv config apply
 ```
 
-If you want the server to use IPv6, you must add the `nv set system aaa tacacs server <priority> prefer-ip-version 6` command:
+If you want the server to use IPv6, you must add the `nv set system aaa tacacs server <server-id> prefer-ip-version 6` command:
 
 ```
-cumulus@switch:~$ nv set system aaa tacacs server 5 host server5
-cumulus@switch:~$ nv set system aaa tacacs server 5 prefer-ip-version 6
+cumulus@switch:~$ nv set system aaa tacacs server SERVER1 priority 5
+cumulus@switch:~$ nv set system aaa tacacs server SERVER1 prefer-ip-version 6
 ...
 ```
 
 If you configure more than one TACACS+ server, you need to set the priority for each server. If the switch cannot establish a connection with the server that has the highest priority, it tries to establish a connection with the next highest priority server. The server with the lower number has the higher prioritity. In the example below, server 192.168.0.30 with a priority value of 5 has a higher priority than server 192.168.1.30, which has a priority value of 10.
 
 ```
-cumulus@switch:~$ nv set system aaa tacacs server 5 host 192.168.0.30
-cumulus@switch:~$ nv set system aaa tacacs server 5 secret 'mytacac$key' 
-cumulus@switch:~$ nv set system aaa tacacs server 10 host 192.168.1.30
-cumulus@switch:~$ nv set system aaa tacacs server 10 secret 'mytacac$key2'
+cumulus@switch:~$ nv set system aaa tacacs server 192.168.0.30 priority 5
+cumulus@switch:~$ nv set system aaa tacacs server 192.168.0.30 secret abcdefghijklmnopqrstuvwxyz 
+cumulus@switch:~$ nv set system aaa tacacs server 192.168.1.30 priority 2
+cumulus@switch:~$ nv set system aaa tacacs server 192.168.0.30 secret zyxwvutsrqponmlkjihgfedcba
 cumulus@switch:~$ nv config apply
 ```
 
@@ -91,7 +85,7 @@ cumulus@switch:~$ nv config apply
 
    ```
    cumulus@switch:~$ sudo nano /etc/tacplus_servers
-   secret=mytacac$key
+   secret=abcdefghijklmnopqrstuvwxyz
    server=192.168.0.30
    ```
 
@@ -99,9 +93,9 @@ cumulus@switch:~$ nv config apply
 
    ```
    cumulus@switch:~$ sudo nano /etc/tacplus_servers
-   secret=mytacac$key
+   secret=abcdefghijklmnopqrstuvwxyz
    server=192.168.0.30
-   secret=mytacac$key2
+   secret=zyxwvutsrqponmlkjihgfedcba
    server=192.168.1.30
    ```
 
@@ -112,7 +106,7 @@ cumulus@switch:~$ nv config apply
    secret=mytacac$key
    server=server5
    prefer_ip_version=ipv6 
-   secret=mytacac$key2
+   secret=abcdefghijklmnopqrstuvwxyzabcde
    server=server6
    prefer_ip_version=ipv6 
    ```
@@ -161,7 +155,7 @@ The following example commands set the timeout to 10 seconds and the TACACS+ ser
 
 ```
 cumulus@switch:~$ nv set system aaa tacacs timeout 10
-cumulus@switch:~$ nv set system aaa tacacs server 5 port 32
+cumulus@switch:~$ nv set system aaa tacacs server SERVER1 port 32
 cumulus@switch:~$ nv config apply
 ```
 
@@ -487,7 +481,7 @@ cumulus@switch:~$ sudo -E apt-get autoremove --purge
 
 Run the following commands to show TACACS+ configuration:
 
-- To show all TACACS+ configuration (NVUE hides server secret keys), run the `nv show aaa tacacs` command.
+- To show all TACACS+ configuration (NVUE hides server secret keys), run the `nv show system aaa tacacs` command.
 - To show TACACS+ authentication configuration , run the `nv show system aaa tacacs authentication` command.
 - To show TACACS+ accounting configuration , run the `nv show system aaa tacacs accounting` command.
 - To show TACACS+ server configuration, run the `nv show system aaa tacacs server` command.

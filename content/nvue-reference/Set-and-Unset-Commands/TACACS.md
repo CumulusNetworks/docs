@@ -68,6 +68,10 @@ cumulus@switch:~$ nv set system aaa tacacs authentication mode chap
 
 Configures the authentication order so that either TACACS+ or local authentication has priority (the lower number has priority). You can specify a value of `tacacs` or `local`.
 
+{{%notice note%}}
+Cumulus Linux 5.12 and later does not provide this command.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -125,6 +129,10 @@ cumulus@switch:~$ nv set system aaa tacacs debug-level 2
 
 Turns TACACS+ on or off.
 
+{{%notice note%}}
+Cumulus Linux 5.12 and later does not provide this command.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.4.0 (beta)
@@ -169,6 +177,10 @@ cumulus@switch:~$ nv set system aaa tacacs exclude-user user1
 
 Configures the TACACS server priority number. You must set a priority even if you only specify one server.
 
+{{%notice note%}}
+Cumulus Linux 5.12 and later does not provide this command; Use `nv set system aaa tacacs server <server-id> priority <priority>`.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -190,6 +202,10 @@ cumulus@switch:~$ nv set system aaa tacacs server 5
 ## <h>nv set system aaa tacacs server \<priority-id\> host</h>
 
 Configures the IPv4 address or hostname of the TACACS+ server. You must configure at least one TACACS+ server.
+
+{{%notice note%}}
+Cumulus Linux 5.12 and later does not provide this command; Use `nv set system aaa tacacs server <server-id> priority <priority>`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -213,6 +229,10 @@ cumulus@switch:~$ nv set system aaa tacacs server 5 host 192.168.0.30
 
 Configures the TACACS+ server port to use for communication between the TACACS+ server and client. You can set a value between 0 and 65535. The default port is 49.
 
+{{%notice note%}}
+Cumulus Linux 5.12 and later does not provide this command; Use `nv set system aaa tacacs server <server-id> port <port-id>`.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -234,6 +254,10 @@ cumulus@switch:~$ nv set system aaa tacacs server 5 port 32
 ## <h>nv set system aaa tacacs server \<priority-id\> prefer-ip-version 6</h>
 
 Configures the TACACS server to use IPv6.
+
+{{%notice note%}}
+Cumulus Linux 5.12 and later does not provide this command; Use `nv set system aaa tacacs server <server-id> prefer-ip-version 6`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -257,6 +281,10 @@ cumulus@switch:~$ nv set system aaa tacacs server 5 prefer-ip-version 6
 
 Configures the shared secret between the TACACS server and client. The TACACS client on the switch and the TACACS server must have the same shared secret key.
 
+{{%notice note%}}
+Cumulus Linux 5.12 and later does not provide this command; Use `nv set system aaa tacacs server <server-id> secret <secret>`.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -271,6 +299,113 @@ Introduced in Cumulus Linux 5.4.0 (beta)
 
 ```
 cumulus@switch:~$ nv set system aaa tacacs server 5 secret mytacacskey
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system aaa tacacs server \<server-id\> port \<port-id\></h>
+
+Configures the port number you want to use for communication between the TACACS+ server and client. By default, Cumulus Linux uses IP port 49.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and earlier uses `nv set system aaa tacacs server <priority-id> port <port-id>`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<server-id>`  | The TACACS server IP address or hostname. |
+| `<port-id>`  | The port number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa tacacs server 192.168.0.30 port 32
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system aaa tacacs server \<server-id\> priority \<priority-id\></h>
+
+Configures the TACACS server priority number. You must set a priority even if you only specify one server.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and earlier uses `nv set system aaa tacacs server <priority-id> host <server-id>`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<server-id>`  | The TACACS server IP address or hostname. |
+| `<priority-id>`  | The TACACS server priority number. NVUE commands require you to specify the priority for each TACACS+ server. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa tacacs server 192.168.0.30 priority 5
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system aaa tacacs server \<server-id\> secret \secret-key\></h>
+
+Configures the TACACS server secret key shared between the TACACS+ server and client.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and earlier uses `nv set system aaa tacacs server <priority> secret <secret-key>`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<server-id>`  | The TACACS server IP address or hostname. |
+| `<secret-key>`  | The TACACS server secret key. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa tacacs server 192.168.0.30 secret abcdefghijklmnopqrstuvwxyz
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system aaa tacacs server \<server-id\> prefer-ip-version 6</h>
+
+Configures the TACACS server to use IPv6.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and earlier uses `nv set system aaa tacacs server <priority-id> prefer-ip-version 6`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<server-id>`  |  The TACACS server IP address or hostname. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa tacacs server SERVER1 prefer-ip-version 6 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

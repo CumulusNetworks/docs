@@ -33,5 +33,7 @@ When you upgrade to NetQ 4.13, any pre-existing event and validation data will b
 
 The NetQ 4.13 server is compatible with NetQ agent 4.12 or later. You can install NetQ agents on switches and servers running:
 
-- Cumulus Linux 5.0.0 or later (Spectrum switches)
+- Cumulus Linux 5.9.2 or later (Spectrum switches)
 - Ubuntu 22.04
+
+NVIDIA recommends upgrading to the latest agent version.

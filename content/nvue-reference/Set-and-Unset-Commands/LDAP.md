@@ -76,7 +76,7 @@ cumulus@switch:~$ nv set system aaa ldap hostname ldapserver1
 
 ## <h>nv set system aaa ldap hostname \<hostname-id\> priority</h>
 
-Configures the priority when using multiple LDAP servers.
+Configures the priority when using multiple LDAP servers. You can specify a value between 1 and 8.
 
 ### Command Syntax
 
@@ -124,7 +124,7 @@ cumulus@switch:~$ nv set system aaa ldap server ldapserver1
 
 ## <h>nv set system aaa ldap server \<server-id\> priority</h>
 
-Configures the priority when using multiple LDAP servers.
+Configures the priority when using multiple LDAP servers. You can specify a value between 1 and 8.
 
 {{%notice note%}}
 In Cumulus Linux 5.11 and earlier, this command is `nv set system aaa ldap hostname <hostname-id> priority`.
@@ -338,7 +338,7 @@ cumulus@switch:~$ nv set system aaa ldap ssl tls-ciphers TLS1.3
 
 ## <h>nv set system aaa ldap timeout-bind</h>
 
-Configures the number of seconds before the BIND operation times out. The default setting is 5 seconds.
+Configures the number of seconds before the BIND operation times out. You can specify a value between 1 and 60. The default setting is 5 seconds.
 
 ### Version History
 
@@ -354,7 +354,7 @@ cumulus@switch:~$ nv set system aaa ldap timeout-bind 60
 
 ## <h>nv set system aaa ldap timeout-search</h>
 
-Configures the number of seconds before the search times out. The default setting is 5 seconds.
+Configures the number of seconds before the search times out. You can specify a value between 1 and 60. The default setting is 5 seconds.
 
 ### Version History
 

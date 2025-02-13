@@ -322,7 +322,7 @@ You can configure the following SSL options:
 - SSL cipher suites. You can specify TLS1.2, TLS1.3, TLS-CIPHERS, or all.
 - SSL <span class="a-tooltip">[CRL](## "Certificate Revocation List")</span> check.
 
-The following example sets the SSL mode to SSL, the port to 8443, enables the SSL certificate checker, sets the CA certificate list to none, the SSL cipher suites to TLS1.3 and the Certificate Revocation List to /etc/ssl/certs/rtp-example-ca.crt.
+The following example sets the SSL mode to SSL, the port to 8443, enables the SSL certificate checker, sets the SSL cipher suites to TLS1.3 and the Certificate Revocation List to /etc/ssl/certs/rtp-example-ca.crt.
 
 {{< tabs "TabID270 ">}}
 {{< tab "NVUE Commands ">}}

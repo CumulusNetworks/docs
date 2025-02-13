@@ -201,7 +201,7 @@ cumulus@switch:~$ nv set system aaa ldap secret 1Q2w3e4r!
 Configures the SSL CA certificate list.
 
 {{%notice note%}}
-Cumulus Linux 5.12 and later does not provide this commandß.
+Cumulus Linux 5.12 and later does not provide this command.
 {{%/notice%}}
 
 ### Version History
@@ -304,7 +304,7 @@ cumulus@switch:~$ nv set system aaa ldap ssl port 8443
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system aaa ldap ssl scope</h>
+## <h>nv set system aaa ldap scope</h>
 
 Configures the search scope to one level to limit the level of the search to users directly under the base DN or to subtree to search for users in all branches under the base DN. The default setting is subtree.
 
@@ -322,7 +322,7 @@ cumulus@switch:~$ nv set system aaa ldap scope one-level
 
 ## <h>nv set system aaa ldap ssl tls-ciphers</h>
 
-Configures the SSL cipher suites. You can specify `TLS1.2`, `TLS1.3`, `TLS-CIPHERS`, or `all`.
+Configures the SSL cipher suites. You can specify `TLS1.2`, `TLS1.3`, or `all`.
 
 ### Version History
 

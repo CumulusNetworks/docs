@@ -16,7 +16,7 @@ Cumulus Linux users familiar with Cisco IOS might look for the same level of inf
 The following command displays the version of Cumulus Linux running in the current slot, and is updated to reflect version changes with `apt-get`:
 
 ```
-cumulus@switch:~$ at /etc/lsb-release
+cumulus@switch:~$ cat /etc/lsb-release
 DISTRIB_ID="Cumulus Linux"
 DISTRIB_RELEASE=4.2.0
 DISTRIB_DESCRIPTION="Cumulus Linux 4.2.0"

@@ -9,6 +9,11 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 
 ## Feburary 2025
 <!-- Air:WhatsNew -->
+### 82.2025.0213-011
+- Fixed an issue with demo marketplace nodes not retaining their disk changes after waking up
+- Added API endpoint for parsing topologies from DOT format to JSON format.
+<!-- Air:WhatsNew -->
+
 ### 82.2025.0204-011
 - Fixed an issue where simulations entered an error state when started
 - Fixed an issue where adding time to a simulation caused open consoles to reconnect
@@ -18,7 +23,6 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 - Added functionality to select or clear multiple nodes individually by pressing Ctrl + left-click 
 - Updated Node.js runtime to v20.18.2
 - Added ability to resize node consoles in the UI
-<!-- Air:WhatsNew -->
 
 ## January 2025
 ### 82.2025.0130-011

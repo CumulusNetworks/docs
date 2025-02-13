@@ -49,8 +49,14 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
   - {{< expand "Removed NVUE Commands" >}}
 | Removed Commands |
 | --------------- |
-| `nv set system aaa radius enable` |
-| `nv set system aaa ldap ssl ca-list`|
+| `nv set/unset system aaa radius enable` |
+| `nv set/unset system aaa tacacs enable` |
+| `nv set/unset system aaa ldap hostname <hostname-id>` |
+| `nv set/unset system aaa ldap hostname <hostname-id> priority`|
+| `nv set/unset system aaa tacacs server <priority> port <port-id>` |
+| `nv set/unset system aaa tacacs server <priority> prefer-ip-version 6` |
+| `nv set/unset system aaa tacacs server <priority> secret <secret-key>` |
+| `nv set/unset system aaa ldap ssl ca-list`|
 
 {{< /expand >}}
   - {{< expand "New NVUE Commands" >}}
@@ -136,6 +142,13 @@ nv show system telemetry router vrf <vrf-id> rib export
 
 ```
 nv set system aaa radius accounting send-records
+nv set system aaa ldap server <server-id>
+nv set system aaa ldap server <server-id> priority
+nv set system aaa tacacs server <server-id> 
+nv set system aaa tacacs server <server-id> port
+nv set system aaa tacacs server <server-id> prefer-ip-version
+nv set system aaa tacacs server <server-id> priority
+nv set system aaa tacacs server <server-id> secret
 nv set system aaa user <user-id> spiffe-id <spiffe-id>
 nv set system counter rates load-interval
 nv set system packages repository <repository> distribution <distribution> pool <pool>
@@ -187,6 +200,13 @@ nv set vrf <vrf> router bgp address-family <address-family> nhg-per-origin
 
 ```
 nv unset system aaa radius accounting send-records
+nv unset system aaa ldap server <server-id>
+nv unset system aaa ldap server <server-id> priority
+nv unset system aaa tacacs server <server-id> 
+nv unset system aaa tacacs server <server-id> port
+nv unset system aaa tacacs server <server-id> prefer-ip-version
+nv unset system aaa tacacs server <server-id> priority
+nv unset system aaa tacacs server <server-id> secret
 nv unset system aaa user <user-id> spiffe-id <spiffe-id>
 nv unset system counter rates load-interval
 nv unset system packages repository <repository> distribution <distribution> pool <pool>

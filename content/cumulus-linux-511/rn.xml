@@ -19,24 +19,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4271229</td>
-<td>After rebooting the spine switch in an EVPN multihoming configuration, the BGP EVPN Type-2 entry is missing, which causes flooding and duplicates in the fabric. To work around this issue, flush the IP neighbor entries with the {{sudo ip neigh flush x.x.x.x}} command.</td>
-<td>5.9.1-5.12.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4271228</td>
-<td>After rebooting the spine switch in an EVPN multihoming configuration, the BGP EVPN Type-2 entry is missing, which causes flooding and duplicates in the fabric. To work around this issue, flush the IP neighbor entries with the {{sudo ip neigh flush x.x.x.x}} command.</td>
-<td>5.9.1-5.12.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4271216</td>
-<td>NVUE overwrites the MOTD file during NVUE configuration with no option to ignore.</td>
-<td>5.11.0-5.12.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4271215</td>
 <td>NVUE overwrites the MOTD file during NVUE configuration with no option to ignore it.</td>
 <td>5.11.0-5.12.0</td>
@@ -67,12 +49,6 @@
 <td>5.12.0</td>
 </tr>
 <tr>
-<td>4260018</td>
-<td>NVUE does not let you set the IPv6 RA lifetime to zero. To work around this issue, run the vtysh command.</td>
-<td>5.11.0-5.12.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4260012</td>
 <td>If all of the neighbors returned in the {{nv show vrf &lt;vrf&gt; router bgp neighbor}} command output have no {{address-family}} configuration, you see an internal error when the nested table in the  output is being rendered.</td>
 <td>5.10.0-5.12.0</td>
@@ -94,14 +70,14 @@
 <tr>
 <td>4256151</td>
 <td>After rebooting the spine switch in an EVPN multihoming configuration, the BGP EVPN Type-2 entry is missing, which causes flooding and duplicates in the fabric. To work around this issue, flush the IP neighbor entries with the {{sudo ip neigh flush x.x.x.x}} command.</td>
-<td>5.9.1-5.11.0</td>
-<td>5.12.0</td>
+<td>5.9.1-5.12.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4251984</td>
-<td>NVUE prevents you from setting the IPv6 RA lifetime to 0 (zero). Use vtysh mode to apply the setting.</td>
-<td>5.11.0</td>
-<td>5.12.0</td>
+<td>NVUE does not let you set the IPv6 RA lifetime to zero. To work around this issue, run the vtysh command.</td>
+<td>5.11.0-5.12.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4251315</td>
@@ -134,12 +110,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4245856</td>
-<td>The {{nv show platform transceiver &lt;interface&gt;}} command sometimes does not show transceiver data for layer 3 Dot1q subinterfaces (such as swp2.10). To work around this issue, run the {{ethtool -m &lt;interface&gt;}} command.</td>
-<td>5.11.0-5.12.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4245853</td>
 <td>NVUE Rest API calls that are authenticated with TACACS on the switch append unnecessary database entries to the {{/run/tacacs_clent_map}} file, which increases the file size. Over time, this increases the TACACS login authentication time, resulting in delayed login authentication. To work around this issue, delete the {{tacacs_client_map}} file with the {{sudo rm rf /run/tacacs_client_map}} command.</td>
 <td>5.11.0-5.12.0</td>
@@ -152,22 +122,10 @@
 <td></td>
 </tr>
 <tr>
-<td>4245850</td>
-<td>When using the REST API  to move a port from one bridge to another bridge, the {{bridge-vlan}} configuration on the port might be programmed incorrectly. To resolve the issue,  run the {{ifreload -a}} command.</td>
-<td>5.9.1-5.12.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4245819</td>
 <td>A Python version change removed the encoding argument parameter of the json loads function, which causes an exception.</td>
 <td>5.11.0-5.12.0</td>
 <td></td>
-</tr>
-<tr>
-<td>4242756</td>
-<td>A Python version change removed the encoding argument parameter of the json loads function, which causes an exception.</td>
-<td>5.11.0</td>
-<td>5.12.0</td>
 </tr>
 <tr>
 <td>4240584</td>
@@ -186,12 +144,6 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 <td>5.12.0</td>
 </tr>
 <tr>
-<td>4214550</td>
-<td>When using the REST API  to move a port from one bridge to another bridge, the {{bridge-vlan}} configuration on the port might be programmed incorrectly. To resolve the issue,  run the {{ifreload -a}} command.</td>
-<td>5.9.1-5.12.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4209429</td>
 <td>Unreachable or reject routes might not get installed into the SDK.</td>
 <td>5.11.0</td>
@@ -200,14 +152,8 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 <tr>
 <td>4208746</td>
 <td>When using the REST API  to move a port from one bridge to another bridge, the {{bridge-vlan}} configuration on the port might be programmed incorrectly. To resolve the issue,  run the {{ifreload -a}} command.</td>
-<td>5.9.1-5.11.0</td>
-<td>5.12.0</td>
-</tr>
-<tr>
-<td>4207037</td>
-<td>NVUE Rest API calls that are authenticated with TACACS on the switch append unnecessary database entries to the {{/run/tacacs_clent_map}} file, which increases the file size. Over time, this increases the TACACS login authentication time, resulting in delayed login authentication. To work around this issue, delete the {{tacacs_client_map}} file with the {{sudo rm rf /run/tacacs_client_map}} command.</td>
-<td>5.11.0</td>
-<td>5.12.0</td>
+<td>5.9.1-5.12.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4205060</td>
@@ -218,8 +164,8 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 <tr>
 <td>4203794</td>
 <td>The {{nv show platform transceiver &lt;interface&gt;}} command sometimes does not show transceiver data for layer 3 Dot1q subinterfaces (such as swp2.10). To work around this issue, run the {{ethtool -m &lt;interface&gt;}} command.</td>
-<td>5.11.0</td>
-<td>5.12.0</td>
+<td>5.11.0-5.12.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4203784</td>
@@ -314,19 +260,6 @@ cumulus@switch:~$ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "Dpkg::Optio
 <td>5.12.0</td>
 </tr>
 <tr>
-<td>4175695</td>
-<td>If all of the neighbors returned in the {{nv show vrf &lt;vrf&gt; router bgp neighbor}} command output have no {{address-family}} configuration, you see an internal error when the nested table in the  output is being rendered.</td>
-<td>5.10.0-5.11.0</td>
-<td>5.12.0</td>
-</tr>
-<tr>
-<td>4175217</td>
-<td>When there is a large number of discontiguous VTEP to VLAN mappings, {{switchd}} crashes with a Netlink error similar to the following:
-netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported truncated message</td>
-<td>5.10.1-5.12.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4174646</td>
 <td>On the NVIDIA SN5400 and SN5600 switch, the fans might run at full speed when it is not necessary.</td>
 <td>5.10.1-5.11.0</td>
@@ -382,8 +315,8 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <td>4150508</td>
 <td>When there is a large number of discontiguous VTEP to VLAN mappings, {{switchd}} crashes with a Netlink error similar to the following:
 netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported truncated message</td>
-<td>5.10.1-5.11.0</td>
-<td>5.12.0</td>
+<td>5.10.1-5.12.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4142857</td>
@@ -465,12 +398,6 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 <td>When running PTP, the performance for 100Gx2 and 400Gx8 can have a high offset in up to 1.5% of the sampling. </td>
 <td>5.11.0-5.12.0</td>
 <td></td>
-</tr>
-<tr>
-<td>4115126</td>
-<td>When IPv4 layer 3 switch ports and virtual interfaces flap, {{switchd}} might send an ICMP Reply message instead of an ARP request (although no ICMP request was sent). Multiple ICMP Replies might be sent to any of the neighbor IP addresses of that interface.</td>
-<td>5.9.2-5.11.0</td>
-<td>5.12.0</td>
 </tr>
 <tr>
 <td>4105127</td>

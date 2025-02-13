@@ -147,10 +147,11 @@ Cumulus Linux provides two different ways to upgrade the switch with a new image
 - **ONIE** is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a switch.
 - **Optimized image upgrade** uses two partitions to upgrade the image with just one reboot cycle. With two partitions on the switch, the current image boots from one partition, from which the image upgrade triggers. After detecting the running partition and checking if the second partition is available for installation, optimized upgrade starts to stage the installation in the second partition (copying the image, preparing the partition, unpacking the new image, and tuning and finalizing the new partition for the new image). The subsequent boot occurs from the second partition.
 
-  The switch does not support optimized image upgrade in {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="warm restart mode">}}.
+  - The switch does not support optimized image upgrade in {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="warm restart mode">}}.
+  - You cannot downgrade a Cumulus Linux 5.12 switch to Cumulus Linux 5.11 and earlier with optimized image upgrade; use ONIE instead.
 
 {{%notice note%}}
-Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in [Upgrade Switches in an MLAG Pair](#upgrade-switches-in-an-mlag-pair) below to ensure a smooth upgrade.
+- Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in [Upgrade Switches in an MLAG Pair](#upgrade-switches-in-an-mlag-pair) below to ensure a smooth upgrade.
 {{%/notice%}}
 
 {{< tabs "TabID183 ">}}
@@ -559,7 +560,7 @@ NVIDIA has not tested running different versions of Cumulus Linux on MLAG peer s
 
 The SN3700C-S, SN5400, and SN5600 secure boot switch running Cumulus Linux 5.12.0 boots with shim 15.8 that adds entries to the SBAT revocations to prevent the switch from booting shim 15.7 or earlier, which has security vulnerabilities.
 
-After downgrading the switch from Cumulus Linux 5.12.0, follow the steps below to disable, then enable secure boot **before** the switch boots.
+After downgrading the switch from Cumulus Linux 5.12.0 with ONIE, follow the steps below to disable, then enable secure boot **before** the switch boots.
 
 You can also follow the steps below to recover a downgraded secure boot switch that does not boot and that shows the following error:
 

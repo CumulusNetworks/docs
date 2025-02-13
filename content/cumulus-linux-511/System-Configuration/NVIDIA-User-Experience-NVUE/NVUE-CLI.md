@@ -14,7 +14,7 @@ If you choose to configure Cumulus Linux with NVUE, you can configure features t
 
 ## Command Syntax
 
-NVUE commands all begin with `nv` and fall into one of three syntax categories:
+NVUE commands all begin with `nv` and fall into one of four syntax categories:
 - Configuration (`nv set` and ` nv unset`)
 - Monitoring (`nv show`)
 - Configuration management (`nv config`)
@@ -97,12 +97,12 @@ At the command prompt, press the Up Arrow and Down Arrow keys to move back and f
 
 ## Command Categories
 
-The NVUE CLI has a flat structure; however, the commands are in three functional categories:
+The NVUE CLI has a flat structure; however, the commands are in four functional categories:
 
-- Configuration
-- Monitoring
-- Configuration Management
-- Action
+- {{<link url="#configuration-commands" text="Configuration">}}
+- {{<link url="#monitoring-commands" text="Monitoring">}}
+- {{<link url="#configuration-management-commands" text="Configuration Management">}}
+- {{<link url="#action-commands" text="Action">}}
 
 ### Configuration Commands
 
@@ -458,7 +458,7 @@ cumulus@switch:~$ nv config apply -m "this is my message"
 To reset the NVUE configuration on the switch back to the default values, run the `nv config replace <filename>` command; for example:
 
 ```
-cumulus@switch:~$ nv config replace /etc/switch.yaml
+cumulus@switch:~$ nv config replace /usr/lib/python3/dist-packages/cue_config_v1/initial.yaml
 cumulus@switch:~$ nv config apply
 ```
 

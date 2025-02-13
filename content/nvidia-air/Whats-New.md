@@ -10,8 +10,8 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 ## Feburary 2025
 <!-- Air:WhatsNew -->
 ### 82.2025.0213-011
-- Fixed an issue with demo marketplace nodes not retaining their disk changes after waking up
-- Added API endpoint for parsing topologies from DOT format to JSON format.
+- Fixed an issue with Demo Marketplace nodes not retaining their disk changes after waking up
+- Added API endpoint for parsing topologies from DOT format to JSON format
 <!-- Air:WhatsNew -->
 
 ### 82.2025.0204-011

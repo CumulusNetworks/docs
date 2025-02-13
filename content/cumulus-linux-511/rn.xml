@@ -156,12 +156,6 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 <td></td>
 </tr>
 <tr>
-<td>4207037</td>
-<td>NVUE Rest API calls that are authenticated with TACACS on the switch append unnecessary database entries to the {{/run/tacacs_clent_map}} file, which increases the file size. Over time, this increases the TACACS login authentication time, resulting in delayed login authentication. To work around this issue, delete the {{tacacs_client_map}} file with the {{sudo rm rf /run/tacacs_client_map}} command.</td>
-<td>5.11.0</td>
-<td>5.12.0</td>
-</tr>
-<tr>
 <td>4205060</td>
 <td>Debian 12 does not support LDAP SSL CRL check. Cumulus Linux now uses CRL file.</td>
 <td>5.11.0</td>

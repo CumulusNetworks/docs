@@ -46,18 +46,22 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
   - {{<link url="NVUE-API/#retrieve-view-types" text="API support for views with show commands">}}
   - {{<link title="Log Files with NVUE" text="Logging commands">}}
   - {{<link url="NVUE-CLI/#translate-a-configuration-revision-or-file" text="Commands to translate a revision or yaml configuration file">}}
-  - {{< expand "Removed NVUE Commands" >}}
-| Removed Commands |
-| --------------- |
-| `nv set/unset system aaa radius enable` |
-| `nv set/unset system aaa tacacs enable` |
-| `nv set/unset system aaa ldap hostname <hostname-id>` |
-| `nv set/unset system aaa ldap hostname <hostname-id> priority`|
-| `nv set/unset system aaa tacacs server <priority> port <port-id>` |
-| `nv set/unset system aaa tacacs server <priority> prefer-ip-version 6` |
-| `nv set/unset system aaa tacacs server <priority> secret <secret-key>` |
-| `nv set/unset system aaa ldap ssl ca-list`|
+  - {{< expand "Changed NVUE Commands" >}}
+| Cumulus Linux 5.12 | Cumulus Linux 5.11 and Earlier |
+| --------------- |---------------------------------------|
+| `nv set/unset system aaa ldap server <server-id>` | `nv set/unset system aaa ldap hostname <hostname-id>` | 
+| `nv set/unset system aaa ldap server <server-id> priority <priority-id>`| `nv set/unset system aaa ldap hostname <hostname-id> priority <priority-id`|
+| `nv set/unset system aaa tacacs server <server-id> port <port-id>`| `nv set/unset system aaa tacacs server <priority> port <port-id>` |
+| `nv set/unset system aaa tacacs server <server-id> prefer-ip-version 6`| `nv set/unset system aaa tacacs server <priority> prefer-ip-version 6` |
+| `nv set/unset system aaa tacacs server <server-id> secret <secret-key>` | `nv set/unset system aaa tacacs server <priority> secret <secret-key>` |
 
+{{< /expand >}}
+  - {{< expand "Removed NVUE Commands" >}}
+```
+nv set/unset system aaa radius enable
+nv set/unset system aaa tacacs enable
+nv set/unset system aaa ldap ssl ca-list
+```
 {{< /expand >}}
   - {{< expand "New NVUE Commands" >}}
 For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) for Cumulus Linux.

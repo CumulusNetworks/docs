@@ -196,6 +196,11 @@ nv set vrf <vrf> router bgp address-family <address-family> nhg-per-origin
 
 ```
 nv unset system aaa radius accounting send-records
+nv unset system aaa tacacs server <server-id> 
+nv unset system aaa tacacs server <server-id> port
+nv unset system aaa tacacs server <server-id> prefer-ip-version
+nv unset system aaa tacacs server <server-id> priority
+nv unset system aaa tacacs server <server-id> secret
 nv unset system aaa user <user-id> spiffe-id <spiffe-id>
 nv unset system counter rates load-interval
 nv unset system packages repository <repository> distribution <distribution> pool <pool>

@@ -19,12 +19,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4271216</td>
-<td>NVUE overwrites the MOTD file during NVUE configuration with no option to ignore.</td>
-<td>5.11.0-5.12.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4271215</td>
 <td>NVUE overwrites the MOTD file during NVUE configuration with no option to ignore it.</td>
 <td>5.11.0-5.12.0</td>
@@ -272,13 +266,6 @@ cumulus@switch:~$ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "Dpkg::Optio
 <td>5.12.0</td>
 </tr>
 <tr>
-<td>4175217</td>
-<td>When there is a large number of discontiguous VTEP to VLAN mappings, {{switchd}} crashes with a Netlink error similar to the following:
-netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported truncated message</td>
-<td>5.10.1-5.12.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4174646</td>
 <td>On the NVIDIA SN5400 and SN5600 switch, the fans might run at full speed when it is not necessary.</td>
 <td>5.10.1-5.11.0</td>
@@ -334,8 +321,8 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <td>4150508</td>
 <td>When there is a large number of discontiguous VTEP to VLAN mappings, {{switchd}} crashes with a Netlink error similar to the following:
 netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported truncated message</td>
-<td>5.10.1-5.11.0</td>
-<td>5.12.0</td>
+<td>5.10.1-5.12.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4142857</td>
@@ -417,12 +404,6 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 <td>When running PTP, the performance for 100Gx2 and 400Gx8 can have a high offset in up to 1.5% of the sampling. </td>
 <td>5.11.0-5.12.0</td>
 <td></td>
-</tr>
-<tr>
-<td>4115126</td>
-<td>When IPv4 layer 3 switch ports and virtual interfaces flap, {{switchd}} might send an ICMP Reply message instead of an ARP request (although no ICMP request was sent). Multiple ICMP Replies might be sent to any of the neighbor IP addresses of that interface.</td>
-<td>5.9.2-5.11.0</td>
-<td>5.12.0</td>
 </tr>
 <tr>
 <td>4105127</td>

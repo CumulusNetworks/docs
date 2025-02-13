@@ -325,7 +325,7 @@ None
 <!-- vale off -->
 ## netq install opta activate-job
 
-Activates the NetQ Collector software after you configure and install an initial server or server cluster (master and two worker nodes). Activation requires a configuration key that you can obtain from an email titled *A new site has been added to your NVIDIA NetQ account* (sent to your NetQ administrator).
+Activates the NetQ Collector software after you configure and install an initial server or server cluster. Activation requires a configuration key that you can obtain from an email titled *A new site has been added to your NVIDIA NetQ account* (sent to your NetQ administrator).
 <!-- vale on -->
 
 ### Syntax

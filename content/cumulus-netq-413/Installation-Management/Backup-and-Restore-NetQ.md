@@ -96,7 +96,7 @@ Fri Jan 17 05:50:01 2025 - Waiting for all pods to come up
 Fri Jan 17 05:58:14 2025 - All pods are up
 ```
 
-5. Copy the created tarball off of the server to restore your data on your _new_ VM.
+5. Copy the newly created tarball from the server and restore the data on your _new_ VM.
 
 ```
 cumulus@netq-appliance:~$ sudo scp /opt/backuprestore/combined_backup_20250117054718.tar username:password@<destination>
@@ -182,7 +182,7 @@ Fri Jan 17 05:50:01 2025 - Waiting for all pods to come up
 Fri Jan 17 05:58:14 2025 - All pods are up
 ```
 
-5. Copy the created tarball off of the server to restore your data on your _new_ VM.
+5. Copy the newly created tarball from the server and restore the data on your _new_ VM.
 
 ```
 cumulus@netq-appliance:~$ sudo scp /opt/backuprestore/combined_backup_20250117054718.tar username:password@<destination>

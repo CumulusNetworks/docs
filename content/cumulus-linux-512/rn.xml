@@ -43,12 +43,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4271207</td>
-<td>Stale Next Hop Groups are left in the kernel resulting in polarized Adaptive Routing traffic.</td>
-<td>5.10.1-5.12.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4262480</td>
 <td>NVUE fails to apply numbered BGP large community lists (community lists with multiple rules). To work around this issue, use named large community lists.</td>
 <td>5.12.0</td>
@@ -127,12 +121,6 @@
 cumulus@switch:~$ sudo pam-auth-update --enable tacplus --force
 cumulus@switch:~$ sudo pam-auth-update --enable unix --force</td>
 <td>5.12.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4200961</td>
-<td>If you use a bridge name that isn't {{br_default}}, NVUE generates incorrect ptp4l.conf files.</td>
-<td>5.10.0-5.12.0</td>
 <td></td>
 </tr>
 <tr>

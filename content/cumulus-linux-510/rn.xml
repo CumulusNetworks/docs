@@ -19,12 +19,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4271207</td>
-<td>Stale Next Hop Groups are left in the kernel resulting in polarized Adaptive Routing traffic.</td>
-<td>5.10.1-5.12.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4260012</td>
 <td>If all of the neighbors returned in the {{nv show vrf &lt;vrf&gt; router bgp neighbor}} command output have no {{address-family}} configuration, you see an internal error when the nested table in the  output is being rendered.</td>
 <td>5.10.0-5.12.0</td>
@@ -55,12 +49,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4200961</td>
-<td>If you use a bridge name that isn't {{br_default}}, NVUE generates incorrect ptp4l.conf files.</td>
-<td>5.10.0-5.12.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4195240</td>
 <td>Cumulus Linux installs and runs the {{atftpd}} program by default but cannot access it because a {{/tftpboot}} directory is missing.</td>
 <td>5.9.2-5.11.0</td>
@@ -81,8 +69,8 @@
 <tr>
 <td>4184845</td>
 <td>Stale Next Hop Groups are left in the kernel resulting in polarized Adaptive Routing traffic.</td>
-<td>5.10.1-5.11.0</td>
-<td>5.12.0</td>
+<td>5.10.1-5.12.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4182753</td>
@@ -903,12 +891,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>4208746</td>
 <td>When using the REST API  to move a port from one bridge to another bridge, the {{bridge-vlan}} configuration on the port might be programmed incorrectly. To resolve the issue,  run the {{ifreload -a}} command.</td>
 <td>5.9.1-5.12.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4200961</td>
-<td>If you use a bridge name that isn't {{br_default}}, NVUE generates incorrect ptp4l.conf files.</td>
-<td>5.10.0-5.12.0</td>
 <td></td>
 </tr>
 <tr>

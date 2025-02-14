@@ -175,7 +175,7 @@ cumulus@switch:~$ nv set system aaa tacacs exclude-user user1
 
 ## <h>nv set system aaa tacacs server \<priority-id\></h>
 
-Configures the TACACS server priority number. You must set a priority even if you only specify one server.
+Configures the TACACS server priority number. You must set a priority even if you only specify one server. You can specify a value between 1 and 8.
 
 {{%notice note%}}
 Cumulus Linux 5.12 and later does not provide this command; Use `nv set system aaa tacacs server <server-id> priority <priority>`.

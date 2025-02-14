@@ -37,12 +37,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4271207</td>
-<td>Stale Next Hop Groups are left in the kernel resulting in polarized Adaptive Routing traffic.</td>
-<td>5.10.1-5.12.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4270957</td>
 <td>Optimized (two partition) upgrade from Cumulus Linux 5.11.0 requires approximately 2.4 Gbytes of free space in {{/var}} after downloading the image with NVUE commands instead of 1.6 Gbytes of free space. Upgrade needs the extra space for an additional copy of the downloaded image in {{/var}} .</td>
 <td>5.11.0</td>
@@ -89,12 +83,6 @@
 <td>4250847</td>
 <td>When the STP state goes down, then back up on the primary MLAG peer, the peerlink state is not updated correctly in {{mstpd}}.</td>
 <td>5.8.0-5.12.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4248626</td>
-<td>The {{nv show system ztp}} command might report an error when you use a system local that represents time differently from {{%a %b %d %H:%M:%S %Y %Z}}.</td>
-<td>5.11.0-5.12.0</td>
 <td></td>
 </tr>
 <tr>
@@ -174,22 +162,10 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 <td>5.12.0</td>
 </tr>
 <tr>
-<td>4200961</td>
-<td>If you use a bridge name that isn't {{br_default}}, NVUE generates incorrect ptp4l.conf files.</td>
-<td>5.10.0-5.12.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4200952</td>
 <td>Configuring the listening-address for the SNMP server fails for IP addresses associated with VRFs other than the management VRF.</td>
 <td>5.11.0-5.12.0</td>
 <td></td>
-</tr>
-<tr>
-<td>4200758</td>
-<td>The {{nv show service ntp &lt;vrf&gt;}} command shows the peers that are discovered together with the configured NTP servers instead of displaying only the NTP configuration. As a result, the applied and operational columns have different values, which causes confusion.</td>
-<td>5.11.0</td>
-<td>5.12.0</td>
 </tr>
 <tr>
 <td>4199734</td>
@@ -230,8 +206,8 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 <tr>
 <td>4184845</td>
 <td>Stale Next Hop Groups are left in the kernel resulting in polarized Adaptive Routing traffic.</td>
-<td>5.10.1-5.11.0</td>
-<td>5.12.0</td>
+<td>5.10.1-5.12.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4183214</td>

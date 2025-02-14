@@ -1927,7 +1927,9 @@ footer {
       font-size: 16px;
       font-weight: 400;
       line-height: 30px;
-      text-decoration: none;
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-underline-offset: .3125em;
 
       &:hover {
         color: $nvidia-green !important;

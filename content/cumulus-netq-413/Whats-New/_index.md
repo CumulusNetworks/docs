@@ -12,7 +12,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 NetQ 4.13.0 includes the following new features:
 
-- New option to add additional nodes to your {{<link title="Before You Install" text="HA scale cluster deployment">}}, supporting up to 2,000 switches
+- New option to {{<link title="Set Up Your Virtual Machine for an On-premises HA Scale Cluster/#add-additional-worker-nodes" text="add additional nodes">}} to your scale-cluster deployment, supporting network with up to 2,000 switches. {{<link title="Before You Install" text="Read more about NetQ deployment options">}}.
 - Performance and usability improvements to {{<link title="Switches/#view-queue-lengths-as-histograms" text="queue length histograms">}}
 - New functionality that allows you to {{<link title="Monitor Events/#create-event-filters" text="create and save filters">}} for system and What Just Happened events
 - Added ability to filter hostnames using regular expressions
@@ -23,7 +23,7 @@ NetQ 4.13.0 includes the following new features:
 
 ## Upgrade Paths
 
-You can upgrade to NetQ 4.13 if your deployment is running version 4.12 or 4.11. For on-premises and cloud deployments, {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}} and restore your data during a {{<link title="Install the NetQ System" text="new NetQ 4.13 installation">}}.
+You can upgrade to NetQ 4.13 if your deployment is running version 4.12 or 4.11. For on-premises and cloud deployments, {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}}, then restore your data during a {{<link title="Install the NetQ System" text="new NetQ 4.13 installation">}}.
 
 {{%notice note%}}
 When you upgrade to NetQ 4.13, any pre-existing event and validation data will be lost.
@@ -33,7 +33,7 @@ When you upgrade to NetQ 4.13, any pre-existing event and validation data will b
 
 The NetQ 4.13 server is compatible with NetQ agent 4.12 or later. You can install NetQ agents on switches and servers running:
 
-- Cumulus Linux 5.9.2 or later (Spectrum switches)
+- Cumulus Linux 5.9.2 or later
 - Ubuntu 22.04
 
 NVIDIA recommends upgrading to the latest agent version.

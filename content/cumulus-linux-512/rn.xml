@@ -656,12 +656,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>4271207</td>
-<td>Stale Next Hop Groups are left in the kernel resulting in polarized Adaptive Routing traffic.</td>
-<td>5.10.1-5.12.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4262480</td>
 <td>NVUE fails to apply numbered BGP large community lists (community lists with multiple rules). To work around this issue, use named large community lists.</td>
 <td>5.12.0</td>
@@ -696,12 +690,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>4249096</td>
 <td>Binary upgrade from Cumulus Linux 4.3.1 to 5.12.0 is not supported. To work around this issue, perform a binary upgrade from Cumulus Linux 4.3.1 to 5.9.0, then perform a binary upgrade from Cumulus Linux 5.9.0 to 5.12.0.</td>
 <td>5.12.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4248626</td>
-<td>The {{nv show system ztp}} command might report an error when you use a system local that represents time differently from {{%a %b %d %H:%M:%S %Y %Z}}.</td>
-<td>5.11.0-5.12.0</td>
 <td></td>
 </tr>
 <tr>
@@ -746,12 +734,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 cumulus@switch:~$ sudo pam-auth-update --enable tacplus --force
 cumulus@switch:~$ sudo pam-auth-update --enable unix --force</td>
 <td>5.12.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4200961</td>
-<td>If you use a bridge name that isn't {{br_default}}, NVUE generates incorrect ptp4l.conf files.</td>
-<td>5.10.0-5.12.0</td>
 <td></td>
 </tr>
 <tr>

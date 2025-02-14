@@ -1930,9 +1930,16 @@ footer {
       text-decoration: underline;
       text-decoration-thickness: 2px;
       text-underline-offset: .3125em;
+      
 
       &:hover {
         color: $nvidia-green !important;
+      }
+      &:visited { 
+        text-decoration: underline;
+        text-decoration-thickness: 2px;
+        text-underline-offset: .3125em;
+        text-decoration-color: white !important;
       }
     }
 

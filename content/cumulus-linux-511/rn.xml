@@ -92,12 +92,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4248626</td>
-<td>The {{nv show system ztp}} command might report an error when you use a system local that represents time differently from {{%a %b %d %H:%M:%S %Y %Z}}.</td>
-<td>5.11.0-5.12.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4246859</td>
 <td>The {{nv show service ntp &lt;vrf&gt;}} command displays the peers that are discovered together with the configured NTP servers instead of displaying only the NTP configuration. As a result, the "applied" and "operational" columns have different values, which causes confusion.</td>
 <td>5.11.0-5.12.0</td>

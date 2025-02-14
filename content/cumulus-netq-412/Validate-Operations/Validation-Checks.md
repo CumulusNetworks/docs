@@ -138,8 +138,8 @@ The topology validation tests look for inconsistencies between a network's topol
 
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
-| 0 | LLDP service | Checks that the LLDP service is running |
-| 1 | Topology blueprint | Checks for differences between a network's actual topology and the network's blueprint file  |
+| 0 | Topology blueprint | Checks for differences between a network's actual topology and the network's blueprint file  |
+| 1 | LLDP service | Checks that the LLDP service is running |
 ## VLAN Validation Tests
 
 The VLAN validation tests look for configuration consistency between two nodes.
@@ -147,7 +147,7 @@ The VLAN validation tests look for configuration consistency between two nodes.
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
 | 0 | Link neighbor VLAN consistency | Checks for consistency of VLAN configuration on two sides of a port or a bond |
-| 1 | MLAG nond VLAN consistency | Checks for consistent VLAN membership of an MLAG bond on each side of the MLAG pair |
+| 1 | MLAG bond VLAN consistency | Checks for consistent VLAN membership of an MLAG bond on each side of the MLAG pair |
 
 ## VXLAN Validation Tests
 

@@ -49,14 +49,26 @@
 <td></td>
 </tr>
 <tr>
+<td>4236491</td>
+<td>When you click within a comparison view chart in link health view, the link utilization values in the side menu might differ from the values displayed in the comparison view chart. The values in the comparison chart are aggregated ever hour, whereas the values in the side menu reflect the most recent data. </td>
+<td>4.13.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4131550</td>
 <td>When you run a topology validation, the full-screen topology validation view might not display the latest results. To work around this issue, refresh the page.</td>
 <td>4.12.0-4.13.0</td>
 <td></td>
 </tr>
 <tr>
+<td>4126632</td>
+<td>In scale deployments with 1,000 or more switches, BGP validations might take up to five minutes to display results in the UI or CLI.</td>
+<td>4.13.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4100882</td>
-<td>When an exported file is very large, your browser might prevent you from opening the downloaded file. To work around this issue, use filters in the UI to decrease the size of the dataset that you intend to export and download.</td>
+<td>When you attempt to export a file that is larger than 200MB, your browser might crash or otherwise prevent you from exporting the file. To work around this issue, use filters in the UI to decrease the size of the dataset that you intend to export.</td>
 <td>4.12.0-4.13.0</td>
 <td></td>
 </tr>

@@ -55,7 +55,7 @@ To work around this issue, adjust the poll period to 60 seconds on the new switc
 </tr>
 <tr>
 <td>4100882</td>
-<td>When an exported file is very large, your browser might prevent you from opening the downloaded file. To work around this issue, use filters in the UI to decrease the size of the dataset that you intend to export and download.</td>
+<td>When you attempt to export a file that is larger than 200MB, your browser might crash or otherwise prevent you from exporting the file. To work around this issue, use filters in the UI to decrease the size of the dataset that you intend to export.</td>
 <td>4.12.0</td>
 <td></td>
 </tr>

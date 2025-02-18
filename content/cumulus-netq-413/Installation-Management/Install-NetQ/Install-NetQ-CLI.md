@@ -133,13 +133,7 @@ To get the NetQ CLI package:
     root@ubuntu:~# sudo wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | apt-key add -
     ```
 
-2. Add the Ubuntu repository:
-
-    {{<tabs "TabID2" >}}
-
-{{<tab "Ubuntu 22.04" >}}
-
-Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-jammy.list` and add the following line:
+2. Add the Ubuntu repository. Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-jammy.list` and add the following line:
 
 ```
 root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-jammy.list
@@ -148,26 +142,9 @@ deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb jammy netq-latest
 ...
 ```
 
-{{</tab>}}
-
-{{<tab "Ubuntu 20.04" >}}
-
-Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-focal.list` and add the following line:
-
-```
-root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-focal.list
-...
-deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb focal netq-latest
-...
-```
-
-{{</tab>}}
-
-{{</tabs>}}
-
-    {{<notice note>}}
+{{<notice note>}}
 The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even for a major version update. If you want to keep the repository on a specific version &mdash; such as <code>netq-4.4</code> &mdash; use that instead.
-    {{</notice>}}
+{{</notice>}}
 
 ## Install NetQ CLI
 

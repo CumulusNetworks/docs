@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4298008</td>
+<td>When you upgrade from NetQ 4.11 to 4.13, any pre-existing validation data will be lost.</td>
+<td>4.13.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4280664</td>
 <td>If the name of a device group includes spaces, validations might fail with the message “Validation failed to run.” To work around this issue, remove the spaces from the device group’s name.</td>
 <td>4.13.0</td>

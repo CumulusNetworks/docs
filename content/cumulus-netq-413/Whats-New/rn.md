@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4298008"></a> [4298008](#4298008) <a name="4298008"></a> <br /> | When you upgrade from NetQ 4.11 to 4.13, any pre-existing validation data will be lost. | 4.13.0 | |
 | <a name="4280664"></a> [4280664](#4280664) <a name="4280664"></a> <br /> | If the name of a device group includes spaces, validations might fail with the message “Validation failed to run.” To work around this issue, remove the spaces from the device group’s name. | 4.13.0 | |
 | <a name="4280023"></a> [4280023](#4280023) <a name="4280023"></a> <br /> | After backing up and restoring your NetQ data, any modifications to default suppression rules will be lost. | 4.12.0-4.13.0 | |
 | <a name="4279008"></a> [4279008](#4279008) <a name="4279008"></a> <br /> | The following commands are not supported and will return an error message in 3- node and 5-node scale deployments: <code>netq show ecmp</code>, <code>netq show ecmp-hash-config</code>, <code>netq show line-utilization</code> | 4.13.0 | |

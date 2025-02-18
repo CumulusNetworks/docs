@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4309875</td>
+<td>When you configure an invalid switch port (swp), NVUE adds the invalid configuration instead of rejecting it. The invalid interface in the configuration does not have any functional impact.</td>
+<td>5.12.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4280299</td>
 <td>The {{nv action fetch system packages key &lt;key-id&gt;}} command fails if the key ID is an scp/ftp or URL path that requires a password to access the key. To work around this issue, use a URI that does not require password authentication for the key ID.</td>
 <td>5.12.0-5.12.1</td>
@@ -618,6 +624,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>4309875</td>
+<td>When you configure an invalid switch port (swp), NVUE adds the invalid configuration instead of rejecting it. The invalid interface in the configuration does not have any functional impact.</td>
+<td>5.12.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4286489</td>

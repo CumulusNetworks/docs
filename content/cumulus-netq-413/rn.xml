@@ -31,6 +31,12 @@
 <td></td>
 </tr>
 <tr>
+<td>4261089</td>
+<td>When you upgrade a cloud deployment, some switches might not appear in the search field or list of hostnames. To work around this issue, decommission the switches, then restart the agent on each switch with the &lt;code&gt; sudo netq config restart agent &lt;/code&gt; command.</td>
+<td>4.13.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4248942</td>
 <td>When you assign a role to a switch, NetQ might take up to five minutes to reflect the new or updated role in the queue histogram fabric overview page.</td>
 <td>4.13.0</td>

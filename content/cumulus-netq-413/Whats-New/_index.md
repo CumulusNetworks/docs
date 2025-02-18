@@ -26,12 +26,12 @@ NetQ 4.13.0 includes the following new features:
 You can upgrade to NetQ 4.13 if your deployment is running version 4.12 or 4.11. For on-premises and cloud deployments, {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}}, then restore your data during a {{<link title="Install the NetQ System" text="new NetQ 4.13 installation">}}.
 
 {{%notice note%}}
-When you upgrade to NetQ 4.13, any pre-existing event and validation data will be lost.
+When you upgrade from NetQ 4.11 to 4.13, any pre-existing validation data will be lost.
 {{%/notice%}}
 
 ## Compatible Agent Versions
 
-The NetQ 4.13 server is compatible with NetQ agent 4.12 or later. You can install NetQ agents on switches and servers running:
+The NetQ 4.13 server is compatible with NetQ agents 4.12 and 4.13. You can install NetQ agents on switches and servers running:
 
 - Cumulus Linux 5.9.2 or later
 - Ubuntu 22.04

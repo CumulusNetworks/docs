@@ -97,7 +97,7 @@ cumulus@switch~:$ netq show agents opta
 Matching agents records:
 Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
 ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
-netq-appliance    Fresh            yes      4.12.0-ub20.04u49~1728015156.144ca36 Tue Oct  8 12:06:08 2024  Tue Nov 12 17:03:14 2024  Tue Nov 12 17:04:09 2024   Tue Dec  3 15:43:47 2024
+netq-appliance    Fresh            yes      4.13.0-ub22.04u50~11739293854.1b7284 Tue Oct  8 12:06:08 2024  Tue Nov 12 17:03:14 2024  Tue Nov 12 17:04:09 2024   Tue Dec  3 15:43:47 2024
 ```
 
 ## View NetQ Agent Configuration

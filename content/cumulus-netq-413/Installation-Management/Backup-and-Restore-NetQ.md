@@ -9,7 +9,7 @@ The following sections describe how to back up and restore your NetQ data and VM
 
 {{%notice note%}}
 - You must run backup and restore scripts with sudo privileges.
-- When you upgrade to NetQ 4.13, any pre-existing event and validation data will be lost.
+- When you upgrade from NetQ 4.11 to 4.13, any pre-existing validation data will be lost.
 {{%/notice%}}
 
 ## Back Up Your NetQ Data

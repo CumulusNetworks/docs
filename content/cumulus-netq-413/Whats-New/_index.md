@@ -12,7 +12,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 NetQ 4.13.0 includes the following new features:
 
-- New option to {{<link title="Set Up Your Virtual Machine for an On-premises HA Scale Cluster/#add-additional-worker-nodes" text="add additional nodes">}} to your scale-cluster deployment, supporting network with up to 2,000 switches. {{<link title="Before You Install" text="Read more about NetQ deployment options">}}.
+- New option to {{<link title="Set Up Your Virtual Machine for an On-premises HA Scale Cluster/#add-additional-worker-nodes" text="add additional nodes">}} to your scale-cluster deployment, supporting networks with up to 2,000 switches. {{<link title="Before You Install" text="Read more about NetQ deployment options">}}.
 - Performance and usability improvements to {{<link title="Switches/#view-queue-lengths-as-histograms" text="queue length histograms">}}
 - New functionality that allows you to {{<link title="Monitor Events/#create-event-filters" text="create and save filters">}} for system and What Just Happened events
 - Added ability to filter hostnames using regular expressions

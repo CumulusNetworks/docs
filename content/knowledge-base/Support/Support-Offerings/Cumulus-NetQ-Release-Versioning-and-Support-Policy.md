@@ -24,14 +24,14 @@ NetQ software installation file names include a version number, in the form of x
     - Feature improvements.
     - Bug fixes and updates.
     - Security updates.
-- **OS** indicates the Network Operating System information (cl for Cumulus Linux, deb for SONiC, ub for Ubuntu)
+- **OS** indicates the Network Operating System information (cl for Cumulus Linux, deb for SONiC, ub for Ubuntu). Cumulus Linux 5.9 or later packages include <b>cld12</b>. Prior versions of Cumulus Linux include <b>cl4u</b>.
 - **TAG** represents a timestamp for the release of the version.
 - **CPU** architecture represents architecture.
 
 For example:
 
-- netq-apps_<strong>4.12.0</strong>-deb11u<strong>49</strong>~1731404547.ffa541ea6_amd64.deb
-- netq-agent_<strong>4.12.0</strong>-deb11u<strong>49</strong>~1731404547.ffa541ea6_amd64.deb
+- netq-apps_<strong>4.13.0</strong>-cld12u<strong>50</strong>~1739293953.1b72846ca_amd64.deb
+- netq-agent_<strong>4.13.0</strong>-cld12u<strong>50</strong>~1739293953.1b72846ca_amd64.deb
 
 ## Release, Support Lifecycle and Support Policy
 
@@ -48,6 +48,7 @@ The following table depicts the NetQ release support matrix:
 
 | NetQ Release | Release Date | End of Support |
 | :--------: | --------- | --------- |
+| 4.13.z | 18-Feb-2025 | 18-Feb-2027 |
 | 4.12.z | 15-Nov-2024 | 15-Nov-2026 |
 | 4.11.z | 07-Aug-2024 | 07-Aug-2026 |
 | 4.10.z | 30-Apr-2024 | 30-Apr-2026 |
@@ -65,4 +66,4 @@ The following table depicts the NetQ release support matrix:
 
 ## Upgrade Process
 
-For information regarding upgrading from previous NetQ releases, refer to the [NetQ Deployment Guide]({{<ref "/cumulus-netq-411/Installation-Management" >}}).
+For information regarding upgrading from previous NetQ releases, refer to the [NetQ Deployment Guide]({{<ref "/cumulus-netq-412/Installation-Management" >}}).

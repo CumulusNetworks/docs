@@ -7,7 +7,7 @@ toc: 4
 
 NetQ and network operating system images are managed with LCM. This section explains how to check for missing images, upgrade images, and specify default images.
 
-The network OS and NetQ images are available in several variants based on the software version, the CPU architecture, platform, and SHA checksum. Download both the `netq-apps` and `netq-agents` packages according to the version of Cumulus Linux you are running. {{<netq-install/agent-version version="4.12.0" opsys="cl">}}
+The network OS and NetQ images are available in several variants based on the software version, the CPU architecture, platform, and SHA checksum. Download both the `netq-apps` and `netq-agents` packages according to the version of Cumulus Linux you are running. {{<netq-install/agent-version version="4.13.0" opsys="cl">}}
 
 ## View and Upload Missing Images
 
@@ -122,11 +122,11 @@ netq lcm show netq-images
 
 2. Download the NetQ Debian packages needed for upgrade from the {{<exlink url="https://download.nvidia.com/cumulus/apps3.cumulusnetworks.com/repos/deb/pool/netq-4.12/p/python-netq/" text="NetQ repository">}}, selecting the appropriate version and hypervisor/platform. Place them in an accessible part of your local network.
 
-3. Upload the images to the LCM repository. This example uploads the two packages (`netq-agent` and `netq-apps`) required for NetQ version 4.12.0 for a NetQ appliance or VM running Ubuntu 20.04 with an AMD 64 architecture.
+3. Upload the images to the LCM repository. This example uploads the two packages (`netq-agent` and `netq-apps`) required for NetQ version 4.13.0 for a NetQ appliance or VM running Ubuntu 22.04 with an AMD 64 architecture.
 
     ```
-    cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-agent_4.12.0-ub20.04u49~1731404061.ffa541ea6_amd64.deb
-    cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_4.12.0-ub20.04u49~1731404061.ffa541ea6_amd64.deb
+    cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-agent_4.13.0-ub22.04u50~1739293854.1b72846ca_amd64.deb
+    cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_4.13.0-ub22.04u50~1739293854.1b72846ca_amd64.deb
     ```
 
 {{</tab>}}
@@ -172,8 +172,8 @@ cumulus@switch:~$ netq lcm add image /path/to/download/cumulus-linux-5.9.1-mlx-a
 NetQ images:
 
 ```
-cumulus@switch:~$ netq lcm add image /path/to/download/netq-agent_4.12.0-cl4u49~1731404368.ffa541ea6_amd64.deb
-cumulus@switch:~$ netq lcm add image /path/to/download/netq-apps_4.12.0-cl4u49~1731404368.ffa541ea6_amd64.deb
+cumulus@switch:~$ netq lcm add image /path/to/download/netq-agent_4.13.0-cld12u50~1739293953.1b72846ca_amd64.deb
+cumulus@switch:~$ netq lcm add image /path/to/download/netq-apps_4.13.0-cld12u50~1739293953.1b72846ca_amd64.deb
 ```
 
 {{</tab>}}

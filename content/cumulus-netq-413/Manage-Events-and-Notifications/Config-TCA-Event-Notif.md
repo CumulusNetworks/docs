@@ -468,17 +468,17 @@ cumulus@switch:~$ netq show tca
 Matching config_tca records:
 TCA Name                     Event Name           Scope                      Severity Channel/s          Active Threshold          Unit     Threshold Type Suppress Until
 ---------------------------- -------------------- -------------------------- -------- ------------------ ------ ------------------ -------- -------------- ----------------------------
-TCA_CPU_UTILIZATION_UPPER_1  TCA_CPU_UTILIZATION_ {"hostname":"leaf01"}      info     pd-netq-events,slk True   87                 %        user_set       Fri Oct  9 15:39:35 2020
+TCA_CPU_UTILIZATION_UPPER_1  TCA_CPU_UTILIZATION_ {"hostname":"leaf01"}      info     pd-netq-events,slk True   87                 %        user_set       Fri Oct  9 15:39:35 2025
                              UPPER                                                    -netq-events
-TCA_CPU_UTILIZATION_UPPER_2  TCA_CPU_UTILIZATION_ {"hostname":"*"}           error    slk-netq-events    True   93                 %        user_set       Fri Oct  9 15:39:56 2020
+TCA_CPU_UTILIZATION_UPPER_2  TCA_CPU_UTILIZATION_ {"hostname":"*"}           error    slk-netq-events    True   93                 %        user_set       Fri Oct  9 15:39:56 2025
                              UPPER
-TCA_DOM_BIAS_CURRENT_ALARM_U TCA_DOM_BIAS_CURRENT {"hostname":"leaf*","ifnam error    slk-netq-events    True   0                  mA       vendor_set     Fri Oct  9 16:02:37 2020
+TCA_DOM_BIAS_CURRENT_ALARM_U TCA_DOM_BIAS_CURRENT {"hostname":"leaf*","ifnam error    slk-netq-events    True   0                  mA       vendor_set     Fri Oct  9 16:02:37 2025
 PPER_1                       _ALARM_UPPER         e":"*"}
-TCA_DOM_RX_POWER_ALARM_UPPER TCA_DOM_RX_POWER_ALA {"hostname":"*","ifname":" info     slk-netq-events    True   0                  mW       vendor_set     Fri Oct  9 15:25:26 2020
+TCA_DOM_RX_POWER_ALARM_UPPER TCA_DOM_RX_POWER_ALA {"hostname":"*","ifname":" info     slk-netq-events    True   0                  mW       vendor_set     Fri Oct  9 15:25:26 2025
 _1                           RM_UPPER             *"}
-TCA_SENSOR_TEMPERATURE_UPPER TCA_SENSOR_TEMPERATU {"hostname":"leaf","s_name error    slk-netq-events    True   32                 degreeC  user_set       Fri Oct  9 15:40:18 2020
+TCA_SENSOR_TEMPERATURE_UPPER TCA_SENSOR_TEMPERATU {"hostname":"leaf","s_name error    slk-netq-events    True   32                 degreeC  user_set       Fri Oct  9 15:40:18 2025
 _1                           RE_UPPER             ":"temp1"}
-TCA_TCAM_IPV4_ROUTE_UPPER_1  TCA_TCAM_IPV4_ROUTE_ {"hostname":"*"}           error    pd-netq-events     True   20000              %        user_set       Fri Oct  9 16:13:39 2020
+TCA_TCAM_IPV4_ROUTE_UPPER_1  TCA_TCAM_IPV4_ROUTE_ {"hostname":"*"}           error    pd-netq-events     True   20000              %        user_set       Fri Oct  9 16:13:39 2025
                              UPPER
 ```
 
@@ -489,7 +489,7 @@ cumulus@switch:~$ netq show tca tca_id TCA_TXMULTICAST_UPPER_1
 Matching config_tca records:
 TCA Name                     Event Name           Scope                      Severity         Channel/s          Active Threshold          Suppress Until
 ---------------------------- -------------------- -------------------------- ---------------- ------------------ ------ ------------------ ----------------------------
-TCA_TXMULTICAST_UPPER_1      TCA_TXMULTICAST_UPPE {"ifname":"swp3","hostname info             tca-tx-bytes-slack True   0                  Sun Dec  8 16:40:14 2269
+TCA_TXMULTICAST_UPPER_1      TCA_TXMULTICAST_UPPE {"ifname":"swp3","hostname info             tca-tx-bytes-slack True   0                  Sun Dec  8 16:40:14 2025
                              R                    ":"leaf01"}
 ```
 
@@ -575,9 +575,9 @@ cumulus@switch:~$ netq show tca
 Matching config_tca records:
 TCA Name                     Event Name           Scope                      Severity         Channel/s          Active Threshold          Suppress Until
 ---------------------------- -------------------- -------------------------- ---------------- ------------------ ------ ------------------ ----------------------------
-TCA_CPU_UTILIZATION_UPPER_1  TCA_CPU_UTILIZATION_ {"hostname":"*"}           error            onprem-email       True   93                 Mon Aug 31 20:59:57 2020
+TCA_CPU_UTILIZATION_UPPER_1  TCA_CPU_UTILIZATION_ {"hostname":"*"}           error            onprem-email       True   93                 Mon Aug 31 20:59:57 2025
                              UPPER
-TCA_CPU_UTILIZATION_UPPER_2  TCA_CPU_UTILIZATION_ {"hostname":"hostname^leaf info                                True   95                 Tue Sep  1 18:47:24 2020
+TCA_CPU_UTILIZATION_UPPER_2  TCA_CPU_UTILIZATION_ {"hostname":"hostname^leaf info                                True   95                 Tue Sep  1 18:47:24 2025
                              UPPER                "}
 
 ```

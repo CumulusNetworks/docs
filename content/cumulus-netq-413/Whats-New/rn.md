@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4316305"></a> [4316305](#4316305) <a name="4316305"></a> <br /> | When you back up your data from a prior NetQ release and restore it after installing NetQ 4.13.0, any switches that were in a rotten state are missing from the NetQ inventory after the upgrade. To work around this issue, decommission any rotten switches before you upgrade and reconnect the agents after the upgrade is complete.<br><br>Additionally, no snapshot or PTP data is restored from prior releases after the upgrade.  | 4.13.0 | |
 | <a name="4298008"></a> [4298008](#4298008) <a name="4298008"></a> <br /> | When you upgrade from NetQ 4.11 to 4.13, any pre-existing validation data will be lost. | 4.13.0 | |
 | <a name="4280664"></a> [4280664](#4280664) <a name="4280664"></a> <br /> | If the name of a device group includes spaces, validations might fail with the message “Validation failed to run.” To work around this issue, remove the spaces from the device group’s name. | 4.13.0 | |
 | <a name="4280023"></a> [4280023](#4280023) <a name="4280023"></a> <br /> | After backing up and restoring your NetQ data, any modifications to default suppression rules will be lost. | 4.12.0-4.13.0 | |

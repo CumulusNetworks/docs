@@ -466,7 +466,7 @@ iface bridge1_vlan10
 
 {{< /tab >}}
 {{< /tabs >}}
-
+<!-- DOCS REQUESTED but FEATURE NOT TESTED
 ## VLAN Bridge Binding Mode
 
 Cumulus Linux transfers the link state of a VLAN device from the lower device. Therefore, the link state of the VLAN device is up if the bridge is in an admin up state and at least one bridge port is up, regardless of the VLAN of which the port is a member.
@@ -506,7 +506,7 @@ cumulus@switch:~$ sudo ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
-
+-->
 ## Keep SVIs Perpetually UP
 
 The first time you configure a switch, all southbound bridge ports are down; therefore, by default, SVIs are also down. You can force SVIs to always be up by disabling interface state tracking so that the SVIs are always in the UP state even when all member ports are down. Other implementations describe this feature as *no autostate*. This is beneficial if you want to perform connectivity testing.

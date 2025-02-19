@@ -1016,7 +1016,7 @@ cumulus@leaf01:~$ nv set router bgp wait-for-install on
 cumulus@leaf01:~$ nv config apply
 ```
 
-When you configure suppress route advertisement, NVUE reloads `switchd`.
+When you configure suppress route advertisement, NVUE restarts `switchd`.
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}

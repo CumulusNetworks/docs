@@ -62,9 +62,9 @@ router bgp 65101
 {{< /tabs >}}
 
 {{%notice note%}}
-You can deploy centralized routing at the VNI level, where you can configure the `advertise-default-gw` command per VNI; you use centralized routing for certain VNIs and distributed symmetric routing (described below) other VNIs. NVIDIA does not recommend this type of configuration.
-
-When you use centralized routing, even if the source host and destination host attach to the same VTEP, the packets travel to the gateway VTEP, the switch routes the packets, then the packets come back.
+- You can deploy centralized routing at the VNI level, where you can configure the `advertise-default-gw` command per VNI; you use centralized routing for certain VNIs and distributed symmetric routing (described below) other VNIs. NVIDIA does not recommend this type of configuration.
+- When you use centralized routing, even if the source host and destination host attach to the same VTEP, the packets travel to the gateway VTEP, the switch routes the packets, then the packets come back.
+- To avoid traffic to a gateway MAC address in a centralized EVPN fabric from being flooded by virtual switches that are not local to the border leaf, refer to {{<exlink url="https://enterprise-support.nvidia.com/s/article/Traffic-To-Gateway-MAC-In-Centralized-EVPN-Fabric-Is-Being-Flooded-By-V-Switches-Not-Local-To-The-Border-Leaf" text="this knowledge base article" >}}.
 {{%/notice%}}
 
 ## Asymmetric Routing

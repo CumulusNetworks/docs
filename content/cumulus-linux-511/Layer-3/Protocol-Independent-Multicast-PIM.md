@@ -580,7 +580,7 @@ The following steps configure a Cumulus switch to use MSDP:
 5. Inject the anycast IP address into the IGP of the domain. If the network uses unnumbered BGP as the IGP, avoid using the anycast IP address to establish unicast or multicast peerings. For PIM-SM, ensure that you use the unique address as the PIM hello source by setting the source:
 
    ```
-   cumulus@rp01:$ nv set interface lo router pim address-family ipv4-unicast use-source 10.100.100.100
+   cumulus@rp01:$ nv set interface lo router pim address-family ipv4-unicast use-source 100.100.100.100
    cumulus@rp01:$ nv config apply
    ```
 
@@ -2439,9 +2439,7 @@ exit-address-family
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL510 - PIM" showNodes="leaf01,leaf02,spine01,server01,server02" >}}
-
-This simulation is running Cumulus Linux 5.10. The Cumulus Linux 5.11 simulation is coming soon.
+    {{< simulation name="Try It CL511 - PIM" showNodes="leaf01,leaf02,spine01,server01,server02" >}}
 
 The simulation starts with the example PIM configuration. To simplify the example, only one spine and two leafs are in the topology. The demo is pre-configured using NVUE commands.
 

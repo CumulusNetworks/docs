@@ -549,6 +549,46 @@ cumulus@switch:~$ nv show interface swp1 telemetry histogram latency traffic-cla
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system telemetry buffer-stats</h>
+
+Shows telemetry buffer statistics configuration settings.
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry buffer-stats
+                 operational  applied
+---------------  -----------  -------
+sample-interval               1      
+export                               
+  state                       enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry buffer-stats export</h>
+
+Shows if collection and export of buffer statistics is enabled.
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry buffer-stats export
+       operational  applied
+-----  -----------  -------
+state               enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system telemetry bw-gauge</h>
 
 Shows a summary of the bandwidth gauge for all interfaces.
@@ -692,9 +732,179 @@ port           4317
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system telemetry health</h>
+
+Shows telemetry health information.
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry health
+                                     operational
+---------------------------          -----------
+service-status    
+  nv-telemtry-service                active                      
+  platform-stats-service             active
+  histogram-export-service           active
+  sdk-stats-service                  active
+  routing-telemtry-service           inactive
+internal-metrics 
+  process 
+    cpu-seconds                      3020
+    memory-rss-kilobytes             182812672
+    runtime-heap-alloc-bytes         28617960
+    runtime-total-alloc-bytes        915541979208
+    runtime-total-sys-memory-bytes   151368752
+    uptime-seconds                   65313
+[receivers]                          otlp/global
+[receivers]                          prometheus/global
+processors
+  [memory-limiter]                   memory_limiter/1
+  [batch]                            batch/1
+[exporters]                          otlp/global
+
+Export Destination Status
+=======================
+    Destination         Connectivity          Export Counter       Drop Counter
+    -----------         ------------          --------------       ------------
+    11.0.10.2:4317      Pass                  51534586             7087
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry health internal-metrics</h>
+
+Shows all the telemetry health internal metrics.
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry health internal-metrics
+                                     operational
+------------------------             -----------
+process        
+  cpu-seconds                        029
+  memory-rss-kilobytes               182812672
+  runtime-heap-alloc-bytes           28617960
+  runtime-total-alloc-bytes          915541979208
+  runtime-total-sys-memory-bytes     151368752
+  uptime-seconds                     65313
+[receivers]                          otlp/global
+[receivers]                          prometheus/global
+processors
+  [memory-limiter]                   memory_limiter/1
+  [batch]                            batch/1
+[exporters]                          otlp/global
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry health internal-metrics process</h>
+
+Shows health information about the telemetry process.
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry health internal-metrics process
+                                   operational
+------------------------           -----------
+cpu-seconds                        029
+memory-rss-kilobytes               182812672
+runtime-heap-alloc-bytes           28617960
+runtime-total-alloc-bytes          915541979208
+runtime-total-sys-memory-bytes     151368752
+uptime-seconds                     65313
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry health internal-metrics receivers</h>
+
+Shows health metrics about the telemetry receivers.
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry health internal-metrics receivers
+Receivers            Accepted Metric Points      Refused Metric Points
+---------            ----------------------      ---------------------
+otlp/global          4967144                     0
+prometheus/global    46989135                    0
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry health internal-metrics processors</h>
+
+Shows health metrics about the telemetry processors.
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry health internal-metrics processors
+  Memory-limiter
+  ==============
+    memory_limiter/1
+     Accepted Metric Points: 25002370
+     Dropped Metric Points: 0
+     Inserted Metric Points: 0
+     Refused Metric Points: 0
+
+  Batch Processor
+  ===============
+    batch/1
+     Batch Send Size Bucket 10: 828620
+     Batch Send Size Bucket 25: 828620
+     Batch Send Size Bucket 50: 828620
+     Batch Send Size Bucket 75: 828620
+     Batch Send Size Bucket 100: 828620
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry health internal-metrics exporters</h>
+
+Shows health metrics about the telemetry exporters.
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry health internal-metrics exporters
+Exporters       Enqueue Failed Metric Points   Queue Capacity   Queue Size   Send Failed Metric Points   Sent Metric Points
+---------       ----------------------------   --------------   ----------   -------------------------   ------------------
+otlp/global     0                              1000             0            7087                        52000844
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system telemetry hft</h>
 
-Shows the high frequency telemetry configuration.
+Shows high frequency telemetry configuration.
 
 ### Version History
 
@@ -1018,6 +1228,45 @@ export
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system telemetry interface-stats class</h>
+
+Shows interface statistics class configuration settings.
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry interface-stats class
+         operational  applied 
+-------  -----------  --------
+phy                           
+  state               disabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry interface-stats class phy</h>
+
+Shows if interface PHY statistics export is enabled.
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$  nv show system telemetry interface-stats class phy
+       operational  applied 
+-----  -----------  --------
+state               disabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system telemetry interface-stats egress-buffer</h>
 
 Shows the telemetry interface statistics egress buffer configuration.
@@ -1069,6 +1318,263 @@ cumulus@switch:~$ nv show system telemetry interface-stats ingress-buffer
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system telemetry router</h>
+
+Shows which telemetry router statistics are enabled.
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry router
+                 applied 
+---------------  --------
+bgp                      
+  export                 
+    state        enabled
+rib                      
+  export                 
+    state        enabled
+export                   
+  state          enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry router export</h>
+
+Shows if the open telemetry routing service is enabled.
+
+{{%notice note%}}
+To export any of the routing metrics, you must first enable the open telemetry routing service.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry router export
+       applied 
+-----  --------
+state  disabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry router bgp</h>
+
+Shows configuration settings for BGP peer state statistics across all VRFs.
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry router bgp
+         applied 
+-------  --------
+export           
+  state  disabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry router bgp export</h>
+
+Shows if collection and export of BGP peer state statistics across all VRFs is enabled.
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry router bgp export
+       applied 
+-----  --------
+state  disabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry router rib</h>
+
+Shows configuration settings for routing table statistics across all VRFs.
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry router rib
+                 applied
+---------------  -------
+export                
+  state         enabled
+
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry router rib export</h>
+
+Shows if collection and export of routing table statistics across all VRFs is enabled.
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry router rib export
+       applied 
+-----  --------
+state  enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry router vrf \<vrf-id\> bgp</h>
+
+Shows configuration settings for BGP peer state statistics in a specific VRF.
+
+### Command Syntax
+
+|  Syntax | Description |
+| ---------| ------ |
+| `<vrf-id>` |  The VRF name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry router vrf RED bgp
+         applied
+-------  -------
+export          
+  state  enabled
+[peer]   swp1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry router vrf \<vrf-id\> bgp export</h>
+
+Shows if collection and export of BGP peer state statistics in a specific VRF is enabled.
+
+### Command Syntax
+
+|  Syntax | Description |
+| ---------| ------ |
+| `<vrf-id>` |  The VRF name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry router vrf RED bgp export
+       applied
+-----  -------
+state  enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry router vrf \<vrf-id\> bgp peer \<neighbor-id\> export</h>
+
+Shows if collection and export of routing statistics for a specifc peer in a VRF is enabled.
+
+### Command Syntax
+
+|  Syntax | Description |
+| ---------| ------ |
+| `<vrf-id>` |  The VRF name.|
+| `<neighbor-id>` |  The BGP neighbor ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry router vrf RED bgp peer swp1 export
+       applied
+-----  -------
+state  enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry router vrf \<vrf-id\> rib</h>
+
+Shows configuration settings for routing table statistics for a specific VRF.
+
+### Command Syntax
+
+|  Syntax | Description |
+| ---------| ------ |
+| `<vrf-id>` |  The VRF name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry router vrf RED rib
+         applied
+-------  -------
+export          
+  state  enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry router vrf \<vrf-id\> rib export</h>
+
+Shows if collection and export of routing table statistics for a specific VRF is enabled.
+
+### Command Syntax
+
+|  Syntax | Description |
+| ---------| ------ |
+| `<vrf-id>` |  The VRF name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry router vrf RED rib export
+       applied
+-----  -------
+state  enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system telemetry snapshot-file</h>
 
 Shows histogram snapshot file configuration and operational data.
@@ -1085,6 +1591,10 @@ Introduced in Cumulus Linux 5.7.0
 
 ```
 cumulus@switch:~$ nv show system telemetry snapshot-file
+       operational  applied                         
+-----  -----------  --------------------------------
+name                /var/run/cumulus/histogram_stats
+count               64
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1131,6 +1641,7 @@ Introduced in Cumulus Linux 5.11.0
 
 ```
 cumulus@switch:~$ nv show system telemetry snapshot port-group packet-all-pg threshold packet-error-drops
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1154,6 +1665,7 @@ Introduced in Cumulus Linux 5.11.0
 
 ```
 cumulus@switch:~$ nv show system telemetry snapshot port-group packet-all-pg threshold packet-error-drops action
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1177,6 +1689,7 @@ Introduced in Cumulus Linux 5.11.0
 
 ```
 cumulus@switch:~$ nv show system telemetry snapshot port-group packet-all-pg threshold packet-error-drops action log
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1937,4 +2450,529 @@ Introduced in Cumulus Linux 5.11.0
 
 ```
 cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg stats interface swp1 buffer ingress-port 2
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry stats-group</h>
+
+Show telemetry statistics group configuration settings.
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry stats-group
+             Histogram  Interface Stats  Platform Stats  ControlPlane Stats  Buffer Stats  Routing Stats
+-----------  ---------  ---------------  --------------  ------------------  ------------  -------------
+STAT-GROUP1  disabled   enabled          disabled        disabled            disabled      disabled     
+blah         disabled   disabled         disabled        disabled            disabled      disabled 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry stats-group \<stats-group-id\> interface-stats</h>
+
+Shows configuration for the custom statistics group for interface statistics export.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry stats-group STAT-GROUP1 interface-stats
+                 applied 
+---------------  --------
+sample-interval  100     
+export                   
+  state          enabled 
+class                    
+  phy                    
+    state        disabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry stats-group \<stats-group-id\> interface-stats export</h>
+
+Shows if the custom statistics group for interface statistics export is enabled.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry stats-group STAT-GROUP1 interface-stats export 
+       applied
+-----  -------
+state  enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry stats-group \<stats-group-id\> buffer-stats</h>
+
+Shows configuration for the custom statistics group for buffer statistics export.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry stats-group STAT-GROUP1 buffer-stats
+                 applied 
+---------------  --------
+sample-interval  1       
+export                   
+  state          disabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry stats-group \<stats-group-id\> buffer-stats export</h>
+
+Shows if the custom statistics group for buffer statistics export is enabled.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry stats-group STAT-GROUP1 buffer-stats export 
+       applied
+-----  -------
+state  enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry stats-group \<stats-group-id\> histogram</h>
+
+Shows configuration for the custom statistics group for histogram statistics export.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry stats-group STAT-GROUP1 histogram
+                    applied 
+------------------  --------
+ingress-buffer              
+  bin-min-boundary  960     
+  histogram-size    12288   
+  sample-interval   1024    
+egress-buffer               
+  bin-min-boundary  960     
+  histogram-size    12288   
+  sample-interval   1024    
+counter                     
+  bin-min-boundary  100000  
+  histogram-size    10000000
+  sample-interval   1024    
+latency                     
+  bin-min-boundary  320     
+  histogram-size    5440    
+export                      
+  state             disabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry stats-group \<stats-group-id\> histogram export</h>
+
+Shows if the custom statistics group for histogram statistics export is enabled.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry stats-group STAT-GROUP1 histogram export 
+       applied
+-----  -------
+state  enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry stats-group \<stats-group-id\> router</h>
+
+Shows configuration for the custom statistics group for router statistics export.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system telemetry stats-group STAT-GROUP1 router
+                 applied 
+---------------  --------
+bgp                      
+  export                 
+    state        disabled
+rib                      
+  export                 
+    state        disabled
+export                   
+  state          disabled
+sample-interval  30      
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry stats-group \<stats-group-id\> router export</h>
+
+Shows if the custom statistics group for router statistics export is enabled.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry stats-group STAT-GROUP1 router export 
+       applied
+-----  -------
+state  enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry stats-group \<stats-group-id\> control-plane-stats</h>
+
+Shows configuration for the custom statistics group for control plane statistics export.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system telemetry stats-group STAT-GROUP1 control-plane-stats
+                 applied 
+---------------  --------
+sample-interval  1       
+export                   
+  state          disabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry stats-group \<stats-group-id\> control-plane-stats export</h>
+
+Shows if the custom statistics group for control plane statistics export is enabled.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry stats-group STAT-GROUP1 control-plane-stats export 
+       applied
+-----  -------
+state  enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry stats-group \<stats-group-id\> platform-stats</h>
+
+Shows configuration for the custom statistics group for platform statistics export.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system telemetry stats-group STAT-GROUP1 platform-stats
+                      applied 
+--------------------  --------
+class                         
+  cpu                         
+    state             enabled 
+  disk                        
+    state             enabled 
+  file-system                 
+    state             enabled 
+  memory                      
+    state             enabled 
+  environment-sensor          
+    state             enabled 
+export                        
+  state               disabled
+  sample-interval     60      
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry stats-group \<stats-group-id\> platform-stats export</h>
+
+Shows if the custom statistics group for platform statistics export is enabled.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry stats-group STAT-GROUP1 platform-stats export 
+       applied
+-----  -------
+state  enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry stats-group \<stats-group-id\> platform-stats class</h>
+
+Shows configuration for the custom statistics group for each category of platform statistics export.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system telemetry stats-group STAT-GROUP1 platform-stats class
+                    applied  pending
+------------------  -------  -------
+cpu                                 
+  state             enabled  enabled
+disk                                
+  state             enabled  enabled
+file-system                         
+  state             enabled  enabled
+memory                              
+  state             enabled  enabled
+environment-sensor                  
+  state             enabled  enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry stats-group \<stats-group-id\> platform-stats class cpu</h>
+
+Shows if the custom statistics group for CPU platform statistics export is enabled.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system telemetry stats-group STAT-GROUP1 platform-stats class cpu
+       applied
+-----  -------
+state  enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry stats-group \<stats-group-id\> platform-stats class disk</h>
+
+Shows if the custom statistics group for disk platform statistics export  is enabled.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system telemetry stats-group STAT-GROUP1 platform-stats class disk
+       applied
+-----  -------
+state  enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry stats-group \<stats-group-id\> platform-stats class file-system</h>
+
+Shows if the custom statistics group for file system platform statistics export is enabled.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system telemetry stats-group STAT-GROUP1 platform-stats class file-system
+       applied
+-----  -------
+state  enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry stats-group \<stats-group-id\> platform-stats class environment-sensor</h>
+
+Shows if the custom statistics group for environment sensor platform statistics export is enabled.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system telemetry stats-group STAT-GROUP1 platform-stats class environment-sensor
+       applied
+-----  -------
+state  enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry stats-group \<stats-group-id\> platform-stats class memory</h>
+
+Shows if the custom statistics group for memory platform statistics export is enabled.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>`| The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system telemetry stats-group STAT-GROUP1 platform-stats class memory
+       applied
+-----  -------
+state  enabled
 ```

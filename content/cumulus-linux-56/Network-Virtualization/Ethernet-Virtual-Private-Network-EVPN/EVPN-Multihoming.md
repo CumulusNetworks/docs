@@ -39,7 +39,7 @@ You must enable the following features to use EVPN-MH:
 - {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge mode">}}
 - {{<link url="EVPN-Enhancements/#arp-and-nd-suppression" text="ARP suppression">}}
 
-Cumulus Linux uses Head End Replication by default with EVPN multihoming. If you prefer to use EVPN BUM traffic handling with EVPN-PIM on multihomed sites via Type-4/ESR routes, configure EVPN-PIM as described in {{<link title="EVPN BUM Traffic with PIM-SM" text="EVPN BUM Traffic with PIM-SM">}}.
+Cumulus Linux uses Head End Replication by default with EVPN multihoming. If you prefer to use EVPN BUM traffic handling with EVPN-PIM on multihomed sites via Type-4/ESR routes, configure EVPN-PIM as described in {{<link title="EVPN BUM Traffic with PIM-SM" text="EVPN BUM Traffic with PIM-SM">}}. ßYou cannot configure both EVPN-PIM and HER at the same time with EVPN-MH; use either EVPN-PIM or HER.
 
 {{%notice warning%}}
 To use EVPN-MH, you must remove any MLAG configuration on the switch:

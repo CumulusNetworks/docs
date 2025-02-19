@@ -107,12 +107,16 @@ To back up and restore the configuration file:
 
 2. Copy the `/etc/nvue.d/startup.yaml` file off the switch to a different location.
 
-3. After upgrade is complete, restore the configuration. Copy the `/etc/nvue.d/startup.yaml` file to the switch, run the `nv config patch` command, and restart the `nvued` service with the `sudo systemctl restart nvued.service` command. In the following example `startup.yaml` is in the `/home/cumulus` directory on the switch:
+3. After upgrade is complete, restore the configuration. Copy the `/etc/nvue.d/startup.yaml` file to the switch, run the `nv config patch` command, then run the `nv config apply` command. In the following example `startup.yaml` is in the `/home/cumulus` directory on the switch:
 
    ```
    cumulus@switch:~$ nv config patch /home/cumulus/startup.yaml
-   cumulus@switch:~$ sudo systemctl restart nvued.service
+   cumulus@switch:~$ nv config apply
    ```
+
+{{%notice note%}}
+When you restore an NVUE configuration file that includes TACACS, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the `systemctl restart nvued.service` command.
+{{%/notice%}}
 
 For information about the NVUE object model and commands, see {{<link url="NVIDIA-User-Experience-NVUE" text="NVIDIA User Experience - NVUE">}}.
 

@@ -14,6 +14,10 @@ h { color: RGB(118,185,0)}
 
 Shows the RADIUS configuration settings.
 
+{{%notice note%}}
+Cumulus Linux 5.12 and later no longer shows the `enable` setting; the `nv set system aaa radius enable` command is no longer provided.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0

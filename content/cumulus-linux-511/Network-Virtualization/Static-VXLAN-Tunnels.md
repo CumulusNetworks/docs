@@ -480,9 +480,7 @@ iface br_default
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL510 - Static VXLAN" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server04" >}}
-
-This simulation is running Cumulus Linux 5.10. The Cumulus Linux 5.11 simulation is coming soon.
+    {{< simulation name="Try It CL511 - Static VXLAN" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server04" >}}
 
 The simulation starts with the example static VXLAN configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 

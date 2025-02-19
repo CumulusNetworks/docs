@@ -474,6 +474,10 @@ PSU2 Temp Sensor                    85.0           80.0      5         ok       
 
 Shows information about the specified physical sensor on the switch.
 
+{{%notice note%}}
+This command is not available in Cumulus Linux 5.9 and later.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |

@@ -505,7 +505,30 @@ static     3
 ```
 
 For IPv6 run the `nv show vrf <vrf> router rib ipv6 route-count protocol` command.
+<!--
+## Look Up the Route for a Destination
 
+To look up the route in the routing table for a specific destination, run the `nv action lookup vrf <vrf-id> router fib <address-family> <ip-address>` command.
+
+The following example looks up the route in the routing table for the destination with the IPv4 address 10.10.10.3:
+
+```
+cumulus@switch:~$ nv action lookup vrf default router fib ipv4 10.10.10.3
+Action executing ... 
+ [{"dst":"10.10.10.3","nhid":455,"table":"default","protocol":"bgp","metric":20,"flags":[]}] 
+
+ Action succeeded 
+```
+
+The following example shows the route in the routing table for the destination with the IPv6 address 228:35::5
+
+```
+cumulus@switch:~$ nv action lookup vrf RED router fib ipv6 228:35::5
+[{"dst":"228:35::5","nhid":454,"table":"RED","protocol":"bgp","metric":20,"flags":[],"pref":"medium"}] 
+
+ Action succeeded 
+```
+-->
 ## Next Hop Tracking
 
 Routing daemons track the validity of next hops through notifications from the `zebra` daemon. For example, FRR uninstalls BGP routes that resolve to a next hop over a connected route in `zebra` when `bgpd` receives a next hop tracking (NHT) notification after `zebra` removes the connected route if the associated interface goes down.

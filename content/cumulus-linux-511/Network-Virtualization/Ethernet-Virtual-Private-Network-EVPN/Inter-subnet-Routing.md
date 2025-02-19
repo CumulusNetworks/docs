@@ -1810,9 +1810,7 @@ exit-address-family
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL510 - DVNI" showNodes="leaf01,spine01,border01,server01,fw1" >}}
-
-This simulation is running Cumulus Linux 5.10. The Cumulus Linux 5.11 simulation is coming soon.
+    {{< simulation name="Try It CL511 - DVNI" showNodes="leaf01,spine01,border01,server01,fw1" >}}
 
 The simulation starts with the example downstream VNI configuration. To simplify the example, only one spine is in the topology. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 

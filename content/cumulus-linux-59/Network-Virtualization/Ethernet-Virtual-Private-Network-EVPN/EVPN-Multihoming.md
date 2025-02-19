@@ -39,7 +39,7 @@ You must enable the following features to use EVPN-MH:
 - {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge mode">}}
 - {{<link url="EVPN-Enhancements/#arp-and-nd-suppression" text="ARP suppression">}}
 
-Cumulus Linux uses <span class="a-tooltip">[HER](## "Head End Replication")</span> by default with EVPN multihoming. If you prefer to use EVPN BUM traffic handling with EVPN-PIM on multihomed sites through Type-4/ESR routes, configure EVPN-PIM as described in {{<link title="EVPN BUM Traffic with PIM-SM" text="EVPN BUM Traffic with PIM-SM">}}.
+Cumulus Linux uses <span class="a-tooltip">[HER](## "Head End Replication")</span> by default with EVPN multihoming. If you prefer to use EVPN BUM traffic handling with EVPN-PIM on multihomed sites through Type-4/ESR routes, configure EVPN-PIM as described in {{<link title="EVPN BUM Traffic with PIM-SM" text="EVPN BUM Traffic with PIM-SM">}}. You cannot configure both EVPN-PIM and HER at the same time with EVPN-MH; use either EVPN-PIM or HER.
 
 {{%notice info%}}
 On Spectrum A1 switches, NVIDIA recommends that you use a {{<link title="EVPN BUM Traffic with PIM-SM" text="PIM-SM underlay to distribute BUM traffic">}} with EVPN multihoming for better performance. To check if you have a Spectrum A1 switch, run the `sudo decode-syseeprom version | egrep -i "tlv|--|device version"` command. If the command output shows the `Device Version` value at 16 or higher, you have a Spectrum A1 switch:
@@ -82,7 +82,7 @@ EVPN multihoming supports the following route types.
 | 2 | MAC/IP advertisement route | {{<exlink url="https://tools.ietf.org/html/rfc7432" text="RFC 7432">}} |
 | 3 | Inclusive multicast route | {{<exlink url="https://tools.ietf.org/html/rfc7432" text="RFC 7432">}} |
 | 4 | Ethernet segment route | {{<exlink url="https://tools.ietf.org/html/rfc7432" text="RFC 7432">}} |
-| 5 | IP prefix route | {{<exlink url="https://tools.ietf.org/html/draft-ietf-bess-evpn-prefix-advertisement-04" text="draft-ietf-bess-evpn-prefix-advertisement-04">}} |
+| 5 | IP prefix route | {{<exlink url="https://tools.ietf.org/html/rfc9136" text="RFC 9136">}} |
 
 ### Unsupported Features
 

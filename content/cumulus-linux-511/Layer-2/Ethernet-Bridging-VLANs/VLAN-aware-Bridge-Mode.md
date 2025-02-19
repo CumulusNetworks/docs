@@ -648,11 +648,11 @@ To unset the MAC address for a bridge, remove the MAC address from the bridge st
 {{< /tab >}}
 {{< /tabs >}}
 
-## MAC Address Ageing
+## MAC Address Aging
 
 By default, Cumulus Linux stores MAC addresses in the Ethernet switching table for 1800 seconds (30 minutes). You can change this setting to a value between 0 and 65535. A value of 0 disables MAC learning and frames flood out of all ports in a VLAN.
 
-The following command example changes the MAC ageing setting to 600 seconds:
+The following command example changes the MAC aging setting to 600 seconds:
 
 {{< tabs "TabID588 ">}}
 {{< tab "NVUE Commands ">}}
@@ -679,7 +679,7 @@ iface br_default
 {{< /tab >}}
 {{< /tabs >}}
 
-To show the bridge ageing configuration setting, run the `nv show bridge domain <domain>` command or the Linux `sudo ip -d link show <bridge-domain>` command.
+To show the bridge aging configuration setting, run the `nv show bridge domain <domain>` command or the Linux `sudo ip -d link show <bridge-domain>` command.
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default
@@ -694,8 +694,71 @@ vlan-vni-offset               0
 ...
 ```
 
-To reset bridge ageing to the default value (1800 seconds), run the `nv unset bridge domain <domain> ageing` command.
+To reset bridge aging to the default value (1800 seconds), run the `nv unset bridge domain <domain> ageing` command.
+<!--FOR 5.12
+## Clear Dynamic MAC Address Entries
 
+You can clear the following entries from the forwarding database instead of waiting for them to age out.
+- All dynamic MAC entries
+- All dynamic MAC address entries for a specific bridge port
+- All dynamic MAC address entries for a specific VLAN
+- All dynamic MAC address entries for a specific bridge port and VLAN
+- A specific dynamic MAC address entry for a VLAN
+- A specific dynamic MAC address entry for an interface
+- A specific dynamic MAC address entry for a VLAN and interface
+
+The clear dynamic MAC address entry commands do not clear sticky entries, permanent entries, or neighbor entries learned externally.
+
+To clear **all** dynamic MAC addresses from the forwarding database, run the `nv action clear bridge domain <bridge-id> mac-table dynamic` command:
+
+```
+cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic
+```
+
+{{%notice note%}}
+The `nv action clear bridge domain <bridge-id> mac-table dynamic` command clears static entries learned on ES bonds that are installed as static entries in EVPN multihoming including static VXLAN entries in the bridge driver.
+{{%/notice%}}
+
+To clear all dynamic MAC addresses for a specific bridge port, run the `nv action clear bridge domain <bridge-id> mac-table dynamic interface <interface-id` command:
+
+```
+cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic interface swp1
+```
+
+To clear all dynamic MAC addresses for a specific VLAN, run the `nv action clear bridge domain <bridge-id> mac-table dynamic vlan <vlan-id` command:
+
+```
+cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic vlan 10
+```
+
+{{%notice note%}}
+The `nv action clear bridge domain <bridge-id> mac-table dynamic vlan <vlan-id` command clears the static VXLAN entries in bridge or VXLAN driver for the corresponding VLAN or VNI.
+{{%/notice%}}
+
+To clear all dynamic MAC addresses for a specific bridge port and VLAN, run the `nv action clear bridge domain <bridge-id> mac-table dynamic interface <interface-id> vlan <vlan-id` command:
+
+```
+cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic interface swp1 vlan 10
+```
+
+To clear a specific dynamic MAC addresses for a VLAN, run the `nv action clear bridge domain <domain-id> mac-table dynamic mac <mac-address> vlan <vlan-id>` command:
+
+```
+cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic mac 00:00:0A:BB:28:FC vlan 10
+```
+
+To clear a specific dynamic MAC address for an interface, run the `nv action clear bridge domain <domain-id> mac-table dynamic mac <mac-address> interface <interface-id>` command:
+
+```
+cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic mac 00:00:0A:BB:28:FC interface swp1
+```
+
+To clear a specific dynamic MAC address for a VLAN and interface, run the `nv action clear bridge domain <domain-id> mac-table dynamic mac <mac-address> vlan <vlan-id interface <interface-id>` command:
+
+```
+cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic mac 00:00:0A:BB:28:FC vlan 10 interface swp1
+```
+-->
 ## Static MAC Address Entries
 
 You can add a static MAC address entry to the layer 2 table for an interface within the VLAN-aware bridge by running a command similar to the following:

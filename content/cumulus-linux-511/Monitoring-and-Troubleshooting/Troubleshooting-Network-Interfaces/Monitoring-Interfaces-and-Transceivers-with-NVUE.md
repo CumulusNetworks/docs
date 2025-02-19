@@ -383,7 +383,7 @@ Switches with the Spectrum 1 ASIC do not support the `nv show interface <interfa
 
 ## Clear Interface Counters
 
-To clear counters (statistics) for all interfaces, run the `nv action clear interface counters` command:
+To clear counters (statistics) for all interfaces, run the `nv action clear interface counters` command.
 
 ```
 cumulus@switch$ nv action clear interface counters
@@ -402,7 +402,40 @@ Action succeeded
 {{%notice note%}}
 The `nv action clear interface <interface> counters` command does not clear counters in the hardware.
 {{%/notice%}}
+<!-- FOR 2.12
+## Reset a Transceiver
 
+NVUE provides a command to reset a specific transceiver to its initial, stable state without having to be present physically in the data center to pull the transceiver.
+
+The following example resets the transceiver in swp1:
+
+```
+cumulus@switch:~$ nv action reset platform transceiver swp1 
+Action executing ... 
+Resetting module swp1 ... OK 
+Action succeeded 
+```
+
+The following example resets a range of transceivers:
+
+```
+cumulus@switch:~$ nv action reset platform transceiver swp1-swp5
+Action executing ... 
+Resetting module swp1-swp5 ... OK 
+Action succeeded 
+```
+
+When the reset completes successfully, you see the following `switchd.log` messages:
+
+```
+hal_mlx_host_ifc.c:3392 port [104] module state has changed to [Unplugged] 
+hal_mlx_host_ifc.c:3392 port [104] module state has changed to [Plugged] 
+```
+
+{{%notice note%}}
+If a cable is faulty, the `nv action reset platform transceiver <transceiver-id` command completes successfully, but the module does not come back unless you resolve the issue or reboot the system if necessary,
+{{%/notice%}}
+-->
 ## Show Transceiver Information
 
 To show the identifier, vendor name, part number, serial number, and revision for all modules, run the `nv show platform transceiver` command:
@@ -485,7 +518,8 @@ channel:
 ```
 
 {{%notice note%}}
-The `nv show platform transceiver` commands do not display information for subinterfaces; run the `nv show interface <subinterface> transceiver` commands for subinterface information.
+- The `nv show platform transceiver` commands show information for front panel physical ports only (for example swp1). The commands do not show information for logical ports, such as SVIs, bonds, or eth0.
+- To show information for subinterfaces; run the `nv show interface <subinterface> transceiver` commands.
 {{%/notice%}}
 
 You can also show transceiver data in a more condensed format with the `nv show interface <interface> transceiver` command:

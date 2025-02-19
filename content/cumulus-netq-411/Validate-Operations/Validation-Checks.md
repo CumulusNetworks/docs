@@ -96,7 +96,7 @@ The MLAG validation tests look for misconfigurations, peering status, and bond e
 | 2 | MLAG Sysmac | Checks if: <ul><li>MLAG Sysmac is consistently configured on both nodes in an MLAG pair</li><li>Any duplication of an MLAG sysmac exists within a bridge domain </li></ul> |
 | 3 | VXLAN <!-- vale off -->Anycast IP<!-- vale on --> | Checks if the VXLAN anycast IP address is consistently configured on both nodes in an MLAG pair |
 | 4 | Bridge Membership | Checks if the MLAG peerlink is part of bridge |
-| 5 | Spanning Tree | Checks if: <ul><li>STP <!-- vale off -->is enabled<!-- vale on --> and running on the MLAG nodes</li><li>MLAG peerlink role is correct from STP perspective</li><li>The bridge ID is consistent between two nodes of an MLAG pair</li><li>The VNI in the bridge has BPDU guard and BPDU filter enabled</li></ul> |
+| 5 | Spanning tree* | Checks if: <ul><li>STP <!-- vale off -->is enabled<!-- vale on --> and running on the MLAG nodes</li><li>MLAG peerlink role is correct from STP perspective</li><li>The bridge ID is consistent between two nodes of an MLAG pair</li><li>The VNI in the bridge has BPDU guard and BPDU filter enabled</li></ul> *Not supported in per-VLAN rapid spanning tree (PVRST) mode|
 | 6 | Dual Home | Checks for: <ul><li>MLAG bonds that are not in dually connected state</li><li>Dually connected bonds have consistent VLAN and MTU configuration on both sides</li><li>STP has consistent view of bonds' dual connectedness</li></ul> |
 | 7 | Single Home | Checks for: <ul><li>Singly connected bonds</li><li>STP has consistent view of bond's single connectedness</li></ul> |
 | 8 | Conflicted Bonds | Checks for bonds in MLAG conflicted state and shows the reason |
@@ -152,8 +152,8 @@ The topology validation tests look for inconsistencies between a network's topol
 
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
-| 0 | LLDP service | Checks that the LLDP service is running |
-| 1 | Topology blueprint | Checks for differences between a network's actual topology and the network's blueprint file  |
+| 0 | Topology blueprint | Checks for differences between a network's actual topology and the network's blueprint file  |
+| 1 | LLDP service | Checks that the LLDP service is running |
 ## VLAN Validation Tests
 
 The VLAN validation tests look for configuration consistency between two nodes.

@@ -14,7 +14,7 @@ If you choose to configure Cumulus Linux with NVUE, you can configure features t
 
 ## Command Syntax
 
-NVUE commands all begin with `nv` and fall into one of three syntax categories:
+NVUE commands all begin with `nv` and fall into one of four syntax categories:
 - Configuration (`nv set` and ` nv unset`)
 - Monitoring (`nv show`)
 - Configuration management (`nv config`)
@@ -97,12 +97,12 @@ At the command prompt, press the Up Arrow and Down Arrow keys to move back and f
 
 ## Command Categories
 
-The NVUE CLI has a flat structure; however, the commands are in three functional categories:
+The NVUE CLI has a flat structure; however, the commands are in four functional categories:
 
-- Configuration
-- Monitoring
-- Configuration Management
-- Action
+- {{<link url="#configuration-commands" text="Configuration">}}
+- {{<link url="#monitoring-commands" text="Monitoring">}}
+- {{<link url="#configuration-management-commands" text="Configuration Management">}}
+- {{<link url="#action-commands" text="Action">}}
 
 ### Configuration Commands
 
@@ -329,7 +329,7 @@ cumulus@switch:~$ nv set system security encryption db state disabled
 cumulus@switch:~$ nv config apply
 ```
 
-To reenable password encryption, run the `nv set system security encryption db state enabled` command.
+To set password encryption back to the default setting (enabled), run the `nv unset system security encryption db state` command or the `nv set system security encryption db state enabled` command.
 
 To show if password encryption is `on`, run the `nv show system security encryption` command:
 
@@ -366,7 +366,7 @@ NVUE manages the following configuration files:
 
 ## Search for a Specific Configuration
 
-To search for a specific portion of the NVUE configuration, run the `nv config find <search string>` command. The search shows all items above and below the search string. For example, to search the entire NVUE object model configuration for any mention of `ptm`:
+To search for a specific portion of the NVUE configuration, run the `nv config find <search string>` command. The search shows all items above and below the search string. For example, to search the entire NVUE object model configuration for any mention of `bond1`:
 
 ```
 cumulus@switch:~$ nv config find bond1
@@ -427,7 +427,7 @@ cumulus@switch:~$ nv config apply -m "this is my message"
 
 ## Reset NVUE Configuration to Default Values
 
-To reset the NVUE configuration on the switch back to the default values, run the following command:
+To reset the NVUE configuration on the switch back to the default values, run the `nv config replace <filename>` command; for example:
 
 ```
 cumulus@switch:~$ nv config replace /usr/lib/python3/dist-packages/cue_config_v1/initial.yaml
@@ -515,3 +515,13 @@ cumulus@switch:~$ nv action clear system api session
 {{%notice note%}}
 If you do not clear a user session after making changes directly on the RADIUS, TACACS, or LDAP server, NVUE uses the existing session for authentication and authorization until the session times out (up to 60 minutes).
 {{%/notice%}}
+
+## NVUE and FRR Restart
+
+NVUE restarts the FRR service when you:
+- Change the `/etc/frr/daemons` file.
+- Change the BGP ASN.
+- Remove the default instance.
+- Disable the SNMP server with `agentx` configured.
+
+Restarting FRR restarts all the routing protocol daemons that you enable and that are running, which might impact traffic.

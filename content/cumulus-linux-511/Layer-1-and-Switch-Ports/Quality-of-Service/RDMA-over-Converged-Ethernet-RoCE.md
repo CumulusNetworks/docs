@@ -10,7 +10,7 @@ toc: 3
 While Cumulus Linux can support RoCE environments, the end hosts must support the RoCE protocol.
 {{%/notice%}}
 
-RoCE helps you obtain a *converged network*, where all services run over the Ethernet infrastructure, including Infiniband apps.
+RoCE helps you obtain a *converged network*, where all services run over the Ethernet infrastructure, including Infiniband applications.
 
 ## Default RoCE Mode Configuration
 
@@ -277,4 +277,4 @@ cumulus@switch:mgmt:~$ nv set qos mapping default-global dscp 26 switch-priority
 
 ## Related Information
 
-- {{<exlink url="http://www.roceinitiative.org/roce-introduction/" text="RoCE introduction">}} - roceinitiative.org
+{{<exlink url="http://www.roceinitiative.org/roce-introduction/" text="RoCE introduction">}} - roceinitiative.org

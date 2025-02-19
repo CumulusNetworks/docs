@@ -7,15 +7,80 @@ product: NVIDIA Air
 <!-- vale off -->
 Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
 
-## November 2024
+## Feburary 2025
 <!-- Air:WhatsNew -->
+### 82.2025.0213-011
+- Fixed an issue with Demo Marketplace nodes not retaining their disk changes after waking up
+- Added API endpoint for parsing topologies from DOT format to JSON format
+<!-- Air:WhatsNew -->
+
+### 82.2025.0204-011
+- Fixed an issue where simulations entered an error state when started
+- Fixed an issue where adding time to a simulation caused open consoles to reconnect
+- Fixed an issue where importing topologies with DPU nodes would fail with a validation error
+- Fixed an issue with out-of-band node resource scaling not being applied when defining custom resource amounts
+- Fixed an issue with the simulation deletion prompt
+- Added functionality to select or clear multiple nodes individually by pressing Ctrl + left-click 
+- Updated Node.js runtime to v20.18.2
+- Added ability to resize node consoles in the UI
+
+## January 2025
+### 82.2025.0130-011
+- Fixed an issue with ZTP when importing a simulation from a JSON file
+- Fixed an issue with handling failed auto-provisioning POST requests
+- Fixed an issue with copying a node from topology files
+- Fixed link formatting in Demo Marketplace simulation guides
+- Added functionality to configure external ports and view outbound links in the topology builder
+
+### 82.2025.0123-011
+- Fixed an issue with scrollbars in the Demo Marketplace simulation guide
+- Fixed an issue with services links in the node side panel
+- Fixed an issue with CD-ROM image transfers between organizations
+
+### 82.2025.0114-011
+- Added support for exporting simulations to JSON topology files from the UI
+- Added the ability to configure switch breakout ports prior to starting a simulation using the API or UI 
+- Fixed an issue with node consoles when switching between topology, nodes, and links views
+- Fixed an issue with port search in the node side panel 
+
+### 82.2025.0110-011
+- Fixed an issue where node instructions were not being executed on Demo Marketplace simulations
+
+### 82.2025.0107-011
+- Fixed an issue with the Demo Marketplace search results
+- Fixed an issue where image details displayed an updated status even though the image update request failed
+
+## Archive
+{{< expand "Changelog Archive 2024" >}}
+## December 2024
+
+### 82.2024.1219-011
+- Added SN5610 system to manager
+
+### 82.2024.1212-011
+- Added the ability to launch NetQ after you create a simulation
+- Added the ability to search for simulations by UUID
+- Fixed an error message display issue
+- Fixed an issue with the modal that Air displays when creating a new API token
+
+### 82.2024.1205-011
+- Updated and clarified API error messages for invalid files
+
+### 82.2024.1203-011
+- UserConfigs are now budgeted based on the overall content length instead of the instance amount
+- Fixed an issue where the Air agent did not run on nodes after a simulation woke up
+- Fixed an issue where nodes did not start when the CDROM value was defined
+- Added the ability to upload a JSON topology file that includes a title and ZTP
+- Fixed an issue where the copy-to-clipboard button for a service always generated the username *ubuntu*. It now correctly displays the username based on the node’s type.
+- Removed the `organization` field from the JSON export API
+
+## November 2024
 ### 82.2024.1121-011
 - Fixed issue where a modal could be larger than the window and scrolling was not available
 - Fixed an issue with scrolling of a simulation guide when it was popped out
 - Fixed an issue where the count in the Organization tabs was not updated
 - Fixed an issue where node names could be duplicated, causing issues with the OOB configuration
 - Fixed a performance issue when loading the menu bar
-<!-- Air:WhatsNew -->
 
 ### 82.2024.1112-011
 - Added support for customizing OOB nodes when using JSON 
@@ -171,9 +236,8 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 
 ### 82.2024.0104-012
 - Updated font used by configuration migration tool
-
-## Archive
-{{< expand "Changelog Archive" >}}
+{{< /expand >}}
+{{< expand "Changelog Archive 2023" >}}
 ## November 2023
 ### 82.2023.1109-012
 - Fixed an issue where the font failed to render correctly
@@ -328,7 +392,8 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 - Updated oob-mgmt-server image
   - Added socat package
 - Updated generic/ubuntu1804 image
-
+{{< /expand >}}
+{{< expand "Changelog Archive 2022" >}}
 ## December 2022
 ### 82.2022.1215
 - Fixed an issue with instruction execution by the agent on the oob-mgmt-switch
@@ -495,7 +560,8 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 - NVIDIA Cumulus Linux 5.0.1 is now available for use in custom topologies
 ### 82.2022.0131
 - Customizable templates for simulation email notifications
-
+{{< /expand >}}
+{{< expand "Changelog Archive 2021" >}}
 ## December 2021
 - NVIDIA Cumulus Linux 5.0 is now available for use in custom topologies
 - VMs in a custom topology now use their operating system's default username and password. See the {{<link url="/Quick-Start#logging-into-virtual-machines" text="Quick Start">}} guide for more details.

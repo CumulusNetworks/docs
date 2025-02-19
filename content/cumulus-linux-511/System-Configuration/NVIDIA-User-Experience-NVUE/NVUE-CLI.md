@@ -14,7 +14,7 @@ If you choose to configure Cumulus Linux with NVUE, you can configure features t
 
 ## Command Syntax
 
-NVUE commands all begin with `nv` and fall into one of three syntax categories:
+NVUE commands all begin with `nv` and fall into one of four syntax categories:
 - Configuration (`nv set` and ` nv unset`)
 - Monitoring (`nv show`)
 - Configuration management (`nv config`)
@@ -97,12 +97,12 @@ At the command prompt, press the Up Arrow and Down Arrow keys to move back and f
 
 ## Command Categories
 
-The NVUE CLI has a flat structure; however, the commands are in three functional categories:
+The NVUE CLI has a flat structure; however, the commands are in four functional categories:
 
-- Configuration
-- Monitoring
-- Configuration Management
-- Action
+- {{<link url="#configuration-commands" text="Configuration">}}
+- {{<link url="#monitoring-commands" text="Monitoring">}}
+- {{<link url="#configuration-management-commands" text="Configuration Management">}}
+- {{<link url="#action-commands" text="Action">}}
 
 ### Configuration Commands
 
@@ -121,8 +121,8 @@ The `nv set` and `nv unset` commands are in the following categories. Each comma
 | `nv set platform`<br>`nv unset platform`|  Configures Pulse per Second; the simplest form of synchronization for the physical hardware clock.|
 | `nv set qos`<br>`nv unset qos` | Configures QoS RoCE. |
 | `nv set router`<br>`nv unset router` | Configures router policies (prefix list rules and route maps), sets global BGP options (enable and disable, ASN and router ID, BGP graceful restart and shutdown), global OSPF options (enable and disable, router ID, and OSPF timers) PIM, IGMP, PBR, VRR, and VRRP. |
-| `nv set service`<br>`nv unset service` | Configures DHCP relays and servers, NTP, PTP, LLDP, SNMP servers, DNS, and syslog. |
-| `nv set system`<br>`nv unset system` | Configures system settings, such as the hostname of the switch, pre and post login messages, reboot options (warm, cold, fast), the time zone and global system settings, such as the anycast ID, the system MAC address, and the anycast MAC address. This is also where you configure SPAN and ERSPAN sessions, telemetry, and set how configuration apply operations work (which files to ignore and which files to overwrite; see {{<link title="#configure-nvue-to-ignore-linux-files" text="Configure NVUE to Ignore Linux Files">}}).|
+| `nv set service`<br>`nv unset service` | Configures DHCP relays and servers, NTP, PTP, LLDP, DNS, and syslog. |
+| `nv set system`<br>`nv unset system` | Configures system settings, such as the hostname of the switch, pre and post login messages, reboot options (warm, cold, fast), the time zone and global system settings, such as the anycast ID, the system MAC address, and the anycast MAC address. This is also where you configure SNMP, SPAN and ERSPAN sessions, telemetry, and set how configuration apply operations work (which files to ignore and which files to overwrite; see {{<link title="#configure-nvue-to-ignore-linux-files" text="Configure NVUE to Ignore Linux Files">}}).|
 | `nv set vrf  <vrf-id>`<br>`nv unset vrf <vrf-id>` | Configures VRFs. This is where you configure VRF-level configuration for PTP, BGP, OSPF, and EVPN. |
 
 ### Monitoring Commands
@@ -142,7 +142,7 @@ The NVUE monitoring commands show various parts of the network configuration. Fo
 | `nv show qos` | Shows QoS RoCE configuration.|
 | `nv show router` | Shows router configuration, such as router policies, global BGP and OSPF configuration, PBR, PIM, IGMP, VRR, and VRRP configuration. |
 | `nv show service` | Shows DHCP relays and server, NTP, PTP, LLDP, and syslog configuration. |
-| `nv show system` | Shows global system settings, such as the reserved routing table range for PBR and the reserved VLAN range for layer 3 VNIs. You can also see system login messages and switch reboot history. |
+| `nv show system` | Shows global system settings. |
 | `nv show system version` | Shows the Cumulus Linux release running on the switch.|
 | `nv show vrf` | Shows VRF configuration.|
 
@@ -150,31 +150,30 @@ The following example shows the `nv show router` commands after pressing the tab
 
 ```
 cumulus@leaf01:mgmt:~$ nv show router <<tab>>
-adaptive-routing  igmp              ospf              pim               ptm               vrrp              
-bgp               nexthop           pbr               policy            vrr               
+adaptive-routing  igmp              pbr               ptm
+bgp               nexthop           pim               vrr
+graceful-restart  ospf              policy            vrrp               
 
 cumulus@leaf01:mgmt:~$ nv show router bgp
-                                operational  applied  pending
-------------------------------  -----------  -------  -----------  ----------------------------------------------------------------------
-                                applied      pending    
-------------------------------  -----------  -----------
-enable                          on           on         
-autonomous-system               65101        65101      
-router-id                       10.10.10.1   10.10.10.1 
-policy-update-timer             5            5          
-graceful-shutdown               off          off        
-wait-for-install                off          off        
-graceful-restart                                        
-  mode                          helper-only  helper-only
-  restart-time                  120          120        
-  path-selection-deferral-time  360          360        
-  stale-routes-time             360          360        
-convergence-wait                                        
-  time                          0            0          
-  establish-wait-time           0            0          
-queue-limit                                             
-  input                         10000        10000      
-  output                        10000        10000 
+                                applied    
+------------------------------  -----------
+enable                          on         
+autonomous-system               65101      
+router-id                       10.10.10.1 
+policy-update-timer             5          
+graceful-shutdown               off        
+wait-for-install                off        
+graceful-restart                           
+  mode                          helper-only
+  restart-time                  120        
+  path-selection-deferral-time  360        
+  stale-routes-time             360        
+convergence-wait                           
+  time                          0          
+  establish-wait-time           0          
+queue-limit                                
+  input                         10000      
+  output                        10000 
 ```
 
 {{%notice note%}}
@@ -328,7 +327,7 @@ cumulus@switch:~$ nv set system security encryption db state disabled
 cumulus@switch:~$ nv config apply
 ```
 
-To reenable password encryption, run the `nv set system security encryption db state enabled` command.
+To set password encryption back to the default setting (enabled), run the `nv unset system security encryption db state` command or the `nv set system security encryption db state enabled` command.
 
 To show if password encryption is `on`, run the `nv show system security encryption` command:
 
@@ -365,7 +364,7 @@ NVUE manages the following configuration files:
 
 ## Search for a Specific Configuration
 
-To search for a specific portion of the NVUE configuration, run the `nv config find <search string>` command. The search shows all items above and below the search string. For example, to search the entire NVUE object model configuration for any mention of `ptm`:
+To search for a specific portion of the NVUE configuration, run the `nv config find <search string>` command. The search shows all items above and below the search string. For example, to search the entire NVUE object model configuration for any mention of `bond1`:
 
 ```
 cumulus@switch:~$ nv config find bond1
@@ -456,7 +455,7 @@ cumulus@switch:~$ nv config apply -m "this is my message"
 
 ## Reset NVUE Configuration to Default Values
 
-To reset the NVUE configuration on the switch back to the default values, run the following command:
+To reset the NVUE configuration on the switch back to the default values, run the `nv config replace <filename>` command; for example:
 
 ```
 cumulus@switch:~$ nv config replace /usr/lib/python3/dist-packages/cue_config_v1/initial.yaml
@@ -549,10 +548,10 @@ If you do not clear a user session after making changes directly on the RADIUS, 
 
 If you use certain special characters in a password, you must quote or escape (with a backslash) these characters so that the system understands that they are part of the password.
 
-The following table shows if you need to quote or escape a special character.
+The following table shows which quote or escape you can use for each special character.
 
-- Normal Use indicates that you can use the special character without quotes or a backslash.
-- Single Quotes and Double Quotes indicate that the entire password needs to be enclosed in quotes.
+- *Normal Use* indicates that you can use the special character without quotes or a backslash.
+- *Single Quotes* and *Double Quotes* indicate that you need to enclose the entire password in quotes.
 
 | Special Character | Normal Use  | Single Quotes ('') | Double Quotes ("") | Escape (`\`)|
 |---------- | ------- | ------------------ | ------------------ | ------ |
@@ -606,3 +605,57 @@ The following example shows a password that includes a dot (.) and tilde (~):
 ```
 cumulus@switch:~$ nv set system aaa user cumulus password “Hello.world\~123”
 ```
+
+You might need to encode special characters in a password, for example in a URL. The following table shows the special character encoding.
+- `✓` indicates that encoding is not needed.
+- `%xx` indicates that you need to replace the special character with `%xx`.
+
+| Symbol             | Normal | Single Quotes ('') | Double Quotes ("") | Escape (`\`)|
+|--------------------|--------|-----------------|-----------------|---------|
+| backtick (`)      | %60    | ✓               | %60             | ✓       |
+| exclamation point (`!`)  | %21    | ✓               | %21             | ✓       |
+| semicolon (`;`)      | %3B    | ✓               | ✓               | ✓       |
+| ampersand (`&`)     | %26    | ✓               | ✓               | ✓       |
+| question mark (`?`)      | %3F    | %3F             | %3F             | %3F     |
+| tilde (~)         | ✓      | ✓               | ✓               | ✓       |
+| at-sign (`@`)       | ✓      | ✓               | ✓               | ✓       |
+| hash sign (`#`)         | %23    | %23             | %23             | %23     |
+| dollar sign (`$`)        | %24    | ✓               | %24             | ✓       |
+| percent sign (`%`)        | ✓      | ✓               | ✓               | ✓       |
+| caret (`^`)         | ✓      | ✓               | ✓               | ✓       |
+| asterisk (`*`)    | ✓      | ✓               | ✓               | ✓       |
+| left parenthesis (`(`)     | %28    | ✓               | ✓               | ✓       |
+| right parenthesis (`)`)   | %29    | ✓               | ✓               | ✓       |
+| dash (`-`)        | ✓      | ✓               | ✓               | ✓       |
+| underscore (`_`) | ✓      | ✓               | ✓               | ✓       |
+| equals sign (`=`) | ✓      | ✓               | ✓               | ✓       |
+| plus sign (`+`)         | ✓      | ✓               | ✓               | ✓       |
+| vertical bar  | %7C    | ✓               | ✓               | ✓       |
+| left bracket (`[`)  | %5B    | %5B             | %5B             | %5B     |
+| right bracket (`]`) | %5D    | %5D             | %5D             | %5D     |
+| braces (`{}`)        | ✓      | ✓               | ✓               | ✓       |
+| colon (`:`)          | ✓      | ✓               | ✓               | ✓       |
+| single quote (`‘`)   | %27    | %27             | ✓               | ✓       |
+| double quote (`“`)   | %22    | ✓               | %22             | ✓       |
+| comma (`,`)         | ✓      | ✓               | ✓               | ✓       |
+| left angle bracket (`<`)    | %3C    | ✓               | ✓               | ✓       |
+| right angle bracket (`>`)  | %3E    | ✓               | ✓               | ✓       |
+| slash (`/`)         | %2F    | %2F             | %2F             | %2F     |
+| dot (`.`)             | ✓      | ✓               | ✓               | ✓       |
+| white space  | %20    | ✓               | ✓               | ✓       |
+
+The following example fetches an image stored on a device with IP address 10.0.1.251 using the password `Pass#pass1` for user1:
+
+```
+cumulus@switch:~$ nv action fetch system image scp://user1:Pass1%23pass1@10.0.1.251/host/nos-images/nvos-amd64-25.02.1857.bin
+```
+
+## NVUE and FRR Restart
+
+NVUE restarts the FRR service when you:
+- Change the `/etc/frr/daemons` file.
+- Change the BGP ASN.
+- Remove the default instance.
+- Disable the SNMP server with `agentx` configured.
+
+Restarting FRR restarts all the routing protocol daemons that you enable and that are running, which might impact traffic.

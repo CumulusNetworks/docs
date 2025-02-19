@@ -57,6 +57,52 @@ cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action deny
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set acl \<acl-id\> rule \<rule-id\> action dest-nat translate-ip</h>
+
+Configures a static NAT rule to match a destination IP address and translate the IP address to a public IP address.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action dest-nat translate-ip 10.0.0.1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl \<acl-id\> rule \<rule-id\> action dest-nat translate-port</h>
+
+Configures a static PAT rule to match a destination IP address together with the layer 4 port and translate the IP address and port to a public IP address and port.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action dest-nat translate-port 5000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set acl \<acl-id\> rule \<rule-id\> action erspan dest-ip</h>
 
 Configures the ERSPAN destination IP address.
@@ -126,29 +172,6 @@ cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action erspan ttl 200
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set acl \<acl-id\> rule \<rule-id\> action log</h>
-
-Configures logging for ACLs.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action log
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set acl \<acl-id\> rule \<rule-id\> action log level</h>
 
 Configures the log level for the specified ACL rule. You can set a value between 0 and 7.
@@ -168,29 +191,6 @@ Introduced in Cumulus Linux 5.9.0
 
 ```
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action log level 5
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set acl \<acl-id\> rule \<rule-id\> action log rate</h>
-
-Configures the number of logs per minute you want to generate for the specified ACL rule. You can set a value between 1 and 50000.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.9.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action log rate 30000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -219,6 +219,29 @@ cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action log log-prefix 10.10.10.1/3
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set acl \<acl-id\> rule \<rule-id\> action log rate</h>
+
+Configures the number of logs per minute you want to generate for the specified ACL rule. You can set a value between 1 and 50000.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action log rate 30000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set acl \<acl-id\> rule \<rule-id\> action permit</h>
 
 Configures a permit action to permit packets.
@@ -238,98 +261,6 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action permit
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set acl \<acl-id\> rule \<rule-id\> action recent</h>
-
-Configures the ACL rule to be the most recent.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.9.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action recent
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set acl \<acl-id\> rule \<rule-id\> action set class</h>
-
-Modifies the class value for packet classification.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action set class 3
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set acl \<acl-id\> rule\<rule-id\> action set cos</h>
-
-Configures the 802.1p CoS value to modify in the packet.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action set cos 6
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set acl \<acl-id\> rule \<rule-id\> action set dscp</h>
-
-Configures the DSCP value to modify in the packet.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action set dscp af12
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -426,6 +357,98 @@ cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action police rate 2000
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set acl \<acl-id\> rule \<rule-id\> action recent</h>
+
+Configures the ACL rule to be the most recent.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action recent
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl \<acl-id\> rule \<rule-id\> action set class</h>
+
+Modifies the class value for packet classification.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action set class 3
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl \<acl-id\> rule\<rule-id\> action set cos</h>
+
+Configures the 802.1p CoS value to modify in the packet.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action set cos 6
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl \<acl-id\> rule \<rule-id\> action set dscp</h>
+
+Configures the DSCP value to modify in the packet.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action set dscp af12
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set acl \<acl-id\> rule \<rule-id\> action source-nat translate-ip</h>
 
 Configures a NAT action rule to translate a source IP address.
@@ -468,29 +491,6 @@ Introduced in Cumulus Linux 5.7.0
 
 ```
 cumulus@switch:~$ nv set acl acl_1 rule 1 action source-nat translate-ip 172.30.58.0 to 172.30.58.80
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set acl \<acl-id\> rule \<rule-id\> action source-nat translate-mac \<mac\></h>
-
-Configures MAC address translation to translate a source MAC address to a public address. MAC address translation is equivalent to static NAT but operates at layer 2 on Ethernet frames.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.7.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set acl MACL1 rule 1 action source-nat translate-mac 99:de:fc:32:11:01
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -710,52 +710,6 @@ cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip fragment
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set acl \<acl-id\> rule \<rule-id\> match ip hashlimit name</h>
-
-Configures the hashlimit name you want to match.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.9.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip hashlimit name NAME
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set acl \<acl-id\> rule \<rule-id\> match ip hashlimit rate-above</h>
-
-Configures how much above the hashlimit rate you want to match. You can specify an `<integer>/second` `<integer>/min`, or `<integer>/hour`. The maximum rate is 1000000 per second.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.9.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip hashlimit rate-above 1000/min
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set acl \<acl-id\> rule \<rule-id\> match ip hashlimit burst</h>
 
 Configures the hashlimit burst rate you want to match.
@@ -775,29 +729,6 @@ Introduced in Cumulus Linux 5.9.0
 
 ```
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip hashlimit burst 10
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set acl \<acl-id\> rule \<rule-id\> match ip hashlimit source-mask</h>
-
-Configures the hashlimit source mask you want to match; the source mask used to mask the source IP address.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.9.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip hashlimit source-mask 32
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -867,6 +798,75 @@ Introduced in Cumulus Linux 5.9.0
 
 ```
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip hashlimit mode dst-ip
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl \<acl-id\> rule \<rule-id\> match ip hashlimit name</h>
+
+Configures the hashlimit name you want to match.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip hashlimit name NAME
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl \<acl-id\> rule \<rule-id\> match ip hashlimit rate-above</h>
+
+Configures how much above the hashlimit rate you want to match. You can specify an `<integer>/second` `<integer>/min`, or `<integer>/hour`. The maximum rate is 1000000 per second.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip hashlimit rate-above 1000/min
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl \<acl-id\> rule \<rule-id\> match ip hashlimit source-mask</h>
+
+Configures the hashlimit source mask you want to match; the source mask used to mask the source IP address.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip hashlimit source-mask 32
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1108,6 +1108,29 @@ cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip tcp all-mss-except 536
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set acl \<acl-id\> rule \<rule-id\> match ip tcp dest-port</h>
+
+Configures the switch to match the TCP destination port. You can specify `ANY`, `bootpc`, `bootps`, `clag`, `dhcp-client`, `dhcp-server`, `domain`, `ftp`, `http`, `https`, `imap2`, `ldap`, `ldaps`, `ntp`, `msdp`, `pop3`, `smtp`, `snmp` `snmp-trap`, `ssh`, `telnet`, `tftp`, `bgp`, `bfd`, `bfd-echo`, `bfd-multihop`, or a value between 0 and 65535.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip tcp dest-port ANY
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set acl \<acl-id\> rule \<rule-id\> match ip tcp flags</h>
 
 Configures the IP TCP flag you want match in the packet. You can specify: `ack`, `all`, `fin`, `none`, `psh`, `rst`, `syn`, or `urg`.
@@ -1173,6 +1196,29 @@ Introduced in Cumulus Linux 5.9.0
 
 ```
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip tcp mss 536
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl \<acl-id\> rule \<rule-id\> match ip tcp source-port</h>
+
+Configures the switch to match the TCP source port. You can specify `ANY`, `bootpc`, `bootps`, `clag`, `dhcp-client`, `dhcp-server`, `domain`, `ftp`, `http`, `https`, `imap2`, `ldap`, `ldaps`, `ntp`, `msdp`, `pop3`, `smtp`, `snmp` `snmp-trap`, `ssh`, `telnet`, `tftp`, `bgp`, `bfd`, `bfd-echo`, `bfd-multihop`, or a value between 0 and 65535.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip tcp source-port ANY
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1366,7 +1412,7 @@ cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 remark "The following line permits
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set acl \<acl-id\> rule \<rule-id\> type</h>
+## <h>nv set acl \<acl-id\> type</h>
 
 Configures the ACL rule type. You can specify `ipv4`, `ipv6` or `mac`.
 
@@ -1386,7 +1432,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1489,9 +1535,9 @@ Configures a control plane ACL to apply a single rule for all packets forwarded 
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system control-plane acl \<acl-id\> inbound control-plane</h>
+## <h>nv set system control-plane acl \<acl-id\> inbound</h>
 
-Configures an inbound control plane ACL.
+Configures an inbound ACL.
 
 ### Command Syntax
 
@@ -1506,12 +1552,12 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set system control-plane acl ACL1 inbound control-plane
+cumulus@switch:~$ nv set system control-plane acl ACL1 inbound
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system control-plane acl \<acl-id\> outbound control-plane</h>
+## <h>nv set system control-plane acl \<acl-id\> outbound</h>
 
 Configures an outbound control plane ACL.
 
@@ -1528,5 +1574,5 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set system control-plane acl ACL1 outbound control-plane
+cumulus@switch:~$ nv set system control-plane acl ACL1 outbound
 ```

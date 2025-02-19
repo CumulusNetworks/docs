@@ -523,7 +523,7 @@ The following steps configure a Cumulus switch to use MSDP:
 5. Inject the anycast IP address into the IGP of the domain. If the network uses unnumbered BGP as the IGP, avoid using the anycast IP address to establish unicast or multicast peerings. For PIM-SM, ensure that you use the unique address as the PIM hello source by setting the source:
 
    ```
-   cumulus@rp01:$ net add loopback lo pim use-source 10.100.100.100
+   cumulus@rp01:$ net add loopback lo pim use-source 100.100.100.100
    cumulus@rp01:$ net pending
    cumulus@rp01:$ net commit
    ```

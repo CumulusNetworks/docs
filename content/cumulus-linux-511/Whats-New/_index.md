@@ -7,7 +7,6 @@ toc: 2
 This document supports the Cumulus Linux 5.11 release, and lists new platforms, features, and enhancements.
 - For a list of open and fixed issues in Cumulus Linux 5.11, see the {{<link title="Cumulus Linux 5.11 Release Notes" text="Cumulus Linux 5.11 Release Notes">}}.
 - To upgrade to Cumulus Linux 5.11, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
-<!-- vale off -->
 
 ## What's New in Cumulus Linux 5.11
 
@@ -465,7 +464,6 @@ To prevent Cumulus Linux from overwriting manual changes to the Linux configurat
    cumulus@switch:~$ sudo rm -rf /etc/nvue.d/startup.yaml
    ```
 
-
 3. Add the `PASSWORD_NVUE_SYNC=no` line to the `/etc/default/nvued` file:
    ```
    cumulus@switch:~$ sudo nano /etc/default/nvued
@@ -482,3 +480,9 @@ Cumulus Linux 5.11 includes the NVUE object model. After you upgrade to Cumulus 
 - Update your automation tools to use NVUE.
 - {{<link url="NVUE-CLI/#configure-nvue-to-ignore-linux-files" text="Configure NVUE to ignore certain underlying Linux files">}} when applying configuration changes.
 - Use Linux and FRR (vtysh) commands instead of NVUE for **all** switch configuration.
+
+### Secure Boot Switch Downgrade
+
+The SN3700C-S, SN5400, and SN5600 secure boot switch running Cumulus Linux 5.11.0 boots with shim 15.8 that adds entries to the SBAT revocations to prevent the switch from booting shim 15.7 or earlier.
+
+If you want to downgrade from Cumulus Linux 5.11.0 to a Cumulus Linux release that uses an older shim version (Cumulus Linux 5.10 or earlier), follow the steps in {{<link url="/Upgrading-Cumulus-Linux/#downgrade-a-secure-boot-switch-from-cumulus-linux-5110" text="Downgrade a Secure Boot Switch from Cumulus Linux 5.11.0">}} **before** the downgraded switch boots.

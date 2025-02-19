@@ -793,9 +793,8 @@ ECN operates by having a transit switch that marks packets between two end hosts
 6. A receiving host reflects this new ECN marking in the next reply so that the transmitting host resumes sending at normal speeds.
 
 The default profile (`default-global`) enables ECN by default on egress queue 0 for all ports with the following settings:
-- A minimum buffer threshold of 150000 bytes. Random ECN marking starts when buffer congestion crosses this threshold. The probability determines if ECN marking occurs.
+- A minimum buffer threshold of 150000 bytes. Random ECN marking starts when buffer congestion crosses this threshold and ECN marking probability ramps up as the queue depth increases towards the maximum threshold value. 
 - A maximum buffer threshold of 1500000 bytes. Cumulus Linux marks all ECN-capable packets when buffer congestion crosses this threshold.
-- A probability of 100 percent that Cumulus Linux marks an ECN-capable packet when buffer congestion is between the minimum threshold and the maximum threshold.
 - Random Early Detection (RED) disabled. ECN prevents packet drops in the network due to congestion by signaling hosts to transmit less. However, if congestion continues after ECN marking, packets drop after the switch buffer is full. By default, Cumulus Linux tail-drops packets when the buffer is full. You can enable RED to drop packets that are in the queue randomly instead of always dropping the last arriving packet. This might improve overall performance of TCP based flows.
 
 The following example commands change the default ECN profile that applies to all ports. The commands enable ECN on egress queue 4, 5, and 7, set the minimum buffer threshold to 40000 and the maximum buffer threshold to 200000, and enable RED.
@@ -1654,7 +1653,7 @@ Pool-Id  infinite  memory-percent  mode     reserved  shared-alpha  shared-bytes
 
 ### Lossy Headroom
 
-Lossy headroom is the buffer on top of the reserved buffer that stores packets that ingress the switch. You can configure the lossy headroom to help analyze performance for a specific priority group and to isolate management traffic to a separate priority group.
+Lossy headroom is the buffer that stores packets waiting to be processed by the switch. If the expected processing latency is longer than normal (for example, if there are multiple ACL rules), increase the lossy headroom.
 
 To change the lossy headroom for a priority group, run the following commands. The switch calculates the default value internally based on the MTU and internal latency.
 

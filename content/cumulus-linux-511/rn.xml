@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4309870</td>
+<td>Due to unsupported EVPN BUM replication configuration (a mix of PIM and HER modes),  a resource leak can occur.</td>
+<td>5.11.0-5.12.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4277143</td>
 <td>After a factory reset with the {{nv action reset system factory-default force}} command, RADIUS does not fully reset; the {{radius-cmd-acct}} package is not installed correctly and includes missing files. In addition, {{/etc/pam.d/common-auth}} is incorrect.</td>
 <td>5.11.0</td>
@@ -233,12 +239,6 @@ cumulus@switch:~$ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "Dpkg::Optio
 <td>4176931</td>
 <td>The {{nv show platform firmware}} command results in a Python traceback and takes a long time to complete because the VX image does not support the {{smartctl}} utility.</td>
 <td>5.11.0</td>
-<td>5.12.0</td>
-</tr>
-<tr>
-<td>4175695</td>
-<td>If all of the neighbors returned in the {{nv show vrf &lt;vrf&gt; router bgp neighbor}} command output have no {{address-family}} configuration, you see an internal error when the nested table in the  output is being rendered.</td>
-<td>5.10.0-5.11.0</td>
 <td>5.12.0</td>
 </tr>
 <tr>

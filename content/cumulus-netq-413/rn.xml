@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4316305</td>
+<td>When you back up your data from a prior NetQ release and restore it after installing NetQ 4.13.0, any switches that were in a rotten state are missing from the NetQ inventory after the upgrade. To work around this issue, decommission any rotten switches before you upgrade and reconnect the agents after the upgrade is complete.Additionally, no snapshot or PTP data is restored from prior releases after the upgrade. </td>
+<td>4.13.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4298008</td>
 <td>When you upgrade from NetQ 4.11 to 4.13, any pre-existing validation data will be lost.</td>
 <td>4.13.0</td>
@@ -134,11 +140,7 @@
 <tr>
 <td>4157785</td>
 <td>When you add a new switch to the NetQ inventory, the NetQ UI might not display interface statistics or interface validation data for the new switch for up to one hour.
-
-To work around this issue, adjust the poll period to 60 seconds on the new switch with the &lt;code&gt;netq config add agent command service-key ports poll-period 60&lt;/code&gt; command. When interface data is displayed in the NetQ UI, change it back to the default value of 3600 with the &lt;code&gt;netq config add agent command service-key ports poll-period 3600&lt;/code&gt; command.
-
-
-</td>
+To work around this issue, adjust the poll period to 60 seconds on the new switch with the &lt;code&gt;netq config add agent command service-key ports poll-period 60&lt;/code&gt; command. When interface data is displayed in the NetQ UI, change it back to the default value of 3600 with the &lt;code&gt;netq config add agent command service-key ports poll-period 3600&lt;/code&gt; command.</td>
 <td>4.12.0</td>
 </tr>
 <tr>

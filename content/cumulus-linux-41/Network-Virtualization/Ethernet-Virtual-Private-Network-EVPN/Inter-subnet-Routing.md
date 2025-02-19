@@ -68,9 +68,9 @@ router bgp 65000
 
 {{%notice note%}}
 
-You can deploy centralized routing at the VNI level. Therefore, you can configure the `advertise-default-gw` command per VNI so that centralized routing is used for some VNIs while distributed routing (described below) is used for other VNIs. This type of configuration is not recommended unless the deployment requires it.
-
-When centralized routing is in use, even if the source host and destination host are attached to the same VTEP, the packets travel to the gateway VTEP to get routed and then come back.
+- You can deploy centralized routing at the VNI level. Therefore, you can configure the `advertise-default-gw` command per VNI so that centralized routing is used for some VNIs while distributed routing (described below) is used for other VNIs. This type of configuration is not recommended unless the deployment requires it.
+- When centralized routing is in use, even if the source host and destination host are attached to the same VTEP, the packets travel to the gateway VTEP to get routed and then come back.
+- To avoid traffic to a gateway MAC address in a centralized EVPN fabric from being flooded by virtual switches that are not local to the border leaf, refer to {{<exlink url="https://enterprise-support.nvidia.com/s/article/Traffic-To-Gateway-MAC-In-Centralized-EVPN-Fabric-Is-Being-Flooded-By-V-Switches-Not-Local-To-The-Border-Leaf" text="this knowledge base article" >}}.
 
 {{%/notice%}}
 

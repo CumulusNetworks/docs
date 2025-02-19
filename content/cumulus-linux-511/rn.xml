@@ -152,12 +152,6 @@ cumulus@switch:~$ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "Dpkg::Optio
 <td>5.12.0</td>
 </tr>
 <tr>
-<td>4175695</td>
-<td>If all of the neighbors returned in the {{nv show vrf &lt;vrf&gt; router bgp neighbor}} command output have no {{address-family}} configuration, you see an internal error when the nested table in the  output is being rendered.</td>
-<td>5.10.0-5.11.1</td>
-<td>5.12.0</td>
-</tr>
-<tr>
 <td>4174646</td>
 <td>On the NVIDIA SN5400 and SN5600 switch, the fans might run at full speed when it is not necessary.</td>
 <td>5.10.1-5.11.1</td>
@@ -794,9 +788,19 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Affects </th>
 </tr>
 <tr>
+<td>4309870</td>
+<td>Due to unsupported EVPN BUM replication configuration (a mix of PIM and HER modes),  a resource leak can occur.</td>
+<td>5.11.0</td>
+</tr>
+<tr>
 <td>4271212</td>
 <td>When IPv4 layer 3 switch ports and virtual interfaces flap, {{switchd}} might send an ICMP Reply message instead of an ARP request (although no ICMP request was sent). Multiple ICMP Replies might be sent to any of the neighbor IP addresses of that interface.</td>
 <td>5.9.2-5.11.0</td>
+</tr>
+<tr>
+<td>4260012</td>
+<td>If all of the neighbors returned in the {{nv show vrf &lt;vrf&gt; router bgp neighbor}} command output have no {{address-family}} configuration, you see an internal error when the nested table in the  output is being rendered.</td>
+<td>5.10.0-5.11.0</td>
 </tr>
 <tr>
 <td>4256151</td>
@@ -876,6 +880,12 @@ netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported tru
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>4309870</td>
+<td>Due to unsupported EVPN BUM replication configuration (a mix of PIM and HER modes),  a resource leak can occur.</td>
+<td>5.11.0-5.12.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4277143</td>
@@ -1104,12 +1114,6 @@ cumulus@switch:~$ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "Dpkg::Optio
 <td>4176931</td>
 <td>The {{nv show platform firmware}} command results in a Python traceback and takes a long time to complete because the VX image does not support the {{smartctl}} utility.</td>
 <td>5.11.0</td>
-<td>5.12.0</td>
-</tr>
-<tr>
-<td>4175695</td>
-<td>If all of the neighbors returned in the {{nv show vrf &lt;vrf&gt; router bgp neighbor}} command output have no {{address-family}} configuration, you see an internal error when the nested table in the  output is being rendered.</td>
-<td>5.10.0-5.11.0</td>
 <td>5.12.0</td>
 </tr>
 <tr>

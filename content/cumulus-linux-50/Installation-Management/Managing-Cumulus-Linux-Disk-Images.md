@@ -56,9 +56,8 @@ To see more `onie-install` options, run `man onie-install.`
 To remove all installed images and configurations, and return the switch to its factory defaults, run the `onie-select -k` command.
 
 {{%notice warning%}}
-
-The `onie-select -k` command takes a long time to run as it overwrites the entire NOS section of the flash. Only use this command if you want to erase all NOS data and take the switch out of service.
-
+- The `onie-select -k` command takes a long time to run as it overwrites the entire NOS section of the flash. Only use this command if you want to erase all NOS data and take the switch out of service.
+- ONIE does not support front panel ports. After you run `sudo onie-select -k` to return the switch to its factory defaults, you must use the eth0 interface to provision the switch.
 {{%/notice%}}
 
 ```

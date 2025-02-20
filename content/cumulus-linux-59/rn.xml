@@ -31,6 +31,12 @@
 <td></td>
 </tr>
 <tr>
+<td>4220147</td>
+<td>When you bring STP down, then up on the primary MLAG peer, the STP state machine restarts and the peerlink operational edge resets. As a result, the secondary MLAG peer ends up in an STP discarding state. To work around this issue, restart the {{clagd}} service.</td>
+<td>5.8.0-5.12.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4208746</td>
 <td>When using the REST API  to move a port from one bridge to another bridge, the {{bridge-vlan}} configuration on the port might be programmed incorrectly. To resolve the issue,  run the {{ifreload -a}} command.</td>
 <td>5.9.1-5.12.0</td>
@@ -961,6 +967,12 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <tr>
 <td>4250847</td>
 <td>When the STP state goes down, then back up on the primary MLAG peer, the peerlink state is not updated correctly in {{mstpd}}.</td>
+<td>5.8.0-5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4220147</td>
+<td>When you bring STP down, then up on the primary MLAG peer, the STP state machine restarts and the peerlink operational edge resets. As a result, the secondary MLAG peer ends up in an STP discarding state. To work around this issue, restart the {{clagd}} service.</td>
 <td>5.8.0-5.12.0</td>
 <td></td>
 </tr>
@@ -1900,6 +1912,12 @@ You can safely ignore this warning.</td>
 <tr>
 <td>4250847</td>
 <td>When the STP state goes down, then back up on the primary MLAG peer, the peerlink state is not updated correctly in {{mstpd}}.</td>
+<td>5.8.0-5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4220147</td>
+<td>When you bring STP down, then up on the primary MLAG peer, the STP state machine restarts and the peerlink operational edge resets. As a result, the secondary MLAG peer ends up in an STP discarding state. To work around this issue, restart the {{clagd}} service.</td>
 <td>5.8.0-5.12.0</td>
 <td></td>
 </tr>

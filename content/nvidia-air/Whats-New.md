@@ -9,10 +9,15 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 
 ## Feburary 2025
 <!-- Air:WhatsNew -->
+### 82.2025.0220-011
+- Fixed an issue with launching NetQ
+- Fixed a validation issue when importing JSON topologies with ZTP scripts
+- Added ability to define unconnected interfaces via JSON topology files.
+<!-- Air:WhatsNew -->
+
 ### 82.2025.0213-011
 - Fixed an issue with Demo Marketplace nodes not retaining their disk changes after waking up
 - Added API endpoint for parsing topologies from DOT format to JSON format
-<!-- Air:WhatsNew -->
 
 ### 82.2025.0204-011
 - Fixed an issue where simulations entered an error state when started

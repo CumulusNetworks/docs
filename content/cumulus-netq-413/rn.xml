@@ -19,12 +19,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4280664</td>
-<td>If the name of a device group includes spaces, validations might fail with the message “Validation failed to run.” To work around this issue, remove the spaces from the device group’s name.</td>
-<td>4.13.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4280023</td>
 <td>After backing up and restoring your NetQ data, any modifications to default suppression rules will be lost.</td>
 <td>4.12.0-4.13.0</td>

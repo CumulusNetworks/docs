@@ -43,6 +43,12 @@
 <td></td>
 </tr>
 <tr>
+<td>4220147</td>
+<td>When you bring STP down, then up on the primary MLAG peer, the STP state machine restarts and the peerlink operational edge resets. As a result, the secondary MLAG peer ends up in an STP discarding state. To work around this issue, restart the {{clagd}} service.</td>
+<td>5.8.0-5.12.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4208746</td>
 <td>When using the REST API  to move a port from one bridge to another bridge, the {{bridge-vlan}} configuration on the port might be programmed incorrectly. To resolve the issue,  run the {{ifreload -a}} command.</td>
 <td>5.9.1-5.12.0</td>
@@ -76,6 +82,12 @@
 <td>4182753</td>
 <td>When you configure the SPAN port mirror truncate size to a value greater than 4 and less than the supported minimum, NVUE allows the configuration even though there are errors and failures in the mirror session configuration.The supported values for truncate size are 32 to 4088 for Spectrum 1, 48 to 4088 for Spectrum-2 and Spectrum-3, and 64 to 4088 for Spectrum-4.To work around this issue, run the {{echo &lt;supported_value&gt; &gt; /cumulus/switchd/config/mirror/session/1/truncate_size}} command before you reconfigure mirror sessions with the supported values.</td>
 <td>5.8.0-5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4178578</td>
+<td>An unexpected thermal reboot occurs due to an incorrect firmware status in the i2c driver.</td>
+<td>5.10.0-5.12.0</td>
 <td></td>
 </tr>
 <tr>
@@ -888,6 +900,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
+<td>4220147</td>
+<td>When you bring STP down, then up on the primary MLAG peer, the STP state machine restarts and the peerlink operational edge resets. As a result, the secondary MLAG peer ends up in an STP discarding state. To work around this issue, restart the {{clagd}} service.</td>
+<td>5.8.0-5.12.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4208746</td>
 <td>When using the REST API  to move a port from one bridge to another bridge, the {{bridge-vlan}} configuration on the port might be programmed incorrectly. To resolve the issue,  run the {{ifreload -a}} command.</td>
 <td>5.9.1-5.12.0</td>
@@ -915,6 +933,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>4182753</td>
 <td>When you configure the SPAN port mirror truncate size to a value greater than 4 and less than the supported minimum, NVUE allows the configuration even though there are errors and failures in the mirror session configuration.The supported values for truncate size are 32 to 4088 for Spectrum 1, 48 to 4088 for Spectrum-2 and Spectrum-3, and 64 to 4088 for Spectrum-4.To work around this issue, run the {{echo &lt;supported_value&gt; &gt; /cumulus/switchd/config/mirror/session/1/truncate_size}} command before you reconfigure mirror sessions with the supported values.</td>
 <td>5.8.0-5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4178578</td>
+<td>An unexpected thermal reboot occurs due to an incorrect firmware status in the i2c driver.</td>
+<td>5.10.0-5.12.0</td>
 <td></td>
 </tr>
 <tr>

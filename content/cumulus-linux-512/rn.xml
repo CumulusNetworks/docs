@@ -19,6 +19,32 @@
 <td></td>
 </tr>
 <tr>
+<td>4309869</td>
+<td>Due to unsupported EVPN BUM replication configuration (a mix of PIM and HER modes),  a resource leak can occur.</td>
+<td>5.11.0-5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4309850</td>
+<td>The management interface on the NVIDIA SN2010 and the SN2100 switch negotiates to 100 Mbps instead of 1 Gbps.</td>
+<td>5.11.0-5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4291993</td>
+<td>After upgrading Cumulus Linux with optimized (two partition) image upgrade, the ssh and nginx services do not start. To work around this issue, check if the {{cumulus-upgrade-on-shutdown}} service is {{active (exited)}} with the {{systemctl status cumulus-upgrade-on-shutdown}} command. If the command output shows {{inactive (dead)}}), run the following commands to ensure that a subsequent two partition upgrade correctly uses the {{cumulus-upgrade-on-shutdown}} service:
+cumulus@switch:~$ sudo systemctl enable cumulus-upgrade-on-shutdown
+cumulus@switch:~$ sudo systemctl start cumulus-upgrade-on-shutdown</td>
+<td>5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4287285</td>
+<td>Due to unsupported EVPN BUM replication configuration (a mix of PIM and HER modes),  a resource leak can occur.</td>
+<td>5.11.0-5.12.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4286489</td>
 <td>Optimized (two partition) upgrade and rollback fails when you apply configuration by editing the {{/etc/nvue.d/startup.yaml}} file, then run {{nv config apply startup}}. To work around this issue, after activating optimized &lt;b&gt;upgrade&lt;/b&gt;, but &lt;b&gt;before&lt;/b&gt; rebooting, save a copy of the contents of {{/var/lib/nvue/}} to some other location. Then, &lt;b&gt;after&lt;/b&gt; activating &lt;b&gt;rollback&lt;/b&gt;, but &lt;b&gt;before&lt;/b&gt; rebooting, move {{/var/lib/nvue/}} to some other location and copy the previously saved contents to {{/var/lib/nvue/}}.</td>
 <td>5.12.0</td>
@@ -139,6 +165,12 @@ cumulus@switch:~$ sudo pam-auth-update --enable unix --force</td>
 <td>4200952</td>
 <td>Configuring the listening-address for the SNMP server fails for IP addresses associated with VRFs other than the management VRF.</td>
 <td>5.11.0-5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4178578</td>
+<td>An unexpected thermal reboot occurs due to an incorrect firmware status in the i2c driver.</td>
+<td>5.10.0-5.12.0</td>
 <td></td>
 </tr>
 <tr>
@@ -730,7 +762,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>4251984</td>
-<td>NVUE does not let you set the IPv6 RA lifetime to zero. To work around this issue, run the vtysh command.</td>
+<td>NVUE does not let you set the IPv6 Router Advertisement lifetime to zero. To work around this issue, run the vtysh command.</td>
 <td>5.11.0</td>
 </tr>
 <tr>
@@ -761,6 +793,11 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 <td>4220393</td>
 <td>The default GRUB timeout style changed from menu to countdown. When booting, a countdown displays on the console and you can use the escape key to break out of the countdown and show the GRUB menu. This reduces the chance of console noise halting the reboot process. If you press the escape key twice, you might go to the GRUB command line. In this case, type {{normal}} to get back to the GRUB menu or {{reboot}} to reboot the switch.</td>
 <td>5.11.0</td>
+</tr>
+<tr>
+<td>4220147</td>
+<td>When you bring STP down, then up on the primary MLAG peer, the STP state machine restarts and the peerlink operational edge resets. As a result, the secondary MLAG peer ends up in an STP discarding state. To work around this issue, restart the {{clagd}} service.</td>
+<td>5.8.0-5.11.0</td>
 </tr>
 <tr>
 <td>4209429</td>

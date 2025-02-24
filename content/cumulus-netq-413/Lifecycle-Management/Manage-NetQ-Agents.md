@@ -97,7 +97,7 @@ cumulus@switch~:$ netq show agents opta
 Matching agents records:
 Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
 ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
-netq-appliance    Fresh            yes      4.12.0-ub20.04u49~1728015156.144ca36 Tue Oct  8 12:06:08 2024  Tue Nov 12 17:03:14 2024  Tue Nov 12 17:04:09 2024   Tue Dec  3 15:43:47 2024
+netq-appliance    Fresh            yes      4.13.0-ub22.04u50~11739293854.1b7284 Tue Oct  8 12:06:08 2024  Tue Nov 12 17:03:14 2024  Tue Nov 12 17:04:09 2024   Tue Dec  3 15:43:47 2024
 ```
 
 ## View NetQ Agent Configuration
@@ -258,7 +258,7 @@ cumulus@switch:~$ sudo netq config restart agent
 
 ### Configure a NetQ Agent to Send Data to a Server Cluster
 
-If you have a high-availability server cluster arrangement, you should configure the HA servers to distribute the data that the NetQ Agent collects across the servers.
+If you have a high-availability server cluster arrangement, you should configure the NetQ Agent to distribute data across all servers in the cluster. For {{<link title="Set Up Your Virtual Machine for an On-premises HA Scale Cluster" text="scale cluster deployments">}}, configure the agent with the IP address of the `master-ip` and each `ha-node`. For 5-node deployments, you do not need to specify the `worker-nodes`. Refer to {{<link title="Install NetQ Agents/#configure-netq-agents" text="Configure NetQ Agents">}} for step-by-step instructions.
 
 To configure the agent to send data to the servers in your cluster, run:
 
@@ -268,10 +268,10 @@ sudo netq config add agent cluster-servers <text-opta-ip-list> [port <text-opta-
 
 You must separate the list of IP addresses by commas (not spaces). You can optionally specify a port or VRF.
 
-This example configures the NetQ Agent on a switch to send the data to three servers located at *10.0.0.21*, *10.0.0.22*, and *10.0.0.23* using the *rocket* VRF.
+This example configures the NetQ Agent on a switch to send the data to three servers located at *10.0.0.21*, *10.0.0.22*, and *10.0.0.23* using the *mgmt* VRF.
 
 ```
-cumulus@switch:~$ sudo netq config add agent cluster-servers 10.0.0.21,10.0.0.22,10.0.0.23 vrf rocket
+cumulus@switch:~$ sudo netq config add agent cluster-servers 10.0.0.21,10.0.0.22,10.0.0.23 vrf mgmt
 ```
 
 To stop a NetQ Agent from sending data to a server cluster, run:

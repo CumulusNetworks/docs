@@ -1,23 +1,23 @@
 ---
 title: Install NetQ Agents
 author: NVIDIA
-weight: 210
+weight: 220
 toc: 4
 ---
 
 After installing the NetQ software, you should install the NetQ Agents on each switch you want to monitor. You can install NetQ Agents on switches and servers running:
 
-- Cumulus Linux 5.0.0 or later (Spectrum switches)
-- Ubuntu 22.04, 20.04
+- Cumulus Linux 5.9.2 or later (Spectrum switches)
+- Ubuntu 22.04
 
 ## Prepare for NetQ Agent Installation
 
-For switches running Cumulus Linux, you need to:
+For switches running *Cumulus Linux*, you need to:
 
 - Install and configure NTP or PTP, if needed
 - Obtain NetQ software packages
 
-For servers running Ubuntu, you need to:
+For servers running *Ubuntu*, you need to:
 
 - Verify you installed the minimum package versions
 - Verify the server is running `lldpd`
@@ -73,7 +73,7 @@ deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest
 ```
 
 {{<notice tip>}}
-You can specify a NetQ Agent version in the repository configuration. The following example shows the repository configuration to retrieve NetQ Agent 4.12: <pre>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-4.12</pre>
+You can specify a NetQ Agent version in the repository configuration. The following example shows the repository configuration to retrieve NetQ Agent 4.13: <pre>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-4.13</pre>
 {{</notice>}}
 
 2. Add the `apps3.cumulusnetworks.com` authentication key to Cumulus Linux:
@@ -169,9 +169,6 @@ root@ubuntu:~# sudo wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-app
 
 2. Add the Ubuntu repository:
 
-    {{<tabs "Get NetQ Agent Package" >}}
-
-{{<tab "Ubuntu 22.04" >}}
 
 Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-jammy.list` and add the following line:
 
@@ -182,12 +179,10 @@ deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb jammy netq-latest
 ...
 ```
     {{<notice note>}}
-The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even for a major version update. If you want to keep the repository on a specific version &mdash; such as <code>netq-4.4</code> &mdash; use that instead.
+The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even for a major version update. If you want to keep the repository on a specific version &mdash; such as <code>netq-4.9</code> &mdash; use that instead.
     {{</notice>}}
 
-{{</tab>}}
-        
-{{<tab "Ubuntu 20.04" >}}
+
 
 Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-focal.list` and add the following line:
 
@@ -205,9 +200,6 @@ The use of <code>netq-latest</code> in these examples means that a <code>get</co
 
 {{</tabs>}}
 
-{{</tab>}}
-
-{{</tabs>}}
 
 ## Install NetQ Agent
 
@@ -232,7 +224,7 @@ Cumulus Linux 4.4 and later includes the `netq-agent` package by default. To ins
     cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/agent-version version="4.12.0" opsys="cl">}}
+    {{<netq-install/agent-version version="4.13.0" opsys="cl">}}
 
 3. Restart `rsyslog` so it sends log files to the correct destination.
 
@@ -261,7 +253,7 @@ To install the NetQ Agent:
     root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/agent-version version="4.12.0" opsys="ub">}}
+    {{<netq-install/agent-version version="4.13.0" opsys="ub">}}
 
 3. Restart `rsyslog` so it sends log files to the correct destination.
 
@@ -275,14 +267,12 @@ root@ubuntu:~# sudo systemctl restart rsyslog.service
 
 {{</tabs>}}
 
-## Configure NetQ Agent
+## Configure NetQ Agents
 
 After you install the NetQ Agents on the switches you want to monitor, you must configure them to obtain useful and relevant data.
 
 {{%notice note%}}
-The NetQ Agent is aware of and communicates through the designated VRF. If you do not specify one, it uses the default VRF (named *default*). If you later change the VRF configured for the NetQ Agent (using a lifecycle management configuration profile, for example), you might cause the NetQ Agent to lose communication.
-
-If you configure the NetQ Agent to communicate in a VRF that is not *default* or *mgmt*, the following line must be added to `/etc/netq/netq.yml` in the `netq-agent` section:
+The NetQ Agent is aware of and communicates through the designated VRF. If you do not specify one, it uses the default VRF (named *default*). If you later change the VRF configured for the NetQ Agent (using a lifecycle management configuration profile, for example), you might cause the NetQ Agent to lose communication.<br><br> If you configure the NetQ Agent to communicate in a VRF that is not *default* or *mgmt*, add the following line to `/etc/netq/netq.yml` in the `netq-agent` section:
 
 ```
 netq-agent:
@@ -295,7 +285,51 @@ Two methods are available for configuring a NetQ Agent:
 - Edit the configuration file on the switch, or
 - Use the NetQ CLI
 
-### Configure NetQ Agents Using a Configuration File
+{{<tabs "TabID298" >}}
+
+
+{{<tab "Standalone Deployments" >}}
+
+{{<tabs "TabID318" >}}
+
+{{<tab "NetQ CLI" >}}
+
+If you {{<link title="Install NetQ CLI" text="configured the NetQ CLI">}}, you can use it to configure the NetQ Agent to send telemetry data to the NetQ appliance or VM.
+
+{{<notice info>}}
+If you intend to use a VRF for agent communication (recommended), refer to {{<link url="#configure-the-agent-to-use-a-vrf" text="Configure the Agent to Use VRF">}}. If you intend to specify a port for communication, refer to {{<link url="#configure-the-agent-to-communicate-over-a-specific-port" text="Configure the Agent to Communicate over a Specific Port">}}.
+{{</notice>}}
+
+Use the following command to configure the NetQ Agent:
+
+```
+sudo netq config add agent server <text-opta-ip> 
+    [port <text-opta-port>] 
+    [ssl true | ssl false] 
+    [ssl-cert <text-ssl-cert-file> | ssl-cert download] 
+    [vrf <text-vrf-name>] 
+    [inband-interface <interface-name>]
+```
+
+This example uses a NetQ server IP address of *192.168.1.254*, the default port, and the `mgmt` VRF for a switch managed through an out-of-band connection:
+
+```
+sudo netq config add agent server 192.168.1.254 vrf mgmt
+Updated agent server 192.168.1.254 vrf mgmt. Please restart netq-agent (netq config restart agent).
+sudo netq config restart agent
+```
+
+This example uses a NetQ server IP address of *192.168.1.254*, the default port, and the `default` VRF for a switch managed through an in-band connection on interface `swp1`:
+
+```
+sudo netq config add agent server 192.168.1.254 vrf default inband-interface swp1
+Updated agent server 192.168.1.254 vrf default. Please restart netq-agent (netq config restart agent).
+sudo netq config restart agent
+```
+
+{{</tab>}}
+
+{{<tab "Configuration Files" >}}
 
 You can configure the NetQ Agent in the `netq.yml` configuration file contained in the `/etc/netq/` directory.
 
@@ -322,7 +356,7 @@ You can configure the NetQ Agent in the `netq.yml` configuration file contained 
         vrf: mgmt
     ```
 
-    For in-band deployments:
+    For in-band deployments, using the `default` VRF:
     ```
     netq-agent:
         inband-interface: swp1
@@ -332,35 +366,87 @@ You can configure the NetQ Agent in the `netq.yml` configuration file contained 
     ```
 
 
-### Configure NetQ Agents Using the NetQ CLI
+{{</tab>}}
 
-If you configured the NetQ CLI, you can use it to configure the NetQ Agent to send telemetry data to the NetQ appliance or VM. To configure the NetQ CLI, refer to {{<link title="Install NetQ CLI">}}.
+{{</tabs>}}
 
-{{<notice info>}}
-If you intend to use a VRF for agent communication (recommended), refer to {{<link url="#configure-the-agent-to-use-a-vrf" text="Configure the Agent to Use VRF">}}. If you intend to specify a port for communication, refer to {{<link url="#configure-the-agent-to-communicate-over-a-specific-port" text="Configure the Agent to Communicate over a Specific Port">}}.
-{{</notice>}}
+{{</tab>}}
 
-Use the following command to configure the NetQ Agent:
+{{<tab "Cluster Deployments" >}}
 
-```
-sudo netq config add agent server <text-opta-ip> [port <text-opta-port>] [ssl true | ssl false] [ssl-cert <text-ssl-cert-file> | ssl-cert download] [vrf <text-vrf-name>] [inband-interface <interface-name>]
-```
+{{<tabs "TabID302" >}}
 
-This example uses a NetQ server IP address of *192.168.1.254*, the default port, and the `mgmt` VRF for a switch managed through an out-of-band connection:
+{{<tab "NetQ CLI" >}}
 
-```
-sudo netq config add agent server 192.168.1.254 vrf mgmt
-Updated agent server 192.168.1.254 vrf mgmt. Please restart netq-agent (netq config restart agent).
-sudo netq config restart agent
-```
+If you have a high-availability server cluster arrangement, you should configure the NetQ Agent to distribute data across all servers in the cluster. For {{<link title="Set Up Your Virtual Machine for an On-premises HA Scale Cluster" text="scale cluster deployments">}}, configure the agent with the IP address of the `master-ip` and each `ha-node`. For 5-node deployments, you do not need to specify the `worker-nodes`.
 
-This example uses a NetQ server IP address of *192.168.1.254*, the default port, and the `default` VRF for a switch managed through an in-band connection on interface `swp1`:
+To configure the agent to send data to the servers in your cluster, run:
 
 ```
-sudo netq config add agent server 192.168.1.254 vrf default inband-interface swp1
-Updated agent server 192.168.1.254 vrf default. Please restart netq-agent (netq config restart agent).
-sudo netq config restart agent
+sudo netq config add agent cluster-servers <text-opta-ip-list> [port <text-opta-port>] [vrf <text-vrf-name>]
 ```
+
+You must separate the list of IP addresses by commas (not spaces). You can optionally specify a port or VRF.
+
+This example configures the NetQ Agent on a switch to send the data to three servers located at *10.0.0.21*, *10.0.0.22*, and *10.0.0.23* using the *mgmt* VRF.
+
+```
+cumulus@switch:~$ sudo netq config add agent cluster-servers 10.0.0.21,10.0.0.22,10.0.0.23 vrf mgmt
+```
+
+To stop a NetQ Agent from sending data to a server cluster, run:
+
+```
+cumulus@switch:~$ sudo netq config del agent cluster-servers
+```
+
+
+{{</tab>}}
+
+{{<tab "Configuration Files" >}}
+
+
+You can configure the NetQ Agent in the `netq.yml` configuration file contained in the `/etc/netq/` directory.
+
+1. Open the `netq.yml` file using your text editor of choice. For example:
+
+    ```
+    sudo nano /etc/netq/netq.yml
+    ```
+
+2. Locate the *netq-agent* section, or add it.
+
+3. Set the parameters for the agent as follows:
+    - port: 31980 (default configuration)
+    - cluster-servers: IP addresses of all NetQ servers in your cluster. For {{<link title="Set Up Your Virtual Machine for an On-premises HA Scale Cluster" text="scale cluster deployments">}}, configure the agent with the IP address of the `master-ip` and each `ha-node`. For 5-node deployments, you do not need to specify the `worker-nodes`.
+    - vrf: default (or one that you specify)
+    - inband-interface: the interface used to reach your NetQ server and used by lifecycle management to connect to the switch (for deployments where switches are managed through an in-band interface)
+
+    Your configuration should be similar to this:
+
+    ```
+    netq-agent:
+        cluster-servers: 10.0.0.21,10.0.0.22,10.0.0.23
+        port: 31980
+        vrf: mgmt
+    ```
+
+    For in-band deployments, using the `default` VRF:
+    ```
+    netq-agent:
+        inband-interface: swp1
+        cluster-servers: 10.0.0.21,10.0.0.22,10.0.0.23
+        port: 31980
+        vrf: mgmt
+    ```
+
+{{</tab>}}
+
+{{</tabs>}}
+
+{{</tab>}}
+   
+{{</tabs>}}
 
 
 ## Configure Advanced NetQ Agent Settings

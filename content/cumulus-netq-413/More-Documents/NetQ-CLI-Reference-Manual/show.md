@@ -241,15 +241,15 @@ cumulus@switch:~$ netq show agents
 Matching agents records:
 Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
 ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
-exit-1            Fresh            yes      4.12.0-cl4u48~1719858419.3db6af0a5   Mon Jul  1 19:29:33 2024  Mon Jul  1 20:11:31 2024  Mon Jul  8 18:33:15 2024   Tue Jul  9 15:13:14 2024
-exit-2            Fresh            yes      4.12.0-cl4u48~1719858419.3db6af0a5   Mon Jul  1 19:29:34 2024  Mon Jul  1 20:11:52 2024  Mon Jul  8 18:33:12 2024   Tue Jul  9 15:13:17 2024
-firewall-1        Fresh            yes      4.12.0-cl4u48~1719858419.3db6af0a5   Mon Jul  1 19:29:32 2024  Mon Jul  1 20:12:13 2024  Mon Jul  8 18:33:07 2024   Tue Jul  9 15:13:02 2024
-firewall-2        Fresh            yes      4.12.0-cl4u48~1719858419.3db6af0a5   Mon Jul  1 19:29:32 2024  Mon Jul  1 20:12:42 2024  Mon Jul  8 18:33:13 2024   Tue Jul  9 15:13:05 2024
-hostd-11          Fresh            yes      4.12.0-ub18.04u48~1719859179.3db6af0 Mon Jul  1 20:01:50 2024  Mon Jul  1 20:12:59 2024  Mon Jul  8 18:33:15 2024   Tue Jul  9 15:13:02 2024
-hostd-21          Fresh            yes      4.12.0-ub18.04u48~1719859179.3db6af0 Mon Jul  1 20:02:50 2024  Mon Jul  1 20:13:15 2024  Mon Jul  8 18:32:52 2024   Tue Jul  9 15:13:11 2024
-hosts-11          Fresh            yes      4.12.0-ub18.04u48~1719859179.3db6af0 Mon Jul  1 20:03:47 2024  Mon Jul  1 20:13:31 2024  Mon Jul  8 18:33:16 2024   Tue Jul  9 15:13:21 2024
-hosts-13          Fresh            yes      4.12.0-ub18.04u48~1719859179.3db6af0 Mon Jul  1 20:04:48 2024  Mon Jul  1 20:13:46 2024  Mon Jul  8 18:33:18 2024   Tue Jul  9 15:13:08 2024
-hosts-21          Fresh            yes      4.12.0-ub18.04u48~1719859179.3db6af0 Mon Jul  1 20:05:54 2024  Mon Jul  1 20:13:59 2024  Mon Jul  8 18:33:21 2024   Tue Jul  9 15:13:20 2024
+border01          Rotten           yes      4.13.0-cld12u50~1739293953.1b72846ca Thu Jan 23 14:59:38 2025  Tue Feb  4 17:59:30 2025  Mon Feb 10 19:39:37 2025   Mon Feb 10 19:58:08 2025
+border02          Rotten           yes      4.13.0-cld12u50~1739293953.1b72846ca Thu Jan 23 14:59:42 2025  Tue Feb  4 17:59:30 2025  Mon Feb 10 18:23:21 2025   Mon Feb 10 20:25:09 2025
+fw1               Fresh            yes      4.13.0-cld12u50~1739293953.1b72846ca Thu Jan 23 14:59:40 2025  Tue Feb  4 17:59:29 2025  Mon Feb 10 01:26:49 2025   Mon Feb 10 20:26:12 2025
+leaf01            Fresh            yes      4.13.0-cld12u50~1739293953.1b72846ca Thu Jan 23 14:59:40 2025  Tue Feb  4 17:59:29 2025  Mon Feb 10 19:06:13 2025   Mon Feb 10 20:26:22 2025
+leaf02            Fresh            yes      4.13.0-cld12u50~1739293953.1b72846ca Thu Jan 23 14:59:39 2025  Tue Feb  4 17:59:29 2025  Mon Feb 10 19:12:21 2025   Mon Feb 10 20:26:20 2025
+leaf03            Rotten           no       4.13.0-cld12u50~1739293953.1b72846ca Thu Jan 23 14:59:36 2025  Tue Feb  4 17:59:29 2025  Mon Feb 10 15:03:10 2025   Mon Feb 10 15:09:26 2025
+leaf04            Fresh            yes      4.13.0-cld12u50~1739293953.1b72846ca Thu Jan 23 14:59:40 2025  Tue Feb  4 17:59:29 2025  Mon Feb 10 15:55:08 2025   Mon Feb 10 20:26:32 2025
+spine01           Fresh            yes      4.13.0-cld12u50~1739293953.1b72846ca Thu Jan 23 14:59:38 2025  Tue Feb  4 17:59:29 2025  Mon Feb 10 01:26:49 2025   Mon Feb 10 20:26:13 2025
+spine02           Fresh            yes      4.13.0-cld12u50~1739293953.1b72846ca Thu Jan 23 14:59:41 2025  Tue Feb  4 17:59:29 2025  Mon Feb 10 01:26:48 2025   Mon Feb 10 20:26:26 2025
 ...
 ```
 
@@ -260,8 +260,9 @@ cumulus@switch:~$ netq show agents rotten
 Matching agents records:
 Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
 ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
-fw1               Rotten           no       3.2.0-cl4u30~1601403318.104fb9ed     Fri Oct  2 20:36:33 2020  Mon Nov  2 19:49:21 2020  Mon Nov  2 19:49:21 2020   Fri Nov 20 18:48:53 2020
-fw2               Rotten           no       3.2.0-cl4u30~1601403318.104fb9ed     Fri Oct  2 20:36:32 2020  Mon
+border01          Rotten           yes      4.13.0-cld12u50~1739293953.1b72846ca Thu Jan 23 14:59:38 2025  Tue Feb  4 17:59:30 2025  Mon Feb 10 19:39:37 2025   Mon Feb 10 19:58:08 2025
+border02          Rotten           yes      4.13.0-cld12u50~1739293953.1b72846ca Thu Jan 23 14:59:42 2025  Tue Feb  4 17:59:30 2025  Mon Feb 10 18:23:21 2025   Mon Feb 10 20:25:09 2025
+leaf03            Rotten           no       4.13.0-cld12u50~1739293953.1b72846ca Thu Jan 23 14:59:36 2025  Tue Feb  4 17:59:29 2025  Mon Feb 10 15:03:10 2025   Mon Feb 10 15:09:26 2025
 ```
 
 ### Related Commands
@@ -3656,6 +3657,10 @@ mlx-3700c-24      swp8            Lossy      0,3          ECN      1502208  1566
 
 Displays RoCE counters for switches, DPUs, and NICs.
 
+{{%notice note%}}
+The output of this command only displays interfaces in the `up` state. To view a complete list of interfaces that are streaming RoCE data (regardless of state), use the UI.
+{{%/notice%}}
+
 ### Syntax
 
 ```
@@ -3757,7 +3762,7 @@ Hostname          Interface            PG packets           PG bytes            
 ----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- --------------------
 switch            swp1s1               1643392              154094520            0                    0                    1                    0                    1
 ```
-Dislpay RoCE counters for BlueField DPUs:
+Display RoCE counters for BlueField DPUs:
 
 ```
 cumulus@dpu:~$ netq show roce-counters dpu 
@@ -4144,8 +4149,8 @@ None
 cumulus@netq:~$ netq show status verbose
 NetQ Live State: Active
 Installation Status: FINISHED
-Version: 4.12.0
-Installer Version: 4.12.0
+Version: 4.13.0
+Installer Version: 4.13.0
 Installation Type: Standalone
 Activation Key: EhVuZXRxLWasdW50LWdhdGV3YXkYsagDIixkWUNmVmhVV2dWelVUOVF3bXozSk8vb2lSNGFCaE1FR2FVU2dHK1k3RzJVPQ==
 Master SSH Public Key: c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCfdsaHpjKzcwNmJiNVROOExRRXdLL3l5RVNLSHRhUE5sZS9FRjN0cTNzaHh1NmRtMkZpYmg3WWxKUE9lZTd5bnVlV2huaTZxZ0xxV3ZMYkpLMGdkc3RQcGdzNUlqanNMR3RzRTFpaEdNa3RZNlJYenQxLzh4Z3pVRXp3WTBWZDB4aWJrdDF3RGQwSjhnbExlbVk1RDM4VUdBVFVkMWQwcndLQ3gxZEhRdEM5L1UzZUs5cHFlOVdBYmE0ZHdiUFlaazZXLzM0ZmFsdFJxaG8rNUJia0pkTkFnWHdkZGZ5RXA1Vjc3Z2I1TUU3Q1BxOXp2Q1lXZW84cGtXVS9Wc0gxWklNWnhsa2crYlZ4MDRWUnN4ZnNIVVJHVmZvckNLMHRJL0FrQnd1N2FtUGxObW9ERHg2cHNHaU1EQkM0WHdud1lmSlNleUpmdTUvaDFKQ2NuRXpOVnVWRjUgcm9vdEBhbmlscmVzdG9yZQ==

@@ -25,14 +25,14 @@ NetQ software installation file names include a version number, in the form of x
     - Feature improvements.
     - Bug fixes and updates.
     - Security updates.
-- **OS** indicates the Network Operating System information (cl for Cumulus Linux, deb for SONiC, ub for Ubuntu)
+- **OS** indicates the Network Operating System information (cl for Cumulus Linux, deb for SONiC, ub for Ubuntu). Cumulus Linux 5.9 or later packages include <b>cld12</b>. Prior versions of Cumulus Linux include <b>cl4u</b>.
 - **TAG** represents a timestamp for the release of the version.
 - **CPU** architecture represents architecture.
 
 This number corresponds to the release version of the software. NetQ requires two Debian packages per release. For example:
 
-- netq-apps_<strong>4.12.0</strong>-deb11u<strong>49</strong>~1731404547.ffa541ea6_amd64.deb
-- netq-agent_<strong>4.12.0</strong>-deb11u<strong>49</strong>~1731404547.ffa541ea6_amd64.deb
+- netq-apps_<strong>4.13.0</strong>-cld12u<strong>50</strong>~1739293953.1b72846ca_amd64.deb
+- netq-agent_<strong>4.13.0</strong>-cld12u<strong>50</strong>~1739293953.1b72846ca_amd64.deb
 ## Release, Support Lifecycle and Support Policy
 
 NetQ is offered with a per switch subscription that includes support for 1, 3, and 5 years options. The subscription model allows customers to upgrade the software as updates and new versions become available, for the period of the subscription.
@@ -44,4 +44,4 @@ It is necessary to upgrade the NetQ Agents and NetQ Apps running on switches to 
 Note that when your Network Operating System is no longer supported, NetQ customer support ends along with it. Access to NetQ is permitted until the end of the subscription period.
 ## Upgrade Process
 
-For information regarding upgrading from previous NetQ releases, refer to the [NetQ Deployment Guide]({{<ref "/cumulus-netq-411/Installation-Management" >}}).
+For information regarding upgrading from previous NetQ releases, refer to the [NetQ Deployment Guide]({{<ref "/cumulus-netq-412/Installation-Management" >}}).

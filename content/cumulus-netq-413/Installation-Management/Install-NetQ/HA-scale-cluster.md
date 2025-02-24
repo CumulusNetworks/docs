@@ -335,13 +335,55 @@ cumulus@netq-server:~$ vim /tmp/cluster-install-config.json
 {{< /tabs >}}
 
 
-12. Run the following command on your master node, using the JSON configuration file created in step 11:
+12. Run the installation command on your master node. Follow the steps under _Restore Data and New Install_ if you have a {{<link title="Back Up and Restore NetQ" text="backup data tarball">}} from a previous NetQ installation to restore.
+
+{{< tabs "TabID41 ">}}
+{{< tab "New Install">}}
+
+Run the following command on your master node, using the JSON configuration file created in step 11:
 
 ```
 cumulus@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.13.0.tgz /tmp/cluster-install-config.json
 ```
 
 <div class="notices tip"><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
+
+
+{{< /tab >}}
+{{< tab "Restore Data and New Install">}}
+
+1. Add the `config-key` parameter to the JSON template from step 11 using the key created during the {{<link title="Back Up and Restore NetQ" text="backup process">}}. Edit the file with values for each attribute.
+
+```
+cumulus@netq-server:~$ vim /tmp/cluster-install-config.json 
+{
+        "version": "v2.0",
+        "config-key": "<INPUT>",
+        "interface": "<INPUT>",
+        "cluster-vip": "<INPUT>",
+        "master-ip": "<INPUT>",
+        "is-ipv6": false,
+        "ha-nodes":
+                {
+                        "ip": "<INPUT>"
+                },
+                {
+                        "ip": "<INPUT>"
+                }
+}
+```
+
+2. Run the following command on your master node, using the JSON configuration file from the previous step. Include the restore option referencing the path where the backup file resides:
+
+```
+cumulus@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.13.0.tgz /tmp/cluster-install-config.json restore /home/cumulus/combined_backup_20241211111316.tar
+```
+
+<div class="notices tip"><p><ul><li>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</li><li>If you restore NetQ data to a server with an IP address that is different from the one used to back up the data, you must <a href="/networking-ethernet-software/cumulus-netq/Installation-Management/Install-NetQ/Install-NetQ-Agents/#configure-netq-agents">reconfigure the agents</a> on each switch as a final step.</li></ul></p></div>
+
+{{< /tab >}}
+{{< /tabs >}}
+
 
 ## Verify Installation Status
 
@@ -373,16 +415,16 @@ Run the `netq show opta-health` command to verify that all applications are oper
 cumulus@hostname:~$ netq show opta-health
     Application                                            Status    Namespace      Restarts    Timestamp
     -----------------------------------------------------  --------  -------------  ----------  ------------------------
-    cassandra-rc-0-w7h4z                                   READY     default        0           Fri Apr 10 16:08:38 2020
-    cp-schema-registry-deploy-6bf5cbc8cc-vwcsx             READY     default        0           Fri Apr 10 16:08:38 2020
-    kafka-broker-rc-0-p9r2l                                READY     default        0           Fri Apr 10 16:08:38 2020
-    kafka-connect-deploy-7799bcb7b4-xdm5l                  READY     default        0           Fri Apr 10 16:08:38 2020
-    netq-api-gateway-deploy-55996ff7c8-w4hrs               READY     default        0           Fri Apr 10 16:08:38 2020
-    netq-app-address-deploy-66776ccc67-phpqk               READY     default        0           Fri Apr 10 16:08:38 2020
-    netq-app-admin-oob-mgmt-server                         READY     default        0           Fri Apr 10 16:08:38 2020
-    netq-app-bgp-deploy-7dd4c9d45b-j9bfr                   READY     default        0           Fri Apr 10 16:08:38 2020
-    netq-app-clagsession-deploy-69564895b4-qhcpr           READY     default        0           Fri Apr 10 16:08:38 2020
-    netq-app-configdiff-deploy-ff54c4cc4-7rz66             READY     default        0           Fri Apr 10 16:08:38 2020
+    cassandra-rc-0-w7h4z                                   READY     default        0           Fri Apr 10 16:08:38 2024
+    cp-schema-registry-deploy-6bf5cbc8cc-vwcsx             READY     default        0           Fri Apr 10 16:08:38 2024
+    kafka-broker-rc-0-p9r2l                                READY     default        0           Fri Apr 10 16:08:38 2024
+    kafka-connect-deploy-7799bcb7b4-xdm5l                  READY     default        0           Fri Apr 10 16:08:38 2024
+    netq-api-gateway-deploy-55996ff7c8-w4hrs               READY     default        0           Fri Apr 10 16:08:38 2024
+    netq-app-address-deploy-66776ccc67-phpqk               READY     default        0           Fri Apr 10 16:08:38 2024
+    netq-app-admin-oob-mgmt-server                         READY     default        0           Fri Apr 10 16:08:38 2024
+    netq-app-bgp-deploy-7dd4c9d45b-j9bfr                   READY     default        0           Fri Apr 10 16:08:38 2024
+    netq-app-clagsession-deploy-69564895b4-qhcpr           READY     default        0           Fri Apr 10 16:08:38 2024
+    netq-app-configdiff-deploy-ff54c4cc4-7rz66             READY     default        0           Fri Apr 10 16:08:38 2024
     ...
 ```
 {{%notice note%}}
@@ -392,7 +434,7 @@ After NetQ is installed, you can {{<link title="Access the NetQ UI" text="log in
 
 ## Add Additional Worker Nodes
 
-When the number of devices in your network grows, you can add additional nodes to your cluster deployment so that NetQ remains operational and can accommodate the additional devices. Refer to the  {{<link title="Before You Install/#installation-overview" text="Installation Overview">}} for device support information.
+When the number of devices in your network grows, you can add additional nodes to your cluster deployment so that NetQ remains operational and can accommodate the additional devices. Refer to the {{<link title="Before You Install/#installation-overview" text="Installation Overview">}} for device support information.
 
 To add additional worker nodes to an existing HA scale cluster, generate a JSON configuration template referencing the number of additional worker nodes you want to add. For example, to expand a 3-node cluster to a 5-node cluster, run the `netq install cluster config generate workers 2` command to generate the JSON configuration template, `/tmp/cluster-install-config.json`:
 

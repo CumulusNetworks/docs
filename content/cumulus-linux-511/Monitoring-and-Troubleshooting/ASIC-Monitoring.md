@@ -1199,7 +1199,7 @@ To export a `json` file to an external location, run the NVUE `nv action upload 
 cumulus@switch:~$ nv action upload system telemetry hft job 1 scp://root@host1:/home/telemetry/
 ```
 
-### Configure the Schedule
+### Configure the Job Schedule
 
 To configure the schedule for a data collection profile, set:
 - The start date and time. You can also start data collection immediately with the `now` option.
@@ -1240,6 +1240,18 @@ HFT job schedule successful: job-id 1
 
 Action succeeded
 ```
+
+You can specify `now` for the date and/or time to configure the current date and time of day. The following example configures `profile2` to start today at 10:00:00, run for 30 seconds, and collect data on swp2s0.
+
+``` 
+cumulus@switch:~$ nv action schedule system telemetry hft job now 10:00:00 duration 30 profile profile2 ports swp2s0
+Action executing ...
+Job schedule successfull.
+HFT job schedule successful: job-id 2
+
+Action succeeded
+```
+
 
 The following example configures `profile2` to start immediately, run for 30 seconds, and collect data on swp2s0.
 

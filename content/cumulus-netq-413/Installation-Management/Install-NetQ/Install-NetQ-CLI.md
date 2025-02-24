@@ -1,7 +1,7 @@
 ---
 title: Install NetQ CLI
 author: NVIDIA
-weight: 220
+weight: 210
 toc: 4
 --- 
 
@@ -9,8 +9,8 @@ Installing the NetQ CLI on your NetQ VMs, switches, or hosts gives you access to
 
 After installing the NetQ software and agent on each switch you want to monitor, you can also install the NetQ CLI on switches running:
 
-- Cumulus Linux 5.0.0 or later (Spectrum switches)
-- Ubuntu 20.04, 22.04
+- Cumulus Linux 5.9.2 or later (Spectrum switches)
+- Ubuntu 22.04
 
 {{<notice note>}}
 If your network uses a proxy server for external connections, you should first {{<kb_link latest="cl" url="System-Configuration/Configuring-a-Global-Proxy.md" text="configure a global proxy">}} so <code>apt-get</code> can access the software package in the NetQ repository.
@@ -133,13 +133,7 @@ To get the NetQ CLI package:
     root@ubuntu:~# sudo wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | apt-key add -
     ```
 
-2. Add the Ubuntu repository:
-
-    {{<tabs "TabID2" >}}
-
-{{<tab "Ubuntu 22.04" >}}
-
-Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-jammy.list` and add the following line:
+2. Add the Ubuntu repository. Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-jammy.list` and add the following line:
 
 ```
 root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-jammy.list
@@ -148,26 +142,9 @@ deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb jammy netq-latest
 ...
 ```
 
-{{</tab>}}
-
-{{<tab "Ubuntu 20.04" >}}
-
-Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-focal.list` and add the following line:
-
-```
-root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-focal.list
-...
-deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb focal netq-latest
-...
-```
-
-{{</tab>}}
-
-{{</tabs>}}
-
-    {{<notice note>}}
+{{<notice note>}}
 The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even for a major version update. If you want to keep the repository on a specific version &mdash; such as <code>netq-4.4</code> &mdash; use that instead.
-    {{</notice>}}
+{{</notice>}}
 
 ## Install NetQ CLI
 
@@ -189,7 +166,7 @@ deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest
 ```
 
 {{<notice tip>}}
-You can specify a NetQ CLI version in the repository configuration. The following example shows the repository configuration to retrieve NetQ CLI v4.12: <pre>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-4.12</pre>
+You can specify a NetQ CLI version in the repository configuration. The following example shows the repository configuration to retrieve NetQ CLI v4.13: <pre>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-4.13</pre>
 {{</notice>}}
 
 
@@ -206,7 +183,7 @@ You can specify a NetQ CLI version in the repository configuration. The followin
     cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
 <!-- vale off -->
-{{<netq-install/cli-version version="4.12" opsys="cl">}}
+{{<netq-install/cli-version version="4.13" opsys="cl">}}
 <!-- vale on -->
 4. Continue with NetQ CLI configuration in the next section.
 
@@ -227,7 +204,7 @@ You can specify a NetQ CLI version in the repository configuration. The followin
     root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
 <!-- vale off -->
-{{<netq-install/cli-version version="4.12" opsys="ub">}}
+{{<netq-install/cli-version version="4.13" opsys="ub">}}
 <!-- vale on -->
 3. Continue with NetQ CLI configuration in the next section.
 

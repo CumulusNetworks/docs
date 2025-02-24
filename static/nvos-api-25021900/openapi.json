@@ -3835,7 +3835,7 @@
         "x-cue-prune": [
           "cl",
           "hbn",
-          "block-tpm"
+          "bmc-blocked"
         ],
         "parameters": [
           {
@@ -3874,7 +3874,7 @@
         "x-cue-prune": [
           "cl",
           "hbn",
-          "block-tpm"
+          "bmc-blocked"
         ],
         "parameters": [
           {
@@ -3900,7 +3900,7 @@
         "x-cue-prune": [
           "cl",
           "hbn",
-          "block-tpm"
+          "bmc-blocked"
         ],
         "x-cue-controller": "cue_cue_v1.base_controllers.base_action_post",
         "requestBody": {
@@ -3938,7 +3938,7 @@
         "x-cue-prune": [
           "cl",
           "hbn",
-          "block-tpm"
+          "bmc-blocked"
         ],
         "parameters": [
           {
@@ -3977,7 +3977,7 @@
         "x-cue-prune": [
           "cl",
           "hbn",
-          "block-tpm"
+          "bmc-blocked"
         ],
         "parameters": [
           {
@@ -26950,7 +26950,16 @@
           "$ref": "#/x-defs/cue-show-schema-certificate-x509-certificates"
         },
         "spdm": {
-          "$ref": "#/x-defs/cue-show-schema-security-security-spdm"
+          "x-cue-prune": [
+            "cl",
+            "hbn",
+            "bmc-blocked"
+          ],
+          "allOf": [
+            {
+              "$ref": "#/x-defs/cue-show-schema-security-security-spdm"
+            }
+          ]
         }
       }
     },
@@ -37217,7 +37226,7 @@
     },
     "schema-common-nos-remote-url-fetch-def": {
       "x-cue-marker": "def",
-      "description": "scp https ftp and sftp are supported. e.g. scp://username[:password]@hostname/path/filename",
+      "description": "scp https ftp sftp and file are supported. e.g. scp://username[:password]@hostname/path/filename, file:///path/filename\n",
       "x-action-param-type": "positional",
       "format": "remote-url-fetch"
     },
@@ -60603,7 +60612,16 @@
           "$ref": "#/x-defs/schema-certificate-x509-certificates"
         },
         "spdm": {
-          "$ref": "#/x-defs/schema-security-security-spdm"
+          "x-cue-prune": [
+            "cl",
+            "hbn",
+            "bmc-blocked"
+          ],
+          "allOf": [
+            {
+              "$ref": "#/x-defs/schema-security-security-spdm"
+            }
+          ]
         }
       }
     },

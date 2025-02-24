@@ -177,7 +177,12 @@ cumulus@<hostname>:~$ netq install cluster master-init
 ```
 10. Run the `netq install cluster worker-init <ssh-key>` command on each of your worker nodes.
 
-11. Run the following commands on your master node, using the IP addresses of your worker nodes and the HA cluster virtual IP address (VIP):
+11. Run the installation command on your NetQ server. Follow the steps under _Restore Data and New Install_ if you have a {{<link title="Back Up and Restore NetQ" text="backup data tarball">}} from a previous NetQ installation to restore.
+
+{{< tabs "TabID41 ">}}
+{{< tab "New Install">}}
+
+Run the following commands on your master node, using the IP addresses of your worker nodes and the HA cluster virtual IP address (VIP):
 
 {{<notice info>}}
 The HA cluster virtual IP must be:
@@ -194,6 +199,33 @@ cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/insta
     <p></p></div>
 
 <div class="notices tip"><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
+
+{{< /tab >}}
+{{< tab "Restore Data and New Install">}}
+
+Restore your data with the backup file you created during a backup using the `restore` option with the `netq install` command. The `restore` option copies the data from the backup file to the database, decompresses it, verifies the restoration, and starts all necessary services. 
+
+Run the installation command on your master node, using the IP addresses of your worker nodes, the HA cluster virtual IP address (VIP), the path where the backup file resides, and the `config-key` created during the {{<link title="Back Up and Restore NetQ" text="backup process">}}:
+
+{{<notice info>}}
+The HA cluster virtual IP must be:
+    <li>An unused IP address allocated from the same subnet assigned to the default interface for your master and worker nodes. The default interface is the interface used in the <code>netq install</code> <a href="/cumulus-netq/More-Documents/NetQ-CLI-Reference-Manual/install/#netq-install-cluster-full">command</a>.</li>
+    <li>A different IP address than the primary IP assigned to the default interface.</li>
+{{</notice>}}
+
+```
+cumulus@netq-appliance:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.13.0.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIiwzNWJVL2NkZmtnekRqZ21yUUdZTHFFa0wvMVZSNHlLd3JaYlpuWE1VS21JPQ== workers 10.188.44.219 10.188.45.164 cluster-vip 10.188.45.169 restore /home/cumulus/combined_backup_20241211111316.tar
+```
+
+<div class="notices note"><p></p><p>NetQ uses the 10.244.0.0/16 (<code>pod-ip-range</code>) and 10.96.0.0/16 (<code>service-ip-range</code>) networks for internal communication by default. If you are using these networks, you must override each range by specifying new subnets for these parameters in the install command:</p>
+    <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>cumulus@hostname:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.13.0.tgz workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt; pod-ip-range &lt;pod-ip-range&gt; service-ip-range &lt;service-ip-range&gt; config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIiwzNWJVL2NkZmtnekRqZ21yUUdZTHFFa0wvMVZSNHlLd3JaYlpuWE1VS21JPQ== restore /home/cumulus/combined_backup_20241211111316.tar</pre><p>You can specify the IP address of the server instead of the interface name using the <code>ip-addr &lt;ip-address&gt;</code> argument:</p>
+    <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>cumulus@hostname:~$ netq install cluster full ip-addr &lt;ip-address&gt; bundle /mnt/installables/NetQ-4.13.0.tgz workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt; config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIiwzNWJVL2NkZmtnekRqZ21yUUdZTHFFa0wvMVZSNHlLd3JaYlpuWE1VS21JPQ== restore /home/cumulus/combined_backup_20241211111316.tar</pre><p>If you change the server IP address or hostname after installing NetQ, you must reset the server with the <code>netq bootstrap reset keep-db</code> command and rerun the install command.</p>
+    <p></p></div>
+
+<div class="notices tip"><p><ul><li>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</li><li>If you restore NetQ data to a server with an IP address that is different from the one used to back up the data, you must <a href="/networking-ethernet-software/cumulus-netq/Installation-Management/Install-NetQ/Install-NetQ-Agents/#configure-netq-agents">reconfigure the agents</a> on each switch as a final step.</li></ul></p></div>
+{{< /tab >}}
+{{< /tabs >}}
+
 
 ## Verify Installation Status
 
@@ -225,16 +257,16 @@ Run the `netq show opta-health` command to verify that all applications are oper
 cumulus@hostname:~$ netq show opta-health
     Application                                            Status    Namespace      Restarts    Timestamp
     -----------------------------------------------------  --------  -------------  ----------  ------------------------
-    cassandra-rc-0-w7h4z                                   READY     default        0           Fri Apr 10 16:08:38 2020
-    cp-schema-registry-deploy-6bf5cbc8cc-vwcsx             READY     default        0           Fri Apr 10 16:08:38 2020
-    kafka-broker-rc-0-p9r2l                                READY     default        0           Fri Apr 10 16:08:38 2020
-    kafka-connect-deploy-7799bcb7b4-xdm5l                  READY     default        0           Fri Apr 10 16:08:38 2020
-    netq-api-gateway-deploy-55996ff7c8-w4hrs               READY     default        0           Fri Apr 10 16:08:38 2020
-    netq-app-address-deploy-66776ccc67-phpqk               READY     default        0           Fri Apr 10 16:08:38 2020
-    netq-app-admin-oob-mgmt-server                         READY     default        0           Fri Apr 10 16:08:38 2020
-    netq-app-bgp-deploy-7dd4c9d45b-j9bfr                   READY     default        0           Fri Apr 10 16:08:38 2020
-    netq-app-clagsession-deploy-69564895b4-qhcpr           READY     default        0           Fri Apr 10 16:08:38 2020
-    netq-app-configdiff-deploy-ff54c4cc4-7rz66             READY     default        0           Fri Apr 10 16:08:38 2020
+    cassandra-rc-0-w7h4z                                   READY     default        0           Fri Apr 10 16:08:38 2024
+    cp-schema-registry-deploy-6bf5cbc8cc-vwcsx             READY     default        0           Fri Apr 10 16:08:38 2024
+    kafka-broker-rc-0-p9r2l                                READY     default        0           Fri Apr 10 16:08:38 2024
+    kafka-connect-deploy-7799bcb7b4-xdm5l                  READY     default        0           Fri Apr 10 16:08:38 2024
+    netq-api-gateway-deploy-55996ff7c8-w4hrs               READY     default        0           Fri Apr 10 16:08:38 2024
+    netq-app-address-deploy-66776ccc67-phpqk               READY     default        0           Fri Apr 10 16:08:38 2024
+    netq-app-admin-oob-mgmt-server                         READY     default        0           Fri Apr 10 16:08:38 2024
+    netq-app-bgp-deploy-7dd4c9d45b-j9bfr                   READY     default        0           Fri Apr 10 16:08:38 2024
+    netq-app-clagsession-deploy-69564895b4-qhcpr           READY     default        0           Fri Apr 10 16:08:38 2024
+    netq-app-configdiff-deploy-ff54c4cc4-7rz66             READY     default        0           Fri Apr 10 16:08:38 2024
     ...
 ```
 {{%notice note%}}

@@ -7,16 +7,20 @@ toc: 5
 
 Installing NetQ telemetry agents on your hosts with {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-adapters/" text="NVIDIA ConnectX adapters">}} and {{<exlink url="https://www.nvidia.com/en-us/networking/products/data-processing-unit/" text="NVIDIA BlueField data processing units">}} (DPUs) allows you to track inventory data and statistics across devices. The DOCA Telemetry Service (DTS) is the agent that runs on hosts and DPUs to collect data.
 
+## Supported Versions
+
+NetQ 4.13 is compatible with DTS version 1.19.1.
+
 ## Install DTS on ConnectX Hosts
 
 To install and configure the {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="DOCA Telemetry Service">}} container on a host with ConnectX adapters, perform the following steps:
 
-1. Obtain the DTS container image path from {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="the NGC catalog">}}. Select **Get Container**, then **View all tags**. Copy the **1.18.2-doca2.8.0-host** image path.
+1. Obtain the DTS container image path from {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="the NGC catalog">}}. Select **Get Container**, then **View all tags**. Copy the **1.19.1-doca2.9.0-host** image path.
 
 2. Initialize the DTS container with Docker on the host. Use the image path obtained in the previous step for the **DTS_IMAGE** variable and configure the IP address of your NetQ server for the `-i` option:
 
 ```
-export DTS_IMAGE=nvcr.io/nvidia/doca/doca_telemetry:1.18.2-doca2.8.0-host
+export DTS_IMAGE=nvcr.io/nvidia/doca/doca_telemetry:1.19.1-doca2.9.0-host
 docker run -v "/opt/mellanox/doca/services/telemetry/config:/config" --rm --name doca-telemetry-init -ti $DTS_IMAGE /bin/bash -c "DTS_CONFIG_DIR=host_netq /usr/bin/telemetry-init.sh && /usr/bin/enable-fluent-forward.sh -i=10.10.10.1 -p=30001"
 ```
 
@@ -57,7 +61,7 @@ kubectl delete pod netq-prom-adapter-ffd9b874d-hxhbz
 
 To install and configure the DOCA Telemetry Service (DTS) container on a DPU, perform the following steps:
 
-1. Obtain the DTS container image path from {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="the NGC catalog">}}. Select **Get Container**, then **View all tags**. Copy the **1.18.2-doca2.8.0-host** image path.
+1. Obtain the DTS container image path from {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="the NGC catalog">}}. Select **Get Container**, then **View all tags**. Copy the **1.19.1-doca2.9.0-host** image path.
 
 2. Remove any current DTS configurations using the following command:
 

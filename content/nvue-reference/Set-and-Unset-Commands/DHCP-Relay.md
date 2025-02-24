@@ -184,7 +184,11 @@ cumulus@switch:~$ nv set service dhcp-relay default server 172.16.1.102
 
 ## <h>nv set service dhcp-relay \<vrf-id\> source-ip</h>
 
-Configures the source IP address to use on the relayed packet.
+Configures the source IP address to use on the relayed packet. You can specify `gateway` to use the gateway IP address as the source IP address or `auto`, where the source IP address of the relayed packet is taken from a layer 3 interface on the switch using normal routing methods. The default setting is `auto`.
+
+{{%notice note%}}
+This option impacts all relayed IPv4 packets globally.
+{{%/notice%}}
 
 ### Command Syntax
 

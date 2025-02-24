@@ -12,12 +12,24 @@ This document supports the Cumulus Linux 5.13 release, and lists new platforms, 
 
 ### Platforms
 
+- NVIDIA SN5600D (200G Spectrum-4)
+
 ### New Features and Enhancements
 
-- 
+- NVIDIA SN5400 ITU-T G.8273.2 Class C (Compliance)
+- Erase SSD before switch RMA
+- OTLP Phase 4
+- gNMI support
+- Default AR profile update
+- Maintenance mode enhancements to stay persistent on reboot
+- 802.1 option to keep port in current state when RADIUS server is unreachable
+- System health commands
+- OTLP
+  - Device level configuration of histogram
+  - Buffer Occupancy and watermark metrics
 - NVUE
-  - 
-  - 
+  - Enable CRL support
+  - SSH certificate-based authorization
   - 
   - {{< expand "Changed NVUE Commands" >}}
 | Cumulus Linux 5.13 | Cumulus Linux 3 and Earlier |
@@ -82,7 +94,7 @@ Review the following considerations before you upgrade to Cumulus Linux 5.13.
 ### Linux Configuration Files Overwritten
 
 {{%notice warning%}}
-If you use Linux commands to configure the switch, read the following information before you upgrade to Cumulus Linux 5.12.1 or later.
+If you use Linux commands to configure the switch, read the following information before you upgrade to Cumulus Linux 5.13 or later.
 {{%/notice%}}
 
 Cumulus Linux includes a default NVUE `startup.yaml` file. In addition, NVUE configuration auto save is enabled by default. As a result, Cumulus Linux overwrites any manual changes to Linux configuration files on the switch when the switch reboots after upgrade or you change the `cumulus` user account password with the Linux `passwd` command.
@@ -91,7 +103,7 @@ Cumulus Linux includes a default NVUE `startup.yaml` file. In addition, NVUE con
 These issues occur only if you use Linux commands to configure the switch. If you use NVUE commands to configure the switch, these issues do not occur and no action is needed.
 {{%/notice%}}
 
-To prevent Cumulus Linux from overwriting manual changes to the Linux configuration files when the switch reboots or when changing the `cumulus` user account password with the `passwd` command, follow the steps below **before** you upgrade to 5.12.1 or later, or after a new binary image installation:
+To prevent Cumulus Linux from overwriting manual changes to the Linux configuration files when the switch reboots or when changing the `cumulus` user account password with the `passwd` command, follow the steps below **before** you upgrade to 5.13 or later, or after a new binary image installation:
 
 1.  Disable NVUE auto save:
 

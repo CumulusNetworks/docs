@@ -7,6 +7,18 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4271229</td>
+<td>After rebooting the spine switch in an EVPN multihoming configuration, the BGP EVPN Type-2 entry is missing, which causes flooding and duplicates in the fabric. To work around this issue, flush the IP neighbor entries with the {{sudo ip neigh flush x.x.x.x}} command.</td>
+<td>5.9.1-5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4271228</td>
+<td>After rebooting the spine switch in an EVPN multihoming configuration, the BGP EVPN Type-2 entry is missing, which causes flooding and duplicates in the fabric. To work around this issue, flush the IP neighbor entries with the {{sudo ip neigh flush x.x.x.x}} command.</td>
+<td>5.9.1-5.12.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4271213</td>
 <td>When IPv4 layer 3 switch ports and virtual interfaces flap, {{switchd}} might send an ICMP Reply message instead of an ARP request (although no ICMP request was sent). Multiple ICMP Replies might be sent to any of the neighbor IP addresses of that interface.</td>
 <td>5.9.2-5.12.0</td>
@@ -21,8 +33,8 @@
 <tr>
 <td>4256151</td>
 <td>After rebooting the spine switch in an EVPN multihoming configuration, the BGP EVPN Type-2 entry is missing, which causes flooding and duplicates in the fabric. To work around this issue, flush the IP neighbor entries with the {{sudo ip neigh flush x.x.x.x}} command.</td>
-<td>5.9.1-5.12.0</td>
-<td></td>
+<td>5.9.1-5.11.0</td>
+<td>5.12.0</td>
 </tr>
 <tr>
 <td>4250847</td>
@@ -959,10 +971,22 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4256151</td>
+<td>4271229</td>
 <td>After rebooting the spine switch in an EVPN multihoming configuration, the BGP EVPN Type-2 entry is missing, which causes flooding and duplicates in the fabric. To work around this issue, flush the IP neighbor entries with the {{sudo ip neigh flush x.x.x.x}} command.</td>
 <td>5.9.1-5.12.0</td>
 <td></td>
+</tr>
+<tr>
+<td>4271228</td>
+<td>After rebooting the spine switch in an EVPN multihoming configuration, the BGP EVPN Type-2 entry is missing, which causes flooding and duplicates in the fabric. To work around this issue, flush the IP neighbor entries with the {{sudo ip neigh flush x.x.x.x}} command.</td>
+<td>5.9.1-5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4256151</td>
+<td>After rebooting the spine switch in an EVPN multihoming configuration, the BGP EVPN Type-2 entry is missing, which causes flooding and duplicates in the fabric. To work around this issue, flush the IP neighbor entries with the {{sudo ip neigh flush x.x.x.x}} command.</td>
+<td>5.9.1-5.11.0</td>
+<td>5.12.0</td>
 </tr>
 <tr>
 <td>4250847</td>

@@ -1,8 +1,5 @@
 openapi: 3.0.3
 info:
-  contact:
-    email: nmx-all@nvidia.com
-    name: NMX Team
   title: NMX Rest API
   version: 1.0.0
 servers:

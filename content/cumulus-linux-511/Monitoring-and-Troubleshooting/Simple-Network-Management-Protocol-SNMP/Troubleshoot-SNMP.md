@@ -10,30 +10,27 @@ Use the following commands to troubleshoot potential SNMP issues.
 To show a summary of the SNMP configuration settings on the switch:
 
 ```
-cumulus@switch:~$ nv show service snmp-server
-                     applied         description
--------------------  --------------  ---------------------------------------------------------------------
-enable               on              Turn the feature 'on' or 'off'.  This feature is disabled by default.
-[listening-address]  localhost       Collection of listening addresses
-trap-link-down
-  check-frequency    60              Link up or link down checking frequency in seconds
+cumulus@switch:~$ nv show system snmp-server
+                     applied
+-------------------  -----------------
+[username]           snmpv3user
 trap-link-up
-  check-frequency    60              Link up or link down checking frequency in seconds
-[username]           testusernoauth  Usernames
-[username]           user1
-[username]           user2
-[username]           user3
-[username]           user666
-[username]           user999
-```
+  check-frequency    60
+trap-link-down
+  check-frequency    60
+[listening-address]  10.10.10.10
+system-name          switch-name
+system-contact       Administrator
+system-location      Site
+state                enabled
 
-To show a summary of the SNMP configuration settings in json format, run the `nv show service snmp-server  --output json --applied` command.
+To show a summary of the SNMP configuration settings in json format, run the `nv show system snmp-server --applied --output json` command.
 
-To show the SNMP trap CPU load average, run the `nv show service snmp-server trap-cpu-load-average` command.
+To show the SNMP trap CPU load average, run the `nv show system snmp-server trap-cpu-load-average` command.
 
-To show SNMP trap authentication failures, run the `nv show service snmp-server trap-snmp-auth-failures` command.
+To show SNMP trap authentication failures, run the `nv show system snmp-server trap-snmp-auth-failures` command.
 
-To see all the show commands for SNMP troubleshooting, run `nv show service snmp-server` and press the Tab key:
+To see all the show commands for SNMP troubleshooting, run `nv show system snmp-server` and press the Tab key:
 
 ```
 cumulus@switch:~$ nv show service snmp-server  <<press Tab>>

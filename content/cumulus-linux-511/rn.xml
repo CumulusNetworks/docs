@@ -37,6 +37,18 @@
 <td></td>
 </tr>
 <tr>
+<td>4271229</td>
+<td>After rebooting the spine switch in an EVPN multihoming configuration, the BGP EVPN Type-2 entry is missing, which causes flooding and duplicates in the fabric. To work around this issue, flush the IP neighbor entries with the {{sudo ip neigh flush x.x.x.x}} command.</td>
+<td>5.9.1-5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4271228</td>
+<td>After rebooting the spine switch in an EVPN multihoming configuration, the BGP EVPN Type-2 entry is missing, which causes flooding and duplicates in the fabric. To work around this issue, flush the IP neighbor entries with the {{sudo ip neigh flush x.x.x.x}} command.</td>
+<td>5.9.1-5.12.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4271215</td>
 <td>NVUE overwrites the MOTD file during NVUE configuration with no option to ignore it.</td>
 <td>5.11.0-5.12.0</td>
@@ -82,8 +94,8 @@
 <tr>
 <td>4256151</td>
 <td>After rebooting the spine switch in an EVPN multihoming configuration, the BGP EVPN Type-2 entry is missing, which causes flooding and duplicates in the fabric. To work around this issue, flush the IP neighbor entries with the {{sudo ip neigh flush x.x.x.x}} command.</td>
-<td>5.9.1-5.12.0</td>
-<td></td>
+<td>5.9.1-5.11.0</td>
+<td>5.12.0</td>
 </tr>
 <tr>
 <td>4251984</td>
@@ -132,6 +144,12 @@
 <td>A Python version change removed the encoding argument parameter of the json loads function, which causes an exception.</td>
 <td>5.11.0-5.12.0</td>
 <td></td>
+</tr>
+<tr>
+<td>4242756</td>
+<td>A Python version change removed the encoding argument parameter of the json loads function, which causes an exception.</td>
+<td>5.11.0</td>
+<td>5.12.0</td>
 </tr>
 <tr>
 <td>4240584</td>

@@ -15,7 +15,7 @@ pdfhidden: True
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="4309870"></a> [4309870](#4309870) <a name="4309870"></a> <br /> | Due to unsupported EVPN BUM replication configuration (a mix of PIM and HER modes),  a resource leak can occur. | 5.11.0-5.12.0 | |
-| <a name="4309869"></a> [4309869](#4309869) <a name="4309869"></a> <br /> | Due to unsupported EVPN BUM replication configuration (a mix of PIM and HER modes),  a resource leak can occur. | 5.11.0-5.12.0 | |
+| <a name="4309869"></a> [4309869](#4309869) <a name="4309869"></a> <br /> | Due to unsupported EVPN BUM replication configuration (a mix of PIM and HER modes),  a resource leak can occur. | 5.9.2-5.12.0 | |
 | <a name="4309850"></a> [4309850](#4309850) <a name="4309850"></a> <br /> | The management interface on the NVIDIA SN2010 and the SN2100 switch negotiates to 100 Mbps instead of 1 Gbps. | 5.11.0-5.12.0 | |
 | <a name="4277143"></a> [4277143](#4277143) <a name="4277143"></a> <br /> | After a factory reset with the <code>nv action reset system factory-default force</code> command, RADIUS does not fully reset; the <code>radius-cmd-acct</code> package is not installed correctly and includes missing files. In addition, <code>/etc/pam.d/common-auth</code> is incorrect. | 5.11.0 | 5.12.0|
 | <a name="4271232"></a> [4271232](#4271232) <a name="4271232"></a> <br /> | A Python version change removed the encoding argument parameter of the json loads function, which causes an exception. | 5.11.0-5.12.0 | |

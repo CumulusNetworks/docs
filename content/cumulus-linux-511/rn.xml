@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4309869</td>
+<td>Due to unsupported EVPN BUM replication configuration (a mix of PIM and HER modes),  a resource leak can occur.</td>
+<td>5.11.0-5.12.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4277143</td>
 <td>After a factory reset with the {{nv action reset system factory-default force}} command, RADIUS does not fully reset; the {{radius-cmd-acct}} package is not installed correctly and includes missing files. In addition, {{/etc/pam.d/common-auth}} is incorrect.</td>
 <td>5.11.0-5.11.1</td>
@@ -16,6 +22,12 @@
 <td>4271232</td>
 <td>A Python version change removed the encoding argument parameter of the json loads function, which causes an exception.</td>
 <td>5.11.0-5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4271228</td>
+<td>After rebooting the spine switch in an EVPN multihoming configuration, the BGP EVPN Type-2 entry is missing, which causes flooding and duplicates in the fabric. To work around this issue, flush the IP neighbor entries with the {{sudo ip neigh flush x.x.x.x}} command.</td>
+<td>5.9.1-5.12.0</td>
 <td></td>
 </tr>
 <tr>
@@ -50,10 +62,10 @@
 <td></td>
 </tr>
 <tr>
-<td>4251984</td>
-<td>NVUE does not let you set the IPv6 RA lifetime to zero. To work around this issue, run the vtysh command.</td>
-<td>5.11.0-5.12.0</td>
-<td></td>
+<td>4256151</td>
+<td>After rebooting the spine switch in an EVPN multihoming configuration, the BGP EVPN Type-2 entry is missing, which causes flooding and duplicates in the fabric. To work around this issue, flush the IP neighbor entries with the {{sudo ip neigh flush x.x.x.x}} command.</td>
+<td>5.9.1-5.11.1</td>
+<td>5.12.0</td>
 </tr>
 <tr>
 <td>4251315</td>
@@ -72,6 +84,12 @@
 <td>NVUE Rest API calls that are authenticated with TACACS on the switch append unnecessary database entries to the {{/run/tacacs_clent_map}} file, which increases the file size. Over time, this increases the TACACS login authentication time, resulting in delayed login authentication. To work around this issue, delete the {{tacacs_client_map}} file with the {{sudo rm rf /run/tacacs_client_map}} command.</td>
 <td>5.11.0-5.12.0</td>
 <td></td>
+</tr>
+<tr>
+<td>4242756</td>
+<td>A Python version change removed the encoding argument parameter of the json loads function, which causes an exception.</td>
+<td>5.11.0-5.11.1</td>
+<td>5.12.0</td>
 </tr>
 <tr>
 <td>4240584</td>
@@ -793,6 +811,11 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>5.11.0</td>
 </tr>
 <tr>
+<td>4309850</td>
+<td>The management interface on the NVIDIA SN2010 and the SN2100 switch negotiates to 100 Mbps instead of 1 Gbps.</td>
+<td>5.11.0</td>
+</tr>
+<tr>
 <td>4271212</td>
 <td>When IPv4 layer 3 switch ports and virtual interfaces flap, {{switchd}} might send an ICMP Reply message instead of an ARP request (although no ICMP request was sent). Multiple ICMP Replies might be sent to any of the neighbor IP addresses of that interface.</td>
 <td>5.9.2-5.11.0</td>
@@ -803,9 +826,9 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>5.10.0-5.11.0</td>
 </tr>
 <tr>
-<td>4256151</td>
-<td>After rebooting the spine switch in an EVPN multihoming configuration, the BGP EVPN Type-2 entry is missing, which causes flooding and duplicates in the fabric. To work around this issue, flush the IP neighbor entries with the {{sudo ip neigh flush x.x.x.x}} command.</td>
-<td>5.9.1-5.11.0</td>
+<td>4251984</td>
+<td>NVUE does not let you set the IPv6 Router Advertisement lifetime to zero. To work around this issue, run the vtysh command.</td>
+<td>5.11.0</td>
 </tr>
 <tr>
 <td>4250847</td>
@@ -823,9 +846,9 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>5.11.0</td>
 </tr>
 <tr>
-<td>4245819</td>
-<td>A Python version change removed the encoding argument parameter of the json loads function, which causes an exception.</td>
-<td>5.11.0</td>
+<td>4220147</td>
+<td>When you bring STP down, then up on the primary MLAG peer, the STP state machine restarts and the peerlink operational edge resets. As a result, the secondary MLAG peer ends up in an STP discarding state. To work around this issue, restart the {{clagd}} service.</td>
+<td>5.8.0-5.11.0, 5.12.0</td>
 </tr>
 <tr>
 <td>4208746</td>
@@ -863,6 +886,11 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>5.8.0-5.11.0</td>
 </tr>
 <tr>
+<td>4178578</td>
+<td>An unexpected thermal reboot occurs due to an incorrect firmware status in the i2c driver.</td>
+<td>5.10.0-5.11.0</td>
+</tr>
+<tr>
 <td>4159554</td>
 <td>When you configure EVPN multihoming with more than one ESI bond member, you might see intermediate traffic loss.</td>
 <td>5.9.1-5.11.0</td>
@@ -888,6 +916,18 @@ netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported tru
 <td></td>
 </tr>
 <tr>
+<td>4309869</td>
+<td>Due to unsupported EVPN BUM replication configuration (a mix of PIM and HER modes),  a resource leak can occur.</td>
+<td>5.11.0-5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4309850</td>
+<td>The management interface on the NVIDIA SN2010 and the SN2100 switch negotiates to 100 Mbps instead of 1 Gbps.</td>
+<td>5.11.0-5.12.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4277143</td>
 <td>After a factory reset with the {{nv action reset system factory-default force}} command, RADIUS does not fully reset; the {{radius-cmd-acct}} package is not installed correctly and includes missing files. In addition, {{/etc/pam.d/common-auth}} is incorrect.</td>
 <td>5.11.0</td>
@@ -897,6 +937,18 @@ netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported tru
 <td>4271232</td>
 <td>A Python version change removed the encoding argument parameter of the json loads function, which causes an exception.</td>
 <td>5.11.0-5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4271229</td>
+<td>After rebooting the spine switch in an EVPN multihoming configuration, the BGP EVPN Type-2 entry is missing, which causes flooding and duplicates in the fabric. To work around this issue, flush the IP neighbor entries with the {{sudo ip neigh flush x.x.x.x}} command.</td>
+<td>5.9.1-5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4271228</td>
+<td>After rebooting the spine switch in an EVPN multihoming configuration, the BGP EVPN Type-2 entry is missing, which causes flooding and duplicates in the fabric. To work around this issue, flush the IP neighbor entries with the {{sudo ip neigh flush x.x.x.x}} command.</td>
+<td>5.9.1-5.12.0</td>
 <td></td>
 </tr>
 <tr>
@@ -945,12 +997,12 @@ netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported tru
 <tr>
 <td>4256151</td>
 <td>After rebooting the spine switch in an EVPN multihoming configuration, the BGP EVPN Type-2 entry is missing, which causes flooding and duplicates in the fabric. To work around this issue, flush the IP neighbor entries with the {{sudo ip neigh flush x.x.x.x}} command.</td>
-<td>5.9.1-5.12.0</td>
-<td></td>
+<td>5.9.1-5.11.0</td>
+<td>5.12.0</td>
 </tr>
 <tr>
 <td>4251984</td>
-<td>NVUE does not let you set the IPv6 RA lifetime to zero. To work around this issue, run the vtysh command.</td>
+<td>NVUE does not let you set the IPv6 Router Advertisement lifetime to zero. To work around this issue, run the vtysh command.</td>
 <td>5.11.0-5.12.0</td>
 <td></td>
 </tr>
@@ -997,6 +1049,12 @@ netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported tru
 <td></td>
 </tr>
 <tr>
+<td>4242756</td>
+<td>A Python version change removed the encoding argument parameter of the json loads function, which causes an exception.</td>
+<td>5.11.0</td>
+<td>5.12.0</td>
+</tr>
+<tr>
 <td>4240584</td>
 <td>When you enable SNMP, Cumulus Linux enables and creates an {{agentx}} user called {{debian-snmp}} automatically for FRR. As a result, TACACS sends log messages similar to the following:
 &lt;&lt;sudo: nss_tacplus: TACACS+ server 10.23.1.0:49 read failed (-3) for user Debian-snmp: Success&gt;&gt;
@@ -1011,6 +1069,12 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 <td>The default GRUB timeout style changed from menu to countdown. When booting, a countdown displays on the console and you can use the escape key to break out of the countdown and show the GRUB menu. This reduces the chance of console noise halting the reboot process. If you press the escape key twice, you might go to the GRUB command line. In this case, type {{normal}} to get back to the GRUB menu or {{reboot}} to reboot the switch.</td>
 <td>5.11.0</td>
 <td>5.12.0</td>
+</tr>
+<tr>
+<td>4220147</td>
+<td>When you bring STP down, then up on the primary MLAG peer, the STP state machine restarts and the peerlink operational edge resets. As a result, the secondary MLAG peer ends up in an STP discarding state. To work around this issue, restart the {{clagd}} service.</td>
+<td>5.8.0-5.12.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4209429</td>
@@ -1100,6 +1164,12 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 <td>4182753</td>
 <td>When you configure the SPAN port mirror truncate size to a value greater than 4 and less than the supported minimum, NVUE allows the configuration even though there are errors and failures in the mirror session configuration.The supported values for truncate size are 32 to 4088 for Spectrum 1, 48 to 4088 for Spectrum-2 and Spectrum-3, and 64 to 4088 for Spectrum-4.To work around this issue, run the {{echo &lt;supported_value&gt; &gt; /cumulus/switchd/config/mirror/session/1/truncate_size}} command before you reconfigure mirror sessions with the supported values.</td>
 <td>5.8.0-5.12.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4178578</td>
+<td>An unexpected thermal reboot occurs due to an incorrect firmware status in the i2c driver.</td>
+<td>5.10.0-5.12.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1828,6 +1898,11 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <td>4096505</td>
 <td>In an EVPN configuration,  when you use NVUE to configure a new host bond and an multihoming  ESI at the same time, the Split-Horizon preventive traffic class rule is not programmed in the egress direction. To work around this issue, configure the host bond and apply the configuration, then configure the EVPN multihoming ESI on the host bonds and apply the configuration in a separate step.</td>
 <td>5.9.1-5.10.1</td>
+</tr>
+<tr>
+<td>4089469</td>
+<td>When you apply interface configuration at the same time as VRF based services (such as the DHCP service for a VRF), the VRF based service does not become fully operational because the service is not receiving protocol packets.To work around this issue, first apply the interface configuration, then apply the configuration for the VRF based service.</td>
+<td></td>
 </tr>
 <tr>
 <td>4086136</td>

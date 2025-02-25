@@ -9,11 +9,15 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 
 ## Feburary 2025
 <!-- Air:WhatsNew -->
+### 82.2025.0225-011
+- Fixed an issue with scrolling in Nodes/Links list when console is open.
+- Added tooltip support for improved accessibility in navigation items.
+<!-- Air:WhatsNew -->
+
 ### 82.2025.0220-011
 - Fixed an issue with launching NetQ
 - Fixed a validation issue when importing JSON topologies with ZTP scripts
 - Added ability to define unconnected interfaces via JSON topology files.
-<!-- Air:WhatsNew -->
 
 ### 82.2025.0213-011
 - Fixed an issue with Demo Marketplace nodes not retaining their disk changes after waking up

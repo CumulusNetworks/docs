@@ -24,13 +24,29 @@ This document supports the Cumulus Linux 5.13 release, and lists new platforms, 
 - Maintenance mode enhancements to stay persistent on reboot
 - 802.1 option to keep port in current state when RADIUS server is unreachable
 - System health commands
+- Recovery mechanism for CPLD thermal shutdown
+- Export per transceiver temperature and power
+- Filters for RSYSLOG log per facility level
+- 802.1x on router ports with dynamic VRF assignments
+- Optimized upgrade supports warmboot
+- Ability to disconnect or disable remote access to the switch
+- Enable RADIUS for multiple VRFs
+- Support Docker container
+- DHCP IP reservation per port for a single host
+- Show SNR for transceivers
+- Reflect switch hardware revision
+- Enable ssh public key only
 - OTLP
   - Device level configuration of histogram
   - Buffer Occupancy and watermark metrics
+- gNMI support
 - NVUE
   - Enable CRL support
   - SSH certificate-based authorization
-  - 
+  - .1x support for NAS-IP-Address and NAS-Identifier
+  - ls command
+  - Get the hash for a file
+  - Additional FRR filters
   - {{< expand "Changed NVUE Commands" >}}
 | Cumulus Linux 5.13 | Cumulus Linux 3 and Earlier |
 | --------------- |---------------------------------------|

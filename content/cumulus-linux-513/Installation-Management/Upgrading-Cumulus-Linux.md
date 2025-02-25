@@ -286,7 +286,7 @@ Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual 
 
 {{%notice note%}}
 - You cannot upgrade the switch to a new release train. For example, you **cannot** use package upgrade to upgrade the switch from 4.x to 5.x.
-- Package upgrade only supports the current version plus two. For example, you can upgrade from Cumulus Linux 5.10.1 to Cumulus Linux 5.13 with package upgrade only if you installed the 5.10.1 binary image.
+- Package upgrade only supports the current version plus two. For example, you can upgrade from Cumulus Linux 5.11 to Cumulus Linux 5.13 with package upgrade only if you installed the 5.11 binary image.
 - Package upgrade always updates to the latest available release in the Cumulus Linux repository. For example, if you are currently running Cumulus Linux 5.10.0 and perform a package upgrade, the packages upgrade to the latest 5.13 release.
 - The package upgrade command might restart or stop services as part of the upgrade process.
 - The package upgrade command might disrupt core services by changing core service dependency packages.

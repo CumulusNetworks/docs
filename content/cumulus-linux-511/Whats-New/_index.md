@@ -14,6 +14,8 @@ Cumulus Linux 5.11.1 provides {{<link title="Cumulus Linux 5.11 Packages" text="
 
 ## What's New in Cumulus Linux 5.11.0
 
+Cumulus Linux 5.11.0 provides new platforms, new features and improvements, and includes bug fixes.
+
 ### Platforms
 
 - NVIDIA SN2201M (100G Spectrum 1)

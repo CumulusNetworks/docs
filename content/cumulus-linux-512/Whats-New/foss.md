@@ -9,7 +9,7 @@ pdfhidden: True
 ---
 ## 5.12.1 Packages
 
-Cumulus Linux 5.12.1 provides new SDK, hardware management package, and kernel versions:
+Cumulus Linux 5.12.1 provides the following new SDK, hardware management package, and kernel versions:
 - SDK: 4.7.????
 - Hardware Management: 7.0040.3008
 - kernel: ????

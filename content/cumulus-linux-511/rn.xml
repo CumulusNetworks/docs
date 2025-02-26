@@ -15,7 +15,7 @@
 <tr>
 <td>4309869</td>
 <td>Due to unsupported EVPN BUM replication configuration (a mix of PIM and HER modes),  a resource leak can occur.</td>
-<td>5.11.0-5.12.0</td>
+<td>5.9.2-5.12.0</td>
 <td></td>
 </tr>
 <tr>

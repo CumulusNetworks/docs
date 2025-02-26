@@ -7,31 +7,43 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4037015</td>
+<td>4004453</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
 <td>4.3.0-5.9.1</td>
 <td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
 </tr>
 <tr>
-<td>4023649</td>
-<td>On rare occasions when certain events occur, such as changes to the topology in the network, when a bond comes online and directly transits to an STP blocking state, the slave ports might still be in a forwarding state. As a result, traffic is forwarded on a blocked port.</td>
-<td>5.2.0-5.9.1</td>
+<td>3982222</td>
+<td>When you enable SPAN  on a bridge member, an ARP or Gratuitous ARP received during a failover event between locally attached redundant devices, such as load balancers, might fail to update the bridge MAC table to point to the interface with the newly active load balancer. To work around this issue, remove the SPAN configuration from the bridge member or ensure that the load balancer generates non-ARP traffic after the failover to properly update the bridge MAC table.</td>
+<td>5.4.0-5.9.1</td>
 <td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
 </tr>
 <tr>
-<td>3982249</td>
+<td>3949367</td>
+<td>If you use NVUE to create an SNMP user with a password, then delete and recreate the user with additional encryption passwords (such as DES or AES), SNMP authorization fails for that user.</td>
+<td>5.3.1-5.9.1</td>
+<td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
+</tr>
+<tr>
+<td>3927016</td>
+<td>Following an EVPN extended mobility event, where a host with IP address A and MAC address A moves within the fabric and now resides at IP address A and MAC address B, you might see traffic destined to this host experience drops as the flow is software forwarded on the egress VTEP.</td>
+<td>5.0.1-5.9.1</td>
+<td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
+</tr>
+<tr>
+<td>3917601</td>
 <td>If a packet containing an all zero source MAC address (00:00:00:00:00:00) is learned on the ASIC, {{switchd}} sends the learn notification to the kernel but the kernel rejects the MAC address as invalid. The ASIC continuously sends the mac-learn notifications, which wastes CPU resources. To work around this issue, configure ACLs to match on the all-zero source MAC address and drop the invalid packets.</td>
 <td>5.5.0-5.9.1</td>
 <td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
 </tr>
 <tr>
-<td>3982226</td>
-<td>When SPAN is enabled on a bridge member, an ARP or Gratuitous ARP received during a failover event between locally attached redundant devices such as load balancers might fail to update the bridge MAC table to point to the interface with the newly active load balancer.</td>
-<td>5.4.0-5.9.1</td>
-<td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
+<td>3897227</td>
+<td>During an LLDP update storm while deleting or adding LLPD neighbors, PTMD crashes as a result of mishandling multi-threaded LLPD processing.</td>
+<td>5.5.1-5.9.2</td>
+<td>5.10.0-5.12.0</td>
 </tr>
 <tr>
-<td>3980941</td>
+<td>3895042</td>
 <td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
   snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
 This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
@@ -40,16 +52,10 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
 </tr>
 <tr>
-<td>3965573</td>
-<td>If you use NVUE to create an SNMP user with a password, then delete and recreate the user with additional encryption passwords (such as DES or AES), SNMP authorization fails for that user.</td>
-<td>5.3.1-5.9.1</td>
+<td>3859422</td>
+<td>On rare occasions when certain events occur, such as changes to the topology in the network, when a bond comes online and directly transits to an STP blocking state, the slave ports might still be in a forwarding state. As a result, traffic is forwarded on a blocked port.</td>
+<td>5.2.0-5.9.1</td>
 <td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
-</tr>
-<tr>
-<td>3897227</td>
-<td>During an LLDP update storm while deleting or adding LLPD neighbors, PTMD crashes as a result of mishandling multi-threaded LLPD processing.</td>
-<td>5.5.1-5.9.2</td>
-<td>5.10.0-5.12.0</td>
 </tr>
 <tr>
 <td>3773177</td>
@@ -147,16 +153,6 @@ leaf01# exit</td>
 <td>Changing non-default BGP timers with NCLU or vtysh commands sets the hold time and keep alive interval to 0 seconds. To work around this issue, restart the FRR service with the {{sudo systemctl restart frr.service}} command.</td>
 <td>5.3.1-5.6.0</td>
 <td>5.7.0-5.12.0</td>
-</tr>
-<tr>
-<td>3647426</td>
-<td>If BGP {{remote-as}} is set to an integer and you try to configure the {{local-as}} for a BGP instance, you see the following error:
-
-% AS specified for local as is the same as the remote as and this is not allowed.
-
-This configuration is not allowed; it is considered to be eBGP and local preference is not advertised.</td>
-<td>5.0.0-5.5.1</td>
-<td>4.3.2-4.4.5, 5.6.0-5.12.0</td>
 </tr>
 <tr>
 <td>3630492</td>
@@ -293,10 +289,9 @@ This is a cosmetic issue and does not affect how the switch operates. To prevent
 <tr>
 <td>3554231</td>
 <td>CVE-2023-38408: The PKCS#11 feature in ssh-agent in OpenSSH before 9.3p2 has an insufficiently trustworthy search path, leading to remote code execution if an agent is forwarded to an attacker-controlled system. (Code in /usr/lib is not necessarily safe for loading into ssh-agent.) NOTE: this issue exists because of an incomplete fix for CVE-2016-10009.
-Mitigation: Do not use ssh-agent forwarding (the man page for ssh_config says that "agent forwarding should be enabled with caution"), or start the ssh-agent program with the -P option to allow only specific PKCS#11 libraries (or none with -P '').
-For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turned off (chmod 0) to prevent its execution if a vulnerable version is detected.</td>
-<td>4.0.0-4.3.1, 5.0.0-5.12.0</td>
-<td>4.3.2-4.4.5</td>
+Mitigation: Do not use ssh-agent forwarding (the man page for ssh_config says that "agent forwarding should be enabled with caution"), or start the ssh-agent program with the -P option to allow only specific PKCS#11 libraries (or none with -P ''). For Cumulus Linux 5.7.0, the /usr/bin/ssh-agent program has all permissions turned off (chmod 0) to prevent its execution if a vulnerable version is detected.</td>
+<td>4.0.0-4.3.1, 5.0.0-5.6.0</td>
+<td>4.3.2-4.4.5, 5.7.0-5.12.0</td>
 </tr>
 <tr>
 <td>3549138</td>
@@ -390,6 +385,12 @@ For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turn
 <td>5.6.0-5.12.0</td>
 </tr>
 <tr>
+<td>3491259</td>
+<td>When BGP receives an EVPN type-5 route with a gateway IP overlay attribute, the gateway IP overlay attribute in the {{attr memory}} (which is already inserted in the attribute hash) might change. As a result, the modified {{attr memory}} might match with another {{attr}} in the attribute hash, which produces duplicate entries in the hash table. As a result, BGP might crash when deleting one of the duplicate {{attr}} structures. </td>
+<td>5.0.0-5.5.1</td>
+<td>4.3.2-4.4.5, 5.6.0-5.12.0</td>
+</tr>
+<tr>
 <td>3488136</td>
 <td>When zebra receives route updates that include both a route with a recursive next hop and the route used to resolve that next hop, zebra might mark the route with the recursive next hop as inactive. To work around this issue, reprocess the route updates by running the appropriate clear command for the protocol in use. For example, for BGP, clear inbound routes from the relevant neighbor using the {{nv action clear vrf &lt;vrf&gt; router bgp neighbor &lt;neighbor&gt; address-family &lt;address-family&gt; in}} command.</td>
 <td>4.2.1-5.5.1</td>
@@ -406,6 +407,12 @@ For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turn
 <td>When you power on the NVIDIA SN3420 switch with no connected cables, the QSFP ports LEDs light in amber.</td>
 <td>5.3.0-5.8.0</td>
 <td>5.9.0-5.12.0</td>
+</tr>
+<tr>
+<td>3482006</td>
+<td>If FRR learns a layer 2 entry against a VNI and you reconfigure the VNI later as a layer 3 VNI, the original layer 2 entry does not clear and remains in the forwarding database.</td>
+<td>5.0.0-5.5.1</td>
+<td>4.3.2-4.4.5, 5.6.0-5.12.0</td>
 </tr>
 <tr>
 <td>3479786</td>
@@ -868,6 +875,14 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>2932083</td>
+<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document filesare processed.
+Vulnerable: &lt;= 9.27~dfsg-2+deb10u4
+Fixed: 9.27~dfsg-2+deb10u5</td>
+<td>5.0.0-5.12.0</td>
+<td>4.4.3-4.4.5</td>
+</tr>
+<tr>
 <td>2904450</td>
 <td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. 
 
@@ -945,8 +960,8 @@ You can safely ignore this warning.</td>
 <th> Affects </th>
 </tr>
 <tr>
-<td>3470941</td>
-<td>On the NVIDIA SN4700 switch, reversing the upper four lanes on a port does not work and might cause link degradation. If you swap the upper and lower four lanes on a port, the firmware gets stuck.</td>
+<td>3474352</td>
+<td>On the NVIDIA SN4700 switch, reversing the upper four lanes on a port does not work and might cause link degradation. If you swap between the upper and lower four lanes on a port, the firmware gets stuck.</td>
 <td>5.3.0-5.5.0</td>
 </tr>
 </table>
@@ -958,31 +973,37 @@ You can safely ignore this warning.</td>
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4037015</td>
+<td>4004453</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
 <td>4.3.0-5.9.1</td>
 <td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
 </tr>
 <tr>
-<td>4023649</td>
-<td>On rare occasions when certain events occur, such as changes to the topology in the network, when a bond comes online and directly transits to an STP blocking state, the slave ports might still be in a forwarding state. As a result, traffic is forwarded on a blocked port.</td>
-<td>5.2.0-5.9.1</td>
+<td>3982222</td>
+<td>When you enable SPAN  on a bridge member, an ARP or Gratuitous ARP received during a failover event between locally attached redundant devices, such as load balancers, might fail to update the bridge MAC table to point to the interface with the newly active load balancer. To work around this issue, remove the SPAN configuration from the bridge member or ensure that the load balancer generates non-ARP traffic after the failover to properly update the bridge MAC table.</td>
+<td>5.4.0-5.9.1</td>
 <td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
 </tr>
 <tr>
-<td>3982249</td>
+<td>3949367</td>
+<td>If you use NVUE to create an SNMP user with a password, then delete and recreate the user with additional encryption passwords (such as DES or AES), SNMP authorization fails for that user.</td>
+<td>5.3.1-5.9.1</td>
+<td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
+</tr>
+<tr>
+<td>3927016</td>
+<td>Following an EVPN extended mobility event, where a host with IP address A and MAC address A moves within the fabric and now resides at IP address A and MAC address B, you might see traffic destined to this host experience drops as the flow is software forwarded on the egress VTEP.</td>
+<td>5.0.1-5.9.1</td>
+<td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
+</tr>
+<tr>
+<td>3917601</td>
 <td>If a packet containing an all zero source MAC address (00:00:00:00:00:00) is learned on the ASIC, {{switchd}} sends the learn notification to the kernel but the kernel rejects the MAC address as invalid. The ASIC continuously sends the mac-learn notifications, which wastes CPU resources. To work around this issue, configure ACLs to match on the all-zero source MAC address and drop the invalid packets.</td>
 <td>5.5.0-5.9.1</td>
 <td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
 </tr>
 <tr>
-<td>3982226</td>
-<td>When SPAN is enabled on a bridge member, an ARP or Gratuitous ARP received during a failover event between locally attached redundant devices such as load balancers might fail to update the bridge MAC table to point to the interface with the newly active load balancer.</td>
-<td>5.4.0-5.9.1</td>
-<td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
-</tr>
-<tr>
-<td>3980941</td>
+<td>3895042</td>
 <td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
   snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
 This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
@@ -991,9 +1012,9 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
 </tr>
 <tr>
-<td>3965573</td>
-<td>If you use NVUE to create an SNMP user with a password, then delete and recreate the user with additional encryption passwords (such as DES or AES), SNMP authorization fails for that user.</td>
-<td>5.3.1-5.9.1</td>
+<td>3859422</td>
+<td>On rare occasions when certain events occur, such as changes to the topology in the network, when a bond comes online and directly transits to an STP blocking state, the slave ports might still be in a forwarding state. As a result, traffic is forwarded on a blocked port.</td>
+<td>5.2.0-5.9.1</td>
 <td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
 </tr>
 <tr>
@@ -1062,16 +1083,6 @@ leaf01# exit</td>
 <td>Changing non-default BGP timers with NCLU or vtysh commands sets the hold time and keep alive interval to 0 seconds. To work around this issue, restart the FRR service with the {{sudo systemctl restart frr.service}} command.</td>
 <td>5.3.1-5.6.0</td>
 <td>5.7.0-5.12.0</td>
-</tr>
-<tr>
-<td>3647426</td>
-<td>If BGP {{remote-as}} is set to an integer and you try to configure the {{local-as}} for a BGP instance, you see the following error:
-
-% AS specified for local as is the same as the remote as and this is not allowed.
-
-This configuration is not allowed; it is considered to be eBGP and local preference is not advertised.</td>
-<td>5.0.0-5.5.1</td>
-<td>4.3.2-4.4.5, 5.6.0-5.12.0</td>
 </tr>
 <tr>
 <td>3613258</td>
@@ -1160,10 +1171,9 @@ This is a cosmetic issue and does not affect how the switch operates. To prevent
 <tr>
 <td>3554231</td>
 <td>CVE-2023-38408: The PKCS#11 feature in ssh-agent in OpenSSH before 9.3p2 has an insufficiently trustworthy search path, leading to remote code execution if an agent is forwarded to an attacker-controlled system. (Code in /usr/lib is not necessarily safe for loading into ssh-agent.) NOTE: this issue exists because of an incomplete fix for CVE-2016-10009.
-Mitigation: Do not use ssh-agent forwarding (the man page for ssh_config says that "agent forwarding should be enabled with caution"), or start the ssh-agent program with the -P option to allow only specific PKCS#11 libraries (or none with -P '').
-For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turned off (chmod 0) to prevent its execution if a vulnerable version is detected.</td>
-<td>4.0.0-4.3.1, 5.0.0-5.12.0</td>
-<td>4.3.2-4.4.5</td>
+Mitigation: Do not use ssh-agent forwarding (the man page for ssh_config says that "agent forwarding should be enabled with caution"), or start the ssh-agent program with the -P option to allow only specific PKCS#11 libraries (or none with -P ''). For Cumulus Linux 5.7.0, the /usr/bin/ssh-agent program has all permissions turned off (chmod 0) to prevent its execution if a vulnerable version is detected.</td>
+<td>4.0.0-4.3.1, 5.0.0-5.6.0</td>
+<td>4.3.2-4.4.5, 5.7.0-5.12.0</td>
 </tr>
 <tr>
 <td>3549138</td>
@@ -1251,6 +1261,12 @@ For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turn
 <td>5.6.0-5.12.0</td>
 </tr>
 <tr>
+<td>3491259</td>
+<td>When BGP receives an EVPN type-5 route with a gateway IP overlay attribute, the gateway IP overlay attribute in the {{attr memory}} (which is already inserted in the attribute hash) might change. As a result, the modified {{attr memory}} might match with another {{attr}} in the attribute hash, which produces duplicate entries in the hash table. As a result, BGP might crash when deleting one of the duplicate {{attr}} structures. </td>
+<td>5.0.0-5.5.1</td>
+<td>4.3.2-4.4.5, 5.6.0-5.12.0</td>
+</tr>
+<tr>
 <td>3488136</td>
 <td>When zebra receives route updates that include both a route with a recursive next hop and the route used to resolve that next hop, zebra might mark the route with the recursive next hop as inactive. To work around this issue, reprocess the route updates by running the appropriate clear command for the protocol in use. For example, for BGP, clear inbound routes from the relevant neighbor using the {{nv action clear vrf &lt;vrf&gt; router bgp neighbor &lt;neighbor&gt; address-family &lt;address-family&gt; in}} command.</td>
 <td>4.2.1-5.5.1</td>
@@ -1269,6 +1285,12 @@ For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turn
 <td>5.9.0-5.12.0</td>
 </tr>
 <tr>
+<td>3482006</td>
+<td>If FRR learns a layer 2 entry against a VNI and you reconfigure the VNI later as a layer 3 VNI, the original layer 2 entry does not clear and remains in the forwarding database.</td>
+<td>5.0.0-5.5.1</td>
+<td>4.3.2-4.4.5, 5.6.0-5.12.0</td>
+</tr>
+<tr>
 <td>3479786</td>
 <td>The {{switchd}} service does not handle certain route and next hop updates, which causes a synchronization loop. For example, in a VRF route leaking configuration, where a next hop group spans across multiple VRFs, when one of the routes is withdrawn and the next hop is no longer used, {{switchd}} has problems synchronizing other next hops in the group.
 
@@ -1283,6 +1305,12 @@ To work around this issue, disable next hop groups in zebra with the vtysh {{zeb
 <td>5.6.0-5.12.0</td>
 </tr>
 <tr>
+<td>3474352</td>
+<td>On the NVIDIA SN4700 switch, reversing the upper four lanes on a port does not work and might cause link degradation. If you swap between the upper and lower four lanes on a port, the firmware gets stuck.</td>
+<td>5.3.0-5.5.1</td>
+<td>5.6.0-5.12.0</td>
+</tr>
+<tr>
 <td>3472865</td>
 <td>The json output for the vtysh {{-c ‘show bgp all json}} command is missing a string key in front of the list of routes under the {{l2vpnevpn}} address family.</td>
 <td>5.4.0-5.5.1</td>
@@ -1293,12 +1321,6 @@ To work around this issue, disable next hop groups in zebra with the vtysh {{zeb
 <td>On certain QSFP-DD and OSFP optical modules, the {{ethtool -m}} command, and the related NCLU and NVUE commands that display optical module information fail.</td>
 <td>5.4.0-5.5.1</td>
 <td>5.6.0-5.12.0</td>
-</tr>
-<tr>
-<td>3470941</td>
-<td>On the NVIDIA SN4700 switch, reversing the upper four lanes on a port does not work and might cause link degradation. If you swap the upper and lower four lanes on a port, the firmware gets stuck.</td>
-<td>5.3.0-5.5.0</td>
-<td>5.5.1-5.12.0</td>
 </tr>
 <tr>
 <td>3467890</td>
@@ -1733,6 +1755,14 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
 <td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.12.0</td>
 <td></td>
+</tr>
+<tr>
+<td>2932083</td>
+<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document filesare processed.
+Vulnerable: &lt;= 9.27~dfsg-2+deb10u4
+Fixed: 9.27~dfsg-2+deb10u5</td>
+<td>5.0.0-5.12.0</td>
+<td>4.4.3-4.4.5</td>
 </tr>
 <tr>
 <td>2904450</td>
@@ -1853,8 +1883,8 @@ You can safely ignore this warning.</td>
 </tr>
 <tr>
 <td>3413827</td>
-<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
-<td>4.2.1-4.3.1, 4.4.0-5.4.0</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbor entries cannot synchronize between MLAG nodes. During this transitory upgrade state, neighbor entry resolution relies on data plane traffic being forwarded to the CPU so ARP can resolve the necessary neighbor entry before traffic can go through the fastpath.</td>
+<td>4.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3412357</td>
@@ -1882,7 +1912,7 @@ cumulus@switch:~$ systemctl is-active nginx &amp;&amp; sudo invoke-rc.d nginx re
 ERR dummy internal vlans exhausted
 ERR cannot allocate vlan for sub-interface
 </td>
-<td>5.0.0-5.4.0</td>
+<td>4.4.2-5.4.0</td>
 </tr>
 <tr>
 <td>3397649</td>

@@ -7,20 +7,20 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4281099</td>
-<td>When you bring STP down, then up on the primary MLAG peer, the STP state machine restarts and the peerlink operational edge resets. As a result, the secondary MLAG peer ends up in an STP discarding state. To work around this issue, restart the {{clagd}} service.</td>
-<td>5.8.0-5.11.0</td>
-<td>5.12.0</td>
-</tr>
-<tr>
-<td>4271203</td>
+<td>4250847</td>
 <td>When the STP state goes down, then back up on the primary MLAG peer, the peerlink state is not updated correctly in {{mstpd}}.</td>
 <td>5.8.0-5.11.0</td>
 <td>5.12.0</td>
 </tr>
 <tr>
-<td>4260014</td>
-<td>When you configure the SPAN port mirror truncate size to a value greater than 4 and less than the supported minimum, NVUE allows the configuration even though there are errors and failures in the mirror session configuration.The supported values for truncate size are 32 to 4088 for Spectrum 1, 48 to 4088 for Spectrum-2 and Spectrum-3, and 64 to 4088 for Spectrum-4.To work around this issue, run the {{echo &lt;supported_value&gt; &gt; /cumulus/switchd/config/mirror/session/1/truncate_size}} command before you reconfigure mirror sessions with the supported values.</td>
+<td>4220147</td>
+<td>When you bring STP down, then up on the primary MLAG peer, the STP state machine restarts and the peerlink operational edge resets. As a result, the secondary MLAG peer ends up in an STP discarding state. To work around this issue, restart the {{clagd}} service.</td>
+<td>5.8.0-5.11.0</td>
+<td>5.12.0</td>
+</tr>
+<tr>
+<td>4182753</td>
+<td>When you configure the SPAN port mirror truncate size to a value greater than four and less than the supported minimum, NVUE allows the configuration even though there are errors and failures in the mirror session configuration.The supported values for truncate size are 32 to 4088 for Spectrum 1, 48 to 4088 for Spectrum-2 and Spectrum-3, and 64 to 4088 for Spectrum-4.To work around this issue, run the {{echo &lt;supported_value&gt; &gt; /cumulus/switchd/config/mirror/session/1/truncate_size}} command before you reconfigure mirror sessions with the supported values.</td>
 <td>5.8.0-5.11.0</td>
 <td>5.12.0</td>
 </tr>
@@ -31,8 +31,8 @@
 <td>5.12.0</td>
 </tr>
 <tr>
-<td>4134451</td>
-<td>When you set the SNMP server listening address to listen on all IPv4 and IPv6 addresses in a VRF with the {{nv set service snmp-server listening-address all vrf}} and {{nv set service snmp-server listening-address all-v6 vrf}} commands,SNMP requests over IPv6 addresses do not work.</td>
+<td>4119621</td>
+<td>When you set the SNMP server listening address to listen on all IPv4 and IPv6 addresses in a VRF with the {{nv set service snmp-server listening-address all vrf}} and {{nv set service snmp-server listening-address all-v6 vrf}} commands, SNMP requests over IPv6 addresses do not work.</td>
 <td>5.8.0-5.10.1</td>
 <td>5.11.0-5.12.0</td>
 </tr>
@@ -49,15 +49,15 @@
 <td>5.11.0-5.12.0</td>
 </tr>
 <tr>
-<td>4086714</td>
-<td>Some STP interfaces might remain in a blocking state when there are large numbers of dis-contiguous VLANs enabled on a port.</td>
-<td>5.8.0-5.10.1</td>
-<td>5.11.0-5.12.0</td>
-</tr>
-<tr>
 <td>4072165</td>
 <td>When you add a VLAN to a bridge member port, VXLAN traffic might be impacted for few seconds.</td>
 <td>5.7.0-5.10.1</td>
+<td>5.11.0-5.12.0</td>
+</tr>
+<tr>
+<td>4066219</td>
+<td>Some STP interfaces might remain in a blocking state when there are large numbers of discontiguous VLANs enabled on a port.</td>
+<td>5.8.0-5.10.1</td>
 <td>5.11.0-5.12.0</td>
 </tr>
 <tr>
@@ -67,85 +67,85 @@
 <td>5.11.0-5.12.0</td>
 </tr>
 <tr>
-<td>4037015</td>
+<td>4004453</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
 <td>4.3.0-5.9.1</td>
 <td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
 </tr>
 <tr>
-<td>4035681</td>
-<td>The {{nv show interface &lt;interface&gt;}} commands show RX and TX Power values from the wrong lanes on breakout ports.</td>
-<td>5.8.0-5.9.1, 5.10.0-5.10.1</td>
-<td>5.9.2, 5.11.0-5.12.0</td>
-</tr>
-<tr>
-<td>4023649</td>
-<td>On rare occasions when certain events occur, such as changes to the topology in the network, when a bond comes online and directly transits to an STP blocking state, the slave ports might still be in a forwarding state. As a result, traffic is forwarded on a blocked port.</td>
-<td>5.2.0-5.9.1</td>
+<td>3982222</td>
+<td>When you enable SPAN  on a bridge member, an ARP or Gratuitous ARP received during a failover event between locally attached redundant devices, such as load balancers, might fail to update the bridge MAC table to point to the interface with the newly active load balancer. To work around this issue, remove the SPAN configuration from the bridge member or ensure that the load balancer generates non-ARP traffic after the failover to properly update the bridge MAC table.</td>
+<td>5.4.0-5.9.1</td>
 <td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
 </tr>
 <tr>
-<td>4007614</td>
-<td>Static ARP configured with NVUE commands is deleted when the relevant layer 3 interface flaps.</td>
+<td>3970626</td>
+<td>When you configure the {{bridge.kernel_mac_refresh_interval}} parameter in the {{switchd.conf}} file, a {{switchd}} restart fails with a core dump.</td>
 <td>5.8.0-5.9.1</td>
 <td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
 </tr>
 <tr>
-<td>3982294</td>
-<td>Cumulus Linux does not recognize QSFP_CMIS optical modules correctly.</td>
-<td>5.6.0-5.9.1</td>
-<td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
-</tr>
-<tr>
-<td>3982260</td>
+<td>3956091</td>
 <td>When you modify the default QoS configuration on top of the base RoCE configuration, NVUE reports an {{Invalid}} exception in the {{nv show qos roce}} command output even when the configuration is valid.</td>
 <td>5.8.0-5.9.1</td>
 <td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
 </tr>
 <tr>
-<td>3982249</td>
+<td>3955615</td>
+<td>Cumulus Linux does not recognize QSFP_CMIS optical modules correctly.</td>
+<td>5.6.0-5.9.1</td>
+<td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
+</tr>
+<tr>
+<td>3954026</td>
+<td>Static ARP configured with NVUE commands is deleted when the relevant layer 3 interface flaps.</td>
+<td>5.8.0-5.9.1</td>
+<td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
+</tr>
+<tr>
+<td>3949367</td>
+<td>If you use NVUE to create an SNMP user with a password, then delete and recreate the user with additional encryption passwords (such as DES or AES), SNMP authorization fails for that user.</td>
+<td>5.3.1-5.9.1</td>
+<td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
+</tr>
+<tr>
+<td>3928905</td>
+<td>The {{nv show interface &lt;interface&gt;}} commands show RX and TX Power values from the wrong lanes on breakout ports.</td>
+<td>5.8.0-5.9.1, 5.10.0-5.10.1</td>
+<td>5.9.2, 5.11.0-5.12.0</td>
+</tr>
+<tr>
+<td>3927016</td>
+<td>Following an EVPN extended mobility event, where a host with IP address A and MAC address A moves within the fabric and now resides at IP address A and MAC address B, you might see traffic destined to this host experience drops as the flow is software forwarded on the egress VTEP.</td>
+<td>5.0.1-5.9.1</td>
+<td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
+</tr>
+<tr>
+<td>3917601</td>
 <td>If a packet containing an all zero source MAC address (00:00:00:00:00:00) is learned on the ASIC, {{switchd}} sends the learn notification to the kernel but the kernel rejects the MAC address as invalid. The ASIC continuously sends the mac-learn notifications, which wastes CPU resources. To work around this issue, configure ACLs to match on the all-zero source MAC address and drop the invalid packets.</td>
 <td>5.5.0-5.9.1</td>
 <td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
 </tr>
 <tr>
-<td>3982242</td>
-<td>PTP does not come up with IPv6 over a trunk port because the IPv6 VLAN tag is not sent. PTP over an IPv4 trunk works fine.</td>
-<td>5.8.0-5.9.1</td>
-<td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
-</tr>
-<tr>
-<td>3982234</td>
+<td>3917528</td>
 <td>With LACP bypass enabled, Cumulus Linux does not program the MAC address in the bridge FDB for VLAN unaware tagged ports.  With EVPN, the address is not advertised and the remote side might flood the packet instead of unicast.</td>
 <td>5.8.0-5.9.1</td>
 <td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
 </tr>
 <tr>
-<td>3982233</td>
-<td>When you enable Optimized Multicast Flooding (OMF) and change VLAN configuration, a few ports might carry multicast traffic even when they are not in the MDB or they are not router ports.</td>
-<td>5.6.0-5.9.1</td>
-<td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
+<td>3897227</td>
+<td>During an LLDP update storm while deleting or adding LLPD neighbors, PTMD crashes as a result of mishandling multi-threaded LLPD processing.</td>
+<td>5.5.1-5.9.2</td>
+<td>5.10.0-5.12.0</td>
 </tr>
 <tr>
-<td>3982231</td>
-<td>The switch forwards multicast traffic to the CPU when PIM is enabled globally, regardless of the interface configuration.</td>
-<td>5.6.0-5.9.1</td>
-<td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
-</tr>
-<tr>
-<td>3982230</td>
-<td>On the Spectrum A1 switch, when you enable the {{ip-acl-heavy}} TCAM profile, VXLAN tunnel initialization might fail.</td>
+<td>3896967</td>
+<td>PTP doesn't come up with IPv6 over a trunk port due to the IPv6 VLAN tag not being sent.  PTP over an IPv4 trunk works fine.</td>
 <td>5.8.0-5.9.1</td>
 <td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
 </tr>
 <tr>
-<td>3982226</td>
-<td>When SPAN is enabled on a bridge member, an ARP or Gratuitous ARP received during a failover event between locally attached redundant devices such as load balancers might fail to update the bridge MAC table to point to the interface with the newly active load balancer.</td>
-<td>5.4.0-5.9.1</td>
-<td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
-</tr>
-<tr>
-<td>3980941</td>
+<td>3895042</td>
 <td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
   snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
 This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
@@ -154,28 +154,10 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
 </tr>
 <tr>
-<td>3980938</td>
+<td>3895017</td>
 <td>When ARP suppression is off, remote EVPN VTEPs duplicate ARP packets from local hosts and each remote host receives two copies of the ARP packets. The issue also applies to IPv6 ND packets.</td>
 <td>5.8.0-5.9.1</td>
 <td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
-</tr>
-<tr>
-<td>3980925</td>
-<td>When you configure the {{bridge.kernel_mac_refresh_interval}} parameter in the {{switchd.conf}} file, a {{switchd}} restart fails with a core dump.</td>
-<td>5.8.0-5.9.1</td>
-<td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
-</tr>
-<tr>
-<td>3965573</td>
-<td>If you use NVUE to create an SNMP user with a password, then delete and recreate the user with additional encryption passwords (such as DES or AES), SNMP authorization fails for that user.</td>
-<td>5.3.1-5.9.1</td>
-<td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
-</tr>
-<tr>
-<td>3897227</td>
-<td>During an LLDP update storm while deleting or adding LLPD neighbors, PTMD crashes as a result of mishandling multi-threaded LLPD processing.</td>
-<td>5.5.1-5.9.2</td>
-<td>5.10.0-5.12.0</td>
 </tr>
 <tr>
 <td>3875419</td>
@@ -194,6 +176,30 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <td>When simultaneously changing the {{maxage}} and {{forward-delay}} bridge timers in RSTP for VLAN-aware bridges, the commands might not be accepted if the {{2xfdelay-1}} is less than the previously configured {{maxage}} timer because {{ifupdown2}} configures the forward delay first. To work around this issue, run the {{ifreload -a}} command again to process the {{forward-delay}} command after the new {{maxage}} configuration has been accepted.  You have to repeat the {{ifreload -a}} command after a reboot to set the forward delay correctly in the bridge.</td>
 <td>5.8.0</td>
 <td>5.9.0-5.12.0</td>
+</tr>
+<tr>
+<td>3859422</td>
+<td>On rare occasions when certain events occur, such as changes to the topology in the network, when a bond comes online and directly transits to an STP blocking state, the slave ports might still be in a forwarding state. As a result, traffic is forwarded on a blocked port.</td>
+<td>5.2.0-5.9.1</td>
+<td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
+</tr>
+<tr>
+<td>3854807</td>
+<td>When you enable Optimized Multicast Flooding (OMF) and change VLAN configuration, a few ports might carry multicast traffic even when they are not in the MDB or they are not router ports.</td>
+<td>5.6.0-5.9.1</td>
+<td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
+</tr>
+<tr>
+<td>3854800</td>
+<td>The switch forwards multicast traffic to the CPU when PIM is enabled globally, regardless of the interface configuration.</td>
+<td>5.6.0-5.9.1</td>
+<td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
+</tr>
+<tr>
+<td>3851499</td>
+<td>On the Spectrum A1 switch, when you enable the {{ip-acl-heavy}} TCAM profile, VXLAN tunnel initialization might fail.</td>
+<td>5.8.0-5.9.1</td>
+<td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
 </tr>
 <tr>
 <td>3837121</td>
@@ -335,6 +341,12 @@ leaf01# write memory
 leaf01# exit</td>
 <td>5.5.0-5.8.0</td>
 <td>5.9.0-5.12.0</td>
+</tr>
+<tr>
+<td>3763543</td>
+<td>The NVIDIA SN4600C switch fails to boot fully after  you upgrade from Cumulus Linux 4.2.1 to 5.7 with ONIE install. To work around this issue, perform an intermediate step image upgrade; for example, upgrade the switch from Cumulus Linux 4.2.1 to 5.2.1 to 5.7.0.</td>
+<td>5.7.0-5.9.1</td>
+<td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
 </tr>
 <tr>
 <td>3759515</td>
@@ -729,6 +741,14 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
 <td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.12.0</td>
 <td></td>
+</tr>
+<tr>
+<td>2932083</td>
+<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document filesare processed.
+Vulnerable: &lt;= 9.27~dfsg-2+deb10u4
+Fixed: 9.27~dfsg-2+deb10u5</td>
+<td>5.0.0-5.12.0</td>
+<td>4.4.3-4.4.5</td>
 </tr>
 <tr>
 <td>2904450</td>

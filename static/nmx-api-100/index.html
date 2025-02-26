@@ -29,6 +29,11 @@
         margin:0;
         background: #fafafa;
       }
+
+      .try-out,
+      .scheme-container {
+        display: none;
+      }
     </style>
   </head>
 
@@ -47,12 +52,12 @@
         deepLinking: true,
         presets: [
           SwaggerUIBundle.presets.apis,
-          SwaggerUIStandalonePreset
+        //  SwaggerUIStandalonePreset
         ],
         plugins: [
           SwaggerUIBundle.plugins.DownloadUrl
         ],
-        layout: "StandaloneLayout"
+        // layout: "StandaloneLayout"
       });
       // End Swagger UI call region
 

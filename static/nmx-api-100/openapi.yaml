@@ -5,7 +5,16 @@ info:
 servers:
 - url: /
 paths:
-  /nmx/v1/metrics:
+  /nmx/v1/health:
+    get:
+      operationId: GetHealth
+      responses:
+        "200":
+          description: Health information.
+      summary: Get services health status
+      tags:
+      - Health
+  /nmx/v1/metric:
     get:
       operationId: GetMetrics
       parameters:
@@ -539,7 +548,7 @@ paths:
       summary: Port information
       tags:
       - NetworkEntity
-  /nmx/v1/gpus:
+  /nmx/v1/gpu:
     get:
       operationId: GetGPUList
       parameters:
@@ -570,7 +579,7 @@ paths:
       summary: Get list of GPUs
       tags:
       - NetworkEntity
-  /nmx/v1/gpus/count:
+  /nmx/v1/gpu/count:
     get:
       operationId: GetGPUCount
       parameters:
@@ -597,7 +606,7 @@ paths:
       summary: Get total count of GPUs
       tags:
       - NetworkEntity
-  /nmx/v1/gpus/{id}:
+  /nmx/v1/gpu/{id}:
     get:
       operationId: GetGPU
       parameters:
@@ -1246,31 +1255,6 @@ paths:
       summary: Get an operation
       tags:
       - Operations
-  /nmx/v1/kpis:
-    get:
-      operationId: GetKPI
-      parameters:
-      - in: query
-        name: filter
-        required: false
-        schema:
-          $ref: '#/components/schemas/KPIType'
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetKPI_200_response'
-          description: Success - KPI Object
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Failed - Internal Error
-      summary: Get KPI
-      tags:
-      - KPI
 components:
   responses:
     InternalError:
@@ -1306,23 +1290,21 @@ components:
       additionalProperties: false
       description: NMX-M Error Information
       example:
-        httpErrorCode: 500
-        description: "Something really bad happened with resource [id: 123] and we\
-          \ are so sorry about it."
-        customErrorCode: internal-error
+        httpErrorCode: 404
+        description: "We looked everywhere, but resource [id: 123] could not be found"
+        customErrorCode: resource-not-found
       properties:
         httpErrorCode:
           description: HTTP error code
-          example: 500
+          example: 404
           type: integer
         customErrorCode:
           description: "A more granular, textual custom error code"
-          example: internal-error
+          example: resource-not-found
           type: string
         description:
           description: A detailed error description
-          example: "Something really bad happened with resource [id: 123] and we are\
-            \ so sorry about it."
+          example: "We looked everywhere, but resource [id: 123] could not be found"
           type: string
       required:
       - customErrorCode
@@ -2381,85 +2363,6 @@ components:
           description: Human-readable details of the operation result
           type: string
       type: object
-    InventoryResponse:
-      example:
-        Inventory:
-          compute-allocation:
-            Type: histogram
-            Description: Number of resource per health state
-            Title: Health Count
-            Data: "{healthy: 15322}"
-      properties:
-        Inventory:
-          $ref: '#/components/schemas/InventoryResponse_Inventory'
-      type: object
-    KPIData:
-      additionalProperties: false
-      example:
-        Type: histogram
-        Description: Number of resource per health state
-        Title: Health Count
-        Data: "{healthy: 15322}"
-      properties:
-        Title:
-          description: "resource health count ( where resource is switch, gpu, domain,compute\
-            \ node)."
-          example: Health Count
-          type: string
-        Description:
-          description: description about resource health.
-          example: Number of resource per health state
-          type: string
-        Type:
-          description: "histogram, counter or gauge."
-          example: histogram
-          type: string
-        Data:
-          $ref: '#/components/schemas/KPIDataTypes'
-      required:
-      - Data
-      - Description
-      - Title
-      - Type
-      type: object
-    KPIDataTypes:
-      oneOf:
-      - description: histogram
-        example: "{healthy: 15322}"
-        items:
-          additionalProperties:
-            format: int32
-            type: integer
-          type: object
-        type: array
-    HealthResponse:
-      properties:
-        Health:
-          $ref: '#/components/schemas/HealthResponse_Health'
-      type: object
-    KPIResponse:
-      allOf:
-      - $ref: '#/components/schemas/InventoryResponse'
-      - $ref: '#/components/schemas/HealthResponse'
-      type: object
-    KPIType:
-      enum:
-      - HEALTH
-      - SWITCH_HEALTH
-      - GPU_HEALTH
-      - DOMAIN_HEALTH
-      - COMPUTE_HEALTH
-      - INVENTORY
-      - COMPUTE_ALLOCATION
-      type: string
-      x-enum-varnames:
-      - KpiTypeHEALTH
-      - KpiTypeSwitchHealth
-      - KpiTypeGpuHealth
-      - KpiTypeDomainHealth
-      - KpiTypeComputeHealth
-      - KpiTypeInventory
-      - KpiTypeComputeAllocation
     PortNumber:
       example: 8001
       type: integer
@@ -3385,12 +3288,6 @@ components:
           $ref: '#/components/schemas/Chassis'
       title: ChassisUpdateResponse
       type: object
-    GetKPI_200_response:
-      oneOf:
-      - $ref: '#/components/schemas/InventoryResponse'
-      - $ref: '#/components/schemas/HealthResponse'
-      - $ref: '#/components/schemas/KPIData'
-      - $ref: '#/components/schemas/KPIResponse'
     NetworkEntityCountResponse_payload:
       example:
         total: 0
@@ -3430,26 +3327,4 @@ components:
       - DomainUUID
       - HostID
       - SlotID
-      type: object
-    InventoryResponse_Inventory:
-      example:
-        compute-allocation:
-          Type: histogram
-          Description: Number of resource per health state
-          Title: Health Count
-          Data: "{healthy: 15322}"
-      properties:
-        compute-allocation:
-          $ref: '#/components/schemas/KPIData'
-      type: object
-    HealthResponse_Health:
-      properties:
-        switch-health:
-          $ref: '#/components/schemas/KPIData'
-        gpu-health:
-          $ref: '#/components/schemas/KPIData'
-        domain-health:
-          $ref: '#/components/schemas/KPIData'
-        compute-health:
-          $ref: '#/components/schemas/KPIData'
       type: object

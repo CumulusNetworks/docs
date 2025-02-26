@@ -236,7 +236,7 @@ The NVUE configuration management commands manage and apply configurations.
 |`nv config revision` | Shows all the configuration revisions on the switch. |
 | `nv config save` | {{<link url="NVUE-CLI/#auto-save" text="Overwrites the startup configuration">}} with the applied configuration by writing to the `/etc/nvu.d/startup.yaml` file. The configuration persists after a reboot. Use this command when the auto save option is off.|
 | `nv config show` | Shows the {{<link url="NVUE-CLI/#show-switch-configuration" text="currently applied configuration">}} in `yaml` format. This command also shows NVUE version information. |
-| `nv config show -o commands` | Shows the currently applied configuration commands. |
+| `nv config show -o commands` | Shows the currently applied configuration commands.|
 | `nv config diff -o commands` | Shows differences between two configuration revisions. |
 
 You can use the NVUE configuration management commands to back up and restore configuration when you upgrade Cumulus Linux on the switch. Refer to {{<link url="Upgrading-Cumulus-Linux/#back-up-and-restore-configuration-with-nvue" text="Upgrading Cumulus Linux">}}.
@@ -456,7 +456,8 @@ header:
 ...
 ```
 
-To show the configuration on the switch in YAML format and include all default options, run the `nv config show --all` command.
+- To show the configuration on the switch in YAML format and include all default options, run the `nv config show --all` command.
+- To show the configuration for a specific revision, run the `nv config show -r <rev-id>` command.
 
 ## Add Configuration Apply Messages
 

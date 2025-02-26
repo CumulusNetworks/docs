@@ -456,7 +456,8 @@ header:
 ...
 ```
 
-To show the configuration on the switch in YAML format and include all default options, run the `nv config show --all` command.
+- To show the configuration on the switch in YAML format and include all default options, run the `nv config show --all` command.
+- To show the configuration for a specific revision, run the `nv config show -r <rev-id>` command.
 
 ## Add Configuration Apply Messages
 

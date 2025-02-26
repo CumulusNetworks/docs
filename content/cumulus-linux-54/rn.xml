@@ -462,25 +462,31 @@ Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.servic
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4037015</td>
+<td>4004453</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
 <td>4.3.0-5.9.1</td>
 <td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
 </tr>
 <tr>
-<td>4023649</td>
-<td>On rare occasions when certain events occur, such as changes to the topology in the network, when a bond comes online and directly transits to an STP blocking state, the slave ports might still be in a forwarding state. As a result, traffic is forwarded on a blocked port.</td>
-<td>5.2.0-5.9.1</td>
-<td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
-</tr>
-<tr>
-<td>3982226</td>
-<td>When SPAN is enabled on a bridge member, an ARP or Gratuitous ARP received during a failover event between locally attached redundant devices such as load balancers might fail to update the bridge MAC table to point to the interface with the newly active load balancer.</td>
+<td>3982222</td>
+<td>When you enable SPAN  on a bridge member, an ARP or Gratuitous ARP received during a failover event between locally attached redundant devices, such as load balancers, might fail to update the bridge MAC table to point to the interface with the newly active load balancer. To work around this issue, remove the SPAN configuration from the bridge member or ensure that the load balancer generates non-ARP traffic after the failover to properly update the bridge MAC table.</td>
 <td>5.4.0-5.9.1</td>
 <td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
 </tr>
 <tr>
-<td>3980941</td>
+<td>3949367</td>
+<td>If you use NVUE to create an SNMP user with a password, then delete and recreate the user with additional encryption passwords (such as DES or AES), SNMP authorization fails for that user.</td>
+<td>5.3.1-5.9.1</td>
+<td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
+</tr>
+<tr>
+<td>3927016</td>
+<td>Following an EVPN extended mobility event, where a host with IP address A and MAC address A moves within the fabric and now resides at IP address A and MAC address B, you might see traffic destined to this host experience drops as the flow is software forwarded on the egress VTEP.</td>
+<td>5.0.1-5.9.1</td>
+<td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
+</tr>
+<tr>
+<td>3895042</td>
 <td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
   snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
 This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
@@ -489,9 +495,9 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
 </tr>
 <tr>
-<td>3965573</td>
-<td>If you use NVUE to create an SNMP user with a password, then delete and recreate the user with additional encryption passwords (such as DES or AES), SNMP authorization fails for that user.</td>
-<td>5.3.1-5.9.1</td>
+<td>3859422</td>
+<td>On rare occasions when certain events occur, such as changes to the topology in the network, when a bond comes online and directly transits to an STP blocking state, the slave ports might still be in a forwarding state. As a result, traffic is forwarded on a blocked port.</td>
+<td>5.2.0-5.9.1</td>
 <td>5.9.2-5.12.0, 5.10.0-5.12.0</td>
 </tr>
 <tr>
@@ -549,16 +555,6 @@ cumulus@switch:~$ sudo apt upgrade
 <td>5.7.0-5.12.0</td>
 </tr>
 <tr>
-<td>3647426</td>
-<td>If BGP {{remote-as}} is set to an integer and you try to configure the {{local-as}} for a BGP instance, you see the following error:
-
-% AS specified for local as is the same as the remote as and this is not allowed.
-
-This configuration is not allowed; it is considered to be eBGP and local preference is not advertised.</td>
-<td>5.0.0-5.5.1</td>
-<td>4.3.2-4.4.5, 5.6.0-5.12.0</td>
-</tr>
-<tr>
 <td>3613258</td>
 <td>With VM migration from one VTEP to another, traffic loss might occur during a MAC move as locally learned MAC addresses are frequently refreshed between {{switchd}} and the kernel.</td>
 <td>5.2.1-5.6.0</td>
@@ -613,10 +609,9 @@ This is a cosmetic issue and does not affect how the switch operates. To prevent
 <tr>
 <td>3554231</td>
 <td>CVE-2023-38408: The PKCS#11 feature in ssh-agent in OpenSSH before 9.3p2 has an insufficiently trustworthy search path, leading to remote code execution if an agent is forwarded to an attacker-controlled system. (Code in /usr/lib is not necessarily safe for loading into ssh-agent.) NOTE: this issue exists because of an incomplete fix for CVE-2016-10009.
-Mitigation: Do not use ssh-agent forwarding (the man page for ssh_config says that "agent forwarding should be enabled with caution"), or start the ssh-agent program with the -P option to allow only specific PKCS#11 libraries (or none with -P '').
-For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turned off (chmod 0) to prevent its execution if a vulnerable version is detected.</td>
-<td>4.0.0-4.3.1, 5.0.0-5.12.0</td>
-<td>4.3.2-4.4.5</td>
+Mitigation: Do not use ssh-agent forwarding (the man page for ssh_config says that "agent forwarding should be enabled with caution"), or start the ssh-agent program with the -P option to allow only specific PKCS#11 libraries (or none with -P ''). For Cumulus Linux 5.7.0, the /usr/bin/ssh-agent program has all permissions turned off (chmod 0) to prevent its execution if a vulnerable version is detected.</td>
+<td>4.0.0-4.3.1, 5.0.0-5.6.0</td>
+<td>4.3.2-4.4.5, 5.7.0-5.12.0</td>
 </tr>
 <tr>
 <td>3541912</td>
@@ -649,6 +644,12 @@ For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turn
 <td>5.6.0-5.12.0</td>
 </tr>
 <tr>
+<td>3491259</td>
+<td>When BGP receives an EVPN type-5 route with a gateway IP overlay attribute, the gateway IP overlay attribute in the {{attr memory}} (which is already inserted in the attribute hash) might change. As a result, the modified {{attr memory}} might match with another {{attr}} in the attribute hash, which produces duplicate entries in the hash table. As a result, BGP might crash when deleting one of the duplicate {{attr}} structures. </td>
+<td>5.0.0-5.5.1</td>
+<td>4.3.2-4.4.5, 5.6.0-5.12.0</td>
+</tr>
+<tr>
 <td>3488136</td>
 <td>When zebra receives route updates that include both a route with a recursive next hop and the route used to resolve that next hop, zebra might mark the route with the recursive next hop as inactive. To work around this issue, reprocess the route updates by running the appropriate clear command for the protocol in use. For example, for BGP, clear inbound routes from the relevant neighbor using the {{nv action clear vrf &lt;vrf&gt; router bgp neighbor &lt;neighbor&gt; address-family &lt;address-family&gt; in}} command.</td>
 <td>4.2.1-5.5.1</td>
@@ -659,6 +660,12 @@ For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turn
 <td>When you power on the NVIDIA SN3420 switch with no connected cables, the QSFP ports LEDs light in amber.</td>
 <td>5.3.0-5.8.0</td>
 <td>5.9.0-5.12.0</td>
+</tr>
+<tr>
+<td>3482006</td>
+<td>If FRR learns a layer 2 entry against a VNI and you reconfigure the VNI later as a layer 3 VNI, the original layer 2 entry does not clear and remains in the forwarding database.</td>
+<td>5.0.0-5.5.1</td>
+<td>4.3.2-4.4.5, 5.6.0-5.12.0</td>
 </tr>
 <tr>
 <td>3479786</td>
@@ -675,6 +682,12 @@ To work around this issue, disable next hop groups in zebra with the vtysh {{zeb
 <td>5.6.0-5.12.0</td>
 </tr>
 <tr>
+<td>3474352</td>
+<td>On the NVIDIA SN4700 switch, reversing the upper four lanes on a port does not work and might cause link degradation. If you swap between the upper and lower four lanes on a port, the firmware gets stuck.</td>
+<td>5.3.0-5.5.1</td>
+<td>5.6.0-5.12.0</td>
+</tr>
+<tr>
 <td>3472865</td>
 <td>The json output for the vtysh {{-c ‘show bgp all json}} command is missing a string key in front of the list of routes under the {{l2vpnevpn}} address family.</td>
 <td>5.4.0-5.5.1</td>
@@ -685,12 +698,6 @@ To work around this issue, disable next hop groups in zebra with the vtysh {{zeb
 <td>On certain QSFP-DD and OSFP optical modules, the {{ethtool -m}} command, and the related NCLU and NVUE commands that display optical module information fail.</td>
 <td>5.4.0-5.5.1</td>
 <td>5.6.0-5.12.0</td>
-</tr>
-<tr>
-<td>3470941</td>
-<td>On the NVIDIA SN4700 switch, reversing the upper four lanes on a port does not work and might cause link degradation. If you swap the upper and lower four lanes on a port, the firmware gets stuck.</td>
-<td>5.3.0-5.5.0</td>
-<td>5.5.1-5.12.0</td>
 </tr>
 <tr>
 <td>3467890</td>
@@ -805,12 +812,6 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <td>5.5.0-5.12.0</td>
 </tr>
 <tr>
-<td>3413827</td>
-<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
-<td>4.2.1-4.3.1, 4.4.0-5.4.0</td>
-<td>4.3.2, 5.5.0-5.12.0</td>
-</tr>
-<tr>
 <td>3413785</td>
 <td>To reach the TACACS+ server through the default VRF, you must specify the egress interface you use in the default VRF. Either run the NVUE {{nv set system aaa tacacs vrf &lt;interface&gt;}} command (for example, {{nv set system aaa tacacs vrf swp51}}) or set the {{vrf=&lt;interface&gt;}} option in the {{/etc/tacplus_servers}} file (for example, {{vrf=swp51}}). A similar issue might prevent TACACS+ users with privilege level 15 from using {{sudo}} if the TACACS+ server is reachable only on the {{default}} VRF.  If this occurs, and you do not run the above configuration workaround, the TACACS+ user with privilege level 15 can use {{vrf task exec default sudo ...}} to execute the {{sudo}} command using the TACACS+ server on the {{default}} VRF.</td>
 <td>5.0.0-5.5.1</td>
@@ -830,16 +831,6 @@ cumulus@switch:~$ sudo rm -f /etc/nginx/sites-enabled/default
 cumulus@switch:~$ systemctl is-active nginx &amp;&amp; sudo invoke-rc.d nginx restart
 </td>
 <td>5.4.0</td>
-<td>5.5.0-5.12.0</td>
-</tr>
-<tr>
-<td>3402935</td>
-<td>For layer 3 interfaces configured on the switch, certain triggers, such as port flaps and subinterface flaps, or when configuring the ports to and from layer 2 and layer 3, cause the dummy internal VLAN to not free up, which can result in exhaustion of the dummy internal VLANs designated for the layer 3 interfaces. When this occurs, you see the following {{switchd}} log messages:
-
-ERR dummy internal vlans exhausted
-ERR cannot allocate vlan for sub-interface
-</td>
-<td>5.0.0-5.4.0</td>
 <td>5.5.0-5.12.0</td>
 </tr>
 <tr>
@@ -1305,6 +1296,14 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>2932083</td>
+<td>CVE-2021-45944 CVE-2021-45949: Multiple security issues were discovered in Ghostscript, the GPL PostScript/PDF interpreter, which could result in denial of service and potentially the execution of arbitrary code if malformed document filesare processed.
+Vulnerable: &lt;= 9.27~dfsg-2+deb10u4
+Fixed: 9.27~dfsg-2+deb10u5</td>
+<td>5.0.0-5.12.0</td>
+<td>4.4.3-4.4.5</td>
+</tr>
+<tr>
 <td>2904450</td>
 <td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. 
 
@@ -1421,7 +1420,7 @@ You can safely ignore this warning.</td>
 <tr>
 <td>3329096</td>
 <td>The traffic control rules that the EVPN multihoming configuration adds to an interface are deleted when the {{hsflowd}} service restarts. The {{hsflowd}} service deletes the EVPN multihoming traffic control filters after you stop {{hsflowd}}, then adds back the {{match-all}} filters with the {{psample}} action; however, {{hsflowd}} does not add back the EVPN multihoming traffic control rules.</td>
-<td>4.4.0-5.3.1</td>
+<td>5.0.0-5.3.1</td>
 </tr>
 <tr>
 <td>3322944</td>
@@ -1430,8 +1429,8 @@ You can safely ignore this warning.</td>
 </tr>
 <tr>
 <td>3320571</td>
-<td>On the NVIDIA SN2410 switch, ports with optical transceivers show FAULT errors in the {{sensor}} command output.</td>
-<td>4.2.1-5.3.1</td>
+<td>The {{sensors.conf}} files in Cumulus Linux are out of date.</td>
+<td>5.2.0-5.3.1</td>
 </tr>
 <tr>
 <td>3308248</td>
@@ -1480,7 +1479,7 @@ ethtool (-S): unknown parameter 'clear'
 <tr>
 <td>3289972</td>
 <td>When the switch needs to forward a frame that has a source MAC address of 00:00:00:00:00:00, the {{dmesg}} log might report the message {{bridge: RTM_NEWNEIGH with invalid ether address}} in a loop every 30 seconds. The log message is harmless and frames with that MAC forward correctly. </td>
-<td>5.3.0-5.3.1</td>
+<td>4.4.3-5.3.1</td>
 </tr>
 <tr>
 <td>3289646</td>
@@ -1497,7 +1496,7 @@ Type: L3
 Tenant VRF: BLUE
 Vlan: 0
 </td>
-<td>5.3.0-5.3.1</td>
+<td>4.4.3-5.3.1</td>
 </tr>
 <tr>
 <td>3267328</td>
@@ -1535,7 +1534,7 @@ Vlan: 0
 <tr>
 <td>3234085</td>
 <td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
-<td>4.3.0-4.3.1</td>
+<td>5.0.1-5.3.1</td>
 </tr>
 <tr>
 <td>3226525</td>

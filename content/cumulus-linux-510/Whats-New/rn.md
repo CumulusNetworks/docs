@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4309869"></a> [4309869](#4309869) <a name="4309869"></a> <br /> | Due to unsupported EVPN BUM replication configuration (a mix of PIM and HER modes),  a resource leak can occur. | 5.9.2-5.12.0 | |
 | <a name="4271229"></a> [4271229](#4271229) <a name="4271229"></a> <br /> | After rebooting the spine switch in an EVPN multihoming configuration, the BGP EVPN Type-2 entry is missing, which causes flooding and duplicates in the fabric. To work around this issue, flush the IP neighbor entries with the <code>sudo ip neigh flush x.x.x.x</code> command. | 5.9.1-5.12.0 | |
 | <a name="4271228"></a> [4271228](#4271228) <a name="4271228"></a> <br /> | After rebooting the spine switch in an EVPN multihoming configuration, the BGP EVPN Type-2 entry is missing, which causes flooding and duplicates in the fabric. To work around this issue, flush the IP neighbor entries with the <code>sudo ip neigh flush x.x.x.x</code> command. | 5.9.1-5.12.0 | |
 | <a name="4271213"></a> [4271213](#4271213) <a name="4271213"></a> <br /> | When IPv4 layer 3 switch ports and virtual interfaces flap, <code>switchd</code> might send an ICMP Reply message instead of an ARP request (although no ICMP request was sent). Multiple ICMP Replies might be sent to any of the neighbor IP addresses of that interface. | 5.9.2-5.12.0 | |
@@ -159,6 +160,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4309869"></a> [4309869](#4309869) <a name="4309869"></a> <br /> | Due to unsupported EVPN BUM replication configuration (a mix of PIM and HER modes),  a resource leak can occur. | 5.9.2-5.12.0 | |
 | <a name="4271229"></a> [4271229](#4271229) <a name="4271229"></a> <br /> | After rebooting the spine switch in an EVPN multihoming configuration, the BGP EVPN Type-2 entry is missing, which causes flooding and duplicates in the fabric. To work around this issue, flush the IP neighbor entries with the <code>sudo ip neigh flush x.x.x.x</code> command. | 5.9.1-5.12.0 | |
 | <a name="4271228"></a> [4271228](#4271228) <a name="4271228"></a> <br /> | After rebooting the spine switch in an EVPN multihoming configuration, the BGP EVPN Type-2 entry is missing, which causes flooding and duplicates in the fabric. To work around this issue, flush the IP neighbor entries with the <code>sudo ip neigh flush x.x.x.x</code> command. | 5.9.1-5.12.0 | |
 | <a name="4271213"></a> [4271213](#4271213) <a name="4271213"></a> <br /> | When IPv4 layer 3 switch ports and virtual interfaces flap, <code>switchd</code> might send an ICMP Reply message instead of an ARP request (although no ICMP request was sent). Multiple ICMP Replies might be sent to any of the neighbor IP addresses of that interface. | 5.9.2-5.12.0 | |

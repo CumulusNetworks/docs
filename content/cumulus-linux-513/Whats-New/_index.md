@@ -21,7 +21,7 @@ This document supports the Cumulus Linux 5.13 release, and lists new platforms, 
 - OTLP Phase 4
 - gNMI support
 - Default AR profile update
-- Maintenance mode enhancements to stay persistent on reboot
+- New maintenance mode commands
 - 802.1 option to keep port in current state when RADIUS server is unreachable
 - System health commands
 - Recovery mechanism for CPLD thermal shutdown
@@ -48,18 +48,18 @@ This document supports the Cumulus Linux 5.13 release, and lists new platforms, 
   - Get the hash for a file
   - Additional FRR filters
   - {{< expand "Changed NVUE Commands" >}}
-| Cumulus Linux 5.13 | Cumulus Linux 3 and Earlier |
+| Cumulus Linux 5.13 | Cumulus Linux 12 and Earlier |
 | --------------- |---------------------------------------|
-| | |
-| | |
-| | |
-| | |
-| | |
-
+| `nv unset maintenance unit all-protocols state maintenance`| `nv action enable|disable system maintenance mode` |
+| | `nv action enable|disable system maintenance ports` |
 {{< /expand >}}
   - {{< expand "Removed NVUE Commands" >}}
 ```
-
+nv action enable system maintenance mode
+nv action disable system maintenance mode
+nv action enable system maintenance ports
+nv action disable system maintenance ports
+nv show system maintenace
 ```
 {{< /expand >}}
   - {{< expand "New NVUE Commands" >}}

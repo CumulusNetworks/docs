@@ -148,8 +148,7 @@ Sleeping for 15 seconds
 Confirming the app is running with new image
 Found the container running with new image.
 
-* Close and reopen the NetQ UI to run the new image. 
-*Note*: You may need to press Cmd+Shift+R to fully clear the cache on the Chrome browser.</td>
+* Close and reopen the NetQ UI to run the new image. *Note*: You may need to press Cmd+Shift+R to fully clear the cache on the Chrome browser.</td>
 <td></td>
 </tr>
 <tr>

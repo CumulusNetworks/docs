@@ -261,7 +261,7 @@ nv unset vrf <vrf> router bgp address-family <address-family> nhg-per-origin
 {{< tab "nv action ">}}
 
 ```
-nv action boot-next system image other rollback
+nv action boot-next system image <partition> rollback
 nv action clear bridge domain <bridge-id> mac-table dynamic
 nv action clear bridge domain <bridge-id> mac-table dynamic interface <interface-id
 nv action clear bridge domain <bridge-id> mac-table dynamic vlan <vlan-id>

@@ -97,6 +97,28 @@ If you add the `force` option (`nv action abort system ztp force`), ZTP terminat
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action boot-next system image \<partition\> rollback</h>
+
+Rolls back the optimized image upgrade if the upgrade fails or you want to go back to the Cumulus Linux release from which you upgraded.  The switch boots back to the previous release image and restores the switch configuration.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<partition-id>`| The name of the partition, such as `other`. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action boot-next system image other rollback
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action cancel system telemetry hft job \<job-id\> profile \<profile-id\></h>
 
 Cancels a specific or all high frequency telemetry data collection jobs, or a specific or all jobs for a high frequency telemetry profile. You can specify a job ID or `all` to cancel all jobs.

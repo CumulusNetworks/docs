@@ -172,12 +172,6 @@
 <tr>
 <td>4245819</td>
 <td>A Python version change removed the encoding argument parameter of the json loads function, which causes an exception.</td>
-<td>5.11.0-5.12.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4242756</td>
-<td>A Python version change removed the encoding argument parameter of the json loads function, which causes an exception.</td>
 <td>5.11.0</td>
 <td>5.12.0</td>
 </tr>

@@ -7,6 +7,18 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4329931</td>
+<td>In previous releases, Cumulus Linux incorrectly allowed SyncE and PPS In features to be enabled at the same time. Upgrading systems with both features configured using NVUE to 5.12.0 or higher results in a failure to apply the startup configuration as part of the first boot of the upgraded version. To work around the issue, unset one of the features before you upgrade.</td>
+<td>5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4318464</td>
+<td>When connecting two NVIDIA devices using DAC in Auto-Neg mode with 100GbE R1 (one lane) port speed, the link will go down. To avoid this, make sure to use firmware version xx.2014.3xxx and above on both sides.</td>
+<td>5.12.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4309875</td>
 <td>When you configure an invalid switch port (swp), NVUE adds the invalid configuration instead of rejecting it. The invalid interface in the configuration does not have any functional impact.</td>
 <td>5.12.0-5.12.1</td>
@@ -21,6 +33,12 @@ cumulus@switch:~$ sudo systemctl start cumulus-upgrade-on-shutdown</td>
 <td></td>
 </tr>
 <tr>
+<td>4291970</td>
+<td>When you enable NVUE pagination with the {{nv set system cli pagination state enabled}} command, even short outputs become paginated inside less even though they fit the terminal. If you want to see pagination only for CLI outputs larger than the terminal size, set {{nv set system cli pagination state}} to {{auto}}.</td>
+<td>5.12.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4287285</td>
 <td>Due to unsupported EVPN BUM replication configuration (a mix of PIM and HER modes),  a resource leak can occur.</td>
 <td>5.11.0-5.12.1</td>
@@ -29,6 +47,12 @@ cumulus@switch:~$ sudo systemctl start cumulus-upgrade-on-shutdown</td>
 <tr>
 <td>4280299</td>
 <td>The {{nv action fetch system packages key &lt;key-id&gt;}} command fails if the key ID is an scp/ftp or URL path that requires a password to access the key. To work around this issue, use a URI that does not require password authentication for the key ID.</td>
+<td>5.12.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4277042</td>
+<td>On the NVIDIA SN5600 switch, you see low power alarms immediately after a reboot. The alarms disappear after showing up initially. Certain modules typically show low power alarms on initialization. No action is needed.</td>
 <td>5.12.0-5.12.1</td>
 <td></td>
 </tr>
@@ -198,6 +222,12 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <tr>
 <td>4030380</td>
 <td>When you rollback interface configuration to the default setting with the {{nv unset interface}} command, NVUE removes the complete entry for the interface from the {{/etc/network/interface}} file, and puts the interface in admin down. As a result, you can't configure FEC on the interface at the lower layers.</td>
+<td>5.10.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4019256</td>
+<td>If you change  the switch hostname, the histogram data producer service restarts.</td>
 <td>5.10.0-5.12.1</td>
 <td></td>
 </tr>
@@ -647,9 +677,23 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Affects </th>
 </tr>
 <tr>
+<td>4298572</td>
+<td>The Spectrum-4 switch reports a {{Modules DataPath FSM fault}} in logs when the link fails at polling.</td>
+<td>5.10.1-5.12.0</td>
+</tr>
+<tr>
 <td>4286489</td>
 <td>Optimized (two partition) upgrade and rollback fails when you apply configuration by editing the {{/etc/nvue.d/startup.yaml}} file, then run {{nv config apply startup}}. To work around this issue, after activating optimized &lt;b&gt;upgrade&lt;/b&gt;, but &lt;b&gt;before&lt;/b&gt; rebooting, save a copy of the contents of {{/var/lib/nvue/}} to some other location. Then, &lt;b&gt;after&lt;/b&gt; activating &lt;b&gt;rollback&lt;/b&gt;, but &lt;b&gt;before&lt;/b&gt; rebooting, move {{/var/lib/nvue/}} to some other location and copy the previously saved contents to {{/var/lib/nvue/}}.</td>
 <td>5.12.0</td>
+</tr>
+<tr>
+<td>4286417</td>
+<td>The NVIDIA SN5400 switch shows firmware fatal health events with certain modules.
+
+2025-01-16T20:50:12.123068+00:00 DVSVAST43-L-11A8-U21 kernel: [766316.439899] sxd_kernel: [error] Health-Check: FW Fatal:fw_cause = [0×0], cause_id = [0×2d95], irisc_id = 4, reg_attr_id = [0×18], mgmt_class = 0, method = 0, event_severity=2, packet_state = 0
+2025-01-16T20:50:12.123081+00:00 DVSVAST43-L-11A8-U21 kernel: [766316.460117] sxd_kernel: Health-Check: new failure (dev=1, severity=‘Fatal’, cause=1 [‘FW health’], irisc=4, desc=‘FW Fatal:fw_cause = [0×0], cause_id = [0×2d95], irisc_id = 4, reg_attr_id = [0×18], mgmt_class = 0, method = 0, event_severity=2, packet_state = 0’)
+2025-01-16T20:50:12.927357+00:00 DVSVAST43-L-11A8-U21 sx_sdk3822: ERROR HOST_INTERFACE: SX_HEALTH_FATAL: cause_string = [FW health issue], cause_id = 1, severity: 1</td>
+<td>5.11.0-5.12.0</td>
 </tr>
 </table>
 <table name="Open Issues in 5.12.0">

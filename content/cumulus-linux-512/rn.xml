@@ -13,12 +13,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4309869</td>
-<td>Due to unsupported EVPN BUM replication configuration (a mix of PIM and HER modes),  a resource leak can occur.</td>
-<td>5.9.2-5.12.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4291993</td>
 <td>After upgrading Cumulus Linux with optimized (two partition) image upgrade the second time, the ssh and nginx services do not start. To work around this issue, before rebooting to upgrade, check if the {{cumulus-upgrade-on-shutdown}} service is {{active (exited)}} with the {{systemctl status cumulus-upgrade-on-shutdown}} command. If the command output shows {{inactive (dead)}}), run the following commands to ensure that a subsequent two partition upgrade correctly uses the {{cumulus-upgrade-on-shutdown}} service:
 cumulus@switch:~$ sudo systemctl enable cumulus-upgrade-on-shutdown
@@ -669,12 +663,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>4309875</td>
 <td>When you configure an invalid switch port (swp), NVUE adds the invalid configuration instead of rejecting it. The invalid interface in the configuration does not have any functional impact.</td>
 <td>5.12.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4309869</td>
-<td>Due to unsupported EVPN BUM replication configuration (a mix of PIM and HER modes),  a resource leak can occur.</td>
-<td>5.9.2-5.12.0</td>
 <td></td>
 </tr>
 <tr>

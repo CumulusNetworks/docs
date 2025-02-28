@@ -9,10 +9,14 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 
 ## Feburary 2025
 <!-- Air:WhatsNew -->
+### 82.2025.0227-011
+- Fixed an issue where pressing "enter" in the ZTP text box created a SIM instead of adding a new line.
+- Added support for NetQ configuration via JSON topology files.
+<!-- Air:WhatsNew -->
+
 ### 82.2025.0225-011
 - Fixed an issue with scrolling in Nodes/Links list when console is open.
 - Added tooltip support for improved accessibility in navigation items.
-<!-- Air:WhatsNew -->
 
 ### 82.2025.0220-011
 - Fixed an issue with launching NetQ

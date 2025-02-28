@@ -7,12 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4309869</td>
-<td>Due to unsupported EVPN BUM replication configuration (a mix of PIM and HER modes),  a resource leak can occur.</td>
-<td>5.9.2-5.12.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4277143</td>
 <td>After a factory reset with the {{nv action reset system factory-default force}} command, RADIUS does not fully reset; the {{radius-cmd-acct}} package is not installed correctly and includes missing files. In addition, {{/etc/pam.d/common-auth}} is incorrect.</td>
 <td>5.11.0-5.11.1</td>
@@ -914,12 +908,6 @@ netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported tru
 <td>4309870</td>
 <td>Due to unsupported EVPN BUM replication configuration (a mix of PIM and HER modes),  a resource leak can occur.</td>
 <td>5.11.0-5.12.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4309869</td>
-<td>Due to unsupported EVPN BUM replication configuration (a mix of PIM and HER modes),  a resource leak can occur.</td>
-<td>5.9.2-5.12.0</td>
 <td></td>
 </tr>
 <tr>

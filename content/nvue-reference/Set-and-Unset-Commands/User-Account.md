@@ -225,6 +225,10 @@ cumulus@switch:~$ nv set system aaa user admin2 password
 
 Configures the role for the user accounts configured on the switch and the groups to which they belong. You can specify `system-admin`, `nvue-admin`, and `nvue-monitor`.
 
+{{%notice note%}}
+In Cumulus Linux 5.13 and later, when you change the role for a user, Cumulus Linux terminates their session (including the SSH session) and they have to reauthenticate. For example, if you change the role for a user from `nvue-admin` to `nvue-monitor`, if the user tries to run an `nv set` command, their session disconnects and they have to reauthenticate.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |

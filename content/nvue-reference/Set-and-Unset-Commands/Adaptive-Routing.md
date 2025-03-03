@@ -24,7 +24,8 @@ Adaptive routing is a load balancing feature that improves network utilization f
 - Cumulus Linux does not support adaptive routing on layer 3 subinterfaces, SVIs, bonds or bond members.
 
 {{%notice note%}}
-NVUE must restart `switchd` to apply the setting.
+- In cumulus Linux 5.12 and earlier, NVUE restarts `switchd` when applying the setting.
+- In Cumulus Linux 5.13 and later, NVUE reloads `switchd` when applying the setting.
 {{%/notice%}}
 
 ### Command Syntax
@@ -75,7 +76,8 @@ Turns adaptive routing on or off globally. The default setting is `off`.
 Adaptive routing is a load balancing feature that improves network utilization for eligible IP packets by selecting forwarding paths dynamically based on the state of the switch, such as queue occupancy and port utilization.
 
 {{%notice note%}}
-NVUE restarts `switchd` to apply the setting.
+- In cumulus Linux 5.12 and earlier, NVUE restarts `switchd` when applying the setting.
+- In Cumulus Linux 5.13 and later, NVUE reloads `switchd` when applying the setting.
 {{%/notice%}}
 
 ### Version History

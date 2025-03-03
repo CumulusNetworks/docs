@@ -11,7 +11,7 @@ This document supports the Cumulus Linux 5.12 release, and lists new platforms, 
 ## What's New in Cumulus Linux 5.12.1
 
 Cumulus Linux 5.12.1 includes a new {{<link title="Cumulus Linux 5.12 Packages" text="SDK, hardware management package, and kernel">}} and provides {{<link url="Cumulus-Linux-5.12-Release-Notes" text="bug fixes">}}. In addition, Cumulus Linux 5.12.1 supports the following new platform:
-- NVIDIA SN5600D (800G Spectrum-4) ALPHA
+- NVIDIA SN5600D (800G Spectrum-4 DC version) ALPHA
 
 ## What's New in Cumulus Linux 5.12.0
 

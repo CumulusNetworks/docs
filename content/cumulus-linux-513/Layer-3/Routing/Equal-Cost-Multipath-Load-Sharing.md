@@ -306,6 +306,10 @@ cumulus@switch:~$ nv set system forwarding hash-seed 50
 cumulus@switch:~$ nv config apply
 ```
 
+{{%notice warning%}}
+Configuring the hash seed restarts the `switchd` service, which causes all network ports to reset, interrupts network services, and resets the switch hardware configuration.
+{{%/notice%}}
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
@@ -551,10 +555,12 @@ cumulus@switch:~$ nv config apply
 
 To disable adaptive routing, run the `nv set router adaptive-routing enable off` command. To disable adaptive routing on a specific port, run the `nv set interface <interface> router adaptive-routing enable off` command.
 
+Enabling or disabling adaptive routing globally or on an interface reloads the `switchd` service.
+<!-- CHANGED IN 5.13
 {{%notice warning%}}
 Enabling or disabling adaptive routing restarts the `switchd` service, which causes all network ports to reset, interrupts network services, and resets the switch hardware configuration.
 {{%/notice%}}
-
+-->
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
@@ -575,10 +581,10 @@ interface.swp52.adaptive_routing.link_util_thresh = 70
 ...
 ```
 
-Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 
 - To disable adaptive routing, set the `adaptive_routing.enable` parameter to `FALSE` in the `/etc/cumulus/switchd.d/adaptive_routing.conf` file.
-- To disable adaptive routing on a specific port, set the `interface.<port>.adaptive_routing.enable` parameter  to `FALSE` in the `/etc/cumulus/switchd.d/adaptive_routing.conf` file.
+- To disable adaptive routing on a specific port, set the `interface.<port>.adaptive_routing.enable` parameter to `FALSE` in the `/etc/cumulus/switchd.d/adaptive_routing.conf` file.
 
 {{< /tab >}}
 {{< /tabs >}}

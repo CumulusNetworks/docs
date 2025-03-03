@@ -90,6 +90,15 @@ To show a list of generated `/etc/default/isc-*` files changed from the previous
 
 ### Back Up and Restore Configuration with NVUE
 
+Use the following procedure to cleanly reinstall a Cumulus Linux image or move the configuration from one switch to another.
+
+As Cumulus Linux supports more features and functionality, NVUE syntax might change between releases and the content of snippets and flexible snippets might become invalid. Before you back up and restore configuration across different Cumulus Linux releases, make sure to review the {{<link url="Whats-New" text="What's New">}} for new NVUE syntax and other configuration file changes.
+
+{{%notice note%}}
+- If you upgrade the switch with package upgrade or optimized image upgrade, or if you reinstall Cumulus Linux with an embedded `startup.yaml` file using `onie-install -t`, Cumulus Linux preserves your NVUE startup configuration and translates the contents automatically to NVUE syntax required by the new release.
+- If NVUE introduces new syntax for the feature that a snippet configures, you must remove the snippet before upgrading.
+{{%/notice%}}
+
 You can back up and restore the configuration file with NVUE only if you used NVUE commands to configure the switch you want to upgrade.
 
 To back up and restore the configuration file:
@@ -103,23 +112,20 @@ To back up and restore the configuration file:
 
 2. Copy the `/etc/nvue.d/startup.yaml` file off the switch to a different location.
 
-3. After upgrade is complete, restore the configuration. Copy the `/etc/nvue.d/startup.yaml` file to the switch, run the `nv config patch` command, then run the `nv config apply` command. In the following example `startup.yaml` is in the `/home/cumulus` directory on the switch:
+3. After upgrade is complete, restore the configuration.
+
+   a. Copy the `/etc/nvue.d/startup.yaml` file to the switch.
+
+   b. If required, convert the `startup.yaml` file to the format of the currently running release on the switch. Refer to {{<link url="NVUE-CLI/#translate-a-configuration-revision-or-file" text="Commands to translate a revision or yaml configuration file">}}.
+
+   c. Run the `nv config replace` command, then run the `nv config apply` command. In the following example `startup.yaml` is in the `/home/cumulus` directory on the switch:
 
    ```
-   cumulus@switch:~$ nv config patch /home/cumulus/startup.yaml
+   cumulus@switch:~$ nv config replace /home/cumulus/startup.yaml
    cumulus@switch:~$ nv config apply
    ```
 
 For information about the NVUE object model and commands, see {{<link url="NVIDIA-User-Experience-NVUE" text="NVIDIA User Experience - NVUE">}}.
-
-{{%notice note%}}
-As NVUE supports more features and introduces new syntax, {{<link url="NVUE-Snippets" text="snippets and flexible snippets">}} become invalid.
-
-Before you upgrade Cumulus Linux to a new release, make sure to:
-- Review the {{<link url="Whats-New" text="What's New">}} for new NVUE syntax.
-- If NVUE introduces new syntax for the feature that a snippet configures, you must remove the snippet before upgrading.
-- NVUE provides commands to convert old configuration files to the format of the currently running release on the switch. Refer to {{<link url="NVUE-CLI/#translate-a-configuration-revision-or-file" text="Translate a Configuration Revision or File">}}.
-{{%/notice%}}
 
 ### Create a cl-support File
 
@@ -147,8 +153,7 @@ Cumulus Linux provides two different ways to upgrade the switch with a new image
 - **ONIE** is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a switch.
 - **Optimized image upgrade** uses two partitions to upgrade the image with just one reboot cycle. With two partitions on the switch, the current image boots from one partition, from which the image upgrade triggers. After detecting the running partition and checking if the second partition is available for installation, optimized upgrade starts to stage the installation in the second partition (copying the image, preparing the partition, unpacking the new image, and tuning and finalizing the new partition for the new image). The subsequent boot occurs from the second partition.
 
-  - The switch does not support optimized image upgrade in {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="warm restart mode">}}.
-  - You cannot downgrade a Cumulus Linux 5.13 switch to Cumulus Linux 5.11 and earlier with optimized image upgrade; use ONIE instead.
+  You cannot downgrade a Cumulus Linux 5.13 switch to Cumulus Linux 5.11 and earlier with optimized image upgrade; use ONIE instead.
 
 {{%notice note%}}
 - Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in [Upgrade Switches in an MLAG Pair](#upgrade-switches-in-an-mlag-pair) below to ensure a smooth upgrade.

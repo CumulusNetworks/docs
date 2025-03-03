@@ -12,11 +12,13 @@ This document supports the Cumulus Linux 5.13 release, and lists new platforms, 
 
 ### Platforms
 
-- NVIDIA SN5600D (200G Spectrum-4)
+- NVIDIA SN5600D (200G Spectrum-4 DC version)
 
 ### New Features and Enhancements
 
 - NVIDIA SN5400 ITU-T G.8273.2 Class C (Compliance)
+- {{<link url="Equal-Cost-Multipath-Load-Sharing/#enable-adaptive-routing" text="Enabling adaptive routing no longer restarts switchd">}}
+- {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="Optimized upgrade supports warmboot">}}
 - Erase SSD before switch RMA
 - OTLP Phase 4
 - gNMI support
@@ -28,7 +30,7 @@ This document supports the Cumulus Linux 5.13 release, and lists new platforms, 
 - Export per transceiver temperature and power
 - Filters for RSYSLOG log per facility level
 - 802.1x on router ports with dynamic VRF assignments
-- Optimized upgrade supports warmboot
+
 - Ability to disconnect or disable remote access to the switch
 - Enable RADIUS for multiple VRFs
 - Support Docker container

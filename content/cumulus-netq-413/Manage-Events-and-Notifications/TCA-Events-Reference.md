@@ -134,11 +134,11 @@ This reference lists the threshold-based events that NetQ supports. You can view
 
 | NetQ UI Name | NetQ CLI Event ID | Description |
 | --- | --- | --- |
-| Oversize errors | TCA_HW_IF_OVERSIZE_ERRORS | Number of times a frame longer than maximum size (1518 Bytes) exceeded user-defined threshold |
-| Undersize errors | TCA_HW_IF_UNDERSIZE_ERRORS | Number of times a frame shorter than minimum size (64 Bytes) exceeded user-defined threshold |
-| Alignment errors | TCA_HW_IF_ALIGNMENT_ERRORS | Number of times a frame with an uneven byte count and a CRC error exceeded user-defined threshold |
-| Jabber errors | TCA_HW_IF_JABBER_ERRORS | Number of times a frame longer than maximum size (1518 bytes) and with a CRC error exceeded user-defined threshold |
-| Symbol errors | TCA_HW_IF_SYMBOL_ERRORS | Number of times that detected undefined or invalid symbols exceeded user-defined threshold |
+| Oversize errors | TCA_HW_IF_OVERSIZE_ERRORS_UPPER | Number of times a frame longer than maximum size (1518 bytes) exceeded user-defined threshold |
+| Undersize errors | TCA_HW_IF_UNDERSIZE_ERRORS_UPPER | Number of times a frame shorter than minimum size (64 bytes) exceeded user-defined threshold |
+| Alignment errors | TCA_HW_IF_ALIGNMENT_ERRORS_UPPER | Number of times a frame with an uneven byte count and a CRC error exceeded user-defined threshold |
+| Jabber errors | TCA_HW_IF_JABBER_ERRORS_UPPER | Number of times a frame longer than maximum size (1518 bytes) and with a CRC error exceeded user-defined threshold |
+| Symbol errors | TCA_HW_IF_SYMBOL_ERRORS_UPPER | Number of times that detected undefined or invalid symbols exceeded user-defined threshold |
 
 ## Interface Statistics
 
@@ -146,7 +146,7 @@ This reference lists the threshold-based events that NetQ supports. You can view
 | --- | --- | --- |
 | Broadcast received bytes | TCA_RXBROADCAST_UPPER  |  Number of broadcast receive bytes per second exceeded user-defined maximum threshold on a switch interface |
 | Received bytes | TCA_RXBYTES_UPPER |  Number of receive bytes exceeded user-defined maximum threshold on a switch interface |
-| Multicast received bytes | TCA_RXMULTICAST_UPPER |  rx_multicast per second on a given switch or host exceeded user-defined maximum threshold |
+| Multicast received bytes | TCA_RXMULTICAST_UPPER |  Number of multicast receive bytes per second exceeded user-defined maximum threshold on a switch interface |
 | Broadcast transmitted bytes | TCA_TXBROADCAST_UPPER |  Number of broadcast transmit bytes per second exceeded user-defined maximum threshold on a switch interface |
 | Transmitted bytes | TCA_TXBYTES_UPPER | Number of transmit bytes exceeded user-defined maximum threshold on a switch interface |
 | Multicast transmitted bytes | TCA_TXMULTICAST_UPPER | Number of multicast transmit bytes per second exceeded user-defined maximum threshold on a switch interface |

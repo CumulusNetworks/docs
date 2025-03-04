@@ -19,6 +19,12 @@ NVUE manages LDAP authentication with PAM and NSS.
 
 You can configure LDAP server settings with NVUE commands or by editing Linux configuration files.
 
+{{%notice note%}}
+If you edit Linux configuration files instead of using NVUE, you must:
+- Configure PAM to use LDAP with the `sudo pam-auth-update --enable ldap` command.
+- Restart NVUE with the `sudo systemctl restart nvued.service` command after editing the `/etc/nslcd.conf` file or the `/etc/nsswitch.conf` file.
+{{%/notice%}}
+
 ### Connection
 
 Configure the following connection settings:

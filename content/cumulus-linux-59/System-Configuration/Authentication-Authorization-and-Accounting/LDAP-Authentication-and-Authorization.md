@@ -124,10 +124,9 @@ Instead of running the installer and following the interactive prompts, as descr
 
 {{< /expand >}}
 
-<!-- vale off -->
 ## Configure PAM to use LDAP
-<!-- vale on -->
-After installation, execute `sudo pam-auth-update --enable ldap` command
+
+After installation, run the `sudo pam-auth-update --enable ldap` command:
 
 ```
 cumulus@switch:~$ sudo pam-auth-update --enable ldap
@@ -141,7 +140,7 @@ Update the main configuration file (`/etc/nslcd.conf`) to accommodate the expect
 This section documents some of the more important options that relate to security and queries. For details on all the available configuration options, read the {{<exlink url="http://linux.die.net/man/5/nslcd.conf" text="nslcd.conf man page">}}.
 
 {{%notice note%}}
-After first editing the `/etc/nslcd.conf` file and/or enabling LDAP in the `/etc/nsswitch.conf` file, you must restart `nvue` with the `sudo systemctl restart nvued.service` command. If you disable LDAP, you need to restart the `nvue` service.
+After first editing the `/etc/nslcd.conf` file and enabling LDAP in the `/etc/nsswitch.conf` file, you must restart NVUE with the `sudo systemctl restart nvued.service` command. If you disable LDAP, you need to restart the NVUE service.
 {{%/notice%}}
 
 ### Connection

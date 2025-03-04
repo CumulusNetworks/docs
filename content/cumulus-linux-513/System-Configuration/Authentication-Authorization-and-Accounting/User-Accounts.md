@@ -101,12 +101,12 @@ cumulus@switch:~$ sudo adduser admin2 nvapply
 - If you run Linux commands to configure a user password with five or fewer characters, Cumulus Linux logs the message `BAD PASSWORD: The password is shorter than 6 characters`. If password security is disabled, this is only a warning and the password is set. If password security is enabled, the short password is not set.
 {{%/notice%}}
 
+{{< /tab >}}
+{{< /tabs >}}
+
 {{%notice note%}}
 When you change the role for a user, Cumulus Linux terminates their session (including the SSH session) and they have to reauthenticate. For example, if you change the role for a user from `nvue-admin` to `nvue-monitor`, if the user tries to run an `nv set` command, their session disconnects and they have to reauthenticate.
 {{%/notice%}}
-
-{{< /tab >}}
-{{< /tabs >}}
 
 {{%notice note%}}
 Only the following user accounts can create, modify, and delete other `system-admin` accounts:

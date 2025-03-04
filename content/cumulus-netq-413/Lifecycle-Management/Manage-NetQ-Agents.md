@@ -7,63 +7,6 @@ toc: 3
 
 Run the following commands to view the status of an agent, disable an agent, manage logging, and configure the events the agent collects.
 
-<!--the following section was in network inventory. It needs to be incorporated here.
-To view the NetQ Agents on all switches and hosts:
-
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu.
-
-2. Select **Agents** from the **Network** column.
-
-3. View the **Version** column to determine which release of the NetQ Agent is running on your devices. Ideally, this version should be the same as the NetQ release you are running, and is the same across all your devices.
-
-    {{<figure src="/images/netq/main-menu-ntwk-agents-310.png" width="700">}}
-
-<div style="padding-left: 18px;"><table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Hostname</td>
-<td>Name of the switch or host</td>
-</tr>
-<tr>
-<td>Timestamp</td>
-<td>Date and time the data was captured</td>
-</tr>
-<tr>
-<td>Last Reinit</td>
-<td>Date and time that the switch or host was reinitialized</td>
-</tr>
-<tr>
-<td>Last Update Time</td>
-<td>Date and time that the switch or host was updated</td>
-</tr>
-<tr>
-<td>Lastboot</td>
-<td>Date and time that the switch or host was last booted up</td>
-</tr>
-<tr>
-<td>NTP State</td>
-<td>Status of NTP synchronization on the switch or host; yes = in synchronization, no = out of synchronization</td>
-</tr>
-<tr>
-<td>Sys Uptime</td>
-<td>Amount of time the switch or host has been continuously up and running</td>
-</tr>
-<tr>
-<td>Version</td>
-<td>NetQ version running on the switch or host</td>
-</tr>
-</tbody>
-</table>
-</div>
-
--->
-
 ## View NetQ Agent Status
 
 The syntax for the NetQ Agent status command is:
@@ -97,7 +40,7 @@ cumulus@switch~:$ netq show agents opta
 Matching agents records:
 Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
 ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
-netq-appliance    Fresh            yes      4.13.0-ub22.04u50~11739293854.1b7284 Tue Oct  8 12:06:08 2024  Tue Nov 12 17:03:14 2024  Tue Nov 12 17:04:09 2024   Tue Dec  3 15:43:47 2024
+netq-appliance    Fresh            yes      4.13.0-ub22.04u50~1739293854.1b72846 Mon Mar  3 16:30:50 2025  Mon Mar  3 19:52:26 2025  Mon Mar  3 19:52:59 2025   Tue Mar  4 18:57:09 2025 
 ```
 
 ## View NetQ Agent Configuration
@@ -106,7 +49,7 @@ You can view the current configuration of a NetQ Agent to determine what data it
 
 ```
 sudo netq config show agent 
-    [cpu-limit|frr-monitor|loglevel|ssl|stats|wjh|wjh-threshold] 
+    [asic-monitor|cpu-limit|frr-monitor|global-timeout|loglevel|ssl|spice|stats|wjh|wjh-threshold] 
     [json]
 ```
 

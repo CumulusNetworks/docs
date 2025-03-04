@@ -78,7 +78,7 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 {{< tab "nv set ">}}
 
 ```
-nv set system dot1x reauth-timeout-ignore yes
+nv set system dot1x reauth-timeout-ignore
 ```
 
 {{< /tab >}}

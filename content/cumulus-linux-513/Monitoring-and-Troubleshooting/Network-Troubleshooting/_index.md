@@ -797,52 +797,117 @@ listening on bond0, link-type EN10MB (Ethernet), capture size 65535 bytes
 12 packets received by filter
 0 packets dropped by kernel
 ```
-<!--
-## Run Linux Commands in a Non-default VRF
 
-You can use `ip vrf exec` to run commands in a non-default VRF context, which is useful for network utilities like `ping`, `traceroute`, and `nslookup`.
+## ls
 
-The full syntax is `ip vrf exec <vrf-name> <command> <arguments>`. For example:
+To list the contents of a directory, including files, subdirectories, and other file system objects, run the following NVUE or Linux command.
 
-```
-cumulus@switch:~$ sudo ip vrf exec Tenant1 nslookup google.com - 8.8.8.8
-```
+{{< tabs "TabID805 ">}}
+{{< tab "NVUE Commands ">}}
 
-By default, `ping` and `ping6`, and `traceroute` and `traceroute6` all use the default VRF and use a mechanism that checks the VRF context of the current shell, which you can see when you run `ip vrf id`. If the VRF context of the shell is *mgmt*, these commands run in the default VRF context.
-
-`ping` and `traceroute` have additional arguments that you can use to specify an egress interface or a source address. In the default VRF, the source interface flag (`ping -I` or `traceroute -i`) specifies the egress interface for the `ping` or `traceroute` operation. However, you can use the source interface flag instead to specify a non-default VRF to use for the command. Doing so causes the routing lookup for the destination address to occur in that VRF.
-
-With `ping -I`, you can specify the source interface or the source IP address but you cannot use the flag more than once. Either choose an egress interface/VRF or a source IP address. For `traceroute`, you can use `traceroute -s` to specify the source IP address.
-
-You gain additional flexibility if you run `ip vrf exec` in combination with `ping`/`ping6`  or `traceroute`/`traceroute6`, as the VRF context is outside of the `ping` and `traceroute` commands. This allows for the most granular control of `ping` and `traceroute`, as you can specify both the VRF and the source interface flag.
-
-For `ping`, use the following syntax:
+Run the `nv action list system file-path <path>` command:
 
 ```
-ip vrf exec <vrf-name> [ping|ping6] -I [<egress_interface> | <source_ip>] <destination_ip>
+cumulus@switch:~$ nv action list system file-path /var/log
+Action executing ... 
+[ 
+     { 
+        "filename": "runit", 
+        "flags": "drwxr-xr-x", 
+        "links": 5, 
+        "owner": "root", 
+        "group": "root", 
+        "size": 4096, 
+        "date": "2024-10-05 15:02:22.395910058 +0000", 
+        "epoch": 1728140542, 
+        "epoch_utc": 1728140542 
+    }, 
+    { *-
+        "filename": "switchd.log", 
+        "flags": "-rw-r-----", 
+        "links": 1, 
+        "owner": "root", 
+        "group": "adm", 
+        "size": 3886, 
+        "date": "2025-02-20 16:48:23.865423228 +0000", 
+        "epoch": 1740070103, 
+        "epoch_utc": 1740070103 
+    }, 
+    { 
+        "filename": "syslog.4.gz", 
+        "flags": "-rw-r-----", 
+        "links": 1, 
+        "owner": "root", 
+        "group": "adm", 
+        "size": 444948, 
+        "date": "2025-02-21 23:14:43.321379607 +0000", 
+        "epoch": 1740179683, 
+        "epoch_utc": 1740179683 
+    }, 
+    { 
+        "filename": "wtmp", 
+        "flags": "-rw-rw-r--", 
+        "links": 1, 
+        "owner": "root", 
+        "group": "utmp", 
+        "size": 14976, 
+        "date": "2025-02-24 13:47:41.846513274 +0000", 
+        "epoch": 1740404861, 
+        "epoch_utc": 1740404861 
+    }  
+] 
+Action succeeded 
 ```
 
-For example:
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Run the `ls -la --full-time <path>` command:
 
 ```
-cumulus@switch:~$ sudo ip vrf exec Tenant1 ping -I swp1 8.8.8.8
-cumulus@switch:~$ sudo ip vrf exec Tenant1 ping -I 192.0.1.1 8.8.8.8
-cumulus@switch:~$ sudo ip vrf exec Tenant1 ping6 -I swp1 2001:4860:4860::8888
-cumulus@switch:~$ sudo ip vrf exec Tenant1 ping6 -I 2001:db8::1 2001:4860:4860::8888
+cumulus@switch:~$ ls -la --full-time /var/log
+total 4120
+drwxr-xr-x  15 root root               4096 2025-03-03 19:36:18.200004431 +0000
+drwxr-xr-x  16 root root               4096 2025-02-03 17:52:09.680000000 +0000 ..
+-rw-r--r--   1 root root               8588 2025-03-04 16:30:14.161107009 +0000 air-agent.log
+drwxr-xr-x   2 root root               4096 2025-02-03 17:57:13.848729908 +0000 apt
+drwxr-x---   2 root adm                4096 2025-02-03 18:00:21.260000000 +0000 audit
+-rw-r-----   1 root adm              261416 2025-03-04 16:30:20.121107009 +0000 auth.log
+-rw-r--r--   1 root root                  0 2025-02-27 00:00:01.874892097 +0000 boot.log
+-rw-r--r--   1 root root              67132 2025-02-20 17:20:29.644000000 +0000 boot.log.1.gz
+-rw-r--r--   1 root root              67353 2025-02-20 16:05:23.196000000 +0000 boot.log.2.gz
+-rw-r--r--   1 root root              68343 2025-02-20 15:53:56.923926790 +0000 boot.log.3.gz
+-rw-r--r--   1 root root                 20 2025-02-20 15:52:57.144000000 +0000 boot.log.4.gz
+-rw-r--r--   1 root root              58244 2025-02-03 18:01:08.020000000 +0000 boot.log.5.gz
+-rw-rw----   1 root utmp                  0 2025-03-03 19:36:18.200004431 +0000 btmp
+-rw-rw----   1 root utmp                  0 2025-02-03 18:00:21.128000000 +0000 btmp.1
+-rw-r-----   1 root adm               80173 2025-03-04 07:35:47.882398603 +0000 clagd.log
+-rw-r-----   1 root adm                9553 2025-02-20 17:20:35.147130488 +0000 cl-system-services.log
+-rw-r-----   1 root adm                 925 2025-02-20 17:20:21.392000000 +0000 crit.log
+-rw-r-----   1 root adm               12006 2025-02-20 17:20:35.147130488 +0000 csmgrd.log
+drwxr-x---   2 frr  frr                4096 2025-02-20 15:57:21.007926790 +0000 frr
+drwxr-xr-x   8 root root               4096 2025-02-20 17:20:22.380000000 +0000 ifupdown2
+drwxr-xr-x   2 root root               4096 2025-02-03 17:57:13.952729908 +0000 installer
+drwxr-sr-x+  3 root systemd-journal    4096 2025-02-03 17:52:08.128000000 +0000 journal
+-rw-rw-r--   1 root utmp             292292 2025-03-04 16:30:20.169107009 +0000 lastlog
+drwxrwx---   5 root root               4096 2025-02-03 17:52:32.388000000 +0000 lttng-traces
+drw-r--r--   2 root root               4096 2025-02-03 17:52:34.132000000 +0000 mstpd
+-rw-r-----   1 root adm                1499 2025-02-20 17:20:37.691130488 +0000 netqd.log
+drwxr-xr-x   2 root adm                4096 2025-02-21 00:00:00.448502530 +0000 nginx
+-rw-r-----   1 root adm                2620 2025-03-04 00:08:15.511384272 +0000 nv-cli.log
+drwxr-xr-x   2 root root               4096 2025-01-30 07:47:42.000000000 +0000 nv-telemetry
+-rw-r-----   1 root adm                9252 2025-03-04 00:08:15.735389239 +0000 nvued.log
+-rw-r-----   1 root adm              753530 2025-02-20 17:20:20.420000000 +0000 nvued.log.1
+drwx------   2 root root               4096 2025-02-03 17:21:45.540375528 +0000 private
+drwxr-xr-x   2 root root               4096 2024-12-06 06:42:43.000000000 +0000 prometheus
+-rw-r-----   1 root adm               27585 2025-03-04 16:30:12.069107009 +0000 ptmd.log
+lrwxrwxrwx   1 root root                 39 2025-02-03 17:21:45.540375528 +0000 README -> ../../usr/share/doc/systemd/README.logs
+drwxr-xr-x   5 root root               4096 2025-02-03 17:24:42.773317635 +0000 runit
+-rw-r-----   1 root adm                9458 2025-02-20 17:20:35.147130488 +0000 switchd.log
+-rw-r-----   1 root adm              545043 2025-03-04 16:30:53.945107009 +0000 syslog
+-rw-r-----   1 root adm             2047851 2025-02-27 00:00:01.846891468 +0000 syslog.1
+-rw-rw-r--   1 root utmp              49920 2025-03-04 16:30:20.169107009 +0000 wtmp
 ```
 
-For `traceroute`, use the following syntax:
-
-```
-ip vrf exec <vrf-name> [traceroute|traceroute6] -i <egress_interface> -s <source_ip> <destination_ip>
-```
-
-For example:
-
-```
-cumulus@switch:~$ sudo ip vrf exec Tenant1 traceroute -i swp1 -s 192.0.1.1 8.8.8.8
-cumulus@switch:~$ sudo ip vrf exec Tenant1 traceroute6 -i swp1 -s 2001:db8::1 2001:4860:4860::8888
-```
-
-The VRF context for `ping` and `traceroute` commands move automatically to the default VRF context, therefore, you must use the source interface flag to specify the management VRF. Typically, there is only a single interface in the management VRF (eth0) and only a single IPv4 address or IPv6 global unicast address assigned to it. You cannot specify both a source interface and a source IP address with `ping -I`.
--->
+{{< /tab >}}
+{{< /tabs >}}

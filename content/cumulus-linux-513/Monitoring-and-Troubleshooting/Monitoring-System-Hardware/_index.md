@@ -18,7 +18,7 @@ You can run NVUE commands to monitor your system hardware.
 
 | Command | Description |
 | ----------- | ----------- |
-| `nv show system health`| Shows information about the health of the switch and describes any issues. |
+| `nv show system health`| Shows information about the health of the switch including system, hardware, process, disk, memory, CPU, and transceiver information and describes any issues. Run this command to check real-time health metrics and view historical health data.<ul><li>To show system health information for a specific configuration revision, run the `nv show system health --rev <revision-id>` command.</li><li>To show system health information in `json` format, run the `nv show system health -o json` command.</li></ul>|
 | `nv show platform`| Shows platform hardware information on the switch, such as the model and manufacturer, memory, serial number and system MAC address. |
 |`nv show platform environment fan` | Shows information about the fans on the switch, such as the minimum, maximum and current speed, the fan state, and the fan direction.|
 | `nv show platform environment led` | Shows information about the LEDs on the switch, such as the LED name and color.|
@@ -26,6 +26,52 @@ You can run NVUE commands to monitor your system hardware.
 | `nv show platform environment temperature` | Shows information about the sensors on the switch, such as the critical, maximum, minimum and current temperature and the current state of the sensor.|
 | `nv show platform environment voltage` | Shows the list of voltage sensors on the switch.|
 | `nv show platform inventory` | Shows the switch inventory, which includes fan and PSU hardware version, model, serial number, state, and type. For information about a specific fan or PSU, run the `nv show platform inventory <inventory-name>` command.|
+
+The following example shows the `nv show health` command output when the health of the switch is good:
+
+```
+cumulus@switch:~$ nv show system health 
+                     operational    applied
+----------          -----------     ------- 
+
+System         OK 
+Process        OK 
+Hardware       OK 
+CPU            OK 
+Disk           OK 
+Memory         OK 
+Transceiver    OK 
+
+Health issues 
+================ 
+```
+
+The following example shows the `nv show health` command output when the health of the switch is not good:
+
+```
+cumulus@switch:~$ 
+                    operational  applied 
+----------          -----------  ------- 
+System              Not OK 
+Process             Not OK 
+Hardware            Not OK 
+CPU                 Not OK 
+Disk                Not OK 
+Memory              Not OK 
+
+Health issues 
+================ 
+    Hardware                       Status information 
+    ------------------             ------------------ 
+    PSU1                           bad 
+    PSU1-Temp-sensor               absent 
+    PSU1/FAN                       absent 
+
+    Process                        Status information 
+    ------------------             ------------------ 
+    routing                        inactive 
+    Forwarding                     Switchd exited: Thu Feb 20 18:42:00 PST 2025, reason: SDK init failure. 
+```
 
 The following example shows the `nv show platform` command output:
 

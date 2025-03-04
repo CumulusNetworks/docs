@@ -10,25 +10,28 @@ This document supports the Cumulus Linux 5.13 release, and lists new platforms, 
 
 ## What's New in Cumulus Linux 5.13
 
+Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains several new features and improvements.
+
 ### Platforms
 
-- NVIDIA SN5600D (200G Spectrum-4)
+- NVIDIA SN5600D (200G Spectrum-4 DC version)
 
 ### New Features and Enhancements
 
 - NVIDIA SN5400 ITU-T G.8273.2 Class C (Compliance)
+- {{<link url="Equal-Cost-Multipath-Load-Sharing/#enable-adaptive-routing" text="Enabling adaptive routing no longer restarts switchd">}}
+- {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="Optimized upgrade supports warmboot">}}
+- {{<link url="802.1X-Interfaces/#ignore-reauthorization-timeout" text="802.1 option to keep the port in the current state when the RADIUS server is unreachable">}}
+- {{<link url="Monitoring-System-Hardware/#nvue-commands" text="Updated system health command">}} 
 - Erase SSD before switch RMA
 - OTLP Phase 4
 - gNMI support
 - Default AR profile update
 - New maintenance mode commands
-- 802.1 option to keep port in current state when RADIUS server is unreachable
-- System health commands
 - Recovery mechanism for CPLD thermal shutdown
 - Export per transceiver temperature and power
 - Filters for RSYSLOG log per facility level
 - 802.1x on router ports with dynamic VRF assignments
-- Optimized upgrade supports warmboot
 - Ability to disconnect or disable remote access to the switch
 - Enable RADIUS for multiple VRFs
 - Support Docker container
@@ -75,7 +78,7 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 {{< tab "nv set ">}}
 
 ```
-
+nv set system dot1x reauth-timeout-ignore
 ```
 
 {{< /tab >}}

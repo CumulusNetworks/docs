@@ -147,6 +147,10 @@ Exception List
 No Data
 ```
 
+{{%notice note%}}
+In the `nv show qos roce` command output, `inf` in the `size` column represents infinite.
+{{%/notice%}}
+
 To show detailed RoCE information about a single interface, run the `nv show interface <interface> qos roce status` command.
 
 ```

@@ -10,23 +10,23 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 ## March 2025
 <!-- Air:WhatsNew -->
 ### 82.2025.0304-011
-- Fixed node name length maximum to 255 characters.
-- Added support for right clicking a node exposing actions menu.
+- Added ability to right-click a node to open the actions menu
+- The node name field now accommodates up to 255 characters
 <!-- Air:WhatsNew -->
 
 ## Feburary 2025
 ### 82.2025.0227-011
-- Fixed an issue where pressing "enter" in the ZTP text box created a SIM instead of adding a new line.
-- Added support for NetQ configuration via JSON topology files.
+- Fixed an issue where pressing "enter" in the ZTP text box created a SIM instead of adding a new line
+- Added support for NetQ configuration via JSON topology files
 
 ### 82.2025.0225-011
-- Fixed an issue with scrolling in Nodes/Links list when console is open.
-- Added tooltip support for improved accessibility in navigation items.
+- Fixed an issue with scrolling in Nodes/Links list when console is open
+- Added tooltip support for improved accessibility in navigation items
 
 ### 82.2025.0220-011
 - Fixed an issue with launching NetQ
-- Fixed a validation issue when importing JSON topologies with ZTP scripts
-- Added ability to define unconnected interfaces via JSON topology files.
+- Fixed a validation issue when importing JSON topologies with ZTP script
+- Added ability to define unconnected interfaces via JSON topology files
 
 ### 82.2025.0213-011
 - Fixed an issue with Demo Marketplace nodes not retaining their disk changes after waking up

@@ -904,3 +904,67 @@ NVUE restarts the FRR service when you:
 - Disable the SNMP server with `agentx` configured.
 
 Restarting FRR restarts all the routing protocol daemons that you enable and that are running, which might impact traffic.
+
+## File System Commands
+
+NVUE provide commands to list directory contents and get the hash for a file.
+
+### List Directory Contents
+
+To list the contents of a directory, including files, subdirectories, and other file system objects, run the `nv action list system file-path <path>` command. This NVUE command is equivalent to the Linux `ls -la --full-time <path>` command.
+
+```
+cumulus@switch:~$ nv action list system file-path /var/log
+Action executing ... 
+[ 
+     { 
+        "filename": "runit", 
+        "flags": "drwxr-xr-x", 
+        "links": 5, 
+        "owner": "root", 
+        "group": "root", 
+        "size": 4096, 
+        "date": "2024-10-05 15:02:22.395910058 +0000", 
+        "epoch": 1728140542, 
+        "epoch_utc": 1728140542 
+    }, 
+    { *-
+        "filename": "switchd.log", 
+        "flags": "-rw-r-----", 
+        "links": 1, 
+        "owner": "root", 
+        "group": "adm", 
+        "size": 3886, 
+        "date": "2025-02-20 16:48:23.865423228 +0000", 
+        "epoch": 1740070103, 
+        "epoch_utc": 1740070103 
+    }, 
+    { 
+        "filename": "syslog.4.gz", 
+        "flags": "-rw-r-----", 
+        "links": 1, 
+        "owner": "root", 
+        "group": "adm", 
+        "size": 444948, 
+        "date": "2025-02-21 23:14:43.321379607 +0000", 
+        "epoch": 1740179683, 
+        "epoch_utc": 1740179683 
+    }, 
+    { 
+        "filename": "wtmp", 
+        "flags": "-rw-rw-r--", 
+        "links": 1, 
+        "owner": "root", 
+        "group": "utmp", 
+        "size": 14976, 
+        "date": "2025-02-24 13:47:41.846513274 +0000", 
+        "epoch": 1740404861, 
+        "epoch_utc": 1740404861 
+    }  
+] 
+Action succeeded 
+```
+
+### Get the Hash for a File
+
+NVUE provides commands to calculate and generate a unique hash value (checksum) for a file using md5, sha1, sha224, ssa256, and sha512 algorithms to verify the file's integrity.

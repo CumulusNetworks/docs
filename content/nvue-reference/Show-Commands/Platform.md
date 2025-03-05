@@ -1054,7 +1054,7 @@ cumulus@switch:~$ nv show platform transceiver swp25 channel 1
 
 Shows transceiver data for an interface in a condensed format.
 
-## Command Syntax
+### Command Syntax
 
 | Syntax | Description |
 | --------- | -------------- |

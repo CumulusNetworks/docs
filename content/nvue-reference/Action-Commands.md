@@ -2987,6 +2987,141 @@ cumulus@switch:~$ nv action fetch system packages key http://deb.opera.com/archi
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action generate file-hash md5 <filename></h>
+
+Calculates and generates a unique hash value (checksum) for a file using md5.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<filename>`  |  The technical support file name and location. |
+
+## Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action generate file-hash md5 /var/log/text.txt  
+Action executing ... 
+Generated Hash Checksum  
+5073306b0629c047d090e2c96b5eec4b /var/log/text.txt
+
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action generate file-hash sha1 <filename></h>
+
+Calculates and generates a unique hash value (checksum) for a file using sha1.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<filename>`  |  The technical support file name and location. |
+
+## Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action generate file-hash sha1 /var/log/text.txt  
+Action executing ...  
+Generated Hash Checksum  
+c0965ec47c1557d671e36abb5c55ec13b8378e44  /var/log/text.txt
+
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action generate file-hash sha224 <filename></h>
+
+Calculates and generates a unique hash value (checksum) for a file using sha224.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<filename>`  |  The technical support file name and location. |
+
+## Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action generate file-hash sha224  /var/log/text.txt  
+Action executing ...  
+Generated Hash Checksum  
+c414b2b7eaa757162f41183c42a02cf329ab86719be9f8583195d9ab  /var/log/text.txt
+
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action generate file-hash sha256 <filename></h>
+
+Calculates and generates a unique hash value (checksum) for a file using sha256.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<filename>`  |  The technical support file name and location. |
+
+## Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action generate file-hash sha256 /var/log/text.txt  
+Action executing ...  
+Generated Hash Checksum  
+3fe4bf60ed8d1ce9ffca7f578a94cab88b907951c92e1f8605f59a2bb0a2ab8b  /var/log/text.txt  
+
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action generate file-hash sha512 <filename></h>
+
+Calculates and generates a unique hash value (checksum) for a file using sha512.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<filename>`  |  The technical support file name and location. |
+
+## Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action generate file-hash sha512 /var/log/text.txt
+Action executing ...  
+Generated Hash Checksum  
+9420cdea5577569d60c986f0da39dc31be9d08a8945e42a4445c518e105cf4c3d93bc587b770bee4719836b92a65c7cb6efef283e74592f7cf3a0fc2cccc18bf  /var/log/text.txt  
+
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action delete system tech-support files \<file-id\></h>
 
 Deletes the specified technical support file (a compressed archive file of useful information for troubleshooting). 
@@ -3105,6 +3240,76 @@ Introduced in Cumulus Linux 5.12.0
 
 ```
 cumulus@switch:~$ nv action install system image files cumulus-linux-5.12.0-mlx-amd64.bin
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action list system file-path \<path\></h>
+
+Lists the contents of a directory, including files, subdirectories, and other file system objects. This NVUE command is equivalent to the Linux `ls -la --full-time <path>` command.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<path>` |  The path to the directory you want to list.|
+
+## Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action list system file-path /var/log
+Action executing ... 
+[ 
+     { 
+        "filename": "runit", 
+        "flags": "drwxr-xr-x", 
+        "links": 5, 
+        "owner": "root", 
+        "group": "root", 
+        "size": 4096, 
+        "date": "2024-10-05 15:02:22.395910058 +0000", 
+        "epoch": 1728140542, 
+        "epoch_utc": 1728140542 
+    }, 
+    { *-
+        "filename": "switchd.log", 
+        "flags": "-rw-r-----", 
+        "links": 1, 
+        "owner": "root", 
+        "group": "adm", 
+        "size": 3886, 
+        "date": "2025-02-20 16:48:23.865423228 +0000", 
+        "epoch": 1740070103, 
+        "epoch_utc": 1740070103 
+    }, 
+    { 
+        "filename": "syslog.4.gz", 
+        "flags": "-rw-r-----", 
+        "links": 1, 
+        "owner": "root", 
+        "group": "adm", 
+        "size": 444948, 
+        "date": "2025-02-21 23:14:43.321379607 +0000", 
+        "epoch": 1740179683, 
+        "epoch_utc": 1740179683 
+    }, 
+    { 
+        "filename": "wtmp", 
+        "flags": "-rw-rw-r--", 
+        "links": 1, 
+        "owner": "root", 
+        "group": "utmp", 
+        "size": 14976, 
+        "date": "2025-02-24 13:47:41.846513274 +0000", 
+        "epoch": 1740404861, 
+        "epoch_utc": 1740404861 
+    }  
+] 
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

@@ -44,11 +44,11 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
   - Buffer Occupancy and watermark metrics
 - gNMI support
 - NVUE
-  - {{<link url="Network-Troubleshooting/#ls" text="ls command">}}
+  - {{<link url="NVUE-CLI/#list-directory-contents" text="Command to list directory contents">}}
+  - {{<link url="NVUE-CLI/#get-the-hash-for-a-file" text="Command to get the hash for a file">}}
   - Enable CRL support
   - SSH certificate-based authorization
   - .1x support for NAS-IP-Address and NAS-Identifier
-  - Get the hash for a file
   - Additional FRR filters
   - {{< expand "Changed NVUE Commands" >}}
 | Cumulus Linux 5.13 | Cumulus Linux 12 and Earlier |

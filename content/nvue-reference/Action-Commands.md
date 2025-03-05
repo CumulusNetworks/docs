@@ -83,7 +83,7 @@ type: ''
 
 Terminates ZTP if it is in the discovery process or is not currently running a script.
 
-## Version History
+### Version History
 
 Introduced in Cumulus Linux 5.11.0
 
@@ -2810,7 +2810,7 @@ Action succeeded
 
 Disables ZTP and deactivates the provisioning process. If a ZTP script is currently running, ZTP is not disabled.
 
-## Version History
+### Version History
 
 Introduced in Cumulus Linux 5.11.0
 
@@ -2901,7 +2901,7 @@ Action succeeded
 
 Enables ZTP and activates the provisioning process. ZTP tries to run the next time the switch boots. However, if ZTP already ran on a previous boot up or if you made manual configuration changes, ZTP exits without trying to look for a script.
 
-## Version History
+### Version History
 
 Introduced in Cumulus Linux 5.11.0
 
@@ -2931,7 +2931,7 @@ Fetches a binary image from the specified URL.
 | --------- | -------------- |
 | `<remote-url>` |  The remote URL.|
 
-## Version History
+### Version History
 
 Introduced in Cumulus Linux 5.12.0
 
@@ -2953,7 +2953,7 @@ Fetches a repository key and saves it globally in the `/etc/apt/trusted.gpg.d/` 
 | --------- | -------------- |
 | `<key>` |  The repository key.|
 
-## Version History
+### Version History
 
 Introduced in Cumulus Linux 5.12.0
 
@@ -2975,7 +2975,7 @@ Fetches and saves the repository key in the `/etc/apt/keyrings/` directory.
 | --------- | -------------- |
 | `<key>` |  The repository key.|
 
-## Version History
+### Version History
 
 Introduced in Cumulus Linux 5.12.0
 
@@ -2997,7 +2997,7 @@ Calculates and generates a unique hash value (checksum) for a file using md5.
 | --------- | -------------- |
 | `<filename>`  |  The technical support file name and location. |
 
-## Version History
+### Version History
 
 Introduced in Cumulus Linux 5.13.0
 
@@ -3024,7 +3024,7 @@ Calculates and generates a unique hash value (checksum) for a file using sha1.
 | --------- | -------------- |
 | `<filename>`  |  The technical support file name and location. |
 
-## Version History
+### Version History
 
 Introduced in Cumulus Linux 5.13.0
 
@@ -3051,7 +3051,7 @@ Calculates and generates a unique hash value (checksum) for a file using sha224.
 | --------- | -------------- |
 | `<filename>`  |  The technical support file name and location. |
 
-## Version History
+### Version History
 
 Introduced in Cumulus Linux 5.13.0
 
@@ -3078,7 +3078,7 @@ Calculates and generates a unique hash value (checksum) for a file using sha256.
 | --------- | -------------- |
 | `<filename>`  |  The technical support file name and location. |
 
-## Version History
+### Version History
 
 Introduced in Cumulus Linux 5.13.0
 
@@ -3105,7 +3105,7 @@ Calculates and generates a unique hash value (checksum) for a file using sha512.
 | --------- | -------------- |
 | `<filename>`  |  The technical support file name and location. |
 
-## Version History
+### Version History
 
 Introduced in Cumulus Linux 5.13.0
 
@@ -3132,7 +3132,7 @@ Deletes the specified technical support file (a compressed archive file of usefu
 | --------- | -------------- |
 | `<file-id>`  |  The technical support file name and location. |
 
-## Version History
+### Version History
 
 Introduced in Cumulus Linux 5.10.0
 
@@ -3151,7 +3151,7 @@ Action succeeded
 
 Generates a technical support file (compressed archive file of useful information for troubleshooting). 
 
-## Version History
+### Version History
 
 Introduced in Cumulus Linux 5.10.0
 
@@ -3232,7 +3232,7 @@ Installs the specified binary image on the second partition (optimized upgrade).
 | --------- | -------------- |
 | `<filename>` |  The binary image filename.|
 
-## Version History
+### Version History
 
 Introduced in Cumulus Linux 5.12.0
 
@@ -3254,7 +3254,7 @@ Lists the contents of a directory, including files, subdirectories, and other fi
 | --------- | -------------- |
 | `<path>` |  The path to the directory you want to list.|
 
-## Version History
+### Version History
 
 Introduced in Cumulus Linux 5.13.0
 
@@ -3754,7 +3754,7 @@ Manually runs ZTP from the beginning. If you made manual configuration changes, 
 
 You can also specify a custom URL (`nv action run system ztp url <url-and-filename`) or directory (`nv action run system ztp url <directory-and-filename`) on the switch for the ZTP script.
 
-## Version History
+### Version History
 
 Introduced in Cumulus Linux 5.11.0
 

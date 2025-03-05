@@ -105,7 +105,7 @@ cumulus@switch:~$ sudo adduser admin2 nvapply
 {{< /tabs >}}
 
 {{%notice note%}}
-When you change the role for a user, Cumulus Linux terminates their session (including the SSH session) and they have to reauthenticate. For example, if you change the role for a user from `nvue-admin` to `nvue-monitor`, if the user tries to run an `nv set` command, their session disconnects and they have to reauthenticate.
+When you change the role for a user, Cumulus Linux terminates their session (including the SSH session) and they have to reauthenticate. For example, if you change the role for a user from `nvue-admin` to `nvue-monitor`, if the user tries to run `nv set` commands from an active session, their session disconnects and they have to reauthenticate.
 {{%/notice%}}
 
 {{%notice note%}}

@@ -59,10 +59,15 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
   - {{< expand "Removed NVUE Commands" >}}
 ```
 nv action enable system maintenance mode
-nv action disable system maintenance mode
 nv action enable system maintenance ports
+nv action disable system maintenance mode
 nv action disable system maintenance ports
-nv show system maintenace
+nv action generate file-hash md5 <filename>
+nv action generate file-hash sha1 <filename>
+nv action generate file-hash sha224 <filename>
+nv action generate file-hash sha256 <filename>
+nv action generate file-hash sha512 <filename>
+nv action list system file-path <path>
 ```
 {{< /expand >}}
   - {{< expand "New NVUE Commands" >}}
@@ -71,7 +76,7 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 {{< tab "nv show ">}}
 
 ```
-
+nv show system maintenace
 ```
 
 {{< /tab >}}

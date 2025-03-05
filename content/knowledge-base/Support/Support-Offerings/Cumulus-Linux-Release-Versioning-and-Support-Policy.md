@@ -118,4 +118,4 @@ All Cumulus Linux 2.y.z releases reached end of life on February 2019 and are no
 
 ## Upgrade Process
 
-For information regarding upgrading from previous Cumulus Linux releases, refer to the [Cumulus Linux upgrade documentation]({{<ref "/cumulus-linux-56/Installation-Management/Upgrading-Cumulus-Linux" >}}).
+For information regarding upgrading from previous Cumulus Linux releases, refer to the [Cumulus Linux upgrade documentation]({{<ref "/cumulus-linux-512/Installation-Management/Upgrading-Cumulus-Linux" >}}).

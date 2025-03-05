@@ -5,17 +5,17 @@ weight: 160
 toc: 4
 ---
 
-The NetQ CLI provides access to all network state and event information collected by NetQ Agents. It behaves similarly to typical CLIs, with groups of commands that display related information, and help commands that provide additional information. See the {{<link title="NetQ CLI Reference" text="command line reference">}} for a comprehensive list of NetQ commands, including examples, options, and definitions.
+The NetQ command line interface (CLI) provides access to all network state and event information collected by NetQ Agents. It behaves similarly to typical CLIs, with groups of commands that display related information, and help commands that provide additional information. See the {{<link title="NetQ CLI Reference" text="command line reference">}} for a comprehensive list of NetQ commands, including examples, options, and definitions.
 
 {{<notice note>}}
 
-The NetQ command line interface only runs on switches and server hosts implemented with Intel x86 or ARM-based architectures.
+The NetQ CLI only runs on switches and server hosts implemented with Intel x86 or ARM-based architectures.
 
 {{</notice>}}
 
 ## CLI Access
 
-When you install or upgrade NetQ, you can also {{<link title="Install NetQ CLI" text="install and enable the CLI">}} on your NetQ server or appliance and hosts.
+After you install or upgrade NetQ, you can also {{<link title="Install NetQ CLI" text="install and configure the CLI">}} on your NetQ server or appliance and hosts.
 
 To access the CLI from a switch or server:
 
@@ -45,7 +45,7 @@ The NetQ command line has a flat structure as opposed to a modal structure: you 
 
 ### Command Syntax
 
-All NetQ CLI commands begin with `netq`. The commands you use to monitor your network fall into one of four syntax categories: validation (check), monitoring (show), configuration, and trace.
+All NetQ CLI commands begin with `netq`. The commands you use to monitor your network fall into one of four main syntax categories: validation (check), monitoring (show), configuration, and trace.
 
 ```
 netq check <network-protocol-or-service> [options]
@@ -139,6 +139,9 @@ To display NetQ command formatting rules, run:
 ```
 cumulus@switch:~$ netq help verbose
 ```
+### Command Abbreviations
+
+NetQ supports command abbreviation, where you can type a certain number of characters instead of a whole command to speed up CLI interaction. For example, instead of typing `netq show status verbose`, you can type `netq sh st v`.
 
 ### Command History
 
@@ -186,20 +189,59 @@ The following example shows the output for the `netq check bgp` command. Failed 
 cumulus@switch:~$ netq check bgp
 bgp check result summary:
 
-Checked nodes       : 8
-Total nodes         : 8
+Total nodes         : 7
+Checked nodes       : 7
+Failed nodes        : 7
 Rotten nodes        : 0
-Failed nodes        : 0
 Warning nodes       : 0
+Skipped nodes       : 0
 
 Additional summary:
-Total Sessions      : 30
-Failed Sessions     : 0
+Failed Sessions     : 13
+Total Sessions      : 37
+warn_sessions       : 0
 
-Session Establishment Test   : passed
-Address Families Test        : passed
-Router ID Test               : passed
 
+Session Establishment Test   :  0 warnings, 13 errors
+Address Families Test        :  Passed.
+Router ID Test               :  Passed.
+Hold Time Test               :  Passed.
+Keep Alive Interval Test     :  Passed.
+Ipv4 Stale Path Time Test    :  Passed.
+Ipv6 Stale Path Time Test    :  Passed.
+Interface MTU Test           :  Passed.
+
+
+Session Establishment Test details:
+Hostname          VRF             Peer Name         Peer Hostname     Reason                                        Last Changed
+----------------- --------------- ----------------- ----------------- --------------------------------------------- -------------------------
+border01          default         swp53             Unknown           BGP session with peer Unknown (swp53 vrf defa Tue Mar  4 15:48:45 2025
+                                                                      ult) failed, reason: RA not configured(?)
+border01          default         swp54             Unknown           BGP session with peer Unknown (swp54 vrf defa Tue Mar  4 15:48:45 2025
+                                                                      ult) failed, reason: RA not configured(?)
+border02          default         swp53             Unknown           BGP session with peer Unknown (swp53 vrf defa Tue Mar  4 15:48:56 2025
+                                                                      ult) failed, reason: RA not configured(?)
+border02          default         swp54             Unknown           BGP session with peer Unknown (swp54 vrf defa Tue Mar  4 15:48:56 2025
+                                                                      ult) failed, reason: RA not configured(?)
+leaf01            default         swp53             Unknown           BGP session with peer Unknown (swp53 vrf defa Mon Mar  3 19:44:28 2025
+                                                                      ult) failed, reason: RA not configured(?)
+leaf01            default         swp54             Unknown           BGP session with peer Unknown (swp54 vrf defa Mon Mar  3 19:44:29 2025
+                                                                      ult) failed, reason: RA not configured(?)
+leaf02            default         swp53             Unknown           BGP session with peer Unknown (swp53 vrf defa Tue Mar  4 15:48:45 2025
+                                                                      ult) failed, reason: RA not configured(?)
+leaf02            default         swp54             Unknown           BGP session with peer Unknown (swp54 vrf defa Tue Mar  4 15:48:45 2025
+                                                                      ult) failed, reason: RA not configured(?)
+leaf04            default         peerlink.4094     leaf03            BGP session with peer leaf03 (peerlink.4094 v Tue Mar  4 16:36:07 2025
+                                                                      rf default) failed,
+                                                                      reason: Peer not configured
+leaf04            default         swp53             Unknown           BGP session with peer Unknown (swp53 vrf defa Tue Mar  4 15:48:45 2025
+                                                                      ult) failed, reason: RA not configured(?)
+leaf04            default         swp54             Unknown           BGP session with peer Unknown (swp54 vrf defa Tue Mar  4 15:48:45 2025
+                                                                      ult) failed, reason: RA not configured(?)
+spine01           default         swp3              leaf03            BGP session with peer leaf03 (swp3 vrf defaul Tue Mar  4 16:40:11 2025
+                                                                      t) failed, reason: Peer not configured
+spine02           default         swp3              leaf03            BGP session with peer leaf03 (swp3 vrf defaul Tue Mar  4 16:40:14 2025
+                                                                      t) failed, reason: Peer not configured
 ```
 {{< /expand >}}
 
@@ -208,80 +250,285 @@ Router ID Test               : passed
 ```
 cumulus@switch:~$ netq check bgp json
 {
+    "additional_summary":{
+        "failed_sessions":13,
+        "total_sessions":37,
+        "warn_sessions":0
+    },
+    "failed_node_set":[
+        "leaf04",
+        "leaf01",
+        "spine02",
+        "leaf02",
+        "border01",
+        "spine01",
+        "border02"
+    ],
+    "rotten_node_set":[
+
+    ],
+    "skipped_node_set":[
+
+    ],
+    "summary":{
+        "checked_cnt":7,
+        "checked_hostnames":"leaf02, spine01, border02, spine02, leaf01, border01, leaf04",
+        "failed_node_cnt":7,
+        "rotten_node_cnt":0,
+        "skipped_node_cnt":0,
+        "total_cnt":7,
+        "warn_node_cnt":0
+    },
     "tests":{
-        "Session Establishment":{
-            "suppressed_warnings":0,
+        "Address Families":{
+            "enabled":true,
             "errors":[
 
             ],
-            "suppressed_errors":0,
             "passed":true,
-            "warnings":[
+            "suppressed_errors":0,
+            "suppressed_unverified":0,
+            "suppressed_warnings":0,
+            "unverified":[
 
             ],
-            "duration":0.0000853539,
-            "enabled":true,
-            "suppressed_unverified":0,
-            "unverified":[
+            "warnings":[
 
             ]
         },
-        "Address Families":{
-            "suppressed_warnings":0,
+        "Hold Time":{
+            "enabled":true,
             "errors":[
 
             ],
-            "suppressed_errors":0,
             "passed":true,
-            "warnings":[
+            "suppressed_errors":0,
+            "suppressed_unverified":0,
+            "suppressed_warnings":0,
+            "unverified":[
 
             ],
-            "duration":0.0002634525,
+            "warnings":[
+
+            ]
+        },
+        "Interface MTU":{
             "enabled":true,
+            "errors":[
+
+            ],
+            "passed":true,
+            "suppressed_errors":0,
             "suppressed_unverified":0,
+            "suppressed_warnings":0,
             "unverified":[
+
+            ],
+            "warnings":[
+
+            ]
+        },
+        "Ipv4 Stale Path Time":{
+            "enabled":true,
+            "errors":[
+
+            ],
+            "passed":true,
+            "suppressed_errors":0,
+            "suppressed_unverified":0,
+            "suppressed_warnings":0,
+            "unverified":[
+
+            ],
+            "warnings":[
+
+            ]
+        },
+        "Ipv6 Stale Path Time":{
+            "enabled":true,
+            "errors":[
+
+            ],
+            "passed":true,
+            "suppressed_errors":0,
+            "suppressed_unverified":0,
+            "suppressed_warnings":0,
+            "unverified":[
+
+            ],
+            "warnings":[
+
+            ]
+        },
+        "Keep Alive Interval":{
+            "enabled":true,
+            "errors":[
+
+            ],
+            "passed":true,
+            "suppressed_errors":0,
+            "suppressed_unverified":0,
+            "suppressed_warnings":0,
+            "unverified":[
+
+            ],
+            "warnings":[
 
             ]
         },
         "Router ID":{
-            "suppressed_warnings":0,
+            "enabled":true,
             "errors":[
 
             ],
-            "suppressed_errors":0,
             "passed":true,
-            "warnings":[
+            "suppressed_errors":0,
+            "suppressed_unverified":0,
+            "suppressed_warnings":0,
+            "unverified":[
 
             ],
-            "duration":0.0001821518,
+            "warnings":[
+
+            ]
+        },
+        "Session Establishment":{
             "enabled":true,
+            "errors":[
+                {
+                    "hostname":"border01",
+                    "lastChanged":1741103325674,
+                    "msg_id":"BGP_EVT_SESS_ERROR",
+                    "peerHostname":"Unknown",
+                    "peerName":"swp53",
+                    "reason":"BGP session with peer Unknown (swp53 vrf default) failed, reason: RA not configured(?)",
+                    "vrf":"default"
+                },
+                {
+                    "hostname":"border01",
+                    "lastChanged":1741103325657,
+                    "msg_id":"BGP_EVT_SESS_ERROR",
+                    "peerHostname":"Unknown",
+                    "peerName":"swp54",
+                    "reason":"BGP session with peer Unknown (swp54 vrf default) failed, reason: RA not configured(?)",
+                    "vrf":"default"
+                },
+                {
+                    "hostname":"border02",
+                    "lastChanged":1741103336772,
+                    "msg_id":"BGP_EVT_SESS_ERROR",
+                    "peerHostname":"Unknown",
+                    "peerName":"swp53",
+                    "reason":"BGP session with peer Unknown (swp53 vrf default) failed, reason: RA not configured(?)",
+                    "vrf":"default"
+                },
+                {
+                    "hostname":"border02",
+                    "lastChanged":1741103336451,
+                    "msg_id":"BGP_EVT_SESS_ERROR",
+                    "peerHostname":"Unknown",
+                    "peerName":"swp54",
+                    "reason":"BGP session with peer Unknown (swp54 vrf default) failed, reason: RA not configured(?)",
+                    "vrf":"default"
+                },
+                {
+                    "hostname":"leaf01",
+                    "lastChanged":1741031068713,
+                    "msg_id":"BGP_EVT_SESS_ERROR",
+                    "peerHostname":"Unknown",
+                    "peerName":"swp53",
+                    "reason":"BGP session with peer Unknown (swp53 vrf default) failed, reason: RA not configured(?)",
+                    "vrf":"default"
+                },
+                {
+                    "hostname":"leaf01",
+                    "lastChanged":1741031069219,
+                    "msg_id":"BGP_EVT_SESS_ERROR",
+                    "peerHostname":"Unknown",
+                    "peerName":"swp54",
+                    "reason":"BGP session with peer Unknown (swp54 vrf default) failed, reason: RA not configured(?)",
+                    "vrf":"default"
+                },
+                {
+                    "hostname":"leaf02",
+                    "lastChanged":1741103325133,
+                    "msg_id":"BGP_EVT_SESS_ERROR",
+                    "peerHostname":"Unknown",
+                    "peerName":"swp53",
+                    "reason":"BGP session with peer Unknown (swp53 vrf default) failed, reason: RA not configured(?)",
+                    "vrf":"default"
+                },
+                {
+                    "hostname":"leaf02",
+                    "lastChanged":1741103325225,
+                    "msg_id":"BGP_EVT_SESS_ERROR",
+                    "peerHostname":"Unknown",
+                    "peerName":"swp54",
+                    "reason":"BGP session with peer Unknown (swp54 vrf default) failed, reason: RA not configured(?)",
+                    "vrf":"default"
+                },
+                {
+                    "hostname":"leaf04",
+                    "lastChanged":1741106167198,
+                    "msg_id":"BGP_EVT_SESS_ERROR",
+                    "peerHostname":"leaf03",
+                    "peerName":"peerlink.4094",
+                    "reason":"BGP session with peer leaf03 (peerlink.4094 vrf default) failed, reason: Peer not configured",
+                    "vrf":"default"
+                },
+                {
+                    "hostname":"leaf04",
+                    "lastChanged":1741103325035,
+                    "msg_id":"BGP_EVT_SESS_ERROR",
+                    "peerHostname":"Unknown",
+                    "peerName":"swp53",
+                    "reason":"BGP session with peer Unknown (swp53 vrf default) failed, reason: RA not configured(?)",
+                    "vrf":"default"
+                },
+                {
+                    "hostname":"leaf04",
+                    "lastChanged":1741103325076,
+                    "msg_id":"BGP_EVT_SESS_ERROR",
+                    "peerHostname":"Unknown",
+                    "peerName":"swp54",
+                    "reason":"BGP session with peer Unknown (swp54 vrf default) failed, reason: RA not configured(?)",
+                    "vrf":"default"
+                },
+                {
+                    "hostname":"spine01",
+                    "lastChanged":1741106411628,
+                    "msg_id":"BGP_EVT_SESS_ERROR",
+                    "peerHostname":"leaf03",
+                    "peerName":"swp3",
+                    "reason":"BGP session with peer leaf03 (swp3 vrf default) failed, reason: Peer not configured",
+                    "vrf":"default"
+                },
+                {
+                    "hostname":"spine02",
+                    "lastChanged":1741106414396,
+                    "msg_id":"BGP_EVT_SESS_ERROR",
+                    "peerHostname":"leaf03",
+                    "peerName":"swp3",
+                    "reason":"BGP session with peer leaf03 (swp3 vrf default) failed, reason: Peer not configured",
+                    "vrf":"default"
+                }
+            ],
+            "passed":false,
+            "suppressed_errors":0,
             "suppressed_unverified":0,
+            "suppressed_warnings":0,
             "unverified":[
+
+            ],
+            "warnings":[
 
             ]
         }
     },
-    "failed_node_set":[
-
-    ],
-    "summary":{
-        "checked_cnt":8,
-        "total_cnt":8,
-        "rotten_node_cnt":0,
-        "failed_node_cnt":0,
-        "warn_node_cnt":0
-    },
-    "rotten_node_set":[
-
-    ],
+    "validation":"bgp",
     "warn_node_set":[
 
-    ],
-    "additional_summary":{
-        "total_sessions":30,
-        "failed_sessions":0
-    },
-    "validation":"bgp"
+    ]
 }
 ```
 {{< /expand >}}
@@ -301,23 +548,15 @@ cumulus@switch:~$ netq show agents
 Matching agents records:
 Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
 ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
-hostd-11          Fresh            yes      4.10.0-ub18.04u47~1717071980.7db4cf1 Thu May 30 12:48:38 2024  Thu May 30 12:54:54 2024  Thu May 30 12:54:54 2024   Mon Jun  3 16:54:39 2024
-hostd-12          Rotten           yes      4.10.0-rh7u47~1713946570.f7bc2d7     Thu May 30 12:13:57 2024  Thu May 30 12:55:07 2024  Thu May 30 12:55:07 2024   Thu May 30 13:00:12 2024
-hostd-21          Fresh            yes      4.10.0-ub18.04u47~1717071980.7db4cf1 Thu May 30 12:49:48 2024  Thu May 30 12:55:20 2024  Thu May 30 12:55:20 2024   Mon Jun  3 16:54:53 2024
-hostd-22          Rotten           yes      4.10.0-rh7u47~1713946570.f7bc2d7     Thu May 30 12:13:58 2024  Thu May 30 12:55:27 2024  Thu May 30 12:55:27 2024   Thu May 30 13:00:12 2024
-hosts-11          Fresh            yes      4.10.0-ub18.04u47~1717071980.7db4cf1 Thu May 30 12:50:48 2024  Thu May 30 12:55:40 2024  Thu May 30 12:55:40 2024   Mon Jun  3 16:54:52 2024
-hosts-12          Rotten           yes      4.10.0-rh7u47~1713946570.f7bc2d7     Thu May 30 12:13:58 2024  Thu May 30 12:55:53 2024  Thu May 30 12:55:53 2024   Thu May 30 13:00:43 2024
-hosts-13          Fresh            yes      4.10.0-ub18.04u47~1717071980.7db4cf1 Thu May 30 12:51:48 2024  Thu May 30 12:56:06 2024  Thu May 30 12:56:06 2024   Mon Jun  3 16:54:32 2024
-hosts-21          Fresh            yes      4.10.0-ub18.04u47~1717071980.7db4cf1 Thu May 30 12:52:46 2024  Thu May 30 12:56:19 2024  Thu May 30 12:56:19 2024   Mon Jun  3 16:54:34 2024
-hosts-22          Rotten           yes      4.10.0-rh7u47~1713946570.f7bc2d7     Thu May 30 12:13:59 2024  Thu May 30 12:56:32 2024  Thu May 30 12:56:32 2024   Thu May 30 13:01:13 2024
-hosts-23          Fresh            yes      4.10.0-ub18.04u47~1717071980.7db4cf1 Thu May 30 12:53:46 2024  Thu May 30 12:56:44 2024  Thu May 30 12:56:44 2024   Mon Jun  3 16:54:57 2024
-spine-1           Fresh            no       4.10.0-cld12u46~1713949601.127fb0c1b Thu May 30 12:13:39 2024  Thu May 30 13:19:36 2024  Thu May 30 13:19:36 2024   Mon Jun  3 16:54:38 2024
-spine-2           Fresh            no       4.10.0-cld12u46~1713949601.127fb0c1b Thu May 30 12:13:39 2024  Thu May 30 13:20:46 2024  Thu May 30 13:20:46 2024   Mon Jun  3 16:54:53 2024
-spine-3           Fresh            no       4.10.0-cld12u46~1713949601.127fb0c1b Thu May 30 12:13:39 2024  Thu May 30 13:21:58 2024  Thu May 30 13:21:58 2024   Mon Jun  3 16:54:47 2024
-torc-11           Fresh            no       4.10.0-cld12u46~1713949601.127fb0c1b Thu May 30 12:13:37 2024  Thu May 30 13:13:20 2024  Thu May 30 13:13:20 2024   Mon Jun  3 16:54:51 2024
-torc-12           Fresh            no       4.10.0-cld12u46~1713949601.127fb0c1b Thu May 30 12:13:38 2024  Thu May 30 13:18:23 2024  Thu May 30 13:18:23 2024   Mon Jun  3 16:54:53 2024
-torc-21           Fresh            no       4.10.0-cld12u46~1713949601.127fb0c1b Thu May 30 12:13:38 2024  Thu May 30 13:10:20 2024  Thu May 30 13:10:20 2024   Mon Jun  3 16:54:36 2024
-torc-22           Fresh            no       4.10.0-cld12u46~1713949601.127fb0c1b Thu May 30 12:13:38 2024  Thu May 30 13:11:42 2024  Thu May 30 13:11:42 2024   Mon Jun  3 16:54:40 2024
+border01          Fresh            yes      4.13.0-cld12u50~1739293953.1b72846ca Mon Mar  3 17:23:32 2025  Tue Mar  4 15:46:39 2025  Tue Mar  4 15:46:39 2025   Tue Mar  4 17:11:35 2025
+border02          Fresh            yes      4.13.0-cld12u50~1739293953.1b72846ca Thu Jan 23 14:59:39 2025  Tue Mar  4 15:46:50 2025  Tue Mar  4 15:46:50 2025   Tue Mar  4 17:11:32 2025
+fw1               Fresh            yes      4.13.0-cld12u50~1739293953.1b72846ca Thu Jan 23 14:59:40 2025  Tue Mar  4 15:46:44 2025  Tue Mar  4 15:46:44 2025   Tue Mar  4 17:11:31 2025
+fw2               Fresh            yes      4.13.0-cld12u50~1739293953.1b72846ca Thu Jan 23 14:39:07 2025  Tue Mar  4 15:46:39 2025  Tue Mar  4 15:46:39 2025   Tue Mar  4 17:11:27 2025
+leaf01            Fresh            yes      4.13.0-cld12u50~1739293953.1b72846ca Mon Mar  3 17:31:09 2025  Mon Mar  3 17:58:56 2025  Mon Mar  3 19:53:12 2025   Tue Mar  4 17:11:38 2025
+leaf02            Fresh            yes      4.13.0-cld12u50~1739293953.1b72846ca Mon Mar  3 17:31:10 2025  Tue Mar  4 15:46:38 2025  Tue Mar  4 15:46:38 2025   Tue Mar  4 17:11:48 2025
+leaf04            Fresh            yes      4.13.0-cld12u50~1739293953.1b72846ca Mon Mar  3 17:31:16 2025  Tue Mar  4 15:46:38 2025  Tue Mar  4 15:46:38 2025   Tue Mar  4 17:11:44 2025
+spine01           Fresh            yes      4.13.0-cld12u50~1739293953.1b72846ca Mon Mar  3 17:31:21 2025  Tue Mar  4 15:46:38 2025  Tue Mar  4 15:46:38 2025   Tue Mar  4 17:11:45 2025
+spine02           Fresh            yes      4.13.0-cld12u50~1739293953.1b72846ca Mon Mar  3 17:31:22 2025  Tue Mar  4 15:46:38 2025  Tue Mar  4 15:46:38 2025   Tue Mar  4 17:11:41 2025
 ```
 {{< /expand >}}
 
@@ -325,11 +564,12 @@ torc-22           Fresh            no       4.10.0-cld12u46~1713949601.127fb0c1b
 
 The following example shows the filtered output for the `netq show agents` command:
 ```
-cumulus@switch:~$ netq spine-3 show agents
+cumulus@switch:~$ netq leaf01 show agents
+
 Matching agents records:
 Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
 ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
-spine-3           Fresh            no       4.10.0-cld12u46~1713949601.127fb0c1b Thu May 30 12:13:39 2024  Thu May 30 13:21:58 2024  Thu May 30 13:21:58 2024   Mon Jun  3 16:55:50 2024
+leaf01            Fresh            yes      4.13.0-cld12u50~1739293953.1b72846ca Mon Mar  3 17:31:09 2025  Mon Mar  3 17:58:56 2025  Mon Mar  3 19:53:12 2025   Tue Mar  4 17:12:33 2025
 ```
 {{< /expand >}}
 ### Configuration Commands
@@ -357,14 +597,14 @@ The following example shows how to view the NetQ Agent configuration:
 
 ```
 cumulus@switch:~$ sudo netq config show agent
-netq-agent             value      default
----------------------  ---------  ---------
+netq-agent                value      default
+------------------------  ---------  ---------
 exhibitport
 exhibiturl
 server                    127.0.0.1  127.0.0.1
 cpu-limit                 100        100
 agenturl
-wjh                                  Enabled
+wjh                       Enabled    Enabled
 enable-opta-discovery     False      False
 agentport                 8981       8981
 port                      31980      31980
@@ -375,7 +615,7 @@ netq_stream_address       127.0.0.1  127.0.0.1
 is-ssl-enabled            False      False
 ssl-cert
 generate-unique-hostname  False      False
-()
+agent-hostname            cumulus    cumulus
 ```
 
 {{<notice note>}}
@@ -463,9 +703,9 @@ The following example shows the NetQ configuration profiles:
 
 ```
 cumulus@switch:~$ netq lcm show netq-config
-ID                        Name            Default Profile                VRF             WJH       CPU Limit Log Level Last Changed
-------------------------- --------------- ------------------------------ --------------- --------- --------- --------- -------------------------
-config_profile_3289efda36 NetQ default co Yes                            mgmt            Disable   Disable   info      Tue Apr 27 22:42:05 2021
+ID                        Name            Default Profile                VRF             WJH       CPU Limit Log Level Last Changed              In-Band Interface
+------------------------- --------------- ------------------------------ --------------- --------- --------- --------- ------------------------- ----------------------------------
+config_profile_3289efda36 NetQ default co Yes                            mgmt            Disable   Disable   info      Mon Mar  3 19:22:35 2025  N/A
 db4065d56f91ebbd34a523b45 nfig
 944fbfd10c5d75f9134d42023
 eb2b
@@ -473,7 +713,7 @@ eb2b
 
 The following example shows how to add a Cumulus Linux installation image to the NetQ repository on the switch:
 
-    netq lcm add cl-image /path/to/download/cumulus-linux-4.3.0-mlnx-amd64.bin
+    netq lcm add cl-image /path/to/download/cumulus-linux-5.12.0-mlnx-amd64.bin
 
 ### Trace Commands
 

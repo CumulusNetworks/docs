@@ -7,12 +7,17 @@ product: NVIDIA Air
 <!-- vale off -->
 Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
 
-## Feburary 2025
+## March 2025
 <!-- Air:WhatsNew -->
+### 82.2025.0304-011
+- Fixed node name length maximum to 255 characters.
+- Added support for right clicking a node exposing actions menu.
+<!-- Air:WhatsNew -->
+
+## Feburary 2025
 ### 82.2025.0227-011
 - Fixed an issue where pressing "enter" in the ZTP text box created a SIM instead of adding a new line.
 - Added support for NetQ configuration via JSON topology files.
-<!-- Air:WhatsNew -->
 
 ### 82.2025.0225-011
 - Fixed an issue with scrolling in Nodes/Links list when console is open.

@@ -44,11 +44,11 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
   - Buffer Occupancy and watermark metrics
 - gNMI support
 - NVUE
-  - {{<link url="Network-Troubleshooting/#ls" text="ls command">}}
+  - {{<link url="NVUE-CLI/#list-directory-contents" text="Command to list directory contents">}}
+  - {{<link url="NVUE-CLI/#get-the-hash-for-a-file" text="Command to get the hash for a file">}}
   - Enable CRL support
   - SSH certificate-based authorization
   - .1x support for NAS-IP-Address and NAS-Identifier
-  - Get the hash for a file
   - Additional FRR filters
   - {{< expand "Changed NVUE Commands" >}}
 | Cumulus Linux 5.13 | Cumulus Linux 12 and Earlier |
@@ -59,10 +59,15 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
   - {{< expand "Removed NVUE Commands" >}}
 ```
 nv action enable system maintenance mode
-nv action disable system maintenance mode
 nv action enable system maintenance ports
+nv action disable system maintenance mode
 nv action disable system maintenance ports
-nv show system maintenace
+nv action generate file-hash md5 <filename>
+nv action generate file-hash sha1 <filename>
+nv action generate file-hash sha224 <filename>
+nv action generate file-hash sha256 <filename>
+nv action generate file-hash sha512 <filename>
+nv action list system file-path <path>
 ```
 {{< /expand >}}
   - {{< expand "New NVUE Commands" >}}
@@ -71,7 +76,7 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 {{< tab "nv show ">}}
 
 ```
-
+nv show system maintenace
 ```
 
 {{< /tab >}}

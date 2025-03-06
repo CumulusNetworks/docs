@@ -5,12 +5,9 @@ cascade:
     product: Technical Guides
     author: NVIDIA
 ---
-This reference design guide discusses the following topics:
 
 - {{<link url="Introduction" text="Introduction">}}
 - {{<link url="Data-Center-Networking-Concepts" text="Data Center Networking Concepts">}}
 - {{<link url="EVPN-Deployment-Scenarios" text="EVPN Deployment Scenarios">}}
 - {{<link url="Sample-Configurations" text="Sample Configurations">}}
-- {{<link url="Additional-Information" text="Additional Information">}}
-
-To view the Cumulus Linux user guide, click {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-53/" text="here">}}.
+- {{<link url="Additional-Information" text="Additional Information">}} and {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/" text="Cumulus Linux User Guide">}}

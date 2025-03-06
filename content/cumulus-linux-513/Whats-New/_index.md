@@ -23,19 +23,19 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 - {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="Optimized upgrade supports warmboot">}}
 - {{<link url="802.1X-Interfaces/#ignore-reauthorization-timeout" text="802.1 option to keep the port in the current state when the RADIUS server is unreachable">}}
 - {{<link url="Monitoring-System-Hardware/#nvue-commands" text="Updated system health command">}}
+- {{<link url="DHCP-Servers/#multiple-static-ip-address-assignments" text="Support two DHCP static IP address assignments per port for a single host">}}
+- {{<link url="System-Power/#power-cycle" text="Recovery mechanism for thermal ASIC shutdown">}}
 - Erase SSD before switch RMA
 - OTLP Phase 4
 - gNMI support
 - Default AR profile update
 - New maintenance mode commands
-- Recovery mechanism for CPLD thermal shutdown
 - Export per transceiver temperature and power
 - Filters for RSYSLOG log per facility level
 - 802.1x on router ports with dynamic VRF assignments
 - Ability to disconnect or disable remote access to the switch
 - Enable RADIUS for multiple VRFs
 - Support Docker container
-- DHCP IP reservation per port for a single host
 - Show SNR for transceivers
 - Reflect switch hardware revision
 - Enable ssh public key only
@@ -62,12 +62,7 @@ nv action enable system maintenance mode
 nv action enable system maintenance ports
 nv action disable system maintenance mode
 nv action disable system maintenance ports
-nv action generate file-hash md5 <filename>
-nv action generate file-hash sha1 <filename>
-nv action generate file-hash sha224 <filename>
-nv action generate file-hash sha256 <filename>
-nv action generate file-hash sha512 <filename>
-nv action list system file-path <path>
+nv show system maintenace
 ```
 {{< /expand >}}
   - {{< expand "New NVUE Commands" >}}
@@ -76,13 +71,14 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 {{< tab "nv show ">}}
 
 ```
-nv show system maintenace
+
 ```
 
 {{< /tab >}}
 {{< tab "nv set ">}}
 
 ```
+nv set service dhcp-server <vrf> static <host>> vendor-class
 nv set system dot1x reauth-timeout-ignore
 ```
 
@@ -97,7 +93,13 @@ nv set system dot1x reauth-timeout-ignore
 {{< tab "nv action ">}}
 
 ```
-
+nv action generate file-hash md5 <filename>
+nv action generate file-hash sha1 <filename>
+nv action generate file-hash sha224 <filename>
+nv action generate file-hash sha256 <filename>
+nv action generate file-hash sha512 <filename>
+nv action list system file-path <path>
+nv action power-cycle system
 ```
 
 {{< /tab >}}

@@ -9,10 +9,10 @@ cascade:
 
 You can refer to the following documents for help with troubleshooting EVPN configurations:
 
-- {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-56/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/Troubleshooting-EVPN/" text="Troubleshooting EVPN">}}
-- {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-56/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/Inter-subnet-Routing/#verify-configuration" text="EVPN Downstream VNI Configuration">}}
-- {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-56/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/EVPN-Multihoming/#troubleshooting" text="Troubleshooting EVPN Multihoming">}}
-- {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-56/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/EVPN-PIM/#verify-evpn-pim" text="Verify EVPN-PIM">}}
+- {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/Troubleshooting-EVPN/" text="Troubleshooting EVPN">}}
+- {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/Inter-subnet-Routing/#verify-configuration" text="EVPN Downstream VNI Configuration">}}
+- {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/EVPN-Multihoming/#troubleshooting" text="Troubleshooting EVPN Multihoming">}}
+- {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/EVPN-PIM/#verify-evpn-pim" text="Verify EVPN-PIM">}}
 
 ## RDMA over Converged Ethernet (RoCE)
 

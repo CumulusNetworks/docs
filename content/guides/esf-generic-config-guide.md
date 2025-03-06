@@ -5,7 +5,7 @@ weight: 50
 product: Technical Guides
 ---
 
-[NVIDIA Spectrum](https://www.nvidia.com/en-us/networking/ethernet-switching/) switches with the [Cumulus Linux](https://www.nvidia.com/en-us/networking/ethernet-switching/cumulus-linux/) network operating system allow you to create predictable, low latency, high throughput networks. The combination of best-in-class hardware and software enables you to deploy an efficient, redundant, and ESF ([Ethernet Storage Fabrics](https://www.nvidia.com/en-us/networking/guide-to-ethernet-storage-fabrics/)) optimized network with minimum effort. ESF includes complete, hybrid, or HCI storage fabrics and the storage backend for AI systems.
+[NVIDIA Spectrum](https://www.nvidia.com/en-us/networking/ethernet-switching/) switches with the [Cumulus Linux](https://www.nvidia.com/en-us/networking/ethernet-switching/cumulus-linux/) network operating system allow you to create predictable, low latency, high throughput networks. The combination of best-in-class hardware and software enables you to deploy an efficient, redundant, and Ethernet Storage Fabrics (ESFs) optimized network with minimum effort. ESF includes complete, hybrid, or HCI storage fabrics and the storage backend for AI systems.
 
 This configuration guide demonstrates a generic network configuration on NVIDIA Spectrum switches for ESF using the Cumulus Linux operating system with the [NVIDIA User Experience - NVUE]({{<ref "/cumulus-linux-50/System-Configuration/NVIDIA-User-Experience-NVUE" >}}) command line interface (CLI). NVIDIA also offers a portfolio of [NVIDIA DGX POD](https://www.nvidia.com/en-us/data-center/dgx-pod/) reference architecture solutions with all leading partners.  
 

@@ -7,9 +7,7 @@ cascade:
  product: Technical Guides
 ---
 
-NVIDIA has assembled many long form technical guides that provide deep dives into various features. These guides include deployment guides, solution briefs and white papers. Most of these documents are on the {{<exlink url="https://resource.nvidia.com/l/en-us-networking" text="main website">}}, but are getting migrated to this page.
-
-Currently, the available documents here include the following:
+The following long-form technical guides provide deep dives into various features. These guides include deployment guides, solution briefs and white papers. 
 
 - {{<link title="Cumulus Linux VXLAN and EVPN Network Reference Design Guide">}}
 - {{<link title="Data Center Interconnect Reference Design Guide">}}
@@ -19,3 +17,5 @@ Currently, the available documents here include the following:
 - {{<link title="Cumulus Linux Security Guide">}}
 - {{<link title="Cumulus Linux Configuration Guide for Ethernet Storage Fabrics">}}
 - {{<link title="Cumulus Linux Deployment Guide for VMware NSX-T">}}
+
+You can find additional materials at the {{<exlink url="https://resource.nvidia.com/l/en-us-networking" text="Networking Resources Library">}}.

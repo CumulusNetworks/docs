@@ -3562,6 +3562,33 @@ cumulus@switch:~$ nv action ping system 10.10.10.10 vrf mgmt
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action power-cycle system</h>
+
+Power cycles the switch remotely to recover from certain conditions, such as a thermal ASIC shutdown due to high temperatures. 
+
+When you run the `nv action power-cycle system` command, the switch prompts you for confirmation before power cycling. To power cycle the switch without being prompted for confirmation, run the `nv action power-cycle system force` command
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action power-cycle system
+The operation will Power Cycle the switch. 
+
+Type [y] to power cycle. 
+Type [N] to abort. 
+Do you want to continue? [y/N] y 
+Action executing ... 
+Power cycling the switch ... 
+Action executing ... 
+Action succeeded
+``` 
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action reboot system</h>
 
 Reboots the switch.

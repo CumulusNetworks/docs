@@ -10,8 +10,8 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 ## March 2025
 <!-- Air:WhatsNew -->
 ### 82.2025.0306-011
-- Fixed an issue which resulted in management IP duplicates when using the Out-of-Band management network
-- Fixed an issue where the node name tooltip could get stuck on the screen when the mouse was moved off the workspace canvas.
+- Fixed an issue which resulted in management IP duplicates when using the out-of-band management network
+- Fixed an issue where the node name tooltip could get stuck on the screen when the mouse was moved off the workspace canvas
 <!-- Air:WhatsNew -->
 
 ### 82.2025.0304-011

@@ -26,7 +26,7 @@ cumulus@switch:~$ sudo sed -i 's/listen localhost:8765 ssl;/listen \[::\]:8765 i
 cumulus@switch:~$ sudo systemctl restart nginx
 ```
 
-You can find a sample playbook that enables the NVUE REST API across all of the switches {{<exlink url="https://gitlab.com/nvidia-networking/systems-engineering/nvue/-/blob/main/examples/playbooks/enable-nvue-api.yml" text="here">}}. Download the file and run it against the switches.
+You can find a sample playbook that enables the NVUE REST API across all of the switches {{<exlink url="https://gitlab.com/nvidia-networking/systems-engineering/nvue/-/blob/main/examples/playbooks/enable-nvue-api.yml" text="in GitLab">}}. Download the file and run it against the switches.
  
 ```
 cumulus@oob-management:~$ curl -o enable-nvue-api.yml https://gitlab.com/nvidia-networking/systems-engineering/nvue/-/raw/main/examples/playbooks/enable-nvue-api.yml
@@ -37,7 +37,7 @@ cumulus@oob-management:~$ ansible-playbook enable-nvue-api.yml -i hosts
 ```
 
 ## Sample Playbooks
-You can find additional example playbooks and host files in the `<collections_directory>/nvidia/nvue/examples` directory or in the git repository {{<exlink url="https://gitlab.com/nvidia-networking/systems-engineering/nvue/-/tree/main/examples/playbooks" text="here">}}.
+You can find additional example playbooks and host files in the `<collections_directory>/nvidia/nvue/examples` directory or in the {{<exlink url="https://gitlab.com/nvidia-networking/systems-engineering/nvue/-/tree/main/examples/playbooks" text="GitLab repository">}}.
 
 ```
 cumulus@oob-management:~$ ls ~/.ansible/collections/ansible_collections/nvidia/nvue/examples/
@@ -849,7 +849,7 @@ cumulus                    : ok=4    changed=0    unreachable=0    failed=0    s
 
 ## Resources
 
-- {{<exlink url="https://gitlab.com/nvidia-networking/systems-engineering/nvue/-/tree/main/examples/playbooks" text="NVUE modules on Gitlab">}}
+- {{<exlink url="https://gitlab.com/nvidia-networking/systems-engineering/nvue/-/tree/main/examples/playbooks" text="NVUE modules on GitLab">}}
 - {{<exlink url="https://galaxy.ansible.com/nvidia/nvue" text="NVUE modules on Galaxy">}}
 - {{<exlink url="https://console.redhat.com/ansible/automation-hub/repo/published/nvidia/nvue/" text="NVUE modules on Automation Hub">}}
 - {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/guides/Data-Center-Network-Automation-Quick-Start-Guide/" text="Data Center Network Automation Quick Start Guide">}}

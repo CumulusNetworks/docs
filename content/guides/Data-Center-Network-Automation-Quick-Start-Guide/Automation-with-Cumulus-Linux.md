@@ -13,7 +13,7 @@ Like other systems that use OpenAPI, the NVUE OAS schema defines the endpoints (
 
 You can use the NVUE object model in the following ways:
 - With the NVUE CLI, where you configure, monitor, and manage the Cumulus Linux network elements. The CLI commands translate to their equivalent REST APIs, which Cumulus Linux then runs on the NVUE object model.
-- With the NVUE REST API, where you run the GET, PATCH, DELETE, and other REST APIs on the NVUE object model endpoints to configure, monitor, and manage the switch. Because of the large user community and maturity of OAS, you can work with several popular tools and libraries to create client-side bindings to use the NVUE REST API. You can view the NVUE REST API documentation using Swagger {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-54/api/index.html" text="here">}}.
+- With the NVUE REST API, where you run the GET, PATCH, DELETE, and other REST APIs on the NVUE object model endpoints to configure, monitor, and manage the switch. Because of the large user community and maturity of OAS, you can work with several popular tools and libraries to create client-side bindings to use the NVUE REST API. View the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/api/index.html" text="NVUE REST API documentation">}}.
 
 ## Enable the NVUE API
 
@@ -131,7 +131,7 @@ You can edit or replace the contents of this file. NVUE applies the configuratio
 
 When you configure the switch with NVUE commands, NVUE overwrites the settings in any file it manages. Do not run NVUE commands and manually edit the configuration files at the same time to configure the switch. Either configure the switch with NVUE commands only or manually edit the configuration files.
 
-You can configure NVUE to ignore certain underlying Linux files when applying configuration changes. You can find more information {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-54/System-Configuration/NVIDIA-User-Experience-NVUE/NVUE-CLI/#configure-nvue-to-ignore-linux-files" text="here">}}.
+You can configure NVUE to ignore certain underlying Linux files when applying configuration changes. Refer to the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/NVUE-CLI/#configure-nvue-to-ignore-linux-files" text="Cumulus Linux user guide">}} for step-by-step instructions.
 
 ## NVUE Feature Support
 
@@ -152,7 +152,7 @@ With Cumulus Linux 5.4, the NVUE Object Model supports most features on the Cumu
 | system | Global system settings, such as the reserved routing table range for PBR and the reserved VLAN range for layer 3 VNIs, system login messages and switch reboot history. |
 | vrf | VRF configuration. |
 
-For features that NVUE does not yet support, you can use {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-54/System-Configuration/NVIDIA-User-Experience-NVUE/NVUE-Snippets/#flexible-snippets" text="snippets">}}. Reach out to the Professional Services team for assistance.
+For features that NVUE does not yet support, you can use {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/NVUE-Snippets/#flexible-snippets" text="snippets">}}. Reach out to the Professional Services team for assistance.
 
 ## Ansible
 

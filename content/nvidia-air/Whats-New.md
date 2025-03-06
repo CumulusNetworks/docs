@@ -9,10 +9,14 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 
 ## March 2025
 <!-- Air:WhatsNew -->
+### 82.2025.0306-011
+- Fixed an issue which resulted in management IP duplicates when using the Out-of-Band management network
+- Fixed an issue where the node name tooltip could get stuck on the screen when the mouse was moved off the workspace canvas.
+<!-- Air:WhatsNew -->
+
 ### 82.2025.0304-011
 - Added ability to right-click a node to open the actions menu
 - The node name field now accommodates up to 255 characters
-<!-- Air:WhatsNew -->
 
 ## Feburary 2025
 ### 82.2025.0227-011

@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 1030
 toc: 4
 ---
-Data centers today have a large number of network switches manufactured by different hardware vendors running network operating systems from different providers. This section provides a set of guidelines for how network port and status LEDs appear on the front panel of a network switch.
+Data centers today have many network switches manufactured by different hardware vendors running network operating systems from different providers. This section provides a set of guidelines for how network port and status LEDs appear on the front panel of a network switch.
 
 ## Network Port LEDs
 

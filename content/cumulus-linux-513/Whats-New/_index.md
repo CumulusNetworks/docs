@@ -99,6 +99,7 @@ nv action generate file-hash sha224 <filename>
 nv action generate file-hash sha256 <filename>
 nv action generate file-hash sha512 <filename>
 nv action list system file-path <path>
+nv action power-cycle system
 ```
 
 {{< /tab >}}

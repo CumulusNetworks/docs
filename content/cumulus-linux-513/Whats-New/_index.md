@@ -79,7 +79,7 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 
 ```
 nv set service dhcp-server <vrf> static <host>> vendor-class
-nv set system dot1x radius nas-identifier AP-123
+nv set system dot1x radius nas-identifier
 nv set system dot1x radius nas-ip-address
 nv set system dot1x reauth-timeout-ignore
 ```

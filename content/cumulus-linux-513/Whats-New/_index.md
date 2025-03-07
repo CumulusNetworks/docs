@@ -46,15 +46,15 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 - NVUE
   - {{<link url="NVUE-CLI/#list-directory-contents" text="Command to list directory contents">}}
   - {{<link url="NVUE-CLI/#get-the-hash-for-a-file" text="Command to get the hash for a file">}}
+  - {{<link url="802.1X-Interfaces/#configure-8021x-interfaces" text="Commands to set the NAS IP address and NAS identifier for 802.1X">}}
   - Enable CRL support
   - SSH certificate-based authorization
-  - .1x support for NAS-IP-Address and NAS-Identifier
   - Additional FRR filters
   - {{< expand "Changed NVUE Commands" >}}
 | Cumulus Linux 5.13 | Cumulus Linux 12 and Earlier |
 | --------------- |---------------------------------------|
-| `nv unset maintenance unit all-protocols state maintenance`| `nv action enable|disable system maintenance mode` |
-| | `nv action enable|disable system maintenance ports` |
+| `nv set maintenance unit all-protocols state maintenance`| `nv action enable system maintenance mode`<br>`nv action disable system maintenance mode` |
+| | `nv action enable system maintenance ports`<br>`nv action disable system maintenance ports` |
 {{< /expand >}}
   - {{< expand "Removed NVUE Commands" >}}
 ```
@@ -79,6 +79,8 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 
 ```
 nv set service dhcp-server <vrf> static <host>> vendor-class
+nv set system dot1x radius nas-identifier AP-123
+nv set system dot1x radius nas-ip-address
 nv set system dot1x reauth-timeout-ignore
 ```
 

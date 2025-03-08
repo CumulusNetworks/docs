@@ -9,9 +9,11 @@ The following sections provide the basic configuration needed to use EVPN as the
 ## Basic EVPN Configuration Commands
 
 Basic configuration in a BGP-EVPN-based layer 2 extension deployment requires you to:
-- Configure VXLAN interfaces
+- Configure VXLAN: VLAN to VNI mapping and VXLAN local tunnel IP address
 - Configure BGP
 - Activate the EVPN address family and enable EVPN between BGP neighbors
+
+In Cumulus, MAC-VRFs are implemented using a "VLAN-Based Service Interface" ({{<exlink url="https://datatracker.ietf.org/doc/html/rfc7432.html" text="RFC 7432">}}). Therefore, the MAC-VRFs are VLANs and there is a direct one-to-one mapping between layer 2 VNIs and VLANs (VLAN to VNI mapping), which must be specified. In certain circumstances, the VLAN to VNI mapping can be automated, see {{<link url="VXLAN-Devices#automatic-vlan-to-vni-mapping" text="Automatic VLAN to VNI Mapping">}}.
 
 {{%notice note%}}
 For a non-VTEP device that is only participating in EVPN route exchange, such as a spine switch where the network deployment uses hop-by-hop eBGP or the switch is acting as an iBGP route reflector, configuring VXLAN interfaces is not required.
@@ -20,7 +22,7 @@ For a non-VTEP device that is only participating in EVPN route exchange, such as
 {{< tabs "TabID20 ">}}
 {{< tab "NVUE Commands ">}}
 
-1. Configure VXLAN Interfaces. The following example creates a single VXLAN device (vxlan0), maps VLAN 10 to vni10 and VLAN 20 to vni20, adds the VXLAN device to the default bridge `br_default`, and sets the VXLAN local tunnel IP address to 10.10.10.1.
+1. Configure VXLAN. The following example maps VLAN 10 to vni10 and VLAN 20 to vni20 and sets the VXLAN local tunnel IP address to 10.10.10.1. NVUE automatically creates a single VXLAN device (`vxlan48`), adds the VXLAN device (`vxlan48`) to the default bridge `br_default` and adds the VLAN to VNI mapping to the VXLAN device (via `bridge-vlan-vni-map` in `/etc/network/interfaces`)
 
    ```
    cumulus@leaf01:~$ nv set bridge domain br_default vlan 10 vni 10

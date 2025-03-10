@@ -98,6 +98,12 @@ This happens in async mode, where the end notification expected after an end of 
 <td>5.12.0-5.12.1</td>
 </tr>
 <tr>
+<td>4218485</td>
+<td>When adding or removing routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
+<td>5.5.1-5.12.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4200961</td>
 <td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
 <td>5.10.0-5.11.0</td>
@@ -968,6 +974,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 This happens in async mode, where the end notification expected after an end of operation is missing.</td>
 <td>5.9.2-5.11.0</td>
 <td>5.12.0-5.12.1</td>
+</tr>
+<tr>
+<td>4218485</td>
+<td>When adding or removing routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
+<td>5.5.1-5.12.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4200961</td>

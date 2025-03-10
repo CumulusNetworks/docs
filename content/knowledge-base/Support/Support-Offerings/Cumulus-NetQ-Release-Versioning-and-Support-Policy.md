@@ -66,4 +66,4 @@ The following table depicts the NetQ release support matrix:
 
 ## Upgrade Process
 
-For information regarding upgrading from previous NetQ releases, refer to the [NetQ Deployment Guide]({{<ref "/cumulus-netq-412/Installation-Management" >}}).
+To upgrade NetQ, refer to the [NetQ Deployment Guide]({{<ref "/cumulus-netq-413/Installation-Management" >}}).

@@ -25,8 +25,8 @@ Hit any key to stop autoboot:  2
                     GNU GRUB  version 2.02+dfsg1-20
 
        +----------------------------------------------------------------------------+
-       |*Cumulus Linux GNU/Linux                                                    |
-       | Advanced options for Cumulus Linux GNU/Linux                               |
+       | Cumulus Linux GNU/Linux                                                    |
+       | *Advanced options for Cumulus Linux GNU/Linux                               |
        | ONIE                                                                       |
        |                                                                            |
        +----------------------------------------------------------------------------+

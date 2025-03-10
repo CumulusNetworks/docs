@@ -39,17 +39,17 @@ This reference lists the threshold-based events that NetQ supports. You can view
 | NetQ UI Name | NetQ CLI Event ID | Description |
 | --- | --- | --- |
 | BGP connection drop | TCA_BGP_CONN_DROP | Increase in drop count for a BGP session exceeding user-defined threshold |
-| BGP packet queue length | TCA_BGP_PACKET_QUEUE_LENGTH | Packet queue length persistently non-zero for more than the threshold duration (in seconds) |
+| BGP packet queue length | TCA_BGP_PACKET_QUEUE_LENGTH | Packet queue length persistently non-zero for longer than the threshold duration (in seconds) |
 
 ## Digital Optics
 
 
 | NetQ UI Name | NetQ CLI Event ID | Description |
 | --- | --- | --- |
-| Laser Rx power alarm upper | TCA_DOM_RX_POWER_ALARM_UPPER | Transceiver Input power (mW) for the digital optical module on a given switch or host interface exceeded user-defined the maximum alarm threshold |
-| Laser Rx power alarm lower | TCA_DOM_RX_POWER_ALARM_LOWER | Transceiver Input power (mW) for the digital optical module on a given switch or host exceeded user-defined minimum alarm threshold |
-| Laser Rx power warning upper | TCA_DOM_RX_POWER_WARNING_UPPER | Transceiver Input power (mW) for the digital optical module on a given switch or host exceeded user-defined specified warning threshold |
-| Laser Rx power warning lower | TCA_DOM_RX_POWER_WARNING_LOWER | Transceiver Input power (mW) for the digital optical module on a given switch or host exceeded user-defined minimum warning threshold |
+| Laser Rx power alarm upper | TCA_DOM_RX_POWER_ALARM_UPPER | Transceiver input power (mW) for the digital optical module on a given switch or host interface exceeded user-defined the maximum alarm threshold |
+| Laser Rx power alarm lower | TCA_DOM_RX_POWER_ALARM_LOWER | Transceiver input power (mW) for the digital optical module on a given switch or host exceeded user-defined minimum alarm threshold |
+| Laser Rx power warning upper | TCA_DOM_RX_POWER_WARNING_UPPER | Transceiver input power (mW) for the digital optical module on a given switch or host exceeded user-defined specified warning threshold |
+| Laser Rx power warning lower | TCA_DOM_RX_POWER_WARNING_LOWER | Transceiver input power (mW) for the digital optical module on a given switch or host exceeded user-defined minimum warning threshold |
 | Laser bias current alarm upper | TCA_DOM_BIAS_CURRENT_ALARM_UPPER | Laser bias current (mA) for the digital optical module on a given switch or host exceeded user-defined maximum alarm threshold |
 | Laser bias current alarm lower | TCA_DOM_BIAS_CURRENT_ALARM_LOWER | Laser bias current (mA) for the digital optical module on a given switch or host exceeded user-defined minimum alarm threshold |
 | Laser bias current warning upper | TCA_DOM_BIAS_CURRENT_WARNING_UPPER | Laser bias current (mA) for the digital optical module on a given switch or host exceeded user-defined maximum warning threshold |
@@ -225,7 +225,7 @@ This reference lists the threshold-based events that NetQ supports. You can view
 | Drop aggregate upper | TCA_WJH_DROP_AGG_UPPER | L2 | Ingress VLAN filtering | Frames whose port is not a member of the VLAN are discarded |
 | Drop aggregate upper | TCA_WJH_DROP_AGG_UPPER | L2 | MLAG port isolation | Not supported for port isolation implemented with system ACL |
 | Drop aggregate upper | TCA_WJH_DROP_AGG_UPPER | L2 | Multicast egress port list is empty | No ports are defined for multicast egress |
-| Drop aggregate upper | TCA_WJH_DROP_AGG_UPPER | L2 | Port loopback filter | Port is operating in loopback mode; packets are being sent to itself (source MAC address is the same as the destination MAC address |
+| Drop aggregate upper | TCA_WJH_DROP_AGG_UPPER | L2 | Port loopback filter | Port is operating in loopback mode; packets are being sent to itself (source MAC address is the same as the destination MAC address) |
 | Drop aggregate upper | TCA_WJH_DROP_AGG_UPPER | L2 | Unicast MAC table action discard | Currently not supported |
 | Drop aggregate upper | TCA_WJH_DROP_AGG_UPPER | L2 | VLAN tagging mismatch | VLAN tags on the source and destination do not match |
 | Drop aggregate upper | TCA_WJH_DROP_AGG_UPPER | Router | Blackhole ARP/neighbor | Packet received with blackhole adjacency |
@@ -258,7 +258,7 @@ This reference lists the threshold-based events that NetQ supports. You can view
 | Drop aggregate upper | TCA_WJH_DROP_AGG_UPPER | Tunnel | Overlay switch - Source MAC equals destination MAC | Overlay packet's source MAC address is the same as the destination MAC address |
 | Drop aggregate upper | TCA_WJH_DROP_AGG_UPPER | Tunnel | Overlay switch - Source MAC is multicast | Overlay packet's source MAC address is multicast |
 | Symbol error upper | TCA_WJH_SYMBOL_ERROR_UPPER | L1 | Auto-negotiation failure | Negotiation of port speed with peer has failed |
-| Symbol error upper | TCA_WJH_SYMBOL_ERROR_UPPER | L1 | Bad signal integrity |Integrity of the signal on port is not sufficient for good communication |
+| Symbol error upper | TCA_WJH_SYMBOL_ERROR_UPPER | L1 | Bad signal integrity | Integrity of the signal on port is not sufficient for good communication |
 | Symbol error upper | TCA_WJH_SYMBOL_ERROR_UPPER | L1 | Cable/transceiver is not supported | The attached cable or transceiver is not supported by this port |
 | Symbol error upper | TCA_WJH_SYMBOL_ERROR_UPPER | L1 | Cable/transceiver is unplugged | A cable or transceiver is missing or not fully inserted into the port |
 | Symbol error upper | TCA_WJH_SYMBOL_ERROR_UPPER | L1 | Calibration failure | Calibration failure |

@@ -23,7 +23,7 @@ needs to be active.
 
 Keep in the mind the following caveats with all-active mode:
 
-- All-active mode is not supported on bonds that are not specified as bridge ports on the switch. To work around this limitation, do one of the following:
+- All-active mode is only supported on bonds that are specified as bridge ports on the switch. To work around this limitation, do one of the following:
 - Configure the layer 3 interface on the physical link instead of using a bond
 - Configure the LACP bond on the switch port so that the AS has neighbor LACP information
 - Configure the bond interface as {{<link url="Bonding-Link-Aggregation#enable-balance-xor-mode" text="balance-xor">}} mode instead of LACP

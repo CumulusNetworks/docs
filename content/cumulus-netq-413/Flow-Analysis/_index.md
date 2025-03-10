@@ -159,7 +159,7 @@ The **Flow Graph** panel allows you to access the topology view, where you can a
 
 ### View WJH Events
 
-Flow analysis monitors the path for WJH events and records any drops for the flow. Switches with WJH events recorded are represented in the flow analysis graph as a red bar with white stripes. Hover over the device to see a WJH event summary:
+Flow analysis monitors the path for WJH events and records any drops for the flow. Switches with WJH events are represented in the flow analysis graph as a red bar with white stripes. Hover over the device to see a WJH event summary:
 
 {{<figure src="/images/netq/wjh-flow-graph-overview-42.png" alt="a user hovering over a device in the main flow analysis graph with a WJH event summary showing 94,300 total packet drops" width="900">}}
 
@@ -171,13 +171,8 @@ Click on a device with WJH events to see the statistics in the left panel. Hover
 
 {{<figure src="/images/netq/wjh-device-stats-hover-42.png" alt="invdividual device WJH statistics showing 2673 router drops" width="400">}}
 
-WJH drops can also be viewed from the expanded device chart by selecting the WJH category:
+WJH drops can also be viewed from the expanded device chart by selecting the WJH category.
 
-{{<figure src="/images/netq/wjh-larger-chart-hover-42.png" alt="expanded device chart showing WJH data of 24 total router drops" width="600">}}
-
-Select **Show all drops** to display a list of all WJH drops for the device:
-
-{{<figure src="/images/netq/wjh-all-drops-panel-42.png" alt="WJH statistics for all drops, including tabular information on count, drop type, drop reason, severity, and corrective action" width="600">}}
 
 <!-- hiding this until the simulation works
 ## Related Information

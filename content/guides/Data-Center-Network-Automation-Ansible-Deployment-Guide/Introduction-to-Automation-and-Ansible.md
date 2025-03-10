@@ -5,7 +5,7 @@ weight: 20
 product: Technical Guides
 imgData: guides
 ---
-As data centers evolve from physical on-premises to digitized cloud infrastructures, traditional networks also evolve and need to grow based on business demand. This places an increased burden on network operations teams to manage, maintain, and continually adapt to a changing environment with complex and precise configurations. To combat the limitations that come from managing network operations manually, the data center must be automatedso that it can be more agile.
+As data centers evolve from physical on-premises to digitized cloud infrastructures, traditional networks also evolve and need to grow based on business demand. This places an increased burden on network operations teams to manage, maintain, and continually adapt to a changing environment with complex and precise configurations. To combat the limitations that come from managing network operations manually, the data center must be automated so that it can be more agile.
 
 ## Automation
 
@@ -19,7 +19,7 @@ NVUE follows a declarative model, removing context-specific commands and setting
 You can use the NVUE object model in the following ways:
 -	With the **NVUE CLI**, where you configure, monitor, and manage the Cumulus Linux network elements. The CLI commands translate to their equivalent REST APIs, which Cumulus Linux then runs on the NVUE object model.
 -	With the **NVUE REST API**, where you run the GET, PATCH, DELETE, and other REST APIs on the NVUE object model endpoints to configure, monitor, and manage the switch. Because of the large user community and maturity of Open API Specifications (OAS) upon which NVUE is based, you can use several popular tools and libraries to create client-side bindings to use the NVUE REST API. The documentation for the NVUE REST API uses Swagger;you can find it here.
-The CLI and the REST API are equivalent in functionality; you can run all management operations from the REST API or the CLI. The NVUE object model drives both the REST API and the CLI management operations. All operations are consistent; for example, the CLI nv show commands reflect any PATCH   operation (create) you run through the REST API.
+The CLI and the REST API are equivalent in functionality; you can run all management operations from the REST API or the CLI. The NVUE object model drives both the REST API and the CLI management operations. All operations are consistent; for example, the CLI nv show commands reflect any PATCH operation (create) you run through the REST API.
 
 ## Ansible
 
@@ -50,7 +50,7 @@ The `group_vars` files live in a directory alongside an inventory file, with an 
 
 **Host**
 
-A host is a remote machine that Ansible manages. You can assign individual variables to a host and can also organize them in groups. All hosts have a name, which is either an IP address or a domain name and, optionally, a port number in case   access is not allowed on the default SSH port.
+A host is a remote machine that Ansible manages. You can assign individual variables to a host and can also organize them in groups. All hosts have a name, which is either an IP address or a domain name and, optionally, a port number in case access is not allowed on the default SSH port.
 
 **Inventory**
 
@@ -58,7 +58,7 @@ A file (by default, Ansible uses a simple INI format) that describes {{<exlink u
 
 **Inventory Script**
 
-A very simple program (or a complicated one) that looks up {{<exlink url="https://docs.ansible.com/ansible/latest/reference_appendices/glossary.html#term-Host" text="hosts">}}, {{<exlink url="https://docs.ansible.com/ansible/latest/reference_appendices/glossary.html#term-Group" text="group">}} membership for hosts, and variable information from an external resource – an SQL database, a CMDB solution, or a solution similar to LDAP. This concept is adapted from Puppet (where it is called an External Nodes Classifier) and works in more or less the same way.
+A very simple program (or a complicated one) that looks up {{<exlink url="https://docs.ansible.com/ansible/latest/reference_appendices/glossary.html#term-Host" text="hosts">}}, {{<exlink url="https://docs.ansible.com/ansible/latest/reference_appendices/glossary.html#term-Group" text="group">}} membership for hosts, and variable information from an external resource—an SQL database, a CMDB solution, or a solution similar to LDAP. This concept is adapted from Puppet (where it is called an External Nodes Classifier) and works in more or less the same way.
 
 **Jinja2**
 
@@ -78,7 +78,7 @@ A {{<exlink url="https://docs.ansible.com/ansible/latest/reference_appendices/gl
 
 **Roles**
 
-Roles are units of organization in Ansible. Assigning a role to a group of {{<exlink url="https://docs.ansible.com/ansible/latest/reference_appendices/glossary.html#term-Host" text="hosts">}} (or a set of {{<exlink url="https://docs.ansible.com/ansible/latest/reference_appendices/glossary.html#term-Group" text="groups">}}, or {{<exlink url="https://docs.ansible.com/ansible/latest/reference_appendices/glossary.html#term-Globbing" text="host patterns">}}, and so on) implies that they should implement a specific behavior. A role might include applying certain variable values, certain {{<exlink url="https://docs.ansible.com/ansible/latest/reference_appendices/glossary.html#term-Tasks" text="tasks">}}, and certain {{<exlink url="https://docs.ansible.com/ansible/latest/reference_appendices/glossary.html#term-Handlers" text="handlers">}} – or just one or more of these things. Because of the file structure associated with a role, roles become redistributable units that enable you to share behavior among {{<exlink url="https://docs.ansible.com/ansible/latest/reference_appendices/glossary.html#term-Playbooks" text="playbooks">}} – or even with other users.
+Roles are units of organization in Ansible. Assigning a role to a group of {{<exlink url="https://docs.ansible.com/ansible/latest/reference_appendices/glossary.html#term-Host" text="hosts">}} (or a set of {{<exlink url="https://docs.ansible.com/ansible/latest/reference_appendices/glossary.html#term-Group" text="groups">}}, or {{<exlink url="https://docs.ansible.com/ansible/latest/reference_appendices/glossary.html#term-Globbing" text="host patterns">}}, and so on) implies that they should implement a specific behavior. A role might include applying certain variable values, certain {{<exlink url="https://docs.ansible.com/ansible/latest/reference_appendices/glossary.html#term-Tasks" text="tasks">}}, and certain {{<exlink url="https://docs.ansible.com/ansible/latest/reference_appendices/glossary.html#term-Handlers" text="handlers">}}—or just one or more of these things. Because of the file structure associated with a role, roles become redistributable units that enable you to share behavior among {{<exlink url="https://docs.ansible.com/ansible/latest/reference_appendices/glossary.html#term-Playbooks" text="playbooks">}}—or even with other users.
 
 **Task**
 
@@ -90,4 +90,4 @@ Ansible can easily transfer files to remote systems but often, it is desirable t
 
 **YAML**
 
-Ansible does not want to force people to write programming language code to automate infrastructure, so Ansible uses YAML to define {{<exlink url="https://docs.ansible.com/ansible/latest/reference_appendices/glossary.html#term-Playbooks" text="playbook">}} configuration languages and also variable files. YAML has minimal syntax and is very clean and easy for you to skim. It is a good data format for configuration files and humans, and is also machine readable. Ansible’s usage of YAML stemmed from Michael DeHaan’s first use of it inside of Cobbler around 2006. YAML is fairly popular in the dynamic language community and the format has libraries available for serialization in many languages (Python, Perl, Ruby, and so on).
+Ansible does not want to force people to write programming language code to automate infrastructure, so Ansible uses YAML to define {{<exlink url="https://docs.ansible.com/ansible/latest/reference_appendices/glossary.html#term-Playbooks" text="playbook">}} configuration languages and also variable files. YAML has minimal syntax and is very clean and easy for you to skim. It is a good data format for configuration files and humans, and is also machine-readable. Ansible’s usage of YAML stemmed from Michael DeHaan’s first use of it inside of Cobbler around 2006. YAML is fairly popular in the dynamic language community and the format has libraries available for serialization in many languages (Python, Perl, and Ruby, among others).

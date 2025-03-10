@@ -55,6 +55,9 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 | --------------- |---------------------------------------|
 | `nv set maintenance unit all-protocols state maintenance`| `nv action enable system maintenance mode`<br>`nv action disable system maintenance mode` |
 | | `nv action enable system maintenance ports`<br>`nv action disable system maintenance ports` |
+| `nv set system syslog server <server-id>` | `nv set service syslog <vrf> server <server-id>`|
+| `nv set system syslog server <server-id> port <port>` | `nv set service syslog <vrf> server <server-id> port <port>`|
+| `nv set system syslog server <server-id> protocol <protocol>` | `nv set service syslog <vrf> server <server-id> protocol <protocol>`|
 {{< /expand >}}
   - {{< expand "Removed NVUE Commands" >}}
 ```

@@ -7,10 +7,10 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4218485</td>
-<td>When adding or removing routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
-<td>5.5.1-5.12.1</td>
-<td></td>
+<td>4154369</td>
+<td>When adding or removing routes in a virtual router with numerous configured routes, you might see certain IP addresses being routed incorrectly. This can result in packets exiting through incorrect ports or discarded packets.</td>
+<td>5.5.1-5.11.0</td>
+<td>5.12.0-5.12.1</td>
 </tr>
 <tr>
 <td>4101027</td>

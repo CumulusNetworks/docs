@@ -287,6 +287,23 @@ admin@leaf01:~$ nv set interface swp1
 admin@leaf01:~$ nv apply
 ```
 
+## Message-Authenticator Attribute
+
+RADIUS uses the Message-Authenticator attribute to sign Access-Requests to prevent spoofing Access-Requests using CHAP, ARAP or EAP authentication methods.
+
+By default, Cumulus Linux sends and checks messages with Message-Authenticator attributes but does not require the RADIUS server to send one. To require the RADIUS server to send Message-Authenticator attributes, run the `nv set system aaa radius require-message-authenticator enabled` command:
+
+```
+cumulus@switch:~$ nv set system aaa radius require-message-authenticator enabled
+cumulus@switch:~$ nv config apply
+```
+
+To set the message authenticator option back to the default setting (disabled), run the `nv unset system aaa radius require-message-authenticator` command.
+
+{{%notice note%}}
+Cumulus Linux 5.11.1 and later provides the `nv set system aaa radius require-message-authenticator` command.
+{{%/notice%}}
+
 ## Show RADIUS Configuration
 
 To show global RADIUS configuration, run the `nv show system aaa radius` command:

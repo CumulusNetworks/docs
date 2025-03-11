@@ -14,7 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| <a name="4218485"></a> [4218485](#4218485) <a name="4218485"></a> <br /> | When adding or removing routes in a virtual router with numerous configured routes, you might see incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded. | 5.5.1-5.12.1 | |
+| <a name="4154369"></a> [4154369](#4154369) <a name="4154369"></a> <br /> | When adding or removing routes in a virtual router with numerous configured routes, you might see certain IP addresses being routed incorrectly. This can result in packets exiting through incorrect ports or discarded packets. | 5.5.1-5.11.0 | 5.12.0-5.12.1|
 | <a name="4101027"></a> [4101027](#4101027) <a name="4101027"></a> <br /> | After you add a VLAN to a bridge member port,  you might experience a few seconds of VXLAN traffic loss. | 5.7.0-5.12.1 | |
 | <a name="4072165"></a> [4072165](#4072165) <a name="4072165"></a> <br /> | When you add a VLAN to a bridge member port, VXLAN traffic might be impacted for few seconds. | 5.7.0-5.10.1 | 5.11.0-5.12.1|
 | <a name="4004453"></a> [4004453](#4004453) <a name="4004453"></a> <br /> | The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful. | 4.3.0-5.9.1 | 5.9.2-5.12.1, 5.10.0-5.12.1|

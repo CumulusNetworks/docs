@@ -10,10 +10,10 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 ## March 2025
 <!-- Air:WhatsNew -->
 ### 82.2025.0311-011
-- Fixed issue with loading the details panel for a demo by using the demo ID in the URL.
-- Fixed an issue in node side panel when switching between nodes
-- Fixed an issue when clicking delete on node in non-NEW states
-- Fixed TypeError in browser console when importing a DOT file during simulation creation.
+- Fixed an issue with loading the details panel for a demo by using the demo ID in the URL
+- Fixed an issue in the node side panel when switching between nodes
+- Fixed an issue with deleting nodes in non-new states
+- Fixed TypeError in browser console when importing a DOT file while creating a simulation
 <!-- Air:WhatsNew -->
 
 ### 82.2025.0306-011

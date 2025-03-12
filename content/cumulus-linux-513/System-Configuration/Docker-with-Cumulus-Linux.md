@@ -173,13 +173,18 @@ NVUE provides commands to:
 
 ### Docker Images
 
+To download a Docker image from a registry or remove a Docker image from the switch, follow the commands below.
+
+In the following commands, `image-id` is the hexadecimal string representing the docker internal identifier for an image.
+
+{{< tabs "TabID180">}}
+{{< tab "NVUE Commands">}}
+
 To download a Docker image from a registry, run the `nv action pull system docker image <image-id>` command:
 
 ```
 cumulus@switch:~$ nv action pull system docker image 97662d24417b
 ```
-
-The `image-id` is the hexadecimal string representing the docker internal identifier for an image.
 
 To delete a Docker image from the switch, run the `nv action remove system docker image <image-id>` command:
 
@@ -187,7 +192,30 @@ To delete a Docker image from the switch, run the `nv action remove system docke
 cumulus@switch:~$ nv action remove system docker image 97662d24417b
 ```
 
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+To download a Docker image from a registry, run the `docker pull <image-id>` command:
+
+```
+cumulus@switch:~$ docker pull 97662d24417b
+```
+
+To delete a Docker image from the switch, run the `docker rmi <image-id>` command:
+
+```
+cumulus@switch:~$ docker rmi 97662d24417b
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Docker Containers
+
+To create and run a new container from an image, stop a container or delete a Docker container, run the following commands.
+
+{{< tabs "TabID217">}}
+{{< tab "NVUE Commands">}}
 
 To create and run a new container from an image, run the `nv action start system docker container <container-name> image <image-id>]` command. You can use Docker run options such as `--pid`, `--cap-add`, and `--storage-opt size`.
 
@@ -195,7 +223,7 @@ To create and run a new container from an image, run the `nv action start system
 cumulus@switch:~$ nv action start system docker container CONTAINER1 image 97662d24417b --storage-opt size=120G
 ```
 
-To stop a container, run the `nv action stop system docker container <container-id-name>` command:
+To stop a container, run the `nv action stop system docker container <container-name>` command:
 
 ```
 cumulus@switch:~$ nv action stop system docker container CONTAINER1
@@ -206,6 +234,30 @@ To delete a Docker container from the switch, run the `nv action remove system d
 ```
 cumulus@switch:~$ nv action remove system docker container CONTAINER1
 ```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+To create and run a new container from an image, run the `sudo docker run -d <image-id> --name <container-name>` command. You can use Docker run options such as `--pid`, `--cap-add`, and `--storage-opt size`.
+
+```
+cumulus@switch:~$ sudo docker run -d 97662d24417b --name CONTAINER1
+```
+
+To stop a container, run the `sudo docker stop <container-name>` command:
+
+```
+cumulus@switch:~$ sudo docker stop CONTAINER1
+```
+
+To delete a Docker container from the switch, run the `sudo docker rm <container-name>` command:
+
+```
+cumulus@switch:~$ sudo docker rm CONTAINER1 
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Show Docker Information
 

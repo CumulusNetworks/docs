@@ -130,12 +130,6 @@ cumulus@switch:~$ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "Dpkg::Optio
 <td>5.12.0-5.12.1</td>
 </tr>
 <tr>
-<td>4173498</td>
-<td>After network churn, the {{﻿watchfrr}} process might restart FRR because zebra is unresponsive.</td>
-<td>5.9.1-5.12.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4156409</td>
 <td>When you enable the BGP PIC next hop group per source option:&lt;ul&gt;&lt;li&gt;In a 2-CLOS or 3-CLOS configuration when all links between a pair of devices (leaf and spine  or spine and super spine) come up, there is traffic loss.&lt;/li&gt; 
 &lt;li&gt;In a 3-CLOS topology when the remote spine reboots, there is traffic loss when the switch is restarting.&lt;/li&gt;&lt;/ul&gt;</td>
@@ -1274,12 +1268,6 @@ netlink.c:409 CRIT nlroute: nl_cache_mngr_data_ready failed: Kernel reported tru
 CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <td>5.10.1-5.11.0</td>
 <td>5.12.0-5.12.1</td>
-</tr>
-<tr>
-<td>4173498</td>
-<td>After network churn, the {{﻿watchfrr}} process might restart FRR because zebra is unresponsive.</td>
-<td>5.9.1-5.12.1</td>
-<td></td>
 </tr>
 <tr>
 <td>4156409</td>

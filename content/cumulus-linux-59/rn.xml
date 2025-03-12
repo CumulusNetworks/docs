@@ -86,12 +86,6 @@ This happens in async mode, where the end notification expected after an end of 
 <td>5.12.0-5.12.1</td>
 </tr>
 <tr>
-<td>4173498</td>
-<td>After network churn, the {{﻿watchfrr}} process might restart FRR because zebra is unresponsive.</td>
-<td>5.9.1-5.12.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4135919</td>
 <td>You might experience a memory leak in {{ospfd}} when processing next hops due to network changes.</td>
 <td>5.9.1-5.10.1</td>
@@ -1020,12 +1014,6 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <td>When adding or removing routes in a virtual router with numerous configured routes, you might see certain IP addresses being routed incorrectly. This can result in packets exiting through incorrect ports or discarded packets.</td>
 <td>5.5.1-5.11.0</td>
 <td>5.12.0-5.12.1</td>
-</tr>
-<tr>
-<td>4173498</td>
-<td>After network churn, the {{﻿watchfrr}} process might restart FRR because zebra is unresponsive.</td>
-<td>5.9.1-5.12.1</td>
-<td></td>
 </tr>
 <tr>
 <td>4135919</td>

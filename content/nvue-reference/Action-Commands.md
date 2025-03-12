@@ -3589,6 +3589,28 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action pull system docker image \<image-id\></h>
+
+Downloads a Docker image from a registry.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<image-id>` |  The hexadecimal string representing the docker internal identifier for an image.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action pull system docker image 97662d24417b
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action reboot system</h>
 
 Reboots the switch.
@@ -3606,6 +3628,27 @@ True
 Action succeeded
 ```
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action remove system docker image \<image-id\></h>
+
+Removes a Docker image from the switch.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<image-id>` |  The hexadecimal string representing the docker internal identifier for an image.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action remove system docker image 97662d24417b
+```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -3690,7 +3733,6 @@ Type [y] to continue.
 Type [n] to abort. 
 Do you want to continue? [y/n] y
 ...
-
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3831,6 +3873,73 @@ Action executing ...
 Job schedule successfull.
 
 Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action start system docker container \<container-name\> image \<image-id\></h>
+
+Creates and runs a new Docker container from an image.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<image-id>` |  The hexadecimal string representing the docker internal identifier for an image.|
+| `<container-name>` |  The hexadecimal string or name of the container.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action start system docker container CONTAINER1 image 97662d24417b
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action remove system docker container \<container-name\></h>
+
+Deletes a Docker container.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<container-name>` |  The hexadecimal string or name of the container.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action remove system docker container CONTAINER1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action stop system docker container \<container-name\></h>
+
+Stops a Docker container.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<container-name>` |  The hexadecimal string or name of the container.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action stop system docker container CONTAINER1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

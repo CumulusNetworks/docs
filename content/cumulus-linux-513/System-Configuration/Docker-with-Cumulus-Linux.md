@@ -217,7 +217,7 @@ To create and run a new container from an image, stop a container or delete a Do
 {{< tabs "TabID217">}}
 {{< tab "NVUE Commands">}}
 
-To create and run a new container from an image, run the `nv action start system docker container <container-name> image <image-id>]` command. You can use Docker run options such as `--pid`, `--cap-add`, and `--storage-opt size`.
+To create and run a new container from an image, run the `nv action start system docker container <container-name> image <image-id>` command. You can use Docker run options such as `--pid`, `--cap-add`, and `--storage-opt size`.
 
 ```
 cumulus@switch:~$ nv action start system docker container CONTAINER1 image 97662d24417b --storage-opt size=120G
@@ -291,7 +291,7 @@ To show statistics for a specific container, run the `nv show system docker cont
 cumulus@switch:~$ nv show system docker container CONTAINER1 stats
 ```
 
-To show docker engine configuration, run the `nv show system docker engine ` command:
+To show docker engine configuration, run the `nv show system docker engine` command:
 
 ```
 cumulus@switch:~$ nv show system docker engine 

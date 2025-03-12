@@ -10,10 +10,7 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 
 ## What's New in Cumulus Linux 5.11.1
 
-Cumulus Linux 5.11.1 provides:
-- {{<link title="Cumulus Linux 5.11 Packages" text="New SDK and package versions">}}
-- {{<link title="Cumulus Linux 5.11 Release Notes" text="Bug fixes">}}
-- {{<link url="RADIUS-AAA/#message-authenticator-attribute" text="A new NVUE command (nv set system aaa radius require-message-authenticator)">}}
+Cumulus Linux 5.11.1 provides {{<link title="Cumulus Linux 5.11 Packages" text="new SDK and package versions">}}, and includes {{<link title="Cumulus Linux 5.11 Release Notes" text="bug fixes">}}.
 
 Cumulus Linux 5.11.1 is a Long-Term Support (LTS) release. For more information, refer to {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/knowledge-base/Support/Support-Offerings/Cumulus-Linux-Release-Versioning-and-Support-Policy" text="this Knowledge base article">}}.
 

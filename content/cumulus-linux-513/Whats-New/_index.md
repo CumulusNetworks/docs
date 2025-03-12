@@ -74,7 +74,19 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 {{< tab "nv show ">}}
 
 ```
-
+nv show system docker
+nv show system docker container
+nv show system docker container stats
+nv show system docker container <container-id-name> stats
+nv show system docker engine
+nv show system docker image
+nv show system syslog
+nv show system syslog format
+nv show system syslog server
+nv show system syslog server <server-id>
+nv show system syslog selector <selector-id>
+nv show system syslog selector <selector-id> filter
+nv show system syslog selector <selector-id> filter <filter-id>
 ```
 
 {{< /tab >}}
@@ -82,9 +94,23 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 
 ```
 nv set service dhcp-server <vrf> static <host>> vendor-class
+nv set system docker vrf <vrf-name>
 nv set system dot1x radius nas-identifier
 nv set system dot1x radius nas-ip-address
 nv set system dot1x reauth-timeout-ignore
+nv set system syslog format welf
+nv set system syslog format welf firewall-name
+nv set system syslog selector
+nv set system syslog selector facility
+nv set system syslog selector <selector-id> program-name
+nv set system syslog selector <selector-id> severity
+nv set system syslog selector <selector-id> filter <filter-id> action
+nv set system syslog selector <selector-id> filter <filter-id> match
+nv set system syslog severity
+nv set system syslog server <server-id>
+nv set system syslog server <server-id> port
+nv set system syslog server <server-id> protocol
+nv set system syslog server <server-id> vrf mgmt
 ```
 
 {{< /tab >}}
@@ -105,6 +131,11 @@ nv action generate file-hash sha256 <filename>
 nv action generate file-hash sha512 <filename>
 nv action list system file-path <path>
 nv action power-cycle system
+nv action pull system docker image <image-id>
+nv action remove system docker image <image-id>
+nv action remove system docker container <container-id>
+nv action start system docker container <container-name> image <image-id>
+nv action stop system docker container <container-name>
 ```
 
 {{< /tab >}}

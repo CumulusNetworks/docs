@@ -176,13 +176,15 @@ NVUE provides commands to:
 To download a Docker image from a registry, run the `nv action pull system docker image <image-id>` command:
 
 ```
-cumulus@switch:~$ nv action pull system docker image IMAGE1
+cumulus@switch:~$ nv action pull system docker image 97662d24417b
 ```
+
+The `image-id` is the hexadecimal string representing the docker internal identifier for an image.
 
 To delete a Docker image from the switch, run the `nv action remove system docker image <image-id>` command:
 
 ```
-cumulus@switch:~$ nv action remove system docker image IMAGE1
+cumulus@switch:~$ nv action remove system docker image 97662d24417b
 ```
 
 ### Docker Containers
@@ -190,7 +192,7 @@ cumulus@switch:~$ nv action remove system docker image IMAGE1
 To create and run a new container from an image, run the `nv action start system docker container <container-name> image <image-id>]` command. You can use Docker run options such as `--pid`, `--cap-add`, and `--storage-opt size`.
 
 ```
-cumulus@switch:~$ nv action start system docker container CONTAINER1 image IMAGE1 --storage-opt size=120G
+cumulus@switch:~$ nv action start system docker container CONTAINER1 image 97662d24417b --storage-opt size=120G
 ```
 
 To stop a container, run the `nv action stop system docker container <container-id-name>` command:

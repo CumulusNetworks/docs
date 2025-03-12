@@ -142,12 +142,6 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <td>5.12.0-5.12.1</td>
 </tr>
 <tr>
-<td>4173498</td>
-<td>After network churn, the {{﻿watchfrr}} process might restart FRR because zebra is unresponsive.</td>
-<td>5.9.1-5.12.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4142857</td>
 <td>The switch drops PTP packets received with extra ethernet padding and you see syslog {{[ptp4l.ERR] messages.</td>
 <td>5.10.0-5.12.1</td>
@@ -997,12 +991,6 @@ This happens in async mode, where the end notification expected after an end of 
 <td>4178578</td>
 <td>An unexpected thermal reboot occurs due to an incorrect firmware status in the i2c driver.</td>
 <td>5.10.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4173498</td>
-<td>After network churn, the {{﻿watchfrr}} process might restart FRR because zebra is unresponsive.</td>
-<td>5.9.1-5.12.1</td>
 <td></td>
 </tr>
 <tr>

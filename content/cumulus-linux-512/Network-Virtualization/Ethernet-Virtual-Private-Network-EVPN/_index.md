@@ -14,7 +14,7 @@ Cumulus Linux installs the routing control plane (including EVPN) as part of the
 
 Cumulus Linux fully supports EVPN as the control plane for VXLAN, including for both intra-subnet bridging and inter-subnet routing, and provides these key features:
 
-- MAC-VRFs are implemented using a "VLAN-Based Service Interface" ({{<exlink url="https://datatracker.ietf.org/doc/html/rfc7432.html" text="RFC 7432">}}). Therefore, the MAC-VRFs are VLANs and there is a direct one-to-one mapping between layer 2 VNIs and VLANs.
+- MAC VRFs use a *VLAN-Based Service Interface* ({{<exlink url="https://datatracker.ietf.org/doc/html/rfc7432.html" text="RFC 7432">}}). Therefore, the MAC VRFs are VLANs and there is a direct one-to-one mapping between layer 2 VNIs and VLANs.
 - VNI membership exchange between <span class="a-tooltip">[VTEPs](## "Virtual Tunnel End Points")</span> using EVPN type-3 (Inclusive multicast Ethernet tag) routes.
 - Host MAC and IP address exchange using EVPN type-2 (MAC and IP advertisement) routes.
 - {{<link url="EVPN-Enhancements#extended-mobility" text="Host/VM mobility">}} support (MAC and IP moves) through exchange of the MAC Mobility Extended community.

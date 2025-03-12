@@ -109,24 +109,21 @@ cumulus@leaf01:~$ nv config apply
 {{%notice note%}}
 
 When you run the `nv set vrf RED evpn vni 4001` command, NVUE:
-
-- If a layer 3 VNI was not previously configured
-    - Creates a layer 3 bridge called `br_l3vni`
-    - Creates a new, separate single VXLAN device `vxlan99` and adds it to the bridge `br_l3vni`
-- Creates a layer 3 VNI called `vni4001` in VRF RED
-- Assigns `vni4001` a VLAN automatically (for example, `3159`)
-- Creates a VLAN interface for this VLAN with `_l3` (layer 3) appended to the interface name (for example, `vlan3159_l3`) in VRF RED. This VLAN interface is represented as a Linux virtual interface / subinterface / virtual link of type `vlan` in the bridge `br_l3vni` and thus will not be shown in the output of `bridge vlan` command
-- Adds the VLAN (for example, `3159`) to the bridge `br_l3vni`. This VLAN will not appear in the `bridge-vids` section of the bridge `br_l3vni` in `/etc/networks/interfaces`, but is still applied to the bridge.
-- Adds the mapping `vlan3159 <-> vni4001` to the VLAN-VNI map of the single VXLAN device `vxlan99` in bridge `br_l3vni`
+- Creates a layer 3 bridge called `br_l3vni` and creates a new, separate single VXLAN device (`vxlan99`) adding it to the bridge (`br_l3vni`). NVUE does this if there is no configured layer 3 VNI.
+- Creates a layer 3 VNI called `vni4001` in VRF RED.
+- Assigns `vni4001` a VLAN automatically (for example, `3159`).
+- Creates a VLAN interface for this VLAN with `_l3` (layer 3) appended to the interface name (for example, `vlan3159_l3`) in VRF RED. This VLAN interface is represented as a Linux virtual interface, subinterface, or virtual link of type `vlan` in the bridge `br_l3vni` and does not show in the `bridge vlan` command output.
+- Adds the VLAN (for example, `3159`) to the bridge `br_l3vni`. This VLAN does not show in the `bridge-vids` section of the bridge `br_l3vni` in the `/etc/networks/interfaces` file, but still applies to the bridge.
+- Adds the mapping `vlan3159 <-> vni4001` to the VLAN-VNI map of the single VXLAN device `vxlan99` in bridge `br_l3vni`.
 
 This behavior is different in an MLAG environment. If you configure MLAG and you run the `nv set vrf RED evpn vni 4001` command, NVUE:
-- Creates a layer 3 VNI called `vni4001` in VRF RED
-- Assigns `vni4001` a VLAN automatically (for example, `4055`) out of the global reserved layer 3 VNI VLAN range
-- Creates a VLAN interface for this VLAN with `_l3` (layer 3) appended to the interface name (for example, `vlan4055_l3`) in VRF RED. This VLAN interface is represented as a Linux virtual interface / subinterface / virtual link of type `vlan` in the bridge `br_default` and thus will not be shown in the output of `bridge vlan` command
-- Adds the VLAN (for example, `4055`) to bridge `br_default`. This VLAN will not appear in the `bridge-vids` section of the bridge `br_default` in `/etc/networks/interfaces`, but is still applied to the bridge.
-- Adds the mapping `vlan4055 <-> vni4001` to the VLAN-VNI map of the single VXLAN device `vxlan48` in bridge `br_default`
+- Creates a layer 3 VNI called `vni4001` in VRF RED.
+- Assigns `vni4001` a VLAN automatically (for example, `4055`) out of the global reserved layer 3 VNI VLAN range.
+- Creates a VLAN interface for this VLAN with `_l3` (layer 3) appended to the interface name (for example, `vlan4055_l3`) in VRF RED. This VLAN interface is represented as a Linux virtual interface, subinterface, or virtual link of type `vlan` in the bridge `br_default` and does not show in the `bridge vlan` command output.
+- Adds the VLAN (for example, `4055`) to bridge `br_default`. This VLAN does not show in the `bridge-vids` section of the bridge `br_default` in the `/etc/networks/interfaces` file, but still applies to the bridge.
+- Adds the mapping `vlan4055 <-> vni4001` to the VLAN-VNI map of the single VXLAN device `vxlan48` in bridge `br_default`.
 
-The {{<link url="VLAN-aware-Bridge-Mode/#reserved-layer-3-vni-vlans" text="global reserved layer 3 VNI VLAN range">}} is different than the {{<link url="VLAN-aware-Bridge-Mode/#reserved-vlan-range" text="switch internal reserved VLAN range.">}} You can configure it with the {{<link url="VLAN-aware-Bridge-Mode/#reserved-layer-3-vni-vlans" text="`nv set system global reserved vlan l3-vni-vlan` command">}}.
+The {{<link url="VLAN-aware-Bridge-Mode/#reserved-layer-3-vni-vlans" text="global reserved layer 3 VNI VLAN range">}} is different than the {{<link url="VLAN-aware-Bridge-Mode/#reserved-vlan-range" text="switch internal reserved VLAN range.">}} You can configure the range with the {{<link url="VLAN-aware-Bridge-Mode/#reserved-layer-3-vni-vlans" text="`nv set system global reserved vlan l3-vni-vlan` command">}}.
 {{%/notice%}}
 
 {{< /tab >}}

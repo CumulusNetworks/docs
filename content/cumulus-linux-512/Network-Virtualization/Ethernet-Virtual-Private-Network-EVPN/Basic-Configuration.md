@@ -13,7 +13,7 @@ Basic configuration in a BGP-EVPN-based layer 2 extension deployment requires yo
 - Configure BGP
 - Activate the EVPN address family and enable EVPN between BGP neighbors
 
-In Cumulus, MAC-VRFs are implemented using a "VLAN-Based Service Interface" ({{<exlink url="https://datatracker.ietf.org/doc/html/rfc7432.html" text="RFC 7432">}}). Therefore, the MAC-VRFs are VLANs and there is a direct one-to-one mapping between layer 2 VNIs and VLANs (VLAN to VNI mapping), which must be specified. In certain circumstances, the VLAN to VNI mapping can be automated, see {{<link url="VXLAN-Devices#automatic-vlan-to-vni-mapping" text="Automatic VLAN to VNI Mapping">}}.
+In Cumulus Linux, MAC VRFs use a *VLAN-Based Service Interface* ({{<exlink url="https://datatracker.ietf.org/doc/html/rfc7432.html" text="RFC 7432">}}). Therefore, MAC VRFs are VLANs and there is a direct one-to-one mapping between layer 2 VNIs and VLANs (VLAN to VNI mapping), which you must specify. In certain cases, you can automate the VLAN to VNI mapping, refer to {{<link url="VXLAN-Devices#automatic-vlan-to-vni-mapping" text="Automatic VLAN to VNI Mapping">}}.
 
 {{%notice note%}}
 For a non-VTEP device that is only participating in EVPN route exchange, such as a spine switch where the network deployment uses hop-by-hop eBGP or the switch is acting as an iBGP route reflector, configuring VXLAN interfaces is not required.
@@ -22,7 +22,7 @@ For a non-VTEP device that is only participating in EVPN route exchange, such as
 {{< tabs "TabID20 ">}}
 {{< tab "NVUE Commands ">}}
 
-1. Configure VXLAN. The following example maps VLAN 10 to vni10 and VLAN 20 to vni20 and sets the VXLAN local tunnel IP address to 10.10.10.1. NVUE automatically creates a single VXLAN device (`vxlan48`), adds the VXLAN device (`vxlan48`) to the default bridge `br_default` and adds the VLAN to VNI mapping to the VXLAN device (via `bridge-vlan-vni-map` in `/etc/network/interfaces`)
+1. Configure VXLAN. The following example maps VLAN 10 to vni10 and VLAN 20 to vni20 and sets the VXLAN local tunnel IP address to 10.10.10.1. NVUE automatically creates a single VXLAN device (`vxlan48`), adds the VXLAN device (`vxlan48`) to the default bridge `br_default`, and adds the VLAN to VNI mapping to the VXLAN device (`bridge-vlan-vni-map` in the `/etc/network/interfaces` file.)
 
    ```
    cumulus@leaf01:~$ nv set bridge domain br_default vlan 10 vni 10

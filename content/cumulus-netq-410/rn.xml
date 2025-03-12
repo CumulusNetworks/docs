@@ -55,12 +55,6 @@
 <td></td>
 </tr>
 <tr>
-<td>3752422</td>
-<td>When you run a NetQ trace and specify MAC addresses for the source and destination, NetQ displays the message “No valid path to destination” and does not display trace data.</td>
-<td>4.9.0-4.13.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3721754</td>
 <td>After you decommission a switch, the switch's interfaces are still displayed in the NetQ UI in the Interfaces view.</td>
 <td>4.9.0-4.10.1</td>
@@ -137,12 +131,6 @@
 <tr>
 <td>3769936</td>
 <td>When there is a NetQ interface validation failure for admin state mismatch, the validation failure might clear unexpectedly while one side of the link is still administratively down.</td>
-<td>4.9.0-4.13.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3752422</td>
-<td>When you run a NetQ trace and specify MAC addresses for the source and destination, NetQ displays the message “No valid path to destination” and does not display trace data.</td>
 <td>4.9.0-4.13.0</td>
 <td></td>
 </tr>

@@ -26,17 +26,16 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 - {{<link url="DHCP-Servers/#multiple-static-ip-address-assignments" text="Support two DHCP static IP address assignments per port for a single host">}}
 - {{<link url="System-Power/#power-cycle" text="Recovery mechanism for thermal ASIC shutdown">}}
 - {{<link url="Syslog" text="syslog log filters">}}
+- {{<link title="Docker with Cumulus Linux" text="Support Docker containers">}}
 - Erase SSD before switch RMA
 - OTLP Phase 4
 - gNMI support
 - Default AR profile update
 - New maintenance mode commands
 - Export per transceiver temperature and power
-
 - 802.1x on router ports with dynamic VRF assignments
 - Ability to disconnect or disable remote access to the switch
 - Enable RADIUS for multiple VRFs
-- Support Docker container
 - Show SNR for transceivers
 - Reflect switch hardware revision
 - Enable ssh public key only

@@ -25,13 +25,14 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 - {{<link url="Monitoring-System-Hardware/#nvue-commands" text="Updated system health command">}}
 - {{<link url="DHCP-Servers/#multiple-static-ip-address-assignments" text="Support two DHCP static IP address assignments per port for a single host">}}
 - {{<link url="System-Power/#power-cycle" text="Recovery mechanism for thermal ASIC shutdown">}}
+- {{<link url="Syslog" text="syslog log filters">}}
 - Erase SSD before switch RMA
 - OTLP Phase 4
 - gNMI support
 - Default AR profile update
 - New maintenance mode commands
 - Export per transceiver temperature and power
-- Filters for RSYSLOG log per facility level
+
 - 802.1x on router ports with dynamic VRF assignments
 - Ability to disconnect or disable remote access to the switch
 - Enable RADIUS for multiple VRFs

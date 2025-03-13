@@ -124,6 +124,7 @@ nv set system syslog server <server-id> vrf mgmt
 {{< tab "nv action ">}}
 
 ```
+nv action erase system disk 
 nv action generate file-hash md5 <filename>
 nv action generate file-hash sha1 <filename>
 nv action generate file-hash sha224 <filename>

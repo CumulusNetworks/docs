@@ -9,10 +9,16 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 
 ## March 2025
 <!-- Air:WhatsNew -->
+### 82.2025.0311-011
+- Fixed an issue with loading the details panel for a demo by using the demo ID in the URL
+- Fixed an issue in the node side panel when switching between nodes
+- Fixed an issue with deleting nodes in non-new states
+- Fixed TypeError in browser console when importing a DOT file while creating a simulation
+<!-- Air:WhatsNew -->
+
 ### 82.2025.0306-011
 - Fixed an issue which resulted in management IP duplicates when using the out-of-band management network
 - Fixed an issue where the node name tooltip could get stuck on the screen when the mouse was moved off the workspace canvas
-<!-- Air:WhatsNew -->
 
 ### 82.2025.0304-011
 - Added ability to right-click a node to open the actions menu

@@ -23,7 +23,7 @@ Cumulus Linux 4.3.1 and 4.3.2 supports Broadcom switches only. You **cannot** up
 
 The sections below describe some of the different ways you can install the Cumulus Linux image, such as using a DHCP/web server, FTP, a local file, or a USB drive. Steps are provided for both installing directly from ONIE (if no image is installed on the switch) and from Cumulus Linux (if the image is already installed on the switch), where applicable. For additional methods to find and install the Cumulus Linux image, see the {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html" text="ONIE Design Specification">}}.
 
-You can download a Cumulus Linux image from the {{<exlink url="https://enterprise-support.nvidia.com/s/downloader" text="NVIDIA Enterprise support portal">}}. 
+You can download a Cumulus Linux image from the {{<exlink url="https://enterprise-support.nvidia.com/s/downloads" text="NVIDIA Enterprise support portal">}}. 
 
 {{%notice warning%}}
 
@@ -275,7 +275,7 @@ Installing Cumulus Linux using a USB drive is fine for a single switch here and 
 
 ### Prepare for USB Installation
 
-1. From the {{<exlink url="https://enterprise-support.nvidia.com/s/downloader" text="NVIDIA Enterprise support portal">}}, download the appropriate Cumulus Linux image for your x86 or ARM platform.
+1. From the {{<exlink url="https://enterprise-support.nvidia.com/s/downloads" text="NVIDIA Enterprise support portal">}}, download the appropriate Cumulus Linux image for your x86 or ARM platform.
 2.  From a computer, prepare your USB drive by formatting it using one of the supported formats: FAT32, vFAT or EXT2.
 
     {{< expand "Optional: Prepare a USB Drive inside Cumulus Linux"  >}}
@@ -666,5 +666,5 @@ If you install the modified installation image and specify installer command lin
 ## Related Information
 
 - {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/" text="ONIE Design Specification">}}
-- {{<exlink url="https://enterprise-support.nvidia.com/s/downloader" text="NVIDIA Enterprise support portal">}}
+- {{<exlink url="https://enterprise-support.nvidia.com/s/downloads" text="NVIDIA Enterprise support portal">}}
 - {{<link url="Managing-Cumulus-Linux-Disk-Images" text="Managing Cumulus Linux Disk Images">}}

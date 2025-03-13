@@ -248,7 +248,7 @@ Installing Cumulus Linux using a USB drive is fine for a single switch here and 
 
 ### Prepare for USB Installation
 
-1. From the {{<exlink url="https://enterprise-support.nvidia.com/s/downloader" text="NVIDIA Enterprise support portal">}}, download the appropriate Cumulus Linux image for your platform.
+1. From the {{<exlink url="https://enterprise-support.nvidia.com/s/downloads" text="NVIDIA Enterprise support portal">}}, download the appropriate Cumulus Linux image for your platform.
 2.  From a computer, prepare your USB drive by formatting it using one of the supported formats: FAT32, vFAT or EXT2.
 
     {{< expand "Optional: Prepare a USB Drive inside Cumulus Linux"  >}}
@@ -570,5 +570,5 @@ SecureBoot enabled
 ## Related Information
 
 - {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/" text="ONIE Design Specification">}}
-- {{<exlink url="https://enterprise-support.nvidia.com/s/downloader" text="NVIDIA Enterprise support portal">}}
+- {{<exlink url="https://enterprise-support.nvidia.com/s/downloads" text="NVIDIA Enterprise support portal">}}
 - {{<link url="Managing-Cumulus-Linux-Disk-Images" text="Managing Cumulus Linux Disk Images">}}

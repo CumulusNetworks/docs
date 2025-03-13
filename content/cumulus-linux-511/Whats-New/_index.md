@@ -8,7 +8,15 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 - For a list of open and fixed issues in Cumulus Linux 5.11, see the {{<link title="Cumulus Linux 5.11 Release Notes" text="Cumulus Linux 5.11 Release Notes">}}.
 - To upgrade to Cumulus Linux 5.11, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 
-## What's New in Cumulus Linux 5.11
+## What's New in Cumulus Linux 5.11.1
+
+Cumulus Linux 5.11.1 provides {{<link title="Cumulus Linux 5.11 Packages" text="new SDK and package versions">}}, and includes {{<link title="Cumulus Linux 5.11 Release Notes" text="bug fixes">}}.
+
+Cumulus Linux 5.11.1 is a Long-Term Support (LTS) release. For more information, refer to {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/knowledge-base/Support/Support-Offerings/Cumulus-Linux-Release-Versioning-and-Support-Policy" text="this Knowledge base article">}}.
+
+## What's New in Cumulus Linux 5.11.0
+
+Cumulus Linux 5.11.0 provides new platforms, new features and improvements, and includes bug fixes.
 
 ### Platforms
 

@@ -8,6 +8,8 @@ You can use Cumulus Linux to run the {{<exlink url="https://www.docker.com/" tex
 
 The Docker package installs as part of the Cumulus Linux installation or ONIE upgrade process. The Docker package includes Docker Engine, and dependencies and configuration files required to run the Docker service. If you upgrade the switch with apt-upgrade, you must install the Docker package manually.
 
+## Configure Docker in Cumulus Linux
+
 To run Docker containers on the Cumulus Linux switch:
 
 1. Check if the Docker package already exists on the switch with the `dpkg-query -l cumulus-docker-setup` command.
@@ -217,7 +219,7 @@ To create and run a new container from an image, stop a container or delete a Do
 {{< tabs "TabID217">}}
 {{< tab "NVUE Commands">}}
 
-To create and run a new container from an image, run the `nv action start system docker container <container-name> image <image-id>]` command. You can use Docker run options such as `--pid`, `--cap-add`, and `--storage-opt size`.
+To create and run a new container from an image, run the `nv action start system docker container <container-name> image <image-id>` command. You can use Docker run options such as `--pid`, `--cap-add`, and `--storage-opt size`.
 
 ```
 cumulus@switch:~$ nv action start system docker container CONTAINER1 image 97662d24417b --storage-opt size=120G
@@ -291,7 +293,7 @@ To show statistics for a specific container, run the `nv show system docker cont
 cumulus@switch:~$ nv show system docker container CONTAINER1 stats
 ```
 
-To show docker engine configuration, run the `nv show system docker engine ` command:
+To show docker engine configuration, run the `nv show system docker engine` command:
 
 ```
 cumulus@switch:~$ nv show system docker engine 

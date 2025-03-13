@@ -119,9 +119,8 @@ cumulus@switch:~$ sudo systemctl start cumulus-upgrade-on-shutdown</td>
 </tr>
 <tr>
 <td>4210596</td>
-<td>After a factory reset, TACACS does not work. To work around this issue, run the following commands one after the other:
-cumulus@switch:~$ sudo pam-auth-update --enable tacplus --force
-cumulus@switch:~$ sudo pam-auth-update --enable unix --force</td>
+<td>After a factory reset, the files in /etc/pam.d/* may be incorrect, causing problems with TACACS+, RADIUS, and/or LDAP. To work around this issue, run the following command:
+cumulus@switch:~$ sudo /usr/sbin/pam-auth-update --force --package</td>
 <td>5.12.0-5.12.1</td>
 <td></td>
 </tr>
@@ -888,9 +887,8 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 </tr>
 <tr>
 <td>4210596</td>
-<td>After a factory reset, TACACS does not work. To work around this issue, run the following commands one after the other:
-cumulus@switch:~$ sudo pam-auth-update --enable tacplus --force
-cumulus@switch:~$ sudo pam-auth-update --enable unix --force</td>
+<td>After a factory reset, the files in /etc/pam.d/* may be incorrect, causing problems with TACACS+, RADIUS, and/or LDAP. To work around this issue, run the following command:
+cumulus@switch:~$ sudo /usr/sbin/pam-auth-update --force --package</td>
 <td>5.12.0-5.12.1</td>
 <td></td>
 </tr>

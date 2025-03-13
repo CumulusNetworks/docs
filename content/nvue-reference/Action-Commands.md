@@ -2921,6 +2921,37 @@ If you add the `force` option (`nv action enable system ztp force`), ZTP enables
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action erase system disk</h>
+
+Erases all data on the switch SSD securely to prevent leaking critical data. Erasing data is an important process when you return a switch with RMA if the switch is defective or move a switch between buildings.
+
+When you erase all data on the switch, most services stop except for critical ones, such as sshd so that you can erase the data remotely.
+
+NVUE prompts you to confirm that you want to proceed before destroying all data.
+
+{{%notice note%}}
+- This command is in Beta.
+- You can erase all data only on switches with the Spectrum-4 and later ASIC.
+- You can erase all data on a functioning SSD only.
+- You cannot recover erased data.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action erase system disk
+WARNING! This will destroy all 
+data and will NOT be recoverable. 
+Execution may take up to X minutes. 
+Would you like to proceed? [y/N] 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action fetch system image \<remote-url\></h>
 
 Fetches a binary image from the specified URL.

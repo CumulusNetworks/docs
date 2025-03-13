@@ -27,7 +27,7 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 - {{<link url="System-Power/#power-cycle" text="Recovery mechanism for thermal ASIC shutdown">}}
 - {{<link url="Syslog" text="syslog log filters">}}
 - {{<link title="Docker with Cumulus Linux" text="Support Docker containers">}}
-- Erase SSD before switch RMA
+- {{<link title="Erase all Data from the Switch" text="Erase all data from the switch">}} Beta
 - OTLP Phase 4
 - gNMI support
 - Default AR profile update

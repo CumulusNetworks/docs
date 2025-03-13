@@ -8,7 +8,7 @@ You can use Cumulus Linux to run the {{<exlink url="https://www.docker.com/" tex
 
 The Docker package installs as part of the Cumulus Linux installation or ONIE upgrade process. The Docker package includes Docker Engine, and dependencies and configuration files required to run the Docker service. If you upgrade the switch with apt-upgrade, you must install the Docker package manually.
 
-## Configure Docker in Cumulus Linux
+## Run Docker Containers on the Switch
 
 To run Docker containers on the Cumulus Linux switch:
 
@@ -175,7 +175,7 @@ NVUE provides commands to:
 
 ### Docker Images
 
-To download a Docker image from a registry or remove a Docker image from the switch, follow the commands below.
+To download a Docker image from a registry or remove a Docker image from the switch, run the following commands.
 
 In the following commands, `image-id` is the hexadecimal string representing the docker internal identifier for an image.
 
@@ -263,6 +263,12 @@ cumulus@switch:~$ sudo docker rm CONTAINER1
 
 ## Show Docker Information
 
+To show Docker information on the switch, run the `nv show system docker` command:
+
+```
+cumulus@switch:~$ nv show system docker
+```
+
 To show docker images present on the switch, run the `nv show system docker image` command:
 
 ```
@@ -299,5 +305,3 @@ To show docker engine configuration, run the `nv show system docker engine` comm
 cumulus@switch:~$ nv show system docker engine 
 ```
 
-
-nv show system docker 

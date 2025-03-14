@@ -195,6 +195,72 @@ cumulus@switch:~$ sudo csmgrctl -d
 
 ## Maintenance Mode
 
+
+{{%notice note%}}
+Cumulus Linux 5.13 and later provides new maintenance mode commands and deprecates the commands provided in Cumulus Linux 5.12 and earlier:
+{{< expand "Deprecated NVUE Commands" >}}
+`nv action enable system maintenance mode`
+`nv action enable system maintenance ports`
+`nv action disable system maintenance mode`
+`nv action disable system maintenance ports`
+`nv show system maintenace`
+{{< /expand >}}
+{{%/notice%}}
+
+### Protocols
+
+To put all protocols in maintenance mode to perform updates or troubleshoot issues, run the `nv set maintenance unit all-protocols state maintenance` command. All the protocols that support graceful shutdown perform graceful shutdown with all their neighbors.
+
+A switch on which all protocols are put under maintenance goes through a warmboot when rebooted if the switch is in `warm` mode or if you do a warmboot to upgrade software to the next release.
+
+If the protocols have done a graceful shutdown while going into maintenance, but some of the neighbors do not have alternate paths, those neighbors continue to send traffic through this switch. That traffic continues to flow through this switch through the warmboot/ISSU operation. All protocols continue to remain in maintenance mode through the Warmboot/ISSU operation.
+
+Protocols that support Graceful Restart continue to do a graceful restart during warmboot/ISSU to relearn the routes from the neighbors in the usual way, even though the all-protocols maintenance unit is in maintenance mode.
+
+```
+cumulus@switch:~$ nv set maintenance unit all-protocols state maintenance
+cumulus@switch:~$ nv config apply
+
+```
+
+To take all protocols out of maintenance and put them back into production, run the `nv set maintenance unit all-protocols state production ` command. All the protocols that support graceful shutdown re-advertise the routes with the original weight or preference.
+
+```
+cumulus@switch:~$ nv set maintenance unit all-protocols state production
+cumulus@switch:~$ nv config apply
+```
+
+### Ports
+
+To put all the ports in maintenance mode to perform updates or troubleshoot issues, run the `nv set maintenance unit all-interfaces state maintenance` command. All the ports are moved to the link down state.
+
+```
+cumulus@cumulus:mgmt$ nv set maintenance unit all-interfaces state maintenance
+cumulus@switch:~$ nv config apply
+```
+
+To take all ports out of maintenance and put them in production, run the `nv set maintenance unit all-interfaces state production `command. All the ports are moved out of the link down state.
+
+```
+cumulus@switch:~$ nv set maintenance unit all-interfaces state production
+cumulus@switch:~$ nv config apply 
+```
+
+### Check the Maintenance State
+
+To check the current maintenance state of the switch, run the NVUE `nv show maintenance` command or the Linux `sudo csmgrctl -s` command:
+
+```
+cumulus@switch:~$ nv show maintenance 
+```
+
+To show the current maintenance state of the protocols, run the `nv show maintenance unit all-protocols` command:
+
+```
+cumulus@switch:~$ nv show maintenance unit all-protocols
+```
+
+<!--
 Maintenance mode globally manages the BGP and MLAG control plane.
 - When you enable maintenance mode, BGP and MLAG shut down gracefully.
 - When you disable maintenance mode, BGP and MLAG are `enabled` based on the individual parameter settings.
@@ -347,3 +413,4 @@ cumulus@switch:~$ nv show system maintenance
 mode   enabled   
 ports  disabled 
 ```
+-->

@@ -19,7 +19,6 @@ To erase all data, run the `nv action erase system disk` command. NVUE prompts y
 
 ```
 cumulus@switch:~$ nv action erase system disk 
-
 WARNING! This will destroy all 
 data and will NOT be recoverable. 
 Execution may take up to X minutes. 

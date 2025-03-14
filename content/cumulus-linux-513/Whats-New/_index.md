@@ -19,6 +19,8 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 ### New Features and Enhancements
 
 - NVIDIA SN5400 ITU-T G.8273.2 Class C (Compliance)
+- OTLP Phase 4
+- gNMI support
 - {{<link url="Equal-Cost-Multipath-Load-Sharing/#enable-adaptive-routing" text="Enabling adaptive routing no longer restarts switchd">}}
 - {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="Optimized upgrade supports warmboot">}}
 - {{<link url="802.1X-Interfaces/#ignore-reauthorization-timeout" text="802.1 option to keep the port in the current state when the RADIUS server is unreachable">}}
@@ -27,17 +29,14 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 - {{<link url="System-Power/#power-cycle" text="Recovery mechanism for thermal ASIC shutdown">}}
 - {{<link url="Syslog" text="syslog log filters">}}
 - {{<link title="Docker with Cumulus Linux" text="Support Docker containers">}}
-- {{<link title="Erase all Data from the Switch" text="Erase all data from the switch">}} Beta
-- OTLP Phase 4
-- gNMI support
+- {{<link title="Erase all Data from the Switch" text="Erase all data from the switch">}} (Beta)
+- {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#amber-phy-health-management" text="Show SNR information for transceivers">}}
 - Default AR profile update
 - New maintenance mode commands
 - Export per transceiver temperature and power
 - 802.1x on router ports with dynamic VRF assignments
 - Ability to disconnect or disable remote access to the switch
 - Enable RADIUS for multiple VRFs
-- Show SNR for transceivers
-- Reflect switch hardware revision
 - Enable ssh public key only
 - OTLP
   - Device level configuration of histogram
@@ -117,7 +116,24 @@ nv set system syslog server <server-id> vrf mgmt
 {{< tab "nv unset ">}}
 
 ```
-
+nv unset service dhcp-server <vrf> static <host>> vendor-class
+nv unset system docker vrf
+nv unset system dot1x radius nas-identifier
+nv unset system dot1x radius nas-ip-address
+nv unset system dot1x reauth-timeout-ignore
+nv unset system syslog format welf
+nv unset system syslog format welf firewall-name
+nv unset system syslog selector
+nv unset system syslog selector facility
+nv unset system syslog selector <selector-id> program-name
+nv unset system syslog selector <selector-id> severity
+nv unset system syslog selector <selector-id> filter <filter-id> action
+nv unset system syslog selector <selector-id> filter <filter-id> match
+nv unset system syslog severity
+nv unset system syslog server <server-id>
+nv unset system syslog server <server-id> port
+nv unset system syslog server <server-id> protocol
+nv unset system syslog server <server-id> vrf mgmt
 ```
 
 {{< /tab >}}
@@ -137,13 +153,6 @@ nv action remove system docker image <image-id>
 nv action remove system docker container <container-id>
 nv action start system docker container <container-name> image <image-id>
 nv action stop system docker container <container-name>
-```
-
-{{< /tab >}}
-{{< tab "nv config ">}}
-
-```
-
 ```
 
 {{< /tab >}}

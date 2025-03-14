@@ -198,14 +198,12 @@ cumulus@switch:~$ sudo csmgrctl -d
 Maintenance mode enables you to take a switch out of production to perform updates or troubleshoot issues. You can put all protocols or all interfaces in maintenance mode.
 
 {{%notice note%}}
-Cumulus Linux 5.13 and later provides new maintenance mode commands and deprecates the commands provided in Cumulus Linux 5.12 and earlier:
-{{< expand "Deprecated NVUE Commands" >}}
+Cumulus Linux 5.13 and later provides new maintenance mode commands and deprecates the following commands provided in Cumulus Linux 5.12 and earlier:
 `nv action enable system maintenance mode`
 `nv action enable system maintenance ports`
 `nv action disable system maintenance mode`
 `nv action disable system maintenance ports`
 `nv show system maintenace`
-{{< /expand >}}
 {{%/notice%}}
 
 ### Protocols

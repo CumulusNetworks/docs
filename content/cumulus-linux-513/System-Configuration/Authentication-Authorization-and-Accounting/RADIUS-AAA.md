@@ -98,7 +98,7 @@ You can configure the following global RADIUS settings and server specific setti
 
 | Setting | Description |
 | ------ | ----------- |
-| `vrf` | The VRF you want to use to communicate with the RADIUS servers. This is typically the management VRF (`mgmt`), which is the default VRF on the switch. You cannot specify more than one VRF. |
+| `vrf` | The global VRF you want to use to communicate with a RADIUS server. This is typically the management VRF (`mgmt`), which is the default VRF on the switch. If you use multiple RADIUS servers, you can specify a different VRF for each server. |
 | `privilege-level` | The minimum privilege level that determines if users can configure the switch with NVUE commands and sudo, or have read-only rights. The default privilege level is 15, which provides full administrator access. This is a global option only; you cannot set the minimum privilege level for specific RADIUS servers.|
 | `retransmit` | The maximum number of retransmission attempts allowed for requests when a RADIUS authentication request times out. This is a global option only; you cannot set the number of retransmission attempts for specific RADIUS servers.|
 | `timeout` | The timeout value when a server is slow or latencies are high. You can set a value between 1 and 60. The default timeout is 3 seconds. If you configure multiple RADIUS servers, you can set a global timeout for all servers. |
@@ -121,6 +121,7 @@ The following example configures RADIUS settings for a specific RADIUS server:
 
 ```
 cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 source-ip 192.168.1.10
+cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 vrf RED
 cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 timeout 10
 cumulus@switch:~$ nv config apply
 ```
@@ -130,7 +131,7 @@ cumulus@switch:~$ nv config apply
 
 | Setting | Description |
 | ------ | ----------- |
-| `vrf` | The VRF you want to use to communicate with the RADIUS servers. This is typically the management VRF (`mgmt`), which is the default VRF on the switch. You cannot specify more than one VRF. |
+| `vrf` | The VRF you want to use to communicate with the RADIUS server. This is typically the management VRF (`mgmt`), which is the default VRF on the switch. If you use multiple RADIUS servers, you can specify a different VRF for each server. |
 | `privilege-level` | Determines the privilege level for the user on the switch.|
 | `timeout` | The timeout value when a server is slow or latencies are high. You can set a value between 1 and 60. The default timeout is 3 seconds. If you configure multiple RADIUS servers, you can set a global timeout for all servers. |
 | `src_ip`| A specific IPv4 or IPv6 interface to reach the RADIUS server. If you configure multiple RADIUS servers, you can configure a specific interface to reach all RADIUS servers. |
@@ -151,10 +152,9 @@ debug
 # to change /etc/nss_mapuser.conf as well
 mapped_priv_user radius_priv_user
 
-# server[:port]                                    shared_secret       timeout (secs)     src_ip
-192.168.0.254:42                                   myradius$key        10                 192.168.1.10        
+# server[:port]        shared_secret       timeout (secs)    vrf-name    src_ip
+192.168.0.254:42       myradius$key        10                mgmt        192.168.1.10        
 
-vrf-name mgmt
 ```
 <!-- vale on -->
 {{< /tab >}}

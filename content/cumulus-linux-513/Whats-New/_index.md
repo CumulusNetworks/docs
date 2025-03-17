@@ -19,7 +19,6 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 ### New Features and Enhancements
 
 - NVIDIA SN5400 ITU-T G.8273.2 Class C (Compliance)
-- OTLP Phase 4
 - gNMI support
 - {{<link url="Equal-Cost-Multipath-Load-Sharing/#enable-adaptive-routing" text="Enabling adaptive routing no longer restarts switchd">}}
 - {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="Optimized upgrade supports warmboot">}}
@@ -31,17 +30,16 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 - {{<link title="Docker with Cumulus Linux" text="Support Docker containers">}}
 - {{<link title="Erase all Data from the Switch" text="Erase all data from the switch">}} (Beta)
 - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#amber-phy-health-management" text="Show SNR information for transceivers">}}
+- {{<link url="In-Service-System-Upgrade-ISSU/#maintenance-mode" text="New maintenance mode commands">}}
+- {{<link url="802.1X-Interfaces/#dynamic-vrf-assignments" text="802.1x on router ports with dynamic VRF assignments">}}
+- {{<link url="RADIUS-AAA/#optional-radius-configuration" text="RADIUS multiple VRF support">}}
 - Default AR profile update
-- New maintenance mode commands
 - Export per transceiver temperature and power
-- 802.1x on router ports with dynamic VRF assignments
 - Ability to disconnect or disable remote access to the switch
-- Enable RADIUS for multiple VRFs
 - Enable ssh public key only
 - OTLP
   - Device level configuration of histogram
   - Buffer Occupancy and watermark metrics
-- gNMI support
 - NVUE
   - {{<link url="NVUE-CLI/#list-directory-contents" text="Command to list directory contents">}}
   - {{<link url="NVUE-CLI/#get-the-hash-for-a-file" text="Command to get the hash for a file">}}
@@ -52,11 +50,16 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
   - {{< expand "Changed NVUE Commands" >}}
 | Cumulus Linux 5.13 | Cumulus Linux 12 and Earlier |
 | --------------- |---------------------------------------|
-| `nv set maintenance unit all-protocols state maintenance`| `nv action enable system maintenance mode`<br>`nv action disable system maintenance mode` |
-| | `nv action enable system maintenance ports`<br>`nv action disable system maintenance ports` |
+| `nv set maintenance unit all-protocols state maintenance`| `nv action enable system maintenance mode` |
+| `nv set maintenance unit all-protocols state production` | `nv action disable system maintenance mode` |
+| `nv set maintenance unit all-interfaces state maintenance` | `nv action enable system maintenance ports` |
+| `nv set maintenance unit all-interfaces state production` | `nv action disable system maintenance ports` |
 | `nv set system syslog server <server-id>` | `nv set service syslog <vrf> server <server-id>`|
 | `nv set system syslog server <server-id> port <port>` | `nv set service syslog <vrf> server <server-id> port <port>`|
 | `nv set system syslog server <server-id> protocol <protocol>` | `nv set service syslog <vrf> server <server-id> protocol <protocol>`|
+| `nv show system`| `build` and `product-release` fields removed from output. |
+| `nv show system version`| Updated and new fields in output.|
+
 {{< /expand >}}
   - {{< expand "Removed NVUE Commands" >}}
 ```
@@ -64,6 +67,7 @@ nv action enable system maintenance mode
 nv action enable system maintenance ports
 nv action disable system maintenance mode
 nv action disable system maintenance ports
+nv show platform software
 nv show system maintenace
 ```
 {{< /expand >}}
@@ -87,6 +91,10 @@ nv show system syslog server <server-id>
 nv show system syslog selector <selector-id>
 nv show system syslog selector <selector-id> filter
 nv show system syslog selector <selector-id> filter <filter-id>
+nv show system version
+nv show system version image
+nv show system version packages installed
+nv show system version packages installed <package_name>
 ```
 
 {{< /tab >}}
@@ -121,6 +129,9 @@ nv set system syslog server <server-id> vrf mgmt
 {{< tab "nv unset ">}}
 
 ```
+nv unset maintenance unit all-intefaces state
+nv unset maintenance unit all-protocols state
+nv unset maintenance unit system-protocols state
 nv unset service dhcp-server <vrf> static <host>> vendor-class
 nv unset system docker vrf
 nv unset system dot1x radius nas-identifier

@@ -198,12 +198,7 @@ cumulus@switch:~$ sudo csmgrctl -d
 Maintenance mode enables you to take a switch out of production to perform updates or troubleshoot issues. You can put all protocols or all interfaces in maintenance mode.
 
 {{%notice note%}}
-Cumulus Linux 5.13 and later provides new maintenance mode commands and deprecates the following commands provided in Cumulus Linux 5.12 and earlier:
-`nv action enable system maintenance mode`
-`nv action enable system maintenance ports`
-`nv action disable system maintenance mode`
-`nv action disable system maintenance ports`
-`nv show system maintenace`
+Cumulus Linux 5.13 and later provides new NVUE `nv set maintenance unit` commands and deprecates the `nv action enable system maintenance` commands provided in Cumulus Linux 5.12 and earlier:
 {{%/notice%}}
 
 ### Protocols
@@ -212,9 +207,9 @@ When you put all protocols in maintenance mode:
 - All the protocols that support graceful shutdown perform graceful shutdown with all their neighbors.
 - The switch goes through a warmboot when rebooted if the switch is in `warm` mode or when you do a warmboot to upgrade software to the next release.
 
-If the protocols have done a graceful shutdown while going into maintenance, but some of the neighbors do not have alternate paths, those neighbors continue to send traffic through this switch. That traffic continues to flow through this switch through the warmboot operation. All protocols continue to remain in maintenance mode through the warmboot operation.
+If the protocols perform a graceful shutdown while going into maintenance mode, but some of the neighbors do not have alternate paths, those neighbors continue to send traffic through the switch. That traffic continues to flow through this switch during warmboot and all protocols continue to remain in maintenance mode throughout the warmboot process.
 
-Protocols that support Graceful Restart continue to do a graceful restart during warmboot to relearn the routes from the neighbors in the usual way, even though the all-protocols maintenance unit is in maintenance mode.
+Protocols that support Graceful Restart continue to do a graceful restart during warmboot to relearn routes from neighbors in the usual way, even though the all-protocols maintenance unit is in maintenance mode.
 
 {{< tabs "213 ">}}
 {{< tab "NVUE Command ">}}

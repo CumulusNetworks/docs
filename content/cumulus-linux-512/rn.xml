@@ -69,10 +69,22 @@ cumulus@switch:~$ sudo systemctl start cumulus-upgrade-on-shutdown</td>
 <td></td>
 </tr>
 <tr>
+<td>4290634</td>
+<td>When you run the {{nv show interface counters}} command, there is a delay in showing the output.</td>
+<td>5.12.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4280299</td>
 <td>The {{nv action fetch system packages key &lt;key-id&gt;}} command fails if the key ID is an scp/ftp or URL path that requires a password to access the key. To work around this issue, use a URI that does not require password authentication for the key ID.</td>
 <td>5.12.0-5.12.1</td>
 <td></td>
+</tr>
+<tr>
+<td>4278822</td>
+<td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
+<td>5.9.2-5.11.0, 5.12.0-5.12.1</td>
+<td>5.11.1</td>
 </tr>
 <tr>
 <td>4277042</td>
@@ -119,7 +131,7 @@ cumulus@switch:~$ sudo systemctl start cumulus-upgrade-on-shutdown</td>
 </tr>
 <tr>
 <td>4210596</td>
-<td>After a factory reset, the files in /etc/pam.d/* may be incorrect, causing problems with TACACS+, RADIUS, and/or LDAP. To work around this issue, run the following command:
+<td>After a factory reset, the files in /etc/pam.d/* may be incorrect, causing problems with password strength checking, TACACS+, RADIUS, and/or LDAP. To work around this issue, run the following command:
 cumulus@switch:~$ sudo /usr/sbin/pam-auth-update --force --package</td>
 <td>5.12.0-5.12.1</td>
 <td></td>
@@ -779,6 +791,12 @@ cumulus@switch:~$ sudo systemctl start cumulus-upgrade-on-shutdown</td>
 <td></td>
 </tr>
 <tr>
+<td>4290634</td>
+<td>When you run the {{nv show interface counters}} command, there is a delay in showing the output.</td>
+<td>5.12.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4288264</td>
 <td>Optimized (two partition) upgrade and rollback fails when you apply configuration by editing the {{/etc/nvue.d/startup.yaml}} file, then run {{nv config apply startup}}. To work around this issue, after activating optimized &lt;b&gt;upgrade&lt;/b&gt;, but &lt;b&gt;before&lt;/b&gt; rebooting, save a copy of the contents of {{/var/lib/nvue/}} to some other location. Then, &lt;b&gt;after&lt;/b&gt; activating &lt;b&gt;rollback&lt;/b&gt;, but &lt;b&gt;before&lt;/b&gt; rebooting, move {{/var/lib/nvue/}} to some other location and copy the previously saved contents to {{/var/lib/nvue/}}.</td>
 <td>5.12.0</td>
@@ -794,6 +812,12 @@ cumulus@switch:~$ sudo systemctl start cumulus-upgrade-on-shutdown</td>
 <td>4280299</td>
 <td>The {{nv action fetch system packages key &lt;key-id&gt;}} command fails if the key ID is an scp/ftp or URL path that requires a password to access the key. To work around this issue, use a URI that does not require password authentication for the key ID.</td>
 <td>5.12.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4278822</td>
+<td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
+<td>5.9.2-5.12.1</td>
 <td></td>
 </tr>
 <tr>
@@ -887,7 +911,7 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 </tr>
 <tr>
 <td>4210596</td>
-<td>After a factory reset, the files in /etc/pam.d/* may be incorrect, causing problems with TACACS+, RADIUS, and/or LDAP. To work around this issue, run the following command:
+<td>After a factory reset, the files in /etc/pam.d/* may be incorrect, causing problems with password strength checking, TACACS+, RADIUS, and/or LDAP. To work around this issue, run the following command:
 cumulus@switch:~$ sudo /usr/sbin/pam-auth-update --force --package</td>
 <td>5.12.0-5.12.1</td>
 <td></td>
@@ -1509,6 +1533,11 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>5.8.0-5.11.0</td>
 </tr>
 <tr>
+<td>4248702</td>
+<td>Replacing a configuration using a revision ID ({{nv config apply &lt;revision-id&gt;}}) might take more than three minutes in certain cases. This issue has no functional impact.</td>
+<td>5.11.0</td>
+</tr>
+<tr>
 <td>4242756</td>
 <td>A Python version change removed the encoding argument parameter of the json loads function, which causes an exception.</td>
 <td>5.11.0</td>
@@ -1553,6 +1582,11 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 <td>5.11.0</td>
 </tr>
 <tr>
+<td>4205103</td>
+<td>On rare occasions, platform drivers capture the firmware state as being in ISSU when it is not the case. This causes the ASIC temperature to be read as 0, which causes the thermal algorithm to set fan speeds to low. As a result, the switch can get overheated and undergo a thermal shutdown. To work around this issue, reboot or powercycle the switch.</td>
+<td>5.11.0</td>
+</tr>
+<tr>
 <td>4205060</td>
 <td>Debian 12 does not support LDAP SSL CRL check. Cumulus Linux now uses CRL file.</td>
 <td>5.11.0-5.11.1</td>
@@ -1570,6 +1604,11 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 <tr>
 <td>4200758</td>
 <td>The {{nv show service ntp &lt;vrf&gt;}} command shows the peers that are discovered together with the configured NTP servers instead of displaying only the NTP configuration. As a result, the applied and operational columns have different values, which causes confusion.</td>
+<td>5.11.0</td>
+</tr>
+<tr>
+<td>4200742</td>
+<td>Due to hardware limitations in the MPS2975, the minimum threshold for PMIC-12-COMEX-VCORE-OUT is fixed and cannot be set to zero. While a threshold violation warning might appear, system functionality remains unaffected, and the current configuration is maintained to ensure device compatibility.</td>
 <td>5.11.0</td>
 </tr>
 <tr>

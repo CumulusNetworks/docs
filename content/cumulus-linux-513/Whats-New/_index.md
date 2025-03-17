@@ -73,6 +73,7 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 {{< tab "nv show ">}}
 
 ```
+nv show maintenance unit all-protocols
 nv show system docker
 nv show system docker container
 nv show system docker container stats
@@ -92,6 +93,10 @@ nv show system syslog selector <selector-id> filter <filter-id>
 {{< tab "nv set ">}}
 
 ```
+nv set maintenance unit all-interfaces state maintenance
+nv set maintenance unit all-interfaces state production
+nv set maintenance unit all-protocols state maintenance
+nv set maintenance unit all-protocols state production
 nv set service dhcp-server <vrf> static <host>> vendor-class
 nv set system docker vrf <vrf-name>
 nv set system dot1x radius nas-identifier

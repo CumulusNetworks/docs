@@ -195,155 +195,109 @@ cumulus@switch:~$ sudo csmgrctl -d
 
 ## Maintenance Mode
 
-Maintenance mode globally manages the BGP and MLAG control plane.
-- When you enable maintenance mode, BGP and MLAG shut down gracefully.
-- When you disable maintenance mode, BGP and MLAG are `enabled` based on the individual parameter settings.
+Maintenance mode enables you to take a switch out of production to perform updates or troubleshoot issues. You can put all protocols or all interfaces in maintenance mode.
 
-To enable maintenance mode:
+{{%notice note%}}
+Cumulus Linux 5.13 and later provides new NVUE `nv set maintenance unit` commands and deprecates the `nv action enable system maintenance` commands provided in Cumulus Linux 5.12 and earlier:
+{{%/notice%}}
 
-{{< tabs "203 ">}}
+### Protocols
+
+When you put all protocols in maintenance mode:
+- All the protocols that support graceful shutdown perform graceful shutdown with all their neighbors.
+- The switch goes through a warmboot when rebooted if the switch is in `warm` mode or when you do a warmboot to upgrade software to the next release.
+
+If the protocols perform a graceful shutdown while going into maintenance mode, but some of the neighbors do not have alternate paths, those neighbors continue to send traffic through the switch. That traffic continues to flow through this switch during warmboot and all protocols continue to remain in maintenance mode throughout the warmboot process.
+
+Protocols that support Graceful Restart continue to do a graceful restart during warmboot to relearn routes from neighbors in the usual way, even though the all-protocols maintenance unit is in maintenance mode.
+
+{{< tabs "213 ">}}
 {{< tab "NVUE Command ">}}
 
-```
-cumulus@switch:~$ nv action enable system maintenance mode
-Action executing ...
-System maintenance mode has been enabled successfully
- Current System Mode: Maintenance, cold  
- Maintenance mode since Thu Jun 13 23:59:47 2024 (Duration: 00:00:00)
- Ports shutdown for Maintenance
- frr             : Maintenance, cold, down, up time: 29:06:27
- switchd         : Maintenance, cold, down, up time: 29:06:31
- System Services : Maintenance, cold, down, up time: 29:07:00
+To put all protocols in maintenance mode, run the `nv set maintenance unit all-protocols state maintenance` command:
 
-Action succeeded
+```
+cumulus@switch:~$ nv set maintenance unit all-protocols state maintenance
+cumulus@switch:~$ nv config apply
+```
+
+To take all protocols out of maintenance and put them back into production, run the `nv set maintenance unit all-protocols state production` command. All the protocols that support graceful shutdown re-advertise the routes with the original weight or preference.
+
+```
+cumulus@switch:~$ nv set maintenance unit all-protocols state production
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "csmgrctl Command ">}}
+
+To put all protocols in maintenance mode, run the `sudo csmgrctl -m1` command. All the protocols that support graceful shutdown re-advertise the routes with the original weight or preference.
 
 ```
 cumulus@switch:~$ sudo csmgrctl -m1
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-To disable maintenance mode:
-
-{{< tabs "229 ">}}
-{{< tab "NVUE Command ">}}
-
-```
-cumulus@switch:~$ nv action disable system maintenance mode
-Action executing ...
-System maintenance mode has been disabled successfully
- Current System Mode: cold  
- frr             : cold, up, up time: 12:57:48 (1 restart)
- switchd         : cold, up, up time: 13:12:13
- System Services : cold, up, up time: 13:12:32
-Action succeeded
-```
-
-{{< /tab >}}
-{{< tab "csmgrctl Command ">}}
-
-```
-cumulus@switch:~$ sudo csmgrctl -m0
-```
+To take all protocols out of maintenance and put them back into production, run the `sudo csmgrctl -m0` command.
 
 {{< /tab >}}
 {{< /tabs >}}
 
-{{%notice note%}}
-Before you disable maintenance mode, be sure to bring the ports back up.
-{{%/notice%}}
+### Ports
 
-To show maintenance mode status either run the NVUE `nv show system maintenance` command or the Linux `sudo csmgrctl -s` command:
+When you put all ports in maintenance mode, all the ports go into the link down state. When you take all ports out of maintenance and put them in production, all the ports move out of the link down state.
 
-```
-cumulus@switch:~$ nv show system maintenance 
-       operational
------  -----------
-mode   enabled   
-ports  disabled 
-```
-
-```
-cumulus@switch:~$ sudo csmgrctl -s
-Current System Mode: cold  
- frr             : cold, up, up time: 00:14:51 (2 restarts)
- clagd           : cold, up, up time: 00:14:47
- switchd         : cold, up, up time: 01:09:48
- System Services : cold, up, up time: 01:10:07
-```
-
-## Maintenance Ports
-
-Maintenance ports globally disables or enables all configured ports.
-- When you enable maintenance ports, swp interfaces follow individual admin states.
-- When you disable maintenance ports, swp interfaces are globally admin down, overriding the admin state in the configuration.
-
-To enable maintenance ports:
-
-{{< tabs "279 ">}}
+{{< tabs "248 ">}}
 {{< tab "NVUE Command ">}}
 
-```
-cumulus@switch:~$ nv action enable system maintenance ports
-Action executing ...
-System maintenance ports has been enabled successfully
- Current System Mode: cold  
- frr             : cold, up, up time: 28:54:36
- switchd         : cold, up, up time: 28:54:40
- System Services : cold, up, up time: 28:55:09
+To put all the ports in maintenance mode, run the `nv set maintenance unit all-interfaces state maintenance` command:
 
-Action succeeded
+```
+cumulus@cumulus:mgmt$ nv set maintenance unit all-interfaces state maintenance
+cumulus@switch:~$ nv config apply
+```
+
+To take all ports out of maintenance and put them in production, run the `nv set maintenance unit all-interfaces state production` command:
+
+```
+cumulus@switch:~$ nv set maintenance unit all-interfaces state production
+cumulus@switch:~$ nv config apply 
 ```
 
 {{< /tab >}}
 {{< tab "csmgrctl Commands ">}}
+
+To put all the ports in maintenance mode:
 
 ```
 cumulus@switch:~$ sudo csmgrctl -p0
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-To disable maintenance ports:
-
-{{< tabs "315 ">}}
-{{< tab "NVUE Command ">}}
-
-```
-cumulus@switch:~$ nv action disable system maintenance ports
-Action executing ...
-System maintenance ports has been disabled successfully
- Current System Mode: cold  
- Ports shutdown for Maintenance
- frr             : cold, up, up time: 28:55:49
- switchd         : cold, up, up time: 28:55:53
- System Services : cold, up, up time: 28:56:22
-
-Action succeeded
-```
-
-{{< /tab >}}
-{{< tab "csmgrctl Commands ">}}
-
-```
-cumulus@switch:~$ sudo csmgrctl -p1
-```
+To take all ports out of maintenance and put them in production, run the `sudo csmgrctl -p1` command.
 
 {{< /tab >}}
 {{< /tabs >}}
 
-To see the status of maintenance ports, run the NVUE `nv show system maintenance` command:
+### Check the Maintenance State
+
+To check the current maintenance state of the switch, run the NVUE `nv show maintenance` command or the Linux `sudo csmgrctl -s` command:
 
 ```
-cumulus@switch:~$ nv show system maintenance 
-       operational
------  -----------
-mode   enabled   
-ports  disabled 
+cumulus@switch:~$ nv show maintenance
+Maintenance Info 
+============== 
+Unit                                 State 
+-----------------------              --------------- 
+all-protocols                        maintenance 
+all-interfaces                       maintenance 
+```
+
+To show the current maintenance state of the protocols, run the `nv show maintenance unit all-protocols` command:
+
+```
+cumulus@switch:~$ nv show maintenance unit all-protocols
+              operational      applied 
+----------    -----------      ----------- 
+state         maintenance       maintenance 
+interfaces
+protocols             all 
 ```

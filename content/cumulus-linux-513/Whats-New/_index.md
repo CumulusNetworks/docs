@@ -19,6 +19,7 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 ### New Features and Enhancements
 
 - NVIDIA SN5400 ITU-T G.8273.2 Class C (Compliance)
+- gNMI support
 - {{<link url="Equal-Cost-Multipath-Load-Sharing/#enable-adaptive-routing" text="Enabling adaptive routing no longer restarts switchd">}}
 - {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="Optimized upgrade supports warmboot">}}
 - {{<link url="802.1X-Interfaces/#ignore-reauthorization-timeout" text="802.1 option to keep the port in the current state when the RADIUS server is unreachable">}}
@@ -27,22 +28,18 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 - {{<link url="System-Power/#power-cycle" text="Recovery mechanism for thermal ASIC shutdown">}}
 - {{<link url="Syslog" text="syslog log filters">}}
 - {{<link title="Docker with Cumulus Linux" text="Support Docker containers">}}
-- {{<link title="Erase all Data from the Switch" text="Erase all data from the switch">}} Beta
-- OTLP Phase 4
-- gNMI support
+- {{<link title="Erase all Data from the Switch" text="Erase all data from the switch">}} (Beta)
+- {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#amber-phy-health-management" text="Show SNR information for transceivers">}}
+- {{<link url="In-Service-System-Upgrade-ISSU/#maintenance-mode" text="New maintenance mode commands">}}
+- {{<link url="802.1X-Interfaces/#dynamic-vrf-assignments" text="802.1x on router ports with dynamic VRF assignments">}}
+- {{<link url="RADIUS-AAA/#optional-radius-configuration" text="RADIUS multiple VRF support">}}
 - Default AR profile update
-- New maintenance mode commands
 - Export per transceiver temperature and power
-- 802.1x on router ports with dynamic VRF assignments
 - Ability to disconnect or disable remote access to the switch
-- Enable RADIUS for multiple VRFs
-- Show SNR for transceivers
-- Reflect switch hardware revision
 - Enable ssh public key only
 - OTLP
   - Device level configuration of histogram
   - Buffer Occupancy and watermark metrics
-- gNMI support
 - NVUE
   - {{<link url="NVUE-CLI/#list-directory-contents" text="Command to list directory contents">}}
   - {{<link url="NVUE-CLI/#get-the-hash-for-a-file" text="Command to get the hash for a file">}}
@@ -53,11 +50,16 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
   - {{< expand "Changed NVUE Commands" >}}
 | Cumulus Linux 5.13 | Cumulus Linux 12 and Earlier |
 | --------------- |---------------------------------------|
-| `nv set maintenance unit all-protocols state maintenance`| `nv action enable system maintenance mode`<br>`nv action disable system maintenance mode` |
-| | `nv action enable system maintenance ports`<br>`nv action disable system maintenance ports` |
+| `nv set maintenance unit all-protocols state maintenance`| `nv action enable system maintenance mode` |
+| `nv set maintenance unit all-protocols state production` | `nv action disable system maintenance mode` |
+| `nv set maintenance unit all-interfaces state maintenance` | `nv action enable system maintenance ports` |
+| `nv set maintenance unit all-interfaces state production` | `nv action disable system maintenance ports` |
 | `nv set system syslog server <server-id>` | `nv set service syslog <vrf> server <server-id>`|
 | `nv set system syslog server <server-id> port <port>` | `nv set service syslog <vrf> server <server-id> port <port>`|
 | `nv set system syslog server <server-id> protocol <protocol>` | `nv set service syslog <vrf> server <server-id> protocol <protocol>`|
+| `nv show system`| `build` and `product-release` fields removed from output. |
+| `nv show system version`| Updated and new fields in output.|
+
 {{< /expand >}}
   - {{< expand "Removed NVUE Commands" >}}
 ```
@@ -65,6 +67,7 @@ nv action enable system maintenance mode
 nv action enable system maintenance ports
 nv action disable system maintenance mode
 nv action disable system maintenance ports
+nv show platform software
 nv show system maintenace
 ```
 {{< /expand >}}
@@ -74,6 +77,7 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 {{< tab "nv show ">}}
 
 ```
+nv show maintenance unit all-protocols
 nv show system docker
 nv show system docker container
 nv show system docker container stats
@@ -87,13 +91,22 @@ nv show system syslog server <server-id>
 nv show system syslog selector <selector-id>
 nv show system syslog selector <selector-id> filter
 nv show system syslog selector <selector-id> filter <filter-id>
+nv show system version
+nv show system version image
+nv show system version packages installed
+nv show system version packages installed <package_name>
 ```
 
 {{< /tab >}}
 {{< tab "nv set ">}}
 
 ```
+nv set maintenance unit all-interfaces state maintenance
+nv set maintenance unit all-interfaces state production
+nv set maintenance unit all-protocols state maintenance
+nv set maintenance unit all-protocols state production
 nv set service dhcp-server <vrf> static <host>> vendor-class
+nv set system aaa radius server <server-id> vrf <vrf-id>
 nv set system docker vrf <vrf-name>
 nv set system dot1x radius nas-identifier
 nv set system dot1x radius nas-ip-address
@@ -117,13 +130,35 @@ nv set system syslog server <server-id> vrf mgmt
 {{< tab "nv unset ">}}
 
 ```
-
+nv unset maintenance unit all-intefaces state
+nv unset maintenance unit all-protocols state
+nv unset maintenance unit system-protocols state
+nv unset service dhcp-server <vrf> static <host>> vendor-class
+nv unset system aaa radius server <server-id> vrf
+nv unset system docker vrf
+nv unset system dot1x radius nas-identifier
+nv unset system dot1x radius nas-ip-address
+nv unset system dot1x reauth-timeout-ignore
+nv unset system syslog format welf
+nv unset system syslog format welf firewall-name
+nv unset system syslog selector
+nv unset system syslog selector facility
+nv unset system syslog selector <selector-id> program-name
+nv unset system syslog selector <selector-id> severity
+nv unset system syslog selector <selector-id> filter <filter-id> action
+nv unset system syslog selector <selector-id> filter <filter-id> match
+nv unset system syslog severity
+nv unset system syslog server <server-id>
+nv unset system syslog server <server-id> port
+nv unset system syslog server <server-id> protocol
+nv unset system syslog server <server-id> vrf mgmt
 ```
 
 {{< /tab >}}
 {{< tab "nv action ">}}
 
 ```
+nv action erase system disk 
 nv action generate file-hash md5 <filename>
 nv action generate file-hash sha1 <filename>
 nv action generate file-hash sha224 <filename>
@@ -136,13 +171,6 @@ nv action remove system docker image <image-id>
 nv action remove system docker container <container-id>
 nv action start system docker container <container-name> image <image-id>
 nv action stop system docker container <container-name>
-```
-
-{{< /tab >}}
-{{< tab "nv config ">}}
-
-```
-
 ```
 
 {{< /tab >}}

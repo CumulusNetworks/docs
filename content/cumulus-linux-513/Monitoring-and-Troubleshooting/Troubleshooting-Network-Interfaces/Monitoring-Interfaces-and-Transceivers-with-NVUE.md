@@ -248,11 +248,17 @@ Undersize Errors  0        n/a
 
 ## AmBER PHY Health Management
 
-To show physical layer information, such as the error counters for each lane on a port, run the `nv show interface <interface> link phy-detail` command. This command highlights link integrity issues.
+To show physical layer information, such as the error counters for each lane on a port and <span class="a-tooltip">[SNR](## "Signal-to-Noise Ratio")</span> information for media and host lanes (lane0 through lane7), run the `nv show interface <interface> link phy-detail` command.
+
+This command highlights link integrity issues.
 
 {{%notice note%}}
-The `effective-ber` in the command output represents the uncorrectable bit error rate, which is the same as uncorrected FEC errors.
+The `nv show interface <interface> link phy-detail` command shows SNR information for media and host lanes for NDR devices and optical modules on switches with the Spectrum-4 ASIC and later. The command does not show SNR information for SFP28 bonus ports.
+  - For lanes not in use for the optical cable, the command output shows 0.
+  - For copper ports, the command output shows n/a.
 {{%/notice%}}
+
+The `effective-ber` in the command output represents the uncorrectable bit error rate, which is the same as uncorrected FEC errors.
 
 ```
 cumulus@switch$ nv show interface swp1 link phy-detail 
@@ -297,6 +303,22 @@ rs-num-corr-err-bin12      0
 rs-num-corr-err-bin13      0
 rs-num-corr-err-bin14      0
 rs-num-corr-err-bin15      0
+snr-host-lane0             93.75
+snr-host-lane1             96.17
+snr-host-lane2             94.73
+snr-host-lane3             97.15
+snr-host-lane4             89.34
+snr-host-lane5             95.2
+snr-host-lane6             94.22
+snr-host-lane7             95.7
+snr-media-lane0           85.6
+snr-media-lane1           85.1
+snr-media-lane2           85.1
+snr-media-lane3           84.12
+snr-media-lane4           85.1
+snr-media-lane5           84.12
+snr-media-lane6           86.12
+snr-media-lane7           85.1
 ```
 
 To show physical layer diagnostic information for a port, run the `nv show interface <interface> link phy-diag` command:

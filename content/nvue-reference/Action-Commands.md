@@ -2765,6 +2765,10 @@ cumulus@switch:~$ nv action delete system security certificate cert-1
 
 Disables maintenance mode and restores normal operation.
 
+{{%notice note%}}
+Cumulus Linux 5.12 and earlier provides this command. For Cumulus Linux 5.13 and later use the `nv set maintenance unit all-protocols state production` command instead.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -2786,6 +2790,10 @@ Action succeeded
 ## <h>nv action disable system maintenance ports</h>
 
 Restores the port admin state after maintenance.
+
+{{%notice note%}}
+Cumulus Linux 5.12 and earlier provides this command. For Cumulus Linux 5.13 and later use the `nv set maintenance unit all-interfaces state production` command instead.
+{{%/notice%}}
 
 ### Version History
 
@@ -2855,6 +2863,10 @@ cumulus@switch:~$ nv action disconnect system aaa user admin2
 
 Enables maintenance mode. When maintenance mode is on, ISSU performs a graceful BGP shutdown, redirects traffic over the peerlink and brings down the MLAG port link. `switchd` maintains full capability.
 
+{{%notice note%}}
+Cumulus Linux 5.12 and earlier provides this command. For Cumulus Linux 5.13 and later use the `nv set maintenance unit all-protocols state maintenance` command instead.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -2877,6 +2889,11 @@ Action succeeded
 ## <h>nv action enable system maintenance ports</h>
 
 Brings down the ports for maintenance.
+
+
+{{%notice note%}}
+Cumulus Linux 5.12 and earlier provides this command. For Cumulus Linux 5.13 and later use the `nv set maintenance unit all-interfaces state maintenance` command instead.
+{{%/notice%}}
 
 ### Version History
 

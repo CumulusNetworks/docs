@@ -8,6 +8,58 @@ type: nojsscroll
 <style>
 h { color: RGB(118,185,0)}
 </style>
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show maintenance</h>
+
+Show the current maintenance state of the switch.
+
+{{%notice note%}}
+Cumulus Linux 5.12 and earlier does not provide this command; run the `nv show system maintenance` command instead.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show maintenance 
+Maintenance Info 
+============== 
+Unit                                 State 
+-----------------------              --------------- 
+all-protocols                        maintenance 
+all-interfaces                       maintenance 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show maintenance unit all-protocols</h>
+
+Shows the current maintenance state of the protocols.
+
+{{%notice note%}}
+Cumulus Linux 5.12 and earlier does not provide this command; run the `nv show system maintenance unit all-protocols` command instead.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show maintenance unit all-protocols
+              operational      applied 
+----------    -----------      ----------- 
+state         maintenance       maintenance 
+interfaces
+protocols             all 
+```
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show system</h>
@@ -420,6 +472,10 @@ No Data
 ## <h>nv show system maintenance</h>
 
 Show the current system maintenance mode.
+
+{{%notice note%}}
+Cumulus Linux 5.12 and earlier provides this command. For Cumulus Linux 5.13 and later use the `nv show maintenance` command instead.
+{{%/notice%}}
 
 ### Version History
 

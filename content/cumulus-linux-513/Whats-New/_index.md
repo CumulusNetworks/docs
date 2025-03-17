@@ -106,6 +106,7 @@ nv set maintenance unit all-interfaces state production
 nv set maintenance unit all-protocols state maintenance
 nv set maintenance unit all-protocols state production
 nv set service dhcp-server <vrf> static <host>> vendor-class
+nv set system aaa radius server <server-id> vrf <vrf-id>
 nv set system docker vrf <vrf-name>
 nv set system dot1x radius nas-identifier
 nv set system dot1x radius nas-ip-address
@@ -133,6 +134,7 @@ nv unset maintenance unit all-intefaces state
 nv unset maintenance unit all-protocols state
 nv unset maintenance unit system-protocols state
 nv unset service dhcp-server <vrf> static <host>> vendor-class
+nv unset system aaa radius server <server-id> vrf
 nv unset system docker vrf
 nv unset system dot1x radius nas-identifier
 nv unset system dot1x radius nas-ip-address

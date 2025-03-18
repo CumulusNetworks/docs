@@ -37,12 +37,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4286417</td>
-<td>When sending control packets which have in their TX base header system target port 259-1023 (above cap_max_system_ports and below cap_ports - which is used for LAG forwarding), a health event of a fatal cause will occur in the switch.</td>
-<td>5.11.0-5.12.0</td>
-<td>5.12.1</td>
-</tr>
-<tr>
 <td>4278822</td>
 <td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
 <td>5.9.2-5.12.1</td>
@@ -838,7 +832,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>4286413</td>
-<td>When sending control packets that have system target port 259 through 1023 in their TX base header (above {{cap_max_system_ports}} and below {{cap_ports}}, used for LAG forwarding), a health event of a fatal cause occurs. To work around this issue, do not set these values in control the packet TX base header.</td>
+<td>When sending control packets that have the port range 259 through 1023 in their TX base header system target (above {{cap_max_system_ports}} and below {{cap_ports}} used for LAG forwarding), a health event of a fatal cause occurs in the switch. The port range 259 through 1023 reflects illegal system ports; do not set these values in the control packet TX base header. </td>
 <td>5.11.0</td>
 </tr>
 <tr>
@@ -1073,16 +1067,10 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <td>5.12.1</td>
 </tr>
 <tr>
-<td>4286417</td>
-<td>When sending control packets which have in their TX base header system target port 259-1023 (above cap_max_system_ports and below cap_ports - which is used for LAG forwarding), a health event of a fatal cause will occur in the switch.</td>
+<td>4286413</td>
+<td>When sending control packets that have the port range 259 through 1023 in their TX base header system target (above {{cap_max_system_ports}} and below {{cap_ports}} used for LAG forwarding), a health event of a fatal cause occurs in the switch. The port range 259 through 1023 reflects illegal system ports; do not set these values in the control packet TX base header. </td>
 <td>5.11.0-5.12.0</td>
 <td>5.12.1</td>
-</tr>
-<tr>
-<td>4286413</td>
-<td>When sending control packets that have system target port 259 through 1023 in their TX base header (above {{cap_max_system_ports}} and below {{cap_ports}}, used for LAG forwarding), a health event of a fatal cause occurs. To work around this issue, do not set these values in control the packet TX base header.</td>
-<td>5.11.0</td>
-<td>5.11.1-5.12.1</td>
 </tr>
 <tr>
 <td>4281099</td>

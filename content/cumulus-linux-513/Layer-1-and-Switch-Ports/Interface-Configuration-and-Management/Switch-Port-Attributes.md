@@ -22,6 +22,39 @@ Each physical network interface (port) has several settings:
 - <span class="a-tooltip">[FEC](## "Forward Error Correction")</span>
 
 For NVIDIA Spectrum ASICs, the firmware configures FEC, link speed, duplex mode and auto-negotiation automatically, following a predefined list of parameter settings until the link comes up. You can disable FEC if necessary, which forces the firmware to not try any FEC options.
+<!-- vale off -->
+<!-- Vale issue #253 -->
+### Auto-negotiation and Link Speed
+<!-- vale on -->
+
+{{< tabs "TabID29 ">}}
+{{< tab "NVUE Commands ">}}
+
+By default, NVUE enables auto-negotiation; however, if you set the link speed for a port using NVUE commands, NVUE disables auto-negotiation and uses the port speed setting you configure.
+
+To set the link speed for an interface, run the `nv set interface <swp> link speed` command:
+
+```
+cumulus@switch:~$ nv set interface swp1 link speed 400G
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+If you want to force a specific link speed using Linux files instead of NVUE commands, you must set the speed and disable auto-negotiation in the `/etc/network/interfaces` file, then run the `ifreload -a` command:
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+auto swp1
+iface swp1
+    link-speed 400000
+    link-autoneg off
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## MTU
 
@@ -46,7 +79,7 @@ Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command.
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
-
+...
 auto swp1
 iface swp1
     mtu 1500
@@ -2102,13 +2135,6 @@ Receiver signal average optical power     : 0.7285 mW / -1.38 dBm
 ### Auto-negotiation and FEC
 <!-- vale on -->
 If auto-negotiation is off on 100G and 25G interfaces, you must set FEC to *OFF*, RS, or BaseR to match the neighbor. The FEC default setting of *auto* does not link up when auto-negotiation is off.
-<!-- vale off -->
-<!-- Vale issue #253 -->
-### Auto-negotiation and Link Speed
-<!-- vale on -->
-If auto-negotiation is on and you set the link speed for a port, Cumulus Linux disables auto-negotiation and uses the port speed setting you configure.
-<!-- vale off -->
-<!-- Vale issue #253 -->
 
 ### Auto-negotiation with the Spectrum-4 Switch
 

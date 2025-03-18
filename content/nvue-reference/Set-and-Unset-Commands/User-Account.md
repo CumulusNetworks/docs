@@ -270,6 +270,50 @@ cumulus@switch:~$ nv set system aaa user admin2 spiffe-id spiffe://acme.com/bill
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system aaa user \<user\> ssh cert-auth principals</h>
+
+Sets the principals for certificate-based authorization for the user.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<user-id>`  |  The user account. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa user ADMIN1 ssh cert-auth principals aaa
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system aaa user \<user\> ssh cert-auth state</h>
+
+Enables and disables SSH certificate-based authorization for the user.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<user-id>`  |  The user account. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa user ADMIN1 ssh cert-auth state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system aaa user \<user-id\> state</h>
 
 Turns the user account for the switch on or off. You can specify `enabled` or `disabled`.

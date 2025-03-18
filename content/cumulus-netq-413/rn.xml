@@ -8,25 +8,25 @@
 </tr>
 <tr>
 <td>4360421</td>
-<td>When you back up your data from a prior NetQ release and restore it after installing NetQ 4.13.0, any switches that were in a rotten state are missing from the NetQ inventory after the upgrade. To work around this issue, decommission any rotten switches before you upgrade and reconnect the agents after the upgrade is complete.Additionally, no snapshot or PTP data is restored from prior releases after the upgrade. </td>
+<td>When you back up your data from a prior NetQ release and restore it after installing NetQ 4.13.0, any switches that were in a rotten state are missing from the NetQ inventory after the upgrade. To work around this issue, decommission any rotten switches before you upgrade and reconnect the agents after the upgrade is complete.</td>
 <td>4.13.0</td>
 <td></td>
 </tr>
 <tr>
 <td>4360420</td>
-<td>When you back up your data from a prior NetQ release and restore it after installing NetQ 4.13.0, any switches that were in a rotten state are missing from the NetQ inventory after the upgrade. To work around this issue, decommission any rotten switches before you upgrade and reconnect the agents after the upgrade is complete.Additionally, no snapshot or PTP data is restored from prior releases after the upgrade. </td>
+<td>When you upgrade to 4.13, network snapshots taken prior to upgrading are not restored.</td>
 <td>4.13.0</td>
 <td></td>
 </tr>
 <tr>
 <td>4360419</td>
-<td>When you back up your data from a prior NetQ release and restore it after installing NetQ 4.13.0, any switches that were in a rotten state are missing from the NetQ inventory after the upgrade. To work around this issue, decommission any rotten switches before you upgrade and reconnect the agents after the upgrade is complete.Additionally, no snapshot or PTP data is restored from prior releases after the upgrade. </td>
+<td>When you upgrade to 4.13, any pre-existing PTP data will be lost.</td>
 <td>4.13.0</td>
 <td></td>
 </tr>
 <tr>
-<td>4316305</td>
-<td>When you back up your data from a prior NetQ release and restore it after installing NetQ 4.13.0, any switches that were in a rotten state are missing from the NetQ inventory after the upgrade. To work around this issue, decommission any rotten switches before you upgrade and reconnect the agents after the upgrade is complete.Additionally, no snapshot or PTP data is restored from prior releases after the upgrade. </td>
+<td>4310939</td>
+<td>When a switch becomes rotten or is connected to a different NetQ server without decommissioning it first, the link health view dashboard displays outdated counter values. To work around this issue, wait for NetQ to update and display accurate counter values.</td>
 <td>4.13.0</td>
 <td></td>
 </tr>

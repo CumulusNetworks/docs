@@ -37,10 +37,10 @@
 <td></td>
 </tr>
 <tr>
-<td>4286417</td>
-<td>When sending control packets which have in their TX base header system target port 259-1023 (above cap_max_system_ports and below cap_ports - which is used for LAG forwarding), a health event of a fatal cause will occur in the switch.</td>
-<td>5.11.0-5.12.0</td>
-<td>5.12.1</td>
+<td>4278822</td>
+<td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
+<td>5.9.2-5.12.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4271232</td>
@@ -806,6 +806,11 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>5.11.0</td>
 </tr>
 <tr>
+<td>4309885</td>
+<td>Replacing a configuration using a revision ID ({{nv config apply &lt;revision-id&gt;}}) might take more than three minutes in certain cases. This issue has no functional impact.</td>
+<td>5.11.0</td>
+</tr>
+<tr>
 <td>4309870</td>
 <td>Due to unsupported EVPN BUM replication configuration (a mix of PIM and HER modes),  a resource leak can occur.</td>
 <td>5.11.0</td>
@@ -827,7 +832,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>4286413</td>
-<td>When sending control packets that have system target port 259 through 1023 in their TX base header (above {{cap_max_system_ports}} and below {{cap_ports}}, used for LAG forwarding), a health event of a fatal cause occurs. To work around this issue, do not set these values in control the packet TX base header.</td>
+<td>When sending control packets that have the port range 259 through 1023 in their TX base header system target (above {{cap_max_system_ports}} and below {{cap_ports}} used for LAG forwarding), a health event of a fatal cause occurs in the switch. The port range 259 through 1023 reflects illegal system ports; do not set these values in the control packet TX base header. </td>
 <td>5.11.0</td>
 </tr>
 <tr>
@@ -868,7 +873,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>4268260</td>
-<td>Due to hardware limitations in the MPS2975, the minimum threshold for PMIC-12-COMEX-VCORE-OUT is fixed and cannot be set to zero. While a threshold violation warning may appear, system functionality remains unaffected, and the current configuration will be maintained to ensure device compatibility.</td>
+<td>Due to hardware limitations in the MPS2975, the minimum threshold for PMIC-12-COMEX-VCORE-OUT is fixed and cannot be set to zero. While a threshold violation warning might appear, system functionality remains unaffected, and the current configuration is maintained to ensure device compatibility.</td>
 <td>5.11.0</td>
 </tr>
 <tr>
@@ -952,6 +957,11 @@ This happens in async mode, where the end notification expected after an end of 
 <td>5.11.0</td>
 </tr>
 <tr>
+<td>4223449</td>
+<td>On rare occasions, platform drivers capture the firmware state as being in ISSU when it is not the case. This causes the ASIC temperature to be read as 0, which causes the thermal algorithm to set fan speeds to low. As a result, the switch can get overheated and undergo a thermal shutdown. To work around this issue, reboot or powercycle the switch.</td>
+<td>5.11.0</td>
+</tr>
+<tr>
 <td>4223448</td>
 <td>When there is significant traffic generated from the CPU to the network, the health check might report a critical issue. </td>
 <td>5.11.0</td>
@@ -1015,6 +1025,12 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <td></td>
 </tr>
 <tr>
+<td>4309885</td>
+<td>Replacing a configuration using a revision ID ({{nv config apply &lt;revision-id&gt;}}) might take more than three minutes in certain cases. This issue has no functional impact.</td>
+<td>5.11.0-5.11.1</td>
+<td>5.12.0-5.12.1</td>
+</tr>
+<tr>
 <td>4309870</td>
 <td>Due to unsupported EVPN BUM replication configuration (a mix of PIM and HER modes),  a resource leak can occur.</td>
 <td>5.11.0-5.12.1</td>
@@ -1051,16 +1067,10 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <td>5.12.1</td>
 </tr>
 <tr>
-<td>4286417</td>
-<td>When sending control packets which have in their TX base header system target port 259-1023 (above cap_max_system_ports and below cap_ports - which is used for LAG forwarding), a health event of a fatal cause will occur in the switch.</td>
+<td>4286413</td>
+<td>When sending control packets that have the port range 259 through 1023 in their TX base header system target (above {{cap_max_system_ports}} and below {{cap_ports}} used for LAG forwarding), a health event of a fatal cause occurs in the switch. The port range 259 through 1023 reflects illegal system ports; do not set these values in the control packet TX base header. </td>
 <td>5.11.0-5.12.0</td>
 <td>5.12.1</td>
-</tr>
-<tr>
-<td>4286413</td>
-<td>When sending control packets that have system target port 259 through 1023 in their TX base header (above {{cap_max_system_ports}} and below {{cap_ports}}, used for LAG forwarding), a health event of a fatal cause occurs. To work around this issue, do not set these values in control the packet TX base header.</td>
-<td>5.11.0</td>
-<td>5.11.1-5.12.1</td>
 </tr>
 <tr>
 <td>4281099</td>
@@ -1073,6 +1083,12 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <td>After a factory reset with the {{nv action reset system factory-default force}} command, RADIUS does not fully reset; the {{radius-cmd-acct}} package is not installed correctly and includes missing files. In addition, {{/etc/pam.d/common-auth}} is incorrect.</td>
 <td>5.11.0-5.11.1</td>
 <td>5.12.0-5.12.1</td>
+</tr>
+<tr>
+<td>4278822</td>
+<td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
+<td>5.9.2-5.12.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4271232</td>
@@ -1132,9 +1148,9 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 </tr>
 <tr>
 <td>4268260</td>
-<td>Due to hardware limitations in the MPS2975, the minimum threshold for PMIC-12-COMEX-VCORE-OUT is fixed and cannot be set to zero. While a threshold violation warning may appear, system functionality remains unaffected, and the current configuration will be maintained to ensure device compatibility.</td>
-<td>5.11.0</td>
-<td>5.11.1-5.12.1</td>
+<td>Due to hardware limitations in the MPS2975, the minimum threshold for PMIC-12-COMEX-VCORE-OUT is fixed and cannot be set to zero. While a threshold violation warning might appear, system functionality remains unaffected, and the current configuration is maintained to ensure device compatibility.</td>
+<td>5.11.0-5.11.1</td>
+<td>5.12.0-5.12.1</td>
 </tr>
 <tr>
 <td>4264726</td>
@@ -1268,6 +1284,12 @@ This happens in async mode, where the end notification expected after an end of 
 <tr>
 <td>4223450</td>
 <td>Under unique hardware failure conditions, when the ASIC temperature sensor read fails repeatedly, the fans are set to twenty percent, which might not be high enough to maintain proper ASIC cooling, resulting in a thermal shutdown.</td>
+<td>5.11.0-5.11.1</td>
+<td>5.12.0-5.12.1</td>
+</tr>
+<tr>
+<td>4223449</td>
+<td>On rare occasions, platform drivers capture the firmware state as being in ISSU when it is not the case. This causes the ASIC temperature to be read as 0, which causes the thermal algorithm to set fan speeds to low. As a result, the switch can get overheated and undergo a thermal shutdown. To work around this issue, reboot or powercycle the switch.</td>
 <td>5.11.0-5.11.1</td>
 <td>5.12.0-5.12.1</td>
 </tr>

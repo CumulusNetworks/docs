@@ -274,20 +274,34 @@ State: Active
 Run the `netq show opta-health` command to verify that all applications are operating properly. Allow at least 15 minutes for all applications to come up and report their status.
 
 ```
-cumulus@hostname:~$ netq show opta-health
-    Application                                            Status    Namespace      Restarts    Timestamp
-    -----------------------------------------------------  --------  -------------  ----------  ------------------------
-    cassandra-rc-0-w7h4z                                   READY     default        0           Fri Apr 10 16:08:38 2024
-    cp-schema-registry-deploy-6bf5cbc8cc-vwcsx             READY     default        0           Fri Apr 10 16:08:38 2024
-    kafka-broker-rc-0-p9r2l                                READY     default        0           Fri Apr 10 16:08:38 2024
-    kafka-connect-deploy-7799bcb7b4-xdm5l                  READY     default        0           Fri Apr 10 16:08:38 2024
-    netq-api-gateway-deploy-55996ff7c8-w4hrs               READY     default        0           Fri Apr 10 16:08:38 2024
-    netq-app-address-deploy-66776ccc67-phpqk               READY     default        0           Fri Apr 10 16:08:38 2024
-    netq-app-admin-oob-mgmt-server                         READY     default        0           Fri Apr 10 16:08:38 2024
-    netq-app-bgp-deploy-7dd4c9d45b-j9bfr                   READY     default        0           Fri Apr 10 16:08:38 2024
-    netq-app-clagsession-deploy-69564895b4-qhcpr           READY     default        0           Fri Apr 10 16:08:38 2024
-    netq-app-configdiff-deploy-ff54c4cc4-7rz66             READY     default        0           Fri Apr 10 16:08:38 2024
-    ...
+cumulus@hostname:~$ sudo netq show opta-health
+[sudo] password for cumulus:
+Application                                          Status    Namespace      Restarts    Timestamp
+---------------------------------------------------  --------  -------------  ----------  ------------------------
+netq-api-gateway-nginx-deploy-5f9f7d8766-gp89q       READY     default        0           Sat Mar 15 02:01:00 2025
+netq-app-admin-netq-appliance                        READY     default        0           Sat Mar 15 02:01:00 2025
+netq-fluend-aggregator-opta-deploy-84989948c6-dz2n9  READY     default        0           Sat Mar 15 02:01:00 2025
+netq-lcm-executor-deploy-7767c7d78-n4dcp             READY     default        0           Sat Mar 15 02:01:00 2025
+netq-opta-deploy-7c547d95d7-gstcw                    READY     default        0           Sat Mar 15 02:01:00 2025
+netq-prom-adapter-588d676df7-b9dpm                   READY     default        0           Sat Mar 15 02:01:00 2025
+netqclustermanager-5bffc6ccf-c4j6t                   READY     default        0           Sat Mar 15 02:01:00 2025
+netqedge-75c57b866f-ps8nt                            READY     default        0           Sat Mar 15 02:01:00 2025
+netqinstaller-b95f9c974-zjb6c                        READY     default        0           Sat Mar 15 02:01:00 2025
+reloader-reloader-5c6c75f7c-lcwvm                    READY     default        0           Sat Mar 15 02:01:00 2025
+default-http-backend-2lpdm                           READY     ingress-nginx  0           Sat Mar 15 02:01:00 2025
+nginx-ingress-controller-cqdm9                       READY     ingress-nginx  0           Sat Mar 15 02:01:00 2025
+calico-kube-controllers-84f6f4f568-bk2nk             READY     kube-system    0           Sat Mar 15 02:01:00 2025
+calico-node-vrwz6                                    READY     kube-system    0           Sat Mar 15 02:01:00 2025
+coredns-6bfcc79674-hdd7g                             READY     kube-system    0           Sat Mar 15 02:01:00 2025
+coredns-6bfcc79674-ldvmt                             READY     kube-system    0           Sat Mar 15 02:01:00 2025
+docker-registry-netq-appliance                       READY     kube-system    0           Sat Mar 15 02:01:00 2025
+etcd-netq-appliance                                  READY     kube-system    2           Sat Mar 15 02:01:00 2025
+kube-apiserver-netq-appliance                        READY     kube-system    1           Sat Mar 15 02:01:00 2025
+kube-controller-manager-netq-appliance               READY     kube-system    1           Sat Mar 15 02:01:00 2025
+kube-proxy-sjz9g                                     READY     kube-system    0           Sat Mar 15 02:01:00 2025
+kube-scheduler-netq-appliance                        READY     kube-system    1           Sat Mar 15 02:01:00 2025
+metrics-server-5d68d5fc94-tlkjl                      READY     kube-system    0           Sat Mar 15 02:01:00 2025
+cluster node: netq-appliance                         READY     N/A            N/A         Sat Mar 15 02:01:00 2025
 ```
 {{%notice note%}}
 If any of the applications or services display a DOWN status after 30 minutes, open a support ticket and attach the output of the `opta-support` command.

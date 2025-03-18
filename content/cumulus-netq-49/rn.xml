@@ -83,7 +83,7 @@ restore them after the upgrade.</td>
 </tr>
 <tr>
 <td>3769936</td>
-<td>When there is a NetQ interface validation failure for admin state mismatch, the validation failure might clear unexpectedly while one side of the link is still administratively down.</td>
+<td>Admin and operational tests under interface validation will be deprecated and will not be shown post upgrade to 4.14. If there are any failures captured prior to upgrade for admin and operational state of interfaces, those will cause inconsistency in device count and session counts. Also, the historical failures for those devices will still be shown post upgrade in the results page.</td>
 <td>4.9.0-4.13.0</td>
 <td></td>
 </tr>

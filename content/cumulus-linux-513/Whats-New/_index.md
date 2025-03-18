@@ -33,10 +33,11 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 - {{<link url="In-Service-System-Upgrade-ISSU/#maintenance-mode" text="New maintenance mode commands">}}
 - {{<link url="802.1X-Interfaces/#dynamic-vrf-assignments" text="802.1x on router ports with dynamic VRF assignments">}}
 - {{<link url="RADIUS-AAA/#optional-radius-configuration" text="RADIUS multiple VRF support">}}
-- Default AR profile update
+- {{<link url="SSH-for-Remote-Access/#message-of-the-day" text="Message of the day shows system reboot cause and health information">}}
+- {{<link url="SSH-for-Remote-Access/#certificate-based-authentication" text="SSH certificate-based authentication">}}
 - Export per transceiver temperature and power
 - Ability to disconnect or disable remote access to the switch
-- Enable ssh public key only
+- Default AR profile update
 - OTLP
   - Device level configuration of histogram
   - Buffer Occupancy and watermark metrics

@@ -634,7 +634,7 @@ cumulus@switch:~$ nv set system ssh-server trusted-ca-keys KEY1 key AAAAB3NzaC1y
 cumulus@switch:~$ nv set system ssh-server trusted-ca-keys KEY1 type ssh-rsa
 cumulus@switch:~$ nv set system aaa user ADMIN1 ssh cert-auth state enabled
 cumulus@switch:~$ nv set system aaa user ADMIN1 ssh cert-auth principals aaa
-cumulus@switch:~$ nn config apply
+cumulus@switch:~$ nv config apply
 ```
 
 To show trusted CA certificate authentication configuration, run the `nv show system ssh-server trusted-ca-keys` command:

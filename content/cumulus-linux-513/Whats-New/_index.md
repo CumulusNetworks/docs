@@ -85,6 +85,7 @@ nv show system docker container stats
 nv show system docker container <container-id-name> stats
 nv show system docker engine
 nv show system docker image
+nv show system ssh-server trusted-ca-keys
 nv show system syslog
 nv show system syslog format
 nv show system syslog server
@@ -106,12 +107,16 @@ nv set maintenance unit all-interfaces state maintenance
 nv set maintenance unit all-interfaces state production
 nv set maintenance unit all-protocols state maintenance
 nv set maintenance unit all-protocols state production
-nv set service dhcp-server <vrf> static <host>> vendor-class
+nv set service dhcp-server <vrf> static <host> vendor-class
 nv set system aaa radius server <server-id> vrf <vrf-id>
+nv set system aaa user <user> ssh cert-auth state
+nv set system aaa user <user> ssh cert-auth principals <principal>
 nv set system docker vrf <vrf-name>
 nv set system dot1x radius nas-identifier
 nv set system dot1x radius nas-ip-address
 nv set system dot1x reauth-timeout-ignore
+nv set system ssh-server trusted-ca-keys <key-id> key <key-literal>
+nv set system ssh-server trusted-ca-keys <key-id> type <key-type>
 nv set system syslog format welf
 nv set system syslog format welf firewall-name
 nv set system syslog selector
@@ -135,11 +140,15 @@ nv unset maintenance unit all-intefaces state
 nv unset maintenance unit all-protocols state
 nv unset maintenance unit system-protocols state
 nv unset service dhcp-server <vrf> static <host>> vendor-class
+nv unset system aaa user <user> ssh cert-auth state
+nv unset system aaa user <user> ssh cert-auth principals
 nv unset system aaa radius server <server-id> vrf
 nv unset system docker vrf
 nv unset system dot1x radius nas-identifier
 nv unset system dot1x radius nas-ip-address
 nv unset system dot1x reauth-timeout-ignore
+nv unset system ssh-server trusted-ca-keys <key-id> key
+nv unset system ssh-server trusted-ca-keys <key-id> type
 nv unset system syslog format welf
 nv unset system syslog format welf firewall-name
 nv unset system syslog selector

@@ -27,13 +27,11 @@ When you run the `nv action power-cycle system` command, the switch prompts you 
 
 ```
 cumulus@switch:~$ nv action power-cycle system
-The operation will Power Cycle the switch. 
+The operation will Power Cycle the switch.
+Type [y] to power cycle.
+Type [N] to abort.
 
-Type [y] to power cycle. 
-Type [N] to abort. 
-Do you want to continue? [y/N] y 
-Action executing ... 
-Power cycling the switch ... 
+Do you want to continue? [y/N]  
 Action executing ... 
 Action succeeded 
 ```
@@ -41,9 +39,7 @@ Action succeeded
 To power cycle the switch without being prompted for confirmation, run the `nv action power-cycle system force` command:
 
 ```
-cumulus@switch:~$ nv action power-cycle system force
-Action executing ... 
-Power cycling the switch ... 
+cumulus@switch:~$ nv action power-cycle system force 
 Action executing ... 
 Action succeeded
 ```

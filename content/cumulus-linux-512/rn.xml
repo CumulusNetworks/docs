@@ -49,7 +49,7 @@
 <td></td>
 </tr>
 <tr>
-<td>4309853</td>
+<td>4309854</td>
 <td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
 <td>5.11.0-5.12.1</td>
 <td></td>
@@ -771,7 +771,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>4309853</td>
+<td>4309854</td>
 <td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
 <td>5.11.0-5.12.1</td>
 <td></td>
@@ -829,8 +829,8 @@ cumulus@switch:~$ sudo systemctl start cumulus-upgrade-on-shutdown</td>
 <tr>
 <td>4278822</td>
 <td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
-<td>5.9.2-5.12.1</td>
-<td></td>
+<td>5.9.2-5.11.0, 5.12.0-5.12.1</td>
+<td>5.11.1</td>
 </tr>
 <tr>
 <td>4277042</td>

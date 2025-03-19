@@ -19,7 +19,7 @@
 <td></td>
 </tr>
 <tr>
-<td>4309853</td>
+<td>4309854</td>
 <td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
 <td>5.11.0-5.12.1</td>
 <td></td>
@@ -34,12 +34,6 @@
 <td>4298584</td>
 <td>The Spectrum-4 switch reports a {{Modules DataPath FSM fault}} in logs when the link fails at polling.</td>
 <td>5.10.1-5.12.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4278822</td>
-<td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
-<td>5.9.2-5.12.1</td>
 <td></td>
 </tr>
 <tr>
@@ -809,7 +803,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <tr>
 <td>4352128</td>
 <td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
-<td>5.11.0</td>
+<td>5.9.2-5.11.0, 5.12.0-5.12.1</td>
 </tr>
 <tr>
 <td>4309885</td>
@@ -1015,8 +1009,8 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <tr>
 <td>4352128</td>
 <td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
-<td>5.11.0</td>
-<td>5.11.1-5.12.1</td>
+<td>5.9.2-5.12.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4335287</td>
@@ -1043,7 +1037,7 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <td></td>
 </tr>
 <tr>
-<td>4309853</td>
+<td>4309854</td>
 <td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
 <td>5.11.0-5.12.1</td>
 <td></td>
@@ -1089,12 +1083,6 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <td>After a factory reset with the {{nv action reset system factory-default force}} command, RADIUS does not fully reset; the {{radius-cmd-acct}} package is not installed correctly and includes missing files. In addition, {{/etc/pam.d/common-auth}} is incorrect.</td>
 <td>5.11.0-5.11.1</td>
 <td>5.12.0-5.12.1</td>
-</tr>
-<tr>
-<td>4278822</td>
-<td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
-<td>5.9.2-5.12.1</td>
-<td></td>
 </tr>
 <tr>
 <td>4271232</td>

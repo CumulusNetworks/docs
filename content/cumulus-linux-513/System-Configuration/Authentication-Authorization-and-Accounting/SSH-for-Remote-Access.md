@@ -474,6 +474,20 @@ When you log into the switch, Cumulus Linux shows system health information and 
 
 To help with system maintenance, when you log into a switch, Cumulus Linux shows important information, such as general system issues and reboot causes (power loss, thermal overload, watchdog, hardware and non-hardware issues).
 
+```
+cumulus@switch:~$ ssh leaf01
+Welcome to NVIDIA Cumulus (R) Linux (R)
+Linux leaf01 6.1.0-cl-1-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.1.123-1+cl5.13.0u2 (2025-02-24) x86_64
+Welcome to NVIDIA Cumulus (R) Linux (R)
+For support and online technical documentation, visit https://www.nvidia.com/en-us/support
+The registered trademark Linux (R) is used pursuant to a sublicense from LMI, the exclusive licensee of Linus Torvalds, owner of the mark on a world-wide basis.
+Last login: Wed Mar 19 15:45:10 UTC 2025 from 192.168.200.1 on pts/0
+Number of total successful connections since last 1 days: 20
+
+  No Mellanox PCI Device Found!!!
+  "last_reboot_cause": "Unknown".
+```
+
 ### SSH Login Notifications
 
 Cumulus Linux shows the following SSH login information on the console after authentication:

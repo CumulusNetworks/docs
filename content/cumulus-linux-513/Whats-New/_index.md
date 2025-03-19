@@ -37,6 +37,7 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 - Ability to disconnect or disable remote access to the switch
 - Default AR profile update
 - OTLP
+  - {{<link url="Open-Telemetry-Export/#temporality-mode" text="Temporality mode for histogram metrics">}}
   - Device level configuration of histogram
   - Buffer Occupancy and watermark metrics
 - NVUE
@@ -54,6 +55,8 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 | `nv set maintenance unit all-protocols state production` | `nv action disable system maintenance mode` |
 | `nv set maintenance unit all-interfaces state maintenance` | `nv action enable system maintenance ports` |
 | `nv set maintenance unit all-interfaces state production` | `nv action disable system maintenance ports` |
+| `nv set system lldp` | `nv set service lldp` |
+| `nv show system lldp` | `nv show service lldp` |
 | `nv set system syslog server <server-id>` | `nv set service syslog <vrf> server <server-id>`|
 | `nv set system syslog server <server-id> port <port>` | `nv set service syslog <vrf> server <server-id> port <port>`|
 | `nv set system syslog server <server-id> protocol <protocol>` | `nv set service syslog <vrf> server <server-id> protocol <protocol>`|
@@ -129,6 +132,7 @@ nv set system syslog server <server-id>
 nv set system syslog server <server-id> port
 nv set system syslog server <server-id> protocol
 nv set system syslog server <server-id> vrf mgmt
+nv set system telemetry histogram temporality <mode>
 ```
 
 {{< /tab >}}
@@ -161,6 +165,7 @@ nv unset system syslog server <server-id>
 nv unset system syslog server <server-id> port
 nv unset system syslog server <server-id> protocol
 nv unset system syslog server <server-id> vrf mgmt
+nv unset system telemetry histogram temporality <mode>
 ```
 
 {{< /tab >}}

@@ -114,6 +114,29 @@ cumulus@switch:~$ nv set system telemetry histogram export state enabled
 cumulus@switch:~$ nv config apply
 ```
 
+#### Temporality Mode
+
+Histogram temporality mode lets you choose how to aggregate and report histogram data over time.
+
+Cumulus Linux supports the following temporality modes:
+- Delta mode captures only the new data recorded after the last export, reflecting the rate of change instead of cumulative totals. Each export includes only the counts collected within the latest time window; previous values do not carry over to the next reporting cycle. This is the default setting.
+- Cumulative mode reports the total count from the beginning of the measurement period. Each export includes all previously reported values along with newly recorded data, ensuring that the metric continues to grow until the measurement cycle resets. This approach prevents the metric from resetting between reports.
+
+{{%notice note%}}
+Changing the temporality mode:
+- Impacts both snapshot file collection and metric data export.
+- Restarts the histogram service, initiating a new measurement cycle.
+{{%/notice%}}
+
+To change the temporality mode, run the `nv set system telemetry histogram temporality <mode>` command. The following command sets the temporality mode to cumulative:
+
+```
+cumulus@switch:~$ nv set system telemetry histogram temporality cumulative
+cumulus@switch:~$ nv config apply
+```
+
+To reset the temporality mode to the default value (`delta`), run the `nv unset system telemetry histogram temporality` command or set the mode to delta with the `nv set system telemetry histogram temporality delta` command.
+
 To show histogram data configuration, run the `nv show system telemetry histogram` command.
 
 ### Platform Statistics

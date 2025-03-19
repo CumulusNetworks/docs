@@ -16,10 +16,9 @@ pdfhidden: True
 |---	        |---	        |---	    |---	                |
 | <a name="4335287"></a> [4335287](#4335287) <a name="4335287"></a> <br /> | ERSPAN does not work when the ERSPAN destination IP address is reachable over SVIs and layer 2 bonds. To work around this issue, make the ERSPAN destination IP address reachable over layer 3 swps or bond interfaces. | 5.11.0-5.12.1 | |
 | <a name="4328029"></a> [4328029](#4328029) <a name="4328029"></a> <br /> | If you apply an NVUE snippet affecting the <code>/etc/cumulus/datapath/traffic.conf</code> file, the snippet might fail the consistency check, resulting in a failed snippet apply. | 5.11.0-5.12.1 | |
-| <a name="4309853"></a> [4309853](#4309853) <a name="4309853"></a> <br /> | CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature.  | 5.11.0-5.12.1 | |
+| <a name="4309854"></a> [4309854](#4309854) <a name="4309854"></a> <br /> | CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature.  | 5.11.0-5.12.1 | |
 | <a name="4308857"></a> [4308857](#4308857) <a name="4308857"></a> <br /> | When you use <code>tls_crlcheck</code> in the <code>/etc/nslcd.conf</code> file, the optional <code>nslcd</code> service fails due to a missing library. | 5.9.2-5.12.1 | |
 | <a name="4298584"></a> [4298584](#4298584) <a name="4298584"></a> <br /> | The Spectrum-4 switch reports a <code>Modules DataPath FSM fault</code> in logs when the link fails at polling. | 5.10.1-5.12.1 | |
-| <a name="4278822"></a> [4278822](#4278822) <a name="4278822"></a> <br /> | CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature.  | 5.9.2-5.12.1 | |
 | <a name="4271232"></a> [4271232](#4271232) <a name="4271232"></a> <br /> | A Python version change removed the encoding argument parameter of the json loads function, which causes an exception. | 5.11.0-5.12.1 | |
 | <a name="4271215"></a> [4271215](#4271215) <a name="4271215"></a> <br /> | NVUE overwrites the MOTD file during NVUE configuration with no option to ignore it<br /> | 5.11.0-5.12.1 | |
 | <a name="4271213"></a> [4271213](#4271213) <a name="4271213"></a> <br /> | When IPv4 layer 3 switch ports and virtual interfaces flap, <code>switchd</code> might send an ICMP Reply message instead of an ARP request (although no ICMP request was sent). Multiple ICMP Replies might be sent to any of the neighbor IP addresses of that interface. | 5.9.2-5.12.1 | |
@@ -140,7 +139,7 @@ pdfhidden: True
 ### Fixed Issues in 5.11.1
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
-| <a name="4352128"></a> [4352128](#4352128) <a name="4352128"></a> <br /> | CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature.  | 5.11.0 | |
+| <a name="4352128"></a> [4352128](#4352128) <a name="4352128"></a> <br /> | CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature.  | 5.9.2-5.11.0, 5.12.0-5.12.1 | |
 | <a name="4309885"></a> [4309885](#4309885) <a name="4309885"></a> <br /> | Replacing a configuration using a revision ID (<code>nv config apply <revision-id></code>) might take more than three minutes in certain cases. This issue has no functional impact. | 5.11.0 | |
 | <a name="4309870"></a> [4309870](#4309870) <a name="4309870"></a> <br /> | Due to unsupported EVPN BUM replication configuration (a mix of PIM and HER modes),  a resource leak can occur. | 5.11.0 | |
 | <a name="4309850"></a> [4309850](#4309850) <a name="4309850"></a> <br /> | The management interface on the NVIDIA SN2010 and SN2100 switch negotiates to 100 Mbps instead of 1 Gbps. | 5.11.0 | |
@@ -184,12 +183,12 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| <a name="4352128"></a> [4352128](#4352128) <a name="4352128"></a> <br /> | CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature.  | 5.11.0 | 5.11.1-5.12.1|
+| <a name="4352128"></a> [4352128](#4352128) <a name="4352128"></a> <br /> | CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature.  | 5.9.2-5.12.1 | |
 | <a name="4335287"></a> [4335287](#4335287) <a name="4335287"></a> <br /> | ERSPAN does not work when the ERSPAN destination IP address is reachable over SVIs and layer 2 bonds. To work around this issue, make the ERSPAN destination IP address reachable over layer 3 swps or bond interfaces. | 5.11.0-5.12.1 | |
 | <a name="4328029"></a> [4328029](#4328029) <a name="4328029"></a> <br /> | If you apply an NVUE snippet affecting the <code>/etc/cumulus/datapath/traffic.conf</code> file, the snippet might fail the consistency check, resulting in a failed snippet apply. | 5.11.0-5.12.1 | |
 | <a name="4309885"></a> [4309885](#4309885) <a name="4309885"></a> <br /> | Replacing a configuration using a revision ID (<code>nv config apply <revision-id></code>) might take more than three minutes in certain cases. This issue has no functional impact. | 5.11.0-5.11.1 | 5.12.0-5.12.1|
 | <a name="4309870"></a> [4309870](#4309870) <a name="4309870"></a> <br /> | Due to unsupported EVPN BUM replication configuration (a mix of PIM and HER modes),  a resource leak can occur. | 5.11.0-5.12.1 | |
-| <a name="4309853"></a> [4309853](#4309853) <a name="4309853"></a> <br /> | CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature.  | 5.11.0-5.12.1 | |
+| <a name="4309854"></a> [4309854](#4309854) <a name="4309854"></a> <br /> | CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature.  | 5.11.0-5.12.1 | |
 | <a name="4309850"></a> [4309850](#4309850) <a name="4309850"></a> <br /> | The management interface on the NVIDIA SN2010 and SN2100 switch negotiates to 100 Mbps instead of 1 Gbps. | 5.11.0-5.12.1 | |
 | <a name="4308857"></a> [4308857](#4308857) <a name="4308857"></a> <br /> | When you use <code>tls_crlcheck</code> in the <code>/etc/nslcd.conf</code> file, the optional <code>nslcd</code> service fails due to a missing library. | 5.9.2-5.12.1 | |
 | <a name="4298584"></a> [4298584](#4298584) <a name="4298584"></a> <br /> | The Spectrum-4 switch reports a <code>Modules DataPath FSM fault</code> in logs when the link fails at polling. | 5.10.1-5.12.1 | |
@@ -197,7 +196,6 @@ pdfhidden: True
 | <a name="4286413"></a> [4286413](#4286413) <a name="4286413"></a> <br /> | When sending control packets that have the port range 259 through 1023 in their TX base header system target (above <code>cap_max_system_ports</code> and below <code>cap_ports</code> used for LAG forwarding), a health event of a fatal cause occurs in the switch. The port range 259 through 1023 reflects illegal system ports; do not set these values in the control packet TX base header.  | 5.11.0-5.12.0 | 5.12.1|
 | <a name="4281099"></a> [4281099](#4281099) <a name="4281099"></a> <br /> | When you bring STP down, then up on the primary MLAG peer, the STP state machine restarts and the peerlink operational edge resets. As a result, the secondary MLAG peer ends up in an STP discarding state. To work around this issue, restart the <code>clagd</code> service. | 5.8.0-5.11.1 | 5.12.0-5.12.1|
 | <a name="4278870"></a> [4278870](#4278870) <a name="4278870"></a> <br /> | After a factory reset with the <code>nv action reset system factory-default force</code> command, RADIUS does not fully reset; the <code>radius-cmd-acct</code> package is not installed correctly and includes missing files. In addition, <code>/etc/pam.d/common-auth</code> is incorrect. | 5.11.0-5.11.1 | 5.12.0-5.12.1|
-| <a name="4278822"></a> [4278822](#4278822) <a name="4278822"></a> <br /> | CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature.  | 5.9.2-5.12.1 | |
 | <a name="4271232"></a> [4271232](#4271232) <a name="4271232"></a> <br /> | A Python version change removed the encoding argument parameter of the json loads function, which causes an exception. | 5.11.0-5.12.1 | |
 | <a name="4271229"></a> [4271229](#4271229) <a name="4271229"></a> <br /> | After rebooting the spine switch in an EVPN multihoming configuration, the BGP EVPN Type-2 entry is missing, which causes flooding and duplicates in the fabric. To work around this issue, flush the IP neighbor entries with the <code>sudo ip neigh flush x.x.x.x</code> command. | 5.9.1-5.11.1 | 5.12.0-5.12.1|
 | <a name="4271216"></a> [4271216](#4271216) <a name="4271216"></a> <br /> | NVUE overwrites the MOTD file during NVUE configuration with no option to ignore it<br /> | 5.11.0-5.12.1 | |

@@ -25,7 +25,6 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 - {{<link url="802.1X-Interfaces/#ignore-reauthorization-timeout" text="802.1 option to keep the port in the current state when the RADIUS server is unreachable">}}
 - {{<link url="Monitoring-System-Hardware/#nvue-commands" text="Updated system health command">}}
 - {{<link url="DHCP-Servers/#multiple-static-ip-address-assignments" text="Support two DHCP static IP address assignments per port for a single host">}}
-- {{<link url="System-Power/#power-cycle" text="Recovery mechanism for thermal ASIC shutdown">}}
 - {{<link url="Syslog" text="syslog log filters">}}
 - {{<link title="Docker with Cumulus Linux" text="Support Docker containers">}}
 - {{<link title="Erase all Data from the Switch" text="Erase all data from the switch">}} (Beta)
@@ -44,6 +43,7 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
   - {{<link url="NVUE-CLI/#list-directory-contents" text="Command to list directory contents">}}
   - {{<link url="NVUE-CLI/#get-the-hash-for-a-file" text="Command to get the hash for a file">}}
   - {{<link url="802.1X-Interfaces/#configure-8021x-interfaces" text="Commands to set the NAS IP address and NAS identifier for 802.1X">}}
+  - {{<link url="System-Power/#power-cycle" text="Command to power cycle the switch">}}
   - {{<link url="SSH-for-Remote-Access/#certificate-based-authentication" text="SSH certificate-based authentication">}}
   - Enable CRL support
   - Additional FRR filters

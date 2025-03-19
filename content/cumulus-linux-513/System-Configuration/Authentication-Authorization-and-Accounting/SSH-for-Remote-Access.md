@@ -466,6 +466,14 @@ MaxStartups 5:22:20
 {{< /tab >}}
 {{< /tabs >}}
 
+## Message of the Day
+
+When you log into the switch, Cumulus Linux shows system health information and login notifications.
+
+### System Health Notifications
+
+To help with system maintenance, when you log into a switch, Cumulus Linux shows important information, such as general system issues and reboot causes (power loss, thermal overload, watchdog, hardware and non-hardware issues).
+
 ### SSH Login Notifications
 
 Cumulus Linux shows the following SSH login information on the console after authentication:
@@ -602,6 +610,46 @@ The following example adds an authorized key file from the account `cumulus` on 
 
 {{< /tab >}}
 {{< /tabs >}}
+
+## Certificate-based Authentication
+
+Instead of using passwords and SSH keys, you can enable certificate authentication for a user. A trusted CA certificate is tied to a user, expires automatically, and eliminates any Trust-On-First-Use (TOFU) problems.
+
+{{%notice note%}}
+- When you configure certificate-based authentication for a user, Cumulus Linux disables password authentication for that user.
+- A trusted CA certificate must have a valid expiration, be signed by a certificate authority matching a public key in trusted-ca-keys and have a principal in the list to log in as a user.
+{{%/notice%}}
+
+To configure certificate-based authentication for a user:
+- Set the trusted CA key ID, literal, and type. The key ID, literal, and type are located within a public key file.
+- Enable certificate authentication for the user.
+- Optional: Add a principal to the possible certificate principals for the user. You can add multiple principals. If you do not specify a principal, the user is sole principal.
+
+After you apply the configuration, `sshd` restarts and the user can no longer authenticate remotely with a password.
+
+The following example sets the trusted CA key `KEY1` as type `ssh-rsa` with literal `AAAAB3NzaC1yc2EAAAADA..`, enables certificate authentication for the user `ADMIN1` and adds the principle `aaa`:
+
+```
+cumulus@switch:~$ nv set system ssh-server trusted-ca-keys KEY1 key AAAAB3NzaC1yc2EAAAADA..
+cumulus@switch:~$ nv set system ssh-server trusted-ca-keys KEY1 type ssh-rsa
+cumulus@switch:~$ nv set system aaa user ADMIN1 ssh cert-auth state enabled
+cumulus@switch:~$ nv set system aaa user ADMIN1 ssh cert-auth principals aaa
+cumulus@switch:~$ nv config apply
+```
+
+To show trusted CA certificate authentication configuration, run the `nv show system ssh-server trusted-ca-keys` command:
+
+```
+cumulus@switch:~$ nv show system ssh-server trusted-ca-keys
+      operational  applied 
+---- ------------ -------- 
+key   *           * 
+type  ssh-rsa     ssh-rsa 
+```
+
+NVUE hides the key literal in the show command output.
+
+The `nv show system ssh-server` command output includes the configured trusted CA certificate IDs.
 
 ## Troubleshooting
 

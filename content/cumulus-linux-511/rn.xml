@@ -377,6 +377,12 @@ The logs occur because the {{rsyslog}} service starts before the networking serv
 <td></td>
 </tr>
 <tr>
+<td>3882143</td>
+<td>The {{nv show platform environment voltage}} command output reports a failed state for PSU-1-12V-RAIL-OUT State. This issue is due to incorrect minimum and maximum thresholds and is cosmetic. The recorded voltage is reported in the {{Actual}} column of the {{nv show platform environment voltage}} command output.</td>
+<td>5.9.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3879809</td>
 <td>What Just Happened (WJH) does not work on Spectrum-4 switches.</td>
 <td>5.9.0-5.12.1</td>
@@ -1603,6 +1609,12 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 rsyslogd: create UDP socket bound to device failed: No such device [v8.2302.0]
 rsyslogd: No UDP socket could successfully be initialized, some functionality may be disabled.  [v8.2302.0]
 The logs occur because the {{rsyslog}} service starts before the networking service creates the configured VRF for syslog export. There is no functional impact with this issue.</td>
+<td>5.9.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3882143</td>
+<td>The {{nv show platform environment voltage}} command output reports a failed state for PSU-1-12V-RAIL-OUT State. This issue is due to incorrect minimum and maximum thresholds and is cosmetic. The recorded voltage is reported in the {{Actual}} column of the {{nv show platform environment voltage}} command output.</td>
 <td>5.9.0-5.12.1</td>
 <td></td>
 </tr>

@@ -75,7 +75,7 @@ To work around this issue, adjust the poll period to 60 seconds on the new switc
 </tr>
 <tr>
 <td>3769936</td>
-<td>Admin and operational tests under interface validation will be deprecated and will not be shown post upgrade to 4.14. If there are any failures captured prior to upgrade for admin and operational state of interfaces, those will cause inconsistency in device count and session counts. Also, the historical failures for those devices will still be shown post upgrade in the results page.</td>
+<td>When there is a NetQ interface validation failure for admin state mismatch, the validation failure might clear unexpectedly while one side of the link is still administratively down.</td>
 <td>4.9.0-4.13.0</td>
 <td></td>
 </tr>

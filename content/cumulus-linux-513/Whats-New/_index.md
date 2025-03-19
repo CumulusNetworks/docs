@@ -33,10 +33,10 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 - {{<link url="In-Service-System-Upgrade-ISSU/#maintenance-mode" text="New maintenance mode commands">}}
 - {{<link url="802.1X-Interfaces/#dynamic-vrf-assignments" text="802.1x on router ports with dynamic VRF assignments">}}
 - {{<link url="RADIUS-AAA/#optional-radius-configuration" text="RADIUS multiple VRF support">}}
-- Default AR profile update
+- {{<link url="SSH-for-Remote-Access/#message-of-the-day" text="Message of the day shows system reboot cause and health information">}}
 - Export per transceiver temperature and power
 - Ability to disconnect or disable remote access to the switch
-- Enable ssh public key only
+- Default AR profile update
 - OTLP
   - Device level configuration of histogram
   - Buffer Occupancy and watermark metrics
@@ -44,8 +44,8 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
   - {{<link url="NVUE-CLI/#list-directory-contents" text="Command to list directory contents">}}
   - {{<link url="NVUE-CLI/#get-the-hash-for-a-file" text="Command to get the hash for a file">}}
   - {{<link url="802.1X-Interfaces/#configure-8021x-interfaces" text="Commands to set the NAS IP address and NAS identifier for 802.1X">}}
+  - {{<link url="SSH-for-Remote-Access/#certificate-based-authentication" text="SSH certificate-based authentication">}}
   - Enable CRL support
-  - SSH certificate-based authorization
   - Additional FRR filters
   - {{< expand "Changed NVUE Commands" >}}
 | Cumulus Linux 5.13 | Cumulus Linux 12 and Earlier |
@@ -84,6 +84,7 @@ nv show system docker container stats
 nv show system docker container <container-id-name> stats
 nv show system docker engine
 nv show system docker image
+nv show system ssh-server trusted-ca-keys
 nv show system syslog
 nv show system syslog format
 nv show system syslog server
@@ -105,12 +106,16 @@ nv set maintenance unit all-interfaces state maintenance
 nv set maintenance unit all-interfaces state production
 nv set maintenance unit all-protocols state maintenance
 nv set maintenance unit all-protocols state production
-nv set service dhcp-server <vrf> static <host>> vendor-class
+nv set service dhcp-server <vrf> static <host> vendor-class
 nv set system aaa radius server <server-id> vrf <vrf-id>
+nv set system aaa user <user> ssh cert-auth state
+nv set system aaa user <user> ssh cert-auth principals <principal>
 nv set system docker vrf <vrf-name>
 nv set system dot1x radius nas-identifier
 nv set system dot1x radius nas-ip-address
 nv set system dot1x reauth-timeout-ignore
+nv set system ssh-server trusted-ca-keys <key-id> key <key-literal>
+nv set system ssh-server trusted-ca-keys <key-id> type <key-type>
 nv set system syslog format welf
 nv set system syslog format welf firewall-name
 nv set system syslog selector
@@ -134,11 +139,15 @@ nv unset maintenance unit all-intefaces state
 nv unset maintenance unit all-protocols state
 nv unset maintenance unit system-protocols state
 nv unset service dhcp-server <vrf> static <host>> vendor-class
+nv unset system aaa user <user> ssh cert-auth state
+nv unset system aaa user <user> ssh cert-auth principals
 nv unset system aaa radius server <server-id> vrf
 nv unset system docker vrf
 nv unset system dot1x radius nas-identifier
 nv unset system dot1x radius nas-ip-address
 nv unset system dot1x reauth-timeout-ignore
+nv unset system ssh-server trusted-ca-keys <key-id> key
+nv unset system ssh-server trusted-ca-keys <key-id> type
 nv unset system syslog format welf
 nv unset system syslog format welf firewall-name
 nv unset system syslog selector

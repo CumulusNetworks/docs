@@ -34,7 +34,6 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 - {{<link url="RADIUS-AAA/#optional-radius-configuration" text="RADIUS multiple VRF support">}}
 - {{<link url="SSH-for-Remote-Access/#message-of-the-day" text="Message of the day shows system reboot cause and health information">}}
 - Export per transceiver temperature and power
-- Ability to disconnect or disable remote access to the switch
 - Default AR profile update
 - OTLP
   - {{<link url="Open-Telemetry-Export/#temporality-mode" text="Temporality mode for histogram metrics">}}

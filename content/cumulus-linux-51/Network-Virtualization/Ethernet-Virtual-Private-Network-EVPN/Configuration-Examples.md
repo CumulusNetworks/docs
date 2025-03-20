@@ -3193,12 +3193,12 @@ cumulus@border01:~$ nv set mlag backup 10.10.10.64
 cumulus@border01:~$ nv set mlag peer-ip linklocal
 cumulus@border01:~$ nv set mlag priority 1000
 cumulus@border01:~$ nv set mlag init-delay 10
-cumulus@border01:~$ nv set interface vlan10 ip address 10.1.10.2/24
+cumulus@border01:~$ nv set interface vlan10 ip address 10.1.10.64/24
 cumulus@border01:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24
 cumulus@border01:~$ nv set interface vlan10 ip vrr mac-address 00:00:00:00:00:10
 cumulus@border01:~$ nv set interface vlan10 ip vrr state up
-cumulus@border01:~$ nv set interface vlan20 ip address 10.1.10.2/24
-cumulus@border01:~$ nv set interface vlan20 ip vrr address 10.1.20.2/24
+cumulus@border01:~$ nv set interface vlan20 ip address 10.1.20.64/24
+cumulus@border01:~$ nv set interface vlan20 ip vrr address 10.1.20.1/24
 cumulus@border01:~$ nv set interface vlan20 ip vrr mac-address 00:00:00:00:00:20
 cumulus@border01:~$ nv set interface vlan20 ip vrr state up
 cumulus@border01:~$ nv set bridge domain br_default vlan 10 vni 10
@@ -3239,11 +3239,11 @@ cumulus@border02:~$ nv set mlag backup 10.10.10.63
 cumulus@border02:~$ nv set mlag peer-ip linklocal
 cumulus@border02:~$ nv set mlag priority 2000
 cumulus@border02:~$ nv set mlag init-delay 10
-cumulus@border02:~$ nv set interface vlan10 ip address 10.1.10.1/24
+cumulus@border02:~$ nv set interface vlan10 ip address 10.1.10.64/24
 cumulus@border02:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24
 cumulus@border02:~$ nv set interface vlan10 ip vrr mac-address 00:00:00:00:00:10
 cumulus@border02:~$ nv set interface vlan10 ip vrr state up
-cumulus@border02:~$ nv set interface vlan20 ip address 10.1.20.1/24
+cumulus@border02:~$ nv set interface vlan20 ip address 10.1.20.64/24
 cumulus@border02:~$ nv set interface vlan20 ip vrr address 10.1.20.1/24
 cumulus@border02:~$ nv set interface vlan20 ip vrr mac-address 00:00:00:00:00:20
 cumulus@border02:~$ nv set interface vlan20 ip vrr state up

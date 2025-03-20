@@ -33,12 +33,11 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 - {{<link url="802.1X-Interfaces/#dynamic-vrf-assignments" text="802.1x on router ports with dynamic VRF assignments">}}
 - {{<link url="RADIUS-AAA/#optional-radius-configuration" text="RADIUS multiple VRF support">}}
 - {{<link url="SSH-for-Remote-Access/#message-of-the-day" text="Message of the day shows system reboot cause and health information">}}
-- Export per transceiver temperature and power
-- Ability to disconnect or disable remote access to the switch
 - Default AR profile update
-- OTLP
-  - {{<link url="Open-Telemetry-Export/#temporality-mode" text="Temporality mode for histogram metrics">}}
-  - Buffer Occupancy and watermark metrics
+- Telemetry
+  - {{<link url="Open-Telemetry-Export/#temporality-mode" text="OTEL temporality mode for histogram metrics">}}
+  - OTEL Buffer Occupancy and watermark metrics
+  - Prometheus export transceiver temperature and power metrics
 - NVUE
   - {{<link url="NVUE-CLI/#list-directory-contents" text="Command to list directory contents">}}
   - {{<link url="NVUE-CLI/#get-the-hash-for-a-file" text="Command to get the hash for a file">}}

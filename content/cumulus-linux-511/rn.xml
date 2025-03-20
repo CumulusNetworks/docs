@@ -164,13 +164,6 @@ cumulus@switch:~$ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "Dpkg::Optio
 <td>5.12.0-5.12.1</td>
 </tr>
 <tr>
-<td>4156409</td>
-<td>When you enable the BGP PIC next hop group per source option:&lt;ul&gt;&lt;li&gt;In a 2-CLOS or 3-CLOS configuration when all links between a pair of devices (leaf and spine  or spine and super spine) come up, there is traffic loss.&lt;/li&gt; 
-&lt;li&gt;In a 3-CLOS topology when the remote spine reboots, there is traffic loss when the switch is restarting.&lt;/li&gt;&lt;/ul&gt;</td>
-<td>5.11.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4155957</td>
 <td>Logs from the OTLP exporter process ({{nv-telemetry}}) grow uncontrolled and result in excessive disk space usage. You can remove the large files in the {{/var/log/nv-telemetry}} folder or modify them to reduce their size.</td>
 <td>5.11.0-5.11.1</td>
@@ -287,12 +280,6 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 <td>4100629</td>
 <td>NVUE show command outputs show LLDP neighbor changes only after the LLDP update frequency multiplied by the hold time.</td>
 <td>5.11.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4100170</td>
-<td>The NVUE Service fails to start after an upgrade from Cumulus Linux 5.9 to Cumulus Linux 5.10 because of a corrupted database.</td>
-<td>5.10.0-5.12.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1394,13 +1381,6 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <td>5.12.0-5.12.1</td>
 </tr>
 <tr>
-<td>4156409</td>
-<td>When you enable the BGP PIC next hop group per source option:&lt;ul&gt;&lt;li&gt;In a 2-CLOS or 3-CLOS configuration when all links between a pair of devices (leaf and spine  or spine and super spine) come up, there is traffic loss.&lt;/li&gt; 
-&lt;li&gt;In a 3-CLOS topology when the remote spine reboots, there is traffic loss when the switch is restarting.&lt;/li&gt;&lt;/ul&gt;</td>
-<td>5.11.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4155957</td>
 <td>Logs from the OTLP exporter process ({{nv-telemetry}}) grow uncontrolled and result in excessive disk space usage. You can remove the large files in the {{/var/log/nv-telemetry}} folder or modify them to reduce their size.</td>
 <td>5.11.0-5.11.1</td>
@@ -1517,12 +1497,6 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 <td>4100629</td>
 <td>NVUE show command outputs show LLDP neighbor changes only after the LLDP update frequency multiplied by the hold time.</td>
 <td>5.11.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4100170</td>
-<td>The NVUE Service fails to start after an upgrade from Cumulus Linux 5.9 to Cumulus Linux 5.10 because of a corrupted database.</td>
-<td>5.10.0-5.12.1</td>
 <td></td>
 </tr>
 <tr>

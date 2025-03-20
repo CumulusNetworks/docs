@@ -13,6 +13,12 @@
 <td></td>
 </tr>
 <tr>
+<td>4335117</td>
+<td>Under rare circumstances, firmware on an NVIDIA SN3700 switch can get locked up, which leads to the {{switchd}} process going down.</td>
+<td>5.12.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4329931</td>
 <td>In previous releases, Cumulus Linux incorrectly allowed SyncE and PPS In features to be enabled at the same time. Upgrading systems with both features configured using NVUE to 5.12.0 or higher results in a failure to apply the startup configuration as part of the first boot of the upgraded version. To work around the issue, unset one of the features before you upgrade.</td>
 <td>5.12.0-5.12.1</td>
@@ -37,13 +43,7 @@
 <td></td>
 </tr>
 <tr>
-<td>4309875</td>
-<td>When you configure an invalid switch port (swp), NVUE adds the invalid configuration instead of rejecting it. The invalid interface in the configuration does not have any functional impact.</td>
-<td>5.12.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4309853</td>
+<td>4309854</td>
 <td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
 <td>5.11.0-5.12.1</td>
 <td></td>
@@ -141,13 +141,6 @@ cumulus@switch:~$ sudo /usr/sbin/pam-auth-update --force --package</td>
 <td>When doing a package upgrade from CL5.9 or CL5.10 to CL5.11, the installation of {{nslcd}} might open an interactive dialog to configure {{nslcd.conf }}.To avoid this interactive dialog, set the {{DEBIAN_FRONTEND}} environment variable to {{noninteractive}}. For example:
 cumulus@switch:~$ sudo apt-get update
 cumulus@switch:~$ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "Dpkg::Options::=--force-confdef" -o "Dpkg::Options::=--force-confold" upgrade</td>
-<td>5.11.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4156409</td>
-<td>When you enable the BGP PIC next hop group per source option:&lt;ul&gt;&lt;li&gt;In a 2-CLOS or 3-CLOS configuration when all links between a pair of devices (leaf and spine  or spine and super spine) come up, there is traffic loss.&lt;/li&gt; 
-&lt;li&gt;In a 3-CLOS topology when the remote spine reboots, there is traffic loss when the switch is restarting.&lt;/li&gt;&lt;/ul&gt;</td>
 <td>5.11.0-5.12.1</td>
 <td></td>
 </tr>
@@ -272,6 +265,12 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 rsyslogd: create UDP socket bound to device failed: No such device [v8.2302.0]
 rsyslogd: No UDP socket could successfully be initialized, some functionality may be disabled.  [v8.2302.0]
 The logs occur because the {{rsyslog}} service starts before the networking service creates the configured VRF for syslog export. There is no functional impact with this issue.</td>
+<td>5.9.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3882143</td>
+<td>The {{nv show platform environment voltage}} command output reports a failed state for PSU-1-12V-RAIL-OUT State. This issue is due to incorrect minimum and maximum thresholds and is cosmetic. The recorded voltage is reported in the {{Actual}} column of the {{nv show platform environment voltage}} command output.</td>
 <td>5.9.0-5.12.1</td>
 <td></td>
 </tr>
@@ -723,6 +722,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
+<td>4335117</td>
+<td>Under rare circumstances, firmware on an NVIDIA SN3700 switch can get locked up, which leads to the {{switchd}} process going down.</td>
+<td>5.12.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4329931</td>
 <td>In previous releases, Cumulus Linux incorrectly allowed SyncE and PPS In features to be enabled at the same time. Upgrading systems with both features configured using NVUE to 5.12.0 or higher results in a failure to apply the startup configuration as part of the first boot of the upgraded version. To work around the issue, unset one of the features before you upgrade.</td>
 <td>5.12.0-5.12.1</td>
@@ -747,13 +752,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>4309875</td>
-<td>When you configure an invalid switch port (swp), NVUE adds the invalid configuration instead of rejecting it. The invalid interface in the configuration does not have any functional impact.</td>
-<td>5.12.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4309853</td>
+<td>4309854</td>
 <td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
 <td>5.11.0-5.12.1</td>
 <td></td>
@@ -811,8 +810,8 @@ cumulus@switch:~$ sudo systemctl start cumulus-upgrade-on-shutdown</td>
 <tr>
 <td>4278822</td>
 <td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
-<td>5.9.2-5.12.1</td>
-<td></td>
+<td>5.9.2-5.11.0, 5.12.0-5.12.1</td>
+<td>5.11.1</td>
 </tr>
 <tr>
 <td>4277042</td>
@@ -919,13 +918,6 @@ cumulus@switch:~$ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "Dpkg::Optio
 <td></td>
 </tr>
 <tr>
-<td>4156409</td>
-<td>When you enable the BGP PIC next hop group per source option:&lt;ul&gt;&lt;li&gt;In a 2-CLOS or 3-CLOS configuration when all links between a pair of devices (leaf and spine  or spine and super spine) come up, there is traffic loss.&lt;/li&gt; 
-&lt;li&gt;In a 3-CLOS topology when the remote spine reboots, there is traffic loss when the switch is restarting.&lt;/li&gt;&lt;/ul&gt;</td>
-<td>5.11.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4154839</td>
 <td>When you run certain SDK commands (such as {{sudo sx_api_port_counter_dump_all.py}} or {{sx_api_fdb_dump etc}}) first as the cumulus user, then with {{sudo}}, you see the following error:
 PermissionError: Errno 13] Permission denied: '/tmp/python_err_log.txt'
@@ -999,12 +991,6 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <td></td>
 </tr>
 <tr>
-<td>4100170</td>
-<td>The NVUE Service fails to start after an upgrade from Cumulus Linux 5.9 to Cumulus Linux 5.10 because of a corrupted database.</td>
-<td>5.10.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4100164</td>
 <td>Low power Intel SATA controllers experience issues when using the {{mobile}} low power chipset LPM policy. This can cause the SSD to become read only.</td>
 <td>5.8.0-5.12.1</td>
@@ -1070,6 +1056,12 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 rsyslogd: create UDP socket bound to device failed: No such device [v8.2302.0]
 rsyslogd: No UDP socket could successfully be initialized, some functionality may be disabled.  [v8.2302.0]
 The logs occur because the {{rsyslog}} service starts before the networking service creates the configured VRF for syslog export. There is no functional impact with this issue.</td>
+<td>5.9.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3882143</td>
+<td>The {{nv show platform environment voltage}} command output reports a failed state for PSU-1-12V-RAIL-OUT State. This issue is due to incorrect minimum and maximum thresholds and is cosmetic. The recorded voltage is reported in the {{Actual}} column of the {{nv show platform environment voltage}} command output.</td>
 <td>5.9.0-5.12.1</td>
 <td></td>
 </tr>

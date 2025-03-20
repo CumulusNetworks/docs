@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4352128</td>
+<td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
+<td>5.9.2-5.12.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4308857</td>
 <td>When you use {{tls_crlcheck}} in the {{/etc/nslcd.conf}} file, the optional {{nslcd}} service fails due to a missing library.</td>
 <td>5.9.2-5.12.1</td>
@@ -29,12 +35,6 @@
 <td>When you bring STP down, then up on the primary MLAG peer, the STP state machine restarts and the peerlink operational edge resets. As a result, the secondary MLAG peer ends up in an STP discarding state. To work around this issue, restart the {{clagd}} service.</td>
 <td>5.8.0-5.11.1</td>
 <td>5.12.0-5.12.1</td>
-</tr>
-<tr>
-<td>4278822</td>
-<td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
-<td>5.9.2-5.12.1</td>
-<td></td>
 </tr>
 <tr>
 <td>4271229</td>
@@ -241,12 +241,6 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <td></td>
 </tr>
 <tr>
-<td>4100170</td>
-<td>The NVUE Service fails to start after an upgrade from Cumulus Linux 5.9 to Cumulus Linux 5.10 because of a corrupted database.</td>
-<td>5.10.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4100164</td>
 <td>Low power Intel SATA controllers experience issues when using the {{mobile}} low power chipset LPM policy. This can cause the SSD to become read only.</td>
 <td>5.8.0-5.12.1</td>
@@ -412,6 +406,12 @@ interface_stats: [ERROR] interface_stats_collector.py:_parse_conf_file:201 — C
 rsyslogd: create UDP socket bound to device failed: No such device [v8.2302.0]
 rsyslogd: No UDP socket could successfully be initialized, some functionality may be disabled.  [v8.2302.0]
 The logs occur because the {{rsyslog}} service starts before the networking service creates the configured VRF for syslog export. There is no functional impact with this issue.</td>
+<td>5.9.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3882143</td>
+<td>The {{nv show platform environment voltage}} command output reports a failed state for PSU-1-12V-RAIL-OUT State. This issue is due to incorrect minimum and maximum thresholds and is cosmetic. The recorded voltage is reported in the {{Actual}} column of the {{nv show platform environment voltage}} command output.</td>
 <td>5.9.0-5.12.1</td>
 <td></td>
 </tr>
@@ -921,6 +921,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4352128</td>
+<td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
+<td>5.9.2-5.12.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4308857</td>
 <td>When you use {{tls_crlcheck}} in the {{/etc/nslcd.conf}} file, the optional {{nslcd}} service fails due to a missing library.</td>
 <td>5.9.2-5.12.1</td>
@@ -931,12 +937,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>When you bring STP down, then up on the primary MLAG peer, the STP state machine restarts and the peerlink operational edge resets. As a result, the secondary MLAG peer ends up in an STP discarding state. To work around this issue, restart the {{clagd}} service.</td>
 <td>5.8.0-5.11.1</td>
 <td>5.12.0-5.12.1</td>
-</tr>
-<tr>
-<td>4278822</td>
-<td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
-<td>5.9.2-5.12.1</td>
-<td></td>
 </tr>
 <tr>
 <td>4271229</td>
@@ -1126,12 +1126,6 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <td>4101027</td>
 <td>After you add a VLAN to a bridge member port,  you might experience a few seconds of VXLAN traffic loss.</td>
 <td>5.7.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4100170</td>
-<td>The NVUE Service fails to start after an upgrade from Cumulus Linux 5.9 to Cumulus Linux 5.10 because of a corrupted database.</td>
-<td>5.10.0-5.12.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1349,6 +1343,12 @@ interface_stats: [ERROR] interface_stats_collector.py:_parse_conf_file:201 — C
 rsyslogd: create UDP socket bound to device failed: No such device [v8.2302.0]
 rsyslogd: No UDP socket could successfully be initialized, some functionality may be disabled.  [v8.2302.0]
 The logs occur because the {{rsyslog}} service starts before the networking service creates the configured VRF for syslog export. There is no functional impact with this issue.</td>
+<td>5.9.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3882143</td>
+<td>The {{nv show platform environment voltage}} command output reports a failed state for PSU-1-12V-RAIL-OUT State. This issue is due to incorrect minimum and maximum thresholds and is cosmetic. The recorded voltage is reported in the {{Actual}} column of the {{nv show platform environment voltage}} command output.</td>
 <td>5.9.0-5.12.1</td>
 <td></td>
 </tr>

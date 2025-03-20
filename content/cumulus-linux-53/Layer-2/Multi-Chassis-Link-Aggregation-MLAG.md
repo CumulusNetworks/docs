@@ -1079,13 +1079,15 @@ cumulus@leaf01:mgmt:~$ ip link show
 
 Cumulus Linux puts interfaces in a protodown state under the following conditions:
 
-- When there is an LACP partner MAC address mismatch. For example if a bond comes up with a `clag-id` and the peer is using a bond with the same `clag-id` but a different LACP partner MAC address. The NVUE `nv show mlag lacp-conflict` or the Linux `clagctl` command output shows the protodown reason as a `partner-mac-mismatch`.
+- When there is an LACP partner MAC address mismatch. For example if a bond comes up with a `clag-id` and the peer is using a bond with the same `clag-id` but a different LACP partner MAC address. The Linux `clagctl` command output shows the protodown reason as a `partner-mac-mismatch`.
 
-- When there is a duplicate LACP partner MAC address. For example, when there are multiple LACP bonds between the same two LACP endpoints. The NVUE `nv show mlag lacp-conflict` or the Linux `clagctl` command output shows the protodown reason as a `duplicate-partner-mac`.
+- When there is a duplicate LACP partner MAC address. For example, when there are multiple LACP bonds between the same two LACP endpoints. The Linux `clagctl` command output shows the protodown reason as a `duplicate-partner-mac`.
 
   To prevent a bond from coming up when an MLAG bond with an LACP partner MAC address already in use comes up, use the `--clag-args --allowPartnerMacDup False` option. This option puts the slaves of that bond interface in a protodown state and the `clagctl` output shows the protodown reason as a `duplicate-partner-mac`.
 
 After you make the necessary cable or configuration changes to avoid the protodown state and you want MLAG to reevaluate the LACP partners, run the NVUE `nv action clear mlag lacp-conflict` command or the Linux `clagctl clearconflictstate` command to remove `duplicate-partner-mac` or `partner-mac-mismatch` from the protodown bonds, allowing them to come back up.
+
+See also {{<link title="#peer-link-consistency-check" text="Peer Link Consistency Check">}}.
 
 ## Configuration Example
 

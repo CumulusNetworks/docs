@@ -38,7 +38,6 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 - Default AR profile update
 - OTLP
   - {{<link url="Open-Telemetry-Export/#temporality-mode" text="Temporality mode for histogram metrics">}}
-  - Device level configuration of histogram
   - Buffer Occupancy and watermark metrics
 - NVUE
   - {{<link url="NVUE-CLI/#list-directory-contents" text="Command to list directory contents">}}

@@ -241,12 +241,6 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <td></td>
 </tr>
 <tr>
-<td>4100170</td>
-<td>The NVUE Service fails to start after an upgrade from Cumulus Linux 5.9 to Cumulus Linux 5.10 because of a corrupted database.</td>
-<td>5.10.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4100164</td>
 <td>Low power Intel SATA controllers experience issues when using the {{mobile}} low power chipset LPM policy. This can cause the SSD to become read only.</td>
 <td>5.8.0-5.12.1</td>
@@ -1132,12 +1126,6 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <td>4101027</td>
 <td>After you add a VLAN to a bridge member port,  you might experience a few seconds of VXLAN traffic loss.</td>
 <td>5.7.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4100170</td>
-<td>The NVUE Service fails to start after an upgrade from Cumulus Linux 5.9 to Cumulus Linux 5.10 because of a corrupted database.</td>
-<td>5.10.0-5.12.1</td>
 <td></td>
 </tr>
 <tr>

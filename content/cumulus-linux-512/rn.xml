@@ -43,12 +43,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4309875</td>
-<td>When you configure an invalid switch port (swp), NVUE adds the invalid configuration instead of rejecting it. The invalid interface in the configuration does not have any functional impact.</td>
-<td>5.12.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4309854</td>
 <td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
 <td>5.11.0-5.12.1</td>
@@ -147,13 +141,6 @@ cumulus@switch:~$ sudo /usr/sbin/pam-auth-update --force --package</td>
 <td>When doing a package upgrade from CL5.9 or CL5.10 to CL5.11, the installation of {{nslcd}} might open an interactive dialog to configure {{nslcd.conf }}.To avoid this interactive dialog, set the {{DEBIAN_FRONTEND}} environment variable to {{noninteractive}}. For example:
 cumulus@switch:~$ sudo apt-get update
 cumulus@switch:~$ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "Dpkg::Options::=--force-confdef" -o "Dpkg::Options::=--force-confold" upgrade</td>
-<td>5.11.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4156409</td>
-<td>When you enable the BGP PIC next hop group per source option:&lt;ul&gt;&lt;li&gt;In a 2-CLOS or 3-CLOS configuration when all links between a pair of devices (leaf and spine  or spine and super spine) come up, there is traffic loss.&lt;/li&gt; 
-&lt;li&gt;In a 3-CLOS topology when the remote spine reboots, there is traffic loss when the switch is restarting.&lt;/li&gt;&lt;/ul&gt;</td>
 <td>5.11.0-5.12.1</td>
 <td></td>
 </tr>
@@ -765,12 +752,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>4309875</td>
-<td>When you configure an invalid switch port (swp), NVUE adds the invalid configuration instead of rejecting it. The invalid interface in the configuration does not have any functional impact.</td>
-<td>5.12.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4309854</td>
 <td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
 <td>5.11.0-5.12.1</td>
@@ -937,13 +918,6 @@ cumulus@switch:~$ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "Dpkg::Optio
 <td></td>
 </tr>
 <tr>
-<td>4156409</td>
-<td>When you enable the BGP PIC next hop group per source option:&lt;ul&gt;&lt;li&gt;In a 2-CLOS or 3-CLOS configuration when all links between a pair of devices (leaf and spine  or spine and super spine) come up, there is traffic loss.&lt;/li&gt; 
-&lt;li&gt;In a 3-CLOS topology when the remote spine reboots, there is traffic loss when the switch is restarting.&lt;/li&gt;&lt;/ul&gt;</td>
-<td>5.11.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4154839</td>
 <td>When you run certain SDK commands (such as {{sudo sx_api_port_counter_dump_all.py}} or {{sx_api_fdb_dump etc}}) first as the cumulus user, then with {{sudo}}, you see the following error:
 PermissionError: Errno 13] Permission denied: '/tmp/python_err_log.txt'
@@ -1014,12 +988,6 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <td>4100629</td>
 <td>NVUE show command outputs show LLDP neighbor changes only after the LLDP update frequency multiplied by the hold time.</td>
 <td>5.11.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4100170</td>
-<td>The NVUE Service fails to start after an upgrade from Cumulus Linux 5.9 to Cumulus Linux 5.10 because of a corrupted database.</td>
-<td>5.10.0-5.12.1</td>
 <td></td>
 </tr>
 <tr>

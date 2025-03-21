@@ -155,7 +155,7 @@ cumulus@hostname:~$ netq install standalone full interface eth0 bundle /mnt/inst
 
 Restore your data with the backup file you created during a backup using the `restore` option with the `netq install` command. The `restore` option copies the data from the backup file to the database, decompresses it, verifies the restoration, and starts all necessary services. 
 
-Run the installation command on your NetQ server, referencing the path where the backup file resides and including the `config-key` created during the {{<link title="Back Up and Restore NetQ" text="backup process">}}.
+Run the installation command on your NetQ server, referencing the path where the backup file resides.
 
 ```
 cumulus@netq-appliance:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.13.0.tgz restore /home/cumulus/backup-netq-standalone-onprem-4.12.0-2024-12-11_19_50_12_UTC.tar

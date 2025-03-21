@@ -205,7 +205,7 @@ cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/insta
 
 Restore your data with the backup file you created during a backup using the `restore` option with the `netq install` command. The `restore` option copies the data from the backup file to the database, decompresses it, verifies the restoration, and starts all necessary services. 
 
-Run the installation command on your master node, using the IP addresses of your worker nodes, the HA cluster virtual IP address (VIP), the path where the backup file resides, and the `config-key` created during the {{<link title="Back Up and Restore NetQ" text="backup process">}}:
+Run the installation command on your master node, using the IP addresses of your worker nodes, the HA cluster virtual IP address (VIP), and referencing the path where the backup file resides.
 
 {{<notice info>}}
 The HA cluster virtual IP must be:

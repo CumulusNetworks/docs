@@ -36,7 +36,8 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 - Default AR profile update
 - Telemetry
   - {{<link url="Open-Telemetry-Export/#temporality-mode" text="OTEL temporality mode for histogram metrics">}}
-  - OTEL Buffer Occupancy and watermark metrics and LLDP metrics
+  - OTEL Buffer Occupancy and watermark metrics
+  - {{<link url="Open-Telemetry-Export/#lldp-statistics" text="OTEL LLDP metrics">}}
   - {{<link url="Prometheus-Export/#adaptive-routing-metrics" text="Prometheus adaptive routing metrics">}}
   - {{<link url="Prometheus-Export/#transceiver-metrics" text="Prometheus transceiver temperature and power metrics">}}
 - NVUE
@@ -134,6 +135,8 @@ nv set system syslog server <server-id> vrf mgmt
 nv set system telemetry histogram temporality <mode>
 nv set system telemetry adaptive-routing-stats sample-interval
 nv set system telemetry adaptive-routing-stats export state
+nv set system telemetry lldp export state
+nv set system telemetry lldp sample-interval
 nv set system telemetry platform-stats class transceiver-info sample-interval
 nv set system telemetry platform-stats class transceiver-info state
 ```
@@ -169,6 +172,12 @@ nv unset system syslog server <server-id> port
 nv unset system syslog server <server-id> protocol
 nv unset system syslog server <server-id> vrf mgmt
 nv unset system telemetry histogram temporality <mode>
+nv unset system telemetry adaptive-routing-stats sample-interval
+nv unset system telemetry adaptive-routing-stats export state
+nv unset system telemetry lldp export state
+nv unset system telemetry lldp sample-interval
+nv unset system telemetry platform-stats class transceiver-info sample-interval
+nv unset system telemetry platform-stats class transceiver-info state
 ```
 
 {{< /tab >}}

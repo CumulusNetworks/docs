@@ -132,6 +132,10 @@ nv set system syslog server <server-id> port
 nv set system syslog server <server-id> protocol
 nv set system syslog server <server-id> vrf mgmt
 nv set system telemetry histogram temporality <mode>
+nv set system telemetry adaptive-routing-stats sample-interval
+nv set system telemetry adaptive-routing-stats export state
+nv set system telemetry platform-stats class transceiver-info sample-interval
+nv set system telemetry platform-stats class transceiver-info state
 ```
 
 {{< /tab >}}

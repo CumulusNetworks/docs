@@ -1,14 +1,14 @@
 ---
 title: gNMI Streaming
 author: NVIDIA
-weight: 811
+weight: 1234
 toc: 4
 ---
 You can use {{<exlink url="https://github.com/openconfig/gnmi" text="gRPC Network Management Interface">}} (gNMI) to collect system resource, interface, and counter information from Cumulus Linux and export it to your own gNMI client.
 
 ## Enable the gNMI Server
 
-1. Optional. Import the CA certificate for mTLS (refer to {{<link url="NVUE-API/#import-a-certificate" text="Import a Certificate">}}) and enable the certificate for the server:
+1. Optional. Import the CA certificate for mTLS and enable the certificate for the server. Refer to {{<link url="NVUE-API/#import-a-certificate" text="Import a Certificate">}}.
 
    ```
    cumulus@switch:~$ nv set system gnmi-server mtls ca-certificate <cert ID>
@@ -37,7 +37,7 @@ You can use {{<exlink url="https://github.com/openconfig/gnmi" text="gRPC Networ
 
 The gRPC tunnel client package includes the dial-out tunnel client. To configure the gRPC tunnel client package:
 
-1. Import CA certificates. Refer to {{<link url="NVUE-API/#import-a-certificate" text="Import a Certificate">}} for more details.
+1. Import CA certificates. Refer to {{<link url="NVUE-API/#import-a-certificate" text="Import a Certificate">}}.
 
    ```
    cumulus@switch:~$ nv action import system security ca-certificate test-cert data <certificate file contents>
@@ -65,7 +65,7 @@ Cumulus Linux does not support mTLS on the underlying gRPC tunnel.
    cumulus@switch:~$ nv config apply
    ```
 
-- Import the server certificate on the switch (refer to {{<link url="NVUE-API/#import-a-certificate" text="Import a Certificate">}}) and bind the certificate to the gNMI server:
+4. Import the server certificate on the switch and bind the certificate to the gNMI server. Refer to {{<link url="NVUE-API/#import-a-certificate" text="Import a Certificate">}}.
 
    ```
    cumulus@switch:~$ nv action import system security certificate <cert-id> [options]  

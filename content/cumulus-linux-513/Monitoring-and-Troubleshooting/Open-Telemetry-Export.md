@@ -139,6 +139,22 @@ To reset the temporality mode to the default value (`delta`), run the `nv unset 
 
 To show histogram data configuration, run the `nv show system telemetry histogram` command.
 
+### LLDP Statistics
+
+When you enable LLDP statistic open telemetry, the switch exports neighbor, port, and chassis information. LLDP metrics are useful to get a network topology to optimize and efficiently use network resources. Knowing the network layout makes it easier to configure network devices. To enable the [LLDP statistics](#lldp-statistic-format):
+
+```
+cumulus@switch:~$ nv set system telemetry lldp export state enabled
+cumulus@switch:~$ nv config apply
+```
+
+You can adjust the LLDP statistics sample interval (in seconds). You can specify a value between 1 and 86400. The default value is 5.
+
+```
+cumulus@switch:~$ nv set system telemetry lldp sample-interval 10
+cumulus@switch:~$ nv config apply
+```
+
 ### Platform Statistics
 
 When you enable platform statistic open telemetry, the switch exports data about the CPU, disk, filesystem, memory, and sensor health. To enable all [platform statistics](#platform-statistic-format) globally:
@@ -340,6 +356,19 @@ cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP3 histogram expo
 cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP3 platform-stats export state enabled
 cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP3 platform-stats class disk state disabled
 cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.30 stats-group STAT-GROUP3
+cumulus@switch:~$ nv config apply
+```
+
+The following example:
+- Configures STAT-GROUP4 to disable histogram (`histogram`) statistics, and enables LLDP statistics (`lldp-stats`).
+- Sets the sample interval of `lldp` statistics to 40.
+- Applies the STAT-GROUP4 configuration to the OTLP destination 10.1.1.30.
+
+```
+cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP4 histogram export state disabled
+cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP4 lldp export state enabled
+cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP4 lldp sample-interval 40
+cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.30 stats-group STAT-GROUP4
 cumulus@switch:~$ nv config apply
 ```
 
@@ -815,6 +844,18 @@ When you enable control plane statistic telemetry, the switch exports the follow
 ```
 
 {{< /expand >}}
+
+### LLDP Statistic Format
+
+When you enable LLDP statistic telemetry, the switch exports the following statistics:
+
+| Name | Description |
+|----- | ----------- |
+| `nvswitch_lldp_chassis_info` | LLDP chassis information. |
+| `nvswitch_lldp_neighbor_info` | LLDP neighbor information. |
+| `nvswitch_lldp_neighbor_age` | LLDP neighbor age information. |
+| `nvswitch_lldp_neighbor_port_ttl` | LLDP neighbor port TTL. |
+| `nvswitch_lldp_neighbor_capabilities` | LLDP neighbor capabilities. |
 
 ### Platform Statistic Format
 

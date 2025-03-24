@@ -197,11 +197,8 @@ cumulus@netq-appliance:~$ sudo scp /opt/backuprestore/combined_backup_2025011705
 
 ## Restore Your NetQ Data
 
-To restore your NetQ data, perform a {{<link title="Install the NetQ System" text="new NetQ VM installation">}} and follow the steps to restore your NetQ data when you run the `netq install` command.
+To restore your NetQ data, perform a {{<link title="Install the NetQ System" text="new NetQ VM installation">}} and follow the steps to restore your NetQ data when you run the `netq install` command. You will use the `restore` option, referencing the path where the backup file resides.
 
-{{%notice note%}}
-NetQ does not retain custom-signed certificates during the backup and restore process. If your deployment uses a custom-signed certificate, you must {{<link title="Install a Custom Signed Certificate" text="reconfigure the custom-signed certificate">}} after you perform a new NetQ VM installation.
-{{%/notice%}}
 
 <!--
 Perform a {{<link title="Install the NetQ System" text="new installation">}} and restore your data with the backup file you created in the preceding steps. The `restore` option copies the data from the backup file to the database, decompresses it, verifies the restoration, and starts all necessary services. 

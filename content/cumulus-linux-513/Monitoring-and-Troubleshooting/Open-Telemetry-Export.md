@@ -284,10 +284,10 @@ cumulus@switch:~$ nv set system telemetry router vrf RED rib export state enable
 cumulus@switch:~$ nv config apply
 ```
 
-You can adjust the sample interval (in seconds) for routing metrics. You can specify a value in multiples of 10 up to 60. The default value is 10.
+You can adjust the sample interval (in seconds) for routing metrics. You can specify a value in multiples of 10 up to 60. The default value is 30.
 
 ```
-cumulus@switch:~$ nv set system telemetry router sample-interval 30
+cumulus@switch:~$ nv set system telemetry router sample-interval 40
 cumulus@switch:~$ nv config apply
 ```
 

@@ -10,7 +10,7 @@ The following sections describe how to back up and restore your NetQ data and VM
 {{%notice note%}}
 - You must run backup and restore scripts with sudo privileges.
 - When you upgrade from NetQ 4.11 to 4.13, any pre-existing validation data will be lost.
-- NetQ does not retain custom-signed certificates during the backup and restore process. If your deployment uses a custom-signed certificate, you must {{<link title="Install a Custom Signed Certificate" text="reconfigure the certificate">}} after you perform a new NetQ VM installation.
+- NetQ does not retain custom-signed certificates during the backup and restore process. If your deployment uses a custom-signed certificate, you must {{<link title="Install a Custom Signed Certificate" text="reconfigure the certificate">}} after you restore it on a new NetQ VM.
 {{%/notice%}}
 
 ## Back Up Your NetQ Data

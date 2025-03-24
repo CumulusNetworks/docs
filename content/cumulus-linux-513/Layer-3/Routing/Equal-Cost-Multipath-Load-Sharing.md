@@ -540,12 +540,17 @@ Cumulus Linux also supports BGP W-ECMP with adaptive routing; see {{<link title=
 
 ### Enable Adaptive Routing
 
-To enable adaptive routing:
-
 {{< tabs "TabID436 ">}}
 {{< tab "NVUE Commands ">}}
 
-Run the `nv set interface <interface> router adaptive-routing enable on` command on all the ports that are part of the same ECMP route. NVUE sets adaptive routing on the ports and enables the adaptive routing feature.
+To enable adaptive routing globally, run the `nv set router adaptive-routing enable on` command:
+
+```
+cumulus@switch:~$ nv set router adaptive-routing enable on
+cumulus@switch:~$ nv config apply
+```
+
+To enable adaptive routing on ports that are part of the same ECMP route, run the `nv set interface <interface> router adaptive-routing enable on` command.
 
 ```
 cumulus@switch:~$ nv set interface swp51 router adaptive-routing enable on

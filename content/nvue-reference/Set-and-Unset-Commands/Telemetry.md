@@ -1348,7 +1348,7 @@ cumulus@switch:~$ nv set system telemetry router rib export state enabled
 
 ## <h>nv set system telemetry router sample-interval</h>
 
-Configures the sample interval (in seconds) for routing metrics. You can specify a value in multiples of 10, up to 60. The default value is 10.
+Configures the sample interval (in seconds) for routing metrics. You can specify a value in multiples of 10, up to 60. The default value is 30.
 
 ### Version History
 
@@ -1357,7 +1357,7 @@ Introduced in Cumulus Linux 5.12.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set system telemetry router sample-interval 30
+cumulus@switch:~$ nv set system telemetry router sample-interval 40
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

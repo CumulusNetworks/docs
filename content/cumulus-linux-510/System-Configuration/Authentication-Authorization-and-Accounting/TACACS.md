@@ -48,17 +48,16 @@ NVUE commands require you to specify the priority for each TACACS+ server. You m
 The following example commands set:
 - The TACACS+ server priority to 5.
 - The IP address of the server to 192.168.0.30.
-- The secret to `mytacac$key`.
+- The secret to `mytacac\$key`.
   {{%notice note%}}
-  If you include special characters in the password (such as $), you must enclose the password in single quotes (').
-  {{%/notice%}}
+  If you include special characters in the password, such as $, you must enclose the password in single quotes ('). You must also escape the $ character with a backslash `\`.
 - The VRF to `mgmt`.
 - The authentication order so that TACACS+ authentication has priority over local (the lower number has priority).
 - TACACS+ to enabled.
 
 ```
 cumulus@switch:~$ nv set system aaa tacacs server 5 host 192.168.0.30
-cumulus@switch:~$ nv set system aaa tacacs server 5 secret 'mytacac$key'
+cumulus@switch:~$ nv set system aaa tacacs server 5 secret 'mytacac\$key'
 cumulus@switch:~$ nv set system aaa tacacs vrf mgmt 
 cumulus@switch:~$ nv set system aaa authentication-order 5 tacacs
 cumulus@switch:~$ nv set system aaa authentication-order 10 local

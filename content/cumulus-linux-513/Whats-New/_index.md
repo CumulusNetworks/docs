@@ -19,7 +19,6 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 ### New Features and Enhancements
 
 - NVIDIA SN5400 ITU-T G.8273.2 Class C (Compliance)
-- gNMI support
 - {{<link url="Equal-Cost-Multipath-Load-Sharing/#enable-adaptive-routing" text="Enabling adaptive routing no longer restarts switchd">}}
 - {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="Optimized upgrade supports warmboot">}}
 - {{<link url="802.1X-Interfaces/#ignore-reauthorization-timeout" text="802.1 option to keep the port in the current state when the RADIUS server is unreachable">}}
@@ -33,21 +32,20 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 - {{<link url="802.1X-Interfaces/#dynamic-vrf-assignments" text="802.1x on router ports with dynamic VRF assignments">}}
 - {{<link url="RADIUS-AAA/#optional-radius-configuration" text="RADIUS multiple VRF support">}}
 - {{<link url="SSH-for-Remote-Access/#message-of-the-day" text="Message of the day shows system reboot cause and health information">}}
-- Default AR profile update
 - Telemetry
-  - {{<link url="Open-Telemetry-Export/#temporality-mode" text="OTEL temporality mode for histogram metrics">}}
+  - gNMI support
   - OTEL Buffer Occupancy and watermark metrics
   - {{<link url="Open-Telemetry-Export/#lldp-statistics" text="OTEL LLDP metrics">}}
+  - {{<link url="Open-Telemetry-Export/#adaptive-routing-statistics" text="OTEL Adaptive routing statistics">}}
+  - {{<link url="Open-Telemetry-Export/#platform-statistics" text="OTEL Transceiver statistics">}}
+  - {{<link url="Open-Telemetry-Export/#temporality-mode" text="OTEL temporality mode for histogram metrics">}}
   - {{<link url="Open-Telemetry-Export/#grpc-otlp-export" text="Configuring the open telemetry export destination no longer resets connections to the destination">}}
-  - {{<link url="Prometheus-Export/#adaptive-routing-metrics" text="Prometheus adaptive routing metrics">}}
-  - {{<link url="Prometheus-Export/#transceiver-metrics" text="Prometheus transceiver temperature and power metrics">}}
 - NVUE
   - {{<link url="NVUE-CLI/#list-directory-contents" text="Command to list directory contents">}}
   - {{<link url="NVUE-CLI/#get-the-hash-for-a-file" text="Command to get the hash for a file">}}
   - {{<link url="802.1X-Interfaces/#configure-8021x-interfaces" text="Commands to set the NAS IP address and NAS identifier for 802.1X">}}
   - {{<link url="System-Power/#power-cycle" text="Command to power cycle the switch">}}
   - {{<link url="SSH-for-Remote-Access/#certificate-based-authentication" text="SSH certificate-based authentication">}}
-  - Enable CRL support
   - Additional FRR filters
   - {{< expand "Changed NVUE Commands" >}}
 | Cumulus Linux 5.13 | Cumulus Linux 12 and Earlier |

@@ -284,15 +284,16 @@ cumulus@switch:~$ nv set system telemetry router vrf RED rib export state enable
 cumulus@switch:~$ nv config apply
 ```
 
-You can adjust the sample interval (in seconds) for routing metrics. You can specify a value in multiples of 10 up to 60. The default value is 10.
+You can adjust the sample interval (in seconds) for routing metrics. You can specify a value in multiples of 10 up to 60. The default value is 30.
 
 ```
-cumulus@switch:~$ nv set system telemetry router sample-interval 30
+cumulus@switch:~$ nv set system telemetry router sample-interval 40
 cumulus@switch:~$ nv config apply
 ```
 
 {{%notice note%}}
-You can disable BGP export across all VRFs with the `nv set telemetry router bgp export state disabled` command and enable it only for specific VRFs with the `nv set telemetry router vrf <vrf-name> bgp export state enabled` command. You can also disable BGP export across all peers in a VRF with the `nv set telemetry router vrf <vrf-name> bgp export state disabled` command, and enable telemetry only for specific peers in the VRF with the `nv set telemetry router vrf <vrf-name> bgp peer <peer> export state enabled` command.
+- You can disable BGP export across all VRFs with the `nv set telemetry router bgp export state disabled` command and enable it only for specific VRFs with the `nv set telemetry router vrf <vrf-name> bgp export state enabled` command. 
+- You can also disable BGP export across all peers in a VRF with the `nv set telemetry router vrf <vrf-name> bgp export state disabled` command, and enable telemetry only for specific peers in the VRF with the `nv set telemetry router vrf <vrf-name> bgp peer <peer> export state enabled` command.
 {{%/notice%}}
 
 To show routing metrics configuration settings, run the `nv show system telemetry router` command.
@@ -316,6 +317,10 @@ To configure the open telemetry export destination:
    ```
 
 By default, OTLP export is in **secure** mode that requires a certificate. For connections without a configured certificate, you must enable `insecure` mode with the `nv set system telemetry export otlp grpc insecure enabled` command.
+
+{{%notice note%}}
+When you make changes to the open telemetry export destination, connections to the destination do not reset.
+{{%/notice%}}
 
 ### Customize Export
 

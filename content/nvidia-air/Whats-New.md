@@ -9,10 +9,13 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 
 ## March 2025
 <!-- Air:WhatsNew -->
+### 82.2025.0325-011
+- Fixed an issue where outbound interfaces did not appear in the services list
+<!-- Air:WhatsNew -->
+
 ### 82.2025.0318-011
 - Fixed an issue with the System Palette when minimizing the Servers and Switches section
 - Fixed an issue with services being intermittently unreachable
-<!-- Air:WhatsNew -->
 
 ### 82.2025.0311-011
 - Fixed an issue with loading the details panel for a demo by using the demo ID in the URL

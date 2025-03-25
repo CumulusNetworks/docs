@@ -38,6 +38,7 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
   - {{<link url="Open-Telemetry-Export/#temporality-mode" text="OTEL temporality mode for histogram metrics">}}
   - OTEL Buffer Occupancy and watermark metrics
   - {{<link url="Open-Telemetry-Export/#lldp-statistics" text="OTEL LLDP metrics">}}
+  - {{<link url="Open-Telemetry-Export/#grpc-otlp-export" text="Configuring the open telemetry export destination no longer resets connections to the destination">}}
   - {{<link url="Prometheus-Export/#adaptive-routing-metrics" text="Prometheus adaptive routing metrics">}}
   - {{<link url="Prometheus-Export/#transceiver-metrics" text="Prometheus transceiver temperature and power metrics">}}
 - NVUE

@@ -23,58 +23,21 @@ cumulus@switch:~$ nv config apply
 
 When you enable open telemetry, the switch collects and exports [system information](#system-information-format) metrics to the configured external collector by default. In addition, you can enable open telemetry to collect and export [interface statistics](#interface-statistics), [buffer statistics](#buffer-statistics), [histogram data](#histogram-data), [control plane statistics](#control-plane-statistics), [platform statistics](#platform-statistics), and [routing metrics](#router-statistics).
 
-### Interface Statistics
+### Adaptive Routing Statistics
 
-When you enable open telemetry for interface statistics, the switch exports [interface statistics](#interface-statistic-format) on all configured interfaces:
+When you enable open telemetry for adaptive routing, the switch exports [adaptive routing statistics](#adaptive-routing-statistic-format):
 
 ```
-cumulus@switch:~$ nv set system telemetry interface-stats export state enabled
+cumulus@switch:~$ nv set system telemetry adaptive-routing-stats export state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-You can adjust the interface statistics sample interval (in seconds). You can specify a value between 1 and 86400. The default value is 1.
+You can adjust the adaptive routing statistics sample interval (in seconds). You can specify a value between 1 and 86400. The default setting is 60 seconds.
 
 ```
-cumulus@switch:~$ nv set system telemetry interface-stats sample-interval 100
+cumulus@switch:~$ nv set system telemetry adaptive-routing-stats sample-interval 40
 cumulus@switch:~$ nv config apply
 ```
-
-You can enable these additional interface statistics:
-- Traffic Class and Switch Priority metrics for ingress buffer traffic classes (0 through 15) and egress buffer priority groups (0 through 7)
-- PHY for interface PHY metrics
-
-{{< tabs "TabID35 ">}}
-{{< tab "Traffic Class and Switch Priority ">}}
-
-When you enable these settings, the switch exports `interface_pg` and `interface_tc` counters for the defined priority groups and traffic classes:
-
-```
-cumulus@switch:~$ nv set system telemetry interface-stats ingress-buffer priority-group 4
-cumulus@switch:~$ nv set system telemetry interface-stats egress-buffer traffic-class 12
-cumulus@switch:~$ nv config apply
-```
-
-You can enable additional switch priority interface statistic collection on all configured interfaces for specific switch priority values:
-
-```
-cumulus@switch:~$ nv set system telemetry interface-stats switch-priority 4
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "PHY">}}
-
-When you enable this setting, the switch exports `nvswitch_interface_phy` and `nvswitch_interface_raw` interface PHY counters:
-
-```
-cumulus@switch:~$ nv set system telemetry interface-stats class phy state enabled
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-To show interface statistics configuration, run the `nv show system telemetry interface-stats` command.
 
 ### Buffer Statistics
 
@@ -139,6 +102,59 @@ To reset the temporality mode to the default value (`delta`), run the `nv unset 
 
 To show histogram data configuration, run the `nv show system telemetry histogram` command.
 
+### Interface Statistics
+
+When you enable open telemetry for interface statistics, the switch exports [interface statistics](#interface-statistic-format) on all configured interfaces:
+
+```
+cumulus@switch:~$ nv set system telemetry interface-stats export state enabled
+cumulus@switch:~$ nv config apply
+```
+
+You can adjust the interface statistics sample interval (in seconds). You can specify a value between 1 and 86400. The default value is 1.
+
+```
+cumulus@switch:~$ nv set system telemetry interface-stats sample-interval 100
+cumulus@switch:~$ nv config apply
+```
+
+You can enable these additional interface statistics:
+- Traffic Class and Switch Priority metrics for ingress buffer traffic classes (0 through 15) and egress buffer priority groups (0 through 7)
+- PHY for interface PHY metrics
+
+{{< tabs "TabID35 ">}}
+{{< tab "Traffic Class and Switch Priority ">}}
+
+When you enable these settings, the switch exports `interface_pg` and `interface_tc` counters for the defined priority groups and traffic classes:
+
+```
+cumulus@switch:~$ nv set system telemetry interface-stats ingress-buffer priority-group 4
+cumulus@switch:~$ nv set system telemetry interface-stats egress-buffer traffic-class 12
+cumulus@switch:~$ nv config apply
+```
+
+You can enable additional switch priority interface statistic collection on all configured interfaces for specific switch priority values:
+
+```
+cumulus@switch:~$ nv set system telemetry interface-stats switch-priority 4
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "PHY">}}
+
+When you enable this setting, the switch exports `nvswitch_interface_phy` and `nvswitch_interface_raw` interface PHY counters:
+
+```
+cumulus@switch:~$ nv set system telemetry interface-stats class phy state enabled
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To show interface statistics configuration, run the `nv show system telemetry interface-stats` command.
+
 ### LLDP Statistics
 
 When you enable LLDP statistic open telemetry, the switch exports neighbor, port, and chassis information. LLDP metrics are useful to get a network topology to optimize and efficiently use network resources. Knowing the network layout makes it easier to configure network devices. To enable the [LLDP statistics](#lldp-statistic-format):
@@ -157,7 +173,7 @@ cumulus@switch:~$ nv config apply
 
 ### Platform Statistics
 
-When you enable platform statistic open telemetry, the switch exports data about the CPU, disk, filesystem, memory, and sensor health. To enable all [platform statistics](#platform-statistic-format) globally:
+When you enable platform statistic open telemetry, the switch exports data about the CPU, disk, filesystem, memory, sensor health, and transceiver temperature and power. To enable all [platform statistics](#platform-statistic-format) globally:
 
 ```
 cumulus@switch:~$ nv set system telemetry platform-stats export state enabled
@@ -169,10 +185,14 @@ If you do not want to enable all platform statistics, you can enable or disable 
 {{< tabs "TabID115 ">}}
 {{< tab "CPU ">}}
 
+To enable CPU statistics:
+
 ```
 cumulus@switch:~$ nv set system telemetry platform-stats class cpu state enabled
 cumulus@switch:~$ nv config apply
 ```
+
+To adjust the sample interval for CPU statistics:
 
 ```
 cumulus@switch:~$ nv set system telemetry platform-stats class cpu sample-interval 100
@@ -182,10 +202,14 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Disk">}}
 
+To enable disk statistics:
+
 ```
 cumulus@switch:~$ nv set system telemetry platform-stats class disk state enabled
 cumulus@switch:~$ nv config apply
 ```
+
+To adjust the sample interval for disk statistics:
 
 ```
 cumulus@switch:~$ nv set system telemetry platform-stats class disk sample-interval 100
@@ -195,10 +219,14 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Filesystem">}}
 
+To enable filesystem statistics:
+
 ```
 cumulus@switch:~$ nv set system telemetry platform-stats class file-system state enabled
 cumulus@switch:~$ nv config apply
 ```
+
+To adjust the sample interval for filesystem statistics:
 
 ```
 cumulus@switch:~$ nv set system telemetry platform-stats class file-system sample-interval 100
@@ -208,10 +236,14 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Memory">}}
 
+To enable memory statistics:
+
 ```
 cumulus@switch:~$ nv set system telemetry platform-stats class memory state enabled
 cumulus@switch:~$ nv config apply
 ```
+
+To adjust the sample interval for memory statistics:
 
 ```
 cumulus@switch:~$ nv set system telemetry platform-stats class memory sample-interval 100
@@ -221,13 +253,34 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Environment sensors">}}
 
+To enable environment sensor statistics:
+
 ```
 cumulus@switch:~$ nv set system telemetry platform-stats class environment-sensors state enabled
 cumulus@switch:~$ nv config apply
 ```
 
+To adjust the sample interval for environment sensor statistics:
+
 ```
 cumulus@switch:~$ nv set system telemetry platform-stats class environment-sensors sample-interval 100
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Transceivers">}}
+
+To enable transceiver statistics:
+
+```
+cumulus@switch:~$ nv set system telemetry platform-stats class transceiver-info state enabled
+cumulus@switch:~$ nv config apply
+```
+
+To adjust the sample interval for transceiver statistics:
+
+```
+cumulus@switch:~$ nv set system telemetry platform-stats class transceiver-info sample-interval 40
 cumulus@switch:~$ nv config apply
 ```
 
@@ -449,15 +502,420 @@ interface_swp10_label  Server 10 connection
 
 Cumulus Linux exports statistics and histogram data in the formats defined in this section.
 
-### System Information Format
+## Adaptive Routing Statistic Format
 
-When you enable open telemetry with the `nv set system telemetry export otlp state enabled` command, the switch exports the following system information metrics to the configured OTEL collector by default:
+When you enable adaptive routing telemetry, the switch exports the following statistics:
+
+| Metric | Description |
+| ---------- | ------- |
+| `nvswitch_ar_congestion_changes`  | The number of adaptive routing change events triggered due to congestion or link-down.|
+| `nvswitch_ar_notification_tx_drops_total` | The number of adaptive routing notification packets dropped due to a lack of next hops to send adaptive routing notification packets or due to an IP address lookup failure. |
+| `nvswitch_ar_notification_rx_total` | The number of adaptive routing notification packets received or dropped due an IP address lookup failure. |
+| `nvswitch_ar_flow_table_entries` | The number of adaptive routing flow entries in the flow table.|
+| `nvswitch_interface_ar_notification_tx_total` | The number of adaptive routing notification packets transmitted over the given port.|
+
+### Buffer Statistic Format
+
+The switch collects and exports the following interface and switch, buffer occupancy and watermark statistics when you configure the `nv set system telemetry buffer-stats export state enable` command:
 
 |  Name | Description |
 |------ | ----------- |
-| `node_boot_time_seconds` | Node boot time, in unixtime. |
-| `node_time_seconds` | System time in seconds since epoch (1970). |
-| `node_os_info` |  Operating system and image information, such as name and version. |
+| `nvswitch_interface_shared_buffer_port_pg_curr_occupancy` | Current buffer occupancy. |
+| `nvswitch_interface_shared_buffer_port_pg_watermark` | Maximum buffer occupancy. |
+| `nvswitch_interface_shared_buffer_port_pg_desc_curr_occupancy` | Current buffer occupancy for descriptors. |
+| `nvswitch_interface_shared_buffer_port_pg_desc_watermark` | Maximum buffer occupancy for descriptors. |
+| `nvswitch_interface_shared_buffer_port_pg_watermark_recorded_max` | Highest maximum buffer occupancy recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_port_pg_desc_watermark_recorded_max` | Highest maximum buffer occupancy for descriptors recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_ingress_pool_curr_occupancy` | Current ingress pool buffer occupancy. |
+| `nvswitch_interface_shared_buffer_ingress_pool_watermark` | Maximum ingress pool buffer occupancy. |
+| `nvswitch_interface_shared_buffer_ingress_pool_desc_curr_occupancy` | Current ingress pool buffer occupancy for descriptors. |
+| `nvswitch_interface_shared_buffer_ingress_pool_desc_watermark` | Maximum ingress pool buffer occupancy for descriptors. |
+| `nvswitch_interface_shared_buffer_ingress_pool_watermark_recorded_max` | Highest maximum ingress pool buffer occupancy recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_ingress_pool_desc_watermark_recorded_max` | Highest maximum ingress pool buffer occupancy for descriptors recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_port_tc_curr_occupancy` | Current buffer occupancy for traffic class. |
+| `nvswitch_interface_shared_buffer_port_tc_watermark` | Maximum buffer occupancy for traffic class. |
+| `nvswitch_interface_shared_buffer_port_tc_desc_curr_occupancy` | Current buffer occupancy for descriptors. |
+| `nvswitch_interface_shared_buffer_port_tc_desc_watermark` | Maximum buffer occupancy for descriptors. |
+| `nvswitch_interface_shared_buffer_port_tc_watermark_recorded_max` | Highest maximum buffer occupancy recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_port_tc_desc_watermark_recorded_max` | Highest maximum buffer occupancy for TC descriptors recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_egress_pool_curr_occupancy` | Current egress pool buffer occupancy. |
+| `nvswitch_interface_shared_buffer_egress_pool_watermark` | Maximum egress pool buffer occupancy. |
+| `nvswitch_interface_shared_buffer_egress_pool_desc_curr_occupancy` | Current egress pool buffer occupancy for descriptors. |
+| `nvswitch_interface_shared_buffer_egress_pool_desc_watermark` | Maximum egress pool buffer occupancy for descriptors. |
+| `nvswitch_interface_shared_buffer_egress_pool_watermark_recorded_max` | Highest maximum egress pool buffer occupancy recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_egress_pool_desc_watermark_recorded_max` | Highest maximum egress pool buffer occupancy for pool desc recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_mc_port_curr_occupancy`  | Current buffer occupancy for multicast port. |
+| `nvswitch_interface_shared_buffer_mc_port_watermark` | Maximum buffer occupancy for multicast port. |
+| `nvswitch_interface_shared_buffer_mc_port_watermark_max` | Highest maximum buffer occupancy for multicast port recorded since running sdk_stats. |
+| `nvswitch_shared_buffer_mc_sp_curr_occupancy` | Current buffer occupancy for multicast switch priority. |
+| `nvswitch_shared_buffer_mc_sp_watermark` | Maximum buffer occupancy for multicast switch priority. |
+| `nvswitch_shared_buffer_mc_sp_watermark_max` | Highest maximum buffer occupancy for multicast switch priority recorded since running sdk_stats. |
+| `nvswitch_shared_buffer_pool_curr_occupancy` | Current pool buffer occupancy. |
+| `nvswitch_shared_buffer_pool_watermark` | Maximum pool buffer occupancy |
+| `nvswitch_shared_buffer_pool_watermark_max` | Highest maximum pool buffer occupancy for multicast switch priority recorded since running sdk_stats. |
+| `nvswitch_interface_headroom_buffer_pg_curr_occupancy` | Current headroom buffer occupancy for port buffer. |
+| `nvswitch_interface_headroom_buffer_pg_watermark` | Maximum pool headroom buffer occupancy for port buffer. |
+| `nvswitch_interface_headroom_buffer_pg_watermark_recorded_max` | Highest maximum headroom buffer occupancy for port buffer recorded since running sdk_stats. |
+| `nvswitch_interface_headroom_buffer_shared_curr_occupancy` | Current headroom buffer occupancy for port shared buffer. |
+| `nvswitch_interface_headroom_shared_buffer_shared_watermark` | Maximum headroom buffer occupancy for port shared buffer. |
+| `nvswitch_interface_headroom_shared_buffer_shared_watermark_recorded_max` | Highest maximum headroom buffer occupancy for port shared buffer recorded since running sdk_stats. |
+| `nvswitch_interface_headroom_buffer_shared_pool_curr_occupancy` | Current headroom buffer occupancy for port shared pool buffer |
+| `nvswitch_interface_headroom_shared_buffer_shared_pool_watermark` | Maximum headroom buffer occupancy for port shared pool buffer. |
+| `nvswitch_interface_headroom_shared_buffer_shared_pool_watermark_recorded_max` | Highest maximum headroom buffer occupancy for port shared pool buffer. |
+
+### Control Plane Statistic Format
+
+When you enable control plane statistic telemetry, the switch exports the following statistics:
+
+| Name | Description |
+|----- | ----------- |
+| `nvswitch_control_plane_tx_packets` | Control plane transmit packets. |
+| `nvswitch_control_plane_tx_bytes` | Control plane transmit bytes. |
+| `nvswitch_control_plane_rx_packets` | Control plane receive packets. |
+| `nvswitch_control_plane_rx_bytes` | Control plane receive bytes. |
+| `nvswitch_control_plane_rx_buffer_drops` | Control plane receive buffer drops. |
+| `nvswitch_control_plane_trap_rx_packets` | Control plane trap group receive packets. |
+| `nvswitch_control_plane_trap_rx_event_count`| Control plane trap group receive events. |
+| `nvswitch_control_plane_trap_rx_drop` | Control plane trap group receive drops. |
+| `nvswitch_control_plane_trap_rx_bytes` | Control plane trap group receive bytes. |
+| `nvswitch_control_plane_trap_group_rx_packets` | Control plane trap group receive packets. |
+| `nvswitch_control_plane_trap_group_rx_bytes` | Control plane trap group receive bytes. |
+| `nvswitch_control_plane_trap_group_pkt_violations` | Control plane trap group packet violations. |
+
+{{< expand "Example JSON data for nvswitch_control_plane_trap_rx_drop:" >}}
+```
+            {
+              "name": "nvswitch_control_plane_trap_rx_drop",
+              "description": "NVIDIA Ethernet Switch trap t_drops counter",
+              "sum": {
+                "dataPoints": [
+                  {
+                    "attributes": [
+                      {
+                        "key": "group",
+                        "value": {
+                          "stringValue": "25"
+                        }
+                      }
+                    ],
+                    "startTimeUnixNano": "1729836350747000000",
+                    "timeUnixNano": "1729839232747000000",
+                    "asDouble": 0
+                  },
+                  {
+                    "attributes": [
+                      {
+                        "key": "group",
+                        "value": {
+                          "stringValue": "3"
+                        }
+                      }
+                    ],
+                    "startTimeUnixNano": "1729836350747000000",
+                    "timeUnixNano": "1729839232747000000",
+                    "asDouble": 0
+                  },
+                  {
+                    "attributes": [
+                      {
+                        "key": "group",
+                        "value": {
+                          "stringValue": "5"
+                        }
+                      }
+                    ],
+                    "startTimeUnixNano": "1729836350747000000",
+                    "timeUnixNano": "1729839232747000000",
+                    "asDouble": 0
+                  },
+                  {
+                    "attributes": [
+                      {
+                        "key": "group",
+                        "value": {
+                          "stringValue": "53"
+                        }
+                      }
+                    ],
+                    "startTimeUnixNano": "1729836350747000000",
+                    "timeUnixNano": "1729839232747000000",
+                    "asDouble": 0
+                  },
+                  {
+                    "attributes": [
+                      {
+                        "key": "group",
+                        "value": {
+                          "stringValue": "78"
+                        }
+                      }
+                    ],
+                    "startTimeUnixNano": "1729836350747000000",
+                    "timeUnixNano": "1729839232747000000",
+                    "asDouble": 1
+                  },
+                  {
+                    "attributes": [
+                      {
+                        "key": "group",
+                        "value": {
+                          "stringValue": "80"
+                        }
+                      }
+                    ],
+                    "startTimeUnixNano": "1729836350747000000",
+                    "timeUnixNano": "1729839232747000000",
+                    "asDouble": 1
+                  }
+                ],
+                "aggregationTemporality": 2,
+                "isMonotonic": true
+              },
+              "metadata": [
+                {
+                  "key": "prometheus.type",
+                  "value": {
+                    "stringValue": "counter"
+                  }
+                }
+              ]
+            }
+```
+
+{{< /expand >}}
+
+### Histogram Data Format
+
+The histogram data samples that the switch exports to the OTEL collector are {{<exlink url="https://opentelemetry.io/docs/specs/otel/metrics/data-model/#histogram" text="histogram data points">}} that include the {{<link url="ASIC-Monitoring#histogram-collection-example" text="histogram bucket (bin)">}} counts and the respective queue length size boundaries for each bucket. Latency and counter histogram data are also exported, if configured.
+
+{{% notice note %}}
+Latency histogram bucket counts do not increment in exported telemetry data if there are no packets transmitted in the traffic class during the sample interval.
+{{% /notice %}}
+
+The switch sends a sample with the following names for each interface enabled for ingress and egress buffer, latency, and counter histogram collection:
+
+| Name | Description |
+|----- | ----------- |
+| `nvswitch_histogram_interface_egress_buffer` | Histogram interface egress buffer queue depth. |
+| `nvswitch_histogram_interface_ingress_buffer` | Histogram interface ingress buffer queue depth. |
+| `nvswitch_histogram_interface_counter` | Histogram interface counter data. |
+| `nvswitch_histogram_interface_latency` | Histogram interface latency data. |
+
+{{< expand "Example JSON data for interface_ingress_buffer:" >}}
+```
+            {
+              "name": "nvswitch_histogram_interface_ingress_buffer",
+              "description": "NVIDIA Ethernet Switch Histogram Interface Ingress Buffer Queue Depth",
+              "unit": "bytes",
+              "histogram": {
+                "dataPoints": [
+                  {
+                    "attributes": [
+                      {
+                        "key": "interface",
+                        "value": {
+                          "stringValue": "swp1s1"
+                        }
+                      },
+                      {
+                        "key": "pg",
+                        "value": {
+                          "intValue": "0"
+                        }
+                      }
+                    ],
+                    "startTimeUnixNano": "1729839231624809212",
+                    "timeUnixNano": "1729839231628434909",
+                    "count": "1019165",
+                    "bucketCounts": [
+                      "1019165",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0"
+                    ],
+                    "explicitBounds": [
+                      863,
+                      295775,
+                      590687,
+                      885599,
+                      1180511,
+                      1475423,
+                      1770335,
+                      2065247,
+                      2360159
+                    ]
+                  },
+```
+
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for interface_egress_buffer:" >}}
+```
+{
+              "name": "nvswitch_histogram_interface_egress_buffer",
+              "description": "NVIDIA Ethernet Switch Histogram Interface Egress Buffer Queue Depth",
+              "unit": "bytes",
+              "histogram": {
+                "dataPoints": [
+                  {
+                    "attributes": [
+                      {
+                        "key": "interface",
+                        "value": {
+                          "stringValue": "swp1s1"
+                        }
+                      },
+                      {
+                        "key": "tc",
+                        "value": {
+                          "intValue": "0"
+                        }
+                      }
+                    ],
+                    "startTimeUnixNano": "1729839232707032279",
+                    "timeUnixNano": "1729839232709312158",
+                    "count": "1077334",
+                    "bucketCounts": [
+                      "1077334",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0"
+                    ],
+                    "explicitBounds": [
+                      863,
+                      1180511,
+                      2360159,
+                      3539807,
+                      4719455,
+                      5899103,
+                      7078751,
+                      8258399,
+                      9438047
+                    ]
+                  }
+```
+
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for interface_counter:" >}}
+```
+            {
+              "name": "nvswitch_histogram_interface_counter",
+              "description": "NVIDIA Ethernet Switch Histogram Interface Counter",
+              "unit": "counter",
+              "histogram": {
+                "dataPoints": [
+                  {
+                    "attributes": [
+                      {
+                        "key": "interface",
+                        "value": {
+                          "stringValue": "swp1s1"
+                        }
+                      },
+                      {
+                        "key": "type",
+                        "value": {
+                          "stringValue": "crc"
+                        }
+                      }
+                    ],
+                    "startTimeUnixNano": "1729839235935525147",
+                    "timeUnixNano": "1729839235937099838",
+                    "count": "1033926",
+                    "bucketCounts": [
+                      "1033926",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0"
+                    ],
+                    "explicitBounds": [
+                      99999,
+                      1337499,
+                      2574999,
+                      3812499,
+                      5049999,
+                      6287499,
+                      7524999,
+                      8762499,
+                      9999999
+                    ]
+                  },  
+```
+
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for interface_latency:" >}}
+```
+            {
+              "name": "nvswitch_histogram_interface_latency",
+              "description": "NVIDIA Ethernet Switch Histogram Interface Latency",
+              "unit": "packets",
+              "histogram": {
+                "dataPoints": [
+                  {
+                    "attributes": [
+                      {
+                        "key": "interface",
+                        "value": {
+                          "stringValue": "swp1s1"
+                        }
+                      },
+                      {
+                        "key": "tc",
+                        "value": {
+                          "intValue": "0"
+                        }
+                      }
+                    ],
+                    "startTimeUnixNano": "1729839233815168456",
+                    "timeUnixNano": "1729839233818493910",
+                    "bucketCounts": [
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0"
+                    ],
+                    "explicitBounds": [
+                      319,
+                      831,
+                      1343,
+                      1855,
+                      2367,
+                      2879,
+                      3391,
+                      3903,
+                      4415
+                    ]
+                  },
+```
+
+{{< /expand >}}
+<br>
 
 ### Interface Statistic Format
 
@@ -679,176 +1137,6 @@ The switch collects and exports the following additional interface statistics wh
 
 {{< /expand >}}
 
-### Buffer Statistic Format
-
-The switch collects and exports the following interface and switch, buffer occupancy and watermark statistics when you configure the `nv set system telemetry buffer-stats export state enable` command:
-
-|  Name | Description |
-|------ | ----------- |
-| `nvswitch_interface_shared_buffer_port_pg_curr_occupancy` | Current buffer occupancy. |
-| `nvswitch_interface_shared_buffer_port_pg_watermark` | Maximum buffer occupancy. |
-| `nvswitch_interface_shared_buffer_port_pg_desc_curr_occupancy` | Current buffer occupancy for descriptors. |
-| `nvswitch_interface_shared_buffer_port_pg_desc_watermark` | Maximum buffer occupancy for descriptors. |
-| `nvswitch_interface_shared_buffer_port_pg_watermark_recorded_max` | Highest maximum buffer occupancy recorded since running sdk_stats. |
-| `nvswitch_interface_shared_buffer_port_pg_desc_watermark_recorded_max` | Highest maximum buffer occupancy for descriptors recorded since running sdk_stats. |
-| `nvswitch_interface_shared_buffer_ingress_pool_curr_occupancy` | Current ingress pool buffer occupancy. |
-| `nvswitch_interface_shared_buffer_ingress_pool_watermark` | Maximum ingress pool buffer occupancy. |
-| `nvswitch_interface_shared_buffer_ingress_pool_desc_curr_occupancy` | Current ingress pool buffer occupancy for descriptors. |
-| `nvswitch_interface_shared_buffer_ingress_pool_desc_watermark` | Maximum ingress pool buffer occupancy for descriptors. |
-| `nvswitch_interface_shared_buffer_ingress_pool_watermark_recorded_max` | Highest maximum ingress pool buffer occupancy recorded since running sdk_stats. |
-| `nvswitch_interface_shared_buffer_ingress_pool_desc_watermark_recorded_max` | Highest maximum ingress pool buffer occupancy for descriptors recorded since running sdk_stats. |
-| `nvswitch_interface_shared_buffer_port_tc_curr_occupancy` | Current buffer occupancy for traffic class. |
-| `nvswitch_interface_shared_buffer_port_tc_watermark` | Maximum buffer occupancy for traffic class. |
-| `nvswitch_interface_shared_buffer_port_tc_desc_curr_occupancy` | Current buffer occupancy for descriptors. |
-| `nvswitch_interface_shared_buffer_port_tc_desc_watermark` | Maximum buffer occupancy for descriptors. |
-| `nvswitch_interface_shared_buffer_port_tc_watermark_recorded_max` | Highest maximum buffer occupancy recorded since running sdk_stats. |
-| `nvswitch_interface_shared_buffer_port_tc_desc_watermark_recorded_max` | Highest maximum buffer occupancy for TC descriptors recorded since running sdk_stats. |
-| `nvswitch_interface_shared_buffer_egress_pool_curr_occupancy` | Current egress pool buffer occupancy. |
-| `nvswitch_interface_shared_buffer_egress_pool_watermark` | Maximum egress pool buffer occupancy. |
-| `nvswitch_interface_shared_buffer_egress_pool_desc_curr_occupancy` | Current egress pool buffer occupancy for descriptors. |
-| `nvswitch_interface_shared_buffer_egress_pool_desc_watermark` | Maximum egress pool buffer occupancy for descriptors. |
-| `nvswitch_interface_shared_buffer_egress_pool_watermark_recorded_max` | Highest maximum egress pool buffer occupancy recorded since running sdk_stats. |
-| `nvswitch_interface_shared_buffer_egress_pool_desc_watermark_recorded_max` | Highest maximum egress pool buffer occupancy for pool desc recorded since running sdk_stats. |
-| `nvswitch_interface_shared_buffer_mc_port_curr_occupancy`  | Current buffer occupancy for multicast port. |
-| `nvswitch_interface_shared_buffer_mc_port_watermark` | Maximum buffer occupancy for multicast port. |
-| `nvswitch_interface_shared_buffer_mc_port_watermark_max` | Highest maximum buffer occupancy for multicast port recorded since running sdk_stats. |
-| `nvswitch_shared_buffer_mc_sp_curr_occupancy` | Current buffer occupancy for multicast switch priority. |
-| `nvswitch_shared_buffer_mc_sp_watermark` | Maximum buffer occupancy for multicast switch priority. |
-| `nvswitch_shared_buffer_mc_sp_watermark_max` | Highest maximum buffer occupancy for multicast switch priority recorded since running sdk_stats. |
-| `nvswitch_shared_buffer_pool_curr_occupancy` | Current pool buffer occupancy. |
-| `nvswitch_shared_buffer_pool_watermark` | Maximum pool buffer occupancy |
-| `nvswitch_shared_buffer_pool_watermark_max` | Highest maximum pool buffer occupancy for multicast switch priority recorded since running sdk_stats. |
-| `nvswitch_interface_headroom_buffer_pg_curr_occupancy` | Current headroom buffer occupancy for port buffer. |
-| `nvswitch_interface_headroom_buffer_pg_watermark` | Maximum pool headroom buffer occupancy for port buffer. |
-| `nvswitch_interface_headroom_buffer_pg_watermark_recorded_max` | Highest maximum headroom buffer occupancy for port buffer recorded since running sdk_stats. |
-| `nvswitch_interface_headroom_buffer_shared_curr_occupancy` | Current headroom buffer occupancy for port shared buffer. |
-| `nvswitch_interface_headroom_shared_buffer_shared_watermark` | Maximum headroom buffer occupancy for port shared buffer. |
-| `nvswitch_interface_headroom_shared_buffer_shared_watermark_recorded_max` | Highest maximum headroom buffer occupancy for port shared buffer recorded since running sdk_stats. |
-| `nvswitch_interface_headroom_buffer_shared_pool_curr_occupancy` | Current headroom buffer occupancy for port shared pool buffer |
-| `nvswitch_interface_headroom_shared_buffer_shared_pool_watermark` | Maximum headroom buffer occupancy for port shared pool buffer. |
-| `nvswitch_interface_headroom_shared_buffer_shared_pool_watermark_recorded_max` | Highest maximum headroom buffer occupancy for port shared pool buffer. |
-
-### Control Plane Statistic Format
-
-When you enable control plane statistic telemetry, the switch exports the following statistics:
-
-| Name | Description |
-|----- | ----------- |
-| `nvswitch_control_plane_tx_packets` | Control plane transmit packets. |
-| `nvswitch_control_plane_tx_bytes` | Control plane transmit bytes. |
-| `nvswitch_control_plane_rx_packets` | Control plane receive packets. |
-| `nvswitch_control_plane_rx_bytes` | Control plane receive bytes. |
-| `nvswitch_control_plane_rx_buffer_drops` | Control plane receive buffer drops. |
-| `nvswitch_control_plane_trap_rx_packets` | Control plane trap group receive packets. |
-| `nvswitch_control_plane_trap_rx_event_count`| Control plane trap group receive events. |
-| `nvswitch_control_plane_trap_rx_drop` | Control plane trap group receive drops. |
-| `nvswitch_control_plane_trap_rx_bytes` | Control plane trap group receive bytes. |
-| `nvswitch_control_plane_trap_group_rx_packets` | Control plane trap group receive packets. |
-| `nvswitch_control_plane_trap_group_rx_bytes` | Control plane trap group receive bytes. |
-| `nvswitch_control_plane_trap_group_pkt_violations` | Control plane trap group packet violations. |
-
-{{< expand "Example JSON data for nvswitch_control_plane_trap_rx_drop:" >}}
-```
-            {
-              "name": "nvswitch_control_plane_trap_rx_drop",
-              "description": "NVIDIA Ethernet Switch trap t_drops counter",
-              "sum": {
-                "dataPoints": [
-                  {
-                    "attributes": [
-                      {
-                        "key": "group",
-                        "value": {
-                          "stringValue": "25"
-                        }
-                      }
-                    ],
-                    "startTimeUnixNano": "1729836350747000000",
-                    "timeUnixNano": "1729839232747000000",
-                    "asDouble": 0
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "group",
-                        "value": {
-                          "stringValue": "3"
-                        }
-                      }
-                    ],
-                    "startTimeUnixNano": "1729836350747000000",
-                    "timeUnixNano": "1729839232747000000",
-                    "asDouble": 0
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "group",
-                        "value": {
-                          "stringValue": "5"
-                        }
-                      }
-                    ],
-                    "startTimeUnixNano": "1729836350747000000",
-                    "timeUnixNano": "1729839232747000000",
-                    "asDouble": 0
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "group",
-                        "value": {
-                          "stringValue": "53"
-                        }
-                      }
-                    ],
-                    "startTimeUnixNano": "1729836350747000000",
-                    "timeUnixNano": "1729839232747000000",
-                    "asDouble": 0
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "group",
-                        "value": {
-                          "stringValue": "78"
-                        }
-                      }
-                    ],
-                    "startTimeUnixNano": "1729836350747000000",
-                    "timeUnixNano": "1729839232747000000",
-                    "asDouble": 1
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "group",
-                        "value": {
-                          "stringValue": "80"
-                        }
-                      }
-                    ],
-                    "startTimeUnixNano": "1729836350747000000",
-                    "timeUnixNano": "1729839232747000000",
-                    "asDouble": 1
-                  }
-                ],
-                "aggregationTemporality": 2,
-                "isMonotonic": true
-              },
-              "metadata": [
-                {
-                  "key": "prometheus.type",
-                  "value": {
-                    "stringValue": "counter"
-                  }
-                }
-              ]
-            }
-```
-
-{{< /expand >}}
-
 ### LLDP Statistic Format
 
 When you enable LLDP statistic telemetry, the switch exports the following statistics:
@@ -1002,6 +1290,26 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | `nvswitch_env_temp_max` | Maximum temperature threshold in centigrade. | 
 | `nvswitch_env_temp_min` | Minimum temperature threshold in centigrade. | 
 | `nvswitch_env_temp_state` | Temperature sensor status (0: ABSENT, 1: OK, 2: FAILED, 3: BAD). | 
+
+{{< /tab >}}
+{{< tab "Transceivers ">}}
+
+| Metric | Description |
+| ---------- | ------- |
+| `nvplatform_tranceiver_vendor_info` | The transceiver vendor information, such as which port the transceiver plugs into, the date of manufacture, the revision, the name of the manufacturer, the manufacturer part number, the serial number, and the IEEE company ID of the vendor.  |
+| `nvplatform_tranceiver_info` | General information for the transceiver, such as which port the transceiver plugs into, the cable type, the cable length in meters, the status (plugged-enabled, plugged-disabled, plugged-error, or unplugged), the error status, the identifier, and the Ethernet compliance revision. |
+| `nvplatform_tranceiver_temperature` |The temperature of the module in Celsius as a 64bit decimal value. |
+| `nvplatform_tranceiver_temperature_alarm`| The alarm status due to temperature crossing thresholds defined for the module. The value sent for the temperature alarm is a bit mask:<br> Bit 0: high_temp_alarm<br>Bit 1: low_temp_alarm<br>Bit 2: high_temp_warning<br>Bit 3: low_temp_warning  |
+| `nvplatform_tranceiver_temperature_threshold_info`| Temperature thresholds defined for the module (low or high). |
+| `nvplatform_tranceiver_voltage` | The internally measured supply voltage for the module in volts (a 64bit decimal value). |
+| n`vplatform_tranceiver_voltage_alarm` | The alarm status due to Voltage crossing thresholds defined for the module:<br>Bit 0: high_vcc_alarm<br>Bit 1: low_vcc_alarm<br>Bit 2: high_vcc_warning<br>Bit 3: low_vcc_warning |
+| `nvplatform_tranceiver_voltage_threshold_info` | Voltage thresholds defined for the module. The level is alarm or warning. The threshold is low or high.|
+| `nvplatform_transceiver_channel_power` | The transceiver channel power value in dBm units (logarithmic scale). |
+| `nvplatform_transceiver_channel_power_alarm` | The alarm state for power value measured with the defined thresholds for the module as a bit mask value:<br>Bit 0: tx_power_hi_al<br>Bit 1: l tx_power_lo_al<br>Bit 2: tx_power_hi_war<br>Bit 3: l tx_power_lo_war.  |
+| `nvplatform_transceiver_channel_power_threshold_info` | Threshold information for the power. The units are in dBm and represented by a 32bit decimal value. |
+| `nvplatform_transceiver_channel_tx_bias_current` | tx bias current measured for the channel in milliamp units and represented by a 32bit decimal value. |
+| `nvplatform_transceiver_channel_tx_bias_current_alarm` | tx bias current alarm state of tx bias current measure for the channel when compared to the threshold values for the channel defined for the module. This is a bit mask value:<br>Bit 0: tx_bias_hi_al<br>Bit 1: l tx_bias_lo_al<br>Bit 2: tx_bia_hi_war<br>Bit 3: l tx_bias_lo_war |
+| `nvplatform_transceiver_channel_tx_bias_current_threshold_info` | tx bias current thresholds defined for the channel in milliamp units and represented by a 32bit decimal value. |
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -1760,238 +2068,15 @@ gauge {
 ```
 {{< /expand >}}
 
-### Histogram Data Format
+### System Information Format
 
-The histogram data samples that the switch exports to the OTEL collector are {{<exlink url="https://opentelemetry.io/docs/specs/otel/metrics/data-model/#histogram" text="histogram data points">}} that include the {{<link url="ASIC-Monitoring#histogram-collection-example" text="histogram bucket (bin)">}} counts and the respective queue length size boundaries for each bucket. Latency and counter histogram data are also exported, if configured.
+When you enable open telemetry with the `nv set system telemetry export otlp state enabled` command, the switch exports the following system information metrics to the configured OTEL collector by default:
 
-{{% notice note %}}
-Latency histogram bucket counts do not increment in exported telemetry data if there are no packets transmitted in the traffic class during the sample interval.
-{{% /notice %}}
-
-The switch sends a sample with the following names for each interface enabled for ingress and egress buffer, latency, and counter histogram collection:
-
-| Name | Description |
-|----- | ----------- |
-| `nvswitch_histogram_interface_egress_buffer` | Histogram interface egress buffer queue depth. |
-| `nvswitch_histogram_interface_ingress_buffer` | Histogram interface ingress buffer queue depth. |
-| `nvswitch_histogram_interface_counter` | Histogram interface counter data. |
-| `nvswitch_histogram_interface_latency` | Histogram interface latency data. |
-
-{{< expand "Example JSON data for interface_ingress_buffer:" >}}
-```
-            {
-              "name": "nvswitch_histogram_interface_ingress_buffer",
-              "description": "NVIDIA Ethernet Switch Histogram Interface Ingress Buffer Queue Depth",
-              "unit": "bytes",
-              "histogram": {
-                "dataPoints": [
-                  {
-                    "attributes": [
-                      {
-                        "key": "interface",
-                        "value": {
-                          "stringValue": "swp1s1"
-                        }
-                      },
-                      {
-                        "key": "pg",
-                        "value": {
-                          "intValue": "0"
-                        }
-                      }
-                    ],
-                    "startTimeUnixNano": "1729839231624809212",
-                    "timeUnixNano": "1729839231628434909",
-                    "count": "1019165",
-                    "bucketCounts": [
-                      "1019165",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0"
-                    ],
-                    "explicitBounds": [
-                      863,
-                      295775,
-                      590687,
-                      885599,
-                      1180511,
-                      1475423,
-                      1770335,
-                      2065247,
-                      2360159
-                    ]
-                  },
-```
-
-{{< /expand >}}
-<br>
-{{< expand "Example JSON data for interface_egress_buffer:" >}}
-```
-{
-              "name": "nvswitch_histogram_interface_egress_buffer",
-              "description": "NVIDIA Ethernet Switch Histogram Interface Egress Buffer Queue Depth",
-              "unit": "bytes",
-              "histogram": {
-                "dataPoints": [
-                  {
-                    "attributes": [
-                      {
-                        "key": "interface",
-                        "value": {
-                          "stringValue": "swp1s1"
-                        }
-                      },
-                      {
-                        "key": "tc",
-                        "value": {
-                          "intValue": "0"
-                        }
-                      }
-                    ],
-                    "startTimeUnixNano": "1729839232707032279",
-                    "timeUnixNano": "1729839232709312158",
-                    "count": "1077334",
-                    "bucketCounts": [
-                      "1077334",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0"
-                    ],
-                    "explicitBounds": [
-                      863,
-                      1180511,
-                      2360159,
-                      3539807,
-                      4719455,
-                      5899103,
-                      7078751,
-                      8258399,
-                      9438047
-                    ]
-                  }
-```
-
-{{< /expand >}}
-<br>
-{{< expand "Example JSON data for interface_counter:" >}}
-```
-            {
-              "name": "nvswitch_histogram_interface_counter",
-              "description": "NVIDIA Ethernet Switch Histogram Interface Counter",
-              "unit": "counter",
-              "histogram": {
-                "dataPoints": [
-                  {
-                    "attributes": [
-                      {
-                        "key": "interface",
-                        "value": {
-                          "stringValue": "swp1s1"
-                        }
-                      },
-                      {
-                        "key": "type",
-                        "value": {
-                          "stringValue": "crc"
-                        }
-                      }
-                    ],
-                    "startTimeUnixNano": "1729839235935525147",
-                    "timeUnixNano": "1729839235937099838",
-                    "count": "1033926",
-                    "bucketCounts": [
-                      "1033926",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0"
-                    ],
-                    "explicitBounds": [
-                      99999,
-                      1337499,
-                      2574999,
-                      3812499,
-                      5049999,
-                      6287499,
-                      7524999,
-                      8762499,
-                      9999999
-                    ]
-                  },  
-```
-
-{{< /expand >}}
-<br>
-{{< expand "Example JSON data for interface_latency:" >}}
-```
-            {
-              "name": "nvswitch_histogram_interface_latency",
-              "description": "NVIDIA Ethernet Switch Histogram Interface Latency",
-              "unit": "packets",
-              "histogram": {
-                "dataPoints": [
-                  {
-                    "attributes": [
-                      {
-                        "key": "interface",
-                        "value": {
-                          "stringValue": "swp1s1"
-                        }
-                      },
-                      {
-                        "key": "tc",
-                        "value": {
-                          "intValue": "0"
-                        }
-                      }
-                    ],
-                    "startTimeUnixNano": "1729839233815168456",
-                    "timeUnixNano": "1729839233818493910",
-                    "bucketCounts": [
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0"
-                    ],
-                    "explicitBounds": [
-                      319,
-                      831,
-                      1343,
-                      1855,
-                      2367,
-                      2879,
-                      3391,
-                      3903,
-                      4415
-                    ]
-                  },
-```
-
-{{< /expand >}}
-<br>
+|  Name | Description |
+|------ | ----------- |
+| `node_boot_time_seconds` | Node boot time, in unixtime. |
+| `node_time_seconds` | System time in seconds since epoch (1970). |
+| `node_os_info` |  Operating system and image information, such as name and version. |
 
 ### Static Label Format
 

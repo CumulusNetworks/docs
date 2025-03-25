@@ -580,9 +580,7 @@ cumulus@switch:~$ nv set interface swp9-16 telemetry histogram latency traffic-c
 
 ## <h>nv set system telemetry adaptive-routing-stats export state</h>
 
-Enables and disables export for adaptive routing statistics through the Prometheus Client library in Prometheus metric format using a pull-based model. The switch presents the metrics to the local HTTP port. The telemetry collector is responsible for extracting the metrics and exporting them to clients.
-
-You can specify `enabled` or `disabled`.
+Enables and disables export for adaptive routing statistics. You can specify `enabled` or `disabled`.
 
 ### Version History
 
@@ -1280,6 +1278,38 @@ cumulus@switch:~$ nv set system telemetry histogram latency histogram-size 12288
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system telemetry lldp export state</h>
+
+Enables and disables open telemetry LLDP statistics. You can specify `enabled` or `disabled`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry lldp export state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry lldp sample-interval</h>
+
+Sets the sample interval for LLDP metrics. The default value is 10 seconds.
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry lldp sample-interval 10
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system telemetry platform-stats class transceiver-info sample-interval</h>
 
 Sets the sample interval for transceiver metrics. The default value is 60 seconds.
@@ -1298,7 +1328,7 @@ cumulus@switch:~$ nv set system telemetry platform-stats class transceiver-info 
 
 ## <h>nv set system telemetry platform-stats class transceiver-info state</h>
 
-Enables and disables the export of transceiver metrics through the Prometheus Client library in Prometheus metric format using a pull-based model. The switch presents the metrics to the local HTTP port. The telemetry collector is responsible for extracting the metrics and exporting them to clients.
+Enables and disables the export of transceiver temperature and power metrics.
 
 You can specify `enabled` or `disabled`.
 

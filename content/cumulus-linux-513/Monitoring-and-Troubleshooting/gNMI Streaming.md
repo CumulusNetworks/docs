@@ -66,13 +66,14 @@ Cumulus Linux does not support mTLS on the underlying gRPC tunnel.
    cumulus@switch:~$ nv config apply
    ```
 
-3. Configure each tunnel server to which you want to connect. You must specify the listening address, port, target name, and CA certificate ID for each tunnel server.
+3. Configure each tunnel server to which you want to connect. You must specify the listening address, port, target name, and the certificate for each tunnel server. You can also reconfigure the retry interval (optional). The default retry interval is 30 seconds.
 
    ```
    cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 address 10.1.1.10 
    cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 port 443 
    cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 target-name TARGET1 
-   cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 ca-certificate CERT1 
+   cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 ca-certificate CERT1
+   cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 retry-interval 40
    cumulus@switch:~$ nv set system grpc-tunnel server state enabled 
    cumulus@switch:~$ nv config apply
    ```
@@ -90,7 +91,7 @@ Cumulus Linux does not support mTLS on the underlying gRPC tunnel.
 - Based on the gNMI client you use, the gNMI server certificate might require the management IP address of the Cumulus Linux switch to be included in the subject alternate name (`SAN`) field of the server certificate.
 {{%/notice%}}
 
-### Create Sample TLS Certificates for the gNMI Client
+### Sample TLS Certificates for the gNMI Client
 
 This section describes a very basic TLS certificate configuration for a gNMI client and tunnel server that you can use for initial testing.
 
@@ -152,7 +153,7 @@ To configure authentication:
 4. You must also import the certificate of the CA that signed the keys to the switch and configure the tunnel client to use it to connect to the server (`nv set system grpc-tunnel server <server name> ca-certificate <cert id>`).
 5. Copy the certificate of the CA that signed the keys (or the client certificate itself) to the device running the tunnel server and use it in the tunnel server configuration.
 
-## RPC Events
+## RPC Methods
 
 Cumulus Linux supports the following <span class="a-tooltip">[RPC](## "Remote Procedure Call")</span> events:  
 - Capabilities 

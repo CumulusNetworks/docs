@@ -117,6 +117,15 @@ nv set system docker vrf <vrf-name>
 nv set system dot1x radius nas-identifier
 nv set system dot1x radius nas-ip-address
 nv set system dot1x reauth-timeout-ignore
+nv set system gnmi-server certificate
+nv set system gnmi-server listening-address
+nv set system gnmi-server mtls ca-certificate
+nv set system gnmi-server state
+nv set system grpc-tunnel server <server> address
+nv set system grpc-tunnel server <server> ca-certificate
+nv set system grpc-tunnel server <server> port
+nv set system grpc-tunnel server <server> target-name
+nv set system grpc-tunnel server state
 nv set system ssh-server trusted-ca-keys <key-id> key <key-literal>
 nv set system ssh-server trusted-ca-keys <key-id> type <key-type>
 nv set system syslog format welf

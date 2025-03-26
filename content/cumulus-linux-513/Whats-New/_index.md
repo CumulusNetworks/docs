@@ -86,6 +86,18 @@ nv show system docker container stats
 nv show system docker container <container-id-name> stats
 nv show system docker engine
 nv show system docker image
+nv show system gnmi-server
+nv show system gnmi-server listening-address
+nv show system gnmi-server listening-address <listening-address-id>
+nv show system gnmi-server mtls
+nv show system gnmi-server status
+nv show system gnmi-server status client
+nv show system gnmi-server status client <client-address-id>
+nv show system grpc-tunnel
+nv show system grpc-tunnel server
+nv show system grpc-tunnel server <server-name-id>
+nv show system grpc-tunnel server <server-name-id> status
+nv show system grpc-tunnel server <server-name-id> status connection
 nv show system ssh-server trusted-ca-keys
 nv show system syslog
 nv show system syslog format
@@ -117,15 +129,22 @@ nv set system docker vrf <vrf-name>
 nv set system dot1x radius nas-identifier
 nv set system dot1x radius nas-ip-address
 nv set system dot1x reauth-timeout-ignore
-nv set system gnmi-server certificate
-nv set system gnmi-server listening-address
-nv set system gnmi-server mtls ca-certificate
+nv set system gnmi-server listening-address <listening-address-id>
+nv set system gnmi-server mtls ca-certificate <value>
+nv set system gnmi-server mtls crl <value>
 nv set system gnmi-server state
-nv set system grpc-tunnel server <server> address
-nv set system grpc-tunnel server <server> ca-certificate
-nv set system grpc-tunnel server <server> port
-nv set system grpc-tunnel server <server> target-name
-nv set system grpc-tunnel server state
+nv set system gnmi-server certificate self-signed
+nv set system gnmi-server port
+nv set system grpc-tunnel server <server-name-id> target-type gnmi-gnoi
+nv set system grpc-tunnel server <server-name-id>
+nv set system grpc-tunnel server <server-name-id> state
+nv set system grpc-tunnel server <server-name-id> target-name 
+nv set system grpc-tunnel server <server-name-id> address
+nv set system grpc-tunnel server <server-name-id> port
+nv set system grpc-tunnel server <server-name-id> certificate self-signed
+nv set system grpc-tunnel server <server-name-id> ca-certificate
+nv set system grpc-tunnel server <server-name-id> target-type gnmi-gnoi
+nv set system grpc-tunnel server <server-name-id> retry-interval
 nv set system ssh-server trusted-ca-keys <key-id> key <key-literal>
 nv set system ssh-server trusted-ca-keys <key-id> type <key-type>
 nv set system syslog format welf
@@ -166,6 +185,26 @@ nv unset system docker vrf
 nv unset system dot1x radius nas-identifier
 nv unset system dot1x radius nas-ip-address
 nv unset system dot1x reauth-timeout-ignore
+nv unset system gnmi-server
+nv unset system gnmi-server listening-address
+nv unset system gnmi-server listening-address <listening-address-id>
+nv unset system gnmi-server mtls
+nv unset system gnmi-server mtls ca-certificate
+nv unset system gnmi-server mtls crl
+nv unset system gnmi-server state
+nv unset system gnmi-server certificate
+nv unset system gnmi-server port
+nv unset system grpc-tunnel
+nv unset system grpc-tunnel server
+nv unset system grpc-tunnel server <server-name-id>
+nv unset system grpc-tunnel server <server-name-id> state
+nv unset system grpc-tunnel server <server-name-id> target-name
+nv unset system grpc-tunnel server <server-name-id> address
+nv unset system grpc-tunnel server <server-name-id> port
+nv unset system grpc-tunnel server <server-name-id> certificate
+nv unset system grpc-tunnel server <server-name-id> ca-certificate
+nv unset system grpc-tunnel server <server-name-id> target-type
+nv unset system grpc-tunnel server <server-name-id> retry-interval
 nv unset system ssh-server trusted-ca-keys <key-id> key
 nv unset system ssh-server trusted-ca-keys <key-id> type
 nv unset system syslog format welf

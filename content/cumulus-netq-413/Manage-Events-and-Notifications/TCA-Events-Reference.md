@@ -155,7 +155,7 @@ This reference lists the threshold-based events that NetQ supports. You can view
 
 | NetQ UI Name | NetQ CLI Event ID | Description |
 | --- | --- | --- |
-| Link flap errors | TCA_LINK_FLAP_UPPER | Number of link flaps exceeded user-defined maximum threshold |
+| Link flap errors | TCA_LINK_FLAP_UPPER | Number of link flaps (a link transitioning from up to down to up) exceeded user-defined maximum threshold |
 
 ## Resource Utilization
 

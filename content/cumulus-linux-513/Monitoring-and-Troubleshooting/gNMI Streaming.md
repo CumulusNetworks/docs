@@ -51,7 +51,7 @@ The gRPC tunnel client package includes the dial-out tunnel client. To configure
 1. Import CA certificates:
 
    ```
-   cumulus@switch:~$ nv action import system security ca-certificate CERT1 data DATA
+   cumulus@switch:~$ nv action import system security ca-certificate CERT1 uri scp://user@pass:1.2.3.4:/opt/certs/cert.p12
    cumulus@switch:~$ nv config apply
    ```
 
@@ -66,7 +66,7 @@ Cumulus Linux does not support mTLS on the underlying gRPC tunnel.
    cumulus@switch:~$ nv config apply
    ```
 
-3. Configure each tunnel server to which you want to connect. You must specify the IP address, port, target name, and CA certificate ID for each tunnel server.
+3. Configure each tunnel server to which you want to connect. You must specify the listening address, port, target name, and CA certificate ID for each tunnel server.
 
    ```
    cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 address 10.1.1.10 

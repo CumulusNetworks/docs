@@ -34,12 +34,12 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 - {{<link url="RADIUS-AAA/#optional-radius-configuration" text="RADIUS require-message-authenticate attribute">}}
 - {{<link url="SSH-for-Remote-Access/#message-of-the-day" text="Message of the day shows system reboot cause and health information">}}
 - Telemetry
-  - gNMI support
-  - OTEL Buffer Occupancy and watermark metrics
+  - {{<link url="gNMI-Streaming" text="gNMI streaming">}}
   - {{<link url="Open-Telemetry-Export/#lldp-statistics" text="OTEL LLDP metrics">}}
   - {{<link url="Open-Telemetry-Export/#adaptive-routing-statistics" text="OTEL Adaptive routing statistics">}}
   - {{<link url="Open-Telemetry-Export/#platform-statistics" text="OTEL Transceiver statistics">}}
   - {{<link url="Open-Telemetry-Export/#temporality-mode" text="OTEL temporality mode for histogram metrics">}}
+  - OTEL Buffer Occupancy and watermark metrics
 - NVUE
   - {{<link url="NVUE-CLI/#list-directory-contents" text="Command to list directory contents">}}
   - {{<link url="NVUE-CLI/#get-the-hash-for-a-file" text="Command to get the hash for a file">}}
@@ -117,6 +117,15 @@ nv set system docker vrf <vrf-name>
 nv set system dot1x radius nas-identifier
 nv set system dot1x radius nas-ip-address
 nv set system dot1x reauth-timeout-ignore
+nv set system gnmi-server certificate
+nv set system gnmi-server listening-address
+nv set system gnmi-server mtls ca-certificate
+nv set system gnmi-server state
+nv set system grpc-tunnel server <server> address
+nv set system grpc-tunnel server <server> ca-certificate
+nv set system grpc-tunnel server <server> port
+nv set system grpc-tunnel server <server> target-name
+nv set system grpc-tunnel server state
 nv set system ssh-server trusted-ca-keys <key-id> key <key-literal>
 nv set system ssh-server trusted-ca-keys <key-id> type <key-type>
 nv set system syslog format welf

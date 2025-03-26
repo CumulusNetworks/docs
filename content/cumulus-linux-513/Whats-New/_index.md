@@ -31,6 +31,7 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 - {{<link url="In-Service-System-Upgrade-ISSU/#maintenance-mode" text="New maintenance mode commands">}}
 - {{<link url="802.1X-Interfaces/#dynamic-vrf-assignments" text="802.1x on router ports with dynamic VRF assignments">}}
 - {{<link url="RADIUS-AAA/#optional-radius-configuration" text="RADIUS multiple VRF support">}}
+- {{<link url="RADIUS-AAA/#optional-radius-configuration" text="RADIUS require-message-authenticate attribute">}}
 - {{<link url="SSH-for-Remote-Access/#message-of-the-day" text="Message of the day shows system reboot cause and health information">}}
 - Telemetry
   - gNMI support
@@ -39,7 +40,6 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
   - {{<link url="Open-Telemetry-Export/#adaptive-routing-statistics" text="OTEL Adaptive routing statistics">}}
   - {{<link url="Open-Telemetry-Export/#platform-statistics" text="OTEL Transceiver statistics">}}
   - {{<link url="Open-Telemetry-Export/#temporality-mode" text="OTEL temporality mode for histogram metrics">}}
-  - {{<link url="Open-Telemetry-Export/#grpc-otlp-export" text="Configuring the open telemetry export destination no longer resets connections to the destination">}}
 - NVUE
   - {{<link url="NVUE-CLI/#list-directory-contents" text="Command to list directory contents">}}
   - {{<link url="NVUE-CLI/#get-the-hash-for-a-file" text="Command to get the hash for a file">}}
@@ -109,6 +109,7 @@ nv set maintenance unit all-interfaces state production
 nv set maintenance unit all-protocols state maintenance
 nv set maintenance unit all-protocols state production
 nv set service dhcp-server <vrf> static <host> vendor-class
+nv set system aaa radius require-message-authenticator
 nv set system aaa radius server <server-id> vrf <vrf-id>
 nv set system aaa user <user> ssh cert-auth state
 nv set system aaa user <user> ssh cert-auth principals <principal>
@@ -150,6 +151,7 @@ nv unset maintenance unit system-protocols state
 nv unset service dhcp-server <vrf> static <host>> vendor-class
 nv unset system aaa user <user> ssh cert-auth state
 nv unset system aaa user <user> ssh cert-auth principals
+nv unset system aaa radius require-message-authenticator
 nv unset system aaa radius server <server-id> vrf
 nv unset system docker vrf
 nv unset system dot1x radius nas-identifier

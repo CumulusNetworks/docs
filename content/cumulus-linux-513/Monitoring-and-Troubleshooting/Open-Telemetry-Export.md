@@ -370,11 +370,11 @@ To configure the open telemetry export destination:
    ```
 
 By default, OTLP export is in **secure** mode that requires a certificate. For connections without a configured certificate, you must enable `insecure` mode with the `nv set system telemetry export otlp grpc insecure enabled` command.
-
+<!-- POC IN CL5.13
 {{%notice note%}}
 When you make changes to the open telemetry export destination, connections to the destination do not reset.
 {{%/notice%}}
-
+-->
 ### Customize Export
 
 By default, the switch exports all statistics enabled {{<link url="#configure-open-telemetry" text="globally">}} (with the `nv set system telemetry <statistics>` command) to all configured OTLP destinations. If you want to export different metrics to different OTLP destinations, you can customize the export by specifying a statistics group to control which statistics you export and the sample interval for a destination.

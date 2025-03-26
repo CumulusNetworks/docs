@@ -104,6 +104,7 @@ You can configure the following global RADIUS settings and server specific setti
 | `timeout` | The timeout value when a server is slow or latencies are high. You can set a value between 1 and 60. The default timeout is 3 seconds. If you configure multiple RADIUS servers, you can set a global timeout for all servers. |
 | `source-ipv4`</br>`source-ipv6`| A specific interface to reach all RADIUS servers. To configure the source IP address for a specific RADIUS server, use the `source-ip` option.|
 | `debug` | The debug option for troubleshooting. The debugging messages write to `/var/log/syslog`. When the RADIUS client is working correctly, you can disable the debug option. You enable the debug option globally for all the servers.|
+| `require-message-authenticator` | Requires authentication packets to have the Message-Authenticator attribute; the switch discards as Access-Reject all packets that do not have the Message-Authenticator attribute.|
 
 The following example configures global RADIUS settings:
 
@@ -114,6 +115,7 @@ cumulus@switch:~$ nv set system aaa radius retransmit 8
 cumulus@switch:~$ nv set system aaa radius timeout 10
 cumulus@switch:~$ nv set system aaa radius source-ipv4 192.168.1.10
 cumulus@switch:~$ nv set system aaa radius debug enable
+cumulus@switch:~$ nv set system aaa radius require-message-authenticator enabled 
 cumulus@switch:~$ nv config apply
 ```
 

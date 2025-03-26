@@ -6,6 +6,8 @@ toc: 4
 ---
 You can use {{<exlink url="https://github.com/openconfig/gnmi" text="gRPC Network Management Interface">}} (gNMI) to collect system resource, interface, and counter information from Cumulus Linux and export it to your own gNMI client.
 
+When you use gNMI, the switch connects to the collector as a gRPC server (gNMI server). The collector is the gRPC client. The session between the client and server MUST be encrypted using TLS and use X.509 certificate authentication.
+
 {{%notice note%}}
 When you enable gNMI, do not use {{<link url="Open-Telemetry-Export" text="Open Telemetry">}}.
 {{%/notice%}}
@@ -16,6 +18,8 @@ To configure gNMI in Cumulus Linux, you need to:
 - Enable the gNMI server
 - Configure the gRPC tunnel client
 
+Before configuring gNMI on the switch, make sure the gRPC environment is installed on the gRPC client.
+
 ### Enable the gNMI Server
 
 1. Optional. Import the CA certificate for mTLS and enable the certificate for the server.
@@ -25,7 +29,7 @@ To configure gNMI in Cumulus Linux, you need to:
    cumulus@switch:~$ nv config apply
    ```
 
-2. Provide the listening address for the gNMi server and enable the gNMI server:
+2. Provide the listening address for the gNMI server and enable the gNMI server:
 
    ```
    cumulus@switch:~$ nv set system gnmi-server listening-address 10.1.1.100 
@@ -259,13 +263,13 @@ You can use your gNMI client on a host to request capabilities and data to which
 
 ### Dial-in Mode Example
 
-The following example shows a Dial-in Mode Subscribe request with TLS
+The following example shows a Dial-in Mode Subscribe request with TLS:
 
 ```
 gnmic subscribe --mode stream --path "/qos/interfaces/interface[interface-id=swp1]/output/queues/queue[name=1]/state/transmit-octets" -i 10s --tls-cert gnmi_client.crt --tls-key gnmi_client.key -u cumulus -p ******* --auth-scheme Basic --skip-verify -a 10.188.52.108:9339
 ```
 
-The following example shows a Dial-in Mode Subscribe request without TLS
+The following example shows a Dial-in Mode Subscribe request without TLS:
 
 {{%notice note%}}
 NVIDIA recommends using TLS. To test without TLS, you must also edit the NGINX configuration file on the switch.
@@ -297,7 +301,7 @@ The following example shows a subscription response:
     } 
   ] 
 } 
-… 
+...
 ```
 
 ### Capabilities Example
@@ -315,7 +319,7 @@ gNMI version: 0.10.0
 supported models: 
   - openconfig-ospf-types, OpenConfig working group, 0.1.3 
  
-<snip> 
+...
  
   - openconfig-platform-fabric, OpenConfig working group, 0.1.0 
   - openconfig-platform-healthz, OpenConfig working group, 0.1.1 

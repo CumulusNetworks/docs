@@ -778,7 +778,46 @@ cumulus@switch:~$ /usr/lib/cumulus/switchdctl --load /etc/cumulus/control-plane/
 {{< /tab >}}
 {{< /tabs >}}
 
-To show the control plane police configuration and statistics, run the NVUE `nv show system control-plane policer --view=brief` command.
+To show the control plane police configuration and statistics, run the NVUE `nv show system control-plane policer --view=brief` command:
+
+```
+cumulus@switch:~$ nv show system control-plane policer --view=brief
+Policer        Policer CIR  Policer CBS  To CPU Pkts  To CPU Bytes  Violated Packets
+-------------  -----------  -----------  -----------  ------------  ----------------
+acl-log        100          7            0            0             0
+arp            800          10           0            0             0
+bfd            2000         11           0            0             0
+bgp            2000         11           0            0             0
+catch-all      100          7            0            0             0
+clag           2000         11           0            0             0
+dhcp           2000         11           0            0             0
+eapol          2000         11           0            0             0
+icmp6-def-mld  300          7            0            0             0
+icmp6-neigh    500          9            0            0             0
+icmp-def       100          6            0            0             0
+igmp           1000         10           0            0             0
+ip2me          1000         10           0            0             0
+l3-local       400          7            0            0             0
+lacp           2000         11           0            0             0
+lldp-ptp       2500         12           0            0             0
+nat            200          8            0            0             0
+pim-ospf-rip   2000         11           0            0             0
+rpvst          2000         11           0            0             0
+sflow          1000         10           0            0             0
+span-cpu       100          7            0            0             0
+ssh            1000         10           0            0             0
+stp            2000         11           0            0             0
+unknown-ipmc   1000         10           0            0             0
+...
+```
+
+In the command output:
+- `Policer` is the name of the control plane rule that describes the traffic to match.
+- `Policer CIR` (Committed Information Rate) is the maximum number of packets per second for this rule allowed to reach the CPU.
+- `Policer CBS` (Committed Burst Size) is the maximum burst of packets above the CIR for this rule allowed to reach the CPU. In units of 2 raised to this power packets. For example, a CBS value of 8 means 2^8 = 256 packets.
+- `To CPU Pkts` is the count of packets matching this rule allowed to reach the CPU.
+- `To CPU Bytes` is the count of bytes matching this rule allowed to reach the CPU.
+- `Violated Packets` is the count of packets matching this rule not allowed to reach the CPU.
 
 {{%notice note%}}
 Cumulus Linux provides default control plane policer values. You can adjust these values to accommodate higher scale requirements for specific protocols as needed.

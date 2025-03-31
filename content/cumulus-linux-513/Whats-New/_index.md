@@ -46,14 +46,15 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
   - {{<link url="802.1X-Interfaces/#configure-8021x-interfaces" text="Commands to set the NAS IP address and NAS identifier for 802.1X">}}
   - {{<link url="System-Power/#power-cycle" text="Command to power cycle the switch">}}
   - {{<link url="SSH-for-Remote-Access/#certificate-based-authentication" text="SSH certificate-based authentication">}}
+  - {{<link url="NVUE-CLI/#replace-and-patch-a-pending-configuration" text="Replace and patch against a plain text file of `nv set` and `nv unset` commands">}}
   - Additional FRR filters
   - {{< expand "Changed NVUE Commands" >}}
 | Cumulus Linux 5.13 | Cumulus Linux 12 and Earlier |
 | --------------- |---------------------------------------|
-| `nv set maintenance unit all-protocols state maintenance`| `nv action enable system maintenance mode` |
-| `nv set maintenance unit all-protocols state production` | `nv action disable system maintenance mode` |
-| `nv set maintenance unit all-interfaces state maintenance` | `nv action enable system maintenance ports` |
-| `nv set maintenance unit all-interfaces state production` | `nv action disable system maintenance ports` |
+| `nv set maintenance unit all-protocols mode enabled`| `nv action enable system maintenance mode` |
+| `nv set maintenance unit all-protocols mode disabled` | `nv action disable system maintenance mode` |
+| `nv set maintenance unit all-interfaces mode enabled` | `nv action enable system maintenance ports` |
+| `nv set maintenance unit all-interfaces mode disabled` | `nv action disable system maintenance ports` |
 | `nv set system lldp` | `nv set service lldp` |
 | `nv show system lldp` | `nv show service lldp` |
 | `nv set system syslog server <server-id>` | `nv set service syslog <vrf> server <server-id>`|
@@ -116,10 +117,8 @@ nv show system version packages installed <package_name>
 {{< tab "nv set ">}}
 
 ```
-nv set maintenance unit all-interfaces state maintenance
-nv set maintenance unit all-interfaces state production
-nv set maintenance unit all-protocols state maintenance
-nv set maintenance unit all-protocols state production
+nv set maintenance unit all-interfaces mode 
+nv set maintenance unit all-protocols mode
 nv set service dhcp-server <vrf> static <host> vendor-class
 nv set system aaa radius require-message-authenticator
 nv set system aaa radius server <server-id> vrf <vrf-id>

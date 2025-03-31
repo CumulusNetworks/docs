@@ -131,7 +131,7 @@ cumulus@switch:~$ nv set system config auto-save enable on
 
 ## <h>nv set system control-plane policer \<policer-id\> burst</h>
 
-Configures the control plane policer burst rate, which is the number of packets or kilobytes (KB) allowed to arrive sequentially. You can specify a value between 10 and 10000.
+Configures the Committed Burst Rate (CBR) for the trap group. The burst rate is the number of packets or kilobytes (KB) allowed to arrive sequentially after the CIR rate is exceeded. You can specify a value between 10 and 10000.
 
 ### Command Syntax
 
@@ -141,34 +141,34 @@ Configures the control plane policer burst rate, which is the number of packets 
 
 ### Version History
 
-Introduced in Cumulus Linux 5.3.0
+Introduced in Cumulus Linux 5.0.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv set system control-plane policer acl-log burst 1000
+cumulus@switch:~$ nv set system control-plane policer bgp burst 1000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set system control-plane policer \<policer-id\> rate</h>
 
-Configures the control plane policer forwarding rate, which is the maximum rate in kilobytes (KB) for packets. You can specify a value between 10 and 50000.
+Configures the Committed Information Rate (CIR), which is the allowed incoming rate for the trap group. The incoming rate is the maximum rate in packets per second. You can specify a value between 10 and 50000.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<policer-id>` |  The policer ID. |
+| `<policer-id>` |  The trap group. You can specify: `arp`, `bfd`, `pim-ospf-rip`, `bgp`, `clag`, `icmp-def`, `dhcp-ptp`, `igmp`, `ssh`, `icmp6-neigh`, `icmp6-def-mld`, `lacp`, `lldp`, `rpvst`, `eapol`, `ip2me`, `acl-log`, `nat`, `stp`, `l3-local`, `span-cpu`, `catch-all`, or `NONE`.|
 
 ### Version History
 
-Introduced in Cumulus Linux 5.2.0
+Introduced in Cumulus Linux 5.0.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv set system control-plane policer acl-log burst 5000
+cumulus@switch:~$ nv set system control-plane policer acl-log rate 5000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -181,7 +181,7 @@ Turns the specified control plane policer on or off.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<policer-id>` |  The policer ID. |
+| `<policer-id>` |  The trap group. You can specify: `arp`, `bfd`, `pim-ospf-rip`, `bgp`, `clag`, `icmp-def`, `dhcp-ptp`, `igmp`, `ssh`, `icmp6-neigh`, `icmp6-def-mld`, `lacp`, `lldp`, `rpvst`, `eapol`, `ip2me`, `acl-log`, `nat`, `stp`, `l3-local`, `span-cpu`, `catch-all`, or `NONE`.|
 
 ### Version History
 

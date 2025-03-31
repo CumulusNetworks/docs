@@ -231,8 +231,8 @@ The NVUE configuration management commands manage and apply configurations.
 | `nv config diff <revision> <revision>` | {{<link url="NVUE-CLI/#view-differences-between-configurations" text="Shows differences between configurations">}}, such as the pending configuration and the applied configuration, or the detached configuration and the pending configuration.|
 | `nv config find <string>`| {{<link url="NVUE-CLI/#search-for-a-specific-configuration" text="Finds a portion of the applied configuration">}} according to the search string you provide. For example to find swp1 in the applied configuration, run `nv config find swp1`.|
 | `nv config history` | Enables you to keep track of the configuration changes on the switch and shows a table with the configuration revision ID, the date and time of the change, the user account that made the change, and the type of change (such as CLI or REST API). The `nv config history <revision>` command shows the apply history for a specific revision. |
-| `nv config patch <nvue-file>` | {{<link url="NVUE-CLI/#replace-and-patch-a-pending-configuration" text="Updates the pending configuration">}} with the specified YAML configuration file. |
-| `nv config replace <nvue-file>` | {{<link url="NVUE-CLI/#replace-and-patch-a-pending-configuration" text="Replaces the pending configuration">}} with the specified YAML configuration file. |
+| `nv config patch <nvue-file>` | {{<link url="NVUE-CLI/#replace-and-patch-a-pending-configuration" text="Updates the pending configuration">}} with the specified YAML configuration file or text file of NVUE set and unset commands. |
+| `nv config replace <nvue-file>` | {{<link url="NVUE-CLI/#replace-and-patch-a-pending-configuration" text="Replaces the pending configuration">}} with the specified YAML configuration file text file of NVUE set and unset commands. |
 |`nv config revision` | Shows all the configuration revisions on the switch. |
 | `nv config save` | {{<link url="NVUE-CLI/#auto-save" text="Overwrites the startup configuration">}} with the applied configuration by writing to the `/etc/nvu.d/startup.yaml` file. The configuration persists after a reboot. Use this command when the auto save option is off.|
 | `nv config show` | Shows the {{<link url="NVUE-CLI/#show-switch-configuration" text="currently applied configuration">}} in `yaml` format. This command also shows NVUE version information. |
@@ -521,6 +521,8 @@ cumulus@switch:~$ nv config diff applied startup
 
 ## Replace and Patch a Pending Configuration
 
+You can replace or patch against a configuration file in yaml format.
+
 The following example replaces the pending configuration with the contents of the YAML configuration file called `nv-02/13/2021.yaml` located in the `/deps` directory:
 
 ```
@@ -536,6 +538,12 @@ cumulus@switch:~$ nv config patch /deps/nv-02/13/2021.yaml
 {{%notice note%}}
 A patch contains a single request to the NVUE service. Ordering of parameters within a patch is not guaranteed; NVUE does not support both unset and set commands for the same object in a single patch.
 {{%/notice%}}
+
+You can also replace or patch against a plain text file of nv set and nv unset commands instead of a yaml file with the `nv config replace <textfile.txt>` and `nv config patch <textfile.txt>` commands.
+
+NVUE automatically detects if the file contains only comments, blank lines, `nv set` or `nv unset` commands, and acts accordingly. If the file contains anything else, NVUE treats the file as a YAML file.
+
+If there are any issues with the `nv set` or `nv unset` commands, NVUE prints the line number and the command that has the error.
 
 ## Translate a Configuration Revision or File
 

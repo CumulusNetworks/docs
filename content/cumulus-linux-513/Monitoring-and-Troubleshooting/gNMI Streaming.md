@@ -196,58 +196,101 @@ Regex for specific keys (such as `“interface-id=swp*”`) is not supported.
 ## Metrics
 
 Cumulus Linux supports the following metrics:
-- `/qos/interfaces/interface[interface-id=<name>]/output/queues/queue[name=<0-15>]/state/transmit-octets`
-- `/qos/interfaces/interface[interface-id=<name>]/output/queues/queue[name=<0-15>]/state/transmit-pkts`
-- `/qos/interfaces/interface[interface-id=<name>]/output/queues/queue[name=<0-15>]/state/ecn-marked-pkts`
-- `/interfaces/interface[name=<name>]/state/admin-status`
-- `/interfaces/interface[name=<name>]/state/counters/in-broadcast-pkts`
-- `/interfaces/interface[name=<name>]/state/counters/in-multicast-pkts`
-- `/interfaces/interface[name=<name>]/state/counters/in-octets`
-- `/interfaces/interface [name=<name>]/ethernet/state/port-speed`
-- `/interfaces/interface[name=<name>]/ethernet/state/counters/in-mac-pause-frames`
-- `/interfaces/interface[name=<name>]/ethernet/state/counters/in-oversize-frames`
-- `/interfaces/interface[name=<name>]/ethernet/state/counters/in-fcs-errors`
-- `/interfaces/interface[name=<name>]/ethernet/state/counters/in-distribution/in-frames-64-octets`
-- `/interfaces/interface[name=<name>]/ethernet/state/counters/in-distribution/in-frames-65-127-octets`
-- `/interfaces/interface[name=<name>]/ethernet/state/counters/in-distribution/in-frames-128-255-octets`
-- `/interfaces/interface[name=<name>]/ethernet/state/counters/in-distribution/in-frames-256-511-octets`
-- `/interfaces/interface[name=<name>]/ethernet/state/counters/in-distribution/in-frames-512-1023-octets`
-- `/interfaces/interface[name=<name>]/ethernet/state/counters/in-distribution/in-frames-1024-1518-octets`
-- `/interfaces/interface[name=<name>]/rates/state/out-bits-rate`
-- `/interfaces/interface[name=<name>]/rates/state/in-bits-rate`
-- `/interfaces/interface[name=<name>]/rates/state/in-pkts-rate`
-- `/interfaces/interface[name=<name>]/rates/state/out-pkts-rate`
-- `/interfaces/interface[name=<name>]/state/mtu`
-- `/interfaces/interface[name=<name>]/state/ifindex`
-- `/interfaces/interface[name=<name>]/state/oper-status`
-- `/interfaces/interface[name=<name>]/state/counters/in-errors`
-- `/interfaces/interface[name=<name>]/state/counters/in-discards`
-- `/interfaces/interface[name=<name>]/state/counters/out-octets`
-- `/interfaces/interface[name=<name>]/state/counters/out-unicast-pkts`
-- `/interfaces/interface[name=<name>]/state/counters/out-broadcast-pkts`
-- `/interfaces/interface[name=<name>]/state/counters/out-discards`
-- `/interfaces/interface[name=<name>]/state/counters/out-errors`
-- `/qos/interfaces/interface[interface-id=<name>]/state/switch-priority[priority=<priority>]/counters/in-pause-pkts`
-- `/qos/interfaces/interface[interface-id=<name>]/state/switch-priority[priority=<priority>]/counters/out-pause-pkts`
-- `/interfaces/interface[name=<name>]/state/counters/out-multicast-pkts`
-- `/interfaces/interface[name=<name>]/state/counters/in-unicast-pkts`
-- `/interfaces/interface[name=<name>]/state/counters/carrier-transitions`
-- `/interfaces/interface[name=<name>]/ethernet/phy/state/rs-fec-uncorrectable-blocks`
-- `/interfaces/interface[name=<name>]/ethernet/phy/state/rs-fec-single-error-blocks`
-- `/interfaces/interface[name=<name>]/ethernet/phy/state/rs-fec-no-error-blocks`
-- `/interfaces/interface[name=<name>]/ethernet/phy/state/lane[lane=<lane>]/fc-fec-corrected-blocks`
-- `/interfaces/interface[name=<name>]/ethernet/phy/state/lane[lane=<lane>]/fc-fec-uncorrected-blocks`
-- `/interfaces/interface[name=<name>]/ethernet/phy/state/lane[lane=<lane>]/rs-fec-corrected-symbols`
-- `/interfaces/interface[name=<name>]/ethernet/phy/state/corrected-bits`
-- `/interfaces/interface[name=<name>]/ethernet/phy/state/effective-errors`
-- `/interfaces/interface[name=<name>]/ethernet/phy/state/effective-ber`
-- `/interfaces/interface[name=<name>]/ethernet/phy/state/lane[lane=<lane>]/raw-errors`
-- `/interfaces/interface[name=<name>]/ethernet/phy/state/received-bits`
-- `/interfaces/interface[name=<name>]/ethernet/phy/state/symbol-errors`
-- `/interfaces/interface[name=<name>]/ethernet/phy/state/symbol-ber`
-- `/interfaces/interface[name=<name>]/ethernet/phy/state/lane[lane=<lane>]/raw-ber`
-- `/interfaces/interface[name=<name>]/ethernet/phy/state/fec-time-since-last-clear`
-- `/interfaces/interface[name=<name>]/ethernet/phy/state/ber-time-since-last-clear`
+
+{{< tabs "TabID200 ">}}
+{{< tab "Interface ">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/qos/interfaces/interface[interface-id=<name>]/output/queues/queue[name=<0-15>]/state/transmit-octets` | |
+| `/qos/interfaces/interface[interface-id=<name>]/output/queues/queue[name=<0-15>]/state/transmit-pkts` | |
+| `/qos/interfaces/interface[interface-id=<name>]/output/queues/queue[name=<0-15>]/state/ecn-marked-pkts` | |
+| `/interfaces/interface[name=<name>]/state/admin-status`| |
+| `/interfaces/interface[name=<name>]/state/counters/in-broadcast-pkts` | |
+| `/interfaces/interface[name=<name>]/state/counters/in-multicast-pkts` | |
+| `/interfaces/interface[name=<name>]/state/counters/in-octets` | |
+| `/interfaces/interface [name=<name>]/ethernet/state/port-speed` | |
+| `/interfaces/interface[name=<name>]/ethernet/state/counters/in-mac-pause-frames` | |
+| `/interfaces/interface[name=<name>]/ethernet/state/counters/in-oversize-frames` | |
+| `/interfaces/interface[name=<name>]/ethernet/state/counters/in-fcs-errors` | |
+| `/interfaces/interface[name=<name>]/ethernet/state/counters/in-distribution/in-frames-64-octets` | |
+| `/interfaces/interface[name=<name>]/ethernet/state/counters/in-distribution/in-frames-65-127-octets` | |
+| `/interfaces/interface[name=<name>]/ethernet/state/counters/in-distribution/in-frames-128-255-octets` | |
+| `/interfaces/interface[name=<name>]/ethernet/state/counters/in-distribution/in-frames-256-511-octets` | |
+| `/interfaces/interface[name=<name>]/ethernet/state/counters/in-distribution/in-frames-512-1023-octets` | |
+| `/interfaces/interface[name=<name>]/ethernet/state/counters/in-distribution/in-frames-1024-1518-octets` | |
+| `/interfaces/interface[name=<name>]/rates/state/out-bits-rate` | |
+| `/interfaces/interface[name=<name>]/rates/state/in-bits-rate` | |
+| `/interfaces/interface[name=<name>]/rates/state/in-pkts-rate` | |
+| `/interfaces/interface[name=<name>]/rates/state/out-pkts-rate` | |
+| `/interfaces/interface[name=<name>]/state/mtu` | |
+| `/interfaces/interface[name=<name>]/state/ifindex` | |
+| `/interfaces/interface[name=<name>]/state/oper-status` | |
+| `/interfaces/interface[name=<name>]/state/counters/in-errors` | |
+| `/interfaces/interface[name=<name>]/state/counters/in-discards` | |
+| `/interfaces/interface[name=<name>]/state/counters/out-octets` | |
+| `/interfaces/interface[name=<name>]/state/counters/out-unicast-pkts` | |
+| `/interfaces/interface[name=<name>]/state/counters/out-broadcast-pkts` | |
+| `/interfaces/interface[name=<name>]/state/counters/out-discards` | |
+| `/interfaces/interface[name=<name>]/state/counters/out-errors` | |
+| `/qos/interfaces/interface[interface-id=<name>]/state/switch-priority[priority=<priority>]/counters/in-pause-pkts` | |
+| `/qos/interfaces/interface[interface-id=<name>]/state/switch-priority[priority=<priority>]/counters/out-pause-pkts` | |
+| `/interfaces/interface[name=<name>]/state/counters/out-multicast-pkts` | |
+| `/interfaces/interface[name=<name>]/state/counters/in-unicast-pkts` | |
+| `/interfaces/interface[name=<name>]/state/counters/carrier-transitions` | |
+| `/interfaces/interface[name=<name>]/ethernet/phy/state/rs-fec-uncorrectable-blocks` | |
+| `/interfaces/interface[name=<name>]/ethernet/phy/state/rs-fec-single-error-blocks` | |
+| `/interfaces/interface[name=<name>]/ethernet/phy/state/rs-fec-no-error-blocks` | |
+| `/interfaces/interface[name=<name>]/ethernet/phy/state/lane[lane=<lane>]/fc-fec-corrected-blocks` | |
+| `/interfaces/interface[name=<name>]/ethernet/phy/state/lane[lane=<lane>]/fc-fec-uncorrected-blocks` | |
+| `/interfaces/interface[name=<name>]/ethernet/phy/state/lane[lane=<lane>]/rs-fec-corrected-symbols` | |
+| `/interfaces/interface[name=<name>]/ethernet/phy/state/corrected-bits` | |
+| `/interfaces/interface[name=<name>]/ethernet/phy/state/effective-errors` | |
+| `/interfaces/interface[name=<name>]/ethernet/phy/state/effective-ber` | |
+| `/interfaces/interface[name=<name>]/ethernet/phy/state/lane[lane=<lane>]/raw-errors` | |
+| `/interfaces/interface[name=<name>]/ethernet/phy/state/received-bits` | |
+| `/interfaces/interface[name=<name>]/ethernet/phy/state/symbol-errors` | |
+| `/interfaces/interface[name=<name>]/ethernet/phy/state/symbol-ber` | |
+| `/interfaces/interface[name=<name>]/ethernet/phy/state/lane[lane=<lane>]/raw-ber` | |
+| `/interfaces/interface[name=<name>]/ethernet/phy/state/fec-time-since-last-clear` | |
+| `/interfaces/interface[name=<name>]/ethernet/phy/state/ber-time-since-last-clear` | |
+
+{{< /tab >}}
+{{< tab "Router">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp` | |
+| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor/state` | |
+| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/state` | |
+| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/state/session-state` | |
+| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/state/established-transitions` | |
+| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/state/messages/sent/UPDATE` | |
+| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/messages/received/UPDATE` | |
+| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/state/queues/input` | |
+| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/state/queues/output` | |
+| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/afi-safis/afi-safi[afi-safi-name=<afi-safi-name>]/state/prefixes/received` | |
+| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/afi-safis/afi-safi[afi-safi-name=<afi-safi-name>]/state/prefixes/sent` | |
+| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/afi-safis/afi-safi[afi-safi-name=<afi-safi-name>]/state/prefixes/installed` | |
+
+{{< /tab >}}
+{{< tab "LLDP">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/lldp/state/chassis-id` | |
+| `/lldp/state/system-description` | |
+| `/lldp/state/system-name` | |
+| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/age` | |
+| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/management-address` | |
+| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/management-address-type` | |
+| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/port-description` | |
+| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/port-id-type | |
+| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/ttl` | |
+| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/capabilities/capability[name=<capability>]/state/enabled` | |
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## User Credentials and Authentication
 
@@ -331,7 +374,7 @@ supported encodings:
 
 ## Considerations
 
-- The minimum sampling interval is 10 seconds. If you configure a shorter sampling interval, the switch might not behave as expected.
+- The minimum sampling interval is 5 seconds. If you configure a shorter sampling interval, the switch might not behave as expected.
 - NVIDIA has tested exporting a few hundred metrics at a time and recommends only using a similar scale. If you exceed this scale, the switch might not behave as expected. Do not subscribe to the root level (/) to avoid requesting multiple thousands of metrics at a time.
 - ModelData, Origin, and Extensions fields are ignored in requests and not set in responses.
 - For all X.509 certificates generated externally, make sure to set the correct X.509v3 fields:

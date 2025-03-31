@@ -928,32 +928,34 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@switch:~$ nv show system control-plane
 trap
 =======
+No Data
+
 policer
 ==========
-    Policer        State  Policer Rate  Policer Burst  Summary            
-    -------------  -----  ------------  -------------  -------------------
-    acl-log        on     100           100            Policer CBS:      7
-                                                       Policer CIR:    100
-                                                       Policer Id:       6
-                                                       To CPU Bytes:     0
-                                                       To CPU Pkts:      0
-                                                       Trap Group:      18
-                                                       Violated Packets: 0
-    arp            on     800           800            Policer CBS:     10
-                                                       Policer CIR:    800
-                                                       Policer Id:       9
-                                                       To CPU Bytes:     0
-                                                       To CPU Pkts:      0
-                                                       Trap Group:      13
-                                                       Violated Packets: 0
-    bfd            on     2000          2000           Policer CBS:     11
-                                                       Policer CIR:   2000
-                                                       Policer Id:      10
-                                                       To CPU Bytes:     0
-                                                       To CPU Pkts:      0
-                                                       Trap Group:      17
-                                                       Violated Packets: 0
-    bgp            on     2000          2000           Policer CBS:     11
+No Data
+
+acl
+======
+    ACL Name               Rule ID  In Packets  In Bytes   Out Packets  Out Bytes
+    ---------------------  -------  ----------  ---------  -----------  ---------
+    acl-default-dos        30       4503        3.19 MB                          
+                           40       0           0 Bytes                          
+                           50       0           0 Bytes                          
+                           60       0           0 Bytes                          
+                           70       0           0 Bytes                          
+                           80       0           0 Bytes                          
+                           90       0           0 Bytes                          
+                           100      4           240 Bytes                        
+                           110      0           0 Bytes                          
+                           120      0           0 Bytes                          
+                           130      0           0 Bytes                          
+    acl-default-whitelist  5        4           240 Bytes                        
+                           10       0           0 Bytes                          
+                           15       0           0 Bytes                          
+                           20       0           0 Bytes                          
+                           25       0           0 Bytes                          
+                           30       0           0 Bytes                          
+                           35       0           0 Bytes 
 ...
 ```
 
@@ -1082,6 +1084,14 @@ clag           2000         11           0            0             0
 ...
 ```
 
+In the command output:
+- `Policer` is the name of the COPP rule that describes the traffic to match
+- `Policer CIR` (Committed Information Rate) is the maximum number of packets per second for this rule allowed to reach the CPU.
+- `Policer CBS` (Committed Burst Size) is the maximum burst of packets above the CIR for this rule allowed to reach the CPU. In units of 2 raised to this power packets. For example, a CBS value of 8 means 2^8 = 256 packets.
+- `To CPU Pkts` is the count of packets matching this rule allowed to reach the CPU.
+- `To CPU Bytes` is the count of bytes matching this rule allowed to reach the CPU.
+- `Violated Packets` is the count of packets matching this rule not allowed to reach the CPU.
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show system control-plane policer \<policer-id\></h>
@@ -1113,9 +1123,15 @@ statistics
   policer-id     10                  
   to-cpu-bytes   0                   
   to-cpu-pkts    0                   
-  trap-group-id  17                  
   violated-pkts  0
 ```
+
+In the command output:
+- `policer-cir` (Committed Information Rate) is the maximum number of packets per second for this rule allowed to reach the CPU.
+- `policer-cbs` (Committed Burst Size) is the maximum burst of packets above the CIR for this rule allowed to reach the CPU. In units of 2 raised to this power packets. For example, a CBS value of 8 means 2^8 = 256 packets.
+- `to-cpu-pkts` is the count of packets matching this rule allowed to reach the CPU.
+- `to-cpu-bytes` is the count of bytes matching this rule allowed to reach the CPU.
+- `violated-pkts` is the count of packets matching this rule not allowed to reach the CPU.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -1144,9 +1160,15 @@ policer-cir    2000
 policer-id     10                  
 to-cpu-bytes   0                   
 to-cpu-pkts    0                   
-trap-group-id  17                  
 violated-pkts  0
 ```
+
+In the command output:
+- `policer-cir` (Committed Information Rate) is the maximum number of packets per second for this rule allowed to reach the CPU.
+- `policer-cbs` (Committed Burst Size) is the maximum burst of packets above the CIR for this rule allowed to reach the CPU. In units of 2 raised to this power packets. For example, a CBS value of 8 means 2^8 = 256 packets.
+- `to-cpu-pkts` is the count of packets matching this rule allowed to reach the CPU.
+- `to-cpu-bytes` is the count of bytes matching this rule allowed to reach the CPU.
+- `violated-pkts` is the count of packets matching this rule not allowed to reach the CPU.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

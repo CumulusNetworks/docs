@@ -1059,6 +1059,10 @@ cumulus@switch:~$ nv show system control-plane acl ACL1 statistics 2
 
 Shows control plane policer configuration.
 
+{{%notice note%}}
+The command output changed in 5.11 and later. The command output in 5.11 and later is shown below.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -1067,23 +1071,14 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show system control-plane policer
-Policer        State  Policer Rate  Policer Burst  Summary            
--------------  -----  ------------  -------------  -------------------
-acl-log        on     100           100            Policer CBS:      7
-                                                   Policer CIR:    100
-                                                   Policer Id:       6
-                                                   To CPU Bytes:     0
-                                                   To CPU Pkts:      0
-                                                   Trap Group:      18
-                                                   Violated Packets: 0
-arp            on     800           800            Policer CBS:     10
-                                                   Policer CIR:    800
-                                                   Policer Id:       9
-                                                   To CPU Bytes:     0
-                                                   To CPU Pkts:      0
-                                                   Trap Group:      13
-                                                   Violated Packets: 0
-bfd            on     2000          2000           Policer CBS:     11
+Policer        Policer CIR  Policer CBS  To CPU Pkts  To CPU Bytes  Violated Packets
+-------------  -----------  -----------  -----------  ------------  ----------------
+acl-log        100          7            0            0             0
+arp            800          10           0            0             0
+bfd            2000         11           0            0             0
+bgp            2000         11           0            0             0
+catch-all      100          7            0            0             0
+clag           2000         11           0            0             0
 ...
 ```
 

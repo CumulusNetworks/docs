@@ -1057,7 +1057,7 @@ cumulus@switch:~$ nv show system control-plane acl ACL1 statistics 2
 
 ## <h>nv show system control-plane policer</h>
 
-Shows control plane policer configuration.
+Shows control plane policer configuration. Add `--view=brief` to show configuration and statistics.
 
 {{%notice note%}}
 The command output changed in 5.11 and later. The command output in 5.11 and later is shown below.

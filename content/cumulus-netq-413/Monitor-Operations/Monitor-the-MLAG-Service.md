@@ -72,21 +72,3 @@ On the medium and large single MLAG session cards, vertically stacked heat maps 
 | 1 week      | 504            | 7                  | 1 day                        |
 | 1 month     | 2,086          | 30                 | 1 day                        |
 | 1 quarter   | 7,000          | 13                 | 1 week                       |
-
-### View Changes to the MLAG Service Configuration File
-
-Each time a change is made to the configuration file for the MLAG service, NetQ logs the change and enables you to compare it with the last version using the NetQ UI. This can be useful when you are troubleshooting potential causes for alarms or sessions losing their connections.
-
-1. From the large single-session card, select the <img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg" height="18" width="18"/> **MLAG Configuration File Evolution** tab.
-
-2. Select the time.
-
-3. Choose between the **File** view and the **Diff** view.
-
-    The File view displays the content of the file:
-
-    {{<figure src="/images/netq/mlag-file-450.png" width="600">}}
-
-    The Diff view highlights the changes (if any) between this version (on left) and the most recent version (on right) side by side:
-
-    {{<figure src="/images/netq/mlag-diff-450.png" width="600">}}

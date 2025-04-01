@@ -59,26 +59,6 @@ On the medium and large single-session cards, vertically stacked heat maps repre
 | 1 quarter   | 7,000          | 13                 | 1 week                       |
 
 
-### View Changes to the BGP Service Configuration File
-
-Each time a change is made to the configuration file for the BGP service, NetQ logs the change and lets you compare it with the previous version. This can be useful when you are troubleshooting potential causes for events or sessions losing their connections.
-
-To view the configuration file changes:
-
-1. From the large single-session card, select the <img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg" height="18" width="18"/> **Configuration File Evolution** tab.
-
-2. Select the time.
-
-3. Choose between the **File** view and the **Diff** view.
-
-    The File view displays the content of the file:
-
-    {{<figure src="/images/netq/bgp-file-view-450.png" width="600">}}
-
-    The Diff view highlights the changes (if any) between this version (on left) and the most recent version (on right) side by side:
-
-    {{<figure src="/images/netq/bgp-diff-view-450.png" width="600">}}
-
 ## Related Information
 
 - {{<kb_link latest="cl" url="Layer-3/Border-Gateway-Protocol-BGP/_index.md" text="Cumulus Linux and BGP">}}

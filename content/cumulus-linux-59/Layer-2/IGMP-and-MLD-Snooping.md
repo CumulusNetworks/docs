@@ -118,6 +118,8 @@ To enable OMF:
 <!-- vale on -->
 When IGMP reports go to a multicast group, OMF has no effect; normal IGMP snooping occurs.
 
+NVUE does not provide commands to enable OMF. If you use NVUE to configure the switch and want to enable OMF, you can create a flexible snippet. See {{<link url="NVUE-Snippets/#flexible-snippet-examples" text="Flexible Snippet Examples">}}.
+
 When you enable OMF, you can configure a bridge port as an mrouter port to forward unregistered multicast traffic to that port.
 
 {{< tabs "TabID127 ">}}

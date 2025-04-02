@@ -59,7 +59,7 @@ The MLAG single-session card displays a summary of the MLAG session. In this exa
 {{<figure src="/images/netq/single-session-mlag-450.png" width="200">}}
 
 From this card, you can also view the node role, peer role and state, and MLAG system MAC address which identify the session in further detail.
-### Granularity of Data Shown Based on Time Period
+### Understanding the Heat Map
 
 On the medium and large single MLAG session cards, vertically stacked heat maps represent the status of the peers; one for peers that are reachable (alive), and one for peers that are unreachable (not alive). Depending on the time period of data on the card, the number of smaller time blocks used to indicate the status varies. A vertical stack of time blocks, one from each map, includes the results from all checks during that time. The amount of saturation for each block indicates how many peers were alive. If all peers during that time period were alive for the entire time block, then the top block is 100% saturated (white) and the not alive block is zero percent saturated (gray). As peers that are not alive increase in saturation, the amount of saturation diminishes proportionally for peers that are in the alive block. The following table lists the most common time periods, their corresponding number of blocks, and the amount of time represented by one block:
 

@@ -7,7 +7,7 @@ toc: 4
 You can use {{<exlink url="https://github.com/openconfig/gnmi" text="gRPC Network Management Interface">}} (gNMI) to collect system metrics and export the data to a gNMI client.
 
 {{%notice note%}}
-When you enable gNMI, do not use {{<link url="Open-Telemetry-Export" text="Open Telemetry">}}.
+When you enable gNMI, do not enable and use {{<link url="Open-Telemetry-Export" text="Open Telemetry">}}.
 {{%/notice%}}
 
 ## Configure gNMI
@@ -37,13 +37,13 @@ cumulus@switch:~$ nv set system gnmi-server state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-The following example imports and enables the CA certificate CERT1 for mTLS and applies a CRL:
+The following example imports and enables the CA certificate `CERT1` and the CRL `crl.crt` for mTLS:
 
 ```
 cumulus@switch:~$ nv action import system security certificate CERT1 passphrase mypassphrase uri-bundle scp://user@pass:1.2.3.4:/opt/certs/cert.p12
 cumulus@switch:~$ nv set system gnmi-server mtls ca-certificate CERT1
-cumulus@switch:~$ nv action import system security scp:////user@pass:1.2.3.4:/path/to/your/crl.pem. 
-cumulus@switch:~$ nv set system gnmi-server mtls nv set system gnmi-server mtls crl /etc/ssl/certs/rtp-example-ca.crt
+cumulus@switch:~$ nv action import system security scp:////user@pass:1.2.3.4:/path/to/your/crl.crt. 
+cumulus@switch:~$ nv set system gnmi-server mtls nv set system gnmi-server mtls crl /etc/ssl/certs/crl.crt
 cumulus@switch:~$ nv config apply
 ```
 

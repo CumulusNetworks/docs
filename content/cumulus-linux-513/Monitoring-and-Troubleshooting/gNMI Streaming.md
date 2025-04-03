@@ -7,7 +7,7 @@ toc: 4
 You can use {{<exlink url="https://github.com/openconfig/gnmi" text="gRPC Network Management Interface">}} (gNMI) to collect system metrics and export the data to a gNMI client.
 
 {{%notice note%}}
-When you enable gNMI, do not use {{<link url="Open-Telemetry-Export" text="Open Telemetry">}}.
+When you enable gNMI, do not enable and use {{<link url="Open-Telemetry-Export" text="Open Telemetry">}}.
 {{%/notice%}}
 
 ## Configure gNMI
@@ -26,7 +26,7 @@ To configure optional settings for gNMI dial-in mode:
 - Specify the listening port. The default port is 9339.
 - Enable a TLS certificate for validation.
   - Cumulus Linux uses a self-signed certificate. You can generate your own TLS server certificate and bind it with the gNMI server application.
-  - If mTLS on the gNMI RPC is required, import the certificate of the CA that signed the gNMI client keys (or the client certificate itself) to the switch and configure the gNMI server to use the certificate.
+  - If mTLS on the gNMI RPC is required, import the certificate of the CA that signed the gNMI client keys (or the client certificate itself) to the switch and configure the gNMI server to use the certificate. You can also apply a <span class="a-tooltip">[CRL](## "Certificate Revocation List")</span>.
 
 The following example sets the gNMI server listening address to 10.10.10.1 and the port to 443, and enables the gNMI server:
 
@@ -37,11 +37,13 @@ cumulus@switch:~$ nv set system gnmi-server state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-The following example imports and enables the CA certificate CERT1 for mTLS:
+The following example imports and enables the CA certificate `CERT1` and the CRL `crl.crt` for mTLS:
 
 ```
 cumulus@switch:~$ nv action import system security certificate CERT1 passphrase mypassphrase uri-bundle scp://user@pass:1.2.3.4:/opt/certs/cert.p12
 cumulus@switch:~$ nv set system gnmi-server mtls ca-certificate CERT1
+cumulus@switch:~$ nv action import system security scp:////user@pass:1.2.3.4:/path/to/your/crl.crt. 
+cumulus@switch:~$ nv set system gnmi-server mtls nv set system gnmi-server mtls crl /etc/ssl/certs/crl.crt
 cumulus@switch:~$ nv config apply
 ```
 

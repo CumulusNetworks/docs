@@ -10,7 +10,7 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 ## April 2025
 <!-- Air:WhatsNew -->
 ### 82.2025.0403-011
-- Added link details when clicking on a link
+- Added ability to view link details by selecting a link
 <!-- Air:WhatsNew -->
 
 ## March 2025

@@ -109,7 +109,12 @@ PSU2/FAN  ok         6000                 29000      2500       F2B
 ```
 
 {{%notice note%}}
-If the airflow direction for all fans is not in the same (front to back or back to front), cooling is suboptimal for the switch, rack, and even the entire data center.
+- If the airflow direction for all fans is not in the same (front to back or back to front), cooling is suboptimal for the switch, rack, and even the entire data center.
+- During thermal overload or if you physically remove a fan try while the switch is powered on, the switch reboots and none of the interfaces come up until you power cycle the switch with the fan tray reinserted or when the environmental temperature is corrected. You can detect this condition with the following log message:
+
+```
+switch determine-reset[8801]: determine-reset-reason INFO: Platform api indicates reboot cause Thermal Overload: ASIC
+```
 {{%/notice%}}
 
 <!-- vale off -->

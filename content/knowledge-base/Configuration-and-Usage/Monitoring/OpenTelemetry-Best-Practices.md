@@ -65,7 +65,7 @@ Key Considerations:
 - Mimir and VictoriaMetrics supports OTLP currently. Thanos will support OTLP soon.
 - Ensure that your TSDB can handle the expected data ingestion rate and retention policy based on your network size and telemetry volume. The three TSDBs can scale on the receiving side and on the storage side. Refer to the specific documentation to learn about how to scale.
 
-## Resource Requirements for VAST Scale
+## Resource Requirements for Scale
 
 Based on internal validation and customer deployment fabric with around 50 switches and a sampling rate of 15 to 30 seconds, the following approximate resources are required for ingestion using OTLP (PRW typically demands more resources), along with VictoriaMetrics TSDB:  
 

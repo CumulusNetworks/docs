@@ -1495,7 +1495,7 @@ Maximum 400G ports: 64
 {{< /tab >}}
 
 {{< /tabs >}}
-{{< tab "SN5600">}}
+{{< tab "SN5600 and SN5600D">}}
 
 SN5600 64xOSFP (800GbE) interfaces support both PAM4 and NRZ encodings with all speeds down to 10G.
 

@@ -11,7 +11,8 @@ This section describes optional configuration. The steps provided in this sectio
 Instead of specifying properties of each individual peer, you can define one or more peer groups and associate all the attributes common to that peer session to a peer group. You need to attach a peer to a peer group one time; it then inherits all address families activated for that peer group.
 
 {{%notice note%}}
-If the peer you want to add to a group already exists in the BGP configuration, delete it first, than add it to the peer group.
+- If the peer you want to add to a group already exists in the BGP configuration, delete it first, than add it to the peer group.
+- Configuring a peer group results in BGP session flaps, which might lead to traffic loss.
 {{%/notice%}}
 
 The following example commands create a peer group called SPINE that includes two external peers.
@@ -123,6 +124,10 @@ router bgp 65101
 
 The eBGP multihop option lets you use BGP to exchange routes with an external peer that is more than one hop away.
 
+{{%notice note%}}
+Changing eBGP multihop configuration results in BGP session flaps, which might lead to traffic loss.
+{{%/notice%}}
+
 The following example command configures Cumulus Linux to establish a connection between two <span class="a-tooltip">[eBGP](## "external BGP")</span> peers that are not directly connected and sets the maximum number of hops used to reach a eBGP peer to 1.
 
 {{< tabs "128 ">}}
@@ -209,6 +214,10 @@ router bgp 65101
 You can authenticate your BGP peer connection to prevent interference with your routing tables.
 
 To enable MD5 authentication for BGP peers, set the same password on each peer.
+
+{{%notice note%}}
+Changing the password results in BGP session flaps, which might lead to traffic loss.
+{{%/notice%}}
 
 The following example commands set the password *mypassword* on BGP peers leaf01 and spine01:
 
@@ -743,6 +752,10 @@ address-family ipv4 unicast
 
 You can configure BGP to use a specific IP address when exchanging BGP updates with a neighbor. For example, in a numbered BGP configuration, you can set the source IP address to be the loopback address of the switch.
 
+{{%notice note%}}
+Update source configuration results in BGP session flaps, which might lead to traffic loss.
+{{%/notice%}}
+
 {{< tabs "746 ">}}
 {{< tab "NVUE Commands ">}}
 
@@ -873,6 +886,10 @@ When you disable the *bestpath as-path multipath-relax* option, EVPN type-5 rout
 When BGP peering uses IPv6 global addresses, and BGP advertises and installs IPv4 prefixes, Cumulus Linux uses IPv6 route advertisements to derive the MAC address of the peer so that FRR can create an IPv4 route with a link-local IPv4 next hop address (defined by RFC 3927). FRR configures these route advertisement settings automatically upon receiving an update from a BGP peer that uses IPv6 global addresses with an IPv4 prefix and an IPv6 next hop, and after it negotiates the enhanced-next hop capability.
 
 To enable advertisement of IPv4 prefixes with IPv6 next hops over global IPv6 peerings, add the `extended-nexthop` capability to the global IPv6 neighbor statements on each end of the BGP sessions.
+
+{{%notice note%}}
+Changing the `extended-nexthop` capability results in BGP session flaps, which might lead to packet drops.
+{{%/notice%}}
 
 {{< tabs "877 ">}}
 {{< tab "NVUE Commands ">}}
@@ -1749,6 +1766,10 @@ To configure a BGP confederation:
 - Provide the configuration ID you want to use.
 - Provide the ASNs of the peers you want to add to the confederation.
 
+{{%notice note%}}
+Changing BGP confederation configuration results in BGP session flaps, which might lead to traffic loss.
+{{%/notice%}}
+
 The following example configures confederation ID 2 with sub-ASs 65101, 65102, 65103, and 65104.
 
 {{< tabs "1708 ">}}
@@ -2126,17 +2147,17 @@ To show if graceful shutdown is `on` a peer group, run the `nv show vrf <vrf> ro
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp peer-group underlay
-                                    operational                     applied   
-----------------------------------  ------------------------------  ----------
-password                                                            *         
-enforce-first-as                                                    off       
-passive-mode                                                        off       
-nexthop-connected-check                                             on        
-description                                                         none      
-bfd                                                                           
-  enable                                                            off       
+                             operational  applied   
+------------------------  --------------  ----------
+password                                  *         
+enforce-first-as                          off       
+passive-mode                              off       
+nexthop-connected-check                   on        
+description                               none      
+bfd                                                 
+  enable                                  off       
 ...
-graceful-shutdown                                                   on      
+graceful-shutdown                         on      
 ...
 ```
 
@@ -2163,7 +2184,7 @@ You can configure graceful BGP restart globally, where all BGP peers inherit the
 
 {{%notice note%}}
 - BGP goes through a graceful restart (as a restarting router) with a planned switch restart event that ISSU initiates. Any other time BGP restarts, such as when the BGP daemon restarts due to a software exception, or you restart the FRR service, BGP goes through a regular restart where the BGP session with peers terminates and Cumulus Linux removes the learned routes from the forwarding plane.
-- Changing graceful restart mode results in BGP session flaps.
+- Changing graceful restart mode results in BGP session flaps, which might lead to traffic loss.
 {{%/notice%}}
 
 {{< tabs "TabID2130 ">}}

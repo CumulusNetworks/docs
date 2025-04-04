@@ -4,163 +4,187 @@ author: NVIDIA
 weight: 1234
 toc: 4
 ---
-You can use {{<exlink url="https://github.com/openconfig/gnmi" text="gRPC Network Management Interface">}} (gNMI) to collect system resource, interface, and counter information from Cumulus Linux and export it to your own gNMI client.
-
-When you use gNMI, the switch connects to the collector as a gRPC server (gNMI server). The collector is the gRPC client. The session between the client and server MUST be encrypted using TLS and use X.509 certificate authentication.
+You can use {{<exlink url="https://github.com/openconfig/gnmi" text="gRPC Network Management Interface">}} (gNMI) to collect system metrics and export the data to a gNMI client.
 
 {{%notice note%}}
-When you enable gNMI, do not use {{<link url="Open-Telemetry-Export" text="Open Telemetry">}}.
+When you enable gNMI, do not enable and use {{<link url="Open-Telemetry-Export" text="Open Telemetry">}}.
 {{%/notice%}}
 
 ## Configure gNMI
 
-To configure gNMI in Cumulus Linux, you need to:
-- Enable the gNMI server
-- Configure the gRPC tunnel client
+Cumulus Linux supports both gNMI dial-in mode, where a collector can initiate a connection with the switch to collect available statistics, and gNMI dial-out mode, where the switch streams statistics and exports them to a collector.
 
-Before configuring gNMI on the switch, make sure the gRPC environment is installed on the gRPC client.
+### Configure gNMI Dial-in Mode
 
-### Enable the gNMI Server
+In dial-in telemetry mode, the data collector initiates the <span class="a-tooltip">[gRPC](## "Remote Procedure Calls")</span> connection, the Cumulus Linux switch assumes the role of the gRPC server and the receiver (collector) is the client. The switch pushes data to the collector.
 
-1. Optional. Import the CA certificate for mTLS and enable the certificate for the server.
+To configure gNMI dial-in mode, you must:
+- Specify the gNMI server listening address
+- Enable the gNMI server.
 
-   ```
-   cumulus@switch:~$ nv set system gnmi-server mtls ca-certificate CACERT
-   cumulus@switch:~$ nv config apply
-   ```
+To configure optional settings for gNMI dial-in mode:
+- Specify the listening port. The default port is 9339.
+- Enable a TLS certificate for validation.
+  - Cumulus Linux uses a self-signed certificate. You can generate your own TLS server certificate and bind it with the gNMI server application.
+  - If mTLS on the gNMI RPC is required, import the certificate of the CA that signed the gNMI client keys (or the client certificate itself) to the switch and configure the gNMI server to use the certificate. You can also apply a <span class="a-tooltip">[CRL](## "Certificate Revocation List")</span>.
 
-2. Provide the listening address for the gNMI server and enable the gNMI server:
+The following example sets the gNMI server listening address to 10.10.10.1 and the port to 443, and enables the gNMI server:
 
-   ```
-   cumulus@switch:~$ nv set system gnmi-server listening-address 10.1.1.100 
-   cumulus@switch:~$ nv set system gnmi-server state enabled 
-   cumulus@switch:~$ nv config apply
-   ```
+```
+cumulus@switch:~$ nv set system gnmi-server listening-address 10.10.10.1
+cumulus@switch:~$ nv set system gnmi-server port 443
+cumulus@switch:~$ nv set system gnmi-server state enabled
+cumulus@switch:~$ nv config apply
+```
 
-   Cumulus Linux uses a self-signed certificate. However, you can generate your own TLS server certificates and bind them with the gNMI server application.
+The following example imports and enables the CA certificate `CERT1` and the CRL `crl.crt` for mTLS:
 
-3. Check the status of the gNMI agent and UMF components and view the most recent logs. The services show as active when the components are installed successfully.
+```
+cumulus@switch:~$ nv action import system security certificate CERT1 passphrase mypassphrase uri-bundle scp://user@pass:1.2.3.4:/opt/certs/cert.p12
+cumulus@switch:~$ nv set system gnmi-server mtls ca-certificate CERT1
+cumulus@switch:~$ nv action import system security scp:////user@pass:1.2.3.4:/path/to/your/crl.crt. 
+cumulus@switch:~$ nv set system gnmi-server mtls nv set system gnmi-server mtls crl /etc/ssl/certs/crl.crt
+cumulus@switch:~$ nv config apply
+```
 
-   ```
-   cumulus@switch:~$ sudo systemctl status nv-umf-gnmid.service
-   cumulus@switch:~$ sudo systemctl status nv-umf-contractd.service
-   cumulus@switch:~$ sudo systemctl status nv-umf-proxyd.service
-   cumulus@switch:~$ sudo systemctl status nginx
-   ```
+### Configure gNMI Dial-Out Mode
 
-### Configure the gRPC Tunnel Client
+In dial-out telemetry mode, the Cumulus Linux switch initiates the gRPC connection to the collector through a gRPC tunnel server and assumes the role of the gRPC client.
 
-The gRPC tunnel client package includes the dial-out tunnel client. To configure the gRPC tunnel client package:
+To configure gNMI dial-out mode, you must:
+- Set the gNMI server listening address to localhost.
+- Specify the listening address for each tunnel server to which you want to connect. Cumulus Linux supports a maximum of 10 tunnel servers.
+- Enable the tunnel server.
 
-1. Import CA certificates:
+To configure optional settings for each tunnel server:
+- Specify the target name and target application you want to access. The default target application is GNMI-GNOI.
+- Specify the retry interval. The default retry interval is 30 seconds.
+- Import and enable a TLS certificate for validation.
 
-   ```
-   cumulus@switch:~$ nv action import system security ca-certificate CERT1 uri scp://user@pass:1.2.3.4:/opt/certs/cert.p12
-   cumulus@switch:~$ nv config apply
-   ```
+The following example sets the listening address for the gNMI server to localhost, the listening address for tunnel server SERVER1 to 10.1.1.10, and enables the tunnel server:
 
-   {{%notice note%}}
-Cumulus Linux does not support mTLS on the underlying gRPC tunnel.
-{{%/notice%}}
+```
+cumulus@switch:~$ nv set system gnmi-server listening-address localhost 
+cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 address 10.1.1.10 
+cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 state enabled 
+cumulus@switch:~$ nv config apply
+```
 
-2. Enable localhost as a listening address for the gNMI server:
+The following example sets the listening address for the gNMI server to localhost, the listening address for tunnel server SERVER1 to 10.1.1.10 and the port to 443, the target name to TARGET1, the retry interval to 40, the CA certificate to CACERT, and enables the tunnel server:
 
-   ```
-   cumulus@switch:~$ nv set system gnmi-server listening-address localhost 
-   cumulus@switch:~$ nv config apply
-   ```
+```
+cumulus@switch:~$ nv set system gnmi-server listening-address localhost 
+cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 address 10.1.1.10 
+cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 port 443 
+cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 target-name TARGET1 
+cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 retry-interval 40
+cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 ca-certificate CACERT uri scp://user@pass:1.2.3.4:/opt/certs/cert.p12
+cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 state enabled 
+cumulus@switch:~$ nv config apply
+```
 
-3. Configure each tunnel server to which you want to connect. You must specify the listening address, port, target name, and the certificate for each tunnel server. You can also reconfigure the retry interval (optional). The default retry interval is 30 seconds.
+## Show gNMI Configuration and Status Information
 
-   ```
-   cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 address 10.1.1.10 
-   cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 port 443 
-   cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 target-name TARGET1 
-   cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 ca-certificate CERT1
-   cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 retry-interval 40
-   cumulus@switch:~$ nv set system grpc-tunnel server state enabled 
-   cumulus@switch:~$ nv config apply
-   ```
+To show gNMI server configuration and connection information, such the number of active subscriptions, received and rejected subscription requests, and received capability requests, run the `nv show system gnmi-server` command.
 
-4. Import the server certificate on the switch and bind the certificate to the gNMI server.
+```
+cumulus@switch:~$ nv show system gnmi-server 
+                                  operational  applied    
+--------------------------------  -----------  -----------
+state                             disabled     enabled   
+certificate                       self-signed  self-signed
+port                              9339         9339
+[listening-address]               10.1.1.100   10.1.1.100        
+version                                                   
+status                                                    
+  total-active-subscriptions      0                       
+  received-subscription-requests  0                       
+  rejected-subscriptions          0                       
+  received-capabilities-requests  0                       
+  [client]
+```
 
-   ```
-   cumulus@switch:~$ nv action import system security certificate CERT1
-   cumulus@switch:~$ nv set system gnmi-server certificate CERT1 
-   cumulus@switch:~$ nv config apply
-   ```
+To show the listening address of the gNMI server, run the `nv show system gnmi-server listening-address` command:
 
-{{%notice note%}}
-- Make sure to set the TLS WWW Server Authentication X.509v3 extended key usage (EKU) capability in the certificate (Section 4.2.1.12 - RFC 5280). Failure to set this capability prevents the certificate from being used by the gNMI server.
-- Based on the gNMI client you use, the gNMI server certificate might require the management IP address of the Cumulus Linux switch to be included in the subject alternate name (`SAN`) field of the server certificate.
-{{%/notice%}}
+```
+cumulus@switch:~$ nv show system gnmi-server listening-address
+----------
+10.1.1.100
+```
 
-### Sample TLS Certificates for the gNMI Client
+To show gNMI server mTLS information, run the `nv show system gnmi-server mtls` command:
 
-This section describes a very basic TLS certificate configuration for a gNMI client and tunnel server that you can use for initial testing.
+```
+cumulus@switch:~$ nv show system gnmi-server mtls
+                operational  applied  pending         
+--------------  -----------  -------  ----------------
+ca-certificate  CACERT       CACERT   CACERT          
+crl                                   abcdefghijklmnop
+```
 
-The following TLS certificate configuration is only an example; you can use your own PKI infrastructure to generate and manage certificates.
+To show only gNMI server connection information, run the `nv show system gnmi-server status` command:
 
-1. Create a certificate request:
+```
+cumulus@switch:~$ nv show system gnmi-server status
+                                operational
+------------------------------  -----------
+total-active-subscriptions      0          
+received-subscription-requests  0          
+rejected-subscriptions          0          
+received-capabilities-requests  0
+```
 
-   ```
-   cumulus@switch:~$ openssl genrsa 2048 > ca-key.pem 
-   cumulus@switch:~$ openssl req -new -x509 -nodes -days 365000 \ 
-        -key ca-key.pem \ 
-        -out ca-cert.pem
-   ```
+To show gRPC tunnel server configuration and connection information, run the `nv show system grpc-tunnel server <server>` command:
 
-2. Create a text file with the following contents:
+```
+cumulus@switch:~$ nv show system grpc-tunnel server SERVER1
+nv show system grpc-tunnel server SERVER1
+                 operational           applied  
+---------------  --------------------  ---------
+state            disabled              enabled  
+target-name      TARGET1               TARGET1  
+address          10.1.1.10             10.1.1.10
+port             443                   443      
+target-type      gnmi-gnoi             gnmi-gnoi
+retry-interval   40                    40       
+status                                          
+  local-port     0                              
+  remote-port    0                              
+  connection                                    
+    established  1970-01-01T00:00:00Z           
+    register     no                             
+    tunnel       no
+```
 
-   ```
-   cumulus@switch:~$ sudo nano file.txt
-   subjectAltName = @alt_names 
-   extendedKeyUsage = clientAuth
-   
-   [alt_names] 
-   IP = 127.0.0.1 <--- change to the IP address of the host running the gNMI client. 
-   ```
+To show the local and remote port, and connection information, run the `nv show system grpc-tunnel server SERVER1 status` command:
 
-3. Create the certificates:
+```
+cumulus@switch:~$ nv show system grpc-tunnel server SERVER1 status
+               operational         
+-------------  --------------------
+local-port     0                   
+remote-port    0                   
+connection                         
+  established  1970-01-01T00:00:00Z
+  register     no                  
+  tunnel       no
+```
 
-   ```
-   cumulus@switch:~$ openssl req -newkey rsa:2048 -nodes -days 365000 -keyout client-key.pem -out client-req.pem 
-   cumulus@switch:~$ openssl x509 -req -days 365000 -set_serial 01 -in client-req.pem -out client-cert.pem -CA ca-cert.pem -CAkey ca-key.pem -extfile file.txt 
-   ```
+To show only connection information, run the `nv show system grpc-tunnel server SERVER1 status connection` command:
 
-{{%notice note%}}
-- The steps above describe how to generate an entity or leaf certificate for the gNMI client.
-- When operating in dial-out mode, the tunnel server (running in the network) also needs a TLS server certificate.
-- The dial-out tunnel client running on Cumulus Linux connects to the tunnel server and performs a TLS handshake.
-- The tunnel client performs the standard one-way TLS and verifies the authenticity of the tunnel server certificate (root-of-trust PKI chain verification).
-- Follow similar steps as described above and generate a TLS server certificate to use with the tunnel server.
-- Include encoding the TLS WWW Server Authentication X.509v3 extended key usage (EKU) capability set (for example, `extendedKeyUsage = serverAuth`).
-{{%/notice%}}
-
-### TLS Certificates
-
-For authentication on the gNMI gRPC with TLS:
-- The gNMI server is configured with a public and private key in PEM format. 
-- The gNMI client is configured with a public and private key in PEM format, and a username and password to authenticate the user.
-
-For mTLS, the gNMI server also validates the client certificates. The gNMI server needs the root or intermediary CA certificate used to sign the gNMI client certificate.
-
-For dial-out mode, the gRPC tunnel is also encrypted using TLS. For single-sided TLS:
-- The tunnel server is configured with a public and private key in PEM format. 
-- The tunnel client validates the tunnel server certificates. The tunnel client requires the root or intermediary CA certificate used to sign the tunnel server certificate.
-
-To configure authentication:
-
-1. Create public and private keys in PEM format for the device on which the gNMI client runs. You need these keys when running the gNMI collector; See how to use `gnmi_client.crt` and `gnmi_client.key` in {{<link url="#examples-with-gnmic" text="Examples with gNMIc">}}.
-2. If mTLS on the gNMI RPC is required, import the certificate of the CA that signed the gNMI client keys (or the client certificate itself) to the switch and configure the gNMI server to use the certificate (`nv set system gnmi-server mtls ca-certificate <cert id>`).  
-3. For dial-out mode, create public and private keys in PEM format for the tunnel server. You use these keys when running the tunnel server.
-4. You must also import the certificate of the CA that signed the keys to the switch and configure the tunnel client to use it to connect to the server (`nv set system grpc-tunnel server <server name> ca-certificate <cert id>`).
-5. Copy the certificate of the CA that signed the keys (or the client certificate itself) to the device running the tunnel server and use it in the tunnel server configuration.
+```
+cumulus@switch:~$ nv show system grpc-tunnel server SERVER1 status connection 
+             operational         
+-----------  --------------------
+established  1970-01-01T00:00:00Z
+register     no                  
+tunnel       no
+```
 
 ## RPC Methods
 
-Cumulus Linux supports the following <span class="a-tooltip">[RPC](## "Remote Procedure Call")</span> events:  
-- Capabilities 
+Cumulus Linux supports the following <span class="a-tooltip">[RPC](## "Remote Procedure Call")</span> methods:  
+- Capabilities
 - Subscription types and options:  
   - STREAM (sample_interval, updates_only, suppress_redundant, and heartbeat_interval)
   - ON_CHANGE (updates_only and heartbeat_interval)

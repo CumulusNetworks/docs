@@ -14,7 +14,7 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 
 ### Platforms
 
-- NVIDIA SN5600D (200G Spectrum-4 DC version)
+- NVIDIA SN5600D (400G Spectrum-4 DC version)
 
 ### New Features and Enhancements
 

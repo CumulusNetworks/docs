@@ -3,7 +3,6 @@ title: OpenTelemetry Best Practices
 author: NVIDIA
 weight: 382
 toc: 4
-draft: true
 ---
 <span class="a-tooltip">[NCCL](## "NVIDIA Collective Communications Library")</span> and AI workloads operate in environments where every millisecond counts. High frequency telemetry in the datacenter fabric is critical for continuation of the service, and meeting <span class="a-tooltip">[SLAs](## "Service Level Agreements")</span>.
 
@@ -63,11 +62,11 @@ Key Considerations:
 - Given the scale of AI data centers and the number of switches, Prometheus might not be able to hold the scale without some deep modifications and optimizations.
 - If your telemetry stack is already built around Prometheus, all three databases provide PromQL query language support.
 - Mimir and VictoriaMetrics supports OTLP currently. Thanos will support OTLP soon.
-- Ensure that your TSDB can handle the expected data ingestion rate and retention policy based on your network size and telemetry volume. The three TSDBs can scale on the receiving side and on the storage side. Refer to the specific documentation to learn about how to scale.
+- Ensure that your TSDB can handle the expected data ingestion rate and retention policy based on your network size and telemetry volume. The three TSDBs can scale on the receiving side and on the storage side. Refer to the {{<link url="#related-information" text="specific documentation">}} to learn about how to scale.
 
 ## Resource Requirements for Scale
 
-Based on internal validation and customer deployment fabric with around 50 switches and a sampling rate of 15 to 30 seconds, the following approximate resources are required for ingestion using OTLP (PRW typically demands more resources), along with VictoriaMetrics TSDB:  
+Based on internal validation and a customer deployment fabric with around 50 switches and a sampling rate of 15 to 30 seconds, the following approximate resources are required for ingestion using OTLP (PRW typically demands more resources), along with VictoriaMetrics TSDB:  
 
 Collector requirements (optional):
 - Number of Collectors: 1-2 OpenTelemetry collectors, each with one CPU and 1GB of RAM.

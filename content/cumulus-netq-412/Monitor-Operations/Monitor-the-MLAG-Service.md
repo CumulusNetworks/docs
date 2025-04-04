@@ -65,7 +65,7 @@ The MLAG single-session card displays a summary of the MLAG session. In this exa
 {{<figure src="/images/netq/single-session-mlag-450.png" width="200">}}
 
 From this card, you can also view the node role, peer role and state, and MLAG system MAC address which identify the session in further detail.
-### Granularity of Data Shown Based on Time Period
+### Understanding the Heat Map
 
 On the medium and large single MLAG session cards, vertically stacked heat maps represent the status of the peers; one for peers that are reachable (alive), and one for peers that are unreachable (not alive). Depending on the time period of data on the card, the number of smaller time blocks used to indicate the status varies. A vertical stack of time blocks, one from each map, includes the results from all checks during that time. The amount of saturation for each block indicates how many peers were alive. If all peers during that time period were alive for the entire time block, then the top block is 100% saturated (white) and the not alive block is zero percent saturated (gray). As peers that are not alive increase in saturation, the amount of saturation diminishes proportionally for peers that are in the alive block. The following table lists the most common time periods, their corresponding number of blocks, and the amount of time represented by one block:
 
@@ -78,21 +78,3 @@ On the medium and large single MLAG session cards, vertically stacked heat maps 
 | 1 week      | 504            | 7                  | 1 day                        |
 | 1 month     | 2,086          | 30                 | 1 day                        |
 | 1 quarter   | 7,000          | 13                 | 1 week                       |
-
-### View Changes to the MLAG Service Configuration File
-
-Each time a change is made to the configuration file for the MLAG service, NetQ logs the change and enables you to compare it with the last version using the NetQ UI. This can be useful when you are troubleshooting potential causes for alarms or sessions losing their connections.
-
-1. From the large single-session card, select the <img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg" height="18" width="18"/> **MLAG Configuration File Evolution** tab.
-
-2. Select the time.
-
-3. Choose between the **File** view and the **Diff** view.
-
-    The File view displays the content of the file:
-
-    {{<figure src="/images/netq/mlag-file-450.png" width="600">}}
-
-    The Diff view highlights the changes (if any) between this version (on left) and the most recent version (on right) side by side:
-
-    {{<figure src="/images/netq/mlag-diff-450.png" width="600">}}

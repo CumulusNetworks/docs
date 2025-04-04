@@ -13,7 +13,7 @@ This page describes how to log in and out of NetQ.
     - NetQ on-premises appliance or VM: *https://\<hostname-or-ipaddress\>*  
     - NetQ cloud appliance or VM: *https://netq.nvidia.com*
 
-    {{<figure src="/images/netq/netq-splash-413.png" alt="NetQ login screen" ewidth="700">}}
+    {{<figure src="/images/netq/splash-screen-414.png" alt="NetQ login screen" ewidth="700">}}
 
 3. Log in.
 
@@ -69,7 +69,7 @@ Enter your username and password to log in. You can also log in with SSO if your
     The user-specified home workbench is displayed. If a home workbench is not specified, then the default workbench is displayed.
 
     {{<notice tip>}}
-Any workbench can be set as the home workbench. Select <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> <strong>User Settings</strong> > <strong>Profiles and Preferences</strong>, then on the Workbenches card select the workbench you'd like to designate as your home workbench.
+Any workbench can be set as the home workbench. Select <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" alt="" height="18" width="18"/> <strong>User Settings</strong> > <strong>Profiles and Preferences</strong>, then on the Workbenches card select the workbench you'd like to designate as your home workbench.
     {{</notice>}}
 
 {{</tab>}}

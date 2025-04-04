@@ -7,7 +7,7 @@ toc: 4
 The NetQ UI contains two main areas:
 
 - **Application Header**: Contains the main menu, NetQ version, global search field, count of reachable devices, premises list, and account information.
-{{<figure src="/images/netq/header-412.png" alt="" width="1300">}}
+{{<figure src="/images/netq/header-414.png" alt="" width="1300">}}
 
 
 - **Workbench**: Contains a task bar and cards that display operative status and network configuration information.
@@ -16,7 +16,7 @@ The NetQ UI contains two main areas:
 
 ## Main Menu
 
-Select the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu** in the top-left corner to navigate to:
+Select the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" alt="" height="18" width="18"/> **Menu** in the top-left corner to navigate to:
 
 | Description | Menu |
 | ------ | ---- |
@@ -41,4 +41,4 @@ Cards display information about your network. Each card describes a particular a
 
 ## User Settings
 
-Each user can customize the NetQ display, time zone, and date format; change their account password; and manage their workbenches. Navigate to <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> **User Settings** &nbsp;<span aria-label="and then">> **Profile & Preferences**. For details, refer to {{<link title="Set User Preferences">}}.
+Each user can customize the NetQ display, time zone, and date format; change their account password; and manage their workbenches. Navigate to <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" alt="" height="18" width="18"/> **User Settings** &nbsp;<span aria-label="and then">> **Profile & Preferences**. For details, refer to {{<link title="Set User Preferences">}}.

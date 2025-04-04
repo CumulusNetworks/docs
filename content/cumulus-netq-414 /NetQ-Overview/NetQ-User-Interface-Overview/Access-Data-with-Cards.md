@@ -75,7 +75,7 @@ You can increase or decrease the size of certain cards. The granularity of the c
 
 {{<tab "NetQ UI">}}
 
-1. Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card** in the header.
+1. Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" alt="" height="18" width="18"/> **Add card** in the header.
 
 2. Select the card(s) you want to add to your workbench.
 
@@ -95,7 +95,7 @@ The cards are placed at the end of the set of cards currently on the workbench. 
 
 To add switch cards to a workbench:
 
-1. Select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card&nbsp;<span aria-label="and then">></span> Device card**.
+1. Select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" alt="" height="18" width="18"/> **Add card&nbsp;<span aria-label="and then">></span> Device card**.
 
 2. Select the device from the suggestions that appear:
 
@@ -159,11 +159,11 @@ All cards have a default time period for the data shown on the card, typically t
 
 To change the time period for a card:
 
-1. Hover over the top portion of the card and select the clock <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg" height="18" width="18"/>.
+1. Hover over the top portion of the card and select the clock <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg" alt="" height="18" width="18"/>.
 
 3. Select a time period from the dropdown menu.
 
-    {{<figure src="/images/netq/time-dropdown-411.png" alt="time options" width="300">}}
+    {{<figure src="/images/netq/time-dropdown-411.png" alt="" width="300">}}
 
 {{<notice tip>}}
 Changing the time period in this manner only changes the time period for the given card.
@@ -177,7 +177,7 @@ Changing the time period in this manner only changes the time period for the giv
 
 You can manipulate the tabular data displayed in a full-screen card by filtering and sorting the columns. Hover over the column header and select it to sort the column. The data is sorted in ascending or descending order: A-Z, Z-A, 1-n, or n-1. The number of rows that can be sorted via the UI is limited to 10,000. To reposition the columns, drag and drop them using your mouse. 
 
-Select <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/> **Export** to download and export the tabular data. You can sort and filter tables that exceed 10,000 rows by exporting the data as a CSV file and opening it in a spreadsheet program.
+Select <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" alt="" height="18" width="18"/> **Export** to download and export the tabular data. You can sort and filter tables that exceed 10,000 rows by exporting the data as a CSV file and opening it in a spreadsheet program.
 
 {{<notice tip>}}
 If your browser prevents you from downloading an exported file because it is too large, you can apply filters in the UI to decrease the size of the dataset.
@@ -187,15 +187,15 @@ The following icons are common in the full-screen card view:
 
 | Icon | Action | Description |
 | ---- | ---- | ---- |
-| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> | Select all | Selects all items in the list. |
-| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/subtract-circle.svg" height="18" width="18"/> | Clear all | Clears all existing selections in the list. |
-| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> | Add item | Adds item to the list. |
-| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18"/> | Edit | Edits the selected item. |
-| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/> | Delete | Removes the selected items. |
-| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18"/> | Filter | Filters the list using available parameters. A red dot on the filter means that you are viewing filtered data. |
-| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/04-Login-Logout/login-key-1.svg" height="18" width="18"/>, {{<img src="/images/netq/netq-mgmt-delete-keys-icon.png" height="18" width="18" >}} | Generate/Delete AuthKeys | Creates or removes NetQ CLI authorization keys. |
-| <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> | Open cards | Opens the corresponding validation or trace card(s). |
-| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/58-Tags-Bookmarks/tags.svg" height="18" width="18"/> | Assign role | Opens role assignment options for switches. |
-| <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/> | Export | Exports selected data into either a .csv or JSON-formatted file. |
+| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" alt="check mark" height="18" width="18"/> | Select all | Selects all items in the list. |
+| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/subtract-circle.svg" alt="clear" height="18" width="18"/> | Clear all | Clears all existing selections in the list. |
+| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" alt="add" height="18" width="18"/> | Add item | Adds item to the list. |
+| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" alt="pencil" height="18" width="18"/> | Edit | Edits the selected item. |
+| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" alt="trash" height="18" width="18"/> | Delete | Removes the selected items. |
+| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" alt="funnel" height="18" width="18"/> | Filter | Filters the list using available parameters. A red dot on the filter means that you are viewing filtered data. |
+| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/04-Login-Logout/login-key-1.svg" alt="key" height="18" width="18"/>, {{<img src="/images/netq/netq-mgmt-delete-keys-icon.png" height="18" width="18" >}} | Generate/Delete AuthKeys | Creates or removes NetQ CLI authorization keys. |
+| <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" alt="card" height="18" width="18"/> | Open cards | Opens the corresponding validation or trace card(s). |
+| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/58-Tags-Bookmarks/tags.svg" alt="tag" height="18" width="18"/> | Assign role | Opens role assignment options for switches. |
+| <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" alt="export" height="18" width="18"/> | Export | Exports selected data into either a .csv or JSON-formatted file. |
 
-When there are many items in a table, NetQ loads up to 20 rows by default and provides the rest in additional table pages, accessible through the pagination controls under the table.
+When there are many items in a table, NetQ loads up to 20 rows by default and provides the rest in additional pages, accessible through the pagination controls under the table.

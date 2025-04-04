@@ -16,13 +16,13 @@ The Display card contains the options for setting the application theme (light o
 
 To configure the display settings:
 
-1. Select <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> **User Settings** in the top-right corner.
+1. Select <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" alt="" height="18" width="18"/> **User Settings** in the top-right corner.
 2. Select **Profile & Preferences**.
 3. Locate the Display card:
 
     {{<figure src="/images/netq/display-card-411.png" alt="display card with fields specifying theme, language, time zone, and date format." width="200">}}
 
-4. Select the **Theme** field and choose either dark or light. The following figure shows the light theme:
+4. Select the **Theme** field and choose either dark or light. The following dashboard displays the light theme:
 
     {{<figure src="/images/netq/light-theme-411.png" alt="NetQ workbench displayed in light theme" width="1000">}}
 
@@ -44,7 +44,7 @@ To configure the display settings:
 
 {{<tab "NetQ UI">}}
 
-1. Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> **User Settings** in the top-right corner.
+1. Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" alt="" height="18" width="18"/> **User Settings** in the top-right corner.
 2. Click **Profile & Preferences**.
 3. In the Basic Account Info card, select **Change password**.
 

@@ -48,13 +48,13 @@ You can clone a workbench to quickly create a new workbench with the same cards 
 The changes you make to a custom workbench are saved automatically. To change a workbench from local to global (or global to local) availability, select the workbench's name in the header and select **Manage my WB**. From the Workbenches card, locate the workbench whose availability you'd like to change and select **Local** or **Global**.
 
 You can also change your home workbench (the workbench that loads when you log in to NetQ) from this view. Select the {{<img src="/images/netq/home-workbench.png" width="18px">}} house to the left of the workbench that you want to set as your home workbench. The next time you log in from this premises, the workbench you selected will be displayed.
-{{<figure src="/images/netq/wb-card-411.png" alt="" width="600">}}
+{{<figure src="/images/netq/wb-card-414.png" alt="" width="600">}}
 
 ## Delete a Workbench
 
 You can only delete workbenches that you created. The NVIDIA-supplied NetQ Workbench and Fabric Dashboard workbenches cannot be deleted. When you delete a workbench that you have designated as your home workbench, NetQ Workbench will replace it as the home workbench. To delete a workbench:
 
-1. Select <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> **User Settings** &nbsp;<span aria-label="and then">> **Profile & Preferences**.
+1. Select <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" alt="" height="18" width="18"/> **User Settings** &nbsp;<span aria-label="and then">> **Profile & Preferences**.
 
 3. Locate the Workbenches card.
 

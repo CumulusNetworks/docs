@@ -69,7 +69,7 @@ Key Considerations:
 
 Based on internal validation and customer deployment fabric with around 50 switches and a sampling rate of 15 to 30 seconds, the following approximate resources are required for ingestion using OTLP (PRW typically demands more resources), along with VictoriaMetrics TSDB:  
 
-Collector requirements [optional]:
+Collector requirements (optional):
 - Number of Collectors: 1-2 OpenTelemetry collectors, each with one CPU and 1GB of RAM.
 
 TSDB requirements (VictoriaMetrics Example):

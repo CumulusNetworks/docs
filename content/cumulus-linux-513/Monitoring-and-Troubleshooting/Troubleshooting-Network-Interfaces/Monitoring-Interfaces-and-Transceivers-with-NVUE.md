@@ -303,22 +303,22 @@ rs-num-corr-err-bin12      0
 rs-num-corr-err-bin13      0            
 rs-num-corr-err-bin14      0            
 rs-num-corr-err-bin15      0            
-snr-host-lane0             25.12        
-snr-host-lane1             25.25        
-snr-host-lane2             25.37        
-snr-host-lane3             25.37        
-snr-host-lane4             26           
-snr-host-lane5             24.61        
-snr-host-lane6             24.12        
-snr-host-lane7             26           
-snr-media-lane0            25.05        
-snr-media-lane1            24.09        
-snr-media-lane2            25.34        
-snr-media-lane3            23.67        
-snr-media-lane4            26           
-snr-media-lane5            25.05        
-snr-media-lane6            23.12        
-snr-media-lane7            24.05
+snr-host-lane0             25.12 dB              
+snr-host-lane1             25.25 dB              
+snr-host-lane2             25.37 dB              
+snr-host-lane3             25.37 dB              
+snr-host-lane4             26    dB              
+snr-host-lane5             24.61 dB              
+snr-host-lane6             24.12 dB              
+snr-host-lane7             26    dB              
+snr-media-lane0            25.05 dB              
+snr-media-lane1            24.09 dB              
+snr-media-lane2            25.34 dB              
+snr-media-lane3            23.67 dB              
+snr-media-lane4            26    dB              
+snr-media-lane5            25.05 dB              
+snr-media-lane6            23.12 dB              
+snr-media-lane7            24.05 dB
 ```
 
 To show physical layer diagnostic information for a port, run the `nv show interface <interface> link phy-diag` command:

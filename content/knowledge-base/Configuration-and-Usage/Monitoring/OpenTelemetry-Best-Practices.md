@@ -1,5 +1,5 @@
 ---
-title: Open Telemetry Best Practices
+title: OpenTelemetry Best Practices
 author: NVIDIA
 weight: 382
 toc: 4
@@ -7,7 +7,7 @@ draft: true
 ---
 <span class="a-tooltip">[NCCL](## "NVIDIA Collective Communications Library")</span> and AI workloads operate in environments where every millisecond counts. High frequency telemetry in the datacenter fabric is critical for continuation of the service, and meeting <span class="a-tooltip">[SLAs](## "Service Level Agreements")</span>.
 
-AI and NCCL workloads rely on highly synchronized, low-latency communication between multiple GPUs and nodes. Even slight network delays or congestion can bottleneck training or inference; therefore, constant, granular monitoring helps detect and address issues before they impact performance. With frequent telemetry, AI fabric operators can spot performance degradations, packet loss, or hardware faults in near real time. This immediate visibility allows for proactive troubleshooting and dynamic adjustments, keeping distributed operations smooth.
+AI and NCCL workloads rely on highly synchronized, low-latency communication between multiple GPUs and nodes. Even slight network delays or congestion can bottleneck training or inference and constant, granular monitoring helps detect and address issues before they impact performance. With frequent telemetry, AI fabric operators can spot performance degradations, packet loss, or hardware faults in near real time. This immediate visibility allows for proactive troubleshooting and dynamic adjustments, keeping distributed operations smooth.
 
 As AI workloads scale across many nodes, any inefficiency in the network fabric can lead to significant cumulative delays. Telemetry at high frequency ensures that these scaling challenges are met with data-driven optimizations, sustaining overall system efficiency.
 
@@ -16,7 +16,7 @@ Telemetry requires correct planning and dimensioning for implementation. You nee
 This knowledge base article outlines best practices for collecting and managing telemetry data from NVIDIA switches using <span class="a-tooltip">[OTLP](## "OpenTelemetry")</span>. These best practices are based on the experience of various customers and ensure efficient data collection, optimized data transfer, and scalable <span class="a-tooltip">[TSDB](## "Time Series Database")</span> storage.
 
 {{%notice note%}}
-NVIDIA only provides best practices as seen by customer clusters; each component has its own satellites, configurations, and maintenance expertise.
+NVIDIA only provides best practices as seen by customer clusters; each component has its own lifecycle and maintenance expertise.
 {{%/notice%}}
 
 ## Telemetry Components
@@ -47,7 +47,7 @@ After the OpenTelemetry collector receives data, you need to push it to a TSDB f
 Follow these best practices for pushing data to the TSDB:
 - (Collector only) Configure the OpenTelemetry collector to batch telemetry data before pushing it to the TSDB to reduce network overhead and improve ingestion performance.
 - Protocol selection:
-  - If the TSDB supports OTLP ingestion, configure the OpenTelemetry collector or switch directly to push data in OTLP format. Using a collector reduces the load as the collector has to do less processing and increases the load on the TSDB that translates OTLP to the proprietary internal protocol.
+  - If the TSDB supports OTLP ingestion, configure the OpenTelemetry collector or switch directly to push data in OTLP format. Using a collector reduces the load as the collector has to do less processing but increases the load on the TSDB that translates OTLP to the proprietary internal protocol.
   - If the TSDB only supports PRW, configure the collector accordingly.
 - (Collector only) Consider incorporating compression to reduce network bandwidth.
 - Use load balancing to ensure that the TSDB can handle multiple write requests efficiently by distributing the load across available instances (see {{<link url="#tsdb" text="TSDB">}}).
@@ -55,7 +55,7 @@ Follow these best practices for pushing data to the TSDB:
 ## TSDB
 
 For scalable and efficient telemetry storage, NVIDIA recommends you use a high-performance TSDB, such as:
-- {{<exlink url="https://thanos.io/" text="Thanos">}} is a <span class="a-tooltip">[CNCF](## " Cloud Native Computing Foundation")</span>, Incubating project. Thanos is a set of components that can be composed into a highly available metric system with unlimited storage capacity, which can be added seamlessly on top of existing Prometheus deployments. OTLP support will be in upcoming releases.
+- {{<exlink url="https://thanos.io/" text="Thanos">}} is a <span class="a-tooltip">[CNCF](## " Cloud Native Computing Foundation")</span>, Incubating project. Thanos is a set of components that can be composed into a highly available metric system with unlimited storage capacity, which can be added seamlessly on top of existing Prometheus deployments.
 - {{<exlink url="https://grafana.com/docs/mimir/latest/" text="Mimir">}} from Grafana Labs supports OTLP ingestion.
 - {{<exlink url="https://victoriametrics.com/" text="VictoriaMetrics">}} is a growing ecosystem and supports OTLP ingestion.
 
@@ -65,17 +65,21 @@ Key Considerations:
 - Mimir and VictoriaMetrics supports OTLP currently. Thanos will support OTLP soon.
 - Ensure that your TSDB can handle the expected data ingestion rate and retention policy based on your network size and telemetry volume. The three TSDBs can scale on the receiving side and on the storage side. Refer to the specific documentation to learn about how to scale.
 
-## Resource Requirements for VAST Scale
+## Resource Requirements for Scale
 
-Based on VAST’s scale of 68 switches and increasing in number, and a sampling rate of 15 to 30 seconds, the following approximate resources are required for ingestion using OTLP (PRW typically demands more resources), along with VictoriaMetrics TSDB:
+Based on internal validation and customer deployment fabric with around 50 switches and a sampling rate of 15 to 30 seconds, the following approximate resources are required for ingestion using OTLP (PRW typically demands more resources), along with VictoriaMetrics TSDB:  
 
 Collector requirements [optional]:
 - Number of Collectors: 1-2 OpenTelemetry collectors, each with one CPU and 1GB of RAM.
 
 TSDB requirements (VictoriaMetrics Example):
-- VMInsert - Four containers, each with one CPU and 2GB RAM.
-- VMStorage - Four containers, each with one CPU and 2GB RAM.
+- VMInsert - Four containers, each with 1 CPU and 2GB RAM.
+- VMStorage - Four containers, each with 1 CPU and 2GB RAM.
 - VMSelect - Query service depends on the nature and number of queries.
+
+{{%notice note%}}
+The above numbers above are just estimates, actual numbers might vary.
+{{%/notice%}}
 
 ## Conclusion
 

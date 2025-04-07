@@ -27,50 +27,26 @@ You can run NVUE commands to monitor your system hardware.
 | `nv show platform environment voltage` | Shows the list of voltage sensors on the switch.|
 | `nv show platform inventory` | Shows the switch inventory, which includes fan and PSU hardware version, model, serial number, state, and type. For information about a specific fan or PSU, run the `nv show platform inventory <inventory-name>` command.|
 
-The following example shows the `nv show health` command output when the health of the switch is good:
-
-```
-cumulus@switch:~$ nv show system health 
-                     operational    applied
-----------          -----------     ------- 
-
-System         OK 
-Process        OK 
-Hardware       OK 
-CPU            OK 
-Disk           OK 
-Memory         OK 
-Transceiver    OK 
-
-Health issues 
-================ 
-```
-
 The following example shows the `nv show health` command output when the health of the switch is not good:
 
 ```
-cumulus@switch:~$ 
-                    operational  applied 
-----------          -----------  ------- 
-System              Not OK 
-Process             Not OK 
-Hardware            Not OK 
-CPU                 Not OK 
-Disk                Not OK 
-Memory              Not OK 
+cumulus@switch:~$ nv show system health
+            operational  applied  pending
+----------  -----------  -------  -------
+status      Not OK             
+status-led  amber
 
-Health issues 
-================ 
-    Hardware                       Status information 
-    ------------------             ------------------ 
-    PSU1                           bad 
-    PSU1-Temp-sensor               absent 
-    PSU1/FAN                       absent 
-
-    Process                        Status information 
-    ------------------             ------------------ 
-    routing                        inactive 
-    Forwarding                     Switchd exited: Thu Feb 20 18:42:00 PST 2025, reason: SDK init failure. 
+Health issues
+================
+    Component           Status information                                              
+    ------------------  ----------------------------------------------------------------
+    ASIC                Not OK                                                          
+    forwarding          active (running) since Mon 2025-04-07 16:57:26 UTC; 2h 27min ago
+    hw-management       inactive                                                        
+    hw-management-sync  inactive                                                        
+    hw-management-tc    inactive                                                        
+    mft                 inactive                                                        
+    process             Not OK 
 ```
 
 The following example shows the `nv show platform` command output:

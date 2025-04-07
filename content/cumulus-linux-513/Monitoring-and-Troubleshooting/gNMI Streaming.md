@@ -40,10 +40,10 @@ cumulus@switch:~$ nv config apply
 The following example imports and enables the CA certificate `CERT1` and the CRL `crl.crt` for mTLS:
 
 ```
-cumulus@switch:~$ nv action import system security certificate CERT1 passphrase mypassphrase uri-bundle scp://user@pass:1.2.3.4:/opt/certs/cert.p12
+cumulus@switch:~$ nv action import system security ca-certificate CERT1 passphrase mypassphrase uri-bundle scp://user@pass:1.2.3.4:/opt/certs/cert.p12
 cumulus@switch:~$ nv set system gnmi-server mtls ca-certificate CERT1
 cumulus@switch:~$ nv action import system security scp:////user@pass:1.2.3.4:/path/to/your/crl.crt. 
-cumulus@switch:~$ nv set system gnmi-server mtls nv set system gnmi-server mtls crl /etc/ssl/certs/crl.crt
+cumulus@switch:~$ nv set system gnmi-server mtls crl /etc/ssl/certs/crl.crt
 cumulus@switch:~$ nv config apply
 ```
 

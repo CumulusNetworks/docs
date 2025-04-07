@@ -152,6 +152,7 @@ Cumulus Linux provides two different ways to upgrade the switch with a new image
 
 {{%notice note%}}
 - You can use optimized upgrade to upgrade the switch from Cumulus Linux 5.11.0 to Cumulus Linux 5.11.1 and later. To upgrade the switch to Cumulus Linux 5.11.0, you must use ONIE.
+- To upgrade with optimized image upgrade, the switch must be in cold restart mode. Optimized image upgrade does not support warm restart mode.
 - Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in [Upgrade Switches in an MLAG Pair](#upgrade-switches-in-an-mlag-pair) below to ensure a smooth upgrade.
 {{%/notice%}}
 

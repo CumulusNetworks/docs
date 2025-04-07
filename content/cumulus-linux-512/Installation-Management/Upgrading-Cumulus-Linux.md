@@ -157,6 +157,7 @@ Cumulus Linux provides two different ways to upgrade the switch with a new image
   - You cannot downgrade a Cumulus Linux 5.12 switch to Cumulus Linux 5.11 and earlier with optimized image upgrade; use ONIE instead.
 
 {{%notice note%}}
+- To upgrade with optimized image upgrade, the switch must be in cold restart mode. Optimized image upgrade does not support warm restart mode.
 - Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in [Upgrade Switches in an MLAG Pair](#upgrade-switches-in-an-mlag-pair) below to ensure a smooth upgrade.
 {{%/notice%}}
 

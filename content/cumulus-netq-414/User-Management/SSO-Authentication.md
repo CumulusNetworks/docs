@@ -31,7 +31,7 @@ You need several pieces of data from your Microsoft Azure or Google account and 
 
 **SSO Organization** is typically a company's name or a department. The name entered in this field will appear in the SSO signup URL.
 
-**Role** (either user or admin) is automatically assigned when the account is initalized via SSO login.
+**Role** (either user or admin) is automatically assigned when the account is initialized via SSO login.
 
 **Name** is a unique name for the SSO configuration.
 

@@ -32,7 +32,7 @@ When you upgrade from NetQ 4.11 to 4.13, any pre-existing validation data will b
 
 ## Compatible Agent Versions
 
-The NetQ 4.13 server is compatible with NetQ agents 4.12 and 4.13. You can install NetQ agents on switches and servers running:
+The NetQ 4.14 server is compatible with NetQ agents 4.13 and 4.12. You can install NetQ agents on switches and servers running:
 
 - Cumulus Linux 5.9.2 or later
 - Ubuntu 22.04

@@ -409,9 +409,9 @@ If you try to configure a routing protocol that is not running, vtysh ignores th
 
 ## NVUE Show Commands and vtysh Output
 
-NVUE provides the `--output raw` option for certain NVUE show commands to show vtysh native output.
+NVUE provides the `--output native` option for certain NVUE show commands to show vtysh native output.
 
-{{< expand "NVUE Commands that support --output raw" >}}
+{{< expand "NVUE Commands that support --output native" >}}
 
 ```
 nv show evpn multihoming esi
@@ -436,6 +436,10 @@ nv show vrf default router rib ipv6
 ```
 
 {{< /expand >}}
+
+{{%notice note%}}
+In Cumulus Linux 5.12 and earlier the `--output native` option is `--output raw`.
+{{%/notice%}}
 
 ## Show Routes in the Routing Table
 

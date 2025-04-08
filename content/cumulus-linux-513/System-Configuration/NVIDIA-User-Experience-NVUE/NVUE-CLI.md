@@ -189,7 +189,7 @@ Additional options are available for certain `nv show` commands. For example, yo
 | `--filter` | Filters show command output on column data. For example, the `nv show interface --filter mtu=1500` shows only the interfaces with MTU set to 1500. For more information, see {{<link url="#filter-nv-show-command-output" text="Filter nv show Command Output">}} below.|
 | `--hostname`| Shows system configuration for the switch with the specified hostname. For example, `nv show --hostname leaf01`.|
 | `--operational` | Shows the running configuration (the actual system state). For example, `nv show interface swp1 --operational` shows the running configuration for swp1. The running and applied configuration should be the same. If different, inspect the logs. |
-| `--output`        | Shows command output in table (`auto`), `json`, or `yaml` format. For example:<br>`nv show interface bond1 --output auto`<br>`nv show interface bond1 --output json`<br>`nv show interface bond1 --output yaml`|
+| `--output`        | Shows command output in table (`auto`), `json`, `yaml`, or `native` format. Use `native` format for {{<link url="FRRouting/#nvue-show-commands-and-vtysh-output" text="certain routing">}} `nv show` commands to see the output that vtysh provides. For example:<br>`nv show interface bond1 --output auto`<br>`nv show interface bond1 --output json`<br>`nv show interface bond1 --output yaml`<br>`nv show evpn multihoming esi --output native`<br>|
 | `--paginate`      | Paginates the output. For example, `nv show interface bond1 --paginate on`. |
 | `--pending`       | Shows the last applied configuration and any pending set or unset configuration that you have not yet applied. For example, `nv show interface bond1 --pending`.|
 | `--rev <revision>`| Shows a detached pending configuration. See the `nv config detach` configuration management command below. For example, `nv show --rev 1`. You can also show only applied or only operational information in the `nv show` output. For example, to show only the applied settings for swp1 configuration, run the `nv show interface swp1 --rev=applied` command. To show only the operational settings for swp1 configuration, run the `nv show interface swp1 --rev=operational` command. |
@@ -518,6 +518,8 @@ cumulus@switch:~$ nv config diff applied startup
     system:
       wjh:
 ```
+
+When you run the `nv config diff` command, NVUE show only the new configuration. Add the `--verbose` option to see the previous configuration and the new configuration.
 
 ## Replace and Patch a Pending Configuration
 

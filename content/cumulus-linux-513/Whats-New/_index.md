@@ -45,6 +45,7 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
   - {{<link url="System-Power/#power-cycle" text="Command to power cycle the switch">}}
   - {{<link url="SSH-for-Remote-Access/#certificate-based-authentication" text="SSH certificate-based authentication">}}
   - {{<link url="NVUE-CLI/#replace-and-patch-a-pending-configuration" text="Replace and patch against a plain text file of nv set and nv unset commands">}}
+  - {{<link url="NVUE-CLI/#view-differences-between-configurations" text="nv config diff --verbose option ">}} to see both previous and new configuration
   - Additional FRR filters
   - {{< expand "Changed NVUE Commands" >}}
 | Cumulus Linux 5.13 | Cumulus Linux 12 and Earlier |
@@ -60,6 +61,7 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 | `nv set system syslog server <server-id> protocol <protocol>` | `nv set service syslog <vrf> server <server-id> protocol <protocol>`|
 | `nv show system`| `build` and `product-release` fields removed from output. |
 | `nv show system version`| Updated and new fields in output.|
+| `nv show --output native`| `nv show --output raw`|
 
 {{< /expand >}}
   - {{< expand "Removed NVUE Commands" >}}

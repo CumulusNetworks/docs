@@ -956,7 +956,7 @@ cumulus@leaf01:~$ nv set nve vxlan flooding enable off
 cumulus@leaf01:~$ nv config apply
 ```
 
-To reenable BUM flooding, run the following commands. Enabling BUM flooding requires head-end replication.
+To reenable BUM flooding, run the following commands. Enabling BUM flooding requires head-end replication and, or a configured multicast group (`nv set nve vxlan flooding multicast-group <ip-address>`).
 
 ```
 cumulus@leaf01:~$ nv set nve vxlan flooding enable on

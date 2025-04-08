@@ -24,7 +24,7 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 - {{<link url="802.1X-Interfaces/#ignore-reauthorization-timeout" text="802.1 option to keep the port in the current state when the RADIUS server is unreachable">}}
 - {{<link url="Monitoring-System-Hardware/#nvue-commands" text="Updated system health command">}}
 - {{<link url="DHCP-Servers/#multiple-static-ip-address-assignments" text="Support two DHCP static IP address assignments per port for a single host">}}
-- {{<link url="Syslog" text="syslog log filters">}}
+- {{<link url="Syslog/#configure-filters" text="syslog log filters">}}
 - {{<link title="Erase all Data from the Switch" text="Erase all data from the switch">}} (Beta)
 - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#amber-phy-health-management" text="Show SNR information for transceivers">}}
 - {{<link url="In-Service-System-Upgrade-ISSU/#maintenance-mode" text="New maintenance mode commands">}}
@@ -44,7 +44,7 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
   - {{<link url="802.1X-Interfaces/#configure-8021x-interfaces" text="Commands to set the NAS IP address and NAS identifier for 802.1X">}}
   - {{<link url="System-Power/#power-cycle" text="Command to power cycle the switch">}}
   - {{<link url="SSH-for-Remote-Access/#certificate-based-authentication" text="SSH certificate-based authentication">}}
-  - {{<link url="NVUE-CLI/#replace-and-patch-a-pending-configuration" text="Replace and patch against a plain text file of `nv set` and `nv unset` commands">}}
+  - {{<link url="NVUE-CLI/#replace-and-patch-a-pending-configuration" text="Replace and patch against a plain text file of nv set and nv unset commands">}}
   - Additional FRR filters
   - {{< expand "Changed NVUE Commands" >}}
 | Cumulus Linux 5.13 | Cumulus Linux 12 and Earlier |
@@ -79,12 +79,6 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 
 ```
 nv show maintenance unit all-protocols
-nv show system docker
-nv show system docker container
-nv show system docker container stats
-nv show system docker container <container-id-name> stats
-nv show system docker engine
-nv show system docker image
 nv show system gnmi-server
 nv show system gnmi-server listening-address
 nv show system gnmi-server listening-address <listening-address-id>
@@ -122,7 +116,6 @@ nv set system aaa radius require-message-authenticator
 nv set system aaa radius server <server-id> vrf <vrf-id>
 nv set system aaa user <user> ssh cert-auth state
 nv set system aaa user <user> ssh cert-auth principals <principal>
-nv set system docker vrf <vrf-name>
 nv set system dot1x radius nas-identifier
 nv set system dot1x radius nas-ip-address
 nv set system dot1x reauth-timeout-ignore
@@ -178,7 +171,6 @@ nv unset system aaa user <user> ssh cert-auth state
 nv unset system aaa user <user> ssh cert-auth principals
 nv unset system aaa radius require-message-authenticator
 nv unset system aaa radius server <server-id> vrf
-nv unset system docker vrf
 nv unset system dot1x radius nas-identifier
 nv unset system dot1x radius nas-ip-address
 nv unset system dot1x reauth-timeout-ignore
@@ -238,11 +230,6 @@ nv action generate file-hash sha256 <filename>
 nv action generate file-hash sha512 <filename>
 nv action list system file-path <path>
 nv action power-cycle system
-nv action pull system docker image <image-id>
-nv action remove system docker image <image-id>
-nv action remove system docker container <container-id>
-nv action start system docker container <container-name> image <image-id>
-nv action stop system docker container <container-name>
 ```
 
 {{< /tab >}}

@@ -1819,7 +1819,6 @@ address-family
   ipv4-unicast                                                                                   
     enable                                                on                                     
     route-reflector-client                                off                                    
-    route-server-client                                   off                                    
     soft-reconfiguration                                  off                                    
     nexthop-setting                                       auto                                   
     add-path-tx                                           off                                    
@@ -1876,7 +1875,6 @@ cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family
 ipv4-unicast                                     
   enable                                  on     
   route-reflector-client                  off    
-  route-server-client                     off    
   soft-reconfiguration                    off    
   nexthop-setting                         auto   
   add-path-tx                             off    
@@ -3971,7 +3969,6 @@ address-family
   ipv4-unicast                                                                     
     enable                                  on                                     
     route-reflector-client                  off                                    
-    route-server-client                     off                                    
     soft-reconfiguration                    off                                    
     nexthop-setting                         auto                                   
     add-path-tx                             off                                    
@@ -4013,7 +4010,6 @@ cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-famil
 ipv4-unicast                                     
   enable                                  on     
   route-reflector-client                  off    
-  route-server-client                     off    
   soft-reconfiguration                    off    
   nexthop-setting                         auto   
   add-path-tx                             off    

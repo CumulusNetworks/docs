@@ -118,7 +118,7 @@ cumulus@switch:~$ nv set nve vxlan encapsulation dscp 16
 
 Turns VXLAN flooding `on` or `off`.
 
-Enabling VXLAN flooding requires head-end replication. Make sure to set head-end replication on with the `nv set nve vxlan flooding head-end-replication evpn` command when you enable VXLAN flooding.
+Enabling VXLAN flooding requires head-end replication and, or a configured multicast group. Make sure to set head-end replication on with the `nv set nve vxlan flooding head-end-replication evpn` command and, or a configured multicast group with the `nv set nve vxlan flooding multicast-group <ip-address>` command when you enable VXLAN flooding.
 
 ### Version History
 

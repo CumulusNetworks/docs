@@ -9,9 +9,16 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 
 ## April 2025
 <!-- Air:WhatsNew -->
+### 82.2025.0410-011
+- Added capability to update multiple selected nodes.
+- Fix for missing data in node properties
+- Fixed an issue with simulations getting prematurely expired and cleaned up
+- Improved infrastructure stability when running large-scale simulations
+- Fixed an issue where users could not receive a prompt from the console in their sim.
+<!-- Air:WhatsNew -->
+
 ### 82.2025.0403-011
 - Added ability to view link details by selecting a link
-<!-- Air:WhatsNew -->
 
 ## March 2025
 ### 82.2025.0325-011

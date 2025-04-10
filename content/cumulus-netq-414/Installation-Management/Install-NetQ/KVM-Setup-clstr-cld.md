@@ -17,7 +17,7 @@ Follow these steps to set up and configure your VM on a cluster of servers in a 
 
 3. Download the NetQ image.
 
-    {{<netq-install/kvm-platform-image deployment="cloud" version="4.13">}}
+    {{<netq-install/kvm-platform-image deployment="cloud" version="4.14">}}
 
 4. Set up and configure your VM.
 
@@ -53,7 +53,7 @@ Make a note of the private IP address you assign to the worker node. You need it
 
 13. Install and activate the NetQ software using the CLI:
 
-{{<netq-install/install-with-cli version="4.13" deployment="cloud-cluster-ha">}}
+{{<netq-install/install-with-cli version="4.14" deployment="cloud-cluster-ha">}}
 
 After NetQ is installed, you can {{<link title="Access the NetQ UI" text="log in to NetQ">}} from your browser.
 

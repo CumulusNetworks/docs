@@ -15,10 +15,6 @@ NetQ 4.14.0 includes the following new features:
 - Expanded support for hostname filtering: NetQ now supports partial-word match and will suggest results for all hostnames that match the filter query. This feature is also supported when you filter using regular expressions.
 - Security, performance, and usability improvements
 
-The following features have been removed or deprecated:
-
-- Deprecated support for administrative and operational state mismatch checks that are run as part of interface validations. If you are running an older version of NetQ, you may still see errors related to these checks in the interface validation results. They can be safely ignored.
-
 <!-- You can now name a threshold-crossing rule {{<link title="add/#netq-add-tca" text="using the command line">}}. Miriam to confirm-->
 
 ## Upgrade Paths

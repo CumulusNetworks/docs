@@ -9,7 +9,7 @@ Installing the NetQ CLI on your NetQ VMs, switches, or hosts gives you access to
 
 After installing the NetQ software and agent on each switch you want to monitor, you can also install the NetQ CLI on switches running:
 
-- Cumulus Linux 5.9.2 or later (Spectrum switches)
+- Cumulus Linux 5.12.1, 5.11.1, or 5.9.2
 - Ubuntu 22.04
 
 {{<notice note>}}
@@ -166,7 +166,7 @@ deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest
 ```
 
 {{<notice tip>}}
-You can specify a NetQ CLI version in the repository configuration. The following example shows the repository configuration to retrieve NetQ CLI v4.13: <pre>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-4.13</pre>
+You can specify a NetQ CLI version in the repository configuration. The following example shows the repository configuration to retrieve NetQ CLI v4.14: <pre>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-4.14</pre>
 {{</notice>}}
 
 

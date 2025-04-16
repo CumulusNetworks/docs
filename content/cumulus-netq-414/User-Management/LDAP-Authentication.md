@@ -68,7 +68,7 @@ You can configure one LDAP server per bind DN (distinguished name). After you co
 
 To create an LDAP configuration:
 
-1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18"/> **Menu** and select **Management**.
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" alt="" width="18" height="18"/> **Menu** and select **Management**.
 
 2. Locate the LDAP Server Info card, and click **Configure LDAP**.
 
@@ -177,7 +177,7 @@ LDAP user passwords are not stored in the NetQ database and are always authentic
 
 You can remove LDAP users in the same manner as local users.
 
-1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18"/> **Menu** and select **Management**.
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" alt="" width="18" height="18"/> **Menu** and select **Management**.
 
 2. Locate the User Accounts card, and click **Manage**.
 

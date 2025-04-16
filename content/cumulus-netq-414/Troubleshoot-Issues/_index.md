@@ -29,8 +29,8 @@ The `netq show status verbose` command shows the status of NetQ components after
 cumulus@netq:~$ netq show status verbose
 NetQ Live State: Active
 Installation Status: FINISHED
-Version: 4.13.0
-Installer Version: 4.13.0
+Version: 4.14.0
+Installer Version: 4.14.0
 Installation Type: Standalone
 Activation Key: EhVuZXRxLWasdW50LWdhdGV3YXkYsagDIixkWUNmVmhVV2dWelVUOVF3bXozSk8vb2lSNGFCaE1FR2FVU2dHK1k3RzJVPQ==
 Master SSH Public Key: c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCfdIVVJHVmZvckNLMHRJL0FrQnd1N2FtUGxObW9ERHg2cHNHaU1EQkM0WHdud1lmSlNleUpmdTUvaDFKQ2NuRXpOVnVWRjUgcm9vdEBhbmlscmVzdG9yZQ==
@@ -130,17 +130,17 @@ If an upgrade or installation process stalls or fails, run the {{<link title="bo
 
 ## Installation and Upgrade Hook Scripts
 
-NVIDIA might provide hook scripts to patch issues encountered during a NetQ installation or upgrade. When you run the `netq install` or `netq upgrade` command, NetQ checks for specific hook script filenames in the `/usr/bin` directory. The expected filenames for NetQ 4.13.0 are:
+NVIDIA might provide hook scripts to patch issues encountered during a NetQ installation or upgrade. When you run the `netq install` or `netq upgrade` command, NetQ checks for specific hook script filenames in the `/usr/bin` directory. The expected filenames for NetQ 4.14.0 are:
 
-- Pre-install script: `/usr/bin/pre_install_4.13.0.sh`
-- Post-install script: `/usr/bin/post_install_4.13.0.sh`
-- Pre-upgrade script: `/usr/bin/pre_upgrade_4.13.0.sh`
-- Post-upgrade script: `/usr/bin/post_upgrade_4.13.0.sh`
+- Pre-install script: `/usr/bin/pre_install_4.14.0.sh`
+- Post-install script: `/usr/bin/post_install_4.14.0.sh`
+- Pre-upgrade script: `/usr/bin/pre_upgrade_4.14.0.sh`
+- Post-upgrade script: `/usr/bin/post_upgrade_4.14.0.sh`
 
 After placing the script in the `/usr/bin` directory, set executable permissions with the `chmod +x /usr/bin/<filename>` command:
 
 ```
-cumulus@netq-server:~$ chmod +x /usr/bin/pre_install_4.13.0.sh
+cumulus@netq-server:~$ chmod +x /usr/bin/pre_install_4.14.0.sh
 ```
 
 After copying the script to the expected path and setting it to executable, the script will run during the next installation or upgrade attempt.

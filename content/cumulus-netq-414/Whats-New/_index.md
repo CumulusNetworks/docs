@@ -33,7 +33,7 @@ When you upgrade from NetQ v4.14.0, any pre-existing validation data will be los
 
 The NetQ 4.14 server is compatible with NetQ agents 4.14 and 4.13. You can install NetQ agents on switches and servers running:
 
-- Cumulus Linux 5.9.2 or later
+- Cumulus Linux 5.12.1, 5.11.1, or 5.9.2
 - Ubuntu 22.04
 
 NVIDIA recommends upgrading to the latest agent version.

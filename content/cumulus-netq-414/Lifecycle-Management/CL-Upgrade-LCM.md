@@ -65,7 +65,7 @@ If the NetQ Agent is already installed on the switches you'd like to upgrade, fo
 
 {{<tab "NetQ UI" >}}
 
-1. Expand the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18">}} **Menu**, then select **Manage switches**. 
+1. Expand the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" alt="" width="18" height="18">}} **Menu**, then select **Manage switches**. 
 
 2. From the **Switch management** tab, locate the Switches card and click **Manage**.
 
@@ -77,7 +77,7 @@ If the NetQ Agent is already installed on the switches you'd like to upgrade, fo
 
     {{<figure src="/images/netq/upgrade-switches-450.png" alt="screen displaying 2 switches selected for upgrading" width="550">}}
 
-If you accidentally included a switch that you do *not* want to upgrade, hover over the switch information card and click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18">}} **Delete** to remove it from the upgrade.
+If you accidentally included a switch that you do *not* want to upgrade, hover over the switch information card and click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" alt="" height="18" width="18">}} **Delete** to remove it from the upgrade.
    
 5. Click **Next**.
 
@@ -137,7 +137,7 @@ If one or more of the pre-checks fail, resolve the related issue and start the u
 
 ### Analyze Results
 
-After starting the upgrade you can monitor the progress in the NetQ UI. Successful upgrades are indicated by a green check {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="16" width="18">}}. Failed upgrades display error messages indicating the cause of failure.
+After starting the upgrade you can monitor the progress in the NetQ UI. Successful upgrades are indicated by a green check {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" alt="" height="16" width="18">}}. Failed upgrades display error messages indicating the cause of failure.
 
  - To view the progress of current upgrade jobs and the history of previous upgrade jobs using the CLI, run `netq lcm show upgrade-jobs cl-image`.
  - To see details of a particular upgrade job, run `netq lcm show status job-ID`.

@@ -23,7 +23,7 @@ You cannot delete the default profile.
 
 {{<tab "NetQ UI">}}
 
-1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu** and select **Manage switches**.
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" alt="" height="18" width="18"/> **Menu** and select **Manage switches**.
 
 2. On the Access Profiles card, select **Add profile**.
 
@@ -133,11 +133,11 @@ When prompted, hit the enter/return key.
 
 {{<tab "NetQ UI" >}}
 
-1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu** and select **Manage switches**.
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" alt="" height="18" width="18"/> **Menu** and select **Manage switches**.
 
 2. On the Access Profiles card, select **View profiles**.
 
-3. Select the the profile you'd like to edit. Then select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18">}} **Edit** above the table.
+3. Select the the profile you'd like to edit. Then select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" alt="" height="18" width="18">}} **Edit** above the table.
 
 4. Make your changes, then click **Update**.
 
@@ -191,7 +191,7 @@ You cannot delete a profile that is currently attached to a switch. You must att
 
 1. On the Access Profiles card, select **View profiles**.
 
-2. From the list of profiles, select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18">}} **Delete** in the profile's row. 
+2. From the list of profiles, select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" alt="" height="18" width="18">}} **Delete** in the profile's row. 
 
 {{<figure src="/images/netq/access-profile-del-490.png" alt="" width="700">}}
 
@@ -271,7 +271,7 @@ NetQ uses access profiles to store user authentications credentials. After creat
 
 2. The table displays a list of switches. The **Access type** column specifies whether the type of authentication is basic or SSH. The **Profile name** column displays the access profile that is assigned to the switch.
 
-Select the switches to which you'd like to assign access profiles, then select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/04-Login-Logout/login-key-1.svg" height="18" width="18">}} **Manage access profile** above the table: 
+Select the switches to which you'd like to assign access profiles, then select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/04-Login-Logout/login-key-1.svg" alt="" height="18" width="18">}} **Manage access profile** above the table: 
 
 {{<figure src="/images/netq/manage-access-profile-450.png" alt="" width="500" height="375">}}
 
@@ -323,7 +323,7 @@ Detaching a profile from a switch restores it to the default access profile, Net
 
 {{<figure src="/images/netq/detach-manage-access-450.png" alt="" width="500" height="270">}}
 
-3. To assign a different access profile to the switch, select it from the list. To detach the access profile, select <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" width="18" height="18"/> **Detach**.
+3. To assign a different access profile to the switch, select it from the list. To detach the access profile, select <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" alt="" width="18" height="18"/> **Detach**.
 
 {{<figure src="/images/netq/manage-access-profile-spine-450.png" alt="" width="500" height="450">}}
 

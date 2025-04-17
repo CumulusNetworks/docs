@@ -2156,18 +2156,6 @@ The following  25G switches support 1000BASE-T SFP modules:
 
 100G or faster switches do not support 1000BASE-T SFP modules.
 
-### NVIDIA SN2100 Switch and eth0 Link Speed
-
-After rebooting the NVIDIA SN2100 switch, eth0 always has a speed of 100MB per second. If you bring the interface down and then back up again, the interface negotiates 1000MB. This only occurs the first time the interface comes up.
-
-To work around this issue, add the following commands to the `/etc/rc.local` file to flap the interface automatically when the switch boots:
-
-```
-modprobe -r igb
-sleep 20
-modprobe igb
-```
-
 ### NVIDIA SN5600 Switch and Force Mode
 
 When you configure force mode on NVIDIA SN5600 switch ports 10 through 50, the Rx precoding setting must be the same between local and peer ports to get the optimal Signal-Integrity of the link.

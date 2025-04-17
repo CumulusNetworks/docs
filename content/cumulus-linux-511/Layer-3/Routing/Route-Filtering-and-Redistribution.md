@@ -494,6 +494,13 @@ cumulus@switch:~$ nv set vrf default router rib ipv4 fib-filter protocol bgp rou
 cumulus@switch:~$ nv config apply
 ```
 
+When you run the `nv unset vrf <vrf-id> router rib <address-family> fib-filter protocol <import-protocol-id> route-map <route-map-id>` command, NVUE does not remove the route-map; instead it returns an error message. To unapply a route map to specific protocol routes in the RIB, you must unset the fib filter protocol; for example:
+
+```
+cumulus@switch:~$ nv unset vrf default router rib ipv4 fib-filter protocol bgp
+cumulus@switch:~$ nv config apply
+```
+
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 

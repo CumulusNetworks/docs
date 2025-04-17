@@ -104,7 +104,7 @@ When you use BGP unnumbered, BGP learns the prefixes, calculates the routes and 
 - {{<link url="Bidirectional-Forwarding-Detection-BFD" text="Bidirectional forwarding detection">}} (BFD) and BGP
 - {{<exlink url="http://en.wikipedia.org/wiki/Border_Gateway_Protocol" text="Wikipedia entry for BGP">}} (includes list of useful RFCs)
 - {{<exlink url="http://docs.frrouting.org/en/latest/bgp.html" text="FRR BGP documentation">}}
-- {{<exlink url="http://tools.ietf.org/html/draft-lapukhov-bgp-routing-large-dc-04" text="IETF draft discussing BGP use within data centers">}}
+- {{<exlink url="https://www.rfc-editor.org/rfc/rfc7938.html" text="RFC 7938, Use of BGP for Routing in Large-Scale Data Centers">}}
 - {{<exlink url="https://tools.ietf.org/html/rfc1657" text="RFC 1657, Definitions of Managed Objects for the Fourth Version of the Border Gateway Protocol (BGP-4) using SMIv2">}}
 - {{<exlink url="https://tools.ietf.org/html/rfc1997" text="RFC 1997, BGP Communities Attribute">}}
 - {{<exlink url="https://tools.ietf.org/html/rfc2385" text="RFC 2385, Protection of BGP Sessions via the TCP MD5 Signature Option">}}

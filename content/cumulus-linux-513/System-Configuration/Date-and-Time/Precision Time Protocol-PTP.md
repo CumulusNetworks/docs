@@ -1069,7 +1069,7 @@ Unicast clients need a unicast master table for unicast negotiation; you must co
 
 To configure unicast globally:
 - Set the unicast table ID; a unique ID that identifies the unicast master table.
-- Set the unicast master address. You can set more than one unicast master address, which can be an IPv4, IPv6, or MAC address.
+- Set the unicast master address. You can set a maximum of four unicast master addresses, which can be IPv4, IPv6, or MAC addresses. NVUE shows an error if you try to set more than four unicast master addresses.
 - Optional: Set the unicast master query interval, which is the mean interval between requests for Announce messages. Specify this value as a power of two in seconds. You can specify a value between -3 and 4. The default value is -0 (2 power).
 {{< tabs "TabID668 ">}}
 {{< tab "NVUE Commands ">}}

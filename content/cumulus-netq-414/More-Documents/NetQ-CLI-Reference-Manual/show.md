@@ -1867,12 +1867,10 @@ netq [<hostname>] show inventory brief
 
 netq [<hostname>] show inventory asic
     [vendor <asic-vendor>| model <asic-model>| model-id <asic-model-id>]
-    [opta]
     [json]
 
 netq [<hostname>] show inventory board
     [vendor <board-vendor>|model <board-model>]
-    [opta]
     [json]
 
 netq [<hostname>] show inventory cpu

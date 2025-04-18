@@ -32,7 +32,7 @@ cumulus@switch:~$ nv set system telemetry adaptive-routing-stats export state en
 cumulus@switch:~$ nv config apply
 ```
 
-You can adjust the adaptive routing statistics sample interval (in seconds). You can specify a value between 1 and 86400. The default setting is 60 seconds.
+You can adjust the adaptive routing statistics sample interval (in seconds). You can specify a value between 1 and 86400. The default setting is 1 second.
 
 ```
 cumulus@switch:~$ nv set system telemetry adaptive-routing-stats sample-interval 40

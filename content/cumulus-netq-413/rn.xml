@@ -19,12 +19,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4360419</td>
-<td>When you upgrade to 4.13, any pre-existing PTP data will be lost.</td>
-<td>4.13.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4310939</td>
 <td>When a switch becomes rotten or is connected to a different NetQ server without decommissioning it first, the link health view dashboard displays outdated counter values. To work around this issue, wait for NetQ to update and display accurate counter values.</td>
 <td>4.13.0</td>
@@ -57,12 +51,6 @@
 <tr>
 <td>4248942</td>
 <td>When you assign a role to a switch, NetQ might take up to five minutes to reflect the new or updated role in the queue histogram fabric overview page.</td>
-<td>4.13.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4239133</td>
-<td>When you add or delete a filter as part of a validation check, NetQ might not apply the filters immediately. To work around this issue, refresh your browser.</td>
 <td>4.13.0</td>
 <td></td>
 </tr>

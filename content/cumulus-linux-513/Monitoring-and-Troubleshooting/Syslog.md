@@ -250,6 +250,15 @@ To show filtering information for a selector, run the `nv show system syslog sel
 
 ```
 cumulus@switch:~$ nv show system syslog selector SELECTOR2
+              operational  applied
+------------  -----------  -------
+facility      daemon       daemon 
+program-name  switchd      switchd
+severity      debug        debug
+
+filter
+=========
+No Data
 ```
 
 To show all filters for a specific selector, run the `nv show system syslog selector <selector-id> filter` command:

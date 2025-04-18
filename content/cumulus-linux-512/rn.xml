@@ -7,6 +7,55 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4370955</td>
+<td>After enabling, then disabling truncation on a SPAN session,  truncated packets are still received on the SPAN destination. To work around this issue, remove the SPAN session configuration, reboot the switch, then reconfigure the SPAN session without truncation.</td>
+<td>5.12.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4370954</td>
+<td>After enabling, then disabling truncation on a SPAN session,  truncated packets are still received on the SPAN destination. To work around this issue, remove the SPAN session configuration, reboot the switch, then reconfigure the SPAN session without truncation.</td>
+<td>5.12.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4352307</td>
+<td>After a factory reset, the files in the {{/etc/pam.d/}} directory might be incorrect, causing problems with password strength checking, TACACS+, RADIUS, and LDAP. To work around this issue, run the following command:
+cumulus@switch:~$ sudo /usr/sbin/pam-auth-update --force --package</td>
+<td>5.12.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4347300</td>
+<td>When all links go down or the switch reboots,  you see next hop group churn from Zebra to the SOO next hop group. This issue might cause some convergence degradation. </td>
+<td>5.12.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4341508</td>
+<td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4341502</td>
+<td>After you run the {{nv action upgrade system packages to latest}} command followed by the {{nv action reboot system}} command, {{nv show system reboot}} displays {{upgrade}} instead of one of the valid values {{cold}}, {{warm}},  or {{fast}}.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4341501</td>
+<td>When the username in a 802.1X session includes the equals (=) character, the ISSU warmboot fails. Make sure that = is not part of the 802.1X session name.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4340528</td>
+<td>After enabling, then disabling truncation on a SPAN session,  truncated packets are still received on the SPAN destination. To work around this issue, remove the SPAN session configuration, reboot the switch, then reconfigure the SPAN session without truncation.</td>
+<td>5.12.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4335287</td>
 <td>ERSPAN does not work when the ERSPAN destination IP address is reachable over SVIs and layer 2 bonds. To work around this issue, make the ERSPAN destination IP address reachable over layer 3 swps or bond interfaces.</td>
 <td>5.11.0-5.12.1</td>
@@ -27,6 +76,12 @@
 <tr>
 <td>4328029</td>
 <td>If you apply an NVUE snippet affecting the {{/etc/cumulus/datapath/traffic.conf}} file, the snippet might fail the consistency check, resulting in a failed snippet apply.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4320729</td>
+<td>When toggling the bridge binding flag on an SVI from ON to OFF, the SVI might not come operationally UP if it was DOWN previously from the bridge binding flag.</td>
 <td>5.11.0-5.12.1</td>
 <td></td>
 </tr>
@@ -52,6 +107,12 @@
 <td>4308857</td>
 <td>When you use {{tls_crlcheck}} in the {{/etc/nslcd.conf}} file, the optional {{nslcd}} service fails due to a missing library.</td>
 <td>5.9.2-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4298584</td>
+<td>The Spectrum-4 switch reports a {{Modules DataPath FSM fault}} in logs when the link fails at polling.</td>
+<td>5.10.1-5.12.1</td>
 <td></td>
 </tr>
 <tr>
@@ -93,6 +154,18 @@ cumulus@switch:~$ sudo systemctl start cumulus-upgrade-on-shutdown</td>
 <td></td>
 </tr>
 <tr>
+<td>4271264</td>
+<td>When a MAC address flaps between two different EVPN VTEPs, a Zebra core crash occurs.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4271232</td>
+<td>A Python version change removed the encoding argument parameter of the json loads function, which causes an exception.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4271215</td>
 <td>NVUE overwrites the MOTD file during NVUE configuration with no option to ignore it.
 </td>
@@ -100,14 +173,30 @@ cumulus@switch:~$ sudo systemctl start cumulus-upgrade-on-shutdown</td>
 <td></td>
 </tr>
 <tr>
-<td>4262480</td>
-<td>NVUE fails to apply numbered BGP large community lists (community lists with multiple rules). To work around this issue, use named large community lists.</td>
-<td>5.12.0-5.12.1</td>
+<td>4271213</td>
+<td>When IPv4 layer 3 switch ports and virtual interfaces flap, {{switchd}} might send an ICMP Reply message instead of an ARP request (although no ICMP request was sent). Multiple ICMP Replies might be sent to any of the neighbor IP addresses of that interface.</td>
+<td>5.9.2-5.12.1</td>
 <td></td>
 </tr>
 <tr>
-<td>4259744</td>
-<td>The {{nv config replace}} command fails with a 404 NOT FOUND error. To work around this issue, run the {{nv config detach}} command before trying another configuration change.</td>
+<td>4260017</td>
+<td>When you enable SNMP, Cumulus Linux enables and creates an {{agentx}} user called {{debian-snmp}} automatically for FRR. As a result, TACACS sends log messages similar to the following:
+&lt;&lt;sudo: nss_tacplus: TACACS+ server 10.23.1.0:49 read failed (-3) for user Debian-snmp: Success&gt;&gt;
+&lt;&lt;sudo: tac_author_read: reply timeout after 5 secs&gt;&gt;
+
+To work around this issue, manually add the {{debian-snmp}} user to the TACACS configuration {{exclude_users}} list so that TACACS ignores this user.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4259979</td>
+<td>After you reboot the switch, the ifplugd.service fails to start monitoring the interface.</td>
+<td>5.8.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4255639</td>
+<td>When all links go down or the switch reboots,  you see next hop group churn from Zebra to the SOO next hop group. This issue might cause some convergence degradation. </td>
 <td>5.12.0-5.12.1</td>
 <td></td>
 </tr>
@@ -115,6 +204,12 @@ cumulus@switch:~$ sudo systemctl start cumulus-upgrade-on-shutdown</td>
 <td>4249096</td>
 <td>Binary upgrade from Cumulus Linux 4.3.1 to 5.12.0 is not supported. To work around this issue, perform a binary upgrade from Cumulus Linux 4.3.1 to 5.9.0, then perform a binary upgrade from Cumulus Linux 5.9.0 to 5.12.0.</td>
 <td>5.12.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4246859</td>
+<td>The {{nv show service ntp &lt;vrf&gt;}} command displays the peers that are discovered together with the configured NTP servers instead of displaying only the NTP configuration. As a result, the "applied" and "operational" columns have different values, which causes confusion.</td>
+<td>5.11.0-5.12.1</td>
 <td></td>
 </tr>
 <tr>
@@ -150,6 +245,12 @@ cumulus@switch:~$ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "Dpkg::Optio
 PermissionError: Errno 13] Permission denied: '/tmp/python_err_log.txt'
 To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4144021</td>
+<td>Shutting down port 65 or 66 on the NVIDIA Spectrum-4 switch leaves the opposite port up when using MLNX SFP-T and RJ45 connections. Spectrum-4 switches do not support SFP-T modules on ports 65 and 66.</td>
+<td>5.10.0-5.12.1</td>
 <td></td>
 </tr>
 <tr>
@@ -212,6 +313,12 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <td></td>
 </tr>
 <tr>
+<td>4100164</td>
+<td>Low power Intel SATA controllers experience issues when using the {{mobile}} low power chipset LPM policy. This can cause the SSD to become read only.</td>
+<td>5.8.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4082210</td>
 <td>When you change the CPU resource limit with the {{nv set service control rsyslog resource-limit cpu &lt;value&gt;}} command, the {{rsyslog}} agent does not start. To work around this issue, increase the CPU resource limit, then restart the service manually.</td>
 <td>5.11.0-5.12.1</td>
@@ -221,6 +328,12 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <td>4077921</td>
 <td>You cannot use package upgrade to upgrade from Cumulus Linux 5.9.2 to Cumulus Linux 5.10.1. You must install the Cumulus Linux 5.10.1 image.</td>
 <td>5.10.1-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4049213</td>
+<td>When there are any routes points to singleton nexthops, there would be a ECMP created in the SDK. Once the usage of singleton nexthop from the route was removed, then the ECMP might stay in SDK till the time nexthop is present in kernel</td>
+<td>5.9.2-5.12.1</td>
 <td></td>
 </tr>
 <tr>
@@ -254,6 +367,12 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <td></td>
 </tr>
 <tr>
+<td>3980924</td>
+<td>When adding or removing routes in a virtual router with numerous configured routes, you might encounter incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
+<td>5.5.1-5.12.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3966312</td>
 <td>When connecting the SN5xxx switch to third party test equipment (such as IXIA) using copper cables at 100GbE, 200GbE, 400GbE, or 800GbE, links do not come up.</td>
 <td>5.10.0-5.12.1</td>
@@ -265,12 +384,6 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 rsyslogd: create UDP socket bound to device failed: No such device [v8.2302.0]
 rsyslogd: No UDP socket could successfully be initialized, some functionality may be disabled.  [v8.2302.0]
 The logs occur because the {{rsyslog}} service starts before the networking service creates the configured VRF for syslog export. There is no functional impact with this issue.</td>
-<td>5.9.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3882143</td>
-<td>The {{nv show platform environment voltage}} command output reports a failed state for PSU-1-12V-RAIL-OUT State. This issue is due to incorrect minimum and maximum thresholds and is cosmetic. The recorded voltage is reported in the {{Actual}} column of the {{nv show platform environment voltage}} command output.</td>
 <td>5.9.0-5.12.1</td>
 <td></td>
 </tr>
@@ -716,6 +829,55 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4370955</td>
+<td>After enabling, then disabling truncation on a SPAN session,  truncated packets are still received on the SPAN destination. To work around this issue, remove the SPAN session configuration, reboot the switch, then reconfigure the SPAN session without truncation.</td>
+<td>5.12.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4370954</td>
+<td>After enabling, then disabling truncation on a SPAN session,  truncated packets are still received on the SPAN destination. To work around this issue, remove the SPAN session configuration, reboot the switch, then reconfigure the SPAN session without truncation.</td>
+<td>5.12.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4352307</td>
+<td>After a factory reset, the files in the {{/etc/pam.d/}} directory might be incorrect, causing problems with password strength checking, TACACS+, RADIUS, and LDAP. To work around this issue, run the following command:
+cumulus@switch:~$ sudo /usr/sbin/pam-auth-update --force --package</td>
+<td>5.12.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4347300</td>
+<td>When all links go down or the switch reboots,  you see next hop group churn from Zebra to the SOO next hop group. This issue might cause some convergence degradation. </td>
+<td>5.12.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4341508</td>
+<td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4341502</td>
+<td>After you run the {{nv action upgrade system packages to latest}} command followed by the {{nv action reboot system}} command, {{nv show system reboot}} displays {{upgrade}} instead of one of the valid values {{cold}}, {{warm}},  or {{fast}}.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4341501</td>
+<td>When the username in a 802.1X session includes the equals (=) character, the ISSU warmboot fails. Make sure that = is not part of the 802.1X session name.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4340528</td>
+<td>After enabling, then disabling truncation on a SPAN session,  truncated packets are still received on the SPAN destination. To work around this issue, remove the SPAN session configuration, reboot the switch, then reconfigure the SPAN session without truncation.</td>
+<td>5.12.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4335287</td>
 <td>ERSPAN does not work when the ERSPAN destination IP address is reachable over SVIs and layer 2 bonds. To work around this issue, make the ERSPAN destination IP address reachable over layer 3 swps or bond interfaces.</td>
 <td>5.11.0-5.12.1</td>
@@ -736,6 +898,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <tr>
 <td>4328029</td>
 <td>If you apply an NVUE snippet affecting the {{/etc/cumulus/datapath/traffic.conf}} file, the snippet might fail the consistency check, resulting in a failed snippet apply.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4320729</td>
+<td>When toggling the bridge binding flag on an SVI from ON to OFF, the SVI might not come operationally UP if it was DOWN previously from the bridge binding flag.</td>
 <td>5.11.0-5.12.1</td>
 <td></td>
 </tr>
@@ -820,6 +988,12 @@ cumulus@switch:~$ sudo systemctl start cumulus-upgrade-on-shutdown</td>
 <td></td>
 </tr>
 <tr>
+<td>4271264</td>
+<td>When a MAC address flaps between two different EVPN VTEPs, a Zebra core crash occurs.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4271232</td>
 <td>A Python version change removed the encoding argument parameter of the json loads function, which causes an exception.</td>
 <td>5.11.0-5.12.1</td>
@@ -839,12 +1013,6 @@ cumulus@switch:~$ sudo systemctl start cumulus-upgrade-on-shutdown</td>
 <td></td>
 </tr>
 <tr>
-<td>4262480</td>
-<td>NVUE fails to apply numbered BGP large community lists (community lists with multiple rules). To work around this issue, use named large community lists.</td>
-<td>5.12.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4260017</td>
 <td>When you enable SNMP, Cumulus Linux enables and creates an {{agentx}} user called {{debian-snmp}} automatically for FRR. As a result, TACACS sends log messages similar to the following:
 &lt;&lt;sudo: nss_tacplus: TACACS+ server 10.23.1.0:49 read failed (-3) for user Debian-snmp: Success&gt;&gt;
@@ -855,20 +1023,14 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 <td></td>
 </tr>
 <tr>
-<td>4260011</td>
-<td>If all of the neighbors returned in the {{nv show vrf &lt;vrf&gt; router bgp neighbor}} command output have no {{address-family}} configuration, you see an internal error when the nested table in the  output is being rendered.</td>
-<td>5.10.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4259979</td>
 <td>After you reboot the switch, the ifplugd.service fails to start monitoring the interface.</td>
 <td>5.8.0-5.12.1</td>
 <td></td>
 </tr>
 <tr>
-<td>4259744</td>
-<td>The {{nv config replace}} command fails with a 404 NOT FOUND error. To work around this issue, run the {{nv config detach}} command before trying another configuration change.</td>
+<td>4255639</td>
+<td>When all links go down or the switch reboots,  you see next hop group churn from Zebra to the SOO next hop group. This issue might cause some convergence degradation. </td>
 <td>5.12.0-5.12.1</td>
 <td></td>
 </tr>
@@ -881,12 +1043,6 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 <tr>
 <td>4246859</td>
 <td>The {{nv show service ntp &lt;vrf&gt;}} command displays the peers that are discovered together with the configured NTP servers instead of displaying only the NTP configuration. As a result, the "applied" and "operational" columns have different values, which causes confusion.</td>
-<td>5.11.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4245852</td>
-<td>NVUE Rest API calls that are authenticated with TACACS on the switch append unnecessary database entries to the {{/run/tacacs_clent_map}} file, which increases the file size. Over time, this increases the TACACS login authentication time, resulting in delayed login authentication. To work around this issue, delete the {{tacacs_client_map}} file with the {{sudo rm rf /run/tacacs_client_map}} command.</td>
 <td>5.11.0-5.12.1</td>
 <td></td>
 </tr>
@@ -923,6 +1079,12 @@ cumulus@switch:~$ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "Dpkg::Optio
 PermissionError: Errno 13] Permission denied: '/tmp/python_err_log.txt'
 To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4144021</td>
+<td>Shutting down port 65 or 66 on the NVIDIA Spectrum-4 switch leaves the opposite port up when using MLNX SFP-T and RJ45 connections. Spectrum-4 switches do not support SFP-T modules on ports 65 and 66.</td>
+<td>5.10.0-5.12.1</td>
 <td></td>
 </tr>
 <tr>
@@ -979,12 +1141,6 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <td></td>
 </tr>
 <tr>
-<td>4101027</td>
-<td>After you add a VLAN to a bridge member port,  you might experience a few seconds of VXLAN traffic loss.</td>
-<td>5.7.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4100629</td>
 <td>NVUE show command outputs show LLDP neighbor changes only after the LLDP update frequency multiplied by the hold time.</td>
 <td>5.11.0-5.12.1</td>
@@ -1006,6 +1162,12 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <td>4077921</td>
 <td>You cannot use package upgrade to upgrade from Cumulus Linux 5.9.2 to Cumulus Linux 5.10.1. You must install the Cumulus Linux 5.10.1 image.</td>
 <td>5.10.1-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4049213</td>
+<td>When there are any routes points to singleton nexthops, there would be a ECMP created in the SDK. Once the usage of singleton nexthop from the route was removed, then the ECMP might stay in SDK till the time nexthop is present in kernel</td>
+<td>5.9.2-5.12.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1056,12 +1218,6 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 rsyslogd: create UDP socket bound to device failed: No such device [v8.2302.0]
 rsyslogd: No UDP socket could successfully be initialized, some functionality may be disabled.  [v8.2302.0]
 The logs occur because the {{rsyslog}} service starts before the networking service creates the configured VRF for syslog export. There is no functional impact with this issue.</td>
-<td>5.9.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3882143</td>
-<td>The {{nv show platform environment voltage}} command output reports a failed state for PSU-1-12V-RAIL-OUT State. This issue is due to incorrect minimum and maximum thresholds and is cosmetic. The recorded voltage is reported in the {{Actual}} column of the {{nv show platform environment voltage}} command output.</td>
 <td>5.9.0-5.12.1</td>
 <td></td>
 </tr>

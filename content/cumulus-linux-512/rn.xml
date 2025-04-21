@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4391413</td>
+<td>After the switch reboots or {{switchd.service}} restarts, NVUE applied ERSPAN sessions do not work if the ERSPAN destination IP address is reachable through an MLAG bond. To work around this issue, remove the ERSPAN configuration and reapply it using NVUE.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4370955</td>
 <td>After enabling, then disabling truncation on a SPAN session,  truncated packets are still received on the SPAN destination. To work around this issue, remove the SPAN session configuration, reboot the switch, then reconfigure the SPAN session without truncation.</td>
 <td>5.12.0-5.12.1</td>
@@ -16,6 +22,12 @@
 <td>4370954</td>
 <td>After enabling, then disabling truncation on a SPAN session,  truncated packets are still received on the SPAN destination. To work around this issue, remove the SPAN session configuration, reboot the switch, then reconfigure the SPAN session without truncation.</td>
 <td>5.12.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4360615</td>
+<td>The control plane trap group counters are not associated correctly with the right trap group.</td>
+<td>5.11.0-5.12.1</td>
 <td></td>
 </tr>
 <tr>
@@ -52,6 +64,12 @@ cumulus@switch:~$ sudo /usr/sbin/pam-auth-update --force --package</td>
 <tr>
 <td>4340528</td>
 <td>After enabling, then disabling truncation on a SPAN session,  truncated packets are still received on the SPAN destination. To work around this issue, remove the SPAN session configuration, reboot the switch, then reconfigure the SPAN session without truncation.</td>
+<td>5.12.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4337278</td>
+<td>In certain cases, statically configured VXLAN entries age out after a peerlink flap.</td>
 <td>5.12.0-5.12.1</td>
 <td></td>
 </tr>
@@ -176,6 +194,12 @@ cumulus@switch:~$ sudo systemctl start cumulus-upgrade-on-shutdown</td>
 <td>4271213</td>
 <td>When IPv4 layer 3 switch ports and virtual interfaces flap, {{switchd}} might send an ICMP Reply message instead of an ARP request (although no ICMP request was sent). Multiple ICMP Replies might be sent to any of the neighbor IP addresses of that interface.</td>
 <td>5.9.2-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4270240</td>
+<td>Statically configured VXLAN FDB entries do not age out.</td>
+<td>5.12.0-5.12.1</td>
 <td></td>
 </tr>
 <tr>
@@ -334,6 +358,12 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <td>4049213</td>
 <td>When there are any routes points to singleton nexthops, there would be a ECMP created in the SDK. Once the usage of singleton nexthop from the route was removed, then the ECMP might stay in SDK till the time nexthop is present in kernel</td>
 <td>5.9.2-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4048583</td>
+<td>If there are failures in MSTPD or a port is not updated in the database, the NVUE {{nv show bridge domain &lt;bridge-id&gt; stp}} command might not work and might produce errors even when STP has data for other working ports or VLANs. This is a display issue only and does not impact functionality.</td>
+<td>5.10.0-5.12.1</td>
 <td></td>
 </tr>
 <tr>
@@ -829,6 +859,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4391413</td>
+<td>After the switch reboots or {{switchd.service}} restarts, NVUE applied ERSPAN sessions do not work if the ERSPAN destination IP address is reachable through an MLAG bond. To work around this issue, remove the ERSPAN configuration and reapply it using NVUE.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4370955</td>
 <td>After enabling, then disabling truncation on a SPAN session,  truncated packets are still received on the SPAN destination. To work around this issue, remove the SPAN session configuration, reboot the switch, then reconfigure the SPAN session without truncation.</td>
 <td>5.12.0-5.12.1</td>
@@ -838,6 +874,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>4370954</td>
 <td>After enabling, then disabling truncation on a SPAN session,  truncated packets are still received on the SPAN destination. To work around this issue, remove the SPAN session configuration, reboot the switch, then reconfigure the SPAN session without truncation.</td>
 <td>5.12.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4360615</td>
+<td>The control plane trap group counters are not associated correctly with the right trap group.</td>
+<td>5.11.0-5.12.1</td>
 <td></td>
 </tr>
 <tr>
@@ -874,6 +916,12 @@ cumulus@switch:~$ sudo /usr/sbin/pam-auth-update --force --package</td>
 <tr>
 <td>4340528</td>
 <td>After enabling, then disabling truncation on a SPAN session,  truncated packets are still received on the SPAN destination. To work around this issue, remove the SPAN session configuration, reboot the switch, then reconfigure the SPAN session without truncation.</td>
+<td>5.12.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4337278</td>
+<td>In certain cases, statically configured VXLAN entries age out after a peerlink flap.</td>
 <td>5.12.0-5.12.1</td>
 <td></td>
 </tr>
@@ -1010,6 +1058,12 @@ cumulus@switch:~$ sudo systemctl start cumulus-upgrade-on-shutdown</td>
 <td>4271213</td>
 <td>When IPv4 layer 3 switch ports and virtual interfaces flap, {{switchd}} might send an ICMP Reply message instead of an ARP request (although no ICMP request was sent). Multiple ICMP Replies might be sent to any of the neighbor IP addresses of that interface.</td>
 <td>5.9.2-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4270240</td>
+<td>Statically configured VXLAN FDB entries do not age out.</td>
+<td>5.12.0-5.12.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1168,6 +1222,12 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <td>4049213</td>
 <td>When there are any routes points to singleton nexthops, there would be a ECMP created in the SDK. Once the usage of singleton nexthop from the route was removed, then the ECMP might stay in SDK till the time nexthop is present in kernel</td>
 <td>5.9.2-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4048583</td>
+<td>If there are failures in MSTPD or a port is not updated in the database, the NVUE {{nv show bridge domain &lt;bridge-id&gt; stp}} command might not work and might produce errors even when STP has data for other working ports or VLANs. This is a display issue only and does not impact functionality.</td>
+<td>5.10.0-5.12.1</td>
 <td></td>
 </tr>
 <tr>

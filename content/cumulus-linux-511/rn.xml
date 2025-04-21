@@ -7,6 +7,18 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4391413</td>
+<td>After the switch reboots or {{switchd.service}} restarts, NVUE applied ERSPAN sessions do not work if the ERSPAN destination IP address is reachable through an MLAG bond. To work around this issue, remove the ERSPAN configuration and reapply it using NVUE.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4360615</td>
+<td>The control plane trap group counters are not associated correctly with the right trap group.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4341508</td>
 <td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
 <td>5.11.0-5.12.1</td>
@@ -328,6 +340,12 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 <td>4049213</td>
 <td>When there are any routes points to singleton nexthops, there would be a ECMP created in the SDK. Once the usage of singleton nexthop from the route was removed, then the ECMP might stay in SDK till the time nexthop is present in kernel</td>
 <td>5.9.2-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4048583</td>
+<td>If there are failures in MSTPD or a port is not updated in the database, the NVUE {{nv show bridge domain &lt;bridge-id&gt; stp}} command might not work and might produce errors even when STP has data for other working ports or VLANs. This is a display issue only and does not impact functionality.</td>
+<td>5.10.0-5.12.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1015,6 +1033,18 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4391413</td>
+<td>After the switch reboots or {{switchd.service}} restarts, NVUE applied ERSPAN sessions do not work if the ERSPAN destination IP address is reachable through an MLAG bond. To work around this issue, remove the ERSPAN configuration and reapply it using NVUE.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4360615</td>
+<td>The control plane trap group counters are not associated correctly with the right trap group.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4352128</td>
 <td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
 <td>5.9.2-5.12.1</td>
@@ -1569,6 +1599,12 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 <td>4049213</td>
 <td>When there are any routes points to singleton nexthops, there would be a ECMP created in the SDK. Once the usage of singleton nexthop from the route was removed, then the ECMP might stay in SDK till the time nexthop is present in kernel</td>
 <td>5.9.2-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4048583</td>
+<td>If there are failures in MSTPD or a port is not updated in the database, the NVUE {{nv show bridge domain &lt;bridge-id&gt; stp}} command might not work and might produce errors even when STP has data for other working ports or VLANs. This is a display issue only and does not impact functionality.</td>
+<td>5.10.0-5.12.1</td>
 <td></td>
 </tr>
 <tr>

@@ -90,14 +90,24 @@ To show information about the version of Cumulus Linux running on the switch, ru
 
 ```
 cumulus@switch:~$ nv show system
-            operational          applied
------------  -------------------  -------
-hostname     leaf01                
-uptime       0:02:50                     
-timezone     Etc/UTC                     
-maintenance                              
-  mode       disabled                    
-  ports      enabled
+uptime             1 day, 0:00:39                                                 
+hostname           leaf01                                         leaf01   leaf01 
+product-name       Cumulus Linux                                                  
+platform           N/A                                                            
+system-memory      1.29 GB used / 171.84 MB free / 1.67 GB total                  
+swap-memory        0 Bytes used / 0 Bytes free / 0 Bytes total                    
+health-status      Not OK                                                         
+date-time          2025-04-18 10:57:01                                            
+status             N/A                                                            
+timezone           Etc/UTC                                                        
+version                                                                           
+  onie             N/A                                                            
+  kernel           6.1.0-cl-1-amd64                                               
+  base-os          Debian GNU/Linux 12.10                                         
+  product-release  5.13.0                                                         
+  image                                                                           
+    build-id       fac438cze6639cdd3                                              
+    build-date     Wed Apr 16 06:07:57 UTC 2025
 ```
 
 To show system memory information in bytes, run the `nv show system memory` command:
@@ -125,16 +135,19 @@ To show general information about the switch, run the `nv show platform` command
 
 ```
 cumulus@switch:~$ nv show platform
-              operational                            
-------------  ---------------------------------------
-system-mac    44:38:39:22:01:b1                      
-manufacturer  Accton                                 
-cpu           x86_64 QEMU Virtual CPU version 2.5+ x1
-memory        1751856 kB                             
-disk-size     n/a                                    
-port-layout   n/a                                    
-asic-model    n/a                                    
-system-uuid   a6bfbd6d-70ac-426f-b46d-3743e16e1f4b
+               operational 
+-------------  ---------------------------------------
+system-mac     44:38:39:22:01:b1                               
+manufacturer   Cumulus                                         
+product-name   VX                                              
+cpu            x86_64 QEMU Virtual CPU version 2.5+ x1         
+memory         1.67 GB                                         
+disk-size      n/a                                             
+port-layout    n/a                                             
+part-number    5.13.0                                          
+serial-number  44:38:39:22:01:7a                               
+asic-model     n/a                                             
+system-uuid    6de505b8-323c-42ab-b188-0ba5c666b668
 ```
 <!-- vale off -->
 ## Diagnostics Using a cl-support File

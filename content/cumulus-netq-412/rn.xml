@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4371014</td>
+<td>In the full-screen switch card, the interface charts display incorrect values for transmit (Tx) and receive (Rx) byte rates. The actual values are slightly higher than the displayed values.</td>
+<td>4.12.0-4.13.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4280023</td>
 <td>After backing up and restoring your NetQ data, any modifications to default suppression rules will be lost.</td>
 <td>4.12.0-4.13.0</td>

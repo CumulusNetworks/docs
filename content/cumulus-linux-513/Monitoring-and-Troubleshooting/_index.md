@@ -104,10 +104,6 @@ version
   onie             N/A                                                            
   kernel           6.1.0-cl-1-amd64                                               
   base-os          Debian GNU/Linux 12.10                                         
-  product-release  5.13.0                                                         
-  image                                                                           
-    build-id       fac438cze6639cdd3                                              
-    build-date     Wed Apr 16 06:07:57 UTC 2025
 ```
 
 To show system memory information in bytes, run the `nv show system memory` command:

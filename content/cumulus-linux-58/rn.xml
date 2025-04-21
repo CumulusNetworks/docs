@@ -49,12 +49,6 @@
 <td>5.11.0-5.12.1</td>
 </tr>
 <tr>
-<td>4101027</td>
-<td>After you add a VLAN to a bridge member port,  you might experience a few seconds of VXLAN traffic loss.</td>
-<td>5.7.0-5.10.1</td>
-<td>5.11.0-5.12.1</td>
-</tr>
-<tr>
 <td>4100164</td>
 <td>Low power Intel SATA controllers experience issues when using the {{mobile}} low power chipset LPM policy. This can cause the SSD to become read only.</td>
 <td>5.8.0-5.10.1</td>

@@ -317,6 +317,12 @@ interface_stats: [ERROR] interface_stats_collector.py:_parse_conf_file:201 — C
 <td></td>
 </tr>
 <tr>
+<td>4048583</td>
+<td>If there are failures in MSTPD or a port is not updated in the database, the NVUE {{nv show bridge domain &lt;bridge-id&gt; stp}} command might not work and might produce errors even when STP has data for other working ports or VLANs. This is a display issue only and does not impact functionality.</td>
+<td>5.10.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4047798</td>
 <td>Packet distribution based on ECMP hash is not working for VXLAN on top of rack switches where it is encapped. To work around this issue, enable lag hashing with gtp-teid to distribute VXLAN encapped packets across egress interfaces on the top of rack switches.</td>
 <td>5.10.0-5.12.1</td>
@@ -1208,6 +1214,12 @@ interface_stats: [ERROR] interface_stats_collector.py:_parse_conf_file:201 — C
 <td>4049213</td>
 <td>When there are any routes points to singleton nexthops, there would be a ECMP created in the SDK. Once the usage of singleton nexthop from the route was removed, then the ECMP might stay in SDK till the time nexthop is present in kernel</td>
 <td>5.9.2-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4048583</td>
+<td>If there are failures in MSTPD or a port is not updated in the database, the NVUE {{nv show bridge domain &lt;bridge-id&gt; stp}} command might not work and might produce errors even when STP has data for other working ports or VLANs. This is a display issue only and does not impact functionality.</td>
+<td>5.10.0-5.12.1</td>
 <td></td>
 </tr>
 <tr>

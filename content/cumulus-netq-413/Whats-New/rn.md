@@ -14,9 +14,11 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4371014"></a> [4371014](#4371014) <a name="4371014"></a> <br /> | In the full-screen switch card, the interface charts display incorrect values for transmit (Tx) and receive (Rx) byte rates. The actual values are slightly higher than the displayed values. | 4.12.0-4.13.0 | |
 | <a name="4360421"></a> [4360421](#4360421) <a name="4360421"></a> <br /> | When you back up your data from a prior NetQ release and restore it after installing NetQ 4.13.0, any switches that were in a rotten state are missing from the NetQ inventory after the upgrade. To work around this issue, decommission any rotten switches before you upgrade and reconnect the agents after the upgrade is complete. | 4.13.0 | |
 | <a name="4360420"></a> [4360420](#4360420) <a name="4360420"></a> <br /> | When you upgrade to 4.13, network snapshots taken prior to upgrading are not restored. | 4.13.0 | |
 | <a name="4310939"></a> [4310939](#4310939) <a name="4310939"></a> <br /> | When a switch becomes rotten or is connected to a different NetQ server without decommissioning it first, the link health view dashboard displays outdated counter values. To work around this issue, wait for NetQ to update and display accurate counter values. | 4.13.0 | |
+| <a name="4309191"></a> [4309191](#4309191) <a name="4309191"></a> <br /> | In cloud deployments, lifecycle management operations such as device discovery or switch decommissioning might time out and ultimately fail. To work around this issue, restart the LCM executor on the OPTA VM with <code>lcm_pod='kubectl get pod \| grep -m1 lcm \| awk ‘{print $1}’'; kubectl delete pod $lcm_pod</code>. | 4.13.0 | |
 | <a name="4298008"></a> [4298008](#4298008) <a name="4298008"></a> <br /> | When you upgrade from NetQ 4.11 to 4.13, any pre-existing validation data will be lost. | 4.13.0 | |
 | <a name="4280023"></a> [4280023](#4280023) <a name="4280023"></a> <br /> | After backing up and restoring your NetQ data, any modifications to default suppression rules will be lost. | 4.12.0-4.13.0 | |
 | <a name="4261327"></a> [4261327](#4261327) <a name="4261327"></a> <br /> | In a 5-node scale deployment, queue histogram data might take up to 5 minutes to load in the UI. | 4.13.0 | |

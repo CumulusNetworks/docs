@@ -173,6 +173,8 @@ Cumulus Linux provides two different ways to upgrade the switch with a new image
    cumulus@switch:~$ nv action fetch system image http://10.0.1.251/cumulus-linux-5.12.0-mlx-amd64.bin
    ```
 
+   The `nv action fetch system image <remote-url>` command copies the image to the `/var/images` directory on the switch. If you copy the image manually to the switch instead of using the `nv action fetch system image <remote-url>` command, make sure to copy the image to the `/var/images` directory.
+
 2. Install the image on the second partition:
 
    ```

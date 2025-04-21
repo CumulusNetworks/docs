@@ -189,7 +189,7 @@ Additional options are available for certain `nv show` commands. For example, yo
 | `--filter` | Filters show command output on column data. For example, the `nv show interface --filter mtu=1500` shows only the interfaces with MTU set to 1500. For more information, see {{<link url="#filter-nv-show-command-output" text="Filter nv show Command Output">}} below.|
 | `--hostname`| Shows system configuration for the switch with the specified hostname. For example, `nv show --hostname leaf01`.|
 | `--operational` | Shows the running configuration (the actual system state). For example, `nv show interface swp1 --operational` shows the running configuration for swp1. The running and applied configuration should be the same. If different, inspect the logs. |
-| `--output`        | Shows command output in table (`auto`), `json`, or `yaml` format. For example:<br>`nv show interface bond1 --output auto`<br>`nv show interface bond1 --output json`<br>`nv show interface bond1 --output yaml`|
+| `--output`        | Shows command output in table (`auto`), `json`, `yaml`, or `native` format. Use `native` format for {{<link url="FRRouting/#nvue-show-commands-and-vtysh-output" text="certain routing">}} `nv show` commands to see the output that vtysh provides. For example:<br>`nv show interface bond1 --output auto`<br>`nv show interface bond1 --output json`<br>`nv show interface bond1 --output yaml`<br>`nv show evpn multihoming esi --output native`<br>|
 | `--paginate`      | Paginates the output. For example, `nv show interface bond1 --paginate on`. |
 | `--pending`       | Shows the last applied configuration and any pending set or unset configuration that you have not yet applied. For example, `nv show interface bond1 --pending`.|
 | `--rev <revision>`| Shows a detached pending configuration. See the `nv config detach` configuration management command below. For example, `nv show --rev 1`. You can also show only applied or only operational information in the `nv show` output. For example, to show only the applied settings for swp1 configuration, run the `nv show interface swp1 --rev=applied` command. To show only the operational settings for swp1 configuration, run the `nv show interface swp1 --rev=operational` command. |
@@ -258,7 +258,7 @@ The NVUE action commands fetch and install image files, upgrade system packages,
 | `nv action enable`| Provides commands to enable {{<link url="In-Service-System-Upgrade-ISSU/#maintenance-mode" text="system maintenance mode">}} and {{<link url="Zero-Touch-Provisioning-ZTP" text="ZTP scripts">}}. |
 | `nv action export`| Exports a system configuration file.|
 | `nv action fetch`| Fetches {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="binary image files">}}, {{<link url="Adding-and-Updating-Packages/#manage-repository-keys" text="package files">}}, configuration files, and platform firmware. |
-| `nv action generate` | Generates {{<link url="Understanding-the-cl-support-Output-File/#manual-cl-support-file" text="cl-support files">}}.|
+| `nv action generate` | Generates {{<link url="Understanding-the-cl-support-Output-File/#manual-cl-support-file" text="cl-support files">}} and {{<link url="Understanding-the-cl-support-Output-File/#get-the-hash-for-a-file" text="hash files">}}.|
 | `nv action import` | Provides commands to {{<link url="NVUE-API/#import-a-certificate" text="import CA and entity certificates">}}. |
 | `nv action install` | Installs {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="system image files">}}. |
 | `nv action lookup`| Looks up the {{<link url="FRRouting/#look-up-the-route-for-a-destination" text="route in the routing table">}} for a specific destination. |
@@ -283,12 +283,20 @@ cumulus@switch:~$ nv list-commands
 nv show platform
 nv show platform inventory
 nv show platform inventory <inventory-id>
-nv show platform software
-nv show platform software installed
-nv show platform software installed <installed-id>
 nv show platform firmware
 nv show platform firmware <platform-component-id>
+nv show platform transceiver
+nv show platform transceiver brief
+nv show platform transceiver detail
+nv show platform transceiver <transceiver-id>
+nv show platform transceiver <transceiver-id> channel
+nv show platform transceiver <transceiver-id> channel <channel-id>
 nv show platform environment
+nv show platform environment fan
+nv show platform environment fan <fan-id>
+nv show platform environment psu
+nv show platform environment psu <psu-id>
+nv show platform environment led
 ...
 ```
 
@@ -518,6 +526,8 @@ cumulus@switch:~$ nv config diff applied startup
     system:
       wjh:
 ```
+
+When you run the `nv config diff` command, NVUE show only the new configuration. Add the `--verbose` option to see the previous configuration and the new configuration.
 
 ## Replace and Patch a Pending Configuration
 
@@ -976,14 +986,14 @@ Action succeeded
 ### Get the Hash for a File
 
 NVUE provides the following commands to calculate and generate a unique hash value (checksum) for a file using md5, sha1, sha224, ssa256, and sha512 algorithms. A hash file checksum is a unique string of characters generated by a cryptographic hash function to represent the contents of a file allowing you to verify the integrity of the file.
-- `nv action generate file-hash md5 <filename>`
-- `nv action generate file-hash sha1 <filename>`
-- `nv action generate file-hash sha224 <filename>`
-- `nv action generate file-hash sha256 <filename>`
-- `nv action generate file-hash sha512 <filename>`
+- `nv action generate system file-hash md5 <filename>`
+- `nv action generate system file-hash sha1 <filename>`
+- `nv action generate system file-hash sha224 <filename>`
+- `nv action generate system file-hash sha256 <filename>`
+- `nv action generate system file-hash sha512 <filename>`
 
 ```
-cumulus@switch:~$ nv action generate file-hash md5 /var/log/text.txt  
+cumulus@switch:~$ nv action generate system file-hash md5 /var/log/text.txt  
 Action executing ... 
 Generated Hash Checksum  
 5073306b0629c047d090e2c96b5eec4b /var/log/text.txt
@@ -992,7 +1002,7 @@ Action succeeded
 ```
 
 ```
-cumulus@switch:~$ nv action generate file-hash sha1 /var/log/text.txt  
+cumulus@switch:~$ nv action generate system file-hash sha1 /var/log/text.txt  
 Action executing ...  
 Generated Hash Checksum  
 c0965ec47c1557d671e36abb5c55ec13b8378e44  /var/log/text.txt
@@ -1001,7 +1011,7 @@ Action succeeded
 ```
 
 ```
-cumulus@switch:~$ nv action generate file-hash sha224  /var/log/text.txt  
+cumulus@switch:~$ nv action generate system file-hash sha224  /var/log/text.txt  
 Action executing ...  
 Generated Hash Checksum  
 c414b2b7eaa757162f41183c42a02cf329ab86719be9f8583195d9ab  /var/log/text.txt
@@ -1010,7 +1020,7 @@ Action succeeded
 ```
 
 ```
-cumulus@switch:~$ nv action generate file-hash sha256 /var/log/text.txt  
+cumulus@switch:~$ nv action generate system file-hash sha256 /var/log/text.txt  
 Action executing ...  
 Generated Hash Checksum  
 3fe4bf60ed8d1ce9ffca7f578a94cab88b907951c92e1f8605f59a2bb0a2ab8b  /var/log/text.txt  
@@ -1019,7 +1029,7 @@ Action succeeded
 ```
 
 ```
-cumulus@switch:~$ nv action generate file-hash sha512 /var/log/text.txt
+cumulus@switch:~$ nv action generate system file-hash sha512 /var/log/text.txt
 Action executing ...  
 Generated Hash Checksum  
 9420cdea5577569d60c986f0da39dc31be9d08a8945e42a4445c518e105cf4c3d93bc587b770bee4719836b92a65c7cb6efef283e74592f7cf3a0fc2cccc18bf  /var/log/text.txt  

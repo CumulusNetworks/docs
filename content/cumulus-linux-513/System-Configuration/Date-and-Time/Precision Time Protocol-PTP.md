@@ -1069,7 +1069,7 @@ Unicast clients need a unicast master table for unicast negotiation; you must co
 
 To configure unicast globally:
 - Set the unicast table ID; a unique ID that identifies the unicast master table.
-- Set the unicast master address. You can set more than one unicast master address, which can be an IPv4, IPv6, or MAC address.
+- Set the unicast master address. You can set a maximum of four unicast master addresses, which can be IPv4, IPv6, or MAC addresses. NVUE shows an error if you try to set more than four unicast master addresses.
 - Optional: Set the unicast master query interval, which is the mean interval between requests for Announce messages. Specify this value as a power of two in seconds. You can specify a value between -3 and 4. The default value is -0 (2 power).
 {{< tabs "TabID668 ">}}
 {{< tab "NVUE Commands ">}}
@@ -2136,12 +2136,13 @@ swp12  Ucast  PASSIVE  Initial State (WAIT)
 cumulus@switch:~$ nv list-commands service ptp
 nv show service ptp
 nv show service ptp <instance-id>
+nv show service ptp <instance-id> foreign-masters
+nv show service ptp <instance-id> counters
 nv show service ptp <instance-id> status
-nv show service ptp <instance-id> domain
-nv show service ptp <instance-id> priority1
-nv show service ptp <instance-id> priority2
-nv show service ptp <instance-id> ip-dscp
 nv show service ptp <instance-id> acceptable-master
+nv show service ptp <instance-id> acceptable-master <clock-id>
+nv show service ptp <instance-id> unicast-master
+nv show service ptp <instance-id> unicast-master <table-id>
 ...
 ```
 

@@ -2136,12 +2136,13 @@ swp12  Ucast  PASSIVE  Initial State (WAIT)
 cumulus@switch:~$ nv list-commands service ptp
 nv show service ptp
 nv show service ptp <instance-id>
+nv show service ptp <instance-id> foreign-masters
+nv show service ptp <instance-id> counters
 nv show service ptp <instance-id> status
-nv show service ptp <instance-id> domain
-nv show service ptp <instance-id> priority1
-nv show service ptp <instance-id> priority2
-nv show service ptp <instance-id> ip-dscp
 nv show service ptp <instance-id> acceptable-master
+nv show service ptp <instance-id> acceptable-master <clock-id>
+nv show service ptp <instance-id> unicast-master
+nv show service ptp <instance-id> unicast-master <table-id>
 ...
 ```
 

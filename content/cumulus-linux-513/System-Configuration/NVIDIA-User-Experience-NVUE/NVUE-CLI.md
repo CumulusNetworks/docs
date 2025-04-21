@@ -283,12 +283,20 @@ cumulus@switch:~$ nv list-commands
 nv show platform
 nv show platform inventory
 nv show platform inventory <inventory-id>
-nv show platform software
-nv show platform software installed
-nv show platform software installed <installed-id>
 nv show platform firmware
 nv show platform firmware <platform-component-id>
+nv show platform transceiver
+nv show platform transceiver brief
+nv show platform transceiver detail
+nv show platform transceiver <transceiver-id>
+nv show platform transceiver <transceiver-id> channel
+nv show platform transceiver <transceiver-id> channel <channel-id>
 nv show platform environment
+nv show platform environment fan
+nv show platform environment fan <fan-id>
+nv show platform environment psu
+nv show platform environment psu <psu-id>
+nv show platform environment led
 ...
 ```
 

@@ -7,8 +7,17 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4402969</td>
+<td>When you upgrade a cluster deployment from NetQ 4.13 to 4.14 using Base Command Manager (BCM), the operation might appear to fail with the error message {{Warning: Ping to admin app failed. 10.141.0.1 Traceback (most recent call last): File “/usr/bin/netq”, line 404, in &lt;module&gt; rx_reply(sock, sys.argv) File “/usr/bin/netq”, line 126, in rx_reply rx_data = sock.recv(4096) BlockingIOError: [Errno 11] Resource temporarily unavailable}}. You can ignore this message and wait for the upgrade to complete. To verify the actual NetQ version and upgrade status, run the {{netq show status}} command.
+
+
+</td>
+<td>4.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4328176</td>
-<td>When you install or upgrade the {{netq-agents}} and {netq-apps}} packages, the operation may fail with {{Failed to allocate directory watch: Too many open files}}. To work around this issue, temporarily increase the number of user instances by running {{sudo sysctl -w fs.inotify.max_user_instances=256}}. After you test the temporary fix, you can permanently increase the limit by editing the {{/etc/sysctl.conf}} file and adding the line {{fs.inotify.max_user_instances=256}}.
+<td>When you install or upgrade the {{netq-agents}} and {{netq-apps}} packages, the operation may fail with {{Failed to allocate directory watch: Too many open files}}. To work around this issue, temporarily increase the number of user instances by running {{sudo sysctl -w fs.inotify.max_user_instances=256}}. After you test the temporary fix, you can permanently increase the limit by editing the {{/etc/sysctl.conf}} file and adding the line {{fs.inotify.max_user_instances=256}}.
 
 </td>
 <td>4.14.0</td>

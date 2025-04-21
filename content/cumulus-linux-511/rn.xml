@@ -7,6 +7,36 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4391413</td>
+<td>After the switch reboots or {{switchd.service}} restarts, NVUE applied ERSPAN sessions do not work if the ERSPAN destination IP address is reachable through an MLAG bond. To work around this issue, remove the ERSPAN configuration and reapply it using NVUE.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4360615</td>
+<td>The control plane trap group counters are not associated correctly with the right trap group.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4341508</td>
+<td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4341502</td>
+<td>After you run the {{nv action upgrade system packages to latest}} command followed by the {{nv action reboot system}} command, {{nv show system reboot}} displays {{upgrade}} instead of one of the valid values {{cold}}, {{warm}},  or {{fast}}.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4341501</td>
+<td>When the username in a 802.1X session includes the equals (=) character, the ISSU warmboot fails. Make sure that = is not part of the 802.1X session name.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4335287</td>
 <td>ERSPAN does not work when the ERSPAN destination IP address is reachable over SVIs and layer 2 bonds. To work around this issue, make the ERSPAN destination IP address reachable over layer 3 swps or bond interfaces.</td>
 <td>5.11.0-5.12.1</td>
@@ -15,6 +45,12 @@
 <tr>
 <td>4328029</td>
 <td>If you apply an NVUE snippet affecting the {{/etc/cumulus/datapath/traffic.conf}} file, the snippet might fail the consistency check, resulting in a failed snippet apply.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4320729</td>
+<td>When toggling the bridge binding flag on an SVI from ON to OFF, the SVI might not come operationally UP if it was DOWN previously from the bridge binding flag.</td>
 <td>5.11.0-5.12.1</td>
 <td></td>
 </tr>
@@ -34,6 +70,12 @@
 <td>4298584</td>
 <td>The Spectrum-4 switch reports a {{Modules DataPath FSM fault}} in logs when the link fails at polling.</td>
 <td>5.10.1-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4271264</td>
+<td>When a MAC address flaps between two different EVPN VTEPs, a Zebra core crash occurs.</td>
+<td>5.11.0-5.12.1</td>
 <td></td>
 </tr>
 <tr>
@@ -72,12 +114,6 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 <td></td>
 </tr>
 <tr>
-<td>4260011</td>
-<td>If all of the neighbors returned in the {{nv show vrf &lt;vrf&gt; router bgp neighbor}} command output have no {{address-family}} configuration, you see an internal error when the nested table in the  output is being rendered.</td>
-<td>5.10.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4259979</td>
 <td>After you reboot the switch, the ifplugd.service fails to start monitoring the interface.</td>
 <td>5.8.0-5.12.1</td>
@@ -92,12 +128,6 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 <tr>
 <td>4246859</td>
 <td>The {{nv show service ntp &lt;vrf&gt;}} command displays the peers that are discovered together with the configured NTP servers instead of displaying only the NTP configuration. As a result, the "applied" and "operational" columns have different values, which causes confusion.</td>
-<td>5.11.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4245852</td>
-<td>NVUE Rest API calls that are authenticated with TACACS on the switch append unnecessary database entries to the {{/run/tacacs_clent_map}} file, which increases the file size. Over time, this increases the TACACS login authentication time, resulting in delayed login authentication. To work around this issue, delete the {{tacacs_client_map}} file with the {{sudo rm rf /run/tacacs_client_map}} command.</td>
 <td>5.11.0-5.12.1</td>
 <td></td>
 </tr>
@@ -164,13 +194,6 @@ cumulus@switch:~$ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "Dpkg::Optio
 <td>5.12.0-5.12.1</td>
 </tr>
 <tr>
-<td>4156409</td>
-<td>When you enable the BGP PIC next hop group per source option:&lt;ul&gt;&lt;li&gt;In a 2-CLOS or 3-CLOS configuration when all links between a pair of devices (leaf and spine  or spine and super spine) come up, there is traffic loss.&lt;/li&gt; 
-&lt;li&gt;In a 3-CLOS topology when the remote spine reboots, there is traffic loss when the switch is restarting.&lt;/li&gt;&lt;/ul&gt;</td>
-<td>5.11.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4155957</td>
 <td>Logs from the OTLP exporter process ({{nv-telemetry}}) grow uncontrolled and result in excessive disk space usage. You can remove the large files in the {{/var/log/nv-telemetry}} folder or modify them to reduce their size.</td>
 <td>5.11.0-5.11.1</td>
@@ -182,6 +205,12 @@ cumulus@switch:~$ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "Dpkg::Optio
 PermissionError: Errno 13] Permission denied: '/tmp/python_err_log.txt'
 To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4144021</td>
+<td>Shutting down port 65 or 66 on the NVIDIA Spectrum-4 switch leaves the opposite port up when using MLNX SFP-T and RJ45 connections. Spectrum-4 switches do not support SFP-T modules on ports 65 and 66.</td>
+<td>5.10.0-5.12.1</td>
 <td></td>
 </tr>
 <tr>
@@ -278,21 +307,9 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 <td>5.12.0-5.12.1</td>
 </tr>
 <tr>
-<td>4101027</td>
-<td>After you add a VLAN to a bridge member port,  you might experience a few seconds of VXLAN traffic loss.</td>
-<td>5.7.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4100629</td>
 <td>NVUE show command outputs show LLDP neighbor changes only after the LLDP update frequency multiplied by the hold time.</td>
 <td>5.11.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4100170</td>
-<td>The NVUE Service fails to start after an upgrade from Cumulus Linux 5.9 to Cumulus Linux 5.10 because of a corrupted database.</td>
-<td>5.10.0-5.12.1</td>
 <td></td>
 </tr>
 <tr>
@@ -318,6 +335,18 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 <td>When you perform a binary upgrade from Cumulus Linux 5.8 or earlier to 5.9.0 or later with a pre-staged {{startup.yaml}} file, the cumulus user password is reset to the default password because there is no default {{startup.yaml}} file present in 5.8.0 or earlier. To work around this issue, generate the {{startup.yaml}} file from the existing NVUE configuration. </td>
 <td>5.9.2-5.11.1</td>
 <td>5.12.0-5.12.1</td>
+</tr>
+<tr>
+<td>4049213</td>
+<td>When there are any routes points to singleton nexthops, there would be a ECMP created in the SDK. Once the usage of singleton nexthop from the route was removed, then the ECMP might stay in SDK till the time nexthop is present in kernel</td>
+<td>5.9.2-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4048583</td>
+<td>If there are failures in MSTPD or a port is not updated in the database, the NVUE {{nv show bridge domain &lt;bridge-id&gt; stp}} command might not work and might produce errors even when STP has data for other working ports or VLANs. This is a display issue only and does not impact functionality.</td>
+<td>5.10.0-5.12.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4047798</td>
@@ -367,12 +396,6 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 rsyslogd: create UDP socket bound to device failed: No such device [v8.2302.0]
 rsyslogd: No UDP socket could successfully be initialized, some functionality may be disabled.  [v8.2302.0]
 The logs occur because the {{rsyslog}} service starts before the networking service creates the configured VRF for syslog export. There is no functional impact with this issue.</td>
-<td>5.9.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3882143</td>
-<td>The {{nv show platform environment voltage}} command output reports a failed state for PSU-1-12V-RAIL-OUT State. This issue is due to incorrect minimum and maximum thresholds and is cosmetic. The recorded voltage is reported in the {{Actual}} column of the {{nv show platform environment voltage}} command output.</td>
 <td>5.9.0-5.12.1</td>
 <td></td>
 </tr>
@@ -817,7 +840,10 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>4309850</td>
-<td>The management interface on the NVIDIA SN2010 and SN2100 switch negotiates to 100 Mbps instead of 1 Gbps.</td>
+<td>On the NVIDIA SN2010 and SN2100 switches, the management interface (eth0) might negotiate 100M instead of 1G after you install, upgrade, or, reboot Cumulus Linux. To resolve this issue, force the speed to 1G:
+cumulus@switch:~$ nv set interface eth0 link speed 1G
+cumulus@switch:~$ nv set interface eth0 link duplex full
+cumulus@switch:~$ nv config apply</td>
 <td>5.11.0</td>
 </tr>
 <tr>
@@ -1007,9 +1033,39 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4391413</td>
+<td>After the switch reboots or {{switchd.service}} restarts, NVUE applied ERSPAN sessions do not work if the ERSPAN destination IP address is reachable through an MLAG bond. To work around this issue, remove the ERSPAN configuration and reapply it using NVUE.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4360615</td>
+<td>The control plane trap group counters are not associated correctly with the right trap group.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4352128</td>
 <td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
 <td>5.9.2-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4341508</td>
+<td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4341502</td>
+<td>After you run the {{nv action upgrade system packages to latest}} command followed by the {{nv action reboot system}} command, {{nv show system reboot}} displays {{upgrade}} instead of one of the valid values {{cold}}, {{warm}},  or {{fast}}.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4341501</td>
+<td>When the username in a 802.1X session includes the equals (=) character, the ISSU warmboot fails. Make sure that = is not part of the 802.1X session name.</td>
+<td>5.11.0-5.12.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1021,6 +1077,12 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <tr>
 <td>4328029</td>
 <td>If you apply an NVUE snippet affecting the {{/etc/cumulus/datapath/traffic.conf}} file, the snippet might fail the consistency check, resulting in a failed snippet apply.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4320729</td>
+<td>When toggling the bridge binding flag on an SVI from ON to OFF, the SVI might not come operationally UP if it was DOWN previously from the bridge binding flag.</td>
 <td>5.11.0-5.12.1</td>
 <td></td>
 </tr>
@@ -1044,7 +1106,10 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 </tr>
 <tr>
 <td>4309850</td>
-<td>The management interface on the NVIDIA SN2010 and SN2100 switch negotiates to 100 Mbps instead of 1 Gbps.</td>
+<td>On the NVIDIA SN2010 and SN2100 switches, the management interface (eth0) might negotiate 100M instead of 1G after you install, upgrade, or, reboot Cumulus Linux. To resolve this issue, force the speed to 1G:
+cumulus@switch:~$ nv set interface eth0 link speed 1G
+cumulus@switch:~$ nv set interface eth0 link duplex full
+cumulus@switch:~$ nv config apply</td>
 <td>5.11.0-5.12.1</td>
 <td></td>
 </tr>
@@ -1083,6 +1148,12 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <td>After a factory reset with the {{nv action reset system factory-default force}} command, RADIUS does not fully reset; the {{radius-cmd-acct}} package is not installed correctly and includes missing files. In addition, {{/etc/pam.d/common-auth}} is incorrect.</td>
 <td>5.11.0-5.11.1</td>
 <td>5.12.0-5.12.1</td>
+</tr>
+<tr>
+<td>4271264</td>
+<td>When a MAC address flaps between two different EVPN VTEPs, a Zebra core crash occurs.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4271232</td>
@@ -1191,12 +1262,6 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 <td>5.12.0-5.12.1</td>
 </tr>
 <tr>
-<td>4260011</td>
-<td>If all of the neighbors returned in the {{nv show vrf &lt;vrf&gt; router bgp neighbor}} command output have no {{address-family}} configuration, you see an internal error when the nested table in the  output is being rendered.</td>
-<td>5.10.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4259980</td>
 <td>After you reboot the switch, the ifplugd.service fails to start monitoring the interface.</td>
 <td>5.8.0-5.11.1</td>
@@ -1249,12 +1314,6 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 <td>NVUE Rest API calls that are authenticated with TACACS on the switch append unnecessary database entries to the {{/run/tacacs_clent_map}} file, which increases the file size. Over time, this increases the TACACS login authentication time, resulting in delayed login authentication. To work around this issue, delete the {{tacacs_client_map}} file with the {{sudo rm rf /run/tacacs_client_map}} command.</td>
 <td>5.11.0-5.11.1</td>
 <td>5.12.0-5.12.1</td>
-</tr>
-<tr>
-<td>4245852</td>
-<td>NVUE Rest API calls that are authenticated with TACACS on the switch append unnecessary database entries to the {{/run/tacacs_clent_map}} file, which increases the file size. Over time, this increases the TACACS login authentication time, resulting in delayed login authentication. To work around this issue, delete the {{tacacs_client_map}} file with the {{sudo rm rf /run/tacacs_client_map}} command.</td>
-<td>5.11.0-5.12.1</td>
-<td></td>
 </tr>
 <tr>
 <td>4245850</td>
@@ -1394,13 +1453,6 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <td>5.12.0-5.12.1</td>
 </tr>
 <tr>
-<td>4156409</td>
-<td>When you enable the BGP PIC next hop group per source option:&lt;ul&gt;&lt;li&gt;In a 2-CLOS or 3-CLOS configuration when all links between a pair of devices (leaf and spine  or spine and super spine) come up, there is traffic loss.&lt;/li&gt; 
-&lt;li&gt;In a 3-CLOS topology when the remote spine reboots, there is traffic loss when the switch is restarting.&lt;/li&gt;&lt;/ul&gt;</td>
-<td>5.11.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4155957</td>
 <td>Logs from the OTLP exporter process ({{nv-telemetry}}) grow uncontrolled and result in excessive disk space usage. You can remove the large files in the {{/var/log/nv-telemetry}} folder or modify them to reduce their size.</td>
 <td>5.11.0-5.11.1</td>
@@ -1412,6 +1464,12 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 PermissionError: Errno 13] Permission denied: '/tmp/python_err_log.txt'
 To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4144021</td>
+<td>Shutting down port 65 or 66 on the NVIDIA Spectrum-4 switch leaves the opposite port up when using MLNX SFP-T and RJ45 connections. Spectrum-4 switches do not support SFP-T modules on ports 65 and 66.</td>
+<td>5.10.0-5.12.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1508,21 +1566,9 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 <td>5.12.0-5.12.1</td>
 </tr>
 <tr>
-<td>4101027</td>
-<td>After you add a VLAN to a bridge member port,  you might experience a few seconds of VXLAN traffic loss.</td>
-<td>5.7.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4100629</td>
 <td>NVUE show command outputs show LLDP neighbor changes only after the LLDP update frequency multiplied by the hold time.</td>
 <td>5.11.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4100170</td>
-<td>The NVUE Service fails to start after an upgrade from Cumulus Linux 5.9 to Cumulus Linux 5.10 because of a corrupted database.</td>
-<td>5.10.0-5.12.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1548,6 +1594,18 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 <td>When you perform a binary upgrade from Cumulus Linux 5.8 or earlier to 5.9.0 or later with a pre-staged {{startup.yaml}} file, the cumulus user password is reset to the default password because there is no default {{startup.yaml}} file present in 5.8.0 or earlier. To work around this issue, generate the {{startup.yaml}} file from the existing NVUE configuration. </td>
 <td>5.9.2-5.11.1</td>
 <td>5.12.0-5.12.1</td>
+</tr>
+<tr>
+<td>4049213</td>
+<td>When there are any routes points to singleton nexthops, there would be a ECMP created in the SDK. Once the usage of singleton nexthop from the route was removed, then the ECMP might stay in SDK till the time nexthop is present in kernel</td>
+<td>5.9.2-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4048583</td>
+<td>If there are failures in MSTPD or a port is not updated in the database, the NVUE {{nv show bridge domain &lt;bridge-id&gt; stp}} command might not work and might produce errors even when STP has data for other working ports or VLANs. This is a display issue only and does not impact functionality.</td>
+<td>5.10.0-5.12.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4047798</td>
@@ -1597,12 +1655,6 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 rsyslogd: create UDP socket bound to device failed: No such device [v8.2302.0]
 rsyslogd: No UDP socket could successfully be initialized, some functionality may be disabled.  [v8.2302.0]
 The logs occur because the {{rsyslog}} service starts before the networking service creates the configured VRF for syslog export. There is no functional impact with this issue.</td>
-<td>5.9.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3882143</td>
-<td>The {{nv show platform environment voltage}} command output reports a failed state for PSU-1-12V-RAIL-OUT State. This issue is due to incorrect minimum and maximum thresholds and is cosmetic. The recorded voltage is reported in the {{Actual}} column of the {{nv show platform environment voltage}} command output.</td>
 <td>5.9.0-5.12.1</td>
 <td></td>
 </tr>

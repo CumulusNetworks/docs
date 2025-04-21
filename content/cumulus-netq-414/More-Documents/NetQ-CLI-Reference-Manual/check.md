@@ -469,7 +469,7 @@ tor-1             swp3              spine-1           BGP session with peer spin
 
 Verifies interface communication status for all nodes (leafs, spines, and hosts) or an interface between specific nodes in your network fabric. In particular, it looks for:
 
-- Administrative and operational state status
+- Administrative and operational state status (deprecated)
 - Link speed consistency
 - Consistency of auto-negotiation settings
 
@@ -518,55 +518,40 @@ None
 cumulus@switch:~$ netq check interfaces
 interfaces check result summary:
 
-Total nodes         : 17
-Checked nodes       : 17
-Failed nodes        : 2
-Rotten nodes        : 0
+Total nodes         : 1634
+Checked nodes       : 1627
+Failed nodes        : 0
+Rotten nodes        : 7
 Warning nodes       : 0
 Skipped nodes       : 0
 
 Additional summary:
-Checked Ports       : 484
-Failed Ports        : 6
+Checked Ports       : 7796
+Failed Ports        : 0
 
 
-Admin State Test   :  Passed.
-Oper State Test    :  Passed.
-Speed Test         :  Passed.
-Autoneg Test       :  0 warnings, 6 errors
-
-
-Autoneg Test details:
-Hostname          Interface                 Peer Hostname     Peer Interface            Message                             Reason                                        Last Changed
------------------ ------------------------- ----------------- ------------------------- ----------------------------------- --------------------------------------------- -------------------------
-leaf01            swp1                      server01          eth1                      Autoneg mismatch (off, on)          Autoneg mismatch (off, on)                    Mon Nov  4 17:53:18 2024 
-leaf01            swp2                      server02          eth1                      Autoneg mismatch (off, on)          Autoneg mismatch (off, on)                    Mon Nov  4 17:53:18 2024 
-leaf01            swp3                      server03          eth1                      Autoneg mismatch (off, on)          Autoneg mismatch (off, on)                    Mon Nov  4 17:53:18 2024 
-leaf02            swp1                      server01          eth2                      Autoneg mismatch (off, on)          Autoneg mismatch (off, on)                    Mon Oct 28 16:28:30 2024 
-leaf02            swp2                      server02          eth2                      Autoneg mismatch (off, on)          Autoneg mismatch (off, on)                    Mon Oct 28 16:28:30 2024 
-leaf02            swp3                      server03          eth2                      Autoneg mismatch (off, on)          Autoneg mismatch (off, on)                    Mon Oct 28 16:28:30 2024 
+Speed Test     :  Passed.
+Autoneg Test   :  Passed.
 ```
 
 ```
 cumulus@switch:~$ netq check interfaces summary
 interfaces check result summary:
 
-Total nodes         : 17
-Checked nodes       : 17
-Failed nodes        : 2
-Rotten nodes        : 0
+Total nodes         : 1634
+Checked nodes       : 1627
+Failed nodes        : 0
+Rotten nodes        : 7
 Warning nodes       : 0
 Skipped nodes       : 0
 
 Additional summary:
-Checked Ports       : 484
-Failed Ports        : 6
+Checked Ports       : 7796
+Failed Ports        : 0
 
 
-Admin State Test   :  Passed.
-Oper State Test    :  Passed.
-Speed Test         :  Passed.
-Autoneg Test       :  0 warnings, 6 errors
+Speed Test     :  Passed.
+Autoneg Test   :  Passed.
 ```
 This example checks for configuration mismatches and finds a link speed mismatch on server03. The link speed on swp49 is *40G* and the peer port swp50 shows as *unknown*.
 

@@ -70,8 +70,8 @@ The interface validation tests look for consistent configuration between two nod
 
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
-| 0 | Administrative state | Checks for consistency of administrative state on two sides of a physical interface |
-| 1 | Operational state | Checks for consistency of operational state on two sides of a physical interface |
+| 0 (deprecated) | Administrative state | Checks for consistency of administrative state on two sides of a physical interface |
+| 1 (deprecated) | Operational state | Checks for consistency of operational state on two sides of a physical interface |
 | 2 | Speed | Checks for consistency of the speed setting on two sides of a physical interface |
 | 3 | Auto-negotiation | Checks for consistency of the auto-negotiation setting on two sides of a physical interface |
 

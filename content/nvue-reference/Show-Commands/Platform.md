@@ -767,6 +767,10 @@ type              fan
 
 Shows the software installed on the switch.
 
+{{%notice note%}}
+Cumulus Linux 5.13 no longer provides this command; run `nv show system version packages` instead.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0

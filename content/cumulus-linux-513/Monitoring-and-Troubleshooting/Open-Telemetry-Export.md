@@ -521,6 +521,7 @@ The switch collects and exports the following interface and switch, buffer occup
 
 |  Name | Description |
 |------ | ----------- |
+| `nvswitch_interface_shared_buffer_port_pg_time_since_clear` | Time in milliseconds since buffer watermarks were last cleared. |
 | `nvswitch_interface_shared_buffer_port_pg_curr_occupancy` | Current buffer occupancy. |
 | `nvswitch_interface_shared_buffer_port_pg_watermark` | Maximum buffer occupancy. |
 | `nvswitch_interface_shared_buffer_port_pg_desc_curr_occupancy` | Current buffer occupancy for descriptors. |
@@ -534,6 +535,7 @@ The switch collects and exports the following interface and switch, buffer occup
 | `nvswitch_interface_shared_buffer_ingress_pool_watermark_recorded_max` | Highest maximum ingress pool buffer occupancy recorded since running sdk_stats. |
 | `nvswitch_interface_shared_buffer_ingress_pool_desc_watermark_recorded_max` | Highest maximum ingress pool buffer occupancy for descriptors recorded since running sdk_stats. |
 | `nvswitch_interface_shared_buffer_port_tc_curr_occupancy` | Current buffer occupancy for traffic class. |
+| `nvswitch_interface_shared_buffer_tc_time_since_clear` | Time in milliseconds since the buffer watermarks were last cleared.|
 | `nvswitch_interface_shared_buffer_port_tc_watermark` | Maximum buffer occupancy for traffic class. |
 | `nvswitch_interface_shared_buffer_port_tc_desc_curr_occupancy` | Current buffer occupancy for descriptors. |
 | `nvswitch_interface_shared_buffer_port_tc_desc_watermark` | Maximum buffer occupancy for descriptors. |
@@ -1066,12 +1068,11 @@ The switch collects and exports the following additional interface statistics wh
 
 |  Name | Description |
 |------ | ----------- |
-| `nvswitch_interface_time_since_last_clear` | Number of milliseconds from the last clear counters event. |
-| `nvswitch_interface_phy_received_bits` | Total amount of traffic (bits) received. |
-| `nvswitch_interface_phy_symbol_errors` | Error bits not corrected by the FEC correction algorithm or when FEC is not active. |
-| `nvswitch_interface_phy_effective_errors` | Number of errors after FEC is applied. |
-| `nvswitch_interface_phy_raw_errors` | Error bits identified on lane 0 through lane 7. When FEC is enabled, this induction corresponds to corrected errors. |
-| `nvswitch_interface_raw-ber` | raw_ber_coef_laneX*10^(raw_ber_magnitude) |
+| `nvswitch_interface_phy_stats_phy_received_bits` | Total amount of traffic (bits) received. |
+| `nvswitch_interface_phy_stats_phy_symbol_errors` | Error bits not corrected by the FEC correction algorithm or when FEC is not active. |
+| `nvswitch_interface_phy_stats_phy_effective_errors` | Number of errors after FEC is applied. |
+| `nvswitch_interface_phy_stats_phy_raw_errors` | Error bits identified on lane 0 through lane 7. When FEC is enabled, this induction corresponds to corrected errors. |
+| `nvswitch_interface_phy_stats_raw_ber` | raw_ber_coef_laneX*10^(raw_ber_magnitude) |
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -1222,7 +1223,7 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | `node_memory_AnonHugePages_bytes` | `/proc/meminfo` AnonHugePages bytes. |
 | `node_memory_AnonPages_bytes` | `/proc/meminfo` AnonPages bytes. |  
 | `node_memory_Bounce_bytes` | `/proc/meminfo` Bounce bytes. |  
-| `node_memory_Buffers_bytes`  `/proc/meminfo` Buffers bytes. | |  
+| `node_memory_Buffers_bytes` | `/proc/meminfo` Buffers bytes. |
 | `node_memory_Cached_bytes` | `/proc/meminfo` Cached bytes. |  
 | `node_memory_CommitLimit_bytes` | `/proc/meminfo` CommitLimit bytes. |  
 | `node_memory_Committed_AS_bytes` | `/proc/meminfo` Committed_AS bytes. |  

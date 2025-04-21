@@ -60,8 +60,10 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 | `nv set system syslog server <server-id>` | `nv set service syslog <vrf> server <server-id>`|
 | `nv set system syslog server <server-id> port <port>` | `nv set service syslog <vrf> server <server-id> port <port>`|
 | `nv set system syslog server <server-id> protocol <protocol>` | `nv set service syslog <vrf> server <server-id> protocol <protocol>`|
+| `nv show system` | `build` and `product-release` fields removed from output.|
 | `nv show system`| `build` and `product-release` fields removed from output. |
-| `nv show system version`| Updated and new fields in output.|
+| `nv show system version` | Output includes `base-os` and `product-release` fields.|
+| `nv show system version packages installed` | `nv show platform software`|
 | `nv show --output native`| `nv show --output raw`|
 
 {{< /expand >}}

@@ -162,7 +162,6 @@ nv show system version packages installed <package_name>
 {{< tab "nv set ">}}
 
 ```
-nv set interface <interface-id> bond mlag lacp-conflict
 nv set maintenance unit <unit-name>
 nv set maintenance unit <unit-name> mode
 nv set maintenance unit <unit-name> interfaces <value>
@@ -246,20 +245,24 @@ nv set system telemetry stats-group <stats-group-id> lldp sample-interval
 {{< tab "nv unset ">}}
 
 ```
-nv unset maintenance unit all-intefaces state
-nv unset maintenance unit all-protocols state
-nv unset maintenance unit system-protocols state
-nv unset service dhcp-server <vrf> static <host>> vendor-class
-nv unset system aaa user <user> ssh cert-auth state
-nv unset system aaa user <user> ssh cert-auth principals
+nv unset maintenance
+nv unset maintenance unit
+nv unset maintenance unit <unit-name>
+nv unset maintenance unit <unit-name> mode
+nv unset maintenance unit <unit-name> interfaces
+nv unset maintenance unit <unit-name> protocols
+nv unset service dhcp-server <vrf> static <host> vendor-class
+nv unset service dhcp-server6 <vrf> static <host> vendor-class
+nv unset system aaa user <user-id> ssh cert-auth
+nv unset system aaa user <user-id> ssh cert-auth principals
+nv unset system aaa user <user-id> ssh cert-auth principals <cert-auth-principal>
+nv unset system aaa user <user-id> ssh cert-auth state
 nv unset system aaa radius require-message-authenticator
 nv unset system aaa radius server <server-id> vrf
+nv unset system api mtls crl
 nv unset system dot1x radius nas-identifier
 nv unset system dot1x radius nas-ip-address
 nv unset system dot1x reauth-timeout-ignore
-nv unset system gnmi-server
-nv unset system gnmi-server listening-address
-nv unset system gnmi-server listening-address <listening-address-id>
 nv unset system gnmi-server mtls
 nv unset system gnmi-server mtls ca-certificate
 nv unset system gnmi-server mtls crl
@@ -277,28 +280,77 @@ nv unset system grpc-tunnel server <server-name-id> certificate
 nv unset system grpc-tunnel server <server-name-id> ca-certificate
 nv unset system grpc-tunnel server <server-name-id> target-type
 nv unset system grpc-tunnel server <server-name-id> retry-interval
+nv unset system ssh-server trusted-ca-keys
 nv unset system ssh-server trusted-ca-keys <key-id> key
-nv unset system ssh-server trusted-ca-keys <key-id> type
+nv unset system ssh-server trusted-ca-keys <ssh-trusted-ca-key-id>
+nv unset system ssh-server trusted-ca-keys <ssh-trusted-ca-key-id> key
+nv unset system ssh-server trusted-ca-keys <ssh-trusted-ca-key-id> type
+nv unset system ssh-server pka-only
+nv unset system syslog
+nv unset system syslog format
 nv unset system syslog format welf
 nv unset system syslog format welf firewall-name
-nv unset system syslog selector
-nv unset system syslog selector facility
-nv unset system syslog selector <selector-id> program-name
-nv unset system syslog selector <selector-id> severity
-nv unset system syslog selector <selector-id> filter <filter-id> action
-nv unset system syslog selector <selector-id> filter <filter-id> match
-nv unset system syslog severity
+nv unset system syslog server
 nv unset system syslog server <server-id>
+nv unset system syslog server <server-id> selector
+nv unset system syslog server <server-id> selector <priority-id>
+nv unset system syslog server <server-id> selector <priority-id> selector-id
 nv unset system syslog server <server-id> port
 nv unset system syslog server <server-id> protocol
-nv unset system syslog server <server-id> vrf mgmt
-nv unset system telemetry histogram temporality <mode>
-nv unset system telemetry adaptive-routing-stats sample-interval
+nv unset system syslog server <server-id> vrf
+nv unset system syslog selector
+nv unset system syslog selector <selector-id>
+nv unset system syslog selector <selector-id> rate-limit
+nv unset system syslog selector <selector-id> rate-limit burst
+nv unset system syslog selector <selector-id> rate-limit interval
+nv unset system syslog selector <selector-id> filter
+nv unset system syslog selector <selector-id> filter <filter-id>
+nv unset system syslog selector <selector-id> filter <filter-id> match
+nv unset system syslog selector <selector-id> filter <filter-id> action
+nv unset system syslog selector <selector-id> facility
+nv unset system syslog selector <selector-id> program-name
+nv unset system syslog selector <selector-id> severity
+nv unset system telemetry software-stats
+nv unset system telemetry software-stats systemd
+nv unset system telemetry software-stats systemd export
+nv unset system telemetry software-stats systemd export state
+nv unset system telemetry software-stats systemd unit-profile
+nv unset system telemetry software-stats systemd unit-profile <unit-profile-id>
+nv unset system telemetry software-stats systemd unit-profile <unit-profile-id> unit
+nv unset system telemetry software-stats systemd sample-interval
+nv unset system telemetry software-stats systemd process-level
+nv unset system telemetry software-stats systemd active-profile
+nv unset system telemetry adaptive-routing-stats
+nv unset system telemetry adaptive-routing-stats export
 nv unset system telemetry adaptive-routing-stats export state
+nv unset system telemetry adaptive-routing-stats sample-interval
+nv unset system telemetry platform-stats class transceiver-info
+nv unset system telemetry platform-stats class transceiver-info state
+nv unset system telemetry platform-stats class transceiver-info sample-interval
+nv unset system telemetry histogram temporality
+nv unset system telemetry lldp
+nv unset system telemetry lldp export
 nv unset system telemetry lldp export state
 nv unset system telemetry lldp sample-interval
-nv unset system telemetry platform-stats class transceiver-info sample-interval
-nv unset system telemetry platform-stats class transceiver-info state
+nv unset system telemetry stats-group <stats-group-id> adaptive-routing-stats
+nv unset system telemetry stats-group <stats-group-id> adaptive-routing-stats export
+nv unset system telemetry stats-group <stats-group-id> adaptive-routing-stats export state
+nv unset system telemetry stats-group <stats-group-id> adaptive-routing-stats sample-interval
+nv unset system telemetry stats-group <stats-group-id> software-stats
+nv unset system telemetry stats-group <stats-group-id> software-stats systemd
+nv unset system telemetry stats-group <stats-group-id> software-stats systemd export
+nv unset system telemetry stats-group <stats-group-id> software-stats systemd export state
+nv unset system telemetry stats-group <stats-group-id> software-stats systemd sample-interval
+nv unset system telemetry stats-group <stats-group-id> software-stats systemd process-level
+nv unset system telemetry stats-group <stats-group-id> software-stats systemd active-profile
+nv unset system telemetry stats-group <stats-group-id> histogram temporality
+nv unset system telemetry stats-group <stats-group-id> platform-stats class transceiver-info
+nv unset system telemetry stats-group <stats-group-id> platform-stats class transceiver-info state
+nv unset system telemetry stats-group <stats-group-id> platform-stats class transceiver-info sample-interval
+nv unset system telemetry stats-group <stats-group-id> lldp
+nv unset system telemetry stats-group <stats-group-id> lldp export
+nv unset system telemetry stats-group <stats-group-id> lldp export state
+nv unset system telemetry stats-group <stats-group-id> lldp sample-interval
 ```
 
 {{< /tab >}}
@@ -311,6 +363,8 @@ nv action generate file-hash sha1 <filename>
 nv action generate file-hash sha224 <filename>
 nv action generate file-hash sha256 <filename>
 nv action generate file-hash sha512 <filename>
+nv action import system security crl
+nv action delete system security crl
 nv action list system file-path <path>
 nv action power-cycle system
 ```

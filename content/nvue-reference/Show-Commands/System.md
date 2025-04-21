@@ -64,7 +64,7 @@ protocols             all
 
 ## <h>nv show system</h>
 
-Shows information about the switch, such as the hostname, Cumulus Linux version, the switch uptime, and the time zone.
+Shows information about the switch, such as the hostname, version information, the switch uptime, time zone, memory, and health status.
 
 ### Version History
 
@@ -74,13 +74,23 @@ Introduced in Cumulus Linux 5.2.0
 
 ```
 cumulus@switch:~$ nv show system
-          operational          applied
---------  -------------------  -------
-hostname  leaf01               leaf01 
-build     Cumulus Linux 5.5.0         
-uptime    3 days, 18:40:31            
-timezone  Etc/UTC
+uptime             1 day, 1:52:24                                                 
+hostname           leaf01 
+product-name       Cumulus Linux                                                  
+platform           N/A                                                            
+system-memory      1.31 GB used / 363.36 MB free / 1.67 GB total                  
+swap-memory        0 Bytes used / 0 Bytes free / 0 Bytes total                    
+health-status      Not OK                                                         
+date-time          2025-04-18 12:48:46                                            
+status             N/A                                                            
+timezone           Etc/UTC                                                        
+version                                                                           
+  onie             N/A                                                            
+  kernel           6.1.0-cl-1-amd64                                               
+  base-os          Debian GNU/Linux 12.10                                         
 ```
+
+Cumulus Linux 5.12 and earlier also shows build and product-release fields. NVUE removed these fields in Cumulus Linux 5.13.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

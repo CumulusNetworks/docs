@@ -8,7 +8,7 @@ Telemetry enables you to collect, send, and analyze large amounts of data, such 
 
 ## Configure Open Telemetry
 
-Cumulus Linux supports {{<exlink url="https://github.com/open-telemetry/" text="open telemetry (OTEL)">}} export. You can use <span class="a-tooltip">[OTLP](## "open telemetry protocol")</span> to export metrics, such as interface counters, buffer statistics, histogram collection, platform statistics, and routing metrics to an external collector for analysis and visualization.
+Cumulus Linux supports {{<exlink url="https://github.com/open-telemetry/" text="open telemetry (OTEL)">}} export. You can use <span class="a-tooltip">[OTLP](## "open telemetry protocol")</span> to export metrics, such as interface counters, buffer statistics, histogram collection, platform statistics, routing metrics, and `systemd` statistics to an external collector for analysis and visualization.
 
 {{%notice note%}}
 Cumulus Linux supports open telemetry export on switches with the Spectrum-2 ASIC and later.
@@ -351,6 +351,88 @@ cumulus@switch:~$ nv config apply
 
 To show routing metrics configuration settings, run the `nv show system telemetry router` command.
 
+### Software Statistics
+
+When you enable software statistics open telemetry, the switch exports `systemd` unit and process-level metrics for monitoring system health. The statistics include information about the `systemd` unit and process state, PID, running state, restart counts, CPU and memory usage, start time, uptime, and thread process counts.
+
+To configure [software statistics](#software-statistics-format), enable the software statistics service:
+
+```
+cumulus@switch:~$ nv set system telemetry software-stats systemd export state enabled
+cumulus@switch:~$ nv config apply
+```
+
+You can adjust the software routing statistics sample interval (in seconds). You can specify a value between 1 and 86400. The default setting is 60 seconds.
+
+```
+cumulus@switch:~$ nv set system telemetry software-stats systemd sample-interval 40
+cumulus@switch:~$ nv config apply
+```
+
+You can configure a custom profile to collect statistics about a specific unit. To configure a custom profile, run the `nv set system telemetry software-stats systemd unit-profile <profile-name> unit <unit>` command to provide a custom profile name and the unit you want to monitor.
+
+The following example configures a custom profile called CUSTOM1 that collects statistics about the NGINX unit:
+
+```
+cumulus@switch:~$ nv set system telemetry software-stats systemd unit-profile PROFILE1 unit nginx.service
+cumulus@switch:~$ nv config apply
+```
+
+The following example configures a custom profile called CUSTOM2 that collects statistics about the `nvued` unit:
+
+```
+cumulus@switch:~$ nv set system telemetry software-stats systemd unit-profile PROFILE1 unit nvued.service
+cumulus@switch:~$ nv config apply
+```
+
+To show `systemd` software statistics configuration, run the `nv show system telemetry software-stats systemd` command:
+
+```
+cumulus@switch:~$ nv show system telemetry software-stats systemd 
+                 applied 
+---------------  --------
+sample-interval  60      
+process-level    enabled
+active-profile   default 
+export                   
+  state          enabled
+[unit-profile]   default
+```
+
+To show the units you can monitor, run the `nv show system telemetry software-stats systemd unit-profile` command:
+
+```
+cumulus@switch:~$ nv show system telemetry software-stats systemd unit-profile 
+         Summary                               
+-------  --------------------------------------
+default  unit:             asic-monitor.service
+         unit:                      frr.service
+         unit:                  hostapd.service
+         unit:       hw-management-sync.service
+         unit:               netq-agent.service
+         unit:                    netqd.service
+         unit:                    nginx.service
+         unit:                   ntpsec.service
+         unit:             nv-telemetry.service
+         unit:                    nvued.service
+         unit: prometheus-node-exporter.service
+         unit:     prometheus-sdk-stats.service
+         unit:                    ptp4l.service
+         unit:                    snmpd.service
+         unit:                  switchd.service
+         unit:                   sx_sdk.service
+         unit:             wd_keepalive.service
+```
+
+To show if {{<link url="#customize-export" text="exporting software statistics is enabled">}}, run the `nv show system telemetry software-stats systemd export` command:
+
+```
+cumulus@switch:~$ nv show system telemetry software-stats systemd export  
+       applied 
+-----  --------
+state  enabled
+```
+
 ### gRPC OTLP Export
 
 To configure the open telemetry export destination:
@@ -418,7 +500,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 The following example:
-- Configures STAT-GROUP4 to disable histogram (`histogram`) statistics, and enables LLDP statistics (`lldp-stats`).
+- Configures STAT-GROUP4 to disable histogram (`histogram`) statistics, and enables LLDP statistics (`lldp-stats`) and software statistics (`software-stats`).
 - Sets the sample interval of `lldp` statistics to 40.
 - Applies the STAT-GROUP4 configuration to the OTLP destination 10.1.1.30.
 
@@ -426,6 +508,7 @@ The following example:
 cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP4 histogram export state disabled
 cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP4 lldp export state enabled
 cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP4 lldp sample-interval 40
+cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP4 software-stats systemd export state enabled
 cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.30 stats-group STAT-GROUP4
 cumulus@switch:~$ nv config apply
 ```
@@ -2069,6 +2152,33 @@ gauge {
   }
 ```
 {{< /expand >}}
+
+### Software Statistics Format
+
+When you enable software statistic telemetry, the switch exports the following `systemd` unit and process-level statistics:
+
+|  Name | Description |
+|------ | ----------- |
+| `nvswitch_systemd_unit_main_pid` | The unit state.|
+| `nvswitch_systemd_unit_state` | The unit main PID. |
+| `nvswitch_systemd_unit_running` | The unit running state.|
+| `nvswitch_systemd_unit_exe_path` | The unit execution path. |
+| `nvswitch_systemd_unit_cpu_usage_seconds` | The unit CPU usage.|
+| `nvswitch_systemd_unit_memory_usage_bytes` |  The unit memory utilization in bytes. |
+| `nvswitch_systemd_unit_start_time_seconds` | The unit start time.|
+| `nvswitch_systemd_unit_uptime_seconds` | The unit uptime in seconds.|
+| `nvswitch_systemd_unit_threads` | The unit threads count. |
+| `nvswitch_systemd_unit_processes` | The number of unit processes. |
+| `nvswitch_systemd_unit_process_parent_pid` | The process parent PID.|
+| `nvswitch_systemd_unit_process_start_time_seconds` | The process start time.|
+| `nvswitch_systemd_unit_process_running` | The process running state.|
+| `nvswitch_systemd_unit_process_threads` | The process thread count.|
+| `nvswitch_systemd_unit_process_subprocesses` | The number of subprocesses.|
+| `nvswitch_systemd_unit_process_context_switches` | The context switches.|
+| `nvswitch_systemd_unit_process_cpu_seconds` | The process CPU usage in seconds.|
+| `nvswitch_systemd_unit_process_virtual_memory_bytes` | The process virtual memory utilization in bytes.|
+| `nvswitch_systemd_unit_process_resident_memory_bytes` | The process resident memory utilization in bytes.|
+| `nvswitch_systemd_unit_process_shared_memory_bytes` | The process shared memory utilization in bytes.|
 
 ### System Information Format
 

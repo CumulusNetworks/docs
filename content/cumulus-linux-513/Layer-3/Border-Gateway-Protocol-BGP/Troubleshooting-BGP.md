@@ -362,7 +362,7 @@ Route            Protocol   Distance  Uptime                NHGId  Metric  Flags
 To show the routes in the local routing table, run the `nv show vrf <vrf> router bgp address-family ipv4-unicast route` command for IPv4 or the `nv show vrf <vrf> router bgp address-family ipv6-unicast route` for IPv6. You can also run the command with `-o json` to show the received routes in json format.
 
 ```
-cumulus@leaf02:~$ nv show vrf default router bgp address-family ipv4-unicast route                                            PathCount - Number of paths present for the prefix, MultipathCount - Number of  
+cumulus@leaf02:~$ nv show vrf default router bgp address-family ipv4-unicast route PathCount - Number of paths present for the prefix, MultipathCount - Number of  
 paths that are part of the ECMP, DestFlags - * - bestpath-exists, w - fib-wait- 
 for-install, s - fib-suppress, i - fib-installed, x - fib-install-failed        
                                                                                 
@@ -381,6 +381,22 @@ Prefix           PathCount  MultipathCount  DestFlags
 10.10.10.102/32  2          1               *        
 10.10.10.103/32  2          1               *        
 10.10.10.104/32  2          1               * 
+```
+
+To filter the routes by a specific neighbor (numbered or unnumbered), use the `--filter=”neighbor=<neighbor>"` option. Run the `nv show vrf <vrf> router bgp address-family ipv4-unicast route --filter=”neighbor=<neighbor>"` command for IPv4 or the `nv show vrf <vrf> router bgp address-family ipv6-unicast route --filter=”neighbor=<neighbor>"` for IPv6.
+
+```
+cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4-unicast route --filter="neighbor=swp51"  
+PathCount - Number of paths present for the prefix, MultipathCount - Number of 
+paths that are part of the ECMP, DestFlags - * - bestpath-exists, w - fib-wait- 
+for-install, s - fib-suppress, i - fib-installed, x - fib-install-failed 
+
+Prefix              PathCount  MultipathCount  DestFlags 
+------------------  ---------  --------------  --------- 
+10.10.10.2/24        1          1               * 
+10.10.10.3/24        1          1               * 
+10.10.10.4/24        1          1               * 
+...
 ```
 
 To show information about a specific route in the local routing table, run the `nv show vrf <vrf> router bgp address-family ipv4-unicast route <route>` for IPv4 or `nv show vrf <vrf> router bgp address-family ipv6-unicast route <route>` for IPv6.
@@ -439,7 +455,7 @@ best-routes     7
 usable          8 
 ```
 
-To show all advertised routes, run the `nv show vrf <vrf> router bgp neighbor <neighbor> address-family ipv4-unicast advertised-routes` command for IPv4 or the `nv show vrf <vrf>> router bgp neighbor <neighbor> address-family ipv6-unicast advertised-routes` for IPv6.
+To show all advertised routes, run the `nv show vrf <vrf> router bgp neighbor <neighbor> address-family ipv4-unicast advertised-routes` command for IPv4 or the `nv show vrf <vrf> router bgp neighbor <neighbor> address-family ipv6-unicast advertised-routes` for IPv6.
 
 The above IPv4 and IPv6 command shows advertised routes in brief format to improve performance for high scale environments. You can also run the command with `-o json` to show the received routes in json format.
 

@@ -33,8 +33,9 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 - {{<link url="SSH-for-Remote-Access/#message-of-the-day" text="Message of the day shows system reboot cause and health information">}}
 - Telemetry
   - {{<link url="gNMI-Streaming" text="gNMI streaming">}}
-  - {{<link url="Open-Telemetry-Export/#lldp-statistics" text="OTEL LLDP metrics">}}
   - {{<link url="Open-Telemetry-Export/#adaptive-routing-statistics" text="OTEL Adaptive routing statistics">}}
+  - {{<link url="Open-Telemetry-Export/#lldp-statistics" text="OTEL LLDP metrics">}}
+  - {{<link url="Open-Telemetry-Export/#software-statistics" text="OTEL software metrics">}}
   - {{<link url="Open-Telemetry-Export/#platform-statistics" text="OTEL Transceiver statistics">}}
   - {{<link url="Open-Telemetry-Export/#temporality-mode" text="OTEL temporality mode for histogram metrics">}}
   - OTEL Buffer Occupancy and watermark metrics

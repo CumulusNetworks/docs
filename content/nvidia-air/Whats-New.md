@@ -10,7 +10,7 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 ## April 2025
 <!-- Air:WhatsNew -->
 ### 82.2025.0422-011
-- Added capability to configure multiple breakout ports at a time
+- Added ability to configure multiple breakout ports concurrently
 - Fixed an issue when disabling OOB after modifying node ports
 <!-- Air:WhatsNew -->
 

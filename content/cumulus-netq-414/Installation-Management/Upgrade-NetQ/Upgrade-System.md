@@ -13,7 +13,7 @@ For deployments running:
 - 4.12.0 or earlier: {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}}, then concurrently restore your data and upgrade NetQ during a {{<link title="Install the NetQ System" text="new NetQ 4.14 installation">}}
 
 {{%notice note%}}
-When you upgrade from NetQ v4.14.0, any pre-existing validation data will be lost. Additionally, NetQ will not retain data related to network services (including BGP, LLDP, EVPN, and MLAG) after upgrading. During the upgrade process, NetQ will be temporarily unavailable.
+When you upgrade to NetQ v4.14.0, any pre-existing validation data will be lost. Additionally, NetQ will not retain data related to network services (including BGP, LLDP, EVPN, and MLAG) after upgrading. During the upgrade process, NetQ will be temporarily unavailable.
 {{%/notice%}}
 
 

@@ -9,13 +9,18 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 
 ## April 2025
 <!-- Air:WhatsNew -->
+### 82.2025.0422-011
+- Added capability to configure multiple breakout ports at a time
+- Added interface breakout functionality to SDK v2
+- Fixed an issue where OOB disabling failed after JSON simulation import and interface changes.
+<!-- Air:WhatsNew -->
+
 ### 82.2025.0410-011
 - Added the ability to update multiple nodes concurrently
 - Improved infrastructure stability when running large-scale simulations
 - Fixed missing data issue in node properties
 - Fixed an issue where simulations were expiring prematurely
 - Fixed an issue with missing console prompts within simulations
-<!-- Air:WhatsNew -->
 
 ### 82.2025.0403-011
 - Added ability to view link details by selecting a link

@@ -11,8 +11,7 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 <!-- Air:WhatsNew -->
 ### 82.2025.0422-011
 - Added capability to configure multiple breakout ports at a time
-- Added interface breakout functionality to SDK v2
-- Fixed an issue where OOB disabling failed after JSON simulation import and interface changes.
+- Fixed an issue when disabling OOB after modifying node ports
 <!-- Air:WhatsNew -->
 
 ### 82.2025.0410-011

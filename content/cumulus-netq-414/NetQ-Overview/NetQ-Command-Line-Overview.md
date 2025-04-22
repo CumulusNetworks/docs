@@ -548,15 +548,15 @@ cumulus@switch:~$ netq show agents
 Matching agents records:
 Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
 ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
-border01          Fresh            yes      4.13.0-cld12u50~1739293953.1b72846ca Mon Mar  3 17:23:32 2025  Tue Mar  4 15:46:39 2025  Tue Mar  4 15:46:39 2025   Tue Mar  4 17:11:35 2025
-border02          Fresh            yes      4.13.0-cld12u50~1739293953.1b72846ca Thu Jan 23 14:59:39 2025  Tue Mar  4 15:46:50 2025  Tue Mar  4 15:46:50 2025   Tue Mar  4 17:11:32 2025
-fw1               Fresh            yes      4.13.0-cld12u50~1739293953.1b72846ca Thu Jan 23 14:59:40 2025  Tue Mar  4 15:46:44 2025  Tue Mar  4 15:46:44 2025   Tue Mar  4 17:11:31 2025
-fw2               Fresh            yes      4.13.0-cld12u50~1739293953.1b72846ca Thu Jan 23 14:39:07 2025  Tue Mar  4 15:46:39 2025  Tue Mar  4 15:46:39 2025   Tue Mar  4 17:11:27 2025
-leaf01            Fresh            yes      4.13.0-cld12u50~1739293953.1b72846ca Mon Mar  3 17:31:09 2025  Mon Mar  3 17:58:56 2025  Mon Mar  3 19:53:12 2025   Tue Mar  4 17:11:38 2025
-leaf02            Fresh            yes      4.13.0-cld12u50~1739293953.1b72846ca Mon Mar  3 17:31:10 2025  Tue Mar  4 15:46:38 2025  Tue Mar  4 15:46:38 2025   Tue Mar  4 17:11:48 2025
-leaf04            Fresh            yes      4.13.0-cld12u50~1739293953.1b72846ca Mon Mar  3 17:31:16 2025  Tue Mar  4 15:46:38 2025  Tue Mar  4 15:46:38 2025   Tue Mar  4 17:11:44 2025
-spine01           Fresh            yes      4.13.0-cld12u50~1739293953.1b72846ca Mon Mar  3 17:31:21 2025  Tue Mar  4 15:46:38 2025  Tue Mar  4 15:46:38 2025   Tue Mar  4 17:11:45 2025
-spine02           Fresh            yes      4.13.0-cld12u50~1739293953.1b72846ca Mon Mar  3 17:31:22 2025  Tue Mar  4 15:46:38 2025  Tue Mar  4 15:46:38 2025   Tue Mar  4 17:11:41 2025
+border01          Fresh            yes      4.14.0-cld12u51~1744815975.8dbbbd20c Mon Mar  3 17:23:32 2025  Tue Mar  4 15:46:39 2025  Tue Mar  4 15:46:39 2025   Tue Mar  4 17:11:35 2025
+border02          Fresh            yes      4.14.0-cld12u51~1744815975.8dbbbd20c Thu Jan 23 14:59:39 2025  Tue Mar  4 15:46:50 2025  Tue Mar  4 15:46:50 2025   Tue Mar  4 17:11:32 2025
+fw1               Fresh            yes      4.14.0-cld12u51~1744815975.8dbbbd20c Thu Jan 23 14:59:40 2025  Tue Mar  4 15:46:44 2025  Tue Mar  4 15:46:44 2025   Tue Mar  4 17:11:31 2025
+fw2               Fresh            yes      4.14.0-cld12u51~1744815975.8dbbbd20c Thu Jan 23 14:39:07 2025  Tue Mar  4 15:46:39 2025  Tue Mar  4 15:46:39 2025   Tue Mar  4 17:11:27 2025
+leaf01            Fresh            yes      4.14.0-cld12u51~1744815975.8dbbbd20c Mon Mar  3 17:31:09 2025  Mon Mar  3 17:58:56 2025  Mon Mar  3 19:53:12 2025   Tue Mar  4 17:11:38 2025
+leaf02            Fresh            yes      4.14.0-cld12u51~1744815975.8dbbbd20c Mon Mar  3 17:31:10 2025  Tue Mar  4 15:46:38 2025  Tue Mar  4 15:46:38 2025   Tue Mar  4 17:11:48 2025
+leaf04            Fresh            yes      4.14.0-cld12u51~1744815975.8dbbbd20c Mon Mar  3 17:31:16 2025  Tue Mar  4 15:46:38 2025  Tue Mar  4 15:46:38 2025   Tue Mar  4 17:11:44 2025
+spine01           Fresh            yes      4.14.0-cld12u51~1744815975.8dbbbd20c Mon Mar  3 17:31:21 2025  Tue Mar  4 15:46:38 2025  Tue Mar  4 15:46:38 2025   Tue Mar  4 17:11:45 2025
+spine02           Fresh            yes      4.14.0-cld12u51~1744815975.8dbbbd20c Mon Mar  3 17:31:22 2025  Tue Mar  4 15:46:38 2025  Tue Mar  4 15:46:38 2025   Tue Mar  4 17:11:41 2025
 ```
 {{< /expand >}}
 
@@ -569,7 +569,7 @@ cumulus@switch:~$ netq leaf01 show agents
 Matching agents records:
 Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
 ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
-leaf01            Fresh            yes      4.13.0-cld12u50~1739293953.1b72846ca Mon Mar  3 17:31:09 2025  Mon Mar  3 17:58:56 2025  Mon Mar  3 19:53:12 2025   Tue Mar  4 17:12:33 2025
+leaf01            Fresh            yes      4.14.0-cld12u51~1744815975.8dbbbd20c Mon Mar  3 17:31:09 2025  Mon Mar  3 17:58:56 2025  Mon Mar  3 19:53:12 2025   Tue Mar  4 17:12:33 2025
 ```
 {{< /expand >}}
 ### Configuration Commands

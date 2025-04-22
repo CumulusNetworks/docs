@@ -739,6 +739,52 @@ Displayed 4 paths for requested prefix
 - If the remote host is dual attached, the next hop for the EVPN route is the anycast IP address of the remote {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} pair when MLAG is active.
 {{%/notice%}}
 
+## Filter EVPN Routes by Neighbor, RD and Route Type
+
+You can filter EVPN routes by a specific neighbor (numbered or unnumbered) with the `nv show vrf <vrf> router bgp address-family l2vpn-evpn route --filter=”neighbor=<neighbor>"` command.
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn route --filter="neighbor=220.18.0.17" 
+PathCnt - number of L2VPN EVPN per (RD, route-type) paths 
+
+Route                                                           rd          route-type  PathCnt 
+--------------------------------------------------------------  ----------  ----------  ------- 
+[6.0.0.10:2]:[1]:[0]:[03:00:00:00:77:01:02:00:00:0c]:[::]:[0]   6.0.0.10:2  1           1 
+[6.0.0.10:2]:[1]:[0]:[03:00:00:00:77:01:03:00:00:0d]:[::]:[0]   6.0.0.10:2  1           1 
+[6.0.0.10:2]:[1]:[0]:[03:00:00:00:77:01:04:00:00:0e]:[::]:[0]   6.0.0.10:2  1           1 
+[6.0.0.10:2]:[2]:[0]:[00:01:00:00:0a:07]                        6.0.0.10:2  2           1 
+[6.0.0.10:2]:[2]:[0]:[00:02:00:00:00:02]                        6.0.0.10:2  2           1 
+[6.0.0.10:2]:[2]:[0]:[00:02:00:00:00:02]:[2020:0:1:1::2]        6.0.0.10:2  2           1 
+[6.0.0.10:2]:[2]:[0]:[00:02:00:00:00:02]:[fe80::202:ff:fe00:2]  6.0.0.10:2  2           1 
+[6.0.0.10:2]:[2]:[0]:[00:02:00:00:00:03]                        6.0.0.10:2  2           1 
+[6.0.0.10:2]:[2]:[0]:[00:02:00:00:00:03]:[2020:0:1:1::3]        6.0.0.10:2  2           1 
+[6.0.0.10:2]:[2]:[0]:[00:02:00:00:00:03]:[fe80::202:ff:fe00:3]  6.0.0.10:2  2           1 
+[6.0.0.10:2]:[2]:[0]:[00:02:00:00:00:05]                        6.0.0.10:2  2           1 
+[6.0.0.10:2]:[2]:[0]:[00:02:00:00:00:05]:[2020:0:1:1::4]        6.0.0.10:2  2           1 
+[6.0.0.10:2]:[2]:[0]:[00:02:00:00:00:05]:[fe80::202:ff:fe00:5]  6.0.0.10:2  2           1 
+[6.0.0.10:2]:[2]:[0]:[00:02:00:00:00:08]                        6.0.0.10:2  2           1 
+[6.0.0.10:2]:[2]:[0]:[00:02:00:00:00:08]:[2020:0:1:1::5]        6.0.0.10:2  2           1 
+[6.0.0.10:2]:[2]:[0]:[00:02:00:00:00:08]:[fe80::202:ff:fe00:8]  6.0.0.10:2  2           1
+...
+```
+
+You can also filter EVPN routes by a specific <span class="a-tooltip">[RD](## "Route Distinguisher")</span> with the `nv show vrf <vrf> router bgp address-family l2vpn-evpn route --filter="rd=<rd>"` command and the route type with the `nv show vrf <vrf> router bgp address-family l2vpn-evpn route --filter="rd=<rd>&route-type=<route-type>"` command.
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn route --filter="rd=6.0.0.22:2" 
+PathCnt - number of L2VPN EVPN per (RD, route-type) paths 
+
+Route                                     rd          route-type  PathCnt 
+----------------------------------------  ----------  ----------  ------- 
+[6.0.0.22:2]:[5]:[0]:[0.0.0.0/0]          6.0.0.22:2  5           2 
+[6.0.0.22:2]:[5]:[0]:[6.0.0.1/32]         6.0.0.22:2  5           2 
+[6.0.0.22:2]:[5]:[0]:[101.101.1.0/24]     6.0.0.22:2  5           2 
+[6.0.0.22:2]:[5]:[0]:[2001::1/128]        6.0.0.22:2  5           2 
+[6.0.0.22:2]:[5]:[0]:[2101:101::1:0/112]  6.0.0.22:2  5           2
+[6.0.0.22:2]:[5]:[0]:[::/0]               6.0.0.22:2  5           2 
+...
+```
+
 ## Show the VNI EVPN Routing Table
 
 The switch maintains the received EVPN routes in the global EVPN routing table, even if there are no appropriate local VNIs to **import** them into. For example, a spine maintains the global EVPN routing table even though there are no VNIs present in the table. When local VNIs are present, the switch imports received EVPN routes into the per-VNI routing tables according to the route target attributes. You can examine the per-VNI routing table with the vtysh `show bgp vni <vni>` command:

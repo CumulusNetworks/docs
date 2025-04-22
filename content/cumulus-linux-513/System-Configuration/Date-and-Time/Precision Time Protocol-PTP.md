@@ -695,15 +695,22 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 ### Multicast MAC Address
 
 PTP over Ethernet uses the following types of multicast MAC addresses:
-- **Forwarding**, which is a standard MAC address that switches and bridges flood. The nodes that process these multicast messages might be intermediate nodes that do not support PTP. This is the default multicast MAC address type that uses 01-1B-19-00-00-00 MAC. 
-- **Non-forwarding**, which is the reserved 802.1 Q address 01-80-C2-00-00-0E. Cumulus Linux does not forward this address on the bridge.
+- **Forwarding**, which is a standard MAC address that switches and bridges flood. The nodes that process these multicast messages might be intermediate nodes that do not support PTP. Cumulus Linux uses MAC address 01-1B-19-00-00-00.
+- **Non-forwarding**, which is the reserved 802.1 Q address 01-80-C2-00-00-0E. Cumulus Linux does not forward this address on the bridge. This is the default setting.
 
 {{%notice note%}}
-For Telecom Profile ITU 8275-1, set the multicast MAC address to non-forwarding.
+For Telecom Profile ITU 8275-1, the multicast MAC address must be non-forwarding.
 {{%/notice%}}
 
 {{< tabs "TabID682 ">}}
 {{< tab "NVUE Commands ">}}
+
+To set the multicast MAC address to forwarding, run the `nv set service ptp 1 multicast-mac forwarding` command.
+
+```
+cumulus@switch:~$ nv set service ptp 1 multicast-mac forwarding
+cumulus@switch:~$ nv config apply
+```
 
 To set the multicast MAC address to non-forwarding:
 
@@ -711,8 +718,6 @@ To set the multicast MAC address to non-forwarding:
 cumulus@switch:~$ nv set service ptp 1 multicast-mac non-forwarding
 cumulus@switch:~$ nv config apply
 ```
-
-To set the multicast MAC address to forwarding, run the `nv unset service ptp 1 multicast-mac non-forwarding` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -1210,7 +1215,7 @@ cumulus@switch:~$ nv config apply
 
 To show the unicast master table configuration on the switch, run the `nv show service ptp <instance-id> unicast-master <table-id>` command.
 
-To show unicast PTP related counters, run the `nv show interface <interface>> counters ptp` command and examine the `Signaling` section in the output.
+To show unicast PTP related counters, run the `nv show interface <interface> counters ptp` command and examine the `Signaling` section in the output.
 
 ```
 cumulus@switch:~$ nv show interface swp1 counters ptp

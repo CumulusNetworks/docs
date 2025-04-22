@@ -122,11 +122,11 @@ netq lcm show netq-images
 
 2. Download the NetQ Debian packages needed for upgrade from the {{<exlink url="https://download.nvidia.com/cumulus/apps3.cumulusnetworks.com/repos/deb/pool/netq-4.14/p/python-netq/" text="NetQ repository">}}, selecting the appropriate version and hypervisor/platform. Place them in an accessible part of your local network.
 
-3. Upload the images to the LCM repository. This example uploads the two packages (`netq-agent` and `netq-apps`) required for NetQ version 4.13.0 for a NetQ appliance or VM running Ubuntu 22.04 with an AMD 64 architecture.
+3. Upload the images to the LCM repository. This example uploads the two packages (`netq-agent` and `netq-apps`) required for NetQ version 4.14.0 for a NetQ appliance or VM running Ubuntu 22.04 with an AMD 64 architecture.
 
     ```
-    cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-agent_4.13.0-ub22.04u50~1739293854.1b72846ca_amd64.deb
-    cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_4.13.0-ub22.04u50~1739293854.1b72846ca_amd64.deb
+    cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-agent_4.14.0-ub22.04u51~1744815786.8dbbbd20c_amd64.deb
+    cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_4.14.0-ub22.04u51~1744815786.8dbbbd20c_amd64.deb
     ```
 
 {{</tab>}}
@@ -166,14 +166,14 @@ Use the `netq lcm add cl-image <text-cl-image-path>` and `netq lcm add netq-imag
 Network OS images:
 
 ```
-cumulus@switch:~$ netq lcm add image /path/to/download/cumulus-linux-5.9.1-mlx-amd64.bin
+cumulus@switch:~$ netq lcm add image /path/to/download/cumulus-linux-5.9.2-mlx-amd64.bin
 ```
 
 NetQ images:
 
 ```
-cumulus@switch:~$ netq lcm add image /path/to/download/netq-agent_4.13.0-cld12u50~1739293953.1b72846ca_amd64.deb
-cumulus@switch:~$ netq lcm add image /path/to/download/netq-apps_4.13.0-cld12u50~1739293953.1b72846ca_amd64.deb
+cumulus@switch:~$ netq lcm add image /path/to/download/netq-agent_4.14.0-cld12u51~1744815975.8dbbbd20c_amd64.deb
+cumulus@switch:~$ netq lcm add image /path/to/download/netq-apps_4.14.0-cld12u51~1744815975.8dbbbd20c_amd64.deb
 ```
 
 {{</tab>}}

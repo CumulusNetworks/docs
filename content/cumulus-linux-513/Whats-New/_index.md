@@ -55,8 +55,6 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 | `nv set maintenance unit all-protocols mode disabled` | `nv action disable system maintenance mode` |
 | `nv set maintenance unit all-interfaces mode enabled` | `nv action enable system maintenance ports` |
 | `nv set maintenance unit all-interfaces mode disabled` | `nv action disable system maintenance ports` |
-| `nv set system lldp` | `nv set service lldp` |
-| `nv show system lldp` | `nv show service lldp` |
 | `nv set system syslog server <server-id>` | `nv set service syslog <vrf> server <server-id>`|
 | `nv set system syslog server <server-id> port <port>` | `nv set service syslog <vrf> server <server-id> port <port>`|
 | `nv set system syslog server <server-id> protocol <protocol>` | `nv set service syslog <vrf> server <server-id> protocol <protocol>`|

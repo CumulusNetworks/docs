@@ -479,7 +479,7 @@ group {
 
 ### Multiple Static IP Address Assignments
 
-Cumulus Linux enables you to assign two static IP addresses for a single connected host using the vendor-class in the DHCP request packet. Use this feature if you have different DHCP requests coming in on the same interface on the DHCP server from different end host applications.
+Cumulus Linux enables you to assign multiple static IP addresses for a single connected host using the vendor-class in the DHCP request packet. Use this feature if you have different DHCP requests coming in on the same interface on the DHCP server from different end host applications.
 
 The following example assigns:
 - The fixed IP address 10.0.0.2 for DHCP requests coming in on swp1 with the `vendor-class` string `bmc-string`.
@@ -491,22 +491,35 @@ cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server1 ip-addr
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server1 vendor-class bmc-string
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server2 ifname swp1 
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server2 ip-address 10.0.0.3 
-cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server2 vendor-class mgt-string
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server2 vendor-class mgmt-string
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
 For IPv6, use `nv set service dhcp-server6 default static` commands.
 
-To show the DHCP static configuration for all hosts, run the `nv show service dhcp-server <vrf> static` command:
+{{%notice note%}}
+The `vendor-class` string supports an exact-match with the `vendor-class` on the incoming packet.
+{{%/notice%}}
+
+To show the DHCP static configuration for all hosts, run the `nv show service dhcp-server <vrf> static --rev=applied` command:
 
 ```
-cumulus@leaf01:mgmt:~$ nv show service dhcp-server default static
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server default static --rev=applied
+         cumulus-provision-url  host-id-circuit-id  ifname  ip-address  MAC address        vendor-class
+-------  ---------------------  ------------------  ------  ----------  -----------------  ------------
+server1                                                     10.0.0.2    44:38:39:00:01:7e
 ```
 
 To show the DHCP static configuration for a specific host, run the `nv show service dhcp-server <vrf> static <host>` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show service dhcp-server default static server1
+              operational        applied                     
+------------  -----------------  -----------------
+mac-address   44:38:39:00:01:7e  44:38:39:00:01:7e
+ip-address    10.0.0.2           10.0.0.2                  
+vendor-class                     bmc-string       
+ifname                           swp1
 ```
 
 ## Troubleshooting

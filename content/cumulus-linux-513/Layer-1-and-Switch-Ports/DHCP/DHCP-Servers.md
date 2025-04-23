@@ -519,6 +519,9 @@ cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
 {{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 {{< tabs "TabID524 ">}}

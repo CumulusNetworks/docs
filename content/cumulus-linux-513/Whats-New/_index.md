@@ -38,7 +38,6 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
   - {{<link url="Open-Telemetry-Export/#software-statistics" text="OTEL software metrics">}}
   - {{<link url="Open-Telemetry-Export/#platform-statistics" text="OTEL Transceiver statistics">}}
   - {{<link url="Open-Telemetry-Export/#temporality-mode" text="OTEL temporality mode for histogram metrics">}}
-  - OTEL Buffer Occupancy and watermark metrics
 - NVUE
   - {{<link url="NVUE-CLI/#list-directory-contents" text="Command to list directory contents">}}
   - {{<link url="NVUE-CLI/#get-the-hash-for-a-file" text="Command to get the hash for a file">}}

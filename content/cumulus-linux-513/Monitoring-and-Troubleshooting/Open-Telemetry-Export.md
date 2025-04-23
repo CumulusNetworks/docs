@@ -2186,11 +2186,11 @@ gauge {
 
 ### Software Statistics Format
 
-When you enable software statistic telemetry, the switch collects the following `systemd` unit and process-level statistics:
+When you enable software statistic telemetry, the switch collects the following `systemd` unit statistics:
 
 |  Name | Description |
 |------ | ----------- |
-| `nvswitch_systemd_unit_main_pid ` | The main Process ID of the unit. |
+| `nvswitch_systemd_unit_main_pid ` | The main process ID of the unit. |
 | `nvswitch_systemd_unit_state`| The active status of the unit. |
 | `nvswitch_systemd_unit_running` | The running status of the unit.|
 | `nvswitch_systemd_unit_exe_path` | The executable path of the unit. |

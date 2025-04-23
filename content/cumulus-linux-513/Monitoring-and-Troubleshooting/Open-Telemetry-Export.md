@@ -353,12 +353,19 @@ To show routing metrics configuration settings, run the `nv show system telemetr
 
 ### Software Statistics
 
-When you enable software statistics open telemetry, the switch exports `systemd` unit and process-level metrics for monitoring system health. The statistics include information about the `systemd` unit and process state, PID, running state, restart counts, CPU and memory usage, start time, uptime, and thread process counts.
+When you enable software statistics open telemetry, the switch exports `systemd` unit metrics for a list of services, efficiently reporting only relevant data depending on the service state, ensuring minimal performance overhead. You can collect additional metrics by enabling process-level metrics.
 
 To configure [software statistics](#software-statistics-format), enable the software statistics service:
 
 ```
 cumulus@switch:~$ nv set system telemetry software-stats systemd export state enabled
+cumulus@switch:~$ nv config apply
+```
+
+To enable process-level statistics:
+
+```
+cumulus@switch:~$ nv set system telemetry software-stats systemd process-level enabled 
 cumulus@switch:~$ nv config apply
 ```
 
@@ -369,7 +376,31 @@ cumulus@switch:~$ nv set system telemetry software-stats systemd sample-interval
 cumulus@switch:~$ nv config apply
 ```
 
-You can configure a custom profile to collect statistics about a specific unit. To configure a custom profile, run the `nv set system telemetry software-stats systemd unit-profile <profile-name> unit <unit>` command to provide a custom profile name and the unit you want to monitor.
+By default, the switch collects statistics for the following units:
+
+{{< expand "Units collected by default" >}}
+- `asic-monitor.service`
+- `frr.service`
+- `hostapd.service`
+- `hw-management-sync.service`
+- `netq-agent.service`
+- `netqd.service`
+- `nginx.service`
+- `ntpsec.service`
+- `nv-telemetry.service`
+- `nvued.service`
+- `prometheus-node-exporter.service`
+- `prometheus-sdk-stats.service`
+- `ptp4l.service`
+- `snmpd.service`
+- `switchd.service`
+- `sx_sdk.service`
+- `wd_keepalive.service`
+{{< /expand >}}
+<br>
+If a `systemd` unit is `inactive`, `failed`, or `dead`, the switch only collects the unit state, reducing unnecessary data processing.
+
+You can configure a custom profile to collect statistics for a specific unit. To configure a custom profile, run the `nv set system telemetry software-stats systemd unit-profile <profile-name> unit <unit>` command to provide a custom profile name and the unit you want to monitor.
 
 The following example configures a custom profile called CUSTOM1 that collects statistics about the NGINX unit:
 
@@ -2155,30 +2186,36 @@ gauge {
 
 ### Software Statistics Format
 
-When you enable software statistic telemetry, the switch exports the following `systemd` unit and process-level statistics:
+When you enable software statistic telemetry, the switch collects the following `systemd` unit and process-level statistics:
 
 |  Name | Description |
 |------ | ----------- |
-| `nvswitch_systemd_unit_main_pid` | The unit state.|
-| `nvswitch_systemd_unit_state` | The unit main PID. |
-| `nvswitch_systemd_unit_running` | The unit running state.|
-| `nvswitch_systemd_unit_exe_path` | The unit execution path. |
-| `nvswitch_systemd_unit_cpu_usage_seconds` | The unit CPU usage.|
-| `nvswitch_systemd_unit_memory_usage_bytes` |  The unit memory utilization in bytes. |
-| `nvswitch_systemd_unit_start_time_seconds` | The unit start time.|
-| `nvswitch_systemd_unit_uptime_seconds` | The unit uptime in seconds.|
-| `nvswitch_systemd_unit_threads` | The unit threads count. |
-| `nvswitch_systemd_unit_processes` | The number of unit processes. |
-| `nvswitch_systemd_unit_process_parent_pid` | The process parent PID.|
-| `nvswitch_systemd_unit_process_start_time_seconds` | The process start time.|
-| `nvswitch_systemd_unit_process_running` | The process running state.|
-| `nvswitch_systemd_unit_process_threads` | The process thread count.|
-| `nvswitch_systemd_unit_process_subprocesses` | The number of subprocesses.|
-| `nvswitch_systemd_unit_process_context_switches` | The context switches.|
-| `nvswitch_systemd_unit_process_cpu_seconds` | The process CPU usage in seconds.|
-| `nvswitch_systemd_unit_process_virtual_memory_bytes` | The process virtual memory utilization in bytes.|
-| `nvswitch_systemd_unit_process_resident_memory_bytes` | The process resident memory utilization in bytes.|
-| `nvswitch_systemd_unit_process_shared_memory_bytes` | The process shared memory utilization in bytes.|
+| `nvswitch_systemd_unit_main_pid ` | The main Process ID of the unit. |
+| `nvswitch_systemd_unit_state`| The active status of the unit. |
+| `nvswitch_systemd_unit_running` | The running status of the unit.|
+| `nvswitch_systemd_unit_exe_path` | The executable path of the unit. |
+| `nvswitch_systemd_unit_restart`|The restart count of the unit. |
+| `nvswitch_systemd_unit_cpu_usage_seconds` | The CPU usage of the unit (in seconds).|
+| `nvswitch_systemd_unit_memory_usage_bytes` |  The memory usage of the unit (in bytes). |
+| `nvswitch_systemd_unit_start_time_seconds` | The absolute UNIX timestamp of the unit in seconds since epoch.|
+| `nvswitch_systemd_unit_uptime_seconds` | The uptime of the unit (in seconds). |
+| `nvswitch_systemd_unit_threads` | The number of threads in the unit. |
+| `nvswitch_systemd_unit_processes`| The number of processes in the unit. |
+
+If you enable process-level statistics, the switch collects the following metrics:
+
+|  Name | Description |
+|------ | ----------- |
+| `nvswitch_systemd_unit_process_parent_pid` | The parent process ID. |
+| `nvswitch_systemd_unit_process_start_time_seconds` | The start time of the process in seconds since epoch.|
+| `nvswitch_systemd_unit_process_running` | The process running status.|
+| `nvswitch_systemd_unit_process_threads` | The number of threads in the process.|
+| `nvswitch_systemd_unit_process_subprocesses` | The number of child processes.|
+| `nvswitch_systemd_unit_process_context_switches` | The number of context switches based on context type since the main process was created.|
+| `nvswitch_systemd_unit_process_cpu_seconds` | The CPU usage of the process (user and kernel mode, including children).|
+| `nvswitch_systemd_unit_process_virtual_memory_bytes` | The virtual memory usage of the process (in bytes).|
+| `nvswitch_systemd_unit_process_resident_memory_bytes` | The resident memory usage of the process (in bytes).|
+| `nvswitch_systemd_unit_process_shared_memory_bytes` | The shared memory usage of the process (in bytes).|
 
 ### System Information Format
 

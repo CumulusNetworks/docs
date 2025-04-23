@@ -98,19 +98,214 @@ On the **System Palette**, there is an option to **Enable OOB**. This setting en
 
 {{<img src="/images/guides/nvidia-air/EnableOOB.png" alt="" width="250px">}}
 
-You can add more `oob-mgmt-switches` and `oob-mgmt-servers` to your simulation manually even when **Enable OOB** is set to off. However, you must switch **Enable OOB** to use the OOB network.
+You can add more `oob-mgmt-switches` and `oob-mgmt-servers` to your simulation manually even when **Enable OOB** is set to off. However, you must switch **Enable OOB** on to use the OOB network.
 
-## Custom Topologies with DOT Files
+## Importing Custom Topologies with External Files
+You can create custom topologies in Air by importing either JSON or DOT files. These files define nodes, attributes, and connections for generating a topology for a network.
 
-You can create custom topologies in Air using a DOT file, which is the file type used with the open-source graph visualization software, Graphviz. DOT files are simple, customizable text-based files.
+You can upload files directly to Air to generate a topology, allowing you to share and create copies of a topology, save the topology in a reusable file, use for automation purposes, and more easily generate very large topologies. You can modify the file with any text editor.
 
-You can upload DOT files directly to Air to generate a topology, allowing you to share and create copies of a topology, and save the topology in a reusable file. You can modify the file with a text editor.
+### JSON
 
-### DOT Syntax
+JSON files use the `.json` file extension. 
 
-DOT files use the `.dot` file extension. They define nodes, attributes, and connections for generating a topology for a network.
+The following is an example of a simple topology with 1 spine, 2 leaf nodes, and 2 servers connected to each leaf. 
+```
+{
+    "format": "JSON",
+    "title": "Demo",
+    "ztp": null,
+    "content": {
+        "nodes": {
+            "leaf01": {
+                "cpu": 2,
+                "memory": 4096,
+                "storage": 10,
+                "os": "sonic-vs-202305",
+                "features": {
+                    "uefi": false,
+                    "tpm": false
+                },
+                "pxehost": false,
+                "secureboot": false,
+                "oob": false,
+                "emulation_type": null,
+                "network_pci": {},
+                "management_mac": "00:00:00:00:00:00"
+            },
+            "leaf02": {
+                "cpu": 2,
+                "memory": 4096,
+                "storage": 10,
+                "os": "sonic-vs-202305",
+                "features": {
+                    "uefi": false,
+                    "tpm": false
+                },
+                "pxehost": false,
+                "secureboot": false,
+                "oob": false,
+                "emulation_type": null,
+                "network_pci": {},
+                "management_mac": "00:00:00:00:00:00"
+            },
+            "server01": {
+                "cpu": 2,
+                "memory": 2048,
+                "storage": 10,
+                "os": "generic/ubuntu2404",
+                "features": {
+                    "uefi": false,
+                    "tpm": false
+                },
+                "pxehost": false,
+                "secureboot": false,
+                "oob": false,
+                "emulation_type": null,
+                "network_pci": {},
+                "management_mac": "00:00:00:00:00:00"
+            },
+            "server02": {
+                "cpu": 2,
+                "memory": 2048,
+                "storage": 10,
+                "os": "generic/ubuntu2404",
+                "features": {
+                    "uefi": false,
+                    "tpm": false
+                },
+                "pxehost": false,
+                "secureboot": false,
+                "oob": false,
+                "emulation_type": null,
+                "network_pci": {},
+                "management_mac": "00:00:00:00:00:00"
+            },
+            "spine01": {
+                "cpu": 2,
+                "memory": 4096,
+                "storage": 10,
+                "os": "sonic-vs-202305",
+                "features": {
+                    "uefi": false,
+                    "tpm": false
+                },
+                "pxehost": false,
+                "secureboot": false,
+                "oob": false,
+                "emulation_type": null,
+                "network_pci": {},
+                "management_mac": "00:00:00:00:00:00"
+            }
+        },
+        "links": [
+            [
+                {
+                    "interface": "eth1",
+                    "node": "leaf01"
+                },
+                {
+                    "interface": "eth1",
+                    "node": "server01"
+                }
+            ],
+            [
+                {
+                    "interface": "eth2",
+                    "node": "leaf01"
+                },
+                {
+                    "interface": "eth1",
+                    "node": "spine01"
+                }
+            ],
+            [
+                {
+                    "interface": "eth1",
+                    "node": "leaf02"
+                },
+                {
+                    "interface": "eth1",
+                    "node": "server02"
+                }
+            ],
+            [
+                {
+                    "interface": "eth2",
+                    "node": "leaf02"
+                },
+                {
+                    "interface": "eth2",
+                    "node": "spine01"
+                }
+            ]
+        ]
+    }
+}
+```
 
-The following is an example of a simple topology DOT file with 1 spine, 2 leaf nodes, and 2 servers connected to each leaf.
+When viewing the Nodes within Air after starting the simulation, observe that the resources are allocated based on the file. 
+
+{{<img src="/images/guides/nvidia-air/JSONNodesExample.png" alt="" width="800px">}}
+
+When viewing the Links within Air after starting the simulation, observe that the nodes are connected based on the file, and
+also connected to the out-of-band management network. 
+
+{{<img src="/images/guides/nvidia-air/JSONLinksExample.png" alt="" width="800px">}}
+
+{{%notice note%}}
+If you omit the `oob` key in your JSON file, the **Enable OOB** will still be set to **on** after you've uploaded your file with default resources and will be automatically connected to each node.
+{{%/notice%}}
+
+#### Out-of-band Management Network 
+
+You can specify an `oob-mgmt-switch` and `oob-mgmt-server` to customize allocated resources. See the example below.
+```
+{
+    "format": "JSON",
+    "title": "Demo",
+    "ztp": null,
+    "content": {
+        "nodes": {
+           ...
+        },
+        "links": [
+            ...
+        ],
+        "oob": {
+            "nodes": {
+                "oob-mgmt-server": {
+                    "cpu": 3,
+                    "memory": 3072,
+                    "storage": 21
+                    
+                },
+                "oob-mgmt-switch": {
+                    "cpu": 2,
+                    "memory": 4096,
+                    "storage": 20
+                }
+            }
+        }
+    }
+}
+```
+
+When viewing the nodes within Air after starting the simulation, observe that the resources are allocated based on the file. 
+
+{{<img src="/images/guides/nvidia-air/JSONOOBExample.png" alt="" width="800px">}}
+
+### DOT
+
+You can also create custom topologies in Air using a DOT file, which is the file type used with the open-source graph visualization software, Graphviz. DOT files are simple, customizable, text-based files.
+
+DOT files use the `.dot` file extension.
+
+{{%notice info%}}
+NVIDIA highly recommends using JSON over DOT files due to its improved validation, scalability, and wide adoption around the world. 
+{{%/notice%}}
+
+The following is an example of a simple topology with 1 spine, 2 leaf nodes, and 2 servers connected to each leaf.
 
 ```
 graph "Demo" {
@@ -130,7 +325,7 @@ The following sections provide examples for common DOT file customizations.
 
 #### Operating System
 
-You can set the operating syatem of the node with the `os` option:
+You can set the operating system of the node with the `os` option:
 
 ```
 "server" [os="cumulus-vx-5.10.1"]
@@ -142,20 +337,6 @@ By default, nodes in Air have 10 GB of hard disk space. You can increase the spa
 
 ```
 "server" [os="generic/ubuntu2404" storage="20"]
-```
-
-If the node does not recognize the increased storage, run the following commands from the node to extend the partition and resize the file system:
-
-```
-sudo growpart /dev/vda 1
-sudo resize2fs /dev/vda1
-```
-
-Verify the change:
-
-```
-df -h | grep vda1
-/dev/vda1        20G  2.1G   18G  11% /
 ```
 
 #### CPU
@@ -185,15 +366,15 @@ You can customize RAM (in MB) with the `memory` option:
 
 ### Examples
 
-Labs in the [Demo Marketplace](https://air.nvidia.com/demos) are maintained with external GitLab repositories. Here you can find the `topology.dot` file used to build the lab and use it as a reference. To access the files, select **Documentation** on any lab in the Demo Marketplace. It will direct you to the demo's GitLab repository for the lab, where you can download the `.dot` file used for the demo topology.
+Labs in the [Demo Marketplace](https://air.nvidia.com/demos) are maintained with external GitLab repositories. Here you can find the `topology.dot` or `topology.json` file used to build the lab and use it as a reference. To access the files, select **Documentation** on any lab in the Demo Marketplace. It will direct you to the demo's GitLab repository for the lab, where you can download the file used for the demo topology.
 
-### Upload a DOT File
+### Upload a Topology File
 
-To upload a DOT file to Air, navigate to [air.nvidia.com/simulations](https://air.nvidia.com/simulations).
+To upload a DOT or JSON topology file to Air, navigate to [air.nvidia.com/simulations](https://air.nvidia.com/simulations).
 
 1. Select **Create Simulation**.
 2. Provide a name for the simulation.
-3. Select **DOT** as the type.
+3. Select your desired filetype.
 4. Upload the file to the UI.
 5. (Optional) Assign the simulation to an [organization](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Organizations/).
 6. (Optional) Add a [ZTP scripts](#ztp-scripts).
@@ -202,9 +383,25 @@ To upload a DOT file to Air, navigate to [air.nvidia.com/simulations](https://ai
 7. (Optional) Click **Advanced** and provide an out-of-band management server configuration script that executes on the `oob-mgmt-server` when the simulation starts.
 8. Click **Create**.
 
-Air builds a custom topology based on the DOT file.
+Air builds a custom topology based on the file.
 
 {{<img src="/images/guides/nvidia-air/CreateADOT.png" alt="">}}
+
+### A Note about Storage
+
+If you increase the storage of a node higher than its default, and Air does not recognize the increased storage, run the following commands from the node to extend the partition and resize the file system:
+
+```
+sudo growpart /dev/vda 1
+sudo resize2fs /dev/vda1
+```
+
+Verify the change:
+
+```
+df -h | grep vda1
+/dev/vda1        20G  2.1G   18G  11% /
+```
 
 ## Import a Topology with the API
 

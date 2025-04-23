@@ -98,10 +98,10 @@ To set the DNS server IP address and domain name globally, use the `nv set servi
 {{< tabs "TabID53 ">}}
 {{< tab "IPv4 ">}}
 
-1. In a text editor, edit the `/etc/dhcp/dhcpd.conf` file. Use following configuration as an example:
+1. In a text editor, edit the `/etc/dhcp/dhcpd-default.conf` file. Use following configuration as an example:
 
    ```
-   cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd.conf
+   cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd-default.conf
    authoritative;
    subnet 10.1.10.0 netmask 255.255.255.0 {
       option domain-name-servers 192.168.200.53;
@@ -122,10 +122,10 @@ To set the DNS server IP address and domain name globally, use the `nv set servi
    }
    ```
 
-To set the DNS server IP address and domain name globally, add the DNS server IP address and domain name before the pool information in the `/etc/dhcp/dhcpd.conf` file. For example:
+To set the DNS server IP address and domain name globally, add the DNS server IP address and domain name before the pool information in the `/etc/dhcp/dhcpd-default.conf` file. For example:
 
 ```
-cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd.conf
+cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd-default.conf
 authoritative;
 option domain-name servers;
 option domain-name-servers 192.168.200.51;
@@ -139,7 +139,7 @@ subnet 10.1.10.0 netmask 255.255.255.0
 
    ```
    cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-server
-   DHCPD_CONF="-cf /etc/dhcp/dhcpd.conf"
+   DHCPD_CONF="-cf /etc/dhcp/dhcpd-default.conf"
 
    INTERFACES="swp1"
    ```
@@ -154,10 +154,10 @@ subnet 10.1.10.0 netmask 255.255.255.0
 {{< /tab >}}
 {{< tab "IPv6 ">}}
 
-1. In a text editor, edit the `/etc/dhcp/dhcpd6.conf` file. Use following configuration as an example:
+1. In a text editor, edit the `/etc/dhcp/dhcpd6-default.conf` file. Use following configuration as an example:
 
    ```
-   cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd6.conf
+   cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd6-default.conf
    authoritative;
    subnet6 2001:db8::/64 {
       option domain-name-servers 2001:db8:100::64;
@@ -178,10 +178,10 @@ subnet 10.1.10.0 netmask 255.255.255.0
    }
    ```
 
-To set the DNS server IP address and domain name globally, add the DNS server IP address and domain name before the pool information in the `/etc/dhcp/dhcpd6.conf` file. For example:
+To set the DNS server IP address and domain name globally, add the DNS server IP address and domain name before the pool information in the `/etc/dhcp/dhcpd6-default.conf` file. For example:
 
 ```
-cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd6.conf
+cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd6-default.conf
 authoritative;
 option domain-name servers;
 option domain-name-servers 2001:db8:100::64;
@@ -195,7 +195,7 @@ subnet6 2001:db8::/64
 
    ```
    cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-server6
-   DHCPD_CONF="-cf /etc/dhcp/dhcpd6.conf"
+   DHCPD_CONF="-cf /etc/dhcp/dhcpd6-default.conf"
 
    INTERFACES="swp1"
    ```
@@ -247,10 +247,10 @@ cumulus@switch:~$ nv config apply
 {{< tabs "TabID231 ">}}
 {{< tab "IPv4 ">}}
 
-1. Edit the `/etc/dhcp/dhcpd.conf` file to set the lease time (in seconds):
+1. Edit the `/etc/dhcp/dhcpd-default.conf` file to set the lease time (in seconds):
 
    ```
-   cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd.conf
+   cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd-default.conf
    authoritative;
    subnet 10.1.10.0 netmask 255.255.255.0 {
       option domain-name-servers 192.168.200.53;
@@ -273,10 +273,10 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "IPv6 ">}}
 
-1. Edit the `/etc/dhcp/dhcpd6.conf` file to set the lease time (in seconds):
+1. Edit the `/etc/dhcp/dhcpd6-default.conf` file to set the lease time (in seconds):
 
    ```
-   cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd6.conf
+   cumulus@switch:~$ sudo nano/etc/dhcp/dhcpd6-default.conf
    authoritative;
    subnet6 2001:db8::/64 {
       option domain-name-servers 2001:db8:100::64;
@@ -334,10 +334,10 @@ cumulus@switch:~$ nv config apply
 {{< tabs "TabID318 ">}}
 {{< tab "IPv4 ">}}
 
-1. Edit the `/etc/dhcp/dhcpd.conf` file to add `ping-check true;`:
+1. Edit the `/etc/dhcp/dhcpd-default.conf` file to add `ping-check true;`:
 
    ```
-   cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd.conf
+   cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd-default.conf
    authoritative;
    subnet 10.1.10.0 netmask 255.255.255.0 {
       option domain-name-servers 192.168.200.53;
@@ -361,10 +361,10 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "IPv6 ">}}
 
-1. Edit the `/etc/dhcp/dhcpd6.conf` file to add `ping-check true;`:
+1. Edit the `/etc/dhcp/dhcpd6-default.conf` file to add `ping-check true;`:
 
    ```
-   cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd6.conf
+   cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd6-default.conf
    authoritative;
    subnet6 2001:db8::/64 {
       option domain-name-servers 2001:db8:100::64;
@@ -430,10 +430,10 @@ cumulus@switch:~$ nv config apply
 {{< tabs "TabID409 ">}}
 {{< tab "IPv4 ">}}
 
-1. Edit the `/etc/dhcp/dhcpd.conf` file to add the interface and IP address:
+1. Edit the `/etc/dhcp/dhcpd-default.conf` file to add the interface and IP address:
 
 ```
-   cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd.conf
+cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd-default.conf
 # Statics
 group {
     host server2 {
@@ -453,10 +453,10 @@ group {
 {{< /tab >}}
 {{< tab "IPv6 ">}}
 
-1. Edit the `/etc/dhcp/dhcpd6.conf` file to add the interface and IP address:
+1. Edit the `/etc/dhcp/dhcpd6-default.conf` file to add the interface and IP address:
 
    ```
-   cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd6.conf
+   cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd6-default.conf
    ...
    host server2 {
        ifname "swp1" ;
@@ -479,34 +479,141 @@ group {
 
 ### Multiple Static IP Address Assignments
 
-Cumulus Linux enables you to assign two static IP addresses for a single connected host using the vendor-class in the DHCP request packet. Use this feature if you have different DHCP requests coming in on the same interface on the DHCP server from different end host applications.
+Cumulus Linux enables you to assign multiple static IP addresses for a single connected host using the vendor-class in the DHCP request packet. Use this feature if you have different DHCP requests coming in on the same interface on the DHCP server from different end host applications.
+
+{{< tabs "TabID484 ">}}
+{{< tab "NVUE Commands ">}}
+
+{{< tabs "TabID487 ">}}
+{{< tab "IPv4 ">}}
 
 The following example assigns:
-- The fixed IP address 10.0.0.2 for DHCP requests coming in on swp1 with the `vendor-class` string `bmc-string`.
-- The fixed IP address 10.0.0.3 for DHCP requests coming in on swp1 with the `vendor-class` string `mgmt-string`.
+- The fixed IP address 10.1.10.2 for DHCP requests coming in on swp6 with the `vendor-class` string `bmc-string`.
+- The fixed IP address 10.1.10.3 for DHCP requests coming in on swp6 with the `vendor-class` string `mgmt-string`.
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server1 ifname swp1 
-cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server1 ip-address 10.0.0.2 
-cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server1 vendor-class bmc-string
-cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server2 ifname swp1 
-cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server2 ip-address 10.0.0.3 
-cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server2 vendor-class mgt-string
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server2 ifname swp6 
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server2 ip-address 10.1.10.2 
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server2 vendor-class bmc-string
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server3 ifname swp6 
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server3 ip-address 10.1.10.3
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server3 vendor-class mgmt-string
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
-For IPv6, use `nv set service dhcp-server6 default static` commands.
+{{< /tab >}}
+{{< tab "IPv6 ">}}
 
-To show the DHCP static configuration for all hosts, run the `nv show service dhcp-server <vrf> static` command:
+The following example assigns:
+- The fixed IP address 2001:db8:1::2 for DHCP requests coming in on swp6 with the `vendor-class` string `bmc-string`.
+- The fixed IP address 2001:db8:1::3 for DHCP requests coming in on swp6 with the `vendor-class` string `mgmt-string`.
 
 ```
-cumulus@leaf01:mgmt:~$ nv show service dhcp-server default static
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default static server2 ifname swp6 
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default static server2 ip-address 2001:db8:1::2
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default static server2 vendor-class bmc-string
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default static server3 ifname swp6 
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default static server3 ip-address 2001:db8:1::3
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default static server3 vendor-class mgmt-string
+cumulus@leaf01:mgmt:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+{{< tabs "TabID524 ">}}
+{{< tab "IPv4 ">}}
+
+1. Edit the `/etc/dhcp/dhcpd-default.conf` file to add the interface and IP address:
+
+   ```
+   cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd-default.conf
+   ...
+   # Statics
+   group {
+       host server2 {
+           ifname "swp6";
+           vendor-class "bmc-string";
+           fixed-address 10.1.10.2;
+       }
+       host server3 {
+           ifname "swp6";
+           vendor-class "mgmt-string";
+           fixed-address 10.1.10.3;
+       }
+   }
+   ...
+   ```
+
+2. Restart the `dhcpd` service:
+
+   ```
+   cumulus@switch:~$ sudo systemctl restart dhcpd.service
+   ```
+
+{{< /tab >}}
+{{< tab "IPv6 ">}}
+
+1. Edit the `/etc/dhcp/dhcpd6-default.conf` file to add the interface and IP address:
+
+   ```
+   cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd6-default.conf
+   ...
+   # Statics
+   group {
+       host server2 {
+               ifname "swp6";
+               vendor-class "bmc-string";
+               fixed-address 2001:db8:1::2;
+           }
+           host server3 {
+               ifname "swp6";
+               vendor-class "mgmt-string";
+               fixed-address 2001:db8:1::3;
+       }
+   }
+   ...
+   ```
+
+2. Restart the `dhcpd6` service:
+
+   ```
+   cumulus@switch:~$ sudo systemctl restart dhcpd6.service
+   ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{%notice note%}}
+The `vendor-class` string supports an exact-match with the `vendor-class` on the incoming packet.
+{{%/notice%}}
+
+To show the DHCP static configuration for all hosts, run the `nv show service dhcp-server <vrf> static --rev=applied` command:
+
+```
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server default static --rev=applied
+         cumulus-provision-url  host-id-circuit-id ifname   ip-address  MAC address         vendor-class
+-------  ---------------------  ------------------  ------  ----------  -----------------  ------------
+server1                                                     10.0.0.2    44:38:39:00:01:7e              
+server2                                             swp6    10.1.10.2                      bmc-string  
+server3                                             swp6    10.1.10.3                      mgmt-string
 ```
 
 To show the DHCP static configuration for a specific host, run the `nv show service dhcp-server <vrf> static <host>` command:
 
 ```
-cumulus@leaf01:mgmt:~$ nv show service dhcp-server default static server1
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server default static server2
+              operational        applied                     
+------------  -----------------  -----------------
+ip-address                 10.1.10.2  
+vendor-class               bmc-string
+ifname                     swp6 
 ```
 
 ## Troubleshooting

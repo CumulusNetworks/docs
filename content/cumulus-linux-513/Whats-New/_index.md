@@ -38,7 +38,6 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
   - {{<link url="Open-Telemetry-Export/#software-statistics" text="OTEL software metrics">}}
   - {{<link url="Open-Telemetry-Export/#platform-statistics" text="OTEL Transceiver statistics">}}
   - {{<link url="Open-Telemetry-Export/#temporality-mode" text="OTEL temporality mode for histogram metrics">}}
-  - OTEL Buffer Occupancy and watermark metrics
 - NVUE
   - {{<link url="NVUE-CLI/#list-directory-contents" text="Command to list directory contents">}}
   - {{<link url="NVUE-CLI/#get-the-hash-for-a-file" text="Command to get the hash for a file">}}
@@ -56,8 +55,6 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 | `nv set maintenance unit all-protocols mode disabled` | `nv action disable system maintenance mode` |
 | `nv set maintenance unit all-interfaces mode enabled` | `nv action enable system maintenance ports` |
 | `nv set maintenance unit all-interfaces mode disabled` | `nv action disable system maintenance ports` |
-| `nv set system lldp` | `nv set service lldp` |
-| `nv show system lldp` | `nv show service lldp` |
 | `nv set system syslog server <server-id>` | `nv set service syslog <vrf> server <server-id>`|
 | `nv set system syslog server <server-id> port <port>` | `nv set service syslog <vrf> server <server-id> port <port>`|
 | `nv set system syslog server <server-id> protocol <protocol>` | `nv set service syslog <vrf> server <server-id> protocol <protocol>`|

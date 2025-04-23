@@ -237,12 +237,12 @@ The use of <code>netq-latest</code> in these examples means that a <code>get</co
 
 
 
-Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-focal.list` and add the following line:
+Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-jammy.list` and add the following line:
 
 ```
-root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-focal.list
+root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-jammy.list
 ...
-deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb focal netq-latest
+deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb jammy netq-latest
 ...
 ```
     {{<notice note>}}

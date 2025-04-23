@@ -261,6 +261,12 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <td></td>
 </tr>
 <tr>
+<td>4128912</td>
+<td>When you use PPS IN, PTP might show a high offset. The offset might be around an offset value. For example, around 60 ns or 80 ns. To work around this issue, set the cable compensation value. For 60 ns, run the {{nv set platform pulse-per-second in timestamp-correction -60}} command to set the compensation.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4127932</td>
 <td>After you run the {{nv action install system image}} command or the {{cl-image-upgrade -u}} command, if you run the command a second time to upgrade to a different image, the upgrade might fail because there are leftover {{/var/install/sys}} mounts. To resolve this issue, either reboot before you retry image upgrade or run the following commands :
 cumulus@switch:~$ sudo mount --make-rslave /var/installer/sys
@@ -1516,6 +1522,12 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <tr>
 <td>4128952</td>
 <td>Cumulus Linux does not support LDAP over IPv6.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4128912</td>
+<td>When you use PPS IN, PTP might show a high offset. The offset might be around an offset value. For example, around 60 ns or 80 ns. To work around this issue, set the cable compensation value. For 60 ns, run the {{nv set platform pulse-per-second in timestamp-correction -60}} command to set the compensation.</td>
 <td>5.11.0-5.12.1</td>
 <td></td>
 </tr>

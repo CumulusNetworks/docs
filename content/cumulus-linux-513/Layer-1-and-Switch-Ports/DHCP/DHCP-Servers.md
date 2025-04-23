@@ -482,16 +482,16 @@ group {
 Cumulus Linux enables you to assign multiple static IP addresses for a single connected host using the vendor-class in the DHCP request packet. Use this feature if you have different DHCP requests coming in on the same interface on the DHCP server from different end host applications.
 
 The following example assigns:
-- The fixed IP address 10.0.0.2 for DHCP requests coming in on swp1 with the `vendor-class` string `bmc-string`.
-- The fixed IP address 10.0.0.3 for DHCP requests coming in on swp1 with the `vendor-class` string `mgmt-string`.
+- The fixed IP address 10.0.1.2 for DHCP requests coming in on swp6 with the `vendor-class` string `bmc-string`.
+- The fixed IP address 10.0.1.3 for DHCP requests coming in on swp6 with the `vendor-class` string `mgmt-string`.
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server1 ifname swp1 
-cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server1 ip-address 10.0.0.2 
-cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server1 vendor-class bmc-string
-cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server2 ifname swp1 
-cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server2 ip-address 10.0.0.3 
-cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server2 vendor-class mgmt-string
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server2 ifname swp6 
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server2 ip-address 10.0.1.2 
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server2 vendor-class bmc-string
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server3 ifname swp6 
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server3 ip-address 10.0.1.3 
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server3 vendor-class mgmt-string
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
@@ -505,21 +505,22 @@ To show the DHCP static configuration for all hosts, run the `nv show service dh
 
 ```
 cumulus@leaf01:mgmt:~$ nv show service dhcp-server default static --rev=applied
-         cumulus-provision-url  host-id-circuit-id  ifname  ip-address  MAC address        vendor-class
+        cumulus-provision-url  host-id-circuit-id  ifname  ip-address  MAC address        vendor-class
 -------  ---------------------  ------------------  ------  ----------  -----------------  ------------
-server1                                                     10.0.0.2    44:38:39:00:01:7e
+server1                                                     10.0.0.2    44:38:39:00:01:7e              
+server2                                             swp6    10.0.1.2                       bmc-string  
+server3                                             swp6    10.0.1.3                       mgmt-string
 ```
 
 To show the DHCP static configuration for a specific host, run the `nv show service dhcp-server <vrf> static <host>` command:
 
 ```
-cumulus@leaf01:mgmt:~$ nv show service dhcp-server default static server1
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server default static server2
               operational        applied                     
 ------------  -----------------  -----------------
-mac-address   44:38:39:00:01:7e  44:38:39:00:01:7e
-ip-address    10.0.0.2           10.0.0.2                  
-vendor-class                     bmc-string       
-ifname                           swp1
+ip-address                 10.0.1.2  
+vendor-class               bmc-string
+ifname                     swp6 
 ```
 
 ## Troubleshooting

@@ -245,12 +245,12 @@ The following is an example of a simple topology with 1 spine, 2 leaf nodes, and
 
 When viewing the Nodes within Air after starting the simulation, observe that the resources are allocated based on the file. 
 
-{{<img src="/images/guides/nvidia-air/JSONNodesExample.png" alt="" width="800px">}}
+{{<img src="/images/guides/nvidia-air/JSONNodesExample.png" alt="">}}
 
 When viewing the Links within Air after starting the simulation, observe that the nodes are connected based on the file, and
 also connected to the out-of-band management network. 
 
-{{<img src="/images/guides/nvidia-air/JSONLinksExample.png" alt="" width="800px">}}
+{{<img src="/images/guides/nvidia-air/JSONLinksExample.png" alt="">}}
 
 {{%notice note%}}
 If you omit the `oob` key in your JSON file, the **Enable OOB** will still be set to **on** after you've uploaded your file with default resources and will be automatically connected to each node.
@@ -292,7 +292,7 @@ You can specify an `oob-mgmt-switch` and `oob-mgmt-server` to customize allocate
 
 When viewing the nodes within Air after starting the simulation, observe that the resources are allocated based on the file. 
 
-{{<img src="/images/guides/nvidia-air/JSONOOBExample.png" alt="" width="800px">}}
+{{<img src="/images/guides/nvidia-air/JSONOOBExample.png" alt="">}}
 
 ### DOT
 

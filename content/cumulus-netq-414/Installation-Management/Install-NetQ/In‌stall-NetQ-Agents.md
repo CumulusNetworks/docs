@@ -137,7 +137,7 @@ cumulus@switch:~$ wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-app
 
 {{</tab>}}
 
-{{<tab "Ubuntu">}}
+{{<tab "Ubuntu 22.04">}}
 
 ### Verify Service Package Versions
 

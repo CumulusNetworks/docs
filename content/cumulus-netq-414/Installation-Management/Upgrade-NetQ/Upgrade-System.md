@@ -36,7 +36,7 @@ If the output of this command displays errors or returns an empty response, you 
 
     ```
     cat /etc/apt/sources.list.d/cumulus-netq.list
-    deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb focal netq-4.14
+    deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb jammy netq-4.14
     ```
 
 2. Update the NetQ `debian` packages. In cluster deployments, update the packages on the master and all worker nodes:
@@ -44,11 +44,11 @@ If the output of this command displays errors or returns an empty response, you 
     ```
     cumulus@<hostname>:~$ wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | sudo apt-key add
     cumulus@<hostname>:~$ sudo apt-get update
-    Get:1 https://apps3.cumulusnetworks.com/repos/deb focal InRelease [13.8 kB]
-    Get:2 https://apps3.cumulusnetworks.com/repos/deb focal/netq-4.14 amd64 Packages [758 B]
-    Hit:3 http://archive.ubuntu.com/ubuntu focal InRelease
-    Get:4 http://security.ubuntu.com/ubuntu focal-security InRelease [88.7 kB]
-    Get:5 http://archive.ubuntu.com/ubuntu focal-updates InRelease [88.7 kB]
+    Get:1 https://apps3.cumulusnetworks.com/repos/deb jammy InRelease [13.8 kB]
+    Get:2 https://apps3.cumulusnetworks.com/repos/deb jammy/netq-4.14 amd64 Packages [758 B]
+    Hit:3 http://archive.ubuntu.com/ubuntu jammy InRelease
+    Get:4 http://security.ubuntu.com/ubuntu jammy-security InRelease [88.7 kB]
+    Get:5 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [88.7 kB]
     ...
     Reading package lists... Done
     ```

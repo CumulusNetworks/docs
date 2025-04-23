@@ -2147,17 +2147,17 @@ To show if graceful shutdown is `on` a peer group, run the `nv show vrf <vrf> ro
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp peer-group underlay
-                                    operational                     applied   
-----------------------------------  ------------------------------  ----------
-password                                                            *         
-enforce-first-as                                                    off       
-passive-mode                                                        off       
-nexthop-connected-check                                             on        
-description                                                         none      
-bfd                                                                           
-  enable                                                            off       
+                             operational  applied   
+------------------------  --------------  ----------
+password                                  *         
+enforce-first-as                          off       
+passive-mode                              off       
+nexthop-connected-check                   on        
+description                               none      
+bfd                                                 
+  enable                                  off       
 ...
-graceful-shutdown                                                   on      
+graceful-shutdown                         on      
 ...
 ```
 

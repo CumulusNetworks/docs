@@ -18,7 +18,7 @@ You can run NVUE commands to monitor your system hardware.
 
 | Command | Description |
 | ----------- | ----------- |
-| `nv show system health`| Shows information about the health of the switch including system, hardware, process, disk, memory, CPU, and transceiver information and describes any issues. Run this command to check real-time health metrics and view historical health data.<ul><li>To show system health information for a specific configuration revision, run the `nv show system health --rev <revision-id>` command.</li><li>To show system health information in `json` format, run the `nv show system health -o json` command.</li></ul>|
+| `nv show system health`| Shows information about the health of the switch including the status of the ASIC, hardware, and process and describes any issues. Run this command to check real-time health metrics and view historical health data.<ul><li>To show system health information for a specific configuration revision, run the `nv show system health --rev <revision-id>` command.</li><li>To show system health information in `json` format, run the `nv show system health -o json` command.</li></ul>|
 | `nv show platform`| Shows platform hardware information on the switch, such as the model and manufacturer, memory, serial number and system MAC address. |
 |`nv show platform environment fan` | Shows information about the fans on the switch, such as the minimum, maximum and current speed, the fan state, and the fan direction.|
 | `nv show platform environment led` | Shows information about the LEDs on the switch, such as the LED name and color.|
@@ -27,50 +27,27 @@ You can run NVUE commands to monitor your system hardware.
 | `nv show platform environment voltage` | Shows the list of voltage sensors on the switch.|
 | `nv show platform inventory` | Shows the switch inventory, which includes fan and PSU hardware version, model, serial number, state, and type. For information about a specific fan or PSU, run the `nv show platform inventory <inventory-name>` command.|
 
-The following example shows the `nv show health` command output when the health of the switch is good:
-
-```
-cumulus@switch:~$ nv show system health 
-                     operational    applied
-----------          -----------     ------- 
-
-System         OK 
-Process        OK 
-Hardware       OK 
-CPU            OK 
-Disk           OK 
-Memory         OK 
-Transceiver    OK 
-
-Health issues 
-================ 
-```
-
 The following example shows the `nv show health` command output when the health of the switch is not good:
 
 ```
-cumulus@switch:~$ 
-                    operational  applied 
-----------          -----------  ------- 
-System              Not OK 
-Process             Not OK 
-Hardware            Not OK 
-CPU                 Not OK 
-Disk                Not OK 
-Memory              Not OK 
+cumulus@switch:~$ nv show system health
+            operational  applied
+----------  -----------  -------
+status      Not OK          
+status-led  amber
 
-Health issues 
-================ 
-    Hardware                       Status information 
-    ------------------             ------------------ 
-    PSU1                           bad 
-    PSU1-Temp-sensor               absent 
-    PSU1/FAN                       absent 
-
-    Process                        Status information 
-    ------------------             ------------------ 
-    routing                        inactive 
-    Forwarding                     Switchd exited: Thu Feb 20 18:42:00 PST 2025, reason: SDK init failure. 
+Health issues
+================
+    Component           Status information                                           
+    ------------------  -------------------------------------------------------------
+    ASIC                Not OK                                                       
+    forwarding          active (running) since Thu 2025-04-17 10:56:57 UTC; 58min ago
+    hw-management       inactive                                                     
+    hw-management-sync  inactive                                                     
+    hw-management-tc    inactive                                                     
+    mft                 inactive                                                     
+    process             Not OK                                                       
+    rasdaemon           inactive 
 ```
 
 The following example shows the `nv show platform` command output:
@@ -109,7 +86,12 @@ PSU2/FAN  ok         6000                 29000      2500       F2B
 ```
 
 {{%notice note%}}
-If the airflow direction for all fans is not in the same (front to back or back to front), cooling is suboptimal for the switch, rack, and even the entire data center.
+- If the airflow direction for all fans is not in the same (front to back or back to front), cooling is suboptimal for the switch, rack, and even the entire data center.
+- During thermal overload or if you physically remove a fan try while the switch is powered on, the switch reboots and none of the interfaces come up until you power cycle the switch with the fan tray reinserted or when the environmental temperature is corrected. You can detect this condition with the following log message:
+
+```
+switch determine-reset[8801]: determine-reset-reason INFO: Platform api indicates reboot cause Thermal Overload: ASIC
+```
 {{%/notice%}}
 
 <!-- vale off -->

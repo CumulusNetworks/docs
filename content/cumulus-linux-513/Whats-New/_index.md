@@ -14,7 +14,7 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 
 ### Platforms
 
-- NVIDIA SN5600D (200G Spectrum-4 DC version)
+- NVIDIA SN5600D (400G Spectrum-4 DC version)
 
 ### New Features and Enhancements
 
@@ -22,14 +22,12 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 - {{<link url="Equal-Cost-Multipath-Load-Sharing/#enable-adaptive-routing" text="Enabling adaptive routing no longer restarts switchd">}}
 - {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="Optimized upgrade supports warmboot">}}
 - {{<link url="802.1X-Interfaces/#ignore-reauthorization-timeout" text="802.1 option to keep the port in the current state when the RADIUS server is unreachable">}}
-- {{<link url="Monitoring-System-Hardware/#nvue-commands" text="Updated system health command">}}
+- {{<link url="Monitoring-System-Hardware/#nvue-commands" text="Updated system health command output">}}
 - {{<link url="DHCP-Servers/#multiple-static-ip-address-assignments" text="Support two DHCP static IP address assignments per port for a single host">}}
-- {{<link url="Syslog" text="syslog log filters">}}
-- {{<link title="Docker with Cumulus Linux" text="Support Docker containers">}}
+- {{<link url="Syslog/#configure-filters" text="syslog log filters">}}
 - {{<link title="Erase all Data from the Switch" text="Erase all data from the switch">}} (Beta)
 - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#amber-phy-health-management" text="Show SNR information for transceivers">}}
 - {{<link url="In-Service-System-Upgrade-ISSU/#maintenance-mode" text="New maintenance mode commands">}}
-- {{<link url="802.1X-Interfaces/#dynamic-vrf-assignments" text="802.1x on router ports with dynamic VRF assignments">}}
 - {{<link url="RADIUS-AAA/#optional-radius-configuration" text="RADIUS multiple VRF support">}}
 - {{<link url="RADIUS-AAA/#optional-radius-configuration" text="RADIUS require-message-authenticate attribute">}}
 - {{<link url="SSH-for-Remote-Access/#message-of-the-day" text="Message of the day shows system reboot cause and health information">}}
@@ -46,7 +44,9 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
   - {{<link url="802.1X-Interfaces/#configure-8021x-interfaces" text="Commands to set the NAS IP address and NAS identifier for 802.1X">}}
   - {{<link url="System-Power/#power-cycle" text="Command to power cycle the switch">}}
   - {{<link url="SSH-for-Remote-Access/#certificate-based-authentication" text="SSH certificate-based authentication">}}
-  - {{<link url="NVUE-CLI/#replace-and-patch-a-pending-configuration" text="Replace and patch against a plain text file of `nv set` and `nv unset` commands">}}
+  - {{<link url="User-Accounts/#default-roles" text="Terminate a user session when you change the user role">}}
+  - {{<link url="NVUE-CLI/#replace-and-patch-a-pending-configuration" text="Replace and patch against a plain text file of nv set and nv unset commands">}}
+  - {{<link url="NVUE-CLI/#view-differences-between-configurations" text="nv config diff --verbose option ">}} to see both previous and new configuration
   - Additional FRR filters
   - {{< expand "Changed NVUE Commands" >}}
 | Cumulus Linux 5.13 | Cumulus Linux 12 and Earlier |
@@ -60,8 +60,12 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 | `nv set system syslog server <server-id>` | `nv set service syslog <vrf> server <server-id>`|
 | `nv set system syslog server <server-id> port <port>` | `nv set service syslog <vrf> server <server-id> port <port>`|
 | `nv set system syslog server <server-id> protocol <protocol>` | `nv set service syslog <vrf> server <server-id> protocol <protocol>`|
+| `nv show system syslog`| `nv show service syslog`|
+| `nv show system` | `build` and `product-release` fields removed from output.|
 | `nv show system`| `build` and `product-release` fields removed from output. |
-| `nv show system version`| Updated and new fields in output.|
+| `nv show system version` | Output includes `base-os` and `product-release` fields.|
+| `nv show system version packages installed` | `nv show platform software`|
+| `nv show --output native`| `nv show --output raw`|
 
 {{< /expand >}}
   - {{< expand "Removed NVUE Commands" >}}
@@ -70,7 +74,25 @@ nv action enable system maintenance mode
 nv action enable system maintenance ports
 nv action disable system maintenance mode
 nv action disable system maintenance ports
+nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast route-server-client
+nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast route-server-client
+nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn route-server-client
+nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast route-server-client
+nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast route-server-client
+nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn route-server-client
+nv show service ptp <instance-id> domain 
+nv show service ptp <instance-id> priority1
+nv show service ptp <instance-id> priority2
+nv show service ptp <instance-id> ip-dscp
+nv show service ptp <instance-id> ipv6-scope
+nv show service ptp <instance-id> servo
+nv show service ptp <instance-id> force-version
 nv show platform software
+nv show platform software installed
+nv show platform software installed <installed-id>
+nv show system health
+nv show system health brief
+nv show system health detail
 nv show system maintenace
 ```
 {{< /expand >}}
@@ -80,13 +102,9 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 {{< tab "nv show ">}}
 
 ```
-nv show maintenance unit all-protocols
-nv show system docker
-nv show system docker container
-nv show system docker container stats
-nv show system docker container <container-id-name> stats
-nv show system docker engine
-nv show system docker image
+nv show system aaa user <user-id> ssh cert-auth
+nv show system aaa user <user-id> ssh cert-auth principals
+nv show system aaa user <user-id> ssh cert-auth principals <cert-auth-principal>
 nv show system gnmi-server
 nv show system gnmi-server listening-address
 nv show system gnmi-server listening-address <listening-address-id>
@@ -99,14 +117,41 @@ nv show system grpc-tunnel server
 nv show system grpc-tunnel server <server-name-id>
 nv show system grpc-tunnel server <server-name-id> status
 nv show system grpc-tunnel server <server-name-id> status connection
+nv show system security crl
+nv show system security crl <crl-id>
 nv show system ssh-server trusted-ca-keys
+nv show system ssh-server trusted-ca-keys <ssh-trusted-ca-key-id>
 nv show system syslog
 nv show system syslog format
+nv show system syslog format welf
 nv show system syslog server
 nv show system syslog server <server-id>
+nv show system syslog server <server-id> selector
+nv show system syslog server <server-id> selector <priority-id>
+nv show system syslog selector
 nv show system syslog selector <selector-id>
+nv show system syslog selector <selector-id> rate-limit
 nv show system syslog selector <selector-id> filter
 nv show system syslog selector <selector-id> filter <filter-id>
+nv show system telemetry adaptive-routing-stats
+nv show system telemetry adaptive-routing-stats export
+nv show system telemetry software-stats
+nv show system telemetry software-stats systemd
+nv show system telemetry software-stats systemd export
+nv show system telemetry software-stats systemd unit-profile
+nv show system telemetry software-stats systemd unit-profile <unit-profile-id>
+nv show system telemetry software-stats systemd unit-profile <unit-profile-id> unit
+nv show system telemetry platform-stats class transceiver-info
+nv show system telemetry lldp
+nv show system telemetry lldp export
+nv show system telemetry stats-group <stats-group-id> adaptive-routing-stats
+nv show system telemetry stats-group <stats-group-id> adaptive-routing-stats export
+nv show system telemetry stats-group <stats-group-id> software-stats
+nv show system telemetry stats-group <stats-group-id> software-stats systemd
+nv show system telemetry stats-group <stats-group-id> software-stats systemd export
+nv show system telemetry stats-group <stats-group-id> platform-stats class transceiver-info
+nv show system telemetry stats-group <stats-group-id> lldp
+nv show system telemetry stats-group <stats-group-id> lldp export
 nv show system version
 nv show system version image
 nv show system version packages installed
@@ -117,14 +162,18 @@ nv show system version packages installed <package_name>
 {{< tab "nv set ">}}
 
 ```
-nv set maintenance unit all-interfaces mode 
-nv set maintenance unit all-protocols mode
-nv set service dhcp-server <vrf> static <host> vendor-class
+nv set interface <interface-id> bond mlag lacp-conflict
+nv set maintenance unit <unit-name>
+nv set maintenance unit <unit-name> mode
+nv set maintenance unit <unit-name> interfaces <value>
+nv set maintenance unit <unit-name> protocols <value>
+nv set service dhcp-server <vrf-id> static <static-id> vendor-class <value>
+nv set service dhcp-server6 <vrf-id> static <static-id> vendor-class <value>
 nv set system aaa radius require-message-authenticator
 nv set system aaa radius server <server-id> vrf <vrf-id>
 nv set system aaa user <user> ssh cert-auth state
 nv set system aaa user <user> ssh cert-auth principals <principal>
-nv set system docker vrf <vrf-name>
+nv set system api mtls crl <value>
 nv set system dot1x radius nas-identifier
 nv set system dot1x radius nas-ip-address
 nv set system dot1x reauth-timeout-ignore
@@ -134,38 +183,63 @@ nv set system gnmi-server mtls crl <value>
 nv set system gnmi-server state
 nv set system gnmi-server certificate self-signed
 nv set system gnmi-server port
-nv set system grpc-tunnel server <server-name-id> target-type gnmi-gnoi
 nv set system grpc-tunnel server <server-name-id>
 nv set system grpc-tunnel server <server-name-id> state
-nv set system grpc-tunnel server <server-name-id> target-name 
+nv set system grpc-tunnel server <server-name-id> target-name
 nv set system grpc-tunnel server <server-name-id> address
 nv set system grpc-tunnel server <server-name-id> port
 nv set system grpc-tunnel server <server-name-id> certificate self-signed
 nv set system grpc-tunnel server <server-name-id> ca-certificate
 nv set system grpc-tunnel server <server-name-id> target-type gnmi-gnoi
 nv set system grpc-tunnel server <server-name-id> retry-interval
-nv set system ssh-server trusted-ca-keys <key-id> key <key-literal>
+nv set system ssh-server trusted-ca-keys <key-id> key <key-string>
 nv set system ssh-server trusted-ca-keys <key-id> type <key-type>
-nv set system syslog format welf
+nv set system ssh-server pka-only
 nv set system syslog format welf firewall-name
-nv set system syslog selector
-nv set system syslog selector facility
+nv set system syslog server <server-id>
+nv set system syslog server <server-id> selector <priority-id>
+nv set system syslog server <server-id> selector <priority-id> selector-id
+nv set system syslog server <server-id> port
+nv set system syslog server <server-id> protocol
+nv set system syslog server <server-id> vrf <vrf-name>
+nv set system syslog selector <selector-id>
+nv set system syslog selector <selector-id> rate-limit burst
+nv set system syslog selector <selector-id> rate-limit interval
+nv set system syslog selector <selector-id> filter <filter-id>
+nv set system syslog selector <selector-id> filter <filter-id> match
+nv set system syslog selector <selector-id> filter <filter-id> action
+nv set system syslog selector <selector-id> facility
 nv set system syslog selector <selector-id> program-name
 nv set system syslog selector <selector-id> severity
-nv set system syslog selector <selector-id> filter <filter-id> action
-nv set system syslog selector <selector-id> filter <filter-id> match
 nv set system syslog severity
 nv set system syslog server <server-id>
 nv set system syslog server <server-id> port
 nv set system syslog server <server-id> protocol
 nv set system syslog server <server-id> vrf mgmt
-nv set system telemetry histogram temporality <mode>
-nv set system telemetry adaptive-routing-stats sample-interval
+nv set system telemetry software-stats systemd export state
+nv set system telemetry software-stats systemd unit-profile
+nv set system telemetry software-stats systemd unit-profile
+nv set system telemetry software-stats systemd sample-interval
+nv set system telemetry software-stats systemd process-level
+nv set system telemetry software-stats systemd active-profile
 nv set system telemetry adaptive-routing-stats export state
+nv set system telemetry adaptive-routing-stats sample-interval
+nv set system telemetry platform-stats class transceiver-info state
+nv set system telemetry platform-stats class transceiver-info sample-interval
+nv set system telemetry histogram temporality
 nv set system telemetry lldp export state
 nv set system telemetry lldp sample-interval
-nv set system telemetry platform-stats class transceiver-info sample-interval
-nv set system telemetry platform-stats class transceiver-info state
+nv set system telemetry stats-group <stats-group-id> adaptive-routing-stats export state
+nv set system telemetry stats-group <stats-group-id> adaptive-routing-stats sample-interval
+nv set system telemetry stats-group <stats-group-id> software-stats systemd export state
+nv set system telemetry stats-group <stats-group-id> software-stats systemd sample-interval
+nv set system telemetry stats-group <stats-group-id> software-stats systemd process-level
+nv set system telemetry stats-group <stats-group-id> software-stats systemd active-profile
+nv set system telemetry stats-group <stats-group-id> histogram temporality
+nv set system telemetry stats-group <stats-group-id> platform-stats class transceiver-info state
+nv set system telemetry stats-group <stats-group-id> platform-stats class transceiver-info sample-interval
+nv set system telemetry stats-group <stats-group-id> lldp export state
+nv set system telemetry stats-group <stats-group-id> lldp sample-interval
 ```
 
 {{< /tab >}}
@@ -180,7 +254,6 @@ nv unset system aaa user <user> ssh cert-auth state
 nv unset system aaa user <user> ssh cert-auth principals
 nv unset system aaa radius require-message-authenticator
 nv unset system aaa radius server <server-id> vrf
-nv unset system docker vrf
 nv unset system dot1x radius nas-identifier
 nv unset system dot1x radius nas-ip-address
 nv unset system dot1x reauth-timeout-ignore
@@ -240,11 +313,6 @@ nv action generate file-hash sha256 <filename>
 nv action generate file-hash sha512 <filename>
 nv action list system file-path <path>
 nv action power-cycle system
-nv action pull system docker image <image-id>
-nv action remove system docker image <image-id>
-nv action remove system docker container <container-id>
-nv action start system docker container <container-name> image <image-id>
-nv action stop system docker container <container-name>
 ```
 
 {{< /tab >}}

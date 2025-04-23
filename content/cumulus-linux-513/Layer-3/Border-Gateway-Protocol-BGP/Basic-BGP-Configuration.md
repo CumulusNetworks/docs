@@ -11,7 +11,7 @@ BGP *unnumbered* simplifies configuration. NVIDIA recommends you use BGP unnumbe
 {{%/notice%}}
 
 {{%notice warning%}}
-When you enable BGP for the first time, the FRR service restarts, which might impact traffic. Any time you enable or disable BGP, or change the ASN, the FRR service also restarts.
+When you enable BGP for the first time, the FRR service restarts, which might impact traffic. Any time you enable or disable BGP, change the ASN, or BGP detects an ASN change in any VRF (default or non-default), the FRR service also restarts.
 {{%/notice%}}
 
 ## BGP Numbered

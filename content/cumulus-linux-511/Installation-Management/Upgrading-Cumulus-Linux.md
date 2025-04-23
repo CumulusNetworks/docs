@@ -152,6 +152,7 @@ Cumulus Linux provides two different ways to upgrade the switch with a new image
 
 {{%notice note%}}
 - You can use optimized upgrade to upgrade the switch from Cumulus Linux 5.11.0 to Cumulus Linux 5.11.1 and later. To upgrade the switch to Cumulus Linux 5.11.0, you must use ONIE.
+- To upgrade with optimized image upgrade, the switch must be in cold restart mode. Optimized image upgrade does not support warm restart mode.
 - Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in [Upgrade Switches in an MLAG Pair](#upgrade-switches-in-an-mlag-pair) below to ensure a smooth upgrade.
 {{%/notice%}}
 
@@ -166,6 +167,8 @@ Cumulus Linux provides two different ways to upgrade the switch with a new image
    ```
    cumulus@switch:~$ nv action fetch system image http://10.0.1.251/cumulus-linux-5.11.1-mlx-amd64.bin
    ```
+
+   The `nv action fetch system image <remote-url>` command copies the image to the `/var/images` directory on the switch. If you copy the image manually to the switch instead of using the `nv action fetch system image <remote-url>` command, make sure to copy the image to the `/var/images` directory.
 
 2. Install the image on the second partition:
 

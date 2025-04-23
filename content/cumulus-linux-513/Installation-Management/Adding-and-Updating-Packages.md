@@ -20,20 +20,34 @@ To show the packages installed on the switch, run the following command.
 {{< tab "NVUE Command ">}}
 
 ```
-cumulus@switch:~$ nv show platform software installed
-acpi                                   libfreeipmi17                          libyajl2
-acpid                                  libfreetype6                           libyaml-0-2
-acpi-support-base                      libfstrm0                              libyang2
-adduser                                libfuse2                               libyuv0
-apt                                    libgav1-1                              libzmq5
-arping                                 libgcc-12-dev                          libzstd1
-arptables                              libgcc-s1                              linux-base
-atftp                                  libgcrypt20                            linux-image-6.1.0-cl-1-amd64
-atftpd                                 libgd3                                 linux-image-amd64
-auditd                                 libgdbm6                               linux-libc-dev
-babeltrace                             libgdbm-compat4                        linux-perf
-base-files                             libgee-0.8-2                           linuxptp
-base-passwd                            libgeoip1                              linux-selftests
+cumulus@switch:~$ nv show system version packages installed
+Installed packages
+=====================
+    Installed package                      Description                                                                                                                                                                                                                                              Package                                Version                                  
+    -------------------------------------  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  -------------------------------------  -----------------------------------------
+    acpi                                   displays information on ACPI devices                                                                                                                                                                                                                     acpi                                   1.7-1.2                                  
+    acpi-support-base                      scripts for handling base ACPI events such as the power button                                                                                                                                                                                           acpi-support-base                      0.143-5.1                                
+    acpid                                  Advanced Configuration and Power Interface event daemon                                                                                                                                                                                                  acpid                                  1:2.0.33-2+b1                            
+    adduser                                add and remove users and groups                                                                                                                                                                                                                          adduser                                3.134                                    
+    apt                                    commandline package manager                                                                                                                                                                                                                              apt                                    2.6.1                                    
+    arping                                 sends IP and/or ARP pings (to the MAC address)                                                                                                                                                                                                           arping                                 2.23-1                                   
+    arptables                              ARP table administration                                                                                                                                                                                                                                 arptables                              0.0.5-3.1                                
+    atftp                                  advanced TFTP client                                                                                                                                                                                                                                     atftp                                  0.8.0-3                                  
+    atftpd                                 advanced TFTP server                                                                                                                                                                                                                                     atftpd                                 0.8.0-3                                  
+    auditd                                 User space tools for security auditing                                                                                                                                                                                                                   auditd                                 1:3.0.9-1                                
+    babeltrace                             Trace conversion program                                                                                                                                                                                                                                 babeltrace                             1.5.11-1+b2                              
+    base-files                             Debian base system miscellaneous files                                                                                                                                                                                                                   base-files                             12.4+deb12u10                            
+    base-passwd                            Debian base system master password and group files                                                                                                                                                                                                       base-passwd                            3.6.1                                    
+    bash                                   GNU Bourne Again SHell                                                                                                                                                                                                                                   bash                                   5.2.15-2+b7                              
+    bash-completion                        programmable completion for the bash shell                                                                                                                                                                                                               bash-completion                        1:2.11-6                                 
+    bind9-dnsutils                         Clients provided with BIND 9                                                                                                                                                                                                                             bind9-dnsutils                         1:9.18.33-1~deb12u2                      
+    bind9-host                             DNS Lookup Utility                                                                                                                                                                                                                                       bind9-host                             1:9.18.33-1~deb12u2                      
+    bind9-libs                             Shared Libraries used by BIND 9                                                                                                                                                                                                                          bind9-libs                             1:9.18.33-1~deb12u2                      
+    binutils                               GNU assembler, linker and binary utilities                                                                                                                                                                                                               binutils                               2.40-2                                   
+    binutils-common                        Common files for the GNU assembler, linker and binary utilities                                                                                                                                                                                          binutils-common                        2.40-2                                   
+    binutils-x86-64-linux-gnu              GNU binary utilities, for x86-64-linux-gnu target                                                                                                                                                                                                        binutils-x86-64-linux-gnu              2.40-2                                   
+    bridge-utils                           Utilities for configuring the Linux Ethernet bridge                                                                                                                                                                                                      bridge-utils                           1.7.1-cl5.9.0u1                          
+    bsd-mailx                              simple mail user agent                                                                                                                                                                                                                                   bsd-mailx                              8.1.2-0.20220412cvs-1
 ...
 ```
 
@@ -70,7 +84,7 @@ To show the version of a package installed on the switch:
 The following example command shows which version of the `vrf` package is on the switch:
 
 ```
-cumulus@switch:~$ nv show platform software installed vrf
+cumulus@switch:~$ nv show system version packages installed vrf
              operational        
 -----------  -------------------
 package      vrf                
@@ -130,7 +144,7 @@ Use the `-E` option with `sudo` whenever you run any `apt-get` command. This opt
 
 ## Add a Package
 
-To add a new package, first ensure the package is not already on the system with the NVUE `nv show platform software installed <package-name>` command or the Linux `dpkg -l | grep <package-name>` command.
+To add a new package, first ensure the package is not already on the system with the NVUE `nv show system version packages installed <package-name>` command or the Linux `dpkg -l | grep <package-name>` command.
 - If the package is already on the system, you can update the package from the Cumulus Linux repository as part of the package upgrade process, which upgrades all packages on the system. See {{<link url="#upgrade-packages" text="Upgrade Packages">}} above.
 - If the package is *not* already on the system, add it with the Linux `sudo -E apt-get install <name of package>` command. This command retrieves the package from the Cumulus Linux repository and installs it on your switch together with any dependent packages. The following example adds the `tcpreplay` package on the switch:
 

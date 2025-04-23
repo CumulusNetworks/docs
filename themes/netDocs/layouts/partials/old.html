@@ -8,16 +8,16 @@
 
 {{ if eq .Page.Params.product "Cumulus NetQ" }}
 
-        If you are using the current version of {{ .Page.Params.product }}, the content on this page may not be up to date. The current version of the documentation is available {{ $prod := .Site.Params.netq_latest }}
-        <a href = {{ (index (where (where .Site.Pages "Section" $prod) "Title" .Page.Title) 0).RelPermalink | default (.Site.GetPage $prod).RelPermalink }}>here</a>. If you are redirected to the main page of the user guide, then this page may have been renamed; please search for it there.
+        {{ $prod := .Site.Params.netq_latest }}
+        <a href = {{ (index (where (where .Site.Pages "Section" $prod) "Title" .Page.Title) 0).RelPermalink | default (.Site.GetPage $prod).RelPermalink }}>A newer version</a> of this product documentation is available. If you are redirected to the main page of the user guide, then this page might have been renamed or removed.
     </p>
 </div>
 {{ end}}
 
 {{ if eq .Page.Params.product "Cumulus Linux" }}
 
-        If you are using the current version of {{ .Page.Params.product }}, the content on this page may not be up to date. The current version of the documentation is available {{ $prod := .Site.Params.cl_latest }}
-        <a href = {{ (index (where (where .Site.Pages "Section" $prod) "Title" .Page.Title) 0).RelPermalink | default (.Site.GetPage $prod).RelPermalink }}>here</a>. If you are redirected to the main page of the user guide, then this page may have been renamed; please search for it there.
+        {{ $prod := .Site.Params.cl_latest }}
+        <a href = {{ (index (where (where .Site.Pages "Section" $prod) "Title" .Page.Title) 0).RelPermalink | default (.Site.GetPage $prod).RelPermalink }}>A newer version</a> of this product documentation is available. If you are redirected to the main page of the user guide, then this page might have been renamed or removed.
     </p>
 </div>
 {{ end}}

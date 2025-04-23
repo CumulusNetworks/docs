@@ -35,13 +35,23 @@
     https://github.com/alex-shpak/hugo-book
 {{ "-->" | safeHTML }}
 
-<!-- clipboard.js support -->
+<!-- clipboard.js and other js support -->
 {{if ne .Params.layout "pdf"}}
     {{ $jsCodeCopy := resources.Get "js/codecopy.js"}}
     <script src = "{{ $jsCodeCopy.Permalink }}"> </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     {{ $jsAir := resources.Get "js/air.js" }}
     <script type="application/javascript" src="{{ $jsAir.Permalink }}"></script>
+    <script src="https://copilot-netguru.nvidia.com/chainlit/copilot/index.js"></script>
+    <script>
+    window.mountChainlitWidget({
+        chainlitServer: "https://copilot-netguru.nvidia.com/chainlit",
+        button: {
+        position: {
+            bottom: 2  // value in rem; can be adjusted per template      }
+        }
+    });
+    </script>
 {{ end }}
 
 <!-- Canonical link element to prioritize search indexing of current version -->

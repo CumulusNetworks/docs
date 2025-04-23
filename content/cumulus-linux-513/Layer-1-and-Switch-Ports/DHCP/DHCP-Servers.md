@@ -488,8 +488,8 @@ Cumulus Linux enables you to assign multiple static IP addresses for a single co
 {{< tab "IPv4 ">}}
 
 The following example assigns:
-- The fixed IP address 10.0.1.2 for DHCP requests coming in on swp6 with the `vendor-class` string `bmc-string`.
-- The fixed IP address 10.0.1.3 for DHCP requests coming in on swp6 with the `vendor-class` string `mgmt-string`.
+- The fixed IP address 10.1.10.2 for DHCP requests coming in on swp6 with the `vendor-class` string `bmc-string`.
+- The fixed IP address 10.1.10.3 for DHCP requests coming in on swp6 with the `vendor-class` string `mgmt-string`.
 
 ```
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server2 ifname swp6 

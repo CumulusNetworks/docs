@@ -106,7 +106,6 @@ You can create custom topologies in Air by importing either JSON or DOT files. T
 You can upload files directly to Air to generate a topology, allowing you to share and create copies of a topology, save the topology in a reusable file, use for automation purposes, and more easily generate very large topologies. You can modify the file with any text editor.
 
 ### JSON
-
 JSON files use the `.json` file extension. 
 
 The following is an example of a simple topology with 1 spine, 2 leaf nodes, and 2 servers connected to each leaf. 

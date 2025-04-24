@@ -189,9 +189,6 @@ To set the severity level in a filter, refer to {{<link url="#define-filtering-r
 
 Filtering rules let you control which logs to capture using selectors with match conditions and actions for log selection. You can also filter logs based on the application that generates them and group logs based on their source, such as `auth` or `cron`.
 
-{{< tabs "TabID133 ">}}
-{{< tab "NVUE Commands ">}}
-
 The following example defines the selector called SELECTOR1 and groups logs based on the source `cron`:
 
 ```
@@ -208,12 +205,6 @@ cumulus@switch:~$ nv set system syslog selector SELECTOR2 filter 10 match .*Flus
 cumulus@switch:~$ nv set system syslog selector SELECTOR2 filter 10 action exclude
 cumulus@switch:~$ nv config apply
 ```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-{{< /tab >}}
-{{< /tabs >}}
 
 ## Verify syslog Configuration
 

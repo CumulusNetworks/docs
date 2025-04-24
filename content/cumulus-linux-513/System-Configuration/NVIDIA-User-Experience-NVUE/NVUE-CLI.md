@@ -720,6 +720,15 @@ The following example fetches an image stored on a device with IP address 10.0.1
 cumulus@switch:~$ nv action fetch system image scp://user1:Pass1%23pass1@10.0.1.251/host/nos-images/nvos-amd64-25.02.1857.bin
 ```
 
+## Security with Certificates and CRLs
+
+NVUE supports CA certificates (such as DigiCert or Verisign) and entity (end-point) certificates, and <span class="a-tooltip">[CRLs](## "Certificate Revocation Lists") to verify server certificates when you use certain Cumulus Linux features, such as gNMI and the NVUE API. Both a CA certificate and an entity certificate can contain a chain of certificates.
+
+You import certificates and CRLs onto the switch with the `nv action import system security` command.
+
+- For information about using certificates with gNMI, refer to {{<link url="gNMI-Streaming" text="gNMI streaming">}}
+- For information about using certificates with the NVUE API, refer to {{<link url="NVUE-API/#certificates" text="NVUE API">}}.
+
 ## Filter nv show Command Output
 
 Filters show command output on column data; for example, to show only the interfaces with MTU set to 1500:

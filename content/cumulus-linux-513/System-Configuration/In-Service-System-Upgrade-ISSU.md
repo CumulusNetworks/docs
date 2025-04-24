@@ -284,20 +284,20 @@ To check the current maintenance mode on the switch, run the NVUE `nv show maint
 ```
 cumulus@switch:~$ nv show maintenance
 Maintenance Info 
-============== 
-Unit                                 State 
------------------------              --------------- 
-all-protocols                        maintenance 
-all-interfaces                       maintenance 
+==============
+Unit                                 State
+-----------------------              ---------------
+all-protocols                        enabled
+all-interfaces                       enabled 
 ```
 
 To show the current maintenance mode of the protocols, run the `nv show maintenance unit all-protocols` command:
 
 ```
 cumulus@switch:~$ nv show maintenance unit all-protocols
-              operational      applied 
+             operational      applied 
 ----------    -----------      ----------- 
-state         maintenance       maintenance 
-interfaces
-protocols             all 
+state         enabled          enabled 
+interfaces    all              all
+protocols     all              all
 ```

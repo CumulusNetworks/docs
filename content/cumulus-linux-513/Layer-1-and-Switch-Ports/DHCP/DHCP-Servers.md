@@ -34,7 +34,7 @@ In addition, you can configure a static IP address for a resource, such as a ser
 - You can set the DNS server IP address and domain name globally or specify different DNS server IP addresses and domain names for different pools.
 {{%/notice%}}
 
-The following example configures the `storage-servers` pool with DNS and static DHCP assignments for `server1` and `server2`.
+The following example configures the `storage-servers` pool with DNS and static DHCP assignments for `server1`.
 
 {{< tabs "TabID27 ">}}
 {{< tab "NVUE Commands ">}}
@@ -481,15 +481,19 @@ group {
 
 Cumulus Linux enables you to assign multiple static IP addresses for a single connected host using the vendor-class in the DHCP request packet. Use this feature if you have different DHCP requests coming in on the same interface on the DHCP server from different end host applications.
 
+The following IPv4 example assigns:
+- The fixed IP address 10.1.10.2 for DHCP requests coming in on swp6 with the `vendor-class` string `bmc-string`.
+- The fixed IP address 10.1.10.3 for DHCP requests coming in on swp6 with the `vendor-class` string `mgmt-string`.
+
+The IPv6 example assigns:
+- The fixed IP address 2001:db8:1::2 for DHCP requests coming in on swp6 with the `vendor-class` string `bmc-string`.
+- The fixed IP address 2001:db8:1::3 for DHCP requests coming in on swp6 with the `vendor-class` string `mgmt-string`.
+
 {{< tabs "TabID484 ">}}
 {{< tab "NVUE Commands ">}}
 
 {{< tabs "TabID487 ">}}
 {{< tab "IPv4 ">}}
-
-The following example assigns:
-- The fixed IP address 10.1.10.2 for DHCP requests coming in on swp6 with the `vendor-class` string `bmc-string`.
-- The fixed IP address 10.1.10.3 for DHCP requests coming in on swp6 with the `vendor-class` string `mgmt-string`.
 
 ```
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server2 ifname swp6 
@@ -503,10 +507,6 @@ cumulus@leaf01:mgmt:~$ nv config apply
 
 {{< /tab >}}
 {{< tab "IPv6 ">}}
-
-The following example assigns:
-- The fixed IP address 2001:db8:1::2 for DHCP requests coming in on swp6 with the `vendor-class` string `bmc-string`.
-- The fixed IP address 2001:db8:1::3 for DHCP requests coming in on swp6 with the `vendor-class` string `mgmt-string`.
 
 ```
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default static server2 ifname swp6 

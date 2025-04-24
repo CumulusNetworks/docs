@@ -477,6 +477,28 @@ Health issues
 No Data
 ```
 
+In 5.13 and later the nv show system health command output is:
+
+```
+nv show system health 
+            operational  applied  
+----------  -----------  -------
+status      Not OK                       
+status-led  amber                        
+
+Health issues
+================
+    Component           Status information                                         
+    ------------------  -----------------------------------------------------------
+    ASIC                Not OK                                                     
+    forwarding          active (running) since Wed 2025-04-23 17:44:13 UTC; 12h ago
+    hw-management       inactive                                                   
+    hw-management-sync  inactive                                                   
+    hw-management-tc    inactive                                                   
+    mft                 inactive                                                   
+    process             Not OK
+```
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show system maintenance</h>

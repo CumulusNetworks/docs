@@ -16,6 +16,12 @@
 <td></td>
 </tr>
 <tr>
+<td>4390963</td>
+<td>When the number of MAC addresses exceeds 1,000 on a given switch, commands used to query MAC addresses might fail. To work around this issue, use the UI and apply filters to reduce the number of entries that NetQ displays.</td>
+<td>4.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4328176</td>
 <td>When you install or upgrade the {{netq-agents}} and {{netq-apps}} packages, the operation may fail with {{Failed to allocate directory watch: Too many open files}}. To work around this issue, temporarily increase the number of user instances by running {{sudo sysctl -w fs.inotify.max_user_instances=256}}. After you test the temporary fix, you can permanently increase the limit by editing the {{/etc/sysctl.conf}} file and adding the line {{fs.inotify.max_user_instances=256}}.
 

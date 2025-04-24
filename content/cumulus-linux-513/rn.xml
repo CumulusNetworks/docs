@@ -587,6 +587,11 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Affects </th>
 </tr>
 <tr>
+<td>4404714</td>
+<td>Installed BGP routes show 0 with gNMI.</td>
+<td></td>
+</tr>
+<tr>
 <td>4391713</td>
 <td>When you enable PFC watchdog on many physical ports, you might see the following error:
 "ERROR intf_stats_collector.go:407 BulkCounterTransactionSet error: unable to set bulk transaction".</td>
@@ -605,6 +610,11 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <tr>
 <td>4380868</td>
 <td>When you unmap ports by removing the breakout configuration and some of the ports are configured for histogram collection, you see an error log from SDK as the {{asic-monitor}} continues to collect statistics even after ports are unmapped.</td>
+<td></td>
+</tr>
+<tr>
+<td>4380465</td>
+<td>When the server has an IPv4 address and its source IP address is IPv6 or vice versa, accounting logs to that server fail to send and you see the error: radclient: Can't add new socket: Too many open sockets". Authentication goes through, only Accounting fails.</td>
 <td></td>
 </tr>
 <tr>
@@ -759,6 +769,11 @@ cumulus@switch:~$ sudo /usr/sbin/pam-auth-update --force --package</td>
 <td>4144021</td>
 <td>Shutting down port 65 or 66 on the NVIDIA Spectrum-4 switch leaves the opposite port up when using MLNX SFP-T and RJ45 connections. Spectrum-4 switches do not support SFP-T modules on ports 65 and 66.</td>
 <td>5.10.0-5.12.1</td>
+</tr>
+<tr>
+<td>4128912</td>
+<td>When you use PPS IN, PTP might show a high offset. The offset might be around an offset value. For example, around 60 ns or 80 ns. To work around this issue, set the cable compensation value. For 60 ns, run the {{nv set platform pulse-per-second in timestamp-correction -60}} command to set the compensation.</td>
+<td>5.11.0-5.12.1</td>
 </tr>
 <tr>
 <td>4048583</td>

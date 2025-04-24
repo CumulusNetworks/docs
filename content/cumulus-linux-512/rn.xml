@@ -13,12 +13,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4370955</td>
-<td>After enabling, then disabling truncation on a SPAN session,  truncated packets are still received on the SPAN destination. To work around this issue, remove the SPAN session configuration, reboot the switch, then reconfigure the SPAN session without truncation.</td>
-<td>5.12.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4370954</td>
 <td>After enabling, then disabling truncation on a SPAN session,  truncated packets are still received on the SPAN destination. To work around this issue, remove the SPAN session configuration, reboot the switch, then reconfigure the SPAN session without truncation.</td>
 <td>5.12.0-5.12.1</td>
@@ -309,6 +303,12 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <tr>
 <td>4128952</td>
 <td>Cumulus Linux does not support LDAP over IPv6.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4128912</td>
+<td>When you use PPS IN, PTP might show a high offset. The offset might be around an offset value. For example, around 60 ns or 80 ns. To work around this issue, set the cable compensation value. For 60 ns, run the {{nv set platform pulse-per-second in timestamp-correction -60}} command to set the compensation.</td>
 <td>5.11.0-5.12.1</td>
 <td></td>
 </tr>
@@ -865,12 +865,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>4370955</td>
-<td>After enabling, then disabling truncation on a SPAN session,  truncated packets are still received on the SPAN destination. To work around this issue, remove the SPAN session configuration, reboot the switch, then reconfigure the SPAN session without truncation.</td>
-<td>5.12.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4370954</td>
 <td>After enabling, then disabling truncation on a SPAN session,  truncated packets are still received on the SPAN destination. To work around this issue, remove the SPAN session configuration, reboot the switch, then reconfigure the SPAN session without truncation.</td>
 <td>5.12.0-5.12.1</td>
@@ -1173,6 +1167,12 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <tr>
 <td>4128952</td>
 <td>Cumulus Linux does not support LDAP over IPv6.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4128912</td>
+<td>When you use PPS IN, PTP might show a high offset. The offset might be around an offset value. For example, around 60 ns or 80 ns. To work around this issue, set the cable compensation value. For 60 ns, run the {{nv set platform pulse-per-second in timestamp-correction -60}} command to set the compensation.</td>
 <td>5.11.0-5.12.1</td>
 <td></td>
 </tr>

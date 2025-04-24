@@ -44,6 +44,7 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
   - {{<link url="System-Power/#power-cycle" text="Command to power cycle the switch">}}
   - {{<link url="SSH-for-Remote-Access/#certificate-based-authentication" text="SSH certificate-based authentication">}}
   - {{<link url="User-Accounts/#default-roles" text="Terminate a user session when you change the user role">}}
+  - {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="CRL support">}}
   - {{<link url="NVUE-CLI/#replace-and-patch-a-pending-configuration" text="Replace and patch against a plain text file of nv set and nv unset commands">}}
   - {{<link url="NVUE-CLI/#view-differences-between-configurations" text="nv config diff --verbose option ">}} to see both previous and new configuration
   - {{<link url="Troubleshooting-BGP/#show-bgp-route-information" text="Filter BGP received routes by neighbor">}} and {{<link url="Troubleshooting-EVPN/#filter-evpn-routes-by-neighbor-rd-and-route-type" text="filter EVPN recieved routes by neighbor, RD and route type">}}

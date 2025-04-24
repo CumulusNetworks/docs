@@ -22,7 +22,6 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 - {{<link url="Equal-Cost-Multipath-Load-Sharing/#enable-adaptive-routing" text="Enabling adaptive routing no longer restarts switchd">}}
 - {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="Optimized upgrade supports warmboot">}}
 - {{<link url="802.1X-Interfaces/#ignore-reauthorization-timeout" text="802.1 option to keep the port in the current state when the RADIUS server is unreachable">}}
-- {{<link url="Monitoring-System-Hardware/#nvue-commands" text="Updated system health command output">}}
 - {{<link url="DHCP-Servers/#multiple-static-ip-address-assignments" text="Support two DHCP static IP address assignments per port for a single host">}}
 - {{<link url="Syslog/#configure-filters" text="syslog log filters">}}
 - {{<link title="Erase all Data from the Switch" text="Erase all data from the switch">}} (Beta)
@@ -48,6 +47,7 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
   - {{<link url="NVUE-CLI/#replace-and-patch-a-pending-configuration" text="Replace and patch against a plain text file of nv set and nv unset commands">}}
   - {{<link url="NVUE-CLI/#view-differences-between-configurations" text="nv config diff --verbose option ">}} to see both previous and new configuration
   - {{<link url="Troubleshooting-BGP/#show-bgp-route-information" text="Filter BGP received routes by neighbor">}} and {{<link url="Troubleshooting-EVPN/#filter-evpn-routes-by-neighbor-rd-and-route-type" text="filter EVPN recieved routes by neighbor, RD and route type">}}
+  - {{<link url="Monitoring-System-Hardware/#nvue-commands" text="Updated system health command output">}}
   - {{< expand "Changed NVUE Commands" >}}
 | Cumulus Linux 5.13 | Cumulus Linux 12 and Earlier |
 | --------------- |---------------------------------------|
@@ -59,7 +59,6 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 | `nv set system syslog server <server-id> port <port>` | `nv set service syslog <vrf> server <server-id> port <port>`|
 | `nv set system syslog server <server-id> protocol <protocol>` | `nv set service syslog <vrf> server <server-id> protocol <protocol>`|
 | `nv show system syslog`| `nv show service syslog`|
-| `nv show system` | `build` and `product-release` fields removed from output.|
 | `nv show system version` | Output includes `base-os` and `product-release` fields.|
 | `nv show system version packages installed` | `nv show platform software`|
 | `nv show --output native`| `nv show --output raw`|
@@ -87,8 +86,6 @@ nv show service ptp <instance-id> force-version
 nv show platform software
 nv show platform software installed
 nv show platform software installed <installed-id>
-nv show system health brief
-nv show system health detail
 nv show system maintenace
 ```
 {{< /expand >}}

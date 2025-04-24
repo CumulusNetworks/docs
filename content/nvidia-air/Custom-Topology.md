@@ -27,12 +27,11 @@ One way to create fully custom simulations is with the built-in topology builder
 
 When you create a new simulation, Air gives you the option to add a zero-touch provisioning (ZTP) script. The ZTP script is copied to the simulation's `oob-mgmt-server`. Any node making a ZTP request on the out-of-band management network has access to this ZTP script through a DHCP server and web server running on the `oob-mgmt-server`. 
 
-**ZTP scripts will not be used if the simulation does not have OOB automatically configured.**
+**ZTP scripts will not be used if the simulation does not have the Out-of-band network enabled.**
 
 A default script is prefilled to help you get started. It implements some common ZTP features on Cumulus Linux, such as changing the default password or downloading SSH keys. You can edit the default script directly in the UI.
 
-{{< expand "Default ZTP script" >}}
-
+{{< expand "View Default ZTP script" >}}
 ```
 #!/bin/bash
 # Created by Topology-Converter v4.7.1
@@ -109,6 +108,9 @@ You can upload files directly to Air to generate a topology, allowing you to sha
 JSON files use the `.json` file extension. 
 
 The following is an example of a simple topology with 1 spine, 2 leaf nodes, and 2 servers connected to each leaf. 
+
+{{< expand "View Sample JSON Topology" >}}
+
 ```
 {
     "format": "JSON",
@@ -242,6 +244,9 @@ The following is an example of a simple topology with 1 spine, 2 leaf nodes, and
     }
 }
 ```
+{{< /expand >}}
+
+
 
 When viewing the Nodes within Air after starting the simulation, observe that the resources are allocated based on the file. 
 
@@ -256,9 +261,12 @@ also connected to the out-of-band management network.
 If you omit the `oob` key in your JSON file, the **Enable OOB** will still be set to **on** after you've uploaded your file with default resources and will be automatically connected to each node.
 {{%/notice%}}
 
-#### Out-of-band Management Network 
+#### Custom OOB Management Network Resources
 
 You can specify an `oob-mgmt-switch` and `oob-mgmt-server` to customize allocated resources. See the example below.
+
+{{< expand "View Custom OOB Network Example" >}}
+
 ```
 {
     "format": "JSON",
@@ -289,6 +297,7 @@ You can specify an `oob-mgmt-switch` and `oob-mgmt-server` to customize allocate
     }
 }
 ```
+{{< /expand >}}
 
 When viewing the nodes within Air after starting the simulation, observe that the resources are allocated based on the file. 
 

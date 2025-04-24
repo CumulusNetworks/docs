@@ -391,9 +391,9 @@ To import/upload a DOT or JSON topology file to Air, navigate to [air.nvidia.com
 7. (Optional) Click **Advanced** and provide an out-of-band management server configuration script that executes on the `oob-mgmt-server` when the simulation starts.
 8. Click **Create**.
 
-Air builds a custom topology based on the file.
-
 {{<img src="/images/guides/nvidia-air/CreateADOT.png" alt="">}}
+
+Air redirects you to the [Drag-and-Drop topology builder](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Custom-Topology/#the-drag-and-drop-topology-builder) with your custom topology created. You can make any further modifications as needed.
 
 ### Export a Topology
 You can export the topology for any existing simulation. The exported file is JSON formatted. 

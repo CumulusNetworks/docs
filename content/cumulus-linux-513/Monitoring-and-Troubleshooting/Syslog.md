@@ -206,6 +206,16 @@ cumulus@switch:~$ nv set system syslog selector SELECTOR2 filter 10 action exclu
 cumulus@switch:~$ nv config apply
 ```
 
+You can also specify a rate-limiting rule with an interval (between 1 and 65535) and a burst limit (between 1 and 65535) to control log message processing or forwarding within a defined time period.
+
+The following example sets a rate limiting rule with an interval of 100 and a burst limit of 100:
+
+```
+cumulus@switch:~$ nv set system syslog selector SELECTOR1 rate-limit burst 100
+cumulus@switch:~$ nv set system syslog selector SELECTOR1 rate-limit interval 100
+cumulus@switch:~$ nv config apply
+```
+
 ## Verify syslog Configuration
 
 To check syslog configuration:
@@ -217,24 +227,53 @@ To show all syslog configuration settings, run the `nv show system syslog` comma
 
 ```
 cumulus@switch:~$ nv show system syslog
+                   operational       applied           pending         
+-----------------  ----------------  ----------------  ----------------
+format             welf              welf              welf            
+  welf                                                                 
+    firewall-name  security-gateway  security-gateway  security-gateway
+
+server
+=========
+    Servers        Vrf   Protocol  Port  Priority  Selector-Id
+    -------------  ----  --------  ----  --------  -----------
+    192.168.0.254  mgmt  udp       514                        
+
+selector
+===========
+    Selectors  Severity  Program-Name  Facility  Burst  Interval  Filter  Match  Action
+    ---------  --------  ------------  --------  -----  --------  ------  -----  ------
+    SELECTOR1  notice                  cron      100    100
 ```
 
 To show the syslog format, run the `nv show system syslog format` command:
 
 ```
 cumulus@switch:~$ nv show system syslog format
+                 operational       applied                 
+---------------  ----------------  ----------------  
+welf                                                               
+  firewall-name  security-gateway  security-gateway 
 ```
 
 To show the configured syslog servers, run the `nv show system syslog server` command:
 
 ```
 cumulus@switch:~$ nv show system syslog server
+Servers        Vrf   Protocol  Port  Priority  Selector-Id
+-------------  ----  --------  ----  --------  -----------
+192.168.0.254  mgmt  udp       514
 ```
 
 To show information for a specific syslog server, run the `nv show system syslog server <server-id>` command:
 
 ```
 cumulus@switch:~$ nv show system syslog server 192.168.0.254
+          operational  applied
+--------  -----------  -------
+port      514          514    
+protocol  udp          udp    
+vrf       mgmt         mgmt
 ```
 
 To show filtering information for a selector, run the `nv show system syslog selector <selector-id>` command:
@@ -256,6 +295,9 @@ To show all filters for a specific selector, run the `nv show system syslog sele
 
 ```
 cumulus@switch:~$ nv show system syslog selector SELECTOR2 filter
+filter
+=========
+No Data
 ```
 
 To show information about a specific filter for a selector, run the `nv show system syslog selector <selector-id> filter <filter-id>` command:

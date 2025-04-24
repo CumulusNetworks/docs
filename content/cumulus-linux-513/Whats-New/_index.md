@@ -117,7 +117,6 @@ nv show system ssh-server trusted-ca-keys
 nv show system ssh-server trusted-ca-keys <ssh-trusted-ca-key-id>
 nv show system syslog
 nv show system syslog format
-nv show system syslog format welf
 nv show system syslog server
 nv show system syslog server <server-id>
 nv show system syslog server <server-id> selector

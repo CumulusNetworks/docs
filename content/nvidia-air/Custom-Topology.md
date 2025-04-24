@@ -443,7 +443,7 @@ From a simulation, click **Workspace > Export Simulation** to export.
 
 ### A Note about Storage
 
-If you increase the storage of a node higher than its default, and Air does not recognize the increased storage, run the following commands on the affected node (NOT the `oob-mgmt-server` to extend the partition and resize the file system:
+If you increase the storage of a node higher than its default, and Air does not recognize the increased storage, run the following commands **on the affected node** (NOT the `oob-mgmt-server`) to extend the partition and resize the file system:
 
 ```
 sudo growpart /dev/vda 1

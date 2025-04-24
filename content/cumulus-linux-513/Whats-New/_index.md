@@ -60,7 +60,6 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 | `nv set system syslog server <server-id> protocol <protocol>` | `nv set service syslog <vrf> server <server-id> protocol <protocol>`|
 | `nv show system syslog`| `nv show service syslog`|
 | `nv show system` | `build` and `product-release` fields removed from output.|
-| `nv show system`| `build` and `product-release` fields removed from output. |
 | `nv show system version` | Output includes `base-os` and `product-release` fields.|
 | `nv show system version packages installed` | `nv show platform software`|
 | `nv show --output native`| `nv show --output raw`|
@@ -88,7 +87,6 @@ nv show service ptp <instance-id> force-version
 nv show platform software
 nv show platform software installed
 nv show platform software installed <installed-id>
-nv show system health
 nv show system health brief
 nv show system health detail
 nv show system maintenace
@@ -356,11 +354,11 @@ nv unset system telemetry stats-group <stats-group-id> lldp sample-interval
 
 ```
 nv action erase system disk 
-nv action generate file-hash md5 <filename>
-nv action generate file-hash sha1 <filename>
-nv action generate file-hash sha224 <filename>
-nv action generate file-hash sha256 <filename>
-nv action generate file-hash sha512 <filename>
+nv action generate system file-hash md5 <filename>
+nv action generate system file-hash sha1 <filename>
+nv action generate system file-hash sha224 <filename>
+nv action generate system file-hash sha256 <filename>
+nv action generate system file-hash sha512 <filename>
 nv action import system security crl
 nv action delete system security crl
 nv action list system file-path <path>

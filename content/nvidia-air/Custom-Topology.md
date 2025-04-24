@@ -89,13 +89,13 @@ Air also provides **Advanced Options**, such as enabling **UEFI Secure Boot**.
 <br>
 When you finish creating your topology, click **Workspace > Start Simulation**. **You cannot add, remove, or edit nodes after the simulation starts for the first time.**
 
-{{<img src="/images/guides/nvidia-air/WorkspaceStart.png" alt="" width="200px">}}
+{{<img src="/images/guides/nvidia-air/WorkspaceStart.png" alt="" width="250px">}}
 
 ### OOB Management Network
 
 On the **System Palette**, there is an option to **Enable OOB**. This setting enables the out-of-band management network that connects all nodes with each other. It also adds an `oob-mgmt-switch` and `oob-mgmt-server` to your simulation. When you enable SSH, you SSH into the `oob-mgmt-server`, making this node an ideal starting point for configurations. Air handles the configuration automatically for you.
 
-{{<img src="/images/guides/nvidia-air/EnableOOB.png" alt="" width="250px">}}
+{{<img src="/images/guides/nvidia-air/EnableOOB.png" alt="" width="300px">}}
 
 You can add more `oob-mgmt-switches` and `oob-mgmt-servers` to your simulation manually even when **Enable OOB** is set to off. However, you must switch **Enable OOB** on to use the OOB network.
 
@@ -376,9 +376,9 @@ You can customize RAM (in MB) with the `memory` option:
 
 Labs in the [Demo Marketplace](https://air.nvidia.com/demos) are maintained with external GitLab repositories. Here you can find the `topology.dot` or `topology.json` file used to build the lab and use it as a reference. To access the files, select **Documentation** on any lab in the Demo Marketplace. It will direct you to the demo's GitLab repository for the lab, where you can download the file used for the demo topology.
 
-### Upload a Topology File
+### Import a Topology
 
-To upload a DOT or JSON topology file to Air, navigate to [air.nvidia.com/simulations](https://air.nvidia.com/simulations).
+To import/upload a DOT or JSON topology file to Air, navigate to [air.nvidia.com/simulations](https://air.nvidia.com/simulations).
 
 1. Select **Create Simulation**.
 2. Provide a name for the simulation.
@@ -394,6 +394,13 @@ To upload a DOT or JSON topology file to Air, navigate to [air.nvidia.com/simula
 Air builds a custom topology based on the file.
 
 {{<img src="/images/guides/nvidia-air/CreateADOT.png" alt="">}}
+
+### Export a Topology
+You can export the topology for any existing simulation. The exported file is JSON formatted. 
+
+From a simulation, click **Workspace > Export Simulation** to export.
+
+{{<img src="/images/guides/nvidia-air/ExportSimulation.png" alt="" width="250px">}}
 
 ### A Note about Storage
 

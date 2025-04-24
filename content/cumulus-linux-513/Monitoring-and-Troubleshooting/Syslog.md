@@ -136,9 +136,6 @@ You can set the log format to:
 - Standard (the default syslog format with a standard template).
 - WELF (WebTrends Enhanced Log Format) and provide an optional firewall name.
 
-{{< tabs "TabID91 ">}}
-{{< tab "NVUE Commands ">}}
-
 The following example sets the log format to WELF and sets the firewall name to `security-gateway`:
 
 ```
@@ -148,16 +145,7 @@ cumulus@switch:~$ nv config apply
 
 To set the log format back to the default setting (standard), run the `nv unset syslog format` command.
 
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-{{< /tab >}}
-{{< /tabs >}}
-
 ## Configure the Global syslog Severity Level
-
-{{< tabs "TabID111 ">}}
-{{< tab "NVUE Commands ">}}
 
 You can set the global severity level of logs to `debug`, `info`, `notice`, `warn`, `error`, `critical`, or `none`. The default setting is `none`.
 
@@ -167,10 +155,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 To set the severity level in a filter, refer to {{<link url="#define-filtering-rules" text="Define Filtering Rules">}}.
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
+<!--
 | Level | Description                                                                          |
 | ----- | ------------------------------------------------------------------------------------ |
 | 0     | Emergency messages (the system is about to crash or is unstable).                    |
@@ -181,9 +166,7 @@ To set the severity level in a filter, refer to {{<link url="#define-filtering-r
 | 5     | Message notifications for many conditions, including security events.                |
 | 6     | Informational messages.                                                              |
 | 7     | Debug messages.                                                                      |
-
-{{< /tab >}}
-{{< /tabs >}}
+-->
 
 ## Configure Filters
 
@@ -201,18 +184,26 @@ The following example defines the selector called SELECTOR2 and filters logs gen
 ```
 cumulus@switch:~$ nv set system syslog selector SELECTOR2 program-name switchd
 cumulus@switch:~$ nv set system syslog selector SELECTOR2 severity debug
-cumulus@switch:~$ nv set system syslog selector SELECTOR2 filter 10 match .*Flush Journal.+$
+cumulus@switch:~$ nv set system syslog selector SELECTOR2 filter 10 match issu_start=false.+$
 cumulus@switch:~$ nv set system syslog selector SELECTOR2 filter 10 action exclude
 cumulus@switch:~$ nv config apply
 ```
 
-You can also specify a rate-limiting rule with an interval (between 1 and 65535) and a burst limit (between 1 and 65535) to control log message processing or forwarding within a defined time period.
+You can also specify a rate-limiting rule with an interval (between 1 and 65535) and a burst limit (between 1 and 65535) to control log message processing or forwarding within a defined time period. The interval defines the time window within which log messages are limited after reaching the burst threshold. The burst limit specifies the maximum number of log messages that can be processed instantly before rate limiting takes effect.
 
-The following example sets a rate limiting rule with an interval of 100 and a burst limit of 100:
+The following example sets a rate limiting rule with an interval of 20 and a burst limit of 200:
 
 ```
-cumulus@switch:~$ nv set system syslog selector SELECTOR1 rate-limit burst 100
-cumulus@switch:~$ nv set system syslog selector SELECTOR1 rate-limit interval 100
+cumulus@switch:~$ nv set system syslog selector SELECTOR1 rate-limit interval 20
+cumulus@switch:~$ nv set system syslog selector SELECTOR1 rate-limit burst 200
+cumulus@switch:~$ nv config apply
+```
+
+If you configure more than one selector, you can associate a priority level with each selector. The following example configures SELECTOR1 with priority 1 and SELECTOR2 with priority 2.
+
+```
+cumulus@switch:~$ nv set system syslog server 192.168.0.254 selector 1 selector-id SELECTOR1
+cumulus@switch:~$ nv set system syslog server 192.168.0.254 selector 2 selector-id SELECTOR2
 cumulus@switch:~$ nv config apply
 ```
 
@@ -226,24 +217,24 @@ To check syslog configuration:
 To show all syslog configuration settings, run the `nv show system syslog` command:
 
 ```
-cumulus@switch:~$ nv show system syslog
-                   operational       applied           pending         
------------------  ----------------  ----------------  ----------------
-format             welf              welf              welf            
-  welf                                                                 
-    firewall-name  security-gateway  security-gateway  security-gateway
+cumulus@switch:~$  nv show system syslog
+        operational  applied
+------  -----------  -------
+format                      
 
 server
 =========
-    Servers        Vrf   Protocol  Port  Priority  Selector-Id
-    -------------  ----  --------  ----  --------  -----------
-    192.168.0.254  mgmt  udp       514                        
+    Servers        Vrf      Protocol  Port  Priority  Selector-Id
+    -------------  -------  --------  ----  --------  -----------
+    192.168.0.254  default  udp       514   1         SELECTOR1  
+                                            2         SELECTOR2  
 
 selector
 ===========
-    Selectors  Severity  Program-Name  Facility  Burst  Interval  Filter  Match  Action
-    ---------  --------  ------------  --------  -----  --------  ------  -----  ------
-    SELECTOR1  notice                  cron      100    100
+    Selectors  Severity  Program-Name  Facility  Burst  Interval  Filter  Match                Action 
+    ---------  --------  ------------  --------  -----  --------  ------  -------------------  -------
+    SELECTOR1  notice                  cron      200    20                                            
+    SELECTOR2  debug     switchd       daemon                     10      issu_start=false.+$  exclude
 ```
 
 To show the syslog format, run the `nv show system syslog format` command:
@@ -284,26 +275,42 @@ cumulus@switch:~$ nv show system syslog selector SELECTOR2
 ------------  -----------  -------
 facility      daemon       daemon 
 program-name  switchd      switchd
-severity      debug        debug
+severity      debug        debug  
 
 filter
 =========
-No Data
+    Priority  Action   Match              
+    --------  -------  -------------------
+    10        exclude  issu_start=false.+$
 ```
 
 To show all filters for a specific selector, run the `nv show system syslog selector <selector-id> filter` command:
 
 ```
 cumulus@switch:~$ nv show system syslog selector SELECTOR2 filter
-filter
-=========
-No Data
+Priority  Action   Match              
+--------  -------  -------------------
+10        exclude  issu_start=false.+$
 ```
 
 To show information about a specific filter for a selector, run the `nv show system syslog selector <selector-id> filter <filter-id>` command:
 
 ```
 cumulus@switch:~$ nv show system syslog selector SELECTOR2 filter 10
+        operational          applied            
+------  -------------------  -------------------
+match   issu_start=false.+$  issu_start=false.+$
+action  exclude              exclude
+```
+
+To show the rate limit configuration for a selector, run the `nv show system syslog selector <selector-id> rate-limit` command:
+
+```
+cumulus@switch:~$ nv show system syslog selector SELECTOR1 rate-limit
+          operational  applied
+--------  -----------  -------
+burst     200          200    
+interval  20           20
 ```
 
 {{< /tab >}}
@@ -381,19 +388,7 @@ root@leaf1:mgmt-vrf:/home/cumulus# tail -n 60 /var/log/syslog
 ```
 
 {{< /expand >}}
-<!-- 
-## Harmless syslog Error: Failed to reset devices.list
 
-The following message logs to `/var/log/syslog` when you run `systemctl daemon-reload` and during system boot:
-
-```
-systemd[1]: Failed to reset devices.list on /system.slice: Invalid argument
-```
-
-This message is harmless, you can ignore it. It logs when `systemd` attempts to change read-only group attributes. Cumulus Linux modifies the upstream version of `systemd` to not log this message by default.
-
-The `systemctl daemon-reload` command runs when you install Debian packages. You see the message multiple times when upgrading packages.
--->
 ## Troubleshooting
 
 You can use the following Linux commands to troubleshoot `syslog` issues.

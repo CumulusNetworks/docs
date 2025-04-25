@@ -481,13 +481,9 @@ group {
 
 Cumulus Linux enables you to assign multiple static IP addresses for a single connected host using the vendor-class in the DHCP request packet. Use this feature if you have different DHCP requests coming in on the same interface on the DHCP server from different end host applications.
 
-The following IPv4 example assigns:
-- The fixed IP address 10.1.10.2 for DHCP requests coming in on swp6 with the `vendor-class` string `bmc-string`.
-- The fixed IP address 10.1.10.3 for DHCP requests coming in on swp6 with the `vendor-class` string `mgmt-string`.
-
-The IPv6 example assigns:
-- The fixed IP address 2001:db8:1::2 for DHCP requests coming in on swp6 with the `vendor-class` string `bmc-string`.
-- The fixed IP address 2001:db8:1::3 for DHCP requests coming in on swp6 with the `vendor-class` string `mgmt-string`.
+The following examples assign:
+- The fixed IPv4 address 10.1.10.2 (2001:db8:1::2 for IPv6) for DHCP requests coming in on swp6 with the `vendor-class` string `bmc-string`.
+- The fixed IPv4 address 10.1.10.3 (2001:db8:1::3 for IPv6) for DHCP requests coming in on swp6 with the `vendor-class` string `mgmt-string`.
 
 {{< tabs "TabID484 ">}}
 {{< tab "NVUE Commands ">}}

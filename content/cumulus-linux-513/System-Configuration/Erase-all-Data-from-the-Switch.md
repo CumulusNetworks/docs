@@ -35,7 +35,11 @@ If there is an issue when starting to erase all data, NVUE prompts you to reboot
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Run the `systemctl start ssd-erase.service` command:
+Run the `systemctl start ssd-erase.service` command.
+
+{{%notice warning%}}
+When you run the Linux `systemctl start ssd-erase.service` command, the switch does not prompt you to confirm that you want to proceed before destroying all data or prompt you to reboot if there is an issue.
+{{%/notice%}}
 
 ```
 cumulus@switch:~$ sudo systemctl start ssd-erase.service

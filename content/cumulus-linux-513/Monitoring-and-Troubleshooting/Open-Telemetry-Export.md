@@ -625,7 +625,7 @@ When you enable adaptive routing telemetry, the switch exports the following sta
 | ---------- | ------- |
 | `nvswitch_ar_congestion_changes`  | The number of adaptive routing change events triggered due to congestion or link-down.|
 | `nvswitch_ar_notification_tx_drops_total` | The number of adaptive routing notification packets dropped due to a lack of next hops to send adaptive routing notification packets or due to an IP address lookup failure. |
-| `nvswitch_ar_notification_rx_total` | The number of adaptive routing notification packets received or dropped due an IP address lookup failure. |
+| `nvswitch_ar_notification_rx_total` | The number of adaptive routing notification packets received or dropped due to an IP address lookup failure. |
 | `nvswitch_ar_flow_table_entries` | The number of adaptive routing flow entries in the flow table.|
 | `nvswitch_interface_ar_notification_tx_total` | The number of adaptive routing notification packets transmitted over the given port.|
 
@@ -1418,7 +1418,7 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | `nvplatform_tranceiver_temperature_alarm`| The alarm status due to temperature crossing thresholds defined for the module. The value sent for the temperature alarm is a bit mask:<br> Bit 0: high_temp_alarm<br>Bit 1: low_temp_alarm<br>Bit 2: high_temp_warning<br>Bit 3: low_temp_warning  |
 | `nvplatform_tranceiver_temperature_threshold_info`| Temperature thresholds defined for the module (low or high). |
 | `nvplatform_tranceiver_voltage` | The internally measured supply voltage for the module in volts (a 64bit decimal value). |
-| n`vplatform_tranceiver_voltage_alarm` | The alarm status due to Voltage crossing thresholds defined for the module:<br>Bit 0: high_vcc_alarm<br>Bit 1: low_vcc_alarm<br>Bit 2: high_vcc_warning<br>Bit 3: low_vcc_warning |
+| `nvplatform_tranceiver_voltage_alarm` | The alarm status due to Voltage crossing thresholds defined for the module:<br>Bit 0: high_vcc_alarm<br>Bit 1: low_vcc_alarm<br>Bit 2: high_vcc_warning<br>Bit 3: low_vcc_warning |
 | `nvplatform_tranceiver_voltage_threshold_info` | Voltage thresholds defined for the module. The level is alarm or warning. The threshold is low or high.|
 | `nvplatform_transceiver_channel_power` | The transceiver channel power value in dBm units (logarithmic scale). |
 | `nvplatform_transceiver_channel_power_alarm` | The alarm state for power value measured with the defined thresholds for the module as a bit mask value:<br>Bit 0: tx_power_hi_al<br>Bit 1: l tx_power_lo_al<br>Bit 2: tx_power_hi_war<br>Bit 3: l tx_power_lo_war.  |

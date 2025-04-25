@@ -9,7 +9,7 @@ The following sections describe how to back up and restore your NetQ data and VM
 
 {{%notice note%}}
 - You must run backup and restore scripts with sudo privileges.
-- When you upgrade from NetQ 4.11 to 4.13, any pre-existing validation data will be lost.
+- When you upgrade from NetQ v4.14.0, any pre-existing validation data will be lost. Additionally, NetQ will not retain data related to network services (including BGP, LLDP, EVPN, and MLAG) after upgrading.
 - NetQ does not retain custom-signed certificates during the backup and restore process. If your deployment uses a custom-signed certificate, you must {{<link title="Install a Custom Signed Certificate" text="reconfigure the certificate">}} after you restore it on a new NetQ VM.
 {{%/notice%}}
 
@@ -210,14 +210,14 @@ Run the installation command on your NetQ server (or on the master node in clust
 {{<tab "Single Server">}}
 
 ```
-cumulus@netq-appliance:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.13.0-SNAPSHOT-feature-k8-ub-storage-upgrade.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix1NHgwU3NhWlV5NzZXZVpiK2FFazRmQ3dkM2hzTk9IMWtDRlNjM0FHdVIwPQ== restore /home/cumulus/backup-netq-standalone-onprem-4.12.0-2024-12-11_19_50_12_UTC.tar
+cumulus@netq-appliance:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.14.0-SNAPSHOT-feature-k8-ub-storage-upgrade.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix1NHgwU3NhWlV5NzZXZVpiK2FFazRmQ3dkM2hzTk9IMWtDRlNjM0FHdVIwPQ== restore /home/cumulus/backup-netq-standalone-onprem-4.12.0-2024-12-11_19_50_12_UTC.tar
 ```
 {{</tab>}}
 
 {{<tab "Cluster" >}}
 
 ```
-cumulus@netq-appliance:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.13.0-SNAPSHOT-feature-k8-ub-storage-upgrade.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIiwzNWJVL2NkZmtnekRqZ21yUUdZTHFFa0wvMVZSNHlLd3JaYlpuWE1VS21JPQ== workers 10.188.44.219 10.188.45.164 cluster-vip 10.188.45.169 restore /home/cumulus/combined_backup_20241211111316.tar
+cumulus@netq-appliance:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.14.0-SNAPSHOT-feature-k8-ub-storage-upgrade.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIiwzNWJVL2NkZmtnekRqZ21yUUdZTHFFa0wvMVZSNHlLd3JaYlpuWE1VS21JPQ== workers 10.188.44.219 10.188.45.164 cluster-vip 10.188.45.169 restore /home/cumulus/combined_backup_20241211111316.tar
 ```
 
 {{</tab>}}
@@ -248,7 +248,7 @@ cumulus@netq-server:~$ vim /tmp/cluster-install-config.json
 2. Run the following command on your master node, using the JSON configuration file from the previous step. Include the restore option referencing the path where the backup file resides:
 
 ```
-cumulus@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.13.0.tgz /tmp/cluster-install-config.json restore /home/cumulus/combined_backup_20241211111316.tar
+cumulus@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.14.0.tgz /tmp/cluster-install-config.json restore /home/cumulus/combined_backup_20241211111316.tar
 ```
 {{</tab>}}
 

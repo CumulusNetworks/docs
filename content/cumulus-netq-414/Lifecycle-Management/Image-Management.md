@@ -7,7 +7,7 @@ toc: 4
 
 NetQ and network operating system images are managed with LCM. This section explains how to check for missing images, upgrade images, and specify default images.
 
-The network OS and NetQ images are available in several variants based on the software version, the CPU architecture, platform, and SHA checksum. Download both the `netq-apps` and `netq-agents` packages according to the version of Cumulus Linux you are running. {{<netq-install/agent-version version="4.13.0" opsys="cl">}}
+The network OS and NetQ images are available in several variants based on the software version, the CPU architecture, platform, and SHA checksum. Download both the `netq-apps` and `netq-agents` packages according to the version of Cumulus Linux you are running. {{<netq-install/agent-version version="4.14.0" opsys="cl">}}
 
 ## View and Upload Missing Images
 
@@ -19,7 +19,7 @@ To upload missing network OS images:
 
 {{<tab "NetQ UI" >}}
 
-1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu** and select **Manage switches**. Select the **Image management** tab.
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" alt="" height="18" width="18"/> **Menu** and select **Manage switches**. Select the **Image management** tab.
 
 2. On the Cumulus Linux Images card, select *View # missing CL images* to see which images you need.
 
@@ -80,7 +80,7 @@ To upload missing **NetQ** images:
 
 {{<tab "NetQ UI" >}}
 
-1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu** and select **Manage switches**. Select the **Image management** tab.
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" alt="" height="18" width="18"/> **Menu** and select **Manage switches**. Select the **Image management** tab.
 
 2. On the NetQ Images card, select *View # missing NetQ images* to see which images you need.
 
@@ -90,7 +90,7 @@ If you have already specified a default image, you must click <strong>Manage</st
 
 3. Select one or all of the missing images and make note of the OS version, CPU architecture, and image type. Remember that you need both `netq-apps` and `netq-agent` for NetQ to perform the installation or upgrade.
 
-4. Download the NetQ Debian packages needed for upgrade from the {{<exlink url="https://download.nvidia.com/cumulus/apps3.cumulusnetworks.com/repos/deb/pool/netq-4.13/p/python-netq/" text="NetQ repository">}}, selecting the appropriate OS version and architecture. Place the files in an accessible part of your local network.
+4. Download the NetQ Debian packages needed for upgrade from the {{<exlink url="https://download.nvidia.com/cumulus/apps3.cumulusnetworks.com/repos/deb/pool/netq-4.14/p/python-netq/" text="NetQ repository">}}, selecting the appropriate OS version and architecture. Place the files in an accessible part of your local network.
 
 5. In the UI, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} **Add image** above the table.
 
@@ -106,7 +106,7 @@ If you have already specified a default image, you must click <strong>Manage</st
 
 9. (Optional) Click the **Uploaded** tab to verify that the image is in the repository.
 
-10. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} **Close** to return to the LCM dashboard.
+10. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" alt="" height="14" width="14">}} **Close** to return to the LCM dashboard.
 
    The NetQ Images card reflects the number of images you uploaded.
 
@@ -120,13 +120,13 @@ If you have already specified a default image, you must click <strong>Manage</st
 netq lcm show netq-images
 ```
 
-2. Download the NetQ Debian packages needed for upgrade from the {{<exlink url="https://download.nvidia.com/cumulus/apps3.cumulusnetworks.com/repos/deb/pool/netq-4.13/p/python-netq/" text="NetQ repository">}}, selecting the appropriate version and hypervisor/platform. Place them in an accessible part of your local network.
+2. Download the NetQ Debian packages needed for upgrade from the {{<exlink url="https://download.nvidia.com/cumulus/apps3.cumulusnetworks.com/repos/deb/pool/netq-4.14/p/python-netq/" text="NetQ repository">}}, selecting the appropriate version and hypervisor/platform. Place them in an accessible part of your local network.
 
-3. Upload the images to the LCM repository. This example uploads the two packages (`netq-agent` and `netq-apps`) required for NetQ version 4.13.0 for a NetQ appliance or VM running Ubuntu 22.04 with an AMD 64 architecture.
+3. Upload the images to the LCM repository. This example uploads the two packages (`netq-agent` and `netq-apps`) required for NetQ version 4.14.0 for a NetQ appliance or VM running Ubuntu 22.04 with an AMD 64 architecture.
 
     ```
-    cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-agent_4.13.0-ub22.04u50~1739293854.1b72846ca_amd64.deb
-    cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_4.13.0-ub22.04u50~1739293854.1b72846ca_amd64.deb
+    cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-agent_4.14.0-ub22.04u51~1744815786.8dbbbd20c_amd64.deb
+    cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_4.14.0-ub22.04u51~1744815786.8dbbbd20c_amd64.deb
     ```
 
 {{</tab>}}
@@ -135,7 +135,7 @@ netq lcm show netq-images
 
 ## Upload Upgrade Images
 
-To upload the network OS or NetQ images that you want to use for upgrade, first download the Cumulus Linux disk images (*.bin* files) and NetQ Debian packages from the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise Support Portal">}} and {{<exlink url="https://download.nvidia.com/cumulus/apps3.cumulusnetworks.com/repos/deb/pool/netq-4.13/p/python-netq/" text="NetQ repository">}}, respectively. Place them in an accessible part of your local network.
+To upload the network OS or NetQ images that you want to use for upgrade, first download the Cumulus Linux disk images (*.bin* files) and NetQ Debian packages from the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise Support Portal">}} and {{<exlink url="https://download.nvidia.com/cumulus/apps3.cumulusnetworks.com/repos/deb/pool/netq-4.14/p/python-netq/" text="NetQ repository">}}, respectively. Place them in an accessible part of your local network.
 
 If you are upgrading the network OS on switches with different ASIC vendors or CPU architectures, you need more than one image. For NetQ, you need both the `netq-apps` and `netq-agent` packages for each variant.
 
@@ -166,14 +166,14 @@ Use the `netq lcm add cl-image <text-cl-image-path>` and `netq lcm add netq-imag
 Network OS images:
 
 ```
-cumulus@switch:~$ netq lcm add image /path/to/download/cumulus-linux-5.9.1-mlx-amd64.bin
+cumulus@switch:~$ netq lcm add image /path/to/download/cumulus-linux-5.9.2-mlx-amd64.bin
 ```
 
 NetQ images:
 
 ```
-cumulus@switch:~$ netq lcm add image /path/to/download/netq-agent_4.13.0-cld12u50~1739293953.1b72846ca_amd64.deb
-cumulus@switch:~$ netq lcm add image /path/to/download/netq-apps_4.13.0-cld12u50~1739293953.1b72846ca_amd64.deb
+cumulus@switch:~$ netq lcm add image /path/to/download/netq-agent_4.14.0-cld12u51~1744815975.8dbbbd20c_amd64.deb
+cumulus@switch:~$ netq lcm add image /path/to/download/netq-apps_4.14.0-cld12u51~1744815975.8dbbbd20c_amd64.deb
 ```
 
 {{</tab>}}
@@ -245,7 +245,7 @@ After you upgrade all your switches beyond a particular release, you can remove 
 
 3. On the **Uploaded** tab, select the images you want to remove. 
 
-4. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/> **Delete**. 
+4. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" alt="" height="18" width="18"/> **Delete**. 
 
 {{</tab>}}
 

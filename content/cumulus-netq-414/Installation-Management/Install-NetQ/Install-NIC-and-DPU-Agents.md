@@ -9,7 +9,7 @@ Installing NetQ telemetry agents on your hosts with {{<exlink url="https://www.n
 
 ## Supported Versions
 
-NetQ 4.13 is compatible with DTS version 1.19.1.
+NetQ is compatible with DTS version 1.19.1.
 
 ## Install DTS on ConnectX Hosts
 
@@ -59,7 +59,7 @@ kubectl delete pod netq-prom-adapter-ffd9b874d-hxhbz
 
 ## Install DTS on DPUs
 
-To install and configure the DOCA Telemetry Service (DTS) container on a DPU, perform the following steps:
+To install and configure the DOCA Telemetry Service (DTS) container on a DPU:
 
 1. Obtain the DTS container image path from {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="the NGC catalog">}}. Select **Get Container**, then **View all tags**. Copy the **1.19.1-doca2.9.0-host** image path.
 

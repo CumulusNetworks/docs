@@ -85,12 +85,6 @@
 <td>5.12.0-5.12.1</td>
 </tr>
 <tr>
-<td>4260011</td>
-<td>If all of the neighbors returned in the {{nv show vrf &lt;vrf&gt; router bgp neighbor}} command output have no {{address-family}} configuration, you see an internal error when the nested table in the  output is being rendered.</td>
-<td>5.10.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4259980</td>
 <td>After you reboot the switch, the ifplugd.service fails to start monitoring the interface.</td>
 <td>5.8.0-5.11.1</td>
@@ -166,6 +160,12 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <td>5.12.0-5.12.1</td>
 </tr>
 <tr>
+<td>4144021</td>
+<td>Shutting down port 65 or 66 on the NVIDIA Spectrum-4 switch leaves the opposite port up when using MLNX SFP-T and RJ45 connections. Spectrum-4 switches do not support SFP-T modules on ports 65 and 66.</td>
+<td>5.10.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4142857</td>
 <td>The switch drops PTP packets received with extra ethernet padding and you see syslog {{[ptp4l.ERR] messages.</td>
 <td>5.10.0-5.12.1</td>
@@ -233,12 +233,6 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <td>When the SNMP service is busy for approximately more than a minute, the applications using {{net-snmp}} APIs to support their MIBs (such as FRR) become blocked. </td>
 <td>5.9.0-5.10.1</td>
 <td>5.11.0-5.12.1</td>
-</tr>
-<tr>
-<td>4101027</td>
-<td>After you add a VLAN to a bridge member port,  you might experience a few seconds of VXLAN traffic loss.</td>
-<td>5.7.0-5.12.1</td>
-<td></td>
 </tr>
 <tr>
 <td>4100164</td>
@@ -315,6 +309,18 @@ interface_stats: [ERROR] interface_stats_collector.py:_parse_conf_file:201 — C
 interface_stats: [ERROR] interface_stats_collector.py:_parse_conf_file:201 — Configured egress-traffic-class 0,3,6 is not an integer</td>
 <td>5.10.0-5.10.1</td>
 <td>5.11.0-5.12.1</td>
+</tr>
+<tr>
+<td>4049213</td>
+<td>When there are any routes points to singleton nexthops, there would be a ECMP created in the SDK. Once the usage of singleton nexthop from the route was removed, then the ECMP might stay in SDK till the time nexthop is present in kernel</td>
+<td>5.9.2-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4048583</td>
+<td>If there are failures in MSTPD or a port is not updated in the database, the NVUE {{nv show bridge domain &lt;bridge-id&gt; stp}} command might not work and might produce errors even when STP has data for other working ports or VLANs. This is a display issue only and does not impact functionality.</td>
+<td>5.10.0-5.12.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4047798</td>
@@ -406,12 +412,6 @@ interface_stats: [ERROR] interface_stats_collector.py:_parse_conf_file:201 — C
 rsyslogd: create UDP socket bound to device failed: No such device [v8.2302.0]
 rsyslogd: No UDP socket could successfully be initialized, some functionality may be disabled.  [v8.2302.0]
 The logs occur because the {{rsyslog}} service starts before the networking service creates the configured VRF for syslog export. There is no functional impact with this issue.</td>
-<td>5.9.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3882143</td>
-<td>The {{nv show platform environment voltage}} command output reports a failed state for PSU-1-12V-RAIL-OUT State. This issue is due to incorrect minimum and maximum thresholds and is cosmetic. The recorded voltage is reported in the {{Actual}} column of the {{nv show platform environment voltage}} command output.</td>
 <td>5.9.0-5.12.1</td>
 <td></td>
 </tr>
@@ -981,12 +981,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>5.12.0-5.12.1</td>
 </tr>
 <tr>
-<td>4260011</td>
-<td>If all of the neighbors returned in the {{nv show vrf &lt;vrf&gt; router bgp neighbor}} command output have no {{address-family}} configuration, you see an internal error when the nested table in the  output is being rendered.</td>
-<td>5.10.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4259980</td>
 <td>After you reboot the switch, the ifplugd.service fails to start monitoring the interface.</td>
 <td>5.8.0-5.11.1</td>
@@ -1040,6 +1034,12 @@ This happens in async mode, where the end notification expected after an end of 
 <td>An unexpected thermal reboot occurs due to an incorrect firmware status in the i2c driver.</td>
 <td>5.10.0-5.11.0</td>
 <td>5.11.1-5.12.1</td>
+</tr>
+<tr>
+<td>4144021</td>
+<td>Shutting down port 65 or 66 on the NVIDIA Spectrum-4 switch leaves the opposite port up when using MLNX SFP-T and RJ45 connections. Spectrum-4 switches do not support SFP-T modules on ports 65 and 66.</td>
+<td>5.10.0-5.12.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4142857</td>
@@ -1121,12 +1121,6 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <td>The I2C module read output is incorrect intermittently for modules 0-7.</td>
 <td>5.10.0</td>
 <td>5.10.1-5.12.1</td>
-</tr>
-<tr>
-<td>4101027</td>
-<td>After you add a VLAN to a bridge member port,  you might experience a few seconds of VXLAN traffic loss.</td>
-<td>5.7.0-5.12.1</td>
-<td></td>
 </tr>
 <tr>
 <td>4100164</td>
@@ -1215,6 +1209,18 @@ interface_stats: [ERROR] interface_stats_collector.py:_parse_conf_file:201 — C
 interface_stats: [ERROR] interface_stats_collector.py:_parse_conf_file:201 — Configured egress-traffic-class 0,3,6 is not an integer</td>
 <td>5.10.0-5.10.1</td>
 <td>5.11.0-5.12.1</td>
+</tr>
+<tr>
+<td>4049213</td>
+<td>When there are any routes points to singleton nexthops, there would be a ECMP created in the SDK. Once the usage of singleton nexthop from the route was removed, then the ECMP might stay in SDK till the time nexthop is present in kernel</td>
+<td>5.9.2-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4048583</td>
+<td>If there are failures in MSTPD or a port is not updated in the database, the NVUE {{nv show bridge domain &lt;bridge-id&gt; stp}} command might not work and might produce errors even when STP has data for other working ports or VLANs. This is a display issue only and does not impact functionality.</td>
+<td>5.10.0-5.12.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4047828</td>
@@ -1343,12 +1349,6 @@ interface_stats: [ERROR] interface_stats_collector.py:_parse_conf_file:201 — C
 rsyslogd: create UDP socket bound to device failed: No such device [v8.2302.0]
 rsyslogd: No UDP socket could successfully be initialized, some functionality may be disabled.  [v8.2302.0]
 The logs occur because the {{rsyslog}} service starts before the networking service creates the configured VRF for syslog export. There is no functional impact with this issue.</td>
-<td>5.9.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3882143</td>
-<td>The {{nv show platform environment voltage}} command output reports a failed state for PSU-1-12V-RAIL-OUT State. This issue is due to incorrect minimum and maximum thresholds and is cosmetic. The recorded voltage is reported in the {{Actual}} column of the {{nv show platform environment voltage}} command output.</td>
 <td>5.9.0-5.12.1</td>
 <td></td>
 </tr>
@@ -1954,6 +1954,17 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <td>3904516</td>
 <td>With Optimized Multicast Flooding (OMF), when you unset multiple multicast router ports in a single commit, multicast traffic still floods one of the ports. To work around this issue, unset multicast router ports one by one instead of in a single commit.</td>
 <td>5.9.0-5.9.1</td>
+</tr>
+<tr>
+<td>3900813</td>
+<td>When you configure or edit a large or extended BGP community list with NVUE, {{nv config apply}} might return an error and {{frr-reload}} might fail with the following message in {{/var/log/frr/frr-reload.log}}:
+{
+2025-04-04 18:15:44,745 WARNING: frr-reload.py failed due to
+vtysh (exec file) exited with status 13
+}
+
+You can safely ignore this error as FRR accepts and applies the new configuration. To work around this issue, apply the same configuration with the {{nv config apply -y}} command. The new configuration will correctly show in both NVUE and FRR.</td>
+<td>5.9.0-5.9.2</td>
 </tr>
 <tr>
 <td>3897227</td>

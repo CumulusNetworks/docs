@@ -61,7 +61,7 @@ The following ports are used for internal cluster communication and must also be
     b. Select **NVIDIA Licensing Portal**.<br>
     c. Select **Software Downloads** from the menu.<br>
     d. Click **Product Family** and select **NetQ**.<br>
-    e. For deployments using KVM, download the **NetQ SW 4.13 KVM Cloud** image. For deployments using VMware, download the **NetQ SW 4.13 VMware Cloud** image.<br>
+    e. For deployments using KVM, download the **NetQ SW 4.14 KVM Cloud** image. For deployments using VMware, download the **NetQ SW 4.14 VMware Cloud** image.<br>
     f. If prompted, read the license agreement and proceed with the download.<br>
 
 {{%notice note%}}
@@ -70,8 +70,8 @@ NVIDIA employees can download NetQ directly from the {{<exlink url="http://ui.li
 
 2. Open your hypervisor and configure your VM. You can use the following examples for reference or use your own hypervisor instructions.
 <!--undo these shortcodes-->
-{{<netq-install/vm-setup hypervisor="kvm" deployment="cloud" version="4.13">}}
-{{<netq-install/vm-setup hypervisor="vmware" deployment="cloud" version="4.13">}}
+{{<netq-install/vm-setup hypervisor="kvm" deployment="cloud" version="4.14">}}
+{{<netq-install/vm-setup hypervisor="vmware" deployment="cloud" version="4.14">}}
 
 3. Log in to the VM and change the password.
 
@@ -182,15 +182,15 @@ The HA cluster virtual IP must be:
 {{</notice>}}
 
 ```
-cumulus@<hostname>:~$ netq install opta cluster full interface eth0 bundle /mnt/installables/NetQ-4.13.0-opta.tgz 
+cumulus@<hostname>:~$ netq install opta cluster full interface eth0 bundle /mnt/installables/NetQ-4.14.0-opta.tgz 
                 config-key <your-config-key> 
                 workers <worker-1-ip> <worker-2-ip> 
                 cluster-vip <vip-ip> 
                 [proxy-host <proxy-hostname> proxy-port <proxy-port>]
 ```
 <div class="notices note"><p></p><p>NetQ uses the 10.244.0.0/16 (<code>pod-ip-range</code>) and 10.96.0.0/16 (<code>service-ip-range</code>) networks for internal communication by default. If you are using these networks, you must override each range by specifying new subnets for these parameters in the install command:</p>
-    <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>cumulus@hostname:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.13.0-opta.tgz workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt; pod-ip-range &lt;pod-ip-range&gt; service-ip-range &lt;service-ip-range&gt;</pre><p>You can specify the IP address of the server instead of the interface name using the <code>ip-addr &lt;ip-address&gt;</code> argument:</p>
-    <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>cumulus@hostname:~$ netq install cluster full ip-addr &lt;ip-address&gt; bundle /mnt/installables/NetQ-4.13.0-opta.tgz workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt;</pre><p>If you change the server IP address or hostname after installing NetQ, you must reset the server with the <code>netq bootstrap reset keep-db</code> command and rerun the install command.</p>
+    <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>cumulus@hostname:~$ netq install opta cluster full interface eth0 bundle /mnt/installables/NetQ-4.14.0-opta.tgz workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt; pod-ip-range &lt;pod-ip-range&gt; service-ip-range &lt;service-ip-range&gt;</pre><p>You can specify the IP address of the server instead of the interface name using the <code>ip-addr &lt;ip-address&gt;</code> argument:</p>
+    <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>cumulus@hostname:~$ netq install opta cluster full ip-addr &lt;ip-address&gt; bundle /mnt/installables/NetQ-4.14.0-opta.tgz workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt;</pre><p>If you change the server IP address or hostname after installing NetQ, you must reset the server with the <code>netq bootstrap reset keep-db</code> command and rerun the install command.</p>
     <p></p></div>
 
 <div class="notices tip"><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
@@ -210,42 +210,18 @@ The HA cluster virtual IP must be:
 {{</notice>}}
 
 ```
-cumulus@netq-appliance:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.13.0-opta.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIiwzNWJVL2NkZmtnekRqZ21yUUdZTHFFa0wvMVZSNHlLd3JaYlpuWE1VS21JPQ== workers 10.188.44.219 10.188.45.164 cluster-vip 10.188.45.169 restore /home/cumulus/combined_backup_20241211111316.tar
+cumulus@netq-appliance:~$ netq install opta cluster full interface eth0 bundle /mnt/installables/NetQ-4.14.0-opta.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIiwzNWJVL2NkZmtnekRqZ21yUUdZTHFFa0wvMVZSNHlLd3JaYlpuWE1VS21JPQ== workers 10.188.44.219 10.188.45.164 cluster-vip 10.188.45.169 restore /home/cumulus/combined_backup_20241211111316.tar
 ```
 
 <div class="notices note"><p></p><p>NetQ uses the 10.244.0.0/16 (<code>pod-ip-range</code>) and 10.96.0.0/16 (<code>service-ip-range</code>) networks for internal communication by default. If you are using these networks, you must override each range by specifying new subnets for these parameters in the install command:</p>
-    <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>cumulus@hostname:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.13.0-opta.tgz workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt; pod-ip-range &lt;pod-ip-range&gt; service-ip-range &lt;service-ip-range&gt; config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIiwzNWJVL2NkZmtnekRqZ21yUUdZTHFFa0wvMVZSNHlLd3JaYlpuWE1VS21JPQ== restore /home/cumulus/combined_backup_20241211111316.tar</pre><p>You can specify the IP address of the server instead of the interface name using the <code>ip-addr &lt;ip-address&gt;</code> argument:</p>
-    <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>cumulus@hostname:~$ netq install cluster full ip-addr &lt;ip-address&gt; bundle /mnt/installables/NetQ-4.13.0-opta.tgz workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt; config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIiwzNWJVL2NkZmtnekRqZ21yUUdZTHFFa0wvMVZSNHlLd3JaYlpuWE1VS21JPQ== restore /home/cumulus/combined_backup_20241211111316.tar</pre><p>If you change the server IP address or hostname after installing NetQ, you must reset the server with the <code>netq bootstrap reset keep-db</code> command and rerun the install command.</p>
+    <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>cumulus@hostname:~$ netq install opta cluster full interface eth0 bundle /mnt/installables/NetQ-4.14.0-opta.tgz workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt; pod-ip-range &lt;pod-ip-range&gt; service-ip-range &lt;service-ip-range&gt; config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIiwzNWJVL2NkZmtnekRqZ21yUUdZTHFFa0wvMVZSNHlLd3JaYlpuWE1VS21JPQ== restore /home/cumulus/combined_backup_20241211111316.tar</pre><p>You can specify the IP address of the server instead of the interface name using the <code>ip-addr &lt;ip-address&gt;</code> argument:</p>
+    <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>cumulus@hostname:~$ netq install opta cluster full ip-addr &lt;ip-address&gt; bundle /mnt/installables/NetQ-4.14.0-opta.tgz workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt; config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIiwzNWJVL2NkZmtnekRqZ21yUUdZTHFFa0wvMVZSNHlLd3JaYlpuWE1VS21JPQ== restore /home/cumulus/combined_backup_20241211111316.tar</pre><p>If you change the server IP address or hostname after installing NetQ, you must reset the server with the <code>netq bootstrap reset keep-db</code> command and rerun the install command.</p>
     <p></p></div>
 
 <div class="notices tip"><p><ul><li>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</li><li>If you restore NetQ data to a server with an IP address that is different from the one used to back up the data, you must <a href="/networking-ethernet-software/cumulus-netq/Installation-Management/Install-NetQ/Install-NetQ-Agents/#configure-netq-agents">reconfigure the agents</a> on each switch as a final step.</li></ul></p></div>
 
 {{< /tab >}}
 {{< /tabs >}}
-
-
-
-Run the following command on your NetQ cloud appliance with the `config-key` obtained from the email you received from NVIDIA titled *NetQ Access Link*. You can also obtain the configuration key {{<link title="Configure Premises" text="through the NetQ UI">}}. Use the IP addresses of your worker nodes and the HA cluster virtual IP address (VIP). 
-
-{{<notice info>}}
-The HA cluster virtual IP must be:
-    <li>An unused IP address allocated from the same subnet assigned to the default interface for your master and worker nodes. The default interface is the interface used in the <code>netq install</code> <a href="/cumulus-netq/More-Documents/NetQ-CLI-Reference-Manual/install/#netq-install-cluster-full">command</a>.</li>
-    <li>A different IP address than the primary IP assigned to the default interface.</li>
-{{</notice>}}
-
-```
-cumulus@<hostname>:~$ netq install opta cluster full interface eth0 bundle /mnt/installables/NetQ-4.13.0-opta.tgz 
-                config-key <your-config-key> 
-                workers <worker-1-ip> <worker-2-ip> 
-                cluster-vip <vip-ip> 
-                [proxy-host <proxy-hostname> proxy-port <proxy-port>]
-```
-<div class="notices note"><p></p><p>NetQ uses the 10.244.0.0/16 (<code>pod-ip-range</code>) and 10.96.0.0/16 (<code>service-ip-range</code>) networks for internal communication by default. If you are using these networks, you must override each range by specifying new subnets for these parameters in the install command:</p>
-    <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>cumulus@hostname:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.13.0.tgz workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt; pod-ip-range &lt;pod-ip-range&gt; service-ip-range &lt;service-ip-range&gt;</pre><p>You can specify the IP address of the server instead of the interface name using the <code>ip-addr &lt;ip-address&gt;</code> argument:</p>
-    <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>cumulus@hostname:~$ netq install cluster full ip-addr &lt;ip-address&gt; bundle /mnt/installables/NetQ-4.13.0.tgz workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt;</pre><p>If you change the server IP address or hostname after installing NetQ, you must reset the server with the <code>netq bootstrap reset keep-db</code> command and rerun the install command.</p>
-    <p></p></div>
-
-<div class="notices tip"><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
 
 ## Verify Installation Status
 
@@ -255,8 +231,8 @@ To view the status of the installation, use the `netq show status [verbose]` com
 State: Active
     NetQ Live State: Active
     Installation Status: FINISHED
-    Version: 4.13.0
-    Installer Version: 4.13.0
+    Version: 4.14.0
+    Installer Version: 4.14.0
     Installation Type: Cluster
     Activation Key: EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIixPSUJCOHBPWUFnWXI2dGlGY2hTRzExR2E5aSt6ZnpjOUvpVVTaDdpZEhFPQ==
     Master SSH Public Key: c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCZ1FDNW9iVXB6RkczNkRC

@@ -8,6 +8,7 @@ License: Expat
 
 Files: debian/*
 Copyright: 2017 suman <suman@protonmail.com>
+ 2020 Xavier Guimard <yadd@debian.org>
 License: Expat
 
 License: Expat

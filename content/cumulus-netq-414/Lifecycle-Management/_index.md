@@ -22,7 +22,7 @@ Lifecycle management is enabled for on-premises deployments and disabled for clo
 
 ## Access Lifecycle Management in the UI
 
-To access the lifecycle management dashboard, expand the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18">}} **Menu**, then select **Manage switches**:
+To access the lifecycle management dashboard, expand the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" alt="" width="18" height="18">}} **Menu**, then select **Manage switches**:
 
 {{<figure src="/images/netq/manage-switch-assets-450.png" alt="dashboard displaying switch management tab" width="700">}}
 

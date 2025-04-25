@@ -8,7 +8,6 @@ version: "4.14"
 imgData: cumulus-netq
 siteSlug: cumulus-netq
 pdfhidden: true
-draft: true
 
 ---
 

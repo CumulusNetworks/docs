@@ -24,15 +24,13 @@ To configure the display settings:
 
 4. Select the **Theme** field and choose either dark or light. The following dashboard displays the light theme:
 
-    {{<figure src="/images/netq/light-theme-411.png" alt="NetQ workbench displayed in light theme" width="1000">}}
+    {{<figure src="/images/netq/light-theme-414.png" alt="NetQ workbench displayed in light theme" width="1000">}}
 
 5. Select the **Time zone** field to adjust the time zone.
     
     By default, the time zone is set to the user's local time zone. If a time zone has not been selected, NetQ defaults to the current local time zone where NetQ is installed. All time values are based on this setting. If your deployment is not local to you (for example, you want to view the data from the perspective of a data center in another time zone) you can change the display to a different time zone.
 
 6. In the **Date format** field, select the date and time format you want displayed on the cards.  
-
-    {{<figure src="/images/netq/date-format-field.png" alt="" width="200">}}
 
 {{</tab>}}
 

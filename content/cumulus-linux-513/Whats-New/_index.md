@@ -27,15 +27,14 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 - {{<link title="Erase all Data from the Switch" text="Erase all data from the switch">}} (Beta)
 - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#amber-phy-health-management" text="Show SNR information for transceivers">}}
 - {{<link url="In-Service-System-Upgrade-ISSU/#maintenance-mode" text="New maintenance mode commands">}}
-- {{<link url="RADIUS-AAA/#optional-radius-configuration" text="RADIUS multiple VRF support">}}
-- {{<link url="RADIUS-AAA/#optional-radius-configuration" text="RADIUS require-message-authenticate attribute">}}
+- {{<link url="RADIUS-AAA/#optional-radius-configuration" text="RADIUS multiple VRF support">}} and {{<link url="RADIUS-AAA/#optional-radius-configuration" text="RADIUS require-message-authenticate attribute">}}
 - {{<link url="SSH-for-Remote-Access/#message-of-the-day" text="Message of the day shows system reboot cause and health information">}}
 - Telemetry
   - {{<link url="gNMI-Streaming" text="gNMI streaming">}}
-  - {{<link url="Open-Telemetry-Export/#adaptive-routing-statistics" text="OTEL Adaptive routing statistics">}}
+  - {{<link url="Open-Telemetry-Export/#adaptive-routing-statistics" text="OTEL adaptive routing statistics">}}
   - {{<link url="Open-Telemetry-Export/#lldp-statistics" text="OTEL LLDP metrics">}}
   - {{<link url="Open-Telemetry-Export/#software-statistics" text="OTEL software metrics">}}
-  - {{<link url="Open-Telemetry-Export/#platform-statistics" text="OTEL Transceiver statistics">}}
+  - {{<link url="Open-Telemetry-Export/#platform-statistics" text="OTEL transceiver statistics">}}
   - {{<link url="Open-Telemetry-Export/#temporality-mode" text="OTEL temporality mode for histogram metrics">}}
 - NVUE
   - {{<link url="NVUE-CLI/#list-directory-contents" text="Command to list directory contents">}}

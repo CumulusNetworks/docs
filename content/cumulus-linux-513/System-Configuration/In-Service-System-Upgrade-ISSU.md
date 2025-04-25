@@ -207,7 +207,7 @@ When you put all protocols in maintenance mode:
 - All the protocols that support graceful shutdown perform graceful shutdown with all their neighbors.
 - The switch goes through a warmboot when rebooted if the switch is in `warm` mode or when you do a warmboot to upgrade software to the next release.
 
-If the protocols perform a graceful shutdown while going into maintenance mode, but some of the neighbors do not have alternate paths, those neighbors continue to send traffic through the switch. That traffic continues to flow through this switch during warmboot and all protocols continue to remain in maintenance mode throughout the warmboot process.
+If the protocols perform a graceful shutdown while going into maintenance mode, but some neighbors do not have alternate paths, those neighbors continue to send traffic through the switch. That traffic continues to flow through this switch during warmboot and all protocols remain in maintenance mode throughout the warmboot process.
 
 Protocols that support graceful restart continue to do a graceful restart during warmboot to relearn routes from neighbors in the usual way, even though the all-protocols maintenance unit is in maintenance mode.
 
@@ -277,7 +277,7 @@ To take all ports out of maintenance and put them in production, run the `sudo c
 {{< /tab >}}
 {{< /tabs >}}
 
-### Check the Maintenance Mode
+### Check Maintenance Mode
 
 To check the current maintenance mode on the switch, run the NVUE `nv show maintenance` command or the Linux `sudo csmgrctl -s` command:
 

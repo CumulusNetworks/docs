@@ -209,7 +209,7 @@ Cumulus Linux supports wildcard matching of keys. For example:
 qos/interfaces/interface[interface-id=*]/output/queues/queue[name=*]/state/transmit-octets
 ```
 
-You can use a combination of wildcard and specific keys; for example, to collect a metric for all queues on a specific interface.
+You can use a combination of wildcard and specific keys; for example, to collect a metric for all queues on a specific interface:
 
 ```
 /qos/interfaces/interface[interface-id=<name>]/output/queues/queue[*]/state/transmit-octets.

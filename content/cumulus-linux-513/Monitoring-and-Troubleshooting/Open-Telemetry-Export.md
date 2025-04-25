@@ -11,7 +11,8 @@ Telemetry enables you to collect, send, and analyze large amounts of data, such 
 Cumulus Linux supports {{<exlink url="https://github.com/open-telemetry/" text="open telemetry (OTEL)">}} export. You can use <span class="a-tooltip">[OTLP](## "open telemetry protocol")</span> to export metrics, such as interface counters, buffer statistics, histogram collection, platform statistics, routing metrics, and `systemd` statistics to an external collector for analysis and visualization.
 
 {{%notice note%}}
-Cumulus Linux supports open telemetry export on switches with the Spectrum-2 ASIC and later.
+- Cumulus Linux supports open telemetry export on switches with the Spectrum-2 ASIC and later.
+- When you enable and use Open Telemetry, do not enable and use {{<link url="gNMI-Streaming" text="gNMI streaming">}}.
 {{%/notice%}}
 
 To enable open telemetry:
@@ -38,6 +39,10 @@ You can adjust the adaptive routing statistics sample interval (in seconds). You
 cumulus@switch:~$ nv set system telemetry adaptive-routing-stats sample-interval 40
 cumulus@switch:~$ nv config apply
 ```
+
+{{%notice note%}}
+To export adaptive routing metrics, you must {{<link url="Equal-Cost-Multipath-Load-Sharing/#enable-adaptive-routing" text="enable the adaptive routing feature">}}.
+{{%/notice%}}
 
 ### Buffer Statistics
 
@@ -173,7 +178,7 @@ cumulus@switch:~$ nv config apply
 
 ### Platform Statistics
 
-When you enable platform statistic open telemetry, the switch exports data about the CPU, disk, filesystem, memory, sensor health, and transceiver temperature and power. To enable all [platform statistics](#platform-statistic-format) globally:
+When you enable platform statistic open telemetry, the switch exports data about the CPU, disk, filesystem, memory, sensor health, and transceiver information. To enable all [platform statistics](#platform-statistic-format) globally:
 
 ```
 cumulus@switch:~$ nv set system telemetry platform-stats export state enabled
@@ -351,28 +356,28 @@ cumulus@switch:~$ nv config apply
 
 To show routing metrics configuration settings, run the `nv show system telemetry router` command.
 
-### Software Statistics
+### systemd Software Statistics
 
-When you enable software statistics open telemetry, the switch exports `systemd` unit metrics for a list of services, efficiently reporting only relevant data depending on the service state, ensuring minimal performance overhead. You can collect additional metrics by enabling process-level metrics.
+When you enable [systemd software statistics](#software-statistics-format) telemetry, the switch exports `systemd` unit metrics. The switch efficiently reports only relevant data based on the service state, ensuring minimal performance overhead. You can collect additional `systemd` metrics by enabling process-level metrics.
 
-To configure [software statistics](#software-statistics-format), enable the software statistics service:
+To enable `systemd` software metrics:
 
 ```
 cumulus@switch:~$ nv set system telemetry software-stats systemd export state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To enable process-level statistics:
+To enable `systemd` process-level statistics:
 
 ```
 cumulus@switch:~$ nv set system telemetry software-stats systemd process-level enabled 
 cumulus@switch:~$ nv config apply
 ```
 
-You can adjust the software routing statistics sample interval (in seconds). You can specify a value between 1 and 86400. The default setting is 60 seconds.
+You can adjust the software routing statistics sample interval (in seconds). You can specify a value between 60 and 86400. The default setting is 60 seconds.
 
 ```
-cumulus@switch:~$ nv set system telemetry software-stats systemd sample-interval 40
+cumulus@switch:~$ nv set system telemetry software-stats systemd sample-interval 100
 cumulus@switch:~$ nv config apply
 ```
 
@@ -400,19 +405,19 @@ By default, the switch collects statistics for the following units:
 <br>
 If a `systemd` unit is `inactive`, `failed`, or `dead`, the switch only collects the unit state, reducing unnecessary data processing.
 
-You can configure a custom profile to collect statistics for a specific unit. To configure a custom profile, run the `nv set system telemetry software-stats systemd unit-profile <profile-name> unit <unit>` command to provide a custom profile name and the unit you want to monitor.
+You can configure a custom profile to collect statistics for a specific unit. To configure a custom profile, run the `nv set system telemetry software-stats systemd unit-profile <profile-name> unit <unit>` command to provide a custom profile name and the unit you want to monitor. Only one unit profile can be active at a time.
 
 The following example configures a custom profile called CUSTOM1 that collects statistics about the NGINX unit:
 
 ```
-cumulus@switch:~$ nv set system telemetry software-stats systemd unit-profile PROFILE1 unit nginx.service
+cumulus@switch:~$ nv set system telemetry software-stats systemd unit-profile CUSTOM1 unit nginx.service
 cumulus@switch:~$ nv config apply
 ```
 
 The following example configures a custom profile called CUSTOM2 that collects statistics about the `nvued` unit:
 
 ```
-cumulus@switch:~$ nv set system telemetry software-stats systemd unit-profile PROFILE1 unit nvued.service
+cumulus@switch:~$ nv set system telemetry software-stats systemd unit-profile CUSTOM2 unit nvued.service
 cumulus@switch:~$ nv config apply
 ```
 
@@ -624,10 +629,6 @@ When you enable adaptive routing telemetry, the switch exports the following sta
 | Metric | Description |
 | ---------- | ------- |
 | `nvswitch_ar_congestion_changes`  | The number of adaptive routing change events triggered due to congestion or link-down.|
-| `nvswitch_ar_notification_tx_drops_total` | The number of adaptive routing notification packets dropped due to a lack of next hops to send adaptive routing notification packets or due to an IP address lookup failure. |
-| `nvswitch_ar_notification_rx_total` | The number of adaptive routing notification packets received or dropped due to an IP address lookup failure. |
-| `nvswitch_ar_flow_table_entries` | The number of adaptive routing flow entries in the flow table.|
-| `nvswitch_interface_ar_notification_tx_total` | The number of adaptive routing notification packets transmitted over the given port.|
 
 ### Buffer Statistic Format
 
@@ -1412,20 +1413,20 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 
 | Metric | Description |
 | ---------- | ------- |
-| `nvplatform_tranceiver_vendor_info` | The transceiver vendor information, such as which port the transceiver plugs into, the date of manufacture, the revision, the name of the manufacturer, the manufacturer part number, the serial number, and the IEEE company ID of the vendor.  |
-| `nvplatform_tranceiver_info` | General information for the transceiver, such as which port the transceiver plugs into, the cable type, the cable length in meters, the status (plugged-enabled, plugged-disabled, plugged-error, or unplugged), the error status, the identifier, and the Ethernet compliance revision. |
-| `nvplatform_tranceiver_temperature` |The temperature of the module in Celsius as a 64bit decimal value. |
-| `nvplatform_tranceiver_temperature_alarm`| The alarm status due to temperature crossing thresholds defined for the module. The value sent for the temperature alarm is a bit mask:<br> Bit 0: high_temp_alarm<br>Bit 1: low_temp_alarm<br>Bit 2: high_temp_warning<br>Bit 3: low_temp_warning  |
-| `nvplatform_tranceiver_temperature_threshold_info`| Temperature thresholds defined for the module (low or high). |
-| `nvplatform_tranceiver_voltage` | The internally measured supply voltage for the module in volts (a 64bit decimal value). |
-| `nvplatform_tranceiver_voltage_alarm` | The alarm status due to Voltage crossing thresholds defined for the module:<br>Bit 0: high_vcc_alarm<br>Bit 1: low_vcc_alarm<br>Bit 2: high_vcc_warning<br>Bit 3: low_vcc_warning |
-| `nvplatform_tranceiver_voltage_threshold_info` | Voltage thresholds defined for the module. The level is alarm or warning. The threshold is low or high.|
-| `nvplatform_transceiver_channel_power` | The transceiver channel power value in dBm units (logarithmic scale). |
-| `nvplatform_transceiver_channel_power_alarm` | The alarm state for power value measured with the defined thresholds for the module as a bit mask value:<br>Bit 0: tx_power_hi_al<br>Bit 1: l tx_power_lo_al<br>Bit 2: tx_power_hi_war<br>Bit 3: l tx_power_lo_war.  |
-| `nvplatform_transceiver_channel_power_threshold_info` | Threshold information for the power. The units are in dBm and represented by a 32bit decimal value. |
-| `nvplatform_transceiver_channel_tx_bias_current` | tx bias current measured for the channel in milliamp units and represented by a 32bit decimal value. |
-| `nvplatform_transceiver_channel_tx_bias_current_alarm` | tx bias current alarm state of tx bias current measure for the channel when compared to the threshold values for the channel defined for the module. This is a bit mask value:<br>Bit 0: tx_bias_hi_al<br>Bit 1: l tx_bias_lo_al<br>Bit 2: tx_bia_hi_war<br>Bit 3: l tx_bias_lo_war |
-| `nvplatform_transceiver_channel_tx_bias_current_threshold_info` | tx bias current thresholds defined for the channel in milliamp units and represented by a 32bit decimal value. |
+| `nvswitch_platform_tranceiver_vendor_info` | The transceiver vendor information, such as which port the transceiver plugs into, the date of manufacture, the revision, the name of the manufacturer, the manufacturer part number, the serial number, and the IEEE company ID of the vendor.  |
+| `nvswitch_platform_tranceiver_info` | General information for the transceiver, such as which port the transceiver plugs into, the cable type, the cable length in meters, the status (plugged-enabled, plugged-disabled, plugged-error, or unplugged), the error status, the identifier, and the Ethernet compliance revision. |
+| `nvswitch_platform_tranceiver_temperature` |The temperature of the module in Celsius as a 64bit decimal value. |
+| `nvswitch_platform_tranceiver_temperature_alarm`| The alarm status due to temperature crossing thresholds defined for the module. The value sent for the temperature alarm is a bit mask:<br> Bit 0: high_temp_alarm<br>Bit 1: low_temp_alarm<br>Bit 2: high_temp_warning<br>Bit 3: low_temp_warning  |
+| `nvswitch_platform_tranceiver_temperature_threshold_info`| Temperature thresholds defined for the module (low or high). |
+| `nvswitch_platform_tranceiver_voltage` | The internally measured supply voltage for the module in volts (a 64bit decimal value). |
+| `nvswitch_platform_tranceiver_voltage_alarm` | The alarm status due to Voltage crossing thresholds defined for the module:<br>Bit 0: high_vcc_alarm<br>Bit 1: low_vcc_alarm<br>Bit 2: high_vcc_warning<br>Bit 3: low_vcc_warning |
+| `nvswitch_platform_tranceiver_voltage_threshold_info` | Voltage thresholds defined for the module. The level is alarm or warning. The threshold is low or high.|
+| `nvswitch_platform_transceiver_channel_power` | The transceiver channel power value in dBm units (logarithmic scale). |
+| `nvswitch_platform_transceiver_channel_power_alarm` | The alarm state for power value measured with the defined thresholds for the module as a bit mask value:<br>Bit 0: tx_power_hi_al<br>Bit 1: l tx_power_lo_al<br>Bit 2: tx_power_hi_war<br>Bit 3: l tx_power_lo_war.  |
+| `nvswitch_platform_transceiver_channel_power_threshold_info` | Threshold information for the power. The units are in dBm and represented by a 32bit decimal value. |
+| `nvswitch_platform_transceiver_tx_bias_current` | tx bias current measured for the channel in milliamp units and represented by a 32bit decimal value. |
+| `nvswitch_platform_transceiver_tx_bias_current_alarm` | tx bias current alarm state of tx bias current measure for the channel when compared to the threshold values for the channel defined for the module. This is a bit mask value:<br>Bit 0: tx_bias_hi_al<br>Bit 1: l tx_bias_lo_al<br>Bit 2: tx_bia_hi_war<br>Bit 3: l tx_bias_lo_war |
+| `nvswitch_platform_transceiver_tx_bias_current_threshold_info` | tx bias current thresholds defined for the channel in milliamp units and represented by a 32bit decimal value. |
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -2184,9 +2185,9 @@ gauge {
 ```
 {{< /expand >}}
 
-### Software Statistics Format
+### systemd Software Statistics Format
 
-When you enable software statistic telemetry, the switch collects the following `systemd` unit statistics:
+When you enable `systemd` software statistic telemetry, the switch collects the following `systemd` unit statistics:
 
 |  Name | Description |
 |------ | ----------- |
@@ -2202,7 +2203,7 @@ When you enable software statistic telemetry, the switch collects the following 
 | `nvswitch_systemd_unit_threads` | The number of threads in the unit. |
 | `nvswitch_systemd_unit_processes`| The number of processes in the unit. |
 
-If you enable process-level statistics, the switch collects the following metrics:
+If you enable `systemd` process-level statistics, the switch collects the following metrics:
 
 |  Name | Description |
 |------ | ----------- |

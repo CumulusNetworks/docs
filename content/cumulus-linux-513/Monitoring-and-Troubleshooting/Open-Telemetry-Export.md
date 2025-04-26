@@ -1276,6 +1276,12 @@ When you enable LLDP statistic telemetry, the switch exports the following stati
 | `nvswitch_lldp_neighbor_age` | LLDP neighbor age information. |
 | `nvswitch_lldp_neighbor_ttl` | LLDP neighbor port TTL. |
 | `nvswitch_lldp_neighbor_capabilities` | LLDP neighbor capabilities. |
+| `nvswitch_lldp_state_chassis-id-type` | |
+| `nvswitch_lldp_interfaces_interface_neighbors_neighbor_state_port-id` | |
+| `nvswitch_lldp_interfaces_interface_neighbors_neighbor_state_chassis-id` | |
+| `nvswitch_lldp_interfaces_interface_neighbors_neighbor_state_chassis-id-type` | |
+| `nvswitch_lldp_interfaces_interface_neighbors_neighbor_state_system-name` | |
+| `nvswitch_lldp_interfaces_interface_neighbors_neighbor_state_system-description` | |
 
 ### Platform Statistic Format
 

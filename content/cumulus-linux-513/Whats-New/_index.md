@@ -33,7 +33,7 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
   - {{<link url="gNMI-Streaming/#gnmi-with-cumulus-linux" text="gNMI streaming with Cumulus Linux">}}
   - {{<link url="Open-Telemetry-Export/#adaptive-routing-statistics" text="OTEL adaptive routing statistics">}}
   - {{<link url="Open-Telemetry-Export/#lldp-statistics" text="OTEL LLDP metrics">}}
-  - {{<link url="Open-Telemetry-Export/#systemd-software-statistics" text="OTEL systemd software metrics">}}
+  - {{<link url="Open-Telemetry-Export/#software-statistics" text="OTEL systemd software metrics">}}
   - {{<link url="Open-Telemetry-Export/#platform-statistics" text="OTEL transceiver statistics">}}
   - {{<link url="Open-Telemetry-Export/#temporality-mode" text="OTEL temporality mode for histogram metrics">}}
 - NVUE

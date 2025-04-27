@@ -356,11 +356,11 @@ cumulus@switch:~$ nv config apply
 
 To show routing metrics configuration settings, run the `nv show system telemetry router` command.
 
-### systemd Software Statistics
+### Software Statistics
 
-When you enable [systemd software statistics](#software-statistics-format) telemetry, the switch exports `systemd` unit metrics. The switch efficiently reports only relevant data based on the service state, ensuring minimal performance overhead. You can collect additional `systemd` metrics by enabling process-level metrics.
+[Software statistics](#software-statistics-format) telemetry currently includes `systemd` unit metrics. When you enable `systemd` metrics, the switch exports unit-level metrics, efficiently reporting only relevant data depending on the service state to ensure minimal performance overhead. You can collect additional `systemd` metrics by enabling process-level metrics.
 
-To enable `systemd` software metrics:
+To enable `systemd` unit metrics:
 
 ```
 cumulus@switch:~$ nv set system telemetry software-stats systemd export state enabled
@@ -403,21 +403,17 @@ By default, the switch collects statistics for the following units:
 - `wd_keepalive.service`
 {{< /expand >}}
 <br>
-If a `systemd` unit is `inactive`, `failed`, or `dead`, the switch only collects the unit state, reducing unnecessary data processing.
+If a `systemd` unit is not active, the switch only collects the unit state, reducing unnecessary data processing.
 
-You can configure a custom profile to collect statistics for a specific unit. To configure a custom profile, run the `nv set system telemetry software-stats systemd unit-profile <profile-name> unit <unit>` command to provide a custom profile name and the unit you want to monitor. Only one unit profile can be active at a time.
+You can configure custom profiles to collect statistics for specific units. To configure a custom profile, run the `nv set system telemetry software-stats systemd unit-profile <profile-name> unit <unit>` command to provide a custom profile name and the unit you want to monitor. You must then set the custom profile you want to use as the active profile. You can configure multiple units in a custom profile. Only one profile can be active at a time.
 
-The following example configures a custom profile called CUSTOM1 that collects statistics about the NGINX unit:
+The following example configures a custom profile called CUSTOM1 that collects statistics about the NGINX unit and the NVUE unit, and a custom profile called CUSTOM2 that collects statistics about the FRR unit. The example then sets CUSTOM2 as the active profile:
 
 ```
 cumulus@switch:~$ nv set system telemetry software-stats systemd unit-profile CUSTOM1 unit nginx.service
-cumulus@switch:~$ nv config apply
-```
-
-The following example configures a custom profile called CUSTOM2 that collects statistics about the `nvued` unit:
-
-```
-cumulus@switch:~$ nv set system telemetry software-stats systemd unit-profile CUSTOM2 unit nvued.service
+cumulus@switch:~$ nv set system telemetry software-stats systemd unit-profile CUSTOM1 unit nvued.service
+cumulus@switch:~$ nv set system telemetry software-stats systemd unit-profile CUSTOM2 unit frr.service
+cumulus@switch:~$ nv set system telemetry software-stats systemd active-profile CUSTOM2
 cumulus@switch:~$ nv config apply
 ```
 
@@ -427,20 +423,25 @@ To show `systemd` software statistics configuration, run the `nv show system tel
 cumulus@switch:~$ nv show system telemetry software-stats systemd 
                  applied 
 ---------------  --------
-sample-interval  60      
-process-level    enabled
-active-profile   default 
+sample-interval  100     
+process-level    disabled
+active-profile   CUSTOM2 
 export                   
-  state          enabled
+  state          enabled 
+[unit-profile]   CUSTOM1 
+[unit-profile]   CUSTOM2 
 [unit-profile]   default
 ```
 
-To show the units you can monitor, run the `nv show system telemetry software-stats systemd unit-profile` command:
+To show the default profile and all configured custom profiles, run the `nv show system telemetry software-stats systemd unit-profile` command:
 
 ```
 cumulus@switch:~$ nv show system telemetry software-stats systemd unit-profile 
          Summary                               
 -------  --------------------------------------
+CUSTOM1  unit:                    nginx.service
+         unit:                    nvued.service
+CUSTOM2  unit:                    frr.service
 default  unit:             asic-monitor.service
          unit:                      frr.service
          unit:                  hostapd.service
@@ -458,6 +459,16 @@ default  unit:             asic-monitor.service
          unit:                  switchd.service
          unit:                   sx_sdk.service
          unit:             wd_keepalive.service
+```
+
+To show the units configured for a specific profile, run the `nv show system telemetry software-stats systemd unit-profile <profile-id>` command:
+
+```
+cumulus@switch:~$ nv show system telemetry software-stats systemd unit-profile CUSTOM1
+        operational    applied      
+------  -------------  -------------
+[unit]  nginx.service  nginx.service
+[unit]  nvued.service  nvued.service
 ```
 
 To show if {{<link url="#customize-export" text="exporting software statistics is enabled">}}, run the `nv show system telemetry software-stats systemd export` command:
@@ -1265,6 +1276,12 @@ When you enable LLDP statistic telemetry, the switch exports the following stati
 | `nvswitch_lldp_neighbor_age` | LLDP neighbor age information. |
 | `nvswitch_lldp_neighbor_ttl` | LLDP neighbor port TTL. |
 | `nvswitch_lldp_neighbor_capabilities` | LLDP neighbor capabilities. |
+| `nvswitch_lldp_state_chassis-id-type` | |
+| `nvswitch_lldp_interfaces_interface_neighbors_neighbor_state_port-id` | |
+| `nvswitch_lldp_interfaces_interface_neighbors_neighbor_state_chassis-id` | |
+| `nvswitch_lldp_interfaces_interface_neighbors_neighbor_state_chassis-id-type` | |
+| `nvswitch_lldp_interfaces_interface_neighbors_neighbor_state_system-name` | |
+| `nvswitch_lldp_interfaces_interface_neighbors_neighbor_state_system-description` | |
 
 ### Platform Statistic Format
 
@@ -2027,24 +2044,30 @@ When you enable layer 3 routing metrics telemetry, the switch exports the follow
 | `nvrouting_bgp_peer_rib_adj_in_ipv4_unicast` | Number of IPv4 unicast routes received from the BGP neighbor after applying any policies. This count is the number of routes present in the post-policy Adj-RIB-In for the neighbor. |
 | `nvrouting_bgp_peer_rib_adj_in_ipv6_unicast` | Number of IPv6 unicast routes received from the BGP neighbor after applying any policies. This count is the number of routes present in the post-policy Adj-RIB-In for the neighbor. |
 | `nvrouting_bgp_peer_rib_adj_in_l2vpn_evpn` | Number of EVPN routes received from the BGP neighbor after applying any policies. This count is the number of routes present in the post-policy Adj-RIB-In for the neighbor. |
+| `nvrouting_bgp_peer_rib_adj_in_installed` | Tracks the number of prefixes received from the neighbor that are installed in the RIB and actively used for forwarding. |
+| `nvrouting_bgp_peer_rib_adj_out_advertised` | Tracks the number of prefixes advertised to the neighbor after applying any policies. |
+| `nvrouting_bgp_peer_total_msgs_sent` | Number of BGP messages sent to the neighbor. |
+| `nvrouting_bgp_peer_total_msgs_recvd` | Number of BGP messages received from the neighbor.|
+| `nvrouting_bgp_peer_rib_adj_in` | Number of IPv4, IPv6, and EVPN prefixes received from the peer after applying any policies. This count is the number of prefixes present in the post-policy Adj-RIB-In for the peer. |
 | `nvrouting_bgp_peer_socket_in_queue` | Number of messages queued to be received from the BGP neighbor.|
 | `nvrouting_bgp_peer_socket_out_queue` | Number of messages queued to be sent to the BGP neighbor.|
 | `nvrouting_bgp_peer_rx_updates` | Number of BGP messages received from the neighbor.|
 | `nvrouting_bgp_peer_tx_updates` | Number of BGP messages sent to the neighbor. |
-| `nvrouting_rib_count` | Number of routes in the IP routing table for each route source. |
-| `nvrouting_rib_count_ipv6` | Tracks the IPv6 RIB route count for each route source. |
-| `nvrouting_rib_count_connected` | Tracks the total IPv4 RIB connected route count. |
-| `nvrouting_rib_count_bgp` | Tracks the total IPv4 RIB BGP route count. |
-| `nvrouting_rib_count_kernel` | Tracks the total IPv4 RIB kernel route count.|
-| `nvrouting_rib_count_static` | Tracks the total IPv4 RIB static route count. |
-| `nvrouting_rib_count_pbr` | Tracks the total IPv4 RIB PBR route count. |
-| `nvrouting_rib_count_ospf` | Tracks the total IPv4 RIB OSPF route count. |
-| `nvrouting_rib_count_connected_ipv6` | Tracks the total IPv6 RIB connected route count. |
-| `nvrouting_rib_count_bgp_ipv6` | Tracks the total IPv6 RIB BGP route count. |
-| `nvrouting_rib_count_kernel_ipv6` | Tracks the total IPv6 RIB kernel route count. |
-| `nvrouting_rib_count_static_ipv6` | Tracks the total IPv6 RIB static route count. |
-| `nvrouting_rib_count_pbr_ipv6` | Tracks the total IPv6 RIB PBR route count. |
-| `nvrouting_rib_count_ospf_ipv6` | Tracks the total IPv6 RIB OSPF route count. |
+| `nvrouting_rib_count` | Number of IPv4 and IPv6 routes in the IP routing table for each route source. |
+| `nvrouting_rib_count_ipv6` | Number of IPv6 routes in the IP routing table for each route source. |
+| `nvrouting_rib_count_connected` | Number of IPv4 connected routes in the IP routing table. |
+| `nvrouting_rib_count_bgp` | Number of IPv4 BGP routes in the IP routing table. |
+| `nvrouting_rib_count_kernel` | Number of IPv4 kernel routes in the IP routing table.|
+| `nvrouting_rib_count_static` | Number of IPv4 static routes in the IP routing table. |
+| `nvrouting_rib_count_pbr` | Number of IPv4 PBR routes in the IP routing table. |
+| `nvrouting_rib_count_ospf` | Number of IPv4 OSPF routes in the IP routing table. |
+| `nvrouting_rib_count_connected_ipv6` | Number of IPv6 connected routes in the IP routing table. |
+| `nvrouting_rib_count_bgp_ipv6` | Number of IPv6 BGP routes in the IP routing table. |
+| `nvrouting_rib_count_kernel_ipv6` | Number of IPv6 kernel routes in the IP routing table. |
+| `nvrouting_rib_count_static_ipv6` | Number of IPv6 static routes in the IP routing table. |
+| `nvrouting_rib_count_pbr_ipv6` | Number of IPv6 PBR routes in the IP routing table. |
+| `nvrouting_rib_count_ospf_ipv6` | Number of IPv6 OSPF routes in the IP routing table. |
+| `nvrouting_rib_nhg_count` | Number of next hop groups in the routing table. |
 
 {{< expand "Example JSON data for BGP peer metrics:" >}}
 ```
@@ -2185,7 +2208,7 @@ gauge {
 ```
 {{< /expand >}}
 
-### systemd Software Statistics Format
+### Software Statistics Format
 
 When you enable `systemd` software statistic telemetry, the switch collects the following `systemd` unit statistics:
 
@@ -2195,10 +2218,10 @@ When you enable `systemd` software statistic telemetry, the switch collects the 
 | `nvswitch_systemd_unit_state`| The active status of the unit. |
 | `nvswitch_systemd_unit_running` | The running status of the unit.|
 | `nvswitch_systemd_unit_exe_path` | The executable path of the unit. |
-| `nvswitch_systemd_unit_restart`|The restart count of the unit. |
+| `nvswitch_systemd_unit_restart`| The `systemd` managed restart count of the unit. |
 | `nvswitch_systemd_unit_cpu_usage_seconds` | The CPU usage of the unit (in seconds).|
 | `nvswitch_systemd_unit_memory_usage_bytes` |  The memory usage of the unit (in bytes). |
-| `nvswitch_systemd_unit_start_time_seconds` | The absolute UNIX timestamp of the unit in seconds since epoch.|
+| `nvswitch_systemd_unit_start_time_seconds` | The start time of the unit in seconds since epoch.|
 | `nvswitch_systemd_unit_uptime_seconds` | The uptime of the unit (in seconds). |
 | `nvswitch_systemd_unit_threads` | The number of threads in the unit. |
 | `nvswitch_systemd_unit_processes`| The number of processes in the unit. |
@@ -2209,14 +2232,14 @@ If you enable `systemd` process-level statistics, the switch collects the follow
 |------ | ----------- |
 | `nvswitch_systemd_unit_process_parent_pid` | The parent process ID. |
 | `nvswitch_systemd_unit_process_start_time_seconds` | The start time of the process in seconds since epoch.|
-| `nvswitch_systemd_unit_process_running` | The process running status.|
+| `nvswitch_systemd_unit_process_state` | The process running status.|
 | `nvswitch_systemd_unit_process_threads` | The number of threads in the process.|
 | `nvswitch_systemd_unit_process_subprocesses` | The number of child processes.|
 | `nvswitch_systemd_unit_process_context_switches` | The number of context switches based on context type since the main process was created.|
-| `nvswitch_systemd_unit_process_cpu_seconds` | The CPU usage of the process (user and kernel mode, including children).|
-| `nvswitch_systemd_unit_process_virtual_memory_bytes` | The virtual memory usage of the process (in bytes).|
-| `nvswitch_systemd_unit_process_resident_memory_bytes` | The resident memory usage of the process (in bytes).|
-| `nvswitch_systemd_unit_process_shared_memory_bytes` | The shared memory usage of the process (in bytes).|
+| `nvswitch_systemd_unit_process_cpu_usage_seconds` | The CPU usage of the process (user and kernel mode, including children).|
+| `nvswitch_systemd_unit_process_virtual_memory_usage_bytes` | The virtual memory usage of the process (in bytes).|
+| `nvswitch_systemd_unit_process_resident_memory_usage_bytes` | The resident memory usage of the process (in bytes).|
+| `nvswitch_systemd_unit_process_shared_memory_usage_bytes` | The shared memory usage of the process (in bytes).|
 
 ### System Information Format
 

@@ -633,7 +633,7 @@ interface_swp10_label  Server 10 connection
 
 Cumulus Linux exports statistics and histogram data in the formats defined in this section.
 
-## Adaptive Routing Statistic Format
+### Adaptive Routing Statistic Format
 
 When you enable adaptive routing telemetry, the switch exports the following statistics:
 

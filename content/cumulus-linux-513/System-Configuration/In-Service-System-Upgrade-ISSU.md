@@ -279,7 +279,7 @@ cumulus@switch:~$ sudo csmgrctl -m
 When you put all ports in maintenance mode, all the ports go into the link down state. When you take all ports out of maintenance and put them in production, all the ports move out of the link down state.
 
 {{< tabs "248 ">}}
-{{< tab "NVUE Command ">}}
+{{< tab "NVUE Commands ">}}
 
 To put all the ports in maintenance mode, run the `nv set maintenance unit all-interfaces mode enabled` command:
 

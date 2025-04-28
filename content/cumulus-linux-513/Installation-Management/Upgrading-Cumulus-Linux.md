@@ -155,7 +155,8 @@ Cumulus Linux provides two different ways to upgrade the switch with a new image
 
 {{%notice note%}}
 - You can only use optimized image upgrade on a switch with an <span class="a-tooltip">[SSD](## "Solid state drive")</span> greater than or equal to 32GB.
-- You cannot downgrade a Cumulus Linux 5.13 switch to Cumulus Linux 5.11 or earlier with optimized image upgrade; use ONIE instead.
+- You can use optimized image upgrade to upgrade the switch to Cumulus Linux 5.13 from 5.11.1 and later.
+- You cannot downgrade a Cumulus Linux 5.13 switch to Cumulus Linux 5.11.0 or earlier with optimized image upgrade; use ONIE instead.
 - Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in [Upgrade Switches in an MLAG Pair](#upgrade-switches-in-an-mlag-pair) below to ensure a smooth upgrade.
 {{%/notice%}}
 

@@ -1,12 +1,12 @@
 ---
-title: Format Check
+title: NVUE Format Reference
 author: NVIDIA
 weight: 126
 toc: 3
 draft: true
 ---
 
-The NVUE openAPI schema references the `format` keyword, which takes a string that represents the format of valid input for a given property (such as `format: ipv4`, `format: float`, and so on). This section lists the formats that the schema uses and provides valid examples.
+The NVUE openAPI schema references the `format` keyword, which takes a string that represents the format of valid input for a given property (such as `format: ipv4`, `format: float`, and so on). This section lists the formats that the schema uses and validates, and provides valid examples.
 
 ## Reserved Names
 
@@ -31,7 +31,7 @@ NVUE uses the reserved names for special purposes:
 
 ### user-name
 
-Validates usernames for system accounts.
+Usernames for system accounts.
 
 **Valid Format:**
 - Must start with a letter or underscore
@@ -52,7 +52,7 @@ Validates usernames for system accounts.
 
 ### key-string
 
-Validates SSH public keys.
+SSH public keys.
 
 **Valid Format:**
 
@@ -61,7 +61,7 @@ Validates SSH public keys.
 
 ### command
 
-Validates command strings for authorization.
+Command strings for authorization.
 
 **Valid Format:**
 
@@ -93,7 +93,7 @@ Validates command strings for authorization.
 
 ### clock-date
 
-Validates date format for system clock.
+Date format for system clock.
 
 **Valid Format:**
 - Format: YYYY-MM-DD
@@ -112,7 +112,7 @@ Validates date format for system clock.
 
 ### clock-time
 
-Validates time format for system clock.
+Time format for system clock.
 
 **Valid Format:**
 - Format: HH:MM:SS
@@ -130,7 +130,7 @@ Validates time format for system clock.
 
 ### mss-format
 
-Validates TCP MSS format.
+TCP MSS format.
 
 **Valid Input Format:**
 - Must be a string
@@ -150,7 +150,7 @@ Validates TCP MSS format.
 
 ### rate-limit
 
-Validates rate limit values.
+Rate limit values.
 
 **Valid Format:**
 - Format: number/unit
@@ -171,7 +171,7 @@ Validates rate limit values.
 
 ### secret-string
 
-Validates secret strings.
+Secret strings.
 
 **Valid Format:**
 - Non-empty string
@@ -187,7 +187,7 @@ Validates secret strings.
 
 ### bond-swp-name
 
-Validates bond and switch port names.
+Bond and switch port names.
 
 **Valid Format:**
 - Must be either a valid switch port name (swp) or bond name
@@ -205,7 +205,7 @@ Validates bond and switch port names.
 
 ### interval
 
-Validates sample interval values.
+Sample interval values.
 
 **Valid Format:**
 - Must be an integer
@@ -222,7 +222,7 @@ Validates sample interval values.
 
 ### repo-url
 
-Validates repository URLs.
+Repository URLs.
 
 **Valid Format:**
 - HTTP/HTTPS URLs
@@ -250,7 +250,7 @@ Validates repository URLs.
 
 ### repo-dist
 
-Validates repository distribution names.
+Repository distribution names.
 
 **Valid Format:**
 - Alphanumeric characters
@@ -267,7 +267,8 @@ Validates repository distribution names.
 ```
 
 ### repo-pool
-Validates repository pool names.
+
+Repository pool names.
 
 **Valid Format:**
 - Alphanumeric characters
@@ -285,7 +286,7 @@ Validates repository pool names.
 
 ### transceiver-name
 
-Validates transceiver interface names.
+Transceiver interface names.
 
 **Valid Format:**
 - Must be a valid switch port name (swp)
@@ -302,7 +303,8 @@ Validates transceiver interface names.
 ```
 
 ### interface-name
-The `interface-name` format supports various types of network interface names. The format checker validates names based on specific patterns for different interface types.
+
+The `interface-name` format supports various types of network interface names.
 
 #### Valid Interface Types
 
@@ -424,7 +426,7 @@ bond1-3 # Expands to: bond1, bond2, bond3
 
 #### ipv4
 
-Validates IPv4 address format.
+IPv4 address format.
 
 **Valid Input Format:**
 - Must be a string
@@ -443,7 +445,7 @@ Validates IPv4 address format.
 
 #### ipv4-unicast
 
-Validates IPv4 unicast address format.
+IPv4 unicast address format.
 
 **Valid Input Format:**
 - Must be a valid IPv4 address
@@ -459,7 +461,7 @@ Validates IPv4 unicast address format.
 
 #### ipv4-multicast
 
-Validates IPv4 multicast address format.
+IPv4 multicast address format.
 
 **Valid Input Format:**
 - Must be a valid IPv4 address
@@ -475,7 +477,7 @@ Validates IPv4 multicast address format.
 
 #### ipv4-prefix
 
-Validates IPv4 address with prefix length.
+IPv4 address with prefix length.
 
 **Valid Input Format:**
 - Must be a string
@@ -492,7 +494,7 @@ Validates IPv4 address with prefix length.
 
 #### ipv4-sub-prefix
 
-Validates IPv4 subnet address with prefix length.
+IPv4 subnet address with prefix length.
 
 **Valid Input Format:**
 - Must be a string
@@ -510,7 +512,7 @@ Validates IPv4 subnet address with prefix length.
 
 #### ipv6-prefix
 
-Validates IPv6 address with prefix length.
+IPv6 address with prefix length.
 
 **Valid Input Format:**
 - Must be a string
@@ -527,7 +529,7 @@ Validates IPv6 address with prefix length.
 
 #### ipv4-netmask
 
-Validates IPv4 address with netmask.
+IPv4 address with netmask.
 
 **Valid Input Format:**
 - Must be a string
@@ -543,7 +545,7 @@ Validates IPv4 address with netmask.
 
 #### ipv6-netmask
 
-Validates IPv6 address with netmask.
+IPv6 address with netmask.
 
 **Valid Input Format:**
 - Must be a string
@@ -561,7 +563,7 @@ Validates IPv6 address with netmask.
 
 #### mac
 
-Validates MAC address format.
+MAC address format.
 
 **Valid Input Format:**
 - Must be a string
@@ -578,7 +580,7 @@ Validates MAC address format.
 
 #### clock-id
 
-Validates PTP clock ID format.
+PTP clock ID format.
 
 **Valid Input Format:**
 - Must be a string
@@ -594,7 +596,7 @@ Validates PTP clock ID format.
 
 #### es-identifier
 
-Validates Ethernet Segment Identifier format.
+Ethernet Segment Identifier format.
 
 **Valid Input Format:**
 - Must be a string
@@ -610,7 +612,7 @@ Validates Ethernet Segment Identifier format.
 
 #### segment-identifier
 
-Validates Ethernet Segment Identifier format (Type-0).
+Ethernet Segment Identifier format (Type-0).
 
 **Valid Input Format:**
 - Must be a string
@@ -629,7 +631,7 @@ Validates Ethernet Segment Identifier format (Type-0).
 
 #### route-distinguisher
 
-Validates route distinguisher format.
+Route distinguisher format.
 
 **Valid Input Format:**
 - Must be a string
@@ -648,7 +650,7 @@ Validates route distinguisher format.
 
 #### route-target
 
-Validates route target format.
+Route target format.
 
 **Valid Input Format:**
 - Must be a string
@@ -667,7 +669,7 @@ Validates route target format.
 
 #### well-known-community
 
-Validates well-known BGP community values.
+Well-known BGP community values.
 
 **Valid Input Format:**
 - Must be one of:
@@ -679,7 +681,7 @@ Validates well-known BGP community values.
 
 #### community
 
-Validates BGP community format.
+BGP community format.
 
 **Valid Input Format:**
 - Must be a string
@@ -696,7 +698,7 @@ Validates BGP community format.
 
 #### large-community
 
-Validates BGP large community format.
+BGP large community format.
 
 **Valid Input Format:**
 - Must be a string
@@ -713,7 +715,7 @@ Validates BGP large community format.
 
 #### bgp-regex
 
-Validates BGP regex pattern format.
+BGP regex pattern format.
 
 **Valid Input Format:**
 - Must be a string
@@ -732,7 +734,7 @@ Validates BGP regex pattern format.
 
 #### ip-port-range
 
-Validates IP port range format.
+IP port range format.
 
 **Valid Input Format:**
 - Must be a string
@@ -750,7 +752,7 @@ Validates IP port range format.
 
 #### vlan-range
 
-Validates VLAN range format.
+VVLAN range format.
 
 **Valid Input Format:**
 - Must be a string
@@ -768,7 +770,7 @@ Validates VLAN range format.
 
 #### asn-range
 
-Validates ASN range format.
+ASN range format.
 
 **Valid Input Format:**
 - Must be a string
@@ -785,7 +787,7 @@ Validates ASN range format.
 
 #### evpn-route
 
-Validates EVPN route format.
+EVPN route format.
 
 **Valid Input Format:**
 - Must be a string
@@ -810,7 +812,7 @@ Validates EVPN route format.
 
 #### command-path
 
-Validates command path format.
+Command path format.
 
 **Valid Input Format:**
 - Must be a string
@@ -831,7 +833,7 @@ Validates command path format.
 
 #### json-pointer
 
-Validates JSON pointer format.
+JSON pointer format.
 
 **Valid Input Format:**
 - Must be a valid JSON pointer string
@@ -847,7 +849,7 @@ Validates JSON pointer format.
 
 #### integer
 
-Validates integer format.
+Integer format.
 
 **Valid Input Format:**
 - Must be a valid integer or integer range
@@ -863,7 +865,7 @@ Validates integer format.
 
 #### number
 
-Validates numerical value format.
+Numerical value format.
 
 **Valid Input Format:**
 
@@ -880,7 +882,7 @@ Must be a valid integer or floating-point number
 
 #### float
 
-Validates floating-point number format.
+Floating-point number format.
 
 **Valid Input Format:**
 
@@ -897,7 +899,7 @@ Must be a valid integer or floating-point number
 
 #### oid
 
-Validates OID (Object Identifier) format.
+OID (Object Identifier) format.
 
 **Valid Input Format:**
 - Must be a string
@@ -915,7 +917,7 @@ Validates OID (Object Identifier) format.
 
 #### snmp-branch
 
-Validates SNMP MIB tree branch format.
+SNMP MIB tree branch format.
 
 **Valid Input Format:**
 - Must be a string
@@ -934,7 +936,7 @@ Validates SNMP MIB tree branch format.
 
 #### instance-name
 
-Validates generic instance name format.
+Generic instance name format.
 
 **Valid Input Format:**
 - Must be a string
@@ -952,7 +954,7 @@ Validates generic instance name format.
 
 #### item-name
 
-Validates generic item name format.
+Generic item name format.
 
 **Valid Input Format:**
 - Must be a string
@@ -970,7 +972,7 @@ Validates generic item name format.
 
 #### generic-name
 
-Validates generic name format.
+Generic name format.
 
 **Valid Input Format:**
 - Must be a string
@@ -988,7 +990,7 @@ Validates generic name format.
 
 #### bridge-name
 
-Validates bridge name format.
+Bridge name format.
 
 **Valid Input Format:**
 - Must follow instance-name format rules
@@ -1006,7 +1008,7 @@ Validates bridge name format.
 
 #### vrf-name
 
-Validates VRF name format.
+VRF name format.
 
 **Valid Input Format:**
 - Must follow generic-name format rules
@@ -1024,7 +1026,7 @@ Validates VRF name format.
 
 #### ptp-port-id
 
-Validates PTP port ID format.
+PTP port ID format.
 
 **Valid Input Format:**
 
@@ -1042,7 +1044,7 @@ Validates PTP port ID format.
 
 #### sequence-id
 
-Validates PTP sequence ID format.
+PTP sequence ID format.
 
 **Valid Input Format:**
 - Must be a string
@@ -1060,7 +1062,7 @@ Validates PTP sequence ID format.
 
 #### integer-id
 
-Validates integer ID format.
+Integer ID format.
 
 **Valid Input Format:**
 - Must be a string
@@ -1077,7 +1079,7 @@ Validates integer ID format.
 
 #### profile-name
 
-Validates profile name format.
+Profile name format.
 
 **Valid Input Format:**
 - Must be a string
@@ -1095,7 +1097,7 @@ Validates profile name format.
 
 #### idn-hostname
 
-Validates internationalized domain name hostname format.
+Internationalized domain name hostname format.
 
 **Valid Input Format:**
 - Must be a string

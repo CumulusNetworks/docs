@@ -153,9 +153,9 @@ Cumulus Linux provides two different ways to upgrade the switch with a new image
 - **ONIE** is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a switch.
 - **Optimized image upgrade** uses two partitions to upgrade the image with just one reboot cycle. With two partitions on the switch, the current image boots from one partition, from which the image upgrade triggers. After detecting the running partition and checking if the second partition is available for installation, optimized upgrade starts to stage the installation in the second partition (copying the image, preparing the partition, unpacking the new image, and tuning and finalizing the new partition for the new image). The subsequent boot occurs from the second partition.
 
-  You cannot downgrade a Cumulus Linux 5.13 switch to Cumulus Linux 5.11 and earlier with optimized image upgrade; use ONIE instead.
-
 {{%notice note%}}
+- You can only use optimized image upgrade on a switch with an <span class="a-tooltip">[SSD](## "Solid state drive")</span> greater than or equal to 32GB.
+- You cannot downgrade a Cumulus Linux 5.13 switch to Cumulus Linux 5.11 or earlier with optimized image upgrade; use ONIE instead.
 - Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in [Upgrade Switches in an MLAG Pair](#upgrade-switches-in-an-mlag-pair) below to ensure a smooth upgrade.
 {{%/notice%}}
 

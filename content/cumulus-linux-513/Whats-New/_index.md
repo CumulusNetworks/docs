@@ -369,6 +369,15 @@ nv action power-cycle system
 
 Review the following considerations before you upgrade to Cumulus Linux 5.13.
 
+## Package Upgrade Requirements
+
+You can package upgrade a switch to Cumulus Linux 5.13 from:
+- Cumulus Linux 5.12.1
+- Cumulus Linux 5.12.0
+- Cumulus Linux 5.11.1
+- Cumulus Linux 5.11.0
+- Cumulus Linux 5.9.2 (<span class="a-tooltip">[LTS](## "Long-Term Support")</span>) on any Spectrum 1, Spectrum-2, and Spectrum-3 switch; You **cannot** package upgrade from Cumulus Linux 5.9.2 (LTS) on a Spectrum-4 or later switch.
+
 ### Linux Configuration Files Overwritten
 
 {{%notice warning%}}

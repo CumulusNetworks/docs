@@ -22,20 +22,21 @@ Cumulus Linux sends logs through `rsyslog`, which writes them to files in the `/
 
 | Rule | Purpose  |
 | ------- | ------ |
-| 10-rules.conf | Sets defaults for log messages, include log format and log rate limits. |
-| 15-crit.conf | Logs `crit`, `alert` or `emerg` log messages to `/var/log/crit.log` to ensure they do not rotate away.|
- 20-clagd.conf | Logs `clagd` messages to `/var/log/clagd.log` for {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}}.|
-| 22-linkstate.conf | Logs link state changes for all physical and logical network links to `/var/log/linkstate`. |
-| 25-switchd.conf | Logs `switchd` messages to `/var/log/switchd.log`. | 
-| 30-ptmd.conf  | Logs `ptmd` messages to `/var/log/ptmd.log` for {{<link url="Prescriptive-Topology-Manager-PTM" text="Prescription Topology Manager">}}. |
-| 35-rdnbrd.conf | Logs `rdnbrd` messages to `/var/log/rdnbrd.log` for {{<link url="Redistribute-Neighbor">}}. |
-| 42-nvued.conf | Logs `nvued` messages to `/var/log/nvued.log` for NVUE. |
-| 45-frr.conf  | Logs routing protocol messages to `/var/log/frr/frr.log`. This includes BGP and OSPF log messages.  |
-| 50-netq-agent.conf|  Logs NetQ agent messages to `/var/log/netq-agent.log`.|
-| 50-netqd.conf| Logs `netqd` messages to `/var/log/netqd.log`.|
-| 55-dhcpsnoop.conf| Logs DHCP snooping messages to `/var/log/dhcpsnoop.log`.|
-| 66-ptp4l.conf | Logs PTP messages to `/var/log/ptp4l.log`.|
-| 99-syslog.conf | Sends all remaining processes that use `rsyslog` to `/var/log/syslog`. |
+| `10-rules.conf` | Sets defaults for log messages. |
+| `11-remotesyslog.conf` | Configuration settings for remote syslog servers and log format.|
+| `15-crit.conf` | Logs `crit`, `alert` or `emerg` log messages to `/var/log/crit.log` to ensure they do not rotate away.|
+| `20-clagd.conf` | Logs `clagd` messages to `/var/log/clagd.log` for {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}}.|
+| `22-linkstate.conf` | Logs link state changes for all physical and logical network links to `/var/log/linkstate`. |
+| `25-switchd.conf` | Logs `switchd` messages to `/var/log/switchd.log`. | 
+| `30-ptmd.conf`  | Logs `ptmd` messages to `/var/log/ptmd.log` for {{<link url="Prescriptive-Topology-Manager-PTM" text="Prescription Topology Manager">}}. |
+| `35-rdnbrd.conf` | Logs `rdnbrd` messages to `/var/log/rdnbrd.log` for {{<link url="Redistribute-Neighbor">}}. |
+| `42-nvued.conf` | Logs `nvued` messages to `/var/log/nvued.log` for NVUE. |
+| `45-frr.conf`  | Logs routing protocol messages to `/var/log/frr/frr.log`. This includes BGP and OSPF log messages.  |
+| `50-netq-agent.conf`|  Logs NetQ agent messages to `/var/log/netq-agent.log`.|
+| `50-netqd.conf`| Logs `netqd` messages to `/var/log/netqd.log`.|
+| `55-dhcpsnoop.conf`| Logs DHCP snooping messages to `/var/log/dhcpsnoop.log`.|
+| `66-ptp4l.conf` | Logs PTP messages to `/var/log/ptp4l.log`.|
+| `99-syslog.conf` | Sends all remaining processes that use `rsyslog` to `/var/log/syslog`. |
 
 Cumulus Linux rotates and compresses log files into an archive. Processes that do not use `rsyslog` write to their own log files within the `/var/log` directory. For more information on specific log files, see {{<link url="Troubleshooting-Log-Files">}}.
 
@@ -133,31 +134,27 @@ You can set the log format to:
 
 The following example sets the log format to WELF and sets the firewall name to `nvidia`:
 
-{{< tabs "TabID141 ">}}
-{{< tab "NVUE Commands ">}}
-
 ```
 cumulus@switch:~$ nv set system syslog format welf firewall-name nvidia
 cumulus@switch:~$ nv config apply
 ```
 
-To set the log format back to the default setting (standard), run the `nv unset syslog format` command.
+To set the log format back to the default setting (standard), run the `nv unset system syslog format` command.
 
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the file `/etc/rsyslog.d/11-remotesyslog.conf` to add the following content:
+The following example shows logs collected in WELF format:
 
 ```
-cumulus@switch:~$ sudo cat /etc/rsyslog.d/11-remotesyslog.conf
-...
-template(name="WelfRemoteFormat" type="string" string="%TIMESTAMP% id=firewall time=\"%timereported:::date-year%-%timereported:::date-month%-%timereported:::date-day% %timereported:::date-hour%-%timereported:::date-minute%-%timereported:::date-second%\" fw=\"nvidia\" severity=\"%syslogseverity-text%\" facility=\"%syslogfacility-text%\" program=\"%programname%\" msg=\"%syslogtag%%msg:::sp-if-no-1st-sp%%msg:::drop-last-lf%\"\n")
-
-action(type="omfwd" Target="192.168.0.254" Port="514" Protocol="tcp" Device="mgmt" Template="WelfRemoteFormat")
+2025-04-28T13:38:11+03:00 qa-sys-eth-vt43-1-5600dev.mtl.labs.mlnx id=firewall time="2025-04-28 13-38-11" fw="nvidia" severity="err" facility="daemon" program="ntpd" msg="ntpd[86516]: LOG: frequency file /var/lib/ntp/ntp.drift-tmp: No such file or directory"
+2025-04-28T13:38:11+03:00 qa-sys-eth-vt43-1-5600dev.mtl.labs.mlnx id=firewall time="2025-04-28 13-38-11" fw="nvidia" severity="err" facility="syslog" program="rsyslogd" msg="rsyslogd: cannot connect to 3001::2:2000: Connection refused [v8.2302.0 try https://www.rsyslog.com/e/2027 ]"
+2025-04-28T13:38:15+03:00 qa-sys-eth-vt43-1-5600dev.mtl.labs.mlnx id=firewall time="2025-04-28 13-38-15" fw="nvidia" severity="debug" facility="user" program="nvued" msg="nvued:   DEBUG: _internal.py:224 <local> - - [28/Apr/2025 10:38:15] "GET /find?rev=applied HTTP/1.1" 200 -"
+2025-04-28T13:38:16+03:00 qa-sys-eth-vt43-1-5600dev.mtl.labs.mlnx id=firewall time="2025-04-28 13-38-16" fw="nvidia" severity="info" facility="user" program="nv-cli" msg="nv-cli INFO cumulus (cli_id=EWM0hOOJ): nv show system syslog"
+2025-04-28T13:38:16+03:00 qa-sys-eth-vt43-1-5600dev.mtl.labs.mlnx id=firewall time="2025-04-28 13-38-16" fw="nvidia" severity="debug" facility="user" program="nvued" msg="nvued:   DEBUG: _internal.py:224 <local> - - [28/Apr/2025 10:38:16] "GET /find?rev=applied HTTP/1.1" 200 -
+2025-04-28T13:38:23+03:00 qa-sys-eth-vt43-1-5600dev.mtl.labs.mlnx id=firewall time="2025-04-28 13-38-23" fw="nvidia" severity="debug" facility="user" program="nvued" msg="nvued:   DEBUG: safe_sh.py:207 <Finished: 'smonctl -v -j -t power'>"
+2025-04-28T13:38:23+03:00 qa-sys-eth-vt43-1-5600dev.mtl.labs.mlnx id=firewall time="2025-04-28 13-38-23" fw="nvidia" severity="debug" facility="user" program="nvued" msg="nvued:   DEBUG: safe_sh.py:116 <Running: 'ledmgrd -j'>"
+2025-04-28T13:38:23+03:00 qa-sys-eth-vt43-1-5600dev.mtl.labs.mlnx id=firewall time="2025-04-28 13-38-23" fw="nvidia" severity="debug" facility="user" program="nvued" msg="nvued:   DEBUG: safe_sh.py:207 <Finished: 'ledmgrd -j'>"
+2025-04-28T13:38:23+03:00 qa-sys-eth-vt43-1-5600dev.mtl.labs.mlnx id=firewall time="2025-04-28 13-38-23" fw="nvidia" severity="notice" facility="authpriv" program="sudo" msg="sudo:     nvue : PWD=/var/lib/nvue ; USER=root ; COMMAND=/usr/bin/cat /var/log/syslog"
+2025-04-28T13:38:23+03:00 qa-sys-eth-vt43-1-5600dev.mtl.labs.mlnx id=firewall time="2025-04-28 13-38-23" fw="nvidia" severity="debug" facility="user" program="nvued" msg="nvued:   DEBUG: _internal.py:224 <local> - - [28/Apr/2025 10:38:23] "GET /nvue_v1/system/health?cli_output=auto&cli=True HTTP/1.1" 200 -"
 ```
-
-{{< /tab >}}
-{{< /tabs >}}
 
 ## Configure Filters
 
@@ -165,18 +162,18 @@ Filtering rules let you control which logs to capture using selectors. A selecto
 
 The following table describes the severity levels you can use in a selector:
 
-| Level | Description                                                                          |
-| ----- | ------------------------------------------------------------------------------------ |
-| 0     | Emergency messages (the system is about to crash or is unstable).                    |
-| 1     | Serious conditions (alerts); you must take action immediately.                                |
-| 2     | Critical conditions (serious hardware or software failures).                         |
-| 3     | Error conditions (often used by drivers to indicate difficulties with the hardware). |
-| 4     | Warning messages (nothing serious but might indicate problems).                      |
-| 5     | Notifications for many conditions, including security events.                |
-| 6     | Informational messages.                                                              |
-| 7     | Debug messages.                                                                      |
+| Level | NVUE Option | Description |
+| ----- |------- |------------------------------------------------------------------|
+| 0     | `emerg` | Emergency messages (the system is about to crash or is unstable).   |
+| 1     | `alert` | Serious conditions (alerts); you must take action immediately.          |
+| 2     | `crit` | Critical conditions (serious hardware or software failures).            |
+| 3     | `err` | Error conditions (often used by drivers to indicate difficulties with the hardware). |
+| 4     | `warning` | Warning messages (nothing serious but might indicate problems). |
+| 5     | `notice` | Notifications for many conditions, including security events. |
+| 6     | `info` | Informational messages.      |
+| 7     | `debug` | Debug messages.  |
 
-If you set the severity to warning(4), the forwarding process does not include logs with severity levels debug (7), info (6), and notice (5). The forwarding process only forwards logs with severity level warning (4) or higher (Err (3), crit (2), alert (1), and emerg (0)).
+If you set the severity to `warning` (4), the forwarding process does not include logs with severity levels `debug` (7), `info` (6), and `notice` (5). The forwarding process only forwards logs with severity level `warning` (4) or higher (`err` (3), `crit` (2), `alert` (1), and `emerg` (0)).
 
 You can configure the syslog rate limit in a selector to ensure that a specific resource is not flooded with messages. You can set the rate limit to burst, interval, or both.
 
@@ -226,22 +223,24 @@ To show all syslog configuration settings, run the `nv show system syslog` comma
 
 ```
 cumulus@switch:~$  nv show system syslog
-nv show system syslog
-        operational  applied
-------  -----------  --------
-format  standard     standard
+                   operational  applied
+-----------------  -----------  -------
+format             welf         welf   
+  welf                                 
+    firewall-name  nvidia       nvidia 
 
 server
 =========
     Servers        Vrf   Protocol  Port  Priority  Selector-Id
     -------------  ----  --------  ----  --------  -----------
-    192.168.0.254  mgmt  tcp       601   1         SELECTOR1
+    192.168.0.254  mgmt  tcp       514   1         SELECTOR1  
                                          2         SELECTOR2
+
 selector
 ===========
-    Selectors  Severity  Program-Name  Facility  Burst  Interval  Filter  Match                Action
+    Selectors  Severity  Program-Name  Facility  Burst  Interval  Filter  Match                Action 
     ---------  --------  ------------  --------  -----  --------  ------  -------------------  -------
-    SELECTOR1  notice                  cron      200    20
+    SELECTOR1  notice                  cron      200    20                                            
     SELECTOR2  debug     switchd       daemon                     10      issu_start=false.+$  exclude
 ```
 
@@ -249,10 +248,10 @@ To show the syslog format, run the `nv show system syslog format` command:
 
 ```
 cumulus@switch:~$ nv show system syslog format
-                 operational       applied                 
----------------  ----------------  ----------------  
-welf                                                               
-  firewall-name  security-gateway  security-gateway 
+                 operational  applied
+---------------  -----------  -------
+welf                                 
+  firewall-name  nvidia       nvidia
 ```
 
 To show the configured syslog servers, run the `nv show system syslog server` command:
@@ -261,7 +260,7 @@ To show the configured syslog servers, run the `nv show system syslog server` co
 cumulus@switch:~$ nv show system syslog server
 Servers        Vrf   Protocol  Port  Priority  Selector-Id
 -------------  ----  --------  ----  --------  -----------
-192.168.0.254  mgmt  tcp       601   1         SELECTOR1
+192.168.0.254  mgmt  tcp       514   1         SELECTOR1  
                                      2         SELECTOR2
 ```
 

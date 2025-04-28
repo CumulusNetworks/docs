@@ -14,7 +14,7 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 
 ### Platforms
 
-- NVIDIA SN5600D (400G Spectrum-4 DC version)
+- NVIDIA SN5600D (800G Spectrum-4 DC version)
 
 ### New Features and Enhancements
 
@@ -25,7 +25,7 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 - {{<link url="DHCP-Servers/#multiple-static-ip-address-assignments" text="Support two DHCP static IP address assignments per port for a single host">}}
 - {{<link url="Syslog/#configure-filters" text="syslog log filters">}}
 - {{<link title="Erase all Data from the Switch" text="Erase all data from the switch">}} (Beta)
-- {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#amber-phy-health-management" text="Show SNR information for transceivers">}}
+- {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#amber-phy-health-management" text="Show SNR information for OSFP 100G per lane (NDR) capable transceivers">}}
 - {{<link url="In-Service-System-Upgrade-ISSU/#maintenance-mode" text="New maintenance mode commands">}}
 - {{<link url="RADIUS-AAA/#optional-radius-configuration" text="RADIUS multiple VRF support">}} and {{<link url="RADIUS-AAA/#optional-radius-configuration" text="RADIUS require-message-authenticate attribute">}}
 - {{<link url="SSH-for-Remote-Access/#message-of-the-day" text="Message of the day shows system reboot cause and health information">}}
@@ -368,6 +368,19 @@ nv action power-cycle system
 ## Release Considerations
 
 Review the following considerations before you upgrade to Cumulus Linux 5.13.
+
+### Upgrade Requirements
+
+You can use {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="optimized image upgrade">}} to upgrade the switch to Cumulus Linux 5.13 from Cumulus Linux 5.11.1 and later.
+
+You can use {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.13, from the following releases:
+- Cumulus Linux 5.12.1
+- Cumulus Linux 5.12.0
+- Cumulus Linux 5.11.1
+- Cumulus Linux 5.11.0
+- Cumulus Linux 5.9.2 (<span class="a-tooltip">[LTS](## "Long-Term Support")</span>) on any Spectrum 1, Spectrum-2, and Spectrum-3 switch; You **cannot** package upgrade from Cumulus Linux 5.9.2 (LTS) on a Spectrum-4 or later switch.
+
+To upgrade to Cumulus Linux 5.13 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="ONIE">}}.
 
 ### Linux Configuration Files Overwritten
 

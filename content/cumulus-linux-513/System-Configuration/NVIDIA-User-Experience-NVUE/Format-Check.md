@@ -6,7 +6,7 @@ toc: 3
 draft: true
 ---
 
-The NVUE openAPI schema references the `format` keyword, which takes a string that represents the format of valid input for a given property. This section lists the formats that the schema uses and provides valid examples.
+The NVUE openAPI schema references the `format` keyword, which takes a string that represents the format of valid input for a given property (such as `format: ipv4`, `format: float`, and so on). This section lists the formats that the schema uses and provides valid examples.
 
 ## Reserved Names
 
@@ -88,7 +88,7 @@ Validates command strings for authorization.
 "ls"
 "show interfaces"
 "configure terminal"
-"ping 8.8.8.8"
+"ping 10.10.10.2"
 ```
 
 ### clock-date
@@ -308,7 +308,7 @@ The `interface-name` format supports various types of network interface names. T
 
 - Switch Port (swp)
 - Ethernet (eth)
-- Sub-interface (sub)
+- Subinterface (sub)
 - Switch Virtual Interface (svi)
 - Loopback (lo)
 - Bond interfaces
@@ -327,7 +327,7 @@ swp1L1s1
 eth1
 eth2
 
-# Sub-interfaces
+# Subinterfaces
 eth1.1
 eth1.1.1
 bond1.1
@@ -360,7 +360,7 @@ bond1_1
    - Must start with "eth"
    - Followed by a number
 
-3. Sub-interface names:
+3. Subinterface names:
    - Must start with a letter
    - Can contain letters, numbers, and underscores
    - Must have at least one dot (.) followed by a number
@@ -437,7 +437,7 @@ Validates IPv4 address format.
 
 ```
 "192.168.1.1"
-"10.0.0.0"
+"10.10.10.4"
 "172.16.254.1"
 ```
 
@@ -453,7 +453,7 @@ Validates IPv4 unicast address format.
 
 ```
 "192.168.1.1"
-"10.0.0.0"
+"10.10.10.4"
 "172.16.254.1"
 ```
 

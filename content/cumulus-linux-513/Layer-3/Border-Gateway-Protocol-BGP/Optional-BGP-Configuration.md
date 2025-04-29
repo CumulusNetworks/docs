@@ -798,7 +798,11 @@ BGP supports equal-cost multipathing ({{<link url="Equal-Cost-Multipath-Load-Sha
 
 Cumulus Linux enables the *BGP multipath* option by default and sets the maximum number of paths to 64 so that the switch can install multiple equal-cost BGP paths to the forwarding table and load balance traffic across multiple links. You can change the number of paths allowed, according to your needs.
 
-The example commands change the maximum number of paths to 128. You can set a value between 1 and 256. 1 disables the BGP multipath option.
+The example commands change the maximum number of paths to 128. You can set a value between 1 and 128. 1 disables the BGP multipath option.
+
+{{%notice note%}}
+Only Spectrum-4 switches support 128 paths.
+{{%/notice%}}
 
 {{< tabs "790 ">}}
 {{< tab "NVUE Commands ">}}
@@ -817,7 +821,7 @@ cumulus@switch:~$ sudo vtysh
 switch# configure terminal
 switch(config)# router bgp 65101
 switch(config-router)# address-family ipv4
-switch(config-router-af)# maximum-paths 120
+switch(config-router-af)# maximum-paths 128
 switch(config-router-af)# end
 switch# write memory
 switch# exit
@@ -830,7 +834,7 @@ The vtysh commands save the configuration in the `address-family` stanza of the 
 address-family ipv4 unicast
  network 10.1.10.0/24
  network 10.10.10.1/32
- maximum-paths 120
+ maximum-paths 128
 exit-address-family
 ...
 ```
@@ -838,7 +842,7 @@ exit-address-family
 {{< /tab >}}
 {{< /tabs >}}
 
-When you enable *BGP multipath*, Cumulus Linux load balances BGP routes from the same AS. If the routes go across several different AS neighbors, even if the AS path length is the same, they are not load balanced. To load balance between multiple paths received from different AS neighbors:.
+When you enable *BGP multipath*, Cumulus Linux load balances BGP routes from the same AS. If the routes go across several different AS neighbors, even if the AS path length is the same, they are not load balanced. To load balance between multiple paths received from different AS neighbors.
 
 {{< tabs "830 ">}}
 {{< tab "NVUE Commands ">}}

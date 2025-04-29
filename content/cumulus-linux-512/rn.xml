@@ -7,9 +7,83 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4423279</td>
+<td>If you apply an NVUE snippet affecting the {{/etc/cumulus/datapath/traffic.conf}} file, the snippet might fail the consistency check, resulting in a failed snippet apply.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423278</td>
+<td>If you apply an NVUE snippet affecting the {{/etc/cumulus/datapath/traffic.conf}} file, the snippet might fail the consistency check, resulting in a failed snippet apply.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423277</td>
+<td>When the username in a 802.1X session includes the equals (=) character, the ISSU warmboot fails. Make sure that = is not part of the 802.1X session name.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423276</td>
+<td>When the username in a 802.1X session includes the equals (=) character, the ISSU warmboot fails. Make sure that = is not part of the 802.1X session name.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423274</td>
+<td>After you run the {{nv action upgrade system packages to latest}} command followed by the {{nv action reboot system}} command, {{nv show system reboot}} displays {{upgrade}} instead of one of the valid values {{cold}}, {{warm}},  or {{fast}}.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423273</td>
+<td>After you run the {{nv action upgrade system packages to latest}} command followed by the {{nv action reboot system}} command, {{nv show system reboot}} displays {{upgrade}} instead of one of the valid values {{cold}}, {{warm}},  or {{fast}}.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423270</td>
+<td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423269</td>
+<td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423258</td>
+<td>After a factory reset, the files in the {{/etc/pam.d/}} directory might be incorrect, causing problems with password strength checking, TACACS+, RADIUS, and LDAP. To work around this issue, run the following command:
+cumulus@switch:~$ sudo /usr/sbin/pam-auth-update --force --package</td>
+<td>5.12.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4403755</td>
+<td>On first boot after a binary install or upgrade, if ZTP does not run or does not complete successfully, all interfaces are left admin up until you disable ZTP manually. To work around this issue, use an empty ZTP script during onie-install ({{-z ZTP_URL}}) or configure the DCHP option 239.</td>
+<td>5.12.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4391413</td>
 <td>After the switch reboots or {{switchd.service}} restarts, NVUE applied ERSPAN sessions do not work if the ERSPAN destination IP address is reachable through an MLAG bond. To work around this issue, remove the ERSPAN configuration and reapply it using NVUE.</td>
 <td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4389433</td>
+<td>On switches with ONIE 5.3.0012 (might be displayed as 2023.11-5.3.0012-115200), reinstalling Cumulus Linux with {{onie-install}} when SecureBoot is enabled fails during CMS verification of a found image.To determine the ONIE version on the switch:
+sudo mount LABEL="ONIE-BOOT" /mnt
+/mnt/onie/tools/bin/onie-version
+If the ONIE version is earlier than 5.3.0012 (might be displayed as 2023.11-5.3.0012-115200), either disable SecureBoot during reinstallation, or if SecureBoot is enabled and ONIE finds the image on one of the disks (for example, {{/dev/sda5}}), then fails CMS verification, log into the ONIE shell as root and run the following commands:
+onie-stop
+mkdir /$devname
+mount $devname /$devname
+onie-nos-install /$devname/onie-installer</td>
+<td>5.12.0-5.12.1</td>
 <td></td>
 </tr>
 <tr>
@@ -881,9 +955,77 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4423279</td>
+<td>If you apply an NVUE snippet affecting the {{/etc/cumulus/datapath/traffic.conf}} file, the snippet might fail the consistency check, resulting in a failed snippet apply.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423278</td>
+<td>If you apply an NVUE snippet affecting the {{/etc/cumulus/datapath/traffic.conf}} file, the snippet might fail the consistency check, resulting in a failed snippet apply.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423277</td>
+<td>When the username in a 802.1X session includes the equals (=) character, the ISSU warmboot fails. Make sure that = is not part of the 802.1X session name.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423276</td>
+<td>When the username in a 802.1X session includes the equals (=) character, the ISSU warmboot fails. Make sure that = is not part of the 802.1X session name.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423274</td>
+<td>After you run the {{nv action upgrade system packages to latest}} command followed by the {{nv action reboot system}} command, {{nv show system reboot}} displays {{upgrade}} instead of one of the valid values {{cold}}, {{warm}},  or {{fast}}.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423273</td>
+<td>After you run the {{nv action upgrade system packages to latest}} command followed by the {{nv action reboot system}} command, {{nv show system reboot}} displays {{upgrade}} instead of one of the valid values {{cold}}, {{warm}},  or {{fast}}.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423270</td>
+<td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423269</td>
+<td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423258</td>
+<td>After a factory reset, the files in the {{/etc/pam.d/}} directory might be incorrect, causing problems with password strength checking, TACACS+, RADIUS, and LDAP. To work around this issue, run the following command:
+cumulus@switch:~$ sudo /usr/sbin/pam-auth-update --force --package</td>
+<td>5.12.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4391413</td>
 <td>After the switch reboots or {{switchd.service}} restarts, NVUE applied ERSPAN sessions do not work if the ERSPAN destination IP address is reachable through an MLAG bond. To work around this issue, remove the ERSPAN configuration and reapply it using NVUE.</td>
 <td>5.11.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4389433</td>
+<td>On switches with ONIE 5.3.0012 (might be displayed as 2023.11-5.3.0012-115200), reinstalling Cumulus Linux with {{onie-install}} when SecureBoot is enabled fails during CMS verification of a found image.To determine the ONIE version on the switch:
+sudo mount LABEL="ONIE-BOOT" /mnt
+/mnt/onie/tools/bin/onie-version
+If the ONIE version is earlier than 5.3.0012 (might be displayed as 2023.11-5.3.0012-115200), either disable SecureBoot during reinstallation, or if SecureBoot is enabled and ONIE finds the image on one of the disks (for example, {{/dev/sda5}}), then fails CMS verification, log into the ONIE shell as root and run the following commands:
+onie-stop
+mkdir /$devname
+mount $devname /$devname
+onie-nos-install /$devname/onie-installer</td>
+<td>5.12.0-5.12.1</td>
 <td></td>
 </tr>
 <tr>

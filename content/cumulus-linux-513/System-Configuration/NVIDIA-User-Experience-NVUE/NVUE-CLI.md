@@ -591,6 +591,33 @@ cumulus@switch:~$ nv config translate filename /home/cumulus/backup.yaml
 
 If the revision or yaml file is not readable, is in an invalid format, or includes invalid parameters, NVUE returns an error message and prompts you to correct the issue before proceeding.
 
+## Maximum Revisions Limit
+
+You can control the maximum number of revisions stored in the NVUE database to ensure efficient resource management and system performance. When the number of revisions reaches the maximum set, the switch automatically deletes the oldest revisions to make room for new ones when you create them.
+
+NVUE does not delete the `startup`, `empty`, or `applied` revisions and does not include them in the total revision count. The revision from which the last `applied` revision was created is also protected from deletion.
+
+NVUE deletes revisions in the natural sort order; for example, NVUE deletes revision 1 before revision 2, and revision 10 before revision 100.  
+
+Deletion occurs in batches to reduce the number of system operations.
+
+{{%notice note%}}
+The deletion process is automatic; you cannot reverse it.
+{{%/notice%}}
+
+To set the maximum number of revisions before NVUE deletes them, edit the `NVUE_MAX_REVISIONS` option in `/etc/default/nvued` file. You can set a value between 10 and 100. The default value is 100.
+
+{{%notice note%}}
+Setting the limit too low results in frequent revision deletions.
+{{%/notice%}}
+
+```
+cumulus@switch:~$ sudo nano /etc/default/nvued
+...
+NVUE_MAX_REVISIONS=60
+...
+```
+
 ## Session-Based Authentication
 
 NVUE uses sessions to authenticate and authorize requests. After authenticating the user with the first request, NVUE stores the session in the `nvued` cache. NVUE authenticates subsequent interactions within the session locally so that it does not have to keep checking with external authentication servers. This process enhances system performance and efficiency, making it ideal for high-traffic environments.

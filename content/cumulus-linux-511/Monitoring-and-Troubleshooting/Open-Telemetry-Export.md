@@ -171,11 +171,11 @@ To configure the open telemetry export destination:
 2. Configure an X.509 certificate to secure the gRPC connection:
 
    ```
-   cumulus@switch:~$ nv set system telemetry export otlp grpc cert-id <certificate>
+   cumulus@switch:~$ nv set system telemetry export otlp grpc cert-id <ca-certificate>
    cumulus@switch:~$ nv config apply
    ```
 
-By default, OTLP export is in **secure** mode that requires a certificate. For connections without a configured certificate, you must enable `insecure` mode with the `nv set system telemetry export otlp grpc insecure enabled` command.
+By default, OTLP export is in **secure** mode that requires a CA certificate. For connections without a configured certificate, you must enable `insecure` mode with the `nv set system telemetry export otlp grpc insecure enabled` command.
 
 ### Show Telemetry Export Configuration
 

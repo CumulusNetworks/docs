@@ -689,7 +689,7 @@ The switch collects and exports the following interface and switch, buffer occup
 | `nvswitch_interface_shared_buffer_ingress_pool_watermark_recorded_max` | Highest maximum ingress pool buffer occupancy recorded since running sdk_stats. |
 | `nvswitch_interface_shared_buffer_ingress_pool_desc_watermark_recorded_max` | Highest maximum ingress pool buffer occupancy for descriptors recorded since running sdk_stats. |
 | `nvswitch_interface_shared_buffer_port_tc_curr_occupancy` | Current buffer occupancy for traffic class. |
-| `nvswitch_interface_shared_buffer_tc_time_since_clear` | Time in milliseconds since the buffer watermarks were last cleared.|
+| `nvswitch_interface_shared_buffer_port_tc_time_since_clear`| Time in milliseconds since buffer watermarks were last cleared. |
 | `nvswitch_interface_shared_buffer_port_tc_watermark` | Maximum buffer occupancy for traffic class. |
 | `nvswitch_interface_shared_buffer_port_tc_desc_curr_occupancy` | Current buffer occupancy for descriptors. |
 | `nvswitch_interface_shared_buffer_port_tc_desc_watermark` | Maximum buffer occupancy for descriptors. |
@@ -720,6 +720,69 @@ The switch collects and exports the following interface and switch, buffer occup
 | `nvswitch_interface_headroom_shared_buffer_shared_pool_watermark` | Maximum headroom buffer occupancy for port shared pool buffer. |
 | `nvswitch_interface_headroom_shared_buffer_shared_pool_watermark_recorded_max` | Highest maximum headroom buffer occupancy for port shared pool buffer. |
 
+<br>
+{{< expand "Example JSON data for nvswitch_interface_shared_buffer_port_tc_time_since_clear:" >}}
+```
+{
+  "name": "nvswitch_interface_shared_buffer_port_tc_time_since_clear",
+  "description": "Time in milliseconds since buffer watermarks were last cleared",
+  "gauge": {
+    "dataPoints": [
+      {
+        "attributes": [
+          {
+            "key": "interface",
+            "value": {
+              "stringValue": "swp1s0"
+            }
+          },
+          {
+            "key": "tc",
+            "value": {
+              "stringValue": "0"
+            }
+          }
+        ],
+        "timeUnixNano": "1745875696361000000",
+        "asDouble": 710562
+      }
+    ]
+  }
+}
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_interface_shared_buffer_port_pg_time_since_clear:" >}}
+```
+{
+  "name": "nvswitch_interface_shared_buffer_port_pg_time_since_clear",
+  "description": "Time in milliseconds since buffer watermarks were last cleared",
+  "gauge": {
+    "dataPoints": [
+      {
+        "attributes": [
+          {
+            "key": "interface",
+            "value": {
+              "stringValue": "swp1s0"
+            }
+          },
+          {
+            "key": "pg",
+            "value": {
+              "stringValue": "0"
+            }
+          }
+        ],
+        "timeUnixNano": "1745875696361000000",
+        "asDouble": 710562
+      }
+    ]
+  }
+}
+```
+{{< /expand >}}
+
 ### Control Plane Statistic Format
 
 When you enable control plane statistic telemetry, the switch exports the following statistics:
@@ -741,102 +804,102 @@ When you enable control plane statistic telemetry, the switch exports the follow
 
 {{< expand "Example JSON data for nvswitch_control_plane_trap_rx_drop:" >}}
 ```
-            {
-              "name": "nvswitch_control_plane_trap_rx_drop",
-              "description": "NVIDIA Ethernet Switch trap t_drops counter",
-              "sum": {
-                "dataPoints": [
-                  {
-                    "attributes": [
-                      {
-                        "key": "group",
-                        "value": {
-                          "stringValue": "25"
-                        }
-                      }
-                    ],
-                    "startTimeUnixNano": "1729836350747000000",
-                    "timeUnixNano": "1729839232747000000",
-                    "asDouble": 0
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "group",
-                        "value": {
-                          "stringValue": "3"
-                        }
-                      }
-                    ],
-                    "startTimeUnixNano": "1729836350747000000",
-                    "timeUnixNano": "1729839232747000000",
-                    "asDouble": 0
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "group",
-                        "value": {
-                          "stringValue": "5"
-                        }
-                      }
-                    ],
-                    "startTimeUnixNano": "1729836350747000000",
-                    "timeUnixNano": "1729839232747000000",
-                    "asDouble": 0
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "group",
-                        "value": {
-                          "stringValue": "53"
-                        }
-                      }
-                    ],
-                    "startTimeUnixNano": "1729836350747000000",
-                    "timeUnixNano": "1729839232747000000",
-                    "asDouble": 0
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "group",
-                        "value": {
-                          "stringValue": "78"
-                        }
-                      }
-                    ],
-                    "startTimeUnixNano": "1729836350747000000",
-                    "timeUnixNano": "1729839232747000000",
-                    "asDouble": 1
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "group",
-                        "value": {
-                          "stringValue": "80"
-                        }
-                      }
-                    ],
-                    "startTimeUnixNano": "1729836350747000000",
-                    "timeUnixNano": "1729839232747000000",
-                    "asDouble": 1
-                  }
-                ],
-                "aggregationTemporality": 2,
-                "isMonotonic": true
-              },
-              "metadata": [
-                {
-                  "key": "prometheus.type",
-                  "value": {
-                    "stringValue": "counter"
-                  }
-                }
-              ]
+{
+  "name": "nvswitch_control_plane_trap_rx_drop",
+  "description": "NVIDIA Ethernet Switch trap t_drops counter",
+  "sum": {
+    "dataPoints": [
+      {
+        "attributes": [
+          {
+            "key": "group",
+            "value": {
+              "stringValue": "25"
             }
+          }
+        ],
+        "startTimeUnixNano": "1729836350747000000",
+        "timeUnixNano": "1729839232747000000",
+        "asDouble": 0
+      },
+      {
+        "attributes": [
+          {
+            "key": "group",
+            "value": {
+              "stringValue": "3"
+            }
+          }
+        ],
+        "startTimeUnixNano": "1729836350747000000",
+        "timeUnixNano": "1729839232747000000",
+        "asDouble": 0
+      },
+      {
+        "attributes": [
+          {
+            "key": "group",
+            "value": {
+              "stringValue": "5"
+            }
+          }
+        ],
+        "startTimeUnixNano": "1729836350747000000",
+        "timeUnixNano": "1729839232747000000",
+        "asDouble": 0
+      },
+      {
+        "attributes": [
+          {
+            "key": "group",
+            "value": {
+              "stringValue": "53"
+            }
+          }
+        ],
+        "startTimeUnixNano": "1729836350747000000",
+        "timeUnixNano": "1729839232747000000",
+        "asDouble": 0
+      },
+      {
+        "attributes": [
+          {
+            "key": "group",
+            "value": {
+              "stringValue": "78"
+            }
+          }
+        ],
+        "startTimeUnixNano": "1729836350747000000",
+        "timeUnixNano": "1729839232747000000",
+        "asDouble": 1
+      },
+      {
+        "attributes": [
+          {
+            "key": "group",
+            "value": {
+              "stringValue": "80"
+            }
+          }
+        ],
+        "startTimeUnixNano": "1729836350747000000",
+        "timeUnixNano": "1729839232747000000",
+        "asDouble": 1
+      }
+    ],
+    "aggregationTemporality": 2,
+    "isMonotonic": true
+  },
+  "metadata": [
+    {
+      "key": "prometheus.type",
+      "value": {
+        "stringValue": "counter"
+      }
+    }
+  ]
+}
 ```
 
 {{< /expand >}}
@@ -860,54 +923,57 @@ The switch sends a sample with the following names for each interface enabled fo
 
 {{< expand "Example JSON data for interface_ingress_buffer:" >}}
 ```
-            {
-              "name": "nvswitch_histogram_interface_ingress_buffer",
-              "description": "NVIDIA Ethernet Switch Histogram Interface Ingress Buffer Queue Depth",
-              "unit": "bytes",
-              "histogram": {
-                "dataPoints": [
-                  {
-                    "attributes": [
-                      {
-                        "key": "interface",
-                        "value": {
-                          "stringValue": "swp1s1"
-                        }
-                      },
-                      {
-                        "key": "pg",
-                        "value": {
-                          "intValue": "0"
-                        }
-                      }
-                    ],
-                    "startTimeUnixNano": "1729839231624809212",
-                    "timeUnixNano": "1729839231628434909",
-                    "count": "1019165",
-                    "bucketCounts": [
-                      "1019165",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0"
-                    ],
-                    "explicitBounds": [
-                      863,
-                      295775,
-                      590687,
-                      885599,
-                      1180511,
-                      1475423,
-                      1770335,
-                      2065247,
-                      2360159
-                    ]
-                  },
+{
+  "name": "nvswitch_histogram_interface_ingress_buffer",
+  "description": "NVIDIA Ethernet Switch Histogram Interface Ingress Buffer Queue Depth",
+  "unit": "bytes",
+  "histogram": {
+    "dataPoints": [
+      {
+        "attributes": [
+          {
+            "key": "interface",
+            "value": {
+              "stringValue": "swp1s1"
+            }
+          },
+          {
+            "key": "pg",
+            "value": {
+              "intValue": "0"
+            }
+          }
+        ],
+        "startTimeUnixNano": "1729839231624809212",
+        "timeUnixNano": "1729839231628434909",
+        "count": "1019165",
+        "bucketCounts": [
+          "1019165",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "explicitBounds": [
+          863,
+          295775,
+          590687,
+          885599,
+          1180511,
+          1475423,
+          1770335,
+          2065247,
+          2360159
+        ]
+      }
+    ]
+  }
+}
 ```
 
 {{< /expand >}}
@@ -915,164 +981,163 @@ The switch sends a sample with the following names for each interface enabled fo
 {{< expand "Example JSON data for interface_egress_buffer:" >}}
 ```
 {
-              "name": "nvswitch_histogram_interface_egress_buffer",
-              "description": "NVIDIA Ethernet Switch Histogram Interface Egress Buffer Queue Depth",
-              "unit": "bytes",
-              "histogram": {
-                "dataPoints": [
-                  {
-                    "attributes": [
-                      {
-                        "key": "interface",
-                        "value": {
-                          "stringValue": "swp1s1"
-                        }
-                      },
-                      {
-                        "key": "tc",
-                        "value": {
-                          "intValue": "0"
-                        }
-                      }
-                    ],
-                    "startTimeUnixNano": "1729839232707032279",
-                    "timeUnixNano": "1729839232709312158",
-                    "count": "1077334",
-                    "bucketCounts": [
-                      "1077334",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0"
-                    ],
-                    "explicitBounds": [
-                      863,
-                      1180511,
-                      2360159,
-                      3539807,
-                      4719455,
-                      5899103,
-                      7078751,
-                      8258399,
-                      9438047
-                    ]
-                  }
+  "name": "nvswitch_histogram_interface_egress_buffer",
+  "description": "NVIDIA Ethernet Switch Histogram Interface Egress Buffer Queue Depth",
+  "unit": "bytes",
+  "histogram": {
+    "dataPoints": [
+      {
+        "attributes": [
+          {
+            "key": "interface",
+            "value": {
+              "stringValue": "swp1s1"
+            }
+          },
+          {
+            "key": "tc",
+            "value": {
+              "intValue": "0"
+            }
+          }
+        ],
+        "startTimeUnixNano": "1729839232707032279",
+        "timeUnixNano": "1729839232709312158",
+        "count": "1077334",
+        "bucketCounts": [
+          "1077334",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "explicitBounds": [
+          863,
+          1180511,
+          2360159,
+          3539807,
+          4719455,
+          5899103,
+          7078751,
+          8258399,
+          9438047
+        ]
+      }
 ```
 
 {{< /expand >}}
 <br>
 {{< expand "Example JSON data for interface_counter:" >}}
 ```
-            {
-              "name": "nvswitch_histogram_interface_counter",
-              "description": "NVIDIA Ethernet Switch Histogram Interface Counter",
-              "unit": "counter",
-              "histogram": {
-                "dataPoints": [
-                  {
-                    "attributes": [
-                      {
-                        "key": "interface",
-                        "value": {
-                          "stringValue": "swp1s1"
-                        }
-                      },
-                      {
-                        "key": "type",
-                        "value": {
-                          "stringValue": "crc"
-                        }
-                      }
-                    ],
-                    "startTimeUnixNano": "1729839235935525147",
-                    "timeUnixNano": "1729839235937099838",
-                    "count": "1033926",
-                    "bucketCounts": [
-                      "1033926",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0"
-                    ],
-                    "explicitBounds": [
-                      99999,
-                      1337499,
-                      2574999,
-                      3812499,
-                      5049999,
-                      6287499,
-                      7524999,
-                      8762499,
-                      9999999
-                    ]
-                  },  
+{
+  "name": "nvswitch_histogram_interface_counter",
+  "description": "NVIDIA Ethernet Switch Histogram Interface Counter",
+  "unit": "counter",
+  "histogram": {
+    "dataPoints": [
+      {
+        "attributes": [
+          {
+            "key": "interface",
+            "value": {
+              "stringValue": "swp1s1"
+            }
+          },
+          {
+            "key": "type",
+            "value": {
+              "stringValue": "crc"
+            }
+          }
+        ],
+        "startTimeUnixNano": "1729839235935525147",
+        "timeUnixNano": "1729839235937099838",
+        "count": "1033926",
+        "bucketCounts": [
+          "1033926",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "explicitBounds": [
+          99999,
+          1337499,
+          2574999,
+          3812499,
+          5049999,
+          6287499,
+          7524999,
+          8762499,
+          9999999
+        ]
+      }  
 ```
 
 {{< /expand >}}
 <br>
 {{< expand "Example JSON data for interface_latency:" >}}
 ```
-            {
-              "name": "nvswitch_histogram_interface_latency",
-              "description": "NVIDIA Ethernet Switch Histogram Interface Latency",
-              "unit": "packets",
-              "histogram": {
-                "dataPoints": [
-                  {
-                    "attributes": [
-                      {
-                        "key": "interface",
-                        "value": {
-                          "stringValue": "swp1s1"
-                        }
-                      },
-                      {
-                        "key": "tc",
-                        "value": {
-                          "intValue": "0"
-                        }
-                      }
-                    ],
-                    "startTimeUnixNano": "1729839233815168456",
-                    "timeUnixNano": "1729839233818493910",
-                    "bucketCounts": [
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0",
-                      "0"
-                    ],
-                    "explicitBounds": [
-                      319,
-                      831,
-                      1343,
-                      1855,
-                      2367,
-                      2879,
-                      3391,
-                      3903,
-                      4415
-                    ]
-                  },
+{
+  "name": "nvswitch_histogram_interface_latency",
+  "description": "NVIDIA Ethernet Switch Histogram Interface Latency",
+  "unit": "packets",
+  "histogram": {
+    "dataPoints": [
+      {
+        "attributes": [
+          {
+            "key": "interface",
+            "value": {
+              "stringValue": "swp1s1"
+            }
+          },
+          {
+            "key": "tc",
+            "value": {
+              "intValue": "0"
+            }
+          }
+        ],
+        "startTimeUnixNano": "1729839233815168456",
+        "timeUnixNano": "1729839233818493910",
+        "bucketCounts": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "explicitBounds": [
+          319,
+          831,
+          1343,
+          1855,
+          2367,
+          2879,
+          3391,
+          3903,
+          4415
+        ]
+      }
 ```
 
 {{< /expand >}}
-<br>
 
 ### Interface Statistic Format
 
@@ -1100,6 +1165,7 @@ The interface statistic data samples that the switch exports to the OTEL collect
 | `nvswitch_interface_dot3_stats_single_collision_frames` | 802.3 single collision frames counter. |
 | `nvswitch_interface_dot3_stats_sqe_test_errors` | 802.3 SQE test error counter. |
 | `nvswitch_interface_dot3_stats_symbol_errors` | 802.3 symbol error counter. |
+| `nvswitch_interface_802_dot3_a_frames_transmitted_ok` | Number of 802.3a frames transmitted.|
 | `nvswitch_interface_performance_marked_packets` | Interface performance marked packets, with marking as `ece` or `ecn`. |
 | `nvswitch_interface_discards_ingress_general` | Interface ingress general discards counter. |
 | `nvswitch_interface_discards_ingress_policy_engine` | Interface ingress policy engine discards counter. |
@@ -1147,6 +1213,19 @@ The interface statistic data samples that the switch exports to the OTEL collect
 | `nvswitch_interface_proto_down` | Interface protocol down status. |
 | `nvswitch_interface_oper_aggregate_speed` | Speed in bits per second for the connected interface. |
 | `nvswitch_interface_number_of_lanes` | Number of lanes used by the interface. |
+| `nvswitch_interface_if_in_broadcast_pkts` | Number of interface in broadcast packets. |
+| `nvswitch_interface_if_in_discards` | Number of interface in discards.|
+| `nvswitch_interface_if_in_errors`| Number of interface in errors.|
+| `nvswitch_interface_if_in_multicast_pkts`| Number of interface in multicast packets.|
+| `nvswitch_interface_if_in_octets`| Number of interface in octets.|
+| `nvswitch_interface_if_in_ucast_pkts`| Number of interface in unicast packets.|
+| `nvswitch_interface_if_in_unknown_protos` | Number of interface in unknown protocols.|
+| `nvswitch_interface_if_out_broadcast_pkts`| Number of interface out broadcast packets. |
+| `nvswitch_interface_if_out_discards` | Number of interface out discards.|
+| `nvswitch_interface_if_out_errors` | Number of interface out errors. |
+| `nvswitch_interface_if_out_multicast_pkts`|Number of interface out multicast packets. |
+| `nvswitch_interface_if_out_octets`| Number of interface out octets.|
+| `nvswitch_interface_if_out_octets`| Number of interface out unicast packets.|
 
 {{< /tab >}}
 {{< tab "Traffic Class ">}}
@@ -1188,7 +1267,7 @@ The switch collects and exports the following additional interface priority grou
 | `nvswitch_interface_pg_rx_pause_duration` | Interface receive priority group receive pause duration counter. |	 
 | `nvswitch_interface_pg_tx_pause` | Interface receive priority group transmit pause counter. |
 | `nvswitch_interface_pg_tx_pause_duration` | Interface receive priority group transmit pause duration counter. |	
-| `nvswitch_interface_pg_rx_pause_transition` | Interface receive priority group receive pause transition counter. |	 
+| `nvswitch_interface_pg_rx_pause_transition` | Interface receive priority group receive pause transition counter. |
 | `nvswitch_interface_pg_rx_discard` | Interface receive priority group receive discard counter. |
 
 {{< /tab >}}
@@ -1227,70 +1306,620 @@ The switch collects and exports the following additional interface statistics wh
 | `nvswitch_interface_phy_stats_phy_effective_errors` | Number of errors after FEC is applied. |
 | `nvswitch_interface_phy_stats_phy_raw_errors` | Error bits identified on lane 0 through lane 7. When FEC is enabled, this induction corresponds to corrected errors. |
 | `nvswitch_interface_phy_stats_raw_ber` | raw_ber_coef_laneX*10^(raw_ber_magnitude) |
+| `nvswitch_interface_phy_stats_symbol_ber` | Symbol BER errors. |
+| `nvswitch_interface_phy_layer_time_since_last_clear` | Time since counters were cleared.|
+| `nvswitch_interface_phy_layer_fec_per_lane_corrections` | FEC corrections per lane. |
+| `nvswitch_interface_phy_layer_fec_block_state_count`| Number of FEC block states.|
 
 {{< /tab >}}
 {{< /tabs >}}
 
-{{< expand "Example JSON data for interface_oper_state:" >}}
+#### Interface Example JSON
+
+{{< expand "Example JSON data for nvswitch_interface_oper_state:" >}}
 ```
-            {
-              "name": "nvswitch_interface_oper_state",
-              "description": "NVIDIA Ethernet Switch Interface operational state",
-              "gauge": {
-                "dataPoints": [
-                  {
-                     "attributes": [
-                      {
-                        "key": "interface",
-                        "value": {
-                          "stringValue": "swp61s0"
-                        }
-                      }
-                    ],
-                    "timeUnixNano": "1722458198491000000",
-                    "asDouble": 1
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "interface",
-                        "value": {
-                          "stringValue": "swp1"
-                        }
-                      }
-                    ],
-                    "timeUnixNano": "1722458198491000000",
-                    "asDouble": 2
-                  }
-                ]
-              },
+{
+  "name": "nvswitch_interface_oper_state",
+  "description": "NVIDIA Ethernet Switch Interface operational state",
+  "gauge": {
+    "dataPoints": [
+      {
+         "attributes": [
+          {
+            "key": "interface",
+            "value": {
+              "stringValue": "swp61s0"
+            }
+          }
+        ],
+        "timeUnixNano": "1722458198491000000",
+        "asDouble": 1
+      },
+      {
+        "attributes": [
+          {
+            "key": "interface",
+            "value": {
+              "stringValue": "swp1"
+            }
+          }
+        ],
+        "timeUnixNano": "1722458198491000000",
+        "asDouble": 2
+      }
+    ]
+  }
+}
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_interface_dot3_stats_fcs_errors:" >}}
+```
+{
+  "name": "nvswitch_interface_dot3_stats_fcs_errors",
+  "description": "NVIDIA Ethernet Switch Interface dot3 stats fcs errors counter",
+  "gauge": {
+    "dataPoints": [
+      {
+        "attributes": [
+          {
+            "key": "interface",
+            "value": {
+              "stringValue": "swp1"
+            }
+          }
+        ],
+        "timeUnixNano": "1722458205491000000",
+        "asDouble": 0
+      }
+    ]
+  }
+}
 ```
 
 {{< /expand >}}
 <br>
-{{< expand "Example JSON data for interface_dot3_stats_fcs_errors:" >}}
+{{< expand "Example JSON data for nvswitch_interface_if_in_broadcast_pkts:" >}}
 ```
-            {
-              "name": "nvswitch_interface_dot3_stats_fcs_errors",
-              "description": "NVIDIA Ethernet Switch Interface dot3 stats fcs errors counter",
-              "gauge": {
-                "dataPoints": [
-                  {
-                    "attributes": [
-                      {
-                        "key": "interface",
-                        "value": {
-                          "stringValue": "swp1"
-                        }
-                      }
-                    ],
-                    "timeUnixNano": "1722458205491000000",
-                    "asDouble": 0
-                  }
-                ]
-              },
+{
+  "name": "nvswitch_interface_if_in_broadcast_pkts",
+  "description": "NVIDIA Ethernet Switch Interface if in broadcast pkts counter",
+  "gauge": {
+    "dataPoints": [
+      {
+        "attributes": [
+          {
+            "key": "interface",
+            "value": {
+              "stringValue": "swp1s0"
+            }
+          }
+        ],
+        "timeUnixNano": "1745875601233000000",
+        "asDouble": 0
+      },
+      {
+        "attributes": [
+          {
+            "key": "interface",
+            "value": {
+              "stringValue": "swp1s1"
+            }
+          }
+        ],
+        "timeUnixNano": "1745875601233000000",
+        "asDouble": 0
+      }
+    ]
+  }
+}
 ```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_interface_if_in_discards:" >}}
+```
+{
+  "name": "nvswitch_interface_if_in_discards",
+  "description": "NVIDIA Ethernet Switch Interface if in discards counter",
+  "gauge": {
+    "dataPoints": [
+      {
+        "attributes": [
+          {
+            "key": "interface",
+            "value": {
+              "stringValue": "swp1s0"
+            }
+          }
+        ],
+        "timeUnixNano": "1745875691233000000",
+        "asDouble": 0
+      },
+      {
+        "attributes": [
+          {
+            "key": "interface",
+            "value": {
+              "stringValue": "swp1s1"
+            }
+          }
+        ],
+        "timeUnixNano": "1745875691233000000",
+        "asDouble": 0
+      }
+    ]
+  }
+}
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_interface_if_in_errors:" >}}
+```
+{
+  "name": "nvswitch_interface_if_in_errors",
+  "description": "NVIDIA Ethernet Switch Interface if in errors counter",
+  "gauge": {
+    "dataPoints": [
+      {
+        "attributes": [
+          {
+            "key": "interface",
+            "value": {
+              "stringValue": "swp1s0"
+            }
+          }
+        ],
+        "timeUnixNano": "1745875520233000000",
+        "asDouble": 0
+      }
+    ]
+  }
+}
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_interface_if_in_multicast_pkts:" >}}
+```
+{
+  "name": "nvswitch_interface_if_in_multicast_pkts",
+  "description": "NVIDIA Ethernet Switch Interface if in multicast pkts counter",
+  "gauge": {
+    "dataPoints": [
+      {
+        "attributes": [
+          {
+            "key": "interface",
+            "value": {
+              "stringValue": "swp1s0"
+            }
+          }
+        ],
+        "timeUnixNano": "1745875325232000000",
+        "asDouble": 11
+      }
+    ]
+  }
+}
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_interface_if_in_octets:" >}}
+```
+{
+  "name": "nvswitch_interface_if_in_octets",
+  "description": "NVIDIA Ethernet Switch Interface if in octets counter",
+  "gauge": {
+    "dataPoints": [
+      {
+        "attributes": [
+          {
+            "key": "interface",
+            "value": {
+              "stringValue": "swp1s0"
+            }
+          }
+        ],
+        "timeUnixNano": "1745875331232000000",
+        "asDouble": 3758
+      }
+    ]
+  }
+}
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_interface_if_in_ucast_pkts:" >}}
+```
+{
+  "name": "nvswitch_interface_if_in_ucast_pkts",
+  "description": "NVIDIA Ethernet Switch Interface if in ucast pkts counter",
+  "gauge": {
+    "dataPoints": [
+      {
+        "attributes": [
+          {
+            "key": "interface",
+            "value": {
+              "stringValue": "swp1s0"
+            }
+          }
+        ],
+        "timeUnixNano": "1745875646233000000",
+        "asDouble": 0
+      }
+    ]
+  }
+}
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_interface_if_in_unknown_protos:" >}}
+```
+{
+  "name": "nvswitch_interface_if_in_unknown_protos",
+  "description": "NVIDIA Ethernet Switch Interface if in unknown protos counter",
+  "gauge": {
+    "dataPoints": [
+      {
+        "attributes": [
+          {
+            "key": "interface",
+            "value": {
+              "stringValue": "swp1s0"
+            }
+          }
+        ],
+        "timeUnixNano": "1745875697233000000",
+        "asDouble": 0
+      }
+    ]
+  }
+}
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_interface_if_out_broadcast_pkts:" >}}
+```
+{
+  "name": "nvswitch_interface_if_out_broadcast_pkts",
+  "description": "NVIDIA Ethernet Switch Interface if out broadcast pkts counter",
+  "gauge": {
+    "dataPoints": [
+      {
+        "attributes": [
+          {
+            "key": "interface",
+            "value": {
+              "stringValue": "swp1s0"
+            }
+          }
+        ],
+        "timeUnixNano": "1745875697233000000",
+        "asDouble": 0
+      }
+    ]
+  }
+}
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_interface_if_out_discards:" >}}
+```
+{
+  "name": "nvswitch_interface_if_out_discards",
+  "description": "NVIDIA Ethernet Switch Interface if out discards counter",
+  "gauge": {
+    "dataPoints": [
+      {
+        "attributes": [
+          {
+            "key": "interface",
+            "value": {
+              "stringValue": "swp1s0"
+            }
+          }
+        ],
+        "timeUnixNano": "1745875256232000000",
+        "asDouble": 0
+      }
+    ]
+  }
+}
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_interface_if_out_errors:" >}}
+```
+{
+  "name": "nvswitch_interface_if_out_errors",
+  "description": "NVIDIA Ethernet Switch Interface if out errors counter",
+  "gauge": {
+    "dataPoints": [
+      {
+        "attributes": [
+          {
+            "key": "interface",
+            "value": {
+              "stringValue": "swp1s0"
+            }
+          }
+        ],
+        "timeUnixNano": "1745875697233000000",
+        "asDouble": 0
+      }
+    ]
+  }
+}
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_interface_if_out_multicast_pkts:" >}}
+```
+{
+  "name": "nvswitch_interface_if_out_multicast_pkts",
+  "description": "NVIDIA Ethernet Switch Interface if out multicast pkts counter",
+  "gauge": {
+    "dataPoints": [
+      {
+        "attributes": [
+          {
+            "key": "interface",
+            "value": {
+              "stringValue": "swp1s0"
+            }
+          }
+        ],
+        "timeUnixNano": "1745875697233000000",
+        "asDouble": 22
+      }
+    ]
+  }
+}
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_interface_if_out_octets:" >}}
+```
+{
+  "name": "nvswitch_interface_if_out_octets",
+  "description": "NVIDIA Ethernet Switch Interface if out octets counter",
+  "gauge": {
+    "dataPoints": [
+      {
+        "attributes": [
+          {
+            "key": "interface",
+            "value": {
+              "stringValue": "swp1s0"
+            }
+          }
+        ],
+        "timeUnixNano": "1745875697233000000",
+        "asDouble": 4928
+      }
+    ]
+  }
+}
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_interface_if_out_ucast_pkts:" >}}
+```
+{
+  "name": "nvswitch_interface_if_out_ucast_pkts",
+  "description": "NVIDIA Ethernet Switch Interface if out ucast pkts counter",
+  "gauge": {
+    "dataPoints": [
+      {
+        "attributes": [
+          {
+            "key": "interface",
+            "value": {
+              "stringValue": "swp1s0"
+            }
+          }
+        ],
+        "timeUnixNano": "1745875697233000000",
+        "asDouble": 0
+      }
+    ]
+  }
+}
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_interface_802_dot3_a_frames_transmitted_ok:" >}}
+```
+{
+  "name": "nvswitch_interface_802_dot3_a_frames_transmitted_ok",
+  "description": "NVIDIA Ethernet Switch Interface 802.3a frames transmitted ok counter",
+  "gauge": {
+    "dataPoints": [
+      {
+        "attributes": [
+          {
+            "key": "interface",
+            "value": {
+              "stringValue": "swp1s0"
+            }
+          }
+        ],
+        "timeUnixNano": "1745875697233000000",
+        "asDouble": 22
+      },
+      {
+        "attributes": [
+          {
+            "key": "interface",
+            "value": {
+              "stringValue": "swp1s1"
+            }
+          }
+        ],
+        "timeUnixNano": "1745875697233000000",
+        "asDouble": 22
+      }
+    ]
+  }
+}
+```
+{{< /expand >}}
 
+#### PHY Example JSON
+
+{{< expand "Example JSON data for nvswitch_interface_phy_layer_fec_block_state_count:" >}}
+```
+{
+  "name": "nvswitch_interface_phy_layer_fec_block_state_count",
+  "description": "NVIDIA Ethernet Switch Interface phy layer FEC block state counter",
+  "gauge": {
+    "dataPoints": [
+      {
+        "attributes": [
+          {
+            "key": "interface",
+            "value": {
+              "stringValue": "swp1s0"
+            }
+          },
+          {
+            "key": "mechanism",
+            "value": {
+              "stringValue": "rs"
+            }
+          },
+          {
+            "key": "state",
+            "value": {
+              "stringValue": "clean"
+            }
+          }
+        ],
+        "timeUnixNano": "1745875697233000000",
+        "asDouble": 0
+      }
+    ]
+  }
+}
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_interface_phy_layer_fec_per_lane_corrections:" >}}
+```
+{
+  "name": "nvswitch_interface_phy_layer_fec_per_lane_corrections",
+  "description": "NVIDIA Ethernet Switch Interface phy layer FEC corrections for lane",
+  "gauge": {
+    "dataPoints": [
+      {
+        "attributes": [
+          {
+            "key": "interface",
+            "value": {
+              "stringValue": "swp1s0"
+            }
+          },
+          {
+            "key": "lane",
+            "value": {
+              "stringValue": "0"
+            }
+          },
+          {
+            "key": "mechanism",
+            "value": {
+              "stringValue": "fc"
+            }
+          },
+          {
+            "key": "state",
+            "value": {
+              "stringValue": "corrected"
+            }
+          }
+        ],
+        "timeUnixNano": "1745875697233000000",
+        "asDouble": 0
+      }
+    ]
+  }
+}
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_interface_phy_layer_time_since_last_clear:" >}}
+```
+{
+  "name": "nvswitch_interface_phy_layer_time_since_last_clear",
+  "description": "NVIDIA Ethernet Switch Interface phy layer time since counters were cleared",
+  "gauge": {
+    "dataPoints": [
+      {
+        "attributes": [
+          {
+            "key": "interface",
+            "value": {
+              "stringValue": "swp1s0"
+            }
+          }
+        ],
+        "timeUnixNano": "1745875697233000000",
+        "asDouble": 494848
+      }
+    ]
+  }
+}
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_interface_phy_stats_effective_ber:" >}}
+```
+{
+  "name": "nvswitch_interface_phy_stats_effective_ber",
+  "description": "NVIDIA Ethernet Switch Interface phy effective BER errors",
+  "gauge": {
+    "dataPoints": [
+      {
+        "attributes": [
+          {
+            "key": "interface",
+            "value": {
+              "stringValue": "swp1s0"
+            }
+          }
+        ],
+        "timeUnixNano": "1745875697233000000",
+        "asDouble": 1.4999999999999995e-254
+      }
+    ]
+  }
+}
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_interface_phy_stats_symbol_ber:" >}}
+```
+{
+  "name": "nvswitch_interface_phy_stats_symbol_ber",
+  "description": "NVIDIA Ethernet Switch Interface phy symber BER errors",
+  "gauge": {
+    "dataPoints": [
+      {
+        "attributes": [
+          {
+            "key": "interface",
+            "value": {
+              "stringValue": "swp1s0"
+            }
+          }
+        ],
+        "timeUnixNano": "1745875697233000000",
+        "asDouble": 1.4999999999999995e-254
+      }
+    ]
+  }
+}
+```
 {{< /expand >}}
 
 ### LLDP Statistic Format
@@ -1472,7 +2101,8 @@ When you enable LLDP statistic telemetry, the switch exports the following stati
           "timeUnixNano": "1745868465982000000",
           "asDouble": 20
         }
-    }
+    ]
+  }
 }
 ```
 {{< /expand >}}
@@ -1580,6 +2210,7 @@ When you enable LLDP statistic telemetry, the switch exports the following stati
           "timeUnixNano": "1745868465982000000",
           "asDouble": 120
         }
+      ]
     }
 }
 ```
@@ -1628,6 +2259,7 @@ When you enable LLDP statistic telemetry, the switch exports the following stati
           "timeUnixNano": "1745868478250000000",
           "asDouble": 1
         }
+      ]
     }
 }
 ```
@@ -1788,15 +2420,17 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | `nvswitch_platform_tranceiver_voltage` | The internally measured supply voltage for the module in volts (a 64bit decimal value). |
 | `nvswitch_platform_tranceiver_voltage_alarm` | The alarm status due to Voltage crossing thresholds defined for the module:<br>Bit 0: high_vcc_alarm<br>Bit 1: low_vcc_alarm<br>Bit 2: high_vcc_warning<br>Bit 3: low_vcc_warning |
 | `nvswitch_platform_tranceiver_voltage_threshold_info` | Voltage thresholds defined for the module. The level is alarm or warning. The threshold is low or high.|
-| `nvswitch_platform_transceiver_channel_power` | The transceiver channel power value in dBm units (logarithmic scale). |
-| `nvswitch_platform_transceiver_channel_power_alarm` | The alarm state for power value measured with the defined thresholds for the module as a bit mask value:<br>Bit 0: tx_power_hi_al<br>Bit 1: l tx_power_lo_al<br>Bit 2: tx_power_hi_war<br>Bit 3: l tx_power_lo_war.  |
-| `nvswitch_platform_transceiver_channel_power_threshold_info` | Threshold information for the power. The units are in dBm and represented by a 32bit decimal value. |
-| `nvswitch_platform_transceiver_tx_bias_current` | tx bias current measured for the channel in milliamp units and represented by a 32bit decimal value. |
-| `nvswitch_platform_transceiver_tx_bias_current_alarm` | tx bias current alarm state of tx bias current measure for the channel when compared to the threshold values for the channel defined for the module. This is a bit mask value:<br>Bit 0: tx_bias_hi_al<br>Bit 1: l tx_bias_lo_al<br>Bit 2: tx_bia_hi_war<br>Bit 3: l tx_bias_lo_war |
-| `nvswitch_platform_transceiver_tx_bias_current_threshold_info` | tx bias current thresholds defined for the channel in milliamp units and represented by a 32bit decimal value. |
+| `nvswitch_platform_transceiver_channel_power` | The transceiver channel power value in dBm units (logarithmic scale) for each channel in both rx and tx directions.|
+| `nvswitch_platform_transceiver_channel_power_alarm` | The alarm state for power value compared with the defined thresholds for the module as a bit mask value for each channel and for both rx and tx directions:<br>Bit 0: tx_power_hi_al<br>Bit 1: l tx_power_lo_al<br>Bit 2: tx_power_hi_war<br>Bit 3: l tx_power_lo_war. |
+| `nvswitch_platform_transceiver_channel_power_threshold_info` | Threshold information for the power for both rx and tx directions. These threshold values are applicable for all channels. The units are in dBm and represented by a 32bit decimal value. |
+| `nvswitch_platform_transceiver_channel_tx_bias_current` | tx bias current measured for the channel in Amps units and represented by a 32bit decimal value. |
+| `nvswitch_platform_transceiver_channel_tx_bias_current_alarm` | tx bias current alarm state of tx bias current measure for the channel when compared to the threshold values for the channel defined for the module. This is a bit mask value:<br>Bit 0: tx_bias_hi_al<br>Bit 1: l tx_bias_lo_al<br>Bit 2: tx_bia_hi_war<br>Bit 3: l tx_bias_lo_war |
+| `nvswitch_platform_transceiver_channel_tx_bias_current_threshold_info` | tx bias current thresholds defined for the channel in Amps units and represented by a 32bit decimal value. |
 
 {{< /tab >}}
 {{< /tabs >}}
+
+#### Environment Sensor Example JSON
 
 {{< expand "Example JSON data for nvswitch_platform_environment_psu_state:" >}}
 
@@ -2403,7 +3037,145 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
   ]
 }
 ```
+{{< /expand >}}
 
+#### Transceiver Example JSON
+
+{{< expand "Example JSON data for nvswitch_platform_transceiver_info:" >}}
+
+```
+{
+  "name": "nvswitch_platform_transceiver_info",
+  "description": "NVIDIA Ethernet Switch Transceiver Information",
+  "gauge": {
+    "dataPoints": [
+      {
+        "attributes": [
+          {
+            "key": "cable_length",
+            "value": {
+              "stringValue": "0.5m"
+            }
+          },
+          {
+            "key": "cable_type",
+            "value": {
+              "stringValue": "Passive copper cable"
+            }
+          },
+          {
+            "key": "error_status",
+            "value": {
+              "stringValue": "N/A"
+            }
+          },
+          {
+            "key": "identifier",
+            "value": {
+              "stringValue": "OSFP"
+            }
+          },
+          {
+            "key": "name",
+            "value": {
+              "stringValue": "transceiver10"
+            }
+          },
+          {
+            "key": "port",
+            "value": {
+              "stringValue": "10"
+            }
+          },
+          {
+            "key": "revision_compliance",
+            "value": {
+              "stringValue": "Rev 5.0"
+            }
+          },
+          {
+            "key": "status",
+            "value": {
+              "stringValue": "plugged, enabled"
+            }
+          }
+        ],
+        "timeUnixNano": "1745875256987000000",
+        "asDouble": 1
+      }
+    ]
+  }
+}
+```
+
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_platform_transceiver_vendor_info:" >}}
+
+```
+{
+    "name": "nvswitch_platform_transceiver_vendor_info",
+    "description": "NVIDIA Ethernet Switch Transceiver Vendor Information",
+    "gauge": {
+      "dataPoints": [
+        {
+          "attributes": [
+            {
+              "key": "date_code",
+              "value": {
+                "stringValue": "220705"
+              }
+            },
+            {
+              "key": "name",
+              "value": {
+                "stringValue": "transceiver1"
+              }
+            },
+            {
+              "key": "name_name",
+              "value": {
+                "stringValue": "NVIDIA"
+              }
+            },
+            {
+              "key": "oui",
+              "value": {
+                "stringValue": "48:B0:2D"
+              }
+            },
+            {
+              "key": "part_no",
+              "value": {
+                "stringValue": "MCP4Y10-N001"
+              }
+            },
+            {
+              "key": "port",
+              "value": {
+                "stringValue": "1"
+              }
+            },
+            {
+              "key": "rev",
+              "value": {
+                "stringValue": "A3"
+              }
+            },
+            {
+              "key": "serial_no",
+              "value": {
+                "stringValue": "MT2230VS00663"
+              }
+            }
+          ],
+          "timeUnixNano": "1745875376987000000",
+          "asDouble": 1
+        }
+      ]
+    }
+  }
+```
 {{< /expand >}}
 
 ### Routing Metrics Format
@@ -2651,7 +3423,7 @@ When you enable layer 3 routing metrics telemetry, the switch exports the follow
         "asInt": "0"
         }
     ]
-}
+  }
 }
 ```
 {{< /expand >}}
@@ -2861,9 +3633,9 @@ When you enable layer 3 routing metrics telemetry, the switch exports the follow
         "startTimeUnixNano": "1745875680082484874",
         "timeUnixNano": "1745875680086118678",
         "asInt": "16702"
-    }
+     }
     ]
-}
+  }
 }
 ```
 {{< /expand >}}

@@ -129,6 +129,12 @@ cumulus@switch:~$ sudo /usr/sbin/pam-auth-update --force --package</td>
 <td></td>
 </tr>
 <tr>
+<td>4413450</td>
+<td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables (around 800K prefixes), the process consumes excessive memory resulting in OOM crashes. </td>
+<td>5.0.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4403755</td>
 <td>On first boot after a binary install or upgrade, if ZTP does not run or does not complete successfully, all interfaces are left admin up until you disable ZTP manually. To work around this issue, use an empty ZTP script during onie-install ({{-z ZTP_URL}}) or configure the DCHP option 239.</td>
 <td>5.12.1</td>
@@ -1144,6 +1150,12 @@ cumulus@switch:~$ sudo /usr/sbin/pam-auth-update --force --package</td>
 <td></td>
 </tr>
 <tr>
+<td>4413450</td>
+<td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables (around 800K prefixes), the process consumes excessive memory resulting in OOM crashes. </td>
+<td>5.0.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4391413</td>
 <td>After the switch reboots or {{switchd.service}} restarts, NVUE applied ERSPAN sessions do not work if the ERSPAN destination IP address is reachable through an MLAG bond. To work around this issue, remove the ERSPAN configuration and reapply it using NVUE.</td>
 <td>5.11.0-5.12.1</td>
@@ -1320,7 +1332,7 @@ cumulus@switch:~$ sudo systemctl start cumulus-upgrade-on-shutdown</td>
 <td></td>
 </tr>
 <tr>
-<td>4288264</td>
+<td>4286489</td>
 <td>Optimized (two partition) upgrade and rollback fails when you apply configuration by editing the {{/etc/nvue.d/startup.yaml}} file, then run {{nv config apply startup}}. To work around this issue, after activating optimized &lt;b&gt;upgrade&lt;/b&gt;, but &lt;b&gt;before&lt;/b&gt; rebooting, save a copy of the contents of {{/var/lib/nvue/}} to some other location. Then, &lt;b&gt;after&lt;/b&gt; activating &lt;b&gt;rollback&lt;/b&gt;, but &lt;b&gt;before&lt;/b&gt; rebooting, move {{/var/lib/nvue/}} to some other location and copy the previously saved contents to {{/var/lib/nvue/}}.</td>
 <td>5.12.0</td>
 <td>5.11.1, 5.12.1</td>

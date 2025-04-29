@@ -1300,14 +1300,15 @@ When you enable LLDP statistic telemetry, the switch exports the following stati
 | Name | Description |
 |----- | ----------- |
 | `nvswitch_lldp_chassis_info` | LLDP chassis information. |
-| `nvswitch_lldp_chassis_capabilities` | LLDP Chassis Capabilities as a bitmap. The capabilities are defined in IEEE 802.1AB.|
+| `nvswitch_lldp_chassis_capabilities` | LLDP chassis capabilities as a bitmap. The capabilities are defined in IEEE 802.1AB.|
 | `nvswitch_lldp_neighbor_age` | LLDP neighbor age information in seconds.|
-| `nvswitch_lldp_neighbor_capabilities` | |
+| `nvswitch_lldp_neighbor_capabilities` | LLDP neighbor capabilities as a bitmap. The capabilities are defined in IEEE 802.1AB. |
 | `nvswitch_lldp_neighbor_info` | LLDP neighbor information.|
 | `nvswitch_lldp_neighbor_ttl` | LLDP neighbor port TTL in seconds.|
 | `nvswitch_lldp_neighbor_management_address-info` | LLDP neighbor management address information.|
 
 {{< expand "Example JSON data for nvswitch_lldp_chassis_info:" >}}
+
 ```
 {
   "name": "nvswitch_lldp_chassis_info",
@@ -1349,7 +1350,7 @@ When you enable LLDP statistic telemetry, the switch exports the following stati
 }
 ```
 {{< /expand >}}
-
+<br>
 {{< expand "Example JSON data for nvswitch_lldp_chassis_capabilities:" >}}
 ```
 {
@@ -1388,7 +1389,7 @@ When you enable LLDP statistic telemetry, the switch exports the following stati
   }
 ```
 {{< /expand >}}
-
+<br>
 {{< expand "Example JSON data for nvswitch_lldp_neighbor_age:" >}}
 ```
   {
@@ -1432,48 +1433,50 @@ When you enable LLDP statistic telemetry, the switch exports the following stati
   }
 ```
 {{< /expand >}}
-
+<br>
 {{< expand "Example JSON data for nvswitch_lldp_neighbor_capabilities:" >}}
+
+```
+{
+    "name": "nvswitch_lldp_neighbor_capabilities",
+    "description": "NVIDIA Ethernet Switch LLDP Neighbor Capabilities as a bitmap. The capabilities are defined in IEEE 802.1AB",
+    "gauge": {
+      "dataPoints": [
         {
-            "name": "nvswitch_lldp_neighbor_capabilities",
-            "description": "NVIDIA Ethernet Switch LLDP Neighbor Capabilities as a bitmap. The capabilities are defined in IEEE 802.1AB",
-            "gauge": {
-              "dataPoints": [
-                {
-                  "attributes": [
-                    {
-                      "key": "interface",
-                      "value": {
-                        "stringValue": "swp10s0"
-                      }
-                    },
-                    {
-                      "key": "port_id",
-                      "value": {
-                        "stringValue": "swp10s0"
-                      }
-                    },
-                    {
-                      "key": "system_name",
-                      "value": {
-                        "stringValue": "mlx-5600-13"
-                      }
-                    },
-                    {
-                      "key": "mgmtVrfNoTls-l1",
-                      "value": {
-                        "stringValue": "Management VRF Insecure Label-1"
-                      }
-                    }
-                  ],
-                  "timeUnixNano": "1745868465982000000",
-                  "asDouble": 20
-                }
+          "attributes": [
+            {
+              "key": "interface",
+              "value": {
+                "stringValue": "swp10s0"
+              }
+            },
+            {
+              "key": "port_id",
+              "value": {
+                "stringValue": "swp10s0"
+              }
+            },
+            {
+              "key": "system_name",
+              "value": {
+                "stringValue": "mlx-5600-13"
+              }
+            },
+            {
+              "key": "mgmtVrfNoTls-l1",
+              "value": {
+                "stringValue": "Management VRF Insecure Label-1"
+              }
             }
+          ],
+          "timeUnixNano": "1745868465982000000",
+          "asDouble": 20
         }
+    }
+}
 ```
 {{< /expand >}}
-
+<br>
 {{< expand "Example JSON data for nvswitch_lldp_neighbor_info:" >}}
 ```
 {
@@ -1545,7 +1548,7 @@ When you enable LLDP statistic telemetry, the switch exports the following stati
 }
 ```
 {{< /expand >}}
-
+<br>
 {{< expand "Example JSON data for nvswitch_lldp_neighbor_ttl:" >}}
 ```
 {
@@ -1581,7 +1584,7 @@ When you enable LLDP statistic telemetry, the switch exports the following stati
 }
 ```
 {{< /expand >}}
-
+<br>
 {{< expand "Example JSON data for nvswitch_lldp_neighbor_management_address_info:" >}}
 ```
 {
@@ -1795,588 +1798,611 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 {{< /tab >}}
 {{< /tabs >}}
 
-{{< expand "Example JSON data for PSU and temperature sensor telemetry:" >}}
+{{< expand "Example JSON data for nvswitch_platform_environment_psu_state:" >}}
 
-            {
-              "name": "nvswitch_platform_environment_psu_state",
-              "description": "PSU state. 0:ABSENT 1:OK 2:FAILED 3:BAD",
-              "gauge": {
-                "dataPoints": [
-                  {
-                    "attributes": [
-                      {
-                        "key": "description",
-                        "value": {
-                          "stringValue": "Power Supply Unit 1"
-                        }
-                      },
-                      {
-                        "key": "name",
-                        "value": {
-                          "stringValue": "PSU1"
-                        }
-                      }
-                    ],
-                    "timeUnixNano": "1729113543218000000",
-                    "asDouble": 1
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "description",
-                        "value": {
-                          "stringValue": "Power Supply Unit 2"
-                        }
-                      },
-                      {
-                        "key": "name",
-                        "value": {
-                          "stringValue": "PSU2"
-                        }
-                      }
-                    ],
-                    "timeUnixNano": "1729113543218000000",
-                    "asDouble": 3
-                  }
-                        "value": {
-                          "stringValue": "Power Supply Unit 1"
-                        }
-                      },
-                      {
-                        "key": "name",
-                        "value": {
-                          "stringValue": "PSU1"
-                        }
-                      }
-                    ],
-                    "timeUnixNano": "1729113543218000000",
-                    "asDouble": 1
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "description",
-                        "value": {
-                          "stringValue": "Power Supply Unit 2"
-                        }
-                      },
-                      {
-                        "key": "name",
-                        "value": {
-                          "stringValue": "PSU2"
-                        }
-                      }
-                    ],
-                    "timeUnixNano": "1729113543218000000",
-                    "asDouble": 3
-                  }
-                ]
-              },
-              "metadata": [
-                {
-                  "key": "prometheus.type",
-                  "value": {
-                    "stringValue": "gauge"
-                  }
-                }
-              ]
-            },
-            {
-              "name": "nvswitch_platform_environment_temp_crit",
-              "description": "Critical temperature in Centigrade.",
-              "gauge": {
-                "dataPoints": [
-                  {
-                    "attributes": [
-                      {
-                        "key": "description",
-                        "value": {
-                          "stringValue": "Asic Temp Sensor"
-                        }
-                      },
-                      {
-                        "key": "name",
-                        "value": {
-                          "stringValue": "Temp4"
-                        }
-                      }
-                    ],
-                    "timeUnixNano": "1729113543218000000",
-                    "asDouble": 120
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "description",
-                        "value": {
-                          "stringValue": "CPU Core Sensor 0"
-                        }
-                      },
-                      {
-                        "key": "name",
-                        "value": {
-                          "stringValue": "Temp5"
-                        }
-                      }
-                    ],
-                    "timeUnixNano": "1729113543218000000",
-                    "asDouble": 100
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "description",
-                        "value": {
-                          "stringValue": "CPU Core Sensor 1"
-                        }
-                      },
-                      {
-                        "key": "name",
-                        "value": {
-                          "stringValue": "Temp6"
-                        }
-                      }
-                    ],
-                    "timeUnixNano": "1729113543218000000",
-                    "asDouble": 100
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "description",
-                        "value": {
-                          "stringValue": "CPU Core Sensor 2"
-                        }
-                      },
-                      {
-                        "key": "name",
-                        "value": {
-                          "stringValue": "Temp7"
-                        }
-                      }
-                    ],
-                    "timeUnixNano": "1729113543218000000",
-                    "asDouble": 100
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "description",
-                        "value": {
-                          "stringValue": "CPU Core Sensor 3"
-                        }
-                      },
-                      {
-                        "key": "name",
-                        "value": {
-                          "stringValue": "Temp8"
-                        }
-                      }
-                    ],
-                    "timeUnixNano": "1729113543218000000",
-                    "asDouble": 100
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "description",
-                        "value": {
-                          "stringValue": "CPU Core Sensor 4"
-                        }
-                      },
-                      {
-                        "key": "name",
-                        "value": {
-                          "stringValue": "Temp9"
-                        }
-                      }
-                    ],
-                    "timeUnixNano": "1729113543218000000",
-                    "asDouble": 100
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "description",
-                        "value": {
-                          "stringValue": "CPU Core Sensor 5"
-                        }
-                      },
-                      {
-                        "key": "name",
-                        "value": {
-                          "stringValue": "Temp10"
-                        }
-                      }
-                    ],
-                    "timeUnixNano": "1729113543218000000",
-                    "asDouble": 100
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "description",
-                        "value": {
-                          "stringValue": "CPU Package Sensor"
-                        }
-                      },
-                      {
-                        "key": "name",
-                        "value": {
-                          "stringValue": "Temp1"
-                        }
-                      }
-                    ],
-                    "timeUnixNano": "1729113543218000000",
-                    "asDouble": 100
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "description",
-                        "value": {
-                          "stringValue": "Main Board Ambient Sensor"
-                        }
-                      },
-                      {
-                        "key": "name",
-                        "value": {
-                          "stringValue": "Temp3"
-                        }
-                      }
-                    ],
-                    "timeUnixNano": "1729113543218000000",
-                    "asDouble": 85
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "description",
-                        "value": {
-                          "stringValue": "PSU1 Temp Sensor"
-                        }
-                      },
-                      {
-                        "key": "name",
-                        "value": {
-                          "stringValue": "PSU1Temp1"
-                        }
-                      }
-                    ],
-                    "timeUnixNano": "1729113543218000000",
-                    "asDouble": 85
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "description",
-                        "value": {
-                          "stringValue": "PSU2 Temp Sensor"
-                        }
-                      },
-                      {
-                        "key": "name",
-                        "value": {
-                          "stringValue": "PSU2Temp1"
-                        }
-                      }
-                    ],
-                    "timeUnixNano": "1729113543218000000",
-                    "asDouble": 0
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "description",
-                        "value": {
-                          "stringValue": "Port Ambient Sensor"
-                        }
-                      },
-                      {
-                        "key": "name",
-                        "value": {
-                          "stringValue": "Temp2"
-                        }
-                      }
-                    ],
-                    "timeUnixNano": "1729113543218000000",
-                    "asDouble": 85
-                  }
-                ]
-              },
-              "metadata": [
-                {
-                  "key": "prometheus.type",
-                  "value": {
-                    "stringValue": "gauge"
-                  }
-                }
-              ]
-            },
-            {
-              "name": "nvswitch_platform_environment_temp_current",
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "description",
-                        "value": {
-                          "stringValue": "Port Ambient Sensor"
-                        }
-                      },
-                      {
-                        "key": "name",
-                        "value": {
-                          "stringValue": "Temp2"
-                        }
-                      }
-                    ],
-                    "timeUnixNano": "1729113543218000000",
-                    "asDouble": 85
-                  }
-                ]
-              },
-              "metadata": [
-                {
-                  "key": "prometheus.type",
-                  "value": {
-                    "stringValue": "gauge"
-                  }
-                }
-              ]
-            },
-            {
-              "name": "nvswitch_platform_environment_temp_current",
-              "description": "Current temperature in Centigrade.",
-              "gauge": {
-                "dataPoints": [
-                  {
-                    "attributes": [
-                      {
-                        "key": "description",
-                        "value": {
-                          "stringValue": "Asic Temp Sensor"
-                        }
-                      },
-                      {
-                        "key": "name",
-                        "value": {
-                          "stringValue": "Temp4"
-                        }
-                      }
-                    ],
-                    "timeUnixNano": "1729113543218000000",
-                    "asDouble": 50
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "description",
-                        "value": {
-                          "stringValue": "CPU Core Sensor 0"
-                        }
-                      },
-                      {
-                        "key": "name",
-                        "value": {
-                          "stringValue": "Temp5"
-                        }
-                      }
-                    ],
-                    "timeUnixNano": "1729113543218000000",
-                    "asDouble": 52
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "description",
-                        "value": {
-                          "stringValue": "CPU Core Sensor 1"
-                        }
-                      },
-                      {
-                        "key": "name",
-                        "value": {
-                          "stringValue": "Temp6"
-                        }
-                      }
-                    ],
-                    "timeUnixNano": "1729113543218000000",
-                    "asDouble": 69
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "description",
-                        "value": {
-                          "stringValue": "CPU Core Sensor 2"
-                        }
-                      },
-                      {
-                        "key": "name",
-                        "value": {
-                          "stringValue": "Temp7"
-                        }
-                      }
-                    ],
-                    "timeUnixNano": "1729113543218000000",
-                    "asDouble": 55
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "description",
-                        "value": {
-                          "stringValue": "CPU Core Sensor 3"
-                        }
-                      },
-                      {
-                        "key": "name",
-                        "value": {
-                          "stringValue": "Temp8"
-                        }
-                      }
-                    ],
-                    "timeUnixNano": "1729113543218000000",
-                    "asDouble": 54
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "description",
-                        "value": {
-                          "stringValue": "CPU Core Sensor 4"
-                        }
-                      },
-                      {
-                        "key": "name",
-                        "value": {
-                          "stringValue": "Temp9"
-                        }
-                      }
-                    ],
-                    "timeUnixNano": "1729113543218000000",
-                    "asDouble": 52
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "description",
-                        "value": {
-                          "stringValue": "CPU Core Sensor 5"
-                        }
-                      },
-                      {
-                        "key": "name",
-                        "value": {
-                          "stringValue": "Temp10"
-                        }
-                      }
-                    ],
-                    "timeUnixNano": "1729113543218000000",
-                    "asDouble": 52
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "description",
-                        "value": {
-                          "stringValue": "CPU Package Sensor"
-                        }
-                      },
-                      {
-                        "key": "name",
-                        "value": {
-                          "stringValue": "Temp1"
-                        }
-                      }
-                    ],
-                    "timeUnixNano": "1729113543218000000",
-                    "asDouble": 69
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "description",
-                        "value": {
-                          "stringValue": "Main Board Ambient Sensor"
-                        }
-                      },
-                      {
-                        "key": "name",
-                        "value": {
-                          "stringValue": "Temp3"
-                        }
-                      }
-                    ],
-                    "timeUnixNano": "1729113543218000000",
-                    "asDouble": 24.687
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "description",
-                        "value": {
-                          "stringValue": "PSU1 Temp Sensor"
-                        }
-                      },
-                      {
-                        "key": "name",
-                        "value": {
-                          "stringValue": "PSU1Temp1"
-                        }
-                      }
-                    ],
-                    "timeUnixNano": "1729113543218000000",
-                    "asDouble": 24.531
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "description",
-                        "value": {
-                          "stringValue": "PSU2 Temp Sensor"
-                        }
-                      },
-                      {
-                        "key": "name",
-                        "value": {
-                          "stringValue": "PSU2Temp1"
-                        }
-                      }
-                    ],
-                    "timeUnixNano": "1729113543218000000",
-                    "asDouble": 0
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "description",
-                        "value": {
-                          "stringValue": "Port Ambient Sensor"
-                        }
-                      },
-                      {
-                        "key": "name",
-                        "value": {
-                          "stringValue": "Temp2"
-                        }
-                      }
-                    ],
-                    "timeUnixNano": "1729113543218000000",
-                    "asDouble": 22.312
-                  }
-                ]
-              },
-              "metadata": [
-                {
-                  "key": "prometheus.type",
-                  "value": {
-                    "stringValue": "gauge"
-                  }
-                }
-              ]
-            },
+```
+{
+  "name": "nvswitch_platform_environment_psu_state",
+  "description": "PSU state. 0:ABSENT 1:OK 2:FAILED 3:BAD",
+  "gauge": {
+    "dataPoints": [
+      {
+        "attributes": [
+          {
+            "key": "description",
+            "value": {
+              "stringValue": "Power Supply Unit 1"
+            }
+          },
+          {
+            "key": "name",
+            "value": {
+              "stringValue": "PSU1"
+            }
+          }
+        ],
+        "timeUnixNano": "1729113543218000000",
+        "asDouble": 1
+      },
+      {
+        "attributes": [
+          {
+            "key": "description",
+            "value": {
+              "stringValue": "Power Supply Unit 2"
+            }
+          },
+          {
+            "key": "name",
+            "value": {
+              "stringValue": "PSU2"
+            }
+          }
+        ],
+        "timeUnixNano": "1729113543218000000",
+        "asDouble": 3
+      }
+            "value": {
+              "stringValue": "Power Supply Unit 1"
+            }
+          },
+          {
+            "key": "name",
+            "value": {
+              "stringValue": "PSU1"
+            }
+          }
+        ],
+        "timeUnixNano": "1729113543218000000",
+        "asDouble": 1
+      },
+      {
+        "attributes": [
+          {
+            "key": "description",
+            "value": {
+              "stringValue": "Power Supply Unit 2"
+            }
+          },
+          {
+            "key": "name",
+            "value": {
+              "stringValue": "PSU2"
+            }
+          }
+        ],
+        "timeUnixNano": "1729113543218000000",
+        "asDouble": 3
+      }
+    ]
+  },
+  "metadata": [
+    {
+      "key": "prometheus.type",
+      "value": {
+        "stringValue": "gauge"
+      }
+    }
+  ]
+}
+```
+
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_platform_environment_temp_crit:" >}}
+
+```
+{
+  "name": "nvswitch_platform_environment_temp_crit",
+  "description": "Critical temperature in Centigrade.",
+  "gauge": {
+    "dataPoints": [
+      {
+        "attributes": [
+          {
+            "key": "description",
+            "value": {
+              "stringValue": "Asic Temp Sensor"
+            }
+          },
+          {
+            "key": "name",
+            "value": {
+              "stringValue": "Temp4"
+            }
+          }
+        ],
+        "timeUnixNano": "1729113543218000000",
+        "asDouble": 120
+      },
+      {
+        "attributes": [
+          {
+            "key": "description",
+            "value": {
+              "stringValue": "CPU Core Sensor 0"
+            }
+          },
+          {
+            "key": "name",
+            "value": {
+              "stringValue": "Temp5"
+            }
+          }
+        ],
+        "timeUnixNano": "1729113543218000000",
+        "asDouble": 100
+      },
+      {
+        "attributes": [
+          {
+            "key": "description",
+            "value": {
+              "stringValue": "CPU Core Sensor 1"
+            }
+          },
+          {
+            "key": "name",
+            "value": {
+              "stringValue": "Temp6"
+            }
+          }
+        ],
+        "timeUnixNano": "1729113543218000000",
+        "asDouble": 100
+      },
+      {
+        "attributes": [
+          {
+            "key": "description",
+            "value": {
+              "stringValue": "CPU Core Sensor 2"
+            }
+          },
+          {
+            "key": "name",
+            "value": {
+              "stringValue": "Temp7"
+            }
+          }
+        ],
+        "timeUnixNano": "1729113543218000000",
+        "asDouble": 100
+      },
+      {
+        "attributes": [
+          {
+            "key": "description",
+            "value": {
+              "stringValue": "CPU Core Sensor 3"
+            }
+          },
+          {
+            "key": "name",
+            "value": {
+              "stringValue": "Temp8"
+            }
+          }
+        ],
+        "timeUnixNano": "1729113543218000000",
+        "asDouble": 100
+      },
+      {
+        "attributes": [
+          {
+            "key": "description",
+            "value": {
+              "stringValue": "CPU Core Sensor 4"
+            }
+          },
+          {
+            "key": "name",
+            "value": {
+              "stringValue": "Temp9"
+            }
+          }
+        ],
+        "timeUnixNano": "1729113543218000000",
+        "asDouble": 100
+      },
+      {
+        "attributes": [
+          {
+            "key": "description",
+            "value": {
+              "stringValue": "CPU Core Sensor 5"
+            }
+          },
+          {
+            "key": "name",
+            "value": {
+              "stringValue": "Temp10"
+            }
+          }
+        ],
+        "timeUnixNano": "1729113543218000000",
+        "asDouble": 100
+      },
+      {
+        "attributes": [
+          {
+            "key": "description",
+            "value": {
+              "stringValue": "CPU Package Sensor"
+            }
+          },
+          {
+            "key": "name",
+            "value": {
+              "stringValue": "Temp1"
+            }
+          }
+        ],
+        "timeUnixNano": "1729113543218000000",
+        "asDouble": 100
+      },
+      {
+        "attributes": [
+          {
+            "key": "description",
+            "value": {
+              "stringValue": "Main Board Ambient Sensor"
+            }
+          },
+          {
+            "key": "name",
+            "value": {
+              "stringValue": "Temp3"
+            }
+          }
+        ],
+        "timeUnixNano": "1729113543218000000",
+        "asDouble": 85
+      },
+      {
+        "attributes": [
+          {
+            "key": "description",
+            "value": {
+              "stringValue": "PSU1 Temp Sensor"
+            }
+          },
+          {
+            "key": "name",
+            "value": {
+              "stringValue": "PSU1Temp1"
+            }
+          }
+        ],
+        "timeUnixNano": "1729113543218000000",
+        "asDouble": 85
+      },
+      {
+        "attributes": [
+          {
+            "key": "description",
+            "value": {
+              "stringValue": "PSU2 Temp Sensor"
+            }
+          },
+          {
+            "key": "name",
+            "value": {
+              "stringValue": "PSU2Temp1"
+            }
+          }
+        ],
+        "timeUnixNano": "1729113543218000000",
+        "asDouble": 0
+      },
+      {
+        "attributes": [
+          {
+            "key": "description",
+            "value": {
+              "stringValue": "Port Ambient Sensor"
+            }
+          },
+          {
+            "key": "name",
+            "value": {
+              "stringValue": "Temp2"
+            }
+          }
+        ],
+        "timeUnixNano": "1729113543218000000",
+        "asDouble": 85
+      }
+    ]
+  },
+  "metadata": [
+    {
+      "key": "prometheus.type",
+      "value": {
+        "stringValue": "gauge"
+      }
+    }
+  ]
+}
+```
+
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_platform_environment_temp_current:" >}}
+
+```
+{
+  "name": "nvswitch_platform_environment_temp_current",
+      },
+      {
+        "attributes": [
+          {
+            "key": "description",
+            "value": {
+              "stringValue": "Port Ambient Sensor"
+            }
+          },
+          {
+            "key": "name",
+            "value": {
+              "stringValue": "Temp2"
+            }
+          }
+        ],
+        "timeUnixNano": "1729113543218000000",
+        "asDouble": 85
+      }
+    ]
+  },
+  "metadata": [
+    {
+      "key": "prometheus.type",
+      "value": {
+        "stringValue": "gauge"
+      }
+    }
+  ]
+}
+```
+
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_platform_environment_temp_current:" >}}
+
+```
+{
+  "name": "nvswitch_platform_environment_temp_current",
+  "description": "Current temperature in Centigrade.",
+  "gauge": {
+    "dataPoints": [
+      {
+        "attributes": [
+          {
+            "key": "description",
+            "value": {
+              "stringValue": "Asic Temp Sensor"
+            }
+          },
+          {
+            "key": "name",
+            "value": {
+              "stringValue": "Temp4"
+            }
+          }
+        ],
+        "timeUnixNano": "1729113543218000000",
+        "asDouble": 50
+      },
+      {
+        "attributes": [
+          {
+            "key": "description",
+            "value": {
+              "stringValue": "CPU Core Sensor 0"
+            }
+          },
+          {
+            "key": "name",
+            "value": {
+              "stringValue": "Temp5"
+            }
+          }
+        ],
+        "timeUnixNano": "1729113543218000000",
+        "asDouble": 52
+      },
+      {
+        "attributes": [
+          {
+            "key": "description",
+            "value": {
+              "stringValue": "CPU Core Sensor 1"
+            }
+          },
+          {
+            "key": "name",
+            "value": {
+              "stringValue": "Temp6"
+            }
+          }
+        ],
+        "timeUnixNano": "1729113543218000000",
+        "asDouble": 69
+      },
+      {
+        "attributes": [
+          {
+            "key": "description",
+            "value": {
+              "stringValue": "CPU Core Sensor 2"
+            }
+          },
+          {
+            "key": "name",
+            "value": {
+              "stringValue": "Temp7"
+            }
+          }
+        ],
+        "timeUnixNano": "1729113543218000000",
+        "asDouble": 55
+      },
+      {
+        "attributes": [
+          {
+            "key": "description",
+            "value": {
+              "stringValue": "CPU Core Sensor 3"
+            }
+          },
+          {
+            "key": "name",
+            "value": {
+              "stringValue": "Temp8"
+            }
+          }
+        ],
+        "timeUnixNano": "1729113543218000000",
+        "asDouble": 54
+      },
+      {
+        "attributes": [
+          {
+            "key": "description",
+            "value": {
+              "stringValue": "CPU Core Sensor 4"
+            }
+          },
+          {
+            "key": "name",
+            "value": {
+              "stringValue": "Temp9"
+            }
+          }
+        ],
+        "timeUnixNano": "1729113543218000000",
+        "asDouble": 52
+      },
+      {
+        "attributes": [
+          {
+            "key": "description",
+            "value": {
+              "stringValue": "CPU Core Sensor 5"
+            }
+          },
+          {
+            "key": "name",
+            "value": {
+              "stringValue": "Temp10"
+            }
+          }
+        ],
+        "timeUnixNano": "1729113543218000000",
+        "asDouble": 52
+      },
+      {
+        "attributes": [
+          {
+            "key": "description",
+            "value": {
+              "stringValue": "CPU Package Sensor"
+            }
+          },
+          {
+            "key": "name",
+            "value": {
+              "stringValue": "Temp1"
+            }
+          }
+        ],
+        "timeUnixNano": "1729113543218000000",
+        "asDouble": 69
+      },
+      {
+        "attributes": [
+          {
+            "key": "description",
+            "value": {
+              "stringValue": "Main Board Ambient Sensor"
+            }
+          },
+          {
+            "key": "name",
+            "value": {
+              "stringValue": "Temp3"
+            }
+          }
+        ],
+        "timeUnixNano": "1729113543218000000",
+        "asDouble": 24.687
+      },
+      {
+        "attributes": [
+          {
+            "key": "description",
+            "value": {
+              "stringValue": "PSU1 Temp Sensor"
+            }
+          },
+          {
+            "key": "name",
+            "value": {
+              "stringValue": "PSU1Temp1"
+            }
+          }
+        ],
+        "timeUnixNano": "1729113543218000000",
+        "asDouble": 24.531
+      },
+      {
+        "attributes": [
+          {
+            "key": "description",
+            "value": {
+              "stringValue": "PSU2 Temp Sensor"
+            }
+          },
+          {
+            "key": "name",
+            "value": {
+              "stringValue": "PSU2Temp1"
+            }
+          }
+        ],
+        "timeUnixNano": "1729113543218000000",
+        "asDouble": 0
+      },
+      {
+        "attributes": [
+          {
+            "key": "description",
+            "value": {
+              "stringValue": "Port Ambient Sensor"
+            }
+          },
+          {
+            "key": "name",
+            "value": {
+              "stringValue": "Temp2"
+            }
+          }
+        ],
+        "timeUnixNano": "1729113543218000000",
+        "asDouble": 22.312
+      }
+    ]
+  },
+  "metadata": [
+    {
+      "key": "prometheus.type",
+      "value": {
+        "stringValue": "gauge"
+      }
+    }
+  ]
+}
+```
 
 {{< /expand >}}
 
@@ -2416,142 +2442,776 @@ When you enable layer 3 routing metrics telemetry, the switch exports the follow
 | `nvrouting_rib_count_ospf_ipv6` | Number of IPv6 OSPF routes in the IP routing table. |
 | `nvrouting_rib_nhg_count` | Number of next hop groups in the routing table. |
 
-{{< expand "Example JSON data for BGP peer metrics:" >}}
+{{< expand "Example JSON data for nvrouting_bgp_peer_state:" >}}
 ```
-INFO:root:Received metrics export request
-INFO:root:Metric name: nvrouting_bgp_peer_state
-INFO:root:Metric:
-name: "nvrouting_bgp_peer_state"
-description: "Tracks BGP peer state information (Established:1,Idle:2,Connect:3, Active:4, Opensent:5 )"
-gauge {
-  data_points {
-    start_time_unix_nano: 1738017981273381011
-    time_unix_nano: 1738017981275774678
-    as_int: 1
-    attributes {
-      key: "peer-id"
-      value {
-        string_value: "swp17.100"
+{
+  "name": "nvrouting_bgp_peer_state",
+  "description": "Tracks BGP peer state information (Established:1,Idle:2,Connect:3, Active:4, Opensent:5 )",
+  "gauge" {
+  "data_points" [
+    "start_time_unix_nano": "1738017981273381011",
+    "time_unix_nano": "1738017981275774678",
+    "as_int": "1"
+    "attributes" [
+      "key": "peer-id",
+      "value" {
+        "string_value": "swp17.100"
       }
-    }
-    attributes {
-      key: "state"
-      value {
-        string_value: "Established"
+    ]
+    "attributes" [
+      "key": "state",
+      "value" {
+        "string_value": "Established"
       }
-    }
-    attributes {
-      key: "vrf"
-      value {
-        string_value: "default"
+    ]
+    "attributes" [
+      "key": "vrf",
+      "value" {
+        "string_value": "default"
       }
-    }
+    ]
   }
-  data_points {
-    start_time_unix_nano: 1738017981273381011
-    time_unix_nano: 1738017981275774678
-    as_int: 1
-    attributes {
-      key: "peer-id"
-      value {
-        string_value: "swp17.101"
+  "data_points" {
+    "start_time_unix_nano": "1738017981273381011",
+    "time_unix_nano": "1738017981275774678",
+    "as_int": "1"
+    "attributes" [
+      "key": "peer-id",
+      "value" {
+        "string_value": "swp17.101"
       }
-    }
-    attributes {
-      key: "state"
-      value {
-        string_value: "Established"
+    ]
+    "attributes" [
+      "key": "state",
+      "value" {
+        "string_value": "Established"
       }
-    }
-    attributes {
-      key: "vrf"
-      value {
-        string_value: "default"
+    ]
+    "attributes" [
+      "key": "vrf",
+      "value" {
+        "string_value": "default"
       }
-    }
+    ]
   }
- 
-INFO:root:Metric name: nvrouting_bgp_peer_fsm_established_transitions
-INFO:root:Metric:
-name: "nvrouting_bgp_peer_fsm_established_transitions"
-description: "Tracks BGP peer state transitions to the Established state"
-gauge {
-  data_points {
-    start_time_unix_nano: 1738017981273393225
-    time_unix_nano: 1738017981275785883
-    as_int: 1
-    attributes {
-      key: "peer-id"
-      value {
-        string_value: "swp16.100"
+}
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvrouting_rib_count_bgp_ipv6:" >}}
+
+```
+{
+  "name": "nvrouting_rib_count_bgp_ipv6",
+  "description": "Total Number of ipv6 BGP routes in Zebra",
+  "gauge" {
+    "data_points" {
+      "start_time_unix_nano": "1738016804524747485",
+      "time_unix_nano": "1738016804529163046",
+      "as_int": "2062"
+      "attributes" {
+        "key": "vrf",
+        "value" {
+          "string_value": "vrf2"
+        }
       }
     }
-    attributes {
-      key: "state"
-      value {
-        string_value: "Established"
+    "data_points" {
+      "start_time_unix_nano": "1738016804524747485",
+      "time_unix_nano": "1738016804529163046",
+      "as_int": "2062"
+      "attributes" {
+        "key": "vrf",
+        "value" {
+          "string_value": "vrf6"
+        }
       }
     }
-    attributes {
-      key: "vrf"
-      value {
-        string_value: "default"
-      }
-    }
-  }
-  data_points {
-    start_time_unix_nano: 1738017981273393225
-    time_unix_nano: 1738017981275785883
-    as_int: 1
-    attributes {
-      key: "peer-id"
-      value {
-        string_value: "swp18.101"
-      }
-    }
-    attributes {
-      key: "state"
-      value {
-        string_value: "Established"
-      }
-    }
-    attributes {
-      key: "vrf"
-      value {
-        string_value: "default"
-      }
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvrouting_bgp_peer_fsm_established_transitions:" >}}
+
+```
+{
+    "name": "nvrouting_bgp_peer_fsm_established_transitions",
+    "description": "Tracks BGP peer state transitions to the Established state",
+    "gauge": {
+      "dataPoints": [
+        {
+          "attributes": [
+            {
+              "key": "peer-id",
+              "value": {
+                "stringValue": "2.1.1.1"
+              }
+            },
+            {
+              "key": "state",
+              "value": {
+                "stringValue": "Established"
+              }
+            },
+            {
+              "key": "vrf",
+              "value": {
+                "stringValue": "default"
+              }
+            }
+          ],
+          "startTimeUnixNano": "1745875680082453094",
+          "timeUnixNano": "1745875680086100106",
+          "asInt": "1"
+        }
+      ]
     }
   }
 ```
 {{< /expand >}}
 <br>
-{{< expand "Example JSON data for RIB count metrics:" >}}
+{{< expand "Example JSON data for nvrouting_bgp_peer_rib_adj_in_installed:" >}}
 ```
-name: "nvrouting_rib_count_bgp_ipv6"
-description: "Total Number of ipv6 BGP routes in Zebra"
-gauge {
-  data_points {
-    start_time_unix_nano: 1738016804524747485
-    time_unix_nano: 1738016804529163046
-    as_int: 2062
-    attributes {
-      key: "vrf"
-      value {
-        string_value: "vrf2"
-      }
+{
+"name": "nvrouting_bgp_peer_rib_adj_in_installed",
+"description": "Tracks received prefixes installed post policy",
+"gauge": {
+    "dataPoints": [
+    {
+        "attributes": [
+            {
+            "key": "afi",
+            "value": {
+                "stringValue": "IPv6"
+            }
+            },
+            {
+            "key": "afi-safi-name",
+            "value": {
+                "stringValue": "IPV6_UNICAST"
+            }
+            },
+            {
+            "key": "peer-id",
+            "value": {
+                "stringValue": "20.2.0.1"
+            }
+            },
+            {
+            "key": "safi",
+            "value": {
+                "stringValue": "unicast"
+            }
+            },
+            {
+            "key": "vrf",
+            "value": {
+                "stringValue": "default"
+            }
+            }
+        ],
+        "startTimeUnixNano": "1745875260035122804",
+        "timeUnixNano": "1745875260038241158",
+        "asInt": "6"
+        },
+        {
+        "attributes": [
+            {
+            "key": "afi",
+            "value": {
+                "stringValue": "l2vpn"
+            }
+            },
+            {
+            "key": "afi-safi-name",
+            "value": {
+                "stringValue": "L2VPN_EVPN"
+            }
+            },
+            {
+            "key": "peer-id",
+            "value": {
+                "stringValue": "20.2.0.1"
+            }
+            },
+            {
+            "key": "safi",
+            "value": {
+                "stringValue": "evpn"
+            }
+            },
+            {
+            "key": "vrf",
+            "value": {
+                "stringValue": "default"
+            }
+            }
+        ],
+        "startTimeUnixNano": "1745875260035122804",
+        "timeUnixNano": "1745875260038241158",
+        "asInt": "0"
+        }
+    ]
+}
+}
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvrouting_bgp_peer_rib_adj_in:" >}}
+```
+{
+"name": "nvrouting_bgp_peer_rib_adj_in",
+"description": "Tracks received prefixes post policy",
+"gauge": {
+    "dataPoints": [
+    {
+        "attributes": [
+        {
+            "key": "afi",
+            "value": {
+            "stringValue": "IPv4"
+            }
+        },
+        {
+            "key": "afi-safi-name",
+            "value": {
+            "stringValue": "IPV4_UNICAST"
+            }
+        },
+        {
+            "key": "peer-id",
+            "value": {
+            "stringValue": "20.1.0.1"
+            }
+        },
+        {
+            "key": "safi",
+            "value": {
+            "stringValue": "unicast"
+            }
+        },
+        {
+            "key": "vrf",
+            "value": {
+            "stringValue": "default"
+            }
+        }
+        ],
+        "startTimeUnixNano": "1745875680082504240",
+        "timeUnixNano": "1745875680086131030",
+        "asInt": "9"
+    },
+    {
+        "attributes": [
+        {
+            "key": "afi",
+            "value": {
+            "stringValue": "IPv6"
+            }
+        },
+        {
+            "key": "afi-safi-name",
+            "value": {
+            "stringValue": "IPV6_UNICAST"
+            }
+        },
+        {
+            "key": "peer-id",
+            "value": {
+            "stringValue": "20.1.0.1"
+            }
+        },
+        {
+            "key": "safi",
+            "value": {
+            "stringValue": "unicast"
+            }
+        },
+        {
+            "key": "vrf",
+            "value": {
+            "stringValue": "default"
+            }
+        }
+        ],
+        "startTimeUnixNano": "1745875680082504240",
+        "timeUnixNano": "1745875680086131030",
+        "asInt": "9"
     }
-  }
-  data_points {
-    start_time_unix_nano: 1738016804524747485
-    time_unix_nano: 1738016804529163046
-    as_int: 2062
-    attributes {
-      key: "vrf"
-      value {
-        string_value: "vrf6"
-      }
+    ]
+}
+}
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvrouting_bgp_peer_rib_adj_out_advertised:" >}}
+```
+{
+"name": "nvrouting_bgp_peer_rib_adj_out_advertised",
+"description": "Tracks route count advertised per BGP peer with afi and safi as attributes",
+"gauge": {
+    "dataPoints": [
+    {
+        "attributes": [
+        {
+            "key": "afi",
+            "value": {
+            "stringValue": "IPv4"
+            }
+        },
+        {
+            "key": "afi-safi-name",
+            "value": {
+            "stringValue": "IPV4_UNICAST"
+            }
+        },
+        {
+            "key": "peer-id",
+            "value": {
+            "stringValue": "20.2.0.1"
+            }
+        },
+        {
+            "key": "safi",
+            "value": {
+            "stringValue": "unicast"
+            }
+        },
+        {
+            "key": "vrf",
+            "value": {
+            "stringValue": "default"
+            }
+        }
+        ],
+        "startTimeUnixNano": "1745875680082526528",
+        "timeUnixNano": "1745875680086148380",
+        "asInt": "9"
+    },
+    {
+        "attributes": [
+        {
+            "key": "afi",
+            "value": {
+            "stringValue": "l2vpn"
+            }
+        },
+        {
+            "key": "afi-safi-name",
+            "value": {
+            "stringValue": "L2VPN_EVPN"
+            }
+        },
+        {
+            "key": "peer-id",
+            "value": {
+            "stringValue": "2.1.1.2"
+            }
+        },
+        {
+            "key": "safi",
+            "value": {
+            "stringValue": "evpn"
+            }
+        },
+        {
+            "key": "vrf",
+            "value": {
+            "stringValue": "default"
+            }
+        }
+        ],
+        "startTimeUnixNano": "1745875680082526528",
+        "timeUnixNano": "1745875680086148380",
+        "asInt": "21610"
     }
-  }
+    ]
+}
+}
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvrouting_bgp_peer_rx_updates:" >}}
+```
+{
+"name": "nvrouting_bgp_peer_rx_updates",
+"description": "Tracks total number of BGP received packets",
+"gauge": {
+    "dataPoints": [
+    {
+        "attributes": [
+        {
+            "key": "peer-id",
+            "value": {
+            "stringValue": "2.1.1.1"
+            }
+        },
+        {
+            "key": "state",
+            "value": {
+            "stringValue": "Established"
+            }
+        },
+        {
+            "key": "vrf",
+            "value": {
+            "stringValue": "default"
+            }
+        }
+        ],
+        "startTimeUnixNano": "1745875680082484874",
+        "timeUnixNano": "1745875680086118678",
+        "asInt": "16702"
+    }
+    ]
+}
+}
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvrouting_bgp_peer_socket_in_queue:" >}}
+```
+{
+"name": "nvrouting_bgp_peer_socket_in_queue",
+"description": "Tracks total number of BGP messages enqueued into InQ buffer",
+"gauge": {
+    "dataPoints": [
+        {
+            "attributes": [
+            {
+                "key": "peer-id",
+                "value": {
+                "stringValue": "20.0.0.1"
+                }
+            },
+            {
+                "key": "state",
+                "value": {
+                "stringValue": "Established"
+                }
+            },
+            {
+                "key": "vrf",
+                "value": {
+                "stringValue": "default"
+                }
+            }
+            ],
+            "startTimeUnixNano": "1745875680082467806",
+            "timeUnixNano": "1745875680086105359",
+            "asInt": "0"
+        }
+        ]
+    }
+    }
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvrouting_bgp_peer_socket_out_queue:" >}}
+```
+{
+"name": "nvrouting_bgp_peer_socket_out_queue",
+"description": "Tracks total number of BGP messages enqueued into OutQ buffer",
+"gauge": {
+    "dataPoints": [
+    {
+        "attributes": [
+        {
+            "key": "peer-id",
+            "value": {
+            "stringValue": "2.1.1.1"
+            }
+        },
+        {
+            "key": "state",
+            "value": {
+            "stringValue": "Established"
+            }
+        },
+        {
+            "key": "vrf",
+            "value": {
+            "stringValue": "default"
+            }
+        }
+        ],
+        "startTimeUnixNano": "1745875680082473745",
+        "timeUnixNano": "1745875680086109500",
+        "asInt": "0"
+    }
+    ]
+}
+}
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvrouting_bgp_peer_state:" >}}
+```
+{
+"name": "nvrouting_bgp_peer_state",
+"description": "Tracks BGP peer state information (Established:1,Idle:2,Connect:3, Active:4, Opensent:5 )",
+"gauge": {
+    "dataPoints": [
+    {
+        "attributes": [
+        {
+            "key": "peer-id",
+            "value": {
+            "stringValue": "20.0.0.1"
+            }
+        },
+        {
+            "key": "state",
+            "value": {
+            "stringValue": "Established"
+            }
+        },
+        {
+            "key": "vrf",
+            "value": {
+            "stringValue": "default"
+            }
+        }
+        ],
+        "startTimeUnixNano": "1745875680082426701",
+        "timeUnixNano": "1745875680086082560",
+        "asInt": "1"
+    }
+    ]
+}
+}
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvrouting_bgp_peer_total_msgs_recvd:" >}}
+```
+{
+"name": "nvrouting_bgp_peer_total_msgs_recvd",
+"description": "Tracks the total number of BGP messages received per BGP peer",
+"gauge": {
+    "dataPoints": [
+    {
+        "attributes": [
+        {
+            "key": "peer-id",
+            "value": {
+            "stringValue": "2.1.1.2"
+            }
+        },
+        {
+            "key": "vrf",
+            "value": {
+            "stringValue": "default"
+            }
+        }
+        ],
+        "startTimeUnixNano": "1745875680082495292",
+        "timeUnixNano": "1745875680086126857",
+        "asInt": "17160"
+    }
+    ]
+}
+}
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvrouting_bgp_peer_total_msgs_sent:" >}}
+```
+{
+"name": "nvrouting_bgp_peer_total_msgs_sent",
+"description": "Tracks the total number of BGP messages sent per BGP peer",
+"gauge": {
+    "dataPoints": [
+    {
+        "attributes": [
+        {
+            "key": "peer-id",
+            "value": {
+            "stringValue": "20.1.0.1"
+            }
+        },
+        {
+            "key": "vrf",
+            "value": {
+            "stringValue": "default"
+            }
+        }
+        ],
+        "startTimeUnixNano": "1745875680082489967",
+        "timeUnixNano": "1745875680086122997",
+        "asInt": "26388"
+    }
+    ]
+}
+}
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvrouting_bgp_peer_tx_updates:" >}}
+```
+{
+"name": "nvrouting_bgp_peer_tx_updates",
+"description": "Tracks total number of BGP sent packets",
+"gauge": {
+    "dataPoints": [
+    {
+        "attributes": [
+        {
+            "key": "peer-id",
+            "value": {
+            "stringValue": "2.1.1.1"
+            }
+        },
+        {
+            "key": "state",
+            "value": {
+            "stringValue": "Established"
+            }
+        },
+        {
+            "key": "vrf",
+            "value": {
+            "stringValue": "default"
+            }
+        }
+        ],
+        "startTimeUnixNano": "1745875680082478563",
+        "timeUnixNano": "1745875680086114010",
+        "asInt": "26220"
+    }
+    ]
+}
+}
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvrouting_rib_count:" >}}
+```
+{
+"name": "nvrouting_rib_count",
+"description": "Tracks RIB counts with attributes for BGP, connected, PBR, and AF",
+"gauge": {
+    "dataPoints": [
+    {
+        "attributes": [
+            {
+            "key": "AF",
+            "value": {
+                "stringValue": "ipv6"
+            }
+            },
+            {
+            "key": "type",
+            "value": {
+                "stringValue": "total"
+            }
+            },
+            {
+            "key": "vrf",
+            "value": {
+                "stringValue": "vrf5"
+            }
+            }
+        ],
+        "startTimeUnixNano": "1745875680327436353",
+        "timeUnixNano": "1745875680344618037",
+        "asInt": "806"
+        },
+        {
+        "attributes": [
+            {
+            "key": "AF",
+            "value": {
+                "stringValue": "ipv4"
+            }
+            },
+            {
+            "key": "type",
+            "value": {
+                "stringValue": "kernel"
+            }
+            },
+            {
+            "key": "vrf",
+            "value": {
+                "stringValue": "vrf7"
+            }
+            }
+        ],
+        "startTimeUnixNano": "1745875680327436353",
+        "timeUnixNano": "1745875680344618037",
+        "asInt": "1"
+        },
+        {
+        "attributes": [
+            {
+            "key": "AF",
+            "value": {
+                "stringValue": "ipv6"
+            }
+            },
+            {
+            "key": "type",
+            "value": {
+                "stringValue": "bgp"
+            }
+            },
+            {
+            "key": "vrf",
+            "value": {
+                "stringValue": "vrf3"
+            }
+            }
+        ],
+        "startTimeUnixNano": "1745875680327436353",
+        "timeUnixNano": "1745875680344618037",
+        "asInt": "603"
+        },
+        {
+        "attributes": [
+            {
+            "key": "AF",
+            "value": {
+                "stringValue": "ipv4"
+            }
+            },
+            {
+            "key": "type",
+            "value": {
+                "stringValue": "connected"
+            }
+            },
+            {
+            "key": "vrf",
+            "value": {
+                "stringValue": "vrf33"
+            }
+            }
+        ],
+        "startTimeUnixNano": "1745875680327436353",
+        "timeUnixNano": "1745875680344618037",
+        "asInt": "1"
+        }
+    ]
+}
+}
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvrouting_rib_nhg_count:" >}}
+```
+{
+"name": "nvrouting_rib_nhg_count",
+"description": "Tracks next-hop group counts globally",
+"gauge": {
+    "dataPoints": [
+    {
+        "startTimeUnixNano": "1745875680327449169",
+        "timeUnixNano": "1745875680345545247",
+        "asInt": "1725"
+    }
+    ]
+}
+}
 ```
 {{< /expand >}}
 

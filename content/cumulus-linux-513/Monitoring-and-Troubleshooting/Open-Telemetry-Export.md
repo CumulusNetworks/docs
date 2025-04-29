@@ -1314,7 +1314,7 @@ The switch collects and exports the following additional interface statistics wh
 {{< /tab >}}
 {{< /tabs >}}
 
-### Interface Example JSON
+#### Interface Example JSON
 
 {{< expand "Example JSON data for nvswitch_interface_oper_state:" >}}
 ```
@@ -3037,11 +3037,10 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
   ]
 }
 ```
+{{< /expand >}}
 
 #### Transceiver Example JSON
 
-{{< /expand >}}
-<br>
 {{< expand "Example JSON data for nvswitch_platform_transceiver_info:" >}}
 
 ```

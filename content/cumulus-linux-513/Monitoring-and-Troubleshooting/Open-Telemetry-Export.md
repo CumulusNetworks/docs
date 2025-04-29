@@ -1300,16 +1300,12 @@ When you enable LLDP statistic telemetry, the switch exports the following stati
 | Name | Description |
 |----- | ----------- |
 | `nvswitch_lldp_chassis_info` | LLDP chassis information. |
-| `nvswitch_lldp_neighbor_info` | LLDP neighbor information. |
-| `nvswitch_lldp_neighbor_age` | LLDP neighbor age information. |
-| `nvswitch_lldp_neighbor_ttl` | LLDP neighbor port TTL. |
-| `nvswitch_lldp_neighbor_capabilities` | LLDP neighbor capabilities. |
-| `nvswitch_lldp_state_chassis-id-type` | |
-| `nvswitch_lldp_interfaces_interface_neighbors_neighbor_state_port-id` | |
-| `nvswitch_lldp_interfaces_interface_neighbors_neighbor_state_chassis-id` | |
-| `nvswitch_lldp_interfaces_interface_neighbors_neighbor_state_chassis-id-type` | |
-| `nvswitch_lldp_interfaces_interface_neighbors_neighbor_state_system-name` | |
-| `nvswitch_lldp_interfaces_interface_neighbors_neighbor_state_system-description` | |
+| `nvswitch_lldp_chassis_capabilities` | LLDP Chassis Capabilities as a bitmap. The capabilities are defined in IEEE 802.1AB.|
+| `nvswitch_lldp_neighbor_age` | LLDP neighbor age information in seconds.|
+| `nvswitch_lldp_neighbor_capabilities` | |
+| `nvswitch_lldp_neighbor_info` | LLDP neighbor information.|
+| `nvswitch_lldp_neighbor_ttl` | LLDP neighbor port TTL in seconds.|
+| `nvswitch_lldp_neighbor_management_address-info` | LLDP neighbor management address information.|
 
 {{< expand "Example JSON data for nvswitch_lldp_chassis_info:" >}}
 ```
@@ -2592,8 +2588,6 @@ If you enable `systemd` process-level statistics, the switch collects the follow
 | `nvswitch_systemd_unit_process_resident_memory_usage_bytes` | The resident memory usage of the process (in bytes).|
 | `nvswitch_systemd_unit_process_shared_memory_usage_bytes` | The shared memory usage of the process (in bytes).|
 
-{{< /expand >}}
-<br>
 {{< expand "Example JSON data for nvswitch_systemd_unit_cpu_usage_seconds:" >}}
 
 ```

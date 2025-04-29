@@ -14,7 +14,7 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 
 ### Platforms
 
-- NVIDIA SN5600D (400G Spectrum-4 DC version)
+- NVIDIA SN5600D (800G Spectrum-4 DC version)
 
 ### New Features and Enhancements
 
@@ -22,21 +22,19 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 - {{<link url="Equal-Cost-Multipath-Load-Sharing/#enable-adaptive-routing" text="Enabling adaptive routing no longer restarts switchd">}}
 - {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="Optimized upgrade supports warmboot">}}
 - {{<link url="802.1X-Interfaces/#ignore-reauthorization-timeout" text="802.1 option to keep the port in the current state when the RADIUS server is unreachable">}}
-- {{<link url="Monitoring-System-Hardware/#nvue-commands" text="Updated system health command output">}}
 - {{<link url="DHCP-Servers/#multiple-static-ip-address-assignments" text="Support two DHCP static IP address assignments per port for a single host">}}
 - {{<link url="Syslog/#configure-filters" text="syslog log filters">}}
 - {{<link title="Erase all Data from the Switch" text="Erase all data from the switch">}} (Beta)
-- {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#amber-phy-health-management" text="Show SNR information for transceivers">}}
+- {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#amber-phy-health-management" text="Show SNR information for OSFP 100G per lane (NDR) capable transceivers">}}
 - {{<link url="In-Service-System-Upgrade-ISSU/#maintenance-mode" text="New maintenance mode commands">}}
-- {{<link url="RADIUS-AAA/#optional-radius-configuration" text="RADIUS multiple VRF support">}}
-- {{<link url="RADIUS-AAA/#optional-radius-configuration" text="RADIUS require-message-authenticate attribute">}}
+- {{<link url="RADIUS-AAA/#optional-radius-configuration" text="RADIUS multiple VRF support">}} and {{<link url="RADIUS-AAA/#optional-radius-configuration" text="RADIUS require-message-authenticate attribute">}}
 - {{<link url="SSH-for-Remote-Access/#message-of-the-day" text="Message of the day shows system reboot cause and health information">}}
 - Telemetry
-  - {{<link url="gNMI-Streaming" text="gNMI streaming">}}
-  - {{<link url="Open-Telemetry-Export/#adaptive-routing-statistics" text="OTEL Adaptive routing statistics">}}
+  - {{<link url="gNMI-Streaming/#gnmi-with-cumulus-linux" text="gNMI streaming with Cumulus Linux">}}
+  - {{<link url="Open-Telemetry-Export/#adaptive-routing-statistics" text="OTEL adaptive routing statistics">}}
   - {{<link url="Open-Telemetry-Export/#lldp-statistics" text="OTEL LLDP metrics">}}
-  - {{<link url="Open-Telemetry-Export/#software-statistics" text="OTEL software metrics">}}
-  - {{<link url="Open-Telemetry-Export/#platform-statistics" text="OTEL Transceiver statistics">}}
+  - {{<link url="Open-Telemetry-Export/#software-statistics" text="OTEL systemd software metrics">}}
+  - {{<link url="Open-Telemetry-Export/#platform-statistics" text="OTEL transceiver statistics">}}
   - {{<link url="Open-Telemetry-Export/#temporality-mode" text="OTEL temporality mode for histogram metrics">}}
 - NVUE
   - {{<link url="NVUE-CLI/#list-directory-contents" text="Command to list directory contents">}}
@@ -45,9 +43,11 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
   - {{<link url="System-Power/#power-cycle" text="Command to power cycle the switch">}}
   - {{<link url="SSH-for-Remote-Access/#certificate-based-authentication" text="SSH certificate-based authentication">}}
   - {{<link url="User-Accounts/#default-roles" text="Terminate a user session when you change the user role">}}
+  - {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="CRL support">}}
   - {{<link url="NVUE-CLI/#replace-and-patch-a-pending-configuration" text="Replace and patch against a plain text file of nv set and nv unset commands">}}
   - {{<link url="NVUE-CLI/#view-differences-between-configurations" text="nv config diff --verbose option ">}} to see both previous and new configuration
   - {{<link url="Troubleshooting-BGP/#show-bgp-route-information" text="Filter BGP received routes by neighbor">}} and {{<link url="Troubleshooting-EVPN/#filter-evpn-routes-by-neighbor-rd-and-route-type" text="filter EVPN recieved routes by neighbor, RD and route type">}}
+  - {{<link url="Monitoring-System-Hardware/#nvue-commands" text="Updated system health command output">}}
   - {{< expand "Changed NVUE Commands" >}}
 | Cumulus Linux 5.13 | Cumulus Linux 12 and Earlier |
 | --------------- |---------------------------------------|
@@ -55,14 +55,10 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 | `nv set maintenance unit all-protocols mode disabled` | `nv action disable system maintenance mode` |
 | `nv set maintenance unit all-interfaces mode enabled` | `nv action enable system maintenance ports` |
 | `nv set maintenance unit all-interfaces mode disabled` | `nv action disable system maintenance ports` |
-| `nv set system lldp` | `nv set service lldp` |
-| `nv show system lldp` | `nv show service lldp` |
 | `nv set system syslog server <server-id>` | `nv set service syslog <vrf> server <server-id>`|
 | `nv set system syslog server <server-id> port <port>` | `nv set service syslog <vrf> server <server-id> port <port>`|
 | `nv set system syslog server <server-id> protocol <protocol>` | `nv set service syslog <vrf> server <server-id> protocol <protocol>`|
 | `nv show system syslog`| `nv show service syslog`|
-| `nv show system` | `build` and `product-release` fields removed from output.|
-| `nv show system`| `build` and `product-release` fields removed from output. |
 | `nv show system version` | Output includes `base-os` and `product-release` fields.|
 | `nv show system version packages installed` | `nv show platform software`|
 | `nv show --output native`| `nv show --output raw`|
@@ -90,9 +86,6 @@ nv show service ptp <instance-id> force-version
 nv show platform software
 nv show platform software installed
 nv show platform software installed <installed-id>
-nv show system health
-nv show system health brief
-nv show system health detail
 nv show system maintenace
 ```
 {{< /expand >}}
@@ -123,7 +116,6 @@ nv show system ssh-server trusted-ca-keys
 nv show system ssh-server trusted-ca-keys <ssh-trusted-ca-key-id>
 nv show system syslog
 nv show system syslog format
-nv show system syslog format welf
 nv show system syslog server
 nv show system syslog server <server-id>
 nv show system syslog server <server-id> selector
@@ -358,11 +350,11 @@ nv unset system telemetry stats-group <stats-group-id> lldp sample-interval
 
 ```
 nv action erase system disk 
-nv action generate file-hash md5 <filename>
-nv action generate file-hash sha1 <filename>
-nv action generate file-hash sha224 <filename>
-nv action generate file-hash sha256 <filename>
-nv action generate file-hash sha512 <filename>
+nv action generate system file-hash md5 <filename>
+nv action generate system file-hash sha1 <filename>
+nv action generate system file-hash sha224 <filename>
+nv action generate system file-hash sha256 <filename>
+nv action generate system file-hash sha512 <filename>
 nv action import system security crl
 nv action delete system security crl
 nv action list system file-path <path>
@@ -376,6 +368,19 @@ nv action power-cycle system
 ## Release Considerations
 
 Review the following considerations before you upgrade to Cumulus Linux 5.13.
+
+### Upgrade Requirements
+
+You can use {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="optimized image upgrade">}} to upgrade the switch to Cumulus Linux 5.13 from Cumulus Linux 5.11.1 and later.
+
+You can use {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.13, from the following releases:
+- Cumulus Linux 5.12.1
+- Cumulus Linux 5.12.0
+- Cumulus Linux 5.11.1
+- Cumulus Linux 5.11.0
+- Cumulus Linux 5.9.2 (<span class="a-tooltip">[LTS](## "Long-Term Support")</span>) on any Spectrum 1, Spectrum-2, and Spectrum-3 switch; You **cannot** package upgrade from Cumulus Linux 5.9.2 (LTS) on a Spectrum-4 or later switch.
+
+To upgrade to Cumulus Linux 5.13 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="ONIE">}}.
 
 ### Linux Configuration Files Overwritten
 

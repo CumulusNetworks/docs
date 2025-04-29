@@ -203,7 +203,7 @@ cumulus@leaf01:~$ nv config apply
 ```
 
 {{%notice note%}}
-Instead of 0.0.0.0/0, you can specify `default` or `default6`.
+Use either `default` or 0.0.0.0/0 for IPv4, and either `default6` or ::/0 for IPv6. `default` and 0.0.0.0/0 for IPv4, and `default6` and ::/0 for IPv6 are functionally equivalent.
 {{%/notice%}}
 
 {{< /tab >}}

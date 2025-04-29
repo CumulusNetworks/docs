@@ -671,20 +671,23 @@ To show all the current SSH server configuration settings, run the NVUE `nv show
 
 ```
 cumulus@switch:~$ nv show system ssh-server
-                             applied          
----------------------------  -----------------
-authentication-retries       6               
-login-timeout                120            
-inactive-timeout             0           
-permit-root-login            prohibit-password
-max-sessions-per-connection  10 
-state                        enabled       
-strict                       enabled
-login-record-period          20          
-max-unauthenticated                                              
-  session-count              100         
-  throttle-percent           30            
-  throttle-start             10
+                             operational  applied          
+---------------------------  -----------  -----------------
+authentication-retries       6            6                
+login-timeout                120          120              
+inactive-timeout             15           15               
+permit-root-login            enabled      prohibit-password
+max-sessions-per-connection  10           10               
+state                        enabled      enabled          
+strict                       enabled      enabled          
+login-record-period          1            1                
+pka-only                     disabled     disabled         
+[vrf]                                                      
+max-unauthenticated                                        
+  session-count              100          100              
+  throttle-percent           30           30               
+  throttle-start             10           10               
+[port]                       22           22
 ```
 
 To show the current number of active SSH sessions, run the NVUE `nv show system ssh-server active-sessions` command or the Linux `w` command:

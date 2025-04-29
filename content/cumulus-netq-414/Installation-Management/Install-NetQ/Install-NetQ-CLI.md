@@ -152,7 +152,45 @@ Follow these steps to install the NetQ CLI on a switch or host.
 
 {{<tabs "Install NetQ CLI">}}
 
-{{<tab "Cumulus Linux">}}
+{{<tab "Cumulus Linux 5.9.0 or later">}}
+
+Cumulus Linux 4.4 and later includes the `netq-apps` package by default. To upgrade the NetQ CLI to the latest version:
+
+1. Add the repository by uncommenting or adding the following line in `/etc/apt/sources.list`:
+
+```
+cumulus@switch:~$ sudo nano /etc/apt/sources.list
+...
+deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-d12 netq-latest
+...
+```
+
+{{<notice tip>}}
+You can specify a NetQ CLI version in the repository configuration. The following example shows the repository configuration to retrieve NetQ CLI v4.14: <pre>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-d12 netq-4.14</pre>
+{{</notice>}}
+
+
+2. Update the local `apt` repository and install the software on the switch.
+
+    ```
+    cumulus@switch:~$ sudo apt-get update
+    cumulus@switch:~$ sudo apt-get install netq-apps
+    ```
+
+3. Verify you have the correct version of the CLI.
+
+    ```
+    cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
+    ```
+You should see version 4.14.0 and updated 51 in the results: netq-apps_<strong>4.14.0</strong>-cld12u<strong>51</strong>~1744815975.8dbbbd20c_amd64.deb
+
+4. Continue with NetQ CLI configuration in the next section.
+
+{{</tab>}}
+
+end here
+
+{{<tab "Cumulus Linux 4.4.0 to 5.8.0">}}
 
 Cumulus Linux 4.4 and later includes the `netq-apps` package by default. To upgrade the NetQ CLI to the latest version:
 
@@ -182,14 +220,16 @@ You can specify a NetQ CLI version in the repository configuration. The followin
     ```
     cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
-<!-- vale off -->
-{{<netq-install/cli-version version="4.14" opsys="cl">}}
-<!-- vale on -->
+You should see version 4.14.0 and update 51 in the results: 
+
+- Cumulus Linux 5.8.0 or earlier, ARM platforms: netq-apps_<strong>4.14.0</strong>-cl4u<strong>51</strong>~11744815873.8dbbbd20c_armel.deb
+- Cumulus Linux 5.8.0 or earlier, amd64 platforms: netq-apps_<strong>4.14.0</strong>-cl4u<strong>51</strong>~1744816035.8dbbbd20c_amd64.deb
+
 4. Continue with NetQ CLI configuration in the next section.
 
 {{</tab>}}
 
-{{<tab "Ubuntu">}}
+{{<tab "Ubuntu 22.04">}}
 
 1.  Install the CLI software on the server.
 

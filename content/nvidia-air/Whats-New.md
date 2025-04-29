@@ -9,10 +9,14 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 
 ## April 2025
 <!-- Air:WhatsNew -->
+### 82.2025.0424-011
+- Added functionality for handling OOB enablement and usage of reserved eth0 interfaces
+- Added loading spinner when deleting nodes on canvas
+<!-- Air:WhatsNew -->
+
 ### 82.2025.0422-011
 - Added ability to configure multiple breakout ports concurrently
 - Fixed an issue when disabling OOB after modifying node ports
-<!-- Air:WhatsNew -->
 
 ### 82.2025.0410-011
 - Added the ability to update multiple nodes concurrently

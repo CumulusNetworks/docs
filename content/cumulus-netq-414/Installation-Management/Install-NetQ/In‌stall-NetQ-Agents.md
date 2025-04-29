@@ -29,8 +29,61 @@ If your network uses a proxy server for external connections, you should first {
 {{</notice>}}
 
 {{<tabs "Prepare Agent Install">}}
+{{<tab "Cumulus Linux 5.9.0 or later">}}
 
-{{<tab "Cumulus Linux">}}
+<!-- vale off -->
+### Verify NTP Is Installed and Configured
+<!-- vale on -->
+
+Verify that {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} is running on the switch as outlined in the steps below. The switch system clock must be synchronized with the NetQ appliance to enable useful statistical analysis. Alternatively, you can configure {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Precision Time Protocol-PTP.md" text="PTP">}} for time synchronization.
+
+```
+cumulus@switch:~$ sudo systemctl status ntp
+[sudo] password for cumulus:
+● ntp.service - LSB: Start NTP daemon
+        Loaded: loaded (/etc/init.d/ntp; bad; vendor preset: enabled)
+        Active: active (running) since Fri 2018-06-01 13:49:11 EDT; 2 weeks 6 days ago
+          Docs: man:systemd-sysv-generator(8)
+        CGroup: /system.slice/ntp.service
+                └─2873 /usr/sbin/ntpd -p /var/run/ntpd.pid -g -c /var/lib/ntp/ntp.conf.dhcp -u 109:114
+```
+
+If NTP is not installed, install and configure it before continuing.  
+
+If NTP is not running:
+
+- Verify the IP address or hostname of the NTP server in the `/etc/ntp.conf` file, and then
+- Reenable and start the NTP service using the `systemctl [enable|start] ntp` commands
+
+   {{<notice tip>}}
+If you are running NTP in your out-of-band management network with VRF, specify the VRF (<code>ntp@&lt;vrf-name&gt;</code> versus just <code>ntp</code>) in the above commands.
+   {{</notice>}}
+### Obtain NetQ Agent Software Package
+
+Cumulus Linux 4.4 and later includes the `netq-agent` package by default. To upgrade the NetQ Agent to the latest version: 
+
+1. Add the repository by uncommenting or adding the following line in `/etc/apt/sources.list`:
+
+```
+cumulus@switch:~$ sudo nano /etc/apt/sources.list
+...
+deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-d12 netq-latest
+...
+```
+
+{{<notice tip>}}
+You can specify a NetQ Agent version in the repository configuration. The following example shows the repository configuration to retrieve NetQ Agent 4.14: <pre>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-d12 netq-4.14</pre>
+{{</notice>}}
+
+2. Add the `apps3.cumulusnetworks.com` authentication key to Cumulus Linux:
+
+```
+cumulus@switch:~$ wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | sudo apt-key add -
+```
+
+{{</tab>}}
+
+{{<tab "Cumulus Linux 4.4.0 to 5.8.0">}}
 
 <!-- vale off -->
 ### Verify NTP Is Installed and Configured
@@ -84,7 +137,7 @@ cumulus@switch:~$ wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-app
 
 {{</tab>}}
 
-{{<tab "Ubuntu">}}
+{{<tab "Ubuntu 22.04">}}
 
 ### Verify Service Package Versions
 
@@ -184,12 +237,12 @@ The use of <code>netq-latest</code> in these examples means that a <code>get</co
 
 
 
-Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-focal.list` and add the following line:
+Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-jammy.list` and add the following line:
 
 ```
-root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-focal.list
+root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-jammy.list
 ...
-deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb focal netq-latest
+deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb jammy netq-latest
 ...
 ```
     {{<notice note>}}

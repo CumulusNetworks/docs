@@ -1981,6 +1981,18 @@ You can safely ignore this warning.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4423336</td>
+<td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
+<td>5.9.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423335</td>
+<td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
+<td>5.9.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4281099</td>
 <td>When you bring STP down, then up on the primary MLAG peer, the STP state machine restarts and the peerlink operational edge resets. As a result, the secondary MLAG peer ends up in an STP discarding state. To work around this issue, restart the {{clagd}} service.</td>
 <td>5.8.0-5.11.1</td>
@@ -2211,6 +2223,18 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <td>With Optimized Multicast Flooding (OMF), when you unset multiple multicast router ports in a single commit, multicast traffic still floods one of the ports. To work around this issue, unset multicast router ports one by one instead of in a single commit.</td>
 <td>5.9.0-5.9.1</td>
 <td>5.9.2-5.12.1, 5.10.0-5.12.1</td>
+</tr>
+<tr>
+<td>3900813</td>
+<td>When you configure or edit a large or extended BGP community list with NVUE, {{nv config apply}} might return an error and {{frr-reload}} might fail with the following message in {{/var/log/frr/frr-reload.log}}:
+{
+2025-04-04 18:15:44,745 WARNING: frr-reload.py failed due to
+vtysh (exec file) exited with status 13
+}
+
+You can safely ignore this error as FRR accepts and applies the new configuration. To work around this issue, apply the same configuration with the {{nv config apply -y}} command. The new configuration will correctly show in both NVUE and FRR.</td>
+<td>5.9.0-5.9.2</td>
+<td>5.10.0-5.12.1</td>
 </tr>
 <tr>
 <td>3897227</td>

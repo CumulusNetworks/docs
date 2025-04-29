@@ -386,17 +386,22 @@ Prefix           PathCount  MultipathCount  DestFlags
 To filter the routes by a specific neighbor (numbered or unnumbered), use the `--filter=”neighbor=<neighbor>"` option. Run the `nv show vrf <vrf> router bgp address-family ipv4-unicast route --filter=”neighbor=<neighbor>"` command for IPv4 or the `nv show vrf <vrf> router bgp address-family ipv6-unicast route --filter=”neighbor=<neighbor>"` for IPv6.
 
 ```
-cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4-unicast route --filter="neighbor=swp51"  
-PathCount - Number of paths present for the prefix, MultipathCount - Number of 
-paths that are part of the ECMP, DestFlags - * - bestpath-exists, w - fib-wait- 
-for-install, s - fib-suppress, i - fib-installed, x - fib-install-failed 
+cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4-unicast route --filter="neighbor=swp51"
 
-Prefix              PathCount  MultipathCount  DestFlags 
-------------------  ---------  --------------  --------- 
-10.10.10.2/24        1          1               * 
-10.10.10.3/24        1          1               * 
-10.10.10.4/24        1          1               * 
-...
+PathCount - Number of paths present for the prefix, MultipathCount - Number of
+paths that are part of the ECMP, DestFlags - * - bestpath-exists, w - fib-wait-
+for-install, s - fib-suppress, i - fib-installed, x - fib-install-failed
+
+Prefix           PathCount  MultipathCount  DestFlags
+---------------  ---------  --------------  ---------
+10.0.1.34/32     1          1                        
+10.0.1.255/32    1          1               *        
+10.10.10.2/32    1          0                        
+10.10.10.3/32    1          1                        
+10.10.10.4/32    1          1                        
+10.10.10.63/32   1          1               *        
+10.10.10.64/32   1          1               *        
+10.10.10.101/32  1          1               *
 ```
 
 To show information about a specific route in the local routing table, run the `nv show vrf <vrf> router bgp address-family ipv4-unicast route <route>` for IPv4 or `nv show vrf <vrf> router bgp address-family ipv6-unicast route <route>` for IPv6.

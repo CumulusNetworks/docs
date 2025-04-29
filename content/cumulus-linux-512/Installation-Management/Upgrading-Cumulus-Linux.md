@@ -154,6 +154,7 @@ Cumulus Linux provides two different ways to upgrade the switch with a new image
 - **Optimized image upgrade** uses two partitions to upgrade the image with just one reboot cycle. With two partitions on the switch, the current image boots from one partition, from which the image upgrade triggers. After detecting the running partition and checking if the second partition is available for installation, optimized upgrade starts to stage the installation in the second partition (copying the image, preparing the partition, unpacking the new image, and tuning and finalizing the new partition for the new image). The subsequent boot occurs from the second partition.
 
   - The switch does not support optimized image upgrade in {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="warm restart mode">}}.
+  - You can only use optimized image upgrade on a switch with an <span class="a-tooltip">[SSD](## "Solid state drive")</span> greater than or equal to 32GB.
   - You cannot downgrade a Cumulus Linux 5.12 switch to Cumulus Linux 5.11 and earlier with optimized image upgrade; use ONIE instead.
 
 {{%notice note%}}

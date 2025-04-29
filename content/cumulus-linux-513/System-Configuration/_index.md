@@ -15,3 +15,4 @@ This section describes how to configure the following system settings:
 - {{<link url="In-Service-System-Upgrade-ISSU" text="In Service System Upgrade">}} (ISSU)
 - {{<link url="CLI-Configuration" text="CLI configuration">}}
 - {{<link url="System-Power" text="System Power">}}
+- {{<link title="Erase all Data from the Switch" text="Erase all data from the switch">}}

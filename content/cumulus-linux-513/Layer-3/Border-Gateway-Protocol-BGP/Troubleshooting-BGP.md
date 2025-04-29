@@ -645,12 +645,30 @@ Prefix        UseSooNhg  SelectedPathBitmap
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
-To show information about all SOO routes, run the `show bgp vrf <vrf> <address-family> unicast soo route` command:
+To show information about SOO routes in brief format, run the `show bgp <address-family> unicast soo route` command:
 
 ```
-cumulus@leaf01:~$ sudo vtysh
+cumulus@spine01:~$ sudo vtysh
 ...
-leaf01# show bgp vrf default ipv4 unicast soo route
+leaf01# show bgp ipv4 unicast soo route
+BGP: VRF default
+
+PathCnt - Number of paths for this SoORouteCnt - Number of routes with this
+SoO, SoONhgID - Nexthop group id used by this SoO
+SoORouteFlag - Indicates Site-of-Origin route flag: I - InstalledNhgRouteCnt - Number of routes using
+SoO NHG, NhgFlag - V - valid, Ip - install-pending, Dp - delete-pending
+
+SoORouteID              PathCnt  RouteCnt  SoONhgID  SoORouteFlag  NhgRouteCnt  NhgFlag
+----------------------  -------  --------  --------  ------------  -----------  -------
+10.10.10.1                 6        1         70328887  I             1            V
+```
+
+To show detailed information about SOO routes, run the `show bgp <address-family> unicast soo route detail` command:
+
+```
+cumulus@spine01:~$ sudo vtysh
+...
+leaf01# show bgp ipv4 unicast soo route detail
 BGP: VRF default
 
 SoO: 10.10.10.1
@@ -709,12 +727,12 @@ SoO: 10.10.10.2
       10.0.1.12/32 Selected path info bitmap bits set: 2
 ```
 
-To show information about a specific SOO route, run the `show bgp vrf <vrf> <address-family> unicast soo route <prefix>` command:
+To show information about a specific SOO route, run the `show bgp <address-family> unicast soo route <prefix>` command:
 
 ```
 cumulus@spine01:~$ sudo vtysh
 ...
-spine01# show bgp vrf default ipv4 unicast soo route 10.10.10.3
+spine01# show bgp ipv4 unicast soo route 10.10.10.3
 BGP: VRF default
 
 SoO: 10.10.10.3
@@ -742,7 +760,28 @@ You can show the above commands in json format. For example:
 ```
 cumulus@spine01:~$ sudo vtysh
 ...
-spine01# show bgp vrf default ipv4 unicast soo route json 
+spine01# show bgp ipv4 unicast soo route json
+{
+  "default":[
+    {
+      "SoORoute":"10.10.10.1",
+      "numPaths":6,
+      "numRoutesWithSoO":13,
+      "nexthopgroupId":70328887,
+      "SoORouteFlag":"Installed",
+      "numRoutesWithSoOUsingSoONHG":13,
+      "nhgValid":true,
+      "nhgInstallPending":false,
+      "nhgDeletePending":false
+    }
+  ]
+}
+```
+
+```
+cumulus@spine01:~$ sudo vtysh
+...
+spine01# show bgp ipv4 unicast soo route detail json 
 {
   "default":[
     {
@@ -864,30 +903,6 @@ spine01# show bgp vrf default ipv4 unicast soo route json
     }
   ]
 }
-```
-
-The `show bgp <address-family> unicast` and `show bgp <address-family> unicast <prefix>` commands also show SOO information:
-
-```
-cumulus@spine01:~$ sudo vtysh
-...
-spine01# show bgp ipv4 unicast 10.10.10.3
-BGP routing table entry for 10.10.10.3/32, version 29 SoO:10.10.10.3, multipath soo nhg:70328889
-Paths: (2 available, best #1, table default)
-  Advertised to non peer-group peers:
-  leaf01(swp1) leaf02(swp2) leaf03(swp3) leaf04(swp4) border01(swp5) border02(swp6)
-  65103
-    fe80::4ab0:2dff:fef2:6bc5 (leaf03) from leaf03(swp3) (10.10.10.3)
-    (fe80::4ab0:2dff:fef2:6bc5) (used)
-      Origin IGP, metric 0, valid, external, bestpath-from-AS 65103, best (AS Path)
-      Extended Community: SoO:10.10.10.3:0
-      Last update: Wed Jan 22 20:12:46 2025
-  65104 65103
-    fe80::4ab0:2dff:feab:57dd (leaf04) from leaf04(swp4) (10.10.10.4)
-    (fe80::4ab0:2dff:feab:57dd) (used)
-      Origin IGP, valid, external, bestpath-from-AS 65104
-      Extended Community: SoO:10.10.10.3:0
-      Last update: Wed Jan 22 20:12:46 2025
 ```
 
 {{< /tab >}}

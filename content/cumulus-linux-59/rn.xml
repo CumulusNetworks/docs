@@ -1981,6 +1981,18 @@ You can safely ignore this warning.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4423336</td>
+<td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
+<td>5.9.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423335</td>
+<td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
+<td>5.9.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4281099</td>
 <td>When you bring STP down, then up on the primary MLAG peer, the STP state machine restarts and the peerlink operational edge resets. As a result, the secondary MLAG peer ends up in an STP discarding state. To work around this issue, restart the {{clagd}} service.</td>
 <td>5.8.0-5.11.1</td>

@@ -641,6 +641,34 @@ When you enable adaptive routing telemetry, the switch exports the following sta
 | ---------- | ------- |
 | `nvswitch_ar_congestion_changes`  | The number of adaptive routing change events triggered due to congestion or link-down.|
 
+{{< expand "Example JSON data for nvswitch_ar_congestion_changes:" >}}
+```
+{
+  "name": "nvswitch_ar_congestion_changes",
+  "description": "NVIDIA Ethernet Switch Adaptive Routing Congestion Changes counter",
+  "sum": {
+    "dataPoints": [
+      {
+        "startTimeUnixNano": "1745871735360000000",
+        "timeUnixNano": "1745871919360000000",
+        "asDouble": 0
+      }
+    ],
+    "aggregationTemporality": 2,
+    "isMonotonic": true
+  },
+  "metadata": [
+    {
+      "key": "prometheus.type",
+      "value": {
+        "stringValue": "counter"
+      }
+    }
+  ]
+}
+```
+{{< /expand >}}
+
 ### Buffer Statistic Format
 
 The switch collects and exports the following interface and switch, buffer occupancy and watermark statistics when you configure the `nv set system telemetry buffer-stats export state enable` command:
@@ -1282,6 +1310,329 @@ When you enable LLDP statistic telemetry, the switch exports the following stati
 | `nvswitch_lldp_interfaces_interface_neighbors_neighbor_state_chassis-id-type` | |
 | `nvswitch_lldp_interfaces_interface_neighbors_neighbor_state_system-name` | |
 | `nvswitch_lldp_interfaces_interface_neighbors_neighbor_state_system-description` | |
+
+{{< expand "Example JSON data for nvswitch_lldp_chassis_info:" >}}
+```
+{
+  "name": "nvswitch_lldp_chassis_info",
+  "description": "NVIDIA Ethernet Switch LLDP Chassis information",
+  "gauge": {
+    "dataPoints": [
+      {
+        "attributes": [
+          {
+            "key": "chassis_id",
+            "value": {
+              "stringValue": "94:6d:ae:ab:00:ea"
+            }
+          },
+          {
+            "key": "chassis_id_type",
+            "value": {
+              "stringValue": "mac"
+            }
+          },
+          {
+            "key": "system_description",
+            "value": {
+              "stringValue": "Cumulus Linux version 5.13.0 running on Nvidia SN5600"
+            }
+          },
+          {
+            "key": "system_name",
+            "value": {
+              "stringValue": "mlx-5600-12"
+            }
+          }
+        ],
+        "timeUnixNano": "1745868046553000000",
+        "asDouble": 1
+      }
+    ]
+  }
+}
+```
+{{< /expand >}}
+
+{{< expand "Example JSON data for nvswitch_lldp_chassis_capabilities:" >}}
+```
+{
+    "name": "nvswitch_lldp_chassis_capabilities",
+    "description": "NVIDIA Ethernet Switch LLDP Chassis Capabilities as a bitmap. The capabilities are defined in IEEE 802.1AB",
+    "gauge": {
+      "dataPoints": [
+        {
+          "attributes": [
+            {
+              "key": "chassis_id",
+              "value": {
+                "stringValue": "94:6d:ae:ab:00:ea"
+              }
+            },
+            {
+              "key": "system_name",
+              "value": {
+                "stringValue": "mlx-5600-12"
+              }
+            }
+          ],
+          "timeUnixNano": "1745868428817000000",
+          "asDouble": 16
+        }
+      ]
+    },
+    "metadata": [
+      {
+        "key": "prometheus.type",
+        "value": {
+          "stringValue": "gauge"
+        }
+      }
+    ]
+  }
+```
+{{< /expand >}}
+
+{{< expand "Example JSON data for nvswitch_lldp_neighbor_age:" >}}
+```
+  {
+    "name": "nvswitch_lldp_neighbor_age",
+    "description": "NVIDIA Ethernet Switch LLDP Neighbor Age in seconds",
+    "sum": {
+      "dataPoints": [
+        {
+          "attributes": [
+            {
+              "key": "interface",
+              "value": {
+                "stringValue": "swp10s0"
+              }
+            },
+            {
+              "key": "port_id",
+              "value": {
+                "stringValue": "swp10s0"
+              }
+            },
+            {
+              "key": "system_name",
+              "value": {
+                "stringValue": "mlx-5600-13"
+              }
+            },
+            {
+              "key": "mgmtVrfNoTls-l1",
+              "value": {
+                "stringValue": "Management VRF Insecure Label-1"
+              }
+            }
+          ],
+          "startTimeUnixNano": "1745866926553000000",
+          "timeUnixNano": "1745868457768000000",
+          "asDouble": 2608
+        }
+      ]
+    }
+  }
+```
+{{< /expand >}}
+
+{{< expand "Example JSON data for nvswitch_lldp_neighbor_capabilities:" >}}
+        {
+            "name": "nvswitch_lldp_neighbor_capabilities",
+            "description": "NVIDIA Ethernet Switch LLDP Neighbor Capabilities as a bitmap. The capabilities are defined in IEEE 802.1AB",
+            "gauge": {
+              "dataPoints": [
+                {
+                  "attributes": [
+                    {
+                      "key": "interface",
+                      "value": {
+                        "stringValue": "swp10s0"
+                      }
+                    },
+                    {
+                      "key": "port_id",
+                      "value": {
+                        "stringValue": "swp10s0"
+                      }
+                    },
+                    {
+                      "key": "system_name",
+                      "value": {
+                        "stringValue": "mlx-5600-13"
+                      }
+                    },
+                    {
+                      "key": "mgmtVrfNoTls-l1",
+                      "value": {
+                        "stringValue": "Management VRF Insecure Label-1"
+                      }
+                    }
+                  ],
+                  "timeUnixNano": "1745868465982000000",
+                  "asDouble": 20
+                }
+            }
+        }
+```
+{{< /expand >}}
+
+{{< expand "Example JSON data for nvswitch_lldp_neighbor_info:" >}}
+```
+{
+    "name": "nvswitch_lldp_neighbor_info",
+    "description": "NVIDIA Ethernet Switch LLDP Neighbor information",
+    "gauge": {
+      "dataPoints": [
+        {
+          "attributes": [
+            {
+              "key": "chassis_id",
+              "value": {
+                "stringValue": "94:6d:ae:ab:00:42"
+              }
+            },
+            {
+              "key": "chassis_id_type",
+              "value": {
+                "stringValue": "mac"
+              }
+            },
+            {
+              "key": "interface",
+              "value": {
+                "stringValue": "swp10s0"
+              }
+            },
+            {
+              "key": "port_description",
+              "value": {
+                "stringValue": "swp10s0"
+              }
+            },
+            {
+              "key": "port_id",
+              "value": {
+                "stringValue": "swp10s0"
+              }
+            },
+            {
+              "key": "port_id_type",
+              "value": {
+                "stringValue": "ifname"
+              }
+            },
+            {
+              "key": "system_description",
+              "value": {
+                "stringValue": "Cumulus Linux version 5.13.0 running on Nvidia SN5600"
+              }
+            },
+            {
+              "key": "system_name",
+              "value": {
+                "stringValue": "mlx-5600-13"
+              }
+            },
+            {
+              "key": "mgmtVrfNoTls-l1",
+              "value": {
+                "stringValue": "Management VRF Insecure Label-1"
+              }
+            }
+          ],
+          "timeUnixNano": "1745868465982000000",
+          "asDouble": 1
+        }
+    }
+}
+```
+{{< /expand >}}
+
+{{< expand "Example JSON data for nvswitch_lldp_neighbor_ttl:" >}}
+```
+{
+    "name": "nvswitch_lldp_neighbor_ttl",
+    "description": "NVIDIA Ethernet Switch LLDP Neighbor Port TTL in seconds",
+    "gauge": {
+      "dataPoints": [
+        {
+          "attributes": [
+            {
+              "key": "interface",
+              "value": {
+                "stringValue": "eth0"
+              }
+            },
+            {
+              "key": "port_id",
+              "value": {
+                "stringValue": "swp26"
+              }
+            },
+            {
+              "key": "system_name",
+              "value": {
+                "stringValue": "removed_for_privacy"
+              }
+            }
+          ],
+          "timeUnixNano": "1745868465982000000",
+          "asDouble": 120
+        }
+    }
+}
+```
+{{< /expand >}}
+
+{{< expand "Example JSON data for nvswitch_lldp_neighbor_management_address_info:" >}}
+```
+{
+    "name": "nvswitch_lldp_neighbor_management_address_info",
+    "description": "NVIDIA Ethernet Switch LLDP Neighbor Management Address Information",
+    "gauge": {
+      "dataPoints": [
+        {
+          "attributes": [
+            {
+              "key": "interface",
+              "value": {
+                "stringValue": "eth0"
+              }
+            },
+            {
+              "key": "management_address",
+              "value": {
+                "stringValue": "10.112.129.193"
+              }
+            },
+            {
+              "key": "management_address_type",
+              "value": {
+                "stringValue": "IPv4"
+              }
+            },
+            {
+              "key": "port_id",
+              "value": {
+                "stringValue": "swp26"
+              }
+            },
+            {
+              "key": "system_name",
+              "value": {
+                "stringValue": "removed_for_privacy"
+              }
+            }
+          ],
+          "timeUnixNano": "1745868478250000000",
+          "asDouble": 1
+        }
+    }
+}
+```
+{{< /expand >}}
 
 ### Platform Statistic Format
 
@@ -2240,6 +2591,233 @@ If you enable `systemd` process-level statistics, the switch collects the follow
 | `nvswitch_systemd_unit_process_virtual_memory_usage_bytes` | The virtual memory usage of the process (in bytes).|
 | `nvswitch_systemd_unit_process_resident_memory_usage_bytes` | The resident memory usage of the process (in bytes).|
 | `nvswitch_systemd_unit_process_shared_memory_usage_bytes` | The shared memory usage of the process (in bytes).|
+
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_systemd_unit_cpu_usage_seconds:" >}}
+
+```
+{
+  "name": "nvswitch_systemd_unit_cpu_usage_seconds",
+  "description": "CPU usage of the unit (in seconds)",
+  "sum": {
+    "dataPoints": [
+      {
+        "attributes": [
+          {
+            "key": "unit_name",
+            "value": {
+              "stringValue": "frr.service"
+            }
+          }
+        ],
+        "startTimeUnixNano": "1745866936115000000",
+        "timeUnixNano": "1745869936115000000",
+        "asDouble": 6.903563
+      },
+      {
+        "attributes": [
+          {
+            "key": "unit_name",
+            "value": {
+              "stringValue": "hw-management-sync.service"
+            }
+          }
+        ],
+        "startTimeUnixNano": "1745866936115000000",
+        "timeUnixNano": "1745869936115000000",
+        "asDouble": 4.948827
+      },
+      {
+        "attributes": [
+          {
+            "key": "unit_name",
+            "value": {
+              "stringValue": "nginx.service"
+            }
+          }
+        ],
+        "startTimeUnixNano": "1745866936115000000",
+        "timeUnixNano": "1745869936115000000",
+        "asDouble": 0.114203
+      }
+    ]
+  }
+}
+```
+
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_systemd_unit_exe_path:" >}}
+
+```
+{
+  "name": "nvswitch_systemd_unit_exe_path",
+  "description": "Executable path of the unit",
+  "gauge": {
+    "dataPoints": [
+      {
+        "attributes": [
+          {
+            "key": "exe_path",
+            "value": {
+              "stringValue": "/bin/sh"
+            }
+          },
+          {
+            "key": "unit_name",
+            "value": {
+              "stringValue": "hw-management-sync.service"
+            }
+          }
+        ],
+        "timeUnixNano": "1745869876115000000",
+        "asDouble": 1
+      },
+      {
+        "attributes": [
+          {
+            "key": "exe_path",
+            "value": {
+              "stringValue": "/usr/bin/prometheus-node-exporter"
+            }
+          },
+          {
+            "key": "unit_name",
+            "value": {
+              "stringValue": "prometheus-node-exporter.service"
+            }
+          }
+        ],
+        "timeUnixNano": "1745869876115000000",
+        "asDouble": 1
+      }
+    ]
+  }
+}
+
+```
+
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_systemd_unit_main_pid:" >}}
+
+```
+{
+  "name": "nvswitch_systemd_unit_main_pid",
+  "description": "Main Process ID of the unit",
+  "gauge": {
+    "dataPoints": [
+      {
+        "attributes": [
+          {
+            "key": "unit_name",
+            "value": {
+              "stringValue": "hw-management-sync.service"
+            }
+          }
+        ],
+        "timeUnixNano": "1745869216115000000",
+        "asDouble": 20845
+      },
+      {
+        "attributes": [
+          {
+            "key": "unit_name",
+            "value": {
+              "stringValue": "nginx.service"
+            }
+          }
+        ],
+        "timeUnixNano": "1745869216115000000",
+        "asDouble": 23135
+      }
+    ]
+  }
+}
+
+```
+
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_systemd_unit_memory_usage_bytes:" >}}
+
+```
+{
+  "name": "nvswitch_systemd_unit_memory_usage_bytes",
+  "description": "Memory usage of the unit (in bytes)",
+  "gauge": {
+    "dataPoints": [
+      {
+        "attributes": [
+          {
+            "key": "unit_name",
+            "value": {
+              "stringValue": "frr.service"
+            }
+          }
+        ],
+        "timeUnixNano": "1745869936115000000",
+        "asDouble": 48377856
+      },
+      {
+        "attributes": [
+          {
+            "key": "unit_name",
+            "value": {
+              "stringValue": "hw-management-sync.service"
+            }
+          }
+        ],
+        "timeUnixNano": "1745869936115000000",
+        "asDouble": 13131776
+      }
+    ]
+  }
+}
+
+```
+
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_systemd_unit_start_time_seconds:" >}}
+
+```
+{
+  "name": "nvswitch_systemd_unit_start_time_seconds",
+  "description": "Start time of the unit in seconds since epoch",
+  "gauge": {
+    "dataPoints": [
+      {
+        "attributes": [
+          {
+            "key": "unit_name",
+            "value": {
+              "stringValue": "frr.service"
+            }
+          }
+        ],
+        "timeUnixNano": "1745869876115000000",
+        "asDouble": 1745864324.62
+      },
+      {
+        "attributes": [
+          {
+            "key": "unit_name",
+            "value": {
+              "stringValue": "hw-management-sync.service"
+            }
+          }
+        ],
+        "timeUnixNano": "1745869876115000000",
+        "asDouble": 1745864182
+      }
+    ]
+  }
+}
+
+```
+{{< /expand >}}
 
 ### System Information Format
 

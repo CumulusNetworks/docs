@@ -214,7 +214,7 @@ Protocols that support graceful restart continue to do a graceful restart during
 {{< tabs "213 ">}}
 {{< tab "NVUE Commands ">}}
 
-To put all protocols in maintenance mode, run the `nv set maintenance unit all-protocols mode enabled` command:
+To put all protocols in maintenance mode, run the `nv set maintenance unit all-protocols mode enabled` command. All the protocols that support graceful shutdown re-advertise the routes with a lower weight or preference.
 
 ```
 cumulus@switch:~$ nv set maintenance unit all-protocols mode enabled
@@ -231,7 +231,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-To put all protocols in maintenance mode, edit the `/etc/cumulus/maintenance.conf` file as shown below, then run the `csmgrctl -m` command. All the protocols that support graceful shutdown re-advertise the routes with the original weight or preference.
+To put all protocols in maintenance mode, edit the `/etc/cumulus/maintenance.conf` file as shown below, then run the `csmgrctl -m` command. All the protocols that support graceful shutdown re-advertise the routes with a lower weight or preference.
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/maintenance.conf
@@ -251,7 +251,7 @@ cumulus@switch:~$ sudo nano /etc/cumulus/maintenance.conf
 cumulus@switch:~$ sudo csmgrctl -m
 ```
 
-To take all protocols out of maintenance and put them back into production, edit the `/etc/cumulus/maintenance.conf` and change `mode` to disabled, then run the `csmgrctl -m` command:
+To take all protocols out of maintenance and put them back into production, edit the `/etc/cumulus/maintenance.conf` and change `mode` to disabled, then run the `csmgrctl -m` command. All the protocols that support graceful shutdown re-advertise the routes with the original weight or preference.
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/maintenance.conf

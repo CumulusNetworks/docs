@@ -7,6 +7,48 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4423365</td>
+<td>When you enable NAT dynamic mode and NAT rules with NVUE in a single commit, you see the error {{error: hw sync failed (Dynamic NAT is not enabled. Ignoring rules..)}}. To work around this issue, enable dynamic NAT with NVUE in one commit, then add NAT ACL rules in a subsequent commit.</td>
+<td>5.11.0-5.13.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4423249</td>
+<td>If you unset an interface static IP address when the interface IP gateway is configured, the {{nv config apply}} command fails with an {{ifreload.service}} error. To work around the issue, unset both the static IP address and gateway together.</td>
+<td>5.13.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4423248</td>
+<td>If you unset an interface static IP address when the interface IP gateway is configured, the {{nv config apply}} command fails with an {{ifreload.service}} error. To work around the issue, unset both the static IP address and gateway together.</td>
+<td>5.13.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4423224</td>
+<td>When processing the static IP assignment for an interface previously managed through DHCP, Cumulus Linux fails to clean up the DHCP created state completely. As a result when the IP address assigned by DHCP earlier expires, the switch eventually loses connectivity.</td>
+<td>5.13.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4423223</td>
+<td>When processing the static IP assignment for an interface previously managed through DHCP, Cumulus Linux fails to clean up the DHCP created state completely. As a result when the IP address assigned by DHCP earlier expires, the switch eventually loses connectivity.</td>
+<td>5.13.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4403755</td>
+<td>On first boot after a binary install or upgrade, if ZTP does not run or does not complete successfully, all interfaces are left admin up until you disable ZTP manually. To work around this issue, use an empty ZTP script during onie-install ({{-z ZTP_URL}}) or configure the DCHP option 239.</td>
+<td>5.12.1-5.13.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4337278</td>
+<td>In certain cases, statically configured VXLAN entries age out after a peerlink flap.</td>
+<td>5.12.0-5.13.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4329931</td>
 <td>In previous releases, Cumulus Linux incorrectly allowed SyncE and PPS In features to be enabled at the same time. Upgrading systems with both features configured using NVUE to 5.12.0 or higher results in a failure to apply the startup configuration as part of the first boot of the upgraded version. To work around the issue, unset one of the features before you upgrade.</td>
 <td>5.12.0-5.13.0</td>
@@ -587,8 +629,33 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Affects </th>
 </tr>
 <tr>
+<td>4413570</td>
+<td>Running "nv show system image" or "cl-image-upgrade -s" while doing a two partition upgrade using "nv action install system image" or "cl-image-upgrade -a" may cause filesystem corruption on the partition being installed to.  This may cause the upgrade to appear to hang and/or require using fsck on the partition being installed to.  Do not use "nv show system image" or "cl-image-upgrade -s" while a two partition upgrade is running.  Also, do not mount the filesystem being installed to.</td>
+<td></td>
+</tr>
+<tr>
+<td>4413450</td>
+<td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables (around 800K prefixes), the process consumes excessive memory resulting in OOM crashes. </td>
+<td>5.0.0-5.12.1</td>
+</tr>
+<tr>
+<td>4408418</td>
+<td>eth0 loses its IP address after the DHCP lease expires, which affects eth0 reachability through the out-of-band management device.</td>
+<td></td>
+</tr>
+<tr>
+<td>4408414</td>
+<td>Cumulus Linux does not create a cl-support file when Prometheus service crashes on the switch.</td>
+<td></td>
+</tr>
+<tr>
 <td>4404714</td>
 <td>Installed BGP routes show 0 with gNMI.</td>
+<td></td>
+</tr>
+<tr>
+<td>4403127</td>
+<td>When you use BGP prefix independent convergence (PIC) with IPv6, {{cl-route-check}} might show errors due to a discrepancy in the IPv4-mapped IPv6 SOO route string format across FRR and the kernel. This is a display-only issue and has no impact on routing functionality.</td>
 <td></td>
 </tr>
 <tr>
@@ -623,9 +690,23 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
+<td>4370516</td>
+<td>NVUE fails when applying ERSPAN configuration on an MLAG peer. This failure occurs because ERSPAN does not support bond slave ports as analyzer ports but fails to validate the configuration. </td>
+<td>5.11.0-5.12.1</td>
+</tr>
+<tr>
 <td>4363645</td>
 <td>If you unset an interface static IP address when the interface IP gateway is configured, the {{nv config apply}} command fails with an {{ifreload.service}} error. To work around the issue, unset both the static IP address and gateway together.</td>
 <td></td>
+</tr>
+<tr>
+<td>4360636</td>
+<td> When you assign an IP address to a VRF interface, NVUE removes the 127.0.0.1, 127.0.1.1, and ::1/128 IP addresses from VRF interfaces in the kernel. This results in traffic generated by the switch in the VRF destined to 127.0.0.1 to be sent out of the local device and onto the network. To work around this issue, when assigning an IP address to a VRF interface, also configure the following on the VRF interface to ensure that the expected functionality is maintained:
+nv set vrf &lt;vrf-id&gt; loopback ip address 127.0.0.1/8
+nv set vrf &lt;vrf-id&gt; loopback ip address 127.0.1.1/8
+nv set vrf &lt;vrf-id&gt; loopback ip address ::/128
+nv config apply -y</td>
+<td>5.11.0-5.12.1</td>
 </tr>
 <tr>
 <td>4360615</td>
@@ -666,11 +747,6 @@ cumulus@switch:~$ sudo /usr/sbin/pam-auth-update --force --package</td>
 <tr>
 <td>4340528</td>
 <td>After enabling, then disabling truncation on a SPAN session,  truncated packets are still received on the SPAN destination. To work around this issue, remove the SPAN session configuration, reboot the switch, then reconfigure the SPAN session without truncation.</td>
-<td>5.12.0-5.12.1</td>
-</tr>
-<tr>
-<td>4337278</td>
-<td>In certain cases, statically configured VXLAN entries age out after a peerlink flap.</td>
 <td>5.12.0-5.12.1</td>
 </tr>
 <tr>
@@ -760,6 +836,11 @@ cumulus@switch:~$ nv config apply</td>
 <td>5.12.0-5.12.1</td>
 </tr>
 <tr>
+<td>4215613</td>
+<td>After a remote link flap, neighbor entries using the link might not get resolved immediately. Only when some traffic uses the nexthop will they be resolved.</td>
+<td>5.12.0-5.12.1</td>
+</tr>
+<tr>
 <td>4210596</td>
 <td>After a factory reset, the files in /etc/pam.d/* may be incorrect, causing problems with password strength checking, TACACS+, RADIUS, and/or LDAP. To work around this issue, run the following command:
 cumulus@switch:~$ sudo /usr/sbin/pam-auth-update --force --package</td>
@@ -769,6 +850,11 @@ cumulus@switch:~$ sudo /usr/sbin/pam-auth-update --force --package</td>
 <td>4144021</td>
 <td>Shutting down port 65 or 66 on the NVIDIA Spectrum-4 switch leaves the opposite port up when using MLNX SFP-T and RJ45 connections. Spectrum-4 switches do not support SFP-T modules on ports 65 and 66.</td>
 <td>5.10.0-5.12.1</td>
+</tr>
+<tr>
+<td>4128952</td>
+<td>Cumulus Linux does not support LDAP over IPv6.</td>
+<td>5.11.0-5.12.1</td>
 </tr>
 <tr>
 <td>4128912</td>

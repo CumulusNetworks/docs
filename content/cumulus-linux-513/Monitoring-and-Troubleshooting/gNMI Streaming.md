@@ -1016,7 +1016,7 @@ Cumulus Linux does not support GET or SET RPC events.
 
 Cumulus Linux supports the Protobuf and JSON data formats.
 
-### Wildcare Support
+### Wildcard Support
 
 Cumulus Linux supports wildcard matching of keys. For example:
 

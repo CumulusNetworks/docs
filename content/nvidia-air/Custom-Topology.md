@@ -27,9 +27,9 @@ One way to create fully custom simulations is with the built-in topology builder
 
 When you create a new simulation, Air gives you the option to add a zero-touch provisioning (ZTP) script. The ZTP script is copied to the simulation's `oob-mgmt-server`. Any node making a ZTP request on the out-of-band management network has access to this ZTP script through a DHCP server and web server running on the `oob-mgmt-server`. 
 
-**ZTP scripts will not be used if the simulation does not have the Out-of-band network enabled.**
+**You must have the out-of-band-network enabled to use ZTP scripts**
 
-A default script is prefilled to help you get started. It implements some common ZTP features on Cumulus Linux, such as changing the default password or downloading SSH keys. You can edit the default script directly in the UI.
+A default script is prefilled to help you get started. It implements common ZTP features on Cumulus Linux, such as changing the default password or downloading SSH keys. You can edit the default script directly in the UI.
 
 {{< expand "View Default ZTP script" >}}
 ```
@@ -83,31 +83,34 @@ Select a node to view or edit its properties.
 
 Make sure to select **Update Node** when you complete the changes. You can delete nodes by selecting **Delete Node**.
 
-Air also provides **Advanced Options**, such as enabling **UEFI Secure Boot**.
+Air also provides advanced options, such as enabling UEFI secure boot.
 
 {{<img src="/images/guides/nvidia-air/AddNode.png" alt="">}}
 <br>
-When you finish creating your topology, click **Workspace > Start Simulation**. **You cannot add, remove, or edit nodes after the simulation starts for the first time.**
+When you finish creating your topology, select **Workspace&nbsp;<span aria-label="and then">></span> Start Simulation**. You cannot add, remove, or edit nodes after the simulation starts for the first time
 
 {{<img src="/images/guides/nvidia-air/WorkspaceStart.png" alt="" width="250px">}}
 
 ### OOB Management Network
 
-On the **System Palette**, there is an option to **Enable OOB**. This setting enables the out-of-band management network that connects all nodes with each other. It also adds an `oob-mgmt-switch` and `oob-mgmt-server` to your simulation. When you enable SSH, you SSH into the `oob-mgmt-server`, making this node an ideal starting point for configurations. Air handles the configuration automatically for you.
+On the **System Palette**, there is an option to **Enable OOB**. This setting enables the out-of-band management network that connects all nodes to each other. It also adds an `oob-mgmt-switch` and `oob-mgmt-server` to your simulation. When you enable SSH, you connect to the `oob-mgmt-server`, making this node an ideal starting point for configurations. Air handles the configuration automatically for you.
 
 {{<img src="/images/guides/nvidia-air/EnableOOB.png" alt="" width="300px">}}
 
-You can add more `oob-mgmt-switches` and `oob-mgmt-servers` to your simulation manually even when **Enable OOB** is set to off. However, you must switch **Enable OOB** on to use the OOB network.
+You can add more `oob-mgmt-switches` and `oob-mgmt-servers` to your simulation manually even when **Enable OOB** is set to off. However, you must switch **Enable OOB** on to use the out-of-band network.
 
 ## Importing Custom Topologies with External Files
-You can create custom topologies in Air by importing either JSON or DOT files. These files define nodes, attributes, and connections for generating a topology for a network.
+You can create custom topologies in Air by importing either JSON (recommended) or DOT files. These files define a network's nodes, attributes, and connections. You can modify the file with any text editor.
 
-You can upload files directly to Air to generate a topology, allowing you to share and create copies of a topology, save the topology in a reusable file, use for automation purposes, and more easily generate very large topologies. You can modify the file with any text editor.
+When you upload external topology files directly to Air, you can: 
+
+- Share and create copies of a topology
+- Save the topology in a reusable file
+- Streamline automation
+- Generate very large topologies
 
 ### JSON
-JSON files use the `.json` file extension. 
-
-The following is an example of a simple topology with 1 spine, 2 leaf nodes, and 2 servers connected to each leaf. 
+The following JSON topology is an example of a simple topology with 1 spine, 2 leaf nodes, and 2 servers connected to each leaf. 
 
 {{< expand "View Sample JSON Topology" >}}
 
@@ -246,14 +249,14 @@ The following is an example of a simple topology with 1 spine, 2 leaf nodes, and
 ```
 {{< /expand >}}
 
+<br>
 
-
-When viewing the Nodes within Air after starting the simulation, observe that the resources are allocated based on the file. 
+When you view the nodes within Air after starting the simulation, notice that the resources are allocated according to the file:
 
 {{<img src="/images/guides/nvidia-air/JSONNodesExample.png" alt="">}}
-
-When viewing the Links within Air after starting the simulation, observe that the nodes are connected based on the file, and
-also connected to the out-of-band management network. 
+<br>
+<br>
+When you view the links within Air after starting the simulation, notice that the nodes are connected based on the file, and also connected to the out-of-band management network: 
 
 {{<img src="/images/guides/nvidia-air/JSONLinksExample.png" alt="">}}
 
@@ -263,7 +266,7 @@ If you omit the `oob` key in your JSON file, the **Enable OOB** will still be se
 
 #### Custom OOB Management Network Resources
 
-You can specify an `oob-mgmt-switch` and `oob-mgmt-server` to customize allocated resources. See the example below.
+You can specify an `oob-mgmt-switch` and `oob-mgmt-server` to customize allocated resources.
 
 {{< expand "View Custom OOB Network Example" >}}
 
@@ -298,13 +301,13 @@ You can specify an `oob-mgmt-switch` and `oob-mgmt-server` to customize allocate
 }
 ```
 {{< /expand >}}
-
-When viewing the nodes within Air after starting the simulation, observe that the resources are allocated based on the file. 
+<br>
+When viewing the nodes within Air after starting the simulation, notice that the resources are allocated based on the file: 
 
 {{<img src="/images/guides/nvidia-air/JSONOOBExample.png" alt="">}}
 
 #### Custom NetQ Node
-You can create and customize a NetQ instance for your simulation. See the example below. 
+You can create and customize a NetQ instance for your simulation.
 
 {{< expand "View Custom NetQ Node Example" >}}
 
@@ -337,19 +340,17 @@ You can create and customize a NetQ instance for your simulation. See the exampl
 }
 ```
 {{< /expand >}}
-
-When viewing the nodes within Air, observe that the resources are allocated based on the file. 
+<br>
+When viewing the nodes within Air, notice that the resources are allocated based on the file. 
 
 {{<img src="/images/guides/nvidia-air/JSONNetQExample.png" alt="">}}
 
 ### DOT
 
-You can also create custom topologies in Air using a DOT file, which is the file type used with the open-source graph visualization software, Graphviz. DOT files are simple, customizable, text-based files.
-
-DOT files use the `.dot` file extension.
+You can also create custom topologies in Air using a DOT file, which is the file type used with the open-source graph visualization software, Graphviz. DOT files are simple, customizable, text-based files. DOT files use the `.dot` file extension.
 
 {{%notice info%}}
-NVIDIA highly recommends using JSON over DOT files due to its improved validation, scalability, and wide adoption around the world. 
+NVIDIA strongly recommends using JSON over DOT files due to improved validation, scalability, and broader adoption levels. 
 {{%/notice%}}
 
 The following is an example of a simple topology with 1 spine, 2 leaf nodes, and 2 servers connected to each leaf.
@@ -413,26 +414,24 @@ You can customize RAM (in MB) with the `memory` option:
 
 ### Examples
 
-Labs in the [Demo Marketplace](https://air.nvidia.com/demos) are maintained with external GitLab repositories. Here you can find the `topology.dot` or `topology.json` file used to build the lab and use it as a reference. To access the files, select **Documentation** on any lab in the Demo Marketplace. It will direct you to the demo's GitLab repository for the lab, where you can download the file used for the demo topology.
+Labs in the [Demo Marketplace](https://air.nvidia.com/demos) are maintained with external GitLab repositories. Here you can find the `topology.dot` or `topology.json` file used to build the lab and use it as a reference. To access the files, select **Documentation** on any lab in the Demo Marketplace. It will direct you to the demo's GitLab repository, where you can download the file used for the demo topology.
 
 ### Import a Topology
 
-To import/upload a DOT or JSON topology file to Air, navigate to [air.nvidia.com/simulations](https://air.nvidia.com/simulations).
+To import and upload a DOT or JSON topology file to Air, navigate to [air.nvidia.com/simulations](https://air.nvidia.com/simulations).
 
 1. Select **Create Simulation**.
 2. Provide a name for the simulation.
 3. Select your desired filetype.
 4. Upload the file to the UI.
 5. (Optional) Assign the simulation to an [organization](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Organizations/).
-6. (Optional) Add a [ZTP scripts](#ztp-scripts).
+6. (Optional) Add a [ZTP script](#ztp-scripts).
      1. Select **Apply ZTP Template**.
      2. Enter your ZTP script. A default script is prefilled to help you get started.
 7. (Optional) Click **Advanced** and provide an out-of-band management server configuration script that executes on the `oob-mgmt-server` when the simulation starts.
 8. Click **Create**.
 
-{{<img src="/images/guides/nvidia-air/UploadTopologyFile.png" alt="">}}
-
-Air redirects you to the [Drag-and-Drop topology builder](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Custom-Topology/#the-drag-and-drop-topology-builder) with your custom topology created. You can make any further modifications as needed.
+Air redirects you to the [topology builder](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Custom-Topology/#the-drag-and-drop-topology-builder) with your custom topology created. You can continue to make adjustments as necessary.
 
 ### Export a Topology
 You can export the topology for any existing simulation. The exported file is JSON formatted. 
@@ -441,7 +440,7 @@ From a simulation, click **Workspace > Export Simulation** to export.
 
 {{<img src="/images/guides/nvidia-air/ExportSimulation.png" alt="" width="250px">}}
 
-### A Note about Storage
+### Storage Limits
 
 If you increase the storage of a node higher than its default, and Air does not recognize the increased storage, run the following commands **on the affected node** (NOT the `oob-mgmt-server`) to extend the partition and resize the file system:
 
@@ -640,7 +639,7 @@ This feature requires SDK version `air-sdk>=2.15.0` or later.
 
 This section describes how to create a simulation based on an existing production deployment.
 
-{{%notice info%}}
+{{%notice infonopad%}}
 NVIDIA has validated these scripts in a Linux environment only.
 {{%/notice%}}
 

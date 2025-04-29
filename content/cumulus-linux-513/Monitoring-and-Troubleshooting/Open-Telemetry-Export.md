@@ -2496,94 +2496,722 @@ When you enable layer 3 routing metrics telemetry, the switch exports the follow
   }
 }
 ```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvrouting_rib_count_bgp_ipv6:" >}}
 
+```
+{
+  "name": "nvrouting_rib_count_bgp_ipv6",
+  "description": "Total Number of ipv6 BGP routes in Zebra",
+  "gauge" {
+    "data_points" {
+      "start_time_unix_nano": "1738016804524747485",
+      "time_unix_nano": "1738016804529163046",
+      "as_int": "2062"
+      "attributes" {
+        "key": "vrf",
+        "value" {
+          "string_value": "vrf2"
+        }
+      }
+    }
+    "data_points" {
+      "start_time_unix_nano": "1738016804524747485",
+      "time_unix_nano": "1738016804529163046",
+      "as_int": "2062"
+      "attributes" {
+        "key": "vrf",
+        "value" {
+          "string_value": "vrf6"
+        }
+      }
+    }
+```
 {{< /expand >}}
 <br>
 {{< expand "Example JSON data for nvrouting_bgp_peer_fsm_established_transitions:" >}}
 
 ```
 {
-"name": "nvrouting_bgp_peer_fsm_established_transitions",
-"description": "Tracks BGP peer state transitions to the Established state",
-"gauge" {
-  "data_points" {
-    "start_time_unix_nano": "1738017981273393225",
-    "time_unix_nano": "1738017981275785883",
-    "as_int": "1"
-    "attributes" {
-      "key": "peer-id",
-      "value" {
-        "string_value": "swp16.100"
-      }
-    }
-    "attributes" {
-      "key": "state",
-      "value" {
-        "string_value": "Established"
-      }
-    }
-    "attributes" {
-      "key": "vrf",
-      "value" {
-        "string_value": "default"
-      }
-    }
-  }
-  "data_points" {
-    "start_time_unix_nano": "1738017981273393225",
-    "time_unix_nano": "1738017981275785883",
-    "as_int": "1"
-    "attributes" {
-      "key": "peer-id",
-      "value" {
-        "string_value": "swp18.101"
-      }
-    }
-    "attributes" {
-      "key": "state",
-      "value" {
-        "string_value": "Established"
-      }
-    }
-    "attributes" {
-      "key": "vrf",
-      "value" {
-        "string_value": "default"
-      }
+    "name": "nvrouting_bgp_peer_fsm_established_transitions",
+    "description": "Tracks BGP peer state transitions to the Established state",
+    "gauge": {
+      "dataPoints": [
+        {
+          "attributes": [
+            {
+              "key": "peer-id",
+              "value": {
+                "stringValue": "2.1.1.1"
+              }
+            },
+            {
+              "key": "state",
+              "value": {
+                "stringValue": "Established"
+              }
+            },
+            {
+              "key": "vrf",
+              "value": {
+                "stringValue": "default"
+              }
+            }
+          ],
+          "startTimeUnixNano": "1745875680082453094",
+          "timeUnixNano": "1745875680086100106",
+          "asInt": "1"
+        }
+      ]
     }
   }
 ```
-
 {{< /expand >}}
 <br>
-{{< expand "Example JSON data for nvrouting_rib_count_bgp_ipv6:" >}}
-
+{{< expand "Example JSON data for nvrouting_bgp_peer_rib_adj_in_installed:" >}}
 ```
-"name": "nvrouting_rib_count_bgp_ipv6",
-"description": "Total Number of ipv6 BGP routes in Zebra",
-"gauge" {
-  "data_points" {
-    "start_time_unix_nano": "1738016804524747485",
-    "time_unix_nano": "1738016804529163046",
-    "as_int": "2062"
-    "attributes" {
-      "key": "vrf",
-      "value" {
-        "string_value": "vrf2"
-      }
+{
+"name": "nvrouting_bgp_peer_rib_adj_in_installed",
+"description": "Tracks received prefixes installed post policy",
+"gauge": {
+    "dataPoints": [
+    {
+        "attributes": [
+            {
+            "key": "afi",
+            "value": {
+                "stringValue": "IPv6"
+            }
+            },
+            {
+            "key": "afi-safi-name",
+            "value": {
+                "stringValue": "IPV6_UNICAST"
+            }
+            },
+            {
+            "key": "peer-id",
+            "value": {
+                "stringValue": "20.2.0.1"
+            }
+            },
+            {
+            "key": "safi",
+            "value": {
+                "stringValue": "unicast"
+            }
+            },
+            {
+            "key": "vrf",
+            "value": {
+                "stringValue": "default"
+            }
+            }
+        ],
+        "startTimeUnixNano": "1745875260035122804",
+        "timeUnixNano": "1745875260038241158",
+        "asInt": "6"
+        },
+        {
+        "attributes": [
+            {
+            "key": "afi",
+            "value": {
+                "stringValue": "l2vpn"
+            }
+            },
+            {
+            "key": "afi-safi-name",
+            "value": {
+                "stringValue": "L2VPN_EVPN"
+            }
+            },
+            {
+            "key": "peer-id",
+            "value": {
+                "stringValue": "20.2.0.1"
+            }
+            },
+            {
+            "key": "safi",
+            "value": {
+                "stringValue": "evpn"
+            }
+            },
+            {
+            "key": "vrf",
+            "value": {
+                "stringValue": "default"
+            }
+            }
+        ],
+        "startTimeUnixNano": "1745875260035122804",
+        "timeUnixNano": "1745875260038241158",
+        "asInt": "0"
+        }
+    ]
+}
+}
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvrouting_bgp_peer_rib_adj_in:" >}}
+```
+{
+"name": "nvrouting_bgp_peer_rib_adj_in",
+"description": "Tracks received prefixes post policy",
+"gauge": {
+    "dataPoints": [
+    {
+        "attributes": [
+        {
+            "key": "afi",
+            "value": {
+            "stringValue": "IPv4"
+            }
+        },
+        {
+            "key": "afi-safi-name",
+            "value": {
+            "stringValue": "IPV4_UNICAST"
+            }
+        },
+        {
+            "key": "peer-id",
+            "value": {
+            "stringValue": "20.1.0.1"
+            }
+        },
+        {
+            "key": "safi",
+            "value": {
+            "stringValue": "unicast"
+            }
+        },
+        {
+            "key": "vrf",
+            "value": {
+            "stringValue": "default"
+            }
+        }
+        ],
+        "startTimeUnixNano": "1745875680082504240",
+        "timeUnixNano": "1745875680086131030",
+        "asInt": "9"
+    },
+    {
+        "attributes": [
+        {
+            "key": "afi",
+            "value": {
+            "stringValue": "IPv6"
+            }
+        },
+        {
+            "key": "afi-safi-name",
+            "value": {
+            "stringValue": "IPV6_UNICAST"
+            }
+        },
+        {
+            "key": "peer-id",
+            "value": {
+            "stringValue": "20.1.0.1"
+            }
+        },
+        {
+            "key": "safi",
+            "value": {
+            "stringValue": "unicast"
+            }
+        },
+        {
+            "key": "vrf",
+            "value": {
+            "stringValue": "default"
+            }
+        }
+        ],
+        "startTimeUnixNano": "1745875680082504240",
+        "timeUnixNano": "1745875680086131030",
+        "asInt": "9"
     }
-  }
-  "data_points" {
-    "start_time_unix_nano": "1738016804524747485",
-    "time_unix_nano": "1738016804529163046",
-    "as_int": "2062"
-    "attributes" {
-      "key": "vrf",
-      "value" {
-        "string_value": "vrf6"
-      }
+    ]
+}
+}
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvrouting_bgp_peer_rib_adj_out_advertised:" >}}
+```
+{
+"name": "nvrouting_bgp_peer_rib_adj_out_advertised",
+"description": "Tracks route count advertised per BGP peer with afi and safi as attributes",
+"gauge": {
+    "dataPoints": [
+    {
+        "attributes": [
+        {
+            "key": "afi",
+            "value": {
+            "stringValue": "IPv4"
+            }
+        },
+        {
+            "key": "afi-safi-name",
+            "value": {
+            "stringValue": "IPV4_UNICAST"
+            }
+        },
+        {
+            "key": "peer-id",
+            "value": {
+            "stringValue": "20.2.0.1"
+            }
+        },
+        {
+            "key": "safi",
+            "value": {
+            "stringValue": "unicast"
+            }
+        },
+        {
+            "key": "vrf",
+            "value": {
+            "stringValue": "default"
+            }
+        }
+        ],
+        "startTimeUnixNano": "1745875680082526528",
+        "timeUnixNano": "1745875680086148380",
+        "asInt": "9"
+    },
+    {
+        "attributes": [
+        {
+            "key": "afi",
+            "value": {
+            "stringValue": "l2vpn"
+            }
+        },
+        {
+            "key": "afi-safi-name",
+            "value": {
+            "stringValue": "L2VPN_EVPN"
+            }
+        },
+        {
+            "key": "peer-id",
+            "value": {
+            "stringValue": "2.1.1.2"
+            }
+        },
+        {
+            "key": "safi",
+            "value": {
+            "stringValue": "evpn"
+            }
+        },
+        {
+            "key": "vrf",
+            "value": {
+            "stringValue": "default"
+            }
+        }
+        ],
+        "startTimeUnixNano": "1745875680082526528",
+        "timeUnixNano": "1745875680086148380",
+        "asInt": "21610"
     }
-  }
+    ]
+}
+}
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvrouting_bgp_peer_rx_updates:" >}}
+```
+{
+"name": "nvrouting_bgp_peer_rx_updates",
+"description": "Tracks total number of BGP received packets",
+"gauge": {
+    "dataPoints": [
+    {
+        "attributes": [
+        {
+            "key": "peer-id",
+            "value": {
+            "stringValue": "2.1.1.1"
+            }
+        },
+        {
+            "key": "state",
+            "value": {
+            "stringValue": "Established"
+            }
+        },
+        {
+            "key": "vrf",
+            "value": {
+            "stringValue": "default"
+            }
+        }
+        ],
+        "startTimeUnixNano": "1745875680082484874",
+        "timeUnixNano": "1745875680086118678",
+        "asInt": "16702"
+    }
+    ]
+}
+}
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvrouting_bgp_peer_socket_in_queue:" >}}
+```
+{
+"name": "nvrouting_bgp_peer_socket_in_queue",
+"description": "Tracks total number of BGP messages enqueued into InQ buffer",
+"gauge": {
+    "dataPoints": [
+        {
+            "attributes": [
+            {
+                "key": "peer-id",
+                "value": {
+                "stringValue": "20.0.0.1"
+                }
+            },
+            {
+                "key": "state",
+                "value": {
+                "stringValue": "Established"
+                }
+            },
+            {
+                "key": "vrf",
+                "value": {
+                "stringValue": "default"
+                }
+            }
+            ],
+            "startTimeUnixNano": "1745875680082467806",
+            "timeUnixNano": "1745875680086105359",
+            "asInt": "0"
+        }
+        ]
+    }
+    }
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvrouting_bgp_peer_socket_out_queue:" >}}
+```
+{
+"name": "nvrouting_bgp_peer_socket_out_queue",
+"description": "Tracks total number of BGP messages enqueued into OutQ buffer",
+"gauge": {
+    "dataPoints": [
+    {
+        "attributes": [
+        {
+            "key": "peer-id",
+            "value": {
+            "stringValue": "2.1.1.1"
+            }
+        },
+        {
+            "key": "state",
+            "value": {
+            "stringValue": "Established"
+            }
+        },
+        {
+            "key": "vrf",
+            "value": {
+            "stringValue": "default"
+            }
+        }
+        ],
+        "startTimeUnixNano": "1745875680082473745",
+        "timeUnixNano": "1745875680086109500",
+        "asInt": "0"
+    }
+    ]
+}
+}
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvrouting_bgp_peer_state:" >}}
+```
+{
+"name": "nvrouting_bgp_peer_state",
+"description": "Tracks BGP peer state information (Established:1,Idle:2,Connect:3, Active:4, Opensent:5 )",
+"gauge": {
+    "dataPoints": [
+    {
+        "attributes": [
+        {
+            "key": "peer-id",
+            "value": {
+            "stringValue": "20.0.0.1"
+            }
+        },
+        {
+            "key": "state",
+            "value": {
+            "stringValue": "Established"
+            }
+        },
+        {
+            "key": "vrf",
+            "value": {
+            "stringValue": "default"
+            }
+        }
+        ],
+        "startTimeUnixNano": "1745875680082426701",
+        "timeUnixNano": "1745875680086082560",
+        "asInt": "1"
+    }
+    ]
+}
+}
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvrouting_bgp_peer_total_msgs_recvd:" >}}
+```
+{
+"name": "nvrouting_bgp_peer_total_msgs_recvd",
+"description": "Tracks the total number of BGP messages received per BGP peer",
+"gauge": {
+    "dataPoints": [
+    {
+        "attributes": [
+        {
+            "key": "peer-id",
+            "value": {
+            "stringValue": "2.1.1.2"
+            }
+        },
+        {
+            "key": "vrf",
+            "value": {
+            "stringValue": "default"
+            }
+        }
+        ],
+        "startTimeUnixNano": "1745875680082495292",
+        "timeUnixNano": "1745875680086126857",
+        "asInt": "17160"
+    }
+    ]
+}
+}
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvrouting_bgp_peer_total_msgs_sent:" >}}
+```
+{
+"name": "nvrouting_bgp_peer_total_msgs_sent",
+"description": "Tracks the total number of BGP messages sent per BGP peer",
+"gauge": {
+    "dataPoints": [
+    {
+        "attributes": [
+        {
+            "key": "peer-id",
+            "value": {
+            "stringValue": "20.1.0.1"
+            }
+        },
+        {
+            "key": "vrf",
+            "value": {
+            "stringValue": "default"
+            }
+        }
+        ],
+        "startTimeUnixNano": "1745875680082489967",
+        "timeUnixNano": "1745875680086122997",
+        "asInt": "26388"
+    }
+    ]
+}
+}
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvrouting_bgp_peer_tx_updates:" >}}
+```
+{
+"name": "nvrouting_bgp_peer_tx_updates",
+"description": "Tracks total number of BGP sent packets",
+"gauge": {
+    "dataPoints": [
+    {
+        "attributes": [
+        {
+            "key": "peer-id",
+            "value": {
+            "stringValue": "2.1.1.1"
+            }
+        },
+        {
+            "key": "state",
+            "value": {
+            "stringValue": "Established"
+            }
+        },
+        {
+            "key": "vrf",
+            "value": {
+            "stringValue": "default"
+            }
+        }
+        ],
+        "startTimeUnixNano": "1745875680082478563",
+        "timeUnixNano": "1745875680086114010",
+        "asInt": "26220"
+    }
+    ]
+}
+}
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvrouting_rib_count:" >}}
+```
+{
+"name": "nvrouting_rib_count",
+"description": "Tracks RIB counts with attributes for BGP, connected, PBR, and AF",
+"gauge": {
+    "dataPoints": [
+    {
+        "attributes": [
+            {
+            "key": "AF",
+            "value": {
+                "stringValue": "ipv6"
+            }
+            },
+            {
+            "key": "type",
+            "value": {
+                "stringValue": "total"
+            }
+            },
+            {
+            "key": "vrf",
+            "value": {
+                "stringValue": "vrf5"
+            }
+            }
+        ],
+        "startTimeUnixNano": "1745875680327436353",
+        "timeUnixNano": "1745875680344618037",
+        "asInt": "806"
+        },
+        {
+        "attributes": [
+            {
+            "key": "AF",
+            "value": {
+                "stringValue": "ipv4"
+            }
+            },
+            {
+            "key": "type",
+            "value": {
+                "stringValue": "kernel"
+            }
+            },
+            {
+            "key": "vrf",
+            "value": {
+                "stringValue": "vrf7"
+            }
+            }
+        ],
+        "startTimeUnixNano": "1745875680327436353",
+        "timeUnixNano": "1745875680344618037",
+        "asInt": "1"
+        },
+        {
+        "attributes": [
+            {
+            "key": "AF",
+            "value": {
+                "stringValue": "ipv6"
+            }
+            },
+            {
+            "key": "type",
+            "value": {
+                "stringValue": "bgp"
+            }
+            },
+            {
+            "key": "vrf",
+            "value": {
+                "stringValue": "vrf3"
+            }
+            }
+        ],
+        "startTimeUnixNano": "1745875680327436353",
+        "timeUnixNano": "1745875680344618037",
+        "asInt": "603"
+        },
+        {
+        "attributes": [
+            {
+            "key": "AF",
+            "value": {
+                "stringValue": "ipv4"
+            }
+            },
+            {
+            "key": "type",
+            "value": {
+                "stringValue": "connected"
+            }
+            },
+            {
+            "key": "vrf",
+            "value": {
+                "stringValue": "vrf33"
+            }
+            }
+        ],
+        "startTimeUnixNano": "1745875680327436353",
+        "timeUnixNano": "1745875680344618037",
+        "asInt": "1"
+        }
+    ]
+}
+}
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvrouting_rib_nhg_count:" >}}
+```
+{
+"name": "nvrouting_rib_nhg_count",
+"description": "Tracks next-hop group counts globally",
+"gauge": {
+    "dataPoints": [
+    {
+        "startTimeUnixNano": "1745875680327449169",
+        "timeUnixNano": "1745875680345545247",
+        "asInt": "1725"
+    }
+    ]
+}
+}
 ```
 {{< /expand >}}
 

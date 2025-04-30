@@ -141,18 +141,15 @@ cumulus@switch:~$ nv config apply
 
 To set the log format back to the default setting (standard), run the `nv unset system syslog format` command.
 
-The following example shows logs collected in WELF format:
+NVUE writes the configuration to the `/etc/rsyslog.d/11-remotesyslog.conf` file:
 
 ```
-cumulus@switch:~$ sudo nano /etc/rsyslog.d/11-remotesyslog.conf
+cumulus@switch:~$ sudo cat /etc/rsyslog.d/11-remotesyslog.conf
 ...
 template(name="WelfRemoteFormat" type="string" string="%TIMESTAMP% id=firewall time=\"%timereported:::date-year%-%timereported:::date-month%-%timereported:::date-day% %timereported:::date-hour%-%timereported:::date-minute%-%timereported:::date-second%\" fw=\"nvidia\" severity=\"%syslogseverity-text%\" facility=\"%syslogfacility-text%\" program=\"%programname%\" msg=\"%syslogtag%%msg:::sp-if-no-1st-sp%%msg:::drop-last-lf%\"\n")
 
 action(type="omfwd" Target="192.168.0.254" Port="514" Protocol="tcp" Device="mgmt" Template="WelfRemoteFormat")
 ```
-
-{{< /tab >}}
-{{< /tabs >}}
 
 The following example shows a syslog file in WELF format:
 

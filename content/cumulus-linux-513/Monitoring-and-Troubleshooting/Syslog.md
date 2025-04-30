@@ -149,7 +149,7 @@ To set the log format back to the default setting (standard), run the `nv unset 
 Edit the file `/etc/rsyslog.d/11-remotesyslog.conf` to add the following content:
 
 ```
-cumulus@switch:~$ sudo cat /etc/rsyslog.d/11-remotesyslog.conf
+cumulus@switch:~$ sudo nano /etc/rsyslog.d/11-remotesyslog.conf
 ...
 template(name="WelfRemoteFormat" type="string" string="%TIMESTAMP% id=firewall time=\"%timereported:::date-year%-%timereported:::date-month%-%timereported:::date-day% %timereported:::date-hour%-%timereported:::date-minute%-%timereported:::date-second%\" fw=\"nvidia\" severity=\"%syslogseverity-text%\" facility=\"%syslogfacility-text%\" program=\"%programname%\" msg=\"%syslogtag%%msg:::sp-if-no-1st-sp%%msg:::drop-last-lf%\"\n")
 

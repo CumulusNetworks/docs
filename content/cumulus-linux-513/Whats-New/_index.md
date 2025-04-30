@@ -375,15 +375,10 @@ Review the following considerations before you upgrade to Cumulus Linux 5.13.
 You can use {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="optimized image upgrade">}} to upgrade the switch to Cumulus Linux 5.13 from Cumulus Linux 5.11.1 and later.
 
 You can use {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.13 from the following releases. Package upgrade supports ISSU (warm boot) for these upgrade paths.
-
-| Upgrade from Cumulus Linux:| Upgrade to Cumulus Linux 5.13|
-|----|----|
-| 5.12.x| <font color="green">yes</font>|
-| 5.11.x | <font color="green">yes</font>|
-| 5.10.x | <font color="red">No</font> |
-| 5.9.2 (<span class="a-tooltip">[LTS](## "Long-Term Support")</span>) on Spectrum-3 and earlier | <font color="green">yes</font>|
-| 5.9.2 on Spectrum-4 |<font color="red">No</font>  |
-| 5.9.1 and earlier | <font color="red">No</font> |
+- Cumulus Linux 5.12.1
+- Cumulus Linux 5.12.0
+- Cumulus Linux 5.11.1
+- Cumulus Linux 5.11.0
 
 To upgrade to Cumulus Linux 5.13 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="ONIE">}}.
 

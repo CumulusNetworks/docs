@@ -636,12 +636,12 @@ The switch collects and exports the following interface and switch, buffer occup
 | `nvswitch_interface_shared_buffer_port_pg_desc_watermark` | Maximum buffer occupancy for descriptors. |
 | `nvswitch_interface_shared_buffer_port_pg_watermark_recorded_max` | Highest maximum buffer occupancy recorded since running sdk_stats. |
 | `nvswitch_interface_shared_buffer_port_pg_desc_watermark_recorded_max` | Highest maximum buffer occupancy for descriptors recorded since running sdk_stats. |
-| `nvswitch_interface_shared_buffer_ingress_pool_curr_occupancy` | Current ingress pool buffer occupancy. |
-| `nvswitch_interface_shared_buffer_ingress_pool_watermark` | Maximum ingress pool buffer occupancy. |
-| `nvswitch_interface_shared_buffer_ingress_pool_desc_curr_occupancy` | Current ingress pool buffer occupancy for descriptors. |
-| `nvswitch_interface_shared_buffer_ingress_pool_desc_watermark` | Maximum ingress pool buffer occupancy for descriptors. |
-| `nvswitch_interface_shared_buffer_ingress_pool_watermark_recorded_max` | Highest maximum ingress pool buffer occupancy recorded since running sdk_stats. |
-| `nvswitch_interface_shared_buffer_ingress_pool_desc_watermark_recorded_max` | Highest maximum ingress pool buffer occupancy for descriptors recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_port_ingress_pool_curr_occupancy` | Current ingress pool buffer occupancy. |
+| `nvswitch_interface_shared_buffer_port_ingress_pool_watermark` | Maximum ingress pool buffer occupancy. |
+| `nvswitch_interface_shared_buffer_port_ingress_pool_desc_curr_occupancy` | Current ingress pool buffer occupancy for descriptors. |
+| `nvswitch_interface_shared_buffer_port_ingress_pool_desc_watermark` | Maximum ingress pool buffer occupancy for descriptors. |
+| `nvswitch_interface_shared_buffer_port_ingress_pool_watermark_recorded_max` | Highest maximum ingress pool buffer occupancy recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_port_ingress_pool_desc_watermark_recorded_max` | Highest maximum ingress pool buffer occupancy for descriptors recorded since running sdk_stats. |
 | `nvswitch_interface_shared_buffer_tc_time_since_clear` | Time in milliseconds since the buffer watermarks were last cleared.|
 | `nvswitch_interface_shared_buffer_port_tc_curr_occupancy` | Current buffer occupancy for traffic class. |
 | `nvswitch_interface_shared_buffer_port_tc_watermark` | Maximum buffer occupancy for traffic class. |
@@ -649,12 +649,12 @@ The switch collects and exports the following interface and switch, buffer occup
 | `nvswitch_interface_shared_buffer_port_tc_desc_watermark` | Maximum buffer occupancy for descriptors. |
 | `nvswitch_interface_shared_buffer_port_tc_watermark_recorded_max` | Highest maximum buffer occupancy recorded since running sdk_stats. |
 | `nvswitch_interface_shared_buffer_port_tc_desc_watermark_recorded_max` | Highest maximum buffer occupancy for TC descriptors recorded since running sdk_stats. |
-| `nvswitch_interface_shared_buffer_egress_pool_curr_occupancy` | Current egress pool buffer occupancy. |
-| `nvswitch_interface_shared_buffer_egress_pool_watermark` | Maximum egress pool buffer occupancy. |
-| `nvswitch_interface_shared_buffer_egress_pool_desc_curr_occupancy` | Current egress pool buffer occupancy for descriptors. |
-| `nvswitch_interface_shared_buffer_egress_pool_desc_watermark` | Maximum egress pool buffer occupancy for descriptors. |
-| `nvswitch_interface_shared_buffer_egress_pool_watermark_recorded_max` | Highest maximum egress pool buffer occupancy recorded since running sdk_stats. |
-| `nvswitch_interface_shared_buffer_egress_pool_desc_watermark_recorded_max` | Highest maximum egress pool buffer occupancy for pool desc recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_port_egress_pool_curr_occupancy` | Current egress pool buffer occupancy. |
+| `nvswitch_interface_shared_buffer_port_egress_pool_watermark` | Maximum egress pool buffer occupancy. |
+| `nvswitch_interface_shared_buffer_port_egress_pool_desc_curr_occupancy` | Current egress pool buffer occupancy for descriptors. |
+| `nvswitch_interface_shared_buffer_port_egress_pool_desc_watermark` | Maximum egress pool buffer occupancy for descriptors. |
+| `nvswitch_interface_shared_buffer_port_egress_pool_watermark_recorded_max` | Highest maximum egress pool buffer occupancy recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_port_egress_pool_desc_watermark_recorded_max` | Highest maximum egress pool buffer occupancy for pool desc recorded since running sdk_stats. |
 | `nvswitch_interface_shared_buffer_mc_port_curr_occupancy`  | Current buffer occupancy for multicast port. |
 | `nvswitch_interface_shared_buffer_mc_port_watermark` | Maximum buffer occupancy for multicast port. |
 | `nvswitch_interface_shared_buffer_mc_port_watermark_max` | Highest maximum buffer occupancy for multicast port recorded since running sdk_stats. |
@@ -667,12 +667,12 @@ The switch collects and exports the following interface and switch, buffer occup
 | `nvswitch_interface_headroom_buffer_pg_curr_occupancy` | Current headroom buffer occupancy for port buffer. |
 | `nvswitch_interface_headroom_buffer_pg_watermark` | Maximum pool headroom buffer occupancy for port buffer. |
 | `nvswitch_interface_headroom_buffer_pg_watermark_recorded_max` | Highest maximum headroom buffer occupancy for port buffer recorded since running sdk_stats. |
-| `nvswitch_interface_headroom_buffer_shared_curr_occupancy` | Current headroom buffer occupancy for port shared buffer. |
-| `nvswitch_interface_headroom_shared_buffer_shared_watermark` | Maximum headroom buffer occupancy for port shared buffer. |
-| `nvswitch_interface_headroom_shared_buffer_shared_watermark_recorded_max` | Highest maximum headroom buffer occupancy for port shared buffer recorded since running sdk_stats. |
-| `nvswitch_interface_headroom_buffer_shared_pool_curr_occupancy` | Current headroom buffer occupancy for port shared pool buffer |
-| `nvswitch_interface_headroom_shared_buffer_shared_pool_watermark` | Maximum headroom buffer occupancy for port shared pool buffer. |
-| `nvswitch_interface_headroom_shared_buffer_shared_pool_watermark_recorded_max` | Highest maximum headroom buffer occupancy for port shared pool buffer. |
+| `nvswitch_interface_headroom_shared_buffer_curr_occupancy` | Current headroom buffer occupancy for port shared buffer. |
+| `nvswitch_interface_headroom_shared_buffer_watermark` | Maximum headroom buffer occupancy for port shared buffer. |
+| `nvswitch_interface_headroom_shared_buffer_watermark_recorded_max` | Highest maximum headroom buffer occupancy for port shared buffer recorded since running sdk_stats. |
+| `nvswitch_interface_headroom_buffer_pool_curr_occupancy` | Current headroom buffer occupancy for port shared pool buffer |
+| `nvswitch_interface_headroom_buffer_pool_watermark` | Maximum headroom buffer occupancy for port shared pool buffer. |
+| `nvswitch_interface_headroom_pool_watermark_recorded_max` | Highest maximum headroom buffer occupancy for port shared pool buffer. |
 
 ### Control Plane Statistic Format
 

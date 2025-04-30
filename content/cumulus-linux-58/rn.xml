@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4413450</td>
+<td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables (around 800K prefixes), the process consumes excessive memory resulting in OOM crashes. </td>
+<td>5.0.0-5.12.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4259979</td>
 <td>After you reboot the switch, the ifplugd.service fails to start monitoring the interface.</td>
 <td>5.8.0-5.11.1</td>

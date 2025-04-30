@@ -74,12 +74,6 @@ cumulus@switch:~$ sudo /usr/sbin/pam-auth-update --force --package</td>
 <td></td>
 </tr>
 <tr>
-<td>4423279</td>
-<td>If you apply an NVUE snippet affecting the {{/etc/cumulus/datapath/traffic.conf}} file, the snippet might fail the consistency check, resulting in a failed snippet apply.</td>
-<td>5.11.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4423278</td>
 <td>If you apply an NVUE snippet affecting the {{/etc/cumulus/datapath/traffic.conf}} file, the snippet might fail the consistency check, resulting in a failed snippet apply.</td>
 <td>5.11.0-5.12.1</td>
@@ -1095,12 +1089,6 @@ cumulus@switch:~$ sudo /usr/sbin/pam-auth-update --force --package</td>
 <td></td>
 </tr>
 <tr>
-<td>4423279</td>
-<td>If you apply an NVUE snippet affecting the {{/etc/cumulus/datapath/traffic.conf}} file, the snippet might fail the consistency check, resulting in a failed snippet apply.</td>
-<td>5.11.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4423278</td>
 <td>If you apply an NVUE snippet affecting the {{/etc/cumulus/datapath/traffic.conf}} file, the snippet might fail the consistency check, resulting in a failed snippet apply.</td>
 <td>5.11.0-5.12.1</td>
@@ -1332,7 +1320,7 @@ cumulus@switch:~$ sudo systemctl start cumulus-upgrade-on-shutdown</td>
 <td></td>
 </tr>
 <tr>
-<td>4286489</td>
+<td>4288264</td>
 <td>Optimized (two partition) upgrade and rollback fails when you apply configuration by editing the {{/etc/nvue.d/startup.yaml}} file, then run {{nv config apply startup}}. To work around this issue, after activating optimized &lt;b&gt;upgrade&lt;/b&gt;, but &lt;b&gt;before&lt;/b&gt; rebooting, save a copy of the contents of {{/var/lib/nvue/}} to some other location. Then, &lt;b&gt;after&lt;/b&gt; activating &lt;b&gt;rollback&lt;/b&gt;, but &lt;b&gt;before&lt;/b&gt; rebooting, move {{/var/lib/nvue/}} to some other location and copy the previously saved contents to {{/var/lib/nvue/}}.</td>
 <td>5.12.0</td>
 <td>5.11.1, 5.12.1</td>

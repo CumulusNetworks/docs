@@ -593,9 +593,9 @@ If the revision or yaml file is not readable, is in an invalid format, or includ
 
 ## Maximum Revisions Limit
 
-You can control the maximum number of revisions stored in the NVUE database to ensure efficient resource management and system performance. When the number of revisions reaches the maximum set, the switch automatically deletes the oldest revisions to make room for new ones when you create them.
+You can control the maximum number of revisions stored in the NVUE database to ensure efficient resource management and system performance. When the number of revisions reaches the maximum set, the switch automatically deletes the oldest revisions to make room for new ones when you create them. The lower revision number is the oldest; for example revision 10 is older than revision 100.
 
-NVUE does not delete the `startup`, `empty`, or `applied` revisions and does not include them in the total revision count. The revision from which the last `applied` revision was created is also protected from deletion.
+NVUE does not delete the `startup`, `empty`, or `applied` revisions and does not include them in the total revision count. The revision from which the last `applied` revision is created is also protected from deletion.
 
 Deletion occurs in batches to reduce the number of system operations.
 

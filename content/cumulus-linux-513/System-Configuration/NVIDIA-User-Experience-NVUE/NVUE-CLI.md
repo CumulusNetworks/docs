@@ -597,15 +597,13 @@ You can control the maximum number of revisions stored in the NVUE database to e
 
 NVUE does not delete the `startup`, `empty`, or `applied` revisions and does not include them in the total revision count. The revision from which the last `applied` revision was created is also protected from deletion.
 
-NVUE deletes revisions in the natural sort order; for example, NVUE deletes revision 1 before revision 2, and revision 10 before revision 100.  
-
 Deletion occurs in batches to reduce the number of system operations.
 
 {{%notice note%}}
 The deletion process is automatic; you cannot reverse it.
 {{%/notice%}}
 
-To set the maximum number of revisions before NVUE deletes them, edit the `NVUE_MAX_REVISIONS` option in `/etc/default/nvued` file. You can set a value between 10 and 100. The default value is 100.
+To set the maximum number of revisions before NVUE deletes them, edit the `NVUE_MAX_REVISIONS` option in `/etc/default/nvued` file. The minimum value is 10. The default value is 100.
 
 {{%notice note%}}
 Setting the limit too low results in frequent revision deletions.

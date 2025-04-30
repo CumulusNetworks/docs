@@ -374,7 +374,7 @@ Review the following considerations before you upgrade to Cumulus Linux 5.13.
 
 You can use {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="optimized image upgrade">}} to upgrade the switch to Cumulus Linux 5.13 from Cumulus Linux 5.11.1 and later.
 
-You can use {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.13, from the following releases:
+You can use {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.13 from the following releases. Package upgrade supports ISSU (warm boot) for these upgrade paths.
 - Cumulus Linux 5.12.1
 - Cumulus Linux 5.12.0
 - Cumulus Linux 5.11.1
@@ -385,7 +385,7 @@ To upgrade to Cumulus Linux 5.13 from a release that does not support package up
 
 ### Maximum Number of NVUE Revisions
 
-Cumulus Linux 5.13 includes a new option to set the {{<link url="NVUE-CLI/#maximum-revisions-limit" text="maximum number of revisions">}} after which NVUE deletes older revisions automatically. The default setting is 100. After upgrading to Cumulus Linux 5.13, the first time you run the `nv config apply` command, NVUE deletes older revisions if the number of revisions on the switch is greater than 100.
+Cumulus Linux 5.13 includes a new option to set the {{<link url="NVUE-CLI/#maximum-revisions-limit" text="maximum number of revisions">}} after which NVUE deletes older revisions automatically. The default setting is 100. After upgrading to Cumulus Linux 5.13, the first time you run `nv set` or `nv unset` commands, NVUE deletes older revisions if the number of revisions on the switch is greater than 100.
 
 ### Linux Configuration Files Overwritten
 

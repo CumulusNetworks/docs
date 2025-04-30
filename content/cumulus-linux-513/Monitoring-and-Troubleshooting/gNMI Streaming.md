@@ -1048,7 +1048,7 @@ Cumulus Linux supports the following metrics:
 | `/interfaces/interface[name=<name>]/state/counters/in-broadcast-pkts` | |
 | `/interfaces/interface[name=<name>]/state/counters/in-multicast-pkts` | |
 | `/interfaces/interface[name=<name>]/state/counters/in-octets` | |
-| `/interfaces/interface [name=<name>]/ethernet/state/port-speed` | |
+| `/interfaces/interface[name=<name>]/ethernet/state/port-speed` | |
 | `/interfaces/interface[name=<name>]/ethernet/state/counters/in-mac-pause-frames` | |
 | `/interfaces/interface[name=<name>]/ethernet/state/counters/in-oversize-frames` | |
 | `/interfaces/interface[name=<name>]/ethernet/state/counters/in-fcs-errors` | |
@@ -1121,9 +1121,8 @@ Cumulus Linux supports the following metrics:
 | `/lldp/state/system-description` | Textual description of the network entity.|
 | `/lldp/state/system-name` | The administratively assigned name of the system (such as DUT, Edge, Cumulus, and so on).|
 | `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/age` | LLDP neighbor age information.|
-| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/management-address` | A mandatory TLV that identifies a network address associated with the local LLDP agent, which can be used to reach the agent on the port identified in the Port ID TLV.|
-| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/management-address-type` | The enumerated value for the network address type identified in this TLV. |
 | `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/port-description` | The remote port name. |
+| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/management-address[address=<address>]/type`| The enumerated value for the network address type identified in this TLV.|
 | `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/port-id-type` | The format and source of the remote port ID string. |
 | `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/ttl` | LLDP neighbor port TTL. |
 | `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/capabilities/capability[name=<capability>]/state/enabled` | LLDP neighbor capabilities.|

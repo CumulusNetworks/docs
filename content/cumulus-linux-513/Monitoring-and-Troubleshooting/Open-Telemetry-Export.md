@@ -3186,11 +3186,8 @@ When you enable layer 3 routing metrics telemetry, the switch exports the follow
 |----- | ----------- |
 | `nvrouting_bgp_peer_state` |  BGP peer state: `Established`, `Idle`, `Connect`, `Active`, `OpenSent`.  |
 | `nvrouting_bgp_peer_fsm_established_transitions` | Number of BGP peer state transitions to the `Established` state for the peer session.|
-| `nvrouting_bgp_peer_rib_adj_in_ipv4_unicast` | Number of IPv4 unicast routes received from the BGP neighbor after applying any policies. This count is the number of routes present in the post-policy Adj-RIB-In for the neighbor. |
-| `nvrouting_bgp_peer_rib_adj_in_ipv6_unicast` | Number of IPv6 unicast routes received from the BGP neighbor after applying any policies. This count is the number of routes present in the post-policy Adj-RIB-In for the neighbor. |
-| `nvrouting_bgp_peer_rib_adj_in_l2vpn_evpn` | Number of EVPN routes received from the BGP neighbor after applying any policies. This count is the number of routes present in the post-policy Adj-RIB-In for the neighbor. |
-| `nvrouting_bgp_peer_rib_adj_in_installed` | Tracks the number of prefixes received from the neighbor that are installed in the RIB and actively used for forwarding. |
-| `nvrouting_bgp_peer_rib_adj_out_advertised` | Tracks the number of prefixes advertised to the neighbor after applying any policies. |
+| `nvrouting_bgp_peer_rib_adj_in_installed` | Tracks the number of  prefixes received from the neighbor that are installed in the RIB and actively used for forwarding.  |
+| `nvrouting_bgp_peer_rib_adj_out_advertised` | Tracks the number of  prefixes that are advertised to the neighbor after applying any policies. |
 | `nvrouting_bgp_peer_total_msgs_sent` | Number of BGP messages sent to the neighbor. |
 | `nvrouting_bgp_peer_total_msgs_recvd` | Number of BGP messages received from the neighbor.|
 | `nvrouting_bgp_peer_rib_adj_in` | Number of IPv4, IPv6, and EVPN prefixes received from the peer after applying any policies. This count is the number of prefixes present in the post-policy Adj-RIB-In for the peer. |
@@ -3199,7 +3196,6 @@ When you enable layer 3 routing metrics telemetry, the switch exports the follow
 | `nvrouting_bgp_peer_rx_updates` | Number of BGP messages received from the neighbor.|
 | `nvrouting_bgp_peer_tx_updates` | Number of BGP messages sent to the neighbor. |
 | `nvrouting_rib_count` | Number of IPv4 and IPv6 routes in the IP routing table for each route source. |
-| `nvrouting_rib_count_ipv6` | Number of IPv6 routes in the IP routing table for each route source. |
 | `nvrouting_rib_count_connected` | Number of IPv4 connected routes in the IP routing table. |
 | `nvrouting_rib_count_bgp` | Number of IPv4 BGP routes in the IP routing table. |
 | `nvrouting_rib_count_kernel` | Number of IPv4 kernel routes in the IP routing table.|

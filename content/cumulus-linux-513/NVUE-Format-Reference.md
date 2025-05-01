@@ -3,7 +3,6 @@ title: NVUE Format Reference
 author: NVIDIA
 weight: 1855
 toc: 3
-draft: true
 ---
 
 The NVUE openAPI schema references the `format` keyword, which takes a string that represents the format of valid input for a given property (such as `format: ipv4`, `format: float`, and so on). This section lists the formats that the schema uses and validates, and provides valid examples.
@@ -34,7 +33,7 @@ NVUE uses the reserved names for special purposes:
 Usernames for system accounts.
 
 **Valid Format:**
-- Must start with a letter or underscore
+- Must start with a letter or underscore (_).
 - Can contain letters, digits, underscores, or dashes.
 - Can end with a dollar sign ($).
 - Maximum length: 32 characters.
@@ -56,8 +55,8 @@ SSH public keys.
 
 **Valid Format:**
 
-- Must be a base64 encoded string
-- Must be properly formatted base64
+- Must be a base64 encoded string.
+- Must be properly formatted base64.
 
 ### command
 
@@ -133,11 +132,11 @@ Time format for system clock.
 TCP MSS format.
 
 **Valid Input Format:**
-- Must be a string
-- Either a single number or a range
-- Range format: "start-end"
-- Values must be less than MAX_TCP_MSS (65535)
-- Range end must be greater than start
+- Must be a string.
+- Either a single number or a range.
+- Range format: "start-end".
+- Values must be less than MAX_TCP_MSS (65535).
+- Range end must be greater than start.
 
 **Valid Examples:**
 
@@ -174,8 +173,8 @@ Rate limit values.
 Secret strings.
 
 **Valid Format:**
-- Non-empty string
-- Cannot contain spaces
+- Non-empty string.
+- Cannot contain spaces.
 
 **Valid Examples:**
 
@@ -190,9 +189,9 @@ Secret strings.
 Bond and switch port names.
 
 **Valid Format:**
-- Must be either a valid switch port name (swp) or bond name
-- Cannot be a reserved name
-- Cannot be a VXLAN interface name
+- Must be either a valid switch port name (swp) or bond name.
+- Cannot be a reserved name.
+- Cannot be a VXLAN interface name.
 
 **Valid Examples:**
 
@@ -208,8 +207,8 @@ Bond and switch port names.
 Sample interval values.
 
 **Valid Format:**
-- Must be an integer
-- Must be a multiple of 10
+- Must be an integer.
+- Must be a multiple of 10.
 
 **Valid Examples:**
 
@@ -253,9 +252,9 @@ Repository URLs.
 Repository distribution names.
 
 **Valid Format:**
-- Alphanumeric characters
-- Can contain hyphens (-) and underscores (_)
-- Cannot contain any other special characters
+- Alphanumeric characters.
+- Can contain hyphens (-) and underscores (_).
+- Cannot contain any other special characters.
 
 **Valid Examples:**
 
@@ -271,9 +270,9 @@ Repository distribution names.
 Repository pool names.
 
 **Valid Format:**
-- Alphanumeric characters
-- Can contain hyphens (-) and underscores (_)
-- Cannot contain any other special characters
+- Alphanumeric characters.
+- Can contain hyphens (-) and underscores (_).
+- Cannot contain any other special characters.
 
 **Valid Examples:**
 
@@ -289,9 +288,9 @@ Repository pool names.
 Transceiver interface names.
 
 **Valid Format:**
-- Must be a valid switch port name (swp)
-- Must match NOS patterns for transceiver types
-- Can be a range of interfaces
+- Must be a valid switch port name (swp).
+- Must match NOS patterns for transceiver types.
+- Can be a range of interfaces.
 
 **Valid Examples:**
 
@@ -306,7 +305,7 @@ Transceiver interface names.
 
 The `interface-name` format supports various types of network interface names.
 
-#### Valid Interface Types
+**Valid Interface Types**
 
 - Switch Port (swp)
 - Ethernet (eth)
@@ -316,7 +315,7 @@ The `interface-name` format supports various types of network interface names.
 - Bond interfaces
 - NOS-specific interface types
 
-#### Valid Examples
+**Valid Examples**
 
 ```
 # Switch Ports
@@ -349,49 +348,49 @@ bond_1
 bond1_1
 ```
 
-#### Rules
+**Rules**
 
 1. Switch Port (swp) names:
-   - Must start with "sw"
-   - Followed by module number (optional)
-   - Followed by "p" and port number
-   - Optionally followed by "s" and breakout number
-   - Optionally followed by "L" for logical ports
+   - Must start with "sw".
+   - Followed by module number (optional).
+   - Followed by "p" and port number.
+   - Optionally followed by "s" and breakout number.
+   - Optionally followed by "L" for logical ports.
 
 2. Ethernet (eth) names:
-   - Must start with "eth"
-   - Followed by a number
+   - Must start with "eth".
+   - Followed by a number.
 
 3. Subinterface names:
-   - Must start with a letter
-   - Can contain letters, numbers, and underscores
-   - Must have at least one dot (.) followed by a number
-   - Can have multiple dot-separated numbers
+   - Must start with a letter.
+   - Can contain letters, numbers, and underscores.
+   - Must have at least one dot (.) followed by a number.
+   - Can have multiple dot-separated numbers.
 
 4. Switch Virtual Interface (svi) names:
-   - Must start with "vlan" followed by a number or name
-   - Optionally followed by "-v0"
-   - Or must be a VRRP interface name (vrrp4/vrrp6-number-number)
+   - Must start with "vlan" followed by a number or name.
+   - Optionally followed by "-v0".
+   - Or must be a VRRP interface name (vrrp4/vrrp6-number-number).
 
 5. Loopback names:
-   - Must be exactly "lo"
+   - Must be exactly "lo".
 
 6. Bond interface names:
-   - Must start with a letter
-   - Can contain letters, numbers, and underscores
-   - Cannot match patterns of other interface types
-   - Cannot be a reserved name
+   - Must start with a letter.
+   - Can contain letters, numbers, and underscores.
+   - Cannot match patterns of other interface types.
+   - Cannot be a reserved name.
 
 7. General rules:
-   - Names cannot be reserved words (auto, none, null, any, all)
-   - Names cannot start with reserved prefixes (sw, eth, vlan, ib, fnm, vrrp)
-   - Names cannot match the pattern "lo" followed by a number (reserved for future use)
+   - Names cannot be reserved words (auto, none, null, any, all).
+   - Names cannot start with reserved prefixes (sw, eth, vlan, ib, fnm, vrrp).
+   - Names cannot match the pattern "lo" followed by a number (reserved for future use).
 
 ### Interface Name Range Support
 
 The `interface-name` format also supports specifying a range of interfaces using a special syntax. When a range is specified, each interface name in the range must be valid according to the rules above.
 
-#### Valid Range Examples
+**Valid Range Examples**
 
 ```
 # Switch Port Ranges
@@ -413,14 +412,14 @@ eth1-3 # Expands to: eth1, eth2, eth3
 bond1-3 # Expands to: bond1, bond2, bond3
 ```
 
-#### Range Rules
+**Range Rules**
 
-1. Range format is specified using a hyphen (-) between start and end numbers
-2. Start number must be less than end number
-3. Only the numeric portion of the interface name can be part of the range
-4. All expanded interface names must be valid according to their respective interface type rules
-5. Cannot mix different interface types in a single range
-6. The non-numeric parts of the interface name must be identical for all interfaces in the range
+1. Range format is specified using a hyphen (-) between start and end numbers.
+2. Start number must be less than end number.
+3. Only the numeric portion of the interface name can be part of the range.
+4. All expanded interface names must be valid according to their respective interface type rules.
+5. Cannot mix different interface types in a single range.
+6. The non-numeric parts of the interface name must be identical for all interfaces in the range.
 
 ### Network Address Formats
 
@@ -429,11 +428,11 @@ bond1-3 # Expands to: bond1, bond2, bond3
 IPv4 address format.
 
 **Valid Input Format:**
-- Must be a string
-- Four octets separated by dots
-- Each octet must be between 0-255
-- No leading zeros allowed
-- No spaces allowed
+- Must be a string.
+- Four octets separated by dots.
+- Each octet must be between 0-255.
+- No leading zeros allowed.
+- No spaces allowed.
 
 **Valid Examples:**
 
@@ -448,8 +447,8 @@ IPv4 address format.
 IPv4 unicast address format.
 
 **Valid Input Format:**
-- Must be a valid IPv4 address
-- First octet must not be in range 224-239 (multicast range)
+- Must be a valid IPv4 address.
+- First octet must not be in range 224-239 (multicast range).
 
 **Valid Examples:**
 
@@ -464,8 +463,8 @@ IPv4 unicast address format.
 IPv4 multicast address format.
 
 **Valid Input Format:**
-- Must be a valid IPv4 address
-- First octet must be in range 224-239
+- Must be a valid IPv4 address.
+- First octet must be in range 224-239.
 
 **Valid Examples:**
 
@@ -481,8 +480,8 @@ IPv4 address with prefix length.
 
 **Valid Input Format:**
 - Must be a string
-- Format: "ipv4_address/prefix_length"
-- Prefix length must be between 0-32
+- Format: "ipv4_address/prefix_length".
+- Prefix length must be between 0-32.
 
 **Valid Examples:**
 
@@ -498,9 +497,9 @@ IPv4 subnet address with prefix length.
 
 **Valid Input Format:**
 - Must be a string
-- Format: "network_address/prefix_length"
-- Must be a valid network address (not a host address)
-- Prefix length must be between 0-32
+- Format: "network_address/prefix_length".
+- Must be a valid network address (not a host address).
+- Prefix length must be between 0-32.
 
 **Valid Examples:**
 
@@ -515,9 +514,9 @@ IPv4 subnet address with prefix length.
 IPv6 address with prefix length.
 
 **Valid Input Format:**
-- Must be a string
-- Format: "ipv6_address/prefix_length"
-- Prefix length must be between 0-128
+- Must be a string.
+- Format: "ipv6_address/prefix_length".
+- Prefix length must be between 0-128.
 
 **Valid Examples:**
 
@@ -532,9 +531,9 @@ IPv6 address with prefix length.
 IPv4 address with netmask.
 
 **Valid Input Format:**
-- Must be a string
-- Format: "ipv4_address/netmask"
-- Both parts must be valid IPv4 addresses
+- Must be a string.
+- Format: "ipv4_address/netmask".
+- Both parts must be valid IPv4 addresses.
 
 **Valid Examples:**
 
@@ -548,9 +547,9 @@ IPv4 address with netmask.
 IPv6 address with netmask.
 
 **Valid Input Format:**
-- Must be a string
-- Format: "ipv6_address/netmask"
-- Both parts must be valid IPv6 addresses
+- Must be a string.
+- Format: "ipv6_address/netmask".
+- Both parts must be valid IPv6 addresses.
 
 **Valid Examples:**
 
@@ -566,9 +565,9 @@ IPv6 address with netmask.
 MAC address format.
 
 **Valid Input Format:**
-- Must be a string
-- Format: "XX:XX:XX:XX:XX:XX"
-- Each X must be a hexadecimal digit (0-9, A-F, a-f)
+- Must be a string.
+- Format: "XX:XX:XX:XX:XX:XX".
+- Each X must be a hexadecimal digit (0-9, A-F, a-f).
 
 **Valid Examples:**
 
@@ -583,9 +582,9 @@ MAC address format.
 PTP clock ID format.
 
 **Valid Input Format:**
-- Must be a string
-- Format: "XX:XX:XX:XX:XX:XX:XX:XX"
-- Each X must be a hexadecimal digit (0-9, A-F, a-f)
+- Must be a string.
+- Format: "XX:XX:XX:XX:XX:XX:XX:XX".
+- Each X must be a hexadecimal digit (0-9, A-F, a-f).
 
 **Valid Examples:**
 
@@ -599,9 +598,9 @@ PTP clock ID format.
 Ethernet Segment Identifier format.
 
 **Valid Input Format:**
-- Must be a string
-- Format: "XX:XX:XX:XX:XX:XX:XX:XX:XX:XX"
-- Each X must be a hexadecimal digit (0-9, A-F, a-f)
+- Must be a string.
+- Format: "XX:XX:XX:XX:XX:XX:XX:XX:XX:XX".
+- Each X must be a hexadecimal digit (0-9, A-F, a-f).
 
 **Valid Examples:**
 
@@ -615,10 +614,10 @@ Ethernet Segment Identifier format.
 Ethernet Segment Identifier format (Type-0).
 
 **Valid Input Format:**
-- Must be a string
-- Format: "00:XX:XX:XX:XX:XX:XX:XX:XX:XX"
-- Must start with "00:"
-- Each X must be a hexadecimal digit (0-9, A-F, a-f)
+- Must be a string.
+- Format: "00:XX:XX:XX:XX:XX:XX:XX:XX:XX".
+- Must start with "00:".
+- Each X must be a hexadecimal digit (0-9, A-F, a-f).
 
 **Valid Examples:**
 
@@ -634,11 +633,11 @@ Ethernet Segment Identifier format (Type-0).
 Route distinguisher format.
 
 **Valid Input Format:**
-- Must be a string
+- Must be a string.
 - Three types supported:
-  1. Type 0: "ASN:NN" (2-byte ASN:4-byte number)
-  2. Type 1: "IP:NN" (4-byte IP:2-byte number)
-  3. Type 2: "ASN:NN" (4-byte ASN:2-byte number)
+  1. Type 0: "ASN:NN" (2-byte ASN:4-byte number).
+  2. Type 1: "IP:NN" (4-byte IP:2-byte number).
+  3. Type 2: "ASN:NN" (4-byte ASN:2-byte number).
 
 **Valid Examples:**
 
@@ -653,7 +652,7 @@ Route distinguisher format.
 Route target format.
 
 **Valid Input Format:**
-- Must be a string
+- Must be a string.
 - Three types supported:
   1. "ASN:NN" (2-byte ASN:4-byte number)
   2. "IP:NN" (4-byte IP:2-byte number)
@@ -684,9 +683,9 @@ Well-known BGP community values.
 BGP community format.
 
 **Valid Input Format:**
-- Must be a string
-- Format: "NN:NN"
-- Each NN must be a 16-bit number (0-65535)
+- Must be a string.
+- Format: "NN:NN".
+- Each NN must be a 16-bit number (0-65535).
 
 **Valid Examples:**
 
@@ -701,9 +700,9 @@ BGP community format.
 BGP large community format.
 
 **Valid Input Format:**
-- Must be a string
-- Format: "NN:NN:NN"
-- Each NN must be a 32-bit number
+- Must be a string.
+- Format: "NN:NN:NN".
+- Each NN must be a 32-bit number.
 
 **Valid Examples:**
 
@@ -718,11 +717,11 @@ BGP large community format.
 BGP regex pattern format.
 
 **Valid Input Format:**
-- Must be a string
-- Can contain digits, underscores, colons, dots, and special regex characters
-- Cannot start with '*'
-- Must contain at least one special character
-- Cannot contain certain invalid regex patterns
+- Must be a string.
+- Can contain digits, underscores, colons, dots, and special regex characters.
+- Cannot start with '*'.
+- Must contain at least one special character.
+- Cannot contain certain invalid regex patterns.
 
 **Valid Examples:**
 
@@ -737,10 +736,10 @@ BGP regex pattern format.
 IP port range format.
 
 **Valid Input Format:**
-- Must be a string
-- Format: "start-end"
-- Both numbers must be 16-bit (0-65535)
-- Start must be less than or equal to end
+- Must be a string.
+- Format: "start-end".
+- Both numbers must be 16-bit (0-65535).
+- Start must be less than or equal to end.
 
 **Valid Examples:**
 
@@ -755,10 +754,10 @@ IP port range format.
 VVLAN range format.
 
 **Valid Input Format:**
-- Must be a string
-- Format: "start-end"
-- Both numbers must be between 1-4095
-- Start must be less than or equal to end
+- Must be a string.
+- Format: "start-end".
+- Both numbers must be between 1-4095.
+- Start must be less than or equal to end.
 
 **Valid Examples:**
 
@@ -773,9 +772,9 @@ VVLAN range format.
 ASN range format.
 
 **Valid Input Format:**
-- Must be a string
-- Comma-separated list of numbers
-- Each number must be a valid ASN (0-4294967295)
+- Must be a string.
+- Comma-separated list of numbers.
+- Each number must be a valid ASN (0-4294967295).
 
 **Valid Examples:**
 
@@ -836,8 +835,8 @@ Command path format.
 JSON pointer format.
 
 **Valid Input Format:**
-- Must be a valid JSON pointer string
-- Must follow JSON pointer syntax rules
+- Must be a valid JSON pointer string.
+- Must follow JSON pointer syntax rules.
 
 **Valid Examples:**
 
@@ -852,8 +851,8 @@ JSON pointer format.
 Integer format.
 
 **Valid Input Format:**
-- Must be a valid integer or integer range
-- Can use range expansion syntax
+- Must be a valid integer or integer range.
+- Can use range expansion syntax.
 
 **Valid Examples:**
 
@@ -869,7 +868,7 @@ Numerical value format.
 
 **Valid Input Format:**
 
-Must be a valid integer or floating-point number
+Must be a valid integer or floating-point number.
 
 **Valid Examples:**
 
@@ -886,7 +885,7 @@ Floating-point number format.
 
 **Valid Input Format:**
 
-Must be a valid integer or floating-point number
+Must be a valid integer or floating-point number.
 
 **Valid Examples:**
 
@@ -902,10 +901,10 @@ Must be a valid integer or floating-point number
 OID (Object Identifier) format.
 
 **Valid Input Format:**
-- Must be a string
-- Must start and end with a digit
-- Can contain digits and dots
-- No consecutive dots allowed
+- Must be a string.
+- Must start and end with a digit.
+- Can contain digits and dots.
+- No consecutive dots allowed.
 
 **Valid Examples:**
 
@@ -920,11 +919,11 @@ OID (Object Identifier) format.
 SNMP MIB tree branch format.
 
 **Valid Input Format:**
-- Must be a string
-- Must start with optional dot
-- Must start and end with a digit
-- Can contain digits and dots
-- No consecutive dots allowed
+- Must be a string.
+- Must start with optional dot.
+- Must start and end with a digit.
+- Can contain digits and dots.
+- No consecutive dots allowed.
 
 **Valid Examples:**
 
@@ -939,10 +938,10 @@ SNMP MIB tree branch format.
 Generic instance name format.
 
 **Valid Input Format:**
-- Must be a string
-- Must start with a letter
-- Can contain letters, numbers, and underscores
-- Cannot be a reserved name
+- Must be a string.
+- Must start with a letter.
+- Can contain letters, numbers, and underscores.
+- Cannot be a reserved name.
 
 **Valid Examples:**
 
@@ -957,10 +956,10 @@ Generic instance name format.
 Generic item name format.
 
 **Valid Input Format:**
-- Must be a string
-- Must start with a letter or number
-- Can contain letters, numbers, underscores, and hyphens
-- Cannot be a reserved name
+- Must be a string.
+- Must start with a letter or number.
+- Can contain letters, numbers, underscores, and hyphens.
+- Cannot be a reserved name.
 
 **Valid Examples:**
 
@@ -975,10 +974,10 @@ Generic item name format.
 Generic name format.
 
 **Valid Input Format:**
-- Must be a string
-- Must start with a letter
-- Can contain letters, numbers, underscores, and hyphens
-- Cannot be a reserved name
+- Must be a string.
+- Must start with a letter.
+- Can contain letters, numbers, underscores, and hyphens.
+- Cannot be a reserved name.
 
 **Valid Examples:**
 
@@ -993,10 +992,10 @@ Generic name format.
 Bridge name format.
 
 **Valid Input Format:**
-- Must follow instance-name format rules
-- Must start with a letter
-- Can contain letters, numbers, and underscores
-- Cannot be a reserved name
+- Must follow instance-name format rules.
+- Must start with a letter.
+- Can contain letters, numbers, and underscores.
+- Cannot be a reserved name.
 
 **Valid Examples:**
 
@@ -1011,10 +1010,10 @@ Bridge name format.
 VRF name format.
 
 **Valid Input Format:**
-- Must follow generic-name format rules
-- Must start with a letter
-- Can contain letters, numbers, underscores, and hyphens
-- Cannot be a reserved name
+- Must follow generic-name format rules.
+- Must start with a letter.
+- Can contain letters, numbers, underscores, and hyphens.
+- Cannot be a reserved name.
 
 **Valid Examples:**
 
@@ -1030,10 +1029,10 @@ PTP port ID format.
 
 **Valid Input Format:**
 
-- Must be a string
-- Format: "clock-id-port-number"
-- clock-id must be valid clock ID format
-- port-number must be 2 bytes in hex format
+- Must be a string.
+- Format: "clock-id-port-number".
+- clock-id must be valid clock ID format.
+- port-number must be 2 bytes in hex format.
 
 **Valid Examples:**
 
@@ -1047,10 +1046,10 @@ PTP port ID format.
 PTP sequence ID format.
 
 **Valid Input Format:**
-- Must be a string
-- Format: "start-end"
-- start must be 8-bit (0-255)
-- end must be 32-bit (0-4294967295)
+- Must be a string.
+- Format: "start-end".
+- start must be 8-bit (0-255).
+- end must be 32-bit (0-4294967295).
 
 **Valid Examples:**
 
@@ -1065,9 +1064,9 @@ PTP sequence ID format.
 Integer ID format.
 
 **Valid Input Format:**
-- Must be a string
-- Must be a positive integer
-- Cannot start with 0
+- Must be a string.
+- Must be a positive integer.
+- Cannot start with 0 (zero).
 
 **Valid Examples:**
 
@@ -1082,10 +1081,10 @@ Integer ID format.
 Profile name format.
 
 **Valid Input Format:**
-- Must be a string
-- Must start with a letter
-- Can contain letters, numbers, underscores, and hyphens
-- Cannot be a reserved name
+- Must be a string.
+- Must start with a letter.
+- Can contain letters, numbers, underscores, and hyphens.
+- Cannot be a reserved name.
 
 **Valid Examples:**
 
@@ -1100,10 +1099,10 @@ Profile name format.
 Internationalized domain name hostname format.
 
 **Valid Input Format:**
-- Must be a string
-- Must follow IDN hostname rules
-- Must be properly encoded
-- Cannot contain invalid characters
+- Must be a string.
+- Must follow IDN hostname rules.
+- Must be properly encoded.
+- Cannot contain invalid characters.
 
 **Valid Examples:**
 

@@ -61,20 +61,8 @@
 <td></td>
 </tr>
 <tr>
-<td>4423274</td>
-<td>After you run the {{nv action upgrade system packages to latest}} command followed by the {{nv action reboot system}} command, {{nv show system reboot}} displays {{upgrade}} instead of one of the valid values {{cold}}, {{warm}},  or {{fast}}.</td>
-<td>5.11.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4423273</td>
 <td>After you run the {{nv action upgrade system packages to latest}} command followed by the {{nv action reboot system}} command, {{nv show system reboot}} displays {{upgrade}} instead of one of the valid values {{cold}}, {{warm}},  or {{fast}}.</td>
-<td>5.11.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4423270</td>
-<td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
 <td>5.11.0-5.12.1</td>
 <td></td>
 </tr>
@@ -1193,20 +1181,8 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <td></td>
 </tr>
 <tr>
-<td>4423274</td>
-<td>After you run the {{nv action upgrade system packages to latest}} command followed by the {{nv action reboot system}} command, {{nv show system reboot}} displays {{upgrade}} instead of one of the valid values {{cold}}, {{warm}},  or {{fast}}.</td>
-<td>5.11.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4423273</td>
 <td>After you run the {{nv action upgrade system packages to latest}} command followed by the {{nv action reboot system}} command, {{nv show system reboot}} displays {{upgrade}} instead of one of the valid values {{cold}}, {{warm}},  or {{fast}}.</td>
-<td>5.11.0-5.12.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4423270</td>
-<td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
 <td>5.11.0-5.12.1</td>
 <td></td>
 </tr>
@@ -1518,8 +1494,8 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 <tr>
 <td>4245853</td>
 <td>NVUE Rest API calls that are authenticated with TACACS on the switch append unnecessary database entries to the {{/run/tacacs_clent_map}} file, which increases the file size. Over time, this increases the TACACS login authentication time, resulting in delayed login authentication. To work around this issue, delete the {{tacacs_client_map}} file with the {{sudo rm rf /run/tacacs_client_map}} command.</td>
-<td>5.11.0-5.11.1</td>
-<td>5.12.0-5.12.1</td>
+<td>5.11.0-5.12.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4245850</td>

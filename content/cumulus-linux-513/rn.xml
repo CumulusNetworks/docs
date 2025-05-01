@@ -61,6 +61,12 @@
 <td></td>
 </tr>
 <tr>
+<td>4280299</td>
+<td>The {{nv action fetch system packages key &lt;key-id&gt;}} command fails if the key ID is an scp/ftp or URL path that requires a password to access the key. To work around this issue, use a URI that does not require password authentication for the key ID.</td>
+<td>5.12.0-5.13.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4277042</td>
 <td>On the NVIDIA SN5600 switch, you see low power alarms immediately after a reboot. The alarms disappear after showing up initially. Certain modules typically show low power alarms on initialization. No action is needed.</td>
 <td>5.12.0-5.13.0</td>
@@ -69,6 +75,12 @@
 <tr>
 <td>4249096</td>
 <td>Binary upgrade from Cumulus Linux 4.3.1 to 5.12.0 is not supported. To work around this issue, perform a binary upgrade from Cumulus Linux 4.3.1 to 5.9.0, then perform a binary upgrade from Cumulus Linux 5.9.0 to 5.12.0.</td>
+<td>5.12.0-5.13.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4236419</td>
+<td>On the Spectrum-3 switch, the PTP offset for 25GbE fluctuates within a range of ±50 nanoseconds beyond the expected values.</td>
 <td>5.12.0-5.13.0</td>
 <td></td>
 </tr>
@@ -839,6 +851,11 @@ cumulus@switch:~$ nv config apply</td>
 <td>After a factory reset, the files in /etc/pam.d/* may be incorrect, causing problems with password strength checking, TACACS+, RADIUS, and/or LDAP. To work around this issue, run the following command:
 cumulus@switch:~$ sudo /usr/sbin/pam-auth-update --force --package</td>
 <td>5.12.0-5.12.1</td>
+</tr>
+<tr>
+<td>4207037</td>
+<td>NVUE Rest API calls that are authenticated with TACACS on the switch append unnecessary database entries to the {{/run/tacacs_clent_map}} file, which increases the file size. Over time, this increases the TACACS login authentication time, resulting in delayed login authentication. To work around this issue, delete the {{tacacs_client_map}} file with the {{sudo rm rf /run/tacacs_client_map}} command.</td>
+<td>5.11.0</td>
 </tr>
 <tr>
 <td>4144021</td>

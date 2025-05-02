@@ -578,6 +578,38 @@ cumulus@switch:~$ nv set interface swp9-16 telemetry histogram latency traffic-c
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system telemetry adaptive-routing-stats export state</h>
+
+Enables and disables export for adaptive routing statistics. You can specify `enabled` or `disabled`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry adaptive-routing-stats export state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry adaptive-routing-stats sample-interval</h>
+
+Sets the sample interval for adaptive routing metrics. The default value is 60 seconds.
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry adaptive-routing-stats sample-interval 40
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system telemetry buffer-stats export state</h>
 
 Enables collection and export of switch buffer occupancy and watermark metrics. You can specify `enabled` or `disabled`.
@@ -892,6 +924,31 @@ Introduced in Cumulus Linux 5.7.0
 
 ```
 cumulus@switch:~$ nv set system telemetry histogram egress-buffer sample-interval 1024
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry histogram temporality \<mode\></h>
+
+Sets the temporality mode for open telemetry histogram collection. Histogram temporality mode lets you choose how to aggregate and report histogram metrics over time.
+
+Cumulus Linux supports the following temporality modes:
+- Delta mode captures only the new data recorded after the last export, reflecting the rate of change instead of cumulative totals. Each export includes only the counts collected within the latest time window; previous values do not carry over to the next reporting cycle. This is the default setting.
+- Cumulative mode reports the total count from the beginning of the measurement period. Each export includes all previously reported values along with newly recorded data, ensuring that the metric continues to grow until the measurement cycle resets. This approach prevents the metric from resetting between reports.
+
+{{%notice note%}}
+- Impacts both snapshot file collection and metric data export.
+- Restarts the histogram service, initiating a new measurement cycle.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry histogram temporality cumulative
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1217,6 +1274,72 @@ Introduced in Cumulus Linux 5.9.0
 
 ```
 cumulus@switch:~$ nv set system telemetry histogram latency histogram-size 12288
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry lldp export state</h>
+
+Enables and disables open telemetry LLDP statistics. You can specify `enabled` or `disabled`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry lldp export state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry lldp sample-interval</h>
+
+Sets the sample interval for LLDP metrics. The default value is 10 seconds.
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry lldp sample-interval 10
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry platform-stats class transceiver-info sample-interval</h>
+
+Sets the sample interval for transceiver metrics. The default value is 60 seconds.
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry platform-stats class transceiver-info sample-interval 40
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry platform-stats class transceiver-info state</h>
+
+Enables and disables the export of transceiver temperature and power metrics.
+
+You can specify `enabled` or `disabled`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry platform-stats class transceiver-info state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

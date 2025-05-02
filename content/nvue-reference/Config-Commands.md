@@ -176,15 +176,17 @@ cumulus@switch:~$ nv config history 5
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv config patch \<nvue-file\></h>
+## <h>nv config patch \<file\></h>
 
 Updates the pending configuration with an NVUE configuration file in YAML format.
+
+In Cumulus Linux 5.13 and later, you can specify a text file containing `nv set` and `nv unset` commands instead of a yaml file.
 
 ### Command Syntax
 
 | <div style="width:250px">Syntax   |  Description  |
 | ----------   | ------------  |
-| `<cue-file>` | The NVUE YAML file you want to use to update the pending configuration. |
+| `<file>` | The file you want to use to update the pending configuration. |
 
 ### Version History
 
@@ -202,11 +204,13 @@ cumulus@switch:~$ nv config patch myconfig.yaml
 
 Replaces the pending configuration with the specified YAML configuration file.
 
+In Cumulus Linux 5.13 and later, you can specify a text file containing `nv set` and `nv unset` commands instead of a yaml file.
+
 ### Command Syntax
 
 | <div style="width:250px">Syntax   |  Description  |
 | ----------   | ------------  |
-| `<nvue-file>` | The NVUE YAML file you want to use to replace the pending configuration. |
+| `<nvue-file>` |  The file you want to use to update the pending configuration.  |
 
 ### Version History
 

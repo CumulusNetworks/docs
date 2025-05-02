@@ -767,6 +767,10 @@ type              fan
 
 Shows the software installed on the switch.
 
+{{%notice note%}}
+Cumulus Linux 5.13 no longer provides this command; run `nv show system version packages` instead.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -1054,7 +1058,7 @@ cumulus@switch:~$ nv show platform transceiver swp25 channel 1
 
 Shows transceiver data for an interface in a condensed format.
 
-## Command Syntax
+### Command Syntax
 
 | Syntax | Description |
 | --------- | -------------- |

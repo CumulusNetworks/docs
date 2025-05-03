@@ -8,9 +8,9 @@
 </tr>
 <tr>
 <td>4413450</td>
-<td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables (around 800K prefixes), the process consumes excessive memory resulting in OOM crashes. </td>
-<td>5.0.0-5.12.1</td>
-<td>5.13.0</td>
+<td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables, the process consumes excessive memory resulting in OOM crashes. </td>
+<td>5.0.0-5.13.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4004453</td>

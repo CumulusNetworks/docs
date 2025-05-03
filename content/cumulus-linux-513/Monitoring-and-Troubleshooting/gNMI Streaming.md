@@ -1145,12 +1145,12 @@ Cumulus Linux supports the following metrics:
 
 |  Name | Description |
 |------ | ----------- |
-| `/qos/interfaces/interface/state/switch-priority/counters/out-pause-pkts`| Count of the invoked PFC M_CONTROL.request primitives with this priority class asserted.|
+| `/qos/interfaces/interface/state/switch-priority/counters/out-pause-pkts`| Count of the invoked `PFC M_CONTROL.request` primitives with this priority class asserted.|
 | `/qos/interfaces/interface/state/priority-group/counters/watermark-max` | High watermark of cells used in a priority group since last time watermarks were reset. |
 | `/qos/interfaces/interface/output/queues/queue/state/watermark-max` | High watermark of cells used in a queue since last time watermarks were reset. |
 | `qos/interfaces/interface/output/queues/queue/state/ecn-marked-pkts`| Number of ECN marked packets from this egress queue. If ECN counter is not enabled, the counter value is 0.|
 | `qos/interfaces/interface/output/queues/queue/state/transmit-octets`| Number of transmitted bytes in the egress queue of an interface.|
-| `qos/interfaces/interface/output/queues/queue/state/transmit-pkts`| The number of transmitted packets in the egress queue of an interface. |
+| `qos/interfaces/interface/output/queues/queue/state/transmit-pkts`| Number of transmitted packets in the egress queue of an interface. |
 | `/qos/interfaces/interface/output/queues/queue/state/wred-dropped-pkts` | Number of packets discarded from this egress queue of an interface. |
 | `/qos/interfaces/interface/output/queues/queue/state/no-buffer-uc-dropped-pkts` | Number of packets discarded from this egress queue when there is no buffer left in the interface. |
 | `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/time-since-last-clear` | Time since last clear of watermarks in a queue.|

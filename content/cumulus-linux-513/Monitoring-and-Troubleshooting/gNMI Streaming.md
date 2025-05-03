@@ -1041,67 +1041,126 @@ Cumulus Linux supports the following metrics:
 
 |  Name | Description |
 |------ | ----------- |
-| `/qos/interfaces/interface[interface-id=<name>]/output/queues/queue[name=<0-15>]/state/transmit-octets` | |
-| `/qos/interfaces/interface[interface-id=<name>]/output/queues/queue[name=<0-15>]/state/transmit-pkts` | |
-| `/qos/interfaces/interface[interface-id=<name>]/output/queues/queue[name=<0-15>]/state/ecn-marked-pkts` | |
-| `/interfaces/interface[name=<name>]/state/admin-status`| |
-| `/interfaces/interface[name=<name>]/state/counters/in-broadcast-pkts` | |
-| `/interfaces/interface[name=<name>]/state/counters/in-multicast-pkts` | |
-| `/interfaces/interface[name=<name>]/state/counters/in-octets` | |
-| `/interfaces/interface[name=<name>]/ethernet/state/port-speed` | |
-| `/interfaces/interface[name=<name>]/ethernet/state/counters/in-mac-pause-frames` | |
-| `/interfaces/interface[name=<name>]/ethernet/state/counters/in-oversize-frames` | |
-| `/interfaces/interface[name=<name>]/ethernet/state/counters/in-fcs-errors` | |
-| `/interfaces/interface[name=<name>]/ethernet/state/counters/in-distribution/in-frames-64-octets` | |
-| `/interfaces/interface[name=<name>]/ethernet/state/counters/in-distribution/in-frames-65-127-octets` | |
-| `/interfaces/interface[name=<name>]/ethernet/state/counters/in-distribution/in-frames-128-255-octets` | |
-| `/interfaces/interface[name=<name>]/ethernet/state/counters/in-distribution/in-frames-256-511-octets` | |
-| `/interfaces/interface[name=<name>]/ethernet/state/counters/in-distribution/in-frames-512-1023-octets` | |
-| `/interfaces/interface[name=<name>]/ethernet/state/counters/in-distribution/in-frames-1024-1518-octets` | |
-| `/interfaces/interface[name=<name>]/rates/state/out-bits-rate` | |
-| `/interfaces/interface[name=<name>]/rates/state/in-bits-rate` | |
-| `/interfaces/interface[name=<name>]/rates/state/in-pkts-rate` | |
-| `/interfaces/interface[name=<name>]/rates/state/out-pkts-rate` | |
-| `/interfaces/interface[name=<name>]/state/mtu` | |
-| `/interfaces/interface[name=<name>]/state/ifindex` | |
-| `/interfaces/interface[name=<name>]/state/oper-status` | |
-| `/interfaces/interface[name=<name>]/state/counters/in-errors` | |
-| `/interfaces/interface[name=<name>]/state/counters/in-discards` | |
-| `/interfaces/interface[name=<name>]/state/counters/out-octets` | |
-| `/interfaces/interface[name=<name>]/state/counters/out-unicast-pkts` | |
-| `/interfaces/interface[name=<name>]/state/counters/out-broadcast-pkts` | |
-| `/interfaces/interface[name=<name>]/state/counters/out-discards` | |
-| `/interfaces/interface[name=<name>]/state/counters/out-errors` | |
-| `/qos/interfaces/interface[interface-id=<name>]/state/switch-priority[priority=<priority>]/counters/in-pause-pkts` | |
-| `/qos/interfaces/interface[interface-id=<name>]/state/switch-priority[priority=<priority>]/counters/out-pause-pkts` | |
-| `/interfaces/interface[name=<name>]/state/counters/out-multicast-pkts` | |
-| `/interfaces/interface[name=<name>]/state/counters/in-unicast-pkts` | |
-| `/interfaces/interface[name=<name>]/state/counters/carrier-transitions` | |
-| `/interfaces/interface[name=<name>]/ethernet/phy/state/rs-fec-uncorrectable-blocks` | |
-| `/interfaces/interface[name=<name>]/ethernet/phy/state/rs-fec-single-error-blocks` | |
-| `/interfaces/interface[name=<name>]/ethernet/phy/state/rs-fec-no-error-blocks` | |
-| `/interfaces/interface[name=<name>]/ethernet/phy/state/lane[lane=<lane>]/fc-fec-corrected-blocks` | |
-| `/interfaces/interface[name=<name>]/ethernet/phy/state/lane[lane=<lane>]/fc-fec-uncorrected-blocks` | |
-| `/interfaces/interface[name=<name>]/ethernet/phy/state/lane[lane=<lane>]/rs-fec-corrected-symbols` | |
-| `/interfaces/interface[name=<name>]/ethernet/phy/state/corrected-bits` | |
-| `/interfaces/interface[name=<name>]/ethernet/phy/state/effective-errors` | |
-| `/interfaces/interface[name=<name>]/ethernet/phy/state/effective-ber` | |
-| `/interfaces/interface[name=<name>]/ethernet/phy/state/lane[lane=<lane>]/raw-errors` | |
-| `/interfaces/interface[name=<name>]/ethernet/phy/state/received-bits` | |
-| `/interfaces/interface[name=<name>]/ethernet/phy/state/symbol-errors` | |
-| `/interfaces/interface[name=<name>]/ethernet/phy/state/symbol-ber` | |
-| `/interfaces/interface[name=<name>]/ethernet/phy/state/lane[lane=<lane>]/raw-ber` | |
-| `/interfaces/interface[name=<name>]/ethernet/phy/state/fec-time-since-last-clear` | |
-| `/interfaces/interface[name=<name>]/ethernet/phy/state/ber-time-since-last-clear` | |
+| `/interfaces/interface/state/admin-status` | Admin state of the interface. |
+| `/interfaces/interface/state/counters/in-broadcast-pkts` | Number of packets delivered by this sub-layer to a higher (sub-)layer that were addressed to a broadcast address at this sub-layer.|
+| `/interfaces/interface/state/counters/in-multicast-pkts` | Number of packets delivered by this sub-layer to a higher (sub-)layer that were addressed to a multicast address at this sub-layer. For a MAC layer protocol, this includes both Group and Functional addresses.|
+| `/interfaces/interface/state/counters/in-octets` | Total number of octets received on the interface, including framing characters.|
+| `/qos/interfaces/interface/state/switch-priority/counters/in-pause-pkts`| A count of the received `PFC M_CONTROL.indication` primitives with this priority class asserted.|
+| `/interfaces/interface/ethernet/state/counters/in-fcs-errors` | A count of frames received on an interface that are an integral number of octets in length but do not pass the FCS check. This count does not include frames received with `frame-too-long` or `frame-too-short` error.|
+| `/interfaces/interface/ethernet/state/counters/in-oversize-frames` | Total number of packets received longer than 1518 octets (excluding framing bits, but including FCS octets). |
+| `/interfaces/interface/ethernet/state/counters/in-distribution/in-frames-1024-1518-octets` | Total number of packets (including bad packets) received between 1024 and 1518 octets in length inclusive (excluding framing bits but including FCS octets). |
+| `/interfaces/interface/ethernet/state/counters/in-distribution/ in-frames-128-255-octets` | Total number of packets (including bad packets) received between 128 and 255 octets in length inclusive (excluding framing bits but including FCS octets).|
+| `/interfaces/interface/ethernet/state/counters/in-distribution/in-frames-256-511-octets` | Total number of packets (including bad packets) received between 256 and 511 octets in length inclusive (excluding framing bits but including FCS octets).|
+| `/interfaces/interface/ethernet/state/counters/in-distribution/in-frames-512-1023-octets` | Total number of packets (including bad packets) received between 512 and 1023 octets in length inclusive (excluding framing bits but including FCS octets).|
+| `/interfaces/interface/ethernet/state/counters/in-distribution/in-frames-64-octets` | Total number of packets (including bad packets) received that were 64 octets in length (excluding framing bits but including FCS octets).|
+| `/interfaces/interface/ethernet/state/counters/in-distribution/in-frames-65-127-octets` | Total number of packets (including bad packets) received between 65 and 127 octets in length inclusive (excluding framing bits but including FCS octets).|
+| `/interfaces/interface/state/counters/out-broadcast-pkts` | Total number of packets that higher-level protocols requested to be transmitted, and which were addressed to a broadcast address at this sub-layer, including those that were discarded or not sent.|
+| `/interfaces/interface/state/counters/out-octets` | Total number of octets transmitted out of the interface, including framing characters.|
+| `/interfaces/interface/state/counters/out-unicast-pkts` | Total number of packets that higher-level protocols requested be transmitted, and which were not addressed to a multicast or broadcast address at this sub-layer, including those that were discarded or not sent.|
+| `/interfaces/interface/ethernet/state/port-speed` | An estimate of the interface's current bandwidth in units of 1,000,000 bits per second.|
+| `/interfaces/interface/state/counters/in-bits-rate` | Ability to monitor inbound bits per second on an interface.|
+| `/interfaces/interface/state/ifindex` | A unique value, greater than zero, for each interface.|
+| `/interfaces/interface/state/counters/in-discards` | Number of inbound packets chosen to be discarded even though no errors were detected to prevent them from being deliverable to a higher-layer protocol. |
+| `/interfaces/interface/state/counters/in-errors` | For packet-oriented interfaces, the number of inbound packets that contained errors preventing them from being deliverable to a higher-layer protocol.|
+| `/interfaces/interface/state/counters/in-pkts`| Number of packets discarded from the egress queue of an interface. |
+| `/interfaces/interface/state/counters/in-pkts-rate` | Ability to monitor inbound packets per second on an interface. |
+| `/interfaces/interface/ethernet/state/counters/in-crc-errors` | Total number of frames received with a length (excluding framing bits, but including FCS octets) of between 64 and 1518 octets, inclusive, but had either a bad Frame Check Sequence (FCS) with an integral number of octets (FCS Error) or a bad FCS with a non-integral number of octets (Alignment Error).|
+| `/interfaces/interface/ethernet/state/negotiated-duplex-mode` | When auto-negotiate is set to TRUE, and the interface has completed auto-negotiation with the remote peer, this value shows the negotiated duplex mode.|
+| `/interfaces/interface/state/counters/in-acl-drops` | Number of inbound packets dropped because of an Access Control List (ACL).|
+| `/interfaces/interface/ethernet/state/counters/in-mac-pause-frames` | Ability to monitor inbound pause frames on an interface.|
+| `/interfaces/interface/state/mtu` | Size of the largest packet that can be sent or received on the interface, specified in octets. For interfaces that are used for transmitting network datagrams, this is the size of the largest network datagram that can be sent on the interface.|
+| `/interfaces/interface/state/oper-status` | Current operational state of the interface. |
+| `/interfaces/interface/state/counters/out-bits-rate` | Ability to monitor outbound bits per second on an interface. |
+| `/interfaces/interface/state/counters/out-discards` | Number of outbound packets chosen to be discarded even though no errors were detected to prevent them from being transmitted. |
+| `/interfaces/interface/state/counters/out-errors` | For packet-oriented interfaces, the number of outbound packets not transmitted because of errors. For character-oriented or fixed-length interfaces, the number of outbound transmission units not transmitted because of errors. |
+| `/interfaces/interface/state/counters/out-pkts` | Total number of packets transmitted out of the interface, including all unicast, multicast, broadcast, and bad packets.|
+| `/interfaces/interface/state/counters/out-pkts-rate` | Ability to monitor outbound packets per second on an interface. |
+| `/interfaces/interface/state/counters/out-multicast-pkts` | Total number of packets that higher-level protocols requested be transmitted, and which were addressed to a multicast address at this sub-layer, including those that were discarded or not sent.  For a MAC layer protocol, this includes both Group and Functional addresses.|
+| `/interfaces/interface/ethernet/state/counters/carrier-transitions` | Number of times since system boot that `ifOperStatus` changed.|
+| `/interfaces/interface/ethernet/phy/state/rs-fec-uncorrectable-blocks` | Number of RS FEC uncorrectable blocks of an interface. |
+| `/interfaces/interface/ethernet/phy/state/rs-fec-single-error-blocks` | Number of RS FEC uncorrectable blocks of an interface.|
+| `/interfaces/interface/ethernet/phy/state/rs-fec-no-error-blocks` | Number of RS FEC no errors blocks of an interface.|
+| `/interfaces/interface/ethernet/phy/state/lane/fc-fec-corrected-blocks` | Number FC FEC corrected blocks for a given lane of an interface.|
+| `/interfaces/interface/ethernet/phy/state/lane/fc-fec-uncorrected-blocks` | Number of FC FEC uncorrectable blocks for a given lane of an interface. |
+| `/interfaces/interface/ethernet/phy/state/lane/rs-fec-corrected-symbols` | Number RS FEC corrected symbols for a given lane of an interface.|
+| `/interfaces/interface/ethernet/phy/state/corrected-bits` | Number of phy corrected bits of an interface by FEC engine.|
+| `/interfaces/interface/ethernet/phy/state/effective-errors` | Number of phy effective errors of an interface.|
+| `/interfaces/interface/ethernet/phy/state/effective-ber` | Phy effective BER of an interface.|
+| `/interfaces/interface/ethernet/phy/state/lane/raw-errors` | Number of phy error bits identified for a given lane of an interface.|
+| `/interfaces/interface/ethernet/phy/state/received-bits` | Number of phy total bits received of an interface.|
+| `/interfaces/interface/ethernet/phy/state/symbol-errors` | Number of phy number of symbol errors of an interface.|
+| `/interfaces/interface/ethernet/phy/state/symbol-ber` | Phy symbol BER of an interface.|
+| `/interfaces/interface/ethernet/phy/state/lane/raw-ber` | Number of phy bit error rates for a given lane of an interface.|
+| `/interfaces/interface/ethernet/phy/state/fec-time-since-last-clear` | Time since last clear of FEC stats(phy layer). |
+| `/interfaces/interface/ethernet/phy/state/ber-time-since-last-clear` | Time since last clear of BER stats(phy layer). |
+
+{{< /tab >}}
+{{< tab "LLDP">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/lldp/state/chassis-id` | Identifies the chassis component of the endpoint identifier associated with the transmitting LLDP agent.|
+| `/lldp/state/chassis-id-type` | Identifies the format and source of the chassis identifier string.|
+| `/lldp/state/system-description` | Alpha-numeric string that is the textual description of the network entity including the full name and version identification of the system's hardware type, software operating system, and networking software.|
+| `/lldp/state/system-name` | An alpha-numeric string that indicates the system's administratively assigned name.|
+| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/age` | LLDP neighbor age since discovery.|
+| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/management-address[address=<address>]/type`| Enumerated value for the network address type identified in this TLV. |
+| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/chassis-id` | Identifies the chassis component of the endpoint identifier associated with the transmitting LLDP agent.|
+| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/chassis-id-type` | Identifies the format and source of the chassis identifier string.|
+| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/system-name` | Alpha-numeric string that indicates the system's administratively assigned name.|
+| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/system-description` | Contains an alpha-numeric string that is the textual description of the network entity.|
+| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/port-id`| Identifies the port component of the endpoint identifier associated with the transmitting LLDP agent. |
+| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/port-description` | Binary string containing the actual port identifier for the port which this LLDP PDU was transmitted.|
+| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/port-id-type` | Format and source of the remote port ID string. |
+| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/ttl` | Indicates how long information from the neighbor is considered valid. |
+| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/capabilities/capability[name=<capability>]/state/enabled` | Indicates whether the corresponding system capability is enabled on the neighbor.|
+
+{{< /tab >}}
+{{< tab "Platform">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/components/component[name='PSU1']/state/name` | PSU Name.|
+| `/components/component[name='PSU1']/state/oper-status` | PSU Status. |
+| `/components/component[name='PSU1']/state/description` |  PSU description. |
+| `/components/component[name='PSU1']/power-supply/state/capacity` | PSU capacity in watts. |
+| `/components/component[name='PSU1']/power-supply/state/output-current` | PSU current in amperes. |
+| `/components/component[name='PSU1']/power-supply/state/output-voltage` | PSU voltage in volts. |
+| `/components/component[name='PSU1']/power-supply/state/output-power` | PSU power in watts. |
+| `/components/component[name='fan0']/state/name` | Fan name. |
+| `/components/component[name='fan0']/state/oper-status` | Fan Status. |
+| `/components/component[name='fan0']/state/description` | Fan Description. |
+| `/components/component[name='fan0']/fan/state/speed` | Current (instantaneous) fan speed. |
+| `/components/component[name='temp-sensor0']/state/name` |  Temperature sensor name.|
+| `/components/component[name='temp-sensor0'']/state/oper-status` |  Temperature sensor operational status. |
+| `/components/component[name='temp-sensor0'']/state/description` | Temperature sensor description. |
+| `/components/component[name='temp-sensor0']/state/temperature/instant` | Instant temperature.  |
+| `/components/component[name='temp-sensor0']/state/temperature/alarm-status` | Temperature sensor alarm status. |
+| `/components/component[name='transceiver+panelport#']/transceiver/physical-channels/channel[no]/state/input-power/instant` | Input optical power of a physical channel in units of 0.01dBm, which may be associated with individual physical channels or an aggregate of multiple physical channels. |
+| `/components/component[name='transceiver+panelport#']/transceiver/physical-channels/channel[no]/state/laser-bias-current/instant` | Current applied by the system to the transmit laser to achieve the output power. The current is expressed in mA with up to two decimal precision. |
+| `/components/component[name='transceiver+panelport']/transceiver/physical-channels/channel[no]/state/output-power/instant` | Output optical power of a physical channel in units of 0.01dBm, which might be associated with individual physical channels or an aggregate of multiple physical channels. |
+
+{{< /tab >}}
+{{< tab "QoS">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/qos/interfaces/interface/state/switch-priority/counters/out-pause-pkts`| Count of the invoked `PFC M_CONTROL.request` primitives with this priority class asserted.|
+| `/qos/interfaces/interface/state/priority-group/counters/watermark-max` | High watermark of cells used in a priority group since last time watermarks were reset. |
+| `/qos/interfaces/interface/output/queues/queue/state/watermark-max` | High watermark of cells used in a queue since last time watermarks were reset. |
+| `qos/interfaces/interface/output/queues/queue/state/ecn-marked-pkts`| Number of ECN marked packets from this egress queue. If ECN counter is not enabled, the counter value is 0.|
+| `qos/interfaces/interface/output/queues/queue/state/transmit-octets`| Number of transmitted bytes in the egress queue of an interface.|
+| `qos/interfaces/interface/output/queues/queue/state/transmit-pkts`| Number of transmitted packets in the egress queue of an interface. |
+| `/qos/interfaces/interface/output/queues/queue/state/wred-dropped-pkts` | Number of packets discarded from this egress queue of an interface. |
+| `/qos/interfaces/interface/output/queues/queue/state/no-buffer-uc-dropped-pkts` | Number of packets discarded from this egress queue when there is no buffer left in the interface. |
+| `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/time-since-last-clear` | Time since last clear of watermarks in a queue.|
+| `/qos/interfaces/interface[interface-id]/state/priority-group[priority_group]/counters/time-since-last-clear` | Time since last clear of watermarks in a priority group.|
 
 {{< /tab >}}
 {{< tab "Router">}}
 
 |  Name | Description |
 |------ | ----------- |
-| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp` | BGP information.|
-| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor/state` |State of BGP peers. |
-| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/state` | BGP peer state.|
 | `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/state/session-state` | Operational state of the BGP peer.|
 | `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/state/established-transitions` | Number of transitions to the established state for the neighbor session.|
 | `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/state/messages/sent/UPDATE` | Number of BGP UPDATE messages announcing, withdrawing or modifying paths exchanged.|
@@ -1113,19 +1172,30 @@ Cumulus Linux supports the following metrics:
 | `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/afi-safis/afi-safi[afi-safi-name=<afi-safi-name>]/state/prefixes/installed` | Number of prefixes received from the neighbor that are installed in the network instance RIB and actively used for forwarding. |
 
 {{< /tab >}}
-{{< tab "LLDP">}}
+{{< tab "System">}}
 
 |  Name | Description |
 |------ | ----------- |
-| `/lldp/state/chassis-id` | Identifies the chassis component of the endpoint identifier associated with the transmitting LLDP agent.|
-| `/lldp/state/system-description` | Textual description of the network entity.|
-| `/lldp/state/system-name` | The administratively assigned name of the system (such as DUT, Edge, Cumulus, and so on).|
-| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/age` | LLDP neighbor age information.|
-| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/port-description` | The remote port name. |
-| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/management-address[address=<address>]/type`| The enumerated value for the network address type identified in this TLV.|
-| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/port-id-type` | The format and source of the remote port ID string. |
-| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/ttl` | LLDP neighbor port TTL. |
-| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/capabilities/capability[name=<capability>]/state/enabled` | LLDP neighbor capabilities.|
+| `/system/state/hostname` | System hostname. |
+| `/system/state/software-version` | System software version. |
+| `/system/state/boot-time` | System boot time. |
+| `/system/state/current-datetime` | Current system date and time. |
+| `/system/control-plane-traffic/ingress/ipv4/counters/`<br>`/system/control-plane-traffic/ingress/ipv6/counters/` | Number of input IP datagrams discarded in software because the IP address in their IP header's destination field was not a valid address. For entities that are not IP routers, this counter includes datagrams discarded because the destination address was not a local address.|
+| `/system/cpus/cpu[name=<cpu_id>]/state/user/seconds` | CPU user Seconds |
+| `/system/cpus/cpu[name=<cpu_id>]/state/kernel/seconds` | CPU kernel seconds. |
+| `/system/cpus/cpu[name=<cpu_id>]/state/nice/seconds` | CPU Nice seconds. |
+| `/system/cpus/cpu[name=<cpu_id>]/state/idle/seconds` | CPU idle seconds. |
+| `/system/cpus/cpu[name=<cpu_id>]/state/wait/seconds` | CPU wait seconds.|
+| `/system/cpus/cpu[name=<cpu_id>]/state/hardware-interrupt/seconds` | CPU hardware interrupt seconds. |
+| `/system/cpus/cpu[name=<cpu_id>]/state/software-interrupt/seconds` | CPU software interrupt seconds.|
+| `/system/memory/state/free` | Free memory. |
+| `/system/memory/state/physical` | Physical memory.|
+| `/system/memory/state/reserved` | Memory reserved for system use. |
+| `/system/mount-points/mount-point[name='filesystem0']/state/name` | Mount point name.|
+| `/system/mount-points/mount-point[name='filesystem0']/state/storage-component` | A reference to the hosting component within the hierarchy. |
+| `/system/mount-points/mount-point[name='filesystem0']/state/size` | Total size of the initialized filesystem.|
+| `/system/mount-points/mount-point[name='filesystem0']/state/available` | Amount of unused space on the filesystem.|
+| `/system/mount-points/mount-point[name='filesystem0']/state/type` | A human readable string indicating the filesystem type used for storage. For example flash, hard disk, tmpfsor or ramdisk, or remote or network based storage.|
 
 {{< /tab >}}
 {{< /tabs >}}

@@ -7,9 +7,9 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4423365</td>
-<td>When you enable NAT dynamic mode and NAT rules with NVUE in a single commit, you see the error {{error: hw sync failed (Dynamic NAT is not enabled. Ignoring rules..)}}. To work around this issue, enable dynamic NAT with NVUE in one commit, then add NAT ACL rules in a subsequent commit.</td>
-<td>5.11.0-5.13.0</td>
+<td>4425299</td>
+<td>After upgrading from Cumulus Linux 5.12 to 5.13 on the NVIDIA SN5400 switch bonus port, PTP does not converge. To work around this issue, disable, then enable the bonus port after upgrade.</td>
+<td>5.13.0</td>
 <td></td>
 </tr>
 <tr>
@@ -31,9 +31,46 @@
 <td></td>
 </tr>
 <tr>
+<td>4422899</td>
+<td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables (around 800K prefixes), the process consumes excessive memory resulting in OOM crashes. </td>
+<td>5.13.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4422898</td>
+<td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables (around 800K prefixes), the process consumes excessive memory resulting in OOM crashes. </td>
+<td>5.13.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4413450</td>
+<td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables, the process consumes excessive memory resulting in OOM crashes. </td>
+<td>5.0.0-5.13.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4408280</td>
+<td>NVUE commands can create excessive log data. To work around this issue, configure {{rsyslog}} rules to limit logging of these commands.</td>
+<td>5.11.0-5.13.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4403755</td>
 <td>On first boot after a binary install or upgrade, if ZTP does not run or does not complete successfully, all interfaces are left admin up until you disable ZTP manually. To work around this issue, use an empty ZTP script during onie-install ({{-z ZTP_URL}}) or configure the DCHP option 239.</td>
 <td>5.12.1-5.13.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4389433</td>
+<td>On switches with ONIE 5.3.0012 (might be displayed as 2023.11-5.3.0012-115200), reinstalling Cumulus Linux with {{onie-install}} when SecureBoot is enabled fails during CMS verification of a found image.To determine the ONIE version on the switch:
+sudo mount LABEL="ONIE-BOOT" /mnt
+/mnt/onie/tools/bin/onie-version
+If the ONIE version is earlier than 5.3.0012 (might be displayed as 2023.11-5.3.0012-115200), either disable SecureBoot during reinstallation, or if SecureBoot is enabled and ONIE finds the image on one of the disks (for example, {{/dev/sda5}}), then fails CMS verification, log into the ONIE shell as root and run the following commands:
+onie-stop
+mkdir /$devname
+mount $devname /$devname
+onie-nos-install /$devname/onie-installer</td>
+<td>5.12.0-5.13.0</td>
 <td></td>
 </tr>
 <tr>
@@ -74,7 +111,7 @@
 </tr>
 <tr>
 <td>4249096</td>
-<td>Binary upgrade from Cumulus Linux 4.3.1 to 5.12.0 is not supported. To work around this issue, perform a binary upgrade from Cumulus Linux 4.3.1 to 5.9.0, then perform a binary upgrade from Cumulus Linux 5.9.0 to 5.12.0.</td>
+<td>Binary upgrade from Cumulus Linux 4.3.1 to 5.12.0 and later is not supported. To work around this issue, perform a binary upgrade from Cumulus Linux 4.3.1 to 5.9.0, then perform a binary upgrade from Cumulus Linux 5.9.0 to 5.12.0.</td>
 <td>5.12.0-5.13.0</td>
 <td></td>
 </tr>
@@ -92,7 +129,7 @@
 </tr>
 <tr>
 <td>4177067</td>
-<td>When doing a package upgrade from CL5.9 or CL5.10 to CL5.11, the installation of {{nslcd}} might open an interactive dialog to configure {{nslcd.conf }}.To avoid this interactive dialog, set the {{DEBIAN_FRONTEND}} environment variable to {{noninteractive}}. For example:
+<td>When doing a package upgrade from CL5.9 or CL5.10 to CL5.11 or later, the installation of {{nslcd}} might open an interactive dialog to configure {{nslcd.conf }}.To avoid this interactive dialog, set the {{DEBIAN_FRONTEND}} environment variable to {{noninteractive}}. For example:
 cumulus@switch:~$ sudo apt-get update
 cumulus@switch:~$ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "Dpkg::Options::=--force-confdef" -o "Dpkg::Options::=--force-confold" upgrade</td>
 <td>5.11.0-5.13.0</td>
@@ -167,13 +204,13 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 </tr>
 <tr>
 <td>4077921</td>
-<td>You cannot use package upgrade to upgrade from Cumulus Linux 5.9.2 to Cumulus Linux 5.10.1. You must install the Cumulus Linux 5.10.1 image.</td>
+<td>You cannot use package upgrade to upgrade from Cumulus Linux 5.9.2 to Cumulus Linux 5.10.1 or later. You must install the Cumulus Linux image instead.</td>
 <td>5.10.1-5.13.0</td>
 <td></td>
 </tr>
 <tr>
 <td>4049213</td>
-<td>When there are any routes points to singleton nexthops, there would be a ECMP created in the SDK. Once the usage of singleton nexthop from the route was removed, then the ECMP might stay in SDK till the time nexthop is present in kernel</td>
+<td>When there are routes that point to a single next hop, an ECMP entry is created in the SDK. After the single next hop from the route is removed, the ECMP entry might stay in the SDK until the time the next hop is present in the kernel.</td>
 <td>5.9.2-5.13.0</td>
 <td></td>
 </tr>
@@ -185,13 +222,13 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 </tr>
 <tr>
 <td>4030380</td>
-<td>When you rollback interface configuration to the default setting with the {{nv unset interface}} command, NVUE removes the complete entry for the interface from the {{/etc/network/interface}} file, and puts the interface in admin down. As a result, you can't configure FEC on the interface at the lower layers.</td>
+<td>When you roll back interface configuration to the default setting with the {{nv unset interface}} command, NVUE removes the complete entry for the interface from the {{/etc/network/interface}} file, and puts the interface in admin down. As a result, you cannot configure FEC on the interface at the lower layers.</td>
 <td>5.10.0-5.13.0</td>
 <td></td>
 </tr>
 <tr>
 <td>4005422</td>
-<td>When you upgrade Cumulus Linux 5.9.1 to Cumulus Linux 5.10 with package upgrade, the NTP service stops. To restart the NTP service, enable, then restart the service in the VRF in which it was running with the {{systemctl enable ntpsec@&lt;vrf&gt;}} and {{systemctl restart ntpsec@&lt;vrf&gt;}} commands.</td>
+<td>When you upgrade Cumulus Linux 5.9.1 to Cumulus Linux 5.10 or later with package upgrade, the NTP service stops. To restart the NTP service, enable, then restart the service in the VRF in which it was running with the {{systemctl enable ntpsec@&lt;vrf&gt;}} and {{systemctl restart ntpsec@&lt;vrf&gt;}} commands.</td>
 <td>5.10.0-5.13.0</td>
 <td></td>
 </tr>
@@ -263,7 +300,7 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 </tr>
 <tr>
 <td>3847439</td>
-<td>In rare cases on the Spectrum 1 switch  where a dual connected host transmits all traffic flows to only one switch in a connected MLAG pair and the host changes behavior to hash all flows to the other MLAG switch, there might be traffic loss if the MAC FDB entry on the original switch ages out.</td>
+<td>In rare cases on the Spectrum 1 switch, where a dual connected host transmits all traffic flows to only one switch in a connected MLAG pair, and the host changes behavior to hash all flows to the other MLAG switch, there might be traffic loss if the MAC FDB entry on the original switch ages out.</td>
 <td>5.9.0-5.13.0</td>
 <td></td>
 </tr>
@@ -636,13 +673,8 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>4413570</td>
-<td>Running "nv show system image" or "cl-image-upgrade -s" while doing a two partition upgrade using "nv action install system image" or "cl-image-upgrade -a" may cause filesystem corruption on the partition being installed to.  This may cause the upgrade to appear to hang and/or require using fsck on the partition being installed to.  Do not use "nv show system image" or "cl-image-upgrade -s" while a two partition upgrade is running.  Also, do not mount the filesystem being installed to.</td>
+<td>If you run the {{nv show system image}} or {{cl-image-upgrade -s}} command during an optimized image upgrade with {{nv action install system image}} or }}cl-image-upgrade -a}}, you might see a filesystem corruption on the partition on which you are installing. This issue might cause the upgrade to appear to hang or require you to use {{fsck}} on that partition. Do not use the {{nv show system image}} or {{cl-image-upgrade -s}} command during an optimized image upgrade.  Also, do not mount the filesystem on which you are installing.</td>
 <td></td>
-</tr>
-<tr>
-<td>4413450</td>
-<td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables (around 800K prefixes), the process consumes excessive memory resulting in OOM crashes. </td>
-<td>5.0.0-5.12.1</td>
 </tr>
 <tr>
 <td>4408418</td>
@@ -651,12 +683,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>4408414</td>
-<td>Cumulus Linux does not create a cl-support file when Prometheus service crashes on the switch.</td>
+<td>Cumulus Linux does not create a cl-support file when the Prometheus service crashes on the switch.</td>
 <td></td>
 </tr>
 <tr>
 <td>4404714</td>
-<td>Installed BGP routes show 0 with gNMI.</td>
+<td>When using gNMI streaming, installed BGP routes show 0 (zero).</td>
 <td></td>
 </tr>
 <tr>
@@ -681,19 +713,29 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>5.11.0-5.12.1</td>
 </tr>
 <tr>
+<td>4391394</td>
+<td>When using DHCP snooping , access ports do not work as trust ports or server connection ports .</td>
+<td>5.12.0-5.12.1</td>
+</tr>
+<tr>
 <td>4380868</td>
 <td>When you unmap ports by removing the breakout configuration and some of the ports are configured for histogram collection, you see an error log from SDK as the {{asic-monitor}} continues to collect statistics even after ports are unmapped.</td>
 <td></td>
 </tr>
 <tr>
 <td>4380465</td>
-<td>When the server has an IPv4 address and its source IP address is IPv6 or vice versa, accounting logs to that server fail to send and you see the error: radclient: Can't add new socket: Too many open sockets". Authentication goes through, only Accounting fails.</td>
+<td>When the server has an IPv4 address and its source IP address is IPv6 or the other way round, accounting logs to that server fail to send and you see the error: radclient: Can't add new socket: Too many open sockets". Authentication goes through, only Accounting fails.</td>
 <td></td>
 </tr>
 <tr>
 <td>4377862</td>
 <td>When processing the static IP assignment for an interface previously managed through DHCP, Cumulus Linux fails to clean up the DHCP created state completely. As a result when the IP address assigned by DHCP earlier expires, the switch eventually loses connectivity.</td>
 <td></td>
+</tr>
+<tr>
+<td>4373436</td>
+<td>The {{snmpd}} service generates debugging logs of sudo calls. To work around this issue, disable sudo logging for the specific commands run by the Debian-snmp user in the {{/etc/sudoers.d/snmp}} file by adding {{Defaults:Debian-snmp !syslog}}.</td>
+<td>5.11.0-5.12.1</td>
 </tr>
 <tr>
 <td>4370516</td>
@@ -721,7 +763,7 @@ nv config apply -y</td>
 </tr>
 <tr>
 <td>4360360</td>
-<td>After optimized (two partition) upgrade rollback, the {{nv config apply}} fails as NVUE uses the existing revision ID. To work around this issue, before rebooting for rollback in a two partition upgraded switch, where the current Cumulus Linux version is earlier than 5.13.0, run {{sudo mv /var/lib/nvue /var/lib/nvue.saved}} so that in the rollback version, there are not extraneous versions of NVUE configuration that were not present before you upgraded the rollback version to the current version.</td>
+<td>After optimized (two partition) upgrade rollback, the {{nv config apply}} fails as NVUE uses the existing revision ID. To work around this issue, before rebooting for rollback in a two partition upgraded switch, where the current Cumulus Linux version is earlier than 5.13.0, run {{sudo mv /var/lib/nvue /var/lib/nvue.saved}} so that in the rollback version, there are no extraneous versions of NVUE configuration that were not present before you upgraded the rollback version to the current version.</td>
 <td></td>
 </tr>
 <tr>
@@ -824,6 +866,11 @@ cumulus@switch:~$ nv config apply</td>
 <td>4270240</td>
 <td>Statically configured VXLAN FDB entries do not age out.</td>
 <td>5.12.0-5.12.1</td>
+</tr>
+<tr>
+<td>4262224</td>
+<td>When you configure BGP {{suppress-fib-pending}}, the prefix might not be withdrawn from downstream peers.</td>
+<td>5.11.0-5.12.1</td>
 </tr>
 <tr>
 <td>4261676</td>

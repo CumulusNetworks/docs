@@ -20,9 +20,9 @@
 </tr>
 <tr>
 <td>4413450</td>
-<td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables (around 800K prefixes), the process consumes excessive memory resulting in OOM crashes. </td>
-<td>5.0.0-5.12.1</td>
-<td>5.13.0</td>
+<td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables, the process consumes excessive memory resulting in OOM crashes. </td>
+<td>5.0.0-5.13.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4352128</td>
@@ -278,9 +278,15 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 </tr>
 <tr>
 <td>4077921</td>
-<td>You cannot use package upgrade to upgrade from Cumulus Linux 5.9.2 to Cumulus Linux 5.10.1. You must install the Cumulus Linux 5.10.1 image.</td>
+<td>You cannot use package upgrade to upgrade from Cumulus Linux 5.9.2 to Cumulus Linux 5.10.1 or later. You must install the Cumulus Linux image instead.</td>
 <td>5.10.1-5.13.0</td>
 <td></td>
+</tr>
+<tr>
+<td>4075960</td>
+<td>When you configure the IGMP Querier on a VLAN, the switch sends IGMP Querier packets on the untagged VLAN, not the configured VLAN. Also, the source IP address is always 0.0.0.0, even though the loopback IP address is configured on the IGMP Querier. </td>
+<td>5.9.1-5.10.1</td>
+<td>5.11.0-5.13.0</td>
 </tr>
 <tr>
 <td>4072165</td>
@@ -330,7 +336,7 @@ interface_stats: [ERROR] interface_stats_collector.py:_parse_conf_file:201 — C
 </tr>
 <tr>
 <td>4049213</td>
-<td>When there are any routes points to singleton nexthops, there would be a ECMP created in the SDK. Once the usage of singleton nexthop from the route was removed, then the ECMP might stay in SDK till the time nexthop is present in kernel</td>
+<td>When there are routes that point to a single next hop, an ECMP entry is created in the SDK. After the single next hop from the route is removed, the ECMP entry might stay in the SDK until the time the next hop is present in the kernel.</td>
 <td>5.9.2-5.13.0</td>
 <td></td>
 </tr>
@@ -354,7 +360,7 @@ interface_stats: [ERROR] interface_stats_collector.py:_parse_conf_file:201 — C
 </tr>
 <tr>
 <td>4030380</td>
-<td>When you rollback interface configuration to the default setting with the {{nv unset interface}} command, NVUE removes the complete entry for the interface from the {{/etc/network/interface}} file, and puts the interface in admin down. As a result, you can't configure FEC on the interface at the lower layers.</td>
+<td>When you roll back interface configuration to the default setting with the {{nv unset interface}} command, NVUE removes the complete entry for the interface from the {{/etc/network/interface}} file, and puts the interface in admin down. As a result, you cannot configure FEC on the interface at the lower layers.</td>
 <td>5.10.0-5.13.0</td>
 <td></td>
 </tr>
@@ -378,7 +384,7 @@ interface_stats: [ERROR] interface_stats_collector.py:_parse_conf_file:201 — C
 </tr>
 <tr>
 <td>4005422</td>
-<td>When you upgrade Cumulus Linux 5.9.1 to Cumulus Linux 5.10 with package upgrade, the NTP service stops. To restart the NTP service, enable, then restart the service in the VRF in which it was running with the {{systemctl enable ntpsec@&lt;vrf&gt;}} and {{systemctl restart ntpsec@&lt;vrf&gt;}} commands.</td>
+<td>When you upgrade Cumulus Linux 5.9.1 to Cumulus Linux 5.10 or later with package upgrade, the NTP service stops. To restart the NTP service, enable, then restart the service in the VRF in which it was running with the {{systemctl enable ntpsec@&lt;vrf&gt;}} and {{systemctl restart ntpsec@&lt;vrf&gt;}} commands.</td>
 <td>5.10.0-5.13.0</td>
 <td></td>
 </tr>
@@ -486,7 +492,7 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 </tr>
 <tr>
 <td>3847439</td>
-<td>In rare cases on the Spectrum 1 switch  where a dual connected host transmits all traffic flows to only one switch in a connected MLAG pair and the host changes behavior to hash all flows to the other MLAG switch, there might be traffic loss if the MAC FDB entry on the original switch ages out.</td>
+<td>In rare cases on the Spectrum 1 switch, where a dual connected host transmits all traffic flows to only one switch in a connected MLAG pair, and the host changes behavior to hash all flows to the other MLAG switch, there might be traffic loss if the MAC FDB entry on the original switch ages out.</td>
 <td>5.9.0-5.13.0</td>
 <td></td>
 </tr>
@@ -952,9 +958,9 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>4413450</td>
-<td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables (around 800K prefixes), the process consumes excessive memory resulting in OOM crashes. </td>
-<td>5.0.0-5.12.1</td>
-<td>5.13.0</td>
+<td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables, the process consumes excessive memory resulting in OOM crashes. </td>
+<td>5.0.0-5.13.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4352128</td>
@@ -1183,6 +1189,12 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <td>5.11.0-5.13.0</td>
 </tr>
 <tr>
+<td>4075960</td>
+<td>When you configure the IGMP Querier on a VLAN, the switch sends IGMP Querier packets on the untagged VLAN, not the configured VLAN. Also, the source IP address is always 0.0.0.0, even though the loopback IP address is configured on the IGMP Querier. </td>
+<td>5.9.1-5.10.1</td>
+<td>5.11.0-5.13.0</td>
+</tr>
+<tr>
 <td>4072165</td>
 <td>When you add a VLAN to a bridge member port, VXLAN traffic might be impacted for few seconds.</td>
 <td>5.7.0-5.10.1</td>
@@ -1248,7 +1260,7 @@ interface_stats: [ERROR] interface_stats_collector.py:_parse_conf_file:201 — C
 </tr>
 <tr>
 <td>4049213</td>
-<td>When there are any routes points to singleton nexthops, there would be a ECMP created in the SDK. Once the usage of singleton nexthop from the route was removed, then the ECMP might stay in SDK till the time nexthop is present in kernel</td>
+<td>When there are routes that point to a single next hop, an ECMP entry is created in the SDK. After the single next hop from the route is removed, the ECMP entry might stay in the SDK until the time the next hop is present in the kernel.</td>
 <td>5.9.2-5.13.0</td>
 <td></td>
 </tr>
@@ -1309,7 +1321,7 @@ interface_stats: [ERROR] interface_stats_collector.py:_parse_conf_file:201 — C
 </tr>
 <tr>
 <td>4030380</td>
-<td>When you rollback interface configuration to the default setting with the {{nv unset interface}} command, NVUE removes the complete entry for the interface from the {{/etc/network/interface}} file, and puts the interface in admin down. As a result, you can't configure FEC on the interface at the lower layers.</td>
+<td>When you roll back interface configuration to the default setting with the {{nv unset interface}} command, NVUE removes the complete entry for the interface from the {{/etc/network/interface}} file, and puts the interface in admin down. As a result, you cannot configure FEC on the interface at the lower layers.</td>
 <td>5.10.0-5.13.0</td>
 <td></td>
 </tr>
@@ -1333,7 +1345,7 @@ interface_stats: [ERROR] interface_stats_collector.py:_parse_conf_file:201 — C
 </tr>
 <tr>
 <td>4005422</td>
-<td>When you upgrade Cumulus Linux 5.9.1 to Cumulus Linux 5.10 with package upgrade, the NTP service stops. To restart the NTP service, enable, then restart the service in the VRF in which it was running with the {{systemctl enable ntpsec@&lt;vrf&gt;}} and {{systemctl restart ntpsec@&lt;vrf&gt;}} commands.</td>
+<td>When you upgrade Cumulus Linux 5.9.1 to Cumulus Linux 5.10 or later with package upgrade, the NTP service stops. To restart the NTP service, enable, then restart the service in the VRF in which it was running with the {{systemctl enable ntpsec@&lt;vrf&gt;}} and {{systemctl restart ntpsec@&lt;vrf&gt;}} commands.</td>
 <td>5.10.0-5.13.0</td>
 <td></td>
 </tr>
@@ -1441,7 +1453,7 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 </tr>
 <tr>
 <td>3847439</td>
-<td>In rare cases on the Spectrum 1 switch  where a dual connected host transmits all traffic flows to only one switch in a connected MLAG pair and the host changes behavior to hash all flows to the other MLAG switch, there might be traffic loss if the MAC FDB entry on the original switch ages out.</td>
+<td>In rare cases on the Spectrum 1 switch, where a dual connected host transmits all traffic flows to only one switch in a connected MLAG pair, and the host changes behavior to hash all flows to the other MLAG switch, there might be traffic loss if the MAC FDB entry on the original switch ages out.</td>
 <td>5.9.0-5.13.0</td>
 <td></td>
 </tr>

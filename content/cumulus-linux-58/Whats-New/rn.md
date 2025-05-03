@@ -14,7 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| <a name="4413450"></a> [4413450](#4413450) <a name="4413450"></a> <br /> | When displaying BGP neighbor advertised routes in JSON format with very large routing tables (around 800K prefixes), the process consumes excessive memory resulting in OOM crashes.  | 5.0.0-5.12.1 | 5.13.0|
+| <a name="4413450"></a> [4413450](#4413450) <a name="4413450"></a> <br /> | When displaying BGP neighbor advertised routes in JSON format with very large routing tables, the process consumes excessive memory resulting in OOM crashes.  | 5.0.0-5.13.0 | |
 | <a name="4259979"></a> [4259979](#4259979) <a name="4259979"></a> <br /> | After you reboot the switch, the ifplugd.service fails to start monitoring the interface. | 5.8.0-5.11.1 | 5.12.0-5.13.0|
 | <a name="4250847"></a> [4250847](#4250847) <a name="4250847"></a> <br /> | When the STP state goes down, then back up on the primary MLAG peer, the peerlink state is not updated correctly in <code>mstpd</code>. | 5.8.0-5.11.0 | 5.11.1-5.13.0, 5.12.0-5.13.0|
 | <a name="4220147"></a> [4220147](#4220147) <a name="4220147"></a> <br /> | When you bring STP down, then up on the primary MLAG peer, the STP state machine restarts and the peerlink operational edge resets. As a result, the secondary MLAG peer ends up in an STP discarding state. To work around this issue, restart the <code>clagd</code> service. | 5.8.0-5.11.0 | 5.11.1-5.13.0, 5.12.0-5.13.0|

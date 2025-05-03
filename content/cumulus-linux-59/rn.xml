@@ -2036,9 +2036,9 @@ You can safely ignore this warning.</td>
 </tr>
 <tr>
 <td>4413450</td>
-<td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables (around 800K prefixes), the process consumes excessive memory resulting in OOM crashes. </td>
-<td>5.0.0-5.12.1</td>
-<td>5.13.0</td>
+<td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables, the process consumes excessive memory resulting in OOM crashes. </td>
+<td>5.0.0-5.13.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4281099</td>
@@ -2418,7 +2418,7 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 </tr>
 <tr>
 <td>3847439</td>
-<td>In rare cases on the Spectrum 1 switch  where a dual connected host transmits all traffic flows to only one switch in a connected MLAG pair and the host changes behavior to hash all flows to the other MLAG switch, there might be traffic loss if the MAC FDB entry on the original switch ages out.</td>
+<td>In rare cases on the Spectrum 1 switch, where a dual connected host transmits all traffic flows to only one switch in a connected MLAG pair, and the host changes behavior to hash all flows to the other MLAG switch, there might be traffic loss if the MAC FDB entry on the original switch ages out.</td>
 <td>5.9.0-5.13.0</td>
 <td></td>
 </tr>

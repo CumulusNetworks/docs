@@ -1183,15 +1183,6 @@ The interface statistic data samples that the switch exports to the OTEL collect
 | `nvswitch_interface_discards_egress_hoq_stall` | Interface egress head-of-queue stall discards.|
 | `nvswitch_interface_discards_egress_sll` | Interface egress switch lifetime limit discards. |
 | `nvswitch_interface_discards_ingress_discard_all` | Interface total ingress discards.| 
-| `nvswitch_interface_tx_stats_pkts64octets` | Total packets transmitted, 64 octets in length. |  
-| `nvswitch_interface_tx_stats_pkts65-to127octets` | Total packets transmitted, 64 octets in length. |	 
-| `nvswitch_interface_tx_stats_pkts256-to511octets` | Total packets transmitted, 256-511 octets in length. |  
-| `nvswitch_interface_tx_stats_pkts512-to1023octets` | Total packets transmitted, 512-1023 octets in length. |  
-| `nvswitch_interface_tx_stats_pkts1024-to1518octets` | Total packets transmitted, 1024-1518 octets in length. |  
-| `nvswitch_interface_tx_stats_pkts1519-to2047octets` | Total packets transmitted, 1519-2047 octets in length. |  
-| `nvswitch_interface_tx_stats_pkts2048-to4095octets` | Total packets transmitted, 2048-4095 octets in length. |  
-| `nvswitch_interface_tx_stats_pkts4096-to8191octets` | Total packets transmitted, 4096-8191 octets in length. |  
-| `nvswitch_interface_tx_stats_pkts8192-to10239octets` | Total packets transmitted, 8192-10239 octets in length. |  
 | `nvswitch_interface_ether_stats_pkts64octets` | Total packets received, 64 octets in length. |  
 | `nvswitch_interface_ether_stats_pkts65to127octets` | Total packets received, 65-127 octets in length. |  
 | `nvswitch_interface_ether_stats_pkts128to255octets` | Total packets received, 128-255 octets in length. |  
@@ -1204,6 +1195,34 @@ The interface statistic data samples that the switch exports to the OTEL collect
 | `nvswitch_interface_ether_stats_pkts8192to10239octets` | Total packets received, 8192-10239 octets in length. |
 | `nvswitch_interface_carrier_up_changes_total` | Total number of carrier up transitions for the interface. |
 | `nvswitch_interface_carrier_last_change_time_ms` | Time of last carrier change for the interface as Unix epoch timestamp, with millisecond granularity. |
+|`nvswitch_interface_ether_stats_broadcast_pkts` | The total number of good packets received that were directed to the broadcast address.|
+| `nvswitch_interface_ether_stats_collisions` |The best estimate of the total number of collisions on this Ethernet segment.|
+| `nvswitch_interface_ether_stats_crc_align_errors` | The total number of packets received that had a length (excluding framing bits, but including FCS octets) of between 64 and MTU octets, inclusive, but had either a bad frame check sequence (FCS) with an integral number of octets (FCS error) or a bad FCS with a non-integral number of octets (alignment error).|
+| `nvswitch_interface_ether_stats_drop_events` | The total number of events in which packets were dropped by the probe due to lack of resources. |
+| `nvswitch_interface_ether_stats_fragments` | The total number of packets received that were less than 64 octets in length (excluding framing bits but including FCS octets) and had either a bad FCS with an integral number of octets (FCS error) or a bad FCS with a non- integral number of octets (alignment error).|
+| `nvswitch_interface_ether_stats_jabbers` | The total number of packets received that were longer than MTU octets (excluding framing bits, but including FCS octets), and had either a bad FCS with an integral number of octets (FCS error) or a bad FCS with a non integral number of octets (alignment error).|
+| `nvswitch_interface_ether_stats_multicast_pkts` | The total number of good packets received that were directed to a multicast MAC address. This number does not include packets directed to the broadcast address. |
+| `nvswitch_interface_ether_stats_octets` | The total number of octets of data (including those in bad packets) received (excluding framing bits but including FCS octets). |
+| `nvswitch_interface_ether_stats_oversize_pkts` | The total number of packets received that were longer than MTU octets (excluding framing bits, but including FCS octets) but were otherwise well formed. |
+| `nvswitch_interface_ether_stats_pkts` | The total number of packets (including bad packets, broadcast packets, and multicast packets) received. |
+| `nvswitch_interface_ether_stats_undersize_pkts` | The total number of packets received that were less than 64 octets long (excluding framing bits, but including FCS octets) and were otherwise well formed. |
+| `nvswitch_interface_if_out_ucast_pkts` | The total number of packets that higher-level protocols requested be transmitted and were not addressed to a multicast or broadcast MAC address, including those that were discarded or not sent. |
+| `nvswitch_interface_no_buffer_discard_mc` | The number of multicast packets dropped due to lack of egress buffer resources. Valid only for Spectrum. |
+| `nvswitch_interface_rx_buffer_almost_full` | The number of events where the port rx buffer has passed a fullness threshold. |
+| `nvswitch_interface_rx_buffer_full` |The number of events where the port rx buffer has reached 100% fullness. |
+| `nvswitch_interface_rx_ebp` | The number of received EBP packets. |
+| `nvswitch_interface_tx_ebp` | The number of transmitted EBP packets. |
+| `nvswitch_interface_tx_int_cksm_err` | Counter is incremented upon packet payload internal checksum error. |
+| `nvswitch_interface_tx_stats_pkts64octets` | Total packets transmitted, 64 octets in length. |  
+| `nvswitch_interface_tx_stats_pkts65to127octets`| Total packets transmitted, 64 octets in length. |
+| `nvswitch_interface_tx_stats_pkts256to511octets` | Total packets transmitted, 256-511 octets in length.|
+| `nvswitch_interface_tx_stats_pkts512to1023octets` | Total packets transmitted, 512-1023 octets in length. |
+| `nvswitch_interface_tx_stats_pkts1024to1518octets` | Total packets transmitted, 1024-1518 octets in length.|
+| `nvswitch_interface_tx_stats_pkts1519to2047octets` | Total packets transmitted, 1519-2047 octets in length.|
+| `nvswitch_interface_tx_stats_pkts2048to4095octets` | Total packets transmitted, 2048-4095 octets in length.|
+| `nvswitch_interface_tx_stats_pkts4096to8191octets` | Total packets transmitted, 4096-8191 octets in length.|
+| `nvswitch_interface_tx_stats_pkts8192to10239octets` | Total packets transmitted, 8192-10239 octets in length.|
+| `nvswitch_interface_tx_wait` |The time (in ns resolution) during which the port selected had data to transmit but no data was sent.|
 | `nvswitch_interface_carrier_down_changes_total` | Total number of carrier down transitions for the interface. |
 | `nvswitch_interface_carrier_changes_total` | Total number of carrier changes for the interface. |
 | `nvswitch_interface_mtu_bytes` | Operational MTU for the interface in bytes. |
@@ -1255,20 +1274,6 @@ The switch collects and exports the following additional interface priority grou
 | `nvswitch_interface_pg_rx_frames` | Interface ingress priority group receive frames counter.|
 | `nvswitch_interface_pg_rx_octets` | Interface ingress priority group receive bytes counter. |
 | `nvswitch_interface_pg_rx_shared_buffer_discard` | Interface ingress priority group receive shared buffer discard counter. |
-| `nvswitch_interface_pg_rx_uc_frames` | Interface receive priority group unicast frames counter. |
-| `nvswitch_interface_pg_rx_mc_frames` | Interface receive priority group multicast frames counter. |
-| `nvswitch_interface_pg_rx_bc_frames` | Interface receive priority group broadcast frames counter. |	 	 
-| `nvswitch_interface_pg_tx_octets` | Interface receive priority group transmit bytes counter. |
-| `nvswitch_interface_pg_tx_uc_frames` | Interface receive priority group transmit unicast frames counter. |	 
-| `nvswitch_interface_pg_tx_mc_frames` | Interface receive priority group transmit multicast frames counter. |	 
-| `nvswitch_interface_pg_tx_bc_frames` | Interface receive priority group transmit broadcast frames counter. |	 
-| `nvswitch_interface_pg_tx_frames` | Interface receive priority group transmit frames counter. | 
-| `nvswitch_interface_pg_rx_pause` | Interface receive priority group receive pause counter. | 
-| `nvswitch_interface_pg_rx_pause_duration` | Interface receive priority group receive pause duration counter. |	 
-| `nvswitch_interface_pg_tx_pause` | Interface receive priority group transmit pause counter. |
-| `nvswitch_interface_pg_tx_pause_duration` | Interface receive priority group transmit pause duration counter. |	
-| `nvswitch_interface_pg_rx_pause_transition` | Interface receive priority group receive pause transition counter. |
-| `nvswitch_interface_pg_rx_discard` | Interface receive priority group receive discard counter. |
 
 {{< /tab >}}
 {{< tab "Switch Priority ">}}
@@ -1310,6 +1315,8 @@ The switch collects and exports the following additional interface statistics wh
 | `nvswitch_interface_phy_layer_time_since_last_clear` | Time since counters were cleared.|
 | `nvswitch_interface_phy_layer_fec_per_lane_corrections` | FEC corrections per lane. |
 | `nvswitch_interface_phy_layer_fec_block_state_count`| Number of FEC block states.|
+| `nvswitch_interface_phy_stats_phy_corrected_bits` | Corrected bits by FEC engine. |
+| `nvswitch_interface_phy_stats_effective_ber` | FEC BER errors. |
 
 {{< /tab >}}
 {{< /tabs >}}

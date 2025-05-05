@@ -1274,20 +1274,6 @@ The switch collects and exports the following additional interface priority grou
 | `nvswitch_interface_pg_rx_frames` | Interface ingress priority group receive frames counter.|
 | `nvswitch_interface_pg_rx_octets` | Interface ingress priority group receive bytes counter. |
 | `nvswitch_interface_pg_rx_shared_buffer_discard` | Interface ingress priority group receive shared buffer discard counter. |
-| `nvswitch_interface_pg_rx_uc_frames` | Interface receive priority group unicast frames counter. |
-| `nvswitch_interface_pg_rx_mc_frames` | Interface receive priority group multicast frames counter. |
-| `nvswitch_interface_pg_rx_bc_frames` | Interface receive priority group broadcast frames counter. |	 	 
-| `nvswitch_interface_pg_tx_octets` | Interface receive priority group transmit bytes counter. |
-| `nvswitch_interface_pg_tx_uc_frames` | Interface receive priority group transmit unicast frames counter. |	 
-| `nvswitch_interface_pg_tx_mc_frames` | Interface receive priority group transmit multicast frames counter. |	 
-| `nvswitch_interface_pg_tx_bc_frames` | Interface receive priority group transmit broadcast frames counter. |	 
-| `nvswitch_interface_pg_tx_frames` | Interface receive priority group transmit frames counter. | 
-| `nvswitch_interface_pg_rx_pause` | Interface receive priority group receive pause counter. | 
-| `nvswitch_interface_pg_rx_pause_duration` | Interface receive priority group receive pause duration counter. |	 
-| `nvswitch_interface_pg_tx_pause` | Interface receive priority group transmit pause counter. |
-| `nvswitch_interface_pg_tx_pause_duration` | Interface receive priority group transmit pause duration counter. |	
-| `nvswitch_interface_pg_rx_pause_transition` | Interface receive priority group receive pause transition counter. |
-| `nvswitch_interface_pg_rx_discard` | Interface receive priority group receive discard counter. |
 
 {{< /tab >}}
 {{< tab "Switch Priority ">}}

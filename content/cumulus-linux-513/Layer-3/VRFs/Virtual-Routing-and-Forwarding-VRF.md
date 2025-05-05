@@ -114,12 +114,12 @@ The table ID range **must** be between 1001 to 1255. Cumulus Linux reserves this
 
 ### Assign an IP address to a VRF Interface
 
-To assign an IP address to a VRF interface, run the `nv set vrf <vrf-id> loopback ip address <ip-address>` command.
-
-The following example assigns loopback IP address 10.10.10.1/32 to the VRF RED:
+To assign an IP address to a VRF interface:
 
 {{< tabs "TabID120 ">}}
 {{< tab "NVUE Commands ">}}
+
+Run the `nv set vrf <vrf-id> loopback ip address <ip-address>` command. The following example assigns loopback IP address 10.10.10.1/32 to the VRF RED:
 
 ```
 cumulus@switch:~$ nv set vrf RED loopback ip address 10.10.10.1/32
@@ -133,7 +133,7 @@ NVUE does not support removing the default IP addresses assigned to VRF interfac
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/network/interfaces` file:
+Edit the VRF stanza of the `/etc/network/interfaces` file to add the IP address:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces

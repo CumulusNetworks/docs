@@ -379,7 +379,7 @@ The following example shows the creation of a *syslog-netq-events* channel and v
 To create and verify the specification of an email channel, run:
 
 ```
-netq add notification channel email <text-channel-name> to <text-email-toids> [smtpserver <text-email-hostname>] [smtpport <text-email-port>] [login <text-email-id>] [password <text-email-password>] [severity info | severity error] [default]
+netq add notification channel email <text-channel-name> to <text-email-toids> [smtpserver <text-email-hostname>] [smtpport <text-email-port>] [login <text-user-id>] [sender <text-from-email-id>] [password <text-email-password>] [severity info | severity error] [custom-email-subject <text-custom-email-subject>] [default]
 netq add notification channel email <text-channel-name> to <text-email-toids> [default]
 netq show notification channel [json]
 ```
@@ -395,7 +395,7 @@ For an **on-premises** deployment:
 3. Create the notification channel using the following command:
 
     ```
-    netq add notification channel email <text-channel-name> to <text-email-toids>  [smtpserver <text-email-hostname>] [smtpport <text-email-port>] [login <text-email-id>] [password <text-email-password>] [severity info | severity error] [default]
+    netq add notification channel email <text-channel-name> to <text-email-toids> [smtpserver <text-email-hostname>] [smtpport <text-email-port>] [login <text-user-id>] [sender <text-from-email-id>] [password <text-email-password>] [severity info | severity error] [custom-email-subject <text-custom-email-subject>] [default]
     ```
 
 <div style="padding-left: 18px;">For example:

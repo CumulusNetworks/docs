@@ -739,6 +739,59 @@ Displayed 4 paths for requested prefix
 - If the remote host is dual attached, the next hop for the EVPN route is the anycast IP address of the remote {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} pair when MLAG is active.
 {{%/notice%}}
 
+## Filter EVPN Routes by Neighbor, RD and Route Type
+
+You can filter EVPN routes by a specific neighbor (numbered or unnumbered) with the `nv show vrf <vrf> router bgp address-family l2vpn-evpn route --filter=”neighbor=<neighbor>"` command.
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn route --filter="neighbor=swp51"
+PathCnt - number of L2VPN EVPN per (RD, route-type) paths
+
+Route                                                                   rd             route-type  PathCnt
+----------------------------------------------------------------------  -------------  ----------  -------
+[10.10.10.2:2]:[5]:[0]:[10.1.30.0/24]                                   10.10.10.2:2   5           1      
+[10.10.10.2:3]:[5]:[0]:[10.1.10.0/24]                                   10.10.10.2:3   5           1      
+[10.10.10.2:3]:[5]:[0]:[10.1.20.0/24]                                   10.10.10.2:3   5           1      
+[10.10.10.3:2]:[5]:[0]:[10.1.30.0/24]                                   10.10.10.3:2   5           1      
+[10.10.10.3:3]:[5]:[0]:[10.1.10.0/24]                                   10.10.10.3:3   5           1      
+[10.10.10.3:3]:[5]:[0]:[10.1.20.0/24]                                   10.10.10.3:3   5           1      
+[10.10.10.3:4]:[2]:[0]:[4a:b0:2d:0d:12:d8]                              10.10.10.3:4   2           1      
+[10.10.10.3:4]:[2]:[0]:[4a:b0:2d:29:55:06]                              10.10.10.3:4   2           1      
+[10.10.10.3:4]:[2]:[0]:[44:38:39:22:01:8a]                              10.10.10.3:4   2           1      
+[10.10.10.3:4]:[2]:[0]:[48:b0:2d:0d:12:d8]                              10.10.10.3:4   2           1      
+[10.10.10.3:4]:[2]:[0]:[48:b0:2d:0d:12:d8]:[10.1.20.105]                10.10.10.3:4   2           1      
+[10.10.10.3:4]:[2]:[0]:[48:b0:2d:0d:12:d8]:[fe80::4ab0:2dff:fe0d:12d8]  10.10.10.3:4   2           1      
+[10.10.10.3:4]:[3]:[0]:[10.0.1.34]                                      10.10.10.3:4   3           1      
+[10.10.10.3:5]:[2]:[0]:[4a:b0:2d:c1:30:61]                              10.10.10.3:5   2           1      
+[10.10.10.3:5]:[2]:[0]:[4a:b0:2d:c7:fa:bd]                              10.10.10.3:5   2           1      
+[10.10.10.3:5]:[2]:[0]:[44:38:39:22:01:8a]                              10.10.10.3:5   2           1      
+[10.10.10.3:5]:[2]:[0]:[48:b0:2d:c1:30:61]                              10.10.10.3:5   2           1      
+[10.10.10.3:5]:[2]:[0]:[48:b0:2d:c1:30:61]:[10.1.30.106]                10.10.10.3:5   2           1      
+[10.10.10.3:5]:[2]:[0]:[48:b0:2d:c1:30:61]:[fe80::4ab0:2dff:fec1:3061]  10.10.10.3:5   2           1      
+[10.10.10.3:5]:[3]:[0]:[10.0.1.34]                                      10.10.10.3:5   3           1      
+[10.10.10.3:6]:[2]:[0]:[4a:b0:2d:a1:a0:74]                              10.10.10.3:6   2           1      
+[10.10.10.3:6]:[2]:[0]:[4a:b0:2d:d1:b9:ac]                              10.10.10.3:6   2           1      
+[10.10.10.3:6]:[2]:[0]:[44:38:39:22:01:8a]                              10.10.10.3:6   2           1      
+[10.10.10.3:6]:[2]:[0]:[48:b0:2d:d1:b9:ac]                              10.10.10.3:6   2           1      
+[10.10.10.3:6]:[2]:[0]:[48:b0:2d:d1:b9:ac]:[10.1.10.104]                10.10.10.3:6   2           1      
+[10.10.10.3:6]:[2]:[0]:[48:b0:2d:d1:b9:ac]:[fe80::4ab0:2dff:fed1:b9ac]  10.10.10.3:6   2           1      
+[10.10.10.3:6]:[3]:[0]:[10.0.1.34]                                      10.10.10.3:6   3           1      
+[10.10.10.4:2]:[5]:[0]:[10.1.30.0/24]                                   10.10.10.4:2   5           1          
+...
+```
+
+You can also filter EVPN routes by a specific <span class="a-tooltip">[RD](## "Route Distinguisher")</span> with the `nv show vrf <vrf> router bgp address-family l2vpn-evpn route --filter="rd=<rd>"` command and the route type with the `nv show vrf <vrf> router bgp address-family l2vpn-evpn route --filter="rd=<rd>&route-type=<route-type>"` command.
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn route --filter="rd=10.10.10.2:2" 
+PathCnt - number of L2VPN EVPN per (RD, route-type) paths
+
+Route                                  rd            route-type  PathCnt
+-------------------------------------  ------------  ----------  -------
+[10.10.10.2:2]:[5]:[0]:[10.1.30.0/24]  10.10.10.2:2  5           3 
+...
+```
+
 ## Show the VNI EVPN Routing Table
 
 The switch maintains the received EVPN routes in the global EVPN routing table, even if there are no appropriate local VNIs to **import** them into. For example, a spine maintains the global EVPN routing table even though there are no VNIs present in the table. When local VNIs are present, the switch imports received EVPN routes into the per-VNI routing tables according to the route target attributes. You can examine the per-VNI routing table with the vtysh `show bgp vni <vni>` command:

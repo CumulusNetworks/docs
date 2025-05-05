@@ -362,7 +362,7 @@ Route            Protocol   Distance  Uptime                NHGId  Metric  Flags
 To show the routes in the local routing table, run the `nv show vrf <vrf> router bgp address-family ipv4-unicast route` command for IPv4 or the `nv show vrf <vrf> router bgp address-family ipv6-unicast route` for IPv6. You can also run the command with `-o json` to show the received routes in json format.
 
 ```
-cumulus@leaf02:~$ nv show vrf default router bgp address-family ipv4-unicast route                                            PathCount - Number of paths present for the prefix, MultipathCount - Number of  
+cumulus@leaf02:~$ nv show vrf default router bgp address-family ipv4-unicast route PathCount - Number of paths present for the prefix, MultipathCount - Number of  
 paths that are part of the ECMP, DestFlags - * - bestpath-exists, w - fib-wait- 
 for-install, s - fib-suppress, i - fib-installed, x - fib-install-failed        
                                                                                 
@@ -381,6 +381,27 @@ Prefix           PathCount  MultipathCount  DestFlags
 10.10.10.102/32  2          1               *        
 10.10.10.103/32  2          1               *        
 10.10.10.104/32  2          1               * 
+```
+
+To filter the routes by a specific neighbor (numbered or unnumbered), use the `--filter=”neighbor=<neighbor>"` option. Run the `nv show vrf <vrf> router bgp address-family ipv4-unicast route --filter=”neighbor=<neighbor>"` command for IPv4 or the `nv show vrf <vrf> router bgp address-family ipv6-unicast route --filter=”neighbor=<neighbor>"` for IPv6.
+
+```
+cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4-unicast route --filter="neighbor=swp51"
+
+PathCount - Number of paths present for the prefix, MultipathCount - Number of
+paths that are part of the ECMP, DestFlags - * - bestpath-exists, w - fib-wait-
+for-install, s - fib-suppress, i - fib-installed, x - fib-install-failed
+
+Prefix           PathCount  MultipathCount  DestFlags
+---------------  ---------  --------------  ---------
+10.0.1.34/32     1          1                        
+10.0.1.255/32    1          1               *        
+10.10.10.2/32    1          0                        
+10.10.10.3/32    1          1                        
+10.10.10.4/32    1          1                        
+10.10.10.63/32   1          1               *        
+10.10.10.64/32   1          1               *        
+10.10.10.101/32  1          1               *
 ```
 
 To show information about a specific route in the local routing table, run the `nv show vrf <vrf> router bgp address-family ipv4-unicast route <route>` for IPv4 or `nv show vrf <vrf> router bgp address-family ipv6-unicast route <route>` for IPv6.
@@ -439,7 +460,7 @@ best-routes     7
 usable          8 
 ```
 
-To show all advertised routes, run the `nv show vrf <vrf> router bgp neighbor <neighbor> address-family ipv4-unicast advertised-routes` command for IPv4 or the `nv show vrf <vrf>> router bgp neighbor <neighbor> address-family ipv6-unicast advertised-routes` for IPv6.
+To show all advertised routes, run the `nv show vrf <vrf> router bgp neighbor <neighbor> address-family ipv4-unicast advertised-routes` command for IPv4 or the `nv show vrf <vrf> router bgp neighbor <neighbor> address-family ipv6-unicast advertised-routes` for IPv6.
 
 The above IPv4 and IPv6 command shows advertised routes in brief format to improve performance for high scale environments. You can also run the command with `-o json` to show the received routes in json format.
 
@@ -624,12 +645,30 @@ Prefix        UseSooNhg  SelectedPathBitmap
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
-To show information about all SOO routes, run the `show bgp vrf <vrf> <address-family> unicast soo route` command:
+To show information about SOO routes in brief format, run the `show bgp <address-family> unicast soo route` command:
 
 ```
-cumulus@leaf01:~$ sudo vtysh
+cumulus@spine01:~$ sudo vtysh
 ...
-leaf01# show bgp vrf default ipv4 unicast soo route
+leaf01# show bgp ipv4 unicast soo route
+BGP: VRF default
+
+PathCnt - Number of paths for this SoORouteCnt - Number of routes with this
+SoO, SoONhgID - Nexthop group id used by this SoO
+SoORouteFlag - Indicates Site-of-Origin route flag: I - InstalledNhgRouteCnt - Number of routes using
+SoO NHG, NhgFlag - V - valid, Ip - install-pending, Dp - delete-pending
+
+SoORouteID              PathCnt  RouteCnt  SoONhgID  SoORouteFlag  NhgRouteCnt  NhgFlag
+----------------------  -------  --------  --------  ------------  -----------  -------
+10.10.10.1                 6        1         70328887  I             1            V
+```
+
+To show detailed information about SOO routes, run the `show bgp <address-family> unicast soo route detail` command:
+
+```
+cumulus@spine01:~$ sudo vtysh
+...
+leaf01# show bgp ipv4 unicast soo route detail
 BGP: VRF default
 
 SoO: 10.10.10.1
@@ -688,12 +727,12 @@ SoO: 10.10.10.2
       10.0.1.12/32 Selected path info bitmap bits set: 2
 ```
 
-To show information about a specific SOO route, run the `show bgp vrf <vrf> <address-family> unicast soo route <prefix>` command:
+To show information about a specific SOO route, run the `show bgp <address-family> unicast soo route <prefix>` command:
 
 ```
 cumulus@spine01:~$ sudo vtysh
 ...
-spine01# show bgp vrf default ipv4 unicast soo route 10.10.10.3
+spine01# show bgp ipv4 unicast soo route 10.10.10.3
 BGP: VRF default
 
 SoO: 10.10.10.3
@@ -721,7 +760,28 @@ You can show the above commands in json format. For example:
 ```
 cumulus@spine01:~$ sudo vtysh
 ...
-spine01# show bgp vrf default ipv4 unicast soo route json 
+spine01# show bgp ipv4 unicast soo route json
+{
+  "default":[
+    {
+      "SoORoute":"10.10.10.1",
+      "numPaths":6,
+      "numRoutesWithSoO":13,
+      "nexthopgroupId":70328887,
+      "SoORouteFlag":"Installed",
+      "numRoutesWithSoOUsingSoONHG":13,
+      "nhgValid":true,
+      "nhgInstallPending":false,
+      "nhgDeletePending":false
+    }
+  ]
+}
+```
+
+```
+cumulus@spine01:~$ sudo vtysh
+...
+spine01# show bgp ipv4 unicast soo route detail json 
 {
   "default":[
     {
@@ -843,30 +903,6 @@ spine01# show bgp vrf default ipv4 unicast soo route json
     }
   ]
 }
-```
-
-The `show bgp <address-family> unicast` and `show bgp <address-family> unicast <prefix>` commands also show SOO information:
-
-```
-cumulus@spine01:~$ sudo vtysh
-...
-spine01# show bgp ipv4 unicast 10.10.10.3
-BGP routing table entry for 10.10.10.3/32, version 29 SoO:10.10.10.3, multipath soo nhg:70328889
-Paths: (2 available, best #1, table default)
-  Advertised to non peer-group peers:
-  leaf01(swp1) leaf02(swp2) leaf03(swp3) leaf04(swp4) border01(swp5) border02(swp6)
-  65103
-    fe80::4ab0:2dff:fef2:6bc5 (leaf03) from leaf03(swp3) (10.10.10.3)
-    (fe80::4ab0:2dff:fef2:6bc5) (used)
-      Origin IGP, metric 0, valid, external, bestpath-from-AS 65103, best (AS Path)
-      Extended Community: SoO:10.10.10.3:0
-      Last update: Wed Jan 22 20:12:46 2025
-  65104 65103
-    fe80::4ab0:2dff:feab:57dd (leaf04) from leaf04(swp4) (10.10.10.4)
-    (fe80::4ab0:2dff:feab:57dd) (used)
-      Origin IGP, valid, external, bestpath-from-AS 65104
-      Extended Community: SoO:10.10.10.3:0
-      Last update: Wed Jan 22 20:12:46 2025
 ```
 
 {{< /tab >}}

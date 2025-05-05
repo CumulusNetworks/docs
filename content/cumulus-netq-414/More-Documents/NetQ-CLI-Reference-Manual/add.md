@@ -118,14 +118,15 @@ You must have at least one channel, one rule, and one filter to fully configure 
 A form of this command is available for each channel type:
 
 ```
-netq add notification channel email
-    <text-channel-name>
-    to <text-email-toids>
-    [smtpserver <text-email-hostname>]
-    [smtpport <text-email-port>]
-    [login <text-email-id>]
-    [password <text-email-password>]
-    [severity info | severity error]
+netq add notification channel email 
+    <text-channel-name> to <text-email-toids> 
+    [smtpserver <text-email-hostname>] 
+    [smtpport <text-email-port>] 
+    [login <text-user-id>] 
+    [sender <text-from-email-id>] 
+    [password <text-email-password>] 
+    [severity info | severity error] 
+    [custom-email-subject <text-custom-email-subject>] 
     [default]
 
 netq add notification channel pagerduty
@@ -179,9 +180,11 @@ netq add notification channel generic
 | ---- | ---- | ---- |
 | smtpserver | \<text-email-hostname\> | Send notifications to the SMTP server with this hostname |
 | smtpport | \<text-email-port\> | Send notifications to this port on the SMTP server |
-| login | \<text-email-id\> | Email address for authentication |
+| login | \<text-user-id\> | Username for authentication |
+| sender | \<text-from-email-id\> | Sender notifications from this email address |
 | password | \<text-email-password\> | Password for authentication |
 | severity | info, error | Only send notifications with this severity. Default severity is info. |
+| custom-email-subject | \<text-custom-email-subject\> | Configure a subject line for email notifications |
 | auth-type | \<auth-type\>| Specify authentication method |
 | use-ssl | True, False | Enable SSL encryption |
 | NA | default| Set channel as default and send all notifications to this channel  |
@@ -400,13 +403,14 @@ A TCA event notification configuration must contain one rule. Each rule must con
 Two forms of the command are available: one that uses the `event_id` argument used to create the notification, and one that uses the `tca_id` argument used to modify an existing notification.
 
 ```
-netq add tca event_id <text-event-id-anchor>
-    [scope <text-scope-anchor>]
-    [severity info | severity error]
-    [is_active true | is_active false]
-    [suppress_until <text-suppress-ts>]
-    [threshold_type user_set | threshold_type vendor_set]
-    [threshold <text-threshold-value>]
+netq add tca event_id <text-event-id-anchor> 
+    [tca_name <text-tca-name>] 
+    [scope <text-scope-anchor>] 
+    [severity info | severity error] 
+    [is_active true | is_active false] 
+    [suppress_until <text-suppress-ts>] 
+    [threshold_type user_set | threshold_type vendor_set] 
+    [threshold <text-threshold-value>] 
     [channel <text-channel-name-anchor> | channel drop <text-drop-channel-name>]
 
 netq add tca tca_id <text-tca-id-anchor>
@@ -431,6 +435,7 @@ netq add tca tca_id <text-tca-id-anchor>
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
+| tca_name | \<text-tca-name\> | Create a name for the TCA |
 | scope | \<text-scope-anchor\> | Regular expression that filters the events. When you use two parameters, separate them with a comma, but no space. When you use an asterisk (*) alone, you must surround it with either single or double quotes. |
 | severity | info, error | Only include events with this severity |
 | is_active | true, false | Activate or deactivate the TCA event rule |

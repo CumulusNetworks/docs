@@ -26,7 +26,7 @@ For deployments running:
 
 
 {{%notice note%}}
-When you upgrade from NetQ v4.14.0, any pre-existing validation data will be lost. Additionally, NetQ will not retain data related to network services (including BGP, LLDP, EVPN, and MLAG) after upgrading.
+When you upgrade to NetQ v4.14.0, any pre-existing validation data will be lost. Additionally, NetQ will not retain data related to network services (including BGP, LLDP, EVPN, and MLAG) after upgrading.
 {{%/notice%}}
 
 ## Compatible Agent Versions

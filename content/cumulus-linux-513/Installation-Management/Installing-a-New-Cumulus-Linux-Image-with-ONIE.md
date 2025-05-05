@@ -259,6 +259,10 @@ cumulus@cumulus:~$ sudo onie-install -i http://203.0.113.10/image-installer -t /
 ```
 
 {{%notice note%}}
+If your NVUE `startup.yaml` file includes certificate configuration for gNMI, the NVUE API, or other features, NVUE does not restore the certificate files. Perform a package upgrade when possible, or manually back up and restore your certificate files to the same path after the ONIE image upgrade is complete.
+{{%/notice%}}
+
+{{%notice note%}}
 When you stage an NVUE `startup.yaml` file, ZTP still runs after the new image is installed. To prevent ZTP from running after the new image is installed, either:
 - Run the `sudo ztp -d` or `nv action disable system ztp` commands to disable ZTP after the new image is running.
 - Use the `-z` option to specify an existing ZTP script that takes no action. For example, create a file called `/tmp/cumulus_ztp.sh` that contains the line `#!/bin/bash # CUMULUS-AUTOPROVISIONING` and specify `sudo onie-install -fa -i <image-path> -z /tmp/cumulus_ztp.sh -t /etc/nvue.d/startup.yaml`.

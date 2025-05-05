@@ -12,7 +12,7 @@ License: Expat
 
 Files: debian/*
 Copyright: 2018, Pirate Praveen <praveen@debian.org>
- 2019, Yadd <yadd@debian.org>
+ 2019, Xavier Guimard <yadd@debian.org>
 License: Expat
 
 License: Expat

@@ -1255,7 +1255,7 @@ Action succeeded
 
 ## Clear the OSPF Database
 
-To clear the OSPF database, reestablish neighborships, and reoriginate LSAs, run the `nv action clear vrf <vrf>> router ospf database` command:
+To clear the OSPF database, reestablish neighborships, and reoriginate LSAs, run the `nv action clear vrf <vrf> router ospf database` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv action clear vrf default router ospf database 

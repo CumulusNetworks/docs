@@ -116,13 +116,14 @@ The `nv set` and `nv unset` commands are in the following categories. Each comma
 | `nv set bridge`<br>`nv unset bridge` | Configures a {{<link url="Ethernet-Bridging-VLANs" text="bridge">}}. This is where you configure bridge attributes, such as the bridge type (VLAN-aware), the STP state and priority, and VLANs. |
 | `nv set evpn`<br>`nv unset evpn` | Configures {{<link url="Basic-Configuration" text="EVPN">}}. This is where you enable and disable the EVPN control plane, and set EVPN route advertise, multihoming, and duplicate address detection options. |
 | `nv set interface <interface-id>`<br>`nv unset interface <interface-id>` | Configures the {{<link url="Interface-Configuration-and-Management" text="switch interfaces">}}. Use this command to configure bond and bridge interfaces, interface IP addresses and descriptions, VLAN IDs, and {{<link url="Switch-Port-Attributes" text="links (MTU, FEC, speed, duplex, and so on)">}}.|
+| `nv set maintenance`<br>`nv unset maintenance`| Configures maintenance mode so you can take a switch out of production to perform updates or troubleshoot issues.|
 | `nv set mlag`<br>`nv unset mlag` | Configures {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}}. This is where you configure the backup IP address or interface, MLAG system MAC address, peer IP address, MLAG priority, and the delay before bonds come up. |
 | `nv set nve`<br>`nv unset nve` | Configures {{<link url="Network-Virtualization" text="network virtualization (VXLAN) settings">}}. This is where you configure the UDP port for VXLAN frames, control dynamic MAC learning over VXLAN tunnels, enable and disable ARP and ND suppression, and configure how Cumulus Linux handles BUM traffic in the overlay.|
 | `nv set platform`<br>`nv unset platform`|  Configures {{<link url="Pulse-Per-Second-PPS" text="Pulse per Second">}}; the simplest form of synchronization for the physical hardware clock.|
 | `nv set qos`<br>`nv unset qos` | Configures {{<link title="RDMA over Converged Ethernet - RoCE" text="QoS RoCE">}}. |
 | `nv set router`<br>`nv unset router` | Configures {{<link url="Route-Filtering-and-Redistribution" text="router policies">}} (prefix list rules and route maps), sets {{<link url="Basic-BGP-Configuration" text="global BGP options">}} (enable and disable, ASN and router ID, BGP graceful restart and shutdown), {{<link url="Open-Shortest-Path-First-v2-OSPFv2" text="global OSPF options">}} (enable and disable, router ID, and OSPF timers) {{<link url="Protocol-Independent-Multicast-PIM" text="PIM">}}, {{<link url="IGMP-and-MLD-Snooping" text="IGMP">}}, {{<link url="Policy-based-Routing" text="PBR">}}, {{<link url="Virtual-Router-Redundancy-VRR" text="VRR">}}, and {{<link url="Virtual-Router-Redundancy-Protocol-VRRP" text="VRRP">}}. |
-| `nv set service`<br>`nv unset service` | Configures {{<link url="DHCP-Relays" text="DHCP relays">}} and {{<link url="DHCP-Servers" text="DHCP servers">}}, {{<link url="Network-Time-Protocol-NTP" text="NTP">}}, {{<link url="Precision-Time-Protocol-PTP" text="PTP">}}, {{<link url="Link-Layer-Discovery-Protocol" text="LLDP">}}, DNS, and {{<link url="Log-Files-with-NVUE" text="syslog">}}. |
-| `nv set system`<br>`nv unset system` | Configures system settings, such as the {{<link title="Quick Start Guide/#configure-the-hostname" text="hostname of the switch">}}, pre and post login messages, {{<link title="In Service System Upgrade - ISSU/#restart-mode" text="reboot options (warm, cold, fast)">}}, {{<link title="Setting the Date and Time/#set-the-time-zone" text="time zone ">}} and global system settings, such as the anycast ID, the system MAC address, and the anycast MAC address. This is also where you configure {{<link url="Configure-SNMP" text="SNMP">}}, {{<link url="SPAN-and-ERSPAN" text="SPAN and ERSPAN sessions">}}, {{<link url="Open-Telemetry-Export" text="telemetry">}}, and set how configuration apply operations work (which files to ignore and which files to overwrite; see {{<link title="#configure-nvue-to-ignore-linux-files" text="Configure NVUE to Ignore Linux Files">}}).|
+| `nv set service`<br>`nv unset service` | Configures {{<link url="DHCP-Relays" text="DHCP relays">}} and {{<link url="DHCP-Servers" text="DHCP servers">}}, {{<link url="Link-Layer-Discovery-Protocol" text="LLDP">}}, {{<link url="Network-Time-Protocol-NTP" text="NTP">}}, {{<link url="Precision-Time-Protocol-PTP" text="PTP">}}, and DNS. |
+| `nv set system`<br>`nv unset system` | Configures system settings, such as the {{<link title="Quick Start Guide/#configure-the-hostname" text="hostname of the switch">}}, pre and post login messages, {{<link title="In Service System Upgrade - ISSU/#restart-mode" text="reboot options (warm, cold, fast)">}}, {{<link title="Setting the Date and Time/#set-the-time-zone" text="time zone ">}} and global system settings, such as the anycast ID, the system MAC address, and the anycast MAC address. This is also where you configure {{<link url="gNMI-Streaming" text="gNMI streaming">}}, {{<link url="Open-Telemetry-Export" text="Open telemtry export">}},{{<link url="SPAN-and-ERSPAN" text="SPAN and ERSPAN sessions">}}, {{<link url="Configure-SNMP" text="SNMP">}}, {{<link url="Log-Files-with-NVUE" text="syslog">}}, and set how configuration apply operations work (which files to ignore and which files to overwrite; see {{<link title="#configure-nvue-to-ignore-linux-files" text="Configure NVUE to Ignore Linux Files">}}).|
 | `nv set vrf  <vrf-id>`<br>`nv unset vrf <vrf-id>` | Configures {{<link url="VRFs" text="VRFs">}}. This is where you configure VRF-level configuration for PTP, BGP, OSPF, and EVPN. |
 
 ### Monitoring Commands
@@ -138,7 +139,7 @@ The NVUE monitoring commands show various parts of the network configuration. Fo
 | `nv show interface` |Shows {{<link url="Interface-Configuration-and-Management/#show-interface-information" text="interface">}} configuration and counters. |
 | `nv show mlag` | Shows {{<link url="Multi-Chassis-Link-Aggregation-MLAG/#troubleshooting" text="MLAG">}} configuration. |
 | `nv show nve` | Shows {{<link url="Network-Virtualization" text="network virtualization (VXLAN)">}} configuration, such as VXLAN-specfic MLAG configuration and VXLAN flooding.|
-| `nv show platform` | Shows {{<link url="Monitoring-Best-Practices/#hardware" text="platform configuration">}}, such as hardware and software components. |
+| `nv show platform` | Shows {{<link url="Monitoring-Best-Practices/#hardware" text="platform configuration">}}, such as hardware and firmware components. |
 | `nv show qos` | Shows {{<link title="RDMA over Converged Ethernet - RoCE/#verify-roce-configuration" text="QoS RoCE">}} configuration.|
 | `nv show router` | Shows router configuration, such as router policies, global BGP and OSPF configuration, PBR, PIM, IGMP, VRR, and VRRP configuration. |
 | `nv show service` | Shows {{<link url="DHCP-Relays/#troubleshooting" text="DHCP-Relays">}} and {{<link url="DHCP-Servers/#troubleshooting" text="DHCP server">}} configuration, {{<link url="Network-Time-Protocol-NTP" text="NTP">}}, {{<link url="Precision-Time-Protocol-PTP/#troubleshooting" text="PTP">}}, {{<link url="Link-Layer-Discovery-Protocol" text="LLDP">}}, and syslog configuration. |
@@ -189,12 +190,12 @@ Additional options are available for certain `nv show` commands. For example, yo
 | `--filter` | Filters show command output on column data. For example, the `nv show interface --filter mtu=1500` shows only the interfaces with MTU set to 1500. For more information, see {{<link url="#filter-nv-show-command-output" text="Filter nv show Command Output">}} below.|
 | `--hostname`| Shows system configuration for the switch with the specified hostname. For example, `nv show --hostname leaf01`.|
 | `--operational` | Shows the running configuration (the actual system state). For example, `nv show interface swp1 --operational` shows the running configuration for swp1. The running and applied configuration should be the same. If different, inspect the logs. |
-| `--output`        | Shows command output in table (`auto`), `json`, `yaml`, or `native` format. Use `native` format for {{<link url="FRRouting/#nvue-show-commands-and-vtysh-output" text="certain routing">}} `nv show` commands to see the output that vtysh provides. For example:<br>`nv show interface bond1 --output auto`<br>`nv show interface bond1 --output json`<br>`nv show interface bond1 --output yaml`<br>`nv show evpn multihoming esi --output native`<br>|
+| `--output` | Shows command output in table (`auto`), `json`, `yaml`, or `native` format. Use `native` format for {{<link url="FRRouting/#nvue-show-commands-and-vtysh-output" text="certain routing">}} `nv show` commands to see the output that vtysh provides. For example:<br>`nv show interface bond1 --output auto`<br>`nv show interface bond1 --output json`<br>`nv show interface bond1 --output yaml`<br>`nv show evpn multihoming esi --output native`<br>|
 | `--paginate`      | Paginates the output. For example, `nv show interface bond1 --paginate on`. |
 | `--pending`       | Shows the last applied configuration and any pending set or unset configuration that you have not yet applied. For example, `nv show interface bond1 --pending`.|
 | `--rev <revision>`| Shows a detached pending configuration. See the `nv config detach` configuration management command below. For example, `nv show --rev 1`. You can also show only applied or only operational information in the `nv show` output. For example, to show only the applied settings for swp1 configuration, run the `nv show interface swp1 --rev=applied` command. To show only the operational settings for swp1 configuration, run the `nv show interface swp1 --rev=operational` command. |
 | `--startup`  | Shows configuration saved with the `nv config apply` command. This is the configuration after the switch boots. For example: `nv show interface --startup`.|
-| `--tab`| Show information in tab format. For example, `nv show interface swp1 --tab.`|
+| `--tab`| Show information in tab format. For example, `nv show interface swp1 --tab`.|
 | `--view` | Shows different views. A view is a subset of information provided by certain `nv show` commands. To see the views available for an `nv show` command, run the command with `--view` and press TAB (for example `nv show interface --view`).|
 
 The following example shows *pending* BGP graceful restart configuration:
@@ -213,11 +214,13 @@ The following example shows the views available for the `nv show interface` comm
 
 ```
 cumulus@switch:~$ nv show interface --view <<TAB>>
-acl-statistics  counters        down            neighbor        small           vrf
-bond-members    description     lldp            physical        status          
-bonds           detail          lldp-detail     port-security   svi             
-brief           dot1x-counters  mac             qos-profile     synce-counters  
-carrier-stats   dot1x-summary   mlag-cc         rates           up
+acl-statistics  detail          mlag-cc         status
+bond-members    dot1x-counters  neighbor        svi
+bonds           dot1x-summary   physical        synce-counters
+brief           down            port-security   up
+carrier-stats   lldp            qos-profile     vrf
+counters        lldp-detail     rates           
+description     mac             small
 ```
 
 ### Configuration Management Commands
@@ -227,6 +230,8 @@ The NVUE configuration management commands manage and apply configurations.
 | <div style="width:450px">Command | Description |
 | ------- | ----------- |
 | `nv config apply` | Saves the pending configuration (`nv config apply`) or a specific revision (`nv config apply 2`) to the startup configuration automatically (when auto save is `on`, which is the default setting). To see the list of revisions you can apply, run `nv config apply <<Tab>>`. <br>You can also use these prompt options:<ul><li>`--assume-yes` to automatically reply `yes` to all prompts.</li><li>`--assume-no` to automatically reply `no` to all prompts.</li></ul>You can also use these apply options:<br>`--confirm` applies the configuration change but you must confirm the applied configuration. If you do not confirm within ten minutes, the configuration rolls back automatically. You can change the default time with the apply `--confirm <time>` command. For example, `nv config apply --confirm 60m` requires you to confirm within one hour.<br>`--confirm-status` shows the amount of time left before the automatic rollback.</br>|
+| `nv config attach`|  Attaches configuration to a revision. |
+| `nv config delete` |  Deletes a configuration revision. |
 | `nv config detach` | Detaches the configuration from the current pending configuration and uses an integer to identify it; for example, `4`. To list all the current detached pending configurations, run `nv config diff <<press tab>`.|
 | `nv config diff <revision> <revision>` | {{<link url="NVUE-CLI/#view-differences-between-configurations" text="Shows differences between configurations">}}, such as the pending configuration and the applied configuration, or the detached configuration and the pending configuration.|
 | `nv config find <string>`| {{<link url="NVUE-CLI/#search-for-a-specific-configuration" text="Finds a portion of the applied configuration">}} according to the search string you provide. For example to find swp1 in the applied configuration, run `nv config find swp1`.|
@@ -238,6 +243,7 @@ The NVUE configuration management commands manage and apply configurations.
 | `nv config show` | Shows the {{<link url="NVUE-CLI/#show-switch-configuration" text="currently applied configuration">}} in `yaml` format. This command also shows NVUE version information. |
 | `nv config show -o commands` | Shows the currently applied configuration commands. |
 | `nv config diff -o commands` | Shows differences between two configuration revisions. |
+| `nv config translate` | Translates a revision or YAML file configuration. |
 
 You can use the NVUE configuration management commands to back up and restore configuration when you upgrade Cumulus Linux on the switch. Refer to {{<link url="Upgrading-Cumulus-Linux/#back-up-and-restore-configuration-with-nvue" text="Upgrading Cumulus Linux">}}.
 
@@ -251,16 +257,17 @@ The NVUE action commands fetch and install image files, upgrade system packages,
 | `nv action boot-next`| Sets the boot partition for {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="optimized (two partition) upgrade">}}.|
 | `nv action change`| Sets the {{<link title="Setting the Date and Time/#set-the-date-and-time" text="software clock date and time">}}. |
 | `nv action clear` | Provides commands to clear ACL statistics, {{<link url="EVPN-Enhancements/#clear-duplicate-addresses" text="duplicate addresses">}}, {{<link url="Precision-Time-Protocol-PTP/#clear-ptp-violation-logs" text="PTP violations">}}, {{<link url="Interface-Configuration-and-Management/#clear-the-interface-protodown-state-and-reason" text="interfaces from a protodown state">}}, {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#clear-interface-counters" text="interface counters">}}, {{<link url="Quality-of-Service/#clear-qos-buffers" text="Qos buffers">}}, {{<link url="Troubleshooting-BGP/#clear-bgp-routes" text="BGP routes">}}, {{<link url="Open-Shortest-Path-First-v2-OSPFv2/#clear-ospf-counters" text="OSPF interface counters">}}, {{<link url="Route-Filtering-and-Redistribution/#clear-matches-against-a-route-map" text="matches against a route map">}}, and remove {{<link url="Multi-Chassis-Link-Aggregation-MLAG/#lacp-partner-mac-address-duplicate-or-mismatch" text="conflicts from protodown MLAG bonds">}}. |
-| `nv action deauthenticate interface <interface> dot1x authorized-sessions`| {{<link url="802.1X-Interfaces/#deauthenticate-an-8021x-supplicant" text="Deauthenticates the 802.1X supplicant">}} on the specified interface. If you do not want to notify the supplicant when deauthenticating, you can add the silent option; for example, `nv action deauthenticate interface swp1 dot1x authorized-sessions 00:55:00:00:00:09 silent`.|
+| `nv action deauthenticate`| {{<link url="802.1X-Interfaces/#deauthenticate-an-8021x-supplicant" text="Deauthenticates the 802.1X supplicant">}} on the specified interface. If you do not want to notify the supplicant when deauthenticating, you can add the silent option; for example, `nv action deauthenticate interface swp1 dot1x authorized-sessions 00:55:00:00:00:09 silent`.|
 | `nv action delete` | Provides commands to delete {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="binary image files">}}, {{<link url="Log-Files-with-NVUE/#delete-system-log-files" text="log files">}}, {{<link url="Adding-and-Updating-Packages/#manage-repository-keys" text="packages">}}, {{<link url="NVUE-API/#delete-certificates" text="CA and entity certificates">}} and {{<link url="Understanding-the-cl-support-Output-File/#delete-cl-support-files" text="tech support files">}}. |
-| `nv action disable`| Provides commands to disable {{<link url="In-Service-System-Upgrade-ISSU/#maintenance-mode" text="system maintenance mode">}} and {{<link url="Zero-Touch-Provisioning-ZTP" text="ZTP scripts">}}.|
+| `nv action disable`| Provides commands to disable {{<link url="Zero-Touch-Provisioning-ZTP" text="ZTP scripts">}}.|
 | `nv action disconnect`|  Provides commands to {{<link url="User-Accounts/#disconnect-user-account-active-terminals" text="disconnect users logged into the switch">}}. |
-| `nv action enable`| Provides commands to enable {{<link url="In-Service-System-Upgrade-ISSU/#maintenance-mode" text="system maintenance mode">}} and {{<link url="Zero-Touch-Provisioning-ZTP" text="ZTP scripts">}}. |
+| `nv action enable`| Provides commands to enable {{<link url="Zero-Touch-Provisioning-ZTP" text="ZTP scripts">}}. |
 | `nv action export`| Exports a system configuration file.|
 | `nv action fetch`| Fetches {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="binary image files">}}, {{<link url="Adding-and-Updating-Packages/#manage-repository-keys" text="package files">}}, configuration files, and platform firmware. |
-| `nv action generate` | Generates {{<link url="Understanding-the-cl-support-Output-File/#manual-cl-support-file" text="cl-support files">}} and {{<link url="Understanding-the-cl-support-Output-File/#get-the-hash-for-a-file" text="hash files">}}.|
-| `nv action import` | Provides commands to {{<link url="NVUE-API/#import-a-certificate" text="import CA and entity certificates">}}. |
+| `nv action generate` | Generates {{<link url="Understanding-the-cl-support-Output-File/#manual-cl-support-file" text="cl-support files">}} and {{<link url="NVUE-CLI/#get-the-hash-for-a-file" text="hash files">}}.|
+| `nv action import` | Provides commands to import CA and entity certificates, and CRLs. |
 | `nv action install` | Installs {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="system image files">}}. |
+| `nv action list`| Lists the contents of a directory, including files, subdirectories, and other file system objects. |
 | `nv action lookup`| Looks up the {{<link url="FRRouting/#look-up-the-route-for-a-destination" text="route in the routing table">}} for a specific destination. |
 | `nv action ping` | Provides commands to run {{<link url="Network-Troubleshooting/#ping" text="ping">}}.|
 | `nv action reboot` | Reboots the switch in the configured restart mode ({{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="fast, cold, or warm">}}). You must specify the `no-confirm` option with this command. |
@@ -270,7 +277,6 @@ The NVUE action commands fetch and install image files, upgrade system packages,
 | `nv action run` | Provides commands to run {{<link url="Zero-Touch-Provisioning-ZTP" text="ZTP scripts">}}.|
 | `nv action schedule` | Configures the schedule for {{<link url="ASIC-Monitoring/#high-frequency-telemetry" text="high frequency telemetry data collection">}}.|
 | `nv action traceroute` | Provides commands to run {{<link url="Network-Troubleshooting/#traceroute" text="traceroute">}}.|
-| `nv action rename`| Renames the system configuration.|
 | `nv action upgrade` | {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="Upgrades system packages">}}.|
 | `nv action upload` | Uploads {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="system image files">}}, {{<link url="Understanding-the-cl-support-Output-File/#manual-cl-support-file" text="cl-support files">}}, and configuration files to the switch.|
 
@@ -585,6 +591,31 @@ cumulus@switch:~$ nv config translate filename /home/cumulus/backup.yaml
 
 If the revision or yaml file is not readable, is in an invalid format, or includes invalid parameters, NVUE returns an error message and prompts you to correct the issue before proceeding.
 
+## Maximum Revisions Limit
+
+You can control the maximum number of revisions stored in the NVUE database to ensure efficient resource management and system performance. When the number of revisions reaches the maximum set, the switch automatically deletes the oldest revisions to make room for new ones when you create them. The lower revision number is the oldest; for example revision 10 is older than revision 100.
+
+NVUE does not delete the `startup`, `empty`, or `applied` revisions and does not include them in the total revision count. The revision from which the last `applied` revision is created is also protected from deletion.
+
+Deletion occurs in batches to reduce the number of system operations.
+
+{{%notice note%}}
+The deletion process is automatic; you cannot reverse it.
+{{%/notice%}}
+
+To set the maximum number of revisions before NVUE deletes them, edit the `NVUE_MAX_REVISIONS` option in `/etc/default/nvued` file. The minimum value is 10. The default value is 100.
+
+{{%notice note%}}
+Setting the limit too low results in frequent revision deletions.
+{{%/notice%}}
+
+```
+cumulus@switch:~$ sudo nano /etc/default/nvued
+...
+NVUE_MAX_REVISIONS=60
+...
+```
+
 ## Session-Based Authentication
 
 NVUE uses sessions to authenticate and authorize requests. After authenticating the user with the first request, NVUE stores the session in the `nvued` cache. NVUE authenticates subsequent interactions within the session locally so that it does not have to keep checking with external authentication servers. This process enhances system performance and efficiency, making it ideal for high-traffic environments.
@@ -714,6 +745,15 @@ The following example fetches an image stored on a device with IP address 10.0.1
 cumulus@switch:~$ nv action fetch system image scp://user1:Pass1%23pass1@10.0.1.251/host/nos-images/nvos-amd64-25.02.1857.bin
 ```
 
+## Security with Certificates and CRLs
+
+NVUE supports CA certificates (such as DigiCert or Verisign) and entity (end-point) certificates, and <span class="a-tooltip">[CRLs](## "Certificate Revocation Lists") to verify server certificates when you use certain Cumulus Linux features, such as gNMI and the NVUE API. Both a CA certificate and an entity certificate can contain a chain of certificates.
+
+You import certificates and CRLs onto the switch with the `nv action import system security` command.
+
+- For information about using certificates with gNMI, refer to {{<link url="gNMI-Streaming" text="gNMI streaming">}}
+- For information about using certificates with the NVUE API, refer to {{<link url="NVUE-API/#certificates" text="NVUE API">}}.
+
 ## Filter nv show Command Output
 
 Filters show command output on column data; for example, to show only the interfaces with MTU set to 1500:
@@ -760,7 +800,9 @@ vlan20                                       9216  svi                          
 vlan30                                       9216  svi                                 IP Address:  10.1.30.2/24
 ```
 
-You can filter the FRR `nv show vrf <vrf> router rib` command output by protocol (gp, ospf, kernel, static, ospf6, sharp, or connected); for example, to show all BGP IPv4 routes in the routing table:
+### FRR Output Filters
+
+You can filter the `nv show vrf <vrf> router rib` command output by protocol (gp, ospf, kernel, static, ospf6, sharp, or connected); for example, to show all BGP IPv4 routes in the routing table:
 
 ```
 cumulus@switch:~$ nv show vrf default router rib ipv4 route --filter=protocol=bgp                                                                             
@@ -782,7 +824,26 @@ Route            Protocol  Distance  Uptime                NHGId  Metric  Flags
 10.10.10.104/32  bgp       20        2024-12-17T10:24:10Z  113    0       *Si  
 ```
 
-You can filter the FRR `nv show vrf <vrf> router bgp neighbor` command output by state (established or non-established); for example, to show all BGP established neighbors:
+You can filter BGP and EVPN received routes by a specific neighbor (numbered or unnumbered) with the `--filter=”neighbor=<neighbor>"` option. Run the `nv show vrf <vrf> router bgp address-family ipv4-unicast route --filter=”neighbor=<neighbor>"` command for IPv4, `nv show vrf <vrf> router bgp address-family ipv6-unicast route --filter=”neighbor=<neighbor>"` for IPv6, or `nv show vrf <vrf> router bgp address-family l2vpn-evpn route --filter=”neighbor=<neighbor>"` for EVPN.
+
+```
+cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4-unicast route --filter="neighbor=swp51"  
+
+PathCount - Number of paths present for the prefix, MultipathCount - Number of 
+paths that are part of the ECMP, DestFlags - * - bestpath-exists, w - fib-wait- 
+for-install, s - fib-suppress, i - fib-installed, x - fib-install-failed 
+
+Prefix              PathCount  MultipathCount  DestFlags 
+------------------  ---------  --------------  --------- 
+10.10.10.2/24        1          1               * 
+10.10.10.3/24        1          1               * 
+10.10.10.4/24        1          1               * 
+...
+```
+
+You can also filter EVPN routes by a specific RD with the `nv show vrf <vrf> router bgp address-family l2vpn-evpn route --filter="rd=<rd>"` command and route type with the `nv show vrf <vrf> router bgp address-family l2vpn-evpn route --filter="rd=<rd>&route-type=<route-type>"` command.
+
+You can filter the `nv show vrf <vrf> router bgp neighbor` command output by state (established or non-established); for example, to show all BGP established neighbors:
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor --filter=state=established                                                                             

@@ -153,10 +153,12 @@ Cumulus Linux provides two different ways to upgrade the switch with a new image
 - **ONIE** is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a switch.
 - **Optimized image upgrade** uses two partitions to upgrade the image with just one reboot cycle. With two partitions on the switch, the current image boots from one partition, from which the image upgrade triggers. After detecting the running partition and checking if the second partition is available for installation, optimized upgrade starts to stage the installation in the second partition (copying the image, preparing the partition, unpacking the new image, and tuning and finalizing the new partition for the new image). The subsequent boot occurs from the second partition.
 
-  You cannot downgrade a Cumulus Linux 5.13 switch to Cumulus Linux 5.11 and earlier with optimized image upgrade; use ONIE instead.
+  - You can only use optimized image upgrade on a switch with a 30GB <span class="a-tooltip">[SSD](## "Solid state drive")</span> or larger to accommodate the second partition required for upgrade. To validate the size of the SSD, run the `sudo blockdev --getsize64 /dev/sda` command. Alternatively, run the `sudo blkid` command and confirm the `CL-SYSTEM-2` partition exists on the switch to support optimized upgrade.
+  - You can use optimized image upgrade to upgrade the switch to Cumulus Linux 5.13 from 5.11.1 and later.
+  - You cannot downgrade a Cumulus Linux 5.13 switch to Cumulus Linux 5.11.0 or earlier with optimized image upgrade; use ONIE instead.
 
 {{%notice note%}}
-- Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in [Upgrade Switches in an MLAG Pair](#upgrade-switches-in-an-mlag-pair) below to ensure a smooth upgrade.
+Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in [Upgrade Switches in an MLAG Pair](#upgrade-switches-in-an-mlag-pair) below to ensure a smooth upgrade.
 {{%/notice%}}
 
 {{< tabs "TabID183 ">}}
@@ -295,7 +297,6 @@ Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual 
 
 {{%notice note%}}
 - You cannot upgrade the switch to a new release train. For example, you **cannot** use package upgrade to upgrade the switch from 4.x to 5.x.
-- Package upgrade only supports the current version plus two. For example, you can upgrade from Cumulus Linux 5.11 to Cumulus Linux 5.13 with package upgrade only if you installed the 5.11 binary image.
 - Package upgrade always updates to the latest available release in the Cumulus Linux repository. For example, if you are currently running Cumulus Linux 5.10.0 and perform a package upgrade, the packages upgrade to the latest 5.13 release.
 - The package upgrade command might restart or stop services as part of the upgrade process.
 - The package upgrade command might disrupt core services by changing core service dependency packages.
@@ -303,6 +304,8 @@ Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual 
 - Cumulus Linux does not support the Linux `sudo -E apt-get dist-upgrade` command. Be sure to use `sudo -E apt-get upgrade` when upgrading packages.
 - To upgrade from Cumulus Linux 5.11 or 5.12 to Cumulus Linux 5.13, you need 0.8GB of free disk space. Before you upgrade, run the NVUE `nv show system disk usage` command or the Linux `sudo df -h` command to show how much disk space you are currently using on the switch.
 {{%/notice%}}
+
+For a list of the releases from which you can upgrade to Cumulus Linux 5.13, see {{<link url="Whats-New/#upgrade-requirements" text="Release Considerations">}}.
 
 To upgrade the switch with package upgrade:
 

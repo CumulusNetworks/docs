@@ -13,7 +13,7 @@ For deployments running:
 - 4.12.0 or earlier: {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}}, then concurrently restore your data and upgrade NetQ during a {{<link title="Install the NetQ System" text="new NetQ 4.14 installation">}}
 
 {{%notice note%}}
-When you upgrade from NetQ v4.14.0, any pre-existing validation data will be lost. Additionally, NetQ will not retain data related to network services (including BGP, LLDP, EVPN, and MLAG) after upgrading. During the upgrade process, NetQ will be temporarily unavailable.
+When you upgrade to NetQ v4.14.0, any pre-existing validation data will be lost. Additionally, NetQ will not retain data related to network services (including BGP, LLDP, EVPN, and MLAG) after upgrading. During the upgrade process, NetQ will be temporarily unavailable.
 {{%/notice%}}
 
 
@@ -36,7 +36,7 @@ If the output of this command displays errors or returns an empty response, you 
 
     ```
     cat /etc/apt/sources.list.d/cumulus-netq.list
-    deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb focal netq-4.14
+    deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb jammy netq-4.14
     ```
 
 2. Update the NetQ `debian` packages. In cluster deployments, update the packages on the master and all worker nodes:
@@ -44,11 +44,11 @@ If the output of this command displays errors or returns an empty response, you 
     ```
     cumulus@<hostname>:~$ wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | sudo apt-key add
     cumulus@<hostname>:~$ sudo apt-get update
-    Get:1 https://apps3.cumulusnetworks.com/repos/deb focal InRelease [13.8 kB]
-    Get:2 https://apps3.cumulusnetworks.com/repos/deb focal/netq-4.14 amd64 Packages [758 B]
-    Hit:3 http://archive.ubuntu.com/ubuntu focal InRelease
-    Get:4 http://security.ubuntu.com/ubuntu focal-security InRelease [88.7 kB]
-    Get:5 http://archive.ubuntu.com/ubuntu focal-updates InRelease [88.7 kB]
+    Get:1 https://apps3.cumulusnetworks.com/repos/deb jammy InRelease [13.8 kB]
+    Get:2 https://apps3.cumulusnetworks.com/repos/deb jammy/netq-4.14 amd64 Packages [758 B]
+    Hit:3 http://archive.ubuntu.com/ubuntu jammy InRelease
+    Get:4 http://security.ubuntu.com/ubuntu jammy-security InRelease [88.7 kB]
+    Get:5 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [88.7 kB]
     ...
     Reading package lists... Done
     ```
@@ -64,11 +64,11 @@ If the output of this command displays errors or returns an empty response, you 
     ...
     Fetched 39.8 MB in 3s (13.5 MB/s)
     ...
-    Unpacking netq-agent (4.12.0-ub20.04u49~1731404061.ffa541ea6) ...
+    Unpacking netq-agent (4.14.0-ub22.04u51~1744815786.8dbbbd20c) ...
     ...
-    Unpacking netq-apps (4.12.0-ub20.04u49~1731404061.ffa541ea6) ...
-    Setting up netq-apps (4.12.0-ub20.04u49~1731404061.ffa541ea6) ...
-    Setting up netq-agent (4.12.0-ub20.04u49~1731404061.ffa541ea6) ...
+    Unpacking netq-apps (4.14.0-ub22.04u51~1744815786.8dbbbd20c) ...
+    Setting up netq-apps (4.14.0-ub22.04u51~1744815786.8dbbbd20c) ...
+    Setting up netq-agent (4.14.0-ub22.04u51~1744815786.8dbbbd20c) ...
     Processing triggers for rsyslog (8.32.0-1ubuntu4) ...
     Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
     ```

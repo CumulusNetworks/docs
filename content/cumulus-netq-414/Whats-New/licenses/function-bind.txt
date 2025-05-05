@@ -1,4 +1,13 @@
 MIT License
+Upstream-Contact: https://github.com/Raynos/function-bind/issues
+Source: https://github.com/Raynos/function-bind
+
+Files: *
+Copyright: 2016 Raynos <raynos2@gmail.com>
+License: Expat
+
+Files: debian/*
+Copyright: 2016 Ross Gammon <rossgammon@mail.dk>
 License: Expat
 
 License: Expat

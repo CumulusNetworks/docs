@@ -119,7 +119,7 @@ To assign an IP address to a VRF interface:
 {{< tabs "TabID120 ">}}
 {{< tab "NVUE Commands ">}}
 
-To assign an IP address to a VRF interface, run the `nv set vrf <vrf-id> loopback ip address <ip-address>` command. The following example assigns loopback IP address 10.10.10.1/32 to the VRF RED:
+Run the `nv set vrf <vrf-id> loopback ip address <ip-address>` command. The following example assigns loopback IP address 10.10.10.1/32 to the VRF RED:
 
 ```
 cumulus@switch:~$ nv set vrf RED loopback ip address 10.10.10.1/32

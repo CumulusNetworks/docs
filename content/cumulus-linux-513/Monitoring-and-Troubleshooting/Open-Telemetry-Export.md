@@ -1183,7 +1183,6 @@ The interface statistic data samples that the switch exports to the OTEL collect
 | `nvswitch_interface_discards_egress_hoq_stall` | Interface egress head-of-queue stall discards.|
 | `nvswitch_interface_discards_egress_sll` | Interface egress switch lifetime limit discards. |
 | `nvswitch_interface_discards_ingress_discard_all` | Interface total ingress discards.| 
-| `nvswitch_interface_tx_stats_pkts64octets` | Total packets transmitted, 64 octets in length. |  
 | `nvswitch_interface_ether_stats_pkts64octets` | Total packets received, 64 octets in length. |  
 | `nvswitch_interface_ether_stats_pkts65to127octets` | Total packets received, 65-127 octets in length. |  
 | `nvswitch_interface_ether_stats_pkts128to255octets` | Total packets received, 128-255 octets in length. |  
@@ -1214,6 +1213,15 @@ The interface statistic data samples that the switch exports to the OTEL collect
 | `nvswitch_interface_rx_ebp` | The number of received EBP packets. |
 | `nvswitch_interface_tx_ebp` | The number of transmitted EBP packets. |
 | `nvswitch_interface_tx_int_cksm_err` | Counter is incremented upon packet payload internal checksum error. |
+| `nvswitch_interface_tx_stats_pkts64octets` | Total packets transmitted, 64 octets in length. |  
+| `nvswitch_interface_tx_stats_pkts65to127octets`| Total packets transmitted, 64 octets in length. |
+| `nvswitch_interface_tx_stats_pkts256to511octets` | Total packets transmitted, 256-511 octets in length.|
+| `nvswitch_interface_tx_stats_pkts512to1023octets` | Total packets transmitted, 512-1023 octets in length. |
+| `nvswitch_interface_tx_stats_pkts1024to1518octets` | Total packets transmitted, 1024-1518 octets in length.|
+| `nvswitch_interface_tx_stats_pkts1519to2047octets` | Total packets transmitted, 1519-2047 octets in length.|
+| `nvswitch_interface_tx_stats_pkts2048to4095octets` | Total packets transmitted, 2048-4095 octets in length.|
+| `nvswitch_interface_tx_stats_pkts4096to8191octets` | Total packets transmitted, 4096-8191 octets in length.|
+| `nvswitch_interface_tx_stats_pkts8192to10239octets` | Total packets transmitted, 8192-10239 octets in length.|
 | `nvswitch_interface_tx_wait` |The time (in ns resolution) during which the port selected had data to transmit but no data was sent.|
 | `nvswitch_interface_carrier_down_changes_total` | Total number of carrier down transitions for the interface. |
 | `nvswitch_interface_carrier_changes_total` | Total number of carrier changes for the interface. |
@@ -1321,6 +1329,8 @@ The switch collects and exports the following additional interface statistics wh
 | `nvswitch_interface_phy_layer_time_since_last_clear` | Time since counters were cleared.|
 | `nvswitch_interface_phy_layer_fec_per_lane_corrections` | FEC corrections per lane. |
 | `nvswitch_interface_phy_layer_fec_block_state_count`| Number of FEC block states.|
+| `nvswitch_interface_phy_stats_phy_corrected_bits` | Corrected bits by FEC engine. |
+| `nvswitch_interface_phy_stats_effective_ber` | FEC BER errors. |
 
 {{< /tab >}}
 {{< /tabs >}}

@@ -2297,6 +2297,14 @@ You can safely ignore this error as FRR accepts and applies the new configuratio
 <td>5.9.2-5.13.0, 5.10.0-5.13.0</td>
 </tr>
 <tr>
+<td>3895848</td>
+<td>MLAG bonds might report an LACP partner MAC mismatch unexpectedly during LACP negotation and MLAG convergence until the bond reaches a dual connected state. There is no impact to bonds when this mismatch is reported.
+
+Please note this Release Note should be updated only for CL5.9 and CL5.9.1 and not for any version below CL5.9 or above CL5.9.1</td>
+<td>5.9.0-5.9.2</td>
+<td>5.10.0-5.13.0</td>
+</tr>
+<tr>
 <td>3895042</td>
 <td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
   snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 

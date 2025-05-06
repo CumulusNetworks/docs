@@ -964,7 +964,7 @@ cumulus@switch:~$ nv config apply</td>
 </tr>
 <tr>
 <td>4286413</td>
-<td>When sending control packets that have the port range 259 through 1023 in their TX base header system target (above {{cap_max_system_ports}} and below {{cap_ports}} used for LAG forwarding), a health event of a fatal cause occurs in the switch. The port range 259 through 1023 reflects illegal system ports; do not set these values in the control packet TX base header. </td>
+<td>When sending control packets that have the port range 259 through 1023 in their TX base header system target (above {{cap_max_system_ports}} and below {{cap_ports}} used for LAG forwarding), a fatal health event occurs on the switch. The port range 259 through 1023 reflects illegal system ports; do not set these values in the control packet TX base header. </td>
 <td>5.11.0</td>
 </tr>
 <tr>
@@ -1333,7 +1333,7 @@ cumulus@switch:~$ nv config apply</td>
 </tr>
 <tr>
 <td>4286413</td>
-<td>When sending control packets that have the port range 259 through 1023 in their TX base header system target (above {{cap_max_system_ports}} and below {{cap_ports}} used for LAG forwarding), a health event of a fatal cause occurs in the switch. The port range 259 through 1023 reflects illegal system ports; do not set these values in the control packet TX base header. </td>
+<td>When sending control packets that have the port range 259 through 1023 in their TX base header system target (above {{cap_max_system_ports}} and below {{cap_ports}} used for LAG forwarding), a fatal health event occurs on the switch. The port range 259 through 1023 reflects illegal system ports; do not set these values in the control packet TX base header. </td>
 <td>5.11.0-5.12.0</td>
 <td>5.12.1-5.13.0, 5.13.0</td>
 </tr>

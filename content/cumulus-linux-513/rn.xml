@@ -672,11 +672,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Affects </th>
 </tr>
 <tr>
-<td>4413570</td>
-<td>If you run the {{nv show system image}} or {{cl-image-upgrade -s}} command during an optimized image upgrade with {{nv action install system image}} or }}cl-image-upgrade -a}}, you might see a filesystem corruption on the partition on which you are installing. This issue might cause the upgrade to appear to hang or require you to use {{fsck}} on that partition. Do not use the {{nv show system image}} or {{cl-image-upgrade -s}} command during an optimized image upgrade.  Also, do not mount the filesystem on which you are installing.</td>
-<td></td>
-</tr>
-<tr>
 <td>4408418</td>
 <td>eth0 loses its IP address after the DHCP lease expires, which affects eth0 reachability through the out-of-band management device.</td>
 <td></td>
@@ -694,17 +689,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <tr>
 <td>4403127</td>
 <td>When you use BGP prefix independent convergence (PIC) with IPv6, {{cl-route-check}} might show errors due to a discrepancy in the IPv4-mapped IPv6 SOO route string format across FRR and the kernel. This is a display-only issue and has no impact on routing functionality.</td>
-<td></td>
+<td>5.12.0-5.12.1</td>
 </tr>
 <tr>
 <td>4391713</td>
 <td>When you enable PFC watchdog on many physical ports, you might see the following error:
 "ERROR intf_stats_collector.go:407 BulkCounterTransactionSet error: unable to set bulk transaction".</td>
-<td></td>
-</tr>
-<tr>
-<td>4391515</td>
-<td>Applying telemetry configuration takes more time when there is a large number of histograms configured and each histogram instance has configured bin parameters.</td>
 <td></td>
 </tr>
 <tr>
@@ -716,16 +706,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>4391394</td>
 <td>When using DHCP snooping , access ports do not work as trust ports or server connection ports .</td>
 <td>5.12.0-5.12.1</td>
-</tr>
-<tr>
-<td>4380868</td>
-<td>When you unmap ports by removing the breakout configuration and some of the ports are configured for histogram collection, you see an error log from SDK as the {{asic-monitor}} continues to collect statistics even after ports are unmapped.</td>
-<td></td>
-</tr>
-<tr>
-<td>4380465</td>
-<td>When the server has an IPv4 address and its source IP address is IPv6 or the other way round, accounting logs to that server fail to send and you see the error: radclient: Can't add new socket: Too many open sockets". Authentication goes through, only Accounting fails.</td>
-<td></td>
 </tr>
 <tr>
 <td>4377862</td>
@@ -760,11 +740,6 @@ nv config apply -y</td>
 <td>4360615</td>
 <td>The control plane trap group counters are not associated correctly with the right trap group.</td>
 <td>5.11.0-5.12.1</td>
-</tr>
-<tr>
-<td>4360360</td>
-<td>After optimized (two partition) upgrade rollback, the {{nv config apply}} fails as NVUE uses the existing revision ID. To work around this issue, before rebooting for rollback in a two partition upgraded switch, where the current Cumulus Linux version is earlier than 5.13.0, run {{sudo mv /var/lib/nvue /var/lib/nvue.saved}} so that in the rollback version, there are no extraneous versions of NVUE configuration that were not present before you upgraded the rollback version to the current version.</td>
-<td></td>
 </tr>
 <tr>
 <td>4352307</td>

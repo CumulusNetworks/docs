@@ -25,12 +25,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4423224</td>
-<td>When processing the static IP assignment for an interface previously managed through DHCP, Cumulus Linux fails to clean up the DHCP created state completely. As a result when the IP address assigned by DHCP earlier expires, the switch eventually loses connectivity.</td>
-<td>5.13.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4423223</td>
 <td>When processing the static IP assignment for an interface previously managed through DHCP, Cumulus Linux fails to clean up the DHCP created state completely. As a result when the IP address assigned by DHCP earlier expires, the switch eventually loses connectivity.</td>
 <td>5.13.0</td>
@@ -691,6 +685,11 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>4391394</td>
 <td>When using DHCP snooping , access ports do not work as trust ports or server connection ports .</td>
 <td>5.12.0-5.12.1</td>
+</tr>
+<tr>
+<td>4377862</td>
+<td>When processing the static IP assignment for an interface previously managed through DHCP, Cumulus Linux fails to clean up the DHCP created state completely. As a result when the IP address assigned by DHCP earlier expires, the switch eventually loses connectivity.</td>
+<td>5.1.0-5.12.1</td>
 </tr>
 <tr>
 <td>4373436</td>

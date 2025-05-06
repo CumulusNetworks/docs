@@ -242,7 +242,7 @@ cumulus@switch:~$ sudo /usr/sbin/pam-auth-update --force --package</td>
 </tr>
 <tr>
 <td>4318464</td>
-<td>When connecting two NVIDIA devices using DAC in Auto-Neg mode with 100GbE R1 (one lane) port speed, the link will go down. To avoid this, make sure to use firmware version xx.2014.3xxx and above on both sides.</td>
+<td>When connecting two NVIDIA devices using DAC in auto-negotiation mode with 100GbE R1 (one lane) port speed, the link goes down. To avoid this issue, use firmware version xx.2014.3xxx and above on both sides.</td>
 <td>5.12.0-5.12.1</td>
 <td>5.13.0</td>
 </tr>
@@ -399,7 +399,7 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 </tr>
 <tr>
 <td>4210596</td>
-<td>After a factory reset, the files in /etc/pam.d/* may be incorrect, causing problems with password strength checking, TACACS+, RADIUS, and/or LDAP. To work around this issue, run the following command:
+<td>After a factory reset, the files in the {{/etc/pam.d/}} directory might be incorrect, causing problems with password strength checking, TACACS+, RADIUS, and LDAP. To work around this issue, run the following command:
 cumulus@switch:~$ sudo /usr/sbin/pam-auth-update --force --package</td>
 <td>5.12.0-5.12.1</td>
 <td>5.13.0</td>
@@ -1002,7 +1002,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>4286417</td>
-<td>When sending control packets that have the port range 259 through 1023 in their TX base header system target (above {{cap_max_system_ports}} and below {{cap_ports}} used for LAG forwarding), a health event of a fatal cause occurs in the switch. The port range 259 through 1023 reflects illegal system ports; do not set these values in the control packet TX base header. </td>
+<td>When sending control packets that have the port range 259 through 1023 in their TX base header system target (above {{cap_max_system_ports}} and below {{cap_ports}} used for LAG forwarding), a fatal health event occurs on the switch. The port range 259 through 1023 reflects illegal system ports; do not set these values in the control packet TX base header. </td>
 <td>5.11.0</td>
 </tr>
 </table>
@@ -1243,7 +1243,7 @@ cumulus@switch:~$ sudo /usr/sbin/pam-auth-update --force --package</td>
 </tr>
 <tr>
 <td>4318464</td>
-<td>When connecting two NVIDIA devices using DAC in Auto-Neg mode with 100GbE R1 (one lane) port speed, the link will go down. To avoid this, make sure to use firmware version xx.2014.3xxx and above on both sides.</td>
+<td>When connecting two NVIDIA devices using DAC in auto-negotiation mode with 100GbE R1 (one lane) port speed, the link goes down. To avoid this issue, use firmware version xx.2014.3xxx and above on both sides.</td>
 <td>5.12.0-5.12.1</td>
 <td>5.13.0</td>
 </tr>
@@ -1412,7 +1412,7 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 </tr>
 <tr>
 <td>4210596</td>
-<td>After a factory reset, the files in /etc/pam.d/* may be incorrect, causing problems with password strength checking, TACACS+, RADIUS, and/or LDAP. To work around this issue, run the following command:
+<td>After a factory reset, the files in the {{/etc/pam.d/}} directory might be incorrect, causing problems with password strength checking, TACACS+, RADIUS, and LDAP. To work around this issue, run the following command:
 cumulus@switch:~$ sudo /usr/sbin/pam-auth-update --force --package</td>
 <td>5.12.0-5.12.1</td>
 <td>5.13.0</td>

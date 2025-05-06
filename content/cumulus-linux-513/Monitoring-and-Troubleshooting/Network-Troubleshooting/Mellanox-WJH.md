@@ -12,8 +12,6 @@ toc: 4
 
 You can choose which packet drops you want to monitor by creating channels and setting the packet drop categories (layer 1, layer 2, layer 3, tunnel, buffer and ACL ) you want to monitor.
 
-NVUE does not provide commands to set the buffer and ACL packet drop categories. You must edit the `/etc/what-just-happened/what-just-happened.json` file. See the Linux Commands tab.
-
 {{< tabs "TabID24 ">}}
 {{< tab "NVUE Commands ">}}
 
@@ -26,6 +24,14 @@ cumulus@switch:~$ nv set system wjh channel forwarding trigger l2
 cumulus@switch:~$ nv set system wjh channel forwarding trigger l3
 cumulus@switch:~$ nv set system wjh channel forwarding trigger tunnel
 cumulus@switch:~$ nv set system wjh channel layer-1 trigger l1
+cumulus@switch:~$ nv config apply
+```
+
+The following example configures a channel to monitor buffer packet drops and a channel to monitor ACL packet drops:
+
+```
+cumulus@switch:~$ nv set system wjh channel buffer trigger buffer
+cumulus@switch:~$ nv set system wjh channel acl trigger acl
 cumulus@switch:~$ nv config apply
 ```
 
@@ -147,7 +153,6 @@ Run the `what-just-happened -h` command to see all the WJH command options.
 
 To show all dropped packets and the reason for the drop, run the NVUE `nv show system wjh packet-buffer` command or the `what-just-happened poll` command.
 
-
 The following example shows that packets drop five times because the source MAC address equals the destination MAC address:
 
 ```
@@ -183,7 +188,7 @@ PCAP file path : /var/log/mellanox/wjh/wjh_user_2021_06_16_12_03_15.pcap
 ### Buffer Packet Drop Monitoring
 
 - Buffer packet drop monitoring is available on a switch with Spectrum-2 and later.
-- Buffer packet drop monitoring uses a SPAN destination. If you configure SPAN, ensure that you do not exceed the total number of SPAN destinations allowed for your switch ASIC type; see {{<link url="SPAN-and-ERSPAN/#limitations" text="SPAN and ERSPAN">}}. If you need to remove the SPAN destination that buffer packet drop monitoring uses, delete the buffer monitoring drop category from the `/etc/what-just-happened/what-just-happened.json` file and reload the `what-just-happened` service.
+- Buffer packet drop monitoring uses a SPAN destination. If you configure SPAN, ensure that you do not exceed the total number of SPAN destinations allowed for your switch ASIC type; see {{<link url="SPAN-and-ERSPAN/#limitations" text="SPAN and ERSPAN">}}. If you need to remove the SPAN destination that buffer packet drop monitoring uses, delete the buffer monitoring drop category either with the NVUE `nv unset system wjh channel buffer trigger buffer` command or by editing the `/etc/what-just-happened/what-just-happened.json` file and reloading the `what-just-happened` service.
 
 ### Cumulus Linux and Docker
 

@@ -1,7 +1,7 @@
 ---
 title: Upgrading Cumulus Linux
 author: NVIDIA
-weight: 50
+weight: 30
 toc: 3
 ---
 You can upgrade Cumulus Linux in one of two ways:

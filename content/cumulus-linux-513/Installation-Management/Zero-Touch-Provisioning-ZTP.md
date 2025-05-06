@@ -1,7 +1,7 @@
 ---
 title: Zero Touch Provisioning - ZTP
 author: NVIDIA
-weight: 90
+weight: 70
 toc: 3
 ---
 Use <span class="a-tooltip">[ZTP](## "Zero Touch Provisioning")</span> to deploy network devices in large-scale environments. On first boot, Cumulus Linux runs ZTP, which executes the provisioning automation that deploys the device for its intended role in the network.

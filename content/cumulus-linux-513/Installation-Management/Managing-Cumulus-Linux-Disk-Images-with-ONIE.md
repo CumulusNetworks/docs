@@ -1,7 +1,7 @@
 ---
 title: Managing Cumulus Linux Disk Images with ONIE
 author: NVIDIA
-weight: 30
+weight: 50
 toc: 3
 ---
 The Cumulus Linux operating system resides on a switch as a *disk image*. This section discusses how to manage the image.

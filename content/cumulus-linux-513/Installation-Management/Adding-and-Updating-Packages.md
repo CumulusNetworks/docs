@@ -1,7 +1,7 @@
 ---
 title: Adding and Updating Packages
 author: NVIDIA
-weight: 80
+weight: 60
 toc: 3
 ---
 

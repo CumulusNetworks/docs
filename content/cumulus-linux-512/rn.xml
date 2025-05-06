@@ -109,6 +109,12 @@
 <td></td>
 </tr>
 <tr>
+<td>4403127</td>
+<td>When you use BGP prefix independent convergence (PIC) with IPv6, {{cl-route-check}} might show errors due to a discrepancy in the IPv4-mapped IPv6 SOO route string format across FRR and the kernel. This is a display-only issue and has no impact on routing functionality.</td>
+<td>5.12.0-5.12.1</td>
+<td>5.13.0</td>
+</tr>
+<tr>
 <td>4391413</td>
 <td>After the switch reboots or {{switchd.service}} restarts, NVUE applied ERSPAN sessions do not work if the ERSPAN destination IP address is reachable through an MLAG bond. To work around this issue, remove the ERSPAN configuration and reapply it using NVUE.</td>
 <td>5.11.0-5.12.1</td>
@@ -1110,6 +1116,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
+<td>4403127</td>
+<td>When you use BGP prefix independent convergence (PIC) with IPv6, {{cl-route-check}} might show errors due to a discrepancy in the IPv4-mapped IPv6 SOO route string format across FRR and the kernel. This is a display-only issue and has no impact on routing functionality.</td>
+<td>5.12.0-5.12.1</td>
+<td>5.13.0</td>
+</tr>
+<tr>
 <td>4391413</td>
 <td>After the switch reboots or {{switchd.service}} restarts, NVUE applied ERSPAN sessions do not work if the ERSPAN destination IP address is reachable through an MLAG bond. To work around this issue, remove the ERSPAN configuration and reapply it using NVUE.</td>
 <td>5.11.0-5.12.1</td>
@@ -1298,7 +1310,7 @@ cumulus@switch:~$ sudo systemctl start cumulus-upgrade-on-shutdown</td>
 <td>5.13.0</td>
 </tr>
 <tr>
-<td>4288264</td>
+<td>4286489</td>
 <td>Optimized (two partition) upgrade and rollback fails when you apply configuration by editing the {{/etc/nvue.d/startup.yaml}} file, then run {{nv config apply startup}}. To work around this issue, after activating optimized &lt;b&gt;upgrade&lt;/b&gt;, but &lt;b&gt;before&lt;/b&gt; rebooting, save a copy of the contents of {{/var/lib/nvue/}} to some other location. Then, &lt;b&gt;after&lt;/b&gt; activating &lt;b&gt;rollback&lt;/b&gt;, but &lt;b&gt;before&lt;/b&gt; rebooting, move {{/var/lib/nvue/}} to some other location and copy the previously saved contents to {{/var/lib/nvue/}}.</td>
 <td>5.12.0</td>
 <td>5.11.1, 5.12.1-5.13.0</td>

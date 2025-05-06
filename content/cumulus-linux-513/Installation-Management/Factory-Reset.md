@@ -1,7 +1,7 @@
 ---
 title: Factory Reset
 author: NVIDIA
-weight: 92
+weight: 80
 toc: 3
 ---
 Factory reset puts the switch back to the same or similar state it was in when shipped from the factory. When you perform a factory reset, the currently installed image remains on the switch.

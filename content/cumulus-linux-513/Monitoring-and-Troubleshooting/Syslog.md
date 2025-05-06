@@ -181,7 +181,7 @@ og: [udp sum ok] SYSLOG, length: 113
 `.N..y.@............... ...............).....y.i<85>Apr 17 09:14:00 leaf-11 sudo:     nvue : PWD=/var/lib/nvue ; USER=root ; COMMAND=/usr/bin/cat /var/log/syslog
 ```
 
-### Selectors and Filters
+## Selectors and Filters
 
 You can control which logs to capture using selectors. A selector enables you to choose options such as facility, program name, severity, filters (with match conditions and actions for log selection), and rate limit, for precise and targeted log management. You define the selectors you want to use for a specific server.
 

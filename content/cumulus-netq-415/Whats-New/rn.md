@@ -1,9 +1,9 @@
 ---
-title: NVIDIA NetQ 4.14 Release Notes
+title: NVIDIA NetQ 4.15 Release Notes
 author: Cumulus Networks
 weight: 30
 product: Cumulus NetQ
-version: "4.14"
+version: "4.15"
 toc: 1
 type: rn
 pdfhidden: True

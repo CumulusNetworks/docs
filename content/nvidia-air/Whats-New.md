@@ -10,7 +10,7 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 ## May 2025
 <!-- Air:WhatsNew -->
 ### 82.2025.0506-011
-- Added Rebuild and Reset options in UI for multiple selected nodes
+- Added functionality for rebuilding and reseting multiple nodes concurrently from the UI
 <!-- Air:WhatsNew -->
 
 ## April 2025

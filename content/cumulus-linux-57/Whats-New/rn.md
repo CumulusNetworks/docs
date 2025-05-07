@@ -15,6 +15,7 @@ pdfhidden: True
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="4413450"></a> [4413450](#4413450) <a name="4413450"></a> <br /> | When displaying BGP neighbor advertised routes in JSON format with very large routing tables, the process consumes excessive memory resulting in OOM crashes.  | 5.0.0-5.13.0 | |
+| <a name="4377862"></a> [4377862](#4377862) <a name="4377862"></a> <br /> | When processing the static IP assignment for an interface previously managed through DHCP, Cumulus Linux fails to clean up the DHCP created state completely. As a result when the IP address assigned by DHCP earlier expires, the switch eventually loses connectivity. | 5.1.0-5.12.1 | 5.13.0|
 | <a name="4154369"></a> [4154369](#4154369) <a name="4154369"></a> <br /> | When adding or removing routes in a virtual router with numerous configured routes, you might see certain IP addresses being routed incorrectly. This can result in packets exiting through incorrect ports or discarded packets. | 5.5.1-5.11.0 | 5.11.1-5.13.0, 5.12.0-5.13.0|
 | <a name="4072165"></a> [4072165](#4072165) <a name="4072165"></a> <br /> | When you add a VLAN to a bridge member port, VXLAN traffic might be impacted for few seconds. | 5.7.0-5.10.1 | 5.11.0-5.13.0|
 | <a name="4004453"></a> [4004453](#4004453) <a name="4004453"></a> <br /> | The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful. | 4.3.0-5.9.1 | 5.9.2-5.13.0, 5.10.0-5.13.0|

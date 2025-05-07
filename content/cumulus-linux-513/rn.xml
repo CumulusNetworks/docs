@@ -7,8 +7,20 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4427224</td>
+<td>The {{nv show interface}} command output shows the operational status as down for a link flap error disabled state instead of the real protodown reason.</td>
+<td>5.12.0-5.13.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4425299</td>
 <td>After upgrading from Cumulus Linux 5.12 to 5.13 on the NVIDIA SN5400 switch bonus port, PTP does not converge. To work around this issue, disable, then enable the bonus port after upgrade.</td>
+<td>5.13.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4425288</td>
+<td>When gNMI streaming is enabled on the switch, Cumulus Linux generates a cl-support file the first time you perform an FRR operation that reloads or restarts the FRR service (such as remove or add a neighbor or add or modify static routes).</td>
 <td>5.13.0</td>
 <td></td>
 </tr>
@@ -43,21 +55,27 @@
 <td></td>
 </tr>
 <tr>
+<td>4417191</td>
+<td>The first update value for the gNMI {{interfaces/interface/state/counters/out-pkts}} metric always shows 0 for every subscription.</td>
+<td>5.13.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4413450</td>
 <td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables, the process consumes excessive memory resulting in OOM crashes. </td>
 <td>5.0.0-5.13.0</td>
 <td></td>
 </tr>
 <tr>
-<td>4408280</td>
-<td>NVUE commands can create excessive log data. To work around this issue, configure {{rsyslog}} rules to limit logging of these commands.</td>
-<td>5.11.0-5.13.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4403755</td>
 <td>On first boot after a binary install or upgrade, if ZTP does not run or does not complete successfully, all interfaces are left admin up until you disable ZTP manually. To work around this issue, use an empty ZTP script during onie-install ({{-z ZTP_URL}}) or configure the DCHP option 239.</td>
 <td>5.12.1-5.13.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4398031</td>
+<td>On the NVIDIA SN5400 switch, if the PTP slave port is swp66 and is operating at 1Gbps, the  PTP mean path delay value might be reported as a negative value. </td>
+<td>5.11.0-5.13.0</td>
 <td></td>
 </tr>
 <tr>
@@ -697,6 +715,11 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>5.11.0-5.12.1</td>
 </tr>
 <tr>
+<td>4370702</td>
+<td>NVUE commands create excessive log data. To work around this issue, configure rsyslog rules to limit logging of these commands.</td>
+<td>5.11.0-5.12.1</td>
+</tr>
+<tr>
 <td>4370516</td>
 <td>NVUE fails when applying ERSPAN configuration on an MLAG peer. This failure occurs because ERSPAN does not support bond slave ports as analyzer ports but fails to validate the configuration. </td>
 <td>5.11.0-5.12.1</td>
@@ -724,6 +747,13 @@ cumulus@switch:~$ sudo /usr/sbin/pam-auth-update --force --package</td>
 <tr>
 <td>4347300</td>
 <td>When all links go down or the switch reboots,  you see next hop group churn from Zebra to the SOO next hop group. This issue might cause some convergence degradation. </td>
+<td>5.12.0-5.12.1</td>
+</tr>
+<tr>
+<td>4347029</td>
+<td>When you use the NVUE {{nv set qos congestion-control &lt;ecn_profile_name&gt; traffic-class &lt;tc&gt; min-threshold-bytes}} command to set an ECN Profile, you must configure the minimum threshold according to the platform:
+On the Spectrum-4 switch, the cell-size is 192 bytes. The minimum buffer must be a multiple of 64; therefore, the initial value is 192*64 (12KB).
+On the Spectrum-3 switch, the cell-size is 144 bytes. The minimum size is 144*64 (9KB).</td>
 <td>5.12.0-5.12.1</td>
 </tr>
 <tr>
@@ -772,6 +802,11 @@ cumulus@switch:~$ sudo /usr/sbin/pam-auth-update --force --package</td>
 <td>5.12.0-5.12.1</td>
 </tr>
 <tr>
+<td>4299350</td>
+<td>SVIs do not go down even when all the bridge ports on the corresponding VLAN are down because the {{vlan-bridge-binding}} option default setting is off for all the SVIs responsible for bringing down the SVI when all the ports on the corresponding VLAN are down. To work around this issue, Manually configure the {{vlan-bridge-binding on}} option under the SVI stanza in the {{/etc/network/interfaces}} file.</td>
+<td>5.11.0-5.12.1</td>
+</tr>
+<tr>
 <td>4291993</td>
 <td>After upgrading Cumulus Linux with optimized (two partition) image upgrade the second time, the ssh and nginx services do not start. To work around this issue, before rebooting to upgrade, check if the {{cumulus-upgrade-on-shutdown}} service is {{active (exited)}} with the {{systemctl status cumulus-upgrade-on-shutdown}} command. If the command output shows {{inactive (dead)}}), run the following commands to ensure that a subsequent two partition upgrade correctly uses the {{cumulus-upgrade-on-shutdown}} service:
 cumulus@switch:~$ sudo systemctl enable cumulus-upgrade-on-shutdown
@@ -792,6 +827,16 @@ cumulus@switch:~$ sudo systemctl start cumulus-upgrade-on-shutdown</td>
 <td>4287285</td>
 <td>Due to unsupported EVPN BUM replication configuration (a mix of PIM and HER modes),  a resource leak can occur.</td>
 <td>5.11.0</td>
+</tr>
+<tr>
+<td>4286833</td>
+<td>When you change the port breakout configuration, the switch deletes, then recreates the port and the sflow configuration on the port resets. However, {{switchd}} continues to retain sflow configuration for the same logical ID, which leads to divergence in sflow configuration in the SDK and switchd; switchd sees sflow enabled for the port but in the SDK the ports gets reset to disabled.</td>
+<td>5.12.0-5.12.1</td>
+</tr>
+<tr>
+<td>4281438</td>
+<td>The first time you run the {{nv show interface rates}} command, an internal error occurs. </td>
+<td>5.12.0-5.12.1</td>
 </tr>
 <tr>
 <td>4278822</td>

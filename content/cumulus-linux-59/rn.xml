@@ -2041,6 +2041,12 @@ You can safely ignore this warning.</td>
 <td></td>
 </tr>
 <tr>
+<td>4377862</td>
+<td>When processing the static IP assignment for an interface previously managed through DHCP, Cumulus Linux fails to clean up the DHCP created state completely. As a result when the IP address assigned by DHCP earlier expires, the switch eventually loses connectivity.</td>
+<td>5.1.0-5.12.1</td>
+<td>5.13.0</td>
+</tr>
+<tr>
 <td>4281099</td>
 <td>When you bring STP down, then up on the primary MLAG peer, the STP state machine restarts and the peerlink operational edge resets. As a result, the secondary MLAG peer ends up in an STP discarding state. To work around this issue, restart the {{clagd}} service.</td>
 <td>5.8.0-5.11.1</td>

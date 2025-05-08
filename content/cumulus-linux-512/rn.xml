@@ -8,9 +8,7 @@
 </tr>
 <tr>
 <td>4427224</td>
-<td>The {{nv show interface}} command output shows the operational status as down for a link flap error disabled state instead of the real protodown reason.
-This is an expected behaviour after the recent changes anc currently nv show interface status will give if any of the interfaces have protodown with proper protodown reason
-</td>
+<td>The {{nv show interface}} command output shows the operational status as down for a link flap error disabled state instead of the real protodown reason. To work around this issue, run the {{nv show interface status}} command, which shows if any of the interfaces are protodown with the protodown reason.</td>
 <td>5.12.0-5.13.0</td>
 <td></td>
 </tr>
@@ -1081,9 +1079,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>4427224</td>
-<td>The {{nv show interface}} command output shows the operational status as down for a link flap error disabled state instead of the real protodown reason.
-This is an expected behaviour after the recent changes anc currently nv show interface status will give if any of the interfaces have protodown with proper protodown reason
-</td>
+<td>The {{nv show interface}} command output shows the operational status as down for a link flap error disabled state instead of the real protodown reason. To work around this issue, run the {{nv show interface status}} command, which shows if any of the interfaces are protodown with the protodown reason.</td>
 <td>5.12.0-5.13.0</td>
 <td></td>
 </tr>

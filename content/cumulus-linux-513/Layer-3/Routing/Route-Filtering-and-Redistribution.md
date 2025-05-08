@@ -818,7 +818,7 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
-When you configure the match source protocol in a route map, the switch only advertises that protocol type to the peers. If you configure route leaking between VRFs and the leaked routes are learned as BGP routes, you need to match the BGP source protocol to advertise that route in addition to matching the connected source protocol:
+When you configure the match source protocol in a route map, the switch only advertises that protocol type to the peers. If you configure route leaking between VRFs and the switch learns the leaked routes as BGP routes, you need to match the BGP source protocol to advertise that route in addition to matching the connected source protocol:
 
 ```
 cumulus@leaf01:~$ sudo vtysh

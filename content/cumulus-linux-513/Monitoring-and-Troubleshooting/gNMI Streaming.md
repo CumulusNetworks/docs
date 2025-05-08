@@ -25,10 +25,10 @@ To configure and use gNMI with Cumulus Linux, see {{<link url="/#gnmi-with-cumul
 The `netq-agent` package includes the gNMI agent, which it disables by default. To enable the gNMI agent:
 
 ```
- cumulus@switch:~$ sudo systemctl enable netq-agent.service
- cumulus@switch:~$ sudo systemctl start netq-agent.service
- cumulus@switch:~$ netq config add agent gnmi-enable true
- ```
+cumulus@switch:~$ sudo systemctl enable netq-agent.service
+cumulus@switch:~$ sudo systemctl start netq-agent.service
+cumulus@switch:~$ netq config add agent gnmi-enable true
+```
 
 The gNMI agent listens over port 9339. You can change the default port in case you use that port in another application. The `/etc/netq/netq.yml` file stores the configuration.
 
@@ -103,7 +103,7 @@ Cumulus Linux supports the following gNMI {{<exlink url="https://github.com/open
 ### Supported Models
 
 Cumulus Linux supports the following OpenConfig models:
-
+<!-- vale off -->
 | Model| Supported Data |
 | --------- | ------ |
 | {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/interfaces/openconfig-interfaces.yang" text="openconfig-interfaces">}} | Name, Operstatus, AdminStatus, IfIndex, MTU, LoopbackMode, Enabled, Counters (InPkts, OutPkts, InOctets, InUnicastPkts, InDiscards, InMulticastPkts, InBroadcastPkts, InErrors, OutOctets, OutUnicastPkts, OutMulticastPkts, OutBroadcastPkts, OutDiscards, OutErrors) |
@@ -112,7 +112,7 @@ Cumulus Linux supports the following OpenConfig models:
 | {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/system/openconfig-system.yang" text="openconfig-system">}} | Memory, CPU |
 | {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/platform/openconfig-platform.yang" text="openconfig-platform">}} | Platform data (Name, Description, Version) |
 | {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/lldp/openconfig-lldp.yang" text="openconfig-lldp">}} | LLDP data (PortIdType, PortDescription, LastUpdate, SystemName, SystemDescription, ChassisId, Ttl, Age, ManagementAddress, ManagementAddressType, Capability) |
-<!-- vale off -->
+
 | Model| Supported Data |
 | --------- | ------ |
 | nvidia-if-wjh-drop-aggregate | Aggregated WJH drops, including layer 1, layer 2, router, ACL, tunnel, and buffer drops |
@@ -690,7 +690,6 @@ The data that NetQ sends to the gNMI agent is in the form of WJH drop reasons. T
 | 325 | Router interface loopback | Warning | Validate the interface configuration |
 | 326 | Packet size is larger than router interface MTU | Warning | Validate the router interface MTU configuration |
 | 327 | TTL value is too small | Warning | Actual path is longer than the TTL |
-<!-- vale on -->
 
 #### Tunnel Drop Reasons
 
@@ -720,9 +719,7 @@ The data that NetQ sends to the gNMI agent is in the form of WJH drop reasons. T
 
 ### gNMI Client Requests
 
-<!-- vale off -->
 You can use your gNMI client on a host to request capabilities and data to which the Agent subscribes. The examples below use the {{<exlink url="https://github.com/openconfig/reference/blob/master/rpc/gnmi/gnmi-specification.md#3515-creating-subscriptions" text="gNMIc client.">}}.
-<!-- vale on -->
 
 The following example shows a gNMIc `STREAM` request for WJH data:
 
@@ -818,7 +815,7 @@ received sync response 'true' from '10.209.37.123:9339'
   ]
 }
 ```
-
+<!-- vale on -->
 ## gNMI with Cumulus Linux
 
 This section discusses how to configure and use gNMI with Cumulus Linux.
@@ -1035,7 +1032,7 @@ Regex for specific keys (such as `“interface-id=swp*”`) is not supported.
 ### Metrics
 
 Cumulus Linux supports the following metrics:
-
+<!-- vale off -->
 {{< tabs "TabID200 ">}}
 {{< tab "Interface ">}}
 
@@ -1198,7 +1195,7 @@ Cumulus Linux supports the following metrics:
 
 {{< /tab >}}
 {{< /tabs >}}
-
+<!-- vale on -->
 ### User Credentials and Authentication
 
 User authentication is enabled by default. gNMI subscription requests must include an HTTP Basic Authentication header according to RFC7617 containing the username and password of a user with NVUE API access permissions. You can enable this setting in the standard gNMI client (gNMIc) by setting the `auth-scheme` parameter to basic. Refer to {{<exlink url="https://gnmic.openconfig.net/global_flags/ - auth-scheme" text="https://gnmic.openconfig.net/global_flags/ - auth-scheme">}}.
@@ -1232,7 +1229,7 @@ gnmic subscribe --mode stream --path "/qos/interfaces/interface[interface-id=swp
 #### Subscription Example
 
 The following example shows a subscription response:
-
+<!-- vale off -->
 ```
 { 
   "sync-response": true 
@@ -1278,21 +1275,13 @@ supported encodings:
   - JSON_IETF 
   - PROTO 
 ```
-
+<!-- vale on -->
 ### Considerations
 
 When using gNMI with Cumulus Linux:
 - The minimum sampling interval is 1 second. If you configure a shorter sampling interval, the switch might not behave as expected.
 - ModelData, Origin, and Extensions fields are ignored in requests and not set in responses.
-<!--
-- For all X.509 certificates generated externally, make sure to set the correct X.509v3 fields:
-  - Set the Purpose field correctly (TLS WWW Server Authentication versus TLS WWW Client Authentication) in the extended key usage (EKU) field.  
-  - Set TLS WWW Server Authentication for TLS server applications to gNMI server (on the switch), and gRPC dial-out tunnel server (running in your network)
-  - Set TLS WWW Client Authentication for TLS client applications to gRPC dial-out tunnel client (on the switch) and gNMI client (running in the network)
-  - Set the Cumulus Linux switch management IP address included in the subject alternate name (SAN) field together with the localhost SAN DNS value applicable to the gNMI server certificate.
-  - On the gNMI client and the dial-out tunnel server (within the network), ensure the management IP address is included in the subject alternate name (SAN) field together with localhost SAN DNS value.
-- NVUE does not support mTLS configuration. NVIDIA recommends that you do not try to set mTLS related fields under gRPC tunnel configuration.
--->
+
 ## Related Information
 
 - {{<exlink url="https://datatracker.ietf.org/meeting/101/materials/slides-101-netconf-grpc-network-management-interface-gnmi-00" text="gNMI presentation to IETF">}}

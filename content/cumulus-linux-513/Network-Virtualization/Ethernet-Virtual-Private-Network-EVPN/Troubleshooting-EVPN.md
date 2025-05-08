@@ -479,7 +479,7 @@ vlan
 You can drill down and show information about a specific vlan with the `nv show evpn access-vlan-info vlan <vlan>` command.
 
 ## Show the VRF Routing Table in FRR
-
+<!-- vale off -->
 Run the NVUE `nv show vrf <vrf-id> router rib <address-family> route` command or the vtysh `show ip route vrf <vrf-name>` command to examine the VRF routing table. Use this command for symmetric routing to verify that remote host and prefix routes are in the VRF routing table and point to the appropriate gateway next hop.
 
 ```
@@ -511,7 +511,6 @@ Codes: K - kernel route, C - connected, S - static, R - RIP,
        F - PBR, f - OpenFabric,
        > - selected route, * - FIB route, q - queued route, r - rejected route
 
-
 VRF RED:
 K>* 0.0.0.0/0 [255/8192] unreachable (ICMP unreachable), 00:53:46
 C * 10.1.10.0/24 [0/1024] is directly connected, vlan10-v0, 00:53:46
@@ -522,7 +521,7 @@ C>* 10.1.20.0/24 is directly connected, vlan20, 00:53:46
 B>* 10.1.20.105/32 [20/0] via 10.0.1.2, vlan4001 onlink, weight 1, 00:20:07
 ...
 ```
-
+<!-- vale on -->
 In the output above, EVPN specifies the next hops for these routes to be *onlink*, or reachable over the specified SVI. This is necessary because this interface does not need to have an IP address. Even if the interface has an IP address, the next hop is not on the same subnet as it is typically the IP address of the remote VTEP (part of the underlay IP network).
 
 ## Show the Global BGP EVPN Routing Table

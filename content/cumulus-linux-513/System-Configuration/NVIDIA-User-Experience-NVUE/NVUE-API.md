@@ -1730,7 +1730,7 @@ cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure -X GET "https://127
 }
 ```
 
-The following example returns all the routes in routing table but omits all other attributes (nexthop-group-id, protocol, uptime, distance, metrics, and flags):
+The following example returns all the routes in routing table but omits all other attributes (`nexthop-group-id`, `protocol`, `uptime`, `distance`, `metrics`, and `flags`):
 
 ```
 cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure -X GET https://127.0.0.1:8765/nvue_v1/vrf/default/router/rib/ipv4/route?omit=/*/*

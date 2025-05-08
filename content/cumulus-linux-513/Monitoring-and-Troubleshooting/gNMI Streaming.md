@@ -829,7 +829,7 @@ To configure and use gNMI with NetQ, see {{<link url="/#gnmi-with-netq" text="gN
 When you enable gNMI with Cumulus Linux, do **not** enable and use {{<link url="Open-Telemetry-Export" text="Open Telemetry">}}.
 {{%/notice%}}
 
-Cumulus Linux supports both gNMI dial-in mode, where a collector can initiate a connection with the switch to collect available statistics, and gNMI dial-out mode, where the switch streams statistics and exports them to a collector.
+Cumulus Linux supports both gNMI dial-in mode, where a collector can start a connection with the switch to collect available statistics, and gNMI dial-out mode, where the switch streams statistics and exports them to a collector.
 
 ### Configure gNMI Dial-in Mode
 
@@ -843,7 +843,7 @@ To configure optional settings for gNMI dial-in mode:
 - Specify the listening port. The default port is 9339.
 - Enable a TLS certificate for validation.
   - Cumulus Linux uses a self-signed certificate. You can generate your own TLS server certificate and bind it with the gNMI server application.
-  - If mTLS on the gNMI RPC is required, import the certificate of the CA that signed the gNMI client keys (or the client certificate itself) to the switch and configure the gNMI server to use the certificate. You can also apply a <span class="a-tooltip">[CRL](## "Certificate Revocation List")</span>.
+  - If you need to use mTLS on the gNMI RPC, import the certificate of the CA that signed the gNMI client keys (or the client certificate itself) to the switch and configure the gNMI server to use the certificate. You can also apply a <span class="a-tooltip">[CRL](## "Certificate Revocation List")</span>.
 
 The following example sets the gNMI server listening address to 10.10.10.1 and the port to 443, and enables the gNMI server:
 
@@ -1059,7 +1059,7 @@ Cumulus Linux supports the following metrics:
 | `/interfaces/interface/ethernet/state/port-speed` | An estimate of the interface current bandwidth in units of 1,000,000 bits per second.|
 | `/interfaces/interface/state/counters/in-bits-rate` | Inbound bits per second on an interface.|
 | `/interfaces/interface/state/ifindex` | A unique value, greater than zero, for each interface.|
-| `/interfaces/interface/state/counters/in-discards` | Number of inbound packets discarded even though no errors were detected to prevent them from being deliverable to a higher-layer protocol. |
+| `/interfaces/interface/state/counters/in-discards` | Number of inbound packets discarded even though no errors are detected to prevent them from being deliverable to a higher-layer protocol. |
 | `/interfaces/interface/state/counters/in-errors` | For packet-oriented interfaces, the number of inbound packets that contained errors preventing them from being deliverable to a higher-layer protocol.|
 | `/interfaces/interface/state/counters/in-pkts`| Number of packets discarded from the egress queue of an interface. |
 | `/interfaces/interface/state/counters/in-pkts-rate` | Inbound packets per second on an interface. |
@@ -1067,10 +1067,10 @@ Cumulus Linux supports the following metrics:
 | `/interfaces/interface/ethernet/state/negotiated-duplex-mode` | When auto-negotiate is set to TRUE, and the interface has completed auto-negotiation with the remote peer, this value shows the negotiated duplex mode.|
 | `/interfaces/interface/state/counters/in-acl-drops` | Number of inbound packets dropped because of an Access Control List (ACL).|
 | `/interfaces/interface/ethernet/state/counters/in-mac-pause-frames` | Inbound MAC pause frames on an interface.|
-| `/interfaces/interface/state/mtu` | Size of the largest packet that can be sent or received on the interface, specified in octets. For interfaces that are used for transmitting network datagrams, this is the size of the largest network datagram that can be sent on the interface.|
+| `/interfaces/interface/state/mtu` | Size of the largest packet that can be sent or received on the interface, specified in octets. For interfaces used for transmitting network datagrams, this is the size of the largest network datagram that the interface can send.|
 | `/interfaces/interface/state/oper-status` | Current operational state of an interface. |
 | `/interfaces/interface/state/counters/out-bits-rate` | Outbound bits per second on an interface. |
-| `/interfaces/interface/state/counters/out-discards` | Number of outbound packets discarded even though no errors were detected to prevent them from being transmitted. |
+| `/interfaces/interface/state/counters/out-discards` | Number of outbound packets discarded even though no errors are detected to prevent them from being transmitted. |
 | `/interfaces/interface/state/counters/out-errors` | For packet-oriented interfaces, the number of outbound packets not transmitted because of errors. For character-oriented or fixed-length interfaces, the number of outbound transmission units not transmitted because of errors. |
 | `/interfaces/interface/state/counters/out-pkts` | Total number of packets transmitted out of the interface, including all unicast, multicast, broadcast, and bad packets.|
 | `/interfaces/interface/state/counters/out-pkts-rate` | Outbound packets per second on an interface. |
@@ -1090,8 +1090,8 @@ Cumulus Linux supports the following metrics:
 | `/interfaces/interface/ethernet/phy/state/symbol-errors` | Number of phy symbol errors for an interface.|
 | `/interfaces/interface/ethernet/phy/state/symbol-ber` | Phy symbol BER for an interface.|
 | `/interfaces/interface/ethernet/phy/state/lane/raw-ber` | Number of phy bit error rates for a given lane of an interface.|
-| `/interfaces/interface/ethernet/phy/state/fec-time-since-last-clear` | Time since last clear of FEC stats(phy layer). |
-| `/interfaces/interface/ethernet/phy/state/ber-time-since-last-clear` | Time since last clear of BER stats(phy layer). |
+| `/interfaces/interface/ethernet/phy/state/fec-time-since-last-clear` | Time after last clear of FEC stats(phy layer). |
+| `/interfaces/interface/ethernet/phy/state/ber-time-since-last-clear` | Time after last clear of BER stats(phy layer). |
 
 {{< /tab >}}
 {{< tab "LLDP">}}
@@ -1102,7 +1102,7 @@ Cumulus Linux supports the following metrics:
 | `/lldp/state/chassis-id-type` | The format and source of the chassis identifier string.|
 | `/lldp/state/system-description` | Description of the network entity including the full name and version identification of the system's hardware type, software operating system, and networking software.|
 | `/lldp/state/system-name` | Administratively assigned name for the system.|
-| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/age` | LLDP neighbor age since discovery.|
+| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/age` | LLDP neighbor age after discovery.|
 | `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/management-address/type`| Enumerated value for the network address type identified in this TLV. |
 | `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/chassis-id` | Chassis component of the endpoint identifier associated with the transmitting LLDP agent.|
 | `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/chassis-id-type` | Format and source of the chassis identifier string.|

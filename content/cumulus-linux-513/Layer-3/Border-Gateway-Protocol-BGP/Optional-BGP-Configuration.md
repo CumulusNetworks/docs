@@ -1418,7 +1418,7 @@ When you configure BGP PIC, Cumulus Linux assigns one next hop group for each so
 - Do not configure the router ID and network address with the same value.
 - The BGP router ID and the aggregate address must not be in the same subnet.
 - Do not use martian addresses as the BGP router ID when you enable PIC.
-- Additional ECMP hardware resources are required for PIC. Refer to {{<link url="Equal-Cost-Multipath-Load-Sharing/#ecmp-resource-sharing-during-next-hop-group-updates" text="Additional ECMP resource optimization for next hop groups">}}
+- You need additional ECMP hardware resources for PIC. Refer to {{<link url="Equal-Cost-Multipath-Load-Sharing/#ecmp-resource-sharing-during-next-hop-group-updates" text="Additional ECMP resource optimization for next hop groups">}}
 {{%/notice%}}
 
 To configure PIC:

@@ -865,9 +865,9 @@ monitor.packet-all-pg_packet_extended.snapshot.file_count = 64
 ### Snapshots
 
 Cumulus Linux saves packet and buffer statistics to the `/var/run/cumulus/intf_stats_<port-group>` file by default when you configure packet and buffer statistics collection and set the timer in seconds.
-
+<!-- vale off -->
 You can change the snapshot directory and file name. You can also change the number of snapshots to create before Cumulus Linux overwrites the first snapshot file. For example, if you set the snapshot file count to 30, the first snapshot file is `intf_stats_<port-group>_0` and the 30th snapshot is `intf_stats_<port-group>_30`. After the 30th snapshot, Cumulus Linux overwrites the original snapshot file (`intf_stats_<port-group>_0`) and the sequence restarts. The default value is 64.
-
+<!-- vale on -->
 {{%notice note%}}
 Snapshots provide you with more data; however, they can occupy a lot of disk space on the switch. To reduce disk usage, use a volatile partition for the snapshot files.
 {{%/notice%}}

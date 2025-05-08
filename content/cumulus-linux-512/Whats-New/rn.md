@@ -14,7 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| <a name="4427224"></a> [4427224](#4427224) <a name="4427224"></a> <br /> | The <code>nv show interface</code> command output shows the operational status as down for a link flap error disabled state instead of the real protodown reason<br />This is an expected behaviour after the recent changes anc currently nv show interface status will give if any of the interfaces have protodown with proper protodown reason | 5.12.0-5.13.0 | |
+| <a name="4427224"></a> [4427224](#4427224) <a name="4427224"></a> <br /> | The <code>nv show interface</code> command output shows the operational status as down for a link flap error disabled state instead of the real protodown reason. To work around this issue, run the <code>nv show interface status</code> command, which shows if any of the interfaces are protodown with the protodown reason. | 5.12.0-5.13.0 | |
 | <a name="4423430"></a> [4423430](#4423430) <a name="4423430"></a> <br /> | When toggling the bridge binding flag on an SVI from ON to OFF, the SVI might not come operationally UP if it was DOWN previously from the bridge binding flag. | 5.11.0-5.13.0 | |
 | <a name="4423369"></a> [4423369](#4423369) <a name="4423369"></a> <br /> | When all links go down or the switch reboots,  you see next hop group churn from Zebra to the SOO next hop group. This issue might cause some convergence degradation.  | 5.12.0-5.13.0 | |
 | <a name="4423368"></a> [4423368](#4423368) <a name="4423368"></a> <br /> | When all links go down or the switch reboots,  you see next hop group churn from Zebra to the SOO next hop group. This issue might cause some convergence degradation.  | 5.12.0-5.13.0 | |
@@ -188,7 +188,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| <a name="4427224"></a> [4427224](#4427224) <a name="4427224"></a> <br /> | The <code>nv show interface</code> command output shows the operational status as down for a link flap error disabled state instead of the real protodown reason<br />This is an expected behaviour after the recent changes anc currently nv show interface status will give if any of the interfaces have protodown with proper protodown reason | 5.12.0-5.13.0 | |
+| <a name="4427224"></a> [4427224](#4427224) <a name="4427224"></a> <br /> | The <code>nv show interface</code> command output shows the operational status as down for a link flap error disabled state instead of the real protodown reason. To work around this issue, run the <code>nv show interface status</code> command, which shows if any of the interfaces are protodown with the protodown reason. | 5.12.0-5.13.0 | |
 | <a name="4423430"></a> [4423430](#4423430) <a name="4423430"></a> <br /> | When toggling the bridge binding flag on an SVI from ON to OFF, the SVI might not come operationally UP if it was DOWN previously from the bridge binding flag. | 5.11.0-5.13.0 | |
 | <a name="4423369"></a> [4423369](#4423369) <a name="4423369"></a> <br /> | When all links go down or the switch reboots,  you see next hop group churn from Zebra to the SOO next hop group. This issue might cause some convergence degradation.  | 5.12.0-5.13.0 | |
 | <a name="4423368"></a> [4423368](#4423368) <a name="4423368"></a> <br /> | When all links go down or the switch reboots,  you see next hop group churn from Zebra to the SOO next hop group. This issue might cause some convergence degradation.  | 5.12.0-5.13.0 | |

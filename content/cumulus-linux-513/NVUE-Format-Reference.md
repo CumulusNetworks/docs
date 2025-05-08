@@ -508,7 +508,7 @@ IPv4 subnet address with prefix length.
 "10.0.0.0/8"
 "172.16.0.0/12"
 ```
-
+<!-- vale off -->
 #### ipv6-prefix
 
 IPv6 address with prefix length.
@@ -550,7 +550,7 @@ IPv6 address with netmask.
 - Must be a string
 - Format: "ipv6_address/netmask"
 - Both parts must be valid IPv6 addresses
-
+<!-- vale off -->
 **Valid Examples:**
 
 ```

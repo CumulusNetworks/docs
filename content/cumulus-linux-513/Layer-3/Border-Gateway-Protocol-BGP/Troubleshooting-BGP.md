@@ -223,7 +223,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor --view=detail -o 
       ...
 ```
 
-To see a summary of the connection information for all BGP peers, such as the state (established, idle), uptime, number of messages received and sent, and the time the connections are established, run the `nv show vrf <vrf> router bgp neighbor` command.
+To see a summary of the connection information for all BGP peers, such as the state (`established`, `idle`), uptime, number of messages received and sent, and the time the connections establish, run the `nv show vrf <vrf> router bgp neighbor` command.
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor

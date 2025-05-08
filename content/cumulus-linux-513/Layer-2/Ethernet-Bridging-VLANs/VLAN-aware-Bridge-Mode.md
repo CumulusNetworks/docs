@@ -760,7 +760,7 @@ The matching FDB entries were deleted successfully.
 ```
 
 {{%notice note%}}
-The `nv action clear bridge domain <bridge-id> mac-table dynamic` command clears static entries learned on ES bonds that are installed as static entries in EVPN multihoming including static VXLAN entries in the bridge driver and VXLAN driver.
+The `nv action clear bridge domain <bridge-id> mac-table dynamic` command clears static entries learned on ES bonds installed as static entries in EVPN multihoming, including static VXLAN entries in the bridge driver and VXLAN driver.
 {{%/notice%}}
 
 ### Clear All Dynamic MAC Addresses for an Interface, VLAN, or Interface and VLAN

@@ -782,7 +782,7 @@ The switch collects and exports the following interface and switch, buffer occup
 }
 ```
 {{< /expand >}}
-<!-- vale on -->
+
 ### Control Plane Statistic Format
 
 When you enable control plane statistic telemetry, the switch exports the following statistics:
@@ -905,7 +905,7 @@ When you enable control plane statistic telemetry, the switch exports the follow
 {{< /expand >}}
 
 ### Histogram Data Format
-
+<!-- vale on -->
 The histogram data samples that the switch exports to the OTEL collector are {{<exlink url="https://opentelemetry.io/docs/specs/otel/metrics/data-model/#histogram" text="histogram data points">}} that include the {{<link url="ASIC-Monitoring#histogram-collection-example" text="histogram bucket (bin)">}} counts and the respective queue length size boundaries for each bucket. Latency and counter histogram data are also exported, if configured.
 
 {{% notice note %}}
@@ -920,7 +920,7 @@ The switch sends a sample with the following names for each interface enabled fo
 | `nvswitch_histogram_interface_ingress_buffer` | Histogram interface ingress buffer queue depth. |
 | `nvswitch_histogram_interface_counter` | Histogram interface counter data. |
 | `nvswitch_histogram_interface_latency` | Histogram interface latency data. |
-
+<!-- vale off -->
 {{< expand "Example JSON data for interface_ingress_buffer:" >}}
 ```
 {
@@ -1138,7 +1138,7 @@ The switch sends a sample with the following names for each interface enabled fo
 ```
 
 {{< /expand >}}
-
+<!-- vale on -->
 ### Interface Statistic Format
 
 The interface statistic data samples that the switch exports to the OTEL collector are {{<exlink url="https://opentelemetry.io/docs/specs/otel/metrics/data-model/#gauge" text="gauge streams">}} that include the interface name as an attribute and the statistics value reported in the asDouble {{<exlink url="https://opentelemetry.io/docs/specs/otel/metrics/data-model/#exemplars" text="exemplar">}}.
@@ -1322,7 +1322,7 @@ The switch collects and exports the following additional interface statistics wh
 {{< /tabs >}}
 
 #### Interface Example JSON
-
+<!-- vale off -->
 {{< expand "Example JSON data for nvswitch_interface_oper_state:" >}}
 ```
 {
@@ -1928,7 +1928,7 @@ The switch collects and exports the following additional interface statistics wh
 }
 ```
 {{< /expand >}}
-
+<!-- vale on -->
 ### LLDP Statistic Format
 
 When you enable LLDP statistic telemetry, the switch exports the following statistics:
@@ -2438,7 +2438,7 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 {{< /tabs >}}
 
 #### Environment Sensor Example JSON
-
+<!-- vale off -->
 {{< expand "Example JSON data for nvswitch_platform_environment_psu_state:" >}}
 
 ```
@@ -3184,7 +3184,7 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
   }
 ```
 {{< /expand >}}
-
+<!-- vale on -->
 ### Routing Metrics Format
 
 When you enable layer 3 routing metrics telemetry, the switch exports the following statistics:
@@ -3216,7 +3216,7 @@ When you enable layer 3 routing metrics telemetry, the switch exports the follow
 | `nvrouting_rib_count_pbr_ipv6` | Number of IPv6 PBR routes in the IP routing table. |
 | `nvrouting_rib_count_ospf_ipv6` | Number of IPv6 OSPF routes in the IP routing table. |
 | `nvrouting_rib_nhg_count` | Number of next hop groups in the routing table. |
-
+<!-- vale off -->
 {{< expand "Example JSON data for nvrouting_bgp_peer_state:" >}}
 ```
 {
@@ -4435,3 +4435,4 @@ Exporters       Enqueue Failed Metric Points   Queue Capacity   Queue Size   Sen
 ---------       ----------------------------   --------------   ----------   -------------------------   ------------------
 otlp/global     0                              1000             0            7087                        52000844
 ```
+<!-- vale on -->

@@ -26,7 +26,7 @@ cumulus@leaf01:~$ nv set system lldp state disabled
 cumulus@leaf01:~$ nv config apply
 ```
 
-To re-enable LLDP globally, run the `nv set system lldp state enabled` command.
+To reenable LLDP globally, run the `nv set system lldp state enabled` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -38,7 +38,7 @@ cumulus@leaf01:~$ sudo systemctl stop lldpd
 cumulus@leaf01:~$ sudo systemctl disable lldpd
 ```
 
-To re-enable LLDP globally, enable and restart the `lldp` service:
+To reenable LLDP globally, enable and restart the `lldp` service:
 
 ```
 cumulus@leaf01:~$ sudo systemctl enable lldpd

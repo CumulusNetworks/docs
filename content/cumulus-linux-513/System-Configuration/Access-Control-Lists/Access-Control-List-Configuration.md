@@ -727,7 +727,7 @@ Cumulus Linux 5.0 and later no longer uses INPUT chain rules to configure contro
 
 To configure control plane policers:
 - Set the Committed Information Rate (CIR) with the `nv set system control-plane policer <trap-group> rate` command. The CIR is the allowed incoming rate for the trap group. The incoming rate is the maximum rate in packets per second.
-- Set the Committed Burst Rate (CBR) for the trap group with the `nv set system control-plane policer <trap-group> burst` command. The burst rate is the number of packets or kilobytes (KB) allowed to arrive sequentially after the CIR rate is exceeded.
+- Set the Committed Burst Rate (CBR) for the trap group with the `nv set system control-plane policer <trap-group> burst` command. The burst rate is the number of packets or kilobytes (KB) allowed to arrive sequentially after exceeding the CIR rate.
 
 The trap group can be: `arp`, `bfd`, `pim-ospf-rip`, `bgp`, `clag`, `icmp-def`, `dhcp-ptp`, `igmp`, `ssh`, `icmp6-neigh`, `icmp6-def-mld`, `lacp`, `lldp`, `rpvst`, `eapol`, `ip2me`, `acl-log`, `nat`, `stp`, `l3-local`, `span-cpu`, `catch-all`, or `NONE`.
 

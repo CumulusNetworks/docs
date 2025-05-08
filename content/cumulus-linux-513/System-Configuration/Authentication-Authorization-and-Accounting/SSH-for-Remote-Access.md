@@ -631,11 +631,11 @@ Instead of using passwords and SSH keys, you can enable certificate authenticati
 
 {{%notice note%}}
 - When you configure certificate-based authentication for a user, Cumulus Linux disables password authentication for that user.
-- A trusted CA certificate must have a valid expiration, be signed by a certificate authority matching a public key in trusted-ca-keys and have a principal in the list to log in as a user.
+- A trusted CA certificate must have a valid expiration, be signed by a certificate authority matching a public key in trusted-ca-keys, and have a principal in the list to log in as a user.
 {{%/notice%}}
 
 To configure certificate-based authentication for a user:
-- Set the trusted CA key ID, literal, and type. The key ID, literal, and type are located within a public key file.
+- Set the trusted CA key ID, literal, and type. You can see the key ID, literal, and type in a public key file.
 - Enable certificate authentication for the user.
 - Optional: Add a principal to the possible certificate principals for the user. You can add multiple principals. If you do not specify a principal, the user is sole principal.
 

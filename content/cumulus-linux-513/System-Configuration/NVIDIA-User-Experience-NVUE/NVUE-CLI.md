@@ -563,7 +563,7 @@ If there are any issues with the `nv set` or `nv unset` commands, NVUE prints th
 
 ## Translate a Configuration Revision or File
 
-NVUE provides commands to translate an NVUE configuration revision or yaml file into NVUE commands. The revision ID must be either an integer or a named revision (such as startup or applied). The configuration file must be located on the switch and must include the full path to the file containing the configuration you want to translate. The file must be in YAML format and must be accessible with proper read permissions.
+NVUE provides commands to translate an NVUE configuration revision or yaml file into NVUE commands. The revision ID must be either an integer or a named revision (such as startup or applied). The configuration file must be on the switch and must include the full path to the file containing the configuration you want to translate. The file must be in YAML format and must be accessible with proper read permissions.
 
 {{%notice note%}}
 Configuration file translation is not currently available in the API.
@@ -595,7 +595,7 @@ If the revision or yaml file is not readable, is in an invalid format, or includ
 
 You can control the maximum number of revisions stored in the NVUE database to ensure efficient resource management and system performance. When the number of revisions reaches the maximum set, the switch automatically deletes the oldest revisions to make room for new ones when you create them. The lower revision number is the oldest; for example revision 10 is older than revision 100.
 
-NVUE does not delete the `startup`, `empty`, or `applied` revisions and does not include them in the total revision count. The revision from which the last `applied` revision is created is also protected from deletion.
+NVUE does not delete the `startup`, `empty`, or `applied` revisions and does not include them in the total revision count. The revision from which NVUE creates the last `applied` revision is also protected from deletion.
 
 Deletion occurs in batches to reduce the number of system operations.
 
@@ -802,7 +802,7 @@ vlan30                                       9216  svi                          
 
 ### FRR Output Filters
 
-You can filter the `nv show vrf <vrf> router rib` command output by protocol (gp, ospf, kernel, static, ospf6, sharp, or connected); for example, to show all BGP IPv4 routes in the routing table:
+You can filter the `nv show vrf <vrf> router rib` command output by protocol (`gp`, `ospf`, `kernel`, `static`, `ospf6`, `sharp`, or `connected`); for example, to show all BGP IPv4 routes in the routing table:
 
 ```
 cumulus@switch:~$ nv show vrf default router rib ipv4 route --filter=protocol=bgp                                                                             
@@ -936,7 +936,7 @@ Route            Protocol   Distance  Uptime                NHGId  Metric  Flags
 10.10.10.102/32  bgp        20        2025-02-11T16:05:22Z  120    0       *Si 
 ```
 
-The following example shows the `nv show vrf default router rib ipv4 route` command with the option to only include the Routes, Protocol, Uptime, and NHGID (nexthop group ID) columns in the output:
+The following example shows the `nv show vrf default router rib ipv4 route` command with the option to only include the `Route`, `Protocol`, `Uptime`, and `NHGID` (next hop group ID) columns in the output:
 
 ```
 cumulus@switch:~$ nv show vrf default router rib ipv4 route --view "include=/*/route-entry/*/protocol,/*/route-entry/*/nexthop-group-id,/*/route-entry/*/uptime"

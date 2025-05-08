@@ -2083,6 +2083,12 @@ You can safely ignore this warning.</td>
 <td>5.12.0-5.13.0</td>
 </tr>
 <tr>
+<td>4129699</td>
+<td>{{switchd}} crashes because the hardware MAC limit is higher than the maximum.</td>
+<td>5.8.0-5.10.1</td>
+<td>5.11.0-5.13.0</td>
+</tr>
+<tr>
 <td>4119621</td>
 <td>When you set the SNMP server listening address to listen on all IPv4 and IPv6 addresses in a VRF with the {{nv set service snmp-server listening-address all vrf}} and {{nv set service snmp-server listening-address all-v6 vrf}} commands, SNMP requests over IPv6 addresses do not work.</td>
 <td>5.8.0-5.10.1</td>

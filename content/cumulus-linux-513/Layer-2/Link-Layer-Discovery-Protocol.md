@@ -26,7 +26,7 @@ cumulus@leaf01:~$ nv set system lldp state disabled
 cumulus@leaf01:~$ nv config apply
 ```
 
-To re-enable LLDP globally, run the `nv set system lldp state enabled` command.
+To reenable LLDP globally, run the `nv set system lldp state enabled` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -38,7 +38,7 @@ cumulus@leaf01:~$ sudo systemctl stop lldpd
 cumulus@leaf01:~$ sudo systemctl disable lldpd
 ```
 
-To re-enable LLDP globally, enable and restart the `lldp` service:
+To reenable LLDP globally, enable and restart the `lldp` service:
 
 ```
 cumulus@leaf01:~$ sudo systemctl enable lldpd
@@ -58,7 +58,7 @@ cumulus@leaf01:~$ nv set interface swp1 lldp state disabled
 cumulus@leaf01:~$ nv config apply
 ```
 
-To re-enable LLDP on an interface, run the `nv set interface swp1 lldp state enabled` command.
+To reenable LLDP on an interface, run the `nv set interface swp1 lldp state enabled` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -121,7 +121,7 @@ cumulus@leaf01:~$ sudo lldpcli configure system interface pattern ""
 {{< /tab >}}
 {{< /tabs >}}
 
-To show if LLDP is enabled globally or on an interface, run the `nv show system lldp` command.
+To show if LLDP is `on` globally or on an interface, run the `nv show system lldp` command.
 
 ```
 cumulus@leaf01:~$ nv show system lldp
@@ -157,7 +157,7 @@ Interface:    swp4, via: LLDP, RID: 2, Time: 0 day, 00:07:38
 ```
 
 The following example shows that after disabling LLDP on swp1 and swp2, only swp3 and swp4 are generating and receiving LLDP on leaf01. leaf02 is only receiving LLDP on swp3 and swp4 from leaf01:
-
+<!-- vale off -->
 ```
 cumulus@leaf02:~$ sudo lldpctl | egrep 'Inter|Port|SysName'
 Interface:    eth0, via: LLDP, RID: 2, Time: 0 day, 00:09:16
@@ -176,7 +176,7 @@ Interface:    swp4, via: LLDP, RID: 1, Time: 0 day, 00:09:16
     PortID:       ifname swp4
     PortDescr:    swp4
 ```
-
+<!-- vale on -->
 ## Configure LLDP Timers
 
 You can configure the frequency of LLDP updates (between 5 and 32768 seconds) and the amount of time (between 1 and 8192 seconds) to hold the information before discarding it. The hold time interval is a multiple of the `tx-interval`.

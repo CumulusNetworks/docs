@@ -25,10 +25,10 @@ To configure and use gNMI with Cumulus Linux, see {{<link url="/#gnmi-with-cumul
 The `netq-agent` package includes the gNMI agent, which it disables by default. To enable the gNMI agent:
 
 ```
- cumulus@switch:~$ sudo systemctl enable netq-agent.service
- cumulus@switch:~$ sudo systemctl start netq-agent.service
- cumulus@switch:~$ netq config add agent gnmi-enable true
- ```
+cumulus@switch:~$ sudo systemctl enable netq-agent.service
+cumulus@switch:~$ sudo systemctl start netq-agent.service
+cumulus@switch:~$ netq config add agent gnmi-enable true
+```
 
 The gNMI agent listens over port 9339. You can change the default port in case you use that port in another application. The `/etc/netq/netq.yml` file stores the configuration.
 
@@ -103,7 +103,7 @@ Cumulus Linux supports the following gNMI {{<exlink url="https://github.com/open
 ### Supported Models
 
 Cumulus Linux supports the following OpenConfig models:
-
+<!-- vale off -->
 | Model| Supported Data |
 | --------- | ------ |
 | {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/interfaces/openconfig-interfaces.yang" text="openconfig-interfaces">}} | Name, Operstatus, AdminStatus, IfIndex, MTU, LoopbackMode, Enabled, Counters (InPkts, OutPkts, InOctets, InUnicastPkts, InDiscards, InMulticastPkts, InBroadcastPkts, InErrors, OutOctets, OutUnicastPkts, OutMulticastPkts, OutBroadcastPkts, OutDiscards, OutErrors) |
@@ -112,7 +112,7 @@ Cumulus Linux supports the following OpenConfig models:
 | {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/system/openconfig-system.yang" text="openconfig-system">}} | Memory, CPU |
 | {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/platform/openconfig-platform.yang" text="openconfig-platform">}} | Platform data (Name, Description, Version) |
 | {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/lldp/openconfig-lldp.yang" text="openconfig-lldp">}} | LLDP data (PortIdType, PortDescription, LastUpdate, SystemName, SystemDescription, ChassisId, Ttl, Age, ManagementAddress, ManagementAddressType, Capability) |
-<!-- vale off -->
+
 | Model| Supported Data |
 | --------- | ------ |
 | nvidia-if-wjh-drop-aggregate | Aggregated WJH drops, including layer 1, layer 2, router, ACL, tunnel, and buffer drops |
@@ -690,7 +690,6 @@ The data that NetQ sends to the gNMI agent is in the form of WJH drop reasons. T
 | 325 | Router interface loopback | Warning | Validate the interface configuration |
 | 326 | Packet size is larger than router interface MTU | Warning | Validate the router interface MTU configuration |
 | 327 | TTL value is too small | Warning | Actual path is longer than the TTL |
-<!-- vale on -->
 
 #### Tunnel Drop Reasons
 
@@ -720,9 +719,7 @@ The data that NetQ sends to the gNMI agent is in the form of WJH drop reasons. T
 
 ### gNMI Client Requests
 
-<!-- vale off -->
 You can use your gNMI client on a host to request capabilities and data to which the Agent subscribes. The examples below use the {{<exlink url="https://github.com/openconfig/reference/blob/master/rpc/gnmi/gnmi-specification.md#3515-creating-subscriptions" text="gNMIc client.">}}.
-<!-- vale on -->
 
 The following example shows a gNMIc `STREAM` request for WJH data:
 
@@ -818,7 +815,7 @@ received sync response 'true' from '10.209.37.123:9339'
   ]
 }
 ```
-
+<!-- vale on -->
 ## gNMI with Cumulus Linux
 
 This section discusses how to configure and use gNMI with Cumulus Linux.
@@ -829,7 +826,7 @@ To configure and use gNMI with NetQ, see {{<link url="/#gnmi-with-netq" text="gN
 When you enable gNMI with Cumulus Linux, do **not** enable and use {{<link url="Open-Telemetry-Export" text="Open Telemetry">}}.
 {{%/notice%}}
 
-Cumulus Linux supports both gNMI dial-in mode, where a collector can initiate a connection with the switch to collect available statistics, and gNMI dial-out mode, where the switch streams statistics and exports them to a collector.
+Cumulus Linux supports both gNMI dial-in mode, where a collector can start a connection with the switch to collect available statistics, and gNMI dial-out mode, where the switch streams statistics and exports them to a collector.
 
 ### Configure gNMI Dial-in Mode
 
@@ -843,7 +840,7 @@ To configure optional settings for gNMI dial-in mode:
 - Specify the listening port. The default port is 9339.
 - Enable a TLS certificate for validation.
   - Cumulus Linux uses a self-signed certificate. You can generate your own TLS server certificate and bind it with the gNMI server application.
-  - If mTLS on the gNMI RPC is required, import the certificate of the CA that signed the gNMI client keys (or the client certificate itself) to the switch and configure the gNMI server to use the certificate. You can also apply a <span class="a-tooltip">[CRL](## "Certificate Revocation List")</span>.
+  - If you need to use mTLS on the gNMI RPC, import the certificate of the CA that signed the gNMI client keys (or the client certificate itself) to the switch and configure the gNMI server to use the certificate. You can also apply a <span class="a-tooltip">[CRL](## "Certificate Revocation List")</span>.
 
 The following example sets the gNMI server listening address to 10.10.10.1 and the port to 443, and enables the gNMI server:
 
@@ -1035,7 +1032,7 @@ Regex for specific keys (such as `“interface-id=swp*”`) is not supported.
 ### Metrics
 
 Cumulus Linux supports the following metrics:
-
+<!-- vale off -->
 {{< tabs "TabID200 ">}}
 {{< tab "Interface ">}}
 
@@ -1059,7 +1056,7 @@ Cumulus Linux supports the following metrics:
 | `/interfaces/interface/ethernet/state/port-speed` | An estimate of the interface current bandwidth in units of 1,000,000 bits per second.|
 | `/interfaces/interface/state/counters/in-bits-rate` | Inbound bits per second on an interface.|
 | `/interfaces/interface/state/ifindex` | A unique value, greater than zero, for each interface.|
-| `/interfaces/interface/state/counters/in-discards` | Number of inbound packets discarded even though no errors were detected to prevent them from being deliverable to a higher-layer protocol. |
+| `/interfaces/interface/state/counters/in-discards` | Number of inbound packets discarded even though no errors are detected to prevent them from being deliverable to a higher-layer protocol. |
 | `/interfaces/interface/state/counters/in-errors` | For packet-oriented interfaces, the number of inbound packets that contained errors preventing them from being deliverable to a higher-layer protocol.|
 | `/interfaces/interface/state/counters/in-pkts`| Number of packets discarded from the egress queue of an interface. |
 | `/interfaces/interface/state/counters/in-pkts-rate` | Inbound packets per second on an interface. |
@@ -1067,10 +1064,10 @@ Cumulus Linux supports the following metrics:
 | `/interfaces/interface/ethernet/state/negotiated-duplex-mode` | When auto-negotiate is set to TRUE, and the interface has completed auto-negotiation with the remote peer, this value shows the negotiated duplex mode.|
 | `/interfaces/interface/state/counters/in-acl-drops` | Number of inbound packets dropped because of an Access Control List (ACL).|
 | `/interfaces/interface/ethernet/state/counters/in-mac-pause-frames` | Inbound MAC pause frames on an interface.|
-| `/interfaces/interface/state/mtu` | Size of the largest packet that can be sent or received on the interface, specified in octets. For interfaces that are used for transmitting network datagrams, this is the size of the largest network datagram that can be sent on the interface.|
+| `/interfaces/interface/state/mtu` | Size of the largest packet that can be sent or received on the interface, specified in octets. For interfaces used for transmitting network datagrams, this is the size of the largest network datagram that the interface can send.|
 | `/interfaces/interface/state/oper-status` | Current operational state of an interface. |
 | `/interfaces/interface/state/counters/out-bits-rate` | Outbound bits per second on an interface. |
-| `/interfaces/interface/state/counters/out-discards` | Number of outbound packets discarded even though no errors were detected to prevent them from being transmitted. |
+| `/interfaces/interface/state/counters/out-discards` | Number of outbound packets discarded even though no errors are detected to prevent them from being transmitted. |
 | `/interfaces/interface/state/counters/out-errors` | For packet-oriented interfaces, the number of outbound packets not transmitted because of errors. For character-oriented or fixed-length interfaces, the number of outbound transmission units not transmitted because of errors. |
 | `/interfaces/interface/state/counters/out-pkts` | Total number of packets transmitted out of the interface, including all unicast, multicast, broadcast, and bad packets.|
 | `/interfaces/interface/state/counters/out-pkts-rate` | Outbound packets per second on an interface. |
@@ -1090,8 +1087,8 @@ Cumulus Linux supports the following metrics:
 | `/interfaces/interface/ethernet/phy/state/symbol-errors` | Number of phy symbol errors for an interface.|
 | `/interfaces/interface/ethernet/phy/state/symbol-ber` | Phy symbol BER for an interface.|
 | `/interfaces/interface/ethernet/phy/state/lane/raw-ber` | Number of phy bit error rates for a given lane of an interface.|
-| `/interfaces/interface/ethernet/phy/state/fec-time-since-last-clear` | Time since last clear of FEC stats(phy layer). |
-| `/interfaces/interface/ethernet/phy/state/ber-time-since-last-clear` | Time since last clear of BER stats(phy layer). |
+| `/interfaces/interface/ethernet/phy/state/fec-time-since-last-clear` | Time after last clear of FEC stats(phy layer). |
+| `/interfaces/interface/ethernet/phy/state/ber-time-since-last-clear` | Time after last clear of BER stats(phy layer). |
 
 {{< /tab >}}
 {{< tab "LLDP">}}
@@ -1102,7 +1099,7 @@ Cumulus Linux supports the following metrics:
 | `/lldp/state/chassis-id-type` | The format and source of the chassis identifier string.|
 | `/lldp/state/system-description` | Description of the network entity including the full name and version identification of the system's hardware type, software operating system, and networking software.|
 | `/lldp/state/system-name` | Administratively assigned name for the system.|
-| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/age` | LLDP neighbor age since discovery.|
+| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/age` | LLDP neighbor age after discovery.|
 | `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/management-address/type`| Enumerated value for the network address type identified in this TLV. |
 | `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/chassis-id` | Chassis component of the endpoint identifier associated with the transmitting LLDP agent.|
 | `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/chassis-id-type` | Format and source of the chassis identifier string.|
@@ -1198,7 +1195,7 @@ Cumulus Linux supports the following metrics:
 
 {{< /tab >}}
 {{< /tabs >}}
-
+<!-- vale on -->
 ### User Credentials and Authentication
 
 User authentication is enabled by default. gNMI subscription requests must include an HTTP Basic Authentication header according to RFC7617 containing the username and password of a user with NVUE API access permissions. You can enable this setting in the standard gNMI client (gNMIc) by setting the `auth-scheme` parameter to basic. Refer to {{<exlink url="https://gnmic.openconfig.net/global_flags/ - auth-scheme" text="https://gnmic.openconfig.net/global_flags/ - auth-scheme">}}.
@@ -1232,7 +1229,7 @@ gnmic subscribe --mode stream --path "/qos/interfaces/interface[interface-id=swp
 #### Subscription Example
 
 The following example shows a subscription response:
-
+<!-- vale off -->
 ```
 { 
   "sync-response": true 
@@ -1278,21 +1275,13 @@ supported encodings:
   - JSON_IETF 
   - PROTO 
 ```
-
+<!-- vale on -->
 ### Considerations
 
 When using gNMI with Cumulus Linux:
 - The minimum sampling interval is 1 second. If you configure a shorter sampling interval, the switch might not behave as expected.
 - ModelData, Origin, and Extensions fields are ignored in requests and not set in responses.
-<!--
-- For all X.509 certificates generated externally, make sure to set the correct X.509v3 fields:
-  - Set the Purpose field correctly (TLS WWW Server Authentication versus TLS WWW Client Authentication) in the extended key usage (EKU) field.  
-  - Set TLS WWW Server Authentication for TLS server applications to gNMI server (on the switch), and gRPC dial-out tunnel server (running in your network)
-  - Set TLS WWW Client Authentication for TLS client applications to gRPC dial-out tunnel client (on the switch) and gNMI client (running in the network)
-  - Set the Cumulus Linux switch management IP address included in the subject alternate name (SAN) field together with the localhost SAN DNS value applicable to the gNMI server certificate.
-  - On the gNMI client and the dial-out tunnel server (within the network), ensure the management IP address is included in the subject alternate name (SAN) field together with localhost SAN DNS value.
-- NVUE does not support mTLS configuration. NVIDIA recommends that you do not try to set mTLS related fields under gRPC tunnel configuration.
--->
+
 ## Related Information
 
 - {{<exlink url="https://datatracker.ietf.org/meeting/101/materials/slides-101-netconf-grpc-network-management-interface-gnmi-00" text="gNMI presentation to IETF">}}

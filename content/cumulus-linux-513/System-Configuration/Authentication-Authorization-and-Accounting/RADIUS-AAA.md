@@ -252,7 +252,7 @@ netgroup:       nis
 
 RADIUS user command accounting lets you log every command that a RADIUS user runs and send the commands to RADIUS servers for auditing. Audit logs are a requirement for compliance standards, such as PCI and HIPPA.
 
-The RADIUS servers must be configured to accept packets from clients and have a dictionary entry for `NV-Command-String`.
+You must configure the RADIUS servers to accept packets from clients and have a dictionary entry for `NV-Command-String`.
 
 {{%notice note%}}
 When you enable or change accounting settings, NVUE disconnects currently logged in RADIUS users.

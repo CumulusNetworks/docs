@@ -8,7 +8,7 @@
 </tr>
 <tr>
 <td>4427224</td>
-<td>The {{nv show interface}} command output shows the operational status as down for a link flap error disabled state instead of the real protodown reason.</td>
+<td>The {{nv show interface}} command output shows the operational status as down for a link flap error disabled state instead of the real protodown reason. To work around this issue, run the {{nv show interface status}} command, which shows if any of the interfaces are protodown with the protodown reason.</td>
 <td>5.12.0-5.13.0</td>
 <td></td>
 </tr>
@@ -1079,7 +1079,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>4427224</td>
-<td>The {{nv show interface}} command output shows the operational status as down for a link flap error disabled state instead of the real protodown reason.</td>
+<td>The {{nv show interface}} command output shows the operational status as down for a link flap error disabled state instead of the real protodown reason. To work around this issue, run the {{nv show interface status}} command, which shows if any of the interfaces are protodown with the protodown reason.</td>
 <td>5.12.0-5.13.0</td>
 <td></td>
 </tr>
@@ -1414,16 +1414,16 @@ cumulus@switch:~$ sudo systemctl start cumulus-upgrade-on-shutdown</td>
 <td>5.13.0</td>
 </tr>
 <tr>
+<td>4288264</td>
+<td>Optimized (two partition) upgrade and rollback fails when you apply configuration by editing the {{/etc/nvue.d/startup.yaml}} file, then run {{nv config apply startup}}. To work around this issue, after activating optimized &lt;b&gt;upgrade&lt;/b&gt;, but &lt;b&gt;before&lt;/b&gt; rebooting, save a copy of the contents of {{/var/lib/nvue/}} to some other location. Then, &lt;b&gt;after&lt;/b&gt; activating &lt;b&gt;rollback&lt;/b&gt;, but &lt;b&gt;before&lt;/b&gt; rebooting, move {{/var/lib/nvue/}} to some other location and copy the previously saved contents to {{/var/lib/nvue/}}.</td>
+<td>5.12.0</td>
+<td>5.11.1, 5.12.1-5.13.0</td>
+</tr>
+<tr>
 <td>4286833</td>
 <td>When you change the port breakout configuration, the switch deletes, then recreates the port and the sflow configuration on the port resets. However, {{switchd}} continues to retain sflow configuration for the same logical ID, which leads to divergence in sflow configuration in the SDK and switchd; switchd sees sflow enabled for the port but in the SDK the ports gets reset to disabled.</td>
 <td>5.12.0-5.12.1</td>
 <td>5.13.0</td>
-</tr>
-<tr>
-<td>4286489</td>
-<td>Optimized (two partition) upgrade and rollback fails when you apply configuration by editing the {{/etc/nvue.d/startup.yaml}} file, then run {{nv config apply startup}}. To work around this issue, after activating optimized &lt;b&gt;upgrade&lt;/b&gt;, but &lt;b&gt;before&lt;/b&gt; rebooting, save a copy of the contents of {{/var/lib/nvue/}} to some other location. Then, &lt;b&gt;after&lt;/b&gt; activating &lt;b&gt;rollback&lt;/b&gt;, but &lt;b&gt;before&lt;/b&gt; rebooting, move {{/var/lib/nvue/}} to some other location and copy the previously saved contents to {{/var/lib/nvue/}}.</td>
-<td>5.12.0</td>
-<td>5.11.1, 5.12.1-5.13.0</td>
 </tr>
 <tr>
 <td>4281438</td>

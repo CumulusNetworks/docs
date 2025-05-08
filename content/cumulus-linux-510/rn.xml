@@ -208,6 +208,12 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <td>5.11.0-5.13.0</td>
 </tr>
 <tr>
+<td>4129699</td>
+<td>{{switchd}} crashes because the hardware MAC limit is higher than the maximum.</td>
+<td>5.8.0-5.10.1</td>
+<td>5.11.0-5.13.0</td>
+</tr>
+<tr>
 <td>4129344</td>
 <td>When you create an ACL rule that matches TCP state and more than seven TCP or UDP source or destination ports, the rule does not get framed properly and is rejected by the kernel.To work around this issue, create another rule number when the number of ports you want to match is more than seven.</td>
 <td>5.9.1-5.10.1</td>
@@ -380,6 +386,12 @@ interface_stats: [ERROR] interface_stats_collector.py:_parse_conf_file:201 — C
 <td>4022906</td>
 <td>If you use NVUE to configure a bond, apply a port mirror on the bond, then run the {{nv config apply}} command, the validation fails.To work around this issue, configure the bond with a separate {{nv config apply}} command before you configure the port mirror on the bond.</td>
 <td>5.10.0-5.10.1</td>
+<td>5.11.0-5.13.0</td>
+</tr>
+<tr>
+<td>4019257</td>
+<td>Some switches start booting but stop at the boot menu because console‑port noise is misinterpreted as input.</td>
+<td>5.9.1-5.10.1</td>
 <td>5.11.0-5.13.0</td>
 </tr>
 <tr>
@@ -1108,6 +1120,12 @@ This happens in async mode, where the end notification expected after an end of 
 <td>5.11.0-5.13.0</td>
 </tr>
 <tr>
+<td>4129699</td>
+<td>{{switchd}} crashes because the hardware MAC limit is higher than the maximum.</td>
+<td>5.8.0-5.10.1</td>
+<td>5.11.0-5.13.0</td>
+</tr>
+<tr>
 <td>4129344</td>
 <td>When you create an ACL rule that matches TCP state and more than seven TCP or UDP source or destination ports, the rule does not get framed properly and is rejected by the kernel.To work around this issue, create another rule number when the number of ports you want to match is more than seven.</td>
 <td>5.9.1-5.10.1</td>
@@ -1347,6 +1365,12 @@ interface_stats: [ERROR] interface_stats_collector.py:_parse_conf_file:201 — C
 <td>4022906</td>
 <td>If you use NVUE to configure a bond, apply a port mirror on the bond, then run the {{nv config apply}} command, the validation fails.To work around this issue, configure the bond with a separate {{nv config apply}} command before you configure the port mirror on the bond.</td>
 <td>5.10.0-5.10.1</td>
+<td>5.11.0-5.13.0</td>
+</tr>
+<tr>
+<td>4019257</td>
+<td>Some switches start booting but stop at the boot menu because console‑port noise is misinterpreted as input.</td>
+<td>5.9.1-5.10.1</td>
 <td>5.11.0-5.13.0</td>
 </tr>
 <tr>
@@ -1868,6 +1892,11 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <td>4004453</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
 <td>4.3.0-5.9.1</td>
+</tr>
+<tr>
+<td>3998581</td>
+<td>When two SVIs are configured with the same VLAN ID and are assigned to separate bridges (each in a different VRF) but both bridges share the same MAC hardware address, traffic drops might occur.</td>
+<td>5.9.1</td>
 </tr>
 <tr>
 <td>3990258</td>

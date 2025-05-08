@@ -263,7 +263,7 @@ If your NVUE `startup.yaml` file includes certificate configuration for gNMI, th
 {{%/notice%}}
 
 {{%notice note%}}
-When you stage an NVUE `startup.yaml` file, ZTP still runs after the new image is installed. To prevent ZTP from running after the new image is installed, either:
+When you stage an NVUE `startup.yaml` file, ZTP still runs after the new image installs. To prevent ZTP from running after the new image installs, either:
 - Run the `sudo ztp -d` or `nv action disable system ztp` commands to disable ZTP after the new image is running.
 - Use the `-z` option to specify an existing ZTP script that takes no action. For example, create a file called `/tmp/cumulus_ztp.sh` that contains the line `#!/bin/bash # CUMULUS-AUTOPROVISIONING` and specify `sudo onie-install -fa -i <image-path> -z /tmp/cumulus_ztp.sh -t /etc/nvue.d/startup.yaml`.
 {{%/notice%}}

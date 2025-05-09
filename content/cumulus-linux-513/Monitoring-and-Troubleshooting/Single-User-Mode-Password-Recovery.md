@@ -8,7 +8,7 @@ Use single user mode to assist in troubleshooting system boot issues or for pass
 
 To enter single user mode:
 
-1. Boot the switch. When you see the five-second countdown, press esc or F4 to go to the GRUB menu, then use the arrow keys to select **Advanced options for Cumulus Linux GNU/Linux**. (If you press esc or F4 more than once, the GRUB CLI opens. Type `normal`, then press Enter to go back to the countdown timer.)
+1. Boot the switch. When you see the five-second countdown, press esc or F4 to go to the GRUB menu, then use the arrow keys to select **Advanced options for Cumulus Linux GNU/Linux**. (If you press esc or F4 more than one time, the GRUB CLI opens. Type `normal`, then press Enter to go back to the countdown timer.)
 
    {{%notice info%}}
 **Before** the GRUB menu appears, the switch goes through the boot cycle. Do **not** interrupt this autoboot process when you see the following lines; wait until you see the GRUB menu.

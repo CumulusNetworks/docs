@@ -392,7 +392,7 @@ Cumulus Linux 5.13 includes a new option to set the {{<link url="NVUE-CLI/#maxim
 If you use Linux commands to configure the switch, read the following information before you upgrade to Cumulus Linux 5.13 or later.
 {{%/notice%}}
 
-Cumulus Linux includes a default NVUE `startup.yaml` file. In addition, NVUE configuration auto save is enabled by default. As a result, Cumulus Linux overwrites any manual changes to Linux configuration files on the switch when the switch reboots after upgrade or you change the `cumulus` user account password with the Linux `passwd` command.
+NVUE includes a default `startup.yaml` file. In addition, NVUE enables configuration auto save by default. As a result, NVUE overwrites any manual changes to Linux configuration files on the switch when the switch reboots after upgrade, or you change the `cumulus` user account password with the Linux `passwd` command.
 
 {{%notice note%}}
 These issues occur only if you use Linux commands to configure the switch. If you use NVUE commands to configure the switch, these issues do not occur.

@@ -173,7 +173,7 @@ cumulus@<hostname>:~$ netq install cluster master-init
 {{< tabs "TabID41 ">}}
 {{< tab "New Install">}}
 
-Run the following command on your NetQ cloud appliance with the `config-key` obtained from the email you received from NVIDIA titled *NetQ Access Link*. You can also obtain the configuration key {{<link title="Configure Premises" text="through the NetQ UI">}}. Use the IP addresses of your worker nodes and the HA cluster virtual IP address (VIP). 
+Run the following command with the `config-key` obtained from the email you received from NVIDIA titled *NetQ Access Link*. You can also obtain the configuration key {{<link title="Configure Premises" text="through the NetQ UI">}}. Use the IP addresses of your worker nodes and the HA cluster virtual IP address (VIP). 
 
 {{<notice info>}}
 The HA cluster virtual IP must be:
@@ -210,7 +210,7 @@ The HA cluster virtual IP must be:
 {{</notice>}}
 
 ```
-cumulus@netq-appliance:~$ netq install opta cluster full interface eth0 bundle /mnt/installables/NetQ-4.14.0-opta.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIiwzNWJVL2NkZmtnekRqZ21yUUdZTHFFa0wvMVZSNHlLd3JaYlpuWE1VS21JPQ== workers 10.188.44.219 10.188.45.164 cluster-vip 10.188.45.169 restore /home/cumulus/combined_backup_20241211111316.tar
+cumulus@netq-server:~$ netq install opta cluster full interface eth0 bundle /mnt/installables/NetQ-4.14.0-opta.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIiwzNWJVL2NkZmtnekRqZ21yUUdZTHFFa0wvMVZSNHlLd3JaYlpuWE1VS21JPQ== workers 10.188.44.219 10.188.45.164 cluster-vip 10.188.45.169 restore /home/cumulus/combined_backup_20241211111316.tar
 ```
 
 <div class="notices note"><p></p><p>NetQ uses the 10.244.0.0/16 (<code>pod-ip-range</code>) and 10.96.0.0/16 (<code>service-ip-range</code>) networks for internal communication by default. If you are using these networks, you must override each range by specifying new subnets for these parameters in the install command:</p>

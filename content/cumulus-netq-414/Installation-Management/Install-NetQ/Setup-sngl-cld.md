@@ -137,7 +137,7 @@ Add the same NEW_HOSTNAME value to **/etc/hosts** on your VM for the localhost e
 {{< tabs "TabID136 ">}}
 {{< tab "New Install">}}
 
-Run the following command on your NetQ cloud appliance with the `config-key` obtained from the email you received from NVIDIA titled *NetQ Access Link*. You can also obtain the configuration key {{<link title="Configure Premises" text="through the NetQ UI">}}.
+Run the following command with the `config-key` obtained from the email you received from NVIDIA titled *NetQ Access Link*. You can also obtain the configuration key {{<link title="Configure Premises" text="through the NetQ UI">}}.
 
 ```
 cumulus@<hostname>:~$ netq install opta standalone full interface eth0 bundle /mnt/installables/NetQ-4.14.0-opta.tgz config-key <your-config-key> [proxy-host <proxy-hostname> proxy-port <proxy-port>]

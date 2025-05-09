@@ -1668,7 +1668,7 @@ cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure -X GET https://127.
 }
 ```
 
-The following example returns all the routes in the routing table but only includes the protocol, uptime, and nexthop-group-id attributes:
+The following example returns all the routes in the routing table but only includes the protocol, uptime, and `nexthop-group-id` attributes:
 
 ```
 cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure -X GET "https://127.0.0.1:8765/nvue_v1/vrf/default/router/rib/ipv4/route?include=/*/route-entry/*/protocol,/*/route-entry/*/nexthop-group-id,/*/route-entry/*/uptime"

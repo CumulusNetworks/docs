@@ -30,12 +30,7 @@ cumulus@leaf01:~$ ip -d link show type vxlan
 ```
 
 The following shows example output for the `nv show bridge domain <domain> mac-table` command:
-<!--
-- bond1 is in VLAN ID 10.
-- 48:b0:2d:d8:33 is the host MAC address learned on bond1.
-- A remote VTEP that participates in VLAN ID 10 is 10.0.1.34 (the FDB entries have a MAC address of 48:b0:2d:b4:4e). BUM traffic replication uses these entries.
-- 44:38:39:22:01 is a remote host MAC reachable over the VXLAN tunnel via VTEP 10.0.1.2.
--->
+<!-- vale off -->
 ```
 cumulus@leaf01:mgmt:~$ nv show bridge domain br_default mac-table
 entry-id  MAC address        vlan  interface   remote-dst   src-vni  entry-type    last-update  age    
@@ -167,11 +162,9 @@ leaf02(peerlink.4094) 4      65101       766       768        0    0    0 00:37:
 
 Total number of neighbors 5
 
-
 show bgp ipv6 unicast summary
 =============================
 % No BGP neighbors found
-
 
 show bgp l2vpn evpn summary
 ===========================
@@ -479,7 +472,7 @@ vlan
 You can drill down and show information about a specific vlan with the `nv show evpn access-vlan-info vlan <vlan>` command.
 
 ## Show the VRF Routing Table in FRR
-<!-- vale off -->
+
 Run the NVUE `nv show vrf <vrf-id> router rib <address-family> route` command or the vtysh `show ip route vrf <vrf-name>` command to examine the VRF routing table. Use this command for symmetric routing to verify that remote host and prefix routes are in the VRF routing table and point to the appropriate gateway next hop.
 
 ```

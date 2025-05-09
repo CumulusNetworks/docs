@@ -283,4 +283,4 @@ cluster node: netq-appliance                         READY     N/A            N/
 If any of the applications or services display a DOWN status after 30 minutes, open a support ticket and attach the output of the `opta-support` command.
 {{%/notice%}}
 
-After NetQ is installed, you can {{<link title="Access the NetQ UI" text="log in to NetQ">}} from your browser.
+After NetQ is installed, you can {{<link title="Access the NetQ UI" text="log in to NetQ">}} from your browser at *https://netq.nvidia.com*.

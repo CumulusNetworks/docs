@@ -503,7 +503,7 @@ swp10           down          down         disabled
 ```
 cumulus@switch:~$ ip link
 ...
-37: swp2: <NO-CARRIER,BROADCAST,MULTICAST,SLAVE,UP> mtu 9178 qdisc pfifo_fast master bond131 state DOWN mode DEFAULT group default qlen 1000
+37: swp3: <NO-CARRIER,BROADCAST,MULTICAST,SLAVE,UP> mtu 9178 qdisc pfifo_fast master bond131 state DOWN mode DEFAULT group default qlen 1000
   link/ether 1c:34:da:ba:bb:2a brd ff:ff:ff:ff:ff:ff protodown on protodown_reason <linkflap>
 ...
 ```

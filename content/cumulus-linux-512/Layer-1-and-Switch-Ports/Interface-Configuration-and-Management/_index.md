@@ -489,7 +489,7 @@ peerlink        up            up           disabled
 peerlink.4094   up            up           disabled                   
 swp1            up            up           disabled                   
 swp2            up            up           disabled                   
-swp3            up            up           disabled                   
+swp3            up            down         enabled    linkflap                   
 swp4            down          down         disabled                   
 swp5            down          down         disabled                   
 swp6            down          down         disabled                   
@@ -509,13 +509,13 @@ cumulus@switch:~$ ip link
 ```
 
 ```
-cumulus@switch:~$ nv show interface swp1 link
+cumulus@switch:~$ nv show interface swp3 link
                          operational        applied
 -----------------------  -----------------  -------
 admin-status             up                        
 oper-status              up                        
 oper-status-last-change  Unknown                   
-protodown                disabled                  
+protodown                enabled                  
 auto-negotiate           off                on     
 duplex                   full               full   
 speed                    1G                 auto   
@@ -539,6 +539,13 @@ stats
   carrier-transitions    4                                  
   carrier-up-count       2                                  
   carrier-down-count     2
+```
+
+```
+cumulus@switch:~$ nv show interface swp3 link protodown-reason 
+operational
+-----------
+linkflap 
 ```
 
 ### Clear the Interface Protodown State and Reason

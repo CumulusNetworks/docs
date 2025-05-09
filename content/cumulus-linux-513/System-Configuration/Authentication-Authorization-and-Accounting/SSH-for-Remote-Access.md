@@ -627,11 +627,11 @@ The following example adds an authorized key file from the account `cumulus` on 
 
 ## Certificate-based Authentication
 
-Instead of using passwords and SSH keys, you can enable certificate authentication for a user. A trusted CA certificate is tied to a user, expires automatically, and eliminates any Trust-On-First-Use (TOFU) problems.
+Instead of using passwords and SSH keys, you can enable certificate authentication for a user. A trusted CA certificate links to a user, expires automatically, and eliminates any Trust-On-First-Use (TOFU) problems.
 
 {{%notice note%}}
 - When you configure certificate-based authentication for a user, Cumulus Linux disables password authentication for that user.
-- A trusted CA certificate must have a valid expiration, be signed by a certificate authority matching a public key in trusted-ca-keys, and have a principal in the list to log in as a user.
+- A trusted CA certificate must have a valid expiration, be signed by a certificate authority matching a public key in `trusted-ca-keys`, and have a principal in the list to log in as a user.
 {{%/notice%}}
 
 To configure certificate-based authentication for a user:

@@ -230,7 +230,7 @@ cumulus@switch:~$ nv config apply
 
 ### Rate Limit
 
-You can specify a rate-limiting rule with an interval (between 1 and 65535) and a burst limit (between 1 and 65535) to control log message processing or forwarding within a defined time period. The interval defines the time window within which log messages are limited after reaching the burst threshold. The burst limit specifies the maximum number of log messages that can be processed instantly before rate limiting takes effect.
+You can specify a rate-limiting rule with an interval (between 1 and 65535) and a burst limit (between 1 and 65535) to control log message processing or forwarding within a defined time period. The interval defines the time window within which the switch limits log messages after reaching the burst threshold. The burst limit specifies the maximum number of log messages that the switch can process instantly before rate limiting takes effect.
 
 The following example sets a rate limiting rule with an interval of 240 and a burst limit of 2. With a burst limit of 2, `rsyslog` sends up to two log messages at the specified interval and drops any additional messages beyond this limit. After 240 seconds, `rsyslog` resumes processing and forwarding logs to the syslog server.
 

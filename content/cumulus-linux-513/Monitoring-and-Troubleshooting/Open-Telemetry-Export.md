@@ -1195,24 +1195,24 @@ The interface statistic data samples that the switch exports to the OTEL collect
 | `nvswitch_interface_ether_stats_pkts8192to10239octets` | Total packets received, 8192-10239 octets in length. |
 | `nvswitch_interface_carrier_up_changes_total` | Total number of carrier up transitions for the interface. |
 | `nvswitch_interface_carrier_last_change_time_ms` | Time of last carrier change for the interface as Unix epoch timestamp, with millisecond granularity. |
-|`nvswitch_interface_ether_stats_broadcast_pkts` | The total number of good packets received that were directed to the broadcast address.|
+|`nvswitch_interface_ether_stats_broadcast_pkts` | The total number of good packets received and directed to the broadcast address.|
 | `nvswitch_interface_ether_stats_collisions` |The best estimate of the total number of collisions on this Ethernet segment.|
 | `nvswitch_interface_ether_stats_crc_align_errors` | The total number of packets received that had a length (excluding framing bits, but including FCS octets) of between 64 and MTU octets, inclusive, but had either a bad frame check sequence (FCS) with an integral number of octets (FCS error) or a bad FCS with a non-integral number of octets (alignment error).|
-| `nvswitch_interface_ether_stats_drop_events` | The total number of events in which packets were dropped by the probe due to lack of resources. |
+| `nvswitch_interface_ether_stats_drop_events` | The total number of events in which packets are dropped due to lack of resources. |
 | `nvswitch_interface_ether_stats_fragments` | The total number of packets received that were less than 64 octets in length (excluding framing bits but including FCS octets) and had either a bad FCS with an integral number of octets (FCS error) or a bad FCS with a non- integral number of octets (alignment error).|
 | `nvswitch_interface_ether_stats_jabbers` | The total number of packets received that were longer than MTU octets (excluding framing bits, but including FCS octets), and had either a bad FCS with an integral number of octets (FCS error) or a bad FCS with a non integral number of octets (alignment error).|
-| `nvswitch_interface_ether_stats_multicast_pkts` | The total number of good packets received that were directed to a multicast MAC address. This number does not include packets directed to the broadcast address. |
+| `nvswitch_interface_ether_stats_multicast_pkts` | The total number of good packets received and directed to a multicast MAC address. This number does not include packets directed to the broadcast address. |
 | `nvswitch_interface_ether_stats_octets` | The total number of octets of data (including those in bad packets) received (excluding framing bits but including FCS octets). |
 | `nvswitch_interface_ether_stats_oversize_pkts` | The total number of packets received that were longer than MTU octets (excluding framing bits, but including FCS octets) but were otherwise well formed. |
 | `nvswitch_interface_ether_stats_pkts` | The total number of packets (including bad packets, broadcast packets, and multicast packets) received. |
 | `nvswitch_interface_ether_stats_undersize_pkts` | The total number of packets received that were less than 64 octets long (excluding framing bits, but including FCS octets) and were otherwise well formed. |
-| `nvswitch_interface_if_out_ucast_pkts` | The total number of packets that higher-level protocols requested be transmitted and were not addressed to a multicast or broadcast MAC address, including those that were discarded or not sent. |
+| `nvswitch_interface_if_out_ucast_pkts` | The total number of packets that higher-level protocols requested to be transmitted and were not addressed to a multicast or broadcast MAC address, including discarded packets or those not sent. |
 | `nvswitch_interface_no_buffer_discard_mc` | The number of multicast packets dropped due to lack of egress buffer resources. Valid only for Spectrum. |
 | `nvswitch_interface_rx_buffer_almost_full` | The number of events where the port rx buffer has passed a fullness threshold. |
 | `nvswitch_interface_rx_buffer_full` |The number of events where the port rx buffer has reached 100% fullness. |
 | `nvswitch_interface_rx_ebp` | The number of received EBP packets. |
 | `nvswitch_interface_tx_ebp` | The number of transmitted EBP packets. |
-| `nvswitch_interface_tx_int_cksm_err` | Counter is incremented upon packet payload internal checksum error. |
+| `nvswitch_interface_tx_int_cksm_err` | Counter increments when there is a packet payload internal checksum error. |
 | `nvswitch_interface_tx_stats_pkts64octets` | Total packets transmitted, 64 octets in length. |  
 | `nvswitch_interface_tx_stats_pkts65to127octets`| Total packets transmitted, 64 octets in length. |
 | `nvswitch_interface_tx_stats_pkts256to511octets` | Total packets transmitted, 256-511 octets in length.|
@@ -1222,7 +1222,7 @@ The interface statistic data samples that the switch exports to the OTEL collect
 | `nvswitch_interface_tx_stats_pkts2048to4095octets` | Total packets transmitted, 2048-4095 octets in length.|
 | `nvswitch_interface_tx_stats_pkts4096to8191octets` | Total packets transmitted, 4096-8191 octets in length.|
 | `nvswitch_interface_tx_stats_pkts8192to10239octets` | Total packets transmitted, 8192-10239 octets in length.|
-| `nvswitch_interface_tx_wait` |The time (in ns resolution) during which the port selected had data to transmit but no data was sent.|
+| `nvswitch_interface_tx_wait` |The time (in ns resolution) during which the port selected has data to transmit but no data was sent.|
 | `nvswitch_interface_carrier_down_changes_total` | Total number of carrier down transitions for the interface. |
 | `nvswitch_interface_carrier_changes_total` | Total number of carrier changes for the interface. |
 | `nvswitch_interface_mtu_bytes` | Operational MTU for the interface in bytes. |
@@ -1308,8 +1308,8 @@ The switch collects and exports the following additional interface statistics wh
 |------ | ----------- |
 | `nvswitch_interface_phy_stats_phy_received_bits` | Total amount of traffic (bits) received. |
 | `nvswitch_interface_phy_stats_phy_symbol_errors` | Error bits not corrected by the FEC correction algorithm or when FEC is not active. |
-| `nvswitch_interface_phy_stats_phy_effective_errors` | Number of errors after FEC is applied. |
-| `nvswitch_interface_phy_stats_phy_raw_errors` | Error bits identified on lane 0 through lane 7. When FEC is enabled, this induction corresponds to corrected errors. |
+| `nvswitch_interface_phy_stats_phy_effective_errors` | Number of errors after applying FEC. |
+| `nvswitch_interface_phy_stats_phy_raw_errors` | Error bits identified on lane 0 through lane 7. When you enable FEC, this induction corresponds to corrected errors. |
 | `nvswitch_interface_phy_stats_raw_ber` | raw_ber_coef_laneX*10^(raw_ber_magnitude) |
 | `nvswitch_interface_phy_stats_symbol_ber` | Symbol BER errors. |
 | `nvswitch_interface_phy_layer_time_since_last_clear` | Time after counters clear.|
@@ -1936,9 +1936,9 @@ When you enable LLDP statistic telemetry, the switch exports the following stati
 | Name | Description |
 |----- | ----------- |
 | `nvswitch_lldp_chassis_info` | LLDP chassis information. |
-| `nvswitch_lldp_chassis_capabilities` | LLDP chassis capabilities as a bitmap. The capabilities are defined in IEEE 802.1AB.|
+| `nvswitch_lldp_chassis_capabilities` | LLDP chassis capabilities as a bitmap. IEEE 802.1AB defines the capabilities.|
 | `nvswitch_lldp_neighbor_age` | LLDP neighbor age information in seconds.|
-| `nvswitch_lldp_neighbor_capabilities` | LLDP neighbor capabilities as a bitmap. The capabilities are defined in IEEE 802.1AB. |
+| `nvswitch_lldp_neighbor_capabilities` | LLDP neighbor capabilities as a bitmap. IEEE 802.1AB defines the capabilities. |
 | `nvswitch_lldp_neighbor_info` | LLDP neighbor information.|
 | `nvswitch_lldp_neighbor_ttl` | LLDP neighbor port TTL in seconds.|
 | `nvswitch_lldp_neighbor_management_address-info` | LLDP neighbor management address information.|
@@ -2303,7 +2303,7 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | `node_disk_ata_write_cache_enabled` | ATA disk write cache status (enabled or disabled). | 
 | `node_disk_discard_time_seconds_total` | Total number of seconds spent by all discards. |  
 | `node_disk_discarded_sectors_total` | Total number of sectors discarded successfully. |  
-| `node_disk_discards_completed_total` | Total number of discards discards completed. |  
+| `node_disk_discards_completed_total` | Total number of discards completed. |  
 | `node_disk_discards_merged_total` |  Total number of discards merged. |  
 | `node_disk_flush_requests_time_seconds_total` | Total number of seconds spent by all flush requests. |  
 | `node_disk_flush_requests_total` | The total number of flush requests completed successfully. |  
@@ -3193,8 +3193,8 @@ When you enable layer 3 routing metrics telemetry, the switch exports the follow
 |----- | ----------- |
 | `nvrouting_bgp_peer_state` |  BGP peer state: `Established`, `Idle`, `Connect`, `Active`, `OpenSent`.  |
 | `nvrouting_bgp_peer_fsm_established_transitions` | Number of BGP peer state transitions to the `Established` state for the peer session.|
-| `nvrouting_bgp_peer_rib_adj_in_installed` | Tracks the number of  prefixes received from the neighbor that are installed in the RIB and actively used for forwarding.  |
-| `nvrouting_bgp_peer_rib_adj_out_advertised` | Tracks the number of  prefixes that are advertised to the neighbor after applying any policies. |
+| `nvrouting_bgp_peer_rib_adj_in_installed` | Tracks the number of prefixes received from the neighbor, installed in the RIB and actively used for forwarding.  |
+| `nvrouting_bgp_peer_rib_adj_out_advertised` | Tracks the number of prefixes advertised to the neighbor after applying any policies. |
 | `nvrouting_bgp_peer_total_msgs_sent` | Number of BGP messages sent to the neighbor. |
 | `nvrouting_bgp_peer_total_msgs_recvd` | Number of BGP messages received from the neighbor.|
 | `nvrouting_bgp_peer_rib_adj_in` | Number of IPv4, IPv6, and EVPN prefixes received from the peer after applying any policies. This count is the number of prefixes present in the post-policy Adj-RIB-In for the peer. |

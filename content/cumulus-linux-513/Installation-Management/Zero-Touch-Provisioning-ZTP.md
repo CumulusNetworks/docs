@@ -122,7 +122,7 @@ Cumulus Linux provides commands so that you can manually:
 - Enable ZTP and activate the provisioning process.
 - Disable ZTP and deactivate the provisioning process.
 - Run ZTP from the beginning. You have the option of specifying a custom URL or location on the switch for the ZTP script.
-- Terminate the current ZTP process.
+- Stop the current ZTP process.
 - Show the status of the ZTP service.
 
 {{< tabs "TabID569 ">}}

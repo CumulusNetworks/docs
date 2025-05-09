@@ -65,7 +65,7 @@ The `nv show system log file` command provides the following options:
 | Option  | Description |
 | ------- | ----------- |
 | `brief` | Shows the contents of the most current system log file but in a more concise format. |
-| `follow`| Shows the contents of a system log file in real-time.  The command shows the log file output continuously as it is updated, similar to the behavior of the `tail -f` command.|
+| `follow`| Shows the contents of a system log file in real time.  The command shows the log file output continuously as it updates, similar to the `tail -f` command.|
 | `list` |  Shows the available system log files on the system with their filenames and corresponding file paths. |
 | `<file-name>`|  Shows the contents of a specific system log file. |
 

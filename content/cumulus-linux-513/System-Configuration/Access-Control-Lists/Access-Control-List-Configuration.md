@@ -748,7 +748,7 @@ cumulus@switch:~$ nv config apply
 To rate limit traffic using the `/etc/cumulus/control-plane/policers.conf` file, you:
 - Enable an individual policer for a trap group (set `enable` to `TRUE`).
 - Set the Committed Information Rate (CIR). The CIR is the allowed incoming rate for the trap group. The incoming rate is the maximum rate in packets per second.
-- Set the Committed Burst Rate (CBR) for the trap group. The burst rate is the number of packets or kilobytes (KB) allowed to arrive sequentially after the CIR rate is exceeded.
+- Set the Committed Burst Rate (CBR) for the trap group. The burst rate is the number of packets or kilobytes (KB) allowed to arrive sequentially after exceeding the CIR rate.
 
 After you edit the `/etc/cumulus/control-plane/policers.conf` file, you must reload the file with the `/usr/lib/cumulus/switchdctl --load /etc/cumulus/control-plane/policers.conf` command.
 

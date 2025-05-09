@@ -7,7 +7,9 @@ toc: 3
 <span class="a-tooltip">[RoCE](## "RDMA over Converged Ethernet")</span> enables you to write to compute or storage elements using <span class="a-tooltip">[RDMA](## "Remote Direct Memory Access")</span> over an Ethernet network instead of using host CPUs. RoCE relies on <span class="a-tooltip">[ECN](## "Explicit Congestion Notification")</span> and <span class="a-tooltip">[PFC](## "Priority Flow Control")</span> to operate. Cumulus Linux supports features that can enable lossless Ethernet for RoCE environments.
 
 {{%notice note%}}
-While Cumulus Linux can support RoCE environments, the end hosts must support the RoCE protocol.
+- While Cumulus Linux can support RoCE environments, the end hosts must support the RoCE protocol.
+- RoCE is a complex configuration; you can only configure RoCE with NVUE commands. NVUE configuration is essential for error handling.
+- RoCE configuration is different depending on the switch ASIC (Spectrum 1, Spectrum-2, or Spectrum-3).
 {{%/notice%}}
 
 RoCE helps you obtain a *converged network*, where all services run over the Ethernet infrastructure, including Infiniband apps.

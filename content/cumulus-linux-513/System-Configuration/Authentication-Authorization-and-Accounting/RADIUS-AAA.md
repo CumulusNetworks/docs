@@ -273,7 +273,7 @@ The `/var/log/radius-cmd-acct.log` file contains the local copy of the logs, whi
 
 If you do not receive any accounting packets, check the `/var/log/radius-send-cmd.log` file.
 
-To see if RADIUS user command accounting is enabled, run the `nv show system aaa radius` command.
+To see if RADIUS user command accounting is `on`, run the `nv show system aaa radius` command.
 
 ### Send Accounting Records to First Response
 

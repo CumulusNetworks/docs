@@ -1653,7 +1653,7 @@ Pool-Id  infinite  memory-percent  mode     reserved  shared-alpha  shared-bytes
 
 ### Lossy Headroom
 
-Lossy headroom is the buffer that stores packets waiting to be processed by the switch. If the expected processing latency is longer than normal (for example, if there are multiple ACL rules), increase the lossy headroom.
+Lossy headroom is the buffer that stores packets waiting for the switch to process them. If the expected processing latency is longer than normal (for example, if there are multiple ACL rules), increase the lossy headroom.
 
 To change the lossy headroom for a priority group, run the following commands. The switch calculates the default value internally based on the MTU and internal latency.
 

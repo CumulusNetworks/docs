@@ -57,7 +57,7 @@ You can use one of these methods to set the time zone on the switch:
 
 {{< tabs "TabID58 ">}}
 {{< tab "NVUE Command ">}}
-
+<!-- vale off -->
 Run the `nv set system timezone <timezone>` command. To see all the available time zones, run `nv set system timezone` and press the Tab key. The following example sets the time zone to US/Eastern:
 
 ```
@@ -102,7 +102,7 @@ cumulus@switch:~$ nv config apply
 
 {{< /tab >}}
 {{< /tabs >}}
-
+<!-- vale on -->
 ## Set the Date and Time
 
 The switch contains a battery backed hardware clock that maintains the time while the switch powers off and between reboots. When the switch is running, the Cumulus Linux operating system maintains its own software clock.

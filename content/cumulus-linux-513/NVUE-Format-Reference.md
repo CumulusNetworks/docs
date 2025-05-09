@@ -9,7 +9,7 @@ The NVUE openAPI schema references the `format` keyword, which takes a string th
 
 ## Reserved Names
 
-The following names are reserved:
+NVUE reserves the following names:
 
 ```
 "auto"
@@ -382,13 +382,13 @@ bond1_1
    - Cannot be a reserved name
 
 7. General rules:
-   - Names cannot be reserved words (auto, none, null, any, all)
+   - Names cannot be `reserved` words (auto, none, null, any, all)
    - Names cannot start with reserved prefixes (sw, eth, vlan, ib, fnm, vrrp)
    - Names cannot match the pattern "lo" followed by a number (reserved for future use)
 
 ### Interface Name Range Support
 
-The `interface-name` format also supports specifying a range of interfaces using a special syntax. When a range is specified, each interface name in the range must be valid according to the rules above.
+The `interface-name` format also supports specifying a range of interfaces using a special syntax. When you specify a range, each interface name in the range must be valid according to the rules above.
 
 **Valid Range Examples**
 
@@ -414,8 +414,8 @@ bond1-3 # Expands to: bond1, bond2, bond3
 
 **Range Rules**
 
-1. Range format is specified using a hyphen (-) between start and end numbers.
-2. Start number must be less than end number.
+1. You specify a range format with a hyphen (-) between start and end numbers.
+2. The start number must be less than the end number.
 3. Only the numeric portion of the interface name can be part of the range.
 4. All expanded interface names must be valid according to their respective interface type rules.
 5. Cannot mix different interface types in a single range.
@@ -430,7 +430,7 @@ IPv4 address format.
 **Valid Input Format:**
 - Must be a string
 - Four octets separated by dots
-- Each octet must be between 0-255
+- Each octet must be between 0 and 255
 - No leading zeros allowed
 - No spaces allowed
 
@@ -448,7 +448,7 @@ IPv4 unicast address format.
 
 **Valid Input Format:**
 - Must be a valid IPv4 address
-- First octet must not be in range 224-239 (multicast range)
+- First octet must not be between 224 and 239 (multicast range)
 
 **Valid Examples:**
 
@@ -464,7 +464,7 @@ IPv4 multicast address format.
 
 **Valid Input Format:**
 - Must be a valid IPv4 address
-- First octet must be in range 224-239
+- First octet must be between 224 and 239
 
 **Valid Examples:**
 
@@ -481,7 +481,7 @@ IPv4 address with prefix length.
 **Valid Input Format:**
 - Must be a string
 - Format: "ipv4_address/prefix_length"
-- Prefix length must be between 0-32
+- Prefix length must be between 0 and 32
 
 **Valid Examples:**
 
@@ -499,7 +499,7 @@ IPv4 subnet address with prefix length.
 - Must be a string
 - Format: "network_address/prefix_length"
 - Must be a valid network address (not a host address)
-- Prefix length must be between 0-32
+- Prefix length must be between 0 and 32
 
 **Valid Examples:**
 
@@ -516,7 +516,7 @@ IPv6 address with prefix length.
 **Valid Input Format:**
 - Must be a string.
 - Format: "ipv6_address/prefix_length"
-- Prefix length must be between 0-128
+- Prefix length must be between 0 and 128
 
 **Valid Examples:**
 

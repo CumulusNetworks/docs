@@ -15,7 +15,7 @@ An interface status can be in an:
 - Administrative state, where you configure the interface to be up or down. The administrative state reflects the intended configuration set by an administrator or management system. It indicates whether the interface is meant to be enabled or disabled. 
 - Operational state, which reflects the current operational status of an interface. The operational state reflects the actual current status of the interface, taking into account physical and logical conditions.
 
-The carrier state is the lower layer state of an interface. For a switch port, the carrier state represents if the switch port is enabled at the ASIC level and a cable is connected successfully. For a virtual interface, the carrier state involves the operational state of lower-level interfaces. For example, for a VLAN interface, the carrier state depends on the underlying bridge device operational state.
+The carrier state is the lower layer state of an interface. For a switch port, the carrier state represents if the switch port is enabled at the ASIC level and a cable connects successfully. For a virtual interface, the carrier state involves the operational state of lower-level interfaces. For example, for a VLAN interface, the carrier state depends on the underlying bridge device operational state.
 
 The operational state always depends on administrative state and carrier state; the operational state is a function of the administrative state, carrier state and other link states.
 

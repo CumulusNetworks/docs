@@ -502,7 +502,7 @@ cumulus@switch:~$ nv show interface swp1 link
 ---------------------  ------------------------------
 admin-status           up
 oper-status            up
-protodown              disabled
+protodown              enabled
 auto-negotiate         on
 duplex                 full
 speed                  800G

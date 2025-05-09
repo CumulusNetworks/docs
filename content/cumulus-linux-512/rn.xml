@@ -97,14 +97,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4423261</td>
-<td>When you use the NVUE {{nv set qos congestion-control &lt;ecn_profile_name&gt; traffic-class &lt;tc&gt; min-threshold-bytes}} command to set an ECN Profile, you must configure the minimum threshold according to the platform:
-On the Spectrum-4 switch, the cell-size is 192 bytes. The minimum buffer must be a multiple of 64; therefore, the initial value is 192*64 (12KB).
-On the Spectrum-3 switch, the cell-size is 144 bytes. The minimum size is 144*64 (9KB).</td>
-<td>5.12.0-5.13.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4413450</td>
 <td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables, the process consumes excessive memory resulting in OOM crashes. </td>
 <td>5.0.0-5.13.0</td>
@@ -1165,14 +1157,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>4423269</td>
 <td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
 <td>5.11.0-5.13.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4423261</td>
-<td>When you use the NVUE {{nv set qos congestion-control &lt;ecn_profile_name&gt; traffic-class &lt;tc&gt; min-threshold-bytes}} command to set an ECN Profile, you must configure the minimum threshold according to the platform:
-On the Spectrum-4 switch, the cell-size is 192 bytes. The minimum buffer must be a multiple of 64; therefore, the initial value is 192*64 (12KB).
-On the Spectrum-3 switch, the cell-size is 144 bytes. The minimum size is 144*64 (9KB).</td>
-<td>5.12.0-5.13.0</td>
 <td></td>
 </tr>
 <tr>

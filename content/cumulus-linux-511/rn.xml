@@ -155,6 +155,12 @@ nv config apply -y</td>
 <td>5.13.0</td>
 </tr>
 <tr>
+<td>4328729</td>
+<td>When sending control packets that have the port range 259 through 1023 in their TX base header system target (above {{cap_max_system_ports}} and below {{cap_ports}} used for LAG forwarding), a fatal health event occurs on the switch. The port range 259 through 1023 reflects illegal system ports; do not set these values in the control packet TX base header. As this range reflects illegal system ports, do not set these values in the control packet TX base header, as it will be dropped.</td>
+<td>5.10.1-5.12.1</td>
+<td>5.13.0</td>
+</tr>
+<tr>
 <td>4328029</td>
 <td>If you apply an NVUE snippet affecting the {{/etc/cumulus/datapath/traffic.conf}} file, the snippet might fail the consistency check, resulting in a failed snippet apply.</td>
 <td>5.11.0-5.12.1</td>
@@ -1317,6 +1323,12 @@ nv config apply -y</td>
 <td>5.13.0</td>
 </tr>
 <tr>
+<td>4328729</td>
+<td>When sending control packets that have the port range 259 through 1023 in their TX base header system target (above {{cap_max_system_ports}} and below {{cap_ports}} used for LAG forwarding), a fatal health event occurs on the switch. The port range 259 through 1023 reflects illegal system ports; do not set these values in the control packet TX base header. As this range reflects illegal system ports, do not set these values in the control packet TX base header, as it will be dropped.</td>
+<td>5.10.1-5.12.1</td>
+<td>5.13.0</td>
+</tr>
+<tr>
 <td>4328029</td>
 <td>If you apply an NVUE snippet affecting the {{/etc/cumulus/datapath/traffic.conf}} file, the snippet might fail the consistency check, resulting in a failed snippet apply.</td>
 <td>5.11.0-5.12.1</td>
@@ -2373,9 +2385,19 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>5.10.0-5.10.1</td>
 </tr>
 <tr>
+<td>4127253</td>
+<td>You might see {{switchd}} high-memory consumption and eventually {{switchd}} stops because it is out of memory due to higher tunnel (VNI x VTEP) scale.</td>
+<td>5.8.0-5.10.1</td>
+</tr>
+<tr>
 <td>4124831</td>
 <td>When Per-VLAN Rapid Spanning Tree (PVRST) mode is enabled, bonds with LACP bypass discard ingress DHCP packets.</td>
 <td>5.9.1-5.10.1</td>
+</tr>
+<tr>
+<td>4124139</td>
+<td>MLAG interfaces including VXLAN interfaces goes down when you add MLAG configuration to the first bond in a single MLAG switch setup.</td>
+<td>5.8.0-5.10.1</td>
 </tr>
 <tr>
 <td>4119621</td>
@@ -2422,6 +2444,11 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <td>5.10.0-5.10.1</td>
 </tr>
 <tr>
+<td>4081974</td>
+<td>When you use {{mlxlink}} to check TX power, you see incorrect values for different lanes of a port. To work around this issue, either use the NVUE {{nv show platform transceiver &lt;interface&gt;}} command or the ethtool {{-m &lt;interface&gt;}} command.</td>
+<td>5.10.0-5.10.1</td>
+</tr>
+<tr>
 <td>4081784</td>
 <td>If you configure an inbound route policy that drops prefixes, then run a vtysh {{show bgp vrf &lt;vrf&gt; neighbours &lt;neighbor&gt; received-routes}} command, the BGP service might crash.&gt;br&gt;Avoid running a vtysh received routes show command if you configure an inbound route policy that drops prefixes.</td>
 <td>5.9.1-5.10.1</td>
@@ -2447,6 +2474,11 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <td>5.8.0-5.10.1</td>
 </tr>
 <tr>
+<td>4062001</td>
+<td>With VM migration from one VTEP to another, traffic loss might occur during a MAC move as locally learned MAC addresses are frequently refreshed in the kernel. </td>
+<td>5.8.0-5.10.1</td>
+</tr>
+<tr>
 <td>4061534</td>
 <td>When you remove a secondary OTLP collector, there is a telemetry spike and existing connections with OTLP exporters reset. When new connections with the OTLP collector re-establish, the server experiences a high CPU and memory leak, which can bring down the telemetry collection service.</td>
 <td>5.10.0-5.10.1</td>
@@ -2464,6 +2496,20 @@ cumulus@leaf01:~$ nv set system telemetry interface-stats ingress-buffer priorit
 interface_stats: [ERROR] interface_stats_collector.py:_parse_conf_file:201 — Configured ingress-priority-group 0-6 is not an integer
 interface_stats: [ERROR] interface_stats_collector.py:_parse_conf_file:201 — Configured egress-traffic-class 0,3,6 is not an integer</td>
 <td>5.10.0-5.10.1</td>
+</tr>
+<tr>
+<td>4047829</td>
+<td>Ports can be operationally down if the {{switchd}} service fails to come UP due to certain firmware failures and you the following {{switchd.log}} messages:
+PDDR long process T.O
+MCIA no response
+FW assert [0x8C91] detected
+To work around this issue, power-cycle the switch.</td>
+<td>5.10.0-5.10.1</td>
+</tr>
+<tr>
+<td>4039850</td>
+<td>When the MAC address of the neighbor changes, a possible crash might occur because the pointer to which the MAC address points is freed, resulting in a dangling pointer.</td>
+<td>5.3.1-5.10.1</td>
 </tr>
 <tr>
 <td>4037315</td>

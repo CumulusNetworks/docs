@@ -3217,9 +3217,9 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action import system security crl uri \<crl-id\></h>
+## <h>nv action import system security crl</h>
 
-Imports a Certificate Revocation List to verify server certificates.
+Imports a Certificate Revocation List to verify server certificates. You can specify either `uri` (a local or remote URI from where to retrieve the crl bundle file) or `data` (for a PEM encoded CRL).
 
 ### Version History
 
@@ -3228,7 +3228,7 @@ Introduced in Cumulus Linux 5.13.0
 ### Example
 
 ```
-cumulus@switch:~$ nv action import system security crl uri http://www.nvidia.com/path/to/the/crl.crt
+cumulus@switch:~$ nv action import system security crl uri scp://user:password@hostname/path/crl.crt
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

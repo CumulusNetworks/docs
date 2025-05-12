@@ -58,7 +58,7 @@ When you put all protocols in maintenance mode:
 
 If the protocols have done a graceful shutdown while going into maintenance, but some of the neighbors do not have alternate paths, those neighbors continue to send traffic through this switch. That traffic continues to flow through this switch through the warmboot operation. All protocols continue to remain in maintenance mode through the warmboot operation.
 
-Protocols that support Graceful Restart continue to do a graceful restart during warmboot to relearn the routes from the neighbors in the usual way, even though the all-protocols maintenance unit is in maintenance mode.
+All the protocols that support graceful shutdown re-advertise the routes with a lower weight or preference.
 
 ### Version History
 

@@ -3217,6 +3217,22 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action import system security crl</h>
+
+Imports a Certificate Revocation List to verify server certificates. You can specify either `uri` (a local or remote URI from where to retrieve the crl bundle file) or `data` (for a PEM encoded CRL).
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action import system security crl uri scp://user:password@hostname/path/crl.crt
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action import system security ca-certificate \<cert-id\></h>
 
 Imports a CA certificate.
@@ -3229,7 +3245,6 @@ NVIDIA recommends you use your own certificates and keys.
 - The CA certificate you import contains sensitive private key information. NVIDIA recommends that you use a secure transport such as SFTP, SCP, or HTTPS.
 - If the certificate is passphrase protected, you need to include the passphrase.
 - You must provide a certificate ID (`<cert-id>`) to uniquely identify the certificate you import.
-
 
 ### Version History
 
@@ -3256,7 +3271,6 @@ NVIDIA recommends you use your own certificates and keys.
 - If the certificate is passphrase protected, you need to include the passphrase.
 - A certificate bundle must be in .PFX or .P12 format.
 - You must provide a certificate ID (`<cert-id>`) to uniquely identify the certificate you import.
-
 
 ### Version History
 

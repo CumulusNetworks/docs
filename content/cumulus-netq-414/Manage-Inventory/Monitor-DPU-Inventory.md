@@ -72,10 +72,10 @@ To decommission a host:
     sed -i s'/<netq_server>/127.0.0.1/g' /etc/kubelet.d/doca_telemetry_standalone.yaml
     ```
 
-2. On the NetQ appliance or VM, decommission the DPU:
+2. On the NetQ server, decommission the DPU:
 
     ```
-    cumulus@netq-appliance:~$ netq decommission <hostname-to-decommission>
+    cumulus@netq-server:~$ netq decommission <hostname-to-decommission>
     ```
 
 {{</tab>}}

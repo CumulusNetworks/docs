@@ -5,7 +5,7 @@ weight: 550
 toc: 3
 bookhidden: true
 ---
-Switches collect statistics about the performance of their interfaces. The NetQ Agent on each switch collects these statistics every 15 seconds and then sends them to your NetQ appliance or virtual machine.
+Switches collect statistics about the performance of their interfaces. The NetQ Agent on each switch collects these statistics every 15 seconds and then sends them to your NetQ virtual machine.
 
 NetQ collects statistics for *physical* interfaces; it does not collect statistics for *virtual* interfaces, such as bonds, bridges, and VXLANs.
 
@@ -44,28 +44,28 @@ The Grafana plugin comes unsigned. Before you can install it, you need to update
 
 1. Edit the `/etc/grafana/grafana.ini` file and add `allow_loading_unsigned_plugins = netq-dashboard` under `plugins`:
 
-       cumulus@netq-appliance:~$ sudo nano /etc/grafana/grafana.ini
+       cumulus@netq-server:~$ sudo nano /etc/grafana/grafana.ini
        ...
        allow_loading_unsigned_plugins = netq-dashboard
        ...
 
 2. If you are using Grafana v11.0 or later, add support for AngularJS to the same file under `security`:
 
-       cumulus@netq-appliance:~$ sudo nano /etc/grafana/grafana.ini
+       cumulus@netq-server:~$ sudo nano /etc/grafana/grafana.ini
        ...
        angular_support_enabled = true
        ...
 
 3. Restart the Grafana service:
 
-       cumulus@netq-appliance:~$ sudo systemctl restart grafana-server.service
+       cumulus@netq-server:~$ sudo systemctl restart grafana-server.service
 
 {{%/notice%}}
 
 Then install the plugin:
 
 ```
-cumulus@netq-appliance:~$ grafana-cli --pluginUrl https://netq-grafana-dsrc.s3-us-west-2.amazonaws.com/NetQ-DSplugin-3.3.1-plus.zip plugins install netq-dashboard
+cumulus@netq-server:~$ grafana-cli --pluginUrl https://netq-grafana-dsrc.s3-us-west-2.amazonaws.com/NetQ-DSplugin-3.3.1-plus.zip plugins install netq-dashboard
 installing netq-dashboard @
 from: https://netq-grafana-dsrc.s3-us-west-2.amazonaws.com/NetQ-DSplugin-3.3.1-plus.zip
 into: /usr/local/var/lib/grafana/plugins

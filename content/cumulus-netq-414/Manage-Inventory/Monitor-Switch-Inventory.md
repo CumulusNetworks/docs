@@ -66,10 +66,10 @@ To decommission a switch or host:
     cumulus@switch:~$ sudo systemctl disable netq-agent
     ```
 
-2. On the NetQ appliance or VM, decommission the switch or host:
+2. On the NetQ server or VM, decommission the switch or host:
 
     ```
-    cumulus@netq-appliance:~$ netq decommission <hostname-to-decommission>
+    cumulus@netq-server:~$ netq decommission <hostname-to-decommission>
     ```
 {{</tab>}}
 

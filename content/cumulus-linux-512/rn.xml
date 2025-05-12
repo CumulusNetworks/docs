@@ -152,6 +152,12 @@ onie-nos-install /$devname/onie-installer</td>
 <td></td>
 </tr>
 <tr>
+<td>4380671</td>
+<td>Slow bandwidth and traffic polarization occurs when you create a significant number of next hop groups  with adaptive routing weighted equal cost multipath (W-ECMP).</td>
+<td>5.12.0-5.12.1</td>
+<td>5.13.0</td>
+</tr>
+<tr>
 <td>4377862</td>
 <td>When processing the static IP assignment for an interface previously managed through DHCP, Cumulus Linux fails to clean up the DHCP created state completely. As a result when the IP address assigned by DHCP earlier expires, the switch eventually loses connectivity.</td>
 <td>5.1.0-5.12.1</td>
@@ -267,6 +273,12 @@ On the Spectrum-3 switch, the cell-size is 144 bytes. The minimum size is 144*64
 <td></td>
 </tr>
 <tr>
+<td>4328729</td>
+<td>When sending control packets that have the port range 259 through 1023 in their TX base header system target (above {{cap_max_system_ports}} and below {{cap_ports}} used for LAG forwarding), a fatal health event occurs on the switch. The port range 259 through 1023 reflects illegal system ports; do not set these values in the control packet TX base header. As this range reflects illegal system ports, do not set these values in the control packet TX base header, as it will be dropped.</td>
+<td>5.10.1-5.12.1</td>
+<td>5.13.0</td>
+</tr>
+<tr>
 <td>4328029</td>
 <td>If you apply an NVUE snippet affecting the {{/etc/cumulus/datapath/traffic.conf}} file, the snippet might fail the consistency check, resulting in a failed snippet apply.</td>
 <td>5.11.0-5.12.1</td>
@@ -331,6 +343,12 @@ cumulus@switch:~$ sudo systemctl start cumulus-upgrade-on-shutdown</td>
 <tr>
 <td>4290634</td>
 <td>When you run the {{nv show interface counters}} command, there is a delay in showing the output.</td>
+<td>5.12.0-5.12.1</td>
+<td>5.13.0</td>
+</tr>
+<tr>
+<td>4290629</td>
+<td>The NVUE {{nv show interface qos}} command takes approximately two minutes to display output. To work around this issue, fetch only the sub commands that are part of the {{nv show interface qos}}, command such as buffer, congestion-control, pfc, and so on.</td>
 <td>5.12.0-5.12.1</td>
 <td>5.13.0</td>
 </tr>
@@ -1209,6 +1227,12 @@ onie-nos-install /$devname/onie-installer</td>
 <td></td>
 </tr>
 <tr>
+<td>4380671</td>
+<td>Slow bandwidth and traffic polarization occurs when you create a significant number of next hop groups  with adaptive routing weighted equal cost multipath (W-ECMP).</td>
+<td>5.12.0-5.12.1</td>
+<td>5.13.0</td>
+</tr>
+<tr>
 <td>4377862</td>
 <td>When processing the static IP assignment for an interface previously managed through DHCP, Cumulus Linux fails to clean up the DHCP created state completely. As a result when the IP address assigned by DHCP earlier expires, the switch eventually loses connectivity.</td>
 <td>5.1.0-5.12.1</td>
@@ -1324,6 +1348,12 @@ On the Spectrum-3 switch, the cell-size is 144 bytes. The minimum size is 144*64
 <td></td>
 </tr>
 <tr>
+<td>4328729</td>
+<td>When sending control packets that have the port range 259 through 1023 in their TX base header system target (above {{cap_max_system_ports}} and below {{cap_ports}} used for LAG forwarding), a fatal health event occurs on the switch. The port range 259 through 1023 reflects illegal system ports; do not set these values in the control packet TX base header. As this range reflects illegal system ports, do not set these values in the control packet TX base header, as it will be dropped.</td>
+<td>5.10.1-5.12.1</td>
+<td>5.13.0</td>
+</tr>
+<tr>
 <td>4328029</td>
 <td>If you apply an NVUE snippet affecting the {{/etc/cumulus/datapath/traffic.conf}} file, the snippet might fail the consistency check, resulting in a failed snippet apply.</td>
 <td>5.11.0-5.12.1</td>
@@ -1394,6 +1424,12 @@ cumulus@switch:~$ sudo systemctl start cumulus-upgrade-on-shutdown</td>
 <tr>
 <td>4290634</td>
 <td>When you run the {{nv show interface counters}} command, there is a delay in showing the output.</td>
+<td>5.12.0-5.12.1</td>
+<td>5.13.0</td>
+</tr>
+<tr>
+<td>4290629</td>
+<td>The NVUE {{nv show interface qos}} command takes approximately two minutes to display output. To work around this issue, fetch only the sub commands that are part of the {{nv show interface qos}}, command such as buffer, congestion-control, pfc, and so on.</td>
 <td>5.12.0-5.12.1</td>
 <td>5.13.0</td>
 </tr>

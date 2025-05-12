@@ -15,7 +15,7 @@ The NetQ CLI only runs on switches and server hosts implemented with Intel x86 o
 
 ## CLI Access
 
-After you install or upgrade NetQ, you can also {{<link title="Install NetQ CLI" text="install and configure the CLI">}} on your NetQ server or appliance and hosts.
+After you install or upgrade NetQ, you can also {{<link title="Install NetQ CLI" text="install and configure the CLI">}} on your NetQ server and hosts.
 
 To access the CLI from a switch or server:
 
@@ -81,19 +81,6 @@ When entering a time value, you must include a numeric value *and* the unit of m
 When using the `between` option, you can enter the start time (`text-time`) and end time (`text-endtime`) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure. Use the <code>around</code> option to view information for a particular time.
 
 {{%/notice%}}
-
-### Command Prompts
-
-NetQ code examples use the following prompts:
-
-<!-- vale off -->
-- `cumulus@switch:~$` indicates the user *cumulus* is logged in to a switch to run the example command
-- `cumulus@host:~$` indicates the user *cumulus* is logged in to a host to run the example command
-- `cumulus@netq-appliance:~$` indicates the user *cumulus* is logged in to the NetQ appliance to run the command
-- `cumulus@hostname:~$` indicates the user *cumulus* is logged in to a switch, host or appliance to run the example command
-<!-- vale on -->
-
-To use the NetQ CLI, the switches must be running the Cumulus Linux operating system, the NetQ software, the NetQ Agent, and the NetQ CLI. The hosts must be running the Ubuntu OS, the NetQ Agent, and the NetQ CLI. Refer to {{<link url="Install-NetQ">}} for additional information.
 
 ### Command Completion
 
@@ -649,7 +636,7 @@ The following example shows how to restart the CLI instance:
 cumulus@switch~:$ netq config restart cli
 ```
 
-The following example shows how to enable the CLI on a NetQ on-premises appliance or virtual machine:
+The following example shows how to enable the CLI on a NetQ on-premises server or virtual machine:
 
 ```
 cumulus@switch~:$ netq config add cli server 10.1.3.101
@@ -661,11 +648,11 @@ Use the following commands to manage the NetQ system itself:
 - **bootstrap**: Loads the installation program onto the network switches and hosts in either a single server or server cluster arrangement.
 - **decommission**: Decommissions a switch or host.
 - **install**: Installs NetQ in standalone or cluster deployments; also used to install patch software.
-- **upgrade bundle**: Upgrades NetQ on NetQ on-premises appliances or VMs.
+- **upgrade bundle**: Upgrades NetQ on NetQ on-premises VMs.
 
 The following example shows how to decommission a switch named leaf01:
 
-    cumulus@netq-appliance:~$ netq decommission leaf01
+    cumulus@netq-server:~$ netq decommission leaf01
 
 For information and examples on installing and upgrading the NetQ system, see {{<link url="Install-NetQ">}} and {{<link url="Upgrade-NetQ">}}.
 
@@ -687,7 +674,7 @@ netq show tca
 
 #### Lifecycle Management Commands
 
-The {{<link title="Lifecycle Management" text="lifecycle management">}} commands help you efficiently manage the deployment of NVIDIA product software onto your network devices (servers, appliances, and switches).
+The {{<link title="Lifecycle Management" text="lifecycle management">}} commands help you efficiently manage the deployment of NVIDIA product software onto your network devices.
 
 LCM commands allow you to:
 

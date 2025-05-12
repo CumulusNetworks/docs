@@ -54,7 +54,7 @@ If you have already specified a default image, you must click <strong>Manage</st
 
 {{<tab "NetQ CLI" >}}
 
-1. (Optional) Display a summary of Cumulus Linux images uploaded to the LCM repo on the NetQ appliance or VM:
+1. (Optional) Display a summary of Cumulus Linux images uploaded to the LCM repository:
 
 ```
 netq lcm show cl-images
@@ -114,7 +114,7 @@ If you have already specified a default image, you must click <strong>Manage</st
 
 {{<tab "NetQ CLI">}}
 
-1. (Optional) Display a summary of NetQ images uploaded to the LCM repo on the NetQ appliance or VM:
+1. (Optional) Display a summary of NetQ images uploaded to the LCM repository:
 
 ```
 netq lcm show netq-images
@@ -122,7 +122,7 @@ netq lcm show netq-images
 
 2. Download the NetQ Debian packages needed for upgrade from the {{<exlink url="https://download.nvidia.com/cumulus/apps3.cumulusnetworks.com/repos/deb/pool/netq-4.14/p/python-netq/" text="NetQ repository">}}, selecting the appropriate version and hypervisor/platform. Place them in an accessible part of your local network.
 
-3. Upload the images to the LCM repository. This example uploads the two packages (`netq-agent` and `netq-apps`) required for NetQ version 4.14.0 for a NetQ appliance or VM running Ubuntu 22.04 with an AMD 64 architecture.
+3. Upload the images to the LCM repository. This example uploads the two packages (`netq-agent` and `netq-apps`) required for NetQ version 4.14.0 for a NetQ VM running Ubuntu 22.04 with an AMD 64 architecture.
 
     ```
     cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-agent_4.14.0-ub22.04u51~1744815786.8dbbbd20c_amd64.deb

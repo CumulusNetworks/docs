@@ -47,13 +47,13 @@ cumulus@netq-server:~$ sudo cp ./vmbackuprestore.sh /usr/sbin/
 3. Log in to your NetQ server and set the script to executable. Do this for each node in your deployment:
 
 ```
-cumulus@netq-appliance:/home/cumulus# chmod +x /usr/sbin/vm-backuprestore.sh
+cumulus@netq-server:/home/cumulus# chmod +x /usr/sbin/vm-backuprestore.sh
 ```
 
 4. On your NetQ server (or the master node in cluster deployments), run the `/usr/sbin/vm-backuprestore.sh --backup` command. This command backs up each node in your deployment and combines the data into a single .tar file. Take note of the config key in the output of this command. You will enter it when you restore your data:  
 
 ```
-cumulus@netq-appliance:~$ sudo /usr/sbin/vm-backuprestore.sh --backup
+cumulus@netq-server:~$ sudo /usr/sbin/vm-backuprestore.sh --backup
 [sudo] password for cumulus:
 Fri Jan 17 05:44:13 2025 - Please find detailed logs at: /var/log/vm-backuprestore.log
 Stopping pods...
@@ -100,7 +100,7 @@ Fri Jan 17 05:58:14 2025 - All pods are up
 5. Copy the newly created tarball from the server and restore the data on your _new_ VM.
 
 ```
-cumulus@netq-appliance:~$ sudo scp /opt/backuprestore/combined_backup_20250117054718.tar username:password@<destination>
+cumulus@netq-server:~$ sudo scp /opt/backuprestore/combined_backup_20250117054718.tar username:password@<destination>
 ```
 
 {{</tab>}}
@@ -133,13 +133,13 @@ cumulus@netq-server:~$ sudo cp ./vmbackuprestore.sh /usr/sbin/
 3. Log in to your NetQ server and set the script to executable. Do this for each node in your deployment:
 
 ```
-cumulus@netq-appliance:/home/cumulus# chmod +x /usr/sbin/vm-backuprestore.sh
+cumulus@netq-server:/home/cumulus# chmod +x /usr/sbin/vm-backuprestore.sh
 ```
 
 4. On your NetQ server (or the master node in cluster deployments), run the `/usr/sbin/vm-backuprestore.sh --backup` command. This command backs up each node in your deployment and combines the data into a single .tar file. Take note of the config key in the output of this command. You will enter it when you restore your data:  
 
 ```
-cumulus@netq-appliance:~$ sudo /usr/sbin/vm-backuprestore.sh --backup
+cumulus@netq-server:~$ sudo /usr/sbin/vm-backuprestore.sh --backup
 [sudo] password for cumulus:
 Fri Jan 17 05:44:13 2025 - Please find detailed logs at: /var/log/vm-backuprestore.log
 Stopping pods...
@@ -186,7 +186,7 @@ Fri Jan 17 05:58:14 2025 - All pods are up
 5. Copy the newly created tarball from the server and restore the data on your _new_ VM.
 
 ```
-cumulus@netq-appliance:~$ sudo scp /opt/backuprestore/combined_backup_20250117054718.tar username:password@<destination>
+cumulus@netq-server:~$ sudo scp /opt/backuprestore/combined_backup_20250117054718.tar username:password@<destination>
 ```
 
 6. On your NetQ server (or the master node in cluster deployments), run the `netq bootstrap reset purge-db` command to deactivate the current premises. Use the `netq config show cli premises` command to verify that the status of the premises is inactive.
@@ -210,14 +210,14 @@ Run the installation command on your NetQ server (or on the master node in clust
 {{<tab "Single Server">}}
 
 ```
-cumulus@netq-appliance:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.14.0-SNAPSHOT-feature-k8-ub-storage-upgrade.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix1NHgwU3NhWlV5NzZXZVpiK2FFazRmQ3dkM2hzTk9IMWtDRlNjM0FHdVIwPQ== restore /home/cumulus/backup-netq-standalone-onprem-4.12.0-2024-12-11_19_50_12_UTC.tar
+cumulus@netq-server:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.14.0-SNAPSHOT-feature-k8-ub-storage-upgrade.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix1NHgwU3NhWlV5NzZXZVpiK2FFazRmQ3dkM2hzTk9IMWtDRlNjM0FHdVIwPQ== restore /home/cumulus/backup-netq-standalone-onprem-4.12.0-2024-12-11_19_50_12_UTC.tar
 ```
 {{</tab>}}
 
 {{<tab "Cluster" >}}
 
 ```
-cumulus@netq-appliance:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.14.0-SNAPSHOT-feature-k8-ub-storage-upgrade.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIiwzNWJVL2NkZmtnekRqZ21yUUdZTHFFa0wvMVZSNHlLd3JaYlpuWE1VS21JPQ== workers 10.188.44.219 10.188.45.164 cluster-vip 10.188.45.169 restore /home/cumulus/combined_backup_20241211111316.tar
+cumulus@netq-server:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.14.0-SNAPSHOT-feature-k8-ub-storage-upgrade.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIiwzNWJVL2NkZmtnekRqZ21yUUdZTHFFa0wvMVZSNHlLd3JaYlpuWE1VS21JPQ== workers 10.188.44.219 10.188.45.164 cluster-vip 10.188.45.169 restore /home/cumulus/combined_backup_20241211111316.tar
 ```
 
 {{</tab>}}

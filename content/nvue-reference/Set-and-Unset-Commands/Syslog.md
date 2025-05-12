@@ -112,6 +112,8 @@ Introduced in Cumulus Linux 5.13.0
 cumulus@switch:~$ nv set system syslog format welf firewall-name security-gateway
 ```
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system syslog selector \<selector-id\> facility</h>
 
 Sets a syslog filtering rule to group logs based on their source, such as `auth` or `cron`.
@@ -131,6 +133,8 @@ Introduced in Cumulus Linux 5.13.0
 ```
 cumulus@switch:~$ nv set system syslog selector SELECTOR1 facility cron
 ```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set system syslog selector \<selector-id\> filter \<filter-id\> action</h>
 
@@ -153,6 +157,8 @@ Introduced in Cumulus Linux 5.13.0
 cumulus@switch:~$ nv set system syslog selector SELECTOR2 filter 10 action exclude
 ```
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system syslog selector \<selector-id\> filter \<filter-id\> match</h>
 
 Sets a syslog filtering rule to filter logs that match a certain regular expression.
@@ -174,6 +180,8 @@ Introduced in Cumulus Linux 5.13.0
 cumulus@switch:~$ nv set system syslog selector SELECTOR2 filter 10 match .*Flush Journal.+$
 ```
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system syslog selector \<selector-id\> program-name</h>
 
 Sets a syslog filtering rule to filter logs based on the application that generates them.
@@ -193,6 +201,52 @@ Introduced in Cumulus Linux 5.13.0
 ```
 cumulus@switch:~$ nv set system syslog selector SELECTOR2 program-name switchd
 ```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system syslog selector \<selector-id\> rate-limit burst</h>
+
+Sets the burst limit to control log message processing or forwarding within a defined time period. The burst limit specifies the maximum number of log messages that the switch can process instantly before rate limiting takes effect. You can specify a value between 1 and 65535.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<selector-id>` | The name of the filter selector. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system syslog selector SELECTOR1 rate-limit burst 2
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system syslog selector \<selector-id\> rate-limit interval</h>
+
+Sets a rate-limiting rule with an interval to control log message processing or forwarding within a defined time period. The interval defines the time window within which the switch limits log messages after reaching the burst threshold. You can specify a value between 1 and 65535.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<selector-id>` | The name of the filter selector. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system syslog selector SELECTOR1 rate-limit interval 240
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set system syslog selector \<selector-id\> severity</h>
 
@@ -290,6 +344,30 @@ Introduced in Cumulus Linux 5.13.0
 
 ```
 cumulus@switch:~$ nv set system syslog server 192.168.0.254 protocol tcp
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## nv set system syslog server \<server-id\> selector \<priority-id\> selector-id \<value\></h>
+
+Sets a selector to use for a specific server.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<server-id>` |  The hostname or IP address of the `syslog` server. |
+| `<priority-id>` |  The priority, where 1 is the highest priority. |
+| `<selector-id>` |  The name of the filter selector. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system syslog server 192.168.0.254 selector 1 selector-id SELECTOR1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

@@ -751,8 +751,20 @@ NVUE supports CA certificates (such as DigiCert or Verisign) and entity (end-poi
 
 You import certificates and CRLs onto the switch with the `nv action import system security` command.
 
-- For information about using certificates with gNMI, refer to {{<link url="gNMI-Streaming" text="gNMI streaming">}}
-- For information about using certificates with the NVUE API, refer to {{<link url="NVUE-API/#certificates" text="NVUE API">}}.
+The following example imports a CA certificate bundle with a public key and calls the certificate `tls-cert-1`. The certificate is passphrase protected with `mypassphrase`. The public key is a Base64 ASCII encoded PEM string.
+
+```
+cumulus@switch:~$ cumulus@switch:~$ nv action import system security ca-certificate tls-cert-1 passphrase mypassphrase data """<public-key>""" 
+```
+
+The following example imports the CRL bundle file `crl.crt` from a remote URI:
+
+```
+cumulus@switch:~$ nv action import system security crl uri scp://user:password@hostname/path/crl.crt
+```
+
+- For information about enabling certificates for gNMI, refer to {{<link url="gNMI-Streaming" text="gNMI streaming">}}
+- For information about enabling certificates for the NVUE API, refer to {{<link url="NVUE-API/#certificates" text="NVUE API">}}.
 
 ## Filter nv show Command Output
 

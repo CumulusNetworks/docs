@@ -31,6 +31,12 @@
 <td>5.11.0-5.13.0</td>
 </tr>
 <tr>
+<td>4039850</td>
+<td>When the MAC address of the neighbor changes, a possible crash might occur because the pointer to which the MAC address points is freed, resulting in a dangling pointer.</td>
+<td>5.3.1-5.10.1</td>
+<td>5.11.0-5.13.0</td>
+</tr>
+<tr>
 <td>4004453</td>
 <td>The NVUE commands to delete SNMP users, and change authentication passwords and encryption passphrases are not successful.</td>
 <td>4.3.0-5.9.1</td>

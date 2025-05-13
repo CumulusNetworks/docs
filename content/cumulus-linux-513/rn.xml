@@ -91,19 +91,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4389433</td>
-<td>On switches with ONIE 5.3.0012 (might be displayed as 2023.11-5.3.0012-115200), reinstalling Cumulus Linux with {{onie-install}} when SecureBoot is enabled fails during CMS verification of a found image.To determine the ONIE version on the switch:
-sudo mount LABEL="ONIE-BOOT" /mnt
-/mnt/onie/tools/bin/onie-version
-If the ONIE version is earlier than 5.3.0012 (might be displayed as 2023.11-5.3.0012-115200), either disable SecureBoot during reinstallation, or if SecureBoot is enabled and ONIE finds the image on one of the disks (for example, {{/dev/sda5}}), then fails CMS verification, log into the ONIE shell as root and run the following commands:
-onie-stop
-mkdir /$devname
-mount $devname /$devname
-onie-nos-install /$devname/onie-installer</td>
-<td>5.12.0-5.13.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4337278</td>
 <td>In certain cases, statically configured VXLAN entries age out after a peerlink flap.</td>
 <td>5.12.0-5.13.0</td>

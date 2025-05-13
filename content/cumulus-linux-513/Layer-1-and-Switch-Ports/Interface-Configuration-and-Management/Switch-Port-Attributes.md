@@ -22,7 +22,7 @@ Each physical network interface (port) has several settings:
 - <span class="a-tooltip">[FEC](## "Forward Error Correction")</span>
 
 For NVIDIA Spectrum ASICs, the firmware configures FEC, link speed, duplex mode and auto-negotiation automatically, following a predefined list of parameter settings until the link comes up. You can disable FEC if necessary, which forces the firmware to not try any FEC options.
-<!-- MOVED to 5.14 AND PUT NOTE BACK IN CONSIDERATIONS SECTION
+<!-- 5.14 REMOVE NOTE IN CONSIDERATIONS SECTION
 ### Auto-negotiation and Link Speed
 
 {{< tabs "TabID29 ">}}

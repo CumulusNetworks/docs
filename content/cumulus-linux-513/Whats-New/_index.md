@@ -7,7 +7,37 @@ toc: 2
 This document supports the Cumulus Linux 5.13 release, and lists new platforms, features, and enhancements.
 - For a list of open and fixed issues in Cumulus Linux 5.13, see the {{<link title="Cumulus Linux 5.13 Release Notes" text="Cumulus Linux 5.13 Release Notes">}}.
 - To upgrade to Cumulus Linux 5.13, first check the {{<link title="#release-considerations" text="Release Considerations">}} below, then follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
+<!-- 5.14
+## What's New in Cumulus Linux 5.14
 
+Cumulus Linux 5.14.0 supports new platforms, provides bug fixes, and contains several new features and improvements.
+
+### Platforms
+
+- NVIDIA SN5640 (800G Spectrum-5)
+
+### New Features and Enhancements
+
+- Speed setting without autoneg - (commented out from 5.13)
+- Flow control
+- Map port to connector
+- Operational revision
+- EVPN info across all VRFs
+- Configure different DHCP relay servers per interface
+- NVUE login brute force via API
+- FRR upgrade to 10.x via API
+- Clear layer 1 PCS/phy detail link counters
+- gNMI requirements phase 4
+- FIPS 140-2 and 3 approved crypto modules
+- Crypto mechanisms to prevent unauthorized modification of all information 
+- Strong authenticators 
+- MRC packet trimming
+- MRC SRv6 subset to support OAI 
+- New QoS profile to support MRC
+- Trimming with asymmetric DSCP
+- SRv6 counter
+- SSD erasure - now GA
+-->
 ## What's New in Cumulus Linux 5.13
 
 Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains several new features and improvements.

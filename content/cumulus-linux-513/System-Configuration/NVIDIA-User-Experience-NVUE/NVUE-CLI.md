@@ -763,7 +763,7 @@ The following example imports the CRL bundle file `crl.crt` from a remote URI:
 cumulus@switch:~$ nv action import system security crl uri scp://user:password@hostname/path/crl.crt
 ```
 
-- For information about enabling certificates for gNMI, refer to {{<link url="gNMI-Streaming" text="gNMI streaming">}}
+- For information about enabling certificates for gNMI, refer to {{<link url="gNMI-Streaming/#gnmi-with-cumulus-linux" text="gNMI streaming with Cumulus Linux">}}.
 - For information about enabling certificates for the NVUE API, refer to {{<link url="NVUE-API/#certificates" text="NVUE API">}}.
 
 ## Filter nv show Command Output

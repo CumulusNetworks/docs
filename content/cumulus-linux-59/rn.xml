@@ -2089,6 +2089,18 @@ You can safely ignore this warning.</td>
 <td>5.11.0-5.13.0</td>
 </tr>
 <tr>
+<td>4127253</td>
+<td>You might see {{switchd}} high-memory consumption and eventually {{switchd}} stops because it is out of memory due to higher tunnel (VNI x VTEP) scale.</td>
+<td>5.8.0-5.10.1</td>
+<td>5.11.0-5.13.0</td>
+</tr>
+<tr>
+<td>4124139</td>
+<td>MLAG interfaces including VXLAN interfaces goes down when you add MLAG configuration to the first bond in a single MLAG switch setup.</td>
+<td>5.8.0-5.10.1</td>
+<td>5.11.0-5.13.0</td>
+</tr>
+<tr>
 <td>4119621</td>
 <td>When you set the SNMP server listening address to listen on all IPv4 and IPv6 addresses in a VRF with the {{nv set service snmp-server listening-address all vrf}} and {{nv set service snmp-server listening-address all-v6 vrf}} commands, SNMP requests over IPv6 addresses do not work.</td>
 <td>5.8.0-5.10.1</td>
@@ -2122,6 +2134,18 @@ You can safely ignore this warning.</td>
 <td>4063273</td>
 <td>Low power Intel SATA controllers experience issues when using the {{mobile}} low power chipset LPM policy. This can cause the SSD to become read only.</td>
 <td>5.8.0-5.10.1</td>
+<td>5.11.0-5.13.0</td>
+</tr>
+<tr>
+<td>4062001</td>
+<td>With VM migration from one VTEP to another, traffic loss might occur during a MAC move as locally learned MAC addresses are frequently refreshed in the kernel. </td>
+<td>5.8.0-5.10.1</td>
+<td>5.11.0-5.13.0</td>
+</tr>
+<tr>
+<td>4039850</td>
+<td>When the MAC address of the neighbor changes, a possible crash might occur because the pointer to which the MAC address points is freed, resulting in a dangling pointer.</td>
+<td>5.3.1-5.10.1</td>
 <td>5.11.0-5.13.0</td>
 </tr>
 <tr>

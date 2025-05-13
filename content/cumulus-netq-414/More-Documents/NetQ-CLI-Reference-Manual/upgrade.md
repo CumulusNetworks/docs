@@ -10,7 +10,7 @@ type: nojsscroll
 
 ## netq upgrade
 
-Upgrades NetQ on NetQ on-premises appliances or VMs. For detailed instructions, see {{<link title="Upgrade NetQ Virtual Machines" text="Upgrade NetQ Virtual Machines">}}
+Upgrades NetQ on NetQ on-premises servers or VMs. For detailed instructions, see {{<link title="Upgrade NetQ Virtual Machines" text="Upgrade NetQ Virtual Machines">}}
 
 ### Syntax
 
@@ -24,7 +24,7 @@ netq upgrade bundle <text-bundle-url>
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| bundle | \<text-bundle-url\> | Upgrade this appliance or VM with the `NetQ-x.y.z.tgz` package at this location. You must specify the full path |
+| bundle | \<text-bundle-url\> | Upgrade this server or VM with the `NetQ-x.y.z.tgz` package at this location. You must specify the full path |
 
 ### Options
 

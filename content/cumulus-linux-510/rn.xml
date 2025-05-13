@@ -37,6 +37,12 @@
 <td>5.13.0</td>
 </tr>
 <tr>
+<td>4328729</td>
+<td>When sending control packets that have the port range 259 through 1023 in their TX base header system target (above {{cap_max_system_ports}} and below {{cap_ports}} used for LAG forwarding), a fatal health event occurs on the switch. The port range 259 through 1023 reflects illegal system ports; do not set these values in the control packet TX base header. As this range reflects illegal system ports, do not set these values in the control packet TX base header, as it will be dropped.</td>
+<td>5.10.1-5.12.1</td>
+<td>5.13.0</td>
+</tr>
+<tr>
 <td>4308857</td>
 <td>When you use {{tls_crlcheck}} in the {{/etc/nslcd.conf}} file, the optional {{nslcd}} service fails due to a missing library.</td>
 <td>5.9.2-5.13.0</td>
@@ -226,9 +232,21 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <td>5.11.0-5.13.0</td>
 </tr>
 <tr>
+<td>4127253</td>
+<td>You might see {{switchd}} high-memory consumption and eventually {{switchd}} stops because it is out of memory due to higher tunnel (VNI x VTEP) scale.</td>
+<td>5.8.0-5.10.1</td>
+<td>5.11.0-5.13.0</td>
+</tr>
+<tr>
 <td>4124831</td>
 <td>When Per-VLAN Rapid Spanning Tree (PVRST) mode is enabled, bonds with LACP bypass discard ingress DHCP packets.</td>
 <td>5.9.1-5.10.1</td>
+<td>5.11.0-5.13.0</td>
+</tr>
+<tr>
+<td>4124139</td>
+<td>MLAG interfaces including VXLAN interfaces goes down when you add MLAG configuration to the first bond in a single MLAG switch setup.</td>
+<td>5.8.0-5.10.1</td>
 <td>5.11.0-5.13.0</td>
 </tr>
 <tr>
@@ -283,6 +301,12 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <td>5.11.0-5.13.0</td>
 </tr>
 <tr>
+<td>4081974</td>
+<td>When you use {{mlxlink}} to check TX power, you see incorrect values for different lanes of a port. To work around this issue, either use the NVUE {{nv show platform transceiver &lt;interface&gt;}} command or the ethtool {{-m &lt;interface&gt;}} command.</td>
+<td>5.10.0-5.10.1</td>
+<td>5.11.0-5.13.0</td>
+</tr>
+<tr>
 <td>4081784</td>
 <td>If you configure an inbound route policy that drops prefixes, then run a vtysh {{show bgp vrf &lt;vrf&gt; neighbours &lt;neighbor&gt; received-routes}} command, the BGP service might crash.&gt;br&gt;Avoid running a vtysh received routes show command if you configure an inbound route policy that drops prefixes.</td>
 <td>5.9.1-5.10.1</td>
@@ -315,6 +339,12 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <tr>
 <td>4063273</td>
 <td>Low power Intel SATA controllers experience issues when using the {{mobile}} low power chipset LPM policy. This can cause the SSD to become read only.</td>
+<td>5.8.0-5.10.1</td>
+<td>5.11.0-5.13.0</td>
+</tr>
+<tr>
+<td>4062001</td>
+<td>With VM migration from one VTEP to another, traffic loss might occur during a MAC move as locally learned MAC addresses are frequently refreshed in the kernel. </td>
 <td>5.8.0-5.10.1</td>
 <td>5.11.0-5.13.0</td>
 </tr>
@@ -359,10 +389,26 @@ interface_stats: [ERROR] interface_stats_collector.py:_parse_conf_file:201 — C
 <td>5.13.0</td>
 </tr>
 <tr>
+<td>4047829</td>
+<td>Ports can be operationally down if the {{switchd}} service fails to come UP due to certain firmware failures and you the following {{switchd.log}} messages:
+PDDR long process T.O
+MCIA no response
+FW assert [0x8C91] detected
+To work around this issue, power-cycle the switch.</td>
+<td>5.10.0-5.10.1</td>
+<td>5.11.0-5.13.0</td>
+</tr>
+<tr>
 <td>4047798</td>
 <td>Packet distribution based on ECMP hash is not working for VXLAN on top of rack switches where it is encapped. To work around this issue, enable lag hashing with gtp-teid to distribute VXLAN encapped packets across egress interfaces on the top of rack switches.</td>
 <td>5.10.0-5.13.0</td>
 <td></td>
+</tr>
+<tr>
+<td>4039850</td>
+<td>When the MAC address of the neighbor changes, a possible crash might occur because the pointer to which the MAC address points is freed, resulting in a dangling pointer.</td>
+<td>5.3.1-5.10.1</td>
+<td>5.11.0-5.13.0</td>
 </tr>
 <tr>
 <td>4037315</td>
@@ -1138,9 +1184,21 @@ This happens in async mode, where the end notification expected after an end of 
 <td>5.11.0-5.13.0</td>
 </tr>
 <tr>
+<td>4127253</td>
+<td>You might see {{switchd}} high-memory consumption and eventually {{switchd}} stops because it is out of memory due to higher tunnel (VNI x VTEP) scale.</td>
+<td>5.8.0-5.10.1</td>
+<td>5.11.0-5.13.0</td>
+</tr>
+<tr>
 <td>4124831</td>
 <td>When Per-VLAN Rapid Spanning Tree (PVRST) mode is enabled, bonds with LACP bypass discard ingress DHCP packets.</td>
 <td>5.9.1-5.10.1</td>
+<td>5.11.0-5.13.0</td>
+</tr>
+<tr>
+<td>4124139</td>
+<td>MLAG interfaces including VXLAN interfaces goes down when you add MLAG configuration to the first bond in a single MLAG switch setup.</td>
+<td>5.8.0-5.10.1</td>
 <td>5.11.0-5.13.0</td>
 </tr>
 <tr>
@@ -1213,6 +1271,12 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <td>5.11.0-5.13.0</td>
 </tr>
 <tr>
+<td>4081974</td>
+<td>When you use {{mlxlink}} to check TX power, you see incorrect values for different lanes of a port. To work around this issue, either use the NVUE {{nv show platform transceiver &lt;interface&gt;}} command or the ethtool {{-m &lt;interface&gt;}} command.</td>
+<td>5.10.0-5.10.1</td>
+<td>5.11.0-5.13.0</td>
+</tr>
+<tr>
 <td>4081784</td>
 <td>If you configure an inbound route policy that drops prefixes, then run a vtysh {{show bgp vrf &lt;vrf&gt; neighbours &lt;neighbor&gt; received-routes}} command, the BGP service might crash.&gt;br&gt;Avoid running a vtysh received routes show command if you configure an inbound route policy that drops prefixes.</td>
 <td>5.9.1-5.10.1</td>
@@ -1261,6 +1325,12 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <td>5.11.0-5.13.0</td>
 </tr>
 <tr>
+<td>4062001</td>
+<td>With VM migration from one VTEP to another, traffic loss might occur during a MAC move as locally learned MAC addresses are frequently refreshed in the kernel. </td>
+<td>5.8.0-5.10.1</td>
+<td>5.11.0-5.13.0</td>
+</tr>
+<tr>
 <td>4061534</td>
 <td>When you remove a secondary OTLP collector, there is a telemetry spike and existing connections with OTLP exporters reset. When new connections with the OTLP collector re-establish, the server experiences a high CPU and memory leak, which can bring down the telemetry collection service.</td>
 <td>5.10.0-5.10.1</td>
@@ -1301,6 +1371,16 @@ interface_stats: [ERROR] interface_stats_collector.py:_parse_conf_file:201 — C
 <td>5.13.0</td>
 </tr>
 <tr>
+<td>4047829</td>
+<td>Ports can be operationally down if the {{switchd}} service fails to come UP due to certain firmware failures and you the following {{switchd.log}} messages:
+PDDR long process T.O
+MCIA no response
+FW assert [0x8C91] detected
+To work around this issue, power-cycle the switch.</td>
+<td>5.10.0-5.10.1</td>
+<td>5.11.0-5.13.0</td>
+</tr>
+<tr>
 <td>4047828</td>
 <td>After network churn, the {{﻿watchfrr}} process might restart FRR because zebra is unresponsive.</td>
 <td>5.9.1-5.10.1</td>
@@ -1336,6 +1416,12 @@ interface_stats: [ERROR] interface_stats_collector.py:_parse_conf_file:201 — C
 <td>After network churn, the {{﻿watchfrr}} process might restart FRR because zebra is unresponsive.</td>
 <td>5.9.1-5.10.0</td>
 <td>5.10.1-5.13.0</td>
+</tr>
+<tr>
+<td>4039850</td>
+<td>When the MAC address of the neighbor changes, a possible crash might occur because the pointer to which the MAC address points is freed, resulting in a dangling pointer.</td>
+<td>5.3.1-5.10.1</td>
+<td>5.11.0-5.13.0</td>
 </tr>
 <tr>
 <td>4037462</td>
@@ -1897,6 +1983,11 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <td>3998581</td>
 <td>When two SVIs are configured with the same VLAN ID and are assigned to separate bridges (each in a different VRF) but both bridges share the same MAC hardware address, traffic drops might occur.</td>
 <td>5.9.1</td>
+</tr>
+<tr>
+<td>3994544</td>
+<td>Under certain scale scenarios, the switch might end up in a state where the PTM component's connection to LLDP breaks. This issue results in LLDP socket contention issues and, in turn, a PTM memory leak.</td>
+<td>5.9.1-5.9.2</td>
 </tr>
 <tr>
 <td>3990258</td>

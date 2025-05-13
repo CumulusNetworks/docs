@@ -144,18 +144,18 @@ cumulus@netq-server:~$ chmod +x /usr/bin/pre_install_4.14.0.sh
 ```
 
 After copying the script to the expected path and setting it to executable, the script will run during the next installation or upgrade attempt.
-## Verify Connectivity between Agents and Appliances
+## Verify Connectivity between Agents and Servers
 
-The `sudo opta-info.py` command displays the status of and connectivity between agents and appliances. This command is typically used when debugging NetQ.
+The `sudo opta-info.py` command displays the status of and connectivity between agents and servers. This command is typically used when debugging NetQ.
 
 {{<tabs "TabID73" >}}
 
-{{<tab "Cloud Appliance">}}
+{{<tab "Cloud Server">}}
 
-In the output below, the Opta Health Status column displays a healthy status, which indicates that the appliance is functioning properly. The Opta-Gateway Channel Status column displays the connectivity status between the appliance and cloud endpoint. The Agent ID column displays the switches connected to the appliance.
+In the output below, the Opta Health Status column displays a healthy status, which indicates that the server is functioning properly. The Opta-Gateway Channel Status column displays the connectivity status between the server and cloud endpoint. The Agent ID column displays the switches connected to the server.
 
 ```
-cumulus@netq-appliance:~$ sudo opta-info.py
+cumulus@netq-server:~$ sudo opta-info.py
 [sudo] password for cumulus:
 Service IP:  10.102.57.27
 
@@ -171,7 +171,7 @@ netq-appliance  /20.1.1.10:44717  UP                        1234  2023-02-14 00:
 
 {{</tab>}}
 
-{{<tab "On-premises Appliance" >}}
+{{<tab "On-premises server" >}}
 
 ```
 cumulus@sm-telem-06:~$ sudo opta-info.py

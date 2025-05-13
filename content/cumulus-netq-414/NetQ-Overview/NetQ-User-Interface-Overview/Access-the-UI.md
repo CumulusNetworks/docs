@@ -10,8 +10,8 @@ This page describes how to log in and out of NetQ.
 
 1. Open a new Chrome or Firefox browser window or tab.
 2. Enter the following URL into the address bar:  
-    - NetQ on-premises appliance or VM: *https://\<hostname-or-ipaddress\>*  
-    - NetQ cloud appliance or VM: *https://netq.nvidia.com*
+    - NetQ on-premises VM: *https://\<hostname-or-ipaddress\>*  
+    - NetQ cloud VM: *https://netq.nvidia.com*
 
     {{<figure src="/images/netq/splash-screen-414.png" alt="NetQ login screen" ewidth="700">}}
 

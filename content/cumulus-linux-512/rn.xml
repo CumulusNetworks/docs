@@ -139,19 +139,6 @@
 <td>5.13.0</td>
 </tr>
 <tr>
-<td>4389433</td>
-<td>On switches with ONIE 5.3.0012 (might be displayed as 2023.11-5.3.0012-115200), reinstalling Cumulus Linux with {{onie-install}} when SecureBoot is enabled fails during CMS verification of a found image.To determine the ONIE version on the switch:
-sudo mount LABEL="ONIE-BOOT" /mnt
-/mnt/onie/tools/bin/onie-version
-If the ONIE version is earlier than 5.3.0012 (might be displayed as 2023.11-5.3.0012-115200), either disable SecureBoot during reinstallation, or if SecureBoot is enabled and ONIE finds the image on one of the disks (for example, {{/dev/sda5}}), then fails CMS verification, log into the ONIE shell as root and run the following commands:
-onie-stop
-mkdir /$devname
-mount $devname /$devname
-onie-nos-install /$devname/onie-installer</td>
-<td>5.12.0-5.13.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4380671</td>
 <td>Slow bandwidth and traffic polarization occurs when you create a significant number of next hop groups  with adaptive routing weighted equal cost multipath (W-ECMP).</td>
 <td>5.12.0-5.12.1</td>
@@ -1212,19 +1199,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>When using DHCP snooping , access ports do not work as trust ports or server connection ports .</td>
 <td>5.12.0-5.12.1</td>
 <td>5.13.0</td>
-</tr>
-<tr>
-<td>4389433</td>
-<td>On switches with ONIE 5.3.0012 (might be displayed as 2023.11-5.3.0012-115200), reinstalling Cumulus Linux with {{onie-install}} when SecureBoot is enabled fails during CMS verification of a found image.To determine the ONIE version on the switch:
-sudo mount LABEL="ONIE-BOOT" /mnt
-/mnt/onie/tools/bin/onie-version
-If the ONIE version is earlier than 5.3.0012 (might be displayed as 2023.11-5.3.0012-115200), either disable SecureBoot during reinstallation, or if SecureBoot is enabled and ONIE finds the image on one of the disks (for example, {{/dev/sda5}}), then fails CMS verification, log into the ONIE shell as root and run the following commands:
-onie-stop
-mkdir /$devname
-mount $devname /$devname
-onie-nos-install /$devname/onie-installer</td>
-<td>5.12.0-5.13.0</td>
-<td></td>
 </tr>
 <tr>
 <td>4380671</td>

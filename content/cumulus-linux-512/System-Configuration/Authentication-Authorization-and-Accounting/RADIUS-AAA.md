@@ -170,8 +170,6 @@ Cisco-AVPair += "shell:priv-lvl=15"
 ```
 
 The VSA vendor name (Cisco-AVPair in the example above) can have any content. The RADIUS client only checks for the string `shell:priv-lvl`.
-<!--
-Make sure to add the `radius_priv_user` to the `cumulus` group on the switch with the `sudo usermod -aG cumulus radius_priv_user` command.-->
 {{%/notice%}}
 
 ## Enable Login without Local Accounts

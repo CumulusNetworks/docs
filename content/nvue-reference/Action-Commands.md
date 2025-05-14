@@ -97,7 +97,7 @@ If you add the `force` option (`nv action abort system ztp force`), ZTP terminat
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action boot-next system image \<partition\> rollback</h>
+## <h>nv action boot-next system image \<partition-id\> rollback</h>
 
 Rolls back the optimized image upgrade if the upgrade fails or you want to go back to the Cumulus Linux release from which you upgraded.  The switch boots back to the previous release image and restores the switch configuration.
 
@@ -114,7 +114,7 @@ Introduced in Cumulus Linux 5.12.0
 ### Example
 
 ```
-cumulus@switch:~$ nv action boot-next system image other rollback
+cumulus@switch:~$ nv action boot-next system image partition2 rollback
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -144,17 +144,13 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action change system date-time</h>
+## <h>nv action change system time</h>
 
-Configures the Cumulus Linux software clock. The switch contains a battery backed hardware clock that maintains the time while the switch powers off and between reboots. When the switch is running, the Cumulus Linux operating system maintains its own software clock.
+Configures the Cumulus Linux software clock. The switch contains a battery backed hardware clock that maintains the date and time while the switch powers off and between reboots. When the switch is running, the Cumulus Linux operating system maintains its own software clock.
 
-During boot up, the switch copies the time from the hardware clock to the operating system software clock. The software clock takes care of all the timekeeping. During system shutdown, the switch copies the software clock back to the battery backed hardware clock.
+During boot up, the switch copies the date and time from the hardware clock to the operating system software clock. The software clock takes care of all the timekeeping. During system shutdown, the switch copies the software clock back to the battery backed hardware clock.
 
-The date format is YYYY-MM-DD. The time format is HH:MM:SS.
-
-{{%notice note%}}
-In Cumulus Linux 5.7, 5.8, and 5.9, this command is `nv action change system time`.
-{{%/notice%}}
+The format is YYYY-MM-DD HH:MM:SS
 
 ### Version History
 
@@ -163,7 +159,7 @@ Introduced in Cumulus Linux 5.10.0
 ### Example
 
 ```
-cumulus@switch:~$ nv action change system date-time 2023-12-04 2:33:30
+cumulus@switch:~$ nv action change system time 2023-12-04 02:33:30
 System Date-time changed successfully
 Local Time is now Mon 2023-12-04 02:33:30 UTC
 Action succeeded

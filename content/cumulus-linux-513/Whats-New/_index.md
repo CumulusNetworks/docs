@@ -38,6 +38,10 @@ Cumulus Linux 5.14.0 supports new platforms, provides bug fixes, and contains se
 - SRv6 counter
 - SSD erasure - now GA
 -->
+## What's New in Cumulus Linux 5.13.1
+
+Cumulus Linux 5.13.1 provides bug fixes only.
+
 ## What's New in Cumulus Linux 5.13
 
 Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains several new features and improvements.

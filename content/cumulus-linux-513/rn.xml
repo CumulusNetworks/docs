@@ -55,12 +55,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4422898</td>
-<td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables (around 800K prefixes), the process consumes excessive memory resulting in OOM crashes. </td>
-<td>5.13.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4417191</td>
 <td>The first update value for the gNMI {{interfaces/interface/state/counters/out-pkts}} metric always shows 0 for every subscription.</td>
 <td>5.13.0</td>

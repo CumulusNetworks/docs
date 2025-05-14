@@ -153,6 +153,20 @@ vrf-name mgmt
 {{< /tab >}}
 {{< /tabs >}}
 
+{{%notice note%}}
+The value of the VSA (Vendor Specific Attribute) `shell:priv-lvl` determines the privilege level for the user on the switch. If the attribute does not return, the user does not have privileges. The following shows an example using the `freeradius` server for a fully privileged user.
+
+```
+Service-Type = Administrative-User,
+Cisco-AVPair = "shell:roles=network-administrator",
+Cisco-AVPair += "shell:priv-lvl=15"
+```
+
+The VSA vendor name (Cisco-AVPair in the example above) can have any content. The RADIUS client only checks for the string `shell:priv-lvl`.
+<!--
+Make sure to add the `radius_priv_user` to the `cumulus` group on the switch with the `sudo usermod -aG cumulus radius_priv_user` command.-->
+{{%/notice%}}
+
 ## Enable Login without Local Accounts
 
 {{%notice note%}}

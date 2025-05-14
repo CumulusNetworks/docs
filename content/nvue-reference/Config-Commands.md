@@ -66,6 +66,51 @@ cumulus@switch:~$ nv config apply 5 --y
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv config attach \<revision-id>\</h>
+
+Attaches the configuration to a revision.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<revision-id>` |  The revision ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv config attach 27
+attached [rev_id: 27]
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv config delete \<revision-id\></h>
+
+Deletes a revision.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<revision-id>` |  The revision ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv config delete 4
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv config detach</h>
 
 Detaches the configuration from the current pending configuration. When you run this command, NVUE discards all configuration changes between the last `nv config apply` command and the `nv config detach` command.”
@@ -326,11 +371,17 @@ cumulus@switch:~$ nv config show
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv config translate revision</h>
+## <h>nv config translate revision \<revision-id\></h>
 
 Translates an NVUE configuration revision into NVUE commands. The revision ID must be either an integer or a named revision (such as startup or applied).
 
 If the revision is not readable, is in an invalid format, or includes invalid parameters, NVUE returns an error message and prompts you to correct the issue before proceeding.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<revision-id>` |  The revision ID.|
 
 ### Version History
 
@@ -349,6 +400,12 @@ cumulus@switch:~$ nv config translate revision 10
 Translates an NVUE configuration yaml file into NVUE commands. The configuration file must be located on the switch and must include the full path to the file containing the configuration you want to translate. The file must be in YAML format and must be accessible with proper read permissions.
 
 If the yaml file is not readable, is in an invalid format, or includes invalid parameters, NVUE returns an error message and prompts you to correct the issue before proceeding.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<filename>` |  The yaml file you want to translate.|
 
 ### Version History
 

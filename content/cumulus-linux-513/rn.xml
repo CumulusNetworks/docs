@@ -62,27 +62,19 @@
 </tr>
 <tr>
 <td>4413450</td>
-<td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables, the process consumes excessive memory resulting in OOM crashes. </td>
+<td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables, the process consumes excessive memory resulting in out of memory crashes. </td>
 <td>5.0.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4408549</td>
-<td>There is no log rotation for UMF processes, so the logs can grow very big causing operational failures for cl-support generation and {{nv config apply}}.</td>
+<td>UMF processes do not include log rotation and the logs can grow very large causing operational failures when you generate cl-support files and run the {{nv config apply}} command.</td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4408387</td>
-<td>BGP crashes during EVPN route install due to incorrect memory access.
-
-The issue encountered during uninstall_evpn_route_entry occurs from accessing corrupted memory @ ‘bgp_fs_iprule’. Since no PBR rules or related configurations are present, the root cause appears to be memory being allocated unnecessarily and not properly freed.
-
-prefix_flowspec = {family = 0 '\000', prefixlen = 0, 
-
-        ptr = 0}}}, bgp_fs_pbr = 0x0, bgp_fs_iprule = 0x20, mh_info = 0x0}
- 
-The issue will be resolved with a code fix.</td>
+<td>BGP crashes during EVPN route install due to incorrect memory access.</td>
 <td>5.11.0-5.13.1</td>
 <td></td>
 </tr>
@@ -124,7 +116,7 @@ The issue will be resolved with a code fix.</td>
 </tr>
 <tr>
 <td>4280299</td>
-<td>The {{nv action fetch system packages key &lt;key-id&gt;}} command fails if the key ID is an scp/ftp or URL path that requires a password to access the key. To work around this issue, use a URI that does not require password authentication for the key ID.</td>
+<td>The {{nv action fetch system packages key &lt;key-id&gt;}} command fails if the key ID is an SCP, FTP, or URL path that requires a password to access the key. To work around this issue, use a URI that does not require password authentication for the key ID.</td>
 <td>5.12.0-5.13.1</td>
 <td></td>
 </tr>
@@ -142,7 +134,7 @@ The issue will be resolved with a code fix.</td>
 </tr>
 <tr>
 <td>4236419</td>
-<td>On the Spectrum-3 switch, the PTP offset for 25GbE fluctuates within a range of ±50 nanoseconds beyond the expected values.</td>
+<td>On the Spectrum-3 switch, the PTP offset for 25GbE fluctuates within a range of plus or minus 50 nanoseconds beyond the expected values.</td>
 <td>5.12.0-5.13.1</td>
 <td></td>
 </tr>
@@ -162,7 +154,7 @@ cumulus@switch:~$ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "Dpkg::Optio
 </tr>
 <tr>
 <td>4154839</td>
-<td>When you run certain SDK commands (such as {{sudo sx_api_port_counter_dump_all.py}} or {{sx_api_fdb_dump etc}}) first as the cumulus user, then with {{sudo}}, you see the following error:
+<td>When you run certain SDK commands (such as {{sudo sx_api_port_counter_dump_all.py}} or {{sx_api_fdb_dump}}) first as the cumulus user, then with {{sudo}}, you see the following error:
 PermissionError: Errno 13] Permission denied: '/tmp/python_err_log.txt'
 To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <td>5.11.0-5.13.1</td>
@@ -176,7 +168,7 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 </tr>
 <tr>
 <td>4139511</td>
-<td>When you generate the cl-support file on the Spectrum-4 switch, the following messages appear on the serial console. The issue is harmless.[ 1903.595131] mlxsw_minimal 2-0048: Could not acquire lock
+<td>When you generate the cl-support file on the Spectrum-4 switch, the following messages appear on the serial console. You can safely ignore this issue.[ 1903.595131] mlxsw_minimal 2-0048: Could not acquire lock
 [ 1903.601089] mlxsw_minimal 2-0048: Reg cmd access failed (reg_id=900a(mtmp),type=query)
 [ 1903.609961] hwmon hwmon28: Failed to query module temperature thresholds
 [ 1903.846724] mlxsw_minimal 2-0048: Could not acquire lock
@@ -187,7 +179,7 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 </tr>
 <tr>
 <td>4134447</td>
-<td>The journal logs might include the error message {{ERR kernel: [    7.453789] usb usb2-port2: connect-debounce failed}}. This log message has no functionality impact and can be safely ignored.</td>
+<td>The journal logs might include the error message {{ERR kernel: [    7.453789] usb usb2-port2: connect-debounce failed}}. You can safely ignore this log message.</td>
 <td>5.11.0-5.13.1</td>
 <td></td>
 </tr>
@@ -554,7 +546,7 @@ To work around this issue, reference the OID without the preceding period ( {{.}
 </tr>
 <tr>
 <td>3145869</td>
-<td>On a Spectrum-3 switch, the PTP offset in 10GbE changes between +-27. The average offset is around 7.</td>
+<td>On a Spectrum-3 switch, the PTP offset in 10GbE changes between plus or minus 27. The average offset is around 7.</td>
 <td>5.2.0-5.13.1</td>
 <td></td>
 </tr>

@@ -123,6 +123,7 @@ pdfhidden: True
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
 | <a name="4438697"></a> [4438697](#4438697) <a name="4438697"></a> <br /> | When using TACACS or Radius authentication to run CLI commands, the available memory on the switch might reduce over time. | 5.13.0 | |
+| <a name="4438681"></a> [4438681](#4438681) <a name="4438681"></a> <br /> | Available file descriptors might reduce due to incorrect handing in NVUE error paths causing NVUE requests to fail. To work around this issue, restart the NVUE service. | 5.13.0 | |
 
 ## 5.13.0 Release Notes
 ### Open Issues in 5.13.0
@@ -130,6 +131,7 @@ pdfhidden: True
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="4438697"></a> [4438697](#4438697) <a name="4438697"></a> <br /> | When using TACACS or Radius authentication to run CLI commands, the available memory on the switch might reduce over time. | 5.13.0 | 5.13.1|
+| <a name="4438681"></a> [4438681](#4438681) <a name="4438681"></a> <br /> | Available file descriptors might reduce due to incorrect handing in NVUE error paths causing NVUE requests to fail. To work around this issue, restart the NVUE service. | 5.13.0 | 5.13.1|
 | <a name="4435328"></a> [4435328](#4435328) <a name="4435328"></a> <br /> | ed25519 signed certificates do not work with strict mode enabled. Either disable strict mode with the <code>nv set system ssh-server strict disabled</code> command or manually add <code>ssh-ed25519-cert-v01&#64;openssh.com</code> to <code>PubkeyAcceptedKeyTypes</code> in the <code>/etc/ssh/sshd_config</code> file. | 5.13.0-5.13.1 | |
 | <a name="4427224"></a> [4427224](#4427224) <a name="4427224"></a> <br /> | The <code>nv show interface</code> command output shows the operational status as down for a link flap error disabled state instead of the real protodown reason. To work around this issue, run the <code>nv show interface status</code> command, which shows if any of the interfaces are protodown with the protodown reason. | 5.12.0-5.13.1 | |
 | <a name="4425299"></a> [4425299](#4425299) <a name="4425299"></a> <br /> | After upgrading from Cumulus Linux 5.12 to 5.13 on the NVIDIA SN5400 switch bonus port, PTP does not converge. To work around this issue, disable, then enable the bonus port after upgrade. | 5.13.0-5.13.1 | |

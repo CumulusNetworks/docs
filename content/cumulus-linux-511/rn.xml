@@ -7,12 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4423430</td>
-<td>When toggling the bridge binding flag on an SVI from ON to OFF, the SVI might not come operationally UP if it was DOWN previously from the bridge binding flag.</td>
-<td>5.11.0-5.13.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4423353</td>
 <td>ZTP scripts return an error due to incorrect ASCI to UTF-8 conversion.</td>
 <td>5.11.0-5.13.0</td>
@@ -70,6 +64,20 @@
 <td>4413450</td>
 <td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables, the process consumes excessive memory resulting in OOM crashes. </td>
 <td>5.0.0-5.13.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4408387</td>
+<td>BGP crashes during EVPN route install due to incorrect memory access.
+
+The issue encountered during uninstall_evpn_route_entry occurs from accessing corrupted memory @ ‘bgp_fs_iprule’. Since no PBR rules or related configurations are present, the root cause appears to be memory being allocated unnecessarily and not properly freed.
+
+prefix_flowspec = {family = 0 '\000', prefixlen = 0, 
+
+        ptr = 0}}}, bgp_fs_pbr = 0x0, bgp_fs_iprule = 0x20, mh_info = 0x0}
+ 
+The issue will be resolved with a code fix.</td>
+<td>5.11.0-5.13.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1169,12 +1177,6 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4423430</td>
-<td>When toggling the bridge binding flag on an SVI from ON to OFF, the SVI might not come operationally UP if it was DOWN previously from the bridge binding flag.</td>
-<td>5.11.0-5.13.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4423353</td>
 <td>ZTP scripts return an error due to incorrect ASCI to UTF-8 conversion.</td>
 <td>5.11.0-5.13.0</td>
@@ -1232,6 +1234,20 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <td>4413450</td>
 <td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables, the process consumes excessive memory resulting in OOM crashes. </td>
 <td>5.0.0-5.13.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4408387</td>
+<td>BGP crashes during EVPN route install due to incorrect memory access.
+
+The issue encountered during uninstall_evpn_route_entry occurs from accessing corrupted memory @ ‘bgp_fs_iprule’. Since no PBR rules or related configurations are present, the root cause appears to be memory being allocated unnecessarily and not properly freed.
+
+prefix_flowspec = {family = 0 '\000', prefixlen = 0, 
+
+        ptr = 0}}}, bgp_fs_pbr = 0x0, bgp_fs_iprule = 0x20, mh_info = 0x0}
+ 
+The issue will be resolved with a code fix.</td>
+<td>5.11.0-5.13.0</td>
 <td></td>
 </tr>
 <tr>

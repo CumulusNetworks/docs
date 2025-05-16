@@ -561,11 +561,7 @@ cumulus@switch:~$ nv config apply
 To disable adaptive routing, run the `nv set router adaptive-routing enable off` command. To disable adaptive routing on a specific port, run the `nv set interface <interface> router adaptive-routing enable off` command.
 
 Enabling or disabling adaptive routing globally or on an interface reloads the `switchd` service.
-<!-- CHANGED IN 5.13
-{{%notice warning%}}
-Enabling or disabling adaptive routing restarts the `switchd` service, which causes all network ports to reset, interrupts network services, and resets the switch hardware configuration.
-{{%/notice%}}
--->
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
@@ -594,7 +590,10 @@ Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 {{< /tab >}}
 {{< /tabs >}}
 
-When you enable adaptive routing, Cumulus Linux uses the default profile settings for your switch ASIC type. You cannot change the default profile settings. If you need to make adjustments to the settings, contact NVIDIA Customer Support.
+{{%notice note%}}
+- When you enable adaptive routing, Cumulus Linux uses the default profile settings for your switch ASIC type. You cannot change the default profile settings. If you need to make adjustments to the settings, contact NVIDIA Customer Support.
+- When you enable adaptive routing, traffic for non-adaptive routing ports and non-adaptive routing ECMPs might be routed over all ports in ECMP. Avoid using regular ECMPs when you enable adaptive routing on the switch.
+{{%/notice%}}
 
 ### Link Utilization
 

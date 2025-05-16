@@ -583,7 +583,10 @@ Restart `switchd` with the `sudo systemctl restart switchd.service` command.
 {{< /tab >}}
 {{< /tabs >}}
 
-When you enable adaptive routing, Cumulus Linux uses the default profile settings for your switch ASIC type. You cannot change the default profile settings. If you need to make adjustments to the settings, contact NVIDIA Customer Support.
+{{%notice note%}}
+- When you enable adaptive routing, Cumulus Linux uses the default profile settings for your switch ASIC type. You cannot change the default profile settings. If you need to make adjustments to the settings, contact NVIDIA Customer Support.
+- Ensure that traffic intended for adaptive routing is routed over ports with adaptive routing enabled. Unexpected route hashing might occur when mixing adaptive routing traffic and regular ECMP routes egressing ports that do not have adaptive routing enabled.
+{{%/notice%}}
 
 ### Link Utilization
 

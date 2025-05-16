@@ -38,6 +38,10 @@ Cumulus Linux 5.14.0 supports new platforms, provides bug fixes, and contains se
 - SRv6 counter
 - SSD erasure - now GA
 -->
+## What's New in Cumulus Linux 5.13.1
+
+Cumulus Linux 5.13.1 provides bug fixes only.
+
 ## What's New in Cumulus Linux 5.13
 
 Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains several new features and improvements.
@@ -460,3 +464,7 @@ Cumulus Linux 5.13 includes the NVUE object model. After you upgrade to Cumulus 
 - Update your automation tools to use NVUE.
 - {{<link url="NVUE-CLI/#configure-nvue-to-ignore-linux-files" text="Configure NVUE to ignore certain underlying Linux files">}} when applying configuration changes.
 - Use Linux and FRR (vtysh) commands instead of NVUE for **all** switch configuration.
+
+### Cumulus VX
+
+NVIDIA no longer releases Cumulus VX as a standalone image. To simulate a Cumulus Linux switch, use {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/nvidia-air/" text="NVIDIA AIR">}}.

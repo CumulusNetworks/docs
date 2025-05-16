@@ -7,9 +7,13 @@ version: "5.13"
 toc: 1
 pdfhidden: True
 ---
-## 5.13 Packages
+## 5.13.1 Packages
 
-Cumulus Linux 5.13 contains the following core switch package versions:
+Cumulus Linux 5.13.1 provides a new NVUE package (1.9.0.101). All other open source software licenses are the same as those listed in Cumulus Linux 5.13.0 Packages, below.
+
+## 5.13.0 Packages
+
+Cumulus Linux 5.13.0 contains the following core switch package versions:
 
 | Package | Version | Description |
 | --- | ----| ----------- |

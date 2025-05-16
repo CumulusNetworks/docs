@@ -73,12 +73,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4408280</td>
-<td>NVUE commands can create excessive log data. To work around this issue, configure {{rsyslog}} rules to limit logging of these commands.</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4398031</td>
 <td>On the NVIDIA SN5400 switch, if the PTP slave port is swp66 and is operating at 1Gbps, the  PTP mean path delay value might be reported as a negative value. </td>
 <td>5.11.0-5.13.1</td>
@@ -1231,12 +1225,6 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <tr>
 <td>4408387</td>
 <td>BGP crashes during EVPN route install due to incorrect memory access.</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4408280</td>
-<td>NVUE commands can create excessive log data. To work around this issue, configure {{rsyslog}} rules to limit logging of these commands.</td>
 <td>5.11.0-5.13.1</td>
 <td></td>
 </tr>

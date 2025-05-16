@@ -91,12 +91,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4408280</td>
-<td>NVUE commands can create excessive log data. To work around this issue, configure {{rsyslog}} rules to limit logging of these commands.</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4403755</td>
 <td>On first boot after a binary install or upgrade, if ZTP does not run or does not complete successfully, all interfaces are left admin up until you disable ZTP manually. To work around this issue, use an empty ZTP script during onie-install ({{-z ZTP_URL}}) or configure the DCHP option 239.</td>
 <td>5.12.1-5.13.1</td>
@@ -1143,12 +1137,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <tr>
 <td>4408387</td>
 <td>BGP crashes during EVPN route install due to incorrect memory access.</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4408280</td>
-<td>NVUE commands can create excessive log data. To work around this issue, configure {{rsyslog}} rules to limit logging of these commands.</td>
 <td>5.11.0-5.13.1</td>
 <td></td>
 </tr>

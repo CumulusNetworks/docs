@@ -693,6 +693,11 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>When using TACACS or Radius authentication to run CLI commands, the available memory on the switch might reduce over time.</td>
 <td>5.13.0</td>
 </tr>
+<tr>
+<td>4438681</td>
+<td>Available file descriptors might reduce due to incorrect handing in NVUE error paths causing NVUE requests to fail. To work around this issue, restart the NVUE service.</td>
+<td>5.13.0</td>
+</tr>
 </table>
 <table name="Open Issues in 5.13.0">
 <tr>
@@ -704,6 +709,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <tr>
 <td>4438697</td>
 <td>When using TACACS or Radius authentication to run CLI commands, the available memory on the switch might reduce over time.</td>
+<td>5.13.0</td>
+<td>5.13.1</td>
+</tr>
+<tr>
+<td>4438681</td>
+<td>Available file descriptors might reduce due to incorrect handing in NVUE error paths causing NVUE requests to fail. To work around this issue, restart the NVUE service.</td>
 <td>5.13.0</td>
 <td>5.13.1</td>
 </tr>
@@ -842,12 +853,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <tr>
 <td>4408387</td>
 <td>BGP crashes during EVPN route install due to incorrect memory access.</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4408280</td>
-<td>NVUE commands can create excessive log data. To work around this issue, configure {{rsyslog}} rules to limit logging of these commands.</td>
 <td>5.11.0-5.13.1</td>
 <td></td>
 </tr>

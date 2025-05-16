@@ -123,6 +123,7 @@ pdfhidden: True
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
 | <a name="4438697"></a> [4438697](#4438697) <a name="4438697"></a> <br /> | When using TACACS or Radius authentication to run CLI commands, the available memory on the switch might reduce over time. | 5.13.0 | |
+| <a name="4438681"></a> [4438681](#4438681) <a name="4438681"></a> <br /> | Available file descriptors might reduce due to incorrect handing in NVUE error paths causing NVUE requests to fail. To work around this issue, restart the NVUE service. | 5.13.0 | |
 
 ## 5.13.0 Release Notes
 ### Open Issues in 5.13.0
@@ -130,6 +131,7 @@ pdfhidden: True
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="4438697"></a> [4438697](#4438697) <a name="4438697"></a> <br /> | When using TACACS or Radius authentication to run CLI commands, the available memory on the switch might reduce over time. | 5.13.0 | 5.13.1|
+| <a name="4438681"></a> [4438681](#4438681) <a name="4438681"></a> <br /> | Available file descriptors might reduce due to incorrect handing in NVUE error paths causing NVUE requests to fail. To work around this issue, restart the NVUE service. | 5.13.0 | 5.13.1|
 | <a name="4435328"></a> [4435328](#4435328) <a name="4435328"></a> <br /> | ed25519 signed certificates do not work with strict mode enabled. Either disable strict mode with the <code>nv set system ssh-server strict disabled</code> command or manually add <code>ssh-ed25519-cert-v01&#64;openssh.com</code> to <code>PubkeyAcceptedKeyTypes</code> in the <code>/etc/ssh/sshd_config</code> file. | 5.13.0-5.13.1 | |
 | <a name="4427224"></a> [4427224](#4427224) <a name="4427224"></a> <br /> | The <code>nv show interface</code> command output shows the operational status as down for a link flap error disabled state instead of the real protodown reason. To work around this issue, run the <code>nv show interface status</code> command, which shows if any of the interfaces are protodown with the protodown reason. | 5.12.0-5.13.1 | |
 | <a name="4425299"></a> [4425299](#4425299) <a name="4425299"></a> <br /> | After upgrading from Cumulus Linux 5.12 to 5.13 on the NVIDIA SN5400 switch bonus port, PTP does not converge. To work around this issue, disable, then enable the bonus port after upgrade. | 5.13.0-5.13.1 | |
@@ -153,7 +155,6 @@ pdfhidden: True
 | <a name="4413450"></a> [4413450](#4413450) <a name="4413450"></a> <br /> | When displaying BGP neighbor advertised routes in JSON format with very large routing tables, the process consumes excessive memory resulting in out of memory crashes.  | 5.0.0-5.13.1 | |
 | <a name="4408549"></a> [4408549](#4408549) <a name="4408549"></a> <br /> | UMF processes do not include log rotation and the logs can grow very large causing operational failures when you generate cl-support files and run the <code>nv config apply</code> command. | 5.13.0-5.13.1 | |
 | <a name="4408387"></a> [4408387](#4408387) <a name="4408387"></a> <br /> | BGP crashes during EVPN route install due to incorrect memory access. | 5.11.0-5.13.1 | |
-| <a name="4408280"></a> [4408280](#4408280) <a name="4408280"></a> <br /> | NVUE commands can create excessive log data. To work around this issue, configure <code>rsyslog</code> rules to limit logging of these commands. | 5.11.0-5.13.1 | |
 | <a name="4403755"></a> [4403755](#4403755) <a name="4403755"></a> <br /> | On first boot after a binary install or upgrade, if ZTP does not run or does not complete successfully, all interfaces are left admin up until you disable ZTP manually. To work around this issue, use an empty ZTP script during onie-install (<code>-z ZTP_URL</code>) or configure the DCHP option 239. | 5.12.1-5.13.1 | |
 | <a name="4398031"></a> [4398031](#4398031) <a name="4398031"></a> <br /> | On the NVIDIA SN5400 switch, if the PTP slave port is swp66 and is operating at 1Gbps, the  PTP mean path delay value might be reported as a negative value.  | 5.11.0-5.13.1 | |
 | <a name="4370954"></a> [4370954](#4370954) <a name="4370954"></a> <br /> | After enabling, then disabling truncation on a SPAN session,  truncated packets are still received on the SPAN destination. To work around this issue, remove the SPAN session configuration, reboot the switch, then reconfigure the SPAN session without truncation. | 5.12.0-5.13.1 | |

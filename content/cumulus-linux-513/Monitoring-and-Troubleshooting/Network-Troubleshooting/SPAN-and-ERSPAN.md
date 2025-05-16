@@ -134,7 +134,7 @@ mirror.session.1.type = span
 Run the following command to the load the configuration:
 
 ```
-cumulus@switch:~$ /usr/lib/cumulus/switchdctl --load /etc/cumulus/switchd.d/port-mirror.conf -prefix mirror
+cumulus@switch:~$ sudo systemctl reload switchd
 ```
 
 SPAN sessions that reference an outgoing interface create the mirrored packets according to the ingress interface before the routing decision. For example, the following rule captures traffic that is ultimately destined to leave swp1 but mirrors the packets when they arrive on swp49. The rule transmits packets that reference the original VLAN tag, and source and destination MAC address at the time that swp49 originally receives the packet.
@@ -149,7 +149,7 @@ mirror.session.1.type = span
 ```
 
 ```
-cumulus@switch:~$ /usr/lib/cumulus/switchdctl --load /etc/cumulus/switchd.d/port-mirror.conf -prefix mirror
+cumulus@switch:~$ sudo systemctl reload switchd
 ```
 
 {{< /tab >}}
@@ -432,7 +432,7 @@ mirror.session.1.type = erspan
 Run the following command to the load the configuration:
 
 ```
-cumulus@switch:~$ /usr/lib/cumulus/switchdctl --load /etc/cumulus/switchd.d/port-mirror.conf -prefix mirror
+cumulus@switch:~$ sudo systemctl reload switchd
 ```
 
 {{< /tab >}}

@@ -22,7 +22,7 @@ Each physical network interface (port) has several settings:
 - <span class="a-tooltip">[FEC](## "Forward Error Correction")</span>
 
 For NVIDIA Spectrum ASICs, the firmware configures FEC, link speed, duplex mode and auto-negotiation automatically, following a predefined list of parameter settings until the link comes up. You can disable FEC if necessary, which forces the firmware to not try any FEC options.
-<!-- 5.14 REMOVE NOTE IN CONSIDERATIONS SECTION
+
 ### Auto-negotiation and Link Speed
 
 {{< tabs "TabID29 ">}}
@@ -53,7 +53,7 @@ iface swp1
 
 {{< /tab >}}
 {{< /tabs >}}
--->
+
 ## MTU
 
 Interface <span class="a-tooltip">[MTU](## "Maximum Transmission Unit")</span> applies to traffic traversing the management port, front panel or switch ports, bridge, VLAN subinterfaces, and bonds (both physical and logical interfaces). MTU is the only interface setting that you must set manually.
@@ -2141,10 +2141,6 @@ When you connect an NVIDIA Spectrum-4 switch to another NVIDIA Spectrum-4 switch
 <!--
 When you use copper cables to connect an NVIDIA Spectrum-4 switch to another NVIDIA Spectrum-4 switch with PAM4 modulation, you must enable auto-negotiation.
 -->
-
-### Auto-negotiation and Link Speed
-
-If auto-negotiation is on and you set the link speed for a port, Cumulus Linux disables auto-negotiation and uses the port speed setting you configure.
 
 ### 1000BASE-T SFP Modules Supported Only on Certain 25G Platforms
 <!-- vale on -->

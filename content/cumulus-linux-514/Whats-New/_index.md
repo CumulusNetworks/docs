@@ -18,7 +18,8 @@ Cumulus Linux 5.14.0 supports new platforms, provides bug fixes, and contains se
 
 ### New Features and Enhancements
 
-- Speed setting without autoneg - (commented out from 5.13)
+- {{<link url="Switch-Port-Attributes/#auto-negotiation-and-link-speed" text="Speed setting without auto-negotiation">}}
+- {{<link title="Erase all Data from the Switch" text="Erase all data from the switch">}} now generally available
 - Flow control
 - Map port to connector
 - Operational revision
@@ -36,7 +37,6 @@ Cumulus Linux 5.14.0 supports new platforms, provides bug fixes, and contains se
 - New QoS profile to support MRC
 - Trimming with asymmetric DSCP
 - SRv6 counter
-- SSD erasure - now GA
 - NVUE
   - {{< expand "Changed NVUE Commands" >}}
 | Cumulus Linux 5.14 | Cumulus Linux 13 and Earlier |

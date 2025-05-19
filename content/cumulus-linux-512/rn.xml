@@ -25,12 +25,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4423353</td>
-<td>ZTP scripts return an error due to incorrect ASCI to UTF-8 conversion.</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4423352</td>
 <td>ZTP scripts return an error due to incorrect ASCI to UTF-8 conversion.</td>
 <td>5.11.0-5.13.1</td>
@@ -192,6 +186,12 @@ On the Spectrum-4 switch, the cell-size is 192 bytes. The minimum buffer must be
 On the Spectrum-3 switch, the cell-size is 144 bytes. The minimum size is 144*64 (9KB).</td>
 <td>5.12.0-5.12.1</td>
 <td>5.13.0-5.13.1</td>
+</tr>
+<tr>
+<td>4341608</td>
+<td>When you enable PFC watchdog, telemetry histograms, and 802.1x with NVUE, then upgrade the switch to Cumulus Linux 5.12 followed by a warm reboot, the switch crashes when a cl-support file is created or by certain {{sx_api}} requests. You see error logs in the SDK continuously because the switch collects interface statistics every one second. To work around this issue, reboot the switch.</td>
+<td>5.10.1-5.13.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4341508</td>
@@ -1069,12 +1069,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>4423353</td>
-<td>ZTP scripts return an error due to incorrect ASCI to UTF-8 conversion.</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4423352</td>
 <td>ZTP scripts return an error due to incorrect ASCI to UTF-8 conversion.</td>
 <td>5.11.0-5.13.1</td>
@@ -1230,6 +1224,12 @@ On the Spectrum-4 switch, the cell-size is 192 bytes. The minimum buffer must be
 On the Spectrum-3 switch, the cell-size is 144 bytes. The minimum size is 144*64 (9KB).</td>
 <td>5.12.0-5.12.1</td>
 <td>5.13.0-5.13.1</td>
+</tr>
+<tr>
+<td>4341608</td>
+<td>When you enable PFC watchdog, telemetry histograms, and 802.1x with NVUE, then upgrade the switch to Cumulus Linux 5.12 followed by a warm reboot, the switch crashes when a cl-support file is created or by certain {{sx_api}} requests. You see error logs in the SDK continuously because the switch collects interface statistics every one second. To work around this issue, reboot the switch.</td>
+<td>5.10.1-5.13.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4341508</td>

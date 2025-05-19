@@ -32,6 +32,7 @@ You can configure the switch to restart in one of the following modes.
 Cumulus Linux supports:
 - Fast mode for all protocols.
 - Warm mode for 802.1X, layer 2 forwarding, layer 3 forwarding with BGP, static routing, and VXLAN routing with EVPN. Cumulus Linux does not support warm boot with EVPN MLAG or EVPN multihoming.
+- Warm mode with optimized image (two partition) upgrade and package upgrade (the switch must be in warm mode before you start the upgrade).
 {{%/notice%}}
 
 NVIDIA recommends you use NVUE commands to configure restart mode and reboot the system. If you prefer to use `csmgrctl` commands, you must stop NVUE from managing the `/etc/cumulus/csmgrd.conf` file before you set restart mode:

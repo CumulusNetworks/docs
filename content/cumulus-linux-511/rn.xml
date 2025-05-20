@@ -25,6 +25,12 @@
 <td></td>
 </tr>
 <tr>
+<td>4423320</td>
+<td>When you configure BGP {{suppress-fib-pending}}, the prefix might not be withdrawn from downstream peers.</td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4423285</td>
 <td>SVIs do not go down even when all the bridge ports on the corresponding VLAN are down. This issue occurs because the {{vlan-bridge-binding}} option default setting is off for all the SVIs responsible for bringing down the SVI when all the ports on the corresponding VLAN are down. To work around this issue, manually configure the {{vlan-bridge-binding on}} option under the SVI stanza in the {{/etc/network/interfaces config}} file.</td>
 <td>5.11.0-5.13.1</td>
@@ -51,6 +57,12 @@
 <tr>
 <td>4423269</td>
 <td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423235</td>
+<td>The {{snmpd}} service generates debugging logs of sudo calls. To work around this issue, disable sudo logging for the specific commands run by the Debian-snmp user in the {{/etc/sudoers.d/snmp}} file by adding {{Defaults:Debian-snmp !syslog}}.</td>
 <td>5.11.0-5.13.1</td>
 <td></td>
 </tr>
@@ -119,12 +131,6 @@ nv config apply -y</td>
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>
-<td>4341608</td>
-<td>When you enable PFC watchdog, telemetry histograms, and 802.1x with NVUE, then upgrade the switch to Cumulus Linux 5.12 followed by a warm reboot, the switch crashes when a cl-support file is created or by certain {{sx_api}} requests. You see error logs in the SDK continuously because the switch collects interface statistics every one second. To work around this issue, reboot the switch.</td>
-<td>5.10.1-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4341508</td>
 <td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
 <td>5.11.0-5.12.1</td>
@@ -164,6 +170,12 @@ nv config apply -y</td>
 <td>4320729</td>
 <td>When toggling the bridge binding flag on an SVI from ON to OFF, the SVI might not come operationally UP if it was DOWN previously from the bridge binding flag.</td>
 <td>5.11.0-5.12.1</td>
+<td>5.13.0-5.13.1</td>
+</tr>
+<tr>
+<td>4318313</td>
+<td>When you enable PFC watchdog, telemetry histograms, and 802.1x with NVUE, then upgrade the switch to Cumulus Linux 5.12 followed by a warm reboot, the switch crashes when a cl-support file is created or by certain {{sx_api}} requests. You see error logs in the SDK continuously because the switch collects interface statistics every one second. To work around this issue, reboot the switch.</td>
+<td>5.10.1-5.12.1</td>
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>
@@ -1175,6 +1187,12 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <td></td>
 </tr>
 <tr>
+<td>4423320</td>
+<td>When you configure BGP {{suppress-fib-pending}}, the prefix might not be withdrawn from downstream peers.</td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4423285</td>
 <td>SVIs do not go down even when all the bridge ports on the corresponding VLAN are down. This issue occurs because the {{vlan-bridge-binding}} option default setting is off for all the SVIs responsible for bringing down the SVI when all the ports on the corresponding VLAN are down. To work around this issue, manually configure the {{vlan-bridge-binding on}} option under the SVI stanza in the {{/etc/network/interfaces config}} file.</td>
 <td>5.11.0-5.13.1</td>
@@ -1201,6 +1219,12 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <tr>
 <td>4423269</td>
 <td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423235</td>
+<td>The {{snmpd}} service generates debugging logs of sudo calls. To work around this issue, disable sudo logging for the specific commands run by the Debian-snmp user in the {{/etc/sudoers.d/snmp}} file by adding {{Defaults:Debian-snmp !syslog}}.</td>
 <td>5.11.0-5.13.1</td>
 <td></td>
 </tr>
@@ -1275,12 +1299,6 @@ nv config apply -y</td>
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>
-<td>4341608</td>
-<td>When you enable PFC watchdog, telemetry histograms, and 802.1x with NVUE, then upgrade the switch to Cumulus Linux 5.12 followed by a warm reboot, the switch crashes when a cl-support file is created or by certain {{sx_api}} requests. You see error logs in the SDK continuously because the switch collects interface statistics every one second. To work around this issue, reboot the switch.</td>
-<td>5.10.1-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4341508</td>
 <td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
 <td>5.11.0-5.12.1</td>
@@ -1320,6 +1338,12 @@ nv config apply -y</td>
 <td>4320729</td>
 <td>When toggling the bridge binding flag on an SVI from ON to OFF, the SVI might not come operationally UP if it was DOWN previously from the bridge binding flag.</td>
 <td>5.11.0-5.12.1</td>
+<td>5.13.0-5.13.1</td>
+</tr>
+<tr>
+<td>4318313</td>
+<td>When you enable PFC watchdog, telemetry histograms, and 802.1x with NVUE, then upgrade the switch to Cumulus Linux 5.12 followed by a warm reboot, the switch crashes when a cl-support file is created or by certain {{sx_api}} requests. You see error logs in the SDK continuously because the switch collects interface statistics every one second. To work around this issue, reboot the switch.</td>
+<td>5.10.1-5.12.1</td>
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>

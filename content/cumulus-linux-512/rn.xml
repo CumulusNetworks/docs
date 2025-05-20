@@ -25,12 +25,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4423353</td>
-<td>ZTP scripts return an error due to incorrect ASCI to UTF-8 conversion.</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4423352</td>
 <td>ZTP scripts return an error due to incorrect ASCI to UTF-8 conversion.</td>
 <td>5.11.0-5.13.1</td>
@@ -46,6 +40,12 @@
 <td>4423335</td>
 <td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
 <td>5.9.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423320</td>
+<td>When you configure BGP {{suppress-fib-pending}}, the prefix might not be withdrawn from downstream peers.</td>
+<td>5.11.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -79,6 +79,12 @@
 <td></td>
 </tr>
 <tr>
+<td>4423235</td>
+<td>The {{snmpd}} service generates debugging logs of sudo calls. To work around this issue, disable sudo logging for the specific commands run by the Debian-snmp user in the {{/etc/sudoers.d/snmp}} file by adding {{Defaults:Debian-snmp !syslog}}.</td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4413450</td>
 <td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables, the process consumes excessive memory resulting in out of memory crashes. </td>
 <td>5.0.0-5.13.1</td>
@@ -87,12 +93,6 @@
 <tr>
 <td>4408387</td>
 <td>BGP crashes during EVPN route install due to incorrect memory access.</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4408280</td>
-<td>NVUE commands can create excessive log data. To work around this issue, configure {{rsyslog}} rules to limit logging of these commands.</td>
 <td>5.11.0-5.13.1</td>
 <td></td>
 </tr>
@@ -269,6 +269,12 @@ On the Spectrum-3 switch, the cell-size is 144 bytes. The minimum size is 144*64
 <td>4318464</td>
 <td>When connecting two NVIDIA devices using DAC in auto-negotiation mode with 100GbE R1 (one lane) port speed, the link goes down. To avoid this issue, use firmware version xx.2014.3xxx and above on both sides.</td>
 <td>5.12.0-5.12.1</td>
+<td>5.13.0-5.13.1</td>
+</tr>
+<tr>
+<td>4318313</td>
+<td>When you enable PFC watchdog, telemetry histograms, and 802.1x with NVUE, then upgrade the switch to Cumulus Linux 5.12 followed by a warm reboot, the switch crashes when a cl-support file is created or by certain {{sx_api}} requests. You see error logs in the SDK continuously because the switch collects interface statistics every one second. To work around this issue, reboot the switch.</td>
+<td>5.10.1-5.12.1</td>
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>
@@ -669,12 +675,6 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 <tr>
 <td>3847439</td>
 <td>In rare cases on the Spectrum 1 switch, where a dual connected host transmits all traffic flows to only one switch in a connected MLAG pair, and the host changes behavior to hash all flows to the other MLAG switch, there might be traffic loss if the MAC FDB entry on the original switch ages out.</td>
-<td>5.9.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3835635</td>
-<td>When adaptive routing is enabled, traffic for non adaptive routing enabled ports and non adaptive routing ECMPs might be routed over all ports in ECMP.  Avoid using regular ECMPs with adaptive routing enabled on the switch.</td>
 <td>5.9.0-5.13.1</td>
 <td></td>
 </tr>
@@ -1081,12 +1081,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>4423353</td>
-<td>ZTP scripts return an error due to incorrect ASCI to UTF-8 conversion.</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4423352</td>
 <td>ZTP scripts return an error due to incorrect ASCI to UTF-8 conversion.</td>
 <td>5.11.0-5.13.1</td>
@@ -1102,6 +1096,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>4423335</td>
 <td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
 <td>5.9.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423320</td>
+<td>When you configure BGP {{suppress-fib-pending}}, the prefix might not be withdrawn from downstream peers.</td>
+<td>5.11.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1135,6 +1135,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
+<td>4423235</td>
+<td>The {{snmpd}} service generates debugging logs of sudo calls. To work around this issue, disable sudo logging for the specific commands run by the Debian-snmp user in the {{/etc/sudoers.d/snmp}} file by adding {{Defaults:Debian-snmp !syslog}}.</td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4413450</td>
 <td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables, the process consumes excessive memory resulting in out of memory crashes. </td>
 <td>5.0.0-5.13.1</td>
@@ -1143,12 +1149,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <tr>
 <td>4408387</td>
 <td>BGP crashes during EVPN route install due to incorrect memory access.</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4408280</td>
-<td>NVUE commands can create excessive log data. To work around this issue, configure {{rsyslog}} rules to limit logging of these commands.</td>
 <td>5.11.0-5.13.1</td>
 <td></td>
 </tr>
@@ -1319,6 +1319,12 @@ On the Spectrum-3 switch, the cell-size is 144 bytes. The minimum size is 144*64
 <td>4318464</td>
 <td>When connecting two NVIDIA devices using DAC in auto-negotiation mode with 100GbE R1 (one lane) port speed, the link goes down. To avoid this issue, use firmware version xx.2014.3xxx and above on both sides.</td>
 <td>5.12.0-5.12.1</td>
+<td>5.13.0-5.13.1</td>
+</tr>
+<tr>
+<td>4318313</td>
+<td>When you enable PFC watchdog, telemetry histograms, and 802.1x with NVUE, then upgrade the switch to Cumulus Linux 5.12 followed by a warm reboot, the switch crashes when a cl-support file is created or by certain {{sx_api}} requests. You see error logs in the SDK continuously because the switch collects interface statistics every one second. To work around this issue, reboot the switch.</td>
+<td>5.10.1-5.12.1</td>
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>
@@ -1731,12 +1737,6 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 <tr>
 <td>3847439</td>
 <td>In rare cases on the Spectrum 1 switch, where a dual connected host transmits all traffic flows to only one switch in a connected MLAG pair, and the host changes behavior to hash all flows to the other MLAG switch, there might be traffic loss if the MAC FDB entry on the original switch ages out.</td>
-<td>5.9.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3835635</td>
-<td>When adaptive routing is enabled, traffic for non adaptive routing enabled ports and non adaptive routing ECMPs might be routed over all ports in ECMP.  Avoid using regular ECMPs with adaptive routing enabled on the switch.</td>
 <td>5.9.0-5.13.1</td>
 <td></td>
 </tr>

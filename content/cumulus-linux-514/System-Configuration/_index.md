@@ -12,7 +12,7 @@ This section describes how to configure the following system settings:
 - {{<link url="Services-and-Daemons-in-Cumulus-Linux" text="Services and daemons">}}
 - {{<link url="Configuring-switchd" text="switchd">}}
 - {{<link url="Configuring-a-Global-Proxy" text="Configuring a Global Proxy">}}
-- {{<link url="In-Service-System-Upgrade-ISSU" text="In Service System Upgrade">}} (ISSU)
+- {{<link url="Maintenance-Mode" text="Maintenance Mode">}}
 - {{<link url="CLI-Configuration" text="CLI configuration">}}
 - {{<link url="System-Power" text="System Power">}}
 - {{<link title="Erase all Data from the Switch" text="Erase all data from the switch">}}

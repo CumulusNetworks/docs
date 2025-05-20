@@ -1,7 +1,7 @@
 ---
 title: In Service System Upgrade - ISSU
 author: NVIDIA
-weight: 275
+weight: 35
 toc: 3
 ---
 Use <span class="a-tooltip">[ISSU](## "In Service System Upgrade")</span> (warm restart mode) to restart the switch with minimal disruption to the network.

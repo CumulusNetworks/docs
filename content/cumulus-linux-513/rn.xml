@@ -43,6 +43,12 @@
 <td></td>
 </tr>
 <tr>
+<td>4423244</td>
+<td>When you enable, then disable adaptive routing, the BGP neighbors might go down because of an unresolved MAC address. To resolve this issue configure another attribute on the interface.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4423223</td>
 <td>When processing the static IP assignment for an interface previously managed through DHCP, Cumulus Linux fails to clean up the DHCP created state completely. As a result when the IP address assigned by DHCP earlier expires, the switch eventually loses connectivity.</td>
 <td>5.13.0-5.13.1</td>
@@ -51,6 +57,18 @@
 <tr>
 <td>4423176</td>
 <td>When you configure an API port with a TCP port already in use, the {{nginx}} server fails to restart.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423175</td>
+<td>When you configure an API port with a TCP port already in use, the {{nginx}} server fails to restart.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423167</td>
+<td>Zebra might crash when multiple interfaces flap rapidly with a large scale number of routes. This issue occurs because the next hop group hash comparison incorrectly treats distinct next hop groups as equal. I addition, the hashing logic currently uses only four bytes of the IPv6 address, which increases the likelihood of collisions and misidentification.  Avoid rapidly flapping multiple interfaces when managing large scale routes.</td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
@@ -97,9 +115,15 @@
 <td></td>
 </tr>
 <tr>
-<td>4341608</td>
-<td>When you enable PFC watchdog, telemetry histograms, and 802.1x with NVUE, then upgrade the switch to Cumulus Linux 5.12 followed by a warm reboot, the switch crashes when a cl-support file is created or by certain {{sx_api}} requests. You see error logs in the SDK continuously because the switch collects interface statistics every one second. To work around this issue, reboot the switch.</td>
-<td>5.10.1-5.13.1</td>
+<td>4386779</td>
+<td>When you start gNMI subscription from a remote client, interface rates reset and values start from 0. </td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4360826</td>
+<td>On rare occasions, when you run the NVUE {{nv config apply}} command, {{switchd}} crashes, then restarts after the crash and resumes its normal flow of operation.</td>
+<td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -779,6 +803,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
+<td>4423320</td>
+<td>When you configure BGP {{suppress-fib-pending}}, the prefix might not be withdrawn from downstream peers.</td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4423285</td>
 <td>SVIs do not go down even when all the bridge ports on the corresponding VLAN are down. This issue occurs because the {{vlan-bridge-binding}} option default setting is off for all the SVIs responsible for bringing down the SVI when all the ports on the corresponding VLAN are down. To work around this issue, manually configure the {{vlan-bridge-binding on}} option under the SVI stanza in the {{/etc/network/interfaces config}} file.</td>
 <td>5.11.0-5.13.1</td>
@@ -821,6 +851,18 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
+<td>4423244</td>
+<td>When you enable, then disable adaptive routing, the BGP neighbors might go down because of an unresolved MAC address. To resolve this issue configure another attribute on the interface.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423235</td>
+<td>The {{snmpd}} service generates debugging logs of sudo calls. To work around this issue, disable sudo logging for the specific commands run by the Debian-snmp user in the {{/etc/sudoers.d/snmp}} file by adding {{Defaults:Debian-snmp !syslog}}.</td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4423223</td>
 <td>When processing the static IP assignment for an interface previously managed through DHCP, Cumulus Linux fails to clean up the DHCP created state completely. As a result when the IP address assigned by DHCP earlier expires, the switch eventually loses connectivity.</td>
 <td>5.13.0-5.13.1</td>
@@ -829,6 +871,18 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <tr>
 <td>4423176</td>
 <td>When you configure an API port with a TCP port already in use, the {{nginx}} server fails to restart.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423175</td>
+<td>When you configure an API port with a TCP port already in use, the {{nginx}} server fails to restart.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423167</td>
+<td>Zebra might crash when multiple interfaces flap rapidly with a large scale number of routes. This issue occurs because the next hop group hash comparison incorrectly treats distinct next hop groups as equal. I addition, the hashing logic currently uses only four bytes of the IPv6 address, which increases the likelihood of collisions and misidentification.  Avoid rapidly flapping multiple interfaces when managing large scale routes.</td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
@@ -875,15 +929,21 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
+<td>4386779</td>
+<td>When you start gNMI subscription from a remote client, interface rates reset and values start from 0. </td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4370954</td>
 <td>After enabling, then disabling truncation on a SPAN session,  truncated packets are still received on the SPAN destination. To work around this issue, remove the SPAN session configuration, reboot the switch, then reconfigure the SPAN session without truncation.</td>
 <td>5.12.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
-<td>4341608</td>
-<td>When you enable PFC watchdog, telemetry histograms, and 802.1x with NVUE, then upgrade the switch to Cumulus Linux 5.12 followed by a warm reboot, the switch crashes when a cl-support file is created or by certain {{sx_api}} requests. You see error logs in the SDK continuously because the switch collects interface statistics every one second. To work around this issue, reboot the switch.</td>
-<td>5.10.1-5.13.1</td>
+<td>4360826</td>
+<td>On rare occasions, when you run the NVUE {{nv config apply}} command, {{switchd}} crashes, then restarts after the crash and resumes its normal flow of operation.</td>
+<td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1669,6 +1729,11 @@ On the Spectrum-3 switch, the cell-size is 144 bytes. The minimum size is 144*64
 <td>4318464</td>
 <td>When connecting two NVIDIA devices using DAC in auto-negotiation mode with 100GbE R1 (one lane) port speed, the link goes down. To avoid this issue, use firmware version xx.2014.3xxx and above on both sides.</td>
 <td>5.12.0-5.12.1</td>
+</tr>
+<tr>
+<td>4318313</td>
+<td>When you enable PFC watchdog, telemetry histograms, and 802.1x with NVUE, then upgrade the switch to Cumulus Linux 5.12 followed by a warm reboot, the switch crashes when a cl-support file is created or by certain {{sx_api}} requests. You see error logs in the SDK continuously because the switch collects interface statistics every one second. To work around this issue, reboot the switch.</td>
+<td>5.10.1-5.12.1</td>
 </tr>
 <tr>
 <td>4299350</td>

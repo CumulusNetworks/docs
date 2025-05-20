@@ -8,7 +8,7 @@ You can upgrade Cumulus Linux in one of two ways:
 - Install a new Cumulus Linux image with either {{<link url="#image-upgrade" text="Optimized image upgrade">}} or <span class="a-tooltip">[ONIE](## "Open Network Install Environment")</span>.
 - Upgrade only changed packages with {{<link url="#package-upgrade" text="package upgrade">}}.
 
-Cumulus Linux provides ISSU to upgrade an active switch with minimal disruption to the network. See {{<link url="In-Service-System-Upgrade-ISSU" text="In-Service-System-Upgrade-ISSU">}}.
+Cumulus Linux supports {{<link url="In-Service-System-Upgrade-ISSU" text="In-Service-System-Upgrade-ISSU">}} with optimized image upgrade and package upgrade to upgrade an active switch with minimal disruption to the network.
 
 ## Before You Upgrade
 

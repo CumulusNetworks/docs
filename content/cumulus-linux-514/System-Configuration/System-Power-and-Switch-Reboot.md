@@ -4,6 +4,10 @@ author: NVIDIA
 weight: 295
 toc: 3
 ---
+Cumulus Linux provides commands to:
+- {{<link url="#switch-reboot" text="Reboot the switch">}}
+- {{<link url="#power-off" text="Power off the switch">}}
+- {{<link url="#power-cycle" text="Power cycle the switch">}}
 
 ## Switch Reboot
 

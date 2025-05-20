@@ -2473,12 +2473,6 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 <td>5.12.0-5.13.1</td>
 </tr>
 <tr>
-<td>3835635</td>
-<td>When adaptive routing is enabled, traffic for non adaptive routing enabled ports and non adaptive routing ECMPs might be routed over all ports in ECMP.  Avoid using regular ECMPs with adaptive routing enabled on the switch.</td>
-<td>5.9.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3821643</td>
 <td>When using SSM and the upstream interface goes away (the source stops sending or the link goes down) the PIMREG interface is added to the outgoing interface list of the S,G and is never removed. As a result, multicast traffic that hits the impacted S,G is forwarded to the CPU and dropped by the switch.</td>
 <td>5.9.0-5.9.1</td>

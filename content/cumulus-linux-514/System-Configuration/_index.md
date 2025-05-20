@@ -14,5 +14,5 @@ This section describes how to configure the following system settings:
 - {{<link url="Configuring-a-Global-Proxy" text="Configuring a Global Proxy">}}
 - {{<link url="Maintenance-Mode" text="Maintenance Mode">}}
 - {{<link url="CLI-Configuration" text="CLI configuration">}}
-- {{<link url="System-Power" text="System Power">}}
+- {{<link url="System-Power-and-Switch-Reboot" text="System Power and Switch Reboot">}}
 - {{<link title="Erase all Data from the Switch" text="Erase all data from the switch">}}

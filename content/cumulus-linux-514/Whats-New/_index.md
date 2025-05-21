@@ -20,7 +20,6 @@ Cumulus Linux 5.14.0 supports new platforms, provides bug fixes, and contains se
 
 - {{<link url="Switch-Port-Attributes/#auto-negotiation-and-link-speed" text="Speed setting without auto-negotiation">}}
 - {{<link title="Erase all Data from the Switch" text="Erase all data from the switch">}} now generally available
-- Flow control
 - Map port to connector
 - Operational revision
 - EVPN info across all VRFs
@@ -35,8 +34,8 @@ Cumulus Linux 5.14.0 supports new platforms, provides bug fixes, and contains se
 - MRC packet trimming
 - MRC SRv6 subset to support OAI 
 - New QoS profile to support MRC
-- Trimming with asymmetric DSCP
-- SRv6 counter
+- Packet trimming with asymmetric DSCP
+- SRv6 counters
 - NVUE
   - {{< expand "Changed NVUE Commands" >}}
 | Cumulus Linux 5.14 | Cumulus Linux 13 and Earlier |

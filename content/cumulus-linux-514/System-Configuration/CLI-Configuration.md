@@ -1,7 +1,7 @@
 ---
 title: CLI Configuration
 author: NVIDIA
-weight: 290
+weight: 278
 toc: 3
 ---
 Cumulus Linux provides several options to configure the CLI; you can set a CLI session timeout, and enable and configure the pager.

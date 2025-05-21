@@ -85,6 +85,15 @@
 <td></td>
 </tr>
 <tr>
+<td>4423134</td>
+<td>On Spectrum-1a switches with IGMP snooping enabled, a multicast hardware programming failure might occur after interface flap or switch reboot events. You can observe this issue when the switch generates log messages similar to the following:
+sx_sdk[18174]: ERROR   FDB: Usage API type can not be changed for 0x1003 fid.
+sx_sdk[18174]: ERROR   FDB: Failed to __fdb_unreg_mc_flood_cfg_api_type_set , err: Command Unpermitted
+switchd[19460]: hal_mlx_l2mc.c:1107 ERR VFID: 4099, Failed to set unregistered IPv4 MC mode FLOOD and attr MCC 0: Command Unpermitted</td>
+<td>5.12.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4413450</td>
 <td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables, the process consumes excessive memory resulting in out of memory crashes. </td>
 <td>5.0.0-5.13.1</td>
@@ -107,6 +116,12 @@
 <td>When you use BGP prefix independent convergence (PIC) with IPv6, {{cl-route-check}} might show errors due to a discrepancy in the IPv4-mapped IPv6 SOO route string format across FRR and the kernel. This is a display-only issue and has no impact on routing functionality.</td>
 <td>5.12.0-5.12.1</td>
 <td>5.13.0-5.13.1</td>
+</tr>
+<tr>
+<td>4402017</td>
+<td>The {{auth.log}} file contains sensitive information for hashed passwords.</td>
+<td>5.12.0-5.13.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4398031</td>
@@ -1141,6 +1156,15 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
+<td>4423134</td>
+<td>On Spectrum-1a switches with IGMP snooping enabled, a multicast hardware programming failure might occur after interface flap or switch reboot events. You can observe this issue when the switch generates log messages similar to the following:
+sx_sdk[18174]: ERROR   FDB: Usage API type can not be changed for 0x1003 fid.
+sx_sdk[18174]: ERROR   FDB: Failed to __fdb_unreg_mc_flood_cfg_api_type_set , err: Command Unpermitted
+switchd[19460]: hal_mlx_l2mc.c:1107 ERR VFID: 4099, Failed to set unregistered IPv4 MC mode FLOOD and attr MCC 0: Command Unpermitted</td>
+<td>5.12.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4413450</td>
 <td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables, the process consumes excessive memory resulting in out of memory crashes. </td>
 <td>5.0.0-5.13.1</td>
@@ -1157,6 +1181,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>When you use BGP prefix independent convergence (PIC) with IPv6, {{cl-route-check}} might show errors due to a discrepancy in the IPv4-mapped IPv6 SOO route string format across FRR and the kernel. This is a display-only issue and has no impact on routing functionality.</td>
 <td>5.12.0-5.12.1</td>
 <td>5.13.0-5.13.1</td>
+</tr>
+<tr>
+<td>4402017</td>
+<td>The {{auth.log}} file contains sensitive information for hashed passwords.</td>
+<td>5.12.0-5.13.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4398031</td>

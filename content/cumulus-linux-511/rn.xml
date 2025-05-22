@@ -9,8 +9,8 @@
 <tr>
 <td>4423430</td>
 <td>When toggling the bridge binding flag on an SVI from ON to OFF, the SVI might not come operationally UP if it was DOWN previously from the bridge binding flag.</td>
-<td>5.11.0-5.12.1</td>
-<td>5.13.0-5.13.1</td>
+<td>5.11.0-5.13.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4423365</td>
@@ -200,6 +200,12 @@ nv config apply -y</td>
 <td>4328729</td>
 <td>When sending control packets that have the port range 259 through 1023 in their TX base header system target (above {{cap_max_system_ports}} and below {{cap_ports}} used for LAG forwarding), a fatal health event occurs on the switch. The port range 259 through 1023 reflects illegal system ports; do not set these values in the control packet TX base header. As this range reflects illegal system ports, do not set these values in the control packet TX base header, as it will be dropped.</td>
 <td>5.10.1-5.12.1</td>
+<td>5.13.0-5.13.1</td>
+</tr>
+<tr>
+<td>4320729</td>
+<td>When toggling the bridge binding flag on an SVI from ON to OFF, the SVI might not come operationally UP if it was DOWN previously from the bridge binding flag.</td>
+<td>5.11.0-5.12.1</td>
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>
@@ -1171,8 +1177,8 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <tr>
 <td>4423430</td>
 <td>When toggling the bridge binding flag on an SVI from ON to OFF, the SVI might not come operationally UP if it was DOWN previously from the bridge binding flag.</td>
-<td>5.11.0-5.12.1</td>
-<td>5.13.0-5.13.1</td>
+<td>5.11.0-5.13.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4423365</td>
@@ -1368,6 +1374,12 @@ nv config apply -y</td>
 <td>4328729</td>
 <td>When sending control packets that have the port range 259 through 1023 in their TX base header system target (above {{cap_max_system_ports}} and below {{cap_ports}} used for LAG forwarding), a fatal health event occurs on the switch. The port range 259 through 1023 reflects illegal system ports; do not set these values in the control packet TX base header. As this range reflects illegal system ports, do not set these values in the control packet TX base header, as it will be dropped.</td>
 <td>5.10.1-5.12.1</td>
+<td>5.13.0-5.13.1</td>
+</tr>
+<tr>
+<td>4320729</td>
+<td>When toggling the bridge binding flag on an SVI from ON to OFF, the SVI might not come operationally UP if it was DOWN previously from the bridge binding flag.</td>
+<td>5.11.0-5.12.1</td>
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>

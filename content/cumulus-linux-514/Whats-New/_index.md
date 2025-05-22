@@ -30,12 +30,11 @@ Cumulus Linux 5.14.0 supports new platforms, provides bug fixes, and contains se
 - gNMI requirements phase 4
 - FIPS 140-2 and 3 approved crypto modules
 - Crypto mechanisms to prevent unauthorized modification of all information 
-- Strong authenticators 
-- MRC packet trimming
-- MRC SRv6 subset to support OAI 
-- New QoS profile to support MRC
-- Packet trimming with asymmetric DSCP
-- SRv6 counters
+- Strong authenticators
+- MRC:
+  - {{<link url="Quality-of-Service/#configure-mrc-with-default-settings" text="Packet trimming and SRv6">}}
+  - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#mrc-qos-profile" text="New QoS profile for MRC">}}
+  - {{<link url="Quality-of-Service/#asymmetric-packet-trimming" text="Packet trimming with asymmetric DSCP">}}
 - NVUE
   - {{< expand "Changed NVUE Commands" >}}
 | Cumulus Linux 5.14 | Cumulus Linux 13 and Earlier |

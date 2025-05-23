@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4440766</td>
+<td>When you try to delete a trusted ca key, Cumulus Linux shows an incorrect error message. To remove a trusted ca key, you must unset the key ID, not the key literal.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4435328</td>
 <td>ed25519 signed certificates do not work with strict mode enabled. Either disable strict mode with the {{nv set system ssh-server strict disabled}} command or manually add {{ssh-ed25519-cert-v01@openssh.com}} to {{PubkeyAcceptedKeyTypes}} in the {{/etc/ssh/sshd_config}} file.</td>
 <td>5.13.0-5.13.1</td>
@@ -749,6 +755,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4440766</td>
+<td>When you try to delete a trusted ca key, Cumulus Linux shows an incorrect error message. To remove a trusted ca key, you must unset the key ID, not the key literal.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4438697</td>
 <td>When using TACACS or Radius authentication to run CLI commands, the available memory on the switch might reduce over time.</td>
 <td>5.13.0</td>
@@ -812,12 +824,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>4423352</td>
 <td>ZTP scripts return an error due to incorrect ASCI to UTF-8 conversion.</td>
 <td>5.11.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4423336</td>
-<td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
-<td>5.9.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1652,6 +1658,11 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>4411453</td>
 <td>Zebra might crash when multiple interfaces flap rapidly with a large scale number of routes. This issue occurs because the next hop group hash comparison incorrectly treats distinct next hop groups as equal. I addition, the hashing logic currently uses only four bytes of the IPv6 address, which increases the likelihood of collisions and misidentification.  Avoid rapidly flapping multiple interfaces when managing large scale routes.</td>
 <td></td>
+</tr>
+<tr>
+<td>4404758</td>
+<td>Installing ssh keys for the cumulus user with NVUE fails and results in login failures.</td>
+<td>5.12.1</td>
 </tr>
 <tr>
 <td>4403127</td>

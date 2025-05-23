@@ -8,7 +8,7 @@ You can upgrade Cumulus Linux in one of two ways:
 - Install a new Cumulus Linux image with either {{<link url="#image-upgrade" text="Optimized image upgrade">}} or <span class="a-tooltip">[ONIE](## "Open Network Install Environment")</span>.
 - Upgrade only changed packages with {{<link url="#package-upgrade" text="package upgrade">}}.
 
-Cumulus Linux supports {{<link url="In-Service-System-Upgrade-ISSU" text="In-Service-System-Upgrade-ISSU">}} with optimized image upgrade and package upgrade to upgrade an active switch with minimal disruption to the network.
+Cumulus Linux supports {{<link url="#issu" text="In-Service-System-Upgrade-ISSU">}} with optimized image upgrade and package upgrade to upgrade an active switch with minimal disruption to the network.
 
 ## Before You Upgrade
 
@@ -144,6 +144,20 @@ cumulus@switch:~$ nv action generate system tech-support
 ```
 cumulus@switch:~$ nv action generate system tech-support
 ```
+
+## ISSU
+
+<span class="a-tooltip">[ISSU](## "In Service System Upgrade")</span> enables you to upgrade the switch software while the network continues to forward packets with minimal disruption to the network.
+
+Cumulus Linux supports ISSU with:
+- Optimized image upgrade 
+- Package upgrade
+
+Image upgrade and package upgrade supports ISSU when you upgrade to Cumulus Linux 5.14 from Cumulus Linux 5.12 and later.
+
+The switch must be in warm reboot mode before you start the software upgrade. When the switch is in warm reboot mode, restarting the switch after an upgrade results in no traffic loss (this is a hitless upgrade).
+
+To configure the switch to reboot in warm mode, refer to {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="Switch Reboot Modes">}}.
 
 ## Image Upgrade
 

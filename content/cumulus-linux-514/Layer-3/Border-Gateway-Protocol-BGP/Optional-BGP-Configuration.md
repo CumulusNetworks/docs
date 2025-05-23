@@ -1088,7 +1088,7 @@ When you configure suppress route advertisement, NVUE restarts `switchd`.
 {{< /tab >}}
 {{< /tabs >}}
 
-{{<link url="In-Service-System-Upgrade-ISSU" text="ISSU">}} suppresses route advertisement automatically when upgrading or troubleshooting an active switch so that there is minimal disruption to the network.
+{{<link url="Upgrading-Cumulus-Linux/#issu" text="ISSU">}} suppresses route advertisement automatically when upgrading or troubleshooting an active switch so that there is minimal disruption to the network.
 <!-- vale off -->
 ## BGP add-path
 
@@ -2249,7 +2249,7 @@ To set graceful BGP restart back to the default setting (helper-only mode), run 
 ### Disable Graceful Restart
 
 {{%notice info%}}
-If you disable graceful BGP restart, you cannot achieve a switch restart or switch software upgrade with minimal traffic loss in a BGP configuration. Refer to {{<link url="In-Service-System-Upgrade-ISSU" text="ISSU">}} for more information.
+If you disable graceful BGP restart, you cannot achieve a switch restart or switch software upgrade with minimal traffic loss in a BGP configuration. Refer to {{<link url="Upgrading-Cumulus-Linux/#issu" text="ISSU">}} for more information.
 {{%/notice%}}
 
 {{< tabs "TabID2189 ">}}

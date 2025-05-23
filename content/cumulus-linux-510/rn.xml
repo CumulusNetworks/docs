@@ -9,8 +9,8 @@
 <tr>
 <td>4423336</td>
 <td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
-<td>5.9.0-5.13.1</td>
-<td></td>
+<td>5.9.0-5.11.1</td>
+<td>5.12.0-5.13.1</td>
 </tr>
 <tr>
 <td>4423335</td>
@@ -567,12 +567,6 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 <td></td>
 </tr>
 <tr>
-<td>3844670</td>
-<td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
-<td>5.9.0-5.11.1</td>
-<td>5.12.0-5.13.1</td>
-</tr>
-<tr>
 <td>3819945</td>
 <td>When you connect an NVIDIA SN4410, SN4700, or SN5600 switch to any Spectrum 1, Spectrum-2, or Spectrum-3 peer switch (with four lanes) using a 4x breakout configuration and the default lanes per port setting, links do not come up. To work around this issue, provide the lanes per port configuration shown below:
 cumulus@switch:~$ nv set interface &lt;interface&gt; link breakout 4x lanes-per-port 1</td>
@@ -1011,8 +1005,8 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <tr>
 <td>4423336</td>
 <td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
-<td>5.9.0-5.13.1</td>
-<td></td>
+<td>5.9.0-5.11.1</td>
+<td>5.12.0-5.13.1</td>
 </tr>
 <tr>
 <td>4423335</td>
@@ -1578,12 +1572,6 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 <td>In rare cases on the Spectrum 1 switch, where a dual connected host transmits all traffic flows to only one switch in a connected MLAG pair, and the host changes behavior to hash all flows to the other MLAG switch, there might be traffic loss if the MAC FDB entry on the original switch ages out.</td>
 <td>5.9.0-5.13.1</td>
 <td></td>
-</tr>
-<tr>
-<td>3844670</td>
-<td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
-<td>5.9.0-5.11.1</td>
-<td>5.12.0-5.13.1</td>
 </tr>
 <tr>
 <td>3819945</td>

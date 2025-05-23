@@ -150,8 +150,10 @@ cumulus@switch:~$ nv action generate system tech-support
 <span class="a-tooltip">[ISSU](## "In Service System Upgrade")</span> enables you to upgrade the switch software while the network continues to forward packets with minimal disruption to the network.
 
 Cumulus Linux supports ISSU with:
-- Optimized image upgrade
+- Optimized image upgrade 
 - Package upgrade
+
+Image upgrade and package upgrade supports ISSU when you upgrade to Cumulus Linux 5.14 from Cumulus Linux 5.12 and later.
 
 The switch must be in warm reboot mode before you start the software upgrade. When the switch is in warm reboot mode, restarting the switch after an upgrade results in no traffic loss (this is a hitless upgrade).
 

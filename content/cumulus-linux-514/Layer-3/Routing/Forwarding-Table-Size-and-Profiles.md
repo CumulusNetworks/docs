@@ -43,7 +43,7 @@ Forwarding resource profiles control unicast forwarding table entry allocations.
 | ecmp-nh-heavy  | 20K           | 32k (IPv4) and 4k (IPv6)  | 50k (IPv4) 4k (IPv6-long) |
 
 {{%notice note%}}
-The `ecmp-nh-heavy` profile does not support {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="warm restart mode">}}.  
+The `ecmp-nh-heavy` profile does not support {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="warm reboot mode">}}.  
 {{%/notice%}}
 
 ### Spectrum-2 and Later

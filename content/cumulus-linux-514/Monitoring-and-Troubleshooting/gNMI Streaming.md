@@ -885,12 +885,12 @@ cumulus@switch:~$ nv config apply
 The following example sets the listening address for tunnel server SERVER1 to 10.1.1.10 and the port to 443, the target name to TARGET1, the retry interval to 40, the CA certificate to CACERT1, and enables the tunnel server:
 
 ```
-cumulus@switch:~$ nv set system gnmi-server listening-address localhost 
 cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 address 10.1.1.10 
 cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 port 443 
 cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 target-name TARGET1 
 cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 retry-interval 40
-cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 ca-certificate CACERT1 uri scp://user@pass:1.2.3.4:/opt/certs/cert.p12
+cumulus@switch:~$ nv action import system security ca-certificate CACERT1 uri-public-key scp://user@pass:1.2.3.4:/opt/certs/ca-cert.pem uri-private-key scp://user@pass:1.2.3.4:/opt/certs/ca-cert-key.pem
+cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 ca-certificate CACERT1
 cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 state enabled 
 cumulus@switch:~$ nv config apply
 ```

@@ -13,8 +13,20 @@
 <td></td>
 </tr>
 <tr>
+<td>4423430</td>
+<td>When toggling the bridge binding flag on an SVI from ON to OFF, the SVI might not come operationally UP if it was DOWN previously from the bridge binding flag.</td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4423368</td>
 <td>When all links go down or the switch reboots,  you see next hop group churn from Zebra to the SOO next hop group. This issue might cause some convergence degradation. </td>
+<td>5.12.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423362</td>
+<td>After a remote link flap, neighbor entries using the link might not get resolved immediately. Only when some traffic uses the nexthop will they be resolved.</td>
 <td>5.12.0-5.13.1</td>
 <td></td>
 </tr>
@@ -31,15 +43,21 @@
 <td></td>
 </tr>
 <tr>
-<td>4423336</td>
+<td>4423335</td>
 <td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
 <td>5.9.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
-<td>4423335</td>
-<td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
-<td>5.9.0-5.13.1</td>
+<td>4423320</td>
+<td>When you configure BGP {{suppress-fib-pending}}, the prefix might not be withdrawn from downstream peers.</td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423300</td>
+<td>The NVUE {{nv show interface qos}} command takes approximately two minutes to display output. To work around this issue, fetch only the sub commands that are part of the {{nv show interface qos}}, command such as buffer, congestion-control, pfc, and so on.</td>
+<td>5.12.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -73,6 +91,29 @@
 <td></td>
 </tr>
 <tr>
+<td>4423261</td>
+<td>When you use the NVUE {{nv set qos congestion-control &lt;ecn_profile_name&gt; traffic-class &lt;tc&gt; min-threshold-bytes}} command to set an ECN Profile, you must configure the minimum threshold according to the platform:
+On the Spectrum-4 switch, the cell-size is 192 bytes. The minimum buffer must be a multiple of 64; therefore, the initial value is 192*64 (12KB).
+On the Spectrum-3 switch, the cell-size is 144 bytes. The minimum size is 144*64 (9KB).</td>
+<td>5.12.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423235</td>
+<td>The {{snmpd}} service generates debugging logs of sudo calls. To work around this issue, disable sudo logging for the specific commands run by the Debian-snmp user in the {{/etc/sudoers.d/snmp}} file by adding {{Defaults:Debian-snmp !syslog}}.</td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423134</td>
+<td>On Spectrum-1a switches with IGMP snooping enabled, a multicast hardware programming failure might occur after interface flap or switch reboot events. You can observe this issue when the switch generates log messages similar to the following:
+sx_sdk[18174]: ERROR   FDB: Usage API type can not be changed for 0x1003 fid.
+sx_sdk[18174]: ERROR   FDB: Failed to __fdb_unreg_mc_flood_cfg_api_type_set , err: Command Unpermitted
+switchd[19460]: hal_mlx_l2mc.c:1107 ERR VFID: 4099, Failed to set unregistered IPv4 MC mode FLOOD and attr MCC 0: Command Unpermitted</td>
+<td>5.12.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4413450</td>
 <td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables, the process consumes excessive memory resulting in out of memory crashes. </td>
 <td>5.0.0-5.13.1</td>
@@ -85,16 +126,22 @@
 <td></td>
 </tr>
 <tr>
-<td>4403755</td>
-<td>On first boot after a binary install or upgrade, if ZTP does not run or does not complete successfully, all interfaces are left admin up until you disable ZTP manually. To work around this issue, use an empty ZTP script during onie-install ({{-z ZTP_URL}}) or configure the DCHP option 239.</td>
-<td>5.12.1-5.13.1</td>
-<td></td>
+<td>4404758</td>
+<td>Installing ssh keys for the cumulus user with NVUE fails and results in login failures.</td>
+<td>5.12.1</td>
+<td>5.13.0-5.13.1</td>
 </tr>
 <tr>
 <td>4403127</td>
 <td>When you use BGP prefix independent convergence (PIC) with IPv6, {{cl-route-check}} might show errors due to a discrepancy in the IPv4-mapped IPv6 SOO route string format across FRR and the kernel. This is a display-only issue and has no impact on routing functionality.</td>
 <td>5.12.0-5.12.1</td>
 <td>5.13.0-5.13.1</td>
+</tr>
+<tr>
+<td>4402017</td>
+<td>The {{auth.log}} file contains sensitive information for hashed passwords.</td>
+<td>5.12.0-5.13.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4398031</td>
@@ -117,6 +164,15 @@
 <tr>
 <td>4380671</td>
 <td>Slow bandwidth and traffic polarization occurs when you create a significant number of next hop groups  with adaptive routing weighted equal cost multipath (W-ECMP).</td>
+<td>5.12.0-5.12.1</td>
+<td>5.13.0-5.13.1</td>
+</tr>
+<tr>
+<td>4378226</td>
+<td>On Spectrum-1a switches with IGMP snooping enabled, a multicast hardware programming failure might occur after interface flap or switch reboot events. You can observe this issue when log messages similar to the following are generated:
+sx_sdk[18174]: ERROR   FDB: Usage API type can not be changed for 0x1003 fid.
+sx_sdk[18174]: ERROR   FDB: Failed to __fdb_unreg_mc_flood_cfg_api_type_set , err: Command Unpermitted
+switchd[19460]: hal_mlx_l2mc.c:1107 ERR VFID: 4099, Failed to set unregistered IPv4 MC mode FLOOD and attr MCC 0: Command Unpermitted</td>
 <td>5.12.0-5.12.1</td>
 <td>5.13.0-5.13.1</td>
 </tr>
@@ -188,12 +244,6 @@ On the Spectrum-3 switch, the cell-size is 144 bytes. The minimum size is 144*64
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>
-<td>4341608</td>
-<td>When you enable PFC watchdog, telemetry histograms, and 802.1x with NVUE, then upgrade the switch to Cumulus Linux 5.12 followed by a warm reboot, the switch crashes when a cl-support file is created or by certain {{sx_api}} requests. You see error logs in the SDK continuously because the switch collects interface statistics every one second. To work around this issue, reboot the switch.</td>
-<td>5.10.1-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4341508</td>
 <td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
 <td>5.11.0-5.12.1</td>
@@ -263,6 +313,12 @@ On the Spectrum-3 switch, the cell-size is 144 bytes. The minimum size is 144*64
 <td>4318464</td>
 <td>When connecting two NVIDIA devices using DAC in auto-negotiation mode with 100GbE R1 (one lane) port speed, the link goes down. To avoid this issue, use firmware version xx.2014.3xxx and above on both sides.</td>
 <td>5.12.0-5.12.1</td>
+<td>5.13.0-5.13.1</td>
+</tr>
+<tr>
+<td>4318313</td>
+<td>When you enable PFC watchdog, telemetry histograms, and 802.1x with NVUE, then upgrade the switch to Cumulus Linux 5.12 followed by a warm reboot, the switch crashes when a cl-support file is created or by certain {{sx_api}} requests. You see error logs in the SDK continuously because the switch collects interface statistics every one second. To work around this issue, reboot the switch.</td>
+<td>5.10.1-5.12.1</td>
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>
@@ -1057,8 +1113,20 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
+<td>4423430</td>
+<td>When toggling the bridge binding flag on an SVI from ON to OFF, the SVI might not come operationally UP if it was DOWN previously from the bridge binding flag.</td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4423368</td>
 <td>When all links go down or the switch reboots,  you see next hop group churn from Zebra to the SOO next hop group. This issue might cause some convergence degradation. </td>
+<td>5.12.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423362</td>
+<td>After a remote link flap, neighbor entries using the link might not get resolved immediately. Only when some traffic uses the nexthop will they be resolved.</td>
 <td>5.12.0-5.13.1</td>
 <td></td>
 </tr>
@@ -1075,15 +1143,21 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>4423336</td>
+<td>4423335</td>
 <td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
 <td>5.9.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
-<td>4423335</td>
-<td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
-<td>5.9.0-5.13.1</td>
+<td>4423320</td>
+<td>When you configure BGP {{suppress-fib-pending}}, the prefix might not be withdrawn from downstream peers.</td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423300</td>
+<td>The NVUE {{nv show interface qos}} command takes approximately two minutes to display output. To work around this issue, fetch only the sub commands that are part of the {{nv show interface qos}}, command such as buffer, congestion-control, pfc, and so on.</td>
+<td>5.12.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1117,6 +1191,29 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
+<td>4423261</td>
+<td>When you use the NVUE {{nv set qos congestion-control &lt;ecn_profile_name&gt; traffic-class &lt;tc&gt; min-threshold-bytes}} command to set an ECN Profile, you must configure the minimum threshold according to the platform:
+On the Spectrum-4 switch, the cell-size is 192 bytes. The minimum buffer must be a multiple of 64; therefore, the initial value is 192*64 (12KB).
+On the Spectrum-3 switch, the cell-size is 144 bytes. The minimum size is 144*64 (9KB).</td>
+<td>5.12.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423235</td>
+<td>The {{snmpd}} service generates debugging logs of sudo calls. To work around this issue, disable sudo logging for the specific commands run by the Debian-snmp user in the {{/etc/sudoers.d/snmp}} file by adding {{Defaults:Debian-snmp !syslog}}.</td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423134</td>
+<td>On Spectrum-1a switches with IGMP snooping enabled, a multicast hardware programming failure might occur after interface flap or switch reboot events. You can observe this issue when the switch generates log messages similar to the following:
+sx_sdk[18174]: ERROR   FDB: Usage API type can not be changed for 0x1003 fid.
+sx_sdk[18174]: ERROR   FDB: Failed to __fdb_unreg_mc_flood_cfg_api_type_set , err: Command Unpermitted
+switchd[19460]: hal_mlx_l2mc.c:1107 ERR VFID: 4099, Failed to set unregistered IPv4 MC mode FLOOD and attr MCC 0: Command Unpermitted</td>
+<td>5.12.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4413450</td>
 <td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables, the process consumes excessive memory resulting in out of memory crashes. </td>
 <td>5.0.0-5.13.1</td>
@@ -1133,6 +1230,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>When you use BGP prefix independent convergence (PIC) with IPv6, {{cl-route-check}} might show errors due to a discrepancy in the IPv4-mapped IPv6 SOO route string format across FRR and the kernel. This is a display-only issue and has no impact on routing functionality.</td>
 <td>5.12.0-5.12.1</td>
 <td>5.13.0-5.13.1</td>
+</tr>
+<tr>
+<td>4402017</td>
+<td>The {{auth.log}} file contains sensitive information for hashed passwords.</td>
+<td>5.12.0-5.13.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4398031</td>
@@ -1155,6 +1258,15 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <tr>
 <td>4380671</td>
 <td>Slow bandwidth and traffic polarization occurs when you create a significant number of next hop groups  with adaptive routing weighted equal cost multipath (W-ECMP).</td>
+<td>5.12.0-5.12.1</td>
+<td>5.13.0-5.13.1</td>
+</tr>
+<tr>
+<td>4378226</td>
+<td>On Spectrum-1a switches with IGMP snooping enabled, a multicast hardware programming failure might occur after interface flap or switch reboot events. You can observe this issue when log messages similar to the following are generated:
+sx_sdk[18174]: ERROR   FDB: Usage API type can not be changed for 0x1003 fid.
+sx_sdk[18174]: ERROR   FDB: Failed to __fdb_unreg_mc_flood_cfg_api_type_set , err: Command Unpermitted
+switchd[19460]: hal_mlx_l2mc.c:1107 ERR VFID: 4099, Failed to set unregistered IPv4 MC mode FLOOD and attr MCC 0: Command Unpermitted</td>
 <td>5.12.0-5.12.1</td>
 <td>5.13.0-5.13.1</td>
 </tr>
@@ -1226,12 +1338,6 @@ On the Spectrum-3 switch, the cell-size is 144 bytes. The minimum size is 144*64
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>
-<td>4341608</td>
-<td>When you enable PFC watchdog, telemetry histograms, and 802.1x with NVUE, then upgrade the switch to Cumulus Linux 5.12 followed by a warm reboot, the switch crashes when a cl-support file is created or by certain {{sx_api}} requests. You see error logs in the SDK continuously because the switch collects interface statistics every one second. To work around this issue, reboot the switch.</td>
-<td>5.10.1-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4341508</td>
 <td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
 <td>5.11.0-5.12.1</td>
@@ -1301,6 +1407,12 @@ On the Spectrum-3 switch, the cell-size is 144 bytes. The minimum size is 144*64
 <td>4318464</td>
 <td>When connecting two NVIDIA devices using DAC in auto-negotiation mode with 100GbE R1 (one lane) port speed, the link goes down. To avoid this issue, use firmware version xx.2014.3xxx and above on both sides.</td>
 <td>5.12.0-5.12.1</td>
+<td>5.13.0-5.13.1</td>
+</tr>
+<tr>
+<td>4318313</td>
+<td>When you enable PFC watchdog, telemetry histograms, and 802.1x with NVUE, then upgrade the switch to Cumulus Linux 5.12 followed by a warm reboot, the switch crashes when a cl-support file is created or by certain {{sx_api}} requests. You see error logs in the SDK continuously because the switch collects interface statistics every one second. To work around this issue, reboot the switch.</td>
+<td>5.10.1-5.12.1</td>
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>

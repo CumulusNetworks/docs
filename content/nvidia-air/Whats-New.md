@@ -9,12 +9,18 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 
 ## May 2025
 <!-- Air:WhatsNew -->
-### 82.2025.0508-011
-- Added functionality for filtering OOB network
+### 82.2025.0522-011
+-  Added ability to capture simulation screenshots.
 <!-- Air:WhatsNew -->
 
+### 82.2025.0520-011
+- Fixed an issue with editing a simulation's name
+
+### 82.2025.0508-011
+- Added functionality for filtering OOB network
+
 ### 82.2025.0506-011
-- Added functionality for rebuilding and reseting multiple nodes concurrently from the UI
+- Added functionality for rebuilding and resetting multiple nodes concurrently from the UI
 
 ## April 2025
 ### 82.2025.0424-011

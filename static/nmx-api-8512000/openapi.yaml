@@ -78,6 +78,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/NmxService'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         '500':
           description: Internal Error
           content:
@@ -145,6 +151,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NmxService'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         '404':
           description: Not Found
           content:
@@ -176,6 +188,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NmxService'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         '404':
           description: Not Found
           content:
@@ -1170,7 +1188,11 @@ paths:
                   $ref: '#/components/schemas/Operation'
                 uniqueItems: true
         '500':
-          $ref: '#/components/responses/Error'
+          description: Failed - Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /operations/{id}:
     get:
       tags:
@@ -1491,6 +1513,10 @@ components:
           description: Domain UUID
         LocationInfo:
           $ref: '#/components/schemas/LocationInfo'
+        GpuIDList:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityID'
         Health:
           type: string
           enum:
@@ -2264,25 +2290,3 @@ components:
           $ref: '#/components/schemas/Health'
         Inventory:
           $ref: '#/components/schemas/Inventory'
-  responses:
-    Error:
-      description: NMX-M Error Information
-      type: object
-      properties:
-        httpErrorCode:
-          type: integer
-          example: 500
-          description: HTTP error code
-        customErrorCode:
-          type: string
-          example: internal-error
-          description: A more granular, textual custom error code
-        description:
-          type: string
-          example: 'Something really bad happened with resource [id: 123] and we are so sorry about it.'
-          description: A detailed error description
-      required:
-        - httpErrorCode
-        - customErrorCode
-        - description
-      additionalProperties: false

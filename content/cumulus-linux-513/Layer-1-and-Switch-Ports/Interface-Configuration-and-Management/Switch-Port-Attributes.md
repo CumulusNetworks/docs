@@ -1566,7 +1566,7 @@ Maximum 800G ports: 64
 
 {{< /tab >}}
 {{< /tab >}}
-<!--
+
 {{< /tabs >}}
 {{< tab "SN5610">}}
 
@@ -1639,7 +1639,7 @@ Maximum 800G ports: 64
 
 {{< /tab >}}
 {{< /tab >}}
--->
+
 {{< /tab >}}
 {{< /tabs >}}
 <!-- vale on -->

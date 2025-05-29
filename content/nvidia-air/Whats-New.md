@@ -10,11 +10,11 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 ## May 2025
 <!-- Air:WhatsNew -->
 ### 82.2025.0529-011
--  Added ability to disable DHCP service in the out-of-band network via simulation manifest import or Topology endpoints.
+-  Added ability to disable the DHCP service in out-of-band networks via simulation manifest import or topology endpoints
 <!-- Air:WhatsNew -->
 
 ### 82.2025.0522-011
--  Added ability to capture simulation screenshots.
+-  Added ability to take screenshots of simulations
 
 ### 82.2025.0520-011
 - Fixed an issue with editing a simulation's name

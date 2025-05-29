@@ -75,8 +75,8 @@
 <tr>
 <td>4423276</td>
 <td>When the username in a 802.1X session includes the equals (=) character, the ISSU warmboot fails. Make sure that = is not part of the 802.1X session name.</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
+<td>5.11.0-5.12.1</td>
+<td>5.13.0-5.13.1</td>
 </tr>
 <tr>
 <td>4423274</td>
@@ -188,12 +188,6 @@ nv config apply -y</td>
 <td>4341608</td>
 <td>When you enable PFC watchdog, telemetry histograms, and 802.1x with NVUE, then upgrade the switch to Cumulus Linux 5.12 followed by a warm reboot, the switch crashes when a cl-support file is created or by certain {{sx_api}} requests. You see error logs in the SDK continuously because the switch collects interface statistics every one second. To work around this issue, reboot the switch.</td>
 <td>5.10.1-5.12.1</td>
-<td>5.13.0-5.13.1</td>
-</tr>
-<tr>
-<td>4341501</td>
-<td>When the username in a 802.1X session includes the equals (=) character, the ISSU warmboot fails. Make sure that = is not part of the 802.1X session name.</td>
-<td>5.11.0-5.12.1</td>
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>
@@ -1237,8 +1231,8 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <tr>
 <td>4423276</td>
 <td>When the username in a 802.1X session includes the equals (=) character, the ISSU warmboot fails. Make sure that = is not part of the 802.1X session name.</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
+<td>5.11.0-5.12.1</td>
+<td>5.13.0-5.13.1</td>
 </tr>
 <tr>
 <td>4423274</td>
@@ -1356,12 +1350,6 @@ nv config apply -y</td>
 <td>4341608</td>
 <td>When you enable PFC watchdog, telemetry histograms, and 802.1x with NVUE, then upgrade the switch to Cumulus Linux 5.12 followed by a warm reboot, the switch crashes when a cl-support file is created or by certain {{sx_api}} requests. You see error logs in the SDK continuously because the switch collects interface statistics every one second. To work around this issue, reboot the switch.</td>
 <td>5.10.1-5.12.1</td>
-<td>5.13.0-5.13.1</td>
-</tr>
-<tr>
-<td>4341501</td>
-<td>When the username in a 802.1X session includes the equals (=) character, the ISSU warmboot fails. Make sure that = is not part of the 802.1X session name.</td>
-<td>5.11.0-5.12.1</td>
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>

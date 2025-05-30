@@ -159,27 +159,6 @@ If this step fails for any reason, run the <code>netq bootstrap reset keep-db</c
 
 {{</tab>}}
 
-{{<tab "Cluster">}}
-
-Run the `netq upgrade` command, specifying the current version's tarball and your cluster's virtual IP address. The virtual IP address must be: 
-
-- An unused IP address allocated from the same subnet assigned to the default interface for your master and worker nodes. The default interface is the interface you specified in the `netq install` {{<link url="install#netq-install-cluster-full" text="command">}}.
-- A different IP address than the primary IP assigned to the default interface.
-
-```
-cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.14.0-opta.tgz cluster-vip <vip-ip>
-```
-{{%notice note%}}
-
-If you are upgrading from a NetQ 4.8 or later high availability, cloud cluster with a virtual IP address, you do not need to include the `cluster-vip` option in the upgrade command. Specifying a virtual IP address that is different from the virtual IP address used during the installation process will cause the upgrade to fail. 
-
-{{%/notice%}}
-{{%notice info%}}
-If this step fails for any reason, run the <code>netq bootstrap reset keep-db</code> command and perform a fresh installation of the tarball with the {{<link title="install/#netq-install-opta-cluster-full" text="netq install opta cluster full">}} command.
-{{%/notice%}}
-
-{{</tab>}}
-
 {{</tabs>}}
 
 {{</tab>}}

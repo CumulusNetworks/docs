@@ -13,11 +13,11 @@ Consider the following deployment options and requirements before you install th
 
 | Single Server | Cluster| Scale Cluster |
 | --- | --- | --- |
-| On-premises or cloud | On-premises or cloud | On-premises only |
+| On-premises or cloud | On-premises only | On-premises only |
 | Network size: small<ul></ul>| Network size: medium<ul><li>3-node: Supports up to 100 switches and 128 interfaces per switch*</li></ul>|  Network size: large<ul><li>3-node: Supports up to 1,000 switches and 125,000 interfaces* </li><li>5-node: Supports up to 2,000 switches and 250,000 interfaces* </li></ul>|
 | KVM or VMware hypervisor | KVM or VMware hypervisor | KVM or VMware hypervisor |
 | No high availability option | High availability | High availability |
-| System requirements<br><br> On-premises: 16 virtual CPUs, 64GB RAM, 500GB SSD disk<br><br>Cloud: 4 virtual CPUs, 8GB RAM, 64GB SSD disk | System requirements (per node)<br><br> On-premises: 16 virtual CPUs, 64GB RAM, 500GB SSD disk<br><br>Cloud: 4 virtual CPUs, 8GB RAM, 64GB SSD disk |  System requirements (per node)<br><br>On-premises: 48 virtual CPUs, 512GB RAM, 3.2TB SSD disk|
+| System requirements<br><br> On-premises: 16 virtual CPUs, 64GB RAM, 500GB SSD disk<br><br>Cloud: 4 virtual CPUs, 8GB RAM, 64GB SSD disk | System requirements (per node)<br><br> On-premises: 16 virtual CPUs, 64GB RAM, 500GB SSD disk<br>|  System requirements (per node)<br><br>On-premises: 48 virtual CPUs, 512GB RAM, 3.2TB SSD disk|
 | All features supported | All features supported|  No support for:<ul><li>Network snapshots</li><li>Trace requests</li><li>Flow analysis</li><li>Duplicate IP address validations</li><li>MAC commentary</li></ul> Limited support for: <ul><li>Link health view (beta)</li></ul>|
 
 *Exact device support counts can vary based on multiple factors, such as the number of links, routes, and IP addresses in your network. Contact NVIDIA for assistance in selecting the appropriate deployment model for your network.
@@ -39,7 +39,7 @@ A standalone server is easier to set up, configure, and manage, but limits your 
 
 ### Cluster of Servers
 
-NVIDIA offers two types of cluster deployments: cluster and scale cluster. Both deployments offer high-availability and provide redundancy in case of node failure. 
+NVIDIA offers two types of cluster deployments: cluster and scale cluster. Both deployments are available on-premises and offer high-availability and provide redundancy in case of node failure. 
 
 The **cluster** implementation comprises three servers: one master and two workers nodes. NetQ supports high availability using a virtual IP address. Even if the master node fails, NetQ services remain operational. However, keep in mind that the master hosts the Kubernetes control plane so anything that requires connectivity with the Kubernetes cluster&mdash;such as upgrading NetQ or rescheduling pods to other workers if a worker goes down&mdash;will not work. During the installation process, you configure a virtual IP address that enables redundancy for the Kubernetes control plane. In this configuration, the majority of nodes must be operational for NetQ to function. For example, a three-node cluster can tolerate a one-node failure, but not a two-node failure. For more information, refer to the {{<exlink url="https://etcd.io/docs/v3.3/faq/" text="etcd documentation">}}.
 
@@ -48,7 +48,7 @@ As an alternative to the three-node cluster deployment with a virtual IP address
 The **scale cluster** deployment supports large networks and offers the highest level of scalability, allowing you to adjust NetQ's network monitoring capacity by adding additional nodes to your cluster as your network expands. For example, you can deploy a three-node scale cluster that accommodates up to 1,000 switches. When you add more switches to your network, the extensible framework allows you to add two additional nodes that can accommodate a network of up to 2,000 switches. NVIDIA recommends this on-premises option for networks comprising 100 or more switches with 100 or more interfaces per switch.  
 
 {{%notice note%}}
-Large networks have the potential to generate a large amount of data. Using the NetQ CLI is not recommended and {{<link title="Access Data with Cards/#table-settings" text="tabular data in the UI">}} is limited to 10,000 rows. If you want to review a large amount of data, NVIDIA recommends downloading and exporting the tabular data as a CSV or JSON file and analyze it in a spreadsheet program.
+Large networks have the potential to generate a large amount of data. For large networks, NVIDIA does not recommend using the NetQ CLI; additionally, {{<link title="Access Data with Cards/#table-settings" text="tabular data in the UI">}} is limited to 10,000 rows. If you need to review a large amount of data, NVIDIA recommends downloading and exporting the tabular data as a CSV or JSON file and analyzing it in a spreadsheet program.
 {{%/notice%}}
 ## Base Command Manager
 

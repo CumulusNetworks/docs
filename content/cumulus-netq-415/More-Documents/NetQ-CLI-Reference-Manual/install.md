@@ -72,7 +72,7 @@ None
 
 ### Related Commands
 
-- `netq install opta cluster add-worker`
+None
 
 - - -
 
@@ -325,7 +325,7 @@ None
 <!-- vale off -->
 ## netq install opta activate-job
 
-Activates the NetQ Collector software after you configure and install an initial server or server cluster. Activation requires a configuration key that you can obtain from an email titled *A new site has been added to your NVIDIA NetQ account* (sent to your NetQ administrator).
+Activates the NetQ software after you configure and install an initial server or server cluster. Activation requires a configuration key that you can obtain from an email titled *A new site has been added to your NVIDIA NetQ account* (sent to your NetQ administrator).
 <!-- vale on -->
 
 ### Syntax
@@ -354,97 +354,10 @@ cumulus@switch:~$ netq install opta activate-job config-key ju8Kl4IhZ3cucHJvZDEu
 
 ### Related Commands
 
-- ```netq install opta cluster```
 - ```netq install opta standalone```
 
 - - -
 
-## netq install opta cluster full
-
-Installs the NetQ software for a cloud, server cluster deployment.  You must have the hostname, IP address (or interface of the servers), a virtual IP address, the NetQ software bundle, and configuration key to run the command. You can also configure a proxy.
-
-Obtain the software release bundle from the {{<exlink url="https://nvid.nvidia.com/" text="NVIDIA Application Hub">}}.
-
-Obtain the config-key from the email sent to your NetQ administrator titled *A new site has been added to your NVIDIA NetQ account*. You can also obtain the configuration key through the NetQ UI in the {{<link title="Configure Premises" text="premises management configuration">}}.
-
-### Syntax
-
-```
-netq install opta cluster full
-    (interface <text-opta-ifname>|ip-addr <text-ip-addr>)
-    bundle <text-bundle-url>
-    config-key <text-opta-key>
-    [pod-ip-range <text-pod-ip-range>]
-    [service-ip-range <text-service-ip-range>]
-    workers <text-worker-01> <text-worker-02>
-    cluster-vip <text-cluster-vip>
-    [proxy-host <text-proxy-host> proxy-port <text-proxy-port>]
-    [s3-access-key <text-s3-access-key> s3-secret-key <text-s3-secret-key>]
-    [restore <text-backup-file>]
-```
-
-### Required Arguments
-
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| interface | \<text-opta-ifname\> | Install a server cluster with a master node using this interface to communicate with the NetQ Agents on the worker nodes |
-| ip-addr | \<text-ip-addr\> | Install a server cluster with a master node with this IP address to communicate with the NetQ Agents on the worker nodes |
-| bundle | \<text-bundle-url\> | Install the NetQ software bundle at this location; you must specify a full path |
-| config-key | \<text-opta-key\> | Use this unique key to activate the software |
-| workers | \<text-worker-01\> \<text-worker-02\> | Install the worker nodes with these IP addresses |
-| cluster-vip | \<text-cluster-vip\> | Specify a virtual IP address from the same subnet used for your master and worker nodes |
-
-
-### Options
-
-| Option | Value | Description |
-| ---- | ---- | ---- |
-| proxy-host | \<text-proxy-host\> | Use the proxy server with this hostname or IP address instead of directly connecting to the VM; you must also specify a port |
-| proxy-port | \<text-proxy-port\> | Use this port on the proxy server instead of directly connecting to the VM; you must also specify a proxy host |
-| pod-ip-range | \<text-pod-ip-range\> | Specify a range of IP addresses for the pod |
-| service-ip-range | \<text-service-ip-range\> | Specify a range of IP addresses for the service |
-| s3-access-key | \<text-s3-access-key\> | AWS S3 access key ID |
-| s3-secret-key| \<text-s3-secret-key\>| AWS S3 secret key ID |
-| restore | \<text-backup-file\> | Specify the path where the backup .tar file resides |
-
-### Sample Usage
-
-```
-cumulus@<hostname>:~$ netq install opta cluster full interface en01 bundle /mnt/installables/NetQ-4.14.0.tgz config-key CI39fo5CZ3cucHJvZDEubmV0cS5jdW11bHVzbmVp6z8ma3MuY29tGLsD workers 10.20.10.25 10.20.10.45 cluster-vip 10.20.10.254
-```
-
-### Related Commands
-
-- ```netq install opta activate-job```
-
-- - -
-<!--removed for 4.9
-## install opta cluster add-worker
-
-Add additional nodes to your server cluster in a cloud deployment.
-
-### Syntax
-
-```
- netq install opta cluster 
-    add-worker <text-worker-01>
- ```
-### Required Arguments
-
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| add-worker | \<text-worker-01\> | Install the worker nodes with these IP addresses |
-
-### Options
-
-None
-
-### Related Commands
-
-- `netq install cluster add-worker`
-
-- - -
--->
 ## netq install opta standalone full
 
 Installs the NetQ software on a single cloud server (VM). You must have the hostname, IP address (or interface of the server), the NetQ software bundle, and configuration key to run the command. You can also configure a proxy.

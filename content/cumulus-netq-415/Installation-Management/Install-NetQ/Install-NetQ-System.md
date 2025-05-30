@@ -19,7 +19,6 @@ You can install NetQ either on your premises or as a remote, cloud solution. If 
 | Server Arrangement&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Hypervisor | Requirements & Installation |
 | :--- | --- | :---: |
 | Single server | KVM or VMware | {{<link title="Set Up Your Virtual Machine for a Single Cloud Server" text="Start install">}} |
-| High-availability cluster| KVM or VMware | {{<link title="Set Up Your Virtual Machine for a Cloud HA Server Cluster" text="Start install">}}|
 
 ## Base Command Manager
 

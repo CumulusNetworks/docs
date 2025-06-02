@@ -36,10 +36,10 @@ Cumulus Linux 5.14.0 supports new platforms, provides bug fixes, and contains se
   - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#mrc-qos-profile" text="New QoS profile for MRC">}}
   - {{<link url="Quality-of-Service/#asymmetric-packet-trimming" text="Packet trimming with asymmetric DSCP">}}
 - NVUE
-  - {{< expand "Changed NVUE Commands" >}}
+  - {{< expand "Changed NVUE Commands and Options" >}}
 | Cumulus Linux 5.14 | Cumulus Linux 13 and Earlier |
 | --------------- |---------------------------------------|
-| | |
+| BGP community `0:0`| BGP community `internet`|
 | | |
 | | |
 | | |

@@ -2498,10 +2498,10 @@ You can use *{{<exlink url="http://docs.frrouting.org/en/latest/bgp.html#communi
 <!-- vale on -->
 The BGP community list can be either *standard*, *extended*, or *large*. The standard BGP community list is a pair of values (such as *100:100*) that you can tag on a specific prefix and advertise to other neighbors, or you can apply them on route ingress. The standard BGP community list can be one of four BGP default communities:
 
-- *internet*: a BGP community that matches all routes
-- *local-AS*: a BGP community that restricts routes to your confederation's sub-AS
-- *no-advertise*: a BGP community that is not advertised to anyone
-- *no-export*: a BGP community that is not advertised to the eBGP peer
+- *0:0*: a BGP community that matches all routes. This value replaces `internet` used in Cumulus Linux 5.13 and earlier.
+- *local-AS*: a BGP community that restricts routes to your confederation's sub-AS.
+- *no-advertise*: a BGP community that is not advertised to anyone.
+- *no-export*: a BGP community that is not advertised to the eBGP peer.
 
 An extended BGP community list takes a regular expression of communities and matches the listed communities.
 

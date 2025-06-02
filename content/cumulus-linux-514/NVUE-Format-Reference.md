@@ -675,7 +675,7 @@ Well-known BGP community values.
   - "local-as"
   - "no-advertise"
   - "no-export"
-  - "internet"
+  - "0:0" (replaces `internet` used in Cumulus Linux 5.13 and earlier)
   - "additive"
 
 #### community

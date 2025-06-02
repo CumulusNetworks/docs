@@ -12,9 +12,6 @@ In <span class="a-tooltip">[ECMP](## "Equal Cost Multi Path")</span>, the route 
 
 In W-ECMP, along with the ECMP flow-based hash, Cumulus Linux associates a weight with each next hop and distributes traffic across the next hops in proportion to their weight. The BGP link bandwidth extended community carries information about capacity through the network, which maps to the weight of the corresponding next hop. The mapping factors the bandwidth value of a particular path against the total bandwidth values of all possible paths, mapped to the range 1 to 100. The BGP best path selection algorithm and the multipath computation algorithm that determines which paths you can use for load balancing does not change.
 
-
-
-
 <!--
 ## W-ECMP Example
 
@@ -153,7 +150,7 @@ leaf01(config-route-map)# match ip address prefix-list SERVICE_IPS
 leaf01(config-route-map)# set extcommunity bandwidth num-multipaths
 leaf01(config-route-map)# router bgp 65011
 leaf01(config-router)# address-family ipv4 unicast
-leaf01(config-router-af)# neighbor swp51 prefix-list SERVICE_IPS out
+leaf01(config-router-af)# neighbor swp51 route-map ucmp-route-map out
 leaf01(config-router-af)# end
 leaf01# write memory
 leaf01# exit

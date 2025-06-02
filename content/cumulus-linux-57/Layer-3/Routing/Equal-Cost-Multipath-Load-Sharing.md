@@ -674,7 +674,7 @@ When you enable or disable link utilization, NVUE reloads `switchd`.
 
 Edit the `/etc/cumulus/switchd.d/adaptive_routing.conf` file to set:
 - `interface.<interface>.adaptive_routing.link_util_thresh` to a value between 1 and 100.
-- `adaptive_routing.link_util_threshold_disabled` to FALSE.
+- `adaptive_routing.link_util_threshold_disabled` to TRUE.
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing.conf
@@ -682,7 +682,7 @@ cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing.conf
 adaptive_routing.enable = TRUE
 
 ## Global Link-utilization-threshold on/off
-adaptive_routing.link_utilization_threshold_disabled = FALSE
+adaptive_routing.link_utilization_threshold_disabled = TRUE
 
 ## Per-port configuration
 interface.swp51.adaptive_routing.enable = TRUE
@@ -729,7 +729,7 @@ cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/ad.aptive_routing.conf
 adaptive_routing.enable = TRUE
 
 ## Global Link-utilization-threshold on/off
-adaptive_routing.link_utilization_threshold_disabled = TRUE
+adaptive_routing.link_utilization_threshold_disabled = FALSE
 
 ## Per-port configuration
 interface.swp51.adaptive_routing.enable = TRUE
@@ -749,7 +749,7 @@ cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing.conf
 adaptive_routing.enable = TRUE
 
 ## Global Link-utilization-threshold on/off
-adaptive_routing.link_utilization_threshold_disabled = FALSE
+adaptive_routing.link_utilization_threshold_disabled = TRUE
 
 ## Per-port configuration
 interface.swp51.adaptive_routing.enable = TRUE

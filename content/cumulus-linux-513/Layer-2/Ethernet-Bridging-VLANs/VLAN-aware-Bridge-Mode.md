@@ -483,21 +483,17 @@ NVUE does not provide commands to configure VLAN bridge binding mode.
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/network/interfaces` file to add the `vlan-bridge-binding on` parameter to the bridge stanza, then reload the configuration with the `sudo ifreload -a` command:
+Edit the `/etc/network/interfaces` file to add the `vlan-bridge-binding on` parameter to the VLAN stanza, then reload the configuration with the `sudo ifreload -a` command:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
-auto br_default
-iface br_default
-    bridge-ports bond1 bond2 bond3 peerlink
-    hwaddress 48:b0:2d:4e:ad:89
-    bridge-vlan-aware yes
-    bridge-vids 10 20 30
-    bridge-pvid 1
-    bridge-stp yes
-    bridge-mcsnoop no
+auto vlan10
+iface vlan10
+    address 10.1.10.2/24
+    vlan-raw-device br_default
+    vlan-id 10
     vlan-bridge-binding on
-    mstpctl-forcevers rstp
+
 ```
 
 ```

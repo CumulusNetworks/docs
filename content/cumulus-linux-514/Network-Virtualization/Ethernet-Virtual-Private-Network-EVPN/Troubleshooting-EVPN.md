@@ -274,6 +274,100 @@ Flags: * - Kernel
 * 4001       L3   10.1.20.2:5           65101:4001                65101:4001               RED
 ```
 
+To show the configured layer 3 VNIs on a network device participating in EVPN, run the vtysh `show evpn vni detail` command. This command provides detailed information about all layer 3 VNIs configured across all VRFs on the device.
+
+```
+cumulus@leaf01:mgmt:~$ sudo vtysh
+leaf01# show evpn vni detail
+VNI: 10
+ Type: L2
+ Vlan: 10
+ Bridge: br_default
+ Tenant VRF: RED
+ VxLAN interface: vxlan48
+ VxLAN ifIndex: 61
+ SVI interface: vlan10
+ SVI ifIndex: 69
+ Local VTEP IP: 10.10.10.1
+ Mcast group: 0.0.0.0
+ Remote VTEPs for this VNI:
+  10.10.10.3 flood: HER
+  10.10.10.4 flood: HER
+  10.10.10.2 flood: HER
+ Number of MACs (local and remote) known for this VNI: 10
+ Number of ARPs (IPv4 and IPv6, local and remote) known for this VNI: 2
+ Advertise-gw-macip: No
+ Advertise-svi-macip: No
+
+VNI: 30
+ Type: L2
+ Vlan: 30
+ Bridge: br_default
+ Tenant VRF: BLUE
+ VxLAN interface: vxlan48
+ VxLAN ifIndex: 61
+ SVI interface: vlan30
+ SVI ifIndex: 63
+ Local VTEP IP: 10.10.10.1
+ Mcast group: 0.0.0.0
+ Remote VTEPs for this VNI:
+  10.10.10.3 flood: HER
+  10.10.10.4 flood: HER
+  10.10.10.2 flood: HER
+ Number of MACs (local and remote) known for this VNI: 7
+ Number of ARPs (IPv4 and IPv6, local and remote) known for this VNI: 1
+ Advertise-gw-macip: No
+ Advertise-svi-macip: No
+
+VNI: 20
+ Type: L2
+ Vlan: 20
+ Bridge: br_default
+ Tenant VRF: RED
+ VxLAN interface: vxlan48
+ VxLAN ifIndex: 61
+ SVI interface: vlan20
+ SVI ifIndex: 72
+ Local VTEP IP: 10.10.10.1
+ Mcast group: 0.0.0.0
+ Remote VTEPs for this VNI:
+  10.10.10.3 flood: HER
+  10.10.10.4 flood: HER
+  10.10.10.2 flood: HER
+ Number of MACs (local and remote) known for this VNI: 7
+ Number of ARPs (IPv4 and IPv6, local and remote) known for this VNI: 1
+ Advertise-gw-macip: No
+ Advertise-svi-macip: No
+
+VNI: 4001
+  Type: L3
+  Tenant VRF: RED
+  Vlan: 3159
+  Bridge: br_l3vni
+  Local Vtep Ip: 10.10.10.1
+  Vxlan-Intf: vxlan99
+  SVI-If: vlan3159_l3
+  State: Up
+  VNI Filter: none
+  System MAC: 44:38:39:22:01:7a
+  Router MAC: 44:38:39:22:01:7a
+  L2 VNIs: 10 20 
+
+VNI: 4002
+  Type: L3
+  Tenant VRF: BLUE
+  Vlan: 3607
+  Bridge: br_l3vni
+  Local Vtep Ip: 10.10.10.1
+  Vxlan-Intf: vxlan99
+  SVI-If: vlan3607_l3
+  State: Up
+  VNI Filter: none
+  System MAC: 44:38:39:22:01:7a
+  Router MAC: 44:38:39:22:01:7a
+  L2 VNIs: 30
+```
+
 Run the NVUE `nv show evpn vni` command or the vtysh `show evpn vni` command to see a summary of all VNIs and the number of MAC or ARP entries associated with each VNI.
 
 ```
@@ -296,21 +390,88 @@ cumulus@leaf01:mgmt:~$ nv show evpn vni 10
 -----------------  -----------  -------
                    operational  applied
 -----------------  -----------  -------
-route-advertise                        
-  svi-ip           off                 
-  default-gateway  off                 
-[remote-vtep]      10.0.1.34           
-vlan               10                  
-bridge-domain      br_default          
-tenant-vrf         RED                 
-vxlan-interface    vxlan48             
-mac-count          7                   
-host-count         4                   
-remote-vtep-count  1                   
-local-vtep         10.0.1.12
+route-advertise                                 
+  svi-ip           off                          
+  default-gateway  off                          
+[remote-vtep]      10.10.10.2                   
+[remote-vtep]      10.10.10.3                   
+[remote-vtep]      10.10.10.4                   
+vlan               10                           
+bridge-domain      br_default                   
+tenant-vrf         RED                          
+vxlan-interface    vxlan48                      
+mac-count          10                           
+host-count         2                            
+remote-vtep-count  3                            
+local-vtep         10.10.10.1
 ```
 
-To show VNI BGP information run the NVUE `nv show evpn vni <id> bgp-info` and `nv show vrf <vrf_id> evpn bgp-info` commands, or the vtysh `show bgp l2vpn evpn vni <vni>` command.
+To show a summary of all VNIs with the number of MAC or ARP entries and VLAN IDs associated with layer 3 VNIs across all VRFs, run the NVUE `nv show vrf evpn` or `nv show vrf evpn  --view=evpn` command.
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf evpn
+State - State of the L3VNI, Svi - Svi interface for L3VNI, RouterMac - Router 
+MAC Address, SystemMac - System MAC Address, NexthopCount - Number of ARPs (IPv4 
+and IPv6, local and remote) known for this VNI, RouterMacCount - Number of MACs (local 
+and remote) known for this VNI, VXLANIntf - Vxlan interface of the L3VNI, 
+PrefixRoutesOnly - Associated L3 VNI and corresponding route targets only with 
+EVPN type-5 routes, not with EVPN type-2 routes. 
+  
+Name     Vni     State  Svi          RouterMac          SystemMac          Vlan  NexthopCount  RouterMacCount  VXLANIntf  PrefixRoutesOnly 
+-------  ------  -----  -----------  -----------------  -----------------  ----  ---------  --------  ---------  ---------------- 
+tenant1  300011  up     vlan1440_l3  00:01:00:00:0a:07  00:01:00:00:0a:07  1445  10         5         vxlan99    off 
+tenant2  300012  up     vlan1441_l3  00:01:00:00:0a:08  00:01:00:00:0a:08  1440  14         6         vxlan100   off 
+tenant3  300013  up     vlan1442_l3  00:01:00:00:0a:09  00:01:00:00:0a:09  1441  15         9         vxlan101   off 
+tenant4  300014  up     vlan1443_l3  00:01:00:00:0a:0A  00:01:00:00:0a:0A  1440  16         8         vxlan102   on
+```
+
+To examine EVPN information for a specific VRF VNI in detail, run the NVUE `nv show vrf <vrf-id> evpn` command. The following example shows comprehensive information such as VNI, MAC or ARP entries, VLAN-ID and more:
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf RED evpn
+                    operational        applied
+------------------  -----------------  -------
+enable                                 on   
+vlan                                   auto 
+[vni]               4001               4001  
+state               Up                                 
+svi                 vlan3159_l3                        
+router-mac          44:38:39:22:01:7a                  
+vxlan-interface     vxlan99                            
+system-mac          44:38:39:22:01:7a                  
+prefix-routes-only  off                off
+```
+
+To show details for a layer 3 VRF for a specific VNI, run the vtysh `show vrf <vrf> vni` and the `show evpn vni <vni>` command.
+
+```
+cumulus@leaf01:mgmt:~$ sudo vtysh
+...
+leaf01# show vrf RED vni
+VRF                           VNI        VxLAN IF             L3-SVI               State Rmac              
+RED                           4001       vxlan99              vlan3159_l3          Up    44:38:39:22:01:7a 
+```
+
+```
+umulus@leaf01:mgmt:~$ sudo vtysh
+...
+leaf01# show evpn vni 4001
+VNI: 4001
+  Type: L3
+  Tenant VRF: RED
+  Vlan: 3159
+  Bridge: br_l3vni
+  Local Vtep Ip: 10.10.10.1
+  Vxlan-Intf: vxlan99
+  SVI-If: vlan3159_l3
+  State: Up
+  VNI Filter: none
+  System MAC: 44:38:39:22:01:7a
+  Router MAC: 44:38:39:22:01:7a
+  L2 VNIs: 10 20
+```
+
+To show VNI BGP information, run the NVUE `nv show evpn vni <id> bgp-info` and `nv show vrf <vrf_id> evpn bgp-info` commands, or the vtysh `show bgp l2vpn evpn vni <vni>` command.
 
 ```
 cumulus@border01:mgmt:~$ nv show vrf RED evpn bgp-info
@@ -323,6 +484,21 @@ system-mac             44:38:39:22:01:7a
 system-ip              10.10.10.1       
 [import-route-target]  65101:4001       
 [export-route-target]  65101:4001
+```
+
+```
+cumulus@leaf01:mgmt:~$ nv show evpn vni 10 bgp-info 
+                           operational   pending
+-------------------------  ------------  -------
+rd                         10.10.10.1:9         
+local-vtep                 10.10.10.1           
+advertise-svi-ip           off                  
+advertise-default-gateway  off                  
+in-kernel                  on                   
+type                       L2                   
+mac-vrf-soo                                     
+[import-route-target]      65101:10             
+[export-route-target]      65101:10
 ```
 
 ## Examine Local and Remote MAC Addresses for a VNI

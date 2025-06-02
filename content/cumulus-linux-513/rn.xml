@@ -785,20 +785,8 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>4423430</td>
-<td>When toggling the bridge binding flag on an SVI from ON to OFF, the SVI might not come operationally UP if it was DOWN previously from the bridge binding flag.</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4423368</td>
 <td>When all links go down or the switch reboots,  you see next hop group churn from Zebra to the SOO next hop group. This issue might cause some convergence degradation. </td>
-<td>5.12.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4423362</td>
-<td>After a remote link flap, neighbor entries using the link might not get resolved immediately. Only when some traffic uses the nexthop will they be resolved.</td>
 <td>5.12.0-5.13.1</td>
 <td></td>
 </tr>
@@ -827,12 +815,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>4423300</td>
-<td>The NVUE {{nv show interface qos}} command takes approximately two minutes to display output. To work around this issue, fetch only the sub commands that are part of the {{nv show interface qos}}, command such as buffer, congestion-control, pfc, and so on.</td>
-<td>5.12.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4423285</td>
 <td>SVIs do not go down even when all the bridge ports on the corresponding VLAN are down. This issue occurs because the {{vlan-bridge-binding}} option default setting is off for all the SVIs responsible for bringing down the SVI when all the ports on the corresponding VLAN are down. To work around this issue, manually configure the {{vlan-bridge-binding on}} option under the SVI stanza in the {{/etc/network/interfaces config}} file.</td>
 <td>5.11.0-5.13.1</td>
@@ -840,12 +822,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>4423277</td>
-<td>When the username in a 802.1X session includes the equals (=) character, the ISSU warmboot fails. Make sure that = is not part of the 802.1X session name.</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4423276</td>
 <td>When the username in a 802.1X session includes the equals (=) character, the ISSU warmboot fails. Make sure that = is not part of the 802.1X session name.</td>
 <td>5.11.0-5.13.1</td>
 <td></td>
@@ -860,14 +836,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>4423269</td>
 <td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
 <td>5.11.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4423261</td>
-<td>When you use the NVUE {{nv set qos congestion-control &lt;ecn_profile_name&gt; traffic-class &lt;tc&gt; min-threshold-bytes}} command to set an ECN Profile, you must configure the minimum threshold according to the platform:
-On the Spectrum-4 switch, the cell-size is 192 bytes. The minimum buffer must be a multiple of 64; therefore, the initial value is 192*64 (12KB).
-On the Spectrum-3 switch, the cell-size is 144 bytes. The minimum size is 144*64 (9KB).</td>
-<td>5.12.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -922,15 +890,6 @@ On the Spectrum-3 switch, the cell-size is 144 bytes. The minimum size is 144*64
 <td>4423167</td>
 <td>Zebra might crash when multiple interfaces flap rapidly with a large scale number of routes. This issue occurs because the next hop group hash comparison incorrectly treats distinct next hop groups as equal. I addition, the hashing logic currently uses only four bytes of the IPv6 address, which increases the likelihood of collisions and misidentification.  Avoid rapidly flapping multiple interfaces when managing large scale routes.</td>
 <td>5.13.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4423134</td>
-<td>On Spectrum-1a switches with IGMP snooping enabled, a multicast hardware programming failure might occur after interface flap or switch reboot events. You can observe this issue when the switch generates log messages similar to the following:
-sx_sdk[18174]: ERROR   FDB: Usage API type can not be changed for 0x1003 fid.
-sx_sdk[18174]: ERROR   FDB: Failed to __fdb_unreg_mc_flood_cfg_api_type_set , err: Command Unpermitted
-switchd[19460]: hal_mlx_l2mc.c:1107 ERR VFID: 4099, Failed to set unregistered IPv4 MC mode FLOOD and attr MCC 0: Command Unpermitted</td>
-<td>5.12.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>

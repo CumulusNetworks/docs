@@ -449,12 +449,12 @@ To align with a long-term vision of a common interface between Cumulus Linux, Nv
 
 ## Release Considerations
 
-Review the following considerations before you upgrade to Cumulus Linux 5.11.0.
+Review the following considerations before you upgrade to Cumulus Linux 5.11.
 
 ### Linux Configuration Files Overwritten
 
 {{%notice warning%}}
-If you use Linux commands to configure the switch, read the following information before you upgrade to Cumulus Linux 5.11.0.
+If you use Linux commands to configure the switch, read the following information before you upgrade to Cumulus Linux 5.11.
 {{%/notice%}}
 
 Cumulus Linux includes a default NVUE `startup.yaml` file. In addition, NVUE configuration auto save is enabled by default. As a result, Cumulus Linux overwrites any manual changes to Linux configuration files on the switch when:
@@ -470,7 +470,7 @@ These issues occur only if you use Linux commands to configure the switch. If yo
 
 To prevent Cumulus Linux from overwriting manual changes to the Linux configuration files when the switch reboots after upgrade:
 
-1. **Before** you upgrade to 5.11.0, disable NVUE auto save:
+1. **Before** you upgrade to 5.11, disable NVUE auto save:
 
    ```
    cumulus@switch:~$ nv set system config auto-save state disabled
@@ -487,7 +487,7 @@ To prevent Cumulus Linux from overwriting manual changes to the Linux configurat
 {{< /tab >}}
 {{< tab "cumulus Account Password">}}
 
-To prevent Cumulus Linux from overriding changes to the Linux configuration files when you change the cumulus account password with the Linux `passwd` command, comment out the `password optional pam_exec.so seteuid /usr/lib/cumulus/reconcile_password_with_nvue.sh` line from the following files **before** you upgrade to 5.11.0:
+To prevent Cumulus Linux from overriding changes to the Linux configuration files when you change the cumulus account password with the Linux `passwd` command, comment out the `password optional pam_exec.so seteuid /usr/lib/cumulus/reconcile_password_with_nvue.sh` line from the following files **before** you upgrade to 5.11:
 - `/etc/pam.d/chpasswd`
 - `/etc/pam.d/login`
 - `/etc/pam.d/passwd`
@@ -542,6 +542,6 @@ Cumulus Linux 5.11 includes the NVUE object model. After you upgrade to Cumulus 
 
 ### Secure Boot Switch Downgrade
 
-The SN3700C-S, SN5400, and SN5600 secure boot switch running Cumulus Linux 5.11.0 boots with shim 15.8 that adds entries to the SBAT revocations to prevent the switch from booting shim 15.7 or earlier.
+The SN3700C-S, SN5400, and SN5600 secure boot switch running Cumulus Linux 5.11 boots with shim 15.8 that adds entries to the SBAT revocations to prevent the switch from booting shim 15.7 or earlier.
 
-If you want to downgrade from Cumulus Linux 5.11.0 to a Cumulus Linux release that uses an older shim version (Cumulus Linux 5.10 or earlier), follow the steps in {{<link url="/Upgrading-Cumulus-Linux/#downgrade-a-secure-boot-switch-from-cumulus-linux-5110" text="Downgrade a Secure Boot Switch from Cumulus Linux 5.11.0">}} **before** the downgraded switch boots.
+If you want to downgrade from Cumulus Linux 5.11 to a Cumulus Linux release that uses an older shim version (Cumulus Linux 5.10 or earlier), follow the steps in {{<link url="/Upgrading-Cumulus-Linux/#downgrade-a-secure-boot-switch" text="Downgrade a Secure Boot Switch">}} **before** the downgraded switch boots.

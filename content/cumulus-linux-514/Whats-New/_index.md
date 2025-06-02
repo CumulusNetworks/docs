@@ -37,7 +37,7 @@ Cumulus Linux 5.14.0 supports new platforms, provides bug fixes, and contains se
   - {{<link url="Quality-of-Service/#asymmetric-packet-trimming" text="Packet trimming with asymmetric DSCP">}}
 - NVUE
   - {{< expand "Changed NVUE Commands and Options" >}}
-| Cumulus Linux 5.14 | Cumulus Linux 13 and Earlier |
+| Cumulus Linux 5.14 | Cumulus Linux 5.13 and Earlier |
 | --------------- |---------------------------------------|
 | BGP community `0:0`| BGP community `internet`|
 | | |
@@ -63,7 +63,8 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 {{< tab "nv show ">}}
 
 ```
-
+nv show vrf evpn
+nv show vrf evpn  --view=evpn
 ```
 
 {{< /tab >}}

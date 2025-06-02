@@ -7,8 +7,8 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4435328</td>
-<td>ed25519 signed certificates do not work with strict mode enabled. Either disable strict mode with the {{nv set system ssh-server strict disabled}} command or manually add {{ssh-ed25519-cert-v01@openssh.com}} to {{PubkeyAcceptedKeyTypes}} in the {{/etc/ssh/sshd_config}} file.</td>
+<td>4440766</td>
+<td>When you try to delete a trusted ca key, Cumulus Linux shows an incorrect error message. To remove a trusted ca key, you must unset the key ID, not the key literal.</td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
@@ -39,6 +39,12 @@
 <tr>
 <td>4423248</td>
 <td>If you unset an interface static IP address when the interface IP gateway is configured, the {{nv config apply}} command fails with an {{ifreload.service}} error. To work around the issue, unset both the static IP address and gateway together.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423245</td>
+<td>When you enable, then disable adaptive routing, BGP neighbors might go down because of an unresolved MAC address. To resolve this issue configure another attribute on the interface.</td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
@@ -85,6 +91,12 @@
 <td></td>
 </tr>
 <tr>
+<td>4414935</td>
+<td>Interface counters retrieved from the kernel are not reset when {{switchd}} restarts. These kernel counters are inconsistent with other telemetry counters that do reset when {{switchd}} restarts.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4413450</td>
 <td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables, the process consumes excessive memory resulting in out of memory crashes. </td>
 <td>5.0.0-5.13.1</td>
@@ -103,9 +115,9 @@
 <td></td>
 </tr>
 <tr>
-<td>4403755</td>
-<td>On first boot after a binary install or upgrade, if ZTP does not run or does not complete successfully, all interfaces are left admin up until you disable ZTP manually. To work around this issue, use an empty ZTP script during onie-install ({{-z ZTP_URL}}) or configure the DCHP option 239.</td>
-<td>5.12.1-5.13.1</td>
+<td>4402017</td>
+<td>The {{auth.log}} file contains sensitive information for hashed passwords.</td>
+<td>5.12.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -737,6 +749,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4440766</td>
+<td>When you try to delete a trusted ca key, Cumulus Linux shows an incorrect error message. To remove a trusted ca key, you must unset the key ID, not the key literal.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4438697</td>
 <td>When using TACACS or Radius authentication to run CLI commands, the available memory on the switch might reduce over time.</td>
 <td>5.13.0</td>
@@ -747,12 +765,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>Available file descriptors might reduce due to incorrect handing in NVUE error paths causing NVUE requests to fail. To work around this issue, restart the NVUE service.</td>
 <td>5.13.0</td>
 <td>5.13.1</td>
-</tr>
-<tr>
-<td>4435328</td>
-<td>ed25519 signed certificates do not work with strict mode enabled. Either disable strict mode with the {{nv set system ssh-server strict disabled}} command or manually add {{ssh-ed25519-cert-v01@openssh.com}} to {{PubkeyAcceptedKeyTypes}} in the {{/etc/ssh/sshd_config}} file.</td>
-<td>5.13.0-5.13.1</td>
-<td></td>
 </tr>
 <tr>
 <td>4427224</td>
@@ -791,12 +803,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>4423336</td>
-<td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
-<td>5.9.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4423335</td>
 <td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
 <td>5.9.0-5.13.1</td>
@@ -816,12 +822,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>4423277</td>
-<td>When the username in a 802.1X session includes the equals (=) character, the ISSU warmboot fails. Make sure that = is not part of the 802.1X session name.</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4423276</td>
 <td>When the username in a 802.1X session includes the equals (=) character, the ISSU warmboot fails. Make sure that = is not part of the 802.1X session name.</td>
 <td>5.11.0-5.13.1</td>
 <td></td>
@@ -847,6 +847,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <tr>
 <td>4423248</td>
 <td>If you unset an interface static IP address when the interface IP gateway is configured, the {{nv config apply}} command fails with an {{ifreload.service}} error. To work around the issue, unset both the static IP address and gateway together.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423245</td>
+<td>When you enable, then disable adaptive routing, BGP neighbors might go down because of an unresolved MAC address. To resolve this issue configure another attribute on the interface.</td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
@@ -899,6 +905,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
+<td>4414935</td>
+<td>Interface counters retrieved from the kernel are not reset when {{switchd}} restarts. These kernel counters are inconsistent with other telemetry counters that do reset when {{switchd}} restarts.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4413450</td>
 <td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables, the process consumes excessive memory resulting in out of memory crashes. </td>
 <td>5.0.0-5.13.1</td>
@@ -917,9 +929,9 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>4403755</td>
-<td>On first boot after a binary install or upgrade, if ZTP does not run or does not complete successfully, all interfaces are left admin up until you disable ZTP manually. To work around this issue, use an empty ZTP script during onie-install ({{-z ZTP_URL}}) or configure the DCHP option 239.</td>
-<td>5.12.1-5.13.1</td>
+<td>4402017</td>
+<td>The {{auth.log}} file contains sensitive information for hashed passwords.</td>
+<td>5.12.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1609,6 +1621,11 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
+<td>4404758</td>
+<td>Installing ssh keys for the cumulus user with NVUE fails and results in login failures.</td>
+<td>5.12.1</td>
+</tr>
+<tr>
 <td>4403127</td>
 <td>When you use BGP prefix independent convergence (PIC) with IPv6, {{cl-route-check}} might show errors due to a discrepancy in the IPv4-mapped IPv6 SOO route string format across FRR and the kernel. This is a display-only issue and has no impact on routing functionality.</td>
 <td>5.12.0-5.12.1</td>
@@ -1626,6 +1643,14 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <tr>
 <td>4380671</td>
 <td>Slow bandwidth and traffic polarization occurs when you create a significant number of next hop groups  with adaptive routing weighted equal cost multipath (W-ECMP).</td>
+<td>5.12.0-5.12.1</td>
+</tr>
+<tr>
+<td>4378226</td>
+<td>On Spectrum-1a switches with IGMP snooping enabled, a multicast hardware programming failure might occur after interface flap or switch reboot events. You can observe this issue when log messages similar to the following are generated:
+sx_sdk[18174]: ERROR   FDB: Usage API type can not be changed for 0x1003 fid.
+sx_sdk[18174]: ERROR   FDB: Failed to __fdb_unreg_mc_flood_cfg_api_type_set , err: Command Unpermitted
+switchd[19460]: hal_mlx_l2mc.c:1107 ERR VFID: 4099, Failed to set unregistered IPv4 MC mode FLOOD and attr MCC 0: Command Unpermitted</td>
 <td>5.12.0-5.12.1</td>
 </tr>
 <tr>
@@ -1647,6 +1672,11 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>4370516</td>
 <td>NVUE fails when applying ERSPAN configuration on an MLAG peer. This failure occurs because ERSPAN does not support bond slave ports as analyzer ports but fails to validate the configuration. </td>
 <td>5.11.0-5.12.1</td>
+</tr>
+<tr>
+<td>4360676</td>
+<td>When you use {{onie-install}} to install an image with a preconfigured {{startup.yaml}} file, an issue with the ZTP infrastructure script results in certain interfaces being UP in the kernel and the lower layer but DOWN in NVUE or the {{/etc/network/interfaces}} file. </td>
+<td></td>
 </tr>
 <tr>
 <td>4360636</td>

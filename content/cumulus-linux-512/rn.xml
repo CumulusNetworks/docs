@@ -31,12 +31,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4423336</td>
-<td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
-<td>5.9.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4423335</td>
 <td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
 <td>5.9.0-5.13.1</td>
@@ -56,12 +50,6 @@
 </tr>
 <tr>
 <td>4423277</td>
-<td>When the username in a 802.1X session includes the equals (=) character, the ISSU warmboot fails. Make sure that = is not part of the 802.1X session name.</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4423276</td>
 <td>When the username in a 802.1X session includes the equals (=) character, the ISSU warmboot fails. Make sure that = is not part of the 802.1X session name.</td>
 <td>5.11.0-5.13.1</td>
 <td></td>
@@ -97,16 +85,22 @@
 <td></td>
 </tr>
 <tr>
-<td>4403755</td>
-<td>On first boot after a binary install or upgrade, if ZTP does not run or does not complete successfully, all interfaces are left admin up until you disable ZTP manually. To work around this issue, use an empty ZTP script during onie-install ({{-z ZTP_URL}}) or configure the DCHP option 239.</td>
-<td>5.12.1-5.13.1</td>
-<td></td>
+<td>4404758</td>
+<td>Installing ssh keys for the cumulus user with NVUE fails and results in login failures.</td>
+<td>5.12.1</td>
+<td>5.13.0-5.13.1</td>
 </tr>
 <tr>
 <td>4403127</td>
 <td>When you use BGP prefix independent convergence (PIC) with IPv6, {{cl-route-check}} might show errors due to a discrepancy in the IPv4-mapped IPv6 SOO route string format across FRR and the kernel. This is a display-only issue and has no impact on routing functionality.</td>
 <td>5.12.0-5.12.1</td>
 <td>5.13.0-5.13.1</td>
+</tr>
+<tr>
+<td>4402017</td>
+<td>The {{auth.log}} file contains sensitive information for hashed passwords.</td>
+<td>5.12.0-5.13.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4398031</td>
@@ -129,6 +123,15 @@
 <tr>
 <td>4380671</td>
 <td>Slow bandwidth and traffic polarization occurs when you create a significant number of next hop groups  with adaptive routing weighted equal cost multipath (W-ECMP).</td>
+<td>5.12.0-5.12.1</td>
+<td>5.13.0-5.13.1</td>
+</tr>
+<tr>
+<td>4378226</td>
+<td>On Spectrum-1a switches with IGMP snooping enabled, a multicast hardware programming failure might occur after interface flap or switch reboot events. You can observe this issue when log messages similar to the following are generated:
+sx_sdk[18174]: ERROR   FDB: Usage API type can not be changed for 0x1003 fid.
+sx_sdk[18174]: ERROR   FDB: Failed to __fdb_unreg_mc_flood_cfg_api_type_set , err: Command Unpermitted
+switchd[19460]: hal_mlx_l2mc.c:1107 ERR VFID: 4099, Failed to set unregistered IPv4 MC mode FLOOD and attr MCC 0: Command Unpermitted</td>
 <td>5.12.0-5.12.1</td>
 <td>5.13.0-5.13.1</td>
 </tr>
@@ -1087,12 +1090,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>4423336</td>
-<td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
-<td>5.9.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4423335</td>
 <td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
 <td>5.9.0-5.13.1</td>
@@ -1112,12 +1109,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>4423277</td>
-<td>When the username in a 802.1X session includes the equals (=) character, the ISSU warmboot fails. Make sure that = is not part of the 802.1X session name.</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4423276</td>
 <td>When the username in a 802.1X session includes the equals (=) character, the ISSU warmboot fails. Make sure that = is not part of the 802.1X session name.</td>
 <td>5.11.0-5.13.1</td>
 <td></td>
@@ -1159,6 +1150,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>
+<td>4402017</td>
+<td>The {{auth.log}} file contains sensitive information for hashed passwords.</td>
+<td>5.12.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4398031</td>
 <td>On the NVIDIA SN5400 switch, if the PTP slave port is swp66 and is operating at 1Gbps, the  PTP mean path delay value might be reported as a negative value. </td>
 <td>5.11.0-5.13.1</td>
@@ -1179,6 +1176,15 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <tr>
 <td>4380671</td>
 <td>Slow bandwidth and traffic polarization occurs when you create a significant number of next hop groups  with adaptive routing weighted equal cost multipath (W-ECMP).</td>
+<td>5.12.0-5.12.1</td>
+<td>5.13.0-5.13.1</td>
+</tr>
+<tr>
+<td>4378226</td>
+<td>On Spectrum-1a switches with IGMP snooping enabled, a multicast hardware programming failure might occur after interface flap or switch reboot events. You can observe this issue when log messages similar to the following are generated:
+sx_sdk[18174]: ERROR   FDB: Usage API type can not be changed for 0x1003 fid.
+sx_sdk[18174]: ERROR   FDB: Failed to __fdb_unreg_mc_flood_cfg_api_type_set , err: Command Unpermitted
+switchd[19460]: hal_mlx_l2mc.c:1107 ERR VFID: 4099, Failed to set unregistered IPv4 MC mode FLOOD and attr MCC 0: Command Unpermitted</td>
 <td>5.12.0-5.12.1</td>
 <td>5.13.0-5.13.1</td>
 </tr>

@@ -20,9 +20,9 @@ Cumulus Linux 5.14.0 supports new platforms, provides bug fixes, and contains se
 
 - {{<link url="Switch-Port-Attributes/#auto-negotiation-and-link-speed" text="Speed setting without auto-negotiation">}}
 - {{<link title="Erase all Data from the Switch" text="Erase all data from the switch">}} now generally available
+- {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#transceiver-thermal-control" text="Transceiver thermal control">}}
 - Map port to connector
 - Operational revision
-- EVPN info across all VRFs
 - Configure different DHCP relay servers per interface
 - NVUE login brute force via API
 - FRR upgrade to 10.x via API
@@ -36,6 +36,7 @@ Cumulus Linux 5.14.0 supports new platforms, provides bug fixes, and contains se
   - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#mrc-qos-profile" text="New QoS profile for MRC">}}
   - {{<link url="Quality-of-Service/#asymmetric-packet-trimming" text="Packet trimming with asymmetric DSCP">}}
 - NVUE
+  - {{<link url="Troubleshooting-EVPN/#show-evpn-vnis" text="Commands to show EVPN information across all VRFs">}}
   - {{< expand "Changed NVUE Commands and Options" >}}
 | Cumulus Linux 5.14 | Cumulus Linux 5.13 and Earlier |
 | --------------- |---------------------------------------|
@@ -63,6 +64,7 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 {{< tab "nv show ">}}
 
 ```
+nv show platform transceiver <interface> temperature
 nv show vrf evpn
 nv show vrf evpn  --view=evpn
 ```
@@ -71,14 +73,14 @@ nv show vrf evpn  --view=evpn
 {{< tab "nv set ">}}
 
 ```
-
+nv set platform transceiver <interface-id> temperature setpoint
 ```
 
 {{< /tab >}}
 {{< tab "nv unset ">}}
 
 ```
-
+nv unset platform transceiver <interface-id> temperature setpoint
 ```
 
 {{< /tab >}}

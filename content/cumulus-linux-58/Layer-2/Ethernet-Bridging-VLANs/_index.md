@@ -33,17 +33,83 @@ The following example NVUE command output shows a MAC address table for the brid
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default mac-table
-     age    bridge-domain  entry-type  interface   last-update  mac                src-vni  vlan  vni  Summary
----  -----  -------------  ----------  ----------  -----------  -----------------  -------  ----  ---  ----------------------
-+ 0  87699  br_default     permanent   bond3       87699        44:38:39:00:00:35
-+ 1  87699  br_default     permanent   bond1       87699        44:38:39:00:00:31
-+ 2  87699  br_default     permanent   bond2       87699        44:38:39:00:00:33
-+ 3                        permanent   br_default               00:00:00:00:00:10
-+ 4                        permanent   br_default               00:00:00:00:00:20
-+ 5                        permanent   br_default               00:00:00:00:00:30
-+ 6  84130  br_default     permanent   br_default  84130        44:38:39:22:01:b1           30
-+ 7  87570  br_default     permanent   vxlan48     87570        42:ff:4d:82:c9:99
-+ 8  84130                 permanent   vxlan48     84130        00:00:00:00:00:00  10                  remote-dst: 224.0.0.10
+entry-id  age      bridge-domain  entry-type    interface   last-update  MAC address        remote-dst   src-vni  vlan
+--------  -------  -------------  ------------  ----------  -----------  -----------------  -----------  -------  ----
+1         0:12:54  br_default                   bond2       0:00:18      48:b0:2d:46:8f:ca                        20  
+2         0:13:28  br_default                   bond2       0:01:17      48:b0:2d:66:cd:da                        20  
+3         0:13:47  br_default     permanent     bond2       0:13:47      48:b0:2d:6c:f4:fc                            
+4         0:12:54  br_default                   bond1       0:00:18      48:b0:2d:97:30:0d                        10  
+5         0:13:28  br_default                   bond1       0:00:22      48:b0:2d:fc:d1:7f                        10  
+6         0:13:47  br_default     permanent     bond1       0:13:47      48:b0:2d:b0:73:6d                            
+7         0:06:36  br_default     extern_learn  vxlan48     0:06:36      44:38:39:be:ef:bb                        4036
+8         0:12:53  br_default     extern_learn  vxlan48     0:12:53      48:b0:2d:28:23:1f                        30  
+9         0:12:53  br_default     extern_learn  vxlan48     0:12:53      48:b0:2d:9d:37:18                        20  
+10        0:12:53  br_default     extern_learn  vxlan48     0:12:53      48:b0:2d:e9:fd:e3                        10  
+11        0:12:59  br_default     extern_learn  vxlan48     0:12:59      48:b0:2d:25:1f:8a                        20  
+12        0:12:59  br_default     extern_learn  vxlan48     0:12:59      48:b0:2d:8a:2d:b4                        30  
+13        0:12:59  br_default     extern_learn  vxlan48     0:12:59      48:b0:2d:8e:fc:0a                        10  
+14        0:13:32  br_default     extern_learn  vxlan48     0:13:32      44:38:39:22:01:7c                        4024
+15        0:13:32  br_default     extern_learn  vxlan48     0:13:32      44:38:39:22:01:7c                        4036
+16        0:13:32  br_default     extern_learn  vxlan48     0:13:32      44:38:39:22:01:74                        4024
+17        0:13:32  br_default     extern_learn  vxlan48     0:13:32      44:38:39:22:01:74                        4036
+18        0:13:33  br_default     extern_learn  vxlan48     0:13:33      44:38:39:22:01:8a                        4036
+19        0:13:33  br_default     extern_learn  vxlan48     0:13:33      44:38:39:22:01:84                        4036
+20        0:13:33  br_default     extern_learn  vxlan48     0:13:33      44:38:39:22:01:7a                        4036
+21        0:13:33  br_default     extern_learn  vxlan48     0:13:33      44:38:39:22:01:8a                        4024
+22        0:13:33  br_default     extern_learn  vxlan48     0:13:33      44:38:39:22:01:84                        4024
+23        0:13:33  br_default     extern_learn  vxlan48     0:13:33      44:38:39:22:01:7a                        4024
+24        0:13:27  br_default     extern_learn  vxlan48     0:13:27      44:38:39:22:01:84                        10  
+25        0:13:33  br_default     extern_learn  vxlan48     0:13:33      44:38:39:22:01:8a                        10  
+26        0:13:27  br_default     extern_learn  vxlan48     0:13:27      44:38:39:22:01:84                        30  
+27        0:13:33  br_default     extern_learn  vxlan48     0:13:33      44:38:39:22:01:8a                        30  
+28        0:13:27  br_default     extern_learn  vxlan48     0:13:27      44:38:39:22:01:84                        20  
+29        0:13:33  br_default     extern_learn  vxlan48     0:13:33      44:38:39:22:01:8a                        20  
+30        0:13:47  br_default     permanent     vxlan48     0:13:47      4e:8e:1a:31:b7:cc                            
+31        0:06:34                 extern_learn  vxlan48     0:13:32      44:38:39:22:01:74  10.10.10.63  4001         
+32        0:13:32                 extern_learn  vxlan48     0:13:32      44:38:39:22:01:7c  10.10.10.64  4002         
+33        0:13:33                 extern_learn  vxlan48     0:13:33      44:38:39:22:01:84  10.10.10.3   4002         
+34        0:13:33                 extern_learn  vxlan48     0:13:33      44:38:39:22:01:7a  10.10.10.1   4002         
+35        0:12:53                 extern_learn  vxlan48     0:12:53      48:b0:2d:9d:37:18  10.0.1.34    20           
+36        0:13:33                 extern_learn  vxlan48     0:13:27      44:38:39:22:01:84  10.0.1.34    20           
+37        0:12:59                 extern_learn  vxlan48     0:12:59      48:b0:2d:8e:fc:0a  10.0.1.34    10           
+38        0:13:33                 extern_learn  vxlan48     0:13:33      44:38:39:22:01:8a  10.0.1.34    20           
+39        0:13:33                 extern_learn  vxlan48     0:13:33      44:38:39:22:01:8a  10.0.1.34    30           
+40        0:07:03                 extern_learn  vxlan48     0:12:59      48:b0:2d:8a:2d:b4  10.0.1.34    30           
+41        0:00:18                 permanent     vxlan48     0:13:33      00:00:00:00:00:00  10.0.1.34    30           
+42        0:13:33                 extern_learn  vxlan48     0:13:33      44:38:39:22:01:8a  10.10.10.4   4002         
+43        0:12:53                 extern_learn  vxlan48     0:12:53      48:b0:2d:28:23:1f  10.0.1.34    30           
+44        0:13:33                 extern_learn  vxlan48     0:13:33      44:38:39:22:01:8a  10.0.1.34    10           
+45        0:00:18                 permanent     vxlan48     0:13:33      00:00:00:00:00:00  10.0.1.34    10           
+46        0:13:32                 extern_learn  vxlan48     0:13:32      44:38:39:22:01:7c  10.10.10.64  4001         
+47        0:13:33                 extern_learn  vxlan48     0:13:33      44:38:39:22:01:7a  10.10.10.1   4001         
+48        0:09:14                 extern_learn  vxlan48     0:12:59      48:b0:2d:25:1f:8a  10.0.1.34    20           
+49        0:13:33                 extern_learn  vxlan48     0:13:27      44:38:39:22:01:84  10.0.1.34    10           
+50        0:13:32                 extern_learn  vxlan48     0:13:32      44:38:39:22:01:74  10.10.10.63  4002         
+51        0:12:53                 extern_learn  vxlan48     0:12:53      48:b0:2d:e9:fd:e3  10.0.1.34    10           
+52        0:13:33                 extern_learn  vxlan48     0:13:27      44:38:39:22:01:84  10.0.1.34    30           
+53        0:00:18                 permanent     vxlan48     0:13:33      00:00:00:00:00:00  10.0.1.34    20           
+54        0:13:33                 extern_learn  vxlan48     0:13:33      44:38:39:22:01:84  10.10.10.3   4001         
+55        0:13:33                 extern_learn  vxlan48     0:13:33      44:38:39:22:01:8a  10.10.10.4   4001         
+56        0:06:36                 extern_learn  vxlan48     0:06:36      44:38:39:be:ef:bb  10.0.1.34    4002         
+57        0:12:54  br_default                   bond3       0:00:18      48:b0:2d:6b:ec:70                        30  
+58        0:13:28  br_default                   bond3       0:00:49      48:b0:2d:47:37:37                        30  
+59        0:13:47  br_default     permanent     bond3       0:13:47      48:b0:2d:28:5f:f2                            
+60        0:00:49  br_default     static        peerlink    0:13:33      44:38:39:22:01:7a                        30  
+61        0:13:33  br_default     static        peerlink    0:13:33      44:38:39:22:01:7a                        20  
+62        0:00:22  br_default     static        peerlink    0:13:33      44:38:39:22:01:7a                        10  
+63        0:13:47  br_default     permanent     peerlink    0:13:47      48:b0:2d:45:7a:cb                            
+64                                permanent     br_default               00:00:5e:00:01:01                            
+65                                permanent     br_default               44:38:39:be:ef:aa                            
+66        0:13:46  br_default     permanent     br_default  0:13:46      44:38:39:be:ef:aa                        4024
+67        0:13:46  br_default     permanent     br_default  0:13:46      44:38:39:22:01:78                        4024
+68        0:13:46  br_default     permanent     br_default  0:13:46      00:00:5e:00:01:01                        20  
+69        0:13:46  br_default     permanent     br_default  0:13:46      44:38:39:22:01:78                        20  
+70        0:13:46  br_default     permanent     br_default  0:13:46      00:00:5e:00:01:01                        10  
+71        0:13:46  br_default     permanent     br_default  0:13:46      44:38:39:22:01:78                        10  
+72        0:13:46  br_default     permanent     br_default  0:13:46      44:38:39:be:ef:aa                        4036
+73        0:13:46  br_default     permanent     br_default  0:13:46      44:38:39:22:01:78                        4036
+74        0:13:46  br_default     permanent     br_default  0:13:46      00:00:5e:00:01:01                        30  
+75        0:13:46  br_default     permanent     br_default  0:13:46      44:38:39:22:01:78                        30
 ```
 
 ## bridge fdb Command Output

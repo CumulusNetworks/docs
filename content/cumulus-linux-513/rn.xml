@@ -7,8 +7,51 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4461102</td>
+<td>In certain cases, when a port is down and you apply adaptive routing with the link-utilization-threshold setting to the port as it goes up, you might see in log errors while the port is not yet up.</td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4460588</td>
+<td>The NVIDIA SN5610 switch might experience FEC burstiness
+with multiple optics, which can impact link stability and performance.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4458898</td>
+<td>The {{nv config patch}} and {{nv config replace}} commands have no effect with filenames with relative paths, such as {{./config.yaml}}, {{../config.yaml},  and so on.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4449947</td>
+<td>The {{nv config patch}} and {{nv config replace}} commands have no effect with filenames with relative paths, such as {{./config.yaml}}, {{../config.yaml},  and so on.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4447419</td>
+<td>Users with {{nv show}} privileges only can still execute the {{nv config apply}} and related commands.</td>
+<td>5.9.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4443870</td>
+<td>When you use the NVUE {{nv config patch}} command to apply 30k or more prefixes, the {{/var/}} directory fills up  and you see error messages.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4440766</td>
 <td>When you try to delete a trusted ca key, Cumulus Linux shows an incorrect error message. To remove a trusted ca key, you must unset the key ID, not the key literal.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4438933</td>
+<td>When gNMI subscription and configuration changes to an interface occur simultaneously, the interface statistics process can crash and leave a core file. </td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
@@ -127,6 +170,12 @@
 <td></td>
 </tr>
 <tr>
+<td>4393369</td>
+<td>If you generate a cl-support file after configuring a breakout port, the syslog file includes errors due to a statistic collection failure for stale ports. This issue has no functional impact.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4386779</td>
 <td>When you start gNMI subscription from a remote client, interface rates reset and values start from 0. </td>
 <td>5.13.0-5.13.1</td>
@@ -136,6 +185,13 @@
 <td>4360826</td>
 <td>On rare occasions, when you run the NVUE {{nv config apply}} command, {{switchd}} crashes, then restarts after the crash and resumes its normal flow of operation.</td>
 <td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4343690</td>
+<td>The Swagger UI for the Cumulus OpenAPI model is not rendering correctly (https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-512/api/index.html#). 
+The interface shows "screaming" emojis and "Could not render." </td>
+<td>5.11.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -749,8 +805,51 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4461102</td>
+<td>In certain cases, when a port is down and you apply adaptive routing with the link-utilization-threshold setting to the port as it goes up, you might see in log errors while the port is not yet up.</td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4460588</td>
+<td>The NVIDIA SN5610 switch might experience FEC burstiness
+with multiple optics, which can impact link stability and performance.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4458898</td>
+<td>The {{nv config patch}} and {{nv config replace}} commands have no effect with filenames with relative paths, such as {{./config.yaml}}, {{../config.yaml},  and so on.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4449947</td>
+<td>The {{nv config patch}} and {{nv config replace}} commands have no effect with filenames with relative paths, such as {{./config.yaml}}, {{../config.yaml},  and so on.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4447419</td>
+<td>Users with {{nv show}} privileges only can still execute the {{nv config apply}} and related commands.</td>
+<td>5.9.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4443870</td>
+<td>When you use the NVUE {{nv config patch}} command to apply 30k or more prefixes, the {{/var/}} directory fills up  and you see error messages.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4440766</td>
 <td>When you try to delete a trusted ca key, Cumulus Linux shows an incorrect error message. To remove a trusted ca key, you must unset the key ID, not the key literal.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4438933</td>
+<td>When gNMI subscription and configuration changes to an interface occur simultaneously, the interface statistics process can crash and leave a core file. </td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
@@ -941,6 +1040,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
+<td>4393369</td>
+<td>If you generate a cl-support file after configuring a breakout port, the syslog file includes errors due to a statistic collection failure for stale ports. This issue has no functional impact.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4386779</td>
 <td>When you start gNMI subscription from a remote client, interface rates reset and values start from 0. </td>
 <td>5.13.0-5.13.1</td>
@@ -956,6 +1061,13 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>4360826</td>
 <td>On rare occasions, when you run the NVUE {{nv config apply}} command, {{switchd}} crashes, then restarts after the crash and resumes its normal flow of operation.</td>
 <td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4343690</td>
+<td>The Swagger UI for the Cumulus OpenAPI model is not rendering correctly (https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-512/api/index.html#). 
+The interface shows "screaming" emojis and "Could not render." </td>
+<td>5.11.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>

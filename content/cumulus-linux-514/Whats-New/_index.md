@@ -21,16 +21,9 @@ Cumulus Linux 5.14.0 supports new platforms, provides bug fixes, and contains se
 - {{<link url="Switch-Port-Attributes/#auto-negotiation-and-link-speed" text="Speed setting without auto-negotiation">}}
 - {{<link title="Erase all Data from the Switch" text="Erase all data from the switch">}} now generally available
 - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#transceiver-thermal-control" text="Transceiver thermal control">}}
-- Map port to connector
-- Operational revision
+- {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#clear-interface-physical-layer-error-counters" text="Clear physical layer error counters for an interface">}}
 - Configure different DHCP relay servers per interface
-- NVUE login brute force via API
-- FRR upgrade to 10.x via API
-- Clear layer 1 PCS/phy detail link counters
 - gNMI requirements phase 4
-- FIPS 140-2 and 3 approved crypto modules
-- Crypto mechanisms to prevent unauthorized modification of all information 
-- Strong authenticators
 - MRC:
   - {{<link url="Quality-of-Service/#configure-mrc-with-default-settings" text="Packet trimming and SRv6">}}
   - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#mrc-qos-profile" text="New QoS profile for MRC">}}
@@ -64,6 +57,7 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 {{< tab "nv show ">}}
 
 ```
+nv show interface <interface-id> link phy-detail hardware 
 nv show platform transceiver <interface> temperature
 nv show vrf evpn
 nv show vrf evpn  --view=evpn
@@ -87,7 +81,7 @@ nv unset platform transceiver <interface-id> temperature setpoint
 {{< tab "nv action ">}}
 
 ```
-
+nv action clear interface <interface-id> link phy-detail
 ```
 
 {{< /tab >}}

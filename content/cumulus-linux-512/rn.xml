@@ -7,6 +7,18 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4461102</td>
+<td>In certain cases, when a port is down and you apply adaptive routing with the link-utilization-threshold setting to the port as it goes up, you might see in log errors while the port is not yet up.</td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4447419</td>
+<td>Users with {{nv show}} privileges only can still execute the {{nv config apply}} and related commands.</td>
+<td>5.9.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4427224</td>
 <td>The {{nv show interface}} command output shows the operational status as down for a link flap error disabled state instead of the real protodown reason. To work around this issue, run the {{nv show interface status}} command, which shows if any of the interfaces are protodown with the protodown reason.</td>
 <td>5.12.0-5.13.1</td>
@@ -201,6 +213,13 @@ On the Spectrum-4 switch, the cell-size is 192 bytes. The minimum buffer must be
 On the Spectrum-3 switch, the cell-size is 144 bytes. The minimum size is 144*64 (9KB).</td>
 <td>5.12.0-5.12.1</td>
 <td>5.13.0-5.13.1</td>
+</tr>
+<tr>
+<td>4343690</td>
+<td>The Swagger UI for the Cumulus OpenAPI model is not rendering correctly (https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-512/api/index.html#). 
+The interface shows "screaming" emojis and "Could not render." </td>
+<td>5.11.0-5.13.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4341508</td>
@@ -1066,6 +1085,18 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4461102</td>
+<td>In certain cases, when a port is down and you apply adaptive routing with the link-utilization-threshold setting to the port as it goes up, you might see in log errors while the port is not yet up.</td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4447419</td>
+<td>Users with {{nv show}} privileges only can still execute the {{nv config apply}} and related commands.</td>
+<td>5.9.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4427224</td>
 <td>The {{nv show interface}} command output shows the operational status as down for a link flap error disabled state instead of the real protodown reason. To work around this issue, run the {{nv show interface status}} command, which shows if any of the interfaces are protodown with the protodown reason.</td>
 <td>5.12.0-5.13.1</td>
@@ -1254,6 +1285,13 @@ On the Spectrum-4 switch, the cell-size is 192 bytes. The minimum buffer must be
 On the Spectrum-3 switch, the cell-size is 144 bytes. The minimum size is 144*64 (9KB).</td>
 <td>5.12.0-5.12.1</td>
 <td>5.13.0-5.13.1</td>
+</tr>
+<tr>
+<td>4343690</td>
+<td>The Swagger UI for the Cumulus OpenAPI model is not rendering correctly (https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-512/api/index.html#). 
+The interface shows "screaming" emojis and "Could not render." </td>
+<td>5.11.0-5.13.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4341508</td>

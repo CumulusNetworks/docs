@@ -74,42 +74,7 @@ entry-id  age      bridge-domain  entry-type    interface   last-update  MAC add
 37        0:12:59                 extern_learn  vxlan48     0:12:59      48:b0:2d:8e:fc:0a  10.0.1.34    10           
 38        0:13:33                 extern_learn  vxlan48     0:13:33      44:38:39:22:01:8a  10.0.1.34    20           
 39        0:13:33                 extern_learn  vxlan48     0:13:33      44:38:39:22:01:8a  10.0.1.34    30           
-40        0:07:03                 extern_learn  vxlan48     0:12:59      48:b0:2d:8a:2d:b4  10.0.1.34    30           
-41        0:00:18                 permanent     vxlan48     0:13:33      00:00:00:00:00:00  10.0.1.34    30           
-42        0:13:33                 extern_learn  vxlan48     0:13:33      44:38:39:22:01:8a  10.10.10.4   4002         
-43        0:12:53                 extern_learn  vxlan48     0:12:53      48:b0:2d:28:23:1f  10.0.1.34    30           
-44        0:13:33                 extern_learn  vxlan48     0:13:33      44:38:39:22:01:8a  10.0.1.34    10           
-45        0:00:18                 permanent     vxlan48     0:13:33      00:00:00:00:00:00  10.0.1.34    10           
-46        0:13:32                 extern_learn  vxlan48     0:13:32      44:38:39:22:01:7c  10.10.10.64  4001         
-47        0:13:33                 extern_learn  vxlan48     0:13:33      44:38:39:22:01:7a  10.10.10.1   4001         
-48        0:09:14                 extern_learn  vxlan48     0:12:59      48:b0:2d:25:1f:8a  10.0.1.34    20           
-49        0:13:33                 extern_learn  vxlan48     0:13:27      44:38:39:22:01:84  10.0.1.34    10           
-50        0:13:32                 extern_learn  vxlan48     0:13:32      44:38:39:22:01:74  10.10.10.63  4002         
-51        0:12:53                 extern_learn  vxlan48     0:12:53      48:b0:2d:e9:fd:e3  10.0.1.34    10           
-52        0:13:33                 extern_learn  vxlan48     0:13:27      44:38:39:22:01:84  10.0.1.34    30           
-53        0:00:18                 permanent     vxlan48     0:13:33      00:00:00:00:00:00  10.0.1.34    20           
-54        0:13:33                 extern_learn  vxlan48     0:13:33      44:38:39:22:01:84  10.10.10.3   4001         
-55        0:13:33                 extern_learn  vxlan48     0:13:33      44:38:39:22:01:8a  10.10.10.4   4001         
-56        0:06:36                 extern_learn  vxlan48     0:06:36      44:38:39:be:ef:bb  10.0.1.34    4002         
-57        0:12:54  br_default                   bond3       0:00:18      48:b0:2d:6b:ec:70                        30  
-58        0:13:28  br_default                   bond3       0:00:49      48:b0:2d:47:37:37                        30  
-59        0:13:47  br_default     permanent     bond3       0:13:47      48:b0:2d:28:5f:f2                            
-60        0:00:49  br_default     static        peerlink    0:13:33      44:38:39:22:01:7a                        30  
-61        0:13:33  br_default     static        peerlink    0:13:33      44:38:39:22:01:7a                        20  
-62        0:00:22  br_default     static        peerlink    0:13:33      44:38:39:22:01:7a                        10  
-63        0:13:47  br_default     permanent     peerlink    0:13:47      48:b0:2d:45:7a:cb                            
-64                                permanent     br_default               00:00:5e:00:01:01                            
-65                                permanent     br_default               44:38:39:be:ef:aa                            
-66        0:13:46  br_default     permanent     br_default  0:13:46      44:38:39:be:ef:aa                        4024
-67        0:13:46  br_default     permanent     br_default  0:13:46      44:38:39:22:01:78                        4024
-68        0:13:46  br_default     permanent     br_default  0:13:46      00:00:5e:00:01:01                        20  
-69        0:13:46  br_default     permanent     br_default  0:13:46      44:38:39:22:01:78                        20  
-70        0:13:46  br_default     permanent     br_default  0:13:46      00:00:5e:00:01:01                        10  
-71        0:13:46  br_default     permanent     br_default  0:13:46      44:38:39:22:01:78                        10  
-72        0:13:46  br_default     permanent     br_default  0:13:46      44:38:39:be:ef:aa                        4036
-73        0:13:46  br_default     permanent     br_default  0:13:46      44:38:39:22:01:78                        4036
-74        0:13:46  br_default     permanent     br_default  0:13:46      00:00:5e:00:01:01                        30  
-75        0:13:46  br_default     permanent     br_default  0:13:46      44:38:39:22:01:78                        30  
+... 
 ```
 
 ## bridge fdb Command Output

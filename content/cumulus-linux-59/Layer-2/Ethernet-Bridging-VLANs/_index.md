@@ -52,8 +52,7 @@ entry-id  age      bridge-domain  entry-type    interface   last-update  MAC add
 17        0:13:32  br_default     extern_learn  vxlan48     0:13:32      44:38:39:22:01:74                        4036
 18        0:13:33  br_default     extern_learn  vxlan48     0:13:33      44:38:39:22:01:8a                        4036
 19        0:13:33  br_default     extern_learn  vxlan48     0:13:33      44:38:39:22:01:84                        4036
-20        0:13:33  br_default     extern_learn  vxlan48     0:13:33      44:38:39:22:01:7a                        30
-...   
+20        0:13:33  br_default     extern_learn  vxlan48     0:13:33      44:38:39:22:01:7a                        30   
 ```
 
 ## bridge fdb Command Output

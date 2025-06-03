@@ -1116,6 +1116,7 @@ eligiblity-egress-interface-tc
 
 ### Asymmetric Packet Trimming
 
+Cumulus Linux supports symmetric packet trimming on the Spectrum-4 and Spectrum-5 switch.
 
 ## Egress Scheduler
 

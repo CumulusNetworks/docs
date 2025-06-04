@@ -425,6 +425,47 @@ Action succeeded
 The `nv action clear interface <interface> counters` command does not clear counters in the hardware.
 {{%/notice%}}
 
+## Clear Interface Physical Layer Error Counters
+
+To clear interface physical layer error counters, run the `nv action clear interface <interface-id> link phy-detail` command.
+The command clears the counters at the software level, but not the hardware level.
+
+```
+cumulus@switch:~$ nv action clear interface swp1 link phy-detail
+Action executing ... 
+swp1 link phy-detail counters cleared. 
+Action succeeded
+```
+
+To clear physical layer error counters for a range of interfaces:
+
+```
+cumulus@switch:~$ nv action clear interface swp1-3,swp31s0,swp5-10 link phy-detail 
+Action executing ... 
+swp1 link phy-detail counters cleared. 
+Action executing ... 
+swp2 link phy-detail counters cleared. 
+Action executing ... 
+swp3 link phy-detail counters cleared. 
+Action executing ... 
+swp31s0 link phy-detail counters cleared. 
+swp5 link phy-detail counters cleared. 
+Action executing ... 
+swp6 l link phy-detail counters cleared. 
+swp7 link phy-detail counters cleared. 
+swp8 link phy-detail counters cleared. 
+Action executing ... 
+swp9 link phy-detail counters cleared. 
+swp10 link phy-detail counters cleared. 
+Action succeeded
+```
+
+If the specified interface is out of range; for example, if the switch supports up to 32 switch ports but you try to clear swp33, NVUE displays an error.
+
+{{%notice note%}}
+The `nv show interface <interface> link phy-detail` command shows the reset counters. To show the exact hardware counters, run the `nv show interface <interface-id> link phy-detail hardware` command or the `nv show interface <interface-id> link phy-detail -view=hardware` command.
+{{%/notice%}}
+
 ## Reset a Transceiver
 
 NVUE provides a command to reset a specific transceiver to its initial, stable state without having to be present physically in the data center to pull the transceiver.
@@ -474,6 +515,55 @@ When the reset completes successfully, you see syslog messages similar to the fo
 - If a cable is faulty, the `nv action reset platform transceiver <transceiver-id` command completes successfully, but the details of the transceiver do not show until you resolve the issue or reboot the system if necessary,
 {{%/notice%}}
 
+## Transceiver Thermal Control
+
+To optimize transceiver thermal performance and maintain a cooler operating environment before reaching critical temperatures, you can set the fan algorithm target temperature for a single front port or a group of front ports. The target temperature must be below the module advertised high warning threshold.  
+
+When you lower temperature thresholds for fan activation, fans start sooner and run more frequently, which can lead to higher power consumption and more noise. However, you prevent performance issues and extend the lifespan of critical hardware. The decision reflects a strategic balance between energy efficiency and hardware protection.
+
+Setting the target temperature does not change the module EEPROM advertisement for high or low temperature warnings. The optical module continues reporting temperature alarms based on alarms or warning thresholds preprogrammed in the transceiver EEPROM.
+
+{{%notice warning%}}
+Setting the target temperature for a port without proper guidance can result in transceiver damage, and might void your warranty and support agreements. This is an advanced configuration task; NVIDIA recommends you use the default transceiver temperature settings. Only modify this setting with approval from NVIDIA Technical Support.
+{{%/notice%}}
+
+{{%notice note%}}
+- You can set the target temperature for a port on the SN5610 and SN5640 switches only.
+- Breakout ports are not supported.
+{{%/notice%}}
+
+To set the target temperature for a port, run the `nv set platform transceiver <interface-id> temperature setpoint` command. You can set a value between 30 and 80.
+
+```
+cumulus@switch:~$ nv set platform transceiver swp2 temperature setpoint 60 
+cumulus@switch:~$ nv config apply
+```
+
+To set the target temperature for a group of ports:
+
+```
+cumulus@switch:~$ nv set platform transceiver swp2-swp10 temperature setpoint 60 
+cumulus@switch:~$ nv config apply
+```
+
+{{%notice note%}}
+- When you set the target temperature, the hardware management service (`hw-managament-tc.service`) and `switchd` restart.
+- If you try to set a target temperature that is above the module advertised high temperature warning or if the module is not DOM capable, Cumulus Linux reports an invalid configuration warning.
+{{%/notice%}}
+
+To unset the target temperature and return to the default value, run the `nv unset platform transceiver <interface-id> temperature setpoint` command.
+
+To verify the target temperature configuration for a port, run the `nv show platform transceiver <interface> temperature` command:
+
+```
+cumulus@switch:~$ nv show platform transceiver swp1 temperature 
+          operational  applied 
+--------  -----------  ------- 
+setpoint  60           60 
+```
+
+The `nv show platform transceiver <interface-id>` command also shows the target temperature for the specified port. See below.
+
 ## Show Transceiver Information
 
 To show the identifier, vendor name, part number, serial number, and revision for all modules, run the `nv show platform transceiver` command:
@@ -520,14 +610,15 @@ temperature:
   high-alarm-threshold  : 80.00 C 
   low-alarm-threshold   : -10.00 C 
   high-warning-threshold: 70.00 C 
-  low-warning-threshold : 0.00 C 
+  low-warning-threshold : 0.00 C
+  temperature-setpoint  : 60.00 C
   alarm                 : Off 
 voltage: 
   voltage               : 3.2862 V 
   high-alarm-threshold  : 3.5000 V 
   low-alarm-threshold   : 3.1000 V 
   high-warning-threshold: 3.4650 V 
-  low-warning-threshold : 3.1350 V 
+  low-warning-threshold : 3.1350 V
   alarm                 : Off 
 channel: 
   channel-1: 

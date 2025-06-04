@@ -153,7 +153,7 @@ leaf01(config-route-map)# match ip address prefix-list SERVICE_IPS
 leaf01(config-route-map)# set extcommunity bandwidth num-multipaths
 leaf01(config-route-map)# router bgp 65011
 leaf01(config-router)# address-family ipv4 unicast
-leaf01(config-router-af)# neighbor swp51 prefix-list SERVICE_IPS out
+leaf01(config-router-af)# neighbor swp51 route-map ucmp-route-map out
 leaf01(config-router-af)# end
 leaf01# write memory
 leaf01# exit

@@ -7,10 +7,22 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4423430</td>
-<td>When toggling the bridge binding flag on an SVI from ON to OFF, the SVI might not come operationally UP if it was DOWN previously from the bridge binding flag.</td>
+<td>4461102</td>
+<td>In certain cases, when a port is down and you apply adaptive routing with the link-utilization-threshold setting to the port as it goes up, you might see in log errors while the port is not yet up.</td>
 <td>5.11.0-5.13.1</td>
 <td></td>
+</tr>
+<tr>
+<td>4447419</td>
+<td>Users with {{nv show}} privileges only can still execute the {{nv config apply}} and related commands.</td>
+<td>5.9.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423430</td>
+<td>When toggling the bridge binding flag on an SVI from ON to OFF, the SVI might not come operationally UP if it was DOWN previously from the bridge binding flag.</td>
+<td>5.11.0-5.12.1</td>
+<td>5.13.0-5.13.1</td>
 </tr>
 <tr>
 <td>4423365</td>
@@ -41,12 +53,6 @@
 <td>When you configure BGP {{suppress-fib-pending}}, the prefix might not be withdrawn from downstream peers.</td>
 <td>5.11.0-5.12.1</td>
 <td>5.13.0-5.13.1</td>
-</tr>
-<tr>
-<td>4423320</td>
-<td>When you configure BGP {{suppress-fib-pending}}, the prefix might not be withdrawn from downstream peers.</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
 </tr>
 <tr>
 <td>4423286</td>
@@ -185,6 +191,13 @@ nv config apply -y</td>
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>
+<td>4343690</td>
+<td>The Swagger UI for the Cumulus OpenAPI model is not rendering correctly (https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-512/api/index.html#). 
+The interface shows "screaming" emojis and "Could not render." </td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4341608</td>
 <td>When you enable PFC watchdog, telemetry histograms, and 802.1x with NVUE, then upgrade the switch to Cumulus Linux 5.12 followed by a warm reboot, the switch crashes when a cl-support file is created or by certain {{sx_api}} requests. You see error logs in the SDK continuously because the switch collects interface statistics every one second. To work around this issue, reboot the switch.</td>
 <td>5.10.1-5.12.1</td>
@@ -194,12 +207,6 @@ nv config apply -y</td>
 <td>4328729</td>
 <td>When sending control packets that have the port range 259 through 1023 in their TX base header system target (above {{cap_max_system_ports}} and below {{cap_ports}} used for LAG forwarding), a fatal health event occurs on the switch. The port range 259 through 1023 reflects illegal system ports; do not set these values in the control packet TX base header. As this range reflects illegal system ports, do not set these values in the control packet TX base header, as it will be dropped.</td>
 <td>5.10.1-5.12.1</td>
-<td>5.13.0-5.13.1</td>
-</tr>
-<tr>
-<td>4320729</td>
-<td>When toggling the bridge binding flag on an SVI from ON to OFF, the SVI might not come operationally UP if it was DOWN previously from the bridge binding flag.</td>
-<td>5.11.0-5.12.1</td>
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>
@@ -1163,10 +1170,22 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4423430</td>
-<td>When toggling the bridge binding flag on an SVI from ON to OFF, the SVI might not come operationally UP if it was DOWN previously from the bridge binding flag.</td>
+<td>4461102</td>
+<td>In certain cases, when a port is down and you apply adaptive routing with the link-utilization-threshold setting to the port as it goes up, you might see in log errors while the port is not yet up.</td>
 <td>5.11.0-5.13.1</td>
 <td></td>
+</tr>
+<tr>
+<td>4447419</td>
+<td>Users with {{nv show}} privileges only can still execute the {{nv config apply}} and related commands.</td>
+<td>5.9.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423430</td>
+<td>When toggling the bridge binding flag on an SVI from ON to OFF, the SVI might not come operationally UP if it was DOWN previously from the bridge binding flag.</td>
+<td>5.11.0-5.12.1</td>
+<td>5.13.0-5.13.1</td>
 </tr>
 <tr>
 <td>4423365</td>
@@ -1197,12 +1216,6 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <td>When you configure BGP {{suppress-fib-pending}}, the prefix might not be withdrawn from downstream peers.</td>
 <td>5.11.0-5.12.1</td>
 <td>5.13.0-5.13.1</td>
-</tr>
-<tr>
-<td>4423320</td>
-<td>When you configure BGP {{suppress-fib-pending}}, the prefix might not be withdrawn from downstream peers.</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
 </tr>
 <tr>
 <td>4423286</td>
@@ -1347,6 +1360,13 @@ nv config apply -y</td>
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>
+<td>4343690</td>
+<td>The Swagger UI for the Cumulus OpenAPI model is not rendering correctly (https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-512/api/index.html#). 
+The interface shows "screaming" emojis and "Could not render." </td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4341608</td>
 <td>When you enable PFC watchdog, telemetry histograms, and 802.1x with NVUE, then upgrade the switch to Cumulus Linux 5.12 followed by a warm reboot, the switch crashes when a cl-support file is created or by certain {{sx_api}} requests. You see error logs in the SDK continuously because the switch collects interface statistics every one second. To work around this issue, reboot the switch.</td>
 <td>5.10.1-5.12.1</td>
@@ -1356,12 +1376,6 @@ nv config apply -y</td>
 <td>4328729</td>
 <td>When sending control packets that have the port range 259 through 1023 in their TX base header system target (above {{cap_max_system_ports}} and below {{cap_ports}} used for LAG forwarding), a fatal health event occurs on the switch. The port range 259 through 1023 reflects illegal system ports; do not set these values in the control packet TX base header. As this range reflects illegal system ports, do not set these values in the control packet TX base header, as it will be dropped.</td>
 <td>5.10.1-5.12.1</td>
-<td>5.13.0-5.13.1</td>
-</tr>
-<tr>
-<td>4320729</td>
-<td>When toggling the bridge binding flag on an SVI from ON to OFF, the SVI might not come operationally UP if it was DOWN previously from the bridge binding flag.</td>
-<td>5.11.0-5.12.1</td>
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>

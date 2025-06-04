@@ -7,26 +7,26 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4461102</td>
+<td>In certain cases, when a port is down and you apply adaptive routing with the link-utilization-threshold setting to the port as it goes up, you might see in log errors while the port is not yet up.</td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4447419</td>
+<td>Users with {{nv show}} privileges only can still execute the {{nv config apply}} and related commands.</td>
+<td>5.9.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4427224</td>
 <td>The {{nv show interface}} command output shows the operational status as down for a link flap error disabled state instead of the real protodown reason. To work around this issue, run the {{nv show interface status}} command, which shows if any of the interfaces are protodown with the protodown reason.</td>
 <td>5.12.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
-<td>4423430</td>
-<td>When toggling the bridge binding flag on an SVI from ON to OFF, the SVI might not come operationally UP if it was DOWN previously from the bridge binding flag.</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4423368</td>
 <td>When all links go down or the switch reboots,  you see next hop group churn from Zebra to the SOO next hop group. This issue might cause some convergence degradation. </td>
-<td>5.12.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4423362</td>
-<td>After a remote link flap, neighbor entries using the link might not get resolved immediately. Only when some traffic uses the nexthop will they be resolved.</td>
 <td>5.12.0-5.13.1</td>
 <td></td>
 </tr>
@@ -46,12 +46,6 @@
 <td>4423335</td>
 <td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
 <td>5.9.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4423320</td>
-<td>When you configure BGP {{suppress-fib-pending}}, the prefix might not be withdrawn from downstream peers.</td>
-<td>5.11.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -215,6 +209,13 @@ On the Spectrum-3 switch, the cell-size is 144 bytes. The minimum size is 144*64
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>
+<td>4343690</td>
+<td>The Swagger UI for the Cumulus OpenAPI model is not rendering correctly (https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-512/api/index.html#). 
+The interface shows "screaming" emojis and "Could not render." </td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4341508</td>
 <td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
 <td>5.11.0-5.12.1</td>
@@ -320,6 +321,12 @@ On the Spectrum-3 switch, the cell-size is 144 bytes. The minimum size is 144*64
 <td>4298584</td>
 <td>The Spectrum-4 switch reports a {{Modules DataPath FSM fault}} in logs when the link fails at polling.</td>
 <td>5.10.1-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4294156</td>
+<td>After you clear the RoCE counters with the {{nv action clear interface &lt;interface-id&gt; qos roce counters}} command, the {{buffer-max-usage}} counters in the {{nv show interface &lt;interface-id&gt; qos roce counters}} command output shows the same value.</td>
+<td>5.12.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1078,26 +1085,26 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4461102</td>
+<td>In certain cases, when a port is down and you apply adaptive routing with the link-utilization-threshold setting to the port as it goes up, you might see in log errors while the port is not yet up.</td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4447419</td>
+<td>Users with {{nv show}} privileges only can still execute the {{nv config apply}} and related commands.</td>
+<td>5.9.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4427224</td>
 <td>The {{nv show interface}} command output shows the operational status as down for a link flap error disabled state instead of the real protodown reason. To work around this issue, run the {{nv show interface status}} command, which shows if any of the interfaces are protodown with the protodown reason.</td>
 <td>5.12.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
-<td>4423430</td>
-<td>When toggling the bridge binding flag on an SVI from ON to OFF, the SVI might not come operationally UP if it was DOWN previously from the bridge binding flag.</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4423368</td>
 <td>When all links go down or the switch reboots,  you see next hop group churn from Zebra to the SOO next hop group. This issue might cause some convergence degradation. </td>
-<td>5.12.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4423362</td>
-<td>After a remote link flap, neighbor entries using the link might not get resolved immediately. Only when some traffic uses the nexthop will they be resolved.</td>
 <td>5.12.0-5.13.1</td>
 <td></td>
 </tr>
@@ -1117,12 +1124,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>4423335</td>
 <td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
 <td>5.9.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4423320</td>
-<td>When you configure BGP {{suppress-fib-pending}}, the prefix might not be withdrawn from downstream peers.</td>
-<td>5.11.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1280,6 +1281,13 @@ On the Spectrum-3 switch, the cell-size is 144 bytes. The minimum size is 144*64
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>
+<td>4343690</td>
+<td>The Swagger UI for the Cumulus OpenAPI model is not rendering correctly (https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-512/api/index.html#). 
+The interface shows "screaming" emojis and "Could not render." </td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4341508</td>
 <td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
 <td>5.11.0-5.12.1</td>
@@ -1392,6 +1400,12 @@ On the Spectrum-3 switch, the cell-size is 144 bytes. The minimum size is 144*64
 <td>The Spectrum-4 switch reports a {{Modules DataPath FSM fault}} in logs when the link fails at polling.</td>
 <td>5.10.1-5.11.0, 5.12.0</td>
 <td>5.11.1, 5.12.1-5.13.1</td>
+</tr>
+<tr>
+<td>4294156</td>
+<td>After you clear the RoCE counters with the {{nv action clear interface &lt;interface-id&gt; qos roce counters}} command, the {{buffer-max-usage}} counters in the {{nv show interface &lt;interface-id&gt; qos roce counters}} command output shows the same value.</td>
+<td>5.12.0-5.13.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4291993</td>

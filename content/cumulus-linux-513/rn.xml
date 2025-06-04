@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4474931</td>
+<td>The switch does not send out ERSPAN copies if the ERSPAN destination IP address is reachable over the MLAG peerlink.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4461102</td>
 <td>In certain cases, when a port is down and you apply adaptive routing with the link-utilization-threshold setting to the port as it goes up, you might see in log errors while the port is not yet up.</td>
 <td>5.11.0-5.13.1</td>
@@ -32,6 +38,12 @@ with multiple optics, which can impact link stability and performance.</td>
 <td></td>
 </tr>
 <tr>
+<td>4447794</td>
+<td>The gNMI value for the sensor alarm-status shows incorrectly. For a raised alarm, the alarm-status is {{True(1)}}  but normally functioning sensors also show {{True(1)}}.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4447419</td>
 <td>Users with {{nv show}} privileges only can still execute the {{nv config apply}} and related commands.</td>
 <td>5.9.2-5.13.1</td>
@@ -52,6 +64,12 @@ with multiple optics, which can impact link stability and performance.</td>
 <tr>
 <td>4438933</td>
 <td>When gNMI subscription and configuration changes to an interface occur simultaneously, the interface statistics process can crash and leave a core file. </td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4438061</td>
+<td>Trusted CA key names and literals do not have a size limit, which can result in buffer overflow risks.</td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
@@ -118,18 +136,6 @@ with multiple optics, which can impact link stability and performance.</td>
 <tr>
 <td>4423167</td>
 <td>Zebra might crash when multiple interfaces flap rapidly with a large scale number of routes. This issue occurs because the next hop group hash comparison incorrectly treats distinct next hop groups as equal. I addition, the hashing logic currently uses only four bytes of the IPv6 address, which increases the likelihood of collisions and misidentification.  Avoid rapidly flapping multiple interfaces when managing large scale routes.</td>
-<td>5.13.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4422899</td>
-<td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables (around 800K prefixes), the process consumes excessive memory resulting in OOM crashes. </td>
-<td>5.13.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4417191</td>
-<td>The first update value for the gNMI {{interfaces/interface/state/counters/out-pkts}} metric always shows 0 for every subscription.</td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
@@ -216,6 +222,12 @@ The interface shows "screaming" emojis and "Could not render." </td>
 <td>4308857</td>
 <td>When you use {{tls_crlcheck}} in the {{/etc/nslcd.conf}} file, the optional {{nslcd}} service fails due to a missing library.</td>
 <td>5.9.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4294156</td>
+<td>After you clear the RoCE counters with the {{nv action clear interface &lt;interface-id&gt; qos roce counters}} command, the {{buffer-max-usage}} counters in the {{nv show interface &lt;interface-id&gt; qos roce counters}} command output shows the same value.</td>
+<td>5.12.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -805,6 +817,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4474931</td>
+<td>The switch does not send out ERSPAN copies if the ERSPAN destination IP address is reachable over the MLAG peerlink.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4461102</td>
 <td>In certain cases, when a port is down and you apply adaptive routing with the link-utilization-threshold setting to the port as it goes up, you might see in log errors while the port is not yet up.</td>
 <td>5.11.0-5.13.1</td>
@@ -826,6 +844,12 @@ with multiple optics, which can impact link stability and performance.</td>
 <tr>
 <td>4449947</td>
 <td>The {{nv config patch}} and {{nv config replace}} commands have no effect with filenames with relative paths, such as {{./config.yaml}}, {{../config.yaml},  and so on.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4447794</td>
+<td>The gNMI value for the sensor alarm-status shows incorrectly. For a raised alarm, the alarm-status is {{True(1)}}  but normally functioning sensors also show {{True(1)}}.</td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
@@ -864,6 +888,12 @@ with multiple optics, which can impact link stability and performance.</td>
 <td>Available file descriptors might reduce due to incorrect handing in NVUE error paths causing NVUE requests to fail. To work around this issue, restart the NVUE service.</td>
 <td>5.13.0</td>
 <td>5.13.1</td>
+</tr>
+<tr>
+<td>4438061</td>
+<td>Trusted CA key names and literals do not have a size limit, which can result in buffer overflow risks.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4427224</td>
@@ -992,18 +1022,6 @@ with multiple optics, which can impact link stability and performance.</td>
 <td></td>
 </tr>
 <tr>
-<td>4422899</td>
-<td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables (around 800K prefixes), the process consumes excessive memory resulting in OOM crashes. </td>
-<td>5.13.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4417191</td>
-<td>The first update value for the gNMI {{interfaces/interface/state/counters/out-pkts}} metric always shows 0 for every subscription.</td>
-<td>5.13.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4414935</td>
 <td>Interface counters retrieved from the kernel are not reset when {{switchd}} restarts. These kernel counters are inconsistent with other telemetry counters that do reset when {{switchd}} restarts.</td>
 <td>5.13.0-5.13.1</td>
@@ -1104,6 +1122,12 @@ The interface shows "screaming" emojis and "Could not render." </td>
 <td>4298584</td>
 <td>The Spectrum-4 switch reports a {{Modules DataPath FSM fault}} in logs when the link fails at polling.</td>
 <td>5.10.1-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4294156</td>
+<td>After you clear the RoCE counters with the {{nv action clear interface &lt;interface-id&gt; qos roce counters}} command, the {{buffer-max-usage}} counters in the {{nv show interface &lt;interface-id&gt; qos roce counters}} command output shows the same value.</td>
+<td>5.12.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>

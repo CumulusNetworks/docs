@@ -134,12 +134,6 @@ with multiple optics, which can impact link stability and performance.</td>
 <td></td>
 </tr>
 <tr>
-<td>4423167</td>
-<td>Zebra might crash when multiple interfaces flap rapidly with a large scale number of routes. This issue occurs because the next hop group hash comparison incorrectly treats distinct next hop groups as equal. I addition, the hashing logic currently uses only four bytes of the IPv6 address, which increases the likelihood of collisions and misidentification.  Avoid rapidly flapping multiple interfaces when managing large scale routes.</td>
-<td>5.13.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4414935</td>
 <td>Interface counters retrieved from the kernel are not reset when {{switchd}} restarts. These kernel counters are inconsistent with other telemetry counters that do reset when {{switchd}} restarts.</td>
 <td>5.13.0-5.13.1</td>
@@ -938,12 +932,6 @@ with multiple optics, which can impact link stability and performance.</td>
 <td></td>
 </tr>
 <tr>
-<td>4423320</td>
-<td>When you configure BGP {{suppress-fib-pending}}, the prefix might not be withdrawn from downstream peers.</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4423285</td>
 <td>SVIs do not go down even when all the bridge ports on the corresponding VLAN are down. This issue occurs because the {{vlan-bridge-binding}} option default setting is off for all the SVIs responsible for bringing down the SVI when all the ports on the corresponding VLAN are down. To work around this issue, manually configure the {{vlan-bridge-binding on}} option under the SVI stanza in the {{/etc/network/interfaces config}} file.</td>
 <td>5.11.0-5.13.1</td>
@@ -1012,12 +1000,6 @@ with multiple optics, which can impact link stability and performance.</td>
 <tr>
 <td>4423175</td>
 <td>When you configure an API port with a TCP port already in use, the {{nginx}} server fails to restart.</td>
-<td>5.13.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4423167</td>
-<td>Zebra might crash when multiple interfaces flap rapidly with a large scale number of routes. This issue occurs because the next hop group hash comparison incorrectly treats distinct next hop groups as equal. I addition, the hashing logic currently uses only four bytes of the IPv6 address, which increases the likelihood of collisions and misidentification.  Avoid rapidly flapping multiple interfaces when managing large scale routes.</td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>

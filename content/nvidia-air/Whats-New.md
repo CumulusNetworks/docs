@@ -7,11 +7,15 @@ product: NVIDIA Air
 <!-- vale off -->
 Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
 
-## May 2025
+## June 2025
 <!-- Air:WhatsNew -->
+### 82.2025.0603-011
+-  Fixed an issue where the 'Add Port' button would not appear in the NEW state only
+<!-- Air:WhatsNew -->
+
+## May 2025
 ### 82.2025.0529-011
 -  Added ability to disable the DHCP service in out-of-band networks via simulation manifest import or topology endpoints
-<!-- Air:WhatsNew -->
 
 ### 82.2025.0522-011
 -  Added ability to take screenshots of simulations

@@ -55,12 +55,6 @@
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>
-<td>4423320</td>
-<td>When you configure BGP {{suppress-fib-pending}}, the prefix might not be withdrawn from downstream peers.</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4423286</td>
 <td>SVIs do not go down even when all the bridge ports on the corresponding VLAN are down because the {{vlan-bridge-binding}} option default setting is off for all the SVIs responsible for bringing down the SVI when all the ports on the corresponding VLAN are down. To work around this issue, Manually configure the {{vlan-bridge-binding on}} option under the SVI stanza in the {{/etc/network/interfaces}} file.</td>
 <td>5.11.0-5.12.1</td>
@@ -1222,12 +1216,6 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <td>When you configure BGP {{suppress-fib-pending}}, the prefix might not be withdrawn from downstream peers.</td>
 <td>5.11.0-5.12.1</td>
 <td>5.13.0-5.13.1</td>
-</tr>
-<tr>
-<td>4423320</td>
-<td>When you configure BGP {{suppress-fib-pending}}, the prefix might not be withdrawn from downstream peers.</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
 </tr>
 <tr>
 <td>4423286</td>

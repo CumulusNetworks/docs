@@ -13,6 +13,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 NetQ 4.15.0 includes the following new features:
 
 - The cloud (OPTA) cluster deployment option is no longer available or supported
+- New UI behavior: removed Close, use breadcrumb navigation to go back
 
 ## Upgrade Paths
 

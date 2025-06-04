@@ -689,7 +689,7 @@ During troubleshooting or switch maintenance, you might want to suppress a rule 
 
 {{<tab "NetQ CLI" >}}
 
-Using the `suppress_until` option allows you to prevent the rule from being applied for a designated amout of time (in seconds). When this time has passed, the rule is automatically reenabled.
+Using the `suppress_until` option allows you to prevent the rule from being applied for a designated amount of time (in seconds). After this time period has elapsed, the rule is automatically reenabled.
 
 To suppress a rule, run:
 
@@ -697,7 +697,7 @@ To suppress a rule, run:
 netq add tca tca_id <text-tca-id-anchor> suppress_until <text-suppress-ts>
 ```
 
-This example suppresses the maximum cpu utilization event for 24 hours:
+This example suppresses the maximum CPU utilization event for 24 hours:
 
 ```
 cumulus@switch:~$ netq add tca tca_id TCA_CPU_UTILIZATION_UPPER_2 suppress_until 86400

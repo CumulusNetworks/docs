@@ -70,7 +70,7 @@ Command Service nvue-roce-config is disabled
 ```
 <!--does the user need to restart the NetQ Agent?-->
 
-3. Verify that NetQ is no longer monitoring the RoCE service with `netq config show agent commands`. The `Active` column displays a `no` status 
+3. Verify that NetQ is no longer monitoring the RoCE service with `netq config show agent commands`. The `Active` column displays a `no` status for the disabled services:
 
 ```
 cumulus@switch:~$ sudo netq config show agent commands

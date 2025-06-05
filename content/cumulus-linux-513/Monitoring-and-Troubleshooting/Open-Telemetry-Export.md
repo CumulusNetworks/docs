@@ -2398,35 +2398,35 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 
 | Name | Description |
 |----- | ----------- |
-| `nvswitch_env_fan_cur_speed` | Current fan speed in RPM. |  
-| `nvswitch_env_fan_dir` | Fan direction (0: Front2Back, 1: Back2Front). | 
-| `nvswitch_env_fan_max_speed` | Fan maximum speed in RPM. | 
-| `nvswitch_env_fan_min_speed` | Fan minimum speed in RPM. |  
-| `nvswitch_env_fan_state` | Fan status (0: ABSENT, 1: OK, 2: FAILED, 3: BAD). | 
-| `nvswitch_env_psu_capacity` | PSU capacity in watts. | 
-| `nvswitch_env_psu_current` | PSU current in amperes. | 
-| `nvswitch_env_psu_power` | PSU power in watts. | 
-| `nvswitch_env_psu_state` | PSU state (0: ABSENT, 1: OK, 2: FAILED, 3: BAD). | 
-| `nvswitch_env_psu_voltage` | PSU voltage in volts. | 
-| `nvswitch_env_temp_crit` | Critical temperature threshold in centigrade. | 
-| `nvswitch_env_temp_current` | Current temperature in centigrade. | 
-| `nvswitch_env_temp_max` | Maximum temperature threshold in centigrade. | 
-| `nvswitch_env_temp_min` | Minimum temperature threshold in centigrade. | 
-| `nvswitch_env_temp_state` | Temperature sensor status (0: ABSENT, 1: OK, 2: FAILED, 3: BAD). | 
+| `nvswitch_platform_environment_fan_cur_speed` | Current fan speed in RPM. |  
+| `nvswitch_platform_environment_fan_dir` | Fan direction (0: Front2Back, 1: Back2Front). | 
+| `nvswitch_platform_environment_fan_max_speed` | Fan maximum speed in RPM. | 
+| `nvswitch_platform_environment_fan_min_speed` | Fan minimum speed in RPM. |  
+| `nvswitch_platform_environment_fan_state` | Fan status (0: ABSENT, 1: OK, 2: FAILED, 3: BAD). | 
+| `nvswitch_platform_environment_psu_capacity` | PSU capacity in watts. | 
+| `nvswitch_platform_environment_psu_current` | PSU current in amperes. | 
+| `nvswitch_platform_environment_psu_power` | PSU power in watts. | 
+| `nvswitch_platform_environment_psu_state` | PSU state (0: ABSENT, 1: OK, 2: FAILED, 3: BAD). | 
+| `nvswitch_platform_environment_psu_voltage` | PSU voltage in volts. | 
+| `nvswitch_platform_environment_temp_crit` | Critical temperature threshold in centigrade. | 
+| `nvswitch_platform_environment_temp_current` | Current temperature in centigrade. | 
+| `nvswitch_platform_environment_temp_max` | Maximum temperature threshold in centigrade. | 
+| `nvswitch_platform_environment_temp_min` | Minimum temperature threshold in centigrade. | 
+| `nvswitch_platform_environment_temp_state` | Temperature sensor status (0: ABSENT, 1: OK, 2: FAILED, 3: BAD). |
 
 {{< /tab >}}
 {{< tab "Transceivers ">}}
 
 | Metric | Description |
 | ---------- | ------- |
-| `nvswitch_platform_tranceiver_vendor_info` | The transceiver vendor information, such as which port the transceiver plugs into, the date of manufacture, the revision, the name of the manufacturer, the manufacturer part number, the serial number, and the IEEE company ID of the vendor.  |
-| `nvswitch_platform_tranceiver_info` | General information for the transceiver, such as which port the transceiver plugs into, the cable type, the cable length in meters, the status (plugged-enabled, plugged-disabled, plugged-error, or unplugged), the error status, the identifier, and the Ethernet compliance revision. |
-| `nvswitch_platform_tranceiver_temperature` |The temperature of the module in Celsius as a 64bit decimal value. |
-| `nvswitch_platform_tranceiver_temperature_alarm`| The alarm status due to temperature crossing thresholds defined for the module. The value sent for the temperature alarm is a bit mask:<br> Bit 0: high_temp_alarm<br>Bit 1: low_temp_alarm<br>Bit 2: high_temp_warning<br>Bit 3: low_temp_warning  |
-| `nvswitch_platform_tranceiver_temperature_threshold_info`| Temperature thresholds defined for the module (low or high). |
-| `nvswitch_platform_tranceiver_voltage` | The internally measured supply voltage for the module in volts (a 64bit decimal value). |
-| `nvswitch_platform_tranceiver_voltage_alarm` | The alarm status due to Voltage crossing thresholds defined for the module:<br>Bit 0: high_vcc_alarm<br>Bit 1: low_vcc_alarm<br>Bit 2: high_vcc_warning<br>Bit 3: low_vcc_warning |
-| `nvswitch_platform_tranceiver_voltage_threshold_info` | Voltage thresholds defined for the module. The level is alarm or warning. The threshold is low or high.|
+| `nvswitch_platform_transceiver_vendor_info` | The transceiver vendor information, such as which port the transceiver plugs into, the date of manufacture, the revision, the name of the manufacturer, the manufacturer part number, the serial number, and the IEEE company ID of the vendor.  |
+| `nvswitch_platform_transceiver_info` | General information for the transceiver, such as which port the transceiver plugs into, the cable type, the cable length in meters, the status (plugged-enabled, plugged-disabled, plugged-error, or unplugged), the error status, the identifier, and the Ethernet compliance revision. |
+| `nvswitch_platform_transceiver_temperature` |The temperature of the module in Celsius as a 64bit decimal value. |
+| `nvswitch_platform_transceiver_temperature_alarm`| The alarm status due to temperature crossing thresholds defined for the module. The value sent for the temperature alarm is a bit mask:<br> Bit 0: high_temp_alarm<br>Bit 1: low_temp_alarm<br>Bit 2: high_temp_warning<br>Bit 3: low_temp_warning  |
+| `nvswitch_platform_transceiver_temperature_threshold_info`| Temperature thresholds defined for the module (low or high). |
+| `nvswitch_platform_transceiver_voltage` | The internally measured supply voltage for the module in volts (a 64bit decimal value). |
+| `nvswitch_platform_transceiver_voltage_alarm` | The alarm status due to Voltage crossing thresholds defined for the module:<br>Bit 0: high_vcc_alarm<br>Bit 1: low_vcc_alarm<br>Bit 2: high_vcc_warning<br>Bit 3: low_vcc_warning |
+| `nvswitch_platform_transceiver_voltage_threshold_info` | Voltage thresholds defined for the module. The level is alarm or warning. The threshold is low or high.|
 | `nvswitch_platform_transceiver_channel_power` | The transceiver channel power value in dBm units (logarithmic scale) for each channel in both rx and tx directions.|
 | `nvswitch_platform_transceiver_channel_power_alarm` | The alarm state for power value compared with the defined thresholds for the module as a bit mask value for each channel and for both rx and tx directions:<br>Bit 0: tx_power_hi_al<br>Bit 1: l tx_power_lo_al<br>Bit 2: tx_power_hi_war<br>Bit 3: l tx_power_lo_war. |
 | `nvswitch_platform_transceiver_channel_power_threshold_info` | Threshold information for the power for both rx and tx directions. These threshold values are applicable for all channels. The units are in dBm and represented by a 32bit decimal value. |

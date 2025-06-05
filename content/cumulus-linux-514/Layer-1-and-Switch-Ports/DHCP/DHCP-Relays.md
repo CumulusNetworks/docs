@@ -6,12 +6,56 @@ toc: 3
 ---
 <span class="a-tooltip">[DHCP](## "Dynamic Host Configuration Protocol")</span> is a client server protocol that automatically provides IP hosts with IP addresses and other related configuration information. A DHCP relay (agent) is a host that forwards DHCP packets between clients and servers that are not on the same physical subnet.
 
-This topic describes how to configure DHCP relays for IPv4 and IPv6 using the following topology:
-
 {{< img src = "/images/cumulus-linux/dhcp-relay-topology-basic.png" >}}
 
 ## Basic Configuration
 
+To set up DHCP relay, configure:
+- A server group that contains at least one DHCP server.
+- The DHCP relay server facing (upstream) interface for the server group. You can specify multiple interfaces.
+- The DHCP relay host facing (downstream) interface for the server group.
+
+{{%notice note%}}
+In an MLAG configuration, you must also specify the peerlink interface in case the local uplink interfaces fail.
+{{%/notice%}}
+
+{{< tabs "TabID20 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set service dhcp-relay mgmt server-group nvidia-servers-1 server 172.16.1.102
+cumulus@leaf01:~$ nv set service dhcp-relay mgmt server-group nvidia-servers-1 upstream-interface swp51-52
+cumulus@leaf01:~$ nv set service dhcp-relay mgmt downstream-interface vlan10,peerlink.4094 server-group-name nvidia-servers-1
+cumulus@leaf01:~$ nv config apply
+```
+
+- You must configure at least one server in a server group.  
+- You can unset the servers in a server group but at least one server must remain.  
+- You cannot unset a server group if it is associated with a downstream interface.
+- You must associate the server group to a downstream interface.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+In the `/etc/default` directory, create a file with the name of the server group in the format `isc-dhcp-relay-<server-group-id>-<vrf-id>.conf`. Add the DHCP server IP address and the interfaces participating in DHCP relay (upstream and downstream interfaces) asociated with the server group.
+
+```
+cumulus@leaf01:~$ sudo nano /etc/default/isc-dhcp-relay-default-nvidia-servers-1-mgmt.conf 
+SERVERS="172.16.1.102"
+INTF_CMD="-i vlan10 -i swp51 -i swp52 -i peerlink.4094"
+OPTIONS=""
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{%notice note%}}
+- You configure a DHCP relay on a per-VLAN basis, specifying the SVI, not the parent bridge. In the example above, you specify *vlan10* as the SVI for VLAN 10 but you do not specify the bridge named *bridge*.
+- When you configure DHCP relay with VRR, the DHCP relay client must run on the SVI; not on the -v0 interface.
+- For every instance of a DHCP relay in a non-default VRF, you need to create a separate default file in the `/etc/default` directory. See {{<link url="Virtual-Routing-and-Forwarding-VRF/#dhcp-with-vrf" text="DHCP with VRF">}}.
+{{%/notice%}}
+
+<!-->
 To set up DHCP relay, you need to provide the IP address of the DHCP server and the interfaces participating in DHCP relay (facing the server and facing the client). In an MLAG configuration, you must also specify the peerlink interface in case the local uplink interfaces fail.
 
 In the example commands below:
@@ -100,7 +144,7 @@ cumulus@leaf01:~$ nv config apply
 - When you configure DHCP relay with VRR, the DHCP relay client must run on the SVI; not on the -v0 interface.
 - For every instance of a DHCP relay in a non-default VRF, you need to create a separate default file in the `/etc/default` directory. See {{<link url="Virtual-Routing-and-Forwarding-VRF/#dhcp-with-vrf" text="DHCP with VRF">}}.
 {{%/notice%}}
-
+-->
 ## Optional Configuration
 
 This section describes optional DHCP relay configurations. The steps provided in this section assume that you have already configured basic DHCP relay, as described above.
@@ -120,15 +164,15 @@ To configure DHCP Agent Information Option 82:
 The following example enables Option 82 and enables circuit ID to inject the *physical switch port* on which the relayed DHCP discover packet arrives instead of the SVI:
 
 ```
-cumulus@leaf01:~$ nv set service dhcp-relay <vrf-id> agent enable on
-cumulus@leaf01:~$ nv set service dhcp-relay <vrf-id> agent use-pif-circuit-id enable on
+cumulus@leaf01:~$ nv set service dhcp-relay <vrf-id> agent state enabled
+cumulus@leaf01:~$ nv set service dhcp-relay <vrf-id> agent use-pif-circuit-id state enabled
 cumulus@leaf01:~$ nv config apply
 ```
 
 The following example enables Option 82 and sets the remote ID to be MAC address 44:38:39:BE:EF:AA. The remote ID is a custom string (up to 255 characters in length).
 
 ```
-cumulus@leaf01:~$ nv set service dhcp-relay <vrf-id> agent enable on
+cumulus@leaf01:~$ nv set service dhcp-relay <vrf-id> agent state enabled
 cumulus@leaf01:~$ nv set service dhcp-relay default agent remote-id 44:38:39:BE:EF:AA
 cumulus@leaf01:~$ nv config apply
 ```

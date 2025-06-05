@@ -47,23 +47,39 @@ Expand the card to the largest size, then select **RoCE counters** from the side
 
 To disable RoCE monitoring:
 
-1. Edit `/etc/netq/commands/cl4-netq-commands.yml` and comment out the following lines:
+1. (Optional) Verify that the NetQ agent is monitoring the RoCE service with `netq config show agent commands`. The `Active` column displays a `yes` status for the following services if RoCE monitoring is enabled:
 
-        cumulus@netq-ts:~$ sudo nano /etc/netq/commands/cl4-netq-commands.yml
+```
+cumulus@switch:~$ sudo netq config show agent commands
+Service Key               Period  Active       Command                                                        Timeout
+-----------------------  --------  --------  --------------------------------------------------------------  ---------
+roce                           60  yes        Netq Predefined Command                                         None
+roce-config                   300  yes        Netq Predefined Command                                         None
+nvue-roce-config              300  yes        Netq Predefined Command                                         None
+```
 
-        #- period: "60"
-        #  key: "roce"
-        #  isactive: true
-        #  command: "/usr/lib/cumulus/mlxcmd --json roce counters"
-        #  parser: "local"
+2. Disable each of the three RoCE service keys individually with `netq config add agent command service-key`:
 
-1. Delete the `/var/run/netq/netq_commands.yml` file:
+```
+cumulus@switch~$ sudo netq config add agent command service-key roce enable False
+Command Service roce is disabled
+cumulus@switch:~$ sudo netq config add agent command service-key roce-config enable False
+Command Service roce-config is disabled
+cumulus@switch:~$ sudo netq config add agent command service-key nvue-roce-config enable False
+Command Service nvue-roce-config is disabled
+```
+<!--does the user need to restart the NetQ Agent?-->
 
-        cumulus@netq-ts:~$ sudo rm /var/run/netq/netq_commands.yml
+3. Verify that NetQ is no longer monitoring the RoCE service with `netq config show agent commands`. The `Active` column displays a `no` status for the disabled services:
 
-1. Restart the NetQ Agent:
-
-       cumulus@netq-ts:~$ netq config agent restart
+```
+cumulus@switch:~$ sudo netq config show agent commands
+Service Key               Period  Active       Command                                                        Timeout
+-----------------------  --------  --------  --------------------------------------------------------------  ---------
+roce                           60  no         Netq Predefined Command                                         None
+roce-config                   300  no         Netq Predefined Command                                         None
+nvue-roce-config              300  no         Netq Predefined Command                                         None
+```
 
 ## Related Information
 

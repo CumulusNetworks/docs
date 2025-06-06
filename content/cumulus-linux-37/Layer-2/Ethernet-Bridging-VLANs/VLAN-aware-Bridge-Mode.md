@@ -210,7 +210,7 @@ iface bridge
     bridge-pvid 1
     bridge-vids 100 200
     bridge-vlan-aware yes
- 
+
 auto swp3
 iface swp3
   bridge-vids 200</code></pre></td>
@@ -220,7 +220,7 @@ iface swp3
 
 ### Untagged/Access Ports
 
-Access ports ignore all tagged packets. In the configuration below, swp1
+In the configuration below, swp1
 and swp2 are configured as access ports, while all untagged traffic goes
 to VLAN 100, as specified in the example below:
 

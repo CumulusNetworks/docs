@@ -10,47 +10,80 @@ toc: 3
 
 ## Basic Configuration
 
+Cumulus Linux uses **server groups** to receive different DHCP requests on separate interfaces from different end hosts and to relay the requests to specific DHCP servers in a VRF. Server groups provide load balancing and <span class="a-tooltip">[HA](## "high availability")</span>, ensuring more resilient DHCP service delivery in case of server failure or maintenance and prevents broadcasting requests to all servers.
+
+{{%notice note%}}
+In Cumulus Linux 5.13 and earlier, DHCP relay does not use server groups, but instead, forwards all DHCP client requests to every DHCP server within the same VRF.
+{{%/notice%}}
+
 To set up DHCP relay, configure:
-- A server group that contains at least one DHCP server.
-- The DHCP relay server facing (upstream) interface for the server group. You can specify multiple interfaces.
+- A server group that contains at least one DHCP server for a specific VRF.
+- The DHCP relay server facing (upstream) interface for the server group. You can specify multiple interfaces. With NVUE, separate each interface with a comma (swp2,3,5). You can also use a range of interfaces (swp51-54). For Linux commands, separate each interface with a space (-i swp51 -i swp52).
 - The DHCP relay host facing (downstream) interface for the server group.
 
 {{%notice note%}}
-In an MLAG configuration, you must also specify the peerlink interface in case the local uplink interfaces fail.
+- In an MLAG configuration, you must also specify the peerlink interface in case the local uplink interfaces fail.
+- Server groups do not support IPv6.
+- A server group must contain at least one upstream and one downstream interface.
 {{%/notice%}}
 
 {{< tabs "TabID20 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set service dhcp-relay mgmt server-group nvidia-servers-1 server 172.16.1.102
+cumulus@leaf01:~$ nv set service dhcp-relay mgmt server-group nvidia-servers-1 server 172.16.1.102,172.16.1.104
 cumulus@leaf01:~$ nv set service dhcp-relay mgmt server-group nvidia-servers-1 upstream-interface swp51-52
 cumulus@leaf01:~$ nv set service dhcp-relay mgmt downstream-interface vlan10,peerlink.4094 server-group-name nvidia-servers-1
 cumulus@leaf01:~$ nv config apply
 ```
 
-- You must configure at least one server in a server group.  
-- You can unset the servers in a server group but at least one server must remain.  
-- You cannot unset a server group if it is associated with a downstream interface.
-- You must associate the server group to a downstream interface.
+To unset a server in a server group, run the `nv set service dhcp-relay <vf> server-group <server-group> server <server-id>` command:
+
+```
+cumulus@leaf01:~$ nv unset service dhcp-relay mgmt server-group nvidia-servers-1 server 172.16.1.102
+cumulus@leaf01:~$ nv config apply
+```
+
+To unset a server group, run the `nv set service dhcp-relay <vf> server-group <server-group>` command:
+
+```
+cumulus@leaf01:~$ nv unset service dhcp-relay mgmt server-group nvidia-servers-1
+cumulus@leaf01:~$ nv config apply
+```
+
+- When you unset the servers, upstream, or downstream interfaces in a server group but at least one server, upstream, or downstream interface must remain.
+- You cannot unset a server group if it is associated with a downstream and upstream interface. Unset the downstream and upstream interface first with the `nv unset service dhcp-relay <vf> upstream-interface <interface-id>` and `nv unset service dhcp-relay <vf> downstream-interface <interface-id>` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-In the `/etc/default` directory, create a file with the name of the server group in the format `isc-dhcp-relay-<server-group-id>-<vrf-id>.conf`. Add the DHCP server IP address and the interfaces participating in DHCP relay (upstream and downstream interfaces) asociated with the server group.
+{{%notice note%}}
+In Cumulus 5.13 and earlier, DHCP relay forwards all DHCP client requests to every DHCP server within the same VRF. Cumulus Linux generates a single configuration file for each VRF in the format `isc-dhcp-relay-<VRF>.conf`. Only one instance of the DHCP relay service runs per VRF.
+
+Cumulus Linux 5.14 and later enables selective forwarding of DHCP client requests to specific groups of servers within the same VRF and introduces multiple configuration files; one for each server group.
+{{%/notice%}}
+
+In the `/etc/default` directory, create a file with the name of the server group in the format `isc-dhcp-relay-<server-group-id>-<vrf-id>.conf`. Add the DHCP server IP addresses and the interfaces participating in DHCP relay associated with the server group (upstream and downstream interfaces).
 
 ```
 cumulus@leaf01:~$ sudo nano /etc/default/isc-dhcp-relay-default-nvidia-servers-1-mgmt.conf 
-SERVERS="172.16.1.102"
+SERVERS="172.16.1.102,172.16.1.104"
 INTF_CMD="-i vlan10 -i swp51 -i swp52 -i peerlink.4094"
 OPTIONS=""
+```
+
+Restart the DHCP relay service for the server group with the `dhcrelay-<server-group>-<vrf>.service` command:
+
+```
+cumulus@leaf01:~$ sudo systemctl enable dhcrelay-nvidia-servers-1-mgmt.service
+cumulus@leaf01:~$ sudo systemctl restart dhcrelay-nvidia-servers-1-mgmt.service
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
 
 {{%notice note%}}
-- You configure a DHCP relay on a per-VLAN basis, specifying the SVI, not the parent bridge. In the example above, you specify *vlan10* as the SVI for VLAN 10 but you do not specify the bridge named *bridge*.
+- To configure a VLAN interface, specify the VLAN ID, not the parent bridge. In the example above, you specify *vlan10*, not the bridge *bridge1*.
 - When you configure DHCP relay with VRR, the DHCP relay client must run on the SVI; not on the -v0 interface.
 - For every instance of a DHCP relay in a non-default VRF, you need to create a separate default file in the `/etc/default` directory. See {{<link url="Virtual-Routing-and-Forwarding-VRF/#dhcp-with-vrf" text="DHCP with VRF">}}.
 {{%/notice%}}

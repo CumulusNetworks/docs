@@ -23,6 +23,7 @@ Cumulus Linux 5.14.0 supports new platforms, provides bug fixes, and contains se
 - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#transceiver-thermal-control" text="Transceiver thermal control">}}
 - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#clear-interface-physical-layer-error-counters" text="Clear physical layer error counters for an interface">}}
 - {{<link url="DHCP-Relays" text="Configure different DHCP relay servers per interface">}}
+- {{<link url="Quick-Start-Guide/#configure-the-domain-name" text="Domain name configuration">}}
 - gNMI requirements phase 4
 - MRC:
   - {{<link url="Quality-of-Service/#configure-mrc-with-default-settings" text="Packet trimming and SRv6">}}

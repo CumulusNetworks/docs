@@ -346,6 +346,10 @@ You can set the following ERSPAN options:
 - Source IP address for ERSPAN encapsulation
 - Destination IP address for ERSPAN encapsulation
 
+{{%notice note%}}
+Cumulus Linux does not support ERSPAN sessions with destination IP addresses that are reachable over an MLAG bond.
+{{%/notice%}}
+
 {{< tabs "TabID347 ">}}
 {{< tab "NVUE Commands ">}}
 

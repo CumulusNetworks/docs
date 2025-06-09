@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4475074"></a> [4475074](#4475074) <a name="4475074"></a> <br /> | The SN5610 switch records a High FEC Bin Error at room temperature. | 5.13.0-5.13.1 | |
 | <a name="4474931"></a> [4474931](#4474931) <a name="4474931"></a> <br /> | The switch does not send out ERSPAN copies if the ERSPAN destination IP address is reachable over the MLAG peerlink. | 5.13.0-5.13.1 | |
 | <a name="4461102"></a> [4461102](#4461102) <a name="4461102"></a> <br /> | In certain cases, when a port is down and you apply adaptive routing with the link-utilization-threshold setting to the port as it goes up, you might see in log errors while the port is not yet up. | 5.11.0-5.13.1 | |
 | <a name="4460588"></a> [4460588](#4460588) <a name="4460588"></a> <br /> | The NVIDIA SN5610 switch might experience FEC burstinesswith multiple optics, which can impact link stability and performance. | 5.13.0-5.13.1 | |
@@ -147,6 +148,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4475074"></a> [4475074](#4475074) <a name="4475074"></a> <br /> | The SN5610 switch records a High FEC Bin Error at room temperature. | 5.13.0-5.13.1 | |
 | <a name="4474931"></a> [4474931](#4474931) <a name="4474931"></a> <br /> | The switch does not send out ERSPAN copies if the ERSPAN destination IP address is reachable over the MLAG peerlink. | 5.13.0-5.13.1 | |
 | <a name="4461102"></a> [4461102](#4461102) <a name="4461102"></a> <br /> | In certain cases, when a port is down and you apply adaptive routing with the link-utilization-threshold setting to the port as it goes up, you might see in log errors while the port is not yet up. | 5.11.0-5.13.1 | |
 | <a name="4460588"></a> [4460588](#4460588) <a name="4460588"></a> <br /> | The NVIDIA SN5610 switch might experience FEC burstinesswith multiple optics, which can impact link stability and performance. | 5.13.0-5.13.1 | |

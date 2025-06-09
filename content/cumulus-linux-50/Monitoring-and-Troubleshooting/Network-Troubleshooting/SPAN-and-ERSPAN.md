@@ -331,6 +331,10 @@ To mirror all forwarded TCP packets with only FIN set:
 
 This section describes how to configure ERSPAN.
 
+{{%notice note%}}
+Cumulus Linux does not support ERSPAN sessions with destination IP addresses that are reachable over an MLAG bond.
+{{%/notice%}}
+
 1. Create a rules file in `/etc/cumulus/acl/policy.d/`. The following rule configures ERSPAN for all packets coming in from swp1 to destination 10.10.10.234.
 
      ```

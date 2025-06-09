@@ -55,6 +55,10 @@ entry-id  age      bridge-domain  entry-type    interface   last-update  MAC add
 20        0:13:33  br_default     extern_learn  vxlan48     0:13:33      44:38:39:22:01:7a                        30
 ```
 
+{{%notice note%}}
+The `age` and `last update` counters in the `nv show bridge domain <domain-id> mac-table` command output are reversed. The `last update` counter shows the `age` data and the `age` counter shows the `last update` data. Cumulus Linux uses the `age` and `update` timers to determine when to remove an old MAC entry.
+{{%/notice%}}
+
 ## bridge fdb Command Output
 
 The Linux `bridge fdb` command interacts with the <span class="a-tooltip">[FDB](## "Forwarding Database Table")</span>, which the bridge uses to store the MAC addresses it learns and the ports on which it learns those MAC addresses. The `bridge fdb show` command output contains some specific keywords:

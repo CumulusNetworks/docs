@@ -145,6 +145,14 @@
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>
+<td>4404955</td>
+<td>On the NVIDIA SN2201 switch, the fan tray LED status update fails and you see the following syslog errors:
+systemd-udevd116276: mlxreg:fan1:green: Process ‘/usr/bin/hw-management-chassis-events.sh fantray-led-event mlxreg:fan1:green 255’ failed with exit code 1.
+To work around this issue, restart the {{hw-management}} service with the {{sudo systemctl restart hw-management}} command.</td>
+<td>5.7.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4400384</td>
 <td>After the switch reboots or {{switchd.service}} restarts, NVUE applied ERSPAN sessions do not work if the ERSPAN destination IP address is reachable through an MLAG bond. To work around this issue, remove the ERSPAN configuration and reapply it using NVUE.</td>
 <td>5.11.0-5.12.1</td>
@@ -1306,6 +1314,14 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <td>NVUE commands create excessive log data. To work around this issue, configure rsyslog rules to limit logging of these commands.</td>
 <td>5.11.0-5.12.1</td>
 <td>5.13.0-5.13.1</td>
+</tr>
+<tr>
+<td>4404955</td>
+<td>On the NVIDIA SN2201 switch, the fan tray LED status update fails and you see the following syslog errors:
+systemd-udevd116276: mlxreg:fan1:green: Process ‘/usr/bin/hw-management-chassis-events.sh fantray-led-event mlxreg:fan1:green 255’ failed with exit code 1.
+To work around this issue, restart the {{hw-management}} service with the {{sudo systemctl restart hw-management}} command.</td>
+<td>5.7.0-5.13.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4400384</td>

@@ -1114,6 +1114,18 @@ eligiblity-egress-interface-tc
                2
 ```
 
+- Cumulus Linux supports packet Trimming on physical ports only and for IPv4 or IPv6 traffic.
+- The length and checksum fields in the IP header are not recalculated after trimming
+by hardware and have no valid values.
+- Mutual exclusive with Tail-Drop mirroring and WRED.
+- ISSU is not supported.
+- Bonds for egress eligibility are not supported.
+- You cannot trim the following packet types:
+  - Encap or Decap (VXLAN packets)
+  - Adaptive Routing Notification Packets (ARN)
+  - Congestion Notification Packets (CNP)
+  - Flooding and MC packets
+
 ### Asymmetric Packet Trimming
 
 Cumulus Linux supports symmetric packet trimming on the Spectrum-4 and Spectrum-5 switch.

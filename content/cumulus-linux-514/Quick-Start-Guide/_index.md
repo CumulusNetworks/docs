@@ -128,6 +128,34 @@ cumulus@switch:~$ nv config apply
 The command prompt in the terminal does not reflect the new hostname until you either log out of the switch or start a new shell.
 {{%/notice%}}
 
+### Configure the Domain Name
+
+You can configure the domain name on the Cumulus Linux switch, which is critical for accurate DNS resolution, network service integration, and compliance with networking standards. Cumulus Linux adds the domain name to the hostname and displays both the hostname and domain name in the shell prompt (after you log back in).
+
+{{< tabs "TabID135 ">}}
+{{< tab "NVUE Commands ">}}
+
+Run the `nv set system dns domain <domain>` command. The following example sets the domain name to nvidia.com:
+
+```
+cumulus@switch:~$ nv set system dns domain nvidia.com
+cumulus@switch:~$ nv config apply
+```
+
+To unset the domain name, run the `nv unset system dns domain` command.
+
+To show the configured domain name, run the `nv show system dns` command.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+```
+cumulus@switch:~$ 
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Configure the Time Zone
 
 The default time zone on the switch is UTC (Coordinated Universal Time). Change the time zone on your switch to be the time zone for your location.

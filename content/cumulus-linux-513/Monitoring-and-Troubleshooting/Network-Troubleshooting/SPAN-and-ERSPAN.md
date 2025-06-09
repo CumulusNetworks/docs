@@ -537,7 +537,7 @@ To mirror all forwarded TCP packets with only FIN set:
 
 ### ERSPAN and MLAG Bond Redirection
 
-In an MLAG environment, where the ERSPAN session destination IP address is reachable over an MLAG bond, you must disable bond redirection for ERSPAN encpasulated traffic to be sent over the peerlink and reach the ERSPAN destination IP address in case the local MLAG link goes down.
+In an MLAG environment, where the ERSPAN session destination IP address is reachable over an MLAG bond, you must disable bond redirection for ERSPAN encapsulated traffic to be sent over the peerlink and reach the ERSPAN destination IP address in case the local MLAG link goes down.
 
 {{%notice info%}}
 Disabling bond redirection:

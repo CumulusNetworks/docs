@@ -285,7 +285,7 @@ cumulus@switch:~$ nv config apply
 To adjust the sample interval for transceiver statistics:
 
 ```
-cumulus@switch:~$ nv set system telemetry platform-stats class transceiver-info sample-interval 40
+cumulus@switch:~$ nv set system telemetry platform-stats class transceiver-info sample-interval 100
 cumulus@switch:~$ nv config apply
 ```
 

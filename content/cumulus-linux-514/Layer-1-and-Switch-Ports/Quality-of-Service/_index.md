@@ -947,8 +947,9 @@ cos_egr_queue.cos_7.uc  = 7
 
 <span class="a-tooltip">[MRC](## "Multipath Reliable Connection")</span> is an improvement over RoCEv2 to enhance performance in lossy environments and extend the RC transport for scalability and performance for AI and <span class="a-tooltip">[ML](## "machine learning")</span> applications over lossy networks. Some of these enhancements include allowing packets to be transmitted over multiple logical paths in the network and rapid detection and retransmission of delayed, unacknowledged, and trimmed packets.
 
-MRC on Cumulus Linux supports:
-- SRv6 uSID support with uN (END) Endpoint behavior through static configuration
+Multipathing is achieved through the use of SRv6. Packets are tunneled from the source NIC to the destination NIC through the switch fabric using SRv6 micro segment identifiers (uSIDs). The SRv6 origination and termination is on the NIC and the switches merely act as SRv6-aware (transit) nodes.
+
+- SRv6 uSID support with uN (END_CSID ) and uA (End.X_CSID ) endpoints
 - Packet trimming
 - Asymmetric packet trimming
 
@@ -972,7 +973,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{%notice note%}}
-Cumulus Linux only supports an SRv6 block and node length of F3216 and a behavior of `uN` (END).
+Cumulus Linux only supports an SF3216 format (block-len(32) and node-len(16)).
 {{%/notice%}}
 
 To show the default QoS `lossy-multi-tc` profile settings, run the `nv show qos roce` command:

@@ -78,7 +78,7 @@ entry-id  age      bridge-domain  entry-type    interface   last-update  MAC add
 ```
 
 {{%notice note%}}
-The {{age}} and {{last update}} counters in the {{nv show bridge domain <domain-id> mac-table}} command output are reversed. The {{last update}} counter shows the {{age}} data and the {{age}} counter shows the {{last update}} data. Cumulus Linux uses the {{age}} and {{update}} timers to determine when to remove an old MAC entry.
+The `age` and `last update` counters in the `nv show bridge domain <domain-id> mac-table` command output are reversed. The `last update` counter shows the `age` data and the `age` counter shows the `last update` data. Cumulus Linux uses the `age` and `update` timers to determine when to remove an old MAC entry.
 {{%/notice%}}
 
 ## bridge fdb Command Output

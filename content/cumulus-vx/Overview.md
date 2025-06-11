@@ -5,11 +5,8 @@ weight: 5
 product: Cumulus VX
 version: 5.x
 ---
-This section provides an overview of Cumulus VX and lists supported hypervisors.
 
-## Cumulus VX
-
-Cumulus VX is a virtual appliance that helps you become familiar with NVIDIA networking technology, and provides a platform for you to prototype network operations and develop custom applications before you deploy into a production environment. Without the need for a bare metal switch or specialized hardware, Cumulus VX runs on all popular hypervisors, making traditional networking protocols such as BGP and MLAG, NVIDIA-specific technologies such as ONIE, and Prescriptive Topology Manager (PTM) available for testing and configuration.
+Cumulus VX is a virtual appliance that helps you become familiar with NVIDIA networking technology, and provides a platform for you to prototype network operations and develop custom applications before you deploy into a production environment. Without the need for a bare metal switch or specialized hardware, Cumulus VX runs on the KVM-QEMU hypervisor, making traditional networking protocols such as BGP and MLAG, NVIDIA-specific technologies such as ONIE, and Prescriptive Topology Manager (PTM) available for testing and configuration.
 
 Cumulus VX is a virtual machine (VM) on a standard x86 environment. The VM is the same Cumulus Linux operating system supported on NVIDIA ethernet switches and contains the same software features but in a VM format. Cumulus VX provides full data plane functionality through the Linux kernel, as well as layer 2 VLAN, VXLAN bridging, and VXLAN routing capabilities.
 
@@ -23,23 +20,12 @@ Cumulus VX is designed for testing and not data plane performance. Cumulus VX is
 
 ## NVIDIA AIR
 
-As an alternative to Cumulus VX, which requires a hypervisor (or hypervisor and orchestrator), you can use
+As an alternative to Cumulus VX, which requires a hypervisor, you can use
 {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/air/" text="NVIDIA Air">}}, which is a free, personal, virtual data center network that provides a low-effort way to see NVIDIA networking technology in action. Your virtual data center consists of two racks with two dual-homed servers connected with a leaf-spine network. This is a good way to try out Cumulus Linux if you have platform or disk limitations.
 
 ## Supported Hypervisors
 
-Cumulus VX works with these supported hypervisors:
-
-- KVM-QEMU
-- KVM-QEMU and Vagrant
-- VirtualBox
-- VirtualBox and GNS3
-- VirtualBox and Vagrant
-- VMware Fusion, Workstation, and vSphere ESXi
-
-{{%notice note%}}
-Cumulus VX works with VMware Fusion, Workstation, and vSphere ESXi; however, this document provides setup instructions for VMware vSphere ESXi only.
-{{%/notice%}}
+Cumulus VX works with the KVM-QEMU hypervisor only.
 
 ## Cumulus VX Compared with Cumulus Linux
 
@@ -92,10 +78,6 @@ For non-customers, Cumulus VX remains a community-supported product, with no for
 
 - {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux" text="Cumulus Linux documentation">}}
 - {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/cumulus-vx/" text="Cumulus VX downloads">}}
-- {{<exlink url="https://www.vmware.com/support/pubs/" text="VMware documentation">}}
-- {{<exlink url="https://www.virtualbox.org/wiki/Documentation" text="VirtualBox documentation">}}
 - {{<exlink url="http://www.linux-kvm.org/page/Documents" text="KVM documentation">}}
-- {{<exlink url="https://www.vagrantup.com/docs" text="Vagrant documentation">}}
-- {{<exlink url="https://www.gns3.com/software" text="GNS3 documentation">}}
 - {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/air/" text="NVIDIA Air">}}
 - {{<exlink url="https://www.nvidia.com/en-us/networking/linux-on-demand/" text="Cumulus Linux on-demand">}}

@@ -9,29 +9,27 @@
   <label for="interfaces -1">leaf01</label>
   <div class="book-tabs-content markdown-inner">
     <pre>
-cumulus@cumulus:mgmt:~$ net add hostname leaf01
-cumulus@cumulus:mgmt:~$ net add interface swp1,swp2,swp3
-cumulus@cumulus:mgmt:~$ net commit
-cumulus@cumulus:mgmt:~$ exit
+cumulus@cumulus:mgmt:~$ nv set system hostname leaf01
+cumulus@cumulus:mgmt:~$ nv set interface swp1,2,3
+cumulus@cumulus:mgmt:~$ nv config apply
 </pre>
   </div>
   <input type="radio" class="hidden" name="interfaces" id="interfaces -2" />
   <label for="interfaces -2">leaf02</label>
   <div class="book-tabs-content markdown-inner">
     <pre>
-cumulus@cumulus:mgmt:~$ net add hostname leaf02
-cumulus@cumulus:mgmt:~$ net add interface swp1,swp2,swp3
-cumulus@cumulus:mgmt:~$ net commit
-cumulus@cumulus:mgmt:~$ exit
+cumulus@cumulus:mgmt:~$ nv set system hostname leaf02
+cumulus@cumulus:mgmt:~$ nv set interface swp1,2,3
+cumulus@cumulus:mgmt:~$ nv config apply
 </pre>
   </div>
   <input type="radio" class="hidden" name="interfaces" id="interfaces -3" />
   <label for="interfaces -3">spine01</label>
   <div class="book-tabs-content markdown-inner">
     <pre>
-cumulus@cumulus:mgmt:~$ net add hostname spine01
-cumulus@cumulus:mgmt:~$ net add interface swp1,swp2
-cumulus@cumulus:mgmt:~$ net commit
+cumulus@cumulus:mgmt:~$ nv set system hostname spine01
+cumulus@cumulus:mgmt:~$ nv set interface swp1,2
+cumulus@cumulus:mgmt:~$ nv config apply
 cumulus@cumulus:mgmt:~$ exit
 </pre>
   </div>

@@ -523,6 +523,26 @@ The `nv config patch` command requires you to use the fully qualified path name 
 
 ### Flexible Snippet Examples
 
+The following example flexible snippet called `switchd-multicast-patch-snippet` configures IGMP Optimized Multicast Flooding by adding `bridge.unreg_mcast_init = TRUE`, `bridge.unreg_v4_mcast_prune = TRUE`, and `bridge.unreg_v6_mcast_prune = TRUE` to the `/etc/cumulus/switchd.conf` file, and restarts `switchd`:
+
+```
+cumulus@leaf01:mgmt:~$ sudo nano switchd-multicast-patch.yaml
+- set:
+    system:
+      config:
+        snippet:
+          switchd-multicast-patch-snippet:
+            file: "/etc/cumulus/switchd.conf"
+            content: |
+              bridge.unreg_mcast_init = TRUE 
+              bridge.unreg_v4_mcast_prune = TRUE 
+              bridge.unreg_v6_mcast_prune = TRUE
+            services:
+              schedule:
+                service: switchd
+                action: restart
+```
+
 The following example flexible snippet called `crontab-flex-snippet` appends the single line `@daily /opt/utils/run-backup.sh` to the existing `/etc/crontab` file, then restarts the `cron` service.
 
 ```

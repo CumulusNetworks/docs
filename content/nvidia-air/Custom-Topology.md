@@ -25,12 +25,13 @@ One way to create fully custom simulations is with the built-in topology builder
 
 ### ZTP Scripts
 
-When you create a new simulation, Air gives you the option to add a zero-touch provisioning (ZTP) script. The ZTP script is copied to the simulation's `oob-mgmt-server`. Any node making a ZTP request on the out-of-band management network has access to this ZTP script through a DHCP server and web server running on the `oob-mgmt-server`.
+When you create a new simulation, Air gives you the option to add a zero-touch provisioning (ZTP) script. The ZTP script is copied to the simulation's `oob-mgmt-server`. Any node making a ZTP request on the out-of-band management network has access to this ZTP script through a DHCP server and web server running on the `oob-mgmt-server`. 
 
-A default script is prefilled to help you get started. It implements some common ZTP features on Cumulus Linux, such as changing the default password or downloading SSH keys. You can edit the default script directly in the UI.
+**You must have the out-of-band-network enabled to use ZTP scripts**
 
-{{< expand "Default ZTP script" >}}
+A default script is prefilled to help you get started. It implements common ZTP features on Cumulus Linux, such as changing the default password or downloading SSH keys. You can edit the default script directly in the UI.
 
+{{< expand "View Default ZTP script" >}}
 ```
 #!/bin/bash
 # Created by Topology-Converter v4.7.1
@@ -82,33 +83,277 @@ Select a node to view or edit its properties.
 
 Make sure to select **Update Node** when you complete the changes. You can delete nodes by selecting **Delete Node**.
 
-Air also provides **Advanced Options**, such as enabling **UEFI Secure Boot**.
+Air also provides advanced options, such as enabling UEFI secure boot.
 
 {{<img src="/images/guides/nvidia-air/AddNode.png" alt="">}}
 <br>
-When you finish creating your topology, click **Workspace > Start Simulation**. **You cannot add, remove, or edit nodes after the simulation starts for the first time.**
+When you finish creating your topology, select **Workspace&nbsp;<span aria-label="and then">></span> Start Simulation**. You cannot add, remove, or edit nodes after the simulation starts for the first time
 
-{{<img src="/images/guides/nvidia-air/WorkspaceStart.png" alt="" width="200px">}}
+{{<img src="/images/guides/nvidia-air/WorkspaceStart.png" alt="" width="250px">}}
 
 ### OOB Management Network
 
-On the **System Palette**, there is an option to **Enable OOB**. This setting enables the out-of-band management network that connects all nodes with each other. It also adds an `oob-mgmt-switch` and `oob-mgmt-server` to your simulation. When you enable SSH, you SSH into the `oob-mgmt-server`, making this node an ideal starting point for configurations. Air handles the configuration automatically for you.
+On the **System Palette**, there is an option to **Enable OOB**. This setting enables the out-of-band management network that connects all nodes to each other. It also adds an `oob-mgmt-switch` and `oob-mgmt-server` to your simulation. When you enable SSH, you connect to the `oob-mgmt-server`, making this node an ideal starting point for configurations. Air handles the configuration automatically for you.
 
-{{<img src="/images/guides/nvidia-air/EnableOOB.png" alt="" width="250px">}}
+{{<img src="/images/guides/nvidia-air/EnableOOB.png" alt="" width="300px">}}
 
-You can add more `oob-mgmt-switches` and `oob-mgmt-servers` to your simulation manually even when **Enable OOB** is set to off. However, you must switch **Enable OOB** to use the OOB network.
+You can add more `oob-mgmt-switches` and `oob-mgmt-servers` to your simulation manually even when **Enable OOB** is set to off. However, you must switch **Enable OOB** on to use the out-of-band network.
 
-## Custom Topologies with DOT Files
+## Importing Custom Topologies with External Files
+You can create custom topologies in Air by importing either JSON (recommended) or DOT files. These files define a network's nodes, attributes, and connections. You can modify the file with any text editor.
 
-You can create custom topologies in Air using a DOT file, which is the file type used with the open-source graph visualization software, Graphviz. DOT files are simple, customizable text-based files.
+When you upload external topology files directly to Air, you can: 
 
-You can upload DOT files directly to Air to generate a topology, allowing you to share and create copies of a topology, and save the topology in a reusable file. You can modify the file with a text editor.
+- Share and create copies of a topology
+- Save the topology in a reusable file
+- Streamline automation
+- Generate very large topologies
 
-### DOT Syntax
+### JSON
+The following JSON topology is an example of a simple topology with 1 spine, 2 leaf nodes, and 2 servers connected to each leaf. 
 
-DOT files use the `.dot` file extension. They define nodes, attributes, and connections for generating a topology for a network.
+{{< expand "View Sample JSON Topology" >}}
 
-The following is an example of a simple topology DOT file with 1 spine, 2 leaf nodes, and 2 servers connected to each leaf.
+```
+{
+    "format": "JSON",
+    "title": "Demo",
+    "ztp": null,
+    "content": {
+        "nodes": {
+            "leaf01": {
+                "cpu": 2,
+                "memory": 4096,
+                "storage": 10,
+                "os": "sonic-vs-202305",
+                "features": {
+                    "uefi": false,
+                    "tpm": false
+                },
+                "pxehost": false,
+                "secureboot": false,
+                "oob": false,
+                "emulation_type": null,
+                "network_pci": {},
+                "management_mac": "00:00:00:00:00:00"
+            },
+            "leaf02": {
+                "cpu": 2,
+                "memory": 4096,
+                "storage": 10,
+                "os": "sonic-vs-202305",
+                "features": {
+                    "uefi": false,
+                    "tpm": false
+                },
+                "pxehost": false,
+                "secureboot": false,
+                "oob": false,
+                "emulation_type": null,
+                "network_pci": {},
+                "management_mac": "00:00:00:00:00:00"
+            },
+            "server01": {
+                "cpu": 2,
+                "memory": 2048,
+                "storage": 10,
+                "os": "generic/ubuntu2404",
+                "features": {
+                    "uefi": false,
+                    "tpm": false
+                },
+                "pxehost": false,
+                "secureboot": false,
+                "oob": false,
+                "emulation_type": null,
+                "network_pci": {},
+                "management_mac": "00:00:00:00:00:00"
+            },
+            "server02": {
+                "cpu": 2,
+                "memory": 2048,
+                "storage": 10,
+                "os": "generic/ubuntu2404",
+                "features": {
+                    "uefi": false,
+                    "tpm": false
+                },
+                "pxehost": false,
+                "secureboot": false,
+                "oob": false,
+                "emulation_type": null,
+                "network_pci": {},
+                "management_mac": "00:00:00:00:00:00"
+            },
+            "spine01": {
+                "cpu": 2,
+                "memory": 4096,
+                "storage": 10,
+                "os": "sonic-vs-202305",
+                "features": {
+                    "uefi": false,
+                    "tpm": false
+                },
+                "pxehost": false,
+                "secureboot": false,
+                "oob": false,
+                "emulation_type": null,
+                "network_pci": {},
+                "management_mac": "00:00:00:00:00:00"
+            }
+        },
+        "links": [
+            [
+                {
+                    "interface": "eth1",
+                    "node": "leaf01"
+                },
+                {
+                    "interface": "eth1",
+                    "node": "server01"
+                }
+            ],
+            [
+                {
+                    "interface": "eth2",
+                    "node": "leaf01"
+                },
+                {
+                    "interface": "eth1",
+                    "node": "spine01"
+                }
+            ],
+            [
+                {
+                    "interface": "eth1",
+                    "node": "leaf02"
+                },
+                {
+                    "interface": "eth1",
+                    "node": "server02"
+                }
+            ],
+            [
+                {
+                    "interface": "eth2",
+                    "node": "leaf02"
+                },
+                {
+                    "interface": "eth2",
+                    "node": "spine01"
+                }
+            ]
+        ]
+    }
+}
+```
+{{< /expand >}}
+
+<br>
+
+When you view the nodes within Air after starting the simulation, notice that the resources are allocated according to the file:
+
+{{<img src="/images/guides/nvidia-air/JSONNodesExample.png" alt="">}}
+<br>
+<br>
+When you view the links within Air after starting the simulation, notice that the nodes are connected based on the file, and also connected to the out-of-band management network: 
+
+{{<img src="/images/guides/nvidia-air/JSONLinksExample.png" alt="">}}
+
+{{%notice note%}}
+If you omit the `oob` key in your JSON file, the **Enable OOB** will still be set to **on** after you've uploaded your file with default resources and will be automatically connected to each node.
+{{%/notice%}}
+
+#### Custom OOB Management Network Resources
+
+You can specify an `oob-mgmt-switch` and `oob-mgmt-server` to customize allocated resources.
+
+{{< expand "View Custom OOB Network Example" >}}
+
+```
+{
+    "format": "JSON",
+    "title": "Demo",
+    "ztp": null,
+    "content": {
+        "nodes": {
+           ...
+        },
+        "links": [
+            ...
+        ],
+        "oob": {
+            "nodes": {
+                "oob-mgmt-server": {
+                    "cpu": 3,
+                    "memory": 3072,
+                    "storage": 21
+                    
+                },
+                "oob-mgmt-switch": {
+                    "cpu": 2,
+                    "memory": 4096,
+                    "storage": 20
+                }
+            }
+        }
+    }
+}
+```
+{{< /expand >}}
+<br>
+When viewing the nodes within Air after starting the simulation, notice that the resources are allocated based on the file: 
+
+{{<img src="/images/guides/nvidia-air/JSONOOBExample.png" alt="">}}
+
+#### Custom NetQ Node
+You can create and customize a NetQ instance for your simulation.
+
+{{< expand "View Custom NetQ Node Example" >}}
+
+```
+{
+    "format": "JSON",
+    "title": "Demo",
+    "ztp": null,
+    "content": {
+        "nodes": {
+           ...
+        },
+        "links": [
+            ...
+        ],
+        "oob": {
+            ...
+        },
+         "netq": {
+            "nodes": {
+                "netq-ts": {
+                    "cpu": 4,
+                    "memory": 6144,
+                    "storage": 64,
+                    "os": "netq-ts-cloud-4.12.0"
+                }
+            }
+        }
+    }
+}
+```
+{{< /expand >}}
+<br>
+When viewing the nodes within Air, notice that the resources are allocated based on the file. 
+
+{{<img src="/images/guides/nvidia-air/JSONNetQExample.png" alt="">}}
+
+### DOT
+
+You can also create custom topologies in Air using a DOT file, which is the file type used with the open-source graph visualization software, Graphviz. DOT files are simple, customizable, text-based files. DOT files use the `.dot` file extension.
+
+{{%notice info%}}
+NVIDIA strongly recommends using JSON over DOT files due to improved validation, scalability, and broader adoption levels. 
+{{%/notice%}}
+
+The following is an example of a simple topology with 1 spine, 2 leaf nodes, and 2 servers connected to each leaf.
 
 ```
 graph "Demo" {
@@ -128,7 +373,7 @@ The following sections provide examples for common DOT file customizations.
 
 #### Operating System
 
-You can set the operating syatem of the node with the `os` option:
+You can set the operating system of the node with the `os` option:
 
 ```
 "server" [os="cumulus-vx-5.10.1"]
@@ -140,20 +385,6 @@ By default, nodes in Air have 10 GB of hard disk space. You can increase the spa
 
 ```
 "server" [os="generic/ubuntu2404" storage="20"]
-```
-
-If the node does not recognize the increased storage, run the following commands from the node to extend the partition and resize the file system:
-
-```
-sudo growpart /dev/vda 1
-sudo resize2fs /dev/vda1
-```
-
-Verify the change:
-
-```
-df -h | grep vda1
-/dev/vda1        20G  2.1G   18G  11% /
 ```
 
 #### CPU
@@ -183,26 +414,47 @@ You can customize RAM (in MB) with the `memory` option:
 
 ### Examples
 
-Labs in the [Demo Marketplace](https://air.nvidia.com/demos) are maintained with external GitLab repositories. Here you can find the `topology.dot` file used to build the lab and use it as a reference. To access the files, select **Documentation** on any lab in the Demo Marketplace. It will direct you to the demo's GitLab repository for the lab, where you can download the `.dot` file used for the demo topology.
+Labs in the [Demo Marketplace](https://air.nvidia.com/demos) are maintained with external GitLab repositories. Here you can find the `topology.dot` or `topology.json` file used to build the lab and use it as a reference. To access the files, select **Documentation** on any lab in the Demo Marketplace. It will direct you to the demo's GitLab repository, where you can download the file used for the demo topology.
 
-### Upload a DOT File
+### Import a Topology
 
-To upload a DOT file to Air, navigate to [air.nvidia.com/simulations](https://air.nvidia.com/simulations).
+To import and upload a DOT or JSON topology file to Air, navigate to [air.nvidia.com/simulations](https://air.nvidia.com/simulations).
 
 1. Select **Create Simulation**.
 2. Provide a name for the simulation.
-3. Select **DOT** as the type.
+3. Select your desired filetype.
 4. Upload the file to the UI.
 5. (Optional) Assign the simulation to an [organization](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Organizations/).
-6. (Optional) Add a [ZTP scripts](#ztp-scripts).
+6. (Optional) Add a [ZTP script](#ztp-scripts).
      1. Select **Apply ZTP Template**.
      2. Enter your ZTP script. A default script is prefilled to help you get started.
 7. (Optional) Click **Advanced** and provide an out-of-band management server configuration script that executes on the `oob-mgmt-server` when the simulation starts.
 8. Click **Create**.
 
-Air builds a custom topology based on the DOT file.
+Air redirects you to the [topology builder](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Custom-Topology/#the-drag-and-drop-topology-builder) with your custom topology created. You can continue to make adjustments as necessary.
 
-{{<img src="/images/guides/nvidia-air/CreateADOT.png" alt="">}}
+### Export a Topology
+You can export the topology for any existing simulation. The exported file is JSON formatted. 
+
+From a simulation, click **Workspace > Export Simulation** to export.
+
+{{<img src="/images/guides/nvidia-air/ExportSimulation.png" alt="" width="250px">}}
+
+### Storage Limits
+
+If you increase the storage of a node higher than its default, and Air does not recognize the increased storage, run the following commands **on the affected node** (NOT the `oob-mgmt-server`) to extend the partition and resize the file system:
+
+```
+sudo growpart /dev/vda 1
+sudo resize2fs /dev/vda1
+```
+
+Verify the change:
+
+```
+df -h | grep vda1
+/dev/vda1        20G  2.1G   18G  11% /
+```
 
 ## Import a Topology with the API
 
@@ -387,7 +639,7 @@ This feature requires SDK version `air-sdk>=2.15.0` or later.
 
 This section describes how to create a simulation based on an existing production deployment.
 
-{{%notice info%}}
+{{%notice infonopad%}}
 NVIDIA has validated these scripts in a Linux environment only.
 {{%/notice%}}
 

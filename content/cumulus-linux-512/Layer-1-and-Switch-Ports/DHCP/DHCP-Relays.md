@@ -360,7 +360,7 @@ cumulus@leaf01:~$ nv config apply
 In a multi-tenant EVPN symmetric routing environment without MLAG, the VLAN interface (SVI) IPv4 address is typically unique on each leaf switch, which does not require RFC 3527 configuration.
 
 The following example:
-- Configures the SVIs vlan10 and vlan20, the underlay interfaces swp51 and swp52, and the layer 3 VNI VLAN interface for VRF RED vlan4024_l3 to be part of INTF_CMD list to service DHCP packets.
+- Configures the SVIs vlan10 and vlan20, and the layer 3 VNI VLAN interface for VRF RED vlan4024_l3 to be part of INTF_CMD list to service DHCP packets.
 - Sets the DHCP server IP address to 10.1.10.104.
 
 {{< tabs "TabID369 ">}}
@@ -495,7 +495,7 @@ cumulus@leaf01:~$ nv config apply
 
 ### Gateway IP Address as Source IP for Relayed DHCP Packets (Advanced)
 
-You can configure the `dhcrelay` service to forward IPv4 (only) DHCP packets to a DHCP server and ensure that the source IP address of the relayed packet is the same as the gateway IP address.
+You can configure the `dhcrelay` service to forward IPv4 (only) DHCP packets to a DHCP server and ensure that the source IP address of the relayed packet is the same as the gateway IP address. By default, the source IP address of the relayed packet is taken from a layer 3 interface on the switch using normal routing methods.
 
 {{%notice note%}}
 This option impacts all relayed IPv4 packets globally.
@@ -508,6 +508,13 @@ To use the gateway IP address as the source IP address:
 
 ```
 cumulus@leaf01:~$ nv set service dhcp-relay default source-ip gateway
+cumulus@leaf01:~$ nv config apply
+```
+
+To configure this setting back to the default (where the source IP address of the relayed packet is taken from a layer 3 interface), set the source IP address to `auto`:
+
+```
+cumulus@leaf01:~$ nv set service dhcp-relay default source-ip auto
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -528,6 +535,8 @@ cumulus@leaf01:~$ nv config apply
    ```
    cumulus@leaf01:~$ sudo systemctl restart dhcrelay@default.service
    ```
+
+To configure this setting back to the default (where the source IP address of the relayed packet is taken from a layer 3 interface), remove the `--giaddr-src` from the `OPTIONS` line.
 
 {{< /tab >}}
 {{< /tabs >}}

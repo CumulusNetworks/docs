@@ -158,12 +158,12 @@ Restore your data with the backup file you created during a backup using the `re
 Run the installation command on your NetQ server, referencing the path where the backup file resides and including the `config-key` created during the {{<link title="Back Up and Restore NetQ" text="backup process">}}.
 
 ```
-cumulus@netq-appliance:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.13.0-opta.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix1NHgwU3NhWlV5NzZXZVpiK2FFazRmQ3dkM2hzTk9IMWtDRlNjM0FHdVIwPQ== restore /home/cumulus/backup-netq-standalone-cloud-4.12.0-2024-12-11_19_50_12_UTC.tar
+cumulus@netq-appliance:~$ netq install opta standalone full interface eth0 bundle /mnt/installables/NetQ-4.13.0-opta.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix1NHgwU3NhWlV5NzZXZVpiK2FFazRmQ3dkM2hzTk9IMWtDRlNjM0FHdVIwPQ== restore /home/cumulus/backup-netq-standalone-cloud-4.12.0-2024-12-11_19_50_12_UTC.tar
 ```
 
 <div class="notices note"><p></p><p>NetQ uses the 10.244.0.0/16 (<code>pod-ip-range</code>) and 10.96.0.0/16 (<code>service-ip-range</code>) networks for internal communication by default. If you are using these networks, you must override each range by specifying new subnets for these parameters in the install command:</p>
-    <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>cumulus@hostname:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.13.0-opta.tgz pod-ip-range &lt;pod-ip-range&gt; service-ip-range &lt;service-ip-range&gt; config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix1NHgwU3NhWlV5NzZXZVpiK2FFazRmQ3dkM2hzTk9IMWtDRlNjM0FHdVIwPQ== restore /home/cumulus/backup-netq-standalone-cloud-4.12.0-2024-12-11_19_50_12_UTC.tar</pre><p>You can specify the IP address of the server instead of the interface name using the <code>ip-addr &lt;ip-address&gt;</code> argument:</p>
-    <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>cumulus@hostname:~$ netq install standalone full ip-addr &lt;ip-address&gt; bundle /mnt/installables/NetQ-4.13.0-opta.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix1NHgwU3NhWlV5NzZXZVpiK2FFazRmQ3dkM2hzTk9IMWtDRlNjM0FHdVIwPQ== restore /home/cumulus/backup-netq-standalone-cloud-4.12.0-2024-12-11_19_50_12_UTC.tar</pre><p>If you change the server IP address or hostname after installing NetQ, you must reset the server with the <code>netq bootstrap reset keep-db</code> command and rerun the install command.</p>
+    <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>cumulus@hostname:~$ netq install opta standalone full interface eth0 bundle /mnt/installables/NetQ-4.13.0-opta.tgz pod-ip-range &lt;pod-ip-range&gt; service-ip-range &lt;service-ip-range&gt; config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix1NHgwU3NhWlV5NzZXZVpiK2FFazRmQ3dkM2hzTk9IMWtDRlNjM0FHdVIwPQ== restore /home/cumulus/backup-netq-standalone-cloud-4.12.0-2024-12-11_19_50_12_UTC.tar</pre><p>You can specify the IP address of the server instead of the interface name using the <code>ip-addr &lt;ip-address&gt;</code> argument:</p>
+    <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>cumulus@hostname:~$ netq install opta standalone full ip-addr &lt;ip-address&gt; bundle /mnt/installables/NetQ-4.13.0-opta.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix1NHgwU3NhWlV5NzZXZVpiK2FFazRmQ3dkM2hzTk9IMWtDRlNjM0FHdVIwPQ== restore /home/cumulus/backup-netq-standalone-cloud-4.12.0-2024-12-11_19_50_12_UTC.tar</pre><p>If you change the server IP address or hostname after installing NetQ, you must reset the server with the <code>netq bootstrap reset keep-db</code> command and rerun the install command.</p>
     <p></p></div>
 
 <div class="notices tip"><p><ul><li>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</li><li>If you restore NetQ data to a server with an IP address that is different from the one used to back up the data, you must <a href="/networking-ethernet-software/cumulus-netq/Installation-Management/Install-NetQ/Install-NetQ-Agents/#configure-netq-agents">reconfigure the agents</a> on each switch as a final step.</li></ul></p></div>
@@ -195,20 +195,34 @@ State: Active
 Run the `netq show opta-health` command to verify that all applications are operating properly. Allow at least 15 minutes for all applications to come up and report their status.
 
 ```
-cumulus@hostname:~$ netq show opta-health
-    Application                                            Status    Namespace      Restarts    Timestamp
-    -----------------------------------------------------  --------  -------------  ----------  ------------------------
-    cassandra-rc-0-w7h4z                                   READY     default        0           Fri Apr 10 16:08:38 2024
-    cp-schema-registry-deploy-6bf5cbc8cc-vwcsx             READY     default        0           Fri Apr 10 16:08:38 2024
-    kafka-broker-rc-0-p9r2l                                READY     default        0           Fri Apr 10 16:08:38 2024
-    kafka-connect-deploy-7799bcb7b4-xdm5l                  READY     default        0           Fri Apr 10 16:08:38 2024
-    netq-api-gateway-deploy-55996ff7c8-w4hrs               READY     default        0           Fri Apr 10 16:08:38 2024
-    netq-app-address-deploy-66776ccc67-phpqk               READY     default        0           Fri Apr 10 16:08:38 2024
-    netq-app-admin-oob-mgmt-server                         READY     default        0           Fri Apr 10 16:08:38 2024
-    netq-app-bgp-deploy-7dd4c9d45b-j9bfr                   READY     default        0           Fri Apr 10 16:08:38 2024
-    netq-app-clagsession-deploy-69564895b4-qhcpr           READY     default        0           Fri Apr 10 16:08:38 2024
-    netq-app-configdiff-deploy-ff54c4cc4-7rz66             READY     default        0           Fri Apr 10 16:08:38 2024
-    ...
+cumulus@hostname:~$ sudo netq show opta-health
+[sudo] password for cumulus:
+Application                                          Status    Namespace      Restarts    Timestamp
+---------------------------------------------------  --------  -------------  ----------  ------------------------
+netq-api-gateway-nginx-deploy-5f9f7d8766-gp89q       READY     default        0           Sat Mar 15 02:01:00 2025
+netq-app-admin-netq-appliance                        READY     default        0           Sat Mar 15 02:01:00 2025
+netq-fluend-aggregator-opta-deploy-84989948c6-dz2n9  READY     default        0           Sat Mar 15 02:01:00 2025
+netq-lcm-executor-deploy-7767c7d78-n4dcp             READY     default        0           Sat Mar 15 02:01:00 2025
+netq-opta-deploy-7c547d95d7-gstcw                    READY     default        0           Sat Mar 15 02:01:00 2025
+netq-prom-adapter-588d676df7-b9dpm                   READY     default        0           Sat Mar 15 02:01:00 2025
+netqclustermanager-5bffc6ccf-c4j6t                   READY     default        0           Sat Mar 15 02:01:00 2025
+netqedge-75c57b866f-ps8nt                            READY     default        0           Sat Mar 15 02:01:00 2025
+netqinstaller-b95f9c974-zjb6c                        READY     default        0           Sat Mar 15 02:01:00 2025
+reloader-reloader-5c6c75f7c-lcwvm                    READY     default        0           Sat Mar 15 02:01:00 2025
+default-http-backend-2lpdm                           READY     ingress-nginx  0           Sat Mar 15 02:01:00 2025
+nginx-ingress-controller-cqdm9                       READY     ingress-nginx  0           Sat Mar 15 02:01:00 2025
+calico-kube-controllers-84f6f4f568-bk2nk             READY     kube-system    0           Sat Mar 15 02:01:00 2025
+calico-node-vrwz6                                    READY     kube-system    0           Sat Mar 15 02:01:00 2025
+coredns-6bfcc79674-hdd7g                             READY     kube-system    0           Sat Mar 15 02:01:00 2025
+coredns-6bfcc79674-ldvmt                             READY     kube-system    0           Sat Mar 15 02:01:00 2025
+docker-registry-netq-appliance                       READY     kube-system    0           Sat Mar 15 02:01:00 2025
+etcd-netq-appliance                                  READY     kube-system    2           Sat Mar 15 02:01:00 2025
+kube-apiserver-netq-appliance                        READY     kube-system    1           Sat Mar 15 02:01:00 2025
+kube-controller-manager-netq-appliance               READY     kube-system    1           Sat Mar 15 02:01:00 2025
+kube-proxy-sjz9g                                     READY     kube-system    0           Sat Mar 15 02:01:00 2025
+kube-scheduler-netq-appliance                        READY     kube-system    1           Sat Mar 15 02:01:00 2025
+metrics-server-5d68d5fc94-tlkjl                      READY     kube-system    0           Sat Mar 15 02:01:00 2025
+cluster node: netq-appliance                         READY     N/A            N/A         Sat Mar 15 02:01:00 2025
 ```
 {{%notice note%}}
 If any of the applications or services display Status as DOWN after 30 minutes, open a support ticket and attach the output of the `opta-support` command.

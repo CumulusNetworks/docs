@@ -727,8 +727,8 @@ Cumulus Linux 5.0 and later no longer uses INPUT chain rules to configure contro
 {{< tab "NVUE Commands ">}}
 
 To configure control plane policers:
-- Set the burst rate for the trap group with the `nv set system control-plane policer <trap-group> burst <value>` command. The burst rate is the number of packets or kilobytes (KB) allowed to arrive sequentially.
-- Set the forwarding rate for the trap group with the `nv set system control-plane policer <trap-group> rate <value>` command. The forwarding rate is the maximum rate in kilobytes (KB) or packets.
+- Set the Committed Information Rate (CIR) with the `nv set system control-plane policer <trap-group> rate` command. The CIR is the allowed incoming rate for the trap group. The incoming rate is the maximum rate in packets per second.
+- Set the Committed Burst Rate (CBR) for the trap group with the `nv set system control-plane policer <trap-group> burst` command. The burst rate is the number of packets or kilobytes (KB) allowed to arrive sequentially after the CIR rate is exceeded.
 
 The trap group can be: `arp`, `bfd`, `pim-ospf-rip`, `bgp`, `clag`, `icmp-def`, `dhcp-ptp`, `igmp`, `ssh`, `icmp6-neigh`, `icmp6-def-mld`, `lacp`, `lldp`, `rpvst`, `eapol`, `ip2me`, `acl-log`, `nat`, `stp`, `l3-local`, `span-cpu`, `catch-all`, or `NONE`.
 
@@ -748,8 +748,8 @@ cumulus@switch:~$ nv config apply
 
 To rate limit traffic using the `/etc/cumulus/control-plane/policers.conf` file, you:
 - Enable an individual policer for a trap group (set `enable` to `TRUE`).
-- Set the policer rate in packets per second. The forwarding rate is the maximum rate in kilobytes (KB) or packets.
-- Set the policer burst rate in packets per second. The burst rate is the number of packets or kilobytes (KB) allowed to arrive sequentially.
+- Set the Committed Information Rate (CIR). The CIR is the allowed incoming rate for the trap group. The incoming rate is the maximum rate in packets per second.
+- Set the Committed Burst Rate (CBR) for the trap group. The burst rate is the number of packets or kilobytes (KB) allowed to arrive sequentially after the CIR rate is exceeded.
 
 After you edit the `/etc/cumulus/control-plane/policers.conf` file, you must reload the file with the `/usr/lib/cumulus/switchdctl --load /etc/cumulus/control-plane/policers.conf` command.
 

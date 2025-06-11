@@ -1,3 +1,36 @@
+{{- if eq (.Get "version") "4.14" -}}
+
+You should see version 4.14.0 and update 51 in the results. For example:
+
+{{- if eq (.Get "opsys") "cl" -}}
+
+<ul>
+        <ul>
+            <li>Cumulus Linux 5.9.0 or later: netq-apps_<strong>4.14.0</strong>-cld12u<strong>51</strong>~1744815975.8dbbbd20c_amd64.deb</li>
+            <li>Cumulus Linux 5.8.0 or earlier, ARM platforms: netq-apps_<strong>4.14.0</strong>-cl4u<strong>51</strong>~11744815873.8dbbbd20c_armel.deb</li>
+            <li>Cumulus Linux 5.8.0 or earlier, amd64 platforms: netq-apps_<strong>4.14.0</strong>-cl4u<strong>51</strong>~1744816035.8dbbbd20c_amd64.deb</li>
+        </ul>
+</ul>
+
+{{ end }}
+{{- if eq (.Get "opsys") "ub" -}}
+
+<ul>
+    <li>Ubuntu 22.04: netq-apps_<strong>4.14.0</strong>-ub22.04u<strong>51</strong>~1744815786.8dbbbd20c_amd64.deb</li>
+</ul>
+
+{{ end }}
+
+{{- if eq (.Get "opsys") "rh" -}}
+
+<ul>
+    <li>netq-apps_<strong>4.14.0</strong>-rh7u<strong>50</strong>~????????.x86_64.rpm</li>
+</ul>
+
+{{ end }}
+
+{{ end }}
+
 {{- if eq (.Get "version") "4.13" -}}
 
 You should see version 4.13.0 and update 50 in the results. For example:

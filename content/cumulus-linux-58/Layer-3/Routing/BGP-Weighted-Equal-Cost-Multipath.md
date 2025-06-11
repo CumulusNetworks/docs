@@ -4,16 +4,20 @@ author: NVIDIA
 weight: 780
 toc: 3
 ---
-You use <span class="a-tooltip">[W-ECMP](## "Weighted Equal Cost Multipath")</span> in data center networks that rely on anycast routing to provide network-based load balancing. Cumulus Linux supports BGP W-ECMP by using the <span class="a-tooltip">[BGP](## "Border Gateway Protocol")</span> link bandwidth extended community to load balance traffic towards anycast services for IPv4 and IPv6 routes in a layer 3 deployment and for prefix (type-5) routes in an EVPN deployment.
+You use <span class="a-tooltip">[W-ECMP](## "Weighted Equal Cost Multipath")</span> in data center networks to provide network-based load balancing. Cumulus Linux supports BGP W-ECMP by using the <span class="a-tooltip">[BGP](## "Border Gateway Protocol")</span> link bandwidth extended community to load balance traffic towards services for IPv4 and IPv6 routes in a layer 3 deployment and for prefix (type-5) routes in an EVPN deployment.
 <!-- vale off -->
 ## W-ECMP Routing
 <!-- vale on -->
 In <span class="a-tooltip">[ECMP](## "Equal Cost Multi Path")</span>, the route to a destination has multiple next hops and traffic distributes across them equally. Flow-based hashing ensures that all traffic associated with a particular flow uses the same next hop and the same path across the network.
 
-In W-ECMP, along with the ECMP flow-based hash, Cumulus Linux associates a weight with each next hop and distributes traffic across the next hops in proportion to their weight. The BGP link bandwidth extended community carries information about the anycast server distribution through the network, which maps to the weight of the corresponding next hop. The mapping factors the bandwidth value of a particular path against the total bandwidth values of all possible paths, mapped to the range 1 to 100. The BGP best path selection algorithm and the multipath computation algorithm that determines which paths you can use for load balancing does not change.
-<!-- vale off -->
+In W-ECMP, along with the ECMP flow-based hash, Cumulus Linux associates a weight with each next hop and distributes traffic across the next hops in proportion to their weight. The BGP link bandwidth extended community carries information about capacity through the network, which maps to the weight of the corresponding next hop. The mapping factors the bandwidth value of a particular path against the total bandwidth values of all possible paths, mapped to the range 1 to 100. The BGP best path selection algorithm and the multipath computation algorithm that determines which paths you can use for load balancing does not change.
+
+
+
+
+<!--
 ## W-ECMP Example
-<!-- vale on -->
+
 {{< img src = "/images/cumulus-linux/ucmp-example.png" >}}
 
 The above example shows how traffic towards 192.168.10.1/32 is load balanced when you use W-ECMP routing:
@@ -35,18 +39,40 @@ The border leafs also have four W-ECMP routes:
 - through spine04 with weight 6
 
 The border leafs balance traffic equally; all weights are equal to the spines. Only the spines have unequal load sharing based on the weight values.
-<!-- vale off -->
+-->
+
+### Underlay Routing with W-ECMP
+
+W-ECMP load balances underlay traffic to spine switches as traffic is sent to remote VTEPs. Spines advertise weight based on available link bandwidth to VTEP endpoint IP addresses in the network.
+
+{{< img src = "/images/cumulus-linux/WECMP-underlay-example.png" >}}
+
+In the above example, when `leaf03` interface `swp3` goes down to `spine02`, a BGP update is sent from `spine02` to `leaf01` with a less preferred weight for the `leaf03` VTEP IP, influencing underlay traffic between server01 and server04.
+
+### Overlay Routing with W-ECMP
+
+W-ECMP load balances traffic to all possible egress VTEPs based on the weight advertised to reach type-5 EVPN routes originated from outside of the fabric. This scenario is typical for anycast IP routing environments with host-based networking where the same anycast or virtual IP is learned from multiple sources.
+
+{{< img src = "/images/cumulus-linux/WECMP-overlay-example.png" >}}
+
+In the above example, when interface `swp2` on `border01` goes down towards the host advertising 10.1.100.5, border01 sends a BGP update with a less preferred weight for the Type-5 EVPN prefix 10.1.100.5/32, influencing how hosts within the fabric hash flows towards the border switches.
+
+{{%notice note%}}
+In W-ECMP overlay routing scenarios, type-5 routes must be learned from an eBGP IPv4 unicast peering between VTEPs and hosts to properly set the link bandwidth extended community reflecting the number of available paths on the originating VTEP.
+{{%/notice%}}
+
 ## Configure W-ECMP
 <!-- vale on -->
 Set the BGP link bandwidth extended community in a route map against all prefixes, a specific prefix, or set of prefixes using the match clause of the route map. Apply the route map on the first device to receive the prefix; against the BGP neighbor that generated this prefix.
 
-The BGP link bandwidth extended community uses bytes-per-second. To convert the number of ECMP paths, Cumulus Linux uses a reference bandwidth of 1024Kbps. For example, if there are four ECMP paths to an anycast IP, the encoded bandwidth in the extended community is 512,000. The actual value is not important, as long as all routers originating the link bandwidth convert the number of ECMP paths in the same way.
+The BGP link bandwidth extended community uses bytes-per-second. To convert the number of ECMP paths, Cumulus Linux uses a reference bandwidth of 1024Kbps. For example, if there are four ECMP paths to an IP, the encoded bandwidth in the extended community is 512,000. The actual value is not important, as long as all routers originating the link bandwidth convert the number of ECMP paths in the same way.
 
 Cumulus Linux accepts the bandwidth extended community by default. You do not need to configure transit devices where W-ECMP routes are not originated.
 
 {{%notice note%}}
 - The bandwidth used in the extended community has no impact on or relation to port bandwidth.
 - You can only apply the route weight information on the outbound direction to a peer; you cannot apply route weight information on the inbound direction from peers advertising routes to the switch.
+- W-ECMP is only supported in EBGP fabrics.
 {{%/notice%}}
 
 ### Set the BGP Link Bandwidth Extended Community Against All Prefixes
@@ -98,19 +124,19 @@ route-map ucmp-route-map permit 10
 
 ### Set the BGP Link Bandwidth Extended Community Against Certain Prefixes
 
-The following example sets the BGP link bandwidth extended community for anycast servers in the 192.168/16 IP address range.
+The following example sets the BGP link bandwidth extended community for servers in the 192.168.0.0/16 IP address range.
 
 {{< tabs "TabID102 ">}}
 {{< tab "NVUE Commands">}}
 
 ```
-cumulus@switch:~$ nv set router policy prefix-list anycast_ip type ipv4
-cumulus@switch:~$ nv set router policy prefix-list anycast_ip rule 1 match 192.168.0.0/16 max-prefix-len 30
-cumulus@switch:~$ nv set router policy prefix-list anycast_ip rule 1 action permit
+cumulus@switch:~$ nv set router policy prefix-list SERVICE_IPS type ipv4
+cumulus@switch:~$ nv set router policy prefix-list SERVICE_IPS rule 1 match 192.168.0.0/16 max-prefix-len 30
+cumulus@switch:~$ nv set router policy prefix-list SERVICE_IPS rule 1 action permit
 cumulus@switch:~$ nv set router policy route-map ucmp-route-map rule 1 action permit 
-cumulus@switch:~$ nv set router policy route-map ucmp-route-map rule 1 match ip-prefix-list anycast_ip
+cumulus@switch:~$ nv set router policy route-map ucmp-route-map rule 1 match ip-prefix-list SERVICE_IPS
 cumulus@switch:~$ nv set router policy route-map ucmp-route-map rule 1 set ext-community-bw multipaths
-cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast policy outbound prefix-list anycast_ip 
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast policy outbound prefix-list SERVICE_IPS 
 cumulus@switch:~$ nv config apply
 ```
 
@@ -121,13 +147,13 @@ cumulus@switch:~$ nv config apply
 cumulus@leaf01:~$ sudo vtysh
 ...
 leaf01# configure terminal
-leaf01(config)# ip prefix-list anycast_ip seq 10 permit 192.168.0.0/16 le 32
+leaf01(config)# ip prefix-list SERVICE_IPS seq 10 permit 192.168.0.0/16 le 32
 leaf01(config)# route-map ucmp-route-map permit 10
-leaf01(config-route-map)# match ip address prefix-list anycast_ip
+leaf01(config-route-map)# match ip address prefix-list SERVICE_IPS
 leaf01(config-route-map)# set extcommunity bandwidth num-multipaths
 leaf01(config-route-map)# router bgp 65011
 leaf01(config-router)# address-family ipv4 unicast
-leaf01(config-router-af)# neighbor swp51 prefix-list anycast_ip out
+leaf01(config-router-af)# neighbor swp51 route-map ucmp-route-map out
 leaf01(config-router-af)# end
 leaf01# write memory
 leaf01# exit
@@ -140,9 +166,9 @@ The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For e
 address-family ipv4 unicast
  neighbor 10.1.1.1 route-map ucmp-route-map out
 !
-ip prefix-list anycast-ip permit 192.168.0.0/16 le 32
+ip prefix-list SERVICE_IPS permit 192.168.0.0/16 le 32
 route-map ucmp-route-map permit 10
- match ip address prefix-list anycast-ip
+ match ip address prefix-list SERVICE_IPS
  set extcommunity bandwidth num-multipaths
 ...
 ```
@@ -158,8 +184,8 @@ For <span class="a-tooltip">[EVPN](## "Ethernet Virtual Private Network")</span>
 {{< tab "NVUE Commands">}}
 
 ```
-cumulus@switch:~$ nv set vrf turtle router bgp autonomous-system 65011
-cumulus@switch:~$ nv set vrf turtle router bgp address-family ipv4-unicast route-export to-evpn route-map ucmp-route-map
+cumulus@switch:~$ nv set vrf RED router bgp autonomous-system 65011
+cumulus@switch:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn route-map ucmp-route-map
 cumulus@switch:~$ nv set router policy route-map ucmp-route-map rule 10 action permit
 cumulus@switch:~$ nv set router policy route-map ucmp-route-map rule 10 set ext-community-bw cumulative
 cumulus@switch:~$ nv config apply
@@ -174,7 +200,7 @@ cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# route-map ucmp-route-map permit 10
 leaf01(config-route-map)# set extcommunity bandwidth num-multipaths
-leaf01(config-route-map)# router bgp 65011 vrf turtle
+leaf01(config-route-map)# router bgp 65011 vrf RED
 leaf01(config-router)# address-family l2vpn evpn
 leaf01(config-router-af)# advertise ipv4 unicast route-map ucmp-route-map
 leaf01(config-router-af)# end
@@ -186,7 +212,7 @@ The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For e
 
 ```
 ...
-router bgp 65011 vrf turtle
+router bgp 65011 vrf RED
  !
  address-family ipv4 unicast
   maximum-paths 64
@@ -196,7 +222,6 @@ router bgp 65011 vrf turtle
  address-family l2vpn evpn
   advertise ipv4 unicast route-map ucmp-route-map
  exit-address-family
-...
 ```
 
 {{< /tab >}}
@@ -319,7 +344,7 @@ cumulus@leaf01:mgmt:~$ nv config apply
 
 To disable weight normalization, run the `nv set system forwarding ecmp-weight-normalisation mode disabled` command.
 
-You can also adjust the maximum number of hardware entries for weighted ECMP by running the `nv set system forwarding ecmp-weight-normalisation max-hw-weight` command. You can specify a value between 10 and 255. The default value is 32.
+You can also adjust the maximum number of hardware entries for weighted ECMP by running the `nv set system forwarding ecmp-weight-normalisation max-hw-weight` command. You can specify a value between 8 and 4096. The default value is 32.
 
 ```
 cumulus@leaf01:mgmt:~$ nv set system forwarding ecmp-weight-normalisation max-hw-weight 100
@@ -340,7 +365,7 @@ Cumulus Linux supports BGP W-ECMP with {{<link title="#adaptive-routing" text="a
 
 ## Troubleshooting
 
-To show the extended community in a received or local route, run the vtysh `show bgp` command or the `net show bgp` command.
+To show the extended community in a received or local route, run the vtysh `show bgp` command.
 
 The following example shows that the switch receives an IPv4 unicast route with the BGP link bandwidth attribute from two peers. The link bandwidth extended community is in bytes per second and shows in megabits per second: `Extended Community: LB:65002:131072000 (1000.000 Mbps) and Extended Community: LB:65001:65536000 (500.000 Mbps)`.
 
@@ -371,7 +396,7 @@ Paths: (2 available, best #2, table default)
 The bandwidth value used by W-ECMP is only to determine the percentage of load to a given next hop and has no impact on actual link or flow bandwidth.
 {{%/notice%}}
 
-To show EVPN type-5 routes, run the `net show bgp l2vpn evpn route type prefix` command or the vtysh `show bgp l2vpn evpn route type prefix` command.
+To show EVPN type-5 routes, run the vtysh `show bgp l2vpn evpn route type prefix` command.
 
 The bandwidth shows both as bytes per second (unsigned 32 bits) as well as in Gbps, Mbps, or Kbps. For example:
 
@@ -388,7 +413,7 @@ Origin codes: i - IGP, e - EGP, ? - incomplete
             RT:65050:104001 LB:65050:134217728 (1.000 Gbps) ET:8 Rmac:36:4f:15:ea:81:90
 ```
 
-To see weights associated with next hops for a route with multiple paths, run the `net show route` command or the vtysh `show ip route` command. For example:
+To see weights associated with next hops for a route with multiple paths, run the vtysh `show ip route` command. For example:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -403,7 +428,26 @@ Routing entry for 192.168.10.1/32
 
 ## Considerations
 
+### W-ECMP with BGP Link Bandwidth
+
 W-ECMP with BGP link bandwidth is only available for BGP-learned routes.
+
+### ECMP Resource Sharing During Next Hop Group Updates
+
+During network events such as reboots, link flaps, and in any transient scenarios, next hop group churn might create a higher number of ECMP containers. Also, when {{<link url="Optional-BGP-Configuration/#bgp-prefix-independent-convergence" text="FRR allocates a single next hop group per source">}}, more ECMP hardware resources are required.  
+
+To configure the switch to share ECMP resources during next hop group updates with weight changes, create the `/etc/cumulus/switchd.d/switchd_misc.conf` file and add `nhg_update_ecmp_sharing_enable = TRUE`:
+
+```
+cumulus@leaf01:mgmt:~$ sudo nano /etc/cumulus/switchd.d/switchd_misc.conf
+nhg_update_ecmp_sharing_enable = TRUE 
+```
+
+To disable ECMP resource sharing during next hop group updates with weight changes, set the `nhg_update_ecmp_sharing_enable` option to `FALSE`.
+
+{{%notice note%}}
+NVUE does not provide commands to enable or disable ECMP resource sharing during next hop group updates with weight changes.
+{{%/notice%}}
 
 ## Related Information
 

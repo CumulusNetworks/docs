@@ -20,6 +20,13 @@ NetQ 4.12.0 includes the following new features and improvements:
 - The {{<link title="Network Topology" text="topology view">}} is now generally available
 - The {{<link title="Validate Network Protocol and Service Operations/#topology-validations" text="topology validation">}} is now generally available
 
+The following features have been removed or deprecated:
+
+- On-switch OPTA
+- SONiC OS support
+- OSPF validations
+- Monitoring for OSPF, configuration files, PTM, and installed software packages. NetQ will no longer collect information about or broadcast events for these categories.
+
 ## Upgrade Paths
 
 For deployments running:
@@ -39,3 +46,4 @@ The NetQ 4.12 server is compatible with the NetQ 4.12 agent. You can install Net
 - NetQ 4.12 is not backward compatible with previous NetQ agent versions. You must install NetQ agent version 4.12 after upgrading your NetQ server to 4.12.
 - When you upgrade to NetQ 4.12, any pre-existing event and validation data will be lost.
 - If you upgrade a NetQ server with scheduled OSPF validations, they might still appear in the UI but will display results from previous validations.
+- Upgrading Cumulus Linux using lifecycle management is only supported on switches that have been configured using NVUE.

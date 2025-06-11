@@ -116,28 +116,53 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default mac-table
-    age     bridge-domain  entry-type  interface   last-update  MAC address      src-vni  vlan  vni   Summary          
---  ------  -------------  ----------  ----------  -----------  --------------…  -------  ----  ----  ----------------…
-0   180582  br_default     permanent   swp6        180582       48:b0:2d:26:a1…                                        
-1   180582  br_default     permanent   swp7        180582       48:b0:2d:45:49…                                        
-2   292622  br_default     static      bond3       180582       48:b0:2d:a8:51…           30                           
-3   23      br_default     static      bond3       180582       48:b0:2d:09:b9…           30                           
-4   320097  br_default     permanent   bond3       320097       48:b0:2d:37:20…                                        
-5   292622  br_default     static      bond2       180582       48:b0:2d:76:bf…           20                           
-6   23      br_default     static      bond2       108          48:b0:2d:36:9e…           20                           
-7   320097  br_default     permanent   bond2       320097       48:b0:2d:24:cb…                                        
-8   292622  br_default                 vxlan48     292622       44:38:39:22:01…           20    None                   
-9   292622  br_default                 vxlan48     292622       44:38:39:22:01…           30    None                   
-10  292622  br_default                 vxlan48     292622       44:38:39:22:01…           10    None  remote-dst:      
-                                                                                                      10.10.10.4       
-11  292622  br_default                 vxlan48     140          44:38:39:22:01…           20    None                   
-12  292622  br_default                 vxlan48     292622       48:b0:2d:1b:21…           10    None                   
-13  292622  br_default                 vxlan48     292622       48:b0:2d:d0:1e…           10    None                   
-14  292622  br_default                 vxlan48     292622       44:38:39:22:01…           30    None                   
-15  292622  br_default                 vxlan48     292622       44:38:39:22:01…           10    None  remote-dst:      
-                                                                                                      10.10.10.3
+entry-id  age      bridge-domain  entry-type    interface   last-update  MAC address        remote-dst   src-vni  vlan
+--------  -------  -------------  ------------  ----------  -----------  -----------------  -----------  -------  ----
+1         0:12:54  br_default                   bond2       0:00:18      48:b0:2d:46:8f:ca                        20  
+2         0:13:28  br_default                   bond2       0:01:17      48:b0:2d:66:cd:da                        20  
+3         0:13:47  br_default     permanent     bond2       0:13:47      48:b0:2d:6c:f4:fc                            
+4         0:12:54  br_default                   bond1       0:00:18      48:b0:2d:97:30:0d                        10  
+5         0:13:28  br_default                   bond1       0:00:22      48:b0:2d:fc:d1:7f                        10  
+6         0:13:47  br_default     permanent     bond1       0:13:47      48:b0:2d:b0:73:6d                            
+7         0:06:36  br_default     extern_learn  vxlan48     0:06:36      44:38:39:be:ef:bb                        4036
+8         0:12:53  br_default     extern_learn  vxlan48     0:12:53      48:b0:2d:28:23:1f                        30  
+9         0:12:53  br_default     extern_learn  vxlan48     0:12:53      48:b0:2d:9d:37:18                        20  
+10        0:12:53  br_default     extern_learn  vxlan48     0:12:53      48:b0:2d:e9:fd:e3                        10  
+11        0:12:59  br_default     extern_learn  vxlan48     0:12:59      48:b0:2d:25:1f:8a                        20  
+12        0:12:59  br_default     extern_learn  vxlan48     0:12:59      48:b0:2d:8a:2d:b4                        30  
+13        0:12:59  br_default     extern_learn  vxlan48     0:12:59      48:b0:2d:8e:fc:0a                        10  
+14        0:13:32  br_default     extern_learn  vxlan48     0:13:32      44:38:39:22:01:7c                        4024
+15        0:13:32  br_default     extern_learn  vxlan48     0:13:32      44:38:39:22:01:7c                        4036
+16        0:13:32  br_default     extern_learn  vxlan48     0:13:32      44:38:39:22:01:74                        4024
+17        0:13:32  br_default     extern_learn  vxlan48     0:13:32      44:38:39:22:01:74                        4036
+18        0:13:33  br_default     extern_learn  vxlan48     0:13:33      44:38:39:22:01:8a                        4036
+19        0:13:33  br_default     extern_learn  vxlan48     0:13:33      44:38:39:22:01:84                        4036
+20        0:13:33  br_default     extern_learn  vxlan48     0:13:33      44:38:39:22:01:7a                        4036
+21        0:13:33  br_default     extern_learn  vxlan48     0:13:33      44:38:39:22:01:8a                        4024
+22        0:13:33  br_default     extern_learn  vxlan48     0:13:33      44:38:39:22:01:84                        4024
+23        0:13:33  br_default     extern_learn  vxlan48     0:13:33      44:38:39:22:01:7a                        4024
+24        0:13:27  br_default     extern_learn  vxlan48     0:13:27      44:38:39:22:01:84                        10  
+25        0:13:33  br_default     extern_learn  vxlan48     0:13:33      44:38:39:22:01:8a                        10  
+26        0:13:27  br_default     extern_learn  vxlan48     0:13:27      44:38:39:22:01:84                        30  
+27        0:13:33  br_default     extern_learn  vxlan48     0:13:33      44:38:39:22:01:8a                        30  
+28        0:13:27  br_default     extern_learn  vxlan48     0:13:27      44:38:39:22:01:84                        20  
+29        0:13:33  br_default     extern_learn  vxlan48     0:13:33      44:38:39:22:01:8a                        20  
+30        0:13:47  br_default     permanent     vxlan48     0:13:47      4e:8e:1a:31:b7:cc                            
+31        0:06:34                 extern_learn  vxlan48     0:13:32      44:38:39:22:01:74  10.10.10.63  4001         
+32        0:13:32                 extern_learn  vxlan48     0:13:32      44:38:39:22:01:7c  10.10.10.64  4002         
+33        0:13:33                 extern_learn  vxlan48     0:13:33      44:38:39:22:01:84  10.10.10.3   4002         
+34        0:13:33                 extern_learn  vxlan48     0:13:33      44:38:39:22:01:7a  10.10.10.1   4002         
+35        0:12:53                 extern_learn  vxlan48     0:12:53      48:b0:2d:9d:37:18  10.0.1.34    20           
+36        0:13:33                 extern_learn  vxlan48     0:13:27      44:38:39:22:01:84  10.0.1.34    20           
+37        0:12:59                 extern_learn  vxlan48     0:12:59      48:b0:2d:8e:fc:0a  10.0.1.34    10           
+38        0:13:33                 extern_learn  vxlan48     0:13:33      44:38:39:22:01:8a  10.0.1.34    20           
+39        0:13:33                 extern_learn  vxlan48     0:13:33      44:38:39:22:01:8a  10.0.1.34    30        
 ...
 ```
+
+{{%notice note%}}
+In Cumulus Linux 5.9 through 5.13, the `age` and `last update` counters in the `nv show bridge domain <domain-id> mac-table` command output are reversed. The `last update` counter shows the `age` data and the `age` counter shows the `last update` data. Cumulus Linux uses the `age` and `update` timers to determine when to remove an old MAC entry.
+{{%/notice%}}
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

@@ -5,11 +5,11 @@ weight: 40
 product: Technical Guides
 imgData: guides
 ---
-The NVUE ansible modules have been certified by RedHat and are available on Ansible Galaxy {{<exlink url="https://galaxy.ansible.com/nvidia/nvue" text="here">}} and the Automation Hub {{<exlink url="https://console.redhat.com/ansible/automation-hub/repo/published/nvidia/nvue/" text="here">}} (requires login).
+The NVUE ansible modules have been certified by RedHat and are available from {{<exlink url="https://galaxy.ansible.com/nvidia/nvue" text="Ansible Galaxy">}} and the {{<exlink url="https://console.redhat.com/ansible/automation-hub/repo/published/nvidia/nvue/" text="Automation Hub">}} (requires login).
 
 ## Important points to remember
 
-- The modules have been tested with ansible core 2.11 and above.
+- The modules have been tested with Ansible-core 2.11 and above.
 - The modules support Python 3.6 and later.
 - The modules have been validated against Cumulus Linux 5.4 and above.
 

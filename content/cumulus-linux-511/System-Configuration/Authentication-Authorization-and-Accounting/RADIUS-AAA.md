@@ -163,6 +163,18 @@ vrf-name mgmt
 {{< /tab >}}
 {{< /tabs >}}
 
+{{%notice note%}}
+The value of the VSA (Vendor Specific Attribute) `shell:priv-lvl` determines the privilege level for the user on the switch. If the attribute does not return, the user does not have privileges. The following shows an example using the `freeradius` server for a fully privileged user.
+
+```
+Service-Type = Administrative-User,
+Cisco-AVPair = "shell:roles=network-administrator",
+Cisco-AVPair += "shell:priv-lvl=15"
+```
+
+The VSA vendor name (Cisco-AVPair in the example above) can have any content. The RADIUS client only checks for the string `shell:priv-lvl`.
+{{%/notice%}}
+
 ## Enable Login without Local Accounts
 
 {{%notice note%}}
@@ -286,6 +298,23 @@ In this example, the `admin` user is a privileged RADIUS user (with privilege le
 admin@leaf01:~$ nv set interface swp1
 admin@leaf01:~$ nv apply
 ```
+
+## Message-Authenticator Attribute
+
+RADIUS uses the Message-Authenticator attribute to sign Access-Requests to prevent spoofing Access-Requests using CHAP, ARAP or EAP authentication methods.
+
+By default, Cumulus Linux sends and checks messages with Message-Authenticator attributes but does not require the RADIUS server to send one, which avoids failed authentication if the server implementation is not updated to send Message-Authenticator attributes with Access-Accept packets. To require the RADIUS server to send Message-Authenticator attributes, run the `nv set system aaa radius require-message-authenticator enabled` command:
+
+```
+cumulus@switch:~$ nv set system aaa radius require-message-authenticator enabled
+cumulus@switch:~$ nv config apply
+```
+
+To set the message authenticator option back to the default setting (disabled), run the `nv unset system aaa radius require-message-authenticator` command.
+
+{{%notice note%}}
+Cumulus Linux 5.11.1 and later provides the `nv set system aaa radius require-message-authenticator` command.
+{{%/notice%}}
 
 ## Show RADIUS Configuration
 

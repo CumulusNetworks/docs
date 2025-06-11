@@ -7,12 +7,86 @@ product: NVIDIA Air
 <!-- vale off -->
 Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
 
-## Feburary 2025
+## June 2025
 <!-- Air:WhatsNew -->
+### 82.2025.0603-011
+- Fixed a visibility and persistence issue with the "Add Port" button
+<!-- Air:WhatsNew -->
+
+## May 2025
+### 82.2025.0529-011
+- Added ability to disable the DHCP service in out-of-band networks via simulation manifest import or topology endpoints
+
+### 82.2025.0522-011
+- Added ability to take screenshots of simulations
+
+### 82.2025.0520-011
+- Fixed an issue with editing a simulation's name
+
+### 82.2025.0508-011
+- Added functionality for filtering OOB network
+
+### 82.2025.0506-011
+- Added functionality for rebuilding and resetting multiple nodes concurrently from the UI
+
+## April 2025
+### 82.2025.0424-011
+- Added functionality for handling OOB enablement and usage of reserved eth0 interfaces
+- Added loading spinner when deleting nodes on canvas
+
+### 82.2025.0422-011
+- Added ability to configure multiple breakout ports concurrently
+- Fixed an issue when disabling OOB after modifying node ports
+
+### 82.2025.0410-011
+- Added the ability to update multiple nodes concurrently
+- Improved infrastructure stability when running large-scale simulations
+- Fixed missing data issue in node properties
+- Fixed an issue where simulations were expiring prematurely
+- Fixed an issue with missing console prompts within simulations
+
+### 82.2025.0403-011
+- Added ability to view link details by selecting a link
+
+## March 2025
+### 82.2025.0325-011
+- Fixed an issue where outbound interfaces did not appear in the services list
+
+### 82.2025.0318-011
+- Fixed an issue with the System Palette when minimizing the Servers and Switches section
+- Fixed an issue with services being intermittently unreachable
+
+### 82.2025.0311-011
+- Fixed an issue with loading the details panel for a demo by using the demo ID in the URL
+- Fixed an issue in the node side panel when switching between nodes
+- Fixed an issue with deleting nodes in non-new states
+- Fixed TypeError in browser console when importing a DOT file while creating a simulation
+
+### 82.2025.0306-011
+- Fixed an issue which resulted in management IP duplicates when using the out-of-band management network
+- Fixed an issue where the node name tooltip could get stuck on the screen when the mouse was moved off the workspace canvas
+
+### 82.2025.0304-011
+- Added ability to right-click a node to open the actions menu
+- The node name field now accommodates up to 255 characters
+
+## Feburary 2025
+### 82.2025.0227-011
+- Fixed an issue where pressing "enter" in the ZTP text box created a SIM instead of adding a new line
+- Added support for NetQ configuration via JSON topology files
+
+### 82.2025.0225-011
+- Fixed an issue with scrolling in Nodes/Links list when console is open
+- Added tooltip support for improved accessibility in navigation items
+
+### 82.2025.0220-011
+- Fixed an issue with launching NetQ
+- Fixed a validation issue when importing JSON topologies with ZTP script
+- Added ability to define unconnected interfaces via JSON topology files
+
 ### 82.2025.0213-011
 - Fixed an issue with Demo Marketplace nodes not retaining their disk changes after waking up
 - Added API endpoint for parsing topologies from DOT format to JSON format
-<!-- Air:WhatsNew -->
 
 ### 82.2025.0204-011
 - Fixed an issue where simulations entered an error state when started

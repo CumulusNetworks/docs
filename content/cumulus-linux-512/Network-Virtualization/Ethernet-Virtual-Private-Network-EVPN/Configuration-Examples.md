@@ -3201,12 +3201,12 @@ cumulus@border01:~$ nv set mlag backup 10.10.10.64
 cumulus@border01:~$ nv set mlag peer-ip linklocal
 cumulus@border01:~$ nv set mlag priority 1000
 cumulus@border01:~$ nv set mlag init-delay 10
-cumulus@border01:~$ nv set interface vlan10 ip address 10.1.10.2/24
+cumulus@border01:~$ nv set interface vlan10 ip address 10.1.10.64/24
 cumulus@border01:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24
 cumulus@border01:~$ nv set interface vlan10 ip vrr mac-address 00:00:00:00:00:10
 cumulus@border01:~$ nv set interface vlan10 ip vrr state up
-cumulus@border01:~$ nv set interface vlan20 ip address 10.1.10.2/24
-cumulus@border01:~$ nv set interface vlan20 ip vrr address 10.1.20.2/24
+cumulus@border01:~$ nv set interface vlan20 ip address 10.1.20.64/24
+cumulus@border01:~$ nv set interface vlan20 ip vrr address 10.1.20.1/24
 cumulus@border01:~$ nv set interface vlan20 ip vrr mac-address 00:00:00:00:00:20
 cumulus@border01:~$ nv set interface vlan20 ip vrr state up
 cumulus@border01:~$ nv set bridge domain br_default vlan 10 vni 10
@@ -3247,11 +3247,11 @@ cumulus@border02:~$ nv set mlag backup 10.10.10.63
 cumulus@border02:~$ nv set mlag peer-ip linklocal
 cumulus@border02:~$ nv set mlag priority 2000
 cumulus@border02:~$ nv set mlag init-delay 10
-cumulus@border02:~$ nv set interface vlan10 ip address 10.1.10.1/24
+cumulus@border02:~$ nv set interface vlan10 ip address 10.1.10.64/24
 cumulus@border02:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24
 cumulus@border02:~$ nv set interface vlan10 ip vrr mac-address 00:00:00:00:00:10
 cumulus@border02:~$ nv set interface vlan10 ip vrr state up
-cumulus@border02:~$ nv set interface vlan20 ip address 10.1.20.1/24
+cumulus@border02:~$ nv set interface vlan20 ip address 10.1.20.64/24
 cumulus@border02:~$ nv set interface vlan20 ip vrr address 10.1.20.1/24
 cumulus@border02:~$ nv set interface vlan20 ip vrr mac-address 00:00:00:00:00:20
 cumulus@border02:~$ nv set interface vlan20 ip vrr state up
@@ -10620,9 +10620,7 @@ exit-address-family
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL511 - EVPN Symmetric" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,spine03,spine04,border01,border02,fw1,server01,server02,server03,server04,server05,server06" >}}
-
-This simulation is running Cumulus Linux 5.11. The Cumulus Linux 5.12 simulation is coming soon.
+    {{< simulation name="Try It CL512 - EVPN Symmetric" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,spine03,spine04,border01,border02,fw1,server01,server02,server03,server04,server05,server06" >}}
 
 The simulation starts with the example EVPN symmetric routing configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 

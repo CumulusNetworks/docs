@@ -1166,7 +1166,7 @@ cumulus@switch:~$ nv set service ptp 1 unicast-master 1
 
 ## <h>nv set service ptp \<instance-id\> unicast-master \<table-id\> address</h>
 
-Configures the IP addresses of the PTP master clocks for unicast requests. You can specify an IPv4, IPv6, or MAC address.
+Configures the IP addresses of the PTP master clocks for unicast requests. You can set a maximum of four unicast master addresses, which can be IPv4, IPv6, or MAC addresses. NVUE shows an error if you try to set more than four unicast master addresses.
 
 ### Command Syntax
 

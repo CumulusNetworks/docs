@@ -245,15 +245,16 @@ cumulus@switch:~$ nv set system telemetry router vrf RED rib export state enable
 cumulus@switch:~$ nv config apply
 ```
 
-You can adjust the sample interval (in seconds) for routing metrics. You can specify a value in multiples of 10 up to 60. The default value is 10.
+You can adjust the sample interval (in seconds) for routing metrics. You can specify a value in multiples of 10 up to 60. The default value is 30.
 
 ```
-cumulus@switch:~$ nv set system telemetry router sample-interval 30
+cumulus@switch:~$ nv set system telemetry router sample-interval 40
 cumulus@switch:~$ nv config apply
 ```
 
 {{%notice note%}}
-You can disable BGP export across all VRFs with the `nv set telemetry router bgp export state disabled` command and enable it only for specific VRFs with the `nv set telemetry router vrf <vrf-name> bgp export state enabled` command. You can also disable BGP export across all peers in a VRF with the `nv set telemetry router vrf <vrf-name> bgp export state disabled` command, and enable telemetry only for specific peers in the VRF with the `nv set telemetry router vrf <vrf-name> bgp peer <peer> export state enabled` command.
+- You can disable BGP export across all VRFs with the `nv set telemetry router bgp export state disabled` command and enable it only for specific VRFs with the `nv set telemetry router vrf <vrf-name> bgp export state enabled` command. 
+- You can also disable BGP export across all peers in a VRF with the `nv set telemetry router vrf <vrf-name> bgp export state disabled` command, and enable telemetry only for specific peers in the VRF with the `nv set telemetry router vrf <vrf-name> bgp peer <peer> export state enabled` command.
 {{%/notice%}}
 
 To show routing metrics configuration settings, run the `nv show system telemetry router` command.
@@ -272,11 +273,11 @@ To configure the open telemetry export destination:
 2. Configure an X.509 certificate to secure the gRPC connection:
 
    ```
-   cumulus@switch:~$ nv set system telemetry export otlp grpc cert-id <certificate>
+   cumulus@switch:~$ nv set system telemetry export otlp grpc cert-id <ca-certificate>
    cumulus@switch:~$ nv config apply
    ```
 
-By default, OTLP export is in **secure** mode that requires a certificate. For connections without a configured certificate, you must enable `insecure` mode with the `nv set system telemetry export otlp grpc insecure enabled` command.
+By default, OTLP export is in **secure** mode that requires a CA certificate. For connections without a configured certificate, you must enable `insecure` mode with the `nv set system telemetry export otlp grpc insecure enabled` command.
 
 ### Customize Export
 
@@ -429,6 +430,23 @@ The interface statistic data samples that the switch exports to the OTEL collect
 | `nvswitch_interface_dot3_stats_single_collision_frames` | 802.3 single collision frames counter. |
 | `nvswitch_interface_dot3_stats_sqe_test_errors` | 802.3 SQE test error counter. |
 | `nvswitch_interface_dot3_stats_symbol_errors` | 802.3 symbol error counter. |
+| `nvswitch_interface_ether_stats_pkts` | Total number of received packets (including bad, broadcast, and multicast packets). |
+| `nvswitch_interface_ether_stats_broadcast_pkts` | Total number of good packets received that were directed to the broadcast address. This does not include multicast packets.|
+| `nvswitch_interface_ether_stats_collisions` | Best estimate of the total number of collisions on this Ethernet segment. |
+| `nvswitch_interface_ether_stats_crc_align_errors` | Total number of received packets (excluding framing bits, but including FCS octets) between 64 and MTU octets, inclusive, but had either a bad frame check sequence (FCS) with an integral number of octets (FCS error) or a bad FCS with a non-integral number of octets (alignment error). |
+| `nvswitch_interface_ether_stats_drop_events` | Total number of events in which packets were dropped by the probe due to lack of resources.|
+| `nvswitch_interface_ether_stats_fragments` | Total number of received packets with less than 64 octets (excluding framing bits but including FCS octets) and that have either a bad FCS with an integral number of octets (FCS error) or a bad FCS with a non-integral number of octets (alignment error). |
+| `nvswitch_interface_ether_stats_jabbers` | Total number of received packets longer than MTU octets (excluding framing bits, but including FCS octets), and that have either a bad FCS with an integral number of octets (FCS error) or a bad FCS with a non-integral number of octets (alignment error). |
+| `nvswitch_interface_ether_stats_multicast_pkts` | Total number of good packets received that were directed to a multicast MAC address. This number does not include packets directed to the broadcast address. |
+| `nvswitch_interface_ether_stats_octets` | Total number of octets of data (including those in bad packets) received (excluding framing bits but including FCS octets). |
+| `nvswitch_interface_ether_stats_oversize_pkts` | Total number of received packets longer than MTU octets (excluding framing bits, but including FCS octets) but were otherwise well formed. |
+| `nvswitch_interface_ether_stats_undersize_pkts` | Total number of received packets with less than 64 octets (excluding framing bits, but including FCS octets) and were otherwise well formed.|
+| `nvswitch_interface_no_buffer_discard_mc` | Number of multicast packets dropped due to lack of egress buffer resources. |
+| `nvswitch_interface_rx_buffer_almost_full` | Number of events where the port rx buffer has passed a fullness threshold. |
+| `nvswitch_interface_rx_buffer_full` | Number of events where the port rx buffer has reached 100% fullness. |
+| `nvswitch_interface_rx_ebp` | Number of received EBP packets. |
+| `nvswitch_interface_tx_ebp` | Number of transmitted EBP packets. |
+| `nvswitch_interface_tx_int_cksm_err` | Counter is incremented upon packet payload internal checksum error. |
 | `nvswitch_interface_performance_marked_packets` | Interface performance marked packets, with marking as `ece` or `ecn`. |
 | `nvswitch_interface_discards_ingress_general` | Interface ingress general discards counter. |
 | `nvswitch_interface_discards_ingress_policy_engine` | Interface ingress policy engine discards counter. |
@@ -447,17 +465,17 @@ The interface statistic data samples that the switch exports to the OTEL collect
 | `nvswitch_interface_discards_egress_sll` | Interface egress switch lifetime limit discards. |
 | `nvswitch_interface_discards_ingress_discard_all` | Interface total ingress discards.| 
 | `nvswitch_interface_tx_stats_pkts64octets` | Total packets transmitted, 64 octets in length. |  
-| `nvswitch_interface_tx_stats_pkts65-to127octets` | Total packets transmitted, 64 octets in length. |	 
-| `nvswitch_interface_tx_stats_pkts256-to511octets` | Total packets transmitted, 256-511 octets in length. |  
-| `nvswitch_interface_tx_stats_pkts512-to1023octets` | Total packets transmitted, 512-1023 octets in length. |  
-| `nvswitch_interface_tx_stats_pkts1024-to1518octets` | Total packets transmitted, 1024-1518 octets in length. |  
-| `nvswitch_interface_tx_stats_pkts1519-to2047octets` | Total packets transmitted, 1519-2047 octets in length. |  
-| `nvswitch_interface_tx_stats_pkts2048-to4095octets` | Total packets transmitted, 2048-4095 octets in length. |  
-| `nvswitch_interface_tx_stats_pkts4096-to8191octets` | Total packets transmitted, 4096-8191 octets in length. |  
-| `nvswitch_interface_tx_stats_pkts8192-to10239octets` | Total packets transmitted, 8192-10239 octets in length. |  
+| `nvswitch_interface_tx_stats_pkts65to127octets` | Total packets transmitted, 65-255 octets in length. |	 
+| `nvswitch_interface_tx_stats_pkts256to511octets` | Total packets transmitted, 256-511 octets in length. |  
+| `nvswitch_interface_tx_stats_pkts512to1023octets` | Total packets transmitted, 512-1023 octets in length. |  
+| `nvswitch_interface_tx_stats_pkts1024to1518octets` | Total packets transmitted, 1024-1518 octets in length. |  
+| `nvswitch_interface_tx_stats_pkts1519to2047octets` | Total packets transmitted, 1519-2047 octets in length. |  
+| `nvswitch_interface_tx_stats_pkts2048to4095octets` | Total packets transmitted, 2048-4095 octets in length. |  
+| `nvswitch_interface_tx_stats_pkts4096to8191octets` | Total packets transmitted, 4096-8191 octets in length. |  
+| `nvswitch_interface_tx_stats_pkts8192to10239octets` | Total packets transmitted, 8192-10239 octets in length. |  
 | `nvswitch_interface_ether_stats_pkts64octets` | Total packets received, 64 octets in length. |  
 | `nvswitch_interface_ether_stats_pkts65to127octets` | Total packets received, 65-127 octets in length. |  
-| `nvswitch_interface_ether_stats_pkts128to255octets` | Total packets received, 128-255 octets in length. |  
+| `nvswitch_interface_tx_stats_pkts256to511octets` | Total packets received, 128-255 octets in length. |  
 | `nvswitch_interface_ether_stats_pkts256to511octets` | Total packets received, 256-511 octets in length. |  
 | `nvswitch_interface_ether_stats_pkts512to1023octets` | Total packets received, 512-1023 octets in length. |  
 | `nvswitch_interface_ether_stats_pkts1024to1518octets` | Total packets received, 1024-1518 octets in length. |  
@@ -501,24 +519,10 @@ The switch collects and exports the following additional interface priority grou
 
 |  Name | Description |
 |------ | ----------- |
-| `nvswitch_interface_pg_rx_buffer_discard` | Interace ingress priority group receive buffer discard counter. |
+| `nvswitch_interface_pg_rx_buffer_discard` | Interface ingress priority group receive buffer discard counter. |
 | `nvswitch_interface_pg_rx_frames` | Interface ingress priority group receive frames counter.|
 | `nvswitch_interface_pg_rx_octets` | Interface ingress priority group receive bytes counter. |
 | `nvswitch_interface_pg_rx_shared_buffer_discard` | Interface ingress priority group receive shared buffer discard counter. |
-| `nvswitch_interface_pg_rx_uc_frames` | Interface receive priority group unicast frames counter. |
-| `nvswitch_interface_pg_rx_mc_frames` | Interface receive priority group multicast frames counter. |
-| `nvswitch_interface_pg_rx_bc_frames` | Interface receive priority group broadcast frames counter. |	 	 
-| `nvswitch_interface_pg_tx_octets` | Interface receive priority group transmit bytes counter. |
-| `nvswitch_interface_pg_tx_uc_frames` | Interface receive priority group transmit unicast frames counter. |	 
-| `nvswitch_interface_pg_tx_mc_frames` | Interface receive priority group transmit multicast frames counter. |	 
-| `nvswitch_interface_pg_tx_bc_frames` | Interface receive priority group transmit broadcast frames counter. |	 
-| `nvswitch_interface_pg_tx_frames` | Interface receive priority group transmit frames counter. | 
-| `nvswitch_interface_pg_rx_pause` | Interface receive priority group receive pause counter. | 
-| `nvswitch_interface_pg_rx_pause_duration` | Interface receive priority group receive pause duration counter. |	 
-| `nvswitch_interface_pg_tx_pause` | Interface receive priority group transmit pause counter. |
-| `nvswitch_interface_pg_tx_pause_duration` | Interface receive priority group transmit pause duration counter. |	
-| `nvswitch_interface_pg_rx_pause_transition` | Interface receive priority group receive pause transition counter. |	 
-| `nvswitch_interface_pg_rx_discard` | Interface receive priority group receive discard counter. |
 
 {{< /tab >}}
 {{< tab "Switch Priority ">}}
@@ -551,12 +555,13 @@ The switch collects and exports the following additional interface statistics wh
 
 |  Name | Description |
 |------ | ----------- |
-| `nvswitch_interface_time_since_last_clear` | Number of milliseconds from the last clear counters event. |
-| `nvswitch_interface_phy_received_bits` | Total amount of traffic (bits) received. |
-| `nvswitch_interface_phy_symbol_errors` | Error bits not corrected by the FEC correction algorithm or when FEC is not active. |
-| `nvswitch_interface_phy_effective_errors` | Number of errors after FEC is applied. |
-| `nvswitch_interface_phy_raw_errors` | Error bits identified on lane 0 through lane 7. When FEC is enabled, this induction corresponds to corrected errors. |
-| `nvswitch_interface_raw-ber` | raw_ber_coef_laneX*10^(raw_ber_magnitude) |
+| `nvswitch_interface_phy_stats_phy_received_bits` | Total amount of traffic (bits) received. |
+| `nvswitch_interface_phy_stats_phy_symbol_errors` | Error bits not corrected by the FEC correction algorithm or when FEC is not active. |
+| `nvswitch_interface_phy_stats_phy_effective_errors` | Number of errors after FEC is applied. |
+| `nvswitch_interface_phy_stats_phy_raw_errors` | Error bits identified on lane 0 through lane 7. When FEC is enabled, this induction corresponds to corrected errors. |
+| `nvswitch_interface_phy_stats_raw_ber` | raw_ber_coef_laneX*10^(raw_ber_magnitude) |
+| `nvswitch_interface_phy_stats_phy_corrected_bits` | Corrected bits by FEC engine. |
+| `nvswitch_interface_phy_stats_time_since_last_clear` | Time passed since the last counters clear event in msec.|
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -635,42 +640,43 @@ The switch collects and exports the following interface and switch, buffer occup
 | `nvswitch_interface_shared_buffer_port_pg_desc_watermark` | Maximum buffer occupancy for descriptors. |
 | `nvswitch_interface_shared_buffer_port_pg_watermark_recorded_max` | Highest maximum buffer occupancy recorded since running sdk_stats. |
 | `nvswitch_interface_shared_buffer_port_pg_desc_watermark_recorded_max` | Highest maximum buffer occupancy for descriptors recorded since running sdk_stats. |
-| `nvswitch_interface_shared_buffer_ingress_pool_curr_occupancy` | Current ingress pool buffer occupancy. |
-| `nvswitch_interface_shared_buffer_ingress_pool_watermark` | Maximum ingress pool buffer occupancy. |
-| `nvswitch_interface_shared_buffer_ingress_pool_desc_curr_occupancy` | Current ingress pool buffer occupancy for descriptors. |
-| `nvswitch_interface_shared_buffer_ingress_pool_desc_watermark` | Maximum ingress pool buffer occupancy for descriptors. |
-| `nvswitch_interface_shared_buffer_ingress_pool_watermark_recorded_max` | Highest maximum ingress pool buffer occupancy recorded since running sdk_stats. |
-| `nvswitch_interface_shared_buffer_ingress_pool_desc_watermark_recorded_max` | Highest maximum ingress pool buffer occupancy for descriptors recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_port_igress_pool_curr_occupancy` | Current ingress pool buffer occupancy. |
+| `nvswitch_interface_shared_buffer_port_igress_pool_desc_curr_occupancy` | Current ingress pool buffer occupancy for descriptors. |
+| `nvswitch_interface_shared_buffer_port_ingress_pool_watermark` | Maximum ingress pool buffer occupancy. |
+| `nvswitch_interface_shared_buffer_port_ingress_pool_desc_watermark` | Maximum ingress pool buffer occupancy for descriptors. |
+| `nvswitch_interface_shared_buffer_port_ingress_pool_watermark_recorded_max` | Highest maximum ingress pool buffer occupancy recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_port_ingress_pool_desc_watermark_recorded_max` | Highest maximum ingress pool buffer occupancy for descriptors recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_tc_time_since_clear` | Time in milliseconds since the buffer watermarks were last cleared.|
 | `nvswitch_interface_shared_buffer_port_tc_curr_occupancy` | Current buffer occupancy for traffic class. |
 | `nvswitch_interface_shared_buffer_port_tc_watermark` | Maximum buffer occupancy for traffic class. |
 | `nvswitch_interface_shared_buffer_port_tc_desc_curr_occupancy` | Current buffer occupancy for descriptors. |
 | `nvswitch_interface_shared_buffer_port_tc_desc_watermark` | Maximum buffer occupancy for descriptors. |
 | `nvswitch_interface_shared_buffer_port_tc_watermark_recorded_max` | Highest maximum buffer occupancy recorded since running sdk_stats. |
 | `nvswitch_interface_shared_buffer_port_tc_desc_watermark_recorded_max` | Highest maximum buffer occupancy for TC descriptors recorded since running sdk_stats. |
-| `nvswitch_interface_shared_buffer_egress_pool_curr_occupancy` | Current egress pool buffer occupancy. |
-| `nvswitch_interface_shared_buffer_egress_pool_watermark` | Maximum egress pool buffer occupancy. |
-| `nvswitch_interface_shared_buffer_egress_pool_desc_curr_occupancy` | Current egress pool buffer occupancy for descriptors. |
-| `nvswitch_interface_shared_buffer_egress_pool_desc_watermark` | Maximum egress pool buffer occupancy for descriptors. |
-| `nvswitch_interface_shared_buffer_egress_pool_watermark_recorded_max` | Highest maximum egress pool buffer occupancy recorded since running sdk_stats. |
-| `nvswitch_interface_shared_buffer_egress_pool_desc_watermark_recorded_max` | Highest maximum egress pool buffer occupancy for pool desc recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_port_egress_pool_curr_occupancy` | Current egress pool buffer occupancy. |
+| `nvswitch_interface_shared_buffer_port_egress_pool_watermark` | Maximum egress pool buffer occupancy. |
+| `nvswitch_interface_shared_buffer_port_egress_pool_desc_curr_occupancy` | Current egress pool buffer occupancy for descriptors. |
+| `nvswitch_interface_shared_buffer_port_egress_pool_desc_watermark` | Maximum egress pool buffer occupancy for descriptors. |
+| `nvswitch_interface_shared_buffer_port_egress_pool_watermark_recorded_max` | Highest maximum egress pool buffer occupancy recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_port_egress_pool_desc_watermark_recorded_max` | Highest maximum egress pool buffer occupancy for pool desc recorded since running sdk_stats. |
 | `nvswitch_interface_shared_buffer_mc_port_curr_occupancy`  | Current buffer occupancy for multicast port. |
 | `nvswitch_interface_shared_buffer_mc_port_watermark` | Maximum buffer occupancy for multicast port. |
-| `nvswitch_interface_shared_buffer_mc_port_watermark_max` | Highest maximum buffer occupancy for multicast port recorded since running sdk_stats. |
+| `nvswitch_interface_shared_buffer_mc_port_watermark_recorded_max` | Highest maximum buffer occupancy for multicast port recorded since running sdk_stats. |
 | `nvswitch_shared_buffer_mc_sp_curr_occupancy` | Current buffer occupancy for multicast switch priority. |
 | `nvswitch_shared_buffer_mc_sp_watermark` | Maximum buffer occupancy for multicast switch priority. |
-| `nvswitch_shared_buffer_mc_sp_watermark_max` | Highest maximum buffer occupancy for multicast switch priority recorded since running sdk_stats. |
+| `nvswitch_shared_buffer_mc_sp_watermark_recorded_max` | Highest maximum buffer occupancy for multicast switch priority recorded since running sdk_stats. |
 | `nvswitch_shared_buffer_pool_curr_occupancy` | Current pool buffer occupancy. |
 | `nvswitch_shared_buffer_pool_watermark` | Maximum pool buffer occupancy |
-| `nvswitch_shared_buffer_pool_watermark_max` | Highest maximum pool buffer occupancy for multicast switch priority recorded since running sdk_stats. |
+| `nvswitch_shared_buffer_pool_watermark_recorded_max` | Highest maximum pool buffer occupancy for multicast switch priority recorded since running sdk_stats. |
 | `nvswitch_interface_headroom_buffer_pg_curr_occupancy` | Current headroom buffer occupancy for port buffer. |
 | `nvswitch_interface_headroom_buffer_pg_watermark` | Maximum pool headroom buffer occupancy for port buffer. |
 | `nvswitch_interface_headroom_buffer_pg_watermark_recorded_max` | Highest maximum headroom buffer occupancy for port buffer recorded since running sdk_stats. |
-| `nvswitch_interface_headroom_buffer_shared_curr_occupancy` | Current headroom buffer occupancy for port shared buffer. |
-| `nvswitch_interface_headroom_shared_buffer_shared_watermark` | Maximum headroom buffer occupancy for port shared buffer. |
-| `nvswitch_interface_headroom_shared_buffer_shared_watermark_recorded_max` | Highest maximum headroom buffer occupancy for port shared buffer recorded since running sdk_stats. |
-| `nvswitch_interface_headroom_buffer_shared_pool_curr_occupancy` | Current headroom buffer occupancy for port shared pool buffer |
-| `nvswitch_interface_headroom_shared_buffer_shared_pool_watermark` | Maximum headroom buffer occupancy for port shared pool buffer. |
-| `nvswitch_interface_headroom_shared_buffer_shared_pool_watermark_recorded_max` | Highest maximum headroom buffer occupancy for port shared pool buffer. |
+| `nvswitch_interface_headroom_shared_buffer_curr_occupancy` | Current headroom buffer occupancy for port shared buffer. |
+| `nvswitch_interface_headroom_shared_buffer_watermark` | Maximum headroom buffer occupancy for port shared buffer. |
+| `nvswitch_interface_headroom_shared_buffer_watermark_recorded_max` | Highest maximum headroom buffer occupancy for port shared buffer recorded since running sdk_stats. |
+| `nvswitch_interface_headroom_pool_curr_occupancy` | Current headroom buffer occupancy for port shared pool buffer |
+| `nvswitch_interface_headroom_pool_watermark` | Maximum headroom buffer occupancy for port shared pool buffer. |
+| `nvswitch_interface_headroom_pool_watermark_recorded_max` | Highest maximum headroom buffer occupancy for port shared pool buffer. |
 
 ### Control Plane Statistic Format
 

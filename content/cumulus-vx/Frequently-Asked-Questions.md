@@ -41,9 +41,7 @@ Try {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/ai
 - For Cumulus VX 4.1.1 and earlier, log in to each switch with the `cumulus` account and default password `CumulusLinux!`. You are **not** prompted to change the default password.
 - For Cumulus VX 4.2 and later, log in to each switch with the `cumulus` account and default password `cumulus`. When you log in for the first time, the OS prompts you to change the default password.
 
-<!-- vale off -->
 ### Why do I see the error br0: received package on swp1 with own address as source address?
-<!-- vale on -->
 
 If you intend to bridge the switch ports in the VM, place each switch port in the bridge in its own virtual network on the host. Otherwise, you might see this error:
 

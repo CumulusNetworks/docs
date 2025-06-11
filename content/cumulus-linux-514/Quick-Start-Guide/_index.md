@@ -149,9 +149,21 @@ To show the configured domain name, run the `nv show system dns` command.
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-```
-cumulus@switch:~$ 
-```
+1. In the `/etc/hosts` file, add the domain to the IP address 127.0.1.1 and hostname:
+
+    ```
+    cumulus@switch:~$ sudo nano /etc/hosts
+    ...
+    127.0.1.1       leaf01.nvidia.com leaf01
+    ```
+
+2. In the `/etc/profile` file, add the domain:
+
+   ```
+   cumulus@switch:~$ sudo nano /etc/profile
+   ...
+   domain nvidia.com
+   ```
 
 {{< /tab >}}
 {{< /tabs >}}

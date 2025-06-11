@@ -49,12 +49,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4423320</td>
-<td>When you configure BGP {{suppress-fib-pending}}, the prefix might not be withdrawn from downstream peers.</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4423285</td>
 <td>SVIs do not go down even when all the bridge ports on the corresponding VLAN are down. This issue occurs because the {{vlan-bridge-binding}} option default setting is off for all the SVIs responsible for bringing down the SVI when all the ports on the corresponding VLAN are down. To work around this issue, manually configure the {{vlan-bridge-binding on}} option under the SVI stanza in the {{/etc/network/interfaces config}} file.</td>
 <td>5.11.0-5.13.1</td>
@@ -94,6 +88,14 @@
 <td>4408387</td>
 <td>BGP crashes during EVPN route install due to incorrect memory access.</td>
 <td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4404955</td>
+<td>On the NVIDIA SN2201 switch, the fan tray LED status update fails and you see the following syslog errors:
+systemd-udevd116276: mlxreg:fan1:green: Process ‘/usr/bin/hw-management-chassis-events.sh fantray-led-event mlxreg:fan1:green 255’ failed with exit code 1.
+To work around this issue, restart the {{hw-management}} service with the {{sudo systemctl restart hw-management}} command.</td>
+<td>5.7.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -327,6 +329,12 @@ The interface shows "screaming" emojis and "Could not render." </td>
 <td>4298584</td>
 <td>The Spectrum-4 switch reports a {{Modules DataPath FSM fault}} in logs when the link fails at polling.</td>
 <td>5.10.1-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4294156</td>
+<td>After you clear the RoCE counters with the {{nv action clear interface &lt;interface-id&gt; qos roce counters}} command, the {{buffer-max-usage}} counters in the {{nv show interface &lt;interface-id&gt; qos roce counters}} command output shows the same value.</td>
+<td>5.12.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1127,12 +1135,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>4423320</td>
-<td>When you configure BGP {{suppress-fib-pending}}, the prefix might not be withdrawn from downstream peers.</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4423285</td>
 <td>SVIs do not go down even when all the bridge ports on the corresponding VLAN are down. This issue occurs because the {{vlan-bridge-binding}} option default setting is off for all the SVIs responsible for bringing down the SVI when all the ports on the corresponding VLAN are down. To work around this issue, manually configure the {{vlan-bridge-binding on}} option under the SVI stanza in the {{/etc/network/interfaces config}} file.</td>
 <td>5.11.0-5.13.1</td>
@@ -1172,6 +1174,14 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>4408387</td>
 <td>BGP crashes during EVPN route install due to incorrect memory access.</td>
 <td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4404955</td>
+<td>On the NVIDIA SN2201 switch, the fan tray LED status update fails and you see the following syslog errors:
+systemd-udevd116276: mlxreg:fan1:green: Process ‘/usr/bin/hw-management-chassis-events.sh fantray-led-event mlxreg:fan1:green 255’ failed with exit code 1.
+To work around this issue, restart the {{hw-management}} service with the {{sudo systemctl restart hw-management}} command.</td>
+<td>5.7.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1406,6 +1416,12 @@ The interface shows "screaming" emojis and "Could not render." </td>
 <td>The Spectrum-4 switch reports a {{Modules DataPath FSM fault}} in logs when the link fails at polling.</td>
 <td>5.10.1-5.11.0, 5.12.0</td>
 <td>5.11.1, 5.12.1-5.13.1</td>
+</tr>
+<tr>
+<td>4294156</td>
+<td>After you clear the RoCE counters with the {{nv action clear interface &lt;interface-id&gt; qos roce counters}} command, the {{buffer-max-usage}} counters in the {{nv show interface &lt;interface-id&gt; qos roce counters}} command output shows the same value.</td>
+<td>5.12.0-5.13.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4291993</td>

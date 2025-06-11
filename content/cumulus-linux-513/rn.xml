@@ -13,12 +13,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4474931</td>
-<td>The switch does not send out ERSPAN copies if the ERSPAN destination IP address is reachable over the MLAG peerlink.</td>
-<td>5.13.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4474924</td>
 <td>The {{nv config show -o commands}} command displays numbered BGP neighbors in IP address range format; however, the {{nv set}} commands fail for BGP numbered neighbors configured in IP address ranges.</td>
 <td>5.13.0-5.13.1</td>
@@ -847,12 +841,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <tr>
 <td>4482933</td>
 <td>The {{age}} and {{last-update}} counters in the {{nv show bridge domain &lt;domain-id&gt; mac-table}} command output are reversed. The {{last-update}} counter shows {{age}} data and the {{age}} counter shows {{last-update}} data. Cumulus Linux uses the {{age}} timer to determine when to remove an old MAC entry.</td>
-<td>5.13.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4474931</td>
-<td>The switch does not send out ERSPAN copies if the ERSPAN destination IP address is reachable over the MLAG peerlink.</td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>

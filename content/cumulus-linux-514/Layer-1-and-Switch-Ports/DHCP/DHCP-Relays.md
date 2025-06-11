@@ -88,7 +88,7 @@ cumulus@leaf01:~$ sudo systemctl restart dhcrelay-nvidia-servers-1-mgmt.service
 - For every instance of a DHCP relay in a non-default VRF, you need to create a separate default file in the `/etc/default` directory. See {{<link url="Virtual-Routing-and-Forwarding-VRF/#dhcp-with-vrf" text="DHCP with VRF">}}.
 {{%/notice%}}
 
-<!-->
+<!--
 To set up DHCP relay, you need to provide the IP address of the DHCP server and the interfaces participating in DHCP relay (facing the server and facing the client). In an MLAG configuration, you must also specify the peerlink interface in case the local uplink interfaces fail.
 
 In the example commands below:

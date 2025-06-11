@@ -7,6 +7,24 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4482933</td>
+<td>The {{age}} and {{last-update}} counters in the {{nv show bridge domain &lt;domain-id&gt; mac-table}} command output are reversed. The {{last-update}} counter shows {{age}} data and the {{age}} counter shows {{last-update}} data. Cumulus Linux uses the {{age}} timer to determine when to remove an old MAC entry.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4474924</td>
+<td>The {{nv config show -o commands}} command displays numbered BGP neighbors in IP address range format; however, the {{nv set}} commands fail for BGP numbered neighbors configured in IP address ranges.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4469349</td>
+<td>When you try to import an invalid server certificate file, Cumulus Linux does not import the certificate file but fails to show an error message.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4461102</td>
 <td>In certain cases, when a port is down and you apply adaptive routing with the link-utilization-threshold setting to the port as it goes up, you might see in log errors while the port is not yet up.</td>
 <td>5.11.0-5.13.1</td>
@@ -26,8 +44,34 @@ with multiple optics, which can impact link stability and performance.</td>
 <td></td>
 </tr>
 <tr>
+<td>4458873</td>
+<td>The SN5610 switch records a High FEC Bin Error at room temperature.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4457165</td>
+<td>When a spine switch reboots and comes back online, leaf switches might cause prolonged convergence times due to premature traffic forwarding. The leaf switch immediately begins ECMP load-balancing traffic to the recovered spine before the spine has fully programmed its routing tables, resulting in traffic blackholing during the spine's route convergence process.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4449947</td>
 <td>The {{nv config patch}} and {{nv config replace}} commands have no effect with filenames with relative paths, such as {{./config.yaml}}, {{../config.yaml},  and so on.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4447794</td>
+<td>The gNMI value for the sensor alarm-status shows incorrectly. For a raised alarm, the alarm-status is {{True(1)}}  but normally functioning sensors also show {{True(1)}}.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4447661</td>
+<td>During link down events affecting a subset of local links, {{switchd}} might observe extra route deletions due to timing mismatches between Zebra and kernel processing of Next Hop Group (NHG) changes. Routes should transition directly from one NHG to another, but instead get temporarily deleted and reinstalled, causing unnecessary churn. Zebra logs might show {{Extended Error: Nexthop id does not exist}} messages during partial link down scenarios.
+
+</td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
@@ -35,12 +79,6 @@ with multiple optics, which can impact link stability and performance.</td>
 <td>4447419</td>
 <td>Users with {{nv show}} privileges only can still execute the {{nv config apply}} and related commands.</td>
 <td>5.9.2-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4443870</td>
-<td>When you use the NVUE {{nv config patch}} command to apply 30k or more prefixes, the {{/var/}} directory fills up  and you see error messages.</td>
-<td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -52,6 +90,12 @@ with multiple optics, which can impact link stability and performance.</td>
 <tr>
 <td>4438933</td>
 <td>When gNMI subscription and configuration changes to an interface occur simultaneously, the interface statistics process can crash and leave a core file. </td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4438061</td>
+<td>Trusted CA key names and literals do not have a size limit, which can result in buffer overflow risks.</td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
@@ -104,32 +148,8 @@ with multiple optics, which can impact link stability and performance.</td>
 <td></td>
 </tr>
 <tr>
-<td>4423176</td>
-<td>When you configure an API port with a TCP port already in use, the {{nginx}} server fails to restart.</td>
-<td>5.13.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4423175</td>
 <td>When you configure an API port with a TCP port already in use, the {{nginx}} server fails to restart.</td>
-<td>5.13.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4423167</td>
-<td>Zebra might crash when multiple interfaces flap rapidly with a large scale number of routes. This issue occurs because the next hop group hash comparison incorrectly treats distinct next hop groups as equal. I addition, the hashing logic currently uses only four bytes of the IPv6 address, which increases the likelihood of collisions and misidentification.  Avoid rapidly flapping multiple interfaces when managing large scale routes.</td>
-<td>5.13.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4422899</td>
-<td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables (around 800K prefixes), the process consumes excessive memory resulting in OOM crashes. </td>
-<td>5.13.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4417191</td>
-<td>The first update value for the gNMI {{interfaces/interface/state/counters/out-pkts}} metric always shows 0 for every subscription.</td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
@@ -155,6 +175,14 @@ with multiple optics, which can impact link stability and performance.</td>
 <td>4408387</td>
 <td>BGP crashes during EVPN route install due to incorrect memory access.</td>
 <td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4404955</td>
+<td>On the NVIDIA SN2201 switch, the fan tray LED status update fails and you see the following syslog errors:
+systemd-udevd116276: mlxreg:fan1:green: Process ‘/usr/bin/hw-management-chassis-events.sh fantray-led-event mlxreg:fan1:green 255’ failed with exit code 1.
+To work around this issue, restart the {{hw-management}} service with the {{sudo systemctl restart hw-management}} command.</td>
+<td>5.7.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -216,6 +244,12 @@ The interface shows "screaming" emojis and "Could not render." </td>
 <td>4308857</td>
 <td>When you use {{tls_crlcheck}} in the {{/etc/nslcd.conf}} file, the optional {{nslcd}} service fails due to a missing library.</td>
 <td>5.9.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4294156</td>
+<td>After you clear the RoCE counters with the {{nv action clear interface &lt;interface-id&gt; qos roce counters}} command, the {{buffer-max-usage}} counters in the {{nv show interface &lt;interface-id&gt; qos roce counters}} command output shows the same value.</td>
+<td>5.12.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -805,6 +839,24 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4482933</td>
+<td>The {{age}} and {{last-update}} counters in the {{nv show bridge domain &lt;domain-id&gt; mac-table}} command output are reversed. The {{last-update}} counter shows {{age}} data and the {{age}} counter shows {{last-update}} data. Cumulus Linux uses the {{age}} timer to determine when to remove an old MAC entry.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4474924</td>
+<td>The {{nv config show -o commands}} command displays numbered BGP neighbors in IP address range format; however, the {{nv set}} commands fail for BGP numbered neighbors configured in IP address ranges.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4469349</td>
+<td>When you try to import an invalid server certificate file, Cumulus Linux does not import the certificate file but fails to show an error message.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4461102</td>
 <td>In certain cases, when a port is down and you apply adaptive routing with the link-utilization-threshold setting to the port as it goes up, you might see in log errors while the port is not yet up.</td>
 <td>5.11.0-5.13.1</td>
@@ -824,8 +876,34 @@ with multiple optics, which can impact link stability and performance.</td>
 <td></td>
 </tr>
 <tr>
+<td>4458873</td>
+<td>The SN5610 switch records a High FEC Bin Error at room temperature.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4457165</td>
+<td>When a spine switch reboots and comes back online, leaf switches might cause prolonged convergence times due to premature traffic forwarding. The leaf switch immediately begins ECMP load-balancing traffic to the recovered spine before the spine has fully programmed its routing tables, resulting in traffic blackholing during the spine's route convergence process.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4449947</td>
 <td>The {{nv config patch}} and {{nv config replace}} commands have no effect with filenames with relative paths, such as {{./config.yaml}}, {{../config.yaml},  and so on.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4447794</td>
+<td>The gNMI value for the sensor alarm-status shows incorrectly. For a raised alarm, the alarm-status is {{True(1)}}  but normally functioning sensors also show {{True(1)}}.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4447661</td>
+<td>During link down events affecting a subset of local links, {{switchd}} might observe extra route deletions due to timing mismatches between Zebra and kernel processing of Next Hop Group (NHG) changes. Routes should transition directly from one NHG to another, but instead get temporarily deleted and reinstalled, causing unnecessary churn. Zebra logs might show {{Extended Error: Nexthop id does not exist}} messages during partial link down scenarios.
+
+</td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
@@ -833,12 +911,6 @@ with multiple optics, which can impact link stability and performance.</td>
 <td>4447419</td>
 <td>Users with {{nv show}} privileges only can still execute the {{nv config apply}} and related commands.</td>
 <td>5.9.2-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4443870</td>
-<td>When you use the NVUE {{nv config patch}} command to apply 30k or more prefixes, the {{/var/}} directory fills up  and you see error messages.</td>
-<td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -864,6 +936,12 @@ with multiple optics, which can impact link stability and performance.</td>
 <td>Available file descriptors might reduce due to incorrect handing in NVUE error paths causing NVUE requests to fail. To work around this issue, restart the NVUE service.</td>
 <td>5.13.0</td>
 <td>5.13.1</td>
+</tr>
+<tr>
+<td>4438061</td>
+<td>Trusted CA key names and literals do not have a size limit, which can result in buffer overflow risks.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4427224</td>
@@ -905,12 +983,6 @@ with multiple optics, which can impact link stability and performance.</td>
 <td>4423335</td>
 <td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
 <td>5.9.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4423320</td>
-<td>When you configure BGP {{suppress-fib-pending}}, the prefix might not be withdrawn from downstream peers.</td>
-<td>5.11.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -974,32 +1046,8 @@ with multiple optics, which can impact link stability and performance.</td>
 <td></td>
 </tr>
 <tr>
-<td>4423176</td>
-<td>When you configure an API port with a TCP port already in use, the {{nginx}} server fails to restart.</td>
-<td>5.13.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4423175</td>
 <td>When you configure an API port with a TCP port already in use, the {{nginx}} server fails to restart.</td>
-<td>5.13.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4423167</td>
-<td>Zebra might crash when multiple interfaces flap rapidly with a large scale number of routes. This issue occurs because the next hop group hash comparison incorrectly treats distinct next hop groups as equal. I addition, the hashing logic currently uses only four bytes of the IPv6 address, which increases the likelihood of collisions and misidentification.  Avoid rapidly flapping multiple interfaces when managing large scale routes.</td>
-<td>5.13.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4422899</td>
-<td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables (around 800K prefixes), the process consumes excessive memory resulting in OOM crashes. </td>
-<td>5.13.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4417191</td>
-<td>The first update value for the gNMI {{interfaces/interface/state/counters/out-pkts}} metric always shows 0 for every subscription.</td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
@@ -1025,6 +1073,14 @@ with multiple optics, which can impact link stability and performance.</td>
 <td>4408387</td>
 <td>BGP crashes during EVPN route install due to incorrect memory access.</td>
 <td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4404955</td>
+<td>On the NVIDIA SN2201 switch, the fan tray LED status update fails and you see the following syslog errors:
+systemd-udevd116276: mlxreg:fan1:green: Process ‘/usr/bin/hw-management-chassis-events.sh fantray-led-event mlxreg:fan1:green 255’ failed with exit code 1.
+To work around this issue, restart the {{hw-management}} service with the {{sudo systemctl restart hw-management}} command.</td>
+<td>5.7.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1104,6 +1160,12 @@ The interface shows "screaming" emojis and "Could not render." </td>
 <td>4298584</td>
 <td>The Spectrum-4 switch reports a {{Modules DataPath FSM fault}} in logs when the link fails at polling.</td>
 <td>5.10.1-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4294156</td>
+<td>After you clear the RoCE counters with the {{nv action clear interface &lt;interface-id&gt; qos roce counters}} command, the {{buffer-max-usage}} counters in the {{nv show interface &lt;interface-id&gt; qos roce counters}} command output shows the same value.</td>
+<td>5.12.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1741,6 +1803,11 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>4403127</td>
 <td>When you use BGP prefix independent convergence (PIC) with IPv6, {{cl-route-check}} might show errors due to a discrepancy in the IPv4-mapped IPv6 SOO route string format across FRR and the kernel. This is a display-only issue and has no impact on routing functionality.</td>
 <td>5.12.0-5.12.1</td>
+</tr>
+<tr>
+<td>4397962</td>
+<td>When you configure an API port with a TCP port already in use, the {{nginx}} server fails to restart.</td>
+<td></td>
 </tr>
 <tr>
 <td>4391413</td>

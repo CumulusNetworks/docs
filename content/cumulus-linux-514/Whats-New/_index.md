@@ -28,8 +28,8 @@ Cumulus Linux 5.14.0 supports new platforms, provides bug fixes, and contains se
 - grpc header based and http based authentication
 - gNMI requirements phase 4
 - MRC:
-  - {{<link url="Quality-of-Service/#configure-mrc-with-default-settings" text="Packet trimming and SRv6">}}
-  - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#mrc-qos-profile" text="New QoS profile for MRC">}}
+  - {{<link url="Quality-of-Service/#mrc-packet-trimming" text="Packet trimming">}}
+  - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#mrc-qos-profile" text="New QoS profile for packet trimming">}}
   - {{<link url="Quality-of-Service/#asymmetric-packet-trimming" text="Packet trimming with asymmetric DSCP">}}
 - NVUE
   - {{<link url="Troubleshooting-EVPN/#show-evpn-vnis" text="Commands to show EVPN information across all VRFs">}}

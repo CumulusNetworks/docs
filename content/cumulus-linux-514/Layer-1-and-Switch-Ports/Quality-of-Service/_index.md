@@ -949,6 +949,9 @@ cos_egr_queue.cos_7.uc  = 7
 
 Multipathing is achieved through the use of SRv6. Packets are tunneled from the source NIC to the destination NIC through the switch fabric using SRv6 micro segment identifiers (uSIDs). The SRv6 origination and termination is on the NIC and the switches merely act as SRv6-aware (transit) nodes.
 
+Cumulus Linux supports MRC on the NVIDIA SN5610 and SN5640 switch only.
+
+
 - SRv6 uSID support with uN (END_CSID ) and uA (End.X_CSID ) endpoints
 - Packet trimming
 - Asymmetric packet trimming
@@ -1073,7 +1076,7 @@ If you set `qos roce mode lossy-multi-tc`, you do not need to configure the pack
 
 To configure packet trimming:
 - Set the packet trimming profile to `packet-trim-default`.
-- Set the forwarding port used for recirculating the trimmed packets to egress the interface (NVIDIA Spectrum-4 switch only). If you do not configure a service port, Cumulus Linux uses the last service port in on the switch.
+- Set the forwarding port used for recirculating the trimmed packets to egress the interface (NVIDIA SN5610 switch only). If you do not configure a service port, Cumulus Linux uses the last service port in on the switch.
 - Set the maximum size of the trimmed packet.
 - Set the DSCP value to be marked on the trimmed packets.
 - Egress port and traffic-class from which dropped traffic is trimmed.

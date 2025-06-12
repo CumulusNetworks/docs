@@ -1354,22 +1354,8 @@ cumulus@switch:~$ sudo cat /etc/cumulus/ports.conf
 ```
 
 {{%notice note%}}
-
 To disable the QSFP+ ports, you must set the ports to `disabled`. Do not comment out the lines as this prevents `switchd` from restarting.
-
 {{%/notice%}}
-
-### 1000BASE-T SFP Modules Supported Only on Certain 25G Platforms
-
-1000BASE-T SFP modules are supported on only the following 25G platforms:
-
-- Cumulus Express CX-5148-S and the Edgecore AS7326-56X, provided the switch has board revision R01D (to determine the revision of the board, look for the output in the `label revision` field when you run `decode-syseeprom`)
-- Dell S5248F-ON
-- NVIDIA Spectrum SN2410
-- NVIDIA Spectrum SN2010
-<!-- - NVIDIA Spectrum SN3420-->
-
-1000BASE-T SFP modules are not supported on any 100G or faster platforms.
 
 ### NVIDIA Spectrum SN2100 Switch and eth0 Link Speed
 

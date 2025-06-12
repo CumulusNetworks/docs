@@ -1070,7 +1070,7 @@ You can view a specific route with the `nv show vrf <vrf> router rib ipv6 route 
 If you do not want to use the QoS profile `lossy-multi-tc` to enable packet trimming with the recommended QoS settings as shown above, you can configure the packet trimming settings you want to use.
 
 To configure packet trimming:
-- Set the packet trimming profile to `packet-trim-default`.
+- Set the packet trimming profile.
 - Set the forwarding port used for recirculating the trimmed packets to egress the interface (NVIDIA SN5610 switch only). If you do not configure a service port, Cumulus Linux uses the last service port in on the switch.
 - Set the maximum size of the trimmed packet.
 - Set the DSCP value to be marked on the trimmed packets.
@@ -1079,7 +1079,7 @@ To configure packet trimming:
 - Enable packet trimming.
 
 ```
-cumulus@switch:~$ nv set system forwarding packet-trim profile packet-trim-default
+cumulus@switch:~$ nv set system forwarding packet-trim profile packet-trim-profile1
 cumulus@switch:~$ nv set system forwarding packet-trim service-port swp65
 cumulus@switch:~$ nv set system forwarding packet-trim remark dscp 10
 cumulus@switch:~$ nv set system forwarding packet-trim size 528
@@ -1110,13 +1110,29 @@ No Data
 
 ### Asymmetric Packet Trimming
 
-Use asymmetric packet trimming to mark trimmed packets differently based on the outgoing port. By default, all trimmed packets are remarked with the same DSCP value, but you can use a different DSCP value for trimmed packets sent out through different ports. For example, you can use DSCP 21 to send trimmed packets to hosts but DSCP 11 to send trimmed packets to the uplink (spine switch). This allows the destination NIC to know where congestion occurs; on downlinks to servers or in the fabric.
+Use asymmetric packet trimming to mark trimmed packets differently based on the outgoing port. By default, all trimmed packets are remarked with the same DSCP value, but you can use a different DSCP value for trimmed packets sent out through different ports. For example, you can use DSCP 21 to send trimmed packets to hosts but DSCP 11 to send trimmed packets to the uplink (spine). This allows the destination NIC to know where congestion occurs; on downlinks to servers or in the fabric.
 
 To achieve asymmetric DSCP for trimmed packets, you set a dedicated switch priority value for trimmed packets and define a switch priority to DSCP rewrite mapping for each egress interface.
 
 Cumulus Linux supports asymmetric packet trimming on the Spectrum-4 and Spectrum-5 switch.
 
+The following example configures asymmetric packet trimming on the downlink to hosts (on leaf01) with the default packet trimming settings (using `lossy-multi-tc`), which creates the following port profiles automatically:
+- `lossy-multi-tc-host-group` with DSCP remark set to 21 for switch priority 4.
+- `lossy-multi-tc-network-group` with DSCP remark set to 11 for switch priority 4.
 
+```
+cumulus@leaf01:~$ nv set qos roce mode lossy-multi-tc
+cumulus@leaf01:~$ nv set system forwarding packet-trim remark dscp port-level
+cumulus@leaf01:~$ nv set interface swp17-32 qos remark profile lossy-multi-tc-host-group 
+cumulus@leaf01:~$ nv set interface swp1-16 qos remark profile lossy-multi-tc-network-group
+cumulus@leaf01:~$ nv config apply
+```
+
+On the uplink (spine01), enable the default packet trimming settings:
+
+```
+cumulus@spine01:~$ nv set qos roce mode lossy-multi-tc
+```
 
 ## Egress Scheduler
 

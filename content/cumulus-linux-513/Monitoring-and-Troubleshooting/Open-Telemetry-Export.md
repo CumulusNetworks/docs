@@ -3205,21 +3205,14 @@ When you enable layer 3 routing metrics telemetry, the switch exports the follow
 | `nvrouting_bgp_peer_socket_out_queue` | Number of messages queued to be sent to the BGP neighbor.|
 | `nvrouting_bgp_peer_rx_updates` | Number of BGP messages received from the neighbor.|
 | `nvrouting_bgp_peer_tx_updates` | Number of BGP messages sent to the neighbor. |
-| `nvrouting_rib_count` | Number of IPv4 and IPv6 routes in the IP routing table for each route source. |
-| `nvrouting_rib_count_connected` | Number of IPv4 connected routes in the IP routing table. |
-| `nvrouting_rib_count_bgp` | Number of IPv4 BGP routes in the IP routing table. |
-| `nvrouting_rib_count_kernel` | Number of IPv4 kernel routes in the IP routing table.|
-| `nvrouting_rib_count_static` | Number of IPv4 static routes in the IP routing table. |
-| `nvrouting_rib_count_pbr` | Number of IPv4 PBR routes in the IP routing table. |
-| `nvrouting_rib_count_ospf` | Number of IPv4 OSPF routes in the IP routing table. |
-| `nvrouting_rib_count_connected_ipv6` | Number of IPv6 connected routes in the IP routing table. |
-| `nvrouting_rib_count_bgp_ipv6` | Number of IPv6 BGP routes in the IP routing table. |
-| `nvrouting_rib_count_kernel_ipv6` | Number of IPv6 kernel routes in the IP routing table. |
-| `nvrouting_rib_count_static_ipv6` | Number of IPv6 static routes in the IP routing table. |
-| `nvrouting_rib_count_pbr_ipv6` | Number of IPv6 PBR routes in the IP routing table. |
-| `nvrouting_rib_count_ospf_ipv6` | Number of IPv6 OSPF routes in the IP routing table. |
+| `nvrouting_rib_count` | Number of IPv4 and IPv6 routes in the IP routing table for each route source and protocol. |
 | `nvrouting_rib_nhg_count` | Number of next hop groups in the routing table. |
 <!-- vale off -->
+
+{{%notice note%}}
+Cumulus Linux 5.13 consolidates the `nvrouting_rib_count_<protocol>` metrics from Cumulus Linux 5.12 under `nvrouting_rib_count`.
+{{%/notice%}}
+
 {{< expand "Example JSON data for nvrouting_bgp_peer_state:" >}}
 ```
 {

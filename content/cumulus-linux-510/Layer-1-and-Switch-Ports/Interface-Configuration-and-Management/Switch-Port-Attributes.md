@@ -2009,20 +2009,6 @@ If auto-negotiation is on and you set the link speed for a port, Cumulus Linux d
 
 When you connect an NVIDIA Spectrum-4 switch to another NVIDIA Spectrum-4 switch with PAM4 modulation, you must enable auto-negotiation.
 
-<!--
-When you use copper cables to connect an NVIDIA Spectrum-4 switch to another NVIDIA Spectrum-4 switch with PAM4 modulation, you must enable auto-negotiation.
--->
-
-### 1000BASE-T SFP Modules Supported Only on Certain 25G Platforms
-<!-- vale on -->
-The following  25G switches support 1000BASE-T SFP modules:
-
-- NVIDIA SN2410
-- NVIDIA SN2010
-<!-- - NVIDIA SN3420-->
-
-100G or faster switches do not support 1000BASE-T SFP modules.
-
 ### NVIDIA SN2100 Switch and eth0 Link Speed
 
 After rebooting the NVIDIA SN2100 switch, eth0 always has a speed of 100MB per second. If you bring the interface down and then back up again, the interface negotiates 1000MB. This only occurs the first time the interface comes up.

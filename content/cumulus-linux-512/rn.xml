@@ -333,7 +333,7 @@ The interface shows "screaming" emojis and "Could not render." </td>
 </tr>
 <tr>
 <td>4294156</td>
-<td>After you clear the RoCE counters with the {{nv action clear interface &lt;interface-id&gt; qos roce counters}} command, the {{buffer-max-usage}} counters in the {{nv show interface &lt;interface-id&gt; qos roce counters}} command output shows the same value.</td>
+<td>After you clear the RoCE counters with the {{nv action clear interface &lt;interface-id&gt; qos roce counters}} command, the {{buffer-max-usage}} counters in the {{nv show interface &lt;interface-id&gt; qos roce counters}} command output do not show updated (cleared) values.</td>
 <td>5.12.0-5.13.1</td>
 <td></td>
 </tr>
@@ -1419,7 +1419,7 @@ The interface shows "screaming" emojis and "Could not render." </td>
 </tr>
 <tr>
 <td>4294156</td>
-<td>After you clear the RoCE counters with the {{nv action clear interface &lt;interface-id&gt; qos roce counters}} command, the {{buffer-max-usage}} counters in the {{nv show interface &lt;interface-id&gt; qos roce counters}} command output shows the same value.</td>
+<td>After you clear the RoCE counters with the {{nv action clear interface &lt;interface-id&gt; qos roce counters}} command, the {{buffer-max-usage}} counters in the {{nv show interface &lt;interface-id&gt; qos roce counters}} command output do not show updated (cleared) values.</td>
 <td>5.12.0-5.13.1</td>
 <td></td>
 </tr>

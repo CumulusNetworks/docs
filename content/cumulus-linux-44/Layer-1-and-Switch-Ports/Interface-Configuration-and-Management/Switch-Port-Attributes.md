@@ -1653,18 +1653,6 @@ When configuring port speed or break outs in the `/etc/cumulus/ports.conf` file,
 
 If you change the port speed in the `/etc/cumulus/ports.conf` file but the speed for that port is also in the `/etc/network/interfaces` file, after you edit the `/etc/cumulus/ports.conf` file and restart `switchd`, you must also run the `ifreload -a` command.
 
-<!-- vale off -->
-<!-- Vale issue #253 -->
-### 1000BASE-T SFP Modules Supported Only on Certain 25G Platforms
-<!-- vale on -->
-The following  25G switches support 1000BASE-T SFP modules:
-
-- NVIDIA SN2410
-- NVIDIA SN2010
-<!-- - NVIDIA SN3420-->
-
-100G or faster switches do not support 1000BASE-T SFP modules.
-
 ### NVIDIA SN2100 Switch and eth0 Link Speed
 
 After rebooting the NVIDIA SN2100 switch, eth0 always has a speed of 100Mb/s. If you bring the interface down and then back up again, the interface negotiates 1000Mb. This only occurs the first time the interface comes up.

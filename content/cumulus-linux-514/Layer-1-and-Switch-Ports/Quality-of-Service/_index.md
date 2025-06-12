@@ -943,25 +943,39 @@ cos_egr_queue.cos_7.uc  = 7
 {{< /tab >}}
 {{< /tabs >}}
 
-## MRC
+## MRC Packet Trimming
 
 <span class="a-tooltip">[MRC](## "Multipath Reliable Connection")</span> is an improvement over RoCEv2 to enhance performance in lossy environments and extend the RC transport for scalability and performance for AI and <span class="a-tooltip">[ML](## "machine learning")</span> applications over lossy networks. Some of these enhancements include allowing packets to be transmitted over multiple logical paths in the network and rapid detection and retransmission of delayed, unacknowledged, and trimmed packets.
 
-Multipathing is achieved through the use of SRv6. Packets are tunneled from the source NIC to the destination NIC through the switch fabric using SRv6 micro segment identifiers (uSIDs). The SRv6 origination and termination is on the NIC and the switches merely act as SRv6-aware (transit) nodes.
+Spectrum implements switch shared buffers and enables flexible partitioning of shared buffers for different flows and ports as well as separation of lossy and lossless traffic. For lossy packet, if a packet in the headroom does not move into the switch shared buffers due to congestion in the lossy queue, then it is dropped. The lossy packet gets dropped without any notification to the destination host.
 
-Cumulus Linux supports MRC on the NVIDIA SN5610 and SN5640 switch only.
+When a packet is lost, it can be recovered through fast retransmission or by using timeouts. Retransmission triggered by timeouts typically incurs significant latency. Packet trimming aims to facilitate rapid packet loss notification and, consequently, eliminate slow timeout-based retransmissions.
 
+With packet trimming, a switch can remove parts of the packet (such as the payload) instead of dropping it when the buffer is full.
 
-- SRv6 uSID support with uN (END_CSID ) and uA (End.X_CSID ) endpoints
-- Packet trimming
-- Asymmetric packet trimming
+Packet trimming retains network forwarding and transport essential information, allowing the host to quickly detect and react to congestion. This allows congestion information to be communicated to the receiver even on congested networks. 
 
-### Configure MRC with Default Settings
+Multipathing is achieved through the use of SRv6. Packets are tunneled from the source NIC to the destination NIC through the switch fabric using SRv6 micro segment identifiers (uSIDs). The SRv6 origination and termination is on the NIC and the switches merely act as SRv6-aware (transit) nodes. Cumulus Linux provides SRv6 uSID support with uN (END_CSID ) and uA (End.X_CSID ) endpoints.
 
-To configure MRC to use the default settings for packet trimming and SRv6:
+Cumulus Linux supports packet trimming on the NVIDIA SN5610 and SN5640 switch only.
+
+- Cumulus Linux supports packet Trimming on physical ports only and for IPv4 or IPv6 traffic.
+- The length and checksum fields in the IP header are not recalculated after trimming
+by hardware and have no valid values.
+- ISSU is not supported.
+- Bonds for egress eligibility are not supported.
+- You cannot trim the following packet types:
+  - VXLAN packets
+  - Adaptive Routing Notification Packets (ARN)
+  - Congestion Notification Packets (CNP)
+  - Flooding and MC packets
+
+### Configure Packet Trimming with Default Settings
+
+To configure MRC to use the default settings for packet trimming:
 - Set the MRC QoS profile.
 - Enable SRv6.
-- Configure the SRv6 endpoint by setting a locator and a uSID associated with the locator.
+- Configure the SRv6 endpoint by setting a locator.
 
 ```
 cumulus@switch:~$ nv set router segment-routing srv6 state enabled
@@ -970,8 +984,6 @@ cumulus@switch:~$ nv set router segment-routing srv6 locator LOC2 block-length 3
 cumulus@switch:~$ nv set router segment-routing srv6 locator LOC2 func-length 0
 cumulus@switch:~$ nv set router segment-routing srv6 locator LOC2 node-length 16
 cumulus@switch:~$ nv set router segment-routing srv6 locator LOC2 prefix fcbb:bbbb:2::/48
-cumulus@switch:~$ nv set router segment-routing srv6 static-sid fcbb:bbbb:2::/48 behavior uN
-cumulus@switch:~$ nv set router segment-routing srv6 static-sid fcbb:bbbb:2::/48 locator-name LOC2
 cumulus@switch:~$ nv config apply
 ```
 
@@ -982,67 +994,57 @@ Cumulus Linux only supports an SF3216 format (block-len(32) and node-len(16)).
 To show the default QoS `lossy-multi-tc` profile settings, run the `nv show qos roce` command:
 
 ```
-cumulus@switch:~$ nv show qos roce
-operational         applied
-------------------  -------------- --------------
-enable on           on
-mode lossy-multi-tc lossy-multi-tc
-pfc
-pfc-priority         -
-congestion-control
-congestion-mode ECN
-enabled-tc 1,2,3
-min-threshold 159.18 KB
-max-threshold 237.30 KB
-probability 100
-trust
-trust-mode pcp,dscp
+cumulus@switch:~$                     operational     applied       
+------------------  --------------  --------------
+enable              on              on            
+mode                lossy-multi-tc  lossy-multi-tc
+pfc                                               
+  pfc-priority      -                             
+congestion-control                                
+  congestion-mode   ECN                           
+  enabled-tc        1,2,3                         
+  min-threshold     159.18 KB                     
+  max-threshold     237.30 KB                     
+  probability       100                           
+trust                                             
+  trust-mode        pcp,dscp                      
 
 RoCE PCP/DSCP->SP mapping configurations
 ===========================================
-pcp dscp
-switch-prio
-- --- -------------------------------------------------------------------
------------- -----------
-0 0
-0,7,8,9,10,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63
-0
-1 1 1,2
-1
-2 2 3,4
-2
-3 3 5,6
-3
-4 4 11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30
-4
-5 5 31,32,33,34,35,36,37,38,39,40
-5
-6 6 -
-6
-7 7 -
-7
+       pcp  dscp                                                                                       switch-prio
+    -  ---  -----------------------------------------------------------------------------------------  -----------
+    0  0    0,7,8,9,10,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63            0          
+    1  1    1,2                                                                                        1          
+    2  2    3,4                                                                                        2          
+    3  3    5,6                                                                                        3          
+    4  4    11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40  4          
+    5  5    -                                                                                          5          
+    6  6    -                                                                                          6          
+    7  7    -                                                                                          7          
 
 RoCE SP->TC mapping and ETS configurations
 =============================================
-
-switch-prio traffic-class scheduler-weight
-- ----------- ------------- ----------------
-0 0 0 DWRR-4%
-1 1 1 DWRR-8%
-2 2 2 DWRR-18%
-3 3 3 DWRR-22%
-4 4 4 DWRR-22%
-5 5 5 DWRR-22%
-6 6 6 DWRR-4%
-7 7 7 DWRR-0%
+       switch-prio  traffic-class  scheduler-weight
+    -  -----------  -------------  ----------------
+    0  0            0              DWRR-4%         
+    1  1            1              DWRR-8%         
+    2  2            2              DWRR-18%        
+    3  3            3              DWRR-22%        
+    4  4            4              DWRR-22%        
+    5  5            5              DWRR-22%        
+    6  6            6              DWRR-4%         
+    7  7            7              DWRR-0%         
 
 RoCE pool config
 ===================
-name mode size switch-priorities traffic-class
-- --------------------- ------- ---- ----------------- ---------------
-0 lossy-default-ingress Dynamic 100% 0,1,2,3,4,5,6,7 -
-2 lossy-default-egress Dynamic 100% - Exception List
-================
+       name                   mode     size  switch-priorities  traffic-class  
+    -  ---------------------  -------  ----  -----------------  ---------------
+    0  lossy-default-ingress  Dynamic  100%  0,1,2,3,4,5,6,7    -              
+    2  lossy-default-egress   Dynamic  100%  -                  0,1,2,3,4,5,6,7
+
+Exception List
+=================
+No Data
 ```
 
 SRv6 endpoints are installed as IPv6 routes into the RIB and FIB. To show SRv6 endpoints, view the
@@ -1050,36 +1052,29 @@ IPv6 RIB with the `nv show vrf <vrf> router rib ipv6 route` command.
 
 ```
 cumulus@switch:~$ nv show vrf default router rib ipv6 route
-routeFlags - * - selected, q - queued,
-o - offloaded, i - installed, S - fib-selected, x – failed
-Route Protocol Distance Uptime NHGId Metric Flags-
---------------- --------- -------- -------------------- ----- ------ -----
-3ffe::1:0/112 connected 0 2025-04-30T20:36:32Z 315 0
-*Sio3ffe::1:1/128 local 0 2025-04-30T20:36:32Z 315 0
-*Sio3ffe::11:0/112 connected 0 2025-04-30T20:36:25Z 234 0
-*Sio3ffe::11:1/128 local 0 2025-04-30T20:36:25Z 234 0
-*Sio3ffe::22:0/112 connected 0 2025-04-30T20:36:27Z 311 0
-*Sio3ffe::22:1/128 local 0 2025-04-30T20:36:27Z 311 0
-*Sio::/0 static 1 2025-04-30T20:36:25Z 237 0
-*Sifcbb:bbbb:2::/48 static 1 2025-04-30T21:56:00Z 319 0 *Si
+
+Flags - * - selected, q - queued, o - offloaded, i - installed, S - fib-
+selected, x - failed
+
+Route      Protocol   Distance  Uptime                NHGId  Metric  Flags
+---------  ---------  --------  --------------------  -----  ------  -----
+fe80::/64  connected  0         2025-06-12T12:17:27Z  15     0       i    
+           connected  0         2025-06-12T12:17:27Z  16     0       i    
+           connected  0         2025-06-12T12:17:26Z  12     0       *Si  
 ```
 
 You can view a specific route with the `nv show vrf <vrf> router rib ipv6 route <route-id>` command.
 
-### Packet Trimming
+### Packet Trimming with Custom Settings
 
-If you do not want to use the MRC QoS profile `lossy-multi-tc` to enable packet trimming with the recommended QoS settings as shown above, you can configure the packet trimming settings you want to use.
-
-{{%notice note%}}
-If you set `qos roce mode lossy-multi-tc`, you do not need to configure the packet trimming settings.
-{{%/notice%}}
+If you do not want to use the QoS profile `lossy-multi-tc` to enable packet trimming with the recommended QoS settings as shown above, you can configure the packet trimming settings you want to use.
 
 To configure packet trimming:
 - Set the packet trimming profile to `packet-trim-default`.
 - Set the forwarding port used for recirculating the trimmed packets to egress the interface (NVIDIA SN5610 switch only). If you do not configure a service port, Cumulus Linux uses the last service port in on the switch.
 - Set the maximum size of the trimmed packet.
 - Set the DSCP value to be marked on the trimmed packets.
-- Egress port and traffic-class from which dropped traffic is trimmed.
+- Set the Egress port and traffic-class from which dropped traffic is trimmed.
 - Set the egress traffic class on which to send the trimmed packet.
 - Enable packet trimming.
 
@@ -1087,7 +1082,7 @@ To configure packet trimming:
 cumulus@switch:~$ nv set system forwarding packet-trim profile packet-trim-default
 cumulus@switch:~$ nv set system forwarding packet-trim service-port swp65
 cumulus@switch:~$ nv set system forwarding packet-trim remark dscp 10
-cumulus@switch:~$ nv set system forwarding packet-trim size 128
+cumulus@switch:~$ nv set system forwarding packet-trim size 528
 cumulus@switch:~$ nv set system forwarding packet-trim traffic-class 4
 cumulus@switch:~$ nv set interface swp1-3 packet-trim egress-eligibility traffic-class 1
 cumulus@switch:~$ nv set system forwarding packet-trim state enabled
@@ -1098,41 +1093,30 @@ To show packet trimming configuration, run the `nv show system forwarding packet
 
 ```
 cumulus@switch:~$ nv show system forwarding packet-trim
-              applied
--------------  -----------
-remark
-  dscp         10
-state          enabled
-size           128
-profile        adaptive-rc
-traffic-class  4
-service-port   swp65
+                operational  applied            
+-------------  -----------  -------------------
+state                       enabled            
+profile                     packet-trim-default
+service-port                swp65              
+size                        528                
+traffic-class               4                  
+remark                                         
+  dscp                      10
 
-eligiblity-egress-interface-tc
-=================================
-    Interface  TC
-    ---------  --
-    swp1       1
-               2
-    swp2       1
-               2
+Egress Eligibility TC-to-Interface Information
+=================================================
+No Data
 ```
-
-- Cumulus Linux supports packet Trimming on physical ports only and for IPv4 or IPv6 traffic.
-- The length and checksum fields in the IP header are not recalculated after trimming
-by hardware and have no valid values.
-- Mutual exclusive with Tail-Drop mirroring and WRED.
-- ISSU is not supported.
-- Bonds for egress eligibility are not supported.
-- You cannot trim the following packet types:
-  - Encap or Decap (VXLAN packets)
-  - Adaptive Routing Notification Packets (ARN)
-  - Congestion Notification Packets (CNP)
-  - Flooding and MC packets
 
 ### Asymmetric Packet Trimming
 
-Cumulus Linux supports symmetric packet trimming on the Spectrum-4 and Spectrum-5 switch.
+Use asymmetric packet trimming to mark trimmed packets differently based on the outgoing port. By default, all trimmed packets are remarked with the same DSCP value, but you can use a different DSCP value for trimmed packets sent out through different ports. For example, you can use DSCP 21 to send trimmed packets to hosts but DSCP 11 to send trimmed packets to the uplink (spine switch). This allows the destination NIC to know where congestion occurs; on downlinks to servers or in the fabric.
+
+To achieve asymmetric DSCP for trimmed packets, you set a dedicated switch priority value for trimmed packets and define a switch priority to DSCP rewrite mapping for each egress interface.
+
+Cumulus Linux supports asymmetric packet trimming on the Spectrum-4 and Spectrum-5 switch.
+
+
 
 ## Egress Scheduler
 

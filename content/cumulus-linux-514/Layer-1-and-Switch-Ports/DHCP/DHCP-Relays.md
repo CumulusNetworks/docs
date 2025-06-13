@@ -22,7 +22,6 @@ To set up DHCP relay, configure:
 - The DHCP relay host facing (downstream) interface for the server group.
 
 {{%notice note%}}
-- In an MLAG configuration, you must also specify the peerlink interface in case the local uplink interfaces fail.
 - Server groups do not support IPv6.
 - A server group must contain at least one upstream and one downstream interface.
 {{%/notice%}}
@@ -33,7 +32,7 @@ To set up DHCP relay, configure:
 ```
 cumulus@leaf01:~$ nv set service dhcp-relay mgmt server-group nvidia-servers-1 server 172.16.1.102,172.16.1.104
 cumulus@leaf01:~$ nv set service dhcp-relay mgmt server-group nvidia-servers-1 upstream-interface swp51-52
-cumulus@leaf01:~$ nv set service dhcp-relay mgmt downstream-interface vlan10,peerlink.4094 server-group-name nvidia-servers-1
+cumulus@leaf01:~$ nv set service dhcp-relay mgmt downstream-interface vlan10 server-group-name nvidia-servers-1
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -68,7 +67,7 @@ In the `/etc/default` directory, create a file with the name of the server group
 ```
 cumulus@leaf01:~$ sudo nano /etc/default/isc-dhcp-relay-default-nvidia-servers-1-mgmt.conf 
 SERVERS="172.16.1.102,172.16.1.104"
-INTF_CMD="-i vlan10 -i swp51 -i swp52 -i peerlink.4094"
+INTF_CMD="-i vlan10 -i swp51 -i swp52"
 OPTIONS=""
 ```
 
@@ -107,7 +106,7 @@ In the example commands below:
 cumulus@leaf01:~$ nv set service dhcp-relay default interface swp51
 cumulus@leaf01:~$ nv set service dhcp-relay default interface swp52
 cumulus@leaf01:~$ nv set service dhcp-relay default interface vlan10
-cumulus@leaf01:~$ nv set service dhcp-relay default interface peerlink.4094
+cumulus@leaf01:~$ nv set service dhcp-relay default interface
 cumulus@leaf01:~$ nv set service dhcp-relay default server 172.16.1.102
 cumulus@leaf01:~$ nv config apply
 ```
@@ -119,7 +118,7 @@ cumulus@leaf01:~$ nv config apply
 cumulus@leaf01:~$ nv set service dhcp-relay6 default interface upstream swp51 server-address 2001:db8:100::2
 cumulus@leaf01:~$ nv set service dhcp-relay6 default interface upstream swp52 server-address 2001:db8:100::2
 cumulus@leaf01:~$ nv set service dhcp-relay6 default interface downstream vlan10
-cumulus@leaf01:~$ nv set service dhcp-relay6 default interface downstream peerlink.4094
+cumulus@leaf01:~$ nv set service dhcp-relay6 default interface downstream
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -137,7 +136,7 @@ cumulus@leaf01:~$ nv config apply
    ```
    cumulus@leaf01:~$ sudo nano /etc/default/isc-dhcp-relay-default
    SERVERS="172.16.1.102"
-   INTF_CMD="-i vlan10 -i swp51 -i swp52 -i peerlink.4094"
+   INTF_CMD="-i vlan10 -i swp51 -i swp52"
    OPTIONS=""
    ```
 
@@ -156,7 +155,7 @@ cumulus@leaf01:~$ nv config apply
    ```
    cumulus@leaf01:$ sudo nano /etc/default/isc-dhcp-relay6-default
    SERVERS=" -u 2001:db8:100::2%swp51 -u 2001:db8:100::2%swp52"
-   INTF_CMD="-l vlan10 -l peerlink.4094"
+   INTF_CMD="-l vlan10"
    ```
 
 2. Enable, then restart the `dhcrelay6` service so that the configuration persists between reboots:
@@ -197,15 +196,15 @@ To configure DHCP Agent Information Option 82:
 The following example enables Option 82 and enables circuit ID to inject the *physical switch port* on which the relayed DHCP discover packet arrives instead of the SVI:
 
 ```
-cumulus@leaf01:~$ nv set service dhcp-relay <vrf-id> agent state enabled
-cumulus@leaf01:~$ nv set service dhcp-relay <vrf-id> agent use-pif-circuit-id state enabled
+cumulus@leaf01:~$ nv set service dhcp-relay default agent state enabled
+cumulus@leaf01:~$ nv set service dhcp-relay default agent use-pif-circuit-id state enabled
 cumulus@leaf01:~$ nv config apply
 ```
 
 The following example enables Option 82 and sets the remote ID to be MAC address 44:38:39:BE:EF:AA. The remote ID is a custom string (up to 255 characters in length).
 
 ```
-cumulus@leaf01:~$ nv set service dhcp-relay <vrf-id> agent state enabled
+cumulus@leaf01:~$ nv set service dhcp-relay default agent state enabled
 cumulus@leaf01:~$ nv set service dhcp-relay default agent remote-id 44:38:39:BE:EF:AA
 cumulus@leaf01:~$ nv config apply
 ```
@@ -492,30 +491,31 @@ The following example:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set vrf RED loopback ip address 2001:db8:666::1/128
-cumulus@leaf01:~$ nv set service dhcp-relay6 RED interface downstream vlan10
-cumulus@leaf01:~$ nv set service dhcp-relay6 RED interface downstream vlan20
-cumulus@leaf01:~$ nv set service dhcp-relay6 RED interface upstream RED server-address 2001:db8:199::2
-cumulus@leaf01:~$ nv set service dhcp-relay6 RED interface upstream vlan4024_l3
-cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv6-unicast route-export to-evpn enable on
+cumulus@leaf01:~$ nv set vrf RED loopback ip address 20.20.20.1/32
+cumulus@leaf01:~$ nv set service dhcp-relay RED interface vlan10
+cumulus@leaf01:~$ nv set service dhcp-relay RED interface vlan20
+cumulus@leaf01:~$ nv set service dhcp-relay RED interface vlan4024_l3
+cumulus@leaf01:~$ nv set service dhcp-relay RED server 10.1.10.104
+cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn enable on
 cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-1. Edit the `/etc/network/interfaces` file to configure VRF RED with IPv6 address 2001:db8:666::1/128:
+1. Edit the `/etc/network/interfaces` file to configure VRF RED with IP address 20.20.20.1/32
 
    ```
    cumulus@leaf01:mgmt:~$ sudo nano /etc/network/interfaces
    ...
    auto RED
    iface RED
-           address 2001:db8:666::1/128
+           address 20.20.20.1/32
            vrf-table auto
    ```
 
-2. Configure VRF RED to advertise the connected routes so that the loopback IPv6 address is reachable:
+2. Configure VRF RED to advertise the connected routes so that the loopback IP address is reachable:
 
    ```
    cumulus@leaf01:mgmt:~$ sudo vtysh 
@@ -523,7 +523,7 @@ cumulus@leaf01:~$ nv config apply
    leaf01# configure terminal
    leaf01(config)# router bgp 65101 vrf RED
    leaf01(config-router)# address-family l2vpn evpn
-   leaf01(config-router-af)# advertise ipv6 unicast 
+   leaf01(config-router-af)# advertise ipv4 unicast 
    leaf01(config-router-af)# end
    leaf01# write memory
    ```
@@ -536,35 +536,35 @@ cumulus@leaf01:~$ nv config apply
     bgp router-id 10.10.10.1
    ..
     !
-    address-family ipv6 unicast
+    address-family ipv4 unicast
      redistribute connected
      maximum-paths 64
      maximum-paths ibgp 64
     exit-address-family
     !
     address-family l2vpn evpn
-     advertise ipv6 unicast
+     advertise ipv4 unicast
     exit-address-family
    exit
    ```
 
-3. Edit the `/etc/default/isc-dhcp-relay6-RED` file.
+3. Edit the `/etc/default/isc-dhcp-relay-RED` file.
 
-   - Set the `-l ` option to the VLANs that receive DHCP requests from hosts.
+   - Set the `-i` option to the VLANs that receive DHCP requests from hosts.
    - Set the `<ip-address-dhcp-server>%<interface-facing-dhcp-server>` option to associate the DHCP Server with VRF RED.
    - Set the `-u` option to indicate where the switch receives replies from the DHCP server (SVI vlan4024_l3).
 
    ```
-   cumulus@leaf01:mgmt:~$ sudo nano /etc/default/isc-dhcp-relay6-RED
+   cumulus@leaf01:mgmt:~$ sudo nano /etc/default/isc-dhcp-relay-RED
    INTF_CMD="-l vlan10 -l vlan20"
-   SERVERS="-u 2001:db8:199::2%RED -u vlan4024_l3"
+   SERVERS="-u 20.20.20.1/32%RED -u vlan4024_l3"
    ```
 
 4. Start and enable the DHCP service so that it starts automatically the next time the switch boots:
 
    ```
-   sudo systemctl start dhcrelay6@RED.service
-   sudo systemctl enable dhcrelay6@RED.service
+   sudo systemctl start dhcrelay@RED.service
+   sudo systemctl enable dhcrelay@RED.service
    ```
 
 {{< /tab >}}
@@ -617,7 +617,7 @@ To configure this setting back to the default (where the source IP address of th
 
 {{< /tab >}}
 {{< /tabs >}}
-
+<!--
 ### Configure Multiple DHCP Relays
 
 Cumulus Linux supports multiple DHCP relay daemons on a switch to enable relaying of packets from different bridges to different upstream interfaces.
@@ -653,7 +653,7 @@ To configure multiple DHCP relay daemons on a switch:
    ```
    cumulus@leaf01:~$ sudo systemctl start dhcrelay@<dhcp-name>
    ```
-
+-->
 ## Troubleshooting
 
 This section provides troubleshooting tips.

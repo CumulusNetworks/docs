@@ -957,7 +957,7 @@ Packet trimming retains network forwarding and transport essential information, 
 
 Multipathing is achieved through the use of SRv6. Packets are tunneled from the source NIC to the destination NIC through the switch fabric using SRv6 micro segment identifiers (uSIDs). The SRv6 origination and termination is on the NIC and the switches merely act as SRv6-aware (transit) nodes. Cumulus Linux provides SRv6 uSID support with uN (END_CSID ) and uA (End.X_CSID ) endpoints.
 
-Cumulus Linux supports packet trimming on the NVIDIA SN5610 and SN5640 switch only.
+Cumulus Linux supports packet trimming on the Spectrum-4 and Spectrum-5 switch.
 
 - Cumulus Linux supports packet Trimming on physical ports only and for IPv4 or IPv6 traffic.
 - The length and checksum fields in the IP header are not recalculated after trimming
@@ -972,14 +972,14 @@ by hardware and have no valid values.
 
 ### Configure Packet Trimming with Default Settings
 
-To configure MRC to use the default settings for packet trimming:
-- Set the MRC QoS profile.
+To configure packet trimming with the default settings:
+- Set the `lossy-multi-tc` QoS profile.
 - Enable SRv6.
 - Configure the SRv6 endpoint by setting a locator.
 
 ```
-cumulus@switch:~$ nv set router segment-routing srv6 state enabled
 cumulus@switch:~$ nv set qos roce mode lossy-multi-tc
+cumulus@switch:~$ nv set router segment-routing srv6 state enabled
 cumulus@switch:~$ nv set router segment-routing srv6 locator LOC2 block-length 32
 cumulus@switch:~$ nv set router segment-routing srv6 locator LOC2 func-length 0
 cumulus@switch:~$ nv set router segment-routing srv6 locator LOC2 node-length 16
@@ -1051,16 +1051,15 @@ SRv6 endpoints are installed as IPv6 routes into the RIB and FIB. To show SRv6 e
 IPv6 RIB with the `nv show vrf <vrf> router rib ipv6 route` command.
 
 ```
-cumulus@switch:~$ nv show vrf default router rib ipv6 route
+cumulus@switch:~$ nv show vrf mgmt router rib ipv6 route
 
 Flags - * - selected, q - queued, o - offloaded, i - installed, S - fib-
 selected, x - failed
 
 Route      Protocol   Distance  Uptime                NHGId  Metric  Flags
 ---------  ---------  --------  --------------------  -----  ------  -----
-fe80::/64  connected  0         2025-06-12T12:17:27Z  15     0       i    
-           connected  0         2025-06-12T12:17:27Z  16     0       i    
-           connected  0         2025-06-12T12:17:26Z  12     0       *Si  
+::/0       kernel     255       2025-06-12T19:57:59Z  12     8192    *Si  
+fe80::/64  connected  0         2025-06-12T19:57:59Z  9      0       *Si  
 ```
 
 You can view a specific route with the `nv show vrf <vrf> router rib ipv6 route <route-id>` command.

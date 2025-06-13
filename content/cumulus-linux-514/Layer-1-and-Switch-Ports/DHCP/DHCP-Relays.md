@@ -17,7 +17,7 @@ In Cumulus Linux 5.13 and earlier, DHCP relay does not use server groups, but in
 {{%/notice%}}
 
 To set up DHCP relay, configure:
-- A server group that contains at least one DHCP server for a specific VRF. Add multiple DHCP servers for load balancing and HA.
+- A server group that contains at least one DHCP server for a specific VRF.
 - The DHCP relay server facing (upstream) interface for the server group. You can specify multiple interfaces. With NVUE, separate each interface with a comma (swp2,3,5). You can also use a range of interfaces (swp51-54). For Linux commands, separate each interface with a space (-i swp51 -i swp52).
 - The DHCP relay host facing (downstream) interface for the server group.
 
@@ -50,7 +50,7 @@ cumulus@leaf01:~$ nv unset service dhcp-relay mgmt server-group nvidia-servers-1
 cumulus@leaf01:~$ nv config apply
 ```
 
-- When you unset servers, upstream interfaces, or downstream interfaces in a server group, at least one server, upstream interface, or downstream interface must remain.
+- When you unset the servers, upstream, or downstream interfaces in a server group but at least one server, upstream, or downstream interface must remain.
 - You cannot unset a server group if it is associated with a downstream and upstream interface. Unset the downstream and upstream interface first with the `nv unset service dhcp-relay <vf> upstream-interface <interface-id>` and `nv unset service dhcp-relay <vf> downstream-interface <interface-id>` command.
 
 {{< /tab >}}
@@ -82,7 +82,7 @@ cumulus@leaf01:~$ sudo systemctl restart dhcrelay-nvidia-servers-1-mgmt.service
 {{< /tabs >}}
 
 {{%notice note%}}
-- To configure a VLAN interface, specify the VLAN ID, not the parent bridge. For example, specify *vlan10*, not the bridge *bridge1*.
+- To configure a VLAN interface, specify the VLAN ID, not the parent bridge. In the example above, you specify *vlan10*, not the bridge *bridge1*.
 - When you configure DHCP relay with VRR, the DHCP relay client must run on the SVI; not on the -v0 interface.
 - For every instance of a DHCP relay in a non-default VRF, you need to create a separate default file in the `/etc/default` directory. See {{<link url="Virtual-Routing-and-Forwarding-VRF/#dhcp-with-vrf" text="DHCP with VRF">}}.
 {{%/notice%}}
@@ -473,7 +473,7 @@ cumulus@leaf01:~$ nv config apply
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
+
 ### DHCP Relay for IPv6 in an EVPN Symmetric Environment
 
 For IPv6 DHCP relay in a symmetric routing environment, you must assign a unique IPv6 address to the non-default VRF interfaces that participate in DHCP relay. Cumulus Linux uses this IPv6 address as the source address when sending packets to the DHCP server and the DHCP server replies to this address.
@@ -570,7 +570,7 @@ cumulus@leaf01:~$ nv config apply
 
 {{< /tab >}}
 {{< /tabs >}}
--->
+
 ### Gateway IP Address as Source IP for Relayed DHCP Packets (Advanced)
 
 You can configure the `dhcrelay` service to forward IPv4 (only) DHCP packets to a DHCP server and ensure that the source IP address of the relayed packet is the same as the gateway IP address. By default, the source IP address of the relayed packet is from a layer 3 interface on the switch using normal routing methods.
@@ -655,8 +655,11 @@ To configure multiple DHCP relay daemons on a switch:
    cumulus@leaf01:~$ sudo systemctl start dhcrelay@<dhcp-name>
    ```
 -->
+## Troubleshooting
 
-## Show DHCP Relay Configuration
+This section provides troubleshooting tips.
+
+### Show DHCP Relay Status
 
 To show the DHCP relay status:
 
@@ -674,77 +677,6 @@ cumulus@leaf01:~$ nv show service dhcp-relay
   default             interface:        swp52
   default             interface:        vlan10
   default             server:    172.16.1.102
-```
-
-To show the server groups configured on the switch, run the `nv show service dhcp-relay <vrf> server-group` command:
-
-```
-cumulus@leaf01:~$ nv show service dhcp-relay mgmt server-group 
-Server Group       Servers        Upstream interface 
-------------       ---------      ------------------ 
-nvidia-servers-1   172.16.1.102   swp51-52 
-                   172.16.1.104 
-nvidia-servers-2   172.16.1.106   swp11,13 
-                   172.16.1.108
-```
-
-To show the DHCP servers associated with a server group, run the `nv show service dhcp-relay <vrf> server-group <server-group> server` command:
-
-```
-cumulus@leaf01:~$ nv show service dhcp-relay mgmt server-group nvidia-servers-1 server 
-DHCP Server IP 
--------------- 
-172.16.1.102 
-172.16.1.104
-```
-
-To show the upstream interfaces associated with a server group, run the `nv show service dhcp-relay <vrf> server-group <server-group> upstream-interface` command:
-
-```
-cumulus@leaf01:~$ nv show service dhcp-relay mgmt server-group nvidia-servers-1 upstream-interface 
-Interface 
---------- 
-swp51 
-swp52
-```
-
-To show downstream interface configuration, run the `nv show service dhcp-relay <vrf> downstream-interface` command:
-
-```
-cumulus@leaf01:~$ nv show service dhcp-relay mgmt downstream-interface 
-Interface      server-group-name 
----------      ----------------- 
-vlan10         nvidia-servers-1
-```
-
-To show the server group name associated with a downstream-interface, run the `nv show service dhcp-relay <vrf> downstream-interface <interface>` command:
-
-```
-cumulus@leaf01:~$ nv show service dhcp-relay default downstream-interface vlan10 
-                   operational          applied 
------------------  -----------          ------- 
-server-group-name  nvidia-servers-1     nvidia-servers-1
-```
-
-To show DHCP Agent Information Option 82, run the `nv show service dhcp-relay <vrf> agent` command:
-
-```
-cumulus@leaf01:~$ nv show service dhcp-relay default agent 
-                    operational            applied 
-------------------  -----------            ------- 
-state               enabled                enabled 
-remote-id           44:38:39:BE:EF:AA      44:38:39:BE:EF:AA 
-use-pif-circuit-id 
-  state             enabled                enabled
-```
-
-To show if DHCP Agent Information Option 82 is enabled, run the `nv show service dhcp-relay <vrf> agent use-pif-circuit-id` command:
-
-```
-cumulus@leaf01:~$ nv show service dhcp-relay default agent use-pif-circuit-id 
-       operational  applied 
------  -----------  ------- 
-state  enabled      enabled
 ```
 
 {{< /tab >}}
@@ -771,7 +703,7 @@ cumulus@leaf01:~$ sudo systemctl status dhcrelay@default.service
 {{< /tab >}}
 {{< /tabs >}}
 
-## Troubleshooting
+### Check systemd
 
 If you are experiencing issues with DHCP relay, check if there is a problem with `systemd:`
 
@@ -813,7 +745,7 @@ Dec 05 21:08:55 leaf01 dhcrelay[6152]: sending upstream swp51
 
 ### Configuration Errors
 
-If you configure DHCP relays by editing configuration files manually, you can introduce configuration errors that cause the switch to crash.
+If you configure DHCP relays by editing the `/etc/default/isc-dhcp-relay-default` file manually, you can introduce configuration errors that cause the switch to crash.
 
 For example, if you see an error similar to the following, check that there is no space between the DHCP server address and the interface you use as the uplink.
 
@@ -822,7 +754,7 @@ Core was generated by /usr/sbin/dhcrelay --nl -d -i vx-40 -i vlan10 10.0.0.4 -U 
 Program terminated with signal SIGSEGV, Segmentation fault.
 ```
 
-To resolve the issue, manually edit the configuration file to remove the space, then run the `systemctl restart dhcrelay-<server-group>-<vrf>.service` command to restart the `dhcrelay` service and apply the configuration change.
+To resolve the issue, manually edit the `/etc/default/isc-dhcp-relay-default` file to remove the space, then run the `systemctl restart dhcrelay@default.service` command to restart the `dhcrelay` service and apply the configuration change.
 
 ## Considerations
 

@@ -975,7 +975,9 @@ by hardware and have no valid values.
 To configure packet trimming with the default settings:
 - Set the `lossy-multi-tc` QoS profile.
 - Enable SRv6.
-- Configure the SRv6 endpoint by setting a locator.
+- Configure the SRv6 endpoints. You can configure static SIDs manually, allowing for explicit control over traffic flow, or dynamic SIDs by configuring a locator.
+
+The following example enables the `lossy-multi-tc` QoS profile, enables SRv6, and configures dynamic SIDs by configuring a locator:
 
 ```
 cumulus@switch:~$ nv set qos roce mode lossy-multi-tc
@@ -991,10 +993,97 @@ cumulus@switch:~$ nv config apply
 Cumulus Linux only supports an SF3216 format (block-len(32) and node-len(16)).
 {{%/notice%}}
 
+The following example enables the `lossy-multi-tc` QoS profile, enables SRv6, and configures static SIDs:
+
+```
+cumulus@switch:~$ nv set qos roce mode lossy-multi-tc
+cumulus@switch:~$ nv set router segment-routing srv6 state enabled
+cumulus@switch:~$ nv set router segment-routing static srv6-sid 2001:db8:1:1::100/48 locator-name LOC1   
+cumulus@switch:~$ nv set router segment-routing static srv6-sid 2001:db8:1:1::100/48 uA-uN 
+cumulus@switch:~$ nv set router segment-routing static srv6-sid 2001:db8:1:1::100/48 interface swp1 
+cumulus@switch:~$ nv config apply
+```
+
+{{%notice note%}}
+You set the interface for uA only.
+{{%/notice%}}
+
+### Packet Trimming with Custom Settings
+
+If you do not want to use the QoS profile `lossy-multi-tc` to enable packet trimming with the recommended QoS settings as shown above, you can configure the packet trimming settings you want to use.
+
+To configure packet trimming:
+- Set the packet trimming profile.
+- Set the forwarding port used for recirculating the trimmed packets to egress the interface (NVIDIA SN5610 switch only). If you do not configure a service port, Cumulus Linux uses the last service port in on the switch.
+- Set the maximum size of the trimmed packet.
+- Set the DSCP value to be marked on the trimmed packets.
+- Set the Egress port and traffic-class from which dropped traffic is trimmed.
+- Set the egress traffic class on which to send the trimmed packet.
+- Enable packet trimming.
+
+```
+cumulus@switch:~$ nv set system forwarding packet-trim profile packet-trim-profile1
+cumulus@switch:~$ nv set system forwarding packet-trim service-port swp65
+cumulus@switch:~$ nv set system forwarding packet-trim remark dscp 10
+cumulus@switch:~$ nv set system forwarding packet-trim size 528
+cumulus@switch:~$ nv set system forwarding packet-trim traffic-class 4
+cumulus@switch:~$ nv set interface swp1-3 packet-trim egress-eligibility traffic-class 1
+cumulus@switch:~$ nv set system forwarding packet-trim state enabled
+cumulus@switch:~$ nv config apply
+```
+
+To show packet trimming configuration, run the `nv show system forwarding packet-trim` command:
+
+```
+cumulus@switch:~$ nv show system forwarding packet-trim
+                operational  applied            
+-------------  -----------  -------------------
+state                       enabled            
+profile                     packet-trim-default
+service-port                swp65              
+size                        528                
+traffic-class               4                  
+remark                                         
+  dscp                      10
+
+Egress Eligibility TC-to-Interface Information
+=================================================
+No Data
+```
+
+### Asymmetric Packet Trimming
+
+Use asymmetric packet trimming to mark trimmed packets differently based on the outgoing port. By default, all trimmed packets are remarked with the same DSCP value, but you can use a different DSCP value for trimmed packets sent out through different ports. For example, you can use DSCP 21 to send trimmed packets to hosts but DSCP 11 to send trimmed packets to the uplink (spine). This allows the destination NIC to know where congestion occurs; on downlinks to servers or in the fabric.
+
+To achieve asymmetric DSCP for trimmed packets, you set a dedicated switch priority value for trimmed packets and define a switch priority to DSCP rewrite mapping for each egress interface.
+
+Cumulus Linux supports asymmetric packet trimming on the Spectrum-4 and Spectrum-5 switch.
+
+The following example configures asymmetric packet trimming on the downlink to hosts (on leaf01) with the default packet trimming settings (using `lossy-multi-tc`), which creates the following port profiles automatically:
+- `lossy-multi-tc-host-group` with DSCP remark set to 21 for switch priority 4.
+- `lossy-multi-tc-network-group` with DSCP remark set to 11 for switch priority 4.
+
+```
+cumulus@leaf01:~$ nv set qos roce mode lossy-multi-tc
+cumulus@leaf01:~$ nv set system forwarding packet-trim remark dscp port-level
+cumulus@leaf01:~$ nv set interface swp17-32 qos remark profile lossy-multi-tc-host-group 
+cumulus@leaf01:~$ nv set interface swp1-16 qos remark profile lossy-multi-tc-network-group
+cumulus@leaf01:~$ nv config apply
+```
+
+On the uplink (spine01), enable the default packet trimming settings:
+
+```
+cumulus@spine01:~$ nv set qos roce mode lossy-multi-tc
+```
+
+### Show Packet Trimming and SRv6 Information
+
 To show the default QoS `lossy-multi-tc` profile settings, run the `nv show qos roce` command:
 
 ```
-cumulus@switch:~$                     operational     applied       
+cumulus@switch:~$ nv show qos roce
+                     operational     applied       
 ------------------  --------------  --------------
 enable              on              on            
 mode                lossy-multi-tc  lossy-multi-tc
@@ -1064,73 +1153,42 @@ fe80::/64  connected  0         2025-06-12T19:57:59Z  9      0       *Si
 
 You can view a specific route with the `nv show vrf <vrf> router rib ipv6 route <route-id>` command.
 
-### Packet Trimming with Custom Settings
-
-If you do not want to use the QoS profile `lossy-multi-tc` to enable packet trimming with the recommended QoS settings as shown above, you can configure the packet trimming settings you want to use.
-
-To configure packet trimming:
-- Set the packet trimming profile.
-- Set the forwarding port used for recirculating the trimmed packets to egress the interface (NVIDIA SN5610 switch only). If you do not configure a service port, Cumulus Linux uses the last service port in on the switch.
-- Set the maximum size of the trimmed packet.
-- Set the DSCP value to be marked on the trimmed packets.
-- Set the Egress port and traffic-class from which dropped traffic is trimmed.
-- Set the egress traffic class on which to send the trimmed packet.
-- Enable packet trimming.
+To show all SRV6 information, run the `nv show router segment-routing srv6 stats` command
 
 ```
-cumulus@switch:~$ nv set system forwarding packet-trim profile packet-trim-profile1
-cumulus@switch:~$ nv set system forwarding packet-trim service-port swp65
-cumulus@switch:~$ nv set system forwarding packet-trim remark dscp 10
-cumulus@switch:~$ nv set system forwarding packet-trim size 528
-cumulus@switch:~$ nv set system forwarding packet-trim traffic-class 4
-cumulus@switch:~$ nv set interface swp1-3 packet-trim egress-eligibility traffic-class 1
-cumulus@switch:~$ nv set system forwarding packet-trim state enabled
-cumulus@switch:~$ nv config apply
+cumulus@switch:~$ nv show router segment-routing srv6 stats
 ```
 
-To show packet trimming configuration, run the `nv show system forwarding packet-trim` command:
+To show information about a specific SRv6 SID, run the `nv show router segment-routing srv6 stats sid <sid>` command:
 
 ```
-cumulus@switch:~$ nv show system forwarding packet-trim
-                operational  applied            
--------------  -----------  -------------------
-state                       enabled            
-profile                     packet-trim-default
-service-port                swp65              
-size                        528                
-traffic-class               4                  
-remark                                         
-  dscp                      10
-
-Egress Eligibility TC-to-Interface Information
-=================================================
-No Data
+cumulus@switch:~$ nv show router segment-routing srv6 stats sid 2001:db8:1:1::100/48
 ```
 
-### Asymmetric Packet Trimming
-
-Use asymmetric packet trimming to mark trimmed packets differently based on the outgoing port. By default, all trimmed packets are remarked with the same DSCP value, but you can use a different DSCP value for trimmed packets sent out through different ports. For example, you can use DSCP 21 to send trimmed packets to hosts but DSCP 11 to send trimmed packets to the uplink (spine). This allows the destination NIC to know where congestion occurs; on downlinks to servers or in the fabric.
-
-To achieve asymmetric DSCP for trimmed packets, you set a dedicated switch priority value for trimmed packets and define a switch priority to DSCP rewrite mapping for each egress interface.
-
-Cumulus Linux supports asymmetric packet trimming on the Spectrum-4 and Spectrum-5 switch.
-
-The following example configures asymmetric packet trimming on the downlink to hosts (on leaf01) with the default packet trimming settings (using `lossy-multi-tc`), which creates the following port profiles automatically:
-- `lossy-multi-tc-host-group` with DSCP remark set to 21 for switch priority 4.
-- `lossy-multi-tc-network-group` with DSCP remark set to 11 for switch priority 4.
+To show information about non-SID dropped packets, run the  `nv show router segment-routing srv6 stats no-sid-drop` command:
 
 ```
-cumulus@leaf01:~$ nv set qos roce mode lossy-multi-tc
-cumulus@leaf01:~$ nv set system forwarding packet-trim remark dscp port-level
-cumulus@leaf01:~$ nv set interface swp17-32 qos remark profile lossy-multi-tc-host-group 
-cumulus@leaf01:~$ nv set interface swp1-16 qos remark profile lossy-multi-tc-network-group
-cumulus@leaf01:~$ nv config apply
+cumulus@switch:~$ nv show router segment-routing srv6 stats no-sid-drop
 ```
 
-On the uplink (spine01), enable the default packet trimming settings:
+## Clear SRv6 Statistics
+
+To clear all SRv6 statistics, run the `nv action clear router segment-routing srv6 stats` command:
 
 ```
-cumulus@spine01:~$ nv set qos roce mode lossy-multi-tc
+cumulus@switch:~$ nv action clear router segment-routing srv6 stats 
+```
+
+To clear SRv6 statistics for a specific SID, run the `nv action clear router segment-routing srv6 stats sid <sid>` command:
+
+```
+cumulus@switch:~$ nv action clear router segment-routing srv6 stats sid 2001:db8:1:1::100/48 
+```
+
+To clear SRv6 statistics for no-SID dropped packets, run the `nv action clear router segment-routing srv6 stats no-sid-drops` command:
+
+```
+cumulus@switch:~$ nv action clear router segment-routing srv6 stats no-sid-drops 
 ```
 
 ## Egress Scheduler

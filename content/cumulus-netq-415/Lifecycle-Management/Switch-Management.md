@@ -186,11 +186,11 @@ After performing a switch discovery, you can install or upgrade Cumulus Linux an
 
 ## Role Management
 
-You can assign switches one of four roles: superspine, spine, leaf, and exit.
+You can assign switches one of four roles: superspine, spine, leaf, or exit.
 
 Switch roles identify switch dependencies and determine the order in which switches are upgraded. The upgrade process begins with switches assigned the superspine role, then continues with the spine switches, leaf switches, exit switches, and finally, switches with no role assigned. Upgrades for all switches with a given role must be successful before the upgrade proceeds to the switches with the closest dependent role.
 
-Role assignment is optional, but recommended. Assigning roles can prevent switches from becoming unreachable due to dependencies between switches or single attachments. Additionally, when you deploy MLAG pairs, assigned roles avoid upgrade conflicts.
+Role assignment is optional, but recommended. Assigning roles can prevent switches from becoming unreachable due to dependencies between switches or single attachments. Additionally, when you deploy MLAG pairs, assigned roles avoid upgrade conflicts. When you decommission a switch, NetQ will delete the role as part of the decommissioning process. 
 
 ### Assign Roles to Switches
 
@@ -300,7 +300,7 @@ You use the same command to both assign a role and change a role.
 For a single switch, run:
 
 ```
-netq lcm add role exit switches border01
+cumulus@switch:~$ netq lcm add role exit switches border01
 ```
 
 To assign multiple switches to the same role, separate the hostnames with commas (no spaces). For example:

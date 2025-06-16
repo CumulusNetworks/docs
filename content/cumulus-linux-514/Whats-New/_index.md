@@ -31,7 +31,8 @@ Cumulus Linux 5.14.0 supports new platforms, provides bug fixes, and contains se
   - {{<link url="Quality-of-Service/#mrc-packet-trimming" text="Packet trimming">}}
   - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#mrc-qos-profile" text="New QoS profile for packet trimming">}}
   - {{<link url="Quality-of-Service/#asymmetric-packet-trimming" text="Packet trimming with asymmetric DSCP">}}
-  - {{<link url="Quality-of-Service/#clear-srv6-statistics" text="Clear packet trimming statistics">}}
+  - {{<link url="Quality-of-Service/#configure-srv6" text="SRv6">}}
+  - {{<link url="Quality-of-Service/#clear-srv6-statistics" text="Clear SRv6 statistics">}}
 - NVUE
   - {{<link url="Troubleshooting-EVPN/#show-evpn-vnis-across-all-vrfs" text="Commands to show EVPN information across all VRFs">}}
   - {{< expand "Changed NVUE Commands and Options" >}}

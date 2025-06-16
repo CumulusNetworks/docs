@@ -947,70 +947,31 @@ cos_egr_queue.cos_7.uc  = 7
 
 <span class="a-tooltip">[MRC](## "Multipath Reliable Connection")</span> is an improvement over RoCEv2 to enhance performance in lossy environments and extend the RC transport for scalability and performance for AI and <span class="a-tooltip">[ML](## "machine learning")</span> applications over lossy networks. Some of these enhancements include allowing packets to be transmitted over multiple logical paths in the network and rapid detection and retransmission of delayed, unacknowledged, and trimmed packets.
 
-Spectrum implements switch shared buffers and enables flexible partitioning of shared buffers for different flows and ports as well as separation of lossy and lossless traffic. For lossy packet, if a packet in the headroom does not move into the switch shared buffers due to congestion in the lossy queue, then it is dropped. The lossy packet gets dropped without any notification to the destination host.
+- With packet trimming, a switch can remove parts of the packet (such as the payload) instead of dropping it when the buffer is full. Packet trimming retains network forwarding and transport essential information, allowing the host to quickly detect and react to congestion. This allows congestion information to be communicated to the receiver even on congested networks.
+- Multipathing with <span class="a-tooltip">[SRv6](## "Segment Routing for IPv6")</span> enables you to tunnel packets from the source NIC to the destination NIC through the switch fabric using SRv6 micro segment identifiers (uSIDs). The SRv6 origination and termination is on the NIC and the switches merely act as SRv6-aware (transit) nodes. Cumulus Linux provides SRv6 uSID support with uN (END_CSID ) and uA (End.X_CSID ) endpoints.
 
-When a packet is lost, it can be recovered through fast retransmission or by using timeouts. Retransmission triggered by timeouts typically incurs significant latency. Packet trimming aims to facilitate rapid packet loss notification and, consequently, eliminate slow timeout-based retransmissions.
+{{%notice note%}}
+Cumulus Linux supports packet trimming and SRv6 on the Spectrum-4 and Spectrum-5 switch only.
+{{%/notice%}}
 
-With packet trimming, a switch can remove parts of the packet (such as the payload) instead of dropping it when the buffer is full.
+### Configure Packet Trimming
 
-Packet trimming retains network forwarding and transport essential information, allowing the host to quickly detect and react to congestion. This allows congestion information to be communicated to the receiver even on congested networks. 
+Packet Trimming supports physical ports only.
 
-Multipathing is achieved through the use of SRv6. Packets are tunneled from the source NIC to the destination NIC through the switch fabric using SRv6 micro segment identifiers (uSIDs). The SRv6 origination and termination is on the NIC and the switches merely act as SRv6-aware (transit) nodes. Cumulus Linux provides SRv6 uSID support with uN (END_CSID ) and uA (End.X_CSID ) endpoints.
+Packet Trimming does not support ISSU, bonds for egress eligibility or the following packet types:
+- VXLAN packets
+- Adaptive Routing Notification Packets (ARN)
+- Congestion Notification Packets (CNP)
+- Flooding and MC packets
 
-Cumulus Linux supports packet trimming on the Spectrum-4 and Spectrum-5 switch.
-
-- Cumulus Linux supports packet Trimming on physical ports only and for IPv4 or IPv6 traffic.
-- The length and checksum fields in the IP header are not recalculated after trimming
-by hardware and have no valid values.
-- ISSU is not supported.
-- Bonds for egress eligibility are not supported.
-- You cannot trim the following packet types:
-  - VXLAN packets
-  - Adaptive Routing Notification Packets (ARN)
-  - Congestion Notification Packets (CNP)
-  - Flooding and MC packets
-
-### Configure Packet Trimming with Default Settings
-
-To configure packet trimming with the default settings:
-- Set the `lossy-multi-tc` QoS profile.
-- Enable SRv6.
-- Configure the SRv6 endpoints. You can configure static SIDs manually, allowing for explicit control over traffic flow, or dynamic SIDs by configuring a locator.
-
-The following example enables the `lossy-multi-tc` QoS profile, enables SRv6, and configures dynamic SIDs by configuring a locator:
+To configure packet trimming with the default (recommended) settings, set the `lossy-multi-tc` QoS profile.
 
 ```
 cumulus@switch:~$ nv set qos roce mode lossy-multi-tc
-cumulus@switch:~$ nv set router segment-routing srv6 state enabled
-cumulus@switch:~$ nv set router segment-routing srv6 locator LOC2 block-length 32
-cumulus@switch:~$ nv set router segment-routing srv6 locator LOC2 func-length 0
-cumulus@switch:~$ nv set router segment-routing srv6 locator LOC2 node-length 16
-cumulus@switch:~$ nv set router segment-routing srv6 locator LOC2 prefix fcbb:bbbb:2::/48
 cumulus@switch:~$ nv config apply
 ```
 
-{{%notice note%}}
-Cumulus Linux only supports an SF3216 format (block-len(32) and node-len(16)).
-{{%/notice%}}
-
-The following example enables the `lossy-multi-tc` QoS profile, enables SRv6, and configures static SIDs:
-
-```
-cumulus@switch:~$ nv set qos roce mode lossy-multi-tc
-cumulus@switch:~$ nv set router segment-routing srv6 state enabled
-cumulus@switch:~$ nv set router segment-routing static srv6-sid 2001:db8:1:1::100/48 locator-name LOC1   
-cumulus@switch:~$ nv set router segment-routing static srv6-sid 2001:db8:1:1::100/48 uA-uN 
-cumulus@switch:~$ nv set router segment-routing static srv6-sid 2001:db8:1:1::100/48 interface swp1 
-cumulus@switch:~$ nv config apply
-```
-
-{{%notice note%}}
-You set the interface for uA only.
-{{%/notice%}}
-
-### Packet Trimming with Custom Settings
-
-If you do not want to use the QoS profile `lossy-multi-tc` to enable packet trimming with the recommended QoS settings as shown above, you can configure the packet trimming settings you want to use.
+If you do not want to use the QoS profile `lossy-multi-tc` to enable packet trimming with the recommended QoS settings, you can configure the packet trimming settings you want to use.
 
 To configure packet trimming:
 - Set the packet trimming profile.
@@ -1032,24 +993,56 @@ cumulus@switch:~$ nv set system forwarding packet-trim state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To show packet trimming configuration, run the `nv show system forwarding packet-trim` command:
+### Configure SRv6
+
+To configure SRv6:
+- Enable SRv6.
+- Configure the SRv6 locator settings and the static IDs.
+
+The following example enables SRv6, and configures the locator called LEAF and the static SID fcbb:bbbb:2::/48:
+
+{{< tabs "TabID980 ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv show system forwarding packet-trim
-                operational  applied            
--------------  -----------  -------------------
-state                       enabled            
-profile                     packet-trim-default
-service-port                swp65              
-size                        528                
-traffic-class               4                  
-remark                                         
-  dscp                      10
-
-Egress Eligibility TC-to-Interface Information
-=================================================
-No Data
+cumulus@switch:~$ nv set router segment-routing srv6 state enabled
+cumulus@switch:~$ nv set router segment-routing srv6 locator LEAF prefix fcbb:bbbb:2::/48
+cumulus@switch:~$ nv set router segment-routing srv6 locator LEAF block-length 32
+cumulus@switch:~$ nv set router segment-routing srv6 locator LEAF func-length 0
+cumulus@switch:~$ nv set router segment-routing srv6 locator LEAF node-length 16
+cumulus@switch:~$ nv set router segment-routing static srv6-sid fcbb:bbbb:2::/48 locator-name LEAF   
+cumulus@switch:~$ nv set router segment-routing static srv6-sid fcbb:bbbb:2::/48 uA 
+cumulus@switch:~$ nv set router segment-routing static srv6-sid fcbb:bbbb:2::/48 interface swp1 
+cumulus@switch:~$ nv config apply
 ```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+leaf01# configure t
+leaf01(config)# segment-routing 
+leaf01(config-sr)# srv6
+leaf01(config-srv6)# static-sids
+leaf01(config-srv6-sids)# sid fcbb:bbbb:2::/48 locator LEAF behavior uA interface swp1
+leaf01(config-srv6-sids)# exit
+leaf01(config-srv6)# locators
+leaf01(config-srv6-locators)# locator LEAF
+leaf01(config-srv6-locator)# prefix fcbb:bbbb:2::/48 block-len 32 func-bits 0
+leaf01(config-srv6-locator)# prefix fcbb:bbbb:2::/48 node-len 16
+leaf01(config-srv6-locator)# end
+leaf01# exit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{%notice note%}}
+- Cumulus Linux only supports the SF3216 format (block-len(32) and node-len(16)).
+- You set the interface for uA only.
+{{%/notice%}}
 
 ### Asymmetric Packet Trimming
 
@@ -1077,7 +1070,7 @@ On the uplink (spine01), enable the default packet trimming settings:
 cumulus@spine01:~$ nv set qos roce mode lossy-multi-tc
 ```
 
-### Show Packet Trimming and SRv6 Information
+### Show Packet Trimming Configuration
 
 To show the default QoS `lossy-multi-tc` profile settings, run the `nv show qos roce` command:
 
@@ -1136,6 +1129,64 @@ Exception List
 No Data
 ```
 
+To show packet trimming configuration, run the `nv show system forwarding packet-trim` command:
+
+```
+cumulus@switch:~$ nv show system forwarding packet-trim
+         operational  applied            
+-------  -----------  -------------------
+state                 enabled            
+profile               packet-trim-default
+
+Egress Eligibility TC-to-Interface Information
+=================================================
+No Data
+```
+
+To show forwarding packet trim marking information, run the `nv show system forwarding packet-trim remark` command:
+
+```
+cumulus@switch:~$ nv show system forwarding packet-trim remark 
+No Data
+```
+
+### Show SRv6 Configuration
+
+To show if SRv6 is enabled and to show the configured locators, run the `nv show router segment-routing` command:
+
+```
+cumulus@switch:~$ nv show router segment-routing 
+             applied
+-----------  -------
+srv6                
+  state      enabled
+  [locator]  LOC2 
+```
+
+To show configuration information for all SRv6 locators, run the `nv show router segment-routing srv6 locator` command:
+
+```
+cumulus@switch:~$ nv show router segment-routing srv6 locator
+SRv6 locator name  block-length  func-length  node-length  IPv6 Prefix       status
+-----------------  ------------  -----------  -----------  ----------------  ------
+LOC2               32            0            16           fcbb:bbbb:2::/48  up
+```
+
+To show configuration information about a specific locator, run the `nv show router segment-routing srv6 locator <locator-id>` command:
+
+```
+cumulus@switch:~$ nv show router segment-routing srv6 locator LOC2 
+              operational       applied         
+------------  ----------------  ----------------
+prefix        fcbb:bbbb:2::/48  fcbb:bbbb:2::/48
+block-length  32                32              
+node-length   16                16              
+func-length   0                 0               
+status        u
+```
+
+### Show SRv6 Endpoints
+
 SRv6 endpoints are installed as IPv6 routes into the RIB and FIB. To show SRv6 endpoints, view the
 IPv6 RIB with the `nv show vrf <vrf> router rib ipv6 route` command.
 
@@ -1153,25 +1204,27 @@ fe80::/64  connected  0         2025-06-12T19:57:59Z  9      0       *Si
 
 You can view a specific route with the `nv show vrf <vrf> router rib ipv6 route <route-id>` command.
 
-To show all SRV6 information, run the `nv show router segment-routing srv6 stats` command
+### Show SRv6 Statistics
+
+To show all SRv6 information, run the `nv show router segment-routing srv6 stats` command
 
 ```
 cumulus@switch:~$ nv show router segment-routing srv6 stats
 ```
 
-To show information about a specific SRv6 SID, run the `nv show router segment-routing srv6 stats sid <sid>` command:
+To show information about a specific SRv6 SID, run the NVUE `nv show router segment-routing srv6 stats sid <sid>` command or the vtysh `show segment-routing srv6 sid` command:
 
 ```
 cumulus@switch:~$ nv show router segment-routing srv6 stats sid 2001:db8:1:1::100/48
 ```
 
-To show information about non-SID dropped packets, run the  `nv show router segment-routing srv6 stats no-sid-drop` command:
+To show information about non-SID dropped packets, run the `nv show router segment-routing srv6 stats no-sid-drop` command:
 
 ```
 cumulus@switch:~$ nv show router segment-routing srv6 stats no-sid-drop
 ```
 
-## Clear SRv6 Statistics
+### Clear SRv6 Statistics
 
 To clear all SRv6 statistics, run the `nv action clear router segment-routing srv6 stats` command:
 

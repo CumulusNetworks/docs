@@ -24,6 +24,7 @@ Cumulus Linux 5.14.0 supports new platforms, provides bug fixes, and contains se
 - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#clear-interface-physical-layer-error-counters" text="Clear physical layer error counters for an interface">}}
 - {{<link url="DHCP-Relays" text="Configure different DHCP relay servers per interface">}}
 - {{<link url="Quick-Start-Guide/#configure-the-domain-name" text="Domain name configuration">}}
+- {{<link url="Equal-Cost-Multipath-Load-Sharing/#enable-adaptive-routing" text="Adaptive routing default profiles profile-1 and profile-2 removed and replaced with one profile called default">}}
 - JWT Based Authentication for REST API
 - grpc header based and http based authentication
 - gNMI requirements phase 4

@@ -24,6 +24,7 @@ Cumulus Linux 5.14.0 supports new platforms, provides bug fixes, and contains se
 - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#clear-interface-physical-layer-error-counters" text="Clear physical layer error counters for an interface">}}
 - {{<link url="DHCP-Relays" text="Configure different DHCP relay servers per interface">}}
 - {{<link url="Quick-Start-Guide/#configure-the-domain-name" text="Domain name configuration">}}
+- {{<link url="Equal-Cost-Multipath-Load-Sharing/#enable-adaptive-routing" text="Adaptive routing default profiles profile-1 and profile-2 removed and replaced with one profile called default">}}
 - JWT Based Authentication for REST API
 - grpc header based and http based authentication
 - gNMI requirements phase 4
@@ -31,8 +32,10 @@ Cumulus Linux 5.14.0 supports new platforms, provides bug fixes, and contains se
   - {{<link url="Quality-of-Service/#mrc-packet-trimming" text="Packet trimming">}}
   - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#mrc-qos-profile" text="New QoS profile for packet trimming">}}
   - {{<link url="Quality-of-Service/#asymmetric-packet-trimming" text="Packet trimming with asymmetric DSCP">}}
+  - {{<link url="Quality-of-Service/#configure-srv6" text="SRv6">}}
+  - {{<link url="Quality-of-Service/#clear-srv6-statistics" text="Clear SRv6 statistics">}}
 - NVUE
-  - {{<link url="Troubleshooting-EVPN/#show-evpn-vnis" text="Commands to show EVPN information across all VRFs">}}
+  - {{<link url="Troubleshooting-EVPN/#show-evpn-vnis-across-all-vrfs" text="Commands to show EVPN information across all VRFs">}}
   - {{< expand "Changed NVUE Commands and Options" >}}
 | Cumulus Linux 5.14 | Cumulus Linux 5.13 and Earlier |
 | --------------- |---------------------------------------|
@@ -62,6 +65,15 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 ```
 nv show interface <interface-id> link phy-detail hardware 
 nv show platform transceiver <interface> temperature
+nv show router segment-routing
+nv show router segment-routing srv6
+nv show router segment-routing srv6 locator
+nv show router segment-routing srv6 locator <locator-name>
+nv show router segment-routing srv6 sid
+nv show router segment-routing srv6 sid <sid>
+nv show router segment-routing static
+nv show router segment-routing static srv6-sid
+nv show router segment-routing static srv6-sid <sid>
 nv show vrf evpn
 nv show vrf evpn  --view=evpn
 ```
@@ -71,6 +83,15 @@ nv show vrf evpn  --view=evpn
 
 ```
 nv set platform transceiver <interface-id> temperature setpoint
+nv set router segment-routing srv6 locator <locator-name>
+nv set router segment-routing srv6 locator <locator-name> prefix <ipv6-prefix>
+nv set router segment-routing srv6 locator <locator-name> block-length (32-32)
+nv set router segment-routing srv6 locator <locator-name> node-length (16-16)
+nv set router segment-routing srv6 locator <locator-name> func-length (0-0)
+nv set router segment-routing srv6 state (enabled|disabled)
+nv set router segment-routing static srv6-sid <sid>
+nv set router segment-routing static srv6-sid <sid> locator-name <value>
+nv set router segment-routing static srv6-sid <sid> behavior (uN|uA|uDT|uDX)
 ```
 
 {{< /tab >}}
@@ -78,6 +99,20 @@ nv set platform transceiver <interface-id> temperature setpoint
 
 ```
 nv unset platform transceiver <interface-id> temperature setpoint
+nv unset router segment-routing
+nv unset router segment-routing srv6
+nv unset router segment-routing srv6 locator
+nv unset router segment-routing srv6 locator <locator-name>
+nv unset router segment-routing srv6 locator <locator-name> prefix
+nv unset router segment-routing srv6 locator <locator-name> block-length
+nv unset router segment-routing srv6 locator <locator-name> node-length
+nv unset router segment-routing srv6 locator <locator-name> func-length
+nv unset router segment-routing srv6 state
+nv unset router segment-routing static
+nv unset router segment-routing static srv6-sid
+nv unset router segment-routing static srv6-sid <sid>
+nv unset router segment-routing static srv6-sid <sid> locator-name
+nv unset router segment-routing static srv6-sid <sid> behavior
 ```
 
 {{< /tab >}}
@@ -85,6 +120,9 @@ nv unset platform transceiver <interface-id> temperature setpoint
 
 ```
 nv action clear interface <interface-id> link phy-detail
+nv action clear router segment-routing srv6 stats
+nv action clear router segment-routing srv6 stats sid <sid>
+nv action clear router segment-routing srv6 stats no-sid-drops
 ```
 
 {{< /tab >}}

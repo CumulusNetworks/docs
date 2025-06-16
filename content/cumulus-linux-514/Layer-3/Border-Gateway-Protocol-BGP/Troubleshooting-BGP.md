@@ -229,21 +229,22 @@ To see a summary of the connection information for all BGP peers, such as the st
 cumulus@switch:~$ nv show vrf default router bgp neighbor
 
 AS - Remote Autonomous System, PeerEstablishedTime - Peer established time in
-UTC format, UpTime - Uptime in milliseconds, Afi-Safi - Address family, PfxSent
-- Transmitted prefix counter, PfxRcvd - Recieved prefix counter
+UTC format, UpTime - Last connection reset time in days,hours:min:sec, Afi-Safi
+- Address family, PfxSent - Transmitted prefix counter, PfxRcvd - Recieved
+prefix counter
 
-Neighbor       AS     State        PeerEstablishedTime   UpTime    MsgRcvd  MsgSent  Afi-Safi      PfxSent  PfxRcvd
--------------  -----  -----------  --------------------  --------  -------  -------  ------------  -------  -------
-peerlink.4094  65102  established  2025-01-26T15:28:11Z  27073000  561127   473795   ipv4-unicast  11       10     
-                                                                                     l2vpn-evpn    70       50     
-swp51          65199  established  2025-01-26T15:28:16Z  27073000  548373   473791   ipv4-unicast  11       8      
-                                                                                     l2vpn-evpn    70       50     
-swp52          65199  established  2025-01-26T15:28:19Z  27073000  548377   473789   ipv4-unicast  11       8      
-                                                                                     l2vpn-evpn    70       50     
-swp53                 idle                               27073000  0        0        ipv4-unicast                  
-                                                                                     l2vpn-evpn                    
-swp54                 idle                               27073000  0        0        ipv4-unicast                  
-                                                                                     l2vpn-evpn
+Neighbor       AS     State        PeerEstablishedTime   UpTime   MsgRcvd  MsgSent  Afi-Safi      PfxSent  PfxRcvd
+-------------  -----  -----------  --------------------  -------  -------  -------  ------------  -------  -------
+peerlink.4094  65103  established  2025-06-15T09:45:11Z  4:16:59  34053    34054    ipv4-unicast  13       12     
+                                                                                    l2vpn-evpn    81       57     
+swp51          65199  established  2025-06-15T09:45:16Z  4:16:59  34059    34051    ipv4-unicast  13       9      
+                                                                                    l2vpn-evpn    81       57     
+swp52          65199  established  2025-06-15T09:45:17Z  4:16:59  34055    34051    ipv4-unicast  13       9      
+                                                                                    l2vpn-evpn    81       57     
+swp53          65199  established  2025-06-15T09:45:17Z  4:16:59  34062    34050    ipv4-unicast  13       9      
+                                                                                    l2vpn-evpn    81       57     
+swp54          65199  established  2025-06-15T09:45:16Z  4:16:59  34059    34051    ipv4-unicast  13       9      
+                                                                                    l2vpn-evpn    81       57                                                                                l2vpn-evpn    81       57
 ```
 
 Run the `nv show vrf default router bgp neighbor -o json` command to show a summary of the connection information for all BGP neighbors in json format.

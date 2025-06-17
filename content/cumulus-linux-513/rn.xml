@@ -32,7 +32,7 @@
 </tr>
 <tr>
 <td>4471932</td>
-<td>ERSPAN is not get generated with the intended VLAN tag; it is always sent out untagged. If the interface is a trunk port or a subinterface, the peer might discard these packets.</td>
+<td>ERSPAN is not generated with the intended VLAN tag but is always sent out untagged. If the interface is a trunk port or a subinterface, the peer might discard these packets.</td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
@@ -884,6 +884,18 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4500033</td>
+<td>When using TACACS or Radius authentication to run CLI commands, the available memory on the switch might reduce over time.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4500031</td>
+<td>When using TACACS or Radius authentication to run CLI commands, the available memory on the switch might reduce over time.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4495439</td>
 <td>Due to code changes, Radius users are now logged (not local users) and Cumulus Linux sends the accounting logs to all reachable Radius servers. To manually disable sending to all servers and only send to the first server that responds, add the line {{send-records first-response}} to the {{/etc/pam_radius_auth.conf}} file, then restart {{rsyslog.service}} with the {{systemctl restart rsyslog.service}} command.</td>
 <td>5.11.1-5.13.1</td>
@@ -903,7 +915,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>4471932</td>
-<td>ERSPAN is not get generated with the intended VLAN tag; it is always sent out untagged. If the interface is a trunk port or a subinterface, the peer might discard these packets.</td>
+<td>ERSPAN is not generated with the intended VLAN tag but is always sent out untagged. If the interface is a trunk port or a subinterface, the peer might discard these packets.</td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>

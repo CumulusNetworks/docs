@@ -954,41 +954,45 @@ cos_egr_queue.cos_7.uc  = 7
 Cumulus Linux supports packet trimming and SRv6 on the Spectrum-4 and Spectrum-5 switch only.
 {{%/notice%}}
 
+To use MRC packet trimming, you need to configure both packet trimming and SRv6.
+
 ### Configure Packet Trimming
 
 Packet Trimming supports physical ports only.
 
-Packet Trimming does not support ISSU, bonds for egress eligibility or the following packet types:
+Packet Trimming does not support ISSU, bonds for egress eligibility, or the following packet types:
 - VXLAN packets
 - Adaptive Routing Notification Packets (ARN)
 - Congestion Notification Packets (CNP)
 - Flooding and MC packets
 
-To configure packet trimming with the default (recommended) settings, set the `lossy-multi-tc` QoS profile.
+To configure packet trimming with the default (recommended) settings, set the `lossy-multi-tc` QoS profile:
 
 ```
 cumulus@switch:~$ nv set qos roce mode lossy-multi-tc
 cumulus@switch:~$ nv config apply
 ```
 
+You can see the `lossy-multi-tc` QoS profile default settings with the `nv show qos roce` command.
+
 If you do not want to use the QoS profile `lossy-multi-tc` to enable packet trimming with the recommended QoS settings, you can configure the packet trimming settings you want to use.
 
 To configure packet trimming:
-- Set the packet trimming profile.
+- Set the packet trimming profile to `packet-trim-default`.
 - Set the forwarding port used for recirculating the trimmed packets to egress the interface (NVIDIA SN5610 switch only). If you do not configure a service port, Cumulus Linux uses the last service port in on the switch.
-- Set the maximum size of the trimmed packet.
-- Set the DSCP value to be marked on the trimmed packets.
-- Set the Egress port and traffic-class from which dropped traffic is trimmed.
-- Set the egress traffic class on which to send the trimmed packet.
+- Set the maximum size of the trimmed packet. You can specify a value between 256 and 1024; the value must be a multiple of 4.
+- Set the DSCP value to be marked on the trimmed packets. You can specify a value between 0 and 63.
+- Set the egress port and traffic-class from which dropped traffic is trimmed. You can specify a value between 0 and 7.
+- Set the egress traffic class on which to send the trimmed packet. You can specify a value between 0 and 7.
 - Enable packet trimming.
 
 ```
-cumulus@switch:~$ nv set system forwarding packet-trim profile packet-trim-profile1
+cumulus@switch:~$ nv set system forwarding packet-trim profile packet-trim-default
 cumulus@switch:~$ nv set system forwarding packet-trim service-port swp65
 cumulus@switch:~$ nv set system forwarding packet-trim remark dscp 10
 cumulus@switch:~$ nv set system forwarding packet-trim size 528
-cumulus@switch:~$ nv set system forwarding packet-trim traffic-class 4
 cumulus@switch:~$ nv set interface swp1-3 packet-trim egress-eligibility traffic-class 1
+cumulus@switch:~$ nv set system forwarding packet-trim traffic-class 4
 cumulus@switch:~$ nv set system forwarding packet-trim state enabled
 cumulus@switch:~$ nv config apply
 ```
@@ -997,7 +1001,14 @@ cumulus@switch:~$ nv config apply
 
 To configure SRv6:
 - Enable SRv6.
-- Configure the SRv6 locator settings and the static IDs.
+- Configure the SRv6 locator settings and the static IDs:
+  - Configure the SRv6 locator prefix.
+  - Configure the SRv6 locator block length. Cumulus Linux currently supports a value of 32.
+  - Configure the SRv6 locator function length. Cumulus Linux currently supports a value of 0.
+  - Configure the SRv6 locator node length. Cumulus Linux currently supports a value of 16.
+  - Configure the static segment identifier locator name.
+  - Configure the static segment identifier endpoint behavior. You can specify uA, uDT, uDX, or uN.
+  - Configure the static segment identifier interface. You set the interface for uA only.
 
 The following example enables SRv6, and configures the locator called LEAF and the static SID fcbb:bbbb:2::/48:
 
@@ -1011,7 +1022,7 @@ cumulus@switch:~$ nv set router segment-routing srv6 locator LEAF block-length 3
 cumulus@switch:~$ nv set router segment-routing srv6 locator LEAF func-length 0
 cumulus@switch:~$ nv set router segment-routing srv6 locator LEAF node-length 16
 cumulus@switch:~$ nv set router segment-routing static srv6-sid fcbb:bbbb:2::/48 locator-name LEAF   
-cumulus@switch:~$ nv set router segment-routing static srv6-sid fcbb:bbbb:2::/48 uA 
+cumulus@switch:~$ nv set router segment-routing static srv6-sid fcbb:bbbb:2::/48 behaviour uA 
 cumulus@switch:~$ nv set router segment-routing static srv6-sid fcbb:bbbb:2::/48 interface swp1 
 cumulus@switch:~$ nv config apply
 ```
@@ -1040,13 +1051,12 @@ leaf01# exit
 {{< /tabs >}}
 
 {{%notice note%}}
-- Cumulus Linux only supports the SF3216 format (block-len(32) and node-len(16)).
-- You set the interface for uA only.
+Cumulus Linux only supports the SF3216 format (block-len(32) and node-len(16)).
 {{%/notice%}}
 
 ### Asymmetric Packet Trimming
 
-Use asymmetric packet trimming to mark trimmed packets differently based on the outgoing port. By default, all trimmed packets are remarked with the same DSCP value, but you can use a different DSCP value for trimmed packets sent out through different ports. For example, you can use DSCP 21 to send trimmed packets to hosts but DSCP 11 to send trimmed packets to the uplink (spine). This allows the destination NIC to know where congestion occurs; on downlinks to servers or in the fabric.
+Use asymmetric packet trimming to mark trimmed packets differently based on the outgoing port. By default, you remark all trimmed packets with the same DSCP value; however, you can use a different DSCP value for trimmed packets sent out through different ports. For example, you can use DSCP 21 to send trimmed packets to hosts but DSCP 11 to send trimmed packets to the uplink (spine). This allows the destination NIC to know where congestion occurs; on downlinks to servers or in the fabric.
 
 To achieve asymmetric DSCP for trimmed packets, you set a dedicated switch priority value for trimmed packets and define a switch priority to DSCP rewrite mapping for each egress interface.
 

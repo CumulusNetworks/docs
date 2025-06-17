@@ -28,7 +28,9 @@ For NVIDIA Spectrum ASICs, the firmware configures FEC, link speed, duplex mode 
 {{< tabs "TabID29 ">}}
 {{< tab "NVUE Commands ">}}
 
-By default, NVUE enables auto-negotiation; however, if you set the link speed for a port using NVUE commands, NVUE disables auto-negotiation and uses the port speed setting you configure.
+By default, NVUE enables auto-negotiation; however, you can set the link speed for a port using NVUE commands.
+- If you set the link speed for a port and leave the default auto-negotiation setting (ON) or set auto-negotiation ON, the link comes up with auto-negotiation ON and the switch advertises the configured link speed setting to the other side of the connection.
+- If you set the link speed for a port and set auto-negotiation OFF, the link comes up with auto-negotiation OFF and force mode is set. The switch does not advertise the configured link speed setting to the other side of the connection.
 
 To set the link speed for an interface, run the `nv set interface <swp> link speed` command:
 

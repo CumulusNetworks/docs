@@ -62,17 +62,6 @@ cumulus@switch:~$ nv set qos roce mode lossy
 cumulus@switch:~$ nv config apply
 ```
 
-## MRC QoS Profile
-
-The MRC QoS profile `lossy-multi-tc` enables packet trimming:
-
-```
-cumulus@switch:~$ nv set qos roce mode lossy-multi-tc
-cumulus@switch:~$ nv config apply
-```
-
-For more information about MRC, refer to {{<link url="Quality-of-Service/#mrc-packet-trimming" text="MRC Packet Trimming">}}.
-
 ## Single Shared Buffer Pool
 
 By default, Cumulus Linux separates lossy and lossless traffic into different dedicated buffer pools on both ingress and egress. You can configure the switch to combine lossy and lossless traffic on the same ingress buffer pool for better load absorption of lossless traffic.
@@ -85,6 +74,17 @@ cumulus@switch:~$ nv config apply
 ```
 
 To disable single shared buffer pool mode and use the default mode (lossless), run the `nv unset qos roce mode lossless-single-ipool` command.
+
+## MRC QoS Profile
+
+The MRC QoS profile `lossy-multi-tc` enables {{<link url="Quality-of-Service/#mrc-packet-trimming" text="MRC Packet Trimming">}}:
+
+```
+cumulus@switch:~$ nv set qos roce mode lossy-multi-tc
+cumulus@switch:~$ nv config apply
+```
+
+To show the default settings for the `lossy-multi-tc` profile, run the `nv show qos roce` command.
 
 ## Remove RoCE Configuration
 

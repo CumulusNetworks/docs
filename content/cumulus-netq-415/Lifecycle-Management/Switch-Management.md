@@ -190,7 +190,11 @@ You can assign switches one of four roles: superspine, spine, leaf, or exit.
 
 Switch roles identify switch dependencies and determine the order in which switches are upgraded. The upgrade process begins with switches assigned the superspine role, then continues with the spine switches, leaf switches, exit switches, and finally, switches with no role assigned. Upgrades for all switches with a given role must be successful before the upgrade proceeds to the switches with the closest dependent role.
 
-Role assignment is optional, but recommended. Assigning roles can prevent switches from becoming unreachable due to dependencies between switches or single attachments. Additionally, when you deploy MLAG pairs, assigned roles avoid upgrade conflicts. When you decommission a switch, NetQ will delete the role as part of the decommissioning process. 
+Role assignment is optional, but recommended. Assigning roles can prevent switches from becoming unreachable due to dependencies between switches or single attachments. Additionally, when you deploy MLAG pairs, assigned roles avoid upgrade conflicts. 
+
+{{<notice tip>}}
+Switches retain their roles, even when they are decommissioned. If a decommissioned switch is subsequently reconnected to the same telemetry server, NetQ will display the switch's role after you perform a switch discovery.
+{{</notice>}}
 
 ### Assign Roles to Switches
 

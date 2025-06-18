@@ -246,9 +246,27 @@ Output:
 }
 ```
 
+When the switch issues a valid token, it continues to work until the expiration time unless:
+- The token expiration time is 0.
+- You make local account changes.
+- You perform a system reboot (including warm reboot).
+
 #### Token Expiration
 
 To set the token expiration time, run the `nv set system api token-expiration <minutes>` command. You can set a value between 0 and 10080 minutes. The default value is 60 minutes. If set the expiration time to 0, Cumulus Linux does not issue a token and all previously issued tokens do not work.
+
+{{< tabs "TabID258 ">}}
+{{< tab "Curl Command ">}}
+
+```
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"token-expiration": 10080}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/system/api/?rev=2
+{
+ "token-expiration": 10080
+}
+```
+
+{{< /tab >}}
+{{< tab "NVUE CLI ">}}
 
 The following example sets the expiration time to one week (24x7x60):
 
@@ -257,7 +275,31 @@ cumulus@switch:~$ nv set system api token-expiration 10080
 cumulus@switch:~$ nv config apply
 ```
 
-To unset the expiration, run the `nv unset system api token-expiration` command. 
+To unset the expiration, run the `nv unset system api token-expiration` command.
+
+To show the configured token expiration time, run the `nv show api` command:
+
+```
+cumulus@switch:~$ nv show system api
+                     operational  applied    
+-------------------  -----------  -----------
+state                enabled      enabled    
+port                 8765         8765       
+certificate          self-signed  self-signed
+token-expiration     60           60         
+[listening-address]  any                     
+connections                                  
+  active             1                       
+  accepted           1                       
+  handled            1                       
+  requests           1                       
+  reading            0                       
+  writing            1                       
+  waiting            0 
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 To show the configured token expiration time, run the `nv show api` command:
 

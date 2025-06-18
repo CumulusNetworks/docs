@@ -39,44 +39,44 @@
 <tr>
 <td>4423352</td>
 <td>ZTP scripts return an error due to incorrect ASCI to UTF-8 conversion.</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
+<td>5.11.0-5.11.2</td>
+<td>5.12.0-5.13.1</td>
 </tr>
 <tr>
 <td>4423335</td>
 <td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
-<td>5.9.0-5.13.1</td>
-<td></td>
+<td>5.9.0-5.11.2</td>
+<td>5.12.0-5.13.1</td>
 </tr>
 <tr>
 <td>4423285</td>
 <td>SVIs do not go down even when all the bridge ports on the corresponding VLAN are down. This issue occurs because the {{vlan-bridge-binding}} option default setting is off for all the SVIs responsible for bringing down the SVI when all the ports on the corresponding VLAN are down. To work around this issue, manually configure the {{vlan-bridge-binding on}} option under the SVI stanza in the {{/etc/network/interfaces config}} file.</td>
-<td>5.9.0-5.13.1</td>
-<td></td>
+<td>5.9.0-5.12.1</td>
+<td>5.13.0-5.13.1</td>
 </tr>
 <tr>
 <td>4423277</td>
 <td>When the username in a 802.1X session includes the equals (=) character, the ISSU warmboot fails. Make sure that = is not part of the 802.1X session name.</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
+<td>5.11.0-5.12.1</td>
+<td>5.13.0-5.13.1</td>
 </tr>
 <tr>
 <td>4423273</td>
 <td>After you run the {{nv action upgrade system packages to latest}} command followed by the {{nv action reboot system}} command, {{nv show system reboot}} displays {{upgrade}} instead of one of the valid values {{cold}}, {{warm}},  or {{fast}}.</td>
-<td>5.9.0-5.13.1</td>
-<td></td>
+<td>5.9.0-5.12.1</td>
+<td>5.13.0-5.13.1</td>
 </tr>
 <tr>
 <td>4423269</td>
 <td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
+<td>5.11.0-5.12.1</td>
+<td>5.13.0-5.13.1</td>
 </tr>
 <tr>
 <td>4423235</td>
 <td>The {{snmpd}} service generates debugging logs of sudo calls. To work around this issue, disable sudo logging for the specific commands run by the Debian-snmp user in the {{/etc/sudoers.d/snmp}} file by adding {{Defaults:Debian-snmp !syslog}}.</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
+<td>5.11.0-5.12.1</td>
+<td>5.13.0-5.13.1</td>
 </tr>
 <tr>
 <td>4408387</td>
@@ -112,8 +112,8 @@ The interface shows "screaming" emojis and "Could not render." </td>
 <tr>
 <td>4309854</td>
 <td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
-<td>5.11.0-5.13.1</td>
-<td></td>
+<td>5.11.0-5.12.1</td>
+<td>5.13.0-5.13.1</td>
 </tr>
 <tr>
 <td>4308857</td>
@@ -124,27 +124,27 @@ The interface shows "screaming" emojis and "Could not render." </td>
 <tr>
 <td>4298584</td>
 <td>The Spectrum-4 switch reports a {{Modules DataPath FSM fault}} in logs when the link fails at polling.</td>
-<td>5.10.1-5.13.1</td>
-<td></td>
+<td>5.10.1-5.12.0</td>
+<td>5.12.1-5.13.1</td>
 </tr>
 <tr>
 <td>4271232</td>
 <td>A Python version change removed the encoding argument parameter of the json loads function, which causes an exception.</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
+<td>5.11.0-5.11.2</td>
+<td>5.12.0-5.13.1</td>
 </tr>
 <tr>
 <td>4271215</td>
 <td>NVUE overwrites the MOTD file during NVUE configuration with no option to ignore it.
 </td>
-<td>5.11.0-5.13.1</td>
-<td></td>
+<td>5.11.0-5.12.1</td>
+<td>5.13.0-5.13.1</td>
 </tr>
 <tr>
 <td>4271213</td>
 <td>When IPv4 layer 3 switch ports and virtual interfaces flap, {{switchd}} might send an ICMP Reply message instead of an ARP request (although no ICMP request was sent). Multiple ICMP Replies might be sent to any of the neighbor IP addresses of that interface.</td>
-<td>5.9.2-5.13.1</td>
-<td></td>
+<td>5.9.2-5.11.2</td>
+<td>5.12.0-5.13.1</td>
 </tr>
 <tr>
 <td>4270957</td>
@@ -159,20 +159,20 @@ The interface shows "screaming" emojis and "Could not render." </td>
 &lt;&lt;sudo: tac_author_read: reply timeout after 5 secs&gt;&gt;
 
 To work around this issue, manually add the {{debian-snmp}} user to the TACACS configuration {{exclude_users}} list so that TACACS ignores this user.</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
+<td>5.11.0-5.11.2</td>
+<td>5.12.0-5.13.1</td>
 </tr>
 <tr>
 <td>4259979</td>
 <td>After you reboot the switch, the ifplugd.service fails to start monitoring the interface.</td>
-<td>5.8.0-5.13.1</td>
-<td></td>
+<td>5.8.0-5.11.2</td>
+<td>5.12.0-5.13.1</td>
 </tr>
 <tr>
 <td>4246859</td>
 <td>The {{nv show service ntp &lt;vrf&gt;}} command displays the peers that are discovered together with the configured NTP servers instead of displaying only the NTP configuration. As a result, the "applied" and "operational" columns have different values, which causes confusion.</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
+<td>5.11.0-5.11.2</td>
+<td>5.12.0-5.13.1</td>
 </tr>
 <tr>
 <td>4220393</td>
@@ -362,12 +362,6 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 <td></td>
 </tr>
 <tr>
-<td>4100164</td>
-<td>Low power Intel SATA controllers experience issues when using the {{mobile}} low power chipset LPM policy. This can cause the SSD to become read only.</td>
-<td>5.8.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4082210</td>
 <td>When you change the CPU resource limit with the {{nv set service control rsyslog resource-limit cpu &lt;value&gt;}} command, the {{rsyslog}} agent does not start. To work around this issue, increase the CPU resource limit, then restart the service manually.</td>
 <td>5.11.0-5.13.1</td>
@@ -430,8 +424,8 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 <tr>
 <td>3980924</td>
 <td>When adding or removing routes in a virtual router with numerous configured routes, you might encounter incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
-<td>5.5.1-5.13.1</td>
-<td></td>
+<td>5.5.1-5.11.2</td>
+<td>5.12.0-5.13.1</td>
 </tr>
 <tr>
 <td>3966312</td>
@@ -865,6 +859,11 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Issue ID </th>
 <th> Description </th>
 <th> Affects </th>
+</tr>
+<tr>
+<td>4500031</td>
+<td>When using TACACS or Radius authentication to run CLI commands, the available memory on the switch might reduce over time.</td>
+<td>5.13.0</td>
 </tr>
 <tr>
 <td>4495502</td>

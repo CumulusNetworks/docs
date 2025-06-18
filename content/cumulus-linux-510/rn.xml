@@ -25,6 +25,18 @@
 <td></td>
 </tr>
 <tr>
+<td>4423285</td>
+<td>SVIs do not go down even when all the bridge ports on the corresponding VLAN are down. This issue occurs because the {{vlan-bridge-binding}} option default setting is off for all the SVIs responsible for bringing down the SVI when all the ports on the corresponding VLAN are down. To work around this issue, manually configure the {{vlan-bridge-binding on}} option under the SVI stanza in the {{/etc/network/interfaces config}} file.</td>
+<td>5.9.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423273</td>
+<td>After you run the {{nv action upgrade system packages to latest}} command followed by the {{nv action reboot system}} command, {{nv show system reboot}} displays {{upgrade}} instead of one of the valid values {{cold}}, {{warm}},  or {{fast}}.</td>
+<td>5.9.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4423224</td>
 <td>When processing the static IP assignment for an interface previously managed through DHCP, Cumulus Linux fails to clean up the DHCP created state completely. As a result when the IP address assigned by DHCP earlier expires, the switch eventually loses connectivity.</td>
 <td>5.1.0-5.12.1</td>
@@ -557,6 +569,12 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 <td></td>
 </tr>
 <tr>
+<td>3875687</td>
+<td>After changing the VXLAN local tunnel IP address, the new IP address is not reflected in the {{Local Vtep Ip}} field of the {{nv show evpn vni &lt;vni&gt;}} command output.  To work around this issue, either run the {{ifup &lt;vxlan-id&gt;}} command or reboot the switch.</td>
+<td>5.9.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3875373</td>
 <td>When you run the {{nv config apply empty}} command, NVUE removes the {{cumulus user}}. If you are logged in as the {{cumulus}} user when you run the {{nv config apply empty}} command, the command fails.</td>
 <td>5.9.0-5.13.1</td>
@@ -1031,6 +1049,18 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <tr>
 <td>4423335</td>
 <td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
+<td>5.9.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423285</td>
+<td>SVIs do not go down even when all the bridge ports on the corresponding VLAN are down. This issue occurs because the {{vlan-bridge-binding}} option default setting is off for all the SVIs responsible for bringing down the SVI when all the ports on the corresponding VLAN are down. To work around this issue, manually configure the {{vlan-bridge-binding on}} option under the SVI stanza in the {{/etc/network/interfaces config}} file.</td>
+<td>5.9.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423273</td>
+<td>After you run the {{nv action upgrade system packages to latest}} command followed by the {{nv action reboot system}} command, {{nv show system reboot}} displays {{upgrade}} instead of one of the valid values {{cold}}, {{warm}},  or {{fast}}.</td>
 <td>5.9.0-5.13.1</td>
 <td></td>
 </tr>
@@ -1574,6 +1604,12 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 <tr>
 <td>3877516</td>
 <td>When you connect two NVIDIA switches and configure 400G speed in force mode, links don't come up.To work around this issue, make sure auto-negotiation is always on when connecting NVIDIA to NVIDIA in PAM4.</td>
+<td>5.9.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3875687</td>
+<td>After changing the VXLAN local tunnel IP address, the new IP address is not reflected in the {{Local Vtep Ip}} field of the {{nv show evpn vni &lt;vni&gt;}} command output.  To work around this issue, either run the {{ifup &lt;vxlan-id&gt;}} command or reboot the switch.</td>
 <td>5.9.0-5.13.1</td>
 <td></td>
 </tr>

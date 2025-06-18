@@ -7,6 +7,18 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4495439</td>
+<td>Due to code changes, Radius users are now logged (not local users) and Cumulus Linux sends the accounting logs to all reachable Radius servers. To manually disable sending to all servers and only send to the first server that responds, add the line {{send-records first-response}} to the {{/etc/pam_radius_auth.conf}} file, then restart {{rsyslog.service}} with the {{systemctl restart rsyslog.service}} command.</td>
+<td>5.11.1-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4495348</td>
+<td>The password recovery procedure with single user mode only works to recover the root password, or to recover the cumulus user password if you manage switch configuration by editing configuration files. If you manage switch configuration with NVUE commands, to recover the password for the cumulus user or any user managed by NVUE, log into the switch as the root user and run the NVUE {{nv set system aaa user &lt;user-id&gt; password &lt;value&gt;}} command.</td>
+<td>5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4482933</td>
 <td>The {{age}} and {{last-update}} counters in the {{nv show bridge domain &lt;domain-id&gt; mac-table}} command output are reversed. The {{last-update}} counter shows {{age}} data and the {{age}} counter shows {{last-update}} data. Cumulus Linux uses the {{age}} timer to determine when to remove an old MAC entry.</td>
 <td>5.13.0-5.13.1</td>
@@ -19,9 +31,21 @@
 <td></td>
 </tr>
 <tr>
+<td>4471932</td>
+<td>ERSPAN is not generated with the intended VLAN tag but is always sent out untagged. If the interface is a trunk port or a subinterface, the peer might discard these packets.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4469349</td>
 <td>When you try to import an invalid server certificate file, Cumulus Linux does not import the certificate file but fails to show an error message.</td>
 <td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4466525</td>
+<td>Radius priority values can range between 1 and 8. Configuring an invalid priority succeeds when it should fail.</td>
+<td>5.12.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -62,6 +86,12 @@ with multiple optics, which can impact link stability and performance.</td>
 <td></td>
 </tr>
 <tr>
+<td>4447797</td>
+<td>When you remove an FRU, such as a PSU, from the switch, stale statistical data from the component is still reported over GNMI and OTLP.  To resolve this issue in OTLP, the status metric is now updated to {{absent}} and statistical information is no longer streamed. In GNMI, the entire component is deleted from the {{/components}} tree.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4447794</td>
 <td>The gNMI value for the sensor alarm-status shows incorrectly. For a raised alarm, the alarm-status is {{True(1)}}  but normally functioning sensors also show {{True(1)}}.</td>
 <td>5.13.0-5.13.1</td>
@@ -79,6 +109,15 @@ with multiple optics, which can impact link stability and performance.</td>
 <td>4447419</td>
 <td>Users with {{nv show}} privileges only can still execute the {{nv config apply}} and related commands.</td>
 <td>5.9.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4443870</td>
+<td>When running tens of thousands of {{nv set}} commands, the {{/var/lib/nvue}} directory might grow to several GBs in size, potentially using all the disk space. To work around this issue, run the following commands to reduce the disk space in the {{/var/lib/nvue}} directory:
+cumulus@switch:~$ sudo su
+cumulus@switch:~$ cd /var/lib/nvue/config
+cumulus@switch:~$ git gc</td>
+<td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -248,7 +287,7 @@ The interface shows "screaming" emojis and "Could not render." </td>
 </tr>
 <tr>
 <td>4294156</td>
-<td>After you clear the RoCE counters with the {{nv action clear interface &lt;interface-id&gt; qos roce counters}} command, the {{buffer-max-usage}} counters in the {{nv show interface &lt;interface-id&gt; qos roce counters}} command output shows the same value.</td>
+<td>After you clear the RoCE counters with the {{nv action clear interface &lt;interface-id&gt; qos roce counters}} command, the {{buffer-max-usage}} counters in the {{nv show interface &lt;interface-id&gt; qos roce counters}} command output do not show updated (cleared) values.</td>
 <td>5.12.0-5.13.1</td>
 <td></td>
 </tr>
@@ -432,6 +471,12 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 <tr>
 <td>3877516</td>
 <td>When you connect two NVIDIA switches and configure 400G speed in force mode, links don't come up.To work around this issue, make sure auto-negotiation is always on when connecting NVIDIA to NVIDIA in PAM4.</td>
+<td>5.9.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3875687</td>
+<td>After changing the VXLAN local tunnel IP address, the new IP address is not reflected in the {{Local Vtep Ip}} field of the {{nv show evpn vni &lt;vni&gt;}} command output.  To work around this issue, either run the {{ifup &lt;vxlan-id&gt;}} command or reboot the switch.</td>
 <td>5.9.0-5.13.1</td>
 <td></td>
 </tr>
@@ -839,6 +884,24 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4500033</td>
+<td>When using TACACS or Radius authentication to run CLI commands, the available memory on the switch might reduce over time.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4500031</td>
+<td>When using TACACS or Radius authentication to run CLI commands, the available memory on the switch might reduce over time.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4495439</td>
+<td>Due to code changes, Radius users are now logged (not local users) and Cumulus Linux sends the accounting logs to all reachable Radius servers. To manually disable sending to all servers and only send to the first server that responds, add the line {{send-records first-response}} to the {{/etc/pam_radius_auth.conf}} file, then restart {{rsyslog.service}} with the {{systemctl restart rsyslog.service}} command.</td>
+<td>5.11.1-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4482933</td>
 <td>The {{age}} and {{last-update}} counters in the {{nv show bridge domain &lt;domain-id&gt; mac-table}} command output are reversed. The {{last-update}} counter shows {{age}} data and the {{age}} counter shows {{last-update}} data. Cumulus Linux uses the {{age}} timer to determine when to remove an old MAC entry.</td>
 <td>5.13.0-5.13.1</td>
@@ -851,9 +914,21 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
+<td>4471932</td>
+<td>ERSPAN is not generated with the intended VLAN tag but is always sent out untagged. If the interface is a trunk port or a subinterface, the peer might discard these packets.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4469349</td>
 <td>When you try to import an invalid server certificate file, Cumulus Linux does not import the certificate file but fails to show an error message.</td>
 <td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4466525</td>
+<td>Radius priority values can range between 1 and 8. Configuring an invalid priority succeeds when it should fail.</td>
+<td>5.12.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -894,6 +969,12 @@ with multiple optics, which can impact link stability and performance.</td>
 <td></td>
 </tr>
 <tr>
+<td>4447797</td>
+<td>When you remove an FRU, such as a PSU, from the switch, stale statistical data from the component is still reported over GNMI and OTLP.  To resolve this issue in OTLP, the status metric is now updated to {{absent}} and statistical information is no longer streamed. In GNMI, the entire component is deleted from the {{/components}} tree.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4447794</td>
 <td>The gNMI value for the sensor alarm-status shows incorrectly. For a raised alarm, the alarm-status is {{True(1)}}  but normally functioning sensors also show {{True(1)}}.</td>
 <td>5.13.0-5.13.1</td>
@@ -911,6 +992,15 @@ with multiple optics, which can impact link stability and performance.</td>
 <td>4447419</td>
 <td>Users with {{nv show}} privileges only can still execute the {{nv config apply}} and related commands.</td>
 <td>5.9.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4443870</td>
+<td>When running tens of thousands of {{nv set}} commands, the {{/var/lib/nvue}} directory might grow to several GBs in size, potentially using all the disk space. To work around this issue, run the following commands to reduce the disk space in the {{/var/lib/nvue}} directory:
+cumulus@switch:~$ sudo su
+cumulus@switch:~$ cd /var/lib/nvue/config
+cumulus@switch:~$ git gc</td>
+<td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -988,7 +1078,7 @@ with multiple optics, which can impact link stability and performance.</td>
 <tr>
 <td>4423285</td>
 <td>SVIs do not go down even when all the bridge ports on the corresponding VLAN are down. This issue occurs because the {{vlan-bridge-binding}} option default setting is off for all the SVIs responsible for bringing down the SVI when all the ports on the corresponding VLAN are down. To work around this issue, manually configure the {{vlan-bridge-binding on}} option under the SVI stanza in the {{/etc/network/interfaces config}} file.</td>
-<td>5.11.0-5.13.1</td>
+<td>5.9.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1000,7 +1090,7 @@ with multiple optics, which can impact link stability and performance.</td>
 <tr>
 <td>4423273</td>
 <td>After you run the {{nv action upgrade system packages to latest}} command followed by the {{nv action reboot system}} command, {{nv show system reboot}} displays {{upgrade}} instead of one of the valid values {{cold}}, {{warm}},  or {{fast}}.</td>
-<td>5.11.0-5.13.1</td>
+<td>5.9.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1164,7 +1254,7 @@ The interface shows "screaming" emojis and "Could not render." </td>
 </tr>
 <tr>
 <td>4294156</td>
-<td>After you clear the RoCE counters with the {{nv action clear interface &lt;interface-id&gt; qos roce counters}} command, the {{buffer-max-usage}} counters in the {{nv show interface &lt;interface-id&gt; qos roce counters}} command output shows the same value.</td>
+<td>After you clear the RoCE counters with the {{nv action clear interface &lt;interface-id&gt; qos roce counters}} command, the {{buffer-max-usage}} counters in the {{nv show interface &lt;interface-id&gt; qos roce counters}} command output do not show updated (cleared) values.</td>
 <td>5.12.0-5.13.1</td>
 <td></td>
 </tr>
@@ -1401,6 +1491,12 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 <tr>
 <td>3877516</td>
 <td>When you connect two NVIDIA switches and configure 400G speed in force mode, links don't come up.To work around this issue, make sure auto-negotiation is always on when connecting NVIDIA to NVIDIA in PAM4.</td>
+<td>5.9.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3875687</td>
+<td>After changing the VXLAN local tunnel IP address, the new IP address is not reflected in the {{Local Vtep Ip}} field of the {{nv show evpn vni &lt;vni&gt;}} command output.  To work around this issue, either run the {{ifup &lt;vxlan-id&gt;}} command or reboot the switch.</td>
 <td>5.9.0-5.13.1</td>
 <td></td>
 </tr>

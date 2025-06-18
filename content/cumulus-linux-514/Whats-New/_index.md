@@ -27,7 +27,7 @@ Cumulus Linux 5.14.0 supports new platforms, provides bug fixes, and contains se
 - {{<link url="Equal-Cost-Multipath-Load-Sharing/#enable-adaptive-routing" text="Adaptive routing default profiles profile-1 and profile-2 removed and replaced with one profile called default">}}
 - JWT Based Authentication for REST API
 - grpc header based and http based authentication
-- gNMI requirements phase 4
+- {{<link url="gNMI-Streaming/#metrics" text="New gNMI streaming metrics: BGP, interface, LLDP, system, and platform transceiver">}}
 - MRC:
   - {{<link url="Quality-of-Service/#mrc-packet-trimming" text="Packet trimming">}}
   - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#mrc-qos-profile" text="New QoS profile for packet trimming">}}

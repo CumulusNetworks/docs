@@ -248,9 +248,9 @@ Output:
 
 #### Token Expiration
 
-To set the token expiration time, run the `nv set system api token-expiration <minutes>` command. You can set a value between 0 and 10080 (24*7*60) minutes (1 week) with 1 minute granularity. The default value is 60 minutes. If set the expiration time to 0, Cumulus Linux does not issue a token and all previously issued tokens do not work.
+To set the token expiration time, run the `nv set system api token-expiration <minutes>` command. You can set a value between 0 and 10080 minutes. The default value is 60 minutes. If set the expiration time to 0, Cumulus Linux does not issue a token and all previously issued tokens do not work.
 
-The following example sets the expiration time to one week:
+The following example sets the expiration time to one week (24x7x60):
 
 ```
 cumulus@switch:~$ nv set system api token-expiration 10080

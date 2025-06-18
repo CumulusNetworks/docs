@@ -40,16 +40,6 @@ Cumulus Linux 5.14.0 supports new platforms, provides bug fixes, and contains se
 | Cumulus Linux 5.14 | Cumulus Linux 5.13 and Earlier |
 | --------------- |---------------------------------------|
 | BGP community `0:0`| BGP community `internet`|
-| | |
-| | |
-| | |
-| | |
-| | |
-| | |
-| | |
-| | |
-| | |
-| | |
 
 {{< /expand >}}
   - {{< expand "Removed NVUE Commands" >}}
@@ -92,6 +82,8 @@ nv set router segment-routing srv6 state (enabled|disabled)
 nv set router segment-routing static srv6-sid <sid>
 nv set router segment-routing static srv6-sid <sid> locator-name <value>
 nv set router segment-routing static srv6-sid <sid> behavior (uN|uA|uDT|uDX)
+nv set system api token-expiration
+nv set system dns domain <domain-name>
 ```
 
 {{< /tab >}}
@@ -113,6 +105,8 @@ nv unset router segment-routing static srv6-sid
 nv unset router segment-routing static srv6-sid <sid>
 nv unset router segment-routing static srv6-sid <sid> locator-name
 nv unset router segment-routing static srv6-sid <sid> behavior
+nv unset system api token-expiration
+nv set system dns domain
 ```
 
 {{< /tab >}}

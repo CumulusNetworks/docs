@@ -25,24 +25,56 @@ For NVIDIA Spectrum ASICs, the firmware configures FEC, link speed, duplex mode 
 
 ### Auto-negotiation and Link Speed
 
+By default, NVUE enables auto-negotiation; however, you can set the link speed for a port.
+
 {{< tabs "TabID29 ">}}
 {{< tab "NVUE Commands ">}}
 
-By default, NVUE enables auto-negotiation; however, you can set the link speed for a port using NVUE commands.
-- If you set the link speed for a port and leave the default auto-negotiation setting (ON) or set auto-negotiation ON, the link comes up with auto-negotiation ON and the switch advertises the configured link speed setting to the other side of the connection.
-- If you set the link speed for a port and set auto-negotiation OFF, the link comes up with auto-negotiation OFF and force mode is set. The switch does not advertise the configured link speed setting to the other side of the connection.
-
-To set the link speed for an interface, run the `nv set interface <swp> link speed` command:
+If you set the link speed for a port and leave the default auto-negotiation setting (ON) or set auto-negotiation ON, the link comes up with auto-negotiation ON and the switch advertises the configured link speed setting to the other side of the connection.
 
 ```
 cumulus@switch:~$ nv set interface swp1 link speed 400G
 cumulus@switch:~$ nv config apply
 ```
 
+```
+cumulus@switch:~$ nv set interface swp1 link speed 400G
+cumulus@switch:~$ nv set interface swp1 link auto-negotiate ON
+cumulus@switch:~$ nv config apply
+```
+
+If you set the link speed for a port and set auto-negotiation OFF, the link comes up with auto-negotiation OFF and force mode is set. The switch does not advertise the configured link speed setting to the other side of the connection.
+
+```
+cumulus@switch:~$ nv set interface swp1 link speed 400G
+cumulus@switch:~$ nv set interface swp1 link auto-negotiate OFF
+cumulus@switch:~$ nv config apply
+```
+
+If you do not set a link speed for a port and set auto-negotiation ON, all possible speeds are supported on the interface:
+
+```
+cumulus@switch:~$ nv set interface swp1 link auto-negotiate on
+cumulus@switch:~$ nv config apply
+```
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-If you want to force a specific link speed using Linux files instead of NVUE commands, you must set the speed and disable auto-negotiation in the `/etc/network/interfaces` file, then run the `ifreload -a` command:
+Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command:
+
+If you set the link speed for a port and leave the default auto-negotiation setting (ON) or set auto-negotiation ON, the link comes up with auto-negotiation ON and the switch advertises the configured link speed setting to the other side of the connection.
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+auto swp1
+iface swp1
+    link-speed 400000
+    link-autoneg on
+...
+```
+
+If you set the link speed for a port and set auto-negotiation OFF, the link comes up with auto-negotiation OFF and force mode is set. The switch does not advertise the configured link speed setting to the other side of the connection.
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -50,6 +82,16 @@ auto swp1
 iface swp1
     link-speed 400000
     link-autoneg off
+...
+```
+
+If you do not set a link speed for a port and set auto-negotiation ON, all possible speeds are supported on the interface:
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+auto swp1
+iface swp1
+    link-autoneg on
 ...
 ```
 

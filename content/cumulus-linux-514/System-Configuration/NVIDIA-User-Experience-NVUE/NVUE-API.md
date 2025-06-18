@@ -217,6 +217,36 @@ cumulus@switch:~$ nv set system control-plane acl API-PROTECT inbound
 
 The NVUE REST API supports <span class="a-tooltip">[JWT](## "JSON Web Token")</span>-based authentication, which is a compact way of representing claims in Json format. The claims are signed and a digital signature (Message Authentication Code) is added to the token in a <span class="a-tooltip">[JWS](## "JSON Web Signature")</span> structure.  
 
+When you make an API request, you include the token in the authorization header so that the switch can verify that the token is valid.
+
+#### Generate a Token
+
+To generate a token, run the following cURL command:
+
+```
+cumulus@switch:~$ curl -k --user "cumulus:cumulus" --request GET 'https://127.0.0.1:8765/nvue_v1/api-token'
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJOVlVFLWN1bXVsdXMiLCJzdWIiOiJ1c2VyMSIsImF1ZCI6Ik5WVUUtQVBJLUNMSUVOVCIsImV4cCI6MTc0ODkwNDIyNy41NDY3MTcsImlhdCI6MTc0ODg5ODIyNy41NDY3MTcsImhhc2giOiJlOTI2YWU5NDhkN2VkMTI2ZDk3OTQyY2M5MGJjMmU3N2VhMDI5NTc2ZDk5YzgxMjEwYmZiMDNmZjdmODlmMTBiYWMzMzk0MjlhMjIzYjk4MDdmOWE1M2FjZGVmZDZmZjQ2MWNhODhkZDlhNmVhNzU1NWFiNjg0YTc5OWJmMDNjMSJ9.2vVTqg5oj3183vb50luKlgnETiFsXDkTdvrPor6KQSI"
+}
+payload2['exp'] - payload2['iat'] = 6000.0
+```
+
+To use the token in subsequent requests:
+
+```
+cumulus@switch:~$ curl -k -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJOVlVFLWN1bXVsdXMiLCJzdWIiOiJ1c2VyMSIsImF1ZCI6Ik5WVUUtQVBJLUNMSUVOVCIsImV4cCI6MTc0ODkwNDIyNy41NDY3MTcsImlhdCI6MTc0ODg5ODIyNy41NDY3MTcsImhhc2giOiJlOTI2YWU5NDhkN2VkMTI2ZDk3OTQyY2M5MGJjMmU3N2VhMDI5NTc2ZDk5YzgxMjEwYmZiMDNmZjdmODlmMTBiYWMzMzk0MjlhMjIzYjk4MDdmOWE1M2FjZGVmZDZmZjQ2MWNhODhkZDlhNmVhNzU1NWFiNjg0YTc5OWJmMDNjMSJ9.2vVTqg5oj3183vb50luKlgnETiFsXDkTdvrPor6KQSI" --request GET 'https://127.0.0.1:8765/nvue_v1/system/api?rev=applied'
+
+Output:
+ {
+  "certificate": "server_cert",
+  "listening-address": {},
+  "port": 8765,
+  "state": "enabled",
+  "token-expiration": 100
+}
+```
+
+#### Token Expiration
 
 To set the token expiration time, run the `nv set system api token-expiration <minutes>` command. You can set a value between 0 and 10080 (24*7*60) minutes (1 week) with 1 minute granularity. The default value is 60 minutes. If set the expiration time to 0, Cumulus Linux does not issue a token and all previously issued tokens do not work.
 
@@ -228,6 +258,27 @@ cumulus@switch:~$ nv config apply
 ```
 
 To unset the expiration, run the `nv unset system api token-expiration` command. 
+
+To show the configured token expiration time, run the `nv show api` command:
+
+```
+cumulus@switch:~$ nv show system api
+                     operational  applied    
+-------------------  -----------  -----------
+state                enabled      enabled    
+port                 8765         8765       
+certificate          self-signed  self-signed
+token-expiration     60           60         
+[listening-address]  any                     
+connections                                  
+  active             1                       
+  accepted           1                       
+  handled            1                       
+  requests           1                       
+  reading            0                       
+  writing            1                       
+  waiting            0 
+```
 
 ## Supported Objects
 

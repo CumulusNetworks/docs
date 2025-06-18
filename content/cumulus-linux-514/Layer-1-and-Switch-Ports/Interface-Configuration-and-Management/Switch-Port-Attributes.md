@@ -51,7 +51,7 @@ cumulus@switch:~$ nv set interface swp1 link auto-negotiate OFF
 cumulus@switch:~$ nv config apply
 ```
 
-If you do not set a link speed for a port and set auto-negotiation ON, all possible speeds are supported on the interface:
+If you do not set a link speed for a port and set auto-negotiation ON, the switch advertises all supported speeds on the interface:
 
 ```
 cumulus@switch:~$ nv set interface swp1 link auto-negotiate on
@@ -85,7 +85,7 @@ iface swp1
 ...
 ```
 
-If you do not set a link speed for a port and set auto-negotiation ON, all possible speeds are supported on the interface:
+If you do not set a link speed for a port and set auto-negotiation ON, the switch advertises all supported speeds on the interface:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -97,6 +97,12 @@ iface swp1
 
 {{< /tab >}}
 {{< /tabs >}}
+
+{{%notice note%}}
+Link speed and auto-negotiation behavior has changed in Cumulus Linux 5.14:
+- In Cumulus Linux 5.14 and later if you run the `nv set interface swp1 link speed` command without setting auto-negotiation, the link comes up with auto-negotiation ON and the switch advertises the configured link speed setting to the other side of the connection.
+- In Cumulus Linux 5.13 and earlier if you run the `nv set interface swp1 link speed` command without setting auto-negotiation, force mode is set and the switch does not advertise the configured link speed setting to the other side of the connection.
+{{%/notice%}}
 
 ## MTU
 

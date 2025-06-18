@@ -213,6 +213,22 @@ cumulus@switch:~$ nv set acl API-PROTECT rule 30 remark "Block everyone else fro
 cumulus@switch:~$ nv set system control-plane acl API-PROTECT inbound
 ```
 
+### JWT-based Authentication
+
+The NVUE REST API supports <span class="a-tooltip">[JWT](## "JSON Web Token")</span>-based authentication, which is a compact way of representing claims in Json format. The claims are signed and a digital signature (Message Authentication Code) is added to the token in a <span class="a-tooltip">[JWS](## "JSON Web Signature")</span> structure.  
+
+
+To set the token expiration time, run the `nv set system api token-expiration <minutes>` command. You can set a value between 0 and 10080 (24*7*60) minutes (1 week) with 1 minute granularity. The default value is 60 minutes. If set the expiration time to 0, Cumulus Linux does not issue a token and all previously issued tokens do not work.
+
+The following example sets the expiration time to one week:
+
+```
+cumulus@switch:~$ nv set system api token-expiration 10080
+cumulus@switch:~$ nv config apply
+```
+
+To unset the expiration, run the `nv unset system api token-expiration` command. 
+
 ## Supported Objects
 
 The NVUE object model supports most features on the Cumulus Linux switch. The following list shows the supported objects. The NVUE API supports more objects within each of these objects. To see a full listing of the supported API endpoints, refer to {{<mib_link url="cumulus-linux-513/api/index.html" text="NVUE OpenAPI Specification for Cumulus Linux.">}}

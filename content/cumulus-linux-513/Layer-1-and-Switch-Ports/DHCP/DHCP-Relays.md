@@ -12,7 +12,7 @@ This topic describes how to configure DHCP relays for IPv4 and IPv6 using the fo
 
 ## Basic Configuration
 
-To set up DHCP relay, you need to provide the IP address of the DHCP server and the interfaces participating in DHCP relay (facing the server and facing the client). In an MLAG configuration, you must also specify the peerlink interface in case the local uplink interfaces fail.
+To set up DHCP relay, you need to provide the IP address of the DHCP server and the interfaces participating in DHCP relay (facing the server and facing the client).
 
 In the example commands below:
 - The DHCP server IPv4 address is 172.16.1.102

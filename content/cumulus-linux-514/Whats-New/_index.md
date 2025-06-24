@@ -40,6 +40,7 @@ Cumulus Linux 5.14.0 supports new platforms, provides bug fixes, and contains se
 | Cumulus Linux 5.14 | Cumulus Linux 5.13 and Earlier |
 | --------------- |---------------------------------------|
 | BGP community `0:0`| BGP community `internet`|
+| BGP `enforce-first-as` option is ON by default | BGP `enforce-first-as` option is OFF by default |
 
 {{< /expand >}}
   - {{< expand "Removed NVUE Commands" >}}

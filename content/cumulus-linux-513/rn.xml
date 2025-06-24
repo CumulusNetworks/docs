@@ -13,12 +13,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4495439</td>
-<td>Due to code changes, Radius users are now logged (not local users) and Cumulus Linux sends the accounting logs to all reachable Radius servers. To manually disable sending to all servers and only send to the first server that responds, add the line {{send-records first-response}} to the {{/etc/pam_radius_auth.conf}} file, then restart {{rsyslog.service}} with the {{systemctl restart rsyslog.service}} command.</td>
-<td>5.11.1-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4495348</td>
 <td>The password recovery procedure with single user mode only works to recover the root password, or to recover the cumulus user password if you manage switch configuration by editing configuration files. If you manage switch configuration with NVUE commands, to recover the password for the cumulus user or any user managed by NVUE, log into the switch as the root user and run the NVUE {{nv set system aaa user &lt;user-id&gt; password &lt;value&gt;}} command.</td>
 <td>5.13.1</td>
@@ -917,12 +911,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>4500033</td>
 <td>When using TACACS or Radius authentication to run CLI commands, the available memory on the switch might reduce over time.</td>
 <td>5.13.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4495439</td>
-<td>Due to code changes, Radius users are now logged (not local users) and Cumulus Linux sends the accounting logs to all reachable Radius servers. To manually disable sending to all servers and only send to the first server that responds, add the line {{send-records first-response}} to the {{/etc/pam_radius_auth.conf}} file, then restart {{rsyslog.service}} with the {{systemctl restart rsyslog.service}} command.</td>
-<td>5.11.1-5.13.1</td>
 <td></td>
 </tr>
 <tr>

@@ -18,16 +18,16 @@ Cumulus Linux 5.14.0 supports new platforms, provides bug fixes, and contains se
 
 ### New Features and Enhancements
 
-- {{<link url="Switch-Port-Attributes/#auto-negotiation-and-link-speed" text="Speed setting without auto-negotiation">}}
+- {{<link url="Switch-Port-Attributes/#auto-negotiation-and-link-speed" text="Link speed setting and auto-negotiation behavior change">}}
 - {{<link title="Erase all Data from the Switch" text="Erase all data from the switch">}} now generally available
 - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#transceiver-thermal-control" text="Transceiver thermal control">}}
 - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#clear-interface-physical-layer-error-counters" text="Clear physical layer error counters for an interface">}}
 - {{<link url="DHCP-Relays" text="Configure different DHCP relay servers per interface">}}
 - {{<link url="Quick-Start-Guide/#configure-the-domain-name" text="Domain name configuration">}}
 - {{<link url="Equal-Cost-Multipath-Load-Sharing/#enable-adaptive-routing" text="Adaptive routing default profiles profile-1 and profile-2 removed and replaced with one profile called default">}}
-- JWT Based Authentication for REST API
+- {{<link url="NVUE-API/#jwt-based-authentication" text="JWT Based Authentication for REST API">}}
 - grpc header based and http based authentication
-- gNMI requirements phase 4
+- {{<link url="gNMI-Streaming/#metrics" text="New gNMI streaming metrics: BGP, interface, LLDP, system, and platform transceiver">}}
 - MRC:
   - {{<link url="Quality-of-Service/#mrc-packet-trimming" text="Packet trimming">}}
   - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#mrc-qos-profile" text="New QoS profile for packet trimming">}}
@@ -40,16 +40,7 @@ Cumulus Linux 5.14.0 supports new platforms, provides bug fixes, and contains se
 | Cumulus Linux 5.14 | Cumulus Linux 5.13 and Earlier |
 | --------------- |---------------------------------------|
 | BGP community `0:0`| BGP community `internet`|
-| | |
-| | |
-| | |
-| | |
-| | |
-| | |
-| | |
-| | |
-| | |
-| | |
+| BGP `enforce-first-as` option is ON by default | BGP `enforce-first-as` option is OFF by default |
 
 {{< /expand >}}
   - {{< expand "Removed NVUE Commands" >}}
@@ -92,6 +83,8 @@ nv set router segment-routing srv6 state (enabled|disabled)
 nv set router segment-routing static srv6-sid <sid>
 nv set router segment-routing static srv6-sid <sid> locator-name <value>
 nv set router segment-routing static srv6-sid <sid> behavior (uN|uA|uDT|uDX)
+nv set system api token-expiration
+nv set system dns domain <domain-name>
 ```
 
 {{< /tab >}}
@@ -113,6 +106,8 @@ nv unset router segment-routing static srv6-sid
 nv unset router segment-routing static srv6-sid <sid>
 nv unset router segment-routing static srv6-sid <sid> locator-name
 nv unset router segment-routing static srv6-sid <sid> behavior
+nv unset system api token-expiration
+nv set system dns domain
 ```
 
 {{< /tab >}}

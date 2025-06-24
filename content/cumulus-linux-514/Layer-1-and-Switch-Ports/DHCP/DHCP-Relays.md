@@ -88,13 +88,12 @@ cumulus@leaf01:~$ sudo systemctl restart dhcrelay-nvidia-servers-1-mgmt.service
 {{%/notice%}}
 
 <!--
-To set up DHCP relay, you need to provide the IP address of the DHCP server and the interfaces participating in DHCP relay (facing the server and facing the client). In an MLAG configuration, you must also specify the peerlink interface in case the local uplink interfaces fail.
+To set up DHCP relay, you need to provide the IP address of the DHCP server and the interfaces participating in DHCP relay (facing the server and facing the client).
 
 In the example commands below:
 - The DHCP server IPv4 address is 172.16.1.102
 - The DHCP server IPv6 address is 2001:db8:100::2
 - vlan10 is the SVI for VLAN 10 and the uplinks are swp51 and swp52
-- `peerlink.4094` is the MLAG interface
 
 {{< tabs "TabID21 ">}}
 {{< tab "NVUE Commands ">}}
@@ -106,7 +105,6 @@ In the example commands below:
 cumulus@leaf01:~$ nv set service dhcp-relay default interface swp51
 cumulus@leaf01:~$ nv set service dhcp-relay default interface swp52
 cumulus@leaf01:~$ nv set service dhcp-relay default interface vlan10
-cumulus@leaf01:~$ nv set service dhcp-relay default interface
 cumulus@leaf01:~$ nv set service dhcp-relay default server 172.16.1.102
 cumulus@leaf01:~$ nv config apply
 ```
@@ -118,7 +116,6 @@ cumulus@leaf01:~$ nv config apply
 cumulus@leaf01:~$ nv set service dhcp-relay6 default interface upstream swp51 server-address 2001:db8:100::2
 cumulus@leaf01:~$ nv set service dhcp-relay6 default interface upstream swp52 server-address 2001:db8:100::2
 cumulus@leaf01:~$ nv set service dhcp-relay6 default interface downstream vlan10
-cumulus@leaf01:~$ nv set service dhcp-relay6 default interface downstream
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -353,6 +350,10 @@ The following example:
 - Sets the DHCP server to 10.1.10.104.
 - Configures VRF RED to advertise connected routes as type-5 so that the VRF RED loopback IPv4 address is reachable.
 
+{{%notice note%}}
+You do not need to add physical uplinks in the EVPN relay configuration. Only layer 3 VNI configuration is required for uplinks.
+{{%/notice%}}
+
 {{< tabs "TabID366 ">}}
 {{< tab "NVUE Commands ">}}
 
@@ -438,8 +439,12 @@ cumulus@leaf01:~$ nv config apply
 In a multi-tenant EVPN symmetric routing environment without MLAG, the VLAN interface (SVI) IPv4 address is typically unique on each leaf switch, which does not require RFC 3527 configuration.
 
 The following example:
-- Configures the SVIs vlan10 and vlan20, and the layer 3 VNI VLAN interface for VRF RED vlan4024_l3 to be part of INTF_CMD list to service DHCP packets.
+- Configures the SVIs vlan10 and vlan20, and the layer 3 VNI VLAN interface for VRF RED vlan4024_l3 to be part of INTF_CMD list to service DHCP packets. To obtain the layer 3 VNI for a VRF, run the `nv show vrf <vrf-name> evpn` command.
 - Sets the DHCP server IP address to 10.1.10.104.
+
+{{%notice note%}}
+You do not need to add physical uplinks in the EVPN relay configuration. Only layer 3 VNI configuration is required for uplinks.
+{{%/notice%}}
 
 {{< tabs "TabID369 ">}}
 {{< tab "NVUE Commands ">}}
@@ -697,7 +702,7 @@ cumulus@leaf01:~$ sudo systemctl status dhcrelay@default.service
    Memory: 2.3M
    CGroup: /system.slice/system-dhcrelay.slice/dhcrelay@default.service
            └─vrf
-             └─30904 /usr/sbin/dhcrelay --nl -d -i swp51 -i swp52 -i vlan10 -i peerlink.4094 172.16.1.102
+             └─30904 /usr/sbin/dhcrelay --nl -d -i swp51 -i swp52 -i vlan10 172.16.1.102
 ```
 
 {{< /tab >}}

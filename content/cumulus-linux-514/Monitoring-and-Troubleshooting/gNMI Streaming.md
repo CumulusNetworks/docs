@@ -1035,6 +1035,20 @@ Regex for specific keys (such as `“interface-id=swp*”`) is not supported.
 Cumulus Linux supports the following metrics:
 <!-- vale off -->
 {{< tabs "TabID200 ">}}
+{{< tab "BGP ">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/description​` | |
+| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/last-established​​` | |
+| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/sent/last-notification-error-code​​` | |
+| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/peer-as​​` | |
+| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/peer-group​​` | |
+| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/peer-type​​` | |
+| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/neighbor-address​​` | |
+| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/local-as​` | |
+
+{{< /tab >}}
 {{< tab "Interface ">}}
 
 |  Name | Description |
@@ -1090,6 +1104,12 @@ Cumulus Linux supports the following metrics:
 | `/interfaces/interface/ethernet/phy/state/lane/raw-ber` | Number of phy bit error rates for a given lane of an interface.|
 | `/interfaces/interface/ethernet/phy/state/fec-time-since-last-clear` | Time after last clear of FEC stats(phy layer). |
 | `/interfaces/interface/ethernet/phy/state/ber-time-since-last-clear` | Time after last clear of BER stats(phy layer). |
+| `/interfaces/interface/ethernet/state/auto-negotiate​` | |
+| `/interfaces/interface/ethernet/state/duplex-mode​` | |
+| `/interfaces/interface/ethernet/state/hw-mac-address​` | |
+| `/interfaces/interface/ethernet/state/mac-address​` | |
+| `/interfaces/interface/ethernet/state/negotiated-port-speed​` | |
+| `/interfaces/interface/state/loopback-mode` | |
 
 {{< /tab >}}
 {{< tab "LLDP">}}
@@ -1100,17 +1120,19 @@ Cumulus Linux supports the following metrics:
 | `/lldp/state/chassis-id-type` | The format and source of the chassis identifier string.|
 | `/lldp/state/system-description` | Description of the network entity including the full name and version identification of the system's hardware type, software operating system, and networking software.|
 | `/lldp/state/system-name` | Administratively assigned name for the system.|
-| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/age` | LLDP neighbor age after discovery.|
-| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/management-address/type`| Enumerated value for the network address type identified in this TLV. |
-| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/chassis-id` | Chassis component of the endpoint identifier associated with the transmitting LLDP agent.|
-| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/chassis-id-type` | Format and source of the chassis identifier string.|
-| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/system-name` | Administratively assigned name of the system associated with the transmitting LLDP agent.|
-| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/system-description` | Description of the network entity associated with the transmitting LLDP agent.|
-| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/port-id`| Port component of the endpoint identifier associated with the transmitting LLDP agent. |
-| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/port-description` | Binary string containing the actual port identifier for the port from which this LLDP PDU was transmitted.|
-| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/port-id-type` | Format and source of the remote port ID string. |
-| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/ttl` | Indicates how long information from the neighbor is considered valid. |
-| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/capabilities/capability[name=<capability>]/state/enabled` | If the corresponding system capability is enabled on the neighbor.|
+| `/lldp/interfaces/interface/neighbors/neighbor[id=<id>]/state/age` | LLDP neighbor age after discovery.|
+| `/lldp/interfaces/interface/neighbors/neighbor[id=<id>]/state/management-address/type`| Enumerated value for the network address type identified in this TLV. |
+| `/lldp/interfaces/interface/neighbors/neighbor[id=<id>]/state/chassis-id` | Chassis component of the endpoint identifier associated with the transmitting LLDP agent.|
+| `/lldp/interfaces/interface/neighbors/neighbor[id=<id>]/state/chassis-id-type` | Format and source of the chassis identifier string.|
+| `/lldp/interfaces/interface/neighbors/neighbor[id=<id>]/state/system-name` | Administratively assigned name of the system associated with the transmitting LLDP agent.|
+| `/lldp/interfaces/interface/neighbors/neighbor[id=<id>]/state/system-description` | Description of the network entity associated with the transmitting LLDP agent.|
+| `/lldp/interfaces/interface/neighbors/neighbor[id=<id>]/state/port-id`| Port component of the endpoint identifier associated with the transmitting LLDP agent. |
+| `/lldp/interfaces/interface/neighbors/neighbor[id=<id>]/state/port-description` | Binary string containing the actual port identifier for the port from which this LLDP PDU was transmitted.|
+| `/lldp/interfaces/interface/neighbors/neighbor[id=<id>]/state/port-id-type` | Format and source of the remote port ID string. |
+| `/lldp/interfaces/interface/neighbors/neighbor[id=<id>]/state/ttl` | Indicates how long information from the neighbor is considered valid. |
+| `/lldp/interfaces/interface/neighbors/neighbor[id=<id>]/capabilities/capability[name=<capability>]/state/enabled` | If the corresponding system capability is enabled on the neighbor.|
+| `/lldp/interfaces/interface[id=<id>]/state/enabled`​ ||
+| `/lldp/state/enabled` |  |
 
 {{< /tab >}}
 {{< tab "Platform">}}
@@ -1136,6 +1158,23 @@ Cumulus Linux supports the following metrics:
 | `/components/component[name='transceiver+panelport#']/transceiver/physical-channels/channel[no]/state/input-power/instant` | Input optical power of a physical channel in units of 0.01dBm, which may be associated with individual physical channels or an aggregate of multiple physical channels. |
 | `/components/component[name='transceiver+panelport#']/transceiver/physical-channels/channel[no]/state/laser-bias-current/instant` | Current applied by the system to the transmit laser to achieve the output power. The current is expressed in mA with up to two decimal precision. |
 | `/components/component[name='transceiver+panelport']/transceiver/physical-channels/channel[no]/state/output-power/instant` | Output optical power of a physical channel in units of 0.01dBm, which might be associated with individual physical channels or an aggregate of multiple physical channels. |
+| `/components/component[name]/state/software-version` | |
+| `/components/component/state/last-reboot-reason​` | |
+| `/components/component/state/last-reboot-time​` | |
+| `/components/component/state/temperature/avg​` | |
+| `/components/component/state/temperature/max​` | |
+| `/components/component/state/temperature/min​` | |
+| `/components/component/power-supply/state/input-voltage` | |
+| `/components/component/state/firmware-version​` | |
+| `/components/component/transceiver/state/date-code​` | |
+| `/components/component/transceiver/state/form-factor​` | |
+| `/components/component/transceiver/state/serial-no​` | |
+| `/components/component/transceiver/state/vendor​` | |
+| `/components/component/transceiver/state/vendor-part​` | |
+| `/components/component/transceiver/state/vendor-rev​` | |
+| `/components/component/transceiver/state/present​` | |
+| `/components/component/transceiver/state/enabled​` | |
+| `/components/component/transceiver/state/supply-voltage/instant` | |
 
 {{< /tab >}}
 {{< tab "QoS">}}
@@ -1173,6 +1212,7 @@ Cumulus Linux supports the following metrics:
 
 |  Name | Description |
 |------ | ----------- |
+| `/system/state/up-time` | |
 | `/system/state/hostname` | System hostname. |
 | `/system/state/software-version` | System software version. |
 | `/system/state/boot-time` | System boot time. |
@@ -1185,9 +1225,24 @@ Cumulus Linux supports the following metrics:
 | `/system/cpus/cpu[name=<cpu_id>]/state/wait/seconds` | CPU wait seconds.|
 | `/system/cpus/cpu[name=<cpu_id>]/state/hardware-interrupt/seconds` | CPU hardware interrupt seconds. |
 | `/system/cpus/cpu[name=<cpu_id>]/state/software-interrupt/seconds` | CPU software interrupt seconds.|
+| `/system/cpus/cpu/state/total​` | |
+| `/system/cpus/cpu/state/total/instant​` | |
+| `/system/cpus/cpu/state/total/avg​​` | |
+| `/system/cpus/cpu/state/total/min​​` | |
+| `/system/cpus/cpu/state/total/max​​` | |
+| `/system/cpus/cpu/state/user/instant​​` | |
+| `/system/cpus/cpu/state/user/avg​​` | |
+| `/system/cpus/cpu/state/user/min​​` | |
+| `/system/cpus/cpu/state/user/max​​` | |
+| `/system/cpus/cpu/state/kernel/instant​​` | |
+| `/system/cpus/cpu/state/kernel/avg​​` | |
+| `/system/cpus/cpu/state/kernel/min​​` | |
+| `/system/cpus/cpu/state/kernel/max​​` | |
 | `/system/memory/state/free` | Free memory. |
 | `/system/memory/state/physical` | Physical memory.|
 | `/system/memory/state/reserved` | Memory reserved for system use. |
+| `/system/memory/state/used​` | |
+| `/system/mount-points/mount-point[name='filesystem0']/state/utilized` | |
 | `/system/mount-points/mount-point[name='filesystem0']/state/name` | Mount point name.|
 | `/system/mount-points/mount-point[name='filesystem0']/state/storage-component` | A reference to the hosting component within the hierarchy. |
 | `/system/mount-points/mount-point[name='filesystem0']/state/size` | Total size of the initialized filesystem.|

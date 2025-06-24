@@ -750,6 +750,63 @@ address-family ipv4 unicast
 {{< /tab >}}
 {{< /tabs >}}
 
+## Enforce First AS
+
+By default, the switch denies an update received from an eBGP neighbor that does not list its ASN at the beginning of the AS_PATH in the incoming update. You can disable this setting with the `nv set vrf <vrf> router bgp neighbor <neighbor> enforce-first-as off` command.
+
+{{%notice note%}}
+In Cumulus Linux 5.13 and earlier the default setting for enforce first AS is OFF.
+{{%/notice%}}
+
+{{< tabs "757 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 enforce-first-as off
+cumulus@switch:~$ nv config apply
+```
+
+To disable the enforce first AS setting for a peer group, run the `nv set vrf <vrf> router bgp peer-group <peer-group> enforce-first-as off` command.
+
+```
+cumulus@switch:~$ nv set vrf default router bgp peer-group underlay enforce-first-as off
+cumulus@switch:~$ nv config apply
+```
+
+To reenable enforce first AS, run the `nv set vrf <vrf> router bgp neighbor <neighbor> enforce-first-as on` command or the `nv set vrf <vrf> router bgp peer-group <peer-group> enforce-first-as on` command.
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+To disable the enforce first AS setting for a neighbor or a peer group:
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# router bgp 65101
+switch(config-router)# no neighbor swp51 enforce-first-as
+switch(config-router-af)# end
+switch# write memory
+switch# exit
+```
+
+To reenable the enforce first AS setting for a neighbor or a peer group:
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# router bgp 65101
+switch(config-router)# neighbor swp51 enforce-first-as
+switch(config-router-af)# end
+switch# write memory
+switch# exit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Update Source
 
 You can configure BGP to use a specific IP address when exchanging BGP updates with a neighbor. For example, in a numbered BGP configuration, you can set the source IP address to be the loopback address of the switch.
@@ -2085,7 +2142,7 @@ cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51
                                     operational                     applied   
 ----------------------------------  ------------------------------  ----------
 password                                                            *         
-enforce-first-as                                                    off       
+enforce-first-as                                                    on       
 passive-mode                                                        off       
 nexthop-connected-check                                             on        
 description                                                         none      
@@ -2156,7 +2213,7 @@ cumulus@leaf01:~$ nv show vrf default router bgp peer-group underlay
                              operational  applied   
 ------------------------  --------------  ----------
 password                                  *         
-enforce-first-as                          off       
+enforce-first-as                          on       
 passive-mode                              off       
 nexthop-connected-check                   on        
 description                               none      

@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4501642</td>
+<td>When you connect the QLOUIE cable with FW 52.181.1003 to an NVIDIA SN5600 switch, you might see link flaps. </td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4495439</td>
 <td>Due to code changes, Radius users are now logged (not local users) and Cumulus Linux sends the accounting logs to all reachable Radius servers. To manually disable sending to all servers and only send to the first server that responds, add the line {{send-records first-response}} to the {{/etc/pam_radius_auth.conf}} file, then restart {{rsyslog.service}} with the {{systemctl restart rsyslog.service}} command.</td>
 <td>5.11.1-5.13.1</td>
@@ -19,8 +25,20 @@
 <td></td>
 </tr>
 <tr>
+<td>4495231</td>
+<td>If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the {{hwclock --systohc}} command to add it to the hardware clock.  You can then use {{onie-nos-install}} to install the image.</td>
+<td>5.9.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4482933</td>
 <td>The {{age}} and {{last-update}} counters in the {{nv show bridge domain &lt;domain-id&gt; mac-table}} command output are reversed. The {{last-update}} counter shows {{age}} data and the {{age}} counter shows {{last-update}} data. Cumulus Linux uses the {{age}} timer to determine when to remove an old MAC entry.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4477903</td>
+<td>Cumulus Linux drops SRv6 traffic to the switch due to a missing hardware ECMP entry even though the SRv6 ACL is programmed correctly. To work around this issue, restart the {{switchd}} service.</td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
@@ -145,12 +163,6 @@ cumulus@switch:~$ git gc</td>
 <td></td>
 </tr>
 <tr>
-<td>4425299</td>
-<td>After upgrading from Cumulus Linux 5.12 to 5.13 on the NVIDIA SN5400 switch bonus port, PTP does not converge. To work around this issue, disable, then enable the bonus port after upgrade.</td>
-<td>5.13.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4425288</td>
 <td>When gNMI streaming is enabled on the switch, Cumulus Linux generates a cl-support file the first time you perform an FRR operation that reloads or restarts the FRR service (such as remove or add a neighbor or add or modify static routes).</td>
 <td>5.13.0-5.13.1</td>
@@ -195,6 +207,12 @@ cumulus@switch:~$ git gc</td>
 <tr>
 <td>4414935</td>
 <td>Interface counters retrieved from the kernel are not reset when {{switchd}} restarts. These kernel counters are inconsistent with other telemetry counters that do reset when {{switchd}} restarts.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4413589</td>
+<td>A MAC-only EVPN type-2 route is wrongly advertised with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
@@ -259,6 +277,12 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <td>The Swagger UI for the Cumulus OpenAPI model is not rendering correctly (https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-512/api/index.html#). 
 The interface shows "screaming" emojis and "Could not render." </td>
 <td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4341806</td>
+<td>The BGP uptime differs between vtysh and NVUE command output.</td>
+<td>5.12.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -884,6 +908,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4501642</td>
+<td>When you connect the QLOUIE cable with FW 52.181.1003 to an NVIDIA SN5600 switch, you might see link flaps. </td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4500033</td>
 <td>When using TACACS or Radius authentication to run CLI commands, the available memory on the switch might reduce over time.</td>
 <td>5.13.0-5.13.1</td>
@@ -896,8 +926,20 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
+<td>4495231</td>
+<td>If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the {{hwclock --systohc}} command to add it to the hardware clock.  You can then use {{onie-nos-install}} to install the image.</td>
+<td>5.9.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4482933</td>
 <td>The {{age}} and {{last-update}} counters in the {{nv show bridge domain &lt;domain-id&gt; mac-table}} command output are reversed. The {{last-update}} counter shows {{age}} data and the {{age}} counter shows {{last-update}} data. Cumulus Linux uses the {{age}} timer to determine when to remove an old MAC entry.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4477903</td>
+<td>Cumulus Linux drops SRv6 traffic to the switch due to a missing hardware ECMP entry even though the SRv6 ACL is programmed correctly. To work around this issue, restart the {{switchd}} service.</td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
@@ -1034,12 +1076,6 @@ cumulus@switch:~$ git gc</td>
 <td></td>
 </tr>
 <tr>
-<td>4425299</td>
-<td>After upgrading from Cumulus Linux 5.12 to 5.13 on the NVIDIA SN5400 switch bonus port, PTP does not converge. To work around this issue, disable, then enable the bonus port after upgrade.</td>
-<td>5.13.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4425288</td>
 <td>When gNMI streaming is enabled on the switch, Cumulus Linux generates a cl-support file the first time you perform an FRR operation that reloads or restarts the FRR service (such as remove or add a neighbor or add or modify static routes).</td>
 <td>5.13.0-5.13.1</td>
@@ -1142,6 +1178,12 @@ cumulus@switch:~$ git gc</td>
 <td></td>
 </tr>
 <tr>
+<td>4413589</td>
+<td>A MAC-only EVPN type-2 route is wrongly advertised with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4413450</td>
 <td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables, the process consumes excessive memory resulting in out of memory crashes. </td>
 <td>5.0.0-5.13.1</td>
@@ -1208,6 +1250,12 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <td>The Swagger UI for the Cumulus OpenAPI model is not rendering correctly (https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-512/api/index.html#). 
 The interface shows "screaming" emojis and "Could not render." </td>
 <td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4341806</td>
+<td>The BGP uptime differs between vtysh and NVUE command output.</td>
+<td>5.12.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>

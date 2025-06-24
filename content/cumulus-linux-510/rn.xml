@@ -7,9 +7,15 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4447419</td>
+<td>4502966</td>
 <td>Users with {{nv show}} privileges only can still execute the {{nv config apply}} and related commands.</td>
 <td>5.9.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4495231</td>
+<td>If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the {{hwclock --systohc}} command to add it to the hardware clock.  You can then use {{onie-nos-install}} to install the image.</td>
+<td>5.9.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1035,9 +1041,15 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4447419</td>
+<td>4502966</td>
 <td>Users with {{nv show}} privileges only can still execute the {{nv config apply}} and related commands.</td>
 <td>5.9.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4495231</td>
+<td>If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the {{hwclock --systohc}} command to add it to the hardware clock.  You can then use {{onie-nos-install}} to install the image.</td>
+<td>5.9.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>

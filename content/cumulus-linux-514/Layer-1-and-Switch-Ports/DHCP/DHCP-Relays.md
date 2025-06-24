@@ -353,6 +353,10 @@ The following example:
 - Sets the DHCP server to 10.1.10.104.
 - Configures VRF RED to advertise connected routes as type-5 so that the VRF RED loopback IPv4 address is reachable.
 
+{{%notice note%}}
+You do not need to add physical uplinks in the EVPN relay configuration. Only layer 3 VNI configuration is required for uplinks.
+{{%/notice%}}
+
 {{< tabs "TabID366 ">}}
 {{< tab "NVUE Commands ">}}
 
@@ -438,8 +442,12 @@ cumulus@leaf01:~$ nv config apply
 In a multi-tenant EVPN symmetric routing environment without MLAG, the VLAN interface (SVI) IPv4 address is typically unique on each leaf switch, which does not require RFC 3527 configuration.
 
 The following example:
-- Configures the SVIs vlan10 and vlan20, and the layer 3 VNI VLAN interface for VRF RED vlan4024_l3 to be part of INTF_CMD list to service DHCP packets.
+- Configures the SVIs vlan10 and vlan20, and the layer 3 VNI VLAN interface for VRF RED vlan4024_l3 to be part of INTF_CMD list to service DHCP packets. To obtain the layer 3 VNI for a VRF, run the `nv show vrf <vrf-name> evpn` command.
 - Sets the DHCP server IP address to 10.1.10.104.
+
+{{%notice note%}}
+You do not need to add physical uplinks in the EVPN relay configuration. Only layer 3 VNI configuration is required for uplinks.
+{{%/notice%}}
 
 {{< tabs "TabID369 ">}}
 {{< tab "NVUE Commands ">}}

@@ -983,7 +983,7 @@ To configure packet trimming:
 - Set the maximum size of the trimmed packet. You can specify a value between 256 and 1024; the value must be a multiple of 4.
 - Set the DSCP value to be marked on the trimmed packets. You can specify a value between 0 and 63.
 - Set the egress port and traffic-class from which dropped traffic is trimmed. You can specify a value between 0 and 7.
-- Set the egress traffic class on which to send the trimmed packet. You can specify a value between 0 and 7.
+- Set the egress switch priority on which to send the trimmed packet. You can specify a value between 0 and 7.
 - Enable packet trimming.
 
 ```
@@ -992,7 +992,7 @@ cumulus@switch:~$ nv set system forwarding packet-trim service-port swp65
 cumulus@switch:~$ nv set system forwarding packet-trim remark dscp 10
 cumulus@switch:~$ nv set system forwarding packet-trim size 528
 cumulus@switch:~$ nv set interface swp1-3 packet-trim egress-eligibility traffic-class 1
-cumulus@switch:~$ nv set system forwarding packet-trim traffic-class 4
+cumulus@switch:~$ nv set system forwarding packet-trim switch-priority 4
 cumulus@switch:~$ nv set system forwarding packet-trim state enabled
 cumulus@switch:~$ nv config apply
 ```
@@ -1007,8 +1007,7 @@ To configure SRv6:
   - Configure the SRv6 locator function length. Cumulus Linux currently supports a value of 0.
   - Configure the SRv6 locator node length. Cumulus Linux currently supports a value of 16.
   - Configure the static segment identifier locator name.
-  - Configure the static segment identifier endpoint behavior. You can specify uA, uDT, uDX, or uN.
-  - Configure the static segment identifier interface. You set the interface for uA only.
+  - Configure the static segment identifier endpoint behavior. You can specify uA or uN.
 
 The following example enables SRv6, and configures the locator called LEAF and the static SID fcbb:bbbb:2::/48:
 
@@ -1021,9 +1020,8 @@ cumulus@switch:~$ nv set router segment-routing srv6 locator LEAF prefix fcbb:bb
 cumulus@switch:~$ nv set router segment-routing srv6 locator LEAF block-length 32
 cumulus@switch:~$ nv set router segment-routing srv6 locator LEAF func-length 0
 cumulus@switch:~$ nv set router segment-routing srv6 locator LEAF node-length 16
-cumulus@switch:~$ nv set router segment-routing static srv6-sid fcbb:bbbb:2::/48 locator-name LEAF   
-cumulus@switch:~$ nv set router segment-routing static srv6-sid fcbb:bbbb:2::/48 behaviour uA 
-cumulus@switch:~$ nv set router segment-routing static srv6-sid fcbb:bbbb:2::/48 interface swp1 
+cumulus@switch:~$ nv set router segment-routing static srv6-sid 2001:db8:1:1::100/48 locator-name LEAF  
+cumulus@switch:~$ nv set router segment-routing static srv6-sid 2001:db8:1:1::100/48 behavior uA 
 cumulus@switch:~$ nv config apply
 ```
 
@@ -1037,12 +1035,12 @@ leaf01# configure t
 leaf01(config)# segment-routing 
 leaf01(config-sr)# srv6
 leaf01(config-srv6)# static-sids
-leaf01(config-srv6-sids)# sid fcbb:bbbb:2::/48 locator LEAF behavior uA interface swp1
+leaf01(config-srv6-sids)# sid 2001:db8:1:1::100/48 locator LEAF behavior uA
 leaf01(config-srv6-sids)# exit
 leaf01(config-srv6)# locators
 leaf01(config-srv6-locators)# locator LEAF
-leaf01(config-srv6-locator)# prefix fcbb:bbbb:2::/48 block-len 32 func-bits 0
-leaf01(config-srv6-locator)# prefix fcbb:bbbb:2::/48 node-len 16
+leaf01(config-srv6-locator)# prefix 2001:db8:1:1::100/48 block-len 32 func-bits 0
+leaf01(config-srv6-locator)# prefix 2001:db8:1:1::100/48 node-len 16
 leaf01(config-srv6-locator)# end
 leaf01# exit
 ```
@@ -1143,13 +1141,22 @@ To show packet trimming configuration, run the `nv show system forwarding packet
 
 ```
 cumulus@switch:~$ nv show system forwarding packet-trim
-         operational  applied            
--------  -----------  -------------------
-state                 enabled            
-profile               packet-trim-default
+                 operational  applied  pending
+---------------  -----------  -------  -------
+state                         enabled  enabled
+service-port                  swp65    swp65  
+size                          528      528    
+switch-priority               4        4      
+remark                                        
+  dscp                        10       10     
 
 Egress Eligibility TC-to-Interface Information
 =================================================
+No Data
+
+
+Port-Level SP to DSCP Remark Information
+===========================================
 No Data
 ```
 
@@ -1157,7 +1164,9 @@ To show forwarding packet trim marking information, run the `nv show system forw
 
 ```
 cumulus@switch:~$ nv show system forwarding packet-trim remark 
-No Data
+      operational  applied  pending
+----  -----------  -------  -------
+dscp               10       10
 ```
 
 ### Show SRv6 Configuration
@@ -1166,14 +1175,16 @@ To show if SRv6 is enabled and to show the configured locators, run the `nv show
 
 ```
 cumulus@switch:~$ nv show router segment-routing 
-             applied
------------  -------
-srv6                
-  state      enabled
-  [locator]  LOC2 
+              applied   pending             
+------------  --------  --------------------
+srv6                                        
+  state       disabled  enabled             
+  [locator]             LEAF                
+static                                      
+  [srv6-sid]            2001:db8:1:1::100/48
 ```
 
-To show configuration information for all SRv6 locators, run the `nv show router segment-routing srv6 locator` command:
+To show configuration information for all SRv6 locators, run the `nv show router segment-routing srv6 locator` command or the vtysh `show segment-routing srv6 locator` command:
 
 ```
 cumulus@switch:~$ nv show router segment-routing srv6 locator
@@ -1182,17 +1193,29 @@ SRv6 locator name  block-length  func-length  node-length  IPv6 Prefix       sta
 LOC2               32            0            16           fcbb:bbbb:2::/48  up
 ```
 
-To show configuration information about a specific locator, run the `nv show router segment-routing srv6 locator <locator-id>` command:
+To show configuration information about a specific locator, run the NVUE `nv show router segment-routing srv6 locator <locator-id>` command or the vtysh `show segment-routing srv6 locator <locator> detail` command:
 
 ```
-cumulus@switch:~$ nv show router segment-routing srv6 locator LOC2 
-              operational       applied         
-------------  ----------------  ----------------
-prefix        fcbb:bbbb:2::/48  fcbb:bbbb:2::/48
-block-length  32                32              
-node-length   16                16              
-func-length   0                 0               
-status        u
+cumulus@switch:~$ nv show router segment-routing srv6 locator LEAF 
+              operational  applied  pending         
+------------  -----------  -------  ----------------
+prefix                              fcbb:bbbb:2::/48
+block-length                        32              
+node-length                         16              
+func-length                         0
+```
+
+To show the SRv6 static segment identifiers, run the NVUE `nv show router segment-routing static srv6 sid` command or the vtysh `show segment-routing srv6 sid` command:
+
+```
+cumulus@switch:~$ nv show router segment-routing srv6 sid 
+
+```
+
+To show information for a specific SRv6 static segment identifier, run the NVUE `nv show router segment-routing static srv6 sid <sid>` command or the vtysh `show segment-routing srv6 sid <sid>` command:
+
+```
+cumulus@switch:~$ nv show router segment-routing static srv6 sid 2001:db8:1:1::100/48
 ```
 
 ### Show SRv6 Endpoints

@@ -99,6 +99,10 @@ nv show interface <interface-id> link phy-detail hardware
 nv show platform transceiver <interface> temperature
 nv show router segment-routing
 nv show router segment-routing srv6
+nv show router segment-routing srv6 stats
+nv show router segment-routing srv6 stats sid
+nv show router segment-routing srv6 stats sid <sid>
+nv show router segment-routing srv6 stats no-sid-drops
 nv show router segment-routing srv6 locator
 nv show router segment-routing srv6 locator <locator-name>
 nv show router segment-routing srv6 sid
@@ -123,7 +127,7 @@ nv set router segment-routing srv6 locator <locator-name> func-length (0-0)
 nv set router segment-routing srv6 state (enabled|disabled)
 nv set router segment-routing static srv6-sid <sid>
 nv set router segment-routing static srv6-sid <sid> locator-name <value>
-nv set router segment-routing static srv6-sid <sid> behavior (uN|uA|uDT|uDX)
+nv set router segment-routing static srv6-sid <sid> behavior (uN|uA)
 nv set system api token-expiration
 nv set system dns domain <domain-name>
 ```
@@ -147,6 +151,10 @@ nv unset router segment-routing static srv6-sid
 nv unset router segment-routing static srv6-sid <sid>
 nv unset router segment-routing static srv6-sid <sid> locator-name
 nv unset router segment-routing static srv6-sid <sid> behavior
+nv action clear router segment-routing srv6 stats
+nv action clear router segment-routing srv6 stats sid
+nv action clear router segment-routing srv6 stats sid <sid>
+nv action clear router segment-routing srv6 stats no-sid-drops
 nv unset system api token-expiration
 nv set system dns domain
 ```
@@ -157,6 +165,7 @@ nv set system dns domain
 ```
 nv action clear interface <interface-id> link phy-detail
 nv action clear router segment-routing srv6 stats
+nv action clear router segment-routing srv6 stats sid
 nv action clear router segment-routing srv6 stats sid <sid>
 nv action clear router segment-routing srv6 stats no-sid-drops
 ```

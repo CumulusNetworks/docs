@@ -275,7 +275,7 @@ The following example:
 - Configures VRF RED to advertise connected routes as type-5 so that the VRF RED loopback IPv4 address is reachable.
 
 {{%notice note%}}
-You do not need to add physical uplinks in the relay configuration. Only layer 3 VNI configuration is required for uplinks.
+You do not need to add physical uplinks in the relay configuration. Only layer 3 VNI VLAN interface configuration is required for uplinks.
 {{%/notice%}}
 
 {{< tabs "TabID366 ">}}
@@ -365,6 +365,10 @@ In a multi-tenant EVPN symmetric routing environment without MLAG, the VLAN inte
 The following example:
 - Configures the SVIs vlan10 and vlan20, and the layer 3 VNI VLAN interface for VRF RED vlan4024_l3 to be part of INTF_CMD list to service DHCP packets. To obtain the layer 3 VNI VLAN interface, run the `nv show vrf <vrf-name> evpn` command.
 - Sets the DHCP server IP address to 10.1.10.104.
+
+{{%notice note%}}
+You do not need to add physical uplinks in the relay configuration. Only layer 3 VNI VLAN interface configuration is required for uplinks.
+{{%/notice%}}
 
 {{< tabs "TabID369 ">}}
 {{< tab "NVUE Commands ">}}

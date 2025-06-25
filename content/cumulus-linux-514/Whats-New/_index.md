@@ -24,7 +24,6 @@ Cumulus Linux 5.14.0 supports new platforms, provides bug fixes, and contains se
 - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#clear-interface-physical-layer-error-counters" text="Clear physical layer error counters for an interface">}}
 - {{<link url="DHCP-Relays" text="Configure different DHCP relay servers per interface">}}
 - {{<link url="Quick-Start-Guide/#configure-the-domain-name" text="Domain name configuration">}}
-- {{<link url="RADIUS-AAA/#show-and-clear-radius-counters" text="Show and clear RADIUS counters">}}
 - {{<link url="Equal-Cost-Multipath-Load-Sharing/#enable-adaptive-routing" text="Adaptive routing default profiles profile-1 and profile-2 removed and replaced with one profile called default">}}
 - {{<link url="NVUE-API/#jwt-based-authentication" text="JWT Based Authentication for REST API">}}
 - gNMI:
@@ -36,8 +35,48 @@ Cumulus Linux 5.14.0 supports new platforms, provides bug fixes, and contains se
   - {{<link url="Quality-of-Service/#asymmetric-packet-trimming" text="Packet trimming with asymmetric DSCP">}}
   - {{<link url="Quality-of-Service/#configure-srv6" text="SRv6">}}
   - {{<link url="Quality-of-Service/#clear-srv6-statistics" text="Clear SRv6 statistics">}}
+- {{< expand "New and updated vtysh BGP show commands" >}}
+```
+show bgp router json
+show bgp vrfs <vrf-id> json
+show bgp vrf <vrf-id> bestpath json 
+show bgp vrf <vrf-id> ipv4 unicast redistribute json 
+show bgp vrf <vrf-id> ipv6 unicast redistribute json 
+```
+{{< /expand >}}
 - NVUE
   - {{<link url="Troubleshooting-EVPN/#show-evpn-vnis-across-all-vrfs" text="Commands to show EVPN information across all VRFs">}}
+  - {{<link url="RADIUS-AAA/#show-and-clear-radius-counters" text="Show and clear RADIUS counters">}}
+  - {{< expand "Operational information added to NVUE BGP show commands" >}}
+```
+nv show router bgp
+nv show router bgp convergence-wait
+nv show router bgp graceful-restart
+nv show router bgp queue-limit
+nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute
+nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute static
+nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute connected
+nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute kernel
+nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute ospf
+nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute
+nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute static
+nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute connected
+nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute kernel
+nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute ospf6
+nv show vrf <vrf-id> router bgp path-selection
+nv show vrf <vrf-id> router bgp path-selection med
+nv show vrf <vrf-id> router bgp path-selection aspath
+nv show vrf <vrf-id> router bgp path-selection multipath
+nv show vrf <vrf-id> router bgp neighbor <interface> bfd
+nv show vrf <vrf-id> router bgp neighbor <interface> local-as
+nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath
+nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath
+nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath
+nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath allow-my-asn
+nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath allow-my-asn
+nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath allow-my-asn
+```
+{{< /expand >}}
   - {{< expand "Changed NVUE Commands and Options" >}}
 | Cumulus Linux 5.14 | Cumulus Linux 5.13 and Earlier |
 | --------------- |---------------------------------------|

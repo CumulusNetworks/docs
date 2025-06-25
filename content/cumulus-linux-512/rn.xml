@@ -7,9 +7,15 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4495439</td>
-<td>Due to code changes, Radius users are now logged (not local users) and Cumulus Linux sends the accounting logs to all reachable Radius servers. To manually disable sending to all servers and only send to the first server that responds, add the line {{send-records first-response}} to the {{/etc/pam_radius_auth.conf}} file, then restart {{rsyslog.service}} with the {{systemctl restart rsyslog.service}} command.</td>
-<td>5.11.1-5.13.1</td>
+<td>4501642</td>
+<td>When you connect the QLOUIE cable with FW 52.181.1003 to an NVIDIA SN5600 switch, you might see link flaps. </td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4495231</td>
+<td>If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the {{hwclock --systohc}} command to add it to the hardware clock.  You can then use {{onie-nos-install}} to install the image.</td>
+<td>5.9.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -233,6 +239,12 @@ On the Spectrum-3 switch, the cell-size is 144 bytes. The minimum size is 144*64
 <td>The Swagger UI for the Cumulus OpenAPI model is not rendering correctly (https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-512/api/index.html#). 
 The interface shows "screaming" emojis and "Could not render." </td>
 <td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4341806</td>
+<td>The BGP uptime differs between vtysh and NVUE command output.</td>
+<td>5.12.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1111,9 +1123,15 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4495439</td>
-<td>Due to code changes, Radius users are now logged (not local users) and Cumulus Linux sends the accounting logs to all reachable Radius servers. To manually disable sending to all servers and only send to the first server that responds, add the line {{send-records first-response}} to the {{/etc/pam_radius_auth.conf}} file, then restart {{rsyslog.service}} with the {{systemctl restart rsyslog.service}} command.</td>
-<td>5.11.1-5.13.1</td>
+<td>4501642</td>
+<td>When you connect the QLOUIE cable with FW 52.181.1003 to an NVIDIA SN5600 switch, you might see link flaps. </td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4495231</td>
+<td>If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the {{hwclock --systohc}} command to add it to the hardware clock.  You can then use {{onie-nos-install}} to install the image.</td>
+<td>5.9.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1331,6 +1349,12 @@ On the Spectrum-3 switch, the cell-size is 144 bytes. The minimum size is 144*64
 <td>The Swagger UI for the Cumulus OpenAPI model is not rendering correctly (https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-512/api/index.html#). 
 The interface shows "screaming" emojis and "Could not render." </td>
 <td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4341806</td>
+<td>The BGP uptime differs between vtysh and NVUE command output.</td>
+<td>5.12.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>

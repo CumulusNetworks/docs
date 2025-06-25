@@ -19,12 +19,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4495439</td>
-<td>Due to code changes, Radius users are now logged (not local users) and Cumulus Linux sends the accounting logs to all reachable Radius servers. To manually disable sending to all servers and only send to the first server that responds, add the line {{send-records first-response}} to the {{/etc/pam_radius_auth.conf}} file, then restart {{rsyslog.service}} with the {{systemctl restart rsyslog.service}} command.</td>
-<td>5.11.1-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4495231</td>
 <td>If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the {{hwclock --systohc}} command to add it to the hardware clock.  You can then use {{onie-nos-install}} to install the image.</td>
 <td>5.9.0-5.13.1</td>

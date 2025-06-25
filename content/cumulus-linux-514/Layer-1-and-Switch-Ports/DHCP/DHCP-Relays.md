@@ -351,7 +351,7 @@ The following example:
 - Configures VRF RED to advertise connected routes as type-5 so that the VRF RED loopback IPv4 address is reachable.
 
 {{%notice note%}}
-You do not need to add physical uplinks in the EVPN relay configuration. Only layer 3 VNI configuration is required for uplinks.
+You do not need to add physical uplinks in the EVPN relay configuration. Only layer 3 VNI VLAN interface configuration is required for uplinks.
 {{%/notice%}}
 
 {{< tabs "TabID366 ">}}
@@ -443,7 +443,7 @@ The following example:
 - Sets the DHCP server IP address to 10.1.10.104.
 
 {{%notice note%}}
-You do not need to add physical uplinks in the EVPN relay configuration. Only layer 3 VNI configuration is required for uplinks.
+You do not need to add physical uplinks in the EVPN relay configuration. Only layer 3 VNI VLAN interface configuration is required for uplinks.
 {{%/notice%}}
 
 {{< tabs "TabID369 ">}}

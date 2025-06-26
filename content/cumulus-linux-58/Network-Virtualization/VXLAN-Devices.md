@@ -360,16 +360,6 @@ iface br_default
 {{< /tab >}}
 {{< /tabs >}}
 
-## VXLAN UDP Port
-
-You can change the UDP port that Cumulus Linux uses for VXLAN encapsulation. The default port is 4789.
-
-The following example changes the UDP port for VXLAN encapsulation to 1024:
-
-```
-cumulus@switch:mgmt:~$ nv set nve vxlan port 1024
-```
-
 ## Related Information
 
 - For information about VXLAN devices and static VXLAN tunnels, see {{<link url="Static-VXLAN-Tunnels" text="Static VXLAN Tunnels">}}.

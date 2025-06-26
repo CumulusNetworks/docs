@@ -2416,7 +2416,6 @@ nv set nve vxlan decapsulation dscp
 nv set nve vxlan decapsulation dscp action (derive|copy|preserve)
 nv set nve vxlan enable (on|off)
 nv set nve vxlan mac-learning (on|off)
-nv set nve vxlan port 1024-65535
 nv set nve vxlan arp-nd-suppress (on|off)
 nv set nve vxlan mtu 552-9216
 nv set acl <acl-id>

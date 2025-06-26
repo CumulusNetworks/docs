@@ -204,7 +204,7 @@ cumulus@switch:~$ netq del validation Bgp15m
 
 ## Topology Validations
 
-The topology validation compares your actual network topology derived from LLDP telemetry data against a topology blueprint (in {{<exlink url="https://graphviz.org/doc/info/lang.html" text="Graphviz DOT format">}}) that you upload to the UI.
+The topology validation compares your actual network topology derived from LLDP telemetry data against a topology blueprint that you upload to the UI. NetQ accepts blueprint files formatted in either {{<exlink url="https://graphviz.org/doc/info/lang.html" text="Graphviz DOT">}} or JSON. 
 
 ### Configure LLDP
 

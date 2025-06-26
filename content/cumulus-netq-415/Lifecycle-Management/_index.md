@@ -1,7 +1,7 @@
 ---
 title: Lifecycle Management
 author: NVIDIA
-weight: 900
+weight: 625
 toc: 3
 ---
 

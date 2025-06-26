@@ -519,8 +519,6 @@ When the reset completes successfully, you see syslog messages similar to the fo
 
 To optimize transceiver thermal performance and maintain a cooler operating environment before reaching critical temperatures, you can set the target temperature setpoint for a single front port or a group of front ports.
 
-The switch generates a syslog message if the target temperature setpoint is above the module advertised high temperature warning or below the module advertised low temperature warning.
-
 Setting the target temperature setpoint does not change the module EEPROM advertisement for high or low temperature warnings. The optical module continues reporting temperature alarms based on alarms or warning thresholds preprogrammed in the transceiver EEPROM.
 
 {{%notice warning%}}

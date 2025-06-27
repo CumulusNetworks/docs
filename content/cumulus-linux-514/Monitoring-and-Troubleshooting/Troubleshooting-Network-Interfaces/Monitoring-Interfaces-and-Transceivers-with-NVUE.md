@@ -517,43 +517,43 @@ When the reset completes successfully, you see syslog messages similar to the fo
 
 ## Transceiver Thermal Control
 
-To optimize transceiver thermal performance and maintain a cooler operating environment before reaching critical temperatures, you can set the fan algorithm target temperature for a single front port or a group of front ports. The target temperature must be below the module advertised high warning threshold.  
+To optimize transceiver thermal performance and maintain a cooler operating environment before reaching critical temperatures, you can set the target temperature setpoint for a single front port or a group of front ports.
 
-When you lower temperature thresholds for fan activation, fans start sooner and run more frequently, which can lead to higher power consumption and more noise. However, you prevent performance issues and extend the lifespan of critical hardware. The decision reflects a strategic balance between energy efficiency and hardware protection.
-
-Setting the target temperature does not change the module EEPROM advertisement for high or low temperature warnings. The optical module continues reporting temperature alarms based on alarms or warning thresholds preprogrammed in the transceiver EEPROM.
+Setting the target temperature setpoint does not change the module EEPROM advertisement for high or low temperature warnings. The optical module continues reporting temperature alarms based on alarms or warning thresholds preprogrammed in the transceiver EEPROM.
 
 {{%notice warning%}}
-Setting the target temperature for a port without proper guidance can result in transceiver damage, and might void your warranty and support agreements. This is an advanced configuration task; NVIDIA recommends you use the default transceiver temperature settings. Only modify this setting with approval from NVIDIA Technical Support.
+Setting the target temperature setpoint for a port without proper guidance can result in transceiver damage, and might void your warranty and support agreements. This is an advanced configuration task; NVIDIA recommends you use the default transceiver temperature settings. Only modify this setting with approval from NVIDIA Technical Support.
 {{%/notice%}}
 
 {{%notice note%}}
-- You can set the target temperature for a port on the SN5610 and SN5640 switches only.
+- You can set the target temperature setpoint for a port on the SN5610 and SN5640 switches only.
 - Breakout ports are not supported.
 {{%/notice%}}
 
-To set the target temperature for a port, run the `nv set platform transceiver <interface-id> temperature setpoint` command. You can set a value between 30 and 80.
+To set the target temperature setpoint for a port, run the `nv set platform transceiver <interface-id> temperature setpoint` command. You can set a value between 30 and 80. The temperature setpoint must be below the module advertised high warning threshold.
 
 ```
 cumulus@switch:~$ nv set platform transceiver swp2 temperature setpoint 60 
 cumulus@switch:~$ nv config apply
 ```
 
-To set the target temperature for a group of ports:
+To set the target temperature setpoint for a group of ports:
 
 ```
 cumulus@switch:~$ nv set platform transceiver swp2-swp10 temperature setpoint 60 
 cumulus@switch:~$ nv config apply
 ```
 
+Cumulus Linux writes the configuration to the `etc/cumulus/tcvr_temperature_setpoint.conf` file.
+
 {{%notice note%}}
-- When you set the target temperature, the hardware management service (`hw-managament-tc.service`) and `switchd` restart.
-- If you try to set a target temperature that is above the module advertised high temperature warning or if the module is not DOM capable, Cumulus Linux reports an invalid configuration warning.
+- When you set the target temperature setpoint, the hardware management service (`hw-managament-tc.service`) and `switchd` restart.
+- If you try to set the target temperature setpoint above the module advertised high temperature warning or if the module is not DOM capable, Cumulus Linux reports an invalid configuration warning.
 {{%/notice%}}
 
-To unset the target temperature and return to the default value, run the `nv unset platform transceiver <interface-id> temperature setpoint` command.
+To unset the target temperature setpoint and return to the default value, run the `nv unset platform transceiver <interface-id> temperature setpoint` command.
 
-To verify the target temperature configuration for a port, run the `nv show platform transceiver <interface> temperature` command:
+To verify the target temperature setpoint configuration for a port, run the `nv show platform transceiver <interface> temperature` command:
 
 ```
 cumulus@switch:~$ nv show platform transceiver swp1 temperature 
@@ -562,7 +562,7 @@ cumulus@switch:~$ nv show platform transceiver swp1 temperature
 setpoint  60           60 
 ```
 
-The `nv show platform transceiver <interface-id>` command also shows the target temperature for the specified port. See below.
+The `nv show platform transceiver <interface-id>` command also shows the target temperature setpoint for the specified port. See below.
 
 ## Show Transceiver Information
 

@@ -26,16 +26,62 @@ Cumulus Linux 5.14.0 supports new platforms, provides bug fixes, and contains se
 - {{<link url="Quick-Start-Guide/#configure-the-domain-name" text="Domain name configuration">}}
 - {{<link url="Equal-Cost-Multipath-Load-Sharing/#enable-adaptive-routing" text="Adaptive routing default profiles profile-1 and profile-2 removed and replaced with one profile called default">}}
 - {{<link url="NVUE-API/#jwt-based-authentication" text="JWT Based Authentication for REST API">}}
-- grpc header based and http based authentication
-- {{<link url="gNMI-Streaming/#metrics" text="New gNMI streaming metrics: BGP, interface, LLDP, system, and platform transceiver">}}
-- MRC:
-  - {{<link url="Quality-of-Service/#mrc-packet-trimming" text="Packet trimming">}}
-  - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#mrc-qos-profile" text="New QoS profile for packet trimming">}}
+- gNMI:
+  - {{<link url="gNMI-Streaming/#metrics" text="New gNMI streaming metrics: BGP, interface, LLDP, system, and platform transceiver">}}
+  - grpc header based and http based authentication
+- {{<link url="Quality-of-Service/#packet-trimming" text="Packet trimming">}}
+  - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#packet-trimming-profile" text="New QoS profile for packet trimming">}}
   - {{<link url="Quality-of-Service/#asymmetric-packet-trimming" text="Packet trimming with asymmetric DSCP">}}
-  - {{<link url="Quality-of-Service/#configure-srv6" text="SRv6">}}
-  - {{<link url="Quality-of-Service/#clear-srv6-statistics" text="Clear SRv6 statistics">}}
+- {{<link url="Quality-of-Service/#configure-srv6" text="SRv6">}}
+- {{<link url="Quality-of-Service/#clear-srv6-statistics" text="Clear SRv6 statistics">}}
+- {{< expand "New and updated vtysh BGP show commands" >}}
+```
+show bgp router json
+show bgp vrfs <vrf-id> json
+show bgp vrf <vrf-id> bestpath json 
+show bgp vrf <vrf-id> ipv4 unicast redistribute json 
+show bgp vrf <vrf-id> ipv6 unicast redistribute json 
+```
+{{< /expand >}}
 - NVUE
   - {{<link url="Troubleshooting-EVPN/#show-evpn-vnis-across-all-vrfs" text="Commands to show EVPN information across all VRFs">}}
+  - {{<link url="RADIUS-AAA/#show-and-clear-radius-counters" text="Show and clear RADIUS counters">}}
+  - {{< expand "Operational information added to NVUE BGP show commands" >}}
+```
+nv show interface <interface-id> packet-trim
+nv show interface <interface-id> packet-trim egress-eligibility
+nv show interface <interface-id> packet-trim egress-eligibility traffic-class
+nv show interface <interface-id> packet-trim egress-eligibility traffic-class <tc-id>
+nv show router bgp
+nv show router bgp convergence-wait
+nv show router bgp graceful-restart
+nv show router bgp queue-limit
+nv show system forwarding packet-trim
+nv show system forwarding packet-trim remark
+nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute
+nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute static
+nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute connected
+nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute kernel
+nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute ospf
+nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute
+nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute static
+nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute connected
+nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute kernel
+nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute ospf6
+nv show vrf <vrf-id> router bgp path-selection
+nv show vrf <vrf-id> router bgp path-selection med
+nv show vrf <vrf-id> router bgp path-selection aspath
+nv show vrf <vrf-id> router bgp path-selection multipath
+nv show vrf <vrf-id> router bgp neighbor <interface> bfd
+nv show vrf <vrf-id> router bgp neighbor <interface> local-as
+nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath
+nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath
+nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath
+nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath allow-my-asn
+nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath allow-my-asn
+nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath allow-my-asn
+```
+{{< /expand >}}
   - {{< expand "Changed NVUE Commands and Options" >}}
 | Cumulus Linux 5.14 | Cumulus Linux 5.13 and Earlier |
 | --------------- |---------------------------------------|
@@ -58,6 +104,10 @@ nv show interface <interface-id> link phy-detail hardware
 nv show platform transceiver <interface> temperature
 nv show router segment-routing
 nv show router segment-routing srv6
+nv show router segment-routing srv6 stats
+nv show router segment-routing srv6 stats sid
+nv show router segment-routing srv6 stats sid <sid>
+nv show router segment-routing srv6 stats no-sid-drops
 nv show router segment-routing srv6 locator
 nv show router segment-routing srv6 locator <locator-name>
 nv show router segment-routing srv6 sid
@@ -82,9 +132,16 @@ nv set router segment-routing srv6 locator <locator-name> func-length (0-0)
 nv set router segment-routing srv6 state (enabled|disabled)
 nv set router segment-routing static srv6-sid <sid>
 nv set router segment-routing static srv6-sid <sid> locator-name <value>
-nv set router segment-routing static srv6-sid <sid> behavior (uN|uA|uDT|uDX)
+nv set router segment-routing static srv6-sid <sid> behavior (uN|uA)
 nv set system api token-expiration
 nv set system dns domain <domain-name>
+nv set system forwarding packet-trim profile
+nv set system forwarding packet-trim service-port
+nv set system forwarding packet-trim remark dscp
+nv set system forwarding packet-trim size
+nv set interface <interface> packet-trim egress-eligibility traffic-class
+nv set system forwarding packet-trim state
+nv set system forwarding packet-trim switch-priority
 ```
 
 {{< /tab >}}
@@ -107,7 +164,14 @@ nv unset router segment-routing static srv6-sid <sid>
 nv unset router segment-routing static srv6-sid <sid> locator-name
 nv unset router segment-routing static srv6-sid <sid> behavior
 nv unset system api token-expiration
-nv set system dns domain
+nv unset system dns domain
+nv unset system forwarding packet-trim profile
+nv unset system forwarding packet-trim service-port
+nv unset system forwarding packet-trim remark dscp
+nv unset system forwarding packet-trim size
+nv unset interface <interface> packet-trim egress-eligibility traffic-class
+nv unset system forwarding packet-trim state
+nv unset system forwarding packet-trim switch-priority
 ```
 
 {{< /tab >}}
@@ -116,6 +180,7 @@ nv set system dns domain
 ```
 nv action clear interface <interface-id> link phy-detail
 nv action clear router segment-routing srv6 stats
+nv action clear router segment-routing srv6 stats sid
 nv action clear router segment-routing srv6 stats sid <sid>
 nv action clear router segment-routing srv6 stats no-sid-drops
 ```

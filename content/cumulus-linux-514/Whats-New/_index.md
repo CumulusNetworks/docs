@@ -29,12 +29,11 @@ Cumulus Linux 5.14.0 supports new platforms, provides bug fixes, and contains se
 - gNMI:
   - {{<link url="gNMI-Streaming/#metrics" text="New gNMI streaming metrics: BGP, interface, LLDP, system, and platform transceiver">}}
   - grpc header based and http based authentication
-- MRC:
-  - {{<link url="Quality-of-Service/#mrc-packet-trimming" text="Packet trimming">}}
-  - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#mrc-qos-profile" text="New QoS profile for packet trimming">}}
+- {{<link url="Quality-of-Service/#packet-trimming" text="Packet trimming">}}
+  - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#packet-trimming-profile" text="New QoS profile for packet trimming">}}
   - {{<link url="Quality-of-Service/#asymmetric-packet-trimming" text="Packet trimming with asymmetric DSCP">}}
-  - {{<link url="Quality-of-Service/#configure-srv6" text="SRv6">}}
-  - {{<link url="Quality-of-Service/#clear-srv6-statistics" text="Clear SRv6 statistics">}}
+- {{<link url="Quality-of-Service/#configure-srv6" text="SRv6">}}
+- {{<link url="Quality-of-Service/#clear-srv6-statistics" text="Clear SRv6 statistics">}}
 - {{< expand "New and updated vtysh BGP show commands" >}}
 ```
 show bgp router json
@@ -49,10 +48,16 @@ show bgp vrf <vrf-id> ipv6 unicast redistribute json
   - {{<link url="RADIUS-AAA/#show-and-clear-radius-counters" text="Show and clear RADIUS counters">}}
   - {{< expand "Operational information added to NVUE BGP show commands" >}}
 ```
+nv show interface <interface-id> packet-trim
+nv show interface <interface-id> packet-trim egress-eligibility
+nv show interface <interface-id> packet-trim egress-eligibility traffic-class
+nv show interface <interface-id> packet-trim egress-eligibility traffic-class <tc-id>
 nv show router bgp
 nv show router bgp convergence-wait
 nv show router bgp graceful-restart
 nv show router bgp queue-limit
+nv show system forwarding packet-trim
+nv show system forwarding packet-trim remark
 nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute
 nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute static
 nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute connected
@@ -130,6 +135,13 @@ nv set router segment-routing static srv6-sid <sid> locator-name <value>
 nv set router segment-routing static srv6-sid <sid> behavior (uN|uA)
 nv set system api token-expiration
 nv set system dns domain <domain-name>
+nv set system forwarding packet-trim profile
+nv set system forwarding packet-trim service-port
+nv set system forwarding packet-trim remark dscp
+nv set system forwarding packet-trim size
+nv set interface <interface> packet-trim egress-eligibility traffic-class
+nv set system forwarding packet-trim state
+nv set system forwarding packet-trim switch-priority
 ```
 
 {{< /tab >}}
@@ -151,12 +163,15 @@ nv unset router segment-routing static srv6-sid
 nv unset router segment-routing static srv6-sid <sid>
 nv unset router segment-routing static srv6-sid <sid> locator-name
 nv unset router segment-routing static srv6-sid <sid> behavior
-nv action clear router segment-routing srv6 stats
-nv action clear router segment-routing srv6 stats sid
-nv action clear router segment-routing srv6 stats sid <sid>
-nv action clear router segment-routing srv6 stats no-sid-drops
 nv unset system api token-expiration
-nv set system dns domain
+nv unset system dns domain
+nv unset system forwarding packet-trim profile
+nv unset system forwarding packet-trim service-port
+nv unset system forwarding packet-trim remark dscp
+nv unset system forwarding packet-trim size
+nv unset interface <interface> packet-trim egress-eligibility traffic-class
+nv unset system forwarding packet-trim state
+nv unset system forwarding packet-trim switch-priority
 ```
 
 {{< /tab >}}

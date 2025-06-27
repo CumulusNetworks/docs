@@ -1083,6 +1083,30 @@ cumulus@switch:~$ nv show system forwarding packet-trim remark
 dscp               10       10
 ```
 
+To show interface packet-trim eligibility information, run the `nv show interface <interface-id> packet-trim` command:
+
+```
+cumulus@switch:~$ nv show interface swp1 packet-trim
+```
+
+To show interface packet-trim eligibility traffic-class information, run the `nv show interface <interface-id> packet-trim egress-eligibility` command:
+
+```
+cumulus@switch:~$ nv show interface swp1 packet-trim egress-eligibility
+```
+
+To show interface packet-trim eligibility traffic-class information, run the `nv show interface <interface-id> packet-trim egress-eligibility traffic-class` command:
+
+```
+cumulus@switch:~$ nv show interface swp1 packet-trim egress-eligibility traffic-class
+```
+
+To show interface packet-trim egress-interface traffic class information, run the `nv show interface <interface-id> packet-trim egress-eligibility traffic-class <tc-id>` command:
+
+```
+cumulus@switch:~$ nv show interface swp1 packet-trim egress-eligibility traffic-class 1
+```
+
 ### Asymmetric Packet Trimming
 
 Use asymmetric packet trimming to mark trimmed packets differently based on the outgoing port. By default, you remark all trimmed packets with the same DSCP value; however, you can use a different DSCP value for trimmed packets sent out through different ports. For example, you can use DSCP 21 to send trimmed packets to hosts but DSCP 11 to send trimmed packets to the uplink (spine). This allows the destination NIC to know where congestion occurs; on downlinks to servers or in the fabric.

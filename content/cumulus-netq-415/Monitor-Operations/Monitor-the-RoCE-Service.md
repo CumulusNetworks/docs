@@ -7,6 +7,11 @@ toc: 3
 
 Use the UI or CLI to monitor RDMA over Converged Ethernet (RoCE) for Spectrum switches and BlueField DPUs.
 
+{{%notice note%}}
+NetQ supports RoCE lossless or lossy modes; NetQ monitoring and validation checks do not support the single shared buffer mode, `lossless-single-ipool`.
+{{%/notice%}}
+
+
 ## RoCE Commands
 
 - {{<link title="show/#netq-show-roce-config" text="netq show roce-config">}}

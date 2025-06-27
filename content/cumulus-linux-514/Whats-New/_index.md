@@ -29,12 +29,11 @@ Cumulus Linux 5.14.0 supports new platforms, provides bug fixes, and contains se
 - gNMI:
   - {{<link url="gNMI-Streaming/#metrics" text="New gNMI streaming metrics: BGP, interface, LLDP, system, and platform transceiver">}}
   - grpc header based and http based authentication
-- Packet Trimming:
-  - {{<link url="Quality-of-Service/#packet-trimming" text="Packet trimming">}}
+- {{<link url="Quality-of-Service/#packet-trimming" text="Packet trimming">}}
   - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#packet-trimming-profile" text="New QoS profile for packet trimming">}}
   - {{<link url="Quality-of-Service/#asymmetric-packet-trimming" text="Packet trimming with asymmetric DSCP">}}
-  - {{<link url="Quality-of-Service/#configure-srv6" text="SRv6">}}
-  - {{<link url="Quality-of-Service/#clear-srv6-statistics" text="Clear SRv6 statistics">}}
+- {{<link url="Quality-of-Service/#configure-srv6" text="SRv6">}}
+- {{<link url="Quality-of-Service/#clear-srv6-statistics" text="Clear SRv6 statistics">}}
 - {{< expand "New and updated vtysh BGP show commands" >}}
 ```
 show bgp router json

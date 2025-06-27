@@ -75,9 +75,9 @@ cumulus@switch:~$ nv config apply
 
 To disable single shared buffer pool mode and use the default mode (lossless), run the `nv unset qos roce mode lossless-single-ipool` command.
 
-## MRC QoS Profile
+## Packet Trimming Profile
 
-The MRC QoS profile `lossy-multi-tc` enables {{<link url="Quality-of-Service/#mrc-packet-trimming" text="MRC Packet Trimming">}}:
+The packet trimming QoS profile `lossy-multi-tc` enables {{<link url="Quality-of-Service/#packet-trimming" text="Packet Trimming">}}:
 
 ```
 cumulus@switch:~$ nv set qos roce mode lossy-multi-tc

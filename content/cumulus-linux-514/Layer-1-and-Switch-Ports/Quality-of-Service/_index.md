@@ -943,18 +943,13 @@ cos_egr_queue.cos_7.uc  = 7
 {{< /tab >}}
 {{< /tabs >}}
 
-## MRC Packet Trimming
+## Packet Trimming
 
-<span class="a-tooltip">[MRC](## "Multipath Reliable Connection")</span> is an improvement over RoCEv2 to enhance performance in lossy environments and extend the RC transport for scalability and performance for AI and <span class="a-tooltip">[ML](## "machine learning")</span> applications over lossy networks. Some of these enhancements include allowing packets to be transmitted over multiple logical paths in the network and rapid detection and retransmission of delayed, unacknowledged, and trimmed packets.
-
-- With packet trimming, a switch can remove parts of the packet (such as the payload) instead of dropping it when the buffer is full. Packet trimming retains network forwarding and transport essential information, allowing the host to quickly detect and react to congestion. This allows congestion information to be communicated to the receiver even on congested networks.
-- Multipathing with <span class="a-tooltip">[SRv6](## "Segment Routing for IPv6")</span> enables you to tunnel packets from the source NIC to the destination NIC through the switch fabric using SRv6 micro segment identifiers (uSIDs). The SRv6 origination and termination is on the NIC and the switches merely act as SRv6-aware (transit) nodes. Cumulus Linux provides SRv6 uSID support with uN (END_CSID ) and uA (End.X_CSID ) endpoints.
+Packet trimming facilitates rapid packet loss notification and eliminates slow timeout-based retransmissions. With packet trimming, a switch can remove parts of the packet (such as the payload) instead of dropping it when the buffer is full. Packet trimming retains network forwarding and transport essential information, allowing the host to quickly detect and react to congestion. This allows congestion information to be communicated to the receiver even on congested networks.
 
 {{%notice note%}}
-Cumulus Linux supports packet trimming and SRv6 on the Spectrum-4 and Spectrum-5 switch only.
+Cumulus Linux supports packet trimming on the Spectrum-4 and Spectrum-5 switch only and on known unicast IPv4 and IPv6 traffic.
 {{%/notice%}}
-
-To use MRC packet trimming, you need to configure both packet trimming and SRv6.
 
 ### Configure Packet Trimming
 
@@ -965,6 +960,12 @@ Packet Trimming does not support ISSU, bonds for egress eligibility, or the foll
 - Adaptive Routing Notification Packets (ARN)
 - Congestion Notification Packets (CNP)
 - Flooding and MC packets
+
+{{%notice note%}}
+- You can not enable packet trimming while the NetQ WJH agent is running or with WJH shared buffer drops onfigured.
+- When you enable packet trimming, you cannot configure span session ID 0.
+
+{{%/notice%}}
 
 To configure packet trimming with the default (recommended) settings, set the `lossy-multi-tc` QoS profile:
 
@@ -982,7 +983,7 @@ To configure packet trimming:
 - Set the forwarding port used for recirculating the trimmed packets to egress the interface (NVIDIA SN5610 switch only). If you do not configure a service port, Cumulus Linux uses the last service port in on the switch.
 - Set the maximum size of the trimmed packet. You can specify a value between 256 and 1024; the value must be a multiple of 4.
 - Set the DSCP value to be marked on the trimmed packets. You can specify a value between 0 and 63.
-- Set the egress port and traffic-class from which dropped traffic is trimmed. You can specify a value between 0 and 7.
+- Set the egress port and traffic-class from which the dropped traffic is trimmed. You can specify a value between 0 and 7.
 - Set the egress switch priority on which to send the trimmed packet. You can specify a value between 0 and 7.
 - Enable packet trimming.
 
@@ -995,87 +996,6 @@ cumulus@switch:~$ nv set interface swp1-3 packet-trim egress-eligibility traffic
 cumulus@switch:~$ nv set system forwarding packet-trim switch-priority 4
 cumulus@switch:~$ nv set system forwarding packet-trim state enabled
 cumulus@switch:~$ nv config apply
-```
-
-### Configure SRv6
-
-To configure SRv6:
-- Enable SRv6.
-- Configure the SRv6 locator settings and the static IDs:
-  - Configure the SRv6 locator prefix.
-  - Configure the SRv6 locator block length. Cumulus Linux currently supports a value of 32.
-  - Configure the SRv6 locator function length. Cumulus Linux currently supports a value of 0.
-  - Configure the SRv6 locator node length. Cumulus Linux currently supports a value of 16.
-  - Configure the static segment identifier locator name.
-  - Configure the static segment identifier endpoint behavior. You can specify uA or uN.
-
-The following example enables SRv6, and configures the locator called LEAF and the static SID fcbb:bbbb:2::/48:
-
-{{< tabs "TabID980 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set router segment-routing srv6 state enabled
-cumulus@switch:~$ nv set router segment-routing srv6 locator LEAF prefix fcbb:bbbb:2::/48
-cumulus@switch:~$ nv set router segment-routing srv6 locator LEAF block-length 32
-cumulus@switch:~$ nv set router segment-routing srv6 locator LEAF func-length 0
-cumulus@switch:~$ nv set router segment-routing srv6 locator LEAF node-length 16
-cumulus@switch:~$ nv set router segment-routing static srv6-sid 2001:db8:1:1::100/48 locator-name LEAF  
-cumulus@switch:~$ nv set router segment-routing static srv6-sid 2001:db8:1:1::100/48 behavior uA 
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-```
-cumulus@switch:~$ sudo vtysh
-...
-leaf01# configure t
-leaf01(config)# segment-routing 
-leaf01(config-sr)# srv6
-leaf01(config-srv6)# static-sids
-leaf01(config-srv6-sids)# sid 2001:db8:1:1::100/48 locator LEAF behavior uA
-leaf01(config-srv6-sids)# exit
-leaf01(config-srv6)# locators
-leaf01(config-srv6-locators)# locator LEAF
-leaf01(config-srv6-locator)# prefix 2001:db8:1:1::100/48 block-len 32 func-bits 0
-leaf01(config-srv6-locator)# prefix 2001:db8:1:1::100/48 node-len 16
-leaf01(config-srv6-locator)# end
-leaf01# exit
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-{{%notice note%}}
-Cumulus Linux only supports the SF3216 format (block-len(32) and node-len(16)).
-{{%/notice%}}
-
-### Asymmetric Packet Trimming
-
-Use asymmetric packet trimming to mark trimmed packets differently based on the outgoing port. By default, you remark all trimmed packets with the same DSCP value; however, you can use a different DSCP value for trimmed packets sent out through different ports. For example, you can use DSCP 21 to send trimmed packets to hosts but DSCP 11 to send trimmed packets to the uplink (spine). This allows the destination NIC to know where congestion occurs; on downlinks to servers or in the fabric.
-
-To achieve asymmetric DSCP for trimmed packets, you set a dedicated switch priority value for trimmed packets and define a switch priority to DSCP rewrite mapping for each egress interface.
-
-Cumulus Linux supports asymmetric packet trimming on the Spectrum-4 and Spectrum-5 switch.
-
-The following example configures asymmetric packet trimming on the downlink to hosts (on leaf01) with the default packet trimming settings (using `lossy-multi-tc`), which creates the following port profiles automatically:
-- `lossy-multi-tc-host-group` with DSCP remark set to 21 for switch priority 4.
-- `lossy-multi-tc-network-group` with DSCP remark set to 11 for switch priority 4.
-
-```
-cumulus@leaf01:~$ nv set qos roce mode lossy-multi-tc
-cumulus@leaf01:~$ nv set system forwarding packet-trim remark dscp port-level
-cumulus@leaf01:~$ nv set interface swp17-32 qos remark profile lossy-multi-tc-host-group 
-cumulus@leaf01:~$ nv set interface swp1-16 qos remark profile lossy-multi-tc-network-group
-cumulus@leaf01:~$ nv config apply
-```
-
-On the uplink (spine01), enable the default packet trimming settings:
-
-```
-cumulus@spine01:~$ nv set qos roce mode lossy-multi-tc
 ```
 
 ### Show Packet Trimming Configuration
@@ -1168,6 +1088,95 @@ cumulus@switch:~$ nv show system forwarding packet-trim remark
 ----  -----------  -------  -------
 dscp               10       10
 ```
+
+### Asymmetric Packet Trimming
+
+Use asymmetric packet trimming to mark trimmed packets differently based on the outgoing port. By default, you remark all trimmed packets with the same DSCP value; however, you can use a different DSCP value for trimmed packets sent out through different ports. For example, you can use DSCP 21 to send trimmed packets to hosts but DSCP 11 to send trimmed packets to the uplink (spine). This allows the destination NIC to know where congestion occurs; on downlinks to servers or in the fabric.
+
+To achieve asymmetric DSCP for trimmed packets, you set a dedicated switch priority value for trimmed packets and define a switch priority to DSCP rewrite mapping for each egress interface.
+
+Cumulus Linux supports asymmetric packet trimming on the Spectrum-4 and Spectrum-5 switch.
+
+The following example configures asymmetric packet trimming on the downlink to hosts (on leaf01) with the default packet trimming settings (using `lossy-multi-tc`), which creates the following port profiles automatically:
+- `lossy-multi-tc-host-group` with DSCP remark set to 21 for switch priority 4.
+- `lossy-multi-tc-network-group` with DSCP remark set to 11 for switch priority 4.
+
+```
+cumulus@leaf01:~$ nv set qos roce mode lossy-multi-tc
+cumulus@leaf01:~$ nv set system forwarding packet-trim remark dscp port-level
+cumulus@leaf01:~$ nv set interface swp17-32 qos remark profile lossy-multi-tc-host-group 
+cumulus@leaf01:~$ nv set interface swp1-16 qos remark profile lossy-multi-tc-network-group
+cumulus@leaf01:~$ nv config apply
+```
+
+On the uplink (spine01), enable the default packet trimming settings:
+
+```
+cumulus@spine01:~$ nv set qos roce mode lossy-multi-tc
+```
+
+## Segment Routing for IPv6
+
+Multipathing with <span class="a-tooltip">[SRv6](## "Segment Routing for IPv6")</span> enables you to tunnel packets from the source NIC to the destination NIC through the switch fabric using SRv6 micro segment identifiers (uSIDs). The SRv6 origination and termination is on the NIC and the switches merely act as SRv6-aware (transit) nodes. Cumulus Linux provides SRv6 uSID support with uN (END_CSID ) and uA (End.X_CSID ) endpoints.
+
+{{%notice note%}}
+Cumulus Linux supports SRv6 on the Spectrum-4 and Spectrum-5 switch only.
+{{%/notice%}}
+
+### Configure SRv6
+
+To configure SRv6:
+- Enable SRv6.
+- Configure the SRv6 locator settings and the static IDs:
+  - Configure the SRv6 locator prefix.
+  - Configure the SRv6 locator block length. Cumulus Linux currently supports a value of 32.
+  - Configure the SRv6 locator function length. Cumulus Linux currently supports a value of 0.
+  - Configure the SRv6 locator node length. Cumulus Linux currently supports a value of 16.
+  - Configure the static segment identifier locator name.
+  - Configure the static segment identifier endpoint behavior. You can specify uA or uN.
+
+The following example enables SRv6, and configures the locator called LEAF and the static SID fcbb:bbbb:2::/48:
+
+{{< tabs "TabID980 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set router segment-routing srv6 state enabled
+cumulus@switch:~$ nv set router segment-routing srv6 locator LEAF prefix fcbb:bbbb:2::/48
+cumulus@switch:~$ nv set router segment-routing srv6 locator LEAF block-length 32
+cumulus@switch:~$ nv set router segment-routing srv6 locator LEAF func-length 0
+cumulus@switch:~$ nv set router segment-routing srv6 locator LEAF node-length 16
+cumulus@switch:~$ nv set router segment-routing static srv6-sid 2001:db8:1:1::100/48 locator-name LEAF  
+cumulus@switch:~$ nv set router segment-routing static srv6-sid 2001:db8:1:1::100/48 behavior uA 
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+leaf01# configure t
+leaf01(config)# segment-routing 
+leaf01(config-sr)# srv6
+leaf01(config-srv6)# static-sids
+leaf01(config-srv6-sids)# sid 2001:db8:1:1::100/48 locator LEAF behavior uA
+leaf01(config-srv6-sids)# exit
+leaf01(config-srv6)# locators
+leaf01(config-srv6-locators)# locator LEAF
+leaf01(config-srv6-locator)# prefix 2001:db8:1:1::100/48 block-len 32 func-bits 0
+leaf01(config-srv6-locator)# prefix 2001:db8:1:1::100/48 node-len 16
+leaf01(config-srv6-locator)# end
+leaf01# exit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{%notice note%}}
+Cumulus Linux only supports the SF3216 format (block-len(32) and node-len(16)).
+{{%/notice%}}
 
 ### Show SRv6 Configuration
 

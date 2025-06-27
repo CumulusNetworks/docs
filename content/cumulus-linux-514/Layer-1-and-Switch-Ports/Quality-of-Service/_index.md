@@ -953,17 +953,17 @@ Cumulus Linux supports packet trimming on the Spectrum-4 and Spectrum-5 switch o
 
 ### Configure Packet Trimming
 
-Packet Trimming supports physical ports only.
+Packet trimming supports physical ports only.
 
-Packet Trimming does not support ISSU, bonds for egress eligibility, or the following packet types:
+Packet trimming does not support ISSU, bonds for egress eligibility, or the following packet types:
 - VXLAN packets
 - Adaptive Routing Notification Packets (ARN)
 - Congestion Notification Packets (CNP)
 - Flooding and MC packets
 
 {{%notice note%}}
-- You can not enable packet trimming while the NetQ WJH agent is running or with WJH shared buffer drops onfigured.
-- When you enable packet trimming, you cannot configure span session ID 0.
+- You can not enable packet trimming while the NetQ WJH agent is running or with WJH shared buffer drops configured.
+- When you enable packet trimming, you cannot configure SPAN session ID 0.
 
 {{%/notice%}}
 

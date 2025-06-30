@@ -14,6 +14,12 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
+<td>4499106</td>
+<td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
+<td>5.9.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4495231</td>
 <td>If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the {{hwclock --systohc}} command to add it to the hardware clock.  You can then use {{onie-nos-install}} to install the image.</td>
 <td>5.9.0-5.13.1</td>
@@ -596,6 +602,12 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <td></td>
 </tr>
 <tr>
+<td>3948068</td>
+<td>On the SN3700 and SN3700c switch, the {{nv show platform environment voltage}} command output shows a failed state for the {{PSU-n-12V-RAIL-OUT}} sensors.  This is a known hardware limitation that cannot be corrected by the PSU vendor.</td>
+<td>5.10.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3915878</td>
 <td>If you configure remote syslog export through a non-default VRF, you might see repeated error logs from the {{rsyslog}} process while the switch is booting:
 rsyslogd: create UDP socket bound to device failed: No such device [v8.2302.0]
@@ -1050,6 +1062,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>In some cases after a package upgrade with ISSU (warm boot mode), you see continuous errors in the syslog similar to the following:
 NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>5.11.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4499106</td>
+<td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
+<td>5.9.2-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1637,6 +1655,12 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <tr>
 <td>3966312</td>
 <td>When connecting the SN5xxx switch to third party test equipment (such as IXIA) using copper cables at 100GbE, 200GbE, 400GbE, or 800GbE, links do not come up.</td>
+<td>5.10.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3948068</td>
+<td>On the SN3700 and SN3700c switch, the {{nv show platform environment voltage}} command output shows a failed state for the {{PSU-n-12V-RAIL-OUT}} sensors.  This is a known hardware limitation that cannot be corrected by the PSU vendor.</td>
 <td>5.10.0-5.13.1</td>
 <td></td>
 </tr>

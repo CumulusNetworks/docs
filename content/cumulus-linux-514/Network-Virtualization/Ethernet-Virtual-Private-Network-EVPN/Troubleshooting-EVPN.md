@@ -470,13 +470,15 @@ prefix-routes-only  off                off
 To show details for a layer 3 VRF for a specific VNI, run the vtysh `show vrf <vrf> vni` and the `show evpn vni <vni>` command.
 
 ```
-cumulus@leaf01:mgmt:~$ show vrf RED vni
+cumulus@leaf01:mgmt:~$ sudo vtysh
+...
+leaf01# show vrf RED vni
 VRF            VNI        VxLAN IF          L3-SVI             State    Rmac              
 RED            4001       vxlan48           vlan4063_l3        Up       44:38:39:be:ef:aa
 ```
 
 ```
-umulus@leaf01:mgmt:~$ sudo vtysh
+cumulus@leaf01:mgmt:~$ sudo vtysh
 ...
 leaf01# show evpn vni 4001
 VNI: 4001

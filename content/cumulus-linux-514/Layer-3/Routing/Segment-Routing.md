@@ -14,12 +14,12 @@ Cumulus Linux supports SRv6 on the Spectrum-4 and Spectrum-5 switch only.
 
 To configure SRv6:
 - Enable SRv6.
-- Configure the SRv6 locator settings and the static IDs:
+- Configure the SRv6 locator settings and the static IDs. You can configure a maximum of 32 locators.
   - Configure the SRv6 locator prefix.
   - Configure the SRv6 locator block length. Cumulus Linux currently supports a value of 32.
   - Configure the SRv6 locator function length. Cumulus Linux currently supports a value of 0.
   - Configure the SRv6 locator node length. Cumulus Linux currently supports a value of 16.
-  - Configure the static segment identifier locator name.
+  - Configure the static segment identifier locator name. The static segment identifier must be part of the locator prefix.  
   - Configure the static segment identifier endpoint behavior. You can specify uA or uN.
 
 The following example enables SRv6, and configures the locator called LEAF and the static SID 2001:db8:1:1::100/48:
@@ -37,6 +37,11 @@ cumulus@switch:~$ nv set router segment-routing static srv6-sid 2001:db8:1:1::10
 cumulus@switch:~$ nv set router segment-routing static srv6-sid 2001:db8:1:1::100/48 behavior uA 
 cumulus@switch:~$ nv config apply
 ```
+
+- To disable SRv6, run the `nv set router segment-routing srv6 state disabled` command.
+- To unset all locators, run the `nv unset router segment-routing  srv6 locator` command.
+- To unset all static segment identifiers, run the `nv unset router segment-routing static srv6-sid` command.
+- To unset a static segment identifier, run the `nv unset router segment-routing static srv6-sid <prefix>` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

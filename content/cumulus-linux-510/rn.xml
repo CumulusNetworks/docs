@@ -13,6 +13,12 @@
 <td></td>
 </tr>
 <tr>
+<td>4499106</td>
+<td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
+<td>5.9.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4495231</td>
 <td>If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the {{hwclock --systohc}} command to add it to the hardware clock.  You can then use {{onie-nos-install}} to install the image.</td>
 <td>5.9.0-5.13.1</td>
@@ -525,6 +531,12 @@ To work around this issue, power-cycle the switch.</td>
 <td>When using the optional {{nslcd}} service, if {{tls_crlcheck}} is in the {{/etc/nslcd.conf}} file, the service fails due to a missing library.</td>
 <td>5.10.0-5.10.1</td>
 <td>5.11.0-5.13.1</td>
+</tr>
+<tr>
+<td>3948068</td>
+<td>On the SN3700 and SN3700c switch, the {{nv show platform environment voltage}} command output shows a failed state for the {{PSU-n-12V-RAIL-OUT}} sensors.  This is a known hardware limitation that cannot be corrected by the PSU vendor.</td>
+<td>5.10.0-5.13.1</td>
+<td></td>
 </tr>
 <tr>
 <td>3928905</td>
@@ -1047,6 +1059,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
+<td>4499106</td>
+<td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
+<td>5.9.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4495231</td>
 <td>If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the {{hwclock --systohc}} command to add it to the hardware clock.  You can then use {{onie-nos-install}} to install the image.</td>
 <td>5.9.0-5.13.1</td>
@@ -1570,6 +1588,12 @@ To work around this issue, power-cycle the switch.</td>
 <td>When using the optional {{nslcd}} service, if {{tls_crlcheck}} is in the {{/etc/nslcd.conf}} file, the service fails due to a missing library.</td>
 <td>5.10.0-5.10.1</td>
 <td>5.11.0-5.13.1</td>
+</tr>
+<tr>
+<td>3948068</td>
+<td>On the SN3700 and SN3700c switch, the {{nv show platform environment voltage}} command output shows a failed state for the {{PSU-n-12V-RAIL-OUT}} sensors.  This is a known hardware limitation that cannot be corrected by the PSU vendor.</td>
+<td>5.10.0-5.13.1</td>
+<td></td>
 </tr>
 <tr>
 <td>3928905</td>

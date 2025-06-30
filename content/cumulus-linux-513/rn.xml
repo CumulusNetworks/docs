@@ -14,9 +14,9 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
-<td>4495348</td>
-<td>The password recovery procedure with single user mode only works to recover the root password, or to recover the cumulus user password if you manage switch configuration by editing configuration files. If you manage switch configuration with NVUE commands, to recover the password for the cumulus user or any user managed by NVUE, log into the switch as the root user and run the NVUE {{nv set system aaa user &lt;user-id&gt; password &lt;value&gt;}} command.</td>
-<td>5.13.1</td>
+<td>4499106</td>
+<td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
+<td>5.9.2-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -260,6 +260,13 @@ cumulus@switch:~$ git gc</td>
 <td></td>
 </tr>
 <tr>
+<td>4393329</td>
+<td>200Gx4 Link Speed Not Supported on Spectrum-5 (SPC5/Bison/Flamingo)
+</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4386779</td>
 <td>When you start gNMI subscription from a remote client, interface rates reset and values start from 0. </td>
 <td>5.13.0-5.13.1</td>
@@ -458,6 +465,12 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <tr>
 <td>3966312</td>
 <td>When connecting the SN5xxx switch to third party test equipment (such as IXIA) using copper cables at 100GbE, 200GbE, 400GbE, or 800GbE, links do not come up.</td>
+<td>5.10.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3948068</td>
+<td>On the SN3700 and SN3700c switch, the {{nv show platform environment voltage}} command output shows a failed state for the {{PSU-n-12V-RAIL-OUT}} sensors.  This is a known hardware limitation that cannot be corrected by the PSU vendor.</td>
 <td>5.10.0-5.13.1</td>
 <td></td>
 </tr>
@@ -920,6 +933,12 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
+<td>4499106</td>
+<td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
+<td>5.9.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4495231</td>
 <td>If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the {{hwclock --systohc}} command to add it to the hardware clock.  You can then use {{onie-nos-install}} to install the image.</td>
 <td>5.9.0-5.13.1</td>
@@ -1226,6 +1245,13 @@ cumulus@switch:~$ git gc</td>
 <td></td>
 </tr>
 <tr>
+<td>4393329</td>
+<td>200Gx4 Link Speed Not Supported on Spectrum-5 (SPC5/Bison/Flamingo)
+</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4386779</td>
 <td>When you start gNMI subscription from a remote client, interface rates reset and values start from 0. </td>
 <td>5.13.0-5.13.1</td>
@@ -1495,6 +1521,12 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <tr>
 <td>3966312</td>
 <td>When connecting the SN5xxx switch to third party test equipment (such as IXIA) using copper cables at 100GbE, 200GbE, 400GbE, or 800GbE, links do not come up.</td>
+<td>5.10.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3948068</td>
+<td>On the SN3700 and SN3700c switch, the {{nv show platform environment voltage}} command output shows a failed state for the {{PSU-n-12V-RAIL-OUT}} sensors.  This is a known hardware limitation that cannot be corrected by the PSU vendor.</td>
 <td>5.10.0-5.13.1</td>
 <td></td>
 </tr>

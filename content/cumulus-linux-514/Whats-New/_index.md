@@ -18,8 +18,8 @@ Cumulus Linux 5.14.0 supports new platforms, provides bug fixes, and contains se
 
 ### New Features and Enhancements
 
-- {{<link url="Switch-Port-Attributes/#auto-negotiation-and-link-speed" text="Link speed setting and auto-negotiation behavior change">}}
 - {{<link title="Erase all Data from the Switch" text="Erase all data from the switch">}} now generally available
+- {{<link url="Switch-Port-Attributes/#auto-negotiation-and-link-speed" text="Link speed setting and auto-negotiation behavior change">}}
 - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#transceiver-thermal-control" text="Transceiver thermal control">}}
 - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#clear-interface-physical-layer-error-counters" text="Clear physical layer error counters for an interface">}}
 - {{<link url="DHCP-Relays" text="Configure different DHCP relay servers per interface">}}

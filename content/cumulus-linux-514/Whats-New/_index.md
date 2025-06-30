@@ -28,7 +28,7 @@ Cumulus Linux 5.14.0 supports new platforms, provides bug fixes, and contains se
 - {{<link url="NVUE-API/#jwt-based-authentication" text="JWT Based Authentication for REST API">}}
 - gNMI:
   - {{<link url="gNMI-Streaming/#metrics" text="New gNMI streaming metrics: BGP, interface, LLDP, system, and platform transceiver">}}
-  - grpc header based and http based authentication
+  - {{<link url="gNMI-Streaming/#user-credentials-and-authentication" text="gRPC header based authentication support for gNMI subscription requests">}}
 - {{<link url="Quality-of-Service/#packet-trimming" text="Packet trimming">}}
   - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#packet-trimming-profile" text="New QoS profile for packet trimming">}}
   - {{<link url="Quality-of-Service/#asymmetric-packet-trimming" text="Packet trimming with asymmetric DSCP">}}

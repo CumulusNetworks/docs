@@ -234,14 +234,14 @@ Cumulus Linux supports the following metrics:
 
 |  Name | Description |
 |------ | ----------- |
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/description​` | |
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/last-established​​` | |
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/sent/last-notification-error-code​​` | |
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/peer-as​​` | |
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/peer-group​​` | |
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/peer-type​​` | |
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/neighbor-address​​` | |
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/local-as​` | |
+| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/description` | |
+| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/last-established` | |
+| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/sent/last-notification-error-code` | |
+| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/peer-as` | |
+| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/peer-group` | |
+| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/peer-type` | |
+| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/neighbor-address` | |
+| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/local-as` | |
 
 {{< /tab >}}
 {{< tab "Interface ">}}
@@ -370,6 +370,10 @@ Cumulus Linux supports the following metrics:
 | `/components/component/transceiver/state/present​` | |
 | `/components/component/transceiver/state/enabled​` | |
 | `/components/component/transceiver/state/supply-voltage/instant` | |
+| `/components/component/transceiver/physical-channels/channel/state/rx-los` | |
+| `/components/component/transceiver/physical-channels/channel/state/rx-cdr-lol` | |
+| `/components/component/transceiver/host-channels/channel/state/tx-los` | |
+| `/components/component/transceiver/host-channels/channel/state/tx-cdr-lol` | |
 
 {{< /tab >}}
 {{< tab "QoS">}}
@@ -449,11 +453,7 @@ Cumulus Linux supports the following metrics:
 <!-- vale on -->
 ### User Credentials and Authentication
 
-User authentication is enabled by default. gNMI subscription requests must include an HTTP Basic Authentication header according to RFC7617 containing the username and password of a user with NVUE API access permissions. You can enable this setting in the standard gNMI client (gNMIc) by setting the `auth-scheme` parameter to basic. Refer to {{<exlink url="https://gnmic.openconfig.net/global_flags/ - auth-scheme" text="https://gnmic.openconfig.net/global_flags/ - auth-scheme">}}.
-
-{{%notice note%}}
-Cumulus Linux ignores credentials in RPC metadata.
-{{%/notice%}}
+User authentication is enabled by default. gNMI subscription requests must include the username and password of a user with NVUE API access permissions, either in an HTTP Basic Authentication header according to RFC7617 or a gRPC Metadata header.
 
 ### gNMI Client Requests
 

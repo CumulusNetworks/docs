@@ -23,6 +23,7 @@ NetQ 4.15.0 includes the following new features:
 ## Release Considerations
 
 - When the NetQ agent is active and What Just Happened (WJH) is enabled, the Cumulus Linux 5.14 packet trimming feature will not work as expected. To enable packet trimming, you must disable NetQ What Just Happened with the `netq config del agent wjh` command, then apply the changes with `netq config restart agent`.
+- The NetQ agent is not compatible with Broadcom switches. Reach out to your NVIDIA support representative if your environment requires NetQ compatibility with Broadcom switches.
 
 ### Upgrade Paths
 

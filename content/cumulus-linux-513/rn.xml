@@ -7,6 +7,24 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4513850</td>
+<td>After upgrading from Cumulus Linux 5.12 to 5.13 on the NVIDIA SN5400 switch bonus port, PTP does not converge. To work around this issue, disable, then enable the bonus port after upgrade.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4513849</td>
+<td>After upgrading from Cumulus Linux 5.12 to 5.13 on the NVIDIA SN5400 switch bonus port, PTP does not converge. To work around this issue, disable, then enable the bonus port after upgrade.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4508830</td>
+<td>Cumulus Linux allows you to add bond ports of mismatched speeds (such as 10G and 25G) to the same LACP bond without error and the bond reports UP. </td>
+<td>5.11.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4507163</td>
 <td>In some cases after a package upgrade with ISSU (warm boot mode), you see continuous errors in the syslog similar to the following:
 NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
@@ -41,12 +59,6 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>4477903</td>
 <td>Cumulus Linux drops SRv6 traffic to the switch due to a missing hardware ECMP entry even though the SRv6 ACL is programmed correctly. To work around this issue, restart the {{switchd}} service.</td>
 <td>5.13.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4475115</td>
-<td>Cumulus Linux allows you to add bond ports of mismatched speeds (such as 10G and 25G) to the same LACP bond without error and the bond reports UP. </td>
-<td>5.11.2-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -103,12 +115,6 @@ with multiple optics, which can impact link stability and performance.</td>
 <td>The SN5610 switch records a High FEC Bin Error at room temperature.</td>
 <td>5.13.0-5.13.1</td>
 <td>5.11.2</td>
-</tr>
-<tr>
-<td>4457165</td>
-<td>When a spine switch reboots and comes back online, leaf switches might cause prolonged convergence times due to premature traffic forwarding. The leaf switch immediately begins ECMP load-balancing traffic to the recovered spine before the spine has fully programmed its routing tables, resulting in traffic blackholing during the spine's route convergence process.</td>
-<td>5.13.0-5.13.1</td>
-<td></td>
 </tr>
 <tr>
 <td>4449947</td>
@@ -261,7 +267,7 @@ cumulus@switch:~$ git gc</td>
 </tr>
 <tr>
 <td>4393329</td>
-<td>200Gx4 Link Speed Not Supported on Spectrum-5 (SPC5/Bison/Flamingo)
+<td>200Gx4 Link Speed is not Supported on Spectrum-5 (SPC5/Bison/Flamingo)
 </td>
 <td>5.13.0-5.13.1</td>
 <td></td>
@@ -920,6 +926,24 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4513850</td>
+<td>After upgrading from Cumulus Linux 5.12 to 5.13 on the NVIDIA SN5400 switch bonus port, PTP does not converge. To work around this issue, disable, then enable the bonus port after upgrade.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4513849</td>
+<td>After upgrading from Cumulus Linux 5.12 to 5.13 on the NVIDIA SN5400 switch bonus port, PTP does not converge. To work around this issue, disable, then enable the bonus port after upgrade.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4508830</td>
+<td>Cumulus Linux allows you to add bond ports of mismatched speeds (such as 10G and 25G) to the same LACP bond without error and the bond reports UP. </td>
+<td>5.11.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4507163</td>
 <td>In some cases after a package upgrade with ISSU (warm boot mode), you see continuous errors in the syslog similar to the following:
 NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
@@ -960,12 +984,6 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>4477903</td>
 <td>Cumulus Linux drops SRv6 traffic to the switch due to a missing hardware ECMP entry even though the SRv6 ACL is programmed correctly. To work around this issue, restart the {{switchd}} service.</td>
 <td>5.13.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4475115</td>
-<td>Cumulus Linux allows you to add bond ports of mismatched speeds (such as 10G and 25G) to the same LACP bond without error and the bond reports UP. </td>
-<td>5.11.2-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1022,12 +1040,6 @@ with multiple optics, which can impact link stability and performance.</td>
 <td>The SN5610 switch records a High FEC Bin Error at room temperature.</td>
 <td>5.13.0-5.13.1</td>
 <td>5.11.2</td>
-</tr>
-<tr>
-<td>4457165</td>
-<td>When a spine switch reboots and comes back online, leaf switches might cause prolonged convergence times due to premature traffic forwarding. The leaf switch immediately begins ECMP load-balancing traffic to the recovered spine before the spine has fully programmed its routing tables, resulting in traffic blackholing during the spine's route convergence process.</td>
-<td>5.13.0-5.13.1</td>
-<td></td>
 </tr>
 <tr>
 <td>4449947</td>
@@ -1246,7 +1258,7 @@ cumulus@switch:~$ git gc</td>
 </tr>
 <tr>
 <td>4393329</td>
-<td>200Gx4 Link Speed Not Supported on Spectrum-5 (SPC5/Bison/Flamingo)
+<td>200Gx4 Link Speed is not Supported on Spectrum-5 (SPC5/Bison/Flamingo)
 </td>
 <td>5.13.0-5.13.1</td>
 <td></td>
@@ -1334,12 +1346,6 @@ The interface shows "screaming" emojis and "Could not render." </td>
 <td>4277042</td>
 <td>On the NVIDIA SN5600 switch, you see low power alarms immediately after a reboot. The alarms disappear after showing up initially. Certain modules typically show low power alarms on initialization. No action is needed.</td>
 <td>5.12.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4271232</td>
-<td>A Python version change removed the encoding argument parameter of the json loads function, which causes an exception.</td>
-<td>5.11.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>

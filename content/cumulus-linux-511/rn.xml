@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4508830</td>
+<td>Cumulus Linux allows you to add bond ports of mismatched speeds (such as 10G and 25G) to the same LACP bond without error and the bond reports UP. </td>
+<td>5.11.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4507163</td>
 <td>In some cases after a package upgrade with ISSU (warm boot mode), you see continuous errors in the syslog similar to the following:
 NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
@@ -28,12 +34,6 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <tr>
 <td>4486200</td>
 <td>If you enable dynamic NAT and try to install two identical dynamic NAT rules, {{switchd}} might crash.</td>
-<td>5.11.2-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4475115</td>
-<td>Cumulus Linux allows you to add bond ports of mismatched speeds (such as 10G and 25G) to the same LACP bond without error and the bond reports UP. </td>
 <td>5.11.2-5.13.1</td>
 <td></td>
 </tr>
@@ -138,12 +138,6 @@ The interface shows "screaming" emojis and "Could not render." </td>
 <td>4298584</td>
 <td>The Spectrum-4 switch reports a {{Modules DataPath FSM fault}} in logs when the link fails at polling.</td>
 <td>5.10.1-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4271232</td>
-<td>A Python version change removed the encoding argument parameter of the json loads function, which causes an exception.</td>
-<td>5.11.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1391,12 +1385,6 @@ The interface shows "screaming" emojis and "Could not render." </td>
 <td></td>
 </tr>
 <tr>
-<td>4271232</td>
-<td>A Python version change removed the encoding argument parameter of the json loads function, which causes an exception.</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4271215</td>
 <td>NVUE overwrites the MOTD file during NVUE configuration with no option to ignore it.
 </td>
@@ -2641,12 +2629,6 @@ cumulus@switch:~$ nv config apply</td>
 <td>After a factory reset with the {{nv action reset system factory-default force}} command, RADIUS does not fully reset; the {{radius-cmd-acct}} package is not installed correctly and includes missing files. In addition, {{/etc/pam.d/common-auth}} is incorrect.</td>
 <td>5.11.0-5.11.2</td>
 <td>5.12.0-5.13.1</td>
-</tr>
-<tr>
-<td>4271232</td>
-<td>A Python version change removed the encoding argument parameter of the json loads function, which causes an exception.</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
 </tr>
 <tr>
 <td>4271229</td>

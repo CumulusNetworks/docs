@@ -210,7 +210,7 @@ The topology validation compares your actual network topology derived from LLDP 
 
 You must configure the LLDP service on switches and hosts that are defined in the topology blueprint to send the port ID subtype that matches the connection defined in the topology file. 
 
-The {{<exlink url="https://lldpd.github.io/usage.html" text="lldpd service">}} allows you to configure the port ID by specifying either the interface name (`ifname`) or MAC address (`macaddress`) using the `configure lldp portidsubtype [ifname | macaddress]` command. For example, if your host is configured to send the interface name in the LLDP port ID field, define the interface name in the topology DOT file:
+The {{<exlink url="https://lldpd.github.io/usage.html" text="lldpd service">}} allows you to configure the port ID by specifying either the interface name (`ifname`) or MAC address (`macaddress`) using the `configure lldp portidsubtype [ifname | macaddress]` command. For example, if your host is configured to send the interface name in the LLDP port ID field, define the interface name in the topology file (DOT file example):
 ```
 "switch1":"swp1" -- "host5":"eth1"
 ```
@@ -282,7 +282,7 @@ graph "Example 2es full" {
 ```
 {{< /expand >}}
 {{< expand "JSON file example" >}}
-The JSON file must include a `links` attribute with two defined key-value pairs: `interface` and `node`.
+The JSON file must include a `links` object with two defined key-value pairs: `interface` and `node`.
 ```
   "content": {
     "links": [
@@ -1191,7 +1191,7 @@ The JSON file must include a `links` attribute with two defined key-value pairs:
 ```
 {{< /expand >}}
 <br> 
-If your host is configured to send the MAC address in the LLDP port ID field, define the MAC address in the topology DOT file:
+If your host is configured to send the MAC address in the LLDP port ID field, define the MAC address in the topology file (DOT file example):
 ```
 "switch1":"swp1" -- "host5":"mac:48:b0:2d:f5:6b:b5"
 ```

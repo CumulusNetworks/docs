@@ -530,7 +530,7 @@ Setting the target temperature setpoint for a port without proper guidance c
 - Breakout ports are not supported.
 {{%/notice%}}
 
-To set the target temperature setpoint for a port, run the `nv set platform transceiver <interface-id> temperature setpoint` command. You can set a value between 30 and 80. The temperature setpoint must be below the module advertised high warning threshold.
+To set the target temperature setpoint for a port, run the `nv set platform transceiver <transceiver-id> temperature setpoint` command. You can set a value between 30 and 80. The temperature setpoint must be below the module advertised high warning threshold.
 
 ```
 cumulus@switch:~$ nv set platform transceiver swp2 temperature setpoint 60 
@@ -540,20 +540,25 @@ cumulus@switch:~$ nv config apply
 To set the target temperature setpoint for a group of ports:
 
 ```
-cumulus@switch:~$ nv set platform transceiver swp2-swp10 temperature setpoint 60 
+cumulus@switch:~$ nv set platform transceiver swp2-10 temperature setpoint 60 
 cumulus@switch:~$ nv config apply
 ```
 
-Cumulus Linux writes the configuration to the `etc/cumulus/tcvr_temperature_setpoint.conf` file.
+To set the target temperature setpoint for a group of comma-separated ports:
+
+```
+cumulus@switch:~$ nv set platform transceiver swp1,4,5,30 temperature setpoint 65
+cumulus@switch:~$ nv config apply
+```
 
 {{%notice note%}}
 - When you set the target temperature setpoint, the hardware management service (`hw-managament-tc.service`) and `switchd` restart.
 - If you try to set the target temperature setpoint above the module advertised high temperature warning or if the module is not DOM capable, Cumulus Linux reports an invalid configuration warning.
 {{%/notice%}}
 
-To unset the target temperature setpoint and return to the default value, run the `nv unset platform transceiver <interface-id> temperature setpoint` command.
+To unset the target temperature setpoint and return to the default value, run the `nv unset platform transceiver <transceiver-id> temperature setpoint` command.
 
-To verify the target temperature setpoint configuration for a port, run the `nv show platform transceiver <interface> temperature` command:
+To verify the target temperature setpoint configuration for a port, run the `nv show platform transceiver <transceiver-id> temperature` command:
 
 ```
 cumulus@switch:~$ nv show platform transceiver swp1 temperature 
@@ -562,7 +567,7 @@ cumulus@switch:~$ nv show platform transceiver swp1 temperature
 setpoint  60           60 
 ```
 
-The `nv show platform transceiver <interface-id>` command also shows the target temperature setpoint for the specified port. See below.
+The `nv show platform transceiver <transceiver-id>` command also shows the target temperature setpoint for the specified port. See below.
 
 ## Show Transceiver Information
 
@@ -589,7 +594,7 @@ swp31        QSFP28      Mellanox     MCP1600-C001E30N  MT2039VB01191  A3
 
 To show a detailed view of module information for all ports that includes cable length, type, and diagnostics, current status and error status, run the `nv show platform transceiver details` command.
 
-To show hardware capabilities and measurement information on the module in a particular port, run the `nv show platform transceiver <interface>` command:
+To show hardware capabilities and measurement information on the module in a particular port, run the `nv show platform transceiver <transceiver-id>` command:
 
 ```
 cumulus@switch:~$ nv show platform transceiver swp2
@@ -651,7 +656,7 @@ channel:
 - To show information for subinterfaces; run the `nv show interface <subinterface> transceiver` commands.
 {{%/notice%}}
 
-You can also show transceiver data in a more condensed format with the `nv show interface <interface> transceiver` command:
+You can also show transceiver data in a more condensed format with the `nv show interface <interface-id> transceiver` command:
 
 ```
 cumulus@switch:~$ nv show interface swp1 transceiver
@@ -685,7 +690,7 @@ ch-4-tx-power          : 0.9695 mW / -0.13 dBm
 ch-4-tx-bias-current   : 6.750 mA 
 ```
 
-To show channel information for the module in a particular port, run the `nv show platform transceiver <interface> channel` command. To show specific channel information for the module in a particular port, run the `nv show platform transceiver <interface> channel <channel>` command.
+To show channel information for the module in a particular port, run the `nv show platform transceiver <transceiver-id> channel` command. To show specific channel information for the module in a particular port, run the `nv show platform transceiver <transceiver-id> channel <channel-id>` command.
 
 ```
 cumulus@switch:~$ nv show platform transceiver swp25 channel 
@@ -730,7 +735,7 @@ channel:
 ...
 ```
 
-To show the thresholds for the module for a specific interface, run the `nv show interface <interface> transceiver thresholds` command:
+To show the thresholds for the module for a specific interface, run the `nv show interface <interface-id> transceiver thresholds` command:
 
 ```
 cumulus@switch:~$ nv show interface swp3 transceiver thresholds

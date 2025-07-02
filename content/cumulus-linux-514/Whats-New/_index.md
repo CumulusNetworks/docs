@@ -14,7 +14,7 @@ Cumulus Linux 5.14.0 supports new platforms, provides bug fixes, and contains se
 
 ### Platforms
 
-- NVIDIA SN5640 (800G Spectrum-5) BETA
+- NVIDIA SN5640 (800G Spectrum-5) BETA (200G not supported).
 
 ### New Features and Enhancements
 

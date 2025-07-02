@@ -663,7 +663,7 @@ To configure multiple DHCP relay daemons on a switch:
 ## Troubleshooting
 
 This section provides troubleshooting tips.
-
+ 
 ### Show DHCP Relay Status
 
 To show the DHCP relay status:
@@ -764,4 +764,4 @@ To resolve the issue, manually edit the `/etc/default/isc-dhcp-relay-default` fi
 ## Considerations
 
 - The `dhcrelay` command does not bind to an interface if the interface name is longer than 14 characters. This is a known limitation in `dhcrelay`.
-- DHCP packets received on bridge ports and sent to the CPU for processing cause the RX_DROP counter to increment on the interface.
+- DHCP discover packets transiting the switch are also sent to the CPU for additional processing, then dropped after being switched by the hardware. This causes the `RX_DRP` and `HwIfInDiscards` counters to increment on the interface even though the hardware forwards the packet correctly.

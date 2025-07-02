@@ -20,7 +20,7 @@ To configure SRv6:
   - Configure the SRv6 locator function length. Cumulus Linux currently supports a value of 0.
   - Configure the SRv6 locator node length. Cumulus Linux currently supports a value of 16.
   - Configure the static segment identifier locator name. The static segment identifier must be part of the locator prefix.  
-  - Configure the static segment identifier endpoint behavior. You can specify uA or uN.
+  - Configure the static segment identifier endpoint behavior. You can specify uA or uN. If you specify uA, you must also provide the interface.
 
 The following example enables SRv6, and configures the locator called LEAF and the static SID 2001:db8:1:1::100/48:
 
@@ -34,7 +34,8 @@ cumulus@switch:~$ nv set router segment-routing srv6 locator LEAF block-length 3
 cumulus@switch:~$ nv set router segment-routing srv6 locator LEAF func-length 0
 cumulus@switch:~$ nv set router segment-routing srv6 locator LEAF node-length 16
 cumulus@switch:~$ nv set router segment-routing static srv6-sid 2001:db8:1:1::100/48 locator-name LEAF  
-cumulus@switch:~$ nv set router segment-routing static srv6-sid 2001:db8:1:1::100/48 behavior uA 
+cumulus@switch:~$ nv set router segment-routing static srv6-sid 2001:db8:1:1::100/48 behavior uA
+cumulus@switch:~$ nv set router segment-routing static srv6-sid 2001:db8:1:1::100/48 interface swp1
 cumulus@switch:~$ nv config apply
 ```
 
@@ -110,8 +111,7 @@ status        up
 To show the SRv6 static segment identifiers, run the NVUE `nv show router segment-routing static srv6 sid` command or the vtysh `show segment-routing srv6 sid` command:
 
 ```
-cumulus@switch:~$ nv show router segment-routing srv6 sid 
-
+cumulus@switch:~$ nv show router segment-routing srv6 sid
 ```
 
 To show information for a specific SRv6 static segment identifier, run the NVUE `nv show router segment-routing static srv6 sid <sid>` command or the vtysh `show segment-routing srv6 sid <sid>` command:
@@ -145,6 +145,16 @@ To show all SRv6 information, run the `nv show router segment-routing srv6 stats
 
 ```
 cumulus@switch:~$ nv show router segment-routing srv6 stats
+Hit Counters
+------------------------------
+SID                                             Packets
+---------------------------------------      ----------
+3001:3001:0201::/48                                   0
+3002:3002:0201::/48                                   0
+
+Drop Counters
+------------------------------
+Total no-sid-dropped packets
 ```
 
 To show information about a specific SRv6 SID, run the NVUE `nv show router segment-routing srv6 stats sid <sid>` command or the vtysh `show segment-routing srv6 sid` command:
@@ -156,7 +166,10 @@ cumulus@switch:~$ nv show router segment-routing srv6 stats sid 2001:db8:1:1::10
 To show information about non-SID dropped packets, run the `nv show router segment-routing srv6 stats no-sid-drop` command:
 
 ```
-cumulus@switch:~$ nv show router segment-routing srv6 stats no-sid-drop
+cumulus@switch:~$ nv show router segment-routing srv6 stats no-sid-drops
+                        operational
+----------------------  -----------
+no-sid-dropped-packets  0
 ```
 
 ### Clear SRv6 Statistics

@@ -526,7 +526,7 @@ Setting the target temperature setpoint for a port without proper guidance c
 {{%/notice%}}
 
 {{%notice note%}}
-- You can set the target temperature setpoint for a port on the SN5610 and SN5640 switches only.
+- You can set the target temperature setpoint for a port on the SN5610 switch only.
 - Breakout ports are not supported.
 {{%/notice%}}
 

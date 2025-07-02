@@ -10,11 +10,7 @@ This document supports the Cumulus Linux 5.14 release, and lists new platforms, 
 
 ## What's New in Cumulus Linux 5.14
 
-Cumulus Linux 5.14.0 supports new platforms, provides bug fixes, and contains several new features and improvements.
-
-### Platforms
-
-- NVIDIA SN5640 (800G Spectrum-5) BETA (200G not supported).
+Cumulus Linux 5.14.0 contains several new features and improvements, and provides bug fixes.
 
 ### New Features and Enhancements
 

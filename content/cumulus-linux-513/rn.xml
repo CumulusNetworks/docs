@@ -7,6 +7,24 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4513850</td>
+<td>After upgrading from Cumulus Linux 5.12 to 5.13 on the NVIDIA SN5400 switch bonus port, PTP does not converge. To work around this issue, disable, then enable the bonus port after upgrade.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4513849</td>
+<td>After upgrading from Cumulus Linux 5.12 to 5.13 on the NVIDIA SN5400 switch bonus port, PTP does not converge. To work around this issue, disable, then enable the bonus port after upgrade.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4508830</td>
+<td>Cumulus Linux allows you to add bond ports of mismatched speeds (such as 10G and 25G) to the same LACP bond without error and the bond reports UP. </td>
+<td>5.11.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4507163</td>
 <td>In some cases after a package upgrade with ISSU (warm boot mode), you see continuous errors in the syslog similar to the following:
 NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
@@ -14,9 +32,9 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
-<td>4495348</td>
-<td>The password recovery procedure with single user mode only works to recover the root password, or to recover the cumulus user password if you manage switch configuration by editing configuration files. If you manage switch configuration with NVUE commands, to recover the password for the cumulus user or any user managed by NVUE, log into the switch as the root user and run the NVUE {{nv set system aaa user &lt;user-id&gt; password &lt;value&gt;}} command.</td>
-<td>5.13.1</td>
+<td>4499106</td>
+<td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
+<td>5.9.2-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -38,15 +56,19 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
-<td>4477903</td>
-<td>Cumulus Linux drops SRv6 traffic to the switch due to a missing hardware ECMP entry even though the SRv6 ACL is programmed correctly. To work around this issue, restart the {{switchd}} service.</td>
+<td>4478125</td>
+<td>When using optimized image (two partition) upgrade to upgrade the switch to Cumulus Linux 5.13, the {{/etc/sudoers.d/prometheus}} file might be missing. To work around this issue, create a file with 0440 permissions and add the following content:
+cumulus@switch:~$ sudo nano /etc/sudoers.d/prometheus
+# commands needed for Prometheus Node Exporter to get LLDP metrics
+prometheus ALL = NOPASSWD: /usr/sbin/lldpcli -f json show chassis
+prometheus ALL = NOPASSWD: /usr/sbin/lldpcli -f json show neighbor</td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
-<td>4475115</td>
-<td>Cumulus Linux allows you to add bond ports of mismatched speeds (such as 10G and 25G) to the same LACP bond without error and the bond reports UP. </td>
-<td>5.11.2-5.13.1</td>
+<td>4477903</td>
+<td>Cumulus Linux drops SRv6 traffic to the switch due to a missing hardware ECMP entry even though the SRv6 ACL is programmed correctly. To work around this issue, restart the {{switchd}} service.</td>
+<td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -458,6 +480,12 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <tr>
 <td>3966312</td>
 <td>When connecting the SN5xxx switch to third party test equipment (such as IXIA) using copper cables at 100GbE, 200GbE, 400GbE, or 800GbE, links do not come up.</td>
+<td>5.10.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3948068</td>
+<td>On the SN3700 and SN3700c switch, the {{nv show platform environment voltage}} command output shows a failed state for the {{PSU-n-12V-RAIL-OUT}} sensors.  This is a known hardware limitation that cannot be corrected by the PSU vendor.</td>
 <td>5.10.0-5.13.1</td>
 <td></td>
 </tr>
@@ -907,6 +935,24 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4513850</td>
+<td>After upgrading from Cumulus Linux 5.12 to 5.13 on the NVIDIA SN5400 switch bonus port, PTP does not converge. To work around this issue, disable, then enable the bonus port after upgrade.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4513849</td>
+<td>After upgrading from Cumulus Linux 5.12 to 5.13 on the NVIDIA SN5400 switch bonus port, PTP does not converge. To work around this issue, disable, then enable the bonus port after upgrade.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4508830</td>
+<td>Cumulus Linux allows you to add bond ports of mismatched speeds (such as 10G and 25G) to the same LACP bond without error and the bond reports UP. </td>
+<td>5.11.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4507163</td>
 <td>In some cases after a package upgrade with ISSU (warm boot mode), you see continuous errors in the syslog similar to the following:
 NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
@@ -917,6 +963,12 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>4500033</td>
 <td>When using TACACS or Radius authentication to run CLI commands, the available memory on the switch might reduce over time.</td>
 <td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4499106</td>
+<td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
+<td>5.9.2-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -938,15 +990,19 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
-<td>4477903</td>
-<td>Cumulus Linux drops SRv6 traffic to the switch due to a missing hardware ECMP entry even though the SRv6 ACL is programmed correctly. To work around this issue, restart the {{switchd}} service.</td>
+<td>4478125</td>
+<td>When using optimized image (two partition) upgrade to upgrade the switch to Cumulus Linux 5.13, the {{/etc/sudoers.d/prometheus}} file might be missing. To work around this issue, create a file with 0440 permissions and add the following content:
+cumulus@switch:~$ sudo nano /etc/sudoers.d/prometheus
+# commands needed for Prometheus Node Exporter to get LLDP metrics
+prometheus ALL = NOPASSWD: /usr/sbin/lldpcli -f json show chassis
+prometheus ALL = NOPASSWD: /usr/sbin/lldpcli -f json show neighbor</td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
-<td>4475115</td>
-<td>Cumulus Linux allows you to add bond ports of mismatched speeds (such as 10G and 25G) to the same LACP bond without error and the bond reports UP. </td>
-<td>5.11.2-5.13.1</td>
+<td>4477903</td>
+<td>Cumulus Linux drops SRv6 traffic to the switch due to a missing hardware ECMP entry even though the SRv6 ACL is programmed correctly. To work around this issue, restart the {{switchd}} service.</td>
+<td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1311,12 +1367,6 @@ The interface shows "screaming" emojis and "Could not render." </td>
 <td></td>
 </tr>
 <tr>
-<td>4271232</td>
-<td>A Python version change removed the encoding argument parameter of the json loads function, which causes an exception.</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4271215</td>
 <td>NVUE overwrites the MOTD file during NVUE configuration with no option to ignore it.
 </td>
@@ -1495,6 +1545,12 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <tr>
 <td>3966312</td>
 <td>When connecting the SN5xxx switch to third party test equipment (such as IXIA) using copper cables at 100GbE, 200GbE, 400GbE, or 800GbE, links do not come up.</td>
+<td>5.10.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3948068</td>
+<td>On the SN3700 and SN3700c switch, the {{nv show platform environment voltage}} command output shows a failed state for the {{PSU-n-12V-RAIL-OUT}} sensors.  This is a known hardware limitation that cannot be corrected by the PSU vendor.</td>
 <td>5.10.0-5.13.1</td>
 <td></td>
 </tr>

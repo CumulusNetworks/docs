@@ -56,6 +56,16 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
+<td>4478125</td>
+<td>When using optimized image (two partition) upgrade to upgrade the switch to Cumulus Linux 5.13, the {{/etc/sudoers.d/prometheus}} file might be missing. To work around this issue, create a file with 0440 permissions and add the following content:
+cumulus@switch:~$ sudo nano /etc/sudoers.d/prometheus
+# commands needed for Prometheus Node Exporter to get LLDP metrics
+prometheus ALL = NOPASSWD: /usr/sbin/lldpcli -f json show chassis
+prometheus ALL = NOPASSWD: /usr/sbin/lldpcli -f json show neighbor</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4477903</td>
 <td>Cumulus Linux drops SRv6 traffic to the switch due to a missing hardware ECMP entry even though the SRv6 ACL is programmed correctly. To work around this issue, restart the {{switchd}} service.</td>
 <td>5.13.0-5.13.1</td>
@@ -115,6 +125,12 @@ with multiple optics, which can impact link stability and performance.</td>
 <td>The SN5610 switch records a High FEC Bin Error at room temperature.</td>
 <td>5.13.0-5.13.1</td>
 <td>5.11.2</td>
+</tr>
+<tr>
+<td>4457165</td>
+<td>When a spine switch reboots and comes back online, leaf switches might cause prolonged convergence times due to premature traffic forwarding. The leaf switch immediately begins ECMP load-balancing traffic to the recovered spine before the spine has fully programmed its routing tables, resulting in traffic blackholing during the spine's route convergence process.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4449947</td>
@@ -262,13 +278,6 @@ cumulus@switch:~$ git gc</td>
 <tr>
 <td>4393369</td>
 <td>If you generate a cl-support file after configuring a breakout port, the syslog file includes errors due to a statistic collection failure for stale ports. This issue has no functional impact.</td>
-<td>5.13.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4393329</td>
-<td>200Gx4 Link Speed is not Supported on Spectrum-5 (SPC5/Bison/Flamingo)
-</td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
@@ -981,6 +990,16 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
+<td>4478125</td>
+<td>When using optimized image (two partition) upgrade to upgrade the switch to Cumulus Linux 5.13, the {{/etc/sudoers.d/prometheus}} file might be missing. To work around this issue, create a file with 0440 permissions and add the following content:
+cumulus@switch:~$ sudo nano /etc/sudoers.d/prometheus
+# commands needed for Prometheus Node Exporter to get LLDP metrics
+prometheus ALL = NOPASSWD: /usr/sbin/lldpcli -f json show chassis
+prometheus ALL = NOPASSWD: /usr/sbin/lldpcli -f json show neighbor</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4477903</td>
 <td>Cumulus Linux drops SRv6 traffic to the switch due to a missing hardware ECMP entry even though the SRv6 ACL is programmed correctly. To work around this issue, restart the {{switchd}} service.</td>
 <td>5.13.0-5.13.1</td>
@@ -1040,6 +1059,12 @@ with multiple optics, which can impact link stability and performance.</td>
 <td>The SN5610 switch records a High FEC Bin Error at room temperature.</td>
 <td>5.13.0-5.13.1</td>
 <td>5.11.2</td>
+</tr>
+<tr>
+<td>4457165</td>
+<td>When a spine switch reboots and comes back online, leaf switches might cause prolonged convergence times due to premature traffic forwarding. The leaf switch immediately begins ECMP load-balancing traffic to the recovered spine before the spine has fully programmed its routing tables, resulting in traffic blackholing during the spine's route convergence process.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4449947</td>
@@ -1253,13 +1278,6 @@ cumulus@switch:~$ git gc</td>
 <tr>
 <td>4393369</td>
 <td>If you generate a cl-support file after configuring a breakout port, the syslog file includes errors due to a statistic collection failure for stale ports. This issue has no functional impact.</td>
-<td>5.13.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4393329</td>
-<td>200Gx4 Link Speed is not Supported on Spectrum-5 (SPC5/Bison/Flamingo)
-</td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>

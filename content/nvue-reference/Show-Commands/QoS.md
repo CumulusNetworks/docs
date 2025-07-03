@@ -2025,7 +2025,7 @@ mode            dynamic      dynamic
 
 ## <h>nv show qos advance-buffer-config \<profile-id\> egress-mgmt-buffer</h>
 
-Shows the lossy egress management buffer settings that you can configure to isolate management traffic to a different priority group. Management traffic consists of OSPF and BGP hello and update packets, and BFD packets that ingress and egress the CPU.
+Shows the lossy egress management buffer settings that you can configure to isolate management traffic to a different priority group. Management traffic consists of control traffic originating from or destined to the switch CPU.
 
 ### Version History
 
@@ -2045,7 +2045,7 @@ shared-bytes   13.53 KB         13.53 KB
 
 ## <h>nv show qos advance-buffer-config \<profile-id\> ingress-mgmt-buffer</h>
 
-Shows the lossy ingress management buffer settings that you can configure to isolate management traffic to a different priority group. Management traffic consists of OSPF and BGP hello and update packets, and BFD packets that ingress and egress the CPU.
+Shows the lossy ingress management buffer settings that you can configure to isolate management traffic to a different priority group. Management traffic consists of control traffic originating from or destined to the switch CPU.
 
 ### Version History
 

@@ -29,7 +29,7 @@ The following example enables SRv6, and configures the locator called LEAF and t
 
 ```
 cumulus@switch:~$ nv set router segment-routing srv6 state enabled
-cumulus@switch:~$ nv set router segment-routing srv6 locator LEAF prefix 2001:db8:1:1::100/48
+cumulus@switch:~$ nv set router segment-routing srv6 locator LEAF prefix 2001:db8:1:1::/48
 cumulus@switch:~$ nv set router segment-routing srv6 locator LEAF block-length 32
 cumulus@switch:~$ nv set router segment-routing srv6 locator LEAF func-length 0
 cumulus@switch:~$ nv set router segment-routing srv6 locator LEAF node-length 16
@@ -58,8 +58,8 @@ leaf01(config-srv6-sids)# sid 2001:db8:1:1::100/48 locator LEAF behavior uA
 leaf01(config-srv6-sids)# exit
 leaf01(config-srv6)# locators
 leaf01(config-srv6-locators)# locator LEAF
-leaf01(config-srv6-locator)# prefix 2001:db8:1:1::100/48 block-len 32 func-bits 0
-leaf01(config-srv6-locator)# prefix 2001:db8:1:1::100/48 node-len 16
+leaf01(config-srv6-locator)# prefix 2001:db8:1:1::/48 block-len 32 func-bits 0
+leaf01(config-srv6-locator)# prefix 2001:db8:1:1::/48 node-len 16
 leaf01(config-srv6-locator)# end
 leaf01# exit
 ```
@@ -90,21 +90,21 @@ To show configuration information for all SRv6 locators, run the `nv show router
 
 ```
 cumulus@switch:~$ nv show router segment-routing srv6 locator
-SRv6 locator name  prefix            block length  node length  function length  status
------------------  ----------------  ------------  -----------  ---------------  ------
-LEAF               fcbb:bbbb:2::/48  32            16           0                up
+SRv6 locator name  prefix             block length  node length  function length  status
+-----------------  ----------------   ------------  -----------  ---------------  ------
+LEAF               2001:db8:1:1::/48  32            16           0                up
 ```
 
 To show configuration information about a specific locator, run the NVUE `nv show router segment-routing srv6 locator <locator-id>` command or the vtysh `show segment-routing srv6 locator <locator> detail` command:
 
 ```
 cumulus@switch:~$ nv show router segment-routing srv6 locator LEAF
-              operational       applied           pending         
-------------  ----------------  ----------------  ----------------
-prefix        fcbb:bbbb:2::/48  fcbb:bbbb:2::/48  fcbb:bbbb:2::/48
-block-length  32                32                32              
-node-length   16                16                16              
-func-length   0                 0                 0               
+              operational        applied             pending         
+------------  ----------------   ----------------    ----------------
+prefix        2001:db8:1:1::/48  2001:db8:1:1::/48  2001:db8:1:1::/48
+block-length  32                 32                 32              
+node-length   16                 16                 16              
+func-length   0                  0                  0               
 status        up
 ```
 
@@ -123,21 +123,7 @@ cumulus@switch:~$ nv show router segment-routing static srv6 sid 2001:db8:1:1::1
 ### Show SRv6 Endpoints
 
 SRv6 endpoints are installed as IPv6 routes into the RIB and FIB. To show SRv6 endpoints, view the
-IPv6 RIB with the `nv show vrf <vrf> router rib ipv6 route` command.
-
-```
-cumulus@switch:~$ nv show vrf mgmt router rib ipv6 route
-
-Flags - * - selected, q - queued, o - offloaded, i - installed, S - fib-
-selected, x - failed
-
-Route      Protocol   Distance  Uptime                NHGId  Metric  Flags
----------  ---------  --------  --------------------  -----  ------  -----
-::/0       kernel     255       2025-06-12T19:57:59Z  12     8192    *Si  
-fe80::/64  connected  0         2025-06-12T19:57:59Z  9      0       *Si  
-```
-
-You can view a specific route with the `nv show vrf <vrf> router rib ipv6 route <route-id>` command.
+IPv6 RIB with the `nv show vrf <vrf> router rib ipv6 route` command. You can view a specific route with the `nv show vrf <vrf> router rib ipv6 route <route-id>` command.
 
 ### Show SRv6 Statistics
 
@@ -149,8 +135,8 @@ Hit Counters
 ------------------------------
 SID                                             Packets
 ---------------------------------------      ----------
-3001:3001:0201::/48                                   0
-3002:3002:0201::/48                                   0
+2001:db8:1:1::100/48                                   0
+2001:db8:1:1::101/48                                   0
 
 Drop Counters
 ------------------------------

@@ -20,11 +20,12 @@ Cumulus Linux 5.14.0 contains several new features and improvements, and provide
 - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#clear-interface-physical-layer-error-counters" text="Clear physical layer error counters for an interface">}}
 - {{<link url="DHCP-Relays" text="Configure different DHCP relay servers per interface">}}
 - {{<link url="Quick-Start-Guide/#configure-the-domain-name" text="Domain name configuration">}}
-- {{<link url="Equal-Cost-Multipath-Load-Sharing/#enable-adaptive-routing" text="Adaptive routing default profiles profile-1 and profile-2 removed and replaced with one profile called default">}}
+- {{<link url="Equal-Cost-Multipath-Load-Sharing/#enable-adaptive-routing" text="Adaptive routing default profiles profile-1 and profile-2 removed and replaced with one profile that uses the default profile settings for your switch ASIC type">}}
 - {{<link url="NVUE-API/#jwt-based-authentication" text="JWT Based Authentication for REST API">}}
 - gNMI:
   - {{<link url="gNMI-Streaming/#metrics" text="New gNMI streaming metrics: BGP, interface, LLDP, system, and platform transceiver">}}
   - {{<link url="gNMI-Streaming/#user-credentials-and-authentication" text="gRPC header based authentication support for gNMI subscription requests">}}
+  - {{<link url="gNMI-Streaming" text="Improved data formatting to include prefix field">}}
 - {{<link url="Quality-of-Service/#packet-trimming" text="Packet trimming">}}
   - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#packet-trimming-profile" text="New QoS profile for packet trimming">}}
   - {{<link url="Quality-of-Service/#asymmetric-packet-trimming" text="Packet trimming with asymmetric DSCP">}}

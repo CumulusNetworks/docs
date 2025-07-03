@@ -285,7 +285,7 @@ The vtysh commands save the static route configuration in the `/etc/frr/frr.conf
 ```
 ...
 !
-ip route 10.10.10.101/32 blackhole
+ip route 10.10.10.61/32 blackhole
 !
 ...
 ```

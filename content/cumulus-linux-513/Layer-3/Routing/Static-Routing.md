@@ -237,6 +237,62 @@ The default route created by the `gateway` parameter in ifupdown2 does not insta
 {{< /tab >}}
 {{< /tabs >}}
 
+## Configure a Static Blackhole Route
+
+To mitigate DDoS attacks and block malicious traffic, you can configure a static blackhole to direct traffic to a null route.
+
+The following example configures IP address 10.0.0.32/31 for the interface on the switch that sends out traffic and configures 10.10.10.61/32 to be the static blackhole route:
+
+{{< tabs "TabID244 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set interface swp3 ip address 10.0.0.32/31
+cumulus@leaf01:~$ nv set vrf BLUE router static 10.10.10.61/32 via blackhole
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux and vtysh Commands ">}}
+
+Edit the `/etc/network/interfaces` file to configure an IP address for the interface on the switch that sends out traffic. For example:
+
+```
+cumulus@leaf01:~$ sudo nano /etc/network/interfaces
+...
+auto swp3
+iface swp3
+    address 10.0.0.32/31
+...
+```
+
+Run vtysh commands to configure a static blackhole route. For example:
+
+```
+cumulus@leaf01:~$ sudo vtysh
+
+leaf0101# configure terminal
+leaf0101(config)# vrf BLUE
+leaf0101(config-vrf)# ip route 10.10.10.61/32 blackhole
+leaf0101(config-vrf)# end
+leaf0101# write memory
+leaf0101# exit
+cumulus@leaf0101:~$
+```
+
+The vtysh commands save the static route configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+!
+ip route 10.10.10.61/32 blackhole
+!
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Considerations
 
 ### Deleting Routes through the Linux Shell

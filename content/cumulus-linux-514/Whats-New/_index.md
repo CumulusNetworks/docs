@@ -44,10 +44,6 @@ show bgp vrf <vrf-id> ipv6 unicast redistribute json
   - {{<link url="RADIUS-AAA/#show-and-clear-radius-counters" text="Show and clear RADIUS counters">}}
   - {{< expand "Operational information added to NVUE BGP show commands" >}}
 ```
-nv show interface <interface-id> packet-trim
-nv show interface <interface-id> packet-trim egress-eligibility
-nv show interface <interface-id> packet-trim egress-eligibility traffic-class
-nv show interface <interface-id> packet-trim egress-eligibility traffic-class <tc-id>
 nv show router bgp
 nv show router bgp convergence-wait
 nv show router bgp graceful-restart
@@ -85,11 +81,6 @@ nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn
 | BGP `enforce-first-as` option is ON by default | BGP `enforce-first-as` option is OFF by default |
 
 {{< /expand >}}
-  - {{< expand "Removed NVUE Commands" >}}
-```
-
-```
-{{< /expand >}}
   - {{< expand "New NVUE Commands" >}}
 For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) for Cumulus Linux.
 {{< tabs "TabID108 ">}}
@@ -97,7 +88,13 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 
 ```
 nv show interface <interface-id> link phy-detail hardware 
+nv show interface <interface-id> packet-trim
+nv show interface <interface-id> packet-trim egress-eligibility
+nv show interface <interface-id> packet-trim egress-eligibility traffic-class
+nv show interface <interface-id> packet-trim egress-eligibility traffic-class <tc-id>
 nv show platform transceiver <interface> temperature
+nv show system forwarding packet-trim
+nv show system forwarding packet-trim remark
 nv show router segment-routing
 nv show router segment-routing srv6
 nv show router segment-routing srv6 stats
@@ -131,13 +128,13 @@ nv set router segment-routing static srv6-sid <sid> locator-name <value>
 nv set router segment-routing static srv6-sid <sid> behavior (uN|uA)
 nv set system api token-expiration
 nv set system dns domain <domain-name>
-nv set system forwarding packet-trim profile
-nv set system forwarding packet-trim service-port
+nv set interface <interface-id> packet-trim egress-eligibility traffic-class <tc-id>
 nv set system forwarding packet-trim remark dscp
-nv set system forwarding packet-trim size
-nv set interface <interface> packet-trim egress-eligibility traffic-class
 nv set system forwarding packet-trim state
+nv set system forwarding packet-trim size
+nv set system forwarding packet-trim profile packet-trim-default
 nv set system forwarding packet-trim switch-priority
+nv set system forwarding packet-trim service-port <port>
 ```
 
 {{< /tab >}}
@@ -161,13 +158,18 @@ nv unset router segment-routing static srv6-sid <sid> locator-name
 nv unset router segment-routing static srv6-sid <sid> behavior
 nv unset system api token-expiration
 nv unset system dns domain
-nv unset system forwarding packet-trim profile
-nv unset system forwarding packet-trim service-port
+nv unset interface <interface-id> packet-trim
+nv unset interface <interface-id> packet-trim egress-eligibility
+nv unset interface <interface-id> packet-trim egress-eligibility traffic-class
+nv unset interface <interface-id> packet-trim egress-eligibility traffic-class <tc-id>
+nv unset system forwarding packet-trim
+nv unset system forwarding packet-trim remark
 nv unset system forwarding packet-trim remark dscp
-nv unset system forwarding packet-trim size
-nv unset interface <interface> packet-trim egress-eligibility traffic-class
 nv unset system forwarding packet-trim state
+nv unset system forwarding packet-trim size
+nv unset system forwarding packet-trim profile
 nv unset system forwarding packet-trim switch-priority
+nv unset system forwarding packet-trim service-port
 ```
 
 {{< /tab >}}

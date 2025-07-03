@@ -37,21 +37,23 @@ queue-limit
 cumulus@switch:~$ sudo vtysh
 ...
 switch# show ip bgp summary
-ipv4 Unicast Summary
-BGP router identifier 10.10.10.1, local AS number 65101 vrf-id 0
-BGP table version 88
-RIB entries 25, using 4800 bytes of memory
-Peers 5, using 106 KiB of memory
+
+IPv4 Unicast Summary:
+BGP router identifier 10.10.10.101, local AS number 65199 VRF default vrf-id 0
+BGP table version 94
+RIB entries 13, using 1664 bytes of memory
+Peers 6, using 120 KiB of memory
 Peer groups 1, using 64 bytes of memory
 
-Neighbor              V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd
-spine01(swp51)        4      65199     31122     31194        0    0    0 1d01h44m            7
-spine02(swp52)        4      65199     31060     31151        0    0    0 01:47:13            7
-spine03(swp53)        4      65199     31150     31207        0    0    0 01:48:31            7
-spine04(swp54)        4      65199     31042     31098        0    0    0 01:46:57            7
-leaf02(peerlink.4094) 4      65101     30919     30913        0    0    0 01:47:43           12
+Neighbor        V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt Desc
+leaf01(swp1)    4      65101     29176     29225        0    0    0 02:25:16      Connect        0 FRRouting/10.0.3
+leaf02(swp2)    4      65102     29251     29270        0    0    0 02:22:56      Connect        0 FRRouting/10.0.3
+leaf03(swp3)    4      65103     32142     32123       94    0    0 1d02h29m            3        7 FRRouting/10.0.3
+leaf04(swp4)    4      65104     32144     32137       94    0    0 02:27:40            3        7 FRRouting/10.0.3
+border01(swp5)  4      65253     32229     32141       94    0    0 02:27:41            3        7 FRRouting/10.0.3
+border02(swp6)  4      65254     32235     32123       94    0    0 1d02h29m            3        7 FRRouting/10.0.3
 
-Total number of neighbors 5
+Total number of neighbors 6
 ```
 
 To view the routing table as defined by BGP, run the vtysh `show ip bgp ipv4 unicast` command. For example:
@@ -101,13 +103,17 @@ enforce-first-as                                           off
 passive-mode                                               off       
 nexthop-connected-check                                    on        
 description                                                none      
+graceful-shutdown                                          off 
 bfd                                                                  
   enable                                                   off       
 ttl-security                                                                  
   enable                        on                         off       
   hops                          1                                    
 local-as                                                             
-  enable                                                   off       
+  enable                                                   off 
+  asn                          65199                                                                      
+  prepend                      on                                                                         
+  replace                      off      
 timers                                                               
   keepalive                     3                          auto      
   hold                          9                          auto      
@@ -117,7 +123,6 @@ address-family
   ipv4-unicast                                                       
     enable                                                 on        
     route-reflector-client                                 off       
-    route-server-client                                    off       
     soft-reconfiguration                                   off       
     nexthop-setting                                        auto      
     add-path-tx                                            off       
@@ -135,92 +140,65 @@ To show detailed information about all BGP neighbors, run the `nv show vrf <vrf>
 ```
 cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor --view=detail -o json
 {
-  "peerlink.4094": {
+  "swp1": {
     "address-family": {
       "ipv4-unicast": {
+        "aspath": {
+          "allow-my-asn": {
+            "enable": "off"
+          },
+          "private-as": "none",
+          "replace-peer-as": "off"
+        },
         "attribute-mod": {
           "aspath": "off",
           "med": "off",
           "nexthop": "off"
         },
-        "capabilities": {
-          "rx-addpath": "on",
-          "rx-graceful-restart": "on",
-          "rx-mpbgp": "on",
-          "rx-restart-f-bit": "off",
-          "tx-addpath": "off",
-          "tx-mpbgp": "on"
-        },
+        "capabilities": {},
         "community-advertise": {
           "extended": "on",
           "large": "on",
           "regular": "on"
         },
         "graceful-restart": {
-          "rx-eof-rib": "on",
-          "timers": {
-            "stale-path": {
-              "timer-sec": 360
-            }
-          },
-          "tx-eof-rib": "on",
-          "tx-eof-rib-sent-after-update": "off"
+          "rx-eof-rib": "off",
+          "tx-eof-rib": "off"
         },
         "prefix-limits": {
           "inbound": {
             "warning-only": "off"
           }
         },
-        "rx-prefix": 10,
-        "tx-prefix": 11,
-        "update-group": 1
+        "rx-prefix": 0,
+        "tx-prefix": 0
       },
       "l2vpn-evpn": {
+        "aspath": {
+          "allow-my-asn": {
+            "enable": "off"
+          },
+          "private-as": "none",
+          "replace-peer-as": "off"
+        },
         "attribute-mod": {
           "aspath": "off",
           "med": "off",
           "nexthop": "on"
         },
-        "capabilities": {
-          "rx-addpath": "on",
-          "rx-graceful-restart": "on",
-          "rx-mpbgp": "on",
-          "rx-restart-f-bit": "off",
-          "tx-addpath": "off",
-          "tx-mpbgp": "on"
-        },
+        "capabilities": {},
         "graceful-restart": {
-          "rx-eof-rib": "on",
-          "timers": {
-            "stale-path": {
-              "timer-sec": 360
-            }
-          },
-          "tx-eof-rib": "on",
-          "tx-eof-rib-sent-after-update": "off"
+          "rx-eof-rib": "off",
+          "tx-eof-rib": "off"
         },
         "prefix-limits": {
           "inbound": {
             "warning-only": "off"
           }
         },
-        "rx-prefix": 50,
-        "tx-prefix": 70,
-        "update-group": 2
+        "rx-prefix": 0,
+        "tx-prefix": 0
       }
-    },
-    "bgp-version": 4,
-    "capabilities": {
-      "extended-nexthop": "on",
-      "rx-asn32": "off",
-      "rx-extended-nexthop": "off",
-      "rx-graceful-restart": "on",
-      "rx-restart-r-bit": "off",
-      "rx-route-refresh": "on",
-      "tx-asn32": "on",
-      "tx-graceful-restart": "on",
-      "tx-route-refresh": "on"
-      ...
 ```
 
 To see a summary of the connection information for all BGP peers, such as the state (`established`, `idle`), uptime, number of messages received and sent, and the time the connections establish, run the `nv show vrf <vrf> router bgp neighbor` command.
@@ -228,23 +206,24 @@ To see a summary of the connection information for all BGP peers, such as the st
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor
 
-AS - Remote Autonomous System, PeerEstablishedTime - Peer established time in
-UTC format, UpTime - Last connection reset time in days,hours:min:sec, Afi-Safi
-- Address family, PfxSent - Transmitted prefix counter, PfxRcvd - Recieved
-prefix counter
+AS - Remote Autonomous System, Uptime - BGP session up time, ResetTime - Last
+connection reset time, Afi-Safi - Address family, PfxSent - Transmitted prefix
+counter, PfxRcvd - Recieved prefix counter
 
-Neighbor       AS     State        PeerEstablishedTime   UpTime   MsgRcvd  MsgSent  Afi-Safi      PfxSent  PfxRcvd
--------------  -----  -----------  --------------------  -------  -------  -------  ------------  -------  -------
-peerlink.4094  65103  established  2025-06-15T09:45:11Z  4:16:59  34053    34054    ipv4-unicast  13       12     
-                                                                                    l2vpn-evpn    81       57     
-swp51          65199  established  2025-06-15T09:45:16Z  4:16:59  34059    34051    ipv4-unicast  13       9      
-                                                                                    l2vpn-evpn    81       57     
-swp52          65199  established  2025-06-15T09:45:17Z  4:16:59  34055    34051    ipv4-unicast  13       9      
-                                                                                    l2vpn-evpn    81       57     
-swp53          65199  established  2025-06-15T09:45:17Z  4:16:59  34062    34050    ipv4-unicast  13       9      
-                                                                                    l2vpn-evpn    81       57     
-swp54          65199  established  2025-06-15T09:45:16Z  4:16:59  34059    34051    ipv4-unicast  13       9      
-                                                                                    l2vpn-evpn    81       57                                                                                l2vpn-evpn    81       57
+Neighbor  AS     State        Uptime          ResetTime  MsgRcvd  MsgSent  Afi-Safi      PfxSent  PfxRcvd
+--------  -----  -----------  --------------  ---------  -------  -------  ------------  -------  -------
+swp1      65101  connect                      2:30:15    29176    29225    ipv4-unicast  0        0      
+                                                                           l2vpn-evpn    0        0      
+swp2      65102  connect                      2:27:55    29251    29270    ipv4-unicast  0        0      
+                                                                           l2vpn-evpn    0        0      
+swp3      65103  established  1 day, 2:34:17  2:34:32    32242    32223    ipv4-unicast  7        3      
+                                                                           l2vpn-evpn    54       27     
+swp4      65104  established  2:32:39         2:32:44    32243    32236    ipv4-unicast  7        3      
+                                                                           l2vpn-evpn    54       27     
+swp5      65253  established  2:32:40         2:32:43    32329    32241    ipv4-unicast  7        3      
+                                                                           l2vpn-evpn    54       6      
+swp6      65254  established  1 day, 2:34:17  2:34:32    32335    32223    ipv4-unicast  7        3      
+                                                                           l2vpn-evpn    54       6
 ```
 
 Run the `nv show vrf default router bgp neighbor -o json` command to show a summary of the connection information for all BGP neighbors in json format.
@@ -294,38 +273,37 @@ To show information about a specific update group, such as the number of peer re
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4-unicast update-group 1 -o json
 {
-  "create-time": "2024-10-25T14:02:24Z",
+  "create-time": "2025-07-02T17:53:06Z",
   "min-route-advertisement-interval": 0,
   "sub-group": {
     "1": {
-      "adjacency-count": 13,
-      "coalesce-time": 1300,
+      "adjacency-count": 7,
+      "coalesce-time": 1350,
       "counters": {
-        "join-events": 5,
+        "join-events": 14,
         "merge-check-events": 0,
         "merge-events": 3,
         "peer-refresh-events": 0,
-        "prune-events": 0,
+        "prune-events": 10,
         "split-events": 0,
         "switch-events": 0
       },
-      "create-time": "2024-10-25T14:02:24Z",
+      "create-time": "2025-07-02T17:53:06Z",
       "needs-refresh": "off",
       "neighbor": {
-        "peerlink.4094": {},
-        "swp51": {},
-        "swp52": {},
-        "swp53": {},
-        "swp54": {}
+        "swp3": {},
+        "swp4": {},
+        "swp5": {},
+        "swp6": {}
       },
       "packet-counters": {
-        "queue-hwm-len": 2,
+        "queue-hwm-len": 4,
         "queue-len": 0,
-        "queue-total": 14,
-        "total-enqueued": 14
+        "queue-total": 34,
+        "total-enqueued": 34
       },
       "sub-group-id": 1,
-      "version": 18
+      "version": 94
     }
   },
   "update-group-id": "1"
@@ -363,7 +341,8 @@ Route            Protocol   Distance  Uptime                NHGId  Metric  Flags
 To show the routes in the local routing table, run the `nv show vrf <vrf> router bgp address-family ipv4-unicast route` command for IPv4 or the `nv show vrf <vrf> router bgp address-family ipv6-unicast route` for IPv6. You can also run the command with `-o json` to show the received routes in json format.
 
 ```
-cumulus@leaf02:~$ nv show vrf default router bgp address-family ipv4-unicast route PathCount - Number of paths present for the prefix, MultipathCount - Number of  
+cumulus@leaf02:~$ nv show vrf default router bgp address-family ipv4-unicast route 
+PathCount - Number of paths present for the prefix, MultipathCount - Number of  
 paths that are part of the ECMP, DestFlags - * - bestpath-exists, w - fib-wait- 
 for-install, s - fib-suppress, i - fib-installed, x - fib-install-failed        
                                                                                 

@@ -910,6 +910,10 @@ spine04           no       Tue Nov 12 17:04:12 2024  Sync status changed from ye
 ## netq check roce
 
 Searches for consistent RoCE and QoS configurations across nodes.
+
+{{%notice note%}}
+NetQ supports RoCE lossless and lossy modes; NetQ monitoring and validation checks do not support the single shared buffer mode, `lossless-single-ipool`.
+{{%/notice%}}
 ### Syntax
 
 ```

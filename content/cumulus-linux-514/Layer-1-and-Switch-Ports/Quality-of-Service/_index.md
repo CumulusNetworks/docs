@@ -1881,7 +1881,7 @@ To unset the lossy headroom for a priority group, comment out the `priority_grou
 
 ### Ingress and Egress Management Buffers
 
-Management traffic consists of OSPF and BGP hello and update packets, and BFD packets that ingress and egress the CPU.
+Management traffic consists of control traffic originating from or destined to the switch CPU.
 
 To configure the ingress management buffer:
 

@@ -15,6 +15,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 NetQ 4.15.0 includes the following new features:
 
+- The Validation Summary card now lets you view all the results from recent validations and allows you to easily re-run validations 
 - Run {{<link title="Validate Network Protocol and Service Operations/#topology-validations" text="topology validations">}} using JSON blueprints
 - New UI behavior: removed Close, use breadcrumb navigation to go back
 - The cloud (OPTA) cluster deployment option is no longer available or supported

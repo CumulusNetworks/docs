@@ -1127,11 +1127,30 @@ cumulus@leaf01:~$ nv set interface swp1-16 qos remark profile lossy-multi-tc-net
 cumulus@leaf01:~$ nv config apply
 ```
 
-The following example configures the uplink (spine01) with the default packet trimming settings:
+The following example configures the uplink (spine01) with the default packet trimming settings. You do not need to configure additional settings; the switch expects the default global DSCP remark type and remarks all trimmed packets with 11.
 
 ```
 cumulus@spine01:~$ nv set qos roce mode lossy-multi-tc
 cumulus@spine01:~$ nv config apply
+```
+
+If you do **not** want to use the default packet trimming settings (`lossy-multi-tc` profile), you can configure packet trimming manually:
+- Set the switch priority for the trimmed packets.
+- Set the DSCP remark at the port level.
+- Set the DSCP value for host facing and networking facing ports.
+- Configure the ports for egress-eligibility.
+- Enable packet trimming.
+
+```
+cumulus@leaf01:~$ nv set system forwarding packet-trim switch-priority 4 
+cumulus@leaf01:~$ nv set system forwarding packet-trim remark dscp port-level
+cumulus@leaf01:~$ nv set interface swp1-16 qos remark profile network-port-group
+cumulus@leaf01:~$ nv set qos remark network-port-group switch-priority 4 dscp 11
+cumulus@leaf01:~$ nv set interface swp17-32 qos remark profile host-port-group 
+cumulus@leaf01:~$ nv set qos remark host-port-group switch-priority 4 dscp 21
+cumulus@leaf01:~$ nv set interface swp1-32 packet-trim egress-eligibility traffic-class 1
+cumulus@leaf01:~$ nv set system forwarding packet-trim state enabled
+cumulus@leaf01:~$ nv config apply
 ```
 
 ## Egress Scheduler

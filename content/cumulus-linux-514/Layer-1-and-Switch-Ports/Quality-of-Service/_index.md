@@ -1055,6 +1055,8 @@ cumulus@switch:~$ nv set system forwarding packet-trim state enabled
 cumulus@switch:~$ nv config apply
 ```
 
+To disable packet trimming, run the `nv set system forwarding packet-trim state disabled` command.
+
 {{< /tab >}}
 {{< /tabs >}}
 

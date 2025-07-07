@@ -28,7 +28,7 @@ Cumulus Linux 5.14.0 contains several new features and improvements, and provide
   - {{<link url="gNMI-Streaming" text="Improved data formatting to include prefix field">}}
 - {{<link url="Quality-of-Service/#packet-trimming" text="Packet trimming">}}
   - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#packet-trimming-profile" text="New QoS profile for packet trimming">}}
-  - {{<link url="Quality-of-Service/#asymmetric-packet-trimming" text="Packet trimming with asymmetric DSCP">}}
+  - {{<link url="Quality-of-Service/#configure-asymmetric-packet-trimming" text="Packet trimming with asymmetric DSCP">}}
 - {{<link url="Segment-Routing" text="SRv6 configuration">}} and {{<link url="Segment-Routing/#clear-srv6-statistics" text="Clear SRv6 statistics">}}
 - {{<link url="TACACS/#tacacs-per-command-authorization" text="You can now bind TACACS per-command authorization to the default VRF">}} (in previous releases, you must specify the egress interface you use in the default VRF)
 - {{< expand "New and updated vtysh BGP show commands" >}}

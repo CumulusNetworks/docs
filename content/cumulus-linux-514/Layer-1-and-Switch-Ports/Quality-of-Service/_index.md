@@ -1127,10 +1127,11 @@ cumulus@leaf01:~$ nv set interface swp1-16 qos remark profile lossy-multi-tc-net
 cumulus@leaf01:~$ nv config apply
 ```
 
-On the uplink (spine01), enable the default packet trimming settings:
+The following example configures the uplink (spine01) with the default packet trimming settings:
 
 ```
 cumulus@spine01:~$ nv set qos roce mode lossy-multi-tc
+cumulus@spine01:~$ nv config apply
 ```
 
 ## Egress Scheduler

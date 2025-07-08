@@ -440,30 +440,25 @@ Action succeeded
 To clear physical layer error counters for a range of interfaces:
 
 ```
-cumulus@switch:~$ nv action clear interface swp1-3,swp31s0,swp5-10 link phy-detail 
-Action executing ... 
-swp1 link phy-detail counters cleared. 
-Action executing ... 
-swp2 link phy-detail counters cleared. 
-Action executing ... 
-swp3 link phy-detail counters cleared. 
-Action executing ... 
-swp31s0 link phy-detail counters cleared. 
-swp5 link phy-detail counters cleared. 
-Action executing ... 
-swp6 l link phy-detail counters cleared. 
-swp7 link phy-detail counters cleared. 
-swp8 link phy-detail counters cleared. 
-Action executing ... 
-swp9 link phy-detail counters cleared. 
-swp10 link phy-detail counters cleared. 
-Action succeeded
+cumulus@switch:~$ nv action clear interface swp1-3,swp5,swp7-10 link phy-detail 
+Action executing ...
+swp1 link phy-detail counters cleared.
+Action executing ...
+swp2 link phy-detail counters cleared.
+swp3 link phy-detail counters cleared.
+Action executing ...
+swp5 link phy-detail counters cleared.
+swp7 link phy-detail counters cleared.
+Action executing ...
+swp8 link phy-detail counters cleared.
+swp9 link phy-detail counters cleared.
+swp10 link phy-detail counters cleared.
 ```
 
 If the specified interface is out of range; for example, if the switch supports up to 32 switch ports but you try to clear swp33, NVUE displays an error.
 
 {{%notice note%}}
-The `nv show interface <interface> link phy-detail` command shows the reset counters. To show the exact hardware counters, run the `nv show interface <interface-id> link phy-detail hardware` command or the `nv show interface <interface-id> link phy-detail -view=hardware` command.
+The `nv show interface <interface> link phy-detail` command shows the reset counters. To show the exact hardware counters, run the `nv show interface <interface-id> link phy-detail hardware` command or the `nv show interface <interface-id> link phy-detail --view=hardware` command.
 {{%/notice%}}
 
 ## Reset a Transceiver

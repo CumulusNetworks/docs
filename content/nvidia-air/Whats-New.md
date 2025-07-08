@@ -10,7 +10,7 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 ## July 2025
 <!-- Air:WhatsNew -->
 ### 82.2025.0708-011
-- Added support for specifying additional CPU features in node metadata
+- Added ability to specify additional CPU features in node metadata
 <!-- Air:WhatsNew -->
 
 ## June 2025

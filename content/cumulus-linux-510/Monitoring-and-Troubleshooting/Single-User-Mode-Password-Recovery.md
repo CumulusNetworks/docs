@@ -49,14 +49,32 @@ Hit any key to stop autoboot:  2
        passwd: password updated successfully
 
     {{%notice tip%}}
-You can take this opportunity to reset the password for the *cumulus* account. If you manage the switch by editing configuration files manually, run the following command:
+You can also take this opportunity to reset the password for the *cumulus* account. You can set the *cumulus* user password to expire upon the next login with the `passwd cumulus --expire` command. Or to change the password for the *cumulus* user, run the following command:
 
        root@switch:~# passwd cumulus
        Enter new UNIX password:
        Retype new UNIX password:
        passwd: password updated successfully
 
-If you manage the switch configuration with NVUE commands, you cannot use single user mode to reset the cumulus account password. Log into the switch as the root user and change the cumulus account password (or any NVUE-managed user account passwords) with the `nv set system aaa user <user-id> password <value>` command.
+If you manage the switch configuration with NVUE commands, you must also change the password for the *cumulus* user in the `/etc/nvue.d/startup.yaml` configuration file. Obtain the new password's SHA hash with the following command:
+
+```
+root@switch:~# /usr/bin/grep cumulus /etc/shadow | /usr/bin/cut -d ":" -f 2
+$y$j9T$Iytj2XM4L1RUT82vS6gge1$APrp2ETA6tsxOVDzNkq3Li478VgZIexe3ToFDYBqb/.
+```
+
+Use the output of the command to edit the `/etc/nvue.d/startup.yaml` file
+
+```
+root@switch:~# nano /etc/nvue.d/startup.yaml
+
+ system:
+      aaa:
+        user:
+          cumulus:
+            hashed-password: $y$j9T$Iytj2XM4L1RUT82vS6gge1$APrp2ETA6tsxOVDzNkq3Li478VgZIexe3ToFDYBqb/.
+            role: system-admin
+```
 
 In Cumulus Linux 5.9 and later, user passwords must include at least one lowercase character, one uppercase character, one digit, one special character, and cannot be usernames. In addition, passwords must be a minimum of eight characters long, expire in 365 days, and provide a warning 15 days before expiration. For more information about the password security policy, refer to {{<link url="User-Accounts/#password-security" text="Password Security">}}.
 

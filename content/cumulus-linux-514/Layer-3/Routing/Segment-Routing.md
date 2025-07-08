@@ -77,13 +77,13 @@ To show if SRv6 is enabled and to show the configured locators, run the `nv show
 
 ```
 cumulus@switch:~$ nv show router segment-routing 
-              applied   pending             
-------------  --------  --------------------
-srv6                                        
-  state       disabled  enabled             
-  [locator]             LEAF                
-static                                      
-  [srv6-sid]            2001:db8:1:1::100/48
+              applied             
+------------  --------------------
+srv6                              
+  state       enabled             
+  [locator]   LEAF                
+static                            
+  [srv6-sid]  2001:db8:1:1::100/48
 ```
 
 To show configuration information for all SRv6 locators, run the `nv show router segment-routing srv6 locator` command or the vtysh `show segment-routing srv6 locator` command:
@@ -99,12 +99,12 @@ To show configuration information about a specific locator, run the NVUE `nv sho
 
 ```
 cumulus@switch:~$ nv show router segment-routing srv6 locator LEAF
-              operational        applied             pending         
-------------  ----------------   ----------------    ----------------
-prefix        2001:db8:1:1::/48  2001:db8:1:1::/48  2001:db8:1:1::/48
-block-length  32                 32                 32              
-node-length   16                 16                 16              
-func-length   0                  0                  0               
+              operational      applied          
+------------  ---------------  -----------------
+prefix        2001:db8:1::/48  2001:db8:1:1::/48
+block-length  32               32               
+node-length   16               16               
+func-length   0                0                
 status        up
 ```
 
@@ -112,6 +112,7 @@ To show the SRv6 static segment identifiers, run the NVUE `nv show router segmen
 
 ```
 cumulus@switch:~$ nv show router segment-routing srv6 sid
+No Data
 ```
 
 To show information for a specific SRv6 static segment identifier, run the NVUE `nv show router segment-routing static srv6 sid <sid>` command or the vtysh `show segment-routing srv6 sid <sid>` command:
@@ -123,7 +124,7 @@ cumulus@switch:~$ nv show router segment-routing static srv6 sid 2001:db8:1:1::1
 ### Show SRv6 Endpoints
 
 SRv6 endpoints are installed as IPv6 routes into the RIB and FIB. To show SRv6 endpoints, view the
-IPv6 RIB with the `nv show vrf <vrf> router rib ipv6 route` command. You can view a specific route with the `nv show vrf <vrf> router rib ipv6 route <route-id>` command.
+IPv6 RIB with the `nv show vrf <vrf> router rib ipv6 route` command. You can view a specific route with the `nv show vrf <vrf> router rib ipv6 route <route-id>` command.------------------------------------
 
 ### Show SRv6 Statistics
 

@@ -977,7 +977,7 @@ To show the default QoS `lossy-multi-tc` profile settings, run the `nv show qos 
 
 ```
 cumulus@switch:~$ nv show qos roce
-                     operational     applied       
+                    operational     applied       
 ------------------  --------------  --------------
 enable              on              on            
 mode                lossy-multi-tc  lossy-multi-tc
@@ -986,9 +986,9 @@ pfc
 congestion-control                                
   congestion-mode   ECN                           
   enabled-tc        1,2,3                         
-  min-threshold     159.18 KB                     
-  max-threshold     237.30 KB                     
-  probability       100                           
+  min-threshold     163.00 KB                     
+  max-threshold     234.00 KB                     
+  probability       5                             
 trust                                             
   trust-mode        pcp,dscp                      
 
@@ -1028,6 +1028,10 @@ RoCE pool config
 Exception List
 =================
 No Data
+
+Extended Features
+====================
+No Data
 ```
 
 {{< /tab >}}
@@ -1054,6 +1058,8 @@ cumulus@switch:~$ nv set system forwarding packet-trim switch-priority 4
 cumulus@switch:~$ nv set system forwarding packet-trim state enabled
 cumulus@switch:~$ nv config apply
 ```
+
+To disable packet trimming, run the `nv set system forwarding packet-trim state disabled` command.
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -1084,7 +1090,7 @@ The following example configures packet trimming on the downlink to hosts (leaf0
 cumulus@leaf01:~$ nv set qos roce mode lossy-multi-tc
 cumulus@leaf01:~$ nv set system forwarding packet-trim remark dscp port-level
 cumulus@leaf01:~$ nv set interface swp17-32 qos remark profile lossy-multi-tc-host-group 
-cumulus@leaf01:~$ nv set interface swp1-16 qos remark profile lossy-multi-tc-network-group
+cumulus@leaf01:~$ nv set interface swp5-16 qos remark profile lossy-multi-tc-network-group
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -1140,14 +1146,15 @@ To show packet trimming configuration, run the `nv show system forwarding packet
 
 ```
 cumulus@switch:~$ nv show system forwarding packet-trim
-                 operational  applied  pending
----------------  -----------  -------  -------
-state                         enabled  enabled
-service-port                  swp65    swp65  
-size                          528      528    
-switch-priority               4        4      
-remark                                        
-  dscp                        10       10     
+                 operational  applied            
+---------------  -----------  -------------------
+state                         enabled            
+profile                       packet-trim-default
+service-port                  swp65              
+size                          528                
+switch-priority               4                  
+remark                                           
+  dscp                        10                 
 
 Egress Eligibility TC-to-Interface Information
 =================================================
@@ -1162,9 +1169,9 @@ To show forwarding packet trim marking information, run the `nv show system forw
 
 ```
 cumulus@switch:~$ nv show system forwarding packet-trim remark 
-      operational  applied  pending
-----  -----------  -------  -------
-dscp               10       10
+      operational  applied
+----  -----------  -------
+dscp               10
 ```
 
 To show interface packet-trim eligibility information, run the `nv show interface <interface-id> packet-trim` command:
@@ -1179,7 +1186,7 @@ No Data
 To show interface packet-trim eligibility traffic-class information, run the `nv show interface <interface-id> packet-trim egress-eligibility` command:
 
 ```
-cumulus@switch:~$ 
+cumulus@switch:~$ nv show interface swp1 packet-trim egress-eligibility
 Egress Eligibility TC
 ========================
 No Data
@@ -1189,12 +1196,14 @@ To show interface packet-trim eligibility traffic-class information, run the `nv
 
 ```
 cumulus@switch:~$ nv show interface swp1 packet-trim egress-eligibility traffic-class
+No Data
 ```
 
 To show interface packet-trim egress-interface traffic class information, run the `nv show interface <interface-id> packet-trim egress-eligibility traffic-class <tc-id>` command:
 
 ```
 cumulus@switch:~$ nv show interface swp1 packet-trim egress-eligibility traffic-class 1
+No Data
 ```
 
 ## Egress Scheduler

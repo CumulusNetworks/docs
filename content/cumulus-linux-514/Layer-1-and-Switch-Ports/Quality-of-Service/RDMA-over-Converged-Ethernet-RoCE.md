@@ -84,7 +84,9 @@ cumulus@switch:~$ nv set qos roce mode lossy-multi-tc
 cumulus@switch:~$ nv config apply
 ```
 
-To show the default settings for the `lossy-multi-tc` profile, run the `nv show qos roce` command.
+After you enable the packet trimming profile, you can show the default settings with the `nv show qos roce` command.
+
+To disable the packet trimming profile, run the `nv unset qos roce mode lossy-multi-tc` command.
 
 ## Remove RoCE Configuration
 

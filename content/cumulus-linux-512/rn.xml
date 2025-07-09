@@ -134,12 +134,6 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>
-<td>4402017</td>
-<td>The {{auth.log}} file contains sensitive information for hashed passwords.</td>
-<td>5.12.0-5.13.1</td>
-<td>5.11.2</td>
-</tr>
-<tr>
 <td>4398031</td>
 <td>On the NVIDIA SN5400 switch, if the PTP slave port is swp66 and is operating at 1Gbps, the  PTP mean path delay value might be reported as a negative value. </td>
 <td>5.11.0-5.13.1</td>
@@ -339,12 +333,6 @@ cumulus@switch:~$ sudo systemctl start cumulus-upgrade-on-shutdown</td>
 <td>The first time you run the {{nv show interface rates}} command, an internal error occurs. </td>
 <td>5.12.0-5.12.1</td>
 <td>5.13.0-5.13.1</td>
-</tr>
-<tr>
-<td>4280299</td>
-<td>The {{nv action fetch system packages key &lt;key-id&gt;}} command fails if the key ID is an SCP, FTP, or URL path that requires a password to access the key. To work around this issue, use a URI that does not require password authentication for the key ID.</td>
-<td>5.12.0-5.13.1</td>
-<td></td>
 </tr>
 <tr>
 <td>4278822</td>
@@ -1173,12 +1161,6 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>
-<td>4402017</td>
-<td>The {{auth.log}} file contains sensitive information for hashed passwords.</td>
-<td>5.12.0-5.13.1</td>
-<td>5.11.2</td>
-</tr>
-<tr>
 <td>4398031</td>
 <td>On the NVIDIA SN5400 switch, if the PTP slave port is swp66 and is operating at 1Gbps, the  PTP mean path delay value might be reported as a negative value. </td>
 <td>5.11.0-5.13.1</td>
@@ -1390,12 +1372,6 @@ cumulus@switch:~$ sudo systemctl start cumulus-upgrade-on-shutdown</td>
 <td>The first time you run the {{nv show interface rates}} command, an internal error occurs. </td>
 <td>5.12.0-5.12.1</td>
 <td>5.13.0-5.13.1</td>
-</tr>
-<tr>
-<td>4280299</td>
-<td>The {{nv action fetch system packages key &lt;key-id&gt;}} command fails if the key ID is an SCP, FTP, or URL path that requires a password to access the key. To work around this issue, use a URI that does not require password authentication for the key ID.</td>
-<td>5.12.0-5.13.1</td>
-<td></td>
 </tr>
 <tr>
 <td>4278822</td>

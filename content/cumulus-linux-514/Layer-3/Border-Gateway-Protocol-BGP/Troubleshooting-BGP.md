@@ -8,7 +8,8 @@ Use the following commands to troubleshoot BGP.
 
 ## Show BGP configuration Summary
 
-To show a summary of the BGP configuration on the switch, run the NVUE `nv show router bgp` command or the vtysh `show ip bgp summary` command. For example:
+To show a summary of the BGP configuration on the switch, run the NVUE `nv show router bgp` command or the vtysh `show ip bgp summary` command (you can also run the vtysh `show bgp router json` or
+`show bgp vrfs default json` command). For example:
 
 ```
 cumulus@switch:~$ nv show router bgp 
@@ -244,6 +245,58 @@ keepalive            3            auto
 hold                 9            auto   
 connection-retry     10           auto   
 route-advertisement  none         auto
+```
+
+## Check BGP Redistribute Settings
+
+To check BGP address family redistribute settings, such as the BGP redistribute protocol, route-map and metric, run the NVUE `nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute` command or the `nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute` command. You can also run the vtysh `show bgp vrf <vrf-id> ipv4 unicast redistribute json` or `show bgp vrf <vrf-id> ipv6 unicast redistribute json` command.
+
+```
+cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4-unicast redistribute
+             operational  applied
+-----------  -----------  -------
+static
+  enable     on           on
+  metric     1            1
+  route-map  rmap1        rmap1
+connected
+  enable     on           on
+  metric     2            2
+  route-map  rmap2        rmap2
+kernel
+  enable     on           on
+  metric     3            3
+  route-map  rmap3        rmap3
+ospf
+  enable     on           on
+  metric     4            4
+  route-map  rmap4        rmap4
+```
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# show bgp vrf default ipv4 unicast redistribute json
+{
+  "redistribute":{
+    "kernel":{
+      "metric":3,
+      "routeMap":"rmap3"
+    },
+    "connected":{
+      "metric":2,
+      "routeMap":"rmap2"
+    },
+    "static":{
+      "metric":1,
+      "routeMap":"rmap1"
+    },
+    "ospf":{
+      "metric":4,
+      "routeMap":"rmap4"
+    }
+  }
+}
 ```
 
 ## BGP Update Groups
@@ -552,6 +605,141 @@ Nexthop                    interface
 -------------------------  ---------
 fe80::4ab0:2dff:fe20:ac25  swp51    
 fe80::4ab0:2dff:fe93:d92d  swp52
+```
+
+## Check BGP Path Selection Settings
+
+To check BGP path selection for a specific VRF, such as the aspath, med and multi-path, run the NVUE `nv show vrf <vrf-id> router bgp path-selection` command or the vtysh `show bgp vrf <vrf-id> bestpath json` command:
+
+```
+cumulus@leaf01:~$ nv show vrf default router bgp path-selection
+                         operational  applied    pending  
+-----------------------  -----------  ---------  ---------
+routerid-compare         off          off        off      
+aspath                                                    
+  compare-lengths        on           on         on       
+  compare-confed         off          off        off      
+med                                                       
+  compare-always         off          off        off      
+  compare-deterministic  on           on         on       
+  compare-confed         off          off        off      
+  missing-as-max         off          off        off      
+multipath                                                 
+  aspath-ignore          off          off        off      
+  generate-asset         off          off        off      
+  bandwidth              all-paths    all-paths  all-paths
+```
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# show bgp vrf default bestpath json
+{
+  "default":{
+    "bestPath":{
+      "asPathIgnore":false,
+      "asPathConfed":false,
+      "asPathMultiPathRelaxEnabled":false,
+      "peerTypeRelax":false,
+      "compareRouterId":false,
+      "medConfed":false,
+      "medMissingASWorst":false,
+      "linkBandwidth":"ecmp(default)",
+      "alwaysCompareMed":false,
+      "deterministicMed":true
+    }
+  }
+}
+```
+
+
+## Check BGP local-as and aspath Settings
+
+To check BGP local-as and aspath for a specific neighbour, run the NVUE `nv show vrf <vrf-id> router bgp neighbor <neighbour>  address-family <afi> aspath` command or the vtysh `show bgp vrf <vrf-id> neighbors <neighbor> json` command:
+
+```
+cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 local-as
+         operational  applied  pending
+-------  -----------  -------  -------
+enable                off      off    
+asn      65101                        
+prepend  on                           
+replace  off 
+```
+
+```
+``
+cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath
+                 operational  applied
+---------------  -----------  -------
+replace-peer-as  on           on
+private-as       replace      replace
+allow-my-asn
+  enable         on           on
+  origin         on           on
+```
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# show bgp vrf default neighbors swp51 json
+{
+  "swp51":{
+    "bgpNeighborAddr":"fe80::4ab0:2dff:fe51:4a5e",
+    "remoteAs":65199,
+    "localAs":65101,
+    "nbrExternalLink":true,
+    "localRole":"undefined",
+    "remoteRole":"undefined",
+    "hostname":"spine01",
+    "peerGroup":"underlay",
+    "bgpVersion":4,
+    "remoteRouterId":"10.10.10.101",
+    "localRouterId":"10.10.10.1",
+    "bgpState":"Established",
+    "bgpTimerUpMsec":104603000,
+    "bgpTimerUpString":"1d05h03m",
+    "bgpTimerUpEstablishedEpoch":1751974398,
+    "bgpTimerLastRead":2000,
+    "bgpTimerLastWrite":2000,
+    "bgpInUpdateElapsedTimeMsecs":75141000,
+    "bgpTimerConfiguredHoldTimeMsecs":9000,
+    "bgpTimerConfiguredKeepAliveIntervalMsecs":3000,
+    "bgpTimerHoldTimeMsecs":9000,
+    "bgpTimerKeepAliveIntervalMsecs":3000,
+    "bgpTcpMssConfigured":0,
+    "bgpTcpMssSynced":9144,
+    "extendedOptionalParametersLength":false,
+    "bgpTimerConfiguredConditionalAdvertisementsSec":60,
+    "neighborCapabilities":{
+      "4byteAs":"advertisedAndReceived",
+      "extendedMessage":"advertisedAndReceived",
+      "addPath":{
+        "ipv4Unicast":{
+          "rxAdvertisedAndReceived":true
+        },
+        "l2VpnEvpn":{
+          "rxAdvertisedAndReceived":true
+        }
+      },
+      "extendedNexthop":"advertisedAndReceived",
+      "extendedNexthopFamililesByPeer":{
+        "ipv4Unicast":"recieved"
+      },
+      "longLivedGracefulRestart":"advertisedAndReceived",
+      "longLivedGracefulRestartByPeer":{
+        "ipv4Unicast":"received"
+      },
+      "routeRefresh":"advertisedAndReceived",
+      "enhancedRouteRefresh":"advertisedAndReceived",
+      "multiprotocolExtensions":{
+        "ipv4Unicast":{
+          "advertisedAndReceived":true
+        },
+        "l2VpnEvpn":{
+          "advertisedAndReceived":true
+        }
+...
 ```
 
 ## Show Prefix Independent Convergence Information
@@ -887,6 +1075,46 @@ spine01# show bgp ipv4 unicast soo route detail json
 
 {{< /tab >}}
 {{< /tabs >}}
+
+## Check BGP BFD Settings
+
+To check BGP BFD settings for a specific neighbour, such as the Detect Multiplier, Min Rx interval and Min Tx interval, run the NVUE `nv show vrf <vrf-id> router bgp neighbor <neighbor> bfd` command or the vtysh `show bgp vrf <vrf-id> neighbors <neighbor>` command:
+
+```
+cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 bfd
+                   operational  applied
+-----------------  -----------  -------
+enable             on           on
+detect-multiplier  5            5
+min-rx-interval    100          100
+min-tx-interval    120          120
+```
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# show bgp vrf default neighbors swp51
+BGP neighbor on swp51: fe80::4ab0:2dff:fe51:4a5e, remote AS 65199, local AS 65101, external link
+  Local Role: undefined
+  Remote Role: undefined
+...
+  Connections established 1; dropped 0
+  Last reset 1d04h57m,  Waiting for peer OPEN (FRRouting/10.0.3)
+  External BGP neighbor may be up to 1 hops away.
+Local host: fe80::4ab0:2dff:feb9:7518, Local port: 49540
+Foreign host: fe80::4ab0:2dff:fe51:4a5e, Foreign port: 179
+Nexthop: 10.10.10.1
+Nexthop global: fe80::4ab0:2dff:feb9:7518
+Nexthop local: fe80::4ab0:2dff:feb9:7518
+BGP connection: shared network
+BGP Connect Retry Timer in Seconds: 10
+Estimated round trip time: 0 ms
+Read thread: on  Write thread: on  FD used: 52
+
+  BFD: Type: single hop
+  Detect Multiplier: 5, Min Rx interval: 100, Min Tx interval: 120
+  Status: Unknown, Last update: never
+```
 
 ## Troubleshoot BGP Unnumbered
 

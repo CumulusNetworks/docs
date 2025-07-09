@@ -354,7 +354,7 @@ timeout    10            10
 secret     *             *           
 priority   1             10          
 ```
-
+<!-- NOT IN 5.14 - TO ADD FOR 5.15 MAYBE
 ## Show and Clear RADIUS Counters
 
 To show statistics for a specific RADIUS server, such as the number of authorization requests, accepted, rejected, timed out and retried access requests, and authorization connection errors and bad responses, run the `nv show system aaa radius server <server> counters` command:
@@ -379,7 +379,7 @@ cumulus@switch:~$ nv action clear system aaa radius counters
 RADIUS counters cleared.
 Action succeeded
 ```
-
+-->
 ## Remove RADIUS Client Packages
 
 Remove the RADIUS packages with the following command:

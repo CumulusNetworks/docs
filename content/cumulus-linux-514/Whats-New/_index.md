@@ -31,19 +31,9 @@ Cumulus Linux 5.14.0 contains several new features and improvements, and provide
   - {{<link url="Quality-of-Service/#configure-asymmetric-packet-trimming" text="Packet trimming with asymmetric DSCP">}}
 - {{<link url="Segment-Routing" text="SRv6 configuration">}} and {{<link url="Segment-Routing/#clear-srv6-statistics" text="Clear SRv6 statistics">}}
 - {{<link url="TACACS/#tacacs-per-command-authorization" text="You can now bind TACACS per-command authorization to the default VRF">}} (in previous releases, you must specify the egress interface you use in the default VRF)
-- {{< expand "New and updated vtysh BGP show commands" >}}
-```
-show bgp router json
-show bgp vrfs <vrf-id> json
-show bgp vrf <vrf-id> bestpath json 
-show bgp vrf <vrf-id> ipv4 unicast redistribute json 
-show bgp vrf <vrf-id> ipv6 unicast redistribute json 
-```
-{{< /expand >}}
-- NVUE
-  - {{<link url="Troubleshooting-EVPN/#show-evpn-vnis-across-all-vrfs" text="Commands to show EVPN information across all VRFs">}}
-  - {{<link url="RADIUS-AAA/#show-and-clear-radius-counters" text="Show and clear RADIUS counters">}}
-  - {{< expand "Operational information added to NVUE BGP show commands" >}}
+- {{< expand "Operational information added to NVUE BGP show commands" >}}
+See {{<link url="Troubleshooting-BGP" text="Troubleshooting BGP">}} for command examples.
+
 ```
 nv show router bgp
 nv show router bgp convergence-wait
@@ -75,6 +65,18 @@ nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unica
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath allow-my-asn
 ```
 {{< /expand >}}
+- {{< expand "New and updated vtysh BGP show commands" >}}
+See {{<link url="Troubleshooting-BGP" text="Troubleshooting BGP">}} for command examples.
+```
+show bgp router json
+show bgp vrfs <vrf-id> json
+show bgp vrf <vrf-id> bestpath json 
+show bgp vrf <vrf-id> ipv4 unicast redistribute json 
+show bgp vrf <vrf-id> ipv6 unicast redistribute json 
+```
+{{< /expand >}}
+- NVUE
+  - {{<link url="Troubleshooting-EVPN/#show-evpn-vnis-across-all-vrfs" text="Commands to show EVPN information across all VRFs">}}
   - {{< expand "Changed NVUE Commands and Options" >}}
 | Cumulus Linux 5.14 | Cumulus Linux 5.13 and Earlier |
 | --------------- |---------------------------------------|

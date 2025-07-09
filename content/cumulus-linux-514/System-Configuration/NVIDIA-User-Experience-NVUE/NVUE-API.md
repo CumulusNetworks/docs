@@ -249,6 +249,7 @@ Output:
 When the switch issues a valid token, it continues to work until the expiration time unless:
 - The token expiration time is 0.
 - You make local account changes.
+- The NVUE service restarts.
 - You perform a system reboot (including warm reboot).
 
 #### Token Expiration

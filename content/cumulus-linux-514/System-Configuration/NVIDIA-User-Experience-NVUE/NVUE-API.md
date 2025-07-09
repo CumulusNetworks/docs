@@ -228,7 +228,6 @@ cumulus@switch:~$ curl -k --user "cumulus:cumulus" --request GET 'https://127.0.
 {
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJOVlVFLWN1bXVsdXMiLCJzdWIiOiJ1c2VyMSIsImF1ZCI6Ik5WVUUtQVBJLUNMSUVOVCIsImV4cCI6MTc0ODkwNDIyNy41NDY3MTcsImlhdCI6MTc0ODg5ODIyNy41NDY3MTcsImhhc2giOiJlOTI2YWU5NDhkN2VkMTI2ZDk3OTQyY2M5MGJjMmU3N2VhMDI5NTc2ZDk5YzgxMjEwYmZiMDNmZjdmODlmMTBiYWMzMzk0MjlhMjIzYjk4MDdmOWE1M2FjZGVmZDZmZjQ2MWNhODhkZDlhNmVhNzU1NWFiNjg0YTc5OWJmMDNjMSJ9.2vVTqg5oj3183vb50luKlgnETiFsXDkTdvrPor6KQSI"
 }
-payload2['exp'] - payload2['iat'] = 6000.0
 ```
 
 To use the token in subsequent requests:

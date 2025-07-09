@@ -74,7 +74,7 @@ bindpw 1Q2w3e4r!
 {{< /tabs >}}
 
 {{%notice note%}}
-Cumulus Linux does not support LDAP with IPv6 and SSL or Start TLS. To use IPv6 with SSL or Start TLS, you must set the hostname of the LDAP server instead of the IPv6 address using the `nv set system aaa ldap server <hostname>` command.
+Cumulus Linux does not support LDAP with IPv6 and SSL or Start TLS. To use IPv6 with SSL or Start TLS, you must set the hostname of the LDAP server instead of the IPv6 address with the `nv set system aaa ldap server <hostname>` command.
 
 If no DNS record exists for the IP address, first create a local entry in the `/etc/hosts` file with an NVUE snippet, then set the LDAP server hostname:
 
@@ -355,7 +355,7 @@ You can configure the following SSL options:
 - SSL <span class="a-tooltip">[CRL](## "Certificate Revocation List")</span> check.
 
 {{%notice note%}}
-To use IPv6 with SSL or Start TLS, you must set the hostname of the LDAP server instead of the IPv6 address using the `nv set system aaa ldap server <hostname>` command. See {{<link url="#configure-ldap-server-settings" text="Configure LDAP Server Settings">}}.
+To use IPv6 with SSL or Start TLS, you must set the hostname of the LDAP server instead of the IPv6 address with the `nv set system aaa ldap server <hostname>` command. See {{<link url="#configure-ldap-server-settings" text="Configure LDAP Server Settings">}}.
 {{%/notice%}}
 
 The following example sets the SSL mode to SSL, the port to 8443, enables the SSL certificate checker, sets the SSL cipher suites to TLS1.3 and the Certificate Revocation List to /etc/ssl/certs/rtp-example-ca.crt.

@@ -49,7 +49,9 @@ Hit any key to stop autoboot:  2
        passwd: password updated successfully
 
    {{%notice tip%}}
-You can also take this opportunity to reset the password for the *cumulus* account. You can set the *cumulus* user password to expire upon the next login with the `passwd cumulus --expire` command. Or to change the password for the *cumulus* user, run the following command:
+You can also take this opportunity to reset the password for the *cumulus* account or other user accounts. You can set the user account password to expire upon the next login with the `passwd <user-account> --expire` command. Or to change the password for a user account, run the `passwd <user-account>` command. For information about user accounts, refer to {{<link url="User-Accounts" text="User Accounts">}}.
+
+The following example changes the password for the *cumulus* user:
 
        root@switch:~# passwd cumulus
        Enter new UNIX password:

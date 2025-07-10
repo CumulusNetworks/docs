@@ -110,18 +110,18 @@ The default packet trimming profile uses the following port profiles:
 - `lossy-multi-tc-host-group` sets the DSCP remark value to 21 for switch priority 4 on the downlink to hosts.
 - `lossy-multi-tc-network-group` sets the DSCP remark value to 11 for switch priority 4 on the uplink.
 
-## Packet Trimming with QoS
+## Packet Trimming with RoCE
 
-The QoS `lossy-multi-tc` profile uses the default packet trimming profile (`packet-trim-default`) settings:
+The RoCE `lossy-multi-tc` profile uses the {{<link url="#default-packet-trimming-profile" text="default packet trimming profile">}} settings:
 
-To configure packet trimming with QoS, run the `nv set qos roce mode lossy-multi-tc` command.
+To configure packet trimming with RoCE, run the `nv set qos roce mode lossy-multi-tc` command.
 
 ```
 cumulus@switch:~$ nv set qos roce mode lossy-multi-tc
 cumulus@switch:~$ nv config apply
 ```
 
-To configure asymmetric packet trimming with the QoS:
+To configure asymmetric packet trimming with the RoCE:
 - Set the `lossy-multi-tc` QoS profile.
 - Set DSCP remark to be at the port level.
 
@@ -140,7 +140,7 @@ cumulus@spine01:~$ nv set qos roce mode lossy-multi-tc
 cumulus@spine01:~$ nv config apply
 ```
 
-To show the default QoS `lossy-multi-tc` profile settings, run the `nv show qos roce` command:
+To show the default RoCE `lossy-multi-tc` profile settings, run the `nv show qos roce` command:
 
 ```
 cumulus@switch:~$ nv show qos roce

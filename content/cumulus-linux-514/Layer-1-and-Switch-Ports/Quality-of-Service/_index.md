@@ -951,22 +951,28 @@ Packet trimming facilitates rapid packet loss notification and eliminates slow t
 - Cumulus Linux supports packet trimming on the Spectrum-4 and Spectrum-5 switch.
 - You cannot enable packet trimming while the NetQ WJH agent is running or with WJH monitor buffer drops configured.
 - When you enable packet trimming, you cannot configure SPAN session ID 0.
+- Cumulus Linux supports packet trimming on physical ports only and for known unicast IPv4 and IPv6 traffic. Packet trimming does not support ISSU, bonds for egress eligibility, or the following packet types:
+  - VXLAN packets
+  - Adaptive Routing Notification Packets (ARN)
+  - Congestion Notification Packets (CNP)
+  - Flooding and MC packets
 {{%/notice%}}
 
 ### Configure Packet Trimming
 
-Packet trimming supports physical ports only and for known unicast IPv4 and IPv6 traffic. Packet trimming does not support ISSU, bonds for egress eligibility, or the following packet types:
-- VXLAN packets
-- Adaptive Routing Notification Packets (ARN)
-- Congestion Notification Packets (CNP)
-- Flooding and MC packets
+You can either enable packet trimming with the default QoS `lossy-multi-tc` profile or enable and configure packet trimming settings manually.
 
-You can configure packet trimming with the default (recommended) settings or with custom settings.
+The QoS `lossy-multi-tc` profile uses the `packet-trim-default` configuration, which:
+- Enables packet trimming
+- Sets the DSCP remark value to 11 (Global DSCP)
+- Sets the truncation size to 256
+- Sets the switch priority to 4
+- Sets the eligibility to all ports on the switch with traffic class 1,2,3
 
 {{< tabs "TabID966 ">}}
-{{< tab "Default Settings ">}}
+{{< tab "QoS `lossy-multi-tc` profile ">}}
 
-To configure packet trimming with the default (recommended) settings, set the `lossy-multi-tc` QoS profile:
+To configure packet trimming with the QoS `lossy-multi-tc` profile, run the `nv set qos roce mode lossy-multi-tc` command.
 
 ```
 cumulus@switch:~$ nv set qos roce mode lossy-multi-tc
@@ -1035,13 +1041,13 @@ No Data
 ```
 
 {{< /tab >}}
-{{< tab "Custom Settings ">}}
+{{< tab "Enable and Configure Packet trimming Settings">}}
 
-If you do not want to use the QoS profile `lossy-multi-tc` to enable packet trimming with the recommended QoS settings, you can configure the packet trimming settings you want to use.
+If you do not want to use the QoS profile `lossy-multi-tc` for packet trimming, you can enable and configure the packet trimming settings manually.
 
-To configure custom packet trimming:
-- Set the packet trimming profile to `packet-trim-default`.
-- Set the forwarding port used for recirculating the trimmed packets to egress the interface (NVIDIA SN5610 switch only). If you do not configure a service port, Cumulus Linux uses the last service port in on the switch.
+To enable and configure packet trimming:
+- Set the packet trimming profile. The default profile is `packet-trim-default`.
+- Set the forwarding port used for recirculating the trimmed packets to egress the interface (NVIDIA SN5610 switch only). If you do not configure a service port, Cumulus Linux uses the last service port on the switch.
 - Set the DSCP value to be marked on the trimmed packets. You can specify a value between 0 and 63.
 - Set the maximum size of the trimmed packet. You can specify a value between 256 and 1024; the value must be a multiple of 4.
 - Set the egress port and traffic-class from which the dropped traffic is trimmed. You can specify a value between 0 and 7.
@@ -1049,12 +1055,12 @@ To configure custom packet trimming:
 - Enable packet trimming.
 
 ```
-cumulus@switch:~$ nv set system forwarding packet-trim profile packet-trim-default
+cumulus@switch:~$ nv set system forwarding packet-trim profile packet-trim-1
 cumulus@switch:~$ nv set system forwarding packet-trim service-port swp65
 cumulus@switch:~$ nv set system forwarding packet-trim remark dscp 10
 cumulus@switch:~$ nv set system forwarding packet-trim size 528
 cumulus@switch:~$ nv set interface swp1-3 packet-trim egress-eligibility traffic-class 1
-cumulus@switch:~$ nv set system forwarding packet-trim switch-priority 4
+cumulus@switch:~$ nv set system forwarding packet-trim switch-priority 2
 cumulus@switch:~$ nv set system forwarding packet-trim state enabled
 cumulus@switch:~$ nv config apply
 ```
@@ -1073,28 +1079,25 @@ To achieve asymmetric DSCP for trimmed packets, you set a dedicated switch prior
 Cumulus Linux supports asymmetric packet trimming on the Spectrum-4 and Spectrum-5 switch.
 
 {{< tabs "TabID1069 ">}}
-{{< tab "Default Settings ">}}
+{{< tab "QoS `lossy-multi-tc` profile ">}}
 
-To configure packet trimming with the default (recommended) settings:
+To configure asymmetric packet trimming with the QoS `lossy-multi-tc` profile:
 - Set the `lossy-multi-tc` QoS profile.
-- Set DSCP remark at the port level.
-- Set the host facing and networking facing ports.
+- Set DSCP remark to be at the port level.
 
 The `lossy-multi-tc` profile uses the following port profiles:
-- `lossy-multi-tc-host-group` with DSCP remark set to 21 for switch priority 4.
-- `lossy-multi-tc-network-group` with DSCP remark set to 11 for switch priority 4.
+- `lossy-multi-tc-host-group` sets the DSCP remark value to 21 for switch priority 4 on the downlink to hosts.
+- `lossy-multi-tc-network-group` sets the DSCP remark value to 11 for switch priority 4 on the uplink.
 
 The following example configures packet trimming on the downlink to hosts (leaf01) to use DSCP 21 to send trimmed packets on ports swp17 through swp32 to hosts but DSCP 11 on ports swp1 through swp17 to the uplink (spine):
 
 ```
 cumulus@leaf01:~$ nv set qos roce mode lossy-multi-tc
 cumulus@leaf01:~$ nv set system forwarding packet-trim remark dscp port-level
-cumulus@leaf01:~$ nv set interface swp17-32 qos remark profile lossy-multi-tc-host-group 
-cumulus@leaf01:~$ nv set interface swp5-16 qos remark profile lossy-multi-tc-network-group
 cumulus@leaf01:~$ nv config apply
 ```
 
-The following example configures the uplink (spine01) with the default packet trimming settings. You do not need to configure additional settings; the switch expects the default global DSCP remark type and remarks all trimmed packets with 11.
+The following example configures the uplink (spine01) with the QoS `lossy-multi-tc` profile. You do not need to configure additional settings; the switch expects the default global DSCP remark type and remarks all trimmed packets with 11.
 
 ```
 cumulus@spine01:~$ nv set qos roce mode lossy-multi-tc
@@ -1102,35 +1105,35 @@ cumulus@spine01:~$ nv config apply
 ```
 
 {{< /tab >}}
-{{< tab "Custom Settings ">}}
+{{< tab "Enable and configure asymmetric Packet trimming Settings">}}
 
-If you do **not** want to use the default packet trimming settings (with the `lossy-multi-tc` profile), you can configure custom asymmetric packet trimming:
+If you do **not** want to use the QoS `lossy-multi-tc` profile, you can enable and configure asymmetric packet trimming settings:
 - Set the switch priority for the trimmed packets.
 - Set the DSCP remark at the port level.
 - Set the DSCP value for host facing and networking facing ports.
 - Configure the ports for egress-eligibility.
 - Enable packet trimming.
 
-The following example configures packet trimming on the downlink to hosts (leaf01) to use DSCP 21 to send trimmed packets on ports swp17 through swp32 to hosts but DSCP 11 on ports swp1 through swp17 to the uplink (spine):
+The following example configures packet trimming on the downlink to hosts (leaf01) to use DSCP 20 to send trimmed packets on ports swp17 through swp32 to hosts but DSCP 10 on ports swp1 through swp17 to the uplink (spine):
 
 ```
 cumulus@leaf01:~$ nv set system forwarding packet-trim switch-priority 4 
 cumulus@leaf01:~$ nv set system forwarding packet-trim remark dscp port-level
 cumulus@leaf01:~$ nv set interface swp1-16 qos remark profile network-port-group
-cumulus@leaf01:~$ nv set qos remark network-port-group switch-priority 4 dscp 11
+cumulus@leaf01:~$ nv set qos remark network-port-group switch-priority 4 dscp 10
 cumulus@leaf01:~$ nv set interface swp17-32 qos remark profile host-port-group 
-cumulus@leaf01:~$ nv set qos remark host-port-group switch-priority 4 dscp 21
+cumulus@leaf01:~$ nv set qos remark host-port-group switch-priority 4 dscp 20
 cumulus@leaf01:~$ nv set interface swp1-32 packet-trim egress-eligibility traffic-class 1
 cumulus@leaf01:~$ nv set system forwarding packet-trim state enabled
 cumulus@leaf01:~$ nv config apply
 ```
 
-The following example configures the uplink (spine01) and remarks all trimmed packets with 11.
+The following example configures the uplink (spine01) and remarks all trimmed packets with 10.
 
 ```
 cumulus@switch:~$ nv set system forwarding packet-trim profile packet-trim-default
 cumulus@switch:~$ nv set system forwarding packet-trim service-port swp65
-cumulus@switch:~$ nv set system forwarding packet-trim remark dscp 11
+cumulus@switch:~$ nv set system forwarding packet-trim remark dscp 10
 cumulus@switch:~$ nv set interface swp1-3 packet-trim egress-eligibility traffic-class 1
 cumulus@switch:~$ nv set system forwarding packet-trim switch-priority 4
 cumulus@switch:~$ nv set system forwarding packet-trim state enabled
@@ -1171,7 +1174,29 @@ To show forwarding packet trim marking information, run the `nv show system forw
 cumulus@switch:~$ nv show system forwarding packet-trim remark 
       operational  applied
 ----  -----------  -------
-dscp               10
+state                      enabled      enabled
+profile                                 packet-trim-default
+service-port               swp65
+size                       256
+traffic-class              4
+switch-priority            4
+remark
+  dscp                     11
+session-info
+  session-id               0x0
+  trimmed-packet-counters  0
+
+Egress Eligibility TC-to-Interface Information
+=================================================
+    TC  interface
+    --  -----------------------
+    1   swp1-60,63-64,swp61s0-7
+    2   swp1-60,63-64,swp61s0-7
+    3   swp1-60,63-64,swp61s0-7
+
+Port-Level SP to DSCP Remark Information
+===========================================
+No Data
 ```
 
 To show interface packet-trim eligibility information, run the `nv show interface <interface-id> packet-trim` command:

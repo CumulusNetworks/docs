@@ -51,13 +51,13 @@ Cumulus Linux provides a default packet trimming profile you can use instead of 
 To use the default packet trimming profile:
 
 ```
-cumulus@switch:~$ nv set system forwarding packet-trim packet-trim-default
+cumulus@switch:~$ nv set system forwarding packet-trim profile packet-trim-default
 cumulus@switch:~$ nv config apply
 ```
 
 To disable packet trimming, run the `nv set system forwarding packet-trim state disabled` command.
 
-To unset the default packet trimming profile, run the `nv unset system forwarding packet-trim packet-trim-default` command.
+To unset the default packet trimming profile, run the `nv unset system forwarding packet-trim profile packet-trim-default` command.
 
 ## Configure Asymmetric Packet Trimming
 
@@ -230,8 +230,8 @@ To show forwarding packet trim marking information, run the `nv show system forw
 
 ```
 cumulus@switch:~$ nv show system forwarding packet-trim remark 
-      operational  applied
-----  -----------  -------
+                          operational   applied
+----                      -----------   -------
 state                      enabled      enabled
 profile                                 packet-trim-default
 service-port               swp65

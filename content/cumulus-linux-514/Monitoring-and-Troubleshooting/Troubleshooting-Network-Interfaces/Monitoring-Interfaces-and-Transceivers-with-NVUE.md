@@ -556,6 +556,10 @@ cumulus@switch:~$ nv config apply
 
 To unset the temperature threshold and return to the default value, run the `nv unset platform transceiver <transceiver-id> temperature setpoint` command.
 
+{{%notice info%}}
+If you run the `nv unset platform` command, the switch clears out the temperature setpoints for all ports.
+{{%/notice%}}
+
 To verify the temperature threshold configuration for a port, run the `nv show platform transceiver <transceiver-id> temperature` command:
 
 ```

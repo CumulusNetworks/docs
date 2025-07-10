@@ -525,10 +525,10 @@ Setting the temperature thresholds without proper guidance can result in transce
 
 {{%notice note%}}
 - You can set temperature thresholds on the SN5610 switch only.
-- Breakout ports are not supported.
+- Always use the parent transceiver name for configuration; for example, use swp1 not swp1s0.
 {{%/notice%}}
 
-To set the temperature threshold for a single port, run the `nv set platform transceiver <transceiver-id> temperature setpoint` command. You can set a value between 30 and 80. The temperature threshold for a must be below the module advertised high warning threshold.
+To set the temperature threshold for a single port, run the `nv set platform transceiver <transceiver-id> temperature setpoint` command. You can set a value between 30 and 80. The temperature threshold for a must be below the module advertised high warning threshold. If you configure the setpoint to be above the module advertised high temperature warning threshold, the FAN algorithm uses the module advertised threshold.
 
 ```
 cumulus@switch:~$ nv set platform transceiver swp2 temperature setpoint 60 

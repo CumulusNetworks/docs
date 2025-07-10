@@ -41,7 +41,7 @@ On the NVIDIA SN5610 switch, you can set the forwarding port used for recirculat
 
 ## Default Packet Trimming Profile
 
-Cumulus Linux provides a default packet trimming profile that configures the following settings:
+Cumulus Linux provides a default packet trimming profile you can use instead of configuring all the settings above. The default packet trimming profile has the following settings:
 - Enables packet trimming.
 - Sets the DSCP remark value to 11 (global DSCP).
 - Sets the truncation size to 256.

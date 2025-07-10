@@ -1086,11 +1086,6 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <td>5.7.0-5.11.1</td>
 </tr>
 <tr>
-<td>4402017</td>
-<td>The {{auth.log}} file contains sensitive information for hashed passwords.</td>
-<td>5.12.0-5.13.1</td>
-</tr>
-<tr>
 <td>4400384</td>
 <td>After the switch reboots or {{switchd.service}} restarts, NVUE applied ERSPAN sessions do not work if the ERSPAN destination IP address is reachable through an MLAG bond. To work around this issue, remove the ERSPAN configuration and reapply it using NVUE.</td>
 <td>5.11.0-5.11.1</td>

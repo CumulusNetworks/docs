@@ -960,7 +960,7 @@ Packet trimming facilitates rapid packet loss notification and eliminates slow t
 
 ### Configure Packet Trimming
 
-You can either enable packet trimming with the default QoS `lossy-multi-tc` profile or enable and configure packet trimming settings manually.
+You can either enable packet trimming with the QoS `lossy-multi-tc` profile or enable and configure packet trimming settings.
 
 The QoS `lossy-multi-tc` profile uses the `packet-trim-default` configuration, which:
 - Enables packet trimming
@@ -970,7 +970,7 @@ The QoS `lossy-multi-tc` profile uses the `packet-trim-default` configuration, w
 - Sets the eligibility to all ports on the switch with traffic class 1,2,3
 
 {{< tabs "TabID966 ">}}
-{{< tab "QoS `lossy-multi-tc` profile ">}}
+{{< tab "QoS lossy-multi-tc profile ">}}
 
 To configure packet trimming with the QoS `lossy-multi-tc` profile, run the `nv set qos roce mode lossy-multi-tc` command.
 
@@ -1041,9 +1041,9 @@ No Data
 ```
 
 {{< /tab >}}
-{{< tab "Enable and Configure Packet trimming Settings">}}
+{{< tab "Enable and configure packet trimming settings">}}
 
-If you do not want to use the QoS profile `lossy-multi-tc` for packet trimming, you can enable and configure the packet trimming settings manually.
+If you do not want to use the QoS profile `lossy-multi-tc` for packet trimming, you can enable and configure packet trimming settings.
 
 To enable and configure packet trimming:
 - Set the packet trimming profile. The default profile is `packet-trim-default`.
@@ -1079,7 +1079,7 @@ To achieve asymmetric DSCP for trimmed packets, you set a dedicated switch prior
 Cumulus Linux supports asymmetric packet trimming on the Spectrum-4 and Spectrum-5 switch.
 
 {{< tabs "TabID1069 ">}}
-{{< tab "QoS `lossy-multi-tc` profile ">}}
+{{< tab "QoS lossy-multi-tc profile ">}}
 
 To configure asymmetric packet trimming with the QoS `lossy-multi-tc` profile:
 - Set the `lossy-multi-tc` QoS profile.
@@ -1105,7 +1105,7 @@ cumulus@spine01:~$ nv config apply
 ```
 
 {{< /tab >}}
-{{< tab "Enable and configure asymmetric Packet trimming Settings">}}
+{{< tab "Enable and configure asymmetric packet trimming settings">}}
 
 If you do **not** want to use the QoS `lossy-multi-tc` profile, you can enable and configure asymmetric packet trimming settings:
 - Set the switch priority for the trimmed packets.

@@ -427,8 +427,7 @@ The `nv action clear interface <interface> counters` command does not clear coun
 
 ## Clear Interface Physical Layer Error Counters
 
-To clear interface physical layer error counters, run the `nv action clear interface <interface-id> link phy-detail` command.
-The command clears the counters at the software level, but not the hardware level.
+To clear interface physical layer error counters, run the `nv action clear interface <interface-id> link phy-detail` command. The command clears the counters at the software level, but not the hardware level.
 
 ```
 cumulus@switch:~$ nv action clear interface swp1 link phy-detail
@@ -458,7 +457,8 @@ swp10 link phy-detail counters cleared.
 If the specified interface is out of range; for example, if the switch supports up to 32 switch ports but you try to clear swp33, NVUE displays an error.
 
 {{%notice note%}}
-The `nv show interface <interface> link phy-detail` command shows the reset counters. To show the exact hardware counters, run the `nv show interface <interface-id> link phy-detail hardware` command or the `nv show interface <interface-id> link phy-detail --view=hardware` command.
+- The `nv show interface <interface> link phy-detail` command shows the reset counters. To show the exact hardware counters, run the `nv show interface <interface-id> link phy-detail hardware` command or the `nv show interface <interface-id> link phy-detail --view=hardware` command.
+- The `nv action clear interface <interface> link phy-detail` command does not clear counters in the hardware.
 {{%/notice%}}
 
 ## Reset a Transceiver

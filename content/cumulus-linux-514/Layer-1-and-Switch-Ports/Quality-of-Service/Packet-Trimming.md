@@ -19,10 +19,10 @@ Packet trimming facilitates rapid packet loss notification and eliminates slow t
 
 ## Configure Packet Trimming
 
-To enable and configure packet trimming:
+To enable and configure packet trimming on the switch:
 - Set the packet trimming state to enabled.
 - Set the egress port and traffic-class from which the dropped traffic is trimmed. You can specify a value between 0 and 7.
-- Set the DSCP value to be marked on the trimmed packets. You can specify a value between 0 and 63.
+- Set the DSCP value to be marked on the trimmed packets. You can specify a value between 0 and 63. The default value is 11.
 - Set the maximum size of the trimmed packet. You can specify a value between 256 and 1024; the value must be a multiple of 4.
 - Set the egress switch priority on which to send the trimmed packet. You can specify a value between 0 and 7.
 
@@ -61,7 +61,7 @@ To unset the default packet trimming profile, run the `nv unset system forwardin
 
 ## Configure Asymmetric Packet Trimming
 
-Use asymmetric packet trimming to mark trimmed packets differently based on the outgoing port. By default, you remark all trimmed packets with the same DSCP value; however, you can use a different DSCP value for trimmed packets sent out through different ports. For example, you can use DSCP 21 to send trimmed packets to hosts but DSCP 11 to send trimmed packets to the uplink (spine). This allows the destination NIC to know where congestion occurs; on downlinks to servers or in the fabric.
+Use asymmetric packet trimming to mark trimmed packets differently based on the outgoing port. By default, you remark all trimmed packets with the same DSCP value; however, you can use a different DSCP value for trimmed packets sent out through different ports. For example, you can use DSCP 20 to send trimmed packets to hosts but DSCP 10 to send trimmed packets to the uplink (spine). This allows the destination NIC to know where congestion occurs; on downlinks to servers or in the fabric.
 
 To achieve asymmetric DSCP for trimmed packets, you set a dedicated switch priority value for trimmed packets and define a switch priority to DSCP rewrite mapping for each egress interface.
 
@@ -69,7 +69,7 @@ To enable and configure asymmetric packet trimming:
 - Set the packet trimming state to enabled.
 - Set the egress port and traffic-class from which the dropped traffic is trimmed. You can specify a value between 0 and 7.
 - Set the DSCP remark to be at the port level.
-- Set the DSCP value for the host facing and networking facing ports.
+- Set the DSCP value for the host facing and network facing ports by creating remark profiles and assigning the switch priority and DSCP values for each remark profile.
 - Set the maximum size of the trimmed packet. You can specify a value between 256 and 1024; the value must be a multiple of 4.
 - Set the egress switch priority on which to send the trimmed packet. You can specify a value between 0 and 7.
 
@@ -207,19 +207,27 @@ To show packet trimming configuration, run the `nv show system forwarding packet
 
 ```
 cumulus@switch:~$ nv show system forwarding packet-trim
-                 operational  applied            
----------------  -----------  -------------------
-state                         enabled            
-profile                       packet-trim-default
-service-port                  swp65              
-size                          528                
-switch-priority               4                  
-remark                                           
-  dscp                        10                 
+                           operational  applied            
+---------------            -----------  -------------------
+state                      enabled      enabled
+profile                                 packet-trim-default
+service-port               swp65
+size                       256
+traffic-class              4
+switch-priority            4
+remark
+  dscp                     11
+session-info
+  session-id               0x0
+  trimmed-packet-counters  0
 
 Egress Eligibility TC-to-Interface Information
 =================================================
-No Data
+    TC  interface
+    --  -----------------------
+    1   swp1-60,63-64,swp61s0-7
+    2   swp1-60,63-64,swp61s0-7
+    3   swp1-60,63-64,swp61s0-7
 
 Port-Level SP to DSCP Remark Information
 ===========================================

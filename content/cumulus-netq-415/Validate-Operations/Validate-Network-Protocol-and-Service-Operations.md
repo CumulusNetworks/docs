@@ -14,11 +14,11 @@ The summary displays:
 - When NetQ last performed each validation
 - The results of the validation (passed, failed, not run)
 
-{{<figure src="/images/netq/val-summary-updated-415.png" width="750">}}
+{{<figure src="/images/netq/val-summary-updated-415.png" height="375" width="750" alt="validation summary displaying network validation results">}}
 
 Select **View details** in the bottom-right corner to view a more detailed summary, with a list of the individual tests comprising a single validation and whether those tests passed or failed across all nodes that were included in the validation.
 
-{{<figure src="/images/netq/val-summary-full-415.png" width="1000">}}
+{{<figure src="/images/netq/val-summary-full-415.png" height="700" width="1100" alt="detailed validation summary with individual test results">}}
 
 From this view, you can select **View details** on a specific validation to view a time series of all the validations that NetQ ran for that particular protocol or service. The following dashboard displays the results from BGP validations from the past 24 hours. 
 
@@ -27,7 +27,7 @@ From this view, you can select **View details** on a specific validation to view
  - Select **Re-run** to run a new, on-demand validation.
 
 
-{{<figure src="/images/netq/bgp-validation-415.png" width="1000">}}
+{{<figure src="/images/netq/bgp-validation-415.png" height="600" width="1100" alt="BGP validation summary with time series data">}}
 
 ## Create and Run Validations
 

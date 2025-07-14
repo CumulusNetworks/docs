@@ -80,7 +80,14 @@ show bgp vrf <vrf-id> ipv6 unicast redistribute json
 | --------------- |---------------------------------------|
 | BGP community `0:0`| BGP community `internet`|
 | BGP `enforce-first-as` option is ON by default | BGP `enforce-first-as` option is OFF by default |
-
+| The `nv set router adaptive-routing profile` option is `profile-custom`  | The `nv set router adaptive-routing profile` options are `profile-1`, `profile-2`, or `profile-custom` |
+| The `nv set system aaa radius server <hostname-id> priority` setting is between 1 and 100| The `nv set system aaa radius server <hostname-id> priority` setting is between 1 and 8.|
+|`nv set vrf <vrf-id> router bgp address-family <address-family> route-import from-vrf list <leak-vrf-id>`| `nv set vrf <vrf-id> router bgp address-family <address-family> route-import from-vrf list`|
+  - {{< expand "Removed NVUE Commands" >}}
+`nv set service dhcp-relay <vrf>> interface <interface-id>`
+`nv set service dhcp-relay default server <server-id>`
+`nv show service dhcp-relay default server`
+`nv set service dhcp-relay <vrf>> agent remote-id`
 {{< /expand >}}
   - {{< expand "New NVUE Commands" >}}
 For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) for Cumulus Linux.

@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4531959"></a> [4531959](#4531959) <a name="4531959"></a> <br /> | A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password. | 5.9.2-5.13.1 | |
 | <a name="4513850"></a> [4513850](#4513850) <a name="4513850"></a> <br /> | After upgrading from Cumulus Linux 5.12 to 5.13 on the NVIDIA SN5400 switch bonus port, PTP does not converge. To work around this issue, disable, then enable the bonus port after upgrade. | 5.13.0-5.13.1 | |
 | <a name="4513849"></a> [4513849](#4513849) <a name="4513849"></a> <br /> | After upgrading from Cumulus Linux 5.12 to 5.13 on the NVIDIA SN5400 switch bonus port, PTP does not converge. To work around this issue, disable, then enable the bonus port after upgrade. | 5.13.0-5.13.1 | |
 | <a name="4508830"></a> [4508830](#4508830) <a name="4508830"></a> <br /> | Cumulus Linux allows you to add bond ports of mismatched speeds (such as 10G and 25G) to the same LACP bond without error and the bond reports UP.  | 5.11.2-5.13.1 | |
@@ -164,6 +165,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4531959"></a> [4531959](#4531959) <a name="4531959"></a> <br /> | A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password. | 5.9.2-5.13.1 | |
 | <a name="4513850"></a> [4513850](#4513850) <a name="4513850"></a> <br /> | After upgrading from Cumulus Linux 5.12 to 5.13 on the NVIDIA SN5400 switch bonus port, PTP does not converge. To work around this issue, disable, then enable the bonus port after upgrade. | 5.13.0-5.13.1 | |
 | <a name="4513849"></a> [4513849](#4513849) <a name="4513849"></a> <br /> | After upgrading from Cumulus Linux 5.12 to 5.13 on the NVIDIA SN5400 switch bonus port, PTP does not converge. To work around this issue, disable, then enable the bonus port after upgrade. | 5.13.0-5.13.1 | |
 | <a name="4508830"></a> [4508830](#4508830) <a name="4508830"></a> <br /> | Cumulus Linux allows you to add bond ports of mismatched speeds (such as 10G and 25G) to the same LACP bond without error and the bond reports UP.  | 5.11.2-5.13.1 | |

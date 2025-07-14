@@ -13,10 +13,10 @@ The following table displays the validation categories. Refer to the {{<link tit
 
 | Item | NetQ UI | NetQ CLI | Run by Default | Frequency |
 | --- | :---: | :---: | :---: |  :---: |
-| Addresses | Yes | Yes | No | on-demand, as scheduled |
 | Agents | Yes | Yes |  Yes |  60 mins |
 | BGP | Yes | Yes | Yes |  60 mins |
 | Cumulus Linux version | No | Yes |  No | on-demand, as scheduled |
+| Duplicate IP addresses | Yes | Yes | No | on-demand, as scheduled |
 | EVPN | Yes | Yes |  Yes | 60 mins |
 | Interfaces | Yes | Yes |  Yes |  60 mins |
 | MLAG (CLAG) | Yes | Yes |  Yes |  60 mins |
@@ -34,7 +34,7 @@ After logging in, it can take up to an hour for NetQ to display accurate validat
 
 ## View and Run Validations in the UI
 
-The {{<link title="Validate Overall Network Health" text="Validation Summary card">}} displays the results from the subset of hourly validation checks that NetQ runs by default. Select {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} **Validation** in the header to create or schedule new validation checks, as well as view previous checks.
+The {{<link title="Validate Overall Network Health" text="Validation Summary card">}} displays the results from the subset of hourly validation checks that NetQ runs by default. Select **Validation** in the header to create or schedule new validation checks, as well as view previous checks.
 ## Validation with the NetQ CLI
 
 The NetQ CLI uses the {{<link title="check" text="netq check commands">}} to validate the various elements of your network fabric, looking for inconsistencies in configurations across your fabric, connectivity faults, missing configurations, and so forth. You can run commands from any node in the network.

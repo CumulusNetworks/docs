@@ -96,6 +96,14 @@ nv show interface <interface-id> packet-trim egress-eligibility
 nv show interface <interface-id> packet-trim egress-eligibility traffic-class
 nv show interface <interface-id> packet-trim egress-eligibility traffic-class <tc-id>
 nv show platform transceiver <interface> temperature
+nv show service dhcp-relay <vrf-id> server-group
+nv show service dhcp-relay <vrf-id> server-group <server-group-id>
+nv show service dhcp-relay <vrf-id> server-group <server-group-id> server
+nv show service dhcp-relay <vrf-id> server-group <server-group-id> server <server-id>
+nv show service dhcp-relay <vrf-id> server-group <server-group-id> upstream-interface
+nv show service dhcp-relay <vrf-id> server-group <server-group-id> upstream-interface <interface-id>
+nv show service dhcp-relay <vrf-id> downstream-interface
+nv show service dhcp-relay <vrf-id> downstream-interface <downstream-interface-id>
 nv show system forwarding packet-trim
 nv show system forwarding packet-trim remark
 nv show router segment-routing

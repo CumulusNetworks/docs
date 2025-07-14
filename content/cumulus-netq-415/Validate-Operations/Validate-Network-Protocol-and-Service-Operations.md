@@ -204,13 +204,13 @@ cumulus@switch:~$ netq del validation Bgp15m
 
 ## Topology Validations
 
-The topology validation compares your actual network topology derived from LLDP telemetry data against a topology blueprint (in {{<exlink url="https://graphviz.org/doc/info/lang.html" text="Graphviz DOT format">}}) that you upload to the UI.
+The topology validation compares your actual network topology derived from LLDP telemetry data against a topology blueprint that you upload to the UI. NetQ accepts blueprint files formatted in either {{<exlink url="https://graphviz.org/doc/info/lang.html" text="Graphviz DOT">}} or JSON. 
 
 ### Configure LLDP
 
-You must configure the LLDP service on switches and hosts that are defined in the topology blueprint to send the port ID subtype that matches the connection defined in the topology DOT file. The {{<exlink url="https://lldpd.github.io/usage.html" text="lldpd service">}} allows you to configure the port ID by specifying either the interface name (`ifname`) or MAC address (`macaddress`) using the `configure lldp portidsubtype [ifname | macaddress]` command.
+You must configure the LLDP service on switches and hosts that are defined in the topology blueprint to send the port ID subtype that matches the connection defined in the topology file. 
 
-For example, if your host is configured to send the interface name in the LLDP port ID field, define the interface name in the topology DOT file:
+The {{<exlink url="https://lldpd.github.io/usage.html" text="lldpd service">}} allows you to configure the port ID by specifying either the interface name (`ifname`) or MAC address (`macaddress`) using the `configure lldp portidsubtype [ifname | macaddress]` command. For example, if your host is configured to send the interface name in the LLDP port ID field, define the interface name in the topology file (DOT file example):
 ```
 "switch1":"swp1" -- "host5":"eth1"
 ```
@@ -281,8 +281,917 @@ graph "Example 2es full" {
 }
 ```
 {{< /expand >}}
+{{< expand "JSON file example" >}}
+The JSON file must include a `links` object with two defined key-value pairs: `interface` and `node`.
+```
+  "content": {
+    "links": [
+      [
+        {
+          "interface": "swp1",
+          "node": "exit-1"
+        },
+        {
+          "interface": "swp5",
+          "node": "noc-pr"
+        }
+      ],
+      [
+        {
+          "interface": "swp2",
+          "node": "exit-1"
+        },
+        {
+          "interface": "swp5",
+          "node": "noc-se"
+        }
+      ],
+      [
+        {
+          "interface": "swp3",
+          "node": "exit-1"
+        },
+        {
+          "interface": "swp9",
+          "node": "spine-1"
+        }
+      ],
+      [
+        {
+          "interface": "swp4",
+          "node": "exit-1"
+        },
+        {
+          "interface": "swp9",
+          "node": "spine-2"
+        }
+      ],
+      [
+        {
+          "interface": "swp5",
+          "node": "exit-1"
+        },
+        {
+          "interface": "swp9",
+          "node": "spine-3"
+        }
+      ],
+      [
+        {
+          "interface": "swp6",
+          "node": "exit-1"
+        },
+        {
+          "interface": "swp3",
+          "node": "firewall-1"
+        }
+      ],
+      [
+        {
+          "interface": "swp7",
+          "node": "exit-1"
+        },
+        {
+          "interface": "swp3",
+          "node": "firewall-2"
+        }
+      ],
+      [
+        {
+          "interface": "swp1",
+          "node": "exit-2"
+        },
+        {
+          "interface": "swp6",
+          "node": "noc-pr"
+        }
+      ],
+      [
+        {
+          "interface": "swp2",
+          "node": "exit-2"
+        },
+        {
+          "interface": "swp6",
+          "node": "noc-se"
+        }
+      ],
+      [
+        {
+          "interface": "swp3",
+          "node": "exit-2"
+        },
+        {
+          "interface": "swp10",
+          "node": "spine-1"
+        }
+      ],
+      [
+        {
+          "interface": "swp4",
+          "node": "exit-2"
+        },
+        {
+          "interface": "swp10",
+          "node": "spine-2"
+        }
+      ],
+      [
+        {
+          "interface": "swp5",
+          "node": "exit-2"
+        },
+        {
+          "interface": "swp10",
+          "node": "spine-3"
+        }
+      ],
+      [
+        {
+          "interface": "swp6",
+          "node": "exit-2"
+        },
+        {
+          "interface": "swp4",
+          "node": "firewall-1"
+        }
+      ],
+      [
+        {
+          "interface": "swp7",
+          "node": "exit-2"
+        },
+        {
+          "interface": "swp4",
+          "node": "firewall-2"
+        }
+      ],
+      [
+        {
+          "interface": "swp1",
+          "node": "firewall-1"
+        },
+        {
+          "interface": "swp14",
+          "node": "noc-pr"
+        }
+      ],
+      [
+        {
+          "interface": "swp2",
+          "node": "firewall-1"
+        },
+        {
+          "interface": "swp14",
+          "node": "noc-se"
+        }
+      ],
+      [
+        {
+          "interface": "swp1",
+          "node": "firewall-2"
+        },
+        {
+          "interface": "swp15",
+          "node": "noc-pr"
+        }
+      ],
+      [
+        {
+          "interface": "swp2",
+          "node": "firewall-2"
+        },
+        {
+          "interface": "swp15",
+          "node": "noc-se"
+        }
+      ],
+      [
+        {
+          "interface": "swp1",
+          "node": "hostd-11"
+        },
+        {
+          "interface": "swp7",
+          "node": "torc-11"
+        }
+      ],
+      [
+        {
+          "interface": "swp2",
+          "node": "hostd-11"
+        },
+        {
+          "interface": "swp7",
+          "node": "torc-12"
+        }
+      ],
+      [
+        {
+          "interface": "swp3",
+          "node": "hostd-11"
+        },
+        {
+          "interface": "swp16",
+          "node": "noc-pr"
+        }
+      ],
+      [
+        {
+          "interface": "swp4",
+          "node": "hostd-11"
+        },
+        {
+          "interface": "swp16",
+          "node": "noc-se"
+        }
+      ],
+      [
+        {
+          "interface": "swp1",
+          "node": "hostd-12"
+        },
+        {
+          "interface": "swp8",
+          "node": "torc-11"
+        }
+      ],
+      [
+        {
+          "interface": "swp2",
+          "node": "hostd-12"
+        },
+        {
+          "interface": "swp8",
+          "node": "torc-12"
+        }
+      ],
+      [
+        {
+          "interface": "swp3",
+          "node": "hostd-12"
+        },
+        {
+          "interface": "swp17",
+          "node": "noc-pr"
+        }
+      ],
+      [
+        {
+          "interface": "swp4",
+          "node": "hostd-12"
+        },
+        {
+          "interface": "swp17",
+          "node": "noc-se"
+        }
+      ],
+      [
+        {
+          "interface": "swp1",
+          "node": "hostd-21"
+        },
+        {
+          "interface": "swp7",
+          "node": "torc-21"
+        }
+      ],
+      [
+        {
+          "interface": "swp2",
+          "node": "hostd-21"
+        },
+        {
+          "interface": "swp7",
+          "node": "torc-22"
+        }
+      ],
+      [
+        {
+          "interface": "swp3",
+          "node": "hostd-21"
+        },
+        {
+          "interface": "swp18",
+          "node": "noc-pr"
+        }
+      ],
+      [
+        {
+          "interface": "swp4",
+          "node": "hostd-21"
+        },
+        {
+          "interface": "swp18",
+          "node": "noc-se"
+        }
+      ],
+      [
+        {
+          "interface": "swp1",
+          "node": "hostd-22"
+        },
+        {
+          "interface": "swp8",
+          "node": "torc-21"
+        }
+      ],
+      [
+        {
+          "interface": "swp2",
+          "node": "hostd-22"
+        },
+        {
+          "interface": "swp8",
+          "node": "torc-22"
+        }
+      ],
+      [
+        {
+          "interface": "swp3",
+          "node": "hostd-22"
+        },
+        {
+          "interface": "swp19",
+          "node": "noc-pr"
+        }
+      ],
+      [
+        {
+          "interface": "swp4",
+          "node": "hostd-22"
+        },
+        {
+          "interface": "swp19",
+          "node": "noc-se"
+        }
+      ],
+      [
+        {
+          "interface": "swp1",
+          "node": "hosts-11"
+        },
+        {
+          "interface": "swp6",
+          "node": "tor-1"
+        }
+      ],
+      [
+        {
+          "interface": "swp2",
+          "node": "hosts-11"
+        },
+        {
+          "interface": "swp20",
+          "node": "noc-pr"
+        }
+      ],
+      [
+        {
+          "interface": "swp3",
+          "node": "hosts-11"
+        },
+        {
+          "interface": "swp20",
+          "node": "noc-se"
+        }
+      ],
+      [
+        {
+          "interface": "swp1",
+          "node": "hosts-12"
+        },
+        {
+          "interface": "swp7",
+          "node": "tor-1"
+        }
+      ],
+      [
+        {
+          "interface": "swp2",
+          "node": "hosts-12"
+        },
+        {
+          "interface": "swp21",
+          "node": "noc-pr"
+        }
+      ],
+      [
+        {
+          "interface": "swp3",
+          "node": "hosts-12"
+        },
+        {
+          "interface": "swp21",
+          "node": "noc-se"
+        }
+      ],
+      [
+        {
+          "interface": "swp1",
+          "node": "hosts-13"
+        },
+        {
+          "interface": "swp8",
+          "node": "tor-1"
+        }
+      ],
+      [
+        {
+          "interface": "swp2",
+          "node": "hosts-13"
+        },
+        {
+          "interface": "swp22",
+          "node": "noc-pr"
+        }
+      ],
+      [
+        {
+          "interface": "swp3",
+          "node": "hosts-13"
+        },
+        {
+          "interface": "swp22",
+          "node": "noc-se"
+        }
+      ],
+      [
+        {
+          "interface": "swp1",
+          "node": "hosts-21"
+        },
+        {
+          "interface": "swp6",
+          "node": "tor-2"
+        }
+      ],
+      [
+        {
+          "interface": "swp2",
+          "node": "hosts-21"
+        },
+        {
+          "interface": "swp23",
+          "node": "noc-pr"
+        }
+      ],
+      [
+        {
+          "interface": "swp3",
+          "node": "hosts-21"
+        },
+        {
+          "interface": "swp23",
+          "node": "noc-se"
+        }
+      ],
+      [
+        {
+          "interface": "swp1",
+          "node": "hosts-22"
+        },
+        {
+          "interface": "swp7",
+          "node": "tor-2"
+        }
+      ],
+      [
+        {
+          "interface": "swp2",
+          "node": "hosts-22"
+        },
+        {
+          "interface": "swp24",
+          "node": "noc-pr"
+        }
+      ],
+      [
+        {
+          "interface": "swp3",
+          "node": "hosts-22"
+        },
+        {
+          "interface": "swp25",
+          "node": "noc-se"
+        }
+      ],
+      [
+        {
+          "interface": "swp1",
+          "node": "hosts-23"
+        },
+        {
+          "interface": "swp8",
+          "node": "tor-2"
+        }
+      ],
+      [
+        {
+          "interface": "swp2",
+          "node": "hosts-23"
+        },
+        {
+          "interface": "swp25",
+          "node": "noc-pr"
+        }
+      ],
+      [
+        {
+          "interface": "swp1",
+          "node": "noc-pr"
+        },
+        {
+          "interface": "swp1",
+          "node": "noc-se"
+        }
+      ],
+      [
+        {
+          "interface": "swp10",
+          "node": "noc-pr"
+        },
+        {
+          "interface": "swp1",
+          "node": "torc-22"
+        }
+      ],
+      [
+        {
+          "interface": "swp11",
+          "node": "noc-pr"
+        },
+        {
+          "interface": "swp1",
+          "node": "spine-1"
+        }
+      ],
+      [
+        {
+          "interface": "swp12",
+          "node": "noc-pr"
+        },
+        {
+          "interface": "swp1",
+          "node": "spine-2"
+        }
+      ],
+      [
+        {
+          "interface": "swp13",
+          "node": "noc-pr"
+        },
+        {
+          "interface": "swp1",
+          "node": "spine-3"
+        }
+      ],
+      [
+        {
+          "interface": "swp3",
+          "node": "noc-pr"
+        },
+        {
+          "interface": "swp1",
+          "node": "tor-1"
+        }
+      ],
+      [
+        {
+          "interface": "swp4",
+          "node": "noc-pr"
+        },
+        {
+          "interface": "swp1",
+          "node": "tor-2"
+        }
+      ],
+      [
+        {
+          "interface": "swp7",
+          "node": "noc-pr"
+        },
+        {
+          "interface": "swp1",
+          "node": "torc-11"
+        }
+      ],
+      [
+        {
+          "interface": "swp8",
+          "node": "noc-pr"
+        },
+        {
+          "interface": "swp1",
+          "node": "torc-12"
+        }
+      ],
+      [
+        {
+          "interface": "swp9",
+          "node": "noc-pr"
+        },
+        {
+          "interface": "swp1",
+          "node": "torc-21"
+        }
+      ],
+      [
+        {
+          "interface": "swp10",
+          "node": "noc-se"
+        },
+        {
+          "interface": "swp2",
+          "node": "torc-22"
+        }
+      ],
+      [
+        {
+          "interface": "swp11",
+          "node": "noc-se"
+        },
+        {
+          "interface": "swp2",
+          "node": "spine-1"
+        }
+      ],
+      [
+        {
+          "interface": "swp12",
+          "node": "noc-se"
+        },
+        {
+          "interface": "swp2",
+          "node": "spine-2"
+        }
+      ],
+      [
+        {
+          "interface": "swp13",
+          "node": "noc-se"
+        },
+        {
+          "interface": "swp2",
+          "node": "spine-3"
+        }
+      ],
+      [
+        {
+          "interface": "swp3",
+          "node": "noc-se"
+        },
+        {
+          "interface": "swp2",
+          "node": "tor-1"
+        }
+      ],
+      [
+        {
+          "interface": "swp4",
+          "node": "noc-se"
+        },
+        {
+          "interface": "swp2",
+          "node": "tor-2"
+        }
+      ],
+      [
+        {
+          "interface": "swp7",
+          "node": "noc-se"
+        },
+        {
+          "interface": "swp2",
+          "node": "torc-11"
+        }
+      ],
+      [
+        {
+          "interface": "swp8",
+          "node": "noc-se"
+        },
+        {
+          "interface": "swp2",
+          "node": "torc-12"
+        }
+      ],
+      [
+        {
+          "interface": "swp9",
+          "node": "noc-se"
+        },
+        {
+          "interface": "swp2",
+          "node": "torc-21"
+        }
+      ],
+      [
+        {
+          "interface": "swp3",
+          "node": "spine-1"
+        },
+        {
+          "interface": "swp3",
+          "node": "torc-11"
+        }
+      ],
+      [
+        {
+          "interface": "swp4",
+          "node": "spine-1"
+        },
+        {
+          "interface": "swp3",
+          "node": "torc-12"
+        }
+      ],
+      [
+        {
+          "interface": "swp5",
+          "node": "spine-1"
+        },
+        {
+          "interface": "swp3",
+          "node": "torc-21"
+        }
+      ],
+      [
+        {
+          "interface": "swp6",
+          "node": "spine-1"
+        },
+        {
+          "interface": "swp3",
+          "node": "torc-22"
+        }
+      ],
+      [
+        {
+          "interface": "swp7",
+          "node": "spine-1"
+        },
+        {
+          "interface": "swp3",
+          "node": "tor-1"
+        }
+      ],
+      [
+        {
+          "interface": "swp8",
+          "node": "spine-1"
+        },
+        {
+          "interface": "swp3",
+          "node": "tor-2"
+        }
+      ],
+      [
+        {
+          "interface": "swp3",
+          "node": "spine-2"
+        },
+        {
+          "interface": "swp4",
+          "node": "torc-11"
+        }
+      ],
+      [
+        {
+          "interface": "swp4",
+          "node": "spine-2"
+        },
+        {
+          "interface": "swp4",
+          "node": "torc-12"
+        }
+      ],
+      [
+        {
+          "interface": "swp5",
+          "node": "spine-2"
+        },
+        {
+          "interface": "swp4",
+          "node": "torc-21"
+        }
+      ],
+      [
+        {
+          "interface": "swp6",
+          "node": "spine-2"
+        },
+        {
+          "interface": "swp4",
+          "node": "torc-22"
+        }
+      ],
+      [
+        {
+          "interface": "swp7",
+          "node": "spine-2"
+        },
+        {
+          "interface": "swp4",
+          "node": "tor-1"
+        }
+      ],
+      [
+        {
+          "interface": "swp8",
+          "node": "spine-2"
+        },
+        {
+          "interface": "swp4",
+          "node": "tor-2"
+        }
+      ],
+      [
+        {
+          "interface": "swp3",
+          "node": "spine-3"
+        },
+        {
+          "interface": "swp5",
+          "node": "torc-11"
+        }
+      ],
+      [
+        {
+          "interface": "swp4",
+          "node": "spine-3"
+        },
+        {
+          "interface": "swp5",
+          "node": "torc-12"
+        }
+      ],
+      [
+        {
+          "interface": "swp5",
+          "node": "spine-3"
+        },
+        {
+          "interface": "swp5",
+          "node": "torc-21"
+        }
+      ],
+      [
+        {
+          "interface": "swp6",
+          "node": "spine-3"
+        },
+        {
+          "interface": "swp5",
+          "node": "torc-22"
+        }
+      ],
+      [
+        {
+          "interface": "swp7",
+          "node": "spine-3"
+        },
+        {
+          "interface": "swp5",
+          "node": "tor-1"
+        }
+      ],
+      [
+        {
+          "interface": "swp8",
+          "node": "spine-3"
+        },
+        {
+          "interface": "swp5",
+          "node": "tor-2"
+        }
+      ],
+      [
+        {
+          "interface": "swp6",
+          "node": "torc-11"
+        },
+        {
+          "interface": "swp6",
+          "node": "torc-12"
+        }
+      ],
+      [
+        {
+          "interface": "swp6",
+          "node": "torc-21"
+        },
+        {
+          "interface": "swp6",
+          "node": "torc-22"
+        }
+      ]
+    ]
+  }
+```
+{{< /expand >}}
 <br> 
-If your host is configured to send the MAC address in the LLDP port ID field, define the MAC address in the topology DOT file:
+If your host is configured to send the MAC address in the LLDP port ID field, define the MAC address in the topology file (DOT file example):
 ```
 "switch1":"swp1" -- "host5":"mac:48:b0:2d:f5:6b:b5"
 ```

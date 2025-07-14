@@ -136,6 +136,10 @@ nv set router segment-routing static srv6-sid <sid>
 nv set router segment-routing static srv6-sid <sid> locator-name <value>
 nv set router segment-routing static srv6-sid <sid> behavior (uN|uA)
 nv set router segment-routing static srv6-sid <sid> interface <interface-name>
+nv set service dhcp-relay <vrf-id> server-group <server-group-id>
+nv set service dhcp-relay <vrf-id> server-group <server-group-id> server <server-id>
+nv set service dhcp-relay <vrf-id> server-group <server-group-id> upstream-interface <interface-id>
+nv set service dhcp-relay <vrf-id> downstream-interface <downstream-interface-id> server-group-name <value>
 nv set system api token-expiration
 nv set system dns domain <domain-name>
 nv set interface <interface-id> packet-trim egress-eligibility traffic-class <tc-id>
@@ -166,8 +170,17 @@ nv unset router segment-routing static srv6-sid
 nv unset router segment-routing static srv6-sid <sid>
 nv unset router segment-routing static srv6-sid <sid> locator-name
 nv unset router segment-routing static srv6-sid <sid> behavior
+nv unset router segment-routing static srv6-sid <sid> interface
 nv unset system api token-expiration
+nv unset system dns
 nv unset system dns domain
+nv unset service dhcp-relay <vrf-id> server-group
+nv unset service dhcp-relay <vrf-id> server-group <server-group-id>
+nv unset service dhcp-relay <vrf-id> server-group <server-group-id> server
+nv unset service dhcp-relay <vrf-id> server-group <server-group-id> server <server-id>
+nv unset service dhcp-relay <vrf-id> server-group <server-group-id> upstream-interface
+nv unset service dhcp-relay <vrf-id> server-group <server-group-id> upstream-interface <interface-id>
+nv unset service dhcp-relay <vrf-id> downstream-interface <downstream-interface-id> server-group-name
 nv unset interface <interface-id> packet-trim
 nv unset interface <interface-id> packet-trim egress-eligibility
 nv unset interface <interface-id> packet-trim egress-eligibility traffic-class

@@ -39,8 +39,6 @@ nv show router bgp
 nv show router bgp convergence-wait
 nv show router bgp graceful-restart
 nv show router bgp queue-limit
-nv show system forwarding packet-trim
-nv show system forwarding packet-trim remark
 nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute
 nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute static
 nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute connected

@@ -105,10 +105,11 @@ To configure DHCP Agent Information Option 82:
 The following example enables Option 82 and enables circuit ID to inject the *physical switch port* on which the relayed DHCP discover packet arrives instead of the SVI:
 
 ```
+cumulus@switch:~$ nv set service dhcp-relay default agent state enabled
 cumulus@switch:~$ nv set service dhcp-relay default agent use-pif-circuit-id state enabled
 cumulus@switch:~$ nv config apply
 ```
-<!--
+
 The following example enables Option 82 and sets the remote ID to be MAC address 44:38:39:BE:EF:AA. The remote ID is a custom string (up to 255 characters in length).
 
 ```
@@ -116,7 +117,7 @@ cumulus@switch:~$ nv set service dhcp-relay default agent state enabled
 cumulus@switch:~$ nv set service dhcp-relay default agent remote-id 44:38:39:BE:EF:AA
 cumulus@switch:~$ nv config apply
 ```
--->
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
@@ -139,7 +140,7 @@ cumulus@switch:~$ nv config apply
    # Additional options that are passed to the DHCP relay daemon?
    OPTIONS="-a --use-pif-circuit-id"
    ```
-<!--
+
    To customize the Remote ID sub-option, add `-a -r` to the `OPTIONS` line followed by a custom string (up to 255 characters). The following example adds the MAC address 44:38:39:BE:EF:AA:
 
    ```
@@ -148,7 +149,7 @@ cumulus@switch:~$ nv config apply
    # Additional options that are passed to the DHCP relay daemon?
    OPTIONS="-a -r 44:38:39:BE:EF:AA"
    ```
--->
+
 2. Restart the `dhcrelay` service to apply the new configuration:
 
    ```
@@ -577,12 +578,6 @@ DHCP Server IP
 172.16.1.103
 ```
 
-To show information for a specific server in a server group, run the `nv show service dhcp-relay <vrf-id> server-group <server-group-id> server <server-id>` command:
-
-```
-cumulus@switch:~$ nv show service dhcp-relay default server-group type1-server-group server 172.16.1.102
-```
-
 To show the upstream interfaces in a server group, run the `nv show service dhcp-relay <vrf-id> server-group <server-group-id> upstream-interface` command:
 
 ```
@@ -590,12 +585,6 @@ cumulus@switch:~$ nv show service dhcp-relay default server-group type1-server-g
 Upstream Interface
 ------------------
 swp51-52 
-```
-
-To show information for an upstream interface in a server group, run the `nv show service dhcp-relay <vrf-id> server-group <server-group-id> upstream-interface <interface-id>` command:
-
-```
-cumulus@switch:~$ nv show service dhcp-relay default server-group type1-server-group upstream-interface swp51
 ```
 
 To show the DHCP relay downstream interfaces, run the `nv show service dhcp-relay <vrf-id> downstream-interface` command:

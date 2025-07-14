@@ -137,6 +137,7 @@ nv set router segment-routing srv6 state (enabled|disabled)
 nv set router segment-routing static srv6-sid <sid>
 nv set router segment-routing static srv6-sid <sid> locator-name <value>
 nv set router segment-routing static srv6-sid <sid> behavior (uN|uA)
+nv set router segment-routing static srv6-sid <sid> interface <interface-name>
 nv set system api token-expiration
 nv set system dns domain <domain-name>
 nv set interface <interface-id> packet-trim egress-eligibility traffic-class <tc-id>

@@ -14,7 +14,11 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4535804"></a> [4535804](#4535804) <a name="4535804"></a> <br /> | If you use a bridge name other than <code>br_default</code>, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.<br>To work around this issue, configure the <code>base-interface</code> for the VLAN interface with the <code>nv set interface <VLAN-id> base-interface <interface-id></code> command. | 5.10.0-5.13.1 | |
+| <a name="4535746"></a> [4535746](#4535746) <a name="4535746"></a> <br /> | A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password. | 5.9.2-5.13.1 | |
+| <a name="4532006"></a> [4532006](#4532006) <a name="4532006"></a> <br /> | The sudo program included with Cumulus Linux 5.9.0-5.9.2, 5.10.0, 5.11.0-5.11.2, 5.12.0, 5.13.0-5.13.1 is vulnerable to a local privilege escalation attack CVE-2025-32463. | 5.9.2-5.13.1 | |
 | <a name="4531959"></a> [4531959](#4531959) <a name="4531959"></a> <br /> | A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password. | 5.9.2-5.13.1 | |
+| <a name="4517128"></a> [4517128](#4517128) <a name="4517128"></a> <br /> | The sudo program included with Cumulus Linux 5.9.0-5.9.2, 5.10.0, 5.11.0-5.11.2, 5.12.0, 5.13.0-5.13.1 is vulnerable to a local privilege escalation attack CVE-2025-32463. | 5.9.2-5.13.1 | |
 | <a name="4508830"></a> [4508830](#4508830) <a name="4508830"></a> <br /> | Cumulus Linux allows you to add bond ports of mismatched speeds (such as 10G and 25G) to the same LACP bond without error and the bond reports UP.  | 5.11.2-5.13.1 | |
 | <a name="4507163"></a> [4507163](#4507163) <a name="4507163"></a> <br /> | In some cases after a package upgrade with ISSU (warm boot mode), you see continuous errors in the syslog similar to the following:<br><pre>NOTICE  CORE_ASYNC: Error at pre send callback status &#91;Resource is in use&#93;</pre> | 5.11.2-5.13.1 | |
 | <a name="4499106"></a> [4499106](#4499106) <a name="4499106"></a> <br /> | A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password. | 5.9.2-5.13.1 | |
@@ -202,7 +206,11 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4535804"></a> [4535804](#4535804) <a name="4535804"></a> <br /> | If you use a bridge name other than <code>br_default</code>, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.<br>To work around this issue, configure the <code>base-interface</code> for the VLAN interface with the <code>nv set interface <VLAN-id> base-interface <interface-id></code> command. | 5.10.0-5.13.1 | |
+| <a name="4535746"></a> [4535746](#4535746) <a name="4535746"></a> <br /> | A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password. | 5.9.2-5.13.1 | |
+| <a name="4532006"></a> [4532006](#4532006) <a name="4532006"></a> <br /> | The sudo program included with Cumulus Linux 5.9.0-5.9.2, 5.10.0, 5.11.0-5.11.2, 5.12.0, 5.13.0-5.13.1 is vulnerable to a local privilege escalation attack CVE-2025-32463. | 5.9.2-5.13.1 | |
 | <a name="4531959"></a> [4531959](#4531959) <a name="4531959"></a> <br /> | A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password. | 5.9.2-5.13.1 | |
+| <a name="4517128"></a> [4517128](#4517128) <a name="4517128"></a> <br /> | The sudo program included with Cumulus Linux 5.9.0-5.9.2, 5.10.0, 5.11.0-5.11.2, 5.12.0, 5.13.0-5.13.1 is vulnerable to a local privilege escalation attack CVE-2025-32463. | 5.9.2-5.13.1 | |
 | <a name="4502966"></a> [4502966](#4502966) <a name="4502966"></a> <br /> | Users with <code>nv show</code> privileges only can still execute the <code>nv config apply</code> and related commands. | 5.9.2-5.13.1 | |
 | <a name="4501645"></a> [4501645](#4501645) <a name="4501645"></a> <br /> | When you connect the QLOUIE cable with FW 52.181.1003 to an NVIDIA SN5600 switch, you might see link flaps.  | 5.11.0-5.13.1 | |
 | <a name="4499106"></a> [4499106](#4499106) <a name="4499106"></a> <br /> | A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password. | 5.9.2-5.13.1 | |
@@ -402,7 +410,11 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4535804"></a> [4535804](#4535804) <a name="4535804"></a> <br /> | If you use a bridge name other than <code>br_default</code>, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.<br>To work around this issue, configure the <code>base-interface</code> for the VLAN interface with the <code>nv set interface <VLAN-id> base-interface <interface-id></code> command. | 5.10.0-5.13.1 | |
+| <a name="4535746"></a> [4535746](#4535746) <a name="4535746"></a> <br /> | A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password. | 5.9.2-5.13.1 | |
+| <a name="4532006"></a> [4532006](#4532006) <a name="4532006"></a> <br /> | The sudo program included with Cumulus Linux 5.9.0-5.9.2, 5.10.0, 5.11.0-5.11.2, 5.12.0, 5.13.0-5.13.1 is vulnerable to a local privilege escalation attack CVE-2025-32463. | 5.9.2-5.13.1 | |
 | <a name="4531959"></a> [4531959](#4531959) <a name="4531959"></a> <br /> | A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password. | 5.9.2-5.13.1 | |
+| <a name="4517128"></a> [4517128](#4517128) <a name="4517128"></a> <br /> | The sudo program included with Cumulus Linux 5.9.0-5.9.2, 5.10.0, 5.11.0-5.11.2, 5.12.0, 5.13.0-5.13.1 is vulnerable to a local privilege escalation attack CVE-2025-32463. | 5.9.2-5.13.1 | |
 | <a name="4502966"></a> [4502966](#4502966) <a name="4502966"></a> <br /> | Users with <code>nv show</code> privileges only can still execute the <code>nv config apply</code> and related commands. | 5.9.2-5.13.1 | |
 | <a name="4501645"></a> [4501645](#4501645) <a name="4501645"></a> <br /> | When you connect the QLOUIE cable with FW 52.181.1003 to an NVIDIA SN5600 switch, you might see link flaps.  | 5.11.0-5.13.1 | |
 | <a name="4499106"></a> [4499106](#4499106) <a name="4499106"></a> <br /> | A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password. | 5.9.2-5.13.1 | |

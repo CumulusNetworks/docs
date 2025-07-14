@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4531959"></a> [4531959](#4531959) <a name="4531959"></a> <br /> | A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password. | 5.9.2-5.13.1 | |
 | <a name="4508830"></a> [4508830](#4508830) <a name="4508830"></a> <br /> | Cumulus Linux allows you to add bond ports of mismatched speeds (such as 10G and 25G) to the same LACP bond without error and the bond reports UP.  | 5.11.2-5.13.1 | |
 | <a name="4507163"></a> [4507163](#4507163) <a name="4507163"></a> <br /> | In some cases after a package upgrade with ISSU (warm boot mode), you see continuous errors in the syslog similar to the following:<br><pre>NOTICE  CORE_ASYNC: Error at pre send callback status &#91;Resource is in use&#93;</pre> | 5.11.2-5.13.1 | |
 | <a name="4499106"></a> [4499106](#4499106) <a name="4499106"></a> <br /> | A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password. | 5.9.2-5.13.1 | |
@@ -182,6 +183,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4531959"></a> [4531959](#4531959) <a name="4531959"></a> <br /> | A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password. | 5.9.2-5.13.1 | |
 | <a name="4508830"></a> [4508830](#4508830) <a name="4508830"></a> <br /> | Cumulus Linux allows you to add bond ports of mismatched speeds (such as 10G and 25G) to the same LACP bond without error and the bond reports UP.  | 5.11.2-5.13.1 | |
 | <a name="4507163"></a> [4507163](#4507163) <a name="4507163"></a> <br /> | In some cases after a package upgrade with ISSU (warm boot mode), you see continuous errors in the syslog similar to the following:<br><pre>NOTICE  CORE_ASYNC: Error at pre send callback status &#91;Resource is in use&#93;</pre> | 5.11.2-5.13.1 | |
 | <a name="4499106"></a> [4499106](#4499106) <a name="4499106"></a> <br /> | A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password. | 5.9.2-5.13.1 | |

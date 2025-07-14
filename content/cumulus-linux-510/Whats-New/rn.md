@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4531959"></a> [4531959](#4531959) <a name="4531959"></a> <br /> | A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password. | 5.9.2-5.13.1 | |
 | <a name="4502966"></a> [4502966](#4502966) <a name="4502966"></a> <br /> | Users with <code>nv show</code> privileges only can still execute the <code>nv config apply</code> and related commands. | 5.9.2-5.13.1 | |
 | <a name="4499106"></a> [4499106](#4499106) <a name="4499106"></a> <br /> | A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password. | 5.9.2-5.13.1 | |
 | <a name="4495231"></a> [4495231](#4495231) <a name="4495231"></a> <br /> | If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the <code>hwclock --systohc</code> command to add it to the hardware clock.  You can then use <code>onie-nos-install</code> to install the image. | 5.9.0-5.13.1 | |
@@ -186,6 +187,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4531959"></a> [4531959](#4531959) <a name="4531959"></a> <br /> | A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password. | 5.9.2-5.13.1 | |
 | <a name="4502966"></a> [4502966](#4502966) <a name="4502966"></a> <br /> | Users with <code>nv show</code> privileges only can still execute the <code>nv config apply</code> and related commands. | 5.9.2-5.13.1 | |
 | <a name="4499106"></a> [4499106](#4499106) <a name="4499106"></a> <br /> | A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password. | 5.9.2-5.13.1 | |
 | <a name="4495231"></a> [4495231](#4495231) <a name="4495231"></a> <br /> | If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the <code>hwclock --systohc</code> command to add it to the hardware clock.  You can then use <code>onie-nos-install</code> to install the image. | 5.9.0-5.13.1 | |

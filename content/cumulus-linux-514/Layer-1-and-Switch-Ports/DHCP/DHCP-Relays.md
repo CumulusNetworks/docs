@@ -536,21 +536,12 @@ To configure this setting back to the default (where the source IP address of th
 {{< /tab >}}
 {{< /tabs >}}
 
-## Troubleshooting
+## Show DHCP Relay Information
 
-This section provides troubleshooting tips.
-
-### Show DHCP Relay Status
-
-To show the DHCP relay status:
-
-{{< tabs "TabID405 ">}}
-{{< tab "NVUE Commands ">}}
-
-Run the `nv show service dhcp-relay` command for IPv4 or the `nv show service dhcp-relay6` command for IPv6:
+To show the DHCP relay status, run the `nv show service dhcp-relay` command for IPv4 or the `nv show service dhcp-relay6` command for IPv6:
 
 ```
-cumulus@switch:~$  nv show service dhcp-relay6
+cumulus@switch:~$ nv show service dhcp-relay6
      Summary                        
 ---  -------------------------------
 RED  Downstream Interface:    vlan10
@@ -559,27 +550,63 @@ RED  Downstream Interface:    vlan10
      Upstream Interface: vlan4024_l3
 ```
 
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Run the Linux `systemctl status dhcrelay@default.service` command for IPv4 or the `systemctl status dhcrelay6@default.service` command for IPv6:
+To show the configured DHCP server groups, run the `nv show service dhcp-relay <vrf-id> server-group` command:
 
 ```
-cumulus@switch:~$ systemctl status dhcrelay6@RED.service
-● dhcrelay6@RED.service - DHCPv6 Relay Agent Daemon RED
-   Loaded: loaded (/lib/systemd/system/dhcrelay@.service; enabled; vendor preset: enabled)
-   Active: active (running) since Tue 2023-04-18 18:23:55 UTC; 9min ago
-     Docs: man:dhcrelay(8)
- Main PID: 30904 (dhcrelay)
-    Tasks: 1 (limit: 2056)
-   Memory: 2.3M
-   CGroup: /system.slice/system-dhcrelay.slice/dhcrelay@default.service
-           └─vrf
-             └─30904 /usr/sbin/dhcrelay --nl -d -i swp51 -i swp52 -i vlan10 172.16.1.102
+cumulus@switch:~$ nv show service dhcp-relay default server-group
+Server Group  Server Ip     Upstream Interface
+------------  ------------  ------------------
+servers-1     172.16.1.102  swp51-52 
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
+To show information about a specific DHCP server group, run the `nv show service dhcp-relay <vrf-id> server-group <server-group-id>` command:
+
+```
+cumulus@switch:~$ nv show service dhcp-relay default server-group servers-1
+                      operational   applied     
+--------------------  ------------  ------------
+[server]              172.16.1.102  172.16.1.102
+[upstream-interface]  swp51-52      swp51-52
+```
+
+To show information for a specific server in a server group, run the `nv show service dhcp-relay <vrf-id> server-group <server-group-id> server <server-id>` command:
+
+```
+cumulus@switch:~$ nv show service dhcp-relay default server-group servers-1 server 172.16.1.102
+```
+
+To show the upstream interfaces in a server group, run the `nv show service dhcp-relay <vrf-id> server-group <server-group-id> upstream-interface` command:
+
+```
+cumulus@switch:~$ nv show service dhcp-relay default server-group servers-1 upstream-interface
+Upstream Interface
+------------------
+swp51-52 
+```
+
+To show information for an upstream interface in a server group, run the `nv show service dhcp-relay <vrf-id> server-group <server-group-id> upstream-interface <interface-id>` command:
+
+```
+cumulus@switch:~$ nv show service dhcp-relay default server-group servers-1 upstream-interface swp51
+```
+
+To show the DHCP relay downstream interfaces, run the `nv show service dhcp-relay <vrf-id> downstream-interface` command:
+
+```
+cumulus@switch:~$ nv show service dhcp-relay default downstream-interface
+Downstream Interface  server-group-name
+--------------------  -----------------
+vlan101               servers-1
+```
+
+To show information for a specific DHCP relay downstream interface, run the `nv show service dhcp-relay <vrf-id> downstream-interface <interface>` command:
+
+```
+cumulus@switch:~$ nv show service dhcp-relay default downstream-interface vlan101
+                   operational  applied  
+-----------------  -----------  ---------
+server-group-name  servers-1    servers-1
+```
 
 To see how DHCP relay is working on your switch, run the `journalctl` command:
 
@@ -605,7 +632,7 @@ Dec 05 21:08:55 leaf01 dhcrelay[6152]: sending upstream swp52
 Dec 05 21:08:55 leaf01 dhcrelay[6152]: sending upstream swp51
 ```
 
-### Configuration Errors
+## Configuration Errors
 
 If you configure DHCP relays by editing the `/etc/default/isc-dhcp-relay-<server-group-id>-<vrf-id>` file manually, you can introduce configuration errors that cause the DHCP relay service to crash.
 

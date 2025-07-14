@@ -362,52 +362,6 @@ The following table lists all system event messages organized by type. You can {
 </body>
 </table>
 
-## Config Diff Events
-
-<table>
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 25%" />
-<col style="width: 10%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Type</th>
-<th>Trigger</th>
-<th>Severity</th>
-<th>Message Format</th>
-<th>Example</th>
-</tr>
-</thead>
-<tbody>
-<!-- vale off -->
-<tr>
-<td>configdiff</td>
-<td>Configuration file deleted on a device</td>
-<td>Error</td>
-<td>@hostname config file @type was deleted</td>
-<td>spine03 config file /etc/frr/frr.conf was deleted</td>
-</tr>
-<tr>
-<td>configdiff</td>
-<td>Configuration file has been created</td>
-<td>Info</td>
-<td>@hostname config file @type was created</td>
-<td>leaf12 config file /etc/lldp.d/README.conf was created</td>
-</tr>
-<tr>
-<td>configdiff</td>
-<td>Configuration file has been modified</td>
-<td>Info</td>
-<td>@hostname config file @type was modified</td>
-<td>spine03 config file /etc/frr/frr.conf was modified</td>
-<!-- vale on -->
-</tr>
-</body>
-</table>
-
 ## EVPN Events
 
 <table>

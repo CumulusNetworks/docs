@@ -9,8 +9,8 @@
 <tr>
 <td>4413450</td>
 <td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables, the process consumes excessive memory resulting in out of memory crashes. </td>
-<td>5.0.0-5.13.1</td>
-<td></td>
+<td>5.0.0-5.11.1, 5.13.0-5.13.1</td>
+<td>5.11.2</td>
 </tr>
 <tr>
 <td>4004453</td>
@@ -999,8 +999,8 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 <tr>
 <td>4413450</td>
 <td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables, the process consumes excessive memory resulting in out of memory crashes. </td>
-<td>5.0.0-5.13.1</td>
-<td></td>
+<td>5.0.0-5.11.1, 5.13.0-5.13.1</td>
+<td>5.11.2</td>
 </tr>
 <tr>
 <td>4004453</td>

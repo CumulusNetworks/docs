@@ -22,14 +22,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4328176</td>
-<td>When you install or upgrade the {{netq-agents}} and {{netq-apps}} packages, the operation may fail with {{Failed to allocate directory watch: Too many open files}}. To work around this issue, temporarily increase the number of user instances by running {{sudo sysctl -w fs.inotify.max_user_instances=256}}. After you test the temporary fix, you can permanently increase the limit by editing the {{/etc/sysctl.conf}} file and adding the line {{fs.inotify.max_user_instances=256}}.
-
-</td>
-<td>4.14.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4310939</td>
 <td>When a switch becomes rotten or is connected to a different NetQ server without decommissioning it first, the link health view dashboard displays outdated counter values. To work around this issue, wait for NetQ to update and display accurate counter values.</td>
 <td>4.13.0-4.14.0</td>
@@ -43,13 +35,7 @@
 </tr>
 <tr>
 <td>4298008</td>
-<td>When you upgrade from NetQ 4.11 to 4.13, any pre-existing validation data will be lost.</td>
-<td>4.13.0-4.14.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4261327</td>
-<td>In a 5-node scale deployment, queue histogram data might take up to 5 minutes to load in the UI.</td>
+<td>When you upgrade NetQ, any pre-existing validation data will be lost.</td>
 <td>4.13.0-4.14.0</td>
 <td></td>
 </tr>

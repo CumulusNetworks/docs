@@ -66,7 +66,6 @@ You can suppress events for the following types of messages:
 - BTRFS information (events related to the BTRFS file system in Cumulus Linux)
 - Cable
 - CL support (events generated when creating the `cl-support script`)
-- Config diff (events generated when a configuration file has changed)
 - EVPN
 - Installed packages
 - Lifecycle management

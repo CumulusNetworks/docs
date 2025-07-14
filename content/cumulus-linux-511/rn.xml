@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4531959</td>
+<td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
+<td>5.9.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4508830</td>
 <td>Cumulus Linux allows you to add bond ports of mismatched speeds (such as 10G and 25G) to the same LACP bond without error and the bond reports UP. </td>
 <td>5.11.2-5.13.1</td>
@@ -432,12 +438,6 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 <td>3985682</td>
 <td>On Spectrum-4 switches, multicast flows containing packets smaller than 512 bytes might not reach full line rate. Cumulus Linux supports 512 byte and larger multicast packets.</td>
 <td>5.10.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3980924</td>
-<td>When adding or removing routes in a virtual router with numerous configured routes, you might encounter incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
-<td>5.5.1-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1133,6 +1133,12 @@ nv config apply -y</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4531959</td>
+<td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
+<td>5.9.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4502966</td>
 <td>Users with {{nv show}} privileges only can still execute the {{nv config apply}} and related commands.</td>
 <td>5.9.2-5.13.1</td>
@@ -1671,12 +1677,6 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 <td>3985682</td>
 <td>On Spectrum-4 switches, multicast flows containing packets smaller than 512 bytes might not reach full line rate. Cumulus Linux supports 512 byte and larger multicast packets.</td>
 <td>5.10.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3980924</td>
-<td>When adding or removing routes in a virtual router with numerous configured routes, you might encounter incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
-<td>5.5.1-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2289,7 +2289,7 @@ This happens in async mode, where the end notification expected after an end of 
 </tr>
 <tr>
 <td>4218485</td>
-<td>When adding or removing routes in a virtual router with numerous configured routes, you might see certain IP addresses being routed incorrectly. This can result in packets exiting through incorrect ports or discarded packets.</td>
+<td>When adding or removing routes in a virtual router with numerous configured routes, you might encounter incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
 <td>5.5.1-5.11.0</td>
 </tr>
 <tr>
@@ -2326,6 +2326,12 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>4531959</td>
+<td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
+<td>5.9.2-5.13.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4502966</td>
@@ -2818,7 +2824,7 @@ This happens in async mode, where the end notification expected after an end of 
 </tr>
 <tr>
 <td>4218485</td>
-<td>When adding or removing routes in a virtual router with numerous configured routes, you might see certain IP addresses being routed incorrectly. This can result in packets exiting through incorrect ports or discarded packets.</td>
+<td>When adding or removing routes in a virtual router with numerous configured routes, you might encounter incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
 <td>5.5.1-5.11.2</td>
 <td>5.12.0-5.13.1</td>
 </tr>
@@ -3099,12 +3105,6 @@ Error: At ca-list: '/etc/ssl/certs/ca-cert.crt' is not one of ['default', 'none'
 <td>3985682</td>
 <td>On Spectrum-4 switches, multicast flows containing packets smaller than 512 bytes might not reach full line rate. Cumulus Linux supports 512 byte and larger multicast packets.</td>
 <td>5.10.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3980924</td>
-<td>When adding or removing routes in a virtual router with numerous configured routes, you might encounter incorrect routing of certain IP addresses. This can result in packets exiting through incorrect ports or being discarded.</td>
-<td>5.5.1-5.13.1</td>
 <td></td>
 </tr>
 <tr>

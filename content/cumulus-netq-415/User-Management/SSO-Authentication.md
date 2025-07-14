@@ -9,6 +9,10 @@ You can integrate your NetQ cloud deployment with a Microsoft Azure Active Direc
 
 You can create local accounts with default access roles by enabling SSO. After enabling SSO, users logging in for the first time can {{<link title="Access the NetQ UI" text="sign up for SSO">}} through the NetQ login screen or with a link provided by an admin.
 
+{{<notice tip>}}
+NetQ supports SSO authentication for cloud deployments; on-premises deployments are not supported. 
+{{</notice>}}
+
 ## Add SSO Configuration and Accounts
 
 To integrate your authentication server:
@@ -29,19 +33,13 @@ You need several pieces of data from your Microsoft Azure or Google account and 
 
 {{<figure src="/images/netq/add-sso-openid.png" alt="sso configuration card with open id configuration" width="600">}}
 
-**SSO Organization** is typically a company's name or a department. The name entered in this field will appear in the SSO signup URL.
-
-**Role** (either user or admin) is automatically assigned when the account is initialized via SSO login.
-
-**Name** is a unique name for the SSO configuration.
-
-**Client ID** is the identifier for your resource server.
-
-**Client Secret** is the secret key for your resource server.
-
-**Authorization Endpoint** is the URL of the authorization application.
-
-**Token Endpoint** is the URL of the authorization token.
+- **SSO Organization** is typically a company's name or a department. The name entered in this field will appear in the SSO signup URL.
+- **Role** (either user or admin) is automatically assigned when the account is initialized via SSO login.
+- **Name** is a unique name for the SSO configuration.
+- **Client ID** is the identifier for your resource server.
+- **Client Secret** is the secret key for your resource server.
+- **Authorization Endpoint** is the URL of the authorization application.
+- **Token Endpoint** is the URL of the authorization token.
 
 After you enter the fields, select **Add**.
 
@@ -71,19 +69,13 @@ You need several pieces of data from your Microsoft Azure or Google account and 
 
 {{<figure src="/images/netq/add-sso-saml.png" alt="sso configuration card with SAML configuration" width="600">}}
 
-**SSO Organization** is typically a company's name or a department. The name entered in this field will appear in the SSO signup URL.
-
-**Role** (either user or admin) is automatically assigned when the account is initialized via SSO login.
-
-**Name** is a unique name for the SSO configuration.
-
-**Login URL** is the URL for the authorization server login page.
-
-**Identity Provider Identifier** is the name of the authorization server.
-
-**Service Provider Identifier** is the name of the application server.
-
-**Email Claim Key** is an optional field. When left blank, the email address is captured.
+- **SSO Organization** is typically a company's name or a department. The name entered in this field will appear in the SSO signup URL.
+- **Role** (either user or admin) is automatically assigned when the account is initialized via SSO login.
+- **Name** is a unique name for the SSO configuration.
+- **Login URL** is the URL for the authorization server login page.
+- **Identity Provider Identifier** is the name of the authorization server.
+- **Service Provider Identifier** is the name of the application server.
+- **Email Claim Key** is an optional field. When left blank, the email address is captured.
 
 After you enter the fields, select **Add**.
 

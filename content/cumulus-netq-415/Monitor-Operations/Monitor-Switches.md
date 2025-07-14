@@ -10,7 +10,7 @@ NetQ reports switch performance metrics for the following categories:
 
 - **System configuration**: events, interfaces, IP and MAC addresses, VLANs, IP routes, and IP neighbors
 - **Utilization statistics**: CPU, memory, disk, ACL and forwarding resources, SSD, BTRFS, and processes
-- **Physical sensing**: digital optics and switch sensors
+- **Physical sensing**: digital optics and switch sensors (PSU, fan, and temperature)
 - **RoCE** and **Precision Time Protocol**
 
 ## View Switch Metrics and Attributes
@@ -35,7 +35,7 @@ Alternately, you can add a device card to your workbench:
 
 Attributes are displayed as the default tab on the large Switch card. You can view the static information about the switch, including its hostname, addresses, server and ASIC vendors and models, OS and NetQ software information. You can also view the state of the interfaces and NetQ Agent on the switch.
 
-{{<figure src="/images/netq/indswitch-412.png" alt="large switch card displaying attributes" width="700" height="350">}}
+{{<figure src="/images/netq/switch-card-415.png" alt="large switch card displaying attributes" width="700" height="350">}}
 
 Hover over the top of the card and select the appropriate icon to view utilization info, interface statistics, digital optics info, RoCE metrics, and PTP clock graphs. This example displays utilization information, including CPU, memory, and disk utilization from the past 24 hours:
 

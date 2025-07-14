@@ -10,7 +10,7 @@ Snapshots capture a network's state---including the services running on the netw
 
 To create a snapshot:
 
-1. Expand the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18">}} **Menu**, then select {{<img src="/images/netq/camera.svg" alt="snapshot" width="22.5" height="18">}} **Snapshot**.
+1. Enter *snapshot* in the search field. Select **Create a snapshot**.
 
 2. Next, enter the snapshot's name, time frame, and the elements you'd like included in the snapshot:
 
@@ -24,7 +24,7 @@ To create a snapshot:
 
 3. Select **Finish**. The card now appears on your workbench.
 
-4. When you are finished viewing the snapshot, click **Dismiss** to remove it from your workbench. You can add it back by selecting {{<img src="/images/netq/camera.svg" alt="snapshot" width="22.5" height="18">}} **Snapshot** in the header and navigating to the option to view snapshots. 
+4. When you are finished viewing the snapshot, click **Dismiss** to remove it from your workbench. You can add it back by searching for *snapshot* in the global search and selecting the option to view snapshots. 
 
 ## Compare Network Snapshots
 
@@ -32,7 +32,7 @@ You can compare the state of your network before and after an upgrade or other c
 
 To compare network snapshots:
 
-1. Expand the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18">}} **Menu**, then select {{<img src="/images/netq/camera.svg" alt="snapshot" width="22.5" height="18">}} **Snapshot**.
+1. Enter *snapshot* in the search field.
 
 2. Select **Compare snapshots**, then select the two snapshots you want to compare.
 
@@ -55,7 +55,6 @@ The following table describes the information provided for each element type whe
 | Element | Data Descriptions |
 | ------- | ----------------- |
 | BGP | <ul><li><strong>Hostname</strong>: Name of the host running the BGP session</li><li><strong>VRF</strong>: Virtual route forwarding interface if used</li><li><strong>BGP session</strong>: Session that was removed or added</li><li><strong>ASN</strong>: Autonomous system number</li></ul> |
-| Config | <ul><li><strong>Hostname</strong>: Name of the host where the configuration file was added or removed</li><li><strong>Configuration file</strong>: File that was added or removed |
 | Interface | <ul><li><strong>Hostname</strong>: Name of the host where the interface resides</li><li><strong>Interface name</strong>: Name of the interface that was removed or added</li></ul> |
 | IP Address | <ul><li><strong>Hostname</strong>: Name of the host where address was removed or added</li><li><strong>Prefix</strong>: IP address prefix</li><li><strong>Mask</strong>: IP address mask</li><li><strong>Interface name</strong>: Name of the interface that owns the address</li></ul> |
 | Links | <ul><li><strong>Hostname</strong>: Name of the host where the link was removed or added</li><li><strong>Interface name</strong>: Name of the link</li><li><strong>Kind</strong>: Bond, bridge, eth, loopback, macvlan, swp, vlan, vrf, or vxlan</li></ul> |

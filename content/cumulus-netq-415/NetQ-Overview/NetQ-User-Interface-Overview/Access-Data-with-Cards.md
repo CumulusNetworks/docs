@@ -11,7 +11,7 @@ Cards present information about your network for monitoring and troubleshooting;
 
 Each card focuses on a particular aspect of your network. They include:
 
-- **Validation summary**: overview of your network's health
+- **Validation summary**: overview of your network's health based on periodic validations that NetQ runs for protocols and services 
 - Events cards: system anomalies and threshold-crossing events (**Events** card), network issues and packet drops (**What Just Happened** card), and link events (**Link events** card)
 - Link cards: overview of links at the fabric level (**Switch link status** card) <!--check categorization of link events card-->
 - **Sensor health**: overview of fan, temperature, and PSU states
@@ -121,9 +121,9 @@ To remove all the cards from your workbench, click **Workbench**, then **Clear**
 2. Click the three-dot menu.
 3. Select **Remove**.
 
-    {{<figure src="/images/netq/remove-card-412.png" alt="" width="250">}}
+    {{<figure src="/images/netq/remove-card-415.png" alt="" height="90" width="250">}}
 
-The card is removed from the workbench, but not from the application.
+The card is removed from the workbench, but NetQ will continue to monitor the information reflected on the card.
 
 {{</tab>}}
 
@@ -139,7 +139,7 @@ The card is removed from the workbench, but not from the application.
 
 2. Move your cursor over the box until the desired size option is highlighted.
 
-    {{<figure src="/images/netq/size-picker-411.png" alt="" width="250" >}}
+    {{<figure src="/images/netq/size-pick-415.png" alt="" height="65" width="250" >}}
 
 One-quarter width opens a small card. One-half width opens a medium card. Three-quarters width opens a large card. Full width opens a full-screen card.
 
@@ -163,7 +163,7 @@ To change the time period for a card:
 
 3. Select a time period from the dropdown menu.
 
-    {{<figure src="/images/netq/time-dropdown-411.png" alt="" width="300">}}
+    {{<figure src="/images/netq/time-dropdown-411.png" alt="" height="230" width="300">}}
 
 {{<notice tip>}}
 Changing the time period in this manner only changes the time period for the given card.

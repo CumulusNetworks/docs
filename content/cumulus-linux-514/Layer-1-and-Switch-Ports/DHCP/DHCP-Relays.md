@@ -50,7 +50,7 @@ cumulus@switch:~$ nv unset service dhcp-relay default server-group servers-1
 cumulus@switch:~$ nv config apply
 ```
 
-- When you unset the servers, upstream, or downstream interfaces in a server group but at least one server, upstream, or downstream interface must remain.
+- When you unset the servers, upstream, or downstream interfaces in a server group at least one server, upstream, or downstream interface must remain.
 - You cannot unset a server group if it is associated with a downstream and upstream interface. Unset the downstream and upstream interface first with the `nv unset service dhcp-relay <vrf> upstream-interface <interface-id>` and `nv unset service dhcp-relay <vrf> downstream-interface <interface-id>` command.
 
 {{< /tab >}}
@@ -481,8 +481,9 @@ cumulus@switch:~$ nv config apply
 4. Start and enable the DHCP service so that it starts automatically the next time the switch boots:
 
    ```
-   sudo systemctl start dhcrelay6@RED.service
    sudo systemctl enable dhcrelay6@RED.service
+   sudo systemctl start dhcrelay6@RED.service
+
    ```
 
 {{< /tab >}}
@@ -565,6 +566,16 @@ cumulus@switch:~$ nv show service dhcp-relay default server-group servers-1
 --------------------  ------------  ------------
 [server]              172.16.1.102  172.16.1.102
 [upstream-interface]  swp51-52      swp51-52
+```
+
+To show the DHCP servers configured for a server group, run the `nv show service dhcp-relay <vrf-id> server-group <server-group-id> server` command:
+
+```
+cumulus@switch:~$ nv show service dhcp-relay default server-group servers-1 server
+DHCP Server IP
+--------------
+172.16.1.102
+172.16.1.103
 ```
 
 To show information for a specific server in a server group, run the `nv show service dhcp-relay <vrf-id> server-group <server-group-id> server <server-id>` command:

@@ -5,7 +5,7 @@ weight: 550
 toc: 3
 ---
 
-The NetQ integration with Grafana allows you to create customized dashboards and visualize metrics across your network's hardware. You can create your own dashboards from scratch or import a dashboard template to get started.
+The NetQ integration with Grafana allows you to create customized dashboards and to visualize metrics across your network's hardware. You can create your own dashboards from scratch or import a dashboard template to get started.
 <!--
 {{<figure src="/images/netq/grafana-dash-415.png" alt="Grafana dashboard displaying GPU statistics" width="1200">}}
 -->

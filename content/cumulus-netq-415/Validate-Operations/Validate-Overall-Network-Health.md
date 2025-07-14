@@ -5,11 +5,11 @@ weight: 800
 toc: 3
 ---
 
-The Validation Summary card in the NetQ UI lets you view the overall health of your network at a glance, giving you a high-level understanding of how well your network is operating. 
 
-## View Key Metrics of Network Health
 
-The Validation Summary card displays high-level results from each validation category validation. In the header, select **Add card** and then **Validation summary** to open the card on your workbench. 
+## View Validation Summary
+
+The Validation Summary card in the NetQ UI lets you view the overall health of your network at a glance, giving you a high-level understanding of how well your network is operating. In the header, select **Add card** and then **Validation summary** to open the validation summary.
 
 The summary displays:
 

@@ -536,11 +536,7 @@ To configure this setting back to the default (where the source IP address of th
 {{< /tab >}}
 {{< /tabs >}}
 
-## Troubleshooting
-
-This section provides troubleshooting tips.
-
-### Show DHCP Relay Status
+## Show DHCP Relay Information
 
 To show the DHCP relay status, run the `nv show service dhcp-relay` command for IPv4 or the `nv show service dhcp-relay6` command for IPv6:
 
@@ -636,7 +632,7 @@ Dec 05 21:08:55 leaf01 dhcrelay[6152]: sending upstream swp52
 Dec 05 21:08:55 leaf01 dhcrelay[6152]: sending upstream swp51
 ```
 
-### Configuration Errors
+## Configuration Errors
 
 If you configure DHCP relays by editing the `/etc/default/isc-dhcp-relay-<server-group-id>-<vrf-id>` file manually, you can introduce configuration errors that cause the DHCP relay service to crash.
 

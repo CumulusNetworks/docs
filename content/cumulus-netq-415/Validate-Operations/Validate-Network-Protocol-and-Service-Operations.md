@@ -40,7 +40,6 @@ In addition to the hourly validation checks that run by default, NetQ lets you v
 Before you run an on-demand validation for a particular protocol or service, check whether a scheduled validation is running or about to run. If both validations run concurrently, NetQ will take longer to validate your network and display results.
 {{</notice>}}
 
-## Create a Validation
 <!-- vale on -->
 Using the NetQ UI, you can create an on-demand or scheduled validations for multiple protocols or services at the same time. This is handy when the protocols are strongly related regarding a possible issue or if you only want to create one validation request.
 

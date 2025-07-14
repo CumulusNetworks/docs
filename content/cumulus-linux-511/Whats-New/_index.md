@@ -8,6 +8,10 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 - For a list of open and fixed issues in Cumulus Linux 5.11, see the {{<link title="Cumulus Linux 5.11 Release Notes" text="Cumulus Linux 5.11 Release Notes">}}.
 - To upgrade to Cumulus Linux 5.11, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 
+## What's New in Cumulus Linux 5.11.3
+
+Cumulus Linux 5.11.2 provides an important {{<link title="Cumulus Linux 5.11 Release Notes" text="security fix">}}.
+
 ## What's New in Cumulus Linux 5.11.2
 
 Cumulus Linux 5.11.2 provides {{<link title="Cumulus Linux 5.11 Packages" text="new SDK and package versions">}}, and includes {{<link title="Cumulus Linux 5.11 Release Notes" text="bug fixes">}}.

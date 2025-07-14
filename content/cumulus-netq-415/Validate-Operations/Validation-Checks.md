@@ -57,7 +57,7 @@ The EVPN validation tests look for status and configuration anomalies.
 | :---------: | --------- | ----------- |
 | 0 | EVPN BGP session | Checks if: <ul><li>BGP EVPN sessions are established</li><li>The EVPN address family advertisement is consistent</li></ul> |
 | 1 | EVPN VNI type consistency | Because a VNI can be of type L2 or L3, checks that for a given VNI, its type is consistent across the network |
-| 2 | EVPN type 2 (deprecated) | Checks for consistency of IP-MAC binding and the location of a given IP-MAC across all VTEPs |
+| 2 | EVPN type 2 | Checks for consistency of IP-MAC binding and the location of a given IP-MAC across all VTEPs |
 | 3 | EVPN type 3 | Checks for consistency of replication group across all VTEPs |
 | 4 | EVPN session | For each EVPN session, checks if: <ul><li><em>adv_all_vni</em> is enabled</li><li>FDB learning is disabled on tunnel interface</li></ul> |
 | 5 | VLAN consistency | Checks for consistency of VLAN to VNI mapping across the network |

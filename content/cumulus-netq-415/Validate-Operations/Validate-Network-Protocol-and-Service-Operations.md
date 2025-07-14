@@ -61,7 +61,7 @@ To create a validation in the UI:
 4. If you chose to run the validation now, NetQ performs the validation and then displays the results on the validation summary dashboard. To view additional information, including a time series of previous validations and their respective results, select **View details**. If you scheduled the validation to run later, NetQ will display a dashboard containing all existing validation checks, including the one you just created.
 
 {{<notice tip>}}
-Select <b>Re-run</b> to run a new, on-demand validation.
+You can also select <b>Re-run</b> from the validation summary to run a new, on-demand validation.
 {{</notice>}}
 
 {{</tab>}}
@@ -145,10 +145,7 @@ Re-run this command for each additional scheduled validation.
 
 {{</tabs>}}
 
-## Manage Validations
-
-To view a dashboard of all validations that run according to a schedule, in the header select **Validation**, and then **Scheduled validations**.
-### Edit or Delete a Scheduled Validation
+## Edit or Delete a Scheduled Validation
 
 You can edit or delete any scheduled validation that you created. This creates a new validation request and the original validation has the *(old)* label applied to the name. The old validation can no longer be edited. Default validations cannot be edited or deleted, but can be disabled.
 
@@ -157,7 +154,7 @@ You can edit or delete any scheduled validation that you created. This creates a
 {{<tab "NetQ UI">}}
 To edit or delete a scheduled validation:
 
-1. Click {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} **Validation**, then click **Scheduled validations**.
+1. In the header, select **Validation**, then click **Scheduled validations**.
 
 2. Hover over the validation then click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18"/> **Edit** or {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18">}} **Delete**.
 
@@ -1232,7 +1229,7 @@ You can use the `lldpctl` command to validate the current port ID received from 
 
 {{<tab "NetQ UI">}}
 
-1. In the workbench header, select {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} **Validation**, then **Create a validation**.
+1. In the workbench header, select **Validation**, then **Create a validation**.
 
 2. Select **Topology** and upload the topology blueprint file. The name of the blueprint file NetQ will use to validate the topology is displayed on the screen. To use a different file, upload it to the UI, then select **Manage blueprint file**. Select **Activate** to indicate the blueprint file you'd like NetQ to use.
 

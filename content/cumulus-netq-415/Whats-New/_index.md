@@ -15,7 +15,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 NetQ 4.15.0 includes the following new features:
 
-- The {{<link title="Validate Network Protocol and Service Operations" text="validation summary">}} now lets you view all the results from recent validations and allows you to easily re-run validations
+- The {{<link title="Validate Network Protocol and Service Operations" text="validation summary">}} has been re-designed to let you view all the results from recent validations and re-run validations directly from the summary
 - {{<link title="Integrate NetQ with Grafana">}} and create custom dashboards to view telemetry data from switches, NICs, and GPUs
 - Run {{<link title="Validate Network Protocol and Service Operations/#topology-validations" text="topology validations">}} using JSON blueprints
 - New UI behavior: removed Close, use breadcrumb navigation to go back

@@ -39,8 +39,6 @@ nv show router bgp
 nv show router bgp convergence-wait
 nv show router bgp graceful-restart
 nv show router bgp queue-limit
-nv show system forwarding packet-trim
-nv show system forwarding packet-trim remark
 nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute
 nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute static
 nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute connected
@@ -82,7 +80,14 @@ show bgp vrf <vrf-id> ipv6 unicast redistribute json
 | --------------- |---------------------------------------|
 | BGP community `0:0`| BGP community `internet`|
 | BGP `enforce-first-as` option is ON by default | BGP `enforce-first-as` option is OFF by default |
-
+| The `nv set router adaptive-routing profile` option is `profile-custom`  | The `nv set router adaptive-routing profile` options are `profile-1`, `profile-2`, or `profile-custom` |
+| The `nv set system aaa radius server <hostname-id> priority` setting is between 1 and 100| The `nv set system aaa radius server <hostname-id> priority` setting is between 1 and 8.|
+|`nv set vrf <vrf-id> router bgp address-family <address-family> route-import from-vrf list <leak-vrf-id>`| `nv set vrf <vrf-id> router bgp address-family <address-family> route-import from-vrf list`|
+  - {{< expand "Removed NVUE Commands" >}}
+`nv set service dhcp-relay <vrf>> interface <interface-id>`
+`nv set service dhcp-relay default server <server-id>`
+`nv show service dhcp-relay default server`
+`nv set service dhcp-relay <vrf>> agent remote-id`
 {{< /expand >}}
   - {{< expand "New NVUE Commands" >}}
 For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) for Cumulus Linux.
@@ -137,6 +142,11 @@ nv set router segment-routing srv6 state (enabled|disabled)
 nv set router segment-routing static srv6-sid <sid>
 nv set router segment-routing static srv6-sid <sid> locator-name <value>
 nv set router segment-routing static srv6-sid <sid> behavior (uN|uA)
+nv set router segment-routing static srv6-sid <sid> interface <interface-name>
+nv set service dhcp-relay <vrf-id> server-group <server-group-id>
+nv set service dhcp-relay <vrf-id> server-group <server-group-id> server <server-id>
+nv set service dhcp-relay <vrf-id> server-group <server-group-id> upstream-interface <interface-id>
+nv set service dhcp-relay <vrf-id> downstream-interface <downstream-interface-id> server-group-name <value>
 nv set system api token-expiration
 nv set system dns domain <domain-name>
 nv set interface <interface-id> packet-trim egress-eligibility traffic-class <tc-id>
@@ -167,8 +177,17 @@ nv unset router segment-routing static srv6-sid
 nv unset router segment-routing static srv6-sid <sid>
 nv unset router segment-routing static srv6-sid <sid> locator-name
 nv unset router segment-routing static srv6-sid <sid> behavior
+nv unset router segment-routing static srv6-sid <sid> interface
 nv unset system api token-expiration
+nv unset system dns
 nv unset system dns domain
+nv unset service dhcp-relay <vrf-id> server-group
+nv unset service dhcp-relay <vrf-id> server-group <server-group-id>
+nv unset service dhcp-relay <vrf-id> server-group <server-group-id> server
+nv unset service dhcp-relay <vrf-id> server-group <server-group-id> server <server-id>
+nv unset service dhcp-relay <vrf-id> server-group <server-group-id> upstream-interface
+nv unset service dhcp-relay <vrf-id> server-group <server-group-id> upstream-interface <interface-id>
+nv unset service dhcp-relay <vrf-id> downstream-interface <downstream-interface-id> server-group-name
 nv unset interface <interface-id> packet-trim
 nv unset interface <interface-id> packet-trim egress-eligibility
 nv unset interface <interface-id> packet-trim egress-eligibility traffic-class

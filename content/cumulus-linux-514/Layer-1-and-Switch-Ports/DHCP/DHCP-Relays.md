@@ -538,16 +538,14 @@ To configure this setting back to the default (where the source IP address of th
 
 ## Show DHCP Relay Information
 
-To show the DHCP relay status, run the `nv show service dhcp-relay` command for IPv4 or the `nv show service dhcp-relay6` command for IPv6:
+To show DHCP relay information, run the `nv show service dhcp-relay` command for IPv4 or the `nv show service dhcp-relay6` command for IPv6:
 
 ```
-cumulus@switch:~$ nv show service dhcp-relay6
-     Summary                        
----  -------------------------------
-RED  Downstream Interface:    vlan10
-     Downstream Interface:    vlan20
-     Upstream Interface:         RED
-     Upstream Interface: vlan4024_l3
+cumulus@switch:~$ nv show service dhcp-relay
+Vrf      Gateway Interface  Gateway IP Address  Source Ip  Agent State  Agent Remote Id  Circuit-Id State
+-------  -----------------  ------------------  ---------  -----------  ---------------  ----------------
+RED                                             auto       disabled                      disabled        
+default                                         auto       enabled                       enabled         
 ```
 
 To show the configured DHCP server groups, run the `nv show service dhcp-relay <vrf-id> server-group` command:

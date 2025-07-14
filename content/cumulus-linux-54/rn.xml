@@ -464,14 +464,14 @@ Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.servic
 <tr>
 <td>4413450</td>
 <td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables, the process consumes excessive memory resulting in out of memory crashes. </td>
-<td>5.0.0-5.13.1</td>
-<td></td>
+<td>5.0.0-5.11.1, 5.13.0-5.13.1</td>
+<td>5.11.2</td>
 </tr>
 <tr>
 <td>4377862</td>
 <td>When processing the static IP assignment for an interface previously managed through DHCP, Cumulus Linux fails to clean up the DHCP created state completely. As a result when the IP address assigned by DHCP earlier expires, the switch eventually loses connectivity.</td>
-<td>5.1.0-5.12.1</td>
-<td>5.13.0-5.13.1</td>
+<td>5.1.0-5.11.1</td>
+<td>5.11.2-5.13.1, 5.13.0-5.13.1</td>
 </tr>
 <tr>
 <td>4039850</td>

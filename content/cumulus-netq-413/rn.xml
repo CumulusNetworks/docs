@@ -44,7 +44,7 @@
 </tr>
 <tr>
 <td>4298008</td>
-<td>When you upgrade from NetQ 4.11 to 4.13, any pre-existing validation data will be lost.</td>
+<td>When you upgrade NetQ, any pre-existing validation data will be lost.</td>
 <td>4.13.0</td>
 <td></td>
 </tr>
@@ -52,12 +52,6 @@
 <td>4280023</td>
 <td>After backing up and restoring your NetQ data, any modifications to default suppression rules will be lost.</td>
 <td>4.12.0-4.13.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4261327</td>
-<td>In a 5-node scale deployment, queue histogram data might take up to 5 minutes to load in the UI.</td>
-<td>4.13.0</td>
 <td></td>
 </tr>
 <tr>

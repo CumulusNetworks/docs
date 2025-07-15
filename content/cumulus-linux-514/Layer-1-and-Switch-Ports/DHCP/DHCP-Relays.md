@@ -94,27 +94,29 @@ This section describes optional DHCP relay configurations. The steps provided in
 ### DHCP Agent Information Option (Option 82)
 
 Cumulus Linux supports DHCP Agent Information Option 82, which allows a DHCP relay to insert circuit or relay specific information into a request that the switch forwards to a DHCP server. You can use the following options:
-
 - *Circuit ID* includes information about the circuit on which the request comes in, such as the SVI or physical port. By default, this is the printable name of the interface that receives the client request.
 - *Remote ID* includes information that identifies the relay agent, such as the MAC address. By default, this is the system MAC address of the device on which DHCP relay is running.
-
-To configure DHCP Agent Information Option 82:
 
 {{< tabs "TabID117 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example enables Option 82 and enables circuit ID to inject the *physical switch port* on which the relayed DHCP discover packet arrives instead of the SVI:
+To enable DHCP Agent Information Option 82:
 
 ```
 cumulus@switch:~$ nv set service dhcp-relay default agent state enabled
+cumulus@switch:~$ nv config apply
+```
+
+In addition, you can enable DHCP relay to inject the circuit ID of the *physical switch port* on which the relayed DHCP discover packet arrives instead of the SVI:
+
+```
 cumulus@switch:~$ nv set service dhcp-relay default agent use-pif-circuit-id state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-The following example enables Option 82 and sets the remote ID to be MAC address 44:38:39:BE:EF:AA. The remote ID is a custom string (up to 255 characters in length).
+You can also configure the remote ID, which is a custom string (up to 255 characters in length). The following example configures the remote ID to be the MAC address 44:38:39:BE:EF:AA.
 
 ```
-cumulus@switch:~$ nv set service dhcp-relay default agent state enabled
 cumulus@switch:~$ nv set service dhcp-relay default agent remote-id 44:38:39:BE:EF:AA
 cumulus@switch:~$ nv config apply
 ```

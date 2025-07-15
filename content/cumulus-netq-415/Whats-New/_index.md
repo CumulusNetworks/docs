@@ -37,7 +37,7 @@ For deployments running:
 
 The NetQ 4.15 server is compatible with NetQ agents 4.15 and 4.14. You can install NetQ agents on switches and servers running:
 
-- Cumulus Linux
+- Cumulus Linux 5.13.1, 5.12.1
 - Ubuntu 24.04, 22.04
 
 NVIDIA recommends upgrading to the latest agent version.

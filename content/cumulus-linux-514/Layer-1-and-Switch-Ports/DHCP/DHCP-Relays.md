@@ -23,7 +23,8 @@ To set up DHCP relay, configure:
 
 {{%notice note%}}
 - Server groups do not support IPv6.
-- A server group must contain at least one upstream and one downstream interface.
+- A server group must contain at least one server and one upstream interface.
+- You must associate a downstream interface with the server group.
 {{%/notice%}}
 
 {{< tabs "TabID20 ">}}
@@ -36,22 +37,22 @@ cumulus@switch:~$ nv set service dhcp-relay default downstream-interface vlan10 
 cumulus@switch:~$ nv config apply
 ```
 
-To unset a server in a server group, run the `nv set service dhcp-relay <vf> server-group <server-group> server <server-id>` command:
+To unset a server in a server group, run the `nv unset service dhcp-relay <vf> server-group <server-group> server <server-id>` command:
 
 ```
 cumulus@switch:~$ nv unset service dhcp-relay default server-group type1-server-group server 172.16.1.102
 cumulus@switch:~$ nv config apply
 ```
 
-To unset a server group, run the `nv set service dhcp-relay <vf> server-group <server-group>` command:
+To unset a server group, run the `nv unset service dhcp-relay <vf> server-group <server-group>` command:
 
 ```
 cumulus@switch:~$ nv unset service dhcp-relay default server-group type1-server-group
 cumulus@switch:~$ nv config apply
 ```
 
-- When you unset the servers, upstream, or downstream interfaces in a server group at least one server, upstream, or downstream interface must remain.
-- You cannot unset a server group if it is associated with a downstream and upstream interface. Unset the downstream and upstream interface first with the `nv unset service dhcp-relay <vrf> upstream-interface <interface-id>` and `nv unset service dhcp-relay <vrf> downstream-interface <interface-id>` command.
+- When you unset servers or upstream interfaces in a server group, at least one server and upstream interface must remain.
+- You cannot unset a server group if it is associated with a downstream interface. Unset the downstream interface first with the `nv unset service dhcp-relay <vrf> downstream-interface <interface-id>` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

@@ -946,6 +946,12 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
+<td>4486668</td>
+<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
+<td>5.11.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4486200</td>
 <td>If you enable dynamic NAT and try to install two identical dynamic NAT rules, {{switchd}} might crash.</td>
 <td>5.11.2-5.13.1</td>

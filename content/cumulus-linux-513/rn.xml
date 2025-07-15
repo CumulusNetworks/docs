@@ -80,6 +80,12 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
+<td>4486668</td>
+<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
+<td>5.11.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4486200</td>
 <td>If you enable dynamic NAT and try to install two identical dynamic NAT rules, {{switchd}} might crash.</td>
 <td>5.11.2-5.13.1</td>
@@ -225,6 +231,12 @@ cumulus@switch:~$ git gc</td>
 <td>4427224</td>
 <td>The {{nv show interface}} command output shows the operational status as down for a link flap error disabled state instead of the real protodown reason. To work around this issue, run the {{nv show interface status}} command, which shows if any of the interfaces are protodown with the protodown reason.</td>
 <td>5.12.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4427085</td>
+<td>{{cl-route-check}} fails if there are INCOMPLETE entries in the Kernel neighbor table.</td>
+<td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1044,6 +1056,12 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
+<td>4486668</td>
+<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
+<td>5.11.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4486200</td>
 <td>If you enable dynamic NAT and try to install two identical dynamic NAT rules, {{switchd}} might crash.</td>
 <td>5.11.2-5.13.1</td>
@@ -1201,6 +1219,12 @@ cumulus@switch:~$ git gc</td>
 <td>4427224</td>
 <td>The {{nv show interface}} command output shows the operational status as down for a link flap error disabled state instead of the real protodown reason. To work around this issue, run the {{nv show interface status}} command, which shows if any of the interfaces are protodown with the protodown reason.</td>
 <td>5.12.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4427085</td>
+<td>{{cl-route-check}} fails if there are INCOMPLETE entries in the Kernel neighbor table.</td>
+<td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>

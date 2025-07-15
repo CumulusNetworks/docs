@@ -5,7 +5,7 @@ weight: 321
 right_toc_levels: 2
 ---
 
-Spectrum ASICs implement switch shared buffers and enable flexible partitioning of shared buffers for different flows and ports, as well as separation of lossy and lossless traffic. For lossy packets, if a packet in the headroom does not move into the switch shared buffers due to congestion in the lossy queue, it is dropped without any notification to the destination host. When a packet is lost, it can be recovered through fast retransmission or by using timeouts. Retransmission triggered by timeouts typically incurs significant latency.
+Spectrum ASICs implement shared buffers and enable flexible partitioning of the shared buffers for different flows and ports, as well as separation of lossy and lossless traffic. For lossy packets, if a packet in the headroom does not move into the switch shared buffers due to congestion in the lossy queue, it is dropped without any notification to the destination host. When a packet is lost, it can be recovered through fast retransmission or by using timeouts. Retransmission triggered by timeouts typically incurs significant latency.
 
 With packet trimming, a switch can remove parts of the packet (such as the payload) instead of dropping it when the buffer is full. Packet trimming retains network forwarding and transport essential information, and resends the packet on a different traffic class to the destination. This allows congestion information to be communicated to the receiver even on congested networks.
 
@@ -24,10 +24,10 @@ With packet trimming, a switch can remove parts of the packet (such as the paylo
 
 To enable and configure packet trimming on the switch:
 - Set the packet trimming state to enabled.
-- Set the egress port and traffic-class from which the dropped traffic is trimmed. You can specify a value between 0 and 7.
+- Configure the port eligibility by setting the egress port and traffic class from which to trim and recirculate dropped traffic. You can specify a traffic class value between 0 and 7. By default, port eligibility is disabled for all ports and traffic classes. You can only configure physical ports. If we want to trim packets egressing from bonds, specify the bond slave ports.
 - Set the DSCP value to be marked on the trimmed packets. You can specify a value between 0 and 63. The default value is 11.
 - Set the maximum size of the trimmed packet. You can specify a value between 256 and 1024; the value must be a multiple of 4.
-- Set the egress switch priority on which to send the trimmed packet. You can specify a value between 0 and 7.
+- Set the egress switch priority on which to send the trimmed packet. You can specify a value between 0 and 7. The traffic class of the trimmed packet is internally derived from the switch priority.
 
 ```
 cumulus@switch:~$ nv set system forwarding packet-trim state enabled
@@ -39,10 +39,10 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{%notice note%}}
-On the NVIDIA SN5610 switch, you can set the forwarding port used for recirculating the trimmed packets to egress the interface with the `nv set system forwarding packet-trim service-port <interface>` command. If you do not configure a service port, Cumulus Linux uses the last service port on the switch.
+On the NVIDIA SN5610 switch, you can run the `nv set system forwarding packet-trim service-port <interface>` command to set the service port, which is the recirculation port that loops the dropped packets internally to another traffic class. If you do not configure a service port, Cumulus Linux uses the last service port on the switch.
 {{%/notice%}}
 
-## Default Packet Trimming Profile
+## Packet Trimming with Default Profile
 
 Cumulus Linux provides a default packet trimming profile you can use instead of configuring all the settings above. The default packet trimming profile has the following settings:
 - Enables packet trimming.
@@ -77,7 +77,7 @@ cumulus@switch:~$ nv config apply
 
 Use asymmetric packet trimming to mark trimmed packets differently based on the outgoing port. By default, you remark all trimmed packets with the same DSCP value; however, you can use a different DSCP value for trimmed packets sent out through different ports. For example, you can use DSCP 20 to send trimmed packets to hosts but DSCP 10 to send trimmed packets to the uplink (spine). This allows the destination NIC to know where congestion occurs; on downlinks to servers or in the fabric.
 
-### Configure Asymmetric Packet Trimming
+## Configure Asymmetric Packet Trimming
 
 To achieve asymmetric DSCP for trimmed packets, you set a dedicated switch priority value for trimmed packets and define a switch priority to DSCP rewrite mapping for each egress interface.
 
@@ -114,6 +114,8 @@ cumulus@switch:~$ nv set system forwarding packet-trim switch-priority 4
 cumulus@switch:~$ nv config apply
 ```
 
+## Asymmetric Packet Trimming with Default Profile
+
 If you want to use the {{<link url="#default-packet-trimming-profile" text="default packet trimming profile">}} instead of configuring all the settings above, run the following commands:
 
 ```
@@ -126,7 +128,7 @@ The default packet trimming profile uses the following port profiles:
 - `lossy-multi-tc-host-group` sets the DSCP remark value to 21 for switch priority 4 on the downlink to hosts.
 - `lossy-multi-tc-network-group` sets the DSCP remark value to 11 for switch priority 4 on the uplink.
 
-### Asymmetrric Packet Trimming with RoCE
+## Asymmetric Packet Trimming with RoCE
 
 The RoCE `lossy-multi-tc` profile uses the {{<link url="#default-packet-trimming-profile" text="default packet trimming profile">}} settings.
 

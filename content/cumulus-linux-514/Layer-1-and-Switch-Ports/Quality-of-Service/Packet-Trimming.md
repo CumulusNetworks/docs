@@ -4,7 +4,10 @@ author: NVIDIA
 weight: 321
 right_toc_levels: 2
 ---
-Packet trimming facilitates rapid packet loss notification and eliminates slow timeout-based retransmissions. With packet trimming, a switch can remove parts of the packet (such as the payload) instead of dropping it when the buffer is full. Packet trimming retains network forwarding and transport essential information, allowing the host to quickly detect and react to congestion. This allows congestion information to be communicated to the receiver even on congested networks.
+
+Spectrum ASICs implement shared buffers and enable flexible partitioning of the shared buffers for different flows and ports, as well as separation of lossy and lossless traffic. For lossy packets, if a packet in the headroom does not move into the switch shared buffers due to congestion in the lossy queue, it is dropped without any notification to the destination host. When a packet is lost, it can be recovered through fast retransmission or by using timeouts. Retransmission triggered by timeouts typically incurs significant latency.
+
+With packet trimming, a switch can remove parts of the packet (such as the payload) instead of dropping it when the buffer is full. Packet trimming retains network forwarding and transport essential information, and resends the packet on a different traffic class to the destination. This allows congestion information to be communicated to the receiver even on congested networks.
 
 {{%notice note%}}
 - Cumulus Linux supports packet trimming on the Spectrum-4 and Spectrum-5 switch.
@@ -21,10 +24,10 @@ Packet trimming facilitates rapid packet loss notification and eliminates slow t
 
 To enable and configure packet trimming on the switch:
 - Set the packet trimming state to enabled.
-- Set the egress port and traffic-class from which the dropped traffic is trimmed. You can specify a value between 0 and 7.
+- Configure the port eligibility by setting the egress port and traffic class from which to trim and recirculate dropped traffic. You can specify a traffic class value between 0 and 7. By default, port eligibility is disabled for all ports and traffic classes. You can only configure physical ports. If we want to trim packets egressing from bonds, specify the bond slave ports.
 - Set the DSCP value to be marked on the trimmed packets. You can specify a value between 0 and 63. The default value is 11.
 - Set the maximum size of the trimmed packet. You can specify a value between 256 and 1024; the value must be a multiple of 4.
-- Set the egress switch priority on which to send the trimmed packet. You can specify a value between 0 and 7.
+- Set the egress switch priority on which to send the trimmed packet. You can specify a value between 0 and 7. The traffic class of the trimmed packet is internally derived from the switch priority.
 
 ```
 cumulus@switch:~$ nv set system forwarding packet-trim state enabled
@@ -36,10 +39,10 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{%notice note%}}
-On the NVIDIA SN5610 switch, you can set the forwarding port used for recirculating the trimmed packets to egress the interface with the `nv set system forwarding packet-trim service-port <interface>` command. If you do not configure a service port, Cumulus Linux uses the last service port on the switch.
+On the NVIDIA SN5610 switch, you can run the `nv set system forwarding packet-trim service-port <interface>` command to set the service port, which is the recirculation port that loops the dropped packets internally to another traffic class. If you do not configure a service port, Cumulus Linux uses the last service port on the switch.
 {{%/notice%}}
 
-## Default Packet Trimming Profile
+## Packet Trimming with Default Profile
 
 Cumulus Linux provides a default packet trimming profile you can use instead of configuring all the settings above. The default packet trimming profile has the following settings:
 - Enables packet trimming.
@@ -59,9 +62,22 @@ To disable packet trimming, run the `nv set system forwarding packet-trim state 
 
 To unset the default packet trimming profile, run the `nv unset system forwarding packet-trim profile packet-trim-default` command.
 
-## Configure Asymmetric Packet Trimming
+## Packet Trimming with RoCE
+
+The RoCE `lossy-multi-tc` profile uses the {{<link url="#default-packet-trimming-profile" text="default packet trimming profile">}} settings:
+
+To configure packet trimming with RoCE, run the `nv set qos roce mode lossy-multi-tc` command.
+
+```
+cumulus@switch:~$ nv set qos roce mode lossy-multi-tc
+cumulus@switch:~$ nv config apply
+```
+
+## Asymmetric Packet Trimming
 
 Use asymmetric packet trimming to mark trimmed packets differently based on the outgoing port. By default, you remark all trimmed packets with the same DSCP value; however, you can use a different DSCP value for trimmed packets sent out through different ports. For example, you can use DSCP 20 to send trimmed packets to hosts but DSCP 10 to send trimmed packets to the uplink (spine). This allows the destination NIC to know where congestion occurs; on downlinks to servers or in the fabric.
+
+## Configure Asymmetric Packet Trimming
 
 To achieve asymmetric DSCP for trimmed packets, you set a dedicated switch priority value for trimmed packets and define a switch priority to DSCP rewrite mapping for each egress interface.
 
@@ -98,6 +114,8 @@ cumulus@switch:~$ nv set system forwarding packet-trim switch-priority 4
 cumulus@switch:~$ nv config apply
 ```
 
+## Asymmetric Packet Trimming with Default Profile
+
 If you want to use the {{<link url="#default-packet-trimming-profile" text="default packet trimming profile">}} instead of configuring all the settings above, run the following commands:
 
 ```
@@ -110,16 +128,9 @@ The default packet trimming profile uses the following port profiles:
 - `lossy-multi-tc-host-group` sets the DSCP remark value to 21 for switch priority 4 on the downlink to hosts.
 - `lossy-multi-tc-network-group` sets the DSCP remark value to 11 for switch priority 4 on the uplink.
 
-## Packet Trimming with RoCE
+## Asymmetric Packet Trimming with RoCE
 
-The RoCE `lossy-multi-tc` profile uses the {{<link url="#default-packet-trimming-profile" text="default packet trimming profile">}} settings:
-
-To configure packet trimming with RoCE, run the `nv set qos roce mode lossy-multi-tc` command.
-
-```
-cumulus@switch:~$ nv set qos roce mode lossy-multi-tc
-cumulus@switch:~$ nv config apply
-```
+The RoCE `lossy-multi-tc` profile uses the {{<link url="#default-packet-trimming-profile" text="default packet trimming profile">}} settings.
 
 To configure asymmetric packet trimming with the RoCE:
 - Set the `lossy-multi-tc` QoS profile.
@@ -140,98 +151,71 @@ cumulus@spine01:~$ nv set qos roce mode lossy-multi-tc
 cumulus@spine01:~$ nv config apply
 ```
 
-To show the default RoCE `lossy-multi-tc` profile settings, run the `nv show qos roce` command:
-
-```
-cumulus@switch:~$ nv show qos roce
-                    operational     applied       
-------------------  --------------  --------------
-enable              on              on            
-mode                lossy-multi-tc  lossy-multi-tc
-pfc                                               
-  pfc-priority      -                             
-congestion-control                                
-  congestion-mode   ECN                           
-  enabled-tc        1,2,3                         
-  min-threshold     163.00 KB                     
-  max-threshold     234.00 KB                     
-  probability       5                             
-trust                                             
-  trust-mode        pcp,dscp                      
-
-RoCE PCP/DSCP->SP mapping configurations
-===========================================
-       pcp  dscp                                                                                       switch-prio
-    -  ---  -----------------------------------------------------------------------------------------  -----------
-    0  0    0,7,8,9,10,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63            0          
-    1  1    1,2                                                                                        1          
-    2  2    3,4                                                                                        2          
-    3  3    5,6                                                                                        3          
-    4  4    11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40  4          
-    5  5    -                                                                                          5          
-    6  6    -                                                                                          6          
-    7  7    -                                                                                          7          
-
-RoCE SP->TC mapping and ETS configurations
-=============================================
-       switch-prio  traffic-class  scheduler-weight
-    -  -----------  -------------  ----------------
-    0  0            0              DWRR-4%         
-    1  1            1              DWRR-8%         
-    2  2            2              DWRR-18%        
-    3  3            3              DWRR-22%        
-    4  4            4              DWRR-22%        
-    5  5            5              DWRR-22%        
-    6  6            6              DWRR-4%         
-    7  7            7              DWRR-0%         
-
-RoCE pool config
-===================
-       name                   mode     size  switch-priorities  traffic-class  
-    -  ---------------------  -------  ----  -----------------  ---------------
-    0  lossy-default-ingress  Dynamic  100%  0,1,2,3,4,5,6,7    -              
-    2  lossy-default-egress   Dynamic  100%  -                  0,1,2,3,4,5,6,7
-
-Exception List
-=================
-No Data
-
-Extended Features
-====================
-No Data
-```
-
 ## Show Packet Trimming Configuration
 
 To show packet trimming configuration, run the `nv show system forwarding packet-trim` command:
 
 ```
 cumulus@switch:~$ nv show system forwarding packet-trim
-                           operational  applied            
----------------            -----------  -------------------
-state                      enabled      enabled
-profile                                 packet-trim-default
-service-port               swp65
-size                       256
-traffic-class              4
-switch-priority            4
-remark
-  dscp                     11
-session-info
-  session-id               0x0
-  trimmed-packet-counters  0
+                          operational  applied           
+-------------------------  -----------  -------------------
+state                      enabled      enabled           
+profile                                 
+service-port               swp65                          
+size                       1024                             
+traffic-class              4                              
+switch-priority            4                              
+remark                                                    
+dscp                     11                             
+session-info                                              
+session-id               0x0                            
+trimmed-packet-counters  0                              
 
 Egress Eligibility TC-to-Interface Information
 =================================================
-    TC  interface
-    --  -----------------------
-    1   swp1-60,63-64,swp61s0-7
-    2   swp1-60,63-64,swp61s0-7
-    3   swp1-60,63-64,swp61s0-7
+   TC  interface                                                      
+   --  ----------------------------------------------------------------
+   1   swp2-16,18-32,34-48,50-64,swp1s0-1,swp17s0-1,swp33s0-1,swp49s0-1
+   2   swp2-16,18-32,34-48,50-64,swp1s0-1,swp17s0-1,swp33s0-1,swp49s0-1
+   3   swp2-16,18-32,34-48,50-64,swp1s0-1,swp17s0-1,swp33s0-1,swp49s0-1
 
 Port-Level SP to DSCP Remark Information
 ===========================================
 No Data
+```
+
+The following example shows packet trimming with the `packet-trim-default` profile and the port-level DSCP remark:
+
+```
+cumulus@switch:~$ nv show system forwarding packet-trim 
+                           operational  applied            
+-------------------------  -----------  -------------------
+state                      enabled      enabled            
+profile                                 packet-trim-default
+service-port               swp65                           
+size                       256                             
+traffic-class              4                               
+switch-priority            4                               
+remark                                                     
+ dscp                     port-level   port-level         
+session-info                                               
+ session-id               0x0                             
+ trimmed-packet-counters  0                               
+
+Egress Eligibility TC-to-Interface Information
+=================================================
+    TC  interface                                                  
+    --  -----------------------------------------------------------
+    1   swp2,4-32,34-48,50-64,swp1s0-1,swp3s0-1,swp33s0-1,swp49s0-1
+    2   swp2,4-32,34-48,50-64,swp1s0-1,swp3s0-1,swp33s0-1,swp49s0-1
+    3   swp2,4-32,34-48,50-64,swp1s0-1,swp3s0-1,swp33s0-1,swp49s0-1
+
+Port-Level SP to DSCP Remark Information
+===========================================
+    Profile                       Interface  SP  DSCP
+    ----------------------------  ---------  --  ----
+    lossy-multi-tc-host-group     swp1s0     4   21  
+    lossy-multi-tc-network-group  swp33s0    4   11
 ```
 
 To show forwarding packet trim marking information, run the `nv show system forwarding packet-trim remark` command:

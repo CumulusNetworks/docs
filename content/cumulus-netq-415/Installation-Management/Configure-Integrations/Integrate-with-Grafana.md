@@ -76,7 +76,7 @@ NVIDIA recommends setting the <code>sample-interval</code> option to 10 seconds 
 netq show vm-token expiry 40
 ```
 
-2. Navigate to your Grafana dashboard. From the menu, select **Connections** and then **Data sources**. In the *Connection* field, enter the IP address of your NetQ telemetry server, followed by /api/netq/vm/. In a cluster deployment, enter the virtual IP address (VIP) in this field:
+2. Navigate to your Grafana dashboard. From the menu, select **Connections** and then **Data sources**. In the *Connection* field, enter the IP address of your NetQ telemetry server, followed by */api/netq/vm/*. In a cluster deployment, enter the virtual IP address (VIP) in this field:
 
 <!--insert pic-->
 

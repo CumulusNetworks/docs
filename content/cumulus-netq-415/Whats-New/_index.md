@@ -9,7 +9,6 @@ toc: 1
 This page summarizes new features and improvements for the NetQ {{<version>}} release. 
 
 - For a list of open and fixed issues, see the {{<link title="NVIDIA NetQ 4.15 Release Notes" text="release notes">}}.
-- To upgrade to NetQ 4.15, first check the {{<link title="#release-considerations" text="Release Considerations">}} below, then follow the steps in {{<link url="Upgrade-NetQ">}}.
 
 ## What's New in NetQ 4.15
 

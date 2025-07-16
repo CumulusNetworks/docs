@@ -16,17 +16,18 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 NetQ 4.15.0 includes the following new features:
 
 - The {{<link title="Validate Network Protocol and Service Operations" text="validation summary">}} has been re-designed to let you view all the results from recent validations and re-run validations directly from the summary
-- {{<link title="Integrate NetQ with Grafana">}} and create custom dashboards to view telemetry data from switches, NICs, and GPUs
+- You can now {{<link title="Integrate NetQ with Grafana" text="integrate NetQ with Grafana">}} and create custom dashboards to view hardware telemetry data
 - Run {{<link title="Validate Network Protocol and Service Operations/#topology-validations" text="topology validations">}} using JSON blueprints
 
 The following features have been removed or deprecated:
 
-- The cloud (OPTA) cluster deployment option is no longer available or supported.
+- The cloud (OPTA) cluster deployment option is no longer available or supported
 - The close button has been removed from the user interface. To navigate to different pages, use the links in the breadcrumb menu.
 
 
 ## Release Considerations
 
+- When you upgrade to NetQ v4.15.0, any pre-existing validation data will be lost. Additionally, NetQ will not retain data related to network services (including BGP, LLDP, EVPN, and MLAG) after upgrading.
 - When the NetQ agent is active and What Just Happened (WJH) is enabled, the Cumulus Linux 5.14 packet trimming feature will not work as expected. To enable packet trimming, you must disable NetQ What Just Happened with the `netq config del agent wjh` command, then apply the changes with `netq config restart agent`.
 - The NetQ agent is not compatible with Broadcom switches. Reach out to your NVIDIA support representative if your networking environment requires Broadcom supports.
 

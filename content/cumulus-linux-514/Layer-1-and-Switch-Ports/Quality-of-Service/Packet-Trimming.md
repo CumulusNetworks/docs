@@ -64,7 +64,7 @@ To unset the default packet trimming profile, run the `nv unset system forwardin
 
 ## Packet Trimming with RoCE
 
-The RoCE `lossy-multi-tc` profile uses the {{<link url="#default-packet-trimming-profile" text="default packet trimming profile">}} settings:
+The RoCE `lossy-multi-tc` profile uses the {{<link url="#packet-trimming-with-default-profile" text="default packet trimming profile">}} settings:
 
 To configure packet trimming with RoCE, run the `nv set qos roce mode lossy-multi-tc` command.
 
@@ -116,7 +116,7 @@ cumulus@switch:~$ nv config apply
 
 ## Asymmetric Packet Trimming with Default Profile
 
-If you want to use the {{<link url="#default-packet-trimming-profile" text="default packet trimming profile">}} instead of configuring all the settings above, run the following commands:
+If you want to use the {{<link url="#packet-trimming-with-default-profile" text="default packet trimming profile">}} instead of configuring all the settings above, run the following commands:
 
 ```
 cumulus@switch:~$ nv set system forwarding packet-trim packet-trim-default
@@ -130,7 +130,7 @@ The default packet trimming profile uses the following port profiles:
 
 ## Asymmetric Packet Trimming with RoCE
 
-The RoCE `lossy-multi-tc` profile uses the {{<link url="#default-packet-trimming-profile" text="default packet trimming profile">}} settings.
+The RoCE `lossy-multi-tc` profile uses the {{<link url="#packet-trimming-with-default-profile" text="default packet trimming profile">}} settings.
 
 To configure asymmetric packet trimming with RoCE:
 - Set the `lossy-multi-tc` QoS profile.

@@ -49,7 +49,7 @@ Cumulus Linux provides a default packet trimming profile you can use instead of 
 - Sets the DSCP remark value to 11 (global DSCP).
 - Sets the truncation size to 256.
 - Sets the switch priority to 4.
-- Sets the eligibility to all ports on the switch with traffic class 1,2,3.
+- Sets the eligibility to all ports on the switch with traffic class 1,2, and 3.
 
 To use the default packet trimming profile:
 

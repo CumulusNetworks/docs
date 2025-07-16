@@ -114,7 +114,7 @@ cumulus@switch:~$ nv set service dhcp-relay default agent use-pif-circuit-id sta
 cumulus@switch:~$ nv config apply
 ```
 
-To configure the remote ID, which a custom string (up to 255 characters in length), run the `nv set service dhcp-relay default agent remote-id <ID>` command. The following example configures the remote ID to be the MAC address 44:38:39:BE:EF:AA.
+To configure the remote ID, which is a custom string (up to 255 characters in length), run the `nv set service dhcp-relay default agent remote-id <ID>` command. The following example configures the remote ID to be the MAC address 44:38:39:BE:EF:AA.
 
 ```
 cumulus@switch:~$ nv set service dhcp-relay default agent remote-id 44:38:39:BE:EF:AA
@@ -339,11 +339,11 @@ cumulus@switch:~$ nv config apply
    OPTIONS="-U RED"
    ```
 
-4. Start and enable the DHCP service so that it starts automatically the next time the switch boots:
+4. Enable and start the DHCP service:
 
    ```
-   sudo systemctl start dhcrelay-red-servers-RED.service
    sudo systemctl enable dhcrelay-red-servers-RED.service
+   sudo systemctl start dhcrelay-red-servers-RED.service
    ```
 
 {{< /tab >}}
@@ -384,11 +384,11 @@ cumulus@switch:~$ nv config apply
    OPTIONS=""
    ```
 
-2. Start the DHCP service and enable it to start automatically when the switch boots:
+2. Enable and start the DHCP service:
 
    ```
-   sudo systemctl start dhcrelay-red-servers-RED.service
    sudo systemctl enable dhcrelay-red-servers-RED.service
+   sudo systemctl start dhcrelay-red-servers-RED.service
    ```
 
 {{< /tab >}}
@@ -481,7 +481,7 @@ cumulus@switch:~$ nv config apply
    SERVERS="-u 2001:db8:199::2%RED -u vlan4024_l3"
    ```
 
-4. Start and enable the DHCP service so that it starts automatically the next time the switch boots:
+4. Enable and start the DHCP service:
 
    ```
    sudo systemctl enable dhcrelay6@RED.service
@@ -556,8 +556,8 @@ To show the configured DHCP server groups, run the `nv show service dhcp-relay <
 
 ```
 cumulus@switch:~$ nv show service dhcp-relay default server-group
-Server Group  Server Ip     Upstream Interface
-------------  ------------  ------------------
+Server Group           Server Ip     Upstream Interface
+------------           ------------  ------------------
 type1-server-group     172.16.1.102  swp51-52 
 ```
 

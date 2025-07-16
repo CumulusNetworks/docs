@@ -33,7 +33,7 @@ The following features have been removed or deprecated:
 
 ### Upgrade Paths
 
-To upgrade to 4.15.0, {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}}, then concurrently restore your data and upgrade NetQ during a {{<link title="Install the NetQ System" text="new NetQ 4.15 installation">}}
+You can upgrade to NetQ 4.15 if your deployment is running version 4.14 or 4.13. For on-premises and cloud deployments, {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}}, then concurrently restore your data and upgrade NetQ during a {{<link title="Install the NetQ System" text="new NetQ 4.15 installation">}}
 
 
 ### Compatible Agent Versions

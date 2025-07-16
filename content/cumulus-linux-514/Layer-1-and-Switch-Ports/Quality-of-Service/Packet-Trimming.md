@@ -85,7 +85,7 @@ To enable and configure asymmetric packet trimming:
 - Set the packet trimming state to enabled.
 - Set the egress port and traffic-class from which the dropped traffic is trimmed. You can specify a value between 0 and 7.
 - Set the DSCP remark to be at the port level.
-- Set the DSCP value for the host facing and network facing ports by creating remark profiles and assigning the switch priority and DSCP values for each remark profile.
+- Set the DSCP value for the host facing and network facing ports by creating remark profiles and assigning the switch priority and DSCP values for each remark profile. The default value for the downlink (host facing interface) is 21. The default value for the uplink (network facing interface) is 11.
 - Set the maximum size of the trimmed packet. You can specify a value between 256 and 1024; the value must be a multiple of 4.
 - Set the egress switch priority on which to send the trimmed packet. You can specify a value between 0 and 7.
 
@@ -126,13 +126,13 @@ cumulus@switch:~$ nv config apply
 
 The default packet trimming profile uses the following port profiles:
 - `lossy-multi-tc-host-group` sets the DSCP remark value to 21 for switch priority 4 on the downlink to hosts.
-- `lossy-multi-tc-network-group` sets the DSCP remark value to 11 for switch priority 4 on the uplink.
+- `lossy-multi-tc-network-group` sets the DSCP remark value to 11 for switch priority 4 on the uplink to the network.
 
 ## Asymmetric Packet Trimming with RoCE
 
 The RoCE `lossy-multi-tc` profile uses the {{<link url="#default-packet-trimming-profile" text="default packet trimming profile">}} settings.
 
-To configure asymmetric packet trimming with the RoCE:
+To configure asymmetric packet trimming with RoCE:
 - Set the `lossy-multi-tc` QoS profile.
 - Set DSCP remark to be at the port level.
 
@@ -153,7 +153,9 @@ cumulus@spine01:~$ nv config apply
 
 ## Show Packet Trimming Configuration
 
-To show packet trimming configuration, run the `nv show system forwarding packet-trim` command:
+To show packet trimming configuration, run the `nv show system forwarding packet-trim` command.
+
+The following example shows `nv show system forwarding packet-trim` command output for packet trimming:
 
 ```
 cumulus@switch:~$ nv show system forwarding packet-trim
@@ -184,7 +186,7 @@ Port-Level SP to DSCP Remark Information
 No Data
 ```
 
-The following example shows packet trimming with the `packet-trim-default` profile and the port-level DSCP remark:
+The following example shows `nv show system forwarding packet-trim` command output for asymmetric packet trimming:
 
 ```
 cumulus@switch:~$ nv show system forwarding packet-trim 
@@ -218,7 +220,7 @@ Port-Level SP to DSCP Remark Information
     lossy-multi-tc-network-group  swp33s0    4   11
 ```
 
-To show forwarding packet trim marking information, run the `nv show system forwarding packet-trim remark` command:
+To show packet trimming remark information, run the `nv show system forwarding packet-trim remark` command. The default global packet trimming remark value is 11. For asymmetric packet trimming, the default remark value is `port-level`.
 
 ```
 cumulus@switch:~$ nv show system forwarding packet-trim remark 
@@ -249,34 +251,6 @@ Port-Level SP to DSCP Remark Information
 No Data
 ```
 
-To show interface packet-trim eligibility information, run the `nv show interface <interface-id> packet-trim` command:
-
-```
-cumulus@switch:~$ nv show interface swp1 packet-trim
-Egress Eligibility TC
-========================
-No Data
-```
-
-To show interface packet-trim eligibility traffic-class information, run the `nv show interface <interface-id> packet-trim egress-eligibility` command:
-
-```
-cumulus@switch:~$ nv show interface swp1 packet-trim egress-eligibility
-Egress Eligibility TC
-========================
-No Data
-```
-
-To show interface packet-trim eligibility traffic-class information, run the `nv show interface <interface-id> packet-trim egress-eligibility traffic-class` command:
-
-```
-cumulus@switch:~$ nv show interface swp1 packet-trim egress-eligibility traffic-class
-No Data
-```
-
-To show interface packet-trim egress-interface traffic class information, run the `nv show interface <interface-id> packet-trim egress-eligibility traffic-class <tc-id>` command:
-
-```
-cumulus@switch:~$ nv show interface swp1 packet-trim egress-eligibility traffic-class 1
-No Data
-```
+- To show interface packet-trim eligibility information, run the `nv show interface <interface-id> packet-trim` command.
+- To show interface packet-trim eligibility traffic-class information, run the `nv show interface <interface-id> packet-trim egress-eligibility` command.
+- To show interface packet-trim egress-interface traffic class information, run the `nv show interface <interface-id> packet-trim egress-eligibility traffic-class <tc-id>` command.

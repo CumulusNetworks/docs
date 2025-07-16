@@ -537,7 +537,7 @@ The method you employ is specific to your deployment strategy. Providing detaile
 
 The SN3700C-S, SN5400, and SN5600 secure boot switch running Cumulus Linux 5.9.3 boots with shim 15.8 that adds entries to the SBAT revocations to prevent the switch from booting shim 15.7 or earlier (in Cumulus Linux 5.9.2 and earlier), which has security vulnerabilities.
 
-After downgrading the switch from Cumulus Linux 5.9.3 with ONIE, follow the steps below to disable, then enable secure boot **before** the switch boots.
+After downgrading the switch from Cumulus Linux 5.9.3 with ONIE, follow the steps below to disable, then enable secure boot **before** the downgraded switch boots.
 
 You can also follow the steps below to recover a downgraded secure boot switch that does not boot and that shows the following error:
 

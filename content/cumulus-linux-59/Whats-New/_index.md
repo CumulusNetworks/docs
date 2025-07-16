@@ -386,4 +386,4 @@ Cumulus Linux 3.7, 4.3, and 4.4 continue to support NCLU. For more information, 
 
 The SN3700C-S, SN5400, and SN5600 secure boot switch running Cumulus Linux 5.9.3 boots with shim 15.8, which adds entries to the SBAT revocations to prevent the switch from booting shim 15.7 or earlier.
 
-If you want to downgrade from Cumulus Linux 5.9.3 to Cumulus Linux 5.9.2 or earlier, follow the steps in {{<link url="/Upgrading-Cumulus-Linux/#downgrade-a-secure-boot-switch" text="Downgrade a Secure Boot Switch">}} **before** the downgraded switch boots.
+If you want to downgrade the switch from Cumulus Linux 5.9.3 to Cumulus Linux 5.9.2 or earlier, follow the steps in {{<link url="/Upgrading-Cumulus-Linux/#downgrade-a-secure-boot-switch" text="Downgrade a Secure Boot Switch">}} **before** the downgraded switch boots.

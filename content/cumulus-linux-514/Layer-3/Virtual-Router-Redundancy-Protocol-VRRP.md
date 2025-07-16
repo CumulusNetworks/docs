@@ -14,7 +14,7 @@ All virtual routers use 00:00:5E:00:01:XX for IPv4 gateways or 00:00:5E:00:02:XX
 - Cumulus Linux supports both VRRPv2 and VRRPv3. The default protocol version is VRRPv3.
 - You can configure a maximum of 255 virtual routers on a switch.
 - You cannot use VRRP with <span class="a-tooltip">[MLAG](## "Multi-chassis Link Aggregation")</span>.
-- To configure VRRP on an <span class="a-tooltip">[SVI](## "Switched Virtual Interface")</span> or {{<link url="Traditional-Bridge-Mode" text="traditional mode bridge">}}, you need to edit the `etc/network/interfaces` and `/etc/frr/frr.conf` files.
+- To configure VRRP for a {{<link url="Traditional-Bridge-Mode" text="traditional mode bridge">}}, you need to edit the `etc/network/interfaces` and `/etc/frr/frr.conf` files.
 - You can use VRRP with layer 3 interfaces and subinterfaces that are part of a <span class="a-tooltip">[VRF](## "Virtual Routing and Forwarding")</span>.
 - You cannot use VRRP in an <span class="a-tooltip">[EVPN](## "Ethernet Virtual Private Network")</span> configuration; use MLAG and VRR instead.
 You cannot configure both VRR and VRRP on the same switch.

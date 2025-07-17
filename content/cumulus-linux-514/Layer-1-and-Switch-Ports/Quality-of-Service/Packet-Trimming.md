@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 321
 right_toc_levels: 2
 ---
-The Spectrum switch implements a packet trimming mechanism, with which the switch trims and forwards packets that are about to be discarded due to unavailable buffer space under certain conditions. A trimmed packet (with a supplemented mechanism on the host) allows for quick retransmission of the discarded packet.
+The Spectrum switch implements a packet trimming mechanism, with which the switch trims and forwards packets that are about to be discarded due to unavailable buffer space. A trimmed packet (with a supplemented mechanism on the host) allows for quick retransmission of the discarded packet.
 
 You can apply DSCP remarking on trimmed packets:
 - At the global level, where all trimmed packets have the same DSCP value.

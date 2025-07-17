@@ -26,7 +26,7 @@ Cumulus Linux 5.14.0 contains several new features and improvements, and provide
   - {{<link url="gNMI-Streaming/#metrics" text="New gNMI streaming metrics: BGP, interface, LLDP, system, and platform transceiver">}}
   - {{<link url="gNMI-Streaming/#user-credentials-and-authentication" text="gRPC header based authentication support for gNMI subscription requests">}}
   - {{<link url="gNMI-Streaming" text="Improved data formatting to include prefix field">}}
-- {{<link url="Packet-Trimming" text="Packet trimming">}} and {{<link url="Packet-Trimming/#asymmetric-packet-trimming" text="Packet trimming with asymmetric DSCP">}}
+- {{<link url="Packet-Trimming" text="Packet trimming">}}
 - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#lossy-multi-tc-profile" text="RoCE lossy multi TC profile">}}
 - {{<link url="Segment-Routing" text="SRv6 configuration">}} and {{<link url="Segment-Routing/#clear-srv6-statistics" text="Clear SRv6 statistics">}}
 - {{<link url="TACACS/#tacacs-per-command-authorization" text="You can now bind TACACS per-command authorization to the default VRF">}} (in previous releases, you must specify the egress interface you use in the default VRF)
@@ -283,6 +283,12 @@ Cumulus Linux 5.14 includes the NVUE object model. After you upgrade to Cumulus 
 - Update your automation tools to use NVUE.
 - {{<link url="NVUE-CLI/#configure-nvue-to-ignore-linux-files" text="Configure NVUE to ignore certain underlying Linux files">}} when applying configuration changes.
 - Use Linux and FRR (vtysh) commands instead of NVUE for **all** switch configuration.
+
+### DHCP Relay Configuration
+
+Cumulus Linux 5.14 introduces server groups. In Cumulus Linux 5.13 and earlier, DHCP relay does not use server groups, but instead, forwards all DHCP client requests to every DHCP server within the same VRF. Cumulus Linux 5.14 no longer provides the `nv show service dhcp-relay default server` commands.
+
+If you have configured DHCP relay in Cumulus Linux 5.13 or earlier, the upgrade process migrates the configuration to a new default configuration file called `isc-dhcp-relay-<server-group-id>-<vrf-id>` in the `/etc/default` directory and selects the uplink and downlink interfaces automatically. After upgrade, make sure to review the new configuration and adjust as needed.
 
 ### Cumulus VX
 

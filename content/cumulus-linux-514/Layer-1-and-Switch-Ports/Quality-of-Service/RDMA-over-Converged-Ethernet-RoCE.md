@@ -77,13 +77,38 @@ To disable single shared buffer pool mode and use the default mode (lossless), r
 
 ## Lossy Multi TC Profile
 
-The lossy multi TC profile provides QoS settings for lossy RoCE traffic and enables {{<link url="Packet-Trimming" text="Packet trimming">}}.
+The lossy multi TC profile provides QoS settings for lossy RoCE traffic and enables {{<link url="Packet-Trimming" text="Packet trimming">}} with the {{<link url="#packet-trimming-with-default-profile" text="default packet trimming profile">}} settings.
 
-To enable the lossy multi TC profile:
+To enable the lossy multi TC profile with packet trimming at the global level, where all trimmed packets have the same DSCP value:
 
 ```
 cumulus@switch:~$ nv set qos roce mode lossy-multi-tc
 cumulus@switch:~$ nv config apply
+```
+
+To enable the lossy multi TC profile with packet trimming at the port level, where the switch remarks the DSCP value of the trimmed packets based on the port level switch priority to DSCP mapping:
+- Set the lossy-multi-tc QoS profile.
+- Set DSCP remark to be at the port level.
+- Apply the port profiles. The default packet trimming profile uses the following port profiles:
+  - `lossy-multi-tc-host-group` sets the DSCP remark value to 21 for switch priority 4 on the downlink to hosts.
+  - `lossy-multi-tc-network-group` sets the DSCP remark value to 11 for switch priority 4 on the uplink to the network.
+
+```
+cumulus@leaf01:~$ nv set qos roce mode lossy-multi-tc
+cumulus@leaf01:~$ nv set system forwarding packet-trim remark dscp port-level
+cumulus@leaf01:~$ nv set interface swp1-16 qos remark profile lossy-multi-tc-host-group
+cumulus@leaf01:~$ nv set interface swp17-32 qos remark profile lossy-multi-tc-network-group
+cumulus@leaf01:~$ nv config apply
+```
+
+To show the port profiles created when you enabled the RoCE `lossy-multi-tc` profile, run the `nv show qos remark` command:
+
+```
+cumulus@switch:~$ nv show qos remark
+Profile                       Rewrite  Summary                              
+----------------------------  -------  -------------------------------------
+lossy-multi-tc-host-group              SP->PCP/DSCP mapping configuration: 4
+lossy-multi-tc-network-group           SP->PCP/DSCP mapping configuration: 4
 ```
 
 To disable the lossy multi TC profile, run the `nv unset qos roce mode lossy-multi-tc` command.

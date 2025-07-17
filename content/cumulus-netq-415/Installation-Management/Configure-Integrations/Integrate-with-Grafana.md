@@ -5,7 +5,7 @@ weight: 550
 toc: 3
 ---
 
-The NetQ integration with Grafana allows you to create customized dashboards and to visualize metrics across your network's hardware. <!--You can create your own dashboards from scratch or import a dashboard template to get started.-->
+The NetQ integration with Grafana allows you to create customized dashboards and to visualize metrics across your network's hardware. To view data in Grafana, first configure OpenTelemetry on your hardware devices, then configure the time series database on the NetQ server, and finally configure the data sources in Grafana. <!--You can create your own dashboards from scratch or import a dashboard template to get started.-->
 
 {{%notice note%}}
 The Grafana integration is in beta and supported for on-premises deployments only. It does not support multi-tenancy.

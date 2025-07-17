@@ -38,7 +38,7 @@ If your network uses a proxy server for external connections, you should first {
 Verify that {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} is running on the switch as outlined in the steps below. The switch system clock must be synchronized with NetQ to enable useful statistical analysis. Alternatively, you can configure {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Precision Time Protocol-PTP.md" text="PTP">}} for time synchronization.
 
 ```
-cumulus@switch:~$ sudo systemctl status ntp
+nvidia@switch:~$ sudo systemctl status ntp
 [sudo] password for cumulus:
 ● ntp.service - LSB: Start NTP daemon
         Loaded: loaded (/etc/init.d/ntp; bad; vendor preset: enabled)
@@ -65,7 +65,7 @@ Cumulus Linux 4.4 and later includes the `netq-agent` package by default. To upg
 1. Add the repository by uncommenting or adding the following line in `/etc/apt/sources.list`:
 
 ```
-cumulus@switch:~$ sudo nano /etc/apt/sources.list
+nvidia@switch:~$ sudo nano /etc/apt/sources.list
 ...
 deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-d12 netq-latest
 ...
@@ -78,7 +78,7 @@ You can specify a NetQ Agent version in the repository configuration. The follow
 2. Add the `apps3.cumulusnetworks.com` authentication key to Cumulus Linux:
 
 ```
-cumulus@switch:~$ wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | sudo apt-key add -
+nvidia@switch:~$ wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | sudo apt-key add -
 ```
 
 {{</tab>}}
@@ -295,14 +295,14 @@ Cumulus Linux 4.4 and later includes the `netq-agent` package by default. To ins
 1. Update the local `apt` repository, then install the NetQ software on the switch.
 
     ```
-    cumulus@switch:~$ sudo apt-get update
-    cumulus@switch:~$ sudo apt-get install netq-agent
+    nvidia@switch:~$ sudo apt-get update
+    nvidia@switch:~$ sudo apt-get install netq-agent
     ```
 
 2. Verify you have the correct version of the Agent.
 
     ```
-    cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
+    nvidia@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
     {{<netq-install/agent-version version="4.14.0" opsys="cl">}}
@@ -310,7 +310,7 @@ Cumulus Linux 4.4 and later includes the `netq-agent` package by default. To ins
 3. Restart `rsyslog` so it sends log files to the correct destination.
 
     ```
-    cumulus@switch:~$ sudo systemctl restart rsyslog.service
+    nvidia@switch:~$ sudo systemctl restart rsyslog.service
     ```
 
 4. Configure the NetQ Agent, as described in the next section.
@@ -472,13 +472,13 @@ You must separate the list of IP addresses by commas (not spaces). You can optio
 This example configures the NetQ Agent on a switch to send the data to three servers located at *10.0.0.21*, *10.0.0.22*, and *10.0.0.23* using the *mgmt* VRF.
 
 ```
-cumulus@switch:~$ sudo netq config add agent cluster-servers 10.0.0.21,10.0.0.22,10.0.0.23 vrf mgmt
+nvidia@switch:~$ sudo netq config add agent cluster-servers 10.0.0.21,10.0.0.22,10.0.0.23 vrf mgmt
 ```
 
 To stop a NetQ Agent from sending data to a server cluster, run:
 
 ```
-cumulus@switch:~$ sudo netq config del agent cluster-servers
+nvidia@switch:~$ sudo netq config del agent cluster-servers
 ```
 
 

@@ -43,7 +43,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq show adaptive-routing config global
+nvidia@switch:~$ netq show adaptive-routing config global
 
 Matching arconfig records:
 Hostname          Is AR   Is RoCE  RoCE Mode Last Updated
@@ -54,7 +54,7 @@ torc-12           True    True     Lossless  Tue Oct 24 15:32:33 2023
 ```
 
 ```
-cumulus@switch:~$ netq show adaptive-routing config interface
+nvidia@switch:~$ netq show adaptive-routing config interface
 
 Matching arconfig records:
 Hostname          Interface Is AR   Link Util  Link Util  Last Updated
@@ -134,7 +134,7 @@ You can enter the start time (<code>text-time</code>) and end time (<code>text-e
 Display address history for the past 24 hours:
 
 ```
-cumulus@switch:~$ netq show address-history 10.10.10.3
+nvidia@switch:~$ netq show address-history 10.10.10.3
 Matching addresshistory records:
 Last Changed              Hostname          Ifname       Prefix                         Mask     Vrf
 ------------------------- ----------------- ------------ ------------------------------ -------- ---------------
@@ -144,7 +144,7 @@ Mon Nov 23 22:28:42 2020  leaf03            lo           10.10.10.3             
 The following example displays a full chronology of changes for an IP address. A caret (^) notation indicates that the value from the row preceding it has not changed.
 
 ```
-cumulus@switch:~$ netq show address-history 10.1.10.2/24
+nvidia@switch:~$ netq show address-history 10.1.10.2/24
 
 Matching addresshistory records:
 Last Changed              Hostname          Ifname       Prefix                         Mask     Vrf
@@ -162,7 +162,7 @@ Tue Sep 29 17:25:08 2020  leaf01            vlan10       10.1.10.2              
 Show changes grouped by VRF:
 
 ```
-cumulus@switch:~$ netq show address-history 10.1.10.104 listby vrf
+nvidia@switch:~$ netq show address-history 10.1.10.104 listby vrf
 Matching addresshistory records:
 Last Changed              Hostname          Ifname       Prefix                         Mask     Vrf
 ------------------------- ----------------- ------------ ------------------------------ -------- ---------------
@@ -171,7 +171,7 @@ Tue Nov 24 19:51:11 2020  server04          uplink       10.1.10.104            
 The following example displays the history of an IP address between now and two hours ago. A caret (^) notation indicates that the value from the row preceding it has not changed.
 
 ```
-cumulus@switch:~$ netq show address-history 10.1.10.2/24 between 2h and now
+nvidia@switch:~$ netq show address-history 10.1.10.2/24 between 2h and now
 
 Matching addresshistory records:
 Last Changed              Hostname          Ifname       Prefix                         Mask     Vrf
@@ -237,7 +237,7 @@ None
 Display agent status across all network nodes:
 
 ```
-cumulus@switch:~$ netq show agents
+nvidia@switch:~$ netq show agents
 Matching agents records:
 Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
 ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
@@ -256,7 +256,7 @@ spine02           Fresh            yes      4.14.0-cld12u51~1744815975.8dbbbd20c
 Display all devices in a rotten state:
 
 ```
-cumulus@switch:~$ netq show agents rotten
+nvidia@switch:~$ netq show agents rotten
 Matching agents records:
 Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
 ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
@@ -326,7 +326,7 @@ Display BGP sessions across all network nodes. This example shows each node, the
 
 
 ```
-cumulus@switch:~$ netq show bgp
+nvidia@switch:~$ netq show bgp
 Matching bgp records:
 Hostname          Neighbor                     VRF             ASN        Peer ASN   PfxRx        Last Changed
 ----------------- ---------------------------- --------------- ---------- ---------- ------------ -------------------------
@@ -350,7 +350,7 @@ leaf01            swp52(spine02)               default         65101      65199 
 View status of nodes running BGP with a given ASN:
 
 ```
-cumulus@switch:~$ netq show bgp asn 65101
+nvidia@switch:~$ netq show bgp asn 65101
 Matching bgp records:
 Hostname          Neighbor                     VRF             ASN        Peer ASN   PfxRx        Last Changed
 ----------------- ---------------------------- --------------- ---------- ---------- ------------ -------------------------
@@ -406,7 +406,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq show check-filter
+nvidia@switch:~$ netq show check-filter
 Matching config_check records:
 Check Filter ID      Check Name           Test Name            Scope                                                        Active Suppress Until
 -------------------- -------------------- -------------------- ------------------------------------------------------------ ------ --------------------
@@ -460,7 +460,7 @@ None
 Display disk utilization info:
 
 ```
-cumulus@switch:~$ netq show cl-btrfs-info
+nvidia@switch:~$ netq show cl-btrfs-info
 Matching btrfs_info records:
 Hostname          Device Allocated     Unallocated Space    Largest Chunk Size   Unused Data Chunks S Rebalance Recommende Last Changed
                                                                                  pace                 d
@@ -507,7 +507,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq show cl-manifest
+nvidia@switch:~$ netq show cl-manifest
 
 Matching manifest records:
 Hostname          ASIC Vendor          CPU Arch             Manifest Version
@@ -597,7 +597,7 @@ netq [<hostname>] show cl-resource forwarding
 Display the ACL resources for all configured switches:
 
 ```
-cumulus@switch:~$ netq show cl-resource acl
+nvidia@switch:~$ netq show cl-resource acl
 Matching cl_resource records:
 Hostname          In IPv4 filter       In IPv4 Mangle       In IPv6 filter       In IPv6 Mangle       In 8021x filter      In Mirror            In PBR IPv4 filter   In PBR IPv6 filter   Eg IPv4 filter       Eg IPv4 Mangle       Eg IPv6 filter       Eg IPv6 Mangle       ACL Regions          18B Rules Key        32B Rules Key        54B Rules Key        L4 Port range Checke Last Updated
                                                                                                                                                                                                                                                                                                                                                                   rs
@@ -609,7 +609,7 @@ mlx-2700-04       0,0(0%)              0,0(0%)              0,0(0%)             
 Display forwarding resources for all configured switches:
 
 ```
-cumulus@noc-pr:~$ netq show cl-resource forwarding
+nvidia@noc-pr:~$ netq show cl-resource forwarding
 Matching cl_resource records:
 Hostname          IPv4 host entries    IPv6 host entries    IPv4 route entries   IPv6 route entries   ECMP nexthops        MAC entries          Total Mcast Routes   Last Updated
 ----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
@@ -620,7 +620,7 @@ mlx-2700-04       0,32768(0%)          0,16384(0%)          0,65536(0%)         
 Display the forwarding resources used by the *spine02* switch:
 
 ```
-cumulus@switch:~$ netq spine02 show cl-resource forwarding
+nvidia@switch:~$ netq spine02 show cl-resource forwarding
 Matching cl_resource records:
 Hostname          IPv4 host entries    IPv6 host entries    IPv4 route entries   IPv6 route entries   ECMP nexthops        MAC entries          Total Mcast Routes   Last Updated
 ----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
@@ -667,7 +667,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq spine02 show cl-ssd-util
+nvidia@switch:~$ netq spine02 show cl-ssd-util
 Hostname        Remaining PE Cycle (%)  Current PE Cycles executed      Total PE Cycles supported       SSD Model               Last Changed
 spine02         80                      576                             2880                            M.2 (S42) 3ME3          Thu Oct 31 00:15:06 2019
 ```
@@ -730,7 +730,7 @@ netq <hostname> show dom ber device
 Show module temperature of DOMs on a given device:
 
 ```
-cumulus@switch:~$ netq spine01 show dom type module_temp
+nvidia@switch:~$ netq spine01 show dom type module_temp
 Matching dom records:
 Hostname          Interface  type                 high_alarm_threshold low_alarm_threshold  high_warning_thresho low_warning_threshol value                Last Updated
                                                                                             ld                   d
@@ -752,7 +752,7 @@ spine01           swp53s2    module_temperature   {‘degree_c’: 85,     {‘d
 
 Show bit error rate across all interfaces on a given device. If the output of this command is grayed-out, that indicates that the NetQ Agent is in a rotten state.
 ```
-cumulus@switch:~$ netq spine01 show dom ber
+nvidia@switch:~$ netq spine01 show dom ber
 
 ifname  speed raw ber   eff. ber  symbol err. active fec fc0 hist  ethernet phy mgr. advanced status timestamp
         gb/s                                                       protocol state    opcode
@@ -785,7 +785,7 @@ swp14   100   1.5e-254  1.5e-254  0           Standard_R N/A       100G     Acti
                                               S-FEC - (5                                             8:27 2024
 ```
 ```
-cumulus@switch:~$ netq spine01 show dom ber device
+nvidia@switch:~$ netq spine01 show dom ber device
 ifname  module type            cable len module sn module pn   module tmp        time last  device id                      device fw ver.  timestamp
                                .(m)                                              clear(min)
 ------- ---------------------- --------- --------- ----------- ----------------- ---------- ------------------------------ --------------- ---------------
@@ -850,7 +850,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq show ecmp
+nvidia@switch:~$ netq show ecmp
 Matching ecmp_info records:
 Hostname          Group Id Imbalance Agg. Traffic Paths                     Start Time                 End Time
 ----------------- -------- --------- ------------ ------------------------- -------------------------- --------------------------
@@ -952,7 +952,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq show ecmp-hash-config 
+nvidia@switch:~$ netq show ecmp-hash-config 
 Matching ecmp_hash records:
 Hostname          Seed     Max Paths Resilient Hash Enable Resilient Hash Entries Symmetric Hash enable Last Updated
 ----------------- -------- --------- --------------------- ---------------------- --------------------- ------------------------
@@ -1045,7 +1045,7 @@ netq <hostname> show ethtool-stats
 Show transmit statistics for a given switch interface and switch in the network:
 
 ```
-cumulus@switch:~$ netq leaf01 show ethtool-stats port swp50 tx
+nvidia@switch:~$ netq leaf01 show ethtool-stats port swp50 tx
 Matching ethtool_stats records:
 Hostname          Interface                 HwIfOutOctets        HwIfOutUcastPkts     HwIfOutMcastPkts     HwIfOutBcastPkts     HwIfOutDiscards      HwIfOutErrors        HwIfOutQDrops        HwIfOutNonQDrops     HwIfOutQLen          HwIfOutPausePkt      SoftOutErrors        SoftOutDrops         SoftOutTxFifoFull    Last Updated
 ----------------- ------------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
@@ -1098,7 +1098,7 @@ None
 Display all events from the past 3 days:
 
 ```
-cumulus@switch:~$ netq show events between now and 3d
+nvidia@switch:~$ netq show events between now and 3d
 Matching events records:
 Hostname          Message Type             Severity         Message                             Timestamp
 ----------------- ------------------------ ---------------- ----------------------------------- -------------------------
@@ -1144,7 +1144,7 @@ leaf02            services                 info             Service netqd status
 Display events that have occurred on the leaf01 switch between now and an hour ago.
 
 ```
-cumulus@switch:~$ netq leaf01 show events
+nvidia@switch:~$ netq leaf01 show events
 
 Matching events records:
 Hostname          Message Type             Severity         Message                             Timestamp
@@ -1202,7 +1202,7 @@ None
 Display a given event-suppression configuration:
 
 ```
-cumulus@switch:~$ netq show events-config events_config_id eventsconfig_1
+nvidia@switch:~$ netq show events-config events_config_id eventsconfig_1
 
 Matching config_events records:
 Events Config ID     Events Config Name   Message Type         Scope                                                        Active Suppress Until
@@ -1233,7 +1233,7 @@ eventsconfig_1       job_cl_upgrade_2d89c clag                 {"hostname":"spin
 Display filter conditions for EVPN event suppression configurations:
 
 ```
-cumulus@switch:~$ netq show events-config message_type evpn show-filter-conditions
+nvidia@switch:~$ netq show events-config message_type evpn show-filter-conditions
 
 Matching config_events records:
 Message Name             Filter Condition Name                      Filter Condition Hierarchy                           Filter Condition Description
@@ -1288,7 +1288,7 @@ The example below shows the configuration and status for all devices, including 
 This example shows the Cumulus reference topology, where EVPN runs on all border and leaf switches. Each session is represented by a single row.
 
 ```
-cumulus@switch:~$ netq show evpn
+nvidia@switch:~$ netq show evpn
 Matching evpn records:
 Hostname          VNI        VTEP IP          Type             Mapping        In Kernel Export RT        Import RT        Last Changed
 ----------------- ---------- ---------------- ---------------- -------------- --------- ---------------- ---------------- -------------------------
@@ -1321,7 +1321,7 @@ leaf04            30         10.0.1.2         L2               Vlan 30        ye
 This example displays the EVPN configuration and status for VNI *4001*.
 
 ```
-cumulus@switch:~$ netq show evpn vni 4001
+nvidia@switch:~$ netq show evpn vni 4001
 Matching evpn records:
 Hostname          VNI        VTEP IP          Type             Mapping        In Kernel Export RT        Import RT        Last Changed
 ----------------- ---------- ---------------- ---------------- -------------- --------- ---------------- ---------------- -------------------------
@@ -1369,7 +1369,7 @@ netq <hostname> show histogram interface <text-ifname> queue
 Display data on *leaf01* for the interface *swp1*:
 
 ```
-cumulus@switch:~$ netq leaf01 show histogram interface swp1 queue
+nvidia@switch:~$ netq leaf01 show histogram interface swp1 queue
 
 Matching queue_histograms records:
 Time                           Bin0     Bin1     Bin2     Bin3     Bin4     Bin5     Bin6     Bin7     Bin8     Bin9
@@ -1496,7 +1496,7 @@ netq <hostname> show interfaces type (bond|bridge|eth|loopback|macvlan|swp|vlan|
 Display interfaces on a given device:
 
 ```
-cumulus@switch:~$ netq spine01 show interfaces
+nvidia@switch:~$ netq spine01 show interfaces
 Matching link records:
 Hostname          Interface                 Type             State      VRF             Details                             Last Changed
 ----------------- ------------------------- ---------------- ---------- --------------- ----------------------------------- -------------------------
@@ -1528,13 +1528,13 @@ spine01           swp4                      swp              up         default 
 View an interface count on a given device.
 
 ```
-cumulus@switch:~$ netq spine01 show interfaces count
+nvidia@switch:~$ netq spine01 show interfaces count
 Count of matching link records: 10
 ```
 Display only VLAN results. The output displays the interface, its specified MTU, whether it is running over a VRF, and the last time it changed.
 
 ```
-cumulus@switch:~$ netq show interfaces type vlan
+nvidia@switch:~$ netq show interfaces type vlan
 Matching link records:
 Hostname          Interface                 Type             State      VRF             Details                             Last Changed
 ----------------- ------------------------- ---------------- ---------- --------------- ----------------------------------- -------------------------
@@ -1575,13 +1575,13 @@ leaf04            peerlink.4094             vlan             up         default 
 Display all MAC addresses associated with your vRR (virtual route reflector) interface configuration. This is useful for determining if the specified MAC address inside a VLAN is the same or different across your vRR configuration.
 
 ```
-cumulus@switch:~$ netq show interfaces type macvlan
+nvidia@switch:~$ netq show interfaces type macvlan
 Matching mac records:
 Origin MAC Address        VLAN   Hostname          Egress Port                    Remote Last Changed
 ------ ------------------ ------ ----------------- ------------------------------ ------ -------------------------
 yes    00:00:00:00:00:1a  10     leaf02            bridge                         no     Tue Oct 27 22:28:51 2020
 yes    44:38:39:00:00:37  10     leaf02            bridge                         no     Tue Oct 27 22:28:51 2020
-cumulus@netq-ts:~$ netq show interfaces type macvlan
+nvidia@netq-ts:~$ netq show interfaces type macvlan
 
 Matching link records:
 Hostname          Interface                 Type             State      VRF             Details                             Last Changed
@@ -1614,7 +1614,7 @@ leaf04            vlan30-v0                 macvlan          up         BLUE    
 Display cable information and status for all interface ports on all devices:
 
 ```
-cumulus@switch:~$ netq show interfaces physical
+nvidia@switch:~$ netq show interfaces physical
 Matching cables records:
 Hostname          Interface                 State      Speed      AutoNeg Module    Vendor               Part No          Last Changed
 ----------------- ------------------------- ---------- ---------- ------- --------- -------------------- ---------------- -------------------------
@@ -1658,7 +1658,7 @@ fw2               swp1                      down       Unknown    off     RJ45  
 The following example displays detailed module information for the interface ports on the leaf02 switch:
 
 ```
-cumulus@switch:~$ netq leaf02 show interfaces physical module
+nvidia@switch:~$ netq leaf02 show interfaces physical module
 Matching cables records are:
 Hostname          Interface                 Module    Vendor               Part No          Serial No                 Transceiver      Connector        Length Last Changed
 ----------------- ------------------------- --------- -------------------- ---------------- ------------------------- ---------------- ---------------- ------ -------------------------
@@ -1690,14 +1690,14 @@ leaf02            swp52                     SFP       FINISAR CORP.        FCLF8
 The following example first determines which models (part numbers) exist on all the devices and then displays devices with a part number of QSFP-H40G-CU1M installed:
 
 ```
-cumulus@switch:~$ netq show interfaces physical model
+nvidia@switch:~$ netq show interfaces physical model
     2231368-1         :  2231368-1
     624400001         :  624400001
     QSFP-H40G-CU1M    :  QSFP-H40G-CU1M
     QSFP-H40G-CU1MUS  :  QSFP-H40G-CU1MUS
     n/a               :  n/a
 
-cumulus@switch:~$ netq show interfaces physical model QSFP-H40G-CU1M
+nvidia@switch:~$ netq show interfaces physical model QSFP-H40G-CU1M
 Matching cables records:
 Hostname          Interface                 State      Speed      AutoNeg Module    Vendor               Part No          Last Changed
 ----------------- ------------------------- ---------- ---------- ------- --------- -------------------- ---------------- -------------------------
@@ -1753,7 +1753,7 @@ None
 Display statistics for a given interface:
 
 ```
-cumulus@switch:~$ netq show interface-stats swp2
+nvidia@switch:~$ netq show interface-stats swp2
 Matching proc_dev_stats records:
 Hostname          Interface                 RX Packets           RX Drop              RX Errors            TX Packets           TX Drop              TX Errors            Last Updated
 ----------------- ------------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
@@ -1810,7 +1810,7 @@ None
 Display utilization for a given device:
 
 ```
-cumulus@switch:~$ netq spine01 show interface-utilization
+nvidia@switch:~$ netq spine01 show interface-utilization
 Matching port_stats records:
 Hostname          Interface                 RX Bytes (30sec)     RX Drop (30sec)      RX Errors (30sec)    RX Util (%age)       TX Bytes (30sec)     TX Drop (30sec)      TX Errors (30sec)    TX Util (%age)       Port Speed           Last Changed
 ----------------- ------------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- --------------------
@@ -1823,7 +1823,7 @@ spine01           swp5                      2547                 0              
 Display utilization for all devices, transmit only:
 
 ```
-cumulus@switch:~$ netq show interface-utilization tx
+nvidia@switch:~$ netq show interface-utilization tx
 Matching port_stats records:
 Hostname          Interface                 TX Bytes (30sec)     TX Drop (30sec)      TX Errors (30sec)    TX Util (%age)       Port Speed           Last Changed
 ----------------- ------------------------- -------------------- -------------------- -------------------- -------------------- -------------------- --------------------
@@ -1928,7 +1928,7 @@ netq [<hostname>] show inventory os
 Display an inventory summary:
 
 ```
-cumulus@switch:~$ netq show inventory brief
+nvidia@switch:~$ netq show inventory brief
 Matching inventory records:
 Hostname          Switch               OS              CPU      ASIC            Ports                               NIC
 ----------------- -------------------- --------------- -------- --------------- ----------------------------------- -----------------------------------
@@ -1945,7 +1945,7 @@ ufm-switch29      SN3700C              CL              x86_64   Spectrum-2      
 Display ASIC information for all devices with a vendor of *NVIDIA*:
 
 ```
-cumulus@switch:~$ netq show inventory asic vendor NVIDIA
+nvidia@switch:~$ netq show inventory asic vendor NVIDIA
 Matching inventory records:
 Hostname          Vendor               Model                          Model ID                  Core BW        Ports
 ----------------- -------------------- ------------------------------ ------------------------- -------------- -----------------------------------
@@ -1957,7 +1957,7 @@ mlx-2700-11       NVIDIA               Spectrum                       MT52132   
 Display only the devices with a *Celestica* motherboard:
 
 ```
-cumulus@switch:~$ netq show inventory board vendor celestica
+nvidia@switch:~$ netq show inventory board vendor celestica
 Matching inventory records:
 Hostname          Vendor               Model                          Base MAC           Serial No                 Part No          Rev    Mfg Date
 ----------------- -------------------- ------------------------------ ------------------ ------------------------- ---------------- ------ ----------
@@ -1970,10 +1970,10 @@ st1-l2            CELESTICA            Arctica 4806xp                 00:E0:EC:2
 Display all the currently deployed architectures in the network, and then display devices with an *x86\_64* architecture:
 
 ```
-cumulus@switch:~$ netq show inventory cpu arch
+nvidia@switch:~$ netq show inventory cpu arch
     x86_64  :  CPU Architecture
     
-cumulus@switch:~$ netq show inventory cpu arch x86_64
+nvidia@switch:~$ netq show inventory cpu arch x86_64
 Matching inventory records:
 Hostname          Arch     Model                          Freq       Cores
 ----------------- -------- ------------------------------ ---------- -----
@@ -2086,7 +2086,7 @@ netq show ipv6 addresses
 The following example shows all IPv4 addresses in the reference topology:
 
 ```
-cumulus@switch:~$ netq show ip addresses
+nvidia@switch:~$ netq show ip addresses
 Matching address records:
 Address                   Hostname          Interface                 VRF             Last Changed
 ------------------------- ----------------- ------------------------- --------------- -------------------------
@@ -2119,7 +2119,7 @@ Address                   Hostname          Interface                 VRF       
 Display all IP addresses on the *spine01* switch:
 
 ```
-cumulus@switch:~$ netq spine01 show ip addresses
+nvidia@switch:~$ netq spine01 show ip addresses
 Matching address records:
 Address                   Hostname          Interface                 VRF             Last Changed
 ------------------------- ----------------- ------------------------- --------------- -------------------------
@@ -2130,7 +2130,7 @@ Address                   Hostname          Interface                 VRF       
 Display all IP addresses using the *BLUE* VRF on the *leaf03* switch:
 
 ```
-cumulus@switch:~$ netq leaf03 show ip addresses vrf BLUE
+nvidia@switch:~$ netq leaf03 show ip addresses vrf BLUE
 Matching address records:
 Address                   Hostname          Interface                 VRF             Last Changed
 ------------------------- ----------------- ------------------------- --------------- -------------------------
@@ -2141,7 +2141,7 @@ Address                   Hostname          Interface                 VRF       
 The following example shows all IPv6 addresses in the reference topology:
 
 ```
-cumulus@switch:~$ netq show ipv6 addresses
+nvidia@switch:~$ netq show ipv6 addresses
 Matching address records:
 Address                   Hostname          Interface                 VRF             Last Changed
 ------------------------- ----------------- ------------------------- --------------- -------------------------
@@ -2170,7 +2170,7 @@ fe80::4638:39ff:fe00:15/6 spine03           swp3                      default   
 The following example shows the IPv6 address information for the leaf01 switch:
 
 ```
-cumulus@switch:~$ netq leaf01 show ipv6 addresses
+nvidia@switch:~$ netq leaf01 show ipv6 addresses
 Matching address records:
 Address                   Hostname          Interface                 VRF             Last Changed
 ------------------------- ----------------- ------------------------- --------------- -------------------------
@@ -2201,10 +2201,10 @@ fe80::4638:39ff:fe00:17a/ leaf01            eth0                                
 The following example shows the number of IPv4 and IPv6 addresses on the leaf01 switch:
 
 ```
-cumulus@switch:~$ netq leaf01 show ip addresses count
+nvidia@switch:~$ netq leaf01 show ip addresses count
 Count of matching address records: 9
 
-cumulus@switch:~$ netq leaf01 show ipv6 addresses count
+nvidia@switch:~$ netq leaf01 show ipv6 addresses count
 Count of matching address records: 17
 ```
 
@@ -2289,7 +2289,7 @@ netq <hostname> show ipv6 neighbors
 Display all IPv4 neighbors on the *spine01* switch:
 
 ```
-cumulus@switch:~$ netq show ip neighbors
+nvidia@switch:~$ netq show ip neighbors
 Matching neighbor records:
 IP Address                Hostname          Interface                 MAC Address        VRF             Remote Last Changed
 ------------------------- ----------------- ------------------------- ------------------ --------------- ------ -------------------------
@@ -2310,7 +2310,7 @@ IP Address                Hostname          Interface                 MAC Addres
 The following example shows all IPv4 neighbors using the RED VRF. Note that the VRF name is case-sensitive.
 
 ```
-cumulus@switch:~$ netq show ip neighbors vrf RED
+nvidia@switch:~$ netq show ip neighbors vrf RED
 Matching neighbor records:
 IP Address                Hostname          Interface                 MAC Address        VRF             Remote Last Changed
 ------------------------- ----------------- ------------------------- ------------------ --------------- ------ -------------------------
@@ -2327,7 +2327,7 @@ IP Address                Hostname          Interface                 MAC Addres
 Display all IPv6 addresses on the leaf03 switch:
 
 ```
-cumulus@switch:~$ netq leaf03 show ipv6 neighbors
+nvidia@switch:~$ netq leaf03 show ipv6 neighbors
 Matching neighbor records:
 IP Address                Hostname          Interface                 MAC Address        VRF             Remote Last Changed
 ------------------------- ----------------- ------------------------- ------------------ --------------- ------ -------------------------
@@ -2441,7 +2441,7 @@ netq show ipv6 routes
 Display all IPv4 routes:
 
 ```
-cumulus@switch:~$ netq show ip routes
+nvidia@switch:~$ netq show ip routes
 
 Matching routes records:
 Origin VRF             Prefix                         Hostname          Nexthops                            Protocol     Last Changed
@@ -2462,7 +2462,7 @@ false  DataVrf1080     27.0.0.20/32                   torc-22           fe80::20
 The following example shows the routes available for a given IP address.
 
 ```
-cumulus@switch:~$ netq show ip routes 27.0.0.24/32
+nvidia@switch:~$ netq show ip routes 27.0.0.24/32
 Matching routes records:
 Origin VRF             Prefix                         Hostname          Nexthops                            Protocol     Last Changed
 ------ --------------- ------------------------------ ----------------- ----------------------------------- ------------ -------------------------
@@ -2486,7 +2486,7 @@ false  default         27.0.0.24/32                   tor-1             fe80::20
 Display all IPv6 routes on a given switch:
 
 ```
-cumulus@switch:~$ netq torc-22 show ipv6 routes
+nvidia@switch:~$ netq torc-22 show ipv6 routes
 
 Matching routes records:
 Origin VRF             Prefix                         Hostname          Nexthops                            Protocol     Last Changed
@@ -2506,7 +2506,7 @@ false  DataVrf1080     2001:c15c:d06:f00d::4/128      torc-22           fe80::20
 The following example shows all IPv4 routes owned by exit-1 switch:
 
 ```
-cumulus@switch:~$ netq exit-1 show ip routes origin true
+nvidia@switch:~$ netq exit-1 show ip routes origin true
 
 Matching routes records:
 Origin VRF             Prefix                         Hostname          Nexthops                            Protocol     Last Changed
@@ -2523,10 +2523,10 @@ true   mgmt            45.0.0.15/32                   exit-1            NetQBond
 This example shows the total number of IPv4 and IPv6 routes for all devices on the leaf01 switch.
 
 ```
-cumulus@switch:~$ netq leaf01 show ip routes count
+nvidia@switch:~$ netq leaf01 show ip routes count
 Count of matching routes records: 27
     
-cumulus@switch:~$ netq leaf01 show ipv6 routes count
+nvidia@switch:~$ netq leaf01 show ipv6 routes count
 Count of matching routes records: 3
 ```
 ### Related Commands
@@ -2601,7 +2601,7 @@ None
 This example shows the Cumulus reference topology, where LLDP runs on all border, firewall, leaf and spine switches, servers, including the out-of-band management server.
 
 ```
-cumulus@switch:~$ netq show lldp
+nvidia@switch:~$ netq show lldp
 
 Matching lldp records:
 Hostname          Interface                 Peer Hostname     Peer Interface            Last Changed
@@ -2621,7 +2621,7 @@ exit-2            swp3                      spine-1           swp10             
 Display session for a given host interface port:
 
 ```
-cumulus@switch:~$ netq show lldp swp5
+nvidia@switch:~$ netq show lldp swp5
 Matching lldp records:
 Hostname          Interface                 Peer Hostname     Peer Interface            Last Changed
 ----------------- ------------------------- ----------------- ------------------------- -------------------------
@@ -2679,7 +2679,7 @@ netq [<hostname>] show mac-commentary
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq show mac-commentary 33:33:00:00:00:01 vlan 104
+nvidia@switch:~$ netq show mac-commentary 33:33:00:00:00:01 vlan 104
 
 Matching mac_commentary records:
 Last Updated              Hostname         VLAN   Commentary
@@ -2733,7 +2733,7 @@ netq [<hostname>] show mac-history
 This example shows how to view a full chronology of changes for a MAC address of *44:38:39:00:00:5d*. When shown, the caret (^) notation indicates no change in this value from the row above.
 
 ```
-cumulus@switch:~$ netq show mac-history 44:38:39:00:00:5d
+nvidia@switch:~$ netq show mac-history 44:38:39:00:00:5d
 Matching machistory records:
 Last Changed              Hostname          VLAN   Origin Link             Destination            Remote Static
 ------------------------- ----------------- ------ ------ ---------------- ---------------------- ------ ------------
@@ -2756,7 +2756,7 @@ Tue Oct 27 22:29:07 2020  leaf04            30     no     peerlink              
 This example shows only the differences in the changes for a MAC address of *44:38:39:00:00:5d* between now and an hour ago.
 
 ```
-cumulus@switch:~$ netq show mac-history 44:38:39:00:00:5d diff
+nvidia@switch:~$ netq show mac-history 44:38:39:00:00:5d diff
 Matching machistory records:
 Last Changed              Hostname          VLAN   Origin Link             Destination            Remote Static
 ------------------------- ----------------- ------ ------ ---------------- ---------------------- ------ ------------
@@ -2766,7 +2766,7 @@ Tue Oct 27 22:29:07 2020  leaf04            30     no     peerlink              
 This example shows only the differences in the changes for a MAC address of *44:38:39:00:00:5d* between now and 30 days ago. The caret (^) notation indicates no change in this value from the row above.
 
 ```
-cumulus@switch:~$ netq show mac-history 44:38:39:00:00:5d diff between now and 30d
+nvidia@switch:~$ netq show mac-history 44:38:39:00:00:5d diff between now and 30d
 Matching machistory records:
 Last Changed              Hostname          VLAN   Origin Link             Destination            Remote Static
 ------------------------- ----------------- ------ ------ ---------------- ---------------------- ------ ------------
@@ -2776,7 +2776,7 @@ Tue Oct 27 22:29:07 2020  leaf04            ^      ^      ^                ^    
 This example shows changes for a MAC address of *44:38:39:00:00:5d* and VLAN *10*.
 
 ```
-cumulus@switch:~$ netq show mac-history 44:38:39:00:00:5d vlan 10
+nvidia@switch:~$ netq show mac-history 44:38:39:00:00:5d vlan 10
 Matching machistory records:
 Last Changed              Hostname          VLAN   Origin Link             Destination            Remote Static
 ------------------------- ----------------- ------ ------ ---------------- ---------------------- ------ ------------
@@ -2858,13 +2858,13 @@ netq <hostname> show macs
 Display count of MAC addresses on a switch:
 
 ```
-cumulus@switch:~$ netq leaf01 show macs count
+nvidia@switch:~$ netq leaf01 show macs count
 Count of matching mac records: 50
 ```
 Display all MAC addresses networkwide:
 
 ```
-cumulus@switch:~$ netq show macs
+nvidia@switch:~$ netq show macs
 Matching mac records:
 Origin MAC Address        VLAN   Hostname          Egress Port                    Remote Last Changed
 ------ ------------------ ------ ----------------- ------------------------------ ------ -------------------------
@@ -2888,7 +2888,7 @@ false  00:02:00:00:00:30  1001   torc-22           vx-33:tor-2                  
 Display MAC addresses that use a given egress port on a switch:
 
 ```
-cumulus@switch:~$ netq torc-22 show macs egress-port VlanA-1.100
+nvidia@switch:~$ netq torc-22 show macs egress-port VlanA-1.100
 Matching mac records:
 Origin MAC Address        VLAN   Hostname          Egress Port                    Remote Last Changed
 ------ ------------------ ------ ----------------- ------------------------------ ------ -------------------------
@@ -2898,7 +2898,7 @@ true   00:00:5e:00:01:01  100    torc-22           VlanA-1.100                  
 Display MAC addresses associated with a given VLAN. The command also provides the hostnames of the devices, the egress port for the interface, whether the MAC address originated from the given device, whether it learns the MAC address from the peer (`remote=yes`), and the last time the configuration changed.
 
 ```
-cumulus@switch:~$ netq show macs vlan 102
+nvidia@switch:~$ netq show macs vlan 102
 Matching mac records:
 Origin MAC Address        VLAN   Hostname          Egress Port                    Remote Last Changed
 ------ ------------------ ------ ----------------- ------------------------------ ------ -------------------------
@@ -2920,7 +2920,7 @@ true   00:02:00:00:00:a8  102    torc-12           VlanA-1                      
 The following example shows MAC addresses associated with the leaf02 switch and VLAN 10 that use the bridge port.
 
 ```
-cumulus@netq-ts:~$ netq leaf02 show macs egress-port bridge vlan 10
+nvidia@netq-ts:~$ netq leaf02 show macs egress-port bridge vlan 10
 Matching mac records:
 Origin MAC Address        VLAN   Hostname          Egress Port                    Remote Last Changed
 ------ ------------------ ------ ----------------- ------------------------------ ------ -------------------------
@@ -2970,7 +2970,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq show mlag
+nvidia@switch:~$ netq show mlag
 Matching clag records:
 Hostname          Peer              SysMac             State      Backup #Bond #Dual Last Changed
                                                                          s
@@ -3041,7 +3041,7 @@ None
 The following example displays a full chronology of changes for an IP address neighbor. A caret (^) notation indicates that the value from the row preceding it has not changed.
 
 ```
-cumulus@switch:~$ netq show neighbor-history 10.1.10.2
+nvidia@switch:~$ netq show neighbor-history 10.1.10.2
 
 Matching neighborhistory records:
 Last Changed              Hostname          Ifname       Vrf             Remote Ifindex        Mac Address        Ipv6     Ip Address
@@ -3052,7 +3052,7 @@ Tue Sep 29 17:25:17 2020  leaf04            vlan10       RED             no     
 The following example displays the history of an IP address neighbor by hostname.
 
 ```
-cumulus@switch:~$ netq show neighbor-history 10.1.10.2 listby hostname
+nvidia@switch:~$ netq show neighbor-history 10.1.10.2 listby hostname
 
 Matching neighborhistory records:
 Last Changed              Hostname          Ifname       Vrf             Remote Ifindex        Mac Address        Ipv6     Ip Address
@@ -3063,7 +3063,7 @@ Tue Sep 29 17:25:17 2020  leaf04            vlan10       RED             no     
 The following example displays the history of an IP address neighbor between now and two hours ago.
 
 ```
-cumulus@switch:~$ netq show neighbor-history 10.1.10.2 between 2h and now
+nvidia@switch:~$ netq show neighbor-history 10.1.10.2 between 2h and now
 
 Matching neighborhistory records:
 Last Changed              Hostname          Ifname       Vrf             Remote Ifindex        Mac Address        Ipv6     Ip Address
@@ -3114,7 +3114,7 @@ netq show notification
 Display notification channels:
 
 ```
-cumulus@netq-ts:~$ netq show notification channel
+nvidia@netq-ts:~$ netq show notification channel
 
 Matching config_notify records:
 Name            Type             Severity         Channel Info
@@ -3141,7 +3141,7 @@ nts                                               0.35, syslog_port: 514
 Display rules:
 
 ```
-cumulus@switch:~$ netq show notification rule
+nvidia@switch:~$ netq show notification rule
 Matching config_notify records:
 Name            Rule Key         Rule Value
 --------------- ---------------- --------------------
@@ -3203,7 +3203,7 @@ The following example shows the time synchronization status for all devices in t
 All border, leaf, and spine switches rely on the out-of-band management server running *ntpq* to provide their time; they are all synchronized. The out-of-band management server uses the *titan.crash-ove* server running *ntpq* to obtain and maintain time synchronization. Meanwhile, the NetQ server uses the *eterna.binary.net* server running *chronyc* to obtain and maintain time synchronization. The firewall switches are not time synchronized (which is expected). The *Stratum* value indicates the number of hierarchical levels the switch or host is from the reference clock.
 
 ```
-cumulus@switch:~$ netq show ntp
+nvidia@switch:~$ netq show ntp
 Matching ntp records:
 Hostname          NTP Sync Current Server    Stratum NTP App
 ----------------- -------- ----------------- ------- ---------------------
@@ -3234,7 +3234,7 @@ spine04           yes      oob-mgmt-server   3       ntpq
 Display all devices in the network that are out of time synchronization, and therefore need further investigation:
 
 ```
-cumulus@switch:~$ netq show ntp out-of-sync
+nvidia@switch:~$ netq show ntp out-of-sync
 Matching ntp records:
 Hostname          NTP Sync Current Server    Stratum NTP App
 ----------------- -------- ----------------- ------- ---------------------
@@ -3275,7 +3275,7 @@ None
 Cloud appliance or VM:
 
 ```
-cumulus@hostname:~$ sudo netq show opta-health
+nvidia@hostname:~$ sudo netq show opta-health
 [sudo] password for cumulus:
 Application                                          Status    Namespace      Restarts    Timestamp
 ---------------------------------------------------  --------  -------------  ----------  ------------------------
@@ -3335,7 +3335,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@nswitch:~$ netq show opta-platform
+nvidia@nswitch:~$ netq show opta-platform
 Matching platform records:
 Version                              Uptime                    Reinitialize Time
 ------------------------------------ ------------------------- --------------------------
@@ -3397,7 +3397,7 @@ Displays PTP clock and configuration details, including:
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq show ptp clock-details
+nvidia@switch:~$ netq show ptp clock-details
 Matching ptp records:
 Hostname          Clock Domain             Clock Identity               Parent Clock Id                GrandMaster ID               Clock Quality              Clock Accuracy               PTP Ports Configured                     Steps Removed
 ----------------- ------------------------ ---------------------------- ------------------------------ ---------------------------- -------------------------- ---------------------------- ---------------------------------------- --------------------------
@@ -3406,7 +3406,7 @@ mlx-3700c-22      0                        1c:34:da:ff:fe:2d:a0:48      1c34da.f
 ```
 
 ```
-cumulus@switch:~$ netq show ptp global-config
+nvidia@switch:~$ netq show ptp global-config
 Matching ptp records:
 Hostname          Slave Only           Priority1          Priority2          Domain Number              Two Step Flag              OffSet From Master Max Threshold                                 OffSet From Master Min Threshold                                 Mean Path Delay Threshold
 ----------------- -------------------- ------------------ ------------------ -------------------------- -------------------------- ---------------------------------------------------------------- ---------------------------------------------------------------- --------------------------------------------------
@@ -3414,7 +3414,7 @@ mlx-3700c-21      0                    128                128                0  
 mlx-3700c-22      0                    129                128                0                          0                          50                                                               -50                                                              200
 ```
 ```
-cumulus@switch:~$ netq show ptp port-status
+nvidia@switch:~$ netq show ptp port-status
 Matching ptp records:
 Hostname          Interface                 PTP Status
 ----------------- ------------------------- --------------------
@@ -3422,7 +3422,7 @@ mlx-3700c-21      swp29                     MASTER
 mlx-3700c-22      swp29                     SLAVE
 ```
 ```
-cumulus@netq-server:~$ netq show ptp counters tx
+nvidia@netq-server:~$ netq show ptp counters tx
 Matching ptp records:
 Hostname          Interface            Announce             Delay Request        Delay Response       Follow Up            Delay Resp. Follow U Peer Delay Request   Peer Delay Response  Management           Signaling
                                                                                                                            p
@@ -3479,7 +3479,7 @@ None
 Display the packages recommended for upgrade on the *leaf12* switch:
 
 ```
-cumulus@switch:~$ netq leaf12 show recommended-pkg-version
+nvidia@switch:~$ netq leaf12 show recommended-pkg-version
 Matching manifest records:
 Hostname          Release ID           ASIC Vendor          CPU Arch             Package Name         Version              Last Changed
 ----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------------
@@ -3489,7 +3489,7 @@ leaf12            3.7.1                vx                   x86_64              
 Display the version of the `switchd` package recommended for use with Cumulus Linux 3.7.2:
 
 ```
-cumulus@switch:~$ netq act-5712-09 show recommended-pkg-version release-id 3.7.2 package-name switchd
+nvidia@switch:~$ netq act-5712-09 show recommended-pkg-version release-id 3.7.2 package-name switchd
 Matching manifest records:
 Hostname          Release ID           ASIC Vendor          CPU Arch             Package Name         Version              Last Changed
 ----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------------
@@ -3552,7 +3552,7 @@ netq [<hostname>] show resource-util
 Display compute resources for all network switches:
 
 ```
-cumulus@switch:~$ netq show resource-util
+nvidia@switch:~$ netq show resource-util
 Matching resource_util records:
 Hostname          CPU Utilization      Memory Utilization   Disk Name            Total                Used                 Disk Utilization     Last Updated
 ----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
@@ -3571,7 +3571,7 @@ oob-mgmt-server   0.8                  42                   /dev/vda1           
 Display memory utilization for a given switch:
 
 ```
-cumulus@switch:~$ netq leaf01 show resource-util memory
+nvidia@switch:~$ netq leaf01 show resource-util memory
 Matching resource_util records:
 Hostname          Memory Utilization   Last Updated
 ----------------- -------------------- ------------------------
@@ -3581,7 +3581,7 @@ leaf01            92                   Wed Dec  9 16:19:28 2020
 Display disk information for all switches:
 
 ```
-cumulus@switch:~$ netq show resource-util disk /dev/vda1
+nvidia@switch:~$ netq show resource-util disk /dev/vda1
 Matching resource_util records:
 Hostname          Disk Name            Total                Used                 Disk Utilization     Last Updated
 ----------------- -------------------- -------------------- -------------------- -------------------- ------------------------
@@ -3629,7 +3629,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq show roce-config
+nvidia@switch:~$ netq show roce-config
 
 Matching roce records:
 Hostname          Interface       RoCE Mode  Enabled TCs  Mode     ECN Max  ECN Min  SP->DSCP   SP->PCP  SP->PG   SP->TC   PFC SPs  PFC Rx     PFC Tx     ETS Mode   Last Changed
@@ -3711,7 +3711,7 @@ None
 Display general and CNP Rx counters:
 
 ```
-cumulus@switch:~$ netq show roce-counters rx general
+nvidia@switch:~$ netq show roce-counters rx general
 
 Matching roce records:
 Hostname          Interface            PG packets           PG bytes             no buffer discard    buffer usage         buffer max usage     PG usage             PG max usage
@@ -3729,7 +3729,7 @@ switch            swp63s2              1618361              160178796           
 Display RoCE-specific Rx counters:
 
 ```
-cumulus@switch:~$ netq show roce-counters rx roce
+nvidia@switch:~$ netq show roce-counters rx roce
 
 Matching roce records:
 Hostname          Interface       PG packets   PG bytes     no buffer discard  PFC pause packets  PFC pause duration buffer usage buffer max usage   PG usage     PG max usage
@@ -3747,7 +3747,7 @@ switch            swp63s2         0            0            0                  0
 Display RoCE-specific Tx counters:
 
 ```
-cumulus@switch:~$ netq show roce-counters tx roce 
+nvidia@switch:~$ netq show roce-counters tx roce 
 
 Matching roce records:
 Hostname          Interface       TC packets TC bytes   unicast no buffer discard PFC pause packets  PFC pause duration buffer usage buffer max usage   TC usage   TC max usage
@@ -3765,7 +3765,7 @@ switch            swp63s2         0          0          0                       
 To view counters for a specific switch port, include the switch name with the command:
 
 ```
-cumulus@switch:~$ netq show roce-counters swp1s1 rx general 
+nvidia@switch:~$ netq show roce-counters swp1s1 rx general 
 
 Matching roce records:
 Hostname          Interface            PG packets           PG bytes             no buffer discard    buffer usage         buffer max usage     PG usage             PG max usage
@@ -3775,7 +3775,7 @@ switch            swp1s1               1643392              154094520           
 Display RoCE counters for BlueField DPUs:
 
 ```
-cumulus@dpu:~$ netq show roce-counters dpu 
+nvidia@dpu:~$ netq show roce-counters dpu 
 
 Matching roce records:
 Hostname          Device Name          Port Name            Rx Prio3 Bytes       Rx Prio3 Buf Discard Rx Prio3 Packets     Rx Prio3 Cong Discar Rx Prio3 Discards    Tx Prio3 Bytes       Tx Prio3 Packets     Np Cnp Sent          Np Ecn Marked Roce P Rp Cnp Handled       Rp Cnp Ignored
@@ -3802,7 +3802,7 @@ r-netq-bf2-01-dpu p1                   p1                   1.23 GB             
 Display RoCE counters for ConnectX NICs:
 
 ```
-cumulus@nic:~$ netq show roce-counters nic 
+nvidia@nic:~$ netq show roce-counters nic 
 
 Matching roce records:
 Hostname          Device Name          Port Name            Rx Prio3 Bytes       Rx Prio3 Buf Discard Rx Prio3 Packets     Rx Prio3 Cong Discar Rx Prio3 Discards    Tx Prio3 Bytes       Tx Prio3 Packets     Np Cnp Sent          Np Ecn Marked Roce P Rp Cnp Handled       Rp Cnp Ignored
@@ -3844,7 +3844,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq show roce-counters pool 
+nvidia@switch:~$ netq show roce-counters pool 
 
 Matching roce records:
 Hostname          Lossy Default Ingress Size     Roce Reserved Ingress Size     Lossy Default Egress Size      Roce Reserved Egress Size
@@ -3915,7 +3915,7 @@ netq [<hostname>] show sensors
 Display data for the *fan4* sensor on all nodes:
 
 ```
-cumulus@switch:~$ netq show sensors fan fan4
+nvidia@switch:~$ netq show sensors fan fan4
 Matching sensors records:
 Hostname          Name            Description                         State      Speed      Max      Min      Message                             Last Changed
 ----------------- --------------- ----------------------------------- ---------- ---------- -------- -------- ----------------------------------- -------------------------
@@ -3930,7 +3930,7 @@ spine04           fan4            fan tray 2, fan 2                   ok        
 Display the state of all temperature sensors with the name *psu2temp1*:
 
 ```
-cumulus@switch:~$ netq show sensors temp psu2temp1
+nvidia@switch:~$ netq show sensors temp psu2temp1
 Matching sensors records:
 Hostname          Name            Description                         State      Temp     Critical Max      Min      Message                             Last Changed
 ----------------- --------------- ----------------------------------- ---------- -------- -------- -------- -------- ----------------------------------- -------------------------
@@ -4063,7 +4063,7 @@ netq [<hostname>] show services resource-util
 Display all services, switches, and hosts:
 
 ```
-cumulus@switch:~$ netq show services
+nvidia@switch:~$ netq show services
 Matching services records:
 Hostname          Service              PID   VRF             Enabled Active Monitored Status           Uptime                    Last Changed
 ----------------- -------------------- ----- --------------- ------- ------ --------- ---------------- ------------------------- -------------------------
@@ -4086,7 +4086,7 @@ neo-switch01      sx_sdk               13193 default         yes     yes    no  
 Display a given service:
 
 ```
-cumulus@switch:~$ netq show services bgpd
+nvidia@switch:~$ netq show services bgpd
 Matching services records:
 Hostname          Service              PID   VRF             Enabled Active Monitored Status           Uptime                    Last Changed
 ----------------- -------------------- ----- --------------- ------- ------ --------- ---------------- ------------------------- -------------------------
@@ -4099,7 +4099,7 @@ spine04           bgpd                 13934 default         yes     yes    yes 
 Display services on a given switch or host:
 
 ```
-cumulus@switch:~$ netq leaf02 show services
+nvidia@switch:~$ netq leaf02 show services
 Matching services records:
 Hostname          Service              PID   VRF             Enabled Active Monitored Status           Uptime                    Last Changed
 ----------------- -------------------- ----- --------------- ------- ------ --------- ---------------- ------------------------- -------------------------
@@ -4111,7 +4111,7 @@ leaf02            rsyslog              11937 default         yes     yes    no  
 Display service CPU and memory usage from services across all switches:
 
 ```
-cumulus@switch:~$ netq show services resource-util
+nvidia@switch:~$ netq show services resource-util
 
 Matching services records:
 Hostname          Service              PID   VRF                  Enabled Active Uptime               CPU one Minute       CPU five Minute      Memory one Minute    Memory five Minute   Last Updated
@@ -4156,7 +4156,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@netq:~$ netq show status verbose
+nvidia@netq:~$ netq show status verbose
 NetQ Live State: Active
 Installation Status: FINISHED
 Version: 4.14.0
@@ -4235,7 +4235,7 @@ None
 Display the STP topology as viewed from the spine1 switch:
 
 ```
-cumulus@switch:~$ netq spine1 show stp topology
+nvidia@switch:~$ netq spine1 show stp topology
 Root(spine1) -- spine1:sw_clag200 -- leaf2:EdgeIntf(sng_hst2) -- hsleaf21
                                     -- leaf2:EdgeIntf(dual_host2) -- hdleaf2
                                     -- leaf2:EdgeIntf(dual_host1) -- hdleaf1
@@ -4315,7 +4315,7 @@ None
 Show all TCA event configurations:
 
 ```
-cumulus@switch:~$ netq show tca
+nvidia@switch:~$ netq show tca
 Matching config_tca records:
 TCA Name                     Event Name           Scope                      Severity Channel/s          Active Threshold          Unit     Threshold Type Suppress Until
 ---------------------------- -------------------- -------------------------- -------- ------------------ ------ ------------------ -------- -------------- ----------------------------
@@ -4336,7 +4336,7 @@ TCA_TCAM_IPV4_ROUTE_UPPER_1  TCA_TCAM_IPV4_ROUTE_ {"hostname":"*"}           err
 Show a specific TCA configuration:
 
 ```
-cumulus@switch:~$ netq show tca tca_id TCA_TXMULTICAST_UPPER_1
+nvidia@switch:~$ netq show tca tca_id TCA_TXMULTICAST_UPPER_1
 Matching config_tca records:
 TCA Name                     Event Name           Scope                      Severity         Channel/s          Active Threshold          Suppress Until
 ---------------------------- -------------------- -------------------------- ---------------- ------------------ ------ ------------------ ----------------------------
@@ -4396,7 +4396,7 @@ netq show trace summary
 Display full results for given trace:
 
 ```
-cumulus@switch:~$ netq show trace results e58bcf94-6922-40e4-ab2e-ff29aefe0120
+nvidia@switch:~$ netq show trace results e58bcf94-6922-40e4-ab2e-ff29aefe0120
 Job ID                                             ID                        Errors       Warnings         Hops     MTU    Failure reason               Timestamp
 -------------------------------------------------- ------------------------- ------------ ---------------- -------- ------ ---------------------------- -------------------------
 e58bcf94-6922-40e4-ab2e-ff29aefe0120               1                         0            0                2        9216   N/A                          Tue Jan 16 08:25:02 2024
@@ -4407,13 +4407,13 @@ e58bcf94-6922-40e4-ab2e-ff29aefe0120               1                         0  
 Display configuration settings:
 
 ```
-cumulus@switch:~$ netq show trace settings name Lf01toBor01Daily
+nvidia@switch:~$ netq show trace settings name Lf01toBor01Daily
 ```
 
 Display summary results for last 24 hours:
 
 ```
-cumulus@switch:~$ netq show trace summary
+nvidia@switch:~$ netq show trace summary
 Name            Job ID       Status           Status Details               Start Time           End Time
 --------------- ------------ ---------------- ---------------------------- -------------------- ----------------
 leaf01toborder0 f8d6a2c5-54d Complete         0                            Fri Nov  6 15:04:54  Fri Nov  6 15:05
@@ -4519,7 +4519,7 @@ netq show unit-tests vxlan
 Display list of BGP validation tests:
 
 ```
-cumulus@netq-ts:~$ netq show unit-tests bgp
+nvidia@netq-ts:~$ netq show unit-tests bgp
    0 : Session Establishment     - check if BGP session is in established state
    1 : Address Families          - check if tx and rx address family advertisement is consistent between peers of a BGP session
    2 : Router ID                 - check for BGP router id conflict in the network
@@ -4569,7 +4569,7 @@ None
 ### Sample Usage
 <!-- update example-->
 ```
-cumulus@switch:~$ netq show validation settings
+nvidia@switch:~$ netq show validation settings
 Name            Types      Cadence        Start Time           Creation Time              Active
 --------------- ---------- -------------- -------------------- -------------------------- ------
 BGP12hr         bgp, evpn  720m           Thu Nov 12 16:15:00  Thu Nov 12 20:10:05 2020   yes
@@ -4641,7 +4641,7 @@ netq show validation summary
 Display EVPN scheduled validations summary for the past 24 hours:
 
 ```
-cumulus@switch:~$ netq show validation summary type evpn
+nvidia@switch:~$ netq show validation summary type evpn
 Name            Type             Job ID       Checked Nodes              Failed Nodes             Total Nodes            Timestamp
 --------------- ---------------- ------------ -------------------------- ------------------------ ---------------------- -------------------------
 Default validat scheduled        1129e006-d47 6                          0                        6                      Fri Nov 20 15:43:08 2020
@@ -4736,7 +4736,7 @@ None
 The following example shows the VLANs configured across a network based on the NVIDIA reference architecture:
 
 ```
-cumulus@switch:~$ netq show vlan
+nvidia@switch:~$ netq show vlan
 Matching vlan records:
 Hostname          VLANs                     SVIs                      Last Changed
 ----------------- ------------------------- ------------------------- -------------------------
@@ -4750,7 +4750,7 @@ leaf04            1,10,20,30,4001-4002      10 20 30                  Wed Oct 28
 The following example shows the VLANs configured on the leaf02 switch:
 
 ```
-cumulus@switch:~$ netq leaf02 show vlan
+nvidia@switch:~$ netq leaf02 show vlan
 Matching vlan records:
 Hostname          VLAN   Ports                               SVI  Last Changed
 ----------------- ------ ----------------------------------- ---- -------------------------
@@ -4764,7 +4764,7 @@ leaf02            4002   vniBLUE                             yes  Wed Oct 28 15:
 The following example shows that vlan 10 is running on the two border and four leaf switches:
 
 ```
-cumulus@switch~$ netq show vlan 10
+nvidia@switch~$ netq show vlan 10
 Matching vlan records:
 Hostname          VLAN   Ports                               SVI  Last Changed
 ----------------- ------ ----------------------------------- ---- -------------------------
@@ -4824,7 +4824,7 @@ None
 The following example shows all configured VXLANs across the network. In this network, there are three VNIs (13, 24, and 104001) associated with three VLANs (13, 24, 4001), EVPN is the virtual protocol deployed, and the configuration was last changed around 23 hours ago:
 
 ```
-cumulus@switch:~$ netq show vxlan
+nvidia@switch:~$ netq show vxlan
 Matching vxlan records:
 Hostname          VNI        Protoc VTEP IP          VLAN   Replication List                    Last Changed
                                 ol
@@ -4848,7 +4848,7 @@ leaf04            104001     EVPN   10.0.0.134       4001                       
 Display configuration for a given VNI:
 
 ```
-cumulus@switch:~$ netq show vxlan vni 4001
+nvidia@switch:~$ netq show vxlan vni 4001
 Matching vxlan records:
 Hostname          VNI        Protoc VTEP IP          VLAN   Replication List                    Last Changed
                              ol
@@ -4951,7 +4951,7 @@ netq [<hostname>] show wjh-drop l1
 Display drops for a given switch or host:
 
 ```
-cumulus@switch:~$ netq leaf03 show wjh-drop between now and 7d
+nvidia@switch:~$ netq leaf03 show wjh-drop between now and 7d
 Matching wjh records:
 Drop type          Aggregate Count
 ------------------ ------------------------------
@@ -4966,7 +4966,7 @@ Tunnel             0
 Display L2 drops:
 
 ```
-cumulus@mlx-2700-03:mgmt:~$ netq show wjh-drop l2
+nvidia@mlx-2700-03:mgmt:~$ netq show wjh-drop l2
 Matching wjh records:
 Hostname          Ingress Port             Reason                                        Agg Count          Src Ip           Dst Ip           Proto  Src Port         Dst Port         Src Mac            Dst Mac            First Timestamp                Last Timestamp
 ----------------- ------------------------ --------------------------------------------- ------------------ ---------------- ---------------- ------ ---------------- ---------------- ------------------ ------------------ ------------------------------ ----------------------------
@@ -4978,7 +4978,7 @@ mlx-2700-03       swp1s2                   Source MAC equals destination MAC    
 Display ACL drops:
 
 ```
-cumulus@switch:~$ netq show wjh-drop acl
+nvidia@switch:~$ netq show wjh-drop acl
 Matching wjh records:
 Hostname          Ingress Port             Reason                                        Severity         Agg Count          Src Ip           Dst Ip           Proto  Src Port         Dst Port         Src Mac            Dst Mac            Acl Rule Id            Acl Bind Point               Acl Name         Acl Rule         First Timestamp                Last Timestamp
 ----------------- ------------------------ --------------------------------------------- ---------------- ------------------ ---------------- ---------------- ------ ---------------- ---------------- ------------------ ------------------ ---------------------- ---------------------------- ---------------- ---------------- ------------------------------ ----------------------------

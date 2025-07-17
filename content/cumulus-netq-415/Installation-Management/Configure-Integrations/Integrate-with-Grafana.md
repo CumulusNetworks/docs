@@ -31,15 +31,15 @@ Configure your client devices to send OpenTelemetry (OTLP) data to NetQ.
 3. Configure an X.509 certificate to secure the gRPC connection:
 
    ```
-   cumulus@switch:~$ nv set system telemetry export otlp grpc cert-id <ca-certificate>
-   cumulus@switch:~$ nv config apply
+   nvidia@switch:~$ nv set system telemetry export otlp grpc cert-id <ca-certificate>
+   nvidia@switch:~$ nv config apply
    ```
 
 4. Next, disable `insecure` mode and apply the change:
     
     ```
-   cumulus@switch:~$ nv set system telemetry export otlp grpc insecure disabled
-   cumulus@switch:~$ nv config apply
+   nvidia@switch:~$ nv set system telemetry export otlp grpc insecure disabled
+   nvidia@switch:~$ nv config apply
    ```
 5. Run `nv show system telemetry health` to display port and IP address information, along with the connectivity status.
 

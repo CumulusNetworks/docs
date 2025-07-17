@@ -29,11 +29,11 @@ WJH is only supported on NVIDIA Spectrum switches running Cumulus Linux 4.4.0 or
 By default, Cumulus Linux 4.4.0 and later includes the NetQ Agent and CLI. Depending on the version of Cumulus Linux running on your NVIDIA switch, you might need to upgrade the NetQ Agent and CLI to the latest release:
 
 ```
-cumulus@<hostname>:~$ sudo apt-get update
-cumulus@<hostname>:~$ sudo apt-get install -y netq-agent
-cumulus@<hostname>:~$ sudo netq config restart agent
-cumulus@<hostname>:~$ sudo apt-get install -y netq-apps
-cumulus@<hostname>:~$ sudo netq config restart cli
+nvidia@<hostname>:~$ sudo apt-get update
+nvidia@<hostname>:~$ sudo apt-get install -y netq-agent
+nvidia@<hostname>:~$ sudo netq config restart agent
+nvidia@<hostname>:~$ sudo apt-get install -y netq-apps
+nvidia@<hostname>:~$ sudo netq config restart cli
 ```
 
 {{%/notice%}}
@@ -47,13 +47,13 @@ To enable WJH on any switch or server:
 1. Configure the NetQ Agent on the switch:
 
     ```
-    cumulus@switch:~$ sudo netq config add agent wjh
+    nvidia@switch:~$ sudo netq config add agent wjh
     ```
 
 2. Restart the NetQ Agent to begin collecting WJH data:
 
     ```
-    cumulus@switch:~$ sudo netq config restart agent
+    nvidia@switch:~$ sudo netq config restart agent
     ```
 
 When you finish viewing WJH metrics, you can stop the NetQ Agent from collecting WJH data to reduce network traffic. Use `netq config del agent wjh` followed by `netq config restart agent` to disable WJH on a given switch.
@@ -147,7 +147,7 @@ netq [<hostname>] show wjh-drop l1
 This example uses the first form of the command to show drops on switch leaf03 for the past week.
 
 ```
-cumulus@switch:~$ netq leaf03 show wjh-drop between now and 7d
+nvidia@switch:~$ netq leaf03 show wjh-drop between now and 7d
 Matching wjh records:
 Drop type          Aggregate Count
 ------------------ ------------------------------
@@ -162,7 +162,7 @@ Tunnel             0
 This example uses the second form of the command to show drops on switch leaf03 for the past week *including* the drop reasons.
 
 ```
-cumulus@switch:~$ netq leaf03 show wjh-drop details between now and 7d
+nvidia@switch:~$ netq leaf03 show wjh-drop details between now and 7d
 
 Matching wjh records:
 Drop type          Aggregate Count                Reason
@@ -178,7 +178,7 @@ L1                 4                              Oper down
 This example shows the drops seen at layer 2 across the network.
 
 ```
-cumulus@mlx-2700-03:mgmt:~$ netq show wjh-drop l2
+nvidia@switch:mgmt:~$ netq show wjh-drop l2
 Matching wjh records:
 Hostname          Ingress Port             Reason                                        Agg Count          Src Ip           Dst Ip           Proto  Src Port         Dst Port         Src Mac            Dst Mac            First Timestamp                Last Timestamp
 ----------------- ------------------------ --------------------------------------------- ------------------ ---------------- ---------------- ------ ---------------- ---------------- ------------------ ------------------ ------------------------------ ----------------------------
@@ -190,7 +190,7 @@ mlx-2700-03       swp1s2                   Source MAC equals destination MAC    
 The following two examples include the severity of a drop event (error, warning, or notice) for ACLs and routers.
 
 ```
-cumulus@switch:~$ netq show wjh-drop acl
+nvidia@switch:~$ netq show wjh-drop acl
 Matching wjh records:
 Hostname          Ingress Port             Reason                                        Severity         Agg Count          Src Ip           Dst Ip           Proto  Src Port         Dst Port         Src Mac            Dst Mac            Acl Rule Id            Acl Bind Point               Acl Name         Acl Rule         First Timestamp                Last Timestamp
 ----------------- ------------------------ --------------------------------------------- ---------------- ------------------ ---------------- ---------------- ------ ---------------- ---------------- ------------------ ------------------ ---------------------- ---------------------------- ---------------- ---------------- ------------------------------ ----------------------------
@@ -198,7 +198,7 @@ leaf01            swp2                     Ingress router ACL                   
 ```
 
 ```
-cumulus@switch:~$ netq show wjh-drop router
+nvidia@switch:~$ netq show wjh-drop router
 Matching wjh records:
 Hostname          Ingress Port             Reason                                        Severity         Agg Count          Src Ip           Dst Ip           Proto  Src Port         Dst Port         Src Mac            Dst Mac            First Timestamp                Last Timestamp
 ----------------- ------------------------ --------------------------------------------- ---------------- ------------------ ---------------- ---------------- ------ ---------------- ---------------- ------------------ ------------------ ------------------------------ ----------------------------
@@ -230,13 +230,13 @@ You can specify multiple traffic classes and multiple ports by separating the cl
 For example, the following command creates latency thresholds for Class 3 traffic on port swp1 where the upper threshold is 10 usecs and the lower threshold is 1 usec:
 
 ```
-cumulus@switch:~$ sudo netq config add agent wjh-threshold latency 3 swp1 10 1
+nvidia@switch:~$ sudo netq config add agent wjh-threshold latency 3 swp1 10 1
 ```
 
 This example creates congestion thresholds for Class 4 traffic on port swp1 where the upper threshold is 200 cells and the lower threshold is 10 cells, where a cell is a unit of 144 bytes:
 
 ```
-cumulus@switch:~$ sudo netq config add agent wjh-threshold congestion 4 swp1 200 10
+nvidia@switch:~$ sudo netq config add agent wjh-threshold congestion 4 swp1 200 10
 ```
 Refer to the {{<link title="config/#netq-config-add-agent-wjh-threshold" text="command line reference">}} for a comprehensive list of options and definitions for this command.
 

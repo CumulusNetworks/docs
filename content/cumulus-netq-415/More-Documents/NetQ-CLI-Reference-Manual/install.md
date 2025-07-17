@@ -41,7 +41,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq install cluster activate-job config-key ju8Kl4IhZ3cucHJvZDEubmV0cPk3vW11bHVzbmV0d29ya3MuY29cB3ag
+nvidia@switch:~$ netq install cluster activate-job config-key ju8Kl4IhZ3cucHJvZDEubmV0cPk3vW11bHVzbmV0d29ya3MuY29cB3ag
 ```
 
 ### Related Commands
@@ -106,7 +106,7 @@ netq install cluster bundle
 ### Sample Usage
 
 ```
-cumulus@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.14.0.tgz /tmp/cluster-install-config.json restore /home/cumulus/combined_backup_20241211111316.tar
+nvidia@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.14.0.tgz /tmp/cluster-install-config.json restore /home/cumulus/combined_backup_20241211111316.tar
 ```
 
 ### Related Commands
@@ -137,7 +137,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@netq-server:~$ netq install cluster config generate
+nvidia@netq-server:~$ netq install cluster config generate
 2024-10-28 17:29:53.260462: master-node-installer: Writing cluster installation configuration template file @ /tmp/cluster-install-config.json
 ```
 
@@ -173,7 +173,7 @@ netq install cluster config generate workers
 ### Sample Usage
 
 ```
-cumulus@netq-server:~$ netq install cluster config generate workers 2
+nvidia@netq-server:~$ netq install cluster config generate workers 2
 2024-10-28 17:29:53.260462: master-node-installer: Writing cluster installation configuration template file @ /tmp/cluster-install-config.json
 ```
 ### Related Commands
@@ -229,7 +229,7 @@ netq install cluster full
 ### Sample Usage
 
 ```
-cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.14.0.tgz workers 10.20.10.25 10.20.10.45 cluster-vip 10.20.10.254
+nvidia@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.14.0.tgz workers 10.20.10.25 10.20.10.45 cluster-vip 10.20.10.254
 ```
 
 ### Related Commands
@@ -259,7 +259,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@<hostname>:~$ netq install cluster master-init
+nvidia@<hostname>:~$ netq install cluster master-init
     Please run the following command on all worker nodes:
     netq install cluster worker-init c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCQVFDM2NjTTZPdVVUWWJ5c2Q3NlJ4SHdseHBsOHQ4N2VMRWVGR05LSWFWVnVNcy94OEE4RFNMQVhKOHVKRjVLUXBnVjdKM2lnMGJpL2hDMVhmSVVjU3l3ZmhvVDVZM3dQN1oySVZVT29ZTi8vR1lOek5nVlNocWZQMDNDRW0xNnNmSzVvUWRQTzQzRFhxQ3NjbndIT3dwZmhRYy9MWTU1a
 ```
@@ -349,7 +349,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq install opta activate-job config-key ju8Kl4IhZ3cucHJvZDEubmV0cPk3vW11bHV9f3lk0d29ya3MuY29cB3ag
+nvidia@switch:~$ netq install opta activate-job config-key ju8Kl4IhZ3cucHJvZDEubmV0cPk3vW11bHV9f3lk0d29ya3MuY29cB3ag
 ```
 
 ### Related Commands
@@ -405,7 +405,7 @@ netq install opta standalone full
 ### Sample Usage
 
 ```
-cumulus@<hostname>:~$ netq install opta standalone full interface en01 bundle /mnt/installables/NetQ-4.14.0.tgz config-key CI39fo5CZ3cucHJvZDEubmV0cS5jdW11bHVzbmVp6z8ma3MuY29tGLsD
+nvidia@<hostname>:~$ netq install opta standalone full interface en01 bundle /mnt/installables/NetQ-4.14.0.tgz config-key CI39fo5CZ3cucHJvZDEubmV0cS5jdW11bHVzbmVp6z8ma3MuY29tGLsD
 ```
 
 ### Related Commands
@@ -438,7 +438,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@<hostname>:~$ netq install patch /mnt/installables/NetQ-4.0.0-patch.tgz
+nvidia@<hostname>:~$ netq install patch /mnt/installables/NetQ-4.0.0-patch.tgz
 ```
 
 ### Related Commands
@@ -477,7 +477,7 @@ None
 
 <!-- Add output/results -->
 ```
-cumulus@switch:~$ netq install standalone activate-job config-key ju8Kl4IhZ3cucHJvZDEubmV0cPk3vW11bHVzbmV0d29ya3MuY29cB3ag
+nvidia@switch:~$ netq install standalone activate-job config-key ju8Kl4IhZ3cucHJvZDEubmV0cPk3vW11bHVzbmV0d29ya3MuY29cB3ag
 ```
 
 ### Related Commands
@@ -529,7 +529,7 @@ netq install standalone full
 ### Sample Usage
 
 ```
-cumulus@<hostname>:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.14.0.tgz
+nvidia@<hostname>:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.14.0.tgz
 ```
 
 ### Related Commands

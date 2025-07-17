@@ -76,7 +76,7 @@ Before creating a configuration profile, generate AuthKeys using the UI. {{<link
 Create a NetQ agent configuration profile with the {{<link title="lcm/#netq-lcm-add-netq-config" text="netq lcm add netq-config">}} command. If you manage the switch using an in-band interface, you must specify the interface name using the `inband-interface` option:
 
 ```
-cumulus@netq-server:~$ netq lcm add netq-config 
+nvidia@netq-server:~$ netq lcm add netq-config 
     config-profile-name <text-config-profile> 
     accesskey <text-access-key> 
     secret-key <text-secret-key> 
@@ -147,12 +147,12 @@ netq lcm upgrade netq-image
 The following example creates a NetQ Agent upgrade job called *upgrade-example. It upgrades the *spine01* and *spine02* switches with NetQ Agents version 4.0.
 
 ```
-cumulus@switch:~$ netq lcm upgrade netq-image job-name upgrade-example netq-version 4.14.0 hostnames spine01,spine02
+nvidia@switch:~$ netq lcm upgrade netq-image job-name upgrade-example netq-version 4.14.0 hostnames spine01,spine02
 ```
 
 <!-- You can assign an order for which switches to upgrade based on the switch roles defined above. For example, to upgrade the spines before the leafs, add the `order ROLE1,ROLE2` option to the command:
 
-    cumulus@switch:~$ netq lcm upgrade name upgrade-3712 image-id cl_image_69ce56d15b7958de5bb8371e9c4bf2fc9131da9a57b13853e2a60ca109238b22 hostnames spine01,spine02,leaf01,leaf02 order spine,leaf
+    nvidia@switch:~$ netq lcm upgrade name upgrade-3712 image-id cl_image_69ce56d15b7958de5bb8371e9c4bf2fc9131da9a57b13853e2a60ca109238b22 hostnames spine01,spine02,leaf01,leaf02 order spine,leaf
 
 If the switches have not been assigned a role, then do not use the `order` option. So in this example, if switches spine01 and spine02 have not been assigned the _spine_ role, then do not specify the `order spine` option. -->
 
@@ -177,7 +177,7 @@ You can view the progress of one upgrade job at a time. This requires the job id
 The following example shows all upgrade jobs that are currently running or have completed, and then shows the status of the job with a job identifier of job_netq_install_7152a03a8c63c906631c3fb340d8f51e70c3ab508d69f3fdf5032eebad118cc7.
 
 ```
-cumulus@switch:~$ netq lcm show upgrade-jobs netq-image json
+nvidia@switch:~$ netq lcm show upgrade-jobs netq-image json
 [
     {
         "jobId": "job_netq_install_7152a03a8c63c906631c3fb340d8f51e70c3ab508d69f3fdf5032eebad118cc7",
@@ -191,7 +191,7 @@ cumulus@switch:~$ netq lcm show upgrade-jobs netq-image json
     }
 ]
 
-cumulus@switch:~$ netq lcm show status netq-image job_netq_install_7152a03a8c63c906631c3fb340d8f51e70c3ab508d69f3fdf5032eebad118cc7
+nvidia@switch:~$ netq lcm show status netq-image job_netq_install_7152a03a8c63c906631c3fb340d8f51e70c3ab508d69f3fdf5032eebad118cc7
 NetQ Upgrade FAILED
 
 Upgrade Summary

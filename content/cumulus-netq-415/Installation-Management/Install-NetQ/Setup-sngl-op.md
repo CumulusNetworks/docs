@@ -70,10 +70,10 @@ Use the default credentials to log in the first time:
 - Password: nvidia
 
 ```
-$ ssh cumulus@<ipaddr>
+$ ssh nvidia@<ipaddr>
 Warning: Permanently added '<ipaddr>' (ECDSA) to the list of known hosts.
 Ubuntu 24.04 LTS
-cumulus@<ipaddr>'s password:
+nvidia@<ipaddr>'s password:
 You are required to change your password immediately (root enforced)
 System information as of Thu Dec  3 21:35:42 UTC 2024
 System load:  0.09              Processes:           120
@@ -92,22 +92,22 @@ Connection to <ipaddr> closed.
 Log in again with your new password.
 
 ```
-$ ssh cumulus@<ipaddr>
+$ ssh nvidia@<ipaddr>
 Warning: Permanently added '<ipaddr>' (ECDSA) to the list of known hosts.
 Ubuntu 24.04 LTS
-cumulus@<ipaddr>'s password:
+nvidia@<ipaddr>'s password:
   System information as of Thu Dec  3 21:35:59 UTC 2024
   System load:  0.07              Processes:           121
   Usage of /:   8.1% of 61.86GB   Users logged in:     0
   Memory usage: 5%                IP address for eth0: <ipaddr>
   Swap usage:   0%
 Last login: Thu Dec  3 21:35:43 2024 from <local-ipaddr>
-cumulus@ubuntu:~$
+nvidia@ubuntu:~$
 ```
 4. Verify that the platform is ready for installation. Fix any errors before installing the NetQ software.
 
 ```
-cumulus@hostname:~$ sudo opta-check
+nvidia@hostname:~$ sudo opta-check
 ```
 
 5. Change the hostname for the VM from the default value.
@@ -123,7 +123,7 @@ The Internet standards (RFCs) for protocols specify that labels may contain only
 Use the following command:
 
 ```
-cumulus@hostname:~$ sudo hostnamectl set-hostname NEW_HOSTNAME
+nvidia@hostname:~$ sudo hostnamectl set-hostname NEW_HOSTNAME
 ```
 Add the same NEW_HOSTNAME value to **/etc/hosts** on your VM for the localhost entry. For example:
 
@@ -138,12 +138,12 @@ Add the same NEW_HOSTNAME value to **/etc/hosts** on your VM for the localhost e
 
 
 ```
-cumulus@hostname:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.15.0.tgz
+nvidia@hostname:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.15.0.tgz
 ```
 
 <div class="notices note"><p></p><p>NetQ uses the 10.244.0.0/16 (<code>pod-ip-range</code>) and 10.96.0.0/16 (<code>service-ip-range</code>) networks for internal communication by default. If you are using these networks, you must override each range by specifying new subnets for these parameters in the install command:</p>
-    <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>cumulus@hostname:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.15.0.tgz pod-ip-range &lt;pod-ip-range&gt; service-ip-range &lt;service-ip-range&gt;</pre><p>You can specify the IP address of the server instead of the interface name using the <code>ip-addr &lt;ip-address&gt;</code> argument:</p>
-    <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>cumulus@hostname:~$ netq install standalone full ip-addr &lt;ip-address&gt; bundle /mnt/installables/NetQ-4.15.0.tgz</pre><p>If you change the server IP address or hostname after installing NetQ, you must reset the server with the <code>netq bootstrap reset keep-db</code> command and rerun the install command.</p>
+    <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>nvidia@hostname:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.15.0.tgz pod-ip-range &lt;pod-ip-range&gt; service-ip-range &lt;service-ip-range&gt;</pre><p>You can specify the IP address of the server instead of the interface name using the <code>ip-addr &lt;ip-address&gt;</code> argument:</p>
+    <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>nvidia@hostname:~$ netq install standalone full ip-addr &lt;ip-address&gt; bundle /mnt/installables/NetQ-4.15.0.tgz</pre><p>If you change the server IP address or hostname after installing NetQ, you must reset the server with the <code>netq bootstrap reset keep-db</code> command and rerun the install command.</p>
     <p></p></div>
 
 <div class="notices tip"><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
@@ -158,12 +158,12 @@ Restore your data with the backup file you created during a backup using the `re
 Run the installation command on your NetQ server, referencing the path where the backup file resides.
 
 ```
-cumulus@netq-server:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.15.0.tgz restore /home/cumulus/backup-netq-standalone-onprem-4.13.0-2024-12-11_19_50_12_UTC.tar
+nvidia@netq-server:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.15.0.tgz restore /home/cumulus/backup-netq-standalone-onprem-4.13.0-2024-12-11_19_50_12_UTC.tar
 ```
 
 <div class="notices note"><p></p><p>NetQ uses the 10.244.0.0/16 (<code>pod-ip-range</code>) and 10.96.0.0/16 (<code>service-ip-range</code>) networks for internal communication by default. If you are using these networks, you must override each range by specifying new subnets for these parameters in the install command:</p>
-    <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>cumulus@hostname:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.15.0.tgz pod-ip-range &lt;pod-ip-range&gt; service-ip-range &lt;service-ip-range&gt; restore /home/cumulus/backup-netq-standalone-onprem-4.13.0-2024-12-11_19_50_12_UTC.tar</pre><p>You can specify the IP address of the server instead of the interface name using the <code>ip-addr &lt;ip-address&gt;</code> argument:</p>
-    <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>cumulus@hostname:~$ netq install standalone full ip-addr &lt;ip-address&gt; bundle /mnt/installables/NetQ-4.15.0.tgz restore /home/cumulus/backup-netq-standalone-onprem-4.13.0-2024-12-11_19_50_12_UTC.tar</pre><p>If you change the server IP address or hostname after installing NetQ, you must reset the server with the <code>netq bootstrap reset keep-db</code> command and rerun the install command.</p>
+    <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>nvidia@hostname:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.15.0.tgz pod-ip-range &lt;pod-ip-range&gt; service-ip-range &lt;service-ip-range&gt; restore /home/cumulus/backup-netq-standalone-onprem-4.13.0-2024-12-11_19_50_12_UTC.tar</pre><p>You can specify the IP address of the server instead of the interface name using the <code>ip-addr &lt;ip-address&gt;</code> argument:</p>
+    <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>nvidia@hostname:~$ netq install standalone full ip-addr &lt;ip-address&gt; bundle /mnt/installables/NetQ-4.15.0.tgz restore /home/cumulus/backup-netq-standalone-onprem-4.13.0-2024-12-11_19_50_12_UTC.tar</pre><p>If you change the server IP address or hostname after installing NetQ, you must reset the server with the <code>netq bootstrap reset keep-db</code> command and rerun the install command.</p>
     <p></p></div>
 
 <div class="notices tip"><p><ul><li>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</li><li>If you restore NetQ data to a server with an IP address that is different from the one used to back up the data, you must <a href="/networking-ethernet-software/cumulus-netq/Installation-Management/Install-NetQ/Install-NetQ-Agents/#configure-netq-agents">reconfigure the agents</a> on each switch as a final step.</li></ul></p></div>
@@ -194,7 +194,7 @@ State: Active
 Run the `netq show opta-health` command to verify that all applications are operating properly. Allow at least 15 minutes for all applications to come up and report their status.
 
 ```
-cumulus@hostname:~$ netq show opta-health
+nvidia@hostname:~$ netq show opta-health
     Application                                            Status    Namespace      Restarts    Timestamp
     -----------------------------------------------------  --------  -------------  ----------  ------------------------
     cassandra-rc-0-w7h4z                                   READY     default        0           Fri Apr 10 16:08:38 2024

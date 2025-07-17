@@ -85,7 +85,7 @@ Note the syntax requires the *destination* device address first and then the *so
 This example shows a trace from 10.10.10.1 (source, leaf01) to 10.10.10.63 (destination, border01) on the underlay in pretty output. You could have used *leaf01* as the source instead of its IP address. The example first identifies the addresses for the source and destination devices using `netq show ip addresses` then runs the trace.
 
 ```
-cumulus@switch:~$ netq border01 show ip addresses
+nvidia@switch:~$ netq border01 show ip addresses
 
 Matching address records:
 Address                   Hostname          Interface                 VRF             Last Changed
@@ -94,7 +94,7 @@ Address                   Hostname          Interface                 VRF       
 10.0.1.254/32             border01          lo                        default         Mon Nov  2 22:28:54 2020
 10.10.10.63/32            border01          lo                        default         Mon Nov  2 22:28:54 2020
 
-cumulus@switch:~$ netq trace 10.10.10.63 from  10.10.10.1 pretty
+nvidia@switch:~$ netq trace 10.10.10.63 from  10.10.10.1 pretty
 Number of Paths: 12
 Number of Paths with Errors: 0
 Number of Paths with Warnings: 0
@@ -133,7 +133,7 @@ netq add trace <ip> from (<src-hostname> | <ip-src>) [alert-on-failure]
 This example shows a trace from 10.10.10.1 (source, leaf01) to 10.10.10.63 (destination, border01).
 
 ```
-cumulus@switch:~$ netq add trace 10.10.10.63 from 10.10.10.1
+nvidia@switch:~$ netq add trace 10.10.10.63 from 10.10.10.1
 Running job None src 10.10.10.1 dst 10.10.10.63
 ```
 
@@ -174,21 +174,21 @@ Note the syntax requires the *destination* device address first and then the *so
 This example shows a trace from 10.1.10.101 (source, server01) to 10.1.10.104 (destination, server04) through VRF RED in detail output. It first identifies the addresses for the source and destination devices and a VRF between them using `netq show ip addresses` then runs the trace. Note that the VRF name is case sensitive. The trace job might take some time to compile all the available paths, especially if there are many of them.
 
 ```
-cumulus@switch:~$ netq server01 show ip addresses
+nvidia@switch:~$ netq server01 show ip addresses
 Matching address records:
 Address                   Hostname          Interface                 VRF             Last Changed
 ------------------------- ----------------- ------------------------- --------------- -------------------------
 192.168.200.31/24         server01          eth0                      default         Tue Nov  3 19:50:21 2020
 10.1.10.101/24            server01          uplink                    default         Tue Nov  3 19:50:21 2020
 
-cumulus@switch:~$ netq server04 show ip addresses
+nvidia@switch:~$ netq server04 show ip addresses
 Matching address records:
 Address                   Hostname          Interface                 VRF             Last Changed
 ------------------------- ----------------- ------------------------- --------------- -------------------------
 10.1.10.104/24            server04          uplink                    default         Tue Nov  3 19:50:23 2020
 192.168.200.34/24         server04          eth0                      default         Tue Nov  3 19:50:23 2020
 
-cumulus@switch:~$ netq trace 10.1.10.104 from 10.1.10.101 vrf RED
+nvidia@switch:~$ netq trace 10.1.10.104 from 10.1.10.101 vrf RED
 Number of Paths: 16
 Number of Paths with Errors: 0
 Number of Paths with Warnings: 0
@@ -322,7 +322,7 @@ netq add trace <ip> from (<src-hostname> | <ip-src>) vrf <vrf>
 This example shows a trace from 10.1.10.101 (source, server01) to 10.1.10.104 (destination, server04) through VRF RED.
 
 ```
-cumulus@switch:~$ netq add trace 10.1.10.104 from 10.1.10.101 vrf RED
+nvidia@switch:~$ netq add trace 10.1.10.104 from 10.1.10.101 vrf RED
 ```
 
 {{</tab>}}
@@ -364,7 +364,7 @@ Note the syntax requires the *destination* device address first and then the *so
 This example shows a trace from 44:38:39:00:00:32 (source, server01) to 44:38:39:00:00:3e (destination, server04) through VLAN 10 in detail output. It first identifies the MAC addresses for the two devices using `netq show ip neighbors`. Then it determines the VLAN using `netq show macs`. Then it runs the trace.
 
 ```
-cumulus@switch:~$ netq show ip neighbors
+nvidia@switch:~$ netq show ip neighbors
 Matching neighbor records:
 IP Address                Hostname          Interface                 MAC Address        VRF             Remote Last Changed
 ------------------------- ----------------- ------------------------- ------------------ --------------- ------ -------------------------
@@ -391,7 +391,7 @@ IP Address                Hostname          Interface                 MAC Addres
 192.168.200.250           server01          eth0                      44:38:39:00:01:80  default         no     Tue Nov  3 19:50:21 2020
 ...
 
-cumulus@switch:~$ netq show macs
+nvidia@switch:~$ netq show macs
 Matching mac records:
 Origin MAC Address        VLAN   Hostname          Egress Port                    Remote Last Changed
 ------ ------------------ ------ ----------------- ------------------------------ ------ -------------------------
@@ -408,7 +408,7 @@ yes    44:38:39:00:00:4d  4001   border01          bridge                       
 yes    7a:4a:c7:bb:48:27  4001   border01          vniRED                         no     Fri Oct 30 22:28:53 2020
 yes    ce:93:1d:e3:08:1b  4002   border01          vniBLUE                        no     Fri Oct 30 22:28:53 2020
 
-cumulus@switch:~$ netq trace 44:38:39:00:00:3e vlan 10 from 44:38:39:00:00:32
+nvidia@switch:~$ netq trace 44:38:39:00:00:3e vlan 10 from 44:38:39:00:00:32
 Number of Paths: 16
 Number of Paths with Errors: 0
 Number of Paths with Warnings: 0
@@ -545,7 +545,7 @@ netq add trace <mac> vlan <1-4096> from <mac-src>
 This example shows a trace from 44:38:39:00:00:32 (source, server01) to 44:38:39:00:00:3e (destination, server04) through VLAN 10.
 
 ```
-cumulus@switch:~$ netq add trace 44:38:39:00:00:3e vlan 10 from 44:38:39:00:00:32
+nvidia@switch:~$ netq add trace 44:38:39:00:00:3e vlan 10 from 44:38:39:00:00:32
 ```
 
 {{</tab>}}
@@ -613,7 +613,7 @@ netq add trace name <text-new-trace-name> <ip> from (<src-hostname>|<ip-src>) in
 This example shows the creation of a scheduled trace between *leaf01* (source, *10.10.10.1*) and *border01* (destination, *10.10.10.63*) with a name of *L01toB01Daily* that runs on an daily basis. The `interval` option value is *1440* minutes, as denoted by the units indicator (*m*).
 
 ```
-cumulus@switch:~$ netq add trace name Lf01toBor01Daily 10.10.10.63 from 10.10.10.1 interval 1440m
+nvidia@switch:~$ netq add trace name Lf01toBor01Daily 10.10.10.63 from 10.10.10.1 interval 1440m
 Successfully added/updated Lf01toBor01Daily running every 1440m
 ```
 
@@ -661,7 +661,7 @@ netq add trace name <text-new-trace-name> <ip> from (<src-hostname>|<ip-src>) vr
 This example shows the creation of a scheduled trace between *server01* (source, *10.1.10.101*) and *server04* (destination, *10.1.10.104*) with a name of *Svr01toSvr04Hrly* that runs on an hourly basis. The `interval` option value is *60* minutes, as denoted by the units indicator (*m*).
 
 ```
-cumulus@switch:~$ netq add trace name Svr01toSvr04Hrly 10.1.10.104 from 10.10.10.1 interval 60m
+nvidia@switch:~$ netq add trace name Svr01toSvr04Hrly 10.1.10.104 from 10.10.10.1 interval 60m
 Successfully added/updated Svr01toSvr04Hrly running every 60m
 ```
 
@@ -710,7 +710,7 @@ netq add trace name <text-new-trace-name> <mac> vlan <1-4096> from (<src-hostnam
 This example shows the creation of a scheduled trace between *server01* (source, *10.1.10.101*) and *server04* (destination, *44:38:39:00:00:3e*) on VLAN 10 with a name of *Svr01toSvr04x3Hrs* that runs every three hours. The `interval` option value is *180* minutes, as denoted by the units indicator (*m*).
 
 ```
-cumulus@switch:~$ netq add trace name Svr01toSvr04x3Hrs 44:38:39:00:00:3e vlan 10 from 10.1.10.101 interval 180m
+nvidia@switch:~$ netq add trace name Svr01toSvr04x3Hrs 44:38:39:00:00:3e vlan 10 from 10.1.10.101 interval 180m
 Successfully added/updated Svr01toSvr04x3Hrs running every 180m
 ```
 
@@ -745,7 +745,7 @@ You can view a summary of all scheduled traces using the `netq show trace summar
 This example shows all scheduled traces run in the last 24 hours.
 
 ```
-cumulus@switch:~$ netq show trace summary
+nvidia@switch:~$ netq show trace summary
 Name            Job ID       Status           Status Details               Start Time           End Time
 --------------- ------------ ---------------- ---------------------------- -------------------- ----------------
 leaf01toborder0 f8d6a2c5-54d Complete         0                            Fri Nov  6 15:04:54  Fri Nov  6 15:05
@@ -794,7 +794,7 @@ You can view the configuration settings used by a give scheduled trace using the
 This example shows the settings for the scheduled trace named *Lf01toBor01Daily*.
 
 ```
-cumulus@switch:~$ netq show trace settings name Lf01toBor01Daily
+nvidia@switch:~$ netq show trace settings name Lf01toBor01Daily
 ```
 
 ### View Scheduled Trace Results for a Given Trace
@@ -804,8 +804,8 @@ You can view the results for a give scheduled trace using the `netq show trace r
 This example obtains the job ID for the trace named *Lf01toBor01Daily*, then shows the results.
 
 ```
-cumulus@switch:~$ netq show trace summary name Lf01toBor01Daily json
-cumulus@switch:~$ netq show trace results f501f9b0-cca3-4fa1-a60d-fb6f495b7a0e
+nvidia@switch:~$ netq show trace summary name Lf01toBor01Daily json
+nvidia@switch:~$ netq show trace results f501f9b0-cca3-4fa1-a60d-fb6f495b7a0e
 ```
 
 {{</tab>}}
@@ -866,7 +866,7 @@ Both a standard user and an administrative user can remove scheduled traces. No 
     The following example shows all scheduled traces in JSON format:
 
     ```
-    cumulus@switch:~$ netq show trace summary json
+    nvidia@switch:~$ netq show trace summary json
     [
         {
             "job_end_time": 1605300327131,
@@ -944,7 +944,7 @@ Both a standard user and an administrative user can remove scheduled traces. No 
     This example removes the *leaf01toborder01* trace.
 
     ```
-    cumulus@switch:~$ netq del trace leaf01toborder01
+    nvidia@switch:~$ netq del trace leaf01toborder01
     Successfully deleted schedule trace leaf01toborder01
     ```
 

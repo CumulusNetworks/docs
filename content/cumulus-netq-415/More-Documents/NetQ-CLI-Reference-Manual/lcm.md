@@ -33,7 +33,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm add cl-image /path/to/download/cumulus-linux-4.2.0-mlnx-amd64.bin
+nvidia@switch:~$ netq lcm add cl-image /path/to/download/cumulus-linux-4.2.0-mlnx-amd64.bin
 ```
 
 ### Related Commands
@@ -80,7 +80,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm add credentials profile_name n-2000 username cumulus password cumulus
+nvidia@switch:~$ netq lcm add credentials profile_name n-2000 username cumulus password cumulus
 ```
 
 ### Related Commands
@@ -124,9 +124,9 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm add default-version cl-images 5.9.1
+nvidia@switch:~$ netq lcm add default-version cl-images 5.9.1
 
-cumulus@switch:~$ netq lcm add default-version netq-images 4.14.0
+nvidia@switch:~$ netq lcm add default-version netq-images 4.14.0
 ```
 
 ### Related Commands
@@ -175,10 +175,10 @@ netq lcm add netq-config
 The following example creates a configuration called 'test-set-all.' The agent is configured not to consume more than 60% of CPU resources, the logging level is set to error, the VRF is set to management, and WJH events are enabled.
 
 ```
-cumulus@switch:~$ netq lcm add netq-config config-profile-name test-set-all access-key KEY secret-key SKEY cpu-limit 60 log-level error vrf mgmt wjh enable
+nvidia@switch:~$ netq lcm add netq-config config-profile-name test-set-all access-key KEY secret-key SKEY cpu-limit 60 log-level error vrf mgmt wjh enable
 NetQ config profile test-set-all successfully added
  
-cumulus@switch:~$ netq lcm show netq-config
+nvidia@switch:~$ netq lcm show netq-config
 ID                        Name            Default Profile                VRF             WJH       CPU Limit Log Level Last Changed
 ------------------------- --------------- ------------------------------ --------------- --------- --------- --------- -------------------------
 config_profile_d349823e2a test-set-all    No                             mgmt            Enable    60%       error     Thu Apr 20 08:38:37 2023
@@ -220,8 +220,8 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-agent_4.0.0-ub18.04u33~1614767175.886b337_amd64.deb
-cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_4.0.0-ub18.04u33~1614767175.886b337_amd64.deb
+nvidia@switch:~$ netq lcm add netq-image /path/to/download/netq-agent_4.0.0-ub18.04u33~1614767175.886b337_amd64.deb
+nvidia@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_4.0.0-ub18.04u33~1614767175.886b337_amd64.deb
 ```
 
 ### Related Commands
@@ -273,9 +273,9 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm add role spine switches spine01
+nvidia@switch:~$ netq lcm add role spine switches spine01
 
-cumulus@switch:~$ netq lcm add role leaf switches leaf01,leaf02,leaf03,leaf04
+nvidia@switch:~$ netq lcm add role leaf switches leaf01,leaf02,leaf03,leaf04
 ```
 
 ### Related Commands
@@ -304,9 +304,9 @@ None
 ### Sample Usage
 
 ```
-cumulus@netq-server:~$ netq lcm add ztp-script /home/cumulus/ztp.sh
+nvidia@netq-server:~$ netq lcm add ztp-script /home/cumulus/ztp.sh
 ZTP script ztp.sh uploaded successfully and can be downloaded from http://10.10.10.10/lcm/asset/ztp.sh
-cumulus@netq-server:~$ 
+nvidia@netq-server:~$ 
 ```
 
 ### Related Commands
@@ -342,7 +342,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm attach credentials profile_id credential_profile_3eddab251bddea9653df7cd1be0fc123c5d7a42f818b68134e42858e54a9c289 hostnames tor-1,tor-2
+nvidia@switch:~$ netq lcm attach credentials profile_id credential_profile_3eddab251bddea9653df7cd1be0fc123c5d7a42f818b68134e42858e54a9c289 hostnames tor-1,tor-2
 Attached profile to switch(es).
 ```
 ### Related Commands
@@ -377,7 +377,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm show cl-images json
+nvidia@switch:~$ netq lcm show cl-images json
 [
     {
         "id": "image_cc97be3955042ca41857c4d0fe95296bcea3e372b437a535a4ad23ca300d52c3",
@@ -388,7 +388,7 @@ cumulus@switch:~$ netq lcm show cl-images json
         "lastChanged": 1609884659654.0
     },
 ...
-cumulus@switch:~$ netq lcm del cl-image image_cc97be3955042ca41857c4d0fe95296bcea3e372b437a535a4ad23ca300d52c3
+nvidia@switch:~$ netq lcm del cl-image image_cc97be3955042ca41857c4d0fe95296bcea3e372b437a535a4ad23ca300d52c3
 ```
 
 ### Related Commands
@@ -423,7 +423,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm del credentials profile_id credential_profile_3eddab251bddea9653df7cd1be0fc123c5d7a42f818b68134e42858e54a9c289
+nvidia@switch:~$ netq lcm del credentials profile_id credential_profile_3eddab251bddea9653df7cd1be0fc123c5d7a42f818b68134e42858e54a9c289
 ```
 
 ### Related Commands
@@ -459,7 +459,7 @@ None
 To obtain the configuration profile ID, run `netq lcm show netq-config`:
 
 ``` 
-cumulus@switch:~$ netq lcm show netq-config
+nvidia@switch:~$ netq lcm show netq-config
 ID                        Name            Default Profile                VRF             WJH       CPU Limit Log Level Last Changed
 ------------------------- --------------- ------------------------------ --------------- --------- --------- --------- -------------------------
 config_profile_d349823e2a test-set-all    No                             mgmt            Enable    60%       error     Thu Apr 20 08:38:37 2023
@@ -475,14 +475,14 @@ eb2b
 After obtaining the profile ID, run the delete command:
 
 ```
-cumulus@switch:~$ netq lcm del netq-config config-profile-id config_profile_d349823e2aae91a083ed7874d5a3c4fd09b1e99963bda91efccecfc5421afaa8
+nvidia@switch:~$ netq lcm del netq-config config-profile-id config_profile_d349823e2aae91a083ed7874d5a3c4fd09b1e99963bda91efccecfc5421afaa8
 NetQ config profile ID config_profile_d349823e2aae91a083ed7874d5a3c4fd09b1e99963bda91efccecfc5421afaa8 successfully deleted
 ```
 
 You can verify that the configuration profile was deleted with `netq lcm show netq-config`:
 
 ```
-cumulus@switch:~$ netq lcm show netq-config
+nvidia@switch:~$ netq lcm show netq-config
 ID                        Name            Default Profile                VRF             WJH       CPU Limit Log Level Last Changed
 ------------------------- --------------- ------------------------------ --------------- --------- --------- --------- -------------------------
 config_profile_3289efda36 NetQ default co Yes                            mgmt            Disable   Disable   info      Mon Apr 17 06:21:35 2023
@@ -521,7 +521,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm show netq-image json
+nvidia@switch:~$ netq lcm show netq-image json
 [
     {
         "id": "image_d23a9e006641c675ed9e152948a9d1589404e8b83958d53eb0ce7698512e7001",
@@ -534,9 +534,9 @@ cumulus@switch:~$ netq lcm show netq-image json
     },
 ...
 
-cumulus@switch:~$ netq lcm del netq-image image_d23a9e006641c675ed9e152948a9d1589404e8b83958d53eb0ce7698512e7001
+nvidia@switch:~$ netq lcm del netq-image image_d23a9e006641c675ed9e152948a9d1589404e8b83958d53eb0ce7698512e7001
 
-cumulus@switch:~$ netq lcm del netq-image image_68db386683c796d86422f2172c103494fef7a820d003de71647315c5d774f834
+nvidia@switch:~$ netq lcm del netq-image image_68db386683c796d86422f2172c103494fef7a820d003de71647315c5d774f834
 ```
 
 ### Related Commands
@@ -592,7 +592,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@netq-server:~$ netq lcm show ztp-scripts json
+nvidia@netq-server:~$ netq lcm show ztp-scripts json
 [
     {
         "scriptId": "file_e96b2807bdb2c77c89334d03952097dd2224a25df68a6e91d6ab19fc9c265974",
@@ -601,7 +601,7 @@ cumulus@netq-server:~$ netq lcm show ztp-scripts json
     }
 ]
 
-cumulus@netq-server:~$ netq lcm del ztp-script file_e96b2807bdb2c77c89334d03952097dd2224a25df68a6e91d6ab19fc9c265974
+nvidia@netq-server:~$ netq lcm del ztp-script file_e96b2807bdb2c77c89334d03952097dd2224a25df68a6e91d6ab19fc9c265974
 ZTP script ztp1.sh successfully deleted 
 ```
 ### Related Commands
@@ -632,7 +632,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm detach credentials hostname spine-1
+nvidia@switch:~$ netq lcm detach credentials hostname spine-1
 Detached profile from switch.
 ```
 
@@ -672,7 +672,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm discover ip-range 192.168.0.24-64 profile_id credential_profile_3eddab251bddea9653df7cd1be0fc123c5d7a42f818b68134e42858e54a9c289
+nvidia@switch:~$ netq lcm discover ip-range 192.168.0.24-64 profile_id credential_profile_3eddab251bddea9653df7cd1be0fc123c5d7a42f818b68134e42858e54a9c289
 NetQ Discovery Started with job id: job_scan_4f3873b0-5526-11eb-97a2-5b3ed2e556db
 ```
 
@@ -717,7 +717,7 @@ netq lcm edit credentials
 To obtain the profile ID, run `netq lcm show credentials`:
 
 ```
-cumulus@switch:~$ netq lcm show credentials
+nvidia@switch:~$ netq lcm show credentials
 Profile ID           Profile Name             Type             SSH Key        Username         Password         Number of switches                   Last Changed
 -------------------- ------------------------ ---------------- -------------- ---------------- ---------------- ------------------------------------ -------------------------
 credential_profile_3 n-1000                   BASIC                           admin            **************   3                                    Fri Feb  3 21:49:10 2023
@@ -729,7 +729,7 @@ cd1be0fc123c5d7a42f8
 To change the name of the profile (in this example from n-1000 to n-2000) run:
 
 ```
-cumulus@switch:~$ netq lcm edit credentials profile_id credential_profile_3eddab251bddea9653df7cd1be0fc123c5d7a42f818b68134e42858e54a9c289 profile_name n-2000
+nvidia@switch:~$ netq lcm edit credentials profile_id credential_profile_3eddab251bddea9653df7cd1be0fc123c5d7a42f818b68134e42858e54a9c289 profile_name n-2000
 Credential profile modified.
 ```
 
@@ -850,7 +850,7 @@ netq lcm show cl-images
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm show cl-images json
+nvidia@switch:~$ netq lcm show cl-images json
 [
     {
         "id": "image_cc97be3955042ca41857c4d0fe95296bcea3e372b437a535a4ad23ca300d52c3",
@@ -904,7 +904,7 @@ netq lcm show credentials
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm show credentials
+nvidia@switch:~$ netq lcm show credentials
 Profile ID           Profile Name             Type             SSH Key        Username         Password         Number of switches                   Last Changed
 -------------------- ------------------------ ---------------- -------------- ---------------- ---------------- ------------------------------------ -------------------------
 credential_profile_d Netq-Default             BASIC                           cumulus          **************   11                                   Fri Feb  3 18:20:33 2023
@@ -966,7 +966,7 @@ netq lcm show default-version
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm show default-version cl-images 
+nvidia@switch:~$ netq lcm show default-version cl-images 
 ID                        Name            CL Version  CPU      ASIC            Last Changed
 ------------------------- --------------- ----------- -------- --------------- -------------------------
 image_b80c410e165ea232cbe cumulus-linux-4 4.2.1       x86_64   VX              Tue Jan 26 22:32:11 2021
@@ -1005,10 +1005,10 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm discover ip-range 192.168.200.62
+nvidia@switch:~$ netq lcm discover ip-range 192.168.200.62
 NetQ Discovery Started with job id: job_scan_c1d5e060-720e-11eb-9e30-f75bf78d6bf1
 
-cumulus@switch:~$ netq lcm show discovery-job job_scan_c1d5e060-720e-11eb-9e30-f75bf78d6bf1
+nvidia@switch:~$ netq lcm show discovery-job job_scan_c1d5e060-720e-11eb-9e30-f75bf78d6bf1
 Scan COMPLETED
 
 Summary
@@ -1059,7 +1059,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm show netq-config 
+nvidia@switch:~$ netq lcm show netq-config 
 ID                        Name            Default Profile                VRF             WJH       CPU Limit Log Level Last Changed
 ------------------------- --------------- ------------------------------ --------------- --------- --------- --------- -------------------------
 config_profile_3289efda36 NetQ default co Yes                            mgmt            Disable   Disable   info      Tue Jan  5 05:25:31 2021
@@ -1107,7 +1107,7 @@ netq lcm show netq-images
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm show netq-images json
+nvidia@switch:~$ netq lcm show netq-images json
 [
     {
         "id": "image_d23a9e006641c675ed9e152948a9d1589404e8b83958d53eb0ce7698512e7001",
@@ -1197,7 +1197,7 @@ netq lcm show status
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm show upgrade-jobs cl-image json
+nvidia@switch:~$ netq lcm show upgrade-jobs cl-image json
 [
     {
         "jobId": "job_cl_upgrade_a96e0beb59a16b085a7d2b3b5ffd6e5971870aa2903c6df86f26fa908ded2e21",
@@ -1218,7 +1218,7 @@ cumulus@switch:~$ netq lcm show upgrade-jobs cl-image json
         "startTime": 1613595515152.0
     }
 ]
-cumulus@switch:~$ netq lcm show status cl-image job_cl_upgrade_a96e0beb59a16b085a7d2b3b5ffd6e5971870aa2903c6df86f26fa908ded2e21
+nvidia@switch:~$ netq lcm show status cl-image job_cl_upgrade_a96e0beb59a16b085a7d2b3b5ffd6e5971870aa2903c6df86f26fa908ded2e21
 Hostname    CL Version    Backup Status    Backup Start Time         Restore Status      Restore Start Time    Upgrade Status      Upgrade Start Time
 ----------  ------------  ---------------  ------------------------  ------------------  --------------------  ------------------  --------------------
 leaf01      4.2.0         FAILED           Wed Jan 20 19:30:12 2021  SKIPPED_ON_FAILURE  N/A                   SKIPPED_ON_FAILURE  N/A
@@ -1263,7 +1263,7 @@ netq lcm show switches
 Display switches running Cumulus Linux 5.5.0:
 
 ```
-cumulus@switch:~$ netq lcm show switches cl-version 5.5.0
+nvidia@switch:~$ netq lcm show switches cl-version 5.5.0
 Hostname          Role       IP Address                MAC Address        CPU      CL Version  NetQ Version  Config Profile               Credential Profile                   Last Changed
 ----------------- ---------- ------------------------- ------------------ -------- ----------- ------------- ---------------------------- ------------------------------------ -------------------------
 noc-se                       192.168.0.15              00:01:00:00:12:00  x86_64   5.5.0       4.8.0-cl4u46~ []                           Netq-Default                         Fri Feb  3 20:50:40 2023
@@ -1317,7 +1317,7 @@ netq lcm show upgrade-jobs
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm show upgrade-jobs netq-image 
+nvidia@switch:~$ netq lcm show upgrade-jobs netq-image 
 Job ID       Name            NetQ Version  Overall Status   Pre-Check Status Warnings         Errors       Start Time
 ------------ --------------- ------------- ---------------- ---------------- ---------------- ------------ --------------------------
 job_netq_ins Leaf01-02 to Ne 4.0.0         FAILED           COMPLETED        []               []           Thu Jan 28 19:48:10 2021
@@ -1358,7 +1358,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@netq-server:~$ netq lcm show ztp-scripts json
+nvidia@netq-server:~$ netq lcm show ztp-scripts json
 [
     {
         "scriptId": "file_e96b2807bdb2c77c89334d03952097dd2224a25df68a6e91d6ab19fc9c265974",
@@ -1406,7 +1406,7 @@ netq lcm upgrade cl-image
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm upgrade cl-image job-name upgrade-cl430 cl-version 4.3.0 netq-version 4.6.0 hostnames spine01,spine02
+nvidia@switch:~$ netq lcm upgrade cl-image job-name upgrade-cl430 cl-version 4.3.0 netq-version 4.6.0 hostnames spine01,spine02
 ```
 
 ### Related Commands
@@ -1447,7 +1447,7 @@ netq lcm upgrade netq-image
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm upgrade netq-image job-name upgrade-cl530-nq450 netq-version 4.6.0 hostnames spine01,spine02
+nvidia@switch:~$ netq lcm upgrade netq-image job-name upgrade-cl530-nq450 netq-version 4.6.0 hostnames spine01,spine02
 ```
 
 ### Related Commands

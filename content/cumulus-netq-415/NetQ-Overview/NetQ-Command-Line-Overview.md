@@ -23,7 +23,7 @@ To access the CLI from a switch or server:
 1. Log in to the device. The following example uses the default username of *cumulus* and a hostname of *switch*:
 
     ```
-    <computer>:~<username>$ ssh cumulus@switch
+    <computer>:~<username>$ ssh nvidia@switch
     ```
 
 2. Enter your password to reach the command prompt. The default password is *CumulusLinux\!*
@@ -31,7 +31,7 @@ To access the CLI from a switch or server:
 3.  You can now run commands:
 
     ```
-    cumulus@switch:~$ netq show agents
+    nvidia@switch:~$ netq show agents
     ```
 <!-- vale on -->
 
@@ -87,7 +87,7 @@ When using the `between` option, you can enter the start time (`text-time`) and 
 As you enter commands, you can get help with the valid keywords or options using the **tab** key. For example, using tab completion with `netq check` displays the possible objects for the command, and returns you to the command prompt to complete the command:
 
 ```
-cumulus@switch:~$ netq check <<press Tab>>
+nvidia@switch:~$ netq check <<press Tab>>
     addresses   :  IPv4/v6 addresses
     agents      :  Netq agent
     bgp         :  BGP info
@@ -102,7 +102,7 @@ cumulus@switch:~$ netq check <<press Tab>>
     topology    :  Topology
     vlan        :  VLAN
     vxlan       :  VxLAN
-cumulus@switch:~$ netq check
+nvidia@switch:~$ netq check
 ```
 
 ### Command Help
@@ -110,7 +110,7 @@ cumulus@switch:~$ netq check
 As you enter commands, you can get help with command syntax by entering `help` as part of the command. For example, to find out which options are available for an IP addresses check, enter the `netq check addresses` command followed by `help`:
 
 ```
-cumulus@switch:~$ netq check addresses help
+nvidia@switch:~$ netq check addresses help
 Commands:
     netq check addresses [label <text-label-name> | hostnames <text-list-hostnames>] [check_filter_id <text-check-filter-id>] [include <addr-number-range-list> | exclude <addr-number-range-list>] [around <text-time>] [json | summary]
 ```
@@ -118,13 +118,13 @@ Commands:
 To see an exhaustive list of commands and their definitions, run:
 
 ```
-cumulus@switch:~$ netq help list
+nvidia@switch:~$ netq help list
 ```
 
 To display NetQ command formatting rules, run:
 
 ```
-cumulus@switch:~$ netq help verbose
+nvidia@switch:~$ netq help verbose
 ```
 ### Command Abbreviations
 
@@ -173,7 +173,7 @@ The commands take the form of `netq check <network-protocol-or-service> [options
 The following example shows the output for the `netq check bgp` command. Failed checks appear in the summary results or in the *failedNodes* section.
 
 ```
-cumulus@switch:~$ netq check bgp
+nvidia@switch:~$ netq check bgp
 bgp check result summary:
 
 Total nodes         : 7
@@ -235,7 +235,7 @@ spine02           default         swp3              leaf03            BGP sessio
 {{< expand "Example check command in JSON format" >}}
 
 ```
-cumulus@switch:~$ netq check bgp json
+nvidia@switch:~$ netq check bgp json
 {
     "additional_summary":{
         "failed_sessions":13,
@@ -531,7 +531,7 @@ The commands take the form of `netq [<hostname>] show <network-protocol-or-servi
 The following example shows the standard output for the `netq show agents` command:
 
 ```
-cumulus@switch:~$ netq show agents
+nvidia@switch:~$ netq show agents
 Matching agents records:
 Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
 ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
@@ -551,7 +551,7 @@ spine02           Fresh            yes      4.14.0-cld12u51~1744815975.8dbbbd20c
 
 The following example shows the filtered output for the `netq show agents` command:
 ```
-cumulus@switch:~$ netq leaf01 show agents
+nvidia@switch:~$ netq leaf01 show agents
 
 Matching agents records:
 Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
@@ -583,7 +583,7 @@ netq config (start|stop|status|restart) agent
 The following example shows how to view the NetQ Agent configuration:
 
 ```
-cumulus@switch:~$ sudo netq config show agent
+nvidia@switch:~$ sudo netq config show agent
 netq-agent                value      default
 ------------------------  ---------  ---------
 exhibitport
@@ -633,13 +633,13 @@ netq config select cli premise
 The following example shows how to restart the CLI instance:
 
 ```
-cumulus@switch~:$ netq config restart cli
+nvidia@switch~:$ netq config restart cli
 ```
 
 The following example shows how to enable the CLI on a NetQ on-premises server or virtual machine:
 
 ```
-cumulus@switch~:$ netq config add cli server 10.1.3.101
+nvidia@switch~:$ netq config add cli server 10.1.3.101
 ```
 #### NetQ System Configuration Commands
 
@@ -652,7 +652,7 @@ Use the following commands to manage the NetQ system itself:
 
 The following example shows how to decommission a switch named leaf01:
 
-    cumulus@netq-server:~$ netq decommission leaf01
+    nvidia@netq-server:~$ netq decommission leaf01
 
 For information and examples on installing and upgrading the NetQ system, see {{<link url="Install-NetQ">}} and {{<link url="Upgrade-NetQ">}}.
 
@@ -689,7 +689,7 @@ LCM commands allow you to:
 The following example shows the NetQ configuration profiles:
 
 ```
-cumulus@switch:~$ netq lcm show netq-config
+nvidia@switch:~$ netq lcm show netq-config
 ID                        Name            Default Profile                VRF             WJH       CPU Limit Log Level Last Changed              In-Band Interface
 ------------------------- --------------- ------------------------------ --------------- --------- --------- --------- ------------------------- ----------------------------------
 config_profile_3289efda36 NetQ default co Yes                            mgmt            Disable   Disable   info      Mon Mar  3 19:22:35 2025  N/A
@@ -719,7 +719,7 @@ netq trace (<mac> vlan <1-4096>) from <mac-src> [around <text-time>] [json|detai
 The following example shows how to run a trace based on the destination IP address, in *pretty* output with a small number of resulting paths:
 
 ```
-cumulus@switch:~$ netq trace 10.0.0.11 from 10.0.0.14 pretty
+nvidia@switch:~$ netq trace 10.0.0.11 from 10.0.0.14 pretty
 Number of Paths: 6
     Inconsistent PMTU among paths
 Number of Paths with Errors: 0
@@ -739,7 +739,7 @@ Path MTU: 9000
 This example shows how to run a trace based on the destination IP address, in *detail* output with a small number of resulting paths:
 
 ```
-cumulus@switch:~$ netq trace 10.0.0.11 from 10.0.0.14 detail
+nvidia@switch:~$ netq trace 10.0.0.11 from 10.0.0.14 detail
 Number of Paths: 6
     Inconsistent PMTU among paths
 Number of Paths with Errors: 0
@@ -783,7 +783,7 @@ Id  Hop Hostname        InPort          InVlan InTunnel              InRtrIf    
 This example shows how to run a trace based on the destination MAC address, in *pretty* output:
 
 ```
-cumulus@switch:~$ netq trace A0:00:00:00:00:11 vlan 1001 from Server03 pretty
+nvidia@switch:~$ netq trace A0:00:00:00:00:11 vlan 1001 from Server03 pretty
 Number of Paths: 6
 Number of Paths with Errors: 0
 Number of Paths with Warnings: 0

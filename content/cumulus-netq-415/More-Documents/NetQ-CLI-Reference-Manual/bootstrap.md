@@ -36,13 +36,13 @@ None
 Prepare node for bootstrapping and discard data:
 
 ```
-cumulus@switch:~$ netq bootstrap reset
+nvidia@switch:~$ netq bootstrap reset
 ```
 
 Prepare node for bootstrapping while keeping existing data:
 
 ```
-cumulus@switch:~$ netq bootstrap reset keep-db
+nvidia@switch:~$ netq bootstrap reset keep-db
 ```
 
 ### Related Commands

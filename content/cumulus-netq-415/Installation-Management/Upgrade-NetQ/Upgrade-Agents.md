@@ -43,7 +43,7 @@ Run the following command to view the NetQ Agent version.
 {{<tab "Cumulus Linux">}}
 
 ```
-cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
+nvidia@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
 ```
 
 {{<netq-install/agent-version version="4.14.0" opsys="cl">}}

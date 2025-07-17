@@ -37,7 +37,7 @@ netq upgrade bundle <text-bundle-url>
 ### Sample Usage
 
 ```
-cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.14.0.tgz
+nvidia@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.14.0.tgz
 ```
 
 ### Related Commands

@@ -8,7 +8,7 @@ bookhidden: true
 Follow these steps to set up and configure your VM on a cluster of servers in an on-premises deployment. First configure the VM on the master node, and then configure the VM on each additional node. NVIDIA recommends installing the virtual machines on different servers to increase redundancy in the event of a hardware failure. 
 
 {{%notice note%}}
-NetQ 4.14.0 supports a 3-node HA scale cluster consisting of 1 master and 2 additional high-availability (HA) nodes or a 5-node cluster consisting of 1 master, 2 HA nodes, and 2 worker nodes.
+NetQ 4.15.0 supports a 3-node HA scale cluster consisting of 1 master and 2 additional high-availability (HA) nodes or a 5-node cluster consisting of 1 master, 2 HA nodes, and 2 worker nodes.
 {{%/notice%}}
 - - -
 
@@ -73,7 +73,7 @@ Additionally, for internal cluster communication, you must open these ports:
     b. Select **NVIDIA Licensing Portal**.<br>
     c. Select **Software Downloads** from the menu.<br>
     d. Click **Product Family** and select **NetQ**.<br>
-    e. For deployments using KVM, download the **NetQ SW 4.14.0 KVM Scale** image. For deployments using VMware, download the **NetQ SW 4.14.0 VMware Scale** image<br>
+    e. For deployments using KVM, download the **NetQ SW 4.15.0 KVM Scale** image. For deployments using VMware, download the **NetQ SW 4.15.0 VMware Scale** image<br>
     f. If prompted, read the license agreement and proceed with the download.<br>
 
 {{%notice note%}}
@@ -82,21 +82,21 @@ NVIDIA employees can download NetQ directly from the {{<exlink url="http://ui.li
 
 2. Open your hypervisor and configure your VM. You can use the following examples for reference or use your own hypervisor instructions.
 
- {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem-scale-cluster" version="4.14">}}
+ {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem-scale-cluster" version="4.15">}}
 
- {{<netq-install/vm-setup hypervisor="vmware" version="4.14">}}
+ {{<netq-install/vm-setup hypervisor="vmware" version="4.15">}}
 
 3. Log in to the VM and change the password.
 
 Use the default credentials to log in the first time:
 
-- Username: cumulus
-- Password: cumulus
+- Username: nvidia
+- Password: nvidia
 
 ```
 $ ssh cumulus@<ipaddr>
 Warning: Permanently added '<ipaddr>' (ECDSA) to the list of known hosts.
-Ubuntu 22.04 LTS
+Ubuntu 24.04 LTS
 cumulus@<ipaddr>'s password:
 You are required to change your password immediately (root enforced)
 System information as of Thu Dec  3 21:35:42 UTC 2024
@@ -118,7 +118,7 @@ Log in again with your new password.
 ```
 $ ssh cumulus@<ipaddr>
 Warning: Permanently added '<ipaddr>' (ECDSA) to the list of known hosts.
-Ubuntu 22.04 LTS
+Ubuntu 24.04 LTS
 cumulus@<ipaddr>'s password:
   System information as of Thu Dec  3 21:35:59 UTC 2024
   System load:  0.07              Processes:           121
@@ -343,7 +343,7 @@ cumulus@netq-server:~$ vim /tmp/cluster-install-config.json
 Run the following command on your master node, using the JSON configuration file created in step 11:
 
 ```
-cumulus@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.14.0.tgz /tmp/cluster-install-config.json
+cumulus@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.15.0.tgz /tmp/cluster-install-config.json
 ```
 
 <div class="notices tip"><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
@@ -376,7 +376,7 @@ cumulus@netq-server:~$ vim /tmp/cluster-install-config.json
 2. Run the following command on your master node, using the JSON configuration file from the previous step. Include the restore option referencing the path where the backup file resides:
 
 ```
-cumulus@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.14.0.tgz /tmp/cluster-install-config.json restore /home/cumulus/combined_backup_20241211111316.tar
+cumulus@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.15.0.tgz /tmp/cluster-install-config.json restore /home/cumulus/combined_backup_20241211111316.tar
 ```
 
 <div class="notices tip"><p><ul><li>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</li><li>If you restore NetQ data to a server with an IP address that is different from the one used to back up the data, you must <a href="/networking-ethernet-software/cumulus-netq/Installation-Management/Install-NetQ/Install-NetQ-Agents/#configure-netq-agents">reconfigure the agents</a> on each switch as a final step.</li></ul></p></div>
@@ -393,8 +393,8 @@ To view the status of the installation, use the `netq show status [verbose]` com
 State: Active
     NetQ Live State: Active
     Installation Status: FINISHED
-    Version: 4.14.0
-    Installer Version: 4.14.0
+    Version: 4.15.0
+    Installer Version: 4.15.0
     Installation Type: Cluster
     Activation Key: EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIixPSUJCOHBPWUFnWXI2dGlGY2hTRzExR2E5aSt6ZnpjOUvpVVTaDdpZEhFPQ==
     Master SSH Public Key: c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCZ1FDNW9iVXB6RkczNkRC

@@ -27,7 +27,7 @@ The dashboard presents a timeline of events alongside the devices that are causi
 
   {{<figure src="/images/netq/events-full-460.png" width="1200" alt="Events dashboard with networkwide error and info events.">}}
 
-Events are also generated when streaming {{<link title="Validate Overall Network Health" text="validation checks">}} detect a failure. If an event is generated from a failed validation check, it will be marked resolved automatically the next time the check runs successfully.
+Events are also generated when streaming {{<link title="Validation Tests Reference" text="validation checks">}} detect a failure. If an event is generated from a failed validation check, it will be marked resolved automatically the next time the check runs successfully.
 
 ## Create Event Filters
 

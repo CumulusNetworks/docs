@@ -49,7 +49,7 @@ Confirm that the required ports are open for communications.
     b. Select **NVIDIA Licensing Portal**.<br>
     c. Select **Software Downloads** from the menu.<br>
     d. Click **Product Family** and select **NetQ**.<br>
-    e. For deployments using KVM, download the **NetQ SW 4.14 KVM** image. For deployments using VMware, download the **NetQ SW 4.14 VMware** image.<br>
+    e. For deployments using KVM, download the **NetQ SW 4.15 KVM** image. For deployments using VMware, download the **NetQ SW 4.15 VMware** image.<br>
     f. If prompted, read the license agreement and proceed with the download.<br>
 
 {{%notice note%}}
@@ -59,20 +59,20 @@ NVIDIA employees can download NetQ directly from the {{<exlink url="http://ui.li
 
 2. Open your hypervisor and configure your VM. You can use the following examples for reference or use your own hypervisor instructions.
 <!--undo these shortcodes-->
-{{<netq-install/vm-setup hypervisor="kvm" deployment="onprem" version="4.14">}}
-{{<netq-install/vm-setup hypervisor="vmware" deployment="onprem" version="4.14">}}
+{{<netq-install/vm-setup hypervisor="kvm" deployment="onprem" version="4.15">}}
+{{<netq-install/vm-setup hypervisor="vmware" deployment="onprem" version="4.15">}}
 
 3. Log in to the VM and change the password.
 
 Use the default credentials to log in the first time:
 
-- Username: cumulus
-- Password: cumulus
+- Username: nvidia
+- Password: nvidia
 
 ```
 $ ssh cumulus@<ipaddr>
 Warning: Permanently added '<ipaddr>' (ECDSA) to the list of known hosts.
-Ubuntu 22.04 LTS
+Ubuntu 24.04 LTS
 cumulus@<ipaddr>'s password:
 You are required to change your password immediately (root enforced)
 System information as of Thu Dec  3 21:35:42 UTC 2024
@@ -94,7 +94,7 @@ Log in again with your new password.
 ```
 $ ssh cumulus@<ipaddr>
 Warning: Permanently added '<ipaddr>' (ECDSA) to the list of known hosts.
-Ubuntu 22.04 LTS
+Ubuntu 24.04 LTS
 cumulus@<ipaddr>'s password:
   System information as of Thu Dec  3 21:35:59 UTC 2024
   System load:  0.07              Processes:           121
@@ -138,12 +138,12 @@ Add the same NEW_HOSTNAME value to **/etc/hosts** on your VM for the localhost e
 
 
 ```
-cumulus@hostname:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.14.0.tgz
+cumulus@hostname:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.15.0.tgz
 ```
 
 <div class="notices note"><p></p><p>NetQ uses the 10.244.0.0/16 (<code>pod-ip-range</code>) and 10.96.0.0/16 (<code>service-ip-range</code>) networks for internal communication by default. If you are using these networks, you must override each range by specifying new subnets for these parameters in the install command:</p>
-    <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>cumulus@hostname:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.14.0.tgz pod-ip-range &lt;pod-ip-range&gt; service-ip-range &lt;service-ip-range&gt;</pre><p>You can specify the IP address of the server instead of the interface name using the <code>ip-addr &lt;ip-address&gt;</code> argument:</p>
-    <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>cumulus@hostname:~$ netq install standalone full ip-addr &lt;ip-address&gt; bundle /mnt/installables/NetQ-4.14.0.tgz</pre><p>If you change the server IP address or hostname after installing NetQ, you must reset the server with the <code>netq bootstrap reset keep-db</code> command and rerun the install command.</p>
+    <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>cumulus@hostname:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.15.0.tgz pod-ip-range &lt;pod-ip-range&gt; service-ip-range &lt;service-ip-range&gt;</pre><p>You can specify the IP address of the server instead of the interface name using the <code>ip-addr &lt;ip-address&gt;</code> argument:</p>
+    <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>cumulus@hostname:~$ netq install standalone full ip-addr &lt;ip-address&gt; bundle /mnt/installables/NetQ-4.15.0.tgz</pre><p>If you change the server IP address or hostname after installing NetQ, you must reset the server with the <code>netq bootstrap reset keep-db</code> command and rerun the install command.</p>
     <p></p></div>
 
 <div class="notices tip"><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
@@ -158,12 +158,12 @@ Restore your data with the backup file you created during a backup using the `re
 Run the installation command on your NetQ server, referencing the path where the backup file resides.
 
 ```
-cumulus@netq-server:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.14.0.tgz restore /home/cumulus/backup-netq-standalone-onprem-4.12.0-2024-12-11_19_50_12_UTC.tar
+cumulus@netq-server:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.15.0.tgz restore /home/cumulus/backup-netq-standalone-onprem-4.13.0-2024-12-11_19_50_12_UTC.tar
 ```
 
 <div class="notices note"><p></p><p>NetQ uses the 10.244.0.0/16 (<code>pod-ip-range</code>) and 10.96.0.0/16 (<code>service-ip-range</code>) networks for internal communication by default. If you are using these networks, you must override each range by specifying new subnets for these parameters in the install command:</p>
-    <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>cumulus@hostname:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.14.0.tgz pod-ip-range &lt;pod-ip-range&gt; service-ip-range &lt;service-ip-range&gt; restore /home/cumulus/backup-netq-standalone-onprem-4.12.0-2024-12-11_19_50_12_UTC.tar</pre><p>You can specify the IP address of the server instead of the interface name using the <code>ip-addr &lt;ip-address&gt;</code> argument:</p>
-    <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>cumulus@hostname:~$ netq install standalone full ip-addr &lt;ip-address&gt; bundle /mnt/installables/NetQ-4.14.0.tgz restore /home/cumulus/backup-netq-standalone-onprem-4.12.0-2024-12-11_19_50_12_UTC.tar</pre><p>If you change the server IP address or hostname after installing NetQ, you must reset the server with the <code>netq bootstrap reset keep-db</code> command and rerun the install command.</p>
+    <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>cumulus@hostname:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.15.0.tgz pod-ip-range &lt;pod-ip-range&gt; service-ip-range &lt;service-ip-range&gt; restore /home/cumulus/backup-netq-standalone-onprem-4.13.0-2024-12-11_19_50_12_UTC.tar</pre><p>You can specify the IP address of the server instead of the interface name using the <code>ip-addr &lt;ip-address&gt;</code> argument:</p>
+    <pre><div class="copy-code-img"><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg" width="20" height="20"></div>cumulus@hostname:~$ netq install standalone full ip-addr &lt;ip-address&gt; bundle /mnt/installables/NetQ-4.15.0.tgz restore /home/cumulus/backup-netq-standalone-onprem-4.13.0-2024-12-11_19_50_12_UTC.tar</pre><p>If you change the server IP address or hostname after installing NetQ, you must reset the server with the <code>netq bootstrap reset keep-db</code> command and rerun the install command.</p>
     <p></p></div>
 
 <div class="notices tip"><p><ul><li>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</li><li>If you restore NetQ data to a server with an IP address that is different from the one used to back up the data, you must <a href="/networking-ethernet-software/cumulus-netq/Installation-Management/Install-NetQ/Install-NetQ-Agents/#configure-netq-agents">reconfigure the agents</a> on each switch as a final step.</li></ul></p></div>
@@ -177,8 +177,8 @@ To view the status of the installation, use the `netq show status [verbose]` com
 
 ```
 State: Active
-    Version: 4.14.0
-    Installer Version: 4.14.0
+    Version: 4.15.0
+    Installer Version: 4.15.0
     Installation Type: Standalone
     Activation Key: PKrgipMGEhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIixUQmFLTUhzZU80RUdTL3pOT01uQ2lnRnrrUhTbXNPUGRXdnUwTVo5SEpBPTIHZGVmYXVsdDoHbmV0cWRldgz=
     Master SSH Public Key: a3NoLXJzYSBBQUFNOemFDMXljMkVBQUFBREFRQUJBQUFCQVFEazliekZDblJUajkvQVhOZ0hteXByTzZIb3Y2cVZBWFdsNVNtKzVrTXo3dmMrcFNZTGlOdWl1bEhZeUZZVDhSNmU3bFdqS3NrSE10bzArNFJsQVd6cnRvbVVzLzlLMzQ4M3pUMjVZQXpIU2N1ZVhBSE1TdZ0JyUkpXYUpTNjJ2RTkzcHBDVjBxWWJvUFo3aGpCY3ozb0VVWnRsU1lqQlZVdjhsVjBNN3JEWW52TXNGSURWLzJ2eks3K0x2N01XTG5aT054S09hdWZKZnVOT0R4YjFLbk1mN0JWK3hURUpLWW1mbTY1ckoyS1ArOEtFUllrr5TkF3bFVRTUdmT3daVNoZnpQajMwQ29CWDZZMzVST2hDNmhVVnN5OEkwdjVSV0tCbktrWk81MWlMSDAyZUpJbXJHUGdQa2s1SzhJdGRrQXZISVlTZ0RwRlpRb3Igcm9vdEBucXRzLTEwLTE4OC00NC0xNDc=

@@ -6,14 +6,14 @@ toc: 3
 ---
 <span class="a-tooltip">[DHCP](## "Dynamic Host Configuration Protocol")</span> is a client server protocol that automatically provides IP hosts with IP addresses and other related configuration information. A DHCP relay (agent) is a host that forwards DHCP packets between clients and servers that are not on the same physical subnet.
 
-{{< img src = "/images/cumulus-linux/dhcp-relay-topology-basic.png" >}}
+{{< img src = "/images/cumulus-linux/dhcp-relay.png" >}}
 
 ## Basic Configuration
 
 Cumulus Linux uses server groups to receive different DHCP requests on separate interfaces from different end hosts and to relay the requests to specific DHCP servers in a VRF. Server groups provide load balancing and <span class="a-tooltip">[HA](## "high availability")</span>, ensuring more resilient DHCP service delivery in case of server failure or maintenance and prevents broadcasting requests to all servers.
 
 {{%notice note%}}
-In Cumulus Linux 5.13 and earlier, DHCP relay does not use server groups, but instead, forwards all DHCP client requests to every DHCP server within the same VRF.
+In Cumulus Linux 5.13 and earlier, DHCP relay does not use server groups, but instead, forwards all DHCP client requests to every DHCP server within the same VRF. Cumulus Linux 5.14 no longer provides the `nv show service dhcp-relay default server` commands.
 {{%/notice%}}
 
 To set up DHCP relay, configure:
@@ -23,35 +23,36 @@ To set up DHCP relay, configure:
 
 {{%notice note%}}
 - Server groups do not support IPv6.
-- A server group must contain at least one upstream and one downstream interface.
+- A server group must contain at least one server and one upstream interface.
+- You must associate a downstream interface with the server group.
 {{%/notice%}}
 
 {{< tabs "TabID20 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set service dhcp-relay default server-group servers-1 server 172.16.1.102
-cumulus@switch:~$ nv set service dhcp-relay default server-group servers-1 upstream-interface swp51-52
-cumulus@switch:~$ nv set service dhcp-relay default downstream-interface vlan10 server-group-name servers-1
+cumulus@switch:~$ nv set service dhcp-relay default server-group type1-server-group server 172.16.1.102
+cumulus@switch:~$ nv set service dhcp-relay default server-group type1-server-group upstream-interface swp51-52
+cumulus@switch:~$ nv set service dhcp-relay default downstream-interface vlan10 server-group-name type1-server-group
 cumulus@switch:~$ nv config apply
 ```
 
-To unset a server in a server group, run the `nv set service dhcp-relay <vf> server-group <server-group> server <server-id>` command:
+To unset a server in a server group, run the `nv unset service dhcp-relay <vf> server-group <server-group> server <server-id>` command:
 
 ```
-cumulus@switch:~$ nv unset service dhcp-relay default server-group servers-1 server 172.16.1.102
+cumulus@switch:~$ nv unset service dhcp-relay default server-group type1-server-group server 172.16.1.102
 cumulus@switch:~$ nv config apply
 ```
 
-To unset a server group, run the `nv set service dhcp-relay <vf> server-group <server-group>` command:
+To unset a server group, run the `nv unset service dhcp-relay <vf> server-group <server-group>` command:
 
 ```
-cumulus@switch:~$ nv unset service dhcp-relay default server-group servers-1
+cumulus@switch:~$ nv unset service dhcp-relay default server-group type1-server-group
 cumulus@switch:~$ nv config apply
 ```
 
-- When you unset the servers, upstream, or downstream interfaces in a server group but at least one server, upstream, or downstream interface must remain.
-- You cannot unset a server group if it is associated with a downstream and upstream interface. Unset the downstream and upstream interface first with the `nv unset service dhcp-relay <vrf> upstream-interface <interface-id>` and `nv unset service dhcp-relay <vrf> downstream-interface <interface-id>` command.
+- When you unset servers or upstream interfaces in a server group, at least one server and upstream interface must remain.
+- You cannot unset a server group if it is associated with a downstream interface. Unset the downstream interface first with the `nv unset service dhcp-relay <vrf> downstream-interface <interface-id>` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -65,7 +66,7 @@ Cumulus Linux 5.14 and later enables selective forwarding of DHCP client request
 In the `/etc/default` directory, create a file with the name of the server group in the format `isc-dhcp-relay-<server-group-id>-<vrf-id>`. Add the DHCP server IP addresses and the interfaces participating in DHCP relay associated with the server group (upstream and downstream interfaces).
 
 ```
-cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay-servers-1-default
+cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay-type1-server-group-default
 SERVERS="172.16.1.102"
 INTF_CMD="-i swp51-52 -i vlan10"
 OPTIONS=""
@@ -74,8 +75,8 @@ OPTIONS=""
 Restart the DHCP relay service for the server group with the `dhcrelay-<server-group>-<vrf>.service` command:
 
 ```
-cumulus@switch:~$ sudo systemctl enable dhcrelay-servers-1-default.service
-cumulus@switch:~$ sudo systemctl restart dhcrelay-servers-1-default.service
+cumulus@switch:~$ sudo systemctl enable dhcrelay-type1-server-group-default.service
+cumulus@switch:~$ sudo systemctl restart dhcrelay-type1-server-group-default.service
 ```
 
 {{< /tab >}}
@@ -92,28 +93,30 @@ This section describes optional DHCP relay configurations. The steps provided in
 
 ### DHCP Agent Information Option (Option 82)
 
-Cumulus Linux supports DHCP Agent Information Option 82, which allows a DHCP relay to insert circuit or relay specific information into a request that the switch forwards to a DHCP server. You can use the following options:
-
-- *Circuit ID* includes information about the circuit on which the request comes in, such as the SVI or physical port. By default, this is the printable name of the interface that receives the client request.
-- *Remote ID* includes information that identifies the relay agent, such as the MAC address. By default, this is the system MAC address of the device on which DHCP relay is running.
-
-To configure DHCP Agent Information Option 82:
+Cumulus Linux supports DHCP Agent Information Option 82, which allows a DHCP relay to insert circuit or relay specific information into a request that the switch forwards to a DHCP server. In addition to enabling DHCP Agent Information Option 82, you can:
+- Inject the circuit ID of the *physical switch port* on which the relayed DHCP discover packet arrives instead of the SVI.
+- Configure a remote ID, which includes information that identifies the relay agent, such as the MAC address. By default, this is the system MAC address of the device on which DHCP relay is running.
 
 {{< tabs "TabID117 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example enables Option 82 and enables circuit ID to inject the *physical switch port* on which the relayed DHCP discover packet arrives instead of the SVI:
+To enable DHCP Agent Information Option 82:
 
 ```
 cumulus@switch:~$ nv set service dhcp-relay default agent state enabled
+cumulus@switch:~$ nv config apply
+```
+
+To enable DHCP relay to inject the circuit ID of the *physical switch port* on which the relayed DHCP discover packet arrives instead of the SVI:
+
+```
 cumulus@switch:~$ nv set service dhcp-relay default agent use-pif-circuit-id state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-The following example enables Option 82 and sets the remote ID to be MAC address 44:38:39:BE:EF:AA. The remote ID is a custom string (up to 255 characters in length).
+To configure the remote ID, which is a custom string (up to 255 characters in length), run the `nv set service dhcp-relay default agent remote-id <ID>` command. The following example configures the remote ID to be the MAC address 44:38:39:BE:EF:AA.
 
 ```
-cumulus@switch:~$ nv set service dhcp-relay default agent state enabled
 cumulus@switch:~$ nv set service dhcp-relay default agent remote-id 44:38:39:BE:EF:AA
 cumulus@switch:~$ nv config apply
 ```
@@ -126,7 +129,7 @@ cumulus@switch:~$ nv config apply
    To inject the ingress *SVI interface* against which DHCP processes the relayed DHCP discover packet, add `-a` to the `OPTIONS` line:
 
    ```
-   cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay-servers-1-default
+   cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay-type1-server-group-default
    ...
    # Additional options that are passed to the DHCP relay daemon?
    OPTIONS="-a"
@@ -135,7 +138,7 @@ cumulus@switch:~$ nv config apply
    To inject the *physical switch port* on which the relayed DHCP discover packet arrives instead of the SVI, add `-a --use-pif-circuit-id` to the `OPTIONS` line:
 
    ```
-   cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay-servers-1-default
+   cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay-type1-server-group-default
    ...
    # Additional options that are passed to the DHCP relay daemon?
    OPTIONS="-a --use-pif-circuit-id"
@@ -144,7 +147,7 @@ cumulus@switch:~$ nv config apply
    To customize the Remote ID sub-option, add `-a -r` to the `OPTIONS` line followed by a custom string (up to 255 characters). The following example adds the MAC address 44:38:39:BE:EF:AA:
 
    ```
-   cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay-servers-1-default
+   cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay-type1-server-group-default
    ...
    # Additional options that are passed to the DHCP relay daemon?
    OPTIONS="-a -r 44:38:39:BE:EF:AA"
@@ -153,7 +156,7 @@ cumulus@switch:~$ nv config apply
 2. Restart the `dhcrelay` service to apply the new configuration:
 
    ```
-   cumulus@switch:~$ sudo systemctl restart dhcrelay-servers-1-default.service
+   cumulus@switch:~$ sudo systemctl restart dhcrelay-type1-server-group-default.service
    ```
 
 {{< /tab >}}
@@ -208,7 +211,7 @@ cumulus@switch:~$ nv set service dhcp-relay default gateway-interface swp2 addre
    This example uses the first IP address on the loopback interface as the gateway address:
 
    ```
-   cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay-servers-1-default
+   cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay-type1-server-group-default
    ...
    # Additional options that are passed to the DHCP relay daemon?
    OPTIONS="-U lo"
@@ -217,7 +220,7 @@ cumulus@switch:~$ nv set service dhcp-relay default gateway-interface swp2 addre
    The first IP address on the loopback interface is typically the 127.0.0.1 address. This example uses IP address 10.10.10.1 on the loopback interface as the gateway address:
 
    ```
-   cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay-servers-1-default
+   cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay-type1-server-group-default
    ...
    # Additional options that are passed to the DHCP relay daemon?
    OPTIONS="-U 10.10.10.1%lo"
@@ -226,7 +229,7 @@ cumulus@switch:~$ nv set service dhcp-relay default gateway-interface swp2 addre
    This example uses the first IP address on swp2 as the gateway address:
 
    ```
-   cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay-servers-1-default
+   cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay-type1-server-group-default
    ...
    # Additional options that are passed to the DHCP relay daemon?
    OPTIONS="-U swp2"
@@ -235,7 +238,7 @@ cumulus@switch:~$ nv set service dhcp-relay default gateway-interface swp2 addre
    This example uses IP address 10.0.0.4 on swp2 as the gateway address:
 
    ```
-   cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay-servers-1-default
+   cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay-type1-server-group-default
    ...
    # Additional options that are passed to the DHCP relay daemon?
    OPTIONS="-U 10.0.0.4%swp2"
@@ -244,7 +247,7 @@ cumulus@switch:~$ nv set service dhcp-relay default gateway-interface swp2 addre
 2. Restart the `dhcrelay` service to apply the configuration change:
 
    ```
-   cumulus@switch:~$ sudo systemctl restart dhcrelay-servers-1-default.service
+   cumulus@switch:~$ sudo systemctl restart dhcrelay-type1-server-group-default.service
    ```
 
 {{< /tab >}}
@@ -271,10 +274,10 @@ You do not need to add physical uplinks in the EVPN relay configuration. Only la
 
 ```
 cumulus@switch:~$ nv set vrf RED loopback ip address 20.20.20.1/32
-cumulus@switch:~$ nv set service dhcp-relay RED downstream-interface vlan10 server-group-name red-servers-1
-cumulus@switch:~$ nv set service dhcp-relay RED downstream-interface vlan20 server-group-name red-servers-1
-cumulus@switch:~$ nv set service dhcp-relay RED server-group red-servers-1 upstream-interface vlan4024_l3
-cumulus@switch:~$ nv set service dhcp-relay RED server-group red-servers-1 server 10.1.10.104
+cumulus@switch:~$ nv set service dhcp-relay RED downstream-interface vlan10 server-group-name red-servers
+cumulus@switch:~$ nv set service dhcp-relay RED downstream-interface vlan20 server-group-name red-servers
+cumulus@switch:~$ nv set service dhcp-relay RED server-group red-servers upstream-interface vlan4024_l3
+cumulus@switch:~$ nv set service dhcp-relay RED server-group red-servers server 10.1.10.104
 cumulus@switch:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on
 cumulus@switch:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn enable on
 cumulus@switch:~$ nv config apply
@@ -330,17 +333,17 @@ cumulus@switch:~$ nv config apply
 3. Edit the `/etc/default//etc/default/isc-dhcp-relay-<server-group-id>-<vrf-id>` file.
 
    ```
-   cumulus@leaf01:mgmt:~$ sudo nano /etc/default/isc-dhcp-relay-red-servers-1-RED
+   cumulus@leaf01:mgmt:~$ sudo nano /etc/default/isc-dhcp-relay-red-servers-RED
    SERVERS="10.1.10.104"
    INTF_CMD=" -i vlan10 -i vlan20 -i vlan4024_l3" 
    OPTIONS="-U RED"
    ```
 
-4. Start and enable the DHCP service so that it starts automatically the next time the switch boots:
+4. Enable and start the DHCP service:
 
    ```
-   sudo systemctl start dhcrelay-red-servers-1-RED.service
-   sudo systemctl enable dhcrelay-red-servers-1-RED.service
+   sudo systemctl enable dhcrelay-red-servers-RED.service
+   sudo systemctl start dhcrelay-red-servers-RED.service
    ```
 
 {{< /tab >}}
@@ -362,10 +365,10 @@ You do not need to add physical uplinks in the EVPN relay configuration. Only la
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set service dhcp-relay RED downstream-interface vlan10 server-group-name red-servers-1
-cumulus@switch:~$ nv set service dhcp-relay RED downstream-interface vlan20 server-group-name red-servers-1
-cumulus@switch:~$ nv set service dhcp-relay RED server-group red-servers-1 upstream-interface vlan4024_l3
-cumulus@switch:~$ nv set service dhcp-relay RED server-group red-servers-1 server 10.1.10.104
+cumulus@switch:~$ nv set service dhcp-relay RED downstream-interface vlan10 server-group-name red-servers
+cumulus@switch:~$ nv set service dhcp-relay RED downstream-interface vlan20 server-group-name red-servers
+cumulus@switch:~$ nv set service dhcp-relay RED server-group red-servers upstream-interface vlan4024_l3
+cumulus@switch:~$ nv set service dhcp-relay RED server-group red-servers server 10.1.10.104
 cumulus@switch:~$ nv config apply
 ```
 
@@ -375,17 +378,17 @@ cumulus@switch:~$ nv config apply
 1. Edit the `/etc/default//etc/default/isc-dhcp-relay-<server-group-id>-<vrf-id>` file.
 
    ```
-   cumulus@leaf01:mgmt:~$ sudo nano /etc/default/isc-dhcp-relay-red-servers-1-RED
+   cumulus@leaf01:mgmt:~$ sudo nano /etc/default/isc-dhcp-relay-red-servers-RED
    SERVERS="10.1.10.104"
    INTF_CMD=" -i vlan10 -i vlan20 -i vlan4024_l3" 
    OPTIONS=""
    ```
 
-2. Start the DHCP service and enable it to start automatically when the switch boots:
+2. Enable and start the DHCP service:
 
    ```
-   sudo systemctl start dhcrelay-red-servers-1-RED.service
-   sudo systemctl enable dhcrelay-red-servers-1-RED.service
+   sudo systemctl enable dhcrelay-red-servers-RED.service
+   sudo systemctl start dhcrelay-red-servers-RED.service
    ```
 
 {{< /tab >}}
@@ -478,11 +481,12 @@ cumulus@switch:~$ nv config apply
    SERVERS="-u 2001:db8:199::2%RED -u vlan4024_l3"
    ```
 
-4. Start and enable the DHCP service so that it starts automatically the next time the switch boots:
+4. Enable and start the DHCP service:
 
    ```
-   sudo systemctl start dhcrelay6@RED.service
    sudo systemctl enable dhcrelay6@RED.service
+   sudo systemctl start dhcrelay6@RED.service
+
    ```
 
 {{< /tab >}}
@@ -519,7 +523,7 @@ cumulus@switch:~$ nv config apply
 1. Edit the `/etc/default/isc-dhcp-relay-<server-group-id>-<vrf-id>` file to add `--giaddr-src` to the `OPTIONS` line.
 
    ```
-   cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay-servers-1-default
+   cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay-type1-server-group-default
    SERVERS="172.16.1.102"
    INTF_CMD="-i vlan10 -i swp51 -i swp52 -U swp2"
    OPTIONS="--giaddr-src"
@@ -528,7 +532,7 @@ cumulus@switch:~$ nv config apply
 2. Restart the `dhcrelay` service to apply the configuration change:
 
    ```
-   cumulus@switch:~$ sudo systemctl restart dhcrelay-servers-1-default.service
+   cumulus@switch:~$ sudo systemctl restart dhcrelay-type1-server-group-default.service
    ```
 
 To configure this setting back to the default (where the source IP address of the relayed packet is from a layer 3 interface), remove the `--giaddr-src` from the `OPTIONS` line.
@@ -536,50 +540,102 @@ To configure this setting back to the default (where the source IP address of th
 {{< /tab >}}
 {{< /tabs >}}
 
-## Troubleshooting
+## Show DHCP Relay Information
 
-This section provides troubleshooting tips.
-
-### Show DHCP Relay Status
-
-To show the DHCP relay status:
-
-{{< tabs "TabID405 ">}}
-{{< tab "NVUE Commands ">}}
-
-Run the `nv show service dhcp-relay` command for IPv4 or the `nv show service dhcp-relay6` command for IPv6:
+To show DHCP relay configuration information, run the `nv show service dhcp-relay` command for IPv4 or the `nv show service dhcp-relay6` command for IPv6:
 
 ```
-cumulus@switch:~$  nv show service dhcp-relay6
-     Summary                        
----  -------------------------------
-RED  Downstream Interface:    vlan10
-     Downstream Interface:    vlan20
-     Upstream Interface:         RED
-     Upstream Interface: vlan4024_l3
+cumulus@switch:~$ nv show service dhcp-relay
+Vrf      Gateway Interface  Gateway IP Address  Source Ip  Agent State  Agent Remote Id  Circuit-Id State
+-------  -----------------  ------------------  ---------  -----------  ---------------  ----------------
+RED                                             auto       disabled                      disabled        
+default                                         auto       enabled                       enabled         
 ```
 
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
+### Show DHCP Relay Server Group Information
 
-Run the Linux `systemctl status dhcrelay@default.service` command for IPv4 or the `systemctl status dhcrelay6@default.service` command for IPv6:
+To show the configured DHCP server groups, run the `nv show service dhcp-relay <vrf-id> server-group` command:
 
 ```
-cumulus@switch:~$ systemctl status dhcrelay6@RED.service
-● dhcrelay6@RED.service - DHCPv6 Relay Agent Daemon RED
-   Loaded: loaded (/lib/systemd/system/dhcrelay@.service; enabled; vendor preset: enabled)
-   Active: active (running) since Tue 2023-04-18 18:23:55 UTC; 9min ago
-     Docs: man:dhcrelay(8)
- Main PID: 30904 (dhcrelay)
-    Tasks: 1 (limit: 2056)
-   Memory: 2.3M
-   CGroup: /system.slice/system-dhcrelay.slice/dhcrelay@default.service
-           └─vrf
-             └─30904 /usr/sbin/dhcrelay --nl -d -i swp51 -i swp52 -i vlan10 172.16.1.102
+cumulus@switch:~$ nv show service dhcp-relay default server-group
+Server Group           Server Ip     Upstream Interface
+------------           ------------  ------------------
+type1-server-group     172.16.1.102  swp51-52 
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
+To show information about a specific DHCP server group, run the `nv show service dhcp-relay <vrf-id> server-group <server-group-id>` command:
+
+```
+cumulus@switch:~$ nv show service dhcp-relay default server-group type1-server-group
+                      operational   applied     
+--------------------  ------------  ------------
+[server]              172.16.1.102  172.16.1.102
+[upstream-interface]  swp51-52      swp51-52
+```
+
+To show the DHCP servers configured for a server group, run the `nv show service dhcp-relay <vrf-id> server-group <server-group-id> server` command:
+
+```
+cumulus@switch:~$ nv show service dhcp-relay default server-group type1-server-group server
+DHCP Server IP
+--------------
+172.16.1.102
+172.16.1.103
+```
+
+To show the upstream interfaces in a server group, run the `nv show service dhcp-relay <vrf-id> server-group <server-group-id> upstream-interface` command:
+
+```
+cumulus@switch:~$ nv show service dhcp-relay default server-group type1-server-group upstream-interface
+Upstream Interface
+------------------
+swp51-52 
+```
+
+### Show Downstream Interfaces
+
+To show the DHCP relay downstream interfaces, run the `nv show service dhcp-relay <vrf-id> downstream-interface` command:
+
+```
+cumulus@switch:~$ nv show service dhcp-relay default downstream-interface
+Downstream Interface  server-group-name
+--------------------  -----------------
+vlan101               type1-server-group
+```
+
+To show information for a specific DHCP relay downstream interface, run the `nv show service dhcp-relay <vrf-id> downstream-interface <interface>` command:
+
+```
+cumulus@switch:~$ nv show service dhcp-relay default downstream-interface vlan101
+                   operational           applied  
+-----------------  -----------           ---------
+server-group-name  type1-server-group    type1-server-group
+```
+
+### Show DHCP Relay Agent Information
+
+To show the DHCP relay agent information per VRF, run the `nv show service dhcp-relay <vrf> agent` command:
+
+```
+cumulus@switch:~$ nv show service dhcp-relay default agent
+                    operational  applied 
+------------------  -----------  ------- 
+state               enabled      enabled 
+remote-id           1212         1212 
+use-pif-circuit-id 
+  state             enabled      enabled
+```
+
+To show the DHCP relay agent `pif-circuit-id` configuration, run the `nv show service dhcp-relay <vrf> agent use-pif-circuit-id` command:
+
+```
+cumulus@switch:~$ nv show service dhcp-relay default agent use-pif-circuit-id
+       operational  applied 
+-----  -----------  ------- 
+state  enabled      enabled
+```
+
+### journalctl Command
 
 To see how DHCP relay is working on your switch, run the `journalctl` command:
 
@@ -605,7 +661,7 @@ Dec 05 21:08:55 leaf01 dhcrelay[6152]: sending upstream swp52
 Dec 05 21:08:55 leaf01 dhcrelay[6152]: sending upstream swp51
 ```
 
-### Configuration Errors
+## Configuration Errors
 
 If you configure DHCP relays by editing the `/etc/default/isc-dhcp-relay-<server-group-id>-<vrf-id>` file manually, you can introduce configuration errors that cause the DHCP relay service to crash.
 

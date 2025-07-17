@@ -75,18 +75,18 @@ cumulus@switch:~$ nv config apply
 
 To disable single shared buffer pool mode and use the default mode (lossless), run the `nv unset qos roce mode lossless-single-ipool` command.
 
-## Packet Trimming Profile
+## Lossy Multi TC Profile
 
-The packet trimming QoS profile `lossy-multi-tc` enables and configures {{<link url="Packet-Trimming" text="Packet Trimming">}}:
+The lossy multi TC profile provides QoS settings for lossy RoCE traffic and enables {{<link url="Packet-Trimming" text="Packet trimming">}}.
+
+To enable the lossy multi TC profile:
 
 ```
 cumulus@switch:~$ nv set qos roce mode lossy-multi-tc
 cumulus@switch:~$ nv config apply
 ```
 
-After you enable the packet trimming profile, you can show the default settings with the `nv show qos roce` command.
-
-To disable the packet trimming profile, run the `nv unset qos roce mode lossy-multi-tc` command.
+To disable the lossy multi TC profile, run the `nv unset qos roce mode lossy-multi-tc` command.
 
 ## Remove RoCE Configuration
 
@@ -101,7 +101,9 @@ cumulus@switch:~$ nv config apply
 
 You can verify RoCE configuration with NVUE `nv show` commands.
 
-To show detailed information about the configured buffers, utilization and DSCP markings, run the `nv show qos roce` command:
+To show detailed information about the configured buffers, utilization and DSCP markings, run the `nv show qos roce` command.
+
+The following example shows the settings for the single shared buffer pool mode profile:
 
 ```
 cumulus@switch:mgmt:~$ nv show qos roce
@@ -163,9 +165,72 @@ No Data
 ```
 
 {{%notice note%}}
+- The `nv show qos roce` command shows the congestion control minimum threshold value as 146.48 KB; however, the `nv show interface <interface> qos congestion-control` interface-level command shows the congestion control minimum threshold value as 156 KB. This mismatch is expected due to how the Spectrum-4 and Spectrum-5 ASIC handles ECN threshold programming. On the Spectrum-4 and Spectrum-5 switch, the system-level ECN minimum threshold value intended for programming is 150,000 bytes. However, the interface-level command reflects the actual hardware-programmed value, which is 159,744 bytes (156 KB).
 - In the `nv show qos roce` command output, `inf` in the `size` column represents infinite.
-- The `nv show qos roce` system-level command shows the congestion control minimum threshold value as 146.48 KB; however, the `nv show interface <interface> qos congestion-control` interface-level command shows the congestion control minimum threshold value as 156 KB. This mismatch is expected due to how the Spectrum-4 and Spectrum-5 ASIC handles ECN threshold programming. On the Spectrum-4 and Spectrum-5 switch, the system-level ECN minimum threshold value intended for programming is 150,000 bytes. However, the interface-level command reflects the actual hardware-programmed value, which is 159,744 bytes (156 KB).
 {{%/notice%}}
+
+The following example shows the settings for the lossy multi TC profile:
+
+```
+cumulus@switch:~$ nv show qos roce
+                    operational     applied
+------------------  --------------  --------------
+enable              on              on
+mode                lossy-multi-tc  lossy-multi-tc
+pfc
+  pfc-priority      -
+congestion-control
+  congestion-mode   ECN
+  enabled-tc        1,2,3
+  min-threshold     163.00 KB
+  max-threshold     234.00 KB
+  probability       5
+trust
+  trust-mode        pcp,dscp
+
+RoCE PCP/DSCP->SP mapping configurations
+===========================================
+       pcp  dscp                                                                                       switch-prio
+    -  ---  -----------------------------------------------------------------------------------------  -----------
+    0  0    0,7,8,9,10,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63            0
+    1  1    1,2                                                                                        1
+    2  2    3,4                                                                                        2
+    3  3    5,6                                                                                        3
+    4  4    11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40  4
+    5  5    -                                                                                          5
+    6  6    -                                                                                          6
+    7  7    -                                                                                          7
+
+RoCE SP->TC mapping and ETS configurations
+=============================================
+       switch-prio  traffic-class  scheduler-weight
+    -  -----------  -------------  ----------------
+    0  0            0              DWRR-4%
+    1  1            1              DWRR-8%
+    2  2            2              DWRR-18%
+    3  3            3              DWRR-22%
+    4  4            4              DWRR-22%
+    5  5            5              DWRR-22%
+    6  6            6              DWRR-4%
+    7  7            7              DWRR-0%
+
+RoCE pool config
+===================
+       name                   mode     size  switch-priorities  traffic-class
+    -  ---------------------  -------  ----  -----------------  ---------------
+    0  lossy-default-ingress  Dynamic  100%  0,1,2,3,4,5,6,7    -
+    2  lossy-default-egress   Dynamic  100%  -                  0,1,2,3,4,5,6,7
+
+Exception List
+=================
+No Data
+
+Extended Features
+====================
+    Feature      Status
+    -----------  -------
+    packet-trim  enabled
+```
 
 To show detailed RoCE information about a single interface, run the `nv show interface <interface> qos roce status` command.
 

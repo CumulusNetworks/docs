@@ -7,6 +7,48 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4539573</td>
+<td>The gNMI value for the sensor alarm-status shows incorrectly. For a raised alarm, the alarm-status is {{True(1)}}  but normally functioning sensors also show {{True(1)}}.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4539322</td>
+<td>When you remove an FRU, such as a PSU, from the switch, stale statistical data from the component is still reported over GNMI and OTLP.  To resolve this issue in OTLP, the status metric is now updated to {{absent}} and statistical information is no longer streamed. In GNMI, the entire component is deleted from the {{/components}} tree.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4535856</td>
+<td>When you try to import an invalid server certificate file, Cumulus Linux does not import the certificate file but fails to show an error message.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4535855</td>
+<td>When you try to import an invalid server certificate file, Cumulus Linux does not import the certificate file but fails to show an error message.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4535746</td>
+<td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
+<td>5.9.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4531959</td>
+<td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
+<td>5.9.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4517128</td>
+<td>The sudo program included with Cumulus Linux 5.9.0-5.9.2, 5.10.0, 5.11.0-5.11.2, 5.12.0, 5.13.0-5.13.1 is vulnerable to a local privilege escalation attack CVE-2025-32463.</td>
+<td>5.9.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4513850</td>
 <td>After upgrading from Cumulus Linux 5.12 to 5.13 on the NVIDIA SN5400 switch bonus port, PTP does not converge. To work around this issue, disable, then enable the bonus port after upgrade.</td>
 <td>5.13.0-5.13.1</td>
@@ -41,6 +83,12 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>4495231</td>
 <td>If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the {{hwclock --systohc}} command to add it to the hardware clock.  You can then use {{onie-nos-install}} to install the image.</td>
 <td>5.9.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4486668</td>
+<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
+<td>5.11.2-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -192,6 +240,12 @@ cumulus@switch:~$ git gc</td>
 <td></td>
 </tr>
 <tr>
+<td>4427085</td>
+<td>{{cl-route-check}} fails if there are INCOMPLETE entries in the Kernel neighbor table.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4425288</td>
 <td>When gNMI streaming is enabled on the switch, Cumulus Linux generates a cl-support file the first time you perform an FRR operation that reloads or restarts the FRR service (such as remove or add a neighbor or add or modify static routes).</td>
 <td>5.13.0-5.13.1</td>
@@ -273,6 +327,19 @@ cumulus@switch:~$ git gc</td>
 <td>4393369</td>
 <td>If you generate a cl-support file after configuring a breakout port, the syslog file includes errors due to a statistic collection failure for stale ports. This issue has no functional impact.</td>
 <td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4389433</td>
+<td>On switches with ONIE 5.3.0012 (might be displayed as 2023.11-5.3.0012-115200), reinstalling Cumulus Linux with {{onie-install}} when SecureBoot is enabled fails during CMS verification of a found image.To determine the ONIE version on the switch:
+sudo mount LABEL="ONIE-BOOT" /mnt
+/mnt/onie/tools/bin/onie-version
+If the ONIE version is earlier than 5.3.0012 (might be displayed as 2023.11-5.3.0012-115200), either disable SecureBoot during reinstallation, or if SecureBoot is enabled and ONIE finds the image on one of the disks (for example, {{/dev/sda5}}), then fails CMS verification, log into the ONIE shell as root and run the following commands:
+onie-stop
+mkdir /$devname
+mount $devname /$devname
+onie-nos-install /$devname/onie-installer</td>
+<td>5.12.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -923,6 +990,54 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4539573</td>
+<td>The gNMI value for the sensor alarm-status shows incorrectly. For a raised alarm, the alarm-status is {{True(1)}}  but normally functioning sensors also show {{True(1)}}.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4539322</td>
+<td>When you remove an FRU, such as a PSU, from the switch, stale statistical data from the component is still reported over GNMI and OTLP.  To resolve this issue in OTLP, the status metric is now updated to {{absent}} and statistical information is no longer streamed. In GNMI, the entire component is deleted from the {{/components}} tree.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4535856</td>
+<td>When you try to import an invalid server certificate file, Cumulus Linux does not import the certificate file but fails to show an error message.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4535855</td>
+<td>When you try to import an invalid server certificate file, Cumulus Linux does not import the certificate file but fails to show an error message.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4535804</td>
+<td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
+<td>5.10.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4535746</td>
+<td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
+<td>5.9.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4531959</td>
+<td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
+<td>5.9.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4517128</td>
+<td>The sudo program included with Cumulus Linux 5.9.0-5.9.2, 5.10.0, 5.11.0-5.11.2, 5.12.0, 5.13.0-5.13.1 is vulnerable to a local privilege escalation attack CVE-2025-32463.</td>
+<td>5.9.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4513850</td>
 <td>After upgrading from Cumulus Linux 5.12 to 5.13 on the NVIDIA SN5400 switch bonus port, PTP does not converge. To work around this issue, disable, then enable the bonus port after upgrade.</td>
 <td>5.13.0-5.13.1</td>
@@ -963,6 +1078,12 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>4495231</td>
 <td>If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the {{hwclock --systohc}} command to add it to the hardware clock.  You can then use {{onie-nos-install}} to install the image.</td>
 <td>5.9.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4486668</td>
+<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
+<td>5.11.2-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1126,6 +1247,12 @@ cumulus@switch:~$ git gc</td>
 <td></td>
 </tr>
 <tr>
+<td>4427085</td>
+<td>{{cl-route-check}} fails if there are INCOMPLETE entries in the Kernel neighbor table.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4425288</td>
 <td>When gNMI streaming is enabled on the switch, Cumulus Linux generates a cl-support file the first time you perform an FRR operation that reloads or restarts the FRR service (such as remove or add a neighbor or add or modify static routes).</td>
 <td>5.13.0-5.13.1</td>
@@ -1261,6 +1388,19 @@ cumulus@switch:~$ git gc</td>
 <td>4393369</td>
 <td>If you generate a cl-support file after configuring a breakout port, the syslog file includes errors due to a statistic collection failure for stale ports. This issue has no functional impact.</td>
 <td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4389433</td>
+<td>On switches with ONIE 5.3.0012 (might be displayed as 2023.11-5.3.0012-115200), reinstalling Cumulus Linux with {{onie-install}} when SecureBoot is enabled fails during CMS verification of a found image.To determine the ONIE version on the switch:
+sudo mount LABEL="ONIE-BOOT" /mnt
+/mnt/onie/tools/bin/onie-version
+If the ONIE version is earlier than 5.3.0012 (might be displayed as 2023.11-5.3.0012-115200), either disable SecureBoot during reinstallation, or if SecureBoot is enabled and ONIE finds the image on one of the disks (for example, {{/dev/sda5}}), then fails CMS verification, log into the ONIE shell as root and run the following commands:
+onie-stop
+mkdir /$devname
+mount $devname /$devname
+onie-nos-install /$devname/onie-installer</td>
+<td>5.12.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>

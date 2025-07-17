@@ -6,7 +6,7 @@ toc: 3
 ---
 <span class="a-tooltip">[DHCP](## "Dynamic Host Configuration Protocol")</span> is a client server protocol that automatically provides IP hosts with IP addresses and other related configuration information. A DHCP relay (agent) is a host that forwards DHCP packets between clients and servers that are not on the same physical subnet.
 
-{{< img src = "/images/cumulus-linux/dhcp-relay.png" >}}
+{{< img src = "/images/cumulus-linux/dhcp-relay-server-groups.png" >}}
 
 ## Basic Configuration
 
@@ -257,7 +257,7 @@ cumulus@switch:~$ nv set service dhcp-relay default gateway-interface swp2 addre
 
 In a multi-tenant EVPN symmetric routing environment with MLAG, you must enable RFC 3527 support. You can specify an interface, such as the loopback or VRF interface for the gateway address. The interface must be reachable in the tenant VRF that you configure for DHCP relay and must have a unique IPv4 address. For EVPN symmetric routing with an anycast gateway that reuses the same SVI IP address on multiple leaf switches, you must assign a unique IP address for the VRF interface and include the layer 3 VNI for this VRF in the DHCP relay configuration.
 
-{{< img src = "/images/cumulus-linux/dhcp-relay-topology-mlag.png" >}}
+{{< img src = "/images/cumulus-linux/dhcp-server-groups-evpn.png" >}}
 
 The following example:
 - Configures VRF RED with IPv4 address 20.20.20.1/32.

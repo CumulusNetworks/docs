@@ -40,6 +40,8 @@ cumulus@switch:~$ nv config apply
 When you enable packet trimming, one service port is used. By default, this is the last service port on the switch. To change the service port, run the `nv set system forwarding packet-trim service-port <interface>` command.”
 
 On a switch that supports two service ports, you can configure a bond on the service ports, then use the bond for the packet trimming service port; for example: `nv set system forwarding packet-trim service-port bond1`.
+
+For information about the service ports on Spectrum-4 switches, refer to {{<link url="Switch-Port-Attributes/#breakout-ports" text="Switch Port Attributes">}}.
 {{%/notice%}}
 
 ## Global Level Packet Trimming with Default Profile
@@ -85,7 +87,7 @@ To enable and configure port level packet trimming:
 - Enable packet trimming.
 - Configure the port eligibility by setting the egress port and traffic class from which to trim and recirculate dropped traffic. You can only configure physical ports; if we want to trim packets egressing from bonds, specify the bond slave ports. You can specify a traffic class value between 0 and 7.
 - Set the DSCP remark to be at the port level.
-- Set the DSCP value for the host facing and network facing ports by creating remark profiles and assigning the switch priority and DSCP values for each remark profile. The default value for the downlink (host facing interface) is 21. The default value for the uplink (network facing interface) is 11.
+- Create port profiles and assign the switch priority and DSCP values for each profile.
 - Set the maximum size of the trimmed packet in bytes. You can specify a value between 256 and 1024; the value must be a multiple of 4.
 - Set the switch priority of the trimmed packet. You can specify a value between 0 and 7.
 
@@ -116,17 +118,20 @@ cumulus@switch:~$ nv config apply
 
 ## Port Level Packet Trimming with Default Profile
 
-If you want to use the {{<link url="#packet-trimming-with-default-profile" text="default packet trimming profile">}} instead of configuring all the settings above, run the following commands:
+If you want to use the {{<link url="#packet-trimming-with-default-profile" text="default packet trimming profile">}} instead of configuring all the settings above, run the following commands to:
+- Set the default packet trimming profile `packet-trim-default`.
+- Set the DSCP remark to be at the port level.
+- Apply the port profiles. The default packet trimming profile uses the following port profiles:
+  - `lossy-multi-tc-host-group` sets the DSCP remark value to 21 for switch priority 4 on the downlink to hosts.
+  - `lossy-multi-tc-network-group` sets the DSCP remark value to 11 for switch priority 4 on the uplink to the network.
 
 ```
 cumulus@switch:~$ nv set system forwarding packet-trim packet-trim-default
 cumulus@leaf01:~$ nv set system forwarding packet-trim remark dscp port-level
+cumulus@leaf01:~$ nv set interface swp1-16 qos remark profile lossy-multi-tc-host-group
+cumulus@leaf01:~$ nv set interface swp17-32 qos remark profile lossy-multi-tc-network-group 
 cumulus@switch:~$ nv config apply
 ```
-
-The default packet trimming profile uses the following port profiles:
-- `lossy-multi-tc-host-group` sets the DSCP remark value to 21 for switch priority 4 on the downlink to hosts.
-- `lossy-multi-tc-network-group` sets the DSCP remark value to 11 for switch priority 4 on the uplink to the network.
 
 ## Port Level Packet Trimming with RoCE
 
@@ -141,6 +146,8 @@ The following example configures the downlink (leaf01) with the QoS `lossy-multi
 ```
 cumulus@leaf01:~$ nv set qos roce mode lossy-multi-tc
 cumulus@leaf01:~$ nv set system forwarding packet-trim remark dscp port-level
+cumulus@leaf01:~$ nv set interface swp1-16 qos remark profile lossy-multi-tc-host-group
+cumulus@leaf01:~$ nv set interface swp17-32 qos remark profile lossy-multi-tc-network-group
 cumulus@leaf01:~$ nv config apply
 ```
 

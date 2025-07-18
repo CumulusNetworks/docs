@@ -57,9 +57,9 @@ NVIDIA recommends setting the <code>sample-interval</code> option to 10 seconds 
 
 {{<tab "DPUs and NICs" >}}
 
-1. {{<link title="Install NIC and DPU Agents" text="Install DOCA Telemetry Service (DTS)">}} version 1.18–1.20 on your ConnectX hosts or DPUs. 
+1. {{<link title="Install NIC and DPU Agents" text="Install DOCA Telemetry Service (DTS)">}} on your ConnectX hosts or DPUs. 
 
-2. Configure the DPU to send OTLP data by editing the `/opt/mellanox/doca/services/telemetry/config/dts_config.ini` file. Add the following under the `IPC transport` section. Replace `TS-IP` with the IP address of your telemetry receiver. 
+2. Configure the DPU to send OTLP data by editing the `/opt/mellanox/doca/services/telemetry/config/dts_config.ini` file. Add the following line under the `IPC transport` section. Replace `TS-IP` with the IP address of your telemetry receiver. 
 
 ```
 open-telemetry-receiver=http://<TS-IP>:30009/v1/metrics

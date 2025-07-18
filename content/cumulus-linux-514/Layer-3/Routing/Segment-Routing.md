@@ -14,11 +14,11 @@ Cumulus Linux supports SRv6 on the Spectrum-4 and Spectrum-5 switch only.
 
 To configure SRv6:
 - Enable SRv6.
-- Configure the SRv6 locator settings and the static IDs. You can configure a maximum of 32 locators.
-  - Configure the SRv6 locator prefix.
-  - Configure the SRv6 locator block length. Cumulus Linux currently supports a value of 32.
-  - Configure the SRv6 locator function length. Cumulus Linux currently supports a value of 0.
-  - Configure the SRv6 locator node length. Cumulus Linux currently supports a value of 16.
+- Configure the SRv6 locator settings and the static IDs. You can configure a maximum of 256 locators.
+  - Configure the SRv6 locator prefix. The prefix length must match the sum of block length and the node length.
+  - Configure the SRv6 locator block length. You can specify a value between 16 and 64. The default value is 32.
+  - Configure the SRv6 locator function length. You can specify a value between 0 and 64. The default value is 0.
+  - Configure the SRv6 locator node length. You can specify a value between 0 and 64. The default value is 16.
   - Configure the static segment identifier locator name. The static segment identifier must be part of the locator prefix.  
   - Configure the static segment identifier endpoint behavior. You can specify uA or uN. If you specify uA, you must also provide the interface.
 
@@ -112,13 +112,25 @@ To show the SRv6 static segment identifiers, run the NVUE `nv show router segmen
 
 ```
 cumulus@switch:~$ nv show router segment-routing srv6 sid
-No Data
+SRv6 SID - IPv6 address  behavior  interface  locator-name  nexthop-v6           protocol 
+-----------------------  --------  ---------  ------------  -------------------  -------- 
+
+2001:db8:1:1::100/48     End.X     swp1       LOC4          fe80::202:ff:fe00:9  static 
+2001:db8:1:1::101/48     End                  LOC2                               static 
 ```
 
 To show information for a specific SRv6 static segment identifier, run the NVUE `nv show router segment-routing static srv6 sid <sid>` command or the vtysh `show segment-routing srv6 sid <sid>` command:
 
 ```
 cumulus@switch:~$ nv show router segment-routing static srv6 sid 2001:db8:1:1::100/48
+              operational          applied 
+
+------------  -------------------  ------- 
+locator-name  LOC3 
+behavior      End.X 
+interface     swp1 
+nexthop-v6    2001:db8:1:1::106/48
+protocol      static 
 ```
 
 ### Show SRv6 Endpoints

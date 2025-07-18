@@ -3,7 +3,7 @@ title: Install NetQ NVLink
 author: NVIDIA
 weight: 227
 toc: 5
-bookhidden: false
+bookhidden: true
 ---
 Follow these steps to set up and configure your VMs in a cluster of servers running NetQ NVLink. First configure the VM on the master node, and then configure the VM on each additional node. NVIDIA recommends installing the virtual machines on different servers to increase redundancy in the event of a hardware failure. 
 

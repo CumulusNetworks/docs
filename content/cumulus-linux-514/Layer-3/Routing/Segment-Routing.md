@@ -112,13 +112,25 @@ To show the SRv6 static segment identifiers, run the NVUE `nv show router segmen
 
 ```
 cumulus@switch:~$ nv show router segment-routing srv6 sid
-No Data
+SRv6 SID - IPv6 address  behavior  interface  locator-name  nexthop-v6           protocol 
+-----------------------  --------  ---------  ------------  -------------------  -------- 
+
+2001:db8:1:1::100/48     End.X     swp1       LOC4          fe80::202:ff:fe00:9  static 
+2001:db8:1:1::101/48     End                  LOC2                               static 
 ```
 
 To show information for a specific SRv6 static segment identifier, run the NVUE `nv show router segment-routing static srv6 sid <sid>` command or the vtysh `show segment-routing srv6 sid <sid>` command:
 
 ```
 cumulus@switch:~$ nv show router segment-routing static srv6 sid 2001:db8:1:1::100/48
+              operational          applied 
+
+------------  -------------------  ------- 
+locator-name  LOC3 
+behavior      End.X 
+interface     swp1 
+nexthop-v6    2001:db8:1:1::106/48
+protocol      static 
 ```
 
 ### Show SRv6 Endpoints

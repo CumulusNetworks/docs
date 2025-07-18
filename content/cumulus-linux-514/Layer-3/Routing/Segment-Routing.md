@@ -7,7 +7,7 @@ toc: 3
 Cumulus Linux supports multipathing with <span class="a-tooltip">[SRv6](## "Segment Routing for IPv6")</span> that enables you to tunnel packets from the source NIC to the destination NIC through the switch fabric using SRv6 micro segment identifiers (uSIDs). The SRv6 origination and termination is on the NIC and the switches merely act as SRv6-aware (transit) nodes. Cumulus Linux provides SRv6 uSID support with uN (END_CSID ) and uA (End.X_CSID ) endpoints.
 
 {{%notice note%}}
-Cumulus Linux supports SRv6 on the Spectrum-4 and Spectrum-5 switch only.
+Cumulus Linux supports SRv6 on the Spectrum-4 switch.
 {{%/notice%}}
 
 ### Configure SRv6

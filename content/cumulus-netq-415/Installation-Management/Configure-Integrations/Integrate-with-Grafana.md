@@ -8,13 +8,13 @@ toc: 3
 The NetQ integration with Grafana allows you to create customized dashboards and to visualize metrics across your network's hardware. To view data in Grafana, first configure OpenTelemetry on your hardware devices, then configure the time series database on the NetQ server, and finally configure the data sources in Grafana. <!--You can create your own dashboards from scratch or import a dashboard template to get started.-->
 
 {{%notice note%}}
-The Grafana integration is in beta and supported for on-premises deployments only. It does not support multi-tenancy.
+The Grafana integration is in beta and supported for on-premises deployments only.
 {{%/notice%}}
 
 ## Requirements
 
 - Switches must have a Spectrum-2 or later ASIC, with Cumulus Linux version x.x
-- DPUs and ConnectX hosts must be running DOCA Telemetry Service (DTS) versions 1.18–1.20
+- DPUs and ConnectX hosts must be running DOCA Telemetry Service (DTS) version x.x
 - Before you get started with the steps below, {{<exlink url="https://grafana.com/docs/grafana/latest/setup-grafana/installation/" text="install Grafana">}} and {{<exlink url="https://grafana.com/docs/grafana/latest/setup-grafana/start-restart-grafana/" text="start the Grafana server">}}
 
 
@@ -30,9 +30,9 @@ Configure OTLP to run on the switch in secure mode with a self-signed certificat
 
 1. From the NetQ server, display the CA certificate using `netq show otlp tls-ca-cert dump` command. Copy the certificate from the output.
 
-2. On the switch, import the CA certificate file, with the `nv action import system security ca-certificate <cert-id>` command. Replace `<cert-id>` with the certificate you generated in the preceding step.
+2. On the switch, import the CA certificate file, with the `nv action import system security ca-certificate <cert-id> data <data>` command. Define the name of the certificate in `<cert-id>` and replace `<data>` with the certificate you generated in the preceding step.
 
-3. Configure an X.509 certificate to secure the OTLP connection. Replace `ca-certifcate` with the name of your certificate.
+3. Configure an X.509 certificate to secure the OTLP connection. Replace `ca-certificate` with the name of your certificate; this is the `<cert-id>` from the previous step.
 
    ```
    nvidia@switch:~$ nv set system telemetry export otlp grpc cert-id <ca-certificate>
@@ -78,7 +78,7 @@ It can take up to a minute for the device to restart and apply the changes.
 nvidia@netq-server:~$ netq add otlp endpoint tsdb-name <text-tsdb-endpoint> tsdb-url <text-tsdb-endpoint-url> [export true | export false] [security-mode <text-mode>]
 ```
 
-2. If you set the `export` option to `true` in the previous step, the TSDB will being receiving the time series data for the metrics that you configured on the switch. Use the `netq show otlp endpoint` command to view the TSDB endpoint configuration.
+2. If you set the `export` option to `true` in the previous step, the TSDB will begin receiving the time series data for the metrics that you configured on the switch. Use the `netq show otlp endpoint` command to view the TSDB endpoint configuration.
 
 
 ## Configure the Data Sources in Grafana

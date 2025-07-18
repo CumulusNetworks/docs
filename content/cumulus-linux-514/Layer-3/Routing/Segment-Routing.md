@@ -14,11 +14,11 @@ Cumulus Linux supports SRv6 on the Spectrum-4 and Spectrum-5 switch only.
 
 To configure SRv6:
 - Enable SRv6.
-- Configure the SRv6 locator settings and the static IDs. You can configure a maximum of 32 locators.
-  - Configure the SRv6 locator prefix.
-  - Configure the SRv6 locator block length. Cumulus Linux currently supports a value of 32.
-  - Configure the SRv6 locator function length. Cumulus Linux currently supports a value of 0.
-  - Configure the SRv6 locator node length. Cumulus Linux currently supports a value of 16.
+- Configure the SRv6 locator settings and the static IDs. You can configure a maximum of 256 locators.
+  - Configure the SRv6 locator prefix. The prefix length must match the sum of block length and the node length.
+  - Configure the SRv6 locator block length. You can specify a value between 16 and 64. The default value is 32.
+  - Configure the SRv6 locator function length. You can specify a value between 0 and 64. The default value is 0.
+  - Configure the SRv6 locator node length. You can specify a value between 0 and 64. The default value is 16.
   - Configure the static segment identifier locator name. The static segment identifier must be part of the locator prefix.  
   - Configure the static segment identifier endpoint behavior. You can specify uA or uN. If you specify uA, you must also provide the interface.
 

@@ -7,7 +7,7 @@ toc: 3
 Cumulus Linux supports multipathing with <span class="a-tooltip">[SRv6](## "Segment Routing for IPv6")</span> that enables you to tunnel packets from the source NIC to the destination NIC through the switch fabric using SRv6 micro segment identifiers (uSIDs). The SRv6 origination and termination is on the NIC and the switches merely act as SRv6-aware (transit) nodes. Cumulus Linux provides SRv6 uSID support with uN (END_CSID ) and uA (End.X_CSID ) endpoints.
 
 {{%notice note%}}
-Cumulus Linux supports SRv6 on the Spectrum-4 and Spectrum-5 switch only.
+Cumulus Linux supports SRv6 on the Spectrum-4 switch.
 {{%/notice%}}
 
 ### Configure SRv6
@@ -66,10 +66,6 @@ leaf01# exit
 
 {{< /tab >}}
 {{< /tabs >}}
-
-{{%notice note%}}
-Cumulus Linux only supports the SF3216 format (block-len(32) and node-len(16)).
-{{%/notice%}}
 
 ### Show SRv6 Configuration
 
@@ -136,7 +132,7 @@ protocol      static
 ### Show SRv6 Endpoints
 
 SRv6 endpoints are installed as IPv6 routes into the RIB and FIB. To show SRv6 endpoints, view the
-IPv6 RIB with the `nv show vrf <vrf> router rib ipv6 route` command. You can view a specific route with the `nv show vrf <vrf> router rib ipv6 route <route-id>` command.------------------------------------
+IPv6 RIB with the `nv show vrf <vrf> router rib ipv6 route` command. You can view a specific route with the `nv show vrf <vrf> router rib ipv6 route <route-id>` command.
 
 ### Show SRv6 Statistics
 

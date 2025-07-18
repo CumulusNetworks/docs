@@ -102,8 +102,8 @@ Memory usage: 5%                IP address for eth0: <ipaddr>
 Swap usage:   0%
 WARNING: Your password has expired.
 You must change your password now and login again!
-Changing password for cumulus.
-(current) UNIX password: cumulus
+Changing password for nvidia.
+(current) UNIX password: nvidia
 Enter new UNIX password:
 Retype new UNIX password:
 passwd: password updated successfully

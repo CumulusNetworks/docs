@@ -301,7 +301,7 @@ def get_products():
 
 
     session = requests.Session()
-    url = "https://d2whzysjlaya8k.cloudfront.net/release_notes_and_license_list_stage.json"
+    url = "https://d2whzysjlaya8k.cloudfront.net/release_notes_and_license_list.json"
     response = session.get(url)
     if response.status_code != 200:
         print("Unable to download JSON releases file to determine products and versions for FOSS licenses.")

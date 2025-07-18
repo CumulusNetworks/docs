@@ -67,10 +67,6 @@ leaf01# exit
 {{< /tab >}}
 {{< /tabs >}}
 
-{{%notice note%}}
-Cumulus Linux only supports the SF3216 format (block-len(32) and node-len(16)).
-{{%/notice%}}
-
 ### Show SRv6 Configuration
 
 To show if SRv6 is enabled and to show the configured locators, run the `nv show router segment-routing` command:
@@ -136,7 +132,7 @@ protocol      static
 ### Show SRv6 Endpoints
 
 SRv6 endpoints are installed as IPv6 routes into the RIB and FIB. To show SRv6 endpoints, view the
-IPv6 RIB with the `nv show vrf <vrf> router rib ipv6 route` command. You can view a specific route with the `nv show vrf <vrf> router rib ipv6 route <route-id>` command.------------------------------------
+IPv6 RIB with the `nv show vrf <vrf> router rib ipv6 route` command. You can view a specific route with the `nv show vrf <vrf> router rib ipv6 route <route-id>` command.
 
 ### Show SRv6 Statistics
 

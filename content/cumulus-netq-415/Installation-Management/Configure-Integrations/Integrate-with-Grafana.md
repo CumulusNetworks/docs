@@ -97,7 +97,7 @@ nvidia@netq-server:~$ netq show vm-token expiry 40
 
 {{<figure src="/images/netq/grafana-prom-415.png" alt="" width="1200">}}
 
-3. Continue through the steps to configure the data source. In the *Connection* field, enter the IP address of your NetQ server followed by `/api/netq/vm/`, for example `https://10.255.255.255/api/netq/vm/`. In a cluster deployment, enter the virtual IP address (VIP) in this field. 
+3. Continue through the steps to configure the data source. In the *Connection* field, enter the IP address of your NetQ server followed by `/api/netq/vm/`, for example `https://10.255.255.255/api/netq/vm/`. In a cluster deployment, enter the virtual IP address in this field (followed by `/api/netq/vm/`). 
 
 <!--insert pic-->
 

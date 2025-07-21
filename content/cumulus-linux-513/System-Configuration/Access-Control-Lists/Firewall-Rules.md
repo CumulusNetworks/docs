@@ -478,6 +478,10 @@ cumulus@switch:~$ nv show acl acl-default-dos rule 30 --rev=applied -o json
 }
 ```
 
+{{%notice note%}}
+To obtain accurate statistics for an ACL rule with the permit action applied in the inbound direction (the INPUT chain targeting the control plane interface), you must add a corresponding `acl-default-dos` rule with an ID lower than 30.
+{{%/notice%}}
+
 ## syslog Messages
 
 Default firewall rules include a log rule for packets that arrive in the control plane and do not match user defined or default firewall rules. The switch generates a log message in `/var/log/syslog` for packets that match the log rule.

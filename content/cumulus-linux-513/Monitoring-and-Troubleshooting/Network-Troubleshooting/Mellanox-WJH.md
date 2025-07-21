@@ -188,7 +188,7 @@ PCAP file path : /var/log/mellanox/wjh/wjh_user_2021_06_16_12_03_15.pcap
 ### Buffer Packet Drop Monitoring
 
 - Buffer packet drop monitoring is available on a switch with Spectrum-2 and later.
-- Buffer packet drop monitoring uses a SPAN destination. If you configure SPAN, ensure that you do not exceed the total number of SPAN destinations allowed for your switch ASIC type; see {{<link url="SPAN-and-ERSPAN/#limitations" text="SPAN and ERSPAN">}}. If you need to remove the SPAN destination that buffer packet drop monitoring uses, delete the buffer monitoring drop category either with the NVUE `nv unset system wjh channel buffer trigger buffer` command or by editing the `/etc/what-just-happened/what-just-happened.json` file and reloading the `what-just-happened` service.
+- Enabling WJH buffer drop monitoring consumes a SPAN destination. If you configure SPAN, ensure that you do not exceed the total number of SPAN destinations allowed for your switch ASIC type; see {{<link url="SPAN-and-ERSPAN/#limitations" text="SPAN and ERSPAN">}}. If you need to remove the SPAN destination that buffer packet drop monitoring uses, delete the buffer monitoring drop category either with the NVUE `nv unset system wjh channel buffer trigger buffer` command or by editing the `/etc/what-just-happened/what-just-happened.json` file and reloading the `what-just-happened` service.
 
 ### Cumulus Linux and Docker
 

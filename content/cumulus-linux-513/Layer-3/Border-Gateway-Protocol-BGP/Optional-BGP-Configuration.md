@@ -1279,7 +1279,7 @@ cumulus@leaf01:~$ nv set router policy route-map ADVERTISEMAP rule 10 match type
 cumulus@leaf01:~$ nv set router policy route-map ADVERTISEMAP rule 10 action permit
 cumulus@leaf01:~$ nv set router policy route-map ADVERTISEMAP rule 10 match ip-prefix-list ADVERTISE
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast conditional-advertise advertise-map ADVERTISEMAP
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast conditional-advertise exist-map EXIST
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast conditional-advertise exist-map EXISTMAP
 cumulus@leaf01:~$ nv config apply
 ```
 

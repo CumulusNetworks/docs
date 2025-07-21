@@ -29,7 +29,7 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <tr>
 <td>4259979</td>
 <td>After you reboot the switch, the ifplugd.service fails to start monitoring the interface.</td>
-<td>5.8.0-5.11.2</td>
+<td>5.8.0-5.11.3</td>
 <td>5.12.0-5.13.1</td>
 </tr>
 <tr>
@@ -191,7 +191,7 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <tr>
 <td>3897227</td>
 <td>During an LLDP update storm while deleting or adding LLPD neighbors, PTMD crashes as a result of mishandling multi-threaded LLPD processing.</td>
-<td>5.5.1-5.9.2</td>
+<td>5.5.1-5.9.3</td>
 <td>5.10.0-5.13.1</td>
 </tr>
 <tr>
@@ -324,7 +324,7 @@ router1: wjhd: Fail to deinit SDK telemetry, error: [3]: [Invalid Handle]
 <tr>
 <td>3775686</td>
 <td>The BGP Suppress Route Advertisement feature under scale (more than 30000 routes) advertises partial updates to downstream neighbors. Because FRR does not read kernel route updates fast enough, the netlink socket receive buffer gets full and further update notifications are dropped.</td>
-<td>5.8.0-5.9.2</td>
+<td>5.8.0-5.9.3</td>
 <td>5.10.0-5.13.1</td>
 </tr>
 <tr>
@@ -451,7 +451,7 @@ cumulus@switch:~$ nv set acl one rule 1 match ip udp source-port 34
 cumulus@switch:~$ nv set acl one rule 1 match mac protocol ipv4
 cumulus@switch:~$ nv set acl one type mac
 </td>
-<td>5.7.0-5.9.2</td>
+<td>5.7.0-5.9.3</td>
 <td>5.10.0-5.13.1</td>
 </tr>
 <tr>
@@ -498,7 +498,7 @@ This is due to both the ASIC Monitoring service and the What Just Happened (WJH)
 <tr>
 <td>3636266</td>
 <td>When an unresolved next hop is present in a next hop group, especially over an SVI interface, the switch checks if the neighbor MAC address is in the forwarding table. If the neighbor's MAC address is not there, the switch skips this next hop from backend programming and you see the {{switchd}} error {{ERR NH: l3 nhg v6 l3 nhg contains one or more unresolvable nexthops}}. There is no impact to switch functionality as unresolved neighbors are not programmed in hardware until they are resolved.</td>
-<td>5.7.0-5.9.2</td>
+<td>5.7.0-5.9.3</td>
 <td>5.10.0-5.13.1</td>
 </tr>
 <tr>
@@ -510,7 +510,7 @@ This is due to both the ASIC Monitoring service and the What Just Happened (WJH)
 <tr>
 <td>3610591</td>
 <td>After configuring the system level pre-login and post-login banner messages, the messages do not return to their default settings when you run the {{nv unset system}} command or the {{nv config apply empty}} command.</td>
-<td>5.7.0-5.9.2</td>
+<td>5.7.0-5.9.3</td>
 <td>5.10.0-5.13.1</td>
 </tr>
 <tr>
@@ -635,7 +635,7 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <tr>
 <td>3393966</td>
 <td>When you configure OSPF network statements using NVUE with the {{nv set vrf &lt;vrf&gt; router ospf area &lt;area&gt; network &lt;subnet&gt;}} command, subsequent configuration changes with NVUE might bring down all OSPF neighbors. To work around this issue, create an NVUE snippet to configure the network statement, or use the {{nv set interface &lt;interface&gt; router ospf area &lt;area&gt;}} command to enable OSPF on interfaces instead of using a network statement.</td>
-<td>5.5.0-5.9.2</td>
+<td>5.5.0-5.9.3</td>
 <td>5.10.0-5.13.1</td>
 </tr>
 <tr>
@@ -873,7 +873,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
 
 You can safely ignore this warning.</td>
-<td>4.0.0-5.9.2</td>
+<td>4.0.0-5.9.3</td>
 <td>5.10.0-5.13.1</td>
 </tr>
 </table>

@@ -5,7 +5,7 @@ weight: 550
 toc: 3
 ---
 
-The NetQ integration with Grafana allows you to create customized dashboards and visualize metrics across your network's hardware. You can create your own dashboards from scratch or import a dashboard template to get started.
+The NetQ integration with Grafana allows you to create customized dashboards and to visualize metrics across your network's hardware. You can create your own dashboards from scratch or import a dashboard template to get started.
 <!--
 {{<figure src="/images/netq/grafana-dash-415.png" alt="Grafana dashboard displaying GPU statistics" width="1200">}}
 -->
@@ -76,7 +76,7 @@ NVIDIA recommends setting the <code>sample-interval</code> option to 10 seconds 
 netq show vm-token expiry 40
 ```
 
-2. Navigate to your Grafana dashboard. From the menu, select **Connections** and then **Data sources**. In the *Connection* field, enter the IP address of your NetQ telemetry server, followed by /api/netq/vm/. In a cluster deployment, enter the virtual IP address (VIP) in this field:
+2. Navigate to your Grafana dashboard. From the menu, select **Connections** and then **Data sources**. In the *Connection* field, enter the IP address of your NetQ telemetry server, followed by */api/netq/vm/*. In a cluster deployment, enter the virtual IP address (VIP) in this field:
 
 <!--insert pic-->
 

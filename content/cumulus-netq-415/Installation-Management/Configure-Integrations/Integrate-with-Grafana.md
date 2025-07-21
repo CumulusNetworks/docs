@@ -14,7 +14,7 @@ The Grafana integration is in beta and supported for on-premises deployments onl
 ## Requirements
 
 - Switches must have a Spectrum-2 or later ASIC, with Cumulus Linux version x.x
-- DPUs and ConnectX hosts must be running DOCA Telemetry Service (DTS) version x.x
+- DPUs and ConnectX hosts must be running DOCA Telemetry Service (DTS) version 1.18-1.20
 - Before you get started with the steps below, {{<exlink url="https://grafana.com/docs/grafana/latest/setup-grafana/installation/" text="install Grafana">}} and {{<exlink url="https://grafana.com/docs/grafana/latest/setup-grafana/start-restart-grafana/" text="start the Grafana server">}}
 
 
@@ -64,7 +64,11 @@ NVIDIA recommends setting the <code>sample-interval</code> option to 10 seconds 
 ```
 open-telemetry-receiver=http://<TS-IP>:30009/v1/metrics
 ```
+{{%notice note%}}
 It can take up to a minute for the device to restart and apply the changes.
+{{%/notice%}}
+
+Read more about OpenTelemetry and DTS configurations in the {{<exlink url="https://docs.nvidia.com/doca/archive/2-9-3/doca+telemetry+service+guide/index.html#src-3382565608_id-.DOCATelemetryServiceGuidev2.9.1-OpenTelemetryExporter" text="DOCA Telemetry Service guide">}}.
 
 {{</tab>}}
 
@@ -81,7 +85,7 @@ nvidia@netq-server:~$ netq add otlp endpoint tsdb-name <text-tsdb-endpoint> tsdb
 2. If you set the `export` option to `true` in the previous step, the TSDB will begin receiving the time series data for the metrics that you configured on the switch. Use the `netq show otlp endpoint` command to view the TSDB endpoint configuration.
 
 
-## Configure the Data Sources in Grafana
+## Configure Data Sources in Grafana
 
 1. Generate and copy an authentication token using the NetQ CLI. You can adjust time at which the token will expire with the `expiry` option. For example, the following command generates a token that expires after 40 days. If you do not set an `expiry` option, the token expires after 5 days. The maximum number of days allowed is 180.
 
@@ -110,6 +114,10 @@ To import a preconfigured dashboard into your Grafana instance, following the st
 
 -->
 
-## Troubleshooting
+## Best Practices and Troubleshooting
 
-- If your dashboard data is loading slowly, you may need to add an interval variable as described in the {{<exlink url="https://grafana.com/docs/grafana/latest/dashboards/variables/add-template-variables/#add-an-interval-variable" text="Grafana documentation">}}.
+If Grafana is slow or lagging, you might need to adjust your dashboard settings. When dealing with large networks (over 1000 switches), fabric-wide queries can generate millions of data points, which can significantly impact performance. You can improve performance by optimizing queries, reducing data volume, and simplifying panel rendering. To this end, NVIDIA recommends the following:
+
+- Avoid plotting all time-series data at once; {{<exlink url="https://grafana.com/docs/grafana/latest/dashboards/variables/add-template-variables/#add-an-interval-variable" text="add interval variables">}}, filter the data, or aggregate the data instead.
+<!--- Use `topk()` to limit time series data -->
+- If one node in a cluster deployment is in a `down` state, Grafana will stop loading data until all nodes are fully operational and in an `up` state. <!--RM4500177-->

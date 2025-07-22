@@ -7,7 +7,7 @@ toc: 3
 OSPFv3 is a revised version of OSPFv2 and supports the IPv6 address family.
 
 {{%notice note%}}
-- IETF has defined extensions to OSPFv3 to support multiple address families (both IPv6 and IPv4). {{<link url="FRRouting" text="FRR">}} does not support multiple address families.
+- Cumulus Linux only supports OSPFv3 with IPv6.
 - Cumulus Linux 5.14 introduces new vtysh commands to configure the area for OSPFv3 interfaces. If you configure OSPFv3 areas with NVUE snippets in Cumulus Linux 5.13 and earlier, you must delete the snippets before you upgrade to Linux 5.14, then reconfigure the areas for OSPFv3 interfaces with the new vtysh commands after upgrade.
 {{%/notice%}}
 

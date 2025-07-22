@@ -13,12 +13,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4535746</td>
-<td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
-<td>5.9.2-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4531959</td>
 <td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
 <td>5.9.2-5.13.1</td>
@@ -1068,12 +1062,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>4535804</td>
 <td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
 <td>5.10.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4535746</td>
-<td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
-<td>5.9.2-5.13.1</td>
 <td></td>
 </tr>
 <tr>

@@ -128,9 +128,9 @@ The RoCE `lossy-multi-tc` profile uses the {{<link url="#global-level-packet-tri
 
 ## Show Packet Trimming Configuration
 
-To show packet trimming configuration, run the `nv show system forwarding packet-trim` command.
+To show packet trimming configuration, run the `nv show system forwarding packet-trim` command. The `trimmed-packet-counters` field shows the number of trimmed packets.
 
-The following example shows the `nv show system forwarding packet-trim` command output for packet trimming:
+The following example shows the `nv show system forwarding packet-trim` command output for packet trimming. 
 
 ```
 cumulus@switch:~$ nv show system forwarding packet-trim
@@ -207,3 +207,37 @@ dscp               11
 - To show interface packet-trim eligibility information, run the `nv show interface <interface-id> packet-trim` command.
 - To show interface packet-trim eligibility traffic-class information, run the `nv show interface <interface-id> packet-trim egress-eligibility` command.
 - To show interface packet-trim egress-interface traffic class information, run the `nv show interface <interface-id> packet-trim egress-eligibility traffic-class <tc-id>` command.
+
+## Troubleshooting
+
+If packet trimming is not working, check the `session-down-reason` field in the `nv show system forwarding packet-trim` command output to examine the reason.
+
+```
+cumulus@switch:~$ nv show system forwarding packet-trim 
+                           operational                           applied                         
+-------------------------  ------------------------------------  -------------------  
+state                      disabled                              enabled                       
+profile                                                          packet-trim-default  
+service-port               swp65                                                                         
+size                       253                                                                           
+traffic-class              4                                                                             
+switch-priority            4                                                                             
+remark                                                                                                   
+  dscp                     11                                                                            
+session-info                                                                                             
+  session-id               0xffff                                                                        
+  trimmed-packet-counters  0                                                                             
+  session-down-reason      Failed to create/update span session                                          
+
+Egress Eligibility TC-to-Interface Information
+=================================================
+    TC  interface              
+    --  -----------------------
+    1   swp1-60,63-64,swp61s0-7
+    2   swp1-60,63-64,swp61s0-7
+    3   swp1-60,63-64,swp61s0-7
+
+Port-Level SP to DSCP Remark Information
+===========================================
+No Data
+```

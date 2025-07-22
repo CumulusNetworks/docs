@@ -744,9 +744,14 @@ cumulus@leaf01:~$
 For OSPF, use a configuration like this:
 
 ```
+cumulus@leaf01:~$ nv set interface peerlink.4094 ip address 10.100.1.1/30
 cumulus@leaf01:~$ nv set interface peerlink.4094 router ospf area 0.0.0.1
 cumulus@leaf01:~$ nv config apply
 ```
+
+{{%notice note%}}
+The `peerlink.4094` interface only has an IPv6 linklocal address by default. To establish an IPv4 OSPF peering, add an IPv4 address to the interface and add the interface to the desired area.
+{{%/notice%}}
 
 ### MLAG Routing Support
 

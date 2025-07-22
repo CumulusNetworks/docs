@@ -31,6 +31,12 @@
 <td></td>
 </tr>
 <tr>
+<td>4535804</td>
+<td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
+<td>5.10.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4535746</td>
 <td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
 <td>5.9.2-5.13.1</td>
@@ -68,21 +74,27 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
+<td>4500033</td>
+<td>When using TACACS or Radius authentication to run CLI commands, the available memory on the switch might reduce over time.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4499106</td>
 <td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
 <td>5.9.2-5.13.1</td>
 <td></td>
 </tr>
 <tr>
-<td>4495231</td>
-<td>If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the {{hwclock --systohc}} command to add it to the hardware clock.  You can then use {{onie-nos-install}} to install the image.</td>
-<td>5.9.0-5.13.1</td>
+<td>4499025</td>
+<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
+<td>5.11.2-5.13.1</td>
 <td></td>
 </tr>
 <tr>
-<td>4486668</td>
-<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
-<td>5.11.2-5.13.1</td>
+<td>4495231</td>
+<td>If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the {{hwclock --systohc}} command to add it to the hardware clock.  You can then use {{onie-nos-install}} to install the image.</td>
+<td>5.9.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -246,6 +258,54 @@ cumulus@switch:~$ git gc</td>
 <td></td>
 </tr>
 <tr>
+<td>4423368</td>
+<td>When all links go down or the switch reboots,  you see next hop group churn from Zebra to the SOO next hop group. This issue might cause some convergence degradation. </td>
+<td>5.12.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423360</td>
+<td>After a remote link flap, neighbor entries using the link might not get resolved immediately. Only when some traffic uses the nexthop will they be resolved.</td>
+<td>5.12.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423352</td>
+<td>ZTP scripts return an error due to incorrect ASCI to UTF-8 conversion.</td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423335</td>
+<td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
+<td>5.9.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423285</td>
+<td>SVIs do not go down even when all the bridge ports on the corresponding VLAN are down. This issue occurs because the {{vlan-bridge-binding}} option default setting is off for all the SVIs responsible for bringing down the SVI when all the ports on the corresponding VLAN are down. To work around this issue, manually configure the {{vlan-bridge-binding on}} option under the SVI stanza in the {{/etc/network/interfaces config}} file.</td>
+<td>5.9.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423277</td>
+<td>When the username in a 802.1X session includes the equals (=) character, the ISSU warmboot fails. Make sure that = is not part of the 802.1X session name.</td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423273</td>
+<td>After you run the {{nv action upgrade system packages to latest}} command followed by the {{nv action reboot system}} command, {{nv show system reboot}} displays {{upgrade}} instead of one of the valid values {{cold}}, {{warm}},  or {{fast}}.</td>
+<td>5.9.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423269</td>
+<td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4423249</td>
 <td>If you unset an interface static IP address when the interface IP gateway is configured, the {{nv config apply}} command fails with an {{ifreload.service}} error. To work around the issue, unset both the static IP address and gateway together.</td>
 <td>5.13.0-5.13.1</td>
@@ -267,6 +327,12 @@ cumulus@switch:~$ git gc</td>
 <td>4423244</td>
 <td>When you enable, then disable adaptive routing, the BGP neighbors might go down because of an unresolved MAC address. To resolve this issue configure another attribute on the interface.</td>
 <td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423235</td>
+<td>The {{snmpd}} service generates debugging logs of sudo calls. To work around this issue, disable sudo logging for the specific commands run by the Debian-snmp user in the {{/etc/sudoers.d/snmp}} file by adding {{Defaults:Debian-snmp !syslog}}.</td>
+<td>5.11.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -343,6 +409,12 @@ onie-nos-install /$devname/onie-installer</td>
 <td></td>
 </tr>
 <tr>
+<td>4370954</td>
+<td>After enabling, then disabling truncation on a SPAN session,  truncated packets are still received on the SPAN destination. To work around this issue, remove the SPAN session configuration, reboot the switch, then reconfigure the SPAN session without truncation.</td>
+<td>5.12.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4360826</td>
 <td>On rare occasions, when you run the NVUE {{nv config apply}} command, {{switchd}} crashes, then restarts after the crash and resumes its normal flow of operation.</td>
 <td>5.13.0-5.13.1</td>
@@ -380,9 +452,21 @@ The interface shows "screaming" emojis and "Could not render." </td>
 <td></td>
 </tr>
 <tr>
+<td>4309854</td>
+<td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4308857</td>
 <td>When you use {{tls_crlcheck}} in the {{/etc/nslcd.conf}} file, the optional {{nslcd}} service fails due to a missing library.</td>
 <td>5.9.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4298584</td>
+<td>The Spectrum-4 switch reports a {{Modules DataPath FSM fault}} in logs when the link fails at polling.</td>
+<td>5.10.1-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -398,9 +482,44 @@ The interface shows "screaming" emojis and "Could not render." </td>
 <td></td>
 </tr>
 <tr>
+<td>4271215</td>
+<td>NVUE overwrites the MOTD file during NVUE configuration with no option to ignore it.
+</td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4271213</td>
+<td>When IPv4 layer 3 switch ports and virtual interfaces flap, {{switchd}} might send an ICMP Reply message instead of an ARP request (although no ICMP request was sent). Multiple ICMP Replies might be sent to any of the neighbor IP addresses of that interface.</td>
+<td>5.9.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4260017</td>
+<td>When you enable SNMP, Cumulus Linux enables and creates an {{agentx}} user called {{debian-snmp}} automatically for FRR. As a result, TACACS sends log messages similar to the following:
+&lt;&lt;sudo: nss_tacplus: TACACS+ server 10.23.1.0:49 read failed (-3) for user Debian-snmp: Success&gt;&gt;
+&lt;&lt;sudo: tac_author_read: reply timeout after 5 secs&gt;&gt;
+
+To work around this issue, manually add the {{debian-snmp}} user to the TACACS configuration {{exclude_users}} list so that TACACS ignores this user.</td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4259979</td>
+<td>After you reboot the switch, the ifplugd.service fails to start monitoring the interface.</td>
+<td>5.8.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4249096</td>
 <td>Binary upgrade from Cumulus Linux 4.3.1 to 5.12.0 and later is not supported. To work around this issue, perform a binary upgrade from Cumulus Linux 4.3.1 to 5.9.0, then perform a binary upgrade from Cumulus Linux 5.9.0 to 5.12.0.</td>
 <td>5.12.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4246859</td>
+<td>The {{nv show service ntp &lt;vrf&gt;}} command displays the peers that are discovered together with the configured NTP servers instead of displaying only the NTP configuration. As a result, the "applied" and "operational" columns have different values, which causes confusion.</td>
+<td>5.11.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -482,6 +601,12 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <td>4100629</td>
 <td>NVUE show command outputs show LLDP neighbor changes only after the LLDP update frequency multiplied by the hold time.</td>
 <td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4100164</td>
+<td>Low power Intel SATA controllers experience issues when using the {{mobile}} low power chipset LPM policy. This can cause the SSD to become read only.</td>
+<td>5.8.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1063,15 +1188,15 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
-<td>4495231</td>
-<td>If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the {{hwclock --systohc}} command to add it to the hardware clock.  You can then use {{onie-nos-install}} to install the image.</td>
-<td>5.9.0-5.13.1</td>
+<td>4499025</td>
+<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
+<td>5.11.2-5.13.1</td>
 <td></td>
 </tr>
 <tr>
-<td>4486668</td>
-<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
-<td>5.11.2-5.13.1</td>
+<td>4495231</td>
+<td>If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the {{hwclock --systohc}} command to add it to the hardware clock.  You can then use {{onie-nos-install}} to install the image.</td>
+<td>5.9.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>

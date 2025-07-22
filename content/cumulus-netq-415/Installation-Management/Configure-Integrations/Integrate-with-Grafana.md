@@ -114,7 +114,7 @@ To import a preconfigured dashboard into your Grafana instance, following the st
 
 -->
 
-## Best Practices and Troubleshooting
+## Grafana Best Practices
 
 If Grafana is slow or lagging, you might need to adjust your dashboard settings. When dealing with large networks (over 1000 switches), fabric-wide queries can generate millions of data points, which can significantly impact performance. You can improve performance by optimizing queries, reducing data volume, and simplifying panel rendering.
 
@@ -135,9 +135,13 @@ curl -k "https://<host>/api/netq/vm/api/v1/query_range" \
   --data-urlencode "end=$(date -u +%Y-%m-%dT%H:%M:%SZ)" \ 
   --data-urlencode 'step=60s' > output_changes_total.json
 ```
-
-
 <!--ask stu about API ref-->
 
-<!--
-- If one node in a cluster deployment is in a `down` state, Grafana will stop loading data until all nodes are fully operational and in an `up` state. <!--RM4500177-->
+## Troubleshooting
+
+### Grafana Reports No Data
+
+If Grafana displays "No Data" at any point, verify that all VMs in your cluster are operational. You can check the node status using the command `kubectl get nodes`. A node will show as `NotReady` if it is down.
+
+If a VM in your cluster goes down due to a power disruption or other issues, Grafana data will be unavailable until the node is powered back on. When the VM is restored, data collection will resume, but you may encounter minor instabilities for up to 20 minutes after the power is restored.
+

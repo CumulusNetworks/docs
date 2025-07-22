@@ -13,7 +13,7 @@ You can apply DSCP remarking on trimmed packets:
 {{%notice note%}}
 - Cumulus Linux supports packet trimming on the Spectrum-4 switch.
 - Do not enable packet trimming when the NetQ WJH agent is running or with WJH monitor buffer drops configured.
-- Cumulus Linux supports packet trimming on physical ports and for known unicast IPv4 and IPv6 traffic. Packet trimming does not support ISSU, bonds for egress eligibility, VXLAN packets or flooding and multicast packets.
+- Cumulus Linux supports packet trimming for known unicast IPv4 and IPv6 traffic. Packet trimming does not support ISSU, VXLAN packets or flooding and multicast packets.
 {{%/notice%}}
 
 ## Global Level Packet Trimming

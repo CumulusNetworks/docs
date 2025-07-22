@@ -1626,6 +1626,10 @@ For lower speeds, PAM4 is automatically converted to NRZ encoding.
 
 Bonus ports #65 and #66 support 1G, 10G, and 25G but does not support breakouts.
 
+{{%notice note%}}
+Do not configure port security, adaptive routing, packet trimming eligibility, QoS, ACLs, PTP, VRR, PBR, telmetry, or histograms on the service ports.
+{{%/notice%}}
+
 {{< tabs "5610_ports ">}}
 {{< tab "1G ">}}
 

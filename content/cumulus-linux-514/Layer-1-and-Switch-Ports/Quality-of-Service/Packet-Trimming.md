@@ -143,10 +143,10 @@ size                       1024
 traffic-class              4                              
 switch-priority            4                              
 remark                                                    
-dscp                       11                             
+dscp                     11                             
 session-info                                              
-session-id                 0x0                            
-trimmed-packet-counters    0                              
+session-id               0x0                            
+trimmed-packet-counters  0                              
 
 Egress Eligibility TC-to-Interface Information
 =================================================
@@ -161,7 +161,7 @@ Port-Level SP to DSCP Remark Information
 No Data
 ```
 
-The following example shows the `nv show system forwarding packet-trim` command output for port level packet trimming:
+The following example shows the `nv show system forwarding packet-trim` command output for port level packet trimming with the default profile `packet-trim-default`:
 
 ```
 cumulus@switch:~$ nv show system forwarding packet-trim 

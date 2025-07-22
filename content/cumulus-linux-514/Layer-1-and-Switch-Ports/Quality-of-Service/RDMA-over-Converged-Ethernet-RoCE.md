@@ -194,7 +194,7 @@ No Data
 - In the `nv show qos roce` command output, `inf` in the `size` column represents infinite.
 {{%/notice%}}
 
-The following example shows the settings for the lossy multi TC profile:
+The following example shows the settings for the lossy multi TC profile. When you enable `lossy-multi-tc` mode, the switch enables {{<link url="Packet-Trimming" text="Packet trimming">}} with the `packet-trim-default` configuration.
 
 ```
 cumulus@switch:~$ nv show qos roce
@@ -280,24 +280,21 @@ pfc
 trust
   trust-mode        pcp,dscp                Trust Setting on the port for packet classification
 mode                lossless                Roce Mode
- 
- 
+
 RoCE PCP/DSCP->SP mapping configurations
 ===========================================
           pcp  dscp  switch-prio
     ----  ---  ----  -----------
     cnp   6    48    6
     roce  3    26    3
- 
- 
+
 RoCE SP->TC mapping and ETS configurations
 =============================================
           switch-prio  traffic-class  scheduler-weight
     ----  -----------  -------------  ----------------
     cnp   6            6              strict priority
     roce  3            3              dwrr-50%
- 
- 
+
 RoCE Pool Status
 ===================
         name                   mode     pool-id  switch-priorities  traffic-class  size      current-usage  max-usage

@@ -62,8 +62,8 @@ nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unica
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath allow-my-asn
 ```
 {{< /expand >}}
-- {{< expand "New and updated vtysh BGP show commands" >}}
-See {{<link url="Troubleshooting-BGP" text="Troubleshooting BGP">}} for command examples.
+- {{< expand "New and updated vtysh commands" >}}
+The following lists the updated and new vtysh show bgp commands. To see command examples, refer to {{<link url="Troubleshooting-BGP" text="Troubleshooting BGP">}}.
 ```
 show bgp router json
 show bgp vrfs <vrf-id> json
@@ -71,6 +71,10 @@ show bgp vrf <vrf-id> bestpath json
 show bgp vrf <vrf-id> ipv4 unicast redistribute json 
 show bgp vrf <vrf-id> ipv6 unicast redistribute json 
 ```
+
+In Cumulus Linux 5.14, the vtysh command to configure the area for OSPFv3 interfaces is under the specific interfaces instead of under `router ospf6`.
+
+If you configure OSPFv3 areas with NVUE snippets in Cumulus Linux 5.13 and earlier, you must delete the snippets before you upgrade to Linux 5.14, then reconfigure the areas for OSPFv3 interfaces with the new vtysh commands after upgrade. See {{<link url="Open-Shortest-Path-First-v3-OSPFv3/#basic-ospfv3-configuration" text="Basic OSPFv3 Configuration">}}.
 {{< /expand >}}
 - NVUE
   - {{<link url="Troubleshooting-EVPN/#show-evpn-vnis-across-all-vrfs" text="Commands to show EVPN information across all VRFs">}}

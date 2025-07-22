@@ -8,7 +8,7 @@ toc: 1
 
 This page summarizes new features and improvements for the NetQ {{<version>}} release. 
 
-- For a list of open and fixed issues, see the {{<link title="NVIDIA NetQ 4.15 Release Notes" text="release notes">}}.
+- For a list of open and fixed issues, see the {{<link title="NVIDIA NetQ 4.15 Release Notes" text="release notes">}}
 
 ## What's New in NetQ 4.15
 
@@ -27,7 +27,6 @@ The following features have been removed or deprecated:
 ## Release Considerations
 
 - When you upgrade to NetQ v4.15.0, any pre-existing validation data will be lost. Additionally, NetQ will not retain data related to network services (including BGP, LLDP, EVPN, and MLAG) after upgrading.
-- When the NetQ agent is active and What Just Happened (WJH) is enabled, the Cumulus Linux 5.14 packet trimming feature will not work as expected. To enable packet trimming, you must disable NetQ What Just Happened with the `netq config del agent wjh` command, then apply the changes with `netq config restart agent`.
 - The NetQ agent is not compatible with Broadcom switches. Reach out to your NVIDIA support representative if your networking environment requires Broadcom support.
 
 ### Upgrade Paths

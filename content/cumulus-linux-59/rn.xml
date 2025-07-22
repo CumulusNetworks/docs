@@ -7,12 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4535746</td>
-<td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
-<td>5.9.2-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4531959</td>
 <td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
 <td>5.9.2-5.13.1</td>
@@ -880,12 +874,6 @@ You can safely ignore this warning.</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
-</tr>
-<tr>
-<td>4535746</td>
-<td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
-<td>5.9.2-5.13.1</td>
-<td></td>
 </tr>
 <tr>
 <td>4532006</td>

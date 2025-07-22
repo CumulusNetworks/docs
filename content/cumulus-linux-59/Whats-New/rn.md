@@ -14,7 +14,6 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| <a name="4535746"></a> [4535746](#4535746) <a name="4535746"></a> <br /> | A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password. | 5.9.2-5.13.1 | |
 | <a name="4531959"></a> [4531959](#4531959) <a name="4531959"></a> <br /> | A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password. | 5.9.2-5.13.1 | |
 | <a name="4502966"></a> [4502966](#4502966) <a name="4502966"></a> <br /> | Users with <code>nv show</code> privileges only can still execute the <code>nv config apply</code> and related commands. | 5.9.2-5.13.1 | |
 | <a name="4499106"></a> [4499106](#4499106) <a name="4499106"></a> <br /> | A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password. | 5.9.2-5.13.1 | |
@@ -155,7 +154,6 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| <a name="4535746"></a> [4535746](#4535746) <a name="4535746"></a> <br /> | A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password. | 5.9.2-5.13.1 | |
 | <a name="4532006"></a> [4532006](#4532006) <a name="4532006"></a> <br /> | The sudo program included with Cumulus Linux is vulnerable to a local privilege escalation attack CVE-2025-32463. | 5.9.2 | 5.9.3-5.13.1|
 | <a name="4531959"></a> [4531959](#4531959) <a name="4531959"></a> <br /> | A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password. | 5.9.2-5.13.1 | |
 | <a name="4502966"></a> [4502966](#4502966) <a name="4502966"></a> <br /> | Users with <code>nv show</code> privileges only can still execute the <code>nv config apply</code> and related commands. | 5.9.2-5.13.1 | |

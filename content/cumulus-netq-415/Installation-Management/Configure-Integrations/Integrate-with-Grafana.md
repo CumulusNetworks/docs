@@ -116,8 +116,28 @@ To import a preconfigured dashboard into your Grafana instance, following the st
 
 ## Best Practices and Troubleshooting
 
-If Grafana is slow or lagging, you might need to adjust your dashboard settings. When dealing with large networks (over 1000 switches), fabric-wide queries can generate millions of data points, which can significantly impact performance. You can improve performance by optimizing queries, reducing data volume, and simplifying panel rendering. To this end, NVIDIA recommends the following:
+If Grafana is slow or lagging, you might need to adjust your dashboard settings. When dealing with large networks (over 1000 switches), fabric-wide queries can generate millions of data points, which can significantly impact performance. You can improve performance by optimizing queries, reducing data volume, and simplifying panel rendering.
 
-- Avoid plotting all time-series data at once; {{<exlink url="https://grafana.com/docs/grafana/latest/dashboards/variables/add-template-variables/#add-an-interval-variable" text="add interval variables">}}, filter the data, or aggregate the data instead.
-<!--- Use `topk()` to limit time series data -->
+Avoid plotting all time-series data at once. To visualize the data in different ways:
+   - {{<exlink url="https://grafana.com/docs/grafana/latest/fundamentals/timeseries/#aggregating-time-series" text="Aggregate time series data">}}
+   - {{<exlink url="https://grafana.com/docs/grafana/latest/fundamentals/timeseries/#aggregating-time-series" text="Add labels to your time series data">}}
+   - {{<exlink url="https://grafana.com/docs/grafana/latest/dashboards/variables/add-template-variables/#add-an-interval-variable" text="Add interval variables">}}
+   - {{<exlink url="https://grafana.com/docs/grafana/latest/dashboards/variables/add-template-variables/#add-an-interval-variable" text="Use aggregation operators">}} such as `count` and `topk`
+
+To export a large amount of data, use a `curl` command. The following command queries 15 minutes worth of data.
+
+```
+curl -k "https://<host>/api/netq/vm/api/v1/query_range" \ 
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \ 
+  --get \ 
+  --data-urlencode 'query=nvswitch_interface_carrier_changes_total' \ 
+  --data-urlencode "start=$(date -u -d '15 minutes ago' +%Y-%m-%dT%H:%M:%SZ)" \ 
+  --data-urlencode "end=$(date -u +%Y-%m-%dT%H:%M:%SZ)" \ 
+  --data-urlencode 'step=60s' > output_changes_total.json
+```
+
+
+<!--ask stu about API ref-->
+
+<!--
 - If one node in a cluster deployment is in a `down` state, Grafana will stop loading data until all nodes are fully operational and in an `up` state. <!--RM4500177-->

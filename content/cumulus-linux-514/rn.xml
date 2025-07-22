@@ -19,12 +19,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4535746</td>
-<td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
-<td>5.9.2-5.14.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4531960</td>
 <td>The GNMI Subscription to xpath {{interfaces/interface[name=swp61s0]/state/counters/out-pkts}} with a high sample interval results in an initial response of zero but in subsequent updates, the value is correct. You do not see this issue when the sample interval is 1 second.</td>
 <td>5.14.0</td>

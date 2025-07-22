@@ -16,11 +16,20 @@ To configure SRv6:
 - Enable SRv6.
 - Configure the SRv6 locator settings and the static IDs. You can configure a maximum of 256 locators.
   - Configure the SRv6 locator prefix. The prefix length must match the sum of block length and the node length.
-  - Configure the SRv6 locator block length. You can specify a value between 16 and 64. The default value is 32.
+  - Configure the SRv6 locator block length. You can specify a value between 16 and 64. The default value is 16.
   - Configure the SRv6 locator function length. You can specify a value between 0 and 64. The default value is 0.
   - Configure the SRv6 locator node length. You can specify a value between 0 and 64. The default value is 16.
   - Configure the static segment identifier locator name. The static segment identifier must be part of the locator prefix.  
-  - Configure the static segment identifier endpoint behavior. You can specify uA or uN. If you specify uA, you must also provide the interface.
+  - Configure the static segment identifier endpoint behavior. You can specify uA or uN. If you specify uA, you must also provide the interface. Cumulus Linux enables route advertisements on the interface on which you configure uA.
+
+The following table provides the supported formats for block, node, and function length.
+
+| Format | Block Length  | Node Length | Function Length |
+|--------|---------------|-------------|-----------------|
+|uN      | 32            | 16          | 0               |
+|uA + uN | 16            | 16          | 16              |
+|uN only | 16            | 16          | 0               |
+|uA only | 16            | 0           | 16              |
 
 The following example enables SRv6, and configures the locator called LEAF and the static SID 2001:db8:1:1::100/48:
 
@@ -29,8 +38,8 @@ The following example enables SRv6, and configures the locator called LEAF and t
 
 ```
 cumulus@switch:~$ nv set router segment-routing srv6 state enabled
-cumulus@switch:~$ nv set router segment-routing srv6 locator LEAF prefix 2001:db8:1:1::/48
-cumulus@switch:~$ nv set router segment-routing srv6 locator LEAF block-length 32
+cumulus@switch:~$ nv set router segment-routing srv6 locator LEAF prefix 2001:db8:1:1::/32
+cumulus@switch:~$ nv set router segment-routing srv6 locator LEAF block-length 16
 cumulus@switch:~$ nv set router segment-routing srv6 locator LEAF func-length 0
 cumulus@switch:~$ nv set router segment-routing srv6 locator LEAF node-length 16
 cumulus@switch:~$ nv set router segment-routing static srv6-sid 2001:db8:1:1::100/48 locator-name LEAF  
@@ -58,7 +67,7 @@ leaf01(config-srv6-sids)# sid 2001:db8:1:1::100/48 locator LEAF behavior uA
 leaf01(config-srv6-sids)# exit
 leaf01(config-srv6)# locators
 leaf01(config-srv6-locators)# locator LEAF
-leaf01(config-srv6-locator)# prefix 2001:db8:1:1::/48 block-len 32 func-bits 0
+leaf01(config-srv6-locator)# prefix 2001:db8:1:1::/48 block-len 16 func-bits 0
 leaf01(config-srv6-locator)# prefix 2001:db8:1:1::/48 node-len 16
 leaf01(config-srv6-locator)# end
 leaf01# exit

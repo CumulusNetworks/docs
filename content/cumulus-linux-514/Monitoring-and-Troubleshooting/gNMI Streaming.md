@@ -462,10 +462,10 @@ You can use your gNMI client on a host to request capabilities and data to which
 
 #### Dial-in Mode Example
 
-The following example shows a Dial-in Mode Subscribe request:
+The following example shows a Dial-in Mode Subscribe request.
 
 ```
-gnmic subscribe --mode stream --path "/qos/interfaces/interface[interface-id=swp1]/output/queues/queue[name=1]/state/transmit-octets" -i 10s --tls-cert gnmi_client.crt --tls-key gnmi_client.key -u cumulus -p ******* --auth-scheme Basic --skip-verify -a 10.188.52.108:9339
+gnmic subscribe --mode stream -i 10s --tls-cert cert/umf-crt.pem --tls-key cert/umf-key.pem -u cumulus -p NvidiaR0cks! --skip-verify -a  192.168.200.3:9339  --timeout 30s --prefix "system/cpus/cpu[index=0]" --path "state"
 ```
 
 #### Subscription Example
@@ -473,23 +473,61 @@ gnmic subscribe --mode stream --path "/qos/interfaces/interface[interface-id=swp
 The following example shows a subscription response:
 <!-- vale off -->
 ```
-{ 
-  "sync-response": true 
-} 
-{ 
-  "source": "10.188.52.108:9339", 
-  "subscription-name": "default-1737725382", 
-  "timestamp": 1737725390247535267, 
-  "time": "2025-01-24T13:29:50.247535267Z", 
-  "updates": [ 
-    { 
-      "Path": "qos/interfaces/interface[interface-id=swp1]/output/queues/queue[name=1]/state/transmit-octets", 
-      "values": { 
-        "qos/interfaces/interface/output/queues/queue/state/transmit-octets": 0 
-      } 
-    } 
-  ] 
-} 
+{
+  "source": "192.168.200.3:9339",
+  "subscription-name": "default-1752848659",
+  "timestamp": 1752848657055588821,
+  "time": "2025-07-18T14:24:17.055588821Z",
+  "prefix": "system/cpus/cpu[index=0]",
+  "updates": [
+    {
+      "Path": "state/kernel/max-time",
+      "values": {
+        "state/kernel/max-time": 1752848657055588900
+      }
+    },
+    {
+      "Path": "state/kernel/max",
+      "values": {
+        "state/kernel/max": 0.33359713753109865
+      }
+    },
+    {
+      "Path": "state/kernel/min",
+      "values": {
+        "state/kernel/min": 0
+      }
+    },
+    {
+      "Path": "state/kernel/avg",
+      "values": {
+        "state/kernel/avg": 0.33359713753109865
+      }
+    },
+    {
+      "Path": "state/kernel/min-time",
+      "values": {
+        "state/kernel/min-time": 1752848657055588900
+      }
+    },
+    {
+      "Path": "state/kernel/seconds",
+      "values": {
+        "state/kernel/seconds": 595
+      }
+    },
+    {
+      "Path": "state/kernel/instant",
+      "values": {
+        "state/kernel/instant": 0.33359713753109865
+      }
+    },
+    {
+      "Path": "state/user/avg",
+      "values": {
+        "state/user/avg": 0.2680692284537066
+      }
+    },
 ...
 ```
 

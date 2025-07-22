@@ -838,6 +838,10 @@ cumulus@leaf01:~$ nv config apply
 {{< /tab >}}
 {{< /tabs >}}
 
+{{%notice note%}}
+The `peerlink.4094` interface only has an IPv6 linklocal address by default. To establish an IPv4 OSPF peering, add an IPv4 address to the interface and add the interface to the desired area.
+{{%/notice%}}
+
 ### MLAG Routing Support
 
 In addition to the routing adjacency over the [peer link](#peer-link-routing), Cumulus Linux supports routing adjacencies from attached network devices to MLAG switches under the following conditions:

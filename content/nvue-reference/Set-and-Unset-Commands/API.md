@@ -113,3 +113,19 @@ Introduced in Cumulus Linux 5.6.0
 ```
 cumulus@switch:~$ nv set system api state enabled
 ```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system api token-expiration</h>
+
+Configures the JWT-based authentication token expiration time in minutes. You can set a value between 0 and 10080 minutes. The default value is 60 minutes. If set the expiration time to 0, Cumulus Linux does not issue a token and all previously issued tokens do not work.
+
+### Version History
+
+Introduced in Cumulus Linux 5.14.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system api token-expiration 1000
+```

@@ -40,6 +40,10 @@ cumulus@switch:~$ nv set service dhcp-relay default agent enable on
 
 Sets the remote ID DHCP Agent Information Option 82, which includes information that identifies the relay agent, such as the MAC address. By default, this is the system MAC address of the device on which DHCP relay is running.
 
+{{%notice note%}}
+Cumulus Linux 5.14 no longer provides this command.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -166,6 +170,10 @@ cumulus@switch:~$ nv set service dhcp-relay default gateway-address-interface ad
 ## <h>nv set service dhcp-relay \<vrf-id\> interface \<interface-id\></h>
 
 Configures the interfaces on which to configure DHCP relay.
+
+{{%notice note%}}
+Cumulus Linux 5.14 no longer provides this command.
+{{%/notice%}}
 
 ### Command Syntax
 

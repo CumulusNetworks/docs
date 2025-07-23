@@ -161,7 +161,7 @@ cumulus@switch:~$ sudo ifreload -a
 
 If you take down a VRF using `ifdown`, run one of the following commands to bring the VRF back up:
 
-- `ifup --with-depends <vrf-name>`
+- `ifup --with-depends <vrf-id>`
 - `ifreload -a`
 
 For example:
@@ -184,7 +184,7 @@ VRF              Table
 BLUE            1016
 ```
 
-To show a list of processes and PIDs for a specific VRF table, run the `ip vrf pids <vrf-name>` command. For example:
+To show a list of processes and PIDs for a specific VRF table, run the `ip vrf pids <vrf-id>` command. For example:
 
 ```
 cumulus@switch:~$ ip vrf pids BLUE
@@ -209,7 +209,7 @@ BLUE
 
 You can execute non-VRF-specific Linux commands and perform other tasks against a given VRF table. This typically applies to single-use commands started from a login shell, as they affect only AF_INET and AF_INET6 sockets opened by the command that executes; it has no impact on netlink sockets, associated with the `ip` command.
 
-To execute such a command against a VRF table, run `ip vrf exec <vrf-name> <command>`. For  example, to SSH from the switch to a device accessible through VRF *BLUE*:
+To execute such a command against a VRF table, run `ip vrf exec <vrf-id> <command>`. For  example, to SSH from the switch to a device accessible through VRF *BLUE*:
 
 ```
 cumulus@switch:~$ sudo ip vrf exec BLUE ssh user@host
@@ -217,7 +217,7 @@ cumulus@switch:~$ sudo ip vrf exec BLUE ssh user@host
 
 ### Services in VRFs
 
-For services that need to run against a specific VRF, Cumulus Linux uses `systemd` instances, where the instance is the VRF. You start a service within a VRF with the `systemctl start <service>@<vrf-name>` command. For example, to run the `dhcpd` service in the BLUE VRF:
+For services that need to run against a specific VRF, Cumulus Linux uses `systemd` instances, where the instance is the VRF. You start a service within a VRF with the `systemctl start <service>@<vrf-id>` command. For example, to run the `dhcpd` service in the BLUE VRF:
 
 ```
 cumulus@switch:~$ sudo systemctl start dhcpd@BLUE
@@ -389,7 +389,7 @@ If you need to force Cumulus Linux to reimport the routes into the target VRF, r
 
 ### Verify Route Leaking Configuration
 
-To check the status of VRF route leaking, run the NVUE `nv show vrf <vrf-name> router bgp address-family ipv4-unicast route-import` command or the vtysh `show ip bgp vrf <vrf-name> ipv4|ipv6 unicast route-leak` command. For example:
+To check the status of VRF route leaking, run the NVUE `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-import` command or the vtysh `show ip bgp vrf <vrf-id> ipv4|ipv6 unicast route-leak` command. For example:
 
 ```
 cumulus@switch:~$ nv show vrf RED router bgp address-family ipv4-unicast route-import
@@ -403,13 +403,13 @@ from-vrf
 ```
 
 To show more detailed status information, you can run the following NVUE commands:
-- `nv show vrf <vrf-name> router bgp address-family ipv4-unicast route-import from-vrf`
-- `nv show vrf <vrf-name> router bgp address-family ipv4-unicast route-import from-vrf list`
-- `nv show vrf <vrf-name> router bgp address-family ipv4-unicast route-import from-vrf list <leak-vrf-id>`
+- `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf`
+- `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf list`
+- `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf list <leak-vrf-id>`
 
-To view the BGP routing table, run the NVUE `nv show vrf <vrf-name> router bgp address-family ipv4-unicast` command or the vtysh `show ip bgp vrf <vrf-name> ipv4|ipv6 unicast` command.
+To view the BGP routing table, run the NVUE `nv show vrf <vrf-id> router bgp address-family ipv4-unicast` command or the vtysh `show ip bgp vrf <vrf-id> ipv4|ipv6 unicast` command.
 
-To view the FRR IP routing table, run the vtysh `show ip route vrf <vrf-name>` command. These commands show all routes, including routes leaked from other VRFs.
+To view the FRR IP routing table, run the vtysh `show ip route vrf <vrf-id>` command. These commands show all routes, including routes leaked from other VRFs.
 
 The following example commands show all routes in VRF `RED`, including routes leaked from VRF `BLUE`:
 
@@ -627,7 +627,7 @@ router ospf vrf RED
 
 Because you can use VRF to bind IPv4 and IPv6 sockets to non-default VRF tables, you can start DHCP servers and relays in any non-default VRF table using the `dhcpd` and `dhcrelay` services. `systemd` must manage these services and the `/etc/vrf/systemd.conf` file must list the services. By default, this file already lists these two services, as well as others. You can add more services as needed, such as `dhcpd6` and `dhcrelay6` for IPv6.
 
-If you edit `/etc/vrf/systemd.conf`, run `sudo systemctl daemon-reload` to generate the `systemd` instance files for the newly added services. Then you can start the service in the VRF using `systemctl start <service>@<vrf-name>.service`, where `<service>` is the name of the service (such as `dhcpd` or `dhcrelay`) and `<vrf-name>` is the name of the VRF.
+If you edit `/etc/vrf/systemd.conf`, run `sudo systemctl daemon-reload` to generate the `systemd` instance files for the newly added services. Then you can start the service in the VRF using `systemctl start <service>@<vrf-id>.service`, where `<service>` is the name of the service (such as `dhcpd` or `dhcrelay`) and `<vrf-id>` is the name of the VRF.
 
 For example, to start the `dhcrelay` service after you configure a VRF named *BLUE*, run:
 
@@ -643,10 +643,10 @@ cumulus@switch:~$ sudo systemctl enable dhcrelay@BLUE.service
 
 In addition, you need to create a separate default file in the `/etc/default` directory for every instance of a DHCP server or relay in a non-default VRF. To run multiple instances of any of these services, you need a separate file for each instance. The files must have the following names:
 
-- `isc-dhcp-server-<vrf-name>`
-- `isc-dhcp-server6-<vrf-name>`
-- `isc-dhcp-relay-<vrf-name>`
-- `isc-dhcp-relay6-<vrf-name>`
+- `isc-dhcp-server-<vrf-id>`
+- `isc-dhcp-server6-<vrf-id>`
+- `isc-dhcp-relay-<vrf-id>`
+- `isc-dhcp-relay6-<vrf-id>`
 
 See the example configuration below for more details.
 
@@ -870,13 +870,13 @@ cumulus@switch:~$ sudo ip vrf exec BLUE /usr/sbin/dhcrelay -d -q -6 -l /
 
 You can run `ping` or `traceroute` on a VRF from the default VRF.
 
-To ping a VRF from the default VRF, run the `ping` `-I <vrf-name>` command. For example:
+To ping a VRF from the default VRF, run the `ping` `-I <vrf-id>` command. For example:
 
 ```
 cumulus@switch:~$ ping -I BLUE
 ```
 
-To run `traceroute` on a VRF from the default VRF, run the `traceroute -i <vrf-name>` command. For example:
+To run `traceroute` on a VRF from the default VRF, run the `traceroute -i <vrf-id>` command. For example:
 
 ```
 cumulus@switch:~$ sudo traceroute -i BLUE
@@ -913,7 +913,7 @@ DFLT  0      6.0.0.7                0           0  Default
 Total number of VRFs (including default): 3
 ```
 
-To show interfaces known to FRR and attached to a specific VRF, run the `show interface vrf <vrf-name>` command. For example:
+To show interfaces known to FRR and attached to a specific VRF, run the `show interface vrf <vrf-id>` command. For example:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1017,7 +1017,7 @@ cumulus@switch:~$ ip -d link show type vrf
     vrf table 1014 addrgenmode eui64
 ```
 
-To show the interfaces attached to a specific VRF, run the `ip -d link show vrf <vrf-name>` command. For example:
+To show the interfaces attached to a specific VRF, run the `ip -d link show vrf <vrf-id>` command. For example:
 
 ```
 cumulus@switch:~$ ip -d link show vrf vrf1012
@@ -1055,7 +1055,7 @@ cumulus@switch:~$ ip -d link show vrf vrf1012
     vrf_slave addrgenmode eui64
 ```
 
-To show IPv4 routes in a VRF, run the `ip route show table <vrf-name>` command. For example:
+To show IPv4 routes in a VRF, run the `ip route show table <vrf-id>` command. For example:
 
 ```
 cumulus@switch:~$ ip route show table RED
@@ -1078,7 +1078,7 @@ local 169.254.2.17 dev swp3.2  proto kernel  scope host  src 169.254.2.17
 broadcast 169.254.2.19 dev swp3.2  proto kernel  scope link  src 169.254.2.17
 ```
 
-To show IPv6 routes in a VRF, run the `ip -6 route show table <vrf-name>` command. For example:
+To show IPv6 routes in a VRF, run the `ip -6 route show table <vrf-id>` command. For example:
 
 ```
 cumulus@switch:~$ ip -6 route show table RED
@@ -1101,7 +1101,7 @@ ff00::/8 dev swp3.2  metric 256  pref medium
 unreachable default dev lo  metric 240  error -101 pref medium
 ```
 
-To see a list of links associated with a particular VRF table, run the `ip link list <vrf-name>` command. For example:
+To see a list of links associated with a particular VRF table, run the `ip link list <vrf-id>` command. For example:
 
 ```
 cumulus@switch:~$ ip link list RED
@@ -1112,7 +1112,7 @@ swp1.10@swp1     UP             6c:64:1a:00:5a:0c <BROADCAST,MULTICAST,UP,LOWER_
 swp2.10@swp2     UP             6c:64:1a:00:5a:0d <BROADCAST,MULTICAST,UP,LOWER_UP>
 ```
 
-To see a list of routes associated with a particular VRF table, run the `ip route list <vrf-name>` command. For example:
+To see a list of routes associated with a particular VRF table, run the `ip route list <vrf-id>` command. For example:
 
 ```
 cumulus@switch:~$ ip route list RED
@@ -1143,7 +1143,7 @@ unreachable default dev lo  metric 8192  error -101 pref medium
 ```
 
 {{%notice tip%}}
-You can also show routes in a VRF using the `ip [-6] route show vrf <vrf-name>` command. This command omits local and broadcast routes, which can clutter the output.
+You can also show routes in a VRF using the `ip [-6] route show vrf <vrf-id>` command. This command omits local and broadcast routes, which can clutter the output.
 {{%/notice%}}
 
 {{< /tab >}}

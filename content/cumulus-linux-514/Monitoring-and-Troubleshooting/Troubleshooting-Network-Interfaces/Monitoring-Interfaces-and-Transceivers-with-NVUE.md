@@ -8,7 +8,7 @@ NVUE enables you to check the status of an interface, and view and clear interfa
 
 ## Show Interface Configuration and Statistics
 
-To check the configuration and statistics for an interface, run the `nv show interface <interface>` command:
+To check the configuration and statistics for an interface, run the `nv show interface <interface-id>` command:
 
 ```
 cumulus@switch:~$ nv show interface swp1
@@ -109,12 +109,12 @@ NVUE provides the following commands to show counters (statistics) for the inter
 | <div style="width:430px">NVUE Command | Description |
 | ----------- | ------------ |
 | `nv show interface --view counters` |  Shows all statistics for all the interfaces configured on the switch, such as the total number of received and transmitted packets, and the number of received and transmitted dropped packets and error packets.
-| `nv show interface <interface> counters` | Shows all statistics for a specific interface, such as the number of received and transmitted unicast, multicast and broadcast packets, the number of received and transmitted dropped packets and error packets, and the number of received and transmitted packets of a certain size.|
-| `nv show interface <interface> counters errors`| Shows the number of error packets for a specific interface, such as the number of received and transmitted packet alignment, oversize, undersize, and jabber errors. |
-| `nv show interface <interface> counters drops` | Shows the number of received and transmitted packet drops for a specific interface, such as ACL drops, buffer drops, queue drops, and non-queue drops.|
-| `nv show interface <interface> counters pktdist` | Shows the number of received and transmitted packets of a certain size for a specific interface. |
-| `nv show interface <interface> counters qos` | Shows QoS statistics for the specified interface. See {{<link url="Quality-of-Service/#show-qos-counters" text="Show Qos Counters">}}.|
-| `nv show interface <interface> counters ptp` | Shows PTP statistics for a specific interface. See {{<link url="Precision-Time-Protocol-PTP/#show-ptp-counters" text="Show PTP Counters">}}.|
+| `nv show interface <interface-id> counters` | Shows all statistics for a specific interface, such as the number of received and transmitted unicast, multicast and broadcast packets, the number of received and transmitted dropped packets and error packets, and the number of received and transmitted packets of a certain size.|
+| `nv show interface <interface-id> counters errors`| Shows the number of error packets for a specific interface, such as the number of received and transmitted packet alignment, oversize, undersize, and jabber errors. |
+| `nv show interface <interface-id> counters drops` | Shows the number of received and transmitted packet drops for a specific interface, such as ACL drops, buffer drops, queue drops, and non-queue drops.|
+| `nv show interface <interface-id> counters pktdist` | Shows the number of received and transmitted packets of a certain size for a specific interface. |
+| `nv show interface <interface-id> counters qos` | Shows QoS statistics for the specified interface. See {{<link url="Quality-of-Service/#show-qos-counters" text="Show Qos Counters">}}.|
+| `nv show interface <interface-id> counters ptp` | Shows PTP statistics for a specific interface. See {{<link url="Precision-Time-Protocol-PTP/#show-ptp-counters" text="Show PTP Counters">}}.|
 
 The following example shows all statistics for all the interfaces configured on the switch:
 
@@ -242,18 +242,18 @@ Undersize Errors  0        n/a
 ```
 
 {{%notice note%}}
-- NVUE does not show detailed statistics for logical interfaces, such as bonds, VLAN interfaces or subinterfaces. To see basic statistics for logical interfaces, run the `nv show interface <interface> link stats` command.
+- NVUE does not show detailed statistics for logical interfaces, such as bonds, VLAN interfaces or subinterfaces. To see basic statistics for logical interfaces, run the `nv show interface <interface-id> link stats` command.
 - On NVIDIA Spectrum switches, Cumulus Linux updates physical counters to the kernel every two seconds and virtual interfaces (such as VLAN interfaces) every ten seconds. You cannot change these values. Because the update process takes a lower priority than other `switchd` processes, the interval might be longer when the system is under a heavy load.
 {{%/notice%}}
 
 ## AmBER PHY Health Management
 
-To show physical layer information, such as the error counters for each lane on a port and <span class="a-tooltip">[SNR](## "Signal-to-Noise Ratio")</span> information for media and host lanes (lane0 through lane7), run the `nv show interface <interface> link phy-detail` command.
+To show physical layer information, such as the error counters for each lane on a port and <span class="a-tooltip">[SNR](## "Signal-to-Noise Ratio")</span> information for media and host lanes (lane0 through lane7), run the `nv show interface <interface-id> link phy-detail` command.
 
 This command highlights link integrity issues.
 
 {{%notice note%}}
-The `nv show interface <interface> link phy-detail` command shows SNR information for media and host lanes for OSFP 100G per lane capable transceivers on certain switches with the Spectrum-4 ASIC and later. The command does not show SNR information for SFP28 bonus ports.
+The `nv show interface <interface-id> link phy-detail` command shows SNR information for media and host lanes for OSFP 100G per lane capable transceivers on certain switches with the Spectrum-4 ASIC and later. The command does not show SNR information for SFP28 bonus ports.
   - For lanes not in use for the optical cable, the command output shows 0.
   - For copper ports, the command output shows n/a.
 {{%/notice%}}
@@ -321,7 +321,7 @@ snr-media-lane6            23.12 dB
 snr-media-lane7            24.05 dB
 ```
 
-To show physical layer diagnostic information for a port, run the `nv show interface <interface> link phy-diag` command:
+To show physical layer diagnostic information for a port, run the `nv show interface <interface-id> link phy-diag` command:
 
 ```
 cumulus@switch$ nv show interface swp20 link phy-diag 
@@ -400,7 +400,7 @@ flag-in-use                       0x0
 ```
 
 {{%notice note%}}
-Switches with the Spectrum 1 ASIC do not support the `nv show interface <interface> link phy-detail` command or the `nv show interface <interface> link phy-diag` command.
+Switches with the Spectrum 1 ASIC do not support the `nv show interface <interface-id> link phy-detail` command or the `nv show interface <interface-id> link phy-diag` command.
 {{%/notice%}}
 
 ## Clear Interface Counters
@@ -413,7 +413,7 @@ all interface counters cleared
 Action succeeded
 ```
 
-To clear the counters for an interface, run the `nv action clear interface <interface> counters` command:
+To clear the counters for an interface, run the `nv action clear interface <interface-id> counters` command:
 
 ```
 cumulus@switch$ nv action clear interface swp1 counters
@@ -422,7 +422,7 @@ Action succeeded
 ```
 
 {{%notice note%}}
-The `nv action clear interface <interface> counters` command does not clear counters in the hardware.
+The `nv action clear interface <interface-id> counters` command does not clear counters in the hardware.
 {{%/notice%}}
 
 ## Clear Interface Physical Layer Error Counters
@@ -457,8 +457,8 @@ swp10 link phy-detail counters cleared.
 If the specified interface is out of range; for example, if the switch supports up to 32 switch ports but you try to clear swp33, NVUE displays an error.
 
 {{%notice note%}}
-- The `nv show interface <interface> link phy-detail` command shows the reset counters. To show the exact hardware counters, run the `nv show interface <interface-id> link phy-detail hardware` command or the `nv show interface <interface-id> link phy-detail --view=hardware` command.
-- The `nv action clear interface <interface> link phy-detail` command does not clear counters in the hardware.
+- The `nv show interface <interface-id> link phy-detail` command shows the reset counters. To show the exact hardware counters, run the `nv show interface <interface-id> link phy-detail hardware` command or the `nv show interface <interface-id> link phy-detail --view=hardware` command.
+- The `nv action clear interface <interface-id> link phy-detail` command does not clear counters in the hardware.
 {{%/notice%}}
 
 ## Reset a Transceiver

@@ -118,7 +118,7 @@ neighbor fabric bfd 4 400 400
 {{< /tab >}}
 {{< /tabs >}}
 
-To see neighbor information in BGP, including BFD status, run the vtysh `show ip bgp neighbor <interface>` command. For example:
+To see neighbor information in BGP, including BFD status, run the vtysh `show ip bgp neighbor <interface-id>` command. For example:
 
 ```
 cumulus@switch:~$ sudo vtysh 
@@ -175,8 +175,8 @@ interface swp1
 
 You can run different commands to show neighbor information in OSPF, including BFD status.
 
-- To show IPv6 OSPF interface information, run the vtysh `show ip ospf6 interface <interface>` command.
-- To show IPv4 OSPF interface information, run the vtysh `show ip ospf interface <interface>` command.
+- To show IPv6 OSPF interface information, run the vtysh `show ip ospf6 interface <interface-id>` command.
+- To show IPv4 OSPF interface information, run the vtysh `show ip ospf interface <interface-id>` command.
 
    The following example shows IPv6 OSPF interface information.
 

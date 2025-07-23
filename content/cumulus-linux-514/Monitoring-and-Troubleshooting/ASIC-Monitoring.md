@@ -129,7 +129,7 @@ When you configure minimum boundary and histogram sizes, Cumulus Linux rounds do
 The histogram type can be `egress-buffer`, `ingress-buffer`, `counter`, or `latency`.
 
 - To change global histogram settings, run the `nv set system telemetry histogram <type>` command.
-- To enable histograms on interfaces or to change interface level settings, run the `nv set interface <interface> telemetry histogram <type>` command.
+- To enable histograms on interfaces or to change interface level settings, run the `nv set interface <interface-id> telemetry histogram <type>` command.
   
 {{< tabs "TabID93 ">}}
 {{< tab "Egress Queue Length ">}}
@@ -509,7 +509,7 @@ cumulus@switch:~$ nv config apply
 
 To disable the bandwidth gauge setting, run the `nv set interface <interface-id> telemetry bw-gauge enable off` command.
 
-To show the bandwidth gauge setting for an interface, run the `nv show interface <interface> telemetry bw-gauge ` command:
+To show the bandwidth gauge setting for an interface, run the `nv show interface <interface-id> telemetry bw-gauge ` command:
 
 ```
 cumulus@switch:~$ nv show interface swp1 telemetry bw-gauge
@@ -564,10 +564,10 @@ Edit the `snapshot.file` settings in the `/etc/cumulus/datapath/monitor.conf` fi
 {{< /tab >}}
 {{< /tabs >}}
 
-- To show an ingress queue snapshot, run the `nv show interface <interface> telemetry histogram ingress-buffer priority-group <value> snapshot` command
-- To show an egress queue snapshot, run the `nv show interface <interface> telemetry histogram egress-buffer traffic-class <type> snapshot`
-- To show a counter snapshot, run the `nv show interface <interface> telemetry histogram counter counter-type <type> snapshot`
-- To show a latency snapshot, run the `nv show interface <interface> telemetry histogram latency traffic-class <type> snapshot`
+- To show an ingress queue snapshot, run the `nv show interface <interface-id> telemetry histogram ingress-buffer priority-group <value> snapshot` command
+- To show an egress queue snapshot, run the `nv show interface <interface-id> telemetry histogram egress-buffer traffic-class <type> snapshot`
+- To show a counter snapshot, run the `nv show interface <interface-id> telemetry histogram counter counter-type <type> snapshot`
+- To show a latency snapshot, run the `nv show interface <interface-id> telemetry histogram latency traffic-class <type> snapshot`
 
 The following example shows an ingress queue snapshot:
 
@@ -686,7 +686,7 @@ swp1              0,1,2                   -                        tx-byte,rx-by
 swp2              -                       0,1,8                    tx-byte,tx-byte
 ```
 
-To show the egress queue depth histogram samples collected at the configured interval for a traffic class for a port, run the `nv show interface <interface> telemetry histogram egress-buffer traffic-class <traffic-class>` command.
+To show the egress queue depth histogram samples collected at the configured interval for a traffic class for a port, run the `nv show interface <interface-id> telemetry histogram egress-buffer traffic-class <traffic-class>` command.
 
 ```
 cumulus@switch:~$ nv show interface swp1 telemetry histogram egress-buffer traffic-class 0
@@ -697,7 +697,7 @@ Time         0-863     864:2303    2304:3743.  3744:5183   5184:6623   6624:8063
 08:56:20     978532        0           0           0          0            0           0             0          0 
 ```
 
-To show the ingress queue depth histogram samples collected at the configured interval for a priority group for a port, run the `nv show interface <interface> telemetry histogram ingress-buffer priority-group <priority-group>` command.
+To show the ingress queue depth histogram samples collected at the configured interval for a priority group for a port, run the `nv show interface <interface-id> telemetry histogram ingress-buffer priority-group <priority-group>` command.
 
 ```
 cumulus@switch:~$ nv show interface swp1 telemetry histogram ingress-buffer priority-group 0
@@ -907,13 +907,13 @@ monitor.packet-all-pg_packet_extended.snapshot.file_count = 80
 {{< /tabs >}}
 
 To show a packet and buffer statistics snapshot, run these commands:
-- `nv show system telemetry snapshot port-group <port-group-id> stats interface  <interface> packet good [tx, rx]`
-- `nv show system telemetry snapshot port-group <port-group-id> stats interface  <interface> packet discard [tx, rx, general]`
-- `nv show system telemetry snapshot port-group <port-group-id> stats interface  <interface> packet good [tx, rx]`
-- `nv show system telemetry snapshot port-group <port-group-id> stats interface  <interface> packet all [tx, rx]`
-- `nv show system telemetry snapshot port-group <port-group-id> stats interface  <interface> packet pg [tx, rx]`
-- `nv show system telemetry snapshot port-group <port-group-id> stats interface  <interface> packet tc`
-- `nv show system telemetry snapshot port-group <port-group-id> stats interface  <interface> buffer [pg, tc, ingress-port]`
+- `nv show system telemetry snapshot port-group <port-group-id> stats interface  <interface-id> packet good [tx, rx]`
+- `nv show system telemetry snapshot port-group <port-group-id> stats interface  <interface-id> packet discard [tx, rx, general]`
+- `nv show system telemetry snapshot port-group <port-group-id> stats interface  <interface-id> packet good [tx, rx]`
+- `nv show system telemetry snapshot port-group <port-group-id> stats interface  <interface-id> packet all [tx, rx]`
+- `nv show system telemetry snapshot port-group <port-group-id> stats interface  <interface-id> packet pg [tx, rx]`
+- `nv show system telemetry snapshot port-group <port-group-id> stats interface  <interface-id> packet tc`
+- `nv show system telemetry snapshot port-group <port-group-id> stats interface  <interface-id> buffer [pg, tc, ingress-port]`
 
 The following example shows a snapshot for good packets transmitted on swp1:
 

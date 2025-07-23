@@ -61,9 +61,9 @@ cumulus@switch:~$ nv set interface vlan10 ip address 10.1.10.1/24
 cumulus@switch:~$ nv config apply
 ```
 
-To set the DNS server IP address and domain name globally, use the `nv set service dhcp-server <vrf> domain-name-server <address>` and `nv set service dhcp-server <vrf> domain-name <domain>` commands.
+To set the DNS server IP address and domain name globally, use the `nv set service dhcp-server <vrf-id> domain-name-server <address>` and `nv set service dhcp-server <vrf-id> domain-name <domain>` commands.
 
-To set the interface name for the static assignment, run the `nv set service dhcp-server <vrf> static <server> ifname` command.
+To set the interface name for the static assignment, run the `nv set service dhcp-server <vrf-id> static <server> ifname` command.
 
 {{< /tab >}}
 {{< tab "IPv6 ">}}
@@ -87,7 +87,7 @@ cumulus@switch:~$ nv set interface vlan10 ip address 2001:db8::10/64
 cumulus@switch:~$ nv config apply
 ```
 
-To set the DNS server IP address and domain name globally, use the `nv set service dhcp-server6 <vrf> domain-name-server <address>` and `nv set service dhcp-server6 <vrf> domain-name <domain>` commands.
+To set the DNS server IP address and domain name globally, use the `nv set service dhcp-server6 <vrf-id> domain-name-server <address>` and `nv set service dhcp-server6 <vrf-id> domain-name <domain>` commands.
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -590,7 +590,7 @@ cumulus@leaf01:mgmt:~$ nv config apply
 The `vendor-class` string supports an exact-match with the `vendor-class` on the incoming packet.
 {{%/notice%}}
 
-To show the DHCP static configuration for all hosts, run the `nv show service dhcp-server <vrf> static --rev=applied` command:
+To show the DHCP static configuration for all hosts, run the `nv show service dhcp-server <vrf-id> static --rev=applied` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show service dhcp-server default static --rev=applied
@@ -601,7 +601,7 @@ server2                                             swp6    10.1.10.2           
 server3                                             swp6    10.1.10.3                      mgmt-string
 ```
 
-To show the DHCP static configuration for a specific host, run the `nv show service dhcp-server <vrf> static <host>` command:
+To show the DHCP static configuration for a specific host, run the `nv show service dhcp-server <vrf-id> static <host>` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show service dhcp-server default static server2

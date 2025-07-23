@@ -465,21 +465,21 @@ When you enable {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="ROCE">}} o
 
 #### Enable QoS TLV Transmission
 
-To enable PFC Configuration TLV transmission, run the `nv set interface <interface> lldp dcbx-pfc-tlv on` command:
+To enable PFC Configuration TLV transmission, run the `nv set interface <interface-id> lldp dcbx-pfc-tlv on` command:
 
 ```
 cumulus@switch:~$ nv set interface swp1 lldp dcbx-pfc-tlv on
 cumulus@switch:~$ nv config apply
 ```
 
-To enable ETS Configuration TLV transmission, run the `nv set interface <interface> lldp dcbx-ets-config-tlv on` command:
+To enable ETS Configuration TLV transmission, run the `nv set interface <interface-id> lldp dcbx-ets-config-tlv on` command:
 
 ```
 cumulus@switch:~$ nv set interface swp1 lldp dcbx-ets-config-tlv on
 cumulus@switch:~$ nv config apply 
 ```
 
-To enable ETS Recommendation TLV transmission, run the `nv set interface <interface> lldp dcbx-ets-recomm-tlv on` command:
+To enable ETS Recommendation TLV transmission, run the `nv set interface <interface-id> lldp dcbx-ets-recomm-tlv on` command:
 
 ```
 cumulus@switch:~$ nv set interface swp1 lldp dcbx-ets-recomm-tlv on
@@ -492,21 +492,21 @@ The interface must be a physical interface; you cannot enable TLVs on bonds.
 
 #### Disable QoS TLV Transmission
 
-To disable PFC Configuration TLV transmission, run the `nv unset interface <interface> lldp dcbx-pfc-tlv` command:
+To disable PFC Configuration TLV transmission, run the `nv unset interface <interface-id> lldp dcbx-pfc-tlv` command:
 
 ```
 cumulus@switch:~$ nv unset interface swp1 lldp dcbx-pfc-tlv
 cumulus@switch:~$ nv config apply
 ```
 
-To disable ETS Configuration TLV transmission, run the `nv unset interface <interface> lldp dcbx-ets-config-tlv` command:
+To disable ETS Configuration TLV transmission, run the `nv unset interface <interface-id> lldp dcbx-ets-config-tlv` command:
 
 ```
 cumulus@switch:~$ nv unset interface swp1 lldp dcbx-ets-config-tlv
 cumulus@switch:~$ nv config apply 
 ```
 
-To disable ETS Recommendation TLV transmission, run the `nv unset interface <interface> lldp dcbx-ets-recomm-tlv` command:
+To disable ETS Recommendation TLV transmission, run the `nv unset interface <interface-id> lldp dcbx-ets-recomm-tlv` command:
 
 ```
 cumulus@switch:~$ nv unset interface swp1 lldp dcbx-ets-recomm-tlv
@@ -515,7 +515,7 @@ cumulus@switch:~$ nv config apply
 
 #### Show QoS TLV Transmission Settings
 
-To show if Qos TLV transmission is `on` for an interface, run the NVUE `nv show interface <interface>` command:
+To show if Qos TLV transmission is `on` for an interface, run the NVUE `nv show interface <interface-id>` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface swp1

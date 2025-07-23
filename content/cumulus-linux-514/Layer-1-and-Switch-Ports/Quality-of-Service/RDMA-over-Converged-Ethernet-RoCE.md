@@ -190,7 +190,7 @@ No Data
 ```
 
 {{%notice note%}}
-- The `nv show qos roce` command shows the congestion control minimum threshold value as 146.48 KB; however, the `nv show interface <interface> qos congestion-control` interface-level command shows the congestion control minimum threshold value as 156 KB. This mismatch is expected due to how the Spectrum-4 ASIC handles ECN threshold programming. On the Spectrum-4 switch, the system-level ECN minimum threshold value intended for programming is 150,000 bytes. However, the interface-level command reflects the actual hardware-programmed value, which is 159,744 bytes (156 KB).
+- The `nv show qos roce` command shows the congestion control minimum threshold value as 146.48 KB; however, the `nv show interface <interface-id> qos congestion-control` interface-level command shows the congestion control minimum threshold value as 156 KB. This mismatch is expected due to how the Spectrum-4 ASIC handles ECN threshold programming. On the Spectrum-4 switch, the system-level ECN minimum threshold value intended for programming is 150,000 bytes. However, the interface-level command reflects the actual hardware-programmed value, which is 159,744 bytes (156 KB).
 - In the `nv show qos roce` command output, `inf` in the `size` column represents infinite.
 {{%/notice%}}
 
@@ -257,7 +257,7 @@ Extended Features
     packet-trim  enabled
 ```
 
-To show detailed RoCE information about a single interface, run the `nv show interface <interface> qos roce status` command.
+To show detailed RoCE information about a single interface, run the `nv show interface <interface-id> qos roce status` command.
 
 ```
 cumulus@switch:mgmt:~$ nv show interface swp16 qos roce status
@@ -305,7 +305,7 @@ RoCE Pool Status
     3   roce-reserved-egress   DYNAMIC  14       -                  3              inf       7.29 MB        13.47 MB
 ```
 
-To show detailed information about current buffer utilization as well as historic RoCE byte and packet counts, run the `nv show interface <interface> qos roce counters` command:
+To show detailed information about current buffer utilization as well as historic RoCE byte and packet counts, run the `nv show interface <interface-id> qos roce counters` command:
 
 ```
 cumulus@switch:mgmt:~$ nv show interface swp16 qos roce counters
@@ -355,7 +355,7 @@ tx-stats
     unicast-no-buffer-discard  663060754115           Tx buffer discards for RoCE traffic
 ```
 
-To reset the counters in the `nv show interface <interface> qos roce` command output, run the `nv action clear interface <interface> qos roce counters` command.
+To reset the counters in the `nv show interface <interface-id> qos roce` command output, run the `nv action clear interface <interface-id> qos roce counters` command.
 
 ## Change RoCE Configuration
 

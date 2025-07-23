@@ -154,9 +154,9 @@ Restarting the `switchd` service causes all network ports to reset in addition t
 | `nat.table_size` | The NAT table size limit in number of entries. You can configure this setting only when `nat.dynamic_enable` is set to TRUE.<br>The default setting is 1024. | restart |
 | `nat.config_table_size` | The NAT configuration table size limit in number of entries. You can configure this setting only when `nat.dynamic_enable` is set to TRUE.<br>The default setting is 64. | restart |
 | `logging` | Configures logging in the format BACKEND=LEVEL. Separate multiple BACKEND=LEVEL pairs with a space. The BACKEND value can be `stderr`, `file:filename`, `syslog`, `program:executable`. The LEVEL value can be `CRIT`, `ERR`, `WARN`, `INFO`, `DEBUG`.</br>The default value is `syslog=INFO`| restart |
-| `interface.<interface>.storm_control.broadcast` | Enables broadcast storm control and sets the number of packets per second (pps).</br>The default setting is 400. | reload |
-| `interface.<interface>.storm_control.multicast` | Enables multicast storm control and sets the number of packets per second (pps).</br>The default setting is 3000. | reload |
-| `interface.<interface>.storm_control.unknown_unicast` | Enables unicast storm control and sets the number of packets per second (pps).</br>The default setting is 2000. | reload |
+| `interface.<interface-id>.storm_control.broadcast` | Enables broadcast storm control and sets the number of packets per second (pps).</br>The default setting is 400. | reload |
+| `interface.<interface-id>.storm_control.multicast` | Enables multicast storm control and sets the number of packets per second (pps).</br>The default setting is 3000. | reload |
+| `interface.<interface-id>.storm_control.unknown_unicast` | Enables unicast storm control and sets the number of packets per second (pps).</br>The default setting is 2000. | reload |
 | `stats.vlan.aggregate` | Enables hardware statistics for VLANs and specifies the type of statistics needed. You can specify NONE, BRIEF, or DETAIL.</br>The default setting is BRIEF. | restart |
 | `stats.vxlan.aggregate` | Enables hardware statistics for VXLANs and specifies the type of statistics needed. You can specify NONE, BRIEF, or DETAIL.</br> The default setting is DETAIL. | restart |
 | `stats.vxlan.member` | Enables hardware statistics for VXLAN members and specifies the type of statistics needed. You can specify NONE, BRIEF, or DETAIL.</br>The default setting is BRIEF. | restart |

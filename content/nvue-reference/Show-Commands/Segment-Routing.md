@@ -55,7 +55,7 @@ state      disabled  enabled
 
 ## <h>nv show router segment-routing srv6 stats</h>
 
-Shows counter values for all SRv6 segment identifiers.
+Shows SRv6 counter values.
 
 ### Version History
 

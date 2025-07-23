@@ -12,7 +12,7 @@ h { color: RGB(118,185,0)}
 
 ## <h>nv show interface \<interface-id\> packet-trim</h>
 
-Shows packet trimming configuration. The trimmed-packet-counters field shows the number of trimmed packets.
+Shows packet trimming configuration for an interface.
 
 ### Command Syntax
 
@@ -27,31 +27,9 @@ Introduced in Cumulus Linux 5.14.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system forwarding packet-trim
-                          operational  applied           
--------------------------  -----------  -------------------
-state                      enabled      enabled           
-profile                                 
-service-port               swp65                          
-size                       1024                             
-traffic-class              4                              
-switch-priority            4                              
-remark                                                    
-dscp                     11                             
-session-info                                              
-session-id               0x0                            
-trimmed-packet-counters  0                              
-
-Egress Eligibility TC-to-Interface Information
-=================================================
-   TC  interface                                                      
-   --  ----------------------------------------------------------------
-   1   swp2-16,18-32,34-48,50-64,swp1s0-1,swp17s0-1,swp33s0-1,swp49s0-1
-   2   swp2-16,18-32,34-48,50-64,swp1s0-1,swp17s0-1,swp33s0-1,swp49s0-1
-   3   swp2-16,18-32,34-48,50-64,swp1s0-1,swp17s0-1,swp33s0-1,swp49s0-1
-
-Port-Level SP to DSCP Remark Information
-===========================================
+cumulus@switch:~$ nv show interface swp1-3 packet-trim
+Egress Eligibility TC
+========================
 No Data
 ```
 
@@ -75,6 +53,9 @@ Introduced in Cumulus Linux 5.14.0
 
 ```
 cumulus@switch:~$ nv show interface swp1-3 packet-trim egress-eligibility
+Egress Eligibility TC
+========================
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -97,6 +78,7 @@ Introduced in Cumulus Linux 5.14.0
 
 ```
 cumulus@switch:~$ nv show interface swp1-3 packet-trim egress-eligibility traffic-class
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -120,4 +102,67 @@ Introduced in Cumulus Linux 5.14.0
 
 ```
 cumulus@switch:~$ nv show interface swp1-3 packet-trim egress-eligibility traffic-class 4
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system forwarding packet-trim</h>
+
+Shows packet trimming information. The `trimmed-packet-counters` field shows the number of trimmed packets.
+
+### Version History
+
+Introduced in Cumulus Linux 5.14.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system forwarding packet-trim
+nv show system forwarding packet-trim 
+                           operational                           applied                         
+-------------------------  ------------------------------------  -------------------  
+state                      disabled                              enabled                       
+profile                                                          packet-trim-default  
+service-port               swp65                                                                         
+size                       253                                                                           
+traffic-class              4                                                                             
+switch-priority            4                                                                             
+remark                                                                                                   
+  dscp                     11                                                                            
+session-info                                                                                             
+  session-id               0xffff                                                                        
+  trimmed-packet-counters  0                                                                             
+  session-down-reason      Failed to create/update span session                                          
+
+Egress Eligibility TC-to-Interface Information
+=================================================
+    TC  interface              
+    --  -----------------------
+    1   swp1-60,63-64,swp61s0-7
+    2   swp1-60,63-64,swp61s0-7
+    3   swp1-60,63-64,swp61s0-7
+
+Port-Level SP to DSCP Remark Information
+===========================================
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system forwarding packet-trim remark</h>
+
+Shows packet trimming remark information.
+
+### Version History
+
+Introduced in Cumulus Linux 5.14.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system forwarding packet-trim remark 
+      operational  applied
+----  -----------  -------
+dscp               11
 ```

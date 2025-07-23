@@ -119,8 +119,6 @@ nv show system forwarding packet-trim
 nv show system forwarding packet-trim remark
 nv show router segment-routing
 nv show router segment-routing srv6
-nv show router segment-routing srv6 stats
-nv show router segment-routing srv6 stats sid
 nv show router segment-routing srv6 stats sid <sid>
 nv show router segment-routing srv6 stats no-sid-drops
 nv show router segment-routing srv6 locator
@@ -128,9 +126,7 @@ nv show router segment-routing srv6 locator <locator-name>
 nv show router segment-routing srv6 sid
 nv show router segment-routing srv6 sid <sid>
 nv show router segment-routing static
-nv show router segment-routing static srv6-sid
 nv show router segment-routing static srv6-sid <sid>
-nv show vrf evpn
 nv show vrf evpn  --view=evpn
 ```
 

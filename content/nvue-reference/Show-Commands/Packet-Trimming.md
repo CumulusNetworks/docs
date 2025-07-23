@@ -12,7 +12,7 @@ h { color: RGB(118,185,0)}
 
 ## <h>nv show interface \<interface-id\> packet-trim</h>
 
-Shows packet trimming configuration for an interface.
+Shows packet trimming information for an interface.
 
 ### Command Syntax
 
@@ -37,7 +37,7 @@ No Data
 
 ## <h>nv show interface \<interface-id\> packet-trim egress-eligibility</h>
 
-Shows packet trimming egress eligibility configuration.
+Shows packet trimming eligibility information for an interface.
 
 ### Command Syntax
 
@@ -62,7 +62,7 @@ No Data
 
 ## <h>nv show interface \<interface-id\> packet-trim egress-eligibility traffic-class</h>
 
-Shows packet trimming egress eligibility traffic class configuration.
+Shows packet trimming eligibility traffic class information for an interface.
 
 ### Command Syntax
 
@@ -85,7 +85,7 @@ No Data
 
 ## <h>nv show interface \<interface-id\> packet-trim egress-eligibility traffic-class \<tc-id\></h>
 
-Shows packet trimming egress eligibility configuration for a specific traffic class.
+Shows packet trimming eligibility information for a specific traffic class.
 
 ### Command Syntax
 
@@ -109,7 +109,7 @@ No Data
 
 ## <h>nv show system forwarding packet-trim</h>
 
-Shows packet trimming information. The `trimmed-packet-counters` field shows the number of trimmed packets.
+Shows packet trimming configuration and data. The `trimmed-packet-counters` field shows the number of trimmed packets.
 
 ### Version History
 

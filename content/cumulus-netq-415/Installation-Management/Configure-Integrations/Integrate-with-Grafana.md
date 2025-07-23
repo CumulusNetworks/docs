@@ -117,7 +117,7 @@ To import a preconfigured dashboard into your Grafana instance, following the st
 
 ## Grafana Best Practices
 
-If Grafana is slow or lagging, you might need to adjust your dashboard settings. When dealing with large networks (over 1000 switches), fabric-wide queries can generate too many data points, which can significantly impact performance. You can improve performance by optimizing queries, reducing data volume, and simplifying panel rendering.
+If Grafana is slow or lagging, you might need to adjust your dashboard settings. When dealing with large networks (over 1000 switches), fabric-wide queries can generate millions of data points, which can significantly impact performance. You can improve performance by optimizing queries, reducing data volume, and simplifying panel rendering.
 
 Avoid plotting all time-series data at once. To visualize the data in different ways:
    - {{<exlink url="https://grafana.com/docs/grafana/latest/fundamentals/timeseries/#aggregating-time-series" text="Aggregate time series data">}}

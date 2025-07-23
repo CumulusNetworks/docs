@@ -11,11 +11,12 @@ The NetQ integration with Grafana allows you to create customized dashboards and
 The Grafana integration is in beta and supported for on-premises deployments only.
 {{%/notice%}}
 
-## Requirements
+## Requirements and Support
 
-- Switches must have a Spectrum-2 or later ASIC, with Cumulus Linux version x.x
+- Switches must have a Spectrum-2 or later ASIC
 - DPUs and ConnectX hosts must be running DOCA Telemetry Service (DTS) version 1.18-1.20
 - Before you get started with the steps below, {{<exlink url="https://grafana.com/docs/grafana/latest/setup-grafana/installation/" text="install Grafana">}} and {{<exlink url="https://grafana.com/docs/grafana/latest/setup-grafana/start-restart-grafana/" text="start the Grafana server">}}
+- NetQ supports up to four million data points per query and allows you to retrieve data from up to seven days in the past
 
 
 ## Configure and Enable OpenTelemetry on Devices
@@ -116,13 +117,15 @@ To import a preconfigured dashboard into your Grafana instance, following the st
 
 ## Grafana Best Practices
 
-If Grafana is slow or lagging, you might need to adjust your dashboard settings. When dealing with large networks (over 1000 switches), fabric-wide queries can generate millions of data points, which can significantly impact performance. You can improve performance by optimizing queries, reducing data volume, and simplifying panel rendering.
+If Grafana is slow or lagging, you might need to adjust your dashboard settings. When dealing with large networks (over 1000 switches), fabric-wide queries can generate too many data points, which can significantly impact performance. You can improve performance by optimizing queries, reducing data volume, and simplifying panel rendering.
 
 Avoid plotting all time-series data at once. To visualize the data in different ways:
    - {{<exlink url="https://grafana.com/docs/grafana/latest/fundamentals/timeseries/#aggregating-time-series" text="Aggregate time series data">}}
    - {{<exlink url="https://grafana.com/docs/grafana/latest/fundamentals/timeseries/#aggregating-time-series" text="Add labels to your time series data">}}
    - {{<exlink url="https://grafana.com/docs/grafana/latest/dashboards/variables/add-template-variables/#add-an-interval-variable" text="Add interval variables">}}
    - {{<exlink url="https://grafana.com/docs/grafana/latest/dashboards/variables/add-template-variables/#add-an-interval-variable" text="Use aggregation operators">}} such as `count` and `topk`
+
+<!--
 
 To export a large amount of data, use a `curl` command. The following command queries 15 minutes worth of data.
 
@@ -135,7 +138,7 @@ curl -k "https://<host>/api/netq/vm/api/v1/query_range" \
   --data-urlencode "end=$(date -u +%Y-%m-%dT%H:%M:%SZ)" \ 
   --data-urlencode 'step=60s' > output_changes_total.json
 ```
-<!--ask stu about API ref-->
+-->
 
 ## Troubleshooting
 

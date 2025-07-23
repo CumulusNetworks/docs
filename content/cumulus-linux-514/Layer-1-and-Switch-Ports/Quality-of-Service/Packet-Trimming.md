@@ -207,9 +207,9 @@ cumulus@switch:~$ nv show system forwarding packet-trim remark
 dscp               11
 ```
 
-- To show interface packet-trim eligibility information, run the `nv show interface <interface-id> packet-trim` command.
-- To show interface packet-trim eligibility traffic-class information, run the `nv show interface <interface-id> packet-trim egress-eligibility` command.
-- To show interface packet-trim egress-interface traffic class information, run the `nv show interface <interface-id> packet-trim egress-eligibility traffic-class <tc-id>` command.
+- To show packet trimming interface eligibility information, run the `nv show interface <interface-id> packet-trim egress-eligibility` command.
+- To show packet trimming interface eligibility traffic-class information, run the `nv show interface <interface-id> packet-trim egress-eligibility traffic-class` command.
+- To show packet trimming interface eligibility information for a specific traffic class, run the `nv show interface <interface-id> packet-trim egress-eligibility traffic-class <tc-id>` command.
 
 ## Troubleshooting
 

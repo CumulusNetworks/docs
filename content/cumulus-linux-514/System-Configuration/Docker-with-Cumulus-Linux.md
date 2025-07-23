@@ -144,7 +144,7 @@ Changing the Docker VRF restarts the Docker service, which disrupts all running 
 {{< tabs "TabID142 ">}}
 {{< tab "NVUE Commands">}}
 
-Run the `nv set system docker vrf <vrf-name>` command:
+Run the `nv set system docker vrf <vrf-id>` command:
 
 ```
 cumulus@switch:~$ nv set system docker vrf RED
@@ -156,7 +156,7 @@ To reset the Docker container to run in the management VRF (the default setting)
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Run the `systemctl start docker@<vrf>.service` command. For example:
+Run the `systemctl start docker@<vrf-id>.service` command. For example:
 
 ```
 cumulus@switch:~$ systemctl start docker@RED.service

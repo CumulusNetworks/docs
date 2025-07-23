@@ -52,8 +52,8 @@ nv show vrf <vrf-id> router bgp path-selection
 nv show vrf <vrf-id> router bgp path-selection med
 nv show vrf <vrf-id> router bgp path-selection aspath
 nv show vrf <vrf-id> router bgp path-selection multipath
-nv show vrf <vrf-id> router bgp neighbor <interface> bfd
-nv show vrf <vrf-id> router bgp neighbor <interface> local-as
+nv show vrf <vrf-id> router bgp neighbor <interface-id> bfd
+nv show vrf <vrf-id> router bgp neighbor <interface-id> local-as
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath
@@ -89,10 +89,10 @@ If you configure OSPFv3 areas with NVUE snippets in Cumulus Linux 5.13 and earli
 {{< /expand >}}
   - {{< expand "Removed NVUE Commands" >}}
 ```
-nv set service dhcp-relay <vrf>> interface <interface-id>
-nv set service dhcp-relay default server <server-id>
-nv show service dhcp-relay default server
-nv set service dhcp-relay <vrf>> agent remote-id
+nv set service dhcp-relay <vrf-id> interface <interface-id>
+nv set service dhcp-relay <vrf-id> server <server-id>
+nv show service dhcp-relay <vrf-id> server
+nv set service dhcp-relay <vrf-id> agent remote-id
 ```
 {{< /expand >}}
   - {{< expand "New NVUE Commands" >}}
@@ -106,7 +106,7 @@ nv show interface <interface-id> packet-trim
 nv show interface <interface-id> packet-trim egress-eligibility
 nv show interface <interface-id> packet-trim egress-eligibility traffic-class
 nv show interface <interface-id> packet-trim egress-eligibility traffic-class <tc-id>
-nv show platform transceiver <interface> temperature
+nv show platform transceiver <interface-id> temperature
 nv show service dhcp-relay <vrf-id> server-group
 nv show service dhcp-relay <vrf-id> server-group <server-group-id>
 nv show service dhcp-relay <vrf-id> server-group <server-group-id> server
@@ -148,7 +148,7 @@ nv set router segment-routing srv6 state (enabled|disabled)
 nv set router segment-routing static srv6-sid <sid>
 nv set router segment-routing static srv6-sid <sid> locator-name <value>
 nv set router segment-routing static srv6-sid <sid> behavior (uN|uA)
-nv set router segment-routing static srv6-sid <sid> interface <interface-name>
+nv set router segment-routing static srv6-sid <sid> interface <interface-id>
 nv set service dhcp-relay <vrf-id> server-group <server-group-id>
 nv set service dhcp-relay <vrf-id> server-group <server-group-id> server <server-id>
 nv set service dhcp-relay <vrf-id> server-group <server-group-id> upstream-interface <interface-id>
@@ -290,7 +290,7 @@ Cumulus Linux 5.14 includes the NVUE object model. After you upgrade to Cumulus 
 
 ### DHCP Relay Configuration
 
-Cumulus Linux 5.14 introduces server groups. In Cumulus Linux 5.13 and earlier, DHCP relay does not use server groups, but instead, forwards all DHCP client requests to every DHCP server within the same VRF. Cumulus Linux 5.14 no longer provides the `nv show service dhcp-relay default server` commands.
+Cumulus Linux 5.14 introduces server groups. In Cumulus Linux 5.13 and earlier, DHCP relay does not use server groups, but instead, forwards all DHCP client requests to every DHCP server within the same VRF. Cumulus Linux 5.14 no longer provides the `nv show service dhcp-relay <vrf-id> server` commands.
 
 If you have configured DHCP relay in Cumulus Linux 5.13 or earlier, the upgrade process migrates the configuration to a new default configuration file called `isc-dhcp-relay-<server-group-id>-<vrf-id>` in the `/etc/default` directory and selects the uplink and downlink interfaces automatically. After upgrade, make sure to review the new configuration and adjust as needed.
 

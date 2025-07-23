@@ -550,7 +550,7 @@ cumulus@switch:~$ nv set router adaptive-routing enable on
 cumulus@switch:~$ nv config apply
 ```
 
-To enable adaptive routing on ports that are part of the same ECMP route, run the `nv set interface <interface> router adaptive-routing enable on` command.
+To enable adaptive routing on ports that are part of the same ECMP route, run the `nv set interface <interface-id> router adaptive-routing enable on` command.
 
 ```
 cumulus@switch:~$ nv set interface swp51 router adaptive-routing enable on
@@ -558,7 +558,7 @@ cumulus@switch:~$ nv set interface swp52 router adaptive-routing enable on
 cumulus@switch:~$ nv config apply
 ```
 
-To disable adaptive routing, run the `nv set router adaptive-routing enable off` command. To disable adaptive routing on a specific port, run the `nv set interface <interface> router adaptive-routing enable off` command.
+To disable adaptive routing, run the `nv set router adaptive-routing enable off` command. To disable adaptive routing on a specific port, run the `nv set interface <interface-id> router adaptive-routing enable off` command.
 
 Enabling or disabling adaptive routing globally or on an interface reloads the `switchd` service.
 
@@ -629,7 +629,7 @@ Enabling or disabling link utilization reloads the `switchd` service.
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/cumulus/switchd.d/adaptive_routing.conf` file to set:
-- `interface.<interface>.adaptive_routing.link_util_thresh` to a value between 1 and 100.
+- `interface.<interface-id>.adaptive_routing.link_util_thresh` to a value between 1 and 100.
 - `adaptive_routing.link_util_threshold_disabled` to TRUE.
 
 ```
@@ -731,7 +731,7 @@ cumulus@leaf01:mgmt:~$ nv show router adaptive-routing
 enable                      on            off
 ```
 
-To show adaptive routing configuration for an interface, run the `nv show interface <interface> router adaptive-routing`.
+To show adaptive routing configuration for an interface, run the `nv show interface <interface-id> router adaptive-routing`.
 
 ## Considerations
 

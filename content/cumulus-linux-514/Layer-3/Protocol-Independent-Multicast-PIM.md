@@ -1032,7 +1032,7 @@ cumulus@switch:~$ nv set interface swp1 ip igmp fast-leave on
 cumulus@switch:~$ nv config apply
 ```
 
-To disable fast leave processing, run the `nv set interface <interface> ip igmp fast-leave off` command.
+To disable fast leave processing, run the `nv set interface <interface-id> ip igmp fast-leave off` command.
 
 {{< /tab >}}
 {{< tab "Linux and vtysh Commands ">}}
@@ -1276,7 +1276,7 @@ Active Source           Group            RPT  IIF               OIL
 1      10.1.10.101      239.1.1.1        n    vlan10 
 ```
 
-To show the IGMP configuration settings for an interface, run the `nv show interface <interface> ip igmp` command
+To show the IGMP configuration settings for an interface, run the `nv show interface <interface-id> ip igmp` command
 
 ```
 cumulus@lhr:~$ nv show interface swp3 ip igmp
@@ -1311,9 +1311,9 @@ flags
   lan-delay                  on             
 ```
 
-To show IGMP operational data for an interface, run the NVUE `nv show interface <interface> ip igmp -o json` command or the vtysh `show ip igmp statistics` command.
+To show IGMP operational data for an interface, run the NVUE `nv show interface <interface-id> ip igmp -o json` command or the vtysh `show ip igmp statistics` command.
 
-To verify that the receiver is sending IGMP reports (joins) for the group, run the NVUE `nv show interface <interface> ip igmp group` command or the vtysh `show ip igmp groups` command.
+To verify that the receiver is sending IGMP reports (joins) for the group, run the NVUE `nv show interface <interface-id> ip igmp group` command or the vtysh `show ip igmp groups` command.
 
 ```
 cumulus@lhr:~$ nv show interface swp3 ip igmp group

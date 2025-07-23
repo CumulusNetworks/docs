@@ -93,7 +93,7 @@ Origin codes:  i - IGP, e - EGP, ? - incomplete
 ...
 ```
 
-To show a more detailed breakdown of a specific neighbor, run the vtysh `show ip bgp neighbor <neighbor>` command or the NVUE `nv show vrf <vrf> router bgp neighbor <neighbor>` command:
+To show a more detailed breakdown of a specific neighbor, run the vtysh `show ip bgp neighbor <neighbor>` command or the NVUE `nv show vrf <vrf-id> router bgp neighbor <neighbor>` command:
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor swp51
@@ -136,7 +136,7 @@ address-family
 
 ## Show BGP Peer Information
 
-To show detailed information about all BGP neighbors, run the `nv show vrf <vrf> router bgp neighbor --view=detail -o json` command:
+To show detailed information about all BGP neighbors, run the `nv show vrf <vrf-id> router bgp neighbor --view=detail -o json` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor --view=detail -o json
@@ -202,7 +202,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor --view=detail -o 
       }
 ```
 
-To see a summary of the connection information for all BGP peers, such as the state (`established`, `idle`), uptime, number of messages received and sent, and the time the connections establish, run the `nv show vrf <vrf> router bgp neighbor` command.
+To see a summary of the connection information for all BGP peers, such as the state (`established`, `idle`), uptime, number of messages received and sent, and the time the connections establish, run the `nv show vrf <vrf-id> router bgp neighbor` command.
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor
@@ -230,12 +230,12 @@ swp6      65254  established  1 day, 2:34:17  2:34:32    32335    32223    ipv4-
 Run the `nv show vrf default router bgp neighbor -o json` command to show a summary of the connection information for all BGP neighbors in json format.
 
 {{%notice note%}}
-In Cumulus Linux 5.11 and earlier, the `nv show vrf default router bgp neighbor -o json` command output shows more detailed information about BGP peers. To show the more detailed BGP peer information in Cumulus Linux 5.12 and later, run the `nv show vrf <vrf> router bgp neighbor --view=detail -o json` command, shown above.
+In Cumulus Linux 5.11 and earlier, the `nv show vrf default router bgp neighbor -o json` command output shows more detailed information about BGP peers. To show the more detailed BGP peer information in Cumulus Linux 5.12 and later, run the `nv show vrf <vrf-id> router bgp neighbor --view=detail -o json` command, shown above.
 {{%/notice%}}
 
 ## Check BGP Timer Settings
 
-To check BGP timers, such as the BGP keepalive interval, hold time, and advertisement interval, run the NVUE `nv show vrf <vrf> router bgp neighbor <neighbor> timers` command or the vtysh `show ip bgp neighbor <peer>` command. For example:
+To check BGP timers, such as the BGP keepalive interval, hold time, and advertisement interval, run the NVUE `nv show vrf <vrf-id> router bgp neighbor <neighbor> timers` command or the vtysh `show ip bgp neighbor <peer>` command. For example:
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 timers
@@ -367,7 +367,7 @@ cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4-unicast upd
 
 You can run NVUE commands to show route statistics for a BGP neighbor, such as the number of routes, and information about advertised and received routes.
 
-To show the routing table for IPv4 routes, run the `nv show vrf <vrf> router rib ipv4 route` command. To show the RIB table for IPv6 routes, run the `nv show vrf <vrf> router rib ipv6 route` command.
+To show the routing table for IPv4 routes, run the `nv show vrf <vrf-id> router rib ipv4 route` command. To show the RIB table for IPv6 routes, run the `nv show vrf <vrf-id> router rib ipv6 route` command.
 
 ```
 cumulus@leaf01:mgmt:~$ nv show vrf default router rib ipv4 route
@@ -391,7 +391,7 @@ Route            Protocol   Distance  Uptime                NHGId  Metric  Flags
 10.10.10.102/32  bgp        20        2024-07-18T22:02:22Z  58     0       *Si
 ```
 
-To show the routes in the local routing table, run the `nv show vrf <vrf> router bgp address-family ipv4-unicast route` command for IPv4 or the `nv show vrf <vrf> router bgp address-family ipv6-unicast route` for IPv6. You can also run the command with `-o json` to show the received routes in json format.
+To show the routes in the local routing table, run the `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route` command for IPv4 or the `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route` for IPv6. You can also run the command with `-o json` to show the received routes in json format.
 
 ```
 cumulus@leaf02:~$ nv show vrf default router bgp address-family ipv4-unicast route 
@@ -416,7 +416,7 @@ Prefix           PathCount  MultipathCount  DestFlags
 10.10.10.104/32  2          1               * 
 ```
 
-To filter the routes by a specific neighbor (numbered or unnumbered), use the `--filter=”neighbor=<neighbor>"` option. Run the `nv show vrf <vrf> router bgp address-family ipv4-unicast route --filter=”neighbor=<neighbor>"` command for IPv4 or the `nv show vrf <vrf> router bgp address-family ipv6-unicast route --filter=”neighbor=<neighbor>"` for IPv6.
+To filter the routes by a specific neighbor (numbered or unnumbered), use the `--filter=”neighbor=<neighbor>"` option. Run the `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route --filter=”neighbor=<neighbor>"` command for IPv4 or the `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route --filter=”neighbor=<neighbor>"` for IPv6.
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4-unicast route --filter="neighbor=swp51"
@@ -437,7 +437,7 @@ Prefix           PathCount  MultipathCount  DestFlags
 10.10.10.101/32  1          1               *
 ```
 
-To show information about a specific route in the local routing table, run the `nv show vrf <vrf> router bgp address-family ipv4-unicast route <route>` for IPv4 or `nv show vrf <vrf> router bgp address-family ipv6-unicast route <route>` for IPv6.
+To show information about a specific route in the local routing table, run the `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route <route>` for IPv4 or `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route <route>` for IPv6.
 
 The above IPv4 and IPv6 command shows the local routing table route information in brief format to improve performance for high scale environments. You can also run the command with `-o json` to show the received routes in json format.
 
@@ -493,7 +493,7 @@ best-routes     7
 usable          8 
 ```
 
-To show all advertised routes, run the `nv show vrf <vrf> router bgp neighbor <neighbor> address-family ipv4-unicast advertised-routes` command for IPv4 or the `nv show vrf <vrf> router bgp neighbor <neighbor> address-family ipv6-unicast advertised-routes` for IPv6.
+To show all advertised routes, run the `nv show vrf <vrf-id> router bgp neighbor <neighbor> address-family ipv4-unicast advertised-routes` command for IPv4 or the `nv show vrf <vrf-id> router bgp neighbor <neighbor> address-family ipv6-unicast advertised-routes` for IPv6.
 
 The above IPv4 and IPv6 command shows advertised routes in brief format to improve performance for high scale environments. You can also run the command with `-o json` to show the received routes in json format.
 
@@ -518,7 +518,7 @@ IPv4 Prefix      PathCount  MultipathCount  DestFlags
 10.10.10.102/32  2          1               bestpath-exists
 ```
 
-To show information about a specific advertised route, run the`nv show <vrf> default router bgp neighbor <neighbor> address-family ipv4-unicast advertised-routes <route>` for IPv4 or `nv show <vrf> default router bgp neighbor <neighbor> address-family ipv6-unicast advertised-routes <route>` for IPv6.
+To show information about a specific advertised route, run the`nv show <vrf-id> default router bgp neighbor <neighbor> address-family ipv4-unicast advertised-routes <route>` for IPv4 or `nv show <vrf-id> default router bgp neighbor <neighbor> address-family ipv6-unicast advertised-routes <route>` for IPv6.
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-route 10.10.10.1/32
@@ -542,13 +542,13 @@ path
 ...
 ```
 
-To show all the received routes, run the `nv show vrf <vrf> router bgp neighbor <neighbor> address-family ipv4-unicast received-routes` command for IPv4 or `nv show vrf <vrf> router bgp neighbor <neighbor> address-family ipv6-unicast received-routes` command for IPv6. These commands show received routes in brief format to improve performance for high scale environments. You can also run the command with `--view=detail` to see more detailed information or with `-o json` to show the received routes in json format.
+To show all the received routes, run the `nv show vrf <vrf-id> router bgp neighbor <neighbor> address-family ipv4-unicast received-routes` command for IPv4 or `nv show vrf <vrf-id> router bgp neighbor <neighbor> address-family ipv6-unicast received-routes` command for IPv6. These commands show received routes in brief format to improve performance for high scale environments. You can also run the command with `--view=detail` to see more detailed information or with `-o json` to show the received routes in json format.
 
-To show information about a specific received route, run the `nv show vrf <vrf> router bgp neighbor <neighbor> address-family ipv4-unicast received-routes <route> -o json` for IPv4 or `nv show vrf <vrf> router bgp neighbor <neighbor> address-family ipv6-unicast received-routes <route> -o json` for IPv6.
+To show information about a specific received route, run the `nv show vrf <vrf-id> router bgp neighbor <neighbor> address-family ipv4-unicast received-routes <route> -o json` for IPv4 or `nv show vrf <vrf-id> router bgp neighbor <neighbor> address-family ipv6-unicast received-routes <route> -o json` for IPv6.
 
 ## Show Next Hop Information
 
-To show a summary of all the BGP IPv4 or IPv6 next hops, run the `nv show vrf <vrf> router bgp nexthop ipv4` or `nv show vrf <vrf> router bgp nexthop ipv6` command. The output shows the IGP metric, the number of paths pointing to a next hop, and the address or interface used to reach a next hop.
+To show a summary of all the BGP IPv4 or IPv6 next hops, run the `nv show vrf <vrf-id> router bgp nexthop ipv4` or `nv show vrf <vrf-id> router bgp nexthop ipv6` command. The output shows the IGP metric, the number of paths pointing to a next hop, and the address or interface used to reach a next hop.
 
 ```
 cumulus@leaf01:mgmt:~$ nv show vrf default router bgp nexthop ipv4
@@ -749,7 +749,7 @@ When you enable {{<link url="Optional-BGP-Configuration/#bgp-prefix-independent-
 {{< tabs "1585 ">}}
 {{< tab "NVUE Commands ">}}
 
-To show information about all route-origin extended community (SOO) routes, run the `nv show <vrf> default router bgp address-family <address-family> soo-route` command:
+To show information about all route-origin extended community (SOO) routes, run the `nv show <vrf-id> default router bgp address-family <address-family> soo-route` command:
 
 ```
 cumulus@spine01:~$ nv show vrf default router bgp address-family ipv4-unicast soo-route 
@@ -764,7 +764,7 @@ SoORouteID  PathCnt  RouteCnt  SoONhgID  SoORouteFlag  NhgRouteCnt  NhgFlag
 10.10.10.1  1        1         70328885  I             1            V  
 ```
 
-To show information about a specific SOO route, run the `nv show <vrf> default router bgp address-family <address-family> soo-route` command:
+To show information about a specific SOO route, run the `nv show <vrf-id> default router bgp address-family <address-family> soo-route` command:
 
 ```
 cumulus@spine01:~$ nv show vrf default router bgp address-family ipv4-unicast soo-route 10.10.10.1
@@ -787,7 +787,7 @@ bit-map
 [route-with-soo]          10.0.1.12/32
 ```
 
-To show the SOO peer bit index mapping for an SOO route, run the `nv show <vrf> default router bgp address-family <address-family> soo-route <prefix> peer-index` command:
+To show the SOO peer bit index mapping for an SOO route, run the `nv show <vrf-id> default router bgp address-family <address-family> soo-route <prefix> peer-index` command:
 
 ```
 cumulus@spine01:~$ nv show vrf default router bgp address-family ipv4-unicast soo-route 10.10.10.1 peer-index
@@ -798,7 +798,7 @@ IPAddress                  SooPeerBitIndex
 fe80::4ab0:2dff:fe3a:a928  1
 ```
 
-To show if a specific route uses PIC, run the `nv show <vrf> default router bgp address-family <address-family> soo-route <prefix> route-with-soo` command:
+To show if a specific route uses PIC, run the `nv show <vrf-id> default router bgp address-family <address-family> soo-route <prefix> route-with-soo` command:
 
 ```
 cumulus@spine01:~$ nv show vrf default router bgp address-family ipv4-unicast soo-route 10.10.10.1 route-with-soo 
@@ -1118,7 +1118,7 @@ Read thread: on  Write thread: on  FD used: 52
 
 ## Troubleshoot BGP Unnumbered
 
-To verify that FRR learns the neighboring link-local IPv6 address through the IPv6 neighbor discovery router advertisements on a given interface, run the vtysh `show interface <interface>` command.
+To verify that FRR learns the neighboring link-local IPv6 address through the IPv6 neighbor discovery router advertisements on a given interface, run the vtysh `show interface <interface-id>` command.
 
 If you do not enable `ipv6 nd suppress-ra` on both ends of the interface, `Neighbor address(s):` shows the link-local address of the other end (the address that BGP uses when that interface uses BGP).
 

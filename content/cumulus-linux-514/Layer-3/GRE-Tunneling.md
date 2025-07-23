@@ -40,7 +40,7 @@ The following configuration example shows the commands used to set up a bidirect
 {{< img src = "/images/cumulus-linux/gre-tunnel-config1.png" >}}
 
 {{%notice note%}}
-In NVUE, if you create the GRE interface with a name that starts with `tunnel`, NVUE automatically sets the interface type to `tunnel`. If you create a GRE interface with a name that does *not* start with `tunnel`, you must set the interface type to `tunnel` with the `nv set interface <interface-name> type tunnel` command.
+In NVUE, if you create the GRE interface with a name that starts with `tunnel`, NVUE automatically sets the interface type to `tunnel`. If you create a GRE interface with a name that does *not* start with `tunnel`, you must set the interface type to `tunnel` with the `nv set interface <interface-id> type tunnel` command.
 {{%/notice%}}
 
 {{< tabs "TabID35 ">}}
@@ -200,7 +200,7 @@ To delete a GRE tunnel, remove the tunnel interface, and remove the routes confi
 
 ## Troubleshooting
 
-To check GRE tunnel settings, run the NVUE `nv show interface <interface> tunnel` command, or run the Linux `ip tunnel show` or `ifquery --check` command. For example:
+To check GRE tunnel settings, run the NVUE `nv show interface <interface-id> tunnel` command, or run the Linux `ip tunnel show` or `ifquery --check` command. For example:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface tunnelR2 tunnel

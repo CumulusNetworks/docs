@@ -197,7 +197,7 @@ cumulus@switch:~$
 {{< /tab >}}
 {{< /tabs >}}
 
-To check PTM status on an interface, run the vtysh `show interface <interface>` command.
+To check PTM status on an interface, run the vtysh `show interface <interface-id>` command.
 
 ```
 cumulus@switch:~$ show interface swp51

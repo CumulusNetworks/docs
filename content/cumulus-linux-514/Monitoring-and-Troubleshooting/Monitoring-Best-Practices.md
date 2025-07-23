@@ -291,8 +291,8 @@ Link and port state interface transitions log to `/var/log/syslog` and `/var/log
 
 | Interface Element | Monitoring Commands |
 |------------------ |-------------------- |
-| Link state | NVUE: `nv show interface <interface>`<br><br>Linux: `sudo cat /sys/class/net/<interface>/operstate` |
-| Link speed | NVUE: `nv show interface <inteface>`<br><br>Linux: `sudo cat /sys/class/net/<interface>/speed` |
+| Link state | NVUE: `nv show interface <interface-id>`<br><br>Linux: `sudo cat /sys/class/net/<interface-id>/operstate` |
+| Link speed | NVUE: `nv show interface <inteface>`<br><br>Linux: `sudo cat /sys/class/net/<interface-id>/speed` |
 | Port state | NVUE: `nv show interface`<br><br>Linux: `ip link show` |
 | Bond state | NVUE: `nv show interface <bond>`<br><br>Linux: `sudo cat /proc/net/bonding/<bond>` |
 
@@ -300,7 +300,7 @@ You obtain interface counters from either querying the hardware or the Linux ker
 
 | Interface Counter Element | Monitoring Commands | Interval Poll|
 |-------------------------- |-------------------- |------------- |
-| Interface counters | NVUE: `nv show interface <interface> counters`<br><br>Linux: `cat /sys/class/net/<interface>/statistics/<statistic-name>`<br>`cl-netstat -j`<br>`ethtool -S <interface>` | 10 seconds |
+| Interface counters | NVUE: `nv show interface <interface-id> counters`<br><br>Linux: `cat /sys/class/net/<interface-id>/statistics/<statistic-name>`<br>`cl-netstat -j`<br>`ethtool -S <interface-id>` | 10 seconds |
 
 | Layer 1 Logs |Log Location | Log Entries |
 |------------- |------------- |------------ |

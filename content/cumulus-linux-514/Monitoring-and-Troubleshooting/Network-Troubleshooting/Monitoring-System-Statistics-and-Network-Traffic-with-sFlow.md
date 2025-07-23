@@ -243,19 +243,19 @@ cumulus@switch:~$ nv set interface swp1 sflow state disabled
 cumulus@switch:~$ nv config apply
 ```
 
-To enable sFlow on an interface, run the `nv set interface <interface> sflow state enabled` command.
+To enable sFlow on an interface, run the `nv set interface <interface-id> sflow state enabled` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-By default, sFlow is `off` on interfaces that are operationally UP. To disable sFlow on a specific interface, edit the `/etc/cumulus/switchd.conf` file and set the `interface.<interface>.sflow.enable` parameter to `FALSE`:
+By default, sFlow is `off` on interfaces that are operationally UP. To disable sFlow on a specific interface, edit the `/etc/cumulus/switchd.conf` file and set the `interface.<interface-id>.sflow.enable` parameter to `FALSE`:
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
 interface.swp1.sflow.enable = FALSE 
 ```
 
-To enable sFlow on an interface, set the `interface.<interface>.sflow.enable` parameter to `TRUE`.
+To enable sFlow on an interface, set the `interface.<interface-id>.sflow.enable` parameter to `TRUE`.
 
 {{< /tab >}}
 {{< /tabs >}}

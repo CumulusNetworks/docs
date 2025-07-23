@@ -7,18 +7,18 @@ toc: 3
 Cumulus Linux supports multipathing with <span class="a-tooltip">[SRv6](## "Segment Routing for IPv6")</span> that enables you to tunnel packets from the source NIC to the destination NIC through the switch fabric using SRv6 micro segment identifiers (uSIDs). The SRv6 origination and termination is on the NIC and the switches merely act as SRv6-aware (transit) nodes. Cumulus Linux provides SRv6 uSID support with uN (END_CSID ) and uA (End.X_CSID ) endpoints.
 
 {{%notice note%}}
-Cumulus Linux supports SRv6 on the Spectrum-4 switch.
+Cumulus Linux supports segment routing on the Spectrum-4 switch.
 {{%/notice%}}
 
 ### Configure Segment Routing
 
 To configure segment routing:
 - Enable segment routing.
-- Configure the SRv6 locator settings and the static IDs. You can configure a maximum of 32 locators.
-  - Configure the SRv6 locator prefix.
-  - Configure the SRv6 locator block length. Cumulus Linux currently supports a value of 32.
-  - Configure the SRv6 locator function length. Cumulus Linux currently supports a value of 0.
-  - Configure the SRv6 locator node length. Cumulus Linux currently supports a value of 16.
+- Configure the SRv6 locator settings and the static IDs. You can configure a maximum of 256 locators.
+  - Configure the SRv6 locator prefix. The prefix length must match the sum of block length and the node length.
+  - Configure the SRv6 locator block length. You can specify a value between 16 and 64. The default value is 16.
+  - Configure the SRv6 locator function length. You can specify a value between 0 and 64. The default value is 0.
+  - Configure the SRv6 locator node length. You can specify a value between 0 and 64. The default value is 16.
   - Configure the static segment identifier locator name. The static segment identifier must be part of the locator prefix.  
   - Configure the static segment identifier endpoint behavior. You can specify uA or uN. If you specify uA, you must also provide the interface. Cumulus Linux enables route advertisements on the interface on which you configure uA.
 
@@ -31,7 +31,7 @@ The following table provides the supported formats for block, node, and function
 |uN only | 16            | 16          | 0               |
 |uA only | 16            | 0           | 16              |
 
-The following example enables SRv6, and configures the locator called LEAF and the static SID 2001:db8:1:1::100/48:
+The following example enables segment routing, and configures the locator called LEAF and the static SID 2001:db8:1:1::100/48:
 
 {{< tabs "TabID980 ">}}
 {{< tab "NVUE Commands ">}}
@@ -48,7 +48,7 @@ cumulus@switch:~$ nv set router segment-routing static srv6-sid 2001:db8:1:1::10
 cumulus@switch:~$ nv config apply
 ```
 
-- To disable SRv6, run the `nv set router segment-routing srv6 state disabled` command.
+- To disable segment routing, run the `nv set router segment-routing srv6 state disabled` command.
 - To unset all locators, run the `nv unset router segment-routing  srv6 locator` command.
 - To unset all static segment identifiers, run the `nv unset router segment-routing static srv6-sid` command.
 - To unset a static segment identifier, run the `nv unset router segment-routing static srv6-sid <prefix>` command.
@@ -76,13 +76,9 @@ leaf01# exit
 {{< /tab >}}
 {{< /tabs >}}
 
-{{%notice note%}}
-Cumulus Linux only supports the SF3216 format (block-len(32) and node-len(16)).
-{{%/notice%}}
-
 ### Show Segment Routing Configuration
 
-To show if SRv6 is enabled and to show the configured locators, run the `nv show router segment-routing` command:
+To show if segment routing is enabled and to show the configured locators, run the `nv show router segment-routing` command:
 
 ```
 cumulus@switch:~$ nv show router segment-routing 
@@ -149,7 +145,7 @@ IPv6 RIB with the `nv show vrf <vrf> router rib ipv6 route` command. You can vie
 
 ### Show Segment Routing Statistics
 
-To show all SRv6 information, run the `nv show router segment-routing srv6 stats` command
+To show all segment routing information, run the `nv show router segment-routing srv6 stats` command
 
 ```
 cumulus@switch:~$ nv show router segment-routing srv6 stats

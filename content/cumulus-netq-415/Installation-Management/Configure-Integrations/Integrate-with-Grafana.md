@@ -16,7 +16,7 @@ The Grafana integration is in beta and supported for on-premises deployments onl
 - Switches must have a Spectrum-2 or later ASIC
 - DPUs and ConnectX hosts must be running DOCA Telemetry Service (DTS) version 1.18-1.20
 - Before you get started with the steps below, {{<exlink url="https://grafana.com/docs/grafana/latest/setup-grafana/installation/" text="install Grafana">}} and {{<exlink url="https://grafana.com/docs/grafana/latest/setup-grafana/start-restart-grafana/" text="start the Grafana server">}}
-- NetQ supports up to four million data points per query and allows you to retrieve data from up to seven days in the past
+- NetQ allows you to retrieve data from up to seven days in the past
 
 
 ## Configure and Enable OpenTelemetry on Devices
@@ -140,11 +140,9 @@ curl -k "https://<host>/api/netq/vm/api/v1/query_range" \
 ```
 -->
 
-## Troubleshooting
+{{<notice tip>}}
+If Grafana displays "No Data", verify that all VMs in your cluster are operational. You can check the node status using the <code>kubectl get nodes</code> command. A node will show as <code>NotReady</code> if it is down. When the VM is restored, data collection will resume and will be displayed within 20 minutes of restoration.
+{{</notice>}}
 
-### Grafana Reports No Data
 
-If Grafana displays "No Data" at any point, verify that all VMs in your cluster are operational. You can check the node status using the command `kubectl get nodes`. A node will show as `NotReady` if it is down.
-
-If a VM in your cluster goes down due to a power disruption or other issues, Grafana data will be unavailable until the node is powered back on. When the VM is restored, data collection will resume, but you may encounter minor instabilities for up to 20 minutes after the power is restored.
 

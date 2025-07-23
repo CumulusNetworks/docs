@@ -5,7 +5,7 @@ weight: 550
 toc: 3
 ---
 
-The NetQ integration with Grafana allows you to create customized dashboards and to visualize metrics across your network's hardware. To view data in Grafana, first configure OpenTelemetry on your hardware devices, then configure the time series database on the NetQ server, and finally configure the data sources in Grafana. <!--You can create your own dashboards from scratch or import a dashboard template to get started.-->
+The NetQ integration with Grafana allows you to create customized dashboards and to visualize metrics across your network's hardware. To view data in Grafana, first configure OpenTelemetry (OTel) on your hardware devices, then configure the time series database on the NetQ server, and finally configure the data sources in Grafana. <!--You can create your own dashboards from scratch or import a dashboard template to get started.-->
 
 {{%notice note%}}
 The Grafana integration is in beta and supported for on-premises deployments only.
@@ -21,19 +21,19 @@ The Grafana integration is in beta and supported for on-premises deployments onl
 
 ## Configure and Enable OpenTelemetry on Devices
 
-Configure your client devices to send OpenTelemetry (OTLP) data to NetQ.
+Configure your client devices to send OpenTelemetry data to NetQ.
 
 {{<tabs "TabID23" >}}
 
 {{<tab "CL switches">}}
 
-Configure OTLP to run on the switch in secure mode with a self-signed certificate:
+Configure OpenTelemetry to run on the switch in secure mode with a self-signed certificate:
 
 1. From the NetQ server, display the CA certificate using `netq show otlp tls-ca-cert dump` command. Copy the certificate from the output.
 
 2. On the switch, import the CA certificate file, with the `nv action import system security ca-certificate <cert-id> data <data>` command. Define the name of the certificate in `<cert-id>` and replace `<data>` with the certificate you generated in the preceding step.
 
-3. Configure an X.509 certificate to secure the OTLP connection. Replace `ca-certificate` with the name of your certificate; this is the `<cert-id>` from the previous step.
+3. Configure an X.509 certificate to secure the OTel connection. Replace `ca-certificate` with the name of your certificate; this is the `<cert-id>` from the previous step.
 
    ```
    nvidia@switch:~$ nv set system telemetry export otlp grpc cert-id <ca-certificate>
@@ -60,7 +60,7 @@ NVIDIA recommends setting the <code>sample-interval</code> option to 10 seconds 
 
 1. {{<link title="Install NIC and DPU Agents" text="Install DOCA Telemetry Service (DTS)">}} on your ConnectX hosts or DPUs. 
 
-2. Configure the DPU to send OTLP data by editing the `/opt/mellanox/doca/services/telemetry/config/dts_config.ini` file. Add the following line under the `IPC transport` section. Replace `TS-IP` with the IP address of your telemetry receiver. 
+2. Configure the DPU to send OpenTelemetry data by editing the `/opt/mellanox/doca/services/telemetry/config/dts_config.ini` file. Add the following line under the `IPC transport` section. Replace `TS-IP` with the IP address of your telemetry receiver. 
 
 ```
 open-telemetry-receiver=http://<TS-IP>:30009/v1/metrics
@@ -77,7 +77,7 @@ Read more about OpenTelemetry and DTS configurations in the {{<exlink url="https
 
 ## Configure the Time Series Database on the NetQ Server
 
-1. From the NetQ server, add the OTLP endpoint of your time series database (TSDB). Replace `text-tsdb-endpoint` and `text-tsdb-endpoint-url` with the name and IP address of your TSDB, respectively. Include the `export true` option to begin exporting data immediately. You can optionally set `security-mode` to `secure` to enable TLS.
+1. From the NetQ server, add the OTel endpoint of your time series database (TSDB). Replace `text-tsdb-endpoint` and `text-tsdb-endpoint-url` with the name and IP address of your TSDB, respectively. Include the `export true` option to begin exporting data immediately. You can optionally set `security-mode` to `secure` to enable TLS.
 
 ```
 nvidia@netq-server:~$ netq add otlp endpoint tsdb-name <text-tsdb-endpoint> tsdb-url <text-tsdb-endpoint-url> [export true | export false] [security-mode <text-mode>]
@@ -117,7 +117,7 @@ To import a preconfigured dashboard into your Grafana instance, following the st
 
 ## Grafana Best Practices
 
-If Grafana is slow or laggy, you might need to adjust your dashboard settings. When dealing with large networks (over 1000 switches), fabric-wide queries can generate millions of data points, which can significantly impact performance. You can improve performance by optimizing queries, reducing data volume, and simplifying panel rendering.
+If Grafana is slow or laggy, you might need to adjust your dashboard settings. Fabric-wide queries on large networks (over 1000 switches) can generate millions of data points, which can significantly degrade performance. You can improve performance by optimizing queries, reducing data volume, and simplifying panel rendering.
 
 Avoid plotting all time-series data at once. To visualize the data in different ways:
    - {{<exlink url="https://grafana.com/docs/grafana/latest/fundamentals/timeseries/#aggregating-time-series" text="Aggregate time series data">}}

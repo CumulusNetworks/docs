@@ -869,3 +869,36 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf RED loopback ip address 10.10.10.1/32
 ```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set platform transceiver \<interface-id\> temperature setpoint</h>
+
+Configures the temperature thresholds for fan activation in the FAN algorithm, ensuring that they are below the module’s high warning threshold to optimize transceiver thermal performance and maintain a cooler operating environment before reaching critical temperatures. Lowering the thresholds leads to earlier and more frequent fan operation, increasing power usage and noise but protecting hardware performance and lifespan.
+
+You can set a value between 30 and 80. The temperature threshold for an interface must be below the module advertised high warning threshold. If you configure the setpoint to be above the module advertised high temperature warning threshold, the FAN algorithm uses the module advertised threshold.
+
+Setting the temperature thresholds does not change the module EEPROM-based alarm thresholds. The optical module continues reporting temperature alarms based on alarms or warning thresholds preprogrammed in the transceiver EEPROM.
+
+{{%notice info%}}
+Setting the temperature thresholds without proper guidance can result in transceiver damage, and might void your warranty and support agreements. This is an advanced configuration task; NVIDIA recommends you use the default transceiver temperature settings. Only modify this setting with approval from NVIDIA Technical Support.
+{{%/notice%}}
+
+- You can set temperature thresholds on the SN5610 switch only.
+- Always use the parent transceiver name for configuration; for example, use swp1 not swp1s0.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.14.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set platform transceiver swp2 temperature setpoint 60
+```

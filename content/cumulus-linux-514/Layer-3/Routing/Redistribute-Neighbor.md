@@ -312,7 +312,7 @@ For more information, refer to {{<exlink url="http://linux-ip.net/html/routing-t
 
 ### Check /32 Redistribute Neighbor Advertised Routes
 
-For BGP, run the vtysh `show ip bgp neighbor <interface> advertised-routes` command. For example:
+For BGP, run the vtysh `show ip bgp neighbor <interface-id> advertised-routes` command. For example:
 
 ```
 cumulus@leaf01:~$ show ip bgp neighbor swp51 advertise-routes

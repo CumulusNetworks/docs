@@ -13,7 +13,7 @@ toc: 3
 Cumulus Linux uses server groups to receive different DHCP requests on separate interfaces from different end hosts and to relay the requests to specific DHCP servers in a VRF. Server groups provide load balancing and <span class="a-tooltip">[HA](## "high availability")</span>, ensuring more resilient DHCP service delivery in case of server failure or maintenance and prevents broadcasting requests to all servers.
 
 {{%notice note%}}
-In Cumulus Linux 5.13 and earlier, DHCP relay does not use server groups, but instead, forwards all DHCP client requests to every DHCP server within the same VRF. Cumulus Linux 5.14 no longer provides the `nv show service dhcp-relay default server` commands.
+In Cumulus Linux 5.13 and earlier, DHCP relay does not use server groups, but instead, forwards all DHCP client requests to every DHCP server within the same VRF. Cumulus Linux 5.14 no longer provides the `nv show service dhcp-relay <vrf-id> server` commands.
 
 If you have configured DHCP relay in Cumulus Linux 5.13 or earlier, the upgrade process migrates the configuration to a new default config file called `isc-dhcp-relay-<server-group-id>-<vrf-id>` in the `/etc/default` directory and selects the uplink and downlink interfaces automatically. After upgrade, make sure to review the new configuration and adjust as needed.
 {{%/notice%}}
@@ -54,7 +54,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 - When you unset servers or upstream interfaces in a server group, at least one server and upstream interface must remain.
-- You cannot unset a server group if it is associated with a downstream interface. Unset the downstream interface first with the `nv unset service dhcp-relay <vrf> downstream-interface <interface-id>` command.
+- You cannot unset a server group if it is associated with a downstream interface. Unset the downstream interface first with the `nv unset service dhcp-relay <vrf-id> downstream-interface <interface-id>` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -74,7 +74,7 @@ INTF_CMD="-i swp51-52 -i vlan10"
 OPTIONS=""
 ```
 
-Restart the DHCP relay service for the server group with the `dhcrelay-<server-group>-<vrf>.service` command:
+Restart the DHCP relay service for the server group with the `dhcrelay-<server-group>-<vrf-id>.service` command:
 
 ```
 cumulus@switch:~$ sudo systemctl enable dhcrelay-type1-server-group-default.service
@@ -116,7 +116,7 @@ cumulus@switch:~$ nv set service dhcp-relay default agent use-pif-circuit-id sta
 cumulus@switch:~$ nv config apply
 ```
 
-To configure the remote ID, which is a custom string (up to 255 characters in length), run the `nv set service dhcp-relay default agent remote-id <ID>` command. The following example configures the remote ID to be the MAC address 44:38:39:BE:EF:AA.
+To configure the remote ID, which is a custom string (up to 255 characters in length), run the `nv set service dhcp-relay <vrf-id> agent remote-id <ID>` command. The following example configures the remote ID to be the MAC address 44:38:39:BE:EF:AA.
 
 ```
 cumulus@switch:~$ nv set service dhcp-relay default agent remote-id 44:38:39:BE:EF:AA
@@ -181,7 +181,7 @@ To enable RFC 3527 support and control the gateway address:
 {{< tabs "TabID203 ">}}
 {{< tab "NVUE Commands ">}}
 
-Run the `nv set service dhcp-relay default gateway-interface` command with the interface or IP address you want to use. The following example uses the first IP address on the loopback interface as the gateway IP address:
+Run the `nv set service dhcp-relay <vrf-id> gateway-interface` command with the interface or IP address you want to use. The following example uses the first IP address on the loopback interface as the gateway IP address:
 
 ```
 cumulus@switch:~$ nv set service dhcp-relay default gateway-interface lo
@@ -263,7 +263,7 @@ In a multi-tenant EVPN symmetric routing environment with MLAG, you must enable 
 
 The following example:
 - Configures VRF RED with IPv4 address 20.20.20.1/32.
-- Configures the SVIs vlan10 and vlan20, and the layer 3 VNI VLAN interface for VRF RED vlan4024_l3 to be part of the interface list to service DHCP packets. To obtain the layer 3 VNI VLAN interface, run the `nv show vrf <vrf-name> evpn` command.
+- Configures the SVIs vlan10 and vlan20, and the layer 3 VNI VLAN interface for VRF RED vlan4024_l3 to be part of the interface list to service DHCP packets. To obtain the layer 3 VNI VLAN interface, run the `nv show vrf <vrf-id> evpn` command.
 - Sets the DHCP server to 10.1.10.104.
 - Configures VRF RED to advertise connected routes as type-5 so that the VRF RED loopback IPv4 address is reachable.
 
@@ -356,7 +356,7 @@ cumulus@switch:~$ nv config apply
 In a multi-tenant EVPN symmetric routing environment without MLAG, the VLAN interface (SVI) IPv4 address is typically unique on each leaf switch, which does not require RFC 3527 configuration.
 
 The following example:
-- Configures the SVIs vlan10 and vlan20, and the layer 3 VNI VLAN interface for VRF RED vlan4024_l3 to be part of INTF_CMD list to service DHCP packets. To obtain the layer 3 VNI VLAN interface, run the `nv show vrf <vrf-name> evpn` command.
+- Configures the SVIs vlan10 and vlan20, and the layer 3 VNI VLAN interface for VRF RED vlan4024_l3 to be part of INTF_CMD list to service DHCP packets. To obtain the layer 3 VNI VLAN interface, run the `nv show vrf <vrf-id> evpn` command.
 - Sets the DHCP server IP address to 10.1.10.104.
 
 {{%notice note%}}
@@ -471,7 +471,7 @@ cumulus@switch:~$ nv config apply
    exit
    ```
 
-3. Edit the `/etc/default/isc-dhcp-relay6-<vrf>` file.
+3. Edit the `/etc/default/isc-dhcp-relay6-<vrf-id>` file.
 
    - Set the `-l ` option to the VLANs that receive DHCP requests from hosts.
    - Set the `<ip-address-dhcp-server>%<interface-facing-dhcp-server>` option to associate the DHCP Server with VRF RED.
@@ -605,7 +605,7 @@ Downstream Interface  server-group-name
 vlan101               type1-server-group
 ```
 
-To show information for a specific DHCP relay downstream interface, run the `nv show service dhcp-relay <vrf-id> downstream-interface <interface>` command:
+To show information for a specific DHCP relay downstream interface, run the `nv show service dhcp-relay <vrf-id> downstream-interface <interface-id>` command:
 
 ```
 cumulus@switch:~$ nv show service dhcp-relay default downstream-interface vlan101
@@ -616,7 +616,7 @@ server-group-name  type1-server-group    type1-server-group
 
 ### Show DHCP Relay Agent Information
 
-To show the DHCP relay agent information per VRF, run the `nv show service dhcp-relay <vrf> agent` command:
+To show the DHCP relay agent information per VRF, run the `nv show service dhcp-relay <vrf-id> agent` command:
 
 ```
 cumulus@switch:~$ nv show service dhcp-relay default agent
@@ -628,7 +628,7 @@ use-pif-circuit-id
   state             enabled      enabled
 ```
 
-To show the DHCP relay agent `pif-circuit-id` configuration, run the `nv show service dhcp-relay <vrf> agent use-pif-circuit-id` command:
+To show the DHCP relay agent `pif-circuit-id` configuration, run the `nv show service dhcp-relay <vrf-id> agent use-pif-circuit-id` command:
 
 ```
 cumulus@switch:~$ nv show service dhcp-relay default agent use-pif-circuit-id

@@ -1090,7 +1090,7 @@ iface peerlink.4094
 
 You can expect a large volume of packet drops across one of the peer link interfaces. These drops serve to prevent looping of BUM (broadcast, unknown unicast, multicast) packets. When the switch receives a packet across the peer link, if the destination lookup results in an egress interface that is a dual-connected bond, the switch does not forward the packet (to prevent loops). The peer link records a dropped packet.
 
-To check packet drops across peer link interfaces, run the `ethtool -S <interface>` command:
+To check packet drops across peer link interfaces, run the `ethtool -S <interface-id>` command:
 
 ```
 cumulus@leaf01:mgmt:~$ ethtool -S swp49

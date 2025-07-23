@@ -916,7 +916,7 @@ You can set the following timers for PTP messages.
 | `delay-req-interval` | The minimum average time interval allowed between successive Delay Required messages. |
 | `sync-interval` | The interval between PTP synchronization messages on an interface. Specify the value as a power of two in seconds. |
 
-- To set the timers with NVUE, run the `nv set interface <interface> ptp timers <timer> <value>` command.
+- To set the timers with NVUE, run the `nv set interface <interface-id> ptp timers <timer> <value>` command.
 - To set the timers with Linux commands, edit the `/etc/ptp4l.conf` file and set the timers in the `Default interface options` section.
 
 {{< tabs "TabID542 ">}}
@@ -1215,7 +1215,7 @@ cumulus@switch:~$ nv config apply
 
 To show the unicast master table configuration on the switch, run the `nv show service ptp <instance-id> unicast-master <table-id>` command.
 
-To show unicast PTP related counters, run the `nv show interface <interface> counters ptp` command and examine the `Signaling` section in the output.
+To show unicast PTP related counters, run the `nv show interface <interface-id> counters ptp` command and examine the `Signaling` section in the output.
 
 ```
 cumulus@switch:~$ nv show interface swp1 counters ptp
@@ -2063,7 +2063,7 @@ You can drill down with the following `nv show service ptp <instance>` commands:
 
 ### Show PTP Interface Configuration
 
-To check configuration for a PTP interface, run the `nv show interface <interface> ptp` command.
+To check configuration for a PTP interface, run the `nv show interface <interface-id> ptp` command.
 
 ```
 cumulus@switch:~$ nv show interface swp1 ptp
@@ -2108,9 +2108,9 @@ Port swp4
   Signaling                0              0
 ```
 
-To show PTP counters for an interface, run the `nv show interface <interface> counters ptp` command.
+To show PTP counters for an interface, run the `nv show interface <interface-id> counters ptp` command.
 
-To clear PTP counters for an interface, run the `nv action clear interface <interface> counters ptp` command:
+To clear PTP counters for an interface, run the `nv action clear interface <interface-id> counters ptp` command:
 
 ```
 cumulus@switch:~$ nv action clear interface swp1 counters ptp
@@ -2389,7 +2389,7 @@ To improve performance on the NVIDIA Spectrum 1 switch for PTP-enabled ports wit
 {{< tabs "TabID1387 ">}}
 {{< tab "NVUE Commands ">}}
 
-For each PTP-enabled port on which you want to set traffic shaping, run the `nv set interface <interface> ptp shaper enable on` command.
+For each PTP-enabled port on which you want to set traffic shaping, run the `nv set interface <interface-id> ptp shaper enable on` command.
 
 ```
 cumulus@switch:~$ nv set interface swp1 ptp shaper enable on
@@ -2397,7 +2397,7 @@ cumulus@switch:~$ nv set interface swp2 ptp shaper enable on
 cumulus@switch:~$ nv config apply
 ```
 
-To see the PTP shaping setting for an interface, run the `nv show interface <interface> ptp shaper` command:
+To see the PTP shaping setting for an interface, run the `nv show interface <interface-id> ptp shaper` command:
 
 ```
 cumulus@switch:~$ nv show interface swp1 ptp shaper

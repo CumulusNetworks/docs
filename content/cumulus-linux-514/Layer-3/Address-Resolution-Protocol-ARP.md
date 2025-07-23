@@ -134,7 +134,7 @@ NVUE does not provide commands for this setting.
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/network/interfaces` file to set `/proc/sys/net/ipv4/conf/<interface>/proxy_arp` to `1` in the interface stanza, then run the `ifreload -a` command.
+Edit the `/etc/network/interfaces` file to set `/proc/sys/net/ipv4/conf/<interface-id>/proxy_arp` to `1` in the interface stanza, then run the `ifreload -a` command.
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -294,7 +294,7 @@ You can add static ARP table entries for easy management or as a security measur
 {{< tabs "TabID294 ">}}
 {{< tab "NVUE Commands ">}}
 
-To create a static ARP entry for an interface with an IPv4 address associated with a MAC address, run the `nv set interface <interface> neighbor ipv4 <ip-address> lladdr <mac-address>` command.
+To create a static ARP entry for an interface with an IPv4 address associated with a MAC address, run the `nv set interface <interface-id> neighbor ipv4 <ip-address> lladdr <mac-address>` command.
 
 ```
 cumulus@leaf01:mgmt:~$ nv set interface swp51 neighbor ipv4 10.5.5.51 lladdr 00:00:5E:00:53:51
@@ -309,7 +309,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp51 neighbor ipv4 10.5.5.51 lladdr 00:
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
-To delete an entry in the ARP table, run the `nv unset interface <interface> neighbor ipv4 <ip-address>` command:
+To delete an entry in the ARP table, run the `nv unset interface <interface-id> neighbor ipv4 <ip-address>` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv unset interface swp51 neighbor ipv4 10.5.5.51
@@ -447,7 +447,7 @@ ipv6
     fe80::4ab0:2dff:fea2:4c79  48:b0:2d:a2:4c:79  reachable  is-router
 ```
 
-To show all IPv4 table entries for an interface, run the `nv show interface <interface> neighbor ipv4` command:
+To show all IPv4 table entries for an interface, run the `nv show interface <interface-id> neighbor ipv4` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface swp1 neighbor ipv4

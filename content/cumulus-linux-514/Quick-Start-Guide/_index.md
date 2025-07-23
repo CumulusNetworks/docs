@@ -263,7 +263,7 @@ By default, Cumulus Linux disables all data plane ports (every Ethernet port exc
 {{< tabs "TabID260 ">}}
 {{< tab "NVUE Commands ">}}
 
-To enable a port administratively, run the `nv set interface <interface>` command:
+To enable a port administratively, run the `nv set interface <interface-id>` command:
 
 ```
 cumulus@switch:~$ nv set interface swp1

@@ -291,7 +291,7 @@ To create this rule with NVUE, follow the steps below. NVUE adds all options in 
 
    For firewall IPv4 type ACLs on the control plane, you can match on the hashlimit module (`hashimit`), the connection state (`connection-state`), and the recent module (`recent-list`). Refer to {{<link url="Firewall-Rules/#add-firewall-rules" text="Firewall Rules">}}.
 
-2. Apply the rule to an inbound or outbound interface with the `nv set interface <interface> acl` command.
+2. Apply the rule to an inbound or outbound interface with the `nv set interface <interface-id> acl` command.
    
    - For rules affecting the -t mangle -A PREROUTING chain (-A FORWARD in previous releases), apply the rule to an inbound or outbound interface: For example:
 
@@ -332,7 +332,7 @@ match
       [dest-port]    ANY           ANY
 ```
 
-To remove this rule, run the `nv unset acl <acl-name>` and `nv unset interface <interface> acl <acl-name>` commands. These commands delete the rule from the `/etc/cumulus/acl/policy.d/50_nvue.rules` file.
+To remove this rule, run the `nv unset acl <acl-name>` and `nv unset interface <interface-id> acl <acl-name>` commands. These commands delete the rule from the `/etc/cumulus/acl/policy.d/50_nvue.rules` file.
 
 ```
 cumulus@switch:~$ nv unset acl EXAMPLE1
@@ -1577,7 +1577,7 @@ To free up resources, you can:
   cumulus@switch:$ sudo systemctl reload switchd.service
   ```
 
-The flow counters are internal counters for debugging; you do not see the counters in `nv show interface <interface> counters` or `cl-netstat` commands.
+The flow counters are internal counters for debugging; you do not see the counters in `nv show interface <interface-id> counters` or `cl-netstat` commands.
 
 To see how much space the flow counters consume, examine the `Flow Counters` line in the `cl-resource-query` output.
 

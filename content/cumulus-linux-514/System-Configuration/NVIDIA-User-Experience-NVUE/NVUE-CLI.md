@@ -814,7 +814,7 @@ vlan30                                       9216  svi                          
 
 ### FRR Output Filters
 
-You can filter the `nv show vrf <vrf> router rib` command output by protocol (`gp`, `ospf`, `kernel`, `static`, `ospf6`, `sharp`, or `connected`); for example, to show all BGP IPv4 routes in the routing table:
+You can filter the `nv show vrf <vrf-id> router rib` command output by protocol (`gp`, `ospf`, `kernel`, `static`, `ospf6`, `sharp`, or `connected`); for example, to show all BGP IPv4 routes in the routing table:
 
 ```
 cumulus@switch:~$ nv show vrf default router rib ipv4 route --filter=protocol=bgp                                                                             
@@ -836,7 +836,7 @@ Route            Protocol  Distance  Uptime                NHGId  Metric  Flags
 10.10.10.104/32  bgp       20        2024-12-17T10:24:10Z  113    0       *Si  
 ```
 
-You can filter BGP and EVPN received routes by a specific neighbor (numbered or unnumbered) with the `--filter=”neighbor=<neighbor>"` option. Run the `nv show vrf <vrf> router bgp address-family ipv4-unicast route --filter=”neighbor=<neighbor>"` command for IPv4, `nv show vrf <vrf> router bgp address-family ipv6-unicast route --filter=”neighbor=<neighbor>"` for IPv6, or `nv show vrf <vrf> router bgp address-family l2vpn-evpn route --filter=”neighbor=<neighbor>"` for EVPN.
+You can filter BGP and EVPN received routes by a specific neighbor (numbered or unnumbered) with the `--filter=”neighbor=<neighbor>"` option. Run the `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route --filter=”neighbor=<neighbor>"` command for IPv4, `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route --filter=”neighbor=<neighbor>"` for IPv6, or `nv show vrf <vrf-id> router bgp address-family l2vpn-evpn route --filter=”neighbor=<neighbor>"` for EVPN.
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4-unicast route --filter="neighbor=swp51"  
@@ -853,9 +853,9 @@ Prefix              PathCount  MultipathCount  DestFlags
 ...
 ```
 
-You can also filter EVPN routes by a specific RD with the `nv show vrf <vrf> router bgp address-family l2vpn-evpn route --filter="rd=<rd>"` command and route type with the `nv show vrf <vrf> router bgp address-family l2vpn-evpn route --filter="rd=<rd>&route-type=<route-type>"` command.
+You can also filter EVPN routes by a specific RD with the `nv show vrf <vrf-id> router bgp address-family l2vpn-evpn route --filter="rd=<rd>"` command and route type with the `nv show vrf <vrf-id> router bgp address-family l2vpn-evpn route --filter="rd=<rd>&route-type=<route-type>"` command.
 
-You can filter the `nv show vrf <vrf> router bgp neighbor` command output by state (established or non-established); for example, to show all BGP established neighbors:
+You can filter the `nv show vrf <vrf-id> router bgp neighbor` command output by state (established or non-established); for example, to show all BGP established neighbors:
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor
@@ -925,7 +925,7 @@ swp6      65254  established  2025-06-15T09:45:15Z  4:22:37  34194    34170    i
 To show a summary of the connection information for all BGP neighbors in json format, run the `nv show vrf default router bgp neighbor -o json` command.
 
 {{%notice note%}}
-In Cumulus Linux 5.11 and earlier, the `nv show vrf default router bgp neighbor -o json` command output shows more detailed information about BGP peers. To show the more detailed information in Cumulus Linux 5.12 and later, run the `nv show vrf <vrf> router bgp neighbor --view=detail -o json` command.
+In Cumulus Linux 5.11 and earlier, the `nv show vrf default router bgp neighbor -o json` command output shows more detailed information about BGP peers. To show the more detailed information in Cumulus Linux 5.12 and later, run the `nv show vrf <vrf-id> router bgp neighbor --view=detail -o json` command.
 {{%/notice%}}
 
 ## Show Command View Include and Omit Options

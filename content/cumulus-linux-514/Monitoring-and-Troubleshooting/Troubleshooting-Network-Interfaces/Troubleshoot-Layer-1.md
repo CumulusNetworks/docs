@@ -129,7 +129,7 @@ The most useful DDM/DOM values when troubleshooting a problem link are:
 - RX optical power (receiver signal average optical power)
 - TX optical power (laser output power)  
 
-The location of DDM/DOM fields are standardized. If DDM/DOM capability is present on a module, the values are displayed in the output of the NVUE `nv show platform transceiver <interface>` command or the Linux `ethtool -m <swp>` command.
+The location of DDM/DOM fields are standardized. If DDM/DOM capability is present on a module, the values are displayed in the output of the NVUE `nv show platform transceiver <interface-id>` command or the Linux `ethtool -m <swp>` command.
 
 For each DDM/DOM value there can be thresholds to mark a high or low *warning* or an *alarm* when the value exceeds that threshold.
 
@@ -251,7 +251,7 @@ For 50G lanes (200G- and 400G-capable ports), the link uses PAM4 encoding, which
 
 ## Show Layer 1 Information
 
-Use the NVUE `nv show platform transceiver <interface>` command or the Linux `l1-show` command to show all layer 1 aspects of a Cumulus Linux port and link.
+Use the NVUE `nv show platform transceiver <interface-id>` command or the Linux `l1-show` command to show all layer 1 aspects of a Cumulus Linux port and link.
 
 {{< tabs "TabID254 ">}}
 {{< tab "NVUE Commands">}}
@@ -484,7 +484,7 @@ The root cause of a layer 1 problem falls into one of these three categories:
 To resolve a layer 1 problem, follow these steps:
 
 - {{<link url="#classify-the-layer-1-problem" text="Characterize and classify">}} the problem.
-- Design a test that best displays the lowest level indicator of that problem behavior. The hierarchy view of `l1-show` is often the best tool to find this indicator. You can also use the NVUE `nv show platform transceiver <interface>` command.
+- Design a test that best displays the lowest level indicator of that problem behavior. The hierarchy view of `l1-show` is often the best tool to find this indicator. You can also use the NVUE `nv show platform transceiver <interface-id>` command.
 - Make changes based on the problem type that leads toward isolating the root cause of the failure. Use the test to track progress.
   - Identify if the issue is likely a configuration issue or a hardware issue. If unclear, start with configuration first.
   - For configuration issues, ensure the configuration on both ends of the link matches the guidance in this guide and in {{<link url="Switch-Port-Attributes" text="Switch Port Attributes">}}.

@@ -244,7 +244,7 @@ Change this setting per BGP instance for both IPv4 and IPv6 unicast routes in th
 {{< tabs "TabID223 ">}}
 {{< tab "NVUE Commands">}}
 
-Run the NVUE `nv set vrf <vrf> router bgp path-selection multipath bandwidth ignore`, `nv set vrf <vrf> router bgp path-selection multipath bandwidth skip-missing`, or `nv set vrf <vrf> router bgp path-selection multipath bandwidth default-weight-for-missing` command.
+Run the NVUE `nv set vrf <vrf-id> router bgp path-selection multipath bandwidth ignore`, `nv set vrf <vrf-id> router bgp path-selection multipath bandwidth skip-missing`, or `nv set vrf <vrf-id> router bgp path-selection multipath bandwidth default-weight-for-missing` command.
 
 The following example sets link bandwidth processing to skip paths without link bandwidth and perform W-ECMP among the other paths:
 

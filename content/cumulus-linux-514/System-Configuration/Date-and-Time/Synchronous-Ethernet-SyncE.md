@@ -310,7 +310,7 @@ cumulus@switch:~$ sudo systemctl restart synced.service
 
 To show global SyncE configuration, run the NVUE `nv show system synce` command or the Linux `syncectl show status` command.
 
-To show SyncE configuration for a specific interface, run the NVUE `nv show interface <interface-id> synce` command or the Linux  `syncectl show interface status <interface>` command.
+To show SyncE configuration for a specific interface, run the NVUE `nv show interface <interface-id> synce` command or the Linux  `syncectl show interface status <interface-id>` command.
 
 ```
 cumulus@switch:~$ nv show system synce
@@ -348,7 +348,7 @@ ESMC Unknown                                0              0
 
 ## Clear SyncE Interface Counters
 
-To clear counters for a specific SyncE interface, run the NVUE `nv action clear interface <interface> counters synce` command or the Linux `syncectl clear interface counters <interface>` command.
+To clear counters for a specific SyncE interface, run the NVUE `nv action clear interface <interface-id> counters synce` command or the Linux `syncectl clear interface counters <interface-id>` command.
 
 ```
 cumulus@switch:~$ nv action clear interface swp1 counters synce

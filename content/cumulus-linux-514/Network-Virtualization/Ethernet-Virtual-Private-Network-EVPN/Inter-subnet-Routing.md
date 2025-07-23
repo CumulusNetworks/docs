@@ -535,7 +535,7 @@ Route Distinguisher: 10.10.10.1:3
 ...
 ```
 
-To show the learned route from an external router injected as a type-5 route, run the vtysh `show bgp vrf <vrf> ipv4 unicast` command.
+To show the learned route from an external router injected as a type-5 route, run the vtysh `show bgp vrf <vrf-id> ipv4 unicast` command.
 
 ## Downstream VNI
 
@@ -548,8 +548,8 @@ To configure a downstream VNI, you configure tenant VRFs as usual; however, to c
 The route target import or export statement is in the format `route-target import|export <asn>:<vni>`; for example, `route-target import 65101:6000`. For route target *import* statements, you can use `route-target import ANY:<vni>` for NVUE commands or `route-target import *:<vni>` in the `/etc/frr/frr.conf` file. `ANY` in NVUE commands or the asterisk (*) in the `/etc/frr/frr.conf` file uses any ASN as a wildcard.
 
 The NVUE commands are as follows:
-- To configure a route import statement: `nv set vrf <vrf> router bgp route-import from-evpn route-target <asn>:<vni>`
-- To configure a route export statement: `nv set vrf <vrf> router bgp route-export from-evpn route-target <asn>:<vni>`
+- To configure a route import statement: `nv set vrf <vrf-id> router bgp route-import from-evpn route-target <asn>:<vni>`
+- To configure a route export statement: `nv set vrf <vrf-id> router bgp route-export from-evpn route-target <asn>:<vni>`
 
 {{%notice note%}}
 - EVPN symmetric mode supports downstream VNI with layer 3 VNIs and single VXLAN devices only.

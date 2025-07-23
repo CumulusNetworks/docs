@@ -10,10 +10,10 @@ Cumulus Linux supports multipathing with <span class="a-tooltip">[SRv6](## "Segm
 Cumulus Linux supports SRv6 on the Spectrum-4 and Spectrum-5 switch only.
 {{%/notice%}}
 
-### Configure SRv6
+### Configure Segment Routing
 
-To configure SRv6:
-- Enable SRv6.
+To configure segment routing:
+- Enable segment routing.
 - Configure the SRv6 locator settings and the static IDs. You can configure a maximum of 32 locators.
   - Configure the SRv6 locator prefix.
   - Configure the SRv6 locator block length. Cumulus Linux currently supports a value of 32.
@@ -71,7 +71,7 @@ leaf01# exit
 Cumulus Linux only supports the SF3216 format (block-len(32) and node-len(16)).
 {{%/notice%}}
 
-### Show SRv6 Configuration
+### Show Segment Routing Configuration
 
 To show if SRv6 is enabled and to show the configured locators, run the `nv show router segment-routing` command:
 
@@ -121,12 +121,12 @@ To show information for a specific SRv6 static segment identifier, run the NVUE 
 cumulus@switch:~$ nv show router segment-routing static srv6 sid 2001:db8:1:1::100/48
 ```
 
-### Show SRv6 Endpoints
+### Show Segment Routing Endpoints
 
-SRv6 endpoints are installed as IPv6 routes into the RIB and FIB. To show SRv6 endpoints, view the
-IPv6 RIB with the `nv show vrf <vrf> router rib ipv6 route` command. You can view a specific route with the `nv show vrf <vrf> router rib ipv6 route <route-id>` command.------------------------------------
+Segment routing endpoints are installed as IPv6 routes into the RIB and FIB. To show segment routing endpoints, view the
+IPv6 RIB with the `nv show vrf <vrf> router rib ipv6 route` command. You can view a specific route with the `nv show vrf <vrf> router rib ipv6 route <route-id>` command.
 
-### Show SRv6 Statistics
+### Show Segment Routing Statistics
 
 To show all SRv6 information, run the `nv show router segment-routing srv6 stats` command
 
@@ -159,9 +159,9 @@ cumulus@switch:~$ nv show router segment-routing srv6 stats no-sid-drops
 no-sid-dropped-packets  0
 ```
 
-### Clear SRv6 Statistics
+### Clear Segment Routing Statistics
 
-To clear all SRv6 statistics, run the `nv action clear router segment-routing srv6 stats` command:
+To clear all segment routing statistics, run the `nv action clear router segment-routing srv6 stats` command:
 
 ```
 cumulus@switch:~$ nv action clear router segment-routing srv6 stats 

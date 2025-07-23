@@ -10,15 +10,15 @@ Cumulus Linux supports multipathing with <span class="a-tooltip">[SRv6](## "Segm
 Cumulus Linux supports SRv6 on the Spectrum-4 switch.
 {{%/notice%}}
 
-### Configure SRv6
+### Configure Segment Routing
 
-To configure SRv6:
-- Enable SRv6.
-- Configure the SRv6 locator settings and the static IDs. You can configure a maximum of 256 locators.
-  - Configure the SRv6 locator prefix. The prefix length must match the sum of block length and the node length.
-  - Configure the SRv6 locator block length. You can specify a value between 16 and 64. The default value is 16.
-  - Configure the SRv6 locator function length. You can specify a value between 0 and 64. The default value is 0.
-  - Configure the SRv6 locator node length. You can specify a value between 0 and 64. The default value is 16.
+To configure segment routing:
+- Enable segment routing.
+- Configure the SRv6 locator settings and the static IDs. You can configure a maximum of 32 locators.
+  - Configure the SRv6 locator prefix.
+  - Configure the SRv6 locator block length. Cumulus Linux currently supports a value of 32.
+  - Configure the SRv6 locator function length. Cumulus Linux currently supports a value of 0.
+  - Configure the SRv6 locator node length. Cumulus Linux currently supports a value of 16.
   - Configure the static segment identifier locator name. The static segment identifier must be part of the locator prefix.  
   - Configure the static segment identifier endpoint behavior. You can specify uA or uN. If you specify uA, you must also provide the interface. Cumulus Linux enables route advertisements on the interface on which you configure uA.
 
@@ -76,7 +76,11 @@ leaf01# exit
 {{< /tab >}}
 {{< /tabs >}}
 
-### Show SRv6 Configuration
+{{%notice note%}}
+Cumulus Linux only supports the SF3216 format (block-len(32) and node-len(16)).
+{{%/notice%}}
+
+### Show Segment Routing Configuration
 
 To show if SRv6 is enabled and to show the configured locators, run the `nv show router segment-routing` command:
 
@@ -138,12 +142,12 @@ nexthop-v6    2001:db8:1:1::106/48
 protocol      static 
 ```
 
-### Show SRv6 Endpoints
+### Show Segment Routing Endpoints
 
-SRv6 endpoints are installed as IPv6 routes into the RIB and FIB. To show SRv6 endpoints, view the
+Segment routing endpoints are installed as IPv6 routes into the RIB and FIB. To show segment routing endpoints, view the
 IPv6 RIB with the `nv show vrf <vrf> router rib ipv6 route` command. You can view a specific route with the `nv show vrf <vrf> router rib ipv6 route <route-id>` command.
 
-### Show SRv6 Statistics
+### Show Segment Routing Statistics
 
 To show all SRv6 information, run the `nv show router segment-routing srv6 stats` command
 
@@ -176,9 +180,9 @@ cumulus@switch:~$ nv show router segment-routing srv6 stats no-sid-drops
 no-sid-dropped-packets  0
 ```
 
-### Clear SRv6 Statistics
+### Clear Segment Routing Statistics
 
-To clear all SRv6 statistics, run the `nv action clear router segment-routing srv6 stats` command:
+To clear all segment routing statistics, run the `nv action clear router segment-routing srv6 stats` command:
 
 ```
 cumulus@switch:~$ nv action clear router segment-routing srv6 stats 

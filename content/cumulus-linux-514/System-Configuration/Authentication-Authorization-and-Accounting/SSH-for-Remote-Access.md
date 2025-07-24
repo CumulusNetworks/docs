@@ -492,6 +492,10 @@ Number of total successful connections since last 1 days: 20
   "last_reboot_cause": "Unknown".
 ```
 
+{{%notice note%}}
+System health notifications list the last known health issues seen before the system rebooted or encountered a power failure. These notifications do not always match the live information shown in the `nv show system health` command output.
+{{%/notice%}}
+
 ### SSH Login Notifications
 
 Cumulus Linux shows the following SSH login information on the console after authentication:

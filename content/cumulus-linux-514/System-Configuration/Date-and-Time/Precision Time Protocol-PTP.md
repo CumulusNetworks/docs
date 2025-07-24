@@ -2432,3 +2432,7 @@ PTP frames are affected by <span class="a-tooltip">[STP](## "Spanning Tree Proto
 
 If you configure PTP on bridge ports, NVIDIA recommends that the bridge ports are spanning tree edge ports or in a bridge domain where spanning tree is disabled.
 <!-- vale on -->
+
+### PTP Log Reporting Offset
+
+When you enable {{<link url="Pulse-Per-Second-PPS" text="PPS In mode">}}, the PTP log reporting offset is once every two seconds instead of once every second.

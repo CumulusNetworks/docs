@@ -116,7 +116,8 @@ When you enable EVPN-MH, all SVI MAC addresses advertise as type-2 routes. You d
 ### Enable EVPN-MH
 
 {{%notice note%}}
-NVIDIA recommends that you enable EVPN-MH on all VTEPs throughout the fabric to avoid duplicate packets.
+- On a switch with Spectrum-2 and later, EVPN-MH is enabled by default; you only need to enable EVPN-MH on a switch with Spectrum A1.
+- NVIDIA recommends that you enable EVPN-MH on the Spectrum A1 switch on all VTEPs throughout the fabric to avoid duplicate packets.
 {{%/notice%}}
 
 <!-- vale on -->

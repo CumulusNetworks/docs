@@ -106,6 +106,10 @@ nv show interface <interface-id> packet-trim
 nv show interface <interface-id> packet-trim egress-eligibility
 nv show interface <interface-id> packet-trim egress-eligibility traffic-class
 nv show interface <interface-id> packet-trim egress-eligibility traffic-class <tc-id>
+nv show interface qos-congestion-control
+nv show interface qos-roce-counters
+nv show interface qos-roce-status
+nv show interface qos-roce-status-pool-map
 nv show platform transceiver <interface-id> temperature
 nv show service dhcp-relay <vrf-id> server-group
 nv show service dhcp-relay <vrf-id> server-group <server-group-id>

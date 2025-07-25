@@ -6,14 +6,13 @@ toc: 3
 right_toc_levels: 1
 pdfhidden: true
 type: nojsscroll
-bookhidden: true
 ---
 <!-- vale NVIDIA.HeadingTitles = NO -->
 <!-- vale off -->
 ## netq nvl cluster backup
 <!-- vale on -->
 
-Creates a backup file of the NVLink cluster including TLS certificates, cert-manager configurations, and MongoDB data. The file created from this command is timestamped and can be restored using the `netq nvl cluster restore` command.
+Creates a backup file of the NVLink cluster including TLS certificates, cert-manager configurations, and MongoDB data. The file created from this command is timestamped and can be restored using the `netq nvl cluster restore` command. The options allow you to customize the parameters of the backup file.
 
 ### Syntax
 
@@ -39,28 +38,26 @@ None
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| backup-path | \<text-backup-path\> | Directory path where backup will be stored |
-| cm-op-ns | \<text-cm-op-ns\> | Cert-manager operational namespace (default: infra) |
-| cm-target-ns | \<text-cm-target-ns\> | Target namespaces for certificates (default: infra,kafka,nmx) |
-| mongo-db-name | \<text-mongo-db-name\> | MongoDB database name to backup (default: EntityDB) |
-| mongo-collections | \<text-mongo-collections\> | MongoDB collections to backup (default: nmx-services,domains,switch_profiles) |
-| mongo-k8s-ns | \<text-mongo-k8s-ns\> | MongoDB Kubernetes namespace (default: infra) |
-| mongo-statefulset | \<text-mongo-statefulset\> | MongoDB StatefulSet name (default: mongodb) |
-| mongo-container | \<text-mongo-container\> | MongoDB container name (default: mongodb) |
-| mongo-replicaset | \<text-mongo-replicaset\> | MongoDB replica set name (default: rs0) |
-
-
-### Sample Usage
+| backup-path | \<text-backup-path\> | Specify a path to the directory where the backup file is stored |
+| cm-op-ns | \<text-cm-op-ns\> | Cert-manager operational namespace. If unspecified, the default is `infra`. |
+| cm-target-ns | \<text-cm-target-ns\> | Target namespaces for certificates If unspecified, the defaults are `infra`, `kafka`, and `nmx`. |
+| mongo-db-name | \<text-mongo-db-name\> | Name of the MongoDB database. If unspecified, the default is `EntityDB`. |
+| mongo-collections | \<text-mongo-collections\> | Name of the MongoDB collections. If unspecified, the defaults are `nmx-services`, `domains`, and `switch_profiles`. |
+| mongo-k8s-ns | \<text-mongo-k8s-ns\> | MongoDB Kubernetes namespace. If unspecified, the default is `infra`. |
+| mongo-statefulset | \<text-mongo-statefulset\> | MongoDB StatefulSet name. If unspecified, the default is `mongodb`. |
+| mongo-container | \<text-mongo-container\> | MongoDB container name. If unspecified, the default is `mongodb`. |
+| mongo-replicaset | \<text-mongo-replicaset\> | Name of the MongoDB replica set. If unspecified, the default is `rs0`. |
 
 
 ### Related Commands
 
+- `netq nvl vluster restore`
 
 - - -
 
 ## netq nvl cluster restore
 
-Restores NVL cluster from a previously created backup, including certificates, cert-manager configurations, and MongoDB data. This command ensures complete cluster recovery with proper certificate chain validation.
+Restores an NVLink cluster that was backed up using the `netq nvl cluster backup` command.
 
 
 ### Syntax
@@ -80,15 +77,17 @@ Restores NVL cluster from a previously created backup, including certificates, c
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<text-backup-path\> | Path to the timestamped backup directory (for example, `/opt/backups/nvl-backup_20241201143022`) |
+| cm-op-ns | \<text-cm-op-ns\> | Cert-manager operational namespace. |
 
 ### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-
-### Sample Usage
-
-
+| drop-mongo-collections | NA | Removes any pre-existing MongoDB collections (recommended) |
+| mongo-k8s-ns | \<text-mongo-k8s-ns\> | MongoDB Kubernetes namespace |
+| mongo-statefulset | \<text-mongo-statefulset\> | MongoDB StatefulSet name |
+| mongo-container | \<text-mongo-container\> | MongoDB container name |
+| mongo-replicaset | \<text-mongo-replicaset\> | Name of the MongoDB replica set |
 
 ### Related Commands
 
@@ -98,30 +97,27 @@ Restores NVL cluster from a previously created backup, including certificates, c
 <!-- vale off -->
 ## netq nvl bootstrap reset
 <!-- vale on -->
-Resets the NVL bootstrap configuration to factory defaults. This command clears custom configurations and can be used for troubleshooting or preparing for fresh installations.
-
-
+Resets the NVLink bootstrap configuration to the default settings. This command removes all custom configurations and can be used for troubleshooting or as part of the preparation process for a fresh installation.
 
 ### Syntax
 
 ```
-netq nvl bootstrap reset [config <text-config-path>]
+netq nvl bootstrap reset 
+    [config <text-config-path>]
 ```
-
 
 ### Required Arguments
 
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-
+None
 
 ### Options
 
-None
-
-### Sample Usage
-
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| config | \<text-config-path\> | Specify a path to the configuration file used for the reset |
 
 
 ### Related Commands
+
+None
 

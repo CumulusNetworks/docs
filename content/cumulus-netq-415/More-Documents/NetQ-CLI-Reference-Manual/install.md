@@ -106,7 +106,7 @@ netq install cluster bundle
 ### Sample Usage
 
 ```
-nvidia@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.14.0.tgz /tmp/cluster-install-config.json restore /home/cumulus/combined_backup_20241211111316.tar
+nvidia@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.15.0.tgz /tmp/cluster-install-config.json restore /home/cumulus/combined_backup_20241211111316.tar
 ```
 
 ### Related Commands
@@ -229,7 +229,7 @@ netq install cluster full
 ### Sample Usage
 
 ```
-nvidia@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.14.0.tgz workers 10.20.10.25 10.20.10.45 cluster-vip 10.20.10.254
+nvidia@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.15.0.tgz workers 10.20.10.25 10.20.10.45 cluster-vip 10.20.10.254
 ```
 
 ### Related Commands
@@ -383,6 +383,57 @@ None
 - `netq install nvl bundle`
 
 - - -
+
+## netq install nvl servers
+
+Installs NetQ NVLink on a cluster of servers. There are two forms of this command: one that specifies exclusive NVLink access to a dedicated cluster of three virtual machines and one that specifies shared access to a Kubernetes cluster of three virtual machines.
+
+### Syntax
+
+```
+netq install nvl servers <text-server-01> <text-server-02> <text-server-03> 
+    bundle <text-bundle-url> 
+    kong-rw-password <text-kong-rw-password> 
+    kong-ro-password <text-kong-ro-password> 
+    [alertmanager-webhook-url <text-alertmanager-webhook-url>] 
+    [ignore-pre-checks]
+
+netq install nvl servers [<text-server-01>] [<text-server-02>] [<text-server-03>] 
+    bundle <text-bundle-url>
+    kong-rw-password <text-kong-rw-password> 
+    kong-ro-password <text-kong-ro-password> 
+    [alertmanager-webhook-url <text-alertmanager-webhook-url>] 
+    shared-cluster-install 
+    [dev] 
+    [storage-path <text-storage-path>] 
+    [ignore-pre-checks]
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| servers | \<text-server-01\>, \<text-server-02\>, \<text-server-03\>  | Specify the IP address of each node in a *dedicated* 3-node cluster |
+| bundle | \<text-bundle-url\> | Specify the full path to the NetQ tarball |
+| kong-rw-password | \<text-kong-rw-password\> | Sets the Kong read-write password (8 character minimum)|
+| kong-ro-password | \<text-kong-ro-password\> | Sets the Kong read-only password (8 character minimum) |
+
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| servers | \<text-server-01\>, \<text-server-02\>, \<text-server-03\>  | Specify the IP address of each node in a *shared* 3-node cluster |
+| alertmanager-webhook-url | \<text-alertmanager-webhook-url\> | Specify a webhook URL for Alertmanager |
+| dev | NA| Enables development mode and reduces resource allocation for CPU, memory, and replicas |
+| storage-path | \<text-storage-path\> | Specify a storage path for persistent data. If unspecified, the default path is `/var/lib/longhorn` |
+| ignore-pre-checks | NA | Skips pre-checks (not recommended)|
+
+### Related Commands
+
+None
+
+- - -
 <!-- vale off -->
 ## netq install opta activate-job
 
@@ -466,7 +517,7 @@ netq install opta standalone full
 ### Sample Usage
 
 ```
-nvidia@<hostname>:~$ netq install opta standalone full interface en01 bundle /mnt/installables/NetQ-4.14.0.tgz config-key CI39fo5CZ3cucHJvZDEubmV0cS5jdW11bHVzbmVp6z8ma3MuY29tGLsD
+nvidia@<hostname>:~$ netq install opta standalone full interface en01 bundle /mnt/installables/NetQ-4.15.0.tgz config-key CI39fo5CZ3cucHJvZDEubmV0cS5jdW11bHVzbmVp6z8ma3MuY29tGLsD
 ```
 
 ### Related Commands
@@ -590,7 +641,7 @@ netq install standalone full
 ### Sample Usage
 
 ```
-nvidia@<hostname>:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.14.0.tgz
+nvidia@<hostname>:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.15.0.tgz
 ```
 
 ### Related Commands

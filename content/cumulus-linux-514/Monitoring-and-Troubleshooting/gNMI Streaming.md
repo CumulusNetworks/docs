@@ -335,7 +335,7 @@ Cumulus Linux supports the following metrics:
 | `/lldp/interfaces/interface/neighbors/neighbor/state/port-id-type` | Format and source of the remote port ID string. |
 | `/lldp/interfaces/interface/neighbors/neighbor/state/ttl` | Indicates how long information from the neighbor is considered valid. |
 | `/lldp/interfaces/interface/neighbors/neighbor/capabilities/capability[name=<capability>]/state/enabled` | If the corresponding system capability is enabled on the neighbor.|
-| `/lldp/interfaces/interface/state/enabled`​ | If LLDP is enabled on the interface. |
+| `/lldp/interfaces/interface[name]/state/enabled`​ | If LLDP is enabled on the interface. |
 | `/lldp/state/enabled`| If LLDP is enabled globally. |
 
 {{< /tab >}}
@@ -386,13 +386,6 @@ Cumulus Linux supports the following metrics:
 | `/components/component[name]/transceiver/state/vendor-rev​` | Transceiver vendor revision. |
 
 {{< /tab >}}
-{{< tab "Packet Trimming">}}
-
-|  Name | Description |
-|------ | ----------- |
-| `/qos/packet-trimming/state/counters/trimmed-unicast-pkts`| The number of trimmed packets.|
-
-{{< /tab >}}
 {{< tab "QoS">}}
 
 |  Name | Description |
@@ -408,6 +401,7 @@ Cumulus Linux supports the following metrics:
 | `/qos/interfaces/interface[interface-id]/state/priority-group[priority_group]/counters/watermark-max` | High watermark of cells used in a queue since last time watermarks were reset. |
 | `/qos/interfaces/interface[interface-id]/state/switch-priority[priority]/counters/in-pause-pkts` | Number of pause packets for the priority class in the ingress queue.|
 | `/qos/interfaces/interface[interface-id]/state/switch-priority[priority]/counters/out-pause-pkts`| Number of pause packets for the priority class in the egress queue.|
+| `/qos/packet-trimming/state/counters/trimmed-unicast-pkts`| The number of trimmed packets.|
 
 {{< /tab >}}
 {{< tab "Router">}}
@@ -431,6 +425,20 @@ Cumulus Linux supports the following metrics:
 | `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/peer-type` | |
 | `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/neighbor-address` | |
 | `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/local-as` | |
+
+{{< /tab >}}
+{{< tab "Software Process">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/system/processes/process[pid]/state/cpu-usage-user` | CPU time consumed by this process in user mode in nanoseconds. |
+| `/system/processes/process[pid]/state/cpu-usage-system` | CPU time consumed by this process in kernel mode in nanoseconds. |
+| `/system/processes/process[pid]/state/start-time` | Start time of the process in seconds since epoch. |
+| `/system/processes/process[pid]/state/name` | Process name. |
+| `/system/processes/process[pid]/state/pid`| Process PID |
+| `/system/processes/process[pid]/state/memory-usage` | Bytes allocated and still in use by the process. |
+| `/system/processes/process[pid]/state/memory-utilization` | Percentage of RAM that the process is using. |
+| `/system/processes/process[pid]/state/cpu-utilization` | Percentage of CPU that the process is using. |
 
 {{< /tab >}}
 {{< tab "SRv6">}}

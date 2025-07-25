@@ -165,6 +165,10 @@ cumulus@switch:~$ nv show router segment-routing srv6 stats no-sid-drops
 no-sid-dropped-packets  0
 ```
 
+{{%notice note%}}
+When you enable {{<link url="Packet-Trimming" text="packet trimming">}} with segment routing, Cumulus Linux counts the trimmed packet twice in the SRv6 statistics.
+{{%/notice%}}
+
 ### Clear Segment Routing Statistics
 
 To clear all SRv6 statistics, run the `nv action clear router segment-routing srv6 stats` command:

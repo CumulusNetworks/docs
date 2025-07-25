@@ -27,7 +27,7 @@ netq modify otlp endpoint tsdb-name <text-tsdb-endpoint>
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| tsdb-name | \<text-tsdb-endpoint\> | Specify the name of your TSDB|
+| tsdb-name | \<text-tsdb-endpoint\> | Specify the name of your TSDB |
 
 ### Options
 

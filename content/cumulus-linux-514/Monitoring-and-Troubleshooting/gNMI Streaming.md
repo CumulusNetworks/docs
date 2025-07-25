@@ -231,7 +231,7 @@ Regex for specific keys (such as `“interface-id=swp*”`) is not supported.
 Cumulus Linux supports the following metrics:
 <!-- vale off -->
 {{< tabs "TabID200 ">}}
-{{< tab "Adaptive Roputing ">}}
+{{< tab "Adaptive Routing ">}}
 
 |  Name | Description |
 |------ | ----------- |

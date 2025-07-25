@@ -356,8 +356,7 @@ To send event notifications through a proxy server instead of directly to a noti
 ### Syntax
 
 ```
-netq add notification proxy
-    <text-proxy-hostname>
+netq add notification proxy <text-proxy-hostname>
     [port <text-proxy-port>]
 ```
 
@@ -389,6 +388,43 @@ Successfully configured notifier proxy proxy4:80
 - ```netq add notification rule```
 - ```netq add notification filter```
 - ```netq show notification```
+
+- - -
+
+## netq add otlp endpoint
+
+Adds the endpoint of your time series database. Before enabling TLS, use the `netq set otlp endpoint-ca-cert` command to set the CA certificate.
+
+### Syntax
+
+```
+netq add otlp endpoint 
+    tsdb-name <text-tsdb-endpoint> 
+    tsdb-url <text-tsdb-endpoint-url> 
+    [export true | export false] 
+    [security-mode <text-mode>]
+```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| tsdb-name | \<text-tsdb-endpoint\> | Unique name for external time series database endpoint |
+| tsdb-url | \<text-tsdb-endpoint-url\> | IP address of the external time series database |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| export | true, false | Enable (true) or disable (false) OTLP data export to time series database |
+| security-mode | \<text-mode\> | Enable (TLS) or disable (insecure) OTLP security mode |
+
+### Related Commands
+
+- `netq del otlp endpoint`
+- `netq modify otlp endpoint`
+- `netq set otlp endpoint`
+- `netq show otlp endpoints`
+
 
 - - -
 

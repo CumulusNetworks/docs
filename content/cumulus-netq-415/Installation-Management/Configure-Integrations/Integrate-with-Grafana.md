@@ -77,7 +77,7 @@ Read more about OpenTelemetry and DTS configurations in the {{<exlink url="https
 
 ## Configure the Time Series Database on the NetQ Server
 
-1. From the NetQ server, add the OTel endpoint of your time series database (TSDB). Replace `text-tsdb-endpoint` and `text-tsdb-endpoint-url` with the name and IP address of your TSDB, respectively. Include the `export true` option to begin exporting data immediately. You can optionally set `security-mode` to `secure` to enable TLS.
+1. From the NetQ server, add the OTel endpoint of your time series database (TSDB). Replace `text-tsdb-endpoint` and `text-tsdb-endpoint-url` with the name and IP address of your TSDB, respectively. Include the `export true` option to begin exporting data immediately. You can optionally set `security-mode` to `tls` to enable TLS.
 
 ```
 nvidia@netq-server:~$ netq add otlp endpoint tsdb-name <text-tsdb-endpoint> tsdb-url <text-tsdb-endpoint-url> [export true | export false] [security-mode <text-mode>]

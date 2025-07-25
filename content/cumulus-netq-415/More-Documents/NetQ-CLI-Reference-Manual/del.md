@@ -157,6 +157,33 @@ sysconf         configdiff       updated
 - ```netq show notification```
 
 - - -
+## netq del otlp endpoint
+
+Deletes the endpoint of your time series database.
+
+### Syntax
+
+```
+netq del otlp endpoint 
+    tsdb-name <text-tsdb-endpoint>
+```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| tsdb-name | \<text-tsdb-endpoint\> | Unique name for external time series database endpoint |
+
+### Options
+
+None
+
+### Related Commands
+
+- `netq add otlp endpoint`
+- `netq modify otlp endpoint`
+- `netq set otlp endpoint`
+- `netq show otlp endpoints`
+- - -
 
 ## netq del tca
 

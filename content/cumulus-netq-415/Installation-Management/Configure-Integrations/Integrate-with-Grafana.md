@@ -144,5 +144,9 @@ curl -k "https://<host>/api/netq/vm/api/v1/query_range" \
 If Grafana displays "No Data", verify that all VMs in your cluster are operational. You can check the node status using the <code>kubectl get nodes</code> command. A node will show as <code>NotReady</code> if it is down. When the VM is restored, data collection will resume and will be displayed within 20 minutes of restoration.
 {{</notice>}}
 
+## Additional Commands
+
+- {{<link title="modify/#netq modify otlp endpoint" text="netq modify otlp endpoint">}}
+
 
 

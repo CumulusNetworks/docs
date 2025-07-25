@@ -256,6 +256,9 @@ Cumulus Linux supports the following metrics:
 
 |  Name | Description |
 |------ | ----------- |
+| `/interfaces/interface/ethernet/phy/state/ber-time-since-last-clear` | Time since last clear of BER stats (phy layer stats). |
+| `/interfaces/interface/ethernet/phy/state/corrected-bits` | Number of phy corrected bits of an interface by FEC engine.|
+
 | `/interfaces/interface/state/admin-status` | Admin state of an interface. |
 | `/interfaces/interface/state/counters/in-broadcast-pkts` | Total number of broadcast packets received on an interface.|
 | `/interfaces/interface/state/counters/in-multicast-pkts` | Total number of multicast packets received on an interface.|
@@ -297,7 +300,7 @@ Cumulus Linux supports the following metrics:
 | `/interfaces/interface/ethernet/phy/state/lane/fc-fec-corrected-blocks` | Number FC FEC corrected blocks for a given lane of an interface.|
 | `/interfaces/interface/ethernet/phy/state/lane/fc-fec-uncorrected-blocks` | Number of FC FEC uncorrectable blocks for a given lane of an interface. |
 | `/interfaces/interface/ethernet/phy/state/lane/rs-fec-corrected-symbols` | Number of RS FEC corrected symbols for a given lane of an interface.|
-| `/interfaces/interface/ethernet/phy/state/corrected-bits` | Number of phy corrected bits of an interface by the FEC engine.|
+
 | `/interfaces/interface/ethernet/phy/state/effective-errors` | Number of phy effective errors of an interface.|
 | `/interfaces/interface/ethernet/phy/state/effective-ber` | Phy effective BER of an interface.|
 | `/interfaces/interface/ethernet/phy/state/lane/raw-errors` | Number of phy error bits identified for a given lane of an interface.|
@@ -306,7 +309,7 @@ Cumulus Linux supports the following metrics:
 | `/interfaces/interface/ethernet/phy/state/symbol-ber` | Phy symbol BER for an interface.|
 | `/interfaces/interface/ethernet/phy/state/lane/raw-ber` | Number of phy bit error rates for a given lane of an interface.|
 | `/interfaces/interface/ethernet/phy/state/fec-time-since-last-clear` | Time after last clear of FEC stats(phy layer). |
-| `/interfaces/interface/ethernet/phy/state/ber-time-since-last-clear` | Time after last clear of BER stats(phy layer). |
+
 | `/interfaces/interface/state/name​` | |
 | `/interfaces/interface/state/type​` |Link-layer interface type. |
 | `/interfaces/interface/state/last-change` | The last time the state of the interface changed.|
@@ -343,47 +346,47 @@ Cumulus Linux supports the following metrics:
 
 |  Name | Description |
 |------ | ----------- |
-| `/components/component[name]/state/name` | Component Name.|
+| `/components/component[name]/state/name` | List of components, keyed by component name.|
 | `/components/component[name]/fan/state/speed` | Current (instantaneous) fan speed. |
-| `/components/component[name]/power-supply/state/capacity` | PSU capacity in watts. |
-| `/components/component[name]/power-supply/state/input-current` | Input current to power supply unit.|
-| `/components/component[name]/power-supply/state/input-voltage` | Input voltage to power supply unit.|
-| `/components/component[name]/power-supply/state/output-current` | PSU current in amperes. |
-| `/components/component[name]/power-supply/state/output-power` | PSU power in watts. |
-| `/components/component[name]/power-supply/state/output-voltage` | PSU voltage in volts. |
-| `/components/component[name]/state/description` |  Component description. |
-| `/components/component[name]/state/firmware-version` | Firmware Version |
-| `/components/component[name]/state/last-reboot-reason​` | Information about the last reboot reason of a component.|
-| `/components/component[name]/state/last-reboot-time​` | Time of last reboot in nanoseconds since epoch.|
-| `/components/component[name]/state/name` | Component name. |
-| `/components/component[name]/state/oper-status` | Component status. |
-| `/components/component[name]/state/temperature/alarm-severity` | Temperature sensor alarm severity.|
-| `/components/component[name]/state/temperature/alarm-status` | Temperature sensor alarm status. |
-| `/components/component[name]/state/temperature/alarm-threshold` | Temperature sensor alarm threshold. |
-| `/components/component[name]/state/temperature/avg​` | Average temperature.|
-| `/components/component[name]/state/temperature/instant` | Instant temperature.  |
-| `/components/component[name]/state/temperature/interval` | Interval temperature.|
-| `/components/component[name]/state/temperature/max​` | Maximum temperature.|
-| `/components/component[name]/state/temperature/max​-time` | Maximum time temperature.|
-| `/components/component[name]/state/temperature/min​` | Minimum temperature.|
-| `/components/component[name]/state/temperature/min-time​` | Minimum time temperature.|
-| `/components/component[name]/transceiver/host-lanes/lane[lane-number]/state/tx-cdr-lol` | CDR LOL state for each physical channel.|
-| `/components/component[name]/transceiver/host-lanes/lane[lane-number]/state/tx-los` | LOS state for each host channel.|
+| `/components/component[name]/power-supply/state/capacity` | Maximum power capacity of the power supply. |
+| `/components/component[name]/power-supply/state/input-current` |Input current draw of the power supply.|
+| `/components/component[name]/power-supply/state/input-voltage` | Input voltage to power supply.|
+| `/components/component[name]/power-supply/state/output-current` | Output current supplied by the power supply. |
+| `/components/component[name]/power-supply/state/output-power` | Output power supplied by the power supply. |
+| `/components/component[name]/power-supply/state/output-voltage` | Output voltage supplied by the power supply.|
+| `/components/component[name]/state/description` |  System-supplied description of the component. |
+| `/components/component[name]/state/firmware-version` | For hardware components, the version of associated firmware running on the component, if applicable.|
+| `/components/component[name]/state/last-reboot-reason​` | The reason for the component's last reboot.|
+| `/components/component[name]/state/last-reboot-time​` | The time of the last reboot. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/components/component[name]/state/name` | Device name for the component. |
+| `/components/component[name]/state/oper-status` | If applicable, the current operational status of the component. |
+| `/components/component[name]/state/temperature/alarm-severity` | Severity of the current alarm.|
+| `/components/component[name]/state/temperature/alarm-status` | A value of `true` indicates the alarm has been raised or asserted. The value is false when the alarm is cleared. |
+| `/components/component[name]/state/temperature/alarm-threshold` | The threshold value crossed for this alarm. |
+| `/components/component[name]/state/temperature/avg​` | Arithmetic mean value of the statistic over the sampling period.|
+| `/components/component[name]/state/temperature/instant` | Instantaneous value of the statistic.  |
+| `/components/component[name]/state/temperature/interval` | If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system.|
+| `/components/component[name]/state/temperature/max​` | The maximum value of the statistic over the sampling period.|
+| `/components/component[name]/state/temperature/max​-time` | Absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/components/component[name]/state/temperature/min​` | Minimum value of the statistic over the sampling period.|
+| `/components/component[name]/state/temperature/min-time​` | Absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/components/component[name]/transceiver/host-lanes/lane[lane-number]/state/tx-cdr-lol` |Transmitter clock-and-data-recovery loss-of-lock flag.|
+| `/components/component[name]/transceiver/host-lanes/lane[lane-number]/state/tx-los` |Transmitter loss-of-signal flag.|
 | `/components/component[name]/transceiver/physical-channels/channel[index]/state/input-power/instant` | Input optical power of a physical channel in units of 0.01dBm, which may be associated with individual physical channels or an aggregate of multiple physical channels. |
 | `/components/component[name]/transceiver/physical-channels/channel[index]/state/laser-bias-current/instant` | Current applied by the system to the transmit laser to achieve the output power. The current is expressed in mA with up to two decimal precision. |
 | `/components/component[name]/transceiver/physical-channels/channel[index]/state/output-power/instant` | Output optical power of a physical channel in units of 0.01dBm, which might be associated with individual physical channels or an aggregate of multiple physical channels. |
-| `/components/component[name]/transceiver/physical-channels/channel[index]/state/rx-cdr-lol` | CDR LOL state for each physical channel.|
-| `/components/component[name]/transceiver/physical-channels/channel[index]/state/rx-los` | LOS state for each physical channel.|
-| `/components/component[name]/transceiver/state/date-code​` | Transceiver data code. |
-| `/components/component[name]/transceiver/state/enabled​` | If the transceiver is enabled.|
-| `/components/component[name]/transceiver/state//ethernet-pmd`| Ethernet PMD information for the transceiver.|
-| `/components/component[name]/transceiver/state/form-factor​` | Transceiver form factor. |
-| `/components/component[name]/transceiver/state/present​` | If the transceiver is present.|
-| `/components/component[name]/transceiver/state/serial-number​` | Transceiver seriel number.|
+| `/components/component[name]/transceiver/physical-channels/channel[index]/state/rx-cdr-lol` | Receiver clock-and-data-recovery loss-of-lock flag.|
+| `/components/component[name]/transceiver/physical-channels/channel[index]/state/rx-los` | Receiver loss-of-signal flag.|
+| `/components/component[name]/transceiver/state/date-code​` | Representation of the transceiver date code, typically stored as YYMMDD. The time portion of the value is undefined and not intended to be read. |
+| `/components/component[name]/transceiver/state/enabled​` | Turns power on or off to the transceiver. Provides a means to power on or off the transceiver (in the case of SFP, SFP+, QSFP) or enable high-power mode (in the case of CFP, CFP2, CFP4). This is optionally supported (device can choose to always enable). True = power on - high power. False = powered off.|
+| `/components/component[name]/transceiver/state/ethernet-pmd`| Ethernet PMD (physical medium dependent sublayer) that the transceiver supports. |
+| `/components/component[name]/transceiver/state/form-factor​` | Type of optical transceiver used on this port. If the client port is built into the device and not pluggable, `non-pluggable` is the corresponding state. If a device port supports multiple form factors, the value of the transceiver installed is reported. If no transceiver is present, the value of the highest rate form factor is reported. |
+| `/components/component[name]/transceiver/state/present​` | Indicates if a transceiver is present in the specified client port.|
+| `/components/component[name]/transceiver/state/serial-number​` | Transceiver serial number. 16-octet field that contains ASCII characters, left-aligned and padded on the right with ASCII spaces (20h). If part serial number is undefined, all 16 octets = 0h.|
 | `/components/component[name]/transceiver/state/supply-voltage/instant` | Input voltage as measured by the transceiver.|
-| `/components/component[name]/transceiver/state/vendor​` | Transceiver vendor. |
+| `/components/component[name]/transceiver/state/vendor​` | Full name of transceiver vendor. |
 | `/components/component[name]/transceiver/state/vendor-part​` | Transceiver vendor part number.|
-| `/components/component[name]/transceiver/state/vendor-rev​` | Transceiver vendor revision. |
+| `/components/component[name]/transceiver/state/vendor-rev​` | Transceiver vendor revision number. |
 
 {{< /tab >}}
 {{< tab "QoS">}}

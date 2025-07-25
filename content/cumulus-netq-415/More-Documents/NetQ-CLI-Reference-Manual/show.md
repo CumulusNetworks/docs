@@ -3347,6 +3347,54 @@ Version                              Uptime                    Reinitialize Time
 - ```netq show opta-health```
 
 - - -
+
+## netq show otlp
+
+Displays OpenTelemetry health or status information. Several forms of this command are available.
+
+### Syntax
+
+```
+netq show otlp endpoint-ca-cert 
+    tsdb-name <text-tsdb-endpoint> 
+    [json | dump]
+
+netq show otlp endpoints 
+    [json]
+
+netq show otlp health 
+    [verbose] 
+    [json]
+
+netq show otlp security-mode 
+    [json]
+
+netq show otlp tls-ca-cert 
+    [json | dump]
+
+netq show otlp tls-cert 
+    [json | dump]
+```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| tsdb-name | \<text-tsdb-endpoint\> | Specify the name of your time series database |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| json | NA | Display the output in JSON format |
+| dump | NA | |
+| verbose | NA |  |
+
+### Related Commands
+
+- `netq add otlp endpoint`
+- `netq modify otlp endpoint`
+
+- - -
 ## netq show ptp
 
 Displays PTP clock and configuration details, including:

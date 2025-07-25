@@ -125,21 +125,6 @@ Avoid plotting all time-series data at once. To visualize the data in different 
    - {{<exlink url="https://grafana.com/docs/grafana/latest/dashboards/variables/add-template-variables/#add-an-interval-variable" text="Add interval variables">}}
    - {{<exlink url="https://grafana.com/docs/grafana/latest/dashboards/variables/add-template-variables/#add-an-interval-variable" text="Use aggregation operators">}} such as `count` and `topk`
 
-<!--
-
-To export a large amount of data, use a `curl` command. The following command queries 15 minutes worth of data.
-
-```
-curl -k "https://<host>/api/netq/vm/api/v1/query_range" \ 
-  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \ 
-  --get \ 
-  --data-urlencode 'query=nvswitch_interface_carrier_changes_total' \ 
-  --data-urlencode "start=$(date -u -d '15 minutes ago' +%Y-%m-%dT%H:%M:%SZ)" \ 
-  --data-urlencode "end=$(date -u +%Y-%m-%dT%H:%M:%SZ)" \ 
-  --data-urlencode 'step=60s' > output_changes_total.json
-```
--->
-
 {{<notice tip>}}
 If Grafana displays "No Data", verify that all VMs in your cluster are operational. You can check the node status using the <code>kubectl get nodes</code> command. A node will show as <code>NotReady</code> if it is down. When the VM is restored, data collection will resume and will be displayed within 20 minutes of restoration.
 {{</notice>}}
@@ -147,6 +132,7 @@ If Grafana displays "No Data", verify that all VMs in your cluster are operation
 ## Additional Commands
 
 - {{<link title="modify/#netq modify otlp endpoint" text="netq modify otlp endpoint">}}
+- {{<link title="show/#netq show otlp" text="netq show otlp">}} commands
 
 
 

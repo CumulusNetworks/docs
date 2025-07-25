@@ -258,7 +258,31 @@ Cumulus Linux supports the following metrics:
 |------ | ----------- |
 | `/interfaces/interface/ethernet/phy/state/ber-time-since-last-clear` | Time since last clear of BER stats (phy layer stats). |
 | `/interfaces/interface/ethernet/phy/state/corrected-bits` | Number of phy corrected bits of an interface by FEC engine.|
-
+| `/interfaces/interface/ethernet/phy/state/fec-time-since-last-clear` | Time after last clear of FEC stats (phy layer). |
+| `/interfaces/interface/ethernet/phy/state/effective-errors` | Number of phy effective errors of an interface.|
+| `/interfaces/interface/ethernet/phy/state/effective-ber` | Phy effective BER of an interface.|
+| `/interfaces/interface/ethernet/phy/state/rs-fec-uncorrectable-blocks` | Number of RS FEC uncorrectable blocks of an interface. |
+| `/interfaces/interface/ethernet/phy/state/rs-fec-single-error-blocks` | Number of RS FEC uncorrectable blocks of an interface.|
+| `/interfaces/interface/ethernet/phy/state/rs-fec-no-error-blocks` | Number of RS FEC no errors blocks of an interface.|
+| `/interfaces/interface/ethernet/phy/state/lane/fc-fec-corrected-blocks` | Number FC FEC corrected blocks for a given lane of an interface.|
+| `/interfaces/interface/ethernet/phy/state/lane/fc-fec-uncorrected-blocks` | Number of FC FEC uncorrectable blocks for a given lane of an interface. |
+| `/interfaces/interface/ethernet/phy/state/lane/rs-fec-corrected-symbols` | Number of RS FEC corrected symbols for a given lane of an interface.|
+| `/interfaces/interface/ethernet/phy/state/lane/raw-errors` | Number of phy error bits identified for a given lane of an interface.|
+| `/interfaces/interface/ethernet/phy/state/received-bits` | Number of phy total bits received for an interface.|
+| `/interfaces/interface/ethernet/phy/state/symbol-errors` | Number of phy symbol errors for an interface.|
+| `/interfaces/interface/ethernet/phy/state/symbol-ber` | Phy symbol BER for an interface.|
+| `/interfaces/interface/ethernet/phy/state/lane/raw-ber` | Number of phy bit error rates for a given lane of an interface.|
+ `/interfaces/interface/ethernet/phy/state/rs-fec-uncorrectable-blocks` | Number of RS FEC uncorrectable blocks of an interface. |
+| `/interfaces/interface/ethernet/phy/state/rs-fec-single-error-blocks` | Number of RS FEC uncorrectable blocks of an interface.|
+| `/interfaces/interface/ethernet/phy/state/rs-fec-no-error-blocks` | Number of RS FEC no errors blocks of an interface.|
+| `/interfaces/interface/ethernet/phy/state/lane/fc-fec-corrected-blocks` | Number FC FEC corrected blocks for a given lane of an interface.|
+| `/interfaces/interface/ethernet/phy/state/lane/fc-fec-uncorrected-blocks` | Number of FC FEC uncorrectable blocks for a given lane of an interface. |
+| `/interfaces/interface/ethernet/phy/state/lane/rs-fec-corrected-symbols` | Number of RS FEC corrected symbols for a given lane of an interface.|
+| `/interfaces/interface/ethernet/phy/state/lane/raw-errors` | Number of phy error bits identified for a given lane of an interface.|
+| `/interfaces/interface/ethernet/phy/state/received-bits` | Number of phy total bits received for an interface.|
+| `/interfaces/interface/ethernet/phy/state/symbol-errors` | Number of phy symbol errors for an interface.|
+| `/interfaces/interface/ethernet/phy/state/symbol-ber` | Phy symbol BER for an interface.|
+| `/interfaces/interface/ethernet/phy/state/lane/raw-ber` | Number of phy bit error rates for a given lane of an interface.|
 | `/interfaces/interface/state/admin-status` | Admin state of an interface. |
 | `/interfaces/interface/state/counters/in-broadcast-pkts` | Total number of broadcast packets received on an interface.|
 | `/interfaces/interface/state/counters/in-multicast-pkts` | Total number of multicast packets received on an interface.|
@@ -294,22 +318,6 @@ Cumulus Linux supports the following metrics:
 | `/interfaces/interface/state/counters/out-pkts-rate` | Outbound packets per second on an interface. |
 | `/interfaces/interface/state/counters/out-multicast-pkts` | Total number of packets that higher-level protocols requested be transmitted, and which were addressed to a multicast address at this sub-layer, including those that were discarded or not sent. For a MAC layer protocol, this includes both Group and Functional addresses.|
 | `/interfaces/interface/ethernet/state/counters/carrier-transitions` | Number of times since system boot that `ifOperStatus` changed.|
-| `/interfaces/interface/ethernet/phy/state/rs-fec-uncorrectable-blocks` | Number of RS FEC uncorrectable blocks of an interface. |
-| `/interfaces/interface/ethernet/phy/state/rs-fec-single-error-blocks` | Number of RS FEC uncorrectable blocks of an interface.|
-| `/interfaces/interface/ethernet/phy/state/rs-fec-no-error-blocks` | Number of RS FEC no errors blocks of an interface.|
-| `/interfaces/interface/ethernet/phy/state/lane/fc-fec-corrected-blocks` | Number FC FEC corrected blocks for a given lane of an interface.|
-| `/interfaces/interface/ethernet/phy/state/lane/fc-fec-uncorrected-blocks` | Number of FC FEC uncorrectable blocks for a given lane of an interface. |
-| `/interfaces/interface/ethernet/phy/state/lane/rs-fec-corrected-symbols` | Number of RS FEC corrected symbols for a given lane of an interface.|
-
-| `/interfaces/interface/ethernet/phy/state/effective-errors` | Number of phy effective errors of an interface.|
-| `/interfaces/interface/ethernet/phy/state/effective-ber` | Phy effective BER of an interface.|
-| `/interfaces/interface/ethernet/phy/state/lane/raw-errors` | Number of phy error bits identified for a given lane of an interface.|
-| `/interfaces/interface/ethernet/phy/state/received-bits` | Number of phy total bits received for an interface.|
-| `/interfaces/interface/ethernet/phy/state/symbol-errors` | Number of phy symbol errors for an interface.|
-| `/interfaces/interface/ethernet/phy/state/symbol-ber` | Phy symbol BER for an interface.|
-| `/interfaces/interface/ethernet/phy/state/lane/raw-ber` | Number of phy bit error rates for a given lane of an interface.|
-| `/interfaces/interface/ethernet/phy/state/fec-time-since-last-clear` | Time after last clear of FEC stats(phy layer). |
-
 | `/interfaces/interface/state/name​` | |
 | `/interfaces/interface/state/type​` |Link-layer interface type. |
 | `/interfaces/interface/state/last-change` | The last time the state of the interface changed.|
@@ -323,23 +331,23 @@ Cumulus Linux supports the following metrics:
 
 |  Name | Description |
 |------ | ----------- |
-| `/lldp/state/chassis-id` | The chassis component of the endpoint identifier associated with the transmitting LLDP agent.|
-| `/lldp/state/chassis-id-type` | The format and source of the chassis identifier string.|
-| `/lldp/state/system-description` | Description of the network entity including the full name and version identification of the system's hardware type, software operating system, and networking software.|
-| `/lldp/state/system-name` | Administratively assigned name for the system.|
+| `/lldp/interfaces/interface/neighbors/neighbor/capabilities/capability[name=<capability>]/state/enabled` | If the corresponding system capability is enabled on the neighbor.|
 | `/lldp/interfaces/interface/neighbors/neighbor/state/age` | LLDP neighbor age after discovery.|
-| `/lldp/interfaces/interface/neighbors/neighbor/state/management-address/type`| Enumerated value for the network address type identified in this TLV. |
 | `/lldp/interfaces/interface/neighbors/neighbor/state/chassis-id` | Chassis component of the endpoint identifier associated with the transmitting LLDP agent.|
 | `/lldp/interfaces/interface/neighbors/neighbor/state/chassis-id-type` | Format and source of the chassis identifier string.|
-| `/lldp/interfaces/interface/neighbors/neighbor/state/system-name` | Administratively assigned name of the system associated with the transmitting LLDP agent.|
-| `/lldp/interfaces/interface/neighbors/neighbor/state/system-description` | Description of the network entity associated with the transmitting LLDP agent.|
-| `/lldp/interfaces/interface/neighbors/neighbor/state/port-id`| Port component of the endpoint identifier associated with the transmitting LLDP agent. |
+| `/lldp/interfaces/interface/neighbors/neighbor/state/management-address/type`| Enumerated value for the network address type identified in this TLV. |
 | `/lldp/interfaces/interface/neighbors/neighbor/state/port-description` | Binary string containing the actual port identifier for the port from which this LLDP PDU was transmitted.|
+| `/lldp/interfaces/interface/neighbors/neighbor/state/port-id`| Port component of the endpoint identifier associated with the transmitting LLDP agent. |
 | `/lldp/interfaces/interface/neighbors/neighbor/state/port-id-type` | Format and source of the remote port ID string. |
+| `/lldp/interfaces/interface/neighbors/neighbor/state/system-description` | Description of the network entity associated with the transmitting LLDP agent.|
+| `/lldp/interfaces/interface/neighbors/neighbor/state/system-name` | Administratively assigned name of the system associated with the transmitting LLDP agent.|
 | `/lldp/interfaces/interface/neighbors/neighbor/state/ttl` | Indicates how long information from the neighbor is considered valid. |
-| `/lldp/interfaces/interface/neighbors/neighbor/capabilities/capability[name=<capability>]/state/enabled` | If the corresponding system capability is enabled on the neighbor.|
 | `/lldp/interfaces/interface[name]/state/enabled`​ | If LLDP is enabled on the interface. |
+| `/lldp/state/chassis-id` | The chassis component of the endpoint identifier associated with the transmitting LLDP agent.|
+| `/lldp/state/chassis-id-type` | The format and source of the chassis identifier string.|
 | `/lldp/state/enabled`| If LLDP is enabled globally. |
+| `/lldp/state/system-description` | Description of the network entity including the full name and version identification of the system's hardware type, software operating system, and networking software.|
+| `/lldp/state/system-name` | Administratively assigned name for the system.|
 
 {{< /tab >}}
 {{< tab "Platform">}}
@@ -411,37 +419,30 @@ Cumulus Linux supports the following metrics:
 
 |  Name | Description |
 |------ | ----------- |
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/session-state` | Operational state of the BGP peer.|
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/established-transitions` | Number of transitions to the established state for the neighbor session.|
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/messages/sent/UPDATE` | Number of BGP UPDATE messages announcing, withdrawing, or modifying paths exchanged.|
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/messages/received/UPDATE` | Number of BGP UPDATE messages announcing, withdrawing, or modifying paths exchanged.|
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/queues/input` | Number of messages received from the neighbor currently queued.|
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/queues/output` | Number of messages queued to be sent to the neighbor.|
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/afi-safis/afi-safi/state/prefixes/received` | Number of prefixes received from the neighbor after applying policies (the number of prefixes present in the post-policy Adj-RIB-In for the neighbor).|
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/afi-safis/afi-safi/state/prefixes/sent` | Number of prefixes advertised to the neighbor after applying policies (the number of prefixes present in the post-policy Adj-RIB-Out for the neighbor).|
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/afi-safis/state/prefixes/installed` | Number of prefixes received from the neighbor that are installed in the network instance RIB and actively used for forwarding. |
-|`/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/description` | |
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/last-established` | |
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/last-notification-error-code` | |
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/peer-as` | |
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/peer-group` | |
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/peer-type` | |
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/neighbor-address` | |
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/local-as` | |
-
-{{< /tab >}}
-{{< tab "Software Process">}}
-
-|  Name | Description |
-|------ | ----------- |
-| `/system/processes/process[pid]/state/cpu-usage-user` | CPU time consumed by this process in user mode in nanoseconds. |
-| `/system/processes/process[pid]/state/cpu-usage-system` | CPU time consumed by this process in kernel mode in nanoseconds. |
-| `/system/processes/process[pid]/state/start-time` | Start time of the process in seconds since epoch. |
-| `/system/processes/process[pid]/state/name` | Process name. |
-| `/system/processes/process[pid]/state/pid`| Process PID |
-| `/system/processes/process[pid]/state/memory-usage` | Bytes allocated and still in use by the process. |
-| `/system/processes/process[pid]/state/memory-utilization` | Percentage of RAM that the process is using. |
-| `/system/processes/process[pid]/state/cpu-utilization` | Percentage of CPU that the process is using. |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp` |Top-level configuration and state for the BGP router. |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/afi-safis/afi-safi[afi-safi-name]/state/prefixes/installed` | The number of prefixes received from the neighbor that are installed in the network instance RIB and actively used for forwarding.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/afi-safis/afi-safi[afi-safi-name]/state/prefixes/received` | The number of prefixes that are received from the neighbor after applying any policies. This count is the number of prefixes present in the post-policy Adj-RIB-In for the neighbor.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/afi-safis/afi-safi[afi-safi-name]/state/prefixes/sent` | The number of prefixes that are advertised to the neighbor after applying any policies. This count is the number of prefixes present in the post-policy Adj-RIB-Out for the neighbor.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state` | BGP neighbor state.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/description` | BGP neighbor state description.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/established-transitions` | Number of transitions to the Established state for the neighbor session. |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/last-established` | The time that the BGP session last transitioned in or out of the Established state. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC). |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/local-as` | The local autonomous system number used when establishing sessions with the remote peer or peer group, if this differs from the global BGP router autonomous system number.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages` | Counters for BGP messages sent and received from the neighbor.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/received` | Counters for BGP messages received from the neighbor. |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/received/last-notification-error-code` | The last BGP error sent or received on the peering session.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/received/UPDATE` | Number of BGP UPDATE messages announcing, withdrawing, or modifying paths exchanged.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/sent` | Counters relating to BGP messages sent to the neighbor.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/sent/last-notification-error-code` | The last BGP error sent or received on the peering session.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/sent/UPDATE` | Number of BGP UPDATE messages announcing, withdrawing or modifying paths exchanged.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/neighbor-address` | Address of the BGP peer, either in IPv4 or IPv6.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/peer-as` | AS number of the peer.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/peer-group` | The peer-group with which this neighbor is associated|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/peer-type` | Explicitly designate the peer or peer group as internal (iBGP) or external (eBGP).|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/queues/input` | The number of messages received from the peer currently queued.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/queues/output` | The number of messages queued to be sent to the peer.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/session-state` | Operational state of the BGP peer. |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor/state` | Operational state data for interface hold-time.|
 
 {{< /tab >}}
 {{< tab "SRv6">}}
@@ -463,36 +464,87 @@ Cumulus Linux supports the following metrics:
 | `/system/state/boot-time` | System boot time. |
 | `/system/state/current-datetime` | Current system date and time. |
 | `/system/control-plane-traffic/ingress/ipv4/counters/`<br>`/system/control-plane-traffic/ingress/ipv6/counters/` | Number of input IP datagrams discarded in software including those received in error.|
-| `/system/cpus/cpu[name]/state/user/seconds` | CPU user Seconds |
-| `/system/cpus/cpu[name]/state/kernel/seconds` | CPU kernel seconds. |
-| `/system/cpus/cpu[name]/state/nice/seconds` | CPU Nice seconds. |
-| `/system/cpus/cpu[name]/state/idle/seconds` | CPU idle seconds. |
-| `/system/cpus/cpu[name]/state/wait/seconds` | CPU wait seconds.|
-| `/system/cpus/cpu[name]/state/hardware-interrupt/seconds` | CPU hardware interrupt seconds. |
-| `/system/cpus/cpu[name]/state/software-interrupt/seconds` | CPU software interrupt seconds.|
-| `/system/cpus/cpu/state/total​` | |
-| `/system/cpus/cpu/state/total/instant​` | |
-| `/system/cpus/cpu/state/total/avg​​` | |
-| `/system/cpus/cpu/state/total/min​​` | |
-| `/system/cpus/cpu/state/total/max​​` | |
-| `/system/cpus/cpu/state/user/instant​​` | |
-| `/system/cpus/cpu/state/user/avg​​` | |
-| `/system/cpus/cpu/state/user/min​​` | |
-| `/system/cpus/cpu/state/user/max​​` | |
-| `/system/cpus/cpu/state/kernel/instant​​` | |
-| `/system/cpus/cpu/state/kernel/avg​​` | |
-| `/system/cpus/cpu/state/kernel/min​​` | |
-| `/system/cpus/cpu/state/kernel/max​​` | |
-| `/system/memory/state/free` | Free memory. |
-| `/system/memory/state/physical` | Physical memory.|
+| `/system/cpus/cpu[index]/state/hardware-interrupt/avg` | The arithmetic mean value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/hardware-interrupt/instant` | The instantaneous percentage value.|
+| `/system/cpus/cpu[index]/state/hardware-interrupt/interval` | If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system.|
+| `/system/cpus/cpu[index]/state/hardware-interrupt/max` | The maximum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/hardware-interrupt/max-time` | The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/hardware-interrupt/min` | The minimum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/hardware-interrupt/min-time` | The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/hardware-interrupt/seconds` | The total number of seconds spent servicing hardware interrupts.|
+| `/system/cpus/cpu[index]/state/idle/avg` | The arithmetic mean value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/idle/instant` | The instantaneous percentage value.|
+| `/system/cpus/cpu[index]/state/idle/interval` | If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system.|
+| `/system/cpus/cpu[index]/state/idle/max` | The maximum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/idle/max-time` | The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/idle/min` | The minimum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/idle/min-time` | The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/idle/seconds` | The total number of seconds spent idle.|
+| `/system/cpus/cpu[index]/state/kernel/avg` | The arithmetic mean value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/kernel/instant` | The instantaneous percentage value.|
+| `/system/cpus/cpu[index]/state/kernel/interval` |If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system. |
+| `/system/cpus/cpu[index]/state/kernel/max` | The maximum value of the percentage measure of the statistic over the time interval. |
+| `/system/cpus/cpu[index]/state/kernel/max-time` | The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/kernel/min` | The minimum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/kernel/min-time` | The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/kernel/seconds` | The total number of seconds spent running in kernel space.|
+| `/system/cpus/cpu[index]/state/nice/avg` | The arithmetic mean value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/nice/instant` |The instantaneous percentage value. |
+| `/system/cpus/cpu[index]/state/nice/interval` | If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system.|
+| `/system/cpus/cpu[index]/state/nice/max` | The maximum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/nice/max-time` | The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/nice/min` | The minimum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/nice/min-time` | The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/nice/seconds` | The total number of seconds spent running low-priority (niced) user processes.|
+| `/system/cpus/cpu[index]/state/software-interrupt/avg` | The arithmetic mean value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/software-interrupt/instant` | The instantaneous percentage value.|
+| `/system/cpus/cpu[index]/state/software-interrupt/interval` | If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system.|
+| `/system/cpus/cpu[index]/state/software-interrupt/max` | The maximum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/software-interrupt/max-time` | The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/software-interrupt/min` | The minimum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/software-interrupt/min-time` | The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/software-interrupt/seconds` | The total number of seconds spent servicing software interrupts.|
+| `/system/cpus/cpu[index]/state/total/avg` | The arithmetic mean value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/total/instant` |The instantaneous percentage value. |
+| `/system/cpus/cpu[index]/state/total/interval` | If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system.|
+| `/system/cpus/cpu[index]/state/total/max` | The maximum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/total/max-time` | The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/total/min` | The minimum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/total/min-time` | The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/user/avg` | The arithmetic mean value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/user/instant` | The instantaneous percentage value.|
+| `/system/cpus/cpu[index]/state/user/interval` | If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system.|
+| `/system/cpus/cpu[index]/state/user/max` | The maximum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/user/max-time` | The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/user/min` | The minimum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/user/min-time` | The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/user/seconds` | The total number of seconds spent running in user space.|
+| `/system/cpus/cpu[index]/state/wait/avg` | The arithmetic mean value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/wait/instant` | The instantaneous percentage value.|
+| `/system/cpus/cpu[index]/state/wait/interval` | If supported by the system, this reports the time interval over which the minimum, maximum, and average statistics are computed by the system.|
+| `/system/cpus/cpu[index]/state/wait/max` | The maximum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/wait/max-time` | The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/wait/min` | The minimum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/wait/min-time` | The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/wait/seconds` | The total number of seconds spent waiting I/O.|
+| `/system/memory/state/free` | Memory that is not used and is available for allocation. |
+| `/system/memory/state/physical` | The total physical memory available on the system.|
 | `/system/memory/state/reserved` | Memory reserved for system use. |
-| `/system/memory/state/used​` | |
-| `/system/mount-points/mount-point[name]/state/utilized` | |
+| `/system/memory/state/used​` | Memory that has been used and not available for allocation.|
+| `/system/mount-points/mount-point[name]/state/utilized` | The amount of space currently in use on the filesystem.|
 | `/system/mount-points/mount-point[name]/state/name` | Mount point name.|
 | `/system/mount-points/mount-point[name]/state/storage-component` | A reference to the hosting component within the hierarchy. |
 | `/system/mount-points/mount-point[name]/state/size` | Total size of the initialized filesystem.|
-| `/system/mount-points/mount-point[name]/state/available` | Amount of unused space on the filesystem.|
+| `/system/mount-points/mount-point[name]/state/available` | The amount of unused space on the filesystem.|
 | `/system/mount-points/mount-point[name]/state/type` | Filesystem type used for storage such flash, hard disk, tmpfsor or ramdisk, or remote or network based storage.|
+| `/system/processes/process[pid]/state/cpu-usage-user` | CPU time consumed by this process in user mode in nanoseconds. |
+| `/system/processes/process[pid]/state/cpu-usage-system` | CPU time consumed by this process in kernel mode in nanoseconds. |
+| `/system/processes/process[pid]/state/start-time` | Start time of the process in seconds since epoch. |
+| `/system/processes/process[pid]/state/name` | Process name. |
+| `/system/processes/process[pid]/state/pid`| Process PID |
+| `/system/processes/process[pid]/state/memory-usage` | Bytes allocated and still in use by the process. |
+| `/system/processes/process[pid]/state/memory-utilization` | Percentage of RAM that the process is using. |
+| `/system/processes/process[pid]/state/cpu-utilization` | Percentage of CPU that the process is using. |
 
 {{< /tab >}}
 {{< /tabs >}}

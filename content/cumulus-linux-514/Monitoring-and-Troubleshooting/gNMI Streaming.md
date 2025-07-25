@@ -231,13 +231,20 @@ Regex for specific keys (such as `“interface-id=swp*”`) is not supported.
 Cumulus Linux supports the following metrics:
 <!-- vale off -->
 {{< tabs "TabID200 ">}}
+{{< tab "Adaptive Routing ">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/system/adaptive-routing/state/counters/congestion-change` | The number of adaptive routing change events that triggered due to congestion or link-down.|
+
+{{< /tab >}}
 {{< tab "BGP ">}}
 
 |  Name | Description |
 |------ | ----------- |
 | `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/description` | |
 | `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/last-established` | |
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/sent/last-notification-error-code` | |
+| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/last-notification-error-code` | |
 | `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/peer-as` | |
 | `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/peer-group` | |
 | `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/peer-type` | |
@@ -300,12 +307,13 @@ Cumulus Linux supports the following metrics:
 | `/interfaces/interface/ethernet/phy/state/lane/raw-ber` | Number of phy bit error rates for a given lane of an interface.|
 | `/interfaces/interface/ethernet/phy/state/fec-time-since-last-clear` | Time after last clear of FEC stats(phy layer). |
 | `/interfaces/interface/ethernet/phy/state/ber-time-since-last-clear` | Time after last clear of BER stats(phy layer). |
-| `/interfaces/interface/ethernet/state/auto-negotiate​` | |
-| `/interfaces/interface/ethernet/state/duplex-mode​` | |
-| `/interfaces/interface/ethernet/state/hw-mac-address​` | |
-| `/interfaces/interface/ethernet/state/mac-address​` | |
-| `/interfaces/interface/ethernet/state/negotiated-port-speed​` | |
-| `/interfaces/interface/state/loopback-mode` | |
+| `/interfaces/interface/state/name​` | |
+| `/interfaces/interface/state/type​` |Link-layer interface type. |
+| `/interfaces/interface/state/last-change` | The last time the state of the interface changed.|
+| `/interfaces/interface/ethernet/state/counters/in-jabber-frames` | Number of Jabber frames received on the interface.|
+| `/interfaces/interface/ethernet/state/hw-mac-address` | System defined default MAC address for the interface. |
+| `/interfaces/interface/ethernet/state/mac-address​` | MAC address for the interface.|
+| `/interfaces/interface/state/protodown​` | Indicates if the interface is administratively held down by a protocol or system process rather than by user action.|
 
 {{< /tab >}}
 {{< tab "LLDP">}}
@@ -316,115 +324,141 @@ Cumulus Linux supports the following metrics:
 | `/lldp/state/chassis-id-type` | The format and source of the chassis identifier string.|
 | `/lldp/state/system-description` | Description of the network entity including the full name and version identification of the system's hardware type, software operating system, and networking software.|
 | `/lldp/state/system-name` | Administratively assigned name for the system.|
-| `/lldp/interfaces/interface/neighbors/neighbor[id=<id>]/state/age` | LLDP neighbor age after discovery.|
-| `/lldp/interfaces/interface/neighbors/neighbor[id=<id>]/state/management-address/type`| Enumerated value for the network address type identified in this TLV. |
-| `/lldp/interfaces/interface/neighbors/neighbor[id=<id>]/state/chassis-id` | Chassis component of the endpoint identifier associated with the transmitting LLDP agent.|
-| `/lldp/interfaces/interface/neighbors/neighbor[id=<id>]/state/chassis-id-type` | Format and source of the chassis identifier string.|
-| `/lldp/interfaces/interface/neighbors/neighbor[id=<id>]/state/system-name` | Administratively assigned name of the system associated with the transmitting LLDP agent.|
-| `/lldp/interfaces/interface/neighbors/neighbor[id=<id>]/state/system-description` | Description of the network entity associated with the transmitting LLDP agent.|
-| `/lldp/interfaces/interface/neighbors/neighbor[id=<id>]/state/port-id`| Port component of the endpoint identifier associated with the transmitting LLDP agent. |
-| `/lldp/interfaces/interface/neighbors/neighbor[id=<id>]/state/port-description` | Binary string containing the actual port identifier for the port from which this LLDP PDU was transmitted.|
-| `/lldp/interfaces/interface/neighbors/neighbor[id=<id>]/state/port-id-type` | Format and source of the remote port ID string. |
-| `/lldp/interfaces/interface/neighbors/neighbor[id=<id>]/state/ttl` | Indicates how long information from the neighbor is considered valid. |
-| `/lldp/interfaces/interface/neighbors/neighbor[id=<id>]/capabilities/capability[name=<capability>]/state/enabled` | If the corresponding system capability is enabled on the neighbor.|
-| `/lldp/interfaces/interface[id=<id>]/state/enabled`​ ||
-| `/lldp/state/enabled` |  |
+| `/lldp/interfaces/interface/neighbors/neighbor/state/age` | LLDP neighbor age after discovery.|
+| `/lldp/interfaces/interface/neighbors/neighbor/state/management-address/type`| Enumerated value for the network address type identified in this TLV. |
+| `/lldp/interfaces/interface/neighbors/neighbor/state/chassis-id` | Chassis component of the endpoint identifier associated with the transmitting LLDP agent.|
+| `/lldp/interfaces/interface/neighbors/neighbor/state/chassis-id-type` | Format and source of the chassis identifier string.|
+| `/lldp/interfaces/interface/neighbors/neighbor/state/system-name` | Administratively assigned name of the system associated with the transmitting LLDP agent.|
+| `/lldp/interfaces/interface/neighbors/neighbor/state/system-description` | Description of the network entity associated with the transmitting LLDP agent.|
+| `/lldp/interfaces/interface/neighbors/neighbor/state/port-id`| Port component of the endpoint identifier associated with the transmitting LLDP agent. |
+| `/lldp/interfaces/interface/neighbors/neighbor/state/port-description` | Binary string containing the actual port identifier for the port from which this LLDP PDU was transmitted.|
+| `/lldp/interfaces/interface/neighbors/neighbor/state/port-id-type` | Format and source of the remote port ID string. |
+| `/lldp/interfaces/interface/neighbors/neighbor/state/ttl` | Indicates how long information from the neighbor is considered valid. |
+| `/lldp/interfaces/interface/neighbors/neighbor/capabilities/capability[name=<capability>]/state/enabled` | If the corresponding system capability is enabled on the neighbor.|
+| `/lldp/interfaces/interface/state/enabled`​ | If LLDP is enabled on the interface. |
+| `/lldp/state/enabled`| If LLDP is enabled globally. |
 
 {{< /tab >}}
 {{< tab "Platform">}}
 
 |  Name | Description |
 |------ | ----------- |
-| `/components/component[name='PSU1']/state/name` | PSU Name.|
-| `/components/component[name='PSU1']/state/oper-status` | PSU Status. |
-| `/components/component[name='PSU1']/state/description` |  PSU description. |
-| `/components/component[name='PSU1']/power-supply/state/capacity` | PSU capacity in watts. |
-| `/components/component[name='PSU1']/power-supply/state/output-current` | PSU current in amperes. |
-| `/components/component[name='PSU1']/power-supply/state/output-voltage` | PSU voltage in volts. |
-| `/components/component[name='PSU1']/power-supply/state/output-power` | PSU power in watts. |
-| `/components/component[name='fan0']/state/name` | Fan name. |
-| `/components/component[name='fan0']/state/oper-status` | Fan Status. |
-| `/components/component[name='fan0']/state/description` | Fan Description. |
-| `/components/component[name='fan0']/fan/state/speed` | Current (instantaneous) fan speed. |
-| `/components/component[name='temp-sensor0']/state/name` |  Temperature sensor name.|
-| `/components/component[name='temp-sensor0'']/state/oper-status` |  Temperature sensor operational status. |
-| `/components/component[name='temp-sensor0'']/state/description` | Temperature sensor description. |
-| `/components/component[name='temp-sensor0']/state/temperature/instant` | Instant temperature.  |
-| `/components/component[name='temp-sensor0']/state/temperature/alarm-status` | Temperature sensor alarm status. |
-| `/components/component[name='transceiver+panelport#']/transceiver/physical-channels/channel[no]/state/input-power/instant` | Input optical power of a physical channel in units of 0.01dBm, which may be associated with individual physical channels or an aggregate of multiple physical channels. |
-| `/components/component[name='transceiver+panelport#']/transceiver/physical-channels/channel[no]/state/laser-bias-current/instant` | Current applied by the system to the transmit laser to achieve the output power. The current is expressed in mA with up to two decimal precision. |
-| `/components/component[name='transceiver+panelport']/transceiver/physical-channels/channel[no]/state/output-power/instant` | Output optical power of a physical channel in units of 0.01dBm, which might be associated with individual physical channels or an aggregate of multiple physical channels. |
-| `/components/component[name]/state/software-version` | |
-| `/components/component/state/last-reboot-reason​` | |
-| `/components/component/state/last-reboot-time​` | |
-| `/components/component/state/temperature/avg​` | |
-| `/components/component/state/temperature/max​` | |
-| `/components/component/state/temperature/min​` | |
-| `/components/component/power-supply/state/input-voltage` | |
-| `/components/component/state/firmware-version​` | |
-| `/components/component/transceiver/state/date-code​` | |
-| `/components/component/transceiver/state/form-factor​` | |
-| `/components/component/transceiver/state/serial-no​` | |
-| `/components/component/transceiver/state/vendor​` | |
-| `/components/component/transceiver/state/vendor-part​` | |
-| `/components/component/transceiver/state/vendor-rev​` | |
-| `/components/component/transceiver/state/present​` | |
-| `/components/component/transceiver/state/enabled​` | |
-| `/components/component/transceiver/state/supply-voltage/instant` | |
-| `/components/component/transceiver/physical-channels/channel/state/rx-los` | |
-| `/components/component/transceiver/physical-channels/channel/state/rx-cdr-lol` | |
-| `/components/component/transceiver/host-channels/channel/state/tx-los` | |
-| `/components/component/transceiver/host-channels/channel/state/tx-cdr-lol` | |
+| `/components/component[name]/state/name` | Component Name.|
+| `/components/component[name]/fan/state/speed` | Current (instantaneous) fan speed. |
+| `/components/component[name]/power-supply/state/capacity` | PSU capacity in watts. |
+| `/components/component[name]/power-supply/state/input-current` | Input current to power supply unit.|
+| `/components/component[name]/power-supply/state/input-voltage` | Input voltage to power supply unit.|
+| `/components/component[name]/power-supply/state/output-current` | PSU current in amperes. |
+| `/components/component[name]/power-supply/state/output-power` | PSU power in watts. |
+| `/components/component[name]/power-supply/state/output-voltage` | PSU voltage in volts. |
+| `/components/component[name]/state/description` |  Component description. |
+| `/components/component[name]/state/firmware-version` | Firmware Version |
+| `/components/component[name]/state/last-reboot-reason​` | Information about the last reboot reason of a component.|
+| `/components/component[name]/state/last-reboot-time​` | Time of last reboot in nanoseconds since epoch.|
+| `/components/component[name]/state/name` | Component name. |
+| `/components/component[name]/state/oper-status` | Component status. |
+| `/components/component[name]/state/temperature/alarm-severity` | Temperature sensor alarm severity.|
+| `/components/component[name]/state/temperature/alarm-status` | Temperature sensor alarm status. |
+| `/components/component[name]/state/temperature/alarm-threshold` | Temperature sensor alarm threshold. |
+| `/components/component[name]/state/temperature/avg​` | Average temperature.|
+| `/components/component[name]/state/temperature/instant` | Instant temperature.  |
+| `/components/component[name]/state/temperature/interval` | Interval temperature.|
+| `/components/component[name]/state/temperature/max​` | Maximum temperature.|
+| `/components/component[name]/state/temperature/max​-time` | Maximum time temperature.|
+| `/components/component[name]/state/temperature/min​` | Minimum temperature.|
+| `/components/component[name]/state/temperature/min-time​` | Minimum time temperature.|
+| `/components/component[name]/transceiver/host-lanes/lane[lane-number]/state/tx-cdr-lol` | CDR LOL state for each physical channel.|
+| `/components/component[name]/transceiver/host-lanes/lane[lane-number]/state/tx-los` | LOS state for each host channel.|
+| `/components/component[name]/transceiver/physical-channels/channel[index]/state/input-power/instant` | Input optical power of a physical channel in units of 0.01dBm, which may be associated with individual physical channels or an aggregate of multiple physical channels. |
+| `/components/component[name]/transceiver/physical-channels/channel[index]/state/laser-bias-current/instant` | Current applied by the system to the transmit laser to achieve the output power. The current is expressed in mA with up to two decimal precision. |
+| `/components/component[name]/transceiver/physical-channels/channel[index]/state/output-power/instant` | Output optical power of a physical channel in units of 0.01dBm, which might be associated with individual physical channels or an aggregate of multiple physical channels. |
+| `/components/component[name]/transceiver/physical-channels/channel[index]/state/rx-cdr-lol` | CDR LOL state for each physical channel.|
+| `/components/component[name]/transceiver/physical-channels/channel[index]/state/rx-los` | LOS state for each physical channel.|
+| `/components/component[name]/transceiver/state/date-code​` | Transceiver data code. |
+| `/components/component[name]/transceiver/state/enabled​` | If the transceiver is enabled.|
+| `/components/component[name]/transceiver/state//ethernet-pmd`| Ethernet PMD information for the transceiver.|
+| `/components/component[name]/transceiver/state/form-factor​` | Transceiver form factor. |
+| `/components/component[name]/transceiver/state/present​` | If the transceiver is present.|
+| `/components/component[name]/transceiver/state/serial-number​` | Transceiver seriel number.|
+| `/components/component[name]/transceiver/state/supply-voltage/instant` | Input voltage as measured by the transceiver.|
+| `/components/component[name]/transceiver/state/vendor​` | Transceiver vendor. |
+| `/components/component[name]/transceiver/state/vendor-part​` | Transceiver vendor part number.|
+| `/components/component[name]/transceiver/state/vendor-rev​` | Transceiver vendor revision. |
+
+{{< /tab >}}
+{{< tab "Packet Trimming">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/qos/packet-trimming/state/counters/trimmed-unicast-pkts`| The number of trimmed packets.|
 
 {{< /tab >}}
 {{< tab "QoS">}}
 
 |  Name | Description |
 |------ | ----------- |
-| `/qos/interfaces/interface/state/switch-priority/counters/out-pause-pkts`| Number of pause packets for the priority class in the egress queue.|
-| `/qos/interfaces/interface/state/priority-group/counters/watermark-max` | High watermark of cells used in a priority group since last time watermarks were reset. |
-| `/qos/interfaces/interface/output/queues/queue/state/watermark-max` | High watermark of cells used in a queue since last time watermarks were reset. |
-| `qos/interfaces/interface/output/queues/queue/state/ecn-marked-pkts`| Number of ECN marked packets from this egress queue. If the ECN counter is not enabled, the counter value is 0.|
-| `qos/interfaces/interface/output/queues/queue/state/transmit-octets`| Number of transmitted bytes in the egress queue of an interface.|
-| `qos/interfaces/interface/output/queues/queue/state/transmit-pkts`| Number of transmitted packets in the egress queue of an interface. |
-| `/qos/interfaces/interface/output/queues/queue/state/wred-dropped-pkts` | Number of packets discarded from this egress queue of an interface. |
-| `/qos/interfaces/interface/output/queues/queue/state/no-buffer-uc-dropped-pkts` | Number of packets discarded from this egress queue when there is no buffer left in the interface. |
+| `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/ecn-marked-pkts`| Number of ECN marked packets from this egress queue. If the ECN counter is not enabled, the counter value is 0.|
+| `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/no-buffer-uc-dropped-pkts` | Number of packets discarded from this egress queue when there is no buffer left in the interface. |
 | `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/time-since-last-clear` | Time since last clear of watermarks in a queue.|
+| `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/transmit-octets`| Number of transmitted bytes in the egress queue of an interface.|
+| `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/transmit-pkts`| Number of transmitted packets in the egress queue of an interface. |
+| `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/watermark-max` | High watermark of cells used in a priority group since last time watermarks were reset. |
+| `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/wred-dropped-pkts` | Number of packets discarded from this egress queue of an interface. |
 | `/qos/interfaces/interface[interface-id]/state/priority-group[priority_group]/counters/time-since-last-clear` | Time since last clear of watermarks in a priority group.|
+| `/qos/interfaces/interface[interface-id]/state/priority-group[priority_group]/counters/watermark-max` | High watermark of cells used in a queue since last time watermarks were reset. |
+| `/qos/interfaces/interface[interface-id]/state/switch-priority[priority]/counters/in-pause-pkts` | Number of pause packets for the priority class in the ingress queue.|
+| `/qos/interfaces/interface[interface-id]/state/switch-priority[priority]/counters/out-pause-pkts`| Number of pause packets for the priority class in the egress queue.|
 
 {{< /tab >}}
 {{< tab "Router">}}
 
 |  Name | Description |
 |------ | ----------- |
-| `/network-instances/network-instance[name=<vrf-id>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/state/session-state` | Operational state of the BGP peer.|
-| `/network-instances/network-instance[name=<vrf-id>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/state/established-transitions` | Number of transitions to the established state for the neighbor session.|
-| `/network-instances/network-instance[name=<vrf-id>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/state/messages/sent/UPDATE` | Number of BGP UPDATE messages announcing, withdrawing, or modifying paths exchanged.|
-| `/network-instances/network-instance[name=<vrf-id>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/messages/received/UPDATE` | Number of BGP UPDATE messages announcing, withdrawing, or modifying paths exchanged.|
-| `/network-instances/network-instance[name=<vrf-id>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/state/queues/input` | Number of messages received from the peer currently queued.|
-| `/network-instances/network-instance[name=<vrf-id>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/state/queues/output` | Number of messages queued to be sent to the peer.|
-| `/network-instances/network-instance[name=<vrf-id>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/afi-safis/afi-safi[afi-safi-name=<afi-safi-name>]/state/prefixes/received` | Number of prefixes received from the neighbor after applying policies (the number of prefixes present in the post-policy Adj-RIB-In for the neighbor).|
-| `/network-instances/network-instance[name=<vrf-id>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/afi-safis/afi-safi[afi-safi-name=<afi-safi-name>]/state/prefixes/sent` | Number of prefixes advertised to the neighbor after applying policies (the number of prefixes present in the post-policy Adj-RIB-Out for the neighbor).|
-| `/network-instances/network-instance[name=<vrf-id>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/afi-safis/afi-safi[afi-safi-name=<afi-safi-name>]/state/prefixes/installed` | Number of prefixes received from the neighbor that are installed in the network instance RIB and actively used for forwarding. |
+| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/session-state` | Operational state of the BGP peer.|
+| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/established-transitions` | Number of transitions to the established state for the neighbor session.|
+| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/messages/sent/UPDATE` | Number of BGP UPDATE messages announcing, withdrawing, or modifying paths exchanged.|
+| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/messages/received/UPDATE` | Number of BGP UPDATE messages announcing, withdrawing, or modifying paths exchanged.|
+| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/queues/input` | Number of messages received from the neighbor currently queued.|
+| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/queues/output` | Number of messages queued to be sent to the neighbor.|
+| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/afi-safis/afi-safi/state/prefixes/received` | Number of prefixes received from the neighbor after applying policies (the number of prefixes present in the post-policy Adj-RIB-In for the neighbor).|
+| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/afi-safis/afi-safi/state/prefixes/sent` | Number of prefixes advertised to the neighbor after applying policies (the number of prefixes present in the post-policy Adj-RIB-Out for the neighbor).|
+| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/afi-safis/state/prefixes/installed` | Number of prefixes received from the neighbor that are installed in the network instance RIB and actively used for forwarding. |
+|`/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/description` | |
+| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/last-established` | |
+| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/last-notification-error-code` | |
+| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/peer-as` | |
+| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/peer-group` | |
+| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/peer-type` | |
+| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/neighbor-address` | |
+| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/local-as` | |
+
+{{< /tab >}}
+{{< tab "SRv6">}}
+
+|  Name | Description |
+|------ | ----------- |
+|`/network-instances/network-instance[name]/srv6/global/state/counters/no-sid-drops` | The number of packets dropped due to no matching SID.|
+| `/network-instances/network-instance[name]/srv6/sids/sid[id]/id`| The SID (segment identifier).|
+| `/network-instances/network-instance/srv6/sids/sid[id]/state/counters/in-pkts` | The number of packets received for this SID.|
 
 {{< /tab >}}
 {{< tab "System">}}
 
 |  Name | Description |
 |------ | ----------- |
-| `/system/state/up-time` | |
+| `/system/state/up-time` |Continuous operational time of the system since last reboot. |
 | `/system/state/hostname` | System hostname. |
 | `/system/state/software-version` | System software version. |
 | `/system/state/boot-time` | System boot time. |
 | `/system/state/current-datetime` | Current system date and time. |
 | `/system/control-plane-traffic/ingress/ipv4/counters/`<br>`/system/control-plane-traffic/ingress/ipv6/counters/` | Number of input IP datagrams discarded in software including those received in error.|
-| `/system/cpus/cpu[name=<cpu_id>]/state/user/seconds` | CPU user Seconds |
-| `/system/cpus/cpu[name=<cpu_id>]/state/kernel/seconds` | CPU kernel seconds. |
-| `/system/cpus/cpu[name=<cpu_id>]/state/nice/seconds` | CPU Nice seconds. |
-| `/system/cpus/cpu[name=<cpu_id>]/state/idle/seconds` | CPU idle seconds. |
-| `/system/cpus/cpu[name=<cpu_id>]/state/wait/seconds` | CPU wait seconds.|
-| `/system/cpus/cpu[name=<cpu_id>]/state/hardware-interrupt/seconds` | CPU hardware interrupt seconds. |
-| `/system/cpus/cpu[name=<cpu_id>]/state/software-interrupt/seconds` | CPU software interrupt seconds.|
+| `/system/cpus/cpu[name]/state/user/seconds` | CPU user Seconds |
+| `/system/cpus/cpu[name]/state/kernel/seconds` | CPU kernel seconds. |
+| `/system/cpus/cpu[name]/state/nice/seconds` | CPU Nice seconds. |
+| `/system/cpus/cpu[name]/state/idle/seconds` | CPU idle seconds. |
+| `/system/cpus/cpu[name]/state/wait/seconds` | CPU wait seconds.|
+| `/system/cpus/cpu[name]/state/hardware-interrupt/seconds` | CPU hardware interrupt seconds. |
+| `/system/cpus/cpu[name]/state/software-interrupt/seconds` | CPU software interrupt seconds.|
 | `/system/cpus/cpu/state/total​` | |
 | `/system/cpus/cpu/state/total/instant​` | |
 | `/system/cpus/cpu/state/total/avg​​` | |
@@ -442,12 +476,12 @@ Cumulus Linux supports the following metrics:
 | `/system/memory/state/physical` | Physical memory.|
 | `/system/memory/state/reserved` | Memory reserved for system use. |
 | `/system/memory/state/used​` | |
-| `/system/mount-points/mount-point[name='filesystem0']/state/utilized` | |
-| `/system/mount-points/mount-point[name='filesystem0']/state/name` | Mount point name.|
-| `/system/mount-points/mount-point[name='filesystem0']/state/storage-component` | A reference to the hosting component within the hierarchy. |
-| `/system/mount-points/mount-point[name='filesystem0']/state/size` | Total size of the initialized filesystem.|
-| `/system/mount-points/mount-point[name='filesystem0']/state/available` | Amount of unused space on the filesystem.|
-| `/system/mount-points/mount-point[name='filesystem0']/state/type` | Filesystem type used for storage such flash, hard disk, tmpfsor or ramdisk, or remote or network based storage.|
+| `/system/mount-points/mount-point[name]/state/utilized` | |
+| `/system/mount-points/mount-point[name]/state/name` | Mount point name.|
+| `/system/mount-points/mount-point[name]/state/storage-component` | A reference to the hosting component within the hierarchy. |
+| `/system/mount-points/mount-point[name]/state/size` | Total size of the initialized filesystem.|
+| `/system/mount-points/mount-point[name]/state/available` | Amount of unused space on the filesystem.|
+| `/system/mount-points/mount-point[name]/state/type` | Filesystem type used for storage such flash, hard disk, tmpfsor or ramdisk, or remote or network based storage.|
 
 {{< /tab >}}
 {{< /tabs >}}

@@ -230,28 +230,7 @@ Regex for specific keys (such as `“interface-id=swp*”`) is not supported.
 
 Cumulus Linux supports the following metrics:
 <!-- vale off -->
-{{< tabs "TabID200 ">}}
-{{< tab "Adaptive Routing ">}}
-
-|  Name | Description |
-|------ | ----------- |
-| `/system/adaptive-routing/state/counters/congestion-change` | The number of adaptive routing change events that triggered due to congestion or link-down.|
-
-{{< /tab >}}
-{{< tab "BGP ">}}
-
-|  Name | Description |
-|------ | ----------- |
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/description` | |
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/last-established` | |
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/last-notification-error-code` | |
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/peer-as` | |
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/peer-group` | |
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/peer-type` | |
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/neighbor-address` | |
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/local-as` | |
-
-{{< /tab >}}
+{{< tabs "TabID233 ">}}
 {{< tab "Interface ">}}
 
 |  Name | Description |
@@ -443,15 +422,10 @@ Cumulus Linux supports the following metrics:
 | `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/queues/output` | The number of messages queued to be sent to the peer.|
 | `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/session-state` | Operational state of the BGP peer. |
 | `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor/state` | Operational state data for interface hold-time.|
-
-{{< /tab >}}
-{{< tab "SRv6">}}
-
-|  Name | Description |
-|------ | ----------- |
-|`/network-instances/network-instance[name]/srv6/global/state/counters/no-sid-drops` | The number of packets dropped due to no matching SID.|
-| `/network-instances/network-instance[name]/srv6/sids/sid[id]/id`| The SID (segment identifier).|
-| `/network-instances/network-instance/srv6/sids/sid[id]/state/counters/in-pkts` | The number of packets received for this SID.|
+|`/network-instances/network-instance[name]/srv6/global/state/counters/no-sid-drops` | The number of packets dropped due to no matching SRv6 SID.|
+| `/network-instances/network-instance[name]/srv6/sids/sid[id]/id`| The SRv6 SID (segment identifier).|
+| `/network-instances/network-instance/srv6/sids/sid[id]/state/counters/in-pkts` | The number of packets received for this SRv6 SID.|
+| `/system/adaptive-routing/state/counters/congestion-change` | The number of adaptive routing change events that triggered due to congestion or link down.|
 
 {{< /tab >}}
 {{< tab "System">}}

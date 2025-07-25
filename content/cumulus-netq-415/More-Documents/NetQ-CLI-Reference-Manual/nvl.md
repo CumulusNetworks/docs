@@ -9,6 +9,33 @@ type: nojsscroll
 ---
 <!-- vale NVIDIA.HeadingTitles = NO -->
 <!-- vale off -->
+## netq nvl bootstrap reset
+<!-- vale on -->
+Resets the NVLink bootstrap configuration to the default settings. This command removes all custom configurations and can be used for troubleshooting or as part of the preparation process for a fresh installation.
+
+### Syntax
+
+```
+netq nvl bootstrap reset 
+    [config <text-config-path>]
+```
+
+### Required Arguments
+
+None
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| config | \<text-config-path\> | Specify a path to the configuration file used for the reset |
+
+
+### Related Commands
+
+None
+
+- - -
 ## netq nvl cluster backup
 <!-- vale on -->
 
@@ -92,32 +119,4 @@ Restores an NVLink cluster that was backed up using the `netq nvl cluster backup
 ### Related Commands
 
 - `netq nvl cluster restore`
-- - -
-
-<!-- vale off -->
-## netq nvl bootstrap reset
-<!-- vale on -->
-Resets the NVLink bootstrap configuration to the default settings. This command removes all custom configurations and can be used for troubleshooting or as part of the preparation process for a fresh installation.
-
-### Syntax
-
-```
-netq nvl bootstrap reset 
-    [config <text-config-path>]
-```
-
-### Required Arguments
-
-None
-
-### Options
-
-| Option | Value | Description |
-| ---- | ---- | ---- |
-| config | \<text-config-path\> | Specify a path to the configuration file used for the reset |
-
-
-### Related Commands
-
-None
 

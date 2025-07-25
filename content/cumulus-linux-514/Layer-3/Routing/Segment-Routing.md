@@ -31,7 +31,7 @@ The following table provides the supported formats for block, node, and function
 |uN only | 16            | 16          | 0               |
 |uA only | 16            | 0           | 16              |
 
-The following example enables segment routing, and configures the locator called LEAF and the static SID 2001:db8:1:1::100/48:
+The following example enables segment routing, and configures the SRv6 locator called LEAF and the static segment identifier 2001:db8:1:1::100/48:
 
 {{< tabs "TabID980 ">}}
 {{< tab "NVUE Commands ">}}
@@ -49,7 +49,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 - To disable segment routing, run the `nv set router segment-routing srv6 state disabled` command.
-- To unset all locators, run the `nv unset router segment-routing  srv6 locator` command.
+- To unset all SRv6 locators, run the `nv unset router segment-routing  srv6 locator` command.
 - To unset all static segment identifiers, run the `nv unset router segment-routing static srv6-sid` command.
 - To unset a static segment identifier, run the `nv unset router segment-routing static srv6-sid <prefix>` command.
 
@@ -78,7 +78,7 @@ leaf01# exit
 
 ### Show Segment Routing Configuration
 
-To show if segment routing is enabled and to show the configured locators, run the `nv show router segment-routing` command:
+To show if segment routing is enabled, and to show the configured locators and SRv6 segment identifiers, run the `nv show router segment-routing` command:
 
 ```
 cumulus@switch:~$ nv show router segment-routing 
@@ -91,7 +91,7 @@ static
   [srv6-sid]  2001:db8:1:1::100/48
 ```
 
-To show configuration information for all SRv6 locators, run the `nv show router segment-routing srv6 locator` command or the vtysh `show segment-routing srv6 locator` command:
+To show the configuration for all SRv6 locators, run the `nv show router segment-routing srv6 locator` command or the vtysh `show segment-routing srv6 locator` command:
 
 ```
 cumulus@switch:~$ nv show router segment-routing srv6 locator
@@ -100,7 +100,7 @@ SRv6 locator name  prefix             block length  node length  function length
 LEAF               2001:db8:1:1::/48  32            16           0                up
 ```
 
-To show configuration information about a specific locator, run the NVUE `nv show router segment-routing srv6 locator <locator-id>` command or the vtysh `show segment-routing srv6 locator <locator> detail` command:
+To show the configuration for a specific SRv6 locator, run the NVUE `nv show router segment-routing srv6 locator <locator-id>` command or the vtysh `show segment-routing srv6 locator <locator> detail` command:
 
 ```
 cumulus@switch:~$ nv show router segment-routing srv6 locator LEAF
@@ -113,21 +113,10 @@ func-length   0                0
 status        up
 ```
 
-To show the SRv6 static segment identifiers, run the NVUE `nv show router segment-routing static srv6 sid` command or the vtysh `show segment-routing srv6 sid` command:
+To show the configuration for a specific SRv6 static segment identifier, run the NVUE `nv show router segment-routing static srv6 sid <sid>` command or the vtysh `show segment-routing srv6 sid <sid>` command:
 
 ```
-cumulus@switch:~$ nv show router segment-routing srv6 sid
-SRv6 SID - IPv6 address  behavior  interface  locator-name  nexthop-v6           protocol 
------------------------  --------  ---------  ------------  -------------------  -------- 
-
-2001:db8:1:1::100/48     End.X     swp1       LOC4          fe80::202:ff:fe00:9  static 
-2001:db8:1:1::101/48     End                  LOC2                               static 
-```
-
-To show information for a specific SRv6 static segment identifier, run the NVUE `nv show router segment-routing static srv6 sid <sid>` command or the vtysh `show segment-routing srv6 sid <sid>` command:
-
-```
-cumulus@switch:~$ nv show router segment-routing static srv6 sid 2001:db8:1:1::100/48
+cumulus@switch:~$ nv show router segment-routing srv6 sid 2001:db8:1:1::100/48
               operational          applied 
 
 ------------  -------------------  ------- 
@@ -145,7 +134,7 @@ IPv6 RIB with the `nv show vrf <vrf-id> router rib ipv6 route` command. You can 
 
 ### Show Segment Routing Statistics
 
-To show all segment routing information, run the `nv show router segment-routing srv6 stats` command
+To show SRv6 statistics, run the `nv show router segment-routing srv6 stats` command
 
 ```
 cumulus@switch:~$ nv show router segment-routing srv6 stats
@@ -161,13 +150,13 @@ Drop Counters
 Total no-sid-dropped packets
 ```
 
-To show information about a specific SRv6 SID, run the NVUE `nv show router segment-routing srv6 stats sid <sid>` command or the vtysh `show segment-routing srv6 sid` command:
+To show information about a specific SRv6 segment identifier, run the NVUE `nv show router segment-routing srv6 stats sid <sid>` command or the vtysh `show segment-routing srv6 sid` command:
 
 ```
 cumulus@switch:~$ nv show router segment-routing srv6 stats sid 2001:db8:1:1::100/48
 ```
 
-To show information about non-SID dropped packets, run the `nv show router segment-routing srv6 stats no-sid-drop` command:
+To show information about non segment identifier dropped packets, run the `nv show router segment-routing srv6 stats no-sid-drop` command:
 
 ```
 cumulus@switch:~$ nv show router segment-routing srv6 stats no-sid-drops
@@ -184,13 +173,13 @@ To clear all SRv6 statistics, run the `nv action clear router segment-routing sr
 cumulus@switch:~$ nv action clear router segment-routing srv6 stats 
 ```
 
-To clear SRv6 statistics for a specific SID, run the `nv action clear router segment-routing srv6 stats sid <sid>` command:
+To clear SRv6 statistics for a specific segment identifier, run the `nv action clear router segment-routing srv6 stats sid <sid>` command:
 
 ```
 cumulus@switch:~$ nv action clear router segment-routing srv6 stats sid 2001:db8:1:1::100/48 
 ```
 
-To clear SRv6 statistics for no-SID dropped packets, run the `nv action clear router segment-routing srv6 stats no-sid-drops` command:
+To clear SRv6 statistics for non segment identifier dropped packets, run the `nv action clear router segment-routing srv6 stats no-sid-drops` command:
 
 ```
 cumulus@switch:~$ nv action clear router segment-routing srv6 stats no-sid-drops 

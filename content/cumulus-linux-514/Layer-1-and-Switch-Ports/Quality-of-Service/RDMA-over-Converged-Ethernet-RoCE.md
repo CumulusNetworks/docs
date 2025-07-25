@@ -257,7 +257,7 @@ Extended Features
     packet-trim  enabled
 ```
 
-To show detailed RoCE information about a single interface, run the `nv show interface <interface-id> qos roce status` command.
+To show detailed RoCE information about a single interface, run the `nv show interface <interface-id> qos roce status` command. To show detailed RoCE information for all interfaces, run the `nv show interface qos-roce-status` command.
 
 ```
 cumulus@switch:mgmt:~$ nv show interface swp16 qos roce status
@@ -305,7 +305,7 @@ RoCE Pool Status
     3   roce-reserved-egress   DYNAMIC  14       -                  3              inf       7.29 MB        13.47 MB
 ```
 
-To show detailed information about current buffer utilization as well as historic RoCE byte and packet counts, run the `nv show interface <interface-id> qos roce counters` command:
+To show detailed information about current buffer utilization as well as historic RoCE byte and packet counts for an interface, run the `nv show interface <interface-id> qos roce counters` command. To show the counters for all interfaces, run the `nv show interface qos-roce-counters` command.
 
 ```
 cumulus@switch:mgmt:~$ nv show interface swp16 qos roce counters
@@ -353,6 +353,40 @@ tx-stats
     tc-max-usage               16.02 MB               Max TC-buffer usage for RoCE traffic
     tc-usage                   7.29 MB                Current TC-buffer usage for RoCE traffic
     unicast-no-buffer-discard  663060754115           Tx buffer discards for RoCE traffic
+```
+
+To show the RoCE pools status for an interface, run the `nv show interface <interface> qos roce status pool-map` command. To show the RoCE pools status for all interfaces, run the `nv show interface qos-roce-status-pool-map` command.
+
+```
+cumulus@switch:mgmt:~$ nv show interface qos-roce-status-pool-map
+-------------------------------------
+Interface: swp1
+-------------------------------------
+    name                     mode      pool-id  switch-priorities  traffic-class     size     current-usage  max-usage
+-   ---------------------    --------  -------  -----------------  -------------     -------  -------------  ---------
+0   lossy-default-ingress    DYNAMIC    2         0,1,2,4,5,6,7       -              14.02 MB  0              0         
+1   roce-reserved-ingress    DYNAMIC    3         3                   -              14.02 MB  0              0         
+2   lossy-default-egress     DYNAMIC    13        -                   0,6            14.02 MB  0              0         
+3   roce-reserved-egress     DYNAMIC    14        -                   3              inf       0              0         
+-------------------------------------
+Interface: swp2
+-------------------------------------
+    name                     mode      pool-id  switch-priorities  traffic-class     size     current-usage  max-usage
+-   ---------------------    --------  -------  -----------------  -------------     -------  -------------  ---------
+0   lossy-default-ingress    DYNAMIC    2         0,1,2,4,5,6,7       -              14.02 MB  0              0         
+1   roce-reserved-ingress    DYNAMIC    3         3                   -              14.02 MB  0              0         
+2   lossy-default-egress     DYNAMIC    13        -                   0,6            14.02 MB  0              0         
+3   roce-reserved-egress     DYNAMIC    14        -                   3              inf       0              0         
+-------------------------------------
+Interface: swp3
+-------------------------------------
+    name                     mode      pool-id  switch-priorities  traffic-class     size     current-usage  max-usage
+-   ---------------------    --------  -------  -----------------  -------------     -------  -------------  ---------
+0   lossy-default-ingress    DYNAMIC    2         0,1,2,4,5,6,7       -              14.02 MB  0              0         
+1   roce-reserved-ingress    DYNAMIC    3         3                   -              14.02 MB  0              0         
+2   lossy-default-egress     DYNAMIC    13        -                   0,6            14.02 MB  0              0         
+3   roce-reserved-egress     DYNAMIC    14        -                   3              inf       0              0         
+...
 ```
 
 To reset the counters in the `nv show interface <interface-id> qos roce` command output, run the `nv action clear interface <interface-id> qos roce counters` command.

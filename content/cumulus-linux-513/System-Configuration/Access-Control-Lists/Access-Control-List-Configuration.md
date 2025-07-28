@@ -850,9 +850,9 @@ copp.icmp_def.enable = TRUE
 copp.icmp_def.rate = 100
 copp.icmp_def.burst = 40
 
-copp.dhcp_ptp.enable = TRUE
-copp.dhcp_ptp.rate = 2000
-copp.dhcp_ptp.burst = 2000
+copp.dhcp.enable = TRUE
+copp.dhcp.rate = 2000
+copp.dhcp.burst = 2000
 
 copp.igmp.enable = TRUE
 copp.igmp.rate = 1000
@@ -874,9 +874,9 @@ copp.lacp.enable = TRUE
 copp.lacp.rate = 2000
 copp.lacp.burst = 2000
 
-copp.lldp.enable = TRUE
-copp.lldp.rate = 200
-copp.lldp.burst = 200
+copp.lldp_ptp.enable = TRUE
+copp.lldp_ptp.rate = 2500
+copp.lldp_ptp.burst = 2500
 
 copp.rpvst.enable = TRUE
 copp.rpvst.rate = 2000

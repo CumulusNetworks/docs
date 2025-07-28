@@ -107,7 +107,6 @@ cumulus@leaf01:~$ nv config apply
 ```
 
 {{%notice note%}}
-
 When you run the `nv set vrf RED evpn vni 4001` command, NVUE:
 - Creates a layer 3 bridge called `br_l3vni` and creates a new, separate single VXLAN device (`vxlan99`) adding it to the bridge (`br_l3vni`). NVUE does this if there is no configured layer 3 VNI.
 - Creates a layer 3 VNI called `vni4001` in VRF RED.

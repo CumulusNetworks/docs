@@ -23,7 +23,9 @@ Cumulus Linux 5.14.0 contains several new features and improvements, and provide
   - {{<link url="gNMI-Streaming/#metrics" text="New gNMI streaming metrics: BGP, interface, LLDP, system, and platform transceiver">}}
   - {{<link url="gNMI-Streaming/#user-credentials-and-authentication" text="gRPC header based authentication support for gNMI subscription requests">}}
   - {{<link url="gNMI-Streaming/#gnmi-client-requests" text="Improved data formatting to include prefix field">}}
-- {{<link url="Open-Telemetry-Export" text="New OTEL metrics: Software Process, adaptive routing (packet trimming and SRv6), platform information, and platform input power, and additional transceiver, routing, and bufffer statisitcs">}}
+- OTEL:
+  - {{<link url="Open-Telemetry-Export/#telemetry-data-format" text="New OTEL statistics: System Information, adaptive routing (packet trimming and SRv6), platform information, platform input power">}}
+  - Additional {{<link url="Open-Telemetry-Export/#platform-statistic-format" text="transceiver">}}, {{<link url="Open-Telemetry-Export/#routing-metrics-format" text="routing">}}, and {{<link url="Open-Telemetry-Export/#buffer-statistic-format" text="buffer">}} statistics
 - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#transceiver-thermal-control" text="Transceiver thermal control">}}
 - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#clear-interface-physical-layer-error-counters" text="Clear physical layer error counters for an interface">}}
 - {{<link url="DHCP-Relays" text="Configure different DHCP servers per interface for DHCP relay">}}
@@ -88,7 +90,7 @@ If you configure OSPFv3 areas with NVUE snippets in Cumulus Linux 5.13 and earli
 | The `nv set system aaa radius server <hostname-id> priority` setting is between 1 and 100| The `nv set system aaa radius server <hostname-id> priority` setting is between 1 and 8|
 |`nv set vrf <vrf-id> router bgp address-family <address-family> route-import from-vrf list <leak-vrf-id>`| `nv set vrf <vrf-id> router bgp address-family <address-family> route-import from-vrf list`|
 | `nv set system telemetry ai-ethernet-stats`| `nv set system telemetry adaptive-routing-stats`|
-| `nv set system telemetry stats-group <sg-id> ai-ethernet-stats` | `nv set system telemetry stats-group <sg-id> adaptive-routing-stats`|
+| `nv set system telemetry stats-group <group-id> ai-ethernet-stats` | `nv set system telemetry stats-group <sg-id> adaptive-routing-stats`|
 {{< /expand >}}
   - {{< expand "Removed NVUE Commands" >}}
 ```

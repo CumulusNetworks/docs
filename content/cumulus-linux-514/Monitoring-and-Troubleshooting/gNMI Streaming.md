@@ -235,75 +235,65 @@ Cumulus Linux supports the following metrics:
 
 |  Name | Description |
 |------ | ----------- |
-| `/interfaces/interface/ethernet/phy/state/ber-time-since-last-clear` | Time since last clear of BER stats (phy layer stats). |
-| `/interfaces/interface/ethernet/phy/state/corrected-bits` | Number of phy corrected bits of an interface by FEC engine.|
-| `/interfaces/interface/ethernet/phy/state/fec-time-since-last-clear` | Time after last clear of FEC stats (phy layer). |
-| `/interfaces/interface/ethernet/phy/state/effective-errors` | Number of phy effective errors of an interface.|
-| `/interfaces/interface/ethernet/phy/state/effective-ber` | Phy effective BER of an interface.|
-| `/interfaces/interface/ethernet/phy/state/rs-fec-uncorrectable-blocks` | Number of RS FEC uncorrectable blocks of an interface. |
-| `/interfaces/interface/ethernet/phy/state/rs-fec-single-error-blocks` | Number of RS FEC uncorrectable blocks of an interface.|
-| `/interfaces/interface/ethernet/phy/state/rs-fec-no-error-blocks` | Number of RS FEC no errors blocks of an interface.|
-| `/interfaces/interface/ethernet/phy/state/lane/fc-fec-corrected-blocks` | Number FC FEC corrected blocks for a given lane of an interface.|
-| `/interfaces/interface/ethernet/phy/state/lane/fc-fec-uncorrected-blocks` | Number of FC FEC uncorrectable blocks for a given lane of an interface. |
-| `/interfaces/interface/ethernet/phy/state/lane/rs-fec-corrected-symbols` | Number of RS FEC corrected symbols for a given lane of an interface.|
-| `/interfaces/interface/ethernet/phy/state/lane/raw-errors` | Number of phy error bits identified for a given lane of an interface.|
-| `/interfaces/interface/ethernet/phy/state/received-bits` | Number of phy total bits received for an interface.|
-| `/interfaces/interface/ethernet/phy/state/symbol-errors` | Number of phy symbol errors for an interface.|
-| `/interfaces/interface/ethernet/phy/state/symbol-ber` | Phy symbol BER for an interface.|
-| `/interfaces/interface/ethernet/phy/state/lane/raw-ber` | Number of phy bit error rates for a given lane of an interface.|
- `/interfaces/interface/ethernet/phy/state/rs-fec-uncorrectable-blocks` | Number of RS FEC uncorrectable blocks of an interface. |
-| `/interfaces/interface/ethernet/phy/state/rs-fec-single-error-blocks` | Number of RS FEC uncorrectable blocks of an interface.|
-| `/interfaces/interface/ethernet/phy/state/rs-fec-no-error-blocks` | Number of RS FEC no errors blocks of an interface.|
-| `/interfaces/interface/ethernet/phy/state/lane/fc-fec-corrected-blocks` | Number FC FEC corrected blocks for a given lane of an interface.|
-| `/interfaces/interface/ethernet/phy/state/lane/fc-fec-uncorrected-blocks` | Number of FC FEC uncorrectable blocks for a given lane of an interface. |
-| `/interfaces/interface/ethernet/phy/state/lane/rs-fec-corrected-symbols` | Number of RS FEC corrected symbols for a given lane of an interface.|
-| `/interfaces/interface/ethernet/phy/state/lane/raw-errors` | Number of phy error bits identified for a given lane of an interface.|
-| `/interfaces/interface/ethernet/phy/state/received-bits` | Number of phy total bits received for an interface.|
-| `/interfaces/interface/ethernet/phy/state/symbol-errors` | Number of phy symbol errors for an interface.|
-| `/interfaces/interface/ethernet/phy/state/symbol-ber` | Phy symbol BER for an interface.|
-| `/interfaces/interface/ethernet/phy/state/lane/raw-ber` | Number of phy bit error rates for a given lane of an interface.|
-| `/interfaces/interface/state/admin-status` | Admin state of an interface. |
-| `/interfaces/interface/state/counters/in-broadcast-pkts` | Total number of broadcast packets received on an interface.|
-| `/interfaces/interface/state/counters/in-multicast-pkts` | Total number of multicast packets received on an interface.|
-| `/interfaces/interface/state/counters/in-octets` | Total number of octets received on an interface, including framing characters.|
-| `/interfaces/interface/ethernet/state/counters/in-fcs-errors` | Total number of frames received on an interface that are an integral number of octets in length but do not pass the FCS check. This count does not include frames received with `frame-too-long` or `frame-too-short` error.|
-| `/interfaces/interface/ethernet/state/counters/in-oversize-frames` | Total number of packets received longer than 1518 octets (excluding framing bits, but including FCS octets). |
-| `/interfaces/interface/ethernet/state/counters/in-distribution/in-frames-1024-1518-octets` | Total number of packets (including bad packets) received between 1024 and 1518 octets in length inclusive (excluding framing bits but including FCS octets). |
-| `/interfaces/interface/ethernet/state/counters/in-distribution/ in-frames-128-255-octets` | Total number of packets (including bad packets) received between 128 and 255 octets in length inclusive (excluding framing bits but including FCS octets).|
-| `/interfaces/interface/ethernet/state/counters/in-distribution/in-frames-256-511-octets` | Total number of packets (including bad packets) received between 256 and 511 octets in length inclusive (excluding framing bits but including FCS octets).|
-| `/interfaces/interface/ethernet/state/counters/in-distribution/in-frames-512-1023-octets` | Total number of packets (including bad packets) received between 512 and 1023 octets in length inclusive (excluding framing bits but including FCS octets).|
-| `/interfaces/interface/ethernet/state/counters/in-distribution/in-frames-64-octets` | Total number of packets (including bad packets) received that are 64 octets in length (excluding framing bits but including FCS octets).|
-| `/interfaces/interface/ethernet/state/counters/in-distribution/in-frames-65-127-octets` | Total number of packets (including bad packets) received between 65 and 127 octets in length inclusive (excluding framing bits but including FCS octets).|
-| `/interfaces/interface/state/counters/out-broadcast-pkts` | Total number of broadcast packets transmitted out of an interface.|
-| `/interfaces/interface/state/counters/out-octets` | Total number of octets transmitted out of an interface, including framing characters.|
-| `/interfaces/interface/state/counters/out-unicast-pkts` | Total number of unicast packets transmitted out of an interface.|
-| `/interfaces/interface/ethernet/state/port-speed` | An estimate of the interface current bandwidth in units of 1,000,000 bits per second.|
-| `/interfaces/interface/state/counters/in-bits-rate` | Inbound bits per second on an interface.|
-| `/interfaces/interface/state/ifindex` | A unique value, greater than zero, for each interface.|
-| `/interfaces/interface/state/counters/in-discards` | Number of inbound packets discarded even though no errors are detected to prevent them from being deliverable to a higher-layer protocol. |
-| `/interfaces/interface/state/counters/in-errors` | For packet-oriented interfaces, the number of inbound packets that contained errors preventing them from being deliverable to a higher-layer protocol.|
-| `/interfaces/interface/state/counters/in-pkts`| Number of packets discarded from the egress queue of an interface. |
-| `/interfaces/interface/state/counters/in-pkts-rate` | Inbound packets per second on an interface. |
-| `/interfaces/interface/ethernet/state/counters/in-crc-errors` | Total number of frames received with a length (excluding framing bits, but including FCS octets) of between 64 and 1518 octets, inclusive, but had either a bad Frame Check Sequence (FCS) with an integral number of octets (FCS Error) or a bad FCS with a non-integral number of octets (Alignment Error).|
-| `/interfaces/interface/ethernet/state/negotiated-duplex-mode` | When auto-negotiate is set to TRUE, and the interface has completed auto-negotiation with the remote peer, this value shows the negotiated duplex mode.|
-| `/interfaces/interface/state/counters/in-acl-drops` | Number of inbound packets dropped because of an Access Control List (ACL).|
-| `/interfaces/interface/ethernet/state/counters/in-mac-pause-frames` | Inbound MAC pause frames on an interface.|
-| `/interfaces/interface/state/mtu` | Size of the largest packet that can be sent or received on the interface, specified in octets. For interfaces used for transmitting network datagrams, this is the size of the largest network datagram that the interface can send.|
-| `/interfaces/interface/state/oper-status` | Current operational state of an interface. |
-| `/interfaces/interface/state/counters/out-bits-rate` | Outbound bits per second on an interface. |
-| `/interfaces/interface/state/counters/out-discards` | Number of outbound packets discarded even though no errors are detected to prevent them from being transmitted. |
-| `/interfaces/interface/state/counters/out-errors` | For packet-oriented interfaces, the number of outbound packets not transmitted because of errors. For character-oriented or fixed-length interfaces, the number of outbound transmission units not transmitted because of errors. |
-| `/interfaces/interface/state/counters/out-pkts` | Total number of packets transmitted out of the interface, including all unicast, multicast, broadcast, and bad packets.|
-| `/interfaces/interface/state/counters/out-pkts-rate` | Outbound packets per second on an interface. |
-| `/interfaces/interface/state/counters/out-multicast-pkts` | Total number of packets that higher-level protocols requested be transmitted, and which were addressed to a multicast address at this sub-layer, including those that were discarded or not sent. For a MAC layer protocol, this includes both Group and Functional addresses.|
-| `/interfaces/interface/ethernet/state/counters/carrier-transitions` | Number of times since system boot that `ifOperStatus` changed.|
-| `/interfaces/interface/state/name​` | |
-| `/interfaces/interface/state/type​` |Link-layer interface type. |
-| `/interfaces/interface/state/last-change` | The last time the state of the interface changed.|
-| `/interfaces/interface/ethernet/state/counters/in-jabber-frames` | Number of Jabber frames received on the interface.|
-| `/interfaces/interface/ethernet/state/hw-mac-address` | System defined default MAC address for the interface. |
-| `/interfaces/interface/ethernet/state/mac-address​` | MAC address for the interface.|
-| `/interfaces/interface/state/protodown​` | Indicates if the interface is administratively held down by a protocol or system process rather than by user action.|
+| `/interfaces/interface[name]/ethernet/phy/state/ber-time-since-last-clear` | Time since last clear of BER stats (phy layer stats). |
+| `/interfaces/interface[name]/ethernet/phy/state/corrected-bits` | Number of phy corrected bits of an interface by FEC engine.|
+| `/interfaces/interface[name]/ethernet/phy/state/effective-ber` | Phy effective BER of an interface.|
+| `/interfaces/interface[name]/ethernet/phy/state/effective-errors` | Number of phy effective errors of an interface.|
+| `/interfaces/interface[name]/ethernet/phy/state/fec-time-since-last-clear` | Time after last clear of FEC stats (phy layer). |
+| `/interfaces/interface[name]/ethernet/phy/state/lane[lane]/fc-fec-corrected-blocks` | Number FC FEC corrected blocks for a given lane of an interface.|
+| `/interfaces/interface[name]/ethernet/phy/state/lane[lane]/fc-fec-uncorrected-blocks` | Number of RS FEC uncorrectable blocks of an interface. |
+| `/interfaces/interface[name]/ethernet/phy/state/lane[lane]/raw-ber` | Number of phy bit error rates for a given lane of an interface.|
+| `/interfaces/interface[name]/ethernet/phy/state/lane[lane]/raw-errors` | Number of phy error bits identified for a given lane of an interface.|
+| `/interfaces/interface[name]/ethernet/phy/state/lane[lane]/rs-fec-corrected-symbols` | Number of RS FEC corrected symbols for a given lane of an interface.|
+| `/interfaces/interface[name]/ethernet/phy/state/received-bits` | Number of phy total bits received for an interface.|
+| `/interfaces/interface[name]/ethernet/phy/state/rs-fec-no-error-blocks` | Number of RS FEC no errors blocks of an interface.|
+| `/interfaces/interface[name]/ethernet/phy/state/rs-fec-single-error-blocks` | Number of RS FEC uncorrectable blocks of an interface.|
+| `/interfaces/interface[name]/ethernet/phy/state/rs-fec-uncorrectable-blocks` | Number of FC FEC uncorrectable blocks for a given lane of an interface. |
+| `/interfaces/interface[name]/ethernet/phy/state/symbol-ber` | Phy symbol BER for an interface.|
+| `/interfaces/interface[name]/ethernet/phy/state/symbol-errors` | Number of phy symbol errors for an interface.|
+| `/interfaces/interface[name]/ethernet/state/counters/in-crc-errors` | Total number of frames received with a length (excluding framing bits, but including FCS octets) of between 64 and 1518 octets, inclusive, but had either a bad Frame Check Sequence (FCS) with an integral number of octets (FCS Error) or a bad FCS with a non-integral number of octets (Alignment Error).|
+| `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-1024-1518-octets` | Total number of packets (including bad packets) received between 1024 and 1518 octets in length inclusive (excluding framing bits but including FCS octets). |
+| `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-128-255-octets` | Total number of packets (including bad packets) received between 128 and 255 octets in length inclusive (excluding framing bits but including FCS octets).|
+| `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-256-511-octets` | Total number of packets (including bad packets) received between 256 and 511 octets in length inclusive (excluding framing bits but including FCS octets).|
+| `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-512-1023-octets` | Total number of packets (including bad packets) received between 512 and 1023 octets in length inclusive (excluding framing bits but including FCS octets).|
+| `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-64-octets` | Total number of packets (including bad packets) received that are 64 octets in length (excluding framing bits but including FCS octets).|
+| `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-65-127-octets` | Total number of packets (including bad packets) received between 65 and 127 octets in length inclusive (excluding framing bits but including FCS octets).|
+| `/interfaces/interface[name]/ethernet/state/counters/in-fcs-errors` | Total number of frames received on an interface that are an integral number of octets in length but do not pass the FCS check. This count does not include frames received with `frame-too-long` or `frame-too-short` error.|
+| `/interfaces/interface[name]/ethernet/state/counters/in-jabber-frames` | Number of Jabber frames received on the interface.|
+| `/interfaces/interface[name]/ethernet/state/counters/in-mac-pause-frames` | Inbound MAC pause frames on an interface.|
+| `/interfaces/interface[name]/ethernet/state/counters/in-oversize-frames` | Total number of packets received longer than 1518 octets (excluding framing bits, but including FCS octets). |
+| `/interfaces/interface[name]/ethernet/state/hw-mac-address` | System defined default MAC address for the interface. |
+| `/interfaces/interface[name]/ethernet/state/mac-address​` | MAC address for the interface.|
+| `/interfaces/interface[name]/ethernet/state/negotiated-duplex-mode` | When auto-negotiate is set to TRUE, and the interface has completed auto-negotiation with the remote peer, this value shows the negotiated duplex mode.|
+| `/interfaces/interface[name]/ethernet/state/port-speed` | An estimate of the interface current bandwidth in units of 1,000,000 bits per second.|
+| `/interfaces/interface[name]/rates/state/in-bits-rate` | The calculated received rate of the interface, measured in bits per second.|
+| `/interfaces/interface[name]/rates/state/in-pkts-rate` | The calculated received rate of the interface, measured in packets per second.|
+| `/interfaces/interface[name]/rates/state/out-bits-rate` | The calculated transmitted rate of the interface, measured in bits per second.|
+| `/interfaces/interface[name]/rates/state/out-pkts-rate` | The calculated transmitted rate of the interface, measured in packets per second.|
+| `/interfaces/interface[name]/state/admin-status` | Admin state of an interface. |
+| `/interfaces/interface[name]/state/counters/carrier-transitions` | Number of times since system boot that `ifOperStatus` changed.|
+| `/interfaces/interface[name]/state/counters/in-acl-drops` | Number of packets dropped at ingress due to ACL Policy.|
+| `/interfaces/interface[name]/state/counters/in-broadcast-pkts` | Total number of broadcast packets received on an interface.|
+| `/interfaces/interface[name]/state/counters/in-discards` | Number of inbound packets discarded even though no errors are detected to prevent them from being deliverable to a higher-layer protocol. |
+| `/interfaces/interface[name]/state/counters/in-errors` | For packet-oriented interfaces, the number of inbound packets that contained errors preventing them from being deliverable to a higher-layer protocol.|
+| `/interfaces/interface[name]/state/counters/in-multicast-pkts` | Total number of multicast packets received on an interface.|
+| `/interfaces/interface[name]/state/counters/in-octets` | Total number of octets received on an interface, including framing characters.|
+| `/interfaces/interface[name]/state/counters/in-pkts`| Number of packets discarded from the egress queue of an interface. |
+| `/interfaces/interface[name]/state/counters/in-unicast-pkts` | The number of packets, delivered by this sub-layer to a higher (sub-)layer, that were not addressed to a multicast or broadcast address at this sub-layer. |
+| `/interfaces/interface[name]/state/counters/out-broadcast-pkts` | Total number of broadcast packets transmitted out of an interface.|
+| `/interfaces/interface[name]/state/counters/out-discards` | Number of outbound packets discarded even though no errors are detected to prevent them from being transmitted. |
+| `/interfaces/interface[name]/state/counters/out-errors` | For packet-oriented interfaces, the number of outbound packets not transmitted because of errors. For character-oriented or fixed-length interfaces, the number of outbound transmission units not transmitted because of errors. |
+| `/interfaces/interface[name]/state/counters/out-multicast-pkts` | Total number of packets that higher-level protocols requested be transmitted, and which were addressed to a multicast address at this sub-layer, including those that were discarded or not sent. For a MAC layer protocol, this includes both Group and Functional addresses.|
+| `/interfaces/interface[name]/state/counters/out-octets` | Total number of octets transmitted out of an interface, including framing characters.|
+| `/interfaces/interface[name]/state/counters/out-pkts` | Total number of packets transmitted out of the interface, including all unicast, multicast, broadcast, and bad packets.|
+| `/interfaces/interface[name]/state/counters/out-unicast-pkts` | Total number of unicast packets transmitted out of an interface.|
+| `/interfaces/interface[name]/state/ifindex` | A unique value, greater than zero, for each interface.|
+| `/interfaces/interface[name]/state/last-change` | The last time the state of the interface changed.|
+| `/interfaces/interface[name]/state/mtu` | Size of the largest packet that can be sent or received on the interface, specified in octets. For interfaces used for transmitting network datagrams, this is the size of the largest network datagram that the interface can send.|
+| `/interfaces/interface[name]/state/name​` | The name of the interface.|
+| `/interfaces/interface[name]/state/oper-status` | Current operational state of an interface. |
+| `/interfaces/interface[name]/state/protodown​` | Indicates if the interface is administratively held down by a protocol or system process rather than by user action.|
+| `/interfaces/interface[name]/state/type​` | The type of the interface. |
 
 {{< /tab >}}
 {{< tab "LLDP">}}

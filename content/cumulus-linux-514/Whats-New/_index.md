@@ -86,6 +86,8 @@ If you configure OSPFv3 areas with NVUE snippets in Cumulus Linux 5.13 and earli
 | The `nv set router adaptive-routing profile` option is `profile-custom` | The `nv set router adaptive-routing profile` options are `profile-1`, `profile-2`, or `profile-custom` |
 | The `nv set system aaa radius server <hostname-id> priority` setting is between 1 and 100| The `nv set system aaa radius server <hostname-id> priority` setting is between 1 and 8|
 |`nv set vrf <vrf-id> router bgp address-family <address-family> route-import from-vrf list <leak-vrf-id>`| `nv set vrf <vrf-id> router bgp address-family <address-family> route-import from-vrf list`|
+| `nv set system telemetry ai-ethernet-stats`| `nv set system telemetry adaptive-routing-stats`|
+| `nv set system telemetry stats-group <sg-id> ai-ethernet-stats` | `nv set system telemetry stats-group <sg-id> adaptive-routing-stats`|
 {{< /expand >}}
   - {{< expand "Removed NVUE Commands" >}}
 ```

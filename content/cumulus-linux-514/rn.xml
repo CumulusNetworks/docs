@@ -26,13 +26,13 @@
 </tr>
 <tr>
 <td>4513850</td>
-<td>After upgrading from Cumulus Linux 5.12 to 5.13 on the NVIDIA SN5400 switch bonus port, PTP does not converge. To work around this issue, disable, then enable the bonus port after upgrade.</td>
+<td>After upgrading from Cumulus Linux 5.12 on the NVIDIA SN5400 switch bonus port, PTP does not converge. To work around this issue, disable, then enable the bonus port after upgrade.</td>
 <td>5.13.0-5.14.0</td>
 <td></td>
 </tr>
 <tr>
 <td>4513849</td>
-<td>After upgrading from Cumulus Linux 5.12 to 5.13 on the NVIDIA SN5400 switch bonus port, PTP does not converge. To work around this issue, disable, then enable the bonus port after upgrade.</td>
+<td>After upgrading from Cumulus Linux 5.12 on the NVIDIA SN5400 switch bonus port, PTP does not converge. To work around this issue, disable, then enable the bonus port after upgrade.</td>
 <td>5.13.0-5.14.0</td>
 <td></td>
 </tr>
@@ -88,12 +88,6 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <tr>
 <td>4423244</td>
 <td>When you enable, then disable adaptive routing, the BGP neighbors might go down because of an unresolved MAC address. To resolve this issue configure another attribute on the interface.</td>
-<td>5.13.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4423223</td>
-<td>When processing the static IP assignment for an interface previously managed through DHCP, Cumulus Linux fails to clean up the DHCP created state completely. As a result when the IP address assigned by DHCP earlier expires, the switch eventually loses connectivity.</td>
 <td>5.13.0-5.14.0</td>
 <td></td>
 </tr>

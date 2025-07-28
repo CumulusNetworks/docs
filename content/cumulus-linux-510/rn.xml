@@ -105,12 +105,6 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <td></td>
 </tr>
 <tr>
-<td>4298584</td>
-<td>The Spectrum-4 switch reports a {{Modules DataPath FSM fault}} in logs when the link fails at polling.</td>
-<td>5.10.1-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4298583</td>
 <td>The Spectrum-4 switch reports a {{Modules DataPath FSM fault}} in logs when the link fails at polling.</td>
 <td>5.10.1-5.12.0</td>

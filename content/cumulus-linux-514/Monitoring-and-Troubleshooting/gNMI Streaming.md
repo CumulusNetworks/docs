@@ -300,21 +300,22 @@ Cumulus Linux supports the following metrics:
 
 |  Name | Description |
 |------ | ----------- |
-| `/lldp/interfaces/interface/neighbors/neighbor/capabilities/capability[name=<capability>]/state/enabled` | If the corresponding system capability is enabled on the neighbor.|
-| `/lldp/interfaces/interface/neighbors/neighbor/state/age` | LLDP neighbor age after discovery.|
-| `/lldp/interfaces/interface/neighbors/neighbor/state/chassis-id` | Chassis component of the endpoint identifier associated with the transmitting LLDP agent.|
-| `/lldp/interfaces/interface/neighbors/neighbor/state/chassis-id-type` | Format and source of the chassis identifier string.|
-| `/lldp/interfaces/interface/neighbors/neighbor/state/management-address/type`| Enumerated value for the network address type identified in this TLV. |
+| `/lldp/interfaces/interface[name]/neighbors/neighbor[id]/capabilities/capability[name]/state/enabled` | If the corresponding system capability is enabled on the neighbor.|
+| `/lldp/interfaces/interface[name]/neighbors/neighbor[id]/state/age` | LLDP neighbor age after discovery.|
+| `/lldp/interfaces/interface[name]/neighbors/neighbor[id]/state/chassis-id` | Chassis component of the endpoint identifier associated with the transmitting LLDP agent.|
+| `/lldp/interfaces/interface[name]/neighbors/neighbor[id]/state/chassis-id-type` | Format and source of the chassis identifier string.|
+| `/lldp/interfaces/interface[name]/neighbors/neighbor[id]/state/management-addresses[address]/type`| Enumerated value for the network address type identified in this TLV. |
 | `/lldp/interfaces/interface/neighbors/neighbor/state/port-description` | Binary string containing the actual port identifier for the port from which this LLDP PDU was transmitted.|
-| `/lldp/interfaces/interface/neighbors/neighbor/state/port-id`| Port component of the endpoint identifier associated with the transmitting LLDP agent. |
-| `/lldp/interfaces/interface/neighbors/neighbor/state/port-id-type` | Format and source of the remote port ID string. |
-| `/lldp/interfaces/interface/neighbors/neighbor/state/system-description` | Description of the network entity associated with the transmitting LLDP agent.|
-| `/lldp/interfaces/interface/neighbors/neighbor/state/system-name` | Administratively assigned name of the system associated with the transmitting LLDP agent.|
-| `/lldp/interfaces/interface/neighbors/neighbor/state/ttl` | Indicates how long information from the neighbor is considered valid. |
+| `/lldp/interfaces/interface[name]/neighbors/neighbor[id]/state/port-description`| Port component of the endpoint identifier associated with the transmitting LLDP agent. |
+| `/lldp/interfaces/interface[name]/neighbors/neighbor[id]/state/port-id` | The Port ID is a mandatory TLV which identifies the port component of the endpoint identifier associated with the transmitting LLDP agent. If the specified port is an IEEE 802.3 Repeater port, then this TLV is optional.|
+| `/lldp/interfaces/interface[name]/neighbors/neighbor[id]/state/port-id-type` | Format and source of the remote port ID string. |
+| `/lldp/interfaces/interface[name]/neighbors/neighbor[id]/state/system-description` | Description of the network entity associated with the transmitting LLDP agent.|
+| `/lldp/interfaces/interface[name]/neighbors/neighbor[id]/state/system-name` | Administratively assigned name of the system associated with the transmitting LLDP agent.|
+| `/lldp/interfaces/interface[name]/neighbors/neighbor[id]/state/ttl` | Indicates how long information from the neighbor is considered valid. |
 | `/lldp/interfaces/interface[name]/state/enabled`​ | If LLDP is enabled on the interface. |
 | `/lldp/state/chassis-id` | The chassis component of the endpoint identifier associated with the transmitting LLDP agent.|
 | `/lldp/state/chassis-id-type` | The format and source of the chassis identifier string.|
-| `/lldp/state/enabled`| If LLDP is enabled globally. |
+| `/lldp/interfaces/interface[name]/state/enabled`| If LLDP is enabled globally. |
 | `/lldp/state/system-description` | Description of the network entity including the full name and version identification of the system's hardware type, software operating system, and networking software.|
 | `/lldp/state/system-name` | Administratively assigned name for the system.|
 

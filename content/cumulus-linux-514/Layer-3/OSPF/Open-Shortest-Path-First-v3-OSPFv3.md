@@ -7,7 +7,8 @@ toc: 3
 OSPFv3 is a revised version of OSPFv2 and supports the IPv6 address family.
 
 {{%notice note%}}
-IETF has defined extensions to OSPFv3 to support multiple address families (both IPv6 and IPv4). {{<link url="FRRouting" text="FRR">}} does not support multiple address families.
+- Cumulus Linux only supports OSPFv3 with IPv6.
+- Cumulus Linux 5.14 introduces new vtysh commands to configure the area for OSPFv3 interfaces. If you configure OSPFv3 areas with NVUE snippets in Cumulus Linux 5.13 and earlier, you must delete the snippets before you upgrade to Linux 5.14, then reconfigure the areas for OSPFv3 interfaces with the new vtysh commands after upgrade.
 {{%/notice%}}
 
 ## Basic OSPFv3 Configuration
@@ -19,12 +20,12 @@ When you enable or disable OSPF, the FRR service restarts, which might impact tr
 {{%/notice%}}
 
 {{%notice note%}}
-NVUE commands are not supported for OSPFv3.
+NVUE does no provide commands for OSPFv3. You must configure OSPFv3 with vtysh commands and by manually editing configuration files.
 {{%/notice%}}
 
 ### OSPFv3 Numbered
 
-To configure OSPF using numbered interfaces, you specify the router ID, IP subnet prefix, and area address. All the interfaces on the switch with an IP address that matches the network subnet go into the specified area. OSPF attempts to discover other OSPF routers on those interfaces. Cumulus Linux adds all matching interface network addresses to a Type-1 Router LSA and advertises to discovered neighbors for proper reachability.
+To configure OSPF using numbered interfaces, you specify the router ID, IP subnet prefix, and area. OSPF attempts to discover other OSPF routers on the numbered interfaces. Cumulus Linux adds all matching interface network addresses to a Type-1 Router LSA and advertises to discovered neighbors for proper reachability.
 
 If you do not want to bring up an OSPF adjacency on certain interfaces, but want to advertise those networks in the OSPF database, you can configure the interfaces as *passive interfaces*. A passive interface creates a database entry but does not send or receive OSPF hello packets. For example, in a data center topology, the host-facing interfaces do not need to run OSPF, however, you must advertise the corresponding IP addresses to neighbors.
 
@@ -69,9 +70,13 @@ The following example commands configure OSPF numbered on leaf01 and spine01.
     leaf01# configure terminal
     leaf01(config)# router ospf6
     leaf01(config-ospf6)# ospf6 router-id 10.10.10.1
-    leaf01(config-ospf6)# interface lo area 0.0.0.0
-    leaf01(config-ospf6)# interface swp51 area 0.0.0.0
     leaf01(config-ospf6)# exit
+    leaf01(config)# interface lo
+    leaf01(config-if)# ipv6 ospf6 area 0.0.0.0
+    leaf01(config-if)# exit
+    leaf01(config)# interface swp51
+    leaf01(config-if)# ipv6 ospf6 area 0.0.0.0
+    leaf01(config-if)# exit
     leaf01(config)# interface swp1
     leaf01(config-if)# ipv6 ospf6 passive
     leaf01(config-if)# exit
@@ -114,10 +119,14 @@ The following example commands configure OSPF numbered on leaf01 and spine01.
     ...
     spine01# configure terminal
     spine01(config)# router ospf6
-    spine01(config-ospf6)# ospf6 router-id 10.10.10.101
-    spine01(config-ospf6)# interface lo area 0.0.0.0
-    spine01(config-ospf6)# interface swp1 area 0.0.0.0
-    spine01(config-ospf6)# end
+    spine01(config-ospf6)# ospf6 router-id 10.10.10.1
+    spine01(config-ospf6)# exit
+    spine01(config)# interface lo
+    spine01(config-if)# ipv6 ospf6 area 0.0.0.0
+    spine01(config-if)# exit
+    spine01(config)# interface swp1
+    spine01(config-if)# ipv6 ospf6 area 0.0.0.0
+    spine01(config-if)# end
     spine01# write memory
     spine01# exit
     ```
@@ -132,14 +141,29 @@ The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For e
 
 ```
 ...
-router ospf6
- ospf6 router-id 10.10.10.1
- interface lo area 0.0.0.0
- interface swp51 area 0.0.0.0
+cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
+...
+!
+interface lo
+ ipv6 ospf6 area 0.0.0.0
+exit
+!
 interface swp1
  ipv6 ospf6 passive
+exit
+!
 interface swp2
  ipv6 ospf6 passive
+exit
+!
+interface swp51
+ ipv6 ospf6 area 0.0.0.0
+exit
+!
+router ospf6
+ ospf6 router-id 10.10.10.1
+exit
+!
 ...
 ```
 
@@ -147,12 +171,21 @@ interface swp2
 {{< tab "spine01 ">}}
 
 ```
+cumulus@spine01:~$ sudo cat /etc/frr/frr.conf
 ...
+!
+interface lo
+ ipv6 ospf6 area 0.0.0.0
+exit
+!
+interface swp1
+ ipv6 ospf6 area 0.0.0.0
+exit
+!
 router ospf6
- ospf router-id 10.10.10.101
- interface lo area 0.0.0.0
- interface swp1 area 0.0.0.0
-...
+ ospf6 router-id 10.10.10.101
+exit
+!
 ```
 
 {{< /tab >}}
@@ -208,17 +241,19 @@ cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# router ospf6
 leaf01(config-ospf6)# ospf6 router-id 10.10.10.1
-leaf01(config-ospf6)# interface lo area 0.0.0.0
-leaf01(config-ospf6)# interface swp51 area 0.0.0.0
 leaf01(config-ospf6)# exit
+leaf01(config)# interface lo
+leaf01(config-if)# ipv6 ospf6 area 0.0.0.0
+leaf01(config-if)# exit
+leaf01(config)# interface swp51
+leaf01(config-if)# ipv6 ospf6 area 0.0.0.0
+leaf01(config-if)# ipv6 ospf6 network point-to-point
+leaf01(config-if)# exit
 leaf01(config)# interface swp1
 leaf01(config-if)# ipv6 ospf6 passive
 leaf01(config-if)# exit
 leaf01(config)# interface swp2
 leaf01(config-if)# ipv6 ospf6 passive
-leaf01(config-if)# exit
-leaf01(config)# interface swp51
-leaf01(config-if)# ipv6 ospf6 network point-to-point
 leaf01(config-if)# end
 leaf01# write memory
 leaf01# exit
@@ -257,11 +292,14 @@ cumulus@spine01:~$ sudo vtysh
 spine01# configure terminal
 spine01(config)# router ospf6
 spine01(config-ospf6)# ospf router-id 10.10.10.101
-spine01(config-ospf6)# interface lo area 0.0.0.0
-spine01(config-ospf6)# interface swp1 area 0.0.0.0
 spine01(config-ospf6)# exit
+spine01(config)# interface lo
+spine01(config-if)# ipv6 ospf6 area 0.0.0.0
+spine01(config-if)# exit
 spine01(config)# interface swp1
+spine01(config-if)# ipv6 ospf6 area 0.0.0.0
 spine01(config-if)# ipv6 ospf6 network point-to-point
+spine01(config-if)# exit
 spine01(config-if)# end
 spine01# write memory
 spine01# exit
@@ -276,32 +314,50 @@ The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For e
 {{< tab "leaf01 ">}}
 
 ```
-...
-router ospf6
- ospf6 router-id 10.10.10.1
- interface lo area 0.0.0.0
- interface swp51 area 0.0.0.0
+cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
+!
+interface lo
+ ipv6 ospf6 area 0.0.0.0
+exit
+!
+interface swp51
+ ipv6 ospf6 area 0.0.0.0
+ ipv6 ospf6 network point-to-point
+exit
+!
 interface swp1
  ipv6 ospf6 passive
+exit
+!
 interface swp2
  ipv6 ospf6 passive
-interface swp51
- ipv6 ospf6 network point-to-point
-...
+exit
+!
+router ospf6
+ ospf6 router-id 10.10.10.1
+exit
+!
 ```
 
 {{< /tab >}}
 {{< tab "spine01 ">}}
 
 ```
-...
-router ospf6
- ospf6 router-id 10.10.10.101
- interface lo area 0.0.0.0
- interface swp1 area 0.0.0.0
+cumulus@spine01:~$ sudo cat /etc/frr/frr.conf
+!
+interface lo
+ ipv6 ospf6 area 0.0.0.0
+exit
+!
 interface swp1
+ ipv6 ospf6 area 0.0.0.0
  ipv6 ospf6 network point-to-point
-...
+exit
+!
+router ospf6
+ ospf6 router-id 10.10.10.1
+exit
+!
 ```
 
 {{< /tab >}}
@@ -365,6 +421,7 @@ switch# exit
 The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
+cumulus@switch:~$ sudo cat /etc/frr/frr.conf
 ...
 interface swp51
  ipv6 ospf6 hello-interval 5
@@ -389,6 +446,7 @@ switch# exit
 The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
+cumulus@switch:~$ sudo cat /etc/frr/frr.conf
 ...
 interface swp51
   ipv6 ospf6 advertise prefix-list myfilter
@@ -411,6 +469,7 @@ switch# exit
 The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
+cumulus@switch:~$ sudo cat /etc/frr/frr.conf
 ...
 interface swp51
   ipv6 ospf6 cost 1
@@ -443,12 +502,10 @@ switch# exit
 The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
+cumulus@switch:~$ sudo cat /etc/frr/frr.conf
 ...
 router ospf6
  ospf router-id 10.10.10.1
- passive-interface swp1
- passive-interface swp2
- network swp51 area 0.0.0.0
  timers throttle spf 80 100 6000
 ...
 ```
@@ -506,6 +563,7 @@ switch# exit
 The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
+cumulus@switch:~$ sudo cat /etc/frr/frr.conf
 ...
 router ospf6
   ospf6 router-id 10.10.10.1
@@ -537,6 +595,7 @@ switch# exit
 The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
+cumulus@switch:~$ sudo cat /etc/frr/frr.conf
 ...
 router ospf6
  ospf6 router-id 10.10.10.63
@@ -562,6 +621,7 @@ switch# exit
 The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
+cumulus@switch:~$ sudo cat /etc/frr/frr.conf
 ...
 router ospf6
  ospf6 router-id 10.10.10.63
@@ -601,11 +661,10 @@ switch# exit
 The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
+cumulus@switch:~$ sudo cat /etc/frr/frr.conf
 ...
 router ospf6
  ospf6 router-id 10.10.10.1
- interface lo area 0.0.0.0
- interface swp51 area 0.0.0.0
  auto-cost reference-bandwidth 90000
 ...
 ```
@@ -671,10 +730,10 @@ switch# exit
 The vtysh commands save the configuration to the `/etc/frr/frr.conf` file. For example:
 
 ```
+cumulus@switch:~$ sudo cat /etc/frr/frr.conf
 ...
 router ospf6
  ospf6 router-id 10.10.10.1
- interface lo area 0.0.0.0
  distance ospf6 intra-area 150 inter-area 150 external 220
 ...
 ```

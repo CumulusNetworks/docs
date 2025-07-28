@@ -309,8 +309,8 @@ You send Echo Request packets to a destination (IP address or a hostname) to che
 | `-I <ip-address>` | The source IP address from which to send the Echo Request packets. |
 | `M do` | Do not fragment. If the packet is larger than the maximum transmission unit (MTU) of any network segment it traverses, drop the packet instead of fragmenting the packet. |
 | `<l3protocol>` | The layer 3 protocol you want to use to send the Echo Request packets. You can specify `-4` for IPv4 or `-6` for IPv6. If you don't specify either IPv4 or IPv6, ping uses IPv4.|
-| `-I <vrf-name>` | The VRF you want to use. |
-| `-6 <ipv6-address>%<interface>` | The source interface from which to send Echo Request packets for a link-local address. IPv6 only. |
+| `-I <vrf-id>` | The VRF you want to use. |
+| `-6 <ipv6-address>%<interface-id>` | The source interface from which to send Echo Request packets for a link-local address. IPv6 only. |
 
 The following example checks if destination 10.10.10.2 is reachable on the network.
 

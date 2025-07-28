@@ -16,7 +16,7 @@ You can use various NVUE or Linux commands to examine interfaces, VLAN mappings 
 - `nv show bridge vlan-vni-map` (NVUE)
 - `nv show bridge domain <bridge> vlan-vni-map` (NVUE)
 - `nv show interface neighbor` (NVUE) or `ip neighbor show` (Linux)
-- `ip route show [table <vrf-name>]` (Linux)
+- `ip route show [table <vrf-id>]` (Linux)
 
 The sample output below shows `ip -d link show type vxlan` command output for one VXLAN interface. Relevant parameters are the VNI value, the state, the local IP address for the VXLAN tunnel, the UDP port number (4789) and the bridge of which the interface is part (*bridge* in the example below). The output also shows that MAC learning is *off* on the VXLAN interface.
 
@@ -467,7 +467,7 @@ system-mac          44:38:39:22:01:7a
 prefix-routes-only  off                off
 ```
 
-To show details for a layer 3 VRF for a specific VNI, run the vtysh `show vrf <vrf> vni` and the `show evpn vni <vni>` command.
+To show details for a layer 3 VRF for a specific VNI, run the vtysh `show vrf <vrf-id> vni` and the `show evpn vni <vni>` command.
 
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh
@@ -598,7 +598,7 @@ Run the vtysh `show evpn arp-cache vni all` command to examine neighbor entries 
 
 ## Examine Remote Router MAC Addresses
 
-To examine the router MAC addresses corresponding to all remote VTEPs for symmetric routing, run the NVUE `nv show vrf <vrf> evpn remote-router-mac` command or the vtysh `show evpn rmac vni all` command. This command is only relevant for a layer 3 VNI:
+To examine the router MAC addresses corresponding to all remote VTEPs for symmetric routing, run the NVUE `nv show vrf <vrf-id> evpn remote-router-mac` command or the vtysh `show evpn rmac vni all` command. This command is only relevant for a layer 3 VNI:
 
 ```
 cumulus@border01:mgmt:~$ nv show vrf RED evpn remote-router-mac
@@ -614,7 +614,7 @@ MAC address        remote-vtep
 
 ## Examine Gateway Next Hops
 
-To examine the gateway next hops for symmetric routing, run the NVUE `nv show vrf <vrf> evpn nexthop-vtep` command or the vtysh `show evpn next-hops vni all` command. This command is only relevant for a layer 3 VNI. The gateway next hop IP addresses correspond to the remote VTEP IP addresses. Cumulus Linux installs the remote host and prefix routes using these next hops.
+To examine the gateway next hops for symmetric routing, run the NVUE `nv show vrf <vrf-id> evpn nexthop-vtep` command or the vtysh `show evpn next-hops vni all` command. This command is only relevant for a layer 3 VNI. The gateway next hop IP addresses correspond to the remote VTEP IP addresses. Cumulus Linux installs the remote host and prefix routes using these next hops.
 
 ```
 cumulus@border01:mgmt:~$ nv show vrf RED evpn nexthop-vtep
@@ -628,7 +628,7 @@ Nexthop      router-mac
 10.10.10.64  44:38:39:22:01:7c
 ```
 
-To show the router MAC address for a specific next hop, run the NVUE `nv show vrf <vrf> evpn nexthop-vtep <ip-address>` command:
+To show the router MAC address for a specific next hop, run the NVUE `nv show vrf <vrf-id> evpn nexthop-vtep <ip-address>` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show vrf RED evpn nexthop-vtep 10.10.10.2
@@ -678,7 +678,7 @@ You can drill down and show information about a specific vlan with the `nv show 
 
 ## Show the VRF Routing Table in FRR
 
-Run the NVUE `nv show vrf <vrf-id> router rib <address-family> route` command or the vtysh `show ip route vrf <vrf-name>` command to examine the VRF routing table. Use this command for symmetric routing to verify that remote host and prefix routes are in the VRF routing table and point to the appropriate gateway next hop.
+Run the NVUE `nv show vrf <vrf-id> router rib <address-family> route` command or the vtysh `show ip route vrf <vrf-id>` command to examine the VRF routing table. Use this command for symmetric routing to verify that remote host and prefix routes are in the VRF routing table and point to the appropriate gateway next hop.
 
 ```
 cumulus@leaf01:mgmt:~$ nv show vrf RED router rib ipv4 route
@@ -811,7 +811,7 @@ prefix: An IPv4 or IPv6 prefix
 
 ## Show EVPN RD Routes
 
-To show EVPN RD routes, run the `nv show vrf <vrf> router bgp address-family l2vpn-evpn route` command. This command shows the EVPN RD routes in brief format to improve performance for high scale environments. To show the EVPN RD routes in more detail, run the `nv show vrf <vrf> router bgp address-family l2vpn-evpn route --view=detail` command. To show the information in json format, run the `nv show vrf <vrf> router bgp address-family l2vpn-evpn route -o json` command.
+To show EVPN RD routes, run the `nv show vrf <vrf-id> router bgp address-family l2vpn-evpn route` command. This command shows the EVPN RD routes in brief format to improve performance for high scale environments. To show the EVPN RD routes in more detail, run the `nv show vrf <vrf-id> router bgp address-family l2vpn-evpn route --view=detail` command. To show the information in json format, run the `nv show vrf <vrf-id> router bgp address-family l2vpn-evpn route -o json` command.
 
 ```
 cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn route
@@ -938,7 +938,7 @@ Displayed 4 paths for requested prefix
 
 ## Filter EVPN Routes by Neighbor, RD and Route Type
 
-You can filter EVPN routes by a specific neighbor (numbered or unnumbered) with the `nv show vrf <vrf> router bgp address-family l2vpn-evpn route --filter=”neighbor=<neighbor>"` command.
+You can filter EVPN routes by a specific neighbor (numbered or unnumbered) with the `nv show vrf <vrf-id> router bgp address-family l2vpn-evpn route --filter=”neighbor=<neighbor>"` command.
 
 ```
 cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn route --filter="neighbor=swp51"
@@ -977,7 +977,7 @@ Route                                                                   rd      
 ...
 ```
 
-You can also filter EVPN routes by a specific <span class="a-tooltip">[RD](## "Route Distinguisher")</span> with the `nv show vrf <vrf> router bgp address-family l2vpn-evpn route --filter="rd=<rd>"` command and the route type with the `nv show vrf <vrf> router bgp address-family l2vpn-evpn route --filter="rd=<rd>&route-type=<route-type>"` command.
+You can also filter EVPN routes by a specific <span class="a-tooltip">[RD](## "Route Distinguisher")</span> with the `nv show vrf <vrf-id> router bgp address-family l2vpn-evpn route --filter="rd=<rd>"` command and the route type with the `nv show vrf <vrf-id> router bgp address-family l2vpn-evpn route --filter="rd=<rd>&route-type=<route-type>"` command.
 
 ```
 cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn route --filter="rd=10.10.10.2:2" 
@@ -1058,11 +1058,11 @@ EVPN type-5 prefix: [5]:[EthTag]:[IPlen]:[IP]
 
 To display the VNI routing table for all VNIs, run the vtysh `show bgp l2vpn evpn route vni all` command.
 
-To view the EVPN RIB with NVUE, run the `nv show vrf <vrf> router bgp address-family l2vpn-evpn route` command.
+To view the EVPN RIB with NVUE, run the `nv show vrf <vrf-id> router bgp address-family l2vpn-evpn route` command.
 
 ## Show the VRF BGP Routing Table
 
-For symmetric routing, the switch imports received type-2 and type-5 routes into the VRF routing table (according to address family: IPv4 unicast or IPv6 unicast) based on a match on the route target attributes. To examine the BGP VRF routing table, run the vtysh `show bgp vrf <vrf-name> ipv4 unicast` and `show bgp vrf <vrf-name> ipv6 unicast` command.
+For symmetric routing, the switch imports received type-2 and type-5 routes into the VRF routing table (according to address family: IPv4 unicast or IPv6 unicast) based on a match on the route target attributes. To examine the BGP VRF routing table, run the vtysh `show bgp vrf <vrf-id> ipv4 unicast` and `show bgp vrf <vrf-id> ipv6 unicast` command.
 
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh

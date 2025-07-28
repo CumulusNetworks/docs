@@ -116,7 +116,7 @@ When you enable EVPN-MH, all SVI MAC addresses advertise as type-2 routes. You d
 ### Enable EVPN-MH
 
 {{%notice note%}}
-NVIDIA recommends that you enable EVPN-MH on all VTEPs throughout the fabric to avoid duplicate packets.
+NVIDIA recommends that you enable EVPN-MH on the Spectrum A1 switch on all VTEPs throughout the fabric to avoid duplicate packets.
 {{%/notice%}}
 
 <!-- vale on -->
@@ -129,13 +129,17 @@ cumulus@leaf01:~$ nv config apply
 ```
 
 {{%notice warning%}}
-When you enable multihoming with the `nv set evpn multihoming enable on` command, NVUE restarts the `switchd` service, which causes all network ports to reset in addition to resetting the switch hardware configuration.
+When you enable multihoming on the Spectrum A1 switch with the `nv set evpn multihoming enable on` command, NVUE restarts the `switchd` service, which causes all network ports to reset in addition to resetting the switch hardware configuration.
 {{%/notice%}}
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Set the `evpn.multihoming.enable` variable in the `/etc/cumulus/switchd.conf` file to `TRUE`. Cumulus Linux disables this variable by default.
+Set the `evpn.multihoming.enable` variable in the `/etc/cumulus/switchd.conf` file to `TRUE`.
+
+{{%notice note%}}
+On a switch with Spectrum-2 and later, the `evpn.multihoming.enable` variable is set to `TRUE` by default; you only need to set the `evpn.multihoming.enable` variable to `TRUE` on a switch with Spectrum A1.
+{{%/notice%}}
 
 ```
 cumulus@leaf01:~$ sudo nano /etc/cumulus/switchd.conf

@@ -7,8 +7,8 @@ toc: 4
 You can use {{<exlink url="https://github.com/openconfig/gnmi" text="gRPC Network Management Interface">}} (gNMI) to collect system metrics and export the data to a gNMI client.
 
 Cumulus Linux supports:
-- {{<link url="/#gnmi-with-netq" text="gNMI with NetQ">}}, where the `netq-agent` package includes the gNMI agent that listens over port 9339.
 - {{<link url="/#gnmi-with-cumulus-linux" text="gNMI with Cumulus Linux">}}, where Cumulus Linux includes the gNMI agent that listens over port 9339.
+- {{<link url="/#gnmi-with-netq" text="gNMI with NetQ">}}, where the `netq-agent` package includes the gNMI agent that listens over port 9339.
 
 {{%notice note%}}
 To use both gNMI streaming with NetQ and gNMI streaming with Cumulus Linux, you must use different ports.
@@ -409,20 +409,10 @@ You can use your gNMI client on a host to request capabilities and data to which
 
 #### Dial-in Mode Example
 
-The following example shows a Dial-in Mode Subscribe request with TLS:
+The following example shows a Dial-in Mode Subscribe request:
 
 ```
 gnmic subscribe --mode stream --path "/qos/interfaces/interface[interface-id=swp1]/output/queues/queue[name=1]/state/transmit-octets" -i 10s --tls-cert gnmi_client.crt --tls-key gnmi_client.key -u cumulus -p ******* --auth-scheme Basic --skip-verify -a 10.188.52.108:9339
-```
-
-The following example shows a Dial-in Mode Subscribe request without TLS:
-
-{{%notice note%}}
-NVIDIA recommends using TLS. To test without TLS, you must also edit the NGINX configuration file on the switch.
-{{%/notice%}}
-
-```
-gnmic subscribe --mode stream --path "/qos/interfaces/interface[interface-id=swp1]/output/queues/queue[name=1]/state/transmit-octets" -i 10s --insecure -u cumulus -p ******* --auth-scheme Basic -a 10.188.52.108:9339
 ```
 
 #### Subscription Example

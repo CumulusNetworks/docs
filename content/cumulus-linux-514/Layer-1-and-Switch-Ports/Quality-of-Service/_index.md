@@ -408,7 +408,7 @@ For more information on configuring and applying ACLs, refer to {{<link title="A
 
 You must use `ebtables` to match and mark layer 2 bridged traffic. You can match traffic with any supported ebtables rule.  
 
-To set the new 802.1p COS value when traffic matches, use `-A FORWARD -o <interface> -j setqos --set-cos <value>`.
+To set the new 802.1p COS value when traffic matches, use `-A FORWARD -o <interface-id> -j setqos --set-cos <value>`.
 
 {{% notice info %}}
 You can only set COS on a *per-egress interface* basis. Cumulus Linux does not support `ebtables` based matching on ingress.
@@ -416,7 +416,7 @@ You can only set COS on a *per-egress interface* basis. Cumulus Linux does not s
 
 The configured action always has the following conditions:
 - The rule is always part of the `FORWARD` chain.
-- The interface (`<interface>`) is a physical swp port.
+- The interface (`<interface-id>`) is a physical swp port.
 - The *jump* action is always `setqos` (lowercase).
 - The `--set-cos` value is a 802.1p COS value between 0 and 7.
 
@@ -431,11 +431,11 @@ For example, to set traffic leaving interface `swp5` to 802.1p COS value `4`:
 You must use `iptables` (for IPv4 traffic) or `ip6tables` (for IPv6 traffic) to match and mark layer 3 traffic.
 
 You can match traffic with any supported iptable or ip6tables rule.
-To set the new COS or DSCP value when traffic matches, use `-A FORWARD -o <interface> -j SETQOS [--set-dscp <value> | --set-cos <value> | --set-dscp-class <name>]`.
+To set the new COS or DSCP value when traffic matches, use `-A FORWARD -o <interface-id> -j SETQOS [--set-dscp <value> | --set-cos <value> | --set-dscp-class <name>]`.
 
 The configured action always has the following conditions:
 - The rule is always configured as part of the `FORWARD` chain.
-- The interface (`<interface>`) is a physical swp port.
+- The interface (`<interface-id>`) is a physical swp port.
 - The *jump* action is always `SETQOS` (uppercase).
 
 You can configure COS markings with `--set-cos` and a value between 0 and 7 (inclusive).
@@ -686,7 +686,7 @@ cumulus@switch:~$ nv set interface swp3 qos pfc-watchdog
 cumulus@switch:~$ nv config apply
 ```
 
-To disable PFC watchdog, run the `nv unset interface <interface> qos pfc-watchdog` command or the `nv set interface <interface> qos pfc-watchdog state disable` command.
+To disable PFC watchdog, run the `nv unset interface <interface-id> qos pfc-watchdog` command or the `nv set interface <interface-id> qos pfc-watchdog state disable` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -749,7 +749,7 @@ cumulus@switch:~$ echo 200 > /cumulus/switchd/config/pfc_wd/poll_interval
 {{< /tab >}}
 {{< /tabs >}}
 
-To show if PFC watchdog is on and to show the status for each traffic class, run the `nv show interface <interface> qos pfc-watchdog` command:
+To show if PFC watchdog is on and to show the status for each traffic class, run the `nv show interface <interface-id> qos pfc-watchdog` command:
 
 ```
 cumulus@switch:~$ nv show interface swp1 qos pfc-watchdog
@@ -772,9 +772,9 @@ PFC WD Status
     7              DEADLOCK  3 
 ```
 
-To show PFC watchdog data for a specific traffic class, run the `nv show interface <interface> qos pfc-watchdog status <traffic-class>` command.
+To show PFC watchdog data for a specific traffic class, run the `nv show interface <interface-id> qos pfc-watchdog status <traffic-class>` command.
 
-To clear the PFC watchdog `deadlock-count` on an interface, run the `nv action clear interface <interface> qos pfc-watchdog deadlock-count` command.
+To clear the PFC watchdog `deadlock-count` on an interface, run the `nv action clear interface <interface-id> qos pfc-watchdog deadlock-count` command.
 
 ## Congestion Control (ECN)
 
@@ -1937,11 +1937,11 @@ NVUE provides the following commands to show QoS statistics for an interface:
 
 | <div style="width:430px">NVUE Command | Description |
 | ----------- | ------------ |
-| `nv show interface <interface> counters qos` | Shows all QoS statistics for a specific interface.|
-| `nv show interface <interface> counters qos egress-queue-stats` | Shows QoS egress queue statistics for a specific interface.|
-| `nv show interface <interface> counters qos ingress-buffer-stats` |Shows QoS ingress buffer statistics for a specific interface. |
-| `nv show interface <interface> counters qos pfc-stats`| Shows QoS PFC statistics for a specific interface.|
-| `nv show interface <interface> counters qos port-stats`| Shows QoS port statistics for a specific interface.|
+| `nv show interface <interface-id> counters qos` | Shows all QoS statistics for a specific interface.|
+| `nv show interface <interface-id> counters qos egress-queue-stats` | Shows QoS egress queue statistics for a specific interface.|
+| `nv show interface <interface-id> counters qos ingress-buffer-stats` |Shows QoS ingress buffer statistics for a specific interface. |
+| `nv show interface <interface-id> counters qos pfc-stats`| Shows QoS PFC statistics for a specific interface.|
+| `nv show interface <interface-id> counters qos port-stats`| Shows QoS port statistics for a specific interface.|
 
 The following example shows all QoS statistics for swp1:
 
@@ -2000,7 +2000,7 @@ Qos Port Statistics
 
 - To clear the Qos pool buffers, run the `nv action clear qos buffer pool` command.
 - To clear the QoS multicast switch priority buffers, run the `nv action clear qos buffer multicast-switch-priority` command.
-- To clear the Qos buffers on an interface, run the `nv action clear interface <interface> qos buffer` command.
+- To clear the Qos buffers on an interface, run the `nv action clear interface <interface-id> qos buffer` command.
 
 ```
 cumulus@switch:~$ nv action clear qos buffer pool

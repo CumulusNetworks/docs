@@ -16,19 +16,19 @@ Cumulus Linux 5.14.0 contains several new features and improvements, and provide
 
 - {{<link title="Erase all Data from the Switch" text="Erase all data from the switch">}} now generally available
 - {{<link url="Switch-Port-Attributes/#auto-negotiation-and-link-speed" text="Link speed setting and auto-negotiation behavior change">}}
-- {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#transceiver-thermal-control" text="Transceiver thermal control">}}
-- {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#clear-interface-physical-layer-error-counters" text="Clear physical layer error counters for an interface">}}
-- {{<link url="DHCP-Relays" text="Configure different DHCP relay servers per interface">}}
-- {{<link url="Quick-Start-Guide/#configure-the-domain-name" text="Domain name configuration">}}
-- {{<link url="Equal-Cost-Multipath-Load-Sharing/#enable-adaptive-routing" text="Adaptive routing default profiles profile-1 and profile-2 removed and replaced with one profile that uses the default profile settings for your switch ASIC type">}}
-- {{<link url="NVUE-API/#jwt-based-authentication" text="JWT Based Authentication for REST API">}}
+- {{<link url="Packet-Trimming" text="Packet trimming">}}
+- {{<link url="RDMA-over-Converged-Ethernet-RoCE/#lossy-multi-tc-profile" text="RoCE lossy multi TC profile">}}
+- {{<link url="Segment-Routing" text="Segment Routing">}} and {{<link url="Segment-Routing/#clear-srv6-statistics" text="Clear SRv6 statistics">}}
 - gNMI:
   - {{<link url="gNMI-Streaming/#metrics" text="New gNMI streaming metrics: BGP, interface, LLDP, system, and platform transceiver">}}
   - {{<link url="gNMI-Streaming/#user-credentials-and-authentication" text="gRPC header based authentication support for gNMI subscription requests">}}
-  - {{<link url="gNMI-Streaming" text="Improved data formatting to include prefix field">}}
-- {{<link url="Packet-Trimming" text="Packet trimming">}} and {{<link url="Packet-Trimming/#asymmetric-packet-trimming" text="Packet trimming with asymmetric DSCP">}}
-- {{<link url="RDMA-over-Converged-Ethernet-RoCE/#lossy-multi-tc-profile" text="RoCE lossy multi TC profile">}}
-- {{<link url="Segment-Routing" text="SRv6 configuration">}} and {{<link url="Segment-Routing/#clear-srv6-statistics" text="Clear SRv6 statistics">}}
+  - {{<link url="gNMI-Streaming/#gnmi-client-requests" text="Improved data formatting to include prefix field">}}
+- {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#transceiver-thermal-control" text="Transceiver thermal control">}}
+- {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#clear-interface-physical-layer-error-counters" text="Clear physical layer error counters for an interface">}}
+- {{<link url="DHCP-Relays" text="Configure different DHCP servers per interface for DHCP relay">}}
+- {{<link url="Quick-Start-Guide/#configure-the-domain-name" text="Domain name configuration">}}
+- {{<link url="Equal-Cost-Multipath-Load-Sharing/#enable-adaptive-routing" text="Adaptive routing default profiles profile-1 and profile-2 removed and replaced with one profile that uses the default profile settings for your switch ASIC type">}}
+- {{<link url="NVUE-API/#jwt-based-authentication" text="JWT Based Authentication for REST API">}}
 - {{<link url="TACACS/#tacacs-per-command-authorization" text="You can now bind TACACS per-command authorization to the default VRF">}} (in previous releases, you must specify the egress interface you use in the default VRF)
 - {{< expand "Operational information added to NVUE BGP show commands" >}}
 See {{<link url="Troubleshooting-BGP" text="Troubleshooting BGP">}} for command examples.
@@ -52,8 +52,8 @@ nv show vrf <vrf-id> router bgp path-selection
 nv show vrf <vrf-id> router bgp path-selection med
 nv show vrf <vrf-id> router bgp path-selection aspath
 nv show vrf <vrf-id> router bgp path-selection multipath
-nv show vrf <vrf-id> router bgp neighbor <interface> bfd
-nv show vrf <vrf-id> router bgp neighbor <interface> local-as
+nv show vrf <vrf-id> router bgp neighbor <interface-id> bfd
+nv show vrf <vrf-id> router bgp neighbor <interface-id> local-as
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath
@@ -62,8 +62,8 @@ nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unica
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath allow-my-asn
 ```
 {{< /expand >}}
-- {{< expand "New and updated vtysh BGP show commands" >}}
-See {{<link url="Troubleshooting-BGP" text="Troubleshooting BGP">}} for command examples.
+- {{< expand "New and updated vtysh commands" >}}
+The following lists the updated and new vtysh show bgp commands. To see command examples, refer to {{<link url="Troubleshooting-BGP" text="Troubleshooting BGP">}}.
 ```
 show bgp router json
 show bgp vrfs <vrf-id> json
@@ -71,6 +71,10 @@ show bgp vrf <vrf-id> bestpath json
 show bgp vrf <vrf-id> ipv4 unicast redistribute json 
 show bgp vrf <vrf-id> ipv6 unicast redistribute json 
 ```
+
+In Cumulus Linux 5.14, the vtysh command to configure the area for OSPFv3 interfaces is under the interface instead of under `router ospf6`.
+
+If you configure OSPFv3 areas with NVUE snippets in Cumulus Linux 5.13 and earlier, you must delete the snippets before you upgrade to Linux 5.14, then reconfigure the areas for OSPFv3 interfaces with the new vtysh commands after upgrade. See {{<link url="Open-Shortest-Path-First-v3-OSPFv3/#basic-ospfv3-configuration" text="Basic OSPFv3 Configuration">}}.
 {{< /expand >}}
 - NVUE
   - {{<link url="Troubleshooting-EVPN/#show-evpn-vnis-across-all-vrfs" text="Commands to show EVPN information across all VRFs">}}
@@ -85,10 +89,10 @@ show bgp vrf <vrf-id> ipv6 unicast redistribute json
 {{< /expand >}}
   - {{< expand "Removed NVUE Commands" >}}
 ```
-nv set service dhcp-relay <vrf>> interface <interface-id>
-nv set service dhcp-relay default server <server-id>
-nv show service dhcp-relay default server
-nv set service dhcp-relay <vrf>> agent remote-id
+nv set service dhcp-relay <vrf-id> interface <interface-id>
+nv set service dhcp-relay <vrf-id> server <server-id>
+nv show service dhcp-relay <vrf-id> server
+nv set service dhcp-relay <vrf-id> agent remote-id
 ```
 {{< /expand >}}
   - {{< expand "New NVUE Commands" >}}
@@ -102,7 +106,11 @@ nv show interface <interface-id> packet-trim
 nv show interface <interface-id> packet-trim egress-eligibility
 nv show interface <interface-id> packet-trim egress-eligibility traffic-class
 nv show interface <interface-id> packet-trim egress-eligibility traffic-class <tc-id>
-nv show platform transceiver <interface> temperature
+nv show interface qos-congestion-control
+nv show interface qos-roce-counters
+nv show interface qos-roce-status
+nv show interface qos-roce-status-pool-map
+nv show platform transceiver <interface-id> temperature
 nv show service dhcp-relay <vrf-id> server-group
 nv show service dhcp-relay <vrf-id> server-group <server-group-id>
 nv show service dhcp-relay <vrf-id> server-group <server-group-id> server
@@ -115,8 +123,6 @@ nv show system forwarding packet-trim
 nv show system forwarding packet-trim remark
 nv show router segment-routing
 nv show router segment-routing srv6
-nv show router segment-routing srv6 stats
-nv show router segment-routing srv6 stats sid
 nv show router segment-routing srv6 stats sid <sid>
 nv show router segment-routing srv6 stats no-sid-drops
 nv show router segment-routing srv6 locator
@@ -124,9 +130,7 @@ nv show router segment-routing srv6 locator <locator-name>
 nv show router segment-routing srv6 sid
 nv show router segment-routing srv6 sid <sid>
 nv show router segment-routing static
-nv show router segment-routing static srv6-sid
 nv show router segment-routing static srv6-sid <sid>
-nv show vrf evpn
 nv show vrf evpn  --view=evpn
 ```
 
@@ -144,7 +148,7 @@ nv set router segment-routing srv6 state (enabled|disabled)
 nv set router segment-routing static srv6-sid <sid>
 nv set router segment-routing static srv6-sid <sid> locator-name <value>
 nv set router segment-routing static srv6-sid <sid> behavior (uN|uA)
-nv set router segment-routing static srv6-sid <sid> interface <interface-name>
+nv set router segment-routing static srv6-sid <sid> interface <interface-id>
 nv set service dhcp-relay <vrf-id> server-group <server-group-id>
 nv set service dhcp-relay <vrf-id> server-group <server-group-id> server <server-id>
 nv set service dhcp-relay <vrf-id> server-group <server-group-id> upstream-interface <interface-id>
@@ -283,6 +287,12 @@ Cumulus Linux 5.14 includes the NVUE object model. After you upgrade to Cumulus 
 - Update your automation tools to use NVUE.
 - {{<link url="NVUE-CLI/#configure-nvue-to-ignore-linux-files" text="Configure NVUE to ignore certain underlying Linux files">}} when applying configuration changes.
 - Use Linux and FRR (vtysh) commands instead of NVUE for **all** switch configuration.
+
+### DHCP Relay Configuration
+
+Cumulus Linux 5.14 introduces server groups. In Cumulus Linux 5.13 and earlier, DHCP relay does not use server groups, but instead, forwards all DHCP client requests to every DHCP server within the same VRF. Cumulus Linux 5.14 no longer provides the `nv show service dhcp-relay <vrf-id> server` commands.
+
+If you have configured DHCP relay in Cumulus Linux 5.13 or earlier, the upgrade process migrates the configuration to a new default configuration file called `isc-dhcp-relay-<server-group-id>-<vrf-id>` in the `/etc/default` directory and selects the uplink and downlink interfaces automatically. After upgrade, make sure to review the new configuration and adjust as needed.
 
 ### Cumulus VX
 

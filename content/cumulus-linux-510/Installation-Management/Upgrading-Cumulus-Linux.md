@@ -548,6 +548,37 @@ NVIDIA has not tested running different versions of Cumulus Linux on MLAG peer s
 {{< /tab >}}
 {{< /tabs >}}
 
+## Upgrade a Secure Boot Switch from Cumulus Linux 5.9.3
+
+The SN3700C-S, SN5400, and SN5600 secure boot switch running Cumulus Linux 5.9.3 boots with shim 15.8 that adds entries to the SBAT revocations to prevent the switch from booting shim 15.7 or earlier, which has security vulnerabilities. Cumulus Linux 5.10 boots with shim 15.7.
+
+After upgrading the switch to Cumulus Linux 5.10 from Cumulus Linux 5.9.3 with ONIE, follow the steps below to disable, then enable secure boot **before** the upgraded switch boots.
+
+You can also follow the steps below to recover a secure boot switch that does not boot and that shows the following error:
+
+  ```
+  Verifiying shim SBAT data failed: Security Policy Violation
+  Something has gone seriously wrong: SBAT self-check failed: Security Policy Violation
+  ```
+
+1. On the switch, **disable** SecureBoot in BIOS:
+
+   a. Press Ctrl B through the serial console during system boot while the BIOS version prints.
+
+   b. When prompted, provide the BIOS password. The default password is `admin`.
+
+   c. To disable secure boot, navigate to `Security`, and change `Secure Boot` to `Disabled`.
+
+   d. Select `Save & Exit`.
+
+2. Boot into Cumulus Linux.
+
+3. Run the `mokutil --set-sbat-policy delete` command.
+
+4. Reboot the switch.
+
+5. Follow steps a through d above to **enable** secure boot in BIOS. In step c, change `Secure Boot` to `Enabled`.
+
 ## Roll Back a Cumulus Linux Installation
 
 Even the most well planned and tested upgrades can result in unforeseen problems and sometimes the best solution is to roll back to the previous state. These main strategies require detailed planning and execution:

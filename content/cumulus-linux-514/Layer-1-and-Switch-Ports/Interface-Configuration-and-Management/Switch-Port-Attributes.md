@@ -373,7 +373,7 @@ The following sections describe how to show the current FEC mode, and how to ena
 
 ### Show the Current FEC Mode
 
-To show the FEC mode on a switch port, run the NVUE `nv show interface <interface> link` command.
+To show the FEC mode on a switch port, run the NVUE `nv show interface <interface-id> link` command.
 
 ```
 cumulus@switch:~$ nv show interface swp1 link
@@ -422,7 +422,7 @@ cumulus@switch:~$ sudo ifreload -a
 
 **Runtime Configuration (Advanced)**
 
-Run the `ethtool --set-fec <interface> encoding RS` command. For example:
+Run the `ethtool --set-fec <interface-id> encoding RS` command. For example:
 
 ```
 cumulus@switch:~$ sudo ethtool --set-fec swp1 encoding RS
@@ -466,7 +466,7 @@ cumulus@switch:~$ sudo ifreload -a
 
 **Runtime Configuration (Advanced)**
 
-Run the `ethtool --set-fec <interface> encoding baser` command. For example:
+Run the `ethtool --set-fec <interface-id> encoding baser` command. For example:
 
 ```
 cumulus@switch:~$ sudo ethtool --set-fec swp1 encoding BaseR
@@ -525,7 +525,7 @@ A runtime configuration is non-persistent. The configuration you create does not
 {{< /tab >}}
 {{< /tabs >}}
 
-To show the FEC and auto-negotiation settings for an interface, either run the NVUE `nv show interface <interface> link` command or the Linux `sudo ethtool swp1 | egrep 'FEC|auto'` command:
+To show the FEC and auto-negotiation settings for an interface, either run the NVUE `nv show interface <interface-id> link` command or the Linux `sudo ethtool swp1 | egrep 'FEC|auto'` command:
 
 ```
 cumulus@switch:~$ sudo ethtool swp1 | egrep 'FEC|auto'
@@ -568,7 +568,7 @@ cumulus@switch:~$ sudo ifreload -a
 
 **Runtime Configuration (Advanced)**
 
-Run the `ethtool --set-fec <interface> encoding off` command. For example:
+Run the `ethtool --set-fec <interface-id> encoding off` command. For example:
 
 ```
 cumulus@switch:~$ sudo ethtool --set-fec swp1 encoding off
@@ -1694,7 +1694,7 @@ Maximum 800G ports: 64
 {{< /tabs >}}
 <!-- vale on -->
 {{%notice note%}}
-- You can use a single SFP (10/25/50G) transceiver in a QSFP (100/200/400G) port with *QSFP-to-SFP Adapter* (QSA). Set the port speed to the SFP speed with the `nv set interface <interface> link speed <speed>` command. Do not configure this port as a breakout port.
+- You can use a single SFP (10/25/50G) transceiver in a QSFP (100/200/400G) port with *QSFP-to-SFP Adapter* (QSA). Set the port speed to the SFP speed with the `nv set interface <interface-id> link speed <speed>` command. Do not configure this port as a breakout port.
 - If you break out a port, then reload the `switchd` service on a switch running in *nonatomic* ACL mode, temporary disruption to traffic occurs while the ACLs reinstall.
 - Cumulus Linux does not support port ganging.
 {{%/notice%}}
@@ -1711,7 +1711,7 @@ You can break out (split) a port using the following options:
 If you split a 100G port into four interfaces and auto-negotiation is on (the default setting), Cumulus Linux advertises the speed for each interface up to the maximum speed possible for a 100G port (100/4=25G). You can overide this configuration and set specific speeds for the split ports if necessary.
 
 {{%notice warning%}}
-- Cumulus Linux 5.4 and later uses a new format for port splitting; instead of 1=100G or 1=4x10G, you specify 1=1x or 1=4x. The new format does not support specifying a speed for breakout ports in the `/etc/cumulus/ports.conf` file. To set a speed, either set the `link-speed` parameter for each split port in the `/etc/network/interfaces` file or run the NVUE `nv set interface <interface> link speed <speed>` command.
+- Cumulus Linux 5.4 and later uses a new format for port splitting; instead of 1=100G or 1=4x10G, you specify 1=1x or 1=4x. The new format does not support specifying a speed for breakout ports in the `/etc/cumulus/ports.conf` file. To set a speed, either set the `link-speed` parameter for each split port in the `/etc/network/interfaces` file or run the NVUE `nv set interface <interface-id> link speed <speed>` command.
 {{%/notice%}}
 
 {{< tabs "TabID1281 ">}}
@@ -1817,7 +1817,7 @@ cumulus@switch:~$ nv config apply
 ```
 <!--
 {{%notice note%}}
-You must configure the lanes-per-port at the same time as you configure the breakout. If you want to change the number of lanes per port after you configure a breakout, you must first unset the breakout with the `nv unset interface <port> breakout` and `nv config apply` commands, then reconfigure the breakout and the lanes with the `nv set interface <interface> link breakout <breakout> lanes-per-port <lanes>` command. For example:
+You must configure the lanes-per-port at the same time as you configure the breakout. If you want to change the number of lanes per port after you configure a breakout, you must first unset the breakout with the `nv unset interface <port> breakout` and `nv config apply` commands, then reconfigure the breakout and the lanes with the `nv set interface <interface-id> link breakout <breakout> lanes-per-port <lanes>` command. For example:
 
 ```
 cumulus@switch:~$ nv unset interface swp1 link breakout
@@ -1868,7 +1868,7 @@ To remove a breakout port:
 {{< tabs "TabID1361 ">}}
 {{< tab "NVUE Commands ">}}
 
-1. Run the `nv unset interface <interface>` command. For example:
+1. Run the `nv unset interface <interface-id>` command. For example:
 
    ```
    cumulus@switch:~$ nv unset interface swp1s0
@@ -1878,7 +1878,7 @@ To remove a breakout port:
    cumulus@switch:~$ nv config apply
    ```
 
-2. Run the `nv unset interface <interface> link breakout` command to configure the interface for the original speed. For example:
+2. Run the `nv unset interface <interface-id> link breakout` command to configure the interface for the original speed. For example:
 
    ```
    cumulus@switch:~$ nv unset interface swp1 link breakout
@@ -1978,7 +1978,7 @@ This section shows basic commands for troubleshooting switch ports. For a more c
 
 ### Interface Settings
 
-To see all settings for an interface, run the `nv show interface <interface>` command:
+To see all settings for an interface, run the `nv show interface <interface-id>` command:
 
 ```
 cumulus@switch:~$ nv show interface swp1                          operational        applied
@@ -2114,7 +2114,7 @@ br_l3vni    up            9216  bridge                            IP Address: fe
 
 ### Statistics
 
-To show interface statistics, run the NVUE `nv show interface <interface> counters` command or the Linux `sudo ethtool -S <interface>` command.
+To show interface statistics, run the NVUE `nv show interface <interface-id> counters` command or the Linux `sudo ethtool -S <interface-id>` command.
 
 ```
 cumulus@switch:~$ nv show interface swp1 counters
@@ -2136,7 +2136,7 @@ For more information about showing and clearing interface counters, refer to {{<
 
 ### SFP Port Information
 
-To verify SFP settings, run the NVUE `nv show interface <interface> transceiver` command or the `ethtool -m` command. The following example shows the vendor, type and power output for swp1.
+To verify SFP settings, run the NVUE `nv show interface <interface-id> transceiver` command or the `ethtool -m` command. The following example shows the vendor, type and power output for swp1.
 
 ```
 cumulus@switch:~$ nv show interface swp1 transceiver
@@ -2208,7 +2208,7 @@ The NVIDIA Spectrum-2 (25G) switch only supports RS FEC.
 When you connect an NVIDIA SN4410, SN4700, or SN5600 switch to any Spectrum 1, Spectrum-2, or Spectrum-3 peer switch (with four lanes) using a 4x breakout configuration and the default lanes per port setting, links do not come up. To work around this issue, provide the lanes per port configuration shown below:
 
 ```
-cumulus@switch:~$ nv set interface <interface> link breakout 4x lanes-per-port 1
+cumulus@switch:~$ nv set interface <interface-id> link breakout 4x lanes-per-port 1
 ```
 
 ## Related Information

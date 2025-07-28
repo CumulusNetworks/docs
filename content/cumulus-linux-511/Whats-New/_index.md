@@ -8,11 +8,22 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 - For a list of open and fixed issues in Cumulus Linux 5.11, see the {{<link title="Cumulus Linux 5.11 Release Notes" text="Cumulus Linux 5.11 Release Notes">}}.
 - To upgrade to Cumulus Linux 5.11, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 
+## What's New in Cumulus Linux 5.11.3
+
+Cumulus Linux 5.11.3 provides an important {{<link title="Cumulus Linux 5.11 Release Notes" text="security fix">}}.
+
+- You can use optimized image (two partition) upgrade to upgrade the switch to Cumulus Linux 5.11.3 from Cumulus Linux 5.11.2 or 5.11.1 (without ISSU support).
+- You can use package upgrade to upgrade the switch to Cumulus Linux 5.11.3 from:
+  - 5.11.2, 5.11.1 or 5.11.0
+  - 5.10.1 or 5.10.0 (without ISSU support)
+  - 5.9.2 or 5.9.1 (without ISSU support)
+
+To upgrade to Cumulus Linux 5.11.3 from a release that does not support package upgrade or optimized image upgrade, you can {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="install an image with ONIE">}}.
+
 ## What's New in Cumulus Linux 5.11.2
 
 Cumulus Linux 5.11.2 provides {{<link title="Cumulus Linux 5.11 Packages" text="new SDK and package versions">}}, and includes {{<link title="Cumulus Linux 5.11 Release Notes" text="bug fixes">}}.
 
-{{%notice note%}}
 - You can use optimized image (two partition) upgrade to upgrade the switch to Cumulus Linux 5.11.2 from Cumulus Linux 5.11.1 (without ISSU support).
 - You can use package upgrade to upgrade the switch to Cumulus Linux 5.11.2 from:
   - 5.11.1 or 5.11.0
@@ -20,7 +31,6 @@ Cumulus Linux 5.11.2 provides {{<link title="Cumulus Linux 5.11 Packages" text="
   - 5.9.2 or 5.9.1 (without ISSU support)
 
 To upgrade to Cumulus Linux 5.11.2 from a release that does not support package upgrade or optimized image upgrade, you can {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="install an image with ONIE">}}.
-{{%/notice%}}
 
 ## What's New in Cumulus Linux 5.11.1
 
@@ -551,4 +561,4 @@ Cumulus Linux 5.11 includes the NVUE object model. After you upgrade to Cumulus 
 
 The SN3700C-S, SN5400, and SN5600 secure boot switch running Cumulus Linux 5.11 boots with shim 15.8 that adds entries to the SBAT revocations to prevent the switch from booting shim 15.7 or earlier.
 
-If you want to downgrade from Cumulus Linux 5.11 to a Cumulus Linux release that uses an older shim version (Cumulus Linux 5.10 or earlier), follow the steps in {{<link url="/Upgrading-Cumulus-Linux/#downgrade-a-secure-boot-switch" text="Downgrade a Secure Boot Switch">}} **before** the downgraded switch boots.
+If you want to downgrade from Cumulus Linux 5.11 to a Cumulus Linux release that uses an older shim version (in Cumulus Linux 5.10 or Cumulus Linux 5.9.2 and earlier), follow the steps in {{<link url="/Upgrading-Cumulus-Linux/#downgrade-a-secure-boot-switch" text="Downgrade a Secure Boot Switch">}} **before** the downgraded switch boots.

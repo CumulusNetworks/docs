@@ -59,7 +59,7 @@ swp31      60     0 bps         0.0%     0 pps         0 bps          0.0%      
 swp32      60     0 bps         0.0%     0 pps         0 bps          0.0%      0 pps
 ```
 
-To show the traffic rate and PPS for a specific interface, run the `nv show interface <interface> rates` command.
+To show the traffic rate and PPS for a specific interface, run the `nv show interface <interface-id> rates` command.
 
 ```
 cumulus@switch:~$ nv show interface swp1 rates
@@ -75,7 +75,7 @@ out-pkts-rate    822.40 kpps
 ```
 
 {{%notice note%}}
-The `nv show interface <interface> rates` command only supports a range of interfaces with the filter option; for example, `nv show interface rates --filter "Interface=swp1|Interface=swp2"`.
+The `nv show interface <interface-id> rates` command only supports a range of interfaces with the filter option; for example, `nv show interface rates --filter "Interface=swp1|Interface=swp2"`.
 {{%/notice%}}
 
 You can configure the load interval you want to use to calculate interface rates with the `nv set system counter rates load-interval` command. You can specify a value between 1 and 600. The default load interval is 60 seconds.
@@ -117,7 +117,7 @@ To disable logging, either:
 To exclude an interface so that it does not come up when you boot the switch or when you start, stop, or reload the networking service:
 
 1. Create a file in the `/etc/systemd/system/networking.service.d` directory (for example, `/etc/systemd/system/networking.service.d/override.conf`).
-2. Add the lines `ExecStart=/sbin/ifup -a -X <interface>` and `ExecStop=/sbin/ifdown -a -X <interface>` to the file. The following example stops eth0 from coming up:
+2. Add the lines `ExecStart=/sbin/ifup -a -X <interface-id>` and `ExecStop=/sbin/ifdown -a -X <interface-id>` to the file. The following example stops eth0 from coming up:
 
     ```
     [Service]

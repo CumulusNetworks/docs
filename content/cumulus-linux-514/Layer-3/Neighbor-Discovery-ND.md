@@ -463,7 +463,7 @@ garbage-collection-threshold
 
 ## Disable ND
 
-To disable ND, run the NVUE `nv set interface <interface> ip neighbor-discovery enable off` command:
+To disable ND, run the NVUE `nv set interface <interface-id> ip neighbor-discovery enable off` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery enable off
@@ -477,7 +477,7 @@ You can add static IPv6 neighbor table entries for easy management or as a secur
 {{< tabs "TabID476 ">}}
 {{< tab "NVUE Commands ">}}
 
-To create a static neighbor entry for an interface with an IPv6 address associated with a MAC address, run the `nv set interface <interface> neighbor ipv6 <ip-address> lladdr <mac-address>` command.
+To create a static neighbor entry for an interface with an IPv6 address associated with a MAC address, run the `nv set interface <interface-id> neighbor ipv6 <ip-address> lladdr <mac-address>` command.
 
 ```
 cumulus@leaf01:mgmt:~$ nv set interface swp51 neighbor ipv6 fe80::4ab0:2dff:fea2:4c79 lladdr 00:00:5E:00:53:51
@@ -492,7 +492,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp51 neighbor ipv6 fe80::4ab0:2dff:fea2
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
-To delete an entry in the IP neighbor table, run the `nv unset interface <interface> neighbor ipv6 <ip-address>` command:
+To delete an entry in the IP neighbor table, run the `nv unset interface <interface-id> neighbor ipv6 <ip-address>` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv unset interface swp51 neighbor ipv6 fe80::4ab0:2dff:fea2:4c79
@@ -616,7 +616,7 @@ ipv6
     fe80::4ab0:2dff:fea2:4c79  48:b0:2d:a2:4c:79  reachable  is-router
 ```
 
-To show all IPv6 table entries for an interface, run the `nv show interface <interface> neighbor ipv6` command:
+To show all IPv6 table entries for an interface, run the `nv show interface <interface-id> neighbor ipv6` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface swp1 neighbor ipv6
@@ -664,7 +664,7 @@ router-advertisement
   router-preference   high                Hosts use router preference in selection of the default router
 ```
 
-To show prefix configuration for an interface, run the `nv show interface <interface> ip neighbor-discovery prefix <prefix>` command.
+To show prefix configuration for an interface, run the `nv show interface <interface-id> ip neighbor-discovery prefix <prefix>` command.
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32
@@ -677,7 +677,7 @@ router-address      on          Indicates to hosts on the local link that the sp
 valid-lifetime      2000000000  Time in seconds the prefix is valid for on-link determination
 ```
 
-To show Home Agent configuration for an interface, run the `nv show interface <interface> ip neighbor-discovery home-agent` command:
+To show Home Agent configuration for an interface, run the `nv show interface <interface-id> ip neighbor-discovery home-agent` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery home-agent
@@ -687,7 +687,7 @@ lifetime    20000    Lifetime of a home agent in seconds
 preference  100      Home agent's preference value that is used to order the addresses r...
 ```
 
-To show router advertisement configuration for an interface, run the `nv show interface <interface> ip neighbor-discovery router-advertisement` command. The command also shows the number of router advertisement packets sent on the interface and the number of router advertisement and router solicitation packets received on the interface.
+To show router advertisement configuration for an interface, run the `nv show interface <interface-id> ip neighbor-discovery router-advertisement` command. The command also shows the number of router advertisement packets sent on the interface and the number of router advertisement and router solicitation packets received on the interface.
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery router-advertisement
@@ -709,7 +709,7 @@ ra-received           2
 rs-received           1
 ```
 
-To show RDNSS configuration for an interface, run the `nv show interface <interface> ip neighbor-discovery rdnss <address>` command:
+To show RDNSS configuration for an interface, run the `nv show interface <interface-id> ip neighbor-discovery rdnss <address>` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery rdnss 2001:db8:1::100
@@ -718,7 +718,7 @@ cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery rdnss 2001:d
 lifetime  infinite  Maximum time in seconds for which the server may be used for domain...
 ```
 
-To show DNSSL configuration for an interface, run the `nv show interface <interface> ip neighbor-discovery dnssl <domain-suffix>` command:
+To show DNSSL configuration for an interface, run the `nv show interface <interface-id> ip neighbor-discovery dnssl <domain-suffix>` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery dnssl accounting.nvidia.com

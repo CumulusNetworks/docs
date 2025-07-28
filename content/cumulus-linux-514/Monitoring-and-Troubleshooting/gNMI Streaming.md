@@ -230,25 +230,38 @@ Regex for specific keys (such as `“interface-id=swp*”`) is not supported.
 
 Cumulus Linux supports the following metrics:
 <!-- vale off -->
-{{< tabs "TabID200 ">}}
-{{< tab "BGP ">}}
-
-|  Name | Description |
-|------ | ----------- |
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/description` | |
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/last-established` | |
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/sent/last-notification-error-code` | |
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/peer-as` | |
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/peer-group` | |
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/peer-type` | |
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/neighbor-address` | |
-| `/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state/local-as` | |
-
-{{< /tab >}}
+{{< tabs "TabID233 ">}}
 {{< tab "Interface ">}}
 
 |  Name | Description |
 |------ | ----------- |
+| `/interfaces/interface/ethernet/phy/state/ber-time-since-last-clear` | Time since last clear of BER stats (phy layer stats). |
+| `/interfaces/interface/ethernet/phy/state/corrected-bits` | Number of phy corrected bits of an interface by FEC engine.|
+| `/interfaces/interface/ethernet/phy/state/fec-time-since-last-clear` | Time after last clear of FEC stats (phy layer). |
+| `/interfaces/interface/ethernet/phy/state/effective-errors` | Number of phy effective errors of an interface.|
+| `/interfaces/interface/ethernet/phy/state/effective-ber` | Phy effective BER of an interface.|
+| `/interfaces/interface/ethernet/phy/state/rs-fec-uncorrectable-blocks` | Number of RS FEC uncorrectable blocks of an interface. |
+| `/interfaces/interface/ethernet/phy/state/rs-fec-single-error-blocks` | Number of RS FEC uncorrectable blocks of an interface.|
+| `/interfaces/interface/ethernet/phy/state/rs-fec-no-error-blocks` | Number of RS FEC no errors blocks of an interface.|
+| `/interfaces/interface/ethernet/phy/state/lane/fc-fec-corrected-blocks` | Number FC FEC corrected blocks for a given lane of an interface.|
+| `/interfaces/interface/ethernet/phy/state/lane/fc-fec-uncorrected-blocks` | Number of FC FEC uncorrectable blocks for a given lane of an interface. |
+| `/interfaces/interface/ethernet/phy/state/lane/rs-fec-corrected-symbols` | Number of RS FEC corrected symbols for a given lane of an interface.|
+| `/interfaces/interface/ethernet/phy/state/lane/raw-errors` | Number of phy error bits identified for a given lane of an interface.|
+| `/interfaces/interface/ethernet/phy/state/received-bits` | Number of phy total bits received for an interface.|
+| `/interfaces/interface/ethernet/phy/state/symbol-errors` | Number of phy symbol errors for an interface.|
+| `/interfaces/interface/ethernet/phy/state/symbol-ber` | Phy symbol BER for an interface.|
+| `/interfaces/interface/ethernet/phy/state/lane/raw-ber` | Number of phy bit error rates for a given lane of an interface.|
+ `/interfaces/interface/ethernet/phy/state/rs-fec-uncorrectable-blocks` | Number of RS FEC uncorrectable blocks of an interface. |
+| `/interfaces/interface/ethernet/phy/state/rs-fec-single-error-blocks` | Number of RS FEC uncorrectable blocks of an interface.|
+| `/interfaces/interface/ethernet/phy/state/rs-fec-no-error-blocks` | Number of RS FEC no errors blocks of an interface.|
+| `/interfaces/interface/ethernet/phy/state/lane/fc-fec-corrected-blocks` | Number FC FEC corrected blocks for a given lane of an interface.|
+| `/interfaces/interface/ethernet/phy/state/lane/fc-fec-uncorrected-blocks` | Number of FC FEC uncorrectable blocks for a given lane of an interface. |
+| `/interfaces/interface/ethernet/phy/state/lane/rs-fec-corrected-symbols` | Number of RS FEC corrected symbols for a given lane of an interface.|
+| `/interfaces/interface/ethernet/phy/state/lane/raw-errors` | Number of phy error bits identified for a given lane of an interface.|
+| `/interfaces/interface/ethernet/phy/state/received-bits` | Number of phy total bits received for an interface.|
+| `/interfaces/interface/ethernet/phy/state/symbol-errors` | Number of phy symbol errors for an interface.|
+| `/interfaces/interface/ethernet/phy/state/symbol-ber` | Phy symbol BER for an interface.|
+| `/interfaces/interface/ethernet/phy/state/lane/raw-ber` | Number of phy bit error rates for a given lane of an interface.|
 | `/interfaces/interface/state/admin-status` | Admin state of an interface. |
 | `/interfaces/interface/state/counters/in-broadcast-pkts` | Total number of broadcast packets received on an interface.|
 | `/interfaces/interface/state/counters/in-multicast-pkts` | Total number of multicast packets received on an interface.|
@@ -284,170 +297,228 @@ Cumulus Linux supports the following metrics:
 | `/interfaces/interface/state/counters/out-pkts-rate` | Outbound packets per second on an interface. |
 | `/interfaces/interface/state/counters/out-multicast-pkts` | Total number of packets that higher-level protocols requested be transmitted, and which were addressed to a multicast address at this sub-layer, including those that were discarded or not sent. For a MAC layer protocol, this includes both Group and Functional addresses.|
 | `/interfaces/interface/ethernet/state/counters/carrier-transitions` | Number of times since system boot that `ifOperStatus` changed.|
-| `/interfaces/interface/ethernet/phy/state/rs-fec-uncorrectable-blocks` | Number of RS FEC uncorrectable blocks of an interface. |
-| `/interfaces/interface/ethernet/phy/state/rs-fec-single-error-blocks` | Number of RS FEC uncorrectable blocks of an interface.|
-| `/interfaces/interface/ethernet/phy/state/rs-fec-no-error-blocks` | Number of RS FEC no errors blocks of an interface.|
-| `/interfaces/interface/ethernet/phy/state/lane/fc-fec-corrected-blocks` | Number FC FEC corrected blocks for a given lane of an interface.|
-| `/interfaces/interface/ethernet/phy/state/lane/fc-fec-uncorrected-blocks` | Number of FC FEC uncorrectable blocks for a given lane of an interface. |
-| `/interfaces/interface/ethernet/phy/state/lane/rs-fec-corrected-symbols` | Number of RS FEC corrected symbols for a given lane of an interface.|
-| `/interfaces/interface/ethernet/phy/state/corrected-bits` | Number of phy corrected bits of an interface by the FEC engine.|
-| `/interfaces/interface/ethernet/phy/state/effective-errors` | Number of phy effective errors of an interface.|
-| `/interfaces/interface/ethernet/phy/state/effective-ber` | Phy effective BER of an interface.|
-| `/interfaces/interface/ethernet/phy/state/lane/raw-errors` | Number of phy error bits identified for a given lane of an interface.|
-| `/interfaces/interface/ethernet/phy/state/received-bits` | Number of phy total bits received for an interface.|
-| `/interfaces/interface/ethernet/phy/state/symbol-errors` | Number of phy symbol errors for an interface.|
-| `/interfaces/interface/ethernet/phy/state/symbol-ber` | Phy symbol BER for an interface.|
-| `/interfaces/interface/ethernet/phy/state/lane/raw-ber` | Number of phy bit error rates for a given lane of an interface.|
-| `/interfaces/interface/ethernet/phy/state/fec-time-since-last-clear` | Time after last clear of FEC stats(phy layer). |
-| `/interfaces/interface/ethernet/phy/state/ber-time-since-last-clear` | Time after last clear of BER stats(phy layer). |
-| `/interfaces/interface/ethernet/state/auto-negotiate​` | |
-| `/interfaces/interface/ethernet/state/duplex-mode​` | |
-| `/interfaces/interface/ethernet/state/hw-mac-address​` | |
-| `/interfaces/interface/ethernet/state/mac-address​` | |
-| `/interfaces/interface/ethernet/state/negotiated-port-speed​` | |
-| `/interfaces/interface/state/loopback-mode` | |
+| `/interfaces/interface/state/name​` | |
+| `/interfaces/interface/state/type​` |Link-layer interface type. |
+| `/interfaces/interface/state/last-change` | The last time the state of the interface changed.|
+| `/interfaces/interface/ethernet/state/counters/in-jabber-frames` | Number of Jabber frames received on the interface.|
+| `/interfaces/interface/ethernet/state/hw-mac-address` | System defined default MAC address for the interface. |
+| `/interfaces/interface/ethernet/state/mac-address​` | MAC address for the interface.|
+| `/interfaces/interface/state/protodown​` | Indicates if the interface is administratively held down by a protocol or system process rather than by user action.|
 
 {{< /tab >}}
 {{< tab "LLDP">}}
 
 |  Name | Description |
 |------ | ----------- |
+| `/lldp/interfaces/interface/neighbors/neighbor/capabilities/capability[name=<capability>]/state/enabled` | If the corresponding system capability is enabled on the neighbor.|
+| `/lldp/interfaces/interface/neighbors/neighbor/state/age` | LLDP neighbor age after discovery.|
+| `/lldp/interfaces/interface/neighbors/neighbor/state/chassis-id` | Chassis component of the endpoint identifier associated with the transmitting LLDP agent.|
+| `/lldp/interfaces/interface/neighbors/neighbor/state/chassis-id-type` | Format and source of the chassis identifier string.|
+| `/lldp/interfaces/interface/neighbors/neighbor/state/management-address/type`| Enumerated value for the network address type identified in this TLV. |
+| `/lldp/interfaces/interface/neighbors/neighbor/state/port-description` | Binary string containing the actual port identifier for the port from which this LLDP PDU was transmitted.|
+| `/lldp/interfaces/interface/neighbors/neighbor/state/port-id`| Port component of the endpoint identifier associated with the transmitting LLDP agent. |
+| `/lldp/interfaces/interface/neighbors/neighbor/state/port-id-type` | Format and source of the remote port ID string. |
+| `/lldp/interfaces/interface/neighbors/neighbor/state/system-description` | Description of the network entity associated with the transmitting LLDP agent.|
+| `/lldp/interfaces/interface/neighbors/neighbor/state/system-name` | Administratively assigned name of the system associated with the transmitting LLDP agent.|
+| `/lldp/interfaces/interface/neighbors/neighbor/state/ttl` | Indicates how long information from the neighbor is considered valid. |
+| `/lldp/interfaces/interface[name]/state/enabled`​ | If LLDP is enabled on the interface. |
 | `/lldp/state/chassis-id` | The chassis component of the endpoint identifier associated with the transmitting LLDP agent.|
 | `/lldp/state/chassis-id-type` | The format and source of the chassis identifier string.|
+| `/lldp/state/enabled`| If LLDP is enabled globally. |
 | `/lldp/state/system-description` | Description of the network entity including the full name and version identification of the system's hardware type, software operating system, and networking software.|
 | `/lldp/state/system-name` | Administratively assigned name for the system.|
-| `/lldp/interfaces/interface/neighbors/neighbor[id=<id>]/state/age` | LLDP neighbor age after discovery.|
-| `/lldp/interfaces/interface/neighbors/neighbor[id=<id>]/state/management-address/type`| Enumerated value for the network address type identified in this TLV. |
-| `/lldp/interfaces/interface/neighbors/neighbor[id=<id>]/state/chassis-id` | Chassis component of the endpoint identifier associated with the transmitting LLDP agent.|
-| `/lldp/interfaces/interface/neighbors/neighbor[id=<id>]/state/chassis-id-type` | Format and source of the chassis identifier string.|
-| `/lldp/interfaces/interface/neighbors/neighbor[id=<id>]/state/system-name` | Administratively assigned name of the system associated with the transmitting LLDP agent.|
-| `/lldp/interfaces/interface/neighbors/neighbor[id=<id>]/state/system-description` | Description of the network entity associated with the transmitting LLDP agent.|
-| `/lldp/interfaces/interface/neighbors/neighbor[id=<id>]/state/port-id`| Port component of the endpoint identifier associated with the transmitting LLDP agent. |
-| `/lldp/interfaces/interface/neighbors/neighbor[id=<id>]/state/port-description` | Binary string containing the actual port identifier for the port from which this LLDP PDU was transmitted.|
-| `/lldp/interfaces/interface/neighbors/neighbor[id=<id>]/state/port-id-type` | Format and source of the remote port ID string. |
-| `/lldp/interfaces/interface/neighbors/neighbor[id=<id>]/state/ttl` | Indicates how long information from the neighbor is considered valid. |
-| `/lldp/interfaces/interface/neighbors/neighbor[id=<id>]/capabilities/capability[name=<capability>]/state/enabled` | If the corresponding system capability is enabled on the neighbor.|
-| `/lldp/interfaces/interface[id=<id>]/state/enabled`​ ||
-| `/lldp/state/enabled` |  |
 
 {{< /tab >}}
 {{< tab "Platform">}}
 
 |  Name | Description |
 |------ | ----------- |
-| `/components/component[name='PSU1']/state/name` | PSU Name.|
-| `/components/component[name='PSU1']/state/oper-status` | PSU Status. |
-| `/components/component[name='PSU1']/state/description` |  PSU description. |
-| `/components/component[name='PSU1']/power-supply/state/capacity` | PSU capacity in watts. |
-| `/components/component[name='PSU1']/power-supply/state/output-current` | PSU current in amperes. |
-| `/components/component[name='PSU1']/power-supply/state/output-voltage` | PSU voltage in volts. |
-| `/components/component[name='PSU1']/power-supply/state/output-power` | PSU power in watts. |
-| `/components/component[name='fan0']/state/name` | Fan name. |
-| `/components/component[name='fan0']/state/oper-status` | Fan Status. |
-| `/components/component[name='fan0']/state/description` | Fan Description. |
-| `/components/component[name='fan0']/fan/state/speed` | Current (instantaneous) fan speed. |
-| `/components/component[name='temp-sensor0']/state/name` |  Temperature sensor name.|
-| `/components/component[name='temp-sensor0'']/state/oper-status` |  Temperature sensor operational status. |
-| `/components/component[name='temp-sensor0'']/state/description` | Temperature sensor description. |
-| `/components/component[name='temp-sensor0']/state/temperature/instant` | Instant temperature.  |
-| `/components/component[name='temp-sensor0']/state/temperature/alarm-status` | Temperature sensor alarm status. |
-| `/components/component[name='transceiver+panelport#']/transceiver/physical-channels/channel[no]/state/input-power/instant` | Input optical power of a physical channel in units of 0.01dBm, which may be associated with individual physical channels or an aggregate of multiple physical channels. |
-| `/components/component[name='transceiver+panelport#']/transceiver/physical-channels/channel[no]/state/laser-bias-current/instant` | Current applied by the system to the transmit laser to achieve the output power. The current is expressed in mA with up to two decimal precision. |
-| `/components/component[name='transceiver+panelport']/transceiver/physical-channels/channel[no]/state/output-power/instant` | Output optical power of a physical channel in units of 0.01dBm, which might be associated with individual physical channels or an aggregate of multiple physical channels. |
-| `/components/component[name]/state/software-version` | |
-| `/components/component/state/last-reboot-reason​` | |
-| `/components/component/state/last-reboot-time​` | |
-| `/components/component/state/temperature/avg​` | |
-| `/components/component/state/temperature/max​` | |
-| `/components/component/state/temperature/min​` | |
-| `/components/component/power-supply/state/input-voltage` | |
-| `/components/component/state/firmware-version​` | |
-| `/components/component/transceiver/state/date-code​` | |
-| `/components/component/transceiver/state/form-factor​` | |
-| `/components/component/transceiver/state/serial-no​` | |
-| `/components/component/transceiver/state/vendor​` | |
-| `/components/component/transceiver/state/vendor-part​` | |
-| `/components/component/transceiver/state/vendor-rev​` | |
-| `/components/component/transceiver/state/present​` | |
-| `/components/component/transceiver/state/enabled​` | |
-| `/components/component/transceiver/state/supply-voltage/instant` | |
-| `/components/component/transceiver/physical-channels/channel/state/rx-los` | |
-| `/components/component/transceiver/physical-channels/channel/state/rx-cdr-lol` | |
-| `/components/component/transceiver/host-channels/channel/state/tx-los` | |
-| `/components/component/transceiver/host-channels/channel/state/tx-cdr-lol` | |
+| `/components/component[name]/state/name` | List of components, keyed by component name.|
+| `/components/component[name]/fan/state/speed` | Current (instantaneous) fan speed. |
+| `/components/component[name]/power-supply/state/capacity` | Maximum power capacity of the power supply. |
+| `/components/component[name]/power-supply/state/input-current` |Input current draw of the power supply.|
+| `/components/component[name]/power-supply/state/input-voltage` | Input voltage to power supply.|
+| `/components/component[name]/power-supply/state/output-current` | Output current supplied by the power supply. |
+| `/components/component[name]/power-supply/state/output-power` | Output power supplied by the power supply. |
+| `/components/component[name]/power-supply/state/output-voltage` | Output voltage supplied by the power supply.|
+| `/components/component[name]/state/description` |  System-supplied description of the component. |
+| `/components/component[name]/state/firmware-version` | For hardware components, the version of associated firmware running on the component, if applicable.|
+| `/components/component[name]/state/last-reboot-reason​` | The reason for the component's last reboot.|
+| `/components/component[name]/state/last-reboot-time​` | The time of the last reboot. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/components/component[name]/state/name` | Device name for the component. |
+| `/components/component[name]/state/oper-status` | If applicable, the current operational status of the component. |
+| `/components/component[name]/state/temperature/alarm-severity` | Severity of the current alarm.|
+| `/components/component[name]/state/temperature/alarm-status` | A value of `true` indicates the alarm has been raised or asserted. The value is false when the alarm is cleared. |
+| `/components/component[name]/state/temperature/alarm-threshold` | The threshold value crossed for this alarm. |
+| `/components/component[name]/state/temperature/avg​` | Arithmetic mean value of the statistic over the sampling period.|
+| `/components/component[name]/state/temperature/instant` | Instantaneous value of the statistic.  |
+| `/components/component[name]/state/temperature/interval` | If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system.|
+| `/components/component[name]/state/temperature/max​` | The maximum value of the statistic over the sampling period.|
+| `/components/component[name]/state/temperature/max​-time` | Absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/components/component[name]/state/temperature/min​` | Minimum value of the statistic over the sampling period.|
+| `/components/component[name]/state/temperature/min-time​` | Absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/components/component[name]/transceiver/host-lanes/lane[lane-number]/state/tx-cdr-lol` |Transmitter clock-and-data-recovery loss-of-lock flag.|
+| `/components/component[name]/transceiver/host-lanes/lane[lane-number]/state/tx-los` |Transmitter loss-of-signal flag.|
+| `/components/component[name]/transceiver/physical-channels/channel[index]/state/input-power/instant` | Input optical power of a physical channel in units of 0.01dBm, which may be associated with individual physical channels or an aggregate of multiple physical channels. |
+| `/components/component[name]/transceiver/physical-channels/channel[index]/state/laser-bias-current/instant` | Current applied by the system to the transmit laser to achieve the output power. The current is expressed in mA with up to two decimal precision. |
+| `/components/component[name]/transceiver/physical-channels/channel[index]/state/output-power/instant` | Output optical power of a physical channel in units of 0.01dBm, which might be associated with individual physical channels or an aggregate of multiple physical channels. |
+| `/components/component[name]/transceiver/physical-channels/channel[index]/state/rx-cdr-lol` | Receiver clock-and-data-recovery loss-of-lock flag.|
+| `/components/component[name]/transceiver/physical-channels/channel[index]/state/rx-los` | Receiver loss-of-signal flag.|
+| `/components/component[name]/transceiver/state/date-code​` | Representation of the transceiver date code, typically stored as YYMMDD. The time portion of the value is undefined and not intended to be read. |
+| `/components/component[name]/transceiver/state/enabled​` | Turns power on or off to the transceiver. Provides a means to power on or off the transceiver (in the case of SFP, SFP+, QSFP) or enable high-power mode (in the case of CFP, CFP2, CFP4). This is optionally supported (device can choose to always enable). True = power on - high power. False = powered off.|
+| `/components/component[name]/transceiver/state/ethernet-pmd`| Ethernet PMD (physical medium dependent sublayer) that the transceiver supports. |
+| `/components/component[name]/transceiver/state/form-factor​` | Type of optical transceiver used on this port. If the client port is built into the device and not pluggable, `non-pluggable` is the corresponding state. If a device port supports multiple form factors, the value of the transceiver installed is reported. If no transceiver is present, the value of the highest rate form factor is reported. |
+| `/components/component[name]/transceiver/state/present​` | Indicates if a transceiver is present in the specified client port.|
+| `/components/component[name]/transceiver/state/serial-number​` | Transceiver serial number. 16-octet field that contains ASCII characters, left-aligned and padded on the right with ASCII spaces (20h). If part serial number is undefined, all 16 octets = 0h.|
+| `/components/component[name]/transceiver/state/supply-voltage/instant` | Input voltage as measured by the transceiver.|
+| `/components/component[name]/transceiver/state/vendor​` | Full name of transceiver vendor. |
+| `/components/component[name]/transceiver/state/vendor-part​` | Transceiver vendor part number.|
+| `/components/component[name]/transceiver/state/vendor-rev​` | Transceiver vendor revision number. |
 
 {{< /tab >}}
 {{< tab "QoS">}}
 
 |  Name | Description |
 |------ | ----------- |
-| `/qos/interfaces/interface/state/switch-priority/counters/out-pause-pkts`| Number of pause packets for the priority class in the egress queue.|
-| `/qos/interfaces/interface/state/priority-group/counters/watermark-max` | High watermark of cells used in a priority group since last time watermarks were reset. |
-| `/qos/interfaces/interface/output/queues/queue/state/watermark-max` | High watermark of cells used in a queue since last time watermarks were reset. |
-| `qos/interfaces/interface/output/queues/queue/state/ecn-marked-pkts`| Number of ECN marked packets from this egress queue. If the ECN counter is not enabled, the counter value is 0.|
-| `qos/interfaces/interface/output/queues/queue/state/transmit-octets`| Number of transmitted bytes in the egress queue of an interface.|
-| `qos/interfaces/interface/output/queues/queue/state/transmit-pkts`| Number of transmitted packets in the egress queue of an interface. |
-| `/qos/interfaces/interface/output/queues/queue/state/wred-dropped-pkts` | Number of packets discarded from this egress queue of an interface. |
-| `/qos/interfaces/interface/output/queues/queue/state/no-buffer-uc-dropped-pkts` | Number of packets discarded from this egress queue when there is no buffer left in the interface. |
+| `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/ecn-marked-pkts`| Number of ECN marked packets from this egress queue. If the ECN counter is not enabled, the counter value is 0.|
+| `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/no-buffer-uc-dropped-pkts` | Number of packets discarded from this egress queue when there is no buffer left in the interface. |
 | `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/time-since-last-clear` | Time since last clear of watermarks in a queue.|
+| `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/transmit-octets`| Number of transmitted bytes in the egress queue of an interface.|
+| `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/transmit-pkts`| Number of transmitted packets in the egress queue of an interface. |
+| `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/watermark-max` | High watermark of cells used in a priority group since last time watermarks were reset. |
+| `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/wred-dropped-pkts` | Number of packets discarded from this egress queue of an interface. |
 | `/qos/interfaces/interface[interface-id]/state/priority-group[priority_group]/counters/time-since-last-clear` | Time since last clear of watermarks in a priority group.|
+| `/qos/interfaces/interface[interface-id]/state/priority-group[priority_group]/counters/watermark-max` | High watermark of cells used in a queue since last time watermarks were reset. |
+| `/qos/interfaces/interface[interface-id]/state/switch-priority[priority]/counters/in-pause-pkts` | Number of pause packets for the priority class in the ingress queue.|
+| `/qos/interfaces/interface[interface-id]/state/switch-priority[priority]/counters/out-pause-pkts`| Number of pause packets for the priority class in the egress queue.|
+| `/qos/packet-trimming/state/counters/trimmed-unicast-pkts`| The number of trimmed packets.|
 
 {{< /tab >}}
 {{< tab "Router">}}
 
 |  Name | Description |
 |------ | ----------- |
-| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/state/session-state` | Operational state of the BGP peer.|
-| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/state/established-transitions` | Number of transitions to the established state for the neighbor session.|
-| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/state/messages/sent/UPDATE` | Number of BGP UPDATE messages announcing, withdrawing, or modifying paths exchanged.|
-| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/messages/received/UPDATE` | Number of BGP UPDATE messages announcing, withdrawing, or modifying paths exchanged.|
-| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/state/queues/input` | Number of messages received from the peer currently queued.|
-| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/state/queues/output` | Number of messages queued to be sent to the peer.|
-| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/afi-safis/afi-safi[afi-safi-name=<afi-safi-name>]/state/prefixes/received` | Number of prefixes received from the neighbor after applying policies (the number of prefixes present in the post-policy Adj-RIB-In for the neighbor).|
-| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/afi-safis/afi-safi[afi-safi-name=<afi-safi-name>]/state/prefixes/sent` | Number of prefixes advertised to the neighbor after applying policies (the number of prefixes present in the post-policy Adj-RIB-Out for the neighbor).|
-| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/afi-safis/afi-safi[afi-safi-name=<afi-safi-name>]/state/prefixes/installed` | Number of prefixes received from the neighbor that are installed in the network instance RIB and actively used for forwarding. |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp` |Top-level configuration and state for the BGP router. |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/afi-safis/afi-safi[afi-safi-name]/state/prefixes/installed` | The number of prefixes received from the neighbor that are installed in the network instance RIB and actively used for forwarding.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/afi-safis/afi-safi[afi-safi-name]/state/prefixes/received` | The number of prefixes that are received from the neighbor after applying any policies. This count is the number of prefixes present in the post-policy Adj-RIB-In for the neighbor.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/afi-safis/afi-safi[afi-safi-name]/state/prefixes/sent` | The number of prefixes that are advertised to the neighbor after applying any policies. This count is the number of prefixes present in the post-policy Adj-RIB-Out for the neighbor.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state` | BGP neighbor state.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/description` | BGP neighbor state description.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/established-transitions` | Number of transitions to the Established state for the neighbor session. |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/last-established` | The time that the BGP session last transitioned in or out of the Established state. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC). |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/local-as` | The local autonomous system number used when establishing sessions with the remote peer or peer group, if this differs from the global BGP router autonomous system number.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages` | Counters for BGP messages sent and received from the neighbor.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/received` | Counters for BGP messages received from the neighbor. |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/received/last-notification-error-code` | The last BGP error sent or received on the peering session.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/received/UPDATE` | Number of BGP UPDATE messages announcing, withdrawing, or modifying paths exchanged.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/sent` | Counters relating to BGP messages sent to the neighbor.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/sent/last-notification-error-code` | The last BGP error sent or received on the peering session.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/sent/UPDATE` | Number of BGP UPDATE messages announcing, withdrawing or modifying paths exchanged.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/neighbor-address` | Address of the BGP peer, either in IPv4 or IPv6.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/peer-as` | AS number of the peer.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/peer-group` | The peer-group with which this neighbor is associated|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/peer-type` | Explicitly designate the peer or peer group as internal (iBGP) or external (eBGP).|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/queues/input` | The number of messages received from the peer currently queued.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/queues/output` | The number of messages queued to be sent to the peer.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/session-state` | Operational state of the BGP peer. |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor/state` | Operational state data for interface hold-time.|
+|`/network-instances/network-instance[name]/srv6/global/state/counters/no-sid-drops` | The number of packets dropped due to no matching SRv6 SID.|
+| `/network-instances/network-instance[name]/srv6/sids/sid[id]/id`| The SRv6 SID (segment identifier).|
+| `/network-instances/network-instance/srv6/sids/sid[id]/state/counters/in-pkts` | The number of packets received for this SRv6 SID.|
+| `/system/adaptive-routing/state/counters/congestion-change` | The number of adaptive routing change events that triggered due to congestion or link down.|
 
 {{< /tab >}}
 {{< tab "System">}}
 
 |  Name | Description |
 |------ | ----------- |
-| `/system/state/up-time` | |
+| `/system/state/up-time` |Continuous operational time of the system since last reboot. |
 | `/system/state/hostname` | System hostname. |
 | `/system/state/software-version` | System software version. |
 | `/system/state/boot-time` | System boot time. |
 | `/system/state/current-datetime` | Current system date and time. |
 | `/system/control-plane-traffic/ingress/ipv4/counters/`<br>`/system/control-plane-traffic/ingress/ipv6/counters/` | Number of input IP datagrams discarded in software including those received in error.|
-| `/system/cpus/cpu[name=<cpu_id>]/state/user/seconds` | CPU user Seconds |
-| `/system/cpus/cpu[name=<cpu_id>]/state/kernel/seconds` | CPU kernel seconds. |
-| `/system/cpus/cpu[name=<cpu_id>]/state/nice/seconds` | CPU Nice seconds. |
-| `/system/cpus/cpu[name=<cpu_id>]/state/idle/seconds` | CPU idle seconds. |
-| `/system/cpus/cpu[name=<cpu_id>]/state/wait/seconds` | CPU wait seconds.|
-| `/system/cpus/cpu[name=<cpu_id>]/state/hardware-interrupt/seconds` | CPU hardware interrupt seconds. |
-| `/system/cpus/cpu[name=<cpu_id>]/state/software-interrupt/seconds` | CPU software interrupt seconds.|
-| `/system/cpus/cpu/state/total​` | |
-| `/system/cpus/cpu/state/total/instant​` | |
-| `/system/cpus/cpu/state/total/avg​​` | |
-| `/system/cpus/cpu/state/total/min​​` | |
-| `/system/cpus/cpu/state/total/max​​` | |
-| `/system/cpus/cpu/state/user/instant​​` | |
-| `/system/cpus/cpu/state/user/avg​​` | |
-| `/system/cpus/cpu/state/user/min​​` | |
-| `/system/cpus/cpu/state/user/max​​` | |
-| `/system/cpus/cpu/state/kernel/instant​​` | |
-| `/system/cpus/cpu/state/kernel/avg​​` | |
-| `/system/cpus/cpu/state/kernel/min​​` | |
-| `/system/cpus/cpu/state/kernel/max​​` | |
-| `/system/memory/state/free` | Free memory. |
-| `/system/memory/state/physical` | Physical memory.|
+| `/system/cpus/cpu[index]/state/hardware-interrupt/avg` | The arithmetic mean value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/hardware-interrupt/instant` | The instantaneous percentage value.|
+| `/system/cpus/cpu[index]/state/hardware-interrupt/interval` | If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system.|
+| `/system/cpus/cpu[index]/state/hardware-interrupt/max` | The maximum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/hardware-interrupt/max-time` | The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/hardware-interrupt/min` | The minimum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/hardware-interrupt/min-time` | The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/hardware-interrupt/seconds` | The total number of seconds spent servicing hardware interrupts.|
+| `/system/cpus/cpu[index]/state/idle/avg` | The arithmetic mean value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/idle/instant` | The instantaneous percentage value.|
+| `/system/cpus/cpu[index]/state/idle/interval` | If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system.|
+| `/system/cpus/cpu[index]/state/idle/max` | The maximum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/idle/max-time` | The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/idle/min` | The minimum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/idle/min-time` | The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/idle/seconds` | The total number of seconds spent idle.|
+| `/system/cpus/cpu[index]/state/kernel/avg` | The arithmetic mean value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/kernel/instant` | The instantaneous percentage value.|
+| `/system/cpus/cpu[index]/state/kernel/interval` |If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system. |
+| `/system/cpus/cpu[index]/state/kernel/max` | The maximum value of the percentage measure of the statistic over the time interval. |
+| `/system/cpus/cpu[index]/state/kernel/max-time` | The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/kernel/min` | The minimum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/kernel/min-time` | The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/kernel/seconds` | The total number of seconds spent running in kernel space.|
+| `/system/cpus/cpu[index]/state/nice/avg` | The arithmetic mean value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/nice/instant` |The instantaneous percentage value. |
+| `/system/cpus/cpu[index]/state/nice/interval` | If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system.|
+| `/system/cpus/cpu[index]/state/nice/max` | The maximum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/nice/max-time` | The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/nice/min` | The minimum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/nice/min-time` | The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/nice/seconds` | The total number of seconds spent running low-priority (niced) user processes.|
+| `/system/cpus/cpu[index]/state/software-interrupt/avg` | The arithmetic mean value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/software-interrupt/instant` | The instantaneous percentage value.|
+| `/system/cpus/cpu[index]/state/software-interrupt/interval` | If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system.|
+| `/system/cpus/cpu[index]/state/software-interrupt/max` | The maximum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/software-interrupt/max-time` | The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/software-interrupt/min` | The minimum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/software-interrupt/min-time` | The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/software-interrupt/seconds` | The total number of seconds spent servicing software interrupts.|
+| `/system/cpus/cpu[index]/state/total/avg` | The arithmetic mean value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/total/instant` |The instantaneous percentage value. |
+| `/system/cpus/cpu[index]/state/total/interval` | If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system.|
+| `/system/cpus/cpu[index]/state/total/max` | The maximum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/total/max-time` | The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/total/min` | The minimum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/total/min-time` | The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/user/avg` | The arithmetic mean value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/user/instant` | The instantaneous percentage value.|
+| `/system/cpus/cpu[index]/state/user/interval` | If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system.|
+| `/system/cpus/cpu[index]/state/user/max` | The maximum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/user/max-time` | The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/user/min` | The minimum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/user/min-time` | The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/user/seconds` | The total number of seconds spent running in user space.|
+| `/system/cpus/cpu[index]/state/wait/avg` | The arithmetic mean value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/wait/instant` | The instantaneous percentage value.|
+| `/system/cpus/cpu[index]/state/wait/interval` | If supported by the system, this reports the time interval over which the minimum, maximum, and average statistics are computed by the system.|
+| `/system/cpus/cpu[index]/state/wait/max` | The maximum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/wait/max-time` | The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/wait/min` | The minimum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/wait/min-time` | The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/wait/seconds` | The total number of seconds spent waiting I/O.|
+| `/system/memory/state/free` | Memory that is not used and is available for allocation. |
+| `/system/memory/state/physical` | The total physical memory available on the system.|
 | `/system/memory/state/reserved` | Memory reserved for system use. |
-| `/system/memory/state/used​` | |
-| `/system/mount-points/mount-point[name='filesystem0']/state/utilized` | |
-| `/system/mount-points/mount-point[name='filesystem0']/state/name` | Mount point name.|
-| `/system/mount-points/mount-point[name='filesystem0']/state/storage-component` | A reference to the hosting component within the hierarchy. |
-| `/system/mount-points/mount-point[name='filesystem0']/state/size` | Total size of the initialized filesystem.|
-| `/system/mount-points/mount-point[name='filesystem0']/state/available` | Amount of unused space on the filesystem.|
-| `/system/mount-points/mount-point[name='filesystem0']/state/type` | Filesystem type used for storage such flash, hard disk, tmpfsor or ramdisk, or remote or network based storage.|
+| `/system/memory/state/used​` | Memory that has been used and not available for allocation.|
+| `/system/mount-points/mount-point[name]/state/utilized` | The amount of space currently in use on the filesystem.|
+| `/system/mount-points/mount-point[name]/state/name` | Mount point name.|
+| `/system/mount-points/mount-point[name]/state/storage-component` | A reference to the hosting component within the hierarchy. |
+| `/system/mount-points/mount-point[name]/state/size` | Total size of the initialized filesystem.|
+| `/system/mount-points/mount-point[name]/state/available` | The amount of unused space on the filesystem.|
+| `/system/mount-points/mount-point[name]/state/type` | Filesystem type used for storage such flash, hard disk, tmpfsor or ramdisk, or remote or network based storage.|
+| `/system/processes/process[pid]/state/cpu-usage-user` | CPU time consumed by this process in user mode in nanoseconds. |
+| `/system/processes/process[pid]/state/cpu-usage-system` | CPU time consumed by this process in kernel mode in nanoseconds. |
+| `/system/processes/process[pid]/state/start-time` | Start time of the process in seconds since epoch. |
+| `/system/processes/process[pid]/state/name` | Process name. |
+| `/system/processes/process[pid]/state/pid`| Process PID |
+| `/system/processes/process[pid]/state/memory-usage` | Bytes allocated and still in use by the process. |
+| `/system/processes/process[pid]/state/memory-utilization` | Percentage of RAM that the process is using. |
+| `/system/processes/process[pid]/state/cpu-utilization` | Percentage of CPU that the process is using. |
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -462,20 +533,10 @@ You can use your gNMI client on a host to request capabilities and data to which
 
 #### Dial-in Mode Example
 
-The following example shows a Dial-in Mode Subscribe request with TLS:
+The following example shows a Dial-in Mode Subscribe request.
 
 ```
-gnmic subscribe --mode stream --path "/qos/interfaces/interface[interface-id=swp1]/output/queues/queue[name=1]/state/transmit-octets" -i 10s --tls-cert gnmi_client.crt --tls-key gnmi_client.key -u cumulus -p ******* --auth-scheme Basic --skip-verify -a 10.188.52.108:9339
-```
-
-The following example shows a Dial-in Mode Subscribe request without TLS:
-
-{{%notice note%}}
-NVIDIA recommends using TLS. To test without TLS, you must also edit the NGINX configuration file on the switch.
-{{%/notice%}}
-
-```
-gnmic subscribe --mode stream --path "/qos/interfaces/interface[interface-id=swp1]/output/queues/queue[name=1]/state/transmit-octets" -i 10s --insecure -u cumulus -p ******* --auth-scheme Basic -a 10.188.52.108:9339
+gnmic subscribe --mode stream -i 10s --tls-cert cert/umf-crt.pem --tls-key cert/umf-key.pem -u cumulus -p NvidiaR0cks! --skip-verify -a  192.168.200.3:9339  --timeout 30s --prefix "system/cpus/cpu[index=0]" --path "state"
 ```
 
 #### Subscription Example
@@ -483,23 +544,61 @@ gnmic subscribe --mode stream --path "/qos/interfaces/interface[interface-id=swp
 The following example shows a subscription response:
 <!-- vale off -->
 ```
-{ 
-  "sync-response": true 
-} 
-{ 
-  "source": "10.188.52.108:9339", 
-  "subscription-name": "default-1737725382", 
-  "timestamp": 1737725390247535267, 
-  "time": "2025-01-24T13:29:50.247535267Z", 
-  "updates": [ 
-    { 
-      "Path": "qos/interfaces/interface[interface-id=swp1]/output/queues/queue[name=1]/state/transmit-octets", 
-      "values": { 
-        "qos/interfaces/interface/output/queues/queue/state/transmit-octets": 0 
-      } 
-    } 
-  ] 
-} 
+{
+  "source": "192.168.200.3:9339",
+  "subscription-name": "default-1752848659",
+  "timestamp": 1752848657055588821,
+  "time": "2025-07-18T14:24:17.055588821Z",
+  "prefix": "system/cpus/cpu[index=0]",
+  "updates": [
+    {
+      "Path": "state/kernel/max-time",
+      "values": {
+        "state/kernel/max-time": 1752848657055588900
+      }
+    },
+    {
+      "Path": "state/kernel/max",
+      "values": {
+        "state/kernel/max": 0.33359713753109865
+      }
+    },
+    {
+      "Path": "state/kernel/min",
+      "values": {
+        "state/kernel/min": 0
+      }
+    },
+    {
+      "Path": "state/kernel/avg",
+      "values": {
+        "state/kernel/avg": 0.33359713753109865
+      }
+    },
+    {
+      "Path": "state/kernel/min-time",
+      "values": {
+        "state/kernel/min-time": 1752848657055588900
+      }
+    },
+    {
+      "Path": "state/kernel/seconds",
+      "values": {
+        "state/kernel/seconds": 595
+      }
+    },
+    {
+      "Path": "state/kernel/instant",
+      "values": {
+        "state/kernel/instant": 0.33359713753109865
+      }
+    },
+    {
+      "Path": "state/user/avg",
+      "values": {
+        "state/user/avg": 0.2680692284537066
+      }
+    },
 ...
 ```
 

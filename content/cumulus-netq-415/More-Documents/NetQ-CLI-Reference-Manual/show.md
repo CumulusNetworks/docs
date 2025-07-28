@@ -1757,12 +1757,14 @@ nvidia@switch:~$ netq show interface-stats swp2
 Matching proc_dev_stats records:
 Hostname          Interface                 RX Packets           RX Drop              RX Errors            TX Packets           TX Drop              TX Errors            Last Updated
 ----------------- ------------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
-border01          swp2                      0                    0                    0                    0                    0                    0                    Tue Dec 15 15:47:23 2020
-border02          swp2                      0                    0                    0                    0                    0                    0                    Tue Dec 15 15:47:09 2020
-fw1               swp2                      6327111              0                    0                    6324616              0                    0                    Tue Dec 15 15:47:07 2020
-fw2               swp2                      0                    0                    0                    0                    0                    0                    Tue Dec 15 15:46:54 2020
-spine03           swp2                      5097329              0                    0                    5124570              0                    0                    Tue Dec 15 15:47:00 2020
-spine04           swp2                      5167364              0                    0                    5111678              0                    0                    Tue Dec 15 15:47:18 2020
+border01          swp2                      0                    0                    0                    0                    0                    0                    Sat Jul 26 00:53:04 2025
+border02          swp2                      0                    0                    0                    0                    0                    0                    Sat Jul 26 00:53:04 2025
+leaf01            swp2                      12892743             0                    0                    19553147             0                    0                    Sat Jul 26 00:52:54 2025
+leaf02            swp2                      12845240             0                    0                    13080721             0                    0                    Sat Jul 26 00:52:45 2025
+leaf03            swp2                      15198245             0                    0                    22701421             0                    0                    Sat Jul 26 00:53:01 2025
+leaf04            swp2                      12898835             0                    0                    13503975             0                    0                    Sat Jul 26 00:53:06 2025
+spine01           swp2                      9607081              0                    0                    9704415              0                    0                    Sat Jul 26 00:52:48 2025
+spine02           swp2                      9658842              0                    0                    9138760              0                    0                    Sat Jul 26 00:53:03 2025
 ```
 
 ### Related Commands

@@ -729,7 +729,7 @@ To configure control plane policers:
 - Set the Committed Information Rate (CIR) with the `nv set system control-plane policer <trap-group> rate` command. The CIR is the allowed incoming rate for the trap group. The incoming rate is the maximum rate in packets per second.
 - Set the Committed Burst Rate (CBR) for the trap group with the `nv set system control-plane policer <trap-group> burst` command. The burst rate is the number of packets or kilobytes (KB) allowed to arrive sequentially after exceeding the CIR rate.
 
-The trap group can be: `arp`, `bfd`, `pim-ospf-rip`, `bgp`, `clag`, `icmp-def`, `dhcp-ptp`, `igmp`, `ssh`, `icmp6-neigh`, `icmp6-def-mld`, `lacp`, `lldp`, `rpvst`, `eapol`, `ip2me`, `acl-log`, `nat`, `stp`, `l3-local`, `span-cpu`, `catch-all`, or `NONE`.
+The trap group can be: `arp`, `bfd`, `pim-ospf-rip`, `bgp`, `clag`, `icmp-def`, `dhcp`, `igmp`, `ssh`, `icmp6-neigh`, `icmp6-def-mld`, `lacp`, `lldp-ptp`, `rpvst`, `eapol`, `ip2me`, `acl-log`, `nat`, `stp`, `l3-local`, `span-cpu`, `catch-all`, or `NONE`.
 
 The following example changes the PIM trap group forwarding rate and burst rate to 400 packets per second, and the IGMP trap group forwarding rate to 400 packets per second and burst rate to 200 packets per second:
 

@@ -290,6 +290,16 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
+{{< tab "Platform Information">}}
+
+To enable platform information statistics, such as the time of last reboot, the last reboot reason, or firmware version:
+
+```
+cumulus@switch:~$ nv set system telemetry platform-stats class platform-info state enabled
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
 {{< /tabs >}}
 
 To show platform statistics configuration, run the `nv show system telemetry platform-stats` command.
@@ -560,6 +570,17 @@ cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.30
 cumulus@switch:~$ nv config apply
 ```
 
+The following example:
+- Configures STAT-GROUP5 to disable buffer statistics (`buffer-stats`) and enable platform information statistics (`platform-info`).
+- Applies the STAT-GROUP5 configuration to the OTLP destination 10.1.1.30.
+
+```
+cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP5 buffer-stats export state disabled
+cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP5 platform-stats class platform-info export state enabled
+cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.30 stats-group STAT-GROUP5
+cumulus@switch:~$ nv config apply
+```
+
 ### Show Telemetry Export Configuration
 
 To show the telemetry export configuration, run the `nv show system telemetry export` command:
@@ -640,6 +661,9 @@ When you enable adaptive routing telemetry, the switch exports the following sta
 | Metric | Description |
 | ---------- | ------- |
 | `nvswitch_ar_congestion_changes`  | The number of adaptive routing change events triggered due to congestion or link-down.|
+| `nvswitch_srv6_no_sid_drops`| Number of packets dropped due to no matching SID. |
+| `nvswitch_srv6_in_pkts` | Number of packets received for this SID. |
+| `nvswitch_qos_trimmed_unicast_pkts`|  The number of packets that were trimmed.|
 
 {{< expand "Example JSON data for nvswitch_ar_congestion_changes:" >}}
 ```
@@ -927,7 +951,6 @@ The switch sends a sample with the following names for each interface enabled fo
 | `nvswitch_histogram_interface_counter_bucket` | Histogram interface counter bucket. |
 | `nvswitch_histogram_interface_counter_count` | Histogram interface counter count. |
 | `nvswitch_histogram_interface_latency` | Histogram interface latency data. |
-| `nvswitch_interface_phy_rs_fec_histogram` | Firmware version information for the transceiver.|
 
 <!-- vale off -->
 {{< expand "Example JSON data for interface_ingress_buffer:" >}}
@@ -1331,6 +1354,7 @@ The switch collects and exports the following additional interface statistics wh
 | `nvswitch_interface_phy_stats_phy_corrected_bits` | Corrected bits by FEC engine. |
 | `nvswitch_interface_phy_stats_time_since_last_clear` | Time after counters clear.|
 | `nvswitch_interface_phy_stats_effective_ber` | FEC BER errors. |
+| `nvswitch_interface_phy_rs_fec_histogram` | Firmware version information for the transceiver.|
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -3248,8 +3272,7 @@ When you enable layer 3 routing metrics telemetry, the switch exports the follow
 | `nvrouting_rib_count_pbr_ipv6` | Number of IPv6 PBR routes in the IP routing table. |
 | `nvrouting_rib_count_ospf_ipv6` | Number of IPv6 OSPF routes in the IP routing table. |
 | `nvrouting_rib_nhg_count` | Number of next hop groups in the routing table. |
-| `nvswitch_srv6_no_sid_drops`| Number of packets dropped due to no matching SID. |
-| `nvswitch_srv6_in_pkts` | Number of packets received for this SID. |
+
 <!-- vale off -->
 {{< expand "Example JSON data for nvrouting_bgp_peer_state:" >}}
 ```

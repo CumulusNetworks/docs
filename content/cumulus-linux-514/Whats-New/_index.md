@@ -23,6 +23,7 @@ Cumulus Linux 5.14.0 contains several new features and improvements, and provide
   - {{<link url="gNMI-Streaming/#metrics" text="New gNMI streaming metrics: BGP, interface, LLDP, system, and platform transceiver">}}
   - {{<link url="gNMI-Streaming/#user-credentials-and-authentication" text="gRPC header based authentication support for gNMI subscription requests">}}
   - {{<link url="gNMI-Streaming/#gnmi-client-requests" text="Improved data formatting to include prefix field">}}
+- {{<link url="Open-Telemetry-Export" text="New OTEL metrics: Software Process, adaptive routing (packet trimming and SRv6), platform information, and platform input power, and additional transceiver, routing, and bufffer statisitcs">}}
 - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#transceiver-thermal-control" text="Transceiver thermal control">}}
 - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#clear-interface-physical-layer-error-counters" text="Clear physical layer error counters for an interface">}}
 - {{<link url="DHCP-Relays" text="Configure different DHCP servers per interface for DHCP relay">}}

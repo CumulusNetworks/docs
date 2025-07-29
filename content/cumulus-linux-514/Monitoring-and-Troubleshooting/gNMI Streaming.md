@@ -383,7 +383,7 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 
 |  Name | Description |
 |------ | ----------- |
-| `/qos/packet-trimming/state/counters/trimmed-unicast-pkts`| The number of trimmed packets.|
+| `/qos/packet-trimming/state/counters/trimmed-unicast-pkts`| * The number of trimmed packets.|
 
 {{< /tab >}}
 {{< tab "QoS">}}

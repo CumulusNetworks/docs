@@ -94,7 +94,6 @@ If an upgrade or installation process stalls or fails, run the {{<link title="bo
 | Please provide cluster-vip option and run command. | HA cluster | Include the `cluster-vip` option in the {{<link title="upgrade" text="netq upgrade bundle">}} command. | 
 | Could not find admin app pod, please re-run the command. | | Re-run the {{<link title="upgrade" text="netq upgrade bundle <text-bundle-url>">}} command. |
 | Could not upgrade server, unable to restore got exception: {} | On-premises |  The backup/restore option is only applicable for on-premises deployments which use {{<link title="Install a Custom Signed Certificate" text="self-signed certificates">}}.| 
-| Failed to allocate directory watch: Too many open files |  | Temporarily increase and test the number of user instances, then permanently increase the number of user instances. For more information about this issue, refer to {{<exlink url="https://askubuntu.com/questions/1472428/why-i-got-failed-to-allocate-directory-watch-too-many-open-files" text="Ask Ubuntu">}}. | 
 {{</tab>}}
 
 {{<tab "Installation Issues" >}}
@@ -125,7 +124,6 @@ If an upgrade or installation process stalls or fails, run the {{<link title="bo
 | Virtual IP {} is already used | HA cluster | Provide a unique virtual IP address. |
 | Package {} with version {} must be installed. | | Make sure the `netq-apps` version is the same as the tarball version. |
 | Master node is already bootstrapped | | Run the {{<link title="bootstrap" text="netq bootstrap rest">}} command, followed by the {{<link title="install" text="netq install">}} command to re-attempt the installation. |
-| Failed to allocate directory watch: Too many open files |  | Temporarily increase and test the number of user instances, then permanently increase the number of user instances. For more information about this issue, refer to {{<exlink url="https://askubuntu.com/questions/1472428/why-i-got-failed-to-allocate-directory-watch-too-many-open-files" text="Ask Ubuntu">}}. | 
 {{</tab>}}
 
 {{</tabs>}}

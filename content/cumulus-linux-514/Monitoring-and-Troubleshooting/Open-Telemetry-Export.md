@@ -24,9 +24,9 @@ cumulus@switch:~$ nv config apply
 
 When you enable open telemetry, the switch collects and exports [system information](#system-information-format) metrics to the configured external collector by default. In addition, you can enable open telemetry to collect and export [interface statistics](#interface-statistics), [buffer statistics](#buffer-statistics), [histogram data](#histogram-data), [control plane statistics](#control-plane-statistics), [platform statistics](#platform-statistics), and [routing metrics](#router-statistics).
 
-### Adaptive Routing Statistics
+### AI Ethernet Statistics
 
-When you enable open telemetry for adaptive routing, the switch exports [adaptive routing statistics](#adaptive-routing-statistic-format):
+When you enable open telemetry for AI Ethernet statistics, the switch exports [adaptive routing, SRv6, and packet trimming statistics](#ai-ethernet-statistic-format):
 
 ```
 cumulus@switch:~$ nv set system telemetry ai-ethernet-stats export state enabled
@@ -41,7 +41,9 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{%notice note%}}
-To export adaptive routing metrics, you must {{<link url="Equal-Cost-Multipath-Load-Sharing/#enable-adaptive-routing" text="enable the adaptive routing feature">}}.
+- To export adaptive routing metrics, you must {{<link url="Equal-Cost-Multipath-Load-Sharing/#enable-adaptive-routing" text="enable adaptive routing">}}.
+- To export packet trimming metrics, you must {{<link url="Packet-Trimming" text="enable packet trimming">}}.
+- To export SRv6 metrics, you must {{<link url="Segment-Routing" text="enable segment routing">}}.
 {{%/notice%}}
 
 ### Buffer Statistics
@@ -658,9 +660,9 @@ Cumulus Linux exports statistics and histogram data in the formats defined in th
 An asterisk (*) in the `Description` column of the tables below indicates that metric is new for Cumulus Linux 5.14.
 {{%/notice%}}
 
-### Adaptive Routing Statistic Format
+### AI Ethernet Statistic Format
 
-When you enable adaptive routing telemetry, the switch exports the following statistics:
+The switch collects and exports the adaptive routing, SRv6, and packet trimming statistics when you configure the `nv set system telemetry ai-ethernet-stats export state enabled` command.
 
 | Metric | Description |
 | ---------- | ------- |

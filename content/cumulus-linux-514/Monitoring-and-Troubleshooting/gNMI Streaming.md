@@ -228,7 +228,12 @@ Regex for specific keys (such as `“interface-id=swp*”`) is not supported.
 
 ### Metrics
 
-Cumulus Linux supports the following metrics:
+Cumulus Linux supports the following metrics.
+
+{{%notice note%}}
+An asterisk (*) in the `Description` column of the tables below indicates that metric is new for Cumulus Linux 5.14.
+{{%/notice%}}
+
 <!-- vale off -->
 {{< tabs "TabID233 ">}}
 {{< tab "Interface ">}}
@@ -259,11 +264,11 @@ Cumulus Linux supports the following metrics:
 | `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-64-octets` | Total number of packets (including bad packets) received that are 64 octets in length (excluding framing bits but including FCS octets).|
 | `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-65-127-octets` | Total number of packets (including bad packets) received between 65 and 127 octets in length inclusive (excluding framing bits but including FCS octets).|
 | `/interfaces/interface[name]/ethernet/state/counters/in-fcs-errors` | Total number of frames received on an interface that are an integral number of octets in length but do not pass the FCS check. This count does not include frames received with `frame-too-long` or `frame-too-short` error.|
-| `/interfaces/interface[name]/ethernet/state/counters/in-jabber-frames` | Number of Jabber frames received on the interface.|
+| `/interfaces/interface[name]/ethernet/state/counters/in-jabber-frames` |*  Number of Jabber frames received on the interface.|
 | `/interfaces/interface[name]/ethernet/state/counters/in-mac-pause-frames` | Inbound MAC pause frames on an interface.|
 | `/interfaces/interface[name]/ethernet/state/counters/in-oversize-frames` | Total number of packets received longer than 1518 octets (excluding framing bits, but including FCS octets). |
-| `/interfaces/interface[name]/ethernet/state/hw-mac-address` | System defined default MAC address for the interface. |
-| `/interfaces/interface[name]/ethernet/state/mac-address​` | MAC address for the interface.|
+| `/interfaces/interface[name]/ethernet/state/hw-mac-address` | * System defined default MAC address for the interface. |
+| `/interfaces/interface[name]/ethernet/state/mac-address​` | * MAC address for the interface.|
 | `/interfaces/interface[name]/ethernet/state/negotiated-duplex-mode` | When auto-negotiate is set to TRUE, and the interface has completed auto-negotiation with the remote peer, this value shows the negotiated duplex mode.|
 | `/interfaces/interface[name]/ethernet/state/port-speed` | An estimate of the interface current bandwidth in units of 1,000,000 bits per second.|
 | `/interfaces/interface[name]/rates/state/in-bits-rate` | The calculated received rate of the interface, measured in bits per second.|
@@ -288,12 +293,12 @@ Cumulus Linux supports the following metrics:
 | `/interfaces/interface[name]/state/counters/out-pkts` | Total number of packets transmitted out of the interface, including all unicast, multicast, broadcast, and bad packets.|
 | `/interfaces/interface[name]/state/counters/out-unicast-pkts` | Total number of unicast packets transmitted out of an interface.|
 | `/interfaces/interface[name]/state/ifindex` | A unique value, greater than zero, for each interface.|
-| `/interfaces/interface[name]/state/last-change` | The last time the state of the interface changed.|
+| `/interfaces/interface[name]/state/last-change` | * The last time the state of the interface changed.|
 | `/interfaces/interface[name]/state/mtu` | Size of the largest packet that can be sent or received on the interface, specified in octets. For interfaces used for transmitting network datagrams, this is the size of the largest network datagram that the interface can send.|
-| `/interfaces/interface[name]/state/name​` | The name of the interface.|
+| `/interfaces/interface[name]/state/name​` | * The name of the interface.|
 | `/interfaces/interface[name]/state/oper-status` | Current operational state of an interface. |
-| `/interfaces/interface[name]/state/protodown​` | Indicates if the interface is administratively held down by a protocol or system process rather than by user action.|
-| `/interfaces/interface[name]/state/type​` | The type of the interface. |
+| `/interfaces/interface[name]/state/protodown​` | * Indicates if the interface is administratively held down by a protocol or system process rather than by user action.|
+| `/interfaces/interface[name]/state/type​` | * The type of the interface. |
 
 {{< /tab >}}
 {{< tab "LLDP">}}
@@ -312,12 +317,13 @@ Cumulus Linux supports the following metrics:
 | `/lldp/interfaces/interface[name]/neighbors/neighbor[id]/state/system-description` | Description of the network entity associated with the transmitting LLDP agent.|
 | `/lldp/interfaces/interface[name]/neighbors/neighbor[id]/state/system-name` | Administratively assigned name of the system associated with the transmitting LLDP agent.|
 | `/lldp/interfaces/interface[name]/neighbors/neighbor[id]/state/ttl` | Indicates how long information from the neighbor is considered valid. |
-| `/lldp/interfaces/interface[name]/state/enabled`​ | If LLDP is enabled on the interface. |
+| `/lldp/interfaces/interface[name]/state/enabled`​ | * If LLDP is enabled on the interface. |
 | `/lldp/state/chassis-id` | The chassis component of the endpoint identifier associated with the transmitting LLDP agent.|
 | `/lldp/state/chassis-id-type` | The format and source of the chassis identifier string.|
 | `/lldp/interfaces/interface[name]/state/enabled`| If LLDP is enabled globally. |
 | `/lldp/state/system-description` | Description of the network entity including the full name and version identification of the system's hardware type, software operating system, and networking software.|
 | `/lldp/state/system-name` | Administratively assigned name for the system.|
+| `/lldp/state/enable` | * If LLDP is enabled.|
 
 {{< /tab >}}
 {{< tab "Platform">}}
@@ -327,44 +333,44 @@ Cumulus Linux supports the following metrics:
 | `/components/component[name]/state/name` | List of components, keyed by component name.|
 | `/components/component[name]/fan/state/speed` | Current (instantaneous) fan speed. |
 | `/components/component[name]/power-supply/state/capacity` | Maximum power capacity of the power supply. |
-| `/components/component[name]/power-supply/state/input-current` |Input current draw of the power supply.|
+| `/components/component[name]/power-supply/state/input-current` | * Input current draw of the power supply.|
 | `/components/component[name]/power-supply/state/input-voltage` | Input voltage to power supply.|
 | `/components/component[name]/power-supply/state/output-current` | Output current supplied by the power supply. |
 | `/components/component[name]/power-supply/state/output-power` | Output power supplied by the power supply. |
-| `/components/component[name]/power-supply/state/output-voltage` | Output voltage supplied by the power supply.|
-| `/components/component[name]/state/description` |  System-supplied description of the component. |
-| `/components/component[name]/state/firmware-version` | For hardware components, the version of associated firmware running on the component, if applicable.|
-| `/components/component[name]/state/last-reboot-reason​` | The reason for the component's last reboot.|
-| `/components/component[name]/state/last-reboot-time​` | The time of the last reboot. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/components/component[name]/power-supply/state/output-voltage` | * Output voltage supplied by the power supply.|
+| `/components/component[name]/state/description` | System-supplied description of the component. |
+| `/components/component[name]/state/firmware-version` | * For hardware components, the version of associated firmware running on the component, if applicable.|
+| `/components/component[name]/state/last-reboot-reason​` | * The reason for the component's last reboot.|
+| `/components/component[name]/state/last-reboot-time​` | * The time of the last reboot. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
 | `/components/component[name]/state/name` | Device name for the component. |
 | `/components/component[name]/state/oper-status` | If applicable, the current operational status of the component. |
-| `/components/component[name]/state/temperature/alarm-severity` | Severity of the current alarm.|
-| `/components/component[name]/state/temperature/alarm-status` | A value of `true` indicates the alarm has been raised or asserted. The value is false when the alarm is cleared. |
-| `/components/component[name]/state/temperature/alarm-threshold` | The threshold value crossed for this alarm. |
-| `/components/component[name]/state/temperature/avg​` | Arithmetic mean value of the statistic over the sampling period.|
+| `/components/component[name]/state/temperature/alarm-severity` | * Severity of the current alarm.|
+| `/components/component[name]/state/temperature/alarm-status` | * A value of `true` indicates the alarm has been raised or asserted. The value is false when the alarm is cleared. |
+| `/components/component[name]/state/temperature/alarm-threshold` | * The threshold value crossed for this alarm. |
+| `/components/component[name]/state/temperature/avg​` | * Arithmetic mean value of the statistic over the sampling period.|
 | `/components/component[name]/state/temperature/instant` | Instantaneous value of the statistic.  |
-| `/components/component[name]/state/temperature/interval` | If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system.|
-| `/components/component[name]/state/temperature/max​` | The maximum value of the statistic over the sampling period.|
-| `/components/component[name]/state/temperature/max​-time` | Absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
-| `/components/component[name]/state/temperature/min​` | Minimum value of the statistic over the sampling period.|
-| `/components/component[name]/state/temperature/min-time​` | Absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
-| `/components/component[name]/transceiver/host-lanes/lane[lane-number]/state/tx-cdr-lol` |Transmitter clock-and-data-recovery loss-of-lock flag.|
-| `/components/component[name]/transceiver/host-lanes/lane[lane-number]/state/tx-los` |Transmitter loss-of-signal flag.|
+| `/components/component[name]/state/temperature/interval` | * If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system.|
+| `/components/component[name]/state/temperature/max​` | * The maximum value of the statistic over the sampling period.|
+| `/components/component[name]/state/temperature/max​-time` | * Absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/components/component[name]/state/temperature/min​` | * Minimum value of the statistic over the sampling period.|
+| `/components/component[name]/state/temperature/min-time​` | * Absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/components/component[name]/transceiver/host-lanes/lane[lane-number]/state/tx-cdr-lol` | * Transmitter clock-and-data-recovery loss-of-lock flag.|
+| `/components/component[name]/transceiver/host-lanes/lane[lane-number]/state/tx-los` | * Transmitter loss-of-signal flag.|
 | `/components/component[name]/transceiver/physical-channels/channel[index]/state/input-power/instant` | Input optical power of a physical channel in units of 0.01dBm, which may be associated with individual physical channels or an aggregate of multiple physical channels. |
 | `/components/component[name]/transceiver/physical-channels/channel[index]/state/laser-bias-current/instant` | Current applied by the system to the transmit laser to achieve the output power. The current is expressed in mA with up to two decimal precision. |
 | `/components/component[name]/transceiver/physical-channels/channel[index]/state/output-power/instant` | Output optical power of a physical channel in units of 0.01dBm, which might be associated with individual physical channels or an aggregate of multiple physical channels. |
-| `/components/component[name]/transceiver/physical-channels/channel[index]/state/rx-cdr-lol` | Receiver clock-and-data-recovery loss-of-lock flag.|
-| `/components/component[name]/transceiver/physical-channels/channel[index]/state/rx-los` | Receiver loss-of-signal flag.|
-| `/components/component[name]/transceiver/state/date-code​` | Representation of the transceiver date code, typically stored as YYMMDD. The time portion of the value is undefined and not intended to be read. |
-| `/components/component[name]/transceiver/state/enabled​` | Turns power on or off to the transceiver. Provides a means to power on or off the transceiver (in the case of SFP, SFP+, QSFP) or enable high-power mode (in the case of CFP, CFP2, CFP4). This is optionally supported (device can choose to always enable). True = power on - high power. False = powered off.|
-| `/components/component[name]/transceiver/state/ethernet-pmd`| Ethernet PMD (physical medium dependent sublayer) that the transceiver supports. |
-| `/components/component[name]/transceiver/state/form-factor​` | Type of optical transceiver used on this port. If the client port is built into the device and not pluggable, `non-pluggable` is the corresponding state. If a device port supports multiple form factors, the value of the transceiver installed is reported. If no transceiver is present, the value of the highest rate form factor is reported. |
-| `/components/component[name]/transceiver/state/present​` | Indicates if a transceiver is present in the specified client port.|
-| `/components/component[name]/transceiver/state/serial-number​` | Transceiver serial number. 16-octet field that contains ASCII characters, left-aligned and padded on the right with ASCII spaces (20h). If part serial number is undefined, all 16 octets = 0h.|
-| `/components/component[name]/transceiver/state/supply-voltage/instant` | Input voltage as measured by the transceiver.|
-| `/components/component[name]/transceiver/state/vendor​` | Full name of transceiver vendor. |
-| `/components/component[name]/transceiver/state/vendor-part​` | Transceiver vendor part number.|
-| `/components/component[name]/transceiver/state/vendor-rev​` | Transceiver vendor revision number. |
+| `/components/component[name]/transceiver/physical-channels/channel[index]/state/rx-cdr-lol` | * Receiver clock-and-data-recovery loss-of-lock flag.|
+| `/components/component[name]/transceiver/physical-channels/channel[index]/state/rx-los` | * Receiver loss-of-signal flag.|
+| `/components/component[name]/transceiver/state/date-code​` | * Representation of the transceiver date code, typically stored as YYMMDD. The time portion of the value is undefined and not intended to be read. |
+| `/components/component[name]/transceiver/state/enabled​` | * Turns power on or off to the transceiver. Provides a means to power on or off the transceiver (in the case of SFP, SFP+, QSFP) or enable high-power mode (in the case of CFP, CFP2, CFP4). This is optionally supported (device can choose to always enable). True = power on - high power. False = powered off.|
+| `/components/component[name]/transceiver/state/ethernet-pmd`| * Ethernet PMD (physical medium dependent sublayer) that the transceiver supports. |
+| `/components/component[name]/transceiver/state/form-factor​` | * Type of optical transceiver used on this port. If the client port is built into the device and not pluggable, `non-pluggable` is the corresponding state. If a device port supports multiple form factors, the value of the transceiver installed is reported. If no transceiver is present, the value of the highest rate form factor is reported. |
+| `/components/component[name]/transceiver/state/present​` | * Indicates if a transceiver is present in the specified client port.|
+| `/components/component[name]/transceiver/state/serial-number​` | * Transceiver serial number. 16-octet field that contains ASCII characters, left-aligned and padded on the right with ASCII spaces (20h). If part serial number is undefined, all 16 octets = 0h.|
+| `/components/component[name]/transceiver/state/supply-voltage/instant` | * Input voltage as measured by the transceiver.|
+| `/components/component[name]/transceiver/state/vendor​` | * Full name of transceiver vendor. |
+| `/components/component[name]/transceiver/state/vendor-part​` | * Transceiver vendor part number.|
+| `/components/component[name]/transceiver/state/vendor-rev​` | * Transceiver vendor revision number. |
 
 {{< /tab >}}
 {{< tab "QoS">}}
@@ -376,13 +382,18 @@ Cumulus Linux supports the following metrics:
 | `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/time-since-last-clear` | Time since last clear of watermarks in a queue.|
 | `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/transmit-octets`| Number of transmitted bytes in the egress queue of an interface.|
 | `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/transmit-pkts`| Number of transmitted packets in the egress queue of an interface. |
-| `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/watermark-max` | High watermark of cells used in a priority group since last time watermarks were reset. |
+| `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/max-queue-len-cell` | * Maximum queue length cells for a queue since last time watermarks were reset. |
+| `/qos/interfaces/interface[name]/output/queues/queue[name]/state/max-queue-len` | * Maximum queue length for a queue since last time watermarks were reset.|
 | `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/wred-dropped-pkts` | Number of packets discarded from this egress queue of an interface. |
-| `/qos/interfaces/interface[interface-id]/state/priority-group[priority_group]/counters/time-since-last-clear` | Time since last clear of watermarks in a priority group.|
-| `/qos/interfaces/interface[interface-id]/state/priority-group[priority_group]/counters/watermark-max` | High watermark of cells used in a queue since last time watermarks were reset. |
-| `/qos/interfaces/interface[interface-id]/state/switch-priority[priority]/counters/in-pause-pkts` | Number of pause packets for the priority class in the ingress queue.|
-| `/qos/interfaces/interface[interface-id]/state/switch-priority[priority]/counters/out-pause-pkts`| Number of pause packets for the priority class in the egress queue.|
+| `/qos/interfaces/interface[interface-id]/priority-group[priority_group]/state/counters/time-since-last-clear` | * Time since last clear of watermarks in a priority group.|
+| `/qos/interfaces/interface[interface-id]priority-group[priority_group]/state/counters/watermark-max` | * High watermark of cells used in a queue since last time watermarks were reset. |
+| `/qos/interfaces/interface[interface-id]/switch-priority[priority]/state/counters/in-pause-pkts` | * Number of pause packets for the priority class in the ingress queue.|
+| `/qos/interfaces/interface[interface-id]/switch-priority[priority]/state/counters/out-pause-pkts`| * Number of pause packets for the priority class in the egress queue.|
 | `/qos/packet-trimming/state/counters/trimmed-unicast-pkts`| The number of trimmed packets.|
+
+{{%notice note%}}
+Cumulus Linux 5.14 no longer provides the `/qos/interfaces/interface[name]/output/queues/queue[name]/state/watermark-max` metric, and replaces the `/qos/interfaces/interface[interface-id]/state/switch-priority[priority]/counters/` and `/qos/interfaces/interface[interface-id]/state/priority-group[priority_group]/counters/` metrics available in 5.13 with `/qos/interfaces/interface[interface-id]/switch-priority[priority]/state/counters/` and `/qos/interfaces/interface[interface-id]/priority-group[priority_group]/state/counters/`.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< tab "Router">}}
@@ -394,122 +405,122 @@ Cumulus Linux supports the following metrics:
 | `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/afi-safis/afi-safi[afi-safi-name]/state/prefixes/received` | The number of prefixes that are received from the neighbor after applying any policies. This count is the number of prefixes present in the post-policy Adj-RIB-In for the neighbor.|
 | `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/afi-safis/afi-safi[afi-safi-name]/state/prefixes/sent` | The number of prefixes that are advertised to the neighbor after applying any policies. This count is the number of prefixes present in the post-policy Adj-RIB-Out for the neighbor.|
 | `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state` | BGP neighbor state.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/description` | BGP neighbor state description.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/description` | * BGP neighbor state description.|
 | `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/established-transitions` | Number of transitions to the Established state for the neighbor session. |
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/last-established` | The time that the BGP session last transitioned in or out of the Established state. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC). |
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/local-as` | The local autonomous system number used when establishing sessions with the remote peer or peer group, if this differs from the global BGP router autonomous system number.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/last-established` | * The time that the BGP session last transitioned in or out of the Established state. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC). |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/local-as` | * The local autonomous system number used when establishing sessions with the remote peer or peer group, if this differs from the global BGP router autonomous system number.|
 | `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages` | Counters for BGP messages sent and received from the neighbor.|
 | `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/received` | Counters for BGP messages received from the neighbor. |
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/received/last-notification-error-code` | The last BGP error sent or received on the peering session.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/received/last-notification-error-code` | * The last BGP error sent or received on the peering session.|
 | `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/received/UPDATE` | Number of BGP UPDATE messages announcing, withdrawing, or modifying paths exchanged.|
 | `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/sent` | Counters relating to BGP messages sent to the neighbor.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/sent/last-notification-error-code` | The last BGP error sent or received on the peering session.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/sent/last-notification-error-code` | * The last BGP error sent or received on the peering session.|
 | `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/sent/UPDATE` | Number of BGP UPDATE messages announcing, withdrawing or modifying paths exchanged.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/neighbor-address` | Address of the BGP peer, either in IPv4 or IPv6.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/peer-as` | AS number of the peer.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/peer-group` | The peer-group with which this neighbor is associated|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/peer-type` | Explicitly designate the peer or peer group as internal (iBGP) or external (eBGP).|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/neighbor-address` | * Address of the BGP peer, either in IPv4 or IPv6.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/peer-as` | * AS number of the peer.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/peer-group` | * The peer-group with which this neighbor is associated|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/peer-type` | * Explicitly designate the peer or peer group as internal (iBGP) or external (eBGP).|
 | `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/queues/input` | The number of messages received from the peer currently queued.|
 | `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/queues/output` | The number of messages queued to be sent to the peer.|
 | `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/session-state` | Operational state of the BGP peer. |
 | `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor/state` | Operational state data for interface hold-time.|
-|`/network-instances/network-instance[name]/srv6/global/state/counters/no-sid-drops` | The number of packets dropped due to no matching SRv6 SID.|
-| `/network-instances/network-instance[name]/srv6/sids/sid[id]/id`| The SRv6 SID (segment identifier).|
-| `/network-instances/network-instance/srv6/sids/sid[id]/state/counters/in-pkts` | The number of packets received for this SRv6 SID.|
-| `/system/adaptive-routing/state/counters/congestion-change` | The number of adaptive routing change events that triggered due to congestion or link down.|
+|`/network-instances/network-instance[name]/srv6/global/state/counters/no-sid-drops` | * The number of packets dropped due to no matching SRv6 SID.|
+| `/network-instances/network-instance[name]/srv6/sids/sid[id]/id`| * The SRv6 SID (segment identifier).|
+| `/network-instances/network-instance/srv6/sids/sid[id]/state/counters/in-pkts` | * The number of packets received for this SRv6 SID.|
+| `/system/adaptive-routing/state/counters/congestion-change` | * The number of adaptive routing change events that triggered due to congestion or link down.|
 
 {{< /tab >}}
 {{< tab "System">}}
 
 |  Name | Description |
 |------ | ----------- |
-| `/system/state/up-time` |Continuous operational time of the system since last reboot. |
+| `/system/state/up-time` | * Continuous operational time of the system since last reboot. |
 | `/system/state/hostname` | System hostname. |
 | `/system/state/software-version` | System software version. |
 | `/system/state/boot-time` | System boot time. |
 | `/system/state/current-datetime` | Current system date and time. |
 | `/system/control-plane-traffic/ingress/ipv4/counters/`<br>`/system/control-plane-traffic/ingress/ipv6/counters/` | Number of input IP datagrams discarded in software including those received in error.|
-| `/system/cpus/cpu[index]/state/hardware-interrupt/avg` | The arithmetic mean value of the percentage measure of the statistic over the time interval.|
-| `/system/cpus/cpu[index]/state/hardware-interrupt/instant` | The instantaneous percentage value.|
-| `/system/cpus/cpu[index]/state/hardware-interrupt/interval` | If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system.|
-| `/system/cpus/cpu[index]/state/hardware-interrupt/max` | The maximum value of the percentage measure of the statistic over the time interval.|
-| `/system/cpus/cpu[index]/state/hardware-interrupt/max-time` | The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
-| `/system/cpus/cpu[index]/state/hardware-interrupt/min` | The minimum value of the percentage measure of the statistic over the time interval.|
-| `/system/cpus/cpu[index]/state/hardware-interrupt/min-time` | The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
-| `/system/cpus/cpu[index]/state/hardware-interrupt/seconds` | The total number of seconds spent servicing hardware interrupts.|
-| `/system/cpus/cpu[index]/state/idle/avg` | The arithmetic mean value of the percentage measure of the statistic over the time interval.|
-| `/system/cpus/cpu[index]/state/idle/instant` | The instantaneous percentage value.|
-| `/system/cpus/cpu[index]/state/idle/interval` | If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system.|
-| `/system/cpus/cpu[index]/state/idle/max` | The maximum value of the percentage measure of the statistic over the time interval.|
-| `/system/cpus/cpu[index]/state/idle/max-time` | The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
-| `/system/cpus/cpu[index]/state/idle/min` | The minimum value of the percentage measure of the statistic over the time interval.|
-| `/system/cpus/cpu[index]/state/idle/min-time` | The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
-| `/system/cpus/cpu[index]/state/idle/seconds` | The total number of seconds spent idle.|
-| `/system/cpus/cpu[index]/state/kernel/avg` | The arithmetic mean value of the percentage measure of the statistic over the time interval.|
-| `/system/cpus/cpu[index]/state/kernel/instant` | The instantaneous percentage value.|
-| `/system/cpus/cpu[index]/state/kernel/interval` |If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system. |
-| `/system/cpus/cpu[index]/state/kernel/max` | The maximum value of the percentage measure of the statistic over the time interval. |
-| `/system/cpus/cpu[index]/state/kernel/max-time` | The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
-| `/system/cpus/cpu[index]/state/kernel/min` | The minimum value of the percentage measure of the statistic over the time interval.|
-| `/system/cpus/cpu[index]/state/kernel/min-time` | The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
-| `/system/cpus/cpu[index]/state/kernel/seconds` | The total number of seconds spent running in kernel space.|
-| `/system/cpus/cpu[index]/state/nice/avg` | The arithmetic mean value of the percentage measure of the statistic over the time interval.|
-| `/system/cpus/cpu[index]/state/nice/instant` |The instantaneous percentage value. |
-| `/system/cpus/cpu[index]/state/nice/interval` | If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system.|
-| `/system/cpus/cpu[index]/state/nice/max` | The maximum value of the percentage measure of the statistic over the time interval.|
-| `/system/cpus/cpu[index]/state/nice/max-time` | The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
-| `/system/cpus/cpu[index]/state/nice/min` | The minimum value of the percentage measure of the statistic over the time interval.|
-| `/system/cpus/cpu[index]/state/nice/min-time` | The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
-| `/system/cpus/cpu[index]/state/nice/seconds` | The total number of seconds spent running low-priority (niced) user processes.|
-| `/system/cpus/cpu[index]/state/software-interrupt/avg` | The arithmetic mean value of the percentage measure of the statistic over the time interval.|
-| `/system/cpus/cpu[index]/state/software-interrupt/instant` | The instantaneous percentage value.|
-| `/system/cpus/cpu[index]/state/software-interrupt/interval` | If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system.|
-| `/system/cpus/cpu[index]/state/software-interrupt/max` | The maximum value of the percentage measure of the statistic over the time interval.|
-| `/system/cpus/cpu[index]/state/software-interrupt/max-time` | The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
-| `/system/cpus/cpu[index]/state/software-interrupt/min` | The minimum value of the percentage measure of the statistic over the time interval.|
-| `/system/cpus/cpu[index]/state/software-interrupt/min-time` | The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
-| `/system/cpus/cpu[index]/state/software-interrupt/seconds` | The total number of seconds spent servicing software interrupts.|
-| `/system/cpus/cpu[index]/state/total/avg` | The arithmetic mean value of the percentage measure of the statistic over the time interval.|
-| `/system/cpus/cpu[index]/state/total/instant` |The instantaneous percentage value. |
-| `/system/cpus/cpu[index]/state/total/interval` | If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system.|
-| `/system/cpus/cpu[index]/state/total/max` | The maximum value of the percentage measure of the statistic over the time interval.|
-| `/system/cpus/cpu[index]/state/total/max-time` | The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
-| `/system/cpus/cpu[index]/state/total/min` | The minimum value of the percentage measure of the statistic over the time interval.|
-| `/system/cpus/cpu[index]/state/total/min-time` | The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
-| `/system/cpus/cpu[index]/state/user/avg` | The arithmetic mean value of the percentage measure of the statistic over the time interval.|
-| `/system/cpus/cpu[index]/state/user/instant` | The instantaneous percentage value.|
-| `/system/cpus/cpu[index]/state/user/interval` | If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system.|
-| `/system/cpus/cpu[index]/state/user/max` | The maximum value of the percentage measure of the statistic over the time interval.|
-| `/system/cpus/cpu[index]/state/user/max-time` | The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
-| `/system/cpus/cpu[index]/state/user/min` | The minimum value of the percentage measure of the statistic over the time interval.|
-| `/system/cpus/cpu[index]/state/user/min-time` | The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/hardware-interrupt/avg` | * The arithmetic mean value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/hardware-interrupt/instant` | * The instantaneous percentage value.|
+| `/system/cpus/cpu[index]/state/hardware-interrupt/interval` | * If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system.|
+| `/system/cpus/cpu[index]/state/hardware-interrupt/max` | * The maximum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/hardware-interrupt/max-time` | * The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/hardware-interrupt/min` | * The minimum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/hardware-interrupt/min-time` | * The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/hardware-interrupt/seconds` | * The total number of seconds spent servicing hardware interrupts.|
+| `/system/cpus/cpu[index]/state/idle/avg` | * The arithmetic mean value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/idle/instant` |*  The instantaneous percentage value.|
+| `/system/cpus/cpu[index]/state/idle/interval` | * If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system.|
+| `/system/cpus/cpu[index]/state/idle/max` | * The maximum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/idle/max-time` | * The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/idle/min` | * The minimum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/idle/min-time` | * The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/idle/seconds` | * The total number of seconds spent idle.|
+| `/system/cpus/cpu[index]/state/kernel/avg` | * The arithmetic mean value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/kernel/instant` | * The instantaneous percentage value.|
+| `/system/cpus/cpu[index]/state/kernel/interval` | * If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system. |
+| `/system/cpus/cpu[index]/state/kernel/max` | * The maximum value of the percentage measure of the statistic over the time interval. |
+| `/system/cpus/cpu[index]/state/kernel/max-time` | * The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/kernel/min` | * The minimum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/kernel/min-time` | * The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/kernel/seconds` | * The total number of seconds spent running in kernel space.|
+| `/system/cpus/cpu[index]/state/nice/avg` | * The arithmetic mean value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/nice/instant` | * The instantaneous percentage value. |
+| `/system/cpus/cpu[index]/state/nice/interval` | * If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system.|
+| `/system/cpus/cpu[index]/state/nice/max` | * The maximum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/nice/max-time` | * The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/nice/min` | * The minimum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/nice/min-time` | * The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/nice/seconds` | * The total number of seconds spent running low-priority (niced) user processes.|
+| `/system/cpus/cpu[index]/state/software-interrupt/avg` | * The arithmetic mean value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/software-interrupt/instant` | * The instantaneous percentage value.|
+| `/system/cpus/cpu[index]/state/software-interrupt/interval` | * If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system.|
+| `/system/cpus/cpu[index]/state/software-interrupt/max` | * The maximum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/software-interrupt/max-time` | * The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/software-interrupt/min` | * The minimum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/software-interrupt/min-time` | * The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/software-interrupt/seconds` | * The total number of seconds spent servicing software interrupts.|
+| `/system/cpus/cpu[index]/state/total/avg` | * The arithmetic mean value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/total/instant` | * The instantaneous percentage value. |
+| `/system/cpus/cpu[index]/state/total/interval` | * If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system.|
+| `/system/cpus/cpu[index]/state/total/max` | * The maximum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/total/max-time` | * The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/total/min` | * The minimum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/total/min-time` | * The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/user/avg` | * The arithmetic mean value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/user/instant` | * The instantaneous percentage value.|
+| `/system/cpus/cpu[index]/state/user/interval` | * If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system.|
+| `/system/cpus/cpu[index]/state/user/max` | * The maximum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/user/max-time` | * The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/user/min` | * The minimum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/user/min-time` | * The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
 | `/system/cpus/cpu[index]/state/user/seconds` | The total number of seconds spent running in user space.|
 | `/system/cpus/cpu[index]/state/wait/avg` | The arithmetic mean value of the percentage measure of the statistic over the time interval.|
 | `/system/cpus/cpu[index]/state/wait/instant` | The instantaneous percentage value.|
-| `/system/cpus/cpu[index]/state/wait/interval` | If supported by the system, this reports the time interval over which the minimum, maximum, and average statistics are computed by the system.|
-| `/system/cpus/cpu[index]/state/wait/max` | The maximum value of the percentage measure of the statistic over the time interval.|
-| `/system/cpus/cpu[index]/state/wait/max-time` | The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
-| `/system/cpus/cpu[index]/state/wait/min` | The minimum value of the percentage measure of the statistic over the time interval.|
-| `/system/cpus/cpu[index]/state/wait/min-time` | The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/wait/interval` | * If supported by the system, this reports the time interval over which the minimum, maximum, and average statistics are computed by the system.|
+| `/system/cpus/cpu[index]/state/wait/max` | * The maximum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/wait/max-time` | * The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/wait/min` | * The minimum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/wait/min-time` | * The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
 | `/system/cpus/cpu[index]/state/wait/seconds` | The total number of seconds spent waiting I/O.|
 | `/system/memory/state/free` | Memory that is not used and is available for allocation. |
 | `/system/memory/state/physical` | The total physical memory available on the system.|
 | `/system/memory/state/reserved` | Memory reserved for system use. |
-| `/system/memory/state/used​` | Memory that has been used and not available for allocation.|
-| `/system/mount-points/mount-point[name]/state/utilized` | The amount of space currently in use on the filesystem.|
+| `/system/memory/state/used​` | * Memory that has been used and not available for allocation.|
+| `/system/mount-points/mount-point[name]/state/utilized` | * The amount of space currently in use on the filesystem.|
 | `/system/mount-points/mount-point[name]/state/name` | Mount point name.|
 | `/system/mount-points/mount-point[name]/state/storage-component` | A reference to the hosting component within the hierarchy. |
 | `/system/mount-points/mount-point[name]/state/size` | Total size of the initialized filesystem.|
 | `/system/mount-points/mount-point[name]/state/available` | The amount of unused space on the filesystem.|
 | `/system/mount-points/mount-point[name]/state/type` | Filesystem type used for storage such flash, hard disk, tmpfsor or ramdisk, or remote or network based storage.|
-| `/system/processes/process[pid]/state/cpu-usage-user` | CPU time consumed by this process in user mode in nanoseconds. |
-| `/system/processes/process[pid]/state/cpu-usage-system` | CPU time consumed by this process in kernel mode in nanoseconds. |
-| `/system/processes/process[pid]/state/start-time` | Start time of the process in seconds since epoch. |
-| `/system/processes/process[pid]/state/name` | Process name. |
-| `/system/processes/process[pid]/state/pid`| Process PID |
-| `/system/processes/process[pid]/state/memory-usage` | Bytes allocated and still in use by the process. |
-| `/system/processes/process[pid]/state/memory-utilization` | Percentage of RAM that the process is using. |
-| `/system/processes/process[pid]/state/cpu-utilization` | Percentage of CPU that the process is using. |
+| `/system/processes/process[pid]/state/cpu-usage-user` | * CPU time consumed by this process in user mode in nanoseconds. |
+| `/system/processes/process[pid]/state/cpu-usage-system` | * CPU time consumed by this process in kernel mode in nanoseconds. |
+| `/system/processes/process[pid]/state/start-time` | * Start time of the process in seconds since epoch. |
+| `/system/processes/process[pid]/state/name` | * Process name. |
+| `/system/processes/process[pid]/state/pid`| * Process PID |
+| `/system/processes/process[pid]/state/memory-usage` | * Bytes allocated and still in use by the process. |
+| `/system/processes/process[pid]/state/memory-utilization` | * Percentage of RAM that the process is using. |
+| `/system/processes/process[pid]/state/cpu-utilization` | * Percentage of CPU that the process is using. |
 
 {{< /tab >}}
 {{< /tabs >}}

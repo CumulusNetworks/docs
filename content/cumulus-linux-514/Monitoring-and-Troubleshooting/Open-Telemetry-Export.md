@@ -654,6 +654,10 @@ interface_swp10_label  Server 10 connection
 
 Cumulus Linux exports statistics and histogram data in the formats defined in this section.
 
+{{%notice note%}}
+An asterisk (*) in the `Description` column of the tables below indicates that metric is new for Cumulus Linux 5.14.
+{{%/notice%}}
+
 ### Adaptive Routing Statistic Format
 
 When you enable adaptive routing telemetry, the switch exports the following statistics:
@@ -661,9 +665,9 @@ When you enable adaptive routing telemetry, the switch exports the following sta
 | Metric | Description |
 | ---------- | ------- |
 | `nvswitch_ar_congestion_changes`  | The number of adaptive routing change events triggered due to congestion or link-down.|
-| `nvswitch_srv6_no_sid_drops`| Number of packets dropped due to no matching SID. |
-| `nvswitch_srv6_in_pkts` | Number of packets received for this SID. |
-| `nvswitch_qos_trimmed_unicast_pkts`|  The number of packets that were trimmed.|
+| `nvswitch_srv6_no_sid_drops`| * Number of packets dropped due to no matching SID. |
+| `nvswitch_srv6_in_pkts` | * Number of packets received for this SID. |
+| `nvswitch_qos_trimmed_unicast_pkts`| * The number of packets that were trimmed.|
 
 {{< expand "Example JSON data for nvswitch_ar_congestion_changes:" >}}
 ```
@@ -743,10 +747,10 @@ The switch collects and exports the following interface and switch, buffer occup
 | `nvswitch_interface_headroom_buffer_pool_curr_occupancy` | Current headroom buffer occupancy for port shared pool buffer |
 | `nvswitch_interface_headroom_buffer_pool_watermark` | Maximum headroom buffer occupancy for port shared pool buffer. |
 | `nvswitch_interface_headroom_buffer_pool_watermark_recorded_max` | Highest maximum headroom buffer occupancy for port shared pool buffer. |
-| `nvswitch_interface_shared_buffer_port_tc_desc_watermark_recorded_max_bytes` | Interface shared buffer traffic class highest recorded watermark counter in bytes.|
-| `nvswitch_interface_shared_buffer_port_pg_watermark_recorded_max_timestamp` | Time when highest shared buffer port group watermark is recorded.|
-| `nvswitch_interface_shared_buffer_port_tc_watermark_recorded_max_timestamp` | Time when highest shared buffer traffic class watermark is recorded|
-| `nvswitch_interface_shared_buffer_port_ingress_pool_watermark_recorded_max_timestamp` | Time when highest shared pool buffer watermark is recorded.|
+| `nvswitch_interface_shared_buffer_port_tc_desc_watermark_recorded_max_bytes` | * Interface shared buffer traffic class highest recorded watermark counter in bytes.|
+| `nvswitch_interface_shared_buffer_port_pg_watermark_recorded_max_timestamp` | * Time when highest shared buffer port group watermark is recorded.|
+| `nvswitch_interface_shared_buffer_port_tc_watermark_recorded_max_timestamp` | * Time when highest shared buffer traffic class watermark is recorded|
+| `nvswitch_interface_shared_buffer_port_ingress_pool_watermark_recorded_max_timestamp` | * Time when highest shared pool buffer watermark is recorded.|
 
 <!-- vale off -->
 <br>
@@ -1278,9 +1282,9 @@ The interface statistic data samples that the switch exports to the OTEL collect
 | `nvswitch_interface_if_out_multicast_pkts`|Number of interface out multicast packets. |
 | `nvswitch_interface_if_out_octets`| Number of interface out octets.|
 | `nvswitch_interface_if_out_octets`| Number of interface out unicast packets.|
-| `nvswitch_interface_type`| Link-layer interface type.|
-| `nvswitch_interface_ether_stats_jabbers` | Jabber frames receiverd on this interface.|
-| `nvswitch_interface_hw_address_info` | System defined default MAC address for the interface.|
+| `nvswitch_interface_type`| * Link-layer interface type.|
+| `nvswitch_interface_ether_stats_jabbers` | * Jabber frames receiverd on this interface.|
+| `nvswitch_interface_hw_address_info` | * System defined default MAC address for the interface.|
 
 {{< /tab >}}
 {{< tab "Traffic Class ">}}
@@ -1354,7 +1358,7 @@ The switch collects and exports the following additional interface statistics wh
 | `nvswitch_interface_phy_stats_phy_corrected_bits` | Corrected bits by FEC engine. |
 | `nvswitch_interface_phy_stats_time_since_last_clear` | Time after counters clear.|
 | `nvswitch_interface_phy_stats_effective_ber` | FEC BER errors. |
-| `nvswitch_interface_phy_rs_fec_histogram` | Firmware version information for the transceiver.|
+| `nvswitch_interface_phy_rs_fec_histogram` | * Firmware version information for the transceiver.|
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -1980,7 +1984,7 @@ When you enable LLDP statistic telemetry, the switch exports the following stati
 | `nvswitch_lldp_neighbor_info` | LLDP neighbor information.|
 | `nvswitch_lldp_neighbor_ttl` | LLDP neighbor port TTL in seconds.|
 | `nvswitch_lldp_neighbor_management_address-info` | LLDP neighbor management address information.|
-| `nvswitch_lldp_interface_enabled` | Per-directional status on whether LLDP is enabled per interface.|
+| `nvswitch_lldp_interface_enabled` | * Per-directional status on whether LLDP is enabled per interface.|
 
 {{< expand "Example JSON data for nvswitch_lldp_chassis_info:" >}}
 
@@ -2452,8 +2456,8 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | `nvswitch_platform_environment_temp_max` | Maximum temperature threshold in centigrade. | 
 | `nvswitch_platform_environment_temp_min` | Minimum temperature threshold in centigrade. | 
 | `nvswitch_platform_environment_temp_state` | Temperature sensor status (0: ABSENT, 1: OK, 2: FAILED, 3: BAD). |
-| `nvswitch_platform_evironment_input_voltage` | Input voltage to the PSU.|
-| `nvswitch_platform_environment_input_current` | Input current to the PSU.|
+| `nvswitch_platform_evironment_input_voltage` | * Input voltage to the PSU.|
+| `nvswitch_platform_environment_input_current` | * Input current to the PSU.|
 
 {{< /tab >}}
 {{< tab "Transceivers ">}}
@@ -2474,21 +2478,21 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | `nvswitch_platform_transceiver_channel_tx_bias_current` | tx bias current measured for the channel in Amps units and represented by a 32bit decimal value. |
 | `nvswitch_platform_transceiver_channel_tx_bias_current_alarm` | tx bias current alarm state of tx bias current measure for the channel when compared to the threshold values for the channel defined for the module. This is a bit mask value:<br>Bit 0: tx_bias_hi_al<br>Bit 1: l tx_bias_lo_al<br>Bit 2: tx_bia_hi_war<br>Bit 3: l tx_bias_lo_war |
 | `nvswitch_platform_transceiver_channel_tx_bias_current_threshold_info` | tx bias current thresholds defined for the channel in Amps units and represented by a 32bit decimal value. |
-| `nvswitch_platform_transceiver_firmware_version`| Firmware version information for the transceiver.|
-| `nvswitch_platform_transceiver_info` | General information for the transceiver.|
-| `nvswitch_platform_transceiver_ethernet_pmd` | Ethernet PMD information for the transceiver.|
-| `nvswitch_platform_transceiver_physical_channel_state` | Per physical channel LOS and CDR LOL state.|
-| `nvswitch_platform_transceiver_host_lane_state` | Per host lane LOS and CDR LOL state.|
-| `nvswitch_platform_transceiver_voltage` | Input voltage as measured by the transceiver |
+| `nvswitch_platform_transceiver_firmware_version`| * Firmware version information for the transceiver.|
+| `nvswitch_platform_transceiver_info` | * General information for the transceiver.|
+| `nvswitch_platform_transceiver_ethernet_pmd` | * Ethernet PMD information for the transceiver.|
+| `nvswitch_platform_transceiver_physical_channel_state` | * Per physical channel LOS and CDR LOL state.|
+| `nvswitch_platform_transceiver_host_lane_state` | * Per host lane LOS and CDR LOL state.|
+| `nvswitch_platform_transceiver_voltage` | * Input voltage as measured by the transceiver |
 
 {{< /tab >}}
 {{< tab "Platform Information ">}}
 
 | Metric | Description |
 | ---------- | ------- |
-| `nvswitch_platform_info_last_reboot_time` | Time of last reboot in ns since epoch.|
-| `nvswitch_platform_info_last_reboot_reason` | Information about the last reboot reason of a component.|
-| `nvswitch_platform_info_firmware_version` | Information about the firmware version of a component.|
+| `nvswitch_platform_info_last_reboot_time` | * Time of last reboot in ns since epoch.|
+| `nvswitch_platform_info_last_reboot_reason` | * Information about the last reboot reason of a component.|
+| `nvswitch_platform_info_firmware_version` | * Information about the firmware version of a component.|
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -4076,9 +4080,9 @@ If you enable `systemd` process-level statistics, the switch collects the follow
 | `nvswitch_systemd_unit_process_subprocesses` | The number of child processes.|
 | `nvswitch_systemd_unit_process_context_switches` | The number of context switches based on context type after the main process was created.|
 | `nvswitch_systemd_unit_process_cpu_usage_seconds` | The CPU usage of the process (user and kernel mode, including children).|
-| `nvswitch_systemd_unit_process_cpu_usage_user_seconds` | CPU usage of the process (User mode) in seconds.|
-| `nvswitch_systemd_unit_process_cpu_usage_system_seconds`| CPU usage of the process (System mode) in seconds.|
-| `nvswitch_systemd_unit_process_info` | Process information includes pid, name and args. |
+| `nvswitch_systemd_unit_process_cpu_usage_user_seconds` | * CPU usage of the process (User mode) in seconds.|
+| `nvswitch_systemd_unit_process_cpu_usage_system_seconds`| * CPU usage of the process (System mode) in seconds.|
+| `nvswitch_systemd_unit_process_info` | * Process information includes pid, name and args. |
 | `nvswitch_systemd_unit_process_virtual_memory_usage_bytes` | The virtual memory usage of the process (in bytes).|
 | `nvswitch_systemd_unit_process_resident_memory_usage_bytes` | The resident memory usage of the process (in bytes).|
 | `nvswitch_systemd_unit_process_shared_memory_usage_bytes` | The shared memory usage of the process (in bytes).|

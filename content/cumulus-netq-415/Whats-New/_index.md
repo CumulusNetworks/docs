@@ -27,6 +27,7 @@ The following features have been removed or deprecated:
 ## Release Considerations
 
 - When you upgrade to NetQ v4.15.0, any pre-existing validation data will be lost. Additionally, NetQ will not retain data related to network services (including BGP, LLDP, EVPN, and MLAG) after upgrading.
+- You must upgrade cloud (OPTA) deployments to NetQ 4.15 before initiating a {{<link title="Switch Management/#switch-discovery" text="switch discovery">}}.
 - The NetQ agent is not compatible with Broadcom switches. Reach out to your NVIDIA support representative if your networking environment requires Broadcom support.
 
 ### Upgrade Paths

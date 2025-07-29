@@ -240,7 +240,7 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 
 |  Name | Description |
 |------ | ----------- |
-| `/system/adaptive-routing/state/counters/congestion-change` | * The number of adaptive routing change events that triggered due to congestion or link down.|
+| `/system/adaptive-routing/state/counters/congestion-change` | The number of adaptive routing change events that triggered due to congestion or link down.|
 
 {{< /tab >}}
 {{< tab "Interface">}}

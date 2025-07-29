@@ -37,7 +37,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{%notice note%}}
-When you enable packet trimming, one service port is used. By default, this is the last service port on the switch. To change the service port, run the `nv set system forwarding packet-trim service-port <interface-id>` command.”
+When you enable packet trimming, one service port is used. By default, this is the last service port on the switch. To change the service port, run the `nv set system forwarding packet-trim service-port <interface-id>` command.
 
 On a switch that supports two service ports, you can configure a bond on the service ports, then use the bond for the packet trimming service port; for example: `nv set system forwarding packet-trim service-port bond1`. For information about service ports on Spectrum-4 switches, refer to {{<link url="Switch-Port-Attributes/#breakout-ports" text="Switch Port Attributes">}}.
 
@@ -52,7 +52,7 @@ Cumulus Linux provides a default packet trimming profile you can use instead of 
 - Sets the DSCP remark value to 11 (global DSCP).
 - Sets the truncation size to 256 bytes.
 - Sets the switch priority to 4.
-- Sets the eligibility to all ports on the switch with traffic class 1,2, and 3.
+- Sets the eligibility to all ports on the switch with traffic class 1, 2, and 3.
 
 To use the default packet trimming profile:
 
@@ -73,7 +73,7 @@ The RoCE `lossy-multi-tc` profile uses the {{<link url="#global-level-packet-tri
 
 ## Port Level Packet Trimming
 
-By default, you remark all trimmed packets with the same DSCP value; however, you can use a different DSCP value for trimmed packets sent out through different ports. For example, you can use DSCP 20 to send trimmed packets to hosts but DSCP 10 to send trimmed packets to the uplink (spine). This allows the destination to know where congestion occurs; on downlinks to servers or in the fabric.
+By default, you remark all trimmed packets with the same DSCP value; however, you can use a different DSCP value for trimmed packets sent out through different ports. For example, you can use DSCP 20 to send trimmed packets to hosts but DSCP 10 to send trimmed packets to the uplink. This allows the destination to know where congestion occurs; on downlinks to servers or in the fabric.
 
 To enable and configure port level packet trimming:
 - Enable packet trimming.

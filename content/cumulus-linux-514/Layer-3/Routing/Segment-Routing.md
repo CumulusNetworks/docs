@@ -49,7 +49,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 - To disable segment routing, run the `nv set router segment-routing srv6 state disabled` command.
-- To unset all SRv6 locators, run the `nv unset router segment-routing  srv6 locator` command.
+- To unset all SRv6 locators, run the `nv unset router segment-routing srv6 locator` command.
 - To unset all static segment identifiers, run the `nv unset router segment-routing static srv6-sid` command.
 - To unset a static segment identifier, run the `nv unset router segment-routing static srv6-sid <prefix>` command.
 

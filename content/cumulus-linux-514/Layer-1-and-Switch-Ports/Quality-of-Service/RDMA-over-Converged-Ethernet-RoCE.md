@@ -77,7 +77,7 @@ To disable single shared buffer pool mode and use the default mode (lossless), r
 
 ## Lossy Multi TC Profile
 
-The lossy multi TC profile provides QoS settings for lossy RoCE traffic and enables {{<link url="Packet-Trimming" text="Packet trimming">}} with the {{<link url="#packet-trimming-with-default-profile" text="default packet trimming profile">}} settings.
+The lossy multi TC profile provides QoS settings for lossy RoCE traffic and enables {{<link url="Packet-Trimming" text="Packet trimming">}} with the {{<link url="Packet-Trimming/#global-level-packet-trimming-with-default-profile" text="default packet trimming profile">}} settings.
 
 To enable the lossy multi TC profile with packet trimming at the global level, where all trimmed packets have the same DSCP value:
 

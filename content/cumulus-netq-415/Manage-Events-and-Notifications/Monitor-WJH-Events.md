@@ -15,14 +15,10 @@ For a list of supported WJH events, refer to the {{<link title="WJH Events Refer
 
 To use a gNMI client to export WJH data to a collector, refer to {{<link title="gNMI Streaming#collect-wjh-data-using-gnmi" text="Collect WJH Data with gNMI.">}}
 
-
 {{<notice note>}}
-
-WJH is only supported on NVIDIA Spectrum switches running Cumulus Linux 4.4.0 or later. WJH latency and congestion monitoring is supported on NVIDIA Spectrum-2 switches or later.
-
+<li>WJH is only supported on NVIDIA Spectrum switches running Cumulus Linux 4.4.0 or later. WJH latency and congestion monitoring is supported on NVIDIA Spectrum-2 switches or later.
+<li>Before you configure the NetQ Agent to run the NetQ WJH client, first make sure that the <em>what-just-happened.service</em>  is disabled in environments running Cumulus Linux. Alternately, if your deployment requires the Cumulus Linux <em>what-just-hapenned.service</em>, stop and disable the <em>netq-agent.service</em>.
 {{</notice>}}
-
-
 
 {{%notice info%}}
 
@@ -57,12 +53,6 @@ To enable WJH on any switch or server:
     ```
 
 When you finish viewing WJH metrics, you can stop the NetQ Agent from collecting WJH data to reduce network traffic. Use `netq config del agent wjh` followed by `netq config restart agent` to disable WJH on a given switch.
-
-{{<notice note>}}
-
-Using <em>wjh_dump.py</em> on an NVIDIA platform that is running Cumulus Linux and the NetQ Agent causes the NetQ WJH client to stop receiving packet drop call backs. To prevent this issue, run <em>wjh_dump.py</em> on a system other than the one where the NetQ Agent has WJH enabled, or disable <em>wjh_dump.py</em> and restart the NetQ Agent with <code>netq config restart agent</code>.
-
-{{</notice>}}
 
 ## View What Just Happened Metrics
 

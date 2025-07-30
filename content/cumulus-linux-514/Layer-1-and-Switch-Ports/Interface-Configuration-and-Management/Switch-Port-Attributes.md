@@ -2132,7 +2132,7 @@ For more information about showing and clearing interface counters, refer to {{<
 
 ### Show Module Information
 
-To verify module settings, run the NVUE `nv show interface <interface-id> transceiver` command or the `ethtool -m` command. The following example shows the vendor, type and power output for swp1.
+To verify module settings, run the NVUE `nv show interface <interface-id> transceiver` command or the `ethtool -m` command. The following example shows vendor information and power output for QSFP28 in swp1.
 
 ```
 cumulus@switch:~$ nv show interface swp1 transceiver

@@ -30,7 +30,7 @@ By default, NVUE enables auto-negotiation; however, you can set the link speed f
 {{< tabs "TabID29 ">}}
 {{< tab "NVUE Commands ">}}
 
-If you set the link speed for a port and leave the default auto-negotiation setting (ON) or set auto-negotiation ON, the link comes up with auto-negotiation ON and the switch advertises the configured link speed setting to the other side of the connection.
+If you set the link speed for a port and leave the default auto-negotiation setting (`on`) or set auto-negotiation `on`, the link comes up with auto-negotiation `on` and the switch advertises the configured link speed setting to the other side of the connection.
 
 ```
 cumulus@switch:~$ nv set interface swp1 link speed 400G
@@ -39,7 +39,7 @@ cumulus@switch:~$ nv config apply
 
 ```
 cumulus@switch:~$ nv set interface swp1 link speed 400G
-cumulus@switch:~$ nv set interface swp1 link auto-negotiate ON
+cumulus@switch:~$ nv set interface swp1 link auto-negotiate on
 cumulus@switch:~$ nv config apply
 ```
 
@@ -47,11 +47,11 @@ If you set the link speed for a port and set auto-negotiation OFF, the link come
 
 ```
 cumulus@switch:~$ nv set interface swp1 link speed 400G
-cumulus@switch:~$ nv set interface swp1 link auto-negotiate OFF
+cumulus@switch:~$ nv set interface swp1 link auto-negotiate off
 cumulus@switch:~$ nv config apply
 ```
 
-If you do not set a link speed for a port and set auto-negotiation ON, the switch advertises all supported speeds on the interface:
+If you do not set a link speed for a port and set auto-negotiation `on`, the switch advertises all supported speeds on the interface:
 
 ```
 cumulus@switch:~$ nv set interface swp1 link auto-negotiate on
@@ -63,7 +63,7 @@ cumulus@switch:~$ nv config apply
 
 Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command:
 
-If you set the link speed for a port and leave the default auto-negotiation setting (ON) or set auto-negotiation ON, the link comes up with auto-negotiation ON and the switch advertises the configured link speed setting to the other side of the connection.
+If you set the link speed for a port and leave the default auto-negotiation setting (`on`) or set auto-negotiation `on`, the link comes up with auto-negotiation `on` and the switch advertises the configured link speed setting to the other side of the connection.
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -85,7 +85,7 @@ iface swp1
 ...
 ```
 
-If you do not set a link speed for a port and set auto-negotiation ON, the switch advertises all supported speeds on the interface:
+If you do not set a link speed for a port and set auto-negotiation `on`, the switch advertises all supported speeds on the interface:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -100,7 +100,7 @@ iface swp1
 
 {{%notice note%}}
 Link speed and auto-negotiation behavior has changed in Cumulus Linux 5.14:
-- In Cumulus Linux 5.14 and later if you run the `nv set interface swp1 link speed` command without setting auto-negotiation, the link comes up with auto-negotiation ON and the switch advertises the configured link speed setting to the other side of the connection.
+- In Cumulus Linux 5.14 and later if you run the `nv set interface swp1 link speed` command without setting auto-negotiation, the link comes up with auto-negotiation `on` and the switch advertises the configured link speed setting to the other side of the connection.
 - In Cumulus Linux 5.13 and earlier if you run the `nv set interface swp1 link speed` command without setting auto-negotiation, force mode is set and the switch does not advertise the configured link speed setting to the other side of the connection.
 {{%/notice%}}
 
@@ -1725,7 +1725,7 @@ cumulus@switch:~$ nv set interface swp1s0-3 link state up
 cumulus@switch:~$ nv config apply
 ```
 
-The following example splits the port into four interfaces and forces the link speed to be 10G. Cumulus disables auto-negotiation when you force set the speed.
+The following example splits the port into four interfaces and forces the link speed to be 10G. The link comes up with auto-negotiation `on` and the switch advertises the configured link speed setting to the other side of the connection.
 
 ```
 cumulus@switch:~$ nv set interface swp1 link breakout 4x
@@ -1914,10 +1914,6 @@ To remove a breakout port:
 ## Configure Port Lanes
 
 You can override the default behavior for supported speeds and platforms and specify the number of lanes for a port. For example, for the NVIDIA SN4700 switch, the default port speed is 50G (2 lanes, <span class="a-tooltip">[NRZ](## "Non-Return-to-Zero")</span> signaling mode) and 100G (4 lanes, NRZ signaling mode). You can override this setting to 50G (1 lane, <span class="a-tooltip">[PAM4](## "Pulse Amplitude Modulation 4-level")</span> signaling mode) and 100G (2 lanes, PAM4 signaling mode).
-
-{{%notice note%}}
-This setting does not apply when auto-negotiation is on because Cumulus Linux advertises all supported speed options, including PAM4 and NRZ during auto-negotiation.
-{{%/notice%}}
 
 {{< tabs "TabID1415 ">}}
 {{< tab "NVUE Commands ">}}
@@ -2134,9 +2130,9 @@ out-pkts             43945
 
 For more information about showing and clearing interface counters, refer to {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE" text="Monitoring Interfaces and Transceivers with NVUE">}}.
 
-### SFP Port Information
+### Show Module Information
 
-To verify SFP settings, run the NVUE `nv show interface <interface-id> transceiver` command or the `ethtool -m` command. The following example shows the vendor, type and power output for swp1.
+To verify module settings, run the NVUE `nv show interface <interface-id> transceiver` command or the `ethtool -m` command. The following example shows the vendor, type and power output for swp1.
 
 ```
 cumulus@switch:~$ nv show interface swp1 transceiver
@@ -2182,7 +2178,7 @@ Receiver signal average optical power     : 0.7285 mW / -1.38 dBm
 <!-- Vale issue #253 -->
 ### Auto-negotiation and FEC
 <!-- vale on -->
-If auto-negotiation is off on 100G and 25G interfaces, you must set FEC to *OFF*, RS, or BaseR to match the neighbor. The FEC default setting of *auto* does not link up when auto-negotiation is off.
+If auto-negotiation is off on 100G and 25G interfaces, you must set FEC to *off*, RS, or BaseR to match the neighbor. The FEC default setting of *auto* does not link up when auto-negotiation is off.
 
 ### Auto-negotiation with the Spectrum-4 Switch
 

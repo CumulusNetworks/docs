@@ -15,7 +15,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 NetQ 4.15.0 includes the following new features:
 
 - The {{<link title="Validate Network Protocol and Service Operations" text="validation summary">}} has been re-designed to let you view all the results from recent validations and re-run validations directly from the summary
-- You can now {{<link title="Integrate NetQ with Grafana" text="integrate NetQ with Grafana">}} and create custom dashboards to view hardware telemetry data (beta)
+- You can now {{<link title="Integrate NetQ with Grafana" text="integrate NetQ with Grafana">}} and create custom dashboards to view telemetry data. The data is collected using OpenTelemetry and stored in a time-series database that you can also query directly (beta)
 - {{<link title="Validate Network Protocol and Service Operations/#topology-validations" text="Topology validations">}} now support topology blueprint files in both JSON and DOT formats
 
 The following features have been removed or deprecated:

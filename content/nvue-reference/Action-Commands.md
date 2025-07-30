@@ -1175,6 +1175,23 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action clear system forwarding packet-trim counters</h>
+
+Clears the global packet trimming counter that is shown in the `nv show system forwarding packet-trim` command output.
+
+### Version History
+
+Introduced in Cumulus Linux 5.14.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear system forwarding packet-trim counters
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action clear vrf \<vrf-id\> router bgp address-family ipv4-unicast in</h>
 
 Clears BGP IPv4 inbound routes.

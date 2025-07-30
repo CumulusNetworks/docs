@@ -149,7 +149,7 @@ remark
 dscp                     11                             
 session-info                                              
 session-id               0x0                            
-trimmed-packet-counters  0                              
+trimmed-packet-counters  166788                              
 
 Egress Eligibility TC-to-Interface Information
 =================================================
@@ -180,7 +180,7 @@ remark
  dscp                     port-level   port-level         
 session-info                                               
  session-id               0x0                             
- trimmed-packet-counters  0                               
+ trimmed-packet-counters  166788                               
 
 Egress Eligibility TC-to-Interface Information
 =================================================
@@ -210,6 +210,32 @@ dscp               11
 - To show packet trimming interface eligibility information, run the `nv show interface <interface-id> packet-trim egress-eligibility` command.
 - To show packet trimming interface eligibility traffic-class information, run the `nv show interface <interface-id> packet-trim egress-eligibility traffic-class` command.
 - To show packet trimming interface eligibility information for a specific traffic class, run the `nv show interface <interface-id> packet-trim egress-eligibility traffic-class <tc-id>` command.
+
+## Clear Packet Trimming Counter
+
+You can clear the global packet trimming counter with the `nv action clear system forwarding packet-trim counters` command. The global packet trimming counter is shown in the `nv show system forwarding packet-trim command` command output.
+
+```
+cumulus@switch:~$ nv show system forwarding packet-trim 
+                           operational  applied            
+-------------------------  -----------  -------------------
+state                      enabled      enabled            
+profile                                 packet-trim-default
+service-port               swp65                           
+size                       256                             
+traffic-class              4                               
+switch-priority            4                               
+remark                                                     
+ dscp                     port-level   port-level         
+session-info                                               
+ session-id               0x0                             
+ trimmed-packet-counters  166788                               
+...
+```
+
+```
+cumulus@switch:~$ nv action clear system forwarding packet-trim counters
+```
 
 ## Troubleshooting
 

@@ -14,6 +14,7 @@ Cumulus Linux 5.14.0 contains several new features and improvements, and provide
 
 ### New Features and Enhancements
 
+- FRR upgrade to 10.0.3
 - {{<link title="Erase all Data from the Switch" text="Erase all data from the switch">}} now generally available
 - {{<link url="Switch-Port-Attributes/#auto-negotiation-and-link-speed" text="Link speed setting and auto-negotiation behavior change">}}
 - {{<link url="Packet-Trimming" text="Packet trimming">}}

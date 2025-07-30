@@ -12,7 +12,7 @@ type: nojsscroll
 ## netq modify otlp endpoint
 <!-- vale on -->
 
-Use this command to change the OTel endpoint of your time series database (TSDB).
+Use this command to change the OTel endpoint of your time-series database (TSDB).
 
 ### Syntax
 

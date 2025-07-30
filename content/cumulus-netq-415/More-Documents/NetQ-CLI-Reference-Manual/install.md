@@ -116,7 +116,7 @@ nvidia@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.15.0.t
 
 ## netq install cluster config generate
 
-Run this command on your *master* node to generates a JSON template that you can use to specify your VM's cluster configuration attributes as part of the high-availability scale cluster deployment.
+Run this command on your *master* node to generate a JSON template that you can use to specify your VM's cluster configuration attributes as part of the high-availability scale cluster deployment.
 
 ### Syntax
 

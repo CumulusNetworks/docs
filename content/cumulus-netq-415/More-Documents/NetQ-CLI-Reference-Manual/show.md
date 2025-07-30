@@ -3274,37 +3274,22 @@ None
 
 ### Sample Usage
 
-Cloud appliance or VM:
 
 ```
 nvidia@hostname:~$ sudo netq show opta-health
-[sudo] password for cumulus:
-Application                                          Status    Namespace      Restarts    Timestamp
----------------------------------------------------  --------  -------------  ----------  ------------------------
-netq-api-gateway-nginx-deploy-5f9f7d8766-gp89q       READY     default        0           Sat Mar 15 02:01:00 2025
-netq-app-admin-netq-appliance                        READY     default        0           Sat Mar 15 02:01:00 2025
-netq-fluend-aggregator-opta-deploy-84989948c6-dz2n9  READY     default        0           Sat Mar 15 02:01:00 2025
-netq-lcm-executor-deploy-7767c7d78-n4dcp             READY     default        0           Sat Mar 15 02:01:00 2025
-netq-opta-deploy-7c547d95d7-gstcw                    READY     default        0           Sat Mar 15 02:01:00 2025
-netq-prom-adapter-588d676df7-b9dpm                   READY     default        0           Sat Mar 15 02:01:00 2025
-netqclustermanager-5bffc6ccf-c4j6t                   READY     default        0           Sat Mar 15 02:01:00 2025
-netqedge-75c57b866f-ps8nt                            READY     default        0           Sat Mar 15 02:01:00 2025
-netqinstaller-b95f9c974-zjb6c                        READY     default        0           Sat Mar 15 02:01:00 2025
-reloader-reloader-5c6c75f7c-lcwvm                    READY     default        0           Sat Mar 15 02:01:00 2025
-default-http-backend-2lpdm                           READY     ingress-nginx  0           Sat Mar 15 02:01:00 2025
-nginx-ingress-controller-cqdm9                       READY     ingress-nginx  0           Sat Mar 15 02:01:00 2025
-calico-kube-controllers-84f6f4f568-bk2nk             READY     kube-system    0           Sat Mar 15 02:01:00 2025
-calico-node-vrwz6                                    READY     kube-system    0           Sat Mar 15 02:01:00 2025
-coredns-6bfcc79674-hdd7g                             READY     kube-system    0           Sat Mar 15 02:01:00 2025
-coredns-6bfcc79674-ldvmt                             READY     kube-system    0           Sat Mar 15 02:01:00 2025
-docker-registry-netq-appliance                       READY     kube-system    0           Sat Mar 15 02:01:00 2025
-etcd-netq-appliance                                  READY     kube-system    2           Sat Mar 15 02:01:00 2025
-kube-apiserver-netq-appliance                        READY     kube-system    1           Sat Mar 15 02:01:00 2025
-kube-controller-manager-netq-appliance               READY     kube-system    1           Sat Mar 15 02:01:00 2025
-kube-proxy-sjz9g                                     READY     kube-system    0           Sat Mar 15 02:01:00 2025
-kube-scheduler-netq-appliance                        READY     kube-system    1           Sat Mar 15 02:01:00 2025
-metrics-server-5d68d5fc94-tlkjl                      READY     kube-system    0           Sat Mar 15 02:01:00 2025
-cluster node: netq-appliance                         READY     N/A            N/A         Sat Mar 15 02:01:00 2025
+Application                                                 Status    Namespace      Restarts    Timestamp
+----------------------------------------------------------  --------  -------------  ----------  ------------------------
+cert-manager-7d897799c8-l82w4                               READY     cert-manager   0           Wed Jul 30 15:45:02 2025
+cert-manager-cainjector-f98d6458c-lspvx                     READY     cert-manager   0           Wed Jul 30 15:45:02 2025
+cert-manager-webhook-854c8c444f-whj8j                       READY     cert-manager   0           Wed Jul 30 15:45:02 2025
+cassandra-rc-0-krmkc                                        READY     default        0           Wed Jul 30 15:45:02 2025
+cp-schema-registry-deploy-688cd45458-whh5j                  READY     default        0           Wed Jul 30 15:45:02 2025
+kafka-broker-rc-1-c28f4                                     READY     default        0           Wed Jul 30 15:45:02 2025
+kafka-connect-deploy-544f964666-dp446                       READY     default        0           Wed Jul 30 15:45:02 2025
+netq-api-gateway-deploy-66c9448b55-76nwk                    READY     default        0           Wed Jul 30 15:45:02 2025
+netq-app-address-deploy-0                                   READY     default        0           Wed Jul 30 15:45:02 2025
+netq-app-admin-netq-appliance                               READY     default        0           Wed Jul 30 15:45:02 2025
+...
 ```
 
 ### Related Commands
@@ -3337,22 +3322,22 @@ None
 ### Sample Usage
 
 ```
-nvidia@nswitch:~$ netq show opta-platform
+nvidia@switch:~$ netq show opta-platform
 Matching platform records:
 Version                              Uptime                    Reinitialize Time
 ------------------------------------ ------------------------- --------------------------
-3.2.0                                Fri Oct  2 22:04:17 2020  Wed Nov 11 21:53:57 2020
+4.15.0                               Mon Jul 14 14:20:49 2025  Mon Jul 14 15:40:52 2025
 ```
 
 ### Related Commands
 
-- ```netq show opta-health```
+- `netq show opta-health`
 
 - - -
 
 ## netq show otlp
 
-Displays OpenTelemetry health or status information. Several forms of this command are available.
+Displays OpenTelemetry health, status, security, or certificate information. Several forms of this command are available.
 
 ### Syntax
 
@@ -3388,8 +3373,8 @@ netq show otlp tls-cert
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | json | NA | Display the output in JSON format |
-| dump | NA | |
-| verbose | NA |  |
+| dump | NA | Display the CA certificate content in full |
+| verbose | NA | Display detailed metrics for each pod |
 
 ### Related Commands
 
@@ -3606,15 +3591,9 @@ nvidia@switch:~$ netq show resource-util
 Matching resource_util records:
 Hostname          CPU Utilization      Memory Utilization   Disk Name            Total                Used                 Disk Utilization     Last Updated
 ----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
-border01          10.4                 95.2                 /dev/vda4            6042644480           1710796800           29.9                 Wed Dec  9 16:15:35 2020
-border02          10.5                 94.9                 /dev/vda4            6042644480           1710833664           29.9                 Wed Dec  9 16:15:00 2020
-fw1               4.3                  88.7                 /dev/vda4            6042644480           1746694144           30.6                 Wed Dec  9 16:14:06 2020
-fw2               4.5                  87.8                 /dev/vda4            6042644480           1746690048           30.6                 Wed Dec  9 16:13:57 2020
-leaf01            9.9                  91.9                 /dev/vda4            6042644480           1717112832           30                   Wed Dec  9 16:11:16 2020
-leaf02            12.6                 96.6                 /dev/vda4            6042644480           1713135616           30                   Wed Dec  9 16:14:17 2020
-leaf03            10.5                 94.3                 /dev/vda4            6042644480           1713045504           30                   Wed Dec  9 16:15:14 2020
-leaf04            13                   96.3                 /dev/vda4            6042644480           1713086464           30                   Wed Dec  9 16:15:25 2020
-oob-mgmt-server   0.8                  42                   /dev/vda1            486105088            80372736             17.6                 Wed Dec  9 16:15:20 2020
+netq-appliance    30.5                 79.7                 /dev/sda1            531415142400         92703178752          17.4                 Wed Jul 30 15:48:23 2025
+netq-appliance    30.5                 79.7                 /dev/sda15           109395456            6399488              5.8                  Wed Jul 30 15:48:23 2025
+netq-appliance    30.5                 79.7                 /dev/sda16           923156480            117489664            13.7                 Wed Jul 30 15:48:23 2025
 ...
 ```
 

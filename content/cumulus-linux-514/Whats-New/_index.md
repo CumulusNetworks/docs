@@ -24,7 +24,7 @@ Cumulus Linux 5.14.0 contains several new features and improvements, and provide
   - {{<link url="gNMI-Streaming/#user-credentials-and-authentication" text="gRPC header based authentication support for gNMI subscription requests">}}
   - {{<link url="gNMI-Streaming/#gnmi-client-requests" text="Improved data formatting to include prefix field">}}
 - OTEL:
-  - {{<link url="Open-Telemetry-Export/#telemetry-data-format" text="New OTEL statistics: System Information, adaptive routing (packet trimming and SRv6), platform information, platform input power">}}
+  - {{<link url="Open-Telemetry-Export/#telemetry-data-format" text="New OTEL statistics: System Information, packet trimming, SRv6, platform information, platform input power">}}
   - Additional {{<link url="Open-Telemetry-Export/#platform-statistic-format" text="transceiver">}}, {{<link url="Open-Telemetry-Export/#routing-metrics-format" text="routing">}}, and {{<link url="Open-Telemetry-Export/#buffer-statistic-format" text="buffer">}} statistics
 - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#transceiver-thermal-control" text="Transceiver thermal control">}}
 - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#clear-interface-physical-layer-error-counters" text="Clear physical layer error counters for an interface">}}
@@ -66,7 +66,7 @@ nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn
 ```
 {{< /expand >}}
 - {{< expand "New and updated vtysh commands" >}}
-The following lists the updated and new vtysh show bgp commands. To see command examples, refer to {{<link url="Troubleshooting-BGP" text="Troubleshooting BGP">}}.
+- The following lists the updated and new vtysh show bgp commands. To see command examples, refer to {{<link url="Troubleshooting-BGP" text="Troubleshooting BGP">}}.
 ```
 show bgp router json
 show bgp vrfs <vrf-id> json
@@ -75,9 +75,9 @@ show bgp vrf <vrf-id> ipv4 unicast redistribute json
 show bgp vrf <vrf-id> ipv6 unicast redistribute json 
 ```
 
-In Cumulus Linux 5.14, the vtysh command to configure the area for OSPFv3 interfaces is under the interface instead of under `router ospf6`.
+- In Cumulus Linux 5.14, the vtysh command to configure the area for OSPFv3 interfaces is under the interface instead of under `router ospf6`.
 
-If you configure OSPFv3 areas with NVUE snippets in Cumulus Linux 5.13 and earlier, you must delete the snippets before you upgrade to Linux 5.14, then reconfigure the areas for OSPFv3 interfaces with the new vtysh commands after upgrade. See {{<link url="Open-Shortest-Path-First-v3-OSPFv3/#basic-ospfv3-configuration" text="Basic OSPFv3 Configuration">}}.
+  If you configure OSPFv3 areas with NVUE snippets in Cumulus Linux 5.13 and earlier, you must delete the snippets before you upgrade to Linux 5.14, then reconfigure the areas for OSPFv3 interfaces with the new vtysh commands after upgrade. See {{<link url="Open-Shortest-Path-First-v3-OSPFv3/#basic-ospfv3-configuration" text="Basic OSPFv3 Configuration">}}.
 {{< /expand >}}
 - NVUE
   - {{<link url="Troubleshooting-EVPN/#show-evpn-vnis-across-all-vrfs" text="Commands to show EVPN information across all VRFs">}}
@@ -167,6 +167,9 @@ nv set system forwarding packet-trim size
 nv set system forwarding packet-trim profile packet-trim-default
 nv set system forwarding packet-trim switch-priority
 nv set system forwarding packet-trim service-port <port>
+nv set system telemetry ai-ethernet-stats export state
+nv set system telemetry ai-ethernet-stats sample-interval
+nv set system telemetry platform-stats class platform-info state
 ```
 
 {{< /tab >}}
@@ -211,6 +214,9 @@ nv unset system forwarding packet-trim size
 nv unset system forwarding packet-trim profile
 nv unset system forwarding packet-trim switch-priority
 nv unset system forwarding packet-trim service-port
+nv unset system telemetry ai-ethernet-stats export state
+nv unset system telemetry ai-ethernet-stats sample-interval
+nv unset system telemetry platform-stats class platform-info state
 ```
 
 {{< /tab >}}
@@ -288,7 +294,7 @@ When a Cumulus Linux switch with NVUE enabled receives a DHCP lease containing t
 
 ### DHCP Relay Configuration
 
-Cumulus Linux 5.14 introduces server groups. In Cumulus Linux 5.13 and earlier, DHCP relay does not use server groups, but instead, forwards all DHCP client requests to every DHCP server within the same VRF. Cumulus Linux 5.14 no longer provides the `nv show service dhcp-relay <vrf-id> server` commands.
+Cumulus Linux 5.14 introduces server groups and no longer provides the `nv show service dhcp-relay <vrf-id> server` commands. In Cumulus Linux 5.13 and earlier, DHCP relay does not use server groups, but instead, forwards all DHCP client requests to every DHCP server within the same VRF.
 
 If you have configured DHCP relay in Cumulus Linux 5.13 or earlier, the upgrade process migrates the configuration to a new default configuration file called `isc-dhcp-relay-<server-group-id>-<vrf-id>` in the `/etc/default` directory and selects the uplink and downlink interfaces automatically. After upgrade, make sure to review the new configuration and adjust as needed.
 

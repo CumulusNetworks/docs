@@ -310,7 +310,7 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 {{< /tab >}}
 {{< tab "LLDP">}}
 
-|  Name | Description |
+|  Name | <div style="width: 300px;">Description</div> |
 |------ | ----------- |
 | `/lldp/interfaces/interface[name]/neighbors/neighbor[id]/capabilities/capability[name]/state/enabled` | If the corresponding system capability is enabled on the neighbor.|
 | `/lldp/interfaces/interface[name]/neighbors/neighbor[id]/state/age` | LLDP neighbor age after discovery.|
@@ -404,8 +404,10 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/qos/interfaces/interface[interface-id]/switch-priority[priority]/state/counters/out-pause-pkts`| * Number of pause packets for the priority class in the egress queue.|
 
 {{%notice note%}}
-Cumulus Linux 5.14 no longer provides the `/qos/interfaces/interface[name]/output/queues/queue[name]/state/watermark-max` metric and replaces the following metrics:
-| New metrics | Previous metrics|
+- Cumulus Linux 5.14 no longer provides the `/qos/interfaces/interface[name]/output/queues/queue[name]/state/watermark-max` metric.
+- The following table provides updated QoS metrics:
+
+| 5.14 metrics | 5.13 metrics|
 | ----------- |-----------------|
 |`/qos/interfaces/interface[interface-id]/state/switch-priority[priority]/counters/` | `/qos/interfaces/interface[interface-id]/switch-priority[priority]/state/counters/` |
 | `/qos/interfaces/interface[interface-id]/state/priority-group[priority_group]/counters/` | `/qos/interfaces/interface[interface-id]/priority-group[priority_group]/state/counters/`|

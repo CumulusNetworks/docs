@@ -391,7 +391,7 @@ The first `adduser` command prompts for information and a password. You can skip
 TACACS+ per-command authorization lets you configure the commands that TACACS+ users at different privilege levels can run.
 <!-- vale on -->
 
-The following command allows TACACS+ users at privilege level 0 to run the `nv` and `ip` commands (if authorized by the TACACS+ server):
+The following command allows TACACS+ users at privilege level 0 to run the `nv` and `ip` commands:
 
 {{< tabs "TabID392 ">}}
 {{< tab "NVUE Commands ">}}

@@ -132,7 +132,7 @@ protocol      static
 Segment routing endpoints are installed as IPv6 routes into the RIB and FIB. To show segment routing endpoints, view the
 IPv6 RIB with the `nv show vrf <vrf-id> router rib ipv6 route` command. You can view a specific route with the `nv show vrf <vrf-id> router rib ipv6 route <route-id>` command.
 
-### Show Segment Routing Statistics
+### Show SRv6 Statistics
 
 To show SRv6 statistics, run the `nv show router segment-routing srv6 stats` command
 
@@ -169,7 +169,7 @@ no-sid-dropped-packets  0
 When you enable {{<link url="Packet-Trimming" text="packet trimming">}} with segment routing, Cumulus Linux counts the trimmed packet twice in the SRv6 statistics.
 {{%/notice%}}
 
-### Clear Segment Routing Statistics
+### Clear SRv6 Statistics
 
 To clear all SRv6 statistics, run the `nv action clear router segment-routing srv6 stats` command:
 

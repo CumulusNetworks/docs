@@ -69,7 +69,7 @@ Additionally, for internal cluster communication, you must open these ports:
     a. Log in to your {{<exlink url="https://nvid.nvidia.com/" text="NVIDIA Application Hub">}} account.<br>
     b. Select **NVIDIA Licensing Portal**.<br>
     c. Select **Software Downloads** from the menu.<br>
-    d. Click **Product Family** and select **NetQ**.<br>
+    d. In the search field above the table, enter **NetQ**.<br>
     e. For deployments using KVM, download the **NetQ SW 4.15 KVM** image. For deployments using VMware, download the **NetQ SW 4.15 VMware** image<br>
     f. If prompted, read the license agreement and proceed with the download.<br>
 

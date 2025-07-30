@@ -399,22 +399,21 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/qos/interfaces/interface[name]/output/queues/queue[name]/state/max-queue-len` | * Maximum queue length for a queue since last time watermarks were reset.|
 | `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/wred-dropped-pkts` | Number of packets discarded from this egress queue of an interface. |
 | `/qos/interfaces/interface[interface-id]/priority-group[priority_group]/state/counters/time-since-last-clear` | * Time since last clear of watermarks in a priority group.|
-| `/qos/interfaces/interface[interface-id]priority-group[priority_group]/state/counters/watermark-max` | * High watermark of cells used in a queue since last time watermarks were reset. |
-| `/qos/interfaces/interface[interface-id]/switch-priority[priority]/state/counters/in-pause-pkts` | * Number of pause packets for the priority class in the ingress queue.|
-| `/qos/interfaces/interface[interface-id]/switch-priority[priority]/state/counters/out-pause-pkts`| * Number of pause packets for the priority class in the egress queue.|
+| `/qos/interfaces/interface[interface-id]/switch-priority[priority]/state/counters/in-pause-pkts` | Number of pause packets for the priority class in the ingress queue.|
+| `/qos/interfaces/interface[interface-id]/switch-priority[priority]/state/counters/out-pause-pkts`| Number of pause packets for the priority class in the egress queue.|
 
 {{%notice note%}}
-- Cumulus Linux 5.14 no longer provides the `/qos/interfaces/interface[name]/output/queues/queue[name]/state/watermark-max` metric.
-- The following table provides updated QoS metrics:
+The following table provides updated QoS metrics:
 
 | 5.14 metrics | 5.13 metrics|
 | ----------- |-----------------|
+| `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/max-queue-len-cells` | `/qos/interfaces/interface[name]/output/queues/queue[name]/state/watermark-max`| 
 |`/qos/interfaces/interface[interface-id]/state/switch-priority[priority]/counters/` | `/qos/interfaces/interface[interface-id]/switch-priority[priority]/state/counters/` |
 | `/qos/interfaces/interface[interface-id]/state/priority-group[priority_group]/counters/` | `/qos/interfaces/interface[interface-id]/priority-group[priority_group]/state/counters/`|
 {{%/notice%}}
 
 {{< /tab >}}
-{{< tab "Router">}}
+{{< tab "BGP">}}
 
 |  Name | Description |
 |------ | ----------- |
@@ -558,16 +557,43 @@ You can use your gNMI client on a host to request capabilities and data to which
 
 #### Dial-in Mode Example
 
-The following example shows a Dial-in Mode Subscribe request.
+The following example shows a basic Dial-in Mode Subscribe request in an HTTP Basic Authentication header:
+
+```
+gnmic subscribe --mode stream --path "/qos/interfaces/interface[interface-id=swp1]/output/queues/queue[name=1]/state/transmit-octets" -i 10s --tls-cert gnmi_client.crt --tls-key gnmi_client.key -u cumulus -p ******* --auth-scheme Basic --skip-verify -a 10.188.52.108:9339
+```
+
+The following example shows the response:
+
+```
+{ 
+  "sync-response": true 
+} 
+{ 
+  "source": "10.188.52.108:9339", 
+  "subscription-name": "default-1737725382", 
+  "timestamp": 1737725390247535267, 
+  "time": "2025-01-24T13:29:50.247535267Z", 
+  "updates": [ 
+    { 
+      "Path": "qos/interfaces/interface[interface-id=swp1]/output/queues/queue[name=1]/state/transmit-octets", 
+      "values": { 
+        "qos/interfaces/interface/output/queues/queue/state/transmit-octets": 0 
+      } 
+    } 
+  ] 
+} 
+...
+```
+
+The following example shows a Dial-in Mode Subscribe request in a gRPC Metadata header:
 
 ```
 gnmic subscribe --mode stream -i 10s --tls-cert cert/umf-crt.pem --tls-key cert/umf-key.pem -u cumulus -p NvidiaR0cks! --skip-verify -a  192.168.200.3:9339  --timeout 30s --prefix "system/cpus/cpu[index=0]" --path "state"
 ```
 
-#### Subscription Example
+The following example shows the response:
 
-The following example shows a subscription response:
-<!-- vale off -->
 ```
 {
   "source": "192.168.200.3:9339",
@@ -651,7 +677,7 @@ supported encodings:
   - JSON_IETF 
   - PROTO 
 ```
-<!-- vale on -->
+
 ## gNMI with NetQ
 
 This section discusses how to configure and use gNMI with NetQ. To configure and use gNMI with Cumulus Linux, see {{<link url="/#gnmi-with-cumulus-linux" text="gNMI with Cumulus Linux">}}.

@@ -236,7 +236,14 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 
 <!-- vale off -->
 {{< tabs "TabID233 ">}}
-{{< tab "Interface ">}}
+{{< tab "Adaptive Routing ">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/system/adaptive-routing/state/counters/congestion-change` | The number of adaptive routing change events that triggered due to congestion or link down.|
+
+{{< /tab >}}
+{{< tab "Interface">}}
 
 |  Name | Description |
 |------ | ----------- |
@@ -303,7 +310,7 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 {{< /tab >}}
 {{< tab "LLDP">}}
 
-|  Name | Description |
+|  Name | <div style="width: 300px;">Description</div> |
 |------ | ----------- |
 | `/lldp/interfaces/interface[name]/neighbors/neighbor[id]/capabilities/capability[name]/state/enabled` | If the corresponding system capability is enabled on the neighbor.|
 | `/lldp/interfaces/interface[name]/neighbors/neighbor[id]/state/age` | LLDP neighbor age after discovery.|
@@ -317,10 +324,9 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/lldp/interfaces/interface[name]/neighbors/neighbor[id]/state/system-description` | Description of the network entity associated with the transmitting LLDP agent.|
 | `/lldp/interfaces/interface[name]/neighbors/neighbor[id]/state/system-name` | Administratively assigned name of the system associated with the transmitting LLDP agent.|
 | `/lldp/interfaces/interface[name]/neighbors/neighbor[id]/state/ttl` | Indicates how long information from the neighbor is considered valid. |
-| `/lldp/interfaces/interface[name]/state/enabled`​ | * If LLDP is enabled on the interface. |
+| `/lldp/interfaces/interface[name]/state/enabled`| * If LLDP is enabled on the interface. |
 | `/lldp/state/chassis-id` | The chassis component of the endpoint identifier associated with the transmitting LLDP agent.|
 | `/lldp/state/chassis-id-type` | The format and source of the chassis identifier string.|
-| `/lldp/interfaces/interface[name]/state/enabled`| If LLDP is enabled globally. |
 | `/lldp/state/system-description` | Description of the network entity including the full name and version identification of the system's hardware type, software operating system, and networking software.|
 | `/lldp/state/system-name` | Administratively assigned name for the system.|
 | `/lldp/state/enable` | * If LLDP is enabled.|
@@ -334,7 +340,7 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/components/component[name]/fan/state/speed` | Current (instantaneous) fan speed. |
 | `/components/component[name]/power-supply/state/capacity` | Maximum power capacity of the power supply. |
 | `/components/component[name]/power-supply/state/input-current` | * Input current draw of the power supply.|
-| `/components/component[name]/power-supply/state/input-voltage` | Input voltage to power supply.|
+| `/components/component[name]/power-supply/state/input-voltage` | * Input voltage to power supply.|
 | `/components/component[name]/power-supply/state/output-current` | Output current supplied by the power supply. |
 | `/components/component[name]/power-supply/state/output-power` | Output power supplied by the power supply. |
 | `/components/component[name]/power-supply/state/output-voltage` | * Output voltage supplied by the power supply.|
@@ -373,6 +379,13 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/components/component[name]/transceiver/state/vendor-rev​` | * Transceiver vendor revision number. |
 
 {{< /tab >}}
+{{< tab "Packet Trimming">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/qos/packet-trimming/state/counters/trimmed-unicast-pkts`| * The number of trimmed packets.|
+
+{{< /tab >}}
 {{< tab "QoS">}}
 
 |  Name | Description |
@@ -382,17 +395,22 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/time-since-last-clear` | Time since last clear of watermarks in a queue.|
 | `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/transmit-octets`| Number of transmitted bytes in the egress queue of an interface.|
 | `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/transmit-pkts`| Number of transmitted packets in the egress queue of an interface. |
-| `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/max-queue-len-cell` | * Maximum queue length cells for a queue since last time watermarks were reset. |
+| `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/max-queue-len-cells` | * Maximum queue length cells for a queue since last time watermarks were reset. |
 | `/qos/interfaces/interface[name]/output/queues/queue[name]/state/max-queue-len` | * Maximum queue length for a queue since last time watermarks were reset.|
 | `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/wred-dropped-pkts` | Number of packets discarded from this egress queue of an interface. |
 | `/qos/interfaces/interface[interface-id]/priority-group[priority_group]/state/counters/time-since-last-clear` | * Time since last clear of watermarks in a priority group.|
 | `/qos/interfaces/interface[interface-id]priority-group[priority_group]/state/counters/watermark-max` | * High watermark of cells used in a queue since last time watermarks were reset. |
 | `/qos/interfaces/interface[interface-id]/switch-priority[priority]/state/counters/in-pause-pkts` | * Number of pause packets for the priority class in the ingress queue.|
 | `/qos/interfaces/interface[interface-id]/switch-priority[priority]/state/counters/out-pause-pkts`| * Number of pause packets for the priority class in the egress queue.|
-| `/qos/packet-trimming/state/counters/trimmed-unicast-pkts`| The number of trimmed packets.|
 
 {{%notice note%}}
-Cumulus Linux 5.14 no longer provides the `/qos/interfaces/interface[name]/output/queues/queue[name]/state/watermark-max` metric, and replaces the `/qos/interfaces/interface[interface-id]/state/switch-priority[priority]/counters/` and `/qos/interfaces/interface[interface-id]/state/priority-group[priority_group]/counters/` metrics available in 5.13 with `/qos/interfaces/interface[interface-id]/switch-priority[priority]/state/counters/` and `/qos/interfaces/interface[interface-id]/priority-group[priority_group]/state/counters/`.
+- Cumulus Linux 5.14 no longer provides the `/qos/interfaces/interface[name]/output/queues/queue[name]/state/watermark-max` metric.
+- The following table provides updated QoS metrics:
+
+| 5.14 metrics | 5.13 metrics|
+| ----------- |-----------------|
+|`/qos/interfaces/interface[interface-id]/state/switch-priority[priority]/counters/` | `/qos/interfaces/interface[interface-id]/switch-priority[priority]/state/counters/` |
+| `/qos/interfaces/interface[interface-id]/state/priority-group[priority_group]/counters/` | `/qos/interfaces/interface[interface-id]/priority-group[priority_group]/state/counters/`|
 {{%/notice%}}
 
 {{< /tab >}}
@@ -424,10 +442,15 @@ Cumulus Linux 5.14 no longer provides the `/qos/interfaces/interface[name]/outpu
 | `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/queues/output` | The number of messages queued to be sent to the peer.|
 | `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/session-state` | Operational state of the BGP peer. |
 | `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor/state` | Operational state data for interface hold-time.|
+
+{{< /tab >}}
+{{< tab "SRv6">}}
+
+|  Name | Description |
+|------ | ----------- |
 |`/network-instances/network-instance[name]/srv6/global/state/counters/no-sid-drops` | * The number of packets dropped due to no matching SRv6 SID.|
 | `/network-instances/network-instance[name]/srv6/sids/sid[id]/id`| * The SRv6 SID (segment identifier).|
 | `/network-instances/network-instance/srv6/sids/sid[id]/state/counters/in-pkts` | * The number of packets received for this SRv6 SID.|
-| `/system/adaptive-routing/state/counters/congestion-change` | * The number of adaptive routing change events that triggered due to congestion or link down.|
 
 {{< /tab >}}
 {{< tab "System">}}
@@ -447,7 +470,7 @@ Cumulus Linux 5.14 no longer provides the `/qos/interfaces/interface[name]/outpu
 | `/system/cpus/cpu[index]/state/hardware-interrupt/max-time` | * The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
 | `/system/cpus/cpu[index]/state/hardware-interrupt/min` | * The minimum value of the percentage measure of the statistic over the time interval.|
 | `/system/cpus/cpu[index]/state/hardware-interrupt/min-time` | * The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
-| `/system/cpus/cpu[index]/state/hardware-interrupt/seconds` | * The total number of seconds spent servicing hardware interrupts.|
+| `/system/cpus/cpu[index]/state/hardware-interrupt/seconds` | The total number of seconds spent servicing hardware interrupts.|
 | `/system/cpus/cpu[index]/state/idle/avg` | * The arithmetic mean value of the percentage measure of the statistic over the time interval.|
 | `/system/cpus/cpu[index]/state/idle/instant` |*  The instantaneous percentage value.|
 | `/system/cpus/cpu[index]/state/idle/interval` | * If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system.|
@@ -455,7 +478,7 @@ Cumulus Linux 5.14 no longer provides the `/qos/interfaces/interface[name]/outpu
 | `/system/cpus/cpu[index]/state/idle/max-time` | * The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
 | `/system/cpus/cpu[index]/state/idle/min` | * The minimum value of the percentage measure of the statistic over the time interval.|
 | `/system/cpus/cpu[index]/state/idle/min-time` | * The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
-| `/system/cpus/cpu[index]/state/idle/seconds` | * The total number of seconds spent idle.|
+| `/system/cpus/cpu[index]/state/idle/seconds` |  The total number of seconds spent idle.|
 | `/system/cpus/cpu[index]/state/kernel/avg` | * The arithmetic mean value of the percentage measure of the statistic over the time interval.|
 | `/system/cpus/cpu[index]/state/kernel/instant` | * The instantaneous percentage value.|
 | `/system/cpus/cpu[index]/state/kernel/interval` | * If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system. |
@@ -463,7 +486,7 @@ Cumulus Linux 5.14 no longer provides the `/qos/interfaces/interface[name]/outpu
 | `/system/cpus/cpu[index]/state/kernel/max-time` | * The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
 | `/system/cpus/cpu[index]/state/kernel/min` | * The minimum value of the percentage measure of the statistic over the time interval.|
 | `/system/cpus/cpu[index]/state/kernel/min-time` | * The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
-| `/system/cpus/cpu[index]/state/kernel/seconds` | * The total number of seconds spent running in kernel space.|
+| `/system/cpus/cpu[index]/state/kernel/seconds` | The total number of seconds spent running in kernel space.|
 | `/system/cpus/cpu[index]/state/nice/avg` | * The arithmetic mean value of the percentage measure of the statistic over the time interval.|
 | `/system/cpus/cpu[index]/state/nice/instant` | * The instantaneous percentage value. |
 | `/system/cpus/cpu[index]/state/nice/interval` | * If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system.|
@@ -471,7 +494,7 @@ Cumulus Linux 5.14 no longer provides the `/qos/interfaces/interface[name]/outpu
 | `/system/cpus/cpu[index]/state/nice/max-time` | * The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
 | `/system/cpus/cpu[index]/state/nice/min` | * The minimum value of the percentage measure of the statistic over the time interval.|
 | `/system/cpus/cpu[index]/state/nice/min-time` | * The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
-| `/system/cpus/cpu[index]/state/nice/seconds` | * The total number of seconds spent running low-priority (niced) user processes.|
+| `/system/cpus/cpu[index]/state/nice/seconds` |  The total number of seconds spent running low-priority (niced) user processes.|
 | `/system/cpus/cpu[index]/state/software-interrupt/avg` | * The arithmetic mean value of the percentage measure of the statistic over the time interval.|
 | `/system/cpus/cpu[index]/state/software-interrupt/instant` | * The instantaneous percentage value.|
 | `/system/cpus/cpu[index]/state/software-interrupt/interval` | * If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system.|
@@ -479,7 +502,7 @@ Cumulus Linux 5.14 no longer provides the `/qos/interfaces/interface[name]/outpu
 | `/system/cpus/cpu[index]/state/software-interrupt/max-time` | * The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
 | `/system/cpus/cpu[index]/state/software-interrupt/min` | * The minimum value of the percentage measure of the statistic over the time interval.|
 | `/system/cpus/cpu[index]/state/software-interrupt/min-time` | * The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
-| `/system/cpus/cpu[index]/state/software-interrupt/seconds` | * The total number of seconds spent servicing software interrupts.|
+| `/system/cpus/cpu[index]/state/software-interrupt/seconds` |  The total number of seconds spent servicing software interrupts.|
 | `/system/cpus/cpu[index]/state/total/avg` | * The arithmetic mean value of the percentage measure of the statistic over the time interval.|
 | `/system/cpus/cpu[index]/state/total/instant` | * The instantaneous percentage value. |
 | `/system/cpus/cpu[index]/state/total/interval` | * If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system.|
@@ -495,8 +518,8 @@ Cumulus Linux 5.14 no longer provides the `/qos/interfaces/interface[name]/outpu
 | `/system/cpus/cpu[index]/state/user/min` | * The minimum value of the percentage measure of the statistic over the time interval.|
 | `/system/cpus/cpu[index]/state/user/min-time` | * The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
 | `/system/cpus/cpu[index]/state/user/seconds` | The total number of seconds spent running in user space.|
-| `/system/cpus/cpu[index]/state/wait/avg` | The arithmetic mean value of the percentage measure of the statistic over the time interval.|
-| `/system/cpus/cpu[index]/state/wait/instant` | The instantaneous percentage value.|
+| `/system/cpus/cpu[index]/state/wait/avg` | * The arithmetic mean value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/wait/instant` | * The instantaneous percentage value.|
 | `/system/cpus/cpu[index]/state/wait/interval` | * If supported by the system, this reports the time interval over which the minimum, maximum, and average statistics are computed by the system.|
 | `/system/cpus/cpu[index]/state/wait/max` | * The maximum value of the percentage measure of the statistic over the time interval.|
 | `/system/cpus/cpu[index]/state/wait/max-time` | * The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|

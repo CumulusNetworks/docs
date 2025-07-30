@@ -69,7 +69,7 @@ leaf01(config-srv6-sids)# sid fcbb:fe8::/32 locator LEAF behavior uA interface s
 leaf01(config-srv6-sids)# exit
 leaf01(config-srv6)# locators
 leaf01(config-srv6-locators)# locator LEAF
-leaf01(config-srv6-locator)# prefix 2001:db8:1:1::/48 block-len 16 node-len 0 func-bits 16
+leaf01(config-srv6-locator)# prefix fcbb::/16 block-len 16 node-len 0 func-bits 16
 leaf01(config-srv6-locator)# end
 leaf01# exit
 ```
@@ -98,7 +98,7 @@ To show the configuration for all SRv6 locators, run the `nv show router segment
 cumulus@switch:~$ nv show router segment-routing srv6 locator
 SRv6 locator name  prefix             block length  node length  function length  status
 -----------------  ----------------   ------------  -----------  ---------------  ------
-LEAF               2001:db8:1:1::/48  16            0            16               up
+LEAF               fcbb::/16  16            0            16               up
 ```
 
 To show the configuration for a specific SRv6 locator, run the NVUE `nv show router segment-routing srv6 locator <locator-id>` command or the vtysh `show segment-routing srv6 locator <locator> detail` command:
@@ -107,7 +107,7 @@ To show the configuration for a specific SRv6 locator, run the NVUE `nv show rou
 cumulus@switch:~$ nv show router segment-routing srv6 locator LEAF
               operational      applied          
 ------------  ---------------  -----------------
-prefix        2001:db8:1::/48  2001:db8:1:1::/48
+prefix        fcbb::/16.       fcbb::/16
 block-length  16               16             
 node-length   0                0                
 func-length   16               16               

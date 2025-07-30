@@ -25,18 +25,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4513850</td>
-<td>After upgrading from Cumulus Linux 5.12 on the NVIDIA SN5400 switch bonus port, PTP does not converge. To work around this issue, disable, then enable the bonus port after upgrade.</td>
-<td>5.13.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4513849</td>
-<td>After upgrading from Cumulus Linux 5.12 on the NVIDIA SN5400 switch bonus port, PTP does not converge. To work around this issue, disable, then enable the bonus port after upgrade.</td>
-<td>5.13.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4507163</td>
 <td>In some cases after a package upgrade with ISSU (warm boot mode), you see continuous errors in the syslog similar to the following:
 NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
@@ -858,6 +846,11 @@ cumulus@switch:~$ git gc</td>
 <td>4425975</td>
 <td>On rare occasions, remote MAC address and host information learned through EVPN does not install in the kernel. As a result, traffic is not properly forwarded to those destinations. This occurs because the layer 2 VNI is considered to be up prematurely. To work around this issue, flap the  the VXLAN interface.</td>
 <td></td>
+</tr>
+<tr>
+<td>4425299</td>
+<td>After upgrading from Cumulus Linux 5.12 to 5.13 on the NVIDIA SN5400 switch bonus port, PTP does not converge. To work around this issue, disable, then enable the bonus port after upgrade.</td>
+<td>5.13.0-5.13.1</td>
 </tr>
 <tr>
 <td>4425288</td>

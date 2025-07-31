@@ -130,24 +130,6 @@ cumulus@leaf01:~$ nv config apply
 When you enable multihoming on the Spectrum A1 switch with the `nv set evpn multihoming enable on` command, NVUE restarts the `switchd` service, which causes all network ports to reset in addition to resetting the switch hardware configuration.
 {{%/notice%}}
 
-
-{{%notice note%}}
-NVIDIA recommends that you enable EVPN-MH on all VTEPs throughout the fabric to avoid duplicate packets.
-{{%/notice%}}
-
-<!-- vale on -->
-{{< tabs "TabID105 ">}}
-{{<tab "NVUE Commands">}}
-
-```
-cumulus@leaf01:~$ nv set evpn multihoming enable on
-cumulus@leaf01:~$ nv config apply
-```
-
-{{%notice warning%}}
-When you enable multihoming on the Spectrum A1 switch with the `nv set evpn multihoming enable on` command, NVUE restarts the `switchd` service, which causes all network ports to reset in addition to resetting the switch hardware configuration.
-{{%/notice%}}
-
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 

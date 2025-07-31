@@ -253,7 +253,7 @@ Cumulus Linux supports the following metrics:
 | `/interfaces/interface/state/counters/out-octets` | Total number of octets transmitted out of an interface, including framing characters.|
 | `/interfaces/interface/state/counters/out-unicast-pkts` | Total number of unicast packets transmitted out of an interface.|
 | `/interfaces/interface/ethernet/state/port-speed` | An estimate of the interface current bandwidth in units of 1,000,000 bits per second.|
-| `/interfaces/interface/state/counters/in-bits-rate` | Inbound bits per second on an interface.|
+| `/interfaces/interface/rates/state/in-bits-rate` | Inbound bits per second on an interface.|
 | `/interfaces/interface/state/ifindex` | A unique value, greater than zero, for each interface.|
 | `/interfaces/interface/state/counters/in-discards` | Number of inbound packets discarded even though no errors are detected to prevent them from being deliverable to a higher-layer protocol. |
 | `/interfaces/interface/state/counters/in-errors` | For packet-oriented interfaces, the number of inbound packets that contained errors preventing them from being deliverable to a higher-layer protocol.|
@@ -265,7 +265,7 @@ Cumulus Linux supports the following metrics:
 | `/interfaces/interface/ethernet/state/counters/in-mac-pause-frames` | Inbound MAC pause frames on an interface.|
 | `/interfaces/interface/state/mtu` | Size of the largest packet that can be sent or received on the interface, specified in octets. For interfaces used for transmitting network datagrams, this is the size of the largest network datagram that the interface can send.|
 | `/interfaces/interface/state/oper-status` | Current operational state of an interface. |
-| `/interfaces/interface/state/counters/out-bits-rate` | Outbound bits per second on an interface. |
+| `/interfaces/interface/rates/state/out-bits-rate` | Outbound bits per second on an interface. |
 | `/interfaces/interface/state/counters/out-discards` | Number of outbound packets discarded even though no errors are detected to prevent them from being transmitted. |
 | `/interfaces/interface/state/counters/out-errors` | For packet-oriented interfaces, the number of outbound packets not transmitted because of errors. For character-oriented or fixed-length interfaces, the number of outbound transmission units not transmitted because of errors. |
 | `/interfaces/interface/state/counters/out-pkts` | Total number of packets transmitted out of the interface, including all unicast, multicast, broadcast, and bad packets.|

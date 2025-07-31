@@ -63,7 +63,7 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 </tr>
 <tr>
 <td>4461102</td>
-<td>In certain cases, when a port is down and you apply adaptive routing with the link-utilization-threshold setting to the port as it goes up, you might see in log errors while the port is not yet up.</td>
+<td>In certain cases, when a port is down and you apply adaptive routing with the link utilization threshold setting to the port as it goes up, you might see log errors while the port is not yet up.</td>
 <td>5.11.0-5.13.1</td>
 <td></td>
 </tr>
@@ -945,7 +945,7 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 </tr>
 <tr>
 <td>4461102</td>
-<td>In certain cases, when a port is down and you apply adaptive routing with the link-utilization-threshold setting to the port as it goes up, you might see in log errors while the port is not yet up.</td>
+<td>In certain cases, when a port is down and you apply adaptive routing with the link utilization threshold setting to the port as it goes up, you might see log errors while the port is not yet up.</td>
 <td>5.11.0-5.13.1</td>
 <td></td>
 </tr>
@@ -2048,7 +2048,7 @@ nv config apply -y</td>
 </tr>
 <tr>
 <td>4461102</td>
-<td>In certain cases, when a port is down and you apply adaptive routing with the link-utilization-threshold setting to the port as it goes up, you might see in log errors while the port is not yet up.</td>
+<td>In certain cases, when a port is down and you apply adaptive routing with the link utilization threshold setting to the port as it goes up, you might see log errors while the port is not yet up.</td>
 <td>5.11.0-5.13.1</td>
 <td></td>
 </tr>
@@ -3233,7 +3233,7 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 </tr>
 <tr>
 <td>4461102</td>
-<td>In certain cases, when a port is down and you apply adaptive routing with the link-utilization-threshold setting to the port as it goes up, you might see in log errors while the port is not yet up.</td>
+<td>In certain cases, when a port is down and you apply adaptive routing with the link utilization threshold setting to the port as it goes up, you might see log errors while the port is not yet up.</td>
 <td>5.11.0-5.13.1</td>
 <td></td>
 </tr>

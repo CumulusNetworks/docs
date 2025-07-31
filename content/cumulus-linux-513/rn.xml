@@ -14,7 +14,7 @@
 </tr>
 <tr>
 <td>4539322</td>
-<td>When you remove an FRU, such as a PSU, from the switch, stale statistical data from the component is still reported over GNMI and OTLP.  To resolve this issue in OTLP, the status metric is now updated to {{absent}} and statistical information is no longer streamed. In GNMI, the entire component is deleted from the {{/components}} tree.</td>
+<td>When you remove an FRU, such as a PSU, from the switch, stale statistical data from the component is still reported over GNMI and OTLP. </td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
@@ -145,7 +145,7 @@ prometheus ALL = NOPASSWD: /usr/sbin/lldpcli -f json show neighbor</td>
 </tr>
 <tr>
 <td>4461102</td>
-<td>In certain cases, when a port is down and you apply adaptive routing with the link-utilization-threshold setting to the port as it goes up, you might see in log errors while the port is not yet up.</td>
+<td>In certain cases, when a port is down and you apply adaptive routing with the link utilization threshold setting to the port as it goes up, you might see log errors while the port is not yet up.</td>
 <td>5.11.0-5.13.1</td>
 <td></td>
 </tr>
@@ -182,7 +182,7 @@ with multiple optics, which can impact link stability and performance.</td>
 </tr>
 <tr>
 <td>4447797</td>
-<td>When you remove an FRU, such as a PSU, from the switch, stale statistical data from the component is still reported over GNMI and OTLP.  To resolve this issue in OTLP, the status metric is now updated to {{absent}} and statistical information is no longer streamed. In GNMI, the entire component is deleted from the {{/components}} tree.</td>
+<td>When you remove an FRU, such as a PSU, from the switch, stale statistical data from the component is still reported over GNMI and OTLP.</td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
@@ -1088,7 +1088,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>4539322</td>
-<td>When you remove an FRU, such as a PSU, from the switch, stale statistical data from the component is still reported over GNMI and OTLP.  To resolve this issue in OTLP, the status metric is now updated to {{absent}} and statistical information is no longer streamed. In GNMI, the entire component is deleted from the {{/components}} tree.</td>
+<td>When you remove an FRU, such as a PSU, from the switch, stale statistical data from the component is still reported over GNMI and OTLP. </td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
@@ -1219,7 +1219,7 @@ prometheus ALL = NOPASSWD: /usr/sbin/lldpcli -f json show neighbor</td>
 </tr>
 <tr>
 <td>4461102</td>
-<td>In certain cases, when a port is down and you apply adaptive routing with the link-utilization-threshold setting to the port as it goes up, you might see in log errors while the port is not yet up.</td>
+<td>In certain cases, when a port is down and you apply adaptive routing with the link utilization threshold setting to the port as it goes up, you might see log errors while the port is not yet up.</td>
 <td>5.11.0-5.13.1</td>
 <td></td>
 </tr>
@@ -1256,7 +1256,7 @@ with multiple optics, which can impact link stability and performance.</td>
 </tr>
 <tr>
 <td>4447797</td>
-<td>When you remove an FRU, such as a PSU, from the switch, stale statistical data from the component is still reported over GNMI and OTLP.  To resolve this issue in OTLP, the status metric is now updated to {{absent}} and statistical information is no longer streamed. In GNMI, the entire component is deleted from the {{/components}} tree.</td>
+<td>When you remove an FRU, such as a PSU, from the switch, stale statistical data from the component is still reported over GNMI and OTLP.</td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>

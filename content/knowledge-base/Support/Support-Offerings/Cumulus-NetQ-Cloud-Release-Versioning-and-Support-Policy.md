@@ -31,8 +31,9 @@ NetQ software installation file names include a version number, in the form of x
 
 This number corresponds to the release version of the software. NetQ requires two Debian packages per release. For example:
 
-- netq-apps_<strong>4.14.0</strong>-cld12u<strong>51</strong>~1744815975.8dbbbd20c_amd64.deb
-- netq-agent_<strong>4.14.0</strong>-cld12u<strong>51</strong>~1744815975.8dbbbd20c_amd64.deb
+- netq-apps_<strong>4.15.0</strong>-cld12u<strong>52</strong>~1753783414.2a97c1dde_amd64.deb
+- netq-agent_<strong>4.15.0</strong>-cld12u<strong>52</strong>~1753783414.2a97c1dde_amd64.deb
+
 ## Release, Support Lifecycle and Support Policy
 
 NetQ is offered with a per switch subscription that includes support for 1, 3, and 5 years options. The subscription model allows customers to upgrade the software as updates and new versions become available, for the period of the subscription.

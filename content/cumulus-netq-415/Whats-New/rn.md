@@ -15,6 +15,7 @@ pdfhidden: True
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="4521037"></a> [4521037](#4521037) <a name="4521037"></a> <br /> | The PTP violations summary in the UI might not render properly. To work around this issue, refresh the page in your browser. | 4.15.0 | |
+| <a name="4486633"></a> [4486633](#4486633) <a name="4486633"></a> <br /> | When you run a validation using a <code>netq check</code> command, the test results might incorrectly display as passed when the tests were actually skipped. The UI correctly shows which validations were skipped. | 4.15.0 | |
 | <a name="4298008"></a> [4298008](#4298008) <a name="4298008"></a> <br /> | When you upgrade NetQ, any pre-existing validation data will be lost. | 4.13.0-4.15.0 | |
 | <a name="4131550"></a> [4131550](#4131550) <a name="4131550"></a> <br /> | When you run a topology validation, the full-screen topology validation view might not display the latest results. To work around this issue, refresh the page. | 4.12.0-4.15.0 | |
 | <a name="4126632"></a> [4126632](#4126632) <a name="4126632"></a> <br /> | In scale deployments with 1,000 or more switches, BGP validations might take up to five minutes to display results in the UI or CLI. | 4.13.0-4.15.0 | |

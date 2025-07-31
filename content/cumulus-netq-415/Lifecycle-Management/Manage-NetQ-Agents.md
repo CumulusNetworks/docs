@@ -40,7 +40,7 @@ nvidia@switch~:$ netq show agents opta
 Matching agents records:
 Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
 ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
-netq-appliance    Fresh            yes      4.14.0-ub22.04u51~1744815786.8dbbbd2 Mon Mar  3 16:30:50 2025  Mon Mar  3 19:52:26 2025  Mon Mar  3 19:52:59 2025   Tue Mar  4 18:57:09 2025 
+netq-appliance    Fresh            yes      4.15.0-ub24.04u52~1744815786.8dbbbd2 Mon Mar  3 16:30:50 2025  Mon Mar  3 19:52:26 2025  Mon Mar  3 19:52:59 2025   Tue Mar  4 18:57:09 2025 
 ```
 
 ## View NetQ Agent Configuration

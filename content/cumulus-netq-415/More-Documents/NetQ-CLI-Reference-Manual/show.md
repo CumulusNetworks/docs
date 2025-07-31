@@ -241,15 +241,15 @@ nvidia@switch:~$ netq show agents
 Matching agents records:
 Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
 ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
-border01          Rotten           yes      4.14.0-cld12u51~1744815975.8dbbbd20c Thu Jan 23 14:59:38 2025  Tue Feb  4 17:59:30 2025  Mon Feb 10 19:39:37 2025   Mon Feb 10 19:58:08 2025
-border02          Rotten           yes      4.14.0-cld12u51~1744815975.8dbbbd20c Thu Jan 23 14:59:42 2025  Tue Feb  4 17:59:30 2025  Mon Feb 10 18:23:21 2025   Mon Feb 10 20:25:09 2025
-fw1               Fresh            yes      4.14.0-cld12u51~1744815975.8dbbbd20c Thu Jan 23 14:59:40 2025  Tue Feb  4 17:59:29 2025  Mon Feb 10 01:26:49 2025   Mon Feb 10 20:26:12 2025
-leaf01            Fresh            yes      4.14.0-cld12u51~1744815975.8dbbbd20c Thu Jan 23 14:59:40 2025  Tue Feb  4 17:59:29 2025  Mon Feb 10 19:06:13 2025   Mon Feb 10 20:26:22 2025
-leaf02            Fresh            yes      4.14.0-cld12u51~1744815975.8dbbbd20c Thu Jan 23 14:59:39 2025  Tue Feb  4 17:59:29 2025  Mon Feb 10 19:12:21 2025   Mon Feb 10 20:26:20 2025
-leaf03            Rotten           no       4.14.0-cld12u51~1744815975.8dbbbd20c Thu Jan 23 14:59:36 2025  Tue Feb  4 17:59:29 2025  Mon Feb 10 15:03:10 2025   Mon Feb 10 15:09:26 2025
-leaf04            Fresh            yes      4.14.0-cld12u51~1744815975.8dbbbd20c Thu Jan 23 14:59:40 2025  Tue Feb  4 17:59:29 2025  Mon Feb 10 15:55:08 2025   Mon Feb 10 20:26:32 2025
-spine01           Fresh            yes      4.14.0-cld12u51~1744815975.8dbbbd20c Thu Jan 23 14:59:38 2025  Tue Feb  4 17:59:29 2025  Mon Feb 10 01:26:49 2025   Mon Feb 10 20:26:13 2025
-spine02           Fresh            yes      4.14.0-cld12u51~1744815975.8dbbbd20c Thu Jan 23 14:59:41 2025  Tue Feb  4 17:59:29 2025  Mon Feb 10 01:26:48 2025   Mon Feb 10 20:26:26 2025
+border01          Rotten           yes      4.15.0-cld12u52~1744815975.8dbbbd20c Thu Jan 23 14:59:38 2025  Tue Feb  4 17:59:30 2025  Mon Feb 10 19:39:37 2025   Mon Feb 10 19:58:08 2025
+border02          Rotten           yes      4.15.0-cld12u52~1744815975.8dbbbd20c Thu Jan 23 14:59:42 2025  Tue Feb  4 17:59:30 2025  Mon Feb 10 18:23:21 2025   Mon Feb 10 20:25:09 2025
+fw1               Fresh            yes      4.15.0-cld12u52~1744815975.8dbbbd20c Thu Jan 23 14:59:40 2025  Tue Feb  4 17:59:29 2025  Mon Feb 10 01:26:49 2025   Mon Feb 10 20:26:12 2025
+leaf01            Fresh            yes      4.15.0-cld12u52~1744815975.8dbbbd20c Thu Jan 23 14:59:40 2025  Tue Feb  4 17:59:29 2025  Mon Feb 10 19:06:13 2025   Mon Feb 10 20:26:22 2025
+leaf02            Fresh            yes      4.15.0-cld12u52~1744815975.8dbbbd20c Thu Jan 23 14:59:39 2025  Tue Feb  4 17:59:29 2025  Mon Feb 10 19:12:21 2025   Mon Feb 10 20:26:20 2025
+leaf03            Rotten           no       4.15.0-cld12u52~1744815975.8dbbbd20c Thu Jan 23 14:59:36 2025  Tue Feb  4 17:59:29 2025  Mon Feb 10 15:03:10 2025   Mon Feb 10 15:09:26 2025
+leaf04            Fresh            yes      4.15.0-cld12u52~1744815975.8dbbbd20c Thu Jan 23 14:59:40 2025  Tue Feb  4 17:59:29 2025  Mon Feb 10 15:55:08 2025   Mon Feb 10 20:26:32 2025
+spine01           Fresh            yes      4.15.0-cld12u52~1744815975.8dbbbd20c Thu Jan 23 14:59:38 2025  Tue Feb  4 17:59:29 2025  Mon Feb 10 01:26:49 2025   Mon Feb 10 20:26:13 2025
+spine02           Fresh            yes      4.15.0-cld12u52~1744815975.8dbbbd20c Thu Jan 23 14:59:41 2025  Tue Feb  4 17:59:29 2025  Mon Feb 10 01:26:48 2025   Mon Feb 10 20:26:26 2025
 ...
 ```
 
@@ -260,9 +260,9 @@ nvidia@switch:~$ netq show agents rotten
 Matching agents records:
 Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
 ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
-border01          Rotten           yes      4.14.0-cld12u51~1744815975.8dbbbd20c Thu Jan 23 14:59:38 2025  Tue Feb  4 17:59:30 2025  Mon Feb 10 19:39:37 2025   Mon Feb 10 19:58:08 2025
-border02          Rotten           yes      4.14.0-cld12u51~1744815975.8dbbbd20c Thu Jan 23 14:59:42 2025  Tue Feb  4 17:59:30 2025  Mon Feb 10 18:23:21 2025   Mon Feb 10 20:25:09 2025
-leaf03            Rotten           no       4.14.0-cld12u51~1744815975.8dbbbd20c Thu Jan 23 14:59:36 2025  Tue Feb  4 17:59:29 2025  Mon Feb 10 15:03:10 2025   Mon Feb 10 15:09:26 2025
+border01          Rotten           yes      4.15.0-cld12u52~1744815975.8dbbbd20c Thu Jan 23 14:59:38 2025  Tue Feb  4 17:59:30 2025  Mon Feb 10 19:39:37 2025   Mon Feb 10 19:58:08 2025
+border02          Rotten           yes      4.15.0-cld12u52~1744815975.8dbbbd20c Thu Jan 23 14:59:42 2025  Tue Feb  4 17:59:30 2025  Mon Feb 10 18:23:21 2025   Mon Feb 10 20:25:09 2025
+leaf03            Rotten           no       4.15.0-cld12u52~1744815975.8dbbbd20c Thu Jan 23 14:59:36 2025  Tue Feb  4 17:59:29 2025  Mon Feb 10 15:03:10 2025   Mon Feb 10 15:09:26 2025
 ```
 
 ### Related Commands

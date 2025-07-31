@@ -698,7 +698,7 @@ The switch collects and exports the adaptive routing, SRv6, and packet trimming 
     }
 ```
 {{< /expand >}}
-
+<br>
 {{< expand "Example JSON data for nvswitch_srv6_in_pkts:" >}}
 ```
     {
@@ -730,7 +730,7 @@ The switch collects and exports the adaptive routing, SRv6, and packet trimming 
     }
 ```
 {{< /expand >}}
-
+<br>
 {{< expand "Example JSON data for nvswitch_qos_trimmed_unicast_pkts:" >}}
 ```
 {
@@ -1875,7 +1875,7 @@ The switch collects and exports the following additional interface statistics wh
 }
 ```
 {{< /expand >}}
-
+<br>
 {{< expand "Example JSON data for nvswitch_interface_ether_stats_jabbers:" >}}
 ```
  {
@@ -1968,7 +1968,7 @@ The switch collects and exports the following additional interface statistics wh
     }
 ```
 {{< /expand >}}
-
+<br>
 {{< expand "Example JSON data for nvswitch_interface_hw_address_info:" >}}
 ```
 {
@@ -2083,26 +2083,20 @@ The switch collects and exports the following additional interface statistics wh
 ...
 ```
 {{< /expand >}}
-
-{{< expand "Example JSON data for nvswitch_interface_hw_address_info:" >}}
+<br>
+{{< expand "Example JSON data for nvswitch_interface_type:" >}}
 ```
 {
-      "name": "nvswitch_interface_hw_address_info",
-      "description": "Hardware (MAC) address information for network interface.",
+      "name": "nvswitch_interface_type",
+      "description": "Network device property: type",
       "gauge": {
         "dataPoints": [
           {
             "attributes": [
               {
-                "key": "address",
-                "value": {
-                  "stringValue": "1c:34:da:28:01:00"
-                }
-              },
-              {
                 "key": "interface",
                 "value": {
-                  "stringValue": "swp35"
+                  "stringValue": "swp10"
                 }
               }
             ],
@@ -2112,15 +2106,9 @@ The switch collects and exports the following additional interface statistics wh
           {
             "attributes": [
               {
-                "key": "address",
-                "value": {
-                  "stringValue": "1c:34:da:28:01:02"
-                }
-              },
-              {
                 "key": "interface",
                 "value": {
-                  "stringValue": "swp36"
+                  "stringValue": "swp11"
                 }
               }
             ],
@@ -2130,15 +2118,9 @@ The switch collects and exports the following additional interface statistics wh
           {
             "attributes": [
               {
-                "key": "address",
-                "value": {
-                  "stringValue": "1c:34:da:28:01:04"
-                }
-              },
-              {
                 "key": "interface",
                 "value": {
-                  "stringValue": "swp33"
+                  "stringValue": "swp12"
                 }
               }
             ],
@@ -2148,15 +2130,9 @@ The switch collects and exports the following additional interface statistics wh
           {
             "attributes": [
               {
-                "key": "address",
-                "value": {
-                  "stringValue": "1c:34:da:28:01:06"
-                }
-              },
-              {
                 "key": "interface",
                 "value": {
-                  "stringValue": "swp34"
+                  "stringValue": "swp13"
                 }
               }
             ],
@@ -2166,15 +2142,9 @@ The switch collects and exports the following additional interface statistics wh
           {
             "attributes": [
               {
-                "key": "address",
-                "value": {
-                  "stringValue": "1c:34:da:28:01:08"
-                }
-              },
-              {
                 "key": "interface",
                 "value": {
-                  "stringValue": "swp39"
+                  "stringValue": "swp14"
                 }
               }
             ],
@@ -2184,87 +2154,9 @@ The switch collects and exports the following additional interface statistics wh
           {
             "attributes": [
               {
-                "key": "address",
-                "value": {
-                  "stringValue": "1c:34:da:28:01:0a"
-                }
-              },
-              {
                 "key": "interface",
                 "value": {
-                  "stringValue": "swp40"
-                }
-              }
-            ],
-            "timeUnixNano": "1753901194568000000",
-            "asDouble": 1
-          },
-          {
-            "attributes": [
-              {
-                "key": "address",
-                "value": {
-                  "stringValue": "1c:34:da:28:01:0c"
-                }
-              },
-              {
-                "key": "interface",
-                "value": {
-                  "stringValue": "swp37"
-                }
-              }
-            ],
-            "timeUnixNano": "1753901194568000000",
-            "asDouble": 1
-          },
-          {
-            "attributes": [
-              {
-                "key": "address",
-                "value": {
-                  "stringValue": "1c:34:da:28:01:0e"
-                }
-              },
-              {
-                "key": "interface",
-                "value": {
-                  "stringValue": "swp38"
-                }
-              }
-            ],
-            "timeUnixNano": "1753901194568000000",
-            "asDouble": 1
-          },
-          {
-            "attributes": [
-              {
-                "key": "address",
-                "value": {
-                  "stringValue": "1c:34:da:28:01:10"
-                }
-              },
-              {
-                "key": "interface",
-                "value": {
-                  "stringValue": "swp43"
-                }
-              }
-            ],
-            "timeUnixNano": "1753901194568000000",
-            "asDouble": 1
-          },
-          {
-            "attributes": [
-              {
-                "key": "address",
-                "value": {
-                  "stringValue": "1c:34:da:28:01:12"
-                }
-              },
-              {
-                "key": "interface",
-                "value": {
-                  "stringValue": "swp44"
+                  "stringValue": "swp15"
                 }
               }
 ...
@@ -3562,6 +3454,121 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 }
 ```
 {{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_platform_environment_psu_input_voltage:" >}}
+```
+{
+      "name": "nvswitch_platform_environment_psu_input_voltage",
+      "description": "PSU input voltage in Volts.",
+      "gauge": {
+        "dataPoints": [
+          {
+            "attributes": [
+              {
+                "key": "description",
+                "value": {
+                  "stringValue": "Power Supply Unit 1"
+                }
+              },
+              {
+                "key": "name",
+                "value": {
+                  "stringValue": "PSU1"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901249206000000",
+            "asDouble": 239.5
+          },
+          {
+            "attributes": [
+              {
+                "key": "description",
+                "value": {
+                  "stringValue": "Power Supply Unit 2"
+                }
+              },
+              {
+                "key": "name",
+                "value": {
+                  "stringValue": "PSU2"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901249206000000",
+            "asDouble": 240
+          }
+        ]
+      },
+      "metadata": [
+        {
+          "key": "prometheus.type",
+          "value": {
+            "stringValue": "gauge"
+          }
+        }
+      ]
+    },
+...
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_platform_environment_psu_input_current:" >}}
+```
+{
+      "name": "nvswitch_platform_environment_psu_input_current",
+      "description": "PSU input current in Amperes.",
+      "gauge": {
+        "dataPoints": [
+          {
+            "attributes": [
+              {
+                "key": "description",
+                "value": {
+                  "stringValue": "Power Supply Unit 1"
+                }
+              },
+              {
+                "key": "name",
+                "value": {
+                  "stringValue": "PSU1"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901249206000000",
+            "asDouble": 10
+          },
+          {
+            "attributes": [
+              {
+                "key": "description",
+                "value": {
+                  "stringValue": "Power Supply Unit 2"
+                }
+              },
+              {
+                "key": "name",
+                "value": {
+                  "stringValue": "PSU2"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901249206000000",
+            "asDouble": 11.75
+          }
+        ]
+      },
+      "metadata": [
+        {
+          "key": "prometheus.type",
+          "value": {
+            "stringValue": "gauge"
+          }
+        }
+      ]
+    },
+```
+{{< /expand >}}
 
 #### Transceiver Example JSON
 
@@ -3955,6 +3962,10 @@ When you enable layer 3 routing metrics telemetry, the switch exports the follow
 | `nvrouting_bgp_peer_socket_out_queue` | Number of messages queued to be sent to the BGP neighbor.|
 | `nvrouting_bgp_peer_rx_updates` | Number of BGP messages received from the neighbor.|
 | `nvrouting_bgp_peer_tx_updates` | Number of BGP messages sent to the neighbor. |
+| `nvrouting_bgp_peer_info` | * BGP peer information.|
+| `nvrouting_bgp_peer_last_established` | * Last established time of the BGP peer.|
+| `nvrouting_bgp_peer_as` | * Autonomous system number of the BGP peer.|
+| `nvrouting_bgp_peer_local_as` | * Local autonomous system number.|
 | `nvrouting_rib_count` | Number of IPv4 and IPv6 routes in the IP routing table for each route source. |
 | `nvrouting_rib_count_connected` | Number of IPv4 connected routes in the IP routing table. |
 | `nvrouting_rib_count_bgp` | Number of IPv4 BGP routes in the IP routing table. |
@@ -5248,7 +5259,7 @@ When you enable layer 3 routing metrics telemetry, the switch exports the follow
 ```
 {{< /expand >}}
 <br>
-{{< expand "Example JSON data for vrouting_bgp_peer_local_as:" >}}
+{{< expand "Example JSON data for nvrouting_bgp_peer_local_as:" >}}
 ```
     {
       "name": "nvrouting_bgp_peer_local_as",
@@ -5614,6 +5625,289 @@ If you enable `systemd` process-level statistics, the switch collects the follow
   }
 }
 
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_systemd_unit_process_cpu_usage_system_seconds:" >}}
+```
+{
+      "name": "nvswitch_systemd_unit_process_cpu_usage_system_seconds",
+      "description": "CPU usage of the process (kernel mode) in seconds",
+      "sum": {
+        "dataPoints": [
+          {
+            "attributes": [
+              {
+                "key": "pid",
+                "value": {
+                  "stringValue": "17976"
+                }
+              },
+              {
+                "key": "unit_name",
+                "value": {
+                  "stringValue": "hw-management-sync.service"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901249206000000",
+            "timeUnixNano": "1753901249206000000",
+            "asDouble": 0
+          },
+          {
+            "attributes": [
+              {
+                "key": "pid",
+                "value": {
+                  "stringValue": "17977"
+                }
+              },
+              {
+                "key": "unit_name",
+                "value": {
+                  "stringValue": "hw-management-sync.service"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901249206000000",
+            "timeUnixNano": "1753901249206000000",
+            "asDouble": 93.07
+          },
+          {
+            "attributes": [
+              {
+                "key": "pid",
+                "value": {
+                  "stringValue": "19594"
+                }
+              },
+              {
+                "key": "unit_name",
+                "value": {
+                  "stringValue": "nginx.service"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901249206000000",
+            "timeUnixNano": "1753901249206000000",
+            "asDouble": 0.01
+          },
+          {
+            "attributes": [
+              {
+                "key": "pid",
+                "value": {
+                  "stringValue": "19595"
+                }
+              },
+              {
+                "key": "unit_name",
+                "value": {
+                  "stringValue": "nginx.service"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901249206000000",
+            "timeUnixNano": "1753901249206000000",
+            "asDouble": 0.04
+          },
+          {
+            "attributes": [
+              {
+                "key": "pid",
+                "value": {
+                  "stringValue": "19596"
+                }
+              },
+              {
+                "key": "unit_name",
+                "value": {
+                  "stringValue": "nginx.service"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901249206000000",
+            "timeUnixNano": "1753901249206000000",
+            "asDouble": 0.07
+          },
+          {
+            "attributes": [
+              {
+                "key": "pid",
+                "value": {
+                  "stringValue": "19597"
+                }
+              },
+              {
+                "key": "unit_name",
+                "value": {
+                  "stringValue": "nginx.service"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901249206000000",
+            "timeUnixNano": "1753901249206000000",
+            "asDouble": 0.04
+          },
+          {
+            "attributes": [
+              {
+                "key": "pid",
+                "value": {
+                  "stringValue": "19598"
+                }
+              },
+              {
+                "key": "unit_name",
+                "value": {
+                  "stringValue": "nginx.service"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901249206000000",
+            "timeUnixNano": "1753901249206000000",
+            "asDouble": 0.09
+          },
+...
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_systemd_unit_process_info:" >}}
+```
+{
+      "name": "nvswitch_systemd_unit_process_info",
+      "description": "Process information includes PID, name and args ",
+      "gauge": {
+        "dataPoints": [
+          {
+            "attributes": [
+              {
+                "key": "args",
+                "value": {
+                  "stringValue": "/bin/sh -c /usr/bin/hw_management_sync.py"
+                }
+              },
+              {
+                "key": "name",
+                "value": {
+                  "stringValue": "sh"
+                }
+              },
+              {
+                "key": "pid",
+                "value": {
+                  "stringValue": "17976"
+                }
+              },
+              {
+                "key": "unit_name",
+                "value": {
+                  "stringValue": "hw-management-sync.service"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901249206000000",
+            "asDouble": 1
+          },
+          {
+            "attributes": [
+              {
+                "key": "args",
+                "value": {
+                  "stringValue": "/usr/bin/prometheus-node-exporter --web.disable-exporter-metrics --collector.nvsystemd_unit --collector.nvsystemd_unit.process_level"
+                }
+              },
+              {
+                "key": "name",
+                "value": {
+                  "stringValue": "prometheus-node"
+                }
+              },
+              {
+                "key": "pid",
+                "value": {
+                  "stringValue": "680926"
+                }
+              },
+              {
+                "key": "unit_name",
+                "value": {
+                  "stringValue": "prometheus-node-exporter.service"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901249206000000",
+            "asDouble": 1
+          },
+...
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_systemd_unit_process_cpu_usage_user_seconds:" >}}
+```
+{
+      "name": "nvswitch_systemd_unit_process_cpu_usage_user_seconds",
+      "description": "CPU usage of the process (user mode) in seconds",
+      "sum": {
+        "dataPoints": [
+          {
+            "attributes": [
+              {
+                "key": "pid",
+                "value": {
+                  "stringValue": "17976"
+                }
+              },
+              {
+                "key": "unit_name",
+                "value": {
+                  "stringValue": "hw-management-sync.service"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901249206000000",
+            "timeUnixNano": "1753901249206000000",
+            "asDouble": 0
+          },
+          {
+            "attributes": [
+              {
+                "key": "pid",
+                "value": {
+                  "stringValue": "17977"
+                }
+              },
+              {
+                "key": "unit_name",
+                "value": {
+                  "stringValue": "hw-management-sync.service"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901249206000000",
+            "timeUnixNano": "1753901249206000000",
+            "asDouble": 118.2
+          },
+          {
+            "attributes": [
+              {
+                "key": "pid",
+                "value": {
+                  "stringValue": "19594"
+                }
+              },
+              {
+                "key": "unit_name",
+                "value": {
+                  "stringValue": "nginx.service"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901249206000000",
+            "timeUnixNano": "1753901249206000000",
+            "asDouble": 0
+          },
+...
 ```
 {{< /expand >}}
 

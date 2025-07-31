@@ -5,7 +5,7 @@ weight: 550
 toc: 3
 ---
 
-The NetQ integration with Grafana allows you to create customized dashboards and to visualize metrics across your network. To view data in Grafana, first configure OpenTelemetry (OTel) on your hardware devices, then configure the time-series database on the NetQ server, and finally configure the data sources in Grafana. <!--You can create your own dashboards from scratch or import a dashboard template to get started.-->
+The NetQ integration with Grafana allows you to create customized dashboards and to visualize metrics across your network devices. To view data in Grafana, first configure security between NetQ and OTel clients, configure OpenTelemetry (OTel) on the devices in your network, then configure the data sources in Grafana. <!--You can create your own dashboards from scratch or import a dashboard template to get started.-->
 
 {{%notice note%}}
 The Grafana integration is in beta and supported for on-premises deployments only.
@@ -16,25 +16,40 @@ The Grafana integration is in beta and supported for on-premises deployments onl
 - Switches must have a Spectrum-2 or later ASIC
 - DPUs and ConnectX hosts must be running DOCA Telemetry Service (DTS) version 1.18-1.20
 - Before you get started with the steps below, {{<exlink url="https://grafana.com/docs/grafana/latest/setup-grafana/installation/" text="install Grafana">}} and {{<exlink url="https://grafana.com/docs/grafana/latest/setup-grafana/start-restart-grafana/" text="start the Grafana server">}}
-- Data is typically stored for seven days
-- High availability is not supported: all nodes must be up and running for Grafana to display data
+- NetQ allows you to retrieve data from up to seven days in the past
 
+## Secure OpenTelemetry Export
 
-## Configure and Enable OpenTelemetry on Devices
+NetQ is configured with OTLP secure mode with TLS by default and expects clients to secure data with a certificate. Configure NetQ and your client devices to use your own generated CA certificate, NetQ's self-signed certificate, or set the connections to insecure mode as outlined below.
 
-Configure your client devices to send OpenTelemetry data to NetQ.
+{{%notice note%}}
+OpenTelemetry on host DPUs and NICs only supports insecure mode.
+{{%/notice%}}
 
-{{<tabs "TabID23" >}}
+### TLS with a CA Certificate
 
-{{<tab "CL switches">}}
+NVIDIA recommends using your own generated CA certificate. To configure a CA certificate, follow the steps below:
 
-Configure OpenTelemetry to run on the switch in secure mode with a self-signed certificate:
+1. Copy your certificate files to the NetQ server in the `/mnt/admin` directory. For example, copy the certificate and key to `/mnt/admin/certs/server.crt` and `/mnt/admin/certs/server.key` 
 
-1. From the NetQ server, display the CA certificate using `netq show otlp tls-ca-cert dump` command. Copy the certificate from the output.
+2. Import your certificate on your switches using the `nv action import system security ca-certificate <cert-id> [data <data> | uri <path>]` command. Define the name of the certificate in `<cert-id>` and either provide the raw PEM string of the certificate as `<data>` or provide a path to the certificate file containing the public key as `<path>`.
 
-2. On the switch, import the CA certificate file, with the `nv action import system security ca-certificate <cert-id> data <data>` command. Define the name of the certificate in `<cert-id>` and replace `<data>` with the certificate you generated in the preceding step.
+3. After importing your certificate, set OTLP insecure mode to disabled on your switches:
 
-3. Configure an X.509 certificate to secure the OTel connection. Replace `ca-certificate` with the name of your certificate; this is the `<cert-id>` from the previous step.
+    ```
+   nvidia@switch:~$ nv set system telemetry export otlp grpc insecure disabled
+   nvidia@switch:~$ nv config apply
+   ```
+
+### TLS with NetQ's Self-signed Certificate
+
+To run on the switch in secure mode with NetQ's self-signed certificate:
+
+1. From the NetQ server, display the certificate using `netq show otlp tls-ca-cert dump` command. Copy the certificate from the output.
+
+2. On the switch, import the certificate with the `nv action import system security ca-certificate <cert-id> data <data>` command. Define the name of the certificate in `<cert-id>` and replace `<data>` with the certificate data you generated in the preceding step.
+
+3. Configure the certificate to secure the OTel connection. Replace `ca-certificate` with the name of your certificate; this is the `<cert-id>` from the previous step.
 
    ```
    nvidia@switch:~$ nv set system telemetry export otlp grpc cert-id <ca-certificate>
@@ -49,7 +64,28 @@ Configure OpenTelemetry to run on the switch in secure mode with a self-signed c
    ```
 5. Run `nv show system telemetry health` to display the destination port and IP address, along with connectivity status.
 
-6. Next, enable OpenTelemetry for each metric that you want to monitor, as described in the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Monitoring-and-Troubleshooting/Open-Telemetry-Export/" text="Cumulus Linux documentation">}}. <!--should I move this to the beginning of this section?-->
+### Insecure Mode
+
+To use insecure mode and disable TLS:
+
+1. On your NetQ server, run the `netq set otlp security-mode insecure` command.
+
+2. On your switches, configure insecure mode:
+
+    ```
+   nvidia@switch:~$ nv set system telemetry export otlp grpc insecure disabled
+   nvidia@switch:~$ nv config apply
+   ```
+
+## Configure and Enable OpenTelemetry on Devices
+
+Configure your client devices to send OpenTelemetry data to NetQ.
+
+{{<tabs "TabID23" >}}
+
+{{<tab "CL switches">}}
+
+Enable OpenTelemetry for each metric that you want to monitor, as described in the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Monitoring-and-Troubleshooting/Open-Telemetry-Export/" text="Cumulus Linux documentation">}}. Use your NetQ server or cluster's IP address when configuring the OTLP export destination. 
 
 {{<notice info>}}
 NVIDIA recommends setting the <code>sample-interval</code> option to 10 seconds for each metric that allows you to set a sample interval.
@@ -76,15 +112,20 @@ Read more about OpenTelemetry and DTS configurations in the {{<exlink url="https
 
 {{</tabs>}}
 
-## Configure the Time Series Database on the NetQ Server
 
-1. From the NetQ server, add the OTel endpoint of your time-series database (TSDB). Replace `text-tsdb-endpoint` and `text-tsdb-endpoint-url` with the name and IP address of your TSDB, respectively. Include the `export true` option to begin exporting data immediately. You can optionally set `security-mode` to `tls` to enable TLS.
+## Configure an External TSDB
+
+OpenTelemetry data is stored in the NetQ TSDB. In addition to NetQ's local storage, you can configure NetQ to also send the collected data to your own external TSDB:
+
+1. If the connection to your external TSDB is secured with TLS, copy the certificate to the NetQ server in the `/mnt/admin/` directory, and reference the full path to the file with the `netq set otlp endpoint-ca-cert tsdb-name <text-tsdb-endpoint> ca-cert <text-path-to-ca-crt>` command.
+
+2. From the NetQ server, add the OTel endpoint of your time-series database (TSDB). Replace `text-tsdb-endpoint` and `text-tsdb-endpoint-url` with the name and IP address of your TSDB, respectively. Include the `export true` option to begin exporting data immediately. Set `security-mode` to `tls` if you configured a certificate to secure the connection, otherwise use `security-mode insecure`.
 
 ```
 nvidia@netq-server:~$ netq add otlp endpoint tsdb-name <text-tsdb-endpoint> tsdb-url <text-tsdb-endpoint-url> [export true | export false] [security-mode <text-mode>]
 ```
 
-2. If you set the `export` option to `true` in the previous step, the TSDB will begin receiving the time-series data for the metrics that you configured on the switch. Use the `netq show otlp endpoint` command to view the TSDB endpoint configuration.
+3. If you set the `export` option to `true` in the previous step, the TSDB will begin receiving the time-series data for the metrics that you configured on the switch. Use the `netq show otlp endpoint` command to view the TSDB endpoint configuration.
 
 
 ## Configure Data Sources in Grafana
@@ -118,7 +159,7 @@ To import a preconfigured dashboard into your Grafana instance, following the st
 
 ## Grafana Best Practices
 
-If Grafana is slow or laggy, you might need to adjust your dashboard settings. Fabric-wide queries on large networks (over 1000 switches) can generate millions of data points, which can significantly degrade performance. You can improve performance by optimizing queries, reducing data volume, and simplifying panel rendering.
+If data retrieval with Grafana is slow, you might need to adjust your dashboard settings. Fabric-wide queries on large networks (over 1000 switches) can generate millions of data points, which can significantly degrade performance. You can improve performance by optimizing queries, reducing data volume, and simplifying panel rendering.
 
 Avoid plotting all time-series data at once. To visualize the data in different ways:
    - {{<exlink url="https://grafana.com/docs/grafana/latest/fundamentals/timeseries/#aggregating-time-series" text="Aggregate time-series data">}}
@@ -130,15 +171,15 @@ Avoid plotting all time-series data at once. To visualize the data in different 
 If Grafana displays "No Data", verify that all VMs in your cluster are operational. You can check the node status using the <code>kubectl get nodes</code> command. A node will show as <code>NotReady</code> if it is down. When the VM is restored, data collection will resume and will be displayed within 20 minutes of restoration.
 {{</notice>}}
 
-## Export TSDB Data with APIs
+## Retrieve Metrics with the NetQ API
 
-If you want to view or export the time-series database data without using Grafana, you can use curl commands to directly query VictoriaMetrics. These commands typically complete in fewer than 30 seconds, whereas Grafana can take longer to process and display data.
+If you want to view or export the time-series database data without using Grafana, you can use curl commands to directly query the NetQ TSDB. These commands typically complete in fewer than 30 seconds, whereas Grafana can take longer to process and display data.
 
 1. Generate an access token using the login API. Replace `<username>` and `<password>` with your NetQ username and password. Copy the access token generated by this command. You will use it in the next step. 
 ```
 curl 'https://10.237.212.61/api/netq/auth/v1/login' -H 'content-type: application/json' --data-raw '{"username":"<username>","password":"<password>"}' --insecure 
 ```
- 2. Generate a VictoriaMetrics token using the VM login API. Replace `<access_token>` with the token generated from the previous step. Copy the VictoriaMetrics access token generated by this command. You will use it in the next step. 
+ 2. Generate a JSON Web Token (JWT) using the VM login API. Replace `<access_token>` with the token generated from the previous step. Copy the resulting token generated by this command. You will use it in the next step. 
 ```
 curl -k -X GET "https://10.237.212.61/api/netq/auth/v1/vm-access-token?expiryDays=10" -H "Authorization: Bearer <access_token>" 
 ```

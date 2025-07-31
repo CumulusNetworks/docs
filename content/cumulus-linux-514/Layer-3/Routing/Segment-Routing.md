@@ -37,7 +37,11 @@ The following table provides the supported formats for block, node, and function
 |uN only | 16            | 16          | 0               |
 |uA only | 16            | 0           | 16              |
 
-The following example enables segment routing, and configures the SRv6 locator called LEAF and the static segment identifier fcbb:fe8::/32:
+{{%notice note%}}
+Avoid reusing IPv6 prefixes for both static routes and static segment identifiers. Use distinct prefixes to prevent routing table conflicts and ensure correct segment routing behavior. If you configure a static route that overrides a segment identifier or a segment identifier that overrides a static route, unset, then reset the static segment identifier.
+{{%/notice%}}
+
+The following example enables segment routing, configures the SRv6 locator called LEAF with the prefix fcbb::/16, and sets the static segment identifier fcbb:fe8::/32:
 
 {{< tabs "TabID980 ">}}
 {{< tab "NVUE Commands ">}}

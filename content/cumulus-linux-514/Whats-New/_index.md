@@ -20,11 +20,11 @@ Cumulus Linux 5.14.0 contains several new features and improvements, and provide
 - {{<link url="Packet-Trimming" text="Packet trimming">}}
 - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#lossy-multi-tc-profile" text="RoCE lossy multi TC profile">}}
 - {{<link url="Segment-Routing" text="Segment Routing">}} and {{<link url="Segment-Routing/#clear-srv6-statistics" text="Clear SRv6 statistics">}}
+- {{<link url="Open-Telemetry-Export/#telemetry-data-format" text="New OTEL statistics: Packet trimming, SRv6, interface, buffer, system information, platform">}}
 - gNMI:
   - {{<link url="gNMI-Streaming/#metrics" text="New gNMI streaming metrics: Adaptive routing, packet trimming, SRv6, BGP, interface, LLDP, system, and platform">}}
   - {{<link url="gNMI-Streaming/#user-credentials-and-authentication" text="gRPC header based authentication support for gNMI subscription requests">}}
   - {{<link url="gNMI-Streaming/#gnmi-client-requests" text="Improved data formatting to include prefix field">}}
-- {{<link url="Open-Telemetry-Export/#telemetry-data-format" text="New OTEL statistics: Packet trimming, SRv6, interface, buffer, system information, platform">}}
 - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#transceiver-thermal-control" text="Transceiver thermal control">}}
 - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#clear-interface-physical-layer-error-counters" text="Clear physical layer error counters for an interface">}}
 - {{<link url="DHCP-Relays" text="Configure different DHCP servers per interface for DHCP relay">}}

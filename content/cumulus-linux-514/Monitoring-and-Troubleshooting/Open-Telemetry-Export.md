@@ -674,28 +674,88 @@ The switch collects and exports the adaptive routing, SRv6, and packet trimming 
 {{< expand "Example JSON data for nvswitch_ar_congestion_changes:" >}}
 ```
 {
-  "name": "nvswitch_ar_congestion_changes",
-  "description": "NVIDIA Ethernet Switch Adaptive Routing Congestion Changes counter",
-  "sum": {
-    "dataPoints": [
-      {
-        "startTimeUnixNano": "1745871735360000000",
-        "timeUnixNano": "1745871919360000000",
-        "asDouble": 0
-      }
-    ],
-    "aggregationTemporality": 2,
-    "isMonotonic": true
-  },
-  "metadata": [
+      "name": "nvswitch_ar_congestion_changes",
+      "description": "NVIDIA Ethernet Switch Adaptive Routing Congestion Changes counter",
+      "sum": {
+        "dataPoints": [
+          {
+            "startTimeUnixNano": "1752704043650000000",
+            "timeUnixNano": "1752706797650000000",
+            "asDouble": 11051568563473
+          }
+        ],
+        "aggregationTemporality": 2,
+        "isMonotonic": true
+      },
+      "metadata": [
+        {
+          "key": "prometheus.type",
+          "value": {
+            "stringValue": "counter"
+          }
+        }
+      ]
+    }
+```
+{{< /expand >}}
+
+{{< expand "Example JSON data for nvswitch_srv6_in_pkts:" >}}
+```
     {
-      "key": "prometheus.type",
-      "value": {
-        "stringValue": "counter"
+      "name": "nvswitch_srv6_in_pkts",
+      "description": "NVIDIA Ethernet Switch SRv6 Processed Packets per SID",
+      "sum": {
+        "dataPoints": [
+          {
+            "attributes": [
+              {
+                "key": "sid",
+                "value": {
+                  "stringValue": "1389:1771:0fa1:0000:0000:0000:0000:0000"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1752704951198000000",
+            "timeUnixNano": "1752704981198000000",
+            "asDouble": 212
+          }
+        ]
       }
     }
-  ]
-}
+```
+{{< /expand >}}
+
+{{< expand "Example JSON data for nvswitch_qos_trimmed_unicast_pkts:" >}}
+```
+{
+      "name": "nvswitch_qos_trimmed_unicast_pkts",
+      "description": "NVIDIA Ethernet Switch QoS Trimmed Packets",
+      "sum": {
+        "dataPoints": [
+          {
+            "startTimeUnixNano": "1753852974184000000",
+            "timeUnixNano": "1753852974184000000",
+            "asDouble": 15322379
+          }
+        ],
+        "aggregationTemporality": 2,
+        "isMonotonic": true
+      },
+      "metadata": [
+        {
+          "key": "prometheus.type",
+          "value": {
+            "stringValue": "counter"
+          }
+        }
+      ]
+    }
 ```
 {{< /expand >}}
 
@@ -1813,6 +1873,401 @@ The switch collects and exports the following additional interface statistics wh
     ]
   }
 }
+```
+{{< /expand >}}
+
+{{< expand "Example JSON data for nvswitch_interface_ether_stats_jabbers:" >}}
+```
+ {
+      "name": "nvswitch_interface_ether_stats_jabbers",
+      "description": "NVIDIA Ethernet Switch Interface ether stats jabbers counter",
+      "gauge": {
+        "dataPoints": [
+          {
+            "attributes": [
+              {
+                "key": "interface",
+                "value": {
+                  "stringValue": "swp1s0"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901194269000000",
+            "asDouble": 0
+          },
+          {
+            "attributes": [
+              {
+                "key": "interface",
+                "value": {
+                  "stringValue": "swp1s1"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901194269000000",
+            "asDouble": 0
+          },
+          {
+            "attributes": [
+              {
+                "key": "interface",
+                "value": {
+                  "stringValue": "swp1s2"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901194269000000",
+            "asDouble": 0
+          },
+          {
+            "attributes": [
+              {
+                "key": "interface",
+                "value": {
+                  "stringValue": "swp1s3"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901194269000000",
+            "asDouble": 0
+          },
+          {
+            "attributes": [
+              {
+                "key": "interface",
+                "value": {
+                  "stringValue": "swp61s0"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901194269000000",
+            "asDouble": 0
+          },
+          {
+            "attributes": [
+              {
+                "key": "interface",
+                "value": {
+                  "stringValue": "swp61s1"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901194269000000",
+            "asDouble": 0
+          }
+        ]
+      },
+      "metadata": [
+        {
+          "key": "prometheus.type",
+          "value": {
+            "stringValue": "gauge"
+          }
+        }
+      ]
+    }
+```
+{{< /expand >}}
+
+{{< expand "Example JSON data for nvswitch_interface_hw_address_info:" >}}
+```
+{
+      "name": "nvswitch_interface_hw_address_info",
+      "description": "Hardware (MAC) address information for network interface.",
+      "gauge": {
+        "dataPoints": [
+          {
+            "attributes": [
+              {
+                "key": "address",
+                "value": {
+                  "stringValue": "1c:34:da:28:01:00"
+                }
+              },
+              {
+                "key": "interface",
+                "value": {
+                  "stringValue": "swp35"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901194568000000",
+            "asDouble": 1
+          },
+          {
+            "attributes": [
+              {
+                "key": "address",
+                "value": {
+                  "stringValue": "1c:34:da:28:01:02"
+                }
+              },
+              {
+                "key": "interface",
+                "value": {
+                  "stringValue": "swp36"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901194568000000",
+            "asDouble": 1
+          },
+          {
+            "attributes": [
+              {
+                "key": "address",
+                "value": {
+                  "stringValue": "1c:34:da:28:01:04"
+                }
+              },
+              {
+                "key": "interface",
+                "value": {
+                  "stringValue": "swp33"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901194568000000",
+            "asDouble": 1
+          },
+          {
+            "attributes": [
+              {
+                "key": "address",
+                "value": {
+                  "stringValue": "1c:34:da:28:01:06"
+                }
+              },
+              {
+                "key": "interface",
+                "value": {
+                  "stringValue": "swp34"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901194568000000",
+            "asDouble": 1
+          },
+          {
+            "attributes": [
+              {
+                "key": "address",
+                "value": {
+                  "stringValue": "1c:34:da:28:01:08"
+                }
+              },
+              {
+                "key": "interface",
+                "value": {
+                  "stringValue": "swp39"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901194568000000",
+            "asDouble": 1
+          },
+          {
+            "attributes": [
+              {
+                "key": "address",
+                "value": {
+                  "stringValue": "1c:34:da:28:01:0a"
+                }
+              },
+              {
+                "key": "interface",
+                "value": {
+                  "stringValue": "swp40"
+                }
+              }
+...
+```
+{{< /expand >}}
+
+{{< expand "Example JSON data for nvswitch_interface_hw_address_info:" >}}
+```
+{
+      "name": "nvswitch_interface_hw_address_info",
+      "description": "Hardware (MAC) address information for network interface.",
+      "gauge": {
+        "dataPoints": [
+          {
+            "attributes": [
+              {
+                "key": "address",
+                "value": {
+                  "stringValue": "1c:34:da:28:01:00"
+                }
+              },
+              {
+                "key": "interface",
+                "value": {
+                  "stringValue": "swp35"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901194568000000",
+            "asDouble": 1
+          },
+          {
+            "attributes": [
+              {
+                "key": "address",
+                "value": {
+                  "stringValue": "1c:34:da:28:01:02"
+                }
+              },
+              {
+                "key": "interface",
+                "value": {
+                  "stringValue": "swp36"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901194568000000",
+            "asDouble": 1
+          },
+          {
+            "attributes": [
+              {
+                "key": "address",
+                "value": {
+                  "stringValue": "1c:34:da:28:01:04"
+                }
+              },
+              {
+                "key": "interface",
+                "value": {
+                  "stringValue": "swp33"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901194568000000",
+            "asDouble": 1
+          },
+          {
+            "attributes": [
+              {
+                "key": "address",
+                "value": {
+                  "stringValue": "1c:34:da:28:01:06"
+                }
+              },
+              {
+                "key": "interface",
+                "value": {
+                  "stringValue": "swp34"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901194568000000",
+            "asDouble": 1
+          },
+          {
+            "attributes": [
+              {
+                "key": "address",
+                "value": {
+                  "stringValue": "1c:34:da:28:01:08"
+                }
+              },
+              {
+                "key": "interface",
+                "value": {
+                  "stringValue": "swp39"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901194568000000",
+            "asDouble": 1
+          },
+          {
+            "attributes": [
+              {
+                "key": "address",
+                "value": {
+                  "stringValue": "1c:34:da:28:01:0a"
+                }
+              },
+              {
+                "key": "interface",
+                "value": {
+                  "stringValue": "swp40"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901194568000000",
+            "asDouble": 1
+          },
+          {
+            "attributes": [
+              {
+                "key": "address",
+                "value": {
+                  "stringValue": "1c:34:da:28:01:0c"
+                }
+              },
+              {
+                "key": "interface",
+                "value": {
+                  "stringValue": "swp37"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901194568000000",
+            "asDouble": 1
+          },
+          {
+            "attributes": [
+              {
+                "key": "address",
+                "value": {
+                  "stringValue": "1c:34:da:28:01:0e"
+                }
+              },
+              {
+                "key": "interface",
+                "value": {
+                  "stringValue": "swp38"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901194568000000",
+            "asDouble": 1
+          },
+          {
+            "attributes": [
+              {
+                "key": "address",
+                "value": {
+                  "stringValue": "1c:34:da:28:01:10"
+                }
+              },
+              {
+                "key": "interface",
+                "value": {
+                  "stringValue": "swp43"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901194568000000",
+            "asDouble": 1
+          },
+          {
+            "attributes": [
+              {
+                "key": "address",
+                "value": {
+                  "stringValue": "1c:34:da:28:01:12"
+                }
+              },
+              {
+                "key": "interface",
+                "value": {
+                  "stringValue": "swp44"
+                }
+              }
+...
 ```
 {{< /expand >}}
 
@@ -3111,76 +3566,312 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 #### Transceiver Example JSON
 
 {{< expand "Example JSON data for nvswitch_platform_transceiver_info:" >}}
-
 ```
 {
-  "name": "nvswitch_platform_transceiver_info",
-  "description": "NVIDIA Ethernet Switch Transceiver Information",
-  "gauge": {
-    "dataPoints": [
-      {
-        "attributes": [
+      "name": "nvswitch_platform_transceiver_info",
+      "description": "NVIDIA Ethernet Switch Transceiver Information",
+      "gauge": {
+        "dataPoints": [
           {
-            "key": "cable_length",
-            "value": {
-              "stringValue": "0.5m"
-            }
-          },
-          {
-            "key": "cable_type",
-            "value": {
-              "stringValue": "Passive copper cable"
-            }
-          },
-          {
-            "key": "error_status",
-            "value": {
-              "stringValue": "N/A"
-            }
-          },
-          {
-            "key": "identifier",
-            "value": {
-              "stringValue": "OSFP"
-            }
-          },
-          {
-            "key": "name",
-            "value": {
-              "stringValue": "transceiver10"
-            }
-          },
-          {
-            "key": "port",
-            "value": {
-              "stringValue": "10"
-            }
-          },
-          {
-            "key": "revision_compliance",
-            "value": {
-              "stringValue": "Rev 5.0"
-            }
-          },
-          {
-            "key": "status",
-            "value": {
-              "stringValue": "plugged, enabled"
-            }
+            "attributes": [
+              {
+                "key": "cable_length",
+                "value": {
+                  "stringValue": "2.0m"
+                }
+              },
+              {
+                "key": "cable_type",
+                "value": {
+                  "stringValue": "Passive copper cable"
+                }
+              },
+              {
+                "key": "error_status",
+                "value": {
+                  "stringValue": "N/A"
+                }
+              },
+              {
+                "key": "identifier",
+                "value": {
+                  "stringValue": "OSFP"
+                }
+              },
+              {
+                "key": "name",
+                "value": {
+                  "stringValue": "transceiver36"
+                }
+              },
+              {
+                "key": "port",
+                "value": {
+                  "stringValue": "36"
+                }
+              },
+              {
+                "key": "revision_compliance",
+                "value": {
+                  "stringValue": "Rev 5.0"
+                }
+              },
+              {
+                "key": "status",
+                "value": {
+                  "stringValue": "plugged, enabled"
+                }
+              }
+            ],
+            "timeUnixNano": "1753399762615000000",
+            "asDouble": 1
           }
-        ],
-        "timeUnixNano": "1745875256987000000",
-        "asDouble": 1
-      }
-    ]
-  }
-}
+        ]
+      },
+      "metadata": [
+        {
+          "key": "prometheus.type",
+          "value": {
+            "stringValue": "gauge"
+          }
+        }
+      ]
+    },
 ```
-
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_platform_transceiver_voltage:" >}}
+```
+    {
+      "name": "nvswitch_platform_transceiver_voltage",
+      "description": "NVIDIA Ethernet Switch Transceiver Voltage in V",
+      "gauge": {
+        "dataPoints": [
+          {
+            "attributes": [
+              {
+                "key": "name",
+                "value": {
+                  "stringValue": "transceiver33"
+                }
+              },
+              {
+                "key": "port",
+                "value": {
+                  "stringValue": "33"
+                }
+              }
+            ],
+            "timeUnixNano": "1753399700615000000",
+            "asDouble": 3.2324
+          }
+        ]
+      },
+      "metadata": [
+        {
+          "key": "prometheus.type",
+          "value": {
+            "stringValue": "gauge"
+          }
+        }
+      ]
+    },
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_platform_transceiver_firmware_version:" >}}
+```
+    {
+      "name": "nvswitch_platform_transceiver_firmware_version",
+      "description": "NVIDIA Ethernet Switch Transceiver Firmware Version",
+      "gauge": {
+        "dataPoints": [
+          {
+            "attributes": [
+              {
+                "key": "fw_version",
+                "value": {
+                  "stringValue": "47.171.10"
+                }
+              },
+              {
+                "key": "name",
+                "value": {
+                  "stringValue": "transceiver33"
+                }
+              },
+              {
+                "key": "port",
+                "value": {
+                  "stringValue": "33"
+                }
+              }
+            ],
+            "timeUnixNano": "1753399700615000000",
+            "asDouble": 1
+          }
+        ]
+      },
+      "metadata": [
+        {
+          "key": "prometheus.type",
+          "value": {
+            "stringValue": "gauge"
+          }
+        }
+      ]
+    },
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_platform_transceiver_ethernet_pmd:" >}}
+```
+    {
+      "name": "nvswitch_platform_transceiver_ethernet_pmd",
+      "description": "NVIDIA Ethernet Switch Transceiver Ethernet PMD Type",
+      "gauge": {
+        "dataPoints": [
+          {
+            "attributes": [
+              {
+                "key": "name",
+                "value": {
+                  "stringValue": "transceiver9"
+                }
+              },
+              {
+                "key": "pmd_type",
+                "value": {
+                  "stringValue": "400G_AUI4_CR4"
+                }
+              },
+              {
+                "key": "port",
+                "value": {
+                  "stringValue": "9"
+                }
+              }
+            ],
+            "timeUnixNano": "1753399700615000000",
+            "asDouble": 1
+          }
+        ]
+      },
+      "metadata": [
+        {
+          "key": "prometheus.type",
+          "value": {
+            "stringValue": "gauge"
+          }
+        }
+      ]
+    },
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_platform_transceiver_physical_channel_state:" >}}
+```
+    {
+      "name": "nvswitch_platform_transceiver_physical_channel_state",
+      "description": "NVIDIA Ethernet Switch Transceiver Physical Channel State (rx-los, rx-cdr-lol)",
+      "gauge": {
+        "dataPoints": [
+          {
+            "attributes": [
+              {
+                "key": "channel",
+                "value": {
+                  "stringValue": "1"
+                }
+              },
+              {
+                "key": "name",
+                "value": {
+                  "stringValue": "transceiver33"
+                }
+              },
+              {
+                "key": "port",
+                "value": {
+                  "stringValue": "33"
+                }
+              },
+              {
+                "key": "state",
+                "value": {
+                  "stringValue": "rx-cdr-lol"
+                }
+              }
+            ],
+            "timeUnixNano": "1753399700615000000",
+            "asDouble": 0
+          }
+        ]
+      },
+      "metadata": [
+    {
+      "key": "prometheus.type",
+      "value": {
+        "stringValue": "gauge"
+      }
+        }
+      ]
+    },
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_platform_transceiver_host_lane_state:" >}}
+```
+    {
+      "name": "nvswitch_platform_transceiver_host_lane_state",
+      "description": "NVIDIA Ethernet Switch Transceiver Host Lane State (tx-los, tx-cdr-lol)",
+      "gauge": {
+        "dataPoints": [
+          {
+            "attributes": [
+              {
+                "key": "lane",
+                "value": {
+                  "stringValue": "1"
+                }
+              },
+              {
+                "key": "name",
+                "value": {
+                  "stringValue": "transceiver33"
+                }
+              },
+              {
+                "key": "port",
+                "value": {
+                  "stringValue": "33"
+                }
+              },
+              {
+                "key": "state",
+                "value": {
+                  "stringValue": "tx-cdr-lol"
+                }
+              }
+            ],
+            "timeUnixNano": "1753399700615000000",
+            "asDouble": 0
+          }
+        ]
+      },
+      "metadata": [
+        {
+          "key": "prometheus.type",
+          "value": {
+            "stringValue": "gauge"
+          }
+        }
+      ]
+    }
+```
 {{< /expand >}}
 <br>
 {{< expand "Example JSON data for nvswitch_platform_transceiver_vendor_info:" >}}
-
 ```
 {
     "name": "nvswitch_platform_transceiver_vendor_info",
@@ -3246,7 +3937,7 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
   }
 ```
 {{< /expand >}}
-<!-- vale on -->
+
 ### Routing Metrics Format
 
 When you enable layer 3 routing metrics telemetry, the switch exports the following statistics:
@@ -4050,6 +4741,618 @@ When you enable layer 3 routing metrics telemetry, the switch exports the follow
     ]
 }
 }
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvrouting_bgp_peer_last_established:" >}}
+```
+{
+      "name": "nvrouting_bgp_peer_last_established",
+      "description": "Tracks the last established time of the bgp peer",
+      "gauge": {
+        "dataPoints": [
+          {
+            "attributes": [
+              {
+                "key": "peer-id",
+                "value": {
+                  "stringValue": "2.1.1.1"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901204066649250",
+            "timeUnixNano": "1753901204069100927",
+            "asInt": "1753901145"
+          },
+          {
+            "attributes": [
+              {
+                "key": "peer-id",
+                "value": {
+                  "stringValue": "2.1.1.2"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901204066649250",
+            "timeUnixNano": "1753901204069100927",
+            "asInt": "1753901145"
+          },
+          {
+            "attributes": [
+              {
+                "key": "peer-id",
+                "value": {
+                  "stringValue": "20.0.0.1"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901204066649250",
+            "timeUnixNano": "1753901204069100927",
+            "asInt": "1753901144"
+          },
+          {
+            "attributes": [
+              {
+                "key": "peer-id",
+                "value": {
+                  "stringValue": "20.1.0.1"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901204066649250",
+            "timeUnixNano": "1753901204069100927",
+            "asInt": "1753901144"
+          },
+          {
+            "attributes": [
+              {
+                "key": "peer-id",
+                "value": {
+                  "stringValue": "20.2.0.1"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901204066649250",
+            "timeUnixNano": "1753901204069100927",
+            "asInt": "1753901144"
+          }
+        ]
+      }
+    },
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvrouting_bgp_peer_info:" >}}
+```
+    {
+      "name": "nvrouting_bgp_peer_info",
+      "description": "Tracks the peer information of the bgp peer",
+      "gauge": {
+        "dataPoints": [
+          {
+            "attributes": [
+              {
+                "key": "description",
+                "value": {
+                  "stringValue": "ebgp_mulithop_neighbor_2.1.1.1"
+                }
+              },
+              {
+                "key": "last-notification-error-code-received",
+                "value": {
+                  "stringValue": ""
+                }
+              },
+              {
+                "key": "last-notification-error-code-sent",
+                "value": {
+                  "stringValue": ""
+                }
+              },
+              {
+                "key": "peer-address",
+                "value": {
+                  "stringValue": "2.1.1.1"
+                }
+              },
+              {
+                "key": "peer-group",
+                "value": {
+                  "stringValue": "ebgp_mulithop"
+                }
+              },
+              {
+                "key": "peer-id",
+                "value": {
+                  "stringValue": "2.1.1.1"
+                }
+              },
+              {
+                "key": "peer-type",
+                "value": {
+                  "stringValue": "EXTERNAL"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901204066661716",
+            "timeUnixNano": "1753901204069104448",
+            "asInt": "1"
+          },
+          {
+            "attributes": [
+              {
+                "key": "description",
+                "value": {
+                  "stringValue": "ebgp_mulithop_neighbor_2.1.1.2"
+                }
+              },
+              {
+                "key": "last-notification-error-code-received",
+                "value": {
+                  "stringValue": ""
+                }
+              },
+              {
+                "key": "last-notification-error-code-sent",
+                "value": {
+                  "stringValue": ""
+                }
+              },
+              {
+                "key": "peer-address",
+                "value": {
+                  "stringValue": "2.1.1.2"
+                }
+              },
+              {
+                "key": "peer-group",
+                "value": {
+                  "stringValue": "ebgp_mulithop"
+                }
+              },
+              {
+                "key": "peer-id",
+                "value": {
+                  "stringValue": "2.1.1.2"
+                }
+              },
+              {
+                "key": "peer-type",
+                "value": {
+                  "stringValue": "EXTERNAL"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901204066661716",
+            "timeUnixNano": "1753901204069104448",
+            "asInt": "1"
+          },
+          {
+            "attributes": [
+              {
+                "key": "description",
+                "value": {
+                  "stringValue": "fabric_neighbor_20.0.0.1"
+                }
+              },
+              {
+                "key": "last-notification-error-code-received",
+                "value": {
+                  "stringValue": ""
+                }
+              },
+              {
+                "key": "last-notification-error-code-sent",
+                "value": {
+                  "stringValue": ""
+                }
+              },
+              {
+                "key": "peer-address",
+                "value": {
+                  "stringValue": "20.0.0.1"
+                }
+              },
+              {
+                "key": "peer-group",
+                "value": {
+                  "stringValue": "fabric"
+                }
+              },
+              {
+                "key": "peer-id",
+                "value": {
+                  "stringValue": "20.0.0.1"
+                }
+              },
+              {
+                "key": "peer-type",
+                "value": {
+                  "stringValue": "EXTERNAL"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901204066661716",
+            "timeUnixNano": "1753901204069104448",
+            "asInt": "1"
+          },
+          {
+            "attributes": [
+              {
+                "key": "description",
+                "value": {
+                  "stringValue": "fabric_neighbor_20.1.0.1"
+                }
+              },
+              {
+                "key": "last-notification-error-code-received",
+                "value": {
+                  "stringValue": ""
+                }
+              },
+              {
+                "key": "last-notification-error-code-sent",
+                "value": {
+                  "stringValue": ""
+                }
+              },
+              {
+                "key": "peer-address",
+                "value": {
+                  "stringValue": "20.1.0.1"
+                }
+              },
+              {
+                "key": "peer-group",
+                "value": {
+                  "stringValue": "fabric"
+                }
+              },
+              {
+                "key": "peer-id",
+                "value": {
+                  "stringValue": "20.1.0.1"
+                }
+              },
+              {
+                "key": "peer-type",
+                "value": {
+                  "stringValue": "EXTERNAL"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901204066661716",
+            "timeUnixNano": "1753901204069104448",
+            "asInt": "1"
+          },
+          {
+            "attributes": [
+              {
+                "key": "description",
+                "value": {
+                  "stringValue": "fabric_neighbor_20.2.0.1"
+                }
+              },
+              {
+                "key": "last-notification-error-code-received",
+                "value": {
+                  "stringValue": ""
+                }
+              },
+              {
+                "key": "last-notification-error-code-sent",
+                "value": {
+                  "stringValue": ""
+                }
+              },
+              {
+                "key": "peer-address",
+                "value": {
+                  "stringValue": "20.2.0.1"
+                }
+              },
+              {
+                "key": "peer-group",
+                "value": {
+                  "stringValue": "fabric"
+                }
+              },
+              {
+                "key": "peer-id",
+                "value": {
+                  "stringValue": "20.2.0.1"
+                }
+              },
+              {
+                "key": "peer-type",
+                "value": {
+                  "stringValue": "EXTERNAL"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901204066661716",
+            "timeUnixNano": "1753901204069104448",
+            "asInt": "1"
+          }
+        ]
+      }
+    },
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvrouting_bgp_peer_as:" >}}
+```
+    {
+      "name": "nvrouting_bgp_peer_as",
+      "description": "Tracks the autonomous system number of the bgp peer",
+      "gauge": {
+        "dataPoints": [
+          {
+            "attributes": [
+              {
+                "key": "peer-id",
+                "value": {
+                  "stringValue": "2.1.1.1"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901204066643656",
+            "timeUnixNano": "1753901204069096194",
+            "asInt": "744603565"
+          },
+          {
+            "attributes": [
+              {
+                "key": "peer-id",
+                "value": {
+                  "stringValue": "2.1.1.2"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901204066643656",
+            "timeUnixNano": "1753901204069096194",
+            "asInt": "744603565"
+          },
+          {
+            "attributes": [
+              {
+                "key": "peer-id",
+                "value": {
+                  "stringValue": "20.0.0.1"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901204066643656",
+            "timeUnixNano": "1753901204069096194",
+            "asInt": "744603564"
+          },
+          {
+            "attributes": [
+              {
+                "key": "peer-id",
+                "value": {
+                  "stringValue": "20.1.0.1"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901204066643656",
+            "timeUnixNano": "1753901204069096194",
+            "asInt": "744603564"
+          },
+          {
+            "attributes": [
+              {
+                "key": "peer-id",
+                "value": {
+                  "stringValue": "20.2.0.1"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901204066643656",
+            "timeUnixNano": "1753901204069096194",
+            "asInt": "744603564"
+          }
+        ]
+      }
+    },
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for vrouting_bgp_peer_local_as:" >}}
+```
+    {
+      "name": "nvrouting_bgp_peer_local_as",
+      "description": "Tracks the local autonomous system number",
+      "gauge": {
+        "dataPoints": [
+          {
+            "attributes": [
+              {
+                "key": "peer-id",
+                "value": {
+                  "stringValue": "2.1.1.1"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901204066640069",
+            "timeUnixNano": "1753901204069092308",
+            "asInt": "744603563"
+          },
+          {
+            "attributes": [
+              {
+                "key": "peer-id",
+                "value": {
+                  "stringValue": "2.1.1.2"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901204066640069",
+            "timeUnixNano": "1753901204069092308",
+            "asInt": "744603563"
+          },
+          {
+            "attributes": [
+              {
+                "key": "peer-id",
+                "value": {
+                  "stringValue": "20.0.0.1"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901204066640069",
+            "timeUnixNano": "1753901204069092308",
+            "asInt": "744603563"
+          },
+          {
+            "attributes": [
+              {
+                "key": "peer-id",
+                "value": {
+                  "stringValue": "20.1.0.1"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901204066640069",
+            "timeUnixNano": "1753901204069092308",
+            "asInt": "744603563"
+          },
+          {
+            "attributes": [
+              {
+                "key": "peer-id",
+                "value": {
+                  "stringValue": "20.2.0.1"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901204066640069",
+            "timeUnixNano": "1753901204069092308",
+            "asInt": "744603563"
+          }
+        ]
+      }
+    }
 ```
 {{< /expand >}}
 

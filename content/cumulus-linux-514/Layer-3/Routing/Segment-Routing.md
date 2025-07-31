@@ -91,7 +91,7 @@ cumulus@switch:~$ nv show router segment-routing
 ------------  --------------------
 srv6                              
   state       enabled             
-  [locator]   LEAF                
+  [locator]   LEAF                å
 static                            
   [srv6-sid]  fcbb:fe8::/32
 ```
@@ -102,7 +102,7 @@ To show the configuration for all SRv6 locators, run the `nv show router segment
 cumulus@switch:~$ nv show router segment-routing srv6 locator
 SRv6 locator name  prefix             block length  node length  function length  status
 -----------------  ----------------   ------------  -----------  ---------------  ------
-LEAF               fcbb::/16  16            0            16               up
+LEAF               fcbb::/16          16            0            16               up
 ```
 
 To show the configuration for a specific SRv6 locator, run the NVUE `nv show router segment-routing srv6 locator <locator-id>` command or the vtysh `show segment-routing srv6 locator <locator> detail` command:
@@ -145,9 +145,9 @@ To show SRv6 statistics, run the `nv show router segment-routing srv6 stats` com
 cumulus@switch:~$ nv show router segment-routing srv6 stats
 Hit Counters
 ------------------------------
-SID                                             Packets
+SID                                          Packets
 ---------------------------------------      ----------
-fcbb:fe8::/32                                      0
+fcbb:fe8::/32                                0
 
 Drop Counters
 ------------------------------

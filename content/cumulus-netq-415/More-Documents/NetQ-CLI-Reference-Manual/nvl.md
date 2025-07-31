@@ -6,6 +6,7 @@ toc: 3
 right_toc_levels: 1
 pdfhidden: true
 type: nojsscroll
+bookhidden: true
 ---
 <!-- vale NVIDIA.HeadingTitles = NO -->
 <!-- vale off -->
@@ -78,7 +79,7 @@ None
 
 ### Related Commands
 
-- `netq nvl vluster restore`
+- `netq nvl cluster restore`
 
 - - -
 

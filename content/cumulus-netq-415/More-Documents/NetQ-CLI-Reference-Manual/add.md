@@ -393,7 +393,7 @@ Successfully configured notifier proxy proxy4:80
 
 ## netq add otlp endpoint
 
-Adds the endpoint of your time series database. Before enabling TLS, use the `netq set otlp endpoint-ca-cert` command to set the CA certificate.
+Adds the endpoint of your time-series database; used together with the `netq set otlp endpoint-ca-cert` to set the CA certificate.
 
 ### Syntax
 

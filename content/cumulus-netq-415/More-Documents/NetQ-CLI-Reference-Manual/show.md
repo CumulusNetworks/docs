@@ -3415,7 +3415,7 @@ Displays PTP clock and configuration details, including:
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| clock-details | NA | Display grandmaster, parent, and clock IDs and clock quality and accurarcy |
+| clock-details | NA | Display grandmaster, parent, and clock IDs, including clock quality and accuracy |
 | global-config | NA | Display priority, offset from master, and mean path delay thresholds |
 | port-status | NA | Display hierarchy information (master, slave) |
 | counters | NA | Display PTP port counters |
@@ -3474,7 +3474,7 @@ None
 
 ## netq show recommended-pkg-version
 
-When you have a software manifest in place, this command displays the software packages and versions recommended for upgrade based on the installed Cumulus Linux release. You can then compare that to the packages installed on your switch(es) to determine if it differs from the manifest. Such a difference might occur if you upgraded one or more packages separately from the Cumulus Linux software itself.
+When you have a software manifest in place, this command displays the software packages and versions recommended for upgrade based on the installed Cumulus Linux release. You can then compare that to the packages installed on your switches to determine if it differs from the manifest. Such a difference might occur if you upgraded one or more packages separately from the Cumulus Linux software itself.
 
 The output provides the following information for each package:
 

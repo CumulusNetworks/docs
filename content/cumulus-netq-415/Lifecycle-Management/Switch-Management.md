@@ -49,12 +49,16 @@ The table of switches is the starting point for network OS upgrades or NetQ inst
 - Verify the missing switches are reachable using `ping`
 - Run a [switch discovery](#switch-discovery), which locates all switches running Cumulus Linux in your network's fabric
 - {{<link title="Install NetQ Agents" text="Install NetQ Agents on the switch">}}
-- Verify that the NetQ Agent is fresh and running version 4.1.0 or later for switches that already have the agent installed (click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} **Menu**, then click **Agents** or run `netq show agents`)
-- {{<link title="Upgrade NetQ Agents" text="Upgrade NetQ Agents">}} (if needed)
+- Verify that the NetQ agent is fresh (click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} **Menu**, then click **Agents** or run `netq show agents`)
+- {{<link title="Upgrade NetQ Agents" text="Upgrade NetQ agents">}} (if needed)
 
 ## Switch Discovery
 
 A switch discovery searches your network for all Cumulus Linux switches (with and without NetQ currently installed) and determines the versions of Cumulus Linux and NetQ installed. These results can be used to install or upgrade Cumulus Linux and NetQ on all discovered switches in a single procedure.
+
+{{<notice tip>}}
+Switch discovery is supported for both on-premises and cloud deployments. For cloud deployments, NVIDIA recommends upgrading to the latest NetQ version before attempting a discovery.
+{{</notice>}}
 
 If you intend to upgrade your switches, generate AuthKeys using the UI.  {{<link title="Install NetQ CLI/#configure-the-netq-cli" text="Copy the access key and secret key">}} to an accessible location. You will enter the AuthKeys later on in this process.
 
@@ -142,14 +146,14 @@ Use the {{<link title="lcm/#netq-lcm-discover" text="netq lcm discover">}} comma
 You must also specify the access profile ID, which you can obtain with the `netq lcm show credentials` command.
 
 ```
-cumulus@switch:~$ netq lcm discover ip-range 192.168.0.15 profile_id credential_profile_d9e875bd2e6784617b304c20090ce28ff2bb46a4b9bf23cda98f1bdf911285c9
+nvidia@switch:~$ netq lcm discover ip-range 192.168.0.15 profile_id credential_profile_d9e875bd2e6784617b304c20090ce28ff2bb46a4b9bf23cda98f1bdf911285c9
     NetQ Discovery Started with job id: job_scan_9ea69d30-e86e-11ee-b32d-71890ec96f40
 ```
 
 When the network discovery is complete, run `netq lcm show discovery-job` and include the job ID which you obtained from the previous command. If you do not specify a job ID, the output includes a list of all job IDs from all discovery jobs.
 
 ```
-cumulus@switch:~$ netq lcm show discovery-job job_scan_9ea69d30-e86e-11ee-b32d-71890ec96f40
+nvidia@switch:~$ netq lcm show discovery-job job_scan_9ea69d30-e86e-11ee-b32d-71890ec96f40
 Scan COMPLETED
 
 Summary
@@ -249,7 +253,7 @@ Use the `version` option to only show switches with a given network OS version, 
 The **Role** column displays assigned roles:
 
 ```
-cumulus@switch:~$ netq lcm show switches
+nvidia@switch:~$ netq lcm show switches
 Hostname          Role       IP Address                MAC Address        CPU      CL Version  NetQ Version  Config Profile               Credential Profile                   Last Changed
 ----------------- ---------- ------------------------- ------------------ -------- ----------- ------------- ---------------------------- ------------------------------------ -------------------------
 noc-pr                       192.168.0.15              00:01:00:00:11:00  x86_64   5.8.0       4.8.0-cl4u44~ []                           Netq-Default                         Thu Mar 14 05:34:57 2024
@@ -304,13 +308,13 @@ You use the same command to both assign a role and change a role.
 For a single switch, run:
 
 ```
-cumulus@switch:~$ netq lcm add role exit switches border01
+nvidia@switch:~$ netq lcm add role exit switches border01
 ```
 
 To assign multiple switches to the same role, separate the hostnames with commas (no spaces). For example:
 
 ```
-cumulus@switch:~$ netq lcm add role exit switches border01,border02
+nvidia@switch:~$ netq lcm add role exit switches border01,border02
 ```
 
 {{</tab>}}
@@ -322,9 +326,9 @@ cumulus@switch:~$ netq lcm add role exit switches border01,border02
 You can host a {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Installation-Management/Zero-Touch-Provisioning-ZTP/" text="Zero Touch Provisioning (ZTP) script">}} on your NetQ VM to provision switches running Cumulus Linux. To host a ZTP script, copy the script to your NetQ server and reference the path you copied to in the `netq lcm add ztp-script` CLI command: 
 
 ```
-cumulus@netq-server:~$ netq lcm add ztp-script /home/cumulus/ztp.sh
+nvidia@netq-server:~$ netq lcm add ztp-script /home/cumulus/ztp.sh
 ZTP script ztp.sh uploaded successfully and can be downloaded from http://10.10.10.10/lcm/asset/ztp.sh
-cumulus@netq-server:~$ 
+nvidia@netq-server:~$ 
 ```
 
 The output of the command will provide the URL to use in the DHCP server option 239 configuration to instruct switches to retrieve the script. If you would like to use your NetQ VM as a DHCP server, you can use the {{<exlink url="https://kea.readthedocs.io/en/latest/arm/intro.html" text="Kea DHCP server package">}}, which is installed by default.
@@ -332,7 +336,7 @@ The output of the command will provide the URL to use in the DHCP server option 
 To list scripts that are currently added to NetQ along with their download URLs and script identification numbers, use the `netq lcm show ztp-scripts` command. You can remove ZTP scripts from NetQ with the `netq lcm del ztp-script <text-ztp-script-id>` command. 
 
 ```
-cumulus@netq-server:~$ netq lcm show ztp-scripts json
+nvidia@netq-server:~$ netq lcm show ztp-scripts json
 [
     {
         "scriptId": "file_e96b2807bdb2c77c89334d03952097dd2224a25df68a6e91d6ab19fc9c265974",
@@ -341,7 +345,7 @@ cumulus@netq-server:~$ netq lcm show ztp-scripts json
     }
 ]
 
-cumulus@netq-server:~$ netq lcm del ztp-script file_e96b2807bdb2c77c89334d03952097dd2224a25df68a6e91d6ab19fc9c265974
+nvidia@netq-server:~$ netq lcm del ztp-script file_e96b2807bdb2c77c89334d03952097dd2224a25df68a6e91d6ab19fc9c265974
 ZTP script ztp1.sh successfully deleted 
 ```
 ## Decommission a Switch with LCM
@@ -375,14 +379,14 @@ To decommission a switch or host:
 1. On the given switch or host, stop and disable the NetQ Agent service:
 
     ```
-    cumulus@switch:~$ sudo systemctl stop netq-agent
-    cumulus@switch:~$ sudo systemctl disable netq-agent
+    nvidia@switch:~$ sudo systemctl stop netq-agent
+    nvidia@switch:~$ sudo systemctl disable netq-agent
     ```
 
 2. On the NetQ server, decommission the switch or host:
 
     ```
-    cumulus@netq-server:~$ netq decommission <hostname-to-decommission>
+    nvidia@netq-server:~$ netq decommission <hostname-to-decommission>
     ```
 {{</tab>}}
 

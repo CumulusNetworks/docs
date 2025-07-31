@@ -54,7 +54,7 @@ The information available in the UI can also be displayed via the CLI with a cor
 For example, you can view all events across your network with the {{<link title="show/#netq-show-events" text="netq show events">}} command. To view all events on a particular switch, specify its name in the `<hostname>` field in `netq <hostname> show events`. The following example displays all events on the leaf01 switch:
 
 ```
-cumulus@switch:~$ netq leaf01 show events
+nvidia@switch:~$ netq leaf01 show events
 
 Matching events records:
 Hostname          Message Type             Severity         State      Message                             Timestamp
@@ -111,7 +111,7 @@ The following graphs depict CPU and memory usage over a 6-hour time period from 
 The information displayed in the UI can be viewed using the CLI with the {{<link title="show/#netq-show-services" text="netq show services resource-util">}} command:
 
 ```
-cumulus@switch:~$ netq show services resource-util
+nvidia@switch:~$ netq show services resource-util
 
 Matching services records:
 Hostname          Service              PID   VRF                  Enabled Active Uptime               CPU one Minute       CPU five Minute      Memory one Minute    Memory five Minute   Last Updated

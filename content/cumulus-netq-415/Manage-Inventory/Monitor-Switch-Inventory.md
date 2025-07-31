@@ -62,14 +62,14 @@ To decommission a switch or host:
 1. On the given switch or host, stop and disable the NetQ Agent service:
 
     ```
-    cumulus@switch:~$ sudo systemctl stop netq-agent
-    cumulus@switch:~$ sudo systemctl disable netq-agent
+    nvidia@switch:~$ sudo systemctl stop netq-agent
+    nvidia@switch:~$ sudo systemctl disable netq-agent
     ```
 
 2. On the NetQ server or VM, decommission the switch or host:
 
     ```
-    cumulus@netq-server:~$ netq decommission <hostname-to-decommission>
+    nvidia@netq-server:~$ netq decommission <hostname-to-decommission>
     ```
 {{</tab>}}
 

@@ -75,7 +75,7 @@ To decommission a host:
 2. On the NetQ server, decommission the DPU:
 
     ```
-    cumulus@netq-server:~$ netq decommission <hostname-to-decommission>
+    nvidia@netq-server:~$ netq decommission <hostname-to-decommission>
     ```
 
 {{</tab>}}

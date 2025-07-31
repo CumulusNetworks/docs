@@ -38,8 +38,8 @@ Decommissioning hosts removes information about the host from the NetQ database.
 If the NetQ Agents is in a 'fresh' state, you must stop and disable the NetQ Agent and wait until it reflects a 'rotten' state. To disable the agent, run the following commands on the host you want to decommission:
 
 ```
-cumulus@host:~$ sudo systemctl stop netq-agent
-cumulus@host:~$ sudo systemctl disable netq-agent
+nvidia@host:~$ sudo systemctl stop netq-agent
+nvidia@host:~$ sudo systemctl disable netq-agent
 ```
 
 It may take a few minutes for the agent's new state to be reflected in the UI.
@@ -57,14 +57,14 @@ To decommission a host:
 1. Stop and disable the NetQ Agent service on the host:
 
     ```
-    cumulus@host:~$ sudo systemctl stop netq-agent
-    cumulus@host:~$ sudo systemctl disable netq-agent
+    nvidia@host:~$ sudo systemctl stop netq-agent
+    nvidia@host:~$ sudo systemctl disable netq-agent
     ```
 
 2. On the NetQ server or VM, decommission the host:
 
     ```
-    cumulus@netq-server:~$ netq decommission <hostname-to-decommission>
+    nvidia@netq-server:~$ netq decommission <hostname-to-decommission>
     ```
 
 {{</tab>}}

@@ -38,7 +38,7 @@ netq help verbose
 Display syntax for all commands with the `addresses` keyword:
 
 ```
-cumulus@switch:~$ netq addresses help OR netq help addresses
+nvidia@switch:~$ netq addresses help OR netq help addresses
 Commands:
    netq <hostname> show ip addresses [<remote-interface>] [<ipv4>|<ipv4/prefixlen>] [vrf <vrf>] [around <text-time>] [count] [json]
    netq show ip addresses [<remote-interface>] [<ipv4>|<ipv4/prefixlen>] [vrf <vrf>] [subnet|supernet|gateway] [around <text-time>] [json]
@@ -55,7 +55,7 @@ Keywords:
 Display the NetQ command formatting rules:
 
 ```
-cumulus@netq-ts:~$ netq help verbose
+nvidia@netq-ts:~$ netq help verbose
 
 netq commands have the following format:
     netq [<hostname>] action object [options]

@@ -33,27 +33,27 @@ Follow the process below for your deployment type to back up your NetQ data:
 2. Copy the `vm-backuprestore.sh` script to your NetQ server in standalone deployments, or to each node in cluster deployments:
 
 ```
-username@hostname:~$ scp ./vm-backuprestore.sh cumulus@10.10.10.10:/home/cumulus/
-cumulus@10.10.10.10's password:
+username@hostname:~$ scp ./vm-backuprestore.sh nvidia@10.10.10.10:/home/cumulus/
+nvidia@10.10.10.10's password:
 vm-backuprestore.sh                                                                                        
 ```
 
 Then copy the `vm-backuprestore.sh` script to the `/usr/sbin/` directory on your NetQ servers:
 
 ```
-cumulus@netq-server:~$ sudo cp ./vmbackuprestore.sh /usr/sbin/
+nvidia@netq-server:~$ sudo cp ./vmbackuprestore.sh /usr/sbin/
 ```
 
 3. Log in to your NetQ server and set the script to executable. Do this for each node in your deployment:
 
 ```
-cumulus@netq-server:/home/cumulus# chmod +x /usr/sbin/vm-backuprestore.sh
+nvidia@netq-server:/home/cumulus# chmod +x /usr/sbin/vm-backuprestore.sh
 ```
 
 4. On your NetQ server (or the master node in cluster deployments), run the `/usr/sbin/vm-backuprestore.sh --backup` command. This command backs up each node in your deployment and combines the data into a single .tar file. Take note of the config key in the output of this command. You will enter it when you restore your data:  
 
 ```
-cumulus@netq-server:~$ sudo /usr/sbin/vm-backuprestore.sh --backup
+nvidia@netq-server:~$ sudo /usr/sbin/vm-backuprestore.sh --backup
 [sudo] password for cumulus:
 Fri Jan 17 05:44:13 2025 - Please find detailed logs at: /var/log/vm-backuprestore.log
 Stopping pods...
@@ -100,7 +100,7 @@ Fri Jan 17 05:58:14 2025 - All pods are up
 5. Copy the newly created tarball from the server and restore the data on your _new_ VM.
 
 ```
-cumulus@netq-server:~$ sudo scp /opt/backuprestore/combined_backup_20250117054718.tar username:password@<destination>
+nvidia@netq-server:~$ sudo scp /opt/backuprestore/combined_backup_20250117054718.tar username:password@<destination>
 ```
 
 {{</tab>}}
@@ -119,27 +119,27 @@ cumulus@netq-server:~$ sudo scp /opt/backuprestore/combined_backup_2025011705471
 2. Copy the `vm-backuprestore.sh` script to your NetQ server in standalone deployments, or to each node in cluster deployments:
 
 ```
-username@hostname:~$ scp ./vm-backuprestore.sh cumulus@10.10.10.10:/home/cumulus/
-cumulus@10.10.10.10's password:
+username@hostname:~$ scp ./vm-backuprestore.sh nvidia@10.10.10.10:/home/cumulus/
+nvidia@10.10.10.10's password:
 vm-backuprestore.sh                                                                                        
 ```
 
 Then copy the `vm-backuprestore.sh` script to the `/usr/sbin/` directory on your NetQ servers:
 
 ```
-cumulus@netq-server:~$ sudo cp ./vmbackuprestore.sh /usr/sbin/
+nvidia@netq-server:~$ sudo cp ./vmbackuprestore.sh /usr/sbin/
 ```
 
 3. Log in to your NetQ server and set the script to executable. Do this for each node in your deployment:
 
 ```
-cumulus@netq-server:/home/cumulus# chmod +x /usr/sbin/vm-backuprestore.sh
+nvidia@netq-server:/home/cumulus# chmod +x /usr/sbin/vm-backuprestore.sh
 ```
 
 4. On your NetQ server (or the master node in cluster deployments), run the `/usr/sbin/vm-backuprestore.sh --backup` command. This command backs up each node in your deployment and combines the data into a single .tar file. Take note of the config key in the output of this command. You will enter it when you restore your data:  
 
 ```
-cumulus@netq-server:~$ sudo /usr/sbin/vm-backuprestore.sh --backup
+nvidia@netq-server:~$ sudo /usr/sbin/vm-backuprestore.sh --backup
 [sudo] password for cumulus:
 Fri Jan 17 05:44:13 2025 - Please find detailed logs at: /var/log/vm-backuprestore.log
 Stopping pods...
@@ -186,7 +186,7 @@ Fri Jan 17 05:58:14 2025 - All pods are up
 5. Copy the newly created tarball from the server and restore the data on your _new_ VM.
 
 ```
-cumulus@netq-server:~$ sudo scp /opt/backuprestore/combined_backup_20250117054718.tar username:password@<destination>
+nvidia@netq-server:~$ sudo scp /opt/backuprestore/combined_backup_20250117054718.tar username:password@<destination>
 ```
 
 6. On your NetQ server (or the master node in cluster deployments), run the `netq bootstrap reset purge-db` command to deactivate the current premises. Use the `netq config show cli premises` command to verify that the status of the premises is inactive.
@@ -210,14 +210,14 @@ Run the installation command on your NetQ server (or on the master node in clust
 {{<tab "Single Server">}}
 
 ```
-cumulus@netq-server:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.14.0-SNAPSHOT-feature-k8-ub-storage-upgrade.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix1NHgwU3NhWlV5NzZXZVpiK2FFazRmQ3dkM2hzTk9IMWtDRlNjM0FHdVIwPQ== restore /home/cumulus/backup-netq-standalone-onprem-4.12.0-2024-12-11_19_50_12_UTC.tar
+nvidia@netq-server:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.14.0-SNAPSHOT-feature-k8-ub-storage-upgrade.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix1NHgwU3NhWlV5NzZXZVpiK2FFazRmQ3dkM2hzTk9IMWtDRlNjM0FHdVIwPQ== restore /home/cumulus/backup-netq-standalone-onprem-4.12.0-2024-12-11_19_50_12_UTC.tar
 ```
 {{</tab>}}
 
 {{<tab "Cluster" >}}
 
 ```
-cumulus@netq-server:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.14.0-SNAPSHOT-feature-k8-ub-storage-upgrade.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIiwzNWJVL2NkZmtnekRqZ21yUUdZTHFFa0wvMVZSNHlLd3JaYlpuWE1VS21JPQ== workers 10.188.44.219 10.188.45.164 cluster-vip 10.188.45.169 restore /home/cumulus/combined_backup_20241211111316.tar
+nvidia@netq-server:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.14.0-SNAPSHOT-feature-k8-ub-storage-upgrade.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIiwzNWJVL2NkZmtnekRqZ21yUUdZTHFFa0wvMVZSNHlLd3JaYlpuWE1VS21JPQ== workers 10.188.44.219 10.188.45.164 cluster-vip 10.188.45.169 restore /home/cumulus/combined_backup_20241211111316.tar
 ```
 
 {{</tab>}}
@@ -227,7 +227,7 @@ cumulus@netq-server:~$ netq install cluster full interface eth0 bundle /mnt/inst
 1. Add the `config-key` parameter to the JSON template you used during the {{<link title="Set Up Your Virtual Machine for an On-premises HA Scale Cluster" text="scale cluster installation">}}. Edit the file with values for each attribute.
 
 ```
-cumulus@netq-server:~$ vim /tmp/cluster-install-config.json 
+nvidia@netq-server:~$ vim /tmp/cluster-install-config.json 
 {
         "version": "v2.0",
         "config-key": "<INPUT>",
@@ -248,7 +248,7 @@ cumulus@netq-server:~$ vim /tmp/cluster-install-config.json
 2. Run the following command on your master node, using the JSON configuration file from the previous step. Include the restore option referencing the path where the backup file resides:
 
 ```
-cumulus@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.14.0.tgz /tmp/cluster-install-config.json restore /home/cumulus/combined_backup_20241211111316.tar
+nvidia@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.14.0.tgz /tmp/cluster-install-config.json restore /home/cumulus/combined_backup_20241211111316.tar
 ```
 {{</tab>}}
 

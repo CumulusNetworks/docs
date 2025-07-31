@@ -76,7 +76,7 @@ netq trace
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq trace 10.10.10.63 from  10.10.10.1 pretty
+nvidia@switch:~$ netq trace 10.10.10.63 from  10.10.10.1 pretty
 Number of Paths: 12
 Number of Paths with Errors: 0
 Number of Paths with Warnings: 0
@@ -97,7 +97,7 @@ Path MTU: 9216
  ```
 
  ```
- cumulus@switch:~$ netq trace 10.10.10.63 from  10.10.10.1
+ nvidia@switch:~$ netq trace 10.10.10.63 from  10.10.10.1
 Number of Paths: 12
 Number of Paths with Errors: 0
 Number of Paths with Warnings: 0
@@ -129,7 +129,7 @@ Id  Hop Hostname    InPort          InTun, RtrIf    OutRtrIf, Tun   OutPort
  ```
 
  ```
- cumulus@switch:~$ netq trace 44:38:39:00:00:3e vlan 10 from 44:38:39:00:00:32
+ nvidia@switch:~$ netq trace 44:38:39:00:00:3e vlan 10 from 44:38:39:00:00:32
 Number of Paths: 16
 Number of Paths with Errors: 0
 Number of Paths with Warnings: 0

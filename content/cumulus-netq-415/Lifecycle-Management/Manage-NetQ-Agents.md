@@ -23,24 +23,24 @@ You can view the status for a given switch, host or NetQ virtual machine. You ca
 To view the current status of all NetQ Agents, run:
 
 ```
-cumulus@switch~:$ netq show agents
+nvidia@switch~:$ netq show agents
 ```
 
 To view NetQ Agents that are not communicating, run:
 
 ```
-cumulus@switch~:$ netq show agents rotten
+nvidia@switch~:$ netq show agents rotten
 No matching agents records found
 ```
 
 To view NetQ Agent status on the NetQ VM, run:
 
 ```
-cumulus@switch~:$ netq show agents opta
+nvidia@switch~:$ netq show agents opta
 Matching agents records:
 Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
 ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
-netq-appliance    Fresh            yes      4.14.0-ub22.04u51~1744815786.8dbbbd2 Mon Mar  3 16:30:50 2025  Mon Mar  3 19:52:26 2025  Mon Mar  3 19:52:59 2025   Tue Mar  4 18:57:09 2025 
+netq-appliance    Fresh            yes      4.15.0-ub24.04u52~1744815786.8dbbbd2 Mon Mar  3 16:30:50 2025  Mon Mar  3 19:52:26 2025  Mon Mar  3 19:52:59 2025   Tue Mar  4 18:57:09 2025 
 ```
 
 ## View NetQ Agent Configuration
@@ -56,7 +56,7 @@ sudo netq config show agent
 The following example shows a NetQ Agent in an on-premises deployment, connected to and communicating with a VM at 127.0.0.1 using the default ports and VRF.
 
 ```
-cumulus@switch:~$ sudo netq config show agent
+nvidia@switch:~$ sudo netq config show agent
 netq-agent                value      default
 ------------------------  ---------  ---------
 exhibitport
@@ -84,7 +84,7 @@ To view the configuration of a particular aspect of a NetQ Agent, use the variou
 This example shows a NetQ Agent configured with a CPU limit of 60%.
 
 ```
-cumulus@switch:~$ sudo netq config show agent cpu-limit
+nvidia@switch:~$ sudo netq config show agent cpu-limit
 CPU Quota
 -----------
 60%
@@ -122,15 +122,15 @@ If you want to use a specific port on the server, use the `port` option. If you 
 This example shows how to add a NetQ Agent and tell it to send the data it collects to the NetQ server at the IPv4 address of 10.0.0.23 using the default port (port 31980 for on-premises and port 443 for cloud deployments) and the default VRF (mgmt). The port and VRF are not specified, so NetQ assumes default settings.
 
 ```
-cumulus@switch~:$ sudo netq config add agent server 10.0.0.23
-cumulus@switch~:$ sudo netq config restart agent
+nvidia@switch~:$ sudo netq config add agent server 10.0.0.23
+nvidia@switch~:$ sudo netq config restart agent
 ```
 
 This example shows how to add a NetQ Agent and tell it to send the data it collects to the NetQ server at the IPv4 address of 10.0.0.23 using the default port (port 31980 for on-premises and port 443 for cloud deployments) and the `default` VRF for a switch managed through an in-band connection on interface `swp1`:
 
 ```
-cumulus@switch~:$ sudo netq config add agent server 10.0.0.23 vrf default inband-interface swp1
-cumulus@switch~:$ sudo netq config restart agent
+nvidia@switch~:$ sudo netq config add agent server 10.0.0.23 vrf default inband-interface swp1
+nvidia@switch~:$ sudo netq config restart agent
 ```
 To remove a NetQ Agent on a switch or host, run:
 
@@ -146,13 +146,13 @@ You can temporarily disable the NetQ Agent on a node. Disabling the NetQ Agent m
 To disable a NetQ Agent, run:
 
 ```
-cumulus@switch:~$ sudo netq config stop agent
+nvidia@switch:~$ sudo netq config stop agent
 ```
 
 To reenable a NetQ Agent, run:
 
 ```
-cumulus@switch:~$ sudo netq config restart agent
+nvidia@switch:~$ sudo netq config restart agent
 ```
 
 ### Configure a NetQ Agent to Limit Switch CPU Usage
@@ -164,15 +164,15 @@ For more detail about this feature, refer to this [Knowledge Base article]({{<re
 This example limits a NetQ Agent from consuming more than 40% of the CPU resources on a Cumulus Linux switch.
 
 ```
-cumulus@switch:~$ sudo netq config add agent cpu-limit 40
-cumulus@switch:~$ sudo netq config restart agent
+nvidia@switch:~$ sudo netq config add agent cpu-limit 40
+nvidia@switch:~$ sudo netq config restart agent
 ```
 
 To remove the limit, run:
 
 ```
-cumulus@switch:~$ sudo netq config del agent cpu-limit
-cumulus@switch:~$ sudo netq config restart agent
+nvidia@switch:~$ sudo netq config del agent cpu-limit
+nvidia@switch:~$ sudo netq config restart agent
 ```
 
 ### Configure a NetQ Agent to Collect Data from Selected Services
@@ -182,21 +182,21 @@ You can enable and disable data collection about FRRouting (FRR) and What Just H
 To configure the agent to start or stop collecting FRR data, run:
 
 ```
-cumulus@chassis~:$ sudo netq config add agent frr-monitor
-cumulus@switch:~$ sudo netq config restart agent
+nvidia@chassis~:$ sudo netq config add agent frr-monitor
+nvidia@switch:~$ sudo netq config restart agent
 
-cumulus@chassis~:$ sudo netq config del agent frr-monitor
-cumulus@switch:~$ sudo netq config restart agent
+nvidia@chassis~:$ sudo netq config del agent frr-monitor
+nvidia@switch:~$ sudo netq config restart agent
 ```
 
 To configure the agent to start or stop collecting WJH data, run:
 
 ```
-cumulus@chassis~:$ sudo netq config add agent wjh
-cumulus@switch:~$ sudo netq config restart agent
+nvidia@chassis~:$ sudo netq config add agent wjh
+nvidia@switch:~$ sudo netq config restart agent
 
-cumulus@chassis~:$ sudo netq config del agent wjh
-cumulus@switch:~$ sudo netq config restart agent
+nvidia@chassis~:$ sudo netq config del agent wjh
+nvidia@switch:~$ sudo netq config restart agent
 ```
 
 ### Configure a NetQ Agent to Send Data to a Server Cluster
@@ -214,13 +214,13 @@ You must separate the list of IP addresses by commas (not spaces). You can optio
 This example configures the NetQ Agent on a switch to send the data to three servers located at *10.0.0.21*, *10.0.0.22*, and *10.0.0.23* using the *mgmt* VRF.
 
 ```
-cumulus@switch:~$ sudo netq config add agent cluster-servers 10.0.0.21,10.0.0.22,10.0.0.23 vrf mgmt
+nvidia@switch:~$ sudo netq config add agent cluster-servers 10.0.0.21,10.0.0.22,10.0.0.23 vrf mgmt
 ```
 
 To stop a NetQ Agent from sending data to a server cluster, run:
 
 ```
-cumulus@switch:~$ sudo netq config del agent cluster-servers
+nvidia@switch:~$ sudo netq config del agent cluster-servers
 ```
 
 ### Configure Logging to Troubleshoot a NetQ Agent
@@ -257,13 +257,13 @@ To configure a logging level, follow these steps. This example sets the logging 
 1. Set the logging level:
 
     ```
-    cumulus@switch:~$ sudo netq config add agent loglevel debug
+    nvidia@switch:~$ sudo netq config add agent loglevel debug
     ```
 
 2. Restart the NetQ Agent:
 
     ```
-    cumulus@switch:~$ sudo netq config restart agent
+    nvidia@switch:~$ sudo netq config restart agent
     ```
 
 3. (Optional) Verify the connection to the NetQ VM by viewing the `netq-agent.log` messages.
@@ -275,15 +275,15 @@ If you set the logging level to *debug* for troubleshooting, NVIDIA recommends t
 To change the logging level from debug to another level, run:
 
 ```
-cumulus@switch:~$ sudo netq config add agent loglevel [info|warning|error]
-cumulus@switch:~$ sudo netq config restart agent
+nvidia@switch:~$ sudo netq config add agent loglevel [info|warning|error]
+nvidia@switch:~$ sudo netq config restart agent
 ```
 
 To disable all logging:
 
 ```
-cumulus@switch:~$ sudo netq config del agent loglevel
-cumulus@switch:~$ sudo netq config restart agent
+nvidia@switch:~$ sudo netq config del agent loglevel
+nvidia@switch:~$ sudo netq config restart agent
 ```
 
 ## Change NetQ Agent Polling Data and Frequency
@@ -299,7 +299,7 @@ Depending on the switch platform, the NetQ Agent might not execute some supporte
 To see the list of supported modular commands, run:
 
 ```
-cumulus@switch:~$ sudo netq config show agent commands
+nvidia@switch:~$ sudo netq config show agent commands
 Service Key               Period  Active       Command                                                        Timeout
 -----------------------  --------  --------  --------------------------------------------------------------  ---------
 bgp-neighbors                  60  yes       ['/usr/bin/vtysh', '-c', 'show ip bgp vrf all neighbors json']         30
@@ -340,10 +340,10 @@ ber-info                       30  yes       Netq Predefined Command            
 You can change the polling frequency (in seconds) of a modular command. For example, to change the polling frequency of the `ntp` command to 60 seconds from its default of 30 seconds, run:
 
 ```
-cumulus@switch:~$ sudo netq config add agent command service-key ntp poll-period 30
+nvidia@switch:~$ sudo netq config add agent command service-key ntp poll-period 30
 Successfully added/modified Command service misc command None
 
-cumulus@switch:~$ sudo netq config show agent commands
+nvidia@switch:~$ sudo netq config show agent commands
 Service Key               Period  Active       Command                                                        Timeout
 -----------------------  --------  --------  --------------------------------------------------------------  ---------
 bgp-neighbors                  60  yes       ['/usr/bin/vtysh', '-c', 'show ip bgp vrf all neighbors json']         30
@@ -385,7 +385,7 @@ ber-info                       30  yes       Netq Predefined Command            
 You can disable unnecessary commands. This can help reduce the compute resources the NetQ Agent consumes on the switch. For example, if your network does not run EVPN, you can disable the EVPN command:
 
 ```
-cumulus@switch:~$ sudo netq config add agent command service-key evpn-vni enable False
+nvidia@switch:~$ sudo netq config add agent command service-key evpn-vni enable False
 Command Service evpn-vni is disabled
 ```
 
@@ -394,6 +394,6 @@ Command Service evpn-vni is disabled
 To revert to the original command settings, run:
 
 ```
-cumulus@switch:~$ sudo netq config agent factory-reset commands
+nvidia@switch:~$ sudo netq config agent factory-reset commands
 Netq Command factory reset successful
 ```

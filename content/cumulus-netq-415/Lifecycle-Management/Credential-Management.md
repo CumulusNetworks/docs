@@ -88,7 +88,7 @@ For security, your private key is stored in an encrypted format, and only provid
 To configure basic authentication, run:
 
 ```
-cumulus@netq-server:~$ netq lcm add credentials profile_name NEWPROFILE username cumulus password cumulus
+nvidia@netq-server:~$ netq lcm add credentials profile_name NEWPROFILE username cumulus password cumulus
 ```
 Specify a unique name for the configuration after `profile_name`. 
 
@@ -120,7 +120,7 @@ When prompted, hit the enter/return key.
 3. Add these credentials to the switch. Specify a unique name for the configuration after `profile_name`. 
 
     ```
-    cumulus@netq-server:~$ netq lcm add credentials profile_name NEWPROFILE username <USERNAME> ssh-key PUBLIC_SSH_KEY
+    nvidia@netq-server:~$ netq lcm add credentials profile_name NEWPROFILE username <USERNAME> ssh-key PUBLIC_SSH_KEY
     ```
 
 {{</tab>}}
@@ -148,7 +148,7 @@ When prompted, hit the enter/return key.
 The syntax for editing access profiles is:
 
 ```
-cumulus@netq-server:~$ netq lcm edit credentials 
+nvidia@netq-server:~$ netq lcm edit credentials 
     profile_id <text-switch-profile-id> 
     [profile_name <text-switch-profile-name>] 
     [auth-type <text-switch-auth-type>] 
@@ -174,7 +174,7 @@ To configure SSH authentication using a public/private key (requires sudoer perm
 3. Add these new credentials to the switch:
 
     ```
-    cumulus@netq-server:~$ netq lcm edit credentials ssh-key PUBLIC_SSH_KEY
+    nvidia@netq-server:~$ netq lcm edit credentials ssh-key PUBLIC_SSH_KEY
     ```
 
 {{</tab>}}
@@ -206,7 +206,7 @@ The delete icon only appears next to custom profiles that are not attached to a 
 1. Run `netq lcm show credentials`. Identify the profiles you'd like to delete and copy their identifiers from the Profile ID column. The following example deletes the n-1000 profile:
 
 ```
-cumulus@netq-server:~$ netq lcm show credentials
+nvidia@netq-server:~$ netq lcm show credentials
 Profile ID           Profile Name             Type             SSH Key        Username         Password         Number of switches                   Last Changed
 -------------------- ------------------------ ---------------- -------------- ---------------- ---------------- ------------------------------------ -------------------------
 credential_profile_d Netq-Default             BASIC                           cumulus          **************   11                                   Fri Feb  3 18:20:33 2023
@@ -224,7 +224,7 @@ cd1be0fc123c5d7a42f8
 2. Run `netq lcm del credentials profile_ids <text-credential-profile-ids>`:
 
 ```
-cumulus@netq-server:~$ netq lcm del credentials profile_ids credential_profile_3eddab251bddea9653df7cd1be0fc123c5d7a42f818b68134e42858e54a9c289
+nvidia@netq-server:~$ netq lcm del credentials profile_ids credential_profile_3eddab251bddea9653df7cd1be0fc123c5d7a42f818b68134e42858e54a9c289
 ```
 
 3. Verify that the profile is deleted with `netq lcm show credentials`.
@@ -340,7 +340,7 @@ The syntax for the detach command is `netq lcm detach credentials hostname <text
 2. Detach the access profile and specify the hostname. The following example detaches spine-1 from its assigned access profile:
 
 ```
-cumulus@switch:~$ netq lcm detach credentials hostname spine-1
+nvidia@switch:~$ netq lcm detach credentials hostname spine-1
 Detached profile from switch.
 ```
 

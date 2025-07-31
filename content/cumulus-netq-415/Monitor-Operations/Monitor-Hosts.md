@@ -15,7 +15,7 @@ The NetQ Agent monitors the following on Linux hosts:
 Using NetQ on a Linux host is the same as using it on a Cumulus Linux switch. For example, if you want to check LLDP neighbor information for a given host, run {{<link title="show/#netq show lldp" text="netq show lldp">}} and specify the hostname:
 
 ```
-cumulus@host:~$ netq server01 show lldp
+nvidia@host:~$ netq server01 show lldp
 Matching lldp records:
 Hostname          Interface                 Peer Hostname     Peer Interface            Last Changed
 ----------------- ------------------------- ----------------- ------------------------- -------------------------
@@ -27,7 +27,7 @@ server01          eth2                      leaf02            swp1              
 Then, to see LLDP from the switch perspective run the same command, specifying the hostname of the switch:
 
 ```
-cumulus@switch:~$ netq leaf01 show lldp
+nvidia@switch:~$ netq leaf01 show lldp
 Matching lldp records:
 Hostname          Interface                 Peer Hostname     Peer Interface            Last Changed
 ----------------- ------------------------- ----------------- ------------------------- -------------------------
@@ -45,7 +45,7 @@ leaf01            swp54                     spine04           swp1              
 To view the routing table for a server, run {{<link title="show/#netq show ip routes" text="netq show ip routes">}}:
 
 ```
-cumulus@host:~$ netq server01 show ip routes
+nvidia@host:~$ netq server01 show ip routes
 Matching routes records:
 Origin VRF             Prefix                         Hostname          Nexthops                            Protocol     Last Changed
 ------ --------------- ------------------------------ ----------------- ----------------------------------- ------------ -------------------------

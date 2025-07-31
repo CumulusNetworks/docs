@@ -93,7 +93,7 @@ To see MAC address commentary, use the `netq show mac-commentary` command. The f
 In this example, the 46:38:39:00:00:44 MAC address was configured on the VlanA-1 interface of multiple switches, so we see the MAC configured commentary on each of them.
 
 ```
-cumulus@server-01:~$ netq show mac-commentary 46:38:39:00:00:44 between now and 1hr 
+nvidia@server-01:~$ netq show mac-commentary 46:38:39:00:00:44 between now and 1hr 
 Matching mac_commentary records:
 Last Updated              Hostname         VLAN   Commentary
 ------------------------- ---------------- ------ --------------------------------------------------------------------------------
@@ -113,7 +113,7 @@ In this example, the 00:08:00:00:aa:13 MAC address was configured on server01. A
 <!-- vale on -->
 
 ```
-cumulus@server11:~$ netq show mac-commentary 00:08:00:00:aa:13 vlan 1000 between now and 5hr 
+nvidia@server11:~$ netq show mac-commentary 00:08:00:00:aa:13 vlan 1000 between now and 5hr 
 Matching mac_commentary records:
 Last Updated              Hostname         VLAN   Commentary
 ------------------------- ---------------- ------ --------------------------------------------------------------------------------
@@ -129,7 +129,7 @@ In this example the bridge FDB entry for the 00:02:00:00:00:a0 MAC address, inte
 <!-- vale on -->
 
 ```
-cumulus@server11:~$ netq show mac-commentary 00:02:00:00:00:a0 vlan 100 between now and 5hr 
+nvidia@server11:~$ netq show mac-commentary 00:02:00:00:00:a0 vlan 100 between now and 5hr 
 Matching mac_commentary records:
 Last Updated              Hostname         VLAN   Commentary
 ------------------------- ---------------- ------ --------------------------------------------------------------------------------
@@ -143,7 +143,7 @@ Tue Aug 25 2020 13:06:52  leaf11           100    leaf11: 00:02:00:00:00:a0 unco
 The MAC address on server11 changed from 00:08:00:00:aa:13. In this example, the MAC learned remotely on leaf01 is now a locally learned MAC address from its local interface swp6. Similarly, the locally learned MAC addresses on leaf11 and leaf12 are now learned from remote dest 27.0.0.22.
 
 ```
-cumulus@server11:~$ netq show mac-commentary 00:08:00:00:aa:13 vlan 1000 between now and 5hr
+nvidia@server11:~$ netq show mac-commentary 00:08:00:00:aa:13 vlan 1000 between now and 5hr
 Matching mac_commentary records:
 Last Updated              Hostname         VLAN   Commentary
 ------------------------- ---------------- ------ --------------------------------------------------------------------------------
@@ -160,7 +160,7 @@ Tue Aug 25 2020 10:33:06  leaf11           1000   leaf11: 00:08:00:00:aa:13 move
 In this example, after the local first hop learning of the 00:02:00:00:00:1c MAC address on leaf11 and leaf12, the MLAG exchanged the learning on the dually connected interface serv01bond3.
 
 ```
-cumulus@server11:~$ netq show mac-commentary 00:02:00:00:00:1c vlan 105 between now and 2d
+nvidia@server11:~$ netq show mac-commentary 00:02:00:00:00:1c vlan 105 between now and 2d
 Matching mac_commentary records:
 Last Updated              Hostname         VLAN   Commentary
 ------------------------- ---------------- ------ --------------------------------------------------------------------------------
@@ -181,7 +181,7 @@ In this example, the interface VlanA-1 associated with the 00:02:00:00:00:2d MAC
 <!-- vale on -->
 
 ```
-cumulus@server11:~$ netq show mac-commentary 00:02:00:00:00:2d vlan 1008 between now and 5hr 
+nvidia@server11:~$ netq show mac-commentary 00:02:00:00:00:2d vlan 1008 between now and 5hr 
 Matching mac_commentary records:
 Last Updated              Hostname         VLAN   Commentary
 ------------------------- ---------------- ------ --------------------------------------------------------------------------------

@@ -122,7 +122,7 @@ When you add a new configuration using the CLI, you can specify a scope, which l
 NetQ has a predefined set of filter conditions. To see these conditions, run `netq show events-config show-filter-conditions`:
 
 ```
-cumulus@switch:~$ netq show events-config show-filter-conditions
+nvidia@switch:~$ netq show events-config show-filter-conditions
 Matching config_events records:
 Message Name             Filter Condition Name                      Filter Condition Hierarchy                           Filter Condition Description
 ------------------------ ------------------------------------------ ---------------------------------------------------- --------------------------------------------------------
@@ -205,7 +205,7 @@ To remove suppressed event configurations:
 To remove an event suppression configuration, run the {{<link title="del/#netq del events-config" text="netq del events-config">}} and include the identifier for the suppression configuration.
 
 ```
-cumulus@switch:~$ netq del events-config events_config_id eventsconfig_10
+nvidia@switch:~$ netq del events-config events_config_id eventsconfig_10
 Successfully deleted Events Config eventsconfig_10
 ```
 {{</tab>}}
@@ -232,7 +232,7 @@ To view suppressed events:
 You can view all event suppression configurations, or you can filter by a specific configuration or message type using the {{<link title="show/#netq show events-config" text="netq show events-config">}} command.
 
 ```
-cumulus@switch:~$ netq show events-config events_config_id eventsconfig_1
+nvidia@switch:~$ netq show events-config events_config_id eventsconfig_1
 Matching config_events records:
 Events Config ID     Events Config Name   Message Type         Scope                                                        Active Suppress Until
 -------------------- -------------------- -------------------- ------------------------------------------------------------ ------ --------------------
@@ -267,7 +267,7 @@ eventsconfig_1       job_cl_upgrade_2d89c clsupport            {"fileAbsName":"*
 When you filter for a message type, you must include the `show-filter-conditions` keyword to show the conditions associated with that message type and the hierarchy in which they get processed.
 
 ```
-cumulus@switch:~$ netq show events-config message_type evpn show-filter-conditions
+nvidia@switch:~$ netq show events-config message_type evpn show-filter-conditions
 Matching config_events records:
 Message Name             Filter Condition Name                      Filter Condition Hierarchy                           Filter Condition Description
 ------------------------ ------------------------------------------ ---------------------------------------------------- --------------------------------------------------------

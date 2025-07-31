@@ -4,10 +4,16 @@ author: NVIDIA
 weight: 785
 toc: 3
 ---
-Cumulus Linux supports multipathing with <span class="a-tooltip">[SRv6](## "Segment Routing for IPv6")</span> that enables you to tunnel packets from the source NIC to the destination NIC through the switch fabric using SRv6 micro segment identifiers (uSIDs). The SRv6 origination and termination is on the NIC and the switches merely act as SRv6-aware (transit) nodes. Cumulus Linux provides SRv6 uSID support with uN (END_CSID ) and uA (End.X_CSID ) endpoints.
+Cumulus Linux supports source based routing with <span class="a-tooltip">[SRv6](## "Segment Routing for IPv6")</span>.
+
+The NICs connected the switch fabric perform SRv6 origination and termination, and the switches act as SRv6-aware nodes. SRv6 allows NICs to directly control the path that traffic takes throughout the fabric by encoding an ordered list of SRv6 segment identifiers (uSIDs) in the packet header.
+
+Cumulus Linux supports uN (End with NEXT-CSID) and uA (End.X with NEXT-CSID) endpoint behaviors, defined in RFC9800.
 
 {{%notice note%}}
-Cumulus Linux supports segment routing on the Spectrum-4 switch.
+Cumulus Linux supports segment routing:
+- On the Spectrum-4 switch only.
+- In the default VRF only.
 {{%/notice%}}
 
 ### Configure Segment Routing
@@ -31,25 +37,25 @@ The following table provides the supported formats for block, node, and function
 |uN only | 16            | 16          | 0               |
 |uA only | 16            | 0           | 16              |
 
-The following example enables segment routing, and configures the SRv6 locator called LEAF and the static segment identifier 2001:db8:1:1::100/48:
+The following example enables segment routing, and configures the SRv6 locator called LEAF and the static segment identifier fcbb:fe8::/32:
 
 {{< tabs "TabID980 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ nv set router segment-routing srv6 state enabled
-cumulus@switch:~$ nv set router segment-routing srv6 locator LEAF prefix 2001:db8:1:1::/32
+cumulus@switch:~$ nv set router segment-routing srv6 locator LEAF prefix fcbb::/16 
 cumulus@switch:~$ nv set router segment-routing srv6 locator LEAF block-length 16
-cumulus@switch:~$ nv set router segment-routing srv6 locator LEAF func-length 0
-cumulus@switch:~$ nv set router segment-routing srv6 locator LEAF node-length 16
-cumulus@switch:~$ nv set router segment-routing static srv6-sid 2001:db8:1:1::100/48 locator-name LEAF  
-cumulus@switch:~$ nv set router segment-routing static srv6-sid 2001:db8:1:1::100/48 behavior uA
-cumulus@switch:~$ nv set router segment-routing static srv6-sid 2001:db8:1:1::100/48 interface swp1
+cumulus@switch:~$ nv set router segment-routing srv6 locator LEAF node-length 0
+cumulus@switch:~$ nv set router segment-routing srv6 locator LEAF func-length 16
+cumulus@switch:~$ nv set router segment-routing static srv6-sid fcbb:fe8::/32 behavior uA
+cumulus@switch:~$ nv set router segment-routing static srv6-sid fcbb:fe8::/32 interface swp1
+cumulus@switch:~$ nv set router segment-routing static srv6-sid fcbb:fe8::/32 locator-name LEAF  
 cumulus@switch:~$ nv config apply
 ```
 
 - To disable segment routing, run the `nv set router segment-routing srv6 state disabled` command.
-- To unset all SRv6 locators, run the `nv unset router segment-routing  srv6 locator` command.
+- To unset all SRv6 locators, run the `nv unset router segment-routing srv6 locator` command.
 - To unset all static segment identifiers, run the `nv unset router segment-routing static srv6-sid` command.
 - To unset a static segment identifier, run the `nv unset router segment-routing static srv6-sid <prefix>` command.
 
@@ -63,12 +69,11 @@ leaf01# configure t
 leaf01(config)# segment-routing 
 leaf01(config-sr)# srv6
 leaf01(config-srv6)# static-sids
-leaf01(config-srv6-sids)# sid 2001:db8:1:1::100/48 locator LEAF behavior uA
+leaf01(config-srv6-sids)# sid fcbb:fe8::/32 locator LEAF behavior uA interface swp1
 leaf01(config-srv6-sids)# exit
 leaf01(config-srv6)# locators
 leaf01(config-srv6-locators)# locator LEAF
-leaf01(config-srv6-locator)# prefix 2001:db8:1:1::/48 block-len 16 func-bits 0
-leaf01(config-srv6-locator)# prefix 2001:db8:1:1::/48 node-len 16
+leaf01(config-srv6-locator)# prefix fcbb::/16 block-len 16 node-len 0 func-bits 16
 leaf01(config-srv6-locator)# end
 leaf01# exit
 ```
@@ -88,7 +93,7 @@ srv6
   state       enabled             
   [locator]   LEAF                
 static                            
-  [srv6-sid]  2001:db8:1:1::100/48
+  [srv6-sid]  fcbb:fe8::/32
 ```
 
 To show the configuration for all SRv6 locators, run the `nv show router segment-routing srv6 locator` command or the vtysh `show segment-routing srv6 locator` command:
@@ -97,7 +102,7 @@ To show the configuration for all SRv6 locators, run the `nv show router segment
 cumulus@switch:~$ nv show router segment-routing srv6 locator
 SRv6 locator name  prefix             block length  node length  function length  status
 -----------------  ----------------   ------------  -----------  ---------------  ------
-LEAF               2001:db8:1:1::/48  32            16           0                up
+LEAF               fcbb::/16  16            0            16               up
 ```
 
 To show the configuration for a specific SRv6 locator, run the NVUE `nv show router segment-routing srv6 locator <locator-id>` command or the vtysh `show segment-routing srv6 locator <locator> detail` command:
@@ -106,24 +111,24 @@ To show the configuration for a specific SRv6 locator, run the NVUE `nv show rou
 cumulus@switch:~$ nv show router segment-routing srv6 locator LEAF
               operational      applied          
 ------------  ---------------  -----------------
-prefix        2001:db8:1::/48  2001:db8:1:1::/48
-block-length  32               32               
-node-length   16               16               
-func-length   0                0                
+prefix        fcbb::/16.       fcbb::/16
+block-length  16               16             
+node-length   0                0                
+func-length   16               16               
 status        up
 ```
 
 To show the configuration for a specific SRv6 static segment identifier, run the NVUE `nv show router segment-routing static srv6 sid <sid>` command or the vtysh `show segment-routing srv6 sid <sid>` command:
 
 ```
-cumulus@switch:~$ nv show router segment-routing srv6 sid 2001:db8:1:1::100/48
+cumulus@switch:~$ nv show router segment-routing srv6 sid fcbb:fe8::/32
               operational          applied 
 
 ------------  -------------------  ------- 
-locator-name  LOC3 
+locator-name  LEAF 
 behavior      End.X 
 interface     swp1 
-nexthop-v6    2001:db8:1:1::106/48
+nexthop-v6    fe80::202:ff:fe00:2
 protocol      static 
 ```
 
@@ -132,7 +137,7 @@ protocol      static
 Segment routing endpoints are installed as IPv6 routes into the RIB and FIB. To show segment routing endpoints, view the
 IPv6 RIB with the `nv show vrf <vrf-id> router rib ipv6 route` command. You can view a specific route with the `nv show vrf <vrf-id> router rib ipv6 route <route-id>` command.
 
-### Show Segment Routing Statistics
+### Show SRv6 Statistics
 
 To show SRv6 statistics, run the `nv show router segment-routing srv6 stats` command
 
@@ -142,8 +147,7 @@ Hit Counters
 ------------------------------
 SID                                             Packets
 ---------------------------------------      ----------
-2001:db8:1:1::100/48                                   0
-2001:db8:1:1::101/48                                   0
+fcbb:fe8::/32                                      0
 
 Drop Counters
 ------------------------------
@@ -153,7 +157,7 @@ Total no-sid-dropped packets
 To show information about a specific SRv6 segment identifier, run the NVUE `nv show router segment-routing srv6 stats sid <sid>` command or the vtysh `show segment-routing srv6 sid` command:
 
 ```
-cumulus@switch:~$ nv show router segment-routing srv6 stats sid 2001:db8:1:1::100/48
+cumulus@switch:~$ nv show router segment-routing srv6 stats sid fcbb:fe8::/32
 ```
 
 To show information about non segment identifier dropped packets, run the `nv show router segment-routing srv6 stats no-sid-drop` command:
@@ -169,7 +173,7 @@ no-sid-dropped-packets  0
 When you enable {{<link url="Packet-Trimming" text="packet trimming">}} with segment routing, Cumulus Linux counts the trimmed packet twice in the SRv6 statistics.
 {{%/notice%}}
 
-### Clear Segment Routing Statistics
+### Clear SRv6 Statistics
 
 To clear all SRv6 statistics, run the `nv action clear router segment-routing srv6 stats` command:
 
@@ -180,7 +184,7 @@ cumulus@switch:~$ nv action clear router segment-routing srv6 stats
 To clear SRv6 statistics for a specific segment identifier, run the `nv action clear router segment-routing srv6 stats sid <sid>` command:
 
 ```
-cumulus@switch:~$ nv action clear router segment-routing srv6 stats sid 2001:db8:1:1::100/48 
+cumulus@switch:~$ nv action clear router segment-routing srv6 stats sid fcbb:fe8::/32 
 ```
 
 To clear SRv6 statistics for non segment identifier dropped packets, run the `nv action clear router segment-routing srv6 stats no-sid-drops` command:

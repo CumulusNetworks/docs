@@ -192,7 +192,7 @@ Cumulus Linux 4.4 and later includes the `netq-apps` package by default. To upgr
 1. Add the repository by uncommenting or adding the following line in `/etc/apt/sources.list`:
 
 ```
-cumulus@switch:~$ sudo nano /etc/apt/sources.list
+nvidia@switch:~$ sudo nano /etc/apt/sources.list
 ...
 deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-d12 netq-latest
 ...
@@ -206,16 +206,16 @@ You can specify a NetQ CLI version in the repository configuration. The followin
 2. Update the local `apt` repository and install the software on the switch.
 
     ```
-    cumulus@switch:~$ sudo apt-get update
-    cumulus@switch:~$ sudo apt-get install netq-apps
+    nvidia@switch:~$ sudo apt-get update
+    nvidia@switch:~$ sudo apt-get install netq-apps
     ```
 
 3. Verify you have the correct version of the CLI.
 
     ```
-    cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
+    nvidia@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
-You should see version 4.14.0 and updated 51 in the results: netq-apps_<strong>4.14.0</strong>-cld12u<strong>51</strong>~1744815975.8dbbbd20c_amd64.deb
+You should see version 4.15.0 and update 52 in the results: netq-apps_<strong>4.15.0</strong>-cld12u<strong>52</strong>~1753783414.2a97c1dde_amd64.deb
 
 4. Continue with NetQ CLI configuration in the next section.
 
@@ -236,7 +236,7 @@ You should see version 4.14.0 and updated 51 in the results: netq-apps_<strong>4
     root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
 <!-- vale off -->
-{{<netq-install/cli-version version="4.14" opsys="ub">}}
+{{<netq-install/cli-version version="4.15" opsys="ub">}}
 <!-- vale on -->
 3. Continue with NetQ CLI configuration in the next section.
 

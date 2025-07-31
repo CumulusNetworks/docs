@@ -26,11 +26,11 @@ The `netq show status verbose` command shows the status of NetQ components after
 
 
 ```
-cumulus@netq:~$ netq show status verbose
+nvidia@netq:~$ netq show status verbose
 NetQ Live State: Active
 Installation Status: FINISHED
-Version: 4.14.0
-Installer Version: 4.14.0
+Version: 4.15.0
+Installer Version: 4.15.0
 Installation Type: Standalone
 Activation Key: EhVuZXRxLWasdW50LWdhdGV3YXkYsagDIixkWUNmVmhVV2dWelVUOVF3bXozSk8vb2lSNGFCaE1FR2FVU2dHK1k3RzJVPQ==
 Master SSH Public Key: c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCfdIVVJHVmZvckNLMHRJL0FrQnd1N2FtUGxObW9ERHg2cHNHaU1EQkM0WHdud1lmSlNleUpmdTUvaDFKQ2NuRXpOVnVWRjUgcm9vdEBhbmlscmVzdG9yZQ==
@@ -130,17 +130,17 @@ If an upgrade or installation process stalls or fails, run the {{<link title="bo
 
 ## Installation and Upgrade Hook Scripts
 
-NVIDIA might provide hook scripts to patch issues encountered during a NetQ installation or upgrade. When you run the `netq install` or `netq upgrade` command, NetQ checks for specific hook script filenames in the `/usr/bin` directory. The expected filenames for NetQ 4.14.0 are:
+NVIDIA might provide hook scripts to patch issues encountered during a NetQ installation or upgrade. When you run the `netq install` or `netq upgrade` command, NetQ checks for specific hook script filenames in the `/usr/bin` directory. The expected filenames for NetQ 4.15.0 are:
 
-- Pre-install script: `/usr/bin/pre_install_4.14.0.sh`
-- Post-install script: `/usr/bin/post_install_4.14.0.sh`
-- Pre-upgrade script: `/usr/bin/pre_upgrade_4.14.0.sh`
-- Post-upgrade script: `/usr/bin/post_upgrade_4.14.0.sh`
+- Pre-install script: `/usr/bin/pre_install_4.15.0.sh`
+- Post-install script: `/usr/bin/post_install_4.15.0.sh`
+- Pre-upgrade script: `/usr/bin/pre_upgrade_4.15.0.sh`
+- Post-upgrade script: `/usr/bin/post_upgrade_4.15.0.sh`
 
 After placing the script in the `/usr/bin` directory, set executable permissions with the `chmod +x /usr/bin/<filename>` command:
 
 ```
-cumulus@netq-server:~$ chmod +x /usr/bin/pre_install_4.14.0.sh
+nvidia@netq-server:~$ chmod +x /usr/bin/pre_install_4.15.0.sh
 ```
 
 After copying the script to the expected path and setting it to executable, the script will run during the next installation or upgrade attempt.
@@ -155,7 +155,7 @@ The `sudo opta-info.py` command displays the status of and connectivity between 
 In the output below, the Opta Health Status column displays a healthy status, which indicates that the server is functioning properly. The Opta-Gateway Channel Status column displays the connectivity status between the server and cloud endpoint. The Agent ID column displays the switches connected to the server.
 
 ```
-cumulus@netq-server:~$ sudo opta-info.py
+nvidia@netq-server:~$ sudo opta-info.py
 [sudo] password for cumulus:
 Service IP:  10.102.57.27
 
@@ -174,7 +174,7 @@ netq-appliance  /20.1.1.10:44717  UP                        1234  2023-02-14 00:
 {{<tab "On-premises server" >}}
 
 ```
-cumulus@sm-telem-06:~$ sudo opta-info.py
+nvidia@sm-telem-06:~$ sudo opta-info.py
 Service IP:  10.97.49.106
 
 Agent ID                                   Remote Address         Status      Messages Exchanged  Time Since Last Communicated
@@ -192,13 +192,13 @@ mlx-2010a1-14                              /10.188.47.228:12888   UP            
 The `opta-support` command generates information for troubleshooting issues with NetQ. It provides information about the NetQ Platform configuration and runtime statistics as well as output from the `docker ps` command.
 
 ```
-cumulus@server:~$ sudo opta-support
+nvidia@server:~$ sudo opta-support
 Please send /var/support/opta_support_server_2021119_165552.txz to Nvidia support.
 ```
 To export network validation check data in addition to OPTA health data to the support bundle, the {{<link title="Install NetQ CLI#configure-netq-cli-using-the-cli" text="NetQ CLI must be activated with AuthKeys">}}. If the CLI access key is not activated, the command output displays a notification and data collection excludes `netq show` output:
 
 ```
-cumulus@server:~$ sudo opta-support
+nvidia@server:~$ sudo opta-support
 Access key is not found. Please check the access key entered or generate a fresh access_key,secret_key pair and add it to the CLI configuration
 Proceeding with opta-support generation without netq show outputs
 Please send /var/support/opta_support_server_20211122_22259.txz to Nvidia support.
@@ -210,7 +210,7 @@ The `netq-support` command generates information for troubleshooting NetQ issues
 When you run the `netq-support` command on a switch running Cumulus Linux, a {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Monitoring-and-Troubleshooting/Understanding-the-cl-support-Output-File/" text="cl-support file">}} will also be created and bundled within the NetQ support archive:
 
 ```
-cumulus@switch:mgmt:~$ sudo netq-support
+nvidia@switch:mgmt:~$ sudo netq-support
 Collecting cl-support...
 Collecting netq-support...
 Please send /var/support/netq_support_switch_20221220_16188.txz to Nvidia support.
@@ -223,11 +223,11 @@ In the event of a major power outage or hardware failure, NetQ might not load pr
 1. Check whether Cassandra pods are in a `CrashloopbackOff` state or are restarting frequently:
 
 ```
-cumulus@master1scale1:~$ kubectl get pods -o wide|grep cassandra
+nvidia@master1scale1:~$ kubectl get pods -o wide|grep cassandra
 cassandra-rc-0-fg5ft 0/1 CrashLoopBackOff 36 (50s ago) 3h52m 10.213.11.181 master1scale1
 cassandra-rc-1-cpl8s 1/1 Running 0 21h 10.213.11.182 worker1scale1
 cassandra-rc-2-zwt58 1/1 Running 0 21h 10.213.11.183 worker2scale1 
-cumulus@master1scale1:~$
+nvidia@master1scale1:~$
 ```
 
 2. The log message from the crashing pods will return a `CommitLogReadException` exception:
@@ -247,7 +247,7 @@ at org.apache.cassandra.db.commitlog.CommitLog.recoverSegmentsOnDisk(CommitLog.j
 at org.apache.cassandra.service.CassandraDaemon.setup(CassandraDaemon.java:360)
 at org.apache.cassandra.service.CassandraDaemon.activate(CassandraDaemon.java:765)
 at org.apache.cassandra.service.CassandraDaemon.main(CassandraDaemon.java:889)
-cumulus@master1scale1:~$
+nvidia@master1scale1:~$
 ```
 
 To fix the issue, log in to the corrupted node using SSH and delete the corrupted file. The following example deletes the corrupted file from node `master1scale1`:
@@ -255,7 +255,7 @@ To fix the issue, log in to the corrupted node using SSH and delete the corrupte
 1. Log in as the root user:
 
 ```
-cumulus@master1scale1:/mnt/cassandra/commitlog$ sudo su
+nvidia@master1scale1:/mnt/cassandra/commitlog$ sudo su
 [sudo] password for cumulus:
 root@master1scale1:/mnt/cassandra/commitlog#
 ```
@@ -263,7 +263,7 @@ root@master1scale1:/mnt/cassandra/commitlog#
 2. Change directories to `/mnt/cassandra/commitlog`:
 
 ```
-cumulus@master1scale1:/mnt/cassandra/commitlog$ cd /mnt/cassandra/commitlog
+nvidia@master1scale1:/mnt/cassandra/commitlog$ cd /mnt/cassandra/commitlog
 ```
 
 3. Remove the corrupted commit log file:

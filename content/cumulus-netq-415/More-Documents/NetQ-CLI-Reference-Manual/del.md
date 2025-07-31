@@ -59,7 +59,7 @@ None
 Obtain the configuration identifier, then remove it.
 
 ```
-cumulus@switch:~$ netq show events-config events_config_id eventsconfig_1
+nvidia@switch:~$ netq show events-config events_config_id eventsconfig_1
 Matching config_events records:
 Events Config ID     Events Config Name   Message Type         Scope                                                        Active Suppress Until
 -------------------- -------------------- -------------------- ------------------------------------------------------------ ------ --------------------
@@ -75,7 +75,7 @@ eventsconfig_1       job_cl_upgrade_2d89c bgp                  {"vrf":"*","peer"
                      spine04
 ...
 
-cumulus@switch:~$ netq del events-config events_config_id eventsconfig_10
+nvidia@switch:~$ netq del events-config events_config_id eventsconfig_10
 Successfully deleted Events Config eventsconfig_10
 ```
 
@@ -124,9 +124,9 @@ None
 Remove notification channel:
 
 ```
-cumulus@switch:~$ netq del notification channel slk-netq-events
+nvidia@switch:~$ netq del notification channel slk-netq-events
 
-cumulus@switch:~$ netq show notification channel
+nvidia@switch:~$ netq show notification channel
 Matching config_notify records:
 Name            Type             Severity         Channel Info
 --------------- ---------------- ---------------- ------------------------
@@ -137,9 +137,9 @@ pd-netq-events  pagerduty        info             integration-key: 1234567
 Remove notification rule:
 
 ```
-cumulus@switch:~$ netq del notification rule swp52
+nvidia@switch:~$ netq del notification rule swp52
 
-cumulus@switch:~$ netq show notification rule
+nvidia@switch:~$ netq show notification rule
 Matching config_notify records:
 Name            Rule Key         Rule Value
 --------------- ---------------- --------------------
@@ -156,6 +156,33 @@ sysconf         configdiff       updated
 - ```netq add notification```
 - ```netq show notification```
 
+- - -
+## netq del otlp endpoint
+
+Deletes the endpoint of your time series database.
+
+### Syntax
+
+```
+netq del otlp endpoint 
+    tsdb-name <text-tsdb-endpoint>
+```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| tsdb-name | \<text-tsdb-endpoint\> | Unique name for external time series database endpoint |
+
+### Options
+
+None
+
+### Related Commands
+
+- `netq add otlp endpoint`
+- `netq modify otlp endpoint`
+- `netq set otlp endpoint`
+- `netq show otlp endpoints`
 - - -
 
 ## netq del tca
@@ -182,7 +209,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq del tca tca_id TCA_RXBYTES_UPPER_1
+nvidia@switch:~$ netq del tca tca_id TCA_RXBYTES_UPPER_1
 Successfully deleted TCA TCA_RXBYTES_UPPER_1
 ```
 
@@ -221,7 +248,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq show trace summary json
+nvidia@switch:~$ netq show trace summary json
 [
     {
         "job_end_time": 1605300327131,
@@ -241,7 +268,7 @@ cumulus@switch:~$ netq show trace summary json
     },
 ...
 
-cumulus@switch:~$ netq del trace leaf01toborder01
+nvidia@switch:~$ netq del trace leaf01toborder01
 Successfully deleted schedule trace leaf01toborder01
 ```
 
@@ -275,7 +302,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq del validation Bgp15m
+nvidia@switch:~$ netq del validation Bgp15m
 Successfully deleted validation Bgp15m
 ```
 

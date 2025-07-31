@@ -86,7 +86,7 @@ You can create filters that suppress validation failures based on hostnames, fai
 The following example displays a list of all the checks included in a BGP validation, along with their respective test numbers and filters, if any: 
 
 ```
-cumulus@switch:~$ netq show unit-tests bgp
+nvidia@switch:~$ netq show unit-tests bgp
    0 : Session Establishment     - check if BGP session is in established state
    1 : Address Families          - check if tx and rx address family advertisement is consistent between peers of a BGP session
    2 : Router ID                 - check for BGP router id conflict in the network
@@ -102,7 +102,7 @@ Configured per test result filters:
 ```
 The following BGP validation includes only the session establishment (test number 0) and router ID (test number 2) tests. Note that you can obtain the same results using either of the `include` or `exclude` options and that the tests that are not run are marked *skipped*.
 ```
-cumulus@switch:~$ netq check bgp include 0,2
+nvidia@switch:~$ netq check bgp include 0,2
 bgp check result summary:
 
 Total nodes         : 13
@@ -135,7 +135,7 @@ To create a scheduled validation, run the {{<link title="add/#netq-add-validatio
 The following example creates a BGP validation that runs every 15 minutes:
 
 ```
-cumulus@switch:~$ netq add validation name Bgp15m type bgp interval 15m
+nvidia@switch:~$ netq add validation name Bgp15m type bgp interval 15m
 Successfully added Bgp15m running every 15m
 ```
 Re-run this command for each additional scheduled validation.
@@ -182,7 +182,7 @@ netq show validation summary
 This example shows all scheduled validations for BGP:
 
 ```
-cumulus@switch:~$ netq show validation summary type bgp
+nvidia@switch:~$ netq show validation summary type bgp
 Name            Type             Job ID       Checked Nodes              Failed Nodes             Total Nodes            Timestamp
 --------------- ---------------- ------------ -------------------------- ------------------------ ---------------------- -------------------------
     Bgp30m          scheduled        4c78cdf3-24a 0                          0                        0                      Thu Nov 12 20:38:20 2020
@@ -212,7 +212,7 @@ netq del validation <text-validation-name>
 This example removes the scheduled validation named *Bgp15m*.
 
 ```
-cumulus@switch:~$ netq del validation Bgp15m
+nvidia@switch:~$ netq del validation Bgp15m
  Successfully deleted validation Bgp15m
 ```
 

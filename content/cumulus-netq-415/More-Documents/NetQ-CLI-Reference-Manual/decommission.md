@@ -39,10 +39,10 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ sudo systemctl stop netq-agent
-cumulus@switch:~$ sudo systemctl disable netq-agent
+nvidia@switch:~$ sudo systemctl stop netq-agent
+nvidia@switch:~$ sudo systemctl disable netq-agent
 
-cumulus@switch:~$ netq decommission leaf28
+nvidia@switch:~$ netq decommission leaf28
 Successfully decommissioned node leaf28
 ```
 

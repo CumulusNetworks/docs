@@ -33,7 +33,7 @@ You need the following items to perform the certificate installation:
 2. Generate a Kubernetes secret called `netq-gui-ingress-tls`:
 
     ```
-    cumulus@netq-ts:~$ kubectl create secret tls netq-gui-ingress-tls \
+    nvidia@netq-ts:~$ kubectl create secret tls netq-gui-ingress-tls \
         --namespace default \
         --key <name of your key file>.key \
         --cert <name of your cert file>.crt
@@ -42,7 +42,7 @@ You need the following items to perform the certificate installation:
 3. Verify that you created the secret successfully:
 
     ```
-    cumulus@netq-ts:~$ kubectl get secret
+    nvidia@netq-ts:~$ kubectl get secret
 
     NAME                               TYPE                                  DATA   AGE
     netq-gui-ingress-tls               kubernetes.io/tls                     2      5s
@@ -93,7 +93,7 @@ You need the following items to perform the certificate installation:
 5. Apply the new rule:
 
     ```
-    cumulus@netq-ts:~$ kubectl apply -f ingress.yaml
+    nvidia@netq-ts:~$ kubectl apply -f ingress.yaml
     ingress.extensions/netq-gui-ingress-external configured
     ```
     
@@ -141,7 +141,7 @@ You need the following items to perform the certificate installation:
 7. Apply the new rule:
 
     ```
-    cumulus@netq-ts:~$ kubectl apply -f swagger-ingress.yaml
+    nvidia@netq-ts:~$ kubectl apply -f swagger-ingress.yaml
     ```
  
 

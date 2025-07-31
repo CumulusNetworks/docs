@@ -41,10 +41,10 @@ Before you upgrade, make sure you have the appropriate files and credentials:
 {{<notice note>}}
 If you are upgrading to Cumulus Linux 5.9 or later and select the option to roll back to a previous Cumulus Linux version (for unsuccessful upgrade attempts), you must upload a total of four netq-apps and netq-agents packages to NetQ. Cumulus Linux 5.9 or later packages include <b>cld12</b>. Prior versions of Cumulus Linux include <b>cl4u</b>.<br><br> For example, you must upload the following packages for amd64 architecture:
 
-- netq-agent_4.14.0-<b>cl4u</b>51~1744816035.8dbbbd20c_amd64.deb
-- netq-apps_4.14.0-<b>cl4u</b>51~1744816035.8dbbbd20c_amd64.deb
-- netq-agent_4.14.0-<b>cld12u</b>51~1744815975.8dbbbd20c_amd64.deb
-- netq-apps_4.14.0-<b>cld12u</b>51~1744815975.8dbbbd20c_amd64.deb
+- netq-agent_4.15.0-<b>cl4u</b>52~1753783478.2a97c1dde_amd64.deb
+- netq-apps_4.15.0-<b>cl4u</b>52~1753783478.2a97c1dde_amd64.deb
+- netq-agent_4.15.0-<b>cld12u</b>52~1753783414.2a97c1dde_amd64.deb
+- netq-apps_4.15.0-<b>cld12u</b>52~1753783414.2a97c1dde_amd64.deb
 {{</notice>}}
 
 2. (Optional) Specify a {{<link title="NetQ and Network OS Images/#specify-a-default-upgrade-version" text="default upgrade version">}}.
@@ -108,7 +108,7 @@ You can exclude selected services and protocols from the snapshots by clicking t
 Perform the upgrade using the {{<link title="lcm/#netq-lcm-upgrade-cl-image" text="netq lcm upgrade cl-image">}} command, providing a name for the upgrade job, the Cumulus Linux and NetQ version, and a comma-separated list of the hostname(s) to be upgraded:
 
 ```
-cumulus@switch:~$ netq lcm upgrade cl-image job-name upgrade-example cl-version 5.9.2 netq-version 4.14.0 hostnames spine01,spine02
+nvidia@switch:~$ netq lcm upgrade cl-image job-name upgrade-example cl-version 5.13.1 netq-version 4.15.0 hostnames spine01,spine02
 ```
 
 ### Create a Network Snapshot
@@ -116,7 +116,7 @@ cumulus@switch:~$ netq lcm upgrade cl-image job-name upgrade-example cl-version 
 You can also generate a network snapshot before and after the upgrade by adding the `run-snapshot-before-after` option to the command:
 
 ```
-cumulus@switch:~$ netq lcm upgrade cl-image job-name upgrade-example cl-version 5.9.2 netq-version 4.14.0 hostnames spine01,spine02,leaf01,leaf02 order spine,leaf run-snapshot-before-after
+nvidia@switch:~$ netq lcm upgrade cl-image job-name upgrade-example cl-version 5.13.1 netq-version 4.15.0 hostnames spine01,spine02,leaf01,leaf02 order spine,leaf run-snapshot-before-after
 ```
 
 ### Restore upon an Upgrade Failure
@@ -124,7 +124,7 @@ cumulus@switch:~$ netq lcm upgrade cl-image job-name upgrade-example cl-version 
 (Recommended) You can restore the previous version of Cumulus Linux if the upgrade job fails by adding the `run-restore-on-failure` option to the command.
 
 ```
-cumulus@switch:~$ netq lcm upgrade cl-image name upgrade-example cl-version 5.9.2 netq-version 4.14.0 hostnames spine01,spine02,leaf01,leaf02 order spine,leaf run-restore-on-failure
+nvidia@switch:~$ netq lcm upgrade cl-image name upgrade-example cl-version 5.13.1 netq-version 4.15.0 hostnames spine01,spine02,leaf01,leaf02 order spine,leaf run-restore-on-failure
 ```
 
 {{</tab>}}

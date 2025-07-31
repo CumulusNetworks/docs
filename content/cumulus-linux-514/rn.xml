@@ -134,6 +134,12 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
+<td>4236419</td>
+<td>On the Spectrum-3 switch, the PTP offset for 25GbE fluctuates within a range of plus or minus 50 nanoseconds beyond the expected values.</td>
+<td>5.12.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4214678</td>
 <td>Changes to open telemetry configuration or export states restarts the telemetry service and resets all health metrics.</td>
 <td>5.12.0-5.14.0</td>

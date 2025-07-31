@@ -13,6 +13,12 @@
 <td></td>
 </tr>
 <tr>
+<td>4486633</td>
+<td>When you run a validation using a {{netq check}} command, the test results might incorrectly display as passed when the tests were actually skipped. The UI correctly shows which validations were skipped.</td>
+<td>4.15.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4298008</td>
 <td>When you upgrade NetQ, any pre-existing validation data will be lost.</td>
 <td>4.13.0-4.15.0</td>

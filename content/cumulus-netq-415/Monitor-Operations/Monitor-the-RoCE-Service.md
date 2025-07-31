@@ -55,7 +55,7 @@ To disable RoCE monitoring:
 1. (Optional) Verify that the NetQ agent is monitoring the RoCE service with `netq config show agent commands`. The `Active` column displays a `yes` status for the following services if RoCE monitoring is enabled:
 
 ```
-cumulus@switch:~$ sudo netq config show agent commands
+nvidia@switch:~$ sudo netq config show agent commands
 Service Key               Period  Active       Command                                                        Timeout
 -----------------------  --------  --------  --------------------------------------------------------------  ---------
 roce                           60  yes        Netq Predefined Command                                         None
@@ -66,11 +66,11 @@ nvue-roce-config              300  yes        Netq Predefined Command           
 2. Disable each of the three RoCE service keys individually with `netq config add agent command service-key`:
 
 ```
-cumulus@switch~$ sudo netq config add agent command service-key roce enable False
+nvidia@switch~$ sudo netq config add agent command service-key roce enable False
 Command Service roce is disabled
-cumulus@switch:~$ sudo netq config add agent command service-key roce-config enable False
+nvidia@switch:~$ sudo netq config add agent command service-key roce-config enable False
 Command Service roce-config is disabled
-cumulus@switch:~$ sudo netq config add agent command service-key nvue-roce-config enable False
+nvidia@switch:~$ sudo netq config add agent command service-key nvue-roce-config enable False
 Command Service nvue-roce-config is disabled
 ```
 <!--does the user need to restart the NetQ Agent?-->
@@ -78,7 +78,7 @@ Command Service nvue-roce-config is disabled
 3. Verify that NetQ is no longer monitoring the RoCE service with `netq config show agent commands`. The `Active` column displays a `no` status for the disabled services:
 
 ```
-cumulus@switch:~$ sudo netq config show agent commands
+nvidia@switch:~$ sudo netq config show agent commands
 Service Key               Period  Active       Command                                                        Timeout
 -----------------------  --------  --------  --------------------------------------------------------------  ---------
 roce                           60  no         Netq Predefined Command                                         None

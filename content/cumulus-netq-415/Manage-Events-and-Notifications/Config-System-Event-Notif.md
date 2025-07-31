@@ -124,14 +124,14 @@ The following example shows the creation of a *slk-netq-events* channel and veri
 2. Create the channel.
 
     ```
-    cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
+    nvidia@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
     Successfully added/updated channel slk-netq-events
     ```
 
 3. Verify the configuration.
 
     ```
-    cumulus@switch:~$ netq show notification channel
+    nvidia@switch:~$ netq show notification channel
     Matching config_notify records:
     Name            Type             Severity Channel Info               Is Default
     --------------- ---------------- -------- -------------------------- ------------
@@ -219,13 +219,13 @@ The following example shows the creation of a *pd-netq-events* channel and verif
 2. Create the channel.
 
     ```
-    cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key c6d666e210a8425298ef7abde0d1998
+    nvidia@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key c6d666e210a8425298ef7abde0d1998
     Successfully added/updated channel pd-netq-events
     ```
 3. Verify the configuration.
 
     ```
-    cumulus@switch:~$ netq show notification channel
+    nvidia@switch:~$ netq show notification channel
     Matching config_notify records:
     Name            Type             Severity         Channel Info              Is Default
     --------------- ---------------- ---------------- ------------------------  ------------
@@ -317,14 +317,14 @@ The following example shows the creation of a *syslog-netq-events* channel and v
 2. Create the channel.
 
     ```
-    cumulus@switch:~$ netq add notification channel syslog syslog-netq-events hostname syslog-server port 514
+    nvidia@switch:~$ netq add notification channel syslog syslog-netq-events hostname syslog-server port 514
     Successfully added/updated channel syslog-netq-events
     ```
 
 3. Verify the configuration.
 
     ```
-    cumulus@switch:~$ netq show notification channel
+    nvidia@switch:~$ netq show notification channel
     Matching config_notify records:
     Name            Type             Severity Channel Info           Is Default
     --------------- ---------------- -------- ---------------------- ------------
@@ -401,7 +401,7 @@ For an **on-premises** deployment:
 <div style="padding-left: 18px;">For example:
 
 ```
-cumulus@switch:~$ netq add notification channel email onprem-email to netq-notifications@domain.com smtpserver smtp.domain.com smtpport 587 login smtphostlogin@domain.com password MyPassword123
+nvidia@switch:~$ netq add notification channel email onprem-email to netq-notifications@domain.com smtpserver smtp.domain.com smtpport 587 login smtphostlogin@domain.com password MyPassword123
 Successfully added/updated channel onprem-email
 ```
 
@@ -410,7 +410,7 @@ Successfully added/updated channel onprem-email
 4. Verify the configuration.
 
     ```
-    cumulus@switch:~$ netq show notification channel
+    nvidia@switch:~$ netq show notification channel
     Matching config_notify records:
     Name            Type             Severity         Channel Info             Is Default
     --------------- ---------------- ---------------- ------------------------ ---------------
@@ -437,7 +437,7 @@ For a **cloud** deployment:
 <div style="padding-left: 18px;">For example:
 
 ```
-cumulus@switch:~$ netq add notification channel email cloud-email to netq-cloud-notifications@domain.com
+nvidia@switch:~$ netq add notification channel email cloud-email to netq-cloud-notifications@domain.com
 Successfully added/updated channel cloud-email
 ```
 
@@ -446,7 +446,7 @@ Successfully added/updated channel cloud-email
 2. Verify the configuration.
 
     ```
-    cumulus@switch:~$ netq show notification channel
+    nvidia@switch:~$ netq show notification channel
     Matching config_notify records:
     Name            Type             Severity         Channel Info             Is Default
     --------------- ---------------- ---------------- ------------------------ --------------
@@ -575,10 +575,10 @@ netq del notification rule <text-rule-name-anchor>
 This example creates a rule named *all-interfaces*, using the key *ifname* and the value *ALL*, which sends all events from all interfaces to any channel with this rule.
 
 ```
-cumulus@switch:~$ netq add notification rule all-interfaces key ifname value ALL
+nvidia@switch:~$ netq add notification rule all-interfaces key ifname value ALL
 Successfully added/updated rule all-ifs
 
-cumulus@switch:~$ netq show notification rule
+nvidia@switch:~$ netq show notification rule
 Matching config_notify records:
 Name            Rule Key         Rule Value
 --------------- ---------------- --------------------
@@ -586,37 +586,37 @@ all-interfaces  ifname           ALL
 ```
 Create a BGP rule based on hostname:
 
-    cumulus@switch:~$ netq add notification rule bgpHostname key hostname value spine-01
+    nvidia@switch:~$ netq add notification rule bgpHostname key hostname value spine-01
     Successfully added/updated rule bgpHostname 
 
 Create a rule based on a configuration file state change:
 
-    cumulus@switch:~$ netq add notification rule sysconf key configdiff value updated
+    nvidia@switch:~$ netq add notification rule sysconf key configdiff value updated
     Successfully added/updated rule sysconf
 
 Create an EVPN rule based on a VNI:
 
-    cumulus@switch:~$ netq add notification rule evpnVni key vni value 42
+    nvidia@switch:~$ netq add notification rule evpnVni key vni value 42
     Successfully added/updated rule evpnVni
 
 Create an interface rule based on FEC support:
 
-    cumulus@switch:~$ netq add notification rule fecSupport key new_supported_fec value supported
+    nvidia@switch:~$ netq add notification rule fecSupport key new_supported_fec value supported
     Successfully added/updated rule fecSupport
 
 Create a service rule based on a status change:
 
-    cumulus@switch:~$ netq add notification rule svcStatus key new_status value down
+    nvidia@switch:~$ netq add notification rule svcStatus key new_status value down
     Successfully added/updated rule svcStatus
 
 Create a sensor rule based on a threshold:
 
-    cumulus@switch:~$ netq add notification rule overTemp key new_s_crit value 24
+    nvidia@switch:~$ netq add notification rule overTemp key new_s_crit value 24
     Successfully added/updated rule overTemp
 
 Create an interface rule based on a port:
 
-    cumulus@switch:~$ netq add notification rule swp52 key port value swp52
+    nvidia@switch:~$ netq add notification rule swp52 key port value swp52
     Successfully added/updated rule swp52 
 
 {{</expand>}}
@@ -638,10 +638,10 @@ These examples use the channels and rules created in the previous sections. Afte
 {{<tab "PagerDuty" >}}
 
 ```
-cumulus@switch:~$ netq add notification filter notify-all-ifs rule all-interfaces channel pd-netq-events
+nvidia@switch:~$ netq add notification filter notify-all-ifs rule all-interfaces channel pd-netq-events
 Successfully added/updated filter notify-all-ifs
 
-cumulus@switch:~$ netq show notification filter
+nvidia@switch:~$ netq show notification filter
 Matching config_notify records:
 Name            Order      Severity         Channels         Rules
 --------------- ---------- ---------------- ---------------- ----------
@@ -653,10 +653,10 @@ notify-all-ifs  1          info             pd-netq-events   all-interfaces
 {{<tab "Slack" >}}
 
 ```
-cumulus@switch:~$ netq add notification filter notify-all-ifs rule all-interfaces channel slk-netq-events
+nvidia@switch:~$ netq add notification filter notify-all-ifs rule all-interfaces channel slk-netq-events
 Successfully added/updated filter notify-all-ifs
 
-cumulus@switch:~$ netq show notification filter
+nvidia@switch:~$ netq show notification filter
 Matching config_notify records:
 Name            Order      Severity         Channels         Rules
 --------------- ---------- ---------------- ---------------- ----------
@@ -668,10 +668,10 @@ notify-all-ifs  1          info             slk-netq-events   all-interfaces
 {{<tab "Syslog" >}}
 <!-- vale on -->
 ```
-cumulus@switch:~$ netq add notification filter notify-all-ifs rule all-interfaces channel syslog-netq-events
+nvidia@switch:~$ netq add notification filter notify-all-ifs rule all-interfaces channel syslog-netq-events
 Successfully added/updated filter notify-all-ifs
 
-cumulus@switch:~$ netq show notification filter
+nvidia@switch:~$ netq show notification filter
 Matching config_notify records:
 Name            Order      Severity         Channels         Rules
 --------------- ---------- ---------------- ---------------- ----------
@@ -683,10 +683,10 @@ notify-all-ifs  1          info             syslog-netq-events all-ifs
 {{<tab "Email" >}}
 
 ```
-cumulus@switch:~$ netq add notification filter notify-all-ifs rule all-interfaces channel onprem-email
+nvidia@switch:~$ netq add notification filter notify-all-ifs rule all-interfaces channel onprem-email
 Successfully added/updated filter notify-all-ifs
 
-cumulus@switch:~$ netq show notification filter
+nvidia@switch:~$ netq show notification filter
 Matching config_notify records:
 Name            Order      Severity         Channels         Rules
 --------------- ---------- ---------------- ---------------- ----------
@@ -701,32 +701,32 @@ notify-all-ifs  1          info             onprem-email all-ifs
 
 Create a filter for BGP events on a particular device:
 
-    cumulus@switch:~$ netq add notification filter bgpSpine rule bgpHostname channel pd-netq-events
+    nvidia@switch:~$ netq add notification filter bgpSpine rule bgpHostname channel pd-netq-events
     Successfully added/updated filter bgpSpine
 
 Create a filter for a given VNI in your EVPN overlay:
 
-    cumulus@switch:~$ netq add notification filter vni42 severity warning rule evpnVni channel pd-netq-events
+    nvidia@switch:~$ netq add notification filter vni42 severity warning rule evpnVni channel pd-netq-events
     Successfully added/updated filter vni42
 
 Create a filter for when a configuration file is updated:
 
-    cumulus@switch:~$ netq add notification filter configChange severity info rule sysconf channel slk-netq-events
+    nvidia@switch:~$ netq add notification filter configChange severity info rule sysconf channel slk-netq-events
     Successfully added/updated filter configChange
 
 Create a filter to monitor ports with FEC support:
 
-    cumulus@switch:~$ netq add notification filter newFEC rule fecSupport channel slk-netq-events
+    nvidia@switch:~$ netq add notification filter newFEC rule fecSupport channel slk-netq-events
     Successfully added/updated filter newFEC
 
 Create a filter to monitor for services that change to a down state:
 
-    cumulus@switch:~$ netq add notification filter svcDown severity error rule svcStatus channel slk-netq-events
+    nvidia@switch:~$ netq add notification filter svcDown severity error rule svcStatus channel slk-netq-events
     Successfully added/updated filter svcDown
 
 Create a filter to monitor overheating platforms:
 
-    cumulus@switch:~$ netq add notification filter critTemp severity error rule overTemp channel onprem-email
+    nvidia@switch:~$ netq add notification filter critTemp severity error rule overTemp channel onprem-email
     Successfully added/updated filter critTemp
 
 Create a filter to drop messages from a given interface, and match
@@ -734,7 +734,7 @@ against this filter before any other filters. To create a drop-style
 filter, do not specify a channel. To list the filter first, use the
 `before` option.
 
-    cumulus@switch:~$ netq add notification filter swp52Drop severity error rule swp52 before bgpSpine
+    nvidia@switch:~$ netq add notification filter swp52Drop severity error rule swp52 before bgpSpine
     Successfully added/updated filter swp52Drop
 {{</expand>}}
 
@@ -786,9 +786,9 @@ This example removes a Slack integration and verifies it is no longer in
 the configuration:
 
 ```
-cumulus@switch:~$ netq del notification channel slk-netq-events
+nvidia@switch:~$ netq del notification channel slk-netq-events
 
-cumulus@switch:~$ netq show notification channel
+nvidia@switch:~$ netq show notification channel
 Matching config_notify records:
 Name            Type             Severity         Channel Info
 --------------- ---------------- ---------------- ------------------------
@@ -813,10 +813,10 @@ netq show notification proxy
 This example configures and verifies the *proxy4* server on port *80* to act as a proxy for event notifications.
 
 ```
-cumulus@switch:~$ netq add notification proxy proxy4
+nvidia@switch:~$ netq add notification proxy proxy4
 Successfully configured notifier proxy proxy4:80
 
-cumulus@switch:~$ netq show notification proxy
+nvidia@switch:~$ netq show notification proxy
 Matching config_notify records:
 Proxy URL          Slack Enabled              PagerDuty Enabled
 ------------------ -------------------------- ----------------------------------
@@ -1308,27 +1308,27 @@ This example creates a notification integration with a PagerDuty channel called 
 
 {{<expand "Display example">}}
 
-    cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key 1234567890
+    nvidia@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key 1234567890
     Successfully added/updated channel pd-netq-events
-    cumulus@switch:~$ netq add notification rule bgpHostname key node value spine-01
+    nvidia@switch:~$ netq add notification rule bgpHostname key node value spine-01
     Successfully added/updated rule bgpHostname
      
-    cumulus@switch:~$ netq add notification filter bgpSpine rule bgpHostname channel pd-netq-events
+    nvidia@switch:~$ netq add notification filter bgpSpine rule bgpHostname channel pd-netq-events
     Successfully added/updated filter bgpSpine
-    cumulus@switch:~$ netq show notification channel
+    nvidia@switch:~$ netq show notification channel
     Matching config_notify records:
     Name            Type             Severity         Channel Info
     --------------- ---------------- ---------------- ------------------------
     pd-netq-events  pagerduty        info             integration-key: 1234567
                                                       890   
 
-    cumulus@switch:~$ netq show notification rule
+    nvidia@switch:~$ netq show notification rule
     Matching config_notify records:
     Name            Rule Key         Rule Value
     --------------- ---------------- --------------------
     bgpHostname     hostname         spine-01
      
-    cumulus@switch:~$ netq show notification filter
+    nvidia@switch:~$ netq show notification filter
     Matching config_notify records:
     Name            Order      Severity         Channels         Rules
     --------------- ---------- ---------------- ---------------- ----------
@@ -1341,30 +1341,30 @@ This example creates a notification integration with a PagerDuty channel called 
 
 {{<expand "Display example">}}
 
-    cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key 1234567890
+    nvidia@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key 1234567890
     Successfully added/updated channel pd-netq-events
      
-    cumulus@switch:~$ netq add notification rule evpnVni key vni value 42
+    nvidia@switch:~$ netq add notification rule evpnVni key vni value 42
     Successfully added/updated rule evpnVni
      
-    cumulus@switch:~$ netq add notification filter vni42 rule evpnVni channel pd-netq-events
+    nvidia@switch:~$ netq add notification filter vni42 rule evpnVni channel pd-netq-events
     Successfully added/updated filter vni42
      
-    cumulus@switch:~$ netq show notification channel
+    nvidia@switch:~$ netq show notification channel
     Matching config_notify records:
     Name            Type             Severity         Channel Info
     --------------- ---------------- ---------------- ------------------------
     pd-netq-events  pagerduty        info             integration-key: 1234567
                                                       890   
 
-    cumulus@switch:~$ netq show notification rule
+    nvidia@switch:~$ netq show notification rule
     Matching config_notify records:
     Name            Rule Key         Rule Value
     --------------- ---------------- --------------------
     bgpHostname     hostname         spine-01
     evpnVni         vni              42
      
-    cumulus@switch:~$ netq show notification filter
+    nvidia@switch:~$ netq show notification filter
     Matching config_notify records:
     Name            Order      Severity         Channels         Rules
     --------------- ---------- ---------------- ---------------- ----------
@@ -1379,16 +1379,16 @@ This example creates a notification integration with a Slack channel called *slk
 
 {{<expand "Display example">}}
 
-    cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
+    nvidia@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
     Successfully added/updated channel slk-netq-events
      
-    cumulus@switch:~$ netq add notification rule sysconf key message_type value configdiff
+    nvidia@switch:~$ netq add notification rule sysconf key message_type value configdiff
     Successfully added/updated rule sysconf
      
-    cumulus@switch:~$ netq add notification filter configChange severity info rule sysconf channel slk-netq-events
+    nvidia@switch:~$ netq add notification filter configChange severity info rule sysconf channel slk-netq-events
     Successfully added/updated filter configChange
      
-    cumulus@switch:~$ netq show notification channel
+    nvidia@switch:~$ netq show notification channel
     Matching config_notify records:
     Name            Type             Severity Channel Info
     --------------- ---------------- -------- ----------------------
@@ -1396,7 +1396,7 @@ This example creates a notification integration with a Slack channel called *slk
                                               lack.com/services/text/
                                               moretext/evenmoretext     
      
-    cumulus@switch:~$ netq show notification rule
+    nvidia@switch:~$ netq show notification rule
     Matching config_notify records:
     Name            Rule Key         Rule Value
     --------------- ---------------- --------------------
@@ -1404,7 +1404,7 @@ This example creates a notification integration with a Slack channel called *slk
     evpnVni         vni              42
     sysconf         message_type     configdiff 
 
-    cumulus@switch:~$ netq show notification filter
+    nvidia@switch:~$ netq show notification filter
     Matching config_notify records:
     Name            Order      Severity         Channels         Rules
     --------------- ---------- ---------------- ---------------- ----------
@@ -1419,16 +1419,16 @@ This example creates a notification integration with a Slack channel called *slk
 
 {{<expand "Display example">}}
 
-    cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
+    nvidia@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
     Successfully added/updated channel slk-netq-events
      
-    cumulus@switch:~$ netq add notification rule svcStatus key new_status value down
+    nvidia@switch:~$ netq add notification rule svcStatus key new_status value down
     Successfully added/updated rule svcStatus
      
-    cumulus@switch:~$ netq add notification filter svcDown severity error rule svcStatus channel slk-netq-events
+    nvidia@switch:~$ netq add notification filter svcDown severity error rule svcStatus channel slk-netq-events
     Successfully added/updated filter svcDown
      
-    cumulus@switch:~$ netq show notification channel
+    nvidia@switch:~$ netq show notification channel
     Matching config_notify records:
     Name            Type             Severity Channel Info
     --------------- ---------------- -------- ----------------------
@@ -1436,7 +1436,7 @@ This example creates a notification integration with a Slack channel called *slk
                                               lack.com/services/text/
                                               moretext/evenmoretext     
      
-    cumulus@switch:~$ netq show notification rule
+    nvidia@switch:~$ netq show notification rule
     Matching config_notify records:
     Name            Rule Key         Rule Value
     --------------- ---------------- --------------------
@@ -1445,7 +1445,7 @@ This example creates a notification integration with a Slack channel called *slk
     svcStatus       new_status       down
     sysconf         configdiff       updated
 
-    cumulus@switch:~$ netq show notification filter
+    nvidia@switch:~$ netq show notification filter
     Matching config_notify records:
     Name            Order      Severity         Channels         Rules
     --------------- ---------- ---------------- ---------------- ----------
@@ -1461,16 +1461,16 @@ This example creates a notification integration with a Slack channel called *slk
 
 {{<expand "Display example">}}
 
-    cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
+    nvidia@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
     Successfully added/updated channel slk-netq-events
      
-    cumulus@switch:~$ netq add notification rule swp52 key port value swp52
+    nvidia@switch:~$ netq add notification rule swp52 key port value swp52
     Successfully added/updated rule swp52
      
-    cumulus@switch:~$ netq add notification filter swp52Drop severity error rule swp52 before bgpSpine
+    nvidia@switch:~$ netq add notification filter swp52Drop severity error rule swp52 before bgpSpine
     Successfully added/updated filter swp52Drop
      
-    cumulus@switch:~$ netq show notification channel
+    nvidia@switch:~$ netq show notification channel
     Matching config_notify records:
     Name            Type             Severity Channel Info
     --------------- ---------------- -------- ----------------------
@@ -1478,7 +1478,7 @@ This example creates a notification integration with a Slack channel called *slk
                                               lack.com/services/text/
                                               moretext/evenmoretext     
      
-    cumulus@switch:~$ netq show notification rule
+    nvidia@switch:~$ netq show notification rule
     Matching config_notify records:
     Name            Rule Key         Rule Value
     --------------- ---------------- --------------------
@@ -1488,7 +1488,7 @@ This example creates a notification integration with a Slack channel called *slk
     swp52           port             swp52
     sysconf         configdiff       updated
 
-    cumulus@switch:~$ netq show notification filter
+    nvidia@switch:~$ netq show notification filter
     Matching config_notify records:
     Name            Order      Severity         Channels         Rules
     --------------- ---------- ---------------- ---------------- ----------
@@ -1507,27 +1507,27 @@ This example creates a notification when switch *leaf04* has passed over the hig
 {{<expand "Display example">}}
 
 ```
-cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key 1234567890
+nvidia@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key 1234567890
 Successfully added/updated channel pd-netq-events
  
-cumulus@switch:~$ netq add notification rule switchLeaf04 key hostname value leaf04
+nvidia@switch:~$ netq add notification rule switchLeaf04 key hostname value leaf04
 Successfully added/updated rule switchLeaf04
-cumulus@switch:~$ netq add notification rule overTemp key new_s_crit value 24
+nvidia@switch:~$ netq add notification rule overTemp key new_s_crit value 24
 Successfully added/updated rule overTemp
  
-cumulus@switch:~$ netq add notification filter critTemp rule switchLeaf04 channel pd-netq-events
+nvidia@switch:~$ netq add notification filter critTemp rule switchLeaf04 channel pd-netq-events
 Successfully added/updated filter critTemp
-cumulus@switch:~$ netq add notification filter critTemp severity critical rule overTemp channel pd-netq-events
+nvidia@switch:~$ netq add notification filter critTemp severity critical rule overTemp channel pd-netq-events
 Successfully added/updated filter critTemp
  
-cumulus@switch:~$ netq show notification channel
+nvidia@switch:~$ netq show notification channel
 Matching config_notify records:
 Name            Type             Severity         Channel Info
 --------------- ---------------- ---------------- ------------------------
 pd-netq-events  pagerduty        info             integration-key: 1234567
                                                   890
 
-cumulus@switch:~$ netq show notification rule
+nvidia@switch:~$ netq show notification rule
 Matching config_notify records:
 Name            Rule Key         Rule Value
 --------------- ---------------- --------------------
@@ -1539,7 +1539,7 @@ switchLeaf04    hostname         leaf04
 swp52           port             swp52
 sysconf         configdiff       updated
 
-cumulus@switch:~$ netq show notification filter
+nvidia@switch:~$ netq show notification filter
 Matching config_notify records:
 Name            Order      Severity         Channels         Rules
 --------------- ---------- ---------------- ---------------- ----------

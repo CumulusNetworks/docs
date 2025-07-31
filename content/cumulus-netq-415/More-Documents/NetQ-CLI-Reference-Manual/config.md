@@ -54,10 +54,10 @@ netq config add agent cluster-servers
 Configure cluster with default port and VRF:
 
 ```
-cumulus@switch:~$ netq config add agent cluster-servers leaf01,leaf02,spine01
+nvidia@switch:~$ netq config add agent cluster-servers leaf01,leaf02,spine01
 Updated agent for cluster servers leaf01,leaf02,spine01 port 31980 vrf default. Please restart netq-agent (netq config restart agent)
 
-cumulus@switch:~$ netq config restart agent
+nvidia@switch:~$ netq config restart agent
 ```
 
 ### Related Commands
@@ -104,10 +104,10 @@ netq config add agent command
 For example, to change the polling frequency of the `ntp` command to 60 seconds from its default of 30 seconds, run:
 
 ```
-cumulus@switch:~$ sudo netq config add agent command service-key ntp poll-period 30
+nvidia@switch:~$ sudo netq config add agent command service-key ntp poll-period 30
 Successfully added/modified Command service misc command None
 
-cumulus@switch:~$ sudo netq config show agent commands
+nvidia@switch:~$ sudo netq config show agent commands
 Service Key               Period  Active       Command                                                        Timeout
 -----------------------  --------  --------  --------------------------------------------------------------  ---------
 bgp-neighbors                  60  yes       ['/usr/bin/vtysh', '-c', 'show ip bgp vrf all neighbors json']         30
@@ -147,7 +147,7 @@ ber-info                       30  yes       Netq Predefined Command            
 Disable a command:
 
 ```
-cumulus@switch:~$ netq config add agent command service-key ntp enable False
+nvidia@switch:~$ netq config add agent command service-key ntp enable False
 Command Service ntp is disabled
 ```
 
@@ -187,11 +187,11 @@ None
 Limit CPU usage by NetQ Agent to 60%:
 
 ```
-cumulus@switch:~$ netq config add agent cpu-limit 60
+nvidia@switch:~$ netq config add agent cpu-limit 60
 Successfully set agent CPU limit to 60
 Please restart agent(netq config restart agent)
 'netq-agent'
-cumulus@switch:~$ netq config restart agent
+nvidia@switch:~$ netq config restart agent
 Restarting netq-agent... Success!
 ```
 
@@ -229,10 +229,10 @@ None
 Configure NetQ Agent to collect FRR statistics:
 
 ```
-cumulus@switch:~$ netq config add agent frr-monitor frr
+nvidia@switch:~$ netq config add agent frr-monitor frr
 Successfully added FRR docker monitoring for netq-agent. Please restart service.
 
-cumulus@switch:~$ netq config restart agent
+nvidia@switch:~$ netq config restart agent
 Restarting netq-agent... Success!
 ```
 
@@ -265,7 +265,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq config add agent gnmi-port <gnmi_port>
+nvidia@switch:~$ netq config add agent gnmi-port <gnmi_port>
 ```
 
 ### Related Commands
@@ -308,10 +308,10 @@ None
 Configure NetQ Agent to log only errors:
 
 ```
-cumulus@switch:~$ netq config add agent loglevel error
+nvidia@switch:~$ netq config add agent loglevel error
 Successfully added logging for netq-agent. Please restart service.
 
-cumulus@switch:~$ netq config restart agent
+nvidia@switch:~$ netq config restart agent
 Restarting netq-agent... Success!
 ```
 
@@ -356,10 +356,10 @@ netq config add agent opta-discovery-servers
 Configure a range of IP addresses to search for switches that are not running NetQ:
 
 ```
-cumulus@switch:~$ netq config add agent opta-discovery-servers 192.168.0.24-64,128-190
+nvidia@switch:~$ netq config add agent opta-discovery-servers 192.168.0.24-64,128-190
 Updated agent discovery servers 192.168.0.24-64,128-190 port 31980 vrf default. Please restart netq-agent (netq config restart agent)
 
-cumulus@switch:~$ netq config restart agent
+nvidia@switch:~$ netq config restart agent
 Restarting netq-agent... Success!
 ```
 
@@ -428,10 +428,10 @@ netq config add agent server
 Configure destination server with default port and VRF
 
 ```
-cumulus@switch:~$ netq config add agent server 192.168.200.250
+nvidia@switch:~$ netq config add agent server 192.168.200.250
 Updated agent server 192.168.200.250 port 31980 vrf default. Please restart netq-agent (netq config restart agent)
 
-cumulus@switch:~$ netq config restart agent
+nvidia@switch:~$ netq config restart agent
 Restarting netq-agent... Success!
 ```
 
@@ -466,11 +466,11 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq config add agent services dnsmasq
+nvidia@switch:~$ netq config add agent services dnsmasq
 Successfully added services for netq-agent. Please restart netq-agent (netq config restart agent)
 
 
-cumulus@switch:~$ netq config show agent services
+nvidia@switch:~$ netq config show agent services
 Services Enabled
 ----------------------------------------
 dnsmasq
@@ -505,10 +505,10 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq config add agent spice
+nvidia@switch:~$ netq config add agent spice
 Successfully added spice for netq-agent. Please restart netq-agent (netq config restart agent)
 
-cumulus@switch:~$ netq config restart agent
+nvidia@switch:~$ netq config restart agent
 Restarting netq-agent... Success!
 ```
 
@@ -542,10 +542,10 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq config add agent stats
+nvidia@switch:~$ netq config add agent stats
 stats config added. Please restart netq-agent (netq config restart agent)
 
-cumulus@switch:~$ netq config restart agent
+nvidia@switch:~$ netq config restart agent
 Restarting netq-agent... Success!
 ```
 
@@ -580,10 +580,10 @@ None
 ### Sample Usage
 
 ```
-cumulus@chassis:~$ netq config add agent wjh
+nvidia@chassis:~$ netq config add agent wjh
 Successfully added WJH monitor. Please restart netq-agent (netq config restart agent)
 
-cumulus@switch:~$ netq config restart agent
+nvidia@switch:~$ netq config restart agent
 Restarting netq-agent... Success!
 ```
 
@@ -637,45 +637,45 @@ netq config add agent wjh-drop-filter
 The following example configures the NetQ Agent to ignore all L1 drops:
 
 ```
-cumulus@switch:~$ sudo netq config add agent wjh-drop-filter drop-type l1
+nvidia@switch:~$ sudo netq config add agent wjh-drop-filter drop-type l1
 ```
 
 This example configures the NetQ Agent to ignore L1 drops with bad signal integrity:
 
 ```
-cumulus@switch:~$ sudo netq config add agent wjh-drop-filter drop-type l1 drop-reasons BAD_SIGNAL_INTEGRITY
+nvidia@switch:~$ sudo netq config add agent wjh-drop-filter drop-type l1 drop-reasons BAD_SIGNAL_INTEGRITY
 
-cumulus@switch:~$ netq config restart agent
+nvidia@switch:~$ netq config restart agent
 Restarting netq-agent... Success!
 ```
 
 This example configures the NetQ Agent to ignore router drops with a 'warning' severity level:
 
 ```
-cumulus@switch:~$ sudo netq config add agent wjh-drop-filter drop-type router severity Warning
+nvidia@switch:~$ sudo netq config add agent wjh-drop-filter drop-type router severity Warning
 ```
 
 This example configures the NetQ Agent to ignore router drops that are due to blackhole routes:
 
 ```
-cumulus@netq-ts:~$ sudo netq config add agent wjh-drop-filter drop-type router drop-reasons BLACKHOLE_ROUTE
+nvidia@netq-ts:~$ sudo netq config add agent wjh-drop-filter drop-type router drop-reasons BLACKHOLE_ROUTE
 ```
 
 The following example configures the NetQ Agent to ignore all drops that contain 192.168.0.15 as a source or destination IP address:
 
 ```
-cumulus@switch:~$ sudo netq config add agent wjh-drop-filter ips 192.168.0.15
+nvidia@switch:~$ sudo netq config add agent wjh-drop-filter ips 192.168.0.15
 ```
 This example configures the NetQ Agent to ignore all drops that contain 192.168.0.15 or 192.168.0.45 as source or destination IP address:
 
 ``` 
-cumulus@switch:~$ sudo netq config add agent wjh-drop-filter ips 192.168.0.15,192.168.0.45
+nvidia@switch:~$ sudo netq config add agent wjh-drop-filter ips 192.168.0.15,192.168.0.45
 ```
 
 This example configures the NetQ Agent to ignore all drops that contain 192.168.0.15/16 prefix network as a source or destination IP address:
  
 ```
-cumulus@switch:~$ sudo netq config add agent wjh-drop-filter ips 192.168.0.15/16
+nvidia@switch:~$ sudo netq config add agent wjh-drop-filter ips 192.168.0.15/16
 ```
 
 ### Related Commands
@@ -726,13 +726,13 @@ None
 Create latency thresholds for Class 3 traffic on port swp1 where the upper threshold is 10 and the lower threshold is 1.
 
 ```
-cumulus@switch:~$ sudo netq config add agent wjh-threshold latency 3 swp1 10 1
+nvidia@switch:~$ sudo netq config add agent wjh-threshold latency 3 swp1 10 1
 ```
 
 Create congestion thresholds for Class 4 traffic on port swp1 where the upper threshold is 200 and the lower threshold is 10.
 
 ```
-cumulus@switch:~$ sudo netq config add agent wjh-threshold congestion 4 swp1 200 10
+nvidia@switch:~$ sudo netq config add agent wjh-threshold congestion 4 swp1 200 10
 ```
 
 ### Related Commands
@@ -807,15 +807,15 @@ netq config add cli server
 On-premises:
 
 ```
-cumulus@switch:~$ sudo netq config add cli server 10.0.1.1 vrf mgmt port 32000
-cumulus@switch:~$ sudo netq config restart cli
+nvidia@switch:~$ sudo netq config add cli server 10.0.1.1 vrf mgmt port 32000
+nvidia@switch:~$ sudo netq config restart cli
 ```
 
 Cloud/remote:
 
 ```
-cumulus@switch:~# sudo netq config add cli server api.netq.cumulusnetworks.com access-key 45d11f46bc09986db64612c590204054b1f12bc05219324a7d66084cf741779c secret-key zHoQ9feNlScNuGBVzUNqr0c0kJL+FAZbhEz8YtW2Rc0= premises NewYork 
-cumulus@switch:~# sudo netq config restart cli
+nvidia@switch:~# sudo netq config add cli server api.netq.cumulusnetworks.com access-key 45d11f46bc09986db64612c590204054b1f12bc05219324a7d66084cf741779c secret-key zHoQ9feNlScNuGBVzUNqr0c0kJL+FAZbhEz8YtW2Rc0= premises NewYork 
+nvidia@switch:~# sudo netq config restart cli
 ```
 
 ### Related Commands
@@ -874,7 +874,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq config add color
+nvidia@switch:~$ netq config add color
 Color coded output config added
 ```
 
@@ -907,7 +907,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq config agent factory-reset commands
+nvidia@switch:~$ netq config agent factory-reset commands
 Netq Command factory reset successful
 ```
 
@@ -952,10 +952,10 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq config del agent cluster-servers
+nvidia@switch:~$ netq config del agent cluster-servers
 Deleted agent cluster servers 10.10.0.101,10.20.0.101 port 31980 vrf default. Please restart netq-agent (netq config restart agent)
 
-cumulus@switch:~$ netq config restart agent
+nvidia@switch:~$ netq config restart agent
 ```
 
 ### Related Commands
@@ -1035,21 +1035,21 @@ netq config del agent wjh-drop-filter
 Remove L1 filter for specified drop reasons:
 
 ```
-cumulus@switch:~$ sudo netq config del agent wjh-drop-filter drop-type l1 drop-reasons PORT_ADMIN_DOWN,BAD_SIGNAL_INTEGRITY
+nvidia@switch:~$ sudo netq config del agent wjh-drop-filter drop-type l1 drop-reasons PORT_ADMIN_DOWN,BAD_SIGNAL_INTEGRITY
 
-cumulus@switch:~$ netq config restart agent
+nvidia@switch:~$ netq config restart agent
 Restarting netq-agent... Success!
 ```
 Remove all WJH IP-based filters: 
 
 ```
-cumulus@switch:~$ sudo netq config del agent wjh-drop-filter ips
+nvidia@switch:~$ sudo netq config del agent wjh-drop-filter ips
 ``` 
  
 Remove WJH filter where the source or destination IP address is 192.168.0.15 or 192.168.0.45:
 
 ```
-cumulus@switch:~$ sudo netq config del agent wjh-drop-filter ips 192.168.0.15,192.168.0.45
+nvidia@switch:~$ sudo netq config del agent wjh-drop-filter ips 192.168.0.15,192.168.0.45
 ```
  
 
@@ -1090,9 +1090,9 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq config del agent wjh-threshold latency 3
+nvidia@switch:~$ netq config del agent wjh-threshold latency 3
 
-cumulus@switch:~$ netq config del agent wjh-threshold congestion 4
+nvidia@switch:~$ netq config del agent wjh-threshold congestion 4
 ```
 
 ### Related Commands
@@ -1128,7 +1128,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq config del cli server
+nvidia@switch:~$ netq config del cli server
 ```
 
 ### Related Commands
@@ -1187,7 +1187,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq config reload parser
+nvidia@switch:~$ netq config reload parser
 Parser reloaded
 ```
 
@@ -1221,16 +1221,16 @@ None
 Use the `netq config show cli premises` command to check whether the premises is active or inactive. The status must be inactive before it can be attached to a new server.
 
 ```
-cumulus@switch:~$ netq config show cli premises
+nvidia@switch:~$ netq config show cli premises
 Name                     OPID  Timezone    Namespace    Tag    CLI Status    Status
 -----------------  ----------  ----------  -----------  -----  ------------  --------
 prem-1             1719853531  PST         default      US     not selected  Active
 prem-2             1719855240  PST         default      US     selected      Inactive
 
-cumulus@switch:~$ netq config reset premise prem-1
+nvidia@switch:~$ netq config reset premise prem-1
 Premise has been reset successfully. Please verify using 'netq config show cli premises'
 
-cumulus@switch:~$ netq config show cli premises
+nvidia@switch:~$ netq config show cli premises
 Name                     OPID  Timezone    Namespace    Tag    CLI Status    Status
 -----------------  ----------  ----------  -----------  -----  ------------  --------
 prem-1             1719853531  PST         default      US     not selected  Inactive
@@ -1266,10 +1266,10 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq config restart agent
+nvidia@switch:~$ netq config restart agent
 Restarting netq-agent... Success!
 
-cumulus@switch:~$ netq config restart cli 
+nvidia@switch:~$ netq config restart cli 
 Restarting NetQ CLI... Success!
 ```
 
@@ -1303,7 +1303,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq config select cli premise Boston
+nvidia@switch:~$ netq config select cli premise Boston
 Input premise Boston
 Switched to premise Boston
 ```
@@ -1349,7 +1349,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq config show agent 
+nvidia@switch:~$ netq config show agent 
 netq-agent                value      default
 ------------------------  ---------  ---------
 exhibitport
@@ -1410,7 +1410,7 @@ netq config show agent commands
 Show the configuration for all commands:
 
 ```
-cumulus@switch:~$ sudo netq config show agent commands
+nvidia@switch:~$ sudo netq config show agent commands
 Service Key               Period  Active       Command                                                        Timeout
 -----------------------  --------  --------  --------------------------------------------------------------  ---------
 bgp-neighbors                  60  yes       ['/usr/bin/vtysh', '-c', 'show ip bgp vrf all neighbors json']         30
@@ -1450,7 +1450,7 @@ ber-info                       30  yes       Netq Predefined Command            
 Show the configuration for a specified command:
 
 ```
-cumulus@switch:~$ netq config show agent commands service-key agent_stats
+nvidia@switch:~$ netq config show agent commands service-key agent_stats
  Service Key       Period  Active       Command
 ---------------  --------  --------  -----------------------
 agent_stats           300  yes       Netq Predefined Command
@@ -1486,7 +1486,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq config show all 
+nvidia@switch:~$ netq config show all 
 netq-agent                value      default
 ------------------------  ---------  ---------
 exhibitport
@@ -1550,7 +1550,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq config show cli premises
+nvidia@switch:~$ netq config show cli premises
 Name                   OPID  Timezone      Namespace  Tag    CLI Status     Status
 ---------------  ----------  ----------  -----------  -----  ------------   -----------
 OPID0                     0  IST                 nan  TAG0   selected       Active
@@ -1587,7 +1587,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq config start agent 
+nvidia@switch:~$ netq config start agent 
 Starting netq-agent... Success!
 ```
 
@@ -1624,10 +1624,10 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq config status agent 
+nvidia@switch:~$ netq config status agent 
 netq-agent... Running
 
-cumulus@switch:~$ netq config status agent 
+nvidia@switch:~$ netq config status agent 
 netq-agent...stopped
 ```
 
@@ -1659,7 +1659,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq config status cli
+nvidia@switch:~$ netq config status cli
 NetQ CLI... Running
 ```
 
@@ -1691,7 +1691,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq config stop agent
+nvidia@switch:~$ netq config stop agent
 Stopping netq-agent... Success!
 ```
 

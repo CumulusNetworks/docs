@@ -53,7 +53,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:mgmt:~$ netq check addresses
+nvidia@switch:mgmt:~$ netq check addresses
 addr check result summary:
 
 Total nodes         : 25
@@ -115,7 +115,7 @@ None
 Basic validation that runs all tests on all devices:
 
 ```
-cumulus@switch:~$ netq check agents
+nvidia@switch:~$ netq check agents
 agent check result summary:
 
 Total nodes         : 21
@@ -130,7 +130,7 @@ Agent Health Test   : passed
 Validation for selected devices:
 
 ```
-cumulus@switch:~$ netq check agents hostnames leaf01,leaf02,leaf03,leaf04
+nvidia@switch:~$ netq check agents hostnames leaf01,leaf02,leaf03,leaf04
 agent check result summary:
 
 Total nodes         : 4
@@ -145,7 +145,7 @@ Agent Health Test   : passed
 Basic validation that checks device states as they were 4 hours ago:
 
 ```
-cumulus@switch:~$ netq check agents around 4h
+nvidia@switch:~$ netq check agents around 4h
 agent check result summary:
 
 Total nodes         : 21
@@ -216,7 +216,7 @@ None
 The following example reports 8 errors from the 'session establishment' test. To fix these errors, bring up the items that are in a down state. Then rerun the command to verify the new configuration.
 
 ```
-cumulus@switch:~$ netq check bgp
+nvidia@switch:~$ netq check bgp
 bgp check result summary:
 
 Total nodes         : 13
@@ -310,7 +310,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq check cl-version
+nvidia@switch:~$ netq check cl-version
 version check result summary:
 
 Total nodes         : 21
@@ -325,7 +325,7 @@ Cumulus Linux Image Version Test   : passed
 List devices which do not match a version:
 
 ```
-cumulus@switch:~$ netq check cl-version match-version 3.7.12
+nvidia@switch:~$ netq check cl-version match-version 3.7.12
 version check result summary:
 
 Total nodes         : 21
@@ -356,7 +356,7 @@ spine04           OS           4.2.1                                unexpected o
 List devices with a version greater than or equal to a version:
 
 ```
-cumulus@switch:~$ netq check cl-version min-version 3.7.12
+nvidia@switch:~$ netq check cl-version min-version 3.7.12
 version check result summary:
 
 Total nodes         : 21
@@ -426,7 +426,7 @@ None
 The following example reports an error for the 'EVPN-BGP session' test. To fix the error, bring up the interface that is in a down state. Run the test again to verify the new configuration.
 
 ```
-cumulus@switch:~$: netq check evpn
+nvidia@switch:~$: netq check evpn
 evpn check result summary:
 
 Total nodes         : 6
@@ -515,7 +515,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq check interfaces
+nvidia@switch:~$ netq check interfaces
 interfaces check result summary:
 
 Total nodes         : 1634
@@ -535,7 +535,7 @@ Autoneg Test   :  Passed.
 ```
 
 ```
-cumulus@switch:~$ netq check interfaces summary
+nvidia@switch:~$ netq check interfaces summary
 interfaces check result summary:
 
 Total nodes         : 1634
@@ -556,7 +556,7 @@ Autoneg Test   :  Passed.
 This example checks for configuration mismatches and finds a link speed mismatch on server03. The link speed on swp49 is *40G* and the peer port swp50 shows as *unknown*.
 
 ```
-cumulus@switch:~$ netq check interfaces
+nvidia@switch:~$ netq check interfaces
 Checked Nodes: 10, Failed Nodes: 1
 Checked Ports: 125, Failed Ports: 2, Unverified Ports: 35
 Hostname          Interface                 Peer Hostname     Peer Interface            Message
@@ -566,7 +566,7 @@ server03          swp50                     server03          swp49             
 ```
 
 ```
-cumulus@switch:~$ netq check interfaces
+nvidia@switch:~$ netq check interfaces
 Checked Nodes: 18, Failed Nodes: 8
 Checked Ports: 741, Failed Ports: 1, Unverified Ports: 414
  
@@ -635,7 +635,7 @@ None
 The following example runs a check on two devices: `noc-se` and `noc-pr`. The output reports several errors, including a peerlink MTU mismatch, a bond MTU mismatch, a bond in a conflicted state, and a singly-connected bond. To resolve these errors, reconfigure the mismatched values and bring up the bond interface that is in a down state. Then run the command again to verify the new configurations.
 
 ```
-cumulus@switch:~$ netq check mlag hostnames noc-se,noc-pr
+nvidia@switch:~$ netq check mlag hostnames noc-se,noc-pr
 mlag check result summary:
 
 Total nodes                             : 2
@@ -744,7 +744,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq check mtu
+nvidia@switch:~$ netq check mtu
 mtu check result summary:
 
 Total nodes         : 21
@@ -778,7 +778,7 @@ fw1               swp2                      9216   border02          swp3       
 Add nodes without peer links to output:
 
 ```
-cumulus@switch:~$ netq check mtu unverified
+nvidia@switch:~$ netq check mtu unverified
 mtu check result summary:
 
 Total nodes         : 21
@@ -866,7 +866,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq check ntp
+nvidia@switch:~$ netq check ntp
 ntp check result summary:
 
 Total nodes         : 17
@@ -946,7 +946,7 @@ None
 The following example displays several RoCE errors in the network's fabric. The 'RoCE mode test' indicates that switches are running in both lossy and lossless modes, which must be reconciled. The other errors report configuration mismatches along with the expected configurations. To fix these errors, reconfigure RoCE according to the recommendations reported in the output. Then run the command again to verify its accuracy.
 
 ```
-cumulus@switch:mgmt:~$ netq check roce
+nvidia@switch:mgmt:~$ netq check roce
 roce check result summary:
 
 Total nodes                             : 2
@@ -1049,7 +1049,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq check sensors
+nvidia@switch:~$ netq check sensors
 sensors check result summary:
 
 Total nodes         : 13
@@ -1113,7 +1113,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq check topology
+nvidia@switch:~$ netq check topology
 topology check result summary:
 
 Total nodes         : 26
@@ -1186,7 +1186,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq check vlan
+nvidia@switch:~$ netq check vlan
 vlan check result summary:
 
 Total nodes         : 21
@@ -1276,7 +1276,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq check vxlan
+nvidia@switch:~$ netq check vxlan
 vxlan check result summary:
 
 Total nodes         : 6

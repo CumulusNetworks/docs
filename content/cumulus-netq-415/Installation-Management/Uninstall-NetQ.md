@@ -15,8 +15,8 @@ This page outlines how to remove the NetQ software from your system server and s
 Use the `apt-get purge` command to remove the NetQ Agent or CLI package from a Cumulus Linux switch or an Ubuntu host:
 
 ```
-cumulus@switch:~$ sudo apt-get update
-cumulus@switch:~$ sudo apt-get purge netq-agent netq-apps
+nvidia@switch:~$ sudo apt-get update
+nvidia@switch:~$ sudo apt-get purge netq-agent netq-apps
 Reading package lists... Done
 Building dependency tree
 Reading state information... Done
@@ -37,9 +37,9 @@ If you only want to remove the agent or the CLI, but not both, specify just the 
 To verify the removal of the packages from the switch, run:
 
 ```
-cumulus@switch:~$ dpkg-query -l netq-agent
+nvidia@switch:~$ dpkg-query -l netq-agent
 dpkg-query: no packages found matching netq-agent
-cumulus@switch:~$ dpkg-query -l netq-apps
+nvidia@switch:~$ dpkg-query -l netq-apps
 dpkg-query: no packages found matching netq-apps
 ```
 {{</tab>}}
@@ -107,16 +107,16 @@ First remove the data collected to free up used disk space. Then remove the soft
 3. Remove the software with `apt-get purge`:
 
   ```
-  cumulus@switch:~$ sudo apt-get update
-  cumulus@switch:~$ sudo apt-get purge netq-agent netq-apps
+  nvidia@switch:~$ sudo apt-get update
+  nvidia@switch:~$ sudo apt-get purge netq-agent netq-apps
   ```
 
 4. Verify the removal of the packages from the switch:
 
   ```
-  cumulus@switch:~$ dpkg-query -l netq-agent
+  nvidia@switch:~$ dpkg-query -l netq-agent
   dpkg-query: no packages found matching netq-agent
-  cumulus@switch:~$ dpkg-query -l netq-apps
+  nvidia@switch:~$ dpkg-query -l netq-apps
   dpkg-query: no packages found matching netq-apps
   ```
 

@@ -42,7 +42,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq add check-filter check_name roce test_name 'RoCE Classification' scope '[{"Reason": "Invalid traffic-class mapping for switch-priority 4.Expected 0 Got 3"}]' is_active true
+nvidia@switch:~$ netq add check-filter check_name roce test_name 'RoCE Classification' scope '[{"Reason": "Invalid traffic-class mapping for switch-priority 4.Expected 0 Got 3"}]' is_active true
 Successfully added/updated Check Filter 
 ```
 
@@ -195,21 +195,21 @@ netq add notification channel generic
 Create an email channel
 
 ```
-cumulus@switch:~$ netq add notification channel email onprem-email to netq-notifications@domain.com smtpserver smtp.domain.com smtpport 587 login smtphostlogin@domain.com password MyPassword123
+nvidia@switch:~$ netq add notification channel email onprem-email to netq-notifications@domain.com smtpserver smtp.domain.com smtpport 587 login smtphostlogin@domain.com password MyPassword123
 Successfully added/updated channel onprem-email
 ```
 
 Create a PagerDuty channel:
 
 ```
-cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key c6d666e210a8425298ef7abde0d1998
+nvidia@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key c6d666e210a8425298ef7abde0d1998
 Successfully added/updated channel pd-netq-events
 ```
 
 Create a Slack channel:
 
 ```
-cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
+nvidia@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
 Successfully added/updated channel slk-netq-events
 ```
 
@@ -218,7 +218,7 @@ Create a Syslog channel:
 <!-- vale on -->
 
 ```
-cumulus@switch:~$ netq add notification channel syslog syslog-netq-events hostname syslog-server port 514
+nvidia@switch:~$ netq add notification channel syslog syslog-netq-events hostname syslog-server port 514
 Successfully added/updated channel syslog-netq-events
 ```
 
@@ -274,14 +274,14 @@ netq add notification filter
 Create filter and assign it to an email channel:
 
 ```
-cumulus@switch:~$ netq add notification filter notify-all-ifs rule all-interfaces channel onprem-email
+nvidia@switch:~$ netq add notification filter notify-all-ifs rule all-interfaces channel onprem-email
 Successfully added/updated filter notify-all-ifs
 ```
 
 Create a filter and assign to a Slack channel:
 
 ```
-cumulus@switch:~$ netq add notification filter notify-all-ifs rule all-interfaces channel slk-netq-events
+nvidia@switch:~$ netq add notification filter notify-all-ifs rule all-interfaces channel slk-netq-events
 Successfully added/updated filter notify-all-ifs
 ```
 
@@ -328,14 +328,14 @@ None
 Create rule to send all interface events:
 
 ```
-cumulus@switch:~$ netq add notification rule all-interfaces key ifname value ALL
+nvidia@switch:~$ netq add notification rule all-interfaces key ifname value ALL
 Successfully added/updated rule all-ifs
 ```
 
 Create EVPN rule based on a VNI:
 
 ```
-cumulus@switch:~$ netq add notification rule evpnVni key vni value 42
+nvidia@switch:~$ netq add notification rule evpnVni key vni value 42
 Successfully added/updated rule evpnVni
 ```
 
@@ -356,8 +356,7 @@ To send event notifications through a proxy server instead of directly to a noti
 ### Syntax
 
 ```
-netq add notification proxy
-    <text-proxy-hostname>
+netq add notification proxy <text-proxy-hostname>
     [port <text-proxy-port>]
 ```
 
@@ -378,7 +377,7 @@ netq add notification proxy
 Create proxy for event notification on default port
 
 ```
-cumulus@switch:~$ netq add notification proxy proxy4
+nvidia@switch:~$ netq add notification proxy proxy4
 Successfully configured notifier proxy proxy4:80
 ```
 
@@ -389,6 +388,43 @@ Successfully configured notifier proxy proxy4:80
 - ```netq add notification rule```
 - ```netq add notification filter```
 - ```netq show notification```
+
+- - -
+
+## netq add otlp endpoint
+
+Adds the endpoint of your time-series database; used together with the `netq set otlp endpoint-ca-cert` to set the CA certificate.
+
+### Syntax
+
+```
+netq add otlp endpoint 
+    tsdb-name <text-tsdb-endpoint> 
+    tsdb-url <text-tsdb-endpoint-url> 
+    [export true | export false] 
+    [security-mode <text-mode>]
+```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| tsdb-name | \<text-tsdb-endpoint\> | Unique name for external time series database endpoint |
+| tsdb-url | \<text-tsdb-endpoint-url\> | IP address of the external time series database |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| export | true, false | Enable (true) or disable (false) OTLP data export to time series database |
+| security-mode | \<text-mode\> | Enable (TLS) or disable (insecure) OTLP security mode |
+
+### Related Commands
+
+- `netq del otlp endpoint`
+- `netq modify otlp endpoint`
+- `netq set otlp endpoint`
+- `netq show otlp endpoints`
+
 
 - - -
 
@@ -450,21 +486,21 @@ netq add tca tca_id <text-tca-id-anchor>
 Basic threshold-based event notification:
 
 ```
-cumulus@switch:~$ netq add tca event_id TCA_CPU_UTILIZATION_UPPER scope leaf* threshold 80
+nvidia@switch:~$ netq add tca event_id TCA_CPU_UTILIZATION_UPPER scope leaf* threshold 80
 Successfully added/updated tca
 ```
 
 Create threshold-based event notification and deliver to an existing syslog channel:
 
 ```
-cumulus@switch:~$ netq add tca event_id TCA_SENSOR_TEMPERATURE_UPPER scope leaf12,temp1 threshold 32 channel syslog-netq-events
+nvidia@switch:~$ netq add tca event_id TCA_SENSOR_TEMPERATURE_UPPER scope leaf12,temp1 threshold 32 channel syslog-netq-events
 Successfully added/updated tca
 ```
 
 Change the threshold for the rule *TCA_CPU_UTILIZATION_UPPER_1* to a value of 96 percent. *This overwrites the existing threshold value.*
 
 ```
-cumulus@switch:~$ netq add tca tca_id TCA_CPU_UTILIZATION_UPPER_1 threshold 96
+nvidia@switch:~$ netq add tca tca_id TCA_CPU_UTILIZATION_UPPER_1 threshold 96
 ```
 
 
@@ -518,13 +554,13 @@ netq add trace <ip>
 Create a layer 3 trace through a given VRF:
 
 ```
-cumulus@switch:~$ netq add trace 10.1.10.104 from 10.1.10.101 vrf RED
+nvidia@switch:~$ netq add trace 10.1.10.104 from 10.1.10.101 vrf RED
 ```
 
 Create a layer 2 trace through a given VLAN:
 
 ```
-cumulus@switch:~$ netq add trace 44:38:39:00:00:3e vlan 10 from 44:38:39:00:00:32
+nvidia@switch:~$ netq add trace 44:38:39:00:00:3e vlan 10 from 44:38:39:00:00:32
 ```
 
 ### Related Commands
@@ -586,14 +622,14 @@ netq add trace name
 Create a layer 3 trace that runs every 24 hours (1440 minutes):
 
 ```
-cumulus@switch:~$ netq add trace name Lf01toBor01Daily 10.10.10.63 from 10.10.10.1 interval 1440m
+nvidia@switch:~$ netq add trace name Lf01toBor01Daily 10.10.10.63 from 10.10.10.1 interval 1440m
 Successfully added/updated Lf01toBor01Daily running every 1440m
 ```
 
 Create a layer 2 trace that runs every 3 hours (180 minutes):
 
 ```
-cumulus@switch:~$ netq add trace name Svr01toSvr04x3Hrs 44:38:39:00:00:3e vlan 10 from 10.1.10.101 interval 180m
+nvidia@switch:~$ netq add trace name Svr01toSvr04x3Hrs 44:38:39:00:00:3e vlan 10 from 10.1.10.101 interval 180m
 Successfully added/updated Svr01toSvr04x3Hrs running every 180m
 ```
 
@@ -639,7 +675,7 @@ netq add validation
 BGP validation that runs on all devices, every 15 minutes:
 
 ```
-cumulus@switch:~$ netq add validation name Bgp15m type bgp interval 15m
+nvidia@switch:~$ netq add validation name Bgp15m type bgp interval 15m
 ```
 
 ### Related Commands
@@ -680,7 +716,7 @@ netq add validation
 Create a BGP validation:
 
 ```
-cumulus@switch:~$ netq add validation type bgp
+nvidia@switch:~$ netq add validation type bgp
 ```
 
 ### Related Commands

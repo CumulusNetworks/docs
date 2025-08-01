@@ -542,7 +542,7 @@ The following table provides updated QoS metrics:
 | `/system/processes/process[pid]/state/pid`| * Process PID |
 | `/system/processes/process[pid]/state/memory-usage` | * Bytes allocated and still in use by the process. |
 | `/system/processes/process[pid]/state/memory-utilization` | * Percentage of RAM that the process is using. |
-| `/system/processes/process[pid]/state/cpu-utilization` | * Percentage of CPU that the process is using. |
+| `/system/processes/process[pid]/state/cpu-utilization` | * Percentage of CPU that the process is using, relative to total system CPU capacity (all cores combined). |
 
 {{< /tab >}}
 {{< /tabs >}}

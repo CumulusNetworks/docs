@@ -37,11 +37,9 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{%notice note%}}
-When you enable packet trimming, one service port is used. By default, this is the last service port on the switch. To change the service port, run the `nv set system forwarding packet-trim service-port <interface-id>` command.
-
-On a switch that supports two service ports, you can configure a bond on the service ports, then use the bond for the packet trimming service port; for example: `nv set system forwarding packet-trim service-port bond1`. For information about service ports on Spectrum-4 switches, refer to {{<link url="Switch-Port-Attributes/#breakout-ports" text="Switch Port Attributes">}}.
-
-When you enable packet trimming, do not configure packet trimming port eligibility, port security, adaptive routing, QoS, ACLs, PTP, VRR, PBR, telemetry, or histograms on the service port.
+- When you enable packet trimming, one service port is used. By default, this is the last service port on the switch. To change the service port, run the `nv set system forwarding packet-trim service-port <interface-id>` command. For information about service ports on Spectrum-4 switches, refer to {{<link url="Switch-Port-Attributes/#breakout-ports" text="Switch Port Attributes">}}.
+- On a switch that supports two service ports, you can configure a bond on the service ports, then use the bond for the packet trimming service port; for example: `nv set system forwarding packet-trim service-port bond1`.
+- When you enable packet trimming, do not configure packet trimming port eligibility, port security, adaptive routing, QoS, ACLs, PTP, VRR, PBR, telemetry, or histograms on the service port.
 
 {{%/notice%}}
 
@@ -49,7 +47,7 @@ When you enable packet trimming, do not configure packet trimming port eligibili
 
 Cumulus Linux provides a default packet trimming profile you can use instead of configuring all the settings above. The default packet trimming profile has the following settings:
 - Enables packet trimming.
-- Sets the DSCP remark value to 11 (global DSCP).
+- Sets the DSCP remark value to 11.
 - Sets the truncation size to 256 bytes.
 - Sets the switch priority to 4.
 - Sets the eligibility to all ports on the switch with traffic class 1, 2, and 3.
@@ -83,7 +81,7 @@ To enable and configure port level packet trimming:
 - Set the maximum size of the trimmed packet in bytes. You can specify a value between 256 and 1024; the value must be a multiple of 4.
 - Set the switch priority of the trimmed packet. You can specify a value between 0 and 7.
 
-The following example configures port level packet trimming on the downlink to hosts (leaf01) to use DSCP 20 to send trimmed packets on ports swp17 through swp32 to hosts but DSCP 10 on ports swp1 through swp17 to the uplink (spine):
+The following example uses DSCP 20 on ports swp17 through swp32 to hosts but DSCP 10 on ports swp1 through swp17 to the uplink (spine):
 
 ```
 cumulus@leaf01:~$ nv set system forwarding packet-trim state enabled
@@ -100,12 +98,12 @@ cumulus@leaf01:~$ nv config apply
 The following example configures the uplink (spine01) and remarks all trimmed packets with 10.
 
 ```
-cumulus@switch:~$ nv set system forwarding packet-trim state enabled
-cumulus@switch:~$ nv set interface swp1-3 packet-trim egress-eligibility traffic-class 1
-cumulus@switch:~$ nv set system forwarding packet-trim remark dscp 10
-cumulus@switch:~$ nv set system forwarding packet-trim size 528
-cumulus@switch:~$ nv set system forwarding packet-trim switch-priority 4
-cumulus@switch:~$ nv config apply
+cumulus@spine01:~$ nv set system forwarding packet-trim state enabled
+cumulus@spine01:~$ nv set interface swp1-3 packet-trim egress-eligibility traffic-class 1
+cumulus@spine01:~$ nv set system forwarding packet-trim remark dscp 10
+cumulus@spine01:~$ nv set system forwarding packet-trim size 528
+cumulus@spine01:~$ nv set system forwarding packet-trim switch-priority 4
+cumulus@spine01:~$ nv config apply
 ```
 
 ### Port Level Packet Trimming with Default Profile
@@ -133,7 +131,7 @@ The RoCE `lossy-multi-tc` profile uses the {{<link url="#global-level-packet-tri
 
 To show packet trimming configuration, run the `nv show system forwarding packet-trim` command. The `trimmed-packet-counters` field shows the number of trimmed packets.
 
-The following example shows the `nv show system forwarding packet-trim` command output for packet trimming. 
+The following example shows the `nv show system forwarding packet-trim` command output for global level packet trimming.
 
 ```
 cumulus@switch:~$ nv show system forwarding packet-trim

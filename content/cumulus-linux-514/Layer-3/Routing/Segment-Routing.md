@@ -6,9 +6,9 @@ toc: 3
 ---
 Cumulus Linux supports source based routing with <span class="a-tooltip">[SRv6](## "Segment Routing for IPv6")</span>.
 
-The NICs connected the switch fabric perform SRv6 origination and termination, and the switches act as SRv6-aware nodes. SRv6 allows NICs to directly control the path that traffic takes throughout the fabric by encoding an ordered list of SRv6 segment identifiers (uSIDs) in the packet header.
+The NICs connected to the switch fabric perform SRv6 origination and termination, and the switches act as SRv6-aware nodes. SRv6 allows NICs to directly control the path that traffic takes throughout the fabric by encoding an ordered list of SRv6 segment identifiers (uSIDs) in the packet header.
 
-Cumulus Linux supports uN (End with NEXT-CSID) and uA (End.X with NEXT-CSID) endpoint behaviors, defined in RFC9800.
+Cumulus Linux supports uN (End with NEXT-CSID) and uA (End.X with NEXT-CSID) endpoint behaviors, defined in {{<exlink url="https://datatracker.ietf.org/doc/rfc9800/" text="RFC9800" >}}.
 
 {{%notice note%}}
 Cumulus Linux supports segment routing:
@@ -196,3 +196,8 @@ To clear SRv6 statistics for non segment identifier dropped packets, run the `nv
 ```
 cumulus@switch:~$ nv action clear router segment-routing srv6 stats no-sid-drops 
 ```
+
+## Related Information
+
+- {{<exlink url="https://datatracker.ietf.org/doc/rfc9800/" text="RFC9800" >}}
+- {{<exlink url="https://www.iana.org/assignments/segment-routing/segment-routing.xhtml" text="IANA: Segment Routing" >}}

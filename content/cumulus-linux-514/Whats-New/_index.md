@@ -19,8 +19,7 @@ Cumulus Linux 5.14.0 contains several new features and improvements, and provide
 - {{<link url="Switch-Port-Attributes/#auto-negotiation-and-link-speed" text="Link speed setting and auto-negotiation behavior change">}}
 - {{<link url="Packet-Trimming" text="Packet trimming">}}
 - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#lossy-multi-tc-profile" text="RoCE lossy multi TC profile">}}
-- {{<link url="Segment-Routing" text="Segment Routing">}} and {{<link url="Segment-Routing/#clear-srv6-statistics" text="Clear SRv6 statistics">}}
-- {{<link url="Open-Telemetry-Export/#telemetry-data-format" text="New OTEL statistics: Packet trimming, SRv6, interface, buffer, system information, platform">}}
+- {{<link url="Segment-Routing" text="Segment routing">}} and {{<link url="Segment-Routing/#clear-srv6-statistics" text="Clear SRv6 statistics">}}
 - gNMI:
   - {{<link url="gNMI-Streaming/#metrics" text="New gNMI streaming metrics: Adaptive routing, packet trimming, SRv6, BGP, interface, LLDP, system, and platform">}}
   - {{<link url="gNMI-Streaming/#user-credentials-and-authentication" text="gRPC header based authentication support for gNMI subscription requests">}}
@@ -30,7 +29,7 @@ Cumulus Linux 5.14.0 contains several new features and improvements, and provide
 - {{<link url="DHCP-Relays" text="Configure different DHCP servers per interface for DHCP relay">}}
 - {{<link url="Quick-Start-Guide/#configure-the-domain-name" text="Domain name configuration">}}
 - {{<link url="Equal-Cost-Multipath-Load-Sharing/#enable-adaptive-routing" text="Adaptive routing default profiles profile-1 and profile-2 removed and replaced with one profile that uses the default profile settings for your switch ASIC type">}}
-- {{<link url="NVUE-API/#jwt-based-authentication" text="JWT Based Authentication for REST API">}}
+- {{<link url="NVUE-API/#jwt-based-authentication" text="JWT authentication for REST API">}}
 - {{<link url="TACACS/#tacacs-per-command-authorization" text="You can now bind TACACS per-command authorization to the default VRF">}} (in previous releases, you must specify the egress interface you use in the default VRF)
 - {{< expand "Operational information added to NVUE BGP show commands" >}}
 See {{<link url="Troubleshooting-BGP" text="Troubleshooting BGP">}} for command examples.
@@ -80,7 +79,7 @@ show bgp vrf <vrf-id> ipv6 unicast redistribute json
 {{< /expand >}}
 - NVUE
   - {{<link url="Troubleshooting-EVPN/#show-evpn-vnis-across-all-vrfs" text="Commands to show EVPN information across all VRFs">}}
-  - {{< expand "Changed NVUE Commands and Options" >}}
+  - {{< expand "Changed NVUE commands and options" >}}
 | Cumulus Linux 5.14 | Cumulus Linux 5.13 and Earlier |
 | --------------- |---------------------------------------|
 | BGP community `0:0`| BGP community `internet`|
@@ -91,7 +90,7 @@ show bgp vrf <vrf-id> ipv6 unicast redistribute json
 | `nv set system telemetry ai-ethernet-stats`| `nv set system telemetry adaptive-routing-stats`|
 | `nv set system telemetry stats-group <group-id> ai-ethernet-stats` | `nv set system telemetry stats-group <sg-id> adaptive-routing-stats`|
 {{< /expand >}}
-  - {{< expand "Removed NVUE Commands" >}}
+  - {{< expand "Removed NVUE commands" >}}
 ```
 nv set service dhcp-relay <vrf-id> interface <interface-id>
 nv set service dhcp-relay <vrf-id> server <server-id>
@@ -99,7 +98,7 @@ nv show service dhcp-relay <vrf-id> server
 nv set service dhcp-relay <vrf-id> agent remote-id
 ```
 {{< /expand >}}
-  - {{< expand "New NVUE Commands" >}}
+  - {{< expand "New NVUE commands" >}}
 For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) for Cumulus Linux.
 {{< tabs "TabID108 ">}}
 {{< tab "nv show ">}}

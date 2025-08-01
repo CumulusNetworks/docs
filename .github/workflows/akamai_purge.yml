@@ -9,7 +9,7 @@ jobs:
     steps:
 
       - name: Purge Akamai cache tags (production)
-        uses: akamai/akamai-cache-purge@v1
+        uses: CumulusNetworks/akamai-cache-purge@v1
         with:
           client_token: ${{ secrets.AKAMAI_CLIENT_TOKEN }}
           client_secret: ${{ secrets.AKAMAI_CLIENT_SECRET }}

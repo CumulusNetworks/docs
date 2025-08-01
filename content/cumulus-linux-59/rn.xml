@@ -386,7 +386,7 @@ Please note this Release Note should be updated only for CL5.9 and CL5.9.1 and n
 </tr>
 <tr>
 <td>3879809</td>
-<td>What Just Happened (WJH) does not work on Spectrum-4 switches.</td>
+<td>What Just Happened (WJH) now works on Spectrum-4 switches.</td>
 <td>5.9.0-5.13.1</td>
 <td></td>
 </tr>
@@ -1261,7 +1261,7 @@ Please note this Release Note should be updated only for CL5.9 and CL5.9.1 and n
 </tr>
 <tr>
 <td>3879809</td>
-<td>What Just Happened (WJH) does not work on Spectrum-4 switches.</td>
+<td>What Just Happened (WJH) now works on Spectrum-4 switches.</td>
 <td>5.9.0-5.13.1</td>
 <td></td>
 </tr>
@@ -2578,7 +2578,7 @@ Please note this Release Note should be updated only for CL5.9 and CL5.9.1 and n
 </tr>
 <tr>
 <td>3879809</td>
-<td>What Just Happened (WJH) does not work on Spectrum-4 switches.</td>
+<td>What Just Happened (WJH) now works on Spectrum-4 switches.</td>
 <td>5.9.0-5.13.1</td>
 <td></td>
 </tr>
@@ -3488,7 +3488,7 @@ Please note this Release Note should be updated only for CL5.9 and CL5.9.1 and n
 </tr>
 <tr>
 <td>3879809</td>
-<td>What Just Happened (WJH) does not work on Spectrum-4 switches.</td>
+<td>What Just Happened (WJH) now works on Spectrum-4 switches.</td>
 <td>5.9.0-5.13.1</td>
 <td></td>
 </tr>

@@ -20,7 +20,7 @@ jobs:
           pip3 install requests edgegrid-python
       
       - name: Checkout the repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
           
       - name: Purge Akamai cache tags (production)
         run: python3 utils/akamai_purge.py

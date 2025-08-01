@@ -5,6 +5,7 @@ on: workflow_dispatch
 jobs:
   purge:
     runs-on: ubuntu-latest
+    environment: Prod
     steps:
 
       - name: Purge Akamai cache tags (production)
@@ -14,7 +15,7 @@ jobs:
           client_secret: ${{ secrets.AKAMAI_CLIENT_SECRET }}
           access_token: ${{ secrets.AKAMAI_ACCESS_TOKEN }}
           hostname: ${{ secrets.AKAMAI_HOSTNAME }}
-          ref: 'https://docs.nvidia.com/networking-ethernet-software/'
-          type: 'url'
+          ref: 'docs.nvidia.com-networking-ethernet-software-automation-prod'
+          type: 'tag'
           network: 'production'
           command: 'delete'

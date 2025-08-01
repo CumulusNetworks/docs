@@ -3,241 +3,215 @@ title: Integrate NetQ with Grafana
 author: NVIDIA
 weight: 550
 toc: 3
-bookhidden: true
 ---
-Switches collect statistics about the performance of their interfaces. The NetQ Agent on each switch collects these statistics every 15 seconds and then sends them to your NetQ virtual machine.
 
-NetQ collects statistics for *physical* interfaces; it does not collect statistics for *virtual* interfaces, such as bonds, bridges, and VXLANs.
-
-<!-- NetQ collects these statistics from two data sources: Net-Q and Net-Q-Ethtool. -->
-
-NetQ displays:
-
-- **Transmit** with *tx\_* prefix: bytes, carrier, colls, drop, errs, packets
-- **Receive** with *rx\_* prefix: bytes, drop, errs, frame, multicast, packets
-
-<!-- Net-Q-Ethtool displays:
-
-- **Hardware Transmit** with *hw\_if\_out\_* prefix: octets, ucast_pckts, mcast_pkts, bcast_pkts, discards, errors, q_drops, non_q_drops, q_len, pause_pkt, pfc[0-7]_pkt, wred_drops, q[0-9]_wred_drops
-- **Hardware Receive** with *hw\_if\_in\_* prefix: octets, ucast_pckts, mcast_pkts, bcast_pkts, discards, l3_drops, buffer_drops, acl_drops, errors, dot3_length_errors, dot3_frame_errors, pause_pkt, pfc[0-7]_pkt
-- **Software Transmit** with *soft\_out\_* prefix: errors, drops, tx_fifo_full
-- **Software Receive** with *soft\_in\_* prefix: errors, frame_errors, drops -->
-
-You can use Grafana, an open source analytics and monitoring tool, to view these statistics. The fastest way to achieve this is by installing Grafana on an application server or locally per user, and then installing the NetQ plugin.  
+The NetQ integration with Grafana allows you to create customized dashboards and to visualize metrics across your network devices. To view data in Grafana, first configure security between NetQ and OTel clients, configure OpenTelemetry (OTel) on the devices in your network, then configure the data sources in Grafana. <!--You can create your own dashboards from scratch or import a dashboard template to get started.-->
 
 {{%notice note%}}
-
-If you do not have Grafana installed already, refer to {{<exlink url="https://grafana.com/" text="grafana.com">}} for instructions on installing and configuring the Grafana tool.
-
+The Grafana integration is in beta and supported for on-premises deployments only.
 {{%/notice%}}
 
-<!-- vale off -->
-## Install NetQ Plugin for Grafana
-<!-- vale on -->
+## Requirements and Support
 
-<!-- need to update when Grafana v12 debuts RM4028231-->
-Use the Grafana CLI to install the NetQ plugin. For more detail about this command, refer to the {{<exlink url="https://grafana.com/docs/grafana/latest/administration/cli/" text="Grafana CLI documentation">}}.
+- Switches must have a Spectrum-2 or later ASIC
+- DPUs and ConnectX hosts must be running DOCA Telemetry Service (DTS) version 1.18-1.20
+- Before you get started with the steps below, {{<exlink url="https://grafana.com/docs/grafana/latest/setup-grafana/installation/" text="install Grafana">}} and {{<exlink url="https://grafana.com/docs/grafana/latest/setup-grafana/start-restart-grafana/" text="start the Grafana server">}}
+- NetQ allows you to retrieve data from up to seven days in the past
 
-{{%notice info%}}
+## Secure OpenTelemetry Export
 
-The Grafana plugin comes unsigned. Before you can install it, you need to update the `grafana.ini` file then restart the Grafana service:
+NetQ is configured with OTLP secure mode with TLS by default and expects clients to secure data with a certificate. You can configure NetQ and your client devices to use your own generated CA certificate, NetQ's self-signed certificate, or set the connections to insecure mode as outlined below.
 
-1. Edit the `/etc/grafana/grafana.ini` file and add `allow_loading_unsigned_plugins = netq-dashboard` under `plugins`:
-
-       cumulus@netq-server:~$ sudo nano /etc/grafana/grafana.ini
-       ...
-       allow_loading_unsigned_plugins = netq-dashboard
-       ...
-
-2. If you are using Grafana v11.0 or later, add support for AngularJS to the same file under `security`:
-
-       cumulus@netq-server:~$ sudo nano /etc/grafana/grafana.ini
-       ...
-       angular_support_enabled = true
-       ...
-
-3. Restart the Grafana service:
-
-       cumulus@netq-server:~$ sudo systemctl restart grafana-server.service
-
+{{%notice note%}}
+OpenTelemetry on host DPUs and NICs only supports insecure mode.
 {{%/notice%}}
 
-Then install the plugin:
+### TLS with a CA Certificate
+
+NVIDIA recommends using your own generated CA certificate. To configure a CA certificate, follow the steps below:
+
+1. Copy your certificate files to the NetQ server in the `/mnt/admin` directory. For example, copy the certificate and key to `/mnt/admin/certs/server.crt` and `/mnt/admin/certs/server.key` 
+
+2. Import your certificate on your switches using the `nv action import system security ca-certificate <cert-id> [data <data> | uri <path>]` command. Define the name of the certificate in `<cert-id>` and either provide the raw PEM string of the certificate as `<data>` or provide a path to the certificate file containing the public key as `<path>`.
+
+3. After importing your certificate, set OTLP insecure mode to `disabled` on your switches:
+
+    ```
+   nvidia@switch:~$ nv set system telemetry export otlp grpc insecure disabled
+   nvidia@switch:~$ nv config apply
+   ```
+
+### TLS with NetQ's Self-signed Certificate
+
+To run on the switch in secure mode with NetQ's self-signed certificate:
+
+1. From the NetQ server, display the certificate using `netq show otlp tls-ca-cert dump` command. Copy the certificate from the output.
+
+2. On the switch, import the certificate with the `nv action import system security ca-certificate <cert-id> data <data>` command. Define the name of the certificate in `<cert-id>` and replace `<data>` with the certificate data you generated in the preceding step.
+
+3. Configure the certificate to secure the OTel connection. Replace `ca-certificate` with the name of your certificate; this is the `<cert-id>` from the previous step.
+
+   ```
+   nvidia@switch:~$ nv set system telemetry export otlp grpc cert-id <ca-certificate>
+   nvidia@switch:~$ nv config apply
+   ```
+
+4. Next, disable `insecure` mode and apply the change:
+    
+    ```
+   nvidia@switch:~$ nv set system telemetry export otlp grpc insecure disabled
+   nvidia@switch:~$ nv config apply
+   ```
+5. Run `nv show system telemetry health` to display the destination port and IP address, along with connectivity status.
+
+### Insecure Mode
+
+To use insecure mode and disable TLS:
+
+1. On your NetQ server, run the `netq set otlp security-mode insecure` command.
+
+2. On your switches, configure insecure mode:
+
+    ```
+   nvidia@switch:~$ nv set system telemetry export otlp grpc insecure disabled
+   nvidia@switch:~$ nv config apply
+   ```
+
+## Configure and Enable OpenTelemetry on Devices
+
+Configure your client devices to send OpenTelemetry data to NetQ.
+
+{{<tabs "TabID23" >}}
+
+{{<tab "CL switches">}}
+
+Enable OpenTelemetry for each metric that you want to monitor, as described in the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Monitoring-and-Troubleshooting/Open-Telemetry-Export/" text="Cumulus Linux documentation">}}. Use your NetQ server or cluster’s IP address and port 30008 when configuring the OTLP export destination.
+
+{{<notice info>}}
+NVIDIA recommends setting the <code>sample-interval</code> option to 10 seconds for each metric that allows you to set a sample interval.
+{{</notice>}}
+
+{{</tab>}}
+
+{{<tab "DPUs and NICs" >}}
+
+1. {{<link title="Install NIC and DPU Agents" text="Install DOCA Telemetry Service (DTS)">}} on your ConnectX hosts or DPUs. 
+
+2. Configure the DPU to send OpenTelemetry data by editing the `/opt/mellanox/doca/services/telemetry/config/dts_config.ini` file. Add the following line under the `IPC transport` section. Replace `TS-IP` with the IP address of your telemetry receiver. 
 
 ```
-cumulus@netq-server:~$ grafana-cli --pluginUrl https://netq-grafana-dsrc.s3-us-west-2.amazonaws.com/NetQ-DSplugin-3.3.1-plus.zip plugins install netq-dashboard
-installing netq-dashboard @
-from: https://netq-grafana-dsrc.s3-us-west-2.amazonaws.com/NetQ-DSplugin-3.3.1-plus.zip
-into: /usr/local/var/lib/grafana/plugins
+open-telemetry-receiver=http://<TS-IP>:30009/v1/metrics
+```
+{{%notice note%}}
+It can take up to a minute for the device to restart and apply the changes.
+{{%/notice%}}
 
-✔ Installed netq-dashboard successfully
+Read more about OpenTelemetry and DTS configurations in the {{<exlink url="https://docs.nvidia.com/doca/archive/2-9-3/doca+telemetry+service+guide/index.html#src-3382565608_id-.DOCATelemetryServiceGuidev2.9.1-OpenTelemetryExporter" text="DOCA Telemetry Service guide">}}.
+
+{{</tab>}}
+
+{{</tabs>}}
+
+
+## Configure an External TSDB
+
+OpenTelemetry data is stored in the NetQ TSDB. In addition to NetQ's local storage, you can configure NetQ to also send the collected data to your own external TSDB:
+
+1. If the connection to your external TSDB is secured with TLS, copy the certificate to the NetQ server in the `/mnt/admin/` directory, and reference the full path to the file with the `netq set otlp endpoint-ca-cert tsdb-name <text-tsdb-endpoint> ca-cert <text-path-to-ca-crt>` command.
+
+2. From the NetQ server, add the OTel endpoint of your time-series database (TSDB). Replace `text-tsdb-endpoint` and `text-tsdb-endpoint-url` with the name and IP address of your TSDB, respectively. Include the `export true` option to begin exporting data immediately. Set `security-mode` to `tls` if you configured a certificate to secure the connection, otherwise use `security-mode insecure`.
+
+```
+nvidia@netq-server:~$ netq add otlp endpoint tsdb-name <text-tsdb-endpoint> tsdb-url <text-tsdb-endpoint-url> [export true | export false] [security-mode <text-mode>]
 ```
 
-After installing the plugin, you must restart Grafana, following the steps specific to your implementation.
+3. If you set the `export` option to `true` in the previous step, the TSDB will begin receiving the time-series data for the metrics that you configured on the switch. Use the `netq show otlp endpoint` command to view the TSDB endpoint configuration.
 
-## Set Up the NetQ Data Source
 
-Now that you have the plugin installed, you need to configure access to the NetQ data source.
+## Configure Data Sources in Grafana
 
-1. Open the Grafana user interface and log in. Navigate to the Home Dashboard:
+1. Generate and copy an authentication token using the NetQ CLI. You can adjust time at which the token will expire with the `expiry` option. For example, the following command generates a token that expires after 40 days. If you do not set an `expiry` option, the token expires after 5 days. The maximum number of days allowed is 180.
 
-    {{<figure src="/images/netq/grafana-home-page-230.png" width="700" alt="Grafana Home Dashboard">}}
+```
+nvidia@netq-server:~$ netq show vm-token expiry 40
+```
 
-2. Click **Add data source** or {{<img src="/images/netq/grafana-config-icon.png" width="24" height="24">}} > *Data Sources*.
+2. Navigate to your Grafana dashboard. From the menu, select **Connections** and then **Data sources**. Select **Add new data source** and add the Prometheus TSDB:
 
-<!-- 4. Enter **Net-Q** or **Net-Q-Ethtool** in the search box. Alternately, scroll down to the **Other** category, and select one of these sources from there.
+{{<figure src="/images/netq/grafana-prom-415.png" alt="" width="1200">}}
 
-    {{<figure src="/images/netq/grafana-add-data-src-320.png" width="500">}} -->
+3. Continue through the steps to configure the data source. In the *Connection* field, enter the IP address of your NetQ server followed by `/api/netq/vm/`, for example `https://10.255.255.255/api/netq/vm/`. In a cluster deployment, enter the virtual IP address in this field (followed by `/api/netq/vm/`). 
 
-3. Enter **Net-Q** in the search box. Alternately, scroll down to the **Other** category, and select it from there.
+<!--insert pic-->
 
-    {{<figure src="/images/netq/grafana-add-data-src-330.png" alt="" width="500">}}
+4. On the same page, navigate to the *Authentication* section. In the *HTTP headers* section, select **Add header**. In the *Header* field, enter **Authorization**. In the *Value* field, enter the token that you generated in step one of this section.
 
-<!-- 5. Enter *Net-Q* or *Net-Q-Ethtool* into the **Name** field. -->
+{{<figure src="/images/netq/grafana-header-415.png" alt="" width="1000">}}
 
-4. Enter *Net-Q* into the **Name** field.
+5. Select **Save & test**. If the operation was successful, you will begin to see metrics in your Grafana dashboard. 
 
-5. Enter the URL used to access the database:
-    - Cloud: *https://plugin.prod.netq.nvidia.com*
-    - On-premises: *http://\<hostname-or-ipaddr-of-netq-appl-or-vm\>/plugin*
-    - Cumulus in the Cloud (CITC): *plugin.air.netq.nvidia.com*
+<!--
+## Import a Dashboard Template
 
-<!-- 7. Select which statistics you want to view from the **Module** dropdown; either *procdevstats* or *ethtool*. -->
+To import a preconfigured dashboard into your Grafana instance, following the steps in the {{<exlink url="https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/import-dashboards/" text="Grafana documentation">}}. You can download the dashboard JSON files from the NetQ Grafana Dashboard Github repo.
 
-6. From the **Module** dropdown, select *procdevstats*.
+-->
 
-7. Enter your credentials (the ones used to log in).
+## Grafana Best Practices
 
-8. For NetQ cloud deployments only, if you have more than one premises configured, you can select the premises you want to view, as follows:
+If data retrieval with Grafana is slow, you might need to adjust your dashboard settings. Fabric-wide queries on large networks (over 1000 switches) can generate millions of data points, which can significantly degrade performance. You can improve performance by optimizing queries, reducing data volume, and simplifying panel rendering.
 
-    - If you leave the **Premises** field blank, the first premises name is selected by default.
-    - If you enter a premises name, that premises is selected for viewing.
-    - If multiple premises are configured with the same name, then the first listed premises is displayed.
-<div style="margin-top: 20px;"></div>
+Avoid plotting all time-series data at once. To visualize the data in different ways:
+   - {{<exlink url="https://grafana.com/docs/grafana/latest/fundamentals/timeseries/#aggregating-time-series" text="Aggregate time-series data">}}
+   - {{<exlink url="https://grafana.com/docs/grafana/latest/fundamentals/timeseries/#aggregating-time-series" text="Add labels to your time-series data">}}
+   - {{<exlink url="https://grafana.com/docs/grafana/latest/dashboards/variables/add-template-variables/#add-an-interval-variable" text="Add interval variables">}}
+   - {{<exlink url="https://grafana.com/docs/grafana/latest/dashboards/variables/add-template-variables/#add-an-interval-variable" text="Use aggregation operators">}} such as `count` and `topk`
 
-9. Select **Save & Test**.
+{{<notice tip>}}
+If Grafana displays "No Data", verify that all VMs in your cluster are operational. You can check the node status using the <code>kubectl get nodes</code> command. A node will show as <code>NotReady</code> if it is down. When the VM is restored, data collection will resume and will be displayed within 20 minutes of restoration.
+{{</notice>}}
 
-## Create Your NetQ Dashboard
+## Retrieve Metrics with the NetQ API
 
-After you configure the data source, you can create a customizable dashboard with transmit and receive statistics.
+If you want to view or export the time-series database data without using Grafana, you can use curl commands to directly query the NetQ TSDB. These commands typically complete in fewer than 30 seconds, whereas Grafana can take longer to process and display data.
 
-### Create a Dashboard
+1. Generate an access token. Replace `<username>` and `<password>` with your NetQ username and password. Copy the access token generated by this command. You will use it in the next step. 
+```
+curl 'https://10.237.212.61/api/netq/auth/v1/login' -H 'content-type: application/json' --data-raw '{"username":"<username>","password":"<password>"}' --insecure 
+```
+ 2. Generate a JSON Web Token (JWT). Replace `<access_token>` with the token generated from the previous step. Copy the resulting token generated by this command. You will use it in the next step. 
+```
+curl -k -X GET "https://10.237.212.61/api/netq/auth/v1/vm-access-token?expiryDays=10" -H "Authorization: Bearer <access_token>" 
+```
+ 
+3. Fetch a complete list of metrics. Replace `<vm-jwt>` with the token generated from the previous step. You can use this list to create queries based on metrics you're interested in.
 
-1. Click {{<img src="/images/netq/grafana-create-dashbd-icon.png" width="24" height="24">}} to open a blank dashboard.
+```
+export token=<vm-jwt> 
+curl -k "https://10.237.212.61/api/netq/vm/api/v1/label/__name__/values" -H "Authorization: Bearer $token" 
+```
+ 
+{{< expand "Examples queries" >}}
 
-2. Click {{<img src="/images/netq/grafana-config-icon.png" width="24" height="24">}} (Dashboard Settings) at the top of the dashboard.
+The following example uses the VM query API to retrieve data related to `rx_errors`.
 
-### Add Variables
+```
+export token=<vm-jwt> 
+curl -k "https://10.237.212.61/api/netq/vm/api/v1/query" -H "Authorization: Bearer $token" --get --data-urlencode 'query=rx_errors' 
+```
+ 
+This example is similar to the one above, but specifies a time range (`rx_errors` from the past 15 minutes):
 
-1. Click **Variables**.
+```
+export token=<vm-jwt>  
+curl -k "https://10.237.212.61/api/netq/vm/api/v1/query_range" -H "Authorization: Bearer $token" --get --data-urlencode 'query= rx_errors' --data-urlencode "start=$(date -u -d '15 minutes ago' +%Y-%m-%dT%H:%M:%SZ)" --data-urlencode "end=$(date -u +%Y-%m-%dT%H:%M:%SZ)" --data-urlencode 'step=60s' 
+```
+{{< /expand >}}
 
-    {{<figure src="/images/netq/grafana-add-hostname-variable-331.png" width="600">}}
+## Additional Commands
 
-2. In the **Name** field, enter *hostname*.
+- {{<link title="modify/#netq modify otlp endpoint" text="netq modify otlp endpoint">}}
+- {{<link title="show/#netq show otlp" text="netq show otlp">}} commands
 
-3. In the **Label** field, enter *hostname*.
 
-<!-- 4. Select *Net-Q* or *Net-Q-Ethtool* from the **Data source** list. -->
 
-4. From the **Data source** list, select *Net-Q*.
-
-5. From the **Refresh** list, select *On Dashboard Load*.
-
-6. In the **Query** field, enter *hostname*.
-
-7. Click **Add**.
-
-    You should see a preview at the bottom of the hostname values.
-
-8. Click **Variables** to add another variable for the interface name.
-
-    {{<figure src="/images/netq/grafana-add-ifname-variable-331.png" alt="" width="600">}}
-
-9. In the **Name** field, enter *ifname*.
-
-10. In the **Label** field, enter *ifname*.
-
-<!-- 11. Select *Net-Q* or *Net-Q-Ethtool* from the **Data source** list. -->
-
-11. From the **Data source** list, select *Net-Q*.
-
-12. From the **Refresh** list, select *On Dashboard Load*.
-
-13. In the **Query** field, enter *ifname*.
-
-14. Click **Add**.
-
-    You should see a preview at the bottom of the ifname values.
-
-15. Click **Variables** to add a variable for metrics.
-
-    {{<figure src="/images/netq/grafana-add-metrics-variable-331.png" alt="" width="600">}}
-
-16. In the **Name** field, enter *metrics*.
-
-17. In the **Label** field, enter *metrics*.
-
-<!-- 18. Select *Net-Q* or *Net-Q-Ethtool* from the **Data source** list. -->
-
-18. From the **Data source** list, select *Net-Q*.
-
-19. From the **Refresh** list, select *On Dashboard Load*.
-
-20. In the **Query** field, enter *metrics*.
-
-21. Click **Add**.
-
-    You should see a preview at the bottom of the metrics values.
-
-### Add Charts
-
-1. Now that the variables are defined, click {{<img src="/images/netq/grafana-back-button-230.png" width="24" height="24">}} to return to the new dashboard.
-
-2. Click **Add Query**.
-
-    {{<figure src="/images/netq/grafana-create-chart-230.png" alt="" width="600">}}
-
-<!-- 3. Select *Net-Q* or *Net-Q-Ethtool* from the **Query** source list. -->
-
-3. From the **Query** source list, select *Net-Q*.
-
-4. Select the interface statistic you want to view from the **Metric** list.
-
-5. Click the **General** icon.
-
-    {{<figure src="/images/netq/grafana-create-chart-general-settings-230.png" alt="" width="600">}}
-
-6. From the **Repeat** list, select *hostname*.
-
-7. Set any other parameters around how to display the data.
-
-8. Return to the dashboard.
-
-9. Select one or more hostnames from the **hostname** list.
-
-    {{<figure src="/images/netq/grafana-create-chart-select-hostname-331.png" alt="" width="600">}}
-
-10. Select one or more interface names from the **ifname** list.
-
-    {{<figure src="/images/netq/grafana-create-chart-select-ifname-331.png" alt="" width="600">}}
-
-11. Select one or more metrics to display for these hostnames and interfaces from the **metrics** list.
-
-    {{<figure src="/images/netq/grafana-create-chart-select-metrics-331.png" width="600">}}
-
-The following example shows a dashboard with two hostnames, two interfaces, and one metric selected. The more values you select from the variable options, the more charts appear on your dashboard.
-
-{{<figure src="/images/netq/grafana-netq-dashboard-331.png" alt="Grafana dashboard displaying metrics" width="600">}}
-
-## Analyze the Data
-
-After you have configured the dashboard, you can start analyzing the data. You can explore the data by modifying the viewing parameters in one of several ways using the dashboard tool set:
-
-{{<figure src="/images/netq/grafana-dashboard-tools-230.png" alt="" width="600">}}
-
-- Select a different time period for the data by clicking the forward or back arrows. The default time range is dependent on the width of your browser window.
-- Zoom in on the dashboard by clicking the magnifying glass.
-- Manually refresh the dashboard data, or set an automatic refresh rate for the dashboard from the down arrow.
-- Add additional panels.
-- Click any chart title to edit or remove it from the dashboard.
-- Rename the dashboard by clicking the cog wheel and entering the new name.

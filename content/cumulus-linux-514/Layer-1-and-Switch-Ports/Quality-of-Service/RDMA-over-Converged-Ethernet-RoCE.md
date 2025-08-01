@@ -62,17 +62,6 @@ cumulus@switch:~$ nv set qos roce mode lossy
 cumulus@switch:~$ nv config apply
 ```
 
-## MRC QoS Profile
-
-The MRC QoS profile `lossy-multi-tc` enables packet trimming:
-
-```
-cumulus@switch:~$ nv set qos roce mode lossy-multi-tc
-cumulus@switch:~$ nv config apply
-```
-
-For more information about MRC, refer to {{<link url="Quality-of-Service/#mrc-packet-trimming" text="MRC Packet Trimming">}}.
-
 ## Single Shared Buffer Pool
 
 By default, Cumulus Linux separates lossy and lossless traffic into different dedicated buffer pools on both ingress and egress. You can configure the switch to combine lossy and lossless traffic on the same ingress buffer pool for better load absorption of lossless traffic.
@@ -85,6 +74,44 @@ cumulus@switch:~$ nv config apply
 ```
 
 To disable single shared buffer pool mode and use the default mode (lossless), run the `nv unset qos roce mode lossless-single-ipool` command.
+
+## Lossy Multi TC Profile
+
+The lossy multi TC profile provides QoS settings for lossy RoCE traffic and enables {{<link url="Packet-Trimming" text="Packet trimming">}} with the {{<link url="Packet-Trimming/#global-level-packet-trimming-with-default-profile" text="default packet trimming profile">}} settings.
+
+To enable the lossy multi TC profile with packet trimming at the global level, where all trimmed packets have the same DSCP value:
+
+```
+cumulus@switch:~$ nv set qos roce mode lossy-multi-tc
+cumulus@switch:~$ nv config apply
+```
+
+To enable the lossy multi TC profile with packet trimming at the port level, where the switch remarks the DSCP value of the trimmed packets based on the port level switch priority to DSCP mapping:
+- Set the lossy-multi-tc QoS profile.
+- Set DSCP remark to be at the port level.
+- Apply the port profiles. The default packet trimming profile uses the following port profiles:
+  - `lossy-multi-tc-host-group` sets the DSCP remark value to 21 for switch priority 4 on the downlink to hosts.
+  - `lossy-multi-tc-network-group` sets the DSCP remark value to 11 for switch priority 4 on the uplink to the network.
+
+```
+cumulus@leaf01:~$ nv set qos roce mode lossy-multi-tc
+cumulus@leaf01:~$ nv set system forwarding packet-trim remark dscp port-level
+cumulus@leaf01:~$ nv set interface swp1-16 qos remark profile lossy-multi-tc-host-group
+cumulus@leaf01:~$ nv set interface swp17-32 qos remark profile lossy-multi-tc-network-group
+cumulus@leaf01:~$ nv config apply
+```
+
+To show the port profiles created when you enabled the RoCE `lossy-multi-tc` profile, run the `nv show qos remark` command:
+
+```
+cumulus@switch:~$ nv show qos remark
+Profile                       Rewrite  Summary                              
+----------------------------  -------  -------------------------------------
+lossy-multi-tc-host-group              SP->PCP/DSCP mapping configuration: 4
+lossy-multi-tc-network-group           SP->PCP/DSCP mapping configuration: 4
+```
+
+To disable the lossy multi TC profile, run the `nv unset qos roce mode lossy-multi-tc` command.
 
 ## Remove RoCE Configuration
 
@@ -99,7 +126,9 @@ cumulus@switch:~$ nv config apply
 
 You can verify RoCE configuration with NVUE `nv show` commands.
 
-To show detailed information about the configured buffers, utilization and DSCP markings, run the `nv show qos roce` command:
+To show detailed information about the configured buffers, utilization and DSCP markings, run the `nv show qos roce` command.
+
+The following example shows the settings for the single shared buffer pool mode profile:
 
 ```
 cumulus@switch:mgmt:~$ nv show qos roce
@@ -161,10 +190,74 @@ No Data
 ```
 
 {{%notice note%}}
-In the `nv show qos roce` command output, `inf` in the `size` column represents infinite.
+- The `nv show qos roce` command shows the congestion control minimum threshold value as 146.48 KB; however, the `nv show interface <interface-id> qos congestion-control` interface-level command shows the congestion control minimum threshold value as 156 KB. This mismatch is expected due to how the Spectrum-4 ASIC handles ECN threshold programming. On the Spectrum-4 switch, the system-level ECN minimum threshold value intended for programming is 150,000 bytes. However, the interface-level command reflects the actual hardware-programmed value, which is 159,744 bytes (156 KB).
+- In the `nv show qos roce` command output, `inf` in the `size` column represents infinite.
 {{%/notice%}}
 
-To show detailed RoCE information about a single interface, run the `nv show interface <interface> qos roce status` command.
+The following example shows the settings for the lossy multi TC profile. When you enable `lossy-multi-tc` mode, the switch enables {{<link url="Packet-Trimming" text="Packet trimming">}} with the `packet-trim-default` configuration.
+
+```
+cumulus@switch:~$ nv show qos roce
+                    operational     applied
+------------------  --------------  --------------
+enable              on              on
+mode                lossy-multi-tc  lossy-multi-tc
+pfc
+  pfc-priority      -
+congestion-control
+  congestion-mode   ECN
+  enabled-tc        1,2,3
+  min-threshold     163.00 KB
+  max-threshold     234.00 KB
+  probability       5
+trust
+  trust-mode        pcp,dscp
+
+RoCE PCP/DSCP->SP mapping configurations
+===========================================
+       pcp  dscp                                                                                       switch-prio
+    -  ---  -----------------------------------------------------------------------------------------  -----------
+    0  0    0,7,8,9,10,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63            0
+    1  1    1,2                                                                                        1
+    2  2    3,4                                                                                        2
+    3  3    5,6                                                                                        3
+    4  4    11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40  4
+    5  5    -                                                                                          5
+    6  6    -                                                                                          6
+    7  7    -                                                                                          7
+
+RoCE SP->TC mapping and ETS configurations
+=============================================
+       switch-prio  traffic-class  scheduler-weight
+    -  -----------  -------------  ----------------
+    0  0            0              DWRR-4%
+    1  1            1              DWRR-8%
+    2  2            2              DWRR-18%
+    3  3            3              DWRR-22%
+    4  4            4              DWRR-22%
+    5  5            5              DWRR-22%
+    6  6            6              DWRR-4%
+    7  7            7              DWRR-0%
+
+RoCE pool config
+===================
+       name                   mode     size  switch-priorities  traffic-class
+    -  ---------------------  -------  ----  -----------------  ---------------
+    0  lossy-default-ingress  Dynamic  100%  0,1,2,3,4,5,6,7    -
+    2  lossy-default-egress   Dynamic  100%  -                  0,1,2,3,4,5,6,7
+
+Exception List
+=================
+No Data
+
+Extended Features
+====================
+    Feature      Status
+    -----------  -------
+    packet-trim  enabled
+```
+
+To show detailed RoCE information about a single interface, run the `nv show interface <interface-id> qos roce status` command. To show detailed RoCE information for all interfaces, run the `nv show interface qos-roce-status` command.
 
 ```
 cumulus@switch:mgmt:~$ nv show interface swp16 qos roce status
@@ -187,24 +280,21 @@ pfc
 trust
   trust-mode        pcp,dscp                Trust Setting on the port for packet classification
 mode                lossless                Roce Mode
- 
- 
+
 RoCE PCP/DSCP->SP mapping configurations
 ===========================================
           pcp  dscp  switch-prio
     ----  ---  ----  -----------
     cnp   6    48    6
     roce  3    26    3
- 
- 
+
 RoCE SP->TC mapping and ETS configurations
 =============================================
           switch-prio  traffic-class  scheduler-weight
     ----  -----------  -------------  ----------------
     cnp   6            6              strict priority
     roce  3            3              dwrr-50%
- 
- 
+
 RoCE Pool Status
 ===================
         name                   mode     pool-id  switch-priorities  traffic-class  size      current-usage  max-usage
@@ -215,7 +305,7 @@ RoCE Pool Status
     3   roce-reserved-egress   DYNAMIC  14       -                  3              inf       7.29 MB        13.47 MB
 ```
 
-To show detailed information about current buffer utilization as well as historic RoCE byte and packet counts, run the `nv show interface <interface> qos roce counters` command:
+To show detailed information about current buffer utilization as well as historic RoCE byte and packet counts for an interface, run the `nv show interface <interface-id> qos roce counters` command. To show the counters for all interfaces, run the `nv show interface qos-roce-counters` command.
 
 ```
 cumulus@switch:mgmt:~$ nv show interface swp16 qos roce counters
@@ -265,7 +355,41 @@ tx-stats
     unicast-no-buffer-discard  663060754115           Tx buffer discards for RoCE traffic
 ```
 
-To reset the counters in the `nv show interface <interface> qos roce` command output, run the `nv action clear interface <interface> qos roce counters` command.
+To show the RoCE pools status for an interface, run the `nv show interface <interface> qos roce status pool-map` command. To show the RoCE pools status for all interfaces, run the `nv show interface qos-roce-status-pool-map` command.
+
+```
+cumulus@switch:mgmt:~$ nv show interface qos-roce-status-pool-map
+-------------------------------------
+Interface: swp1
+-------------------------------------
+    name                     mode      pool-id  switch-priorities  traffic-class     size     current-usage  max-usage
+-   ---------------------    --------  -------  -----------------  -------------     -------  -------------  ---------
+0   lossy-default-ingress    DYNAMIC    2         0,1,2,4,5,6,7       -              14.02 MB  0              0         
+1   roce-reserved-ingress    DYNAMIC    3         3                   -              14.02 MB  0              0         
+2   lossy-default-egress     DYNAMIC    13        -                   0,6            14.02 MB  0              0         
+3   roce-reserved-egress     DYNAMIC    14        -                   3              inf       0              0         
+-------------------------------------
+Interface: swp2
+-------------------------------------
+    name                     mode      pool-id  switch-priorities  traffic-class     size     current-usage  max-usage
+-   ---------------------    --------  -------  -----------------  -------------     -------  -------------  ---------
+0   lossy-default-ingress    DYNAMIC    2         0,1,2,4,5,6,7       -              14.02 MB  0              0         
+1   roce-reserved-ingress    DYNAMIC    3         3                   -              14.02 MB  0              0         
+2   lossy-default-egress     DYNAMIC    13        -                   0,6            14.02 MB  0              0         
+3   roce-reserved-egress     DYNAMIC    14        -                   3              inf       0              0         
+-------------------------------------
+Interface: swp3
+-------------------------------------
+    name                     mode      pool-id  switch-priorities  traffic-class     size     current-usage  max-usage
+-   ---------------------    --------  -------  -----------------  -------------     -------  -------------  ---------
+0   lossy-default-ingress    DYNAMIC    2         0,1,2,4,5,6,7       -              14.02 MB  0              0         
+1   roce-reserved-ingress    DYNAMIC    3         3                   -              14.02 MB  0              0         
+2   lossy-default-egress     DYNAMIC    13        -                   0,6            14.02 MB  0              0         
+3   roce-reserved-egress     DYNAMIC    14        -                   3              inf       0              0         
+...
+```
+
+To reset the counters in the `nv show interface <interface-id> qos roce` command output, run the `nv action clear interface <interface-id> qos roce counters` command.
 
 ## Change RoCE Configuration
 

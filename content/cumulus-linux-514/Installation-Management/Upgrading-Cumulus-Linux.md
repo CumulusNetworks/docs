@@ -334,7 +334,7 @@ To upgrade the switch with package upgrade:
    cumulus@switch:~$ nv action upgrade system packages to latest use-vrf default dry-run
    ```
 
-   By default, the NVUE `nv action upgrade system packages` command runs in the management VRF. To run the command in a non-management VRF such as `default`, you must use the `use-vrf <vrf>` option.
+   By default, the NVUE `nv action upgrade system packages` command runs in the management VRF. To run the command in a non-management VRF such as `default`, you must use the `use-vrf <vrf-id>` option.
 
 3. Upgrade all the packages to the latest distribution.
 
@@ -342,7 +342,7 @@ To upgrade the switch with package upgrade:
     cumulus@switch:~$ nv action upgrade system packages to latest use-vrf default
     ```
 
-    By default, the NVUE `nv action upgrade system packages` command runs in the management VRF. To run the command in a non-management VRF such as `default`, you must use the `use-vrf <vrf>` option.
+    By default, the NVUE `nv action upgrade system packages` command runs in the management VRF. To run the command in a non-management VRF such as `default`, you must use the `use-vrf <vrf-id>` option.
 
     If you see errors for expired GPG keys that prevent you from upgrading packages, follow the steps in [Upgrading Expired GPG Keys]({{<ref "/knowledge-base/Installing-and-Upgrading/Upgrading/Update-Expired-GPG-Keys" >}}).
 
@@ -584,7 +584,7 @@ NVIDIA has not tested running different versions of Cumulus Linux on MLAG peer s
 
 ## Downgrade a Secure Boot Switch
 
-The SN3700C-S, SN5400, and SN5600 secure boot switch running Cumulus Linux 5.14.0 boots with shim 15.8 that adds entries to the SBAT revocations to prevent the switch from booting shim 15.7 or earlier (in Cumulus Linux 5.10 and earlier), which has security vulnerabilities.
+The SN3700C-S, SN5400, and SN5600 secure boot switch running Cumulus Linux 5.14.0 boots with shim 15.8 that adds entries to the SBAT revocations to prevent the switch from booting shim 15.7 or earlier (in Cumulus Linux 5.10 or Cumulus Linux 5.9.2 and earlier), which has security vulnerabilities.
 
 After downgrading the switch from Cumulus Linux 5.14.0 with ONIE, follow the steps below to disable, then enable secure boot **before** the switch boots.
 

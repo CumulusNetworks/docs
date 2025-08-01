@@ -13,7 +13,7 @@ NVIDIA recommends using the `l1-show` command to monitor Ethernet data; refer to
 
 ## Monitor Interface Status
 
-To check the status of an interface, run the `ethtool <interface>` command:
+To check the status of an interface, run the `ethtool <interface-id>` command:
 
 ```
 cumulus@switch:~$ ethtool swp1
@@ -38,10 +38,10 @@ Link detected: yes
 ```
 
 {{%notice note%}}
-The switch hardware includes the {{<link url="Switch-Port-Attributes" text="active port settings">}}. The output of `ethtool <interface>` shows the port settings in the kernel. The `switchd` process keeps the hardware and kernel in sync for the important port settings (speed, auto-negotiation, and link detected). However, some fields in `ethtool`, such as Supported Link Modes and Advertised Link Modes, do not update based on the actual module in the port and might show incorrect or misleading results.
+The switch hardware includes the {{<link url="Switch-Port-Attributes" text="active port settings">}}. The output of `ethtool <interface-id>` shows the port settings in the kernel. The `switchd` process keeps the hardware and kernel in sync for the important port settings (speed, auto-negotiation, and link detected). However, some fields in `ethtool`, such as Supported Link Modes and Advertised Link Modes, do not update based on the actual module in the port and might show incorrect or misleading results.
 {{%/notice%}}
 
-To query interface statistics, run the `ethtool -S <interface>` command:
+To query interface statistics, run the `ethtool -S <interface-id>` command:
 
 ```
 cumulus@switch:~$ ethtool -S swp1

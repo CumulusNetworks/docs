@@ -120,7 +120,7 @@ When you enable multihoming on the Spectrum A1 switch with the `nv set evpn mult
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Set the `evpn.multihoming.enable` variable in the `/etc/cumulus/switchd.conf` file to `TRUE`. Cumulus Linux disables this variable by default.
+On a switch with the Spectrum A1 ASIC, set the `evpn.multihoming.enable` variable in the `/etc/cumulus/switchd.conf` file to `TRUE`. On a switch with Spectrum-2 and later, no action is required.
 
 ```
 cumulus@leaf01:~$ sudo nano /etc/cumulus/switchd.conf
@@ -129,9 +129,7 @@ evpn.multihoming.enable = TRUE
 ...
 ```
 
-{{%notice note%}}
-On the Spectrum A1 switch, you must restart `switchd` with the `sudo systemctl restart switchd.service` command after you enable multihoming.
-{{%/notice%}}
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
 
 {{< /tab >}}
 {{< /tabs >}}

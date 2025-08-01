@@ -1,7 +1,7 @@
 ---
 title: Lifecycle Management
 author: NVIDIA
-weight: 900
+weight: 625
 toc: 3
 ---
 
@@ -13,12 +13,6 @@ Using the NetQ UI or CLI, lifecycle management (LCM) allows NetQ *admins* to:
 - Create NetQ agent {{<link title="Upgrade NetQ Agent/#agent-configuration-profiles" text="configuration profiles">}}
 - {{<link title="Credentials and Profiles" text="Configure switch access credentials and profiles">}} (required for installations and upgrades)
 - View a history of upgrade attempts
-
-{{%notice note%}}
-
-Lifecycle management is enabled for on-premises deployments and disabled for cloud deployments by default. Contact your NVIDIA sales representative or submit a support ticket to activate LCM on cloud deployments.
-
-{{%/notice%}}
 
 ## Access Lifecycle Management in the UI
 

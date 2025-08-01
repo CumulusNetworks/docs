@@ -1700,18 +1700,6 @@ When you configure break out ports in the `/etc/cumulus/ports.conf` file, you mu
 - You configure or configure then remove the port speed in the `/etc/cumulus/ports.conf` file and you also set or remove the speed on the same physical port or breakouts of that port in the `/etc/network/interfaces` file after the last time you restarted `switchd`.
 - You break out a switch port or remove a break out port, and you set the port speed in both the `/etc/cumulus/ports.conf` file and the `/etc/network/interfaces` file.-->
 
-<!-- vale off -->
-<!-- Vale issue #253 -->
-### 1000BASE-T SFP Modules Supported Only on Certain 25G Platforms
-<!-- vale on -->
-The following  25G switches support 1000BASE-T SFP modules:
-
-- NVIDIA SN2410
-- NVIDIA SN2010
-<!-- - NVIDIA SN3420-->
-
-100G or faster switches do not support 1000BASE-T SFP modules.
-
 ### NVIDIA SN2100 Switch and eth0 Link Speed
 
 After rebooting the NVIDIA SN2100 switch, eth0 always has a speed of 100MB per second. If you bring the interface down and then back up again, the interface negotiates 1000MB. This only occurs the first time the interface comes up.

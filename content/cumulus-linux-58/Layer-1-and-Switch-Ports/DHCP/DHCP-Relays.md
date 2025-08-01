@@ -12,13 +12,12 @@ This topic describes how to configure DHCP relays for IPv4 and IPv6 using the fo
 
 ## Basic Configuration
 
-To set up DHCP relay, you need to provide the IP address of the DHCP server and the interfaces participating in DHCP relay (facing the server and facing the client). In an MLAG configuration, you must also specify the peerlink interface in case the local uplink interfaces fail.
+To set up DHCP relay, you need to provide the IP address of the DHCP server and the interfaces participating in DHCP relay (facing the server and facing the client).
 
 In the example commands below:
 - The DHCP server IPv4 address is 172.16.1.102
 - The DHCP server IPv6 address is 2001:db8:100::2
 - vlan10 is the SVI for VLAN 10 and the uplinks are swp51 and swp52
-- `peerlink.4094` is the MLAG interface
 
 {{< tabs "TabID21 ">}}
 {{< tab "NVUE Commands ">}}
@@ -30,7 +29,6 @@ In the example commands below:
 cumulus@leaf01:~$ nv set service dhcp-relay default interface swp51
 cumulus@leaf01:~$ nv set service dhcp-relay default interface swp52
 cumulus@leaf01:~$ nv set service dhcp-relay default interface vlan10
-cumulus@leaf01:~$ nv set service dhcp-relay default interface peerlink.4094
 cumulus@leaf01:~$ nv set service dhcp-relay default server 172.16.1.102
 cumulus@leaf01:~$ nv config apply
 ```
@@ -42,7 +40,6 @@ cumulus@leaf01:~$ nv config apply
 cumulus@leaf01:~$ nv set service dhcp-relay6 default interface upstream swp51 server-address 2001:db8:100::2
 cumulus@leaf01:~$ nv set service dhcp-relay6 default interface upstream swp52 server-address 2001:db8:100::2
 cumulus@leaf01:~$ nv set service dhcp-relay6 default interface downstream vlan10
-cumulus@leaf01:~$ nv set service dhcp-relay6 default interface downstream peerlink.4094
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -60,7 +57,7 @@ cumulus@leaf01:~$ nv config apply
    ```
    cumulus@leaf01:~$ sudo nano /etc/default/isc-dhcp-relay-default
    SERVERS="172.16.1.102"
-   INTF_CMD="-i vlan10 -i swp51 -i swp52 -i peerlink.4094"
+   INTF_CMD="-i vlan10 -i swp51 -i swp52"
    OPTIONS=""
    ```
 
@@ -79,7 +76,7 @@ cumulus@leaf01:~$ nv config apply
    ```
    cumulus@leaf01:$ sudo nano /etc/default/isc-dhcp-relay6-default
    SERVERS=" -u 2001:db8:100::2%swp51 -u 2001:db8:100::2%swp52"
-   INTF_CMD="-l vlan10 -l peerlink.4094"
+   INTF_CMD="-l vlan10"
    ```
 
 2. Enable, then restart the `dhcrelay6` service so that the configuration persists between reboots:
@@ -120,15 +117,15 @@ To configure DHCP Agent Information Option 82:
 The following example enables Option 82 and enables circuit ID to inject the *physical switch port* on which the relayed DHCP discover packet arrives instead of the SVI:
 
 ```
-cumulus@leaf01:~$ nv set service dhcp-relay <vrf-id> agent enable on
-cumulus@leaf01:~$ nv set service dhcp-relay <vrf-id> agent use-pif-circuit-id enable on
+cumulus@leaf01:~$ nv set service dhcp-relay default agent enable on
+cumulus@leaf01:~$ nv set service dhcp-relay default agent use-pif-circuit-id enable on
 cumulus@leaf01:~$ nv config apply
 ```
 
 The following example enables Option 82 and sets the remote ID to be MAC address 44:38:39:BE:EF:AA. The remote ID is a custom string (up to 255 characters in length).
 
 ```
-cumulus@leaf01:~$ nv set service dhcp-relay <vrf-id> agent enable on
+cumulus@leaf01:~$ nv set service dhcp-relay default agent enable on
 cumulus@leaf01:~$ nv set service dhcp-relay default agent remote-id 44:38:39:BE:EF:AA
 cumulus@leaf01:~$ nv config apply
 ```
@@ -269,11 +266,17 @@ cumulus@leaf01:~$ nv set service dhcp-relay default gateway-interface swp2 addre
 
 In a multi-tenant EVPN symmetric routing environment with MLAG, you must enable RFC 3527 support. You can specify an interface, such as the loopback or VRF interface for the gateway address. The interface must be reachable in the tenant VRF that you configure for DHCP relay and must have a unique IPv4 address. For EVPN symmetric routing with an anycast gateway that reuses the same SVI IP address on multiple leaf switches, you must assign a unique IP address for the VRF interface and include the layer 3 VNI for this VRF in the DHCP relay configuration.
 
+{{< img src = "/images/cumulus-linux/dhcp-relay-topology-mlag.png" >}}
+
 The following example:
 - Configures VRF RED with IPv4 address 20.20.20.1/32.
-- Configures the SVIs vlan10 and vlan20, and the layer 3 VNI VLAN interface for VRF RED vlan4024_l3 to be part of the `INTF_CMD` list to service DHCP packets.
+- Configures the SVIs vlan10 and vlan20, and the layer 3 VNI VLAN interface for VRF RED vlan4024_l3 to be part of the `INTF_CMD` list to service DHCP packets. To obtain the layer 3 VNI VLAN interface, run the `nv show vrf <vrf-name> evpn` command.
 - Sets the DHCP server to 10.1.10.104.
 - Configures VRF RED to advertise connected routes as type-5 so that the VRF RED loopback IPv4 address is reachable.
+
+{{%notice note%}}
+You do not need to add physical uplinks in the relay configuration. Only layer 3 VNI VLAN interface configuration is required for uplinks.
+{{%/notice%}}
 
 {{< tabs "TabID366 ">}}
 {{< tab "NVUE Commands ">}}
@@ -360,8 +363,12 @@ cumulus@leaf01:~$ nv config apply
 In a multi-tenant EVPN symmetric routing environment without MLAG, the VLAN interface (SVI) IPv4 address is typically unique on each leaf switch, which does not require RFC 3527 configuration.
 
 The following example:
-- Configures the SVIs vlan10 and vlan20, and the layer 3 VNI VLAN interface for VRF RED vlan4024_l3 to be part of INTF_CMD list to service DHCP packets.
+- Configures the SVIs vlan10 and vlan20, and the layer 3 VNI VLAN interface for VRF RED vlan4024_l3 to be part of INTF_CMD list to service DHCP packets. To obtain the layer 3 VNI VLAN interface, run the `nv show vrf <vrf-name> evpn` command.
 - Sets the DHCP server IP address to 10.1.10.104.
+
+{{%notice note%}}
+You do not need to add physical uplinks in the relay configuration. Only layer 3 VNI VLAN interface configuration is required for uplinks.
+{{%/notice%}}
 
 {{< tabs "TabID369 ">}}
 {{< tab "NVUE Commands ">}}
@@ -619,7 +626,7 @@ cumulus@leaf01:~$ sudo systemctl status dhcrelay@default.service
    Memory: 2.3M
    CGroup: /system.slice/system-dhcrelay.slice/dhcrelay@default.service
            └─vrf
-             └─30904 /usr/sbin/dhcrelay --nl -d -i swp51 -i swp52 -i vlan10 -i peerlink.4094 172.16.1.102
+             └─30904 /usr/sbin/dhcrelay --nl -d -i swp51 -i swp52 -i vlan10 172.16.1.102
 ```
 
 {{< /tab >}}
@@ -681,4 +688,4 @@ To resolve the issue, manually edit the `/etc/default/isc-dhcp-relay-default` fi
 ## Considerations
 
 - The `dhcrelay` command does not bind to an interface if the interface name is longer than 14 characters. This is a known limitation in `dhcrelay`.
-- DHCP packets received on bridge ports and sent to the CPU for processing cause the RX_DROP counter to increment on the interface.
+- DHCP discover packets transiting the switch are also sent to the CPU for additional processing, then dropped after being switched by the hardware. This causes the `RX_DRP` and `HwIfInDiscards` counters to increment on the interface even though the hardware forwards the packet correctly.

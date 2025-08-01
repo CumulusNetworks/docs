@@ -2432,7 +2432,7 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | `nvswitch_platform_transceiver_voltage_threshold_info` | Voltage thresholds defined for the module. The level is alarm or warning. The threshold is low or high.|
 | `nvswitch_platform_transceiver_channel_power` | The transceiver channel power value in dBm units (logarithmic scale) for each channel in both rx and tx directions.|
 | `nvswitch_platform_transceiver_channel_power_alarm` | The alarm state for power value compared with the defined thresholds for the module as a bit mask value for each channel and for both rx and tx directions:<br>Bit 0: tx_power_hi_al<br>Bit 1: l tx_power_lo_al<br>Bit 2: tx_power_hi_war<br>Bit 3: l tx_power_lo_war. |
-| `nvswitch_platform_transceiver_channel_power_threshold_info` | Threshold information for the power for both rx and tx directions. These threshold values are applicable for all channels. The units are in dBm and represented by a 32bit decimal value. |
+| `nvswitch_platform_transceiver_power_threshold_info` | Threshold information for the power for both rx and tx directions. These threshold values are applicable for all channels. The units are in dBm and represented by a 32bit decimal value. |
 | `nvswitch_platform_transceiver_channel_tx_bias_current` | tx bias current measured for the channel in Amps units and represented by a 32bit decimal value. |
 | `nvswitch_platform_transceiver_channel_tx_bias_current_alarm` | tx bias current alarm state of tx bias current measure for the channel when compared to the threshold values for the channel defined for the module. This is a bit mask value:<br>Bit 0: tx_bias_hi_al<br>Bit 1: l tx_bias_lo_al<br>Bit 2: tx_bia_hi_war<br>Bit 3: l tx_bias_lo_war |
 | `nvswitch_platform_transceiver_channel_tx_bias_current_threshold_info` | tx bias current thresholds defined for the channel in Amps units and represented by a 32bit decimal value. |
@@ -3205,21 +3205,14 @@ When you enable layer 3 routing metrics telemetry, the switch exports the follow
 | `nvrouting_bgp_peer_socket_out_queue` | Number of messages queued to be sent to the BGP neighbor.|
 | `nvrouting_bgp_peer_rx_updates` | Number of BGP messages received from the neighbor.|
 | `nvrouting_bgp_peer_tx_updates` | Number of BGP messages sent to the neighbor. |
-| `nvrouting_rib_count` | Number of IPv4 and IPv6 routes in the IP routing table for each route source. |
-| `nvrouting_rib_count_connected` | Number of IPv4 connected routes in the IP routing table. |
-| `nvrouting_rib_count_bgp` | Number of IPv4 BGP routes in the IP routing table. |
-| `nvrouting_rib_count_kernel` | Number of IPv4 kernel routes in the IP routing table.|
-| `nvrouting_rib_count_static` | Number of IPv4 static routes in the IP routing table. |
-| `nvrouting_rib_count_pbr` | Number of IPv4 PBR routes in the IP routing table. |
-| `nvrouting_rib_count_ospf` | Number of IPv4 OSPF routes in the IP routing table. |
-| `nvrouting_rib_count_connected_ipv6` | Number of IPv6 connected routes in the IP routing table. |
-| `nvrouting_rib_count_bgp_ipv6` | Number of IPv6 BGP routes in the IP routing table. |
-| `nvrouting_rib_count_kernel_ipv6` | Number of IPv6 kernel routes in the IP routing table. |
-| `nvrouting_rib_count_static_ipv6` | Number of IPv6 static routes in the IP routing table. |
-| `nvrouting_rib_count_pbr_ipv6` | Number of IPv6 PBR routes in the IP routing table. |
-| `nvrouting_rib_count_ospf_ipv6` | Number of IPv6 OSPF routes in the IP routing table. |
+| `nvrouting_rib_count` | Number of IPv4 and IPv6 routes in the IP routing table for each route source and protocol. |
 | `nvrouting_rib_nhg_count` | Number of next hop groups in the routing table. |
 <!-- vale off -->
+
+{{%notice note%}}
+Cumulus Linux 5.13 consolidates the `nvrouting_rib_count_<protocol>` metrics from Cumulus Linux 5.12 under `nvrouting_rib_count`.
+{{%/notice%}}
+
 {{< expand "Example JSON data for nvrouting_bgp_peer_state:" >}}
 ```
 {

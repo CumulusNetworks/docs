@@ -1,7 +1,7 @@
 ---
 title: Device Inventory
 author: NVIDIA
-weight: 1000
+weight: 635
 toc: 3
 ---
 

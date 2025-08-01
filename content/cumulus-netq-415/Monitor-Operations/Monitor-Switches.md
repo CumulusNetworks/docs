@@ -10,7 +10,7 @@ NetQ reports switch performance metrics for the following categories:
 
 - **System configuration**: events, interfaces, IP and MAC addresses, VLANs, IP routes, and IP neighbors
 - **Utilization statistics**: CPU, memory, disk, ACL and forwarding resources, SSD, BTRFS, and processes
-- **Physical sensing**: digital optics and switch sensors
+- **Physical sensing**: digital optics and switch sensors (PSU, fan, and temperature)
 - **RoCE** and **Precision Time Protocol**
 
 ## View Switch Metrics and Attributes
@@ -35,7 +35,7 @@ Alternately, you can add a device card to your workbench:
 
 Attributes are displayed as the default tab on the large Switch card. You can view the static information about the switch, including its hostname, addresses, server and ASIC vendors and models, OS and NetQ software information. You can also view the state of the interfaces and NetQ Agent on the switch.
 
-{{<figure src="/images/netq/indswitch-412.png" alt="large switch card displaying attributes" width="700" height="350">}}
+{{<figure src="/images/netq/switch-card-415.png" alt="large switch card displaying attributes" width="700" height="350">}}
 
 Hover over the top of the card and select the appropriate icon to view utilization info, interface statistics, digital optics info, RoCE metrics, and PTP clock graphs. This example displays utilization information, including CPU, memory, and disk utilization from the past 24 hours:
 
@@ -54,7 +54,7 @@ The information available in the UI can also be displayed via the CLI with a cor
 For example, you can view all events across your network with the {{<link title="show/#netq-show-events" text="netq show events">}} command. To view all events on a particular switch, specify its name in the `<hostname>` field in `netq <hostname> show events`. The following example displays all events on the leaf01 switch:
 
 ```
-cumulus@switch:~$ netq leaf01 show events
+nvidia@switch:~$ netq leaf01 show events
 
 Matching events records:
 Hostname          Message Type             Severity         State      Message                             Timestamp
@@ -111,7 +111,7 @@ The following graphs depict CPU and memory usage over a 6-hour time period from 
 The information displayed in the UI can be viewed using the CLI with the {{<link title="show/#netq-show-services" text="netq show services resource-util">}} command:
 
 ```
-cumulus@switch:~$ netq show services resource-util
+nvidia@switch:~$ netq show services resource-util
 
 Matching services records:
 Hostname          Service              PID   VRF                  Enabled Active Uptime               CPU one Minute       CPU five Minute      Memory one Minute    Memory five Minute   Last Updated
@@ -145,9 +145,10 @@ Monitoring queue lengths in your network’s fabric is useful for detecting micr
 
 {{%notice note%}}
 
-- Queue length monitoring is supported on Spectrum switches running Cumulus Linux 5.1 or later. To display queue histogram data, you must set the snapshot file count to at least 120 when you are configuring ASIC monitoring, as described in the Snapshots section in the {{<kb_link latest="cl" url="Monitoring-and-Troubleshooting/ASIC-Monitoring.md" text="ASIC monitoring configuration">}} documentation.
+- Queue length monitoring is supported on Spectrum switches running Cumulus Linux 5.1 or later. To display queue histogram data, you must set the snapshot file count to at least 120 when you are configuring ASIC monitoring, as described in {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Monitoring-and-Troubleshooting/ASIC-Monitoring/#snapshots-1" text="Snapshots">}}.
 - If you restart the `asic-monitor` service or edit the `/monitor.conf` configuration file, you must restart the NetQ agent with `netq config restart agent`.
 - NetQ displays histogram data for all switch ports, even if the ports are down or have not been configured.
+- The custom time range filter can be applied to a maximum of 10 devices. 
 
 {{%/notice%}}
 

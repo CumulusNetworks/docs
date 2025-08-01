@@ -7,8 +7,8 @@ toc: 4
 
 After installing the NetQ software, you should install the NetQ Agents on each switch you want to monitor. You can install NetQ Agents on switches and servers running:
 
-- Cumulus Linux 5.12.1, 5.11.1, or 5.9.2
-- Ubuntu 22.04
+- Cumulus Linux 5.13.1, 5.12.1 <!--update to 5.14.0, 5.13.1 when 5.14 is released-->
+- Ubuntu 24.04, 22.04
 
 ## Prepare for NetQ Agent Installation
 
@@ -38,7 +38,7 @@ If your network uses a proxy server for external connections, you should first {
 Verify that {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} is running on the switch as outlined in the steps below. The switch system clock must be synchronized with NetQ to enable useful statistical analysis. Alternatively, you can configure {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Precision Time Protocol-PTP.md" text="PTP">}} for time synchronization.
 
 ```
-cumulus@switch:~$ sudo systemctl status ntp
+nvidia@switch:~$ sudo systemctl status ntp
 [sudo] password for cumulus:
 ● ntp.service - LSB: Start NTP daemon
         Loaded: loaded (/etc/init.d/ntp; bad; vendor preset: enabled)
@@ -65,75 +65,119 @@ Cumulus Linux 4.4 and later includes the `netq-agent` package by default. To upg
 1. Add the repository by uncommenting or adding the following line in `/etc/apt/sources.list`:
 
 ```
-cumulus@switch:~$ sudo nano /etc/apt/sources.list
+nvidia@switch:~$ sudo nano /etc/apt/sources.list
 ...
 deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-d12 netq-latest
 ...
 ```
 
 {{<notice tip>}}
-You can specify a NetQ Agent version in the repository configuration. The following example shows the repository configuration to retrieve NetQ Agent 4.14: <pre>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-d12 netq-4.14</pre>
+You can specify a NetQ Agent version in the repository configuration. The following example shows the repository configuration to retrieve NetQ Agent 4.15: <pre>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-d12 netq-4.15</pre>
 {{</notice>}}
 
 2. Add the `apps3.cumulusnetworks.com` authentication key to Cumulus Linux:
 
 ```
-cumulus@switch:~$ wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | sudo apt-key add -
+nvidia@switch:~$ wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | sudo apt-key add -
 ```
 
 {{</tab>}}
 
-{{<tab "Cumulus Linux 4.4.0 to 5.8.0">}}
+{{<tab "Ubuntu 24.04">}}
+
+### Verify Service Package Versions
+
+Before you install the NetQ Agent on an Ubuntu server, make sure you install and run at least the minimum versions of the following packages:
 
 <!-- vale off -->
-### Verify NTP Is Installed and Configured
+- iproute 1:4.3.0-1ubuntu3.16.04.1 all
+- iproute2 4.3.0-1ubuntu3 amd64
+- lldpd 0.7.19-1 amd64
+- ntp 1:4.2.8p4+dfsg-3ubuntu5.6 amd64
 <!-- vale on -->
 
-Verify that {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} is running on the switch as outlined in the steps below. The switch system clock must be synchronized with NetQ to enable useful statistical analysis. Alternatively, you can configure {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Precision Time Protocol-PTP.md" text="PTP">}} for time synchronization.
+### Verify the Server is Running lldpd
+
+Make sure you are running lldp**d**, not lldp**ad**. Ubuntu does not include `lldpd` by default; however, the installation requires it.
+
+To install this package, run the following commands:
 
 ```
-cumulus@switch:~$ sudo systemctl status ntp
-[sudo] password for cumulus:
-● ntp.service - LSB: Start NTP daemon
-        Loaded: loaded (/etc/init.d/ntp; bad; vendor preset: enabled)
-        Active: active (running) since Fri 2018-06-01 13:49:11 EDT; 2 weeks 6 days ago
-          Docs: man:systemd-sysv-generator(8)
-        CGroup: /system.slice/ntp.service
-                └─2873 /usr/sbin/ntpd -p /var/run/ntpd.pid -g -c /var/lib/ntp/ntp.conf.dhcp -u 109:114
+root@ubuntu:~# sudo apt-get update
+root@ubuntu:~# sudo apt-get install lldpd
+root@ubuntu:~# sudo systemctl enable lldpd.service
+root@ubuntu:~# sudo systemctl start lldpd.service
 ```
 
-If NTP is not installed, install and configure it before continuing.  
+### Install and Configure Network Time Server
 
-If NTP is not running:
+If NTP is not already installed and configured, follow the steps below. Alternatively, you can configure {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Precision Time Protocol-PTP.md" text="PTP">}} for time synchronization.
 
-- Verify the IP address or hostname of the NTP server in the `/etc/ntp.conf` file, and then
-- Reenable and start the NTP service using the `systemctl [enable|start] ntp` commands
+1. Install {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} on the server, if not already installed. Servers must be synchronized with NetQ to enable useful statistical analysis.
+
+    ```
+    root@ubuntu:~# sudo apt-get install ntp
+    ```
+
+2. Configure the network time server.
+
+{{<tabs "TabID124" >}}
+
+{{<tab "Use NTP Configuration File" >}}
+
+   1. Open the `/etc/ntp.conf` file in your text editor of choice.
+
+   2. Under the *Server* section, specify the NTP server IP address or hostname.
+
+   3. Enable and start the NTP service.
+
+          root@ubuntu:~# sudo systemctl enable ntp
+          root@ubuntu:~# sudo systemctl start ntp
 
    {{<notice tip>}}
 If you are running NTP in your out-of-band management network with VRF, specify the VRF (<code>ntp@&lt;vrf-name&gt;</code> versus just <code>ntp</code>) in the above commands.
    {{</notice>}}
+
+   4. Verify NTP is operating correctly. Look for an asterisk (\*) or a plus sign (+) that indicates the clock synchronized with NTP.
+
+          root@ubuntu:~# ntpq -pn
+          remote           refid            st t when poll reach   delay   offset  jitter
+          ==============================================================================
+          +173.255.206.154 132.163.96.3     2 u   86  128  377   41.354    2.834   0.602
+          +12.167.151.2    198.148.79.209   3 u  103  128  377   13.395   -4.025   0.198
+          2a00:7600::41    .STEP.          16 u    - 1024    0    0.000    0.000   0.000
+          \*129.250.35.250 249.224.99.213   2 u  101  128  377   14.588   -0.299   0.243
+
+{{</tab>}}
+
+{{</tabs>}}
+
 ### Obtain NetQ Agent Software Package
 
-Cumulus Linux 4.4 and later includes the `netq-agent` package by default. To upgrade the NetQ Agent to the latest version: 
+To install the NetQ Agent you need to install `netq-agent` on each server. This is available from the NVIDIA networking repository.
 
-1. Add the repository by uncommenting or adding the following line in `/etc/apt/sources.list`:
+To obtain the NetQ Agent package:
+
+1. Reference and update the local `apt` repository.
 
 ```
-cumulus@switch:~$ sudo nano /etc/apt/sources.list
+root@ubuntu:~# sudo wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | apt-key add -
+```
+
+2. Add the Ubuntu repository:
+
+
+Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-noble.list` and add the following line:
+
+```
+root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-noble.list
 ...
-deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest
+deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb noble netq-latest
 ...
 ```
-
-{{<notice tip>}}
-You can specify a NetQ Agent version in the repository configuration. The following example shows the repository configuration to retrieve NetQ Agent 4.14: <pre>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-4.14</pre>
-{{</notice>}}
-
-2. Add the `apps3.cumulusnetworks.com` authentication key to Cumulus Linux:
-
-```
-cumulus@switch:~$ wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | sudo apt-key add -
-```
+    {{<notice note>}}
+The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even for a major version update. If you want to keep the repository on a specific version &mdash; such as <code>netq-4.9</code> &mdash; use that instead.
+    {{</notice>}}
 
 {{</tab>}}
 
@@ -204,8 +248,6 @@ If you are running NTP in your out-of-band management network with VRF, specify 
 
    {{</tab>}}
 
-   
-
 {{</tabs>}}
 
 ### Obtain NetQ Agent Software Package
@@ -235,20 +277,6 @@ deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb jammy netq-latest
 The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even for a major version update. If you want to keep the repository on a specific version &mdash; such as <code>netq-4.9</code> &mdash; use that instead.
     {{</notice>}}
 
-
-
-Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-jammy.list` and add the following line:
-
-```
-root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-jammy.list
-...
-deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb jammy netq-latest
-...
-```
-    {{<notice note>}}
-The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even for a major version update. If you want to keep the repository on a specific version &mdash; such as <code>netq-4.4</code> &mdash; use that instead.
-    {{</notice>}}
-
 {{</tab>}}
 
 {{</tabs>}}
@@ -267,22 +295,22 @@ Cumulus Linux 4.4 and later includes the `netq-agent` package by default. To ins
 1. Update the local `apt` repository, then install the NetQ software on the switch.
 
     ```
-    cumulus@switch:~$ sudo apt-get update
-    cumulus@switch:~$ sudo apt-get install netq-agent
+    nvidia@switch:~$ sudo apt-get update
+    nvidia@switch:~$ sudo apt-get install netq-agent
     ```
 
 2. Verify you have the correct version of the Agent.
 
     ```
-    cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
+    nvidia@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/agent-version version="4.14.0" opsys="cl">}}
+    {{<netq-install/agent-version version="4.15.0" opsys="cl">}}
 
 3. Restart `rsyslog` so it sends log files to the correct destination.
 
     ```
-    cumulus@switch:~$ sudo systemctl restart rsyslog.service
+    nvidia@switch:~$ sudo systemctl restart rsyslog.service
     ```
 
 4. Configure the NetQ Agent, as described in the next section.
@@ -306,7 +334,7 @@ To install the NetQ Agent:
     root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/agent-version version="4.14.0" opsys="ub">}}
+    {{<netq-install/agent-version version="4.15.0" opsys="ub">}}
 
 3. Restart `rsyslog` so it sends log files to the correct destination.
 
@@ -444,13 +472,13 @@ You must separate the list of IP addresses by commas (not spaces). You can optio
 This example configures the NetQ Agent on a switch to send the data to three servers located at *10.0.0.21*, *10.0.0.22*, and *10.0.0.23* using the *mgmt* VRF.
 
 ```
-cumulus@switch:~$ sudo netq config add agent cluster-servers 10.0.0.21,10.0.0.22,10.0.0.23 vrf mgmt
+nvidia@switch:~$ sudo netq config add agent cluster-servers 10.0.0.21,10.0.0.22,10.0.0.23 vrf mgmt
 ```
 
 To stop a NetQ Agent from sending data to a server cluster, run:
 
 ```
-cumulus@switch:~$ sudo netq config del agent cluster-servers
+nvidia@switch:~$ sudo netq config del agent cluster-servers
 ```
 
 

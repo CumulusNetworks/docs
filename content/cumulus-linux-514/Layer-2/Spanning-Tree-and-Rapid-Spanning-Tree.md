@@ -738,17 +738,17 @@ bridge:swp5 CIST info
 
 If a port receives a BPDU, it goes into a `protodown` state, which results in a local OPER DOWN (carrier down) on the interface. Cumulus Linux also sets the protodown reason as `bpduguard` and records a log message in `/var/log/syslog`.
 
-To show the reason for the port protodown, run the `ip -p -j link show <interface>` command.
+To show the reason for the port protodown, run the `ip -p -j link show <interface-id>` command.
 
 ```
 cumulus@switch:~$ ip -p -j link show swp5
 ```
 
-To recover from the `protodown` state, remove the protodown reason and protodown from the interface with the NVUE `nv action clear interface <interface> bridge domain <domain> stp bpduguardviolation` command or the Linux `mstpctl clearbpduguardviolation <bridge> <interface>` command.
+To recover from the `protodown` state, remove the protodown reason and protodown from the interface with the NVUE `nv action clear interface <interface-id> bridge domain <domain> stp bpduguardviolation` command or the Linux `mstpctl clearbpduguardviolation <bridge> <interface-id>` command.
 
 {{%notice note%}}
 - Bringing up the disabled port does not correct the problem if the configuration on the connected end station does not resolve.
-- If you remove the interface from the bridge while the interface is in a `protodown` state, you must use the `ip link set <interface> protodown off protodown_reason stp off` command to recover from the `protodown` state.
+- If you remove the interface from the bridge while the interface is in a `protodown` state, you must use the `ip link set <interface-id> protodown off protodown_reason stp off` command to recover from the `protodown` state.
 {{%/notice%}}
 
 ### Bridge Assurance

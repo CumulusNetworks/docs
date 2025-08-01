@@ -19,23 +19,23 @@ To configure port security:
 {{< tabs "TabID22 ">}}
 {{< tab "NVUE Commands ">}}
 
-To enable security on a port, run the `nv set interface <interface> port-security enable on` command:
+To enable security on a port, run the `nv set interface <interface-id> port-security enable on` command:
 
 ```
 cumulus@switch:~$ nv set interface swp1 port-security enable on
 cumulus@switch:~$ nv config apply
 ```
 
-You can disable port security on an interface with the `nv set interface <interface> port-security enable off` command.
+You can disable port security on an interface with the `nv set interface <interface-id> port-security enable off` command.
 
-To configure the maximum number of MAC addresses allowed to access the port, run the `nv set interface <interface> port-security mac-limit` command. You can specify a value between 1 and 512. The default value is 32.
+To configure the maximum number of MAC addresses allowed to access the port, run the `nv set interface <interface-id> port-security mac-limit` command. You can specify a value between 1 and 512. The default value is 32.
 
 ```
 cumulus@switch:~$ nv set interface swp1 port-security mac-limit 100
 cumulus@switch:~$ nv config apply 
 ```
 
-To configure specific MAC addresses allowed to access the port, run the `nv set interface <interface> port-security static-mac` command.
+To configure specific MAC addresses allowed to access the port, run the `nv set interface <interface-id> port-security static-mac` command.
 
 You can configure a maximum of 450 static MAC addresses per interface.
 
@@ -45,7 +45,7 @@ cumulus@switch:~$ nv set interface swp1 port-security static-mac 00:02:00:00:00:
 cumulus@switch:~$ nv config apply
 ```
 
-To enable sticky MAC port security to track specific dynamically learned MAC addresses on a port, run the `nv set interface <interface> port-security sticky-mac enabled` command.
+To enable sticky MAC port security to track specific dynamically learned MAC addresses on a port, run the `nv set interface <interface-id> port-security sticky-mac enabled` command.
 
 Cumulus Linux maintains learned sticky MAC addresses through interface flaps and reboots if the source MAC address is still sending traffic; otherwise learned sticky MAC addresses age out according to the sticky MAC aging time.
 
@@ -54,21 +54,21 @@ cumulus@switch:~$ nv set interface swp1 port-security sticky-mac enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To enable sticky MAC aging, run the `nv set interface <interface> port-security sticky-aging enabled` command.
+To enable sticky MAC aging, run the `nv set interface <interface-id> port-security sticky-aging enabled` command.
 
 ```
 cumulus@switch:~$ nv set interface swp1 port-security sticky-ageing enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To configure the time period after which learned sticky MAC addresses age out and no longer have access to the port, run the `nv set interface <interface> port-security sticky-timeout` command. You can specify a value between 0 and 3600 minutes. The default setting is 1800 minutes.
+To configure the time period after which learned sticky MAC addresses age out and no longer have access to the port, run the `nv set interface <interface-id> port-security sticky-timeout` command. You can specify a value between 0 and 3600 minutes. The default setting is 1800 minutes.
 
 ```
 cumulus@switch:~$ nv set interface swp1 port-security sticky-timeout 20
 cumulus@switch:~$ nv config apply
 ```
 
-To configure violation mode, either run the `nv set interface <interface> port-security violation-mode protodown` command to put a port into a protodown state or run the `nv set interface <interface> port-security violation-mode restrict` command to drop packets.
+To configure violation mode, either run the `nv set interface <interface-id> port-security violation-mode protodown` command to put a port into a protodown state or run the `nv set interface <interface-id> port-security violation-mode restrict` command to drop packets.
 
 ```
 cumulus@switch:~$ nv set interface swp1 port-security violation-mode protodown
@@ -80,7 +80,7 @@ cumulus@switch:~$ sudo ip link set swp2 protodown_reason portsecurity off
 cumulus@switch:~$ sudo ip link set swp2 protodown off
 ```
 
-To configure the number of minutes after which the violation mode times out, run the `nv set interface <interface> port-security violation-timeout` command. You can specify a value between 0 and 60 minutes. The default value is 30 minutes.
+To configure the number of minutes after which the violation mode times out, run the `nv set interface <interface-id> port-security violation-timeout` command. You can specify a value between 0 and 60 minutes. The default value is 30 minutes.
 
 ```
 cumulus@switch:~$ nv set interface swp1 port-security violation-timeout 60

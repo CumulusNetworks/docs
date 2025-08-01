@@ -199,7 +199,7 @@ cumulus@switch:~$ nv set interface swp1 ip address 2001:DB8::1/126
 cumulus@switch:~$ nv config apply
 ```
 
-To show the MAC address for an interface, run the `nv show interface <interface> link` command.
+To show the MAC address for an interface, run the `nv show interface <interface-id> link` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -240,7 +240,7 @@ cumulus@switch:~$ sudo ip addr del 2001:DB8::1/126 dev swp1
 
 ## Interface MAC Addresses
 
-You can configure a MAC address for an interface with the `nv set interface <interface> link mac-address <mac-address>` command.
+You can configure a MAC address for an interface with the `nv set interface <interface-id> link mac-address <mac-address>` command.
 
 {{< tabs "TabID410 ">}}
 {{< tab "NVUE Commands ">}}
@@ -259,7 +259,7 @@ cumulus@switch:~$ nv set interface vlan10 link mac-address 00:00:5E:00:01:00
 cumulus@switch:~$ nv config apply
 ```
 
-To unset the MAC address for an interface, run the `nv unset interface <interface> link mac-address` command. This command resets the MAC address to the system assigned address.
+To unset the MAC address for an interface, run the `nv unset interface <interface-id> link mac-address` command. This command resets the MAC address to the system assigned address.
 
 ```
 cumulus@switch:~$ nv unset interface swp1 link mac-address
@@ -448,7 +448,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/cumulus/switchd.conf` file and add the `interface.<interface>.enable_media_depended_linkup_flow=TRUE` and `interface.<interface>.enable_port_short_tuning=TRUE` settings for the interfaces on which you want to enable fast linkup. The following example enables fast linkup on swp1:
+Edit the `/etc/cumulus/switchd.conf` file and add the `interface.<interface-id>.enable_media_depended_linkup_flow=TRUE` and `interface.<interface-id>.enable_port_short_tuning=TRUE` settings for the interfaces on which you want to enable fast linkup. The following example enables fast linkup on swp1:
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
@@ -470,7 +470,7 @@ Cumulus Linux enables link flap detection by default. Link flap detection trigge
 2023-02-10T17:53:21.264621+00:00 cumulus switchd[10109]: sync_port.c:2263 ERR swp2 link flapped more than 3 times in the last 60 seconds, setting protodown
 ```
 
-To show interfaces with the protodown flag, run the NVUE `nv show interface status` command or the Linux `ip link` command. To check a specific interface, run the `nv show interface <interface> link` command.
+To show interfaces with the protodown flag, run the NVUE `nv show interface status` command or the Linux `ip link` command. To check a specific interface, run the `nv show interface <interface-id> link` command.
 
 ```
 cumulus@switch:~$ nv show interface status
@@ -559,7 +559,7 @@ To clear the protodown state and the reason:
 cumulus@switch:~$ nv action clear interface swp1 link flap-protection violation 
 ```
 
-After a few seconds the port state returns to `up`. Run the `nv show <interface> link state` command to verify that the interface is no longer in a protodown state and that the reason clears:
+After a few seconds the port state returns to `up`. Run the `nv show <interface-id> link state` command to verify that the interface is no longer in a protodown state and that the reason clears:
 
 ```
 cumulus@switch:~$ nv show interface swp1 link state
@@ -573,14 +573,14 @@ To clear all the interfaces from a protodown state, run the `nv action clear sys
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-The `ifdown` and `ifup` commands do not clear the protodown state. You must clear the protodown state and the reason manually using the `sudo ip link set <interface> protodown_reason linkflap off` and `sudo ip link set <interface> protodown off` commands.
+The `ifdown` and `ifup` commands do not clear the protodown state. You must clear the protodown state and the reason manually using the `sudo ip link set <interface-id> protodown_reason linkflap off` and `sudo ip link set <interface-id> protodown off` commands.
 
 ```
 cumulus@switch:~$ sudo ip link set swp2 protodown_reason linkflap off
 cumulus@switch:~$ sudo ip link set swp2 protodown off
 ```
 
-After a few seconds, the port state returns to UP. To verify that the interface is no longer in a protodown state and that the reason clears, run the `ip link show <interface>` command:
+After a few seconds, the port state returns to UP. To verify that the interface is no longer in a protodown state and that the reason clears, run the `ip link show <interface-id>` command:
 
 ```
 cumulus@switch:~$ ip link show swp2
@@ -594,7 +594,7 @@ cumulus@switch:~$ ip link show swp2
 ### Change Link Flap Protection Settings
 
 You can change the following link flap protection settings:
-- The duration in seconds during which a link must flap the number of times set in the link flap threshold before link flap protection triggers. You can specify a value between 0 (off) and 60. The default setting is 10.
+- The duration in seconds during which a link must flap the number of times set in the link flap threshold before link flap protection triggers. You can specify a value between 0 (off) and 300. The default setting is 10.
 - The number of times the link can flap within the link flap window before link flap protection triggers. You can specify a value between 0 (off) and 30. The default setting is 5.
 
 The following example configures the link flap duration to 30 and the number of times the link must flap to 8.
@@ -665,7 +665,7 @@ threshold  8
 interval   30 
 ```
 
-To show if link flap protection is on an interface, run the `nv show interface <interface> link flap-protection` command:
+To show if link flap protection is on an interface, run the `nv show interface <interface-id> link flap-protection` command:
 
 ```
 cumulus@switch:~$ nv show interface swp1 link flap-protection
@@ -794,7 +794,7 @@ cumulus@switch:~$ nv show interface swp1
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Run the `ip link show dev <interface>` command.
+Run the `ip link show dev <interface-id>` command.
 
 In the following example, swp1 is administratively UP and the physical link is UP (LOWER_UP).
 
@@ -875,7 +875,7 @@ stats
   carrier-down-count     2 
 ```
 
-To show the number of carrier transitions only (`carrier-transitions`, `carrier-up-count`, `carrier-down-count`) for a specific interface, run the `nv show interface <interface> link stats` command.
+To show the number of carrier transitions only (`carrier-transitions`, `carrier-up-count`, `carrier-down-count`) for a specific interface, run the `nv show interface <interface-id> link stats` command.
 
 To show the assigned IP address on an interface:
 
@@ -1054,7 +1054,7 @@ The NVUE command is not supported.
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-In the `/etc/network/interfaces` file, configure the IP address scope using `post-up ip address add <address> dev <interface> scope <scope>`. For example:
+In the `/etc/network/interfaces` file, configure the IP address scope using `post-up ip address add <address> dev <interface-id> scope <scope>`. For example:
 
 ```
 auto swp6

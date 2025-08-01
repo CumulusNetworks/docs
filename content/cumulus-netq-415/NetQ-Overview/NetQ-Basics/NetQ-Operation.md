@@ -50,7 +50,7 @@ For example, the following diagram shows issues on spine01, leaf04, and server03
 
 An administrator can run the following commands from any switch in the network to determine the cause of a BGP error on spine01:
 
-    cumulus@switch:~$ netq check bgp around 30m
+    nvidia@switch:~$ netq check bgp around 30m
     Total Nodes: 25, Failed Nodes: 3, Total Sessions: 220 , Failed Sessions: 24,
     Hostname          VRF             Peer Name         Peer Hostname     Reason                                        Last Changed
     ----------------- --------------- ----------------- ----------------- --------------------------------------------- -------------------------
@@ -74,7 +74,7 @@ An administrator can run the following commands from any switch in the network t
     exit-1            default         swp7              firewall-2        BGP session with peer firewall-2 (swp7 vrf de 1d:1h:59m:43s
     ...
      
-    cumulus@switch:~$ netq exit-1 show bgp
+    nvidia@switch:~$ netq exit-1 show bgp
     Matching bgp records:
     Hostname          Neighbor                     VRF             ASN        Peer ASN   PfxRx        Last Changed
     ----------------- ---------------------------- --------------- ---------- ---------- ------------ -------------------------
@@ -126,7 +126,7 @@ When retrieving the timestamp, command outputs display the time in three ways:
 
 {{< expand "Example of timestamp formats" >}}
 
-    cumulus@switch:~$ netq show bgp
+    nvidia@switch:~$ netq show bgp
     Matching bgp records:
     Hostname          Neighbor                     VRF             ASN        Peer ASN   PfxRx        Last Changed
     ----------------- ---------------------------- --------------- ---------- ---------- ------------ -------------------------
@@ -140,7 +140,7 @@ When retrieving the timestamp, command outputs display the time in three ways:
     exit-1            swp4.4(spine-2)              DataVrf1082     655537     655435     13/12/0      Fri Feb 15 17:20:00 2019
     ...
      
-    cumulus@switch:~$ netq show agents
+    nvidia@switch:~$ netq show agents
     Matching agents records:
     Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
     ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
@@ -166,7 +166,7 @@ When retrieving the timestamp, command outputs display the time in three ways:
     spine03           Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:03:34 2020  Tue Sep 29 21:25:07 2020  Tue Sep 29 21:25:07 2020   Thu Oct  1 16:07:20 2020
     spine04           Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:03:32 2020  Tue Sep 29 21:25:07 2020  Tue Sep 29 21:25:07 2020   Thu Oct  1 16:07:33 2020
      
-    cumulus@switch:~$ netq show agents json
+    nvidia@switch:~$ netq show agents json
     {
         "agents":[
             {

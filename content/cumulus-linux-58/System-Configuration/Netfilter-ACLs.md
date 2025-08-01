@@ -718,7 +718,7 @@ To configure control plane policers:
 - Set the Committed Information Rate (CIR) with the `nv set system control-plane policer <trap-group> rate` command. The CIR is the allowed incoming rate for the trap group. The incoming rate is the maximum rate in packets per second.
 - Set the Committed Burst Rate (CBR) for the trap group with the `nv set system control-plane policer <trap-group> burst` command. The burst rate is the number of packets or kilobytes (KB) allowed to arrive sequentially after the CIR rate is exceeded.
 
-The trap group can be: `arp`, `bfd`, `pim-ospf-rip`, `bgp`, `clag`, `icmp-def`, `dhcp-ptp`, `igmp`, `ssh`, `icmp6-neigh`, `icmp6-def-mld`, `lacp`, `lldp`, `rpvst`, `eapol`, `ip2me`, `acl-log`, `nat`, `stp`, `l3-local`, `span-cpu`, `catch-all`, or `NONE`.
+The trap group can be: `arp`, `bfd`, `pim-ospf-rip`, `bgp`, `clag`, `icmp-def`, `dhcp`, `igmp`, `ssh`, `icmp6-neigh`, `icmp6-def-mld`, `lacp`, `lldp-ptp`, `rpvst`, `eapol`, `ip2me`, `acl-log`, `nat`, `stp`, `l3-local`, `span-cpu`, `catch-all`, `unknown-ipmc`, or `NONE`.
 
 The following example changes the PIM trap group forwarding rate and burst rate to 400 packets per second, and the IGMP trap group forwarding rate to 400 packets per second and burst rate to 200 packets per second:
 
@@ -800,9 +800,9 @@ copp.icmp_def.enable = TRUE
 copp.icmp_def.rate = 100
 copp.icmp_def.burst = 40
 
-copp.dhcp_ptp.enable = TRUE
-copp.dhcp_ptp.rate = 2000
-copp.dhcp_ptp.burst = 2000
+copp.dhcp.enable = TRUE
+copp.dhcp.rate = 2000
+copp.dhcp.burst = 2000
 
 copp.igmp.enable = TRUE
 copp.igmp.rate = 1000
@@ -824,9 +824,9 @@ copp.lacp.enable = TRUE
 copp.lacp.rate = 2000
 copp.lacp.burst = 2000
 
-copp.lldp.enable = TRUE
-copp.lldp.rate = 200
-copp.lldp.burst = 200
+copp.lldp_ptp.enable = TRUE
+copp.lldp_ptp.rate = 2500
+copp.lldp_ptp.burst = 2500
 
 copp.rpvst.enable = TRUE
 copp.rpvst.rate = 2000
@@ -863,6 +863,10 @@ copp.span_cpu.burst = 100
 copp.catch_all.enable = TRUE
 copp.catch_all.rate = 100
 copp.catch_all.burst = 100
+
+copp.unknown_ipmc.enable = TRUE
+copp.unknown_ipmc.rate = 1000
+copp.unknown_ipmc.burst = 1000
 ```
 
 {{< /expand >}}

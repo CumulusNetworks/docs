@@ -389,14 +389,9 @@ The first `adduser` command prompts for information and a password. You can skip
 ## TACACS+ Per-command Authorization
 
 TACACS+ per-command authorization lets you configure the commands that TACACS+ users at different privilege levels can run.
-
-{{%notice note%}}
-To reach the TACACS+ server through the default VRF, you must specify the egress interface you use in the default VRF. Either run the NVUE `nv set system aaa tacacs vrf <interface>` command (for example, `nv set system aaa tacacs vrf swp51`) or set the `vrf=<interface>` option in the `/etc/tacplus_servers` file (for example, `vrf=swp51`).
-{{%/notice%}}
-
 <!-- vale on -->
 
-The following command allows TACACS+ users at privilege level 0 to run the `nv` and `ip` commands (if authorized by the TACACS+ server):
+The following command allows TACACS+ users at privilege level 0 to run the `nv` and `ip` commands:
 
 {{< tabs "TabID392 ">}}
 {{< tab "NVUE Commands ">}}

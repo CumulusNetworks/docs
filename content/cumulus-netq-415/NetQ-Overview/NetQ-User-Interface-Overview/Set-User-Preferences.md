@@ -20,7 +20,7 @@ To configure the display settings:
 2. Select **Profile & Preferences**.
 3. Locate the Display card:
 
-    {{<figure src="/images/netq/display-card-411.png" alt="display card with fields specifying theme, language, time zone, and date format." width="200">}}
+    {{<figure src="/images/netq/display-card-415.png" alt="display card with fields specifying theme, language, time zone, and date format." height="300" width="200">}}
 
 4. Select the **Theme** field and choose either dark or light. The following dashboard displays the light theme:
 

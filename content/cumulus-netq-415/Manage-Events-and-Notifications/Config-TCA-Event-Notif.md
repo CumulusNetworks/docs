@@ -345,25 +345,25 @@ netq add tca event_id <text-event-id-anchor>
 For example, this rule tells NetQ to deliver an event notification to the *tca_slack_ifstats*  pre-configured Slack channel when the CPU utilization exceeds 95% of its capacity on any monitored switch:
 
 ```
-cumulus@switch:~$ netq add tca event_id TCA_CPU_UTILIZATION_UPPER scope '*' threshold 95 channel tca_slack_ifstats
+nvidia@switch:~$ netq add tca event_id TCA_CPU_UTILIZATION_UPPER scope '*' threshold 95 channel tca_slack_ifstats
 ```
 <!-- vale off -->
 This rule tells NetQ to deliver an event notification to the *tca_pd_ifstats* PagerDuty channel when the number of transmit bytes per second (Bps) on the *leaf12* switch exceeds 20,000 Bps on any interface:
 <!-- vale on -->
 ```
-cumulus@switch:~$ netq add tca event_id TCA_TXBYTES_UPPER scope leaf12,'*' threshold 20000 channel tca_pd_ifstats
+nvidia@switch:~$ netq add tca event_id TCA_TXBYTES_UPPER scope leaf12,'*' threshold 20000 channel tca_pd_ifstats
 ```
 
 This rule tells NetQ to deliver an event notification to the *syslog-netq* syslog channel when the temperature on sensor *temp1* on the *leaf12* switch exceeds 32 degrees Celcius:
 
 ```
-cumulus@switch:~$ netq add tca event_id TCA_SENSOR_TEMPERATURE_UPPER scope leaf12,temp1 threshold 32 channel syslog-netq
+nvidia@switch:~$ netq add tca event_id TCA_SENSOR_TEMPERATURE_UPPER scope leaf12,temp1 threshold 32 channel syslog-netq
 ```
 
 This rule tells NetQ to deliver an event notification to the *tca-slack* channel when the total number of ACL drops on the *leaf04* switch exceeds 20,000 for any reason, ingress port, or drop type.
 
 ```
-cumulus@switch:~$ netq add tca event_id TCA_WJH_ACL_DROP_AGG_UPPER scope leaf04,'*','*','*' threshold 20000 channel tca-slack
+nvidia@switch:~$ netq add tca event_id TCA_WJH_ACL_DROP_AGG_UPPER scope leaf04,'*','*','*' threshold 20000 channel tca-slack
 ```
 
 For a Slack channel, the event messages should be similar to this:
@@ -377,13 +377,13 @@ In addition to defining a scope for TCA rule, you can also set a severity of eit
 For example, if you want to add an error severity to the CPU utilization rule you created earlier:
 
 ```
-cumulus@switch:~$ netq add tca event_id TCA_CPU_UTILIZATION_UPPER scope '*' severity error threshold 95 channel tca_slack_resources
+nvidia@switch:~$ netq add tca event_id TCA_CPU_UTILIZATION_UPPER scope '*' severity error threshold 95 channel tca_slack_resources
 ```
 
 Or if an event is important, but not an error. Set the `severity` to *info*:
 
 ```
-cumulus@switch:~$ netq add tca event_id TCA_TXBYTES_UPPER scope leaf12,'*' severity info threshold 20000 channel tca_pd_ifstats
+nvidia@switch:~$ netq add tca event_id TCA_TXBYTES_UPPER scope leaf12,'*' severity info threshold 20000 channel tca_pd_ifstats
 ```
 
 ### Set the Threshold for Digital Optics Events
@@ -393,14 +393,14 @@ Digital optics have the additional option of applying user- or vendor-defined th
 This example shows how to send an error to channel *ch1* when the upper threshold for module voltage exceeds the vendor-defined thresholds for interface *swp31* on the *mlx-2700-04* switch.
 
 ```
-cumulus@switch:~$ netq add tca event_id TCA_DOM_MODULE_VOLTAGE_ALARM_UPPER scope 'mlx-2700-04,swp31' severity error is_active true threshold_type vendor_set channel ch1
+nvidia@switch:~$ netq add tca event_id TCA_DOM_MODULE_VOLTAGE_ALARM_UPPER scope 'mlx-2700-04,swp31' severity error is_active true threshold_type vendor_set channel ch1
 Successfully added/updated tca
 ```
 
 This example shows how to send an error to channel *ch1* when the upper threshold for module voltage exceeds the user-defined threshold of *3V* for interface *swp31* on the *mlx-2700-04* switch.
 
 ```
-cumulus@switch:~$ netq add tca event_id TCA_DOM_MODULE_VOLTAGE_ALARM_UPPER scope 'mlx-2700-04,swp31' severity error is_active true threshold_type user_set threshold 3 channel ch1
+nvidia@switch:~$ netq add tca event_id TCA_DOM_MODULE_VOLTAGE_ALARM_UPPER scope 'mlx-2700-04,swp31' severity error is_active true threshold_type user_set threshold 3 channel ch1
 Successfully added/updated tca
 ```
 
@@ -465,7 +465,7 @@ netq show tca [tca_id <text-tca-id-anchor>] [json]
 This example displays all TCA rules:
 
 ```
-cumulus@switch:~$ netq show tca
+nvidia@switch:~$ netq show tca
 Matching config_tca records:
 TCA Name                     Event Name           Scope                      Severity Channel/s          Active Threshold          Unit     Threshold Type Suppress Until
 ---------------------------- -------------------- -------------------------- -------- ------------------ ------ ------------------ -------- -------------- ----------------------------
@@ -486,7 +486,7 @@ TCA_TCAM_IPV4_ROUTE_UPPER_1  TCA_TCAM_IPV4_ROUTE_ {"hostname":"*"}           err
 This example displays a specific TCA rule:
 
 ```
-cumulus@switch:~$ netq show tca tca_id TCA_TXMULTICAST_UPPER_1
+nvidia@switch:~$ netq show tca tca_id TCA_TXMULTICAST_UPPER_1
 Matching config_tca records:
 TCA Name                     Event Name           Scope                      Severity         Channel/s          Active Threshold          Suppress Until
 ---------------------------- -------------------- -------------------------- ---------------- ------------------ ------ ------------------ ----------------------------
@@ -530,7 +530,7 @@ netq add tca tca_id <text-tca-id-anchor> threshold <text-threshold-value>
 This example changes the threshold for the rule *TCA_CPU_UTILIZATION_UPPER_1* to a value of 96 percent. *This overwrites the existing threshold value.*
 
 ```
-cumulus@switch:~$ netq add tca tca_id TCA_CPU_UTILIZATION_UPPER_1 threshold 96
+nvidia@switch:~$ netq add tca tca_id TCA_CPU_UTILIZATION_UPPER_1 threshold 96
 ```
 
 {{</tab>}}
@@ -568,10 +568,10 @@ netq add tca event_id <text-event-id-anchor> scope <text-scope-anchor> threshold
 This example changes the scope for the rule *TCA_CPU_UTILIZATION_UPPER* to apply only to switches beginning with a hostname of *leaf*.  You must also provide a threshold value. This example case uses a value of 95 percent. *Note that this overwrites the existing scope and threshold values.*
 
 ```
-cumulus@switch:~$ netq add tca event_id TCA_CPU_UTILIZATION_UPPER scope hostname^leaf threshold 95
+nvidia@switch:~$ netq add tca event_id TCA_CPU_UTILIZATION_UPPER scope hostname^leaf threshold 95
 Successfully added/updated tca
 
-cumulus@switch:~$ netq show tca
+nvidia@switch:~$ netq show tca
 
 Matching config_tca records:
 TCA Name                     Event Name           Scope                      Severity         Channel/s          Active Threshold          Suppress Until
@@ -618,7 +618,7 @@ netq add tca tca_id <text-tca-id-anchor> channel <text-channel-name-anchor>
 This example shows the changing of the channel for the disk utilization 1 rule to a PagerDuty channel *pd-netq-events*.
 
 ```
-cumulus@switch:~$ netq add tca tca_id TCA_DISK_UTILIZATION_UPPER_1 channel pd-netq-events
+nvidia@switch:~$ netq add tca tca_id TCA_DISK_UTILIZATION_UPPER_1 channel pd-netq-events
 Successfully added/updated tca TCA_DISK_UTILIZATION_UPPER_1
 ```
 
@@ -631,7 +631,7 @@ netq add tca tca_id <text-tca-id-anchor> channel drop <text-drop-channel-name>
 This example removes the *tca_slack_resources* channel from the disk utilization 1 rule.
 
 ```
-cumulus@switch:~$ netq add tca tca_id TCA_DISK_UTILIZATION_UPPER_1 channel drop tca_slack_resources
+nvidia@switch:~$ netq add tca tca_id TCA_DISK_UTILIZATION_UPPER_1 channel drop tca_slack_resources
 Successfully added/updated tca TCA_DISK_UTILIZATION_UPPER_1
 ```
 
@@ -658,7 +658,7 @@ netq add tca tca_id <text-tca-id-anchor> (severity info | severity error)
 This example changes the severity of the maximum CPU utilization 1 rule from error to info:
 
 ```
-cumulus@switch:~$ netq add tca tca_id TCA_CPU_UTILIZATION_UPPER_1 severity info
+nvidia@switch:~$ netq add tca tca_id TCA_CPU_UTILIZATION_UPPER_1 severity info
 Successfully added/updated tca TCA_CPU_UTILIZATION_UPPER_1
 ```
 
@@ -700,7 +700,7 @@ netq add tca tca_id <text-tca-id-anchor> suppress_until <text-suppress-ts>
 This example suppresses the maximum CPU utilization event for 24 hours:
 
 ```
-cumulus@switch:~$ netq add tca tca_id TCA_CPU_UTILIZATION_UPPER_2 suppress_until 86400
+nvidia@switch:~$ netq add tca tca_id TCA_CPU_UTILIZATION_UPPER_2 suppress_until 86400
 Successfully added/updated tca TCA_CPU_UTILIZATION_UPPER_2
 ```
 
@@ -748,7 +748,7 @@ netq add tca tca_id <text-tca-id-anchor> is_active false
 This example disables the maximum disk utilization 1 rule:
 
 ```
-cumulus@switch:~$ netq add tca tca_id TCA_DISK_UTILIZATION_UPPER_1 is_active false
+nvidia@switch:~$ netq add tca tca_id TCA_DISK_UTILIZATION_UPPER_1 is_active false
 Successfully added/updated tca TCA_DISK_UTILIZATION_UPPER_1
 ```
 
@@ -785,7 +785,7 @@ netq del tca tca_id <text-tca-id-anchor>
 This example deletes the maximum receive bytes rule:
 
 ```
-cumulus@switch:~$ netq del tca tca_id TCA_RXBYTES_UPPER_1
+nvidia@switch:~$ netq del tca tca_id TCA_RXBYTES_UPPER_1
 Successfully deleted TCA TCA_RXBYTES_UPPER_1
 ```
 

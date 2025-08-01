@@ -182,20 +182,6 @@ deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb jammy netq-latest
 The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even for a major version update. If you want to keep the repository on a specific version &mdash; such as <code>netq-4.9</code> &mdash; use that instead.
     {{</notice>}}
 
-
-
-Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-focal.list` and add the following line:
-
-```
-root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-focal.list
-...
-deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb focal netq-latest
-...
-```
-    {{<notice note>}}
-The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even for a major version update. If you want to keep the repository on a specific version &mdash; such as <code>netq-4.4</code> &mdash; use that instead.
-    {{</notice>}}
-
 {{</tab>}}
 
 {{</tabs>}}

@@ -24,24 +24,26 @@ cumulus@switch:~$ nv config apply
 
 When you enable open telemetry, the switch collects and exports [system information](#system-information-format) metrics to the configured external collector by default. In addition, you can enable open telemetry to collect and export [interface statistics](#interface-statistics), [buffer statistics](#buffer-statistics), [histogram data](#histogram-data), [control plane statistics](#control-plane-statistics), [platform statistics](#platform-statistics), and [routing metrics](#router-statistics).
 
-### Adaptive Routing Statistics
+### AI Ethernet Statistics
 
-When you enable open telemetry for adaptive routing, the switch exports [adaptive routing statistics](#adaptive-routing-statistic-format):
+When you enable open telemetry for AI Ethernet statistics, the switch exports [adaptive routing, SRv6, and packet trimming statistics](#ai-ethernet-statistic-format):
 
 ```
-cumulus@switch:~$ nv set system telemetry adaptive-routing-stats export state enabled
+cumulus@switch:~$ nv set system telemetry ai-ethernet-stats export state enabled
 cumulus@switch:~$ nv config apply
 ```
 
 You can adjust the adaptive routing statistics sample interval (in seconds). You can specify a value between 1 and 86400. The default setting is 1 second.
 
 ```
-cumulus@switch:~$ nv set system telemetry adaptive-routing-stats sample-interval 40
+cumulus@switch:~$ nv set system telemetry ai-ethernet-stats sample-interval 40
 cumulus@switch:~$ nv config apply
 ```
 
 {{%notice note%}}
-To export adaptive routing metrics, you must {{<link url="Equal-Cost-Multipath-Load-Sharing/#enable-adaptive-routing" text="enable the adaptive routing feature">}}.
+- To export adaptive routing metrics, you must {{<link url="Equal-Cost-Multipath-Load-Sharing/#enable-adaptive-routing" text="enable adaptive routing">}}.
+- To export packet trimming metrics, you must {{<link url="Packet-Trimming" text="enable packet trimming">}}.
+- To export SRv6 metrics, you must {{<link url="Segment-Routing" text="enable segment routing">}}.
 {{%/notice%}}
 
 ### Buffer Statistics
@@ -290,6 +292,16 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
+{{< tab "Platform Information">}}
+
+To enable platform information statistics, such as the time of last reboot, the last reboot reason, or firmware version:
+
+```
+cumulus@switch:~$ nv set system telemetry platform-stats class platform-info state enabled
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
 {{< /tabs >}}
 
 To show platform statistics configuration, run the `nv show system telemetry platform-stats` command.
@@ -350,8 +362,8 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{%notice note%}}
-- You can disable BGP export across all VRFs with the `nv set telemetry router bgp export state disabled` command and enable it only for specific VRFs with the `nv set telemetry router vrf <vrf-name> bgp export state enabled` command. 
-- You can also disable BGP export across all peers in a VRF with the `nv set telemetry router vrf <vrf-name> bgp export state disabled` command, and enable telemetry only for specific peers in the VRF with the `nv set telemetry router vrf <vrf-name> bgp peer <peer> export state enabled` command.
+- You can disable BGP export across all VRFs with the `nv set telemetry router bgp export state disabled` command and enable it only for specific VRFs with the `nv set telemetry router vrf <vrf-id> bgp export state enabled` command. 
+- You can also disable BGP export across all peers in a VRF with the `nv set telemetry router vrf <vrf-id> bgp export state disabled` command, and enable telemetry only for specific peers in the VRF with the `nv set telemetry router vrf <vrf-id> bgp peer <peer> export state enabled` command.
 {{%/notice%}}
 
 To show routing metrics configuration settings, run the `nv show system telemetry router` command.
@@ -560,6 +572,17 @@ cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.30
 cumulus@switch:~$ nv config apply
 ```
 
+The following example:
+- Configures STAT-GROUP5 to disable buffer statistics (`buffer-stats`) and enable platform information statistics (`platform-info`).
+- Applies the STAT-GROUP5 configuration to the OTLP destination 10.1.1.30.
+
+```
+cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP5 buffer-stats export state disabled
+cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP5 platform-stats class platform-info export state enabled
+cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.30 stats-group STAT-GROUP5
+cumulus@switch:~$ nv config apply
+```
+
 ### Show Telemetry Export Configuration
 
 To show the telemetry export configuration, run the `nv show system telemetry export` command:
@@ -620,7 +643,7 @@ cumulus@switch:~$ nv show system telemetry label
 Data Center Location  Data Center B
 ```
 
-Validate interface label configuration with the `nv show interface <interface> telemetry label` command:
+Validate interface label configuration with the `nv show interface <interface-id> telemetry label` command:
 
 ```
 cumulus@switch:~$ nv show interface swp10 telemetry label
@@ -633,39 +656,106 @@ interface_swp10_label  Server 10 connection
 
 Cumulus Linux exports statistics and histogram data in the formats defined in this section.
 
-### Adaptive Routing Statistic Format
+{{%notice note%}}
+An asterisk (*) in the `Description` column of the tables below indicates that metric is new for Cumulus Linux 5.14.
+{{%/notice%}}
 
-When you enable adaptive routing telemetry, the switch exports the following statistics:
+### AI Ethernet Statistic Format
+
+The switch collects and exports the adaptive routing, SRv6, and packet trimming statistics when you configure the `nv set system telemetry ai-ethernet-stats export state enabled` command.
 
 | Metric | Description |
 | ---------- | ------- |
 | `nvswitch_ar_congestion_changes`  | The number of adaptive routing change events triggered due to congestion or link-down.|
+| `nvswitch_srv6_no_sid_drops`| * Number of packets dropped due to no matching SID. |
+| `nvswitch_srv6_in_pkts` | * Number of packets received for this SID. |
+| `nvswitch_qos_trimmed_unicast_pkts`| * The number of packets that were trimmed.|
 
 {{< expand "Example JSON data for nvswitch_ar_congestion_changes:" >}}
 ```
 {
-  "name": "nvswitch_ar_congestion_changes",
-  "description": "NVIDIA Ethernet Switch Adaptive Routing Congestion Changes counter",
-  "sum": {
-    "dataPoints": [
-      {
-        "startTimeUnixNano": "1745871735360000000",
-        "timeUnixNano": "1745871919360000000",
-        "asDouble": 0
-      }
-    ],
-    "aggregationTemporality": 2,
-    "isMonotonic": true
-  },
-  "metadata": [
+      "name": "nvswitch_ar_congestion_changes",
+      "description": "NVIDIA Ethernet Switch Adaptive Routing Congestion Changes counter",
+      "sum": {
+        "dataPoints": [
+          {
+            "startTimeUnixNano": "1752704043650000000",
+            "timeUnixNano": "1752706797650000000",
+            "asDouble": 11051568563473
+          }
+        ],
+        "aggregationTemporality": 2,
+        "isMonotonic": true
+      },
+      "metadata": [
+        {
+          "key": "prometheus.type",
+          "value": {
+            "stringValue": "counter"
+          }
+        }
+      ]
+    }
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_srv6_in_pkts:" >}}
+```
     {
-      "key": "prometheus.type",
-      "value": {
-        "stringValue": "counter"
+      "name": "nvswitch_srv6_in_pkts",
+      "description": "NVIDIA Ethernet Switch SRv6 Processed Packets per SID",
+      "sum": {
+        "dataPoints": [
+          {
+            "attributes": [
+              {
+                "key": "sid",
+                "value": {
+                  "stringValue": "1389:1771:0fa1:0000:0000:0000:0000:0000"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1752704951198000000",
+            "timeUnixNano": "1752704981198000000",
+            "asDouble": 212
+          }
+        ]
       }
     }
-  ]
-}
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_qos_trimmed_unicast_pkts:" >}}
+```
+{
+      "name": "nvswitch_qos_trimmed_unicast_pkts",
+      "description": "NVIDIA Ethernet Switch QoS Trimmed Packets",
+      "sum": {
+        "dataPoints": [
+          {
+            "startTimeUnixNano": "1753852974184000000",
+            "timeUnixNano": "1753852974184000000",
+            "asDouble": 15322379
+          }
+        ],
+        "aggregationTemporality": 2,
+        "isMonotonic": true
+      },
+      "metadata": [
+        {
+          "key": "prometheus.type",
+          "value": {
+            "stringValue": "counter"
+          }
+        }
+      ]
+    }
 ```
 {{< /expand >}}
 
@@ -719,6 +809,11 @@ The switch collects and exports the following interface and switch, buffer occup
 | `nvswitch_interface_headroom_buffer_pool_curr_occupancy` | Current headroom buffer occupancy for port shared pool buffer |
 | `nvswitch_interface_headroom_buffer_pool_watermark` | Maximum headroom buffer occupancy for port shared pool buffer. |
 | `nvswitch_interface_headroom_buffer_pool_watermark_recorded_max` | Highest maximum headroom buffer occupancy for port shared pool buffer. |
+| `nvswitch_interface_shared_buffer_port_tc_desc_watermark_recorded_max_bytes` | * Interface shared buffer traffic class highest recorded watermark counter in bytes.|
+| `nvswitch_interface_shared_buffer_port_pg_watermark_recorded_max_timestamp` | * Time when highest shared buffer port group watermark is recorded.|
+| `nvswitch_interface_shared_buffer_port_tc_watermark_recorded_max_timestamp` | * Time when highest shared buffer traffic class watermark is recorded|
+| `nvswitch_interface_shared_buffer_port_ingress_pool_watermark_recorded_max_timestamp` | * Time when highest shared pool buffer watermark is recorded.|
+
 <!-- vale off -->
 <br>
 {{< expand "Example JSON data for nvswitch_interface_shared_buffer_port_tc_time_since_clear:" >}}
@@ -922,6 +1017,7 @@ The switch sends a sample with the following names for each interface enabled fo
 | `nvswitch_histogram_interface_counter_bucket` | Histogram interface counter bucket. |
 | `nvswitch_histogram_interface_counter_count` | Histogram interface counter count. |
 | `nvswitch_histogram_interface_latency` | Histogram interface latency data. |
+
 <!-- vale off -->
 {{< expand "Example JSON data for interface_ingress_buffer:" >}}
 ```
@@ -1248,6 +1344,9 @@ The interface statistic data samples that the switch exports to the OTEL collect
 | `nvswitch_interface_if_out_multicast_pkts`|Number of interface out multicast packets. |
 | `nvswitch_interface_if_out_octets`| Number of interface out octets.|
 | `nvswitch_interface_if_out_octets`| Number of interface out unicast packets.|
+| `nvswitch_interface_type`| * Link-layer interface type.|
+| `nvswitch_interface_ether_stats_jabbers` | * Jabber frames receiverd on this interface.|
+| `nvswitch_interface_hw_address_info` | * System defined default MAC address for the interface.|
 
 {{< /tab >}}
 {{< tab "Traffic Class ">}}
@@ -1321,6 +1420,7 @@ The switch collects and exports the following additional interface statistics wh
 | `nvswitch_interface_phy_stats_phy_corrected_bits` | Corrected bits by FEC engine. |
 | `nvswitch_interface_phy_stats_time_since_last_clear` | Time after counters clear.|
 | `nvswitch_interface_phy_stats_effective_ber` | FEC BER errors. |
+| `nvswitch_interface_phy_rs_fec_histogram` | * Firmware version information for the transceiver.|
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -1775,6 +1875,293 @@ The switch collects and exports the following additional interface statistics wh
 }
 ```
 {{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_interface_ether_stats_jabbers:" >}}
+```
+ {
+      "name": "nvswitch_interface_ether_stats_jabbers",
+      "description": "NVIDIA Ethernet Switch Interface ether stats jabbers counter",
+      "gauge": {
+        "dataPoints": [
+          {
+            "attributes": [
+              {
+                "key": "interface",
+                "value": {
+                  "stringValue": "swp1s0"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901194269000000",
+            "asDouble": 0
+          },
+          {
+            "attributes": [
+              {
+                "key": "interface",
+                "value": {
+                  "stringValue": "swp1s1"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901194269000000",
+            "asDouble": 0
+          },
+          {
+            "attributes": [
+              {
+                "key": "interface",
+                "value": {
+                  "stringValue": "swp1s2"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901194269000000",
+            "asDouble": 0
+          },
+          {
+            "attributes": [
+              {
+                "key": "interface",
+                "value": {
+                  "stringValue": "swp1s3"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901194269000000",
+            "asDouble": 0
+          },
+          {
+            "attributes": [
+              {
+                "key": "interface",
+                "value": {
+                  "stringValue": "swp61s0"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901194269000000",
+            "asDouble": 0
+          },
+          {
+            "attributes": [
+              {
+                "key": "interface",
+                "value": {
+                  "stringValue": "swp61s1"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901194269000000",
+            "asDouble": 0
+          }
+        ]
+      },
+      "metadata": [
+        {
+          "key": "prometheus.type",
+          "value": {
+            "stringValue": "gauge"
+          }
+        }
+      ]
+    }
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_interface_hw_address_info:" >}}
+```
+{
+      "name": "nvswitch_interface_hw_address_info",
+      "description": "Hardware (MAC) address information for network interface.",
+      "gauge": {
+        "dataPoints": [
+          {
+            "attributes": [
+              {
+                "key": "address",
+                "value": {
+                  "stringValue": "1c:34:da:28:01:00"
+                }
+              },
+              {
+                "key": "interface",
+                "value": {
+                  "stringValue": "swp35"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901194568000000",
+            "asDouble": 1
+          },
+          {
+            "attributes": [
+              {
+                "key": "address",
+                "value": {
+                  "stringValue": "1c:34:da:28:01:02"
+                }
+              },
+              {
+                "key": "interface",
+                "value": {
+                  "stringValue": "swp36"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901194568000000",
+            "asDouble": 1
+          },
+          {
+            "attributes": [
+              {
+                "key": "address",
+                "value": {
+                  "stringValue": "1c:34:da:28:01:04"
+                }
+              },
+              {
+                "key": "interface",
+                "value": {
+                  "stringValue": "swp33"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901194568000000",
+            "asDouble": 1
+          },
+          {
+            "attributes": [
+              {
+                "key": "address",
+                "value": {
+                  "stringValue": "1c:34:da:28:01:06"
+                }
+              },
+              {
+                "key": "interface",
+                "value": {
+                  "stringValue": "swp34"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901194568000000",
+            "asDouble": 1
+          },
+          {
+            "attributes": [
+              {
+                "key": "address",
+                "value": {
+                  "stringValue": "1c:34:da:28:01:08"
+                }
+              },
+              {
+                "key": "interface",
+                "value": {
+                  "stringValue": "swp39"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901194568000000",
+            "asDouble": 1
+          },
+          {
+            "attributes": [
+              {
+                "key": "address",
+                "value": {
+                  "stringValue": "1c:34:da:28:01:0a"
+                }
+              },
+              {
+                "key": "interface",
+                "value": {
+                  "stringValue": "swp40"
+                }
+              }
+...
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_interface_type:" >}}
+```
+{
+      "name": "nvswitch_interface_type",
+      "description": "Network device property: type",
+      "gauge": {
+        "dataPoints": [
+          {
+            "attributes": [
+              {
+                "key": "interface",
+                "value": {
+                  "stringValue": "swp10"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901194568000000",
+            "asDouble": 1
+          },
+          {
+            "attributes": [
+              {
+                "key": "interface",
+                "value": {
+                  "stringValue": "swp11"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901194568000000",
+            "asDouble": 1
+          },
+          {
+            "attributes": [
+              {
+                "key": "interface",
+                "value": {
+                  "stringValue": "swp12"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901194568000000",
+            "asDouble": 1
+          },
+          {
+            "attributes": [
+              {
+                "key": "interface",
+                "value": {
+                  "stringValue": "swp13"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901194568000000",
+            "asDouble": 1
+          },
+          {
+            "attributes": [
+              {
+                "key": "interface",
+                "value": {
+                  "stringValue": "swp14"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901194568000000",
+            "asDouble": 1
+          },
+          {
+            "attributes": [
+              {
+                "key": "interface",
+                "value": {
+                  "stringValue": "swp15"
+                }
+              }
+...
+```
+{{< /expand >}}
 
 #### PHY Example JSON
 
@@ -1946,6 +2333,7 @@ When you enable LLDP statistic telemetry, the switch exports the following stati
 | `nvswitch_lldp_neighbor_info` | LLDP neighbor information.|
 | `nvswitch_lldp_neighbor_ttl` | LLDP neighbor port TTL in seconds.|
 | `nvswitch_lldp_neighbor_management_address-info` | LLDP neighbor management address information.|
+| `nvswitch_lldp_interface_enabled` | * Per-directional status on whether LLDP is enabled per interface.|
 
 {{< expand "Example JSON data for nvswitch_lldp_chassis_info:" >}}
 
@@ -2417,6 +2805,8 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | `nvswitch_platform_environment_temp_max` | Maximum temperature threshold in centigrade. | 
 | `nvswitch_platform_environment_temp_min` | Minimum temperature threshold in centigrade. | 
 | `nvswitch_platform_environment_temp_state` | Temperature sensor status (0: ABSENT, 1: OK, 2: FAILED, 3: BAD). |
+| `nvswitch_platform_evironment_input_voltage` | * Input voltage to the PSU.|
+| `nvswitch_platform_environment_input_current` | * Input current to the PSU.|
 
 {{< /tab >}}
 {{< tab "Transceivers ">}}
@@ -2433,10 +2823,25 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | `nvswitch_platform_transceiver_voltage_threshold_info` | Voltage thresholds defined for the module. The level is alarm or warning. The threshold is low or high.|
 | `nvswitch_platform_transceiver_channel_power` | The transceiver channel power value in dBm units (logarithmic scale) for each channel in both rx and tx directions.|
 | `nvswitch_platform_transceiver_channel_power_alarm` | The alarm state for power value compared with the defined thresholds for the module as a bit mask value for each channel and for both rx and tx directions:<br>Bit 0: tx_power_hi_al<br>Bit 1: l tx_power_lo_al<br>Bit 2: tx_power_hi_war<br>Bit 3: l tx_power_lo_war. |
-| `nvswitch_platform_transceiver_channel_power_threshold_info` | Threshold information for the power for both rx and tx directions. These threshold values are applicable for all channels. The units are in dBm and represented by a 32bit decimal value. |
+| `nvswitch_platform_transceiver_power_threshold_info` | Threshold information for the power for both rx and tx directions. These threshold values are applicable for all channels. The units are in dBm and represented by a 32bit decimal value. |
 | `nvswitch_platform_transceiver_channel_tx_bias_current` | tx bias current measured for the channel in Amps units and represented by a 32bit decimal value. |
 | `nvswitch_platform_transceiver_channel_tx_bias_current_alarm` | tx bias current alarm state of tx bias current measure for the channel when compared to the threshold values for the channel defined for the module. This is a bit mask value:<br>Bit 0: tx_bias_hi_al<br>Bit 1: l tx_bias_lo_al<br>Bit 2: tx_bia_hi_war<br>Bit 3: l tx_bias_lo_war |
 | `nvswitch_platform_transceiver_channel_tx_bias_current_threshold_info` | tx bias current thresholds defined for the channel in Amps units and represented by a 32bit decimal value. |
+| `nvswitch_platform_transceiver_firmware_version`| * Firmware version information for the transceiver.|
+| `nvswitch_platform_transceiver_info` | * General information for the transceiver.|
+| `nvswitch_platform_transceiver_ethernet_pmd` | * Ethernet PMD information for the transceiver.|
+| `nvswitch_platform_transceiver_physical_channel_state` | * Per physical channel LOS and CDR LOL state.|
+| `nvswitch_platform_transceiver_host_lane_state` | * Per host lane LOS and CDR LOL state.|
+| `nvswitch_platform_transceiver_voltage` | * Input voltage as measured by the transceiver |
+
+{{< /tab >}}
+{{< tab "Platform Information ">}}
+
+| Metric | Description |
+| ---------- | ------- |
+| `nvswitch_platform_info_last_reboot_time` | * Time of last reboot in ns since epoch.|
+| `nvswitch_platform_info_last_reboot_reason` | * Information about the last reboot reason of a component.|
+| `nvswitch_platform_info_firmware_version` | * Information about the firmware version of a component.|
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -3049,80 +3454,431 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 }
 ```
 {{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_platform_environment_psu_input_voltage:" >}}
+```
+{
+      "name": "nvswitch_platform_environment_psu_input_voltage",
+      "description": "PSU input voltage in Volts.",
+      "gauge": {
+        "dataPoints": [
+          {
+            "attributes": [
+              {
+                "key": "description",
+                "value": {
+                  "stringValue": "Power Supply Unit 1"
+                }
+              },
+              {
+                "key": "name",
+                "value": {
+                  "stringValue": "PSU1"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901249206000000",
+            "asDouble": 239.5
+          },
+          {
+            "attributes": [
+              {
+                "key": "description",
+                "value": {
+                  "stringValue": "Power Supply Unit 2"
+                }
+              },
+              {
+                "key": "name",
+                "value": {
+                  "stringValue": "PSU2"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901249206000000",
+            "asDouble": 240
+          }
+        ]
+      },
+      "metadata": [
+        {
+          "key": "prometheus.type",
+          "value": {
+            "stringValue": "gauge"
+          }
+        }
+      ]
+    },
+...
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_platform_environment_psu_input_current:" >}}
+```
+{
+      "name": "nvswitch_platform_environment_psu_input_current",
+      "description": "PSU input current in Amperes.",
+      "gauge": {
+        "dataPoints": [
+          {
+            "attributes": [
+              {
+                "key": "description",
+                "value": {
+                  "stringValue": "Power Supply Unit 1"
+                }
+              },
+              {
+                "key": "name",
+                "value": {
+                  "stringValue": "PSU1"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901249206000000",
+            "asDouble": 10
+          },
+          {
+            "attributes": [
+              {
+                "key": "description",
+                "value": {
+                  "stringValue": "Power Supply Unit 2"
+                }
+              },
+              {
+                "key": "name",
+                "value": {
+                  "stringValue": "PSU2"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901249206000000",
+            "asDouble": 11.75
+          }
+        ]
+      },
+      "metadata": [
+        {
+          "key": "prometheus.type",
+          "value": {
+            "stringValue": "gauge"
+          }
+        }
+      ]
+    },
+```
+{{< /expand >}}
 
 #### Transceiver Example JSON
 
 {{< expand "Example JSON data for nvswitch_platform_transceiver_info:" >}}
-
 ```
 {
-  "name": "nvswitch_platform_transceiver_info",
-  "description": "NVIDIA Ethernet Switch Transceiver Information",
-  "gauge": {
-    "dataPoints": [
-      {
-        "attributes": [
+      "name": "nvswitch_platform_transceiver_info",
+      "description": "NVIDIA Ethernet Switch Transceiver Information",
+      "gauge": {
+        "dataPoints": [
           {
-            "key": "cable_length",
-            "value": {
-              "stringValue": "0.5m"
-            }
-          },
-          {
-            "key": "cable_type",
-            "value": {
-              "stringValue": "Passive copper cable"
-            }
-          },
-          {
-            "key": "error_status",
-            "value": {
-              "stringValue": "N/A"
-            }
-          },
-          {
-            "key": "identifier",
-            "value": {
-              "stringValue": "OSFP"
-            }
-          },
-          {
-            "key": "name",
-            "value": {
-              "stringValue": "transceiver10"
-            }
-          },
-          {
-            "key": "port",
-            "value": {
-              "stringValue": "10"
-            }
-          },
-          {
-            "key": "revision_compliance",
-            "value": {
-              "stringValue": "Rev 5.0"
-            }
-          },
-          {
-            "key": "status",
-            "value": {
-              "stringValue": "plugged, enabled"
-            }
+            "attributes": [
+              {
+                "key": "cable_length",
+                "value": {
+                  "stringValue": "2.0m"
+                }
+              },
+              {
+                "key": "cable_type",
+                "value": {
+                  "stringValue": "Passive copper cable"
+                }
+              },
+              {
+                "key": "error_status",
+                "value": {
+                  "stringValue": "N/A"
+                }
+              },
+              {
+                "key": "identifier",
+                "value": {
+                  "stringValue": "OSFP"
+                }
+              },
+              {
+                "key": "name",
+                "value": {
+                  "stringValue": "transceiver36"
+                }
+              },
+              {
+                "key": "port",
+                "value": {
+                  "stringValue": "36"
+                }
+              },
+              {
+                "key": "revision_compliance",
+                "value": {
+                  "stringValue": "Rev 5.0"
+                }
+              },
+              {
+                "key": "status",
+                "value": {
+                  "stringValue": "plugged, enabled"
+                }
+              }
+            ],
+            "timeUnixNano": "1753399762615000000",
+            "asDouble": 1
           }
-        ],
-        "timeUnixNano": "1745875256987000000",
-        "asDouble": 1
-      }
-    ]
-  }
-}
+        ]
+      },
+      "metadata": [
+        {
+          "key": "prometheus.type",
+          "value": {
+            "stringValue": "gauge"
+          }
+        }
+      ]
+    },
 ```
-
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_platform_transceiver_voltage:" >}}
+```
+    {
+      "name": "nvswitch_platform_transceiver_voltage",
+      "description": "NVIDIA Ethernet Switch Transceiver Voltage in V",
+      "gauge": {
+        "dataPoints": [
+          {
+            "attributes": [
+              {
+                "key": "name",
+                "value": {
+                  "stringValue": "transceiver33"
+                }
+              },
+              {
+                "key": "port",
+                "value": {
+                  "stringValue": "33"
+                }
+              }
+            ],
+            "timeUnixNano": "1753399700615000000",
+            "asDouble": 3.2324
+          }
+        ]
+      },
+      "metadata": [
+        {
+          "key": "prometheus.type",
+          "value": {
+            "stringValue": "gauge"
+          }
+        }
+      ]
+    },
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_platform_transceiver_firmware_version:" >}}
+```
+    {
+      "name": "nvswitch_platform_transceiver_firmware_version",
+      "description": "NVIDIA Ethernet Switch Transceiver Firmware Version",
+      "gauge": {
+        "dataPoints": [
+          {
+            "attributes": [
+              {
+                "key": "fw_version",
+                "value": {
+                  "stringValue": "47.171.10"
+                }
+              },
+              {
+                "key": "name",
+                "value": {
+                  "stringValue": "transceiver33"
+                }
+              },
+              {
+                "key": "port",
+                "value": {
+                  "stringValue": "33"
+                }
+              }
+            ],
+            "timeUnixNano": "1753399700615000000",
+            "asDouble": 1
+          }
+        ]
+      },
+      "metadata": [
+        {
+          "key": "prometheus.type",
+          "value": {
+            "stringValue": "gauge"
+          }
+        }
+      ]
+    },
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_platform_transceiver_ethernet_pmd:" >}}
+```
+    {
+      "name": "nvswitch_platform_transceiver_ethernet_pmd",
+      "description": "NVIDIA Ethernet Switch Transceiver Ethernet PMD Type",
+      "gauge": {
+        "dataPoints": [
+          {
+            "attributes": [
+              {
+                "key": "name",
+                "value": {
+                  "stringValue": "transceiver9"
+                }
+              },
+              {
+                "key": "pmd_type",
+                "value": {
+                  "stringValue": "400G_AUI4_CR4"
+                }
+              },
+              {
+                "key": "port",
+                "value": {
+                  "stringValue": "9"
+                }
+              }
+            ],
+            "timeUnixNano": "1753399700615000000",
+            "asDouble": 1
+          }
+        ]
+      },
+      "metadata": [
+        {
+          "key": "prometheus.type",
+          "value": {
+            "stringValue": "gauge"
+          }
+        }
+      ]
+    },
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_platform_transceiver_physical_channel_state:" >}}
+```
+    {
+      "name": "nvswitch_platform_transceiver_physical_channel_state",
+      "description": "NVIDIA Ethernet Switch Transceiver Physical Channel State (rx-los, rx-cdr-lol)",
+      "gauge": {
+        "dataPoints": [
+          {
+            "attributes": [
+              {
+                "key": "channel",
+                "value": {
+                  "stringValue": "1"
+                }
+              },
+              {
+                "key": "name",
+                "value": {
+                  "stringValue": "transceiver33"
+                }
+              },
+              {
+                "key": "port",
+                "value": {
+                  "stringValue": "33"
+                }
+              },
+              {
+                "key": "state",
+                "value": {
+                  "stringValue": "rx-cdr-lol"
+                }
+              }
+            ],
+            "timeUnixNano": "1753399700615000000",
+            "asDouble": 0
+          }
+        ]
+      },
+      "metadata": [
+    {
+      "key": "prometheus.type",
+      "value": {
+        "stringValue": "gauge"
+      }
+        }
+      ]
+    },
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_platform_transceiver_host_lane_state:" >}}
+```
+    {
+      "name": "nvswitch_platform_transceiver_host_lane_state",
+      "description": "NVIDIA Ethernet Switch Transceiver Host Lane State (tx-los, tx-cdr-lol)",
+      "gauge": {
+        "dataPoints": [
+          {
+            "attributes": [
+              {
+                "key": "lane",
+                "value": {
+                  "stringValue": "1"
+                }
+              },
+              {
+                "key": "name",
+                "value": {
+                  "stringValue": "transceiver33"
+                }
+              },
+              {
+                "key": "port",
+                "value": {
+                  "stringValue": "33"
+                }
+              },
+              {
+                "key": "state",
+                "value": {
+                  "stringValue": "tx-cdr-lol"
+                }
+              }
+            ],
+            "timeUnixNano": "1753399700615000000",
+            "asDouble": 0
+          }
+        ]
+      },
+      "metadata": [
+        {
+          "key": "prometheus.type",
+          "value": {
+            "stringValue": "gauge"
+          }
+        }
+      ]
+    }
+```
 {{< /expand >}}
 <br>
 {{< expand "Example JSON data for nvswitch_platform_transceiver_vendor_info:" >}}
-
 ```
 {
     "name": "nvswitch_platform_transceiver_vendor_info",
@@ -3188,7 +3944,7 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
   }
 ```
 {{< /expand >}}
-<!-- vale on -->
+
 ### Routing Metrics Format
 
 When you enable layer 3 routing metrics telemetry, the switch exports the following statistics:
@@ -3206,6 +3962,10 @@ When you enable layer 3 routing metrics telemetry, the switch exports the follow
 | `nvrouting_bgp_peer_socket_out_queue` | Number of messages queued to be sent to the BGP neighbor.|
 | `nvrouting_bgp_peer_rx_updates` | Number of BGP messages received from the neighbor.|
 | `nvrouting_bgp_peer_tx_updates` | Number of BGP messages sent to the neighbor. |
+| `nvrouting_bgp_peer_info` | * BGP peer information.|
+| `nvrouting_bgp_peer_last_established` | * Last established time of the BGP peer.|
+| `nvrouting_bgp_peer_as` | * Autonomous system number of the BGP peer.|
+| `nvrouting_bgp_peer_local_as` | * Local autonomous system number.|
 | `nvrouting_rib_count` | Number of IPv4 and IPv6 routes in the IP routing table for each route source. |
 | `nvrouting_rib_count_connected` | Number of IPv4 connected routes in the IP routing table. |
 | `nvrouting_rib_count_bgp` | Number of IPv4 BGP routes in the IP routing table. |
@@ -3220,6 +3980,7 @@ When you enable layer 3 routing metrics telemetry, the switch exports the follow
 | `nvrouting_rib_count_pbr_ipv6` | Number of IPv6 PBR routes in the IP routing table. |
 | `nvrouting_rib_count_ospf_ipv6` | Number of IPv6 OSPF routes in the IP routing table. |
 | `nvrouting_rib_nhg_count` | Number of next hop groups in the routing table. |
+
 <!-- vale off -->
 {{< expand "Example JSON data for nvrouting_bgp_peer_state:" >}}
 ```
@@ -3993,6 +4754,618 @@ When you enable layer 3 routing metrics telemetry, the switch exports the follow
 }
 ```
 {{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvrouting_bgp_peer_last_established:" >}}
+```
+{
+      "name": "nvrouting_bgp_peer_last_established",
+      "description": "Tracks the last established time of the bgp peer",
+      "gauge": {
+        "dataPoints": [
+          {
+            "attributes": [
+              {
+                "key": "peer-id",
+                "value": {
+                  "stringValue": "2.1.1.1"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901204066649250",
+            "timeUnixNano": "1753901204069100927",
+            "asInt": "1753901145"
+          },
+          {
+            "attributes": [
+              {
+                "key": "peer-id",
+                "value": {
+                  "stringValue": "2.1.1.2"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901204066649250",
+            "timeUnixNano": "1753901204069100927",
+            "asInt": "1753901145"
+          },
+          {
+            "attributes": [
+              {
+                "key": "peer-id",
+                "value": {
+                  "stringValue": "20.0.0.1"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901204066649250",
+            "timeUnixNano": "1753901204069100927",
+            "asInt": "1753901144"
+          },
+          {
+            "attributes": [
+              {
+                "key": "peer-id",
+                "value": {
+                  "stringValue": "20.1.0.1"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901204066649250",
+            "timeUnixNano": "1753901204069100927",
+            "asInt": "1753901144"
+          },
+          {
+            "attributes": [
+              {
+                "key": "peer-id",
+                "value": {
+                  "stringValue": "20.2.0.1"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901204066649250",
+            "timeUnixNano": "1753901204069100927",
+            "asInt": "1753901144"
+          }
+        ]
+      }
+    },
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvrouting_bgp_peer_info:" >}}
+```
+    {
+      "name": "nvrouting_bgp_peer_info",
+      "description": "Tracks the peer information of the bgp peer",
+      "gauge": {
+        "dataPoints": [
+          {
+            "attributes": [
+              {
+                "key": "description",
+                "value": {
+                  "stringValue": "ebgp_mulithop_neighbor_2.1.1.1"
+                }
+              },
+              {
+                "key": "last-notification-error-code-received",
+                "value": {
+                  "stringValue": ""
+                }
+              },
+              {
+                "key": "last-notification-error-code-sent",
+                "value": {
+                  "stringValue": ""
+                }
+              },
+              {
+                "key": "peer-address",
+                "value": {
+                  "stringValue": "2.1.1.1"
+                }
+              },
+              {
+                "key": "peer-group",
+                "value": {
+                  "stringValue": "ebgp_mulithop"
+                }
+              },
+              {
+                "key": "peer-id",
+                "value": {
+                  "stringValue": "2.1.1.1"
+                }
+              },
+              {
+                "key": "peer-type",
+                "value": {
+                  "stringValue": "EXTERNAL"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901204066661716",
+            "timeUnixNano": "1753901204069104448",
+            "asInt": "1"
+          },
+          {
+            "attributes": [
+              {
+                "key": "description",
+                "value": {
+                  "stringValue": "ebgp_mulithop_neighbor_2.1.1.2"
+                }
+              },
+              {
+                "key": "last-notification-error-code-received",
+                "value": {
+                  "stringValue": ""
+                }
+              },
+              {
+                "key": "last-notification-error-code-sent",
+                "value": {
+                  "stringValue": ""
+                }
+              },
+              {
+                "key": "peer-address",
+                "value": {
+                  "stringValue": "2.1.1.2"
+                }
+              },
+              {
+                "key": "peer-group",
+                "value": {
+                  "stringValue": "ebgp_mulithop"
+                }
+              },
+              {
+                "key": "peer-id",
+                "value": {
+                  "stringValue": "2.1.1.2"
+                }
+              },
+              {
+                "key": "peer-type",
+                "value": {
+                  "stringValue": "EXTERNAL"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901204066661716",
+            "timeUnixNano": "1753901204069104448",
+            "asInt": "1"
+          },
+          {
+            "attributes": [
+              {
+                "key": "description",
+                "value": {
+                  "stringValue": "fabric_neighbor_20.0.0.1"
+                }
+              },
+              {
+                "key": "last-notification-error-code-received",
+                "value": {
+                  "stringValue": ""
+                }
+              },
+              {
+                "key": "last-notification-error-code-sent",
+                "value": {
+                  "stringValue": ""
+                }
+              },
+              {
+                "key": "peer-address",
+                "value": {
+                  "stringValue": "20.0.0.1"
+                }
+              },
+              {
+                "key": "peer-group",
+                "value": {
+                  "stringValue": "fabric"
+                }
+              },
+              {
+                "key": "peer-id",
+                "value": {
+                  "stringValue": "20.0.0.1"
+                }
+              },
+              {
+                "key": "peer-type",
+                "value": {
+                  "stringValue": "EXTERNAL"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901204066661716",
+            "timeUnixNano": "1753901204069104448",
+            "asInt": "1"
+          },
+          {
+            "attributes": [
+              {
+                "key": "description",
+                "value": {
+                  "stringValue": "fabric_neighbor_20.1.0.1"
+                }
+              },
+              {
+                "key": "last-notification-error-code-received",
+                "value": {
+                  "stringValue": ""
+                }
+              },
+              {
+                "key": "last-notification-error-code-sent",
+                "value": {
+                  "stringValue": ""
+                }
+              },
+              {
+                "key": "peer-address",
+                "value": {
+                  "stringValue": "20.1.0.1"
+                }
+              },
+              {
+                "key": "peer-group",
+                "value": {
+                  "stringValue": "fabric"
+                }
+              },
+              {
+                "key": "peer-id",
+                "value": {
+                  "stringValue": "20.1.0.1"
+                }
+              },
+              {
+                "key": "peer-type",
+                "value": {
+                  "stringValue": "EXTERNAL"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901204066661716",
+            "timeUnixNano": "1753901204069104448",
+            "asInt": "1"
+          },
+          {
+            "attributes": [
+              {
+                "key": "description",
+                "value": {
+                  "stringValue": "fabric_neighbor_20.2.0.1"
+                }
+              },
+              {
+                "key": "last-notification-error-code-received",
+                "value": {
+                  "stringValue": ""
+                }
+              },
+              {
+                "key": "last-notification-error-code-sent",
+                "value": {
+                  "stringValue": ""
+                }
+              },
+              {
+                "key": "peer-address",
+                "value": {
+                  "stringValue": "20.2.0.1"
+                }
+              },
+              {
+                "key": "peer-group",
+                "value": {
+                  "stringValue": "fabric"
+                }
+              },
+              {
+                "key": "peer-id",
+                "value": {
+                  "stringValue": "20.2.0.1"
+                }
+              },
+              {
+                "key": "peer-type",
+                "value": {
+                  "stringValue": "EXTERNAL"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901204066661716",
+            "timeUnixNano": "1753901204069104448",
+            "asInt": "1"
+          }
+        ]
+      }
+    },
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvrouting_bgp_peer_as:" >}}
+```
+    {
+      "name": "nvrouting_bgp_peer_as",
+      "description": "Tracks the autonomous system number of the bgp peer",
+      "gauge": {
+        "dataPoints": [
+          {
+            "attributes": [
+              {
+                "key": "peer-id",
+                "value": {
+                  "stringValue": "2.1.1.1"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901204066643656",
+            "timeUnixNano": "1753901204069096194",
+            "asInt": "744603565"
+          },
+          {
+            "attributes": [
+              {
+                "key": "peer-id",
+                "value": {
+                  "stringValue": "2.1.1.2"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901204066643656",
+            "timeUnixNano": "1753901204069096194",
+            "asInt": "744603565"
+          },
+          {
+            "attributes": [
+              {
+                "key": "peer-id",
+                "value": {
+                  "stringValue": "20.0.0.1"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901204066643656",
+            "timeUnixNano": "1753901204069096194",
+            "asInt": "744603564"
+          },
+          {
+            "attributes": [
+              {
+                "key": "peer-id",
+                "value": {
+                  "stringValue": "20.1.0.1"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901204066643656",
+            "timeUnixNano": "1753901204069096194",
+            "asInt": "744603564"
+          },
+          {
+            "attributes": [
+              {
+                "key": "peer-id",
+                "value": {
+                  "stringValue": "20.2.0.1"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901204066643656",
+            "timeUnixNano": "1753901204069096194",
+            "asInt": "744603564"
+          }
+        ]
+      }
+    },
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvrouting_bgp_peer_local_as:" >}}
+```
+    {
+      "name": "nvrouting_bgp_peer_local_as",
+      "description": "Tracks the local autonomous system number",
+      "gauge": {
+        "dataPoints": [
+          {
+            "attributes": [
+              {
+                "key": "peer-id",
+                "value": {
+                  "stringValue": "2.1.1.1"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901204066640069",
+            "timeUnixNano": "1753901204069092308",
+            "asInt": "744603563"
+          },
+          {
+            "attributes": [
+              {
+                "key": "peer-id",
+                "value": {
+                  "stringValue": "2.1.1.2"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901204066640069",
+            "timeUnixNano": "1753901204069092308",
+            "asInt": "744603563"
+          },
+          {
+            "attributes": [
+              {
+                "key": "peer-id",
+                "value": {
+                  "stringValue": "20.0.0.1"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901204066640069",
+            "timeUnixNano": "1753901204069092308",
+            "asInt": "744603563"
+          },
+          {
+            "attributes": [
+              {
+                "key": "peer-id",
+                "value": {
+                  "stringValue": "20.1.0.1"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901204066640069",
+            "timeUnixNano": "1753901204069092308",
+            "asInt": "744603563"
+          },
+          {
+            "attributes": [
+              {
+                "key": "peer-id",
+                "value": {
+                  "stringValue": "20.2.0.1"
+                }
+              },
+              {
+                "key": "vrf",
+                "value": {
+                  "stringValue": "default"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901204066640069",
+            "timeUnixNano": "1753901204069092308",
+            "asInt": "744603563"
+          }
+        ]
+      }
+    }
+```
+{{< /expand >}}
 
 ### Software Statistics Format
 
@@ -4023,6 +5396,9 @@ If you enable `systemd` process-level statistics, the switch collects the follow
 | `nvswitch_systemd_unit_process_subprocesses` | The number of child processes.|
 | `nvswitch_systemd_unit_process_context_switches` | The number of context switches based on context type after the main process was created.|
 | `nvswitch_systemd_unit_process_cpu_usage_seconds` | The CPU usage of the process (user and kernel mode, including children).|
+| `nvswitch_systemd_unit_process_cpu_usage_user_seconds` | * CPU usage of the process (User mode) in seconds.|
+| `nvswitch_systemd_unit_process_cpu_usage_system_seconds`| * CPU usage of the process (System mode) in seconds.|
+| `nvswitch_systemd_unit_process_info` | * Process information includes pid, name and args. |
 | `nvswitch_systemd_unit_process_virtual_memory_usage_bytes` | The virtual memory usage of the process (in bytes).|
 | `nvswitch_systemd_unit_process_resident_memory_usage_bytes` | The resident memory usage of the process (in bytes).|
 | `nvswitch_systemd_unit_process_shared_memory_usage_bytes` | The shared memory usage of the process (in bytes).|
@@ -4249,6 +5625,289 @@ If you enable `systemd` process-level statistics, the switch collects the follow
   }
 }
 
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_systemd_unit_process_cpu_usage_system_seconds:" >}}
+```
+{
+      "name": "nvswitch_systemd_unit_process_cpu_usage_system_seconds",
+      "description": "CPU usage of the process (kernel mode) in seconds",
+      "sum": {
+        "dataPoints": [
+          {
+            "attributes": [
+              {
+                "key": "pid",
+                "value": {
+                  "stringValue": "17976"
+                }
+              },
+              {
+                "key": "unit_name",
+                "value": {
+                  "stringValue": "hw-management-sync.service"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901249206000000",
+            "timeUnixNano": "1753901249206000000",
+            "asDouble": 0
+          },
+          {
+            "attributes": [
+              {
+                "key": "pid",
+                "value": {
+                  "stringValue": "17977"
+                }
+              },
+              {
+                "key": "unit_name",
+                "value": {
+                  "stringValue": "hw-management-sync.service"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901249206000000",
+            "timeUnixNano": "1753901249206000000",
+            "asDouble": 93.07
+          },
+          {
+            "attributes": [
+              {
+                "key": "pid",
+                "value": {
+                  "stringValue": "19594"
+                }
+              },
+              {
+                "key": "unit_name",
+                "value": {
+                  "stringValue": "nginx.service"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901249206000000",
+            "timeUnixNano": "1753901249206000000",
+            "asDouble": 0.01
+          },
+          {
+            "attributes": [
+              {
+                "key": "pid",
+                "value": {
+                  "stringValue": "19595"
+                }
+              },
+              {
+                "key": "unit_name",
+                "value": {
+                  "stringValue": "nginx.service"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901249206000000",
+            "timeUnixNano": "1753901249206000000",
+            "asDouble": 0.04
+          },
+          {
+            "attributes": [
+              {
+                "key": "pid",
+                "value": {
+                  "stringValue": "19596"
+                }
+              },
+              {
+                "key": "unit_name",
+                "value": {
+                  "stringValue": "nginx.service"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901249206000000",
+            "timeUnixNano": "1753901249206000000",
+            "asDouble": 0.07
+          },
+          {
+            "attributes": [
+              {
+                "key": "pid",
+                "value": {
+                  "stringValue": "19597"
+                }
+              },
+              {
+                "key": "unit_name",
+                "value": {
+                  "stringValue": "nginx.service"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901249206000000",
+            "timeUnixNano": "1753901249206000000",
+            "asDouble": 0.04
+          },
+          {
+            "attributes": [
+              {
+                "key": "pid",
+                "value": {
+                  "stringValue": "19598"
+                }
+              },
+              {
+                "key": "unit_name",
+                "value": {
+                  "stringValue": "nginx.service"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901249206000000",
+            "timeUnixNano": "1753901249206000000",
+            "asDouble": 0.09
+          },
+...
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_systemd_unit_process_info:" >}}
+```
+{
+      "name": "nvswitch_systemd_unit_process_info",
+      "description": "Process information includes PID, name and args ",
+      "gauge": {
+        "dataPoints": [
+          {
+            "attributes": [
+              {
+                "key": "args",
+                "value": {
+                  "stringValue": "/bin/sh -c /usr/bin/hw_management_sync.py"
+                }
+              },
+              {
+                "key": "name",
+                "value": {
+                  "stringValue": "sh"
+                }
+              },
+              {
+                "key": "pid",
+                "value": {
+                  "stringValue": "17976"
+                }
+              },
+              {
+                "key": "unit_name",
+                "value": {
+                  "stringValue": "hw-management-sync.service"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901249206000000",
+            "asDouble": 1
+          },
+          {
+            "attributes": [
+              {
+                "key": "args",
+                "value": {
+                  "stringValue": "/usr/bin/prometheus-node-exporter --web.disable-exporter-metrics --collector.nvsystemd_unit --collector.nvsystemd_unit.process_level"
+                }
+              },
+              {
+                "key": "name",
+                "value": {
+                  "stringValue": "prometheus-node"
+                }
+              },
+              {
+                "key": "pid",
+                "value": {
+                  "stringValue": "680926"
+                }
+              },
+              {
+                "key": "unit_name",
+                "value": {
+                  "stringValue": "prometheus-node-exporter.service"
+                }
+              }
+            ],
+            "timeUnixNano": "1753901249206000000",
+            "asDouble": 1
+          },
+...
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_systemd_unit_process_cpu_usage_user_seconds:" >}}
+```
+{
+      "name": "nvswitch_systemd_unit_process_cpu_usage_user_seconds",
+      "description": "CPU usage of the process (user mode) in seconds",
+      "sum": {
+        "dataPoints": [
+          {
+            "attributes": [
+              {
+                "key": "pid",
+                "value": {
+                  "stringValue": "17976"
+                }
+              },
+              {
+                "key": "unit_name",
+                "value": {
+                  "stringValue": "hw-management-sync.service"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901249206000000",
+            "timeUnixNano": "1753901249206000000",
+            "asDouble": 0
+          },
+          {
+            "attributes": [
+              {
+                "key": "pid",
+                "value": {
+                  "stringValue": "17977"
+                }
+              },
+              {
+                "key": "unit_name",
+                "value": {
+                  "stringValue": "hw-management-sync.service"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901249206000000",
+            "timeUnixNano": "1753901249206000000",
+            "asDouble": 118.2
+          },
+          {
+            "attributes": [
+              {
+                "key": "pid",
+                "value": {
+                  "stringValue": "19594"
+                }
+              },
+              {
+                "key": "unit_name",
+                "value": {
+                  "stringValue": "nginx.service"
+                }
+              }
+            ],
+            "startTimeUnixNano": "1753901249206000000",
+            "timeUnixNano": "1753901249206000000",
+            "asDouble": 0
+          },
+...
 ```
 {{< /expand >}}
 

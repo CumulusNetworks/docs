@@ -550,7 +550,7 @@ cumulus@switch:~$ nv set router adaptive-routing enable on
 cumulus@switch:~$ nv config apply
 ```
 
-To enable adaptive routing on ports that are part of the same ECMP route, run the `nv set interface <interface> router adaptive-routing enable on` command.
+To enable adaptive routing on ports that are part of the same ECMP route, run the `nv set interface <interface-id> router adaptive-routing enable on` command.
 
 ```
 cumulus@switch:~$ nv set interface swp51 router adaptive-routing enable on
@@ -558,7 +558,7 @@ cumulus@switch:~$ nv set interface swp52 router adaptive-routing enable on
 cumulus@switch:~$ nv config apply
 ```
 
-To disable adaptive routing, run the `nv set router adaptive-routing enable off` command. To disable adaptive routing on a specific port, run the `nv set interface <interface> router adaptive-routing enable off` command.
+To disable adaptive routing, run the `nv set router adaptive-routing enable off` command. To disable adaptive routing on a specific port, run the `nv set interface <interface-id> router adaptive-routing enable off` command.
 
 Enabling or disabling adaptive routing globally or on an interface reloads the `switchd` service.
 
@@ -591,18 +591,18 @@ Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 {{< /tabs >}}
 
 {{%notice note%}}
-- When you enable adaptive routing, Cumulus Linux uses the default profile settings for your switch ASIC type. You cannot change the default profile settings. If you need to make adjustments to the settings, contact NVIDIA Customer Support.
+- When you enable adaptive routing, Cumulus Linux uses the default profile settings for your switch ASIC type. If you need to make adjustments to the settings, contact NVIDIA Customer Support.
 - Ensure that traffic intended for adaptive routing is routed over ports with adaptive routing enabled. Unexpected route hashing might occur when mixing adaptive routing traffic and regular ECMP routes egressing ports that do not have adaptive routing enabled.
 {{%/notice%}}
 
 ### Link Utilization
 
-Link utilization, when crossing a threshold, is one of the parameters in the adaptive routing decision. The default link utilization threshold percentage on an interface is 70. You can change the percentage to a value between 1 and 100.
+Link utilization, when crossing a threshold, is one of the parameters in the adaptive routing decision. The default link utilization threshold percentage on an interface is 70. If you enable the adaptive routing `custom-profile`, you can change the percentage to a value between 1 and 100.
 
 Link utilization is off by default; you must enable the global link utilization setting to use the link utilization thresholds set on adaptive routing interfaces. You cannot enable or disable link utilization per interface.
 
 {{%notice note%}}
-In Cumulus Linux 5.5 and earlier, link utilization is on by default. If you configured link utilization in a previous release, be sure to enable link utilization after you upgrade.
+- You can enable link utilization only when you enable the adaptive routing `custom-profile`.
 {{%/notice%}}
 
 {{< tabs "TabID624 ">}}
@@ -629,7 +629,7 @@ Enabling or disabling link utilization reloads the `switchd` service.
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/cumulus/switchd.d/adaptive_routing.conf` file to set:
-- `interface.<interface>.adaptive_routing.link_util_thresh` to a value between 1 and 100.
+- `interface.<interface-id>.adaptive_routing.link_util_thresh` to a value between 1 and 100.
 - `adaptive_routing.link_util_threshold_disabled` to TRUE.
 
 ```
@@ -650,52 +650,6 @@ Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 {{< /tab >}}
 {{< /tabs >}}
 
-<!--### Buffer Mode
-
-Adaptive routing in Cumulus Linux runs in shared buffer mode, where the switch automatically adjusts the ingress buffer behavior. To achieve better ASIC efficiency, you can change the buffer mode to ingress, where packets stay in the ingress port to absorb bigger traffic bursts and do not transfer elsewhere.
-
-{{%notice note%}}
-Cumulus Linux supports buffer mode on Spectrum-4 switches only.
-{{%/notice%}}
-
-To change the adaptive routing buffer mode to ingress:
-
-{{< tabs "TabID641 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set router adaptive-routing buffer-mode ingress
-cumulus@switch:~$ nv config apply
-```
-
-To reset the buffer mode back to the default setting, run the `nv set router adaptive-routing buffer-mode auto` command.
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `/etc/cumulus/switchd.d/adaptive_routing.conf` file to set the `adaptive_routing.buffer-mode` parameter to `ingress`:
-
-```
-cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing.conf
-## Global adaptive-routing enable/disable setting
-adaptive_routing.enable = TRUE
-
-## Global adaptive-routing buffer mode setting
-adaptive_routing.buffer-mode = ingress
-
-## Global Link-utilization-threshold on/off
-adaptive_routing.link_utilization_threshold_disabled = FALSE
-
-## Per-port configuration
-interface.swp51.adaptive_routing.enable = TRUE
-interface.swp51.adaptive_routing.link_util_thresh = 100
-```
-
-To reset the buffer mode back to the default setting, set the `adaptive_routing.buffer-mode` parameter to `auto`.
-
-{{< /tab >}}
-{{< /tabs >}}
--->
 ### Example Configuration
 
 {{< tabs "TabID693 ">}}
@@ -777,7 +731,7 @@ cumulus@leaf01:mgmt:~$ nv show router adaptive-routing
 enable                      on            off
 ```
 
-To show adaptive routing configuration for an interface, run the `nv show interface <interface> router adaptive-routing`.
+To show adaptive routing configuration for an interface, run the `nv show interface <interface-id> router adaptive-routing`.
 
 ## Considerations
 

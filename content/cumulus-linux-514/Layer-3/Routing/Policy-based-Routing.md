@@ -562,7 +562,7 @@ cumulus@switch:~$ nv show router pbr  -o json
 }
 ```
 
-To see the policies applied to a specific interface on the switch, run the NVUE `nv show interface <interface> router pbr` command or the vtysh `show pbr interface <interface>` command.
+To see the policies applied to a specific interface on the switch, run the NVUE `nv show interface <interface-id> router pbr` command or the vtysh `show pbr interface <interface-id>` command.
 
 To see information about all policies, including mapped table and rule numbers, run the NVUE `nv show router pbr map` command or the vtysh `show pbr map` command. If the rule is not set, you see a reason why.
 

@@ -421,7 +421,7 @@ nv show evpn vni <vni_id> multihoming esi <esi_id>
 nv show evpn vni <vni_id>
 nv show vrf <tenant vrf> evpn
 nv show vrf <tenant vrf> evpn bgp-info
-nv show vrf <vrf> evpn nexthop-vtep <vtep>
+nv show vrf <vrf-id> evpn nexthop-vtep <vtep>
 nv show evpn vni <vni_id> bgp-info
 nv show vrf <vrf-id> router bgp neighbor
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id>
@@ -443,7 +443,7 @@ In Cumulus Linux 5.12 and earlier the `--output native` option is `--output raw`
 
 ## Show Routes in the Routing Table
 
-To show all the routes in the routing table, run the `nv show vrf <vrf> router rib <address-family> route` command:
+To show all the routes in the routing table, run the `nv show vrf <vrf-id> router rib <address-family> route` command:
 
 ```
 cumulus@switch:~$ nv show vrf default router rib ipv4 route
@@ -466,7 +466,7 @@ Route            Protocol   Distance  Uptime                NHGId  Metric  Flags
 10.10.10.102/32  bgp        20        2024-10-22T18:36:04Z  107    0       *Si
 ```
 
-To show information about a specific route, run the `nv show vrf <vrf> router rib <address-family> route <prefix>` command:
+To show information about a specific route, run the `nv show vrf <vrf-id> router rib <address-family> route <prefix>` command:
 
 ```
 cumulus@switch:~$ nv show vrf default router rib ipv4 route 10.0.1.34/32
@@ -483,7 +483,7 @@ route-entry
                                                         fe80::4ab0:2dff:fe41:6b79  swp51            1       iA
 ```
 
-To show the total number of routes in the routing table, run the `nv show vrf <vrf> router rib <address-family> route-count` command:
+To show the total number of routes in the routing table, run the `nv show vrf <vrf-id> router rib <address-family> route-count` command:
 
 ```
 cumulus@switch:~$ nv show vrf default router rib ipv4 route-count
@@ -494,9 +494,9 @@ total-routes    34
 [protocol]      connected 
 ```
 
-For IPv6 run the `nv show vrf <vrf> router rib ipv6 route-count` command.
+For IPv6 run the `nv show vrf <vrf-id> router rib ipv6 route-count` command.
 
-To show the total number of routes per protocol in the routing table, run the `nv show vrf <vrf> router rib <address-family> route-count protocol` command:
+To show the total number of routes per protocol in the routing table, run the `nv show vrf <vrf-id> router rib <address-family> route-count protocol` command:
 
 ```
 cumulus@switch:~$ nv show vrf default router rib ipv4 route-count protocol
@@ -508,7 +508,7 @@ ospf       8
 static     3 
 ```
 
-For IPv6 run the `nv show vrf <vrf> router rib ipv6 route-count protocol` command.
+For IPv6 run the `nv show vrf <vrf-id> router rib ipv6 route-count protocol` command.
 
 ## Look Up the Route for a Destination
 
@@ -631,10 +631,10 @@ cumulus@leaf01:~$
 {{< /tabs >}}
 
 You can show tracked next hops with the following NVUE commands:
-- `nv show vrf <vrf> router nexthop-tracking ipv4`
-- `nv show vrf <vrf> router nexthop-tracking ipv4 <ip-address>`
-- `nv show vrf <vrf> router nexthop-tracking ipv6`
-- `nv show vrf <vrf> router nexthop-tracking ipv6 <ip-address>`
+- `nv show vrf <vrf-id> router nexthop-tracking ipv4`
+- `nv show vrf <vrf-id> router nexthop-tracking ipv4 <ip-address>`
+- `nv show vrf <vrf-id> router nexthop-tracking ipv6`
+- `nv show vrf <vrf-id> router nexthop-tracking ipv6 <ip-address>`
 
 ```
 cumulus@leaf01:~$  nv show vrf default router nexthop-tracking ipv4
@@ -679,7 +679,7 @@ ip-address
                                                       swp51          default  1                         A
 ```
 
-You can also run the vtysh `show ip nht vrf <vrf> <ip-address>` command.
+You can also run the vtysh `show ip nht vrf <vrf-id> <ip-address>` command.
 
 ## Reload the FRR Configuration
 

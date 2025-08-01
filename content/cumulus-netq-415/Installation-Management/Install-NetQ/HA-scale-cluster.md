@@ -8,7 +8,7 @@ bookhidden: true
 Follow these steps to set up and configure your VM on a cluster of servers in an on-premises deployment. First configure the VM on the master node, and then configure the VM on each additional node. NVIDIA recommends installing the virtual machines on different servers to increase redundancy in the event of a hardware failure. 
 
 {{%notice note%}}
-NetQ 4.14.0 supports a 3-node HA scale cluster consisting of 1 master and 2 additional high-availability (HA) nodes or a 5-node cluster consisting of 1 master, 2 HA nodes, and 2 worker nodes.
+NetQ 4.15.0 supports a 3-node HA scale cluster consisting of 1 master and 2 additional high-availability (HA) nodes or a 5-node cluster consisting of 1 master, 2 HA nodes, and 2 worker nodes.
 {{%/notice%}}
 - - -
 
@@ -73,7 +73,7 @@ Additionally, for internal cluster communication, you must open these ports:
     b. Select **NVIDIA Licensing Portal**.<br>
     c. Select **Software Downloads** from the menu.<br>
     d. Click **Product Family** and select **NetQ**.<br>
-    e. For deployments using KVM, download the **NetQ SW 4.14.0 KVM Scale** image. For deployments using VMware, download the **NetQ SW 4.14.0 VMware Scale** image<br>
+    e. For deployments using KVM, download the **NetQ SW 4.15.0 KVM Scale** image. For deployments using VMware, download the **NetQ SW 4.15.0 VMware Scale** image<br>
     f. If prompted, read the license agreement and proceed with the download.<br>
 
 {{%notice note%}}
@@ -82,22 +82,22 @@ NVIDIA employees can download NetQ directly from the {{<exlink url="http://ui.li
 
 2. Open your hypervisor and configure your VM. You can use the following examples for reference or use your own hypervisor instructions.
 
- {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem-scale-cluster" version="4.14">}}
+ {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem-scale-cluster" version="4.15">}}
 
- {{<netq-install/vm-setup hypervisor="vmware" version="4.14">}}
+ {{<netq-install/vm-setup hypervisor="vmware" version="4.15">}}
 
 3. Log in to the VM and change the password.
 
 Use the default credentials to log in the first time:
 
-- Username: cumulus
-- Password: cumulus
+- Username: nvidia
+- Password: nvidia
 
 ```
-$ ssh cumulus@<ipaddr>
+$ ssh nvidia@<ipaddr>
 Warning: Permanently added '<ipaddr>' (ECDSA) to the list of known hosts.
-Ubuntu 22.04 LTS
-cumulus@<ipaddr>'s password:
+Ubuntu 24.04 LTS
+nvidia@<ipaddr>'s password:
 You are required to change your password immediately (root enforced)
 System information as of Thu Dec  3 21:35:42 UTC 2024
 System load:  0.09              Processes:           120
@@ -106,8 +106,8 @@ Memory usage: 5%                IP address for eth0: <ipaddr>
 Swap usage:   0%
 WARNING: Your password has expired.
 You must change your password now and login again!
-Changing password for cumulus.
-(current) UNIX password: cumulus
+Changing password for nvidia.
+(current) UNIX password: nvidia
 Enter new UNIX password:
 Retype new UNIX password:
 passwd: password updated successfully
@@ -116,22 +116,22 @@ Connection to <ipaddr> closed.
 Log in again with your new password.
 
 ```
-$ ssh cumulus@<ipaddr>
+$ ssh nvidia@<ipaddr>
 Warning: Permanently added '<ipaddr>' (ECDSA) to the list of known hosts.
-Ubuntu 22.04 LTS
-cumulus@<ipaddr>'s password:
+Ubuntu 24.04 LTS
+nvidia@<ipaddr>'s password:
   System information as of Thu Dec  3 21:35:59 UTC 2024
   System load:  0.07              Processes:           121
   Usage of /:   8.1% of 61.86GB   Users logged in:     0
   Memory usage: 5%                IP address for eth0: <ipaddr>
   Swap usage:   0%
 Last login: Thu Dec  3 21:35:43 2024 from <local-ipaddr>
-cumulus@ubuntu:~$
+nvidia@ubuntu:~$
 ```
 4. Verify that the master node is ready for installation. Fix any errors before installing the NetQ software.
 
 ```
-cumulus@hostname:~$ sudo opta-check scale
+nvidia@hostname:~$ sudo opta-check scale
 ```
 
 5. Change the hostname for the VM from the default value.
@@ -147,7 +147,7 @@ The Internet standards (RFCs) for protocols specify that labels may contain only
 Set the new hostname using the following command. Replace `NEW_HOSTNAME` with the name you chose.
 
 ```
-cumulus@hostname:~$ sudo hostnamectl set-hostname NEW_HOSTNAME
+nvidia@hostname:~$ sudo hostnamectl set-hostname NEW_HOSTNAME
 ```
 Add the same `NEW_HOSTNAME` value to **/etc/hosts** on your VM for the localhost entry. For example:
 
@@ -160,7 +160,7 @@ Add the same `NEW_HOSTNAME` value to **/etc/hosts** on your VM for the localhost
 7. Run the following command on each node to verify that the node is ready for a NetQ software installation. Fix any errors indicated before installing the software.
 
 ```
-cumulus@hostname:~$ sudo opta-check scale
+nvidia@hostname:~$ sudo opta-check scale
 ```
 
 8. Install and activate the NetQ software using the CLI.
@@ -168,7 +168,7 @@ cumulus@hostname:~$ sudo opta-check scale
 Run the following command on your *master* node to initialize the cluster. Copy the output of the command which includes the SSH key. You will use it in the next step.
 
 ```
-cumulus@<hostname>:~$ netq install cluster master-init
+nvidia@<hostname>:~$ netq install cluster master-init
     Please run the following command on all worker nodes:
     netq install cluster worker-init c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCQVFDM2NjTTZPdVM3dQN9MWTU1a
 ```
@@ -183,7 +183,7 @@ cumulus@<hostname>:~$ netq install cluster master-init
 For a 3-node cluster, run the `netq install cluster config generate` command on your master node to generate a template for the cluster configuration JSON file:
 
 ```
-cumulus@netq-server:~$ netq install cluster config generate
+nvidia@netq-server:~$ netq install cluster config generate
 2024-10-28 17:29:53.260462: master-node-installer: Writing cluster installation configuration template file @ /tmp/cluster-install-config.json
 ```
 {{< /tab >}}
@@ -191,7 +191,7 @@ cumulus@netq-server:~$ netq install cluster config generate
 For a 5-node cluster, run the `netq install cluster config generate workers 2` command on your master node to generate a cluster configuration JSON file with 2 additional `worker-nodes` objects:
 
 ```
-cumulus@netq-server:~$ netq install cluster config generate workers 2
+nvidia@netq-server:~$ netq install cluster config generate workers 2
 2024-10-28 17:29:53.260462: master-node-installer: Writing cluster installation configuration template file @ /tmp/cluster-install-config.json
 ```
 
@@ -207,7 +207,7 @@ cumulus@netq-server:~$ netq install cluster config generate workers 2
 The following example includes the `worker-nodes` objects for a 5-node deployment. The JSON template for the 3-node deployment will not include `worker-nodes`.  
 
 ``` 
-cumulus@netq-server:~$ vim /tmp/cluster-install-config.json 
+nvidia@netq-server:~$ vim /tmp/cluster-install-config.json 
 {
         "version": "v2.0",
         "interface": "<INPUT>",
@@ -249,7 +249,7 @@ cumulus@netq-server:~$ vim /tmp/cluster-install-config.json
 NetQ uses the 10.244.0.0/16 (`pod-ip-range`) and 10.96.0.0/16 (`service-ip-range`) networks for internal communication by default. If you are using these networks, you must override each range by specifying new subnets for these parameters in the cluster configuration JSON file:
 
 ```
-cumulus@netq-server:~$ vim /tmp/cluster-install-config.json 
+nvidia@netq-server:~$ vim /tmp/cluster-install-config.json 
 {
         "version": "v2.0",
         "interface": "eth0",
@@ -276,7 +276,7 @@ cumulus@netq-server:~$ vim /tmp/cluster-install-config.json
 
 The following example configures a 3-node cluster installation with the master IP of 10.176.235.50, and the HA nodes 10.176.235.51 and 10.176.235.52: 
 ``` 
-cumulus@netq-server:~$ vim /tmp/cluster-install-config.json 
+nvidia@netq-server:~$ vim /tmp/cluster-install-config.json 
 {
         "version": "v2.0",
         "interface": "eth0",
@@ -296,7 +296,7 @@ cumulus@netq-server:~$ vim /tmp/cluster-install-config.json
 The following example configures a 5-node cluster installation with a master node, two HA nodes, and two worker nodes:
 
 ```
-cumulus@netq-server:~$ vim /tmp/cluster-install-config.json 
+nvidia@netq-server:~$ vim /tmp/cluster-install-config.json 
 {
         "version": "v2.0",
         "interface": "eth0",
@@ -343,7 +343,7 @@ cumulus@netq-server:~$ vim /tmp/cluster-install-config.json
 Run the following command on your master node, using the JSON configuration file created in step 11:
 
 ```
-cumulus@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.14.0.tgz /tmp/cluster-install-config.json
+nvidia@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.15.0.tgz /tmp/cluster-install-config.json
 ```
 
 <div class="notices tip"><p>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</p></div>
@@ -355,7 +355,7 @@ cumulus@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.14.0.
 1. Add the `config-key` parameter to the JSON template from step 11 using the key created during the {{<link title="Back Up and Restore NetQ" text="backup process">}}. Edit the file with values for each attribute.
 
 ```
-cumulus@netq-server:~$ vim /tmp/cluster-install-config.json 
+nvidia@netq-server:~$ vim /tmp/cluster-install-config.json 
 {
         "version": "v2.0",
         "config-key": "<INPUT>",
@@ -376,7 +376,7 @@ cumulus@netq-server:~$ vim /tmp/cluster-install-config.json
 2. Run the following command on your master node, using the JSON configuration file from the previous step. Include the restore option referencing the path where the backup file resides:
 
 ```
-cumulus@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.14.0.tgz /tmp/cluster-install-config.json restore /home/cumulus/combined_backup_20241211111316.tar
+nvidia@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.15.0.tgz /tmp/cluster-install-config.json restore /home/cumulus/combined_backup_20241211111316.tar
 ```
 
 <div class="notices tip"><p><ul><li>If this step fails for any reason, run <code>netq bootstrap reset</code> and then try again.</li><li>If you restore NetQ data to a server with an IP address that is different from the one used to back up the data, you must <a href="/networking-ethernet-software/cumulus-netq/Installation-Management/Install-NetQ/Install-NetQ-Agents/#configure-netq-agents">reconfigure the agents</a> on each switch as a final step.</li></ul></p></div>
@@ -393,8 +393,8 @@ To view the status of the installation, use the `netq show status [verbose]` com
 State: Active
     NetQ Live State: Active
     Installation Status: FINISHED
-    Version: 4.14.0
-    Installer Version: 4.14.0
+    Version: 4.15.0
+    Installer Version: 4.15.0
     Installation Type: Cluster
     Activation Key: EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIixPSUJCOHBPWUFnWXI2dGlGY2hTRzExR2E5aSt6ZnpjOUvpVVTaDdpZEhFPQ==
     Master SSH Public Key: c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCZ1FDNW9iVXB6RkczNkRC
@@ -412,7 +412,7 @@ State: Active
 Run the `netq show opta-health` command to verify that all applications are operating properly. Allow at least 15 minutes for all applications to come up and report their status.
 
 ```
-cumulus@hostname:~$ netq show opta-health
+nvidia@hostname:~$ netq show opta-health
     Application                                            Status    Namespace      Restarts    Timestamp
     -----------------------------------------------------  --------  -------------  ----------  ------------------------
     cassandra-rc-0-w7h4z                                   READY     default        0           Fri Apr 10 16:08:38 2024
@@ -439,7 +439,7 @@ When the number of devices in your network grows, you can add additional nodes t
 To add additional worker nodes to an existing HA scale cluster, generate a JSON configuration template referencing the number of additional worker nodes you want to add. For example, to expand a 3-node cluster to a 5-node cluster, run the `netq install cluster config generate workers 2` command to generate the JSON configuration template, `/tmp/cluster-install-config.json`:
 
 ```
-cumulus@netq-server:~$ cat /tmp/cluster-install-config.json
+nvidia@netq-server:~$ cat /tmp/cluster-install-config.json
 {
         "version": "v2.0",
         "interface": "<INPUT>",

@@ -7,7 +7,7 @@ toc: 4
 
 NetQ and network operating system images are managed with LCM. This section explains how to check for missing images, upgrade images, and specify default images.
 
-The network OS and NetQ images are available in several variants based on the software version, the CPU architecture, platform, and SHA checksum. Download both the `netq-apps` and `netq-agents` packages according to the version of Cumulus Linux you are running. {{<netq-install/agent-version version="4.14.0" opsys="cl">}}
+The network OS and NetQ images are available in several variants based on the software version, the CPU architecture, platform, and SHA checksum. Download both the `netq-apps` and `netq-agents` packages according to the version of Cumulus Linux you are running. {{<netq-install/agent-version version="4.15.0" opsys="cl">}}
 
 ## View and Upload Missing Images
 
@@ -65,7 +65,7 @@ netq lcm show cl-images
 2. Upload the images to the LCM repository. The following example uses a Cumulus Linux 5.9.1 disk image.
 
     ```
-    cumulus@switch:~$ netq lcm add cl-image /path/to/download/cumulus-linux-5.9.1-mlnx-amd64.bin
+    nvidia@switch:~$ netq lcm add cl-image /path/to/download/cumulus-linux-5.9.1-mlnx-amd64.bin
     ```
 
 3. Repeat step 2 for each image you need to upload to the LCM repository.
@@ -90,7 +90,7 @@ If you have already specified a default image, you must click <strong>Manage</st
 
 3. Select one or all of the missing images and make note of the OS version, CPU architecture, and image type. Remember that you need both `netq-apps` and `netq-agent` for NetQ to perform the installation or upgrade.
 
-4. Download the NetQ Debian packages needed for upgrade from the {{<exlink url="https://download.nvidia.com/cumulus/apps3.cumulusnetworks.com/repos/deb/pool/netq-4.14/p/python-netq/" text="NetQ repository">}}, selecting the appropriate OS version and architecture. Place the files in an accessible part of your local network.
+4. Download the NetQ Debian packages needed for upgrade from the {{<exlink url="https://download.nvidia.com/cumulus/apps3.cumulusnetworks.com/repos/deb/pool/netq-4.15/p/python-netq/" text="NetQ repository">}}, selecting the appropriate OS version and architecture. Place the files in an accessible part of your local network.
 
 5. In the UI, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} **Add image** above the table.
 
@@ -120,13 +120,13 @@ If you have already specified a default image, you must click <strong>Manage</st
 netq lcm show netq-images
 ```
 
-2. Download the NetQ Debian packages needed for upgrade from the {{<exlink url="https://download.nvidia.com/cumulus/apps3.cumulusnetworks.com/repos/deb/pool/netq-4.14/p/python-netq/" text="NetQ repository">}}, selecting the appropriate version and hypervisor/platform. Place them in an accessible part of your local network.
+2. Download the NetQ Debian packages needed for upgrade from the {{<exlink url="https://download.nvidia.com/cumulus/apps3.cumulusnetworks.com/repos/deb/pool/netq-4.15/p/python-netq/" text="NetQ repository">}}, selecting the appropriate version and hypervisor/platform. Place them in an accessible part of your local network.
 
-3. Upload the images to the LCM repository. This example uploads the two packages (`netq-agent` and `netq-apps`) required for NetQ version 4.14.0 for a NetQ VM running Ubuntu 22.04 with an AMD 64 architecture.
+3. Upload the images to the LCM repository. This example uploads the two packages (`netq-agent` and `netq-apps`) required for NetQ version 4.15.0 for a NetQ VM running Ubuntu 24.04 with an AMD 64 architecture.
 
     ```
-    cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-agent_4.14.0-ub22.04u51~1744815786.8dbbbd20c_amd64.deb
-    cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_4.14.0-ub22.04u51~1744815786.8dbbbd20c_amd64.deb
+    nvidia@switch:~$ netq lcm add netq-image /path/to/download/netq-agent_4.15.0-ub24.04u52~1753783150.2a97c1dde_amd64.deb	
+    nvidia@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_4.15.0-ub24.04u52~1753783150.2a97c1dde_amd64.deb
     ```
 
 {{</tab>}}
@@ -135,7 +135,7 @@ netq lcm show netq-images
 
 ## Upload Upgrade Images
 
-To upload the network OS or NetQ images that you want to use for upgrade, first download the Cumulus Linux disk images (*.bin* files) and NetQ Debian packages from the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise Support Portal">}} and {{<exlink url="https://download.nvidia.com/cumulus/apps3.cumulusnetworks.com/repos/deb/pool/netq-4.14/p/python-netq/" text="NetQ repository">}}, respectively. Place them in an accessible part of your local network.
+To upload the network OS or NetQ images that you want to use for upgrade, first download the Cumulus Linux disk images (*.bin* files) and NetQ Debian packages from the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise Support Portal">}} and {{<exlink url="https://download.nvidia.com/cumulus/apps3.cumulusnetworks.com/repos/deb/pool/netq-4.15/p/python-netq/" text="NetQ repository">}}, respectively. Place them in an accessible part of your local network.
 
 If you are upgrading the network OS on switches with different ASIC vendors or CPU architectures, you need more than one image. For NetQ, you need both the `netq-apps` and `netq-agent` packages for each variant.
 
@@ -166,14 +166,14 @@ Use the `netq lcm add cl-image <text-cl-image-path>` and `netq lcm add netq-imag
 Network OS images:
 
 ```
-cumulus@switch:~$ netq lcm add image /path/to/download/cumulus-linux-5.9.2-mlx-amd64.bin
+nvidia@switch:~$ netq lcm add image /path/to/download/cumulus-linux-5.13.1-mlx-amd64.bin
 ```
 
 NetQ images:
 
 ```
-cumulus@switch:~$ netq lcm add image /path/to/download/netq-agent_4.14.0-cld12u51~1744815975.8dbbbd20c_amd64.deb
-cumulus@switch:~$ netq lcm add image /path/to/download/netq-apps_4.14.0-cld12u51~1744815975.8dbbbd20c_amd64.deb
+nvidia@switch:~$ netq lcm add image /path/to/download/netq-agent_4.15.0-cld12u52~1753783414.2a97c1dde_amd64.deb
+nvidia@switch:~$ netq lcm add image /path/to/download/netq-apps_4.15.0-cld12u52~1753783414.2a97c1dde_amd64.deb
 ```
 
 {{</tab>}}
@@ -208,23 +208,23 @@ To specify a default version in the NetQ UI:
 To specify a default network OS version, run:
 
 ```
-cumulus@switch:~$ netq lcm add default-version cl-images <text-cumulus-linux-version>
+nvidia@switch:~$ netq lcm add default-version cl-images <text-cumulus-linux-version>
 ```
 To verify the default network OS version, run:
 
 ```
-cumulus@switch:~$ netq lcm show default-version cl-images
+nvidia@switch:~$ netq lcm show default-version cl-images
 ```
 
 To specify a default NetQ version, run:
 
 ```
-cumulus@switch:~$ netq lcm add default-version netq-images <text-netq-version>
+nvidia@switch:~$ netq lcm add default-version netq-images <text-netq-version>
 ```
 To verify the default NetQ version, run:
 
 ```
-cumulus@switch:~$ netq lcm show default-version netq-images
+nvidia@switch:~$ netq lcm show default-version netq-images
 ```
 
 {{</tab>}}
@@ -261,7 +261,7 @@ To remove Cumulus Linux images, run:
 1. Determine the ID of the image you want to remove.
 
     ```
-    cumulus@switch:~$ netq lcm show cl-images json
+    nvidia@switch:~$ netq lcm show cl-images json
     [
         {
             "id": "image_cc97be3955042ca41857c4d0fe95296bcea3e372b437a535a4ad23ca300d52c3",
@@ -285,13 +285,13 @@ To remove Cumulus Linux images, run:
 2. Remove the image you no longer need.
 
     ```
-    cumulus@switch:~$ netq lcm del cl-image image_c6e812f0081fb03b9b8625a3c0af14eb82c35d79997db4627c54c76c973ce1ce
+    nvidia@switch:~$ netq lcm del cl-image image_c6e812f0081fb03b9b8625a3c0af14eb82c35d79997db4627c54c76c973ce1ce
     ```
 
 3. Verify the command removed the image.
 
     ```
-    cumulus@switch:~$ netq lcm show cl-images json
+    nvidia@switch:~$ netq lcm show cl-images json
     [
         {
             "id": "image_cc97be3955042ca41857c4d0fe95296bcea3e372b437a535a4ad23ca300d52c3",
@@ -314,7 +314,7 @@ netq lcm del netq-image <text-netq-image-id>
 1. Determine the ID of the image you want to remove.
 
     ```
-    cumulus@switch:~$ netq lcm show netq-images json
+    nvidia@switch:~$ netq lcm show netq-images json
     [
         {
             "id": "image_d23a9e006641c675ed9e152948a9d1589404e8b83958d53eb0ce7698512e7001",
@@ -340,13 +340,13 @@ netq lcm del netq-image <text-netq-image-id>
 2. Remove the image you no longer need.
 
     ```
-    cumulus@switch:~$ netq lcm del netq-image image_68db386683c796d86422f2172c103494fef7a820d003de71647315c5d774f834
+    nvidia@switch:~$ netq lcm del netq-image image_68db386683c796d86422f2172c103494fef7a820d003de71647315c5d774f834
     ```
 
 3. Verify the command removed the image.
 
     ```
-    cumulus@switch:~$ netq lcm show netq-images json
+    nvidia@switch:~$ netq lcm show netq-images json
     [
         {
             "id": "image_d23a9e006641c675ed9e152948a9d1589404e8b83958d53eb0ce7698512e7001",

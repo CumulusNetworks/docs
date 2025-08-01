@@ -750,6 +750,63 @@ address-family ipv4 unicast
 {{< /tab >}}
 {{< /tabs >}}
 
+## Enforce First AS
+
+By default, the switch denies an update received from an eBGP neighbor that does not list its ASN at the beginning of the AS_PATH in the incoming update. You can disable this setting with the `nv set vrf <vrf-id> router bgp neighbor <neighbor> enforce-first-as off` command.
+
+{{%notice note%}}
+In Cumulus Linux 5.13 and earlier the default setting for enforce first AS is OFF.
+{{%/notice%}}
+
+{{< tabs "757 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 enforce-first-as off
+cumulus@switch:~$ nv config apply
+```
+
+To disable the enforce first AS setting for a peer group, run the `nv set vrf <vrf-id> router bgp peer-group <peer-group> enforce-first-as off` command.
+
+```
+cumulus@switch:~$ nv set vrf default router bgp peer-group underlay enforce-first-as off
+cumulus@switch:~$ nv config apply
+```
+
+To reenable enforce first AS, run the `nv set vrf <vrf-id> router bgp neighbor <neighbor> enforce-first-as on` command or the `nv set vrf <vrf-id> router bgp peer-group <peer-group> enforce-first-as on` command.
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+To disable the enforce first AS setting for a neighbor or a peer group:
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# router bgp 65101
+switch(config-router)# no neighbor swp51 enforce-first-as
+switch(config-router-af)# end
+switch# write memory
+switch# exit
+```
+
+To reenable the enforce first AS setting for a neighbor or a peer group:
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# router bgp 65101
+switch(config-router)# neighbor swp51 enforce-first-as
+switch(config-router-af)# end
+switch# write memory
+switch# exit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Update Source
 
 You can configure BGP to use a specific IP address when exchanging BGP updates with a neighbor. For example, in a numbered BGP configuration, you can set the source IP address to be the loopback address of the switch.
@@ -1440,7 +1497,7 @@ Changing the BGP advertise origin option or the BGP next hop group per source op
    cumulus@leaf01:~$ nv config apply
    ```
 
-   For IPv6, run the `nv set vrf <vrf> router bgp address-family ipv6-unicast advertise-origin` command.
+   For IPv6, run the `nv set vrf <vrf-id> router bgp address-family ipv6-unicast advertise-origin` command.
 
 2. **On all switches** (leaf, spine and super spine), enable the next hop group per source option. The following example enables the next hop group per source option for IPv4:
 
@@ -1449,7 +1506,7 @@ Changing the BGP advertise origin option or the BGP next hop group per source op
    cumulus@spine01:~$ nv config apply
    ```
 
-   For IPv6, run the `nv set vrf <vrf> router bgp address-family ipv6-unicast nhg-per-origin` command.
+   For IPv6, run the `nv set vrf <vrf-id> router bgp address-family ipv6-unicast nhg-per-origin` command.
 
 3. **On a spine and super spine**, set the BGP convergence wait time to 30 and the convergence wait establish wait time to 15.
 
@@ -1459,7 +1516,7 @@ Changing the BGP advertise origin option or the BGP next hop group per source op
    cumulus@leaf01:~$ nv config apply
    ```
 
-To disable BGP PIC, run the `nv unset vrf <vrf> router bgp address-family <address-family> advertise-origin` command on the leaf switch and the `nv unset vrf <vrf> router bgp address-family <address-family> nhg-per-origin` command on all switches.
+To disable BGP PIC, run the `nv unset vrf <vrf-id> router bgp address-family <address-family> advertise-origin` command on the leaf switch and the `nv unset vrf <vrf-id> router bgp address-family <address-family> nhg-per-origin` command on all switches.
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -1557,7 +1614,7 @@ cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 timers hold 30
 cumulus@leaf01:~$ nv config apply
 ```
 
-To set the timers back to the default values, run the `nv unset vrf <vrf> router bgp neighbor <interface> timers keepalive` and the `nv unset vrf <vrf> router bgp neighbor <interface> timers hold` commands.
+To set the timers back to the default values, run the `nv unset vrf <vrf-id> router bgp neighbor <interface-id> timers keepalive` and the `nv unset vrf <vrf-id> router bgp neighbor <interface-id> timers hold` commands.
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -2032,14 +2089,14 @@ When you enable BGP graceful shutdown on a peer, Cumulus Linux attaches a `grace
 {{< tabs "1962 ">}}
 {{< tab "NVUE Commands ">}}
 
-To enable graceful shutdown on a peer, run the `nv set vrf <vrf> router bgp neighbor <neighbor> graceful-shutdown on` command:
+To enable graceful shutdown on a peer, run the `nv set vrf <vrf-id> router bgp neighbor <neighbor> graceful-shutdown on` command:
 
 ```
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 graceful-shutdown on
 cumulus@leaf01:~$ nv config apply
 ```
 
-To disable graceful shutdown on a peer, run the `nv unset vrf <vrf> router bgp neighbor <neighbor> graceful-shutdown` command:
+To disable graceful shutdown on a peer, run the `nv unset vrf <vrf-id> router bgp neighbor <neighbor> graceful-shutdown` command:
 
 ```
 cumulus@leaf01:~$ nv unset vrf default router bgp neighbor swp51 graceful-shutdown
@@ -2078,14 +2135,14 @@ leaf01# exit
 {{< /tab >}}
 {{< /tabs >}}
 
-To show if graceful shutdown is `on` a peer, run the `nv show vrf <vrf> router bgp neighbor <neighbor>` command:
+To show if graceful shutdown is `on` a peer, run the `nv show vrf <vrf-id> router bgp neighbor <neighbor>` command:
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51
                                     operational                     applied   
 ----------------------------------  ------------------------------  ----------
 password                                                            *         
-enforce-first-as                                                    off       
+enforce-first-as                                                    on       
 passive-mode                                                        off       
 nexthop-connected-check                                             on        
 description                                                         none      
@@ -2103,14 +2160,14 @@ When you enable BGP graceful shutdown on a peer group, Cumulus Linux attaches a 
 {{< tabs "2037 ">}}
 {{< tab "NVUE Commands ">}}
 
-To enable graceful shutdown on a peer group, run the `nv set vrf <vrf> router bgp peer-group <peer-group-id> graceful-shutdown on` command:
+To enable graceful shutdown on a peer group, run the `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> graceful-shutdown on` command:
 
 ```
 cumulus@leaf01:~$ nv set vrf default router bgp peer-group underlay graceful-shutdown on
 cumulus@leaf01:~$ nv config apply
 ```
 
-To disable graceful shutdown on a peer group, run the `nv unset vrf <vrf> router bgp peer-group <peer-group-id> graceful-shutdown` command:
+To disable graceful shutdown on a peer group, run the `nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> graceful-shutdown` command:
 
 ```
 cumulus@leaf01:~$ nv unset vrf default router bgp peer-group underlay graceful-shutdown
@@ -2149,14 +2206,14 @@ leaf01# exit
 {{< /tab >}}
 {{< /tabs >}}
 
-To show if graceful shutdown is `on` a peer group, run the `nv show vrf <vrf> router bgp peer-group <peer-group-id>` command:
+To show if graceful shutdown is `on` a peer group, run the `nv show vrf <vrf-id> router bgp peer-group <peer-group-id>` command:
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp peer-group underlay
                              operational  applied   
 ------------------------  --------------  ----------
 password                                  *         
-enforce-first-as                          off       
+enforce-first-as                          on       
 passive-mode                              off       
 nexthop-connected-check                   on        
 description                               none      
@@ -2241,7 +2298,7 @@ leaf01# write memory
 leaf01# exit
 ```
 
-To set graceful BGP restart back to the default setting (helper-only mode), run the `no bgp graceful-restart` command or the `no neighbor <interface> graceful-restart` command
+To set graceful BGP restart back to the default setting (helper-only mode), run the `no bgp graceful-restart` command or the `no neighbor <interface-id> graceful-restart` command
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -2505,7 +2562,7 @@ The BGP community list can be either *standard*, *extended*, or *large*. The sta
 
 An extended BGP community list takes a regular expression of communities and matches the listed communities.
 
-A large community-list accommodates more identification information, including 4-byte AS numbers. BGP enables large communities by default. To disable large communities, run the `nv set vrf <vrf> router bgp neighbor <neighbor> address-family <address-family> community-advertise large off` command or the `nv set vrf <vrf> router bgp peer-group <peer-group> address-family <address-family> community-advertise large off` command.
+A large community-list accommodates more identification information, including 4-byte AS numbers. BGP enables large communities by default. To disable large communities, run the `nv set vrf <vrf-id> router bgp neighbor <neighbor> address-family <address-family> community-advertise large off` command or the `nv set vrf <vrf-id> router bgp peer-group <peer-group> address-family <address-family> community-advertise large off` command.
 
 When the neighbor receives the prefix, it examines the community value and takes action accordingly, such as permitting or denying the community member in the routing policy.
 

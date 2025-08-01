@@ -5,48 +5,57 @@
 <label for="LLDP -1">leaf01</label>
 <div class="book-tabs-content markdown-inner">
 <pre>
-cumulus@leaf01:mgmt:~$ net show lldp
-LocalPort    Speed    Mode          RemoteHost     RemotePort
------------  -------  ------------  ------------   ------------
-swp1         1G       Default       spine01        swp1
-swp2         1G       Default       leaf02         swp2
-swp3         1G       Default       leaf02         swp3
+cumulus@leaf01:mgmt:~$ nv show interface lldp
+Interface  Speed  Type  Remote Host      Remote Port
+---------  -----  ----  ---------------  -----------------
+swp1       1G     swp   spine01          swp1
+swp2       1G     swp   leaf02           swp2
+swp3       1G     swp   leaf02           swp3
 </pre>
 </div>
 <input type="radio" class="hidden" name="LLDP" id="LLDP -2" />
 <label for="LLDP -2">leaf02</label>
 <div class="book-tabs-content markdown-inner">
-<pre>cumulus@leaf02:mgmt:~$ net show lldp
-LocalPort    Speed    Mode          RemoteHost     RemotePort
------------  -------  ------------  ------------   ------------
-swp1         1G       Default       spine01        swp2
-swp2         1G       Default       leaf01         swp2
-swp3         1G       Default       leaf01         swp3
+<pre>cumulus@leaf02:mgmt:~$ nv show interface lldp
+Interface  Speed  Type  Remote Host      Remote Port
+---------  -----  ----  ---------------  -----------------
+swp1       1G     swp   spine01          swp2
+swp2       1G     swp   leaf01           swp2
+swp3       1G     swp   leaf01           swp3
 </pre>
 </div>
 <input type="radio" class="hidden" name="LLDP" id="LLDP -3" />
 <label for="LLDP -3">spine01</label>
 <div class="book-tabs-content markdown-inner">
-<pre>cumulus@spine01:mgmt:~$ net show lldp
-LocalPort    Speed    Mode          RemoteHost     RemotePort
------------  -------  ------------  ------------   ------------
-swp1         1G       Default       leaf01         swp1
-swp2         1G       Default       leaf02         swp1
+<pre>cumulus@spine01:mgmt:~$ nv show interface lldp
+Interface  Speed  Type  Remote Host      Remote Port
+---------  -----  ----  ---------------  -----------------
+swp1       1G     swp   leaf01          swp1
+swp2       1G     swp   leaf02           swp1
 </pre>
 </div>
 </div>
 <p>Run the following commands on each switch to show system information:</p>
 <pre>
-cumulus@leaf01:mgmt:~$ net show system
-Hostname..............leaf01
-Build.................Cumulus Linux 4.2.0
-Uptime................0.00.23.740000
-Model.................Cumulus VX
-Memory................768MB
-Disk..................6GB
-Vendor Name...........Cumulus Networks
-Part Number...........4.2.0
-Base MAC Address......4:00:27:39:B1:12
-Serial Number.........4:00:27:39:B1:12
-Product Name..........VX
+cumulus@leaf01:mgmt:~$ nv show system
+                   operational                                    applied
+-----------------  ---------------------------------------------  -------
+uptime             8 days, 23:54:37
+hostname           leaf01                                         leaf01
+product-name       Cumulus Linux
+platform           N/A
+system-memory      1.28 GB used / 311.85 MB free / 1.67 GB total
+swap-memory        0 Bytes used / 0 Bytes free / 0 Bytes total
+health-status      OK
+date-time          2023-12-06 00:54:05
+status             N/A
+timezone           Etc/UTC
+version
+  onie             N/A
+  kernel           6.1.0-cl-1-amd64
+  base-os          Debian GNU/Linux 12.10
+  product-release  5.13.0
+  image
+    build-id       5.13.0.0037
+    build-date     Wed Apr 23 11:10:31 UTC 2025
 </pre>

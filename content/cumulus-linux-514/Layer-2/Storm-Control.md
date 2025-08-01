@@ -55,7 +55,7 @@ When you change the storm control settings, you must reload `switchd` with the `
 
 ## Show Storm Control Settings
 
-To show the current storm control settings for a layer 2 interface, run the `nv show interface <interface> storm-control` command.
+To show the current storm control settings for a layer 2 interface, run the `nv show interface <interface-id> storm-control` command.
 
 ```
 cumulus@switch:~$ nv show interface swp4 storm-control

@@ -744,9 +744,14 @@ cumulus@leaf01:~$
 For OSPF, use a configuration like this:
 
 ```
+cumulus@leaf01:~$ nv set interface peerlink.4094 ip address 10.100.1.1/30
 cumulus@leaf01:~$ nv set interface peerlink.4094 router ospf area 0.0.0.1
 cumulus@leaf01:~$ nv config apply
 ```
+
+{{%notice note%}}
+The `peerlink.4094` interface only has an IPv6 linklocal address by default. To establish an IPv4 OSPF peering, add an IPv4 address to the interface and add the interface to the desired area.
+{{%/notice%}}
 
 ### MLAG Routing Support
 
@@ -1085,7 +1090,7 @@ iface peerlink.4094
 
 You can expect a large volume of packet drops across one of the peer link interfaces. These drops serve to prevent looping of BUM (broadcast, unknown unicast, multicast) packets. When the switch receives a packet across the peer link, if the destination lookup results in an egress interface that is a dual-connected bond, the switch does not forward the packet (to prevent loops). The peer link records a dropped packet.
 
-To check packet drops across peer link interfaces, run the `ethtool -S <interface>` command:
+To check packet drops across peer link interfaces, run the `ethtool -S <interface-id>` command:
 
 ```
 cumulus@leaf01:mgmt:~$ ethtool -S swp49

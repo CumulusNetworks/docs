@@ -21,7 +21,7 @@ To compare links, select up to 20 links from the dashboard, then click **Compare
 
 You can click each of the comparison charts anywhere along the x-axis to open a tabular view of the data that is displayed in the chart during the hour you selected.
 
-{{<figure src="/images/netq/link-health-comp-412.png" alt="" width="1100">}}
+{{<figure src="/images/netq/link-health-415.png" alt="" width="1100">}}
 
 {{%notice tip%}}
 You can bookmark the link health view in your browser. When you navigate back to the bookmarked page or share the link, your settings will be preserved.

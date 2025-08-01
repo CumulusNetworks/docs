@@ -51,7 +51,7 @@ NVUE provides commands to monitor various switch hardware elements.
 | `nv show platform environment led` | Shows information about the LEDs on the switch, such as the LED name and color.|
 | `nv show platform environment psu` | Shows information about the PSUs on the switch, such as the PSU name and state.|
 | `nv show platform environment temperature` | Shows information about the sensors on the switch, such as the critical, maximum, minimum and current temperature and the current state of the sensor.|
-| `nv show platform environment voltage` | Shows the list of voltage sensors on the switch.|
+| `nv show platform environment voltage` | Shows the list of voltage sensors on the switch. Note: On the SN3700 and SN3700c switch, the `nv show platform environment voltage` command output shows a failed state for the PSU-n-12V-RAIL-OUT sensors. This is a known hardware limitation that cannot be corrected by the PSU vendor.|
 | `nv show platform inventory` | Shows the switch inventory, which includes fan and PSU hardware version, model, serial number, state, and type. For information about a specific fan or PSU, run the `nv show platform inventory <inventory-name>` command.|
 
 The following example shows the `nv show platform environment fan` command output. The airflow direction must be the same for all fans. If Cumulus Linux detects that the fan airflow direction is not uniform, it logs a message in the `var/log/syslog` file.
@@ -291,8 +291,8 @@ Link and port state interface transitions log to `/var/log/syslog` and `/var/log
 
 | Interface Element | Monitoring Commands |
 |------------------ |-------------------- |
-| Link state | NVUE: `nv show interface <interface>`<br><br>Linux: `sudo cat /sys/class/net/<interface>/operstate` |
-| Link speed | NVUE: `nv show interface <inteface>`<br><br>Linux: `sudo cat /sys/class/net/<interface>/speed` |
+| Link state | NVUE: `nv show interface <interface-id>`<br><br>Linux: `sudo cat /sys/class/net/<interface-id>/operstate` |
+| Link speed | NVUE: `nv show interface <inteface>`<br><br>Linux: `sudo cat /sys/class/net/<interface-id>/speed` |
 | Port state | NVUE: `nv show interface`<br><br>Linux: `ip link show` |
 | Bond state | NVUE: `nv show interface <bond>`<br><br>Linux: `sudo cat /proc/net/bonding/<bond>` |
 
@@ -300,7 +300,7 @@ You obtain interface counters from either querying the hardware or the Linux ker
 
 | Interface Counter Element | Monitoring Commands | Interval Poll|
 |-------------------------- |-------------------- |------------- |
-| Interface counters | NVUE: `nv show interface <interface> counters`<br><br>Linux: `cat /sys/class/net/<interface>/statistics/<statistic-name>`<br>`cl-netstat -j`<br>`ethtool -S <interface>` | 10 seconds |
+| Interface counters | NVUE: `nv show interface <interface-id> counters`<br><br>Linux: `cat /sys/class/net/<interface-id>/statistics/<statistic-name>`<br>`cl-netstat -j`<br>`ethtool -S <interface-id>` | 10 seconds |
 
 | Layer 1 Logs |Log Location | Log Entries |
 |------------- |------------- |------------ |

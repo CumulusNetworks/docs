@@ -16,7 +16,7 @@ You can use various NVUE or Linux commands to examine interfaces, VLAN mappings 
 - `nv show bridge vlan-vni-map` (NVUE)
 - `nv show bridge domain <bridge> vlan-vni-map` (NVUE)
 - `nv show interface neighbor` (NVUE) or `ip neighbor show` (Linux)
-- `ip route show [table <vrf-name>]` (Linux)
+- `ip route show [table <vrf-id>]` (Linux)
 
 The sample output below shows `ip -d link show type vxlan` command output for one VXLAN interface. Relevant parameters are the VNI value, the state, the local IP address for the VXLAN tunnel, the UDP port number (4789) and the bridge of which the interface is part (*bridge* in the example below). The output also shows that MAC learning is *off* on the VXLAN interface.
 
@@ -73,51 +73,74 @@ The following example shows the `nv show interface neighbor` command output:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface neighbor
-Interface      IP/IPV6                    LLADR(MAC)         State      Flag      
--------------  -------------------------  -----------------  ---------  ----------
-eth0           192.168.200.1              48:b0:2d:82:3b:b3  reachable            
-               192.168.200.251            48:b0:2d:00:00:01  stale                
-               fe80::4ab0:2dff:fe00:1     48:b0:2d:00:00:01  reachable  router    
-peerlink.4094  169.254.0.1                48:b0:2d:52:11:90  permanent            
-               fe80::4ab0:2dff:fe52:1190  48:b0:2d:52:11:90  reachable  router    
-swp51          169.254.0.1                48:b0:2d:b8:2b:bc  permanent            
-               fe80::4ab0:2dff:feb8:2bbc  48:b0:2d:b8:2b:bc  reachable  router    
-swp52          169.254.0.1                48:b0:2d:e1:08:f7  permanent            
-               fe80::4ab0:2dff:fee1:8f7   48:b0:2d:e1:08:f7  reachable  router    
-swp53          169.254.0.1                48:b0:2d:c0:71:8b  permanent            
-               fe80::4ab0:2dff:fec0:718b  48:b0:2d:c0:71:8b  reachable  router    
-swp54          169.254.0.1                48:b0:2d:18:f4:68  permanent            
-               fe80::4ab0:2dff:fe18:f468  48:b0:2d:18:f4:68  reachable  router    
-vlan10         10.1.10.3                  44:38:39:22:01:78  permanent            
-               fe80::4638:39ff:fe22:178   44:38:39:22:01:78  permanent            
-vlan20         10.1.20.3                  44:38:39:22:01:78  permanent            
-               fe80::4638:39ff:fe22:178   44:38:39:22:01:78  permanent            
-vlan30         10.1.30.3                  44:38:39:22:01:78  permanent            
-               fe80::4638:39ff:fe22:178   44:38:39:22:01:78  permanent            
-vlan4024_l3    10.10.10.63                44:38:39:22:01:74  noarp      |ext_learn
-               10.10.10.64                44:38:39:22:01:7c  noarp      |ext_learn
-               10.10.10.4                 44:38:39:22:01:8a  noarp      |ext_learn
-               10.10.10.3                 44:38:39:22:01:84  noarp      |ext_learn
-               10.10.10.2                 44:38:39:22:01:78  noarp      |ext_learn
-               fe80::4638:39ff:fe22:178   44:38:39:22:01:78  permanent            
-vlan4036_l3    10.10.10.63                44:38:39:22:01:74  noarp      |ext_learn
-               10.10.10.64                44:38:39:22:01:7c  noarp      |ext_learn
-               10.10.10.4                 44:38:39:22:01:8a  noarp      |ext_learn
-               10.10.10.3                 44:38:39:22:01:84  noarp      |ext_learn
-               10.10.10.2                 44:38:39:22:01:78  noarp      |ext_learn
-               fe80::4638:39ff:fe22:178   44:38:39:22:01:78  permanent            
-vxlan48        10.10.10.63                44:38:39:22:01:74  noarp      |ext_learn
-               10.10.10.4                 44:38:39:22:01:8a  noarp      |ext_learn
-               10.10.10.3                 44:38:39:22:01:84  noarp      |ext_learn
-               10.10.10.2                 44:38:39:22:01:78  noarp      |ext_learn
-               10.10.10.64                44:38:39:22:01:7c  noarp      |ext_learn
-...
+Interface      IP/IPV6                    LLADR(MAC)         Neighbor State  Flag     
+-------------  -------------------------  -----------------  --------------  ---------
+eth0           192.168.200.251            48:b0:2d:00:00:01  stale                    
+               192.168.200.1              48:b0:2d:7a:a5:cb  reachable                
+               fe80::4ab0:2dff:fe00:1     48:b0:2d:00:00:01  reachable       router   
+peerlink.4094  169.254.0.1                48:b0:2d:52:13:fd  permanent                
+               fe80::4ab0:2dff:fe52:13fd  48:b0:2d:52:13:fd  reachable       router   
+swp51          169.254.0.1                48:b0:2d:3a:75:22  permanent                
+               fe80::4ab0:2dff:fe3a:7522  48:b0:2d:3a:75:22  reachable       router   
+swp52          169.254.0.1                48:b0:2d:b6:62:a4  permanent                
+               fe80::4ab0:2dff:feb6:62a4  48:b0:2d:b6:62:a4  reachable       router   
+swp53          169.254.0.1                48:b0:2d:83:10:5c  permanent                
+               fe80::4ab0:2dff:fe83:105c  48:b0:2d:83:10:5c  reachable       router   
+swp54          169.254.0.1                48:b0:2d:d4:6a:cf  permanent                
+               fe80::4ab0:2dff:fed4:6acf  48:b0:2d:d4:6a:cf  reachable       router   
+vlan10         10.1.10.101                48:b0:2d:5b:5f:9d  reachable                
+               10.1.10.3                  44:38:39:22:01:78  permanent                
+               10.1.10.104                48:b0:2d:a1:ea:d0  noarp           ext_learn
+               fe80::4ab0:2dff:fea1:ead0  48:b0:2d:a1:ea:d0  noarp           ext_learn
+               fe80::4ab0:2dff:fe5b:5f9d  48:b0:2d:5b:5f:9d  reachable                
+               fe80::4638:39ff:fe22:178   44:38:39:22:01:78  permanent                
+vlan10-v0      10.1.10.101                48:b0:2d:5b:5f:9d  stale                    
+               fe80::4ab0:2dff:fea1:ead0  48:b0:2d:a1:ea:d0  stale                    
+               fe80::4ab0:2dff:fe5b:5f9d  48:b0:2d:5b:5f:9d  stale                    
+vlan20         10.1.20.102                48:b0:2d:5b:d5:c8  reachable                
+               10.1.20.3                  44:38:39:22:01:78  permanent                
+               10.1.20.105                48:b0:2d:8c:b3:8a  noarp           ext_learn
+               fe80::4ab0:2dff:fe8c:b38a  48:b0:2d:8c:b3:8a  noarp           ext_learn
+               fe80::4ab0:2dff:fe5b:d5c8  48:b0:2d:5b:d5:c8  reachable                
+               fe80::4638:39ff:fe22:178   44:38:39:22:01:78  permanent                
+vlan20-v0      10.1.20.102                48:b0:2d:5b:d5:c8  stale                    
+               fe80::4ab0:2dff:fe5b:d5c8  48:b0:2d:5b:d5:c8  stale                    
+               fe80::4ab0:2dff:fe8c:b38a  48:b0:2d:8c:b3:8a  stale                    
+vlan30         10.1.30.106                48:b0:2d:00:df:e9  noarp           ext_learn
+               10.1.30.3                  44:38:39:22:01:78  permanent                
+               10.1.30.103                48:b0:2d:a7:ef:72  reachable                
+               fe80::4638:39ff:fe22:178   44:38:39:22:01:78  permanent                
+               fe80::4ab0:2dff:fe00:dfe9  48:b0:2d:00:df:e9  noarp           ext_learn
+               fe80::4ab0:2dff:fea7:ef72  48:b0:2d:a7:ef:72  reachable                
+vlan30-v0      10.1.30.103                48:b0:2d:a7:ef:72  stale                    
+               fe80::4ab0:2dff:fea7:ef72  48:b0:2d:a7:ef:72  stale                    
+               fe80::4ab0:2dff:fe00:dfe9  48:b0:2d:00:df:e9  stale                    
+vlan4006_l3    10.0.1.34                  44:38:39:be:ef:bb  noarp           ext_learn
+               10.10.10.4                 44:38:39:22:01:8a  noarp           ext_learn
+               10.10.10.2                 44:38:39:22:01:78  noarp           ext_learn
+               10.10.10.63                44:38:39:22:01:74  noarp           ext_learn
+               10.10.10.64                44:38:39:22:01:7c  noarp           ext_learn
+               10.10.10.3                 44:38:39:22:01:84  noarp           ext_learn
+               fe80::4638:39ff:fe22:178   44:38:39:22:01:78  permanent                
+vlan4063_l3    10.0.1.34                  44:38:39:be:ef:bb  noarp           ext_learn
+               10.10.10.63                44:38:39:22:01:74  noarp           ext_learn
+               10.10.10.3                 44:38:39:22:01:84  noarp           ext_learn
+               10.10.10.4                 44:38:39:22:01:8a  noarp           ext_learn
+               10.10.10.2                 44:38:39:22:01:78  noarp           ext_learn
+               10.10.10.64                44:38:39:22:01:7c  noarp           ext_learn
+               fe80::4638:39ff:fe22:178   44:38:39:22:01:78  permanent                
+vxlan48        10.10.10.3                 44:38:39:22:01:84  noarp           ext_learn
+               10.10.10.4                 44:38:39:22:01:8a  noarp           ext_learn
+               10.0.1.34                  44:38:39:be:ef:bb  noarp           ext_learn
+               10.10.10.2                 44:38:39:22:01:78  noarp           ext_learn
+               10.10.10.64                44:38:39:22:01:7c  noarp           ext_learn
+               10.10.10.63                44:38:39:22:01:74  noarp           ext_learn
 ```
 
 The following command shows the VLAN to VNI mapping for all bridges:
 
 ```
-cumulus@switch:mgmt:~$nv show bridge vlan-vni-map
+cumulus@switch:mgmt:~$ nv show bridge vlan-vni-map
 br_default vlan-vni-offset: 0         
       VLAN        VNI         
       ----        -------     
@@ -237,22 +260,23 @@ Run the vtysh `show bgp l2vpn evpn summary` command to see the BGP peers partici
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh
 leaf01# show bgp l2vpn evpn summary
-BGP router identifier 10.10.10.1, local AS number 65101 vrf-id 0
+BGP router identifier 10.10.10.1, local AS number 65101 VRF default vrf-id 0
 BGP table version 0
-RIB entries 23, using 4416 bytes of memory
-Peers 4, using 85 KiB of memory
+RIB entries 47, using 6016 bytes of memory
+Peers 5, using 100 KiB of memory
 Peer groups 1, using 64 bytes of memory
 
-Neighbor        V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd
-spine01(swp51)  4      65199       958       949        0    0    0 00:44:46           34
-spine02(swp52)  4      65199       958       949        0    0    0 00:44:46           34
-spine03(swp53)  4      65199       958       949        0    0    0 00:44:46           34
-spine04(swp54)  4      65199       958       949        0    0    0 00:44:46           34
+Neighbor              V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt Desc
+leaf02(peerlink.4094) 4      65102     30648     30648       32    0    0 1d01h27m           57       81 FRRouting/10.0.3
+spine01(swp51)        4      65199     30667     30645       32    0    0 1d01h27m           57       81 FRRouting/10.0.3
+spine02(swp52)        4      65199     30662     30643       32    0    0 1d01h27m           57       81 FRRouting/10.0.3
+spine03(swp53)        4      65199     30669     30644       32    0    0 1d01h27m           57       81 FRRouting/10.0.3
+spine04(swp54)        4      65199     30666     30644       32    0    0 1d01h27m           57       81 FRRouting/10.0.3
 
-Total number of neighbors 4
+Total number of neighbors 5
 ```
 
-## Show EVPN VNIs
+## Show Configured EVPN VNIs
 
 To display the configured VNIs on a network device participating in BGP EVPN, run the vtysh `show bgp l2vpn evpn vni` command. This command is only relevant on a VTEP. For symmetric routing, this command displays the special layer 3 VNIs for each tenant VRF.
 
@@ -263,15 +287,16 @@ Advertise Gateway Macip: Disabled
 Advertise SVI Macip: Disabled
 Advertise All VNI flag: Enabled
 BUM flooding: Head-end replication
+VXLAN flooding: Enabled
 Number of L2 VNIs: 3
 Number of L3 VNIs: 2
 Flags: * - Kernel
-  VNI        Type RD                    Import RT                 Export RT                 Tenant VRF
-* 20         L2   10.10.10.1:4          65101:20                  65101:20                 RED
-* 30         L2   10.10.10.1:6          65101:30                  65101:30                 BLUE
-* 10         L2   10.10.10.1:3          65101:10                  65101:10                 RED
-* 4002       L3   10.1.30.2:2           65101:4002                65101:4002               BLUE
-* 4001       L3   10.1.20.2:5           65101:4001                65101:4001               RED
+  VNI        Type RD                    Import RT                 Export RT                 MAC-VRF Site-of-Origin    Tenant VRF                           
+* 20         L2   10.10.10.1:4          65101:20                  65101:20                                            RED                                  
+* 30         L2   10.10.10.1:5          65101:30                  65101:30                                            BLUE                                 
+* 10         L2   10.10.10.1:6          65101:10                  65101:10                                            RED                                  
+* 4002       L3   10.10.10.1:2          65101:4002                65101:4002                                          BLUE                                 
+* 4001       L3   10.10.10.1:3          65101:4001                65101:4001                                          RED
 ```
 
 To show the configured layer 3 VNIs on a network device participating in EVPN, run the vtysh `show evpn vni detail` command. This command provides detailed information about all layer 3 VNIs configured across all VRFs on the device.
@@ -288,14 +313,12 @@ VNI: 10
  VxLAN ifIndex: 61
  SVI interface: vlan10
  SVI ifIndex: 69
- Local VTEP IP: 10.10.10.1
+ Local VTEP IP: 10.0.1.12
  Mcast group: 0.0.0.0
  Remote VTEPs for this VNI:
-  10.10.10.3 flood: HER
-  10.10.10.4 flood: HER
-  10.10.10.2 flood: HER
- Number of MACs (local and remote) known for this VNI: 10
- Number of ARPs (IPv4 and IPv6, local and remote) known for this VNI: 2
+  10.0.1.34 flood: HER
+ Number of MACs (local and remote) known for this VNI: 9
+ Number of ARPs (IPv4 and IPv6, local and remote) known for this VNI: 4
  Advertise-gw-macip: No
  Advertise-svi-macip: No
 
@@ -307,15 +330,13 @@ VNI: 30
  VxLAN interface: vxlan48
  VxLAN ifIndex: 61
  SVI interface: vlan30
- SVI ifIndex: 63
- Local VTEP IP: 10.10.10.1
+ SVI ifIndex: 64
+ Local VTEP IP: 10.0.1.12
  Mcast group: 0.0.0.0
  Remote VTEPs for this VNI:
-  10.10.10.3 flood: HER
-  10.10.10.4 flood: HER
-  10.10.10.2 flood: HER
- Number of MACs (local and remote) known for this VNI: 7
- Number of ARPs (IPv4 and IPv6, local and remote) known for this VNI: 1
+  10.0.1.34 flood: HER
+ Number of MACs (local and remote) known for this VNI: 9
+ Number of ARPs (IPv4 and IPv6, local and remote) known for this VNI: 4
  Advertise-gw-macip: No
  Advertise-svi-macip: No
 
@@ -328,43 +349,45 @@ VNI: 20
  VxLAN ifIndex: 61
  SVI interface: vlan20
  SVI ifIndex: 72
- Local VTEP IP: 10.10.10.1
+ Local VTEP IP: 10.0.1.12
  Mcast group: 0.0.0.0
  Remote VTEPs for this VNI:
-  10.10.10.3 flood: HER
-  10.10.10.4 flood: HER
-  10.10.10.2 flood: HER
- Number of MACs (local and remote) known for this VNI: 7
- Number of ARPs (IPv4 and IPv6, local and remote) known for this VNI: 1
+  10.0.1.34 flood: HER
+ Number of MACs (local and remote) known for this VNI: 9
+ Number of ARPs (IPv4 and IPv6, local and remote) known for this VNI: 4
  Advertise-gw-macip: No
  Advertise-svi-macip: No
 
 VNI: 4001
   Type: L3
   Tenant VRF: RED
-  Vlan: 3159
-  Bridge: br_l3vni
-  Local Vtep Ip: 10.10.10.1
-  Vxlan-Intf: vxlan99
-  SVI-If: vlan3159_l3
+  Vlan: 4063
+  Bridge: br_default
+  Local Vtep Ip: 10.0.1.12
+  Vxlan-Intf: vxlan48
+  SVI-If: vlan4063_l3
   State: Up
   VNI Filter: none
   System MAC: 44:38:39:22:01:7a
-  Router MAC: 44:38:39:22:01:7a
+  Router MAC: 44:38:39:be:ef:aa
+  Number of MACs (local and remote) known for this VNI: 6
+  Number of ARPs (IPv4 and IPv6, local and remote) known for this VNI: 6
   L2 VNIs: 10 20 
 
 VNI: 4002
   Type: L3
   Tenant VRF: BLUE
-  Vlan: 3607
-  Bridge: br_l3vni
-  Local Vtep Ip: 10.10.10.1
-  Vxlan-Intf: vxlan99
-  SVI-If: vlan3607_l3
+  Vlan: 4006
+  Bridge: br_default
+  Local Vtep Ip: 10.0.1.12
+  Vxlan-Intf: vxlan48
+  SVI-If: vlan4006_l3
   State: Up
   VNI Filter: none
   System MAC: 44:38:39:22:01:7a
-  Router MAC: 44:38:39:22:01:7a
+  Router MAC: 44:38:39:be:ef:aa
+  Number of MACs (local and remote) known for this VNI: 6
+  Number of ARPs (IPv4 and IPv6, local and remote) known for this VNI: 6
   L2 VNIs: 30
 ```
 
@@ -387,43 +410,43 @@ Run the NVUE `nv show evpn vni <vni>` command or the vtysh `show evpn vni <vni>`
 
 ```
 cumulus@leaf01:mgmt:~$ nv show evpn vni 10
------------------  -----------  -------
                    operational  applied
 -----------------  -----------  -------
-route-advertise                                 
-  svi-ip           off                          
-  default-gateway  off                          
-[remote-vtep]      10.10.10.2                   
-[remote-vtep]      10.10.10.3                   
-[remote-vtep]      10.10.10.4                   
-vlan               10                           
-bridge-domain      br_default                   
-tenant-vrf         RED                          
-vxlan-interface    vxlan48                      
-mac-count          10                           
-host-count         2                            
-remote-vtep-count  3                            
-local-vtep         10.10.10.1
+route-advertise                        
+  svi-ip           off                 
+  default-gateway  off                 
+[remote-vtep]      10.0.1.34           
+vlan               10                  
+bridge-domain      br_default          
+tenant-vrf         RED                 
+vxlan-interface    vxlan48             
+mac-count          9                   
+host-count         4                   
+remote-vtep-count  1                   
+local-vtep         10.0.1.12
 ```
+
+## Show EVPN VNIs Across All VRFs
 
 To show a summary of all VNIs with the number of MAC or ARP entries and VLAN IDs associated with layer 3 VNIs across all VRFs, run the NVUE `nv show vrf evpn` or `nv show vrf evpn  --view=evpn` command.
 
 ```
 cumulus@leaf01:mgmt:~$ nv show vrf evpn
-State - State of the L3VNI, Svi - Svi interface for L3VNI, RouterMac - Router 
-MAC Address, SystemMac - System MAC Address, NexthopCount - Number of ARPs (IPv4 
-and IPv6, local and remote) known for this VNI, RouterMacCount - Number of MACs (local 
-and remote) known for this VNI, VXLANIntf - Vxlan interface of the L3VNI, 
-PrefixRoutesOnly - Associated L3 VNI and corresponding route targets only with 
-EVPN type-5 routes, not with EVPN type-2 routes. 
-  
-Name     Vni     State  Svi          RouterMac          SystemMac          Vlan  NexthopCount  RouterMacCount  VXLANIntf  PrefixRoutesOnly 
--------  ------  -----  -----------  -----------------  -----------------  ----  ---------  --------  ---------  ---------------- 
-tenant1  300011  up     vlan1440_l3  00:01:00:00:0a:07  00:01:00:00:0a:07  1445  10         5         vxlan99    off 
-tenant2  300012  up     vlan1441_l3  00:01:00:00:0a:08  00:01:00:00:0a:08  1440  14         6         vxlan100   off 
-tenant3  300013  up     vlan1442_l3  00:01:00:00:0a:09  00:01:00:00:0a:09  1441  15         9         vxlan101   off 
-tenant4  300014  up     vlan1443_l3  00:01:00:00:0a:0A  00:01:00:00:0a:0A  1440  16         8         vxlan102   on
+
+State - State of the L3VNI, Svi - Svi interface for L3VNI, RouterMac - Router
+MAC Address, SystemMac - System MAC Address, NexthopCount - Number of ARPs (IPv4
+and IPv6, local and remote) known for this VNI, RouterMacCount - Number of MACs
+(local and remote) known for this VNI, VXLANIntf - Vxlan interface of the L3VNI,
+PrefixRoutesOnly - Associated L3 VNI and corresponding route targets only with
+EVPN type-5 routes, not with EVPN type-2 routes.
+
+Name  Vni   State  Svi          RouterMac          SystemMac          Vlan  NexthopCount  RouterMacCount  VXLANIntf  PrefixRoutesOnly
+----  ----  -----  -----------  -----------------  -----------------  ----  ------------  --------------  ---------  ----------------
+BLUE  4002  up     vlan4006_l3  44:38:39:be:ef:aa  44:38:39:22:01:7a  4006  6             6               vxlan48    off             
+RED   4001  up     vlan4063_l3  44:38:39:be:ef:aa  44:38:39:22:01:7a  4063  6             6               vxlan48    off
 ```
+
+## Show EVPN Information for a Specific VRF
 
 To examine EVPN information for a specific VRF VNI in detail, run the NVUE `nv show vrf <vrf-id> evpn` command. The following example shows comprehensive information such as VNI, MAC or ARP entries, VLAN-ID and more:
 
@@ -431,45 +454,51 @@ To examine EVPN information for a specific VRF VNI in detail, run the NVUE `nv s
 cumulus@leaf01:mgmt:~$ nv show vrf RED evpn
                     operational        applied
 ------------------  -----------------  -------
-enable                                 on   
-vlan                                   auto 
-[vni]               4001               4001  
-state               Up                                 
-svi                 vlan3159_l3                        
-router-mac          44:38:39:22:01:7a                  
-vxlan-interface     vxlan99                            
-system-mac          44:38:39:22:01:7a                  
+enable                                 on     
+vlan                4063               auto   
+[vni]               4001               4001   
+nexthop-count       6                         
+router-mac-count    6                         
+state               Up                        
+svi                 vlan4063_l3               
+router-mac          44:38:39:be:ef:aa         
+vxlan-interface     vxlan48                   
+system-mac          44:38:39:22:01:7a         
 prefix-routes-only  off                off
 ```
 
-To show details for a layer 3 VRF for a specific VNI, run the vtysh `show vrf <vrf> vni` and the `show evpn vni <vni>` command.
+To show details for a layer 3 VRF for a specific VNI, run the vtysh `show vrf <vrf-id> vni` and the `show evpn vni <vni>` command.
 
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh
 ...
 leaf01# show vrf RED vni
-VRF                           VNI        VxLAN IF             L3-SVI               State Rmac              
-RED                           4001       vxlan99              vlan3159_l3          Up    44:38:39:22:01:7a 
+VRF            VNI        VxLAN IF          L3-SVI             State    Rmac              
+RED            4001       vxlan48           vlan4063_l3        Up       44:38:39:be:ef:aa
 ```
 
 ```
-umulus@leaf01:mgmt:~$ sudo vtysh
+cumulus@leaf01:mgmt:~$ sudo vtysh
 ...
 leaf01# show evpn vni 4001
 VNI: 4001
   Type: L3
   Tenant VRF: RED
-  Vlan: 3159
-  Bridge: br_l3vni
-  Local Vtep Ip: 10.10.10.1
-  Vxlan-Intf: vxlan99
-  SVI-If: vlan3159_l3
+  Vlan: 4063
+  Bridge: br_default
+  Local Vtep Ip: 10.0.1.12
+  Vxlan-Intf: vxlan48
+  SVI-If: vlan4063_l3
   State: Up
   VNI Filter: none
   System MAC: 44:38:39:22:01:7a
-  Router MAC: 44:38:39:22:01:7a
+  Router MAC: 44:38:39:be:ef:aa
+  Number of MACs (local and remote) known for this VNI: 6
+  Number of ARPs (IPv4 and IPv6, local and remote) known for this VNI: 6
   L2 VNIs: 10 20
 ```
+
+## Show BGP Information for a VNI
 
 To show VNI BGP information, run the NVUE `nv show evpn vni <id> bgp-info` and `nv show vrf <vrf_id> evpn bgp-info` commands, or the vtysh `show bgp l2vpn evpn vni <vni>` command.
 
@@ -569,7 +598,7 @@ Run the vtysh `show evpn arp-cache vni all` command to examine neighbor entries 
 
 ## Examine Remote Router MAC Addresses
 
-To examine the router MAC addresses corresponding to all remote VTEPs for symmetric routing, run the NVUE `nv show vrf <vrf> evpn remote-router-mac` command or the vtysh `show evpn rmac vni all` command. This command is only relevant for a layer 3 VNI:
+To examine the router MAC addresses corresponding to all remote VTEPs for symmetric routing, run the NVUE `nv show vrf <vrf-id> evpn remote-router-mac` command or the vtysh `show evpn rmac vni all` command. This command is only relevant for a layer 3 VNI:
 
 ```
 cumulus@border01:mgmt:~$ nv show vrf RED evpn remote-router-mac
@@ -585,7 +614,7 @@ MAC address        remote-vtep
 
 ## Examine Gateway Next Hops
 
-To examine the gateway next hops for symmetric routing, run the NVUE `nv show vrf <vrf> evpn nexthop-vtep` command or the vtysh `show evpn next-hops vni all` command. This command is only relevant for a layer 3 VNI. The gateway next hop IP addresses correspond to the remote VTEP IP addresses. Cumulus Linux installs the remote host and prefix routes using these next hops.
+To examine the gateway next hops for symmetric routing, run the NVUE `nv show vrf <vrf-id> evpn nexthop-vtep` command or the vtysh `show evpn next-hops vni all` command. This command is only relevant for a layer 3 VNI. The gateway next hop IP addresses correspond to the remote VTEP IP addresses. Cumulus Linux installs the remote host and prefix routes using these next hops.
 
 ```
 cumulus@border01:mgmt:~$ nv show vrf RED evpn nexthop-vtep
@@ -599,7 +628,7 @@ Nexthop      router-mac
 10.10.10.64  44:38:39:22:01:7c
 ```
 
-To show the router MAC address for a specific next hop, run the NVUE `nv show vrf <vrf> evpn nexthop-vtep <ip-address>` command:
+To show the router MAC address for a specific next hop, run the NVUE `nv show vrf <vrf-id> evpn nexthop-vtep <ip-address>` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show vrf RED evpn nexthop-vtep 10.10.10.2
@@ -649,7 +678,7 @@ You can drill down and show information about a specific vlan with the `nv show 
 
 ## Show the VRF Routing Table in FRR
 
-Run the NVUE `nv show vrf <vrf-id> router rib <address-family> route` command or the vtysh `show ip route vrf <vrf-name>` command to examine the VRF routing table. Use this command for symmetric routing to verify that remote host and prefix routes are in the VRF routing table and point to the appropriate gateway next hop.
+Run the NVUE `nv show vrf <vrf-id> router rib <address-family> route` command or the vtysh `show ip route vrf <vrf-id>` command to examine the VRF routing table. Use this command for symmetric routing to verify that remote host and prefix routes are in the VRF routing table and point to the appropriate gateway next hop.
 
 ```
 cumulus@leaf01:mgmt:~$ nv show vrf RED router rib ipv4 route
@@ -782,7 +811,7 @@ prefix: An IPv4 or IPv6 prefix
 
 ## Show EVPN RD Routes
 
-To show EVPN RD routes, run the `nv show vrf <vrf> router bgp address-family l2vpn-evpn route` command. This command shows the EVPN RD routes in brief format to improve performance for high scale environments. To show the EVPN RD routes in more detail, run the `nv show vrf <vrf> router bgp address-family l2vpn-evpn route --view=detail` command. To show the information in json format, run the `nv show vrf <vrf> router bgp address-family l2vpn-evpn route -o json` command.
+To show EVPN RD routes, run the `nv show vrf <vrf-id> router bgp address-family l2vpn-evpn route` command. This command shows the EVPN RD routes in brief format to improve performance for high scale environments. To show the EVPN RD routes in more detail, run the `nv show vrf <vrf-id> router bgp address-family l2vpn-evpn route --view=detail` command. To show the information in json format, run the `nv show vrf <vrf-id> router bgp address-family l2vpn-evpn route -o json` command.
 
 ```
 cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn route
@@ -909,7 +938,7 @@ Displayed 4 paths for requested prefix
 
 ## Filter EVPN Routes by Neighbor, RD and Route Type
 
-You can filter EVPN routes by a specific neighbor (numbered or unnumbered) with the `nv show vrf <vrf> router bgp address-family l2vpn-evpn route --filter=”neighbor=<neighbor>"` command.
+You can filter EVPN routes by a specific neighbor (numbered or unnumbered) with the `nv show vrf <vrf-id> router bgp address-family l2vpn-evpn route --filter=”neighbor=<neighbor>"` command.
 
 ```
 cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn route --filter="neighbor=swp51"
@@ -948,7 +977,7 @@ Route                                                                   rd      
 ...
 ```
 
-You can also filter EVPN routes by a specific <span class="a-tooltip">[RD](## "Route Distinguisher")</span> with the `nv show vrf <vrf> router bgp address-family l2vpn-evpn route --filter="rd=<rd>"` command and the route type with the `nv show vrf <vrf> router bgp address-family l2vpn-evpn route --filter="rd=<rd>&route-type=<route-type>"` command.
+You can also filter EVPN routes by a specific <span class="a-tooltip">[RD](## "Route Distinguisher")</span> with the `nv show vrf <vrf-id> router bgp address-family l2vpn-evpn route --filter="rd=<rd>"` command and the route type with the `nv show vrf <vrf-id> router bgp address-family l2vpn-evpn route --filter="rd=<rd>&route-type=<route-type>"` command.
 
 ```
 cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn route --filter="rd=10.10.10.2:2" 
@@ -1029,11 +1058,11 @@ EVPN type-5 prefix: [5]:[EthTag]:[IPlen]:[IP]
 
 To display the VNI routing table for all VNIs, run the vtysh `show bgp l2vpn evpn route vni all` command.
 
-To view the EVPN RIB with NVUE, run the `nv show vrf <vrf> router bgp address-family l2vpn-evpn route` command.
+To view the EVPN RIB with NVUE, run the `nv show vrf <vrf-id> router bgp address-family l2vpn-evpn route` command.
 
 ## Show the VRF BGP Routing Table
 
-For symmetric routing, the switch imports received type-2 and type-5 routes into the VRF routing table (according to address family: IPv4 unicast or IPv6 unicast) based on a match on the route target attributes. To examine the BGP VRF routing table, run the vtysh `show bgp vrf <vrf-name> ipv4 unicast` and `show bgp vrf <vrf-name> ipv6 unicast` command.
+For symmetric routing, the switch imports received type-2 and type-5 routes into the VRF routing table (according to address family: IPv4 unicast or IPv6 unicast) based on a match on the route target attributes. To examine the BGP VRF routing table, run the vtysh `show bgp vrf <vrf-id> ipv4 unicast` and `show bgp vrf <vrf-id> ipv6 unicast` command.
 
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh

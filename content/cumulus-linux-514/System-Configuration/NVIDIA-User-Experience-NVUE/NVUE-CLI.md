@@ -814,7 +814,7 @@ vlan30                                       9216  svi                          
 
 ### FRR Output Filters
 
-You can filter the `nv show vrf <vrf> router rib` command output by protocol (`gp`, `ospf`, `kernel`, `static`, `ospf6`, `sharp`, or `connected`); for example, to show all BGP IPv4 routes in the routing table:
+You can filter the `nv show vrf <vrf-id> router rib` command output by protocol (`gp`, `ospf`, `kernel`, `static`, `ospf6`, `sharp`, or `connected`); for example, to show all BGP IPv4 routes in the routing table:
 
 ```
 cumulus@switch:~$ nv show vrf default router rib ipv4 route --filter=protocol=bgp                                                                             
@@ -836,7 +836,7 @@ Route            Protocol  Distance  Uptime                NHGId  Metric  Flags
 10.10.10.104/32  bgp       20        2024-12-17T10:24:10Z  113    0       *Si  
 ```
 
-You can filter BGP and EVPN received routes by a specific neighbor (numbered or unnumbered) with the `--filter=”neighbor=<neighbor>"` option. Run the `nv show vrf <vrf> router bgp address-family ipv4-unicast route --filter=”neighbor=<neighbor>"` command for IPv4, `nv show vrf <vrf> router bgp address-family ipv6-unicast route --filter=”neighbor=<neighbor>"` for IPv6, or `nv show vrf <vrf> router bgp address-family l2vpn-evpn route --filter=”neighbor=<neighbor>"` for EVPN.
+You can filter BGP and EVPN received routes by a specific neighbor (numbered or unnumbered) with the `--filter=”neighbor=<neighbor>"` option. Run the `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route --filter=”neighbor=<neighbor>"` command for IPv4, `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route --filter=”neighbor=<neighbor>"` for IPv6, or `nv show vrf <vrf-id> router bgp address-family l2vpn-evpn route --filter=”neighbor=<neighbor>"` for EVPN.
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4-unicast route --filter="neighbor=swp51"  
@@ -853,44 +853,47 @@ Prefix              PathCount  MultipathCount  DestFlags
 ...
 ```
 
-You can also filter EVPN routes by a specific RD with the `nv show vrf <vrf> router bgp address-family l2vpn-evpn route --filter="rd=<rd>"` command and route type with the `nv show vrf <vrf> router bgp address-family l2vpn-evpn route --filter="rd=<rd>&route-type=<route-type>"` command.
+You can also filter EVPN routes by a specific RD with the `nv show vrf <vrf-id> router bgp address-family l2vpn-evpn route --filter="rd=<rd>"` command and route type with the `nv show vrf <vrf-id> router bgp address-family l2vpn-evpn route --filter="rd=<rd>&route-type=<route-type>"` command.
 
-You can filter the `nv show vrf <vrf> router bgp neighbor` command output by state (established or non-established); for example, to show all BGP established neighbors:
+You can filter the `nv show vrf <vrf-id> router bgp neighbor` command output by state (established or non-established); for example, to show all BGP established neighbors:
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor --filter=state=established                                                                             
-AS - Remote Autonomous System, PeerEstablishedTime - Peer established time in   
-UTC format, UpTime - Uptime in milliseconds, Afi-Safi - Address family, PfxSent 
-- Transmitted prefix counter, PfxRcvd - Recieved prefix counter                 
-                                                                                
+cumulus@switch:~$ nv show vrf default router bgp neighbor
+
+AS - Remote Autonomous System, PeerEstablishedTime - Peer established time in
+UTC format, UpTime - Last connection reset time in days,hours:min:sec, Afi-Safi
+- Address family, PfxSent - Transmitted prefix counter, PfxRcvd - Recieved
+prefix counter
+
 Neighbor       AS     State        PeerEstablishedTime   UpTime   MsgRcvd  MsgSent  Afi-Safi      PfxSent  PfxRcvd
 -------------  -----  -----------  --------------------  -------  -------  -------  ------------  -------  -------
-peerlink.4094  65102  established  2024-12-17T10:22:36Z  8998000  3145     3151     ipv4-unicast  13       12     
-                                                                                    l2vpn-evpn    72       51     
-swp51          65199  established  2024-12-17T10:22:41Z  8998000  3132     3149     ipv4-unicast  13       8      
-                                                                                    l2vpn-evpn    72       51     
-swp52          65199  established  2024-12-17T10:22:44Z  8998000  3125     3139     ipv4-unicast  13       8      
-                                                                                    l2vpn-evpn    72       51     
-swp53          65199  established  2024-12-17T10:22:44Z  8998000  3138     3139     ipv4-unicast  13       8      
-                                                                                    l2vpn-evpn    72       51     
-swp54          65199  established  2024-12-17T10:22:44Z  8998000  3143     3139     ipv4-unicast  13       8      
-                                                                                    l2vpn-evpn    72       51  
+peerlink.4094  65103  established  2025-06-15T09:45:11Z  4:16:59  34053    34054    ipv4-unicast  13       12     
+                                                                                    l2vpn-evpn    81       57     
+swp51          65199  established  2025-06-15T09:45:16Z  4:16:59  34059    34051    ipv4-unicast  13       9      
+                                                                                    l2vpn-evpn    81       57     
+swp52          65199  established  2025-06-15T09:45:17Z  4:16:59  34055    34051    ipv4-unicast  13       9      
+                                                                                    l2vpn-evpn    81       57     
+swp53          65199  established  2025-06-15T09:45:17Z  4:16:59  34062    34050    ipv4-unicast  13       9      
+                                                                                    l2vpn-evpn    81       57     
+swp54          65199  established  2025-06-15T09:45:16Z  4:16:59  34059    34051    ipv4-unicast  13       9      
+                                                                                    l2vpn-evpn    81       57 
 ```
 
 To show all BGP non-established neighbors:
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor --filter=state!=established
+cumulus@switch:~$ 
 AS - Remote Autonomous System, PeerEstablishedTime - Peer established time in
-UTC format, UpTime - Uptime in milliseconds, Afi-Safi - Address family, PfxSent
-- Transmitted prefix counter, PfxRcvd - Recieved prefix counter
+UTC format, UpTime - Last connection reset time in days,hours:min:sec, Afi-Safi
+- Address family, PfxSent - Transmitted prefix counter, PfxRcvd - Recieved
+prefix counter
 
-Neighbor  AS  State  PeerEstablishedTime  UpTime   MsgRcvd  MsgSent  Afi-Safi      PfxSent  PfxRcvd
---------  --  -----  -------------------  -------  -------  -------  ------------  -------  -------
-swp53         idle                        9318000  0        0        ipv4-unicast                  
-                                                                     l2vpn-evpn                    
-swp54         idle                        9318000  0        0        ipv4-unicast                  
-                                                                     l2vpn-evpn
+Neighbor       AS     State        PeerEstablishedTime   UpTime   MsgRcvd  MsgSent  Afi-Safi      PfxSent  PfxRcvd
+-------------  -----  -----------  --------------------  -------  -------  -------  ------------  -------  -------
+swp53          65199  established  2025-06-15T09:45:17Z  4:16:59  34062    34050    ipv4-unicast  13       9      
+                                                                                    l2vpn-evpn    81       57     
+swp54          65199  established  2025-06-15T09:45:16Z  4:16:59  34059    34051    ipv4-unicast  13       9      
+                                                                                    l2vpn-evpn    81       57
 ```
 
 To show a summary of the connection information for all BGP neighbors:
@@ -899,27 +902,30 @@ To show a summary of the connection information for all BGP neighbors:
 cumulus@switch:~$ nv show vrf default router bgp neighbor --view=detail
 
 AS - Remote Autonomous System, PeerEstablishedTime - Peer established time in
-UTC format, UpTime - Uptime in milliseconds, Afi-Safi - Address family, PfxSent
-- Transmitted prefix counter, PfxRcvd - Recieved prefix counter
+UTC format, UpTime - Last connection reset time in days,hours:min:sec, Afi-Safi
+- Address family, PfxSent - Transmitted prefix counter, PfxRcvd - Recieved
+prefix counter
 
-Neighbor       AS     State        PeerEstablishedTime   UpTime    MsgRcvd  MsgSent  Afi-Safi      PfxSent  PfxRcvd
--------------  -----  -----------  --------------------  --------  -------  -------  ------------  -------  -------
-peerlink.4094  65102  established  2025-01-26T15:28:11Z  27073000  561127   473795   ipv4-unicast  11       10     
-                                                                                     l2vpn-evpn    70       50     
-swp51          65199  established  2025-01-26T15:28:16Z  27073000  548373   473791   ipv4-unicast  11       8      
-                                                                                     l2vpn-evpn    70       50     
-swp52          65199  established  2025-01-26T15:28:19Z  27073000  548377   473789   ipv4-unicast  11       8      
-                                                                                     l2vpn-evpn    70       50     
-swp53                 idle                               27073000  0        0        ipv4-unicast                  
-                                                                                     l2vpn-evpn                    
-swp54                 idle                               27073000  0        0        ipv4-unicast                  
-                                                                                     l2vpn-evpn                    
+Neighbor  AS     State        PeerEstablishedTime   UpTime   MsgRcvd  MsgSent  Afi-Safi      PfxSent  PfxRcvd
+--------  -----  -----------  --------------------  -------  -------  -------  ------------  -------  -------
+swp1      65101  established  2025-06-15T09:45:14Z  4:22:37  34147    34170    ipv4-unicast  10       3      
+                                                                               l2vpn-evpn    102      27     
+swp2      65102  established  2025-06-15T09:45:15Z  4:22:37  34148    34170    ipv4-unicast  10       3      
+                                                                               l2vpn-evpn    102      27     
+swp3      65103  established  2025-06-15T09:45:15Z  4:22:37  34160    34170    ipv4-unicast  10       3      
+                                                                               l2vpn-evpn    102      27     
+swp4      65104  established  2025-06-15T09:45:15Z  4:22:37  34161    34170    ipv4-unicast  10       3      
+                                                                               l2vpn-evpn    102      27     
+swp5      65253  established  2025-06-15T09:45:15Z  4:22:37  34188    34170    ipv4-unicast  10       3      
+                                                                               l2vpn-evpn    102      6      
+swp6      65254  established  2025-06-15T09:45:15Z  4:22:37  34194    34170    ipv4-unicast  10       3      
+                                                                               l2vpn-evpn    102      6                    
 ```
 
 To show a summary of the connection information for all BGP neighbors in json format, run the `nv show vrf default router bgp neighbor -o json` command.
 
 {{%notice note%}}
-In Cumulus Linux 5.11 and earlier, the `nv show vrf default router bgp neighbor -o json` command output shows more detailed information about BGP peers. To show the more detailed information in Cumulus Linux 5.12 and later, run the `nv show vrf <vrf> router bgp neighbor --view=detail -o json` command.
+In Cumulus Linux 5.11 and earlier, the `nv show vrf default router bgp neighbor -o json` command output shows more detailed information about BGP peers. To show the more detailed information in Cumulus Linux 5.12 and later, run the `nv show vrf <vrf-id> router bgp neighbor --view=detail -o json` command.
 {{%/notice%}}
 
 ## Show Command View Include and Omit Options

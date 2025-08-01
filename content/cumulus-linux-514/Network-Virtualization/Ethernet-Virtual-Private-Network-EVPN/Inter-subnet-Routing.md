@@ -80,7 +80,9 @@ The only additional configuration required to implement asymmetric routing beyon
 
 ## Symmetric Routing
 
-In distributed symmetric routing, each VTEP acts as a layer 3 gateway, performing routing for its attached hosts; however, both the ingress VTEP and egress VTEP route the packets (similar to the traditional routing behavior of routing to a next hop router). In the VXLAN encapsulated packet, the inner destination MAC address is the router MAC address of the egress VTEP to indicate that the egress VTEP is the next hop and also needs to perform routing. All routing happens in the context of a tenant (VRF). For a packet that the ingress VTEP receives from a locally attached host, the SVI interface corresponding to the VLAN determines the VRF. For a packet that the egress VTEP receives over the VXLAN tunnel, the VNI in the packet has to specify the VRF. For symmetric routing, this is a VNI corresponding to the tenant and is different from either the source VNI or the destination VNI. This VNI is a layer 3 VNI or interconnecting VNI. The regular VNI, which maps a VLAN, is the layer 2 VNI.
+In distributed symmetric routing, each VTEP acts as a layer 3 gateway, performing routing for its attached hosts; however, both the ingress VTEP and egress VTEP route the packets (similar to the traditional routing behavior of routing to a next hop router). In the VXLAN encapsulated packet, the inner destination MAC address is the router MAC address of the egress VTEP to indicate that the egress VTEP is the next hop and also needs to perform routing.
+
+All routing happens in the context of a tenant (VRF). For a packet that the ingress VTEP receives from a locally attached host, the SVI interface corresponding to the VLAN determines the VRF. For a packet that the egress VTEP receives over the VXLAN tunnel, the VNI in the packet has to specify the VRF. For symmetric routing, this is a VNI corresponding to the tenant and is different from either the source VNI or the destination VNI. This VNI is a layer 3 VNI or interconnecting VNI (conceptually similar to a Transit VLAN) and is sometimes abbreviated as L3VNI. The regular VNI, which maps to a VLAN, is the layer 2 VNI and is sometimes abbreviated as L2VNI.
 
 {{%notice note%}}
 - Cumulus Linux supports symmetric routing on NVIDIA Spectrum-A1 and later.
@@ -105,20 +107,22 @@ cumulus@leaf01:~$ nv config apply
 ```
 
 {{%notice note%}}
-
 When you run the `nv set vrf RED evpn vni 4001` command, NVUE:
-
-- Creates a layer 3 bridge called `br_l3vni` if a layer 3 VNI was not previously configured
-- Creates a layer 3 VNI called `vni4001` in VRF RED
-- Assigns `vni4001` a VLAN automatically and creates a VLAN interface with `_l3` (layer 3) at the end of the interface name (for example, `vlan220_l3`) in VRF RED. NVUE adds the VLAN to bridge `br_l3vni`
-- Adds `vni4001` to the VLAN-VNI map of a single VXLAN device in bridge `br_l3vni`
+- Creates a layer 3 bridge called `br_l3vni` and creates a new, separate single VXLAN device (`vxlan99`) adding it to the bridge (`br_l3vni`). NVUE does this if there is no configured layer 3 VNI.
+- Creates a layer 3 VNI called `vni4001` in VRF RED.
+- Assigns `vni4001` a VLAN automatically (for example, `3159`).
+- Creates a VLAN interface for this VLAN with `_l3` (layer 3) appended to the interface name (for example, `vlan3159_l3`) in VRF RED. This VLAN interface is represented as a Linux virtual interface, subinterface, or virtual link of type `vlan` in the bridge `br_l3vni` and does not show in the `bridge vlan` command output.
+- Adds the VLAN (for example, `3159`) to the bridge `br_l3vni`. This VLAN does not show in the `bridge-vids` section of the bridge `br_l3vni` in the `/etc/networks/interfaces` file, but still applies to the bridge.
+- Adds the mapping `vlan3159 <-> vni4001` to the VLAN-VNI map of the single VXLAN device `vxlan99` in bridge `br_l3vni`.
 
 This behavior is different in an MLAG environment. If you configure MLAG and you run the `nv set vrf RED evpn vni 4001` command, NVUE:
-- Creates a layer 3 VNI called `vni4001` in VRF RED
-- Assigns `vni4001` a VLAN automatically out of the global reserved layer 3 VNI VLAN range and creates a VLAN interface with `_l3` (layer 3) at the end of the interface name (for example, `vlan220_l3`) in VRF RED. NVUE adds the VLAN to bridge `br_default`
-- Adds `vni4001` to the VLAN-VNI map of the single VXLAN device in bridge `br_default`
+- Creates a layer 3 VNI called `vni4001` in VRF RED.
+- Assigns `vni4001` a VLAN automatically (for example, `4055`) out of the global reserved layer 3 VNI VLAN range.
+- Creates a VLAN interface for this VLAN with `_l3` (layer 3) appended to the interface name (for example, `vlan4055_l3`) in VRF RED. This VLAN interface is represented as a Linux virtual interface, subinterface, or virtual link of type `vlan` in the bridge `br_default` and does not show in the `bridge vlan` command output.
+- Adds the VLAN (for example, `4055`) to bridge `br_default`. This VLAN does not show in the `bridge-vids` section of the bridge `br_default` in the `/etc/networks/interfaces` file, but still applies to the bridge.
+- Adds the mapping `vlan4055 <-> vni4001` to the VLAN-VNI map of the single VXLAN device `vxlan48` in bridge `br_default`.
 
-The global reserved layer 3 VNI VLAN range is different than the {{<link url="VLAN-aware-Bridge-Mode/#reserved-vlan-range" text="switch internal reserved VLAN range.">}} You can configure it with the {{<link url="VLAN-aware-Bridge-Mode/#reserved-vlan-range" text="`nv set system global reserved vlan l3-vni-vlan` command">}}.
+The {{<link url="VLAN-aware-Bridge-Mode/#reserved-layer-3-vni-vlans" text="global reserved layer 3 VNI VLAN range">}} is different than the {{<link url="VLAN-aware-Bridge-Mode/#reserved-vlan-range" text="switch internal reserved VLAN range.">}} You can configure the range with the {{<link url="VLAN-aware-Bridge-Mode/#reserved-layer-3-vni-vlans" text="`nv set system global reserved vlan l3-vni-vlan` command">}}.
 {{%/notice%}}
 
 {{< /tab >}}
@@ -535,7 +539,7 @@ Route Distinguisher: 10.10.10.1:3
 ...
 ```
 
-To show the learned route from an external router injected as a type-5 route, run the vtysh `show bgp vrf <vrf> ipv4 unicast` command.
+To show the learned route from an external router injected as a type-5 route, run the vtysh `show bgp vrf <vrf-id> ipv4 unicast` command.
 
 ## Downstream VNI
 
@@ -548,8 +552,8 @@ To configure a downstream VNI, you configure tenant VRFs as usual; however, to c
 The route target import or export statement is in the format `route-target import|export <asn>:<vni>`; for example, `route-target import 65101:6000`. For route target *import* statements, you can use `route-target import ANY:<vni>` for NVUE commands or `route-target import *:<vni>` in the `/etc/frr/frr.conf` file. `ANY` in NVUE commands or the asterisk (*) in the `/etc/frr/frr.conf` file uses any ASN as a wildcard.
 
 The NVUE commands are as follows:
-- To configure a route import statement: `nv set vrf <vrf> router bgp route-import from-evpn route-target <asn>:<vni>`
-- To configure a route export statement: `nv set vrf <vrf> router bgp route-export from-evpn route-target <asn>:<vni>`
+- To configure a route import statement: `nv set vrf <vrf-id> router bgp route-import from-evpn route-target <asn>:<vni>`
+- To configure a route export statement: `nv set vrf <vrf-id> router bgp route-export from-evpn route-target <asn>:<vni>`
 
 {{%notice note%}}
 - EVPN symmetric mode supports downstream VNI with layer 3 VNIs and single VXLAN devices only.

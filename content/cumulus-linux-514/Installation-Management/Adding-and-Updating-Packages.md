@@ -121,7 +121,7 @@ To upgrade all the packages installed on the switch to their latest versions, ru
 cumulus@switch:~$ nv action upgrade system packages to latest use-vrf default dry-run
 ```
 
-By default, the NVUE `nv action upgrade system packages` command runs in the management VRF. To run the command in a non-management VRF such as `default`, you must use the `use-vrf <vrf>` option.
+By default, the NVUE `nv action upgrade system packages` command runs in the management VRF. To run the command in a non-management VRF such as `default`, you must use the `use-vrf <vrf-id>` option.
 
 {{< /tab >}}
 {{< tab "Linux Command ">}}

@@ -149,8 +149,12 @@ To show the configured domain name, run the `nv show system dns` command.
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
+In the `/etc/hosts` file, add the domain to the IP address 127.0.1.1 and hostname:
+
 ```
-cumulus@switch:~$ 
+cumulus@switch:~$ sudo nano /etc/hosts
+...
+127.0.1.1       leaf01.nvidia.com leaf01
 ```
 
 {{< /tab >}}
@@ -259,7 +263,7 @@ By default, Cumulus Linux disables all data plane ports (every Ethernet port exc
 {{< tabs "TabID260 ">}}
 {{< tab "NVUE Commands ">}}
 
-To enable a port administratively, run the `nv set interface <interface>` command:
+To enable a port administratively, run the `nv set interface <interface-id>` command:
 
 ```
 cumulus@switch:~$ nv set interface swp1

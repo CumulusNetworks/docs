@@ -408,7 +408,7 @@ For more information on configuring and applying ACLs, refer to {{<link title="A
 
 You must use `ebtables` to match and mark layer 2 bridged traffic. You can match traffic with any supported ebtables rule.  
 
-To set the new 802.1p COS value when traffic matches, use `-A FORWARD -o <interface> -j setqos --set-cos <value>`.
+To set the new 802.1p COS value when traffic matches, use `-A FORWARD -o <interface-id> -j setqos --set-cos <value>`.
 
 {{% notice info %}}
 You can only set COS on a *per-egress interface* basis. Cumulus Linux does not support `ebtables` based matching on ingress.
@@ -416,7 +416,7 @@ You can only set COS on a *per-egress interface* basis. Cumulus Linux does not s
 
 The configured action always has the following conditions:
 - The rule is always part of the `FORWARD` chain.
-- The interface (`<interface>`) is a physical swp port.
+- The interface (`<interface-id>`) is a physical swp port.
 - The *jump* action is always `setqos` (lowercase).
 - The `--set-cos` value is a 802.1p COS value between 0 and 7.
 
@@ -431,11 +431,11 @@ For example, to set traffic leaving interface `swp5` to 802.1p COS value `4`:
 You must use `iptables` (for IPv4 traffic) or `ip6tables` (for IPv6 traffic) to match and mark layer 3 traffic.
 
 You can match traffic with any supported iptable or ip6tables rule.
-To set the new COS or DSCP value when traffic matches, use `-A FORWARD -o <interface> -j SETQOS [--set-dscp <value> | --set-cos <value> | --set-dscp-class <name>]`.
+To set the new COS or DSCP value when traffic matches, use `-A FORWARD -o <interface-id> -j SETQOS [--set-dscp <value> | --set-cos <value> | --set-dscp-class <name>]`.
 
 The configured action always has the following conditions:
 - The rule is always configured as part of the `FORWARD` chain.
-- The interface (`<interface>`) is a physical swp port.
+- The interface (`<interface-id>`) is a physical swp port.
 - The *jump* action is always `SETQOS` (uppercase).
 
 You can configure COS markings with `--set-cos` and a value between 0 and 7 (inclusive).
@@ -686,7 +686,7 @@ cumulus@switch:~$ nv set interface swp3 qos pfc-watchdog
 cumulus@switch:~$ nv config apply
 ```
 
-To disable PFC watchdog, run the `nv unset interface <interface> qos pfc-watchdog` command or the `nv set interface <interface> qos pfc-watchdog state disable` command.
+To disable PFC watchdog, run the `nv unset interface <interface-id> qos pfc-watchdog` command or the `nv set interface <interface-id> qos pfc-watchdog state disable` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -749,7 +749,7 @@ cumulus@switch:~$ echo 200 > /cumulus/switchd/config/pfc_wd/poll_interval
 {{< /tab >}}
 {{< /tabs >}}
 
-To show if PFC watchdog is on and to show the status for each traffic class, run the `nv show interface <interface> qos pfc-watchdog` command:
+To show if PFC watchdog is on and to show the status for each traffic class, run the `nv show interface <interface-id> qos pfc-watchdog` command:
 
 ```
 cumulus@switch:~$ nv show interface swp1 qos pfc-watchdog
@@ -772,9 +772,9 @@ PFC WD Status
     7              DEADLOCK  3 
 ```
 
-To show PFC watchdog data for a specific traffic class, run the `nv show interface <interface> qos pfc-watchdog status <traffic-class>` command.
+To show PFC watchdog data for a specific traffic class, run the `nv show interface <interface-id> qos pfc-watchdog status <traffic-class>` command.
 
-To clear the PFC watchdog `deadlock-count` on an interface, run the `nv action clear interface <interface> qos pfc-watchdog deadlock-count` command.
+To clear the PFC watchdog `deadlock-count` on an interface, run the `nv action clear interface <interface-id> qos pfc-watchdog deadlock-count` command.
 
 ## Congestion Control (ECN)
 
@@ -942,194 +942,6 @@ cos_egr_queue.cos_7.uc  = 7
 
 {{< /tab >}}
 {{< /tabs >}}
-
-## MRC
-
-<span class="a-tooltip">[MRC](## "Multipath Reliable Connection")</span> is an improvement over RoCEv2 to enhance performance in lossy environments and extend the RC transport for scalability and performance for AI and <span class="a-tooltip">[ML](## "machine learning")</span> applications over lossy networks. Some of these enhancements include allowing packets to be transmitted over multiple logical paths in the network and rapid detection and retransmission of delayed, unacknowledged, and trimmed packets.
-
-Multipathing is achieved through the use of SRv6. Packets are tunneled from the source NIC to the destination NIC through the switch fabric using SRv6 micro segment identifiers (uSIDs). The SRv6 origination and termination is on the NIC and the switches merely act as SRv6-aware (transit) nodes.
-
-- SRv6 uSID support with uN (END_CSID ) and uA (End.X_CSID ) endpoints
-- Packet trimming
-- Asymmetric packet trimming
-
-### Configure MRC with Default Settings
-
-To configure MRC to use the default settings for packet trimming and SRv6:
-- Set the MRC QoS profile.
-- Enable SRv6.
-- Configure the SRv6 endpoint by setting a locator and a uSID associated with the locator.
-
-```
-cumulus@switch:~$ nv set router segment-routing srv6 state enabled
-cumulus@switch:~$ nv set qos roce mode lossy-multi-tc
-cumulus@switch:~$ nv set router segment-routing srv6 locator LOC2 block-length 32
-cumulus@switch:~$ nv set router segment-routing srv6 locator LOC2 func-length 0
-cumulus@switch:~$ nv set router segment-routing srv6 locator LOC2 node-length 16
-cumulus@switch:~$ nv set router segment-routing srv6 locator LOC2 prefix fcbb:bbbb:2::/48
-cumulus@switch:~$ nv set router segment-routing srv6 static-sid fcbb:bbbb:2::/48 behavior uN
-cumulus@switch:~$ nv set router segment-routing srv6 static-sid fcbb:bbbb:2::/48 locator-name LOC2
-cumulus@switch:~$ nv config apply
-```
-
-{{%notice note%}}
-Cumulus Linux only supports an SF3216 format (block-len(32) and node-len(16)).
-{{%/notice%}}
-
-To show the default QoS `lossy-multi-tc` profile settings, run the `nv show qos roce` command:
-
-```
-cumulus@switch:~$ nv show qos roce
-operational         applied
-------------------  -------------- --------------
-enable on           on
-mode lossy-multi-tc lossy-multi-tc
-pfc
-pfc-priority         -
-congestion-control
-congestion-mode ECN
-enabled-tc 1,2,3
-min-threshold 159.18 KB
-max-threshold 237.30 KB
-probability 100
-trust
-trust-mode pcp,dscp
-
-RoCE PCP/DSCP->SP mapping configurations
-===========================================
-pcp dscp
-switch-prio
-- --- -------------------------------------------------------------------
------------- -----------
-0 0
-0,7,8,9,10,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63
-0
-1 1 1,2
-1
-2 2 3,4
-2
-3 3 5,6
-3
-4 4 11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30
-4
-5 5 31,32,33,34,35,36,37,38,39,40
-5
-6 6 -
-6
-7 7 -
-7
-
-RoCE SP->TC mapping and ETS configurations
-=============================================
-
-switch-prio traffic-class scheduler-weight
-- ----------- ------------- ----------------
-0 0 0 DWRR-4%
-1 1 1 DWRR-8%
-2 2 2 DWRR-18%
-3 3 3 DWRR-22%
-4 4 4 DWRR-22%
-5 5 5 DWRR-22%
-6 6 6 DWRR-4%
-7 7 7 DWRR-0%
-
-RoCE pool config
-===================
-name mode size switch-priorities traffic-class
-- --------------------- ------- ---- ----------------- ---------------
-0 lossy-default-ingress Dynamic 100% 0,1,2,3,4,5,6,7 -
-2 lossy-default-egress Dynamic 100% - Exception List
-================
-```
-
-SRv6 endpoints are installed as IPv6 routes into the RIB and FIB. To show SRv6 endpoints, view the
-IPv6 RIB with the `nv show vrf <vrf> router rib ipv6 route` command.
-
-```
-cumulus@switch:~$ nv show vrf default router rib ipv6 route
-routeFlags - * - selected, q - queued,
-o - offloaded, i - installed, S - fib-selected, x – failed
-Route Protocol Distance Uptime NHGId Metric Flags-
---------------- --------- -------- -------------------- ----- ------ -----
-3ffe::1:0/112 connected 0 2025-04-30T20:36:32Z 315 0
-*Sio3ffe::1:1/128 local 0 2025-04-30T20:36:32Z 315 0
-*Sio3ffe::11:0/112 connected 0 2025-04-30T20:36:25Z 234 0
-*Sio3ffe::11:1/128 local 0 2025-04-30T20:36:25Z 234 0
-*Sio3ffe::22:0/112 connected 0 2025-04-30T20:36:27Z 311 0
-*Sio3ffe::22:1/128 local 0 2025-04-30T20:36:27Z 311 0
-*Sio::/0 static 1 2025-04-30T20:36:25Z 237 0
-*Sifcbb:bbbb:2::/48 static 1 2025-04-30T21:56:00Z 319 0 *Si
-```
-
-You can view a specific route with the `nv show vrf <vrf> router rib ipv6 route <route-id>` command.
-
-### Packet Trimming
-
-If you do not want to use the MRC QoS profile `lossy-multi-tc` to enable packet trimming with the recommended QoS settings as shown above, you can configure the packet trimming settings you want to use.
-
-{{%notice note%}}
-If you set `qos roce mode lossy-multi-tc`, you do not need to configure the packet trimming settings.
-{{%/notice%}}
-
-To configure packet trimming:
-- Set the packet trimming profile to `packet-trim-default`.
-- Set the forwarding port used for recirculating the trimmed packets to egress the interface (NVIDIA Spectrum-4 switch only). If you do not configure a service port, Cumulus Linux uses the last service port in on the switch.
-- Set the maximum size of the trimmed packet.
-- Set the DSCP value to be marked on the trimmed packets.
-- Egress port and traffic-class from which dropped traffic is trimmed.
-- Set the egress traffic class on which to send the trimmed packet.
-- Enable packet trimming.
-
-```
-cumulus@switch:~$ nv set system forwarding packet-trim profile packet-trim-default
-cumulus@switch:~$ nv set system forwarding packet-trim service-port swp65
-cumulus@switch:~$ nv set system forwarding packet-trim remark dscp 10
-cumulus@switch:~$ nv set system forwarding packet-trim size 128
-cumulus@switch:~$ nv set system forwarding packet-trim traffic-class 4
-cumulus@switch:~$ nv set interface swp1-3 packet-trim egress-eligibility traffic-class 1
-cumulus@switch:~$ nv set system forwarding packet-trim state enabled
-cumulus@switch:~$ nv config apply
-```
-
-To show packet trimming configuration, run the `nv show system forwarding packet-trim` command:
-
-```
-cumulus@switch:~$ nv show system forwarding packet-trim
-              applied
--------------  -----------
-remark
-  dscp         10
-state          enabled
-size           128
-profile        adaptive-rc
-traffic-class  4
-service-port   swp65
-
-eligiblity-egress-interface-tc
-=================================
-    Interface  TC
-    ---------  --
-    swp1       1
-               2
-    swp2       1
-               2
-```
-
-- Cumulus Linux supports packet Trimming on physical ports only and for IPv4 or IPv6 traffic.
-- The length and checksum fields in the IP header are not recalculated after trimming
-by hardware and have no valid values.
-- Mutual exclusive with Tail-Drop mirroring and WRED.
-- ISSU is not supported.
-- Bonds for egress eligibility are not supported.
-- You cannot trim the following packet types:
-  - Encap or Decap (VXLAN packets)
-  - Adaptive Routing Notification Packets (ARN)
-  - Congestion Notification Packets (CNP)
-  - Flooding and MC packets
-
-### Asymmetric Packet Trimming
-
-Cumulus Linux supports symmetric packet trimming on the Spectrum-4 and Spectrum-5 switch.
 
 ## Egress Scheduler
 
@@ -1591,25 +1403,25 @@ You can create ECN profiles and assign them to different ports.
 The following example creates a custom ECN profile called `my-red-profile` for egress queue (`traffic-class`) 1 and 2. The commands set the minimum buffer threshold to 40000 bytes, maximum buffer threshold to 200000 bytes, and the probability to 10. The commands also enable RED and apply the ECN profile to swp1 and swp2.
 
 ```
-cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 1,2 min-threshold-bytes 40000 
-cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 1,2 max-threshold-bytes 200000 
+cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 1,2 min-threshold 40000 
+cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 1,2 max-threshold 200000 
 cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 1,2 probability 10
 cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 1,2 red enable
-cumulus@switch:~$ nv set interface swp1,swp2 qos congestion-control my-red-profile
+cumulus@switch:~$ nv set interface swp1,swp2 qos congestion-control profile my-red-profile
 cumulus@switch:~$ nv config apply
 ```
 
 You can configure different thresholds and probability values for different traffic classes in a custom profile:
 
 ```
-cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 1,2 min-threshold-bytes 40000 
-cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 1,2 max-threshold-bytes 200000 
+cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 1,2 min-threshold 40000 
+cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 1,2 max-threshold 200000 
 cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 1,2 probability 10
 cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 1,2 red enable
-cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 4 min-threshold-bytes 30000 
-cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 4 max-threshold-bytes 150000 
+cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 4 min-threshold 30000 
+cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 4 max-threshold 150000 
 cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 4 probability 80
-cumulus@switch:~$ nv set interface swp1,swp2 qos congestion-control my-red-profile
+cumulus@switch:~$ nv set interface swp1,swp2 qos congestion-control profile my-red-profile
 cumulus@switch:~$ nv config apply
 ```
 
@@ -1879,7 +1691,7 @@ To unset the lossy headroom for a priority group, comment out the `priority_grou
 
 ### Ingress and Egress Management Buffers
 
-Management traffic consists of OSPF and BGP hello and update packets, and BFD packets that ingress and egress the CPU.
+Management traffic consists of control traffic originating from or destined to the switch CPU.
 
 To configure the ingress management buffer:
 
@@ -2125,11 +1937,11 @@ NVUE provides the following commands to show QoS statistics for an interface:
 
 | <div style="width:430px">NVUE Command | Description |
 | ----------- | ------------ |
-| `nv show interface <interface> counters qos` | Shows all QoS statistics for a specific interface.|
-| `nv show interface <interface> counters qos egress-queue-stats` | Shows QoS egress queue statistics for a specific interface.|
-| `nv show interface <interface> counters qos ingress-buffer-stats` |Shows QoS ingress buffer statistics for a specific interface. |
-| `nv show interface <interface> counters qos pfc-stats`| Shows QoS PFC statistics for a specific interface.|
-| `nv show interface <interface> counters qos port-stats`| Shows QoS port statistics for a specific interface.|
+| `nv show interface <interface-id> counters qos` | Shows all QoS statistics for a specific interface.|
+| `nv show interface <interface-id> counters qos egress-queue-stats` | Shows QoS egress queue statistics for a specific interface.|
+| `nv show interface <interface-id> counters qos ingress-buffer-stats` |Shows QoS ingress buffer statistics for a specific interface. |
+| `nv show interface <interface-id> counters qos pfc-stats`| Shows QoS PFC statistics for a specific interface.|
+| `nv show interface <interface-id> counters qos port-stats`| Shows QoS port statistics for a specific interface.|
 
 The following example shows all QoS statistics for swp1:
 
@@ -2188,7 +2000,7 @@ Qos Port Statistics
 
 - To clear the Qos pool buffers, run the `nv action clear qos buffer pool` command.
 - To clear the QoS multicast switch priority buffers, run the `nv action clear qos buffer multicast-switch-priority` command.
-- To clear the Qos buffers on an interface, run the `nv action clear interface <interface> qos buffer` command.
+- To clear the Qos buffers on an interface, run the `nv action clear interface <interface-id> qos buffer` command.
 
 ```
 cumulus@switch:~$ nv action clear qos buffer pool

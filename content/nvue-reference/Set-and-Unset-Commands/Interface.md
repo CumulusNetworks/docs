@@ -799,9 +799,15 @@ cumulus@switch:~$ nv set interface swp1 vlan 10
 
 ## <h>nv set system link flap-protection interval</h>
 
-Configures the duration in seconds during which a link must flap the number of times set in the link flap threshold before link flap protection triggers. You can specify a value between 0 (off) and 60. The default setting is 10.
+Configures the duration in seconds during which a link must flap the number of times set in the link flap threshold before link flap protection triggers.
 
 Cumulus Linux enables link flap detection by default. By default, link flap detection triggers when there are five link flaps within ten seconds, at which point the interface goes into a protodown state and shows link flap as the reason. The `switchd` service also shows a log message.
+
+You can specify a value between 0 (off) and 300. The default setting is 10.
+
+{{%notice note%}}
+In Cumulus Linux 5.10 and earlier, you can specify a value between 0 (off) and 60.
+{{%/notice%}}
 
 ### Command Syntax
 

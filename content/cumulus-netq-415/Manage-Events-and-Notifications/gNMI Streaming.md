@@ -12,7 +12,7 @@ You can use {{<exlink url="https://github.com/openconfig/gnmi" text="gRPC Networ
 The gNMI agent is disabled by default. To enable it, run:
 
 ```
- cumulus@switch:~$ netq config add agent gnmi-enable true
+ nvidia@switch:~$ netq config add agent gnmi-enable true
  ```
 
 The gNMI agent listens over port 9339. You can change the default port in case you use that port in another application. The `/etc/netq/netq.yml` file stores the configuration.
@@ -21,14 +21,14 @@ Use the following commands to adjust the settings:
 
 1. Disable the gNMI agent:
 
-       cumulus@switch:~$ netq config add agent gnmi-enable false
+       nvidia@switch:~$ netq config add agent gnmi-enable false
 
 2. Change the default port over which the gNMI agent listens:
 
-       cumulus@switch:~$ netq config add agent gnmi-port <gnmi_port>
+       nvidia@switch:~$ netq config add agent gnmi-port <gnmi_port>
 3. Restart the NetQ agent to incorporate the configuration changes:
 
-       cumulus@switch:~$ netq config restart agent
+       nvidia@switch:~$ netq config restart agent
 
 
 ### Use the gNMI Agent Only
@@ -37,7 +37,7 @@ NVIDIA recommends collecting data with both the gNMI and NetQ agents. However, i
 
 To disable the NetQ agent, use the following command:
 
-    cumulus@switch:~$ netq config add agent opta-enable false
+    nvidia@switch:~$ netq config add agent opta-enable false
 
 {{%notice note%}}
 

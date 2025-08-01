@@ -12,13 +12,12 @@ This topic describes how to configure DHCP relays for IPv4 and IPv6 using the fo
 
 ## Basic Configuration
 
-To set up DHCP relay, you need to provide the IP address of the DHCP server and the interfaces participating in DHCP relay (facing the server and facing the client). In an MLAG configuration, you must also specify the peerlink interface in case the local uplink interfaces fail.
+To set up DHCP relay, you need to provide the IP address of the DHCP server and the interfaces participating in DHCP relay (facing the server and facing the client).
 
 In the example commands below:
 - The DHCP server IPv4 address is 172.16.1.102
 - The DHCP server IPv6 address is 2001:db8:100::2
 - vlan10 is the SVI for VLAN 10 and the uplinks are swp51 and swp52
-- `peerlink.4094` is the MLAG interface
 
 {{< tabs "TabID21 ">}}
 {{< tab "NVUE Commands ">}}
@@ -30,7 +29,6 @@ In the example commands below:
 cumulus@leaf01:~$ nv set service dhcp-relay default interface swp51
 cumulus@leaf01:~$ nv set service dhcp-relay default interface swp52
 cumulus@leaf01:~$ nv set service dhcp-relay default interface vlan10
-cumulus@leaf01:~$ nv set service dhcp-relay default interface peerlink.4094
 cumulus@leaf01:~$ nv set service dhcp-relay default server 172.16.1.102
 cumulus@leaf01:~$ nv config apply
 ```
@@ -42,7 +40,6 @@ cumulus@leaf01:~$ nv config apply
 cumulus@leaf01:~$ nv set service dhcp-relay6 default interface upstream swp51 server-address 2001:db8:100::2
 cumulus@leaf01:~$ nv set service dhcp-relay6 default interface upstream swp52 server-address 2001:db8:100::2
 cumulus@leaf01:~$ nv set service dhcp-relay6 default interface downstream vlan10
-cumulus@leaf01:~$ nv set service dhcp-relay6 default interface downstream peerlink.4094
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -60,7 +57,7 @@ cumulus@leaf01:~$ nv config apply
    ```
    cumulus@leaf01:~$ sudo nano /etc/default/isc-dhcp-relay-default
    SERVERS="172.16.1.102"
-   INTF_CMD="-i vlan10 -i swp51 -i swp52 -i peerlink.4094"
+   INTF_CMD="-i vlan10 -i swp51 -i swp52"
    OPTIONS=""
    ```
 
@@ -79,7 +76,7 @@ cumulus@leaf01:~$ nv config apply
    ```
    cumulus@leaf01:$ sudo nano /etc/default/isc-dhcp-relay6-default
    SERVERS=" -u 2001:db8:100::2%swp51 -u 2001:db8:100::2%swp52"
-   INTF_CMD="-l vlan10 -l peerlink.4094"
+   INTF_CMD="-l vlan10"
    ```
 
 2. Enable, then restart the `dhcrelay6` service so that the configuration persists between reboots:
@@ -431,4 +428,4 @@ To resolve the issue, manually edit the `/etc/default/isc-dhcp-relay-default` fi
 ## Considerations
 
 - The `dhcrelay` command does not bind to an interface if the interface name is longer than 14 characters. This is a known limitation in `dhcrelay`.
-- DHCP packets received on bridge ports and sent to the CPU for processing cause the RX_DROP counter to increment on the interface.
+- DHCP discover packets transiting the switch are also sent to the CPU for additional processing, then dropped after being switched by the hardware. This causes the `RX_DRP` and `HwIfInDiscards` counters to increment on the interface even though the hardware forwards the packet correctly.

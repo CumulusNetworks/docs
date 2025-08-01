@@ -7,18 +7,680 @@ toc: 4
 You can use {{<exlink url="https://github.com/openconfig/gnmi" text="gRPC Network Management Interface">}} (gNMI) to collect system metrics and export the data to a gNMI client.
 
 Cumulus Linux supports:
-- {{<link url="/#gnmi-with-netq" text="gNMI with NetQ">}}, where the `netq-agent` package includes the gNMI agent that listens over port 9339.
 - {{<link url="/#gnmi-with-cumulus-linux" text="gNMI with Cumulus Linux">}}, where Cumulus Linux includes the gNMI agent that listens over port 9339.
+- {{<link url="/#gnmi-with-netq" text="gNMI with NetQ">}}, where the `netq-agent` package includes the gNMI agent that listens over port 9339.
 
 {{%notice note%}}
-To use both gNMI streaming with NetQ and gNMI streaming with Cumulus Linux, you must use different ports.
+To use both gNMI streaming with Cumulus Linux and gNMI streaming with NetQ, you must use different ports.
 {{%/notice%}}
+
+## gNMI with Cumulus Linux
+
+This section discusses how to configure and use gNMI with Cumulus Linux. To configure and use gNMI with NetQ, see {{<link url="/#gnmi-with-netq" text="gNMI with NetQ">}}.
+
+{{%notice note%}}
+- When you enable gNMI with Cumulus Linux, do **not** enable and use {{<link url="Open-Telemetry-Export" text="Open Telemetry">}}.
+- Switches with the Spectrum 1 ASIC do not support gNMI streaming.
+{{%/notice%}}
+
+Cumulus Linux supports both gNMI dial-in mode, where a collector can start a connection with the switch to collect available statistics, and gNMI dial-out mode, where the switch streams statistics and exports them to a collector.
+
+### Configure gNMI Dial-in Mode
+
+In dial-in telemetry mode, the data collector initiates the <span class="a-tooltip">[gRPC](## "Remote Procedure Calls")</span> connection, the Cumulus Linux switch assumes the role of the gRPC server and the receiver (collector) is the client. The switch pushes data to the collector.
+
+To configure gNMI dial-in mode, you must:
+- Specify the gNMI server listening address
+- Enable the gNMI server.
+
+To configure optional settings for gNMI dial-in mode:
+- Specify the listening port. The default port is 9339.
+- Enable a TLS certificate for validation.
+  - Cumulus Linux uses a self-signed certificate. You can generate your own TLS server certificate and bind it with the gNMI server application.
+  - If you need to use mTLS on the gNMI RPC, import the certificate of the CA that signed the gNMI client keys (or the client certificate itself) to the switch and configure the gNMI server to use the certificate. You can also apply a <span class="a-tooltip">[CRL](## "Certificate Revocation List")</span>. Specify either `uri` (a local or remote URI from where to retrieve the crl bundle file) or `data` (for a PEM encoded CRL).
+
+The following example sets the gNMI server listening address to 10.10.10.1 and the port to 443, and enables the gNMI server:
+
+```
+cumulus@switch:~$ nv set system gnmi-server listening-address 10.10.10.1
+cumulus@switch:~$ nv set system gnmi-server port 443
+cumulus@switch:~$ nv set system gnmi-server state enabled
+cumulus@switch:~$ nv config apply
+```
+
+The following example imports and sets the CA certificate `CERT1` and the CRL `crl.crt` for mTLS:
+
+```
+cumulus@switch:~$ nv action import system security ca-certificate CERT1 passphrase mypassphrase uri-bundle scp://user@pass:1.2.3.4:/opt/certs/cert.p12
+cumulus@switch:~$ nv set system gnmi-server mtls ca-certificate CERT1
+cumulus@switch:~$ nv action import system security crl uri scp://user:password@hostname/path/crl.crt
+cumulus@switch:~$ nv set system gnmi-server mtls crl /etc/ssl/certs/crl.crt
+cumulus@switch:~$ nv config apply
+```
+
+### Configure gNMI Dial-Out Mode
+
+In dial-out telemetry mode, the Cumulus Linux switch initiates the gRPC connection to the collector through a gRPC tunnel server and assumes the role of the gRPC client.
+
+To configure gNMI dial-out mode, you must:
+- Specify the listening address for each tunnel server to which you want to connect. Cumulus Linux supports a maximum of 10 tunnel servers.
+- Enable the tunnel server.
+
+To configure optional settings for each tunnel server:
+- Specify the target name and target application you want to access. The default target application is GNMI-GNOI.
+- Specify the retry interval. The default retry interval is 30 seconds.
+- Import and enable a TLS or mTLS certificate for validation. You can also apply a <span class="a-tooltip">[CRL](## "Certificate Revocation List")</span>. For information about importing certificates and CRLs, refer to {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="Security with Certificates and CRLs">}}.
+
+The following example sets the listening address for tunnel server SERVER1 to 10.1.1.10, and enables the tunnel server:
+
+```
+cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 address 10.1.1.10 
+cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 state enabled 
+cumulus@switch:~$ nv config apply
+```
+
+The following example sets the listening address for tunnel server SERVER1 to 10.1.1.10 and the port to 443, the target name to TARGET1, the retry interval to 40, the CA certificate to CACERT1, and enables the tunnel server:
+
+```
+cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 address 10.1.1.10 
+cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 port 443 
+cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 target-name TARGET1 
+cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 retry-interval 40
+cumulus@switch:~$ nv action import system security ca-certificate CACERT1 uri-public-key scp://user@pass:1.2.3.4:/opt/certs/ca-cert.pem uri-private-key scp://user@pass:1.2.3.4:/opt/certs/ca-cert-key.pem
+cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 ca-certificate CACERT1
+cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 state enabled 
+cumulus@switch:~$ nv config apply
+```
+
+### Show gNMI Configuration and Status Information
+
+To show gNMI server configuration and connection information, such the number of active subscriptions, received and rejected subscription requests, and received capability requests, run the `nv show system gnmi-server` command.
+
+```
+cumulus@switch:~$ nv show system gnmi-server 
+                                  operational  applied    
+--------------------------------  -----------  -----------
+state                             disabled     enabled   
+certificate                       self-signed  self-signed
+port                              9339         9339
+[listening-address]               10.1.1.100   10.1.1.100        
+version                                                   
+status                                                    
+  total-active-subscriptions      0                       
+  received-subscription-requests  0                       
+  rejected-subscriptions          0                       
+  received-capabilities-requests  0                       
+  [client]
+```
+
+To show the listening address of the gNMI server, run the `nv show system gnmi-server listening-address` command:
+
+```
+cumulus@switch:~$ nv show system gnmi-server listening-address
+----------
+10.1.1.100
+```
+
+To show gNMI server mTLS information, run the `nv show system gnmi-server mtls` command:
+
+```
+cumulus@switch:~$ nv show system gnmi-server mtls
+                operational  applied  pending         
+--------------  -----------  -------  ----------------
+ca-certificate  CACERT1       CACERT1   CACERT          
+crl                                   abcdefghijklmnop
+```
+
+To show only gNMI server connection information, run the `nv show system gnmi-server status` command:
+
+```
+cumulus@switch:~$ nv show system gnmi-server status
+                                operational
+------------------------------  -----------
+total-active-subscriptions      0          
+received-subscription-requests  0          
+rejected-subscriptions          0          
+received-capabilities-requests  0
+```
+
+To show gRPC tunnel server configuration and connection information, run the `nv show system grpc-tunnel server <server>` command:
+
+```
+cumulus@switch:~$ nv show system grpc-tunnel server SERVER1
+nv show system grpc-tunnel server SERVER1
+                 operational           applied  
+---------------  --------------------  ---------
+state            disabled              enabled  
+target-name      TARGET1               TARGET1  
+address          10.1.1.10             10.1.1.10
+port             443                   443      
+target-type      gnmi-gnoi             gnmi-gnoi
+retry-interval   40                    40       
+status                                          
+  local-port     0                              
+  remote-port    0                              
+  connection                                    
+    established  1970-01-01T00:00:00Z           
+    register     no                             
+    tunnel       no
+```
+
+To show the local and remote port, and connection information, run the `nv show system grpc-tunnel server SERVER1 status` command:
+
+```
+cumulus@switch:~$ nv show system grpc-tunnel server SERVER1 status
+               operational         
+-------------  --------------------
+local-port     0                   
+remote-port    0                   
+connection                         
+  established  1970-01-01T00:00:00Z
+  register     no                  
+  tunnel       no
+```
+
+To show only connection information, run the `nv show system grpc-tunnel server SERVER1 status connection` command:
+
+```
+cumulus@switch:~$ nv show system grpc-tunnel server SERVER1 status connection 
+             operational         
+-----------  --------------------
+established  1970-01-01T00:00:00Z
+register     no                  
+tunnel       no
+```
+
+### RPC Methods
+
+Cumulus Linux supports the following <span class="a-tooltip">[RPC](## "Remote Procedure Call")</span> methods:  
+- Capabilities
+- Subscription types and options:  
+  - STREAM (sample_interval, updates_only, suppress_redundant, and heartbeat_interval)
+  - ON_CHANGE (updates_only and heartbeat_interval)
+- Notification and update types:  
+  - sync_response
+  - update
+  - delete
+
+{{%notice note%}}
+Cumulus Linux does not support GET or SET RPC events.
+{{%/notice%}}
+
+### Encoding Types
+
+Cumulus Linux supports the Protobuf and JSON data formats.
+
+### Wildcard Support
+
+Cumulus Linux supports wildcard matching of keys. For example:
+
+```
+qos/interfaces/interface[interface-id=*]/output/queues/queue[name=*]/state/transmit-octets
+```
+
+You can use a combination of wildcard and specific keys; for example, to collect a metric for all queues on a specific interface:
+
+```
+/qos/interfaces/interface[interface-id=<name>]/output/queues/queue[*]/state/transmit-octets.
+```
+
+Regex for specific keys (such as `“interface-id=swp*”`) is not supported.
+
+### Metrics
+
+Cumulus Linux supports the following metrics.
+
+{{%notice note%}}
+An asterisk (*) in the `Description` column of the tables below indicates that metric is new for Cumulus Linux 5.14.
+{{%/notice%}}
+
+<!-- vale off -->
+{{< tabs "TabID233 ">}}
+{{< tab "Adaptive Routing ">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/system/adaptive-routing/state/counters/congestion-change` | The number of adaptive routing change events that triggered due to congestion or link down.|
+
+{{< /tab >}}
+{{< tab "Interface">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/interfaces/interface[name]/ethernet/phy/state/ber-time-since-last-clear` | Time since last clear of BER stats (phy layer stats). |
+| `/interfaces/interface[name]/ethernet/phy/state/corrected-bits` | Number of phy corrected bits of an interface by FEC engine.|
+| `/interfaces/interface[name]/ethernet/phy/state/effective-ber` | Phy effective BER of an interface.|
+| `/interfaces/interface[name]/ethernet/phy/state/effective-errors` | Number of phy effective errors of an interface.|
+| `/interfaces/interface[name]/ethernet/phy/state/fec-time-since-last-clear` | Time after last clear of FEC stats (phy layer). |
+| `/interfaces/interface[name]/ethernet/phy/state/lane[lane]/fc-fec-corrected-blocks` | Number FC FEC corrected blocks for a given lane of an interface.|
+| `/interfaces/interface[name]/ethernet/phy/state/lane[lane]/fc-fec-uncorrected-blocks` | Number of RS FEC uncorrectable blocks of an interface. |
+| `/interfaces/interface[name]/ethernet/phy/state/lane[lane]/raw-ber` | Number of phy bit error rates for a given lane of an interface.|
+| `/interfaces/interface[name]/ethernet/phy/state/lane[lane]/raw-errors` | Number of phy error bits identified for a given lane of an interface.|
+| `/interfaces/interface[name]/ethernet/phy/state/lane[lane]/rs-fec-corrected-symbols` | Number of RS FEC corrected symbols for a given lane of an interface.|
+| `/interfaces/interface[name]/ethernet/phy/state/received-bits` | Number of phy total bits received for an interface.|
+| `/interfaces/interface[name]/ethernet/phy/state/rs-fec-no-error-blocks` | Number of RS FEC no errors blocks of an interface.|
+| `/interfaces/interface[name]/ethernet/phy/state/rs-fec-single-error-blocks` | Number of RS FEC uncorrectable blocks of an interface.|
+| `/interfaces/interface[name]/ethernet/phy/state/rs-fec-uncorrectable-blocks` | Number of FC FEC uncorrectable blocks for a given lane of an interface. |
+| `/interfaces/interface[name]/ethernet/phy/state/symbol-ber` | Phy symbol BER for an interface.|
+| `/interfaces/interface[name]/ethernet/phy/state/symbol-errors` | Number of phy symbol errors for an interface.|
+| `/interfaces/interface[name]/ethernet/state/counters/in-crc-errors` | Total number of frames received with a length (excluding framing bits, but including FCS octets) of between 64 and 1518 octets, inclusive, but had either a bad Frame Check Sequence (FCS) with an integral number of octets (FCS Error) or a bad FCS with a non-integral number of octets (Alignment Error).|
+| `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-1024-1518-octets` | Total number of packets (including bad packets) received between 1024 and 1518 octets in length inclusive (excluding framing bits but including FCS octets). |
+| `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-128-255-octets` | Total number of packets (including bad packets) received between 128 and 255 octets in length inclusive (excluding framing bits but including FCS octets).|
+| `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-256-511-octets` | Total number of packets (including bad packets) received between 256 and 511 octets in length inclusive (excluding framing bits but including FCS octets).|
+| `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-512-1023-octets` | Total number of packets (including bad packets) received between 512 and 1023 octets in length inclusive (excluding framing bits but including FCS octets).|
+| `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-64-octets` | Total number of packets (including bad packets) received that are 64 octets in length (excluding framing bits but including FCS octets).|
+| `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-65-127-octets` | Total number of packets (including bad packets) received between 65 and 127 octets in length inclusive (excluding framing bits but including FCS octets).|
+| `/interfaces/interface[name]/ethernet/state/counters/in-fcs-errors` | Total number of frames received on an interface that are an integral number of octets in length but do not pass the FCS check. This count does not include frames received with `frame-too-long` or `frame-too-short` error.|
+| `/interfaces/interface[name]/ethernet/state/counters/in-jabber-frames` |*  Number of Jabber frames received on the interface.|
+| `/interfaces/interface[name]/ethernet/state/counters/in-mac-pause-frames` | Inbound MAC pause frames on an interface.|
+| `/interfaces/interface[name]/ethernet/state/counters/in-oversize-frames` | Total number of packets received longer than 1518 octets (excluding framing bits, but including FCS octets). |
+| `/interfaces/interface[name]/ethernet/state/hw-mac-address` | * System defined default MAC address for the interface. |
+| `/interfaces/interface[name]/ethernet/state/mac-address​` | * MAC address for the interface.|
+| `/interfaces/interface[name]/ethernet/state/negotiated-duplex-mode` | When auto-negotiate is set to TRUE, and the interface has completed auto-negotiation with the remote peer, this value shows the negotiated duplex mode.|
+| `/interfaces/interface[name]/ethernet/state/port-speed` | An estimate of the interface current bandwidth in units of 1,000,000 bits per second.|
+| `/interfaces/interface[name]/rates/state/in-bits-rate` | The calculated received rate of the interface, measured in bits per second.|
+| `/interfaces/interface[name]/rates/state/in-pkts-rate` | The calculated received rate of the interface, measured in packets per second.|
+| `/interfaces/interface[name]/rates/state/out-bits-rate` | The calculated transmitted rate of the interface, measured in bits per second.|
+| `/interfaces/interface[name]/rates/state/out-pkts-rate` | The calculated transmitted rate of the interface, measured in packets per second.|
+| `/interfaces/interface[name]/state/admin-status` | Admin state of an interface. |
+| `/interfaces/interface[name]/state/counters/carrier-transitions` | Number of times since system boot that `ifOperStatus` changed.|
+| `/interfaces/interface[name]/state/counters/in-acl-drops` | Number of packets dropped at ingress due to ACL Policy.|
+| `/interfaces/interface[name]/state/counters/in-broadcast-pkts` | Total number of broadcast packets received on an interface.|
+| `/interfaces/interface[name]/state/counters/in-discards` | Number of inbound packets discarded even though no errors are detected to prevent them from being deliverable to a higher-layer protocol. |
+| `/interfaces/interface[name]/state/counters/in-errors` | For packet-oriented interfaces, the number of inbound packets that contained errors preventing them from being deliverable to a higher-layer protocol.|
+| `/interfaces/interface[name]/state/counters/in-multicast-pkts` | Total number of multicast packets received on an interface.|
+| `/interfaces/interface[name]/state/counters/in-octets` | Total number of octets received on an interface, including framing characters.|
+| `/interfaces/interface[name]/state/counters/in-pkts`| Number of packets discarded from the egress queue of an interface. |
+| `/interfaces/interface[name]/state/counters/in-unicast-pkts` | The number of packets, delivered by this sub-layer to a higher (sub-)layer, that were not addressed to a multicast or broadcast address at this sub-layer. |
+| `/interfaces/interface[name]/state/counters/out-broadcast-pkts` | Total number of broadcast packets transmitted out of an interface.|
+| `/interfaces/interface[name]/state/counters/out-discards` | Number of outbound packets discarded even though no errors are detected to prevent them from being transmitted. |
+| `/interfaces/interface[name]/state/counters/out-errors` | For packet-oriented interfaces, the number of outbound packets not transmitted because of errors. For character-oriented or fixed-length interfaces, the number of outbound transmission units not transmitted because of errors. |
+| `/interfaces/interface[name]/state/counters/out-multicast-pkts` | Total number of packets that higher-level protocols requested be transmitted, and which were addressed to a multicast address at this sub-layer, including those that were discarded or not sent. For a MAC layer protocol, this includes both Group and Functional addresses.|
+| `/interfaces/interface[name]/state/counters/out-octets` | Total number of octets transmitted out of an interface, including framing characters.|
+| `/interfaces/interface[name]/state/counters/out-pkts` | Total number of packets transmitted out of the interface, including all unicast, multicast, broadcast, and bad packets.|
+| `/interfaces/interface[name]/state/counters/out-unicast-pkts` | Total number of unicast packets transmitted out of an interface.|
+| `/interfaces/interface[name]/state/ifindex` | A unique value, greater than zero, for each interface.|
+| `/interfaces/interface[name]/state/last-change` | * The last time the state of the interface changed.|
+| `/interfaces/interface[name]/state/mtu` | Size of the largest packet that can be sent or received on the interface, specified in octets. For interfaces used for transmitting network datagrams, this is the size of the largest network datagram that the interface can send.|
+| `/interfaces/interface[name]/state/name​` | * The name of the interface.|
+| `/interfaces/interface[name]/state/oper-status` | Current operational state of an interface. |
+| `/interfaces/interface[name]/state/protodown​` | * Indicates if the interface is administratively held down by a protocol or system process rather than by user action.|
+| `/interfaces/interface[name]/state/type​` | * The type of the interface. |
+
+{{< /tab >}}
+{{< tab "LLDP">}}
+
+|  Name | <div style="width: 300px;">Description</div> |
+|------ | ----------- |
+| `/lldp/interfaces/interface[name]/neighbors/neighbor[id]/capabilities/capability[name]/state/enabled` | If the corresponding system capability is enabled on the neighbor.|
+| `/lldp/interfaces/interface[name]/neighbors/neighbor[id]/state/age` | LLDP neighbor age after discovery.|
+| `/lldp/interfaces/interface[name]/neighbors/neighbor[id]/state/chassis-id` | Chassis component of the endpoint identifier associated with the transmitting LLDP agent.|
+| `/lldp/interfaces/interface[name]/neighbors/neighbor[id]/state/chassis-id-type` | Format and source of the chassis identifier string.|
+| `/lldp/interfaces/interface[name]/neighbors/neighbor[id]/state/management-addresses[address]/type`| Enumerated value for the network address type identified in this TLV. |
+| `/lldp/interfaces/interface/neighbors/neighbor/state/port-description` | Binary string containing the actual port identifier for the port from which this LLDP PDU was transmitted.|
+| `/lldp/interfaces/interface[name]/neighbors/neighbor[id]/state/port-description`| Port component of the endpoint identifier associated with the transmitting LLDP agent. |
+| `/lldp/interfaces/interface[name]/neighbors/neighbor[id]/state/port-id` | The Port ID is a mandatory TLV which identifies the port component of the endpoint identifier associated with the transmitting LLDP agent. If the specified port is an IEEE 802.3 Repeater port, then this TLV is optional.|
+| `/lldp/interfaces/interface[name]/neighbors/neighbor[id]/state/port-id-type` | Format and source of the remote port ID string. |
+| `/lldp/interfaces/interface[name]/neighbors/neighbor[id]/state/system-description` | Description of the network entity associated with the transmitting LLDP agent.|
+| `/lldp/interfaces/interface[name]/neighbors/neighbor[id]/state/system-name` | Administratively assigned name of the system associated with the transmitting LLDP agent.|
+| `/lldp/interfaces/interface[name]/neighbors/neighbor[id]/state/ttl` | Indicates how long information from the neighbor is considered valid. |
+| `/lldp/interfaces/interface[name]/state/enabled`| * If LLDP is enabled on the interface. |
+| `/lldp/state/chassis-id` | The chassis component of the endpoint identifier associated with the transmitting LLDP agent.|
+| `/lldp/state/chassis-id-type` | The format and source of the chassis identifier string.|
+| `/lldp/state/system-description` | Description of the network entity including the full name and version identification of the system's hardware type, software operating system, and networking software.|
+| `/lldp/state/system-name` | Administratively assigned name for the system.|
+| `/lldp/state/enable` | * If LLDP is enabled.|
+
+{{< /tab >}}
+{{< tab "Platform">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/components/component[name]/state/name` | List of components, keyed by component name.|
+| `/components/component[name]/fan/state/speed` | Current (instantaneous) fan speed. |
+| `/components/component[name]/power-supply/state/capacity` | Maximum power capacity of the power supply. |
+| `/components/component[name]/power-supply/state/input-current` | * Input current draw of the power supply.|
+| `/components/component[name]/power-supply/state/input-voltage` | * Input voltage to power supply.|
+| `/components/component[name]/power-supply/state/output-current` | Output current supplied by the power supply. |
+| `/components/component[name]/power-supply/state/output-power` | Output power supplied by the power supply. |
+| `/components/component[name]/power-supply/state/output-voltage` | * Output voltage supplied by the power supply.|
+| `/components/component[name]/state/description` | System-supplied description of the component. |
+| `/components/component[name]/state/firmware-version` | * For hardware components, the version of associated firmware running on the component, if applicable.|
+| `/components/component[name]/state/last-reboot-reason​` | * The reason for the component's last reboot.|
+| `/components/component[name]/state/last-reboot-time​` | * The time of the last reboot. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/components/component[name]/state/name` | Device name for the component. |
+| `/components/component[name]/state/oper-status` | If applicable, the current operational status of the component. |
+| `/components/component[name]/state/temperature/alarm-severity` | * Severity of the current alarm.|
+| `/components/component[name]/state/temperature/alarm-status` | * A value of `true` indicates the alarm has been raised or asserted. The value is false when the alarm is cleared. |
+| `/components/component[name]/state/temperature/alarm-threshold` | * The threshold value crossed for this alarm. |
+| `/components/component[name]/state/temperature/avg​` | * Arithmetic mean value of the statistic over the sampling period.|
+| `/components/component[name]/state/temperature/instant` | Instantaneous value of the statistic.  |
+| `/components/component[name]/state/temperature/interval` | * If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system.|
+| `/components/component[name]/state/temperature/max​` | * The maximum value of the statistic over the sampling period.|
+| `/components/component[name]/state/temperature/max​-time` | * Absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/components/component[name]/state/temperature/min​` | * Minimum value of the statistic over the sampling period.|
+| `/components/component[name]/state/temperature/min-time​` | * Absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/components/component[name]/transceiver/host-lanes/lane[lane-number]/state/tx-cdr-lol` | * Transmitter clock-and-data-recovery loss-of-lock flag.|
+| `/components/component[name]/transceiver/host-lanes/lane[lane-number]/state/tx-los` | * Transmitter loss-of-signal flag.|
+| `/components/component[name]/transceiver/physical-channels/channel[index]/state/input-power/instant` | Input optical power of a physical channel in units of 0.01dBm, which may be associated with individual physical channels or an aggregate of multiple physical channels. |
+| `/components/component[name]/transceiver/physical-channels/channel[index]/state/laser-bias-current/instant` | Current applied by the system to the transmit laser to achieve the output power. The current is expressed in mA with up to two decimal precision. |
+| `/components/component[name]/transceiver/physical-channels/channel[index]/state/output-power/instant` | Output optical power of a physical channel in units of 0.01dBm, which might be associated with individual physical channels or an aggregate of multiple physical channels. |
+| `/components/component[name]/transceiver/physical-channels/channel[index]/state/rx-cdr-lol` | * Receiver clock-and-data-recovery loss-of-lock flag.|
+| `/components/component[name]/transceiver/physical-channels/channel[index]/state/rx-los` | * Receiver loss-of-signal flag.|
+| `/components/component[name]/transceiver/state/date-code​` | * Representation of the transceiver date code, typically stored as YYMMDD. The time portion of the value is undefined and not intended to be read. |
+| `/components/component[name]/transceiver/state/enabled​` | * Turns power on or off to the transceiver. Provides a means to power on or off the transceiver (in the case of SFP, SFP+, QSFP) or enable high-power mode (in the case of CFP, CFP2, CFP4). This is optionally supported (device can choose to always enable). True = power on - high power. False = powered off.|
+| `/components/component[name]/transceiver/state/ethernet-pmd`| * Ethernet PMD (physical medium dependent sublayer) that the transceiver supports. |
+| `/components/component[name]/transceiver/state/form-factor​` | * Type of optical transceiver used on this port. If the client port is built into the device and not pluggable, `non-pluggable` is the corresponding state. If a device port supports multiple form factors, the value of the transceiver installed is reported. If no transceiver is present, the value of the highest rate form factor is reported. |
+| `/components/component[name]/transceiver/state/present​` | * Indicates if a transceiver is present in the specified client port.|
+| `/components/component[name]/transceiver/state/serial-number​` | * Transceiver serial number. 16-octet field that contains ASCII characters, left-aligned and padded on the right with ASCII spaces (20h). If part serial number is undefined, all 16 octets = 0h.|
+| `/components/component[name]/transceiver/state/supply-voltage/instant` | * Input voltage as measured by the transceiver.|
+| `/components/component[name]/transceiver/state/vendor​` | * Full name of transceiver vendor. |
+| `/components/component[name]/transceiver/state/vendor-part​` | * Transceiver vendor part number.|
+| `/components/component[name]/transceiver/state/vendor-rev​` | * Transceiver vendor revision number. |
+
+{{< /tab >}}
+{{< tab "Packet Trimming">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/qos/packet-trimming/state/counters/trimmed-unicast-pkts`| * The number of trimmed packets.|
+
+{{< /tab >}}
+{{< tab "QoS">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/ecn-marked-pkts`| Number of ECN marked packets from this egress queue. If the ECN counter is not enabled, the counter value is 0.|
+| `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/no-buffer-uc-dropped-pkts` | Number of packets discarded from this egress queue when there is no buffer left in the interface. |
+| `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/time-since-last-clear` | Time since last clear of watermarks in a queue.|
+| `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/transmit-octets`| Number of transmitted bytes in the egress queue of an interface.|
+| `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/transmit-pkts`| Number of transmitted packets in the egress queue of an interface. |
+| `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/max-queue-len-cells` | * Maximum queue length cells for a queue since last time watermarks were reset. |
+| `/qos/interfaces/interface[name]/output/queues/queue[name]/state/max-queue-len` | * Maximum queue length for a queue since last time watermarks were reset.|
+| `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/wred-dropped-pkts` | Number of packets discarded from this egress queue of an interface. |
+| `/qos/interfaces/interface[interface-id]/priority-group[priority_group]/state/counters/time-since-last-clear` | * Time since last clear of watermarks in a priority group.|
+| `/qos/interfaces/interface[interface-id]/switch-priority[priority]/state/counters/in-pause-pkts` | Number of pause packets for the priority class in the ingress queue.|
+| `/qos/interfaces/interface[interface-id]/switch-priority[priority]/state/counters/out-pause-pkts`| Number of pause packets for the priority class in the egress queue.|
+
+{{%notice note%}}
+The following table provides updated QoS metrics:
+
+| 5.14 metrics | 5.13 metrics|
+| ----------- |-----------------|
+| `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/max-queue-len-cells` | `/qos/interfaces/interface[name]/output/queues/queue[name]/state/watermark-max`| 
+|`/qos/interfaces/interface[interface-id]/state/switch-priority[priority]/counters/` | `/qos/interfaces/interface[interface-id]/switch-priority[priority]/state/counters/` |
+| `/qos/interfaces/interface[interface-id]/state/priority-group[priority_group]/counters/` | `/qos/interfaces/interface[interface-id]/priority-group[priority_group]/state/counters/`|
+{{%/notice%}}
+
+{{< /tab >}}
+{{< tab "BGP">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp` |Top-level configuration and state for the BGP router. |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/afi-safis/afi-safi[afi-safi-name]/state/prefixes/installed` | The number of prefixes received from the neighbor that are installed in the network instance RIB and actively used for forwarding.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/afi-safis/afi-safi[afi-safi-name]/state/prefixes/received` | The number of prefixes that are received from the neighbor after applying any policies. This count is the number of prefixes present in the post-policy Adj-RIB-In for the neighbor.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/afi-safis/afi-safi[afi-safi-name]/state/prefixes/sent` | The number of prefixes that are advertised to the neighbor after applying any policies. This count is the number of prefixes present in the post-policy Adj-RIB-Out for the neighbor.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state` | BGP neighbor state.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/description` | * BGP neighbor state description.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/established-transitions` | Number of transitions to the Established state for the neighbor session. |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/last-established` | * The time that the BGP session last transitioned in or out of the Established state. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC). |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/local-as` | * The local autonomous system number used when establishing sessions with the remote peer or peer group, if this differs from the global BGP router autonomous system number.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages` | Counters for BGP messages sent and received from the neighbor.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/received` | Counters for BGP messages received from the neighbor. |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/received/last-notification-error-code` | * The last BGP error sent or received on the peering session.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/received/UPDATE` | Number of BGP UPDATE messages announcing, withdrawing, or modifying paths exchanged.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/sent` | Counters relating to BGP messages sent to the neighbor.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/sent/last-notification-error-code` | * The last BGP error sent or received on the peering session.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/sent/UPDATE` | Number of BGP UPDATE messages announcing, withdrawing or modifying paths exchanged.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/neighbor-address` | * Address of the BGP peer, either in IPv4 or IPv6.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/peer-as` | * AS number of the peer.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/peer-group` | * The peer-group with which this neighbor is associated|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/peer-type` | * Explicitly designate the peer or peer group as internal (iBGP) or external (eBGP).|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/queues/input` | The number of messages received from the peer currently queued.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/queues/output` | The number of messages queued to be sent to the peer.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/session-state` | Operational state of the BGP peer. |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor/state` | Operational state data for interface hold-time.|
+
+{{< /tab >}}
+{{< tab "SRv6">}}
+
+|  Name | Description |
+|------ | ----------- |
+|`/network-instances/network-instance[name]/srv6/global/state/counters/no-sid-drops` | * The number of packets dropped due to no matching SRv6 SID.|
+| `/network-instances/network-instance[name]/srv6/sids/sid[id]/id`| * The SRv6 SID (segment identifier).|
+| `/network-instances/network-instance/srv6/sids/sid[id]/state/counters/in-pkts` | * The number of packets received for this SRv6 SID.|
+
+{{< /tab >}}
+{{< tab "System">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/system/state/up-time` | * Continuous operational time of the system since last reboot. |
+| `/system/state/hostname` | System hostname. |
+| `/system/state/software-version` | System software version. |
+| `/system/state/boot-time` | System boot time. |
+| `/system/state/current-datetime` | Current system date and time. |
+| `/system/control-plane-traffic/ingress/ipv4/counters/`<br>`/system/control-plane-traffic/ingress/ipv6/counters/` | Number of input IP datagrams discarded in software including those received in error.|
+| `/system/cpus/cpu[index]/state/hardware-interrupt/avg` | * The arithmetic mean value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/hardware-interrupt/instant` | * The instantaneous percentage value.|
+| `/system/cpus/cpu[index]/state/hardware-interrupt/interval` | * If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system.|
+| `/system/cpus/cpu[index]/state/hardware-interrupt/max` | * The maximum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/hardware-interrupt/max-time` | * The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/hardware-interrupt/min` | * The minimum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/hardware-interrupt/min-time` | * The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/hardware-interrupt/seconds` | The total number of seconds spent servicing hardware interrupts.|
+| `/system/cpus/cpu[index]/state/idle/avg` | * The arithmetic mean value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/idle/instant` |*  The instantaneous percentage value.|
+| `/system/cpus/cpu[index]/state/idle/interval` | * If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system.|
+| `/system/cpus/cpu[index]/state/idle/max` | * The maximum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/idle/max-time` | * The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/idle/min` | * The minimum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/idle/min-time` | * The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/idle/seconds` |  The total number of seconds spent idle.|
+| `/system/cpus/cpu[index]/state/kernel/avg` | * The arithmetic mean value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/kernel/instant` | * The instantaneous percentage value.|
+| `/system/cpus/cpu[index]/state/kernel/interval` | * If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system. |
+| `/system/cpus/cpu[index]/state/kernel/max` | * The maximum value of the percentage measure of the statistic over the time interval. |
+| `/system/cpus/cpu[index]/state/kernel/max-time` | * The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/kernel/min` | * The minimum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/kernel/min-time` | * The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/kernel/seconds` | The total number of seconds spent running in kernel space.|
+| `/system/cpus/cpu[index]/state/nice/avg` | * The arithmetic mean value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/nice/instant` | * The instantaneous percentage value. |
+| `/system/cpus/cpu[index]/state/nice/interval` | * If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system.|
+| `/system/cpus/cpu[index]/state/nice/max` | * The maximum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/nice/max-time` | * The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/nice/min` | * The minimum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/nice/min-time` | * The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/nice/seconds` |  The total number of seconds spent running low-priority (niced) user processes.|
+| `/system/cpus/cpu[index]/state/software-interrupt/avg` | * The arithmetic mean value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/software-interrupt/instant` | * The instantaneous percentage value.|
+| `/system/cpus/cpu[index]/state/software-interrupt/interval` | * If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system.|
+| `/system/cpus/cpu[index]/state/software-interrupt/max` | * The maximum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/software-interrupt/max-time` | * The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/software-interrupt/min` | * The minimum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/software-interrupt/min-time` | * The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/software-interrupt/seconds` |  The total number of seconds spent servicing software interrupts.|
+| `/system/cpus/cpu[index]/state/total/avg` | * The arithmetic mean value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/total/instant` | * The instantaneous percentage value. |
+| `/system/cpus/cpu[index]/state/total/interval` | * If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system.|
+| `/system/cpus/cpu[index]/state/total/max` | * The maximum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/total/max-time` | * The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/total/min` | * The minimum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/total/min-time` | * The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/user/avg` | * The arithmetic mean value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/user/instant` | * The instantaneous percentage value.|
+| `/system/cpus/cpu[index]/state/user/interval` | * If supported by the system, the time interval over which the minimum, maximum, and average statistics are computed by the system.|
+| `/system/cpus/cpu[index]/state/user/max` | * The maximum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/user/max-time` | * The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/user/min` | * The minimum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/user/min-time` | * The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/user/seconds` | The total number of seconds spent running in user space.|
+| `/system/cpus/cpu[index]/state/wait/avg` | * The arithmetic mean value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/wait/instant` | * The instantaneous percentage value.|
+| `/system/cpus/cpu[index]/state/wait/interval` | * If supported by the system, this reports the time interval over which the minimum, maximum, and average statistics are computed by the system.|
+| `/system/cpus/cpu[index]/state/wait/max` | * The maximum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/wait/max-time` | * The absolute time at which the maximum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/wait/min` | * The minimum value of the percentage measure of the statistic over the time interval.|
+| `/system/cpus/cpu[index]/state/wait/min-time` | * The absolute time at which the minimum value occurred. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC).|
+| `/system/cpus/cpu[index]/state/wait/seconds` | The total number of seconds spent waiting I/O.|
+| `/system/memory/state/free` | Memory that is not used and is available for allocation. |
+| `/system/memory/state/physical` | The total physical memory available on the system.|
+| `/system/memory/state/reserved` | Memory reserved for system use. |
+| `/system/memory/state/used​` | * Memory that has been used and not available for allocation.|
+| `/system/mount-points/mount-point[name]/state/utilized` | * The amount of space currently in use on the filesystem.|
+| `/system/mount-points/mount-point[name]/state/name` | Mount point name.|
+| `/system/mount-points/mount-point[name]/state/storage-component` | A reference to the hosting component within the hierarchy. |
+| `/system/mount-points/mount-point[name]/state/size` | Total size of the initialized filesystem.|
+| `/system/mount-points/mount-point[name]/state/available` | The amount of unused space on the filesystem.|
+| `/system/mount-points/mount-point[name]/state/type` | Filesystem type used for storage such flash, hard disk, tmpfsor or ramdisk, or remote or network based storage.|
+| `/system/processes/process[pid]/state/cpu-usage-user` | * CPU time consumed by this process in user mode in nanoseconds. |
+| `/system/processes/process[pid]/state/cpu-usage-system` | * CPU time consumed by this process in kernel mode in nanoseconds. |
+| `/system/processes/process[pid]/state/start-time` | * Start time of the process in seconds since epoch. |
+| `/system/processes/process[pid]/state/name` | * Process name. |
+| `/system/processes/process[pid]/state/pid`| * Process PID |
+| `/system/processes/process[pid]/state/memory-usage` | * Bytes allocated and still in use by the process. |
+| `/system/processes/process[pid]/state/memory-utilization` | * Percentage of RAM that the process is using. |
+| `/system/processes/process[pid]/state/cpu-utilization` | * Percentage of CPU that the process is using. |
+
+{{< /tab >}}
+{{< /tabs >}}
+<!-- vale on -->
+### User Credentials and Authentication
+
+User authentication is enabled by default. gNMI subscription requests must include the username and password of a user with NVUE API access permissions, either in an HTTP Basic Authentication header according to RFC7617 or a gRPC Metadata header.
+
+### gNMI Client Requests
+
+You can use your gNMI client on a host to request capabilities and data to which the Agent subscribes. The examples below use the gNMIc client.
+
+#### Dial-in Mode Example
+
+The following example shows a basic Dial-in Mode Subscribe request in an HTTP Basic Authentication header:
+
+```
+gnmic subscribe --mode stream --path "/qos/interfaces/interface[interface-id=swp1]/output/queues/queue[name=1]/state/transmit-octets" -i 10s --tls-cert gnmi_client.crt --tls-key gnmi_client.key -u cumulus -p ******* --auth-scheme Basic --skip-verify -a 10.188.52.108:9339
+```
+
+The following example shows the response:
+
+```
+{ 
+  "sync-response": true 
+} 
+{ 
+  "source": "10.188.52.108:9339", 
+  "subscription-name": "default-1737725382", 
+  "timestamp": 1737725390247535267, 
+  "time": "2025-01-24T13:29:50.247535267Z", 
+  "updates": [ 
+    { 
+      "Path": "qos/interfaces/interface[interface-id=swp1]/output/queues/queue[name=1]/state/transmit-octets", 
+      "values": { 
+        "qos/interfaces/interface/output/queues/queue/state/transmit-octets": 0 
+      } 
+    } 
+  ] 
+} 
+...
+```
+
+The following example shows a Dial-in Mode Subscribe request in a gRPC Metadata header:
+
+```
+gnmic subscribe --mode stream -i 10s --tls-cert cert/umf-crt.pem --tls-key cert/umf-key.pem -u cumulus -p NvidiaR0cks! --skip-verify -a  192.168.200.3:9339  --timeout 30s --prefix "system/cpus/cpu[index=0]" --path "state"
+```
+
+The following example shows the response:
+
+```
+{
+  "source": "192.168.200.3:9339",
+  "subscription-name": "default-1752848659",
+  "timestamp": 1752848657055588821,
+  "time": "2025-07-18T14:24:17.055588821Z",
+  "prefix": "system/cpus/cpu[index=0]",
+  "updates": [
+    {
+      "Path": "state/kernel/max-time",
+      "values": {
+        "state/kernel/max-time": 1752848657055588900
+      }
+    },
+    {
+      "Path": "state/kernel/max",
+      "values": {
+        "state/kernel/max": 0.33359713753109865
+      }
+    },
+    {
+      "Path": "state/kernel/min",
+      "values": {
+        "state/kernel/min": 0
+      }
+    },
+    {
+      "Path": "state/kernel/avg",
+      "values": {
+        "state/kernel/avg": 0.33359713753109865
+      }
+    },
+    {
+      "Path": "state/kernel/min-time",
+      "values": {
+        "state/kernel/min-time": 1752848657055588900
+      }
+    },
+    {
+      "Path": "state/kernel/seconds",
+      "values": {
+        "state/kernel/seconds": 595
+      }
+    },
+    {
+      "Path": "state/kernel/instant",
+      "values": {
+        "state/kernel/instant": 0.33359713753109865
+      }
+    },
+    {
+      "Path": "state/user/avg",
+      "values": {
+        "state/user/avg": 0.2680692284537066
+      }
+    },
+...
+```
+
+#### Capabilities Example
+
+The following example shows a capabilities request:
+
+```
+gnmic capabilities --tls-cert gnmic-cert.pem --tls-key gnmic-key.pem -u cumulus -p ****** --auth-scheme Basic --skip-verify -a 10.188.52.108:9339
+```
+
+The following example shows the expected response to a capabilities request:
+
+```
+gNMI version: 0.10.0 
+supported models: 
+  - openconfig-ospf-types, OpenConfig working group, 0.1.3 
+ 
+...
+ 
+  - openconfig-platform-fabric, OpenConfig working group, 0.1.0 
+  - openconfig-platform-healthz, OpenConfig working group, 0.1.1 
+supported encodings: 
+  - JSON 
+  - JSON_IETF 
+  - PROTO 
+```
 
 ## gNMI with NetQ
 
-This section discusses how to configure and use gNMI with NetQ.
-
-To configure and use gNMI with Cumulus Linux, see {{<link url="/#gnmi-with-cumulus-linux" text="gNMI with Cumulus Linux">}}.
+This section discusses how to configure and use gNMI with NetQ. To configure and use gNMI with Cumulus Linux, see {{<link url="/#gnmi-with-cumulus-linux" text="gNMI with Cumulus Linux">}}.
 
 ### Configure the gNMI Agent
 
@@ -815,466 +1477,6 @@ received sync response 'true' from '10.209.37.123:9339'
     }
   ]
 }
-```
-<!-- vale on -->
-## gNMI with Cumulus Linux
-
-This section discusses how to configure and use gNMI with Cumulus Linux.
-
-To configure and use gNMI with NetQ, see {{<link url="/#gnmi-with-netq" text="gNMI with NetQ">}}.
-
-{{%notice note%}}
-When you enable gNMI with Cumulus Linux, do **not** enable and use {{<link url="Open-Telemetry-Export" text="Open Telemetry">}}.
-{{%/notice%}}
-
-Cumulus Linux supports both gNMI dial-in mode, where a collector can start a connection with the switch to collect available statistics, and gNMI dial-out mode, where the switch streams statistics and exports them to a collector.
-
-### Configure gNMI Dial-in Mode
-
-In dial-in telemetry mode, the data collector initiates the <span class="a-tooltip">[gRPC](## "Remote Procedure Calls")</span> connection, the Cumulus Linux switch assumes the role of the gRPC server and the receiver (collector) is the client. The switch pushes data to the collector.
-
-To configure gNMI dial-in mode, you must:
-- Specify the gNMI server listening address
-- Enable the gNMI server.
-
-To configure optional settings for gNMI dial-in mode:
-- Specify the listening port. The default port is 9339.
-- Enable a TLS certificate for validation.
-  - Cumulus Linux uses a self-signed certificate. You can generate your own TLS server certificate and bind it with the gNMI server application.
-  - If you need to use mTLS on the gNMI RPC, import the certificate of the CA that signed the gNMI client keys (or the client certificate itself) to the switch and configure the gNMI server to use the certificate. You can also apply a <span class="a-tooltip">[CRL](## "Certificate Revocation List")</span>. Specify either `uri` (a local or remote URI from where to retrieve the crl bundle file) or `data` (for a PEM encoded CRL).
-
-The following example sets the gNMI server listening address to 10.10.10.1 and the port to 443, and enables the gNMI server:
-
-```
-cumulus@switch:~$ nv set system gnmi-server listening-address 10.10.10.1
-cumulus@switch:~$ nv set system gnmi-server port 443
-cumulus@switch:~$ nv set system gnmi-server state enabled
-cumulus@switch:~$ nv config apply
-```
-
-The following example imports and sets the CA certificate `CERT1` and the CRL `crl.crt` for mTLS:
-
-```
-cumulus@switch:~$ nv action import system security ca-certificate CERT1 passphrase mypassphrase uri-bundle scp://user@pass:1.2.3.4:/opt/certs/cert.p12
-cumulus@switch:~$ nv set system gnmi-server mtls ca-certificate CERT1
-cumulus@switch:~$ nv action import system security crl uri scp://user:password@hostname/path/crl.crt
-cumulus@switch:~$ nv set system gnmi-server mtls crl /etc/ssl/certs/crl.crt
-cumulus@switch:~$ nv config apply
-```
-
-### Configure gNMI Dial-Out Mode
-
-In dial-out telemetry mode, the Cumulus Linux switch initiates the gRPC connection to the collector through a gRPC tunnel server and assumes the role of the gRPC client.
-
-To configure gNMI dial-out mode, you must:
-- Specify the listening address for each tunnel server to which you want to connect. Cumulus Linux supports a maximum of 10 tunnel servers.
-- Enable the tunnel server.
-
-To configure optional settings for each tunnel server:
-- Specify the target name and target application you want to access. The default target application is GNMI-GNOI.
-- Specify the retry interval. The default retry interval is 30 seconds.
-- Import and enable a TLS or mTLS certificate for validation. You can also apply a <span class="a-tooltip">[CRL](## "Certificate Revocation List")</span>. For information about importing certificates and CRLs, refer to {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="Security with Certificates and CRLs">}}.
-
-The following example sets the listening address for tunnel server SERVER1 to 10.1.1.10, and enables the tunnel server:
-
-```
-cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 address 10.1.1.10 
-cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 state enabled 
-cumulus@switch:~$ nv config apply
-```
-
-The following example sets the listening address for tunnel server SERVER1 to 10.1.1.10 and the port to 443, the target name to TARGET1, the retry interval to 40, the CA certificate to CACERT1, and enables the tunnel server:
-
-```
-cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 address 10.1.1.10 
-cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 port 443 
-cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 target-name TARGET1 
-cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 retry-interval 40
-cumulus@switch:~$ nv action import system security ca-certificate CACERT1 uri-public-key scp://user@pass:1.2.3.4:/opt/certs/ca-cert.pem uri-private-key scp://user@pass:1.2.3.4:/opt/certs/ca-cert-key.pem
-cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 ca-certificate CACERT1
-cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 state enabled 
-cumulus@switch:~$ nv config apply
-```
-
-### Show gNMI Configuration and Status Information
-
-To show gNMI server configuration and connection information, such the number of active subscriptions, received and rejected subscription requests, and received capability requests, run the `nv show system gnmi-server` command.
-
-```
-cumulus@switch:~$ nv show system gnmi-server 
-                                  operational  applied    
---------------------------------  -----------  -----------
-state                             disabled     enabled   
-certificate                       self-signed  self-signed
-port                              9339         9339
-[listening-address]               10.1.1.100   10.1.1.100        
-version                                                   
-status                                                    
-  total-active-subscriptions      0                       
-  received-subscription-requests  0                       
-  rejected-subscriptions          0                       
-  received-capabilities-requests  0                       
-  [client]
-```
-
-To show the listening address of the gNMI server, run the `nv show system gnmi-server listening-address` command:
-
-```
-cumulus@switch:~$ nv show system gnmi-server listening-address
-----------
-10.1.1.100
-```
-
-To show gNMI server mTLS information, run the `nv show system gnmi-server mtls` command:
-
-```
-cumulus@switch:~$ nv show system gnmi-server mtls
-                operational  applied  pending         
---------------  -----------  -------  ----------------
-ca-certificate  CACERT1       CACERT1   CACERT          
-crl                                   abcdefghijklmnop
-```
-
-To show only gNMI server connection information, run the `nv show system gnmi-server status` command:
-
-```
-cumulus@switch:~$ nv show system gnmi-server status
-                                operational
-------------------------------  -----------
-total-active-subscriptions      0          
-received-subscription-requests  0          
-rejected-subscriptions          0          
-received-capabilities-requests  0
-```
-
-To show gRPC tunnel server configuration and connection information, run the `nv show system grpc-tunnel server <server>` command:
-
-```
-cumulus@switch:~$ nv show system grpc-tunnel server SERVER1
-nv show system grpc-tunnel server SERVER1
-                 operational           applied  
----------------  --------------------  ---------
-state            disabled              enabled  
-target-name      TARGET1               TARGET1  
-address          10.1.1.10             10.1.1.10
-port             443                   443      
-target-type      gnmi-gnoi             gnmi-gnoi
-retry-interval   40                    40       
-status                                          
-  local-port     0                              
-  remote-port    0                              
-  connection                                    
-    established  1970-01-01T00:00:00Z           
-    register     no                             
-    tunnel       no
-```
-
-To show the local and remote port, and connection information, run the `nv show system grpc-tunnel server SERVER1 status` command:
-
-```
-cumulus@switch:~$ nv show system grpc-tunnel server SERVER1 status
-               operational         
--------------  --------------------
-local-port     0                   
-remote-port    0                   
-connection                         
-  established  1970-01-01T00:00:00Z
-  register     no                  
-  tunnel       no
-```
-
-To show only connection information, run the `nv show system grpc-tunnel server SERVER1 status connection` command:
-
-```
-cumulus@switch:~$ nv show system grpc-tunnel server SERVER1 status connection 
-             operational         
------------  --------------------
-established  1970-01-01T00:00:00Z
-register     no                  
-tunnel       no
-```
-
-### RPC Methods
-
-Cumulus Linux supports the following <span class="a-tooltip">[RPC](## "Remote Procedure Call")</span> methods:  
-- Capabilities
-- Subscription types and options:  
-  - STREAM (sample_interval, updates_only, suppress_redundant, and heartbeat_interval)
-  - ON_CHANGE (updates_only and heartbeat_interval)
-- Notification and update types:  
-  - sync_response
-  - update
-  - delete
-
-{{%notice note%}}
-Cumulus Linux does not support GET or SET RPC events.
-{{%/notice%}}
-
-### Encoding Types
-
-Cumulus Linux supports the Protobuf and JSON data formats.
-
-### Wildcard Support
-
-Cumulus Linux supports wildcard matching of keys. For example:
-
-```
-qos/interfaces/interface[interface-id=*]/output/queues/queue[name=*]/state/transmit-octets
-```
-
-You can use a combination of wildcard and specific keys; for example, to collect a metric for all queues on a specific interface:
-
-```
-/qos/interfaces/interface[interface-id=<name>]/output/queues/queue[*]/state/transmit-octets.
-```
-
-Regex for specific keys (such as `“interface-id=swp*”`) is not supported.
-
-### Metrics
-
-Cumulus Linux supports the following metrics:
-<!-- vale off -->
-{{< tabs "TabID200 ">}}
-{{< tab "Interface ">}}
-
-|  Name | Description |
-|------ | ----------- |
-| `/interfaces/interface/state/admin-status` | Admin state of an interface. |
-| `/interfaces/interface/state/counters/in-broadcast-pkts` | Total number of broadcast packets received on an interface.|
-| `/interfaces/interface/state/counters/in-multicast-pkts` | Total number of multicast packets received on an interface.|
-| `/interfaces/interface/state/counters/in-octets` | Total number of octets received on an interface, including framing characters.|
-| `/interfaces/interface/ethernet/state/counters/in-fcs-errors` | Total number of frames received on an interface that are an integral number of octets in length but do not pass the FCS check. This count does not include frames received with `frame-too-long` or `frame-too-short` error.|
-| `/interfaces/interface/ethernet/state/counters/in-oversize-frames` | Total number of packets received longer than 1518 octets (excluding framing bits, but including FCS octets). |
-| `/interfaces/interface/ethernet/state/counters/in-distribution/in-frames-1024-1518-octets` | Total number of packets (including bad packets) received between 1024 and 1518 octets in length inclusive (excluding framing bits but including FCS octets). |
-| `/interfaces/interface/ethernet/state/counters/in-distribution/ in-frames-128-255-octets` | Total number of packets (including bad packets) received between 128 and 255 octets in length inclusive (excluding framing bits but including FCS octets).|
-| `/interfaces/interface/ethernet/state/counters/in-distribution/in-frames-256-511-octets` | Total number of packets (including bad packets) received between 256 and 511 octets in length inclusive (excluding framing bits but including FCS octets).|
-| `/interfaces/interface/ethernet/state/counters/in-distribution/in-frames-512-1023-octets` | Total number of packets (including bad packets) received between 512 and 1023 octets in length inclusive (excluding framing bits but including FCS octets).|
-| `/interfaces/interface/ethernet/state/counters/in-distribution/in-frames-64-octets` | Total number of packets (including bad packets) received that are 64 octets in length (excluding framing bits but including FCS octets).|
-| `/interfaces/interface/ethernet/state/counters/in-distribution/in-frames-65-127-octets` | Total number of packets (including bad packets) received between 65 and 127 octets in length inclusive (excluding framing bits but including FCS octets).|
-| `/interfaces/interface/state/counters/out-broadcast-pkts` | Total number of broadcast packets transmitted out of an interface.|
-| `/interfaces/interface/state/counters/out-octets` | Total number of octets transmitted out of an interface, including framing characters.|
-| `/interfaces/interface/state/counters/out-unicast-pkts` | Total number of unicast packets transmitted out of an interface.|
-| `/interfaces/interface/ethernet/state/port-speed` | An estimate of the interface current bandwidth in units of 1,000,000 bits per second.|
-| `/interfaces/interface/state/counters/in-bits-rate` | Inbound bits per second on an interface.|
-| `/interfaces/interface/state/ifindex` | A unique value, greater than zero, for each interface.|
-| `/interfaces/interface/state/counters/in-discards` | Number of inbound packets discarded even though no errors are detected to prevent them from being deliverable to a higher-layer protocol. |
-| `/interfaces/interface/state/counters/in-errors` | For packet-oriented interfaces, the number of inbound packets that contained errors preventing them from being deliverable to a higher-layer protocol.|
-| `/interfaces/interface/state/counters/in-pkts`| Number of packets discarded from the egress queue of an interface. |
-| `/interfaces/interface/state/counters/in-pkts-rate` | Inbound packets per second on an interface. |
-| `/interfaces/interface/ethernet/state/counters/in-crc-errors` | Total number of frames received with a length (excluding framing bits, but including FCS octets) of between 64 and 1518 octets, inclusive, but had either a bad Frame Check Sequence (FCS) with an integral number of octets (FCS Error) or a bad FCS with a non-integral number of octets (Alignment Error).|
-| `/interfaces/interface/ethernet/state/negotiated-duplex-mode` | When auto-negotiate is set to TRUE, and the interface has completed auto-negotiation with the remote peer, this value shows the negotiated duplex mode.|
-| `/interfaces/interface/state/counters/in-acl-drops` | Number of inbound packets dropped because of an Access Control List (ACL).|
-| `/interfaces/interface/ethernet/state/counters/in-mac-pause-frames` | Inbound MAC pause frames on an interface.|
-| `/interfaces/interface/state/mtu` | Size of the largest packet that can be sent or received on the interface, specified in octets. For interfaces used for transmitting network datagrams, this is the size of the largest network datagram that the interface can send.|
-| `/interfaces/interface/state/oper-status` | Current operational state of an interface. |
-| `/interfaces/interface/state/counters/out-bits-rate` | Outbound bits per second on an interface. |
-| `/interfaces/interface/state/counters/out-discards` | Number of outbound packets discarded even though no errors are detected to prevent them from being transmitted. |
-| `/interfaces/interface/state/counters/out-errors` | For packet-oriented interfaces, the number of outbound packets not transmitted because of errors. For character-oriented or fixed-length interfaces, the number of outbound transmission units not transmitted because of errors. |
-| `/interfaces/interface/state/counters/out-pkts` | Total number of packets transmitted out of the interface, including all unicast, multicast, broadcast, and bad packets.|
-| `/interfaces/interface/state/counters/out-pkts-rate` | Outbound packets per second on an interface. |
-| `/interfaces/interface/state/counters/out-multicast-pkts` | Total number of packets that higher-level protocols requested be transmitted, and which were addressed to a multicast address at this sub-layer, including those that were discarded or not sent. For a MAC layer protocol, this includes both Group and Functional addresses.|
-| `/interfaces/interface/ethernet/state/counters/carrier-transitions` | Number of times since system boot that `ifOperStatus` changed.|
-| `/interfaces/interface/ethernet/phy/state/rs-fec-uncorrectable-blocks` | Number of RS FEC uncorrectable blocks of an interface. |
-| `/interfaces/interface/ethernet/phy/state/rs-fec-single-error-blocks` | Number of RS FEC uncorrectable blocks of an interface.|
-| `/interfaces/interface/ethernet/phy/state/rs-fec-no-error-blocks` | Number of RS FEC no errors blocks of an interface.|
-| `/interfaces/interface/ethernet/phy/state/lane/fc-fec-corrected-blocks` | Number FC FEC corrected blocks for a given lane of an interface.|
-| `/interfaces/interface/ethernet/phy/state/lane/fc-fec-uncorrected-blocks` | Number of FC FEC uncorrectable blocks for a given lane of an interface. |
-| `/interfaces/interface/ethernet/phy/state/lane/rs-fec-corrected-symbols` | Number of RS FEC corrected symbols for a given lane of an interface.|
-| `/interfaces/interface/ethernet/phy/state/corrected-bits` | Number of phy corrected bits of an interface by the FEC engine.|
-| `/interfaces/interface/ethernet/phy/state/effective-errors` | Number of phy effective errors of an interface.|
-| `/interfaces/interface/ethernet/phy/state/effective-ber` | Phy effective BER of an interface.|
-| `/interfaces/interface/ethernet/phy/state/lane/raw-errors` | Number of phy error bits identified for a given lane of an interface.|
-| `/interfaces/interface/ethernet/phy/state/received-bits` | Number of phy total bits received for an interface.|
-| `/interfaces/interface/ethernet/phy/state/symbol-errors` | Number of phy symbol errors for an interface.|
-| `/interfaces/interface/ethernet/phy/state/symbol-ber` | Phy symbol BER for an interface.|
-| `/interfaces/interface/ethernet/phy/state/lane/raw-ber` | Number of phy bit error rates for a given lane of an interface.|
-| `/interfaces/interface/ethernet/phy/state/fec-time-since-last-clear` | Time after last clear of FEC stats(phy layer). |
-| `/interfaces/interface/ethernet/phy/state/ber-time-since-last-clear` | Time after last clear of BER stats(phy layer). |
-
-{{< /tab >}}
-{{< tab "LLDP">}}
-
-|  Name | Description |
-|------ | ----------- |
-| `/lldp/state/chassis-id` | The chassis component of the endpoint identifier associated with the transmitting LLDP agent.|
-| `/lldp/state/chassis-id-type` | The format and source of the chassis identifier string.|
-| `/lldp/state/system-description` | Description of the network entity including the full name and version identification of the system's hardware type, software operating system, and networking software.|
-| `/lldp/state/system-name` | Administratively assigned name for the system.|
-| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/age` | LLDP neighbor age after discovery.|
-| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/management-address/type`| Enumerated value for the network address type identified in this TLV. |
-| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/chassis-id` | Chassis component of the endpoint identifier associated with the transmitting LLDP agent.|
-| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/chassis-id-type` | Format and source of the chassis identifier string.|
-| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/system-name` | Administratively assigned name of the system associated with the transmitting LLDP agent.|
-| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/system-description` | Description of the network entity associated with the transmitting LLDP agent.|
-| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/port-id`| Port component of the endpoint identifier associated with the transmitting LLDP agent. |
-| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/port-description` | Binary string containing the actual port identifier for the port from which this LLDP PDU was transmitted.|
-| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/port-id-type` | Format and source of the remote port ID string. |
-| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/ttl` | Indicates how long information from the neighbor is considered valid. |
-| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/capabilities/capability[name=<capability>]/state/enabled` | If the corresponding system capability is enabled on the neighbor.|
-
-{{< /tab >}}
-{{< tab "Platform">}}
-
-|  Name | Description |
-|------ | ----------- |
-| `/components/component[name='PSU1']/state/name` | PSU Name.|
-| `/components/component[name='PSU1']/state/oper-status` | PSU Status. |
-| `/components/component[name='PSU1']/state/description` |  PSU description. |
-| `/components/component[name='PSU1']/power-supply/state/capacity` | PSU capacity in watts. |
-| `/components/component[name='PSU1']/power-supply/state/output-current` | PSU current in amperes. |
-| `/components/component[name='PSU1']/power-supply/state/output-voltage` | PSU voltage in volts. |
-| `/components/component[name='PSU1']/power-supply/state/output-power` | PSU power in watts. |
-| `/components/component[name='fan0']/state/name` | Fan name. |
-| `/components/component[name='fan0']/state/oper-status` | Fan Status. |
-| `/components/component[name='fan0']/state/description` | Fan Description. |
-| `/components/component[name='fan0']/fan/state/speed` | Current (instantaneous) fan speed. |
-| `/components/component[name='temp-sensor0']/state/name` |  Temperature sensor name.|
-| `/components/component[name='temp-sensor0'']/state/oper-status` |  Temperature sensor operational status. |
-| `/components/component[name='temp-sensor0'']/state/description` | Temperature sensor description. |
-| `/components/component[name='temp-sensor0']/state/temperature/instant` | Instant temperature.  |
-| `/components/component[name='temp-sensor0']/state/temperature/alarm-status` | Temperature sensor alarm status. |
-| `/components/component[name='transceiver+panelport#']/transceiver/physical-channels/channel[no]/state/input-power/instant` | Input optical power of a physical channel in units of 0.01dBm, which may be associated with individual physical channels or an aggregate of multiple physical channels. |
-| `/components/component[name='transceiver+panelport#']/transceiver/physical-channels/channel[no]/state/laser-bias-current/instant` | Current applied by the system to the transmit laser to achieve the output power. The current is expressed in mA with up to two decimal precision. |
-| `/components/component[name='transceiver+panelport']/transceiver/physical-channels/channel[no]/state/output-power/instant` | Output optical power of a physical channel in units of 0.01dBm, which might be associated with individual physical channels or an aggregate of multiple physical channels. |
-
-{{< /tab >}}
-{{< tab "QoS">}}
-
-|  Name | Description |
-|------ | ----------- |
-| `/qos/interfaces/interface/state/switch-priority/counters/out-pause-pkts`| Number of pause packets for the priority class in the egress queue.|
-| `/qos/interfaces/interface/state/priority-group/counters/watermark-max` | High watermark of cells used in a priority group since last time watermarks were reset. |
-| `/qos/interfaces/interface/output/queues/queue/state/watermark-max` | High watermark of cells used in a queue since last time watermarks were reset. |
-| `qos/interfaces/interface/output/queues/queue/state/ecn-marked-pkts`| Number of ECN marked packets from this egress queue. If the ECN counter is not enabled, the counter value is 0.|
-| `qos/interfaces/interface/output/queues/queue/state/transmit-octets`| Number of transmitted bytes in the egress queue of an interface.|
-| `qos/interfaces/interface/output/queues/queue/state/transmit-pkts`| Number of transmitted packets in the egress queue of an interface. |
-| `/qos/interfaces/interface/output/queues/queue/state/wred-dropped-pkts` | Number of packets discarded from this egress queue of an interface. |
-| `/qos/interfaces/interface/output/queues/queue/state/no-buffer-uc-dropped-pkts` | Number of packets discarded from this egress queue when there is no buffer left in the interface. |
-| `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/time-since-last-clear` | Time since last clear of watermarks in a queue.|
-| `/qos/interfaces/interface[interface-id]/state/priority-group[priority_group]/counters/time-since-last-clear` | Time since last clear of watermarks in a priority group.|
-
-{{< /tab >}}
-{{< tab "Router">}}
-
-|  Name | Description |
-|------ | ----------- |
-| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/state/session-state` | Operational state of the BGP peer.|
-| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/state/established-transitions` | Number of transitions to the established state for the neighbor session.|
-| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/state/messages/sent/UPDATE` | Number of BGP UPDATE messages announcing, withdrawing, or modifying paths exchanged.|
-| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/messages/received/UPDATE` | Number of BGP UPDATE messages announcing, withdrawing, or modifying paths exchanged.|
-| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/state/queues/input` | Number of messages received from the peer currently queued.|
-| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/state/queues/output` | Number of messages queued to be sent to the peer.|
-| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/afi-safis/afi-safi[afi-safi-name=<afi-safi-name>]/state/prefixes/received` | Number of prefixes received from the neighbor after applying policies (the number of prefixes present in the post-policy Adj-RIB-In for the neighbor).|
-| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/afi-safis/afi-safi[afi-safi-name=<afi-safi-name>]/state/prefixes/sent` | Number of prefixes advertised to the neighbor after applying policies (the number of prefixes present in the post-policy Adj-RIB-Out for the neighbor).|
-| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/afi-safis/afi-safi[afi-safi-name=<afi-safi-name>]/state/prefixes/installed` | Number of prefixes received from the neighbor that are installed in the network instance RIB and actively used for forwarding. |
-
-{{< /tab >}}
-{{< tab "System">}}
-
-|  Name | Description |
-|------ | ----------- |
-| `/system/state/hostname` | System hostname. |
-| `/system/state/software-version` | System software version. |
-| `/system/state/boot-time` | System boot time. |
-| `/system/state/current-datetime` | Current system date and time. |
-| `/system/control-plane-traffic/ingress/ipv4/counters/`<br>`/system/control-plane-traffic/ingress/ipv6/counters/` | Number of input IP datagrams discarded in software including those received in error.|
-| `/system/cpus/cpu[name=<cpu_id>]/state/user/seconds` | CPU user Seconds |
-| `/system/cpus/cpu[name=<cpu_id>]/state/kernel/seconds` | CPU kernel seconds. |
-| `/system/cpus/cpu[name=<cpu_id>]/state/nice/seconds` | CPU Nice seconds. |
-| `/system/cpus/cpu[name=<cpu_id>]/state/idle/seconds` | CPU idle seconds. |
-| `/system/cpus/cpu[name=<cpu_id>]/state/wait/seconds` | CPU wait seconds.|
-| `/system/cpus/cpu[name=<cpu_id>]/state/hardware-interrupt/seconds` | CPU hardware interrupt seconds. |
-| `/system/cpus/cpu[name=<cpu_id>]/state/software-interrupt/seconds` | CPU software interrupt seconds.|
-| `/system/memory/state/free` | Free memory. |
-| `/system/memory/state/physical` | Physical memory.|
-| `/system/memory/state/reserved` | Memory reserved for system use. |
-| `/system/mount-points/mount-point[name='filesystem0']/state/name` | Mount point name.|
-| `/system/mount-points/mount-point[name='filesystem0']/state/storage-component` | A reference to the hosting component within the hierarchy. |
-| `/system/mount-points/mount-point[name='filesystem0']/state/size` | Total size of the initialized filesystem.|
-| `/system/mount-points/mount-point[name='filesystem0']/state/available` | Amount of unused space on the filesystem.|
-| `/system/mount-points/mount-point[name='filesystem0']/state/type` | Filesystem type used for storage such flash, hard disk, tmpfsor or ramdisk, or remote or network based storage.|
-
-{{< /tab >}}
-{{< /tabs >}}
-<!-- vale on -->
-### User Credentials and Authentication
-
-User authentication is enabled by default. gNMI subscription requests must include an HTTP Basic Authentication header according to RFC7617 containing the username and password of a user with NVUE API access permissions. You can enable this setting in the standard gNMI client (gNMIc) by setting the `auth-scheme` parameter to basic. Refer to {{<exlink url="https://gnmic.openconfig.net/global_flags/ - auth-scheme" text="https://gnmic.openconfig.net/global_flags/ - auth-scheme">}}.
-
-{{%notice note%}}
-Cumulus Linux ignores credentials in RPC metadata.
-{{%/notice%}}
-
-### gNMI Client Requests
-
-You can use your gNMI client on a host to request capabilities and data to which the Agent subscribes. The examples below use the gNMIc client.
-
-#### Dial-in Mode Example
-
-The following example shows a Dial-in Mode Subscribe request with TLS:
-
-```
-gnmic subscribe --mode stream --path "/qos/interfaces/interface[interface-id=swp1]/output/queues/queue[name=1]/state/transmit-octets" -i 10s --tls-cert gnmi_client.crt --tls-key gnmi_client.key -u cumulus -p ******* --auth-scheme Basic --skip-verify -a 10.188.52.108:9339
-```
-
-The following example shows a Dial-in Mode Subscribe request without TLS:
-
-{{%notice note%}}
-NVIDIA recommends using TLS. To test without TLS, you must also edit the NGINX configuration file on the switch.
-{{%/notice%}}
-
-```
-gnmic subscribe --mode stream --path "/qos/interfaces/interface[interface-id=swp1]/output/queues/queue[name=1]/state/transmit-octets" -i 10s --insecure -u cumulus -p ******* --auth-scheme Basic -a 10.188.52.108:9339
-```
-
-#### Subscription Example
-
-The following example shows a subscription response:
-<!-- vale off -->
-```
-{ 
-  "sync-response": true 
-} 
-{ 
-  "source": "10.188.52.108:9339", 
-  "subscription-name": "default-1737725382", 
-  "timestamp": 1737725390247535267, 
-  "time": "2025-01-24T13:29:50.247535267Z", 
-  "updates": [ 
-    { 
-      "Path": "qos/interfaces/interface[interface-id=swp1]/output/queues/queue[name=1]/state/transmit-octets", 
-      "values": { 
-        "qos/interfaces/interface/output/queues/queue/state/transmit-octets": 0 
-      } 
-    } 
-  ] 
-} 
-...
-```
-
-#### Capabilities Example
-
-The following example shows a capabilities request:
-
-```
-gnmic capabilities --tls-cert gnmic-cert.pem --tls-key gnmic-key.pem -u cumulus -p ****** --auth-scheme Basic --skip-verify -a 10.188.52.108:9339
-```
-
-The following example shows the expected response to a capabilities request:
-
-```
-gNMI version: 0.10.0 
-supported models: 
-  - openconfig-ospf-types, OpenConfig working group, 0.1.3 
- 
-...
- 
-  - openconfig-platform-fabric, OpenConfig working group, 0.1.0 
-  - openconfig-platform-healthz, OpenConfig working group, 0.1.1 
-supported encodings: 
-  - JSON 
-  - JSON_IETF 
-  - PROTO 
 ```
 <!-- vale on -->
 ### Considerations

@@ -63,7 +63,7 @@ cumulus@spine01:~$ nv config apply
 {{< /tabs >}}
 
 {{%notice note%}}
-When you change the router ID after initial configuration, you must run the `nv action clear vrf <vrf> router ospf database` command.
+When you change the router ID after initial configuration, you must run the `nv action clear vrf <vrf-id> router ospf database` command.
 {{%/notice%}}
 
 {{< /tab >}}
@@ -268,7 +268,7 @@ cumulus@spine01:~$ nv config apply
 {{< /tabs >}}
 
 {{%notice note%}}
-When you change the router ID after initial configuration, you must run the `nv action clear vrf <vrf> router ospf database` command.
+When you change the router ID after initial configuration, you must run the `nv action clear vrf <vrf-id> router ospf database` command.
 {{%/notice%}}
 
 {{< /tab >}}
@@ -1082,15 +1082,15 @@ NVUE provides several commands to show OSPF interface and OSPF neighbor configur
 
 | Description | <div style="width:330px">NVUE Command |
 | ----------- | ------------------------------------- |
-| `nv show vrf <vrf> router ospf interface` | Shows all OSPF interfaces. |
-| `nv show vrf <vrf> router ospf interface <interface>` | Shows information about a specific OSPF interface. |
-| `nv show vrf <vrf> router ospf interface <interface> local-ip` | Shows the local IP addresses for the specified OSPF interface. |
-| `nv show vrf <vrf> router ospf interface <interface> local-ip <IPv4_address>` | Shows statistics for a specific OSPF interface local IP address. |
-| `nv show vrf <vrf> router ospf neighbor` | Shows the OSPF neighbor ID and the OSPF interface for all OSPF neighbors. |
-| `nv show vrf <vrf> router ospf neighbor <IPv4-address>` | Shows the interface and local IP addresses for a specific OSPF neighbor. |
-| `nv show vrf <vrf> router ospf neighbor <IPv4-address> interface` | Shows the local IP addresses of all the interfaces for an OSPF neighbor. |
-| `nv show vrf <vrf> router ospf neighbor <IPv4-address> interface <interface> local-ip` | Shows the local IP addresses for a specific OSPF neighbor interface. |
-| `nv show vrf <vrf> router ospf neighbor <IPv4-address> interface <interface> local-ip <IPv4-address>` | Shows statistics for a specific OSPF neighbor interface local IP address. |
+| `nv show vrf <vrf-id> router ospf interface` | Shows all OSPF interfaces. |
+| `nv show vrf <vrf-id> router ospf interface <interface-id>` | Shows information about a specific OSPF interface. |
+| `nv show vrf <vrf-id> router ospf interface <interface-id> local-ip` | Shows the local IP addresses for the specified OSPF interface. |
+| `nv show vrf <vrf-id> router ospf interface <interface-id> local-ip <IPv4_address>` | Shows statistics for a specific OSPF interface local IP address. |
+| `nv show vrf <vrf-id> router ospf neighbor` | Shows the OSPF neighbor ID and the OSPF interface for all OSPF neighbors. |
+| `nv show vrf <vrf-id> router ospf neighbor <IPv4-address>` | Shows the interface and local IP addresses for a specific OSPF neighbor. |
+| `nv show vrf <vrf-id> router ospf neighbor <IPv4-address> interface` | Shows the local IP addresses of all the interfaces for an OSPF neighbor. |
+| `nv show vrf <vrf-id> router ospf neighbor <IPv4-address> interface <interface-id> local-ip` | Shows the local IP addresses for a specific OSPF neighbor interface. |
+| `nv show vrf <vrf-id> router ospf neighbor <IPv4-address> interface <interface-id> local-ip <IPv4-address>` | Shows statistics for a specific OSPF neighbor interface local IP address. |
 
 The following example shows all OSPF interfaces:
 
@@ -1242,8 +1242,8 @@ To capture OSPF packets, run the `sudo tcpdump -v -i swp1 ip proto ospf` command
 ### Clear OSPF Counters
 
 You can run the following commands to clear the OSPF counters shown in the NVUE show commands.
-- `nv action clear vrf <vrf> router ospf interface` clears all counters for all OSPF interfaces.
-- `nv action clear vrf <vrf> router ospf interface <interface>` clears all counters for a specific OSPF interface.
+- `nv action clear vrf <vrf-id> router ospf interface` clears all counters for all OSPF interfaces.
+- `nv action clear vrf <vrf-id> router ospf interface <interface-id>` clears all counters for a specific OSPF interface.
 
 The following example command clears all counters for OSPF interface swp51:
 
@@ -1255,7 +1255,7 @@ Action succeeded
 
 ## Clear the OSPF Database
 
-To clear the OSPF database, reestablish neighborships, and reoriginate LSAs, run the `nv action clear vrf <vrf> router ospf database` command:
+To clear the OSPF database, reestablish neighborships, and reoriginate LSAs, run the `nv action clear vrf <vrf-id> router ospf database` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv action clear vrf default router ospf database 
@@ -1266,7 +1266,7 @@ Action succeeded
 
 ## Considerations
 
-With NVUE, you cannot run both the `nv set vrf default router ospf area <area> network` command and the `nv set interface <interface> router ospf area` command in the same configuration; for example, if you run the following commands, NVUE shows an invalid configuration error:
+With NVUE, you cannot run both the `nv set vrf default router ospf area <area> network` command and the `nv set interface <interface-id> router ospf area` command in the same configuration; for example, if you run the following commands, NVUE shows an invalid configuration error:
 
 ```
 cumulus@switch:~$ nv set router ospf enable on

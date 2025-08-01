@@ -8,7 +8,7 @@ NVUE enables you to check the status of an interface, and view and clear interfa
 
 ## Show Interface Configuration and Statistics
 
-To check the configuration and statistics for an interface, run the `nv show interface <interface>` command:
+To check the configuration and statistics for an interface, run the `nv show interface <interface-id>` command:
 
 ```
 cumulus@switch:~$ nv show interface swp1
@@ -109,12 +109,12 @@ NVUE provides the following commands to show counters (statistics) for the inter
 | <div style="width:430px">NVUE Command | Description |
 | ----------- | ------------ |
 | `nv show interface --view counters` |  Shows all statistics for all the interfaces configured on the switch, such as the total number of received and transmitted packets, and the number of received and transmitted dropped packets and error packets.
-| `nv show interface <interface> counters` | Shows all statistics for a specific interface, such as the number of received and transmitted unicast, multicast and broadcast packets, the number of received and transmitted dropped packets and error packets, and the number of received and transmitted packets of a certain size.|
-| `nv show interface <interface> counters errors`| Shows the number of error packets for a specific interface, such as the number of received and transmitted packet alignment, oversize, undersize, and jabber errors. |
-| `nv show interface <interface> counters drops` | Shows the number of received and transmitted packet drops for a specific interface, such as ACL drops, buffer drops, queue drops, and non-queue drops.|
-| `nv show interface <interface> counters pktdist` | Shows the number of received and transmitted packets of a certain size for a specific interface. |
-| `nv show interface <interface> counters qos` | Shows QoS statistics for the specified interface. See {{<link url="Quality-of-Service/#show-qos-counters" text="Show Qos Counters">}}.|
-| `nv show interface <interface> counters ptp` | Shows PTP statistics for a specific interface. See {{<link url="Precision-Time-Protocol-PTP/#show-ptp-counters" text="Show PTP Counters">}}.|
+| `nv show interface <interface-id> counters` | Shows all statistics for a specific interface, such as the number of received and transmitted unicast, multicast and broadcast packets, the number of received and transmitted dropped packets and error packets, and the number of received and transmitted packets of a certain size.|
+| `nv show interface <interface-id> counters errors`| Shows the number of error packets for a specific interface, such as the number of received and transmitted packet alignment, oversize, undersize, and jabber errors. |
+| `nv show interface <interface-id> counters drops` | Shows the number of received and transmitted packet drops for a specific interface, such as ACL drops, buffer drops, queue drops, and non-queue drops.|
+| `nv show interface <interface-id> counters pktdist` | Shows the number of received and transmitted packets of a certain size for a specific interface. |
+| `nv show interface <interface-id> counters qos` | Shows QoS statistics for the specified interface. See {{<link url="Quality-of-Service/#show-qos-counters" text="Show Qos Counters">}}.|
+| `nv show interface <interface-id> counters ptp` | Shows PTP statistics for a specific interface. See {{<link url="Precision-Time-Protocol-PTP/#show-ptp-counters" text="Show PTP Counters">}}.|
 
 The following example shows all statistics for all the interfaces configured on the switch:
 
@@ -242,18 +242,18 @@ Undersize Errors  0        n/a
 ```
 
 {{%notice note%}}
-- NVUE does not show detailed statistics for logical interfaces, such as bonds, VLAN interfaces or subinterfaces. To see basic statistics for logical interfaces, run the `nv show interface <interface> link stats` command.
+- NVUE does not show detailed statistics for logical interfaces, such as bonds, VLAN interfaces or subinterfaces. To see basic statistics for logical interfaces, run the `nv show interface <interface-id> link stats` command.
 - On NVIDIA Spectrum switches, Cumulus Linux updates physical counters to the kernel every two seconds and virtual interfaces (such as VLAN interfaces) every ten seconds. You cannot change these values. Because the update process takes a lower priority than other `switchd` processes, the interval might be longer when the system is under a heavy load.
 {{%/notice%}}
 
 ## AmBER PHY Health Management
 
-To show physical layer information, such as the error counters for each lane on a port and <span class="a-tooltip">[SNR](## "Signal-to-Noise Ratio")</span> information for media and host lanes (lane0 through lane7), run the `nv show interface <interface> link phy-detail` command.
+To show physical layer information, such as the error counters for each lane on a port and <span class="a-tooltip">[SNR](## "Signal-to-Noise Ratio")</span> information for media and host lanes (lane0 through lane7), run the `nv show interface <interface-id> link phy-detail` command.
 
 This command highlights link integrity issues.
 
 {{%notice note%}}
-The `nv show interface <interface> link phy-detail` command shows SNR information for media and host lanes for OSFP 100G per lane capable transceivers on certain switches with the Spectrum-4 ASIC and later. The command does not show SNR information for SFP28 bonus ports.
+The `nv show interface <interface-id> link phy-detail` command shows SNR information for media and host lanes for OSFP 100G per lane capable transceivers on certain switches with the Spectrum-4 ASIC and later. The command does not show SNR information for SFP28 bonus ports.
   - For lanes not in use for the optical cable, the command output shows 0.
   - For copper ports, the command output shows n/a.
 {{%/notice%}}
@@ -321,7 +321,7 @@ snr-media-lane6            23.12 dB
 snr-media-lane7            24.05 dB
 ```
 
-To show physical layer diagnostic information for a port, run the `nv show interface <interface> link phy-diag` command:
+To show physical layer diagnostic information for a port, run the `nv show interface <interface-id> link phy-diag` command:
 
 ```
 cumulus@switch$ nv show interface swp20 link phy-diag 
@@ -400,7 +400,7 @@ flag-in-use                       0x0
 ```
 
 {{%notice note%}}
-Switches with the Spectrum 1 ASIC do not support the `nv show interface <interface> link phy-detail` command or the `nv show interface <interface> link phy-diag` command.
+Switches with the Spectrum 1 ASIC do not support the `nv show interface <interface-id> link phy-detail` command or the `nv show interface <interface-id> link phy-diag` command.
 {{%/notice%}}
 
 ## Clear Interface Counters
@@ -413,7 +413,7 @@ all interface counters cleared
 Action succeeded
 ```
 
-To clear the counters for an interface, run the `nv action clear interface <interface> counters` command:
+To clear the counters for an interface, run the `nv action clear interface <interface-id> counters` command:
 
 ```
 cumulus@switch$ nv action clear interface swp1 counters
@@ -422,13 +422,12 @@ Action succeeded
 ```
 
 {{%notice note%}}
-The `nv action clear interface <interface> counters` command does not clear counters in the hardware.
+The `nv action clear interface <interface-id> counters` command does not clear counters in the hardware.
 {{%/notice%}}
 
 ## Clear Interface Physical Layer Error Counters
 
-To clear interface physical layer error counters, run the `nv action clear interface <interface-id> link phy-detail` command.
-The command clears the counters at the software level, but not the hardware level.
+To clear interface physical layer error counters, run the `nv action clear interface <interface-id> link phy-detail` command. The command clears the counters at the software level, but not the hardware level.
 
 ```
 cumulus@switch:~$ nv action clear interface swp1 link phy-detail
@@ -440,30 +439,26 @@ Action succeeded
 To clear physical layer error counters for a range of interfaces:
 
 ```
-cumulus@switch:~$ nv action clear interface swp1-3,swp31s0,swp5-10 link phy-detail 
-Action executing ... 
-swp1 link phy-detail counters cleared. 
-Action executing ... 
-swp2 link phy-detail counters cleared. 
-Action executing ... 
-swp3 link phy-detail counters cleared. 
-Action executing ... 
-swp31s0 link phy-detail counters cleared. 
-swp5 link phy-detail counters cleared. 
-Action executing ... 
-swp6 l link phy-detail counters cleared. 
-swp7 link phy-detail counters cleared. 
-swp8 link phy-detail counters cleared. 
-Action executing ... 
-swp9 link phy-detail counters cleared. 
-swp10 link phy-detail counters cleared. 
-Action succeeded
+cumulus@switch:~$ nv action clear interface swp1-3,swp5,swp7-10 link phy-detail 
+Action executing ...
+swp1 link phy-detail counters cleared.
+Action executing ...
+swp2 link phy-detail counters cleared.
+swp3 link phy-detail counters cleared.
+Action executing ...
+swp5 link phy-detail counters cleared.
+swp7 link phy-detail counters cleared.
+Action executing ...
+swp8 link phy-detail counters cleared.
+swp9 link phy-detail counters cleared.
+swp10 link phy-detail counters cleared.
 ```
 
 If the specified interface is out of range; for example, if the switch supports up to 32 switch ports but you try to clear swp33, NVUE displays an error.
 
 {{%notice note%}}
-The `nv show interface <interface> link phy-detail` command shows the reset counters. To show the exact hardware counters, run the `nv show interface <interface-id> link phy-detail hardware` command or the `nv show interface <interface-id> link phy-detail -view=hardware` command.
+- The `nv show interface <interface-id> link phy-detail` command shows the reset counters. To show the exact hardware counters, run the `nv show interface <interface-id> link phy-detail hardware` command or the `nv show interface <interface-id> link phy-detail --view=hardware` command.
+- The `nv action clear interface <interface-id> link phy-detail` command does not clear counters in the hardware.
 {{%/notice%}}
 
 ## Reset a Transceiver
@@ -517,43 +512,55 @@ When the reset completes successfully, you see syslog messages similar to the fo
 
 ## Transceiver Thermal Control
 
-To optimize transceiver thermal performance and maintain a cooler operating environment before reaching critical temperatures, you can set the fan algorithm target temperature for a single front port or a group of front ports. The target temperature must be below the module advertised high warning threshold.  
+To optimize transceiver thermal performance and maintain a cooler operating environment before reaching critical temperatures, you can set temperature thresholds for fan activation in the FAN algorithm,
+ensuring that they are below the module's high warning threshold.
 
-When you lower temperature thresholds for fan activation, fans start sooner and run more frequently, which can lead to higher power consumption and more noise. However, you prevent performance issues and extend the lifespan of critical hardware. The decision reflects a strategic balance between energy efficiency and hardware protection.
+Lowering the thresholds leads to earlier and more frequent fan operation, increasing power usage and noise but protecting hardware performance and lifespan.
 
-Setting the target temperature does not change the module EEPROM advertisement for high or low temperature warnings. The optical module continues reporting temperature alarms based on alarms or warning thresholds preprogrammed in the transceiver EEPROM.
+Setting the temperature thresholds does not change the module EEPROM-based alarm thresholds. The optical module continues reporting temperature alarms based on alarms or warning thresholds preprogrammed in the transceiver EEPROM.
 
 {{%notice warning%}}
-Setting the target temperature for a port without proper guidance can result in transceiver damage, and might void your warranty and support agreements. This is an advanced configuration task; NVIDIA recommends you use the default transceiver temperature settings. Only modify this setting with approval from NVIDIA Technical Support.
+Setting the temperature thresholds without proper guidance can result in transceiver damage, and might void your warranty and support agreements. This is an advanced configuration task; NVIDIA recommends you use the default transceiver temperature settings. Only modify this setting with approval from NVIDIA Technical Support.
 {{%/notice%}}
 
 {{%notice note%}}
-- You can set the target temperature for a port on the SN5610 and SN5640 switches only.
-- Breakout ports are not supported.
+- You can set temperature thresholds on the SN5610 switch only.
+- Always use the parent transceiver name for configuration; for example, use swp1 not swp1s0.
 {{%/notice%}}
 
-To set the target temperature for a port, run the `nv set platform transceiver <interface-id> temperature setpoint` command. You can set a value between 30 and 80.
+To set the temperature threshold for a single port, run the `nv set platform transceiver <transceiver-id> temperature setpoint` command. You can set a value between 30 and 80. The temperature threshold for an interface must be below the module advertised high warning threshold. If you configure the setpoint to be above the module advertised high temperature warning threshold, the FAN algorithm uses the module advertised threshold.
 
 ```
 cumulus@switch:~$ nv set platform transceiver swp2 temperature setpoint 60 
 cumulus@switch:~$ nv config apply
 ```
 
-To set the target temperature for a group of ports:
+To set the temperature threshold for a group of ports:
 
 ```
-cumulus@switch:~$ nv set platform transceiver swp2-swp10 temperature setpoint 60 
+cumulus@switch:~$ nv set platform transceiver swp2-10 temperature setpoint 60 
+cumulus@switch:~$ nv config apply
+```
+
+To set the temperature threshold for a group of comma-separated ports:
+
+```
+cumulus@switch:~$ nv set platform transceiver swp1,4,5,30 temperature setpoint 65
 cumulus@switch:~$ nv config apply
 ```
 
 {{%notice note%}}
-- When you set the target temperature, the hardware management service (`hw-managament-tc.service`) and `switchd` restart.
-- If you try to set a target temperature that is above the module advertised high temperature warning or if the module is not DOM capable, Cumulus Linux reports an invalid configuration warning.
+- When you set the temperature threshold, the hardware management service (`hw-managament-tc.service`) and `switchd` restart.
+- If you try to set the temperature threshold above the module advertised high temperature warning or if the module is not DOM capable, Cumulus Linux reports an invalid configuration warning.
 {{%/notice%}}
 
-To unset the target temperature and return to the default value, run the `nv unset platform transceiver <interface-id> temperature setpoint` command.
+To unset the temperature threshold and return to the default value, run the `nv unset platform transceiver <transceiver-id> temperature setpoint` command.
 
-To verify the target temperature configuration for a port, run the `nv show platform transceiver <interface> temperature` command:
+{{%notice info%}}
+If you run the `nv unset platform` command, the switch clears out the temperature setpoints for all ports.
+{{%/notice%}}
+
+To verify the temperature threshold configuration for a port, run the `nv show platform transceiver <transceiver-id> temperature` command:
 
 ```
 cumulus@switch:~$ nv show platform transceiver swp1 temperature 
@@ -562,7 +569,7 @@ cumulus@switch:~$ nv show platform transceiver swp1 temperature
 setpoint  60           60 
 ```
 
-The `nv show platform transceiver <interface-id>` command also shows the target temperature for the specified port. See below.
+The `nv show platform transceiver <transceiver-id>` command also shows the temperature threshold for the specified port. See below.
 
 ## Show Transceiver Information
 
@@ -589,7 +596,7 @@ swp31        QSFP28      Mellanox     MCP1600-C001E30N  MT2039VB01191  A3
 
 To show a detailed view of module information for all ports that includes cable length, type, and diagnostics, current status and error status, run the `nv show platform transceiver details` command.
 
-To show hardware capabilities and measurement information on the module in a particular port, run the `nv show platform transceiver <interface>` command:
+To show hardware capabilities and measurement information on the module in a particular port, run the `nv show platform transceiver <transceiver-id>` command:
 
 ```
 cumulus@switch:~$ nv show platform transceiver swp2
@@ -651,7 +658,7 @@ channel:
 - To show information for subinterfaces; run the `nv show interface <subinterface> transceiver` commands.
 {{%/notice%}}
 
-You can also show transceiver data in a more condensed format with the `nv show interface <interface> transceiver` command:
+You can also show transceiver data in a more condensed format with the `nv show interface <interface-id> transceiver` command:
 
 ```
 cumulus@switch:~$ nv show interface swp1 transceiver
@@ -685,7 +692,7 @@ ch-4-tx-power          : 0.9695 mW / -0.13 dBm
 ch-4-tx-bias-current   : 6.750 mA 
 ```
 
-To show channel information for the module in a particular port, run the `nv show platform transceiver <interface> channel` command. To show specific channel information for the module in a particular port, run the `nv show platform transceiver <interface> channel <channel>` command.
+To show channel information for the module in a particular port, run the `nv show platform transceiver <transceiver-id> channel` command. To show specific channel information for the module in a particular port, run the `nv show platform transceiver <transceiver-id> channel <channel-id>` command.
 
 ```
 cumulus@switch:~$ nv show platform transceiver swp25 channel 
@@ -730,7 +737,7 @@ channel:
 ...
 ```
 
-To show the thresholds for the module for a specific interface, run the `nv show interface <interface> transceiver thresholds` command:
+To show the thresholds for the module for a specific interface, run the `nv show interface <interface-id> transceiver thresholds` command:
 
 ```
 cumulus@switch:~$ nv show interface swp3 transceiver thresholds

@@ -1,0 +1,20 @@
+name: 'Purge Akamai Cache'
+## 
+on: workflow_dispatch
+
+jobs:
+  purge:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Purge Akamai cache tags (production)
+        uses: akamai/akamai-cache-purge@v1
+        with:
+          client_token: ${{ secrets.AKAMAI_CLIENT_TOKEN }}
+          client_secret: ${{ secrets.AKAMAI_CLIENT_SECRET }}
+          access_token: ${{ secrets.AKAMAI_ACCESS_TOKEN }}
+          hostname: ${{ secrets.AKAMAI_HOSTNAME }}
+          ref: `https://docs.nvidia.com/networking-ethernet-software/`
+          type: `url`
+          network: `production`
+          command: `delete`

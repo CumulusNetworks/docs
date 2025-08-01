@@ -14,7 +14,7 @@ jobs:
           client_secret: ${{ secrets.AKAMAI_CLIENT_SECRET }}
           access_token: ${{ secrets.AKAMAI_ACCESS_TOKEN }}
           hostname: ${{ secrets.AKAMAI_HOSTNAME }}
-          ref: `https://docs.nvidia.com/networking-ethernet-software/`
-          type: `url`
-          network: `production`
-          command: `delete`
+          ref: 'https://docs.nvidia.com/networking-ethernet-software/'
+          type: 'url'
+          network: 'production'
+          command: 'delete'

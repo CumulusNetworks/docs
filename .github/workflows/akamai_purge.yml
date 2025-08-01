@@ -20,7 +20,7 @@ jobs:
           pip3 install requests edgegrid-python
           
       - name: Purge Akamai cache tags (production)
-        run: python3 akamai_purge.py
+        run: python3 utils/akamai_purge.py
         env:
           AKAMAI_HOST: ${{ secrets.AKAMAI_HOSTNAME }}
           AKAMAI_CLIENT_TOKEN: ${{ secrets.AKAMAI_CLIENT_TOKEN }}

@@ -1,7 +1,12 @@
 name: 'Purge Akamai Cache'
 
 on:
-  workflow_dispatch
+  workflow_dispatch:
+    inputs:
+      tags_to_purge:
+        description: 'Tags to purge (comma-separated)'
+        required: true
+        default: 'docs.nvidia.com-networking-ethernet-software-automation-prod'
 
 jobs:
   purge:
@@ -12,15 +17,15 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y python3 python3-pip
-          pip3 install requests akamai-edgegrid
+          pip3 install requests edgegrid-python
           
       - name: Purge Akamai cache tags (production)
-        run: python3 utils/akamai_purge.py
+        run: python3 akamai_purge.py
         env:
           AKAMAI_HOST: ${{ secrets.AKAMAI_HOSTNAME }}
           AKAMAI_CLIENT_TOKEN: ${{ secrets.AKAMAI_CLIENT_TOKEN }}
           AKAMAI_CLIENT_SECRET: ${{ secrets.AKAMAI_CLIENT_SECRET }}
           AKAMAI_ACCESS_TOKEN: ${{ secrets.AKAMAI_ACCESS_TOKEN }}
           AKAMAI_NETWORK_ENVIRONMENT: 'production'
-          AKAMAI_TAGS_TO_INVALIDATE: 'docs.nvidia.com-networking-ethernet-software-automation-prod'
+          AKAMAI_TAGS_TO_INVALIDATE: ${{ github.event.inputs.tags_to_purge }}
           AKAMAI_ACTION: 'delete'

@@ -5,6 +5,8 @@ weight: -37
 product: Cumulus RMP
 version: "3.7"
 subsection: true
+cascade:
+  draft: true
 ---
 
 ## Introducing Cumulus RMP

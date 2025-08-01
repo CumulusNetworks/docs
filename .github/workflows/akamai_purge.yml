@@ -18,6 +18,9 @@ jobs:
           sudo apt update
           sudo apt install -y python3 python3-pip
           pip3 install requests edgegrid-python
+      
+      - name: Checkout the repo
+        uses: actions/checkout@v2
           
       - name: Purge Akamai cache tags (production)
         run: python3 utils/akamai_purge.py

@@ -559,15 +559,10 @@ You can use your gNMI client on a host to request capabilities and data to which
 
 #### Dial-in Mode Example
 
-The following example shows a basic Dial-in Mode Subscribe request in an HTTP Basic Authentication header:
+The following example shows a basic Dial-in Mode Subscribe request in an HTTP Basic Authentication header and the response:
 
 ```
 gnmic subscribe --mode stream --path "/qos/interfaces/interface[interface-id=swp1]/output/queues/queue[name=1]/state/transmit-octets" -i 10s --tls-cert gnmi_client.crt --tls-key gnmi_client.key -u cumulus -p ******* --auth-scheme Basic --skip-verify -a 10.188.52.108:9339
-```
-
-The following example shows the response:
-
-```
 { 
   "sync-response": true 
 } 
@@ -588,15 +583,10 @@ The following example shows the response:
 ...
 ```
 
-The following example shows a Dial-in Mode Subscribe request in a gRPC Metadata header:
+The following example shows a Dial-in Mode Subscribe request in a gRPC Metadata header and the response:
 
 ```
 gnmic subscribe --mode stream -i 10s --tls-cert cert/umf-crt.pem --tls-key cert/umf-key.pem -u cumulus -p NvidiaR0cks! --skip-verify -a  192.168.200.3:9339  --timeout 30s --prefix "system/cpus/cpu[index=0]" --path "state"
-```
-
-The following example shows the response:
-
-```
 {
   "source": "192.168.200.3:9339",
   "subscription-name": "default-1752848659",
@@ -657,21 +647,15 @@ The following example shows the response:
 
 #### Capabilities Example
 
-The following example shows a capabilities request:
+The following example shows a capabilities request and the expected response:
 
 ```
 gnmic capabilities --tls-cert gnmic-cert.pem --tls-key gnmic-key.pem -u cumulus -p ****** --auth-scheme Basic --skip-verify -a 10.188.52.108:9339
-```
 
-The following example shows the expected response to a capabilities request:
-
-```
 gNMI version: 0.10.0 
 supported models: 
   - openconfig-ospf-types, OpenConfig working group, 0.1.3 
- 
 ...
- 
   - openconfig-platform-fabric, OpenConfig working group, 0.1.0 
   - openconfig-platform-healthz, OpenConfig working group, 0.1.1 
 supported encodings: 

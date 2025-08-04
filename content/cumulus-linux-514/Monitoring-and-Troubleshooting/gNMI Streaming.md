@@ -306,8 +306,8 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/interfaces/interface[name]/state/oper-status` | Current operational state of an interface. |
 | `/interfaces/interface[name]/state/protodown​` | * Indicates if the interface is administratively held down by a protocol or system process rather than by user action.|
 | `/interfaces/interface[name]/state/type​` | * The type of the interface. |
-| `/interfaces/interface[name]/ethernet/state/auto-negotiate` | If the interface is configured for auto-negotiation.|
-| `/interfaces/interface[name]/ethernet/state/negotiated-port-speed` | If auto-negotiation is on, this metric shows the negotiated port speed. If auto-negotiation is off, you do not see this metric.|
+| `/interfaces/interface[name]/ethernet/state/auto-negotiate` | * If the interface is configured for auto-negotiation.|
+| `/interfaces/interface[name]/ethernet/state/negotiated-port-speed` | * If auto-negotiation is on, this metric shows the negotiated port speed. If auto-negotiation is off, you do not see this metric.|
 
 {{< /tab >}}
 {{< tab "LLDP">}}

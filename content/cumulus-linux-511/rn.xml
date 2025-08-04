@@ -7,6 +7,37 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4548512</td>
+<td>When a connected route is learned through FRR and installed into the Zebra RIB, it might go in with the next hop interface of the -v0 (VRR) interface instead of the SVI. This breaks next hop tracking and the route is not installed into hardware despite being known in the Zebra RIB and Kernel.
+This issue can occur under the following conditions:
+&lt;ul&gt;&lt;li&gt;The target VRF might not install the route into hardware when leaking directly connected routes with VRR enabled on the interface that owns the subnet and between VRFs upon initial configuration. &lt;/li&gt;
+&lt;li&gt;In an MLAG and VRR configuration, the static route fails to install when a static route is resolved through a connected route and the interface of the connected route undergoes a link state change (link flap, interface bring up, {{clagd}} restart, {{switchd}} restart, and so on).&lt;/li&gt;&lt;/ul&gt;
+To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command.</td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4548341</td>
+<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{{sudo systemctl restart frr.service}} command.</td>
+<td>5.4.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4548340</td>
+<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{{sudo systemctl restart frr.service}} command.</td>
+<td>5.4.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4535834</td>
+<td>Cumulus Linux does not provide a specific error message if you try to configure an ACL rule with conflicting match protocol criteria. For example, if you configure a single rule with both {{match ip protocol tcp}} and {{match ip udp dest-port &lt;port&gt;}}, you see the following error:
+Unable to run ‘install_acls.sh’ script:
+ RAN: sudo -S bash /var/lib/nvue/config/install_acls.sh
+To work around this issue, configure consistent protocol match statements in each ACL rule.</td>
+<td>5.11.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4535804</td>
 <td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
 <td>5.10.0-5.13.1</td>
@@ -16,6 +47,16 @@
 <td>4531959</td>
 <td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
 <td>5.9.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4531952</td>
+<td>When a connected route is learned through FRR and installed into the Zebra RIB, it might go in with the next hop interface of the -v0 (VRR) interface instead of the SVI. This breaks next hop tracking and the route is not installed into hardware despite being known in the Zebra RIB and Kernel.
+This issue can occur under the following conditions:
+&lt;ul&gt;&lt;li&gt;The target VRF might not install the route into hardware when leaking directly connected routes with VRR enabled on the interface that owns the subnet and between VRFs upon initial configuration. &lt;/li&gt;
+&lt;li&gt;In an MLAG and VRR configuration, the static route fails to install when a static route is resolved through a connected route and the interface of the connected route undergoes a link state change (link flap, interface bring up, {{clagd}} restart, {{switchd}} restart, and so on).&lt;/li&gt;&lt;/ul&gt;
+To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command.</td>
+<td>5.11.1-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -889,6 +930,37 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4548512</td>
+<td>When a connected route is learned through FRR and installed into the Zebra RIB, it might go in with the next hop interface of the -v0 (VRR) interface instead of the SVI. This breaks next hop tracking and the route is not installed into hardware despite being known in the Zebra RIB and Kernel.
+This issue can occur under the following conditions:
+&lt;ul&gt;&lt;li&gt;The target VRF might not install the route into hardware when leaking directly connected routes with VRR enabled on the interface that owns the subnet and between VRFs upon initial configuration. &lt;/li&gt;
+&lt;li&gt;In an MLAG and VRR configuration, the static route fails to install when a static route is resolved through a connected route and the interface of the connected route undergoes a link state change (link flap, interface bring up, {{clagd}} restart, {{switchd}} restart, and so on).&lt;/li&gt;&lt;/ul&gt;
+To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command.</td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4548341</td>
+<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{{sudo systemctl restart frr.service}} command.</td>
+<td>5.4.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4548340</td>
+<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{{sudo systemctl restart frr.service}} command.</td>
+<td>5.4.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4535834</td>
+<td>Cumulus Linux does not provide a specific error message if you try to configure an ACL rule with conflicting match protocol criteria. For example, if you configure a single rule with both {{match ip protocol tcp}} and {{match ip udp dest-port &lt;port&gt;}}, you see the following error:
+Unable to run ‘install_acls.sh’ script:
+ RAN: sudo -S bash /var/lib/nvue/config/install_acls.sh
+To work around this issue, configure consistent protocol match statements in each ACL rule.</td>
+<td>5.11.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4535804</td>
 <td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
 <td>5.10.0-5.13.1</td>
@@ -930,15 +1002,15 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
-<td>4495231</td>
-<td>If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the {{hwclock --systohc}} command to add it to the hardware clock.  You can then use {{onie-nos-install}} to install the image.</td>
-<td>5.9.0-5.13.1</td>
+<td>4499025</td>
+<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
+<td>5.11.2-5.13.1</td>
 <td></td>
 </tr>
 <tr>
-<td>4486668</td>
-<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
-<td>5.11.2-5.13.1</td>
+<td>4495231</td>
+<td>If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the {{hwclock --systohc}} command to add it to the hardware clock.  You can then use {{onie-nos-install}} to install the image.</td>
+<td>5.9.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1793,20 +1865,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>4475074</td>
-<td>The SN5610 switch records a High FEC Bin Error at room temperature.</td>
-<td>5.13.0-5.13.1</td>
-</tr>
-<tr>
-<td>4472549</td>
-<td>When running tens of thousands of {{nv set}} commands, the {{/var/lib/nvue}} directory might grow to several GBs in size, potentially using all the disk space. To work around this issue, run the following commands to reduce the disk space in the {{/var/lib/nvue}} directory:
-cumulus@switch:~$ sudo su
-cumulus@switch:~$ cd /var/lib/nvue/config
-cumulus@switch:~$ git gc</td>
-<td>5.13.0-5.13.1</td>
-</tr>
-<tr>
-<td>4472217</td>
+<td>4475117</td>
 <td>After you perform an optimized, two partition upgrade followed by a rollback to the previous release, certain services, including the NVUE service, might fail to start. If you see this issue after rollback, run the following commands on the switch to ensure that file ownership is correct:
 sudo chown -R nvue /var/lib/nvue
 sudo chown -R ntpsec /var/lib/ntpsec
@@ -1818,6 +1877,19 @@ systemctl is-enabled snmpd &amp;&amp; sudo systemctl restart snmpd.service
 systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
 </td>
 <td></td>
+</tr>
+<tr>
+<td>4475074</td>
+<td>The SN5610 switch records a High FEC Bin Error at room temperature.</td>
+<td>5.13.0-5.13.1</td>
+</tr>
+<tr>
+<td>4472549</td>
+<td>When running tens of thousands of {{nv set}} commands, the {{/var/lib/nvue}} directory might grow to several GBs in size, potentially using all the disk space. To work around this issue, run the following commands to reduce the disk space in the {{/var/lib/nvue}} directory:
+cumulus@switch:~$ sudo su
+cumulus@switch:~$ cd /var/lib/nvue/config
+cumulus@switch:~$ git gc</td>
+<td>5.13.0-5.13.1</td>
 </tr>
 <tr>
 <td>4458897</td>
@@ -1967,7 +2039,7 @@ switchd[19460]: hal_mlx_l2mc.c:1107 ERR VFID: 4099, Failed to set unregistered I
 <td>5.11.0-5.11.1, 5.12.0-5.12.1</td>
 </tr>
 <tr>
-<td>4404955</td>
+<td>4408161</td>
 <td>On the NVIDIA SN2201 switch, the fan tray LED status update fails and you see the following syslog errors:
 systemd-udevd116276: mlxreg:fan1:green: Process ‘/usr/bin/hw-management-chassis-events.sh fantray-led-event mlxreg:fan1:green 255’ failed with exit code 1.
 To work around this issue, restart the {{hw-management}} service with the {{sudo systemctl restart hw-management}} command.</td>
@@ -2019,6 +2091,28 @@ nv config apply -y</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>4548512</td>
+<td>When a connected route is learned through FRR and installed into the Zebra RIB, it might go in with the next hop interface of the -v0 (VRR) interface instead of the SVI. This breaks next hop tracking and the route is not installed into hardware despite being known in the Zebra RIB and Kernel.
+This issue can occur under the following conditions:
+&lt;ul&gt;&lt;li&gt;The target VRF might not install the route into hardware when leaking directly connected routes with VRR enabled on the interface that owns the subnet and between VRFs upon initial configuration. &lt;/li&gt;
+&lt;li&gt;In an MLAG and VRR configuration, the static route fails to install when a static route is resolved through a connected route and the interface of the connected route undergoes a link state change (link flap, interface bring up, {{clagd}} restart, {{switchd}} restart, and so on).&lt;/li&gt;&lt;/ul&gt;
+To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command.</td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4548341</td>
+<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{{sudo systemctl restart frr.service}} command.</td>
+<td>5.4.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4548340</td>
+<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{{sudo systemctl restart frr.service}} command.</td>
+<td>5.4.0-5.13.1</td>
+<td></td>
 </tr>
 <tr>
 <td>4535804</td>
@@ -2199,7 +2293,7 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>
-<td>4404955</td>
+<td>4408161</td>
 <td>On the NVIDIA SN2201 switch, the fan tray LED status update fails and you see the following syslog errors:
 systemd-udevd116276: mlxreg:fan1:green: Process ‘/usr/bin/hw-management-chassis-events.sh fantray-led-event mlxreg:fan1:green 255’ failed with exit code 1.
 To work around this issue, restart the {{hw-management}} service with the {{sudo systemctl restart hw-management}} command.</td>
@@ -3216,6 +3310,28 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4548512</td>
+<td>When a connected route is learned through FRR and installed into the Zebra RIB, it might go in with the next hop interface of the -v0 (VRR) interface instead of the SVI. This breaks next hop tracking and the route is not installed into hardware despite being known in the Zebra RIB and Kernel.
+This issue can occur under the following conditions:
+&lt;ul&gt;&lt;li&gt;The target VRF might not install the route into hardware when leaking directly connected routes with VRR enabled on the interface that owns the subnet and between VRFs upon initial configuration. &lt;/li&gt;
+&lt;li&gt;In an MLAG and VRR configuration, the static route fails to install when a static route is resolved through a connected route and the interface of the connected route undergoes a link state change (link flap, interface bring up, {{clagd}} restart, {{switchd}} restart, and so on).&lt;/li&gt;&lt;/ul&gt;
+To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command.</td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4548341</td>
+<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{{sudo systemctl restart frr.service}} command.</td>
+<td>5.4.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4548340</td>
+<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{{sudo systemctl restart frr.service}} command.</td>
+<td>5.4.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4535804</td>
 <td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
 <td>5.10.0-5.13.1</td>
@@ -3384,7 +3500,7 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>
-<td>4404955</td>
+<td>4408161</td>
 <td>On the NVIDIA SN2201 switch, the fan tray LED status update fails and you see the following syslog errors:
 systemd-udevd116276: mlxreg:fan1:green: Process ‘/usr/bin/hw-management-chassis-events.sh fantray-led-event mlxreg:fan1:green 255’ failed with exit code 1.
 To work around this issue, restart the {{hw-management}} service with the {{sudo systemctl restart hw-management}} command.</td>

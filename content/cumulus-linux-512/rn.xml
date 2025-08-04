@@ -7,6 +7,37 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4548512</td>
+<td>When a connected route is learned through FRR and installed into the Zebra RIB, it might go in with the next hop interface of the -v0 (VRR) interface instead of the SVI. This breaks next hop tracking and the route is not installed into hardware despite being known in the Zebra RIB and Kernel.
+This issue can occur under the following conditions:
+&lt;ul&gt;&lt;li&gt;The target VRF might not install the route into hardware when leaking directly connected routes with VRR enabled on the interface that owns the subnet and between VRFs upon initial configuration. &lt;/li&gt;
+&lt;li&gt;In an MLAG and VRR configuration, the static route fails to install when a static route is resolved through a connected route and the interface of the connected route undergoes a link state change (link flap, interface bring up, {{clagd}} restart, {{switchd}} restart, and so on).&lt;/li&gt;&lt;/ul&gt;
+To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command.</td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4548341</td>
+<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{{sudo systemctl restart frr.service}} command.</td>
+<td>5.4.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4548340</td>
+<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{{sudo systemctl restart frr.service}} command.</td>
+<td>5.4.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4535834</td>
+<td>Cumulus Linux does not provide a specific error message if you try to configure an ACL rule with conflicting match protocol criteria. For example, if you configure a single rule with both {{match ip protocol tcp}} and {{match ip udp dest-port &lt;port&gt;}}, you see the following error:
+Unable to run ‘install_acls.sh’ script:
+ RAN: sudo -S bash /var/lib/nvue/config/install_acls.sh
+To work around this issue, configure consistent protocol match statements in each ACL rule.</td>
+<td>5.11.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4535804</td>
 <td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
 <td>5.10.0-5.13.1</td>
@@ -48,15 +79,15 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
-<td>4495231</td>
-<td>If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the {{hwclock --systohc}} command to add it to the hardware clock.  You can then use {{onie-nos-install}} to install the image.</td>
-<td>5.9.0-5.13.1</td>
+<td>4499025</td>
+<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
+<td>5.11.2-5.13.1</td>
 <td></td>
 </tr>
 <tr>
-<td>4486668</td>
-<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
-<td>5.11.2-5.13.1</td>
+<td>4495231</td>
+<td>If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the {{hwclock --systohc}} command to add it to the hardware clock.  You can then use {{onie-nos-install}} to install the image.</td>
+<td>5.9.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1059,6 +1090,37 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4548512</td>
+<td>When a connected route is learned through FRR and installed into the Zebra RIB, it might go in with the next hop interface of the -v0 (VRR) interface instead of the SVI. This breaks next hop tracking and the route is not installed into hardware despite being known in the Zebra RIB and Kernel.
+This issue can occur under the following conditions:
+&lt;ul&gt;&lt;li&gt;The target VRF might not install the route into hardware when leaking directly connected routes with VRR enabled on the interface that owns the subnet and between VRFs upon initial configuration. &lt;/li&gt;
+&lt;li&gt;In an MLAG and VRR configuration, the static route fails to install when a static route is resolved through a connected route and the interface of the connected route undergoes a link state change (link flap, interface bring up, {{clagd}} restart, {{switchd}} restart, and so on).&lt;/li&gt;&lt;/ul&gt;
+To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command.</td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4548341</td>
+<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{{sudo systemctl restart frr.service}} command.</td>
+<td>5.4.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4548340</td>
+<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{{sudo systemctl restart frr.service}} command.</td>
+<td>5.4.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4535834</td>
+<td>Cumulus Linux does not provide a specific error message if you try to configure an ACL rule with conflicting match protocol criteria. For example, if you configure a single rule with both {{match ip protocol tcp}} and {{match ip udp dest-port &lt;port&gt;}}, you see the following error:
+Unable to run ‘install_acls.sh’ script:
+ RAN: sudo -S bash /var/lib/nvue/config/install_acls.sh
+To work around this issue, configure consistent protocol match statements in each ACL rule.</td>
+<td>5.11.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4535804</td>
 <td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
 <td>5.10.0-5.13.1</td>
@@ -1100,15 +1162,15 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
-<td>4495231</td>
-<td>If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the {{hwclock --systohc}} command to add it to the hardware clock.  You can then use {{onie-nos-install}} to install the image.</td>
-<td>5.9.0-5.13.1</td>
+<td>4499025</td>
+<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
+<td>5.11.2-5.13.1</td>
 <td></td>
 </tr>
 <tr>
-<td>4486668</td>
-<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
-<td>5.11.2-5.13.1</td>
+<td>4495231</td>
+<td>If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the {{hwclock --systohc}} command to add it to the hardware clock.  You can then use {{onie-nos-install}} to install the image.</td>
+<td>5.9.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>

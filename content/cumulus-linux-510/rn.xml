@@ -7,6 +7,18 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4548341</td>
+<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{{sudo systemctl restart frr.service}} command.</td>
+<td>5.4.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4548340</td>
+<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{{sudo systemctl restart frr.service}} command.</td>
+<td>5.4.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4535804</td>
 <td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
 <td>5.10.0-5.13.1</td>
@@ -73,7 +85,7 @@
 <td></td>
 </tr>
 <tr>
-<td>4404955</td>
+<td>4408161</td>
 <td>On the NVIDIA SN2201 switch, the fan tray LED status update fails and you see the following syslog errors:
 systemd-udevd116276: mlxreg:fan1:green: Process ‘/usr/bin/hw-management-chassis-events.sh fantray-led-event mlxreg:fan1:green 255’ failed with exit code 1.
 To work around this issue, restart the {{hw-management}} service with the {{sudo systemctl restart hw-management}} command.</td>
@@ -1053,6 +1065,18 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4548341</td>
+<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{{sudo systemctl restart frr.service}} command.</td>
+<td>5.4.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4548340</td>
+<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{{sudo systemctl restart frr.service}} command.</td>
+<td>5.4.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4535804</td>
 <td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
 <td>5.10.0-5.13.1</td>
@@ -1119,7 +1143,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>4404955</td>
+<td>4408161</td>
 <td>On the NVIDIA SN2201 switch, the fan tray LED status update fails and you see the following syslog errors:
 systemd-udevd116276: mlxreg:fan1:green: Process ‘/usr/bin/hw-management-chassis-events.sh fantray-led-event mlxreg:fan1:green 255’ failed with exit code 1.
 To work around this issue, restart the {{hw-management}} service with the {{sudo systemctl restart hw-management}} command.</td>

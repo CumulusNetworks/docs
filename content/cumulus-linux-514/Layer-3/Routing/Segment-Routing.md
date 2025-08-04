@@ -25,8 +25,8 @@ To configure segment routing:
   - Configure the SRv6 locator block length. You can specify a value between 16 and 64. The default value is 16.
   - Configure the SRv6 locator function length. You can specify a value between 0 and 64. The default value is 0.
   - Configure the SRv6 locator node length. You can specify a value between 0 and 64. The default value is 16.
-  - Configure the static segment identifier locator name. The static segment identifier must be part of the locator prefix.  
-  - Configure the static segment identifier endpoint behavior. You can specify uA or uN. If you specify uA, you must also provide the interface. Cumulus Linux enables route advertisements on the interface on which you configure uA.
+  - Configure the static segment identifier locator name. The static segment identifier must be part of the locator prefix.
+  - Configure the static segment identifier endpoint behavior. You can specify uA or uN. For uA segment identifiers, next hop (peer link-local) learning occurs with router advertisements. Spectrum switches enable router advertisements on the interface automatically when you configure a uA segment identifier; however, if the adjacent device is a non-Spectrum switch, you need to enable router advertisements on the adjacent device on the connected interface to ensure proper next hop discovery.
 
 The following table provides the supported formats for block, node, and function length.
 

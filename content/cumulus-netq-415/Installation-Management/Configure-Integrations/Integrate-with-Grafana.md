@@ -13,7 +13,7 @@ The Grafana integration is in beta and supported for on-premises deployments onl
 
 ## Requirements and Support
 
-- Switches must have a Spectrum-2 or later ASIC. The number of switches supported depends on the deployment model:
+- Switches must have a Spectrum-2 or later ASIC. The number of supported switches varies based on the deployment model and reflects an environment where each switch is configured with OpenTelemetry and running the NetQ agent.
    - Standalone: 5 switches
    - Cluster: 50 switches
    - 3-node scale cluster: 500 switches

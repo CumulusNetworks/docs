@@ -277,7 +277,9 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/interfaces/interface[name]/ethernet/state/hw-mac-address` | * System defined default MAC address for the interface. |
 | `/interfaces/interface[name]/ethernet/state/mac-address​` | * MAC address for the interface.|
 | `/interfaces/interface[name]/ethernet/state/negotiated-duplex-mode` | When auto-negotiate is set to TRUE, and the interface has completed auto-negotiation with the remote peer, this value shows the negotiated duplex mode.|
-| `/interfaces/interface[name]/ethernet/state/port-speed` | An estimate of the interface current bandwidth in units of 1,000,000 bits per second.|
+| `/interfaces/interface[name]/ethernet/state/auto-negotiate` | * Indicates if the interface is configured for auto-negotiation.|
+| `/interfaces/interface[name]/ethernet/state/negotiated-port-speed` | * If auto-negotiation is enabled, this metric shows the negotiated port speed. If auto-negotiation is disabled, you do not see this metric. |
+| `/interfaces/interface[name]/ethernet/state/port-speed` | If auto-negotiation is enabled, the port speed is the highest advertised speed and the negotiated port speed is the operational speed value. If auto-negotiation is disabled, the port speed is the operational speed value and the negotiated port speed is not present.|
 | `/interfaces/interface[name]/rates/state/in-bits-rate` | The calculated received rate of the interface, measured in bits per second.|
 | `/interfaces/interface[name]/rates/state/in-pkts-rate` | The calculated received rate of the interface, measured in packets per second.|
 | `/interfaces/interface[name]/rates/state/out-bits-rate` | The calculated transmitted rate of the interface, measured in bits per second.|
@@ -306,8 +308,6 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/interfaces/interface[name]/state/oper-status` | Current operational state of an interface. |
 | `/interfaces/interface[name]/state/protodown​` | * Indicates if the interface is administratively held down by a protocol or system process rather than by user action.|
 | `/interfaces/interface[name]/state/type​` | * The type of the interface. |
-| `/interfaces/interface[name]/ethernet/state/auto-negotiate` | * Indicates if the interface is configured for auto-negotiation.|
-| `/interfaces/interface[name]/ethernet/state/negotiated-port-speed` | * If auto-negotiation is on, this metric shows the negotiated port speed. If auto-negotiation is off, you do not see this metric.|
 
 {{< /tab >}}
 {{< tab "LLDP">}}

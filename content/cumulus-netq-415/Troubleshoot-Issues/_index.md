@@ -296,3 +296,5 @@ cassandra-rc-1-cpl8s 1/1 Running 0 21h
 cassandra-rc-2-zwt58 1/1 Running 0 21h
 root@master1scale1:/mnt/cassandra/commitlog#
 ```
+
+If the problem persists, check whether the power outage caused node disk pressure, a condition where a node's available disk space becomes critically low. To recover from this state, perform a manual cleanup of the container images by checking which pods are taking up the most space. Then run `docker system prune -a` to remove all unused images, containers, and networks.

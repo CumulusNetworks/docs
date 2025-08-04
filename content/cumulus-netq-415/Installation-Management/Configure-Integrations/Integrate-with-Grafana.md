@@ -13,7 +13,11 @@ The Grafana integration is in beta and supported for on-premises deployments onl
 
 ## Requirements and Support
 
-- Switches must have a Spectrum-2 or later ASIC
+- Switches must have a Spectrum-2 or later ASIC. The number of supported switches varies based on the deployment model and reflects an environment where each switch is configured with OpenTelemetry and running the NetQ agent.
+   - Standalone: 5 switches
+   - Cluster: 50 switches
+   - 3-node scale cluster: 500 switches
+   - 5-node scale cluster: 1,000 switches
 - DPUs and ConnectX hosts must be running DOCA Telemetry Service (DTS) version 1.18-1.20
 - Before you get started with the steps below, {{<exlink url="https://grafana.com/docs/grafana/latest/setup-grafana/installation/" text="install Grafana">}} and {{<exlink url="https://grafana.com/docs/grafana/latest/setup-grafana/start-restart-grafana/" text="start the Grafana server">}}
 - NetQ allows you to retrieve data from up to seven days in the past

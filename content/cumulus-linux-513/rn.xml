@@ -17,15 +17,21 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td></td>
 </tr>
 <tr>
-<td>4548341</td>
-<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{{sudo systemctl restart frr.service}} command.</td>
-<td>5.4.0-5.13.1</td>
+<td>4546389</td>
+<td>The {{nv config show -o commands}} command displays numbered BGP neighbors in IP address range format; however, the {{nv set}} commands fail for BGP numbered neighbors configured in IP address ranges.</td>
+<td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
-<td>4548340</td>
-<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{{sudo systemctl restart frr.service}} command.</td>
-<td>5.4.0-5.13.1</td>
+<td>4544433</td>
+<td>When you enable bandwidth gauge on an interface, the {{asic-monitor}} leaks memory steadily over time. The memory leak rate depends on how many interfaces have the bandwidth gauge enabled and the snapshot rate. </td>
+<td>5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4540985</td>
+<td>If you have a transceiver module with a vendor name containing invalid characters and OTEL is enabled, the switch generates an {{interface_stats}} core file. </td>
+<td>5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -41,6 +47,12 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td></td>
 </tr>
 <tr>
+<td>4539084</td>
+<td>When you lower the speed for an interface,  the {{nv show interface rates}} command output might show the link utilization percentage above 100 percent.  This issue is corrected automatically after the load interval duration.</td>
+<td>5.12.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4535856</td>
 <td>When you try to import an invalid server certificate file, Cumulus Linux does not import the certificate file but fails to show an error message.</td>
 <td>5.13.0-5.13.1</td>
@@ -53,30 +65,9 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td></td>
 </tr>
 <tr>
-<td>4535834</td>
-<td>Cumulus Linux does not provide a specific error message if you try to configure an ACL rule with conflicting match protocol criteria. For example, if you configure a single rule with both {{match ip protocol tcp}} and {{match ip udp dest-port &lt;port&gt;}}, you see the following error:
-Unable to run ‘install_acls.sh’ script:
- RAN: sudo -S bash /var/lib/nvue/config/install_acls.sh
-To work around this issue, configure consistent protocol match statements in each ACL rule.</td>
-<td>5.11.2-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4535804</td>
 <td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
 <td>5.10.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4535754</td>
-<td>The CBS field in the {{nv show system control-plane policer}} command output might not show the configured value.</td>
-<td>5.13.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4535753</td>
-<td>The CBS field in the {{nv show system control-plane policer}} command output might not show the configured value.</td>
-<td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -96,8 +87,45 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td></td>
 </tr>
 <tr>
+<td>4531104</td>
+<td>In certain cases, on a switch with SDK 4.6.1062 or earlier, you might see FW fatal health events.</td>
+<td>5.6.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4526096</td>
+<td>The global VRRP priority level change is not applied to the VRRP interface. It is always set to 100.</td>
+<td>5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4524763</td>
+<td>Cumulus Linux does not provide a specific error message if you try to configure an ACL rule with conflicting match protocol criteria. For example, if you configure a single rule with both {{match ip protocol tcp}} and {{match ip udp dest-port &lt;port&gt;}}, you see the following error:
+Unable to run ‘install_acls.sh’ script:
+ RAN: sudo -S bash /var/lib/nvue/config/install_acls.sh
+To work around this issue, configure consistent protocol match statements in each ACL rule.</td>
+<td>5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4521203</td>
+<td>The SATA driver on the NVIDIA SN2410 switch sometimes exhibits failures similar to the following:
+2025-06-20T20:03:38.785966+09:00 S1-RF10B kernel: [49878794.456350] ata1.00: failed command: WRITE FPDMA QUEUED
+2025-06-20T20:03:38.785968+09:00 S1-RF10B kernel: [49878794.461984] ata1.00: cmd61/08:08:50:2b:c4/00:00:01:00:00/40 tag 1 ncq dma 4096 out
+2025-06-20T20:03:38.785970+09:00 S1-RF10B kernel: [49878794.461984] res 40/00:0c:50:2b:c4/00:00:01:00:00/40 Emask 0×10 (ATA bus error)
+To work around this issue, power cycle the switch.</td>
+<td>5.5.1-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4513849</td>
 <td>After upgrading from Cumulus Linux 5.12 on the NVIDIA SN5400 switch bonus port, PTP does not converge. To work around this issue, disable, then enable the bonus port after upgrade.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4509053</td>
+<td>When the default route is available through a floating static route (admin distance 254) and through an eBGP learned route where the next hop is the eBGP peer, the route that comes up first (the floating static) becomes the best path, even though the BGP learned route is presented as the best path after the neighbor comes up. To work around this issue, set the {{nv set vrf &lt;vrf-id&gt; router bgp peer-group &lt;peer-group-id&gt; nexthop-connected-check off}} command in NVUE or configure {{neighbor &lt;peer&gt; disable-connected-check}} in vtysh.</td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
@@ -112,6 +140,24 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td>In some cases after a package upgrade with ISSU (warm boot mode), you see continuous errors in the syslog similar to the following:
 NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>5.11.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4505138</td>
+<td>Transceiver OIR (removal and insertion) or link flaps might cause EMAD timeouts, eventually causing {{switchd}} to crash. You see logs similar to {{EMAD_TRANSACTION] [ERROR ]: ACCESS_REG TIMEOUT}}.</td>
+<td>5.6.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4502199</td>
+<td>The TFTP client drops packets due to default firewall rules.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4500170</td>
+<td>When you use the API to compare a revision between a revision ID and an applied revision, the output adds the encrypted values in the diffs incorrectly, indicating that there are diffs when there are no diffs. The NVUE {{nv config diff}} command shows the correct output.</td>
+<td>5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -133,9 +179,25 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
+<td>4495383</td>
+<td>Configuration translation does not support translation of unset operations. Translation of yaml file with unset operations results into converting unset to set operations since the translation logic expects only set operations. To prevent such conversions and unpredictable translations following restrictions to the file content are being added:
+- Unset operations are not allowed
+- Header must be present
+- Set operations must be present
+- Operations and header should be given in list format</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4495231</td>
 <td>If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the {{hwclock --systohc}} command to add it to the hardware clock.  You can then use {{onie-nos-install}} to install the image.</td>
 <td>5.9.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4493540</td>
+<td>The CBS field in the {{nv show system control-plane policer}} command output might not show the configured value.</td>
+<td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -147,6 +209,12 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <tr>
 <td>4482933</td>
 <td>The {{age}} and {{last-update}} counters in the {{nv show bridge domain &lt;domain-id&gt; mac-table}} command output are reversed. The {{last-update}} counter shows {{age}} data and the {{age}} counter shows {{last-update}} data. Cumulus Linux uses the {{age}} timer to determine when to remove an old MAC entry.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4482790</td>
+<td>There is an inconsistency in the structure of certain gNMI streaming interface metrics.</td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
@@ -173,6 +241,12 @@ prometheus ALL = NOPASSWD: /usr/sbin/lldpcli -f json show neighbor</td>
 <td></td>
 </tr>
 <tr>
+<td>4475104</td>
+<td>On the NVIDIA SN5610 switch, bringing up around 256 links takes a long time (approximately 90 seconds).</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4474924</td>
 <td>The {{nv config show -o commands}} command displays numbered BGP neighbors in IP address range format; however, the {{nv set}} commands fail for BGP numbered neighbors configured in IP address ranges.</td>
 <td>5.13.0-5.13.1</td>
@@ -181,6 +255,18 @@ prometheus ALL = NOPASSWD: /usr/sbin/lldpcli -f json show neighbor</td>
 <tr>
 <td>4471932</td>
 <td>ERSPAN is not generated with the intended VLAN tag but is always sent out untagged. If the interface is a trunk port or a subinterface, the peer might discard these packets.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4469498</td>
+<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{{sudo systemctl restart frr.service}} command.</td>
+<td>5.4.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4469479</td>
+<td>If you use NVUE to unset an extremely large IP prefix list (around 50K), the command might time out when unconfiguring FRR. As a result, you see the message {{Failure during apply. Ignore? [y/N]}} and the FRR service stops. </td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
@@ -277,6 +363,12 @@ cumulus@switch:~$ git gc</td>
 <tr>
 <td>4438061</td>
 <td>Trusted CA key names and literals do not have a size limit, which can result in buffer overflow risks.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4433969</td>
+<td>Cumulus Linux generates multiple cl-support files when there are multiple errors exporting OTEL metrics. </td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
@@ -1144,15 +1236,9 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td></td>
 </tr>
 <tr>
-<td>4548341</td>
-<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{{sudo systemctl restart frr.service}} command.</td>
-<td>5.4.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4548340</td>
-<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{{sudo systemctl restart frr.service}} command.</td>
-<td>5.4.0-5.13.1</td>
+<td>4546389</td>
+<td>The {{nv config show -o commands}} command displays numbered BGP neighbors in IP address range format; however, the {{nv set}} commands fail for BGP numbered neighbors configured in IP address ranges.</td>
+<td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1168,6 +1254,12 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td></td>
 </tr>
 <tr>
+<td>4539084</td>
+<td>When you lower the speed for an interface,  the {{nv show interface rates}} command output might show the link utilization percentage above 100 percent.  This issue is corrected automatically after the load interval duration.</td>
+<td>5.12.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4535856</td>
 <td>When you try to import an invalid server certificate file, Cumulus Linux does not import the certificate file but fails to show an error message.</td>
 <td>5.13.0-5.13.1</td>
@@ -1180,30 +1272,9 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td></td>
 </tr>
 <tr>
-<td>4535834</td>
-<td>Cumulus Linux does not provide a specific error message if you try to configure an ACL rule with conflicting match protocol criteria. For example, if you configure a single rule with both {{match ip protocol tcp}} and {{match ip udp dest-port &lt;port&gt;}}, you see the following error:
-Unable to run ‘install_acls.sh’ script:
- RAN: sudo -S bash /var/lib/nvue/config/install_acls.sh
-To work around this issue, configure consistent protocol match statements in each ACL rule.</td>
-<td>5.11.2-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4535804</td>
 <td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
 <td>5.10.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4535754</td>
-<td>The CBS field in the {{nv show system control-plane policer}} command output might not show the configured value.</td>
-<td>5.13.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4535753</td>
-<td>The CBS field in the {{nv show system control-plane policer}} command output might not show the configured value.</td>
-<td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1223,8 +1294,30 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td></td>
 </tr>
 <tr>
+<td>4531104</td>
+<td>In certain cases, on a switch with SDK 4.6.1062 or earlier, you might see FW fatal health events.</td>
+<td>5.6.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4521203</td>
+<td>The SATA driver on the NVIDIA SN2410 switch sometimes exhibits failures similar to the following:
+2025-06-20T20:03:38.785966+09:00 S1-RF10B kernel: [49878794.456350] ata1.00: failed command: WRITE FPDMA QUEUED
+2025-06-20T20:03:38.785968+09:00 S1-RF10B kernel: [49878794.461984] ata1.00: cmd61/08:08:50:2b:c4/00:00:01:00:00/40 tag 1 ncq dma 4096 out
+2025-06-20T20:03:38.785970+09:00 S1-RF10B kernel: [49878794.461984] res 40/00:0c:50:2b:c4/00:00:01:00:00/40 Emask 0×10 (ATA bus error)
+To work around this issue, power cycle the switch.</td>
+<td>5.5.1-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4513849</td>
 <td>After upgrading from Cumulus Linux 5.12 on the NVIDIA SN5400 switch bonus port, PTP does not converge. To work around this issue, disable, then enable the bonus port after upgrade.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4509053</td>
+<td>When the default route is available through a floating static route (admin distance 254) and through an eBGP learned route where the next hop is the eBGP peer, the route that comes up first (the floating static) becomes the best path, even though the BGP learned route is presented as the best path after the neighbor comes up. To work around this issue, set the {{nv set vrf &lt;vrf-id&gt; router bgp peer-group &lt;peer-group-id&gt; nexthop-connected-check off}} command in NVUE or configure {{neighbor &lt;peer&gt; disable-connected-check}} in vtysh.</td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
@@ -1239,6 +1332,18 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td>In some cases after a package upgrade with ISSU (warm boot mode), you see continuous errors in the syslog similar to the following:
 NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>5.11.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4505138</td>
+<td>Transceiver OIR (removal and insertion) or link flaps might cause EMAD timeouts, eventually causing {{switchd}} to crash. You see logs similar to {{EMAD_TRANSACTION] [ERROR ]: ACCESS_REG TIMEOUT}}.</td>
+<td>5.6.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4502199</td>
+<td>The TFTP client drops packets due to default firewall rules.</td>
+<td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1260,9 +1365,25 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
+<td>4495383</td>
+<td>Configuration translation does not support translation of unset operations. Translation of yaml file with unset operations results into converting unset to set operations since the translation logic expects only set operations. To prevent such conversions and unpredictable translations following restrictions to the file content are being added:
+- Unset operations are not allowed
+- Header must be present
+- Set operations must be present
+- Operations and header should be given in list format</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4495231</td>
 <td>If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the {{hwclock --systohc}} command to add it to the hardware clock.  You can then use {{onie-nos-install}} to install the image.</td>
 <td>5.9.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4493540</td>
+<td>The CBS field in the {{nv show system control-plane policer}} command output might not show the configured value.</td>
+<td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1274,6 +1395,12 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <tr>
 <td>4482933</td>
 <td>The {{age}} and {{last-update}} counters in the {{nv show bridge domain &lt;domain-id&gt; mac-table}} command output are reversed. The {{last-update}} counter shows {{age}} data and the {{age}} counter shows {{last-update}} data. Cumulus Linux uses the {{age}} timer to determine when to remove an old MAC entry.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4482790</td>
+<td>There is an inconsistency in the structure of certain gNMI streaming interface metrics.</td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
@@ -1300,6 +1427,12 @@ prometheus ALL = NOPASSWD: /usr/sbin/lldpcli -f json show neighbor</td>
 <td></td>
 </tr>
 <tr>
+<td>4475104</td>
+<td>On the NVIDIA SN5610 switch, bringing up around 256 links takes a long time (approximately 90 seconds).</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4474924</td>
 <td>The {{nv config show -o commands}} command displays numbered BGP neighbors in IP address range format; however, the {{nv set}} commands fail for BGP numbered neighbors configured in IP address ranges.</td>
 <td>5.13.0-5.13.1</td>
@@ -1308,6 +1441,18 @@ prometheus ALL = NOPASSWD: /usr/sbin/lldpcli -f json show neighbor</td>
 <tr>
 <td>4471932</td>
 <td>ERSPAN is not generated with the intended VLAN tag but is always sent out untagged. If the interface is a trunk port or a subinterface, the peer might discard these packets.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4469498</td>
+<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{{sudo systemctl restart frr.service}} command.</td>
+<td>5.4.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4469479</td>
+<td>If you use NVUE to unset an extremely large IP prefix list (around 50K), the command might time out when unconfiguring FRR. As a result, you see the message {{Failure during apply. Ignore? [y/N]}} and the FRR service stops. </td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
@@ -1416,6 +1561,12 @@ cumulus@switch:~$ git gc</td>
 <tr>
 <td>4438061</td>
 <td>Trusted CA key names and literals do not have a size limit, which can result in buffer overflow risks.</td>
+<td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4433969</td>
+<td>Cumulus Linux generates multiple cl-support files when there are multiple errors exporting OTEL metrics. </td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>

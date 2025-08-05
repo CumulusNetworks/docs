@@ -7,6 +7,22 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4548512</td>
+<td>When a connected route is learned through FRR and installed into the Zebra RIB, it might go in with the next hop interface of the -v0 (VRR) interface instead of the SVI. This breaks next hop tracking and the route is not installed into hardware despite being known in the Zebra RIB and Kernel.
+This issue can occur under the following conditions:
+&lt;ul&gt;&lt;li&gt;The target VRF might not install the route into hardware when leaking directly connected routes with VRR enabled on the interface that owns the subnet and between VRFs upon initial configuration. &lt;/li&gt;
+&lt;li&gt;In an MLAG and VRR configuration, the static route fails to install when a static route is resolved through a connected route and the interface of the connected route undergoes a link state change (link flap, interface bring up, {{clagd}} restart, {{switchd}} restart, and so on).&lt;/li&gt;&lt;/ul&gt;
+To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command.</td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4539084</td>
+<td>When you lower the speed for an interface,  the {{nv show interface rates}} command output might show the link utilization percentage above 100 percent.  This issue is corrected automatically after the load interval duration.</td>
+<td>5.12.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4535804</td>
 <td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
 <td>5.10.0-5.13.1</td>
@@ -16,6 +32,32 @@
 <td>4531959</td>
 <td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
 <td>5.9.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4531952</td>
+<td>When a connected route is learned through FRR and installed into the Zebra RIB, it might go in with the next hop interface of the -v0 (VRR) interface instead of the SVI. This breaks next hop tracking and the route is not installed into hardware despite being known in the Zebra RIB and Kernel.
+This issue can occur under the following conditions:
+&lt;ul&gt;&lt;li&gt;The target VRF might not install the route into hardware when leaking directly connected routes with VRR enabled on the interface that owns the subnet and between VRFs upon initial configuration. &lt;/li&gt;
+&lt;li&gt;In an MLAG and VRR configuration, the static route fails to install when a static route is resolved through a connected route and the interface of the connected route undergoes a link state change (link flap, interface bring up, {{clagd}} restart, {{switchd}} restart, and so on).&lt;/li&gt;&lt;/ul&gt;
+To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command.</td>
+<td>5.11.1-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4531104</td>
+<td>In certain cases, on a switch with SDK 4.6.1062 or earlier, you might see FW fatal health events.</td>
+<td>5.6.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4521203</td>
+<td>The SATA driver on the NVIDIA SN2410 switch sometimes exhibits failures similar to the following:
+2025-06-20T20:03:38.785966+09:00 S1-RF10B kernel: [49878794.456350] ata1.00: failed command: WRITE FPDMA QUEUED
+2025-06-20T20:03:38.785968+09:00 S1-RF10B kernel: [49878794.461984] ata1.00: cmd61/08:08:50:2b:c4/00:00:01:00:00/40 tag 1 ncq dma 4096 out
+2025-06-20T20:03:38.785970+09:00 S1-RF10B kernel: [49878794.461984] res 40/00:0c:50:2b:c4/00:00:01:00:00/40 Emask 0×10 (ATA bus error)
+To work around this issue, power cycle the switch.</td>
+<td>5.5.1-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -29,6 +71,12 @@
 <td>In some cases after a package upgrade with ISSU (warm boot mode), you see continuous errors in the syslog similar to the following:
 NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>5.11.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4505138</td>
+<td>Transceiver OIR (removal and insertion) or link flaps might cause EMAD timeouts, eventually causing {{switchd}} to crash. You see logs similar to {{EMAD_TRANSACTION] [ERROR ]: ACCESS_REG TIMEOUT}}.</td>
+<td>5.6.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -62,6 +110,12 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
+<td>4469498</td>
+<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{{sudo systemctl restart frr.service}} command.</td>
+<td>5.4.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4466525</td>
 <td>Radius priority values can range between 1 and 8. Configuring an invalid priority succeeds when it should fail.</td>
 <td>5.12.0-5.13.1</td>
@@ -69,7 +123,7 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 </tr>
 <tr>
 <td>4461102</td>
-<td>In certain cases, when a port is down and you apply adaptive routing with the link-utilization-threshold setting to the port as it goes up, you might see in log errors while the port is not yet up.</td>
+<td>In certain cases, when a port is down and you apply adaptive routing with the link utilization threshold setting to the port as it goes up, you might see log errors while the port is not yet up.</td>
 <td>5.11.0-5.13.1</td>
 <td></td>
 </tr>
@@ -609,7 +663,7 @@ The logs occur because the {{rsyslog}} service starts before the networking serv
 </tr>
 <tr>
 <td>3879809</td>
-<td>What Just Happened (WJH) does not work on Spectrum-4 switches.</td>
+<td>What Just Happened (WJH) now works on Spectrum-4 switches.</td>
 <td>5.9.0-5.13.1</td>
 <td></td>
 </tr>
@@ -1049,6 +1103,22 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4548512</td>
+<td>When a connected route is learned through FRR and installed into the Zebra RIB, it might go in with the next hop interface of the -v0 (VRR) interface instead of the SVI. This breaks next hop tracking and the route is not installed into hardware despite being known in the Zebra RIB and Kernel.
+This issue can occur under the following conditions:
+&lt;ul&gt;&lt;li&gt;The target VRF might not install the route into hardware when leaking directly connected routes with VRR enabled on the interface that owns the subnet and between VRFs upon initial configuration. &lt;/li&gt;
+&lt;li&gt;In an MLAG and VRR configuration, the static route fails to install when a static route is resolved through a connected route and the interface of the connected route undergoes a link state change (link flap, interface bring up, {{clagd}} restart, {{switchd}} restart, and so on).&lt;/li&gt;&lt;/ul&gt;
+To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command.</td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4539084</td>
+<td>When you lower the speed for an interface,  the {{nv show interface rates}} command output might show the link utilization percentage above 100 percent.  This issue is corrected automatically after the load interval duration.</td>
+<td>5.12.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4535804</td>
 <td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
 <td>5.10.0-5.13.1</td>
@@ -1058,6 +1128,32 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>4531959</td>
 <td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
 <td>5.9.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4531952</td>
+<td>When a connected route is learned through FRR and installed into the Zebra RIB, it might go in with the next hop interface of the -v0 (VRR) interface instead of the SVI. This breaks next hop tracking and the route is not installed into hardware despite being known in the Zebra RIB and Kernel.
+This issue can occur under the following conditions:
+&lt;ul&gt;&lt;li&gt;The target VRF might not install the route into hardware when leaking directly connected routes with VRR enabled on the interface that owns the subnet and between VRFs upon initial configuration. &lt;/li&gt;
+&lt;li&gt;In an MLAG and VRR configuration, the static route fails to install when a static route is resolved through a connected route and the interface of the connected route undergoes a link state change (link flap, interface bring up, {{clagd}} restart, {{switchd}} restart, and so on).&lt;/li&gt;&lt;/ul&gt;
+To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command.</td>
+<td>5.11.1-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4531104</td>
+<td>In certain cases, on a switch with SDK 4.6.1062 or earlier, you might see FW fatal health events.</td>
+<td>5.6.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4521203</td>
+<td>The SATA driver on the NVIDIA SN2410 switch sometimes exhibits failures similar to the following:
+2025-06-20T20:03:38.785966+09:00 S1-RF10B kernel: [49878794.456350] ata1.00: failed command: WRITE FPDMA QUEUED
+2025-06-20T20:03:38.785968+09:00 S1-RF10B kernel: [49878794.461984] ata1.00: cmd61/08:08:50:2b:c4/00:00:01:00:00/40 tag 1 ncq dma 4096 out
+2025-06-20T20:03:38.785970+09:00 S1-RF10B kernel: [49878794.461984] res 40/00:0c:50:2b:c4/00:00:01:00:00/40 Emask 0×10 (ATA bus error)
+To work around this issue, power cycle the switch.</td>
+<td>5.5.1-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1071,6 +1167,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>In some cases after a package upgrade with ISSU (warm boot mode), you see continuous errors in the syslog similar to the following:
 NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>5.11.2-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4505138</td>
+<td>Transceiver OIR (removal and insertion) or link flaps might cause EMAD timeouts, eventually causing {{switchd}} to crash. You see logs similar to {{EMAD_TRANSACTION] [ERROR ]: ACCESS_REG TIMEOUT}}.</td>
+<td>5.6.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1104,6 +1206,12 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
+<td>4469498</td>
+<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{{sudo systemctl restart frr.service}} command.</td>
+<td>5.4.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4466525</td>
 <td>Radius priority values can range between 1 and 8. Configuring an invalid priority succeeds when it should fail.</td>
 <td>5.12.0-5.13.1</td>
@@ -1111,7 +1219,7 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 </tr>
 <tr>
 <td>4461102</td>
-<td>In certain cases, when a port is down and you apply adaptive routing with the link-utilization-threshold setting to the port as it goes up, you might see in log errors while the port is not yet up.</td>
+<td>In certain cases, when a port is down and you apply adaptive routing with the link utilization threshold setting to the port as it goes up, you might see log errors while the port is not yet up.</td>
 <td>5.11.0-5.13.1</td>
 <td></td>
 </tr>
@@ -1657,7 +1765,7 @@ The logs occur because the {{rsyslog}} service starts before the networking serv
 </tr>
 <tr>
 <td>3879809</td>
-<td>What Just Happened (WJH) does not work on Spectrum-4 switches.</td>
+<td>What Just Happened (WJH) now works on Spectrum-4 switches.</td>
 <td>5.9.0-5.13.1</td>
 <td></td>
 </tr>

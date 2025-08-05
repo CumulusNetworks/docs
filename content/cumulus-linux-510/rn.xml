@@ -19,6 +19,28 @@
 <td></td>
 </tr>
 <tr>
+<td>4531104</td>
+<td>In certain cases, on a switch with SDK 4.6.1062 or earlier, you might see FW fatal health events.</td>
+<td>5.6.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4521203</td>
+<td>The SATA driver on the NVIDIA SN2410 switch sometimes exhibits failures similar to the following:
+2025-06-20T20:03:38.785966+09:00 S1-RF10B kernel: [49878794.456350] ata1.00: failed command: WRITE FPDMA QUEUED
+2025-06-20T20:03:38.785968+09:00 S1-RF10B kernel: [49878794.461984] ata1.00: cmd61/08:08:50:2b:c4/00:00:01:00:00/40 tag 1 ncq dma 4096 out
+2025-06-20T20:03:38.785970+09:00 S1-RF10B kernel: [49878794.461984] res 40/00:0c:50:2b:c4/00:00:01:00:00/40 Emask 0×10 (ATA bus error)
+To work around this issue, power cycle the switch.</td>
+<td>5.5.1-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4505138</td>
+<td>Transceiver OIR (removal and insertion) or link flaps might cause EMAD timeouts, eventually causing {{switchd}} to crash. You see logs similar to {{EMAD_TRANSACTION] [ERROR ]: ACCESS_REG TIMEOUT}}.</td>
+<td>5.6.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4502966</td>
 <td>Users with {{nv show}} privileges only can still execute the {{nv config apply}} and related commands.</td>
 <td>5.9.2-5.13.1</td>
@@ -34,6 +56,12 @@
 <td>4495231</td>
 <td>If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the {{hwclock --systohc}} command to add it to the hardware clock.  You can then use {{onie-nos-install}} to install the image.</td>
 <td>5.9.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4469498</td>
+<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{{sudo systemctl restart frr.service}} command.</td>
+<td>5.4.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -555,7 +583,7 @@ The logs occur because the {{rsyslog}} service starts before the networking serv
 </tr>
 <tr>
 <td>3879809</td>
-<td>What Just Happened (WJH) does not work on Spectrum-4 switches.</td>
+<td>What Just Happened (WJH) now works on Spectrum-4 switches.</td>
 <td>5.9.0-5.13.1</td>
 <td></td>
 </tr>
@@ -1065,6 +1093,28 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
+<td>4531104</td>
+<td>In certain cases, on a switch with SDK 4.6.1062 or earlier, you might see FW fatal health events.</td>
+<td>5.6.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4521203</td>
+<td>The SATA driver on the NVIDIA SN2410 switch sometimes exhibits failures similar to the following:
+2025-06-20T20:03:38.785966+09:00 S1-RF10B kernel: [49878794.456350] ata1.00: failed command: WRITE FPDMA QUEUED
+2025-06-20T20:03:38.785968+09:00 S1-RF10B kernel: [49878794.461984] ata1.00: cmd61/08:08:50:2b:c4/00:00:01:00:00/40 tag 1 ncq dma 4096 out
+2025-06-20T20:03:38.785970+09:00 S1-RF10B kernel: [49878794.461984] res 40/00:0c:50:2b:c4/00:00:01:00:00/40 Emask 0×10 (ATA bus error)
+To work around this issue, power cycle the switch.</td>
+<td>5.5.1-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4505138</td>
+<td>Transceiver OIR (removal and insertion) or link flaps might cause EMAD timeouts, eventually causing {{switchd}} to crash. You see logs similar to {{EMAD_TRANSACTION] [ERROR ]: ACCESS_REG TIMEOUT}}.</td>
+<td>5.6.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4502966</td>
 <td>Users with {{nv show}} privileges only can still execute the {{nv config apply}} and related commands.</td>
 <td>5.9.2-5.13.1</td>
@@ -1080,6 +1130,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>4495231</td>
 <td>If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the {{hwclock --systohc}} command to add it to the hardware clock.  You can then use {{onie-nos-install}} to install the image.</td>
 <td>5.9.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4469498</td>
+<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{{sudo systemctl restart frr.service}} command.</td>
+<td>5.4.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1618,7 +1674,7 @@ The logs occur because the {{rsyslog}} service starts before the networking serv
 </tr>
 <tr>
 <td>3879809</td>
-<td>What Just Happened (WJH) does not work on Spectrum-4 switches.</td>
+<td>What Just Happened (WJH) now works on Spectrum-4 switches.</td>
 <td>5.9.0-5.13.1</td>
 <td></td>
 </tr>

@@ -462,6 +462,12 @@ Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.servic
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4469498</td>
+<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{{sudo systemctl restart frr.service}} command.</td>
+<td>5.4.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4413450</td>
 <td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables, the process consumes excessive memory resulting in out of memory crashes. </td>
 <td>5.0.0-5.11.1, 5.13.0-5.13.1</td>

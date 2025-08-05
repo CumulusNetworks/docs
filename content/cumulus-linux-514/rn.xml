@@ -7,6 +7,38 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4551249</td>
+<td>The NVUE service might fail during switch upgrade. To work around this issue, stop the {{sysmonitor}} with the {{sudo systemctl stop sysmonitor}} command, then upgrade the switch with the {{nv action upgrade system packages to latest}} command.</td>
+<td>5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4549896</td>
+<td>When you try to set a VXLAN with a bridge, you see the error {{sx_sdk: 22985 [BRIDGE] [ERROR  ]: Port(0x200A000D)) already added to a bridge}}. You can safely ignore this error as it doesn't impact switch functionality. </td>
+<td>5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4548514</td>
+<td>When a connected route is learned through FRR and installed into the Zebra RIB, it might go in with the next hop interface of the -v0 (VRR) interface instead of the SVI. This breaks next hop tracking and the route is not installed into hardware despite being known in the Zebra RIB and Kernel.
+This issue can occur under the following conditions:
+&lt;ul&gt;&lt;li&gt;The target VRF might not install the route into hardware when leaking directly connected routes with VRR enabled on the interface that owns the subnet and between VRFs upon initial configuration. &lt;/li&gt;
+&lt;li&gt;In an MLAG and VRR configuration, the static route fails to install when a static route is resolved through a connected route and the interface of the connected route undergoes a link state change (link flap, interface bring up, {{clagd}} restart, {{switchd}} restart, and so on).&lt;/li&gt;&lt;/ul&gt;
+To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command.</td>
+<td>5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4548512</td>
+<td>When a connected route is learned through FRR and installed into the Zebra RIB, it might go in with the next hop interface of the -v0 (VRR) interface instead of the SVI. This breaks next hop tracking and the route is not installed into hardware despite being known in the Zebra RIB and Kernel.
+This issue can occur under the following conditions:
+&lt;ul&gt;&lt;li&gt;The target VRF might not install the route into hardware when leaking directly connected routes with VRR enabled on the interface that owns the subnet and between VRFs upon initial configuration. &lt;/li&gt;
+&lt;li&gt;In an MLAG and VRR configuration, the static route fails to install when a static route is resolved through a connected route and the interface of the connected route undergoes a link state change (link flap, interface bring up, {{clagd}} restart, {{switchd}} restart, and so on).&lt;/li&gt;&lt;/ul&gt;
+To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command.</td>
+<td>5.11.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4539573</td>
 <td>The gNMI value for the sensor alarm-status shows incorrectly. For a raised alarm, the alarm-status is {{True(1)}}  but normally functioning sensors also show {{True(1)}}.</td>
 <td>5.13.0-5.14.0</td>
@@ -14,8 +46,20 @@
 </tr>
 <tr>
 <td>4539322</td>
-<td>When you remove an FRU, such as a PSU, from the switch, stale statistical data from the component is still reported over GNMI and OTLP.  To resolve this issue in OTLP, the status metric is now updated to {{absent}} and statistical information is no longer streamed. In GNMI, the entire component is deleted from the {{/components}} tree.</td>
+<td>When you remove an FRU, such as a PSU, from the switch, stale statistical data from the component is still reported over GNMI and OTLP. </td>
 <td>5.13.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4535749</td>
+<td>The {{uc-discards}} field in the {{nv show interface &lt;interface&gt; counters qos egress-queue-stats}} command output is actually the number of packets discarded per queue, but it is wrongly interpreted as bytes. To work around this issue, convert the data shown in bytes to packets by multiplying by 1024 if the data is in KB, 1024*1024 if the data isin MB, and 1024*1024*1024 if the data is in GB.</td>
+<td>5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4535748</td>
+<td>The {{uc-discards}} field in the {{nv show interface &lt;interface&gt; counters qos egress-queue-stats}} command output is actually the number of packets discarded per queue, but it is wrongly interpreted as bytes. To work around this issue, convert the data shown in bytes to packets by multiplying by 1024 if the data is in KB, 1024*1024 if the data isin MB, and 1024*1024*1024 if the data is in GB.</td>
+<td>5.14.0</td>
 <td></td>
 </tr>
 <tr>
@@ -38,9 +82,25 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
+<td>4495383</td>
+<td>Configuration translation does not support translation of unset operations. Translation of yaml file with unset operations results into converting unset to set operations since the translation logic expects only set operations. To prevent such conversions and unpredictable translations following restrictions to the file content are being added:
+- Unset operations are not allowed
+- Header must be present
+- Set operations must be present
+- Operations and header should be given in list format</td>
+<td>5.13.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4495231</td>
 <td>If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the {{hwclock --systohc}} command to add it to the hardware clock.  You can then use {{onie-nos-install}} to install the image.</td>
 <td>5.9.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4475401</td>
+<td>External input such as Ctrl+\ might trigger core dumps on the serial console from {{/bin/login}}. This behavior is caused by external sources, such as console servers or automation tools, and does not reflect a fault in the operating system. As a potential result, the serial console might become unresponsive.</td>
+<td>5.14.0</td>
 <td></td>
 </tr>
 <tr>
@@ -274,12 +334,6 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 rsyslogd: create UDP socket bound to device failed: No such device [v8.2302.0]
 rsyslogd: No UDP socket could successfully be initialized, some functionality may be disabled.  [v8.2302.0]
 The logs occur because the {{rsyslog}} service starts before the networking service creates the configured VRF for syslog export. There is no functional impact with this issue.</td>
-<td>5.9.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3879809</td>
-<td>What Just Happened (WJH) does not work on Spectrum-4 switches.</td>
 <td>5.9.0-5.14.0</td>
 <td></td>
 </tr>
@@ -690,9 +744,29 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Affects </th>
 </tr>
 <tr>
+<td>4546389</td>
+<td>The {{nv config show -o commands}} command displays numbered BGP neighbors in IP address range format; however, the {{nv set}} commands fail for BGP numbered neighbors configured in IP address ranges.</td>
+<td>5.13.0-5.13.1</td>
+</tr>
+<tr>
+<td>4544433</td>
+<td>When you enable bandwidth gauge on an interface, the {{asic-monitor}} leaks memory steadily over time. The memory leak rate depends on how many interfaces have the bandwidth gauge enabled and the snapshot rate. </td>
+<td>5.13.1</td>
+</tr>
+<tr>
 <td>4540986</td>
 <td>The sudo program included with Cumulus Linux is vulnerable to a local privilege escalation attack CVE-2025-32463.</td>
 <td>5.9.2</td>
+</tr>
+<tr>
+<td>4540985</td>
+<td>If you have a transceiver module with a vendor name containing invalid characters and OTEL is enabled, the switch generates an {{interface_stats}} core file. </td>
+<td>5.13.1</td>
+</tr>
+<tr>
+<td>4539084</td>
+<td>When you lower the speed for an interface,  the {{nv show interface rates}} command output might show the link utilization percentage above 100 percent.  This issue is corrected automatically after the load interval duration.</td>
+<td>5.12.0-5.13.1</td>
 </tr>
 <tr>
 <td>4531959</td>
@@ -700,9 +774,65 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>5.9.2-5.13.1</td>
 </tr>
 <tr>
+<td>4531952</td>
+<td>When a connected route is learned through FRR and installed into the Zebra RIB, it might go in with the next hop interface of the -v0 (VRR) interface instead of the SVI. This breaks next hop tracking and the route is not installed into hardware despite being known in the Zebra RIB and Kernel.
+This issue can occur under the following conditions:
+&lt;ul&gt;&lt;li&gt;The target VRF might not install the route into hardware when leaking directly connected routes with VRR enabled on the interface that owns the subnet and between VRFs upon initial configuration. &lt;/li&gt;
+&lt;li&gt;In an MLAG and VRR configuration, the static route fails to install when a static route is resolved through a connected route and the interface of the connected route undergoes a link state change (link flap, interface bring up, {{clagd}} restart, {{switchd}} restart, and so on).&lt;/li&gt;&lt;/ul&gt;
+To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command.</td>
+<td>5.11.1-5.13.1</td>
+</tr>
+<tr>
+<td>4531104</td>
+<td>In certain cases, on a switch with SDK 4.6.1062 or earlier, you might see FW fatal health events.</td>
+<td>5.6.0-5.13.1</td>
+</tr>
+<tr>
+<td>4526096</td>
+<td>The global VRRP priority level change is not applied to the VRRP interface. It is always set to 100.</td>
+<td>5.13.1</td>
+</tr>
+<tr>
+<td>4524763</td>
+<td>Cumulus Linux does not provide a specific error message if you try to configure an ACL rule with conflicting match protocol criteria. For example, if you configure a single rule with both {{match ip protocol tcp}} and {{match ip udp dest-port &lt;port&gt;}}, you see the following error:
+Unable to run ‘install_acls.sh’ script:
+ RAN: sudo -S bash /var/lib/nvue/config/install_acls.sh
+To work around this issue, configure consistent protocol match statements in each ACL rule.</td>
+<td>5.13.1</td>
+</tr>
+<tr>
+<td>4521203</td>
+<td>The SATA driver on the NVIDIA SN2410 switch sometimes exhibits failures similar to the following:
+2025-06-20T20:03:38.785966+09:00 S1-RF10B kernel: [49878794.456350] ata1.00: failed command: WRITE FPDMA QUEUED
+2025-06-20T20:03:38.785968+09:00 S1-RF10B kernel: [49878794.461984] ata1.00: cmd61/08:08:50:2b:c4/00:00:01:00:00/40 tag 1 ncq dma 4096 out
+2025-06-20T20:03:38.785970+09:00 S1-RF10B kernel: [49878794.461984] res 40/00:0c:50:2b:c4/00:00:01:00:00/40 Emask 0×10 (ATA bus error)
+To work around this issue, power cycle the switch.</td>
+<td>5.5.1-5.13.1</td>
+</tr>
+<tr>
+<td>4509053</td>
+<td>When the default route is available through a floating static route (admin distance 254) and through an eBGP learned route where the next hop is the eBGP peer, the route that comes up first (the floating static) becomes the best path, even though the BGP learned route is presented as the best path after the neighbor comes up. To work around this issue, set the {{nv set vrf &lt;vrf-id&gt; router bgp peer-group &lt;peer-group-id&gt; nexthop-connected-check off}} command in NVUE or configure {{neighbor &lt;peer&gt; disable-connected-check}} in vtysh.</td>
+<td>5.13.0-5.13.1</td>
+</tr>
+<tr>
+<td>4505138</td>
+<td>Transceiver OIR (removal and insertion) or link flaps might cause EMAD timeouts, eventually causing {{switchd}} to crash. You see logs similar to {{EMAD_TRANSACTION] [ERROR ]: ACCESS_REG TIMEOUT}}.</td>
+<td>5.6.0-5.13.1</td>
+</tr>
+<tr>
+<td>4502199</td>
+<td>The TFTP client drops packets due to default firewall rules.</td>
+<td>5.13.0-5.13.1</td>
+</tr>
+<tr>
 <td>4501642</td>
 <td>When you connect the QLOUIE cable with FW 52.181.1003 to an NVIDIA SN5600 switch, you might see link flaps. </td>
 <td>5.11.0-5.11.1</td>
+</tr>
+<tr>
+<td>4500170</td>
+<td>When you use the API to compare a revision between a revision ID and an applied revision, the output adds the encrypted values in the diffs incorrectly, indicating that there are diffs when there are no diffs. The NVUE {{nv config diff}} command shows the correct output.</td>
+<td>5.13.1</td>
 </tr>
 <tr>
 <td>4499025</td>
@@ -715,6 +845,11 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
+<td>4493540</td>
+<td>The CBS field in the {{nv show system control-plane policer}} command output might not show the configured value.</td>
+<td>5.13.0-5.13.1</td>
+</tr>
+<tr>
 <td>4486200</td>
 <td>If you enable dynamic NAT and try to install two identical dynamic NAT rules, {{switchd}} might crash.</td>
 <td>5.11.2-5.13.1</td>
@@ -722,6 +857,11 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <tr>
 <td>4482933</td>
 <td>The {{age}} and {{last-update}} counters in the {{nv show bridge domain &lt;domain-id&gt; mac-table}} command output are reversed. The {{last-update}} counter shows {{age}} data and the {{age}} counter shows {{last-update}} data. Cumulus Linux uses the {{age}} timer to determine when to remove an old MAC entry.</td>
+<td>5.13.0-5.13.1</td>
+</tr>
+<tr>
+<td>4482790</td>
+<td>There is an inconsistency in the structure of certain gNMI streaming interface metrics.</td>
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>
@@ -753,6 +893,11 @@ systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
 <td></td>
 </tr>
 <tr>
+<td>4475104</td>
+<td>On the NVIDIA SN5610 switch, bringing up around 256 links takes a long time (approximately 90 seconds).</td>
+<td>5.13.0-5.13.1</td>
+</tr>
+<tr>
 <td>4474924</td>
 <td>The {{nv config show -o commands}} command displays numbered BGP neighbors in IP address range format; however, the {{nv set}} commands fail for BGP numbered neighbors configured in IP address ranges.</td>
 <td>5.13.0-5.13.1</td>
@@ -760,6 +905,16 @@ systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
 <tr>
 <td>4471932</td>
 <td>ERSPAN is not generated with the intended VLAN tag but is always sent out untagged. If the interface is a trunk port or a subinterface, the peer might discard these packets.</td>
+<td>5.13.0-5.13.1</td>
+</tr>
+<tr>
+<td>4469498</td>
+<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{{sudo systemctl restart frr.service}} command.</td>
+<td>5.4.0-5.13.1</td>
+</tr>
+<tr>
+<td>4469479</td>
+<td>If you use NVUE to unset an extremely large IP prefix list (around 50K), the command might time out when unconfiguring FRR. As a result, you see the message {{Failure during apply. Ignore? [y/N]}} and the FRR service stops. </td>
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>
@@ -774,7 +929,7 @@ systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
 </tr>
 <tr>
 <td>4461102</td>
-<td>In certain cases, when a port is down and you apply adaptive routing with the link-utilization-threshold setting to the port as it goes up, you might see in log errors while the port is not yet up.</td>
+<td>In certain cases, when a port is down and you apply adaptive routing with the link utilization threshold setting to the port as it goes up, you might see log errors while the port is not yet up.</td>
 <td>5.11.0-5.13.1</td>
 </tr>
 <tr>
@@ -800,7 +955,7 @@ with multiple optics, which can impact link stability and performance.</td>
 </tr>
 <tr>
 <td>4447797</td>
-<td>When you remove an FRU, such as a PSU, from the switch, stale statistical data from the component is still reported over GNMI and OTLP.  To resolve this issue in OTLP, the status metric is now updated to {{absent}} and statistical information is no longer streamed. In GNMI, the entire component is deleted from the {{/components}} tree.</td>
+<td>When you remove an FRU, such as a PSU, from the switch, stale statistical data from the component is still reported over GNMI and OTLP.</td>
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>
@@ -839,6 +994,11 @@ cumulus@switch:~$ git gc</td>
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>
+<td>4433969</td>
+<td>Cumulus Linux generates multiple cl-support files when there are multiple errors exporting OTEL metrics. </td>
+<td>5.13.0-5.13.1</td>
+</tr>
+<tr>
 <td>4427224</td>
 <td>The {{nv show interface}} command output shows the operational status as down for a link flap error disabled state instead of the real protodown reason. To work around this issue, run the {{nv show interface status}} command, which shows if any of the interfaces are protodown with the protodown reason.</td>
 <td>5.12.0-5.13.1</td>
@@ -869,11 +1029,6 @@ cumulus@switch:~$ git gc</td>
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>
-<td>4413589</td>
-<td>A MAC-only EVPN type-2 route is wrongly advertised with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
-<td>5.13.0-5.13.1</td>
-</tr>
-<tr>
 <td>4413450</td>
 <td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables, the process consumes excessive memory resulting in out of memory crashes. </td>
 <td>5.0.0-5.11.1, 5.13.0-5.13.1</td>
@@ -894,6 +1049,11 @@ cumulus@switch:~$ git gc</td>
 systemd-udevd116276: mlxreg:fan1:green: Process ‘/usr/bin/hw-management-chassis-events.sh fantray-led-event mlxreg:fan1:green 255’ failed with exit code 1.
 To work around this issue, restart the {{hw-management}} service with the {{sudo systemctl restart hw-management}} command.</td>
 <td>5.7.0-5.11.1</td>
+</tr>
+<tr>
+<td>4399320</td>
+<td>When you use NVUE to change the port breakout from 4x to 8x, {{switchd}} fails to reload during {{nv config apply}}.</td>
+<td></td>
 </tr>
 <tr>
 <td>4393369</td>
@@ -926,6 +1086,11 @@ onie-nos-install /$devname/onie-installer</td>
 <td>4341806</td>
 <td>The BGP uptime differs between vtysh and NVUE command output.</td>
 <td>5.12.0-5.13.1</td>
+</tr>
+<tr>
+<td>3879809</td>
+<td>What Just Happened (WJH) now works on Spectrum-4 switches.</td>
+<td>5.9.0-5.13.1</td>
 </tr>
 <tr>
 <td>3875687</td>

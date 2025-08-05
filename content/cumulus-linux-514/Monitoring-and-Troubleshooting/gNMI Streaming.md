@@ -583,7 +583,69 @@ gnmic subscribe --mode stream --path "/qos/interfaces/interface[interface-id=swp
 ...
 ```
 
-The following example shows a dial-in mode subscribe request in a gRPC metadata header and the response:
+The following example shows a dial-in mode subscribe request in a gRPC metadata header with authorization information encoded in base64 format:
+
+```
+gnmic subscribe --metadata authorization="Basic Y3VtdWx1czpOdmlkaWFSMGNrcyE=" --address 192.168.200.3:9339 --tls-cert cert/umf-crt.pem --tls-key cert/umf-key.pem --encoding proto --mode stream --stream-mode sample --sample-interval 1s --prefix "system/cpus/cpu[index=0]" --path "state"
+{
+  "source": "192.168.200.3:9339",
+  "subscription-name": "default-1752848659",
+  "timestamp": 1752848657055588821,
+  "time": "2025-07-18T14:24:17.055588821Z",
+  "prefix": "system/cpus/cpu[index=0]",
+  "updates": [
+    {
+      "Path": "state/kernel/max-time",
+      "values": {
+        "state/kernel/max-time": 1752848657055588900
+      }
+    },
+    {
+      "Path": "state/kernel/max",
+      "values": {
+        "state/kernel/max": 0.33359713753109865
+      }
+    },
+    {
+      "Path": "state/kernel/min",
+      "values": {
+        "state/kernel/min": 0
+      }
+    },
+    {
+      "Path": "state/kernel/avg",
+      "values": {
+        "state/kernel/avg": 0.33359713753109865
+      }
+    },
+    {
+      "Path": "state/kernel/min-time",
+      "values": {
+        "state/kernel/min-time": 1752848657055588900
+      }
+    },
+    {
+      "Path": "state/kernel/seconds",
+      "values": {
+        "state/kernel/seconds": 595
+      }
+    },
+    {
+      "Path": "state/kernel/instant",
+      "values": {
+        "state/kernel/instant": 0.33359713753109865
+      }
+    },
+    {
+      "Path": "state/user/avg",
+      "values": {
+        "state/user/avg": 0.2680692284537066
+      }
+    },
+...
+```
+
+The following example shows a dial-in mode subscribe request in a gRPC metadata header with the username and password specified in the request:
 
 ```
 gnmic subscribe --mode stream -i 10s --tls-cert cert/umf-crt.pem --tls-key cert/umf-key.pem -u cumulus -p NvidiaR0cks! --skip-verify -a  192.168.200.3:9339  --timeout 30s --prefix "system/cpus/cpu[index=0]" --path "state"

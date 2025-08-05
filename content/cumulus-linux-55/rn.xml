@@ -7,13 +7,17 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4548341</td>
-<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{{sudo systemctl restart frr.service}} command.</td>
-<td>5.4.0-5.13.1</td>
+<td>4521203</td>
+<td>The SATA driver on the NVIDIA SN2410 switch sometimes exhibits failures similar to the following:
+2025-06-20T20:03:38.785966+09:00 S1-RF10B kernel: [49878794.456350] ata1.00: failed command: WRITE FPDMA QUEUED
+2025-06-20T20:03:38.785968+09:00 S1-RF10B kernel: [49878794.461984] ata1.00: cmd61/08:08:50:2b:c4/00:00:01:00:00/40 tag 1 ncq dma 4096 out
+2025-06-20T20:03:38.785970+09:00 S1-RF10B kernel: [49878794.461984] res 40/00:0c:50:2b:c4/00:00:01:00:00/40 Emask 0×10 (ATA bus error)
+To work around this issue, power cycle the switch.</td>
+<td>5.5.1-5.13.1</td>
 <td></td>
 </tr>
 <tr>
-<td>4548340</td>
+<td>4469498</td>
 <td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{{sudo systemctl restart frr.service}} command.</td>
 <td>5.4.0-5.13.1</td>
 <td></td>
@@ -1009,13 +1013,7 @@ You can safely ignore this warning.</td>
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4548341</td>
-<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{{sudo systemctl restart frr.service}} command.</td>
-<td>5.4.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4548340</td>
+<td>4469498</td>
 <td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{{sudo systemctl restart frr.service}} command.</td>
 <td>5.4.0-5.13.1</td>
 <td></td>

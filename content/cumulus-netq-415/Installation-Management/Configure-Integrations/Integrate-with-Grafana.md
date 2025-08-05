@@ -18,9 +18,10 @@ The Grafana integration is in beta and supported for on-premises deployments onl
    - Cluster: 50 switches
    - 3-node scale cluster: 500 switches
    - 5-node scale cluster: 1,000 switches
-- DPUs and ConnectX hosts must be running DOCA Telemetry Service (DTS) version 1.18-1.20
-- Before you get started with the steps below, {{<exlink url="https://grafana.com/docs/grafana/latest/setup-grafana/installation/" text="install Grafana">}} and {{<exlink url="https://grafana.com/docs/grafana/latest/setup-grafana/start-restart-grafana/" text="start the Grafana server">}}
-- NetQ allows you to retrieve data from up to seven days in the past
+- NetQ does not support OpenTelemetry collection from switches with {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Monitoring-and-Troubleshooting/Open-Telemetry-Export/#buffer-statistics" text="buffer statistics">}} enabled. 
+- DPUs and ConnectX hosts must be running DOCA Telemetry Service (DTS) version 1.18-1.20.
+- Before you get started with the steps below, {{<exlink url="https://grafana.com/docs/grafana/latest/setup-grafana/installation/" text="install Grafana">}} and {{<exlink url="https://grafana.com/docs/grafana/latest/setup-grafana/start-restart-grafana/" text="start the Grafana server">}}.
+- NetQ allows you to retrieve data from up to seven days in the past.
 
 ## Secure OpenTelemetry Export
 

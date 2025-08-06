@@ -58,7 +58,7 @@ cumulus@switch:~$ nv set system gnmi-server mtls crl /etc/ssl/certs/crl.crt
 cumulus@switch:~$ nv config apply
 ```
 
-### Configure gNMI Dial-Out Mode
+### Configure gNMI Dial-out Mode
 
 In dial-out telemetry mode, the Cumulus Linux switch initiates the gRPC connection to the collector through a gRPC tunnel server and assumes the role of the gRPC client.
 
@@ -551,18 +551,18 @@ The following table provides updated QoS metrics:
 <!-- vale on -->
 ### User Credentials and Authentication
 
-User authentication is enabled by default. gNMI subscription requests must include the user authentication credentials with NVUE API access permissions, either in an HTTP Basic Authentication header according to RFC7617 or a gRPC metadata header.
+User authentication is enabled by default. gNMI subscription requests must include the user authentication credentials with NVUE API access permissions, either in an HTTP basic authentication header according to RFC7617 or a gRPC metadata header.
 
 ### gNMI Client Requests
 
-You can use your gNMI client on a host to request capabilities and data to which the Agent subscribes.
+You can use your gNMI client on a host to request capabilities and data to which the gNMI agent subscribes.
 
 #### Dial-in Mode Examples
 
 The following example shows a basic dial-in mode subscribe request in an HTTP basic authentication header:
 
 ```
-gnmic subscribe --mode stream -i 10s --tls-cert gnmi_client.crt --tls-key gnmi_client.key -u cumulus -p ******* --auth-scheme Basic --skip-verify -a 192.168.200.3:9339 --prefix "system/cpus/cpu[index=0]" --path "state"
+gnmic subscribe --mode stream -i 10s --tls-cert gnmi_client.crt --tls-key gnmi_client.key -u cumulus -p ******* --auth-scheme Basic -a 192.168.200.3:9339 --prefix "system/cpus/cpu[index=0]" --path "state"
 ...
 ```
 
@@ -579,7 +579,7 @@ The following example shows a dial-in mode subscribe request in a gRPC metadata 
 gnmic subscribe --mode stream -i 10s --tls-cert cert/umf-crt.pem --tls-key cert/umf-key.pem -u cumulus -p NvidiaR0cks! --skip-verify -a  192.168.200.3:9339  --timeout 30s --prefix "system/cpus/cpu[index=0]" --path "state"
 ```
 
-### Subscription Response Example
+#### Subscription Response Example
 
 The following example shows a subscription response:
 

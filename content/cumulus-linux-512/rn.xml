@@ -7,13 +7,15 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4548512</td>
-<td>When a connected route is learned through FRR and installed into the Zebra RIB, it might go in with the next hop interface of the -v0 (VRR) interface instead of the SVI. This breaks next hop tracking and the route is not installed into hardware despite being known in the Zebra RIB and Kernel.
-This issue can occur under the following conditions:
-&lt;ul&gt;&lt;li&gt;The target VRF might not install the route into hardware when leaking directly connected routes with VRR enabled on the interface that owns the subnet and between VRFs upon initial configuration. &lt;/li&gt;
-&lt;li&gt;In an MLAG and VRR configuration, the static route fails to install when a static route is resolved through a connected route and the interface of the connected route undergoes a link state change (link flap, interface bring up, {{clagd}} restart, {{switchd}} restart, and so on).&lt;/li&gt;&lt;/ul&gt;
-To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command.</td>
+<td>4558846</td>
+<td>If interface statistics telemetry is running on the switch, an {{interface_stats_collector}} core file might generate during statistics collection.</td>
 <td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4540976</td>
+<td>When an SVI interface is brought up with routes installed against it, during subsequent interface updates that are applied to the interface during bringup such as MTU changes, interface forwarding state, MAC learning updates, or multicast forwarding state changes, the routes installed for the interface might be programmed as blackhole routes. This can occur during a fresh boot of a switch. To work around this issue, toggle the interface state of the SVI. </td>
+<td>5.8.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -36,11 +38,11 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 </tr>
 <tr>
 <td>4531952</td>
-<td>When a connected route is learned through FRR and installed into the Zebra RIB, it might go in with the next hop interface of the -v0 (VRR) interface instead of the SVI. This breaks next hop tracking and the route is not installed into hardware despite being known in the Zebra RIB and Kernel.
-This issue can occur under the following conditions:
-&lt;ul&gt;&lt;li&gt;The target VRF might not install the route into hardware when leaking directly connected routes with VRR enabled on the interface that owns the subnet and between VRFs upon initial configuration. &lt;/li&gt;
-&lt;li&gt;In an MLAG and VRR configuration, the static route fails to install when a static route is resolved through a connected route and the interface of the connected route undergoes a link state change (link flap, interface bring up, {{clagd}} restart, {{switchd}} restart, and so on).&lt;/li&gt;&lt;/ul&gt;
-To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command.</td>
+<td>When a connected route for an SVI interface with VRR configured is installed by FRR, the route might be installed with the next hop interface of the VRR device instead of the SVI. For example, instead of interface {{vlan10}}, the route might install against {{vlan10-v0}}. This prevents next-hop tracking and route installation into hardware.
+This issue can occur in the following conditions:
+&lt;ul&gt;&lt;li&gt;When initially configuring VRF route leaking, the target VRF might not install a route into hardware when leaking directly connected routes for SVI interfaces with VRR enabled.&lt;/li&gt;
+&lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change for any reason, such as link flaps, interface bring-up, {{clagd}} restart, {{switchd}} restart, etc.&lt;/li&gt;&lt;/ul&gt;
+To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command. </td>
 <td>5.11.1-5.13.1</td>
 <td></td>
 </tr>
@@ -51,6 +53,12 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td></td>
 </tr>
 <tr>
+<td>4522594</td>
+<td>In a VXLAN environment, if the bridge MAC address changes for a VTEP, the switch drops VXLAN traffic entering this VTEP from a remote VTEP. The switch only drops layer 3 routed VXLAN traffic because the RMAC is not updated correctly in the SDK.</td>
+<td>5.11.1-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4521203</td>
 <td>The SATA driver on the NVIDIA SN2410 switch sometimes exhibits failures similar to the following:
 2025-06-20T20:03:38.785966+09:00 S1-RF10B kernel: [49878794.456350] ata1.00: failed command: WRITE FPDMA QUEUED
@@ -58,6 +66,24 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 2025-06-20T20:03:38.785970+09:00 S1-RF10B kernel: [49878794.461984] res 40/00:0c:50:2b:c4/00:00:01:00:00/40 Emask 0×10 (ATA bus error)
 To work around this issue, power cycle the switch.</td>
 <td>5.5.1-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4518822</td>
+<td>When a connected route for an SVI interface with VRR configured is installed by FRR, the route might be installed with the next hop interface of the VRR device instead of the SVI. For example, instead of interface {{vlan10}}, the route might install against {{vlan10-v0}}. This prevents next-hop tracking and route installation into hardware.
+This issue can occur in the following conditions:
+&lt;ul&gt;&lt;li&gt;When initially configuring VRF route leaking, the target VRF might not install a route into hardware when leaking directly connected routes for SVI interfaces with VRR enabled.&lt;/li&gt;
+&lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change for any reason, such as link flaps, interface bring-up, {{clagd}} restart, {{switchd}} restart, etc.&lt;/li&gt;&lt;/ul&gt;
+To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command. </td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4509255</td>
+<td>In PTP two-step, hardware incorrectly modified the SYNC message correction field.
+This is according to original HW design.
+</td>
+<td>5.12.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -111,13 +137,13 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 </tr>
 <tr>
 <td>4469498</td>
-<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{{sudo systemctl restart frr.service}} command.</td>
+<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{sudo systemctl restart frr.service}} command.</td>
 <td>5.4.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4466525</td>
-<td>Radius priority values can range between 1 and 8. Configuring an invalid priority succeeds when it should fail.</td>
+<td>Radius priority values can range between 1 and 8; however Cumulus Linux allows you to configure an invalid priority.</td>
 <td>5.12.0-5.13.1</td>
 <td></td>
 </tr>
@@ -158,21 +184,9 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
-<td>4423285</td>
-<td>SVIs do not go down even when all the bridge ports on the corresponding VLAN are down. This issue occurs because the {{vlan-bridge-binding}} option default setting is off for all the SVIs responsible for bringing down the SVI when all the ports on the corresponding VLAN are down. To work around this issue, manually configure the {{vlan-bridge-binding on}} option under the SVI stanza in the {{/etc/network/interfaces config}} file.</td>
-<td>5.9.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4423277</td>
 <td>When the username in a 802.1X session includes the equals (=) character, the ISSU warmboot fails. Make sure that = is not part of the 802.1X session name.</td>
 <td>5.11.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4423273</td>
-<td>After you run the {{nv action upgrade system packages to latest}} command followed by the {{nv action reboot system}} command, {{nv show system reboot}} displays {{upgrade}} instead of one of the valid values {{cold}}, {{warm}},  or {{fast}}.</td>
-<td>5.9.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -358,12 +372,6 @@ The interface shows "screaming" emojis and "Could not render." </td>
 <td></td>
 </tr>
 <tr>
-<td>4309854</td>
-<td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
-<td>5.11.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4308857</td>
 <td>When you use {{tls_crlcheck}} in the {{/etc/nslcd.conf}} file, the optional {{nslcd}} service fails due to a missing library.</td>
 <td>5.9.2-5.13.1</td>
@@ -430,12 +438,6 @@ cumulus@switch:~$ sudo systemctl start cumulus-upgrade-on-shutdown</td>
 <td>NVUE overwrites the MOTD file during NVUE configuration with no option to ignore it.
 </td>
 <td>5.11.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4271213</td>
-<td>When IPv4 layer 3 switch ports and virtual interfaces flap, {{switchd}} might send an ICMP Reply message instead of an ARP request (although no ICMP request was sent). Multiple ICMP Replies might be sent to any of the neighbor IP addresses of that interface.</td>
-<td>5.9.2-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -578,12 +580,6 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <td>4100629</td>
 <td>NVUE show command outputs show LLDP neighbor changes only after the LLDP update frequency multiplied by the hold time.</td>
 <td>5.11.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4100164</td>
-<td>Low power Intel SATA controllers experience issues when using the {{mobile}} low power chipset LPM policy. This can cause the SSD to become read only.</td>
-<td>5.8.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1103,13 +1099,15 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Fixed </th>
 </tr>
 <tr>
-<td>4548512</td>
-<td>When a connected route is learned through FRR and installed into the Zebra RIB, it might go in with the next hop interface of the -v0 (VRR) interface instead of the SVI. This breaks next hop tracking and the route is not installed into hardware despite being known in the Zebra RIB and Kernel.
-This issue can occur under the following conditions:
-&lt;ul&gt;&lt;li&gt;The target VRF might not install the route into hardware when leaking directly connected routes with VRR enabled on the interface that owns the subnet and between VRFs upon initial configuration. &lt;/li&gt;
-&lt;li&gt;In an MLAG and VRR configuration, the static route fails to install when a static route is resolved through a connected route and the interface of the connected route undergoes a link state change (link flap, interface bring up, {{clagd}} restart, {{switchd}} restart, and so on).&lt;/li&gt;&lt;/ul&gt;
-To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command.</td>
+<td>4558846</td>
+<td>If interface statistics telemetry is running on the switch, an {{interface_stats_collector}} core file might generate during statistics collection.</td>
 <td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4540976</td>
+<td>When an SVI interface is brought up with routes installed against it, during subsequent interface updates that are applied to the interface during bringup such as MTU changes, interface forwarding state, MAC learning updates, or multicast forwarding state changes, the routes installed for the interface might be programmed as blackhole routes. This can occur during a fresh boot of a switch. To work around this issue, toggle the interface state of the SVI. </td>
+<td>5.8.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1132,11 +1130,11 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 </tr>
 <tr>
 <td>4531952</td>
-<td>When a connected route is learned through FRR and installed into the Zebra RIB, it might go in with the next hop interface of the -v0 (VRR) interface instead of the SVI. This breaks next hop tracking and the route is not installed into hardware despite being known in the Zebra RIB and Kernel.
-This issue can occur under the following conditions:
-&lt;ul&gt;&lt;li&gt;The target VRF might not install the route into hardware when leaking directly connected routes with VRR enabled on the interface that owns the subnet and between VRFs upon initial configuration. &lt;/li&gt;
-&lt;li&gt;In an MLAG and VRR configuration, the static route fails to install when a static route is resolved through a connected route and the interface of the connected route undergoes a link state change (link flap, interface bring up, {{clagd}} restart, {{switchd}} restart, and so on).&lt;/li&gt;&lt;/ul&gt;
-To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command.</td>
+<td>When a connected route for an SVI interface with VRR configured is installed by FRR, the route might be installed with the next hop interface of the VRR device instead of the SVI. For example, instead of interface {{vlan10}}, the route might install against {{vlan10-v0}}. This prevents next-hop tracking and route installation into hardware.
+This issue can occur in the following conditions:
+&lt;ul&gt;&lt;li&gt;When initially configuring VRF route leaking, the target VRF might not install a route into hardware when leaking directly connected routes for SVI interfaces with VRR enabled.&lt;/li&gt;
+&lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change for any reason, such as link flaps, interface bring-up, {{clagd}} restart, {{switchd}} restart, etc.&lt;/li&gt;&lt;/ul&gt;
+To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command. </td>
 <td>5.11.1-5.13.1</td>
 <td></td>
 </tr>
@@ -1147,6 +1145,12 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td></td>
 </tr>
 <tr>
+<td>4522594</td>
+<td>In a VXLAN environment, if the bridge MAC address changes for a VTEP, the switch drops VXLAN traffic entering this VTEP from a remote VTEP. The switch only drops layer 3 routed VXLAN traffic because the RMAC is not updated correctly in the SDK.</td>
+<td>5.11.1-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4521203</td>
 <td>The SATA driver on the NVIDIA SN2410 switch sometimes exhibits failures similar to the following:
 2025-06-20T20:03:38.785966+09:00 S1-RF10B kernel: [49878794.456350] ata1.00: failed command: WRITE FPDMA QUEUED
@@ -1154,6 +1158,24 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 2025-06-20T20:03:38.785970+09:00 S1-RF10B kernel: [49878794.461984] res 40/00:0c:50:2b:c4/00:00:01:00:00/40 Emask 0×10 (ATA bus error)
 To work around this issue, power cycle the switch.</td>
 <td>5.5.1-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4518822</td>
+<td>When a connected route for an SVI interface with VRR configured is installed by FRR, the route might be installed with the next hop interface of the VRR device instead of the SVI. For example, instead of interface {{vlan10}}, the route might install against {{vlan10-v0}}. This prevents next-hop tracking and route installation into hardware.
+This issue can occur in the following conditions:
+&lt;ul&gt;&lt;li&gt;When initially configuring VRF route leaking, the target VRF might not install a route into hardware when leaking directly connected routes for SVI interfaces with VRR enabled.&lt;/li&gt;
+&lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change for any reason, such as link flaps, interface bring-up, {{clagd}} restart, {{switchd}} restart, etc.&lt;/li&gt;&lt;/ul&gt;
+To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command. </td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4509255</td>
+<td>In PTP two-step, hardware incorrectly modified the SYNC message correction field.
+This is according to original HW design.
+</td>
+<td>5.12.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1207,13 +1229,13 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 </tr>
 <tr>
 <td>4469498</td>
-<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{{sudo systemctl restart frr.service}} command.</td>
+<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{sudo systemctl restart frr.service}} command.</td>
 <td>5.4.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
 <td>4466525</td>
-<td>Radius priority values can range between 1 and 8. Configuring an invalid priority succeeds when it should fail.</td>
+<td>Radius priority values can range between 1 and 8; however Cumulus Linux allows you to configure an invalid priority.</td>
 <td>5.12.0-5.13.1</td>
 <td></td>
 </tr>
@@ -1254,21 +1276,9 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
-<td>4423285</td>
-<td>SVIs do not go down even when all the bridge ports on the corresponding VLAN are down. This issue occurs because the {{vlan-bridge-binding}} option default setting is off for all the SVIs responsible for bringing down the SVI when all the ports on the corresponding VLAN are down. To work around this issue, manually configure the {{vlan-bridge-binding on}} option under the SVI stanza in the {{/etc/network/interfaces config}} file.</td>
-<td>5.9.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4423277</td>
 <td>When the username in a 802.1X session includes the equals (=) character, the ISSU warmboot fails. Make sure that = is not part of the 802.1X session name.</td>
 <td>5.11.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4423273</td>
-<td>After you run the {{nv action upgrade system packages to latest}} command followed by the {{nv action reboot system}} command, {{nv show system reboot}} displays {{upgrade}} instead of one of the valid values {{cold}}, {{warm}},  or {{fast}}.</td>
-<td>5.9.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1448,12 +1458,6 @@ The interface shows "screaming" emojis and "Could not render." </td>
 <td></td>
 </tr>
 <tr>
-<td>4309854</td>
-<td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
-<td>5.11.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4308857</td>
 <td>When you use {{tls_crlcheck}} in the {{/etc/nslcd.conf}} file, the optional {{nslcd}} service fails due to a missing library.</td>
 <td>5.9.2-5.13.1</td>
@@ -1532,12 +1536,6 @@ cumulus@switch:~$ sudo systemctl start cumulus-upgrade-on-shutdown</td>
 <td>NVUE overwrites the MOTD file during NVUE configuration with no option to ignore it.
 </td>
 <td>5.11.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4271213</td>
-<td>When IPv4 layer 3 switch ports and virtual interfaces flap, {{switchd}} might send an ICMP Reply message instead of an ARP request (although no ICMP request was sent). Multiple ICMP Replies might be sent to any of the neighbor IP addresses of that interface.</td>
-<td>5.9.2-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1680,12 +1678,6 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 <td>4100629</td>
 <td>NVUE show command outputs show LLDP neighbor changes only after the LLDP update frequency multiplied by the hold time.</td>
 <td>5.11.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4100164</td>
-<td>Low power Intel SATA controllers experience issues when using the {{mobile}} low power chipset LPM policy. This can cause the SSD to become read only.</td>
-<td>5.8.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>

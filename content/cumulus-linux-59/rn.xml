@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4540976</td>
+<td>When an SVI interface is brought up with routes installed against it, during subsequent interface updates that are applied to the interface during bringup such as MTU changes, interface forwarding state, MAC learning updates, or multicast forwarding state changes, the routes installed for the interface might be programmed as blackhole routes. This can occur during a fresh boot of a switch. To work around this issue, toggle the interface state of the SVI. </td>
+<td>5.8.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4531959</td>
 <td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
 <td>5.9.2-5.13.1</td>
@@ -54,7 +60,7 @@ To work around this issue, power cycle the switch.</td>
 </tr>
 <tr>
 <td>4469498</td>
-<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{{sudo systemctl restart frr.service}} command.</td>
+<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{sudo systemctl restart frr.service}} command.</td>
 <td>5.4.0-5.13.1</td>
 <td></td>
 </tr>
@@ -67,18 +73,6 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4423335</td>
 <td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
-<td>5.9.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4423285</td>
-<td>SVIs do not go down even when all the bridge ports on the corresponding VLAN are down. This issue occurs because the {{vlan-bridge-binding}} option default setting is off for all the SVIs responsible for bringing down the SVI when all the ports on the corresponding VLAN are down. To work around this issue, manually configure the {{vlan-bridge-binding on}} option under the SVI stanza in the {{/etc/network/interfaces config}} file.</td>
-<td>5.9.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4423273</td>
-<td>After you run the {{nv action upgrade system packages to latest}} command followed by the {{nv action reboot system}} command, {{nv show system reboot}} displays {{upgrade}} instead of one of the valid values {{cold}}, {{warm}},  or {{fast}}.</td>
 <td>5.9.0-5.13.1</td>
 <td></td>
 </tr>
@@ -125,12 +119,6 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <td>After rebooting the spine switch in an EVPN multihoming configuration, the BGP EVPN Type-2 entry is missing, which causes flooding and duplicates in the fabric. To work around this issue, flush the IP neighbor entries with the {{sudo ip neigh flush x.x.x.x}} command.</td>
 <td>5.9.1-5.11.3</td>
 <td>5.12.0-5.13.1</td>
-</tr>
-<tr>
-<td>4271213</td>
-<td>When IPv4 layer 3 switch ports and virtual interfaces flap, {{switchd}} might send an ICMP Reply message instead of an ARP request (although no ICMP request was sent). Multiple ICMP Replies might be sent to any of the neighbor IP addresses of that interface.</td>
-<td>5.9.2-5.13.1</td>
-<td></td>
 </tr>
 <tr>
 <td>4271212</td>
@@ -261,12 +249,6 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <td>When the SNMP service is busy for approximately more than a minute, the applications using {{net-snmp}} APIs to support their MIBs (such as FRR) become blocked. </td>
 <td>5.9.0-5.10.1</td>
 <td>5.11.0-5.13.1</td>
-</tr>
-<tr>
-<td>4100164</td>
-<td>Low power Intel SATA controllers experience issues when using the {{mobile}} low power chipset LPM policy. This can cause the SSD to become read only.</td>
-<td>5.8.0-5.13.1</td>
-<td></td>
 </tr>
 <tr>
 <td>4096505</td>
@@ -904,6 +886,12 @@ You can safely ignore this warning.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4540976</td>
+<td>When an SVI interface is brought up with routes installed against it, during subsequent interface updates that are applied to the interface during bringup such as MTU changes, interface forwarding state, MAC learning updates, or multicast forwarding state changes, the routes installed for the interface might be programmed as blackhole routes. This can occur during a fresh boot of a switch. To work around this issue, toggle the interface state of the SVI. </td>
+<td>5.8.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4532006</td>
 <td>The sudo program included with Cumulus Linux is vulnerable to a local privilege escalation attack CVE-2025-32463.</td>
 <td>5.9.2</td>
@@ -957,7 +945,7 @@ To work around this issue, power cycle the switch.</td>
 </tr>
 <tr>
 <td>4469498</td>
-<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{{sudo systemctl restart frr.service}} command.</td>
+<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{sudo systemctl restart frr.service}} command.</td>
 <td>5.4.0-5.13.1</td>
 <td></td>
 </tr>
@@ -970,18 +958,6 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4423335</td>
 <td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
-<td>5.9.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4423285</td>
-<td>SVIs do not go down even when all the bridge ports on the corresponding VLAN are down. This issue occurs because the {{vlan-bridge-binding}} option default setting is off for all the SVIs responsible for bringing down the SVI when all the ports on the corresponding VLAN are down. To work around this issue, manually configure the {{vlan-bridge-binding on}} option under the SVI stanza in the {{/etc/network/interfaces config}} file.</td>
-<td>5.9.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4423273</td>
-<td>After you run the {{nv action upgrade system packages to latest}} command followed by the {{nv action reboot system}} command, {{nv show system reboot}} displays {{upgrade}} instead of one of the valid values {{cold}}, {{warm}},  or {{fast}}.</td>
 <td>5.9.0-5.13.1</td>
 <td></td>
 </tr>
@@ -1028,12 +1004,6 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <td>After rebooting the spine switch in an EVPN multihoming configuration, the BGP EVPN Type-2 entry is missing, which causes flooding and duplicates in the fabric. To work around this issue, flush the IP neighbor entries with the {{sudo ip neigh flush x.x.x.x}} command.</td>
 <td>5.9.1-5.11.3</td>
 <td>5.12.0-5.13.1</td>
-</tr>
-<tr>
-<td>4271213</td>
-<td>When IPv4 layer 3 switch ports and virtual interfaces flap, {{switchd}} might send an ICMP Reply message instead of an ARP request (although no ICMP request was sent). Multiple ICMP Replies might be sent to any of the neighbor IP addresses of that interface.</td>
-<td>5.9.2-5.13.1</td>
-<td></td>
 </tr>
 <tr>
 <td>4271212</td>
@@ -1164,12 +1134,6 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <td>When the SNMP service is busy for approximately more than a minute, the applications using {{net-snmp}} APIs to support their MIBs (such as FRR) become blocked. </td>
 <td>5.9.0-5.10.1</td>
 <td>5.11.0-5.13.1</td>
-</tr>
-<tr>
-<td>4100164</td>
-<td>Low power Intel SATA controllers experience issues when using the {{mobile}} low power chipset LPM policy. This can cause the SSD to become read only.</td>
-<td>5.8.0-5.13.1</td>
-<td></td>
 </tr>
 <tr>
 <td>4096505</td>
@@ -2047,6 +2011,12 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4540976</td>
+<td>When an SVI interface is brought up with routes installed against it, during subsequent interface updates that are applied to the interface during bringup such as MTU changes, interface forwarding state, MAC learning updates, or multicast forwarding state changes, the routes installed for the interface might be programmed as blackhole routes. This can occur during a fresh boot of a switch. To work around this issue, toggle the interface state of the SVI. </td>
+<td>5.8.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4531104</td>
 <td>In certain cases, on a switch with SDK 4.6.1062 or earlier, you might see FW fatal health events.</td>
 <td>5.6.0-5.13.1</td>
@@ -2076,7 +2046,7 @@ To work around this issue, power cycle the switch.</td>
 </tr>
 <tr>
 <td>4469498</td>
-<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{{sudo systemctl restart frr.service}} command.</td>
+<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{sudo systemctl restart frr.service}} command.</td>
 <td>5.4.0-5.13.1</td>
 <td></td>
 </tr>
@@ -2089,18 +2059,6 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4423335</td>
 <td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
-<td>5.9.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4423285</td>
-<td>SVIs do not go down even when all the bridge ports on the corresponding VLAN are down. This issue occurs because the {{vlan-bridge-binding}} option default setting is off for all the SVIs responsible for bringing down the SVI when all the ports on the corresponding VLAN are down. To work around this issue, manually configure the {{vlan-bridge-binding on}} option under the SVI stanza in the {{/etc/network/interfaces config}} file.</td>
-<td>5.9.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4423273</td>
-<td>After you run the {{nv action upgrade system packages to latest}} command followed by the {{nv action reboot system}} command, {{nv show system reboot}} displays {{upgrade}} instead of one of the valid values {{cold}}, {{warm}},  or {{fast}}.</td>
 <td>5.9.0-5.13.1</td>
 <td></td>
 </tr>
@@ -2240,12 +2198,6 @@ Save the file, run the {{nv config patch vlan-aware_bridge_snippet.yaml}} comman
 <td>When the SNMP service is busy for approximately more than a minute, the applications using {{net-snmp}} APIs to support their MIBs (such as FRR) become blocked. </td>
 <td>5.9.0-5.10.1</td>
 <td>5.11.0-5.13.1</td>
-</tr>
-<tr>
-<td>4100164</td>
-<td>Low power Intel SATA controllers experience issues when using the {{mobile}} low power chipset LPM policy. This can cause the SSD to become read only.</td>
-<td>5.8.0-5.13.1</td>
-<td></td>
 </tr>
 <tr>
 <td>4096505</td>
@@ -3152,6 +3104,12 @@ You can safely ignore this warning.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4540976</td>
+<td>When an SVI interface is brought up with routes installed against it, during subsequent interface updates that are applied to the interface during bringup such as MTU changes, interface forwarding state, MAC learning updates, or multicast forwarding state changes, the routes installed for the interface might be programmed as blackhole routes. This can occur during a fresh boot of a switch. To work around this issue, toggle the interface state of the SVI. </td>
+<td>5.8.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4531104</td>
 <td>In certain cases, on a switch with SDK 4.6.1062 or earlier, you might see FW fatal health events.</td>
 <td>5.6.0-5.13.1</td>
@@ -3181,7 +3139,7 @@ To work around this issue, power cycle the switch.</td>
 </tr>
 <tr>
 <td>4469498</td>
-<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{{sudo systemctl restart frr.service}} command.</td>
+<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{sudo systemctl restart frr.service}} command.</td>
 <td>5.4.0-5.13.1</td>
 <td></td>
 </tr>
@@ -3194,18 +3152,6 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4423335</td>
 <td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
-<td>5.9.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4423285</td>
-<td>SVIs do not go down even when all the bridge ports on the corresponding VLAN are down. This issue occurs because the {{vlan-bridge-binding}} option default setting is off for all the SVIs responsible for bringing down the SVI when all the ports on the corresponding VLAN are down. To work around this issue, manually configure the {{vlan-bridge-binding on}} option under the SVI stanza in the {{/etc/network/interfaces config}} file.</td>
-<td>5.9.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4423273</td>
-<td>After you run the {{nv action upgrade system packages to latest}} command followed by the {{nv action reboot system}} command, {{nv show system reboot}} displays {{upgrade}} instead of one of the valid values {{cold}}, {{warm}},  or {{fast}}.</td>
 <td>5.9.0-5.13.1</td>
 <td></td>
 </tr>
@@ -3294,12 +3240,6 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <td>When the SNMP service is busy for approximately more than a minute, the applications using {{net-snmp}} APIs to support their MIBs (such as FRR) become blocked. </td>
 <td>5.9.0-5.10.1</td>
 <td>5.11.0-5.13.1</td>
-</tr>
-<tr>
-<td>4100164</td>
-<td>Low power Intel SATA controllers experience issues when using the {{mobile}} low power chipset LPM policy. This can cause the SSD to become read only.</td>
-<td>5.8.0-5.13.1</td>
-<td></td>
 </tr>
 <tr>
 <td>4072165</td>

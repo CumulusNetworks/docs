@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4540976</td>
+<td>When an SVI interface is brought up with routes installed against it, during subsequent interface updates that are applied to the interface during bringup such as MTU changes, interface forwarding state, MAC learning updates, or multicast forwarding state changes, the routes installed for the interface might be programmed as blackhole routes. This can occur during a fresh boot of a switch. To work around this issue, toggle the interface state of the SVI. </td>
+<td>5.8.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4531104</td>
 <td>In certain cases, on a switch with SDK 4.6.1062 or earlier, you might see FW fatal health events.</td>
 <td>5.6.0-5.13.1</td>
@@ -30,7 +36,7 @@ To work around this issue, power cycle the switch.</td>
 </tr>
 <tr>
 <td>4469498</td>
-<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{{sudo systemctl restart frr.service}} command.</td>
+<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{sudo systemctl restart frr.service}} command.</td>
 <td>5.4.0-5.13.1</td>
 <td></td>
 </tr>
@@ -105,12 +111,6 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <tr>
 <td>4119621</td>
 <td>When you set the SNMP server listening address to listen on all IPv4 and IPv6 addresses in a VRF with the {{nv set service snmp-server listening-address all vrf}} and {{nv set service snmp-server listening-address all-v6 vrf}} commands, SNMP requests over IPv6 addresses do not work.</td>
-<td>5.8.0-5.10.1</td>
-<td>5.11.0-5.13.1</td>
-</tr>
-<tr>
-<td>4100164</td>
-<td>Low power Intel SATA controllers experience issues when using the {{mobile}} low power chipset LPM policy. This can cause the SSD to become read only.</td>
 <td>5.8.0-5.10.1</td>
 <td>5.11.0-5.13.1</td>
 </tr>

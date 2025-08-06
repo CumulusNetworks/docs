@@ -7,6 +7,18 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4562200</td>
+<td>Unexpected switchd crash on Spectrum-1 based switches during warm boot</td>
+<td>5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4558846</td>
+<td>If interface statistics telemetry is running on the switch, an {{interface_stats_collector}} core file might generate during statistics collection.</td>
+<td>5.11.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4551249</td>
 <td>The NVUE service might fail during switch upgrade. To work around this issue, stop the {{sysmonitor}} with the {{sudo systemctl stop sysmonitor}} command, then upgrade the switch with the {{nv action upgrade system packages to latest}} command.</td>
 <td>5.14.0</td>
@@ -16,26 +28,6 @@
 <td>4549896</td>
 <td>When you try to set a VXLAN with a bridge, you see the error {{sx_sdk: 22985 [BRIDGE] [ERROR  ]: Port(0x200A000D)) already added to a bridge}}. You can safely ignore this error as it doesn't impact switch functionality. </td>
 <td>5.14.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4548514</td>
-<td>When a connected route is learned through FRR and installed into the Zebra RIB, it might go in with the next hop interface of the -v0 (VRR) interface instead of the SVI. This breaks next hop tracking and the route is not installed into hardware despite being known in the Zebra RIB and Kernel.
-This issue can occur under the following conditions:
-&lt;ul&gt;&lt;li&gt;The target VRF might not install the route into hardware when leaking directly connected routes with VRR enabled on the interface that owns the subnet and between VRFs upon initial configuration. &lt;/li&gt;
-&lt;li&gt;In an MLAG and VRR configuration, the static route fails to install when a static route is resolved through a connected route and the interface of the connected route undergoes a link state change (link flap, interface bring up, {{clagd}} restart, {{switchd}} restart, and so on).&lt;/li&gt;&lt;/ul&gt;
-To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command.</td>
-<td>5.14.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4548512</td>
-<td>When a connected route is learned through FRR and installed into the Zebra RIB, it might go in with the next hop interface of the -v0 (VRR) interface instead of the SVI. This breaks next hop tracking and the route is not installed into hardware despite being known in the Zebra RIB and Kernel.
-This issue can occur under the following conditions:
-&lt;ul&gt;&lt;li&gt;The target VRF might not install the route into hardware when leaking directly connected routes with VRR enabled on the interface that owns the subnet and between VRFs upon initial configuration. &lt;/li&gt;
-&lt;li&gt;In an MLAG and VRR configuration, the static route fails to install when a static route is resolved through a connected route and the interface of the connected route undergoes a link state change (link flap, interface bring up, {{clagd}} restart, {{switchd}} restart, and so on).&lt;/li&gt;&lt;/ul&gt;
-To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command.</td>
-<td>5.11.0-5.14.0</td>
 <td></td>
 </tr>
 <tr>
@@ -52,13 +44,13 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 </tr>
 <tr>
 <td>4535749</td>
-<td>The {{uc-discards}} field in the {{nv show interface &lt;interface&gt; counters qos egress-queue-stats}} command output is actually the number of packets discarded per queue, but it is wrongly interpreted as bytes. To work around this issue, convert the data shown in bytes to packets by multiplying by 1024 if the data is in KB, 1024*1024 if the data isin MB, and 1024*1024*1024 if the data is in GB.</td>
+<td>The {{uc-discards}} field in the {{nv show interface &lt;interface&gt; counters qos egress-queue-stats}} command output is actually the number of packets discarded per queue, but it is wrongly interpreted as bytes. To work around this issue, convert the data shown in bytes to packets by multiplying by 1024 if the data is in KB, 1024x1024 if the data is in MB, and 1024x1024x1024 if the data is in GB.</td>
 <td>5.14.0</td>
 <td></td>
 </tr>
 <tr>
 <td>4535748</td>
-<td>The {{uc-discards}} field in the {{nv show interface &lt;interface&gt; counters qos egress-queue-stats}} command output is actually the number of packets discarded per queue, but it is wrongly interpreted as bytes. To work around this issue, convert the data shown in bytes to packets by multiplying by 1024 if the data is in KB, 1024*1024 if the data isin MB, and 1024*1024*1024 if the data is in GB.</td>
+<td>The {{uc-discards}} field in the {{nv show interface &lt;interface&gt; counters qos egress-queue-stats}} command output is actually the number of packets discarded per queue, but it is wrongly interpreted as bytes. To work around this issue, convert the data shown in bytes to packets by multiplying by 1024 if the data is in KB, 1024x1024 if the data is in MB, and 1024x1024x1024 if the data is in GB.</td>
 <td>5.14.0</td>
 <td></td>
 </tr>
@@ -66,6 +58,24 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td>4531960</td>
 <td>The GNMI Subscription to xpath {{interfaces/interface[name=swp61s0]/state/counters/out-pkts}} with a high sample interval results in an initial response of zero but in subsequent updates, the value is correct. You do not see this issue when the sample interval is 1 second.</td>
 <td>5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4518822</td>
+<td>When a connected route for an SVI interface with VRR configured is installed by FRR, the route might be installed with the next hop interface of the VRR device instead of the SVI. For example, instead of interface {{vlan10}}, the route might install against {{vlan10-v0}}. This prevents next-hop tracking and route installation into hardware.
+This issue can occur in the following conditions:
+&lt;ul&gt;&lt;li&gt;When initially configuring VRF route leaking, the target VRF might not install a route into hardware when leaking directly connected routes for SVI interfaces with VRR enabled.&lt;/li&gt;
+&lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change for any reason, such as link flaps, interface bring-up, {{clagd}} restart, {{switchd}} restart, etc.&lt;/li&gt;&lt;/ul&gt;
+To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command. </td>
+<td>5.11.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4509255</td>
+<td>In PTP two-step, hardware incorrectly modified the SYNC message correction field.
+This is according to original HW design.
+</td>
+<td>5.12.0-5.14.0</td>
 <td></td>
 </tr>
 <tr>
@@ -83,11 +93,7 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 </tr>
 <tr>
 <td>4495383</td>
-<td>Configuration translation does not support translation of unset operations. Translation of yaml file with unset operations results into converting unset to set operations since the translation logic expects only set operations. To prevent such conversions and unpredictable translations following restrictions to the file content are being added:
-- Unset operations are not allowed
-- Header must be present
-- Set operations must be present
-- Operations and header should be given in list format</td>
+<td>NVUE configuration yaml file translation converts unset commands to set commands because the translation logic expects only set commands. </td>
 <td>5.13.0-5.14.0</td>
 <td></td>
 </tr>
@@ -142,6 +148,12 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <tr>
 <td>4423175</td>
 <td>When you configure an API port with a TCP port already in use, the {{nginx}} server fails to restart.</td>
+<td>5.13.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4413589</td>
+<td>A MAC-only EVPN type-2 route is wrongly advertised with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
 <td>5.13.0-5.14.0</td>
 <td></td>
 </tr>
@@ -764,6 +776,11 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>5.13.1</td>
 </tr>
 <tr>
+<td>4540976</td>
+<td>When an SVI interface is brought up with routes installed against it, during subsequent interface updates that are applied to the interface during bringup such as MTU changes, interface forwarding state, MAC learning updates, or multicast forwarding state changes, the routes installed for the interface might be programmed as blackhole routes. This can occur during a fresh boot of a switch. To work around this issue, toggle the interface state of the SVI. </td>
+<td>5.8.0-5.13.1</td>
+</tr>
+<tr>
 <td>4539084</td>
 <td>When you lower the speed for an interface,  the {{nv show interface rates}} command output might show the link utilization percentage above 100 percent.  This issue is corrected automatically after the load interval duration.</td>
 <td>5.12.0-5.13.1</td>
@@ -775,11 +792,11 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>4531952</td>
-<td>When a connected route is learned through FRR and installed into the Zebra RIB, it might go in with the next hop interface of the -v0 (VRR) interface instead of the SVI. This breaks next hop tracking and the route is not installed into hardware despite being known in the Zebra RIB and Kernel.
-This issue can occur under the following conditions:
-&lt;ul&gt;&lt;li&gt;The target VRF might not install the route into hardware when leaking directly connected routes with VRR enabled on the interface that owns the subnet and between VRFs upon initial configuration. &lt;/li&gt;
-&lt;li&gt;In an MLAG and VRR configuration, the static route fails to install when a static route is resolved through a connected route and the interface of the connected route undergoes a link state change (link flap, interface bring up, {{clagd}} restart, {{switchd}} restart, and so on).&lt;/li&gt;&lt;/ul&gt;
-To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command.</td>
+<td>When a connected route for an SVI interface with VRR configured is installed by FRR, the route might be installed with the next hop interface of the VRR device instead of the SVI. For example, instead of interface {{vlan10}}, the route might install against {{vlan10-v0}}. This prevents next-hop tracking and route installation into hardware.
+This issue can occur in the following conditions:
+&lt;ul&gt;&lt;li&gt;When initially configuring VRF route leaking, the target VRF might not install a route into hardware when leaking directly connected routes for SVI interfaces with VRR enabled.&lt;/li&gt;
+&lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change for any reason, such as link flaps, interface bring-up, {{clagd}} restart, {{switchd}} restart, etc.&lt;/li&gt;&lt;/ul&gt;
+To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command. </td>
 <td>5.11.1-5.13.1</td>
 </tr>
 <tr>
@@ -801,6 +818,11 @@ To work around this issue, configure consistent protocol match statements in eac
 <td>5.13.1</td>
 </tr>
 <tr>
+<td>4522594</td>
+<td>In a VXLAN environment, if the bridge MAC address changes for a VTEP, the switch drops VXLAN traffic entering this VTEP from a remote VTEP. The switch only drops layer 3 routed VXLAN traffic because the RMAC is not updated correctly in the SDK.</td>
+<td>5.11.1-5.13.1</td>
+</tr>
+<tr>
 <td>4521203</td>
 <td>The SATA driver on the NVIDIA SN2410 switch sometimes exhibits failures similar to the following:
 2025-06-20T20:03:38.785966+09:00 S1-RF10B kernel: [49878794.456350] ata1.00: failed command: WRITE FPDMA QUEUED
@@ -808,6 +830,16 @@ To work around this issue, configure consistent protocol match statements in eac
 2025-06-20T20:03:38.785970+09:00 S1-RF10B kernel: [49878794.461984] res 40/00:0c:50:2b:c4/00:00:01:00:00/40 Emask 0×10 (ATA bus error)
 To work around this issue, power cycle the switch.</td>
 <td>5.5.1-5.13.1</td>
+</tr>
+<tr>
+<td>4518510</td>
+<td>You cannot erase all data from the switch SSD on the NVIDIA SN5610 switch.</td>
+<td></td>
+</tr>
+<tr>
+<td>4517549</td>
+<td>If you use TACACS on the default VRF while using multiple switch ports (ECMP) to reach the TACACS server,  Cumulus Linux only allows you to configure a single port, even though there are multiple ports to reach the server. When configuring the single port, you see issues such as long delays to login, authentication failures,  sudo command failures after login, username changes to an unknown {{tacacsNN}} user on the shell prompt.</td>
+<td>5.13.0-5.13.1</td>
 </tr>
 <tr>
 <td>4509053</td>
@@ -898,6 +930,11 @@ systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>
+<td>4475095</td>
+<td>The BGP service might crash when you have overlapping routes between two VRFs and you are leaking these routes between these VRFs in an EVPN environment. Avoid leaking overlapping IP' addresses or subnets between two VRFs. This is typically accomplished by filtering the overlapping IP address or subnet routes with a prefix list and route map.</td>
+<td>5.13.1</td>
+</tr>
+<tr>
 <td>4474924</td>
 <td>The {{nv config show -o commands}} command displays numbered BGP neighbors in IP address range format; however, the {{nv set}} commands fail for BGP numbered neighbors configured in IP address ranges.</td>
 <td>5.13.0-5.13.1</td>
@@ -909,7 +946,7 @@ systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
 </tr>
 <tr>
 <td>4469498</td>
-<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{{sudo systemctl restart frr.service}} command.</td>
+<td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{sudo systemctl restart frr.service}} command.</td>
 <td>5.4.0-5.13.1</td>
 </tr>
 <tr>
@@ -923,8 +960,13 @@ systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>
+<td>4467245</td>
+<td>Transceiver channel power values in dBm reported through streaming telemetry protocols such as OTLP and GNMI are imprecise and are rounded to whole numbers. The NVUE {{nv show platform transceiver &lt;port&gt;}} command or  Linux {{ethtool -m &lt;port&gt;}} command provides more precise, floating-point values.</td>
+<td>5.13.0-5.13.1</td>
+</tr>
+<tr>
 <td>4466525</td>
-<td>Radius priority values can range between 1 and 8. Configuring an invalid priority succeeds when it should fail.</td>
+<td>Radius priority values can range between 1 and 8; however Cumulus Linux allows you to configure an invalid priority.</td>
 <td>5.12.0-5.13.1</td>
 </tr>
 <tr>

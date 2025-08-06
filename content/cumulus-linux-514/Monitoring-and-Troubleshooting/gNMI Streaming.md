@@ -551,11 +551,11 @@ The following table provides updated QoS metrics:
 <!-- vale on -->
 ### User Credentials and Authentication
 
-User authentication is enabled by default. gNMI subscription requests must include the user authentication credentials with NVUE API access permissions, either in an HTTP Basic Authentication header according to RFC7617 or a gRPC metadata header.
+User authentication is enabled by default. gNMI subscription requests must include the user authentication credentials with NVUE API access permissions, either in an HTTP basic authentication header according to RFC7617 or a gRPC metadata header.
 
 ### gNMI Client Requests
 
-You can use your gNMI client on a host to request capabilities and data to which the Agent subscribes.
+You can use your gNMI client on a host to request capabilities and data to which the gNMI agent subscribes.
 
 #### Dial-in Mode Examples
 

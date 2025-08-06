@@ -12,7 +12,7 @@ h { color: RGB(118,185,0)}
 
 ## <h>nv show router segment-routing</h>
 
-Shows segment routing configuration.
+Shows if segment routing is enabled, and to show the configured locators and SRv6 segment identifiers.
 
 ### Version History
 

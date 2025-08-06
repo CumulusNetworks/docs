@@ -58,7 +58,7 @@ cumulus@switch:~$ nv set system gnmi-server mtls crl /etc/ssl/certs/crl.crt
 cumulus@switch:~$ nv config apply
 ```
 
-### Configure gNMI Dial-Out Mode
+### Configure gNMI Dial-out Mode
 
 In dial-out telemetry mode, the Cumulus Linux switch initiates the gRPC connection to the collector through a gRPC tunnel server and assumes the role of the gRPC client.
 
@@ -579,7 +579,7 @@ The following example shows a dial-in mode subscribe request in a gRPC metadata 
 gnmic subscribe --mode stream -i 10s --tls-cert cert/umf-crt.pem --tls-key cert/umf-key.pem -u cumulus -p NvidiaR0cks! --skip-verify -a  192.168.200.3:9339  --timeout 30s --prefix "system/cpus/cpu[index=0]" --path "state"
 ```
 
-### Subscription Response Example
+#### Subscription Response Example
 
 The following example shows a subscription response:
 

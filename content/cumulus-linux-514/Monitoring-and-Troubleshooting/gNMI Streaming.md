@@ -562,7 +562,7 @@ You can use your gNMI client on a host to request capabilities and data to which
 The following example shows a basic dial-in mode subscribe request in an HTTP basic authentication header:
 
 ```
-gnmic subscribe --mode stream -i 10s --tls-cert gnmi_client.crt --tls-key gnmi_client.key -u cumulus -p ******* --auth-scheme Basic --skip-verify -a 192.168.200.3:9339 --prefix "system/cpus/cpu[index=0]" --path "state"
+gnmic subscribe --mode stream -i 10s --tls-cert gnmi_client.crt --tls-key gnmi_client.key -u cumulus -p ******* --auth-scheme Basic -a 192.168.200.3:9339 --prefix "system/cpus/cpu[index=0]" --path "state"
 ...
 ```
 

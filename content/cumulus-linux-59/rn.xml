@@ -7,14 +7,24 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4548514</td>
+<td>When a connected route for an SVI interface with VRR configured is installed by FRR, the route might be installed with the next hop interface of the VRR device instead of the SVI. For example, instead of interface {{vlan10}}, the route might install against {{vlan10-v0}}. This prevents next-hop tracking and route installation into hardware.
+This issue can occur in the following conditions:
+&lt;ul&gt;&lt;li&gt;When initially configuring VRF route leaking, the target VRF might not install a route into hardware when leaking directly connected routes for SVI interfaces with VRR enabled.&lt;/li&gt;
+&lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change for any reason, such as link flaps, interface bring-up, {{clagd}} restart, {{switchd}} restart, etc.&lt;/li&gt;&lt;/ul&gt;
+To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command. </td>
+<td>5.9.1-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4540976</td>
 <td>When an SVI interface is brought up with routes installed against it, during subsequent interface updates that are applied to the interface during bringup such as MTU changes, interface forwarding state, MAC learning updates, or multicast forwarding state changes, the routes installed for the interface might be programmed as blackhole routes. This can occur during a fresh boot of a switch. To work around this issue, toggle the interface state of the SVI. </td>
 <td>5.8.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
-<td>4531959</td>
-<td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
+<td>4535748</td>
+<td>The {{uc-discards}} field in the {{nv show interface &lt;interface&gt; counters qos egress-queue-stats}} command output is actually the number of packets discarded per queue, but it is wrongly interpreted as bytes. To work around this issue, convert the data shown in bytes to packets by multiplying by 1024 if the data is in KB, 1024x1024 if the data is in MB, and 1024x1024x1024 if the data is in GB.</td>
 <td>5.9.2-5.13.1</td>
 <td></td>
 </tr>
@@ -73,6 +83,18 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4423335</td>
 <td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
+<td>5.9.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423248</td>
+<td>If you unset an interface static IP address when the interface IP gateway is configured, the {{nv config apply}} command fails with an {{ifreload.service}} error. To work around the issue, unset both the static IP address and gateway together.</td>
+<td>5.9.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423244</td>
+<td>When you enable, then disable adaptive routing, the BGP neighbors might go down because of an unresolved MAC address. To resolve this issue configure another attribute on the interface.</td>
 <td>5.9.0-5.13.1</td>
 <td></td>
 </tr>
@@ -149,12 +171,6 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <td>After you reboot the switch, the ifplugd.service fails to start monitoring the interface.</td>
 <td>5.8.0-5.11.3</td>
 <td>5.12.0-5.13.1</td>
-</tr>
-<tr>
-<td>4259979</td>
-<td>After you reboot the switch, the ifplugd.service fails to start monitoring the interface.</td>
-<td>5.8.0-5.13.1</td>
-<td></td>
 </tr>
 <tr>
 <td>4248634</td>
@@ -886,9 +902,25 @@ You can safely ignore this warning.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4548514</td>
+<td>When a connected route for an SVI interface with VRR configured is installed by FRR, the route might be installed with the next hop interface of the VRR device instead of the SVI. For example, instead of interface {{vlan10}}, the route might install against {{vlan10-v0}}. This prevents next-hop tracking and route installation into hardware.
+This issue can occur in the following conditions:
+&lt;ul&gt;&lt;li&gt;When initially configuring VRF route leaking, the target VRF might not install a route into hardware when leaking directly connected routes for SVI interfaces with VRR enabled.&lt;/li&gt;
+&lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change for any reason, such as link flaps, interface bring-up, {{clagd}} restart, {{switchd}} restart, etc.&lt;/li&gt;&lt;/ul&gt;
+To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command. </td>
+<td>5.9.1-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4540976</td>
 <td>When an SVI interface is brought up with routes installed against it, during subsequent interface updates that are applied to the interface during bringup such as MTU changes, interface forwarding state, MAC learning updates, or multicast forwarding state changes, the routes installed for the interface might be programmed as blackhole routes. This can occur during a fresh boot of a switch. To work around this issue, toggle the interface state of the SVI. </td>
 <td>5.8.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4535748</td>
+<td>The {{uc-discards}} field in the {{nv show interface &lt;interface&gt; counters qos egress-queue-stats}} command output is actually the number of packets discarded per queue, but it is wrongly interpreted as bytes. To work around this issue, convert the data shown in bytes to packets by multiplying by 1024 if the data is in KB, 1024x1024 if the data is in MB, and 1024x1024x1024 if the data is in GB.</td>
+<td>5.9.2-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -896,12 +928,6 @@ You can safely ignore this warning.</td>
 <td>The sudo program included with Cumulus Linux is vulnerable to a local privilege escalation attack CVE-2025-32463.</td>
 <td>5.9.2</td>
 <td>5.9.3-5.13.1</td>
-</tr>
-<tr>
-<td>4531959</td>
-<td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
-<td>5.9.2-5.13.1</td>
-<td></td>
 </tr>
 <tr>
 <td>4531104</td>
@@ -958,6 +984,18 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4423335</td>
 <td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
+<td>5.9.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423248</td>
+<td>If you unset an interface static IP address when the interface IP gateway is configured, the {{nv config apply}} command fails with an {{ifreload.service}} error. To work around the issue, unset both the static IP address and gateway together.</td>
+<td>5.9.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423244</td>
+<td>When you enable, then disable adaptive routing, the BGP neighbors might go down because of an unresolved MAC address. To resolve this issue configure another attribute on the interface.</td>
 <td>5.9.0-5.13.1</td>
 <td></td>
 </tr>
@@ -1034,12 +1072,6 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <td>After you reboot the switch, the ifplugd.service fails to start monitoring the interface.</td>
 <td>5.8.0-5.11.3</td>
 <td>5.12.0-5.13.1</td>
-</tr>
-<tr>
-<td>4259979</td>
-<td>After you reboot the switch, the ifplugd.service fails to start monitoring the interface.</td>
-<td>5.8.0-5.13.1</td>
-<td></td>
 </tr>
 <tr>
 <td>4248634</td>
@@ -2011,6 +2043,16 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4548514</td>
+<td>When a connected route for an SVI interface with VRR configured is installed by FRR, the route might be installed with the next hop interface of the VRR device instead of the SVI. For example, instead of interface {{vlan10}}, the route might install against {{vlan10-v0}}. This prevents next-hop tracking and route installation into hardware.
+This issue can occur in the following conditions:
+&lt;ul&gt;&lt;li&gt;When initially configuring VRF route leaking, the target VRF might not install a route into hardware when leaking directly connected routes for SVI interfaces with VRR enabled.&lt;/li&gt;
+&lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change for any reason, such as link flaps, interface bring-up, {{clagd}} restart, {{switchd}} restart, etc.&lt;/li&gt;&lt;/ul&gt;
+To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command. </td>
+<td>5.9.1-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4540976</td>
 <td>When an SVI interface is brought up with routes installed against it, during subsequent interface updates that are applied to the interface during bringup such as MTU changes, interface forwarding state, MAC learning updates, or multicast forwarding state changes, the routes installed for the interface might be programmed as blackhole routes. This can occur during a fresh boot of a switch. To work around this issue, toggle the interface state of the SVI. </td>
 <td>5.8.0-5.13.1</td>
@@ -2059,6 +2101,18 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4423335</td>
 <td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
+<td>5.9.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423248</td>
+<td>If you unset an interface static IP address when the interface IP gateway is configured, the {{nv config apply}} command fails with an {{ifreload.service}} error. To work around the issue, unset both the static IP address and gateway together.</td>
+<td>5.9.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423244</td>
+<td>When you enable, then disable adaptive routing, the BGP neighbors might go down because of an unresolved MAC address. To resolve this issue configure another attribute on the interface.</td>
 <td>5.9.0-5.13.1</td>
 <td></td>
 </tr>
@@ -2117,12 +2171,6 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <td>After you reboot the switch, the ifplugd.service fails to start monitoring the interface.</td>
 <td>5.8.0-5.11.3</td>
 <td>5.12.0-5.13.1</td>
-</tr>
-<tr>
-<td>4259979</td>
-<td>After you reboot the switch, the ifplugd.service fails to start monitoring the interface.</td>
-<td>5.8.0-5.13.1</td>
-<td></td>
 </tr>
 <tr>
 <td>4245850</td>
@@ -3156,6 +3204,18 @@ To work around this issue, power cycle the switch.</td>
 <td></td>
 </tr>
 <tr>
+<td>4423248</td>
+<td>If you unset an interface static IP address when the interface IP gateway is configured, the {{nv config apply}} command fails with an {{ifreload.service}} error. To work around the issue, unset both the static IP address and gateway together.</td>
+<td>5.9.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4423244</td>
+<td>When you enable, then disable adaptive routing, the BGP neighbors might go down because of an unresolved MAC address. To resolve this issue configure another attribute on the interface.</td>
+<td>5.9.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4423224</td>
 <td>When processing the static IP assignment for an interface previously managed through DHCP, Cumulus Linux fails to clean up the DHCP created state completely. As a result when the IP address assigned by DHCP earlier expires, the switch eventually loses connectivity.</td>
 <td>5.1.0-5.12.1</td>
@@ -3198,12 +3258,6 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <td>After you reboot the switch, the ifplugd.service fails to start monitoring the interface.</td>
 <td>5.8.0-5.11.3</td>
 <td>5.12.0-5.13.1</td>
-</tr>
-<tr>
-<td>4259979</td>
-<td>After you reboot the switch, the ifplugd.service fails to start monitoring the interface.</td>
-<td>5.8.0-5.13.1</td>
-<td></td>
 </tr>
 <tr>
 <td>4218485</td>

@@ -61,12 +61,6 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <td>5.11.2-5.13.1, 5.13.0-5.13.1</td>
 </tr>
 <tr>
-<td>4259979</td>
-<td>After you reboot the switch, the ifplugd.service fails to start monitoring the interface.</td>
-<td>5.8.0-5.11.3</td>
-<td>5.12.0-5.13.1</td>
-</tr>
-<tr>
 <td>4250847</td>
 <td>When the STP state goes down, then back up on the primary MLAG peer, the peerlink state is not updated correctly in {{mstpd}}.</td>
 <td>5.8.0-5.11.0</td>

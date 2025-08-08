@@ -13,6 +13,26 @@
 <td></td>
 </tr>
 <tr>
+<td>4548514</td>
+<td>When a connected route for an SVI interface with VRR configured is installed by FRR, the route might be installed with the next hop interface of the VRR device instead of the SVI. For example, instead of interface {{vlan10}}, the route might install against {{vlan10-v0}}. This prevents next-hop tracking and route installation into hardware.
+This issue can occur in the following conditions:
+&lt;ul&gt;&lt;li&gt;When initially configuring VRF route leaking, the target VRF might not install a route into hardware when leaking directly connected routes for SVI interfaces with VRR enabled.&lt;/li&gt;
+&lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change for any reason, such as link flaps, interface bring-up, {{clagd}} restart, {{switchd}} restart, etc.&lt;/li&gt;&lt;/ul&gt;
+To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command. </td>
+<td>5.9.1-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4548512</td>
+<td>When a connected route for an SVI interface with VRR configured is installed by FRR, the route might be installed with the next hop interface of the VRR device instead of the SVI. For example, instead of interface {{vlan10}}, the route might install against {{vlan10-v0}}. This prevents next-hop tracking and route installation into hardware.
+This issue can occur in the following conditions:
+&lt;ul&gt;&lt;li&gt;When initially configuring VRF route leaking, the target VRF might not install a route into hardware when leaking directly connected routes for SVI interfaces with VRR enabled.&lt;/li&gt;
+&lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change for any reason, such as link flaps, interface bring-up, {{clagd}} restart, {{switchd}} restart, etc.&lt;/li&gt;&lt;/ul&gt;
+To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command. </td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4546389</td>
 <td>The {{nv config show -o commands}} command displays numbered BGP neighbors in IP address range format; however, the {{nv set}} commands fail for BGP numbered neighbors configured in IP address ranges.</td>
 <td>5.13.0-5.13.1</td>
@@ -34,18 +54,6 @@
 <td>4540976</td>
 <td>When an SVI interface is brought up with routes installed against it, during subsequent interface updates that are applied to the interface during bringup such as MTU changes, interface forwarding state, MAC learning updates, or multicast forwarding state changes, the routes installed for the interface might be programmed as blackhole routes. This can occur during a fresh boot of a switch. To work around this issue, toggle the interface state of the SVI. </td>
 <td>5.8.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4539573</td>
-<td>The gNMI value for the sensor alarm-status shows incorrectly. For a raised alarm, the alarm-status is {{True(1)}}  but normally functioning sensors also show {{True(1)}}.</td>
-<td>5.13.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4539322</td>
-<td>When you remove an FRU, such as a PSU, from the switch, stale statistical data from the component is still reported over GNMI and OTLP. </td>
-<td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -73,8 +81,14 @@
 <td></td>
 </tr>
 <tr>
-<td>4531959</td>
-<td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
+<td>4535749</td>
+<td>The {{uc-discards}} field in the {{nv show interface &lt;interface&gt; counters qos egress-queue-stats}} command output is actually the number of packets discarded per queue, but it is wrongly interpreted as bytes. To work around this issue, convert the data shown in bytes to packets by multiplying by 1024 if the data is in KB, 1024x1024 if the data is in MB, and 1024x1024x1024 if the data is in GB.</td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4535748</td>
+<td>The {{uc-discards}} field in the {{nv show interface &lt;interface&gt; counters qos egress-queue-stats}} command output is actually the number of packets discarded per queue, but it is wrongly interpreted as bytes. To work around this issue, convert the data shown in bytes to packets by multiplying by 1024 if the data is in KB, 1024x1024 if the data is in MB, and 1024x1024x1024 if the data is in GB.</td>
 <td>5.9.2-5.13.1</td>
 <td></td>
 </tr>
@@ -123,16 +137,6 @@ To work around this issue, configure consistent protocol match statements in eac
 2025-06-20T20:03:38.785970+09:00 S1-RF10B kernel: [49878794.461984] res 40/00:0c:50:2b:c4/00:00:01:00:00/40 Emask 0×10 (ATA bus error)
 To work around this issue, power cycle the switch.</td>
 <td>5.5.1-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4518822</td>
-<td>When a connected route for an SVI interface with VRR configured is installed by FRR, the route might be installed with the next hop interface of the VRR device instead of the SVI. For example, instead of interface {{vlan10}}, the route might install against {{vlan10-v0}}. This prevents next-hop tracking and route installation into hardware.
-This issue can occur in the following conditions:
-&lt;ul&gt;&lt;li&gt;When initially configuring VRF route leaking, the target VRF might not install a route into hardware when leaking directly connected routes for SVI interfaces with VRR enabled.&lt;/li&gt;
-&lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change for any reason, such as link flaps, interface bring-up, {{clagd}} restart, {{switchd}} restart, etc.&lt;/li&gt;&lt;/ul&gt;
-To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command. </td>
-<td>5.11.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -190,12 +194,6 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>4500170</td>
 <td>When you use the API to compare a revision between a revision ID and an applied revision, the output adds the encrypted values in the diffs incorrectly, indicating that there are diffs when there are no diffs. The NVUE {{nv config diff}} command shows the correct output.</td>
 <td>5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4500033</td>
-<td>When using TACACS or Radius authentication to run CLI commands, the available memory on the switch might reduce over time.</td>
-<td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -281,12 +279,6 @@ prometheus ALL = NOPASSWD: /usr/sbin/lldpcli -f json show neighbor</td>
 <td></td>
 </tr>
 <tr>
-<td>4474924</td>
-<td>The {{nv config show -o commands}} command displays numbered BGP neighbors in IP address range format; however, the {{nv set}} commands fail for BGP numbered neighbors configured in IP address ranges.</td>
-<td>5.13.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4471932</td>
 <td>ERSPAN is not generated with the intended VLAN tag but is always sent out untagged. If the interface is a trunk port or a subinterface, the peer might discard these packets.</td>
 <td>5.13.0-5.13.1</td>
@@ -332,12 +324,6 @@ prometheus ALL = NOPASSWD: /usr/sbin/lldpcli -f json show neighbor</td>
 <td>4460588</td>
 <td>The NVIDIA SN5610 switch might experience FEC burstiness
 with multiple optics, which can impact link stability and performance.</td>
-<td>5.13.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4458898</td>
-<td>The {{nv config patch}} and {{nv config replace}} commands have no effect with filenames with relative paths, such as {{./config.yaml}}, {{../config.yaml},  and so on.</td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
@@ -473,27 +459,15 @@ cumulus@switch:~$ git gc</td>
 <td></td>
 </tr>
 <tr>
-<td>4423249</td>
-<td>If you unset an interface static IP address when the interface IP gateway is configured, the {{nv config apply}} command fails with an {{ifreload.service}} error. To work around the issue, unset both the static IP address and gateway together.</td>
-<td>5.13.0-5.13.1</td>
-<td>5.11.2</td>
-</tr>
-<tr>
 <td>4423248</td>
 <td>If you unset an interface static IP address when the interface IP gateway is configured, the {{nv config apply}} command fails with an {{ifreload.service}} error. To work around the issue, unset both the static IP address and gateway together.</td>
-<td>5.13.0-5.13.1</td>
+<td>5.9.0-5.13.1</td>
 <td></td>
-</tr>
-<tr>
-<td>4423245</td>
-<td>When you enable, then disable adaptive routing, BGP neighbors might go down because of an unresolved MAC address. To resolve this issue configure another attribute on the interface.</td>
-<td>5.13.0-5.13.1</td>
-<td>5.11.2</td>
 </tr>
 <tr>
 <td>4423244</td>
 <td>When you enable, then disable adaptive routing, the BGP neighbors might go down because of an unresolved MAC address. To resolve this issue configure another attribute on the interface.</td>
-<td>5.13.0-5.13.1</td>
+<td>5.9.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -635,12 +609,6 @@ The interface shows "screaming" emojis and "Could not render." </td>
 <td>NVUE overwrites the MOTD file during NVUE configuration with no option to ignore it.
 </td>
 <td>5.11.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4259979</td>
-<td>After you reboot the switch, the ifplugd.service fails to start monitoring the interface.</td>
-<td>5.8.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1242,6 +1210,26 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
+<td>4548514</td>
+<td>When a connected route for an SVI interface with VRR configured is installed by FRR, the route might be installed with the next hop interface of the VRR device instead of the SVI. For example, instead of interface {{vlan10}}, the route might install against {{vlan10-v0}}. This prevents next-hop tracking and route installation into hardware.
+This issue can occur in the following conditions:
+&lt;ul&gt;&lt;li&gt;When initially configuring VRF route leaking, the target VRF might not install a route into hardware when leaking directly connected routes for SVI interfaces with VRR enabled.&lt;/li&gt;
+&lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change for any reason, such as link flaps, interface bring-up, {{clagd}} restart, {{switchd}} restart, etc.&lt;/li&gt;&lt;/ul&gt;
+To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command. </td>
+<td>5.9.1-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4548512</td>
+<td>When a connected route for an SVI interface with VRR configured is installed by FRR, the route might be installed with the next hop interface of the VRR device instead of the SVI. For example, instead of interface {{vlan10}}, the route might install against {{vlan10-v0}}. This prevents next-hop tracking and route installation into hardware.
+This issue can occur in the following conditions:
+&lt;ul&gt;&lt;li&gt;When initially configuring VRF route leaking, the target VRF might not install a route into hardware when leaking directly connected routes for SVI interfaces with VRR enabled.&lt;/li&gt;
+&lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change for any reason, such as link flaps, interface bring-up, {{clagd}} restart, {{switchd}} restart, etc.&lt;/li&gt;&lt;/ul&gt;
+To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command. </td>
+<td>5.11.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
 <td>4546389</td>
 <td>The {{nv config show -o commands}} command displays numbered BGP neighbors in IP address range format; however, the {{nv set}} commands fail for BGP numbered neighbors configured in IP address ranges.</td>
 <td>5.13.0-5.13.1</td>
@@ -1251,18 +1239,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>4540976</td>
 <td>When an SVI interface is brought up with routes installed against it, during subsequent interface updates that are applied to the interface during bringup such as MTU changes, interface forwarding state, MAC learning updates, or multicast forwarding state changes, the routes installed for the interface might be programmed as blackhole routes. This can occur during a fresh boot of a switch. To work around this issue, toggle the interface state of the SVI. </td>
 <td>5.8.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4539573</td>
-<td>The gNMI value for the sensor alarm-status shows incorrectly. For a raised alarm, the alarm-status is {{True(1)}}  but normally functioning sensors also show {{True(1)}}.</td>
-<td>5.13.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4539322</td>
-<td>When you remove an FRU, such as a PSU, from the switch, stale statistical data from the component is still reported over GNMI and OTLP. </td>
-<td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1284,14 +1260,14 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>4535804</td>
-<td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
-<td>5.10.0-5.13.1</td>
+<td>4535749</td>
+<td>The {{uc-discards}} field in the {{nv show interface &lt;interface&gt; counters qos egress-queue-stats}} command output is actually the number of packets discarded per queue, but it is wrongly interpreted as bytes. To work around this issue, convert the data shown in bytes to packets by multiplying by 1024 if the data is in KB, 1024x1024 if the data is in MB, and 1024x1024x1024 if the data is in GB.</td>
+<td>5.11.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
-<td>4531959</td>
-<td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
+<td>4535748</td>
+<td>The {{uc-discards}} field in the {{nv show interface &lt;interface&gt; counters qos egress-queue-stats}} command output is actually the number of packets discarded per queue, but it is wrongly interpreted as bytes. To work around this issue, convert the data shown in bytes to packets by multiplying by 1024 if the data is in KB, 1024x1024 if the data is in MB, and 1024x1024x1024 if the data is in GB.</td>
 <td>5.9.2-5.13.1</td>
 <td></td>
 </tr>
@@ -1325,16 +1301,6 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 2025-06-20T20:03:38.785970+09:00 S1-RF10B kernel: [49878794.461984] res 40/00:0c:50:2b:c4/00:00:01:00:00/40 Emask 0×10 (ATA bus error)
 To work around this issue, power cycle the switch.</td>
 <td>5.5.1-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4518822</td>
-<td>When a connected route for an SVI interface with VRR configured is installed by FRR, the route might be installed with the next hop interface of the VRR device instead of the SVI. For example, instead of interface {{vlan10}}, the route might install against {{vlan10-v0}}. This prevents next-hop tracking and route installation into hardware.
-This issue can occur in the following conditions:
-&lt;ul&gt;&lt;li&gt;When initially configuring VRF route leaking, the target VRF might not install a route into hardware when leaking directly connected routes for SVI interfaces with VRR enabled.&lt;/li&gt;
-&lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change for any reason, such as link flaps, interface bring-up, {{clagd}} restart, {{switchd}} restart, etc.&lt;/li&gt;&lt;/ul&gt;
-To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command. </td>
-<td>5.11.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1389,21 +1355,9 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
-<td>4500033</td>
-<td>When using TACACS or Radius authentication to run CLI commands, the available memory on the switch might reduce over time.</td>
-<td>5.13.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4499106</td>
 <td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
 <td>5.9.2-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4499025</td>
-<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
-<td>5.11.2-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1422,6 +1376,12 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>4493540</td>
 <td>The CBS field in the {{nv show system control-plane policer}} command output might not show the configured value.</td>
 <td>5.13.0-5.13.1</td>
+<td></td>
+</tr>
+<tr>
+<td>4486668</td>
+<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
+<td>5.11.2-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1471,12 +1431,6 @@ prometheus ALL = NOPASSWD: /usr/sbin/lldpcli -f json show neighbor</td>
 <td></td>
 </tr>
 <tr>
-<td>4474924</td>
-<td>The {{nv config show -o commands}} command displays numbered BGP neighbors in IP address range format; however, the {{nv set}} commands fail for BGP numbered neighbors configured in IP address ranges.</td>
-<td>5.13.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4471932</td>
 <td>ERSPAN is not generated with the intended VLAN tag but is always sent out untagged. If the interface is a trunk port or a subinterface, the peer might discard these packets.</td>
 <td>5.13.0-5.13.1</td>
@@ -1522,12 +1476,6 @@ prometheus ALL = NOPASSWD: /usr/sbin/lldpcli -f json show neighbor</td>
 <td>4460588</td>
 <td>The NVIDIA SN5610 switch might experience FEC burstiness
 with multiple optics, which can impact link stability and performance.</td>
-<td>5.13.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4458898</td>
-<td>The {{nv config patch}} and {{nv config replace}} commands have no effect with filenames with relative paths, such as {{./config.yaml}}, {{../config.yaml},  and so on.</td>
 <td>5.13.0-5.13.1</td>
 <td></td>
 </tr>
@@ -1639,69 +1587,15 @@ cumulus@switch:~$ git gc</td>
 <td></td>
 </tr>
 <tr>
-<td>4423368</td>
-<td>When all links go down or the switch reboots,  you see next hop group churn from Zebra to the SOO next hop group. This issue might cause some convergence degradation. </td>
-<td>5.12.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4423360</td>
-<td>After a remote link flap, neighbor entries using the link might not get resolved immediately. Only when some traffic uses the nexthop will they be resolved.</td>
-<td>5.12.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4423352</td>
-<td>ZTP scripts return an error due to incorrect ASCI to UTF-8 conversion.</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4423335</td>
-<td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
+<td>4423248</td>
+<td>If you unset an interface static IP address when the interface IP gateway is configured, the {{nv config apply}} command fails with an {{ifreload.service}} error. To work around the issue, unset both the static IP address and gateway together.</td>
 <td>5.9.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
-<td>4423277</td>
-<td>When the username in a 802.1X session includes the equals (=) character, the ISSU warmboot fails. Make sure that = is not part of the 802.1X session name.</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4423269</td>
-<td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4423249</td>
-<td>If you unset an interface static IP address when the interface IP gateway is configured, the {{nv config apply}} command fails with an {{ifreload.service}} error. To work around the issue, unset both the static IP address and gateway together.</td>
-<td>5.13.0-5.13.1</td>
-<td>5.11.2</td>
-</tr>
-<tr>
-<td>4423248</td>
-<td>If you unset an interface static IP address when the interface IP gateway is configured, the {{nv config apply}} command fails with an {{ifreload.service}} error. To work around the issue, unset both the static IP address and gateway together.</td>
-<td>5.13.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4423245</td>
-<td>When you enable, then disable adaptive routing, BGP neighbors might go down because of an unresolved MAC address. To resolve this issue configure another attribute on the interface.</td>
-<td>5.13.0-5.13.1</td>
-<td>5.11.2</td>
-</tr>
-<tr>
 <td>4423244</td>
 <td>When you enable, then disable adaptive routing, the BGP neighbors might go down because of an unresolved MAC address. To resolve this issue configure another attribute on the interface.</td>
-<td>5.13.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4423235</td>
-<td>The {{snmpd}} service generates debugging logs of sudo calls. To work around this issue, disable sudo logging for the specific commands run by the Debian-snmp user in the {{/etc/sudoers.d/snmp}} file by adding {{Defaults:Debian-snmp !syslog}}.</td>
-<td>5.11.0-5.13.1</td>
+<td>5.9.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1772,12 +1666,6 @@ onie-nos-install /$devname/onie-installer</td>
 <td></td>
 </tr>
 <tr>
-<td>4370954</td>
-<td>After enabling, then disabling truncation on a SPAN session,  truncated packets are still received on the SPAN destination. To work around this issue, remove the SPAN session configuration, reboot the switch, then reconfigure the SPAN session without truncation.</td>
-<td>5.12.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4360826</td>
 <td>On rare occasions, when you run the NVUE {{nv config apply}} command, {{switchd}} crashes, then restarts after the crash and resumes its normal flow of operation.</td>
 <td>5.13.0-5.13.1</td>
@@ -1833,28 +1721,9 @@ The interface shows "screaming" emojis and "Could not render." </td>
 <td></td>
 </tr>
 <tr>
-<td>4271215</td>
-<td>NVUE overwrites the MOTD file during NVUE configuration with no option to ignore it.
-</td>
-<td>5.11.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4259979</td>
-<td>After you reboot the switch, the ifplugd.service fails to start monitoring the interface.</td>
-<td>5.8.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
 <td>4249096</td>
 <td>Binary upgrade from Cumulus Linux 4.3.1 to 5.12.0 and later is not supported. To work around this issue, perform a binary upgrade from Cumulus Linux 4.3.1 to 5.9.0, then perform a binary upgrade from Cumulus Linux 5.9.0 to 5.12.0.</td>
 <td>5.12.0-5.13.1</td>
-<td></td>
-</tr>
-<tr>
-<td>4246859</td>
-<td>The {{nv show service ntp &lt;vrf&gt;}} command displays the peers that are discovered together with the configured NTP servers instead of displaying only the NTP configuration. As a result, the "applied" and "operational" columns have different values, which causes confusion.</td>
-<td>5.11.0-5.13.1</td>
 <td></td>
 </tr>
 <tr>

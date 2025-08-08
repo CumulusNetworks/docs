@@ -317,18 +317,18 @@ To upgrade the switch with package upgrade:
 2. Fetch the latest update metadata from the repository and review potential upgrade issues (in some cases, upgrading new packages might also upgrade additional existing packages due to dependencies).
 
    ```
-   cumulus@switch:~$ nv action upgrade system packages to latest use-vrf default dry-run
+   cumulus@switch:~$ sudo nv action upgrade system packages to latest use-vrf default dry-run
    ```
 
-   By default, the NVUE `nv action upgrade system packages` command runs in the management VRF. To run the command in a non-management VRF such as `default`, you must use the `use-vrf <vrf>` option.
+   By default, the NVUE `sudo nv action upgrade system packages` command runs in the management VRF. To run the command in a non-management VRF such as `default`, you must use the `use-vrf <vrf>` option.
 
 3. Upgrade all the packages to the latest distribution.
 
     ```
-    cumulus@switch:~$ nv action upgrade system packages to latest use-vrf default
+    cumulus@switch:~$ sudo nv action upgrade system packages to latest use-vrf default
     ```
 
-    By default, the NVUE `nv action upgrade system packages` command runs in the management VRF. To run the command in a non-management VRF such as `default`, you must use the `use-vrf <vrf>` option.
+    By default, the NVUE `sudo nv action upgrade system packages` command runs in the management VRF. To run the command in a non-management VRF such as `default`, you must use the `use-vrf <vrf>` option.
 
     If you see errors for expired GPG keys that prevent you from upgrading packages, follow the steps in [Upgrading Expired GPG Keys]({{<ref "/knowledge-base/Installing-and-Upgrading/Upgrading/Update-Expired-GPG-Keys" >}}).
 

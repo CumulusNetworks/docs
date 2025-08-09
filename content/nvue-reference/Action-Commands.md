@@ -634,6 +634,31 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action clear interface \<interface-id\> link phy-detail</h>
+
+Clears interface physical layer error counters.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<interface-id>` | The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.14.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear interface swp1 link phy-detail
+Action executing ... 
+swp1 link phy-detail counters cleared. 
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action clear interface \<interface-id\> qos buffer</h>
 
 Clears QoS buffer counters on the specified interface.
@@ -974,6 +999,62 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action clear router segment-routing srv6 stats</h>
+
+Clears all segment routing statistics.
+
+### Version History
+
+Introduced in Cumulus Linux 5.14.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear router segment-routing srv6 stats 
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear router segment-routing srv6 stats sid \<sid-id\></h>
+
+Clears the segment routing statistics for a specific SID.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<sid-id>` |  The static segment identifier. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.14.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear router segment-routing srv6 stats sid 2001:db8:1:1::100/48
+Action succeeded
+```
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear router segment-routing srv6 stats sid no-sid-drops</h>
+
+Clears segment routing statistics for no-SID dropped packets.
+
+### Version History
+
+Introduced in Cumulus Linux 5.14.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear router segment-routing srv6 stats no-sid-drops 
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action clear service ptp \<instance-id\> monitor violations log max-offset</h>
 
 Clears the PTP monitor violation log maximum offset value.
@@ -1089,6 +1170,23 @@ Introduced in Cumulus Linux 5.9.0
 
 ```
 cumulus@switch:~$ nv action clear system link flap-protection violation
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear system forwarding packet-trim counters</h>
+
+Clears the global packet trimming counter that is shown in the `nv show system forwarding packet-trim` command output.
+
+### Version History
+
+Introduced in Cumulus Linux 5.14.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear system forwarding packet-trim counters
 Action succeeded
 ```
 

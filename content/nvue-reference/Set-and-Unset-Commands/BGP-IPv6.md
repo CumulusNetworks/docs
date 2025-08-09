@@ -653,7 +653,7 @@ cumulus@switch:~$ nv set vrf RED router bgp address-family ipv6-unicast route-im
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast route-import from-vrf list</h>
+## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast route-import from-vrf list \<leak-vrf-id\></h>
 
 Configures the VRF from which to import IPv6 routes. You can specify multiple VRFs.
 
@@ -662,6 +662,7 @@ Configures the VRF from which to import IPv6 routes. You can specify multiple VR
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
+| `<leak-vrf-id>` |   The VRF name. |
 
 ### Version History
 

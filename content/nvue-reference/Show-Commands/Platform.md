@@ -1104,6 +1104,31 @@ ch-4-tx-bias-current   : 6.750 mA
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show platform transceiver \<interface\> temperature</h>
+
+Shows the temperature threshold configuration for a port.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` |  The interface with the SFP or QSFP module. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.14.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show platform transceiver swp1 temperature 
+          operational  applied 
+--------  -----------  ------- 
+setpoint  60           60 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show interface \<interface-id\> transceiver thresholds</h>
 
 Shows the thresholds for the SFP or QSFP module for a specific interface.

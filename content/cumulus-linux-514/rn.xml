@@ -7,6 +7,15 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4572507</td>
+<td>When you upgrade a switch using the {{nv action upgrade}} command, the upgrade fails and an {{nvued}} core file is generated.
+
+To avoid this issue, preface the upgrade command with {{sudo}}:
+sudo nv action upgrade system packages to latest</td>
+<td>5.13.1-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4562200</td>
 <td>On the Spectrum-1 switch, {{switchd}} might crash during warm boot.</td>
 <td>5.14.0</td>
@@ -937,19 +946,14 @@ To work around this issue, power cycle the switch.</td>
 <td>5.6.0-5.13.1</td>
 </tr>
 <tr>
-<td>4502966</td>
-<td>Users with {{nv show}} privileges only can still execute the {{nv config apply}} and related commands.</td>
-<td>5.9.2-5.13.1</td>
-</tr>
-<tr>
 <td>4502199</td>
 <td>The TFTP client drops packets due to default firewall rules.</td>
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>
-<td>4501645</td>
+<td>4501642</td>
 <td>When you connect the QLOUIE cable with FW 52.181.1003 to an NVIDIA SN5600 switch, you might see link flaps. </td>
-<td>5.11.0-5.13.1</td>
+<td>5.11.0-5.11.1</td>
 </tr>
 <tr>
 <td>4500170</td>
@@ -1020,21 +1024,8 @@ systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
 <td>5.13.1</td>
 </tr>
 <tr>
-<td>4475074</td>
-<td>The SN5610 switch records a High FEC Bin Error at room temperature.</td>
-<td>5.13.0-5.13.1</td>
-</tr>
-<tr>
 <td>4474924</td>
 <td>The {{nv config show -o commands}} command displays numbered BGP neighbors in IP address range format; however, the {{nv set}} commands fail for BGP numbered neighbors configured in IP address ranges.</td>
-<td>5.13.0-5.13.1</td>
-</tr>
-<tr>
-<td>4472549</td>
-<td>When running tens of thousands of {{nv set}} commands, the {{/var/lib/nvue}} directory might grow to several GBs in size, potentially using all the disk space. To work around this issue, run the following commands to reduce the disk space in the {{/var/lib/nvue}} directory:
-cumulus@switch:~$ sudo su
-cumulus@switch:~$ cd /var/lib/nvue/config
-cumulus@switch:~$ git gc</td>
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>
@@ -1079,18 +1070,18 @@ with multiple optics, which can impact link stability and performance.</td>
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>
-<td>4458897</td>
-<td>The {{nv config patch}} and {{nv config replace}} commands have no effect with filenames with relative paths, such as {{./config.yaml}}, {{../config.yaml},  and so on.</td>
+<td>4458873</td>
+<td>The SN5610 switch records a High FEC Bin Error at room temperature.</td>
 <td>5.13.0-5.13.1</td>
-</tr>
-<tr>
-<td>4457389</td>
-<td>On rare occasions, when bridge or L2VNI interfaces are coming up or transitioning state, type 2 EVPN routes might not be properly installed. To work around this issue, flap the VNI interface.</td>
-<td>5.9.3-5.13.1</td>
 </tr>
 <tr>
 <td>4457165</td>
 <td>When a spine switch reboots and comes back online, leaf switches might cause prolonged convergence times due to premature traffic forwarding. The leaf switch immediately begins ECMP load-balancing traffic to the recovered spine before the spine has fully programmed its routing tables, resulting in traffic blackholing during the spine's route convergence process.</td>
+<td>5.13.0-5.13.1</td>
+</tr>
+<tr>
+<td>4449947</td>
+<td>The {{nv config patch}} and {{nv config replace}} commands have no effect with filenames with relative paths, such as {{./config.yaml}}, {{../config.yaml},  and so on.</td>
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>
@@ -1108,6 +1099,19 @@ with multiple optics, which can impact link stability and performance.</td>
 <td>During link down events affecting a subset of local links, {{switchd}} might observe extra route deletions due to timing mismatches between Zebra and kernel processing of Next Hop Group (NHG) changes. Routes should transition directly from one NHG to another, but instead get temporarily deleted and reinstalled, causing unnecessary churn. Zebra logs might show {{Extended Error: Nexthop id does not exist}} messages during partial link down scenarios.
 
 </td>
+<td>5.13.0-5.13.1</td>
+</tr>
+<tr>
+<td>4447419</td>
+<td>Users with {{nv show}} privileges only can still execute the {{nv config apply}} and related commands.</td>
+<td>5.9.2-5.11.1</td>
+</tr>
+<tr>
+<td>4443870</td>
+<td>When running tens of thousands of {{nv set}} commands, the {{/var/lib/nvue}} directory might grow to several GBs in size, potentially using all the disk space. To work around this issue, run the following commands to reduce the disk space in the {{/var/lib/nvue}} directory:
+cumulus@switch:~$ sudo su
+cumulus@switch:~$ cd /var/lib/nvue/config
+cumulus@switch:~$ git gc</td>
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>
@@ -1136,6 +1140,11 @@ with multiple optics, which can impact link stability and performance.</td>
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>
+<td>4425975</td>
+<td>On rare occasions, when bridge or L2VNI interfaces are coming up or transitioning state, type 2 EVPN routes might not be properly installed. To work around this issue, flap the VNI interface.</td>
+<td>5.9.3-5.11.1</td>
+</tr>
+<tr>
 <td>4425299</td>
 <td>After upgrading from Cumulus Linux 5.12 to 5.13 on the NVIDIA SN5400 switch bonus port, PTP does not converge. To work around this issue, disable, then enable the bonus port after upgrade.</td>
 <td>5.13.0-5.13.1</td>
@@ -1146,14 +1155,14 @@ with multiple optics, which can impact link stability and performance.</td>
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>
-<td>4422898</td>
-<td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables, the process consumes excessive memory resulting in out of memory crashes. </td>
-<td>5.0.0-5.13.1</td>
-</tr>
-<tr>
 <td>4414935</td>
 <td>Interface counters retrieved from the kernel are not reset when {{switchd}} restarts. These kernel counters are inconsistent with other telemetry counters that do reset when {{switchd}} restarts.</td>
 <td>5.13.0-5.13.1</td>
+</tr>
+<tr>
+<td>4413450</td>
+<td>When displaying BGP neighbor advertised routes in JSON format with very large routing tables, the process consumes excessive memory resulting in out of memory crashes. </td>
+<td>5.0.0-5.11.1, 5.13.0-5.13.1</td>
 </tr>
 <tr>
 <td>4408549</td>

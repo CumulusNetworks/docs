@@ -43,7 +43,7 @@ cumulus@switch:~$ nv set interface swp1 link auto-negotiate on
 cumulus@switch:~$ nv config apply
 ```
 
-If you set the link speed for a port and set auto-negotiation OFF, the link comes up with auto-negotiation OFF and force mode is set. The switch does not advertise the configured link speed setting to the other side of the connection.
+If you set the link speed for a port and set auto-negotiation `off`, the link comes up with auto-negotiation `off` and force mode is set. The switch does not advertise the configured link speed setting to the other side of the connection.
 
 ```
 cumulus@switch:~$ nv set interface swp1 link speed 400G
@@ -74,7 +74,7 @@ iface swp1
 ...
 ```
 
-If you set the link speed for a port and set auto-negotiation OFF, the link comes up with auto-negotiation OFF and force mode is set. The switch does not advertise the configured link speed setting to the other side of the connection.
+If you set the link speed for a port and set auto-negotiation `off`, the link comes up with auto-negotiation `off` and force mode is set. The switch does not advertise the configured link speed setting to the other side of the connection.
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces

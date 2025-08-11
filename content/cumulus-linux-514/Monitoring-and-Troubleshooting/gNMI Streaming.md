@@ -58,7 +58,7 @@ cumulus@switch:~$ nv set system gnmi-server mtls crl /etc/ssl/certs/crl.crt
 cumulus@switch:~$ nv config apply
 ```
 
-### Configure gNMI Dial-Out Mode
+### Configure gNMI Dial-out Mode
 
 In dial-out telemetry mode, the Cumulus Linux switch initiates the gRPC connection to the collector through a gRPC tunnel server and assumes the role of the gRPC client.
 
@@ -240,7 +240,37 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 
 |  Name | Description |
 |------ | ----------- |
-| `/system/adaptive-routing/state/counters/congestion-change` | The number of adaptive routing change events that triggered due to congestion or link down.|
+| `/system/adaptive-routing/state/counters/congestion-changes` | The number of adaptive routing change events that triggered due to congestion or link down.|
+
+{{< /tab >}}
+{{< tab "BGP">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp` |Top-level configuration and state for the BGP router. |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/afi-safis/afi-safi[afi-safi-name]/state/prefixes/installed` | The number of prefixes received from the neighbor that are installed in the network instance RIB and actively used for forwarding.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/afi-safis/afi-safi[afi-safi-name]/state/prefixes/received` | The number of prefixes that are received from the neighbor after applying any policies. This count is the number of prefixes present in the post-policy Adj-RIB-In for the neighbor.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/afi-safis/afi-safi[afi-safi-name]/state/prefixes/sent` | The number of prefixes that are advertised to the neighbor after applying any policies. This count is the number of prefixes present in the post-policy Adj-RIB-Out for the neighbor.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state` | BGP neighbor state.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/description` | * BGP neighbor state description.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/established-transitions` | Number of transitions to the Established state for the neighbor session. |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/last-established` | * The time that the BGP session last transitioned in or out of the Established state. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC). |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/local-as` | * The local autonomous system number used when establishing sessions with the remote peer or peer group, if this differs from the global BGP router autonomous system number.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages` | Counters for BGP messages sent and received from the neighbor.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/received` | Counters for BGP messages received from the neighbor. |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/received/last-notification-error-code` | * The last BGP error sent or received on the peering session.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/received/UPDATE` | Number of BGP UPDATE messages announcing, withdrawing, or modifying paths exchanged.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/sent` | Counters relating to BGP messages sent to the neighbor.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/sent/last-notification-error-code` | * The last BGP error sent or received on the peering session.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/sent/UPDATE` | Number of BGP UPDATE messages announcing, withdrawing or modifying paths exchanged.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/neighbor-address` | * Address of the BGP peer, either in IPv4 or IPv6.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/peer-as` | * AS number of the peer.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/peer-group` | * The peer-group with which this neighbor is associated|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/peer-type` | * Explicitly designate the peer or peer group as internal (iBGP) or external (eBGP).|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/queues/input` | The number of messages received from the peer currently queued.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/queues/output` | The number of messages queued to be sent to the peer.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/session-state` | Operational state of the BGP peer. |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor/state` | Operational state data for interface hold-time.|
 
 {{< /tab >}}
 {{< tab "Interface">}}
@@ -277,7 +307,9 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/interfaces/interface[name]/ethernet/state/hw-mac-address` | * System defined default MAC address for the interface. |
 | `/interfaces/interface[name]/ethernet/state/mac-address​` | * MAC address for the interface.|
 | `/interfaces/interface[name]/ethernet/state/negotiated-duplex-mode` | When auto-negotiate is set to TRUE, and the interface has completed auto-negotiation with the remote peer, this value shows the negotiated duplex mode.|
-| `/interfaces/interface[name]/ethernet/state/port-speed` | An estimate of the interface current bandwidth in units of 1,000,000 bits per second.|
+| `/interfaces/interface[name]/ethernet/state/auto-negotiate` | * Indicates if the interface is configured for auto-negotiation.|
+| `/interfaces/interface[name]/ethernet/state/negotiated-port-speed` | * If auto-negotiation is enabled, this is the negotiated port speed. If auto-negotiation is disabled, you do not see this metric. |
+| `/interfaces/interface[name]/ethernet/state/port-speed` | If auto-negotiation is enabled, the port speed is the highest advertised speed. If auto-negotiation is disabled, the port speed is the operational speed value.|
 | `/interfaces/interface[name]/rates/state/in-bits-rate` | The calculated received rate of the interface, measured in bits per second.|
 | `/interfaces/interface[name]/rates/state/in-pkts-rate` | The calculated received rate of the interface, measured in packets per second.|
 | `/interfaces/interface[name]/rates/state/out-bits-rate` | The calculated transmitted rate of the interface, measured in bits per second.|
@@ -332,6 +364,13 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/lldp/state/enable` | * If LLDP is enabled.|
 
 {{< /tab >}}
+{{< tab "Packet Trimming">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/qos/packet-trimming/state/counters/trimmed-unicast-pkts`| * The number of trimmed packets.|
+
+{{< /tab >}}
 {{< tab "Platform">}}
 
 |  Name | Description |
@@ -379,13 +418,6 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/components/component[name]/transceiver/state/vendor-rev​` | * Transceiver vendor revision number. |
 
 {{< /tab >}}
-{{< tab "Packet Trimming">}}
-
-|  Name | Description |
-|------ | ----------- |
-| `/qos/packet-trimming/state/counters/trimmed-unicast-pkts`| * The number of trimmed packets.|
-
-{{< /tab >}}
 {{< tab "QoS">}}
 
 |  Name | Description |
@@ -413,43 +445,13 @@ The following table provides updated QoS metrics:
 {{%/notice%}}
 
 {{< /tab >}}
-{{< tab "BGP">}}
-
-|  Name | Description |
-|------ | ----------- |
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp` |Top-level configuration and state for the BGP router. |
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/afi-safis/afi-safi[afi-safi-name]/state/prefixes/installed` | The number of prefixes received from the neighbor that are installed in the network instance RIB and actively used for forwarding.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/afi-safis/afi-safi[afi-safi-name]/state/prefixes/received` | The number of prefixes that are received from the neighbor after applying any policies. This count is the number of prefixes present in the post-policy Adj-RIB-In for the neighbor.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/afi-safis/afi-safi[afi-safi-name]/state/prefixes/sent` | The number of prefixes that are advertised to the neighbor after applying any policies. This count is the number of prefixes present in the post-policy Adj-RIB-Out for the neighbor.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state` | BGP neighbor state.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/description` | * BGP neighbor state description.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/established-transitions` | Number of transitions to the Established state for the neighbor session. |
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/last-established` | * The time that the BGP session last transitioned in or out of the Established state. The value is the timestamp in nanoseconds relative to the Unix Epoch (Jan 1, 1970 00:00:00 UTC). |
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/local-as` | * The local autonomous system number used when establishing sessions with the remote peer or peer group, if this differs from the global BGP router autonomous system number.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages` | Counters for BGP messages sent and received from the neighbor.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/received` | Counters for BGP messages received from the neighbor. |
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/received/last-notification-error-code` | * The last BGP error sent or received on the peering session.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/received/UPDATE` | Number of BGP UPDATE messages announcing, withdrawing, or modifying paths exchanged.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/sent` | Counters relating to BGP messages sent to the neighbor.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/sent/last-notification-error-code` | * The last BGP error sent or received on the peering session.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/messages/sent/UPDATE` | Number of BGP UPDATE messages announcing, withdrawing or modifying paths exchanged.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/neighbor-address` | * Address of the BGP peer, either in IPv4 or IPv6.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/peer-as` | * AS number of the peer.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/peer-group` | * The peer-group with which this neighbor is associated|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/peer-type` | * Explicitly designate the peer or peer group as internal (iBGP) or external (eBGP).|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/queues/input` | The number of messages received from the peer currently queued.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/queues/output` | The number of messages queued to be sent to the peer.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor[neighbor-address]/state/session-state` | Operational state of the BGP peer. |
-| `/network-instances/network-instance[name]/protocols/protocol[identifier][name]/bgp/neighbors/neighbor/state` | Operational state data for interface hold-time.|
-
-{{< /tab >}}
 {{< tab "SRv6">}}
 
 |  Name | Description |
 |------ | ----------- |
 |`/network-instances/network-instance[name]/srv6/global/state/counters/no-sid-drops` | * The number of packets dropped due to no matching SRv6 SID.|
 | `/network-instances/network-instance[name]/srv6/sids/sid[id]/id`| * The SRv6 SID (segment identifier).|
-| `/network-instances/network-instance/srv6/sids/sid[id]/state/counters/in-pkts` | * The number of packets received for this SRv6 SID.|
+| `/network-instances/network-instance[name]/srv6/sids/sid[id]/state/counters/in-pkts` | * The number of packets received for this SRv6 SID.|
 
 {{< /tab >}}
 {{< tab "System">}}
@@ -542,57 +544,44 @@ The following table provides updated QoS metrics:
 | `/system/processes/process[pid]/state/pid`| * Process PID |
 | `/system/processes/process[pid]/state/memory-usage` | * Bytes allocated and still in use by the process. |
 | `/system/processes/process[pid]/state/memory-utilization` | * Percentage of RAM that the process is using. |
-| `/system/processes/process[pid]/state/cpu-utilization` | * Percentage of CPU that the process is using. |
+| `/system/processes/process[pid]/state/cpu-utilization` | * Percentage of CPU that the process is using, relative to total system CPU capacity (all cores combined). |
 
 {{< /tab >}}
 {{< /tabs >}}
 <!-- vale on -->
 ### User Credentials and Authentication
 
-User authentication is enabled by default. gNMI subscription requests must include the username and password of a user with NVUE API access permissions, either in an HTTP Basic Authentication header according to RFC7617 or a gRPC Metadata header.
+User authentication is enabled by default. gNMI subscription requests must include the user authentication credentials with NVUE API access permissions, either in an HTTP basic authentication header according to RFC7617 or a gRPC metadata header.
 
 ### gNMI Client Requests
 
-You can use your gNMI client on a host to request capabilities and data to which the Agent subscribes. The examples below use the gNMIc client.
+You can use your gNMI client on a host to request capabilities and data to which the gNMI agent subscribes.
 
-#### Dial-in Mode Example
+#### Dial-in Mode Examples
 
-The following example shows a basic Dial-in Mode Subscribe request in an HTTP Basic Authentication header:
-
-```
-gnmic subscribe --mode stream --path "/qos/interfaces/interface[interface-id=swp1]/output/queues/queue[name=1]/state/transmit-octets" -i 10s --tls-cert gnmi_client.crt --tls-key gnmi_client.key -u cumulus -p ******* --auth-scheme Basic --skip-verify -a 10.188.52.108:9339
-```
-
-The following example shows the response:
+The following example shows a basic dial-in mode subscribe request in an HTTP basic authentication header:
 
 ```
-{ 
-  "sync-response": true 
-} 
-{ 
-  "source": "10.188.52.108:9339", 
-  "subscription-name": "default-1737725382", 
-  "timestamp": 1737725390247535267, 
-  "time": "2025-01-24T13:29:50.247535267Z", 
-  "updates": [ 
-    { 
-      "Path": "qos/interfaces/interface[interface-id=swp1]/output/queues/queue[name=1]/state/transmit-octets", 
-      "values": { 
-        "qos/interfaces/interface/output/queues/queue/state/transmit-octets": 0 
-      } 
-    } 
-  ] 
-} 
+gnmic subscribe --mode stream -i 10s --tls-cert gnmi_client.crt --tls-key gnmi_client.key -u cumulus -p ******* --auth-scheme Basic -a 192.168.200.3:9339 --prefix "system/cpus/cpu[index=0]" --path "state"
 ...
 ```
 
-The following example shows a Dial-in Mode Subscribe request in a gRPC Metadata header:
+The following example shows a dial-in mode subscribe request in a gRPC metadata header with authorization information encoded in base64 format:
+
+```
+gnmic subscribe --metadata authorization="Basic Y3VtdWx1czpOdmlkaWFSMGNrcyE=" --address 192.168.200.3:9339 --tls-cert cert/umf-crt.pem --tls-key cert/umf-key.pem --encoding proto --mode stream --stream-mode sample --sample-interval 1s --prefix "system/cpus/cpu[index=0]" --path "state"
+...
+```
+
+The following example shows a dial-in mode subscribe request in a gRPC metadata header with the username and password specified in the request:
 
 ```
 gnmic subscribe --mode stream -i 10s --tls-cert cert/umf-crt.pem --tls-key cert/umf-key.pem -u cumulus -p NvidiaR0cks! --skip-verify -a  192.168.200.3:9339  --timeout 30s --prefix "system/cpus/cpu[index=0]" --path "state"
 ```
 
-The following example shows the response:
+#### Subscription Response Example
+
+The following example shows a subscription response:
 
 ```
 {
@@ -655,21 +644,15 @@ The following example shows the response:
 
 #### Capabilities Example
 
-The following example shows a capabilities request:
+The following example shows a capabilities request and the expected response:
 
 ```
 gnmic capabilities --tls-cert gnmic-cert.pem --tls-key gnmic-key.pem -u cumulus -p ****** --auth-scheme Basic --skip-verify -a 10.188.52.108:9339
-```
 
-The following example shows the expected response to a capabilities request:
-
-```
 gNMI version: 0.10.0 
 supported models: 
   - openconfig-ospf-types, OpenConfig working group, 0.1.3 
- 
 ...
- 
   - openconfig-platform-fabric, OpenConfig working group, 0.1.0 
   - openconfig-platform-healthz, OpenConfig working group, 0.1.1 
 supported encodings: 

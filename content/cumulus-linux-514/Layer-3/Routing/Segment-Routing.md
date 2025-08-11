@@ -6,9 +6,9 @@ toc: 3
 ---
 Cumulus Linux supports source based routing with <span class="a-tooltip">[SRv6](## "Segment Routing for IPv6")</span>.
 
-The NICs connected the switch fabric perform SRv6 origination and termination, and the switches act as SRv6-aware nodes. SRv6 allows NICs to directly control the path that traffic takes throughout the fabric by encoding an ordered list of SRv6 segment identifiers (uSIDs) in the packet header.
+The NICs connected to the switch fabric perform SRv6 origination and termination, and the switches act as SRv6-aware nodes. SRv6 allows NICs to directly control the path that traffic takes throughout the fabric by encoding an ordered list of SRv6 segment identifiers (uSIDs) in the packet header.
 
-Cumulus Linux supports uN (End with NEXT-CSID) and uA (End.X with NEXT-CSID) endpoint behaviors, defined in RFC9800.
+Cumulus Linux supports uN (End with NEXT-CSID) and uA (End.X with NEXT-CSID) endpoint behaviors, defined in {{<exlink url="https://datatracker.ietf.org/doc/rfc9800/" text="RFC9800" >}}.
 
 {{%notice note%}}
 Cumulus Linux supports segment routing:
@@ -25,8 +25,8 @@ To configure segment routing:
   - Configure the SRv6 locator block length. You can specify a value between 16 and 64. The default value is 16.
   - Configure the SRv6 locator function length. You can specify a value between 0 and 64. The default value is 0.
   - Configure the SRv6 locator node length. You can specify a value between 0 and 64. The default value is 16.
-  - Configure the static segment identifier locator name. The static segment identifier must be part of the locator prefix.  
-  - Configure the static segment identifier endpoint behavior. You can specify uA or uN. If you specify uA, you must also provide the interface. Cumulus Linux enables route advertisements on the interface on which you configure uA.
+  - Configure the static segment identifier locator name. The static segment identifier must be part of the locator prefix.
+  - Configure the static segment identifier endpoint behavior. You can specify uA or uN. For uA segment identifiers, next hop (peer link-local) learning occurs with router advertisements. Spectrum switches enable router advertisements on the interface automatically when you configure a uA segment identifier; however, if the adjacent device is a non-Spectrum switch, you need to enable router advertisements on the adjacent device on the connected interface to ensure proper next hop discovery.
 
 The following table provides the supported formats for block, node, and function length.
 
@@ -141,7 +141,7 @@ protocol      static
 Segment routing endpoints are installed as IPv6 routes into the RIB and FIB. To show segment routing endpoints, view the
 IPv6 RIB with the `nv show vrf <vrf-id> router rib ipv6 route` command. You can view a specific route with the `nv show vrf <vrf-id> router rib ipv6 route <route-id>` command.
 
-### Show SRv6 Statistics
+### Show Segment Routing Statistics
 
 To show SRv6 statistics, run the `nv show router segment-routing srv6 stats` command
 
@@ -179,7 +179,7 @@ When you enable {{<link url="Packet-Trimming" text="packet trimming">}} with seg
 
 ### Clear SRv6 Statistics
 
-To clear all SRv6 statistics, run the `nv action clear router segment-routing srv6 stats` command:
+To clear all segment routing statistics, run the `nv action clear router segment-routing srv6 stats` command:
 
 ```
 cumulus@switch:~$ nv action clear router segment-routing srv6 stats 
@@ -196,3 +196,8 @@ To clear SRv6 statistics for non segment identifier dropped packets, run the `nv
 ```
 cumulus@switch:~$ nv action clear router segment-routing srv6 stats no-sid-drops 
 ```
+
+## Related Information
+
+- {{<exlink url="https://datatracker.ietf.org/doc/rfc9800/" text="RFC9800" >}}
+- {{<exlink url="https://www.iana.org/assignments/segment-routing/segment-routing.xhtml" text="IANA: Segment Routing" >}}

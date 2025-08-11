@@ -81,6 +81,12 @@ To work around this issue, power cycle the switch.</td>
 <td>5.14.0</td>
 </tr>
 <tr>
+<td>4457389</td>
+<td>On rare occasions, when bridge or L2VNI interfaces are coming up or transitioning state, type 2 EVPN routes might not be properly installed. To work around this issue, flap the VNI interface.</td>
+<td>5.9.3-5.13.1</td>
+<td>5.14.0</td>
+</tr>
+<tr>
 <td>4423336</td>
 <td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
 <td>5.9.0-5.11.3</td>
@@ -1150,6 +1156,12 @@ To work around this issue, power cycle the switch.</td>
 <td>4469498</td>
 <td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{sudo systemctl restart frr.service}} command.</td>
 <td>5.4.0-5.13.1</td>
+<td>5.14.0</td>
+</tr>
+<tr>
+<td>4457389</td>
+<td>On rare occasions, when bridge or L2VNI interfaces are coming up or transitioning state, type 2 EVPN routes might not be properly installed. To work around this issue, flap the VNI interface.</td>
+<td>5.9.3-5.13.1</td>
 <td>5.14.0</td>
 </tr>
 <tr>

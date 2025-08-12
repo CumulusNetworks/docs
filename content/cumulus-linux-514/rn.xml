@@ -13,15 +13,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4572507</td>
-<td>When you upgrade a switch using the {{nv action upgrade}} command, the upgrade fails and an {{nvued}} core file is generated.
-
-To avoid this issue, preface the upgrade command with {{sudo}}:
-sudo nv action upgrade system packages to latest</td>
-<td>5.13.1-5.14.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4562200</td>
 <td>On the Spectrum-1 switch, {{switchd}} might crash during warm boot.</td>
 <td>5.14.0</td>
@@ -854,6 +845,11 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4517549</td>
 <td>If you use TACACS on the default VRF while using multiple switch ports (ECMP) to reach the TACACS server,  Cumulus Linux only allows you to configure a single port, even though there are multiple ports to reach the server. When configuring the single port, you see issues such as long delays to login, authentication failures,  sudo command failures after login, username changes to an unknown {{tacacsNN}} user on the shell prompt.</td>
+<td>5.13.0-5.13.1</td>
+</tr>
+<tr>
+<td>4516848</td>
+<td>The {{nv show system health}} command output might show {{status-led amber}} and {{rasdaemon inactive}} due to a failed {{rasdaemon}} start even though the actual system status LED is green.</td>
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>

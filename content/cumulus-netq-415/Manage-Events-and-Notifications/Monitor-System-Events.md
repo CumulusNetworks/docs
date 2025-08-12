@@ -13,11 +13,7 @@ It can take several minutes for the NetQ UI to process and accurately display ne
 Refer to {{<link title="Configure System Event Notifications">}} for information about configuring third-party applications to broadcast NetQ events.
 ## Event Commands
 
-Monitor system events with the following command. See the {{<link title="show/#netq-show-events" text="command line reference">}} for additional options, definitions, and examples.
-
-```
-netq show events
-```
+- {{<link title="show/#netq-show-events" text="netq show events">}}
 
 ## Monitor Events in the UI
 
@@ -180,9 +176,9 @@ netq add events-config events_config_name mybtrfs message_type btrfsinfo scope '
 {{</tab>}}
 
 {{</tabs>}}
-### Delete or Disable an Event Suppression Rule
+### Delete or Disable a Suppression Rule
 
-You can delete or disable suppression rules. After you delete a rule, event notifications will resume. Disabling suppression rules pauses those rules, allowing you to receive event notifications temporarily. 
+Delete a suppression rule to resume event notifications. Disable a suppression rule to temporarily resume event notifications. After you disabling a rule, you can choose to either re-enable or delete it. 
 
 {{<tabs "TabID1776" >}}
 

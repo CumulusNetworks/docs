@@ -141,7 +141,7 @@ protocol      static
 Segment routing endpoints are installed as IPv6 routes into the RIB and FIB. To show segment routing endpoints, view the
 IPv6 RIB with the `nv show vrf <vrf-id> router rib ipv6 route` command. You can view a specific route with the `nv show vrf <vrf-id> router rib ipv6 route <route-id>` command.
 
-### Show SRv6 Statistics
+### Show Segment Routing Statistics
 
 To show SRv6 statistics, run the `nv show router segment-routing srv6 stats` command
 

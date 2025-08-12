@@ -240,7 +240,7 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 
 |  Name | Description |
 |------ | ----------- |
-| `/system/adaptive-routing/state/counters/congestion-change` | The number of adaptive routing change events that triggered due to congestion or link down.|
+| `/system/adaptive-routing/state/counters/congestion-changes` | The number of adaptive routing change events that triggered due to congestion or link down.|
 
 {{< /tab >}}
 {{< tab "BGP">}}
@@ -451,7 +451,7 @@ The following table provides updated QoS metrics:
 |------ | ----------- |
 |`/network-instances/network-instance[name]/srv6/global/state/counters/no-sid-drops` | * The number of packets dropped due to no matching SRv6 SID.|
 | `/network-instances/network-instance[name]/srv6/sids/sid[id]/id`| * The SRv6 SID (segment identifier).|
-| `/network-instances/network-instance/srv6/sids/sid[id]/state/counters/in-pkts` | * The number of packets received for this SRv6 SID.|
+| `/network-instances/network-instance[name]/srv6/sids/sid[id]/state/counters/in-pkts` | * The number of packets received for this SRv6 SID.|
 
 {{< /tab >}}
 {{< tab "System">}}

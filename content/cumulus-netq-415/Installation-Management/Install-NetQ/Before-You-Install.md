@@ -20,7 +20,7 @@ Consider the following deployment options and requirements before you install th
 | System requirements<br><br> On-premises: 16 virtual CPUs, 64GB RAM, 500GB SSD disk<br><br>Cloud: 4 virtual CPUs, 8GB RAM, 64GB SSD disk | System requirements (per node)<br><br> On-premises: 16 virtual CPUs, 64GB RAM, 500GB SSD disk<br>|  System requirements (per node)<br><br>On-premises: 48 virtual CPUs, 512GB RAM, 3.2TB SSD disk|
 | All features supported | All features supported|  No support for:<ul><li>Network snapshots</li><li>Trace requests</li><li>Flow analysis</li><li>Duplicate IP address validations</li><li>MAC commentary</li></ul> Limited support for: <ul><li>Link health view (beta)</li></ul>|
 
-*Exact device support counts can vary based on multiple factors, such as the number of links, routes, and IP addresses in your network. Contact NVIDIA for assistance in selecting the appropriate deployment model for your network.
+*Exact device support counts can vary based on multiple factors, such as the number of links, routes, and IP addresses in your network. Contact NVIDIA for assistance in selecting the appropriate deployment model for your network. When switches are configured with both OpenTelemetry and the NetQ agent, the number of switches supported per deployment model is reduced by half.
 
 
 ## Deployment Type: On-Premises or Cloud

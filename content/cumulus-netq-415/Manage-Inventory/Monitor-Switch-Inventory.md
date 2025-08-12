@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 740
 toc: 4
 ---
-With the NetQ UI and NetQ CLI, you can monitor your inventory of switches across the network or individually. A user can view operating system, motherboard, ASIC, microprocessor, disk, memory, fan, and power supply information.
+With the NetQ UI and NetQ CLI, you can monitor your inventory of switches across the network or individually. NetQ displays operating system, motherboard, ASIC, microprocessor, disk, memory, fan, and power supply information.
 
 You can access {{<link title="Switches" text="switch performance data">}} for a given switch in the UI by right-clicking a switch and opening the dashboard in a new tab.  
 
@@ -20,7 +20,7 @@ You can access {{<link title="Switches" text="switch performance data">}} for a 
 The NetQ header displays the number of switches in your network that are 'fresh' or reachable.
 {{</notice>}}
 
-To view the hardware and software component inventory for switches running NetQ in your network, search for the "Inventory | Switches" card in the global search field. The card displays the total number of switches in your network, divided into the number of fresh and rotten switches.
+To view the hardware and software component inventory for switches running NetQ in your network, enter Inventory/Switches in the global search field. The card displays the total number of switches in your network, divided into the number of fresh and rotten switches.
 
 {{<img src="/images/netq/switch-med-490.png" alt="medium switch card displaying 513 fresh switches and 13 rotten switches" width="200">}}
 
@@ -30,11 +30,11 @@ Open the large Inventory/Switches card to display more granular information abou
 
 {{<img src="/images/netq/switch-inventory-large-update.png" alt="switch software and hardware information" width="600">}}<br>
 
-Expand the Inventory/Switches card to full-screen to view, filter or export information about ASICs, motherboards, CPUs, memory, disks, and operating system.
+Expand the Inventory/Switches card to full-screen to view, filter or export information about ASICs, motherboards, CPUs, memory, disks, and operating system. You can right-click the hostname of a given switch to open a monitoring dashboard for that switch in a new tab.
 
-{{<img src="/images/netq/inventory-switches-411.png" alt="" width="1200">}}<br>
+{{<img src="/images/netq/switch-inventory-415.png" alt="" width="1200">}}<br>
 
-You can right-click the hostname of a given switch to open a monitoring dashboard for that switch in a new tab.
+
 ## Decommission a Switch
 
 Decommissioning a switch or host removes information about the device from the NetQ database. When the NetQ Agent restarts at a later date, it sends a connection request back to the database, so NetQ can monitor the switch or host again.

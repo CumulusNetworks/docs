@@ -241,12 +241,6 @@ The interface shows "screaming" emojis and "Could not render." </td>
 <td>5.12.0-5.14.0</td>
 </tr>
 <tr>
-<td>4246859</td>
-<td>The {{nv show service ntp &lt;vrf&gt;}} command displays the peers that are discovered together with the configured NTP servers instead of displaying only the NTP configuration. As a result, the "applied" and "operational" columns have different values, which causes confusion.</td>
-<td>5.11.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4220393</td>
 <td>The default GRUB timeout style changed from menu to countdown. When booting, a countdown displays on the console and you can use the escape key to break out of the countdown and show the GRUB menu. This reduces the chance of console noise halting the reboot process. If you press the escape key twice, you might go to the GRUB command line. In this case, type {{normal}} to get back to the GRUB menu or {{reboot}} to reboot the switch.</td>
 <td>5.11.0-5.11.3</td>
@@ -1178,12 +1172,6 @@ The interface shows "screaming" emojis and "Could not render." </td>
 <td>Optimized (two partition) upgrade from Cumulus Linux 5.11.0 requires approximately 2.4 Gbytes of free space in {{/var}} after downloading the image with NVUE commands instead of 1.6 Gbytes of free space. Upgrade needs the extra space for an additional copy of the downloaded image in {{/var}} .</td>
 <td>5.11.0-5.11.3</td>
 <td>5.12.0-5.14.0</td>
-</tr>
-<tr>
-<td>4246859</td>
-<td>The {{nv show service ntp &lt;vrf&gt;}} command displays the peers that are discovered together with the configured NTP servers instead of displaying only the NTP configuration. As a result, the "applied" and "operational" columns have different values, which causes confusion.</td>
-<td>5.11.0-5.14.0</td>
-<td></td>
 </tr>
 <tr>
 <td>4220393</td>
@@ -2491,12 +2479,6 @@ The interface shows "screaming" emojis and "Could not render." </td>
 <td>Optimized (two partition) upgrade from Cumulus Linux 5.11.0 requires approximately 2.4 Gbytes of free space in {{/var}} after downloading the image with NVUE commands instead of 1.6 Gbytes of free space. Upgrade needs the extra space for an additional copy of the downloaded image in {{/var}} .</td>
 <td>5.11.0-5.11.3</td>
 <td>5.12.0-5.14.0</td>
-</tr>
-<tr>
-<td>4246859</td>
-<td>The {{nv show service ntp &lt;vrf&gt;}} command displays the peers that are discovered together with the configured NTP servers instead of displaying only the NTP configuration. As a result, the "applied" and "operational" columns have different values, which causes confusion.</td>
-<td>5.11.0-5.14.0</td>
-<td></td>
 </tr>
 <tr>
 <td>4220393</td>
@@ -3869,12 +3851,6 @@ To work around this issue, manually add the {{debian-snmp}} user to the TACACS c
 <td>The {{nv show system ztp}} command might report an error when you use a system local that represents time differently from {{%a %b %d %H:%M:%S %Y %Z}}.</td>
 <td>5.11.0-5.11.3</td>
 <td>5.12.0-5.14.0</td>
-</tr>
-<tr>
-<td>4246859</td>
-<td>The {{nv show service ntp &lt;vrf&gt;}} command displays the peers that are discovered together with the configured NTP servers instead of displaying only the NTP configuration. As a result, the "applied" and "operational" columns have different values, which causes confusion.</td>
-<td>5.11.0-5.14.0</td>
-<td></td>
 </tr>
 <tr>
 <td>4246858</td>

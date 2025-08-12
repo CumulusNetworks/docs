@@ -13,15 +13,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4572507</td>
-<td>When you upgrade a switch using the {{nv action upgrade}} command, the upgrade fails and an {{nvued}} core file is generated.
-
-To avoid this issue, preface the upgrade command with {{sudo}}:
-sudo nv action upgrade system packages to latest</td>
-<td>5.13.1-5.14.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4548514</td>
 <td>When a connected route for an SVI interface with VRR configured is installed by FRR, the route might be installed with the next hop interface of the VRR device instead of the SVI. For example, instead of interface {{vlan10}}, the route might install against {{vlan10-v0}}. This prevents next-hop tracking and route installation into hardware.
 This issue can occur in the following conditions:
@@ -145,6 +136,12 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4517549</td>
 <td>If you use TACACS on the default VRF while using multiple switch ports (ECMP) to reach the TACACS server,  Cumulus Linux only allows you to configure a single port, even though there are multiple ports to reach the server. When configuring the single port, you see issues such as long delays to login, authentication failures,  sudo command failures after login, username changes to an unknown {{tacacsNN}} user on the shell prompt.</td>
+<td>5.13.0-5.13.1</td>
+<td>5.14.0</td>
+</tr>
+<tr>
+<td>4516848</td>
+<td>The {{nv show system health}} command output might show {{status-led amber}} and {{rasdaemon inactive}} due to a failed {{rasdaemon}} start even though the actual system status LED is green.</td>
 <td>5.13.0-5.13.1</td>
 <td>5.14.0</td>
 </tr>
@@ -623,12 +620,6 @@ The interface shows "screaming" emojis and "Could not render." </td>
 <td>4249096</td>
 <td>Binary upgrade from Cumulus Linux 4.3.1 to 5.12.0 and later is not supported. To work around this issue, perform a binary upgrade from Cumulus Linux 4.3.1 to 5.9.0, then perform a binary upgrade from Cumulus Linux 5.9.0 to 5.12.0.</td>
 <td>5.12.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4246859</td>
-<td>The {{nv show service ntp &lt;vrf&gt;}} command displays the peers that are discovered together with the configured NTP servers instead of displaying only the NTP configuration. As a result, the "applied" and "operational" columns have different values, which causes confusion.</td>
-<td>5.11.0-5.14.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1318,6 +1309,12 @@ To work around this issue, power cycle the switch.</td>
 <td>5.14.0</td>
 </tr>
 <tr>
+<td>4516848</td>
+<td>The {{nv show system health}} command output might show {{status-led amber}} and {{rasdaemon inactive}} due to a failed {{rasdaemon}} start even though the actual system status LED is green.</td>
+<td>5.13.0-5.13.1</td>
+<td>5.14.0</td>
+</tr>
+<tr>
 <td>4513849</td>
 <td>After upgrading from Cumulus Linux 5.12 on the NVIDIA SN5400 switch bonus port, PTP does not converge. To work around this issue, disable, then enable the bonus port after upgrade.</td>
 <td>5.13.0-5.14.0</td>
@@ -1792,12 +1789,6 @@ The interface shows "screaming" emojis and "Could not render." </td>
 <td>4249096</td>
 <td>Binary upgrade from Cumulus Linux 4.3.1 to 5.12.0 and later is not supported. To work around this issue, perform a binary upgrade from Cumulus Linux 4.3.1 to 5.9.0, then perform a binary upgrade from Cumulus Linux 5.9.0 to 5.12.0.</td>
 <td>5.12.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4246859</td>
-<td>The {{nv show service ntp &lt;vrf&gt;}} command displays the peers that are discovered together with the configured NTP servers instead of displaying only the NTP configuration. As a result, the "applied" and "operational" columns have different values, which causes confusion.</td>
-<td>5.11.0-5.14.0</td>
 <td></td>
 </tr>
 <tr>

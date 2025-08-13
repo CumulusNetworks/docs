@@ -13,12 +13,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4558846</td>
-<td>If interface statistics telemetry is running on the switch, an {{interface_stats_collector}} core file might generate during statistics collection.</td>
-<td>5.11.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4551249</td>
 <td>The NVUE service might fail during switch upgrade. To work around this issue, stop the {{sysmonitor}} with the {{sudo systemctl stop sysmonitor}} command, then upgrade the switch with the {{nv action upgrade system packages to latest}} command.</td>
 <td>5.14.0</td>
@@ -51,27 +45,17 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td></td>
 </tr>
 <tr>
-<td>4546056</td>
-<td>When an ESI changes from remote to local, the switch does not uninstall remote neighbors from the ASIC. To work around this issue, flap the layer 3 VNI associated with the SVI to clean up stale neighbors from the ASIC.</td>
+<td>4547463</td>
+<td>When you try to run {{nv action boot-next}} commands during optimized image upgrade, the commands time out. This does not necessarily mean an issue occurred; the system might still be executing the action.To check that the action command completed before going to the next step to reboot the system:
+&lt;ol&gt;&lt;li&gt;Find the Request ID for the REST API invocation corresponding to the {{nv action boot-next}} command by doing a grep for {{ActionKey.*boot-next}} in the /var/log/nvued.log}} file. For example, the value 3 in the {{Ran Job running ActionKey('@boot-next', '/system/image', (), 3, (('partition', 'partition1'),))}} line indicates the Request ID.&lt;/li&gt;
+&lt;li&gt;Run the {{curl -u '&lt;username&gt;:&lt;password&gt;'  -X GET https://127.0.0.1:8765/nvue_v1/action/&lt;Request ID&gt; -k}} command from the shell to show the status of the action command. If the value of {{state}} is {{action_success}}, the action command completed successfully. If the value of {{state}} is {{running}}, the system is still processing. If the value of {{state}} is {{action_error}}, the system encountered an error.&lt;/li&gt;&lt;/ol&gt;</td>
 <td>5.14.0</td>
 <td></td>
 </tr>
 <tr>
-<td>4535856</td>
-<td>When you try to import an invalid server certificate file, Cumulus Linux does not import the certificate file but fails to show an error message.</td>
-<td>5.13.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4535855</td>
-<td>When you try to import an invalid server certificate file, Cumulus Linux does not import the certificate file but fails to show an error message.</td>
-<td>5.13.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4535804</td>
-<td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
-<td>5.10.0-5.14.0</td>
+<td>4546056</td>
+<td>When an ESI changes from remote to local, the switch does not uninstall remote neighbors from the ASIC. To work around this issue, flap the layer 3 VNI associated with the SVI to clean up stale neighbors from the ASIC.</td>
+<td>5.14.0</td>
 <td></td>
 </tr>
 <tr>
@@ -93,12 +77,6 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td></td>
 </tr>
 <tr>
-<td>4513849</td>
-<td>After upgrading from Cumulus Linux 5.12 on the NVIDIA SN5400 switch bonus port, PTP does not converge. To work around this issue, disable, then enable the bonus port after upgrade.</td>
-<td>5.13.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4509255</td>
 <td>In PTP two-step, hardware incorrectly modified the SYNC message correction field.
 This is according to original HW design.
@@ -107,10 +85,22 @@ This is according to original HW design.
 <td></td>
 </tr>
 <tr>
+<td>4508830</td>
+<td>Cumulus Linux allows you to add bond ports of mismatched speeds (such as 10G and 25G) to the same LACP bond without error and the bond reports UP. </td>
+<td>5.11.2-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4507163</td>
 <td>In some cases after a package upgrade with ISSU (warm boot mode), you see continuous errors in the syslog similar to the following:
 NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>5.11.2-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4501510</td>
+<td>When you configure the RADIUS authentication order with {{local}} first and {{radius second}}, the RADIUS user is authenticated as a default user name. </td>
+<td>5.12.1-5.14.0</td>
 <td></td>
 </tr>
 <tr>
@@ -150,42 +140,6 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
-<td>4423368</td>
-<td>When all links go down or the switch reboots,  you see next hop group churn from Zebra to the SOO next hop group. This issue might cause some convergence degradation. </td>
-<td>5.12.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4423360</td>
-<td>After a remote link flap, neighbor entries using the link might not get resolved immediately. Only when some traffic uses the nexthop will they be resolved.</td>
-<td>5.12.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4423352</td>
-<td>ZTP scripts return an error due to incorrect ASCI to UTF-8 conversion.</td>
-<td>5.11.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4423335</td>
-<td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
-<td>5.9.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4423277</td>
-<td>When the username in a 802.1X session includes the equals (=) character, the ISSU warmboot fails. Make sure that = is not part of the 802.1X session name.</td>
-<td>5.11.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4423269</td>
-<td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
-<td>5.11.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4423248</td>
 <td>If you unset an interface static IP address when the interface IP gateway is configured, the {{nv config apply}} command fails with an {{ifreload.service}} error. To work around the issue, unset both the static IP address and gateway together.</td>
 <td>5.9.0-5.14.0</td>
@@ -195,12 +149,6 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>4423244</td>
 <td>When you enable, then disable adaptive routing, the BGP neighbors might go down because of an unresolved MAC address. To resolve this issue configure another attribute on the interface.</td>
 <td>5.9.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4423235</td>
-<td>The {{snmpd}} service generates debugging logs of sudo calls. To work around this issue, disable sudo logging for the specific commands run by the Debian-snmp user in the {{/etc/sudoers.d/snmp}} file by adding {{Defaults:Debian-snmp !syslog}}.</td>
-<td>5.11.0-5.14.0</td>
 <td></td>
 </tr>
 <tr>
@@ -222,9 +170,10 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
-<td>4370954</td>
-<td>After enabling, then disabling truncation on a SPAN session,  truncated packets are still received on the SPAN destination. To work around this issue, remove the SPAN session configuration, reboot the switch, then reconfigure the SPAN session without truncation.</td>
-<td>5.12.0-5.14.0</td>
+<td>4343690</td>
+<td>The Swagger UI for the Cumulus OpenAPI model is not rendering correctly (https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-512/api/index.html#). 
+The interface shows "screaming" emojis and "Could not render." </td>
+<td>5.11.0-5.14.0</td>
 <td></td>
 </tr>
 <tr>
@@ -264,22 +213,9 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
-<td>4271215</td>
-<td>NVUE overwrites the MOTD file during NVUE configuration with no option to ignore it.
-</td>
-<td>5.11.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4249096</td>
 <td>Binary upgrade from Cumulus Linux 4.3.1 to 5.12.0 and later is not supported. To work around this issue, perform a binary upgrade from Cumulus Linux 4.3.1 to 5.9.0, then perform a binary upgrade from Cumulus Linux 5.9.0 to 5.12.0.</td>
 <td>5.12.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4246859</td>
-<td>The {{nv show service ntp &lt;vrf&gt;}} command displays the peers that are discovered together with the configured NTP servers instead of displaying only the NTP configuration. As a result, the "applied" and "operational" columns have different values, which causes confusion.</td>
-<td>5.11.0-5.14.0</td>
 <td></td>
 </tr>
 <tr>
@@ -914,6 +850,11 @@ To work around this issue, power cycle the switch.</td>
 <td>5.13.0-5.13.1</td>
 </tr>
 <tr>
+<td>4516848</td>
+<td>The {{nv show system health}} command output might show {{status-led amber}} and {{rasdaemon inactive}} due to a failed {{rasdaemon}} start even though the actual system status LED is green.</td>
+<td>5.13.0-5.13.1</td>
+</tr>
+<tr>
 <td>4509053</td>
 <td>When the default route is available through a floating static route (admin distance 254) and through an eBGP learned route where the next hop is the eBGP peer, the route that comes up first (the floating static) becomes the best path, even though the BGP learned route is presented as the best path after the neighbor comes up. To work around this issue, set the {{nv set vrf &lt;vrf-id&gt; router bgp peer-group &lt;peer-group-id&gt; nexthop-connected-check off}} command in NVUE or configure {{neighbor &lt;peer&gt; disable-connected-check}} in vtysh.</td>
 <td>5.13.0-5.13.1</td>
@@ -942,11 +883,6 @@ To work around this issue, power cycle the switch.</td>
 <td>4499025</td>
 <td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
 <td>5.11.2-5.13.1</td>
-</tr>
-<tr>
-<td>4495570</td>
-<td>When {{switchd}} restarts after you run the {{cl-netstat -c}} command, running subsequent {{cl-netstat}} commands shows the same the interface counters as {{netstat dump}} instead of a diff from last snapshot.</td>
-<td></td>
 </tr>
 <tr>
 <td>4493540</td>
@@ -994,7 +930,7 @@ sudo systemctl restart nvue-startup.service
 systemctl is-enabled snmpd &amp;&amp; sudo systemctl restart snmpd.service
 systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
 </td>
-<td></td>
+<td>5.11.1</td>
 </tr>
 <tr>
 <td>4475104</td>
@@ -1009,7 +945,7 @@ systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
 <tr>
 <td>4474924</td>
 <td>The {{nv config show -o commands}} command displays numbered BGP neighbors in IP address range format; however, the {{nv set}} commands fail for BGP numbered neighbors configured in IP address ranges.</td>
-<td></td>
+<td>5.13.0-5.13.1</td>
 </tr>
 <tr>
 <td>4471932</td>
@@ -1124,8 +1060,8 @@ cumulus@switch:~$ git gc</td>
 </tr>
 <tr>
 <td>4425975</td>
-<td>On rare occasions, remote MAC address and host information learned through EVPN does not install in the kernel. As a result, traffic is not properly forwarded to those destinations. This occurs because the layer 2 VNI is considered to be up prematurely. To work around this issue, flap the  the VXLAN interface.</td>
-<td></td>
+<td>On rare occasions, when bridge or L2VNI interfaces are coming up or transitioning state, type 2 EVPN routes might not be properly installed. To work around this issue, flap the VNI interface.</td>
+<td>5.9.3-5.11.1</td>
 </tr>
 <tr>
 <td>4425299</td>
@@ -1163,11 +1099,6 @@ cumulus@switch:~$ git gc</td>
 systemd-udevd116276: mlxreg:fan1:green: Process ‘/usr/bin/hw-management-chassis-events.sh fantray-led-event mlxreg:fan1:green 255’ failed with exit code 1.
 To work around this issue, restart the {{hw-management}} service with the {{sudo systemctl restart hw-management}} command.</td>
 <td>5.7.0-5.11.1</td>
-</tr>
-<tr>
-<td>4399320</td>
-<td>When you use NVUE to change the port breakout from 4x to 8x, {{switchd}} fails to reload during {{nv config apply}}.</td>
-<td></td>
 </tr>
 <tr>
 <td>4393369</td>

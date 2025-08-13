@@ -402,7 +402,7 @@ To reach the TACACS+ server through the default VRF, you must specify the egress
 
 <!-- vale on -->
 
-The following command allows TACACS+ users at privilege level 0 to run the `nv` and `ip` commands (if authorized by the TACACS+ server):
+The following command allows TACACS+ users at privilege level 0 to run the `nv` and `ip` commands:
 
 {{< tabs "TabID392 ">}}
 {{< tab "NVUE Commands ">}}

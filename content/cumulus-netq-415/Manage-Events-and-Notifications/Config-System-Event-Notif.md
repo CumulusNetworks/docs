@@ -884,33 +884,6 @@ NetQ includes a predefined fixed set of valid rule keys. You enter values as reg
 <td>Apr8, 2019, 11:38 AM</td>
 </tr>
 <tr>
-<tr>
-<td rowspan="5">ConfigDiff</td>
-<td>message_type</td>
-<td>Network protocol or service identifier</td>
-<td>configdiff</td>
-</tr>
-<tr>
-<td>hostname</td>
-<td>User-defined, text-based name for a switch or host</td>
-<td>server02, leaf11, exit01, spine-4</td>
-</tr>
-<tr>
-<td>vni</td>
-<td>Virtual Network Instance identifier</td>
-<td>12, 23</td>
-</tr>
-<tr>
-<td>old_state</td>
-<td>Previous state of the configuration file</td>
-<td>created, modified</td>
-</tr>
-<tr>
-<td>new_state</td>
-<td>Current state of the configuration file</td>
-<td>created, modified</td>
-</tr>
-<tr>
 <td rowspan="7">EVPN</td>
 <td>message_type</td>
 <td>Network protocol or service identifier</td>

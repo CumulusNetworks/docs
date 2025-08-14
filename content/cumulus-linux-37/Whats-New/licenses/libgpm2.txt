@@ -1,0 +1,69 @@
+This is Debian GNU/Linux's prepackaged version of the General Purpose
+Mouse Interface utility. The general purpose mouse daemon tries to be
+a useful mouse server for applications running on the Linux console.
+
+This package was put together by, James Troup <james@nocrew.org>.
+
+Now maintained as a team by:
+
+   Guillem Jover <guillem@debian.org>
+   Peter Samuelson <peter@p12n.org>
+
+The upstream source was downloaded from:
+
+   <http://unix.schottelius.org/gpm/archives/>
+
+The initial changes while packaging were minor :-
+
+   - adding support for the Debian package maintenance scheme, by adding
+     various debian/* files.
+   - gpm.c (processConn): type of socket length changed (size_t -> socklen_t).
+   - debuglog.c: #include <string.h> to quiet -Wall.
+   - doc/Makefile.in (maintainer-clean): clean without interaction and
+     clean all relevant files (i.e. gpm.info-{1,2}).
+   - doc/Makefile.in: add support for mouse-test.1.
+
+The following changes were thought of and done mostly by François
+Gouget <fgouget@mygale.org>; though I didn't apply his patches as
+they were for various reasons:
+
+   - gpn.c (cmdline): modified handling of -t command line argument, so it
+     can be used by anyone regardless of whether or not a copy of gpm is
+     already running.
+   - gpn.c (usage): update for new -t option "types".
+   - mice.c: improved descriptions of mouse types.
+   - mice.c (M_listMice): function used by -t help, reworked version of
+     old M_listTypes.
+   - mice.c (M_listTypes): function used by -t types; lists only
+     mnemonics.
+
+Copyright Holders:
+
+   Copyright © 1993       Andrew Haylett <ajh@gec-mrc.co.uk>
+   Copyright © 1994-2000  Alessandro Rubini <rubini@linux.it>
+   Copyright © 1998,1999  Ian Zimmerman <itz@rahul.net>
+   Copyright © 2001-2008  Nico Schottelius <nico@schottelius.org>
+
+   Debian specific modifications (1.10-1 -> 1.10-6)
+   Copyright © 1996, 1997  Martin Schulze
+
+   Debian specific modifications (1.10-7 and onwards)
+   Copyright © 1997, 1998, 1999  James Troup
+
+License:
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; version 2 dated June, 1991.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License with
+   your Debian GNU/Linux system, in /usr/share/common-licenses/GPL-2, or with
+   the Debian GNU/Linux gpm source package as the file COPYING.  If not,
+   write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+   Boston, MA  02110-1301 USA
+

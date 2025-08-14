@@ -1,0 +1,72 @@
+This package was downloaded from http://www.candelatech.com/~greear/vlan.html
+
+Files: candela_2.4.21.patch
+Copyright: © 1994 University of Cambridge Computer Laboratory
+Copyright: © 2001-2003 Alex Zeffertt, Cambridge Broadband Ltd <ajz@cambridgebroadband.com>
+Copyright: © 2002 Ben Greear <greearb@candelatech.com>
+License: GPL-2+
+ This program is free software; you can redistribute it and/or modify it under
+ the terms of the GNU General Public License as published by the Free Software
+ Foundation; either version 2 of the License, or (at your option) any later
+ version.
+
+Files: contrib/vlan_2.2-full.patch, contrib/vlan_2.2-module.patch
+Copyright: © 1998-2000 Ben Greear <greearb@candelatech.com>
+Copyright: © Gene Kozin <genek@compuserve.com>
+License: GPL-2+
+ This program is free software; you can redistribute it and/or modify it under
+ the terms of the GNU General Public License as published by the Free Software
+ Foundation; either version 2 of the License, or (at your option) any later
+ version.
+
+Files: debian/*
+Copyright: © 2001-2005 Ard van Breemen <ard@kwaak.net>
+Copyright: © 2005-2007 Loic Minier <lool@dooz.org>
+License: GPL-compatible
+
+Files: howto.html
+Copyright: © Kristjan Kotkas <kristjan@data.ee>
+Copyright: © Ben Greear <greearb@candelatech.com>
+
+Files: macvlan_config.c
+Copyright: © 2001 Alex Zeffertt, Cambridge Broadband Ltd <ajz@cambridgebroadband.com>
+License: GPL-2+
+ This program is free software; you can redistribute it and/or modify it under
+ the terms of the GNU General Public License as published by the Free Software
+ Foundation; either version 2 of the License, or (at your option) any later
+ version.
+
+Files: vconfig.8
+Copyright: © Ard van Breemen <ard@kwaak.net>
+
+Files: vconfig.c, vconfig.h
+Copyright: © 2001 Ben Greear <greearb@candelatech.com>
+License: GPL-2+
+ This program is free software; you can redistribute it and/or modify it under
+ the terms of the GNU General Public License as published by the Free Software
+ Foundation; either version 2 of the License, or (at your option) any later
+ version.
+
+Files: vconfig.spec
+Copyright: © 2001-2002 Dale Bewley <dale@bewley.net>
+
+Files: vlan_2.2.patch
+Copyright: © 1998-2000, 2002 Ben Greear <greearb@candelatech.com>
+Copyright: © Gene Kozin <genek@compuserve.com>
+License: GPL-2+
+ This program is free software; you can redistribute it and/or modify it under
+ the terms of the GNU General Public License as published by the Free Software
+ Foundation; either version 2 of the License, or (at your option) any later
+ version.
+
+Files: howto.html
+Copyright: © 1999-2001, 2003 Ben Greear <greearb@candelatech.com>
+
+Files: *
+License: GPL-compatible
+ When not otherwise specified, files are under a GPL compatible license.  Many
+ files lack licensing and copyright information, and this should be fixed with
+ the help of upstream.
+
+On Debian GNU/Linux systems, the complete text of the GNU General Public
+License can be found in `/usr/share/common-licenses/GPL'

@@ -1,0 +1,205 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: systemd
+Upstream-Contact: systemd-devel@lists.freedesktop.org
+Source: http://www.freedesktop.org/wiki/Software/systemd/
+
+Files: debian/*
+Copyright: 2010-2013 Tollef Fog Heen <tfheen@debian.org>
+           2013 Michael Biebl <biebl@debian.org>
+           2013 Michael Stapelberg <stapelberg@debian.org>
+License: LGPL-2.1+
+
+Files: *
+Copyright: 2008-2013 Kay Sievers <kay@vrfy.org>
+           2010-2013 Lennart Poettering
+           2012-2013 Zbigniew Jędrzejewski-Szmek <zbyszek@in.waw.pl>
+           1991-2012 Free Software Foundation, Inc.
+           1995-2004 Miquel van Smoorenburg
+           1999 Tom Tromey
+           2000 Red Hat, Inc.
+           2008-2010 David Zeuthen <davidz@redhat.com>
+           2009 Alan Jenkins <alan-jenkins@tuffmail.co.uk>
+           2009-2013 Intel Corporation
+           2009-2013 Auke Kok <auke-jan.h.kok@intel.com>
+           2010 ProFUSION embedded systems
+           2010 Maarten Lankhorst
+           2010, 2012 Harald Hoyer
+           2011 Michal Schmidt
+           2012 B. Poettering <fsprg@point-at-infinity.org>
+           2012 Holger Hans Peter Freyther
+           2012 Dan Walsh
+           2012 Roberto Sassu
+           2012 David Strauss <david@davidstrauss.net>
+           2012 Marti Raudsepp <marti@juffo.org>
+           2013 Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+           2013 Linux Foundation
+           2013 Daniel Mack <daniel@zonque.org>
+           2013 Marius Vollmer
+           2013 Jan Janssen
+           2013 Thomas H.P. Andersen
+           2013 Daniel Buch
+           2013 Simon Peeters
+           2013 Nathaniel Chen <nathaniel.chen@intel.com>
+           2013 Steven Hiscocks
+License: LGPL-2.1+
+
+Files: src/shared/MurmurHash3.h
+       src/shared/MurmurHash3.c
+Copyright: 2008 Austin Appleby
+License: public-domain
+ MurmurHash3 was written by Austin Appleby, and is placed in the public
+ domain. The author hereby disclaims copyright to this source code.
+
+Files: src/core/selinux-access.h
+       src/core/selinux-access.c
+Copyright: 2012 Dan Walsh
+License: GPL-2+
+
+Files: src/core/securebits.h
+Copyright: Linus Torvalds <torvalds@athlon.transmeta.com>
+License: GPL-2
+
+Files: src/shared/ioprio.h
+Copyright: Jens Axboe <axboe@suse.de>
+License: GPL-2
+
+Files: src/shared/linux/auto_dev-ioctl.h
+Copyright: 2008 Red Hat, Inc.
+           2008 Ian Kent <raven@themaw.net>
+License: GPL-2+
+
+Files: src/shared/linux/seccomp-bpf.h
+Copyright: 2012 The Chromium OS Authors <chromium-os-dev@chromium.org>
+           2012 Will Drewry <wad@chromium.org>
+           2012 Kees Cook <keescook@chromium.org>
+License: GPL-2
+
+Files: src/shared/sparse-endian.h
+Copyright: 2012 Josh Triplett <josh@joshtriplett.org>
+License: Expat
+
+Files: test/rule-syntax-check.py
+       test/rules-test.sh
+Copyright: 2010 Canonical Ltd.
+           2010 Martin Pitt <martin.pitt@ubuntu.com>
+License: GPL-2+
+
+Files: src/shared/linux/fanotify.h
+Copyright: 2009 Eric Paris <eparis@redhat.com>
+License: GPL-2
+
+Files: src/journal/lookup3.c
+       src/journal/lookup3.h
+Copyright: 2006 Bob Jenkins
+License: public-domain
+ You can use this free for any purpose. It's in the public domain. It has no
+ warranty.
+
+Files: src/udev/*
+Copyright: 2004-2012 Kay Sievers <kay@vrfy.org>
+           2003-2004 Greg Kroah-Hartman <greg@kroah.com>
+           2004 Chris Friesen <chris_friesen@sympatico.ca>
+           2004 David Zeuthen <david@fubar.dk>
+           2005 SUSE Linux Products GmbH, Germany
+           2005 Hannes Reinecke <hare@suse.de>
+           2009 Canonical Ltd.
+           2009 Scott James Remnant <scott@netsplit.com>
+           2009 Martin Pitt <martin.pitt@ubuntu.com>
+           2009 Piter Punk <piterpunk@slackware.com>
+           2010 Lennart Poettering
+           2011 ProFUSION embedded systems
+           2011 2011 Karel Zak <kzak@redhat.com>
+License: GPL-2+
+
+Files: src/udev/udev-ctrl.c
+       src/udev/udevadm-hwdb.c
+       src/udev/udev-builtin.c
+       src/udev/udev-builtin-net_id.c
+       src/udev/udev-builtin-hwdb.c
+       src/udev/udev-builtin-btrfs.c
+Copyright: 2007-2012 Kay Sievers <kay@vrfy.org>
+License: LGPL-2.1+
+
+Files: src/udev/scsi_id/scsi.h
+Copyright: 2003 IBM Corp.
+License: GPL-2
+
+Files: src/systemd/sd-daemon.h
+       src/systemd/sd-readahead.h
+       src/libsystemd-daemon/sd-daemon.c
+       src/readahead/sd-readahead.c
+Copyright: 2010 Lennart Poettering
+License: Expat
+
+License: Expat
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to
+ deal in the Software without restriction, including without limitation the
+ rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+ sell copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+ .
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+ IN THE SOFTWARE.
+
+License: GPL-2
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; version 2 of the License.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation, Inc.,
+ 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
+ .
+ On Debian and systems the full text of the GNU General Public
+ License version 2 can be found in the file
+ `/usr/share/common-licenses/GPL-2`
+
+License: GPL-2+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2, or (at your option)
+ any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License along
+ with this program; if not, write to the Free Software Foundation,
+ Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ .
+ On Debian systems, the complete text of the GNU General Public License
+ version 2 can be found in ‘/usr/share/common-licenses/GPL-2’.
+
+License: LGPL-2.1+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License as published by
+ the Free Software Foundation; either version 2.1, or (at your option)
+ any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Lesser General Public License for more details.
+ .
+ You should have received a copy of the GNU Lesser General Public License along
+ with this program; if not, write to the Free Software Foundation,
+ Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ .
+ On Debian systems, the complete text of the GNU Lesser General Public
+ License version 2.1 can be found in ‘/usr/share/common-licenses/LGPL-2.1’.

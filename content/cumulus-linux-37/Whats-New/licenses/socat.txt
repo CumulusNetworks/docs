@@ -1,0 +1,65 @@
+This work was packaged for Debian by:
+    Chris Taylor <ctaylor@debian.org> on Wed, 10 Feb 2010 14:07:57 -0800
+Was taken over on Sun, 21 Jul 2013 16:19:26 +0200 by:
+    Laszlo Boszormenyi (GCS) <gcs@debian.org>
+
+It was downloaded from:
+
+    <http://www.dest-unreach.org/socat/>
+
+Upstream Author:
+
+   Gerhard Rieger <socat@dest-unreach.org> 
+
+Copyright:
+
+    Copyright (C) 2001-2010 Gerhard Rieger
+
+License:
+ 
+   socat is licensed under the GPL version 2. The full text of which can be
+   found on Debian systems in "/usr/share/common-licenses/GPL-2".
+
+   In addition, as a special exception, the copyright holder gives permission
+   to link the code of this program with any version of the OpenSSL library
+   which is distributed under a license identical to that listed in the included
+   COPYING.OpenSSL file, and distribute linked combinations including the two.
+   You must obey the GNU General Public License in all respects for all of the
+   code used other than OpenSSL. If you modify this file, you may extend this
+   exception to your version of the file, but you are not obligated to do so. If
+   you do not wish to do so, delete this exception statement from your version.
+
+   This program is free software; you can redistribute it and/or modify it under
+   the terms of the GNU General Public License as published by the Free Software
+   Foundation; either version 2 of the License, or (at your option) any later
+   version.
+
+   This program is distributed in the hope that it will be useful, but WITHOUT
+   ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+   FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+   more details.
+
+The Debian packaging is:
+
+    Copyright (C) 2002-2009 Thomas Seyrat <tomasera@debian.org>
+    Copyright (C) 2010 Chris Taylor <ctaylor@debian.org>
+    Copyright (C) 2013- Laszlo Boszormenyi (GCS) <gcs@debian.org>
+
+and is licensed under the GPL version 3,
+see "/usr/share/common-licenses/GPL-3".
+
+All files listed below have different copyright and/or license:
+
+Files: install-sh
+Copyright: 1991, Massachusetts Institute of Technology
+License:
+
+  Permission to use, copy, modify, distribute, and sell this software and its
+  documentation for any purpose is hereby granted without fee, provided that
+  the above copyright notice appear in all copies and that both that
+  copyright notice and this permission notice appear in supporting
+  documentation, and that the name of M.I.T. not be used in advertising or
+  publicity pertaining to distribution of the software without specific,
+  written prior permission.  M.I.T. makes no representations about the
+  suitability of this software for any purpose.  It is provided "as is"
+  without express or implied warranty.

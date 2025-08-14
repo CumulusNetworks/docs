@@ -1,0 +1,18 @@
+This package was debianized by Guido Guenther <agx@debian.org> on
+Tue, 14 Jan 2003 12:58:00 +0000.
+
+It was downloaded from http://smartmontools.sourceforge.net/
+
+Upstream Authors: 
+
+	Bruce Allen <smartmontools-support@lists.sourceforge.net>
+
+Copyright:
+	
+	 Copyright (C) 2002-8 Bruce Allen
+
+License:
+
+You are free to distribute this software under the terms of the GNU General
+Public License Version 2. The full text of this license can be found in the
+file /usr/share/common-licenses/GPL-2

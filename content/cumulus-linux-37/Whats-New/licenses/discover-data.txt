@@ -1,0 +1,64 @@
+Package: discover-data
+Debian package author: Branden Robinson
+
+The contents of this package that are not in the debian/ subdirectory are
+simple compilations of data and are therefore not copyrightable in the
+United States (c.f. _Feist Publications, Inc., v. Rural Telephone Service
+Company, Inc., 499 U.S. 340 (1991)_).
+
+_Feist_ holds that:
+
+Article I, s 8, cl. 8, of the Constitution mandates originality as a
+prerequisite for copyright protection. The constitutional requirement
+necessitates independent creation plus a modicum of creativity. Since facts
+do not owe their origin to an act of authorship, they are not original and,
+thus, are not copyrightable. Although a compilation of facts may possess
+the requisite originality because the author typically chooses which facts
+to include, in what order to place them, and how to arrange the data so
+that readers may use them effectively, copyright protection extends only to
+those components of the work that are original to the author, not to the
+facts themselves. This fact/expression dichotomy severely limits the scope
+of protection in fact-based works.
+
+Therefore, the hardware information lists that comprise the "meat" of this
+package enjoy no copyright protection and are thus in the public domain.
+
+Note, however, that a number of trademarks may be referenced in the hardware
+lists (names of vendors and products).  Their usage does not imply a challenge
+to any such status, and all trademarks, service marks, etc. are the property of
+their respective owners.
+
+The remainder of this package is copyrighted and licensed as follows:
+
+Package infrastructure:
+
+Copyright 2001,2002 Progeny Linux Systems, Inc.
+Copyright 2002 Hewlett-Packard Company
+     Written by Branden Robinson for Progeny Linux Systems, Inc.
+
+lst2xml conversion script:
+
+Copyright 2002 Progeny Linux Systems, Inc.
+Copyright 2002 Hewlett-Packard Company
+     Written by Eric Gillespie, John R. Daily, and Josh Bressers
+     for Progeny Linux Systems, Inc.
+
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the "Software"),
+to deal in the Software without restriction, including without limitation
+the rights to use, copy, modify, merge, publish, distribute, sublicense,
+and/or sell copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
+THE COPYRIGHT HOLDER(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.
+
+$Progeny$

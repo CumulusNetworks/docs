@@ -1,0 +1,489 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: ruby
+Source: http://ftp.ruby-lang.org/pub/ruby/2.1/
+
+Files: *
+Copyright: Yukihiro Matsumoto <matz@netlab.jp> and others
+License: 2C-BSD or Ruby
+
+Files:
+ include/ruby/oniguruma.h
+ regcomp.c
+ regenc.c regenc.h
+ regerror.c
+ regexec.c
+ regint.h
+ regparse.c regparse.h
+ enc/ascii.c
+ enc/big5.c
+ enc/cp949.c
+ enc/emacs_mule.c
+ enc/encdb.c
+ enc/euc_jp.c
+ enc/euc_kr.c
+ enc/euc_tw.c
+ enc/gb18030.c
+ enc/gb2312.c
+ enc/gbk.c
+ enc/iso_8859_1.c
+ enc/iso_8859_10.c
+ enc/iso_8859_11.c
+ enc/iso_8859_13.c
+ enc/iso_8859_14.c
+ enc/iso_8859_15.c
+ enc/iso_8859_16.c
+ enc/iso_8859_2.c
+ enc/iso_8859_3.c
+ enc/iso_8859_4.c
+ enc/iso_8859_5.c
+ enc/iso_8859_6.c
+ enc/iso_8859_7.c
+ enc/iso_8859_8.c
+ enc/iso_8859_9.c
+ enc/koi8_r.c
+ enc/koi8_u.c
+ enc/shift_jis.c
+ enc/unicode.c
+ enc/us_ascii.c
+ enc/utf_16be.c
+ enc/utf_16le.c
+ enc/utf_32be.c
+ enc/utf_32le.c
+ enc/utf_8.c
+ enc/windows_1251.c
+Copyright: K.Kosako <sndgk393 AT ybb DOT ne DOT jp>
+License:
+ When this software is partly used or it is distributed with Ruby,
+ this of Ruby follows the license of Ruby.
+
+Files: lib/minitest/*
+Copyright: Ryan Davis
+License: Expat
+Comment:
+ This license information was obtained from lib/minitest/README.txt in
+ the source tree.
+
+Files: lib/rake.rb lib/rake/*
+Copyright: 2003-2013 Jim Weirich
+License: Expat
+
+Files: lib/rdoc/generator/darkfish.rb lib/rdoc/generator/darkfish/template/*
+Copyright: 2007, 2008, Michael Granger and others
+License: 3C-BSD-GENERIC
+
+Files: lib/rdoc/generator/template/darkfish/fonts/SourceCodePro*
+Copyright:
+ 2010, 2012 Adobe Systems Incorporated with Reserved Font Name "Source"
+License: SIL-1.1
+Comment:
+ This license information was obtained from
+ lib/rdoc/generator/template/darkfish/fonts.css in the source tree.
+
+Files: lib/rdoc/generator/template/darkfish/fonts/Lato*
+Copyright:
+ 2010 Łukasz Dziedzic with Reserved Font Name Lato
+License: SIL-1.1
+Comment:
+ This license information was obtained from
+ lib/rdoc/generator/template/darkfish/fonts.css in the source tree.
+
+Files: lib/rdoc/generator/json_index.rb lib/rdoc/generator/template/json_index/*
+Copyright: 2009 Vladimir Kolesnikov
+License: Expat
+
+Files: lib/rubygems.rb lib/rubygems/*
+Copyright: Chad Fowler, Rich Kilmer, Jim Weirich and others
+License: Expat or Ruby
+Comment:
+ This license information was obtained from lib/rubygems/LICENSE.txt in
+ the source tree.
+
+Files: util.c (parts)
+Copyright: 1991, 2000, 2001 by Lucent Technologies.
+License:
+ Permission to use, copy, modify, and distribute this software for any
+ purpose without fee is hereby granted, provided that this entire notice
+ is included in all copies of any software which is or includes a copy
+ or modification of this software and in all copies of the supporting
+ documentation for such software.
+ .
+ THIS SOFTWARE IS BEING PROVIDED "AS IS", WITHOUT ANY EXPRESS OR IMPLIED
+ WARRANTY.  IN PARTICULAR, NEITHER THE AUTHOR NOR LUCENT MAKES ANY
+ REPRESENTATION OR WARRANTY OF ANY KIND CONCERNING THE MERCHANTABILITY
+ OF THIS SOFTWARE OR ITS FITNESS FOR ANY PARTICULAR PURPOSE.
+
+Files: util.c (parts)
+Copyright: 2004-2008 David Schultz <das@FreeBSD.ORG> All rights reserved.
+License: 2C-BSD
+
+Files: random.c
+Copyright: 1997 - 2002, Makoto Matsumoto and Takuji Nishimura, All rights reserved.
+License: 3C-BSD-GENERIC
+
+Files: vsnprintf.c
+Copyright:
+ 1990, 1993 The Regents of the University of California.  All rights reserved.
+ This code is derived from software contributed to Berkeley by Chris Torek.
+License: 3C-BSD
+
+Files:
+ st.c st.h missing/alloca.c missing/dup2.c missing/erf.c
+ missing/finite.c missing/hypot.c missing/isinf.c missing/isnan.c
+ missing/lgamma_r.c missing/memcmp.c missing/memmove.c missing/strchr.c
+ missing/strstr.c missing/strtol.c missing/tgamma.c
+ ext/digest/sha1/sha1.c ext/digest/sha1/sha1.h
+Copyright: Public Domain
+License:
+ Thise files have been placed in the Public Domain.
+
+Files: missing/crypt.c
+Copyright:
+ 1989, 1993 The Regents of the University of California. All rights reserved.
+ This code is derived from software contributed to Berkeley by
+ Tom Truscott.
+License: 3C-BSD
+
+Files: missing/setproctitle.c
+Copyright:
+ 2003 Damien Miller
+ 1983, 1995-1997 Eric P. Allman
+ 1989, 1993 The Regents of the University of California. All rights reserved.
+License: 3C-BSD
+
+Files: missing/strlcat.c missing/strlcpy.c
+Copyright:
+ 1998 Todd C. Miller. All rights reserved.
+License: 3C-BSD-GENERIC
+
+Files: missing/langinfo.c
+Copyright:
+ 2002-03-11 Markus.Kuhn@cl.cam.ac.uk
+License:
+ Permission to use, copy, modify, and distribute this software
+ for any purpose and without fee is hereby granted. The author
+ disclaims all warranties with regard to this software.
+
+Files: win32/win32.*
+Copyright:
+ Copyright (C) 1993 Intergraph Corporation
+ Copyright (C) 1993-2011 Yukihiro Matsumoto
+ Copyright (C) 2000 Network Applied Communication Laboratory, Inc.
+ Copyright (C) 2000 Information-technology Promotion Agency, Japan
+License:
+ The parts licensed under above copyright notice are marked as "Artistic or
+ GPL".
+ .
+ Another parts are licensed under Ruby's License.
+ .
+ On Debian systems, the full text of the GNU General Public
+ License version 2 can be found in the file
+ `/usr/share/common-licenses/GPL-2', and the Artistic License
+ in `/usr/share/common-licenses/Artistic'.
+
+Files: ext/digest/md5/md5.c ext/digest/md5/md5.h
+Copyright: 1999, 2000 Aladdin Enterprises.  All rights reserved.
+License:
+ This software is provided 'as-is', without any express or implied
+ warranty.  In no event will the authors be held liable for any damages
+ arising from the use of this software.
+ .
+ Permission is granted to anyone to use this software for any purpose,
+ including commercial applications, and to alter it and redistribute it
+ freely, subject to the following restrictions:
+ .
+ 1. The origin of this software must not be misrepresented; you must not
+    claim that you wrote the original software. If you use this software
+    in a product, an acknowledgment in the product documentation would be
+    appreciated but is not required.
+ 2. Altered source versions must be plainly marked as such, and must not be
+    misrepresented as being the original software.
+ 3. This notice may not be removed or altered from any source distribution.
+ .
+ L. Peter Deutsch
+ ghost@aladdin.com
+
+Files: ext/digest/rmd160/rmd160.c ext/digest/rmd160/rmd160.h
+Copyright: 1996 Katholieke Universiteit Leuven. All Rights Reserved.
+License: 3C-BSD-GENERIC
+
+Files: ext/digest/sha2/sha2.c ext/digest/sha2/sha2.h
+Copyright: 2000 Aaron D. Gifford.  All rights reserved.
+License: 3C-BSD-GENERIC
+
+Files: ext/nkf/nkf-utf8/config.h ext/nkf/nkf-utf8/nkf.c ext/nkf/nkf-utf8/utf8tbl.c
+Copyright: 1987, Fujitsu LTD. (Itaru ICHIKAWA)
+License:
+ Everyone is permitted to do anything on this program
+ including copying, modifying, improving,
+ as long as you don't try to pretend that you wrote it.
+ i.e., the above copyright notice has to appear in all copies.
+ Binary distribution requires original version messages.
+ You don't have to ask before copying, redistribution or publishing.
+ THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE.
+
+Files: ext/socket/addrinfo.h ext/socket/getaddrinfo.c ext/socket/getnameinfo.c
+Copyright: 1995, 1996, 1997, 1998, and 1999 WIDE Project. All rights reserved.
+License: 3C-BSD-GENERIC
+
+Files: ext/win32ole/win32ole.c
+Copyright:
+ 1995 Microsoft Corporation. All rights reserved.
+ Developed by ActiveWare Internet Corp.
+ Other modifications Copyright (c) 1997, 1998 by Gurusamy Sarathy
+ <gsar@umich.edu> and Jan Dubois <jan.dubois@ibm.net>
+License: GPL-1+ or Artistic
+ You may distribute under the terms of either the GNU General Public
+ License or the Artistic License, as specified in the README file
+ of the Perl distribution.
+ .
+ On Debian GNU/Linux systems, the complete text of the GNU General
+ Public License can be found in `/usr/share/common-licenses/GPL-1' and
+ the Artistic Licence in `/usr/share/common-licenses/Artistic'.
+
+Files: debian/*
+Copyright: 2013 Antonio Terceiro <terceiro@debian.org>
+License: 2C-BSD or Ruby
+ The Debian packaging is licensed under the same terms as the original package.
+
+License: Artistic
+ On Debian systems, the full text of the Artistic License
+ can be found in the file `/usr/share/common-licenses/Artistic'.
+
+License: 2C-BSD
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ 1. Redistributions of source code must retain the above copyright
+ notice, this list of conditions and the following disclaimer.
+ 2. Redistributions in binary form must reproduce the above copyright
+ notice, this list of conditions and the following disclaimer in the
+ documentation and/or other materials provided with the distribution.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
+ ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
+ FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ SUCH DAMAGE.
+
+License: 3C-BSD
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ 1. Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+ 2. Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+ 3. Neither the name of the University nor the names of its contributors
+    may be used to endorse or promote products derived from this software
+    without specific prior written permission.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+ ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+ FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ SUCH DAMAGE.
+
+License: 3C-BSD-GENERIC
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions are met:
+ .
+ * Redistributions of source code must retain the above copyright notice,
+   this list of conditions and the following disclaimer.
+ .
+ * Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution.
+ .
+ * Neither the name of the author/s, nor the names of the project's
+   contributors may be used to endorse or promote products derived from this
+   software without specific prior written permission.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE
+ FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+License: Expat
+ Permission is hereby granted, free of charge, to any person obtaining
+ a copy of this software and associated documentation files (the
+ 'Software'), to deal in the Software without restriction, including
+ without limitation the rights to use, copy, modify, merge, publish,
+ distribute, sublicense, and/or sell copies of the Software, and to
+ permit persons to whom the Software is furnished to do so, subject to
+ the following conditions:
+ .
+ The above copyright notice and this permission notice shall be
+ included in all copies or substantial portions of the Software.
+ .
+ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+ EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+License: Ruby
+ Ruby is copyrighted free software by Yukihiro Matsumoto <matz@netlab.jp>.  You
+ can redistribute it and/or modify it under either the terms of the 2-clause
+ BSDL (see the file BSDL), or the conditions below:
+ .
+  1. You may make and give away verbatim copies of the source form of the
+     software without restriction, provided that you duplicate all of the
+     original copyright notices and associated disclaimers.
+ .
+ 2. You may modify your copy of the software in any way, provided that
+     you do at least ONE of the following:
+ .
+       a) place your modifications in the Public Domain or otherwise
+          make them Freely Available, such as by posting said
+          modifications to Usenet or an equivalent medium, or by allowing
+          the author to include your modifications in the software.
+ .
+       b) use the modified software only within your corporation or
+          organization.
+ .
+       c) give non-standard binaries non-standard names, with
+          instructions on where to get the original software distribution.
+ .
+       d) make other distribution arrangements with the author.
+ .
+ 3. You may distribute the software in object code or binary form,
+     provided that you do at least ONE of the following:
+ .
+       a) distribute the binaries and library files of the software,
+          together with instructions (in the manual page or equivalent)
+          on where to get the original distribution.
+ .
+       b) accompany the distribution with the machine-readable source of
+          the software.
+ .
+       c) give non-standard binaries non-standard names, with
+          instructions on where to get the original software distribution.
+ .
+       d) make other distribution arrangements with the author.
+ .
+ 4. You may modify and include the part of the software into any other
+     software (possibly commercial).  But some files in the distribution
+     are not written by the author, so that they are not under these terms.
+ .
+     For the list of those files and their copying conditions, see the
+     file LEGAL.
+ .
+  5. The scripts and library files supplied as input to or produced as
+     output from the software do not automatically fall under the
+     copyright of the software, but belong to whomever generated them,
+     and may be sold commercially, and may be aggregated with this
+     software.
+ .
+  6. THIS SOFTWARE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR
+     IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
+     WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+     PURPOSE.
+
+License: SIL-1.1
+ -----------------------------------------------------------
+ SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+ -----------------------------------------------------------
+ .
+ PREAMBLE
+ The goals of the Open Font License (OFL) are to stimulate worldwide
+ development of collaborative font projects, to support the font creation
+ efforts of academic and linguistic communities, and to provide a free and
+ open framework in which fonts may be shared and improved in partnership
+ with others.
+ .
+ The OFL allows the licensed fonts to be used, studied, modified and
+ redistributed freely as long as they are not sold by themselves. The
+ fonts, including any derivative works, can be bundled, embedded,
+ redistributed and/or sold with any software provided that any reserved
+ names are not used by derivative works. The fonts and derivatives,
+ however, cannot be released under any other type of license. The
+ requirement for fonts to remain under this license does not apply
+ to any document created using the fonts or their derivatives.
+ .
+ DEFINITIONS
+ "Font Software" refers to the set of files released by the Copyright
+ Holder(s) under this license and clearly marked as such. This may
+ include source files, build scripts and documentation.
+ .
+ "Reserved Font Name" refers to any names specified as such after the
+ copyright statement(s).
+ .
+ "Original Version" refers to the collection of Font Software components as
+ distributed by the Copyright Holder(s).
+ .
+ "Modified Version" refers to any derivative made by adding to, deleting,
+ or substituting -- in part or in whole -- any of the components of the
+ Original Version, by changing formats or by porting the Font Software to a
+ new environment.
+ .
+ "Author" refers to any designer, engineer, programmer, technical
+ writer or other person who contributed to the Font Software.
+ .
+ PERMISSION & CONDITIONS
+ Permission is hereby granted, free of charge, to any person obtaining
+ a copy of the Font Software, to use, study, copy, merge, embed, modify,
+ redistribute, and sell modified and unmodified copies of the Font
+ Software, subject to the following conditions:
+ .
+ 1) Neither the Font Software nor any of its individual components,
+ in Original or Modified Versions, may be sold by itself.
+ .
+ 2) Original or Modified Versions of the Font Software may be bundled,
+ redistributed and/or sold with any software, provided that each copy
+ contains the above copyright notice and this license. These can be
+ included either as stand-alone text files, human-readable headers or
+ in the appropriate machine-readable metadata fields within text or
+ binary files as long as those fields can be easily viewed by the user.
+ .
+ 3) No Modified Version of the Font Software may use the Reserved Font
+ Name(s) unless explicit written permission is granted by the corresponding
+ Copyright Holder. This restriction only applies to the primary font name as
+ presented to the users.
+ .
+ 4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+ Software shall not be used to promote, endorse or advertise any
+ Modified Version, except to acknowledge the contribution(s) of the
+ Copyright Holder(s) and the Author(s) or with their explicit written
+ permission.
+ .
+ 5) The Font Software, modified or unmodified, in part or in whole,
+ must be distributed entirely under this license, and must not be
+ distributed under any other license. The requirement for fonts to
+ remain under this license does not apply to any document created
+ using the Font Software.
+ .
+ TERMINATION
+ This license becomes null and void if any of the above conditions are
+ not met.
+ .
+ DISCLAIMER
+ THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+ OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+ COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+ DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+ OTHER DEALINGS IN THE FONT SOFTWARE.

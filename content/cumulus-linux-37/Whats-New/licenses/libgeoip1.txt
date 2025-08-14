@@ -1,0 +1,85 @@
+This package was debianized by Marek Habersack <grendel@debian.org> on
+Mon, 11 Nov 2002 19:25:35 +0100.
+This file has been changed on Wed, 19 Dec 2007 20:55:00 +0100 from
+Patrick Matthäi <pmatthaei@debian.org>.
+
+It was downloaded from http://www.maxmind.com/download/geoip/api/c/
+
+Here you can get the databases: http://geolite.maxmind.com/download/geoip/database/
+
+Upstream Author: T.J. Mather <tjmather@maxmind.com>
+
+Copyright: (C) 2007 MaxMind LLC
+
+
+License (debian/src/geoip-csv-to-dat.cpp):
+    Copyright (c) 2009 Kalle Olavi Niemitalo.
+
+    Permission to use, copy, modify, and/or distribute this software for any
+    purpose with or without fee is hereby granted, provided that the above
+    copyright notice and this permission notice appear in all copies.
+
+    THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+    WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+    MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+    ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+    WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+    ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+    OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+
+License (data/GeoIP.dat):
+
+    OPEN DATA LICENSE
+
+    All advertising materials and documentation mentioning features or use of
+    this database must display the following acknowledgment:
+    "This product includes GeoLite data created by MaxMind, available from
+    http://maxmind.com/"
+
+    Redistribution and use with or without modification, are permitted provided
+    that the following conditions are met:
+    1. Redistributions must retain the above copyright notice, this list of
+    conditions and the following disclaimer in the documentation and/or other
+    materials provided with the distribution.
+    2. All advertising materials and documentation mentioning features or use of
+    this database must display the following acknowledgement:
+    "This product includes GeoLite data created by MaxMind, available from
+    http://maxmind.com/"
+    3. "MaxMind" may not be used to endorse or promote products derived from this
+    database without specific prior written permission.
+
+    THIS DATABASE IS PROVIDED BY MAXMIND, INC ``AS IS'' AND ANY
+    EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+    WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+    DISCLAIMED. IN NO EVENT SHALL MAXMIND BE LIABLE FOR ANY
+    DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+    (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+    LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+    ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+    (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+    DATABASE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+License (everything else):
+
+    This library is free software; you can redistribute it and/or
+    modify it under the terms of the GNU Lesser General Public
+    License as published by the Free Software Foundation; either
+    version 2.1 of the License, or (at your option) any later version.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public
+    License along with this library; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+    02110-1301 USA
+
+On Debian GNU/Linux systems, the complete text of the GNU Lesser General
+Public License can be found in `/usr/share/common-licenses/LGPL-2'.
+
+The Debian packaging is © 2009-2010, Patrick Matthäi <pmatthaei@debian.org>
+and is licensed under the LGPL-2, see above.

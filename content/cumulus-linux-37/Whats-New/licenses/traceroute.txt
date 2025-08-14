@@ -1,0 +1,52 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: traceroute
+Upstream-Contact: traceroute-devel@lists.sourceforge.net
+Source: http://sourceforge.net/projects/traceroute/files/
+
+Files: *
+Copyright: 2006-2012 Dmitry K. Butskoy <Dmitry@Butskoy.name>
+License: GPL-2+
+
+Files: libsupp/*
+Copyright: 2006-2012 Dmitry K. Butskoy <Dmitry@Butskoy.name>
+License: LGPL-2.1+
+
+Files: debian/*
+Copyright: 2014-     Laszlo Boszormenyi (GCS) <gcs@debian.org>,
+ 2013-2014 Luk Claes <luk@debian.org>,
+ 2007-2012 Daniel Baumann <mail@daniel-baumann.ch>
+License: GPL-2+
+
+License: GPL-2+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 2 of the License, or
+ (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <http://www.gnu.org/licenses/>.
+ .
+ The complete text of the GNU General Public License
+ can be found in /usr/share/common-licenses/GPL-2 file.
+
+License: LGPL-2.1+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License as published by
+ the Free Software Foundation, either version 2.1 of the License, or
+ (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ GNU Lesser General Public License for more details.
+ .
+ You should have received a copy of the GNU Lesser General Public License
+ along with this program. If not, see <http://www.gnu.org/licenses/>.
+ .
+ The complete text of the GNU Lesser General Public License
+ can be found in /usr/share/common-licenses/LGPL-2.1 file.

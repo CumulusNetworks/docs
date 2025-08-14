@@ -313,7 +313,7 @@ The detailed output in `/proc/net/bonding/<filename>` includes the actor/partner
 - A bond can have subinterfaces, but subinterfaces cannot have a bond.
 - A bond cannot enslave VLAN subinterfaces.
 - Set all slave ports within a bond to the same speed/duplex and make sure they match the link partner's slave ports.
-- On a [Cumulus RMP]({{<ref "/cumulus-rmp" >}}) switch, if you create a bond with multiple 10G member ports, traffic gets dropped when the bond uses members of the same *unit* listed in the `/var/lib/cumulus/porttab` file. For example, traffic gets dropped if both swp49 and swp52 are in the bond because they both are in xe0 (or if both swp50 and swp51 are in the same bond because they are both in xe1):
+- On a Cumulus RMP switch, if you create a bond with multiple 10G member ports, traffic gets dropped when the bond uses members of the same *unit* listed in the `/var/lib/cumulus/porttab` file. For example, traffic gets dropped if both swp49 and swp52 are in the bond because they both are in xe0 (or if both swp50 and swp51 are in the same bond because they are both in xe1):
 
     ```
     swp49 xe0 0 0 -1 0

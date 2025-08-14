@@ -35,7 +35,7 @@ frontend:
         # Default is /public/networking-ethernet-software
         - if [ "${AWS_BRANCH}" != "master" ]; then python3 utils/pdf_page_editor.py ; fi
         # Run markdownify to produce simple markdown for post-build html docs
-        - if [ "${AWS_BRANCH}" = "stu-stage" ]; then python3 utils/html-to-markdown.py ; fi
+        - if [ "${AWS_BRANCH}" = "stu-stage" ]; then python3 utils/html-to-markdown.py --url-replace $MDAMPURLREPLACE ; fi
         - tree
   artifacts:
     files:

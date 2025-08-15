@@ -153,7 +153,7 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 </tr>
 <tr>
 <td>3773177</td>
-<td>When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 or later with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
+<td>When you try to upgrade a switch from Cumulus Linux with package upgrade, you might see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
 
 cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb
@@ -490,7 +490,7 @@ In addition, the CL5.7.0 default configuration for {{vi}} now disables modelines
 </tr>
 <tr>
 <td>3591918</td>
-<td>The {{nv action disconnect system aaa user}} command does not clear all the open sessions. To work around this issue, run the command as many times as the number of sessions to clear all the sessions.</td>
+<td>The {{nv action disconnect system aaa user}} command does not clear all open sessions. To work around this issue, run the command as many times as the number of sessions.</td>
 <td>5.6.0-5.14.0</td>
 <td></td>
 </tr>
@@ -840,7 +840,7 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 </tr>
 <tr>
 <td>3225117</td>
-<td>Occasionally, packet losses might occur on 25G ports when the link is raised without FEC.</td>
+<td>Occasionally, packet loss might occur on 25G ports when the link is raised without FEC.</td>
 <td>5.4.0-5.14.0</td>
 <td></td>
 </tr>

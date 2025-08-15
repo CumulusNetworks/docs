@@ -7,11 +7,17 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4555938</td>
+<td>When one of the FRR processes such as {{bgpd}} or zebra goes down, {{watchfrr}} tries to restart those processes and also restarts the routing telemetry service, which blocks {{watchfrr}} causing cascading failures on other processes.</td>
+<td>5.12.0-5.13.1</td>
+<td>5.14.0</td>
+</tr>
+<tr>
 <td>4548514</td>
 <td>When a connected route for an SVI interface with VRR configured is installed by FRR, the route might be installed with the next hop interface of the VRR device instead of the SVI. For example, instead of interface {{vlan10}}, the route might install against {{vlan10-v0}}. This prevents next-hop tracking and route installation into hardware.
 This issue can occur in the following conditions:
 &lt;ul&gt;&lt;li&gt;When initially configuring VRF route leaking, the target VRF might not install a route into hardware when leaking directly connected routes for SVI interfaces with VRR enabled.&lt;/li&gt;
-&lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change for any reason, such as link flaps, interface bring-up, {{clagd}} restart, {{switchd}} restart, etc.&lt;/li&gt;&lt;/ul&gt;
+&lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change for any reason, such as link flaps, interface bring-up, {{clagd}} restart, {{switchd}} restart, and so on.&lt;/li&gt;&lt;/ul&gt;
 To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command. </td>
 <td>5.9.1-5.14.0</td>
 <td></td>
@@ -57,6 +63,18 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td></td>
 </tr>
 <tr>
+<td>4535699</td>
+<td>When you configure the RADIUS authentication order with {{local}} first and {{radius second}}, the RADIUS user is authenticated as a default user name. </td>
+<td>5.11.3-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4535696</td>
+<td>When you configure the RADIUS authentication order with {{local}} first and {{radius second}}, the RADIUS user is authenticated as a default user name. </td>
+<td>5.12.1-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4531952</td>
 <td>When a connected route for an SVI interface with VRR configured is installed by FRR, the route might be installed with the next hop interface of the VRR device instead of the SVI. For example, instead of interface {{vlan10}}, the route might install against {{vlan10-v0}}. This prevents next-hop tracking and route installation into hardware.
 This issue can occur in the following conditions:
@@ -90,9 +108,7 @@ To work around this issue, power cycle the switch.</td>
 </tr>
 <tr>
 <td>4509255</td>
-<td>In PTP two-step, hardware incorrectly modified the SYNC message correction field.
-This is according to original HW design.
-</td>
+<td>In PTP two-step, the hardware incorrectly modifies the SYNC message correction field.</td>
 <td>5.12.0-5.14.0</td>
 <td></td>
 </tr>
@@ -213,7 +229,7 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 </tr>
 <tr>
 <td>4423248</td>
-<td>If you unset an interface static IP address when the interface IP gateway is configured, the {{nv config apply}} command fails with an {{ifreload.service}} error. To work around the issue, unset both the static IP address and gateway together.</td>
+<td>If you unset an interface static IP address when the interface IP gateway is configured, the {{nv config apply}} command fails with an {{ifreload.service}} error. To work around this issue, unset both the static IP address and gateway together.</td>
 <td>5.9.0-5.14.0</td>
 <td></td>
 </tr>
@@ -334,8 +350,7 @@ On the Spectrum-3 switch, the cell-size is 144 bytes. The minimum size is 144*64
 </tr>
 <tr>
 <td>4343690</td>
-<td>The Swagger UI for the Cumulus OpenAPI model is not rendering correctly (https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-512/api/index.html#). 
-The interface shows "screaming" emojis and "Could not render." </td>
+<td>The Swagger UI for the Cumulus OpenAPI model is not rendering correctly (https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-512/api/index.html#). The interface shows screaming emojis and {{Could not render}}. </td>
 <td>5.11.0-5.14.0</td>
 <td></td>
 </tr>
@@ -475,7 +490,7 @@ cumulus@switch:~$ sudo systemctl start cumulus-upgrade-on-shutdown</td>
 </tr>
 <tr>
 <td>4249096</td>
-<td>Binary upgrade from Cumulus Linux 4.3.1 to 5.12.0 and later is not supported. To work around this issue, perform a binary upgrade from Cumulus Linux 4.3.1 to 5.9.0, then perform a binary upgrade from Cumulus Linux 5.9.0 to 5.12.0.</td>
+<td>Binary upgrade from Cumulus Linux 4.3.1 to 5.12.0 and later is not supported. To work around this issue, perform a binary upgrade from Cumulus Linux 4.3.1 to 5.9.0, then perform a binary upgrade from Cumulus Linux 5.9.0 to 5.12.0 or later.</td>
 <td>5.12.0-5.14.0</td>
 <td></td>
 </tr>
@@ -506,7 +521,7 @@ cumulus@switch:~$ sudo /usr/sbin/pam-auth-update --force --package</td>
 </tr>
 <tr>
 <td>4177067</td>
-<td>When doing a package upgrade from CL5.9 or CL5.10 to CL5.11 or later, the installation of {{nslcd}} might open an interactive dialog to configure {{nslcd.conf }}.To avoid this interactive dialog, set the {{DEBIAN_FRONTEND}} environment variable to {{noninteractive}}. For example:
+<td>When performing a package upgrade, {{nslcd}} installation might open an interactive dialog to configure {{nslcd.conf }}.To avoid this interactive dialog, set the {{DEBIAN_FRONTEND}} environment variable to {{noninteractive}}. For example:
 cumulus@switch:~$ sudo apt-get update
 cumulus@switch:~$ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "Dpkg::Options::=--force-confdef" -o "Dpkg::Options::=--force-confold" upgrade</td>
 <td>5.11.0-5.14.0</td>
@@ -617,7 +632,7 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 </tr>
 <tr>
 <td>4047798</td>
-<td>Packet distribution based on ECMP hash is not working for VXLAN on top of rack switches where it is encapped. To work around this issue, enable lag hashing with gtp-teid to distribute VXLAN encapped packets across egress interfaces on the top of rack switches.</td>
+<td>Packet distribution based on ECMP hash is not working for VXLAN on top of rack switches where it is encapped. To work around this issue, enable lag hashing with gtp-teid to distribute the VXLAN encapped packets across egress interfaces.</td>
 <td>5.10.0-5.14.0</td>
 <td></td>
 </tr>
@@ -748,7 +763,7 @@ Mounting dev-mqueue.mount
 </tr>
 <tr>
 <td>3773177</td>
-<td>When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 or later with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
+<td>When you try to upgrade a switch from Cumulus Linux with package upgrade, you might see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
 
 cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb
@@ -784,7 +799,7 @@ cumulus@switch:~$ sudo apt upgrade
 </tr>
 <tr>
 <td>3591918</td>
-<td>The {{nv action disconnect system aaa user}} command does not clear all the open sessions. To work around this issue, run the command as many times as the number of sessions to clear all the sessions.</td>
+<td>The {{nv action disconnect system aaa user}} command does not clear all open sessions. To work around this issue, run the command as many times as the number of sessions.</td>
 <td>5.6.0-5.14.0</td>
 <td></td>
 </tr>
@@ -919,7 +934,7 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 </tr>
 <tr>
 <td>3225117</td>
-<td>Occasionally, packet losses might occur on 25G ports when the link is raised without FEC.</td>
+<td>Occasionally, packet loss might occur on 25G ports when the link is raised without FEC.</td>
 <td>5.4.0-5.14.0</td>
 <td></td>
 </tr>
@@ -1108,11 +1123,17 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4555938</td>
+<td>When one of the FRR processes such as {{bgpd}} or zebra goes down, {{watchfrr}} tries to restart those processes and also restarts the routing telemetry service, which blocks {{watchfrr}} causing cascading failures on other processes.</td>
+<td>5.12.0-5.13.1</td>
+<td>5.14.0</td>
+</tr>
+<tr>
 <td>4548514</td>
 <td>When a connected route for an SVI interface with VRR configured is installed by FRR, the route might be installed with the next hop interface of the VRR device instead of the SVI. For example, instead of interface {{vlan10}}, the route might install against {{vlan10-v0}}. This prevents next-hop tracking and route installation into hardware.
 This issue can occur in the following conditions:
 &lt;ul&gt;&lt;li&gt;When initially configuring VRF route leaking, the target VRF might not install a route into hardware when leaking directly connected routes for SVI interfaces with VRR enabled.&lt;/li&gt;
-&lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change for any reason, such as link flaps, interface bring-up, {{clagd}} restart, {{switchd}} restart, etc.&lt;/li&gt;&lt;/ul&gt;
+&lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change for any reason, such as link flaps, interface bring-up, {{clagd}} restart, {{switchd}} restart, and so on.&lt;/li&gt;&lt;/ul&gt;
 To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command. </td>
 <td>5.9.1-5.14.0</td>
 <td></td>
@@ -1158,6 +1179,12 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td></td>
 </tr>
 <tr>
+<td>4535699</td>
+<td>When you configure the RADIUS authentication order with {{local}} first and {{radius second}}, the RADIUS user is authenticated as a default user name. </td>
+<td>5.11.3-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4531952</td>
 <td>When a connected route for an SVI interface with VRR configured is installed by FRR, the route might be installed with the next hop interface of the VRR device instead of the SVI. For example, instead of interface {{vlan10}}, the route might install against {{vlan10-v0}}. This prevents next-hop tracking and route installation into hardware.
 This issue can occur in the following conditions:
@@ -1191,9 +1218,7 @@ To work around this issue, power cycle the switch.</td>
 </tr>
 <tr>
 <td>4509255</td>
-<td>In PTP two-step, hardware incorrectly modified the SYNC message correction field.
-This is according to original HW design.
-</td>
+<td>In PTP two-step, the hardware incorrectly modifies the SYNC message correction field.</td>
 <td>5.12.0-5.14.0</td>
 <td></td>
 </tr>
@@ -1308,7 +1333,7 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 </tr>
 <tr>
 <td>4423248</td>
-<td>If you unset an interface static IP address when the interface IP gateway is configured, the {{nv config apply}} command fails with an {{ifreload.service}} error. To work around the issue, unset both the static IP address and gateway together.</td>
+<td>If you unset an interface static IP address when the interface IP gateway is configured, the {{nv config apply}} command fails with an {{ifreload.service}} error. To work around this issue, unset both the static IP address and gateway together.</td>
 <td>5.9.0-5.14.0</td>
 <td></td>
 </tr>
@@ -1423,8 +1448,7 @@ On the Spectrum-3 switch, the cell-size is 144 bytes. The minimum size is 144*64
 </tr>
 <tr>
 <td>4343690</td>
-<td>The Swagger UI for the Cumulus OpenAPI model is not rendering correctly (https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-512/api/index.html#). 
-The interface shows "screaming" emojis and "Could not render." </td>
+<td>The Swagger UI for the Cumulus OpenAPI model is not rendering correctly (https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-512/api/index.html#). The interface shows screaming emojis and {{Could not render}}. </td>
 <td>5.11.0-5.14.0</td>
 <td></td>
 </tr>
@@ -1576,7 +1600,7 @@ cumulus@switch:~$ sudo systemctl start cumulus-upgrade-on-shutdown</td>
 </tr>
 <tr>
 <td>4249096</td>
-<td>Binary upgrade from Cumulus Linux 4.3.1 to 5.12.0 and later is not supported. To work around this issue, perform a binary upgrade from Cumulus Linux 4.3.1 to 5.9.0, then perform a binary upgrade from Cumulus Linux 5.9.0 to 5.12.0.</td>
+<td>Binary upgrade from Cumulus Linux 4.3.1 to 5.12.0 and later is not supported. To work around this issue, perform a binary upgrade from Cumulus Linux 4.3.1 to 5.9.0, then perform a binary upgrade from Cumulus Linux 5.9.0 to 5.12.0 or later.</td>
 <td>5.12.0-5.14.0</td>
 <td></td>
 </tr>
@@ -1607,7 +1631,7 @@ cumulus@switch:~$ sudo /usr/sbin/pam-auth-update --force --package</td>
 </tr>
 <tr>
 <td>4177067</td>
-<td>When doing a package upgrade from CL5.9 or CL5.10 to CL5.11 or later, the installation of {{nslcd}} might open an interactive dialog to configure {{nslcd.conf }}.To avoid this interactive dialog, set the {{DEBIAN_FRONTEND}} environment variable to {{noninteractive}}. For example:
+<td>When performing a package upgrade, {{nslcd}} installation might open an interactive dialog to configure {{nslcd.conf }}.To avoid this interactive dialog, set the {{DEBIAN_FRONTEND}} environment variable to {{noninteractive}}. For example:
 cumulus@switch:~$ sudo apt-get update
 cumulus@switch:~$ sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "Dpkg::Options::=--force-confdef" -o "Dpkg::Options::=--force-confold" upgrade</td>
 <td>5.11.0-5.14.0</td>
@@ -1718,7 +1742,7 @@ To resolve this issue, run the {{rm -rf /tmp/python_err_log.txt}} command.</td>
 </tr>
 <tr>
 <td>4047798</td>
-<td>Packet distribution based on ECMP hash is not working for VXLAN on top of rack switches where it is encapped. To work around this issue, enable lag hashing with gtp-teid to distribute VXLAN encapped packets across egress interfaces on the top of rack switches.</td>
+<td>Packet distribution based on ECMP hash is not working for VXLAN on top of rack switches where it is encapped. To work around this issue, enable lag hashing with gtp-teid to distribute the VXLAN encapped packets across egress interfaces.</td>
 <td>5.10.0-5.14.0</td>
 <td></td>
 </tr>
@@ -1849,7 +1873,7 @@ Mounting dev-mqueue.mount
 </tr>
 <tr>
 <td>3773177</td>
-<td>When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 or later with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
+<td>When you try to upgrade a switch from Cumulus Linux with package upgrade, you might see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
 
 cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb
@@ -1885,7 +1909,7 @@ cumulus@switch:~$ sudo apt upgrade
 </tr>
 <tr>
 <td>3591918</td>
-<td>The {{nv action disconnect system aaa user}} command does not clear all the open sessions. To work around this issue, run the command as many times as the number of sessions to clear all the sessions.</td>
+<td>The {{nv action disconnect system aaa user}} command does not clear all open sessions. To work around this issue, run the command as many times as the number of sessions.</td>
 <td>5.6.0-5.14.0</td>
 <td></td>
 </tr>
@@ -2020,7 +2044,7 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 </tr>
 <tr>
 <td>3225117</td>
-<td>Occasionally, packet losses might occur on 25G ports when the link is raised without FEC.</td>
+<td>Occasionally, packet loss might occur on 25G ports when the link is raised without FEC.</td>
 <td>5.4.0-5.14.0</td>
 <td></td>
 </tr>

@@ -11,7 +11,7 @@
 <td>When a connected route for an SVI interface with VRR configured is installed by FRR, the route might be installed with the next hop interface of the VRR device instead of the SVI. For example, instead of interface {{vlan10}}, the route might install against {{vlan10-v0}}. This prevents next-hop tracking and route installation into hardware.
 This issue can occur in the following conditions:
 &lt;ul&gt;&lt;li&gt;When initially configuring VRF route leaking, the target VRF might not install a route into hardware when leaking directly connected routes for SVI interfaces with VRR enabled.&lt;/li&gt;
-&lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change for any reason, such as link flaps, interface bring-up, {{clagd}} restart, {{switchd}} restart, etc.&lt;/li&gt;&lt;/ul&gt;
+&lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change for any reason, such as link flaps, interface bring-up, {{clagd}} restart, {{switchd}} restart, and so on.&lt;/li&gt;&lt;/ul&gt;
 To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command. </td>
 <td>5.9.1-5.14.0</td>
 <td></td>
@@ -100,7 +100,7 @@ To work around this issue, power cycle the switch.</td>
 </tr>
 <tr>
 <td>4423248</td>
-<td>If you unset an interface static IP address when the interface IP gateway is configured, the {{nv config apply}} command fails with an {{ifreload.service}} error. To work around the issue, unset both the static IP address and gateway together.</td>
+<td>If you unset an interface static IP address when the interface IP gateway is configured, the {{nv config apply}} command fails with an {{ifreload.service}} error. To work around this issue, unset both the static IP address and gateway together.</td>
 <td>5.9.0-5.14.0</td>
 <td></td>
 </tr>
@@ -333,7 +333,7 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 </tr>
 <tr>
 <td>4124139</td>
-<td>MLAG interfaces including VXLAN interfaces goes down when you add MLAG configuration to the first bond in a single MLAG switch setup.</td>
+<td>MLAG interfaces, including VXLAN interfaces, go down when you add MLAG configuration to the first bond in a single MLAG switch setup.</td>
 <td>5.8.0-5.10.1</td>
 <td>5.11.0-5.14.0</td>
 </tr>
@@ -482,7 +482,7 @@ To work around this issue, power-cycle the switch.</td>
 </tr>
 <tr>
 <td>4047798</td>
-<td>Packet distribution based on ECMP hash is not working for VXLAN on top of rack switches where it is encapped. To work around this issue, enable lag hashing with gtp-teid to distribute VXLAN encapped packets across egress interfaces on the top of rack switches.</td>
+<td>Packet distribution based on ECMP hash is not working for VXLAN on top of rack switches where it is encapped. To work around this issue, enable lag hashing with gtp-teid to distribute the VXLAN encapped packets across egress interfaces.</td>
 <td>5.10.0-5.14.0</td>
 <td></td>
 </tr>
@@ -673,7 +673,7 @@ Mounting dev-mqueue.mount
 </tr>
 <tr>
 <td>3773177</td>
-<td>When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 or later with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
+<td>When you try to upgrade a switch from Cumulus Linux with package upgrade, you might see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
 
 cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb
@@ -709,7 +709,7 @@ cumulus@switch:~$ sudo apt upgrade
 </tr>
 <tr>
 <td>3591918</td>
-<td>The {{nv action disconnect system aaa user}} command does not clear all the open sessions. To work around this issue, run the command as many times as the number of sessions to clear all the sessions.</td>
+<td>The {{nv action disconnect system aaa user}} command does not clear all open sessions. To work around this issue, run the command as many times as the number of sessions.</td>
 <td>5.6.0-5.14.0</td>
 <td></td>
 </tr>
@@ -850,7 +850,7 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 </tr>
 <tr>
 <td>3225117</td>
-<td>Occasionally, packet losses might occur on 25G ports when the link is raised without FEC.</td>
+<td>Occasionally, packet loss might occur on 25G ports when the link is raised without FEC.</td>
 <td>5.4.0-5.14.0</td>
 <td></td>
 </tr>
@@ -1089,7 +1089,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>When a connected route for an SVI interface with VRR configured is installed by FRR, the route might be installed with the next hop interface of the VRR device instead of the SVI. For example, instead of interface {{vlan10}}, the route might install against {{vlan10-v0}}. This prevents next-hop tracking and route installation into hardware.
 This issue can occur in the following conditions:
 &lt;ul&gt;&lt;li&gt;When initially configuring VRF route leaking, the target VRF might not install a route into hardware when leaking directly connected routes for SVI interfaces with VRR enabled.&lt;/li&gt;
-&lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change for any reason, such as link flaps, interface bring-up, {{clagd}} restart, {{switchd}} restart, etc.&lt;/li&gt;&lt;/ul&gt;
+&lt;li&gt;In an MLAG and VRR configuration, static routes fail to install when the route is resolved through a connected route and the interface of the connected route undergoes a link state change for any reason, such as link flaps, interface bring-up, {{clagd}} restart, {{switchd}} restart, and so on.&lt;/li&gt;&lt;/ul&gt;
 To work around this issue, restart the FRR service using the {{sudo systemctl restart frr.service}} command. </td>
 <td>5.9.1-5.14.0</td>
 <td></td>
@@ -1178,7 +1178,7 @@ To work around this issue, power cycle the switch.</td>
 </tr>
 <tr>
 <td>4423248</td>
-<td>If you unset an interface static IP address when the interface IP gateway is configured, the {{nv config apply}} command fails with an {{ifreload.service}} error. To work around the issue, unset both the static IP address and gateway together.</td>
+<td>If you unset an interface static IP address when the interface IP gateway is configured, the {{nv config apply}} command fails with an {{ifreload.service}} error. To work around this issue, unset both the static IP address and gateway together.</td>
 <td>5.9.0-5.14.0</td>
 <td></td>
 </tr>
@@ -1361,7 +1361,7 @@ This happens in async mode, where the end notification expected after an end of 
 </tr>
 <tr>
 <td>4124139</td>
-<td>MLAG interfaces including VXLAN interfaces goes down when you add MLAG configuration to the first bond in a single MLAG switch setup.</td>
+<td>MLAG interfaces, including VXLAN interfaces, go down when you add MLAG configuration to the first bond in a single MLAG switch setup.</td>
 <td>5.8.0-5.10.1</td>
 <td>5.11.0-5.14.0</td>
 </tr>
@@ -1546,7 +1546,7 @@ To work around this issue, power-cycle the switch.</td>
 </tr>
 <tr>
 <td>4047798</td>
-<td>Packet distribution based on ECMP hash is not working for VXLAN on top of rack switches where it is encapped. To work around this issue, enable lag hashing with gtp-teid to distribute VXLAN encapped packets across egress interfaces on the top of rack switches.</td>
+<td>Packet distribution based on ECMP hash is not working for VXLAN on top of rack switches where it is encapped. To work around this issue, enable lag hashing with gtp-teid to distribute the VXLAN encapped packets across egress interfaces.</td>
 <td>5.10.0-5.14.0</td>
 <td></td>
 </tr>
@@ -1768,7 +1768,7 @@ Mounting dev-mqueue.mount
 </tr>
 <tr>
 <td>3773177</td>
-<td>When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 or later with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
+<td>When you try to upgrade a switch from Cumulus Linux with package upgrade, you might see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
 
 cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb
@@ -1804,7 +1804,7 @@ cumulus@switch:~$ sudo apt upgrade
 </tr>
 <tr>
 <td>3591918</td>
-<td>The {{nv action disconnect system aaa user}} command does not clear all the open sessions. To work around this issue, run the command as many times as the number of sessions to clear all the sessions.</td>
+<td>The {{nv action disconnect system aaa user}} command does not clear all open sessions. To work around this issue, run the command as many times as the number of sessions.</td>
 <td>5.6.0-5.14.0</td>
 <td></td>
 </tr>
@@ -1945,7 +1945,7 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 </tr>
 <tr>
 <td>3225117</td>
-<td>Occasionally, packet losses might occur on 25G ports when the link is raised without FEC.</td>
+<td>Occasionally, packet loss might occur on 25G ports when the link is raised without FEC.</td>
 <td>5.4.0-5.14.0</td>
 <td></td>
 </tr>
@@ -2310,9 +2310,7 @@ You can safely ignore this error as FRR accepts and applies the new configuratio
 </tr>
 <tr>
 <td>3895848</td>
-<td>MLAG bonds might report an LACP partner MAC mismatch unexpectedly during LACP negotation and MLAG convergence until the bond reaches a dual connected state. There is no impact to bonds when this mismatch is reported.
-
-Please note this Release Note should be updated only for CL5.9 and CL5.9.1 and not for any version below CL5.9 or above CL5.9.1</td>
+<td>MLAG bonds might report an LACP partner MAC mismatch unexpectedly during LACP negotation and MLAG convergence until the bond reaches a dual connected state. There is no impact to bonds when this mismatch is reported.</td>
 <td>5.9.0-5.9.3</td>
 </tr>
 <tr>

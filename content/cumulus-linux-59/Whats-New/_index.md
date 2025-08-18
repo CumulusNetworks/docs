@@ -13,7 +13,7 @@ Cumulus Linux 5.9 is an Extended-Support Release (ESR). For more information, re
 
 ## What's New in Cumulus Linux 5.9.4
 
-Cumulus Linux 5.9.4 provides {{<link title="Cumulus Linux 5.9 Release Notes" text="bug fixes">}}.
+Cumulus Linux 5.9.4 provides important security fixes and {{<link title="Cumulus Linux 5.9 Release Notes" text="bug fixes">}}.
 
 ## What's New in Cumulus Linux 5.9.3
 

@@ -31,7 +31,7 @@ You can configure the following BFD parameters for both IPv4 and IPv6 sessions:
 
 ## Configure BFD
 
-You configure BFD one of two ways: by specifying the configuration in the {{<link url="Prescriptive-Topology-Manager-PTM" text="PTM `topology.dot` file">}}, or using {{<link url="FRRouting-Overview" text="FRRouting">}}.
+You configure BFD one of two ways: by specifying the configuration in the {{<link url="Prescriptive-Topology-Manager-PTM" text="PTM topology.dot file">}}, or using {{<link url="FRRouting-Overview" text="FRRouting">}}.
 However, the topology file has some limitations:
 
 - The `topology.dot` file supports creating BFD IPv4 and IPv6 single hop sessions only; you cannot specify IPv4 or IPv6 multihop sessions in the topology file.

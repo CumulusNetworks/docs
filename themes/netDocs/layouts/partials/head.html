@@ -85,7 +85,7 @@ window.mountChainlitWidget({
 {{ end }}
 
 {{ if eq .Page.Params.product "Cumulus NetQ" }}
-<script async src="https://copilot-netguru.nvidia.com/chainlit/copilot/index.js"></script>
+<script defer src="https://copilot-netguru.nvidia.com/chainlit/copilot/index.js"></script>
 <script defer>
 window.mountChainlitWidget({
     chainlitServer: "https://copilot-netguru.nvidia.com/chainlit",

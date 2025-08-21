@@ -660,7 +660,7 @@ netq add validation
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| name | user defined | Unique name for the validation |
+| name | \<text-new-validation-name\> | Unique name for the validation |
 | type | addr, agents, bgp, evpn, interfaces, mlag, mtu, ntp, roce, sensors, topology, vlan, or vxlan | Protocol or service to validate |
 | interval | \<text-time-min\> | Frequency to run the validation, in minutes. Value must include time unit of *m*, minutes. Default scheduled validations per type run every 60 minutes. |
 

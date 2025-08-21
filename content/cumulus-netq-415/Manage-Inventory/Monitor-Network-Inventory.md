@@ -9,11 +9,8 @@ Use the UI or CLI to monitor your network's inventory of switches, hosts, NICs, 
 
 ## Networkwide Inventory Commands
 
-Several forms of this command are available based on the inventory component you'd like to view. See the {{<link title="show/#netq-show-inventory" text="command line reference">}} for additional options, definitions, and examples.
+- {{<link title="show/#netq-show-inventory" text="netq show inventory">}}
 
-```
-netq show inventory (brief | asic | board | cpu | disk | memory | os)
-```
 ## View Networkwide Inventory in the UI
 
 {{<tabs "TabID 34">}}
@@ -24,7 +21,7 @@ netq show inventory (brief | asic | board | cpu | disk | memory | os)
 The NetQ header displays the number of devices in your network that are 'fresh' or reachable.
 {{</notice>}}
 
-To view the quantity of devices in your network, search for the "Inventory | Devices" card in the global search field. The medium-sized card displays the total number of devices in the network. Hover your cursor over the chart to view the number and percentage of switches, hosts, NICS, and DPUs that comprise your network.
+To view the quantity of devices in your network, search for the Inventory/Devices card in the global search field. The medium-sized card displays the total number of devices in the network. Hover your cursor over the chart to view the number and percentage of switches, hosts, NICS, and DPUs that comprise your network.
 
 {{<figure src="/images/netq/inventory-devices-490.png" alt="medium inventory card displaying 8 total devices" width="200" height="315">}}
 

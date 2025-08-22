@@ -87,22 +87,58 @@ window.mountChainlitWidget({
 {{ if eq .Page.Params.product "Cumulus NetQ" }}
 <script async src="https://copilot-netguru.nvidia.com/chainlit/copilot/index.js" id="chainlit-script"></script>
 <script>
-document.getElementById('chainlit-script').addEventListener('load', function() {
-    window.mountChainlitWidget({
-        chainlitServer: "https://copilot-netguru.nvidia.com/chainlit",
-        button: {
-            position: {
-                bottom: 1,      // Distance from bottom of the screen (rem)
-                right: 1,       // Distance from right edge (rem)
+let isIndexLoaded = false;
+
+// Function to create and style the widget immediately to avoid style inheritance after DOM load
+function createAndStyleWidget() {
+    // Create the button element
+    const button = document.createElement('div');
+    button.id = 'chainlit-button';
+    button.style.position = 'fixed';
+    button.style.bottom = '1rem';
+    button.style.right = '1rem';
+    button.style.width = '3rem'; // Diameter of the floating button
+    button.style.height = '3rem'; // Diameter of the floating button
+    button.style.backgroundColor = 'blue'; // Example styling - we'll make it invisible before full load
+    button.style.borderRadius = '50%'; // Make it circular
+    button.style.zIndex = '1000'; // Ensure it's on top
+    button.style.visibility = 'hidden'; // Initially hidden
+    document.body.appendChild(button); // Add the button to the body
+}
+
+// Function to mount the Chainlit widget only if isIndexLoaded is true
+function mountWidget() {
+    if (isIndexLoaded) {
+        window.mountChainlitWidget({
+            chainlitServer: "https://copilot-netguru.nvidia.com/chainlit",
+            button: {
+                position: {
+                    bottom: 1,      // Distance from bottom of the screen (rem)
+                    right: 1,       // Distance from right edge (rem)
+                },
+                size: 3           // Diameter of the floating button (rem)
             },
-            size: 3           // Diameter of the floating button (rem)
-        },
-        popup: {
-            normalWidth: 300,     // Default width in pixels
-            expandedWidth: 800,   // Width when expanded
-            height: 800           // Height of the popup in pixels
-        }
-    });
+            popup: {
+                normalWidth: 300,     // Default width in pixels
+                expandedWidth: 800,   // Width when expanded
+                height: 800           // Height of the popup in pixels
+            }
+        });
+
+        // Make the button visible after the widget is mounted
+        document.getElementById('chainlit-button').style.visibility = 'visible';
+    }
+}
+
+// Listen for the load event of the external script then mark "isIndexLoaded" true
+document.getElementById('chainlit-script').addEventListener('load', function() {
+    isIndexLoaded = true;
+    mountWidget(); 
+});
+
+// Call the function on DOMContentLoaded to create and style the widget before inheriting other style from page load
+document.addEventListener("DOMContentLoaded", function() {
+    createAndStyleWidget(); 
 });
 </script>
 {{ end }}

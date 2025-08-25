@@ -721,7 +721,7 @@ To verify that FRR learns the neighboring link-local IPv6 address through the IP
 If you do not enable `ipv6 nd suppress-ra` on both ends of the interface, `Neighbor address(s):` shows the link-local address of the other end (the address that BGP uses when that interface uses BGP).
 
 {{%notice note%}}
-Cumulus Linux automatically enables IPv6 route advertisements (RAs) on an interface with IPv6 addresses. You do not need to run the `no ipv6 nd suppress-ra` command for BGP unnumbered.
+Cumulus Linux automatically enables IPv6 route advertisements on an interface with a configured BGP unnumbered neighbor.
 {{%/notice%}}
 
 ```

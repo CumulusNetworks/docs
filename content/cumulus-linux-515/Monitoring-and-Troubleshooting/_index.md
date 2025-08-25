@@ -140,7 +140,7 @@ cpu            x86_64 QEMU Virtual CPU version 2.5+ x1
 memory         1.67 GB                                         
 disk-size      n/a                                             
 port-layout    n/a                                             
-part-number    5.14.0                                          
+part-number    5.15.0                                          
 serial-number  44:38:39:22:01:7a                               
 asic-model     n/a                                             
 system-uuid    6de505b8-323c-42ab-b188-0ba5c666b668

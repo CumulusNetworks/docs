@@ -63,7 +63,7 @@ cpu            x86_64 QEMU Virtual CPU version 2.5+ x1
 memory         1756460 kB                             
 disk-size      n/a                                    
 port-layout    n/a                                    
-part-number    5.14                                 
+part-number    5.15                                 
 serial-number  44:38:39:22:01:7a                      
 asic-model     n/a                                    
 system-uuid    e928ee83-20f7-4515-bfab-c204db3e604c
@@ -112,7 +112,7 @@ TLV Name             Code Len Value
 Vendor Name          0x2D  16 Cumulus Networks
 Product Name         0x21   2 VX
 Device Version       0x26   1 3
-Part Number          0x22   5 5.14
+Part Number          0x22   5 5.15
 MAC Addresses        0x2A   2 55
 Base MAC Address     0x24   6 44:38:39:22:01:7A
 Serial Number        0x23  17 44:38:39:22:01:7a

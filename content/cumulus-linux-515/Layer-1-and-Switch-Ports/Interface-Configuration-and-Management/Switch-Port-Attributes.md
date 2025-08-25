@@ -99,8 +99,7 @@ iface swp1
 {{< /tabs >}}
 
 {{%notice note%}}
-Link speed and auto-negotiation behavior has changed in Cumulus Linux 5.14:
-- In Cumulus Linux 5.14 and later if you run the `nv set interface swp1 link speed` command without setting auto-negotiation, the link comes up with auto-negotiation `on` and the switch advertises the configured link speed setting to the other side of the connection.
+- In Cumulus Linux 5.14 and later, if you run the `nv set interface swp1 link speed` command without setting auto-negotiation, the link comes up with auto-negotiation `on` and the switch advertises the configured link speed setting to the other side of the connection.
 - In Cumulus Linux 5.13 and earlier if you run the `nv set interface swp1 link speed` command without setting auto-negotiation, force mode is set and the switch does not advertise the configured link speed setting to the other side of the connection.
 {{%/notice%}}
 

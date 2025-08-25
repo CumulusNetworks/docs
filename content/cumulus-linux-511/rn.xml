@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4579237</td>
+<td>If interface statistics telemetry is running on the switch, an {{interface_stats_collector}} core file might generate during statistics collection.</td>
+<td>5.11.3-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4558846</td>
 <td>If interface statistics telemetry is running on the switch, an {{interface_stats_collector}} core file might generate during statistics collection.</td>
 <td>5.11.0-5.11.3</td>
@@ -141,6 +147,12 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>4475111</td>
 <td>When you try to convert a layer 3 port that is part of ECMP to a bond member,  you might see a failure in the {{switchd}} logs. This issue does not have any functional impact.</td>
 <td>5.11.2-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4472414</td>
+<td>After you modify the IP address of an SVI, DHCP relay uses an old cached IP address instead of the changed IP address. This occurs because DHCP relay monitors the link state change not IP address change.</td>
+<td>5.11.0-5.14.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1067,6 +1079,12 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>4475111</td>
 <td>When you try to convert a layer 3 port that is part of ECMP to a bond member,  you might see a failure in the {{switchd}} logs. This issue does not have any functional impact.</td>
 <td>5.11.2-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4472414</td>
+<td>After you modify the IP address of an SVI, DHCP relay uses an old cached IP address instead of the changed IP address. This occurs because DHCP relay monitors the link state change not IP address change.</td>
+<td>5.11.0-5.14.0</td>
 <td></td>
 </tr>
 <tr>
@@ -2230,6 +2248,12 @@ systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
 </td>
 <td>5.11.1</td>
 <td>5.11.2-5.14.0</td>
+</tr>
+<tr>
+<td>4472414</td>
+<td>After you modify the IP address of an SVI, DHCP relay uses an old cached IP address instead of the changed IP address. This occurs because DHCP relay monitors the link state change not IP address change.</td>
+<td>5.11.0-5.14.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4469498</td>
@@ -3460,6 +3484,12 @@ To work around this issue, power cycle the switch.</td>
 <td>4495231</td>
 <td>If the hardware clock date is later than 2038-01-19 03:14:07 UTC, the image might fail to install due to a grub-install failure on the EFI filesystem, which is a VFAT filesystem.  As a result, you see the grub prompt immediately after reboot.  To work around this issue, reboot from the grub prompt to go into ONIE.  From ONIE, use the date command to set a date before 2038-01-19, then run the {{hwclock --systohc}} command to add it to the hardware clock.  You can then use {{onie-nos-install}} to install the image.</td>
 <td>5.9.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4472414</td>
+<td>After you modify the IP address of an SVI, DHCP relay uses an old cached IP address instead of the changed IP address. This occurs because DHCP relay monitors the link state change not IP address change.</td>
+<td>5.11.0-5.14.0</td>
 <td></td>
 </tr>
 <tr>

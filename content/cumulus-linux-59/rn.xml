@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4582673</td>
+<td>The switch does not support warm upgrade from Cumulus Linux 5.9.1, 5.9.2, or 5.9.3 to Cumulus Linux 5.9.4.</td>
+<td>5.9.4-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4531104</td>
 <td>In certain cases, on a switch with SDK 4.6.1062 or earlier, you might see FW fatal health events.</td>
 <td>5.6.0-5.13.1</td>
@@ -686,6 +692,16 @@ You can safely ignore this warning.</td>
 <th> Affects </th>
 </tr>
 <tr>
+<td>4599412</td>
+<td>During initial configuration of an MLAG switch with no MLAG peer or if both MLAG peers go down and only one recovers, VXLAN traffic arriving on the MLAG switch with a local IP destination might see packet loss. </td>
+<td>5.13.1-5.14.0</td>
+</tr>
+<tr>
+<td>4575860</td>
+<td>When you try to convert a layer 3 port that is part of ECMP to a bond member,  you might see a failure in the {{switchd}} logs. This issue does not have any functional impact.</td>
+<td>5.11.2-5.14.0</td>
+</tr>
+<tr>
 <td>4549884</td>
 <td>Transceiver OIR (removal and insertion) or link flaps might cause EMAD timeouts, eventually causing {{switchd}} to crash. You see logs similar to {{EMAD_TRANSACTION] [ERROR ]: ACCESS_REG TIMEOUT}}.</td>
 <td>5.6.0-5.9.3</td>
@@ -723,6 +739,11 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td>4535696</td>
 <td>When you configure the RADIUS authentication order with {{local}} first and {{radius second}}, the RADIUS user is authenticated as a default user name. </td>
 <td>5.12.1-5.14.0</td>
+</tr>
+<tr>
+<td>4535683</td>
+<td>The TFTP client drops packets due to default firewall rules.</td>
+<td>5.13.0-5.13.1</td>
 </tr>
 <tr>
 <td>4531829</td>

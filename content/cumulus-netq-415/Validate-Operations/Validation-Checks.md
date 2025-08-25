@@ -38,7 +38,7 @@ The BGP validation tests look for status and configuration anomalies.
 The Cumulus Linux version test looks for version consistency.
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
-| 0 | Cumulus Linux Image Version | Checks the following: <ul><li>No version specified, checks that all switches in the network have consistent version</li><li><em>match-version</em> specified, checks that a switch's OS version is equals the specified version</li><li><em>min-version</em> specified, checks that a switch's OS version is equal to or greater than the specified version</li></ul> |
+| 0 | Cumulus Linux Image Version | Checks the following: <ul><li>No version specified, checks that all switches in the network have consistent version</li><li><em>match-version</em> specified, checks that a switch's OS version equals the specified version</li><li><em>min-version</em> specified, checks that a switch's OS version is equal to or greater than the specified version</li></ul> |
 
 ## Duplicate IP Addresses Validation Tests
 

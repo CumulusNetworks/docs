@@ -56,12 +56,6 @@
   {{ end }}
 </div>
 
-{{ block "toc" .}}
-{{ end }}
-
-</main>
-</div>
-
 {{ if eq .Page.Params.product "Cumulus NetQ" }}
 <script async src="https://copilot-netguru.nvidia.com/chainlit/copilot/index.js" id="chainlit-script"></script>
 <script>
@@ -83,7 +77,13 @@ document.getElementById('chainlit-script').addEventListener('load', function() {
     });
 });
 </script>
-{{ end }}    
+{{ end }}   
+
+{{ block "toc" .}}
+{{ end }}
+
+</main>
+</div> 
 
   {{ partialCached "footer" . }}
 

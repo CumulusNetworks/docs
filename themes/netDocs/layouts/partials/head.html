@@ -88,31 +88,21 @@ window.mountChainlitWidget({
 <script async src="https://copilot-netguru.nvidia.com/chainlit/copilot/index.js" id="chainlit-script"></script>
 <script>
 document.getElementById('chainlit-script').addEventListener('load', function() {
-    const container = document.createElement('div');
-    const shadowRoot = container.attachShadow({ mode: 'open' });
-    
-    const chainlit_button = document.createElement('chainlit_button');
-    chainlit_button.textContent = 'Open Widget';
-    
-    shadowRoot.appendChild(chainlit_button);
-    
     window.mountChainlitWidget({
         chainlitServer: "https://copilot-netguru.nvidia.com/chainlit",
         button: {
             position: {
-                bottom: 1,
-                right: 1,
+                bottom: 1,      // Distance from bottom of the screen (rem)
+                right: 1,       // Distance from right edge (rem)
             },
-            size: 3
+            size: 3           // Diameter of the floating button (rem)
         },
         popup: {
-            normalWidth: 300,
-            expandedWidth: 800,
-            height: 800
+            normalWidth: 300,     // Default width in pixels
+            expandedWidth: 800,   // Width when expanded
+            height: 800           // Height of the popup in pixels
         }
     });
-    
-    document.body.appendChild(container);
 });
 </script>
 {{ end }}

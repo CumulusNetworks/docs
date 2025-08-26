@@ -39,7 +39,7 @@ Verify that {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Netwo
 
 ```
 nvidia@switch:~$ sudo systemctl status ntp
-[sudo] password for cumulus:
+[sudo] password for nvidia:
 ● ntp.service - LSB: Start NTP daemon
         Loaded: loaded (/etc/init.d/ntp; bad; vendor preset: enabled)
         Active: active (running) since Fri 2018-06-01 13:49:11 EDT; 2 weeks 6 days ago

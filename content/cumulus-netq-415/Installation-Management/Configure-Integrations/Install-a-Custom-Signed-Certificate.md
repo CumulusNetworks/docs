@@ -52,7 +52,7 @@ You need the following items to perform the certificate installation:
 
     1. Create a new file called `ingress.yaml`
 
-    2. Copy and add the following content to the file:
+    2. Copy and add the following content to the file. Replace `<your-hostname>` with the FQDN of the NetQ VM.
 
       ```
       apiVersion: networking.k8s.io/v1
@@ -88,8 +88,7 @@ You need the following items to perform the certificate installation:
           - <your-hostname>
           secretName: netq-gui-ingress-tls
       ```
-    3. Replace `<your-hostname>` with the FQDN of the NetQ VM. <br>
-    <br>
+
 5. Apply the new rule:
 
     ```
@@ -103,7 +102,7 @@ You need the following items to perform the certificate installation:
 
     1. Create a new file called `swagger-ingress.yaml`
 
-    2. Copy and add the following content to the file:
+    2. Copy and add the following content to the file. Replace `<your-hostname>` with the FQDN of the NetQ VM.
 
       ```
       apiVersion: networking.k8s.io/v1
@@ -136,8 +135,7 @@ You need the following items to perform the certificate installation:
           - <your-hostname>
           secretName: netq-gui-ingress-tls
       ```
-    3. Replace `<your-hostname>` with the FQDN of the NetQ VM. <br>
-    <br>
+
 7. Apply the new rule:
 
     ```

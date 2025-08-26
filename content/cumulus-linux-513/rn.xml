@@ -255,6 +255,12 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>5.14.0</td>
 </tr>
 <tr>
+<td>4486320</td>
+<td>The {{Age}} and {{Last Updated}} counters in the {{nv show bridge domain &lt;domain-id&gt; mac-table}} command output are reversed. The {{Last Update}} counter shows {{Age}} data and the {{Age}} counter shows {{Last Updated}} data. Cumulus Linux uses the {{age}} and {{updated}} timers to determine when to remove an old MAC entry.</td>
+<td>5.13.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4486200</td>
 <td>If you enable dynamic NAT and try to install two identical dynamic NAT rules, {{switchd}} might crash.</td>
 <td>5.11.2-5.13.1</td>
@@ -1430,6 +1436,12 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>The CBS field in the {{nv show system control-plane policer}} command output might not show the configured value.</td>
 <td>5.13.0-5.13.1</td>
 <td>5.14.0</td>
+</tr>
+<tr>
+<td>4486320</td>
+<td>The {{Age}} and {{Last Updated}} counters in the {{nv show bridge domain &lt;domain-id&gt; mac-table}} command output are reversed. The {{Last Update}} counter shows {{Age}} data and the {{Age}} counter shows {{Last Updated}} data. Cumulus Linux uses the {{age}} and {{updated}} timers to determine when to remove an old MAC entry.</td>
+<td>5.13.0-5.14.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4486200</td>

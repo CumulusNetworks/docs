@@ -1643,7 +1643,7 @@ cumulus@switch:~$ nv show vrf default router rib ipv4 route --view <<TAB>>
 brief   detail
 ```
 
-To retrieve view types through the REST API, you use the `curl -u 'cumulus:CumulusLinux!' -k -X GET http://path?view=<brief>` syntax. For example, the equivalent REST API method for the NVUE `nv show vrf <vrf-id> router rib ipv4 route --view=brief` command is:
+To retrieve view types through the REST API, you use the `curl -u '<username>:<password>' -k -X GET http://path?view=<brief>` syntax. For example, the equivalent REST API method for the NVUE `nv show vrf <vrf-id> router rib ipv4 route --view=brief` command is:
 
 ```
 cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -k -X GET https://127.0.0.1:8765/nvue_v1/vrf/BLUE/router/rib/ipv4/route?view=brief
@@ -1850,6 +1850,358 @@ cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure -X GET https://127.
   "10.10.10.1/32": {},
   "10.10.10.2/32": {},
   "10.10.10.3/32": {}
+}
+```
+
+### Use Filters in a Query
+
+You can use filters to show specific information in a query with the `curl -u '<username>:<password>' -k -X GET http://path?filter=<filter>` syntax. The following example is the equivalent REST API method for the NVUE `nv show interface --filter type=svi` command, which shows all SVIs configured on the switch:
+
+```
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure -X GET 'https://127.0.0.1:8765/nvue_v1/interface?filter=type=svi'
+{
+  "vlan10": {
+    "base-interface": "br_default",
+    "ifindex": 13,
+    "ip": {
+      "address": {
+        "fe80::201:ff:fe00:1408/64": {}
+      }
+    },
+    "link": {
+      "admin-status": "up",
+      "flag": {
+        "broadcast": {},
+        "lower-up": {},
+        "multicast": {},
+        "up": {}
+      },
+      "mac-address": "00:01:00:00:14:08",
+      "mtu": 9216,
+      "oper-status": "up",
+      "oper-status-last-change": "2025/08/26 20:39:03.188",
+      "protodown": "disabled",
+      "state": {
+        "up": {}
+      },
+      "stats": {
+        "carrier-down-count": 0,
+        "carrier-transitions": 1,
+        "carrier-up-count": 1,
+        "in-bytes": 15424,
+        "in-drops": 0,
+        "in-errors": 0,
+        "in-pkts": 218,
+        "out-bytes": 10466,
+        "out-drops": 0,
+        "out-errors": 0,
+        "out-pkts": 123
+      }
+    },
+    "type": "svi",
+    "vlan": 10
+  },
+  "vlan20": {
+    "base-interface": "br_default",
+    "ifindex": 14,
+    "ip": {
+      "address": {
+        "fe80::201:ff:fe00:1408/64": {}
+      }
+    },
+    "link": {
+      "admin-status": "up",
+      "flag": {
+        "broadcast": {},
+        "lower-up": {},
+        "multicast": {},
+        "up": {}
+      },
+      "mac-address": "00:01:00:00:14:08",
+      "mtu": 9216,
+      "oper-status": "up",
+      "oper-status-last-change": "2025/08/26 20:39:03.190",
+      "protodown": "disabled",
+      "state": {
+        "up": {}
+      },
+      "stats": {
+        "carrier-down-count": 0,
+        "carrier-transitions": 1,
+        "carrier-up-count": 1,
+        "in-bytes": 2824,
+        "in-drops": 0,
+        "in-errors": 0,
+        "in-pkts": 43,
+        "out-bytes": 2210,
+        "out-drops": 0,
+        "out-errors": 0,
+        "out-pkts": 27
+      }
+    },
+    "type": "svi",
+    "vlan": 20
+  },
+  "vlan30": {
+    "base-interface": "br_default",
+    "ifindex": 15,
+    "ip": {
+      "address": {
+        "fe80::201:ff:fe00:1408/64": {}
+      }
+    },
+    "link": {
+      "admin-status": "up",
+      "flag": {
+        "broadcast": {},
+        "lower-up": {},
+        "multicast": {},
+        "up": {}
+      },
+      "mac-address": "00:01:00:00:14:08",
+      "mtu": 9216,
+      "oper-status": "up",
+      "oper-status-last-change": "2025/08/26 20:39:03.192",
+      "protodown": "disabled",
+      "state": {
+        "up": {}
+      },
+      "stats": {
+        "carrier-down-count": 0,
+        "carrier-transitions": 1,
+        "carrier-up-count": 1,
+        "in-bytes": 2760,
+        "in-drops": 0,
+        "in-errors": 0,
+        "in-pkts": 43,
+        "out-bytes": 2296,
+        "out-drops": 0,
+        "out-errors": 0,
+        "out-pkts": 28
+      }
+    },
+    "type": "svi",
+    "vlan": 30
+  },
+  "vlan40": {
+    "base-interface": "br_default",
+    "ifindex": 16,
+    "ip": {
+      "address": {
+        "fe80::201:ff:fe00:1408/64": {}
+      }
+    },
+    "link": {
+      "admin-status": "up",
+      "flag": {
+        "broadcast": {},
+        "lower-up": {},
+        "multicast": {},
+        "up": {}
+      },
+      "mac-address": "00:01:00:00:14:08",
+      "mtu": 9216,
+      "oper-status": "up",
+      "oper-status-last-change": "2025/08/26 20:39:03.193",
+      "protodown": "disabled",
+      "state": {
+        "up": {}
+      },
+      "stats": {
+        "carrier-down-count": 0,
+        "carrier-transitions": 1,
+        "carrier-up-count": 1,
+        "in-bytes": 7072,
+        "in-drops": 0,
+        "in-errors": 0,
+        "in-pkts": 102,
+        "out-bytes": 4962,
+        "out-drops": 0,
+        "out-errors": 0,
+        "out-pkts": 59
+      }
+    },
+    "type": "svi",
+    "vlan": 40
+  }
+}
+```
+
+The following example is the equivalent REST API method for the NVUE `nv show interface --filter type=bridge&mtu=9216` command, which shows information for a bridge with MTU 9216:
+
+```
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -G --data-urlencode "filter=mtu=9216'&'type=bridge" --insecure -X GET 'https://127.0.0.1:8765/nvue_v1/interface'
+{
+  "br_default": {
+    "ifindex": 12,
+    "ip": {
+      "address": {
+        "fe80::201:ff:fe00:1408/64": {}
+      }
+    },
+    "link": {
+      "admin-status": "up",
+      "flag": {
+        "broadcast": {},
+        "lower-up": {},
+        "multicast": {},
+        "up": {}
+      },
+      "mac-address": "00:01:00:00:14:08",
+      "mtu": 9216,
+      "oper-status": "up",
+      "oper-status-last-change": "2025/08/26 20:39:02.439",
+      "protodown": "disabled",
+      "stats": {
+        "carrier-down-count": 1,
+        "carrier-transitions": 2,
+        "carrier-up-count": 1,
+        "in-bytes": 28320,
+        "in-drops": 0,
+        "in-errors": 0,
+        "in-pkts": 410,
+        "out-bytes": 20930,
+        "out-drops": 0,
+        "out-errors": 0,
+        "out-pkts": 247
+      }
+    },
+    "type": "bridge"
+  }
+}
+```
+
+The following example is the equivalent REST API method for the NVUE `nv show vrf default router rib ipv4 route --filter=protocol=bgp` command, which shows all BGP IPv4 routes in the routing table:
+
+```
+cumulus@switch:~$  curl -u 'cumulus:CumulusLinux!' --insecure -X GET 'https://127.0.0.1:8765/nvue_v1/vrf/default/router/rib/ipv4/route?filter=protocol=bgp'
+{
+  "10.10.0.250/32": {
+    "route-entry": {
+      "1": {
+        "distance": 20,
+        "flags": {
+          "fib-selected": {},
+          "installed": {},
+          "selected": {}
+        },
+        "flags-string": "*Si",
+        "metric": 0,
+        "nexthop-group-id": 34,
+        "protocol": "bgp",
+        "table-id": 254,
+        "uptime": "2025-08-26T20:39:05Z"
+      }
+    }
+  },
+  "10.10.1.1/32": {
+    "route-entry": {
+      "1": {
+        "distance": 20,
+        "flags": {
+          "fib-selected": {},
+          "installed": {},
+          "selected": {}
+        },
+        "flags-string": "*Si",
+        "metric": 0,
+        "nexthop-group-id": 34,
+        "protocol": "bgp",
+        "table-id": 254,
+        "uptime": "2025-08-26T20:39:05Z"
+      }
+    }
+  },
+  "10.10.2.11/32": {
+    "route-entry": {
+      "1": {
+        "distance": 20,
+        "flags": {
+          "fib-selected": {},
+          "installed": {},
+          "selected": {}
+        },
+        "flags-string": "*Si",
+        "metric": 0,
+        "nexthop-group-id": 35,
+        "protocol": "bgp",
+        "table-id": 254,
+        "uptime": "2025-08-26T20:39:05Z"
+      }
+    }
+  },
+  "10.10.2.12/32": {
+    "route-entry": {
+      "1": {
+        "distance": 20,
+        "flags": {
+          "fib-selected": {},
+          "installed": {},
+          "selected": {}
+        },
+        "flags-string": "*Si",
+        "metric": 0,
+        "nexthop-group-id": 36,
+        "protocol": "bgp",
+        "table-id": 254,
+        "uptime": "2025-08-26T20:39:05Z"
+      }
+    }
+  },
+  "10.10.3.12/32": {
+    "route-entry": {
+      "1": {
+        "distance": 20,
+        "flags": {
+          "fib-selected": {},
+          "installed": {},
+          "selected": {}
+        },
+        "flags-string": "*Si",
+        "metric": 0,
+        "nexthop-group-id": 34,
+        "protocol": "bgp",
+        "table-id": 254,
+        "uptime": "2025-08-26T20:39:06Z"
+      }
+    }
+  },
+  "10.10.3.13/32": {
+    "route-entry": {
+      "1": {
+        "distance": 20,
+        "flags": {
+          "fib-selected": {},
+          "installed": {},
+          "selected": {}
+        },
+        "flags-string": "*Si",
+        "metric": 0,
+        "nexthop-group-id": 34,
+        "protocol": "bgp",
+        "table-id": 254,
+        "uptime": "2025-08-26T20:39:05Z"
+      }
+    }
+  },
+  "10.10.3.14/32": {
+    "route-entry": {
+      "1": {
+        "distance": 20,
+        "flags": {
+          "fib-selected": {},
+          "installed": {},
+          "selected": {}
+        },
+        "flags-string": "*Si",
+        "metric": 0,
+        "nexthop-group-id": 34,
+        "protocol": "bgp",
+        "table-id": 254,
+        "uptime": "2025-08-26T20:39:06Z"
+      }
+    }
+  }
 }
 ```
 

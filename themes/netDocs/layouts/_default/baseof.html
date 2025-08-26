@@ -64,7 +64,7 @@
 
   {{ partialCached "footer" . }}
 
-  <div class="chainlit-copilot">
+  <div style="all: unset;" class="chainlit-copilot">
     {{ if eq .Page.Params.product "Cumulus NetQ" }}
     <script async src="https://copilot-netguru.nvidia.com/chainlit/copilot/index.js" id="chainlit-script"></script>
     <script>

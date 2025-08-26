@@ -54,7 +54,6 @@ nvidia@netq-server:/home/cumulus# chmod +x /usr/sbin/vm-backuprestore.sh
 
 ```
 nvidia@netq-server:~$ sudo /usr/sbin/vm-backuprestore.sh --backup
-[sudo] password for cumulus:
 Fri Jan 17 05:44:13 2025 - Please find detailed logs at: /var/log/vm-backuprestore.log
 Stopping pods...
 Fri Jan 17 05:44:13 2025 - Stopping pods in namespace default
@@ -140,7 +139,6 @@ nvidia@netq-server:/home/cumulus# chmod +x /usr/sbin/vm-backuprestore.sh
 
 ```
 nvidia@netq-server:~$ sudo /usr/sbin/vm-backuprestore.sh --backup
-[sudo] password for cumulus:
 Fri Jan 17 05:44:13 2025 - Please find detailed logs at: /var/log/vm-backuprestore.log
 Stopping pods...
 Fri Jan 17 05:44:13 2025 - Stopping pods in namespace default

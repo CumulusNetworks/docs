@@ -117,7 +117,7 @@ netq show notification channel [json]
 </tbody>
 </table>
 
-The following example shows the creation of a *slk-netq-events* channel and verifies the configuration.
+The following example creates the *slk-netq-events* channel and verifies the configuration.
 
 1. Create an *incoming webhook* as described in the documentation for your version of Slack.
 
@@ -200,7 +200,7 @@ netq show notification channel [json]
 </tr>
 <tr>
 <td>integration-key &lt;text-integration-key&gt;</td>
-<td>The {{<exlink url="https://v2.developer.pagerduty.com/docs/events-api-v2" text="integration">}} key is also called the service_key or routing_key. The default is an empty string (&quot;&quot;).</td>
+<td>The integration key is also called the <code>service_key</code> or <code>routing_key</code>. The default is an empty string (&quot;&quot;).</td>
 </tr>
 <tr>
 <td>severity &lt;level&gt;</td>
@@ -212,9 +212,10 @@ netq show notification channel [json]
 </tr>
 </tbody>
 </table>
-The following example shows the creation of a *pd-netq-events* channel and verifies the configuration.
 
-1. Obtain an integration key as described in this PagerDuty {{<exlink url="https://support.pagerduty.com/docs/services-and-integrations#section-events-api-v2" text="support page">}}.
+The following example creates the *pd-netq-events* channel and verifies the configuration.
+
+1. {{<exlink url="https://support.pagerduty.com/docs/services-and-integrations#section-events-api-v2" text="Obtain an integration key">}}.
 
 2. Create the channel.
 
@@ -310,7 +311,7 @@ netq show notification channel [json]
 </tbody>
 </table>
 
-The following example shows the creation of a *syslog-netq-events* channel and verifies the configuration.
+The following example creates the *syslog-netq-events* channel and verifies the configuration.
 
 1. Obtain the syslog server hostname (or IP address) and port.
 

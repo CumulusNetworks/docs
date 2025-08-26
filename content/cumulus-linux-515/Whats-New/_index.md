@@ -72,6 +72,39 @@ Cumulus Linux 5.15.0 contains several new features and improvements, and provide
 - Align platform/asic
 - {{< expand "Removed NVUE commands" >}}
 ```
+nv set interface <interface-id> router ospf bfd enable
+nv set interface <interface-id> router ospf bfd detect-multiplier
+nv set interface <interface-id> router ospf bfd min-receive-interval 
+nv set interface <interface-id> router ospf bfd min-transmit-interval
+nv set interface <interface-id> router pim bfd enable
+nv set interface <interface-id> router pim bfd detect-multiplier
+nv set interface <interface-id> router pim bfd min-receive-interval
+nv set interface <interface-id> router pim bfd min-transmit-interval
+nv set vrf <vrf-id> router bgp peer-group <peer-group-id> bfd enable
+nv set vrf <vrf-id> router bgp peer-group <peer-group-id> bfd detect-multiplier
+nv set vrf <vrf-id> router bgp peer-group <peer-group-id> bfd min-rx-interval
+nv set vrf <vrf-id> router bgp peer-group <peer-group-id> bfd min-tx-interval
+nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd enable
+nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd detect-multiplier
+nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd min-rx-interval
+nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd min-tx-interval
+nv unset interface <interface-id> router ospf bfd enable 
+nv unset interface <interface-id> router ospf bfd detect-multiplier 
+nv unset interface <interface-id> router ospf bfd min-receive-interval 
+nv unset interface <interface-id> router ospf bfd min-transmit-interval 
+nv unset interface <interface-id> router pim bfd 
+nv unset interface <interface-id> router pim bfd enable 
+nv unset interface <interface-id> router pim bfd detect-multiplier 
+nv unset interface <interface-id> router pim bfd min-receive-interval 
+nv unset interface <interface-id> router pim bfd min-transmit-interval 
+nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> bfd enable 
+nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> bfd detect-multiplier 
+nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> bfd min-rx-interval 
+nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> bfd min-tx-interval 
+nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> bfd enable 
+nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> bfd detect-multiplier 
+nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> bfd min-rx-interval 
+nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> bfd min-tx-interval 
 ```
 {{< /expand >}}
 - {{< expand "New NVUE commands" >}}
@@ -122,7 +155,7 @@ To upgrade to Cumulus Linux 5.15 from a release that does not support package up
 
 ### Maximum Number of NVUE Revisions
 
-Cumulus Linux includes an option to set the {{<link url="NVUE-CLI/#maximum-revisions-limit" text="maximum number of revisions">}} after which NVUE deletes older revisions automatically. The default setting is 100. After upgrading to Cumulus Linux 5.15 from 5.12 or later, the first time you run `nv set` or `nv unset` commands, NVUE deletes older revisions if the number of revisions on the switch is greater than 100.
+Cumulus Linux includes an option to set the {{<link url="NVUE-CLI/#maximum-revisions-limit" text="maximum number of revisions">}} after which NVUE deletes older revisions automatically. The default setting is 100. After upgrading to Cumulus Linux 5.15 from 5.12, the first time you run `nv set` or `nv unset` commands, NVUE deletes older revisions if the number of revisions on the switch is greater than 100.
 
 ### Linux Configuration Files Overwritten
 
@@ -161,10 +194,6 @@ To prevent Cumulus Linux from overwriting manual changes to the Linux configurat
 ### DHCP Lease with the host-name Option
 
 When a Cumulus Linux switch with NVUE enabled receives a DHCP lease containing the host-name option, it ignores the received hostname and does not apply it. For details, see this [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Administration/Hostname-Option-Received-From-DHCP-Ignored" >}}).
-
-### DHCP Relay Configuration
-
-In Cumulus Linux 5.15, DHCP relay uses server groups. If you configured DHCP relay in Cumulus Linux 5.13 or earlier, the upgrade process migrates the configuration to a new default configuration file called `isc-dhcp-relay-<server-group-id>-<vrf-id>` in the `/etc/default` directory and selects the uplink and downlink interfaces automatically. After upgrade, make sure to review the new configuration and adjust as needed.
 
 ### NVUE Commands After Upgrade
 

@@ -6,6 +6,10 @@ toc: 3
 ---
 <span class="a-tooltip">[BFD](## "Bidirectional Forwarding Detection")</span> provides low overhead and rapid detection of failures in the paths between two network devices. It provides a unified mechanism for link detection over all media and protocol layers. Use BFD to detect failures for IPv4 and IPv6 single or multihop paths between any two network devices, including unidirectional path failure detection.
 
+Cumulus Linux supports BFD with static routes, BGP, OSPF, and PIM and on interfaces, subinterfaces, and bonds.
+
+BFD triggers on remote link admin down or admin up, layer 2 switch link admin down or admin up, and SDK level link down.
+
 {{%notice note%}}
 Cumulus Linux does not support:
 - BFD demand mode
@@ -20,16 +24,9 @@ Cumulus Linux supports multihop BFD sessions for both IPv4 and IPv6 peers.
 
 ## Configure BFD
 
-You can configure BFD with NVUE or vtysh commands or by specifying the configuration in the {{<link url="Prescriptive-Topology-Manager-PTM" text="PTM topology.dot file">}}. However, the topology file has some limitations:
-
-- The topology file supports BFD IPv4 and IPv6 *single* hop sessions only; you *cannot* specify IPv4 or IPv6 *multihop* sessions in the topology file.
-- The topology file supports BFD sessions for only link-local IPv6 peers; BFD sessions for global IPv6 peers discovered on the link are not created.
+You can configure BFD with NVUE or vtysh commands.
 
 Use <span class="a-tooltip">[FRR](## "FRRouting")</span> to register multihop peers with {{<link url="Prescriptive-Topology-Manager-PTM" text="PTM">}} and BFD, and monitor the connectivity to the remote <span class="a-tooltip">[BGP](## "Border Gateway Protocol")</span> multihop peer. FRR can dynamically register and unregister both IPv4 and IPv6 peers with BFD when the BFD-enabled peer connectivity starts or stops. Also, you can configure BFD parameters for each BGP or <span class="a-tooltip">[OSPF](## "Open Shortest Path First")</span> peer.
-
-{{%notice note%}}
-The BFD parameter in the topology file takes precedence over the client-configured BFD parameters for a BFD session that both the topology file and FRR creates.
-{{%/notice%}}
 
 {{%notice note%}}
 Every BFD interface requires an IP address. The neighbor IP address for a single hop BFD session must exist in the ARP table before BFD can start sending control packets.

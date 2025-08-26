@@ -1,1 +1,0 @@
-libsnmp-perl-dbgsym has no copyright file

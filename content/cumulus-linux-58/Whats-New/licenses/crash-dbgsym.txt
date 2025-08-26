@@ -1,1 +1,0 @@
-crash-dbgsym has no copyright file

@@ -5,8 +5,6 @@ weight: 5
 toc: 2
 ---
 This document supports the Cumulus Linux 5.14 release, and lists new platforms, features, and enhancements.
-- For a list of open and fixed issues in Cumulus Linux 5.14, see the {{<link title="Cumulus Linux 5.14 Release Notes" text="Cumulus Linux 5.14 Release Notes">}}.
-- To upgrade to Cumulus Linux 5.14, first check the {{<link title="#release-considerations" text="Release Considerations">}} below, then follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 
 ## What's New in Cumulus Linux 5.14
 
@@ -14,25 +12,7 @@ Cumulus Linux 5.14.0 contains several new features and improvements, and provide
 
 ### New Features and Enhancements
 
-- FRR upgrade to 10.0.3
-- {{<link title="Erase all Data from the Switch" text="Erase all data from the switch">}} now generally available
-- {{<link url="Switch-Port-Attributes/#auto-negotiation-and-link-speed" text="Link speed setting and auto-negotiation behavior change">}}
-- {{<link url="Packet-Trimming" text="Packet trimming">}}
-- {{<link url="RDMA-over-Converged-Ethernet-RoCE/#lossy-multi-tc-profile" text="RoCE lossy multi TC profile">}}
-- {{<link url="Segment-Routing" text="Segment routing">}} and {{<link url="Segment-Routing/#clear-srv6-statistics" text="Clear SRv6 statistics">}}
-- gNMI:
-  - {{<link url="gNMI-Streaming/#metrics" text="New gNMI streaming metrics: Adaptive routing, packet trimming, SRv6, BGP, interface, LLDP, system, and platform">}}
-  - {{<link url="gNMI-Streaming/#user-credentials-and-authentication" text="gRPC header based authentication support for gNMI subscription requests">}}
-  - {{<link url="gNMI-Streaming/#gnmi-client-requests" text="Improved data formatting to include prefix field">}}
-- {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#transceiver-thermal-control" text="Transceiver thermal control">}}
-- {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#clear-interface-physical-layer-error-counters" text="Clear physical layer error counters for an interface">}}
-- {{<link url="DHCP-Relays" text="Configure different DHCP servers per interface for DHCP relay">}}
-- {{<link url="Quick-Start-Guide/#configure-the-domain-name" text="Domain name configuration">}}
-- {{<link url="Equal-Cost-Multipath-Load-Sharing/#enable-adaptive-routing" text="Adaptive routing default profiles profile-1 and profile-2 removed and replaced with one profile that uses the default profile settings for your switch ASIC type">}}
-- {{<link url="NVUE-API/#jwt-based-authentication" text="JWT authentication for REST API">}}
-- {{<link url="TACACS/#tacacs-per-command-authorization" text="You can now bind TACACS per-command authorization to the default VRF">}} (in previous releases, you must specify the egress interface you use in the default VRF)
-- {{< expand "Operational information added to NVUE BGP show commands" >}}
-See {{<link url="Troubleshooting-BGP" text="Troubleshooting BGP">}} for command examples.
+
 
 ```
 nv show router bgp
@@ -62,9 +42,8 @@ nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unica
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath allow-my-asn
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath allow-my-asn
 ```
-{{< /expand >}}
+
 - {{< expand "New and updated vtysh commands" >}}
-- The following lists the updated and new vtysh show bgp commands. To see command examples, refer to {{<link url="Troubleshooting-BGP" text="Troubleshooting BGP">}}.
 ```
 show bgp router json
 show bgp vrfs <vrf-id> json
@@ -75,10 +54,10 @@ show bgp vrf <vrf-id> ipv6 unicast redistribute json
 
 - In Cumulus Linux 5.14, the vtysh command to configure the area for OSPFv3 interfaces is under the interface instead of under `router ospf6`.
 
-  If you configure OSPFv3 areas with NVUE snippets in Cumulus Linux 5.13 and earlier, you must delete the snippets before you upgrade to Linux 5.14, then reconfigure the areas for OSPFv3 interfaces with the new vtysh commands after upgrade. See {{<link url="Open-Shortest-Path-First-v3-OSPFv3/#basic-ospfv3-configuration" text="Basic OSPFv3 Configuration">}}.
+
 {{< /expand >}}
 - NVUE
-  - {{<link url="Troubleshooting-EVPN/#show-evpn-vnis-across-all-vrfs" text="Commands to show EVPN information across all VRFs">}}
+
   - {{< expand "Changed NVUE commands and options" >}}
 | Cumulus Linux 5.14 | Cumulus Linux 5.13 and Earlier |
 | --------------- |---------------------------------------|
@@ -99,7 +78,7 @@ nv set service dhcp-relay <vrf-id> agent remote-id
 ```
 {{< /expand >}}
   - {{< expand "New NVUE commands" >}}
-For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) for Cumulus Linux.
+
 {{< tabs "TabID108 ">}}
 {{< tab "nv show ">}}
 
@@ -238,19 +217,14 @@ Review the following considerations before you upgrade to Cumulus Linux 5.14.
 
 ### Upgrade Requirements
 
-You can use {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="optimized image upgrade">}} to upgrade the switch to Cumulus Linux 5.14 from Cumulus Linux 5.12.0 and later.
-
-You can use {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.14 from the following releases. Package upgrade supports ISSU (warm boot) for these upgrade paths.
 - Cumulus Linux 5.13.1
 - Cumulus Linux 5.13.0
 - Cumulus Linux 5.12.1
 - Cumulus Linux 5.12.0
 
-To upgrade to Cumulus Linux 5.14 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="ONIE">}}.
 
 ### Maximum Number of NVUE Revisions
 
-Cumulus Linux 5.13 and later includes a new option to set the {{<link url="NVUE-CLI/#maximum-revisions-limit" text="maximum number of revisions">}} after which NVUE deletes older revisions automatically. The default setting is 100. After upgrading to Cumulus Linux 5.14 from 5.12, the first time you run `nv set` or `nv unset` commands, NVUE deletes older revisions if the number of revisions on the switch is greater than 100.
 
 ### Linux Configuration Files Overwritten
 
@@ -288,7 +262,6 @@ To prevent Cumulus Linux from overwriting manual changes to the Linux configurat
 
 ### DHCP Lease with the host-name Option
 
-When a Cumulus Linux switch with NVUE enabled receives a DHCP lease containing the host-name option, it ignores the received hostname and does not apply it. For details, see this [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Administration/Hostname-Option-Received-From-DHCP-Ignored" >}}).
 
 ### DHCP Relay Configuration
 
@@ -300,9 +273,8 @@ If you have configured DHCP relay in Cumulus Linux 5.13 or earlier, the upgrade 
 
 Cumulus Linux 5.14 includes the NVUE object model. After you upgrade to Cumulus Linux 5.14, running NVUE configuration commands might override configuration for features that are now configurable with NVUE and removes configuration you added manually to files or with automation tools like Ansible, Chef, or Puppet. To keep your configuration, you can do one of the following:
 - Update your automation tools to use NVUE.
-- {{<link url="NVUE-CLI/#configure-nvue-to-ignore-linux-files" text="Configure NVUE to ignore certain underlying Linux files">}} when applying configuration changes.
+
 - Use Linux and FRR (vtysh) commands instead of NVUE for **all** switch configuration.
 
 ### Cumulus VX
 
-NVIDIA no longer releases Cumulus VX as a standalone image. To simulate a Cumulus Linux switch, use {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/nvidia-air/" text="NVIDIA AIR">}}.

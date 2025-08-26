@@ -18,13 +18,13 @@ For a list of the new features in this release, see {{<link url="Whats-New" text
 <!-- vale off -->
 ## Try It Pre-built Demos
 <!-- vale on -->
-The Cumulus Linux documentation includes pre-built Try It demos for certain Cumulus Linux features. The Try It demos run a simulation in NVIDIA Air; a cloud hosted platform that works exactly like a real world production deployment. Use the Try It demos to examine switch configuration for a feature. For more information, see {{<link url="Try-It-Pre-built-Demos" text="Try It Pre-built Demos">}}.
+
 
 ## Open Source Contributions
 
 To implement various Cumulus Linux features, NVIDIA has forked various software projects, like CFEngine `Netdev` and some Puppet Labs packages. Some of the forked code resides in the NVIDIA Networking {{<exlink url="https://github.com/CumulusNetworks" text="GitHub repository" >}} and some is available as part of the Cumulus Linux repository as Debian source packages.
 
-NVIDIA has also developed and released new applications as open source. The list of open source projects is on the {{<link title="Cumulus Linux 5.14 Packages" text="Cumulus Linux packages" >}} page.
+
 
 ## Download the User Guide
 

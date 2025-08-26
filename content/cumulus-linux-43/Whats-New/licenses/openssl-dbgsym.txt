@@ -1,1 +1,0 @@
-openssl-dbgsym has no copyright file

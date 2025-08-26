@@ -1,1 +1,0 @@
-bridge-utils-dbgsym has no copyright file

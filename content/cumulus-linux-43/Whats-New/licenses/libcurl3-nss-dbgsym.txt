@@ -1,1 +1,0 @@
-libcurl3-nss-dbgsym has no copyright file

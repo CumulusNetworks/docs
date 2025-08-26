@@ -1,1 +1,0 @@
-libbz2-dev has no copyright file

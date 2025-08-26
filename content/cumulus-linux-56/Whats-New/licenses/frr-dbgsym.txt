@@ -1,1 +1,0 @@
-frr-dbgsym has no copyright file

@@ -1,1 +1,0 @@
-cron-dbgsym has no copyright file

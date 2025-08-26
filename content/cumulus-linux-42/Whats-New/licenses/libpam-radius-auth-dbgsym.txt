@@ -1,1 +1,0 @@
-libpam-radius-auth-dbgsym has no copyright file

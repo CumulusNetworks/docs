@@ -1,1 +1,0 @@
-libgomp1 has no copyright file

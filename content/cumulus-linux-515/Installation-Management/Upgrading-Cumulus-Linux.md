@@ -96,7 +96,7 @@ As Cumulus Linux supports more features and functionality, NVUE syntax might cha
 
 {{%notice note%}}
 - If you upgrade the switch with package upgrade or optimized image upgrade, or if you reinstall Cumulus Linux with an embedded `startup.yaml` file using `onie-install -t`, Cumulus Linux preserves your NVUE startup configuration and translates the contents automatically to NVUE syntax required by the new release.
-- If NVUE introduces new syntax for the feature that a snippet configures, you must remove the snippet before upgrading.
+- If NVUE introduces new syntax for a feature that a snippet configures, you must remove the snippet before upgrading.
 {{%/notice%}}
 
 You can back up and restore the configuration file with NVUE only if you used NVUE commands to configure the switch you want to upgrade.
@@ -149,11 +149,9 @@ cumulus@switch:~$ nv action generate system tech-support
 
 <span class="a-tooltip">[ISSU](## "In Service System Upgrade")</span> enables you to upgrade the switch software while the network continues to forward packets with minimal disruption to the network.
 
-Cumulus Linux supports ISSU with:
-- Optimized image upgrade 
+Cumulus Linux supports ISSU with
+- Optimized image upgrade
 - Package upgrade
-
-Image upgrade and package upgrade supports ISSU when you upgrade to Cumulus Linux 5.15 from Cumulus Linux 5.13 and later.
 
 The switch must be in warm reboot mode before you start the software upgrade. When the switch is in warm reboot mode, restarting the switch after an upgrade results in no traffic loss (this is a hitless upgrade).
 
@@ -161,15 +159,14 @@ To configure the switch to reboot in warm mode, refer to {{<link url="System-Pow
 
 ## Image Upgrade
 
-Image upgrade enables you to choose the exact release to which you want to upgrade and is the *only* method available to upgrade your switch to a new release train (for example, from 4.4 to 5.15).
-
 Cumulus Linux provides two different ways to upgrade the switch with a new image:
-- **ONIE** is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a switch.
+- **ONIE** is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a switch. ONIE upgrade enables you to choose the exact release to which you want to upgrade and is the *only* method available to upgrade your switch to a new release train (for example, from 4.4 to 5.15).
 - **Optimized image upgrade** uses two partitions to upgrade the image with just one reboot cycle. With two partitions on the switch, the current image boots from one partition, from which the image upgrade triggers. After detecting the running partition and checking if the second partition is available for installation, optimized upgrade starts to stage the installation in the second partition (copying the image, preparing the partition, unpacking the new image, and tuning and finalizing the new partition for the new image). The subsequent boot occurs from the second partition.
 
   - You can only use optimized image upgrade on a switch with a 30GB <span class="a-tooltip">[SSD](## "Solid state drive")</span> or larger to accommodate the second partition required for upgrade. To validate the size of the SSD, run the `sudo blockdev --getsize64 /dev/sda` command. As an alternative, run the `sudo blkid` command and confirm the `CL-SYSTEM-2` partition exists on the switch to support optimized upgrade.
-  - You can use optimized image upgrade to upgrade the switch to Cumulus Linux 5.15 from 5.11.1 and later.
   - You cannot downgrade a Cumulus Linux 5.15 switch to Cumulus Linux 5.11.0 or earlier with optimized image upgrade; use ONIE instead.
+<br>
+  For a list of the releases from which you can upgrade to Cumulus Linux 5.15 with optimized image upgrade, see {{<link url="Whats-New/#upgrade-requirements" text="Release Considerations">}}.
 
 {{%notice note%}}
 Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in [Upgrade Switches in an MLAG Pair](#upgrade-switches-in-an-mlag-pair) below to ensure a smooth upgrade.
@@ -227,7 +224,7 @@ cumulus@switch:~$ nv show system image
 current        2                        
 next           2                        
 partition1                              
-  build-id     5.12.0.0026.devsignedpkgs
+  build-id     5.13.0.0026.devsignedpkgs
   description  Cumulus Linux 5.15.0     
   disk         /dev/sda5                
   release      5.12.0                   
@@ -316,7 +313,7 @@ Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual 
 - The package upgrade command might disrupt core services by changing core service dependency packages.
 - After you upgrade, account UIDs and GIDs created by packages might be different on different switches, depending on the configuration and package installation history.
 - Cumulus Linux does not support the Linux `sudo -E apt-get dist-upgrade` command. Be sure to use `sudo -E apt-get upgrade` when upgrading packages.
-- To upgrade from Cumulus Linux 5.13 or 5.14 to Cumulus Linux 5.15, you need 0.8GB of free disk space. Before you upgrade, run the NVUE `nv show system disk usage` command or the Linux `sudo df -h` command to show how much disk space you are currently using on the switch.
+- To package upgrade to Cumulus Linux 5.15, you need 0.8GB of free disk space. Before you upgrade, run the NVUE `nv show system disk usage` command or the Linux `sudo df -h` command to show how much disk space you are currently using on the switch.
 {{%/notice%}}
 
 For a list of the releases from which you can upgrade to Cumulus Linux 5.15, see {{<link url="Whats-New/#upgrade-requirements" text="Release Considerations">}}.
@@ -584,7 +581,7 @@ NVIDIA has not tested running different versions of Cumulus Linux on MLAG peer s
 
 ## Downgrade a Secure Boot Switch
 
-The SN3700C-S, SN5400, and SN5600 secure boot switch running Cumulus Linux 5.15.0 boots with shim 15.8 that adds entries to the SBAT revocations to prevent the switch from booting shim 15.7 or earlier (in Cumulus Linux 5.10 or Cumulus Linux 5.9.2 and earlier), which has security vulnerabilities.
+The SN3700C-S, SN5400, and SN5600 secure boot switch running Cumulus Linux 5.15 boots with shim 15.8 that adds entries to the SBAT revocations to prevent the switch from booting shim 15.7 or earlier (in Cumulus Linux 5.10 or Cumulus Linux 5.9.2 and earlier), which has security vulnerabilities.
 
 After downgrading the switch from Cumulus Linux 5.15.0 with ONIE, follow the steps below to disable, then enable secure boot **before** the switch boots.
 

@@ -15,7 +15,7 @@ Cumulus Linux 5.9 is an Extended-Support Release (ESR). For more information, re
 
 Cumulus Linux 5.9.4 provides important {{<link title="Cumulus Linux 5.9 Release Notes" text="security fixes and bug fixes">}}.
 
-{{%notice info%}}
+{{%notice note%}}
 Cumulus Linux 5.9.4 does not support ISSU (warm boot upgrade).
 {{%/notice%}}
 

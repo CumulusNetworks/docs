@@ -2027,10 +2027,10 @@ cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure -X GET 'https://127
 }
 ```
 
-The following example is the equivalent REST API method for the NVUE `nv show interface --filter type=bridge&mtu=9216` command, which shows information for a bridge with MTU 9216:
+The following example is the equivalent REST API method for the NVUE `nv show interface --filter "type=bridge&mtu=9216"` command, which shows information for a bridge with MTU 9216:
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -G --data-urlencode "filter=mtu=9216'&'type=bridge" --insecure -X GET 'https://127.0.0.1:8765/nvue_v1/interface'
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -G --data-urlencode "filter="mtu=9216'&'type=bridge"" --insecure -X GET 'https://127.0.0.1:8765/nvue_v1/interface'
 {
   "br_default": {
     "ifindex": 12,
@@ -2199,6 +2199,49 @@ cumulus@switch:~$  curl -u 'cumulus:CumulusLinux!' --insecure -X GET 'https://12
         "protocol": "bgp",
         "table-id": 254,
         "uptime": "2025-08-26T20:39:06Z"
+      }
+    }
+  }
+}
+```
+
+The following example is the equivalent REST API method for the NVUE `nv show vrf default router rib ipv4 route --filter "protocol=bgp&nexthop-group-id=35|nexthop-group-id=36"` command, which shows BGP IPv4 routes in the routing table with the next hop group ID 35 or 36:
+
+```
+cumulus@switch:~$ curl -u 'cumulus:NvidiaR0cks!' -G --data-urlencode "filter="protocol=bgp'&'nexthop-group-id=35'|'nexthop-group-id=36"" --insecure -X GET 'https://127.0.0.1:8765/nvue_
+v1/vrf/default/router/rib/ipv4/route'
+{
+  "10.10.2.11/32": {
+    "route-entry": {
+      "1": {
+        "distance": 20,
+        "flags": {
+          "fib-selected": {},
+          "installed": {},
+          "selected": {}
+        },
+        "flags-string": "*Si",
+        "metric": 0,
+        "nexthop-group-id": 35,
+        "protocol": "bgp",
+        "uptime": "2025-08-26T20:39:05Z"
+      }
+    }
+  },
+  "10.10.2.12/32": {
+    "route-entry": {
+      "1": {
+        "distance": 20,
+        "flags": {
+          "fib-selected": {},
+          "installed": {},
+          "selected": {}
+        },
+        "flags-string": "*Si",
+        "metric": 0,
+        "nexthop-group-id": 36,
+        "protocol": "bgp",
+        "uptime": "2025-08-26T20:39:05Z"
       }
     }
   }

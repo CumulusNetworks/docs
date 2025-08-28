@@ -85,8 +85,6 @@ window.mountChainlitWidget({
 {{ end }}
 
 
-    <script type="application/javascript" src="{{ $jsAir.Permalink }}"></script>
-
 {{ if eq .Page.Params.product "Cumulus NetQ" }}
 
 {{ $jsNetguru := resources.Get "js/netguru.js" }}

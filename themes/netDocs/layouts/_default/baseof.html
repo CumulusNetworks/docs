@@ -57,7 +57,7 @@
 </div>
 
 {{ if eq .Page.Params.product "Cumulus NetQ" }}
-<script async src="https://copilot-netguru.nvidia.com/chainlit/copilot/index.js" id="chainlit-script"></script>
+<script defer src="https://copilot-netguru.nvidia.com/chainlit/copilot/index.js" id="chainlit-script"></script>
 <script>
 document.getElementById('chainlit-script').addEventListener('load', function() {
     window.mountChainlitWidget({

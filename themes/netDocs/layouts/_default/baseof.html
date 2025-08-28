@@ -56,29 +56,6 @@
   {{ end }}
 </div>
 
-{{ if eq .Page.Params.product "Cumulus NetQ" }}
-<script defer src="https://copilot-netguru.nvidia.com/chainlit/copilot/index.js" id="chainlit-script"></script>
-<script>
-document.getElementById('chainlit-script').addEventListener('load', function() {
-    window.mountChainlitWidget({
-        chainlitServer: "https://copilot-netguru.nvidia.com/chainlit",
-        button: {
-            position: {
-                bottom: 1,
-                right: 1,
-            },
-            size: 3
-        },
-        popup: {
-            normalWidth: 300,
-            expandedWidth: 800,
-            height: 800
-        }
-    });
-});
-</script>
-{{ end }}   
-
 {{ block "toc" .}}
 {{ end }}
 

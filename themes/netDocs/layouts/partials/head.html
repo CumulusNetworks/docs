@@ -84,7 +84,28 @@ window.mountChainlitWidget({
 </script>
 {{ end }}
 
-
+{{ if eq .Page.Params.product "Cumulus NetQ" }}
+<script src="js/netguru.js id="chainlit-script"></script>
+<script>
+document.getElementById('chainlit-script').addEventListener('load', function() {
+    window.mountChainlitWidget({
+        chainlitServer: "https://copilot-netguru.nvidia.com/chainlit",
+        button: {
+            position: {
+                bottom: 1,
+                right: 1,
+            },
+            size: 3
+        },
+        popup: {
+            normalWidth: 300,
+            expandedWidth: 800,
+            height: 800
+        }
+    });
+});
+</script>
+{{ end }}   
 
 <!-- Canonical link element to prioritize search indexing of current version -->
 {{ if .Page.Params.old }}

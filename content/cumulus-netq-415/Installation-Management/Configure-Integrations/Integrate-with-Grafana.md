@@ -99,7 +99,7 @@ Configure your client devices to send OpenTelemetry data to NetQ.
 
 {{<tabs "TabID23" >}}
 
-{{<tab "CL switches">}}
+{{<tab "Cumulus Linux Switches">}}
 
 Enable OpenTelemetry for each metric that you want to monitor, as described in the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Monitoring-and-Troubleshooting/Open-Telemetry-Export/" text="Cumulus Linux documentation">}}. Use your NetQ server or cluster’s IP address and port 30008 when configuring the OTLP export destination.
 

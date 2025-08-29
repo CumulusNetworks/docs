@@ -18,6 +18,8 @@ Cumulus Linux 5.15.0 contains several new features and improvements, and provide
 
 ### New Features and Enhancements
 
+- {{<link url="Packet-Trimming/#packet-trimming-counters" text="Packet Trimming counters">}}
+- FRR-based BFD support
 - NVUE | Add aging time to neighbor info
 - NVUE Support for docker-container with Cumulus
 - NVUE login brute forcing via API
@@ -29,12 +31,10 @@ Cumulus Linux 5.15.0 contains several new features and improvements, and provide
 - Need micro second latency monitoring between all switch to switch
 - NVUE Routing | Operational revision needs to be supported for parts of the CL Object model(Phase 2)
 - Enable OTLP and gNMI to coexist and be usable at the same time( GA)
-- FRR Based BFD Support with Cumulus
 - High frequency telemetry - Nsight Integration with Opentelemetry (GA)
 - 802.1x Support for IPv6 Tenant Isolation
 - gNMI & OpenTelemetry  Predictive Analysis for Link Health - FEC histogram data
 - gshut metric via OLTP to track the drained devices/peers to support the siteops with remediation
-- Add support for Packet Trimming counters per port per queue, and ability to count dropped trimmed packets
 - Radius user Hardening
 - Telemetry ACL Related Metric / X-paths support
 - Telemetry Parity between OpenTelemetry and gNMI (Phase 1)

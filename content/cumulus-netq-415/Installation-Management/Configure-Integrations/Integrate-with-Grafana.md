@@ -25,15 +25,18 @@ The Grafana integration is in beta and supported for on-premises deployments onl
 
 ## Secure OpenTelemetry Export
 
-NetQ is configured with OTLP secure mode with TLS by default and expects clients to secure data with a certificate. You can configure NetQ and your client devices to use your own generated CA certificate, NetQ's self-signed certificate, or set the connections to insecure mode as outlined below.
+NetQ is configured with OTLP secure mode with TLS by default and expects clients to secure data with a certificate. You can configure NetQ and your client devices to use your own generated CA certificate, NetQ's self-signed certificate, or set the connections to insecure mode.
 
 {{%notice note%}}
 OpenTelemetry on host DPUs and NICs only supports insecure mode.
 {{%/notice%}}
 
+{{<tabs "certifcate options">}}
+
+{{<tab "TLS with a CA Certificate">}}
 ### TLS with a CA Certificate
 
-NVIDIA recommends using your own generated CA certificate. To configure a CA certificate, follow the steps below:
+NVIDIA recommends using your own generated CA certificate. To configure a CA certificate:
 
 1. Copy your certificate files to the NetQ server in the `/mnt/admin` directory. For example, copy the certificate and key to `/mnt/admin/certs/server.crt` and `/mnt/admin/certs/server.key` 
 
@@ -46,6 +49,9 @@ NVIDIA recommends using your own generated CA certificate. To configure a CA cer
    nvidia@switch:~$ nv config apply
    ```
 
+{{</tab>}}
+
+{{<tab "TLS with NetQ's Self-signed Certificate" >}}
 ### TLS with NetQ's Self-signed Certificate
 
 To run on the switch in secure mode with NetQ's self-signed certificate:
@@ -69,6 +75,9 @@ To run on the switch in secure mode with NetQ's self-signed certificate:
    ```
 5. Run `nv show system telemetry health` to display the destination port and IP address, along with connectivity status.
 
+{{</tab>}}
+
+{{<tab "Insecure Mode" >}}
 ### Insecure Mode
 
 To use insecure mode and disable TLS:
@@ -81,7 +90,9 @@ To use insecure mode and disable TLS:
    nvidia@switch:~$ nv set system telemetry export otlp grpc insecure disabled
    nvidia@switch:~$ nv config apply
    ```
+{{</tab>}}
 
+{{</tabs>}}
 ## Configure and Enable OpenTelemetry on Devices
 
 Configure your client devices to send OpenTelemetry data to NetQ.

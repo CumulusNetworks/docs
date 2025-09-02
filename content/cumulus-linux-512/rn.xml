@@ -483,6 +483,12 @@ cumulus@switch:~$ sudo systemctl start cumulus-upgrade-on-shutdown</td>
 <td>5.13.0-5.14.0</td>
 </tr>
 <tr>
+<td>4260013</td>
+<td>When you configure the SPAN port mirror truncate size to a value greater than 4 and less than the supported minimum, NVUE allows the configuration even though there are errors and failures in the mirror session configuration.The supported values for truncate size are 32 to 4088 for Spectrum 1, 48 to 4088 for Spectrum-2 and Spectrum-3, and 64 to 4088 for Spectrum-4.To work around this issue, run the {{echo &lt;supported_value&gt; &gt; /cumulus/switchd/config/mirror/session/1/truncate_size}} command before you reconfigure mirror sessions with the supported values.</td>
+<td>5.8.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4255639</td>
 <td>When all links go down or the switch reboots,  you see next hop group churn from Zebra to the SOO next hop group. This issue might cause some convergence degradation. </td>
 <td>5.12.0-5.12.1</td>
@@ -1597,6 +1603,12 @@ cumulus@switch:~$ sudo systemctl start cumulus-upgrade-on-shutdown</td>
 <td>Statically configured VXLAN FDB entries do not age out.</td>
 <td>5.12.0-5.12.1</td>
 <td>5.13.0-5.14.0</td>
+</tr>
+<tr>
+<td>4260013</td>
+<td>When you configure the SPAN port mirror truncate size to a value greater than 4 and less than the supported minimum, NVUE allows the configuration even though there are errors and failures in the mirror session configuration.The supported values for truncate size are 32 to 4088 for Spectrum 1, 48 to 4088 for Spectrum-2 and Spectrum-3, and 64 to 4088 for Spectrum-4.To work around this issue, run the {{echo &lt;supported_value&gt; &gt; /cumulus/switchd/config/mirror/session/1/truncate_size}} command before you reconfigure mirror sessions with the supported values.</td>
+<td>5.8.0-5.14.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4255639</td>

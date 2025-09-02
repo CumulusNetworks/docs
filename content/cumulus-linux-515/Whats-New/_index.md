@@ -19,7 +19,7 @@ Cumulus Linux 5.15.0 contains several new features and improvements, and provide
 ### New Features and Enhancements
 
 - {{<link url="Packet-Trimming/#packet-trimming-counters" text="Packet Trimming counters">}}
-- FRR-based BFD support
+- {{<link url="Bidirectional-Forwarding-Detection-BFD" text="FRR-based BFD support">}}
 - NVUE | Add aging time to neighbor info
 - NVUE Support for docker-container with Cumulus
 - NVUE login brute forcing via API
@@ -113,19 +113,64 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 {{< tab "nv show ">}}
 
 ```
+nv show router bfd profile <profile-name>  
+nv show vrf <vrf-id> router bgp peer-group <peer-group-id> bfd 
+nv show vrf <vrf-id> router bgp neighbor <neighbor-id> bfd 
+nv show vrf <vrf-id> router bfd peers 
+nv show vrf <vrf-id> router bfd peers --view brief 
+nv show vrf <vrf-id> router bfd peers --view standard 
+nv show vrf <vrf-id> router bfd peers --view detail 
+nv show vrf <vrf-id> router bfd peers --view counters 
+nv show vrf <vrf-id> router bfd peers <session-id> 
+nv show interface <interface-id> router ospf bfd  
+nv show interface <interface-id> router pim bfd  
+nv show vrf <vrf-id> router static <ipv4-prefix> via <ipv4> bfd 
+nv show vrf <vrf-id> router static <ipv4-prefix> distance <integer> via <ipv4> bfd
 ```
 
 {{< /tab >}}
 {{< tab "nv set ">}}
 
 ```
+nv set router bfd state
+nv set router bfd profile <profile-name>
+nv set router bfd profile <profile-name> 
+nv set router bfd profile <profile-name> min-rx-interval 
+nv set router bfd profile <profile-name> shutdown
+nv set router bfd profile <profile-name> passive-mode 
+nv set router bfd profile <profile-name> minimum-ttl
+nv set vrf <vrf-id> router bgp peer-group <peer-group-id> bfd profile <profile-name> 
+nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd profile <profile-name>
+nv set interface <interface-id> router ospf bfd profile <profile-name> 
+nv set interface <interface-id> router pim bfd profile <profile-name> 
+nv set vrf <vrf-id> router static <ipv4-prefix> via <ipv4> bfd profile <profile-name> 
+nv set vrf <vrf-id> router static <ipv4-prefix> via <ipv4> bfd multi-hop
+nv set vrf <vrf-id> router static <ipv4-prefix> via <ipv4> bfd source
+nv set vrf <vrf-id> router static <ipv4-prefix> distance <integer> via <ipv4> bfd profile <profile-name>
+nv set vrf <vrf-id> router static <ipv4-prefix> distance <integer> via <ipv4> bfd multi-hop
+nv set vrf <vrf-id> router static <ipv4-prefix> distance <integer> via <ipv4> bfd source  
 ```
 
 {{< /tab >}}
 {{< tab "nv unset ">}}
 
 ```
-
+nv unset router bfd profile <profile-name> detect-multiplier 
+nv unset router bfd profile <profile-name> min-tx-interval 
+nv unset router bfd profile <profile-name> min-rx-interval  
+nv unset router bfd profile <profile-name> shutdown 
+nv unset router bfd profile <profile-name> passive-mode 
+nv unset router bfd profile <profile-name> minimum-ttl 
+nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> bfd  
+nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> bfd 
+nv unset interface <interface-id> router ospf bfd  
+nv unset interface <interface-id> router pim bfd 
+nv unset vrf <vrf-id> router static <ipv4-prefix> via <ipv4> bfd 
+nv unset vrf <vrf-id> router static <ipv4-prefix> via <ipv4> bfd multi-hop 
+nv unset vrf <vrf-id> router static <ipv4-prefix> via <ipv4> bfd source  
+nv unset vrf <vrf-id> router static <ipv4-prefix> distance <integer> via <ipv4> bfd  
+nv unset vrf <vrf-id> router static <ipv4-prefix> distance <integer> via <ipv4> bfd multi-hop 
+nv unset vrf <vrf-id> router static <ipv4-prefix> distance <integer> via <ipv4> bfd source
 ```
 
 {{< /tab >}}

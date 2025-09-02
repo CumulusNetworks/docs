@@ -18,22 +18,26 @@ The Grafana integration is in beta and supported for on-premises deployments onl
    - Cluster: 50 switches
    - 3-node scale cluster: 500 switches
    - 5-node scale cluster: 1,000 switches
-- NetQ does not support OpenTelemetry collection from switches with {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Monitoring-and-Troubleshooting/Open-Telemetry-Export/#buffer-statistics" text="buffer statistics">}} enabled. 
+- For switches, you must enable OpenTelemetry to collect and export each metric that you want to monitor, as described in the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Monitoring-and-Troubleshooting/Open-Telemetry-Export/" text="Cumulus Linux documentation">}}.
+   - NetQ does not support OpenTelemetry collection from switches with {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Monitoring-and-Troubleshooting/Open-Telemetry-Export/#buffer-statistics" text="buffer statistics">}} enabled. 
 - DPUs and ConnectX hosts must be running DOCA Telemetry Service (DTS) version 1.18-1.20.
 - Before you get started with the steps below, {{<exlink url="https://grafana.com/docs/grafana/latest/setup-grafana/installation/" text="install Grafana">}} and {{<exlink url="https://grafana.com/docs/grafana/latest/setup-grafana/start-restart-grafana/" text="start the Grafana server">}}.
 - NetQ allows you to retrieve data from up to seven days in the past.
 
 ## Secure OpenTelemetry Export
 
-NetQ is configured with OTLP secure mode with TLS by default and expects clients to secure data with a certificate. You can configure NetQ and your client devices to use your own generated CA certificate, NetQ's self-signed certificate, or set the connections to insecure mode as outlined below.
+NetQ is configured with OTLP secure mode with TLS by default and expects clients to secure data with a certificate. You can configure NetQ and your client devices to use your own generated CA certificate, NetQ's self-signed certificate, or set the connections to insecure mode.
 
 {{%notice note%}}
 OpenTelemetry on host DPUs and NICs only supports insecure mode.
 {{%/notice%}}
 
+{{<tabs "certifcate options">}}
+
+{{<tab "TLS with a CA Certificate">}}
 ### TLS with a CA Certificate
 
-NVIDIA recommends using your own generated CA certificate. To configure a CA certificate, follow the steps below:
+NVIDIA recommends using your own generated CA certificate. To configure a CA certificate:
 
 1. Copy your certificate files to the NetQ server in the `/mnt/admin` directory. For example, copy the certificate and key to `/mnt/admin/certs/server.crt` and `/mnt/admin/certs/server.key` 
 
@@ -46,6 +50,9 @@ NVIDIA recommends using your own generated CA certificate. To configure a CA cer
    nvidia@switch:~$ nv config apply
    ```
 
+{{</tab>}}
+
+{{<tab "TLS with NetQ's Self-signed Certificate" >}}
 ### TLS with NetQ's Self-signed Certificate
 
 To run on the switch in secure mode with NetQ's self-signed certificate:
@@ -69,6 +76,9 @@ To run on the switch in secure mode with NetQ's self-signed certificate:
    ```
 5. Run `nv show system telemetry health` to display the destination port and IP address, along with connectivity status.
 
+{{</tab>}}
+
+{{<tab "Insecure Mode" >}}
 ### Insecure Mode
 
 To use insecure mode and disable TLS:
@@ -81,14 +91,16 @@ To use insecure mode and disable TLS:
    nvidia@switch:~$ nv set system telemetry export otlp grpc insecure disabled
    nvidia@switch:~$ nv config apply
    ```
+{{</tab>}}
 
+{{</tabs>}}
 ## Configure and Enable OpenTelemetry on Devices
 
 Configure your client devices to send OpenTelemetry data to NetQ.
 
 {{<tabs "TabID23" >}}
 
-{{<tab "CL switches">}}
+{{<tab "Cumulus Linux Switches">}}
 
 Enable OpenTelemetry for each metric that you want to monitor, as described in the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Monitoring-and-Troubleshooting/Open-Telemetry-Export/" text="Cumulus Linux documentation">}}. Use your NetQ server or cluster’s IP address and port 30008 when configuring the OTLP export destination.
 

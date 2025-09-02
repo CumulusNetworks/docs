@@ -13,6 +13,12 @@
 <td></td>
 </tr>
 <tr>
+<td>4562806</td>
+<td>When there is a very high volume of MLD traffic in a VXLAN environment, the switch CPU and control protocols might be impacted.</td>
+<td>5.12.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4555938</td>
 <td>When one of the FRR processes such as {{bgpd}} or zebra goes down, {{watchfrr}} tries to restart those processes and also restarts the routing telemetry service, which blocks {{watchfrr}} causing cascading failures on other processes.</td>
 <td>5.12.0-5.13.1</td>
@@ -1132,6 +1138,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>4579237</td>
 <td>If interface statistics telemetry is running on the switch, an {{interface_stats_collector}} core file might generate during statistics collection.</td>
 <td>5.11.3-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4562806</td>
+<td>When there is a very high volume of MLD traffic in a VXLAN environment, the switch CPU and control protocols might be impacted.</td>
+<td>5.12.0-5.14.0</td>
 <td></td>
 </tr>
 <tr>

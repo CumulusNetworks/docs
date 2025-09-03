@@ -649,12 +649,6 @@ onie-nos-install /$devname/onie-installer</td>
 <td></td>
 </tr>
 <tr>
-<td>4309854</td>
-<td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
-<td>5.11.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4308857</td>
 <td>When you use {{tls_crlcheck}} in the {{/etc/nslcd.conf}} file, the optional {{nslcd}} service fails due to a missing library.</td>
 <td>5.9.2-5.14.0</td>
@@ -1847,12 +1841,6 @@ onie-nos-install /$devname/onie-installer</td>
 <td>4309876</td>
 <td>When you configure an invalid switch port (swp), NVUE adds the invalid configuration instead of rejecting it. The invalid interface in the configuration does not have any functional impact.</td>
 <td>5.12.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4309854</td>
-<td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
-<td>5.11.0-5.14.0</td>
 <td></td>
 </tr>
 <tr>

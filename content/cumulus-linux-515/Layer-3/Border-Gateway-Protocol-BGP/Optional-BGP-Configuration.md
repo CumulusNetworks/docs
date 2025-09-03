@@ -857,7 +857,7 @@ BGP supports equal-cost multipathing ({{<link url="Equal-Cost-Multipath-Load-Sha
 
 Cumulus Linux enables the *BGP multipath* option by default and sets the maximum number of paths to 64 so that the switch can install multiple equal-cost BGP paths to the forwarding table and load balance traffic across multiple links. You can change the number of paths allowed, according to your needs.
 
-The example commands change the maximum number of paths to 128. You can set a value between 1 and 128. 1 disables the BGP multipath option.
+The example commands change the maximum number of paths to 128. On Spectrum-3 and earlier, you can set a value between 1 and 128. On Spectrum-4 and later, you can set a value between 1 and 256. 1 disables the BGP multipath option.
 
 {{%notice note%}}
 Only Spectrum-4 switches support 128 paths.

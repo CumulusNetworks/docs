@@ -20,10 +20,10 @@ Cumulus Linux 5.15.0 contains several new features and improvements, and provide
 
 - {{<link url="Packet-Trimming/#packet-trimming-counters" text="Packet Trimming counters">}}
 - {{<link url="Bidirectional-Forwarding-Detection-BFD" text="FRR-based BFD support">}}
+- {{<link url="Optional-BGP-Configuration/#ecmp" text="Support 256 BGP sessions and 256-way ECMP on Spectrum-4">}}
 - NVUE | Add aging time to neighbor info
 - NVUE Support for docker-container with Cumulus
 - NVUE login brute forcing via API
-- Support for 256 BGP sessions and 256-way ECMP on SN56x0 (Cumulus FR) (GA)
 - Require users to re-authenticate when changing authenticators
 - NVUE Support for SSH CIPHER config from NVUE
 - GNMI gNOI support for action commands

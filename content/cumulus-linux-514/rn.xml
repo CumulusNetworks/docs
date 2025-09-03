@@ -55,12 +55,6 @@
 <td></td>
 </tr>
 <tr>
-<td>4562200</td>
-<td>On the Spectrum-1 switch, {{switchd}} might crash during warm boot.</td>
-<td>5.14.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4557007</td>
 <td>Incorrect prefix boundaries are set for traffic class, switch priority, and port groups for the {{qos/interfaces/interface[interface-id]}} metrics, which sends redundant data.</td>
 <td>5.14.0</td>

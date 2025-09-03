@@ -20,56 +20,57 @@ Cumulus Linux 5.15.0 contains several new features and improvements, and provide
 
 - {{<link url="Packet-Trimming/#packet-trimming-counters" text="Packet Trimming counters">}}
 - {{<link url="Bidirectional-Forwarding-Detection-BFD" text="FRR-based BFD support">}}
-- NVUE | Add aging time to neighbor info
-- NVUE Support for docker-container with Cumulus
-- NVUE login brute forcing via API
-- Support for 256 BGP sessions and 256-way ECMP on SN56x0 (Cumulus FR) (GA)
+- {{<link url="Optional-BGP-Configuration/#ecmp" text="Support 256 BGP sessions and 256-way ECMP on Spectrum-4">}}
+- {{<link url="Latency-Monitoring" text="Switch latency monitoring">}}
+- {{<link url="Docker-with-Cumulus-Linux" text="Support for docker-container">}}
+- {{<link url="FIPS" text="FIPS mode">}}
 - Require users to re-authenticate when changing authenticators
-- NVUE Support for SSH CIPHER config from NVUE
-- GNMI gNOI support for action commands
-- Enable option for users to enable FIPS Mode
-- Need micro second latency monitoring between all switch to switch
-- NVUE Routing | Operational revision needs to be supported for parts of the CL Object model(Phase 2)
-- Enable OTLP and gNMI to coexist and be usable at the same time( GA)
-- High frequency telemetry - Nsight Integration with Opentelemetry (GA)
 - 802.1x Support for IPv6 Tenant Isolation
-- gNMI & OpenTelemetry  Predictive Analysis for Link Health - FEC histogram data
-- gshut metric via OLTP to track the drained devices/peers to support the siteops with remediation
 - Radius user Hardening
-- Telemetry ACL Related Metric / X-paths support
-- Telemetry Parity between OpenTelemetry and gNMI (Phase 1)
-- Common_OM Alignment 
-- NVUE Refactor system aaa and tacacs to common model
-- Align system/ntp
-- Align system/message
-- Align system/dns
-- Align system/documentation
-- Align system/security
-- Align system/debug-log
-- Align system/reboot
-- Align system/cpu
-- Align system/memory
-- Align system/packages
-- Align system/events
-- Align system/tech-support
-- Align system/serial-console
-- Align system/telemetry
-- Align system/timezone
-- Align system/"top level"
-- Align system/config
-- Align interface/acl
-- Align interface/ip
-- Align interface/telemetry
-- Align interface/link
-- Align interface/lldp
-- Align interface/pluggable
-- Align interface/counters
-- Align interface/"top level views"
-- Align system/aaa/ldap
-- Align SSH PKA only
-- Unify all the object models to using enabled/disabled (remove on/off)
-- Align timestamp/duration objects across NVUE
-- Align platform/asic
+- Telemetry
+  - GNMI gNOI support for action commands
+  - You can now run OTLP and gNMI streaming at the same time
+  - High frequency telemetry Nsight Integration
+  - gNMI & OpenTelemetry  Predictive Analysis for Link Health - FEC histogram data
+  - gshut metric via OLTP to track the drained devices/peers to support the site ops with remediation
+  - Telemetry ACL Related Metric / X-paths support
+  - Telemetry Parity between OpenTelemetry and gNMI (Phase 1)
+- NVUE
+  - Routing | Operational revision needs to be supported for parts of the CL Object model(Phase 2)
+  - Add aging time to neighbor info
+  - login brute forcing via API
+  - Support for SSH CIPHER configuration
+  - Refactor system aaa and tacacs to common model
+  - Align system/ntp
+  - Align system/message
+  - Align system/dns
+  - Align system/documentation
+  - Align system/security
+  - Align system/debug-log
+  - Align system/reboot
+  - Align system/cpu
+  - Align system/memory
+  - Align system/packages
+  - Align system/events
+  - Align system/tech-support
+  - Align system/serial-console
+  - Align system/telemetry
+  - Align system/timezone
+  - Align system/"top level"
+  - Align system/config
+  - Align interface/acl
+  - Align interface/ip
+  - Align interface/telemetry
+  - Align interface/link
+  - Align interface/lldp
+  - Align interface/pluggable
+  - Align interface/counters
+  - Align interface/"top level views"
+  - Align system/aaa/ldap
+  - Align SSH PKA only
+  - Unify all the object models to using enabled/disabled (remove on/off)
+  - Align timestamp/duration objects across NVUE
+  - Align platform/asic
 - {{< expand "Removed NVUE commands" >}}
 ```
 nv set interface <interface-id> router ospf bfd enable

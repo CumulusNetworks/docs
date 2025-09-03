@@ -6,9 +6,11 @@ toc: 3
 ---
 <span class="a-tooltip">[BFD](## "Bidirectional Forwarding Detection")</span> provides low overhead and rapid detection of failures in the paths between two network devices. It provides a unified mechanism for link detection over all media and protocol layers. Use BFD to detect failures for IPv4 and IPv6 single or multihop paths between any two network devices, including unidirectional path failure detection.
 
-Cumulus Linux supports BFD with static routes, BGP, OSPF, and PIM and on interfaces, subinterfaces, and bonds.
+Cumulus Linux supports BFD with BGP, OSPF, PIM, and static routes and on interfaces, subinterfaces, and bonds.
 
-BFD triggers on remote link admin down or admin up, layer 2 switch link admin down or admin up, and SDK level link down.
+{{%notice note%}}
+Every BFD interface requires an IP address. The neighbor IP address for a single hop BFD session must exist in the ARP table before BFD can start sending control packets.
+{{%/notice%}}
 
 {{%notice note%}}
 Cumulus Linux does not support:
@@ -16,85 +18,132 @@ Cumulus Linux does not support:
 - Dynamic BFD timer negotiation on an existing session. Any change to the timer values takes effect only when the session goes down and comes back up.
 {{%/notice%}}
 
-## BFD Multihop Routed Paths
+## Enable BFD
 
-BFD multihop sessions build over arbitrary paths between two systems, which results in some complexity that does not exist for single hop sessions. To avoid **spoofing** with multihop paths, configure the maximum hop count (`max_hop_cnt`) for each peer, which limits the number of hops for a BFD session. The switch drops all BFD packets exceeding the maximum hop count.
+To enable BFD:
 
-Cumulus Linux supports multihop BFD sessions for both IPv4 and IPv6 peers.
+{{< tabs "TabID33 ">}}
+{{< tab "NVUE Commands ">}}
+
+Run the `nv set router bfd state enabled` command:
+
+```
+cumulus@switch:~$ nv set router bfd state enabled
+cumulus@switch:~$ nv config apply
+```
+
+To disable BFD, run the `nv set router bfd state disabled` command.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Enable and start the BFD service:
+
+``` 
+cumulus@switch:~$ sudo systemctl enable bfdd.service
+cumulus@switch:~$ sudo systemctl start bfdd.service 
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Configure BFD
 
 You can configure BFD with NVUE or vtysh commands.
 
-Use <span class="a-tooltip">[FRR](## "FRRouting")</span> to register multihop peers with {{<link url="Prescriptive-Topology-Manager-PTM" text="PTM">}} and BFD, and monitor the connectivity to the remote <span class="a-tooltip">[BGP](## "Border Gateway Protocol")</span> multihop peer. FRR can dynamically register and unregister both IPv4 and IPv6 peers with BFD when the BFD-enabled peer connectivity starts or stops. Also, you can configure BFD parameters for each BGP or <span class="a-tooltip">[OSPF](## "Open Shortest Path First")</span> peer.
+To configure BFD, you configure a BFD profile, then attach the profile to the client, such as a BGP neighbor or peer group, OSPF interface, PIM session, or static route. The BFD profile includes configuration parameters such detect multiplier, transmit interval, receive interval, and minimum expected TTL.
 
-{{%notice note%}}
-Every BFD interface requires an IP address. The neighbor IP address for a single hop BFD session must exist in the ARP table before BFD can start sending control packets.
-{{%/notice%}}
+### Configure a BFD Profile
 
-When you configure BFD, you can set the following parameters for both IPv4 and IPv6 sessions. If you do not set these parameters, Cumulus Linux uses the default values.
+To configure BFD, you must create a BFD profile that includes the following options:
+- The detection time multiplier to determine packet loss. The remote transmission interval is multiplied by this value to determine the connection loss detection timer. You can set a value between 1 and 255. The default value is 3.
+- The minimum interval for transmitting BFD control packets. You can set a value between 10 and 4294967 milliseconds. The default value is 300.
+- The minimum interval between the received BFD control packets. You can set a value between 10 and 4294967 milliseconds. The default value is 300.
+- Shutdown, which enables or disables the peer. When the peer is disabled the switch sends an `administrative down` message to the remote peer. The default value is `disabled`.
+- Passive mode, which marks the session as passive. A passive session does not attempt to start the connection and waits for control packets from the peer before it begins replying. Passive mode is useful when you have a router that acts as the central node of a star network and you want to avoid sending BFD control packets you don’t need to. You can set passive mode to `enable` or `disabled`. The default is `disabled`.
+- The minimum expected TTL for an incoming BFD control packet (for multi hop sessions only). This feature tightens the packet validation requirements to avoid receiving BFD control packets from other sessions. You can set a value between 1 and 254. The default value is 254 (only expect one hop between this system and the peer).
 
-- The required minimum interval between the received BFD control packets. The default value is 300ms.
-- The minimum interval for transmitting BFD control packets. The default value is 300ms.
-- The detection time multiplier. The default value is 3.
+The following example configures a BFD profile called BFD1. The profile sets the detection time multiplier to 10, the minimum interval for transmitting BFD control packets and minimum interval between the received BFD control packets to 100, and the minimum expected TTL for an incoming BFD control packet to 1. The profile also enables shutdown and passive mode.
 
-### BFD in BGP
-
-When you configure BFD in BGP, {{<link url="Prescriptive-Topology-Manager-PTM" text="PTM">}} registers and de-registers neighbors dynamically.
-
-To configure BFD in BGP, run the following commands.
-
-{{%notice note%}}
-You can configure BFD for a peer group or for an individual neighbor.
-{{%/notice%}}
-
-{{< tabs "TabID66 ">}}
+{{< tabs "TabID67 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example configures BFD for swp51 and uses the default intervals.
-
 ```
-cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 bfd enable on
-cumulus@switch:~$ nv config apply
-```
-
-The following example configures BFD for the peer group `fabric` and sets the interval multiplier to 4, the minimum interval between received BFD control packets to 400, and the minimum interval for sending BFD control packets to 400.
-
-```
-cumulus@switch:~$ nv set vrf default router bgp neighbor fabric bfd enable on
-cumulus@switch:~$ nv set vrf default router bgp neighbor fabric bfd detect-multiplier 4 
-cumulus@switch:~$ nv set vrf default router bgp neighbor fabric bfd min-rx-interval 400 
-cumulus@switch:~$ nv set vrf default router bgp neighbor fabric bfd min-tx-interval 400
+cumulus@switch:~$ nv set router bfd profile BFD1 detect-multiplier 10
+cumulus@switch:~$ nv set router bfd profile BFD1 min-tx-interval 100
+cumulus@switch:~$ nv set router bfd profile BFD1 min-rx-interval 100
+cumulus@switch:~$ nv set router bfd profile BFD1 minimum-ttl 1
+cumulus@switch:~$ nv set router bfd profile BFD1 shutdown enabled
+cumulus@switch:~$ nv set router bfd profile BFD1 passive-mode enabled
 cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
-The following example configures BFD for swp1 and uses the default intervals:
-
 ```
 cumulus@switch:~$ sudo vtysh
 ...
 switch# configure terminal
-switch(config)# router bgp 65000
-switch(config-router)# neighbor swp1 bfd
-switch(config-router)# exit
-switch(config)# exit
+switch(config)# bfd
+switch(config-bfd)# profile BFD1
+switch(config-bfd)# detect-multiplier 10 transmit-interval 100 receive-interval 100 shutdown passive-mode minimum-ttl 1
+switch(config-bfd)# end
 switch# write memory
 switch# exit
 ```
 
-The following example configures BFD for the peer group `fabric` and sets the interval multiplier to 4, the minimum interval between *received* BFD control packets to 400, and the minimum interval for *sending* BFD control packets to 400.
+{{< /tab >}}
+{{< /tabs >}}
+
+### BFD with BGP
+
+BFD with BGP enables you to decrease BGP convergence time. When you configure BFD with BGP, the switch registers and de-registers neighbors dynamically.
+
+You can configure BFD for a peer group or for an individual neighbor by attaching a BFD profile.
+
+{{< tabs "TabID102 ">}}
+{{< tab "NVUE Commands ">}}
+
+The following example configures BFD for the neighbor swp51 using the BFD profile BFD1.
+
+```
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 bfd profile BFD1
+cumulus@switch:~$ nv config apply
+```
+
+The following example configures BFD for the peer group `fabric` using the BFD profile BFD1:
+
+```
+cumulus@switch:~$ nv set vrf default router bgp peer-group fabric bfd profile BFD1
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+The following example configures BFD for the neighbor swp51 using the BFD profile BFD1.
 
 ```
 cumulus@switch:~$ sudo vtysh
 ...
 switch# configure terminal
 switch(config)# router bgp 65000
-switch(config-router)# neighbor fabric bfd 4 400 400
-switch(config-router)# exit
-switch(config)# exit
+switch(config-router)# neighbor swp1 bfd profile BFD1
+switch(config-router)# end
+switch# write memory
+switch# exit
+```
+
+The following example configures BFD for the peer group `fabric` using the BFD profile BFD1:
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# router bgp 65000
+switch(config-router)# neighbor fabric bfd profile BFD1
+switch(config-router)# end
 switch# write memory
 switch# exit
 ```
@@ -108,38 +157,24 @@ bgp router-id 10.10.10.1
 ! Neighbors
 neighbor fabric peer-group
 neighbor fabric remote-as external
-neighbor fabric bfd 4 400 400
+neighbor fabric bfd profile BFD1
 ...
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
 
-To see neighbor information in BGP, including BFD status, run the vtysh `show ip bgp neighbor <interface-id>` command. For example:
+### BFD with OSPF
 
-```
-cumulus@switch:~$ sudo vtysh 
-switch# show ip bgp neighbor swp51
-...
-BFD: Type: single hop
-  Detect Mul: 4, Min Rx interval: 400, Min Tx interval: 400
-  Status: Down, Last update: 0:00:00:08
-...
-```
+When you enable BFD on an OSPF interface, a neighbor registers with BFD when two-way adjacency starts and de-registers when adjacency goes down. The BFD configuration is per interface and any IPv4 and IPv6 neighbors discovered on that interface inherit the configuration.
 
-### BFD in OSPF
+The following example configures BFD in OSPF for interface swp1 using the BFD profile BFD1.
 
-When you enable or disable BFD in OSPF, {{<link url="Prescriptive-Topology-Manager-PTM" text="PTM">}} registers and de-registers neighbors dynamically. When you enable BFD on the interface, a neighbor registers with BFD when two-way adjacency starts and de-registers when adjacency goes down. The BFD configuration is per interface and any IPv4 and IPv6 neighbors discovered on that interface inherit the configuration.
-
-The following example configures BFD in OSPF for interface swp1 and sets interval multiplier to 4, the minimum interval between *received* BFD control packets to 400, and the minimum interval for *sending* BFD control packets to 400.
-
-{{< tabs "TabID150 ">}}
+{{< tabs "TabID182 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface swp1 router ospf bfd detect-multiplier 4
-cumulus@switch:~$ nv set interface swp1 router ospf bfd min-receive-interval 400
-cumulus@switch:~$ nv set interface swp1 router ospf bfd min-transmit-interval 400
+cumulus@switch:~$ nv set interface swp1 router ospf bfd profile BFD1
 cumulus@switch:~$ nv config apply
 ```
 
@@ -151,9 +186,8 @@ cumulus@switch:~$ sudo vtysh
 ...
 switch# configure terminal
 switch(config)# interface swp1
-switch(config-if)# ipv6 ospf6 bfd 4 400 400
-switch(config-if)# exit
-switch(config)# exit
+switch(config-if)# ip ospf bfd profile BFD1
+switch(config-if)# end
 switch# write memory
 switch# exit
 ```
@@ -163,14 +197,210 @@ The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For e
 ```
 ...
 interface swp1
-  ipv6 ospf6 bfd 4 400 400
+  ip ospf bfd 
+  ip ospf bfd profile BFD1 
   ...
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
 
-You can run different commands to show neighbor information in OSPF, including BFD status.
+### BFD with PIM
+
+To configure BFD with PIM, you attach a BFD profile to a PIM session.
+
+{{< tabs "TabID275 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface vlan10 router pim bfd profile BFD1
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# interface vlan10
+switch(config-if)# ip pim bfd profile BFD1
+switch(config-if)# end
+switch# write memory
+switch# exit
+```
+
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+interface vlan10
+  ip pim 
+  ip pim bfd 
+  ip pim bfd profile BFD1 
+  ...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### BFD with Static Routes
+
+You can associate static routes with BFD to monitor static route reachability. Depending on status of the BFD session, the switch either adds or removes static routes from the Routing Information Base (RIB).
+
+{{< tabs "TabID315 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 via 10.0.1.0 bfd profile BFD1 
+cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 via 10.0.1.0 bfd multi-hop
+cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 via 10.0.1.0 bfd source 10.10.10.3
+cumulus@switch:~$ nv config apply
+```
+
+```
+cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 distance 2 via 10.0.1.0 bfd profile BFD2
+cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 distance 2 via 10.0.1.0 bfd multi-hop
+cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 distance 2 via 10.0.1.0 bfd source 10.10.10.3
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+{{< /tab >}}
+{{< /tabs >}}
+<!--
+## Echo Function
+
+Cumulus Linux supports the *echo function* for IPv4 single hops only, and with the asynchronous operating mode only (Cumulus Linux does not support demand mode).
+
+Use the echo function to test the forwarding path on a remote system. To enable the echo function, set `echoSupport` to *1* in the topology file.
+
+After the remote system loops the echo packets, the BFD control packets can send at a much lower rate. You configure this lower rate by setting the `slowMinTx` parameter in the topology file to a non-zero value in milliseconds.
+
+You can use more aggressive detection times for echo packets because the round-trip time is less; echo packets access the forwarding path. You can configure the detection interval by setting the `echoMinRx` parameter in the topology file. The minimum setting is 50 milliseconds. After you configure this setting, BFD control packets send at this required minimum echo Rx interval. This indicates to the peer that the local system can loop back the echo packets. Echo packets transmit if the peer supports receiving echo packets.
+
+Cumulus Linux encapsulates BFD echo packets into UDP packets over destination and source UDP port number 3785. The BFD echo packet format is vendor-specific. BFD echo packets that originate from Cumulus Linux are eight bytes long and have the following format:
+
+|0|1|2|3|
+|---|---|---|---|
+|Version|Length|Reserved|Reserved|
+|My Discriminator|
+
+- **Version** is the version of the BFD echo packet.
+- **Length** is the length of the BFD echo packet.
+- **My Discriminator**is a non-zero value that uniquely identifies a BFD session on the transmitting side. When the originating node receives the packet after being looped back by the receiving system, this value uniquely identifies the BFD session.
+
+### Transmit and Receive Echo Packets
+
+Cumulus Linux transmits BFD echo packets for a BFD session only when the peer advertises a non-zero value for the required minimum echo receive interval (the `echoMinRx` setting) in the BFD control packet when the BFD session starts. The switch bases the transmit rate of the echo packets on the peer advertised echo receive value in the control packet.
+
+Cumulus Linux loops BFD echo packets back to the originating node for a BFD session only if you configure the `echoMinRx` and `echoSupport` locally to a non-zero value.
+
+### Echo Function Parameters
+
+You configure the echo function by setting the following parameters in the topology file at the global, template and port level:
+
+- **echoSupport** enables and disables echo mode. Set to 1 to enable the echo function. It defaults to 0 (disable).
+- **echoMinRx** is the minimum interval between echo packets the local system is capable of receiving. The BFD control packet advertises this value. When you enable the echo function, it defaults to 50. If you disable the echo function, this parameter is automatically 0, which indicates the port or the node cannot process or receive echo packets.
+- **slowMinTx** is the minimum interval between transmitting BFD control packets when the switch exchanges echo packets.
+-->
+
+## Show BFD Information
+
+You can show BFD configuration and operational data with NVUE or vtysh show commands.
+
+To show BFD profile configuration details, run the `nv show router bfd profile <profile-name>` command:
+
+```
+cumulus@switch:~$ nv show router bfd profile BFD1
+                   applied 
+-----------------  -------- 
+detect-multiplier  10 
+min-rx-interval    100 
+min-tx-interval    100 
+shutdown           enabled 
+passive-mode       enabled 
+minimum-ttl        1 
+```
+
+To show information about BFD connected devices, run the following commands:
+- `nv show vrf <vrf-id> router bfd peers` shows
+- `nv show vrf <vrf-id> router bfd peers --view brief` shows
+- `nv show vrf <vrf-id> router bfd peers --view standard` shows
+- `nv show vrf <vrf-id> router bfd peers --view detail` shows
+- `nv show vrf <vrf-id> router bfd peers --view counters` shows
+- `nv show vrf <vrf-id> router bfd peers <session-id>` shows
+
+```
+cumulus@switch:~$ nv show vrf default router bfd peers --view brief
+MHop - Multihop, Local - Local, Peer - Peer, Interface - Interface, State - 
+State, Passive - Passive Mode, Time - Up/Down Time, Type - Config Type 
+LocalId     MHop   Local       Peer        Interface  State  Passive  Time        Type 
+----------  -----  ----------  ----------  ---------  -----  -------  ----------  ------- 
+20162981    True   6.0.0.24    6.0.0.26               up     False    1:00:08:20  dynamic 
+1002134429  True   6000::24    6000::26               up     False    1:00:08:20  dynamic 
+1987835266  False  fe80::a288  fe80::9e05  p0_if.100  up     False    1:00:08:20  dynamic 
+2124581159  False  fe80::a288  fe80::9e05  p0_if.101  up     False    1:00:08:20  dynamic 
+2323511220  True   6000::24    6000::23               up     False    1:00:08:20  dynamic 
+4089962224  True   6.0.0.24    6.0.0.23               up     False    0:19:07:20  dynamic 
+```
+
+```
+cumulus@switch:~$ nv show vrf default router bfd peers --view counters
+Local - Local, Peer - Peer, Interface - Interface, State - State, CtrlIn - 
+Control Packet Input, CtrlOut - Control Packet Output, EchoIn - Echo Packet 
+Input, EchoOut - Echo Packet Output, Up - Session Up, Down - Session Down, Zebra 
+- Zebra Notification 
+LocalId    Local      Peer       Interface State CtrlIn CtrlOut EchoIn EchoOut Up Down Zebra 
+---------- ---------- ---------- --------- ----- ------ ------- ------ ------- -- ---- ----- 
+20162981   6.0.0.24   6.0.0.26             up    248913 248920  0      0       1  0    5 
+1002134429 6000::24   6000::26             up    248882 248829  0      0       1  0    5 
+1987835266 fe80::a288 fe80::9e05 p0_if.100 up    473059 497655  0      0       1  0    9 
+2124581159 fe80::a288 fe80::9e05 p0_if.101 up    472823 497637  0      0       1  0    5 
+2323511220 6000::24   6000::23             up    320763 331701  0      0       1  0    5 
+4089962224 6.0.0.24   6.0.0.23             up    254206 262960  0      0       1  0    14 
+```
+
+### Show BFD with BGP
+
+To show the BFD profile associated with a BGP neighbor or peer group, run the NVUE `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> bfd` command or the `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> bfd` command.
+
+```
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 bfd
+         operational  applied
+-------  -----------  -------
+
+profile               BFD1
+```
+
+To see neighbor information in BGP, including BFD status, run the vtysh `show ip bgp neighbor <interface-id>` command:
+
+```
+cumulus@switch:~$ sudo vtysh 
+switch# show ip bgp neighbor swp51
+...
+BFD: Type: single hop
+  Detect Mul: 4, Min Rx interval: 400, Min Tx interval: 400
+  Status: Down, Last update: 0:00:00:08
+...
+```
+
+### Show BFD with OSPF
+
+To show the BFD profile associated with an OSPF interface, run the NVUE `nv show interface <interface-id> router ospf bfd` command:
+
+```
+cumulus@switch:~$ nv show interface swp1 router ospf bfd
+         operational  applied
+-------  -----------  -------
+
+profile               BFD1
+```
+
+You can run vtysh commands to show neighbor information in OSPF, including BFD status.
 
 - To show IPv6 OSPF interface information, run the vtysh `show ip ospf6 interface <interface-id>` command.
 - To show IPv4 OSPF interface information, run the vtysh `show ip ospf interface <interface-id>` command.
@@ -224,48 +454,29 @@ You can run different commands to show neighbor information in OSPF, including B
         Status: Up, Last update: 0:00:00:20
   ```
 
-## Scripts
+### Show BFD with PIM
 
-`ptmd` executes scripts at `/etc/ptm.d/bfd-sess-down` when BFD sessions go down and `/etc/ptm.d/bfd-sess-up` when BFD sessions goes up. Modify these default scripts as needed.
+To show the BFD profile associated with a PIM session, run the NVUE `nv show interface <interface-id> router pim bfd` command:
 
-## Echo Function
+```
+cumulus@switch:~$ nv show interface vlan10 router pim bfd
+         operational  applied
+-------  -----------  -------
 
-Cumulus Linux supports the *echo function* for IPv4 single hops only, and with the asynchronous operating mode only (Cumulus Linux does not support demand mode).
+profile               BFD1
+```
 
-Use the echo function to test the forwarding path on a remote system. To enable the echo function, set `echoSupport` to *1* in the topology file.
+### Show BFD with Static Routes
 
-After the remote system loops the echo packets, the BFD control packets can send at a much lower rate. You configure this lower rate by setting the `slowMinTx` parameter in the topology file to a non-zero value in milliseconds.
+To show the BFD profile associated with static routes, run the NVUE `nv show vrf <vrf-id> router static <ipv4-prefix> via <ipv4> bfd` command or the `nv show vrf <vrf-id> router static <ipv4-prefix> distance <integer> via <ipv4> bfd` command:
 
-You can use more aggressive detection times for echo packets because the round-trip time is less; echo packets access the forwarding path. You can configure the detection interval by setting the `echoMinRx` parameter in the topology file. The minimum setting is 50 milliseconds. After you configure this setting, BFD control packets send at this required minimum echo Rx interval. This indicates to the peer that the local system can loop back the echo packets. Echo packets transmit if the peer supports receiving echo packets.
+```
+cumulus@switch:~$ nv show vrf default router static 10.10.10.101/32 via 10.0.1.0 bfd
+         operational  applied
+-------  -----------  -------
 
-### About the Echo Packet
-
-Cumulus Linux encapsulates BFD echo packets into UDP packets over destination and source UDP port number 3785. The BFD echo packet format is vendor-specific. BFD echo packets that originate from Cumulus Linux are eight bytes long and have the following format:
-<!-- vale off -->
-|0|1|2|3|
-|---|---|---|---|
-|Version|Length|Reserved|Reserved|
-|My Discriminator|
-
-Where:
-
-- **Version** is the version of the BFD echo packet.
-- **Length** is the length of the BFD echo packet.
-- **My Discriminator**is a non-zero value that uniquely identifies a BFD session on the transmitting side. When the originating node receives the packet after being looped back by the receiving system, this value uniquely identifies the BFD session.
-<!-- vale on -->
-### Transmit and Receive Echo Packets
-
-Cumulus Linux transmits BFD echo packets for a BFD session only when the peer advertises a non-zero value for the required minimum echo receive interval (the `echoMinRx` setting) in the BFD control packet when the BFD session starts. The switch bases the transmit rate of the echo packets on the peer advertised echo receive value in the control packet.
-
-Cumulus Linux loops BFD echo packets back to the originating node for a BFD session only if you configure the `echoMinRx` and `echoSupport` locally to a non-zero values.
-
-### Echo Function Parameters
-
-You configure the echo function by setting the following parameters in the topology file at the global, template and port level:
-
-- **echoSupport** enables and disables echo mode. Set to 1 to enable the echo function. It defaults to 0 (disable).
-- **echoMinRx** is the minimum interval between echo packets the local system is capable of receiving. The BFD control packet advertises this value. When you enable the echo function, it defaults to 50. If you disable the echo function, this parameter is automatically 0, which indicates the port or the node cannot process or receive echo packets.
-- **slowMinTx** is the minimum interval between transmitting BFD control packets when the switch exchanges echo packets.
+profile               BFD1
+```
 
 ## Troubleshooting
 
@@ -296,3 +507,11 @@ tx_timeout  rx_timeout  hop_cnt
 - {{<exlink url="https://tools.ietf.org/html/rfc5881" text="RFC 5881 - BFD for IPv4 and IPv6 (Single Hop)">}}
 - {{<exlink url="https://tools.ietf.org/html/rfc5882" text="RFC 5882 - Generic Application of BFD">}}
 - {{<exlink url="https://tools.ietf.org/html/rfc5883" text="RFC 5883 - Bidirectional Forwarding Detection (BFD) for Multihop Paths">}}
+
+<!--
+## BFD Multihop Routed Paths
+
+BFD multihop sessions build over arbitrary paths between two systems, which results in some complexity that does not exist for single hop sessions. To avoid **spoofing** with multihop paths, configure the maximum hop count (`max_hop_cnt`) for each peer, which limits the number of hops for a BFD session. The switch drops all BFD packets exceeding the maximum hop count.
+
+Cumulus Linux supports multihop BFD sessions for both IPv4 and IPv6 peers.
+-->

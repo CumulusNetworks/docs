@@ -21,14 +21,14 @@ Cumulus Linux 5.15.0 contains several new features and improvements, and provide
 - {{<link url="Packet-Trimming/#packet-trimming-counters" text="Packet Trimming counters">}}
 - {{<link url="Bidirectional-Forwarding-Detection-BFD" text="FRR-based BFD support">}}
 - {{<link url="Optional-BGP-Configuration/#ecmp" text="Support 256 BGP sessions and 256-way ECMP on Spectrum-4">}}
+- {{<link url="Latency-Monitoring" text="Switch latency monitoring">}}
+- Require users to re-authenticate when changing authenticators
 - NVUE | Add aging time to neighbor info
 - NVUE Support for docker-container with Cumulus
 - NVUE login brute forcing via API
-- Require users to re-authenticate when changing authenticators
 - NVUE Support for SSH CIPHER config from NVUE
 - GNMI gNOI support for action commands
-- Enable option for users to enable FIPS Mode
-- Need micro second latency monitoring between all switch to switch
+- Enab
 - NVUE Routing | Operational revision needs to be supported for parts of the CL Object model(Phase 2)
 - Enable OTLP and gNMI to coexist and be usable at the same time( GA)
 - High frequency telemetry - Nsight Integration with Opentelemetry (GA)

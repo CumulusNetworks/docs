@@ -649,6 +649,12 @@ onie-nos-install /$devname/onie-installer</td>
 <td></td>
 </tr>
 <tr>
+<td>4309854</td>
+<td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
+<td>5.11.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4308857</td>
 <td>When you use {{tls_crlcheck}} in the {{/etc/nslcd.conf}} file, the optional {{nslcd}} service fails due to a missing library.</td>
 <td>5.9.2-5.14.0</td>
@@ -664,12 +670,6 @@ onie-nos-install /$devname/onie-installer</td>
 <td>4277042</td>
 <td>On the NVIDIA SN5600 switch, you see low power alarms immediately after a reboot. The alarms disappear after showing up initially. Certain modules typically show low power alarms on initialization. No action is needed.</td>
 <td>5.12.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4260013</td>
-<td>When you configure the SPAN port mirror truncate size to a value greater than 4 and less than the supported minimum, NVUE allows the configuration even though there are errors and failures in the mirror session configuration.The supported values for truncate size are 32 to 4088 for Spectrum 1, 48 to 4088 for Spectrum-2 and Spectrum-3, and 64 to 4088 for Spectrum-4.To work around this issue, run the {{echo &lt;supported_value&gt; &gt; /cumulus/switchd/config/mirror/session/1/truncate_size}} command before you reconfigure mirror sessions with the supported values.</td>
-<td>5.8.0-5.14.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1850,6 +1850,12 @@ onie-nos-install /$devname/onie-installer</td>
 <td></td>
 </tr>
 <tr>
+<td>4309854</td>
+<td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
+<td>5.11.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4308857</td>
 <td>When you use {{tls_crlcheck}} in the {{/etc/nslcd.conf}} file, the optional {{nslcd}} service fails due to a missing library.</td>
 <td>5.9.2-5.14.0</td>
@@ -1865,12 +1871,6 @@ onie-nos-install /$devname/onie-installer</td>
 <td>4277042</td>
 <td>On the NVIDIA SN5600 switch, you see low power alarms immediately after a reboot. The alarms disappear after showing up initially. Certain modules typically show low power alarms on initialization. No action is needed.</td>
 <td>5.12.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4260013</td>
-<td>When you configure the SPAN port mirror truncate size to a value greater than 4 and less than the supported minimum, NVUE allows the configuration even though there are errors and failures in the mirror session configuration.The supported values for truncate size are 32 to 4088 for Spectrum 1, 48 to 4088 for Spectrum-2 and Spectrum-3, and 64 to 4088 for Spectrum-4.To work around this issue, run the {{echo &lt;supported_value&gt; &gt; /cumulus/switchd/config/mirror/session/1/truncate_size}} command before you reconfigure mirror sessions with the supported values.</td>
-<td>5.8.0-5.14.0</td>
 <td></td>
 </tr>
 <tr>

@@ -13,6 +13,12 @@
 <td></td>
 </tr>
 <tr>
+<td>4562806</td>
+<td>When there is a very high volume of MLD traffic in a VXLAN environment, the switch CPU and control protocols might be impacted.</td>
+<td>5.12.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4555938</td>
 <td>When one of the FRR processes such as {{bgpd}} or zebra goes down, {{watchfrr}} tries to restart those processes and also restarts the routing telemetry service, which blocks {{watchfrr}} causing cascading failures on other processes.</td>
 <td>5.12.0-5.13.1</td>
@@ -412,6 +418,12 @@ On the Spectrum-3 switch, the cell-size is 144 bytes. The minimum size is 144*64
 <td>4309876</td>
 <td>When you configure an invalid switch port (swp), NVUE adds the invalid configuration instead of rejecting it. The invalid interface in the configuration does not have any functional impact.</td>
 <td>5.12.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4309854</td>
+<td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
+<td>5.11.0-5.14.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1129,6 +1141,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
+<td>4562806</td>
+<td>When there is a very high volume of MLD traffic in a VXLAN environment, the switch CPU and control protocols might be impacted.</td>
+<td>5.12.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4555938</td>
 <td>When one of the FRR processes such as {{bgpd}} or zebra goes down, {{watchfrr}} tries to restart those processes and also restarts the routing telemetry service, which blocks {{watchfrr}} causing cascading failures on other processes.</td>
 <td>5.12.0-5.13.1</td>
@@ -1516,6 +1534,12 @@ On the Spectrum-3 switch, the cell-size is 144 bytes. The minimum size is 144*64
 <td>4309876</td>
 <td>When you configure an invalid switch port (swp), NVUE adds the invalid configuration instead of rejecting it. The invalid interface in the configuration does not have any functional impact.</td>
 <td>5.12.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4309854</td>
+<td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
+<td>5.11.0-5.14.0</td>
 <td></td>
 </tr>
 <tr>

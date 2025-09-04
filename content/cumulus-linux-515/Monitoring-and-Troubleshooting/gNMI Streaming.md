@@ -277,22 +277,22 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 
 |  Name | Description |
 |------ | ----------- |
-| `/interfaces/interface[name]/ethernet/phy/state/ber-time-since-last-clear` | Time since last clear of BER stats (phy layer stats). |
-| `/interfaces/interface[name]/ethernet/phy/state/corrected-bits` | Number of phy corrected bits of an interface by FEC engine.|
-| `/interfaces/interface[name]/ethernet/phy/state/effective-ber` | Phy effective BER of an interface.|
-| `/interfaces/interface[name]/ethernet/phy/state/effective-errors` | Number of phy effective errors of an interface.|
-| `/interfaces/interface[name]/ethernet/phy/state/fec-time-since-last-clear` | Time after last clear of FEC stats (phy layer). |
-| `/interfaces/interface[name]/ethernet/phy/state/lane[lane]/fc-fec-corrected-blocks` | Number FC FEC corrected blocks for a given lane of an interface.|
-| `/interfaces/interface[name]/ethernet/phy/state/lane[lane]/fc-fec-uncorrected-blocks` | Number of RS FEC uncorrectable blocks of an interface. |
-| `/interfaces/interface[name]/ethernet/phy/state/lane[lane]/raw-ber` | Number of phy bit error rates for a given lane of an interface.|
-| `/interfaces/interface[name]/ethernet/phy/state/lane[lane]/raw-errors` | Number of phy error bits identified for a given lane of an interface.|
-| `/interfaces/interface[name]/ethernet/phy/state/lane[lane]/rs-fec-corrected-symbols` | Number of RS FEC corrected symbols for a given lane of an interface.|
-| `/interfaces/interface[name]/ethernet/phy/state/received-bits` | Number of phy total bits received for an interface.|
-| `/interfaces/interface[name]/ethernet/phy/state/rs-fec-no-error-blocks` | Number of RS FEC no errors blocks of an interface.|
-| `/interfaces/interface[name]/ethernet/phy/state/rs-fec-single-error-blocks` | Number of RS FEC uncorrectable blocks of an interface.|
-| `/interfaces/interface[name]/ethernet/phy/state/rs-fec-uncorrectable-blocks` | Number of FC FEC uncorrectable blocks for a given lane of an interface. |
-| `/interfaces/interface[name]/ethernet/phy/state/symbol-ber` | Phy symbol BER for an interface.|
-| `/interfaces/interface[name]/ethernet/phy/state/symbol-errors` | Number of phy symbol errors for an interface.|
+| `/interfaces/interface[name]/phy/ber/state/ber-time-since-last-clear` | Time since last clear of BER stats (phy layer stats). |
+| `/interfaces/interface[name]/phy/fec/state/corrected-bits` | Number of phy corrected bits of an interface by FEC engine.|
+| `/interfaces/interface[name]/phy/ber/state/effective-ber` | Phy effective BER of an interface.|
+| `/interfaces/interface[name]/phy/state/effective-errors` | Number of phy effective errors of an interface.|
+| `/interfaces/interface[name]/phy/fec/state/fec-time-since-last-clear` | Time after last clear of FEC stats (phy layer). |
+| `/interfaces/interface[name]/phy/channels/channel[id]/fec/state/fc-fec-corrected-blocks` | Number FC FEC corrected blocks for a given lane of an interface.|
+| `/interfaces/interface[name]/phy/channels/channel[id]/fec/state/fc-fec-uncorrected-blocks` | Number of RS FEC uncorrectable blocks of an interface. |
+| `/interfaces/interface[name]/phy/channels/channel[id]/ber/state/raw-ber` | Number of phy bit error rates for a given lane of an interface.|
+| `/interfaces/interface[name]/phy//channels/channel[id]/state/raw-errors` | Number of phy error bits identified for a given lane of an interface.|
+| `/interfaces/interface[name]/phy/channels/channel[id]/fec/state/rs-fec-corrected-symbols` | Number of RS FEC corrected symbols for a given lane of an interface.|
+| `/interfaces/interface[name]/phy/state/received-bits` | Number of phy total bits received for an interface.|
+| `/interfaces/interface[name]/phy/fec/state/rs-fec-no-error-blocks` | Number of RS FEC no errors blocks of an interface.|
+| `/interfaces/interface[name]/phy/fec/state/rs-fec-single-error-blocks` | Number of RS FEC uncorrectable blocks of an interface.|
+| `/interfaces/interface[name]/phy/fec/state/rs-fec-uncorrectable-blocks` | Number of FC FEC uncorrectable blocks for a given lane of an interface. |
+| `/interfaces/interface[name]/phy/ber/state/symbol-ber` | Phy symbol BER for an interface.|
+| `/interfaces/interface[name]/phy/state/symbol-errors` | Number of phy symbol errors for an interface.|
 | `/interfaces/interface[name]/ethernet/state/counters/in-crc-errors` | Total number of frames received with a length (excluding framing bits, but including FCS octets) of between 64 and 1518 octets, inclusive, but had either a bad Frame Check Sequence (FCS) with an integral number of octets (FCS Error) or a bad FCS with a non-integral number of octets (Alignment Error).|
 | `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-1024-1518-octets` | Total number of packets (including bad packets) received between 1024 and 1518 octets in length inclusive (excluding framing bits but including FCS octets). |
 | `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-128-255-octets` | Total number of packets (including bad packets) received between 128 and 255 octets in length inclusive (excluding framing bits but including FCS octets).|

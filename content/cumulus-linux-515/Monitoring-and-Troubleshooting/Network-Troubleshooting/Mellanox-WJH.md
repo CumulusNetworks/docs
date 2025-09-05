@@ -182,7 +182,7 @@ PCAP file path : /var/log/mellanox/wjh/wjh_user_2021_06_16_12_03_15.pcap
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
+
 ## WJH Metrics
 
 This section provides the supported WJH metrics with a brief description of each.
@@ -316,7 +316,7 @@ ACL drop metrics describe why an ACL has dropped packets.
 | Ingress router ACL | Notice | An ACL action is set to deny on the ingress switch virtual interfaces (SVIs). |
 | Egress port ACL | Notice | An ACL action is set to deny on the physical egress port or bond. |
 | Egress router ACL | Notice | An ACL action is set to deny on the egress SVIs. |
--->
+
 ## Considerations
 
 ### Buffer Packet Drop Monitoring

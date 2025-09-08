@@ -1452,6 +1452,11 @@ received sync response 'true' from '10.209.37.123:9339'
 }
 ```
 <!-- vale on -->
+
+### gNOI Operational Commands
+
+The gNMI server agent on Cumulus Linux supports <span class="a-tooltip">[gNOI](## "gRPC Network Operations Interface")</span> so that you run operational tasks from a client, such as switch reboot or file transfer.
+
 ### Considerations
 
 When using gNMI with Cumulus Linux:

@@ -29,7 +29,7 @@ Cumulus Linux 5.15.0 contains several new features and improvements, and provide
 - Radius user Hardening
 - Telemetry
   - You can now run {{<link url="Open-Telemetry-Export" text="OTLP">}} and {{<link url="gNMI-Streaming" text="gNMI streaming">}} at the same time
-  - GNMI gNOI support for action commands
+  - {{<link url="gNMI-Streaming/#gNOI-operational-commands" text="gNOI operational commands">}} 
   - High frequency telemetry Nsight Integration
   - gNMI & OpenTelemetry  Predictive Analysis for Link Health - FEC histogram data
   - gshut metric via OLTP to track the drained devices/peers to support the site ops with remediation
@@ -56,6 +56,15 @@ Old Name | New Name|
 | `/interfaces/interface[name]/ethernet/phy/state/lane[lane]/raw-errors` | `/interfaces/interface[name]/phy//channels/channel[id]/state/raw-errors` |
 {{< /expand >}}
 - NVUE
+  - {{< expand "New and updated switch reboot commands" >}}
+{{<link url="System-Power-and-Switch-Reboot" text="System Power and Switch Reboot">}}
+Deprecated Command | New Command|
+| ---------------- | ---------- |
+| `nv set system reboot mode (cold, warm, fast)`| `nv action reboot system mode (halt, cold, immediate, warm, fast, power-cycle, [force])`|
+| `nv action reboot system`| `nv action reboot system mode (halt, cold, immediate, warm, fast, power-cycle, [force])`|
+| `nv action power-cycle system`| `nv action reboot system mode (halt, cold, immediate, warm, fast, power-cycle, [force])`|
+| N/A | `nv set system forwarding resource-mode`|
+{{< /expand >}}
   - Routing | Operational revision needs to be supported for parts of the CL Object model(Phase 2)
   - Add aging time to neighbor info
   - login brute forcing via API
@@ -67,7 +76,6 @@ Old Name | New Name|
   - Align system/documentation
   - Align system/security
   - Align system/debug-log
-  - Align system/reboot
   - Align system/cpu
   - Align system/memory
   - Align system/packages
@@ -93,6 +101,8 @@ Old Name | New Name|
   - Align platform/asic
 - {{< expand "Removed NVUE commands" >}}
 ```
+nv action power-cycle system
+nv set system reboot mode
 nv set interface <interface-id> router ospf bfd enable
 nv set interface <interface-id> router ospf bfd detect-multiplier
 nv set interface <interface-id> router ospf bfd min-receive-interval 
@@ -109,6 +119,7 @@ nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd enable
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd detect-multiplier
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd min-rx-interval
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd min-tx-interval
+nv unset system reboot
 nv unset interface <interface-id> router ospf bfd enable 
 nv unset interface <interface-id> router ospf bfd detect-multiplier 
 nv unset interface <interface-id> router ospf bfd min-receive-interval 
@@ -135,6 +146,7 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 
 ```
 nv show router bfd profile <profile-name>  
+nv show system forwarding resource-mode 
 nv show vrf <vrf-id> router bgp peer-group <peer-group-id> bfd 
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> bfd 
 nv show vrf <vrf-id> router bfd peers 
@@ -153,6 +165,7 @@ nv show vrf <vrf-id> router static <ipv4-prefix> distance <integer> via <ipv4> b
 {{< tab "nv set ">}}
 
 ```
+nv set system forwarding resource-mode
 nv set router bfd state
 nv set router bfd profile <profile-name>
 nv set router bfd profile <profile-name> 
@@ -198,6 +211,7 @@ nv unset vrf <vrf-id> router static <ipv4-prefix> distance <integer> via <ipv4> 
 {{< tab "nv action ">}}
 
 ```
+nv action reboot system
 ```
 
 {{< /tab >}}

@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4608614</td>
+<td>When setting up SSH keys, you have to run {{nv config apply}} twice for the configuration to take effect.</td>
+<td>5.11.3-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4579237</td>
 <td>If interface statistics telemetry is running on the switch, an {{interface_stats_collector}} core file might generate during statistics collection.</td>
 <td>5.11.3-5.14.0</td>
@@ -418,12 +424,6 @@ On the Spectrum-3 switch, the cell-size is 144 bytes. The minimum size is 144*64
 <td>4309876</td>
 <td>When you configure an invalid switch port (swp), NVUE adds the invalid configuration instead of rejecting it. The invalid interface in the configuration does not have any functional impact.</td>
 <td>5.12.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4309854</td>
-<td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
-<td>5.11.0-5.14.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1135,6 +1135,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4608614</td>
+<td>When setting up SSH keys, you have to run {{nv config apply}} twice for the configuration to take effect.</td>
+<td>5.11.3-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4579237</td>
 <td>If interface statistics telemetry is running on the switch, an {{interface_stats_collector}} core file might generate during statistics collection.</td>
 <td>5.11.3-5.14.0</td>
@@ -1534,12 +1540,6 @@ On the Spectrum-3 switch, the cell-size is 144 bytes. The minimum size is 144*64
 <td>4309876</td>
 <td>When you configure an invalid switch port (swp), NVUE adds the invalid configuration instead of rejecting it. The invalid interface in the configuration does not have any functional impact.</td>
 <td>5.12.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4309854</td>
-<td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
-<td>5.11.0-5.14.0</td>
 <td></td>
 </tr>
 <tr>

@@ -65,12 +65,6 @@ To work around this issue, power cycle the switch.</td>
 <td>5.14.0</td>
 </tr>
 <tr>
-<td>4352128</td>
-<td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
-<td>5.9.2-5.11.1, 5.12.0-5.12.1</td>
-<td>5.11.2, 5.13.0-5.14.0</td>
-</tr>
-<tr>
 <td>4281099</td>
 <td>When you bring STP down, then up on the primary MLAG peer, the STP state machine restarts and the peerlink operational edge resets. As a result, the secondary MLAG peer ends up in an STP discarding state. To work around this issue, restart the {{clagd}} service.</td>
 <td>5.8.0-5.11.3</td>
@@ -824,6 +818,11 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <td>5.11.0</td>
 </tr>
 <tr>
+<td>4309854</td>
+<td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
+<td>5.9.2-5.9.3, 5.11.0, 5.12.0-5.12.1</td>
+</tr>
+<tr>
 <td>4309851</td>
 <td>On the NVIDIA SN2010 and SN2100 switches, the management interface (eth0) might negotiate 100M instead of 1G after you install, upgrade, or, reboot Cumulus Linux. To resolve this issue, force the speed to 1G:
 cumulus@switch:~$ nv set interface eth0 link speed 1G
@@ -1113,10 +1112,10 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <td>5.11.2-5.14.0, 5.14.0</td>
 </tr>
 <tr>
-<td>4352128</td>
+<td>4309854</td>
 <td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
-<td>5.9.2-5.11.1, 5.12.0-5.12.1</td>
-<td>5.11.2, 5.13.0-5.14.0</td>
+<td>5.9.2-5.11.0, 5.12.0-5.12.1</td>
+<td>5.11.1, 5.13.0-5.14.0</td>
 </tr>
 <tr>
 <td>4308857</td>
@@ -2012,10 +2011,10 @@ To work around this issue, restart the {{hw-management}} service with the {{sudo
 <td>5.11.2-5.14.0, 5.14.0</td>
 </tr>
 <tr>
-<td>4352128</td>
+<td>4309854</td>
 <td>CVE-2024-3596: CL RADIUS susceptible to collision attack against MD5 R/A signature. </td>
-<td>5.9.2-5.11.1, 5.12.0-5.12.1</td>
-<td>5.11.2, 5.13.0-5.14.0</td>
+<td>5.9.2-5.11.0, 5.12.0-5.12.1</td>
+<td>5.11.1, 5.13.0-5.14.0</td>
 </tr>
 <tr>
 <td>4308857</td>

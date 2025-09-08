@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4608614"></a> [4608614](#4608614) <a name="4608614"></a> <br /> | When setting up SSH keys, you have to run <code>nv config apply</code> twice for the configuration to take effect. | 5.11.3-5.14.0 | |
 | <a name="4579237"></a> [4579237](#4579237) <a name="4579237"></a> <br /> | If interface statistics telemetry is running on the switch, an <code>interface_stats_collector</code> core file might generate during statistics collection. | 5.11.3-5.14.0 | |
 | <a name="4562806"></a> [4562806](#4562806) <a name="4562806"></a> <br /> | When there is a very high volume of MLD traffic in a VXLAN environment, the switch CPU and control protocols might be impacted. | 5.12.0-5.14.0 | |
 | <a name="4555938"></a> [4555938](#4555938) <a name="4555938"></a> <br /> | When one of the FRR processes such as <code>bgpd</code> or zebra goes down, <code>watchfrr</code> tries to restart those processes and also restarts the routing telemetry service, which blocks <code>watchfrr</code> causing cascading failures on other processes. | 5.12.0-5.13.1 | 5.14.0|
@@ -195,6 +196,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="4608614"></a> [4608614](#4608614) <a name="4608614"></a> <br /> | When setting up SSH keys, you have to run <code>nv config apply</code> twice for the configuration to take effect. | 5.11.3-5.14.0 | |
 | <a name="4579237"></a> [4579237](#4579237) <a name="4579237"></a> <br /> | If interface statistics telemetry is running on the switch, an <code>interface_stats_collector</code> core file might generate during statistics collection. | 5.11.3-5.14.0 | |
 | <a name="4562806"></a> [4562806](#4562806) <a name="4562806"></a> <br /> | When there is a very high volume of MLD traffic in a VXLAN environment, the switch CPU and control protocols might be impacted. | 5.12.0-5.14.0 | |
 | <a name="4555938"></a> [4555938](#4555938) <a name="4555938"></a> <br /> | When one of the FRR processes such as <code>bgpd</code> or zebra goes down, <code>watchfrr</code> tries to restart those processes and also restarts the routing telemetry service, which blocks <code>watchfrr</code> causing cascading failures on other processes. | 5.12.0-5.13.1 | 5.14.0|

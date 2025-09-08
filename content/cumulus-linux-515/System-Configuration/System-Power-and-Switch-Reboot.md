@@ -120,7 +120,7 @@ To display the current resource mode, run the `nv show system forwarding resourc
 
 ```
 cumulus@switch:~$ nv show system forwarding resource-mode
-
+cumulus@switch:~$ nv config apply
 ```
 
 ## Power Off

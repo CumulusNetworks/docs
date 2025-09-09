@@ -236,7 +236,49 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 
 <!-- vale off -->
 {{< tabs "TabID233 ">}}
-{{< tab "Adaptive Routing ">}}
+{{< tab "ACLs ">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/acl/interfaces/interface[name]/state/id` | *|
+| `/acl/interfaces/interface[name]/ingress-acl-sets/ingress-acl-set[set-name][acl-type]/state/set-name`| *|
+| `/acl/interfaces/interface[name]/ingress-acl-sets/ingress-acl-set[set-name][acl-type]/state/type` | *|
+| `/acl/interfaces/interface[name]/ingress-acl-sets/ingress-acl-set[set-name][acl-type]/acl-entries/acl-entry[sequence-id='<entry-id>']/state/sequence-id` | *|
+| `/acl/interfaces/interface[name]/ingress-acl-sets/ingress-acl-set[set-name][acl-type]/acl-entries/acl-entry[sequence-id]/state/matched-packets` | *|
+| `/acl/interfaces/interface[name]/ingress-acl-sets/ingress-acl-set[set-name][acl-type]/acl-entries/acl-entry[sequence-id]/state/matched-octets` | *|
+| `/acl/interfaces/interface[name]/egress-acl-sets/egress-acl-set[set-name][acl-type]/state/set-name` | *|
+| `/acl/interfaces/interface[name]/egress-acl-sets/egress-acl-set[set-name][acl-type]/state/type` | *|
+| `/acl/interfaces/interface[name]/egress-acl-sets/egress-acl-set[set-name][acl-type]/acl-entries/acl-entry[sequence-id='<entry-id>']/state/sequence-id` | *|
+| `/acl/interfaces/interface[name]/egress-acl-sets/egress-acl-set[set-name][acl-type]/acl-entries/acl-entry[sequence-id]/state/matched-packets`| *|
+| `/acl/interfaces/interface[name]/egress-acl-sets/egress-acl-set[set-name][acl-type]/acl-entries/acl-entry[sequence-id]/state/matched-octets` | *|
+| `/acl/acl-sets/acl-set[name][acl-type]/state/name` | *|
+| `/acl/acl-sets/acl-set[name][acl-type]/state/type` | *|
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/state/sequence-id` | *|
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/l2/state/source-mac` | *|
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/l2/state/source-mac-mask` | *|
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/l2/state/destination-mac` | *|
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/l2/state/destination-mac-mask` | *|
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/l2/state/ethertype` | *|
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv4/state/source-address` | *|
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv4/state/destination-address` | *|
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv4/state/dscp` | *|
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv4/state/protocol` | *|
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv4/state/hop-limit` | *|
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv4/icmpv4/state/type` | *|
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv6/state/source-address` | *|
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv6/state/destination-address` | *|
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv6/state/dscp` | * |
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv6/state/protocol` | *|
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv6/state/hop-limit` | *|
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/ipv6/icmpv6/state/type` | *|
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/action/state/forwarding-action` | *|
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/action/state/log-action` | *|
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/transport/state/source-port` | *|
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/transport/state/destination-port` | *|
+| `/acl/acl-sets/acl-set[name][acl-type]/acl-entries/acl-entry[sequence-id]/transport/state/explicit-tcp-flags` | *|
+
+{{< /tab >}}
+{{< tab "Adaptive Routing">}}
 
 |  Name | Description |
 |------ | ----------- |

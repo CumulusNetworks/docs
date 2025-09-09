@@ -7,6 +7,48 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4608614</td>
+<td>When setting up SSH keys, you have to run {{nv config apply}} twice for the configuration to take effect.</td>
+<td>5.11.3-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4607838</td>
+<td>You might see convergence degradation in remote link failure scenarios due to very chatty LTTng traces.   </td>
+<td>5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4605303</td>
+<td>The downstream VNI software VXLAN encapsulation path does not derive the source IP address of the outer IP header properly. Instead of using the defined {{vxlan-local-tunnelip}} under the loopback interface, it uses the underlay interface on which the packet egresses the VTEP. In a mixed vendor environment, this might lead to a drop on the decapsulating VTEP if it is not an Nvidia Cumulus Linux switch. To work around this issue, use symmetric VNI configuration instead of downstream VNI.</td>
+<td>5.13.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4601056</td>
+<td>The neighbor manager service memory usage increases significantly after the number of entries in the kernel neighbor table exceeds the {{gc_threshold}}.</td>
+<td>5.13.1-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4597330</td>
+<td>The switch sends out IPv6 neighbor discovery (ND) router advertisement through an interface that does not have router advertisement enabled. To prevent this issue, do not change or remove the remote-as of a peer-group that is used by BGP unnumbered peers.  To work around this issue, restart FRR.</td>
+<td>5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4597153</td>
+<td>When you use a gateway-interface configuration with the source IP address as the gateway interface, DHCP Relay is unable to send packets to the DHCP server after flapping the gateway interface. To work around this issue, restart the DHCP Relay service or avoid configuring the gateway interface to be same as the uplink or downlink interface on the DHCP Relay node.</td>
+<td>5.13.1-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4582566</td>
+<td>The {{cnp_pg_map}} and {{roce_pg_map}} fields are missing in the NVUE {{nv show interface &lt;interface&gt; qos roce status}} and {{nv show interface qos-roce-status}} commands.</td>
+<td>5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4579237</td>
 <td>If interface statistics telemetry is running on the switch, an {{interface_stats_collector}} core file might generate during statistics collection.</td>
 <td>5.11.3-5.14.0</td>
@@ -25,9 +67,9 @@
 <td></td>
 </tr>
 <tr>
-<td>4562200</td>
-<td>On the Spectrum-1 switch, {{switchd}} might crash during warm boot.</td>
-<td>5.14.0</td>
+<td>4562806</td>
+<td>When there is a very high volume of MLD traffic in a VXLAN environment, the switch CPU and control protocols might be impacted.</td>
+<td>5.12.0-5.14.0</td>
 <td></td>
 </tr>
 <tr>
@@ -151,7 +193,7 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 </tr>
 <tr>
 <td>4498428</td>
-<td>Due to a GCC update in Cumulus Linux 5.14, you might see unexpected log messages, such as {{BPF: Invalid name}} when using package upgrade from Cumulus Linux 5.13 to Cumulus Linux 5.14. You can ignore these messages.</td>
+<td>Due to a GCC update in Cumulus Linux 5.14, you might see unexpected log messages, such as {{BPF: Invalid name}} when using package upgrade to upgrade to Cumulus Linux 5.14. You can ignore these messages.</td>
 <td>5.14.0</td>
 <td></td>
 </tr>
@@ -199,7 +241,7 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 </tr>
 <tr>
 <td>4423244</td>
-<td>When you enable, then disable adaptive routing, the BGP neighbors might go down because of an unresolved MAC address. To resolve this issue configure another attribute on the interface.</td>
+<td>When you enable, then disable adaptive routing, the BGP neighbors might go down because of an unresolved MAC address. To work around this issue, configure another attribute on the interface.</td>
 <td>5.9.0-5.14.0</td>
 <td></td>
 </tr>
@@ -865,7 +907,7 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 </tr>
 <tr>
 <td>4531104</td>
-<td>In certain cases, on a switch with SDK 4.6.1062 or earlier, you might see FW fatal health events.</td>
+<td>On a switch with SDK 4.6.1062 or earlier, you might see FW fatal health events.</td>
 <td>5.6.0-5.13.1</td>
 </tr>
 <tr>
@@ -934,6 +976,11 @@ To work around this issue, power cycle the switch.</td>
 <td>4499025</td>
 <td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
 <td>5.11.2-5.13.1</td>
+</tr>
+<tr>
+<td>4497268</td>
+<td>NetQ WJH does not start if Packet Trimming is enabled. Disable Packet Trimming, then restart the NetQ agent to activate WJH.</td>
+<td></td>
 </tr>
 <tr>
 <td>4493540</td>

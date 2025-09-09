@@ -30,9 +30,9 @@ Cumulus Linux 5.15.0 contains several new features and improvements, and provide
 - Telemetry
   - You can now run {{<link url="Open-Telemetry-Export" text="OTLP">}} and {{<link url="gNMI-Streaming" text="gNMI streaming">}} at the same time
   - {{<link url="gNMI-Streaming/#gNOI-operational-commands" text="gNOI operational commands">}}
+  - {{<link url="Open-Telemetry-Export/#routing-metrics-format" text="BGP graceful shutdown metric for OLTP">}}
   - High frequency telemetry Nsight Integration
   - gNMI & OpenTelemetry Predictive Analysis for Link Health - FEC histogram data
-  - gshut metric via OLTP to track the drained devices/peers to support the site ops with remediation
   - Telemetry ACL Related Metric / X-paths support
   - Telemetry Parity between OpenTelemetry and gNMI (Phase 1)
   - {{< expand "Updated gNMI PHY metric names" >}}

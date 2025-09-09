@@ -665,10 +665,10 @@ The switch collects and exports the adaptive routing, SRv6, and packet trimming 
 
 | Metric | Description |
 | ---------- | ------- |
-| `nvswitch_ar_congestion_changes`  | The number of adaptive routing change events triggered due to congestion or link-down.|
+| `nvswitch_ar_congestion_changes`  | Number of adaptive routing change events triggered due to congestion or link-down.|
 | `nvswitch_srv6_no_sid_drops`| Number of packets dropped due to no matching SID. |
 | `nvswitch_srv6_in_pkts` | Number of packets received for this SID. |
-| `nvswitch_qos_trimmed_unicast_pkts`| The number of packets that were trimmed.|
+| `nvswitch_qos_trimmed_unicast_pkts`| The Number of packets that were trimmed.|
 
 {{< expand "Example JSON data for nvswitch_ar_congestion_changes:" >}}
 ```
@@ -3965,6 +3965,7 @@ When you enable layer 3 routing metrics telemetry, the switch exports the follow
 | `nvrouting_bgp_peer_last_established` | Last established time of the BGP peer.|
 | `nvrouting_bgp_peer_as` | Autonomous system number of the BGP peer.|
 | `nvrouting_bgp_peer_local_as` | Local autonomous system number.|
+ |`nvrouting_bgp_peer_graceful_shutdown` | * Graceful shutdown information for a peer. |
 | `nvrouting_rib_count` | Number of IPv4 and IPv6 routes in the IP routing table for each route source. |
 | `nvrouting_rib_count_connected` | Number of IPv4 connected routes in the IP routing table. |
 | `nvrouting_rib_count_bgp` | Number of IPv4 BGP routes in the IP routing table. |

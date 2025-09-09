@@ -131,7 +131,7 @@ nvidia@ubuntu:~$
 4. Verify that the master node is ready for installation. Fix any errors before installing the NetQ software.
 
 ```
-nvidia@hostname:~$ sudo opta-check scale
+nvidia@hostname:~$ sudo opta-check-scale
 ```
 
 5. Change the hostname for the VM from the default value.

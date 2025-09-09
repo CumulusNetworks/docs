@@ -36,7 +36,7 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 </tr>
 <tr>
 <td>4531104</td>
-<td>In certain cases, on a switch with SDK 4.6.1062 or earlier, you might see FW fatal health events.</td>
+<td>On a switch with SDK 4.6.1062 or earlier, you might see FW fatal health events.</td>
 <td>5.6.0-5.13.1</td>
 <td>5.14.0</td>
 </tr>
@@ -88,13 +88,13 @@ To work around this issue, power cycle the switch.</td>
 </tr>
 <tr>
 <td>4423336</td>
-<td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
+<td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
 <td>5.9.0-5.11.3</td>
 <td>5.12.0-5.14.0</td>
 </tr>
 <tr>
 <td>4423335</td>
-<td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
+<td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
 <td>5.9.0-5.14.0</td>
 <td></td>
 </tr>
@@ -106,7 +106,7 @@ To work around this issue, power cycle the switch.</td>
 </tr>
 <tr>
 <td>4423244</td>
-<td>When you enable, then disable adaptive routing, the BGP neighbors might go down because of an unresolved MAC address. To resolve this issue configure another attribute on the interface.</td>
+<td>When you enable, then disable adaptive routing, the BGP neighbors might go down because of an unresolved MAC address. To work around this issue, configure another attribute on the interface.</td>
 <td>5.9.0-5.14.0</td>
 <td></td>
 </tr>
@@ -327,13 +327,13 @@ CRIT Restarting switchd to recover from SDK health event: FW Long Command</td>
 </tr>
 <tr>
 <td>4124831</td>
-<td>When Per-VLAN Rapid Spanning Tree (PVRST) mode is enabled, bonds with LACP bypass discard ingress DHCP packets.</td>
+<td>When you enable Per-VLAN Rapid Spanning Tree (PVRST) mode, bonds with LACP bypass discard ingress DHCP packets.</td>
 <td>5.9.1-5.10.1</td>
 <td>5.11.0-5.14.0</td>
 </tr>
 <tr>
 <td>4124139</td>
-<td>MLAG interfaces, including VXLAN interfaces, go down when you add MLAG configuration to the first bond in a single MLAG switch setup.</td>
+<td>When you add MLAG configuration to the first bond in a single MLAG switch configuration, MLAG interfaces and VXLAN interfaces go down.</td>
 <td>5.8.0-5.10.1</td>
 <td>5.11.0-5.14.0</td>
 </tr>
@@ -1114,7 +1114,7 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 </tr>
 <tr>
 <td>4531104</td>
-<td>In certain cases, on a switch with SDK 4.6.1062 or earlier, you might see FW fatal health events.</td>
+<td>On a switch with SDK 4.6.1062 or earlier, you might see FW fatal health events.</td>
 <td>5.6.0-5.13.1</td>
 <td>5.14.0</td>
 </tr>
@@ -1166,13 +1166,13 @@ To work around this issue, power cycle the switch.</td>
 </tr>
 <tr>
 <td>4423336</td>
-<td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
+<td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
 <td>5.9.0-5.11.3</td>
 <td>5.12.0-5.14.0</td>
 </tr>
 <tr>
 <td>4423335</td>
-<td>When you configure TACACS with NVUE or merge in an NVUE configuration file including TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with the {{systemctl restart nvued.service}} command.</td>
+<td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
 <td>5.9.0-5.14.0</td>
 <td></td>
 </tr>
@@ -1184,7 +1184,7 @@ To work around this issue, power cycle the switch.</td>
 </tr>
 <tr>
 <td>4423244</td>
-<td>When you enable, then disable adaptive routing, the BGP neighbors might go down because of an unresolved MAC address. To resolve this issue configure another attribute on the interface.</td>
+<td>When you enable, then disable adaptive routing, the BGP neighbors might go down because of an unresolved MAC address. To work around this issue, configure another attribute on the interface.</td>
 <td>5.9.0-5.14.0</td>
 <td></td>
 </tr>
@@ -1355,13 +1355,13 @@ This happens in async mode, where the end notification expected after an end of 
 </tr>
 <tr>
 <td>4124831</td>
-<td>When Per-VLAN Rapid Spanning Tree (PVRST) mode is enabled, bonds with LACP bypass discard ingress DHCP packets.</td>
+<td>When you enable Per-VLAN Rapid Spanning Tree (PVRST) mode, bonds with LACP bypass discard ingress DHCP packets.</td>
 <td>5.9.1-5.10.1</td>
 <td>5.11.0-5.14.0</td>
 </tr>
 <tr>
 <td>4124139</td>
-<td>MLAG interfaces, including VXLAN interfaces, go down when you add MLAG configuration to the first bond in a single MLAG switch setup.</td>
+<td>When you add MLAG configuration to the first bond in a single MLAG switch configuration, MLAG interfaces and VXLAN interfaces go down.</td>
 <td>5.8.0-5.10.1</td>
 <td>5.11.0-5.14.0</td>
 </tr>
@@ -2290,10 +2290,7 @@ kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
 <tr>
 <td>3900813</td>
 <td>When you configure or edit a large or extended BGP community list with NVUE, {{nv config apply}} might return an error and {{frr-reload}} might fail with the following message in {{/var/log/frr/frr-reload.log}}:
-{
-2025-04-04 18:15:44,745 WARNING: frr-reload.py failed due to
-vtysh (exec file) exited with status 13
-}
+2025-04-04 18:15:44,745 WARNING: frr-reload.py failed due to vtysh (exec file) exited with status 13
 
 You can safely ignore this error as FRR accepts and applies the new configuration. To work around this issue, apply the same configuration with the {{nv config apply -y}} command. The new configuration will correctly show in both NVUE and FRR.</td>
 <td>5.9.0-5.9.3</td>

@@ -160,7 +160,7 @@ Add the same `NEW_HOSTNAME` value to **/etc/hosts** on your VM for the localhost
 7. Run the following command on each node to verify that the node is ready for a NetQ software installation. Fix any errors indicated before installing the software.
 
 ```
-nvidia@hostname:~$ sudo opta-check scale
+nvidia@hostname:~$ sudo opta-check-scale
 ```
 
 8. Install and activate the NetQ software using the CLI.

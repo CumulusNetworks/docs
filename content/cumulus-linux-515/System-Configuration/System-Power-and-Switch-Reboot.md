@@ -7,11 +7,13 @@ toc: 3
 Cumulus Linux provides commands to:
 - {{<link url="#switch-reboot" text="Reboot the switch">}}
 - {{<link url="#power-off" text="Power off the switch">}}
-- {{<link url="#power-cycle" text="Power cycle the switch">}}
 
 ## Switch Reboot
 
 Cumulus Linux provides these reboot modes:
+- **immediate** reboots the switch immediately without notifying any running processes. Use this mode to reboot as quickly as possible, skipping graceful shutdown to avoid delays or to avoid the switch from hanging.
+- **halt** shuts down the system. Use this mode to stop the switch completely instead of rebooting.
+- **power-cycle** lets you power cycle the switch to recover from certain conditions, such as a thermal ASIC shutdown due to high temperatures.
 - **cold** restarts the system and resets all the hardware devices on the switch (including the switching ASIC). This is the default restart mode on the switch.
 - **fast** restarts the system more efficiently with minimal impact to traffic by reloading the kernel and software stack without a hard reset of the hardware. During a fast restart, the system decouples from the network to the extent possible using existing protocol extensions before recovering to the operational mode of the system. The switch restarts the kernel and software stack without touching the forwarding entries or the switching ASIC; therefore, the data plane is not affected as the software stack restarts. Traffic outage is much lower in this mode as there is a momentary interruption after reboot, while the system reinitializes.
 - **warm** restarts the switch with no interruption to traffic for existing route entries and without a hardware reset of the switch ASIC. While this process does not affect the data plane, the control plane is absent during restart and is unable to process routing updates. Warm reboot mode reduces all the available {{<link title="Forwarding Table Size and Profiles" text="forwarding table entries">}} on the switch by half to accommodate traffic forwarding during a reboot.
@@ -23,129 +25,84 @@ Cumulus Linux provides these reboot modes:
 {{%notice note%}}
 Cumulus Linux supports warm reboot mode with:
 - 802.1X, layer 2 forwarding, layer 3 forwarding with BGP, static routing, and VXLAN routing with EVPN. Cumulus Linux does not support warm boot with EVPN MLAG or EVPN multihoming.
-- Optimized image (two partition) upgrade and package upgrade (the switch must be in warm reboot mode before you start the upgrade).
 {{%/notice%}}
 
-NVIDIA recommends you use NVUE commands to configure reboot mode and reboot the system. If you prefer to use `csmgrctl` commands, you must stop NVUE from managing the `/etc/cumulus/csmgrd.conf` file before you set reboot mode.
+### Resource Allocation
 
-1. Run the following NVUE commands:
+To manage switch resource allocation for fast, cold, and warm reboot mode, you can configure the resource mode to be either `half` or `full`. By default, the resource mode for warm boot and ISSU-based software upgrade is `half`.
 
-   ```
-   cumulus@switch:~$ nv set system config apply ignore /etc/cumulus/csmgrd.conf
-   cumulus@switch:~$ nv config apply
-   ```
-
-2. Edit the `/etc/cumulus/csmgrd.conf` file and set the `csmgrctl_override` option to `true`:
-
-   ```
-   cumulus@switch:~$ sudo nano /etc/cumulus/csmgrd.conf
-   csmgrctl_override=true
-   ...
-   ```
-
-3. Save the configuration:
-
-   ```
-   cumulus@switch:~$ nv config save
-   ```
-
-The following commands configure the switch to restart in cold mode:
-
-{{< tabs "108 ">}}
-{{< tab "NVUE Command ">}}
+The following example sets the switch resource mode to `full`:
 
 ```
-cumulus@switch:~$ nv set system reboot mode cold
-cumulus@switch:~$ nv config apply
+cumulus@switch:~$ nv set system forwarding resource-mode full
 ```
 
-```
-cumulus@switch:~$ nv action reboot system no-confirm
-```
+To set the resource-mode back to the default value (half) run the `nv unset system forwarding resource-mode` command.
 
-{{< /tab >}}
-{{< tab "csmgrctl Command ">}}
+### Reboot
 
-```
-cumulus@switch:~$ sudo csmgrctl -c
-```
+To reboot the switch, run the `nv action reboot system <mode>` command. To force the reboot without prompting for confirmation, add the `force` option (`nv action reboot system <mode> force`).
+
+The following command reboots the switch immediately without notifying any running processes:
 
 ```
-cumulus@switch:~$ sudo reboot
+cumulus@switch:~$ nv action reboot system immediate
+
+Do you want to continue? [y/N]  
+Action executing ... 
+Action succeeded 
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The following command configures the switch to restart in fast mode:
-
-{{< tabs "52 ">}}
-{{< tab "NVUE Command ">}}
+The following command shuts down the system:
 
 ```
-cumulus@switch:~$ nv set system reboot mode fast
-cumulus@switch:~$ nv config apply
+cumulus@switch:~$ nv action reboot system halt
+
+Do you want to continue? [y/N]  
+Action executing ... 
+Action succeeded 
 ```
 
-```
-cumulus@switch:~$ nv action reboot system no-confirm
-```
-
-{{< /tab >}}
-{{< tab "csmgrctl Command ">}}
+The following command power cycles the switch:
 
 ```
-cumulus@switch:~$ sudo csmgrctl -f
+cumulus@switch:~$ nv action reboot system power-cycle
+The operation will Power Cycle the switch.
+Type [y] to power cycle.
+Type [N] to abort.
+
+Do you want to continue? [y/N]  
+Action executing ... 
+Action succeeded 
 ```
 
-```
-cumulus@switch:~$ sudo reboot
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-The following command configures the switch to restart in warm mode.
-
-{{< tabs "85 ">}}
-{{< tab "NVUE Command ">}}
+The following command reboots the switch in cold mode without prompting for confirmation:
 
 ```
-cumulus@switch:~$ nv set system reboot mode warm
-cumulus@switch:~$ nv config apply
+cumulus@switch:~$ nv action reboot system cold force
 ```
 
-Reboot the switch:
+You can also run `nv action reboot system force` because cold reboot is the default mode.
+
+The following command reboots the switch in fast mode:
 
 ```
-cumulus@switch:~$ nv action reboot system no-confirm
+cumulus@switch:~$ nv action reboot system fast
+
+Do you want to continue? [y/N]  
+Action executing ... 
+Action succeeded 
 ```
 
-{{%notice note%}}
-You must specify `no-confirm` at the end of the command.
-{{%/notice%}}
-
-{{< /tab >}}
-{{< tab "csmgrctl Command ">}}
+The following command reboots the switch in warm mode without prompting for confirmation.
 
 ```
-cumulus@switch:~$ sudo csmgrctl -w
+cumulus@switch:~$ nv action reboot system warm force
 ```
 
-```
-cumulus@switch:~$ sudo reboot
-```
+### Show Reboot and Resource Mode
 
-{{< /tab >}}
-{{< /tabs >}}
-
-{{%notice warning%}}
-After you change the reboot mode on the switch with NVUE or `csmgrctl` commands, you must reboot the switch to activate the mode change.
-{{%/notice%}}
-
-### Show Reboot Mode
-
-You can confirm the current operational reboot mode active on the switch with the `nv show system reboot` command. The command also shows reboot information, such as the reboot date and time, and reason:
+To show reboot information, such as the date and time, and reason, and the reboot mode, run the `nv show system reboot` command:
 
 ```
 cumulus@switch:~$ nv show system reboot
@@ -155,8 +112,15 @@ reason
   reason   Unknown                                  
   gentime  2025-05-16T16:08:27.798068+00:00         
   user     system/root                              
-mode       warm                               warm   
 required   no
+last-reboot-mode  warm
+```
+
+To display the current resource mode, run the `nv show system forwarding resource-mode` command. 
+
+```
+cumulus@switch:~$ nv show system forwarding resource-mode
+cumulus@switch:~$ nv config apply
 ```
 
 ## Power Off
@@ -171,29 +135,4 @@ You can also run the Linux `poweroff` command, which gracefully shuts down the s
 
 ```
 cumulus@switch:~$ sudo poweroff
-```
-
-## Power Cycle
-
-NVUE provides the `nv action power-cycle system` command so that you can power cycle the switch remotely to recover from certain conditions, such as a thermal ASIC shutdown due to high temperatures.
-
-When you run the `nv action power-cycle system` command, the switch prompts you for confirmation before power cycling.
-
-```
-cumulus@switch:~$ nv action power-cycle system
-The operation will Power Cycle the switch.
-Type [y] to power cycle.
-Type [N] to abort.
-
-Do you want to continue? [y/N]  
-Action executing ... 
-Action succeeded 
-```
-
-To power cycle the switch without prompts for confirmation, run the `nv action power-cycle system force` command:
-
-```
-cumulus@switch:~$ nv action power-cycle system force 
-Action executing ... 
-Action succeeded
 ```

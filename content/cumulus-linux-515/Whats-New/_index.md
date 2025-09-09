@@ -24,18 +24,47 @@ Cumulus Linux 5.15.0 contains several new features and improvements, and provide
 - {{<link url="Latency-Monitoring" text="Switch latency monitoring">}}
 - {{<link url="Docker-with-Cumulus-Linux" text="Support for docker-container">}}
 - {{<link url="FIPS" text="FIPS mode">}}
+- {{<link url="802.1X-Interfaces/#dynamic-ipv6-multi-tenancy" text="802.1x Support for IPv6 tenant isolation">}}
 - Require users to re-authenticate when changing authenticators
-- 802.1x Support for IPv6 Tenant Isolation
 - Radius user Hardening
 - Telemetry
-  - GNMI gNOI support for action commands
-  - You can now run OTLP and gNMI streaming at the same time
+  - You can now run {{<link url="Open-Telemetry-Export" text="OTLP">}} and {{<link url="gNMI-Streaming" text="gNMI streaming">}} at the same time
+  - {{<link url="gNMI-Streaming/#gNOI-operational-commands" text="gNOI operational commands">}}
   - High frequency telemetry Nsight Integration
-  - gNMI & OpenTelemetry  Predictive Analysis for Link Health - FEC histogram data
+  - gNMI & OpenTelemetry Predictive Analysis for Link Health - FEC histogram data
   - gshut metric via OLTP to track the drained devices/peers to support the site ops with remediation
   - Telemetry ACL Related Metric / X-paths support
   - Telemetry Parity between OpenTelemetry and gNMI (Phase 1)
+  - {{< expand "Updated gNMI PHY metric names" >}}
+Old Name | New Name|
+| -------- | --------- |
+| `/interfaces/interface[name]/ethernet/phy/state/effective-errors` | `/interfaces/interface[name]/phy/state/effective-errors` |
+| `/interfaces/interface[name]/ethernet/phy/state/received-bits` | `/interfaces/interface[name]/phy/state/received-bits` |
+| `/interfaces/interface[name]/ethernet/phy/state/symbol-errors` | `/interfaces/interface[name]/phy/state/symbol-errors` |
+| `/interfaces/interface[name]/ethernet/phy/state/fec-time-since-last-clear` | `/interfaces/interface[name]/phy/fec/state/fec-time-since-last-clear` |
+| `/interfaces/interface[name]/ethernet/phy/state/corrected-bits` | `/interfaces/interface[name]/phy/fec/state/corrected-bits` |
+| `/interfaces/interface[name]/ethernet/phy/state/rs-fec-no-error-blocks` | `/interfaces/interface[name]/phy/fec/state/rs-fec-no-error-blocks` |
+| `/interfaces/interface[name]/ethernet/phy/state/rs-fec-single-error-blocks` | `/interfaces/interface[name]/phy/fec/state/rs-fec-single-error-blocks` |
+| `/interfaces/interface[name]/ethernet/phy/state/rs-fec-uncorrectable-blocks` | `/interfaces/interface[name]/phy/fec/state/rs-fec-uncorrectable-blocks` |
+| `/interfaces/interface[name]/ethernet/phy/state/ber-time-since-last-clear` | `/interfaces/interface[name]/phy/ber/state/ber-time-since-last-clear` |
+| `/interfaces/interface[name]/ethernet/phy/state/effective-ber` | `/interfaces/interface[name]/phy/ber/state/effective-ber` |
+| `/interfaces/interface[name]/ethernet/phy/state/symbol-ber` | `/interfaces/interface[name]/phy/ber/state/symbol-ber` |
+| `/interfaces/interface[name]/ethernet/phy/state/lane[lane]/fc-fec-corrected-blocks` | `/interfaces/interface[name]/phy/channels/channel[id]/fec/state/fc-fec-corrected-blocks` |
+| `/interfaces/interface[name]/ethernet/phy/state/lane[lane]/fc-fec-uncorrected-blocks` | `/interfaces/interface[name]/phy/channels/channel[id]/fec/state/fc-fec-uncorrected-blocks` |
+| `/interfaces/interface[name]/ethernet/phy/state/lane[lane]/rs-fec-corrected-symbols` | `/interfaces/interface[name]/phy/channels/channel[id]/fec/state/rs-fec-corrected-symbols` |
+| `/interfaces/interface[name]/ethernet/phy/state/lane[lane]/raw-ber` | `/interfaces/interface[name]/phy/channels/channel[id]/ber/state/raw-ber` |
+| `/interfaces/interface[name]/ethernet/phy/state/lane[lane]/raw-errors` | `/interfaces/interface[name]/phy//channels/channel[id]/state/raw-errors` |
+{{< /expand >}}
 - NVUE
+  - {{< expand "New and updated switch reboot commands" >}}
+{{<link url="System-Power-and-Switch-Reboot" text="System Power and Switch Reboot">}}
+Deprecated Command | New Command|
+| ---------------- | ---------- |
+| `nv set system reboot mode (cold, warm, fast)`| `nv action reboot system mode (halt, cold, immediate, warm, fast, power-cycle, [force])`|
+| `nv action reboot system`| `nv action reboot system mode (halt, cold, immediate, warm, fast, power-cycle, [force])`|
+| `nv action power-cycle system`| `nv action reboot system mode (halt, cold, immediate, warm, fast, power-cycle, [force])`|
+| N/A | `nv set system forwarding resource-mode`|
+{{< /expand >}}
   - Routing | Operational revision needs to be supported for parts of the CL Object model(Phase 2)
   - Add aging time to neighbor info
   - login brute forcing via API
@@ -47,7 +76,6 @@ Cumulus Linux 5.15.0 contains several new features and improvements, and provide
   - Align system/documentation
   - Align system/security
   - Align system/debug-log
-  - Align system/reboot
   - Align system/cpu
   - Align system/memory
   - Align system/packages
@@ -73,6 +101,8 @@ Cumulus Linux 5.15.0 contains several new features and improvements, and provide
   - Align platform/asic
 - {{< expand "Removed NVUE commands" >}}
 ```
+nv action power-cycle system
+nv set system reboot mode
 nv set interface <interface-id> router ospf bfd enable
 nv set interface <interface-id> router ospf bfd detect-multiplier
 nv set interface <interface-id> router ospf bfd min-receive-interval 
@@ -89,6 +119,7 @@ nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd enable
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd detect-multiplier
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd min-rx-interval
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd min-tx-interval
+nv unset system reboot
 nv unset interface <interface-id> router ospf bfd enable 
 nv unset interface <interface-id> router ospf bfd detect-multiplier 
 nv unset interface <interface-id> router ospf bfd min-receive-interval 
@@ -115,6 +146,7 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 
 ```
 nv show router bfd profile <profile-name>  
+nv show system forwarding resource-mode 
 nv show vrf <vrf-id> router bgp peer-group <peer-group-id> bfd 
 nv show vrf <vrf-id> router bgp neighbor <neighbor-id> bfd 
 nv show vrf <vrf-id> router bfd peers 
@@ -133,6 +165,7 @@ nv show vrf <vrf-id> router static <ipv4-prefix> distance <integer> via <ipv4> b
 {{< tab "nv set ">}}
 
 ```
+nv set system forwarding resource-mode
 nv set router bfd state
 nv set router bfd profile <profile-name>
 nv set router bfd profile <profile-name> 
@@ -178,6 +211,7 @@ nv unset vrf <vrf-id> router static <ipv4-prefix> distance <integer> via <ipv4> 
 {{< tab "nv action ">}}
 
 ```
+nv action reboot system
 ```
 
 {{< /tab >}}

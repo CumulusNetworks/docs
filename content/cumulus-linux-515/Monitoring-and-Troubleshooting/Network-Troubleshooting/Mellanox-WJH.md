@@ -8,6 +8,10 @@ toc: 4
 - The WJH agent enables you to stream detailed and contextual telemetry for off-switch analysis with tools such as {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq" text="NVIDIA NetQ" >}}.
 - The WJH service (`what-just-happened`) enables you to diagnose network problems by looking at dropped packets. WJH can monitor layer 1, layer 2, layer 3, tunnel, buffer and ACL related issues. Cumulus Linux enables and runs the WJH service by default.
 
+{{%notice note%}}
+WJH runs in Docker. If you exhaust the Docker ten percent global limit of overall resources, then start WJH, you might see issues when using WJH. Make sure to free up Docker resources, then launch WJH again.
+{{%/notice%}}
+
 ## Configure WJH
 
 You can choose which packet drops you want to monitor by creating channels and setting the packet drop categories (layer 1, layer 2, layer 3, tunnel, buffer and ACL) you want to monitor.
@@ -182,7 +186,7 @@ PCAP file path : /var/log/mellanox/wjh/wjh_user_2021_06_16_12_03_15.pcap
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
+
 ## WJH Metrics
 
 This section provides the supported WJH metrics with a brief description of each.
@@ -316,7 +320,7 @@ ACL drop metrics describe why an ACL has dropped packets.
 | Ingress router ACL | Notice | An ACL action is set to deny on the ingress switch virtual interfaces (SVIs). |
 | Egress port ACL | Notice | An ACL action is set to deny on the physical egress port or bond. |
 | Egress router ACL | Notice | An ACL action is set to deny on the egress SVIs. |
--->
+
 ## Considerations
 
 ### Buffer Packet Drop Monitoring

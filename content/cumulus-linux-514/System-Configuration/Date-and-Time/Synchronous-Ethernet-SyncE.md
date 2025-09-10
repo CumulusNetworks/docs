@@ -31,7 +31,7 @@ The NVIDIA SN5400 switch running Cumulus Linux 5.11 and later requires a firmwar
 
 To upgrade the SyncE firmware on the SN5400 switch:
 
-1. From the {{<exlink url="https://enterprise-support.nvidia.com/s/downloads" text="NVIDIA Enterprise support portal">}}, download all the SyncE firmware files.
+1. On the {{<exlink url="https://enterprise-support.nvidia.com/s/downloads" text="NVIDIA Enterprise support portal">}}, click the **More Files** tab to download all the SyncE firmware files.
 
 2. Upload the SyncE firmware files to the switch.
 

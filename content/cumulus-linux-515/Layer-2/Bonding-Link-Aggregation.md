@@ -600,7 +600,7 @@ bond       evpn       link       pluggable  qos
 cumulus@leaf02:mgmt:~$ nv show interface bond1 link
                        operational        applied  description
 ---------------------  -----------------  -------  ----------------------------------------------------------------------
-auto-negotiate         off                on       Link speed and characteristic auto negotiation
+auto-negotiate         disabled           enabled  Link speed and characteristic auto negotiation
 duplex                 full               full     Link duplex
 fec                                       auto     Link forward error correction mechanism
 mtu                    9000               9000     interface mtu

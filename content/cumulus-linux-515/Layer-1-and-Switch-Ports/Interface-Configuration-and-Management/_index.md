@@ -441,7 +441,7 @@ You must configure both sides of the connection with the same speed and FEC sett
 {{< tab "NVUE Commands">}}
 
 ```
-cumulus@switch:~$ nv set interface swp1 link fast-linkup on
+cumulus@switch:~$ nv set interface swp1 link fast-linkup enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -516,13 +516,13 @@ admin-status             up
 oper-status              up                        
 oper-status-last-change  Unknown                   
 protodown                enabled                  
-auto-negotiate           off                on     
+auto-negotiate           disabled           enabled     
 duplex                   full               full   
 speed                    1G                 auto   
 mac-address              48:b0:2d:63:34:55         
 fec                                         auto   
 mtu                      9000               9216   
-fast-linkup              off                       
+fast-linkup              disabled                       
 [breakout]                                         
 state                    up                 up     
 flap-protection                                    
@@ -634,7 +634,7 @@ To disable link flap protection:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface swp1 link flap-protection enable off
+cumulus@switch:~$ nv set interface swp1 link flap-protection state disabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -671,7 +671,7 @@ To show if link flap protection is on an interface, run the `nv show interface <
 cumulus@switch:~$ nv show interface swp1 link flap-protection
         applied
 ------  -------
-enable  off
+state   disabled
 ```
 
 ## Source Interface File Snippets
@@ -850,13 +850,13 @@ admin-status             up
 oper-status              up                                       
 oper-status-last-change  2024/10/11 19:12:16.339                  
 protodown                disabled                                 
-auto-negotiate           off                      on       on     
+auto-negotiate           disabled                 enabled       
 duplex                   full                     full     full   
 speed                    1G                       auto     auto   
 mac-address              48:b0:2d:fa:a1:14                        
 fec                                               auto     auto   
 mtu                      9000                     9216     9216   
-fast-linkup              off                                      
+fast-linkup              disabled                                      
 [breakout]                                                        
 state                    up                       up       up     
 flap-protection                                                   

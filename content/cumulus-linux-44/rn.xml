@@ -1682,7 +1682,7 @@ To work around this issue, remove the interface alias description from {{iproute
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
 
 You can safely ignore this warning.</td>
-<td>4.0.0-5.9.3</td>
+<td>4.0.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -3826,7 +3826,7 @@ To work around this issue, remove the interface alias description from {{iproute
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
 
 You can safely ignore this warning.</td>
-<td>4.0.0-5.9.3</td>
+<td>4.0.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -6166,7 +6166,7 @@ To work around this issue, remove the interface alias description from {{iproute
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
 
 You can safely ignore this warning.</td>
-<td>4.0.0-5.9.3</td>
+<td>4.0.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -8377,7 +8377,7 @@ To work around this issue, remove the interface alias description from {{iproute
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
 
 You can safely ignore this warning.</td>
-<td>4.0.0-5.9.3</td>
+<td>4.0.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>
@@ -10873,7 +10873,7 @@ To work around this issue, remove the interface alias description from {{iproute
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
 
 You can safely ignore this warning.</td>
-<td>4.0.0-5.9.3</td>
+<td>4.0.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 <tr>

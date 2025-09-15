@@ -10,10 +10,13 @@ Latency monitoring enables you to precisely measure and analyze the time it take
 - Plan network topology and capacity expansion.
 - Manage incident responses in latency-sensitive environments.
 
+You can monitor latency on layer 3 and untagged physical links only.
+
 {{%notice note%}}
 Cumulus Linux does not support:
-- Leaf to leaf or spine to spine latency measurement .
+- Leaf to leaf or spine to spine latency measurement.
 - Latency measurement of GPU or server facing interfaces.
+- Link local IPv6 (routable addresses are required).
 - One time or on-demand measurement.
 - One-way latency.
 {{%/notice%}}

@@ -30,10 +30,11 @@ Cumulus Linux 5.15.0 contains several new features and improvements, and provide
 - Telemetry
   - You can now run {{<link url="Open-Telemetry-Export" text="OTLP">}} and {{<link url="gNMI-Streaming" text="gNMI streaming">}} at the same time
   - {{<link url="gNMI-Streaming/#gNOI-operational-commands" text="gNOI operational commands">}}
+  - {{<link url="Open-Telemetry-Export/#routing-metrics-format" text="BGP graceful shutdown metric for OLTP">}}
+  - {{<link url="Open-Telemetry-Export/#acl-statistics" text="ACL metrics for OTLP">}}
+  - {{<link url="gNMI-Streaming/#metrics" text="ACL metrics for gNMI streaming">}}
   - High frequency telemetry Nsight Integration
   - gNMI & OpenTelemetry Predictive Analysis for Link Health - FEC histogram data
-  - gshut metric via OLTP to track the drained devices/peers to support the site ops with remediation
-  - Telemetry ACL Related Metric / X-paths support
   - Telemetry Parity between OpenTelemetry and gNMI (Phase 1)
   - {{< expand "Updated gNMI PHY metric names" >}}
 Old Name | New Name|
@@ -65,6 +66,16 @@ Deprecated Command | New Command|
 | `nv action power-cycle system`| `nv action reboot system mode (halt, cold, immediate, warm, fast, power-cycle, [force])`|
 | N/A | `nv set system forwarding resource-mode`|
 {{< /expand >}}
+  - {{< expand "on and off commands updated to enabled and disabled" >}}
+  Deprecated Command | New Command|
+| ---------------- | ---------- |
+| `nv set interface <interface> link auto-negotiate on`<br>`nv set interface <interface> link auto-negotiate off` | `nv set interface <interface> link auto-negotiate enabled`<br>`nv set interface <interface> link auto-negotiate disabled` |
+| `nv set system control-plane trap l3-mtu-err state on`<br>| `nv set system control-plane trap l3-mtu-err state off` | `nv set system control-plane trap l3-mtu-err state enabled`<br>`nv set system control-plane trap l3-mtu-err state disabled` |
+| `nv set interface <interface> link fast-linkup on`<br>`nv set interface <interface> link fast-linkup off` | `nv set interface <interface> link fast-linkup enabled`<br>`nv set interface <interface> link fast-linkup disabled`|
+| `nv set interface <interface> link fast-linkup on`<br>`nv set interface <interface> link fast-linkup off`| `nv set interface <interface> link fast-linkup enabled`<br>`nv set interface <interface> link fast-linkup disabled`|
+| `nv set interface <interface> link flap-protection enable on`<br>`nv set interface <interface> link flap-protection enable off` | `nv set interface <interface> link flap-protection state enabled`<br>`nv set interface <interface> link flap-protection state disabled` |
+
+  {{< /expand >}}
   - Routing | Operational revision needs to be supported for parts of the CL Object model(Phase 2)
   - Add aging time to neighbor info
   - login brute forcing via API
@@ -96,7 +107,6 @@ Deprecated Command | New Command|
   - Align interface/"top level views"
   - Align system/aaa/ldap
   - Align SSH PKA only
-  - Unify all the object models to using enabled/disabled (remove on/off)
   - Align timestamp/duration objects across NVUE
   - Align platform/asic
 - {{< expand "Removed NVUE commands" >}}

@@ -11,6 +11,14 @@ This document supports the Cumulus Linux 5.9 release, and lists new platforms, f
 
 Cumulus Linux 5.9 is an Extended-Support Release (ESR). For more information, refer to {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/knowledge-base/Support/Support-Offerings/Cumulus-Linux-Release-Versioning-and-Support-Policy" text="this Knowledge base article">}}.
 
+## What's New in Cumulus Linux 5.9.4
+
+Cumulus Linux 5.9.4 provides important {{<link title="Cumulus Linux 5.9 Release Notes" text="security fixes and bug fixes">}}.
+
+{{%notice note%}}
+Cumulus Linux 5.9.4 does not support ISSU (warm boot upgrade).
+{{%/notice%}}
+
 ## What's New in Cumulus Linux 5.9.3
 
 Cumulus Linux 5.9.3 provides an important {{<link title="Cumulus Linux 5.9 Release Notes" text="security fix">}}.

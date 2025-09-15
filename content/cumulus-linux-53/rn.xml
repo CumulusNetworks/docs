@@ -15,8 +15,8 @@
 <tr>
 <td>4377862</td>
 <td>When processing the static IP assignment for an interface previously managed through DHCP, Cumulus Linux fails to clean up the DHCP created state completely. As a result when the IP address assigned by DHCP earlier expires, the switch eventually loses connectivity.</td>
-<td>5.1.0-5.11.1</td>
-<td>5.11.2-5.14.0, 5.13.0-5.14.0</td>
+<td>5.1.0-5.9.3</td>
+<td>5.9.4-5.14.0, 5.11.2-5.14.0, 5.13.0-5.14.0</td>
 </tr>
 <tr>
 <td>4039850</td>
@@ -852,7 +852,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
 
 You can safely ignore this warning.</td>
-<td>4.0.0-5.9.3</td>
+<td>4.0.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 </table>
@@ -892,8 +892,8 @@ You can safely ignore this warning.</td>
 <tr>
 <td>4377862</td>
 <td>When processing the static IP assignment for an interface previously managed through DHCP, Cumulus Linux fails to clean up the DHCP created state completely. As a result when the IP address assigned by DHCP earlier expires, the switch eventually loses connectivity.</td>
-<td>5.1.0-5.11.1</td>
-<td>5.11.2-5.14.0, 5.13.0-5.14.0</td>
+<td>5.1.0-5.9.3</td>
+<td>5.9.4-5.14.0, 5.11.2-5.14.0, 5.13.0-5.14.0</td>
 </tr>
 <tr>
 <td>4004453</td>
@@ -1651,7 +1651,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
 
 You can safely ignore this warning.</td>
-<td>4.0.0-5.9.3</td>
+<td>4.0.0-5.9.4</td>
 <td>5.10.0-5.14.0</td>
 </tr>
 </table>

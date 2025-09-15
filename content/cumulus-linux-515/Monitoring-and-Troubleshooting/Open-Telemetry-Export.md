@@ -23,6 +23,29 @@ cumulus@switch:~$ nv config apply
 
 When you enable open telemetry, the switch collects and exports [system information](#system-information-format) metrics to the configured external collector by default. In addition, you can enable open telemetry to collect and export [interface statistics](#interface-statistics), [buffer statistics](#buffer-statistics), [histogram data](#histogram-data), [control plane statistics](#control-plane-statistics), [platform statistics](#platform-statistics), and [routing metrics](#router-statistics).
 
+### ACL Statistics
+
+When you enable open telemetry for ACL statistics, the switch exports [ACL](#acl-statistic-format) interface metrics (such as packet and byte count) for all the interfaces on which ACLs are applied.
+
+```
+cumulus@switch:~$ nv set system telemetry acl-stats export state enabled 
+cumulus@switch:~$ nv config apply
+```
+
+To enable open telemetry for ACL configuration and operational metrics (such as matches and actions for each ACL):
+
+```
+cumulus@switch:~$ nv set system telemetry acl-stats class acl-set state enabled 
+cumulus@switch:~$ nv config apply
+```
+
+You can adjust the ACL statistics sample interval (in seconds). You can specify a value between 1 and 86400. The default value is 5.
+
+```
+cumulus@switch:~$ nv set system telemetry acl-stats sample-interval 100
+cumulus@switch:~$ nv config apply
+```
+
 ### AI Ethernet Statistics
 
 When you enable open telemetry for AI Ethernet statistics, the switch exports [adaptive routing, SRv6, and packet trimming statistics](#ai-ethernet-statistic-format):
@@ -582,6 +605,28 @@ cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.30
 cumulus@switch:~$ nv config apply
 ```
 
+The following example:
+- Configures STAT-GROUP6 to export ACL interface statistics.
+- Applies the STAT-GROUP6 configuration to the OTLP destination 10.1.1.100.
+- Sets the sample interval of the ACL set statistics to 3.
+
+```
+cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP6 acl-stats export state enabled
+cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.30 stats-group STAT-GROUP6
+cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP7 acl-stats sample-interval 3  
+cumulus@switch:~$ nv config apply
+```
+
+The following example:
+- Configures STAT-GROUP7 to export ACL set statistics.
+- Applies the STAT-GROUP7 configuration to the OTLP destination 10.1.1.200.
+
+```
+cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP7 acl-stats class acl-set export state enabled
+cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.30 stats-group STAT-GROUP7
+cumulus@switch:~$ nv config apply
+```
+
 ### Show Telemetry Export Configuration
 
 To show the telemetry export configuration, run the `nv show system telemetry export` command:
@@ -659,16 +704,44 @@ Cumulus Linux exports statistics and histogram data in the formats defined in th
 An asterisk (*) in the `Description` column of the tables below indicates that metric is new for Cumulus Linux 5.15.
 {{%/notice%}}
 
+### ACL Statistic Format
+
+The switch collects and exports ACL interface statistics for all the interfaces on which ACLs are applied when you configure the `nv set system telemetry acl-stats export state enabled` command.
+
+| Metric | Description |
+| ---------- | ------- |
+| `nvswitch_acl_interface_matched_pkts` | Matched packets on all interfaces. |
+| `nvswitch_acl_interface_matched_ bytes` | Matched bytes on all interfaces. |
+
+The switch collects and exports statistics for IPv4, IPv6, layer 2, and layer 4 ACLs when you configure the `nv set system telemetry acl-stats class acl-set export state enabled` command.
+
+| Metric | Description |
+| ---------- | ------- |
+| `nvswitch_acl_set_ipv4_info` | IPv4 ACL information. |
+| `nvswitch_acl_set_ipv6_info` | IPv6 ACL information. |
+| `nvswitch_acl_set_l2_info` | Layer 2 ACL information. |
+| `nvswitch_acl_set_l4_info` | Layer 4 ACL information. |
+
+{{< expand "Example JSON data for nvswitch_acl_interface_matched_pkts:" >}}
+```
+```
+{{< /expand >}}
+<br>
+{{< expand "Example JSON data for nvswitch_acl_set_ipv4_info:" >}}
+```
+```
+{{< /expand >}}
+
 ### AI Ethernet Statistic Format
 
 The switch collects and exports the adaptive routing, SRv6, and packet trimming statistics when you configure the `nv set system telemetry ai-ethernet-stats export state enabled` command.
 
 | Metric | Description |
 | ---------- | ------- |
-| `nvswitch_ar_congestion_changes`  | The number of adaptive routing change events triggered due to congestion or link-down.|
+| `nvswitch_ar_congestion_changes`  | Number of adaptive routing change events triggered due to congestion or link-down.|
 | `nvswitch_srv6_no_sid_drops`| Number of packets dropped due to no matching SID. |
 | `nvswitch_srv6_in_pkts` | Number of packets received for this SID. |
-| `nvswitch_qos_trimmed_unicast_pkts`| The number of packets that were trimmed.|
+| `nvswitch_qos_trimmed_unicast_pkts`| The Number of packets that were trimmed.|
 
 {{< expand "Example JSON data for nvswitch_ar_congestion_changes:" >}}
 ```
@@ -3965,6 +4038,7 @@ When you enable layer 3 routing metrics telemetry, the switch exports the follow
 | `nvrouting_bgp_peer_last_established` | Last established time of the BGP peer.|
 | `nvrouting_bgp_peer_as` | Autonomous system number of the BGP peer.|
 | `nvrouting_bgp_peer_local_as` | Local autonomous system number.|
+ |`nvrouting_bgp_peer_graceful_shutdown` | * Graceful shutdown information for a peer. |
 | `nvrouting_rib_count` | Number of IPv4 and IPv6 routes in the IP routing table for each route source. |
 | `nvrouting_rib_count_connected` | Number of IPv4 connected routes in the IP routing table. |
 | `nvrouting_rib_count_bgp` | Number of IPv4 BGP routes in the IP routing table. |

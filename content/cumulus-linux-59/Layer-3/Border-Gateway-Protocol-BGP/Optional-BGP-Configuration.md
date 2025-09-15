@@ -1943,7 +1943,7 @@ You can configure the following graceful BGP restart timers.
 |<div style="width:250px">Timer | Description |
 | ---- | ----------- |
 | `restart-time` | The number of seconds to wait for a graceful restart capable peer to re-establish BGP peering. You can set a value between 1 and 4095. The default is 120 seconds. |
-| `pathselect-defer-time` | The number of seconds a restarting peer defers path-selection when waiting for the EOR marker from peers. You can set a value between 0 and 3600. The default is 360 seconds. |
+| `pathselect-defer-time` | The number of seconds a restarting peer defers path-selection when waiting for the EOR marker from peers. You can set a value between 0 and 3600. The default is 360 seconds. In Cumulus Linux 5.9.4, the default value is 240 seconds.|
 | `stalepath-time` | The number of seconds to hold stale routes for a restarting peer. You can set a value between 1 and 4095. The default is 360 seconds.|
 
 The following example commands set the `restart-time` to 400 seconds, `pathselect-defer-time` to 300 seconds, and `stalepath-time` to 400 seconds:

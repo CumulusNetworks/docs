@@ -81,7 +81,7 @@ ip
   vrf                                         default  
   [gateway]                                            
 link                                                   
-  auto-negotiate           off                on       
+  auto-negotiate           disabled           enabled       
   duplex                   full               full     
   speed                    1G                 auto     
   fec                                         auto     

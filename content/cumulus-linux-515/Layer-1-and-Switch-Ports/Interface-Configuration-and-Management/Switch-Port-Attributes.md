@@ -30,7 +30,7 @@ By default, NVUE enables auto-negotiation; however, you can set the link speed f
 {{< tabs "TabID29 ">}}
 {{< tab "NVUE Commands ">}}
 
-If you set the link speed for a port and leave the default auto-negotiation setting (`on`) or set auto-negotiation `on`, the link comes up with auto-negotiation `on` and the switch advertises the configured link speed setting to the other side of the connection.
+If you set the link speed for a port and leave the default auto-negotiation setting (`enabled`) or set auto-negotiation to `enabled`, the link comes up with auto-negotiation `enabled` and the switch advertises the configured link speed setting to the other side of the connection.
 
 ```
 cumulus@switch:~$ nv set interface swp1 link speed 400G
@@ -39,22 +39,22 @@ cumulus@switch:~$ nv config apply
 
 ```
 cumulus@switch:~$ nv set interface swp1 link speed 400G
-cumulus@switch:~$ nv set interface swp1 link auto-negotiate on
+cumulus@switch:~$ nv set interface swp1 link auto-negotiate enabled
 cumulus@switch:~$ nv config apply
 ```
 
-If you set the link speed for a port and set auto-negotiation `off`, the link comes up with auto-negotiation `off` and force mode is set. The switch does not advertise the configured link speed setting to the other side of the connection.
+If you set the link speed for a port and set auto-negotiation to `disabled`, the link comes up with auto-negotiation `disabled` and force mode is set. The switch does not advertise the configured link speed setting to the other side of the connection.
 
 ```
 cumulus@switch:~$ nv set interface swp1 link speed 400G
-cumulus@switch:~$ nv set interface swp1 link auto-negotiate off
+cumulus@switch:~$ nv set interface swp1 link auto-negotiate disabled
 cumulus@switch:~$ nv config apply
 ```
 
-If you do not set a link speed for a port and set auto-negotiation `on`, the switch advertises all supported speeds on the interface:
+If you do not set a link speed for a port and set auto-negotiation to `enabled`, the switch advertises all supported speeds on the interface:
 
 ```
-cumulus@switch:~$ nv set interface swp1 link auto-negotiate on
+cumulus@switch:~$ nv set interface swp1 link auto-negotiate enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -196,7 +196,7 @@ To show the MTU setting for an interface:
 cumulus@switch:~$ nv show interface swp1
 ...
 link                                                            
-  auto-negotiate          off                           on      
+  auto-negotiate          disabled                      enabled      
   duplex                  full                          full    
   speed                   1G                            auto    
   mac-address             48:b0:2d:c8:bb:07                     
@@ -227,7 +227,7 @@ Run the following command to drop **all** IP packets that are larger in size tha
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set system control-plane trap l3-mtu-err state off
+cumulus@switch:~$ nv set system control-plane trap l3-mtu-err state disabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -381,7 +381,7 @@ cumulus@switch:~$ nv show interface swp1 link
 admin-status           up                        
 oper-status            up                        
 protodown              disabled                  
-auto-negotiate         off                on     
+auto-negotiate         disabled           enabled     
 duplex                 full               full   
 speed                  1G                 auto   
 fec                                       auto
@@ -623,12 +623,12 @@ The FEC operational view of this configuration appears incorrect because FEC is 
 cumulus@SN2700:mgmt:~$ nv show int swp11 link
                        operational        applied
 ---------------------  -----------------  -------
-auto-negotiate         on                 on     
+auto-negotiate         enabled            enabled     
 duplex                 full               full   
 speed                  100G               auto   
 fec                    off                off   
 mtu                    9216               9216   
-fast-linkup            off                       
+fast-linkup            disabled                       
 [breakout]                                       
 state                  up                 up     
 ...
@@ -638,12 +638,12 @@ state                  up                 up
 cumulus@SN4700:mgmt:~$ nv show int swp1s1 link
                        operational        applied
 ---------------------  -----------------  -------
-auto-negotiate         on                 on     
+auto-negotiate         enabled            enabled     
 duplex                 full               full   
 speed                  100G               auto   
 fec                    rs                 off    
 mtu                    9216               9216   
-fast-linkup            off                       
+fast-linkup            disabled                       
 [breakout]                                       
 state                  up                 up     
 ...
@@ -2020,12 +2020,12 @@ ip
   vrf                                        default
   [gateway]                                         
 link                                                
-  auto-negotiate          off                on     
+  auto-negotiate          disabled           enabled     
   duplex                  full               full   
   speed                   1G                 auto   
   fec                                        auto   
   mtu                     9000               9216   
-  fast-linkup             off                       
+  fast-linkup             disabled                       
   [breakout]                                        
   state                   up                 up     
   stats                                             

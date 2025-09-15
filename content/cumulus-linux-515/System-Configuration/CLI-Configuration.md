@@ -13,7 +13,7 @@ To reduce the window of opportunity for unauthorized user access to an unattende
 {{< tabs "15 ">}}
 {{< tab "NVUE Command ">}}
 
-Run the `nv set system cli inactive-timeout <minutes>` command. You can set the CLI session timeout to a value between 0 and 86400 minutes. The default value is 0 (disabled).
+Run the `nv set system cli inactive-timeout <minutes>` command. You can set the CLI session timeout to a value between 0 and 86400 minutes. The default value is 20.
 
 ```
 cumulus@switch:~$ nv set system cli inactive-timeout 300

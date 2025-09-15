@@ -34,7 +34,11 @@ Cumulus Linux supports:
 - Fast mode for all protocols.
 - Warm mode for 802.1X, layer 2 forwarding, layer 3 forwarding with BGP, and static routing. Warm mode for VXLAN routing with EVPN is available for beta and open to customer feedback. Cumulus Linux does not support warm boot with EVPN MLAG or EVPN multihoming.
 {{%/notice%}}
-
+<!--
+{{%notice note%}}
+Cumulus Linux does not support LACP bonds during warm boot; the LACP control plane sessions might time out before warm boot completes. Use a static Link Aggregation Group to keep bonds up during warm boot.
+{{%/notice%}}
+-->
 NVIDIA recommends you use NVUE commands to configure restart mode and reboot the system. If you prefer to use `csmgrctl` commands, you must stop NVUE from managing the `/etc/cumulus/csmgrd.conf` file before you set restart mode:
 
 1. Run the following NVUE commands:

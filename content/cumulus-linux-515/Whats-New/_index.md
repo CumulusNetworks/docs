@@ -24,7 +24,7 @@ Cumulus Linux 5.15.0 contains several new features and improvements, and provide
 - {{<link url="Latency-Monitoring" text="Switch latency monitoring">}}
 - {{<link url="Docker-with-Cumulus-Linux" text="Support for docker-container">}}
 - {{<link url="FIPS" text="FIPS mode">}}
-- {{<link url="802.1X-Interfaces/#dynamic-ipv6-multi-tenancy" text="802.1x Support for IPv6 tenant isolation">}}
+- {{<link url="802.1X-Interfaces/#dynamic-ipv6-multi-tenancy" text="802.1x Dynamic IPv6 Multi-tenancy">}}
 - Require users to re-authenticate when changing authenticators
 - Radius user Hardening
 - Telemetry

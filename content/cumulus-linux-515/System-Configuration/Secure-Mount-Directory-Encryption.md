@@ -25,7 +25,7 @@ To disable secure mount directory encryption, run the `nv action <disable> syste
 When you enable secure mount directory encryption, the switch encrypts the `/root`, `/home`, and `/var` directories. To configure the absolute path to other directories you want to encrypt, run the `nv set system security encryption folder-encrypt encrypted_folder <path_to_new_folder>` command:
 
 ```
-cumulus@switch:~$ nv set system security encryption folder-encrypt encrypted_folder /dev
+cumulus@switch:~$ nv set system security encryption folder-encrypt encrypted_folder /etc
 ```
 
 {{%notice info%}}

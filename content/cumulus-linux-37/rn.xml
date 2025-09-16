@@ -1870,7 +1870,7 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <tr>
 <td>2964279</td>
 <td>When a VNI flaps, an incorrect list of layer 2 VNIs are associated with a layer 3 VNI. The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under a layer 3 VNI. </td>
-<td>3.7.15, 4.4.2-4.4.5, 5.0.0-5.14.0</td>
+<td>3.7.15, 4.4.2-4.4.5</td>
 </tr>
 <tr>
 <td>2959454</td>
@@ -2645,7 +2645,7 @@ The following attribute: {{vxlan-purge-remotes yes}} is intended to fix the issu
 <tr>
 <td>2964279</td>
 <td>When a VNI flaps, an incorrect list of layer 2 VNIs are associated with a layer 3 VNI. The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under a layer 3 VNI. </td>
-<td>3.7.15, 4.4.2-4.4.5, 5.0.0-5.14.0</td>
+<td>3.7.15, 4.4.2-4.4.5</td>
 <td>3.7.16</td>
 </tr>
 <tr>

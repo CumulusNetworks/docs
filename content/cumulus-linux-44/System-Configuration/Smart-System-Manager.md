@@ -28,7 +28,12 @@ You can restart the switch in one of the following modes.
    {{%notice note%}}
    A warm boot disrupts bonds, VXLAN traffic, and IP multicast traffic until reboot completes.
    {{%/notice%}}
-
+   <!--
+   {{%notice note%}}
+   -  Warm boot disrupts bonds, VXLAN traffic, and IP multicast traffic until reboot completes.
+   - Cumulus Linux does not support LACP bonds during warm boot; the LACP control plane sessions might time out before warm boot completes. Use a static Link Aggregation Group to keep bonds up during warm boot.
+   {{%/notice%}}
+   -->
 The following command restarts the system in cold mode:
 
 {{< tabs "28 ">}}

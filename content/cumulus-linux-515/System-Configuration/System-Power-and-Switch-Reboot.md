@@ -26,7 +26,11 @@ Cumulus Linux provides these reboot modes:
 Cumulus Linux supports warm reboot mode with:
 - 802.1X, layer 2 forwarding, layer 3 forwarding with BGP, static routing, and VXLAN routing with EVPN. Cumulus Linux does not support warm boot with EVPN MLAG or EVPN multihoming.
 {{%/notice%}}
-
+<!--
+{{%notice note%}}
+Cumulus Linux does not support LACP bonds during warm boot; the LACP control plane sessions might time out before warm boot completes. Use a static Link Aggregation Group to keep bonds up during warm boot.
+{{%/notice%}}
+-->
 ### Resource Allocation
 
 To manage switch resource allocation for fast, cold, and warm reboot mode, you can configure the resource mode to be either `half` or `full`. By default, the resource mode for warm boot and ISSU-based software upgrade is `half`.

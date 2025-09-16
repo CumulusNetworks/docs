@@ -57,6 +57,7 @@ Old Name | New Name|
 | `/interfaces/interface[name]/ethernet/phy/state/lane[lane]/raw-errors` | `/interfaces/interface[name]/phy//channels/channel[id]/state/raw-errors` |
 {{< /expand >}}
 - NVUE
+  - {{<link url="Secure-Mount-Directory-Encryption" text="Secure Mount Directory Encryption">}}
   - {{< expand "New and updated switch reboot commands" >}}
 {{<link url="System-Power-and-Switch-Reboot" text="System Power and Switch Reboot">}}
 Deprecated Command | New Command|
@@ -79,7 +80,6 @@ Deprecated Command | New Command|
   - Routing | Operational revision needs to be supported for parts of the CL Object model(Phase 2)
   - Add aging time to neighbor info
   - login brute forcing via API
-  - Support for SSH CIPHER configuration
   - Refactor system aaa and tacacs to common model
   - Align system/ntp
   - Align system/message

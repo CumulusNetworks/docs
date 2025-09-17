@@ -72,7 +72,7 @@ Deprecated Command | New Command|
   Deprecated Command | New Command|
 | ---------------- | ---------- |
 | `nv set interface <interface> link auto-negotiate on`<br>`nv set interface <interface> link auto-negotiate off` | `nv set interface <interface> link auto-negotiate enabled`<br>`nv set interface <interface> link auto-negotiate disabled` |
-| `nv set system control-plane trap l3-mtu-err state on`<br>| `nv set system control-plane trap l3-mtu-err state off` | `nv set system control-plane trap l3-mtu-err state enabled`<br>`nv set system control-plane trap l3-mtu-err state disabled` |
+| `nv set system control-plane trap l3-mtu-err state on`<br> `nv set system control-plane trap l3-mtu-err state off` | `nv set system control-plane trap l3-mtu-err state enabled`<br>`nv set system control-plane trap l3-mtu-err state disabled` |
 | `nv set interface <interface> link fast-linkup on`<br>`nv set interface <interface> link fast-linkup off` | `nv set interface <interface> link fast-linkup enabled`<br>`nv set interface <interface> link fast-linkup disabled`|
 | `nv set interface <interface> link fast-linkup on`<br>`nv set interface <interface> link fast-linkup off`| `nv set interface <interface> link fast-linkup enabled`<br>`nv set interface <interface> link fast-linkup disabled`|
 | `nv set interface <interface> link flap-protection enable on`<br>`nv set interface <interface> link flap-protection enable off` | `nv set interface <interface> link flap-protection state enabled`<br>`nv set interface <interface> link flap-protection state disabled` |
@@ -113,6 +113,7 @@ Deprecated Command | New Command|
 - {{< expand "Removed NVUE commands" >}}
 ```
 nv action power-cycle system
+nv set system ssh-server strict
 nv set system reboot mode
 nv set interface <interface-id> router ospf bfd enable
 nv set interface <interface-id> router ospf bfd detect-multiplier
@@ -176,7 +177,8 @@ nv show vrf <vrf-id> router static <ipv4-prefix> distance <integer> via <ipv4> b
 {{< tab "nv set ">}}
 
 ```
-nv set system forwarding resource-mode
+nv set interface <interface-id> router ospf bfd profile <profile-name> 
+nv set interface <interface-id> router pim bfd profile <profile-name>
 nv set router bfd state
 nv set router bfd profile <profile-name>
 nv set router bfd profile <profile-name> 
@@ -184,38 +186,47 @@ nv set router bfd profile <profile-name> min-rx-interval
 nv set router bfd profile <profile-name> shutdown
 nv set router bfd profile <profile-name> passive-mode 
 nv set router bfd profile <profile-name> minimum-ttl
+nv set system ssh-server ciphers
+nv set system ssh-server macs
+nv set system ssh-server kex-algorithms
+nv set system ssh-server pubkey-accepted-algorithms 
+nv set system ssh-server host-key-algorithms
+nv set system forwarding resource-mode
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> bfd profile <profile-name> 
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd profile <profile-name>
-nv set interface <interface-id> router ospf bfd profile <profile-name> 
-nv set interface <interface-id> router pim bfd profile <profile-name> 
-nv set vrf <vrf-id> router static <ipv4-prefix> via <ipv4> bfd profile <profile-name> 
-nv set vrf <vrf-id> router static <ipv4-prefix> via <ipv4> bfd multi-hop
-nv set vrf <vrf-id> router static <ipv4-prefix> via <ipv4> bfd source
 nv set vrf <vrf-id> router static <ipv4-prefix> distance <integer> via <ipv4> bfd profile <profile-name>
 nv set vrf <vrf-id> router static <ipv4-prefix> distance <integer> via <ipv4> bfd multi-hop
-nv set vrf <vrf-id> router static <ipv4-prefix> distance <integer> via <ipv4> bfd source  
+nv set vrf <vrf-id> router static <ipv4-prefix> distance <integer> via <ipv4> bfd source
+nv set vrf <vrf-id> router static <ipv4-prefix> via <ipv4> bfd profile <profile-name> 
+nv set vrf <vrf-id> router static <ipv4-prefix> via <ipv4> bfd multi-hop
+nv set vrf <vrf-id> router static <ipv4-prefix> via <ipv4> bfd source  
 ```
 
 {{< /tab >}}
 {{< tab "nv unset ">}}
 
 ```
+nv unset interface <interface-id> router ospf bfd  
+nv unset interface <interface-id> router pim bfd 
 nv unset router bfd profile <profile-name> detect-multiplier 
 nv unset router bfd profile <profile-name> min-tx-interval 
 nv unset router bfd profile <profile-name> min-rx-interval  
 nv unset router bfd profile <profile-name> shutdown 
 nv unset router bfd profile <profile-name> passive-mode 
-nv unset router bfd profile <profile-name> minimum-ttl 
+nv unset router bfd profile <profile-name> minimum-ttl
+nv unset system ssh-server ciphers
+nv unset system ssh-server macs
+nv unset system ssh-server kex-algorithms
+nv unset system ssh-server pubkey-accepted-algorithms 
+nv unset system ssh-server host-key-algorithms
 nv unset vrf <vrf-id> router bgp peer-group <peer-group-id> bfd  
-nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> bfd 
-nv unset interface <interface-id> router ospf bfd  
-nv unset interface <interface-id> router pim bfd 
-nv unset vrf <vrf-id> router static <ipv4-prefix> via <ipv4> bfd 
-nv unset vrf <vrf-id> router static <ipv4-prefix> via <ipv4> bfd multi-hop 
-nv unset vrf <vrf-id> router static <ipv4-prefix> via <ipv4> bfd source  
+nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> bfd  
 nv unset vrf <vrf-id> router static <ipv4-prefix> distance <integer> via <ipv4> bfd  
 nv unset vrf <vrf-id> router static <ipv4-prefix> distance <integer> via <ipv4> bfd multi-hop 
 nv unset vrf <vrf-id> router static <ipv4-prefix> distance <integer> via <ipv4> bfd source
+nv unset vrf <vrf-id> router static <ipv4-prefix> via <ipv4> bfd 
+nv unset vrf <vrf-id> router static <ipv4-prefix> via <ipv4> bfd multi-hop 
+nv unset vrf <vrf-id> router static <ipv4-prefix> via <ipv4> bfd source 
 ```
 
 {{< /tab >}}

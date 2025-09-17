@@ -572,7 +572,7 @@ To debug TACACS user command authorization, have the TACACS+ user enter the foll
 tacuser0@switch:~$ export TACACSAUTHDEBUG=1
 ```
 
-When you enable debugging, the command authorization conversation with the TACACS+ server shows additional information.
+The `export TACACSAUTHDEBUG=1`command outputs error messages for commands authorized for the TACACS+ user running the command.
 
 To disable debugging:
 

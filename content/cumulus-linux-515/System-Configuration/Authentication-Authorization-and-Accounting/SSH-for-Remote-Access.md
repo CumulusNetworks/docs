@@ -234,7 +234,7 @@ cumulus@switch:~$ sudo systemctl stop ssh.service
 cumulus@switch:~$ sudo systemctl disable ssh.service
 ```
 
-To renable the SSH server:
+To re-enable the SSH server:
 
 ```
 cumulus@switch:~$ sudo systemctl start ssh.service
@@ -244,75 +244,108 @@ cumulus@switch:~$ sudo systemctl enable ssh.service
 {{< /tab >}}
 {{< /tabs >}}
 
-### SSH Strict Mode
+### SSH Ciphers
 
-By default, SSH strict mode is `on`; Cumulus Linux disables X11, TCP forwarding, and compression and enforces secure ciphers.
+{{%notice note%}}
+SSH cipher configuration replaces SSH strict mode that is available in Cumulus Linux 5.14 and earlier.
+{{%/notice%}}
 
-{{< tabs "TabID247 ">}}
+For a more secure way of logging to the Cumulus Linux switch, you can configure SSH ciphers so that user login fails with an incorrect cipher, key type or algorithm.
+
+The following table shows the cipher types you can configure, and lists the allowed values and the default value.
+
+| Cipher Type | Allowed Values | Default Value |
+|------------ | --------------- | --------|
+| SSH ciphers | `aes256-ctr`, `aes192-ctr`, `aes128-ctr`, `aes128-gcm@openssh.com`, or `aes256-gcm@openssh.com`| `aes256-ctr`|
+| SSH <span class="a-tooltip">[MACs](## "Message Authentication Codes")</span>    | `hmac-sha2-256`, `hmac-sha2-512`, `hmac-sha2-512-etm@openssh.com`, or `hmac-sha2-256-etm@openssh.com`| `hmac-sha2-256` |
+| SSH key exchange algorithms | `curve25519-sha256`, `curve25519-sha256@libssh.org`, `diffie-hellman-group16-sha512`, `diffie-hellman-group18-sha512`, or `diffie-hellman-group14-sha256`| `curve25519-sha256` |
+| SSH public key accepted algorithms | `ecdsa-sha2-nistp256-cert-v01@openssh.com`, `ecdsa-sha2-nistp384-cert-v01@openssh.com`, `ecdsa-sha2-nistp521-cert-v01@openssh.com`, `rsa-sha2-512-cert-v01@openssh.com`, `rsa-sha2-256-cert-v01@openssh.com`, `rsa-sha2-512`, `rsa-sha2-256`, `ecdsa-sha2-nistp256`, `ecdsa-sha2-nistp384`, `ecdsa-sha2-nistp521`, `ssh-ed25519`, or `ssh-ed25519-cert-v01@openssh.com`| `ecdsa-sha2-nistp256-cert-v01@openssh.com`|
+| SSH host key algorithms | `ecdsa-sha2-nistp256`, `rsa-sha2-256`, or `rsa-sha2-512`| `ecdsa-sha2-nistp256` |
+
+You can configure SSH ciphers with multiple values (separated with a space).
+
+{{< tabs "TabID259 ">}}
 {{< tab "NVUE Commands ">}}
 
-To disable SSH strict mode, run the `nv set system ssh-server strict disabled` command:
+To configure strict SSH ciphers, run the `nv set system ssh-server ciphers <cipher>` command:
 
 ```
-cumulus@switch:~$ nv set system ssh-server strict disabled
+cumulus@switch:~$ nv set system ssh-server ciphers aes192-ctr 
 cumulus@switch:~$ nv config apply
 ```
 
-To renable strict mode, run the `nv set system ssh-server strict enabled` command.
-
-To show if strict mode is `on` or `off`, run the `nv show system ssh-server` command:
+To configure strict SSH MACs, run the `nv set system ssh-server macs <mac>` command:
 
 ```
-cumulus@switch:~$ nv show system ssh-server
-
-                             applied
----------------------------  --------
-authentication-retries       6
-login-timeout                120
-inactive-timeout             15
-permit-root-login            enabled
-max-sessions-per-connection  30
-state                        enabled
-strict                       disabled
-...  
+cumulus@switch:~$ nv set system ssh-server macs hmac-sha2-512
+cumulus@switch:~$ nv config apply
 ```
+
+To configure strict SSH key exchange algorithms, run the `nv set system ssh-server kex-algorithms <key-exchange-algorithm>` command:
+
+```
+cumulus@switch:~$ nv set system ssh-server kex-algorithms curve25519-sha256@libssh.org
+cumulus@switch:~$ nv config apply
+```
+
+To configure strict SSH public key accepted algorithms, run the `nv set system ssh-server pubkey-accepted-algorithms <public-key-algorithm>` command:
+
+```
+cumulus@switch:~$ nv set system ssh-server pubkey-accepted-algorithms ecdsa-sha2-nistp256-cert-v01@openssh.com
+cumulus@switch:~$ nv config apply
+```
+
+To configure SSH strict SSH host key algorithms, run the `nv set system ssh-server <host-key-algorithm>` command:
+
+```
+cumulus@switch:~$ nv set system ssh-server host-key-algorithms rsa-sha2-256
+cumulus@switch:~$ nv config apply
+```
+
+{{%notice note%}}
+After you apply SSH cipher configuration, the `sshd` service restarts. The new configuration takes effect only on new SSH sessions.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/ssh/sshd_config` file and change the `AllowTcpForwarding`, `X11Forwarding` and `Compression` parameters to `yes`. Also, remove the ciphers and keys under `#RekeyLimit default none` in the `Ciphers and keying` section of the file.
+Edit the `/etc/ssh/sshd_config` file to update the `Ciphers and keying` section with the SSH strict ciphers you want to configure.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ssh/sshd_config
 ...
-
 # Ciphers and keying
 #RekeyLimit default none
+Ciphers aes256-ctr
+MACs hmac-sha2-256
+KexAlgorithms curve25519-sha256
+PubkeyAcceptedAlgorithms ecdsa-sha2-nistp256-cert-v01@openssh.com
+HostKeyAlgorithms rsa-sha2-256
 ...
-#AllowAgentForwarding yes
-AllowTcpForwarding yes
-#GatewayPorts no
-X11Forwarding yes
-#X11DisplayOffset 10
-#X11UseLocalhost yes
-#PermitTTY yes
-PrintMotd no
-#PrintLastLog yes
-#TCPKeepAlive yes
-#PermitUserEnvironment no
-Compression yes
-ClientAliveInterval 0
-ClientAliveCountMax 0
-#UseDNS no
-#PidFile /var/run/sshd.pid
-MaxStartups 10:30:100
-#PermitTunnel no
-#ChrootDirectory none
-#VersionAddendum none
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
+
+To show SSH cipher configuration, run the `nv show system ssh-server` command:
+
+```
+cumulus@switch:~$ nv show system ssh-server
+                             operational                                   applied                                     
+---------------------------  --------------------------------------------  --------------------------------------------
+authentication-retries       6                                             6                                           
+login-timeout                120                                           120                                         
+inactive-timeout             15                                            15                                          
+permit-root-login            enabled                                       prohibit-password                           
+max-sessions-per-connection  10                                            10                                          
+state                        enabled                                       enabled                                     
+ciphers                      ['aes256-ctr']                                ['aes256-ctr']                              
+macs                         ['hmac-sha2-256']                             ['hmac-sha2-256']                           
+kex-algorithms               ['curve25519-sha256']                         ['curve25519-sha256']                       
+pubkmey-accepted-algorithms  ['ecdsa-sha2-nistp256-cert-v01@openssh.com']  ['ecdsa-sha2-nistp256-cert-v01@openssh.com']
+host-key-algorithms          ['rsa-sha2-256']                              ['rsa-sha2-256']
+...  
+```
 
 ### Configure Timeouts and Sessions
 

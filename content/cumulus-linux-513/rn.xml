@@ -7,6 +7,16 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4629153</td>
+<td>When you configure several hundred BGP sessions, the {{agentx}} handler in FRR might crash with the following signature:
+{{Received signal 6 at 1755908669 (si_addr 0x6b00034298, PC 0x7fc05563beec); aborting...
+...
+in thread agentx_timeout scheduled from lib/agentx.c:121 agentx_events_update()}}
+To work around this issue, disable SNMP with the {{nv set system snmp-server state disabled}} command. You might also need to increase the FRR file descriptors with the {{LimitNOFILE}} parameter in the {{/lib/systemd/system/frr.service}} file and restart {{frr.service}}.</td>
+<td>5.13.0-5.13.1</td>
+<td>5.14.0</td>
+</tr>
+<tr>
 <td>4608614</td>
 <td>When setting up SSH keys, you have to run {{nv config apply}} twice for the configuration to take effect.</td>
 <td>5.11.3-5.14.0</td>
@@ -876,7 +886,7 @@ Mounting dev-mqueue.mount
 </tr>
 <tr>
 <td>3773177</td>
-<td>When you try to upgrade a switch from Cumulus Linux with package upgrade, you might see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
+<td>When you try to upgrade a switch from Cumulus Linux before 5.6.0 with package upgrade, you might see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
 
 cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb
@@ -1223,6 +1233,16 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>4629153</td>
+<td>When you configure several hundred BGP sessions, the {{agentx}} handler in FRR might crash with the following signature:
+{{Received signal 6 at 1755908669 (si_addr 0x6b00034298, PC 0x7fc05563beec); aborting...
+...
+in thread agentx_timeout scheduled from lib/agentx.c:121 agentx_events_update()}}
+To work around this issue, disable SNMP with the {{nv set system snmp-server state disabled}} command. You might also need to increase the FRR file descriptors with the {{LimitNOFILE}} parameter in the {{/lib/systemd/system/frr.service}} file and restart {{frr.service}}.</td>
+<td>5.13.0-5.13.1</td>
+<td>5.14.0</td>
 </tr>
 <tr>
 <td>4608614</td>
@@ -2037,7 +2057,7 @@ Mounting dev-mqueue.mount
 </tr>
 <tr>
 <td>3773177</td>
-<td>When you try to upgrade a switch from Cumulus Linux with package upgrade, you might see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
+<td>When you try to upgrade a switch from Cumulus Linux before 5.6.0 with package upgrade, you might see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
 
 cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb

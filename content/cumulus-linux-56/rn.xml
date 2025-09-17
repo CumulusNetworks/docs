@@ -153,7 +153,7 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 </tr>
 <tr>
 <td>3773177</td>
-<td>When you try to upgrade a switch from Cumulus Linux with package upgrade, you might see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
+<td>When you try to upgrade a switch from Cumulus Linux before 5.6.0 with package upgrade, you might see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
 
 cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb
@@ -698,6 +698,12 @@ cumulus@switch:~$ nv config patch frr_policy.yaml
 <td>When trying to access the NVUE API, user accounts authenticated with a newly-configured external service, such as TACACS, RADIUS, or LDAP, receive a 401 forbidden error. To work around this issue, after enabling a new authentication service, make sure to restart both {{nginx.service}} and {{nvued.service}} to begin authenticating users against the new authentication service.</td>
 <td>5.5.0-5.14.0</td>
 <td></td>
+</tr>
+<tr>
+<td>3436407</td>
+<td>The {{nv show acl &lt;aclname&gt;}} command output shows a header but no ACL details. </td>
+<td>5.5.0-5.8.0</td>
+<td>5.9.0-5.14.0</td>
 </tr>
 <tr>
 <td>3433577</td>

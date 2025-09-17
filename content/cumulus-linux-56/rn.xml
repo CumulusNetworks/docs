@@ -700,6 +700,12 @@ cumulus@switch:~$ nv config patch frr_policy.yaml
 <td></td>
 </tr>
 <tr>
+<td>3436407</td>
+<td>The {{nv show acl &lt;aclname&gt;}} command output shows a header but no ACL details. </td>
+<td>5.5.0-5.8.0</td>
+<td>5.9.0-5.14.0</td>
+</tr>
+<tr>
 <td>3433577</td>
 <td>When you use a single VXLAN device (SVD) with MLAG and static VXLAN tunnels, Cumulus Linux incorrectly associates the MAC addresses it learns from the VXLAN fabric to the bridge PVID. This issue can lead to a feedback loop between the {{clagd}} service and {{switchd}}, and might result in critical CPU usage with an out of memory condition. Do not use an SVD when enabling MLAG in a static VXLAN environment.</td>
 <td>5.5.0-5.8.0</td>

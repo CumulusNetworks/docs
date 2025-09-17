@@ -257,7 +257,7 @@ The following table shows the cipher types you can configure, and lists the allo
 | Cipher Type | Allowed Values | Default Value |
 |------------ | --------------- | --------|
 | SSH ciphers | `aes256-ctr`, `aes192-ctr`, `aes128-ctr`, `aes128-gcm@openssh.com`, or `aes256-gcm@openssh.com`| `aes256-ctr`|
-| SSH MACs    | `hmac-sha2-256`, `hmac-sha2-512`, `hmac-sha2-512-etm@openssh.com`, or `hmac-sha2-256-etm@openssh.com`| `hmac-sha2-256` |
+| SSH <span class="a-tooltip">[MACs](## "Message Authentication Codes")</span>    | `hmac-sha2-256`, `hmac-sha2-512`, `hmac-sha2-512-etm@openssh.com`, or `hmac-sha2-256-etm@openssh.com`| `hmac-sha2-256` |
 | SSH key exchange algorithms | `curve25519-sha256`, `curve25519-sha256@libssh.org`, `diffie-hellman-group16-sha512`, `diffie-hellman-group18-sha512`, or `diffie-hellman-group14-sha256`| `curve25519-sha256` |
 | SSH public key accepted algorithms | `ecdsa-sha2-nistp256-cert-v01@openssh.com`, `ecdsa-sha2-nistp384-cert-v01@openssh.com`, `ecdsa-sha2-nistp521-cert-v01@openssh.com`, `rsa-sha2-512-cert-v01@openssh.com`, `rsa-sha2-256-cert-v01@openssh.com`, `rsa-sha2-512`, `rsa-sha2-256`, `ecdsa-sha2-nistp256`, `ecdsa-sha2-nistp384`, `ecdsa-sha2-nistp521`, `ssh-ed25519`, or `ssh-ed25519-cert-v01@openssh.com`| `ecdsa-sha2-nistp256-cert-v01@openssh.com`|
 | SSH host key algorithms | `ecdsa-sha2-nistp256`, `rsa-sha2-256`, or `rsa-sha2-512`| `ecdsa-sha2-nistp256` |

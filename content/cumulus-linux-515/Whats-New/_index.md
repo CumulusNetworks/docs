@@ -25,7 +25,8 @@ Cumulus Linux 5.15.0 contains several new features and improvements, and provide
 - {{<link url="Docker-with-Cumulus-Linux" text="Support for docker-container">}}
 - {{<link url="FIPS" text="FIPS mode">}}
 - {{<link url="802.1X-Interfaces/#dynamic-ipv6-multi-tenancy" text="802.1x Dynamic IPv6 Multi-tenancy">}}
-- Require users to re-authenticate when changing authenticators
+- {{<link url="SSH-for-Remote-Access/#ssh-ciphers" text="SSH cipher configuration">}}
+- Users must re-authenticate when changing authenticators
 - Radius user Hardening
 - Telemetry
   - You can now run {{<link url="Open-Telemetry-Export" text="OTLP">}} and {{<link url="gNMI-Streaming" text="gNMI streaming">}} at the same time

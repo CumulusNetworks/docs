@@ -1458,7 +1458,7 @@ agent_stats           300  yes       Netq Predefined Command
 
 ### Related Commands
 
-- `netq config add agent commands`
+- `netq config add agent command`
 - `netq config agent factory-reset commands`
 
 - - -

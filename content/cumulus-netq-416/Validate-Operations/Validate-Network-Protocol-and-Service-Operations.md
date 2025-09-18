@@ -1,0 +1,1249 @@
+---
+title: Validate Network Protocol and Service Operations
+author: NVIDIA
+weight: 850
+toc: 4
+---
+
+## View Validation Summary
+
+The validation summary lets you view the overall health of your network at a glance, giving you a high-level understanding of how well your network is operating. To view the summary, select **Add card** and then **Validation summary**.
+
+The summary displays:
+
+- When NetQ last performed each validation
+- The results of the validation (passed, failed, not run)
+
+{{<figure src="/images/netq/val-summary-updated-415.png" height="375" width="750" alt="validation summary displaying network validation results">}}
+
+Select **View details** in the bottom-right corner to view a more detailed summary, with a list of the individual tests comprising a single validation and whether those tests passed or failed across all nodes that were included in the validation.
+
+{{<figure src="/images/netq/val-summary-full-415.png" height="700" width="1100" alt="detailed validation summary with individual test results">}}
+
+From this view, you can select **View details** on a specific validation to view a time series of all the validations that NetQ ran for that particular protocol or service. The following dashboard displays the results from BGP validations from the past 24 hours. 
+
+ - Use the dropdown menus in the side navigation to limit or expand the time range of the data displayed (limited to 600 results). 
+ - Use the filters to display all validation results, or only on-demand or scheduled validations.
+ - Select **Re-run** to run a new, on-demand validation.
+
+
+{{<figure src="/images/netq/bgp-validation-415.png" height="600" width="1100" alt="BGP validation summary with time series data">}}
+
+## Create and Run Validations
+
+In addition to the hourly validation checks that run by default, NetQ lets you validate the protocols and services running in your network either on-demand or according to a schedule. Both types can be customized to include or exclude particular tests or devices.
+
+- **On-demand validations** allow you to validate the operation of one or more network protocols and services right now.
+- **Scheduled validations** allow you to run validations according to a schedule. You can create and schedule up to 15 custom validation checks. The hourly, default validation checks do not count towards this limit.
+
+{{<notice tip>}}
+Before you run an on-demand validation for a particular protocol or service, check whether a scheduled validation is running or about to run. If both validations run concurrently, NetQ will take longer to validate your network and display results.
+{{</notice>}}
+
+<!-- vale on -->
+Using the NetQ UI, you can create an on-demand or scheduled validations for multiple protocols or services at the same time. This is handy when the protocols are strongly related regarding a possible issue or if you only want to create one validation request.
+
+{{<tabs "On-demand Validation">}}
+
+{{<tab "NetQ UI">}}
+
+To create a validation in the UI:
+
+1. In the workbench header, select **Validation**, then **Create a validation**. Choose whether the validation should run on all devices or on a {{<link title="Device Groups" text="group of devices">}}.
+
+2. Select the protocols or services you want to include as part of the validation. All {{<link title="Validation Tests Reference" text="tests that comprise the validation">}} are included by default, but you can select an individual test to exclude it from the validation check. Hover over an individual test and select **Customize** to configure filters which can exclude individual devices or failure reasons from the validation. Then click **Next**.
+
+   {{<figure src="/images/netq/create-val-415.png" width="1100" height="600" alt="">}}
+
+3. Choose when you want NetQ to perform the validation and how frequently it should be repeated. Then select **Run** or **Schedule**.
+
+4. If you chose to run the validation now, NetQ performs the validation and then displays the results on the validation summary dashboard. To view additional information, including a time series of previous validations and their respective results, select **View details**. If you scheduled the validation to run later, NetQ will display a dashboard containing all existing validation checks, including the one you just created.
+
+{{<notice tip>}}
+You can also select <b>Re-run</b> from the validation summary to run a new, on-demand validation.
+{{</notice>}}
+
+{{</tab>}}
+
+{{<tab "NetQ CLI">}}
+
+To view the list of tests for a given protocol or service, use either {{<link title="show" text="netq show unit-tests">}}.
+
+To run on-demand validations use the {{<link title="check" text="netq check">}} commands. 
+
+You can include or exclude one or more of the various tests performed during the validation by including or excluding the {{<link title="Validation Tests Reference" text="test's number">}}. The `check` command's `<protocol-number-range-list>` value is used with the `include` and `exclude` options to indicate which tests to include. It is a number list separated by commas, or a range using a dash, or a combination of these. Do not use spaces after commas. For example:
+
+
+- include 1,3,5
+- include 1-5
+- include 1,3-5
+- exclude 6,7
+- exclude 6-7
+- exclude 3,4-7,9
+
+You can create filters that suppress validation failures based on hostnames, failure reason, and other parameters with the {{<link title="add/#netq-add-check-filter" text="netq add check filter">}} command.
+
+The following example displays a list of all the checks included in a BGP validation, along with their respective test numbers and filters, if any: 
+
+```
+nvidia@switch:~$ netq show unit-tests bgp
+   0 : Session Establishment     - check if BGP session is in established state
+   1 : Address Families          - check if tx and rx address family advertisement is consistent between peers of a BGP session
+   2 : Router ID                 - check for BGP router id conflict in the network
+   3 : Hold Time                 - check for mismatch of hold time between peers of a BGP session
+   4 : Keep Alive Interval       - check for mismatch of keep alive interval between peers of a BGP session
+   5 : Ipv4 Stale Path Time      - check for mismatch of ipv4 stale path timer between peers of a BGP session
+   6 : Ipv6 Stale Path Time      - check for mismatch of ipv6 stale path timer between peers of a BGP session
+   7 : Interface MTU             - check for consistency of Interface MTU for BGP peers
+
+Configured global result filters:
+
+Configured per test result filters:
+```
+The following BGP validation includes only the session establishment (test number 0) and router ID (test number 2) tests. Note that you can obtain the same results using either of the `include` or `exclude` options and that the tests that are not run are marked *skipped*.
+```
+nvidia@switch:~$ netq check bgp include 0,2
+bgp check result summary:
+
+Total nodes         : 13
+Checked nodes       : 0
+Failed nodes        : 0
+Rotten nodes        : 13
+Warning nodes       : 0
+Skipped nodes       : 0
+
+Additional summary:
+Failed Sessions     : 0
+Total Sessions      : 0
+
+Session Establishment Test   : passed
+Address Families Test        : skipped
+Router ID Test               : passed
+Hold Time Test               : skipped
+Keep Alive Interval Test     : skipped
+Ipv4 Stale Path Time Test    : skipped
+Ipv6 Stale Path Time Test    : skipped
+Interface MTU Test           : skipped
+```
+
+To create a request containing checks on a single protocol or service run the {{<link title="add/#netq-add-validation-type" text="netq add validation type">}} command. Using this command adds validation results that can be accessed in the UI.
+
+<!--need to figure out the difference-->
+
+To create a scheduled validation, run the {{<link title="add/#netq-add-validation" text="netq add validation">}} command.
+
+The following example creates a BGP validation that runs every 15 minutes:
+
+```
+nvidia@switch:~$ netq add validation name Bgp15m type bgp interval 15m
+Successfully added Bgp15m running every 15m
+```
+Re-run this command for each additional scheduled validation.
+
+{{</tab>}}
+
+{{</tabs>}}
+
+## Edit or Delete a Scheduled Validation
+
+You can edit or delete any scheduled validation that you created. This creates a new validation request and the original validation has the *(old)* label applied to the name. The old validation can no longer be edited. Default validations cannot be edited or deleted, but can be disabled.
+
+{{<tabs "Delete Scheduled Validation">}}
+
+{{<tab "NetQ UI">}}
+To edit or delete a scheduled validation:
+
+1. In the header, select **Validation**, then click **Scheduled validations**.
+
+2. Hover over the validation then click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18"/> **Edit** or {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18">}} **Delete**.
+
+    {{<figure src="/images/netq/val-edit-411.png" width="250" height="300" alt="">}}
+
+3. If editing, select which checks to add or remove from the validation request, then click **Update**.
+
+5. Change the schedule for the validation, then click **Update**.
+
+    You can run the modified validation immediately or wait for it to run according to the schedule you specified.
+
+{{</tab>}}
+
+{{<tab "NetQ CLI">}}
+
+1. Determine the name of the scheduled validation you want to remove with the following command:
+
+```
+netq show validation summary
+    [name <text-validation-name>]
+    type (addr | agents | bgp | evpn | interfaces | mlag | mtu | ntp | roce | sensors | vlan | vxlan)
+    [around <text-time-hr>]
+    [json]
+```
+
+This example shows all scheduled validations for BGP:
+
+```
+nvidia@switch:~$ netq show validation summary type bgp
+Name            Type             Job ID       Checked Nodes              Failed Nodes             Total Nodes            Timestamp
+--------------- ---------------- ------------ -------------------------- ------------------------ ---------------------- -------------------------
+    Bgp30m          scheduled        4c78cdf3-24a 0                          0                        0                      Thu Nov 12 20:38:20 2020
+                                    6-4ecb-a39d-
+                                    0c2ec265505f
+    Bgp15m          scheduled        2e891464-637 10                         0                        10                     Thu Nov 12 20:28:58 2020
+                                    a-4e89-a692-
+                                    3bf5f7c8fd2a
+    Bgp30m          scheduled        4c78cdf3-24a 0                          0                        0                      Thu Nov 12 20:24:14 2020
+                                    6-4ecb-a39d-
+                                    0c2ec265505f
+    Bgp30m          scheduled        4c78cdf3-24a 0                          0                        0                      Thu Nov 12 20:15:20 2020
+                                    6-4ecb-a39d-
+                                    0c2ec265505f
+    Bgp15m          scheduled        2e891464-637 10                         0                        10                     Thu Nov 12 20:13:57 2020
+                                    a-4e89-a692-
+                                    3bf5f7c8fd2a
+    ...
+```
+
+2. To remove the validation, run:
+
+```
+netq del validation <text-validation-name>
+```
+
+This example removes the scheduled validation named *Bgp15m*.
+
+```
+nvidia@switch:~$ netq del validation Bgp15m
+ Successfully deleted validation Bgp15m
+```
+
+3. Repeat these steps to remove additional scheduled validations.
+
+{{</tab>}}
+
+{{</tabs>}}
+
+## Topology Validations
+
+The topology validation compares your actual network topology derived from LLDP telemetry data against a topology blueprint that you upload to the UI. NetQ accepts blueprint files formatted in either {{<exlink url="https://graphviz.org/doc/info/lang.html" text="Graphviz DOT">}} or JSON. 
+
+### Configure LLDP
+
+You must configure the LLDP service on switches and hosts that are defined in the topology blueprint to send the port ID subtype that matches the connection defined in the topology file. 
+
+The {{<exlink url="https://lldpd.github.io/usage.html" text="lldpd service">}} allows you to configure the port ID by specifying either the interface name (`ifname`) or MAC address (`macaddress`) using the `configure lldp portidsubtype [ifname | macaddress]` command. For example, if your host is configured to send the interface name in the LLDP port ID field, define the interface name in the topology file (DOT file example):
+```
+"switch1":"swp1" -- "host5":"eth1"
+```
+{{< expand "DOT file example" >}}
+
+Each line in the DOT file should depict the network's physical cabling:
+```
+graph "Example 2es full" {
+    "spine-1":"swp2" -- "noc-se":"swp11"
+    "spine-1":"swp3" -- "torc-11":"swp3"
+    "spine-1":"swp4" -- "torc-12":"swp3"
+    "spine-1":"swp5" -- "torc-21":"swp3"
+    "spine-1":"swp6" -- "torc-22":"swp3"
+    "spine-1":"swp7" -- "tor-1":"swp3"
+    "spine-1":"swp8" -- "tor-2":"swp3"
+    "spine-1":"swp10" -- "exit-2":"swp3"
+    "spine-1":"swp9" -- "exit-1":"swp3"
+    "exit-2":"swp1" -- "noc-pr":"swp6"
+    "exit-2":"swp2" -- "noc-se":"swp6"
+    "exit-2":"swp4" -- "spine-2":"swp10"
+    "exit-2":"swp5" -- "spine-3":"swp10"
+    "exit-2":"swp6" -- "firewall-1":"swp4"
+    "exit-2":"swp7" -- "firewall-2":"swp4"
+    "spine-3":"swp9" -- "exit-1":"swp5"
+    "spine-3":"swp1" -- "noc-pr":"swp13"
+    "spine-3":"swp2" -- "noc-se":"swp13"
+    "spine-3":"swp4" -- "torc-12":"swp5"
+    "spine-3":"swp5" -- "torc-21":"swp5"
+    "spine-3":"swp6" -- "torc-22":"swp5"
+    "spine-3":"swp7" -- "tor-1":"swp5"
+    "spine-3":"swp3" -- "torc-11":"swp5"
+    "noc-pr":"swp11" -- "spine-1":"swp1"
+    "spine-2":"swp1" -- "noc-pr":"swp12"
+    "spine-2":"swp2" -- "noc-se":"swp12"
+    "spine-2":"swp3" -- "torc-11":"swp4"
+    "spine-2":"swp4" -- "torc-12":"swp4"
+    "spine-2":"swp5" -- "torc-21":"swp4"
+    "spine-2":"swp6" -- "torc-22":"swp4"
+    "spine-2":"swp7" -- "tor-1":"swp4"
+    "spine-2":"swp8" -- "tor-2":"swp5"
+    "spine-2":"swp9" -- "tor-2":"swp4"
+    "exit-1":"swp1" -- "noc-pr":"swp5"
+    "exit-1":"swp11" -- "noc-pr":"swp11"
+    "exit-1":"swp2" -- "noc-se":"swp5"
+    "exit-1":"swp6" -- "firewall-1":"swp3"
+    "exit-1":"swp7" -- "firewall-2":"swp3"
+    "firewall-2":"swp1" -- "noc-pr":"swp15"
+    "firewall-2":"swp2" -- "noc-se":"swp15"
+    "firewall-1":"swp1" -- "noc-pr":"swp14"
+    "firewall-1":"swp2" -- "noc-se":"swp14"
+    "tor-2":"swp1" -- "noc-pr":"swp4"
+    "tor-2":"swp2" -- "noc-se":"swp4"
+    "torc-22":"swp1" -- "noc-pr":"swp10"
+    "torc-12":"swp1" -- "noc-pr":"swp8"
+    "torc-12":"swp2" -- "noc-se":"swp8"
+    "torc-12":"swp6" -- "torc-11":"swp6"
+    "tor-1":"swp1" -- "noc-pr":"swp3"
+    "tor-1":"swp2" -- "noc-se":"swp3"
+    "torc-11":"swp1" -- "noc-pr":"swp7"
+    "torc-11":"swp2" -- "noc-se":"swp7"
+    "torc-21":"swp1" -- "noc-pr":"swp9"
+    "torc-21":"swp2" -- "noc-se":"swp9"
+    "noc-pr":"swp1" -- "noc-se":"swp1"
+    "tor-2":"swp5" -- "spine-3":"swp8"
+    "torc-21":"swp6" -- "torc-22":"swp6"
+    "torc-202":"swp2" -- "noc-se":"swp10"
+    "tor-1":"swp6" -- "hosts-11":"swp2"
+}
+```
+{{< /expand >}}
+{{< expand "JSON file example" >}}
+The JSON file must include a `links` object with two defined key-value pairs: `interface` and `node`.
+```
+  "content": {
+    "links": [
+      [
+        {
+          "interface": "swp1",
+          "node": "exit-1"
+        },
+        {
+          "interface": "swp5",
+          "node": "noc-pr"
+        }
+      ],
+      [
+        {
+          "interface": "swp2",
+          "node": "exit-1"
+        },
+        {
+          "interface": "swp5",
+          "node": "noc-se"
+        }
+      ],
+      [
+        {
+          "interface": "swp3",
+          "node": "exit-1"
+        },
+        {
+          "interface": "swp9",
+          "node": "spine-1"
+        }
+      ],
+      [
+        {
+          "interface": "swp4",
+          "node": "exit-1"
+        },
+        {
+          "interface": "swp9",
+          "node": "spine-2"
+        }
+      ],
+      [
+        {
+          "interface": "swp5",
+          "node": "exit-1"
+        },
+        {
+          "interface": "swp9",
+          "node": "spine-3"
+        }
+      ],
+      [
+        {
+          "interface": "swp6",
+          "node": "exit-1"
+        },
+        {
+          "interface": "swp3",
+          "node": "firewall-1"
+        }
+      ],
+      [
+        {
+          "interface": "swp7",
+          "node": "exit-1"
+        },
+        {
+          "interface": "swp3",
+          "node": "firewall-2"
+        }
+      ],
+      [
+        {
+          "interface": "swp1",
+          "node": "exit-2"
+        },
+        {
+          "interface": "swp6",
+          "node": "noc-pr"
+        }
+      ],
+      [
+        {
+          "interface": "swp2",
+          "node": "exit-2"
+        },
+        {
+          "interface": "swp6",
+          "node": "noc-se"
+        }
+      ],
+      [
+        {
+          "interface": "swp3",
+          "node": "exit-2"
+        },
+        {
+          "interface": "swp10",
+          "node": "spine-1"
+        }
+      ],
+      [
+        {
+          "interface": "swp4",
+          "node": "exit-2"
+        },
+        {
+          "interface": "swp10",
+          "node": "spine-2"
+        }
+      ],
+      [
+        {
+          "interface": "swp5",
+          "node": "exit-2"
+        },
+        {
+          "interface": "swp10",
+          "node": "spine-3"
+        }
+      ],
+      [
+        {
+          "interface": "swp6",
+          "node": "exit-2"
+        },
+        {
+          "interface": "swp4",
+          "node": "firewall-1"
+        }
+      ],
+      [
+        {
+          "interface": "swp7",
+          "node": "exit-2"
+        },
+        {
+          "interface": "swp4",
+          "node": "firewall-2"
+        }
+      ],
+      [
+        {
+          "interface": "swp1",
+          "node": "firewall-1"
+        },
+        {
+          "interface": "swp14",
+          "node": "noc-pr"
+        }
+      ],
+      [
+        {
+          "interface": "swp2",
+          "node": "firewall-1"
+        },
+        {
+          "interface": "swp14",
+          "node": "noc-se"
+        }
+      ],
+      [
+        {
+          "interface": "swp1",
+          "node": "firewall-2"
+        },
+        {
+          "interface": "swp15",
+          "node": "noc-pr"
+        }
+      ],
+      [
+        {
+          "interface": "swp2",
+          "node": "firewall-2"
+        },
+        {
+          "interface": "swp15",
+          "node": "noc-se"
+        }
+      ],
+      [
+        {
+          "interface": "swp1",
+          "node": "hostd-11"
+        },
+        {
+          "interface": "swp7",
+          "node": "torc-11"
+        }
+      ],
+      [
+        {
+          "interface": "swp2",
+          "node": "hostd-11"
+        },
+        {
+          "interface": "swp7",
+          "node": "torc-12"
+        }
+      ],
+      [
+        {
+          "interface": "swp3",
+          "node": "hostd-11"
+        },
+        {
+          "interface": "swp16",
+          "node": "noc-pr"
+        }
+      ],
+      [
+        {
+          "interface": "swp4",
+          "node": "hostd-11"
+        },
+        {
+          "interface": "swp16",
+          "node": "noc-se"
+        }
+      ],
+      [
+        {
+          "interface": "swp1",
+          "node": "hostd-12"
+        },
+        {
+          "interface": "swp8",
+          "node": "torc-11"
+        }
+      ],
+      [
+        {
+          "interface": "swp2",
+          "node": "hostd-12"
+        },
+        {
+          "interface": "swp8",
+          "node": "torc-12"
+        }
+      ],
+      [
+        {
+          "interface": "swp3",
+          "node": "hostd-12"
+        },
+        {
+          "interface": "swp17",
+          "node": "noc-pr"
+        }
+      ],
+      [
+        {
+          "interface": "swp4",
+          "node": "hostd-12"
+        },
+        {
+          "interface": "swp17",
+          "node": "noc-se"
+        }
+      ],
+      [
+        {
+          "interface": "swp1",
+          "node": "hostd-21"
+        },
+        {
+          "interface": "swp7",
+          "node": "torc-21"
+        }
+      ],
+      [
+        {
+          "interface": "swp2",
+          "node": "hostd-21"
+        },
+        {
+          "interface": "swp7",
+          "node": "torc-22"
+        }
+      ],
+      [
+        {
+          "interface": "swp3",
+          "node": "hostd-21"
+        },
+        {
+          "interface": "swp18",
+          "node": "noc-pr"
+        }
+      ],
+      [
+        {
+          "interface": "swp4",
+          "node": "hostd-21"
+        },
+        {
+          "interface": "swp18",
+          "node": "noc-se"
+        }
+      ],
+      [
+        {
+          "interface": "swp1",
+          "node": "hostd-22"
+        },
+        {
+          "interface": "swp8",
+          "node": "torc-21"
+        }
+      ],
+      [
+        {
+          "interface": "swp2",
+          "node": "hostd-22"
+        },
+        {
+          "interface": "swp8",
+          "node": "torc-22"
+        }
+      ],
+      [
+        {
+          "interface": "swp3",
+          "node": "hostd-22"
+        },
+        {
+          "interface": "swp19",
+          "node": "noc-pr"
+        }
+      ],
+      [
+        {
+          "interface": "swp4",
+          "node": "hostd-22"
+        },
+        {
+          "interface": "swp19",
+          "node": "noc-se"
+        }
+      ],
+      [
+        {
+          "interface": "swp1",
+          "node": "hosts-11"
+        },
+        {
+          "interface": "swp6",
+          "node": "tor-1"
+        }
+      ],
+      [
+        {
+          "interface": "swp2",
+          "node": "hosts-11"
+        },
+        {
+          "interface": "swp20",
+          "node": "noc-pr"
+        }
+      ],
+      [
+        {
+          "interface": "swp3",
+          "node": "hosts-11"
+        },
+        {
+          "interface": "swp20",
+          "node": "noc-se"
+        }
+      ],
+      [
+        {
+          "interface": "swp1",
+          "node": "hosts-12"
+        },
+        {
+          "interface": "swp7",
+          "node": "tor-1"
+        }
+      ],
+      [
+        {
+          "interface": "swp2",
+          "node": "hosts-12"
+        },
+        {
+          "interface": "swp21",
+          "node": "noc-pr"
+        }
+      ],
+      [
+        {
+          "interface": "swp3",
+          "node": "hosts-12"
+        },
+        {
+          "interface": "swp21",
+          "node": "noc-se"
+        }
+      ],
+      [
+        {
+          "interface": "swp1",
+          "node": "hosts-13"
+        },
+        {
+          "interface": "swp8",
+          "node": "tor-1"
+        }
+      ],
+      [
+        {
+          "interface": "swp2",
+          "node": "hosts-13"
+        },
+        {
+          "interface": "swp22",
+          "node": "noc-pr"
+        }
+      ],
+      [
+        {
+          "interface": "swp3",
+          "node": "hosts-13"
+        },
+        {
+          "interface": "swp22",
+          "node": "noc-se"
+        }
+      ],
+      [
+        {
+          "interface": "swp1",
+          "node": "hosts-21"
+        },
+        {
+          "interface": "swp6",
+          "node": "tor-2"
+        }
+      ],
+      [
+        {
+          "interface": "swp2",
+          "node": "hosts-21"
+        },
+        {
+          "interface": "swp23",
+          "node": "noc-pr"
+        }
+      ],
+      [
+        {
+          "interface": "swp3",
+          "node": "hosts-21"
+        },
+        {
+          "interface": "swp23",
+          "node": "noc-se"
+        }
+      ],
+      [
+        {
+          "interface": "swp1",
+          "node": "hosts-22"
+        },
+        {
+          "interface": "swp7",
+          "node": "tor-2"
+        }
+      ],
+      [
+        {
+          "interface": "swp2",
+          "node": "hosts-22"
+        },
+        {
+          "interface": "swp24",
+          "node": "noc-pr"
+        }
+      ],
+      [
+        {
+          "interface": "swp3",
+          "node": "hosts-22"
+        },
+        {
+          "interface": "swp25",
+          "node": "noc-se"
+        }
+      ],
+      [
+        {
+          "interface": "swp1",
+          "node": "hosts-23"
+        },
+        {
+          "interface": "swp8",
+          "node": "tor-2"
+        }
+      ],
+      [
+        {
+          "interface": "swp2",
+          "node": "hosts-23"
+        },
+        {
+          "interface": "swp25",
+          "node": "noc-pr"
+        }
+      ],
+      [
+        {
+          "interface": "swp1",
+          "node": "noc-pr"
+        },
+        {
+          "interface": "swp1",
+          "node": "noc-se"
+        }
+      ],
+      [
+        {
+          "interface": "swp10",
+          "node": "noc-pr"
+        },
+        {
+          "interface": "swp1",
+          "node": "torc-22"
+        }
+      ],
+      [
+        {
+          "interface": "swp11",
+          "node": "noc-pr"
+        },
+        {
+          "interface": "swp1",
+          "node": "spine-1"
+        }
+      ],
+      [
+        {
+          "interface": "swp12",
+          "node": "noc-pr"
+        },
+        {
+          "interface": "swp1",
+          "node": "spine-2"
+        }
+      ],
+      [
+        {
+          "interface": "swp13",
+          "node": "noc-pr"
+        },
+        {
+          "interface": "swp1",
+          "node": "spine-3"
+        }
+      ],
+      [
+        {
+          "interface": "swp3",
+          "node": "noc-pr"
+        },
+        {
+          "interface": "swp1",
+          "node": "tor-1"
+        }
+      ],
+      [
+        {
+          "interface": "swp4",
+          "node": "noc-pr"
+        },
+        {
+          "interface": "swp1",
+          "node": "tor-2"
+        }
+      ],
+      [
+        {
+          "interface": "swp7",
+          "node": "noc-pr"
+        },
+        {
+          "interface": "swp1",
+          "node": "torc-11"
+        }
+      ],
+      [
+        {
+          "interface": "swp8",
+          "node": "noc-pr"
+        },
+        {
+          "interface": "swp1",
+          "node": "torc-12"
+        }
+      ],
+      [
+        {
+          "interface": "swp9",
+          "node": "noc-pr"
+        },
+        {
+          "interface": "swp1",
+          "node": "torc-21"
+        }
+      ],
+      [
+        {
+          "interface": "swp10",
+          "node": "noc-se"
+        },
+        {
+          "interface": "swp2",
+          "node": "torc-22"
+        }
+      ],
+      [
+        {
+          "interface": "swp11",
+          "node": "noc-se"
+        },
+        {
+          "interface": "swp2",
+          "node": "spine-1"
+        }
+      ],
+      [
+        {
+          "interface": "swp12",
+          "node": "noc-se"
+        },
+        {
+          "interface": "swp2",
+          "node": "spine-2"
+        }
+      ],
+      [
+        {
+          "interface": "swp13",
+          "node": "noc-se"
+        },
+        {
+          "interface": "swp2",
+          "node": "spine-3"
+        }
+      ],
+      [
+        {
+          "interface": "swp3",
+          "node": "noc-se"
+        },
+        {
+          "interface": "swp2",
+          "node": "tor-1"
+        }
+      ],
+      [
+        {
+          "interface": "swp4",
+          "node": "noc-se"
+        },
+        {
+          "interface": "swp2",
+          "node": "tor-2"
+        }
+      ],
+      [
+        {
+          "interface": "swp7",
+          "node": "noc-se"
+        },
+        {
+          "interface": "swp2",
+          "node": "torc-11"
+        }
+      ],
+      [
+        {
+          "interface": "swp8",
+          "node": "noc-se"
+        },
+        {
+          "interface": "swp2",
+          "node": "torc-12"
+        }
+      ],
+      [
+        {
+          "interface": "swp9",
+          "node": "noc-se"
+        },
+        {
+          "interface": "swp2",
+          "node": "torc-21"
+        }
+      ],
+      [
+        {
+          "interface": "swp3",
+          "node": "spine-1"
+        },
+        {
+          "interface": "swp3",
+          "node": "torc-11"
+        }
+      ],
+      [
+        {
+          "interface": "swp4",
+          "node": "spine-1"
+        },
+        {
+          "interface": "swp3",
+          "node": "torc-12"
+        }
+      ],
+      [
+        {
+          "interface": "swp5",
+          "node": "spine-1"
+        },
+        {
+          "interface": "swp3",
+          "node": "torc-21"
+        }
+      ],
+      [
+        {
+          "interface": "swp6",
+          "node": "spine-1"
+        },
+        {
+          "interface": "swp3",
+          "node": "torc-22"
+        }
+      ],
+      [
+        {
+          "interface": "swp7",
+          "node": "spine-1"
+        },
+        {
+          "interface": "swp3",
+          "node": "tor-1"
+        }
+      ],
+      [
+        {
+          "interface": "swp8",
+          "node": "spine-1"
+        },
+        {
+          "interface": "swp3",
+          "node": "tor-2"
+        }
+      ],
+      [
+        {
+          "interface": "swp3",
+          "node": "spine-2"
+        },
+        {
+          "interface": "swp4",
+          "node": "torc-11"
+        }
+      ],
+      [
+        {
+          "interface": "swp4",
+          "node": "spine-2"
+        },
+        {
+          "interface": "swp4",
+          "node": "torc-12"
+        }
+      ],
+      [
+        {
+          "interface": "swp5",
+          "node": "spine-2"
+        },
+        {
+          "interface": "swp4",
+          "node": "torc-21"
+        }
+      ],
+      [
+        {
+          "interface": "swp6",
+          "node": "spine-2"
+        },
+        {
+          "interface": "swp4",
+          "node": "torc-22"
+        }
+      ],
+      [
+        {
+          "interface": "swp7",
+          "node": "spine-2"
+        },
+        {
+          "interface": "swp4",
+          "node": "tor-1"
+        }
+      ],
+      [
+        {
+          "interface": "swp8",
+          "node": "spine-2"
+        },
+        {
+          "interface": "swp4",
+          "node": "tor-2"
+        }
+      ],
+      [
+        {
+          "interface": "swp3",
+          "node": "spine-3"
+        },
+        {
+          "interface": "swp5",
+          "node": "torc-11"
+        }
+      ],
+      [
+        {
+          "interface": "swp4",
+          "node": "spine-3"
+        },
+        {
+          "interface": "swp5",
+          "node": "torc-12"
+        }
+      ],
+      [
+        {
+          "interface": "swp5",
+          "node": "spine-3"
+        },
+        {
+          "interface": "swp5",
+          "node": "torc-21"
+        }
+      ],
+      [
+        {
+          "interface": "swp6",
+          "node": "spine-3"
+        },
+        {
+          "interface": "swp5",
+          "node": "torc-22"
+        }
+      ],
+      [
+        {
+          "interface": "swp7",
+          "node": "spine-3"
+        },
+        {
+          "interface": "swp5",
+          "node": "tor-1"
+        }
+      ],
+      [
+        {
+          "interface": "swp8",
+          "node": "spine-3"
+        },
+        {
+          "interface": "swp5",
+          "node": "tor-2"
+        }
+      ],
+      [
+        {
+          "interface": "swp6",
+          "node": "torc-11"
+        },
+        {
+          "interface": "swp6",
+          "node": "torc-12"
+        }
+      ],
+      [
+        {
+          "interface": "swp6",
+          "node": "torc-21"
+        },
+        {
+          "interface": "swp6",
+          "node": "torc-22"
+        }
+      ]
+    ]
+  }
+```
+{{< /expand >}}
+<br> 
+If your host is configured to send the MAC address in the LLDP port ID field, define the MAC address in the topology file (DOT file example):
+```
+"switch1":"swp1" -- "host5":"mac:48:b0:2d:f5:6b:b5"
+```
+You can use the `lldpctl` command to validate the current port ID received from a connected device.
+
+{{%notice note%}}
+- If you do not configure all of your network devices in the topology blueprint, the total number of devices accounted for in the validation results card might include additional devices that NetQ has received LLDP data from.
+- If you download a topology blueprint file from the UI and edit its parameters, give the file a different name before re-uploading it. 
+{{%/notice%}}
+
+### Create a Topology Validation
+
+{{<tabs "Topo Validation">}}
+
+{{<tab "NetQ UI">}}
+
+1. In the workbench header, select **Validation**, then **Create a validation**.
+
+2. Select **Topology** and upload the topology blueprint file. The name of the blueprint file NetQ will use to validate the topology is displayed on the screen. To use a different file, upload it to the UI, then select **Manage blueprint file**. Select **Activate** to indicate the blueprint file you'd like NetQ to use.
+
+3. Upon completion, the dashboard displays the devices that failed the topology validation, along with a table listing cabling issues. NetQ only displays the network links that were defined in the topology blueprint.
+
+{{<figure src="/images/netq/val-failed-topo-411.png" width="1200" height="600">}}
+
+{{</tab>}}
+
+{{<tab "NetQ CLI">}}
+
+1. Upload the topology blueprint file to the UI.
+
+2. Run the {{<link title="check/#netq-check-topology" text="netq check topology">}} command.
+
+{{</tab>}}
+
+{{</tabs>}}

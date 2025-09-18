@@ -6,13 +6,12 @@ toc: 3
 ---
 You can install NetQ either on your premises or as a remote, cloud solution. If you are unsure which option is best for your network, refer to {{<link title="Before You Install" text="Before You Install">}}.
 
-<!--
 
 ## Ethernet Deployments
 
 {{<tabs "TabID11" >}}
 
-{{<tab "On-premises Deployments" >}}
+{{<tab "On-premises" >}}
 
 | Server Arrangement | Hypervisor | Requirements & Installation |
 | :--- | --- | :---: |
@@ -22,7 +21,7 @@ You can install NetQ either on your premises or as a remote, cloud solution. If 
 
 {{</tab>}}
 
-{{<tab "Cloud (OPTA) Deployments" >}}
+{{<tab "Cloud (OPTA)" >}}
 
 | Server Arrangement | Hypervisor | Requirements & Installation |
 | :--- | --- | :---: |
@@ -40,7 +39,7 @@ You can install NetQ either on your premises or as a remote, cloud solution. If 
 
 | Server Arrangement | Hypervisor | Requirements & Installation |
 | :--- | --- | :---: |
-| High-availability scale cluster | KVM or VMware | {{<link title="Set Up Your Virtual Machine for an On-premises HA Scale Cluster" text="Start install">}} |
+| High-availability scale cluster | KVM or VMware | {{<link title="Install NetQ NVLink" text="Start install">}} |
 
 {{</tab>}}
 
@@ -61,7 +60,7 @@ Not available
 
 | Server Arrangement | Hypervisor | Requirements & Installation |
 | :--- | --- | :---: |
-| High-availability scale cluster | KVM or VMware | {{<link title="Set Up Your Virtual Machine for an On-premises HA Scale Cluster" text="Start install">}} |
+| High-availability scale cluster | KVM or VMware | {{<link title="Install NetQ NVLink" text="Start install">}} |
 
 {{</tab>}}
 
@@ -72,22 +71,6 @@ Not available
 {{</tab>}}
 
 {{</tabs>}}
-
--->
-
-## On-Premises Deployment Options
-
-| Server Arrangement | Hypervisor | Requirements & Installation |
-| :--- | --- | :---: |
-| Single server | KVM or VMware | {{<link title="Set Up Your Virtual Machine for a Single On-premises Server" text="Start install">}} |
-| High-availability cluster | KVM or VMware | {{<link title="Set Up Your Virtual Machine for an On-premises HA Server Cluster" text="Start install">}} |
-| High-availability scale cluster | KVM or VMware | {{<link title="Set Up Your Virtual Machine for an On-premises HA Scale Cluster" text="Start install">}} |
-
-## Cloud (OPTA) Deployment Options
-
-| Server Arrangement&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Hypervisor | Requirements & Installation |
-| :--- | --- | :---: |
-| Single server | KVM or VMware | {{<link title="Set Up Your Virtual Machine for a Single Cloud Server" text="Start install">}} |
 
 ## Base Command Manager
 

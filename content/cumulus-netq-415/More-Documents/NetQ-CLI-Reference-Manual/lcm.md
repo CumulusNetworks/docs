@@ -304,7 +304,7 @@ None
 ### Sample Usage
 
 ```
-nvidia@netq-server:~$ netq lcm add ztp-script /home/cumulus/ztp.sh
+nvidia@netq-server:~$ netq lcm add ztp-script /home/nvidia/ztp.sh
 ZTP script ztp.sh uploaded successfully and can be downloaded from http://10.10.10.10/lcm/asset/ztp.sh
 nvidia@netq-server:~$ 
 ```

@@ -1080,7 +1080,7 @@ Temperature sensors Test   : passed
 Compares your network's physical topology derived from LLDP telemetry data against a topology blueprint that you upload to the UI. Refer to {{<link title="Validate Network Protocol and Service Operations/#topology-validations" text="Topology Validation">}} for more information.
 
 {{<notice note>}}
-You must upload a network blueprint .dot file using the UI for this command to run successfully.
+You must upload a network blueprint file using the UI for this command to run successfully.
 {{</notice>}}
 
 ### Syntax

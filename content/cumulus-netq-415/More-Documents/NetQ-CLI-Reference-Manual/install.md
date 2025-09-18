@@ -106,7 +106,7 @@ netq install cluster bundle
 ### Sample Usage
 
 ```
-nvidia@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.15.0.tgz /tmp/cluster-install-config.json restore /home/cumulus/combined_backup_20241211111316.tar
+nvidia@<hostname>:~$ netq install cluster bundle /mnt/installables/NetQ-4.15.0.tgz /tmp/cluster-install-config.json restore /home/nvidia/combined_backup_20241211111316.tar
 ```
 
 ### Related Commands

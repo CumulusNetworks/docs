@@ -326,7 +326,7 @@ nvidia@switch:~$ netq lcm add role exit switches border01,border02
 You can host a {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Installation-Management/Zero-Touch-Provisioning-ZTP/" text="Zero Touch Provisioning (ZTP) script">}} on your NetQ VM to provision switches running Cumulus Linux. To host a ZTP script, copy the script to your NetQ server and reference the path you copied to in the `netq lcm add ztp-script` CLI command: 
 
 ```
-nvidia@netq-server:~$ netq lcm add ztp-script /home/cumulus/ztp.sh
+nvidia@netq-server:~$ netq lcm add ztp-script /home/nvidia/ztp.sh
 ZTP script ztp.sh uploaded successfully and can be downloaded from http://10.10.10.10/lcm/asset/ztp.sh
 nvidia@netq-server:~$ 
 ```

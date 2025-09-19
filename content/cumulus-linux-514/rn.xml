@@ -258,12 +258,6 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
-<td>4398031</td>
-<td>On the NVIDIA SN5400 switch, if the PTP slave port is swp66 and is operating at 1Gbps, the  PTP mean path delay value might be reported as a negative value. </td>
-<td>5.11.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4343690</td>
 <td>The Swagger UI for the Cumulus OpenAPI model is not rendering correctly (https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-512/api/index.html#). The interface shows screaming emojis and {{Could not render}}. </td>
 <td>5.11.0-5.14.0</td>
@@ -854,6 +848,15 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Issue ID </th>
 <th> Description </th>
 <th> Affects </th>
+</tr>
+<tr>
+<td>4629153</td>
+<td>When you configure several hundred BGP sessions, the {{agentx}} handler in FRR might crash with the following signature:
+{{Received signal 6 at 1755908669 (si_addr 0x6b00034298, PC 0x7fc05563beec); aborting...
+...
+in thread agentx_timeout scheduled from lib/agentx.c:121 agentx_events_update()}}
+To work around this issue, disable SNMP with the {{nv set system snmp-server state disabled}} command. You might also need to increase the FRR file descriptors with the {{LimitNOFILE}} parameter in the {{/lib/systemd/system/frr.service}} file and restart {{frr.service}}.</td>
+<td>5.13.0-5.13.1</td>
 </tr>
 <tr>
 <td>4555938</td>

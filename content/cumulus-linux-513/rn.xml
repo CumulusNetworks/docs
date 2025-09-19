@@ -119,14 +119,8 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <tr>
 <td>4535856</td>
 <td>When you try to import an invalid server certificate file, Cumulus Linux does not import the certificate file but fails to show an error message.</td>
-<td>5.13.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4535804</td>
-<td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
-<td>5.10.0-5.14.0</td>
-<td></td>
+<td>5.13.0-5.13.1</td>
+<td>5.14.0</td>
 </tr>
 <tr>
 <td>4535749</td>
@@ -202,8 +196,8 @@ To work around this issue, power cycle the switch.</td>
 <tr>
 <td>4513849</td>
 <td>After upgrading from Cumulus Linux 5.12 on the NVIDIA SN5400 switch bonus port, PTP does not converge. To work around this issue, disable, then enable the bonus port after upgrade.</td>
-<td>5.13.0-5.14.0</td>
-<td></td>
+<td>5.13.0-5.13.1</td>
+<td>5.14.0</td>
 </tr>
 <tr>
 <td>4509255</td>
@@ -243,12 +237,6 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>5.14.0</td>
 </tr>
 <tr>
-<td>4499025</td>
-<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
-<td>5.11.2-5.14.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4495383</td>
 <td>NVUE configuration yaml file translation converts unset commands to set commands because the translation logic expects only set commands. </td>
 <td>5.13.0-5.14.0</td>
@@ -265,6 +253,12 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>The CBS field in the {{nv show system control-plane policer}} command output might not show the configured value.</td>
 <td>5.13.0-5.13.1</td>
 <td>5.9.4, 5.14.0</td>
+</tr>
+<tr>
+<td>4486668</td>
+<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
+<td>5.11.2-5.13.1</td>
+<td>5.14.0</td>
 </tr>
 <tr>
 <td>4486200</td>
@@ -468,42 +462,6 @@ cumulus@switch:~$ git gc</td>
 <td>5.14.0</td>
 </tr>
 <tr>
-<td>4423368</td>
-<td>When all links go down or the switch reboots,  you see next hop group churn from Zebra to the SOO next hop group. This issue might cause some convergence degradation. </td>
-<td>5.12.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4423360</td>
-<td>After a remote link flap, neighbor entries using the link might not get resolved immediately. Only when some traffic uses the nexthop will they be resolved.</td>
-<td>5.12.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4423352</td>
-<td>ZTP scripts return an error due to incorrect ASCI to UTF-8 conversion.</td>
-<td>5.11.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4423335</td>
-<td>When you configure TACACS with NVUE or merge an NVUE configuration file that includes TACACS configuration with the {{nv config patch}} command, you see an unrecoverable error when running additional NVUE commands. To work around this issue, restart the NVUE service with {{systemctl restart nvued.service}}.</td>
-<td>5.9.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4423277</td>
-<td>When the username in a 802.1X session includes the equals (=) character, the ISSU warmboot fails. Make sure that = is not part of the 802.1X session name.</td>
-<td>5.11.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4423269</td>
-<td>When you configure the switch to move to warm restart mode, the message does not clearly indicate that the reboot to get the switch into warm mode is not hitless.</td>
-<td>5.11.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4423248</td>
 <td>If you unset an interface static IP address when the interface IP gateway is configured, the {{nv config apply}} command fails with an {{ifreload.service}} error. To work around this issue, unset both the static IP address and gateway together.</td>
 <td>5.9.0-5.14.0</td>
@@ -513,12 +471,6 @@ cumulus@switch:~$ git gc</td>
 <td>4423244</td>
 <td>When you enable, then disable adaptive routing, the BGP neighbors might go down because of an unresolved MAC address. To work around this issue, configure another attribute on the interface.</td>
 <td>5.9.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4423235</td>
-<td>The {{snmpd}} service generates debugging logs of sudo calls. To work around this issue, disable sudo logging for the specific commands run by the Debian-snmp user in the {{/etc/sudoers.d/snmp}} file by adding {{Defaults:Debian-snmp !syslog}}.</td>
-<td>5.11.0-5.14.0</td>
 <td></td>
 </tr>
 <tr>
@@ -593,12 +545,6 @@ onie-nos-install /$devname/onie-installer</td>
 <td>With high SSH scale you might see LTTNG high memory usage errors causing an out of memory condition.</td>
 <td>5.13.0-5.13.1</td>
 <td>5.14.0</td>
-</tr>
-<tr>
-<td>4370954</td>
-<td>After enabling, then disabling truncation on a SPAN session,  truncated packets are still received on the SPAN destination. To work around this issue, remove the SPAN session configuration, reboot the switch, then reconfigure the SPAN session without truncation.</td>
-<td>5.12.0-5.14.0</td>
-<td></td>
 </tr>
 <tr>
 <td>4360826</td>
@@ -1408,12 +1354,6 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>5.9.4, 5.14.0</td>
 </tr>
 <tr>
-<td>4499025</td>
-<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
-<td>5.11.2-5.14.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4495383</td>
 <td>NVUE configuration yaml file translation converts unset commands to set commands because the translation logic expects only set commands. </td>
 <td>5.13.0-5.14.0</td>
@@ -1430,6 +1370,12 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>The CBS field in the {{nv show system control-plane policer}} command output might not show the configured value.</td>
 <td>5.13.0-5.13.1</td>
 <td>5.9.4, 5.14.0</td>
+</tr>
+<tr>
+<td>4486668</td>
+<td>You see a high volume of NAT and NFCT errors flooding {{switchd}} logs. This issue has no functional impact.</td>
+<td>5.11.2-5.13.1</td>
+<td>5.14.0</td>
 </tr>
 <tr>
 <td>4486200</td>

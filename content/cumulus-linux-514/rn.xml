@@ -186,6 +186,12 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
+<td>4501632</td>
+<td>NVIDIA recommends you wait for approximately 60 seconds after running {{nv config apply}} before power cycling the switch so that NVUE database has time to sync to the filesystem. </td>
+<td>5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4498428</td>
 <td>Due to a GCC update in Cumulus Linux 5.14, you might see unexpected log messages, such as {{BPF: Invalid name}} when using package upgrade to upgrade to Cumulus Linux 5.14. You can ignore these messages.</td>
 <td>5.14.0</td>

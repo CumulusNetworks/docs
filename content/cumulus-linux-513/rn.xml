@@ -510,12 +510,6 @@ cumulus@switch:~$ git gc</td>
 <td>5.14.0</td>
 </tr>
 <tr>
-<td>4398031</td>
-<td>On the NVIDIA SN5400 switch, if the PTP slave port is swp66 and is operating at 1Gbps, the  PTP mean path delay value might be reported as a negative value. </td>
-<td>5.11.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4393369</td>
 <td>If you generate a cl-support file after configuring a breakout port, the syslog file includes errors due to a statistic collection failure for stale ports. This issue has no functional impact.</td>
 <td>5.13.0-5.13.1</td>
@@ -1673,12 +1667,6 @@ cumulus@switch:~$ git gc</td>
 <td>BGP crashes during EVPN route install due to incorrect memory access.</td>
 <td>5.11.0-5.13.1</td>
 <td>5.14.0</td>
-</tr>
-<tr>
-<td>4398031</td>
-<td>On the NVIDIA SN5400 switch, if the PTP slave port is swp66 and is operating at 1Gbps, the  PTP mean path delay value might be reported as a negative value. </td>
-<td>5.11.0-5.14.0</td>
-<td></td>
 </tr>
 <tr>
 <td>4393369</td>

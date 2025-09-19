@@ -2366,6 +2366,25 @@ cumulus@switch:~$ nv show service ptp 1 force-version
 force-version  2.0
 ```
 
+### Default and Custom Bridges
+
+Cumulus Linux preconfigures default bridges (such as `br_default`) with virtual interfaces that do not require an explicit base interface for PTP to work; the host stack handles it transparently.
+
+Custom bridges (such as `bridge`) are designed for layer 2 switching and have no external connectivity unless you add at least one physical interface. To enable PTP traffic to flow in and out, and to allow proper timestamping, you must configure a base interface. If there is no base interface, you see the error `Base interface config missing for SVIs associated with vlan-ids and their bridge domain information: VLAN <vlan-id>: [bridge], which is critical for PTP`.
+
+The following example shows a PTP configuration with a custom bridge that includes a base interface:
+
+```
+cumulus@switch:~$ nv set bridge domain bridge vlan 10 ptp enable on
+cumulus@switch:~$ nv set interface swp1-8,21,24-30 bridge domain bridge vlan 10
+cumulus@switch:~$ nv set interface swp1-8,21,24-30,vlan10 ptp enable on
+cumulus@switch:~$ nv set interface swp1-8,21,24-30 ptp transport ipv6
+cumulus@switch:~$ nv set interface vlan10 ip address 10.1.10.2/24
+cumulus@switch:~$ nv set interface vlan10 type svi
+cumulus@switch:~$ nv set interface vlan10 vlan 100
+cumulus@switch:~$ nv set interface vlan10 base-interface swp1
+```
+
 ### PTP Traffic Shaping
 
 To improve performance on the NVIDIA Spectrum 1 switch for PTP-enabled ports with speeds lower than 100G, you can enable a pre-defined traffic shaping profile. For example, if you see that the PTP timing offset varies widely and does not stabilize, enable PTP shaping on all PTP enabled ports to reduce the bandwidth on the ports slightly and improve timing stabilization.

@@ -281,7 +281,7 @@ The secret key is only shown once. If you do not copy these, you will need to re
 {{<notice tip>}}
 You can also save these keys to a YAML file for easy reference, and to avoid having to type or copy the key values. You can:
 
-- Store the file wherever you like, for example in <em>/home/cumulus/</em> or <em>/etc/netq</em>
+- Store the file wherever you like, for example in <em>/home/nvidia/</em> or <em>/etc/netq</em>
 - Name the file whatever you like, for example <em>credentials.yml</em>, <em>creds.yml</em>, or <em>keys.yml</em>
 
 The file **must** have the following format:
@@ -354,7 +354,7 @@ The secret key is only shown once. If you do not copy these, you will need to re
 {{<notice tip>}}
 You can also save these keys to a YAML file for easy reference, and to avoid having to type or copy the key values. You can:
 
-- store the file wherever you like, for example in <em>/home/cumulus/</em> or <em>/etc/netq</em>
+- store the file wherever you like, for example in <em>/home/nvidia/</em> or <em>/etc/netq</em>
 - name the file whatever you like, for example <em>credentials.yml</em>, <em>creds.yml</em>, or <em>keys.yml</em>
 
 The file **must** have the following format:

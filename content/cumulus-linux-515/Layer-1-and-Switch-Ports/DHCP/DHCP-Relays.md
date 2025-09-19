@@ -34,7 +34,8 @@ To set up DHCP relay, configure:
 
 ```
 cumulus@switch:~$ nv set service dhcp-relay default server-group type1-server-group server 172.16.1.102
-cumulus@switch:~$ nv set service dhcp-relay default server-group type1-server-group upstream-interface swp51-52
+cumulus@switch:~$ nv set service dhcp-relay default server-group type1-server-group upstream-interface swp51
+cumulus@switch:~$ nv set service dhcp-relay default server-group type1-server-group upstream-interface swp52
 cumulus@switch:~$ nv set service dhcp-relay default downstream-interface vlan10 server-group-name type1-server-group
 cumulus@switch:~$ nv config apply
 ```

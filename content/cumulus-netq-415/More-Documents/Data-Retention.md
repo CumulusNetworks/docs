@@ -11,6 +11,7 @@ NetQ deletes some types of data periodically to minimize database usage and incr
 | -------------| :---: |
 |Queue histograms | 3 |
 |Link health | 3 |
+|OTLP metrics | 7 |
 |Validation results | 30*, 40<sup>†</sup>|
 |Flow analysis | 40 |
 |RoCE data | 40 |

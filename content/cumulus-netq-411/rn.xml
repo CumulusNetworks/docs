@@ -10,84 +10,84 @@
 <td>4466349</td>
 <td>When you upgrade an HA cluster deployment from a version that is not part of the supported upgrade path, the upgrade might fail and the UI might not load due to expired control plane certificates on the worker nodes.To check whether the certificates have expired, run &lt;code&gt;sudo su&lt;/code&gt; followed by &lt;code&gt;kubeadm certs check-expiration&lt;/code&gt;. If the output displays a date in the past, your certificates are expired. To update the certificates, run &lt;code&gt;kubeadm certs renew all&lt;/code&gt; on each worker node in the cluster. Next, restart the &lt;a href="https://kubernetes.io/docs/concepts/overview/components/#control-plane-components/"&gt;control plane components&lt;/a&gt; with &lt;code&gt;crictl stop CONTAINER_ID&lt;/code&gt;, followed by &lt;code&gt;systemctl restart kubelet&lt;/code&gt;.</td>
 <td>4.8.0-4.14.0</td>
-<td>4.15.0</td>
+<td>4.15.0-4.15.1</td>
 </tr>
 <tr>
 <td>4181296</td>
 <td>NetQ might become unresponsive when someone with a non-admin (user) role attempts to create or clone workbenches, add cards to a workbench, create validations, or run a flow analysis.</td>
 <td>4.11.0-4.12.0</td>
-<td>4.13.0-4.15.0</td>
+<td>4.13.0-4.15.1</td>
 </tr>
 <tr>
 <td>4001098</td>
 <td>When you use NetQ LCM to upgrade a Cumulus Linux switch from version 5.9 to 5.10, and if the upgrade fails, NetQ rolls back to version 5.9 and reverts the {{cumulus}} user password to the default password. After rollback, reconfigure the password with the {{nv set system aaa user cumulus password &lt;password&gt;}} command.  </td>
 <td>4.11.0</td>
-<td>4.12.0-4.15.0</td>
+<td>4.12.0-4.15.1</td>
 </tr>
 <tr>
 <td>4000939</td>
 <td>When you upgrade a NetQ VM with devices in the inventory that have been rotten for 7 or more days, NetQ inventory cards in the UI and table output might show inconsistent results and might not display the rotten devices. To work around this issue, decommission the rotten device and ensure it's running the appropriate NetQ agent version.</td>
 <td>4.11.0</td>
-<td>4.12.0-4.15.0</td>
+<td>4.12.0-4.15.1</td>
 </tr>
 <tr>
 <td>3995266</td>
 <td>When you use NetQ LCM to upgrade a Cumulus Linux switch with NTP configured using NVUE in a VRF that is not {{mgmt}}, the upgrade fails to complete. To work around this issue, first unset the NTP configuration with the {{nv unset service ntp}} and {{nv config apply}} commands, and reconfigure NTP after the upgrade completes.</td>
 <td>4.11.0</td>
-<td>4.12.0-4.15.0</td>
+<td>4.12.0-4.15.1</td>
 </tr>
 <tr>
 <td>3993538</td>
 <td>When you re-position a card on your workbench and then manually refresh the workbench, NetQ might reposition the cards.</td>
-<td>4.11.0-4.15.0</td>
+<td>4.11.0-4.15.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3985598</td>
 <td>When you configure multiple threshold-crossing events for the same TCA event ID on the same device, NetQ will only display one TCA event for each hostname per TCA event ID, even if both thresholds are crossed or status events are triggered.  </td>
-<td>4.11.0-4.15.0</td>
+<td>4.11.0-4.15.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3981655</td>
 <td>When you upgrade your NetQ VM, some devices in the NetQ inventory might appear as rotten. To work around this issue, restart NetQ agents on devices or upgrade them to the latest agent version after the NetQ VM upgrade is completed.</td>
 <td>4.11.0</td>
-<td>4.12.0-4.15.0</td>
+<td>4.12.0-4.15.1</td>
 </tr>
 <tr>
 <td>3858210</td>
 <td>When you upgrade your NetQ VM, DPUs in the inventory are not shown. To work around this issue, restart the DTS container on the DPUs in your network.</td>
 <td>4.10.0-4.11.0</td>
-<td>4.12.0-4.15.0</td>
+<td>4.12.0-4.15.1</td>
 </tr>
 <tr>
 <td>3854467</td>
 <td>When a single NetQ cluster VM is offline, the NetQ kafka-connect pods are brought down on other cluster nodes, preventing NetQ data from collecting data. To work around this issue, bring all cluster nodes back into service.</td>
 <td>4.10.0-4.11.0</td>
-<td>4.12.0-4.15.0</td>
+<td>4.12.0-4.15.1</td>
 </tr>
 <tr>
 <td>3800434</td>
 <td>When you upgrade NetQ from a version prior to 4.9.0, What Just Happened data that was collected before the upgrade is no longer present.</td>
-<td>4.9.0-4.15.0</td>
+<td>4.9.0-4.15.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3772274</td>
 <td>After you upgrade NetQ, data from snapshots taken prior to the NetQ upgrade will contain unreliable data and should not be compared to any snapshots taken after the upgrade. In cluster deployments, snapshots from prior NetQ versions will not be visible in the UI.</td>
-<td>4.9.0-4.15.0</td>
+<td>4.9.0-4.15.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3769936</td>
 <td>When there is a NetQ interface validation failure for admin state mismatch, the validation failure might clear unexpectedly while one side of the link is still administratively down.</td>
 <td>4.9.0-4.13.0</td>
-<td>4.14.0-4.15.0</td>
+<td>4.14.0-4.15.1</td>
 </tr>
 <tr>
 <td>3613811</td>
 <td>LCM operations using in-band management are unsupported on switches that use eth0 connected to an out-of-band network. To work around this issue, configure NetQ to use out-of-band management in the {{mgmt}} VRF on Cumulus Linux switches when interface eth0 is in use.</td>
-<td>4.8.0-4.15.0</td>
+<td>4.8.0-4.15.1</td>
 <td></td>
 </tr>
 </table>

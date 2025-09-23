@@ -37,40 +37,27 @@ To create a simulation, you can either:
 
 ### Navigate Simulations
 
-After you create a simulation, you can power it on or off, edit it, share it with others, or delete it by selecting the **Actions** {{<img src="/images/guides/nvidia-air/ActionsButton.png" alt="">}} menu.
+There are many ways to interact with and manipulate your simulation. Navigate to the **Topology** tab to view your many options. Use these buttons to start and stop your simulation, share it with others, export it as a JSON, and more.
 
-{{<img src="/images/guides/nvidia-air/SimulationsActionHighlight.png" alt="action menu displaying options to stop, edit, or delete the simulation">}}
-<br>
+{{<img src="/images/guides/nvidia-air/SimulationActions.png" alt="">}}
 
-To load the simulation, select a simulation name.
-- Click the **Topology** tab to view the simulation as a topology.
-- Click the **Nodes** tab to view the simulation as a list of nodes.
-- Click the **Links** tab to view the simulation as a list of links.
-
-The timer shows when your simulation enters sleep mode. You can enter a stored status to conserve system resources or extend the amount of time that your simulation is active by selecting the timer's three-dot menu, then clicking **Add Time**. You can also reposition the timer by dragging it to a different part of the screen.
+### Nodes & Consoles
 
 Select a node to open a side panel that displays the node's properties, including its operating system, number of CPUs, memory and storage capacities, and connectors.
 
 {{<img src="/images/guides/nvidia-air/NodesTopology.png" alt="">}}
-<br>
-<br>
-Simulations from the Demo Marketplace typically include a simulation guide that appears when you first load the simulation. If you close the guide, you can access it again by navigating to the **Topology** tab. From the top of the dashboard, select **Workspace > Simulation Guide**.
-
-### Node Consoles
 
 Double-click any node to connect to its console.
-- Click the {{<img src="/images/guides/nvidia-air/LoginCredsButton.png" alt="information"  width="32px" >}} icon to view its login credentials.
-- Click the {{<img src="/images/guides/nvidia-air/PopoutButton.png" alt="pop-out"  width="32px" >}} button to open the console in its own window.
 
 {{<img src="/images/guides/nvidia-air/Console.png" alt="example console with login prompt"  width="800px" >}}
 
 ### Services
 
-Enable services to create external connections to your simulation to allow for integrations, such as using a preferred SSH client to access your simulation, running Grafana, or setting up SNMP polling.
+Enable services to create external connections to your simulation to allow for integrations, such as using a preferred SSH client to access the `oob-mgmt-server`, running and accessing web apps like Grafana or Kibana, or setting up SNMP polling. 
 
 To add a new service to your simulation:
 
-1. Load the simulation, then select **Services > New Service**.
+1. In a loaded simulation, click **Services > New Service**.
 
 {{<img src="/images/guides/nvidia-air/ServicesDropdown.png" alt=""  width="450px" >}}
 
@@ -83,13 +70,12 @@ Provide information in the fields to create a service.
 2. Click **Create**.
 
 {{<img src="/images/guides/nvidia-air/ServicesAdd.png" alt=""  width="450px" >}}
-<br>
-<br>
-To enable SSH in the `oob-mgmt-server`, click **Services > Enable SSH**. This option is only available when the out-of-band network is enabled. SSH password authentication is disabled on the `oob-mgmt-server` by default. To use SSH password authentication, you must upload SSH keys to your user profile; for more information, see [SSH Keys](#ssh-keys).
 
-To view existing services enabled on the simulation, click **Services > Services List**. From here, you can also view access information such as the external port and host connections.
+Observe the information you would need to access the service you created.
 
 {{<img src="/images/guides/nvidia-air/ServicesList.png" alt="">}}
+
+To enable SSH in the `oob-mgmt-server`, click **Services > Enable SSH**. This option is only available when the out-of-band network is enabled. SSH password authentication is disabled on the `oob-mgmt-server` by default. To use SSH password authentication, you must upload SSH keys to your user profile; for more information, see [SSH Keys](#ssh-keys).
 
 ### Rebuild and Reset Nodes
 
@@ -100,19 +86,15 @@ From a loaded simulation, select a node to view its node properties. Click **Adv
 {{<img src="/images/guides/nvidia-air/RebuildReset.png" alt=""  width="450px" >}}
 <br>
 <br>
-You can also rebuild all nodes in a simulation simultaneously by selecting **Workspace > Rebuild All Nodes**.
+You can also rebuild all nodes in a simulation simultaneously by clicking the {{<img src="/images/guides/nvidia-air/RebuildAllNodes.png" alt="" width="22px" >}} **Rebuild All Nodes** button in the **Topology** tab.
 
 ### Edit Simulations
 
-From a simulation, click **Workspace > Edit Simulation** to edit any of the following attributes:
+You can edit important attributes of a simulation with the {{<img src="/images/guides/nvidia-air/Edit.png" alt="" width="22px" >}} **Edit** button in the **Topology** tab.
 - **Name** is the simulation name. Simulations can share the same name. Air assigns a unique identifier to each simulation to differentiate between each one.
 - **Organization** is the organization assigned to the simulation. This attribute assigns the exact simulation to an organization. The simulation that is assigned to the organization is not a copy or clone of the simulation. This means that each user with appropriate permissions has access to the simulation and can edit it. For more information, refer to [Organizations](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Organizations).
 - **Sleep date** is when the simulation goes into sleep mode automatically; Air saves the state of the simulation and stores it to free up account resources.
 - **Expiration date** is when Air deletes the simulation automatically.
-
-You can also edit your simulation from the **Simulations** page by selecting **Actions {{<img src="/images/guides/nvidia-air/ActionsButton.png" alt="">}} > Edit Simulation**.
-
-{{<img src="/images/guides/nvidia-air/EditSim.png" alt=""  width="500px" >}}
 
 ### Share Simulations
 
@@ -120,7 +102,7 @@ Sharing a simulation allows other users to view and interact with a simulation. 
 
 To share a simulation:
 
-1. Load the simulation you want to share, then click **Workspace > Manage Users**.
+1. Click the {{<img src="/images/guides/nvidia-air/ManageUsersButton.png" alt="" width="22px" >}} **Manage Users** button in the **Topology** tab.
 2. Enter the email addresses of the users with which you want to share the simulation.
 3. Select whether to give the users read-only access.
 4. Click **Add User**.
@@ -176,3 +158,4 @@ If you need to expand the resources for an organization beyond the default resou
 ## Related Information
 
 - [Cumulus Linux in a Virtual Environment](https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Cumulus-Linux-in-a-Virtual-Environment/)
+

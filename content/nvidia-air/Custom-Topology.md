@@ -27,7 +27,7 @@ One way to create fully custom simulations is with the built-in topology builder
 
 When you create a new simulation, Air gives you the option to add a zero-touch provisioning (ZTP) script. The ZTP script is copied to the simulation's `oob-mgmt-server`. Any node making a ZTP request on the out-of-band management network has access to this ZTP script through a DHCP server and web server running on the `oob-mgmt-server`. 
 
-**You must have the out-of-band-network enabled to use ZTP scripts**
+**You must have the out-of-band-network enabled to use ZTP scripts.**
 
 A default script is prefilled to help you get started. It implements common ZTP features on Cumulus Linux, such as changing the default password or downloading SSH keys. You can edit the default script directly in the UI.
 
@@ -414,20 +414,24 @@ You can customize RAM (in MB) with the `memory` option:
 
 Labs in the [Demo Marketplace](https://air.nvidia.com/demos) are maintained with external GitLab repositories. Here you can find the `topology.dot` or `topology.json` file used to build the lab and use it as a reference. To access the files, select **Documentation** on any lab in the Demo Marketplace. It will direct you to the demo's GitLab repository, where you can download the file used for the demo topology.
 
+You can also launch a copy of a lab in the Demo Marketplace and then export the JSON.
+
 ### Import a Topology
 
 To import and upload a DOT or JSON topology file to Air, navigate to [air.nvidia.com/simulations](https://air.nvidia.com/simulations).
 
-1. Select **Create Simulation**.
+1. Click **Create Simulation**.
 2. Provide a name for the simulation.
 3. Select your desired filetype.
 4. Upload the file to the UI.
 5. (Optional) Assign the simulation to an [organization](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Organizations/).
-6. (Optional) Add a [ZTP script](#ztp-scripts).
+6. (Optional) Add a [ZTP script](#ztp-scripts). Optionally, you can apply a ZTP script within the file instead.
      1. Select **Apply ZTP Template**.
      2. Enter your ZTP script. A default script is prefilled to help you get started.
 7. (Optional) Click **Advanced** and provide an out-of-band management server configuration script that executes on the `oob-mgmt-server` when the simulation starts.
 8. Click **Create**.
+
+{{<img src="/images/guides/nvidia-air/ImportJSON.png" alt="" >}}
 
 Air redirects you to the [topology builder](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Custom-Topology/#the-drag-and-drop-topology-builder) with your custom topology created. You can continue to make adjustments as necessary.
 
@@ -706,5 +710,6 @@ extracts relevant files and collates them into folders which you can use to rest
 
 You can also use the [infrastructure-as-code](https://gitlab.com/cumulus-consulting/features/simple-iac)
 Ansible playbook to restore configurations.
+
 
 

@@ -438,7 +438,9 @@ Air redirects you to the [topology builder](https://docs.nvidia.com/networking-e
 ### Export a Topology
 You can export the topology for any existing simulation. The exported file is JSON formatted. 
 
-Click the {{<img src="/images/guides/nvidia-air/ExportSimulation.png" alt="" >}} **Export Simulation** button in the **Topology** tab to export.
+Click the **Export Simulation** button in the **Topology** tab to export.
+
+{{<img src="/images/guides/nvidia-air/ExportSimulation.png" alt="" >}} 
 
 ### Storage Limits
 
@@ -710,6 +712,7 @@ extracts relevant files and collates them into folders which you can use to rest
 
 You can also use the [infrastructure-as-code](https://gitlab.com/cumulus-consulting/features/simple-iac)
 Ansible playbook to restore configurations.
+
 
 
 

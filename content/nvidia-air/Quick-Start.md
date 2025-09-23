@@ -59,7 +59,7 @@ To add a new service to your simulation:
 
 1. In a loaded simulation, click **Services > New Service**.
 
-{{<img src="/images/guides/nvidia-air/ServicesDropdown.png" alt=""  width="450px" >}}
+{{<img src="/images/guides/nvidia-air/ServicesDropdown.png" alt="" >}}
 
 Provide information in the fields to create a service.
 - **Service Name** is the name for your service. After you name a service, you can choose to run multiple instances of the same service on different interfaces or ports.
@@ -69,7 +69,7 @@ Provide information in the fields to create a service.
 
 2. Click **Create**.
 
-{{<img src="/images/guides/nvidia-air/ServicesAdd.png" alt=""  width="450px" >}}
+{{<img src="/images/guides/nvidia-air/ServicesAdd.png" alt=""  >}}
 
 Observe the information you would need to access the service you created.
 
@@ -158,4 +158,5 @@ If you need to expand the resources for an organization beyond the default resou
 ## Related Information
 
 - [Cumulus Linux in a Virtual Environment](https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Cumulus-Linux-in-a-Virtual-Environment/)
+
 

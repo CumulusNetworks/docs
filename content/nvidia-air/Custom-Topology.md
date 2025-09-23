@@ -87,9 +87,7 @@ Air also provides advanced options, such as enabling UEFI secure boot.
 
 {{<img src="/images/guides/nvidia-air/AddNode.png" alt="">}}
 <br>
-When you finish creating your topology, select **Workspace&nbsp;<span aria-label="and then">></span> Start Simulation**. You cannot add, remove, or edit nodes after the simulation starts for the first time
-
-{{<img src="/images/guides/nvidia-air/WorkspaceStart.png" alt="" width="250px">}}
+When you finish creating your topology, start your simulation. You cannot add, remove, or edit nodes after the simulation starts for the first time
 
 ### OOB Management Network
 
@@ -436,9 +434,7 @@ Air redirects you to the [topology builder](https://docs.nvidia.com/networking-e
 ### Export a Topology
 You can export the topology for any existing simulation. The exported file is JSON formatted. 
 
-From a simulation, click **Workspace > Export Simulation** to export.
-
-{{<img src="/images/guides/nvidia-air/ExportSimulation.png" alt="" width="250px">}}
+Click the {{<img src="/images/guides/nvidia-air/ExportSimulation.png" alt="" width="22px" >}} **Export Simulation** in the **Topology** tab to export.
 
 ### Storage Limits
 
@@ -710,3 +706,4 @@ extracts relevant files and collates them into folders which you can use to rest
 
 You can also use the [infrastructure-as-code](https://gitlab.com/cumulus-consulting/features/simple-iac)
 Ansible playbook to restore configurations.
+

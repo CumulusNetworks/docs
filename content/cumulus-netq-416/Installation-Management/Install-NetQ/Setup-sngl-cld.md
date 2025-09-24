@@ -40,7 +40,7 @@ Confirm that the required ports are open for communications. The OPTA must be ab
 |30001	|TCP|	DPU communication|
 |31980	|TCP|	NetQ Agent communication|
 |31982	|TCP|	NetQ Agent SSL communication|
-|32708	|TCP|	API Gateway|
+|32710	|TCP|	API Gateway|
 
 ## Installation and Configuration
 

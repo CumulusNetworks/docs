@@ -29,6 +29,7 @@ NetQ 4.16.0 includes the following new features:
 
 - When you upgrade to NetQ v4.15.0, any pre-existing validation data will be lost. Additionally, NetQ will not retain data related to network services (including BGP, LLDP, EVPN, and MLAG) after upgrading.
 - You must upgrade cloud (OPTA) deployments to NetQ 4.15 before initiating a {{<link title="Switch Management/#switch-discovery" text="switch discovery">}}.
+- The API gateway port for on-premises deployments has changed from 32708 to 32710.
 
 ### Upgrade Paths
 

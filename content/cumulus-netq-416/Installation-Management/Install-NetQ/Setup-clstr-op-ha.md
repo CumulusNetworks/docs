@@ -39,7 +39,7 @@ Confirm that the required ports are open for communications.
 |30001	|TCP|	DPU communication|
 |31980	|TCP|	NetQ Agent communication|
 |31982	|TCP|	NetQ Agent SSL communication|
-|32708	|TCP|	API Gateway|
+|32710	|TCP|	API Gateway|
 
 Additionally, for internal cluster communication, you must open these ports:
 

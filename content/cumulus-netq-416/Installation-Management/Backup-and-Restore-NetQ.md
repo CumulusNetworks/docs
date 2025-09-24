@@ -9,7 +9,7 @@ The following sections describe how to back up and restore your NetQ data and VM
 
 {{%notice note%}}
 - You must run backup and restore scripts with sudo privileges.
-- When you upgrade to NetQ v4.15.0, any pre-existing validation data will be lost. Additionally, NetQ will not retain data related to network services (including BGP, LLDP, EVPN, and MLAG) after upgrading.
+- When you upgrade to NetQ v4.16.0, any pre-existing validation data will be lost. Additionally, NetQ will not retain data related to network services (including BGP, LLDP, EVPN, and MLAG) after upgrading.
 - NetQ does not retain custom-signed certificates during the backup and restore process. If your deployment uses a custom-signed certificate, you must {{<link title="Install a Custom Signed Certificate" text="reconfigure the certificate">}} after you restore it on a new NetQ VM.
 {{%/notice%}}
 

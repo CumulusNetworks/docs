@@ -220,7 +220,7 @@ cumulus@switch:~$ ifreload -a
 
 ## Access Ports and Tagged Packets
 
-Access ports ignore all tagged packets. In the configuration below, swp1 and swp2 are access ports, while all untagged traffic goes to VLAN 10:
+In the configuration below, swp1 and swp2 are access ports, while all untagged traffic goes to VLAN 10:
 <!-- vale off -->
 {{< img src = "/images/cumulus-linux/ethernet-bridging-vlan_untagged_access_ports1.png" >}}
 <!-- vale on -->

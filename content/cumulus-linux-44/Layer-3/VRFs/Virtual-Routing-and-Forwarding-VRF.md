@@ -134,6 +134,56 @@ cumulus@switch:~$ sudo ifreload -a
 The table ID **must** be in the range of 1001 to 1255. Cumulus Linux reserves this range for VRF table IDs.
 {{%/notice%}}
 
+### Assign an IP address to a VRF Interface
+
+To assign an IP address to a VRF interface:
+
+{{< tabs "TabID116 ">}}
+{{< tab "NVUE Commands ">}}
+
+When you assign an IP address to a VRF interface, in addition to the IP address you want to assign, you must define the default IP addresses (such as 127.0.0.1/8, 127.0.1.1/8, and ::1/128.).
+
+The following example assigns loopback IP address 10.10.10.1/32 to VRF RED and assigns the default IP addresses 127.0.0.1/8, 127.0.1.1/8, and ::1/128:
+
+```
+cumulus@switch:~$ nv set vrf RED loopback ip address 10.10.10.1/32
+cumulus@switch:~$ nv set vrf RED loopback ip address 127.0.0.1/8
+cumulus@switch:~$ nv set vrf RED loopback ip address 127.0.1.1/8
+cumulus@switch:~$ nv set vrf RED loopback ip address ::/128
+cumulus@switch:~$ nv config apply
+```
+
+{{%notice note%}}
+Do not use NVUE to unset the **default** IP addresses assigned to a VRF interface; NVUE removes the addresses from the underlying Linux Kernel, which results in traffic sent to these IP addresses within this VRF to be forwarded out of the local switch and onto the network.
+{{%/notice%}}
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the VRF stanza of the `/etc/network/interfaces` file to add the IP address:
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+auto RED
+iface RED
+    address 10.10.10.1/32
+    address 127.0.0.1/8
+    address 127.0.1.1/8
+    address ::1/128
+    vrf-table auto
+...
+```
+
+To load the new configuration, run `ifreload -a`:
+
+```
+cumulus@switch:~$ sudo ifreload -a
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Bring a VRF Up After You Run ifdown
 
 If you take down a VRF using `ifdown`, run one of the following commands to bring the VRF back up:

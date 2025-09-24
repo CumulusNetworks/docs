@@ -1279,25 +1279,25 @@ You can create ECN profiles and assign them to different ports.
 The following example creates a custom ECN profile called `my-red-profile` for egress queue (`traffic-class`) 1 and 2. The commands set the minimum buffer threshold to 40000 bytes, maximum buffer threshold to 200000 bytes, and the probability to 10. The commands also enable RED and apply the ECN profile to swp1 and swp2.
 
 ```
-cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 1,2 min-threshold-bytes 40000 
-cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 1,2 max-threshold-bytes 200000 
+cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 1,2 min-threshold 40000 
+cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 1,2 max-threshold 200000 
 cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 1,2 probability 10
 cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 1,2 red enable
-cumulus@switch:~$ nv set interface swp1,swp2 qos congestion-control my-red-profile
+cumulus@switch:~$ nv set interface swp1,swp2 qos congestion-control profile my-red-profile
 cumulus@switch:~$ nv config apply
 ```
 
 You can configure different thresholds and probability values for different traffic classes in a custom profile:
 
 ```
-cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 1,2 min-threshold-bytes 40000 
-cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 1,2 max-threshold-bytes 200000 
+cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 1,2 min-threshold 40000 
+cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 1,2 max-threshold 200000 
 cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 1,2 probability 10
 cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 1,2 red enable
-cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 4 min-threshold-bytes 30000 
-cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 4 max-threshold-bytes 150000 
+cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 4 min-threshold 30000 
+cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 4 max-threshold 150000 
 cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 4 probability 80
-cumulus@switch:~$ nv set interface swp1,swp2 qos congestion-control my-red-profile
+cumulus@switch:~$ nv set interface swp1,swp2 qos congestion-control profile my-red-profile
 cumulus@switch:~$ nv config apply
 ```
 

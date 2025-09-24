@@ -69,7 +69,7 @@ cumulus@switch:~$ netq config restart agent
 
 ## netq config add agent command
 
-The NetQ Agent contains a pre-configured set of modular commands that run periodically and send event and resource data to the NetQ appliance or VM. This command lets you fine-tune which events the agent can poll and vary the frequency of polling. Note that you must restart the NetQ Agent to enable the configuration.
+The NetQ Agent contains a pre-configured set of modular commands that run periodically and send event and resource data to the NetQ server or VM. This command lets you fine-tune which events the agent can poll and vary the frequency of polling. Note that you must restart the NetQ Agent to enable the configuration.
 
 Refer to the {{<link title="Manage NetQ Agents/#change-netq-agent-polling-data-and-frequency" text="Manage NetQ Agents">}} for additional details, including service keys and default polling intervals.
 
@@ -789,7 +789,7 @@ netq config add cli server
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| server | \<text-gateway-dest\> | Hostname or IP address of the NetQ appliance or VM in on-premises deployments, or gateway IP address or domain name for cloud/remote deployments. |
+| server | \<text-gateway-dest\> | Hostname or IP address of the NetQ server or VM in on-premises deployments, or gateway IP address or domain name for cloud/remote deployments. |
 | access-key | \<text-access-key\> | Access key obtained from NetQ UI for cloud/remote deployments |
 | secret-key | \<text-secret-key\> | Secret key obtained from NetQ UI for cloud/remote deployments |
 | premises | \<text-premises-name\> | Name of the premises with the data you want to monitor. When you have multiple premises, you must run this command again to view data from another premises. |
@@ -799,8 +799,8 @@ netq config add cli server
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| vrf | \<text-vrf-name\> | Use this VRF for communication with the telemetry server (NetQ appliance, VM, or cloud gateway). This should be the same VRF where you set the routing tables for connectivity to the telemetry server. Typically this is the management VRF. |
-| port | \<text-gateway-port\> | Use this port for communication with the telemetry server (NetQ appliance, VM, or cloud gateway). The default port is 32708 for on-premises deployments and 443  for cloud deployments. |
+| vrf | \<text-vrf-name\> | Use this VRF for communication with the telemetry server (NetQ server, VM, or cloud gateway). This should be the same VRF where you set the routing tables for connectivity to the telemetry server. Typically this is the management VRF. |
+| port | \<text-gateway-port\> | Use this port for communication with the telemetry server (NetQ server, VM, or cloud gateway). The default port is 32708 for on-premises deployments and 443  for cloud deployments. |
 
 ### Sample Usage
 
@@ -1380,7 +1380,7 @@ generate-unique-hostname  False      False
 - - -
 ## netq config show agent commands
 
-The NetQ Agent contains a pre-configured set of modular commands that run periodically and send event and resource data to the NetQ appliance or VM. This command displays the configuration of these commands, including the definition of the commands, which are active, and how often they run. You can also filter by the service key to view a given command.
+The NetQ Agent contains a pre-configured set of modular commands that run periodically and send event and resource data to the NetQ server or VM. This command displays the configuration of these commands, including the definition of the commands, which are active, and how often they run. You can also filter by the service key to view a given command.
 
 ### Syntax
 

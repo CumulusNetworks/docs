@@ -348,6 +348,10 @@ You can set the following ERSPAN options:
 - Source IP address for ERSPAN encapsulation
 - Destination IP address for ERSPAN encapsulation
 
+{{%notice note%}}
+Cumulus Linux does not support ERSPAN sessions with destination IP addresses that are reachable over an MLAG bond.
+{{%/notice%}}
+
 {{< tabs "TabID347 ">}}
 {{< tab "NVUE Commands ">}}
 
@@ -566,7 +570,7 @@ cumulus@switch:~$ sudo cl-acltool -L all | grep SPAN
 ## Limitations
 
 - On a switch with the Spectrum-2 ASIC or later, Cumulus Linux supports four SPAN destinations in atomic mode or eight SPAN destinations in non-atomic mode. On a switch with the Spectrum 1 ASIC, Cumulus Linux supports only a single SPAN destination in atomic mode or three SPAN destinations in non-atomic mode.
-- WJH buffer drop monitoring uses a SPAN destination; if you configure {{<link title="What Just Happened (WJH)" >}}, ensure that you do not exceed the total number of SPAN destinations allowed for your switch ASIC type.
+- Enabling WJH buffer drop monitoring consumes a SPAN destination; if you configure {{<link title="What Just Happened (WJH)" >}}, ensure that you do not exceed the total number of SPAN destinations allowed for your switch ASIC type.
 - Multiple SPAN sources can point to the same SPAN destination, but a SPAN source *cannot* specify two SPAN destinations.
 - Cumulus Linux does not support IPv6 ERSPAN destinations.
 - You cannot use eth0 as a destination.

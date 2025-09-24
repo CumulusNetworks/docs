@@ -860,7 +860,7 @@ cumulus@switch:~$ nv show interface swp1 link flag
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> link phy-detail</h>
+## <h>nv show interface \<interface-id\> link phy-detail</h>
 
 Shows physical layer information, such the error counters for each lane on a port.
 
@@ -882,12 +882,12 @@ Introduced in Cumulus Linux 5.10.0
 
 ```
 cumulus@switch:~$ nv show interface swp1 link phy-detail 
-                          operational
--------------------------  -----------------
-time-since-last-clear-min  324
-phy-received-bits          15561574400000000
-symbol-errors              0
-effective-errors           0
+                           operational  
+-------------------------  -------------
+time-since-last-clear-min  1            
+phy-received-bits          6214400000000
+symbol-errors              0            
+effective-errors           0            
 phy-raw-errors-lane0       747567424
 phy-raw-errors-lane1       215603747
 phy-raw-errors-lane2       158456437
@@ -895,10 +895,10 @@ phy-raw-errors-lane3       30578923
 phy-raw-errors-lane4       121708834
 phy-raw-errors-lane5       29244642
 phy-raw-errors-lane6       79102523
-phy-raw-errors-lane7       96656135
-raw-ber                    1E-7
-symbol-ber                 15E-255
-effective-ber              15E-255
+phy-raw-errors-lane7       96656135            
+raw-ber                    15E-255      
+symbol-ber                 15E-255      
+effective-ber              15E-255      
 raw-ber-lane0              3E-6
 raw-ber-lane1              9E-7
 raw-ber-lane2              6E-7
@@ -906,24 +906,44 @@ raw-ber-lane3              1E-7
 raw-ber-lane4              5E-7
 raw-ber-lane5              1E-7
 raw-ber-lane6              3E-7
-raw-ber-lane7              4E-7
-rs-num-corr-err-bin0       757956054591
-rs-num-corr-err-bin1       598244758
-rs-num-corr-err-bin2       807002
-rs-num-corr-err-bin3       3371
-rs-num-corr-err-bin4       180
-rs-num-corr-err-bin5       1
-rs-num-corr-err-bin6       0
-rs-num-corr-err-bin7       0
-rs-num-corr-err-bin8       1
-rs-num-corr-err-bin9       0
-rs-num-corr-err-bin10      0
-rs-num-corr-err-bin11      0
-rs-num-corr-err-bin12      0
-rs-num-corr-err-bin13      0
-rs-num-corr-err-bin14      0
-rs-num-corr-err-bin15      0
+raw-ber-lane7              4E-7            
+rs-num-corr-err-bin0       1216554377   
+rs-num-corr-err-bin1       598244758            
+rs-num-corr-err-bin2       807002            
+rs-num-corr-err-bin3       3371            
+rs-num-corr-err-bin4       180            
+rs-num-corr-err-bin5       1            
+rs-num-corr-err-bin6       0            
+rs-num-corr-err-bin7       0            
+rs-num-corr-err-bin8       0            
+rs-num-corr-err-bin9       0            
+rs-num-corr-err-bin10      0            
+rs-num-corr-err-bin11      0            
+rs-num-corr-err-bin12      0            
+rs-num-corr-err-bin13      0            
+rs-num-corr-err-bin14      0            
+rs-num-corr-err-bin15      0            
+snr-host-lane0             25.12 dB              
+snr-host-lane1             25.25 dB              
+snr-host-lane2             25.37 dB              
+snr-host-lane3             25.37 dB              
+snr-host-lane4             26    dB              
+snr-host-lane5             24.61 dB              
+snr-host-lane6             24.12 dB              
+snr-host-lane7             26    dB              
+snr-media-lane0            25.05 dB              
+snr-media-lane1            24.09 dB              
+snr-media-lane2            25.34 dB              
+snr-media-lane3            23.67 dB              
+snr-media-lane4            26    dB              
+snr-media-lane5            25.05 dB              
+snr-media-lane6            23.12 dB              
+snr-media-lane7            24.05 dB
 ```
+
+{{%notice note%}}
+The `nv show interface swp1 link phy-detail` command output shows <span class="a-tooltip">[SNR](## "Signal-to-Noise Ratio")</span> information in Cumulus Linux 5.13 and later.
+{{%/notice%}}
 
 ## <h>nv set interface \<interface-id\> link phy-diag</h>
 

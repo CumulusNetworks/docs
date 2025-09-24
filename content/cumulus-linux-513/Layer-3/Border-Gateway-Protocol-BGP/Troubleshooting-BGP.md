@@ -223,7 +223,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor --view=detail -o 
       ...
 ```
 
-To see a summary of the connection information for all BGP peers, such as the state (established, idle), uptime, number of messages received and sent, and the time the connections are established, run the `nv show vrf <vrf> router bgp neighbor` command.
+To see a summary of the connection information for all BGP peers, such as the state (`established`, `idle`), uptime, number of messages received and sent, and the time the connections establish, run the `nv show vrf <vrf> router bgp neighbor` command.
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp neighbor
@@ -915,7 +915,7 @@ To verify that FRR learns the neighboring link-local IPv6 address through the IP
 If you do not enable `ipv6 nd suppress-ra` on both ends of the interface, `Neighbor address(s):` shows the link-local address of the other end (the address that BGP uses when that interface uses BGP).
 
 {{%notice note%}}
-Cumulus Linux automatically enables IPv6 route advertisements (RAs) on an interface with IPv6 addresses. You do not need to run the `no ipv6 nd suppress-ra` command for BGP unnumbered.
+Cumulus Linux automatically enables IPv6 route advertisements on an interface with a configured BGP unnumbered neighbor.
 {{%/notice%}}
 
 ```

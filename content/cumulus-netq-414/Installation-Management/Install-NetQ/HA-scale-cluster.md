@@ -439,7 +439,7 @@ When the number of devices in your network grows, you can add additional nodes t
 To add additional worker nodes to an existing HA scale cluster, generate a JSON configuration template referencing the number of additional worker nodes you want to add. For example, to expand a 3-node cluster to a 5-node cluster, run the `netq install cluster config generate workers 2` command to generate the JSON configuration template, `/tmp/cluster-install-config.json`:
 
 ```
-cumulus@netq-appliance:~$ cat /tmp/cluster-install-config.json
+cumulus@netq-server:~$ cat /tmp/cluster-install-config.json
 {
         "version": "v2.0",
         "interface": "<INPUT>",

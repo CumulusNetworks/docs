@@ -51,7 +51,7 @@ NVUE provides commands to monitor various switch hardware elements.
 | `nv show platform environment led` | Shows information about the LEDs on the switch, such as the LED name and color.|
 | `nv show platform environment psu` | Shows information about the PSUs on the switch, such as the PSU name and state.|
 | `nv show platform environment temperature` | Shows information about the sensors on the switch, such as the critical, maximum, minimum and current temperature and the current state of the sensor.|
-| `nv show platform environment voltage` | Shows the list of voltage sensors on the switch.|
+| `nv show platform environment voltage` | Shows the list of voltage sensors on the switch. Note: On the SN3700 and SN3700c switch, the `nv show platform environment voltage` command output shows a failed state for the PSU-n-12V-RAIL-OUT sensors. This is a known hardware limitation that cannot be corrected by the PSU vendor.|
 | `nv show platform inventory` | Shows the switch inventory, which includes fan and PSU hardware version, model, serial number, state, and type. For information about a specific fan or PSU, run the `nv show platform inventory <inventory-name>` command.|
 
 The following example shows the `nv show platform environment fan` command output. The airflow direction must be the same for all fans. If Cumulus Linux detects that the fan airflow direction is not uniform, it logs a message in the `var/log/syslog` file.

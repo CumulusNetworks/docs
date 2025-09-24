@@ -6,7 +6,11 @@ toc: 2
 ---
 This document supports the Cumulus Linux 5.13 release, and lists new platforms, features, and enhancements.
 - For a list of open and fixed issues in Cumulus Linux 5.13, see the {{<link title="Cumulus Linux 5.13 Release Notes" text="Cumulus Linux 5.13 Release Notes">}}.
-- To upgrade to Cumulus Linux 5.13, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
+- To upgrade to Cumulus Linux 5.13, first check the {{<link title="#release-considerations" text="Release Considerations">}} below, then follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
+
+## What's New in Cumulus Linux 5.13.1
+
+Cumulus Linux 5.13.1 supports the NVIDIA SN5610 switch and provides bug fixes.
 
 ## What's New in Cumulus Linux 5.13
 
@@ -20,12 +24,12 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
 
 - NVIDIA SN5400 ITU-T G.8273.2 Class C (Compliance)
 - {{<link url="Equal-Cost-Multipath-Load-Sharing/#enable-adaptive-routing" text="Enabling adaptive routing no longer restarts switchd">}}
-- {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="Optimized upgrade supports warmboot">}}
+- {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Optimized upgrade supports warm restart mode">}}
 - {{<link url="802.1X-Interfaces/#ignore-reauthorization-timeout" text="802.1 option to keep the port in the current state when the RADIUS server is unreachable">}}
 - {{<link url="DHCP-Servers/#multiple-static-ip-address-assignments" text="Support two DHCP static IP address assignments per port for a single host">}}
-- {{<link url="Syslog/#configure-filters" text="syslog log filters">}}
+- {{<link url="Syslog/#selectors-and-filters" text="syslog log filters">}}
 - {{<link title="Erase all Data from the Switch" text="Erase all data from the switch">}} (Beta)
-- {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#amber-phy-health-management" text="Show SNR information for OSFP 100G per lane (NDR) capable transceivers">}}
+- {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#amber-phy-health-management" text="Show SNR information for OSFP 100G per lane capable transceivers">}}
 - {{<link url="In-Service-System-Upgrade-ISSU/#maintenance-mode" text="New maintenance mode commands">}}
 - {{<link url="RADIUS-AAA/#optional-radius-configuration" text="RADIUS multiple VRF support">}} and {{<link url="RADIUS-AAA/#optional-radius-configuration" text="RADIUS require-message-authenticate attribute">}}
 - {{<link url="SSH-for-Remote-Access/#message-of-the-day" text="Message of the day shows system reboot cause and health information">}}
@@ -45,12 +49,12 @@ Cumulus Linux 5.13.0 supports new platforms, provides bug fixes, and contains se
   - {{<link url="User-Accounts/#default-roles" text="Terminate a user session when you change the user role">}}
   - {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="CRL support">}}
   - {{<link url="NVUE-CLI/#replace-and-patch-a-pending-configuration" text="Replace and patch against a plain text file of nv set and nv unset commands">}}
-  - {{<link url="NVUE-CLI/#maximum-revisions-limit" text="Maximum NVUE Revisions Limit">}}
+  - {{<link url="NVUE-CLI/#maximum-revisions-limit" text="Maximum NVUE revisions limit">}}
   - {{<link url="NVUE-CLI/#view-differences-between-configurations" text="nv config diff --verbose option ">}} to see both previous and new configuration
   - {{<link url="Troubleshooting-BGP/#show-bgp-route-information" text="Filter BGP received routes by neighbor">}} and {{<link url="Troubleshooting-EVPN/#filter-evpn-routes-by-neighbor-rd-and-route-type" text="filter EVPN recieved routes by neighbor, RD and route type">}}
   - {{<link url="Monitoring-System-Hardware/#nvue-commands" text="Updated system health command output">}}
   - {{< expand "Changed NVUE Commands" >}}
-| Cumulus Linux 5.13 | Cumulus Linux 12 and Earlier |
+| Cumulus Linux 5.13 | Cumulus Linux 5.12 and Earlier |
 | --------------- |---------------------------------------|
 | `nv set maintenance unit all-protocols mode enabled`| `nv action enable system maintenance mode` |
 | `nv set maintenance unit all-protocols mode disabled` | `nv action disable system maintenance mode` |
@@ -374,18 +378,17 @@ Review the following considerations before you upgrade to Cumulus Linux 5.13.
 
 You can use {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="optimized image upgrade">}} to upgrade the switch to Cumulus Linux 5.13 from Cumulus Linux 5.11.1 and later.
 
-You can use {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.13, from the following releases:
+You can use {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.13 from the following releases. Package upgrade supports ISSU (warm boot) for these upgrade paths.
 - Cumulus Linux 5.12.1
 - Cumulus Linux 5.12.0
 - Cumulus Linux 5.11.1
 - Cumulus Linux 5.11.0
-- Cumulus Linux 5.9.2 (<span class="a-tooltip">[LTS](## "Long-Term Support")</span>) on any Spectrum 1, Spectrum-2, and Spectrum-3 switch; You **cannot** package upgrade from Cumulus Linux 5.9.2 (LTS) on a Spectrum-4 or later switch.
 
 To upgrade to Cumulus Linux 5.13 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#image-upgrade" text="ONIE">}}.
 
 ### Maximum Number of NVUE Revisions
 
-Cumulus Linux 5.13 includes a new option to set the {{<link url="NVUE-CLI/#maximum-revisions-limit" text="maximum number of revisions">}} after which NVUE deletes older revisions automatically. The default setting is 100. After upgrading to Cumulus Linux 5.13, the first time you run the `nv config apply` command, NVUE deletes older revisions if the number of revisions on the switch is greater than 100.
+Cumulus Linux 5.13 includes a new option to set the {{<link url="NVUE-CLI/#maximum-revisions-limit" text="maximum number of revisions">}} after which NVUE deletes older revisions automatically. The default setting is 100. After upgrading to Cumulus Linux 5.13, the first time you run `nv set` or `nv unset` commands, NVUE deletes older revisions if the number of revisions on the switch is greater than 100.
 
 ### Linux Configuration Files Overwritten
 
@@ -393,10 +396,10 @@ Cumulus Linux 5.13 includes a new option to set the {{<link url="NVUE-CLI/#maxim
 If you use Linux commands to configure the switch, read the following information before you upgrade to Cumulus Linux 5.13 or later.
 {{%/notice%}}
 
-Cumulus Linux includes a default NVUE `startup.yaml` file. In addition, NVUE configuration auto save is enabled by default. As a result, Cumulus Linux overwrites any manual changes to Linux configuration files on the switch when the switch reboots after upgrade or you change the `cumulus` user account password with the Linux `passwd` command.
+NVUE includes a default `startup.yaml` file. In addition, NVUE enables configuration auto save by default. As a result, NVUE overwrites any manual changes to Linux configuration files on the switch when the switch reboots after upgrade, or you change the `cumulus` user account password with the Linux `passwd` command.
 
 {{%notice note%}}
-These issues occur only if you use Linux commands to configure the switch. If you use NVUE commands to configure the switch, these issues do not occur and no action is needed.
+These issues occur only if you use Linux commands to configure the switch. If you use NVUE commands to configure the switch, these issues do not occur.
 {{%/notice%}}
 
 To prevent Cumulus Linux from overwriting manual changes to the Linux configuration files when the switch reboots or when changing the `cumulus` user account password with the `passwd` command, follow the steps below **before** you upgrade to 5.13 or later, or after a new binary image installation:
@@ -431,3 +434,7 @@ Cumulus Linux 5.13 includes the NVUE object model. After you upgrade to Cumulus 
 - Update your automation tools to use NVUE.
 - {{<link url="NVUE-CLI/#configure-nvue-to-ignore-linux-files" text="Configure NVUE to ignore certain underlying Linux files">}} when applying configuration changes.
 - Use Linux and FRR (vtysh) commands instead of NVUE for **all** switch configuration.
+
+### Cumulus VX
+
+NVIDIA no longer releases Cumulus VX as a standalone image. To simulate a Cumulus Linux switch, use {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/nvidia-air/" text="NVIDIA AIR">}}.

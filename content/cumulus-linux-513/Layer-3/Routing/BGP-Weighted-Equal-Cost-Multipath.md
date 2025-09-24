@@ -12,9 +12,6 @@ In <span class="a-tooltip">[ECMP](## "Equal Cost Multi Path")</span>, the route 
 
 In W-ECMP, along with the ECMP flow-based hash, Cumulus Linux associates a weight with each next hop and distributes traffic across the next hops in proportion to their weight. The BGP link bandwidth extended community carries information about capacity through the network, which maps to the weight of the corresponding next hop. The mapping factors the bandwidth value of a particular path against the total bandwidth values of all possible paths, mapped to the range 1 to 100. The BGP best path selection algorithm and the multipath computation algorithm that determines which paths you can use for load balancing does not change.
 
-
-
-
 <!--
 ## W-ECMP Example
 
@@ -40,14 +37,14 @@ The border leafs also have four W-ECMP routes:
 
 The border leafs balance traffic equally; all weights are equal to the spines. Only the spines have unequal load sharing based on the weight values.
 -->
-
+<!-- vale off -->
 ### Underlay Routing with W-ECMP
-
-W-ECMP load balances underlay traffic to spine switches as traffic is sent to remote VTEPs. Spines advertise weight based on available link bandwidth to VTEP endpoint IP addresses in the network.
+<!-- vale on -->
+W-ECMP load balances underlay traffic to spine switches as traffic goes to remote VTEPs. Spines advertise weight based on available link bandwidth to VTEP endpoint IP addresses in the network.
 
 {{< img src = "/images/cumulus-linux/WECMP-underlay-example.png" >}}
 
-In the above example, when `leaf03` interface `swp3` goes down to `spine02`, a BGP update is sent from `spine02` to `leaf01` with a less preferred weight for the `leaf03` VTEP IP, influencing underlay traffic between server01 and server04.
+In the above example, when `leaf03` interface `swp3` goes down to `spine02`, BGP sends an update from `spine02` to `leaf01` with a less preferred weight for the `leaf03` VTEP IP address, influencing underlay traffic between server01 and server04.
 
 ### Overlay Routing with W-ECMP
 
@@ -153,7 +150,7 @@ leaf01(config-route-map)# match ip address prefix-list SERVICE_IPS
 leaf01(config-route-map)# set extcommunity bandwidth num-multipaths
 leaf01(config-route-map)# router bgp 65011
 leaf01(config-router)# address-family ipv4 unicast
-leaf01(config-router-af)# neighbor swp51 prefix-list SERVICE_IPS out
+leaf01(config-router-af)# neighbor swp51 route-map ucmp-route-map out
 leaf01(config-router-af)# end
 leaf01# write memory
 leaf01# exit
@@ -434,7 +431,7 @@ W-ECMP with BGP link bandwidth is only available for BGP-learned routes.
 
 ### ECMP Resource Sharing During Next Hop Group Updates
 
-During network events such as reboots, link flaps, and in any transient scenarios, next hop group churn might create a higher number of ECMP containers. Also, when {{<link url="Optional-BGP-Configuration/#bgp-prefix-independent-convergence" text="FRR allocates a single next hop group per source">}}, more ECMP hardware resources are required.  
+During network events such as reboots, link flaps, and in any transient scenarios, next hop group churn might create a higher number of ECMP containers. Also, when {{<link url="Optional-BGP-Configuration/#bgp-prefix-independent-convergence" text="FRR allocates a single next hop group per source">}}, the switch needs more ECMP hardware resources.  
 
 To configure the switch to share ECMP resources during next hop group updates with weight changes, create the `/etc/cumulus/switchd.d/switchd_misc.conf` file and add `nhg_update_ecmp_sharing_enable = TRUE`:
 

@@ -214,3 +214,84 @@ cumulus@switch:mgmt:~$ sudo netq-support
 Collecting cl-support...
 Collecting netq-support...
 Please send /var/support/netq_support_switch_20221220_16188.txz to Nvidia support.
+```
+
+## Restart NetQ After a Power Failure
+
+In the event of a major power outage or hardware failure, NetQ might not load properly when you power back on your server. First identify this issue by performing the following steps:
+
+1. Check whether Cassandra pods are in a `CrashloopbackOff` state or are restarting frequently:
+
+```
+cumulus@master1scale1:~$ kubectl get pods -o wide|grep cassandra
+cassandra-rc-0-fg5ft 0/1 CrashLoopBackOff 36 (50s ago) 3h52m 10.213.11.181 master1scale1
+cassandra-rc-1-cpl8s 1/1 Running 0 21h 10.213.11.182 worker1scale1
+cassandra-rc-2-zwt58 1/1 Running 0 21h 10.213.11.183 worker2scale1 
+cumulus@master1scale1:~$
+```
+
+2. The log message from the crashing pods will return a `CommitLogReadException` exception:
+
+```
+kubectl logs cassandra-rc-0-fg5ft -p
+```
+
+For example:
+```
+org.apache.cassandra.db.commitlog.CommitLogReadHandler$CommitLogReadException: Could not read commit log descriptor in file /opt/cassandra/data/commitlog/CommitLog-7-1735662812573.log
+at org.apache.cassandra.db.commitlog.CommitLogReader.readCommitLogSegment(CommitLogReader.java:195)
+at org.apache.cassandra.db.commitlog.CommitLogReader.readCommitLogSegment(CommitLogReader.java:146)
+at org.apache.cassandra.db.commitlog.CommitLogReplayer.replayFiles(CommitLogReplayer.java:157)
+at org.apache.cassandra.db.commitlog.CommitLog.recoverFiles(CommitLog.java:221)
+at org.apache.cassandra.db.commitlog.CommitLog.recoverSegmentsOnDisk(CommitLog.java:202)
+at org.apache.cassandra.service.CassandraDaemon.setup(CassandraDaemon.java:360)
+at org.apache.cassandra.service.CassandraDaemon.activate(CassandraDaemon.java:765)
+at org.apache.cassandra.service.CassandraDaemon.main(CassandraDaemon.java:889)
+cumulus@master1scale1:~$
+```
+
+To fix the issue, log in to the corrupted node using SSH and delete the corrupted file. The following example deletes the corrupted file from node `master1scale1`:
+
+1. Log in as the root user:
+
+```
+cumulus@master1scale1:/mnt/cassandra/commitlog$ sudo su
+[sudo] password for cumulus:
+root@master1scale1:/mnt/cassandra/commitlog#
+```
+
+2. Change directories to `/mnt/cassandra/commitlog`:
+
+```
+cumulus@master1scale1:/mnt/cassandra/commitlog$ cd /mnt/cassandra/commitlog
+```
+
+3. Remove the corrupted commit log file:
+
+```
+root@master1scale1:/mnt/cassandra/commitlog# rm CommitLog-7-1735662812573.log
+```
+
+4. Delete the failing Cassandra pod:
+
+```
+root@master1scale1:/mnt/cassandra/commitlog# kubectl get pods|grep cass
+cassandra-rc-0-fg5ft 0/1 CrashLoopBackOff 37 (4m50s ago) 4h3m
+cassandra-rc-1-cpl8s 1/1 Running 0 21h
+cassandra-rc-2-zwt58 1/1 Running 0 21h
+root@master1scale1:/mnt/cassandra/commitlog# kubectl delete pod cassandra-rc-0-fg5ft
+pod "cassandra-rc-0-fg5ft" deleted
+```
+
+5. Repeat these steps for all pods that are in a `CrashLoopBackOff` state. Verify that all faulty pods are deleted using the following command:
+
+```
+root@master1scale1:/mnt/cassandra/commitlog# kubectl get pods|grep cass
+cassandra-rc-0-cg8j9 1/1 Running 0 2s
+cassandra-rc-1-cpl8s 1/1 Running 0 21h
+cassandra-rc-2-zwt58 1/1 Running 0 21h
+root@master1scale1:/mnt/cassandra/commitlog# kubectl get pods|grep cass
+cassandra-rc-0-cg8j9 1/1 Running 0 3s
+cassandra-rc-1-cpl8s 1/1 Running 0 21h
+cassandra-rc-2-zwt58 1/1 Running 0 21h
+root@master1scale1:/mnt/cassandra/commitlog#

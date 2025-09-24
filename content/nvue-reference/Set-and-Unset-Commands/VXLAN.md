@@ -118,7 +118,9 @@ cumulus@switch:~$ nv set nve vxlan encapsulation dscp 16
 
 Turns VXLAN flooding `on` or `off`.
 
-Enabling VXLAN flooding requires head-end replication. Make sure to set head-end replication on with the `nv set nve vxlan flooding head-end-replication evpn` command when you enable VXLAN flooding.
+In Cumulus Linux 5.13 and later, enabling VXLAN flooding requires head-end replication and, or a configured multicast group. Make sure to set head-end replication on with the `nv set nve vxlan flooding head-end-replication evpn` command and, or a configured multicast group with the `nv set nve vxlan flooding multicast-group <ip-address>`.
+
+In Cumulus Linux 5.12 and earlier, enabling VXLAN flooding requires head-end replication. Make sure to set head-end replication on with the `nv set nve vxlan flooding head-end-replication evpn` command when you enable VXLAN flooding.
 
 ### Version History
 
@@ -229,7 +231,7 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set nve vxlan mtu 1500
 ```
-
+<!-- NVER SUPPORTED APPARENTLY
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set nve vxlan port</h>
@@ -245,7 +247,7 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set nve vxlan port 1024
 ```
-
+-->
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set nve vxlan source address \<source-address\></h>

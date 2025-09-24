@@ -7,13 +7,464 @@ toc: 4
 You can use {{<exlink url="https://github.com/openconfig/gnmi" text="gRPC Network Management Interface">}} (gNMI) to collect system metrics and export the data to a gNMI client.
 
 Cumulus Linux supports:
-- {{<link url="/#gnmi-with-netq" text="gNMI with NetQ">}}, where the `netq-agent` package includes the gNMI agent that listens over port 9339.
 - {{<link url="/#gnmi-with-cumulus-linux" text="gNMI with Cumulus Linux">}}, where Cumulus Linux includes the gNMI agent that listens over port 9339.
+- {{<link url="/#gnmi-with-netq" text="gNMI with NetQ">}}, where the `netq-agent` package includes the gNMI agent that listens over port 9339.
 
 {{%notice note%}}
 To use both gNMI streaming with NetQ and gNMI streaming with Cumulus Linux, you must use different ports.
 {{%/notice%}}
 
+## gNMI with Cumulus Linux
+
+This section discusses how to configure and use gNMI with Cumulus Linux.
+
+To configure and use gNMI with NetQ, see {{<link url="/#gnmi-with-netq" text="gNMI with NetQ">}}.
+
+{{%notice note%}}
+- When you enable gNMI with Cumulus Linux, do **not** enable and use {{<link url="Open-Telemetry-Export" text="Open Telemetry">}}.
+- Switches with the Spectrum 1 ASIC do not support gNMI streaming.
+{{%/notice%}}
+
+Cumulus Linux supports both gNMI dial-in mode, where a collector can start a connection with the switch to collect available statistics, and gNMI dial-out mode, where the switch streams statistics and exports them to a collector.
+
+### Configure gNMI Dial-in Mode
+
+In dial-in telemetry mode, the data collector initiates the <span class="a-tooltip">[gRPC](## "Remote Procedure Calls")</span> connection, the Cumulus Linux switch assumes the role of the gRPC server and the receiver (collector) is the client. The switch pushes data to the collector.
+
+To configure gNMI dial-in mode, you must:
+- Specify the gNMI server listening address
+- Enable the gNMI server.
+
+To configure optional settings for gNMI dial-in mode:
+- Specify the listening port. The default port is 9339.
+- Enable a TLS certificate for validation.
+  - Cumulus Linux uses a self-signed certificate. You can generate your own TLS server certificate and bind it with the gNMI server application.
+  - If you need to use mTLS on the gNMI RPC, import the certificate of the CA that signed the gNMI client keys (or the client certificate itself) to the switch and configure the gNMI server to use the certificate. You can also apply a <span class="a-tooltip">[CRL](## "Certificate Revocation List")</span>. Specify either `uri` (a local or remote URI from where to retrieve the crl bundle file) or `data` (for a PEM encoded CRL).
+
+The following example sets the gNMI server listening address to 10.10.10.1 and the port to 443, and enables the gNMI server:
+
+```
+cumulus@switch:~$ nv set system gnmi-server listening-address 10.10.10.1
+cumulus@switch:~$ nv set system gnmi-server port 443
+cumulus@switch:~$ nv set system gnmi-server state enabled
+cumulus@switch:~$ nv config apply
+```
+
+The following example imports and sets the CA certificate `CERT1` and the CRL `crl.crt` for mTLS:
+
+```
+cumulus@switch:~$ nv action import system security ca-certificate CERT1 passphrase mypassphrase uri-bundle scp://user@pass:1.2.3.4:/opt/certs/cert.p12
+cumulus@switch:~$ nv set system gnmi-server mtls ca-certificate CERT1
+cumulus@switch:~$ nv action import system security crl uri scp://user:password@hostname/path/crl.crt
+cumulus@switch:~$ nv set system gnmi-server mtls crl /etc/ssl/certs/crl.crt
+cumulus@switch:~$ nv config apply
+```
+
+### Configure gNMI Dial-Out Mode
+
+In dial-out telemetry mode, the Cumulus Linux switch initiates the gRPC connection to the collector through a gRPC tunnel server and assumes the role of the gRPC client.
+
+To configure gNMI dial-out mode, you must:
+- Specify the listening address for each tunnel server to which you want to connect. Cumulus Linux supports a maximum of 10 tunnel servers.
+- Enable the tunnel server.
+
+To configure optional settings for each tunnel server:
+- Specify the target name and target application you want to access. The default target application is GNMI-GNOI.
+- Specify the retry interval. The default retry interval is 30 seconds.
+- Import and enable a TLS or mTLS certificate for validation. You can also apply a <span class="a-tooltip">[CRL](## "Certificate Revocation List")</span>. For information about importing certificates and CRLs, refer to {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="Security with Certificates and CRLs">}}.
+
+The following example sets the listening address for tunnel server SERVER1 to 10.1.1.10, and enables the tunnel server:
+
+```
+cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 address 10.1.1.10 
+cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 state enabled 
+cumulus@switch:~$ nv config apply
+```
+
+The following example sets the listening address for tunnel server SERVER1 to 10.1.1.10 and the port to 443, the target name to TARGET1, the retry interval to 40, the CA certificate to CACERT1, and enables the tunnel server:
+
+```
+cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 address 10.1.1.10 
+cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 port 443 
+cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 target-name TARGET1 
+cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 retry-interval 40
+cumulus@switch:~$ nv action import system security ca-certificate CACERT1 uri-public-key scp://user@pass:1.2.3.4:/opt/certs/ca-cert.pem uri-private-key scp://user@pass:1.2.3.4:/opt/certs/ca-cert-key.pem
+cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 ca-certificate CACERT1
+cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 state enabled 
+cumulus@switch:~$ nv config apply
+```
+
+### Show gNMI Configuration and Status Information
+
+To show gNMI server configuration and connection information, such the number of active subscriptions, received and rejected subscription requests, and received capability requests, run the `nv show system gnmi-server` command.
+
+```
+cumulus@switch:~$ nv show system gnmi-server 
+                                  operational  applied    
+--------------------------------  -----------  -----------
+state                             disabled     enabled   
+certificate                       self-signed  self-signed
+port                              9339         9339
+[listening-address]               10.1.1.100   10.1.1.100        
+version                                                   
+status                                                    
+  total-active-subscriptions      0                       
+  received-subscription-requests  0                       
+  rejected-subscriptions          0                       
+  received-capabilities-requests  0                       
+  [client]
+```
+
+To show the listening address of the gNMI server, run the `nv show system gnmi-server listening-address` command:
+
+```
+cumulus@switch:~$ nv show system gnmi-server listening-address
+----------
+10.1.1.100
+```
+
+To show gNMI server mTLS information, run the `nv show system gnmi-server mtls` command:
+
+```
+cumulus@switch:~$ nv show system gnmi-server mtls
+                operational  applied  pending         
+--------------  -----------  -------  ----------------
+ca-certificate  CACERT1       CACERT1   CACERT          
+crl                                   abcdefghijklmnop
+```
+
+To show only gNMI server connection information, run the `nv show system gnmi-server status` command:
+
+```
+cumulus@switch:~$ nv show system gnmi-server status
+                                operational
+------------------------------  -----------
+total-active-subscriptions      0          
+received-subscription-requests  0          
+rejected-subscriptions          0          
+received-capabilities-requests  0
+```
+
+To show gRPC tunnel server configuration and connection information, run the `nv show system grpc-tunnel server <server>` command:
+
+```
+cumulus@switch:~$ nv show system grpc-tunnel server SERVER1
+nv show system grpc-tunnel server SERVER1
+                 operational           applied  
+---------------  --------------------  ---------
+state            disabled              enabled  
+target-name      TARGET1               TARGET1  
+address          10.1.1.10             10.1.1.10
+port             443                   443      
+target-type      gnmi-gnoi             gnmi-gnoi
+retry-interval   40                    40       
+status                                          
+  local-port     0                              
+  remote-port    0                              
+  connection                                    
+    established  1970-01-01T00:00:00Z           
+    register     no                             
+    tunnel       no
+```
+
+To show the local and remote port, and connection information, run the `nv show system grpc-tunnel server SERVER1 status` command:
+
+```
+cumulus@switch:~$ nv show system grpc-tunnel server SERVER1 status
+               operational         
+-------------  --------------------
+local-port     0                   
+remote-port    0                   
+connection                         
+  established  1970-01-01T00:00:00Z
+  register     no                  
+  tunnel       no
+```
+
+To show only connection information, run the `nv show system grpc-tunnel server SERVER1 status connection` command:
+
+```
+cumulus@switch:~$ nv show system grpc-tunnel server SERVER1 status connection 
+             operational         
+-----------  --------------------
+established  1970-01-01T00:00:00Z
+register     no                  
+tunnel       no
+```
+
+### RPC Methods
+
+Cumulus Linux supports the following <span class="a-tooltip">[RPC](## "Remote Procedure Call")</span> methods:  
+- Capabilities
+- Subscription types and options:  
+  - STREAM (sample_interval, updates_only, suppress_redundant, and heartbeat_interval)
+  - ON_CHANGE (updates_only and heartbeat_interval)
+- Notification and update types:  
+  - sync_response
+  - update
+  - delete
+
+{{%notice note%}}
+Cumulus Linux does not support GET or SET RPC events.
+{{%/notice%}}
+
+### Encoding Types
+
+Cumulus Linux supports the Protobuf and JSON data formats.
+
+### Wildcard Support
+
+Cumulus Linux supports wildcard matching of keys. For example:
+
+```
+qos/interfaces/interface[interface-id=*]/output/queues/queue[name=*]/state/transmit-octets
+```
+
+You can use a combination of wildcard and specific keys; for example, to collect a metric for all queues on a specific interface:
+
+```
+/qos/interfaces/interface[interface-id=<name>]/output/queues/queue[*]/state/transmit-octets.
+```
+
+Regex for specific keys (such as `“interface-id=swp*”`) is not supported.
+
+### Metrics
+
+Cumulus Linux supports the following metrics:
+<!-- vale off -->
+{{< tabs "TabID200 ">}}
+{{< tab "Interface ">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/interfaces/interface/state/admin-status` | Admin state of an interface. |
+| `/interfaces/interface/state/counters/in-broadcast-pkts` | Total number of broadcast packets received on an interface.|
+| `/interfaces/interface/state/counters/in-multicast-pkts` | Total number of multicast packets received on an interface.|
+| `/interfaces/interface/state/counters/in-octets` | Total number of octets received on an interface, including framing characters.|
+| `/interfaces/interface/ethernet/state/counters/in-fcs-errors` | Total number of frames received on an interface that are an integral number of octets in length but do not pass the FCS check. This count does not include frames received with `frame-too-long` or `frame-too-short` error.|
+| `/interfaces/interface/ethernet/state/counters/in-oversize-frames` | Total number of packets received longer than 1518 octets (excluding framing bits, but including FCS octets). |
+| `/interfaces/interface/ethernet/state/counters/in-distribution/in-frames-1024-1518-octets` | Total number of packets (including bad packets) received between 1024 and 1518 octets in length inclusive (excluding framing bits but including FCS octets). |
+| `/interfaces/interface/ethernet/state/counters/in-distribution/ in-frames-128-255-octets` | Total number of packets (including bad packets) received between 128 and 255 octets in length inclusive (excluding framing bits but including FCS octets).|
+| `/interfaces/interface/ethernet/state/counters/in-distribution/in-frames-256-511-octets` | Total number of packets (including bad packets) received between 256 and 511 octets in length inclusive (excluding framing bits but including FCS octets).|
+| `/interfaces/interface/ethernet/state/counters/in-distribution/in-frames-512-1023-octets` | Total number of packets (including bad packets) received between 512 and 1023 octets in length inclusive (excluding framing bits but including FCS octets).|
+| `/interfaces/interface/ethernet/state/counters/in-distribution/in-frames-64-octets` | Total number of packets (including bad packets) received that are 64 octets in length (excluding framing bits but including FCS octets).|
+| `/interfaces/interface/ethernet/state/counters/in-distribution/in-frames-65-127-octets` | Total number of packets (including bad packets) received between 65 and 127 octets in length inclusive (excluding framing bits but including FCS octets).|
+| `/interfaces/interface/state/counters/out-broadcast-pkts` | Total number of broadcast packets transmitted out of an interface.|
+| `/interfaces/interface/state/counters/out-octets` | Total number of octets transmitted out of an interface, including framing characters.|
+| `/interfaces/interface/state/counters/out-unicast-pkts` | Total number of unicast packets transmitted out of an interface.|
+| `/interfaces/interface/ethernet/state/port-speed` | An estimate of the interface current bandwidth in units of 1,000,000 bits per second.|
+| `/interfaces/interface/rates/state/in-bits-rate` | Inbound bits per second on an interface.|
+| `/interfaces/interface/state/ifindex` | A unique value, greater than zero, for each interface.|
+| `/interfaces/interface/state/counters/in-discards` | Number of inbound packets discarded even though no errors are detected to prevent them from being deliverable to a higher-layer protocol. |
+| `/interfaces/interface/state/counters/in-errors` | For packet-oriented interfaces, the number of inbound packets that contained errors preventing them from being deliverable to a higher-layer protocol.|
+| `/interfaces/interface/state/counters/in-pkts`| Number of packets discarded from the egress queue of an interface. |
+| `/interfaces/interface/state/counters/in-pkts-rate` | Inbound packets per second on an interface. |
+| `/interfaces/interface/ethernet/state/counters/in-crc-errors` | Total number of frames received with a length (excluding framing bits, but including FCS octets) of between 64 and 1518 octets, inclusive, but had either a bad Frame Check Sequence (FCS) with an integral number of octets (FCS Error) or a bad FCS with a non-integral number of octets (Alignment Error).|
+| `/interfaces/interface/ethernet/state/negotiated-duplex-mode` | When auto-negotiate is set to TRUE, and the interface has completed auto-negotiation with the remote peer, this value shows the negotiated duplex mode.|
+| `/interfaces/interface/state/counters/in-acl-drops` | Number of inbound packets dropped because of an Access Control List (ACL).|
+| `/interfaces/interface/ethernet/state/counters/in-mac-pause-frames` | Inbound MAC pause frames on an interface.|
+| `/interfaces/interface/state/mtu` | Size of the largest packet that can be sent or received on the interface, specified in octets. For interfaces used for transmitting network datagrams, this is the size of the largest network datagram that the interface can send.|
+| `/interfaces/interface/state/oper-status` | Current operational state of an interface. |
+| `/interfaces/interface/rates/state/out-bits-rate` | Outbound bits per second on an interface. |
+| `/interfaces/interface/state/counters/out-discards` | Number of outbound packets discarded even though no errors are detected to prevent them from being transmitted. |
+| `/interfaces/interface/state/counters/out-errors` | For packet-oriented interfaces, the number of outbound packets not transmitted because of errors. For character-oriented or fixed-length interfaces, the number of outbound transmission units not transmitted because of errors. |
+| `/interfaces/interface/state/counters/out-pkts` | Total number of packets transmitted out of the interface, including all unicast, multicast, broadcast, and bad packets.|
+| `/interfaces/interface/state/counters/out-pkts-rate` | Outbound packets per second on an interface. |
+| `/interfaces/interface/state/counters/out-multicast-pkts` | Total number of packets that higher-level protocols requested be transmitted, and which were addressed to a multicast address at this sub-layer, including those that were discarded or not sent. For a MAC layer protocol, this includes both Group and Functional addresses.|
+| `/interfaces/interface/ethernet/state/counters/carrier-transitions` | Number of times since system boot that `ifOperStatus` changed.|
+| `/interfaces/interface/ethernet/phy/state/rs-fec-uncorrectable-blocks` | Number of RS FEC uncorrectable blocks of an interface. |
+| `/interfaces/interface/ethernet/phy/state/rs-fec-single-error-blocks` | Number of RS FEC uncorrectable blocks of an interface.|
+| `/interfaces/interface/ethernet/phy/state/rs-fec-no-error-blocks` | Number of RS FEC no errors blocks of an interface.|
+| `/interfaces/interface/ethernet/phy/state/lane/fc-fec-corrected-blocks` | Number FC FEC corrected blocks for a given lane of an interface.|
+| `/interfaces/interface/ethernet/phy/state/lane/fc-fec-uncorrected-blocks` | Number of FC FEC uncorrectable blocks for a given lane of an interface. |
+| `/interfaces/interface/ethernet/phy/state/lane/rs-fec-corrected-symbols` | Number of RS FEC corrected symbols for a given lane of an interface.|
+| `/interfaces/interface/ethernet/phy/state/corrected-bits` | Number of phy corrected bits of an interface by the FEC engine.|
+| `/interfaces/interface/ethernet/phy/state/effective-errors` | Number of phy effective errors of an interface.|
+| `/interfaces/interface/ethernet/phy/state/effective-ber` | Phy effective BER of an interface.|
+| `/interfaces/interface/ethernet/phy/state/lane/raw-errors` | Number of phy error bits identified for a given lane of an interface.|
+| `/interfaces/interface/ethernet/phy/state/received-bits` | Number of phy total bits received for an interface.|
+| `/interfaces/interface/ethernet/phy/state/symbol-errors` | Number of phy symbol errors for an interface.|
+| `/interfaces/interface/ethernet/phy/state/symbol-ber` | Phy symbol BER for an interface.|
+| `/interfaces/interface/ethernet/phy/state/lane/raw-ber` | Number of phy bit error rates for a given lane of an interface.|
+| `/interfaces/interface/ethernet/phy/state/fec-time-since-last-clear` | Time after last clear of FEC stats(phy layer). |
+| `/interfaces/interface/ethernet/phy/state/ber-time-since-last-clear` | Time after last clear of BER stats(phy layer). |
+
+{{< /tab >}}
+{{< tab "LLDP">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/lldp/state/chassis-id` | The chassis component of the endpoint identifier associated with the transmitting LLDP agent.|
+| `/lldp/state/chassis-id-type` | The format and source of the chassis identifier string.|
+| `/lldp/state/system-description` | Description of the network entity including the full name and version identification of the system's hardware type, software operating system, and networking software.|
+| `/lldp/state/system-name` | Administratively assigned name for the system.|
+| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/age` | LLDP neighbor age after discovery.|
+| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/management-address/type`| Enumerated value for the network address type identified in this TLV. |
+| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/chassis-id` | Chassis component of the endpoint identifier associated with the transmitting LLDP agent.|
+| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/chassis-id-type` | Format and source of the chassis identifier string.|
+| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/system-name` | Administratively assigned name of the system associated with the transmitting LLDP agent.|
+| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/system-description` | Description of the network entity associated with the transmitting LLDP agent.|
+| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/port-id`| Port component of the endpoint identifier associated with the transmitting LLDP agent. |
+| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/port-description` | Binary string containing the actual port identifier for the port from which this LLDP PDU was transmitted.|
+| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/port-id-type` | Format and source of the remote port ID string. |
+| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/ttl` | Indicates how long information from the neighbor is considered valid. |
+| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/capabilities/capability[name=<capability>]/state/enabled` | If the corresponding system capability is enabled on the neighbor.|
+
+{{< /tab >}}
+{{< tab "Platform">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/components/component[name='PSU1']/state/name` | PSU Name.|
+| `/components/component[name='PSU1']/state/oper-status` | PSU Status. |
+| `/components/component[name='PSU1']/state/description` |  PSU description. |
+| `/components/component[name='PSU1']/power-supply/state/capacity` | PSU capacity in watts. |
+| `/components/component[name='PSU1']/power-supply/state/output-current` | PSU current in amperes. |
+| `/components/component[name='PSU1']/power-supply/state/output-voltage` | PSU voltage in volts. |
+| `/components/component[name='PSU1']/power-supply/state/output-power` | PSU power in watts. |
+| `/components/component[name='fan0']/state/name` | Fan name. |
+| `/components/component[name='fan0']/state/oper-status` | Fan Status. |
+| `/components/component[name='fan0']/state/description` | Fan Description. |
+| `/components/component[name='fan0']/fan/state/speed` | Current (instantaneous) fan speed. |
+| `/components/component[name='temp-sensor0']/state/name` |  Temperature sensor name.|
+| `/components/component[name='temp-sensor0'']/state/oper-status` |  Temperature sensor operational status. |
+| `/components/component[name='temp-sensor0'']/state/description` | Temperature sensor description. |
+| `/components/component[name='temp-sensor0']/state/temperature/instant` | Instant temperature.  |
+| `/components/component[name='temp-sensor0']/state/temperature/alarm-status` | Temperature sensor alarm status. |
+| `/components/component[name='transceiver+panelport#']/transceiver/physical-channels/channel[no]/state/input-power/instant` | Input optical power of a physical channel in units of 0.01dBm, which may be associated with individual physical channels or an aggregate of multiple physical channels. |
+| `/components/component[name='transceiver+panelport#']/transceiver/physical-channels/channel[no]/state/laser-bias-current/instant` | Current applied by the system to the transmit laser to achieve the output power. The current is expressed in mA with up to two decimal precision. |
+| `/components/component[name='transceiver+panelport']/transceiver/physical-channels/channel[no]/state/output-power/instant` | Output optical power of a physical channel in units of 0.01dBm, which might be associated with individual physical channels or an aggregate of multiple physical channels. |
+
+{{< /tab >}}
+{{< tab "QoS">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/qos/interfaces/interface/state/switch-priority/counters/out-pause-pkts`| Number of pause packets for the priority class in the egress queue.|
+| `/qos/interfaces/interface/state/priority-group/counters/watermark-max` | High watermark of cells used in a priority group since last time watermarks were reset. |
+| `/qos/interfaces/interface/output/queues/queue/state/watermark-max` | High watermark of cells used in a queue since last time watermarks were reset. |
+| `qos/interfaces/interface/output/queues/queue/state/ecn-marked-pkts`| Number of ECN marked packets from this egress queue. If the ECN counter is not enabled, the counter value is 0.|
+| `qos/interfaces/interface/output/queues/queue/state/transmit-octets`| Number of transmitted bytes in the egress queue of an interface.|
+| `qos/interfaces/interface/output/queues/queue/state/transmit-pkts`| Number of transmitted packets in the egress queue of an interface. |
+| `/qos/interfaces/interface/output/queues/queue/state/wred-dropped-pkts` | Number of packets discarded from this egress queue of an interface. |
+| `/qos/interfaces/interface/output/queues/queue/state/no-buffer-uc-dropped-pkts` | Number of packets discarded from this egress queue when there is no buffer left in the interface. |
+| `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/time-since-last-clear` | Time since last clear of watermarks in a queue.|
+| `/qos/interfaces/interface[interface-id]/state/priority-group[priority_group]/counters/time-since-last-clear` | Time since last clear of watermarks in a priority group.|
+
+{{< /tab >}}
+{{< tab "Router">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/state/session-state` | Operational state of the BGP peer.|
+| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/state/established-transitions` | Number of transitions to the established state for the neighbor session.|
+| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/state/messages/sent/UPDATE` | Number of BGP UPDATE messages announcing, withdrawing, or modifying paths exchanged.|
+| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/messages/received/UPDATE` | Number of BGP UPDATE messages announcing, withdrawing, or modifying paths exchanged.|
+| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/state/queues/input` | Number of messages received from the peer currently queued.|
+| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/state/queues/output` | Number of messages queued to be sent to the peer.|
+| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/afi-safis/afi-safi[afi-safi-name=<afi-safi-name>]/state/prefixes/received` | Number of prefixes received from the neighbor after applying policies (the number of prefixes present in the post-policy Adj-RIB-In for the neighbor).|
+| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/afi-safis/afi-safi[afi-safi-name=<afi-safi-name>]/state/prefixes/sent` | Number of prefixes advertised to the neighbor after applying policies (the number of prefixes present in the post-policy Adj-RIB-Out for the neighbor).|
+| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/afi-safis/afi-safi[afi-safi-name=<afi-safi-name>]/state/prefixes/installed` | Number of prefixes received from the neighbor that are installed in the network instance RIB and actively used for forwarding. |
+
+{{< /tab >}}
+{{< tab "System">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/system/state/hostname` | System hostname. |
+| `/system/state/software-version` | System software version. |
+| `/system/state/boot-time` | System boot time. |
+| `/system/state/current-datetime` | Current system date and time. |
+| `/system/control-plane-traffic/ingress/ipv4/counters/`<br>`/system/control-plane-traffic/ingress/ipv6/counters/` | Number of input IP datagrams discarded in software including those received in error.|
+| `/system/cpus/cpu[name=<cpu_id>]/state/user/seconds` | CPU user Seconds |
+| `/system/cpus/cpu[name=<cpu_id>]/state/kernel/seconds` | CPU kernel seconds. |
+| `/system/cpus/cpu[name=<cpu_id>]/state/nice/seconds` | CPU Nice seconds. |
+| `/system/cpus/cpu[name=<cpu_id>]/state/idle/seconds` | CPU idle seconds. |
+| `/system/cpus/cpu[name=<cpu_id>]/state/wait/seconds` | CPU wait seconds.|
+| `/system/cpus/cpu[name=<cpu_id>]/state/hardware-interrupt/seconds` | CPU hardware interrupt seconds. |
+| `/system/cpus/cpu[name=<cpu_id>]/state/software-interrupt/seconds` | CPU software interrupt seconds.|
+| `/system/memory/state/free` | Free memory. |
+| `/system/memory/state/physical` | Physical memory.|
+| `/system/memory/state/reserved` | Memory reserved for system use. |
+| `/system/mount-points/mount-point[name='filesystem0']/state/name` | Mount point name.|
+| `/system/mount-points/mount-point[name='filesystem0']/state/storage-component` | A reference to the hosting component within the hierarchy. |
+| `/system/mount-points/mount-point[name='filesystem0']/state/size` | Total size of the initialized filesystem.|
+| `/system/mount-points/mount-point[name='filesystem0']/state/available` | Amount of unused space on the filesystem.|
+| `/system/mount-points/mount-point[name='filesystem0']/state/type` | Filesystem type used for storage such flash, hard disk, tmpfsor or ramdisk, or remote or network based storage.|
+
+{{< /tab >}}
+{{< /tabs >}}
+<!-- vale on -->
+### User Credentials and Authentication
+
+User authentication is enabled by default. gNMI subscription requests must include an HTTP Basic Authentication header according to RFC7617 containing the username and password of a user with NVUE API access permissions. You can enable this setting in the standard gNMI client (gNMIc) by setting the `auth-scheme` parameter to basic. Refer to {{<exlink url="https://gnmic.openconfig.net/global_flags/ - auth-scheme" text="https://gnmic.openconfig.net/global_flags/ - auth-scheme">}}.
+
+{{%notice note%}}
+Cumulus Linux ignores credentials in RPC metadata.
+{{%/notice%}}
+
+### gNMI Client Requests
+
+You can use your gNMI client on a host to request capabilities and data to which the Agent subscribes. The examples below use the gNMIc client.
+
+#### Dial-in Mode Example
+
+The following example shows a Dial-in Mode Subscribe request:
+
+```
+gnmic subscribe --mode stream --path "/qos/interfaces/interface[interface-id=swp1]/output/queues/queue[name=1]/state/transmit-octets" -i 10s --tls-cert gnmi_client.crt --tls-key gnmi_client.key -u cumulus -p ******* --auth-scheme Basic --skip-verify -a 10.188.52.108:9339
+```
+
+#### Subscription Example
+
+The following example shows a subscription response:
+<!-- vale off -->
+```
+{ 
+  "sync-response": true 
+} 
+{ 
+  "source": "10.188.52.108:9339", 
+  "subscription-name": "default-1737725382", 
+  "timestamp": 1737725390247535267, 
+  "time": "2025-01-24T13:29:50.247535267Z", 
+  "updates": [ 
+    { 
+      "Path": "qos/interfaces/interface[interface-id=swp1]/output/queues/queue[name=1]/state/transmit-octets", 
+      "values": { 
+        "qos/interfaces/interface/output/queues/queue/state/transmit-octets": 0 
+      } 
+    } 
+  ] 
+} 
+...
+```
+
+#### Capabilities Example
+
+The following example shows a capabilities request:
+
+```
+gnmic capabilities --tls-cert gnmic-cert.pem --tls-key gnmic-key.pem -u cumulus -p ****** --auth-scheme Basic --skip-verify -a 10.188.52.108:9339
+```
+
+The following example shows the expected response to a capabilities request:
+
+```
+gNMI version: 0.10.0 
+supported models: 
+  - openconfig-ospf-types, OpenConfig working group, 0.1.3 
+ 
+...
+ 
+  - openconfig-platform-fabric, OpenConfig working group, 0.1.0 
+  - openconfig-platform-healthz, OpenConfig working group, 0.1.1 
+supported encodings: 
+  - JSON 
+  - JSON_IETF 
+  - PROTO 
+```
+<!-- vale on -->
 ## gNMI with NetQ
 
 This section discusses how to configure and use gNMI with NetQ.
@@ -25,10 +476,11 @@ To configure and use gNMI with Cumulus Linux, see {{<link url="/#gnmi-with-cumul
 The `netq-agent` package includes the gNMI agent, which it disables by default. To enable the gNMI agent:
 
 ```
- cumulus@switch:~$ sudo systemctl enable netq-agent.service
- cumulus@switch:~$ sudo systemctl start netq-agent.service
- cumulus@switch:~$ netq config add agent gnmi-enable true
- ```
+cumulus@switch:~$ sudo systemctl enable netq-agent.service
+cumulus@switch:~$ sudo systemctl start netq-agent.service
+cumulus@switch:~$ netq config add agent gnmi-enable true
+cumulus@switch:~$ netq config restart agent
+```
 
 The gNMI agent listens over port 9339. You can change the default port in case you use that port in another application. The `/etc/netq/netq.yml` file stores the configuration.
 
@@ -103,7 +555,7 @@ Cumulus Linux supports the following gNMI {{<exlink url="https://github.com/open
 ### Supported Models
 
 Cumulus Linux supports the following OpenConfig models:
-
+<!-- vale off -->
 | Model| Supported Data |
 | --------- | ------ |
 | {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/interfaces/openconfig-interfaces.yang" text="openconfig-interfaces">}} | Name, Operstatus, AdminStatus, IfIndex, MTU, LoopbackMode, Enabled, Counters (InPkts, OutPkts, InOctets, InUnicastPkts, InDiscards, InMulticastPkts, InBroadcastPkts, InErrors, OutOctets, OutUnicastPkts, OutMulticastPkts, OutBroadcastPkts, OutDiscards, OutErrors) |
@@ -112,7 +564,7 @@ Cumulus Linux supports the following OpenConfig models:
 | {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/system/openconfig-system.yang" text="openconfig-system">}} | Memory, CPU |
 | {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/platform/openconfig-platform.yang" text="openconfig-platform">}} | Platform data (Name, Description, Version) |
 | {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/lldp/openconfig-lldp.yang" text="openconfig-lldp">}} | LLDP data (PortIdType, PortDescription, LastUpdate, SystemName, SystemDescription, ChassisId, Ttl, Age, ManagementAddress, ManagementAddressType, Capability) |
-<!-- vale off -->
+
 | Model| Supported Data |
 | --------- | ------ |
 | nvidia-if-wjh-drop-aggregate | Aggregated WJH drops, including layer 1, layer 2, router, ACL, tunnel, and buffer drops |
@@ -690,7 +1142,6 @@ The data that NetQ sends to the gNMI agent is in the form of WJH drop reasons. T
 | 325 | Router interface loopback | Warning | Validate the interface configuration |
 | 326 | Packet size is larger than router interface MTU | Warning | Validate the router interface MTU configuration |
 | 327 | TTL value is too small | Warning | Actual path is longer than the TTL |
-<!-- vale on -->
 
 #### Tunnel Drop Reasons
 
@@ -720,9 +1171,7 @@ The data that NetQ sends to the gNMI agent is in the form of WJH drop reasons. T
 
 ### gNMI Client Requests
 
-<!-- vale off -->
 You can use your gNMI client on a host to request capabilities and data to which the Agent subscribes. The examples below use the {{<exlink url="https://github.com/openconfig/reference/blob/master/rpc/gnmi/gnmi-specification.md#3515-creating-subscriptions" text="gNMIc client.">}}.
-<!-- vale on -->
 
 The following example shows a gNMIc `STREAM` request for WJH data:
 
@@ -818,413 +1267,13 @@ received sync response 'true' from '10.209.37.123:9339'
   ]
 }
 ```
-
-## gNMI with Cumulus Linux
-
-This section discusses how to configure and use gNMI with Cumulus Linux.
-
-To configure and use gNMI with NetQ, see {{<link url="/#gnmi-with-netq" text="gNMI with NetQ">}}.
-
-{{%notice note%}}
-When you enable gNMI with Cumulus Linux, do **not** enable and use {{<link url="Open-Telemetry-Export" text="Open Telemetry">}}.
-{{%/notice%}}
-
-Cumulus Linux supports both gNMI dial-in mode, where a collector can initiate a connection with the switch to collect available statistics, and gNMI dial-out mode, where the switch streams statistics and exports them to a collector.
-
-### Configure gNMI Dial-in Mode
-
-In dial-in telemetry mode, the data collector initiates the <span class="a-tooltip">[gRPC](## "Remote Procedure Calls")</span> connection, the Cumulus Linux switch assumes the role of the gRPC server and the receiver (collector) is the client. The switch pushes data to the collector.
-
-To configure gNMI dial-in mode, you must:
-- Specify the gNMI server listening address
-- Enable the gNMI server.
-
-To configure optional settings for gNMI dial-in mode:
-- Specify the listening port. The default port is 9339.
-- Enable a TLS certificate for validation.
-  - Cumulus Linux uses a self-signed certificate. You can generate your own TLS server certificate and bind it with the gNMI server application.
-  - If mTLS on the gNMI RPC is required, import the certificate of the CA that signed the gNMI client keys (or the client certificate itself) to the switch and configure the gNMI server to use the certificate. You can also apply a <span class="a-tooltip">[CRL](## "Certificate Revocation List")</span>.
-
-The following example sets the gNMI server listening address to 10.10.10.1 and the port to 443, and enables the gNMI server:
-
-```
-cumulus@switch:~$ nv set system gnmi-server listening-address 10.10.10.1
-cumulus@switch:~$ nv set system gnmi-server port 443
-cumulus@switch:~$ nv set system gnmi-server state enabled
-cumulus@switch:~$ nv config apply
-```
-
-The following example imports and enables the CA certificate `CERT1` and the CRL `crl.crt` for mTLS:
-
-```
-cumulus@switch:~$ nv action import system security ca-certificate CERT1 passphrase mypassphrase uri-bundle scp://user@pass:1.2.3.4:/opt/certs/cert.p12
-cumulus@switch:~$ nv set system gnmi-server mtls ca-certificate CERT1
-cumulus@switch:~$ nv action import system security scp:////user@pass:1.2.3.4:/path/to/your/crl.crt. 
-cumulus@switch:~$ nv set system gnmi-server mtls crl /etc/ssl/certs/crl.crt
-cumulus@switch:~$ nv config apply
-```
-
-### Configure gNMI Dial-Out Mode
-
-In dial-out telemetry mode, the Cumulus Linux switch initiates the gRPC connection to the collector through a gRPC tunnel server and assumes the role of the gRPC client.
-
-To configure gNMI dial-out mode, you must:
-- Specify the listening address for each tunnel server to which you want to connect. Cumulus Linux supports a maximum of 10 tunnel servers.
-- Enable the tunnel server.
-
-To configure optional settings for each tunnel server:
-- Specify the target name and target application you want to access. The default target application is GNMI-GNOI.
-- Specify the retry interval. The default retry interval is 30 seconds.
-- Import and enable a TLS or mTLS certificate for validation. You can also apply a <span class="a-tooltip">[CRL](## "Certificate Revocation List")</span>. For information about importing certificates and CRLs, refer to {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="Security with Certificates and CRLs">}}.
-
-The following example sets the listening address for tunnel server SERVER1 to 10.1.1.10, and enables the tunnel server:
-
-```
-cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 address 10.1.1.10 
-cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 state enabled 
-cumulus@switch:~$ nv config apply
-```
-
-The following example sets the listening address for tunnel server SERVER1 to 10.1.1.10 and the port to 443, the target name to TARGET1, the retry interval to 40, the CA certificate to CACERT1, and enables the tunnel server:
-
-```
-cumulus@switch:~$ nv set system gnmi-server listening-address localhost 
-cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 address 10.1.1.10 
-cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 port 443 
-cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 target-name TARGET1 
-cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 retry-interval 40
-cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 ca-certificate CACERT1 uri scp://user@pass:1.2.3.4:/opt/certs/cert.p12
-cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 state enabled 
-cumulus@switch:~$ nv config apply
-```
-
-### Show gNMI Configuration and Status Information
-
-To show gNMI server configuration and connection information, such the number of active subscriptions, received and rejected subscription requests, and received capability requests, run the `nv show system gnmi-server` command.
-
-```
-cumulus@switch:~$ nv show system gnmi-server 
-                                  operational  applied    
---------------------------------  -----------  -----------
-state                             disabled     enabled   
-certificate                       self-signed  self-signed
-port                              9339         9339
-[listening-address]               10.1.1.100   10.1.1.100        
-version                                                   
-status                                                    
-  total-active-subscriptions      0                       
-  received-subscription-requests  0                       
-  rejected-subscriptions          0                       
-  received-capabilities-requests  0                       
-  [client]
-```
-
-To show the listening address of the gNMI server, run the `nv show system gnmi-server listening-address` command:
-
-```
-cumulus@switch:~$ nv show system gnmi-server listening-address
-----------
-10.1.1.100
-```
-
-To show gNMI server mTLS information, run the `nv show system gnmi-server mtls` command:
-
-```
-cumulus@switch:~$ nv show system gnmi-server mtls
-                operational  applied  pending         
---------------  -----------  -------  ----------------
-ca-certificate  CACERT1       CACERT1   CACERT          
-crl                                   abcdefghijklmnop
-```
-
-To show only gNMI server connection information, run the `nv show system gnmi-server status` command:
-
-```
-cumulus@switch:~$ nv show system gnmi-server status
-                                operational
-------------------------------  -----------
-total-active-subscriptions      0          
-received-subscription-requests  0          
-rejected-subscriptions          0          
-received-capabilities-requests  0
-```
-
-To show gRPC tunnel server configuration and connection information, run the `nv show system grpc-tunnel server <server>` command:
-
-```
-cumulus@switch:~$ nv show system grpc-tunnel server SERVER1
-nv show system grpc-tunnel server SERVER1
-                 operational           applied  
----------------  --------------------  ---------
-state            disabled              enabled  
-target-name      TARGET1               TARGET1  
-address          10.1.1.10             10.1.1.10
-port             443                   443      
-target-type      gnmi-gnoi             gnmi-gnoi
-retry-interval   40                    40       
-status                                          
-  local-port     0                              
-  remote-port    0                              
-  connection                                    
-    established  1970-01-01T00:00:00Z           
-    register     no                             
-    tunnel       no
-```
-
-To show the local and remote port, and connection information, run the `nv show system grpc-tunnel server SERVER1 status` command:
-
-```
-cumulus@switch:~$ nv show system grpc-tunnel server SERVER1 status
-               operational         
--------------  --------------------
-local-port     0                   
-remote-port    0                   
-connection                         
-  established  1970-01-01T00:00:00Z
-  register     no                  
-  tunnel       no
-```
-
-To show only connection information, run the `nv show system grpc-tunnel server SERVER1 status connection` command:
-
-```
-cumulus@switch:~$ nv show system grpc-tunnel server SERVER1 status connection 
-             operational         
------------  --------------------
-established  1970-01-01T00:00:00Z
-register     no                  
-tunnel       no
-```
-
-### RPC Methods
-
-Cumulus Linux supports the following <span class="a-tooltip">[RPC](## "Remote Procedure Call")</span> methods:  
-- Capabilities
-- Subscription types and options:  
-  - STREAM (sample_interval, updates_only, suppress_redundant, and heartbeat_interval)
-  - ON_CHANGE (updates_only and heartbeat_interval)
-- Notification and update types:  
-  - sync_response
-  - update
-  - delete
-
-{{%notice note%}}
-Cumulus Linux does not support GET or SET RPC events.
-{{%/notice%}}
-
-### Encoding Types
-
-Cumulus Linux supports the Protobuf and JSON data formats.
-
-### Wildcard Support
-
-Cumulus Linux supports wildcard matching of keys. For example:
-
-```
-qos/interfaces/interface[interface-id=*]/output/queues/queue[name=*]/state/transmit-octets
-```
-
-You can use a combination of wildcard and specific keys; for example, to collect a metric for all queues on a specific interface:
-
-```
-/qos/interfaces/interface[interface-id=<name>]/output/queues/queue[*]/state/transmit-octets.
-```
-
-Regex for specific keys (such as `“interface-id=swp*”`) is not supported.
-
-### Metrics
-
-Cumulus Linux supports the following metrics:
-
-{{< tabs "TabID200 ">}}
-{{< tab "Interface ">}}
-
-|  Name | Description |
-|------ | ----------- |
-| `/qos/interfaces/interface[interface-id=<name>]/output/queues/queue[name=<0-15>]/state/transmit-octets` | |
-| `/qos/interfaces/interface[interface-id=<name>]/output/queues/queue[name=<0-15>]/state/transmit-pkts` | |
-| `/qos/interfaces/interface[interface-id=<name>]/output/queues/queue[name=<0-15>]/state/ecn-marked-pkts` | |
-| `/interfaces/interface[name=<name>]/state/admin-status`| |
-| `/interfaces/interface[name=<name>]/state/counters/in-broadcast-pkts` | |
-| `/interfaces/interface[name=<name>]/state/counters/in-multicast-pkts` | |
-| `/interfaces/interface[name=<name>]/state/counters/in-octets` | |
-| `/interfaces/interface [name=<name>]/ethernet/state/port-speed` | |
-| `/interfaces/interface[name=<name>]/ethernet/state/counters/in-mac-pause-frames` | |
-| `/interfaces/interface[name=<name>]/ethernet/state/counters/in-oversize-frames` | |
-| `/interfaces/interface[name=<name>]/ethernet/state/counters/in-fcs-errors` | |
-| `/interfaces/interface[name=<name>]/ethernet/state/counters/in-distribution/in-frames-64-octets` | |
-| `/interfaces/interface[name=<name>]/ethernet/state/counters/in-distribution/in-frames-65-127-octets` | |
-| `/interfaces/interface[name=<name>]/ethernet/state/counters/in-distribution/in-frames-128-255-octets` | |
-| `/interfaces/interface[name=<name>]/ethernet/state/counters/in-distribution/in-frames-256-511-octets` | |
-| `/interfaces/interface[name=<name>]/ethernet/state/counters/in-distribution/in-frames-512-1023-octets` | |
-| `/interfaces/interface[name=<name>]/ethernet/state/counters/in-distribution/in-frames-1024-1518-octets` | |
-| `/interfaces/interface[name=<name>]/rates/state/out-bits-rate` | |
-| `/interfaces/interface[name=<name>]/rates/state/in-bits-rate` | |
-| `/interfaces/interface[name=<name>]/rates/state/in-pkts-rate` | |
-| `/interfaces/interface[name=<name>]/rates/state/out-pkts-rate` | |
-| `/interfaces/interface[name=<name>]/state/mtu` | |
-| `/interfaces/interface[name=<name>]/state/ifindex` | |
-| `/interfaces/interface[name=<name>]/state/oper-status` | |
-| `/interfaces/interface[name=<name>]/state/counters/in-errors` | |
-| `/interfaces/interface[name=<name>]/state/counters/in-discards` | |
-| `/interfaces/interface[name=<name>]/state/counters/out-octets` | |
-| `/interfaces/interface[name=<name>]/state/counters/out-unicast-pkts` | |
-| `/interfaces/interface[name=<name>]/state/counters/out-broadcast-pkts` | |
-| `/interfaces/interface[name=<name>]/state/counters/out-discards` | |
-| `/interfaces/interface[name=<name>]/state/counters/out-errors` | |
-| `/qos/interfaces/interface[interface-id=<name>]/state/switch-priority[priority=<priority>]/counters/in-pause-pkts` | |
-| `/qos/interfaces/interface[interface-id=<name>]/state/switch-priority[priority=<priority>]/counters/out-pause-pkts` | |
-| `/interfaces/interface[name=<name>]/state/counters/out-multicast-pkts` | |
-| `/interfaces/interface[name=<name>]/state/counters/in-unicast-pkts` | |
-| `/interfaces/interface[name=<name>]/state/counters/carrier-transitions` | |
-| `/interfaces/interface[name=<name>]/ethernet/phy/state/rs-fec-uncorrectable-blocks` | |
-| `/interfaces/interface[name=<name>]/ethernet/phy/state/rs-fec-single-error-blocks` | |
-| `/interfaces/interface[name=<name>]/ethernet/phy/state/rs-fec-no-error-blocks` | |
-| `/interfaces/interface[name=<name>]/ethernet/phy/state/lane[lane=<lane>]/fc-fec-corrected-blocks` | |
-| `/interfaces/interface[name=<name>]/ethernet/phy/state/lane[lane=<lane>]/fc-fec-uncorrected-blocks` | |
-| `/interfaces/interface[name=<name>]/ethernet/phy/state/lane[lane=<lane>]/rs-fec-corrected-symbols` | |
-| `/interfaces/interface[name=<name>]/ethernet/phy/state/corrected-bits` | |
-| `/interfaces/interface[name=<name>]/ethernet/phy/state/effective-errors` | |
-| `/interfaces/interface[name=<name>]/ethernet/phy/state/effective-ber` | |
-| `/interfaces/interface[name=<name>]/ethernet/phy/state/lane[lane=<lane>]/raw-errors` | |
-| `/interfaces/interface[name=<name>]/ethernet/phy/state/received-bits` | |
-| `/interfaces/interface[name=<name>]/ethernet/phy/state/symbol-errors` | |
-| `/interfaces/interface[name=<name>]/ethernet/phy/state/symbol-ber` | |
-| `/interfaces/interface[name=<name>]/ethernet/phy/state/lane[lane=<lane>]/raw-ber` | |
-| `/interfaces/interface[name=<name>]/ethernet/phy/state/fec-time-since-last-clear` | |
-| `/interfaces/interface[name=<name>]/ethernet/phy/state/ber-time-since-last-clear` | |
-
-{{< /tab >}}
-{{< tab "Router">}}
-
-|  Name | Description |
-|------ | ----------- |
-| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp` | BGP information.|
-| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor/state` |State of BGP peers. |
-| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/state` | BGP peer state.|
-| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/state/session-state` | BGP peer session state.|
-| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/state/established-transitions` | Number of BGP peer state transitions to the `Established` state for the peer session.|
-| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/state/messages/sent/UPDATE` | Number of BGP messages sent to the neighbor.|
-| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/messages/received/UPDATE` | Number of BGP messages received from the neighbor.|
-| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/state/queues/input` | Number of messages queued to be received from the BGP neighbor.|
-| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/state/queues/output` | Number of messages queued to be sent to the BGP neighbor.|
-| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/afi-safis/afi-safi[afi-safi-name=<afi-safi-name>]/state/prefixes/received` | Number of prefixes received from the neighbor.|
-| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/afi-safis/afi-safi[afi-safi-name=<afi-safi-name>]/state/prefixes/sent` | Number of prefixes sent to the neighbor.|
-| `/network-instances/network-instance[name=<vrf>]/protocols/protocol[identifier=BGP][name=BGP]/bgp/neighbors/neighbor[neighbor-address=<address>]/afi-safis/afi-safi[afi-safi-name=<afi-safi-name>]/state/prefixes/installed` | Number of prefixes installed.|
-
-{{< /tab >}}
-{{< tab "LLDP">}}
-
-|  Name | Description |
-|------ | ----------- |
-| `/lldp/state/chassis-id` | Identifies the chassis component of the endpoint identifier associated with the transmitting LLDP agent.|
-| `/lldp/state/system-description` | Textual description of the network entity.|
-| `/lldp/state/system-name` | The administratively assigned name of the system (such as DUT, Edge, Cumulus, and so on).|
-| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/age` | LLDP neighbor age information.|
-| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/management-address` | A mandatory TLV that identifies a network address associated with the local LLDP agent, which can be used to reach the agent on the port identified in the Port ID TLV.|
-| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/management-address-type` | The enumerated value for the network address type identified in this TLV. |
-| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/port-description` | The remote port name. |
-| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/port-id-type` | The format and source of the remote port ID string. |
-| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/state/ttl` | LLDP neighbor port TTL. |
-| `/lldp/interfaces/interface[name=<name>]/neighbors/neighbor[id=<id>]/capabilities/capability[name=<capability>]/state/enabled` | LLDP neighbor capabilities.|
-
-{{< /tab >}}
-{{< /tabs >}}
-
-### User Credentials and Authentication
-
-User authentication is enabled by default. gNMI subscription requests must include an HTTP Basic Authentication header according to RFC7617 containing the username and password of a user with NVUE API access permissions. You can enable this setting in the standard gNMI client (gNMIc) by setting the `auth-scheme` parameter to basic. Refer to {{<exlink url="https://gnmic.openconfig.net/global_flags/ - auth-scheme" text="https://gnmic.openconfig.net/global_flags/ - auth-scheme">}}.
-
-{{%notice note%}}
-Cumulus Linux ignores credentials in RPC metadata.
-{{%/notice%}}
-
-### gNMI Client Requests
-
-You can use your gNMI client on a host to request capabilities and data to which the Agent subscribes. The examples below use the gNMIc client.
-
-#### Dial-in Mode Example
-
-The following example shows a Dial-in Mode Subscribe request with TLS:
-
-```
-gnmic subscribe --mode stream --path "/qos/interfaces/interface[interface-id=swp1]/output/queues/queue[name=1]/state/transmit-octets" -i 10s --tls-cert gnmi_client.crt --tls-key gnmi_client.key -u cumulus -p ******* --auth-scheme Basic --skip-verify -a 10.188.52.108:9339
-```
-
-The following example shows a Dial-in Mode Subscribe request without TLS:
-
-{{%notice note%}}
-NVIDIA recommends using TLS. To test without TLS, you must also edit the NGINX configuration file on the switch.
-{{%/notice%}}
-
-```
-gnmic subscribe --mode stream --path "/qos/interfaces/interface[interface-id=swp1]/output/queues/queue[name=1]/state/transmit-octets" -i 10s --insecure -u cumulus -p ******* --auth-scheme Basic -a 10.188.52.108:9339
-```
-
-#### Subscription Example
-
-The following example shows a subscription response:
-
-```
-{ 
-  "sync-response": true 
-} 
-{ 
-  "source": "10.188.52.108:9339", 
-  "subscription-name": "default-1737725382", 
-  "timestamp": 1737725390247535267, 
-  "time": "2025-01-24T13:29:50.247535267Z", 
-  "updates": [ 
-    { 
-      "Path": "qos/interfaces/interface[interface-id=swp1]/output/queues/queue[name=1]/state/transmit-octets", 
-      "values": { 
-        "qos/interfaces/interface/output/queues/queue/state/transmit-octets": 0 
-      } 
-    } 
-  ] 
-} 
-...
-```
-
-#### Capabilities Example
-
-The following example shows a capabilities request:
-
-```
-gnmic capabilities --tls-cert gnmic-cert.pem --tls-key gnmic-key.pem -u cumulus -p ****** --auth-scheme Basic --skip-verify -a 10.188.52.108:9339
-```
-
-The following example shows the expected response to a capabilities request:
-
-```
-gNMI version: 0.10.0 
-supported models: 
-  - openconfig-ospf-types, OpenConfig working group, 0.1.3 
- 
-...
- 
-  - openconfig-platform-fabric, OpenConfig working group, 0.1.0 
-  - openconfig-platform-healthz, OpenConfig working group, 0.1.1 
-supported encodings: 
-  - JSON 
-  - JSON_IETF 
-  - PROTO 
-```
-
+<!-- vale on -->
 ### Considerations
 
 When using gNMI with Cumulus Linux:
 - The minimum sampling interval is 1 second. If you configure a shorter sampling interval, the switch might not behave as expected.
 - ModelData, Origin, and Extensions fields are ignored in requests and not set in responses.
-<!--
-- For all X.509 certificates generated externally, make sure to set the correct X.509v3 fields:
-  - Set the Purpose field correctly (TLS WWW Server Authentication versus TLS WWW Client Authentication) in the extended key usage (EKU) field.  
-  - Set TLS WWW Server Authentication for TLS server applications to gNMI server (on the switch), and gRPC dial-out tunnel server (running in your network)
-  - Set TLS WWW Client Authentication for TLS client applications to gRPC dial-out tunnel client (on the switch) and gNMI client (running in the network)
-  - Set the Cumulus Linux switch management IP address included in the subject alternate name (SAN) field together with the localhost SAN DNS value applicable to the gNMI server certificate.
-  - On the gNMI client and the dial-out tunnel server (within the network), ensure the management IP address is included in the subject alternate name (SAN) field together with localhost SAN DNS value.
-- NVUE does not support mTLS configuration. NVIDIA recommends that you do not try to set mTLS related fields under gRPC tunnel configuration.
--->
+
 ## Related Information
 
 - {{<exlink url="https://datatracker.ietf.org/meeting/101/materials/slides-101-netconf-grpc-network-management-interface-gnmi-00" text="gNMI presentation to IETF">}}

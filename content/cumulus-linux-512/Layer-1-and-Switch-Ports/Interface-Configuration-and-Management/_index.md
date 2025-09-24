@@ -470,60 +470,82 @@ Cumulus Linux enables link flap detection by default. Link flap detection trigge
 2023-02-10T17:53:21.264621+00:00 cumulus switchd[10109]: sync_port.c:2263 ERR swp2 link flapped more than 3 times in the last 60 seconds, setting protodown
 ```
 
-To show interfaces with the protodown flag, run the NVUE `nv show interface` command or the Linux `ip link` command. To check a specific interface, run the `nv show interface <interface> link` command.
+To show interfaces with the protodown flag, run the NVUE `nv show interface status` command or the Linux `ip link` command. To check a specific interface, run the `nv show interface <interface> link` command.
 
 ```
-cumulus@switch:~$ nv show interface
-Interface  State  Speed  MTU    Type      Remote Host      Remote Port  Summary                                 
----------  -----  -----  -----  --------  ---------------  -----------  ----------------------------------------
-eth0       up     1G     1500   eth       oob-mgmt-switch  swp10        IP Address:            192.168.200.11/24
-                                                                        IP Address:  fe80::4638:39ff:fe22:17a/64
-lo         up            65536  loopback                                IP Address:                  127.0.0.1/8
-                                                                        IP Address:                      ::1/128
-mgmt       up            65575  vrf                                     IP Address:                  127.0.0.1/8
-                                                                        IP Address:                      ::1/128
-swp1       up            1500   swp                                                                             
-swp2       protodown     9178   swp                                                                             
-swp3       up            1500   swp                                                                             
-swp4       up            1500   swp                                                                             
+cumulus@switch:~$ nv show interface status
+Interface       Admin Status  Oper Status  Protodown  Protodown Reason
+--------------  ------------  -----------  ---------  ----------------
+BLUE            up            up           disabled                   
+RED             up            up           disabled                   
+bond1           up            up           disabled                   
+bond2           up            up           disabled                   
+bond3           up            up           disabled                   
+br_default      up            up           disabled                   
+eth0            up            up           disabled                   
+lo              up            unknown      disabled                   
+mgmt            up            up           disabled                   
+peerlink        up            up           disabled                   
+peerlink.4094   up            up           disabled                   
+swp1            up            up           disabled                   
+swp2            up            up           disabled                   
+swp3            up            down         enabled    linkflap                   
+swp4            down          down         disabled                   
+swp5            down          down         disabled                   
+swp6            down          down         disabled                   
+swp7            down          down         disabled                   
+swp8            down          down         disabled                   
+swp9            down          down         disabled                   
+swp10           down          down         disabled                                                                             
 ...
 ```
 
 ```
 cumulus@switch:~$ ip link
 ...
-37: swp2: <NO-CARRIER,BROADCAST,MULTICAST,SLAVE,UP> mtu 9178 qdisc pfifo_fast master bond131 state DOWN mode DEFAULT group default qlen 1000
+37: swp3: <NO-CARRIER,BROADCAST,MULTICAST,SLAVE,UP> mtu 9178 qdisc pfifo_fast master bond131 state DOWN mode DEFAULT group default qlen 1000
   link/ether 1c:34:da:ba:bb:2a brd ff:ff:ff:ff:ff:ff protodown on protodown_reason <linkflap>
 ...
 ```
 
 ```
-cumulus@switch:~$ nv show interface swp1 link
-                       operational                     
----------------------  ------------------------------
-admin-status           up
-oper-status            up
-protodown              disabled
-auto-negotiate         on
-duplex                 full
-speed                  800G
-mac-address            9c:05:91:9a:e0:b8
-fec                    rs
-mtu                    9216
-fast-linkup            off
-stats
-  in-bytes             145.08 KB
-  in-pkts              756
-  in-drops             8
-  in-errors            0
-  out-bytes            145.42 KB
-  out-pkts             757
-  out-drops            0
-  out-errors           0
-  carrier-transitions  12
-eyes                   65, 62, 70, 65, 80, 82, 81, 82
-grade                  65, 62, 70, 65, 80, 82, 81, 82
-troubleshooting-info   No issue was observed
+cumulus@switch:~$ nv show interface swp3 link
+                         operational        applied
+-----------------------  -----------------  -------
+admin-status             up                        
+oper-status              up                        
+oper-status-last-change  Unknown                   
+protodown                enabled                  
+auto-negotiate           off                on     
+duplex                   full               full   
+speed                    1G                 auto   
+mac-address              48:b0:2d:63:34:55         
+fec                                         auto   
+mtu                      9000               9216   
+fast-linkup              off                       
+[breakout]                                         
+state                    up                 up     
+flap-protection                                    
+  enable                                    on     
+stats                                              
+  in-bytes               52.92 MB                           
+  in-pkts                441233                             
+  in-drops               0                                  
+  in-errors              0                                  
+  out-bytes              53.06 MB                           
+  out-pkts               444560                             
+  out-drops              0                                  
+  out-errors             0                                  
+  carrier-transitions    4                                  
+  carrier-up-count       2                                  
+  carrier-down-count     2
+```
+
+```
+cumulus@switch:~$ nv show interface swp3 link protodown-reason 
+operational
+-----------
+linkflap 
 ```
 
 ### Clear the Interface Protodown State and Reason
@@ -572,7 +594,7 @@ cumulus@switch:~$ ip link show swp2
 ### Change Link Flap Protection Settings
 
 You can change the following link flap protection settings:
-- The duration in seconds during which a link must flap the number of times set in the link flap threshold before link flap protection triggers. You can specify a value between 0 (off) and 60. The default setting is 10.
+- The duration in seconds during which a link must flap the number of times set in the link flap threshold before link flap protection triggers. You can specify a value between 0 (off) and 300. The default setting is 10.
 - The number of times the link can flap within the link flap window before link flap protection triggers. You can specify a value between 0 (off) and 30. The default setting is 5.
 
 The following example configures the link flap duration to 30 and the number of times the link must flap to 8.

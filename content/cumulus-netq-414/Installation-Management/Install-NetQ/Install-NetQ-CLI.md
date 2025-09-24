@@ -75,7 +75,7 @@ If NTP is not already installed and configured, follow these steps:
 
 {{<tab "Ubuntu">}}
 
-1.  Install {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} on the server, if not already installed. Servers must be in time synchronization with the NetQ appliance to enable useful statistical analysis.
+1.  Install {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} on the server, if not already installed. Servers must be in time synchronization with NetQ to enable useful statistical analysis.
 
     ```
     root@ubuntu:~# sudo apt-get install ntp
@@ -268,7 +268,7 @@ To access and configure the CLI for your on-premises NetQ deployment, you must g
 
 To generate AuthKeys:
 
-1. Enter your on-premises NetQ appliance hostname or IP address into your browser to open the NetQ UI login page.
+1. Enter your on-premises NetQ hostname or IP address into your browser to open the NetQ UI login page.
 
 2. Enter your username and password.
 
@@ -289,19 +289,17 @@ The secret key is only shown once. If you do not copy these, you will need to re
 {{<notice tip>}}
 You can also save these keys to a YAML file for easy reference, and to avoid having to type or copy the key values. You can:
 
-- store the file wherever you like, for example in <em>/home/cumulus/</em> or <em>/etc/netq</em>
-- name the file whatever you like, for example <em>credentials.yml</em>, <em>creds.yml</em>, or <em>keys.yml</em>
+- Store the file wherever you like, for example in <em>/home/cumulus/</em> or <em>/etc/netq</em>
+- Name the file whatever you like, for example <em>credentials.yml</em>, <em>creds.yml</em>, or <em>keys.yml</em>
 
 The file **must** have the following format:
-
 ```
 access-key: <user-access-key-value-here>
 secret-key: <user-secret-key-value-here>
 ```
-
 {{</notice>}}
 
-7. Insert the AuthKeys onto your device to configure the CLI. Alternately, use the following command.
+7. Enter the AuthKeys to configure the CLI. Alternately, use the following command:
 
     ```
     netq config add cli server <text-gateway-dest> [access-key <text-access-key> secret-key <text-secret-key> premises <text-premises-name> | cli-keys-file <text-key-file> premises <text-premises-name>] [vrf <text-vrf-name>] [port <text-gateway-port>]

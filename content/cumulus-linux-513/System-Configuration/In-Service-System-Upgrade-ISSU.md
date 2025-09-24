@@ -22,7 +22,7 @@ You can configure the switch to restart in one of the following modes.
 
 - **cold** restarts the system and resets all the hardware devices on the switch (including the switching ASIC).
 - **fast** restarts the system more efficiently with minimal impact to traffic by reloading the kernel and software stack without a hard reset of the hardware. During a fast restart, the system decouples from the network to the extent possible using existing protocol extensions before recovering to the operational mode of the system. The restart process maintains the forwarding entries of the switching ASIC and the data plane is not affected. Traffic outage is much lower in this mode as there is a momentary interruption after reboot, while the system reinitializes.
-- **warm** restarts the system with no interruption to traffic for existing route entries. Warm mode restarts the system without a hardware reset of the switch ASIC. While this process does not affect the data plane, the control plane is absent during restart and is unable to process routing updates. However, if no alternate paths exist, the switch continues forwarding with the existing entries with no interruptions.
+- **warm** restarts the system with no interruption to traffic for existing route entries. Warm mode restarts the system without a hardware reset of the switch ASIC. While this process does not affect the data plane, the control plane is absent during restart and is unable to process routing updates. However, if no alternate paths exist, the switch continues forwarding with the existing entries with no interruptions. Warm mode reduces all of the available {{<link title="Forwarding Table Size and Profiles" text="forwarding table entries">}}  on the switch by half to accommodate traffic forwarding during a reboot.
 
    When you restart the switch in warm mode, BGP only performs a graceful restart if the BGP graceful restart option is set to `full`. To set BGP graceful restart to full, run the `nv set router bgp graceful-restart mode full` command, then apply the configuration with `nv config apply`. For more information about BGP graceful restart, refer to {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="Optional BGP Configuration">}}.
 
@@ -32,8 +32,13 @@ You can configure the switch to restart in one of the following modes.
 Cumulus Linux supports:
 - Fast mode for all protocols.
 - Warm mode for 802.1X, layer 2 forwarding, layer 3 forwarding with BGP, static routing, and VXLAN routing with EVPN. Cumulus Linux does not support warm boot with EVPN MLAG or EVPN multihoming.
+- Warm mode with optimized image (two partition) upgrade and package upgrade (the switch must be in warm mode before you start the upgrade).
 {{%/notice%}}
-
+<!--
+{{%notice note%}}
+Cumulus Linux does not support LACP bonds during warm boot; the LACP control plane sessions might time out before warm boot completes. Use a static Link Aggregation Group to keep bonds up during warm boot.
+{{%/notice%}}
+-->
 NVIDIA recommends you use NVUE commands to configure restart mode and reboot the system. If you prefer to use `csmgrctl` commands, you must stop NVUE from managing the `/etc/cumulus/csmgrd.conf` file before you set restart mode:
 
 1. Run the following NVUE commands:
@@ -56,6 +61,11 @@ NVIDIA recommends you use NVUE commands to configure restart mode and reboot the
    ```
    cumulus@switch:~$ nv config save
    ```
+
+
+{{%notice warning%}}
+After you change the reboot mode on the switch using NVUE or `csmgrctl` commands, you must reboot the switch to activate the mode change. You can confirm the current operational reboot mode active on the switch using the `nv show system reboot` command.  
+{{%/notice%}}
 
 The following command configures the switch to restart in cold mode:
 
@@ -157,10 +167,10 @@ The following command upgrades all the system components to the latest release:
 {{< tab "NVUE Command ">}}
 
 ```
-cumulus@switch:~$ nv action upgrade system packages to latest use-vrf default
+cumulus@switch:~$ sudo nv action upgrade system packages to latest use-vrf default
 ```
 
-By default, the NVUE `nv action upgrade system packages` command runs in the management VRF. To run the command in a non-management VRF such as `default`, you must use the `use-vrf <vrf>` option.
+By default, the NVUE `sudo nv action upgrade system packages` command runs in the management VRF. To run the command in a non-management VRF such as `default`, you must use the `use-vrf <vrf>` option.
 
 {{< /tab >}}
 {{< tab "csmgrctl Command ">}}
@@ -178,10 +188,10 @@ The following command provides information on the components you want to upgrade
 {{< tab "NVUE Command ">}}
 
 ```
-cumulus@switch:~$ nv action upgrade system packages to latest use-vrf default dry-run
+cumulus@switch:~$ sudo nv action upgrade system packages to latest use-vrf default dry-run
 ```
 
-By default, the NVUE `nv action upgrade system packages` command runs in the management VRF. To run the command in a non-management VRF such as `default`, you must use the `use-vrf <vrf>` option.
+By default, the NVUE `sudo nv action upgrade system packages` command runs in the management VRF. To run the command in a non-management VRF such as `default`, you must use the `use-vrf <vrf>` option.
 
 {{< /tab >}}
 {{< tab "csmgrctl Command ">}}

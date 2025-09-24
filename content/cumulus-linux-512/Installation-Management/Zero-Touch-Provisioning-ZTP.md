@@ -59,7 +59,7 @@ For ZTP using DHCP, provisioning initially takes place over the management netwo
 
 The ZTP process over DHCP follows these steps:
 
-1. The first time you boot Cumulus Linux, eth0 makes a DHCP request. By default, Cumulus Linux sends DHCP option 60 (the vendor class identifier) with the value `cumulus-linux x86_64` to identify itself to the DHCP server.
+1. The first time you boot Cumulus Linux, eth0 makes a DHCP request. By default, Cumulus Linux sends DHCP option 60 (the vendor class identifier) with the value `cumulus-linux  x86_64` to identify itself to the DHCP server. (There are two spaces between `cumulus-linux` and `x86_64`.)
 2. The DHCP server offers a lease to the switch.
 3. If option 239 is in the response, the ZTP process starts.
 4. The ZTP process requests the contents of the script from the URL, sending additional {{<link url="#inspect-http-headers" text="HTTP headers">}} containing details about the switch.
@@ -95,6 +95,19 @@ option cumulus-provision-url code 239 = text;
 ### DHCP on Front Panel Ports
 
 ZTP runs DHCP on all the front panel switch ports and on any active interface. ZTP assesses the list of active ports on every retry cycle. When it receives the DHCP lease and option 239 is present in the response, ZTP starts to execute the script.
+
+{{%notice note%}}
+During first boot after ONIE upgrade or install, the ZTP process brings up all front panel interfaces and management interfaces to enable DHCP to find ZTP scripts. The interfaces remain in the `Oper UP` state until the switch is configured, the ZTP process completes successfully, or the ZTP process terminates. If you use a different configuration tool that ZTP does not invoke, all the front panel interfaces might remain in the `Oper UP` state and not configured for some time resulting in connected devices dropping traffic in some network configurations. To avoid this issue, use one of the following workarounds:
+- Configure a ZTP server and script that starts the current provisioning script with a shorter window for interfaces to remain unconfigured and up.
+- Modify the provisioning script to terminate the ZTP process at the beginning and bring down all the interfaces.
+- Send the ONIE installer an empty ZTP script with the `onie-install -z <URL_to_empty_ztp_script>` command. The following example shows an empty ZTP script:
+  
+  ```
+  #!/bin/sh
+  #CUMULUS-AUTOPROVISIONING
+  exit 0
+  ```
+{{%/notice%}}
 
 ### Inspect HTTP Headers
 

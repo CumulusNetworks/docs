@@ -112,7 +112,7 @@ netq del notification rule <text-rule-name-anchor>
 | ---- | ---- | ---- |
 | channel | \<text-channel-name-anchor\> | Remove this channel from event notification configurations |
 | filter | \<text-filter-name-anchor\> | Remove this filter from event notification configurations |
-| proxy | NA | Remove the notification proxy and send notification messages directly to the NetQ appliance or VM |
+| proxy | NA | Remove the notification proxy and send notification messages directly to the NetQ server or VM |
 | rule | \<text-rule-name-anchor\> | Remove this rule from event notification configurations |
 
 ### Options

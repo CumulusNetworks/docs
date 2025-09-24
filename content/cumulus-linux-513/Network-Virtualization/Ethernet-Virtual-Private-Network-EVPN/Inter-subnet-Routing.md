@@ -64,7 +64,7 @@ router bgp 65101
 {{%notice note%}}
 - You can deploy centralized routing at the VNI level, where you can configure the `advertise-default-gw` command per VNI; you use centralized routing for certain VNIs and distributed symmetric routing (described below) other VNIs. NVIDIA does not recommend this type of configuration.
 - When you use centralized routing, even if the source host and destination host attach to the same VTEP, the packets travel to the gateway VTEP, the switch routes the packets, then the packets come back.
-- To avoid traffic to a gateway MAC address in a centralized EVPN fabric from being flooded by virtual switches that are not local to the border leaf, refer to {{<exlink url="https://enterprise-support.nvidia.com/s/article/Traffic-To-Gateway-MAC-In-Centralized-EVPN-Fabric-Is-Being-Flooded-By-V-Switches-Not-Local-To-The-Border-Leaf" text="this knowledge base article" >}}.
+- To prevent virtual switches that are not local to the border leaf from flooding traffic to a gateway MAC address in a centralized EVPN fabric, refer to {{<exlink url="https://enterprise-support.nvidia.com/s/article/Traffic-To-Gateway-MAC-In-Centralized-EVPN-Fabric-Is-Being-Flooded-By-V-Switches-Not-Local-To-The-Border-Leaf" text="this knowledge base article" >}}.
 {{%/notice%}}
 
 ## Asymmetric Routing
@@ -80,7 +80,9 @@ The only additional configuration required to implement asymmetric routing beyon
 
 ## Symmetric Routing
 
-In distributed symmetric routing, each VTEP acts as a layer 3 gateway, performing routing for its attached hosts; however, both the ingress VTEP and egress VTEP route the packets (similar to the traditional routing behavior of routing to a next hop router). In the VXLAN encapsulated packet, the inner destination MAC address is the router MAC address of the egress VTEP to indicate that the egress VTEP is the next hop and also needs to perform routing. All routing happens in the context of a tenant (VRF). For a packet that the ingress VTEP receives from a locally attached host, the SVI interface corresponding to the VLAN determines the VRF. For a packet that the egress VTEP receives over the VXLAN tunnel, the VNI in the packet has to specify the VRF. For symmetric routing, this is a VNI corresponding to the tenant and is different from either the source VNI or the destination VNI. This VNI is a layer 3 VNI or interconnecting VNI. The regular VNI, which maps a VLAN, is the layer 2 VNI.
+In distributed symmetric routing, each VTEP acts as a layer 3 gateway, performing routing for its attached hosts; however, both the ingress VTEP and egress VTEP route the packets (similar to the traditional routing behavior of routing to a next hop router). In the VXLAN encapsulated packet, the inner destination MAC address is the router MAC address of the egress VTEP to indicate that the egress VTEP is the next hop and also needs to perform routing.
+
+All routing happens in the context of a tenant (VRF). For a packet that the ingress VTEP receives from a locally attached host, the SVI interface corresponding to the VLAN determines the VRF. For a packet that the egress VTEP receives over the VXLAN tunnel, the VNI in the packet has to specify the VRF. For symmetric routing, this is a VNI corresponding to the tenant and is different from either the source VNI or the destination VNI. This VNI is a layer 3 VNI or interconnecting VNI (conceptually similar to a Transit VLAN) and is sometimes abbreviated as L3VNI. The regular VNI, which maps to a VLAN, is the layer 2 VNI and is sometimes abbreviated as L2VNI.
 
 {{%notice note%}}
 - Cumulus Linux supports symmetric routing on NVIDIA Spectrum-A1 and later.
@@ -105,20 +107,22 @@ cumulus@leaf01:~$ nv config apply
 ```
 
 {{%notice note%}}
-
 When you run the `nv set vrf RED evpn vni 4001` command, NVUE:
-
-- Creates a layer 3 bridge called `br_l3vni` if a layer 3 VNI was not previously configured
-- Creates a layer 3 VNI called `vni4001` in VRF RED
-- Assigns `vni4001` a VLAN automatically and creates a VLAN interface with `_l3` (layer 3) at the end of the interface name (for example, `vlan220_l3`) in VRF RED. NVUE adds the VLAN to bridge `br_l3vni`
-- Adds `vni4001` to the VLAN-VNI map of a single VXLAN device in bridge `br_l3vni`
+- Creates a layer 3 bridge called `br_l3vni` and creates a new, separate single VXLAN device (`vxlan99`) adding it to the bridge (`br_l3vni`). NVUE does this if there is no configured layer 3 VNI.
+- Creates a layer 3 VNI called `vni4001` in VRF RED.
+- Assigns `vni4001` a VLAN automatically (for example, `3159`).
+- Creates a VLAN interface for this VLAN with `_l3` (layer 3) appended to the interface name (for example, `vlan3159_l3`) in VRF RED. This VLAN interface is represented as a Linux virtual interface, subinterface, or virtual link of type `vlan` in the bridge `br_l3vni` and does not show in the `bridge vlan` command output.
+- Adds the VLAN (for example, `3159`) to the bridge `br_l3vni`. This VLAN does not show in the `bridge-vids` section of the bridge `br_l3vni` in the `/etc/networks/interfaces` file, but still applies to the bridge.
+- Adds the mapping `vlan3159 <-> vni4001` to the VLAN-VNI map of the single VXLAN device `vxlan99` in bridge `br_l3vni`.
 
 This behavior is different in an MLAG environment. If you configure MLAG and you run the `nv set vrf RED evpn vni 4001` command, NVUE:
-- Creates a layer 3 VNI called `vni4001` in VRF RED
-- Assigns `vni4001` a VLAN automatically out of the global reserved layer 3 VNI VLAN range and creates a VLAN interface with `_l3` (layer 3) at the end of the interface name (for example, `vlan220_l3`) in VRF RED. NVUE adds the VLAN to bridge `br_default`
-- Adds `vni4001` to the VLAN-VNI map of the single VXLAN device in bridge `br_default`
+- Creates a layer 3 VNI called `vni4001` in VRF RED.
+- Assigns `vni4001` a VLAN automatically (for example, `4055`) out of the global reserved layer 3 VNI VLAN range.
+- Creates a VLAN interface for this VLAN with `_l3` (layer 3) appended to the interface name (for example, `vlan4055_l3`) in VRF RED. This VLAN interface is represented as a Linux virtual interface, subinterface, or virtual link of type `vlan` in the bridge `br_default` and does not show in the `bridge vlan` command output.
+- Adds the VLAN (for example, `4055`) to bridge `br_default`. This VLAN does not show in the `bridge-vids` section of the bridge `br_default` in the `/etc/networks/interfaces` file, but still applies to the bridge.
+- Adds the mapping `vlan4055 <-> vni4001` to the VLAN-VNI map of the single VXLAN device `vxlan48` in bridge `br_default`.
 
-The global reserved layer 3 VNI VLAN range is different than the {{<link url="VLAN-aware-Bridge-Mode/#reserved-vlan-range" text="switch internal reserved VLAN range.">}} You can configure it with the {{<link url="VLAN-aware-Bridge-Mode/#reserved-vlan-range" text="`nv set system global reserved vlan l3-vni-vlan` command">}}.
+The {{<link url="VLAN-aware-Bridge-Mode/#reserved-layer-3-vni-vlans" text="global reserved layer 3 VNI VLAN range">}} is different than the {{<link url="VLAN-aware-Bridge-Mode/#reserved-vlan-range" text="switch internal reserved VLAN range.">}} You can configure the range with the {{<link url="VLAN-aware-Bridge-Mode/#reserved-layer-3-vni-vlans" text="`nv set system global reserved vlan l3-vni-vlan` command">}}.
 {{%/notice%}}
 
 {{< /tab >}}
@@ -1810,9 +1814,7 @@ exit-address-family
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL512 - DVNI" showNodes="leaf01,spine01,border01,server01,fw1" >}}
-
-This simulation is running Cumulus Linux 5.12. The Cumulus Linux 5.13 simulation is coming soon.
+    {{< simulation name="Try It CL513 - DVNI" showNodes="leaf01,spine01,border01,server01,fw1" >}}
 
 The simulation starts with the example downstream VNI configuration. To simplify the example, only one spine is in the topology. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 

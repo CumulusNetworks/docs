@@ -101,7 +101,7 @@ Verify the following items before upgrading NetQ.
 cumulus@<hostname>:~$ df -h /
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/sda1       248G   70G  179G  28% /
-cumulus@netq-appliance:~$
+cumulus@netq-server:~$
 ```
 NVIDIA recommends proceeding with the installation only if the `Use%` is less than 70%. You can delete previous software tarballs in the `/mnt/installables/` directory to regain some space. If you cannot decrease disk usage to under 70%, contact the NVIDIA support team.
 

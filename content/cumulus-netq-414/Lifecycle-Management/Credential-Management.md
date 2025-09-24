@@ -41,7 +41,7 @@ The SSH user must have sudoer permission to configure switches when using the SS
 ```
 {{%/notice%}}
 
-4. Create a pair of SSH private and public keys on the NetQ appliance:
+4. Create a pair of SSH private and public keys:
 
     ```
     ssh-keygen -t rsa -C "<USER>"
@@ -94,7 +94,7 @@ Specify a unique name for the configuration after `profile_name`.
 
 {{<notice tip>}}
 
-The default credentials for Cumulus Linux have changed from *cumulus/CumulusLinux!* to *cumulus/cumulus* for releases 4.2 and later. For details, read [Cumulus Linux User Accounts]({{<ref "cumulus-linux-43/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts">}}).
+The default credentials for Cumulus Linux have changed from *cumulus/CumulusLinux!* to *cumulus/cumulus* for releases 4.2 and later. For details, see [Cumulus Linux User Accounts]({{<ref "cumulus-linux-43/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts">}}).
 
 {{</notice>}}
 
@@ -104,7 +104,7 @@ To configure SSH authentication using a public/private key:
 You must have sudoer permission to properly configure switches when using the SSH key method.
 {{</notice>}}
 
-1. If the keys do not yet exist, create a pair of SSH private and public keys on the NetQ appliance.
+1. If the keys do not yet exist, create a pair of SSH private and public keys:
 
     ```
     ssh-keygen -t rsa -C "<USER>"

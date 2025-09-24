@@ -583,7 +583,10 @@ Restart `switchd` with the `sudo systemctl restart switchd.service` command.
 {{< /tab >}}
 {{< /tabs >}}
 
-When you enable adaptive routing, Cumulus Linux uses the default profile settings for your switch ASIC type. You cannot change the default profile settings. If you need to make adjustments to the settings, contact NVIDIA Customer Support.
+{{%notice note%}}
+- When you enable adaptive routing, Cumulus Linux uses the default profile settings for your switch ASIC type. You cannot change the default profile settings. If you need to make adjustments to the settings, contact NVIDIA Customer Support.
+- Ensure that traffic intended for adaptive routing is routed over ports with adaptive routing enabled. Unexpected route hashing might occur when mixing adaptive routing traffic and regular ECMP routes egressing ports that do not have adaptive routing enabled.
+{{%/notice%}}
 
 ### Link Utilization
 
@@ -620,7 +623,7 @@ Enabling or disabling link utilization reloads the `switchd` service.
 
 Edit the `/etc/cumulus/switchd.d/adaptive_routing.conf` file to set:
 - `interface.<interface>.adaptive_routing.link_util_thresh` to a value between 1 and 100.
-- `adaptive_routing.link_util_threshold_disabled` to FALSE.
+- `adaptive_routing.link_util_threshold_disabled` to TRUE.
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing.conf
@@ -628,7 +631,7 @@ cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing.conf
 adaptive_routing.enable = TRUE
 
 ## Global Link-utilization-threshold on/off
-adaptive_routing.link_utilization_threshold_disabled = FALSE
+adaptive_routing.link_utilization_threshold_disabled = TRUE
 
 ## Per-port configuration
 interface.swp51.adaptive_routing.enable = TRUE
@@ -721,7 +724,7 @@ cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/ad.aptive_routing.conf
 adaptive_routing.enable = TRUE
 
 ## Global Link-utilization-threshold on/off
-adaptive_routing.link_utilization_threshold_disabled = TRUE
+adaptive_routing.link_utilization_threshold_disabled = FALSE
 
 ## Per-port configuration
 interface.swp51.adaptive_routing.enable = TRUE
@@ -741,7 +744,7 @@ cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing.conf
 adaptive_routing.enable = TRUE
 
 ## Global Link-utilization-threshold on/off
-adaptive_routing.link_utilization_threshold_disabled = FALSE
+adaptive_routing.link_utilization_threshold_disabled = TRUE
 
 ## Per-port configuration
 interface.swp51.adaptive_routing.enable = TRUE

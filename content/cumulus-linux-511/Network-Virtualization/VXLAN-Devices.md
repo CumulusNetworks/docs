@@ -360,6 +360,7 @@ iface br_default
 {{< /tab >}}
 {{< /tabs >}}
 
+<!-- NEVER SUPPORTED APPARENTLY
 ## VXLAN UDP Port
 
 You can change the UDP port that Cumulus Linux uses for VXLAN encapsulation. The default port is 4789.
@@ -369,7 +370,7 @@ The following example changes the UDP port for VXLAN encapsulation to 1024:
 ```
 cumulus@switch:mgmt:~$ nv set nve vxlan port 1024
 ```
-
+-->
 ## Reserved Field in VXLAN Header
 
 By default, Cumulus Linux drops VXLAN packets at ingress that have reserved bits set in the header. You can change the forwarding behavior to ignore the reserved bits on ingress instead of dropping the packet.

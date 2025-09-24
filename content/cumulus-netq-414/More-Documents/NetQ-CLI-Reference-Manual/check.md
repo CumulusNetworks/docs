@@ -823,7 +823,7 @@ oob-mgmt-server   vagrant                   1500   -                 -          
 
 ## netq check ntp
 
-Verifies network time synchronization using NTP for all nodes (leafs, spines, and hosts) in your network fabric. Nodes that are not in time synchronization with the NetQ appliance or VM might report data with an incorrect timestamp or lose communication altogether.
+Verifies network time synchronization using NTP for all nodes (leafs, spines, and hosts) in your network fabric. Nodes that are not synchronized with the NetQ VM might report data with an incorrect timestamp or lose communication altogether.
 
 The output displays the status (passed/failed/skipped) of all tests and a summary including:
 

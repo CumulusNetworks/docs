@@ -207,7 +207,7 @@ Wed 11 Oct 2023 12:18:33 PM UTC
 To set the software clock according to the configured time zone, run the `sudo date -s` command:
 
 ```
-cumulus@switch:~$ sudo date -s "Tue Jan 26 00:37:13 2021"
+cumulus@switch:~$ sudo date -s "Tue Jan 26 00:37:13 02021"
 ```
 
 {{< /tab >}}

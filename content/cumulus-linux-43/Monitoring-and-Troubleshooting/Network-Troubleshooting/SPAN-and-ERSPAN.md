@@ -355,11 +355,9 @@ To mirror all forwarded TCP packets with only FIN set:
 This section describes how to configure ERSPAN.
 
 {{%notice note%}}
-
-{{<link url="Buffer-and-Queue-Management#configure-cut-through-mode-and-store-and-forward-switching" text="Cut-through mode">}} is **not** supported for ERSPAN in Cumulus Linux on switches using Broadcom Tomahawk, Trident II+, and Trident II ASICs.
-
-Cut-through mode **is** supported for ERSPAN in Cumulus Linux on switches using Mellanox Spectrum ASICs.
-
+- {{<link url="Buffer-and-Queue-Management#configure-cut-through-mode-and-store-and-forward-switching" text="Cut-through mode">}} is **not** supported for ERSPAN in Cumulus Linux on switches using Broadcom Tomahawk, Trident II+, and Trident II ASICs.
+- Cut-through mode **is** supported for ERSPAN in Cumulus Linux on switches using Mellanox Spectrum ASICs.
+- ERSPAN sessions with destination IP addresses that are reachable over an MLAG bond are not supported.
 {{%/notice%}}
 
 1. Create a rules file in `/etc/cumulus/acl/policy.d/`. The following rule configures ERSPAN for all packets coming in from swp1 to destination 10.10.10.234.

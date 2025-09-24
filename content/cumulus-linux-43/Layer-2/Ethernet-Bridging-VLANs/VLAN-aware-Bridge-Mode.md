@@ -208,7 +208,7 @@ cumulus@switch:~$ cl config apply
 
 ## Untagged/Access Ports
 
-Access ports ignore all tagged packets. In the configuration below, swp1 and swp2 are configured as access ports, while all untagged traffic goes to VLAN 100:
+In the configuration below, swp1 and swp2 are configured as access ports, while all untagged traffic goes to VLAN 100:
 
 {{< img src = "/images/cumulus-linux/ethernet-bridging-vlan_untagged_access_ports.png" >}}
 

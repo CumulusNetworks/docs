@@ -12,13 +12,17 @@ frontend:
     build:
       commands:
         # Install docraptor and requests libraries
-        - if [ "${AWS_BRANCH}" = "master" ]; then pip3 install urllib3==1.26.12 docraptor requests ; fi
+        - if [ "${AWS_BRANCH}" = "master" ]; then pip3 install urllib3==1.26.12 docraptor requests markdownify; fi
+        #- if [ "${AWS_BRANCH}" = "stu-stage" ]; then pip3 install markdownify; fi
+        
         # This only runs in the master branch, and assumes that stage was merged into master to trigger the build
         # build_pdfs.py <DOCRAPTOR_API_KEY> <BASE_URL>
         # If PDF/XLS generation is failing, comment out the following line to build the site.
         # COMMENTED OUT BELOW after NetQ 4.14 rn.xml download failure
-        #        - if [ "${AWS_BRANCH}" = "master" ]; then python3 utils/build_pdf_xls.py $DOCRAPTOR_KEY https://stage.d1l3582pfvms7p.amplifyapp.com/networking-ethernet-software/ x x ; fi
+        - if [ "${AWS_BRANCH}" = "master" ]; then python3 utils/build_pdf_xls.py $DOCRAPTOR_KEY https://stage.d1l3582pfvms7p.amplifyapp.com/networking-ethernet-software/ x x ; fi
         #
+        # If branch is defined below, manually update the Netguru copilot js
+        - if [ "${AWS_BRANCH}" = "master" ]; then wget -O themes/netDocs/assets/js/netguru.js https://copilot-netguru.nvidia.com/chainlit/copilot/index.js ; fi
         # Don't minify in non-prod branches to simplify troubleshooting
         - if [ "${AWS_BRANCH}" != "master" ]; then hugo -D --baseURL $BASEURL -d public/networking-ethernet-software/ ; fi
         - if [ "${AWS_BRANCH}" = "master" ]; then hugo --minify --baseURL $BASEURL ; fi
@@ -29,10 +33,14 @@ frontend:
         # Modify the PDF pages
         # Install python beautifulsoup for html parsing
         - pip3 install beautifulsoup4
+        # Run markdownify in master to produce simple markdown for post-build html docs
+        - if [ "${AWS_BRANCH}" = "master" ]; then python3 utils/html-to-markdown.py --url-replace $MDAMPURLREPLACE ; fi
         # Pass the /public root directory for master
         - if [ "${AWS_BRANCH}" = "master" ]; then python3 utils/pdf_page_editor.py public/ ; fi
         # Default is /public/networking-ethernet-software
         - if [ "${AWS_BRANCH}" != "master" ]; then python3 utils/pdf_page_editor.py ; fi
+        # Run markdownify in stu-stage for testing
+        #- if [ "${AWS_BRANCH}" = "stu-stage" ]; then python3 utils/html-to-markdown.py --url-replace $MDAMPURLREPLACE ; fi
         - tree
   artifacts:
     files:

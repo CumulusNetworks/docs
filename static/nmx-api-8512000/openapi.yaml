@@ -5,6 +5,24 @@ info:
   version: 85.1.2000
 servers:
   - url: /nmx/v1
+tags:
+  - name: Metrics
+    x-displayName: Metrics
+  - name: Services
+    x-displayName: Services
+  - name: NetworkEntity
+    x-displayName: NetworkEntity
+  - name: Partitions
+    x-displayName: Partitions
+  - name: Operations
+    x-displayName: Operations
+  - name: KPI
+    x-displayName: KPI
+  - name: BringUp
+    description: Bring-up describes the switch configuration process, including switch configuration and NMX-related services registration.
+    x-displayName: BringUp
+  - name: SwitchProfiles
+    x-displayName: SwitchProfiles
 paths:
   /metrics:
     get:
@@ -78,6 +96,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/NmxService'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         '500':
           description: Internal Error
           content:
@@ -145,6 +169,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NmxService'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         '404':
           description: Not Found
           content:
@@ -176,6 +206,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NmxService'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         '404':
           description: Not Found
           content:
@@ -1170,7 +1206,11 @@ paths:
                   $ref: '#/components/schemas/Operation'
                 uniqueItems: true
         '500':
-          $ref: '#/components/responses/Error'
+          description: Failed - Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /operations/{id}:
     get:
       tags:
@@ -1285,6 +1325,186 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /bring-up:
+    get:
+      tags:
+        - BringUp
+      summary: Get information on the Bring-up process
+      operationId: GetBringUpList
+      parameters:
+        - in: query
+          name: status
+          schema:
+            description: Filter by Bring-up Status
+            items:
+              $ref: '#/components/schemas/Status'
+            type: array
+      responses:
+        '200':
+          description: Success - Bring-up List
+          content:
+            application/json:
+              schema:
+                title: BringUpListResponse
+                type: array
+                items:
+                  $ref: '#/components/schemas/BringUpReport'
+                uniqueItems: true
+        '500':
+          $ref: '#/components/responses/ErrorResponse'
+    post:
+      tags:
+        - BringUp
+      summary: Request a new BringUp for one or more switches
+      operationId: CreateBringUp
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding:
+              Switches:
+                style: form
+                explode: true
+            schema:
+              $ref: '#/components/schemas/CreateBringUpRequest'
+      responses:
+        '202':
+          $ref: '#/components/responses/OperationResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+        '404':
+          $ref: '#/components/responses/ErrorResponse'
+        '409':
+          $ref: '#/components/responses/ErrorResponse'
+        '500':
+          $ref: '#/components/responses/ErrorResponse'
+  /bring-up/{id}:
+    get:
+      tags:
+        - BringUp
+      summary: Get a bring-up record information
+      operationId: GetBringUp
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: Success - BringUp Object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BringUpReport'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+        '404':
+          $ref: '#/components/responses/ErrorResponse'
+        '500':
+          $ref: '#/components/responses/ErrorResponse'
+  /switch-profiles:
+    get:
+      tags:
+        - SwitchProfiles
+      summary: Get a list of switch profiles
+      operationId: GetSwitchProfilesList
+      responses:
+        '200':
+          description: Success - SwitchProfile Object List
+          content:
+            application/json:
+              schema:
+                title: SwitchProfilesListResponse
+                type: array
+                items:
+                  $ref: '#/components/schemas/SwitchProfile'
+                uniqueItems: true
+        '500':
+          $ref: '#/components/responses/ErrorResponse'
+    post:
+      tags:
+        - SwitchProfiles
+      summary: Create a new switch profile
+      operationId: CreateSwitchProfile
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSwitchProfileRequest'
+      responses:
+        '201':
+          description: Success - SwitchProfile Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SwitchProfile'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+        '409':
+          $ref: '#/components/responses/ErrorResponse'
+        '500':
+          $ref: '#/components/responses/ErrorResponse'
+  /switch-profiles/{id}:
+    get:
+      tags:
+        - SwitchProfiles
+      summary: Get a switch profile record information
+      operationId: GetSwitchProfile
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: Success - SwitchProfile Object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SwitchProfile'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+        '404':
+          $ref: '#/components/responses/ErrorResponse'
+        '500':
+          $ref: '#/components/responses/ErrorResponse'
+    delete:
+      tags:
+        - SwitchProfiles
+      summary: Delete a SwitchProfile record
+      operationId: DeleteSwitchProfile
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '204':
+          description: SwitchProfile record successfully deleted
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+        '404':
+          $ref: '#/components/responses/ErrorResponse'
+        '405':
+          $ref: '#/components/responses/ErrorResponse'
+        '409':
+          $ref: '#/components/responses/ErrorResponse'
+        '500':
+          $ref: '#/components/responses/ErrorResponse'
+    patch:
+      tags:
+        - SwitchProfiles
+      summary: Update a SwitchProfile
+      operationId: UpdateSwitchProfile
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSwitchProfileRequest'
+      responses:
+        '200':
+          description: Success
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+        '404':
+          $ref: '#/components/responses/ErrorResponse'
+        '409':
+          $ref: '#/components/responses/ErrorResponse'
+        '500':
+          $ref: '#/components/responses/ErrorResponse'
 components:
   schemas:
     UUID:
@@ -1491,6 +1711,10 @@ components:
           description: Domain UUID
         LocationInfo:
           $ref: '#/components/schemas/LocationInfo'
+        GpuIDList:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityID'
         Health:
           type: string
           enum:
@@ -2264,25 +2488,211 @@ components:
           $ref: '#/components/schemas/Health'
         Inventory:
           $ref: '#/components/schemas/Inventory'
-  responses:
-    Error:
-      description: NMX-M Error Information
+    Status:
+      description: The status of the bring-up process
+      enum:
+        - pending
+        - in-progress
+        - failed
+        - completed
+      type: string
+      x-enum-varnames:
+        - Pending
+        - InProgress
+        - Failed
+        - Completed
+      x-enum-descriptions:
+        - bring-up is recorded and pending to be picked up for processing
+        - processing of the bring-up has started
+        - bring-up has failed, this is a terminal state
+        - bring-up has finished successfully, this is a terminal state
+    SwitchInfo:
       type: object
       properties:
-        httpErrorCode:
-          type: integer
-          example: 500
-          description: HTTP error code
-        customErrorCode:
+        StartedAt:
+          $ref: '#/components/schemas/Timestamp'
+        UpdatedAt:
+          $ref: '#/components/schemas/Timestamp'
+        Status:
+          $ref: '#/components/schemas/Status'
+        StatusDetails:
           type: string
-          example: internal-error
-          description: A more granular, textual custom error code
-        description:
+          description: Human-readable details of the bring-up status
+        CurrentStep:
           type: string
-          example: 'Something really bad happened with resource [id: 123] and we are so sorry about it.'
-          description: A detailed error description
+          description: Human-readable description of the current step of execution in the bring-up process
+        Address:
+          type: string
+          description: Switch IP address or (IPv4 or fqdn)
+        NMX-Telemetry-ID:
+          $ref: '#/components/schemas/EntityID'
+        NMX-Controller-ID:
+          $ref: '#/components/schemas/EntityID'
       required:
-        - httpErrorCode
-        - customErrorCode
-        - description
+        - Status
+        - StatusDetails
+        - Address
       additionalProperties: false
+    BringUpReport:
+      type: object
+      properties:
+        ID:
+          $ref: '#/components/schemas/EntityID'
+        CreatedAt:
+          $ref: '#/components/schemas/Timestamp'
+        UpdatedAt:
+          $ref: '#/components/schemas/Timestamp'
+        Status:
+          $ref: '#/components/schemas/Status'
+        Switches:
+          type: array
+          uniqueItems: true
+          items:
+            $ref: '#/components/schemas/SwitchInfo'
+      required:
+        - ID
+        - CreatedAt
+        - UpdatedAt
+        - Status
+        - Switches
+      additionalProperties: false
+    SwitchBringUpRequest:
+      type: object
+      properties:
+        Address:
+          description: Switch IP address or (IPv4 or fqdn)
+          type: string
+        ProfileID:
+          type: string
+          pattern: ^[0-9a-fA-F]{24}$
+          description: Switch-specific profile ID. defaults to default profile ID
+      required:
+        - Address
+      additionalProperties: false
+    CreateBringUpRequest:
+      type: object
+      properties:
+        FmConfig:
+          type: string
+          format: binary
+          description: FmConfig file. Size limit 1MB.
+          x-go-type: '*multipart.FileHeader'
+        ProfileID:
+          type: string
+          pattern: ^[0-9a-fA-F]{24}$
+          description: Switches profile ID. Defaults to default profile
+        Switches:
+          type: array
+          uniqueItems: true
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/SwitchBringUpRequest'
+          additionalProperties: false
+      required:
+        - Switches
+        - FmConfig
+      additionalProperties: false
+    SwitchProfile:
+      type: object
+      properties:
+        ID:
+          $ref: '#/components/schemas/EntityID'
+        Name:
+          description: Name of the switch profile.
+          example: Example custom profile
+          type: string
+          pattern: ^[\x20-\x7E]*$
+          minLength: 1
+          maxLength: 64
+      required:
+        - ID
+        - Name
+    CreateSwitchProfileRequest:
+      type: object
+      properties:
+        Name:
+          description: Name of the switch profile.
+          example: Example custom profile
+          type: string
+          pattern: ^[\x20-\x7E]*$
+          minLength: 1
+          maxLength: 64
+        Username:
+          description: Username to connect to a switch (encrypted).
+          example: User12356
+          type: string
+          format: password
+          pattern: ^[\x20-\x7E]*$
+          minLength: 1
+          maxLength: 64
+        Password:
+          description: Password to connect to a switch (encrypted).
+          example: Password12356
+          type: string
+          format: password
+          pattern: ^[\x20-\x7E]*$
+          minLength: 1
+          maxLength: 64
+      required:
+        - Name
+        - Username
+        - Password
+    UpdateSwitchProfileRequest:
+      type: object
+      properties:
+        Name:
+          description: Name of the switch profile.
+          example: Updated custom profile
+          type: string
+          pattern: ^[\x20-\x7E]*$
+          minLength: 1
+          maxLength: 64
+        Username:
+          description: Username to connect to a switch (encrypted).
+          example: User12356
+          type: string
+          format: password
+          pattern: ^[\x20-\x7E]*$
+          minLength: 1
+          maxLength: 64
+        Password:
+          description: Password to connect to a switch (encrypted).
+          example: Password12356
+          type: string
+          format: password
+          pattern: ^[\x20-\x7E]*$
+          minLength: 1
+          maxLength: 64
+      minProperties: 1
+  responses:
+    ErrorResponse:
+      description: A general response structure describing an NMX-M error with detailed information.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    OperationResponse:
+      description: A general response structure describing an NMX-M long-running async operation with a trackable op-id.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AsyncResponse'
+  parameters:
+    IdParam:
+      name: id
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/EntityID'
+x-tagGroups:
+  - name: NMX-M REST API
+    tags:
+      - Metrics
+      - Services
+      - NetworkEntity
+      - Partitions
+      - Operations
+      - KPI
+      - BringUp
+      - BringUpDownloads
+      - SwitchProfiles

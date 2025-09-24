@@ -134,7 +134,7 @@ mirror.session.1.type = span
 Run the following command to the load the configuration:
 
 ```
-cumulus@switch:~$ /usr/lib/cumulus/switchdctl --load /etc/cumulus/switchd.d/port-mirror.conf -prefix mirror
+cumulus@switch:~$ sudo systemctl reload switchd
 ```
 
 SPAN sessions that reference an outgoing interface create the mirrored packets according to the ingress interface before the routing decision. For example, the following rule captures traffic that is ultimately destined to leave swp1 but mirrors the packets when they arrive on swp49. The rule transmits packets that reference the original VLAN tag, and source and destination MAC address at the time that swp49 originally receives the packet.
@@ -149,7 +149,7 @@ mirror.session.1.type = span
 ```
 
 ```
-cumulus@switch:~$ /usr/lib/cumulus/switchdctl --load /etc/cumulus/switchd.d/port-mirror.conf -prefix mirror
+cumulus@switch:~$ sudo systemctl reload switchd
 ```
 
 {{< /tab >}}
@@ -432,7 +432,7 @@ mirror.session.1.type = erspan
 Run the following command to the load the configuration:
 
 ```
-cumulus@switch:~$ /usr/lib/cumulus/switchdctl --load /etc/cumulus/switchd.d/port-mirror.conf -prefix mirror
+cumulus@switch:~$ sudo systemctl reload switchd
 ```
 
 {{< /tab >}}
@@ -535,6 +535,79 @@ To mirror all forwarded TCP packets with only FIN set:
 {{< /tab >}}
 {{< /tabs >}}
 
+### ERSPAN and MLAG Bond Redirection
+
+In an MLAG environment, where the ERSPAN session destination IP address is reachable over an MLAG bond, you must disable bond redirection for ERSPAN encapsulated traffic to be sent over the peerlink and reach the ERSPAN destination IP address in case the local MLAG link goes down.
+
+{{%notice info%}}
+Disabling bond redirection:
+- Impacts the convergence time it takes for MLAG to migrate the MAC entries learned against a failed MLAG link to the peerlink.
+- Restarts the `clagd.service` and the MLAG bonds remain in a down state until the `clagd-init-delay` timer expires. To show the MLAG timers, run the NVUE `nv show mlag` command or the Linux `sudo clagctl showtimers` command.
+{{%/notice%}}
+
+{{< tabs "TabID544 ">}}
+{{< tab "NVUE Commands ">}}
+
+Add the following snippet, then patch and apply the configuration.  
+
+```
+cumulus@switch:~$ sudo nano /home/cumulus/apply_mlag_bond_redirection_snippet.yaml
+- set:
+    system:
+      config:
+        snippet:
+          ifupdown2_eni:
+            peerlink.4094: |
+              clagd-args --redirect2Enable False
+```
+
+```
+cumulus@switch:~$ nv config patch /home/cumulus/apply_mlag_bond_redirection_snippet.yaml
+cumulus@switch:~$ nv config apply
+```
+
+To re-enable bond redirection, remove the snippet, then patch and apply the configuration.
+
+```
+cumulus@switch:~$ sudo nano /home/cumulus/remove_mlag_bond_redirection_snippet.yaml
+- unset:
+    system:
+      config:
+        snippet:
+          ifupdown2_eni:
+```
+
+```
+cumulus@switch:~$ nv config patch /home/cumulus/remove_mlag_bond_redirection_snippet.yaml
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+In the `/etc/network/interfaces` file, edit the `peerlink.4094` interface stanza to add the `clagd-args --redirect2Enable False` option, then run the `sudo ifreload -a` command to reload the configuration.
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+auto peerlink.4094
+  iface peerlink.4094
+  clagd-backup-ip 10.10.10.2
+  clagd-peer-ip linklocal
+  clagd-sys-mac 44:38:39:FF:00:AA
+  clagd-args --redirect2Enable False
+...
+```
+
+```
+cumulus@switch:~$ sudo ifreload -a
+```
+
+To re-enable bond redirection, delete the `clagd-args --redirect2Enable False` option from the `peerlink.4094` interface stanza, then run the `sudo ifreload -a` command to reload the configuration.
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Show SPAN and ERSPAN Configuration
 
 To show SPAN and ERSPAN configuration for a specific session, run the NVUE `nv show system port-mirror session <session-id>` command. To show SPAN and ERSPAN configuration for all sessions, run the NVUE `nv show system port-mirror` command.
@@ -564,7 +637,7 @@ cumulus@switch:~$ sudo cl-acltool -L all | grep SPAN
 ## Limitations
 
 - On a switch with the Spectrum-2 ASIC or later, Cumulus Linux supports four SPAN destinations in atomic mode or eight SPAN destinations in non-atomic mode. On a switch with the Spectrum 1 ASIC, Cumulus Linux supports only a single SPAN destination in atomic mode or three SPAN destinations in non-atomic mode.
-- WJH buffer drop monitoring uses a SPAN destination; if you configure {{<link title="What Just Happened (WJH)" >}}, ensure that you do not exceed the total number of SPAN destinations allowed for your switch ASIC type.
+- Enabling WJH buffer drop monitoring consumes a SPAN destination; if you configure {{<link title="What Just Happened (WJH)" >}}, ensure that you do not exceed the total number of SPAN destinations allowed for your switch ASIC type.
 - Multiple SPAN sources can point to the same SPAN destination, but a SPAN source *cannot* specify two SPAN destinations.
 - Cumulus Linux does not support IPv6 ERSPAN destinations.
 - You cannot use eth0 as a destination.

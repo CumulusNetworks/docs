@@ -41,6 +41,8 @@ max-unauthenticated
 
 Shows the number of unauthenticated SSH sessions allowed before throttling starts, the starting percentage of connections to reject above the throttle start count before reaching the session count limit, and the maximum number of unauthenticated SSH sessions allowed.
 
+In Cumulus Linux 5.13 and later, this command also shows the CA trusted certificates key IDs for certificate-based authentication.
+
 ### Version History
 
 Introduced in Cumulus Linux 5.6.0
@@ -54,6 +56,30 @@ cumulus@switch:~$ nv show system ssh-server max-unauthenticated
 session-count     100    
 throttle-percent  30     
 throttle-start    10 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system ssh-server trusted-ca-keys</h>
+
+Shows certificate authentication configuration for SSH.
+
+{{%notice note%}}
+NVUE hides the key literal in the command output.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system ssh-server trusted-ca-keys
+      operational  applied 
+---- ------------ -------- 
+key   *           * 
+type  ssh-rsa     ssh-rsa
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

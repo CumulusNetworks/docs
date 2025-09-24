@@ -24,7 +24,7 @@ You can run NVUE commands to monitor your system hardware.
 | `nv show platform environment led` | Shows information about the LEDs on the switch, such as the LED name and color.|
 | `nv show platform environment psu` | Shows information about the PSUs on the switch, such as the PSU name and state.|
 | `nv show platform environment temperature` | Shows information about the sensors on the switch, such as the critical, maximum, minimum and current temperature and the current state of the sensor.|
-| `nv show platform environment voltage` | Shows the list of voltage sensors on the switch.|
+| `nv show platform environment voltage` | Shows the list of voltage sensors on the switch. Note: On the SN3700 and SN3700c switch, the `nv show platform environment voltage` command output shows a failed state for the PSU-n-12V-RAIL-OUT sensors. This is a known hardware limitation that cannot be corrected by the PSU vendor.|
 | `nv show platform inventory` | Shows the switch inventory, which includes fan and PSU hardware version, model, serial number, state, and type. For information about a specific fan or PSU, run the `nv show platform inventory <inventory-name>` command.|
 
 The following example shows the `nv show health` command output when the health of the switch is not good:
@@ -87,7 +87,7 @@ PSU2/FAN  ok         6000                 29000      2500       F2B
 
 {{%notice note%}}
 - If the airflow direction for all fans is not in the same (front to back or back to front), cooling is suboptimal for the switch, rack, and even the entire data center.
-- During thermal overload or if you physically remove a fan try while the switch is powered on, the switch reboots and none of the interfaces come up until you power cycle the switch with the fan tray reinserted or when the environmental temperature is corrected. You can detect this condition with the following log message:
+- During thermal overload or if you physically remove a fan tray while the switch is powered on, the switch reboots and none of the interfaces come up until you power cycle the switch with the fan tray reinserted or when the environmental temperature corrects. You can detect this condition with the following log message:
 
 ```
 switch determine-reset[8801]: determine-reset-reason INFO: Platform api indicates reboot cause Thermal Overload: ASIC

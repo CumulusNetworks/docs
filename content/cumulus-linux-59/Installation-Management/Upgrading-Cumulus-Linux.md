@@ -155,6 +155,10 @@ You can upgrade Cumulus Linux in one of two ways:
 Cumulus Linux also provides ISSU to upgrade an active switch with minimal disruption to the network. See {{<link url="In-Service-System-Upgrade-ISSU" text="In-Service-System-Upgrade-ISSU">}}.
 
 {{%notice note%}}
+Cumulus Linux 5.9.4 does not support ISSU (warm boot upgrade).
+{{%/notice%}}
+
+{{%notice note%}}
 - To upgrade to Cumulus Linux 5.9 from Cumulus Linux 5.8 or earlier, you must install a disk image of the new release using ONIE. You *cannot* upgrade packages with package upgrade.
 - Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in [Upgrade Switches in an MLAG Pair](#upgrade-switches-in-an-mlag-pair) below to ensure a smooth upgrade.
 {{%/notice%}}
@@ -532,6 +536,37 @@ Even the most well planned and tested upgrades can result in unforeseen problems
 - Restore to a previous state using a backup configuration captured before the upgrade.
 
 The method you employ is specific to your deployment strategy. Providing detailed steps for each scenario is outside the scope of this document.
+
+## Downgrade a Secure Boot Switch
+
+The SN3700C-S, SN5400, and SN5600 secure boot switch running Cumulus Linux 5.9.3 boots with shim 15.8 that adds entries to the SBAT revocations to prevent the switch from booting shim 15.7 or earlier (in Cumulus Linux 5.9.2 and earlier), which has security vulnerabilities.
+
+After downgrading the switch from Cumulus Linux 5.9.3 with ONIE, follow the steps below to disable, then enable secure boot **before** the downgraded switch boots.
+
+You can also follow the steps below to recover a downgraded secure boot switch that does not boot and that shows the following error:
+
+  ```
+  Verifiying shim SBAT data failed: Security Policy Violation
+  Something has gone seriously wrong: SBAT self-check failed: Security Policy Violation
+  ```
+
+1. On the switch, **disable** SecureBoot in BIOS:
+
+   a. Press Ctrl B through the serial console during system boot while the BIOS version prints.
+
+   b. When prompted, provide the BIOS password. The default password is `admin`.
+
+   c. To disable secure boot, navigate to `Security`, and change `Secure Boot` to `Disabled`.
+
+   d. Select `Save & Exit`.
+
+2. Boot into Cumulus Linux.
+
+3. Run the `mokutil --set-sbat-policy delete` command.
+
+4. Reboot the switch.
+
+5. Follow steps a through d above to **enable** secure boot in BIOS. In step c, change `Secure Boot` to `Enabled`.
 
 ## Third Party Packages
 

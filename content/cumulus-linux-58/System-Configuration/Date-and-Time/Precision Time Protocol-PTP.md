@@ -37,6 +37,10 @@ Cumulus Linux supports:
 - 1G links might have a lower accuracy for PTP due to hardware limitations. If your application needs high accuracy from PTP, use higher link speeds.
 {{%/notice%}}
 
+{{%notice note%}}
+Cumulus Linux only supports PTP boundary clock mode; however, due to the internal delay accounting implementation, the switch might set the correction field to a non-zero value in the Sync message on a two-step egress port. This behavior is compliant with 1588-2008 and 1588-2019 PTP specifications to provide for better clock accuracy through the system. As a result, some downstream clocks might report the presence of a transparent clock between the Cumulus Linux switch and themselves.
+{{%/notice%}}
+
 ## Basic Configuration
 
 Basic PTP configuration requires you:
@@ -2231,3 +2235,7 @@ PTP frames are affected by <span class="a-tooltip">[STP](## "Spanning Tree Proto
 
 If you configure PTP on bridge ports, NVIDIA recommends that the bridge ports are spanning tree edge ports or in a bridge domain where spanning tree is disabled.
 <!-- vale on -->
+
+### PTP Log Reporting Offset
+
+When you enable {{<link url="Pulse-Per-Second-PPS" text="PPS In mode">}}, the PTP log reporting offset is once every two seconds instead of once every second.

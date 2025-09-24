@@ -2025,7 +2025,7 @@ mode            dynamic      dynamic
 
 ## <h>nv show qos advance-buffer-config \<profile-id\> egress-mgmt-buffer</h>
 
-Shows the lossy egress management buffer settings that you can configure to isolate management traffic to a different priority group. Management traffic consists of OSPF and BGP hello and update packets, and BFD packets that ingress and egress the CPU.
+Shows the lossy egress management buffer settings that you can configure to isolate management traffic to a different priority group. Management traffic consists of control traffic originating from or destined to the switch CPU.
 
 ### Version History
 
@@ -2045,7 +2045,7 @@ shared-bytes   13.53 KB         13.53 KB
 
 ## <h>nv show qos advance-buffer-config \<profile-id\> ingress-mgmt-buffer</h>
 
-Shows the lossy ingress management buffer settings that you can configure to isolate management traffic to a different priority group. Management traffic consists of OSPF and BGP hello and update packets, and BFD packets that ingress and egress the CPU.
+Shows the lossy ingress management buffer settings that you can configure to isolate management traffic to a different priority group. Management traffic consists of control traffic originating from or destined to the switch CPU.
 
 ### Version History
 
@@ -2623,6 +2623,303 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show qos egress-shaper shaper1 traffic-class 2
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface qos-congestion-control</h>
+
+Shows QoS congestion control configuration for all interfaces.
+
+### Version History
+
+Introduced in Cumulus Linux 5.14.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface qos-congestion-control
+=======================================================================
+ECN configuration for Interface: swp1
+=======================================================================
+    traffic-class  ECN     RED      Min Th     Max Th     Probability
+    -------------  ------  -------  ---------  ---------  -----------
+    0              enable  disable  153.0 KB   1.43 MB    100        
+    3              enable  disable  153.0 KB   1.43 MB    100        
+
+=======================================================================
+ECN configuration for Interface: swp2
+=======================================================================
+    traffic-class  ECN     RED      Min Th     Max Th     Probability
+    -------------  ------  -------  ---------  ---------  -----------
+    0              enable  disable  153.0 KB   1.43 MB    100        
+    3              enable  disable  153.0 KB   1.43 MB    100        
+
+=======================================================================
+ECN configuration for Interface: swp3
+=======================================================================
+    traffic-class  ECN     RED      Min Th     Max Th     Probability
+    -------------  ------  -------  ---------  ---------  -----------
+    0              enable  disable  153.0 KB   1.43 MB    100        
+    3              enable  disable  153.0 KB   1.43 MB    100        
+
+=======================================================================
+ECN configuration for Interface: swp4
+=======================================================================
+    traffic-class  ECN     RED      Min Th     Max Th     Probability
+    -------------  ------  -------  ---------  ---------  -----------
+    0              enable  disable  153.0 KB   1.43 MB    100        
+    3              enable  disable  153.0 KB   1.43 MB    100        
+...
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface qos-roce-counters</h>
+
+Shows detailed information about current buffer utilization as well as historic RoCE byte and packet counts for all interfaces.
+
+### Version History
+
+Introduced in Cumulus Linux 5.14.0
+
+### Example
+
+```
+cumulus@switch:~$ v show interface qos-roce-counters
+----------------------------------------------------
+Interface: swp1
+----------------------------------------------------
+rx-stats
+  rx-pfc-stats
+    pause-duration             0
+    pause-packets              0
+  rx-roce-stats
+    buffer-max-usage           0 Bytes
+    buffer-usage               0 Bytes
+    no-buffer-discard          0
+    roce-packets               0
+    roce-bytes                 0 Bytes
+    pg-max-usage               0 Bytes
+    pg-usage                   0 Bytes
+  rx-non-roce-stats
+    pg-usage                   0 Bytes
+    buffer-max-usage           144 Bytes
+    buffer-usage               0 Bytes
+    no-buffer-discard          0
+    non-roce-bytes             1432 Bytes
+    pg-max-usage               144 Bytes
+    non-roce-packets           12
+tx-stats
+  tx-pfc-stats
+    pause-duration             0
+    pause-packets              0
+  tx-roce-stats
+    buffer-max-usage           0 Bytes
+    buffer-usage               0 Bytes
+    roce-bytes                 0 Bytes
+    roce-packets               0
+    tc-max-usage               0 Bytes
+    tc-usage                   0 Bytes
+    unicast-no-buffer-discard  0
+  tx-non-roce-stats
+    buffer-max-usage           0 Bytes
+    buffer-usage               0 Bytes
+  tx-cnp-stats
+    cnp-bytes                  0 Bytes
+    tc-max-usage               0 Bytes
+    cnp-packets                0
+    tc-usage                   0 Bytes
+    unicast-no-buffer-discard  0
+  tx-ecn-stats
+    ecn-marked-packets         0
+----------------------------------------------------
+Interface: swp2
+----------------------------------------------------
+rx-stats
+  rx-pfc-stats
+    pause-duration             0
+    pause-packets              0
+  rx-roce-stats
+    buffer-max-usage           0 Bytes
+    buffer-usage               0 Bytes
+    no-buffer-discard          0
+    roce-packets               0
+    roce-bytes                 0 Bytes
+    pg-max-usage               0 Bytes
+    pg-usage                   0 Bytes
+  rx-non-roce-stats
+    pg-usage                   0 Bytes
+    buffer-max-usage           288 Bytes
+    buffer-usage               0 Bytes
+    no-buffer-discard          0
+    non-roce-bytes             8459 Bytes
+    pg-max-usage               288 Bytes
+    non-roce-packets           46
+tx-stats
+  tx-pfc-stats
+    pause-duration             0
+    pause-packets              0
+  tx-roce-stats
+    buffer-max-usage           0 Bytes
+    buffer-usage               0 Bytes
+    roce-bytes                 0 Bytes
+    roce-packets               0
+    tc-max-usage               0 Bytes
+    tc-usage                   0 Bytes
+    unicast-no-buffer-discard  0
+  tx-non-roce-stats
+    buffer-max-usage           0 Bytes
+    buffer-usage               0 Bytes
+  tx-cnp-stats
+    cnp-bytes                  0 Bytes
+    tc-max-usage               0 Bytes
+    cnp-packets                0
+    tc-usage                   0 Bytes
+    unicast-no-buffer-discard  0
+  tx-ecn-stats
+    ecn-marked-packets         0
+...
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface qos-roce-status</h>
+
+Shows detailed RoCE information about all interfaces.
+
+### Version History
+
+Introduced in Cumulus Linux 5.14.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface qos-roce-status
+---------------------------------------------
+Interface: swp1
+----------------------------------------------
+pfc
+  pfc-priority          3
+  rx-enabled            yes
+  tx-enabled            yes
+trust
+  trust-mode            pcp,dscp
+congestion-control
+  congestion-mode       ecn, absolute
+  enabled-tc            0,3
+  min-threshold         156672
+  max-threshold         1502208
+mode
+  mode                   lossless
+
+RoCE PCP/DSCP->SP mapping configurations
+===========================================
+          pcp  dscp  switch-prio
+    ----  ---  ----  -----------
+    cnp     6     48     6
+    roce    3     26     3
+
+RoCE SP->TC mapping and ETS configurations
+=============================================
+          switch-prio  traffic-class  scheduler-weight
+    ----  -----------  -------------  ----------------
+    cnp     6            6            strict priority
+    roce    3            3            dwrr-50%
+
+RoCE Pool Status
+===================
+          name                    mode     pool-id    switch-priorities       traffic-class      size       current-usage   max-usage
+    -     ----------------------  -------  ---------  ----------------------  ---------------    ---------  --------------  ----------
+    0      lossy-default-ingress   DYNAMIC   0          0,1,2,4,5,6,7           -                14.02 MB   0               0
+    1      roce-reserved-ingress   DYNAMIC   1          3                       -                14.02 MB   0               0
+    2      lossy-default-egress    DYNAMIC   2          -                       0,6              14.02 MB   0               0
+    3      roce-reserved-egress    DYNAMIC   3          -                       3                inf        0               0
+
+---------------------------------------------
+Interface: swp2
+----------------------------------------------
+pfc
+  pfc-priority          3
+  rx-enabled            yes
+  tx-enabled            yes
+trust
+  trust-mode            pcp,dscp
+congestion-control
+  congestion-mode       ecn, absolute
+  enabled-tc            0,3
+  min-threshold         156672
+  max-threshold         1502208
+mode
+  mode                   lossless
+
+RoCE PCP/DSCP->SP mapping configurations
+===========================================
+          pcp  dscp  switch-prio
+    ----  ---  ----  -----------
+    cnp     6     48     6
+    roce    3     26     3
+
+RoCE SP->TC mapping and ETS configurations
+=============================================
+          switch-prio  traffic-class  scheduler-weight
+    ----  -----------  -------------  ----------------
+    cnp     6            6            strict priority
+    roce    3            3            dwrr-50%
+
+RoCE Pool Status
+===================
+          name                    mode     pool-id    switch-priorities       traffic-class      size       current-usage   max-usage
+    -     ----------------------  -------  ---------  ----------------------  ---------------    ---------  --------------  ----------
+    0      lossy-default-ingress   DYNAMIC   0          0,1,2,4,5,6,7           -                14.02 MB   0               0
+    1      roce-reserved-ingress   DYNAMIC   1          3                       -                14.02 MB   0               0
+    2      lossy-default-egress    DYNAMIC   2          -                       0,6              14.02 MB   0               0
+    3      roce-reserved-egress    DYNAMIC   3          -                       3                inf        0               0
+...
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface qos-roce-status-pool-map</h>
+
+Shows the status for RoCE pools for all interfaces.
+
+### Version History
+
+Introduced in Cumulus Linux 5.14.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface qos-roce-status-pool-map
+-------------------------------------
+Interface: swp1
+-------------------------------------
+    name                     mode      pool-id  switch-priorities  traffic-class     size     current-usage  max-usage
+-   ---------------------    --------  -------  -----------------  -------------     -------  -------------  ---------
+0   lossy-default-ingress    DYNAMIC    2         0,1,2,4,5,6,7       -              14.02 MB  0              0         
+1   roce-reserved-ingress    DYNAMIC    3         3                   -              14.02 MB  0              0         
+2   lossy-default-egress     DYNAMIC    13        -                   0,6            14.02 MB  0              0         
+3   roce-reserved-egress     DYNAMIC    14        -                   3              inf       0              0         
+-------------------------------------
+Interface: swp2
+-------------------------------------
+    name                     mode      pool-id  switch-priorities  traffic-class     size     current-usage  max-usage
+-   ---------------------    --------  -------  -----------------  -------------     -------  -------------  ---------
+0   lossy-default-ingress    DYNAMIC    2         0,1,2,4,5,6,7       -              14.02 MB  0              0         
+1   roce-reserved-ingress    DYNAMIC    3         3                   -              14.02 MB  0              0         
+2   lossy-default-egress     DYNAMIC    13        -                   0,6            14.02 MB  0              0         
+3   roce-reserved-egress     DYNAMIC    14        -                   3              inf       0              0         
+-------------------------------------
+Interface: swp3
+-------------------------------------
+    name                     mode      pool-id  switch-priorities  traffic-class     size     current-usage  max-usage
+-   ---------------------    --------  -------  -----------------  -------------     -------  -------------  ---------
+0   lossy-default-ingress    DYNAMIC    2         0,1,2,4,5,6,7       -              14.02 MB  0              0         
+1   roce-reserved-ingress    DYNAMIC    3         3                   -              14.02 MB  0              0         
+2   lossy-default-egress     DYNAMIC    13        -                   0,6            14.02 MB  0              0         
+3   roce-reserved-egress     DYNAMIC    14        -                   3              inf       0              0         
+...
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

@@ -199,7 +199,7 @@ The output displays:
 
 <!-- vale off -->
 - Whether each node has communicated recently (last 120 seconds)
-- If each node is in time synchronization with the NetQ appliance or virtual machine
+- If each node is in time synchronization with the NetQ server or virtual machine
 - The NetQ Agent software version currently running on the node
 - How long the node has been operationally up
 - How long the NetQ Agent has been operationally up
@@ -225,10 +225,10 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Filter output to view status for the switch or host with this name |
-| fresh | NA | Filter output for devices where the NetQ Agent is communicating with the appliance or VM as expected |
+| fresh | NA | Filter output for devices where the NetQ Agent is communicating with the server or VM as expected |
 | dead | NA | Filter output for devices where a user decommissioned the NetQ Agent |
-| rotten | NA | Filter output for devices where the NetQ Agent has not communicated with the appliance or VM in the last two minutes |
-| opta | NA | Filter output for the NetQ Agent installed on the appliance or VM |
+| rotten | NA | Filter output for devices where the NetQ Agent has not communicated with the server or VM in the last two minutes |
+| opta | NA | Filter output for the NetQ Agent installed on the server or VM |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON format |
 
@@ -1919,7 +1919,7 @@ netq [<hostname>] show inventory os
 | type | \<memory-type\> | Only display results for memory of this type |
 | version | \<os-version\> | Only display results for operating systems of this version |
 | name | \<os-name\> | Only display results for operating systems with this name |
-| opta | NA | Only display results for the NetQ appliance or VM (not other switches or hosts) |
+| opta | NA | Only display results for the NetQ server or VM (not other switches or hosts) |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON format |
 
@@ -3167,7 +3167,7 @@ sysconf         configdiff       updated
 
 ## netq show ntp
 
-Displays whether all or a specific node is in time synchronization with the NetQ appliance or VM currently or for a time in the past. The output provides:
+Displays whether all or a specific node is in time synchronization with the NetQ server or VM currently or for a time in the past. The output provides:
 
 - The synchronization status
 - The current time server used for synchronization
@@ -3192,7 +3192,7 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
-| out-of-sync | NA | Only display results for devices that are out of synchronization with the NetQ appliance or VM |
+| out-of-sync | NA | Only display results for devices that are out of synchronization with the NetQ server or VM |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON format |
 
@@ -3422,7 +3422,7 @@ mlx-3700c-21      swp29                     MASTER
 mlx-3700c-22      swp29                     SLAVE
 ```
 ```
-cumulus@netq-appliance:~$ netq show ptp counters tx
+cumulus@netq-server:~$ netq show ptp counters tx
 Matching ptp records:
 Hostname          Interface            Announce             Delay Request        Delay Response       Follow Up            Delay Resp. Follow U Peer Delay Request   Peer Delay Response  Management           Signaling
                                                                                                                            p

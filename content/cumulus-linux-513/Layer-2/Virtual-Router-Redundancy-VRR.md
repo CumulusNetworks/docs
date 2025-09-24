@@ -949,9 +949,7 @@ iface bond1.30
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL512 - VRR" showNodes="leaf01,leaf02,server01,server02" >}}
-
-This simulation is running Cumulus Linux 5.12. The Cumulus Linux 5.13 simulation is coming soon.
+    {{< simulation name="Try It CL513 - VRR" showNodes="leaf01,leaf02,server01,server02" >}}
 
 The simulation is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 

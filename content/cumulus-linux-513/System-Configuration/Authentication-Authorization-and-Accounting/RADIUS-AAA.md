@@ -162,6 +162,18 @@ mapped_priv_user radius_priv_user
 {{< /tab >}}
 {{< /tabs >}}
 
+{{%notice note%}}
+The value of the VSA (Vendor Specific Attribute) `shell:priv-lvl` determines the privilege level for the user on the switch. If the attribute does not return, the user does not have privileges. The following shows an example using the `freeradius` server for a fully privileged user.
+
+```
+Service-Type = Administrative-User,
+Cisco-AVPair = "shell:roles=network-administrator",
+Cisco-AVPair += "shell:priv-lvl=15"
+```
+
+The VSA vendor name (Cisco-AVPair in the example above) can have any content. The RADIUS client only checks for the string `shell:priv-lvl`.
+{{%/notice%}}
+
 ## Enable Login without Local Accounts
 
 {{%notice note%}}
@@ -252,7 +264,7 @@ netgroup:       nis
 
 RADIUS user command accounting lets you log every command that a RADIUS user runs and send the commands to RADIUS servers for auditing. Audit logs are a requirement for compliance standards, such as PCI and HIPPA.
 
-The RADIUS servers must be configured to accept packets from clients and have a dictionary entry for `NV-Command-String`.
+You must configure the RADIUS servers to accept packets from clients and have a dictionary entry for `NV-Command-String`.
 
 {{%notice note%}}
 When you enable or change accounting settings, NVUE disconnects currently logged in RADIUS users.
@@ -273,7 +285,7 @@ The `/var/log/radius-cmd-acct.log` file contains the local copy of the logs, whi
 
 If you do not receive any accounting packets, check the `/var/log/radius-send-cmd.log` file.
 
-To see if RADIUS user command accounting is enabled, run the `nv show system aaa radius` command.
+To see if RADIUS user command accounting is `on`, run the `nv show system aaa radius` command.
 
 ### Send Accounting Records to First Response
 

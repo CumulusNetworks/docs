@@ -129,13 +129,13 @@ cumulus@leaf01:~$ nv config apply
 ```
 
 {{%notice warning%}}
-When you enable multihoming with the `nv set evpn multihoming enable on` command, NVUE restarts the `switchd` service, which causes all network ports to reset in addition to resetting the switch hardware configuration.
+When you enable multihoming on the Spectrum A1 switch with the `nv set evpn multihoming enable on` command, NVUE restarts the `switchd` service, which causes all network ports to reset in addition to resetting the switch hardware configuration.
 {{%/notice%}}
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Set the `evpn.multihoming.enable` variable in the `/etc/cumulus/switchd.conf` file to `TRUE`. Cumulus Linux disables this variable by default.
+On a switch with the Spectrum A1 ASIC, set the `evpn.multihoming.enable` variable in the `/etc/cumulus/switchd.conf` file to `TRUE`. On a switch with Spectrum-2 and later, no action is required.
 
 ```
 cumulus@leaf01:~$ sudo nano /etc/cumulus/switchd.conf
@@ -144,9 +144,7 @@ evpn.multihoming.enable = TRUE
 ...
 ```
 
-{{%notice note%}}
-On the Spectrum A1 switch, you must restart `switchd` with the `sudo systemctl restart switchd.service` command after you enable multihoming.
-{{%/notice%}}
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -4175,9 +4173,7 @@ exit-address-family
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL512 - EVPN Multihoming" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server02,server03,server04" >}}
-
-This simulation is running Cumulus Linux 5.12. The Cumulus Linux 5.13 simulation is coming soon.
+    {{< simulation name="Try It CL513 - EVPN Multihoming" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server02,server03,server04" >}}
 
 The simulation starts with the EVPN-MH with Head End Replication configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 

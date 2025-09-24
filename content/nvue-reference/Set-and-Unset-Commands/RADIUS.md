@@ -130,7 +130,25 @@ Introduced in Cumulus Linux 5.7.0
 cumulus@switch:~$ nv set system aaa radius retransmit 8
 ```
 
-## <h>nv set system aaa radius server \<hostname-id\></h>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system aaa radius require-message-authenticator</h>
+
+Requires authentication packets to have the Message-Authenticator mode attribute; the switch discards as Access-Reject all packets that do not have the Message-Authenticator attribute. You can specify `enabled` or `disabled`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa radius require-message-authenticator enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system aaa radius server \<server-id\></h>
 
 Configures the IP address or hostname of the RADIUS server.
 
@@ -138,7 +156,7 @@ Configures the IP address or hostname of the RADIUS server.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<hostname-id>` | The IP address or hostname of the RADIUS server. |
+| `<server-id>` | The IP address or hostname of the RADIUS server. |
 
 ### Version History
 
@@ -152,7 +170,7 @@ cumulus@switch:~$ nv set system aaa radius server 192.168.0.254
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system aaa radius server \<hostname-id\> port</h>
+## <h>nv set system aaa radius server \<server-id\> port</h>
 
 Configures the port used to communicate with the specified RADIUS Server. A port is optional. You can set a value between 0 and 65535. The default value is 1812.
 
@@ -160,7 +178,7 @@ Configures the port used to communicate with the specified RADIUS Server. A port
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<hostname-id>` | The IP address or hostname of the RADIUS server. |
+| `<server-id>` | The IP address or hostname of the RADIUS server. |
 
 ### Version History
 
@@ -174,7 +192,7 @@ cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 port 42
 
  <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system aaa radius server \<hostname-id\> priority</h>
+## <h>nv set system aaa radius server \<server-id\> priority</h>
 
 Configures the priority at which Cumulus Linux contacts the specified RADIUS server for load balancing. You can set a value between 1 and 100. The lower value is the higher priority.
 
@@ -182,7 +200,7 @@ Configures the priority at which Cumulus Linux contacts the specified RADIUS ser
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<hostname-id>` | The IP address or hostname of the RADIUS server. |
+| `<server-id>` | The IP address or hostname of the RADIUS server. |
 
 ### Version History
 
@@ -196,7 +214,7 @@ cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 priority 10
 
  <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system aaa radius server \<hostname-id\> secret</h>
+## <h>nv set system aaa radius server \<server-id\> secret</h>
 
 Configures the secret key shared between the specified RADIUS server and client. If you include special characters in the key (such as `$`), you must enclose the key in single quotes (').
 
@@ -204,7 +222,7 @@ Configures the secret key shared between the specified RADIUS server and client.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<hostname-id>` | The IP address or hostname of the RADIUS server. |
+| `<server-id>` | The IP address or hostname of the RADIUS server. |
 
 ### Version History
 
@@ -218,7 +236,7 @@ cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 secret 'myradius
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system aaa radius server \<hostname-id\> source-ip</h>
+## <h>nv set system aaa radius server \<server-id\> source-ip</h>
 
 Configures the specific interface IPv4 or IPv6 address you want to use to reach the RADIUS server. If you configure multiple RADIUS servers, you can configure a specific interface to reach all RADIUS servers with the `nv set system aaa radius source-ip` command, described below.
 
@@ -226,7 +244,7 @@ Configures the specific interface IPv4 or IPv6 address you want to use to reach 
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<hostname-id>` | The IP address or hostname of the RADIUS server. |
+| `<server-id>` | The IP address or hostname of the RADIUS server. |
 
 ### Version History
 
@@ -240,7 +258,7 @@ cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 source-ip 192.16
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system aaa radius server \<hostname-id\> timeout</h>
+## <h>nv set system aaa radius server \<server-id\> timeout</h>
 
 Configures the timeout value when a server is slow or latencies are high. You can set a value between 1 and 60. The default timeout is 3 seconds. If you configure multiple RADIUS servers, you can set a global timeout for all servers with the `nv set system aaa radius timeout` command.
 
@@ -248,7 +266,7 @@ Configures the timeout value when a server is slow or latencies are high. You ca
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<hostname-id>` | The IP address or hostname of the RADIUS server. |
+| `<server-id>` | The IP address or hostname of the RADIUS server. |
 
 ### Version History
 
@@ -258,6 +276,29 @@ Introduced in Cumulus Linux 5.7.0
 
 ```
 cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 timeout 10
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system aaa radius server \<server-id\> vrf \<vrf-id\></h>
+
+Sets the VRF you want to use for the RADIUS server (if you use multiple RADIUS servers).
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<server-id>` | The IP address or hostname of the RADIUS server. |
+| `<vrf-id>` | The VRF you want to use for the RADIUS server. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 vrf mgmt
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -312,7 +353,9 @@ cumulus@switch:~$ nv set system aaa radius timeout 10
 
 ## <h>nv set system aaa radius vrf \<vrf-name\></h>
 
-Configures the VRF you want to use to communicate with RADIUS servers. This is typically the management VRF (`mgmt`), which is the default VRF on the switch. You cannot specify more than one VRF.
+Configures the global VRF you want to use to communicate with RADIUS servers. This is typically the management VRF (`mgmt`), which is the default VRF on the switch.
+
+To specify a different VRF for each RADIUS server, use the `nv set system aaa radius server <server-id> vrf <vrf-id>` command (available in Cumulus Linux 5.13 and later).
 
 ### Version History
 

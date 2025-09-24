@@ -563,7 +563,7 @@ If there are any issues with the `nv set` or `nv unset` commands, NVUE prints th
 
 ## Translate a Configuration Revision or File
 
-NVUE provides commands to translate an NVUE configuration revision or yaml file into NVUE commands. The revision ID must be either an integer or a named revision (such as startup or applied). The configuration file must be located on the switch and must include the full path to the file containing the configuration you want to translate. The file must be in YAML format and must be accessible with proper read permissions.
+NVUE provides commands to translate an NVUE configuration revision or yaml file into NVUE commands. The revision ID must be either an integer or a named revision (such as startup or applied). The configuration file must be on the switch and must include the full path to the file containing the configuration you want to translate. The file must be in YAML format and must be accessible with proper read permissions.
 
 {{%notice note%}}
 Configuration file translation is not currently available in the API.
@@ -593,11 +593,9 @@ If the revision or yaml file is not readable, is in an invalid format, or includ
 
 ## Maximum Revisions Limit
 
-You can control the maximum number of revisions stored in the NVUE database to ensure efficient resource management and system performance. When the number of revisions reaches the maximum set, the switch automatically deletes the oldest revisions to make room for new ones when you create them.
+You can control the maximum number of revisions stored in the NVUE database to ensure efficient resource management and system performance. When the number of revisions reaches the maximum set, the switch automatically deletes the oldest revisions to make room for new ones when you create them. The lower revision number is the oldest; for example revision 10 is older than revision 100.
 
-NVUE does not delete the `startup`, `empty`, or `applied` revisions and does not include them in the total revision count. The revision from which the last `applied` revision was created is also protected from deletion.
-
-NVUE deletes revisions in the natural sort order; for example, NVUE deletes revision 1 before revision 2, and revision 10 before revision 100.  
+NVUE does not delete the `startup`, `empty`, or `applied` revisions and does not include them in the total revision count. The revision from which NVUE creates the last `applied` revision is also protected from deletion.
 
 Deletion occurs in batches to reduce the number of system operations.
 
@@ -605,7 +603,7 @@ Deletion occurs in batches to reduce the number of system operations.
 The deletion process is automatic; you cannot reverse it.
 {{%/notice%}}
 
-To set the maximum number of revisions before NVUE deletes them, edit the `NVUE_MAX_REVISIONS` option in `/etc/default/nvued` file. You can set a value between 10 and 100. The default value is 100.
+To set the maximum number of revisions before NVUE deletes them, edit the `NVUE_MAX_REVISIONS` option in `/etc/default/nvued` file. The minimum value is 10. The default value is 100.
 
 {{%notice note%}}
 Setting the limit too low results in frequent revision deletions.
@@ -753,8 +751,20 @@ NVUE supports CA certificates (such as DigiCert or Verisign) and entity (end-poi
 
 You import certificates and CRLs onto the switch with the `nv action import system security` command.
 
-- For information about using certificates with gNMI, refer to {{<link url="gNMI-Streaming" text="gNMI streaming">}}
-- For information about using certificates with the NVUE API, refer to {{<link url="NVUE-API/#certificates" text="NVUE API">}}.
+The following example imports a CA certificate bundle with a public key and calls the certificate `tls-cert-1`. The certificate is passphrase protected with `mypassphrase`. The public key is a Base64 ASCII encoded PEM string.
+
+```
+cumulus@switch:~$ cumulus@switch:~$ nv action import system security ca-certificate tls-cert-1 passphrase mypassphrase data """<public-key>""" 
+```
+
+The following example imports the CRL bundle file `crl.crt` from a remote URI:
+
+```
+cumulus@switch:~$ nv action import system security crl uri scp://user:password@hostname/path/crl.crt
+```
+
+- For information about enabling certificates for gNMI, refer to {{<link url="gNMI-Streaming/#gnmi-with-cumulus-linux" text="gNMI streaming with Cumulus Linux">}}.
+- For information about enabling certificates for the NVUE API, refer to {{<link url="NVUE-API/#certificates" text="NVUE API">}}.
 
 ## Filter nv show Command Output
 
@@ -804,7 +814,7 @@ vlan30                                       9216  svi                          
 
 ### FRR Output Filters
 
-You can filter the `nv show vrf <vrf> router rib` command output by protocol (gp, ospf, kernel, static, ospf6, sharp, or connected); for example, to show all BGP IPv4 routes in the routing table:
+You can filter the `nv show vrf <vrf> router rib` command output by protocol (`gp`, `ospf`, `kernel`, `static`, `ospf6`, `sharp`, or `connected`); for example, to show all BGP IPv4 routes in the routing table:
 
 ```
 cumulus@switch:~$ nv show vrf default router rib ipv4 route --filter=protocol=bgp                                                                             
@@ -938,7 +948,7 @@ Route            Protocol   Distance  Uptime                NHGId  Metric  Flags
 10.10.10.102/32  bgp        20        2025-02-11T16:05:22Z  120    0       *Si 
 ```
 
-The following example shows the `nv show vrf default router rib ipv4 route` command with the option to only include the Routes, Protocol, Uptime, and NHGID (nexthop group ID) columns in the output:
+The following example shows the `nv show vrf default router rib ipv4 route` command with the option to only include the `Route`, `Protocol`, `Uptime`, and `NHGID` (next hop group ID) columns in the output:
 
 ```
 cumulus@switch:~$ nv show vrf default router rib ipv4 route --view "include=/*/route-entry/*/protocol,/*/route-entry/*/nexthop-group-id,/*/route-entry/*/uptime"

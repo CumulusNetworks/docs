@@ -1577,9 +1577,112 @@
 {{ end }}
 
 {{ end }}
-</details>
+
+{{- if eq (.Get "version") "4.15" -}}
+
+{{- if eq (.Get "deployment") "onprem" -}}
+
+<ol>
+    <li>
+        <p>Confirm that the SHA256 checksum matches the one posted on the NVIDIA Application Hub to ensure the image download has not been corrupted.</p>
+        <pre>$ sha256sum ./Downloads/netq-4.15.0-ubuntu-24.04-ts-qemu.qcow2<br>$ a0d9a4f9ce8925b7dfb90a5a44616cadbf3fc667013abae07cd774555c08ff6f  ./Downloads/netq-4.15.0-ubuntu-24.04-ts-qemu.qcow2</pre>
+    </li>
+    <li>Copy the QCOW2 image to a directory where you want to run it.
+        <p><strong>Tip</strong>: Copy, instead of moving, the original QCOW2 image that was downloaded to avoid re-downloading it again later should you need to perform this process again.</p>
+        <pre>$ sudo mkdir /vms<br>$ sudo cp ./Downloads/netq-4.15.0-ubuntu-24.04-ts-qemu.qcow2 /vms/ts.qcow2</pre>
+    </li>
+    <li>Create the VM.
+        <p>For a Direct VM, where the VM uses a MACVLAN interface to sit on the host interface for its connectivity:</p>
+
+        <pre>$ virt-install --name=netq_ts --vcpus=16 --memory=65536 --os-type=linux --os-variant=generic --disk path=/vms/ts.qcow2,format=qcow2,bus=virtio,cache=none --network=type=direct,source=eth0,model=virtio --import --noautoconsole</pre>
+
+        <div class="notices note"><p>Replace the disk path value with the location where the QCOW2 image is to reside. Replace network model value (eth0 in the above example) with the name of the interface where the VM is connected to the external network.</p></div>
+
+        <p>Or, for a Bridged VM, where the VM attaches to a bridge which has already been setup to allow for external access:</p>
+
+        <pre>$ virt-install --name=netq_ts --vcpus=16 --memory=65536 --os-type=linux --os-variant=generic \ --disk path=/vms/ts.qcow2,format=qcow2,bus=virtio,cache=none --network=bridge=br0,model=virtio --import --noautoconsole</pre>
+
+        <div class="notices note"><p>Replace network bridge value (br0 in the above example) with the name of the (pre-existing) bridge interface where the VM is connected to the external network.</p></div>
+
+        <div class="notices tip"><p>Make note of the name used during install as this is needed in a later step.</p></div>
+    </li>
+    <li>Watch the boot process in another terminal window.
+        <pre>$ virsh console netq_ts</pre>
+    </li>
+</ol>
 
 {{ end }}
+
+{{- if eq (.Get "deployment") "onprem-scale-cluster" -}}
+
+<ol>
+    <li>
+        <p>Confirm that the SHA256 checksum matches the one posted on the NVIDIA Application Hub to ensure the image download has not been corrupted.</p>
+        <pre>$ sha256sum ./Downloads/netq-4.15.0-ubuntu-24.04-ts-qemu-scale.qcow2<br>$ a0d9a4f9ce8925b7dfb90a5a44616cadbf3fc667013abae07cd774555c08ff6f  ./Downloads/netq-4.15.0-ubuntu-24.04-ts-qemu-scale.qcow2</pre>
+    </li>
+    <li>Copy the QCOW2 image to a directory where you want to run it.
+        <p><strong>Tip</strong>: Copy, instead of moving, the original QCOW2 image that was downloaded to avoid re-downloading it again later should you need to perform this process again.</p>
+        <pre>$ sudo mkdir /vms<br>$ sudo cp ./Downloads/netq-4.15.0-ubuntu-24.04-ts-qemu-scale.qcow2 /vms/ts.qcow2</pre>
+    </li>
+    <li>Create the VM.
+        <p>For a Direct VM, where the VM uses a MACVLAN interface to sit on the host interface for its connectivity:</p>
+
+        <pre>$ virt-install --name=netq_ts --vcpus=16 --memory=65536 --os-type=linux --os-variant=generic --disk path=/vms/ts.qcow2,format=qcow2,bus=virtio,cache=none --network=type=direct,source=eth0,model=virtio --import --noautoconsole</pre>
+
+        <div class="notices note"><p>Replace the disk path value with the location where the QCOW2 image is to reside. Replace network model value (eth0 in the above example) with the name of the interface where the VM is connected to the external network.</p></div>
+
+        <p>Or, for a Bridged VM, where the VM attaches to a bridge which has already been setup to allow for external access:</p>
+
+        <pre>$ virt-install --name=netq_ts --vcpus=16 --memory=65536 --os-type=linux --os-variant=generic \ --disk path=/vms/ts.qcow2,format=qcow2,bus=virtio,cache=none --network=bridge=br0,model=virtio --import --noautoconsole</pre>
+
+        <div class="notices note"><p>Replace network bridge value (br0 in the above example) with the name of the (pre-existing) bridge interface where the VM is connected to the external network.</p></div>
+
+        <div class="notices tip"><p>Make note of the name used during install as this is needed in a later step.</p></div>
+    </li>
+    <li>Watch the boot process in another terminal window.
+        <pre>$ virsh console netq_ts</pre>
+    </li>
+</ol>
+
+{{ end }}
+
+{{- if eq (.Get "deployment") "cloud" -}}
+
+<ol>
+    <li>
+        <p>Confirm that the SHA256 checksum matches the one posted on the NVIDIA Application Hub to ensure the image download has not been corrupted.</p>
+        <pre>$ sha256sum ./Downloads/netq-4.15.0-ubuntu-24.04-tscloud-qemu.qcow2<br>$ cd9723339eb44d0acb136f27c1d36653448ae475cc35fd8d5af58dcd7a5d15c9  ./Downloads/netq-4.15.0-ubuntu-24.04-tscloud-qemu.qcow2</pre>
+    </li>
+    <li>Copy the QCOW2 image to a directory where you want to run it.
+        <p><strong>Tip</strong>: Copy, instead of moving, the original QCOW2 image that was downloaded to avoid re-downloading it again later should you need to perform this process again.</p>
+        <pre>$ sudo mkdir /vms<br>$ sudo cp ./Downloads/netq-4.15.0-ubuntu-24.04-tscloud-qemu.qcow2 /vms/ts.qcow2</pre>
+    </li>
+    <li>Create the VM.
+        <p>For a Direct VM, where the VM uses a MACVLAN interface to sit on the host interface for its connectivity:</p>
+
+        <pre>$ virt-install --name=netq_ts --vcpus=4 --memory=8192 --os-type=linux --os-variant=generic --disk path=/vms/ts.qcow2,format=qcow2,bus=virtio,cache=none --network=type=direct,source=eth0,model=virtio --import --noautoconsole</pre>
+
+        <div class="notices note"><p>Replace the disk path value with the location where the QCOW2 image is to reside. Replace network model value (eth0 in the above example) with the name of the interface where the VM is connected to the external network.</p></div>
+
+        <p>Or, for a Bridged VM, where the VM attaches to a bridge which has already been setup to allow for external access:</p>
+
+        <pre>$ virt-install --name=netq_ts --vcpus=4 --memory=8192 --os-type=linux --os-variant=generic \ --disk path=/vms/ts.qcow2,format=qcow2,bus=virtio,cache=none --network=bridge=br0,model=virtio --import --noautoconsole</pre>
+
+        <div class="notices note"><p>Replace network bridge value (br0 in the above example) with the name of the (pre-existing) bridge interface where the VM is connected to the external network.</p></div>
+
+        <div class="notices tip"><p>Make note of the name used during install as this is needed in a later step.</p></div>
+    </li>
+    <li>Watch the boot process in another terminal window.
+        <pre>$ virsh console netq_ts</pre>
+    </li>
+</ol>
+
+{{ end }}
+
+{{ end }}
+
+</details>
+
 
 {{- if eq (.Get "hypervisor") "vmware" -}}
     <details><summary>VMware Example Configuration</summary>
@@ -1607,15 +1710,9 @@
         <li><p>Provide a name for the VM, for example <em>NetQ</em>.</p>
         <p><strong>Tip</strong>: Make note of the name used during install as this is needed in a later step.</p></li>
 
-        <li><p>Drag and drop the NetQ Platform image file you downloaded in Step 1 above.</p></li>
+        <li><p>Drag the NetQ image file you downloaded from the NVIDIA Application Hub to the installation wizard, then click <strong>Next</strong>.</p></li>
 
-        <p><img src={{"images/netq/vmw-name-the-vm.png" | absURL }} width="700" ></p></li>
-
-        <li><p>Click <strong>Next</strong>.</p></li>
-
-        <li><p>Select the storage type and data store for the image to use, then click <strong>Next</strong>. In this example, only one is available.</p>
-
-        <p><img src={{"images/netq/vmw-select-storage.png" | absURL }} width="700" ></p></li>
+        <li><p>Select the storage type and data store for the image, then click <strong>Next</strong>. 
 
         <li><p>Accept the default deployment options or modify them according to your network needs. Click <strong>Next</strong> when you are finished.</p>
 
@@ -1623,13 +1720,54 @@
 
         <li><p>Review the configuration summary. Click <strong>Back</strong> to change any of the settings, or click <strong>Finish</strong> to continue with the creation of the VM.</p>
 
-        <p><img src={{"images/netq/vmw-review-before-create.png" | absURL }} width="700" ></p>
+        <p>The progress of the request is shown in the Recent Tasks window at the bottom of the application. This may take some time. After the VM is deployed, the wizard displays the full hardware and configuration details.</p></li>
+    </ol>
 
-        <p>The progress of the request is shown in the Recent Tasks window at the bottom of the application. This may take some time, so continue with your other work until the upload finishes.</p></li>
+    </details>
 
-        <li><p>Once completed, view the full details of the VM and hardware.</p>
+{{ end }}
 
-        <p><img src={{"images/netq/vmw-deploy-results.png" | absURL }} width="700" ></p></li>
+{{ end }}
+
+</details>
+
+{{- if eq (.Get "hypervisor") "vmware" -}}
+    <details><summary>VMware Example Configuration</summary>
+
+    This example shows the VM setup process using an OVA file with VMware ESXi.
+
+    <ol>
+        <li><p>Enter the address of the hardware in your browser.</p></li>
+        <li><p>Log in to VMware using credentials with root access.</p>
+
+        <p><img src={{"images/netq/vmw-main-page.png" | absURL }} width="700" ></p></li>
+
+        <li><p>Click <strong>Storage</strong> in the Navigator to verify you have an SSD installed.</p>
+
+            <p><img src={{"images/netq/vmw-verify-storage.png" | absURL }} width="700" ></p></li>
+
+        <li><p>Click <strong>Create/Register VM</strong> at the top of the right pane.</p>
+
+            <p><img src={{"images/netq/vmw-menu-create-register.png" | absURL }} width="700" ></p></li>
+
+        <li><p>Select <strong>Deploy a virtual machine from an OVF or OVA file</strong>, and click <strong>Next</strong>. </p>
+
+            <p><img src={{"images/netq/vmw-deploy-vm-from-ova.png" | absURL }} width="700" ></p></li>
+
+        <li><p>Provide a name for the VM, for example <em>NetQ</em>.</p>
+        <p><strong>Tip</strong>: Make note of the name used during install as this is needed in a later step.</p></li>
+
+        <li><p>Drag the NetQ image file you downloaded from the NVIDIA Application Hub to the installation wizard, then click <strong>Next</strong>.</p></li>
+
+        <li><p>Select the storage type and data store for the image, then click <strong>Next</strong>. 
+
+        <li><p>Accept the default deployment options or modify them according to your network needs. Click <strong>Next</strong> when you are finished.</p>
+
+        <p><img src={{"images/netq/vmw-default-deploy-options.png" | absURL }} width="700" ></p></li>
+
+        <li><p>Review the configuration summary. Click <strong>Back</strong> to change any of the settings, or click <strong>Finish</strong> to continue with the creation of the VM.</p>
+
+        <p>The progress of the request is shown in the Recent Tasks window at the bottom of the application. This may take some time. After the VM is deployed, the wizard displays the full hardware and configuration details.</p></li>
     </ol>
 
     </details>

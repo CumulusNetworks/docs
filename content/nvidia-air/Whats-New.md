@@ -7,12 +7,36 @@ product: NVIDIA Air
 <!-- vale off -->
 Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
 
-## April 2025
+## July 2025
 <!-- Air:WhatsNew -->
+### 82.2025.0708-011
+- Added ability to specify additional CPU features in node metadata
+<!-- Air:WhatsNew -->
+
+## June 2025
+### 82.2025.0603-011
+- Fixed a visibility and persistence issue with the "Add Port" button
+
+## May 2025
+### 82.2025.0529-011
+- Added ability to disable the DHCP service in out-of-band networks via simulation manifest import or topology endpoints
+
+### 82.2025.0522-011
+- Added ability to take screenshots of simulations
+
+### 82.2025.0520-011
+- Fixed an issue with editing a simulation's name
+
+### 82.2025.0508-011
+- Added functionality for filtering OOB network
+
+### 82.2025.0506-011
+- Added functionality for rebuilding and resetting multiple nodes concurrently from the UI
+
+## April 2025
 ### 82.2025.0424-011
 - Added functionality for handling OOB enablement and usage of reserved eth0 interfaces
 - Added loading spinner when deleting nodes on canvas
-<!-- Air:WhatsNew -->
 
 ### 82.2025.0422-011
 - Added ability to configure multiple breakout ports concurrently

@@ -1801,7 +1801,6 @@ nv set nve vxlan flooding enable (on|off)
 nv set nve vxlan flooding multicast-group <ipv4-multicast>
 nv set nve vxlan enable (on|off)
 nv set nve vxlan mac-learning (on|off)
-nv set nve vxlan port 1024-65535
 nv set nve vxlan arp-nd-suppress (on|off)
 nv set nve vxlan mtu 552-9216
 nv set acl <acl-id>

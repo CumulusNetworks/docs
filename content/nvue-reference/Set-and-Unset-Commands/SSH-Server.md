@@ -259,6 +259,50 @@ cumulus@switch:~$ nv set system ssh-server strict disabled
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system ssh-server trusted-ca-keys \<key-ID\> key</h>
+
+Sets the trusted CA key literal for certificate-based authentication. The key literal is located within a public key file.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<key-id>` |   The CA trusted certificate ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system ssh-server trusted-ca-keys KEY1 key AAAAB3NzaC1yc2EAAAADA..
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system ssh-server trusted-ca-keys \<key-ID\> type \<key-type\></h>
+
+Sets the trusted CA key type for certificate-based authentication. The key type is located within a public key file.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<key-id>` |   The CA trusted certificate ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system ssh-server trusted-ca-keys KEY1 type ssh-rsa
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system ssh-server vrf \<vrf-id\></h>
 
 Configures the VRFs on which you want the SSH service to run. The SSH service runs in the default VRF on the switch but listens on all interfaces in all VRFs.

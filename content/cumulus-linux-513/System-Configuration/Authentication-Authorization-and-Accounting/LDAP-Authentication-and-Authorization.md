@@ -4,7 +4,9 @@ author: NVIDIA
 weight: 170
 toc: 4
 ---
+<!-- vale off -->
 Cumulus Linux uses Pluggable Authentication Modules (PAM) and Name Service Switch (NSS) for user authentication. NSS enables PAM to use LDAP to provide user authentication, group mapping, and information for other services on the system.
+<!-- vale on -->
 - NSS specifies the order of the information sources that resolve names for each service. Using NSS with authentication and authorization provides the order and location for user lookup and group mapping on the system.
 - PAM handles the interaction between the user and the system, providing login handling, session setup, authentication of users, and authorization of user actions.
 
@@ -12,7 +14,7 @@ NVUE manages LDAP authentication with PAM and NSS.
 
 {{%notice note%}}
 - Cumulus Linux only supports LDAP with IPv4.
-- LDAP authentication is sensitive to network delay. For optimal performance, NVIDIA recommends a round trip time of 10ms or less between LDAP clients and the LDAP server. If latency is between 10-50ms, NVIDIA recommends changing the [authentication order](#set-the-authentication-order) to prioritize local authentication before LDAP. For connections exceeding 50ms of latency, authentication might experience unacceptable delays and alternative authentication methods should be considered.
+- LDAP authentication is sensitive to network delay. For optimal performance, NVIDIA recommends a round trip time of 10ms or less between LDAP clients and the LDAP server. If latency is between 10-50ms, NVIDIA recommends changing the [authentication order](#set-the-authentication-order) to prioritize local authentication before LDAP. For connections exceeding 50ms of latency, authentication might experience unacceptable delays; consider alternative authentication methods.
 {{%/notice%}}
 
 ## Configure LDAP Server Settings
@@ -28,7 +30,7 @@ If you edit Linux configuration files instead of using NVUE, you must:
 ### Connection
 
 Configure the following connection settings:
-- The host name or IP address of the LDAP server from which you want to import users. If you use multiple LDAP servers, you can also set a priority for each server.
+- The hostname or IP address of the LDAP server from which you want to import users. If you use multiple LDAP servers, you can also set a priority for each server.
 - The port number of the LDAP server if you are using a non-default port. The default port number for LDAP is TCP and UDP port 389.
 - Authenticated (Simple) BIND credentials. The BIND credentials are optional; if you do not specify the credentials, the switch assumes an anonymous bind. To use SASL (Simple Authentication and Security Layer) BIND, which provides authentication services using other mechanisms such as Kerberos, contact your LDAP server administrator for authentication information.
 
@@ -364,7 +366,7 @@ tls_crlfile /etc/ssl/certs/rtp-example-ca.crt
 
 ### LDAP Referrals
 
-LDAP referrals allow a directory tree to be partitioned and distributed between multiple LDAP servers.
+LDAP referrals allow you to partition a directory tree and distribute it between multiple LDAP servers.
 
 To enable LDAP referral:
 

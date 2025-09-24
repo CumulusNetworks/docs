@@ -13,6 +13,8 @@ Instead of specifying properties of each individual peer, you can define one or 
 {{%notice note%}}
 - If the peer you want to add to a group already exists in the BGP configuration, delete it first, than add it to the peer group.
 - Configuring a peer group results in BGP session flaps, which might lead to traffic loss.
+- When you delete a peer group associated with a BGP neighbor, Cumulus Linux also removes the corresponding neighbor configuration.
+- If you want to modify a peer group, you must delete the existing BGP neighbor configuration and reconfigure it with the new peer group.
 {{%/notice%}}
 
 The following example commands create a peer group called SPINE that includes two external peers.
@@ -1277,7 +1279,7 @@ cumulus@leaf01:~$ nv set router policy route-map ADVERTISEMAP rule 10 match type
 cumulus@leaf01:~$ nv set router policy route-map ADVERTISEMAP rule 10 action permit
 cumulus@leaf01:~$ nv set router policy route-map ADVERTISEMAP rule 10 match ip-prefix-list ADVERTISE
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast conditional-advertise advertise-map ADVERTISEMAP
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast conditional-advertise exist-map EXIST
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast conditional-advertise exist-map EXISTMAP
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -1416,7 +1418,7 @@ When you configure BGP PIC, Cumulus Linux assigns one next hop group for each so
 - Do not configure the router ID and network address with the same value.
 - The BGP router ID and the aggregate address must not be in the same subnet.
 - Do not use martian addresses as the BGP router ID when you enable PIC.
-- Additional ECMP hardware resources are required for PIC. Refer to {{<link url="Equal-Cost-Multipath-Load-Sharing/#ecmp-resource-sharing-during-next-hop-group-updates" text="Additional ECMP resource optimization for next hop groups">}}
+- You need additional ECMP hardware resources for PIC. Refer to {{<link url="Equal-Cost-Multipath-Load-Sharing/#ecmp-resource-sharing-during-next-hop-group-updates" text="Additional ECMP resource optimization for next hop groups">}}
 {{%/notice%}}
 
 To configure PIC:

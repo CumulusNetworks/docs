@@ -11,10 +11,11 @@ You can use {{<exlink url="https://github.com/openconfig/gnmi" text="gRPC Networ
 The `netq-agent` package includes the gNMI agent, which it disables by default. To enable the gNMI agent:
 
 ```
- cumulus@switch:~$ sudo systemctl enable netq-agent.service
- cumulus@switch:~$ sudo systemctl start netq-agent.service
- cumulus@switch:~$ netq config add agent gnmi-enable true
- ```
+cumulus@switch:~$ sudo systemctl enable netq-agent.service
+cumulus@switch:~$ sudo systemctl start netq-agent.service
+cumulus@switch:~$ netq config add agent gnmi-enable true
+cumulus@switch:~$ netq config restart agent
+```
 
 The gNMI agent listens over port 9339. You can change the default port in case you use that port in another application. The `/etc/netq/netq.yml` file stores the configuration.
 

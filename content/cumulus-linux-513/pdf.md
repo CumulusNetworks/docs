@@ -5,5 +5,4 @@ product: Cumulus Linux
 version: "5.13"
 type: pdf
 bookhidden: true
-draft: true
 ---

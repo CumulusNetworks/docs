@@ -30,12 +30,7 @@ cumulus@leaf01:~$ ip -d link show type vxlan
 ```
 
 The following shows example output for the `nv show bridge domain <domain> mac-table` command:
-<!--
-- bond1 is in VLAN ID 10.
-- 48:b0:2d:d8:33 is the host MAC address learned on bond1.
-- A remote VTEP that participates in VLAN ID 10 is 10.0.1.34 (the FDB entries have a MAC address of 48:b0:2d:b4:4e). BUM traffic replication uses these entries.
-- 44:38:39:22:01 is a remote host MAC reachable over the VXLAN tunnel via VTEP 10.0.1.2.
--->
+<!-- vale off -->
 ```
 cumulus@leaf01:mgmt:~$ nv show bridge domain br_default mac-table
 entry-id  MAC address        vlan  interface   remote-dst   src-vni  entry-type    last-update  age    
@@ -167,11 +162,9 @@ leaf02(peerlink.4094) 4      65101       766       768        0    0    0 00:37:
 
 Total number of neighbors 5
 
-
 show bgp ipv6 unicast summary
 =============================
 % No BGP neighbors found
-
 
 show bgp l2vpn evpn summary
 ===========================
@@ -511,7 +504,6 @@ Codes: K - kernel route, C - connected, S - static, R - RIP,
        F - PBR, f - OpenFabric,
        > - selected route, * - FIB route, q - queued route, r - rejected route
 
-
 VRF RED:
 K>* 0.0.0.0/0 [255/8192] unreachable (ICMP unreachable), 00:53:46
 C * 10.1.10.0/24 [0/1024] is directly connected, vlan10-v0, 00:53:46
@@ -522,7 +514,7 @@ C>* 10.1.20.0/24 is directly connected, vlan20, 00:53:46
 B>* 10.1.20.105/32 [20/0] via 10.0.1.2, vlan4001 onlink, weight 1, 00:20:07
 ...
 ```
-
+<!-- vale on -->
 In the output above, EVPN specifies the next hops for these routes to be *onlink*, or reachable over the specified SVI. This is necessary because this interface does not need to have an IP address. Even if the interface has an IP address, the next hop is not on the same subnet as it is typically the IP address of the remote VTEP (part of the underlay IP network).
 
 ## Show the Global BGP EVPN Routing Table

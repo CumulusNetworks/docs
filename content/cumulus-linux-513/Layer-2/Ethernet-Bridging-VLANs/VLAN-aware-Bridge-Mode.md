@@ -267,7 +267,7 @@ cumulus@switch:~$ ifreload -a
 
 ## Access Ports and Tagged Packets
 
-Access ports ignore all tagged packets. In the configuration below, swp1 and swp2 are access ports, while all untagged traffic goes to VLAN 10:
+In the configuration below, swp1 and swp2 are access ports, while all untagged traffic goes to VLAN 10:
 <!-- vale off -->
 {{< img src = "/images/cumulus-linux/ethernet-bridging-vlan_untagged_access_ports1.png" >}}
 <!-- vale on -->
@@ -466,7 +466,7 @@ iface bridge1_vlan10
 
 {{< /tab >}}
 {{< /tabs >}}
-<!-- DOCS REQUESTED but FEATURE NOT TESTED
+
 ## VLAN Bridge Binding Mode
 
 Cumulus Linux transfers the link state of a VLAN device from the lower device. Therefore, the link state of the VLAN device is up if the bridge is in an admin up state and at least one bridge port is up, regardless of the VLAN of which the port is a member.
@@ -483,21 +483,17 @@ NVUE does not provide commands to configure VLAN bridge binding mode.
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/network/interfaces` file to add the `vlan-bridge-binding on` parameter to the bridge stanza, then reload the configuration with the `sudo ifreload -a` command:
+Edit the `/etc/network/interfaces` file to add the `vlan-bridge-binding on` parameter to the VLAN stanza, then reload the configuration with the `sudo ifreload -a` command:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
-auto br_default
-iface br_default
-    bridge-ports bond1 bond2 bond3 peerlink
-    hwaddress 48:b0:2d:4e:ad:89
-    bridge-vlan-aware yes
-    bridge-vids 10 20 30
-    bridge-pvid 1
-    bridge-stp yes
-    bridge-mcsnoop no
+auto vlan10
+iface vlan10
+    address 10.1.10.2/24
+    vlan-raw-device br_default
+    vlan-id 10
     vlan-bridge-binding on
-    mstpctl-forcevers rstp
+
 ```
 
 ```
@@ -506,7 +502,7 @@ cumulus@switch:~$ sudo ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
--->
+
 ## Keep SVIs Perpetually UP
 
 The first time you configure a switch, all southbound bridge ports are down; therefore, by default, SVIs are also down. You can force SVIs to always be up by disabling interface state tracking so that the SVIs are always in the UP state even when all member ports are down. Other implementations describe this feature as *no autostate*. This is beneficial if you want to perform connectivity testing.
@@ -760,7 +756,7 @@ The matching FDB entries were deleted successfully.
 ```
 
 {{%notice note%}}
-The `nv action clear bridge domain <bridge-id> mac-table dynamic` command clears static entries learned on ES bonds that are installed as static entries in EVPN multihoming including static VXLAN entries in the bridge driver and VXLAN driver.
+The `nv action clear bridge domain <bridge-id> mac-table dynamic` command clears static entries learned on ES bonds installed as static entries in EVPN multihoming, including static VXLAN entries in the bridge driver and VXLAN driver.
 {{%/notice%}}
 
 ### Clear All Dynamic MAC Addresses for an Interface, VLAN, or Interface and VLAN

@@ -12,4 +12,3 @@ This section describes layer 3 configuration. Read this section to understand ro
 - {{<link url="Bidirectional-Forwarding-Detection-BFD" text="Bidirectional Forwarding Detection">}} (BFD)
 - {{<link url="Network-Address-Translation-NAT" text="Network Address Translation">}} (NAT)
 - {{<link url="FRRouting" text="FRRouting">}} (FRR)
-

@@ -158,7 +158,7 @@ Restore your data with the backup file you created during a backup using the `re
 Run the installation command on your NetQ server, referencing the path where the backup file resides.
 
 ```
-cumulus@netq-appliance:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.14.0.tgz restore /home/cumulus/backup-netq-standalone-onprem-4.12.0-2024-12-11_19_50_12_UTC.tar
+cumulus@netq-server:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.14.0.tgz restore /home/cumulus/backup-netq-standalone-onprem-4.12.0-2024-12-11_19_50_12_UTC.tar
 ```
 
 <div class="notices note"><p></p><p>NetQ uses the 10.244.0.0/16 (<code>pod-ip-range</code>) and 10.96.0.0/16 (<code>service-ip-range</code>) networks for internal communication by default. If you are using these networks, you must override each range by specifying new subnets for these parameters in the install command:</p>

@@ -238,7 +238,7 @@ Configures the next hop for a specific static route in the specified VRF.
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<route-id>` |  The IPv4 or IPv6 prefix. |
-| `<via-id>`       | The IP address of the next hop router. |
+| `<via-id>`       | The IP address, interface, or `blackhole`. |
 
 ### Version History
 
@@ -247,7 +247,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 via 10.10.10.1
+cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 via blackhole
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -262,7 +262,7 @@ Configures the next hop for a specific static route in the specified VRF, and ad
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<route-id>` |  The IPv4 or IPv6 prefix. |
-| `<via-id>`       | The IP address of the next hop router. |
+| `<via-id>`   | The IP address, interface, or `blackhole`. |
 
 ### Version History
 
@@ -286,7 +286,7 @@ Configures the next hop for a specific static route in the specified VRF, and th
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<route-id>` |  The IPv4 or IPv6 prefix. |
-| `<via-id>`       | The IPv4 or IPv6 address of the next hop router. |
+| `<via-id>`       | The IP address, interface, or `blackhole`. |
 | `<interface-name>`  | The interface to use for egress. |
 
 ### Version History
@@ -311,7 +311,7 @@ Configures the next hop type for a specific static route in the specified VRF. T
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<route-id>` |  The IPv4 or IPv6 prefix. |
-| `<via-id>`   | The IP address of the next hop router. |
+| `<via-id>`   | The IP address, interface, or `blackhole`. |
 
 ### Version History
 
@@ -335,7 +335,7 @@ Configures the next hop for a specific static route in the specified VRF, and th
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<route-id>` |  The IPv4 or IPv6 prefix. |
-| `<via-id>`   | The IP address of the next hop router. |
+| `<via-id>`   | The IP address, interface, or `blackhole`. |
 | `<vrf-id>`   | The egress VRF. |
 
 ### Version History

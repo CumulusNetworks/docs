@@ -212,7 +212,7 @@ To disable sFlow, run the `nv set system sflow state disabled` command.
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-By default, the `hsflowd` service is disabled and does *not* start automatically when the switch boots up.
+By default, the `hsflowd` service is `off` and does *not* start automatically when the switch boots up.
 
 To enable and start the `hsflowd` service:
 
@@ -233,7 +233,7 @@ cumulus@switch:~$ sudo systemctl disable hsflowd
 
 ## Interface Configuration
 
-By default, sFlow is enabled on interfaces that are operationally UP. To disable sFlow on an interface:
+By default, sFlow is `off` on interfaces that are operationally UP. To disable sFlow on an interface:
 
 {{< tabs "TabID216 ">}}
 {{< tab "NVUE Commands ">}}
@@ -248,7 +248,7 @@ To enable sFlow on an interface, run the `nv set interface <interface> sflow sta
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-By default, sFlow is enabled on interfaces that are operationally UP. To disable sFlow on a specific interface, edit the `/etc/cumulus/switchd.conf` file and set the `interface.<interface>.sflow.enable` parameter to `FALSE`:
+By default, sFlow is `off` on interfaces that are operationally UP. To disable sFlow on a specific interface, edit the `/etc/cumulus/switchd.conf` file and set the `interface.<interface>.sflow.enable` parameter to `FALSE`:
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf

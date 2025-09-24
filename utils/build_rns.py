@@ -417,7 +417,10 @@ def build_rn_markdown_files(product, version_list):
     major_minor = {}
 
     for version in version_list:
-    #### Temporarily skip NetQ 4.8.0 until Redmine updates complete - Nov 11 2023
+    #### Examples of skipping versions for RN processing - list of EOL_VERSIONS regardless of product, or individual version numbers:
+    # EOL_VERSIONS = [3.7.0]
+    # if version in EOL_VERSIONS:
+    #    continue
     #   if version == "4.6.0":
     #       continue
     #    if version == "4.12.0":

@@ -503,7 +503,7 @@ cumulus@<hostname>:~$ netq install opta standalone full interface en01 bundle /m
 
 ## netq install patch
 
-Installs a focused software fix using a compressed file package (rather than a full installation or upgrade). Run this command on the NetQ appliance or VM as appropriate.
+Installs a focused software fix using a compressed file package (rather than a full installation or upgrade). Run this command on the NetQ server or VM.
 
 ### Syntax
 

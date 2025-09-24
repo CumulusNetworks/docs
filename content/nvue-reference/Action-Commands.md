@@ -83,7 +83,7 @@ type: ''
 
 Terminates ZTP if it is in the discovery process or is not currently running a script.
 
-## Version History
+### Version History
 
 Introduced in Cumulus Linux 5.11.0
 
@@ -97,7 +97,7 @@ If you add the `force` option (`nv action abort system ztp force`), ZTP terminat
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action boot-next system image \<partition\> rollback</h>
+## <h>nv action boot-next system image \<partition-id\> rollback</h>
 
 Rolls back the optimized image upgrade if the upgrade fails or you want to go back to the Cumulus Linux release from which you upgraded.  The switch boots back to the previous release image and restores the switch configuration.
 
@@ -114,7 +114,7 @@ Introduced in Cumulus Linux 5.12.0
 ### Example
 
 ```
-cumulus@switch:~$ nv action boot-next system image other rollback
+cumulus@switch:~$ nv action boot-next system image partition2 rollback
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -144,17 +144,13 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action change system date-time</h>
+## <h>nv action change system time</h>
 
-Configures the Cumulus Linux software clock. The switch contains a battery backed hardware clock that maintains the time while the switch powers off and between reboots. When the switch is running, the Cumulus Linux operating system maintains its own software clock.
+Configures the Cumulus Linux software clock. The switch contains a battery backed hardware clock that maintains the date and time while the switch powers off and between reboots. When the switch is running, the Cumulus Linux operating system maintains its own software clock.
 
-During boot up, the switch copies the time from the hardware clock to the operating system software clock. The software clock takes care of all the timekeeping. During system shutdown, the switch copies the software clock back to the battery backed hardware clock.
+During boot up, the switch copies the date and time from the hardware clock to the operating system software clock. The software clock takes care of all the timekeeping. During system shutdown, the switch copies the software clock back to the battery backed hardware clock.
 
-The date format is YYYY-MM-DD. The time format is HH:MM:SS.
-
-{{%notice note%}}
-In Cumulus Linux 5.7, 5.8, and 5.9, this command is `nv action change system time`.
-{{%/notice%}}
+The format is YYYY-MM-DD HH:MM:SS
 
 ### Version History
 
@@ -163,7 +159,7 @@ Introduced in Cumulus Linux 5.10.0
 ### Example
 
 ```
-cumulus@switch:~$ nv action change system date-time 2023-12-04 2:33:30
+cumulus@switch:~$ nv action change system time 2023-12-04 02:33:30
 System Date-time changed successfully
 Local Time is now Mon 2023-12-04 02:33:30 UTC
 Action succeeded
@@ -638,6 +634,31 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action clear interface \<interface-id\> link phy-detail</h>
+
+Clears interface physical layer error counters.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<interface-id>` | The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.14.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear interface swp1 link phy-detail
+Action executing ... 
+swp1 link phy-detail counters cleared. 
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action clear interface \<interface-id\> qos buffer</h>
 
 Clears QoS buffer counters on the specified interface.
@@ -978,6 +999,62 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action clear router segment-routing srv6 stats</h>
+
+Clears all segment routing statistics.
+
+### Version History
+
+Introduced in Cumulus Linux 5.14.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear router segment-routing srv6 stats 
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear router segment-routing srv6 stats sid \<sid-id\></h>
+
+Clears the segment routing statistics for a specific SID.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<sid-id>` |  The static segment identifier. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.14.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear router segment-routing srv6 stats sid 2001:db8:1:1::100/48
+Action succeeded
+```
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear router segment-routing srv6 stats sid no-sid-drops</h>
+
+Clears segment routing statistics for no-SID dropped packets.
+
+### Version History
+
+Introduced in Cumulus Linux 5.14.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear router segment-routing srv6 stats no-sid-drops 
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action clear service ptp \<instance-id\> monitor violations log max-offset</h>
 
 Clears the PTP monitor violation log maximum offset value.
@@ -1093,6 +1170,23 @@ Introduced in Cumulus Linux 5.9.0
 
 ```
 cumulus@switch:~$ nv action clear system link flap-protection violation
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear system forwarding packet-trim counters</h>
+
+Clears the global packet trimming counter that is shown in the `nv show system forwarding packet-trim` command output.
+
+### Version History
+
+Introduced in Cumulus Linux 5.14.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear system forwarding packet-trim counters
 Action succeeded
 ```
 
@@ -2765,6 +2859,10 @@ cumulus@switch:~$ nv action delete system security certificate cert-1
 
 Disables maintenance mode and restores normal operation.
 
+{{%notice note%}}
+Cumulus Linux 5.12 and earlier provides this command. For Cumulus Linux 5.13 and later use the `nv set maintenance unit all-protocols state production` command instead.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -2786,6 +2884,10 @@ Action succeeded
 ## <h>nv action disable system maintenance ports</h>
 
 Restores the port admin state after maintenance.
+
+{{%notice note%}}
+Cumulus Linux 5.12 and earlier provides this command. For Cumulus Linux 5.13 and later use the `nv set maintenance unit all-interfaces state production` command instead.
+{{%/notice%}}
 
 ### Version History
 
@@ -2810,7 +2912,7 @@ Action succeeded
 
 Disables ZTP and deactivates the provisioning process. If a ZTP script is currently running, ZTP is not disabled.
 
-## Version History
+### Version History
 
 Introduced in Cumulus Linux 5.11.0
 
@@ -2855,6 +2957,10 @@ cumulus@switch:~$ nv action disconnect system aaa user admin2
 
 Enables maintenance mode. When maintenance mode is on, ISSU performs a graceful BGP shutdown, redirects traffic over the peerlink and brings down the MLAG port link. `switchd` maintains full capability.
 
+{{%notice note%}}
+Cumulus Linux 5.12 and earlier provides this command. For Cumulus Linux 5.13 and later use the `nv set maintenance unit all-protocols state maintenance` command instead.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -2877,6 +2983,11 @@ Action succeeded
 ## <h>nv action enable system maintenance ports</h>
 
 Brings down the ports for maintenance.
+
+
+{{%notice note%}}
+Cumulus Linux 5.12 and earlier provides this command. For Cumulus Linux 5.13 and later use the `nv set maintenance unit all-interfaces state maintenance` command instead.
+{{%/notice%}}
 
 ### Version History
 
@@ -2901,7 +3012,7 @@ Action succeeded
 
 Enables ZTP and activates the provisioning process. ZTP tries to run the next time the switch boots. However, if ZTP already ran on a previous boot up or if you made manual configuration changes, ZTP exits without trying to look for a script.
 
-## Version History
+### Version History
 
 Introduced in Cumulus Linux 5.11.0
 
@@ -2921,6 +3032,37 @@ If you add the `force` option (`nv action enable system ztp force`), ZTP enables
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action erase system disk</h>
+
+Erases all data on the switch SSD securely to prevent leaking critical data. Erasing data is an important process when you return a switch with RMA if the switch is defective or move a switch between buildings.
+
+When you erase all data on the switch, most services stop except for critical ones, such as sshd so that you can erase the data remotely.
+
+NVUE prompts you to confirm that you want to proceed before destroying all data.
+
+{{%notice note%}}
+- This command is in Beta.
+- You can erase all data only on switches with the Spectrum-4 and later ASIC.
+- You can erase all data on a functioning SSD only.
+- You cannot recover erased data.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action erase system disk
+WARNING! This will destroy all 
+data and will NOT be recoverable. 
+Execution may take up to X minutes. 
+Would you like to proceed? [y/N] 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action fetch system image \<remote-url\></h>
 
 Fetches a binary image from the specified URL.
@@ -2931,7 +3073,7 @@ Fetches a binary image from the specified URL.
 | --------- | -------------- |
 | `<remote-url>` |  The remote URL.|
 
-## Version History
+### Version History
 
 Introduced in Cumulus Linux 5.12.0
 
@@ -2953,7 +3095,7 @@ Fetches a repository key and saves it globally in the `/etc/apt/trusted.gpg.d/` 
 | --------- | -------------- |
 | `<key>` |  The repository key.|
 
-## Version History
+### Version History
 
 Introduced in Cumulus Linux 5.12.0
 
@@ -2975,7 +3117,7 @@ Fetches and saves the repository key in the `/etc/apt/keyrings/` directory.
 | --------- | -------------- |
 | `<key>` |  The repository key.|
 
-## Version History
+### Version History
 
 Introduced in Cumulus Linux 5.12.0
 
@@ -2983,6 +3125,141 @@ Introduced in Cumulus Linux 5.12.0
 
 ```
 cumulus@switch:~$ nv action fetch system packages key http://deb.opera.com/archive.key scope repository
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action generate file-hash md5 <filename></h>
+
+Calculates and generates a unique hash value (checksum) for a file using md5.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<filename>`  |  The technical support file name and location. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action generate file-hash md5 /var/log/text.txt  
+Action executing ... 
+Generated Hash Checksum  
+5073306b0629c047d090e2c96b5eec4b /var/log/text.txt
+
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action generate file-hash sha1 <filename></h>
+
+Calculates and generates a unique hash value (checksum) for a file using sha1.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<filename>`  |  The technical support file name and location. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action generate file-hash sha1 /var/log/text.txt  
+Action executing ...  
+Generated Hash Checksum  
+c0965ec47c1557d671e36abb5c55ec13b8378e44  /var/log/text.txt
+
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action generate file-hash sha224 <filename></h>
+
+Calculates and generates a unique hash value (checksum) for a file using sha224.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<filename>`  |  The technical support file name and location. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action generate file-hash sha224  /var/log/text.txt  
+Action executing ...  
+Generated Hash Checksum  
+c414b2b7eaa757162f41183c42a02cf329ab86719be9f8583195d9ab  /var/log/text.txt
+
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action generate file-hash sha256 <filename></h>
+
+Calculates and generates a unique hash value (checksum) for a file using sha256.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<filename>`  |  The technical support file name and location. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action generate file-hash sha256 /var/log/text.txt  
+Action executing ...  
+Generated Hash Checksum  
+3fe4bf60ed8d1ce9ffca7f578a94cab88b907951c92e1f8605f59a2bb0a2ab8b  /var/log/text.txt  
+
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action generate file-hash sha512 <filename></h>
+
+Calculates and generates a unique hash value (checksum) for a file using sha512.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<filename>`  |  The technical support file name and location. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action generate file-hash sha512 /var/log/text.txt
+Action executing ...  
+Generated Hash Checksum  
+9420cdea5577569d60c986f0da39dc31be9d08a8945e42a4445c518e105cf4c3d93bc587b770bee4719836b92a65c7cb6efef283e74592f7cf3a0fc2cccc18bf  /var/log/text.txt  
+
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2997,7 +3274,7 @@ Deletes the specified technical support file (a compressed archive file of usefu
 | --------- | -------------- |
 | `<file-id>`  |  The technical support file name and location. |
 
-## Version History
+### Version History
 
 Introduced in Cumulus Linux 5.10.0
 
@@ -3016,7 +3293,7 @@ Action succeeded
 
 Generates a technical support file (compressed archive file of useful information for troubleshooting). 
 
-## Version History
+### Version History
 
 Introduced in Cumulus Linux 5.10.0
 
@@ -3034,6 +3311,22 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action import system security crl</h>
+
+Imports a Certificate Revocation List to verify server certificates. You can specify either `uri` (a local or remote URI from where to retrieve the crl bundle file) or `data` (for a PEM encoded CRL).
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action import system security crl uri scp://user:password@hostname/path/crl.crt
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action import system security ca-certificate \<cert-id\></h>
 
 Imports a CA certificate.
@@ -3046,7 +3339,6 @@ NVIDIA recommends you use your own certificates and keys.
 - The CA certificate you import contains sensitive private key information. NVIDIA recommends that you use a secure transport such as SFTP, SCP, or HTTPS.
 - If the certificate is passphrase protected, you need to include the passphrase.
 - You must provide a certificate ID (`<cert-id>`) to uniquely identify the certificate you import.
-
 
 ### Version History
 
@@ -3074,7 +3366,6 @@ NVIDIA recommends you use your own certificates and keys.
 - A certificate bundle must be in .PFX or .P12 format.
 - You must provide a certificate ID (`<cert-id>`) to uniquely identify the certificate you import.
 
-
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -3097,7 +3388,7 @@ Installs the specified binary image on the second partition (optimized upgrade).
 | --------- | -------------- |
 | `<filename>` |  The binary image filename.|
 
-## Version History
+### Version History
 
 Introduced in Cumulus Linux 5.12.0
 
@@ -3105,6 +3396,97 @@ Introduced in Cumulus Linux 5.12.0
 
 ```
 cumulus@switch:~$ nv action install system image files cumulus-linux-5.12.0-mlx-amd64.bin
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action generate system file-hash</h>
+
+Calculates and generates a unique hash value (checksum) for a file using md5, sha1, sha224, ssa256, and sha512 algorithms. A hash file checksum is a unique string of characters generated by a cryptographic hash function to represent the contents of a file allowing you to verify the integrity of the file.
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action generate system file-hash md5 /var/log/text.txt  
+Action executing ... 
+Generated Hash Checksum  
+5073306b0629c047d090e2c96b5eec4b /var/log/text.txt
+
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action list system file-path \<path\></h>
+
+Lists the contents of a directory, including files, subdirectories, and other file system objects. This NVUE command is equivalent to the Linux `ls -la --full-time <path>` command.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<path>` |  The path to the directory you want to list.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action list system file-path /var/log
+Action executing ... 
+[ 
+     { 
+        "filename": "runit", 
+        "flags": "drwxr-xr-x", 
+        "links": 5, 
+        "owner": "root", 
+        "group": "root", 
+        "size": 4096, 
+        "date": "2024-10-05 15:02:22.395910058 +0000", 
+        "epoch": 1728140542, 
+        "epoch_utc": 1728140542 
+    }, 
+    { *-
+        "filename": "switchd.log", 
+        "flags": "-rw-r-----", 
+        "links": 1, 
+        "owner": "root", 
+        "group": "adm", 
+        "size": 3886, 
+        "date": "2025-02-20 16:48:23.865423228 +0000", 
+        "epoch": 1740070103, 
+        "epoch_utc": 1740070103 
+    }, 
+    { 
+        "filename": "syslog.4.gz", 
+        "flags": "-rw-r-----", 
+        "links": 1, 
+        "owner": "root", 
+        "group": "adm", 
+        "size": 444948, 
+        "date": "2025-02-21 23:14:43.321379607 +0000", 
+        "epoch": 1740179683, 
+        "epoch_utc": 1740179683 
+    }, 
+    { 
+        "filename": "wtmp", 
+        "flags": "-rw-rw-r--", 
+        "links": 1, 
+        "owner": "root", 
+        "group": "utmp", 
+        "size": 14976, 
+        "date": "2025-02-24 13:47:41.846513274 +0000", 
+        "epoch": 1740404861, 
+        "epoch_utc": 1740404861 
+    }  
+] 
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3357,6 +3739,55 @@ cumulus@switch:~$ nv action ping system 10.10.10.10 vrf mgmt
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action power-cycle system</h>
+
+Power cycles the switch remotely to recover from certain conditions, such as a thermal ASIC shutdown due to high temperatures. 
+
+When you run the `nv action power-cycle system` command, the switch prompts you for confirmation before power cycling. To power cycle the switch without being prompted for confirmation, run the `nv action power-cycle system force` command
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action power-cycle system
+The operation will Power Cycle the switch. 
+
+Type [y] to power cycle. 
+Type [N] to abort. 
+Do you want to continue? [y/N] y 
+Action executing ... 
+Power cycling the switch ... 
+Action executing ... 
+Action succeeded
+``` 
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action pull system docker image \<image-id\></h>
+
+Downloads a Docker image from a registry.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<image-id>` |  The hexadecimal string representing the docker internal identifier for an image.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action pull system docker image 97662d24417b
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action reboot system</h>
 
 Reboots the switch.
@@ -3374,6 +3805,27 @@ True
 Action succeeded
 ```
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action remove system docker image \<image-id\></h>
+
+Removes a Docker image from the switch.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<image-id>` |  The hexadecimal string representing the docker internal identifier for an image.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action remove system docker image 97662d24417b
+```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -3458,7 +3910,6 @@ Type [y] to continue.
 Type [n] to abort. 
 Do you want to continue? [y/n] y
 ...
-
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3549,7 +4000,7 @@ Manually runs ZTP from the beginning. If you made manual configuration changes, 
 
 You can also specify a custom URL (`nv action run system ztp url <url-and-filename`) or directory (`nv action run system ztp url <directory-and-filename`) on the switch for the ZTP script.
 
-## Version History
+### Version History
 
 Introduced in Cumulus Linux 5.11.0
 
@@ -3599,6 +4050,73 @@ Action executing ...
 Job schedule successfull.
 
 Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action start system docker container \<container-name\> image \<image-id\></h>
+
+Creates and runs a new Docker container from an image.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<image-id>` |  The hexadecimal string representing the docker internal identifier for an image.|
+| `<container-name>` |  The hexadecimal string or name of the container.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action start system docker container CONTAINER1 image 97662d24417b
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action remove system docker container \<container-name\></h>
+
+Deletes a Docker container.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<container-name>` |  The hexadecimal string or name of the container.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action remove system docker container CONTAINER1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action stop system docker container \<container-name\></h>
+
+Stops a Docker container.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<container-name>` |  The hexadecimal string or name of the container.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action stop system docker container CONTAINER1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

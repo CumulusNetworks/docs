@@ -13,7 +13,7 @@ In certain situations, you might need to power off the switch instead of rebooti
 cumulus@switch:~$ sudo cl-poweroff
 ```
 
-Alternatively, you can run the Linux `poweroff` command, which gracefully shuts down the switch (the switch LEDs stay on). On certain switches, such as the NVIDIA SN2201, SN2010, SN2100, SN2100B, SN3420, SN3700, SN3700C, SN4410, SN4600C, SN4600, SN4700, SN5400, or SN5600, the switch reboots instead of powering off.
+You can also run the Linux `poweroff` command, which gracefully shuts down the switch (the switch LEDs stay on). On certain switches, such as the NVIDIA SN2201, SN2010, SN2100, SN2100B, SN3420, SN3700, SN3700C, SN4410, SN4600C, SN4600, SN4700, SN5400, or SN5600, the switch reboots instead of powering off.
 
 ```
 cumulus@switch:~$ sudo poweroff
@@ -36,7 +36,7 @@ Action executing ...
 Action succeeded 
 ```
 
-To power cycle the switch without being prompted for confirmation, run the `nv action power-cycle system force` command:
+To power cycle the switch without prompts for confirmation, run the `nv action power-cycle system force` command:
 
 ```
 cumulus@switch:~$ nv action power-cycle system force 

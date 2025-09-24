@@ -196,6 +196,7 @@ cumulus@leaf01:~$ ifreload -a
 {{< /tab >}}
 {{< /tabs >}}
 
+<!-- NEVER SUPPORTED APPARENTLY
 ## VXLAN UDP Port
 
 You can change the UDP port that Cumulus Linux uses for VXLAN encapsulation. The default port is 4789.
@@ -205,7 +206,7 @@ The following example changes the UDP port for VXLAN encapsulation to 1024:
 ```
 cumulus@switch:mgmt:~$ nv set nve vxlan port 1024
 ```
-
+-->
 ## TC Filters
 
 NVIDIA recommends you run TC filter commands on each VLAN interface on the VTEP to install rules to protect the UDP port that Cumulus Linux uses for VXLAN encapsulation against VXLAN hopping vulnerabilities. If you have VRR configured on the VLAN, add a similar rule for the VRR device.

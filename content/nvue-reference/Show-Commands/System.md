@@ -8,11 +8,63 @@ type: nojsscroll
 <style>
 h { color: RGB(118,185,0)}
 </style>
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show maintenance</h>
+
+Show the current maintenance state of the switch.
+
+{{%notice note%}}
+Cumulus Linux 5.12 and earlier does not provide this command; run the `nv show system maintenance` command instead.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show maintenance 
+Maintenance Info 
+============== 
+Unit                                 State 
+-----------------------              --------------- 
+all-protocols                        maintenance 
+all-interfaces                       maintenance 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show maintenance unit all-protocols</h>
+
+Shows the current maintenance state of the protocols.
+
+{{%notice note%}}
+Cumulus Linux 5.12 and earlier does not provide this command; run the `nv show system maintenance unit all-protocols` command instead.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show maintenance unit all-protocols
+              operational      applied 
+----------    -----------      ----------- 
+state         maintenance       maintenance 
+interfaces
+protocols             all 
+```
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show system</h>
 
-Shows information about the switch, such as the hostname, Cumulus Linux version, the switch uptime, and the time zone.
+Shows information about the switch, such as the hostname, version information, the switch uptime, time zone, memory, and health status.
 
 ### Version History
 
@@ -22,13 +74,23 @@ Introduced in Cumulus Linux 5.2.0
 
 ```
 cumulus@switch:~$ nv show system
-          operational          applied
---------  -------------------  -------
-hostname  leaf01               leaf01 
-build     Cumulus Linux 5.5.0         
-uptime    3 days, 18:40:31            
-timezone  Etc/UTC
+uptime             1 day, 1:52:24                                                 
+hostname           leaf01 
+product-name       Cumulus Linux                                                  
+platform           N/A                                                            
+system-memory      1.31 GB used / 363.36 MB free / 1.67 GB total                  
+swap-memory        0 Bytes used / 0 Bytes free / 0 Bytes total                    
+health-status      Not OK                                                         
+date-time          2025-04-18 12:48:46                                            
+status             N/A                                                            
+timezone           Etc/UTC                                                        
+version                                                                           
+  onie             N/A                                                            
+  kernel           6.1.0-cl-1-amd64                                               
+  base-os          Debian GNU/Linux 12.10                                         
 ```
+
+Cumulus Linux 5.12 and earlier also shows build and product-release fields. NVUE removed these fields in Cumulus Linux 5.13.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -415,11 +477,37 @@ Health issues
 No Data
 ```
 
+In 5.13 and later the nv show system health command output is:
+
+```
+nv show system health 
+            operational  applied  
+----------  -----------  -------
+status      Not OK                       
+status-led  amber                        
+
+Health issues
+================
+    Component           Status information                                         
+    ------------------  -----------------------------------------------------------
+    ASIC                Not OK                                                     
+    forwarding          active (running) since Wed 2025-04-23 17:44:13 UTC; 12h ago
+    hw-management       inactive                                                   
+    hw-management-sync  inactive                                                   
+    hw-management-tc    inactive                                                   
+    mft                 inactive                                                   
+    process             Not OK
+```
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show system maintenance</h>
 
 Show the current system maintenance mode.
+
+{{%notice note%}}
+Cumulus Linux 5.12 and earlier provides this command. For Cumulus Linux 5.13 and later use the `nv show maintenance` command instead.
+{{%/notice%}}
 
 ### Version History
 

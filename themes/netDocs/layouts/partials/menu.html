@@ -11,5 +11,5 @@
 {{ $script := resources.Get "menu-reset.js" | resources.Minify }}
 
 {{ with $script.Content }}
-    <script>{{ . | safeJS }}</script>
+    <script async>{{ . | safeJS }}</script>
 {{ end }}

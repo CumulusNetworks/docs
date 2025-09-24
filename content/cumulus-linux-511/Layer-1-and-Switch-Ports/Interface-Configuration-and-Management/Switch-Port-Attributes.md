@@ -2041,20 +2041,6 @@ If auto-negotiation is on and you set the link speed for a port, Cumulus Linux d
 
 When you connect an NVIDIA Spectrum-4 switch to another NVIDIA Spectrum-4 switch with PAM4 modulation, you must enable auto-negotiation.
 
-<!--
-When you use copper cables to connect an NVIDIA Spectrum-4 switch to another NVIDIA Spectrum-4 switch with PAM4 modulation, you must enable auto-negotiation.
--->
-
-### 1000BASE-T SFP Modules Supported Only on Certain 25G Platforms
-<!-- vale on -->
-The following  25G switches support 1000BASE-T SFP modules:
-
-- NVIDIA SN2410
-- NVIDIA SN2010
-<!-- - NVIDIA SN3420-->
-
-100G or faster switches do not support 1000BASE-T SFP modules.
-
 ### NVIDIA SN5600 Switch and Force Mode
 
 When you configure force mode on NVIDIA SN5600 switch ports 10 through 50, the Rx precoding setting must be the same between local and peer ports to get the optimal Signal-Integrity of the link.

@@ -137,7 +137,7 @@ Add the same NEW_HOSTNAME value to **/etc/hosts** on your VM for the localhost e
 {{< tabs "TabID136 ">}}
 {{< tab "New Install">}}
 
-Run the following command on your NetQ cloud appliance with the `config-key` obtained from the email you received from NVIDIA titled *NetQ Access Link*. You can also obtain the configuration key {{<link title="Configure Premises" text="through the NetQ UI">}}.
+Run the following command with the `config-key` obtained from the email you received from NVIDIA titled *NetQ Access Link*. You can also obtain the configuration key {{<link title="Configure Premises" text="through the NetQ UI">}}.
 
 ```
 cumulus@<hostname>:~$ netq install opta standalone full interface eth0 bundle /mnt/installables/NetQ-4.14.0-opta.tgz config-key <your-config-key> [proxy-host <proxy-hostname> proxy-port <proxy-port>]
@@ -158,7 +158,7 @@ Restore your data with the backup file you created during a backup using the `re
 Run the installation command on your NetQ server, referencing the path where the backup file resides and including the `config-key` created during the {{<link title="Back Up and Restore NetQ" text="backup process">}}.
 
 ```
-cumulus@netq-appliance:~$ netq install opta standalone full interface eth0 bundle /mnt/installables/NetQ-4.14.0-opta.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix1NHgwU3NhWlV5NzZXZVpiK2FFazRmQ3dkM2hzTk9IMWtDRlNjM0FHdVIwPQ== restore /home/cumulus/backup-netq-standalone-cloud-4.12.0-2024-12-11_19_50_12_UTC.tar
+cumulus@netq-server:~$ netq install opta standalone full interface eth0 bundle /mnt/installables/NetQ-4.14.0-opta.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix1NHgwU3NhWlV5NzZXZVpiK2FFazRmQ3dkM2hzTk9IMWtDRlNjM0FHdVIwPQ== restore /home/cumulus/backup-netq-standalone-cloud-4.12.0-2024-12-11_19_50_12_UTC.tar
 ```
 
 <div class="notices note"><p></p><p>NetQ uses the 10.244.0.0/16 (<code>pod-ip-range</code>) and 10.96.0.0/16 (<code>service-ip-range</code>) networks for internal communication by default. If you are using these networks, you must override each range by specifying new subnets for these parameters in the install command:</p>
@@ -228,4 +228,4 @@ cluster node: netq-appliance                         READY     N/A            N/
 If any of the applications or services display Status as DOWN after 30 minutes, open a support ticket and attach the output of the `opta-support` command.
 {{%/notice%}}
 
-After NetQ is installed, you can {{<link title="Access the NetQ UI" text="log in to NetQ">}} from your browser.
+After NetQ is installed, you can {{<link title="Access the NetQ UI" text="log in to NetQ">}} from your browser at *https://netq.nvidia.com*.

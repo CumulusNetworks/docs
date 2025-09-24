@@ -22,7 +22,7 @@ Each physical network interface (port) has several settings:
 - <span class="a-tooltip">[FEC](## "Forward Error Correction")</span>
 
 For NVIDIA Spectrum ASICs, the firmware configures FEC, link speed, duplex mode and auto-negotiation automatically, following a predefined list of parameter settings until the link comes up. You can disable FEC if necessary, which forces the firmware to not try any FEC options.
-<!-- MOVED to 5.14 AND PUT NOTE BACK IN CONSIDERATIONS SECTION
+<!-- 5.14 REMOVE NOTE IN CONSIDERATIONS SECTION
 ### Auto-negotiation and Link Speed
 
 {{< tabs "TabID29 ">}}
@@ -1566,7 +1566,7 @@ Maximum 800G ports: 64
 
 {{< /tab >}}
 {{< /tab >}}
-<!--
+
 {{< /tabs >}}
 {{< tab "SN5610">}}
 
@@ -1639,7 +1639,7 @@ Maximum 800G ports: 64
 
 {{< /tab >}}
 {{< /tab >}}
--->
+
 {{< /tab >}}
 {{< /tabs >}}
 <!-- vale on -->
@@ -2145,16 +2145,6 @@ When you use copper cables to connect an NVIDIA Spectrum-4 switch to another NVI
 ### Auto-negotiation and Link Speed
 
 If auto-negotiation is on and you set the link speed for a port, Cumulus Linux disables auto-negotiation and uses the port speed setting you configure.
-
-### 1000BASE-T SFP Modules Supported Only on Certain 25G Platforms
-<!-- vale on -->
-The following  25G switches support 1000BASE-T SFP modules:
-
-- NVIDIA SN2410
-- NVIDIA SN2010
-<!-- - NVIDIA SN3420-->
-
-100G or faster switches do not support 1000BASE-T SFP modules.
 
 ### NVIDIA SN5600 Switch and Force Mode
 

@@ -748,6 +748,10 @@ cumulus@leaf01:~$ nv set interface peerlink.4094 router ospf area 0.0.0.1
 cumulus@leaf01:~$ nv config apply
 ```
 
+{{%notice note%}}
+The `peerlink.4094` interface only has an IPv6 linklocal address by default. To establish an IPv4 OSPF peering, add an IPv4 address to the interface and add the interface to the desired area.
+{{%/notice%}}
+
 ### MLAG Routing Support
 
 In addition to the routing adjacency over the [peer link](#peer-link-routing), Cumulus Linux supports routing adjacencies from attached network devices to MLAG switches under the following conditions:
@@ -1942,9 +1946,7 @@ iface swp2
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL512 - MLAG" showNodes="leaf01,leaf02,spine01,server01,server02,server03" >}}
-
-This simulation is running Cumulus Linux 5.12. The Cumulus Linux 5.13 simulation is coming soon.
+    {{< simulation name="Try It CL513 - MLAGv2" showNodes="leaf01,leaf02,spine01,server01,server02,server03" >}}
 
 The simulation starts with the example MLAG configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 

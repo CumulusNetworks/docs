@@ -35,7 +35,7 @@
     https://github.com/alex-shpak/hugo-book
 {{ "-->" | safeHTML }}
 
-<!-- clipboard.js support -->
+<!-- clipboard.js and other js support -->
 {{if ne .Params.layout "pdf"}}
     {{ $jsCodeCopy := resources.Get "js/codecopy.js"}}
     <script src = "{{ $jsCodeCopy.Permalink }}"> </script>
@@ -43,6 +43,75 @@
     {{ $jsAir := resources.Get "js/air.js" }}
     <script type="application/javascript" src="{{ $jsAir.Permalink }}"></script>
 {{ end }}
+
+{{ if eq .Page.Params.product "NVIDIA Air" }}
+{{ $jsNetguru := resources.Get "js/netguru.js" }}
+
+<script src="{{ $jsNetguru.Permalink }}" id="chainlit-script"></script>
+<script>
+window.mountChainlitWidget({
+    chainlitServer: "https://copilot-netguru.nvidia.com/chainlit",
+    button: {
+    position: {
+        bottom: 1,      // Distance from bottom of the screen (rem)
+        right: 1,        // Distance from right edge (rem)      },
+        size: 3           // Diameter of the floating button (rem)    },
+    },
+    popup: {
+        normalWidth: 300,     // Default width in pixels
+        expandedWidth: 800,   // Width when expanded
+        height: 800           // Height of the popup in pixels    }
+    }
+}});
+</script>
+{{ end }}
+
+{{ if eq .Page.Params.product "Cumulus Linux" }}
+{{ $jsNetguru := resources.Get "js/netguru.js" }}
+
+<script src="{{ $jsNetguru.Permalink }}" id="chainlit-script"></script>
+<script>
+window.mountChainlitWidget({
+    chainlitServer: "https://copilot-netguru.nvidia.com/chainlit",
+    button: {
+    position: {
+        bottom: 1,      // Distance from bottom of the screen (rem)
+        right: 1,        // Distance from right edge (rem)      },
+        size: 3           // Diameter of the floating button (rem)    },
+    },
+    popup: {
+        normalWidth: 300,     // Default width in pixels
+        expandedWidth: 800,   // Width when expanded
+        height: 800           // Height of the popup in pixels    }
+    }
+}});
+</script>
+{{ end }}
+
+
+{{ if eq .Page.Params.product "Cumulus NetQ" }}
+
+{{ $jsNetguru := resources.Get "js/netguru.js" }}
+
+<script src="{{ $jsNetguru.Permalink }}" id="chainlit-script"></script>
+<script>
+window.mountChainlitWidget({
+    chainlitServer: "https://copilot-netguru.nvidia.com/chainlit",
+    button: {
+    position: {
+        bottom: 1,      // Distance from bottom of the screen (rem)
+        right: 1,        // Distance from right edge (rem)      },
+        size: 3           // Diameter of the floating button (rem)    },
+    },
+    popup: {
+        normalWidth: 300,     // Default width in pixels
+        expandedWidth: 800,   // Width when expanded
+        height: 800           // Height of the popup in pixels    }
+    }
+}});
+</script>
+{{ end }}   
+
 
 <!-- Canonical link element to prioritize search indexing of current version -->
 {{ if .Page.Params.old }}

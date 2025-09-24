@@ -73,10 +73,10 @@ To decommission a NIC:
     docker stop doca_telemetry
     ```
 
-2. On the NetQ appliance or VM, decommission the NIC:
+2. On the NetQ server or VM, decommission the NIC:
 
     ```
-    cumulus@netq-appliance:~$ netq decommission <hostname-to-decommission>/<NIC-guid>
+    cumulus@netq-server:~$ netq decommission <hostname-to-decommission>/<NIC-guid>
     ```
 
 Either obtain the NIC guid from the NetQ UI in the full-screen NIC Inventory card, or use tab completion with the `netq decommission <hostname>` command to view the NIC guids.

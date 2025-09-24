@@ -18,7 +18,7 @@ netq [<hostname>] show agents
     [json]
 ```
 
-You can view the status for a given switch, host or NetQ appliance or virtual machine. You can also filter by the status and view the status at a time in the past.
+You can view the status for a given switch, host or NetQ virtual machine. You can also filter by the status and view the status at a time in the past.
 
 To view the current status of all NetQ Agents, run:
 
@@ -33,7 +33,7 @@ cumulus@switch~:$ netq show agents rotten
 No matching agents records found
 ```
 
-To view NetQ Agent status on the NetQ appliance or VM, run:
+To view NetQ Agent status on the NetQ VM, run:
 
 ```
 cumulus@switch~:$ netq show agents opta
@@ -53,7 +53,7 @@ sudo netq config show agent
     [json]
 ```
 
-The following example shows a NetQ Agent in an on-premises deployment, talking to an appliance or VM at 127.0.0.1 using the default ports and VRF.
+The following example shows a NetQ Agent in an on-premises deployment, connected to and communicating with a VM at 127.0.0.1 using the default ports and VRF.
 
 ```
 cumulus@switch:~$ sudo netq config show agent
@@ -266,7 +266,7 @@ To configure a logging level, follow these steps. This example sets the logging 
     cumulus@switch:~$ sudo netq config restart agent
     ```
 
-3. (Optional) Verify the connection to the NetQ appliance or VM by viewing the `netq-agent.log` messages.
+3. (Optional) Verify the connection to the NetQ VM by viewing the `netq-agent.log` messages.
 
 #### Disable Agent Logging
 
@@ -288,7 +288,7 @@ cumulus@switch:~$ sudo netq config restart agent
 
 ## Change NetQ Agent Polling Data and Frequency
 
-The NetQ Agent contains a pre-configured set of modular commands that run periodically and send event and resource data to the NetQ appliance or VM. You can fine tune which events the agent can poll and vary frequency of polling using the NetQ CLI.
+The NetQ Agent contains a pre-configured set of modular commands that run periodically and send event and resource data to the NetQ VM. You can fine tune which events the agent can poll and vary frequency of polling using the NetQ CLI.
 
 For example, if your network is not running EVPN, you can disable the command that polls for EVPN events. Or you can decrease the polling interval for LLDP from the default of 60 seconds to 120 seconds. By not polling for selected data or polling less frequently, you can reduce switch CPU usage by the NetQ Agent.
 

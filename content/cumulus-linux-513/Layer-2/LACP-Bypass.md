@@ -11,7 +11,7 @@ In Cumulus Linux, <span class="a-tooltip">[LACP](## "Link Aggregation Control Pr
 In *all-active* mode, when a bond has multiple slave interfaces, each bond slave interface operates as an active link while the bond is in bypass mode. This is useful during PXE boot of a server with multiple NICs, when you cannot determine beforehand which port needs to be active.
 
 {{%notice note%}}
-- All-active mode is *only* supported on bonds that are specified as bridge ports on the switch.
+- All-active mode is *only* supported on bonds specified as bridge ports on the switch.
 - <span class="a-tooltip">[STP](## "Spanning Tree Protocol")</span> does not run on the individual bond slave interfaces when the LACP bond is in all-active mode. Only use all-active mode on host-facing LACP bonds. Configure {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP" text="STP BPDU guard">}} together with all-active mode.
 - In an {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG deployment">}} where bond slaves of a host connect to two switches and the bond is in all-active mode, all the slaves of the bond are active on both the primary and secondary MLAG nodes. If multiple physical NIC interfaces or more than one physical NIC is present on the physical host, NVIDIA recommends that you define which physical NIC or interface runs the PXE boot inside the PXE boot configuration file. If you do not define a specific NIC or interface, the switch sends a PXE boot request on all the interfaces in the bond and the PXE request fails.
 - LACP bypass works with {{<link url="EVPN-Multihoming/#supported-features" text="EVPN multihoming">}}.

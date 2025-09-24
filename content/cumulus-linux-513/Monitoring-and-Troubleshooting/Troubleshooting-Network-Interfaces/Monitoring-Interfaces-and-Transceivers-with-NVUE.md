@@ -251,10 +251,9 @@ Undersize Errors  0        n/a
 To show physical layer information, such as the error counters for each lane on a port and <span class="a-tooltip">[SNR](## "Signal-to-Noise Ratio")</span> information for media and host lanes (lane0 through lane7), run the `nv show interface <interface> link phy-detail` command.
 
 This command highlights link integrity issues.
-OSFP 100G per lane (NDR) capable transceivers
 
 {{%notice note%}}
-The `nv show interface <interface> link phy-detail` command shows SNR information for media and host lanes for OSFP 100G per lane (NDR) capable transceivers on certain switches with the Spectrum-4 ASIC and later. The command does not show SNR information for SFP28 bonus ports.
+The `nv show interface <interface> link phy-detail` command shows SNR information for media and host lanes for OSFP 100G per lane capable transceivers on certain switches with the Spectrum-4 ASIC and later. The command does not show SNR information for SFP28 bonus ports.
   - For lanes not in use for the optical cable, the command output shows 0.
   - For copper ports, the command output shows n/a.
 {{%/notice%}}

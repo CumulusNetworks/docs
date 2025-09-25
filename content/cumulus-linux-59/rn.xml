@@ -13,6 +13,13 @@
 <td></td>
 </tr>
 <tr>
+<td>4546685</td>
+<td>When SVI is coming up with few routes on it if there is an update on SVI(like MTU /FWD state/MAC udpate/MC fwd state(current case))  we are trying to cleanup related route on it. As part of this local routes are programmed as blackhole and since there are NHG based routes on SVI which is not handled currently for cleanup, RIF for this is not cleared.  this causes local route to be not programmed back to forwarding.
+</td>
+<td>5.8.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4531104</td>
 <td>On a switch with SDK 4.6.1062 or earlier, you might see FW fatal health events.</td>
 <td>5.6.0-5.13.1</td>
@@ -1007,6 +1014,13 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td>5.14.0</td>
 </tr>
 <tr>
+<td>4546685</td>
+<td>When SVI is coming up with few routes on it if there is an update on SVI(like MTU /FWD state/MAC udpate/MC fwd state(current case))  we are trying to cleanup related route on it. As part of this local routes are programmed as blackhole and since there are NHG based routes on SVI which is not handled currently for cleanup, RIF for this is not cleared.  this causes local route to be not programmed back to forwarding.
+</td>
+<td>5.8.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4546684</td>
 <td>When an SVI interface is brought up with routes installed against it, during subsequent interface updates that are applied to the interface during bringup such as MTU changes, interface forwarding state, MAC learning updates, or multicast forwarding state changes, the routes installed for the interface might be programmed as blackhole routes. This can occur during a fresh boot of a switch. To work around this issue, toggle the interface state of the SVI. </td>
 <td>5.8.0-5.13.1</td>
@@ -1895,6 +1909,13 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{sudo systemctl restart frr.service}} command.</td>
 <td>5.4.0-5.13.1</td>
 <td>5.14.0</td>
+</tr>
+<tr>
+<td>4546685</td>
+<td>When SVI is coming up with few routes on it if there is an update on SVI(like MTU /FWD state/MAC udpate/MC fwd state(current case))  we are trying to cleanup related route on it. As part of this local routes are programmed as blackhole and since there are NHG based routes on SVI which is not handled currently for cleanup, RIF for this is not cleared.  this causes local route to be not programmed back to forwarding.
+</td>
+<td>5.8.0-5.14.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4546684</td>
@@ -3027,6 +3048,13 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td>5.14.0</td>
 </tr>
 <tr>
+<td>4546685</td>
+<td>When SVI is coming up with few routes on it if there is an update on SVI(like MTU /FWD state/MAC udpate/MC fwd state(current case))  we are trying to cleanup related route on it. As part of this local routes are programmed as blackhole and since there are NHG based routes on SVI which is not handled currently for cleanup, RIF for this is not cleared.  this causes local route to be not programmed back to forwarding.
+</td>
+<td>5.8.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4546684</td>
 <td>When an SVI interface is brought up with routes installed against it, during subsequent interface updates that are applied to the interface during bringup such as MTU changes, interface forwarding state, MAC learning updates, or multicast forwarding state changes, the routes installed for the interface might be programmed as blackhole routes. This can occur during a fresh boot of a switch. To work around this issue, toggle the interface state of the SVI. </td>
 <td>5.8.0-5.13.1</td>
@@ -4113,6 +4141,13 @@ You can safely ignore this warning.</td>
 <td>When a host moves to a new VTEP during mobility or network failover events in an EVPN multihoming environment, the host might be unreachable due to ARP resolution failures. To work around this issue, restart the FRR service with the {{sudo systemctl restart frr.service}} command.</td>
 <td>5.4.0-5.13.1</td>
 <td>5.14.0</td>
+</tr>
+<tr>
+<td>4546685</td>
+<td>When SVI is coming up with few routes on it if there is an update on SVI(like MTU /FWD state/MAC udpate/MC fwd state(current case))  we are trying to cleanup related route on it. As part of this local routes are programmed as blackhole and since there are NHG based routes on SVI which is not handled currently for cleanup, RIF for this is not cleared.  this causes local route to be not programmed back to forwarding.
+</td>
+<td>5.8.0-5.14.0</td>
+<td></td>
 </tr>
 <tr>
 <td>4546684</td>

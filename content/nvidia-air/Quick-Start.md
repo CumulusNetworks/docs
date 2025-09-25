@@ -37,27 +37,29 @@ To create a simulation, you can either:
 
 ### Navigate Simulations
 
-There are many ways to interact with and manipulate your simulation. Navigate to the **Topology** tab to view your many options. Use these buttons to start and stop your simulation, share it with others, export it as a JSON, and more.
+To interact with your simulation, select the **Topology** tab. This tab provides a variety of options, including options to start and stop the simulation, share it with other users, export it as a JSON file, and ways to access additional features.
+
 
 {{<img src="/images/guides/nvidia-air/SimulationActions.png" alt="">}}
 
-### Nodes & Consoles
+### Nodes and Consoles
 
 Select a node to open a side panel that displays the node's properties, including its operating system, number of CPUs, memory and storage capacities, and connectors.
 
 {{<img src="/images/guides/nvidia-air/NodesTopology.png" alt="">}}
-
+<br>
+<br>
 Double-click any node to connect to its console.
 
 {{<img src="/images/guides/nvidia-air/Console.png" alt="example console with login prompt"  width="800px" >}}
 
 ### Services
 
-Enable services to create external connections to your simulation to allow for integrations, such as using a preferred SSH client to access the `oob-mgmt-server`, running and accessing web apps like Grafana or Kibana, or setting up SNMP polling. 
+Enable services to create external connections to your simulation to support integrations: for example, you can use your preferred SSH client to access the `oob-mgmt-server`, run and access web applications such as Grafana or Kibana, or configure SNMP polling.
 
 To add a new service to your simulation:
 
-1. In a loaded simulation, click **Services > New Service**.
+1. In a loaded simulation, select **Services > New Service**.
 
 {{<img src="/images/guides/nvidia-air/ServicesDropdown.png" alt="" >}}
 

@@ -1775,7 +1775,7 @@ To configure the BGP node as a route reflector for a BGP peer, set the neighbor 
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@spine01:~$ nv set vrf default router bgp neighbor swp1 address-family ipv4-unicast route-reflector-client on
+cumulus@spine01:~$ nv set vrf default router bgp neighbor swp1 address-family ipv4-unicast route-reflector-client enabled
 cumulus@spine01:~$ nv config apply
 ```
 
@@ -1812,7 +1812,7 @@ router bgp 65199
 {{< /tab >}}
 {{< /tabs >}}
 
-When you configure BGP route reflectors, they reflect routes announced by the peers configured as clients. To configure BGP client-to-client route reflection, you specify the cluster ID you want to use. BGP client-to-client reflection is enabled by default. You can disable client-to-client reflection if required.
+When you configure BGP route reflectors, they reflect routes announced by the peers configured as clients. BGP client-to-client reflection is enabled by default. You can disable client-to-client reflection if required.
 
 {{< tabs "1819 ">}}
 {{< tab "NVUE Commands ">}}

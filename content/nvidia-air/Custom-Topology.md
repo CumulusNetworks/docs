@@ -10,14 +10,14 @@ The information on this page reflects the workflows for the new Air UI. The lega
 
 ## The Drag-and-Drop Topology Builder
 
-One way to create fully custom simulations is with the built-in topology builder, which provides a drag-and-drop editor to design any custom network. To get started, navigate to [https://air.nvidia.com/simulations](https://air.nvidia.com/simulations).
+One way to create custom simulations is with the built-in topology builder, which provides a drag-and-drop editor to design any custom network. To get started, navigate to [https://air.nvidia.com/simulations](https://air.nvidia.com/simulations).
 
 1. Select **Create Simulation**.
 2. Provide a name for your simulation.
 3. Select **Blank Canvas** as the type.
 4. (Optional) Assign the simulation to an [Organization](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Organizations/).
-5. (Optional) Add a [ZTP script](#ztp-scripts) to the simulation.
-   1. Toggle on the **Apply ZTP Template** button.
+5. (Optional) Add a [ZTP script](#ztp-scripts) to the simulation:
+   1. Select **Apply ZTP Template**.
    2. Enter your ZTP script. A default script is prefilled to help get you started.
 6. Click **Create**.
 
@@ -25,13 +25,15 @@ One way to create fully custom simulations is with the built-in topology builder
 
 ### ZTP Scripts
 
-When you create a new simulation, Air gives you the option to add a zero-touch provisioning (ZTP) script. The ZTP script is copied to the simulation's `oob-mgmt-server`. Any node making a ZTP request on the out-of-band management network has access to this ZTP script through a DHCP server and web server running on the `oob-mgmt-server`. 
+When you create a new simulation, Air gives you the option to add a zero-touch provisioning (ZTP) script. The ZTP script is copied to the simulation's `oob-mgmt-server`. Any node making a ZTP request on the out-of-band management network has access to this ZTP script through a DHCP server and web server running on the `oob-mgmt-server`.
 
-**You must have the out-of-band-network enabled to use ZTP scripts.**
+{{%notice note%}}
+You must have the out-of-band-network enabled to use ZTP scripts.
+{{%/notice%}}
 
 A default script is prefilled to help you get started. It implements common ZTP features on Cumulus Linux, such as changing the default password or downloading SSH keys. You can edit the default script directly in the UI.
 
-{{< expand "View Default ZTP script" >}}
+{{< expand "Default ZTP script" >}}
 ```
 #!/bin/bash
 # Created by Topology-Converter v4.7.1
@@ -87,14 +89,16 @@ Air also provides advanced options, such as enabling UEFI secure boot.
 
 {{<img src="/images/guides/nvidia-air/AddNode.png" alt="">}}
 <br>
-When you finish creating your topology, start your simulation. You cannot add, remove, or edit nodes after the simulation starts for the first time
+<br>
+After you create your topology, start the simulation. You cannot add, remove, or edit nodes after the simulation starts for the first time
 
 ### OOB Management Network
 
 On the **System Palette**, there is an option to **Enable OOB**. This setting enables the out-of-band management network that connects all nodes to each other. It also adds an `oob-mgmt-switch` and `oob-mgmt-server` to your simulation. When you enable SSH, you connect to the `oob-mgmt-server`, making this node an ideal starting point for configurations. Air handles the configuration automatically for you.
 
 {{<img src="/images/guides/nvidia-air/EnableOOB.png" alt="" width="300px">}}
-
+<br>
+<br>
 You can add more `oob-mgmt-switches` and `oob-mgmt-servers` to your simulation manually even when **Enable OOB** is set to off. However, you must switch **Enable OOB** on to use the out-of-band network.
 
 ## Importing Custom Topologies with External Files
@@ -414,7 +418,7 @@ You can customize RAM (in MB) with the `memory` option:
 
 Labs in the [Demo Marketplace](https://air.nvidia.com/demos) are maintained with external GitLab repositories. Here you can find the `topology.dot` or `topology.json` file used to build the lab and use it as a reference. To access the files, select **Documentation** on any lab in the Demo Marketplace. It will direct you to the demo's GitLab repository, where you can download the file used for the demo topology.
 
-You can also launch a copy of a lab in the Demo Marketplace and then export the JSON.
+You can also launch a copy of a lab in the Demo Marketplace and then export the JSON file.
 
 ### Import a Topology
 
@@ -425,26 +429,25 @@ To import and upload a DOT or JSON topology file to Air, navigate to [air.nvidia
 3. Select your desired filetype.
 4. Upload the file to the UI.
 5. (Optional) Assign the simulation to an [organization](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Organizations/).
-6. (Optional) Add a [ZTP script](#ztp-scripts). Optionally, you can apply a ZTP script within the file instead.
+6. (Optional) Add a [ZTP script](#ztp-scripts). Alternately, you can apply a ZTP script within the file.
      1. Select **Apply ZTP Template**.
      2. Enter your ZTP script. A default script is prefilled to help you get started.
 7. (Optional) Click **Advanced** and provide an out-of-band management server configuration script that executes on the `oob-mgmt-server` when the simulation starts.
 8. Click **Create**.
 
 {{<img src="/images/guides/nvidia-air/ImportJSON.png" alt="" >}}
-
+<br>
+<br>
 Air redirects you to the [topology builder](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Custom-Topology/#the-drag-and-drop-topology-builder) with your custom topology created. You can continue to make adjustments as necessary.
 
 ### Export a Topology
-You can export the topology for any existing simulation. The exported file is JSON formatted. 
-
-Click the **Export Simulation** button in the **Topology** tab to export.
+You can export the topology for any existing simulation as a JSON file. From the **Topology** tab, select **Export Simulation** to export the topology file.
 
 {{<img src="/images/guides/nvidia-air/ExportSimulation.png" alt="" >}} 
 
 ### Storage Limits
 
-If you increase the storage of a node higher than its default, and Air does not recognize the increased storage, run the following commands **on the affected node** (NOT the `oob-mgmt-server`) to extend the partition and resize the file system:
+If you increase the storage of a node higher than its default, and Air does not recognize the increased storage, run the following commands **on the affected node** (not the `oob-mgmt-server`) to extend the partition and resize the file system:
 
 ```
 sudo growpart /dev/vda 1
@@ -705,13 +708,8 @@ graph dc1 {
 
 ### Restore Configuration Files
 
-After you create the simulation, you can restore the configuration files.
-
-This [python script](https://gitlab.com/cumulus-consulting/features/cl_support_file_extractor)
-extracts relevant files and collates them into folders which you can use to restore configurations.
-
-You can also use the [infrastructure-as-code](https://gitlab.com/cumulus-consulting/features/simple-iac)
-Ansible playbook to restore configurations.
+After you create the simulation, you can restore the configuration files. This [python script](https://gitlab.com/cumulus-consulting/features/cl_support_file_extractor)
+extracts relevant files and collates them into folders which you can use to restore configurations. You can also use the [infrastructure-as-code](https://gitlab.com/cumulus-consulting/features/simple-iac) Ansible playbook to restore configurations.
 
 
 

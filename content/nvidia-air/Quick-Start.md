@@ -22,7 +22,7 @@ To log in, go to [air.nvidia.com](https://air.nvidia.com/). Enter your business 
 {{<img src="/images/guides/nvidia-air/Login.png" alt="" width="800px">}}
 
 {{%notice note%}}
-If your email address is not accepted as a valid business email address, and you think this is an error, contact [air-support@nvidia.com](mailto:air-support@nvidia.com)
+If your email address is not accepted as a valid business email address, and you think this is an error, contact [air-support@nvidia.com](mailto:air-support@nvidia.com).
 {{%/notice%}}
 
 ## Network Simulations
@@ -59,31 +59,30 @@ Enable services to create external connections to your simulation to support int
 
 To add a new service to your simulation:
 
-1. In a loaded simulation, select **Services > New Service**.
+1. In a loaded simulation, select **Services**&nbsp;<span aria-label="and then">></span> **New Service**.
 
 {{<img src="/images/guides/nvidia-air/ServicesDropdown.png" alt="" >}}
 
-Provide information in the fields to create a service.
+2. Enter the following information to create a service:
 - **Service Name** is the name for your service. After you name a service, you can choose to run multiple instances of the same service on different interfaces or ports.
 - **Interface** is where the connection terminates; typically `eth0` on the `oob-mgmt-server`.
 - **Service Type** is the service type. NVIDIA Air creates a hyperlink to the URL automatically in the services panel for _SSH_, _HTTP_, or _HTTPS_ services. For _Other_ services, you can use any port, but Air does not generate a hyperlink. The hyperlink provides a convenient way to copy and paste the service if your browser supports it.
-- **Service Port** is the internal port where the service terminates.
+- **Service Port** is the internal port where the service terminates. 
 
-2. Click **Create**.
+Click **Create**.
 
-{{<img src="/images/guides/nvidia-air/ServicesAdd.png" alt=""  >}}
-
-Observe the information you would need to access the service you created.
+Air displays the information needed to access the service you created.
 
 {{<img src="/images/guides/nvidia-air/ServicesList.png" alt="">}}
-
-To enable SSH in the `oob-mgmt-server`, click **Services > Enable SSH**. This option is only available when the out-of-band network is enabled. SSH password authentication is disabled on the `oob-mgmt-server` by default. To use SSH password authentication, you must upload SSH keys to your user profile; for more information, see [SSH Keys](#ssh-keys).
+<br>
+<br>
+To enable SSH in the `oob-mgmt-server`, click **Enable SSH**. This option is only available when the out-of-band network is enabled. SSH password authentication is disabled on the `oob-mgmt-server` by default. To use SSH password authentication, you must upload SSH keys to your user profile; for more information, see [SSH Keys](#ssh-keys).
 
 ### Rebuild and Reset Nodes
 
 Rebuilding a node restores the node to its original or default configuration. If you create the node from a demo or other snapshot, rebuilding it reverts the node to its original configuration. Resetting a node performs a hard reboot to the node.
 
-From a loaded simulation, select a node to view its node properties. Click **Advanced Options > Actions** to rebuild or reset the node.
+From a loaded simulation, select a node to view its node properties. Click **Advanced Options**&nbsp;<span aria-label="and then">></span> **Actions** to rebuild or reset the node.
 
 {{<img src="/images/guides/nvidia-air/RebuildReset.png" alt=""  width="450px" >}}
 <br>
@@ -100,12 +99,12 @@ You can edit important attributes of a simulation with the {{<img src="/images/g
 
 ### Share Simulations
 
-Sharing a simulation allows other users to view and interact with a simulation. When sharing a simulation, you can choose to give users read-only access, which means they cannot modify the simulation (for example, by deleting it or assigning it to an organization). Users with read-only access have access to node consoles, where they can run commands to modify the simulation. To share a simulation with a group of users, see [Organizations](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Organizations).
+Sharing a simulation allows other users to view and interact with it. When sharing a simulation, you can choose to give users read-only access, which means they cannot modify the simulation (for example, by deleting it or assigning it to an organization). Users with read-only access have access to node consoles, where they can run commands to modify the simulation. To share a simulation with a group of users, see [Organizations](https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Organizations).
 
 To share a simulation:
 
 1. Click the {{<img src="/images/guides/nvidia-air/ManageUsersButton.png" alt="" width="22px" >}} **Manage Users** button in the **Topology** tab.
-2. Enter the email addresses of the users with which you want to share the simulation.
+2. Enter the email addresses of the users with whom you want to share the simulation.
 3. Select whether to give the users read-only access.
 4. Click **Add User**.
 5. Click **Close**.
@@ -113,7 +112,7 @@ To share a simulation:
 {{<img src="/images/guides/nvidia-air/ManageUsers.png" alt="" width="600px">}}
 <br>
 <br>
-Users see the simulation listed in their [Simulations](https://air.nvidia.com/simulations) list. The user does not receive any notification that they have access to the simulation. <!--why not if they entered their email?--> 
+Users can now view the simulation from their [Simulations](https://air.nvidia.com/simulations) list. The user does not receive any notification that they have access to the simulation. <!--why not if they entered their email?--> 
 
 ## API Tokens
 
@@ -136,13 +135,13 @@ You can revoke or delete both API tokens and SSH keys if you no longer need them
 
 ## Resource Budgets
 
-The number of simulation resources allotted to a user is tied to the user's account. For an account using a valid business email, AIR allocates the following resource budget:
+The number of simulation resources allotted to a user is tied to the user's account. For an account using a valid business email, Air allocates the following resource budget:
 - 60 vCPUs
 - 90 GB memory
 - 650 GB storage
 - 4 running simulations
 
-AIR allocates NVIDIA employees the following resource budget:
+Air allocates NVIDIA employees the following resource budget:
 - 100 vCPUs
 - 100 GB memory
 - 1 TB storage

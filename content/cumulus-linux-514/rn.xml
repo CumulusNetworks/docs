@@ -186,6 +186,12 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td></td>
 </tr>
 <tr>
+<td>4501632</td>
+<td>NVIDIA recommends you wait for approximately 60 seconds after running {{nv config apply}} before power cycling the switch so that NVUE database has time to sync to the filesystem. </td>
+<td>5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4498428</td>
 <td>Due to a GCC update in Cumulus Linux 5.14, you might see unexpected log messages, such as {{BPF: Invalid name}} when using package upgrade to upgrade to Cumulus Linux 5.14. You can ignore these messages.</td>
 <td>5.14.0</td>
@@ -249,12 +255,6 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>4413589</td>
 <td>A MAC-only EVPN type-2 route is wrongly advertised with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
 <td>5.13.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
-<td>4398031</td>
-<td>On the NVIDIA SN5400 switch, if the PTP slave port is swp66 and is operating at 1Gbps, the  PTP mean path delay value might be reported as a negative value. </td>
-<td>5.11.0-5.14.0</td>
 <td></td>
 </tr>
 <tr>
@@ -848,6 +848,15 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <th> Issue ID </th>
 <th> Description </th>
 <th> Affects </th>
+</tr>
+<tr>
+<td>4629153</td>
+<td>When you configure several hundred BGP sessions, the {{agentx}} handler in FRR might crash with the following signature:
+{{Received signal 6 at 1755908669 (si_addr 0x6b00034298, PC 0x7fc05563beec); aborting...
+...
+in thread agentx_timeout scheduled from lib/agentx.c:121 agentx_events_update()}}
+To work around this issue, disable SNMP with the {{nv set system snmp-server state disabled}} command. You might also need to increase the FRR file descriptors with the {{LimitNOFILE}} parameter in the {{/lib/systemd/system/frr.service}} file and restart {{frr.service}}.</td>
+<td>5.13.0-5.13.1</td>
 </tr>
 <tr>
 <td>4555938</td>

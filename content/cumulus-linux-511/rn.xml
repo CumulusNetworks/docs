@@ -188,12 +188,6 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>5.14.0</td>
 </tr>
 <tr>
-<td>4398031</td>
-<td>On the NVIDIA SN5400 switch, if the PTP slave port is swp66 and is operating at 1Gbps, the  PTP mean path delay value might be reported as a negative value. </td>
-<td>5.11.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4360615</td>
 <td>The control plane trap group counters are not associated correctly with the right trap group.</td>
 <td>5.11.0-5.12.1</td>
@@ -1072,12 +1066,6 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>BGP crashes during EVPN route install due to incorrect memory access.</td>
 <td>5.11.0-5.13.1</td>
 <td>5.14.0</td>
-</tr>
-<tr>
-<td>4398031</td>
-<td>On the NVIDIA SN5400 switch, if the PTP slave port is swp66 and is operating at 1Gbps, the  PTP mean path delay value might be reported as a negative value. </td>
-<td>5.11.0-5.14.0</td>
-<td></td>
 </tr>
 <tr>
 <td>4360615</td>
@@ -2270,12 +2258,6 @@ systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
 <td>5.13.0-5.14.0</td>
 </tr>
 <tr>
-<td>4398031</td>
-<td>On the NVIDIA SN5400 switch, if the PTP slave port is swp66 and is operating at 1Gbps, the  PTP mean path delay value might be reported as a negative value. </td>
-<td>5.11.0-5.14.0</td>
-<td></td>
-</tr>
-<tr>
 <td>4389124</td>
 <td>NVUE fails when applying ERSPAN configuration on an MLAG peer. This failure occurs because ERSPAN does not support bond slave ports as analyzer ports but fails to validate the configuration. </td>
 <td>5.11.0-5.12.1</td>
@@ -3433,12 +3415,6 @@ To work around this issue, power cycle the switch.</td>
 <td>After the switch reboots or {{switchd.service}} restarts, NVUE applied ERSPAN sessions do not work if the ERSPAN destination IP address is reachable through an MLAG bond. To work around this issue, remove the ERSPAN configuration and reapply it using NVUE.</td>
 <td>5.11.0-5.12.1</td>
 <td>5.13.0-5.14.0</td>
-</tr>
-<tr>
-<td>4398031</td>
-<td>On the NVIDIA SN5400 switch, if the PTP slave port is swp66 and is operating at 1Gbps, the  PTP mean path delay value might be reported as a negative value. </td>
-<td>5.11.0-5.14.0</td>
-<td></td>
 </tr>
 <tr>
 <td>4389124</td>

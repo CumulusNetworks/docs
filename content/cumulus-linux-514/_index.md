@@ -1,5 +1,5 @@
 ---
-title: Cumulus Linux 5.14 User Guide
+title: Cumulus® Linux 5.14 User Guide
 author: NVIDIA
 weight: -42
 subsection: true

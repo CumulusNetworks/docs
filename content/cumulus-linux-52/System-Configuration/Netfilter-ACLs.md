@@ -1257,7 +1257,7 @@ Cumulus Linux does not support all `iptables`, `ip6tables`, or `ebtables` rules.
 
 ### ACL Log Policer Limits Traffic
 
-To protect the CPU from overloading, Cumulus Linux limits traffic copied to the CPU to 1 packet per second by an ACL Log Policer.
+To protect the CPU from overloading, Cumulus Linux limits ACL log message traffic copied to the CPU by the ACL Log Policer. For more information, refer to {{<link url="#control-plane-policers" text="Control Plane Policers">}}.
 
 ### Bridge Traffic Limitations
 

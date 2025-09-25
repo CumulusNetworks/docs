@@ -47,6 +47,13 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td></td>
 </tr>
 <tr>
+<td>4546685</td>
+<td>When SVI is coming up with few routes on it if there is an update on SVI(like MTU /FWD state/MAC udpate/MC fwd state(current case))  we are trying to cleanup related route on it. As part of this local routes are programmed as blackhole and since there are NHG based routes on SVI which is not handled currently for cleanup, RIF for this is not cleared.  this causes local route to be not programmed back to forwarding.
+</td>
+<td>5.8.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4539084</td>
 <td>When you lower the speed for an interface,  the {{nv show interface rates}} command output might show the link utilization percentage above 100 percent.  This issue is corrected automatically after the load interval duration.</td>
 <td>5.12.0-5.13.1</td>
@@ -240,12 +247,6 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>When you use BGP prefix independent convergence (PIC) with IPv6, {{cl-route-check}} might show errors due to a discrepancy in the IPv4-mapped IPv6 SOO route string format across FRR and the kernel. This is a display-only issue and has no impact on routing functionality.</td>
 <td>5.12.0-5.12.1</td>
 <td>5.13.0-5.14.0</td>
-</tr>
-<tr>
-<td>4398031</td>
-<td>On the NVIDIA SN5400 switch, if the PTP slave port is swp66 and is operating at 1Gbps, the  PTP mean path delay value might be reported as a negative value. </td>
-<td>5.11.0-5.14.0</td>
-<td></td>
 </tr>
 <tr>
 <td>4391394</td>
@@ -1135,6 +1136,13 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td></td>
 </tr>
 <tr>
+<td>4546685</td>
+<td>When SVI is coming up with few routes on it if there is an update on SVI(like MTU /FWD state/MAC udpate/MC fwd state(current case))  we are trying to cleanup related route on it. As part of this local routes are programmed as blackhole and since there are NHG based routes on SVI which is not handled currently for cleanup, RIF for this is not cleared.  this causes local route to be not programmed back to forwarding.
+</td>
+<td>5.8.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4539084</td>
 <td>When you lower the speed for an interface,  the {{nv show interface rates}} command output might show the link utilization percentage above 100 percent.  This issue is corrected automatically after the load interval duration.</td>
 <td>5.12.0-5.13.1</td>
@@ -1316,12 +1324,6 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>When you use BGP prefix independent convergence (PIC) with IPv6, {{cl-route-check}} might show errors due to a discrepancy in the IPv4-mapped IPv6 SOO route string format across FRR and the kernel. This is a display-only issue and has no impact on routing functionality.</td>
 <td>5.12.0-5.12.1</td>
 <td>5.13.0-5.14.0</td>
-</tr>
-<tr>
-<td>4398031</td>
-<td>On the NVIDIA SN5400 switch, if the PTP slave port is swp66 and is operating at 1Gbps, the  PTP mean path delay value might be reported as a negative value. </td>
-<td>5.11.0-5.14.0</td>
-<td></td>
 </tr>
 <tr>
 <td>4391394</td>

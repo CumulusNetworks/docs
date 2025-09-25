@@ -41,6 +41,13 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td></td>
 </tr>
 <tr>
+<td>4546685</td>
+<td>When SVI is coming up with few routes on it if there is an update on SVI(like MTU /FWD state/MAC udpate/MC fwd state(current case))  we are trying to cleanup related route on it. As part of this local routes are programmed as blackhole and since there are NHG based routes on SVI which is not handled currently for cleanup, RIF for this is not cleared.  this causes local route to be not programmed back to forwarding.
+</td>
+<td>5.8.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4535804</td>
 <td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
 <td>5.10.0-5.14.0</td>
@@ -186,12 +193,6 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>BGP crashes during EVPN route install due to incorrect memory access.</td>
 <td>5.11.0-5.13.1</td>
 <td>5.14.0</td>
-</tr>
-<tr>
-<td>4398031</td>
-<td>On the NVIDIA SN5400 switch, if the PTP slave port is swp66 and is operating at 1Gbps, the  PTP mean path delay value might be reported as a negative value. </td>
-<td>5.11.0-5.14.0</td>
-<td></td>
 </tr>
 <tr>
 <td>4360615</td>
@@ -933,6 +934,13 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td></td>
 </tr>
 <tr>
+<td>4546685</td>
+<td>When SVI is coming up with few routes on it if there is an update on SVI(like MTU /FWD state/MAC udpate/MC fwd state(current case))  we are trying to cleanup related route on it. As part of this local routes are programmed as blackhole and since there are NHG based routes on SVI which is not handled currently for cleanup, RIF for this is not cleared.  this causes local route to be not programmed back to forwarding.
+</td>
+<td>5.8.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4535804</td>
 <td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
 <td>5.10.0-5.14.0</td>
@@ -1072,12 +1080,6 @@ NOTICE  CORE_ASYNC: Error at pre send callback status [Resource is in use]</td>
 <td>BGP crashes during EVPN route install due to incorrect memory access.</td>
 <td>5.11.0-5.13.1</td>
 <td>5.14.0</td>
-</tr>
-<tr>
-<td>4398031</td>
-<td>On the NVIDIA SN5400 switch, if the PTP slave port is swp66 and is operating at 1Gbps, the  PTP mean path delay value might be reported as a negative value. </td>
-<td>5.11.0-5.14.0</td>
-<td></td>
 </tr>
 <tr>
 <td>4360615</td>
@@ -2049,6 +2051,13 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td></td>
 </tr>
 <tr>
+<td>4546685</td>
+<td>When SVI is coming up with few routes on it if there is an update on SVI(like MTU /FWD state/MAC udpate/MC fwd state(current case))  we are trying to cleanup related route on it. As part of this local routes are programmed as blackhole and since there are NHG based routes on SVI which is not handled currently for cleanup, RIF for this is not cleared.  this causes local route to be not programmed back to forwarding.
+</td>
+<td>5.8.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4535804</td>
 <td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
 <td>5.10.0-5.14.0</td>
@@ -2268,12 +2277,6 @@ systemctl is-enabled ntpsec &amp;&amp; sudo systemctl restart ntpsec.service
 <td>After the switch reboots or {{switchd.service}} restarts, NVUE applied ERSPAN sessions do not work if the ERSPAN destination IP address is reachable through an MLAG bond. To work around this issue, remove the ERSPAN configuration and reapply it using NVUE.</td>
 <td>5.11.0-5.12.1</td>
 <td>5.13.0-5.14.0</td>
-</tr>
-<tr>
-<td>4398031</td>
-<td>On the NVIDIA SN5400 switch, if the PTP slave port is swp66 and is operating at 1Gbps, the  PTP mean path delay value might be reported as a negative value. </td>
-<td>5.11.0-5.14.0</td>
-<td></td>
 </tr>
 <tr>
 <td>4389124</td>
@@ -3245,6 +3248,13 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td></td>
 </tr>
 <tr>
+<td>4546685</td>
+<td>When SVI is coming up with few routes on it if there is an update on SVI(like MTU /FWD state/MAC udpate/MC fwd state(current case))  we are trying to cleanup related route on it. As part of this local routes are programmed as blackhole and since there are NHG based routes on SVI which is not handled currently for cleanup, RIF for this is not cleared.  this causes local route to be not programmed back to forwarding.
+</td>
+<td>5.8.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4535804</td>
 <td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
 <td>5.10.0-5.14.0</td>
@@ -3433,12 +3443,6 @@ To work around this issue, power cycle the switch.</td>
 <td>After the switch reboots or {{switchd.service}} restarts, NVUE applied ERSPAN sessions do not work if the ERSPAN destination IP address is reachable through an MLAG bond. To work around this issue, remove the ERSPAN configuration and reapply it using NVUE.</td>
 <td>5.11.0-5.12.1</td>
 <td>5.13.0-5.14.0</td>
-</tr>
-<tr>
-<td>4398031</td>
-<td>On the NVIDIA SN5400 switch, if the PTP slave port is swp66 and is operating at 1Gbps, the  PTP mean path delay value might be reported as a negative value. </td>
-<td>5.11.0-5.14.0</td>
-<td></td>
 </tr>
 <tr>
 <td>4389124</td>

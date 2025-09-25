@@ -13,6 +13,13 @@
 <td></td>
 </tr>
 <tr>
+<td>4546685</td>
+<td>When SVI is coming up with few routes on it if there is an update on SVI(like MTU /FWD state/MAC udpate/MC fwd state(current case))  we are trying to cleanup related route on it. As part of this local routes are programmed as blackhole and since there are NHG based routes on SVI which is not handled currently for cleanup, RIF for this is not cleared.  this causes local route to be not programmed back to forwarding.
+</td>
+<td>5.8.0-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4535804</td>
 <td>If you use a bridge name other than {{br_default}}, PTP neighbors fail to establish because the PTP packets are sourced from an unexpected IP address.To work around this issue, configure the {{base-interface}} for the VLAN interface with the {{nv set interface &lt;VLAN-id&gt; base-interface &lt;interface-id&gt;}} command.</td>
 <td>5.10.0-5.14.0</td>
@@ -926,6 +933,13 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>4582679</td>
 <td>If a node has Suppress Route Advertisement enabled and routes are re-learned; for example, when a peer sends the route again due to route policy changes, or you enable or disable graceful shutdown, not all routes are offloaded, which might cause discrepancies in traffic. </td>
 <td>5.9.4-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4546685</td>
+<td>When SVI is coming up with few routes on it if there is an update on SVI(like MTU /FWD state/MAC udpate/MC fwd state(current case))  we are trying to cleanup related route on it. As part of this local routes are programmed as blackhole and since there are NHG based routes on SVI which is not handled currently for cleanup, RIF for this is not cleared.  this causes local route to be not programmed back to forwarding.
+</td>
+<td>5.8.0-5.14.0</td>
 <td></td>
 </tr>
 <tr>

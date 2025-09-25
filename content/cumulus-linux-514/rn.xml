@@ -7,6 +7,42 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>4641351</td>
+<td>If you enable LACP bypass mode on a bond, the switch removes the member ports from the interface and the {{nv show interface &lt;interface-id&gt; qos roce status}} command shows {{Error: The requested item does not exist}}. To work around this issue, run the {{nv show interface &lt;interface-id&gt; qos roce status}} command on the member physical port. </td>
+<td>5.13.1-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4641350</td>
+<td>If you enable LACP bypass mode on a bond, the switch removes the member ports from the interface and the {{nv show interface &lt;interface-id&gt; qos roce status}} command shows {{Error: The requested item does not exist}}. To work around this issue, run the {{nv show interface &lt;interface-id&gt; qos roce status}} command on the member physical port. </td>
+<td>5.13.1-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4641344</td>
+<td>The switch sends out IPv6 neighbor discovery (ND) router advertisement through an interface that does not have router advertisement enabled. To prevent this issue, do not change or remove the remote-as of a peer-group that is used by BGP unnumbered peers.  To work around this issue, restart FRR.</td>
+<td>5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4641343</td>
+<td>The switch sends out IPv6 neighbor discovery (ND) router advertisement through an interface that does not have router advertisement enabled. To prevent this issue, do not change or remove the remote-as of a peer-group that is used by BGP unnumbered peers.  To work around this issue, restart FRR.</td>
+<td>5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4641341</td>
+<td>The neighbor manager service memory usage increases significantly after the number of entries in the kernel neighbor table exceeds the {{gc_threshold}}.</td>
+<td>5.13.1-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4641340</td>
+<td>The neighbor manager service memory usage increases significantly after the number of entries in the kernel neighbor table exceeds the {{gc_threshold}}.</td>
+<td>5.13.1-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4608614</td>
 <td>When setting up SSH keys, you have to run {{nv config apply}} twice for the configuration to take effect.</td>
 <td>5.11.3-5.14.0</td>

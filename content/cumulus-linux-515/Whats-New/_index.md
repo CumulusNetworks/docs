@@ -10,7 +10,7 @@ This document supports the Cumulus Linux 5.15 release, and lists new platforms, 
 
 ## What's New in Cumulus Linux 5.15
 
-Cumulus Linux 5.15.0 contains several new features and improvements, and provides bug fixes.
+Cumulus Linux 5.15.0 contains new platforms, new features and improvements, and provides bug fixes.
 
 ### Platforms
 

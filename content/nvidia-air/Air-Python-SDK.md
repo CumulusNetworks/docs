@@ -132,7 +132,7 @@ curl --request GET 'https://air.nvidia.com/api/v1/simulation/' \
 
 ### Get a Specific Simulation
 
-To get a simulation with ID c51b49b6-94a7-4c93-950c-e7fa4883591:
+To get a simulation with ID `c51b49b6-94a7-4c93-950c-e7fa4883591`:
 
 {{< tabs "TabID5388 ">}}
 {{< tab "SDK ">}}

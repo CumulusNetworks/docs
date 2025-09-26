@@ -1775,7 +1775,7 @@ To configure the BGP node as a route reflector for a BGP peer, set the neighbor 
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@spine01:~$ nv set vrf default router bgp neighbor swp1 address-family ipv4-unicast route-reflector-client on
+cumulus@spine01:~$ nv set vrf default router bgp neighbor swp1 address-family ipv4-unicast route-reflector-client enabled
 cumulus@spine01:~$ nv config apply
 ```
 
@@ -1806,6 +1806,99 @@ router bgp 65199
   network 10.10.10.101/32
   neighbor swp51 route-reflector-client
  exit-address-family
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+When you configure BGP route reflectors, they reflect routes announced by the peers configured as clients. BGP client-to-client reflection is enabled by default. You can disable client-to-client reflection if required.
+
+{{< tabs "1819 ">}}
+{{< tab "NVUE Commands ">}}
+
+The following example configures a BGP route reflector with cluster-id 10.10.10.5. BGP client-to-client reflection is enabled by default.
+
+```
+cumulus@leaf01:~$ nv set vrf blue router bgp route-reflection state enabled
+cumulus@leaf01:~$ nv set vrf blue router bgp route-reflection cluster-id 10.10.10.5
+cumulus@leaf01:~$ nv config apply
+```
+
+The following example configures a BGP route reflector with cluster-id 10.10.10.5 and disables client-to-client reflection:
+
+```
+cumulus@leaf01:~$ nv set vrf blue router bgp route-reflection state enabled
+cumulus@leaf01:~$ nv set vrf blue router bgp route-reflection cluster-id 10.10.10.5
+cumulus@leaf01:~$ nv set vrf blue router bgp route-reflection reflect-between-clients disabled
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+The following example configures a BGP route reflector with cluster-id 10.10.10.5. BGP client-to-client reflection is enabled by default.
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# router bgp 65011 vrf blue
+leaf01(config-router)# bgp cluster-id 10.10.10.5
+leaf01(config-router)# end
+leaf01 write memory
+leaf01# exit
+```
+
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
+...
+router bgp 65011 vrf blue
+bgp router-id 6.0.0.10
+bgp cluster-id 10.10.10.5
+!
+address-family ipv4 unicast
+  maximum-paths 64
+  maximum-paths ibgp 64
+exit-address-family
+exit
+!
+...
+```
+
+The following example configures a BGP route reflector with cluster-id 10.10.10.5 and disables client-to-client reflection:
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# router bgp 65011 vrf blue
+leaf01(config-router)# bgp cluster-id 10.10.10.5
+leaf01(config-router)# no bgp client-to-client reflection
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+```
+
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
+...
+!
+router bgp 65011 vrf blue
+bgp router-id 6.0.0.10
+no bgp client-to-client reflection
+bgp cluster-id 10.10.10.5
+!
+address-family ipv4 unicast
+  maximum-paths 64
+  maximum-paths ibgp 64
+exit-address-family
+exit
+!
 ...
 ```
 

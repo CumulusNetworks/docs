@@ -734,6 +734,11 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td>5.9.2-5.9.3</td>
 </tr>
 <tr>
+<td>4535746</td>
+<td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
+<td>5.9.2-5.9.3</td>
+</tr>
+<tr>
 <td>4535696</td>
 <td>When you configure the RADIUS authentication order with {{local}} first and {{radius second}}, the RADIUS user is authenticated as a default user name. </td>
 <td>5.12.1-5.14.0</td>
@@ -757,11 +762,6 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td>4500033</td>
 <td>When using TACACS or Radius authentication to run CLI commands, the available memory on the switch might reduce over time.</td>
 <td>5.13.0</td>
-</tr>
-<tr>
-<td>4499106</td>
-<td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
-<td>5.9.2-5.9.3</td>
 </tr>
 <tr>
 <td>4486320</td>
@@ -1033,6 +1033,12 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td>5.9.4-5.14.0</td>
 </tr>
 <tr>
+<td>4535746</td>
+<td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
+<td>5.9.2-5.9.3</td>
+<td>5.9.4-5.14.0</td>
+</tr>
+<tr>
 <td>4531104</td>
 <td>On a switch with SDK 4.6.1062 or earlier, you might see FW fatal health events.</td>
 <td>5.6.0-5.13.1</td>
@@ -1047,12 +1053,6 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 To work around this issue, power cycle the switch.</td>
 <td>5.5.1-5.13.1</td>
 <td>5.14.0</td>
-</tr>
-<tr>
-<td>4499106</td>
-<td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
-<td>5.9.2-5.9.3</td>
-<td>5.9.4-5.14.0</td>
 </tr>
 <tr>
 <td>4495231</td>
@@ -1930,6 +1930,12 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td>5.9.4-5.14.0</td>
 </tr>
 <tr>
+<td>4535746</td>
+<td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
+<td>5.9.2-5.9.3</td>
+<td>5.9.4-5.14.0</td>
+</tr>
+<tr>
 <td>4532006</td>
 <td>The sudo program included with Cumulus Linux is vulnerable to a local privilege escalation attack CVE-2025-32463.</td>
 <td>5.9.2</td>
@@ -1950,12 +1956,6 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 To work around this issue, power cycle the switch.</td>
 <td>5.5.1-5.13.1</td>
 <td>5.14.0</td>
-</tr>
-<tr>
-<td>4499106</td>
-<td>A newly provisioned dynamic BGP neighbour with an MD5 password in a VRF does not come up until you delete, then re-add the password.</td>
-<td>5.9.2-5.9.3</td>
-<td>5.9.4-5.14.0</td>
 </tr>
 <tr>
 <td>4495231</td>

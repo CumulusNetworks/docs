@@ -335,6 +335,8 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/interfaces/interface[name]/phy/fec/state/rs-fec-uncorrectable-blocks` | Number of FC FEC uncorrectable blocks for a given lane of an interface. |
 | `/interfaces/interface[name]/phy/ber/state/symbol-ber` | Phy symbol BER for an interface.|
 | `/interfaces/interface[name]/phy/state/symbol-errors` | Number of phy symbol errors for an interface.|
+| `/interfaces/interface[name]/phy/histograms/state/rs-num-corr-err[upper-boundary]/count`| * Number of bit errors corrected that are less than or equal to upper boundary. |
+| `/interfaces/interface[name]/phy/histograms/state/rs-num-corr-err[upper-boundary]/upper-boundary` | * Upper boundary of the bin.|
 | `/interfaces/interface[name]/ethernet/state/counters/in-crc-errors` | Total number of frames received with a length (excluding framing bits, but including FCS octets) of between 64 and 1518 octets, inclusive, but had either a bad Frame Check Sequence (FCS) with an integral number of octets (FCS Error) or a bad FCS with a non-integral number of octets (Alignment Error).|
 | `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-1024-1518-octets` | Total number of packets (including bad packets) received between 1024 and 1518 octets in length inclusive (excluding framing bits but including FCS octets). |
 | `/interfaces/interface[name]/ethernet/state/counters/in-distribution/in-frames-128-255-octets` | Total number of packets (including bad packets) received between 128 and 255 octets in length inclusive (excluding framing bits but including FCS octets).|

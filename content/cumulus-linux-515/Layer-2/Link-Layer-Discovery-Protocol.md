@@ -22,11 +22,11 @@ To disable LLDP globally:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set service lldp state disabled 
+cumulus@leaf01:~$ nv set system lldp state disabled 
 cumulus@leaf01:~$ nv config apply
 ```
 
-To reenable LLDP globally, run the `nv set service lldp state enabled` command.
+To reenable LLDP globally, run the `nv set system lldp state enabled` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -121,18 +121,18 @@ cumulus@leaf01:~$ sudo lldpcli configure system interface pattern ""
 {{< /tab >}}
 {{< /tabs >}}
 
-To show if LLDP is `on` globally or on an interface, run the `nv show service lldp` command.
+To show if LLDP is enabled globally or on an interface, run the `nv show system lldp` command.
 
 ```
-cumulus@leaf01:~$ nv show service lldp
+cumulus@leaf01:~$ nv show system lldp
                         operational  applied
 ----------------------  -----------  -------
+state                   enabled      disabled
 tx-interval             30           30     
 tx-hold-multiplier      4            4      
 dot1-tlv                off          off    
 lldp-med-inventory-tlv  off          off    
 mode                    default      default
-state                   enabled      disabled
 ```
 
 The following example shows that swp1 through swp4 are up and advertising LLDP between leaf01 and leaf02:
@@ -189,8 +189,8 @@ The following example commands configure the frequency of LLDP updates to 100 an
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set service lldp tx-interval 100
-cumulus@switch:~$ nv set service lldp tx-hold-multiplier 3
+cumulus@switch:~$ nv set system lldp tx-interval 100
+cumulus@switch:~$ nv set system lldp tx-hold-multiplier 3
 cumulus@switch:~$ nv config apply
 ```
 
@@ -284,28 +284,28 @@ By default, the `lldpd` service sends LLDP frames unless it detects a CDP peer, 
 To send only CDPv1 frames:
 
 ```
-cumulus@switch:~$ nv set service lldp mode force-send-cdpv1
+cumulus@switch:~$ nv set system lldp mode force-send-cdpv1
 cumulus@switch:~$ nv config apply
 ```
 
 To send only CDPv2 frames:
 
 ```
-cumulus@switch:~$ nv set service lldp mode force-send-cdpv2
+cumulus@switch:~$ nv set system lldp mode force-send-cdpv2
 cumulus@switch:~$ nv config apply
 ```
 
 To send only LLDP frames:
 
 ```
-cumulus@switch:~$ nv set service lldp mode force-send-lldp
+cumulus@switch:~$ nv set system lldp mode force-send-lldp
 cumulus@switch:~$ nv config apply
 ```
 
 To reset to the default setting (to send both CDP and LLDP frames):
 
 ```
-cumulus@switch:~$ nv set service lldp mode default
+cumulus@switch:~$ nv set system lldp mode default
 cumulus@switch:~$ nv config apply
 ```
 
@@ -355,10 +355,10 @@ cumulus@switch:~$ sudo systemctl restart lldpd
 {{< /tab >}}
 {{< /tabs >}}
 
-To show the current LLDP mode, run the `nv show srvice lldp` command. The following example shows that the `lldpd` service sends CDPv2 frames only.
+To show the current LLDP mode, run the `nv show system lldp` command. The following example shows LLDP sends CDPv2 frames only.
 
 ```
-cumulus@leaf02:mgmt:~$ nv show service lldp
+cumulus@leaf02:mgmt:~$ nv show system lldp
                     operational       applied
 ------------------  ----------------  ----------------
 dot1-tlv            off               off
@@ -413,24 +413,27 @@ You can transmit the following IEEE 802.1 TLVs when exchanging LLDP messages. By
 | VLAN Name        | 3       | The name of any VLAN to which the port belongs. |
 | Link Aggregation | 7       | Indicates if the port supports link aggregation and if it is on. |
 
-To enable IEEE 802.1 TLV transmission, run the `nv set service lldp dot1-tlv on` command:
+To enable IEEE 802.1 TLV transmission, run the `nv set system lldp dot1-tlv on` command:
 
 ```
-cumulus@switch:~$ nv set service lldp dot1-tlv on
+cumulus@switch:~$ nv set system lldp dot1-tlv enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To disable IEEE 802.1 TLV transmission, run the `nv unset service lldp dot1-tlv` command.
+To disable IEEE 802.1 TLV transmission, run the `nv unset system lldp dot1-tlv` command.
 
-To show if IEEE 802.1 TLV transmission is `on`, run the NVUE `nv show service lldp` command:
+To show if IEEE 802.1 TLV transmission is enabled, run the NVUE `nv show system lldp` command:
 
 ```
-cumulus@leaf01:mgmt:~$ nv show service lldp
+cumulus@leaf01:mgmt:~$ nv show system lldp
                         operational  applied
 ----------------------  -----------  -------
-tx-interval             30           30     
-tx-hold-multiplier      4            4      
-dot1-tlv                off          off   
+state                   enabled      enabled   enabled 
+tx-interval             30           30        30      
+tx-hold-multiplier      4            4         4       
+dot1-tlv                disabled     disabled  disabled
+lldp-med-inventory-tlv  disabled     disabled  disabled
+mode                    default      default   default 
 ...
 ```
 <!-- vale off -->
@@ -533,25 +536,27 @@ lldp
 
 <span class="a-tooltip">[LLDP-MED](## "LLDP for Media Endpoint Devices")</span> is an extension to LLDP that operates between endpoint devices, such as IP phones and switches. Inventory management TLV enables an endpoint to transmit detailed inventory information about itself to the switch, such as the manufacturer, model, firmware, and serial number.
 
-To enable LLDP-MED inventory TLV transmission, run the `nv set service lldp lldp-med-inventory-tlv on` command:
+To enable LLDP-MED inventory TLV transmission, run the `nv set system lldp lldp-med-inventory-tlv enabled` command:
 
 ```
-cumulus@switch:~$ nv set service lldp lldp-med-inventory-tlv on
+cumulus@switch:~$ nv set system lldp lldp-med-inventory-tlv enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To disable LLDP-MED inventory TLV transmission, run the `nv unset service lldp lldp-med-inventory-tlv` command.
+To disable LLDP-MED inventory TLV transmission, run the `nv unset system lldp lldp-med-inventory-tlv` command.
 
-To show if LLDP-MED Inventory TLV transmission is on, run the NVUE `nv show service lldp` command:
+To show if LLDP-MED Inventory TLV transmission is on, run the NVUE `nv show system lldp` command:
 
 ```
-cumulus@leaf01:mgmt:~$ nv show service lldp
+cumulus@leaf01:mgmt:~$ nv show system lldp
                         operational  applied
 ----------------------  -----------  -------
-tx-interval             30           30     
-tx-hold-multiplier      4            4      
-dot1-tlv                off          off    
-lldp-med-inventory-tlv  on           on     
+state                   enabled      enabled   enabled 
+tx-interval             30           30        30      
+tx-hold-multiplier      4            4         4       
+dot1-tlv                disabled     disabled  disabled
+lldp-med-inventory-tlv  enabled      enabled   enabled
+mode                    default      default   default      
 ...
 ```
 
@@ -579,7 +584,7 @@ To enable application priority TLV transmission, run NVUE commands to set:
 The following example sets the application priority of iSCSI traffic to 3 in the application priority TLV sent in LLDP PDUs on swp1.
 
 ```
-cumulus@switch:~$ nv set service lldp application-tlv app iSCSI priority 3
+cumulus@switch:~$ nv set system lldp application-tlv app iSCSI priority 3
 cumulus@switch:~$ nv set interface swp1 lldp application-tlv app iSCSI
 cumulus@switch:~$ nv config apply
 ```
@@ -587,7 +592,7 @@ cumulus@switch:~$ nv config apply
 The following example sets the application priority of NVMe traffic using TCP port 4420 to 5 in the application priority TLV sent in LLDP PDUs on swp1.
 
 ```
-cumulus@switch:~$ nv set service lldp application-tlv app NVME_4420 priority 5
+cumulus@switch:~$ nv set system lldp application-tlv app NVME_4420 priority 5
 cumulus@switch:~$ nv set interface swp1 lldp application-tlv app NVME_4420
 cumulus@switch:~$ nv config apply
 ```
@@ -595,7 +600,7 @@ cumulus@switch:~$ nv config apply
 The following example sets the application priority of NVMe traffic using TCP port 8009 to 7 in the application priority TLV sent in LLDP PDUs on swp1.
 
 ```
-cumulus@switch:~$ nv set service lldp application-tlv app NVME_8009 priority 7
+cumulus@switch:~$ nv set system lldp application-tlv app NVME_8009 priority 7
 cumulus@switch:~$ nv set interface swp1 lldp application-tlv app NVME_8009
 cumulus@switch:~$ nv config apply
 ```
@@ -603,7 +608,7 @@ cumulus@switch:~$ nv config apply
 The following example sets the application priority for TCP traffic using port 4217 to 6 in the application priority TLV sent in LLDP PDUs on swp1.
 
 ```
-cumulus@switch:~$ nv set service lldp application-tlv tcp-port 4217 priority 6
+cumulus@switch:~$ nv set system lldp application-tlv tcp-port 4217 priority 6
 cumulus@switch:~$ nv set interface swp1 lldp application-tlv tcp-port 4217
 cumulus@switch:~$ nv config apply
 ```
@@ -611,7 +616,7 @@ cumulus@switch:~$ nv config apply
 The following example sets the application priority for UDP traffic using port 4317 to 4 in the application priority TLV sent in LLDP PDUs on swp1.
 
 ```
-cumulus@switch:~$ nv set service lldp application-tlv udp-port 4317 priority 4
+cumulus@switch:~$ nv set system lldp application-tlv udp-port 4317 priority 4
 cumulus@switch:~$ nv set interface swp1 lldp application-tlv udp-port 4317
 cumulus@switch:~$ nv config apply
 ```
@@ -684,7 +689,7 @@ cumulus@switch:~$ nv config apply
 To show all application priority TLV configuration on the switch:
 
 ```
-cumulus@switch:~$ nv show service lldp application-tlv
+cumulus@switch:~$ nv show system lldp application-tlv
 udp-port
 ===========
     Port  priority
@@ -721,7 +726,7 @@ cumulus@switch:~$ nv show interface swp1 lldp application-tlv
 To show the UDP port priority mapping:
 
 ```
-cumulus@switch:~$ nv show service lldp application-tlv udp-port
+cumulus@switch:~$ nv show system lldp application-tlv udp-port
 Port  priority
 ----  --------
 4317  4 
@@ -730,7 +735,7 @@ Port  priority
 To show the application priority mapping:
 
 ```
-cumulus@switch:~$ nv show service lldp application-tlv app
+cumulus@switch:~$ nv show system lldp application-tlv app
 AppName    priority
 ---------  --------
 NVME_4420  5       
@@ -741,7 +746,7 @@ iSCSI      3
 To show the TCP port priority mapping:
 
 ```
-cumulus@switch:~$ nv show service lldp application-tlv tcp-port
+cumulus@switch:~$ nv show system lldp application-tlv tcp-port
 Port  priority
 ----  --------
 4217  6

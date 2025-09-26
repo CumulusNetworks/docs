@@ -59,7 +59,7 @@ Old Name | New Name|
 {{< /expand >}}
 - NVUE
   - {{<link url="Secure-Mount-Directory-Encryption" text="Secure Mount Directory Encryption">}}
-  - NVUE commands have been updated for clarity consistency. Refer to the full list of updated commands in {{<link url="New-and-Changed-Commands" text="New and Changed Commands">}}.
+  - {{<link url="New-and-Changed-NVUE-Commands" text="Changed command syntax and output">}}
   - Routing | Operational revision needs to be supported for parts of the CL Object model(Phase 2)
   - Add aging time to neighbor info
   - login brute forcing via API
@@ -72,7 +72,7 @@ Review the following considerations before you upgrade to Cumulus Linux 5.15.
 ### New, Changed, and Deprecated NVUE Commands
 
 {{%notice warning%}}
-To align with a long-term vision of a common interface between Cumulus Linux, Nvidia OS (NVOS), and Host-Based Networking, many NVUE commands in Cumulus Linux 5.15 have changed. Before you upgrade to 5.15, review the list of {{<link url="New-and-Changed-Commands" text="New, Changed, and Deprecated Commands">}} and be sure to make any necessary changes to your automation.
+To align with a long-term vision of a common interface between Cumulus Linux, Nvidia OS (NVOS), and Host-Based Networking, many NVUE commands in Cumulus Linux 5.15 have changed. Before you upgrade to 5.15, review the list of {{<link url="New-and-Changed-NVUE-Commands" text="New, Changed, and Deprecated NVUE Commands">}} and be sure to make any necessary changes to your automation.
 {{%/notice%}}
 
 ### Upgrade Requirements

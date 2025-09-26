@@ -38,16 +38,16 @@ The example commands below create a VLAN-aware bridge interface for a VRR-enable
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24
-cumulus@switch:~$ nv set interface vlan10 ip vrr state up
+cumulus@switch:~$ nv set interface vlan10 ipv4 vrr address 10.1.10.1/24
+cumulus@switch:~$ nv set interface vlan10 ipv4 vrr state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-Use the same commands for IPv6 addresses; for example:
+For IPv6 addresses:
 
 ```
-cumulus@switch:~$ nv set interface vlan10 ip vrr address 2001:db8::1/32
-cumulus@switch:~$ nv set interface vlan10 ip vrr state up
+cumulus@switch:~$ nv set interface vlan10 ipv6 vrr address 2001:db8::1/32
+cumulus@switch:~$ nv set interface vlan10 ipv6 vrr state enabled
 ```
 
 {{< /tab >}}
@@ -99,10 +99,10 @@ cumulus@switch:mgmt:~$ nv set system global fabric-id 255
 cumulus@switch:mgmt:~$ nv config apply
 ```
 
-To override the global setting for a specific VLAN, run the `nv set interface <vlan> ip vrr mac-address <mac-address>` command:
+To override the global setting for a specific VLAN, run the `nv set interface <vlan> ipv4 vrr mac-address <mac-address>` command or the `nv set interface <vlan> ipv6 vrr mac-address <mac-address>` command:
 
 ```
-cumulus@switch:mgmt:~$ nv set interface vlan10 ip vrr mac-address 00:00:5E:00:01:00
+cumulus@switch:mgmt:~$ nv set interface vlan10 ipv4 vrr mac-address 00:00:5E:00:01:00
 cumulus@switch:mgmt:~$ nv config apply
 ```
 
@@ -156,8 +156,8 @@ The following example commands configure both 10.1.10.1/24 and 10.1.11.1/24 on V
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:mgmt:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24
-cumulus@switch:mgmt:~$ nv set interface vlan10 ip vrr address 10.1.11.1/24
+cumulus@switch:mgmt:~$ nv set interface vlan10 ipv4 vrr address 10.1.10.1/24
+cumulus@switch:mgmt:~$ nv set interface vlan10 ipv4 vrr address 10.1.11.1/24
 cumulus@switch:mgmt:~$ nv config apply
 ```
 
@@ -247,15 +247,15 @@ cumulus@leaf01:mgmt:~$ nv set system global anycast-mac 44:38:39:FF:00:AA
 cumulus@leaf01:mgmt:~$ nv set mlag backup 10.10.10.2
 cumulus@leaf01:mgmt:~$ nv set mlag peer-ip linklocal
 cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan 10,20,30
-cumulus@leaf01:mgmt:~$ nv set interface vlan10 ip address 10.1.10.2/24
-cumulus@leaf01:mgmt:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24
-cumulus@leaf01:mgmt:~$ nv set interface vlan10 ip vrr state up
-cumulus@leaf01:mgmt:~$ nv set interface vlan20 ip address 10.1.20.2/24
-cumulus@leaf01:mgmt:~$ nv set interface vlan20 ip vrr address 10.1.20.1/24
-cumulus@leaf01:mgmt:~$ nv set interface vlan20 ip vrr state up
-cumulus@leaf01:mgmt:~$ nv set interface vlan30 ip address 10.1.30.2/24
-cumulus@leaf01:mgmt:~$ nv set interface vlan30 ip vrr address 10.1.30.1/24
-cumulus@leaf01:mgmt:~$ nv set interface vlan30 ip vrr state up
+cumulus@leaf01:mgmt:~$ nv set interface vlan10 ipv4 address 10.1.10.2/24
+cumulus@leaf01:mgmt:~$ nv set interface vlan10 ipv4 vrr address 10.1.10.1/24
+cumulus@leaf01:mgmt:~$ nv set interface vlan10 ipv4 vrr state enabled
+cumulus@leaf01:mgmt:~$ nv set interface vlan20 ipv4 address 10.1.20.2/24
+cumulus@leaf01:mgmt:~$ nv set interface vlan20 ipv4 vrr address 10.1.20.1/24
+cumulus@leaf01:mgmt:~$ nv set interface vlan20 ipv4 vrr state enabled
+cumulus@leaf01:mgmt:~$ nv set interface vlan30 ipv4 address 10.1.30.2/24
+cumulus@leaf01:mgmt:~$ nv set interface vlan30 ipv4 vrr address 10.1.30.1/24
+cumulus@leaf01:mgmt:~$ nv set interface vlan30 ipv4 vrr state enabled
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
@@ -278,14 +278,14 @@ cumulus@leaf02:mgmt:~$ nv set mlag backup 10.10.10.1
 cumulus@leaf02:mgmt:~$ nv set mlag peer-ip linklocal
 cumulus@leaf02:mgmt:~$ nv set bridge domain br_default vlan 10,20,30
 cumulus@leaf02:mgmt:~$ nv set interface vlan10 ip address 10.1.10.3/24
-cumulus@leaf02:mgmt:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24
-cumulus@leaf02:mgmt:~$ nv set interface vlan10 ip vrr state up
+cumulus@leaf02:mgmt:~$ nv set interface vlan10 ipv4 vrr address 10.1.10.1/24
+cumulus@leaf02:mgmt:~$ nv set interface vlan10 ipv4 vrr state enabled
 cumulus@leaf02:mgmt:~$ nv set interface vlan20 ip address 10.1.20.3/24
-cumulus@leaf02:mgmt:~$ nv set interface vlan20 ip vrr address 10.1.20.1/24
-cumulus@leaf02:mgmt:~$ nv set interface vlan20 ip vrr state up
+cumulus@leaf02:mgmt:~$ nv set interface vlan20 ipv4 vrr address 10.1.20.1/24
+cumulus@leaf02:mgmt:~$ nv set interface vlan20 ipv4 vrr state enabled
 cumulus@leaf02:mgmt:~$ nv set interface vlan30 ip address 10.1.30.2/24
-cumulus@leaf02:mgmt:~$ nv set interface vlan30 ip vrr address 10.1.30.1/24
-cumulus@leaf02:mgmt:~$ nv set interface vlan30 ip vrr state up
+cumulus@leaf02:mgmt:~$ nv set interface vlan30 ipv4 vrr address 10.1.30.1/24
+cumulus@leaf02:mgmt:~$ nv set interface vlan30 ipv4 vrr state enabled
 cumulus@leaf02:mgmt:~$ nv config apply
 ```
 
@@ -955,17 +955,17 @@ This simulation is running Cumulus Linux 5.14. The Cumulus Linux 5.15 simulation
 
 The simulation is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 
-To validate the configuration, run the `nv show interface <vlan> ip vrr` command:
+To validate the configuration, run the `nv show interface <vlan> ipv4 vrr` command or the `nv show interface <vlan> ipv6 vrr` command:
 
 ```
-cumulus@leaf02:mgmt:~$ nv show interface vlan10 ip vrr
-             operational        applied            description
------------  -----------------  -----------------  ------------------------------------------------------
-enable                          on                 Turn the feature 'on' or 'off'.  The default is 'off'.
-mac-address  00:00:5e:00:01:00  00:00:5e:00:01:00  Override anycast-mac
-mac-id                          none               Override anycast-id
-[address]    10.1.10.1/24       10.1.10.1/24       Virtual addresses with prefixes
-state        up                 up                 The state of the interface
+cumulus@leaf02:mgmt:~$ nv show interface vlan10 ipv4 vrr
+             operational        applied            
+-----------  -----------------  ----------------- 
+state                           enabled           
+mac-address  00:00:5e:00:01:00  00:00:5e:00:01:00
+mac-id                          none             
+[address]    10.1.10.1/24       10.1.10.1/24      
+state        enabled            enabled                 
 ```
 
 {{< /tab >}}

@@ -316,15 +316,56 @@ To show SyncE configuration for a specific interface, run the NVUE `nv show inte
 cumulus@switch:~$ nv show system synce
                            operational                                                        applied
 -------------------------  -----------------------------------------------------------------  -------
-enable                     On                                                                 on
-log-level                  notice
-provider-default-priority  10                                                                 10
-wait-to-restore-time       40                                                                 40
-clock-identity             0x849e00fffe00ca00
-local-clock-quality        eec1
-network-type               1
-summary                    Group #0: TRACKING holdover acquired on swp1. freq_diff: 77 (ppb)
+state                      enabled             enabled
+wait-to-restore-time       10                  10     
+log-level                  notice                     
+provider-default-priority  1                   1      
+min-acceptable-ql          eec1                       
+local-clock-identity       0x9c0591fffe49be00         
+reference-clock-identity   0x001201fffe000001         
+is-extended-tlv            Extended TLV               
+network-type               1                          
+local-clock-quality        eeec                       
+oper-status                self-track                 
+holdover-acquired          yes                        
+tracking-port              swp1
 ```
+
+```
+cumulus@switch:~$ nv show interface swp5 synce 
+                    operational  applied
+------------------  -----------  -------
+state               enabled      enabled
+provider-priority   1                   
+esmc                                    
+  transmit          enabled      enabled
+  receive           enabled      enabled
+admin-status        tracking            
+operational-status  self-track          
+quality-level-in    eprc                
+quality-level-out   dnu                 
+frequency-diff-ppb  -26                 
+holdover-acquired   no                  
+cascaded-eec-in     0                   
+cascaded-eec-out    0                   
+cascaded-e-eec-in   1                   
+cascaded-e-eec-out  2 
+```
+
+In the command outputs above, the `oper-status` and `operational-status` fields can be one of the following.
+
+| Operational Status | Description |
+| ------ | ------ |
+| `free-running` | The <span class="a-tooltip">[PLL](## "Phase-Locked Loop")</span> runs only on its local oscillator. You see this when no synce source is selected.|
+| `holdover` | If the selected reference is intentionally removed (port down, unselected reference), the PLL uses the last learned frequency profile. |
+| `self-track`| The PLL is locked to the currently selected reference input. |
+| `other-track` | The PLL is synchronized temporarily to an alternate valid reference port (not the primary one). This happens when the selected reference becomes unusable and the PLL switches automatically to another available source to maintain synchronization. |
+| `holdover-due-to-failure` | The PLL loses reference unexpectedly (a loss of signal or a frequency slip). Because a valid history exists, the PLL holds its last frequency. |
+| `free-running-due-to-failure` | The PLL starts out locked (tracking a reference) but the reference disappears before the PLL can capture the history for holdover. |
+
+The `holdover-acquired` field indicates that PLL has successfully learned the last good reference and is now capable of entering holdover if that reference disappears. It does not mean the PLL is currently in holdover, only that it has the history ready.
+
+The `tracking-port` field shows the port to which the PLL is currently locked.
 
 To show SyncE statistics for a specific interface, run the NVUE `nv show interface <interface-id> counters synce` command or the Linux `syncectl show interface counters <interface` command:
 

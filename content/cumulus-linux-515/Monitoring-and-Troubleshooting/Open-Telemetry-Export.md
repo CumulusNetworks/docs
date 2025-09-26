@@ -528,7 +528,7 @@ To configure the open telemetry export destination:
 2. Configure an X.509 certificate to secure the gRPC connection:
 
    ```
-   cumulus@switch:~$ nv set system telemetry export otlp grpc cert-id <ca-certificate>
+   cumulus@switch:~$ nv set system telemetry export otlp grpc certificate <ca-certificate>
    cumulus@switch:~$ nv config apply
    ```
 

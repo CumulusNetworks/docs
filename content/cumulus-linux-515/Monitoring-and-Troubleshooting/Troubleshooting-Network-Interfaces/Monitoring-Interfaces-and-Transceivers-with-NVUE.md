@@ -248,12 +248,12 @@ Undersize Errors  0        n/a
 
 ## AmBER PHY Health Management
 
-To show physical layer information, such as the error counters for each lane on a port and <span class="a-tooltip">[SNR](## "Signal-to-Noise Ratio")</span> information for media and host lanes (lane0 through lane7), run the `nv show interface <interface-id> link phy-detail` command.
+To show physical layer information, such as the error counters for each lane on a port and <span class="a-tooltip">[SNR](## "Signal-to-Noise Ratio")</span> information for media and host lanes (lane0 through lane7), run the `nv show interface <interface-id> link phy health` command.
 
 This command highlights link integrity issues.
 
 {{%notice note%}}
-The `nv show interface <interface-id> link phy-detail` command shows SNR information for media and host lanes for OSFP 100G per lane capable transceivers on certain switches with the Spectrum-4 ASIC and later. The command does not show SNR information for SFP28 bonus ports.
+The `nv show interface <interface-id> link phy health` command shows SNR information for media and host lanes for OSFP 100G per lane capable transceivers on certain switches with the Spectrum-4 ASIC and later. The command does not show SNR information for SFP28 bonus ports.
   - For lanes not in use for the optical cable, the command output shows 0.
   - For copper ports, the command output shows n/a.
 {{%/notice%}}
@@ -261,7 +261,7 @@ The `nv show interface <interface-id> link phy-detail` command shows SNR informa
 The `effective-ber` in the command output represents the uncorrectable bit error rate, which is the same as uncorrected FEC errors.
 
 ```
-cumulus@switch$ nv show interface swp1 link phy-detail 
+cumulus@switch$ nv show interface swp1 link phy health 
                            operational  
 -------------------------  -------------
 time-since-last-clear-min  1            
@@ -321,10 +321,10 @@ snr-media-lane6            23.12 dB
 snr-media-lane7            24.05 dB
 ```
 
-To show physical layer diagnostic information for a port, run the `nv show interface <interface-id> link phy-diag` command:
+To show physical layer diagnostic information for a port, run the `nv show interface <interface-id> link phy detail` command:
 
 ```
-cumulus@switch$ nv show interface swp20 link phy-diag 
+cumulus@switch$ nv show interface swp20 link phy detail 
                                   operational
 --------------------------------  -----------
 pd-fsm-state                      0x7
@@ -400,7 +400,7 @@ flag-in-use                       0x0
 ```
 
 {{%notice note%}}
-Switches with the Spectrum 1 ASIC do not support the `nv show interface <interface-id> link phy-detail` command or the `nv show interface <interface-id> link phy-diag` command.
+Switches with the Spectrum 1 ASIC do not support the `nv show interface <interface-id> link phy health` command or the `nv show interface <interface-id> link phy detail` command.
 {{%/notice%}}
 
 ## Clear Interface Counters
@@ -427,38 +427,37 @@ The `nv action clear interface <interface-id> counters` command does not clear c
 
 ## Clear Interface Physical Layer Error Counters
 
-To clear interface physical layer error counters, run the `nv action clear interface <interface-id> link phy-detail` command. The command clears the counters at the software level, but not the hardware level.
+To clear interface physical layer error counters, run the `nv action clear interface <interface-id> link phy health` command. The command clears the counters at the software level, but not the hardware level.
 
 ```
-cumulus@switch:~$ nv action clear interface swp1 link phy-detail
+cumulus@switch:~$ nv action clear interface swp1 link phy health
 Action executing ... 
-swp1 link phy-detail counters cleared. 
+swp1 link phy health counters cleared. 
 Action succeeded
 ```
 
 To clear physical layer error counters for a range of interfaces:
 
 ```
-cumulus@switch:~$ nv action clear interface swp1-3,swp5,swp7-10 link phy-detail 
+cumulus@switch:~$ nv action clear interface swp1-3,swp5,swp7-10 link phy health 
 Action executing ...
-swp1 link phy-detail counters cleared.
+swp1 link phy health counters cleared.
 Action executing ...
-swp2 link phy-detail counters cleared.
-swp3 link phy-detail counters cleared.
+swp2 link phy health counters cleared.
+swp3 link phy health counters cleared.
 Action executing ...
-swp5 link phy-detail counters cleared.
-swp7 link phy-detail counters cleared.
+swp5 link phy health counters cleared.
+swp7 link phy health counters cleared.
 Action executing ...
-swp8 link phy-detail counters cleared.
-swp9 link phy-detail counters cleared.
-swp10 link phy-detail counters cleared.
+swp8 link phy health counters cleared.
+swp9 link phy health counters cleared.
+swp10 link phy health counters cleared.
 ```
 
 If the specified interface is out of range; for example, if the switch supports up to 32 switch ports but you try to clear swp33, NVUE displays an error.
 
 {{%notice note%}}
-- The `nv show interface <interface-id> link phy-detail` command shows the reset counters. To show the exact hardware counters, run the `nv show interface <interface-id> link phy-detail hardware` command or the `nv show interface <interface-id> link phy-detail --view=hardware` command.
-- The `nv action clear interface <interface-id> link phy-detail` command does not clear counters in the hardware.
+The `nv action clear interface <interface-id> link phy health` command does not clear counters in the hardware.
 {{%/notice%}}
 
 ## Reset a Transceiver

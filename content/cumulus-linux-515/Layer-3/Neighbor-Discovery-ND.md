@@ -25,7 +25,7 @@ Router Advertisement is disabled by default. To enable Router Advertisement for 
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement enable on
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ipv6 neighbor-discovery router-advertisement enable on
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
@@ -72,12 +72,12 @@ The following example commands set:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement interval 60000
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement router-preference high
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement reachable-time 3600000
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement retransmit-time 4294967295
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement hop-limit 100
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement lifetime 4000
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ipv6 neighbor-discovery router-advertisement interval 60000
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ipv6 neighbor-discovery router-advertisement router-preference high
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ipv6 neighbor-discovery router-advertisement reachable-time 3600000
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ipv6 neighbor-discovery router-advertisement retransmit-time 4294967295
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ipv6 neighbor-discovery router-advertisement hop-limit 100
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ipv6 neighbor-discovery router-advertisement lifetime 4000
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
@@ -124,8 +124,8 @@ The following example commands set fast retransmit to off and managed configurat
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement fast-retransmit off
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement managed-config on
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ipv6 neighbor-discovery router-advertisement fast-retransmit off
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ipv6 neighbor-discovery router-advertisement managed-config on
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
@@ -173,8 +173,8 @@ The following example commands set the IPv6 prefix to 2001:db8:1::100/32, the am
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32 valid-lifetime 2000000000
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32 preferred-lifetime 1000000000
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ipv6 neighbor-discovery prefix 2001:db8:1::100/32 valid-lifetime 2000000000
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ipv6 neighbor-discovery prefix 2001:db8:1::100/32 preferred-lifetime 1000000000
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
@@ -212,9 +212,9 @@ The following example commands set advertisement to make no statement about pref
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32 off-link off
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32 autoconfig on
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32 router-address on
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ipv6 neighbor-discovery prefix 2001:db8:1::100/32 off-link off
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ipv6 neighbor-discovery prefix 2001:db8:1::100/32 autoconfig on
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ipv6 neighbor-discovery prefix 2001:db8:1::100/32 router-address on
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
@@ -258,7 +258,7 @@ The following example commands set the RDNSS address to 2001:db8:1::100 and the 
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery rdnss 2001:db8:1::100 lifetime infinite
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ipv6 neighbor-discovery rdnss 2001:db8:1::100 lifetime infinite
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
@@ -302,7 +302,7 @@ The following example command sets the domain suffix to `accounting.nvidia.com` 
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery dnssl accounting.nvidia.com lifetime infinite
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ipv6 neighbor-discovery dnssl accounting.nvidia.com lifetime infinite
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
@@ -348,8 +348,8 @@ The following example commands configure the switch as a Home Agent by setting t
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery home-agent preference 100
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery home-agent lifetime 20000
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ipv6 neighbor-discovery home-agent preference 100
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ipv6 neighbor-discovery home-agent lifetime 20000
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
@@ -399,7 +399,7 @@ To following example commands set the MTU on swp1 to 1500:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery mtu 1500
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ipv6 neighbor-discovery mtu 1500
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
@@ -463,10 +463,10 @@ garbage-collection-threshold
 
 ## Disable ND
 
-To disable ND, run the NVUE `nv set interface <interface-id> ip neighbor-discovery enable off` command:
+To disable ND, run the NVUE `nv set interface <interface-id> ipv6 neighbor-discovery state enabled` command:
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery enable off
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ipv6 neighbor-discovery state enabled
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
@@ -639,61 +639,61 @@ lladdr
 
 ## Troubleshooting
 
-To show the ND configuration settings for an interface, run the NVUE `nv show interface <interface-id> ip neighbor-discovery` command:
+To show the ND configuration settings for an interface, run the NVUE `nv show interface <interface-id> ipv6 neighbor-discovery` command:
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery
-                      applied             description
---------------------  ------------------  ----------------------------------------------------------------------
-enable                on                  Turn the feature 'on' or 'off'.  The default is 'on'.
+cumulus@leaf01:mgmt:~$ nv show interface swp1 ipv6 neighbor-discovery
+                      applied             
+--------------------  ------------------  
+state                 disabled
 home-agent
-  lifetime            0                   Lifetime of a home agent in seconds
-  preference          0                   Home agent's preference value that is used to order the addresses r...
-[prefix]              2001:db8:1::100/32  IPv6 prefix configuration
+  lifetime            0                   
+  preference          0                   
+[prefix]              2001:db8:1::100/32  
 router-advertisement
-  enable              on                  Turn the feature 'on' or 'off'.  The default is 'on'.
-  fast-retransmit     off                 Allow consecutive RA packets more frequently than every 3 seconds
-  hop-limit           100                 Value in hop count field in IP header of the outgoing router advert...
-  interval            6000                Maximum time in milliseconds allowed between sending unsolicited mu...
-  interval-option     on                  Indicates hosts that the router will use advertisement interval to...
-  lifetime            4000                Maximum time in seconds that the router can be treated as default g...
-  managed-config      on                  Knob to allow dynamic host to use managed (stateful) protocol for a...
-  other-config        off                 Knob to allow dynamic host to use managed (stateful) protocol for a...
-  reachable-time      3600000             Time in milliseconds that a IPv6 node is considered reachable
-  retransmit-time     4294967295          Time in milliseconds between retransmission of neighbor solicitatio...
-  router-preference   high                Hosts use router preference in selection of the default router
+  state               enabled        
+  fast-retransmit     off       
+  hop-limit           100       
+  interval            6000      
+  interval-option     on        
+  lifetime            4000      
+  managed-config      on        
+  other-config        off       
+  reachable-time      3600000   
+  retransmit-time     4294967295
+  router-preference   high      
 ```
 
-To show prefix configuration for an interface, run the `nv show interface <interface-id> ip neighbor-discovery prefix <prefix>` command.
+To show prefix configuration for an interface, run the `nv show interface <interface-id> ipv6 neighbor-discovery prefix <prefix>` command.
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32
-                    applied     description
-------------------  -------     ----------------------------------------------------------------------
-autoconfig          on          Indicates to hosts on the local link that the specified prefix can...
-off-link            on          Indicates that adverisement makes no statement about on-link or off...
-preferred-lifetime  1000000000  Time in seconds that addresses generated from a prefix remain prefe...
-router-address      on          Indicates to hosts on the local link that the specified prefix cont...
-valid-lifetime      2000000000  Time in seconds the prefix is valid for on-link determination
+cumulus@leaf01:mgmt:~$ nv show interface swp1 ipv6 neighbor-discovery prefix 2001:db8:1::100/32
+                    applied    
+------------------  -------    
+autoconfig          on         
+off-link            on         
+preferred-lifetime  1000000000 
+router-address      on         
+valid-lifetime      2000000000 
 ```
 
-To show Home Agent configuration for an interface, run the `nv show interface <interface-id> ip neighbor-discovery home-agent` command:
+To show Home Agent configuration for an interface, run the `nv show interface <interface-id> ipv6 neighbor-discovery home-agent` command:
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery home-agent
-            applied  description
-----------  -------  ----------------------------------------------------------------------
-lifetime    20000    Lifetime of a home agent in seconds
-preference  100      Home agent's preference value that is used to order the addresses r...
+cumulus@leaf01:mgmt:~$ nv show interface swp1 ipv6 neighbor-discovery home-agent
+            applied  
+----------  -------
+lifetime    20000  
+preference  100    
 ```
 
-To show router advertisement configuration for an interface, run the `nv show interface <interface-id> ip neighbor-discovery router-advertisement` command. The command also shows the number of router advertisement packets sent on the interface and the number of router advertisement and router solicitation packets received on the interface.
+To show router advertisement configuration for an interface, run the `nv show interface <interface-id> ipv6 neighbor-discovery router-advertisement` command. The command also shows the number of router advertisement packets sent on the interface and the number of router advertisement and router solicitation packets received on the interface.
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery router-advertisement
+cumulus@leaf01:mgmt:~$ nv show interface swp1 ipv6 neighbor-discovery router-advertisement
                       applied
 -----------------     -----------------
-enable                on
+state                 enabled
 interval              10000
 interval-option       off
 fast-retransmit       on
@@ -709,20 +709,20 @@ ra-received           2
 rs-received           1
 ```
 
-To show RDNSS configuration for an interface, run the `nv show interface <interface-id> ip neighbor-discovery rdnss <address>` command:
+To show RDNSS configuration for an interface, run the `nv show interface <interface-id> ipv6 neighbor-discovery rdnss <address>` command:
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery rdnss 2001:db8:1::100
-          applied   description
---------  --------  ----------------------------------------------------------------------
-lifetime  infinite  Maximum time in seconds for which the server may be used for domain...
+cumulus@leaf01:mgmt:~$ nv show interface swp1 ipv6 neighbor-discovery rdnss 2001:db8:1::100
+          applied 
+--------  --------
+lifetime  infinite
 ```
 
-To show DNSSL configuration for an interface, run the `nv show interface <interface-id> ip neighbor-discovery dnssl <domain-suffix>` command:
+To show DNSSL configuration for an interface, run the `nv show interface <interface-id> ipv6 neighbor-discovery dnssl <domain-suffix>` command:
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery dnssl accounting.nvidia.com
-          applied   description
---------  --------  ----------------------------------------------------------------------
-lifetime  infinite  Maximum time in seconds for which the domain suffix may be used for...
+cumulus@leaf01:mgmt:~$ nv show interface swp1 ipv6 neighbor-discovery dnssl accounting.nvidia.com
+          applied 
+--------  --------
+lifetime  infinite
 ```

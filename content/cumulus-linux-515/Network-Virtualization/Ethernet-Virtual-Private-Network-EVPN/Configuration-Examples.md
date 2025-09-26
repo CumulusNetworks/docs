@@ -3202,13 +3202,13 @@ cumulus@border01:~$ nv set mlag peer-ip linklocal
 cumulus@border01:~$ nv set mlag priority 1000
 cumulus@border01:~$ nv set mlag init-delay 10
 cumulus@border01:~$ nv set interface vlan10 ip address 10.1.10.64/24
-cumulus@border01:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24
-cumulus@border01:~$ nv set interface vlan10 ip vrr mac-address 00:00:00:00:00:10
-cumulus@border01:~$ nv set interface vlan10 ip vrr state up
+cumulus@border01:~$ nv set interface vlan10 ipv4 vrr address 10.1.10.1/24
+cumulus@border01:~$ nv set interface vlan10 ipv4 vrr mac-address 00:00:00:00:00:10
+cumulus@border01:~$ nv set interface vlan10 ipv4 vrr state enabled
 cumulus@border01:~$ nv set interface vlan20 ip address 10.1.20.64/24
-cumulus@border01:~$ nv set interface vlan20 ip vrr address 10.1.20.1/24
-cumulus@border01:~$ nv set interface vlan20 ip vrr mac-address 00:00:00:00:00:20
-cumulus@border01:~$ nv set interface vlan20 ip vrr state up
+cumulus@border01:~$ nv set interface vlan20 ipv4 vrr address 10.1.20.1/24
+cumulus@border01:~$ nv set interface vlan20 ipv4 vrr mac-address 00:00:00:00:00:20
+cumulus@border01:~$ nv set interface vlan20 ipv4 vrr state enabled
 cumulus@border01:~$ nv set bridge domain br_default vlan 10 vni 10
 cumulus@border01:~$ nv set bridge domain br_default vlan 20 vni 20
 cumulus@border01:~$ nv set interface bond3 bridge domain br_default vlan 10,20
@@ -3248,13 +3248,13 @@ cumulus@border02:~$ nv set mlag peer-ip linklocal
 cumulus@border02:~$ nv set mlag priority 2000
 cumulus@border02:~$ nv set mlag init-delay 10
 cumulus@border02:~$ nv set interface vlan10 ip address 10.1.10.64/24
-cumulus@border02:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24
-cumulus@border02:~$ nv set interface vlan10 ip vrr mac-address 00:00:00:00:00:10
-cumulus@border02:~$ nv set interface vlan10 ip vrr state up
+cumulus@border02:~$ nv set interface vlan10 ipv4 vrr address 10.1.10.1/24
+cumulus@border02:~$ nv set interface vlan10 ipv4 vrr mac-address 00:00:00:00:00:10
+cumulus@border02:~$ nv set interface vlan10 ipv4 vrr state up
 cumulus@border02:~$ nv set interface vlan20 ip address 10.1.20.64/24
-cumulus@border02:~$ nv set interface vlan20 ip vrr address 10.1.20.1/24
-cumulus@border02:~$ nv set interface vlan20 ip vrr mac-address 00:00:00:00:00:20
-cumulus@border02:~$ nv set interface vlan20 ip vrr state up
+cumulus@border02:~$ nv set interface vlan20 ipv4 vrr address 10.1.20.1/24
+cumulus@border02:~$ nv set interface vlan20 ipv4 vrr mac-address 00:00:00:00:00:20
+cumulus@border02:~$ nv set interface vlan20 ipv4 vrr state enabled
 cumulus@border02:~$ nv set bridge domain br_default vlan 10 vni 10
 cumulus@border02:~$ nv set bridge domain br_default vlan 20 vni 20
 cumulus@border02:~$ nv set interface bond3 bridge domain br_default vlan 10,20
@@ -5896,14 +5896,14 @@ cumulus@leaf01:~$ nv set mlag peer-ip linklocal
 cumulus@leaf01:~$ nv set mlag priority 1000
 cumulus@leaf01:~$ nv set mlag init-delay 10
 cumulus@leaf01:~$ nv set interface vlan10 ip address 10.1.10.2/24
-cumulus@leaf01:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24
-cumulus@leaf01:~$ nv set interface vlan10 ip vrr state up
+cumulus@leaf01:~$ nv set interface vlan10 ipv4 vrr address 10.1.10.1/24
+cumulus@leaf01:~$ nv set interface vlan10 ipv4 vrr state up
 cumulus@leaf01:~$ nv set interface vlan20 ip address 10.1.20.2/24
-cumulus@leaf01:~$ nv set interface vlan20 ip vrr address 10.1.20.1/24
-cumulus@leaf01:~$ nv set interface vlan20 ip vrr state up
+cumulus@leaf01:~$ nv set interface vlan20 ipv4 vrr address 10.1.20.1/24
+cumulus@leaf01:~$ nv set interface vlan20 ipv4 vrr state enabled
 cumulus@leaf01:~$ nv set interface vlan30 ip address 10.1.30.2/24
-cumulus@leaf01:~$ nv set interface vlan30 ip vrr address 10.1.30.1/24
-cumulus@leaf01:~$ nv set interface vlan30 ip vrr state up
+cumulus@leaf01:~$ nv set interface vlan30 ipv4 vrr address 10.1.30.1/24
+cumulus@leaf01:~$ nv set interface vlan30 ipv4 vrr state enabled
 cumulus@leaf01:~$ nv set vrf RED
 cumulus@leaf01:~$ nv set vrf BLUE
 cumulus@leaf01:~$ nv set bridge domain br_default vlan 10 vni 10
@@ -5969,14 +5969,14 @@ cumulus@leaf02:~$ nv set mlag peer-ip linklocal
 cumulus@leaf02:~$ nv set mlag priority 2000
 cumulus@leaf02:~$ nv set mlag init-delay 10
 cumulus@leaf02:~$ nv set interface vlan10 ip address 10.1.10.3/24
-cumulus@leaf02:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24
-cumulus@leaf02:~$ nv set interface vlan10 ip vrr state up
+cumulus@leaf02:~$ nv set interface vlan10 ipv4 vrr address 10.1.10.1/24
+cumulus@leaf02:~$ nv set interface vlan10 ipv4 vrr state enabled
 cumulus@leaf02:~$ nv set interface vlan20 ip address 10.1.20.3/24
-cumulus@leaf02:~$ nv set interface vlan20 ip vrr address 10.1.20.1/24
-cumulus@leaf02:~$ nv set interface vlan20 ip vrr state up
+cumulus@leaf02:~$ nv set interface vlan20 ipv4 vrr address 10.1.20.1/24
+cumulus@leaf02:~$ nv set interface vlan20 ipv4 vrr state enabled
 cumulus@leaf02:~$ nv set interface vlan30 ip address 10.1.30.3/24
-cumulus@leaf02:~$ nv set interface vlan30 ip vrr address 10.1.30.1/24
-cumulus@leaf02:~$ nv set interface vlan30 ip vrr state up
+cumulus@leaf02:~$ nv set interface vlan30 ipv4 vrr address 10.1.30.1/24
+cumulus@leaf02:~$ nv set interface vlan30 ipv4 vrr state up
 cumulus@leaf02:~$ nv set vrf RED
 cumulus@leaf02:~$ nv set vrf BLUE
 cumulus@leaf02:~$ nv set bridge domain br_default vlan 10 vni 10
@@ -6042,14 +6042,14 @@ cumulus@leaf03:~$ nv set mlag peer-ip linklocal
 cumulus@leaf03:~$ nv set mlag priority 1000
 cumulus@leaf03:~$ nv set mlag init-delay 10
 cumulus@leaf03:~$ nv set interface vlan10 ip address 10.1.10.4/24
-cumulus@leaf03:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24
-cumulus@leaf03:~$ nv set interface vlan10 ip vrr state up
+cumulus@leaf03:~$ nv set interface vlan10 ipv4 vrr address 10.1.10.1/24
+cumulus@leaf03:~$ nv set interface vlan10 ipv4 vrr state enabled
 cumulus@leaf03:~$ nv set interface vlan20 ip address 10.1.20.4/24
-cumulus@leaf03:~$ nv set interface vlan20 ip vrr address 10.1.20.1/24
-cumulus@leaf03:~$ nv set interface vlan20 ip vrr state up
+cumulus@leaf03:~$ nv set interface vlan20 ipv4 vrr address 10.1.20.1/24
+cumulus@leaf03:~$ nv set interface vlan20 ipv4 vrr state enabled
 cumulus@leaf03:~$ nv set interface vlan30 ip address 10.1.30.4/24
-cumulus@leaf03:~$ nv set interface vlan30 ip vrr address 10.1.30.1/24
-cumulus@leaf03:~$ nv set interface vlan30 ip vrr state up
+cumulus@leaf03:~$ nv set interface vlan30 ipv4 vrr address 10.1.30.1/24
+cumulus@leaf03:~$ nv set interface vlan30 ipv4 vrr state enabled
 cumulus@leaf03:~$ nv set vrf RED
 cumulus@leaf03:~$ nv set vrf BLUE
 cumulus@leaf03:~$ nv set bridge domain br_default vlan 10 vni 10
@@ -6115,14 +6115,14 @@ cumulus@leaf04:~$ nv set mlag peer-ip linklocal
 cumulus@leaf04:~$ nv set mlag priority 2000
 cumulus@leaf04:~$ nv set mlag init-delay 10
 cumulus@leaf04:~$ nv set interface vlan10 ip address 10.1.10.5/24
-cumulus@leaf04:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24
-cumulus@leaf04:~$ nv set interface vlan10 ip vrr state up
+cumulus@leaf04:~$ nv set interface vlan10 ipv4 vrr address 10.1.10.1/24
+cumulus@leaf04:~$ nv set interface vlan10 ipv4 vrr state enabled
 cumulus@leaf04:~$ nv set interface vlan20 ip address 10.1.20.5/24
-cumulus@leaf04:~$ nv set interface vlan20 ip vrr address 10.1.20.1/24
-cumulus@leaf04:~$ nv set interface vlan20 ip vrr state up
+cumulus@leaf04:~$ nv set interface vlan20 ipv4 vrr address 10.1.20.1/24
+cumulus@leaf04:~$ nv set interface vlan20 ipv4 vrr state enabled
 cumulus@leaf04:~$ nv set interface vlan30 ip address 10.1.30.5/24
-cumulus@leaf04:~$ nv set interface vlan30 ip vrr address 10.1.30.1/24
-cumulus@leaf04:~$ nv set interface vlan30 ip vrr state up
+cumulus@leaf04:~$ nv set interface vlan30 ipv4 vrr address 10.1.30.1/24
+cumulus@leaf04:~$ nv set interface vlan30 ipv4 vrr state enabled
 cumulus@leaf04:~$ nv set vrf RED
 cumulus@leaf04:~$ nv set vrf BLUE
 cumulus@leaf04:~$ nv set bridge domain br_default vlan 10 vni 10
@@ -6267,11 +6267,11 @@ cumulus@border01:~$ nv set mlag init-delay 10
 cumulus@border01:~$ nv set vrf RED
 cumulus@border01:~$ nv set vrf BLUE
 cumulus@border01:~$ nv set interface vlan101 ip address 10.1.101.64/24
-cumulus@border01:~$ nv set interface vlan101 ip vrr address 10.1.101.1/24
-cumulus@border01:~$ nv set interface vlan101 ip vrr state up
+cumulus@border01:~$ nv set interface vlan101 ipv4 vrr address 10.1.101.1/24
+cumulus@border01:~$ nv set interface vlan101 ipv4 vrr state enabled
 cumulus@border01:~$ nv set interface vlan102 ip address 10.1.102.64/24
-cumulus@border01:~$ nv set interface vlan102 ip vrr address 10.1.102.1/24
-cumulus@border01:~$ nv set interface vlan102 ip vrr state up
+cumulus@border01:~$ nv set interface vlan102 ipv4 vrr address 10.1.102.1/24
+cumulus@border01:~$ nv set interface vlan102 ipv4 vrr state enabled
 cumulus@border01:~$ nv set bridge domain br_default vlan 101,102
 cumulus@border01:~$ nv set interface vlan101 ip vrf RED
 cumulus@border01:~$ nv set interface vlan102 ip vrf BLUE
@@ -6326,11 +6326,11 @@ cumulus@border02:~$ nv set mlag init-delay 10
 cumulus@border02:~$ nv set vrf RED
 cumulus@border02:~$ nv set vrf BLUE
 cumulus@border02:~$ nv set interface vlan101 ip address 10.1.101.65/24
-cumulus@border02:~$ nv set interface vlan101 ip vrr address 10.1.101.1/24
-cumulus@border02:~$ nv set interface vlan101 ip vrr state up
+cumulus@border02:~$ nv set interface vlan101 ipv4 vrr address 10.1.101.1/24
+cumulus@border02:~$ nv set interface vlan101 ipv4 vrr state enabled
 cumulus@border02:~$ nv set interface vlan102 ip address 10.1.102.65/24
-cumulus@border02:~$ nv set interface vlan102 ip vrr address 10.1.102.1/24
-cumulus@border02:~$ nv set interface vlan102 ip vrr state up
+cumulus@border02:~$ nv set interface vlan102 ipv4 vrr address 10.1.102.1/24
+cumulus@border02:~$ nv set interface vlan102 ipv4 vrr state enabled
 cumulus@border02:~$ nv set bridge domain br_default vlan 101,102
 cumulus@border02:~$ nv set interface vlan101 ip vrf RED
 cumulus@border02:~$ nv set interface vlan102 ip vrf BLUE

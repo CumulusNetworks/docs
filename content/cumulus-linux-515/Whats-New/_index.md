@@ -59,7 +59,7 @@ Old Name | New Name|
 {{< /expand >}}
 - NVUE
   - {{<link url="Secure-Mount-Directory-Encryption" text="Secure Mount Directory Encryption">}}
-  - NVUE commands have been updated for clarity consistency. Refer to the full list of updated commands in {{<link url="New-and-Changed-NVUE-Commands" text="New and Changed NVUE Commands">}}.
+  - {{<link url="New-and-Changed-NVUE-Commands" text="Changed command syntax and output">}}
   - Routing | Operational revision needs to be supported for parts of the CL Object model(Phase 2)
   - Add aging time to neighbor info
   - login brute forcing via API

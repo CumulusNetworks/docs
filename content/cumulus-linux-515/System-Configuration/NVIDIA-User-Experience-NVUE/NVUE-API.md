@@ -2891,9 +2891,9 @@ if __name__ == "__main__":
 {{< tab "NVUE CLI" >}}
 
 ```
-cumulus@switch:~$ nv set service ntp default server 4.cumulusnetworks.pool.ntp.org iburst on
-cumulus@switch:~$ nv set service dns mgmt server 192.168.1.100 
-cumulus@switch:~$ nv set service syslog mgmt server 192.168.1.120 port 8000
+cumulus@switch:~$ nv set system ntp server 4.cumulusnetworks.pool.ntp.org iburst enabled
+cumulus@switch:~$ nv set system dns server 192.168.1.100 vrf mgmt
+cumulus@switch:~$ nv set system syslog server 192.168.1.120 port 8000
 ```
 
 {{< /tab >}}

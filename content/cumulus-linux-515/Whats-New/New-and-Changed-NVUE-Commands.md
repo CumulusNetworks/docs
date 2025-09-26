@@ -265,7 +265,7 @@ The syntax for the following commands has changed in Cumulus Linux 5.15.
 | `nv set system telemetry export otlp grpc destination <destination-id> cert-id <value>` | `nv set system telemetry export otlp grpc destination <destination-id> certificate <cert-id>` |
 
 {{< /tab >}}
-{{< tab "On or Off ">}}
+{{< tab "On/Off ">}}
 
 | CL5.14.0 and Earlier | CL5.15 and Later |
 | --- | --- |
@@ -721,7 +721,7 @@ nv show vrf <vrf-id> evpn
 ```
 
 {{< /tab >}}
-{{< tab "On or Off ">}}
+{{< tab "On/Off ">}}
 
 ```
 nv show interface <interface-id> ip igmp

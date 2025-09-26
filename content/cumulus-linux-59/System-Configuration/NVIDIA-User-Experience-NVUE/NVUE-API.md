@@ -3455,7 +3455,11 @@ To try out the NVUE REST API, use the {{<exlink url="https://air.nvidia.com/mark
 
 ## Resources
 
-For information about using the NVUE REST API, refer to the {{<mib_link url="cumulus-linux-59/api/index.html" text="NVUE API Swagger documentation.">}}
+{{%notice note%}}
+Nvidia recommends referencing the new {{<exlink url="https://api-prod.nvidia.com/openapi-browser?spec=openapi+5.9.0.json" text="NVUE API browser tool">}}. This tool is still under development. Please report any issues or feedback to nvue-openapi-browser-support@nvidia.com.
+{{%/notice%}}
+
+For more information about using the NVUE REST API, refer to the {{<mib_link url="cumulus-linux-59/api/index.html" text="NVUE API Swagger documentation.">}}
 The full object model download is available {{<mib_link url="cumulus-linux-59/api/openapi.json" text="here.">}}
 
 ## Considerations

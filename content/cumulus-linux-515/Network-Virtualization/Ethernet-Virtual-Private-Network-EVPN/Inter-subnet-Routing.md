@@ -598,17 +598,17 @@ cumulus@leaf01:~$ nv set interface bond2 bridge domain br_default access 20
 cumulus@leaf01:~$ nv set interface bond3 bridge domain br_default access 30
 cumulus@leaf01:~$ nv set bridge domain br_default vlan 10,20,30
 cumulus@leaf01:~$ nv set interface vlan10 ip address 10.1.10.2/24
-cumulus@leaf01:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24
-cumulus@leaf01:~$ nv set interface vlan10 ip vrr mac-address 00:00:00:00:00:10
-cumulus@leaf01:~$ nv set interface vlan10 ip vrr state up
+cumulus@leaf01:~$ nv set interface vlan10 ipv4 vrr address 10.1.10.1/24
+cumulus@leaf01:~$ nv set interface vlan10 ipv4 vrr mac-address 00:00:00:00:00:10
+cumulus@leaf01:~$ nv set interface vlan10 ipv4 vrr state enabled
 cumulus@leaf01:~$ nv set interface vlan20 ip address 10.1.20.2/24
-cumulus@leaf01:~$ nv set interface vlan20 ip vrr address 10.1.20.1/24
-cumulus@leaf01:~$ nv set interface vlan20 ip vrr mac-address 00:00:00:00:00:20
-cumulus@leaf01:~$ nv set interface vlan20 ip vrr state up
+cumulus@leaf01:~$ nv set interface vlan20 ipv4 vrr address 10.1.20.1/24
+cumulus@leaf01:~$ nv set interface vlan20 ipv4 vrr mac-address 00:00:00:00:00:20
+cumulus@leaf01:~$ nv set interface vlan20 ipv4 vrr state enabled
 cumulus@leaf01:~$ nv set interface vlan30 ip address 10.1.30.2/24
-cumulus@leaf01:~$ nv set interface vlan30 ip vrr address 10.1.30.1/24
-cumulus@leaf01:~$ nv set interface vlan30 ip vrr mac-address 00:00:00:00:00:30
-cumulus@leaf01:~$ nv set interface vlan30 ip vrr state up
+cumulus@leaf01:~$ nv set interface vlan30 ipv4 vrr address 10.1.30.1/24
+cumulus@leaf01:~$ nv set interface vlan30 ipv4 vrr mac-address 00:00:00:00:00:30
+cumulus@leaf01:~$ nv set interface vlan30 ipv4 vrr state enabled
 cumulus@leaf01:~$ nv set vrf RED
 cumulus@leaf01:~$ nv set vrf BLUE
 cumulus@leaf01:~$ nv set bridge domain br_default vlan 10 vni 10

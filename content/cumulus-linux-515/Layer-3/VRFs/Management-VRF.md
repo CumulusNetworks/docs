@@ -298,9 +298,9 @@ For example, to specify DNS servers and associate some of them with the manageme
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set service dns default server 192.0.2.1
-cumulus@switch:~$ nv set service dns mgmt server 198.51.100.31
-cumulus@switch:~$ nv set service dns mgmt server 203.0.113.13
+cumulus@switch:~$ nv set system dns server 192.0.2.1 vrf default
+cumulus@switch:~$ nv set system dns server 198.51.100.31 vrf mgmt
+cumulus@switch:~$ nv set system dns server 203.0.113.13 vrf mgmt
 cumulus@switch:~$ nv config apply
 ```
 

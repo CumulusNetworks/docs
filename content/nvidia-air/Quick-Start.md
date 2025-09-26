@@ -103,9 +103,9 @@ Sharing a simulation allows other users to view and interact with it. When shari
 
 To share a simulation:
 
-1. Click the {{<img src="/images/guides/nvidia-air/ManageUsersButton.png" alt="" width="22px" >}} **Manage Users** button in the **Topology** tab.
+1. From the **Topology** tab, click {{<img src="/images/guides/nvidia-air/ManageUsersButton.png" alt="" width="22px" >}} **Manage Users**.
 2. Enter the email addresses of the users with whom you want to share the simulation.
-3. Select whether to give the users read-only access.
+3. (Optional) Select **Read Only** to limit permissions to read-only access.
 4. Click **Add User**.
 5. Click **Close**.
 

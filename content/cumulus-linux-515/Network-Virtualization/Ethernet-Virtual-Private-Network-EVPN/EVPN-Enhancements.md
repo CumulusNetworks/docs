@@ -245,11 +245,11 @@ cumulus@leaf01:~$ nv set router bgp router-id 10.10.10.1
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor 10.10.10.2 remote-as internal
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor 10.10.10.3 remote-as internal
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor 10.10.10.4 remote-as internal
-cumulus@leaf01:~$ nv set evpn enable on
-cumulus@leaf01:~$ nv set vrf default router bgp address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor 10.10.10.2 address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor 10.10.10.3 address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor 10.10.10.4 address-family l2vpn-evpn enable on
+cumulus@leaf01:~$ nv set evpn state enabled
+cumulus@leaf01:~$ nv set vrf default router bgp address-family l2vpn-evpn state enabled
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor 10.10.10.2 address-family l2vpn-evpn state enabled
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor 10.10.10.3 address-family l2vpn-evpn state enabled
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor 10.10.10.4 address-family l2vpn-evpn state enabled
 cumulus@leaf01:~$ nv set vrf default router ospf router-id 10.10.10.1
 cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 cumulus@leaf01:~$ nv set interface lo router ospf passive on
@@ -952,14 +952,14 @@ To disable BUM flooding:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set nve vxlan flooding enable off
+cumulus@leaf01:~$ nv set nve vxlan flooding state enabled
 cumulus@leaf01:~$ nv config apply
 ```
 
 To reenable BUM flooding, run the following commands. Enabling BUM flooding requires head-end replication and, or a configured multicast group (`nv set nve vxlan flooding multicast-group <ip-address>`).
 
 ```
-cumulus@leaf01:~$ nv set nve vxlan flooding enable on
+cumulus@leaf01:~$ nv set nve vxlan flooding state enabled
 cumulus@leaf01:~$ nv set nve vxlan flooding head-end-replication evpn
 cumulus@leaf01:~$ nv config apply
 ```
@@ -1292,7 +1292,7 @@ Duplicate address detection is on by default. The switch generates a syslog erro
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set evpn dad enable off
+cumulus@switch:~$ nv set evpn dad state disabled
 cumulus@switch:~$ nv config apply
 ```
 

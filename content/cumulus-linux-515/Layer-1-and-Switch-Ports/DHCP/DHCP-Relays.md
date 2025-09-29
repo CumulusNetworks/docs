@@ -281,8 +281,8 @@ cumulus@switch:~$ nv set service dhcp-relay RED downstream-interface vlan10 serv
 cumulus@switch:~$ nv set service dhcp-relay RED downstream-interface vlan20 server-group-name red-servers
 cumulus@switch:~$ nv set service dhcp-relay RED server-group red-servers upstream-interface vlan4024_l3
 cumulus@switch:~$ nv set service dhcp-relay RED server-group red-servers server 10.1.10.104
-cumulus@switch:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on
-cumulus@switch:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn enable on
+cumulus@switch:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected state enabled
+cumulus@switch:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn state enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -421,7 +421,7 @@ cumulus@switch:~$ nv set service dhcp-relay6 RED interface downstream vlan10
 cumulus@switch:~$ nv set service dhcp-relay6 RED interface downstream vlan20
 cumulus@switch:~$ nv set service dhcp-relay6 RED interface upstream RED server-address 2001:db8:199::2
 cumulus@switch:~$ nv set service dhcp-relay6 RED interface upstream vlan4024_l3
-cumulus@switch:~$ nv set vrf RED router bgp address-family ipv6-unicast route-export to-evpn enable on
+cumulus@switch:~$ nv set vrf RED router bgp address-family ipv6-unicast route-export to-evpn state enabled
 cumulus@switch:~$ nv config apply
 ```
 

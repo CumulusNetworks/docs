@@ -41,6 +41,12 @@ To work around this issue, disable SNMP with the {{nv set system snmp-server sta
 <td>5.14.0</td>
 </tr>
 <tr>
+<td>4621451</td>
+<td>Changing the gateway interface IP address on the DHCP relay causes DHCP relay to not forward the packet. To work around this issue, restart the DHCP relay service corresponding to the VRF on which it is running.</td>
+<td>5.13.1-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4608614</td>
 <td>When setting up SSH keys, you have to run {{nv config apply}} twice for the configuration to take effect.</td>
 <td>5.11.3-5.14.0</td>
@@ -74,6 +80,12 @@ To work around this issue, disable SNMP with the {{nv set system snmp-server sta
 <td>4579237</td>
 <td>If interface statistics telemetry is running on the switch, an {{interface_stats_collector}} core file might generate during statistics collection.</td>
 <td>5.11.3-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4579137</td>
+<td>TTL exceeded packets might not have the expected source IP address in the forwarding path to the destination when VRF interfaces are present on the forwarding path.</td>
+<td>5.13.1-5.14.0</td>
 <td></td>
 </tr>
 <tr>

@@ -66,9 +66,9 @@ cumulus@spine01:~$ nv config apply
 {{< tab "leaf01 ">}}
 
 ```
-cumulus@leaf01:~$ nv set evpn enable on
-cumulus@leaf01:~$ nv set vrf default router bgp address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn enable on
+cumulus@leaf01:~$ nv set evpn state enabled
+cumulus@leaf01:~$ nv set vrf default router bgp address-family l2vpn-evpn state enabled
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn state enabled
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -125,8 +125,8 @@ cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
 {{< tab "spine01 ">}}
 
 ```
-cumulus@spine01:~$ nv set vrf default router bgp address-family l2vpn-evpn enable on
-cumulus@spine01:~$ nv set vrf default router bgp neighbor swp1 address-family l2vpn-evpn enable on
+cumulus@spine01:~$ nv set vrf default router bgp address-family l2vpn-evpn state enabled
+cumulus@spine01:~$ nv set vrf default router bgp neighbor swp1 address-family l2vpn-evpn state enabled
 cumulus@spine01:~$ nv config apply
 ```
 

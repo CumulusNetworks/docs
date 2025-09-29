@@ -298,7 +298,7 @@ To disable TACACS+ accounting:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set system aaa tacacs accounting enable off
+cumulus@switch:~$ nv set system aaa tacacs accounting state disabled
 cumulus@switch:~$ nv config apply
 ```
 

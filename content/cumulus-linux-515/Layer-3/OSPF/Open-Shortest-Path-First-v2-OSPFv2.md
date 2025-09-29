@@ -612,7 +612,7 @@ The following example commands create key ID 1 with the key `thisisthekey` and e
 ```
 cumulus@leaf01:~$ nv set interface swp51 router ospf authentication message-digest-key 1
 cumulus@leaf01:~$ nv set interface swp51 router ospf authentication md5-key thisisthekey
-cumulus@leaf01:~$ nv set interface swp51 router ospf authentication enable on
+cumulus@leaf01:~$ nv set interface swp51 router ospf authentication state enabled
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -622,7 +622,7 @@ cumulus@leaf01:~$ nv config apply
 ```
 cumulus@spine01:~$ nv set interface swp1 router ospf authentication message-digest-key 1
 cumulus@spine01:~$ nv set interface swp1 router ospf authentication md5-key thisisthekeynet 
-cumulus@spine01:~$ nv set interface swp1 router ospf authentication enable on
+cumulus@spine01:~$ nv set interface swp1 router ospf authentication state enabled
 cumulus@spine01:~$ nv config apply
 ```
 
@@ -1269,9 +1269,9 @@ Action succeeded
 With NVUE, you cannot run both the `nv set vrf default router ospf area <area> network` command and the `nv set interface <interface-id> router ospf area` command in the same configuration; for example, if you run the following commands, NVUE shows an invalid configuration error:
 
 ```
-cumulus@switch:~$ nv set router ospf enable on
+cumulus@switch:~$ nv set router ospf state enabled
 cumulus@switch:~$ nv set vrf default router ospf area 0 network 10.10.10.101/32
-cumulus@switch:~$ nv set vrf default router ospf enable on
+cumulus@switch:~$ nv set vrf default router ospf state enabled
 cumulus@switch:~$ nv set vrf default router ospf router-id 10.10.10.101
 cumulus@switch:~$ nv set interface swp1 router ospf area 10
 cumulus@switch:~$ nv config apply

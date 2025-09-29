@@ -118,18 +118,18 @@ cumulus@switch:~$ sudo systemctl disable ntpsec@mgmt.service
 The NVUE `nv set service ptp` commands require an instance number (1 in the example command below) for management purposes.
 
 {{%notice warning%}}
-When you enable the PTP service with the `nv set service ptp <instance> enable on` command, NVUE restarts the `switchd` service, which causes all network ports to reset in addition to resetting the switch hardware configuration.
+When you enable the PTP service with the `nv set service ptp <instance> state enabled` command, NVUE restarts the `switchd` service, which causes all network ports to reset in addition to resetting the switch hardware configuration.
 {{%/notice%}}
 
 {{< tabs "TabID68 ">}}
 {{< tab "Layer 3 Routed Port ">}}
 
 ```
-cumulus@switch:~$ nv set service ptp 1 enable on
+cumulus@switch:~$ nv set service ptp 1 state enabled
 cumulus@switch:~$ nv set interface swp1 ip address 10.0.0.9/32
 cumulus@switch:~$ nv set interface swp2 ip address 10.0.0.10/32
-cumulus@switch:~$ nv set interface swp1 ptp enable on
-cumulus@switch:~$ nv set interface swp2 ptp enable on
+cumulus@switch:~$ nv set interface swp1 ptp state enabled
+cumulus@switch:~$ nv set interface swp2 ptp state enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -141,35 +141,35 @@ The configuration writes to the `/etc/ptp4l.conf` file.
 Layer 2 Transport
 
 ```
-cumulus@switch:~$ nv set service ptp 1 enable on
+cumulus@switch:~$ nv set service ptp 1 state enabled
 cumulus@switch:~$ nv set bridge domain br_default
 cumulus@switch:~$ nv set bridge domain br_default type vlan-aware
 cumulus@switch:~$ nv set bridge domain br_default vlan 10-30
-cumulus@switch:~$ nv set bridge domain br_default vlan 10 ptp enable on
+cumulus@switch:~$ nv set bridge domain br_default vlan 10 ptp state enabled
 cumulus@switch:~$ nv set interface swp1 bridge domain br_default
 cumulus@switch:~$ nv set interface swp1 bridge domain br_default vlan 10
 cumulus@switch:~$ nv set interface swp1 bridge domain br_default vlan 20
 cumulus@switch:~$ nv set interface swp1 ptp transport 802.3
-cumulus@switch:~$ nv set interface swp1 ptp enable on
+cumulus@switch:~$ nv set interface swp1 ptp state enabled
 cumulus@switch:~$ nv config apply
 ```
 
 Layer 3 Transport
 
 ```
-cumulus@switch:~$ nv set service ptp 1 enable on
+cumulus@switch:~$ nv set service ptp 1 state enabled
 cumulus@switch:~$ nv set bridge domain br_default
 cumulus@switch:~$ nv set bridge domain br_default type vlan-aware
 cumulus@switch:~$ nv set bridge domain br_default vlan 10-30
-cumulus@switch:~$ nv set bridge domain br_default vlan 10 ptp enable on
+cumulus@switch:~$ nv set bridge domain br_default vlan 10 ptp state enabled
 cumulus@switch:~$ nv set interface vlan10 type svi
 cumulus@switch:~$ nv set interface vlan10 ip address 10.1.10.2/24
 cumulus@switch:~$ nv set interface vlan10 base-interface br_default
-cumulus@switch:~$ nv set interface vlan10 ptp enable on
+cumulus@switch:~$ nv set interface vlan10 ptp state enabled
 cumulus@switch:~$ nv set interface swp1 bridge domain br_default
 cumulus@switch:~$ nv set interface swp1 bridge domain br_default vlan 10
 cumulus@switch:~$ nv set interface swp1 bridge domain br_default vlan 20
-cumulus@switch:~$ nv set interface swp1 ptp enable on
+cumulus@switch:~$ nv set interface swp1 ptp state enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -190,39 +190,39 @@ The configuration writes to the `/etc/ptp4l.conf` file.
 Layer 2 Transport
 
 ```
-cumulus@switch:~$ nv set service ptp 1 enable on
+cumulus@switch:~$ nv set service ptp 1 state enabled
 cumulus@switch:~$ nv set bridge domain br_default
 cumulus@switch:~$ nv set bridge domain br_default type vlan-aware
 cumulus@switch:~$ nv set bridge domain br_default vlan 10-30
-cumulus@switch:~$ nv set bridge domain br_default vlan 10 ptp enable on
+cumulus@switch:~$ nv set bridge domain br_default vlan 10 ptp state enabled
 cumulus@switch:~$ nv set interface swp2 bridge domain br_default
 cumulus@switch:~$ nv set interface swp2 bridge domain br_default access 10
 cumulus@switch:~$ nv set interface swp2 ptp transport 802.3
-cumulus@switch:~$ nv set interface swp2 ptp enable on
+cumulus@switch:~$ nv set interface swp2 ptp state enabled
 cumulus@switch:~$ nv config apply
 ```
 
 Layer 3 Transport
 
 ```
-cumulus@switch:~$ nv set service ptp 1 enable on
+cumulus@switch:~$ nv set service ptp 1 state enabled
 cumulus@switch:~$ nv set bridge domain br_default
 cumulus@switch:~$ nv set bridge domain br_default type vlan-aware
 cumulus@switch:~$ nv set bridge domain br_default vlan 10-30
-cumulus@switch:~$ nv set bridge domain br_default vlan 10 ptp enable on
+cumulus@switch:~$ nv set bridge domain br_default vlan 10 ptp state enabled
 cumulus@switch:~$ nv set interface vlan10 type svi
 cumulus@switch:~$ nv set interface vlan10 ip address 10.1.10.2/24
 cumulus@switch:~$ nv set interface vlan10 base-interface br_default
 cumulus@switch:~$ nv set interface swp2 bridge domain br_default
 cumulus@switch:~$ nv set interface swp2 bridge domain br_default access 10
-cumulus@switch:~$ nv set interface swp2 ptp enable on
+cumulus@switch:~$ nv set interface swp2 ptp state enabled
 cumulus@switch:~$ nv config apply
 ```
 
 {{%notice note%}}
 - You can configure only one address; either IPv4 or IPv6.
 - For IPv6, set the trunk port transport mode to IPv6.
-- When you enable PTP on a bridge port, you must also enable PTP on the VLAN configured for the port with the `nv set bridge domain <domain> vlan <vlan-id> ptp enable on` command.
+- When you enable PTP on a bridge port, you must also enable PTP on the VLAN configured for the port with the `nv set bridge domain <domain> vlan <vlan-id> ptp state enabled` command.
 - Layer 2 and layer 3 PTP transport cannot coexist.
 - When you configure PTP layer 3 transport, you must configure:
   - An SVI for VLAN-based routing.
@@ -535,10 +535,10 @@ To enable Noise Transfer Servo:
 The following example enables PTP, sets the profile to `default-itu-8275-1`, enables SyncE, enables PTP on swp3, and enables Noise Transfer Servo.
 
 ```
-cumulus@switch:~$ nv set service ptp 1 enable on
+cumulus@switch:~$ nv set service ptp 1 state enabled
 cumulus@switch:~$ nv set service ptp 1 current-profile default-itu-8275-1
-cumulus@switch:~$ nv set system synce enable on
-cumulus@switch:~$ nv set interface swp3 ptp enable on
+cumulus@switch:~$ nv set system synce state enabled
+cumulus@switch:~$ nv set interface swp3 ptp state enabled
 cumulus@switch:~$ nv set service ptp 1 servo noise-transfer
 cumulus@switch:~$ nv config apply
 ```
@@ -1998,7 +1998,7 @@ To disable PTP on the switch and stop the `ptp4l` and `phc2sys` processes:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set service ptp 1 enable off
+cumulus@switch:~$ nv set service ptp 1 state disabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -2176,14 +2176,14 @@ The following example configuration assumes that you have already configured the
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set service ptp 1 enable on
+cumulus@switch:~$ nv set service ptp 1 state enabled
 cumulus@switch:~$ nv set service ptp 1 priority2 254
 cumulus@switch:~$ nv set service ptp 1 priority1 254
 cumulus@switch:~$ nv set service ptp 1 domain 3
-cumulus@switch:~$ nv set interface swp1 ptp enable on
-cumulus@switch:~$ nv set interface swp2 ptp enable on
-cumulus@switch:~$ nv set interface swp3 ptp enable on
-cumulus@switch:~$ nv set interface swp4 ptp enable on
+cumulus@switch:~$ nv set interface swp1 ptp state enabled
+cumulus@switch:~$ nv set interface swp2 ptp state enabled
+cumulus@switch:~$ nv set interface swp3 ptp state enabled
+cumulus@switch:~$ nv set interface swp4 ptp state enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -2381,9 +2381,9 @@ Custom bridges (such as `bridge`) are designed for layer 2 switching and have no
 The following example shows a PTP configuration with a custom bridge that includes a base interface:
 
 ```
-cumulus@switch:~$ nv set bridge domain bridge vlan 10 ptp enable on
+cumulus@switch:~$ nv set bridge domain bridge vlan 10 ptp state enabled
 cumulus@switch:~$ nv set interface swp1-8,21,24-30 bridge domain bridge vlan 10
-cumulus@switch:~$ nv set interface swp1-8,21,24-30,vlan10 ptp enable on
+cumulus@switch:~$ nv set interface swp1-8,21,24-30,vlan10 ptp state enabled
 cumulus@switch:~$ nv set interface swp1-8,21,24-30 ptp transport ipv6
 cumulus@switch:~$ nv set interface vlan10 ip address 10.1.10.2/24
 cumulus@switch:~$ nv set interface vlan10 type svi
@@ -2412,11 +2412,11 @@ To improve performance on the NVIDIA Spectrum 1 switch for PTP-enabled ports wit
 {{< tabs "TabID1387 ">}}
 {{< tab "NVUE Commands ">}}
 
-For each PTP-enabled port on which you want to set traffic shaping, run the `nv set interface <interface-id> ptp shaper enable on` command.
+For each PTP-enabled port on which you want to set traffic shaping, run the `nv set interface <interface-id> ptp shaper stae enabled` command.
 
 ```
-cumulus@switch:~$ nv set interface swp1 ptp shaper enable on
-cumulus@switch:~$ nv set interface swp2 ptp shaper enable on
+cumulus@switch:~$ nv set interface swp1 ptp shaper state enabled
+cumulus@switch:~$ nv set interface swp2 ptp shaper state enabled
 cumulus@switch:~$ nv config apply
 ```
 

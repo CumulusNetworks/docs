@@ -17,7 +17,7 @@ To enable ASIC monitoring for histogram collection and high frequency telemetry,
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set system telemetry enable on
+cumulus@switch:~$ nv set system telemetry state enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -146,7 +146,7 @@ cumulus@switch:~$ nv config apply
 The following example enables the egress queue length histogram for traffic class 0 on swp1 through swp8 with the globally applied minimum boundary, histogram size, and sample interval. The example also enables the egress queue length histogram for traffic class 1 on swp9 through swp16 and sets the minimum boundary to 768 bytes, the histogram size to 9600 bytes, and the sampling interval to 2048 nanoseconds.
 
 ```
-cumulus@switch:~$ nv set system telemetry enable on
+cumulus@switch:~$ nv set system telemetry state enabled
 cumulus@switch:~$ nv set interface swp1-8 telemetry histogram egress-buffer traffic-class 0
 cumulus@switch:~$ nv set interface swp9-16 telemetry histogram egress-buffer traffic-class 1 bin-min-boundary 768
 cumulus@switch:~$ nv set interface swp9-16 telemetry histogram egress-buffer traffic-class 1 histogram-size 9600
@@ -160,7 +160,7 @@ cumulus@switch:~$ nv config apply
 The following example configures the ingress queue length histogram and sets the minimum boundary size to 960 bytes, the histogram size to 12288 bytes, and the sampling interval to 1024 nanoseconds. These settings apply to interfaces that have the `ingress-buffer` histogram enabled and do not have different values configured for these settings at the interface level:
 
 ```
-cumulus@switch:~$ nv set system telemetry enable on
+cumulus@switch:~$ nv set system telemetry state enabled
 cumulus@switch:~$ nv set system telemetry histogram ingress-buffer bin-min-boundary 960 
 cumulus@switch:~$ nv set system telemetry histogram ingress-buffer histogram-size 12288 
 cumulus@switch:~$ nv set system telemetry histogram ingress-buffer sample-interval 1024
@@ -210,7 +210,7 @@ cumulus@switch:~$ nv config apply
 The following example enables the latency histogram for traffic class 0 on swp1 through swp8 with the globally applied minimum boundary and histogram size. The example also enables the latency histogram for traffic class 1 on swp9 through swp16 and sets the minimum boundary to 768 bytes and the histogram size to 9600 bytes.
 
 ```
-cumulus@switch:~$ nv set system telemetry enable on
+cumulus@switch:~$ nv set system telemetry state enabled
 cumulus@switch:~$ nv set interface swp1-8 telemetry histogram latency traffic-class 0
 cumulus@switch:~$ nv set interface swp9-16 telemetry histogram latency traffic-class 1 bin-min-boundary 768
 cumulus@switch:~$ nv set interface swp9-16 telemetry histogram latency traffic-class 1 histogram-size 9600
@@ -500,16 +500,16 @@ monitor.discards_pg.snapshot.file_count               = 16
 Cumulus Linux supports the bandwidth gauge option on the Spectrum-4 switch only.
 {{%/notice%}}
 
-To track bandwidth usage for an interface, you can enable the bandwidth gauge option with the `nv set interface <interface-id> telemetry bw-gauge enable on` command:
+To track bandwidth usage for an interface, you can enable the bandwidth gauge option with the `nv set interface <interface-id> telemetry bw-gauge state enabled` command:
 
 ```
-cumulus@switch:~$ nv set interface swp1 telemetry bw-gauge enable on
+cumulus@switch:~$ nv set interface swp1 telemetry bw-gauge state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To disable the bandwidth gauge setting, run the `nv set interface <interface-id> telemetry bw-gauge enable off` command.
+To disable the bandwidth gauge setting, run the `nv set interface <interface-id> telemetry bw-gauge state disabled` command.
 
-To show the bandwidth gauge setting for an interface, run the `nv show interface <interface-id> telemetry bw-gauge ` command:
+To show the bandwidth gauge setting for an interface, run the `nv show interface <interface-id> telemetry bw-gauge` command:
 
 ```
 cumulus@switch:~$ nv show interface swp1 telemetry bw-gauge
@@ -743,7 +743,7 @@ cumulus@switch:~$ nv config apply
 The following example enables packet and buffer data collection on all interfaces. The switch sends the interface statistics about all, good, and dropped packets, in addition to ingress and egress queue occupancy to the default snapshot file every fifteen seconds.
 
 ```
-cumulus@switch:~$ nv set system telemetry enable on
+cumulus@switch:~$ nv set system telemetry state enabled
 cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg interface all 
 cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg stats-type packet-all 
 cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg timer-interval 15
@@ -753,7 +753,7 @@ cumulus@switch:~$ nv config apply
 The following example enables packet and buffer data collection on swp1 through swp8. The switch sends the interface statistics about ingress and egress queue occupancy to the default snapshot file every ten seconds.
 
 ```
-cumulus@switch:~$ nv set system telemetry enable on
+cumulus@switch:~$ nv set system telemetry state enabled
 cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg interface swp1-8 
 cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg stats-type buffer
 cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg timer-interval 10
@@ -763,7 +763,7 @@ cumulus@switch:~$ nv config apply
 The following example enables packet and buffer data collection on all interfaces. The switch sends the interface statistics about all and good packets to the default snapshot file every fifteen seconds.
 
 ```
-cumulus@switch:~$ nv set system telemetry enable on
+cumulus@switch:~$ nv set system telemetry state enabled
 cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg interface all
 cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg stats-type packet
 cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg timer-interval 15
@@ -773,7 +773,7 @@ cumulus@switch:~$ nv config apply
 The following example enables packet and buffer data collection on all interfaces. The switch sends the interface statistics about all, good, and dropped packets to the default snapshot file every fifteen seconds.
 
 ```
-cumulus@switch:~$ nv set system telemetry enable on
+cumulus@switch:~$ nv set system telemetry state enabled
 cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg interface all
 cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg stats-type packet-extended
 cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg timer-interval 15
@@ -1081,7 +1081,7 @@ Cumulus Linux collects high frequency telemetry data in a `json` format file. Yo
 Cumulus Linux provides two options to configure high frequency telemetry; you can run NVUE commands or use the Cumulus Linux job management tool (`cl-hft-tool`). You can see all the `cl-hft-tool` command options with `cl-hft-tool -h`. Cumulus Linux recommends that you use NVUE commands.
 
 To configure high frequency telemetry:
-1. Enable telemetry with the `nv set system telemetry enable on` command.
+1. Enable telemetry with the `nv set system telemetry state enabled` command.
 2. {{<link url="#configure-data-collection" text="Configure data collection">}}.
 3. {{<link url="#configure-data-export" text="Configure data export">}}.
 4. {{<link url="#configure-the-schedule" text="Configure the schedule">}}.

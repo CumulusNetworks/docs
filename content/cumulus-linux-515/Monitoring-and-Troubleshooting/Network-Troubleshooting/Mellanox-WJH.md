@@ -340,7 +340,7 @@ When you enable the NVIDIA NetQ agent on the switch, the WJH service stops and d
 {{< tab "NVUE Commands">}}
 
 ```
-cumulus@switch:~$ nv set system wjh enable on
+cumulus@switch:~$ nv set system wjh state enabled
 cumulus@switch:~$ nv config apply
 ```
 

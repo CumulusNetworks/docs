@@ -29,7 +29,7 @@ The following example:
 cumulus@switch:~$ nv set interface swp1-3 bridge domain br_default
 cumulus@switch:~$ nv set bridge domain br_default vlan 10
 cumulus@switch:~$ nv set interface swp1 bridge domain br_default vlan 10
-cumulus@switch:~$ nv set bridge domain br_default multicast snooping querier enable on
+cumulus@switch:~$ nv set bridge domain br_default multicast snooping querier state enabled
 cumulus@switch:~$ nv set bridge domain br_default vlan 10 multicast snooping querier source-ip 10.10.10.1
 cumulus@switch:~$ nv config apply
 ```
@@ -241,7 +241,7 @@ If you do not use mirroring functions or other types of multicast traffic, you c
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set bridge domain br_default multicast snooping enable off
+cumulus@switch:~$ nv set bridge domain br_default multicast snooping state disabled
 cumulus@switch:~$ nv config apply
 ```
 

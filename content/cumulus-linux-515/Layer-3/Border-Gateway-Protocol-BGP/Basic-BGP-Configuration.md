@@ -62,7 +62,7 @@ To configure BGP numbered on a BGP node, you need to:
 
     ```
     cumulus@leaf01:~$ nv set vrf default router bgp neighbor 2001:db8:0002::0a00:0002 remote-as external
-    cumulus@leaf01:~$ nv set vrf default router bgp neighbor 2001:db8:0002::0a00:0002 address-family ipv6-unicast enable on
+    cumulus@leaf01:~$ nv set vrf default router bgp neighbor 2001:db8:0002::0a00:0002 address-family ipv6-unicast state enabled
     ```
 
     For BGP to advertise *IPv4* prefixes with IPv6 next hops, see {{<link url="Optional-BGP-Configuration#advertise-ipv4-prefixes-with-ipv6-next-hops" text="Advertise IPv4 Prefixes with IPv6 Next Hops">}}.
@@ -145,7 +145,7 @@ cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
 
     ```
     cumulus@spine01:~$ nv set vrf default router bgp neighbor 2001:db8:0002::0a00:1 remote-as external
-    cumulus@spine01:~$ nv set vrf default router bgp neighbor address-family ipv6-unicast 2001:db8:0002::0a00:1 enable on
+    cumulus@spine01:~$ nv set vrf default router bgp neighbor 2001:db8:0002::0a00:1 address-family ipv6-unicast state enabled
     ```
 
     For BGP to advertise *IPv4* prefixes with IPv6 next hops, see {{<link url="Optional-BGP-Configuration#advertise-ipv4-prefixes-with-ipv6-next-hops" text="Advertise IPv4 Prefixes with IPv6 Next Hops">}}.
@@ -357,7 +357,7 @@ For BGP to advertise IPv6 prefixes, you need to run an additional command to act
 cumulus@leaf01:~$ nv set router bgp autonomous-system 65101
 cumulus@leaf01:~$ nv set router bgp router-id 10.10.10.1
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 remote-as external
-cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv6-unicast enable on
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv6-unicast state enabled
 cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv6-unicast network 2001:db8::1/128
 cumulus@leaf01:~$ nv config apply
 ```
@@ -407,7 +407,7 @@ For BGP to advertise IPv6 prefixes, you need to run an additional command to act
 cumulus@spine01:~$ nv set router bgp autonomous-system 65199
 cumulus@spine01:~$ nv set router bgp router-id 10.10.10.101
 cumulus@spine01:~$ nv set vrf default router bgp neighbor swp1 remote-as external
-cumulus@spine01:~$ nv set vrf default router bgp address-family ipv6-unicast enable on
+cumulus@spine01:~$ nv set vrf default router bgp address-family ipv6-unicast state enabled
 cumulus@spine01:~$ nv set vrf default router bgp address-family ipv6-unicast network 2001:db8::101/128
 cumulus@spine01:~$ nv config apply
 ```

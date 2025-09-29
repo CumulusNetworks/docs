@@ -248,10 +248,10 @@ cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp52 remote-as externa
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor peerlink.4094 remote-as external
 cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.1/32
 cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
-cumulus@leaf01:~$ nv set evpn enable on
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp52 address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor peerlink.4094 address-family l2vpn-evpn enable on
+cumulus@leaf01:~$ nv set evpn state enabled
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn state enabled
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp52 address-family l2vpn-evpn state enabled
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor peerlink.4094 address-family l2vpn-evpn state enabled
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -281,10 +281,10 @@ cumulus@leaf02:~$ nv set vrf default router bgp neighbor swp52 remote-as externa
 cumulus@leaf02:~$ nv set vrf default router bgp neighbor peerlink.4094 remote-as external
 cumulus@leaf02:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.2/32
 cumulus@leaf02:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
-cumulus@leaf02:~$ nv set evpn enable on
-cumulus@leaf02:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn enable on
-cumulus@leaf02:~$ nv set vrf default router bgp neighbor swp52 address-family l2vpn-evpn enable on
-cumulus@leaf02:~$ nv set vrf default router bgp neighbor peerlink.4094 address-family l2vpn-evpn enable on
+cumulus@leaf02:~$ nv set evpn state enabled
+cumulus@leaf02:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn state enabled
+cumulus@leaf02:~$ nv set vrf default router bgp neighbor swp52 address-family l2vpn-evpn state enabled
+cumulus@leaf02:~$ nv set vrf default router bgp neighbor peerlink.4094 address-family l2vpn-evpn state enabled
 cumulus@leaf02:~$ nv config apply
 ```
 
@@ -314,10 +314,10 @@ cumulus@leaf03:~$ nv set vrf default router bgp neighbor swp52 remote-as externa
 cumulus@leaf03:~$ nv set vrf default router bgp neighbor peerlink.4094 remote-as external
 cumulus@leaf03:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.3/32
 cumulus@leaf03:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
-cumulus@leaf03:~$ nv set evpn enable on
-cumulus@leaf03:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn enable on
-cumulus@leaf03:~$ nv set vrf default router bgp neighbor swp52 address-family l2vpn-evpn enable on
-cumulus@leaf03:~$ nv set vrf default router bgp neighbor peerlink.4094 address-family l2vpn-evpn enable on
+cumulus@leaf03:~$ nv set evpn state enabled
+cumulus@leaf03:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn state enabled
+cumulus@leaf03:~$ nv set vrf default router bgp neighbor swp52 address-family l2vpn-evpn state enabled
+cumulus@leaf03:~$ nv set vrf default router bgp neighbor peerlink.4094 address-family l2vpn-evpn state enabled
 cumulus@leaf03:~$ nv config apply
 ```
 
@@ -347,10 +347,10 @@ cumulus@leaf04:~$ nv set vrf default router bgp neighbor swp52 remote-as externa
 cumulus@leaf04:~$ nv set vrf default router bgp neighbor peerlink.4094 remote-as external
 cumulus@leaf04:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.4/32
 cumulus@leaf04:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
-cumulus@leaf04:~$ nv set evpn enable on
-cumulus@leaf04:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn enable on
-cumulus@leaf04:~$ nv set vrf default router bgp neighbor swp52 address-family l2vpn-evpn enable on
-cumulus@leaf04:~$ nv set vrf default router bgp neighbor peerlink.4094 address-family l2vpn-evpn enable on
+cumulus@leaf04:~$ nv set evpn state enabled
+cumulus@leaf04:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn state enabled
+cumulus@leaf04:~$ nv set vrf default router bgp neighbor swp52 address-family l2vpn-evpn state enabled
+cumulus@leaf04:~$ nv set vrf default router bgp neighbor peerlink.4094 address-family l2vpn-evpn state enabled
 cumulus@leaf04:~$ nv config apply
 ```
 
@@ -368,10 +368,10 @@ cumulus@spine01:~$ nv set vrf default router bgp neighbor swp2 remote-as externa
 cumulus@spine01:~$ nv set vrf default router bgp neighbor swp3 remote-as external
 cumulus@spine01:~$ nv set vrf default router bgp neighbor swp4 remote-as external
 cumulus@spine01:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
-cumulus@spine01:~$ nv set vrf default router bgp neighbor swp1 address-family l2vpn-evpn enable on
-cumulus@spine01:~$ nv set vrf default router bgp neighbor swp2 address-family l2vpn-evpn enable on
-cumulus@spine01:~$ nv set vrf default router bgp neighbor swp3 address-family l2vpn-evpn enable on
-cumulus@spine01:~$ nv set vrf default router bgp neighbor swp4 address-family l2vpn-evpn enable on
+cumulus@spine01:~$ nv set vrf default router bgp neighbor swp1 address-family l2vpn-evpn state enabled
+cumulus@spine01:~$ nv set vrf default router bgp neighbor swp2 address-family l2vpn-evpn state enabled
+cumulus@spine01:~$ nv set vrf default router bgp neighbor swp3 address-family l2vpn-evpn state enabled
+cumulus@spine01:~$ nv set vrf default router bgp neighbor swp4 address-family l2vpn-evpn state enabled
 cumulus@spine01:~$ nv config apply
 ```
 
@@ -389,10 +389,10 @@ cumulus@spine02:~$ nv set vrf default router bgp neighbor swp2 remote-as externa
 cumulus@spine02:~$ nv set vrf default router bgp neighbor swp3 remote-as external
 cumulus@spine02:~$ nv set vrf default router bgp neighbor swp4 remote-as external
 cumulus@spine02:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
-cumulus@spine02:~$ nv set vrf default router bgp neighbor swp1 address-family l2vpn-evpn enable on
-cumulus@spine02:~$ nv set vrf default router bgp neighbor swp2 address-family l2vpn-evpn enable on
-cumulus@spine02:~$ nv set vrf default router bgp neighbor swp3 address-family l2vpn-evpn enable on
-cumulus@spine02:~$ nv set vrf default router bgp neighbor swp4 address-family l2vpn-evpn enable on
+cumulus@spine02:~$ nv set vrf default router bgp neighbor swp1 address-family l2vpn-evpn state enabled
+cumulus@spine02:~$ nv set vrf default router bgp neighbor swp2 address-family l2vpn-evpn state enabled
+cumulus@spine02:~$ nv set vrf default router bgp neighbor swp3 address-family l2vpn-evpn state enabled
+cumulus@spine02:~$ nv set vrf default router bgp neighbor swp4 address-family l2vpn-evpn state enabled
 cumulus@spine02:~$ nv config apply
 ```
 

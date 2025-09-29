@@ -61,10 +61,10 @@ When you configure VRRP with NVUE commands, NVUE enables the `vrrpd` service and
 ```
 cumulus@spine01:~$ nv set interface swp1 ip address 10.0.0.2/24
 cumulus@spine01:~$ nv set interface swp1 ip address 2001:0db8::2/64
-cumulus@spine01:~$ nv set interface swp1 ip vrrp virtual-router 44 address 10.0.0.1
-cumulus@spine01:~$ nv set interface swp1 ip vrrp virtual-router 44 address 2001:0db8::1
-cumulus@spine01:~$ nv set interface swp1 ip vrrp virtual-router 44 priority 254
-cumulus@spine01:~$ nv set interface swp1 ip vrrp virtual-router 44 advertisement-interval 5000
+cumulus@spine01:~$ nv set interface swp1 ipv4 vrrp virtual-router 44 address 10.0.0.1
+cumulus@spine01:~$ nv set interface swp1 ipv6 vrrp virtual-router 44 address 2001:0db8::1
+cumulus@spine01:~$ nv set interface swp1 ipv4 vrrp virtual-router 44 priority 254
+cumulus@spine01:~$ nv set interface swp1 ipv4 vrrp virtual-router 44 advertisement-interval 5000
 cumulus@spine01:~$ nv config apply
 ```
 
@@ -74,8 +74,8 @@ cumulus@spine01:~$ nv config apply
 ```
 cumulus@spine02:~$ nv set interface swp1 ip address 10.0.0.3/24
 cumulus@spine02:~$ nv set interface swp1 ip address 2001:0db8::3/64
-cumulus@spine02:~$ nv set interface swp1 ip vrrp virtual-router 44 address 10.0.0.1/24
-cumulus@spine02:~$ nv set interface swp1 ip vrrp virtual-router 44 address 2001:0db8::1/64
+cumulus@spine02:~$ nv set interface swp1 ipv4 vrrp virtual-router 44 address 10.0.0.1/24
+cumulus@spine02:~$ nv set interface swp1 ipv6 vrrp virtual-router 44 address 2001:0db8::1/64
 cumulus@spine02:~$ nv config apply
 ```
 
@@ -236,12 +236,12 @@ switch# show vrrp
  ..................................      2001:db8::1
 ```
 
-To show configuration and operational information about all configured VRRP virtual routers, run the NVUE `nv show interface <interface-id> ip vrrp virtual-router` command or the vtysh `show vrrp` command.
+To show configuration and operational information about all configured VRRP virtual routers, run the NVUE `nv show interface <interface-id> ipv4 vrrp virtual-router` command (or `nv show interface <interface-id> ipv6 vrrp virtual-router` command) or the vtysh `show vrrp` command.
 
 Add `-o json` at the end of the NVUE command to see the output in a more readable format:
 
 ```
-cumulus@switch:~$ nv show interface swp1 ip vrrp virtual-router -o json
+cumulus@switch:~$ nv show interface swp1 ipv4 vrrp virtual-router -o json
 {
   "44": {
     "accept-mode": "on",
@@ -296,10 +296,10 @@ cumulus@switch:~$ nv show interface swp1 ip vrrp virtual-router -o json
 }
 ```
 
-To show configuration information about a specific VRRP virtual router, run the NVUE `nv show interface <interface-id> ip vrrp virtual-router <virtual-router-id>` command or the vtysh `show vrrp <virtual-router-id>` command:
+To show configuration information about a specific VRRP virtual router, run the NVUE `nv show interface <interface-id> ipv4 vrrp virtual-router <virtual-router-id>` command (`nv show interface <interface-id> ipv6 vrrp virtual-router <virtual-router-id>` command) or the vtysh `show vrrp <virtual-router-id>` command:
 
 ```
-cumulus@switch:~$ nv show interface swp1 ip vrrp virtual-router 44
+cumulus@switch:~$ nv show interface swp1 ipv4 vrrp virtual-router 44
                         operational  applied
 ----------------------  -----------  ------------
 advertisement-interval  5000         5000

@@ -68,7 +68,7 @@ To check the NTP peer status:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv show service ntp mgmt server
+cumulus@switch:~$ nv show system ntp server
                  delay    iburst  jitter  offset   peer-state  poll  reach  refid         stratum  type  when
 ---------------  -------  ------  ------  -------  ----------  ----  -----  ------------  -------  ----  ----
 23.157.160.168   67.4257          2.3843  -3.9378  -           128   377    129.6.15.28   2        u     41  
@@ -76,10 +76,6 @@ cumulus@switch:~$ nv show service ntp mgmt server
 h134-215-155-17  59.4988          2.3081  -2.6286  +           128   377    216.239.35.0  2        u     15  
 li1150-42.membe  40.9645          0.4877  -1.9565  +           64    376    129.7.1.66    2        u     162
 ```
-
-{{%notice note%}}
-The `nv show service ntp <vrf-id> pool` command shows information about the configured NTP pools. However, this command does not show an accurate representation of the connectivity state to the NTP reference clocks on the network. To show the actual state of the NTP reference servers discovered by the switch, run the `nv show service ntp <vrf-id> server` command.
-{{%/notice%}}
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

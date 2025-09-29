@@ -1846,7 +1846,7 @@ leaf01# configure terminal
 leaf01(config)# router bgp 65011 vrf blue
 leaf01(config-router)# bgp cluster-id 10.10.10.5
 leaf01(config-router)# end
-leaf01 write memory
+leaf01# write memory
 leaf01# exit
 ```
 

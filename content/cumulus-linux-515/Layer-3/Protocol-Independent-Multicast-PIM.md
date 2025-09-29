@@ -60,7 +60,7 @@ These example commands configure leaf01, leaf02 and spine01 as shown in the topo
 ```
 cumulus@leaf01:~$ nv set router pim enable on
 cumulus@leaf01:~$ nv set interface vlan10 router pim
-cumulus@leaf01:~$ nv set interface vlan10 ip igmp
+cumulus@leaf01:~$ nv set interface vlan10 ipv4 igmp
 cumulus@leaf01:~$ nv set interface swp51 router pim
 cumulus@leaf01:~$ nv set vrf default router pim address-family ipv4 rp 10.10.10.101
 cumulus@leaf01:~$ nv config apply
@@ -72,7 +72,7 @@ cumulus@leaf01:~$ nv config apply
 ```
 cumulus@leaf02:~$ nv set router pim enable on
 cumulus@leaf02:~$ nv set interface vlan20 router pim
-cumulus@leaf02:~$ nv set interface vlan20 ip igmp
+cumulus@leaf02:~$ nv set interface vlan20 ipv4 igmp
 cumulus@leaf02:~$ nv set interface swp51 router pim
 cumulus@leaf02:~$ nv set vrf default router pim address-family ipv4 rp 10.10.10.101
 cumulus@leaf02:~$ nv config apply
@@ -1018,21 +1018,21 @@ You can set the following optional IGMP settings on a PIM interface:
 The following example sets the last member query interval to 80, the maximum response time for IGMP general queries to 120 seconds, the number of group-specific queries that a querier can send to 5, and configures IGMP to send query-host messages every 180 seconds:
 
 ```
-cumulus@switch:~$ nv set interface swp1 ip igmp last-member-query-interval 80
-cumulus@switch:~$ nv set interface swp1 ip igmp query-max-response-time 120
-cumulus@switch:~$ nv set interface swp1 ip igmp last-member-query-count 5
-cumulus@switch:~$ nv set interface swp1 ip igmp query-interval 180
+cumulus@switch:~$ nv set interface swp1 ipv4 igmp last-member-query-interval 80
+cumulus@switch:~$ nv set interface swp1 ipv4 igmp query-max-response-time 120
+cumulus@switch:~$ nv set interface swp1 ipv4 igmp last-member-query-count 5
+cumulus@switch:~$ nv set interface swp1 ipv4 igmp query-interval 180
 cumulus@switch:~$ nv config apply
 ```
 
 The following example enables fast leave processing:
 
 ```
-cumulus@switch:~$ nv set interface swp1 ip igmp fast-leave on
+cumulus@switch:~$ nv set interface swp1 ipv4 igmp fast-leave enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To disable fast leave processing, run the `nv set interface <interface-id> ip igmp fast-leave off` command.
+To disable fast leave processing, run the `nv set interface <interface-id> ipv4 igmp fast-leave disabled` command.
 
 {{< /tab >}}
 {{< tab "Linux and vtysh Commands ">}}
@@ -1133,7 +1133,7 @@ You can use a multicast sender or receiver over a dual-attached MLAG bond. On th
 
 ```
 cumulus@leaf01:~$ nv set interface vlan10 router pim active-active on
-cumulus@leaf01:~$ nv set interface vlan10 ip igmp
+cumulus@leaf01:~$ nv set interface vlan10 ipv4 igmp
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -1279,7 +1279,7 @@ Active Source           Group            RPT  IIF               OIL
 To show the IGMP configuration settings for an interface, run the `nv show interface <interface-id> ip igmp` command
 
 ```
-cumulus@lhr:~$ nv show interface swp3 ip igmp
+cumulus@lhr:~$ nv show interface swp3 ipv4 igmp
                             operational  applied
 ---------------------------  -----------  -------
 enable                                    on
@@ -1661,7 +1661,7 @@ cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast netw
 cumulus@leaf01:~$ nv set interface lo router pim
 cumulus@leaf01:~$ nv set interface swp51 router pim
 cumulus@leaf01:~$ nv set interface vlan10 router pim
-cumulus@leaf01:~$ nv set interface vlan10 ip igmp
+cumulus@leaf01:~$ nv set interface vlan10 ipv4 igmp
 cumulus@leaf01:~$ nv set vrf default router pim address-family ipv4 rp 10.10.10.101
 cumulus@leaf01:~$ nv config apply
 ```
@@ -1685,7 +1685,7 @@ cumulus@leaf02:~$ nv set vrf default router bgp address-family ipv4-unicast netw
 cumulus@leaf02:~$ nv set interface lo router pim
 cumulus@leaf02:~$ nv set interface swp51 router pim
 cumulus@leaf02:~$ nv set interface vlan20 router pim
-cumulus@leaf02:~$ nv set interface vlan20 ip igmp
+cumulus@leaf02:~$ nv set interface vlan20 ipv4 igmp
 cumulus@leaf02:~$ nv set vrf default router pim address-family ipv4 rp 10.10.10.101
 cumulus@leaf02:~$ nv config apply
 ```

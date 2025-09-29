@@ -3101,7 +3101,7 @@ cumulus@switch:~$ nv set system aaa user test1
 cumulus@switch:~$ nv set system aaa user test1 full-name "Test User" 
 cumulus@switch:~$ nv set system aaa user test1 password "abcd@test"
 cumulus@switch:~$ nv set system aaa user test1 role nvue-monitor
-cumulus@switch:~$ nv set system aaa user test1 enable on
+cumulus@switch:~$ nv set system aaa user test1 state enabled
 ```
 
 This example deletes the user `test1`.

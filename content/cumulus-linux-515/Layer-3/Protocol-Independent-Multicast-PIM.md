@@ -38,7 +38,7 @@ The following illustration shows a basic PIM <span class="a-tooltip">[ASM](## "A
 To configure PIM:
 - Enable PIM on all interfaces that connect to a multicast source or receiver, and on the interface with the RP address.
 
-  With NVUE, you must also run the `nv set router pim enable on` command to enable and start the PIM service. This is not required for vtysh configuration.
+  With NVUE, you must also run the `nv set router pim state enabled` command to enable and start the PIM service. This is not required for vtysh configuration.
 
 - Enable <span class="a-tooltip">[IGMP](## "Internet Group Management Protocol")</span> on all interfaces that attach to a host and all interfaces that attach to a multicast receiver. IGMP version 3 is the default. Only specify the version if you want to use IGMP version 2. For <span class="a-tooltip">[SSM](## "Source Specific Multicast")</span>, you must use IGMP version 3.
 - For <span class="a-tooltip">[ASM](## "Any-source Mulitcast")</span>, on each PIM enabled switch, specify the IP address of the RP for the multicast group. You can also configure PIM to send traffic from specific multicast groups to specific RPs.
@@ -58,7 +58,7 @@ These example commands configure leaf01, leaf02 and spine01 as shown in the topo
 {{< tab "leaf01 ">}}
 
 ```
-cumulus@leaf01:~$ nv set router pim enable on
+cumulus@leaf01:~$ nv set router pim state enabled
 cumulus@leaf01:~$ nv set interface vlan10 router pim
 cumulus@leaf01:~$ nv set interface vlan10 ipv4 igmp
 cumulus@leaf01:~$ nv set interface swp51 router pim
@@ -70,7 +70,7 @@ cumulus@leaf01:~$ nv config apply
 {{< tab "leaf02 ">}}
 
 ```
-cumulus@leaf02:~$ nv set router pim enable on
+cumulus@leaf02:~$ nv set router pim state enabled
 cumulus@leaf02:~$ nv set interface vlan20 router pim
 cumulus@leaf02:~$ nv set interface vlan20 ipv4 igmp
 cumulus@leaf02:~$ nv set interface swp51 router pim
@@ -82,7 +82,7 @@ cumulus@leaf02:~$ nv config apply
 {{< tab "spine01 ">}}
 
 ```
-cumulus@spine01:~$ nv set router pim enable on
+cumulus@spine01:~$ nv set router pim state enabled
 cumulus@spine01:~$ nv set interface swp1 router pim
 cumulus@spine01:~$ nv set interface swp2 router pim
 cumulus@spine01:~$ nv set vrf default router pim address-family ipv4 rp 10.10.10.101 
@@ -434,14 +434,14 @@ Recalculating all stream paths over one of the ECMP paths can cause some packet 
 To configure PIM to use all the available next hops when installing mroutes:
 
 ```
-cumulus@switch:~$ nv set vrf default router pim ecmp enable on
+cumulus@switch:~$ nv set vrf default router pim ecmp state enabled
 cumulus@switch:~$ nv config apply
 ```
 
 To recalculate all stream paths over one of the ECMP paths if the switch loses a path:
 
 ```
-cumulus@switch:~$ nv set vrf default router pim ecmp rebalance on
+cumulus@switch:~$ nv set vrf default router pim ecmp rebalance enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -749,7 +749,7 @@ You can use {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD">}} f
 {{< tab "leaf01 ">}}
 
 ```
-cumulus@leaf01:~$ nv set interface swp51 router pim bfd enable on
+cumulus@leaf01:~$ nv set interface swp51 router pim bfd enabled
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -757,7 +757,7 @@ cumulus@leaf01:~$ nv config apply
 {{< tab "spine01 ">}}
 
 ```
-cumulus@spine01:~$ nv set interface swp1 router pim bfd enable on
+cumulus@spine01:~$ nv set interface swp1 router pim bfd state enabled
 cumulus@spine01:~$ nv config apply
 ```
 
@@ -815,7 +815,7 @@ You can configure the switch to allow joins from all upstream neighbors or you c
 The following example command configures PIM to ignore the RP check for all upstream neighbors:
 
 ```
-cumulus@switch:~$ nv set interface swp50 router pim address-family ipv4-unicast allow-rp enable on
+cumulus@switch:~$ nv set interface swp50 router pim address-family ipv4-unicast allow-rp state enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -1646,7 +1646,7 @@ The following example configures PIM and BGP on leaf01, leaf02, and spine01.
 {{< tab "leaf01 ">}}
 
 ```
-cumulus@leaf01:~$ nv set router pim enable on
+cumulus@leaf01:~$ nv set router pim state enabled
 cumulus@leaf01:~$ nv set interface lo ip address 10.10.10.1/32
 cumulus@leaf01:~$ nv set interface swp1,swp49,swp51
 cumulus@leaf01:~$ nv set interface swp1 bridge domain br_default
@@ -1670,7 +1670,7 @@ cumulus@leaf01:~$ nv config apply
 {{< tab "leaf02 ">}}
 
 ```
-cumulus@leaf02:~$ nv set router pim enable on
+cumulus@leaf02:~$ nv set router pim state enabled
 cumulus@leaf02:~$ nv set interface lo ip address 10.10.10.2/32
 cumulus@leaf02:~$ nv set interface swp2,swp49,swp51
 cumulus@leaf02:~$ nv set interface swp2 bridge domain br_default
@@ -1694,7 +1694,7 @@ cumulus@leaf02:~$ nv config apply
 {{< tab "spine01 ">}}
 
 ```
-cumulus@spine01:~$ nv set router pim enable on
+cumulus@spine01:~$ nv set router pim state enabled
 cumulus@spine01:~$ nv set interface lo ip address 10.10.10.101/32
 cumulus@spine01:~$ nv set router bgp autonomous-system 65199
 cumulus@spine01:~$ nv set router bgp router-id 10.10.10.101

@@ -614,14 +614,14 @@ To enable allowas-in:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath allow-my-asn enable on
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath allow-my-asn state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To disable allowas-in, run the `nv unset` command:
+To disable allowas-in:
 
 ```
-cumulus@switch:~$ nv unset vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath allow-my-asn enable on
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath allow-my-asn state disabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -992,7 +992,7 @@ Ensure that you have activated the IPv6 peers under the IPv4 unicast address fam
 
 ```
 cumulus@switch:~$ nv set vrf default router bgp neighbor 2001:db8:0002::0a00:0002 capabilities extended-nexthop on
-cumulus@switch:~$ nv set vrf default router bgp neighbor 2001:db8:0002::0a00:0002 address-family ipv4-unicast enable on
+cumulus@switch:~$ nv set vrf default router bgp neighbor 2001:db8:0002::0a00:0002 address-family ipv4-unicast state enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -1320,7 +1320,7 @@ The following example commands configure the switch to send a 10.0.0.0/8 summary
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast conditional-advertise enable on 
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast conditional-advertise state enabled 
 cumulus@leaf01:~$ nv set router policy prefix-list EXIST rule 10 match 10.0.0.0/24
 cumulus@leaf01:~$ nv set router policy prefix-list EXIST rule 10 action permit
 cumulus@leaf01:~$ nv set router policy route-map EXISTMAP rule 10 match type ipv4

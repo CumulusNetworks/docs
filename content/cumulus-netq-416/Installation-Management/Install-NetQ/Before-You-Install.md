@@ -18,7 +18,7 @@ Consider the following deployment options and requirements before you install th
 | KVM or VMware hypervisor | KVM or VMware hypervisor | KVM or VMware hypervisor |
 | No high-availability option | High availability | High availability |
 | System requirements<br><br> On-premises: 16 virtual CPUs, 64GB RAM, 500GB SSD disk<br><br>Cloud: 4 virtual CPUs, 8GB RAM, 64GB SSD disk | System requirements (per node)<br><br> On-premises: 16 virtual CPUs, 64GB RAM, 500GB SSD disk<br>|  System requirements (per node)<br><br>On-premises: 48 virtual CPUs, 512GB RAM, 3.2TB SSD disk|
-| Not supported:<ul><li>NVLink for NetQ</li></ul> Limited support: <ul><li>OpenTelemetry (OTLP) metrics (on-prem only)</li><li>Grafana integration (on-prem only)</li><li>Slurm integration (on-prem only)</li></ul> | Not supported:<ul><li>NVLink for NetQ</li>|  Not supported:<ul><li>Network snapshots</li><li>Trace requests</li><li>Flow analysis</li><li>Duplicate IP address validations</li><li>MAC commentary</li></ul> Limited support: <ul><li>Link health view (beta)</li></ul>|
+| Not supported:<ul><li>NVLink for NetQ</li></ul> Limited support: <ul><li>OpenTelemetry (OTLP) metrics (on-prem only)</li><li>Grafana integration (on-prem only)</li><li>Slurm integration (on-prem only)</li></ul> | Not supported:<ul><li>NVLink for NetQ</li>|  Not supported:<ul><li>Network snapshots</li><li>Trace requests</li><li>Flow analysis</li><li>MAC commentary</li></ul> Limited support: <ul><li>Link health view (beta)</li><li>Duplicate IP address validations (beta)</li></ul>|
 
 *When switches are {{<link title="Integrate NetQ with Grafana/#requirements-and-support" text="configured with both OpenTelemetry (OTLP)">}} and the NetQ agent, switch support per deployment model is reduced by half.
 

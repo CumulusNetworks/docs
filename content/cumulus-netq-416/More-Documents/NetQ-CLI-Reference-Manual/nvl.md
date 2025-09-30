@@ -6,37 +6,8 @@ toc: 3
 right_toc_levels: 1
 pdfhidden: true
 type: nojsscroll
-bookhidden: true
 ---
 <!-- vale NVIDIA.HeadingTitles = NO -->
-<!-- vale off -->
-## netq nvl bootstrap reset
-<!-- vale on -->
-Resets the NVLink bootstrap configuration to the default settings. This command removes all custom configurations and can be used for troubleshooting or as part of the preparation process for a fresh installation.
-
-### Syntax
-
-```
-netq nvl bootstrap reset 
-    [config <text-config-path>]
-```
-
-### Required Arguments
-
-None
-
-### Options
-
-| Option | Value | Description |
-| ---- | ---- | ---- |
-| config | \<text-config-path\> | Specify a path to the configuration file used for the reset |
-
-
-### Related Commands
-
-None
-
-- - -
 ## netq nvl cluster backup
 <!-- vale on -->
 

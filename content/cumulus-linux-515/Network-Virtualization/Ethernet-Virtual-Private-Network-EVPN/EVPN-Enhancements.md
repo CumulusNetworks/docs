@@ -506,10 +506,10 @@ The following example commands turn off IPv4 and IPv6 forwarding on VLAN 10 and 
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set interface vlan10 ip ipv4 forward off
-cumulus@leaf01:~$ nv set interface vlan10 ip ipv6 forward off
-cumulus@leaf01:~$ nv set interface vlan20 ip ipv4 forward off
-cumulus@leaf01:~$ nv set interface vlan20 ip ipv6 forward off
+cumulus@leaf01:~$ nv set interface vlan10 ipv4 forward disabled
+cumulus@leaf01:~$ nv set interface vlan10 ipv6 forward disabled
+cumulus@leaf01:~$ nv set interface vlan20 ipv4 forward disabled
+cumulus@leaf01:~$ nv set interface vlan20 ipv6 forward disabled
 cumulus@leaf01:~$ nv config apply
 ```
 

@@ -990,7 +990,7 @@ You can configure *Forced Master* mode on a PTP port so that it is always in a m
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface swp1 ptp forced-master on
+cumulus@switch:~$ nv set interface swp1 ptp forced-master enabled
 cumulus@switch:~$ nv config apply
 ```
 

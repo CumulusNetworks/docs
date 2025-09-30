@@ -286,23 +286,22 @@ To show the full list of NVUE commands, run `nv list-commands`. For example:
 
 ```
 cumulus@switch:~$ nv list-commands
-nv show platform
-nv show platform inventory
-nv show platform inventory <inventory-id>
-nv show platform firmware
-nv show platform firmware <platform-component-id>
-nv show platform transceiver
-nv show platform transceiver brief
-nv show platform transceiver detail
-nv show platform transceiver <transceiver-id>
-nv show platform transceiver <transceiver-id> channel
-nv show platform transceiver <transceiver-id> channel <channel-id>
-nv show platform environment
-nv show platform environment fan
-nv show platform environment fan <fan-id>
-nv show platform environment psu
-nv show platform environment psu <psu-id>
-nv show platform environment led
+nv show vrf
+nv show vrf evpn
+nv show vrf brief
+nv show vrf <vrf-id>
+nv show vrf <vrf-id> loopback
+nv show vrf <vrf-id> loopback ip
+nv show vrf <vrf-id> loopback ip address
+nv show vrf <vrf-id> loopback ip address <ip-prefix-id>
+nv show vrf <vrf-id> evpn
+nv show vrf <vrf-id> evpn vni
+nv show vrf <vrf-id> evpn bgp-info
+nv show vrf <vrf-id> evpn remote-router-mac
+nv show vrf <vrf-id> evpn remote-router-mac <mac-address-id>
+nv show vrf <vrf-id> evpn nexthop-vtep
+nv show vrf <vrf-id> evpn nexthop-vtep <nexthop-vtep-id>
+nv show vrf <vrf-id> router
 ...
 ```
 
@@ -311,12 +310,12 @@ You can show the list of commands for a command grouping. For example, to show t
 ```
 cumulus@switch:~$ nv list-commands interface
 nv show interface
-nv show interface <interface-id>
-nv show interface <interface-id> ip
-nv show interface <interface-id> ip address
-nv show interface <interface-id> ip address <ip-prefix-id>
-nv show interface <interface-id> ip gateway
-nv show interface <interface-id> ip gateway <ip-address-id>
+nv show interface brief
+nv show interface counters
+nv show interface carrier-stats
+nv show interface small
+nv show interface lldp-detail
+nv show interface lldp
 ...
 ```
 

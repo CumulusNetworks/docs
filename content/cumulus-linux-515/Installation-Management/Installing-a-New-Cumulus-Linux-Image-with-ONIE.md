@@ -80,6 +80,26 @@ Follow the steps below if you can log into the switch on a serial console (ONIE)
 {{< /tab >}}
 {{< tab "Install from Cumulus Linux ">}}
 
+{{< tabs "TabID83 ">}}
+{{< tab "NVUE Commands ">}}
+
+1. Place the Cumulus Linux image in a directory on the web server.
+
+2. From the Cumulus Linux command prompt, run the `nv action install system image onie <image>` command:
+
+    ```
+    cumulus@switch:~$ nv action install system image onie http://10.0.1.251/path/to/cumulus-install-x86_64.bin
+    ```
+
+3. Reboot the switch with the `nv action install system image onie <image> activate reboot` command:
+
+   ```
+   cumulus@switch:~$ nv action install system image onie http://10.0.1.251/path/to/cumulus-install-x86_64.bin activate reboot
+   ```
+
+{{< /tab >}}
+{{< tab "Linux Commands">}}
+
 1. Place the Cumulus Linux image in a directory on the web server.
 
 2. From the Cumulus Linux command prompt, run the `onie-install` command, then reboot the switch.
@@ -87,6 +107,9 @@ Follow the steps below if you can log into the switch on a serial console (ONIE)
     ```
     cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/path/to/cumulus-install-x86_64.bin
     ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -131,6 +154,31 @@ You need a console connection to access the switch; you cannot perform this proc
 {{< /tab >}}
 {{< tab "Install from Cumulus Linux ">}}
 
+{{< tabs "TabID134 ">}}
+{{< tab "NVUE Commands ">}}
+
+1. Place the Cumulus Linux image in a directory on your web server.
+
+2. From the Cumulus Linux command prompt, run the `nv action install system image onie <image>` command:
+
+   ```
+   cumulus@switch:~$ nv action install system image onie /path/to/cumulus-install-x86_64.bin
+   Action executing ... 
+   Installing ONIE image, it might take a few minutes ... 
+   Action executing ... 
+   Reboot is required to complete the ONIE installation 
+   Action succeeded
+   ```
+
+3. Reboot the switch with the `nv action install system image onie <image> activate reboot` command:
+
+   ```
+   cumulus@switch:~$ nv action install system image onie /path/to/cumulus-install-x86_64.bin activate reboot
+   ```
+
+{{< /tab >}}
+{{< tab "Linux Commands">}}
+
 1. Place the Cumulus Linux image in a directory on your web server.
 
 2. From the Cumulus Linux command prompt, run the `onie-install` command, then reboot the switch.
@@ -138,6 +186,9 @@ You need a console connection to access the switch; you cannot perform this proc
     ```
     cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/path/to/cumulus-install-x86_64.bin
     ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -180,13 +231,41 @@ Follow the steps below if your laptop is on the same network as the switch eth0 
 {{< /tab >}}
 {{< tab "Install from Cumulus Linux ">}}
 
-1. Place the Cumulus Linux image into an FTP directory (TFTP is *not* supported in  Cumulus Linux).
+{{< tabs "TabID211 ">}}
+{{< tab "NVUE Commands ">}}
+
+1. Place the Cumulus Linux image into an FTP directory (TFTP is *not* supported in Cumulus Linux).
+
+2. From the Cumulus Linux command prompt, run the following command:
+
+    ```
+    cumulus@switch:~$ nv action install system image onie ftp://local-ftp-server/cumulus-install-x86_64.bin
+    Action executing ... 
+    Installing ONIE image, it might take a few minutes ... 
+    Action executing ... 
+    Reboot is required to complete the ONIE installation 
+    Action succeeded
+    ```
+
+3. Reboot the switch with the `nv action install system image onie <image> activate reboot` command:
+
+   ```
+   cumulus@switch:~$ nv action install system image onie ftp://local-ftp-server/cumulus-install-x86_64.bin activate reboot
+   ```
+
+{{< /tab >}}
+{{< tab "Linux Commands">}}
+
+1. Place the Cumulus Linux image into an FTP directory (TFTP is *not* supported in Cumulus Linux).
 
 2. From the Cumulus Linux command prompt, run the following command, then reboot the switch.
 
     ```
     cumulus@switch:~$ sudo onie-install -a -i ftp://local-ftp-server/cumulus-install-x86_64.bin
     ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{< /tab >}}
 {{< /tabs >}}

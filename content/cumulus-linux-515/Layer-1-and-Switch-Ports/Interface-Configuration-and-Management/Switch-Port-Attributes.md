@@ -488,7 +488,7 @@ You can use FEC with auto-negotiation on DACs only.
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface swp1 link auto-negotiate on
+cumulus@switch:~$ nv set interface swp1 link auto enabled
 cumulus@switch:~$ nv config apply
 ```
 

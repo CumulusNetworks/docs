@@ -28,6 +28,8 @@ Cumulus Linux 5.15.0 contains new platforms, new features and improvements, and 
 - {{<link url="SSH-for-Remote-Access/#ssh-ciphers" text="SSH cipher configuration">}}
 - Users must re-authenticate when changing authenticators
 - Radius user Hardening
+- Changes in DSCP to traffic class mapping for MRC QOS template
+- Offline package upgrade
 - Telemetry
   - You can now run {{<link url="Open-Telemetry-Export" text="OTLP">}} and {{<link url="gNMI-Streaming" text="gNMI streaming">}} at the same time
   - {{<link url="gNMI-Streaming/#gNOI-operational-commands" text="gNOI operational commands">}}

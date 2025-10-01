@@ -34,12 +34,16 @@ If your network comprises more than 10,000 nodes, contact NVIDIA support for ass
 
 The cable validation tool is compatible with Spectrum-X and NVLink fabrics running Cumulus Linux or NVOS, respectively.
 
-### Port Requirements
-The cable validation tool uses port 8251 for communication. Follow the instructions to {{<exlink url="https://docs.nvidia.com/networking/display/cablevalidationtool160/open+agent+port" text="open port 8251">}} before using the cable validator.
+### Port and Switch Requirements
 
-### Switch Configurations
-Configure each switch...TBD
+The cable validation tool uses port 8251 for agent communication. Before using the cable validator, open the port on the switch's firewall then add a whitelist rule to allow the agent to access the port:
 
+```
+nvidia@switch:~$ nv set acl acl-default-whitelist rule 200 match ip tcp dest-port 8251
+nvidia@switch:~$ nv set acl acl-default-whitelist type ipv4
+nvidia@switch:~$ nv config apply
+nvidia@switch:~$ nv config save
+```
 ### User Roles
 
 All users work from a single instance of the tool. 

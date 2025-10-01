@@ -27,7 +27,7 @@ To add the NTP servers you want to use, run the following commands. Include the 
 The NVUE command requires a VRF. The following command adds the NTP servers in the default VRF.
 
 ```
-cumulus@switch:~$ nv set service ntp default server 4.cumulusnetworks.pool.ntp.org iburst on
+cumulus@switch:~$ nv set system ntp server 4.cumulusnetworks.pool.ntp.org iburst enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -132,7 +132,7 @@ By default, the source interface that NTP uses is eth0. The following example co
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set service ntp default listen swp10
+cumulus@switch:~$ nv set system ntp listen swp10
 cumulus@switch:~$ nv config apply
 ```
 

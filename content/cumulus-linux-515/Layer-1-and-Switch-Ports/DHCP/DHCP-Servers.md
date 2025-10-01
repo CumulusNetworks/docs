@@ -6,10 +6,6 @@ toc: 3
 ---
 A DHCP server automatically provides and assigns IP addresses and other network parameters to client devices. It relies on <span class="a-tooltip">[DHCP](## "Dynamic Host Configuration Protocol")</span> to respond to broadcast requests from clients.
 
-{{%notice note%}}
-If you intend to run the `dhcpd` service within a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}}, including the {{<link url="Management-VRF" text="management VRF">}}, follow {{<link url="Management-VRF/#run-services-within-the-management-vrf" text="these steps">}}.
-{{%/notice%}}
-
 ## Basic Configuration
 
 This section shows you how to configure a DHCP server using the following topology, where the DHCP server is a switch running Cumulus Linux.
@@ -17,10 +13,9 @@ This section shows you how to configure a DHCP server using the following topolo
 {{< img src = "/images/cumulus-linux/dhcp-server-topology.png" >}}
 
 To configure the DHCP server on a Cumulus Linux switch:
-- Create a DHCP pool by providing a pool ID. The ID is an IPv4 or IPv6 prefix.
-- Provide a name for the pool (optional).
-- Provide the IP address of the DNS Server you want to use in this pool. You can assign multiple DNS servers.
-- Provide the domain name you want to use for this pool for name resolution (optional).
+- Create a DHCP subnet (pool) by providing an IPv4 or IPv6 prefix.
+- Provide the IP address of the DNS Server you want to use in this subnet. You can assign multiple DNS servers.
+- Provide the domain name you want to use for this subnet for name resolution (optional).
 - Define the range of IP addresses available for assignment.
 - Provide the default gateway IP address (optional).
 
@@ -30,11 +25,11 @@ In addition, you can configure a static IP address for a resource, such as a ser
 - Provide the MAC address of the resource to which you want to assign the IP address. Instead of the MAC address, you can set the interface name for the static assignment; for example swp1.
 
 {{%notice note%}}
-- To configure static IP address assignments, you must first configure a pool.
-- You can set the DNS server IP address and domain name globally or specify different DNS server IP addresses and domain names for different pools.
+- To configure static IP address assignments, you must first configure a subnet.
+- You can set the DNS server IP address and domain name globally or specify different DNS server IP addresses and domain names for different subnets.
 {{%/notice%}}
 
-The following example configures the `storage-servers` pool with DNS and static DHCP assignments for `server1`.
+The following example configures the subnet 10.1.10.0/24 with DNS and static DHCP assignments for `server1`.
 
 {{< tabs "TabID27 ">}}
 {{< tab "NVUE Commands ">}}
@@ -43,51 +38,50 @@ The following example configures the `storage-servers` pool with DNS and static 
 {{< tab "IPv4 ">}}
 
 ```
-cumulus@switch:~$ nv set service dhcp-server default pool 10.1.10.0/24 pool-name storage-servers
-cumulus@switch:~$ nv set service dhcp-server default pool 10.1.10.0/24 domain-name example.com
-cumulus@switch:~$ nv set service dhcp-server default pool 10.1.10.0/24 domain-name-server 192.168.200.53
-cumulus@switch:~$ nv set service dhcp-server default pool 10.1.10.0/24 range 10.1.10.100 to 10.1.10.199
-cumulus@switch:~$ nv set service dhcp-server default pool 10.1.10.0/24 gateway 10.1.10.1
-cumulus@switch:~$ nv set service dhcp-server default static server1
-cumulus@switch:~$ nv set service dhcp-server default static server1 ip-address 10.0.0.2
-cumulus@switch:~$ nv set service dhcp-server default static server1 mac-address 44:38:39:00:01:7e
+cumulus@switch:~$ nv set vrf default dhcp-server-v4 subnet 10.1.10.0/24
+cumulus@switch:~$ nv set vrf default dhcp-server-v4 subnet 10.1.10.0/24 domain-name example.com
+cumulus@switch:~$ nv set vrf default dhcp-server-v4 subnet 10.1.10.0/24 domain-name-server 192.168.200.53
+cumulus@switch:~$ nv set vrf default dhcp-server-v4 subnet 10.1.10.0/24 range 10.1.10.100 to 10.1.10.199
+cumulus@switch:~$ nv set vrf default dhcp-server-v4 subnet 10.1.10.0/24 gateway 10.1.10.1
+cumulus@switch:~$ nv set vrf default dhcp-server-v4 static-host server1
+cumulus@switch:~$ nv set vrf default dhcp-server-v4 static-host server1 ip-address 10.0.0.2
+cumulus@switch:~$ nv set vrf default dhcp-server-v4 static-host server1 mac-address 44:38:39:00:01:7e
 cumulus@switch:~$ nv config apply
 ```
 
-To allocate DHCP addresses from the configured pool, you must configure an interface with an IP address from the pool subnet. For example:
+To allocate DHCP addresses from the configured subnet, you must configure an interface with an IP address from the subnet. For example:
 
 ```
 cumulus@switch:~$ nv set interface vlan10 ip address 10.1.10.1/24
 cumulus@switch:~$ nv config apply
 ```
 
-To set the DNS server IP address and domain name globally, use the `nv set service dhcp-server <vrf-id> domain-name-server <address>` and `nv set service dhcp-server <vrf-id> domain-name <domain>` commands.
+To set the DNS server IP address and domain name globally, use the `nv set vrf <vrf-id> dhcp-server-v4 domain-name-server <address>` or `nv set vrf <vrf-id> dhcp-server-v6 domain-name-server <address>` and the `nv set vrf <vrf-id> dhcp-server-v4 domain-name <domain>` `nv set vrf <vrf-id> dhcp-server-v6 domain-name <domain>`commands.
 
-To set the interface name for the static assignment, run the `nv set service dhcp-server <vrf-id> static <server> ifname` command.
+To set the interface name for the static assignment, run the `nv set vrf <vrf-id> dhcp-server-v4 static-host <server> ifname` or `nv set vrf <vrf-id> dhcp-server-v6 static-host <server> ifname`command.
 
 {{< /tab >}}
 {{< tab "IPv6 ">}}
 
 ```
-cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8:1::/64 
-cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8:1::/64 pool-name storage-servers
-cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8:1::/64 domain-name-server 2001:db8::64
-cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8:1::/64 domain-name example.com
-cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8:1::/64 range 2001:db8::100 to 2001:db8::199 
-cumulus@switch:~$ nv set service dhcp-server6 default static server1
-cumulus@switch:~$ nv set service dhcp-server6 default static server1 ip-address 2001:db8::100
-cumulus@switch:~$ nv set service dhcp-server6 default static server1 mac-address 44:38:39:00:01:7e
+cumulus@switch:~$ nv set vrf default dhcp-server-v6 subnet 2001:db8:1::/64 
+cumulus@switch:~$ nv set vrf default dhcp-server-v6 subnet 2001:db8:1::/64 domain-name-server 2001:db8::64
+cumulus@switch:~$ nv set vrf default dhcp-server-v6 subnet 2001:db8:1::/64 domain-name example.com
+cumulus@switch:~$ nv set vrf default dhcp-server-v6 subnet 2001:db8:1::/64 range 2001:db8::100 to 2001:db8::199 
+cumulus@switch:~$ nv set vrf default dhcp-server-v6 static-host server1
+cumulus@switch:~$ nv set vrf default dhcp-server-v6 static-host server1 ip-address 2001:db8::100
+cumulus@switch:~$ nv set vrf default dhcp-server-v6 static-host server1 mac-address 44:38:39:00:01:7e
 cumulus@switch:~$ nv config apply
 ```
 
-To allocate DHCP addresses from the configured pool, you must configure an interface with an IP address from the pool subnet. For example:
+To allocate DHCP addresses from the configured subnet, you must configure an interface with an IP address from the subnet. For example:
 
 ```
 cumulus@switch:~$ nv set interface vlan10 ip address 2001:db8::10/64
 cumulus@switch:~$ nv config apply
 ```
 
-To set the DNS server IP address and domain name globally, use the `nv set service dhcp-server6 <vrf-id> domain-name-server <address>` and `nv set service dhcp-server6 <vrf-id> domain-name <domain>` commands.
+To set the DNS server IP address and domain name globally, use the `nv set vrf <vrf-id> dhcp-server-v6 domain-name-server <address>` and `nv set vrf <vrf-id> dhcp-server-v6 domain-name <domain>` commands.
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -109,9 +103,9 @@ To set the DNS server IP address and domain name globally, use the `nv set servi
       default-lease-time 3600;
       max-lease-time 3600;
       default-url ;
-   pool {
-          range 10.1.10.100 10.1.10.199;
-          }
+      ping-check off;
+      range 10.1.10.100 10.1.10.199;
+
    }
    #Statics
    group {
@@ -122,7 +116,7 @@ To set the DNS server IP address and domain name globally, use the `nv set servi
    }
    ```
 
-To set the DNS server IP address and domain name globally, add the DNS server IP address and domain name before the pool information in the `/etc/dhcp/dhcpd-default.conf` file. For example:
+To set the DNS server IP address and domain name globally, add the DNS server IP address and domain name before the subnet information in the `/etc/dhcp/dhcpd-default.conf` file. For example:
 
 ```
 cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd-default.conf
@@ -159,15 +153,13 @@ subnet 10.1.10.0 netmask 255.255.255.0
    ```
    cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd6-default.conf
    authoritative;
-   subnet6 2001:db8::/64 {
-      option domain-name-servers 2001:db8:100::64;
-      option domain-name example.com;
+   subnet6 2001:db8:1::/64 {
+      option dhcp6.name-servers 2001:db8::64;
+      option domain-name "example.com";
       default-lease-time 3600;
       max-lease-time 3600;
-      default-url ;
-      pool {
-          range6 2001:db8:1::100 2001:db8::199;
-      }
+      ping-check off;
+      range6 2001:db8::100 2001:db8::199;
    }
    #Statics
    group {
@@ -185,7 +177,7 @@ cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd6-default.conf
 authoritative;
 option domain-name servers;
 option domain-name-servers 2001:db8:100::64;
-subnet6 2001:db8::/64
+subnet6 2001:db8::/64 {
    default-lease-time 3600;
    max-lease-time 3600;
 ...
@@ -226,7 +218,7 @@ You can set the network address lease time assigned to DHCP clients. You can spe
 {{< tab "IPv4 ">}}
 
 ```
-cumulus@switch:~$ nv set service dhcp-server default pool 10.1.10.0/24 lease-time 200000
+cumulus@switch:~$ nv set vrf default dhcp-server-v4 subnet 10.1.10.0/24 lease-time 200000
 cumulus@switch:~$ nv config apply
 ```
 
@@ -234,7 +226,7 @@ cumulus@switch:~$ nv config apply
 {{< tab "IPv6 ">}}
 
 ```
-cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8:/64 lease-time 200000
+cumulus@switch:~$ nv set vrf default dhcp-server-v6 subnet 2001:db8::/64 lease-time 200000
 cumulus@switch:~$ nv config apply
 ```
 
@@ -257,10 +249,8 @@ cumulus@switch:~$ nv config apply
       option domain-name example.com;
       default-lease-time 200000;
       max-lease-time 200000;
-      default-url ;
-   pool {
-          range 10.1.10.100 10.1.10.199;
-          }
+      ping-check off;
+      range 10.1.10.100 10.1.10.199;
    }
    ```
 
@@ -283,10 +273,9 @@ cumulus@switch:~$ nv config apply
       option domain-name example.com;
       default-lease-time 200000;
       max-lease-time 200000;
-      default-url ;
-      pool {
-          range6 2001:db8:1::100 2001:db8::199;
-      }
+      default-url;
+      ping-check off;
+      range6 2001:db8:1::100 2001:db8::199;
    }
    ```
 
@@ -313,7 +302,7 @@ Configure the DHCP server to ping the address you want to assign to a client bef
 {{< tab "IPv4 ">}}
 
 ```
-cumulus@switch:~$ nv set service dhcp-server default pool 10.1.10.0/24 ping-check on
+cumulus@switch:~$ nv set vrf default dhcp-server-v4 subnet 10.1.10.0/24 ping-check enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -321,7 +310,7 @@ cumulus@switch:~$ nv config apply
 {{< tab "IPv6 ">}}
 
 ```
-cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8::/64 ping-check on
+cumulus@switch:~$ nv set vrf default dhcp-server-v6 subnet 2001:db8::/64 ping-check enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -344,11 +333,8 @@ cumulus@switch:~$ nv config apply
       option domain-name example.com;
       default-lease-time 200000;
       max-lease-time 200000;
-      ping-check true;
-      default-url ;
-   pool {
-          range 10.1.10.100 10.1.10.199;
-          }
+      ping-check on
+      range 10.1.10.100 10.1.10.199;
    }
    ```
    
@@ -371,10 +357,8 @@ cumulus@switch:~$ nv config apply
       option domain-name example.com;
       default-lease-time 200000;
       max-lease-time 200000;
-      ping-check true;
-      default-url ;
-      pool {
-          range6 2001:db8:1::100 2001:db8::199;
+      ping-check on;
+      range6 2001:db8:1::100 2001:db8::199;
       }
    }
    ```
@@ -405,9 +389,9 @@ You can assign an IP address and other DHCP options based on physical location o
 {{< tab "IPv4 ">}}
 
 ```
-cumulus@switch:~$ nv set service dhcp-server default static server2
-cumulus@switch:~$ nv set service dhcp-server default static server2 ip-address 10.0.0.3
-cumulus@switch:~$ nv set service dhcp-server default static server2 ifname swp1
+cumulus@switch:~$ nv set vrf default dhcp-server-v4 static-host server2
+cumulus@switch:~$ nv set vrf default dhcp-server-v4 static-host server2 ip-address 10.0.0.3
+cumulus@switch:~$ nv set vrf default dhcp-server-v4 static-host server2 ifname swp1
 cumulus@switch:~$ nv config apply
 ```
 
@@ -415,9 +399,9 @@ cumulus@switch:~$ nv config apply
 {{< tab "IPv6 ">}}
 
 ```
-cumulus@switch:~$ nv set service dhcp-server6 default static server2
-cumulus@switch:~$ nv set service dhcp-server6 default static server2 ip-address 2001:db8:1::100
-cumulus@switch:~$ nv set service dhcp-server6 default static server2 ifname swp1
+cumulus@switch:~$ nv set vrf default dhcp-server-v6 static-host server2
+cumulus@switch:~$ nv set vrf default dhcp-server-v6 static-host server2 ip-address 2001:db8:1::100
+cumulus@switch:~$ nv set vrf default dhcp-server-v4 static-host server2 ifname swp1
 cumulus@switch:~$ nv config apply
 ```
 
@@ -479,11 +463,11 @@ group {
 
 ### Multiple Static IP Address Assignments
 
-Cumulus Linux enables you to assign multiple static IP addresses for a single connected host using the vendor-class in the DHCP request packet. Use this feature if you have different DHCP requests coming in on the same interface on the DHCP server from different end host applications.
+Cumulus Linux enables you to assign multiple static IP addresses for a single connected host using the vendor-class ID in the DHCP request packet. Use this feature if you have different DHCP requests coming in on the same interface on the DHCP server from different end host applications.
 
 The following examples assign:
-- The fixed IPv4 address 10.1.10.2 (2001:db8:1::2 for IPv6) for DHCP requests coming in on swp6 with the `vendor-class` string `bmc-string`.
-- The fixed IPv4 address 10.1.10.3 (2001:db8:1::3 for IPv6) for DHCP requests coming in on swp6 with the `vendor-class` string `mgmt-string`.
+- The fixed IPv4 address 10.1.10.2 (2001:db8:1::2 for IPv6) for DHCP requests coming in on swp6 with the `vendor-class-id` string `bmc-string`.
+- The fixed IPv4 address 10.1.10.3 (2001:db8:1::3 for IPv6) for DHCP requests coming in on swp6 with the `vendor-class-id` string `mgmt-string`.
 
 {{< tabs "TabID484 ">}}
 {{< tab "NVUE Commands ">}}
@@ -492,12 +476,10 @@ The following examples assign:
 {{< tab "IPv4 ">}}
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server2 ifname swp6 
-cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server2 ip-address 10.1.10.2 
-cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server2 vendor-class bmc-string
-cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server3 ifname swp6 
-cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server3 ip-address 10.1.10.3
-cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server3 vendor-class mgmt-string
+cumulus@leaf01:mgmt:~$ nv set vrf default dhcp-server-v4 static-host server2 ifname swp6 vendor-class-id bmc-string
+cumulus@leaf01:mgmt:~$ nv set vrf default dhcp-server-v4 static-host server2 ip-address 10.1.10.2 
+cumulus@leaf01:mgmt:~$ nv set vrf default dhcp-server-v4 static-host server3 ifname swp6 vendor-class-id mgmt-string
+cumulus@leaf01:mgmt:~$ nv set vrf default dhcp-server-v4 static-host server3 ip-address 10.1.10.3
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
@@ -505,12 +487,12 @@ cumulus@leaf01:mgmt:~$ nv config apply
 {{< tab "IPv6 ">}}
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default static server2 ifname swp6 
-cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default static server2 ip-address 2001:db8:1::2
-cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default static server2 vendor-class bmc-string
-cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default static server3 ifname swp6 
-cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default static server3 ip-address 2001:db8:1::3
-cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default static server3 vendor-class mgmt-string
+cumulus@leaf01:mgmt:~$ nv set vrf default dhcp-server-v6 static-host server2 ifname swp6 
+cumulus@leaf01:mgmt:~$ nv set vrf default dhcp-server-v6 static-host server2 ip-address 2001:db8:1::2
+cumulus@leaf01:mgmt:~$ nv set vrf default dhcp-server-v6 static-host server2 vendor-class-id bmc-string
+cumulus@leaf01:mgmt:~$ nv set vrf default dhcp-server-v6 static-host server3 ifname swp6 
+cumulus@leaf01:mgmt:~$ nv set vrf default dhcp-server-v6 static-host server3 ip-address 2001:db8:1::3
+cumulus@leaf01:mgmt:~$ nv set vrf default dhcp-server-v6 static-host server3 vendor-class-id mgmt-string
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
@@ -587,42 +569,41 @@ cumulus@leaf01:mgmt:~$ nv config apply
 {{< /tabs >}}
 
 {{%notice note%}}
-The `vendor-class` string supports an exact-match with the `vendor-class` on the incoming packet.
+The `vendor-class-id` string supports an exact-match with the `vendor-class-id` on the incoming packet.
 {{%/notice%}}
 
-To show the DHCP static configuration for all hosts, run the `nv show service dhcp-server <vrf-id> static --rev=applied` command:
+To show the DHCP static configuration for all hosts, run the `nv show vrf <vrf-id> dhcp-server-v4 static-host --rev=applied` or the `nv show vrf <vrf-id> dhcp-server-v6 static-host --rev=applied` command:
 
 ```
-cumulus@leaf01:mgmt:~$ nv show service dhcp-server default static --rev=applied
-         cumulus-provision-url  host-id-circuit-id ifname   ip-address  MAC address         vendor-class
--------  ---------------------  ------------------  ------  ----------  -----------------  ------------
-server1                                                     10.0.0.2    44:38:39:00:01:7e              
-server2                                             swp6    10.1.10.2                      bmc-string  
-server3                                             swp6    10.1.10.3                      mgmt-string
+cumulus@leaf01:mgmt:~$ nv show vrf default dhcp-server-v4 static-host --rev=applied
+         agent-remoteid-circuitid  ip-address  MAC address        provision-url  Summary     
+-------  ------------------------  ----------  -----------------  -------------  ------------
+server1                            10.0.0.2    44:38:39:00:01:7e                             
+server2                            10.0.0.3                                      ifname: swp1
 ```
 
-To show the DHCP static configuration for a specific host, run the `nv show service dhcp-server <vrf-id> static <host>` command:
+To show the DHCP static configuration for a specific host, run the `nv show vrf <vrf-id> dhcp-server-v4 static-host <host-id>` or the `nv show vrf <vrf-id> dhcp-server-v6 static-host <host-id>` command:
 
 ```
-cumulus@leaf01:mgmt:~$ nv show service dhcp-server default static server2
-              operational        applied                     
-------------  -----------------  -----------------
-ip-address                 10.1.10.2  
-vendor-class               bmc-string
-ifname                     swp6 
+cumulus@leaf01:mgmt:~$ nv show vrf default dhcp-server-v4 static-host server2
+            applied  
+----------  ---------
+ip-address  10.1.10.2
+[ifname]    swp6
 ```
 
 ## Troubleshooting
 
-To show the current DHCP server settings, run the `nv show service dhcp-server` command for IPv4 or `nv show service dhcp-server6` for IPv6:
+To show the current DHCP server settings, run the `nv show vrf <vrf-id> dhcp-server-v4` command for IPv4 or `nv show vrf <vrf-id> dhcp-server-v6` for IPv6:
 
 ```
-cumulus@leaf01:mgmt:~$ nv show service dhcp-server
-           Summary
----------  ------------------
-+ default  interface:   "swp1
-  default  pool: 10.1.10.0/24
-  default  static:    server1
+cumulus@leaf01:mgmt:~$ nv show vrf default dhcp-server-v4
+               applied     
+-------------  ------------
+[subnet]       10.1.10.0/24
+[static-host]  server1     
+[static-host]  server2     
+[static-host]  server3
 ```
 
 The DHCP server determines if a DHCP request is a relay or a non-relay DHCP request. Run the following command to see the DHCP request:

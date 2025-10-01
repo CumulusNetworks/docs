@@ -39,7 +39,7 @@ The following example commands configure VRF BLUE and assigns a table ID automat
 
 ```
 cumulus@switch:~$ nv set vrf BLUE table auto
-cumulus@switch:~$ nv set interface swp1 ip vrf BLUE
+cumulus@switch:~$ nv set interface swp1 vrf BLUE
 cumulus@switch:~$ nv config apply
 ```
 
@@ -488,7 +488,7 @@ The following example shows a {{<link url="Border-Gateway-Protocol-BGP#bgp-unnum
 ```
 cumulus@switch:~$ nv set vrf RED table auto
 cumulus@switch:~$ nv set vrf RED loopback ip address 10.10.10.1/32
-cumulus@switch:~$ nv set interface swp51 ip vrf RED
+cumulus@switch:~$ nv set interface swp51 vrf RED
 cumulus@switch:~$ nv set vrf RED router bgp router-id 10.10.10.1
 cumulus@switch:~$ nv set vrf RED router bgp autonomous-system 65001
 cumulus@switch:~$ nv set vrf RED router bgp neighbor swp51 remote-as external 

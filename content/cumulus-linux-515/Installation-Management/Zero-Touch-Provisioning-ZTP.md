@@ -511,10 +511,10 @@ nv config apply
 
 ### Configure NTP
 
-NTP starts at boot by default on the switch and the NTP configuration includes default servers. For additional information, see {{<link url="Network-Time-Protocol-NTP" text="NTP">}}. To configure additional NTP servers, include the following commands in your ZTP script. This example adds the server `4.cumulusnetworks.pool.ntp.org` in the `default` VRF:
+NTP starts at boot by default on the switch and the NTP configuration includes default servers. For additional information, see {{<link url="Network-Time-Protocol-NTP" text="NTP">}}. To configure additional NTP servers, include the following commands in your ZTP script. This example adds the server `4.cumulusnetworks.pool.ntp.org`:
 
 ```
-nv set service ntp default server 4.cumulusnetworks.pool.ntp.org iburst on
+nv set system ntp server 4.cumulusnetworks.pool.ntp.org iburst enabled
 nv config apply
 ```
 

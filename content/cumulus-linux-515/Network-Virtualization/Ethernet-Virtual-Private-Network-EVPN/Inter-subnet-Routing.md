@@ -614,9 +614,9 @@ cumulus@leaf01:~$ nv set vrf BLUE
 cumulus@leaf01:~$ nv set bridge domain br_default vlan 10 vni 10
 cumulus@leaf01:~$ nv set bridge domain br_default vlan 20 vni 20
 cumulus@leaf01:~$ nv set bridge domain br_default vlan 30 vni 30
-cumulus@leaf01:~$ nv set interface vlan10 ip vrf RED
-cumulus@leaf01:~$ nv set interface vlan20 ip vrf RED
-cumulus@leaf01:~$ nv set interface vlan30 ip vrf BLUE
+cumulus@leaf01:~$ nv set interface vlan10 vrf RED
+cumulus@leaf01:~$ nv set interface vlan20 vrf RED
+cumulus@leaf01:~$ nv set interface vlan30 vrf BLUE
 cumulus@leaf01:~$ nv set nve vxlan source address 10.10.10.1
 cumulus@leaf01:~$ nv set nve vxlan arp-nd-suppress on 
 cumulus@leaf01:~$ nv set vrf RED evpn vni 4001
@@ -679,9 +679,9 @@ cumulus@border01:~$ nv set vrf EXTERNAL2
 cumulus@border01:~$ nv set bridge domain br_default vlan 2001 vni 2001
 cumulus@border01:~$ nv set bridge domain br_default vlan 2002 vni 2002
 cumulus@border01:~$ nv set bridge domain br_default vlan 2010 vni 2010
-cumulus@border01:~$ nv set interface vlan2001 ip vrf EXTERNAL1
-cumulus@border01:~$ nv set interface vlan2002 ip vrf EXTERNAL2
-cumulus@border01:~$ nv set interface vlan2010 ip vrf VRF10
+cumulus@border01:~$ nv set interface vlan2001 vrf EXTERNAL1
+cumulus@border01:~$ nv set interface vlan2002 vrf EXTERNAL2
+cumulus@border01:~$ nv set interface vlan2010 vrf VRF10
 cumulus@border01:~$ nv set nve vxlan source address 10.10.10.63
 cumulus@border01:~$ nv set nve vxlan arp-nd-suppress on 
 cumulus@border01:~$ nv set vrf VRF10 evpn vni 6000

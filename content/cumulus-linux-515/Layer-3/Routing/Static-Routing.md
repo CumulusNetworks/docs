@@ -74,7 +74,7 @@ The following example commands configure Cumulus Linux to send traffic with the 
 
 ```
 cumulus@border01:~$ nv set interface swp3 ip address 10.0.0.32/31
-cumulus@border01:~$ nv set interface swp3 ip vrf BLUE
+cumulus@border01:~$ nv set interface swp3 vrf BLUE
 cumulus@border01:~$ nv set vrf BLUE router static 10.10.10.61/32 via 10.0.0.33
 cumulus@border01:~$ nv config apply
 ```

@@ -667,8 +667,8 @@ Add the VRFs and associate them with switch ports:
 ```
 cumulus@switch:~$ nv set vrf RED
 cumulus@switch:~$ nv set vrf BLUE
-cumulus@switch:~$ nv set interface swp1 ip vrf RED
-cumulus@switch:~$ nv set interface swp2 ip vrf BLUE
+cumulus@switch:~$ nv set interface swp1 vrf RED
+cumulus@switch:~$ nv set interface swp2 vrf BLUE
 ```
 
 Add PIM configuration:

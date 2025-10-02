@@ -43,9 +43,21 @@
 <td></td>
 </tr>
 <tr>
+<td>4621451</td>
+<td>Changing the gateway interface IP address on the DHCP relay causes DHCP relay to not forward the packet. To work around this issue, restart the DHCP relay service corresponding to the VRF on which it is running.</td>
+<td>5.13.1-5.14.0</td>
+<td></td>
+</tr>
+<tr>
 <td>4608614</td>
 <td>When setting up SSH keys, you have to run {{nv config apply}} twice for the configuration to take effect.</td>
 <td>5.11.3-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4608007</td>
+<td>Load interval configuration changes with the {{nv set system counter rates load-interval}} command do not take effect.</td>
+<td>5.14.0</td>
 <td></td>
 </tr>
 <tr>
@@ -94,6 +106,12 @@
 <td>4579237</td>
 <td>If interface statistics telemetry is running on the switch, an {{interface_stats_collector}} core file might generate during statistics collection.</td>
 <td>5.11.3-5.14.0</td>
+<td></td>
+</tr>
+<tr>
+<td>4579137</td>
+<td>TTL exceeded packets might not have the expected source IP address in the forwarding path to the destination when VRF interfaces are present on the forwarding path.</td>
+<td>5.13.1-5.14.0</td>
 <td></td>
 </tr>
 <tr>
@@ -942,6 +960,11 @@ To work around this issue, restart the FRR service using the {{sudo systemctl re
 <td>4531104</td>
 <td>On a switch with SDK 4.6.1062 or earlier, you might see FW fatal health events.</td>
 <td>5.6.0-5.13.1</td>
+</tr>
+<tr>
+<td>4529334</td>
+<td>The GNMI Subscription to xpath {{interfaces/interface[name=swp61s0]/state/counters/out-pkts}} with a high sample interval results in an initial response of zero but in subsequent updates, the value is correct. You do not see this issue when the sample interval is 1 second.</td>
+<td></td>
 </tr>
 <tr>
 <td>4526096</td>

@@ -40,14 +40,12 @@ Health issues
 ================
     Component           Status information                                           
     ------------------  -------------------------------------------------------------
-    ASIC                Not OK                                                       
-    forwarding          active (running) since Thu 2025-04-17 10:56:57 UTC; 58min ago
-    hw-management       inactive                                                     
-    hw-management-sync  inactive                                                     
-    hw-management-tc    inactive                                                     
-    mft                 inactive                                                     
-    process             Not OK                                                       
-    rasdaemon           inactive 
+    forwarding          active (running) since Tue 2025-09-30 14:36:55 UTC; 1 day 21h ago
+    hw-management       inactive                                                         
+    hw-management-sync  inactive                                                         
+    hw-management-tc    inactive                                                         
+    mft                 inactive                                                         
+    process             Not OK  
 ```
 
 The following example shows the `nv show platform` command output:
@@ -56,17 +54,17 @@ The following example shows the `nv show platform` command output:
 cumulus@switch:~$ nv show platform
                operational      
 -------------  -----------------
-system-mac     44:38:39:22:01:b1                      
-manufacturer   Cumulus                                
-product-name   VX                                     
-cpu            x86_64 QEMU Virtual CPU version 2.5+ x1
-memory         1756460 kB                             
-disk-size      n/a                                    
-port-layout    n/a                                    
-part-number    5.15                                 
-serial-number  44:38:39:22:01:7a                      
-asic-model     n/a                                    
-system-uuid    e928ee83-20f7-4515-bfab-c204db3e604c
+system-mac     44:38:39:22:01:b1                               
+manufacturer   Cumulus                                         
+cpu            x86_64 QEMU Virtual CPU version 2.5+ x1         
+memory         1.67 GB                                         
+disk-size      n/a                                             
+port-layout    n/a                                             
+part-number    5.15.0                                          
+serial-number  44:38:39:22:01:7a                               
+asic-model     n/a                                             
+system-uuid    51c411e8-43d2-4e60-a7e7-e068aa04b7f9            
+system-type    VX
 ```
 
 The following example shows the `nv show platform environment fan` command output. The airflow direction must be the same for all fans. If Cumulus Linux detects that the fan airflow direction is not uniform, it logs a message in the `var/log/syslog` file.

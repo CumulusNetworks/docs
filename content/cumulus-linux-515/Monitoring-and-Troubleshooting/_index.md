@@ -90,41 +90,63 @@ To show information about the version of Cumulus Linux running on the switch, ru
 
 ```
 cumulus@switch:~$ nv show system
-uptime             1 day, 0:00:39                                                 
-hostname           leaf01                                         leaf01   leaf01 
-product-name       Cumulus Linux                                                  
-platform           N/A                                                            
-system-memory      1.29 GB used / 171.84 MB free / 1.67 GB total                  
-swap-memory        0 Bytes used / 0 Bytes free / 0 Bytes total                    
-health-status      Not OK                                                         
-date-time          2025-04-18 10:57:01                                            
-status             N/A                                                            
-timezone           Etc/UTC                                                        
-version                                                                           
-  onie             N/A                                                            
-  kernel           6.1.0-cl-1-amd64                                               
-  base-os          Debian GNU/Linux 12.10                                         
+                   operational          applied
+-----------------  -------------------  ------- 
+uptime             23:22:36                             
+hostname           cumulus              cumulus
+product-name       Cumulus Linux                        
+contact                                                 
+location                                                
+dns                                                     
+  domain                                                
+date-time                                               
+  local-time       2025-10-02 11:42:53                  
+  timezone         Etc/UTC              Etc/UTC
+health                                                  
+  status           Not OK                               
+version                                                 
+  product-release  5.15.0                               
+global                                                  
+  system-mac       44:38:39:22:01:b1    auto  
+  anycast-mac      none                 none                                        
 ```
 
 To show system memory information in bytes, run the `nv show system memory` command:
 
 ```
 cumulus@switch:~$ nv show system memory
-Type      Buffers     Cache        Free         Total         Used         Utilization
---------  ----------  -----------  -----------  ------------  -----------  -----------
-Physical  81661952 B  571834368 B  373276672 B  1813528576 B  786755584 B  79.4%
-Swap                               0 B          0 B           0 B          0.0%
+B - Bytes, KB - Kilobytes, MB - Megabytes, GB - Gigabytes, % - Percent
+Physical total: 1.67 GB
+Physical free: 406.38 MB
+Physical buffer: 37.19 MB
+Physical cache: 222.11 MB
+Physical used: 1.20 GB
+Physical utilization: 72.05 %
+Swap total: 0 B
+Swap free: 0 B
+Swap used: 0 B
+Swap utilization: 0.00 %                               0 B          0 B           0 B          0.0%
 ```
 
 To show system CPU information, run the `nv show system cpu` command:
 
 ```
 cumulus@switch:~$ nv show system cpu
-             operational                  
------------  -----------------------------
-model        QEMU Virtual CPU version 2.5+
-core-count   1                            
-utilization  0.3%
+                   operational                  
+-----------------  -----------------------------
+model              QEMU Virtual CPU version 2.5+         
+core-count         1                                     
+total-utilization  0.3%                                  
+load-average                                             
+  one-minute       0.02                                  
+  five-minute      0.02                                  
+  fifteen-minute   0.0                                   
+
+Cores
+========
+    CPU   Utilization
+    ----  -----------
+    CPU0  100.0%
 ```
 
 To show general information about the switch, run the `nv show platform` command:
@@ -135,7 +157,6 @@ cumulus@switch:~$ nv show platform
 -------------  ---------------------------------------
 system-mac     44:38:39:22:01:b1                               
 manufacturer   Cumulus                                         
-product-name   VX                                              
 cpu            x86_64 QEMU Virtual CPU version 2.5+ x1         
 memory         1.67 GB                                         
 disk-size      n/a                                             
@@ -143,7 +164,8 @@ port-layout    n/a
 part-number    5.15.0                                          
 serial-number  44:38:39:22:01:7a                               
 asic-model     n/a                                             
-system-uuid    6de505b8-323c-42ab-b188-0ba5c666b668
+system-uuid    51c411e8-43d2-4e60-a7e7-e068aa04b7f9            
+system-type    VX
 ```
 <!-- vale off -->
 ## Diagnostics Using a cl-support File

@@ -540,7 +540,7 @@ cumulus@leaf01:mgmt:~$ nv show interface bond1 bond
              operational  applied  description
 -----------  -----------  -------  ------------------------------------------------------
 down-delay   0            0        bond down delay
-lacp-bypass  on           on       lacp bypass
+lacp-bypass  enabled      enabled  lacp bypass
 lacp-rate    fast         fast     lacp rate
 mode                      lacp     bond mode
 up-delay     0            0        bond up delay

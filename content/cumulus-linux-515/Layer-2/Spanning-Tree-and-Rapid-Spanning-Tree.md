@@ -91,7 +91,7 @@ cumulus@switch:~$ nv show system control-plane policer rpvst
 ---------------  -----------  -------
 burst            2000         2000
 rate             2000         2000
-state            on           on
+state            enabled      enabled
 statistics
   policer-cbs    11
   policer-cir    2000
@@ -710,7 +710,7 @@ cumulus@switch:~$ nv show bridge domain br_default stp
 ```
 cumulus@switch:~$ mstpctl showportdetail br_default
 bridge:swp5 CIST info
-  enabled            no                      role                 Disabled
+  state              disabled                role                 Disabled
   port id            8.001                   state                discarding
   external port cost 305                     admin external cost  0
   internal port cost 305                     admin internal cost  0
@@ -978,15 +978,15 @@ cumulus@switch:~$ nv show interface swp1 bridge domain br_default
                operational  applied
 -------------  -----------  -------
 access         10           10     
-learning       on           on     
+learning       enabled      enabled     
 stp                                
-  admin-edge   on           on     
-  auto-edge    on           on     
-  bpdu-filter  off          off    
-  bpdu-guard   on           on     
-  network      off          off    
+  admin-edge   enabled      enabled     
+  auto-edge    enabled      enabled     
+  bpdu-filter  disabled     disabled    
+  bpdu-guard   enabled      enabled     
+  network      disabled     disabled    
   path-cost    20000               
-  restrrole    off          off    
+  restrrole    disabled     disabled   
   [vlan]                           
   state        forwarding 
 ```
@@ -997,13 +997,13 @@ To show STP configuration information for a bridge interface:
 cumulus@switch:~$  nv show interface swp1 bridge domain br_default stp
              operational  applied
 -----------  -----------  -------
-admin-edge   on           on     
-auto-edge    on           on     
-bpdu-filter  off          off    
-bpdu-guard   on           on     
-network      off          off    
+admin-edge   enabled      enabled     
+auto-edge    enabled      enabled     
+bpdu-filter  disabled     disabled    
+bpdu-guard   enabled      enabled     
+network      disabled     disabled    
 path-cost    20000               
-restrrole    off          off    
+restrrole    disabled     disabled    
 [vlan]                           
 state        forwarding
 ```

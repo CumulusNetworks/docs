@@ -97,7 +97,7 @@ The following example enables SyncE on swp2.
 ```
 cumulus@switch:~$ sudo nano /etc/synced/synced.conf
 ...
-# NVUE SyncE state is enable on
+# NVUE SyncE state is enabled
 
 [global]
 twtr_seconds=300

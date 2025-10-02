@@ -17,17 +17,17 @@ To show the current time zone, date, and time on the switch:
 {{< tab "NVUE Command ">}}
 
 ```
-cumulus@switch:~$ nv show system time
-                           operational                  
--------------------------  -----------------------------
-llocal-time                 Wed 2024-08-21 17:39:44 EDT
-universal-time             Wed 2024-08-21 21:39:44 UTC
-rtc-time                   Fri 2024-08-16 16:50:06    
-time-zone                  US/Eastern (EDT, -0400)    
-system-clock-synchronized  no                         
-ntp-service                n/a                        
-rtc-in-local-tz            no                         
-unix-time                  1724276384.1403222 
+cumulus@switch:~$ nv show system date-time
+                           operational
+-------------------------  -------------------
+local-time                 2025-10-02 11:07:34                  
+universal-time             2025-10-02 11:07:34                  
+rtc-time                   2025-10-02 11:07:34                  
+system-clock-synchronized  no                                   
+ntp-service                inactive                             
+rtc-in-local-tz            no                                   
+timezone                   Etc/UTC 
+unix-time                  1759403254.3559468 
 ```
 
 {{< /tab >}}

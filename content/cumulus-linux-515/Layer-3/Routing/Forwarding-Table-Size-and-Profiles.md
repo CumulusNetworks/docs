@@ -14,7 +14,7 @@ Cumulus Linux advertises the maximum number of forwarding table entries supporte
 - ECMP next hops, which are IP address entries in the routing table that specify the next closest or most optimal router in its routing path
 - MAC addresses
 
-To determine the current table sizes on a switch, run the NVUE `nv show platform asic resource` command or the Linux `cl-resource-query` command.
+To determine the current table sizes on a switch, run the NVUE `nv show platform asic <asic-id> resource` command or the Linux `cl-resource-query` command.
 
 Each switching architecture has specific resources available for forwarding table entries. Cumulus Linux stores:
 - Forwarding table resources in a <span class="a-tooltip">[KVD](## "Key Value Database")</span>.

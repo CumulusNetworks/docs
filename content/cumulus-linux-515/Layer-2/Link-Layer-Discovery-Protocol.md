@@ -361,7 +361,7 @@ To show the current LLDP mode, run the `nv show system lldp` command. The follow
 cumulus@leaf02:mgmt:~$ nv show system lldp
                     operational       applied
 ------------------  ----------------  ----------------
-dot1-tlv            off               off
+dot1-tlv            disabled          disabled
 mode                force-send-cdpv2  force-send-cdpv2
 tx-hold-multiplier  4                 4
 tx-interval         30                30

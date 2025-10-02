@@ -659,10 +659,10 @@ To show the link flap protection time interval and threshold settings:
 
 ```
 cumulus@switch:~$ nv show system link flap-protection
-           applied
----------  -------
-threshold  8      
-interval   30 
+          operational  applied
+---------  -----------  -------
+threshold               5     
+interval                10    
 ```
 
 To show if link flap protection is on an interface, run the `nv show interface <interface-id> link flap-protection` command:

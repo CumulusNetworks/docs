@@ -69,12 +69,12 @@ To check the NTP peer status:
 
 ```
 cumulus@switch:~$ nv show system ntp server
-                 delay    iburst  jitter  offset   peer-state  poll  reach  refid         stratum  type  when
----------------  -------  ------  ------  -------  ----------  ----  -----  ------------  -------  ----  ----
-23.157.160.168   67.4257          2.3843  -3.9378  -           128   377    129.6.15.28   2        u     41  
-50.205.57.38     72.6007          1.0799  -1.8208  *           128   377    .GPS.         1        u     63  
-h134-215-155-17  59.4988          2.3081  -2.6286  +           128   377    216.239.35.0  2        u     15  
-li1150-42.membe  40.9645          0.4877  -1.9565  +           64    376    129.7.1.66    2        u     162
+NTP server                      Type    Aggressive  Resolve as            Source       State    Ver
+------------------------------  ------  ----------  --------------------  -----------  -------  ---
+0.cumulusnetworks.pool.ntp.org  server  enabled     66.244.16.123         user-config  enabled  4  
+1.cumulusnetworks.pool.ntp.org  server  enabled     23.95.49.216          user-config  enabled  4  
+2.cumulusnetworks.pool.ntp.org  server  enabled     2001:559:2be:3::1001  user-config  enabled  4  
+3.cumulusnetworks.pool.ntp.org  server  enabled     72.14.182.49          user-config  enabled  4 
 ```
 
 {{< /tab >}}

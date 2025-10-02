@@ -597,14 +597,7 @@ The syntax for the following commands has changed in Cumulus Linux 5.15.
 The output for the following commands has changed in Cumulus Linux 5.15.
 
 {{< tabs "828 ">}}
-{{< tab "LLDP">}}
-
-```
-nv set interface eth0 lldp
-```
-
-{{< /tab >}}
-{{< tab "Platform ">}}
+{{< tab "Platform">}}
 
 ```
 nv show platform asic

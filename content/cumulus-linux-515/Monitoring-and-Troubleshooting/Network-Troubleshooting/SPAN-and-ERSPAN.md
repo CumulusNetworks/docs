@@ -617,14 +617,14 @@ cumulus@switch:~$ nv show system port-mirror session 1
                  operational  applied  pending
 ---------------  -----------  -------  -------
 erspan                                        
-  enable                               off    
+  state                                disabled    
 span                                          
-  enable                               on     
+  state                                enabled     
   direction                            ingress
   [destination]                               
   [source-port]                        swp1   
   truncate                                    
-    enable                             off  
+    state                              disabled  
 ```
 
 You can also run the `sudo cl-acltool -L all | grep SPAN` or `sudo cl-acltool -L all | grep ERSPAN` command.

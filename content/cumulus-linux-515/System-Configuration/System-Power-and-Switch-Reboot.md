@@ -112,12 +112,19 @@ To show reboot information, such as the date and time, and reason, and the reboo
 cumulus@switch:~$ nv show system reboot
            operational                       applied
 ---------  --------------------------------  -------
-reason                                              
-  reason   Unknown                                  
-  gentime  2025-05-16T16:08:27.798068+00:00         
-  user     system/root                              
-required   no
-last-reboot-mode  warm
+reason                                                     
+  reason          Unknown                                  
+  gentime         2025-09-30T14:36:27.003819+00:00         
+  user            system/root                              
+[history]         1                                        
+[history]         2                                        
+[history]         3                                        
+[history]         4                                        
+[history]         5                                        
+[history]         6                                        
+[history]         7                                        
+required          no                                       
+last-reboot-mode  cold
 ```
 
 To display the current resource mode, run the `nv show system forwarding resource-mode` command. 

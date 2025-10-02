@@ -19,14 +19,14 @@ To configure port security:
 {{< tabs "TabID22 ">}}
 {{< tab "NVUE Commands ">}}
 
-To enable security on a port, run the `nv set interface <interface-id> port-security enable on` command:
+To enable security on a port, run the `nv set interface <interface-id> port-security state enabled` command:
 
 ```
-cumulus@switch:~$ nv set interface swp1 port-security enable on
+cumulus@switch:~$ nv set interface swp1 port-security state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-You can disable port security on an interface with the `nv set interface <interface-id> port-security enable off` command.
+You can disable port security on an interface with the `nv set interface <interface-id> port-security state disabled` command.
 
 To configure the maximum number of MAC addresses allowed to access the port, run the `nv set interface <interface-id> port-security mac-limit` command. You can specify a value between 1 and 512. The default value is 32.
 

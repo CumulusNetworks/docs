@@ -514,22 +514,22 @@ The first time you configure a switch, all southbound bridge ports are down; the
 {{< tabs "TabID486 ">}}
 {{< tab "NVUE Commands ">}}
 
-To configure all SVIs on the switch to be perpetually UP, run the `nv set system global svi-force-up enable on` command.
+To configure all SVIs on the switch to be perpetually UP, run the `nv set system global svi-force-up state enabled` command.
 
 ```
-cumulus@switch:~$ nv set system global svi-force-up enable on
+cumulus@switch:~$ nv set system global svi-force-up state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To configure SVIs in a specific bridge to be perpetually UP, run the `nv set bridge domain <bridge> svi-force-up enable on` command:
+To configure SVIs in a specific bridge to be perpetually UP, run the `nv set bridge domain <bridge> svi-force-up state enabled` command:
 
 ```
-cumulus@switch:~$ nv set bridge domain br_default svi-force-up enable on
+cumulus@switch:~$ nv set bridge domain br_default svi-force-up state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-- To configure all SVIs on the switch to be perpetually DOWN, run the `nv set system global svi-force-up enable off` command.
-- To configure the SVIs in a specific bridge to be perpetually DOWN, run the `nv set bridge domain <bridge> svi-force-up enable off` command.
+- To configure all SVIs on the switch to be perpetually DOWN, run the `nv set system global svi-force-up state disabled` command.
+- To configure the SVIs in a specific bridge to be perpetually DOWN, run the `nv set bridge domain <bridge> svi-force-up state disabled` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

@@ -62,8 +62,8 @@ To set a static IP address and gateway address for eth0:
 
 ```
 cumulus@switch:~$ nv unset interface eth0 ipv4 dhcp-client
-cumulus@switch:~$ nv set interface eth0 ip address 192.0.2.42/24
-cumulus@switch:~$ nv set interface eth0 ip gateway 192.0.2.1
+cumulus@switch:~$ nv set interface eth0 ipv4 address 192.0.2.42/24
+cumulus@switch:~$ nv set interface eth0 ipv4 gateway 192.0.2.1
 cumulus@switch:~$ nv config apply
 ```
 
@@ -201,20 +201,20 @@ Verify that the date and time on the switch are correct. If the date and time ar
 {{< tabs "TabID166 ">}}
 {{< tab "NVUE Commands ">}}
 
-To show the current date and time, run the `nv show system time` command:
+To show the current date and time, run the `nv show system date-time` command:
 
 ```
-cumulus@switch:~$ nv show system time
-                           operational                  
--------------------------  -----------------------------
-local-time                 Wed 2024-08-21 17:39:44 EDT
-universal-time             Wed 2024-08-21 21:39:44 UTC
-rtc-time                   Fri 2024-08-16 16:50:06    
-time-zone                  US/Eastern (EDT, -0400)    
-system-clock-synchronized  no                         
-ntp-service                n/a                        
-rtc-in-local-tz            no                         
-unix-time                  1724276384.1403222
+cumulus@switch:~$ nv show system date-time
+                          operational         
+-------------------------  -------------------
+local-time                 2025-10-02 11:07:34                  
+universal-time             2025-10-02 11:07:34                  
+rtc-time                   2025-10-02 11:07:34                  
+system-clock-synchronized  no                                   
+ntp-service                inactive                             
+rtc-in-local-tz            no                                   
+timezone                   Etc/UTC 
+unix-time                  1759403254.3559468  
 ```
 
 To set the software clock according to the configured time zone, run the `nv action change system time <YYYY-MM-DD> <HH:MM:SS>` command; for example:

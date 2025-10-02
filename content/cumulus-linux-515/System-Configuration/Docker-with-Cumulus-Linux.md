@@ -9,7 +9,7 @@ You can use Cumulus Linux to run the {{<exlink url="https://www.docker.com/" tex
 The Docker package installs as part of the Cumulus Linux installation or ONIE upgrade process. The Docker package includes Docker Engine, and dependencies and configuration files required to run the Docker service. If you upgrade the switch with apt-upgrade, you must install the Docker package manually.
 
 {{%notice note%}}
-Docker has a global limit to use ten percent of the overall resources. WJH also runs in docker; if you exhaust the ten percent limit, then start WJH, you might see issues when using WJH. Make sure to free up Docker resources, then launch WJH again.
+- Docker has a global limit to use ten percent of the overall resources. WJH also runs in docker; if you exhaust the ten percent limit, then start WJH, you might see issues when using WJH. Make sure to free up Docker resources, then launch WJH again.
 {{%/notice%}}
 
 ## Run Docker Containers on the Switch
@@ -309,3 +309,27 @@ To show docker engine configuration, run the `nv show system docker engine` comm
 cumulus@switch:~$ nv show system docker engine 
 ```
 
+## Considerations
+
+NVUE manages the `/etc/docker/daemon.json` file and overwrites the file on every configuration. If you want to update this file, make sure to use a snippet.
+
+The following example shows a snippet that updates the `/etc/docker/daemon.json` file:
+
+```
+cumulus@switch:/etc/systemd/system$ nv config patch text.conf
+created [rev_id: 35]
+cumulus@switch:/etc/systemd/system$ nv config diff
+- set:
+    system:
+      config:
+        snippet:
+          docker-daemon: |
+            {
+                "iptables": false,
+                "ip6tables": false,
+                "ip-forward": false,
+                "ip-masq": false,
+                "bridge": "none",
+                "data-root": "/docker"
+            }
+```

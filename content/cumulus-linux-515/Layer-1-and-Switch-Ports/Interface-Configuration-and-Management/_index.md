@@ -659,10 +659,10 @@ To show the link flap protection time interval and threshold settings:
 
 ```
 cumulus@switch:~$ nv show system link flap-protection
-           applied
----------  -------
-threshold  8      
-interval   30 
+          operational  applied
+---------  -----------  -------
+threshold               5     
+interval                10    
 ```
 
 To show if link flap protection is on an interface, run the `nv show interface <interface-id> link flap-protection` command:
@@ -883,7 +883,7 @@ To show the assigned IP address on an interface:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv show interface lo ip address
+cumulus@switch:~$ nv show interface lo ipv4 address
 -------------
 10.0.1.12/32 
 10.10.10.1/32

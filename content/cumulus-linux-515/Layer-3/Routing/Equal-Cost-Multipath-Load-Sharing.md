@@ -258,11 +258,11 @@ To show that TEID-based ECMP hashing is on, run the command:
 
 ```
 cumulus@switch:~$ nv show system forwarding ecmp-hash
-                   applied  description
------------------  -------  -----------------------------------
-destination-ip     on       Destination IPv4/IPv6 Address
-destination-port   on       TCP/UDP destination port
-gtp-teid           on       GTP-U TEID
+                   applied 
+-----------------  ------- 
+destination-ip     enabled  
+destination-port   enabled  
+gtp-teid           enabled  
 ...
 ```
 
@@ -543,22 +543,22 @@ Cumulus Linux also supports BGP W-ECMP with adaptive routing; see {{<link title=
 {{< tabs "TabID436 ">}}
 {{< tab "NVUE Commands ">}}
 
-To enable adaptive routing globally, run the `nv set router adaptive-routing enable on` command:
+To enable adaptive routing globally, run the `nv set router adaptive-routing state enabled` command:
 
 ```
-cumulus@switch:~$ nv set router adaptive-routing enable on
+cumulus@switch:~$ nv set router adaptive-routing state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To enable adaptive routing on ports that are part of the same ECMP route, run the `nv set interface <interface-id> router adaptive-routing enable on` command.
+To enable adaptive routing on ports that are part of the same ECMP route, run the `nv set interface <interface-id> router adaptive-routing state enabled` command.
 
 ```
-cumulus@switch:~$ nv set interface swp51 router adaptive-routing enable on
-cumulus@switch:~$ nv set interface swp52 router adaptive-routing enable on
+cumulus@switch:~$ nv set interface swp51 router adaptive-routing state enabled
+cumulus@switch:~$ nv set interface swp52 router adaptive-routing state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To disable adaptive routing, run the `nv set router adaptive-routing enable off` command. To disable adaptive routing on a specific port, run the `nv set interface <interface-id> router adaptive-routing enable off` command.
+To disable adaptive routing, run the `nv set router adaptive-routing state disabled` command. To disable adaptive routing on a specific port, run the `nv set interface <interface-id> router adaptive-routing state disabled` command.
 
 Enabling or disabling adaptive routing globally or on an interface reloads the `switchd` service.
 
@@ -658,16 +658,16 @@ Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 The following example enables adaptive routing on swp1 and swp2. Global link utilization is off (the default setting).
 
 ```
-cumulus@switch:~$ nv set interface swp51 router adaptive-routing enable on
-cumulus@switch:~$ nv set interface swp52 router adaptive-routing enable on
+cumulus@switch:~$ nv set interface swp51 router adaptive-routing state enabled
+cumulus@switch:~$ nv set interface swp52 router adaptive-routing state enabled
 cumulus@switch:~$ nv config apply
 ```
 
 The following example enables adaptive routing on swp51 and swp52, sets the link utilization threshold percentage to 100 on both swp51 and swp52, and enables global link utilization:
 
 ```
-cumulus@switch:~$ nv set interface swp51 router adaptive-routing enable on
-cumulus@switch:~$ nv set interface swp52 router adaptive-routing enable on
+cumulus@switch:~$ nv set interface swp51 router adaptive-routing state enabled
+cumulus@switch:~$ nv set interface swp52 router adaptive-routing state enabled
 cumulus@switch:~$ nv set interface swp51 router adaptive-routing link-utilization-threshold 100
 cumulus@switch:~$ nv set interface swp52 router adaptive-routing link-utilization-threshold 100
 cumulus@switch:~$ nv set router adaptive-routing link-utilization-threshold on
@@ -728,7 +728,7 @@ To show adaptive routing settings, run the `nv show router adaptive-routing` com
 cumulus@leaf01:mgmt:~$ nv show router adaptive-routing
                             operational   applied
 --------------------------  ------------  -------
-enable                      on            off
+state                       enabled       enabled
 ```
 
 To show adaptive routing configuration for an interface, run the `nv show interface <interface-id> router adaptive-routing`.

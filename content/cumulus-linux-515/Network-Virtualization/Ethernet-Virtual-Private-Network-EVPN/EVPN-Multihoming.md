@@ -124,12 +124,12 @@ NVIDIA recommends that you enable EVPN-MH on all VTEPs throughout the fabric to 
 {{<tab "NVUE Commands">}}
 
 ```
-cumulus@leaf01:~$ nv set evpn multihoming enable on
+cumulus@leaf01:~$ nv set evpn multihoming state enabled
 cumulus@leaf01:~$ nv config apply
 ```
 
 {{%notice warning%}}
-When you enable multihoming on the Spectrum A1 switch with the `nv set evpn multihoming enable on` command, NVUE restarts the `switchd` service, which causes all network ports to reset in addition to resetting the switch hardware configuration.
+When you enable multihoming on the Spectrum A1 switch with the `nv set evpn multihoming state enabled` command, NVUE restarts the `switchd` service, which causes all network ports to reset in addition to resetting the switch hardware configuration.
 {{%/notice%}}
 
 {{< /tab >}}
@@ -1204,30 +1204,30 @@ cumulus@leaf01:~$ nv set vrf BLUE
 cumulus@leaf01:~$ nv set bridge domain br_default vlan 10 vni 10
 cumulus@leaf01:~$ nv set bridge domain br_default vlan 20 vni 20
 cumulus@leaf01:~$ nv set bridge domain br_default vlan 30 vni 30
-cumulus@leaf01:~$ nv set interface vlan10 ip vrf RED
-cumulus@leaf01:~$ nv set interface vlan20 ip vrf RED
-cumulus@leaf01:~$ nv set interface vlan30 ip vrf BLUE
+cumulus@leaf01:~$ nv set interface vlan10 vrf RED
+cumulus@leaf01:~$ nv set interface vlan20 vrf RED
+cumulus@leaf01:~$ nv set interface vlan30 vrf BLUE
 cumulus@leaf01:~$ nv set nve vxlan source address 10.10.10.1
 cumulus@leaf01:~$ nv set nve vxlan arp-nd-suppress on 
 cumulus@leaf01:~$ nv set vrf RED evpn vni 4001
 cumulus@leaf01:~$ nv set vrf BLUE evpn vni 4002
-cumulus@leaf01:~$ nv set evpn enable on
+cumulus@leaf01:~$ nv set evpn state enabled
 cumulus@leaf01:~$ nv set router bgp autonomous-system 65101
 cumulus@leaf01:~$ nv set router bgp router-id 10.10.10.1
 cumulus@leaf01:~$ nv set vrf default router bgp peer-group underlay remote-as external
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 peer-group underlay
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp52 peer-group underlay
-cumulus@leaf01:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@leaf01:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn state enabled
+cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected state enabled
 cumulus@leaf01:~$ nv set vrf RED router bgp autonomous-system 65101
 cumulus@leaf01:~$ nv set vrf RED router bgp router-id 10.10.10.1
-cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected state enabled
 cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn
 cumulus@leaf01:~$ nv set vrf BLUE router bgp autonomous-system 65101
 cumulus@leaf01:~$ nv set vrf BLUE router bgp router-id 10.10.10.1
-cumulus@leaf01:~$ nv set vrf BLUE router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@leaf01:~$ nv set vrf BLUE router bgp address-family ipv4-unicast redistribute connected state enabled
 cumulus@leaf01:~$ nv set vrf BLUE router bgp address-family ipv4-unicast route-export to-evpn
-cumulus@leaf01:~$ nv set evpn multihoming enable on
+cumulus@leaf01:~$ nv set evpn multihoming state enabled
 cumulus@leaf01:~$ nv set interface bond1 evpn multihoming segment local-id 1
 cumulus@leaf01:~$ nv set interface bond2 evpn multihoming segment local-id 2
 cumulus@leaf01:~$ nv set interface bond3 evpn multihoming segment local-id 3
@@ -1271,30 +1271,30 @@ cumulus@leaf02:~$ nv set vrf BLUE
 cumulus@leaf02:~$ nv set bridge domain br_default vlan 10 vni 10
 cumulus@leaf02:~$ nv set bridge domain br_default vlan 20 vni 20
 cumulus@leaf02:~$ nv set bridge domain br_default vlan 30 vni 30
-cumulus@leaf02:~$ nv set interface vlan10 ip vrf RED
-cumulus@leaf02:~$ nv set interface vlan20 ip vrf RED
-cumulus@leaf02:~$ nv set interface vlan30 ip vrf BLUE
+cumulus@leaf02:~$ nv set interface vlan10 vrf RED
+cumulus@leaf02:~$ nv set interface vlan20 vrf RED
+cumulus@leaf02:~$ nv set interface vlan30 vrf BLUE
 cumulus@leaf02:~$ nv set nve vxlan source address 10.10.10.2
 cumulus@leaf02:~$ nv set nve vxlan arp-nd-suppress on 
 cumulus@leaf02:~$ nv set vrf RED evpn vni 4001
 cumulus@leaf02:~$ nv set vrf BLUE evpn vni 4002
-cumulus@leaf02:~$ nv set evpn enable on
+cumulus@leaf02:~$ nv set evpn state enabled
 cumulus@leaf02:~$ nv set router bgp autonomous-system 65102
 cumulus@leaf02:~$ nv set router bgp router-id 10.10.10.2
 cumulus@leaf02:~$ nv set vrf default router bgp peer-group underlay remote-as external
 cumulus@leaf02:~$ nv set vrf default router bgp neighbor swp51 peer-group underlay
 cumulus@leaf02:~$ nv set vrf default router bgp neighbor swp52 peer-group underlay
-cumulus@leaf02:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@leaf02:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@leaf02:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn state enabled
+cumulus@leaf02:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected state enabled
 cumulus@leaf02:~$ nv set vrf RED router bgp autonomous-system 65102
 cumulus@leaf02:~$ nv set vrf RED router bgp router-id 10.10.10.2
-cumulus@leaf02:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@leaf02:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected state enabled
 cumulus@leaf02:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn
 cumulus@leaf02:~$ nv set vrf BLUE router bgp autonomous-system 65102
 cumulus@leaf02:~$ nv set vrf BLUE router bgp router-id 10.10.10.2
-cumulus@leaf02:~$ nv set vrf BLUE router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@leaf02:~$ nv set vrf BLUE router bgp address-family ipv4-unicast redistribute connected state enabled
 cumulus@leaf02:~$ nv set vrf BLUE router bgp address-family ipv4-unicast route-export to-evpn
-cumulus@leaf02:~$ nv set evpn multihoming enable on
+cumulus@leaf02:~$ nv set evpn multihoming state enabled
 cumulus@leaf02:~$ nv set interface bond1 evpn multihoming segment local-id 1
 cumulus@leaf02:~$ nv set interface bond2 evpn multihoming segment local-id 2
 cumulus@leaf02:~$ nv set interface bond3 evpn multihoming segment local-id 3
@@ -1338,30 +1338,30 @@ cumulus@leaf03:~$ nv set vrf BLUE
 cumulus@leaf03:~$ nv set bridge domain br_default vlan 10 vni 10
 cumulus@leaf03:~$ nv set bridge domain br_default vlan 20 vni 20
 cumulus@leaf03:~$ nv set bridge domain br_default vlan 30 vni 30
-cumulus@leaf03:~$ nv set interface vlan10 ip vrf RED
-cumulus@leaf03:~$ nv set interface vlan20 ip vrf RED
-cumulus@leaf03:~$ nv set interface vlan30 ip vrf BLUE
+cumulus@leaf03:~$ nv set interface vlan10 RED
+cumulus@leaf03:~$ nv set interface vlan20 vrf RED
+cumulus@leaf03:~$ nv set interface vlan30 vrf BLUE
 cumulus@leaf03:~$ nv set nve vxlan source address 10.10.10.3
 cumulus@leaf03:~$ nv set nve vxlan arp-nd-suppress on 
 cumulus@leaf03:~$ nv set vrf RED evpn vni 4001
 cumulus@leaf03:~$ nv set vrf BLUE evpn vni 4002
-cumulus@leaf03:~$ nv set evpn enable on
+cumulus@leaf03:~$ nv set evpn state enabled
 cumulus@leaf03:~$ nv set router bgp autonomous-system 65103
 cumulus@leaf03:~$ nv set router bgp router-id 10.10.10.3
 cumulus@leaf03:~$ nv set vrf default router bgp peer-group underlay remote-as external
 cumulus@leaf03:~$ nv set vrf default router bgp neighbor swp51 peer-group underlay
 cumulus@leaf03:~$ nv set vrf default router bgp neighbor swp52 peer-group underlay
-cumulus@leaf03:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@leaf03:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@leaf03:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn state enabled
+cumulus@leaf03:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected state enabled
 cumulus@leaf03:~$ nv set vrf RED router bgp autonomous-system 65103
 cumulus@leaf03:~$ nv set vrf RED router bgp router-id 10.10.10.3
-cumulus@leaf03:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@leaf03:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected state enabled
 cumulus@leaf03:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn
 cumulus@leaf03:~$ nv set vrf BLUE router bgp autonomous-system 65103
 cumulus@leaf03:~$ nv set vrf BLUE router bgp router-id 10.10.10.3
-cumulus@leaf03:~$ nv set vrf BLUE router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@leaf03:~$ nv set vrf BLUE router bgp address-family ipv4-unicast redistribute connected state enabled
 cumulus@leaf03:~$ nv set vrf BLUE router bgp address-family ipv4-unicast route-export to-evpn
-cumulus@leaf03:~$ nv set evpn multihoming enable on
+cumulus@leaf03:~$ nv set evpn multihoming state enabled
 cumulus@leaf03:~$ nv set interface bond1 evpn multihoming segment local-id 1
 cumulus@leaf03:~$ nv set interface bond2 evpn multihoming segment local-id 2
 cumulus@leaf03:~$ nv set interface bond3 evpn multihoming segment local-id 3
@@ -1405,30 +1405,30 @@ cumulus@leaf04:~$ nv set vrf BLUE
 cumulus@leaf04:~$ nv set bridge domain br_default vlan 10 vni 10
 cumulus@leaf04:~$ nv set bridge domain br_default vlan 20 vni 20
 cumulus@leaf04:~$ nv set bridge domain br_default vlan 30 vni 30
-cumulus@leaf04:~$ nv set interface vlan10 ip vrf RED
-cumulus@leaf04:~$ nv set interface vlan20 ip vrf RED
-cumulus@leaf04:~$ nv set interface vlan30 ip vrf BLUE
+cumulus@leaf04:~$ nv set interface vlan10 vrf RED
+cumulus@leaf04:~$ nv set interface vlan20 vrf RED
+cumulus@leaf04:~$ nv set interface vlan30 vrf BLUE
 cumulus@leaf04:~$ nv set nve vxlan source address 10.10.10.4
 cumulus@leaf04:~$ nv set nve vxlan arp-nd-suppress on 
 cumulus@leaf04:~$ nv set vrf RED evpn vni 4001
 cumulus@leaf04:~$ nv set vrf BLUE evpn vni 4002
-cumulus@leaf04:~$ nv set evpn enable on
+cumulus@leaf04:~$ nv set evpn state enabled
 cumulus@leaf04:~$ nv set router bgp autonomous-system 65104
 cumulus@leaf04:~$ nv set router bgp router-id 10.10.10.4
 cumulus@leaf04:~$ nv set vrf default router bgp peer-group underlay remote-as external
 cumulus@leaf04:~$ nv set vrf default router bgp neighbor swp51 peer-group underlay
 cumulus@leaf04:~$ nv set vrf default router bgp neighbor swp52 peer-group underlay
-cumulus@leaf04:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@leaf04:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@leaf04:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn state enabled
+cumulus@leaf04:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected state enabled
 cumulus@leaf04:~$ nv set vrf RED router bgp autonomous-system 65104
 cumulus@leaf04:~$ nv set vrf RED router bgp router-id 10.10.10.4
-cumulus@leaf04:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@leaf04:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected state enabled
 cumulus@leaf04:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn
 cumulus@leaf04:~$ nv set vrf BLUE router bgp autonomous-system 65104
 cumulus@leaf04:~$ nv set vrf BLUE router bgp router-id 10.10.10.4
-cumulus@leaf04:~$ nv set vrf BLUE router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@leaf04:~$ nv set vrf BLUE router bgp address-family ipv4-unicast redistribute connected state enabled
 cumulus@leaf04:~$ nv set vrf BLUE router bgp address-family ipv4-unicast route-export to-evpn
-cumulus@leaf04:~$ nv set evpn multihoming enable on
+cumulus@leaf04:~$ nv set evpn multihoming state enabled
 cumulus@leaf04:~$ nv set interface bond1 evpn multihoming segment local-id 1
 cumulus@leaf04:~$ nv set interface bond2 evpn multihoming segment local-id 2
 cumulus@leaf04:~$ nv set interface bond3 evpn multihoming segment local-id 3
@@ -1451,9 +1451,9 @@ cumulus@spine01:~$ nv set vrf default router bgp neighbor swp1 peer-group underl
 cumulus@spine01:~$ nv set vrf default router bgp neighbor swp2 peer-group underlay
 cumulus@spine01:~$ nv set vrf default router bgp neighbor swp3 peer-group underlay
 cumulus@spine01:~$ nv set vrf default router bgp neighbor swp4 peer-group underlay
-cumulus@spine01:~$ nv set vrf default router bgp address-family l2vpn-evpn enable on
-cumulus@spine01:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@spine01:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@spine01:~$ nv set vrf default router bgp address-family l2vpn-evpn state enabled
+cumulus@spine01:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn state enabled
+cumulus@spine01:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected state enabled
 cumulus@spine01:~$ nv config apply
 ```
 
@@ -1470,9 +1470,9 @@ cumulus@spine02:~$ nv set vrf default router bgp neighbor swp1 peer-group underl
 cumulus@spine02:~$ nv set vrf default router bgp neighbor swp2 peer-group underlay
 cumulus@spine02:~$ nv set vrf default router bgp neighbor swp3 peer-group underlay
 cumulus@spine02:~$ nv set vrf default router bgp neighbor swp4 peer-group underlay
-cumulus@spine02:~$ nv set vrf default router bgp address-family l2vpn-evpn enable on
-cumulus@spine02:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on
-cumulus@spine02:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@spine02:~$ nv set vrf default router bgp address-family l2vpn-evpn state enabled
+cumulus@spine02:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn state enabled
+cumulus@spine02:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected state enabled
 cumulus@spine02:~$ nv config apply
 ```
 

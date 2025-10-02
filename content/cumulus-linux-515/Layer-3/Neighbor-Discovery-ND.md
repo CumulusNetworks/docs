@@ -25,7 +25,7 @@ Router Advertisement is disabled by default. To enable Router Advertisement for 
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ipv6 neighbor-discovery router-advertisement enable on
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ipv6 neighbor-discovery router-advertisement state enabled
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 

@@ -495,8 +495,8 @@ If you do not manage your switch with NVUE and want to manage the system hostnam
 A Cumulus Linux switch always provides at least one dedicated Ethernet management port called eth0. This interface is specifically for out-of-band management use. The management interface uses DHCPv4 for addressing by default. To set a static IP address and gateway for the management interface, include the following commands in your ZTP script:
 
 ```
-nv set interface eth0 ip address 192.0.2.42/24
-nv set interface eth0 ip gateway 192.0.2.1
+nv set interface eth0 ipv4 address 192.0.2.42/24
+nv set interface eth0 ipv4 gateway 192.0.2.1
 nv config apply
 ```
 
@@ -511,10 +511,10 @@ nv config apply
 
 ### Configure NTP
 
-NTP starts at boot by default on the switch and the NTP configuration includes default servers. For additional information, see {{<link url="Network-Time-Protocol-NTP" text="NTP">}}. To configure additional NTP servers, include the following commands in your ZTP script. This example adds the server `4.cumulusnetworks.pool.ntp.org` in the `default` VRF:
+NTP starts at boot by default on the switch and the NTP configuration includes default servers. For additional information, see {{<link url="Network-Time-Protocol-NTP" text="NTP">}}. To configure additional NTP servers, include the following commands in your ZTP script. This example adds the server `4.cumulusnetworks.pool.ntp.org`:
 
 ```
-nv set service ntp default server 4.cumulusnetworks.pool.ntp.org iburst on
+nv set system ntp server 4.cumulusnetworks.pool.ntp.org iburst enabled
 nv config apply
 ```
 

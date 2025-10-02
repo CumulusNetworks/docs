@@ -777,24 +777,24 @@ To verify MLAG configuration, run the `nv show mlag` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show mlag
-                operational              applied            description
---------------  -----------------------  -----------------  ------------------------------------------------------
-enable                                   on                 Turn the feature 'on' or 'off'.  The default is 'off'.
-debug                                    off                Enable MLAG debugging
-init-delay                               100                The delay, in seconds, before bonds are brought up.
-mac-address     44:38:39:FF:00:aa        44:38:39:FF:00:AA  Override anycast-mac and anycast-id
-peer-ip         fe80::4638:39ff:fe00:5a  linklocal          Peer Ip Address
-priority        32768                    32768              Mlag Priority
-[backup]        10.10.10.2               10.10.10.2         Set of MLAG backups
-backup-active   False                                       Mlag Backup Status
-backup-reason                                               Mlag Backup Reason
-local-id        44:38:39:00:00:59                           Mlag Local Unique Id
-local-role      primary                                     Mlag Local Role
-peer-alive      True                                        Mlag Peer Alive Status
-peer-id         44:38:39:00:00:5a                           Mlag Peer Unique Id
-peer-interface  peerlink.4094                               Mlag Peerlink Interface
-peer-priority   32768                                       Mlag Peer Priority
-peer-role       secondary                                   Mlag Peer Role
+                operational              applied            
+--------------  -----------------------  -----------------  
+sate                                     enabled
+debug                                    off                
+init-delay                               100                
+mac-address     44:38:39:FF:00:aa        44:38:39:FF:00:AA  
+peer-ip         fe80::4638:39ff:fe00:5a  linklocal          
+priority        32768                    32768              
+[backup]        10.10.10.2               10.10.10.2         
+backup-active   False                                       
+backup-reason                                               
+local-id        44:38:39:00:00:59                           
+local-role      primary                                     
+peer-alive      True                                        
+peer-id         44:38:39:00:00:5a                           
+peer-interface  peerlink.4094            
+peer-priority   32768                    
+peer-role       secondary                
 ```
 
 To show the MLAG interface information, run the `clagctl` command:
@@ -827,7 +827,7 @@ To see all MLAG settings, run the `nv show mlag` command:
 cumulus@leaf01:~$ nv show mlag
                 operational                applied   
 --------------  -------------------------  ----------
-enable          on                         on        
+state           enabled                    enabled        
 mac-address     44:38:39:FF:00:aa          auto      
 peer-ip         fe80::4ab0:2dff:fe52:1190  linklocal 
 priority        1000                       1000      

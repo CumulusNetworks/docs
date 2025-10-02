@@ -81,8 +81,8 @@ The basic configuration shown below uses the default SyncE settings:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set system synce enable on
-cumulus@switch:~$ nv set interface swp2 synce enable on
+cumulus@switch:~$ nv set system synce state enabled
+cumulus@switch:~$ nv set interface swp2 synce state enabled
 cumulus@switch:~$ nv set interface swp2 synce bundle-id 10
 cumulus@switch:~$ nv config apply
 ```
@@ -97,7 +97,7 @@ The following example enables SyncE on swp2.
 ```
 cumulus@switch:~$ sudo nano /etc/synced/synced.conf
 ...
-# NVUE SyncE state is enable on
+# NVUE SyncE state is enabled
 
 [global]
 twtr_seconds=300

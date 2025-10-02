@@ -109,6 +109,14 @@ The syntax for the following commands has changed in Cumulus Linux 5.15.
 | `nv show service ntp <vrf-id> server <server-id>` | `nv show system ntp server <server-id>` |
 
 {{< /tab >}}
+{{< tab "System ">}}
+
+| CL5.14.0 and Earlier | CL5.15 and Later |
+| --- | --- |
+| `nv show system time` | `nv show system date-time` |
+| `nv show platform asic` | `nv show platform asic <asic-id>` |
+
+{{< /tab >}}
 {{< tab "LLDP ">}}
 
 | CL5.14.0 and Earlier | CL5.15 and Later |
@@ -589,14 +597,7 @@ The syntax for the following commands has changed in Cumulus Linux 5.15.
 The output for the following commands has changed in Cumulus Linux 5.15.
 
 {{< tabs "828 ">}}
-{{< tab "LLDP">}}
-
-```
-nv set interface eth0 lldp
-```
-
-{{< /tab >}}
-{{< tab "Platform ">}}
+{{< tab "Platform">}}
 
 ```
 nv show platform asic

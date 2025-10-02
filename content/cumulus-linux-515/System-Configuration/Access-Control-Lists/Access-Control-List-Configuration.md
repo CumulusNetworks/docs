@@ -964,9 +964,7 @@ cumulus@switch:~$ nv show system control-plane acl ACL1 statistics
 Rule  In Packet  In Byte  Out Packet  Out Byte  Summary 
 
 ----  ---------  -------  ----------  --------  --------------------------- 
-
 1     0          0 Bytes  0           0 Bytes   match.ip.dest-ip:   9.1.2.3 
-
 2     0          0 Bytes  0           0 Bytes   match.ip.source-ip: 7.8.2.3 
 ```
 

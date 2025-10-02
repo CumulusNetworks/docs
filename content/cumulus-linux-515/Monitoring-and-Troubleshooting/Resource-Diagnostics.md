@@ -14,10 +14,10 @@ To monitor the routes in Cumulus Linux hardware, you can use NVUE commands or th
 {{< tabs "TabID14 ">}}
 {{< tab "NVUE Commands ">}}
 
-To show both global and ACL ASIC resources, run the `nv show platform asic resource` command.
+To show both global and ACL ASIC resources, run the `nv show platform asic <asic-id> resource` command.
 
 ```
-cumulus@switch:~$ nv show platform asic resource
+cumulus@switch:~$ nv show platform asic ASIC1 resource
 Global 
 ========= 
     Resource Name             Count         Max        Percentage 
@@ -64,10 +64,10 @@ Acl
     Ingress-PBR-ipv6-filter-tabl           0           0               0            0  
 ```
 
-To show global ASIC resources on the switch in tabular format, run the `nv show platform asic resource global` command.
+To show global ASIC resources on the switch in tabular format, run the `nv show platform asic <asic-id> resource global` command.
 
 ```
-cumulus@switch:~$ nv show platform asic resource global
+cumulus@switch:~$ nv show platform asic ASIC1 resource global
 Resource Name                     Count   Max      Percentage 
     ------------------            -----   ----      ---------- 
     IPv4-host-entries             4       32768     0%
@@ -102,10 +102,10 @@ Resource Name                     Count   Max      Percentage
     Dynamic-SNAT-entries          0       1024      0.0% 
 ```
 
-To show only ACL ASIC resources in tabular format, run the `nv show platform asic resource acl` command.
+To show only ACL ASIC resources in tabular format, run the `nv show platform asic <asic-id> resource acl` command.
 
 ```
-cumulus@switch:~$ nv show platform asic resource acl
+cumulus@switch:~$ nv show platform asic ASIC1 resource acl
 Resource Name                        18B Rule     36B Rule     54B Rule    Rule Count 
     ----------------------------     ----------   ----------   ----------  -------- 
     Egress-ACL-ipv4-filter-table       0          0             0          0 

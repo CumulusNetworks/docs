@@ -258,11 +258,11 @@ To show that TEID-based ECMP hashing is on, run the command:
 
 ```
 cumulus@switch:~$ nv show system forwarding ecmp-hash
-                   applied  description
------------------  -------  -----------------------------------
-destination-ip     on       Destination IPv4/IPv6 Address
-destination-port   on       TCP/UDP destination port
-gtp-teid           on       GTP-U TEID
+                   applied 
+-----------------  ------- 
+destination-ip     enabled  
+destination-port   enabled  
+gtp-teid           enabled  
 ...
 ```
 

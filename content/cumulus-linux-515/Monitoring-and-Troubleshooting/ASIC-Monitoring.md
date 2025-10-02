@@ -515,7 +515,7 @@ To show the bandwidth gauge setting for an interface, run the `nv show interface
 cumulus@switch:~$ nv show interface swp1 telemetry bw-gauge
         operational  applied
 ------  -----------  -------
-enable  on           on
+state   enabled      enabled
 ```
 
 To show a summary of the bandwidth for an interface, run the `nv show system telemetry bw-gauge interface` command:

@@ -134,7 +134,7 @@ The following example shows the settings for the single shared buffer pool mode 
 cumulus@switch:mgmt:~$ nv show qos roce
                     operational            applied
 ------------------  ---------------------  ---------------------
-enable                                     on
+state                                      enabled
 mode                lossless-single-ipool  lossless-single-ipool
 pfc
   pfc-priority      3
@@ -200,7 +200,7 @@ The following example shows the settings for the lossy multi TC profile. When yo
 cumulus@switch:~$ nv show qos roce
                     operational     applied
 ------------------  --------------  --------------
-enable              on              on
+state               enabled         enabled
 mode                lossy-multi-tc  lossy-multi-tc
 pfc
   pfc-priority      -
